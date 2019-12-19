@@ -167,10 +167,6 @@ public final class UriUtils {
 
     /**
      * 通过 File Path 获取 Media Uri
-     * <pre>
-     *     只能用于查询 Media ( SDK_INT >= Q 使用, SDK_INT < Q 则直接使用 {@link Uri#fromFile(File)})
-     *     通过外部存储 ( 公开目录 ) SDCard 文件地址获取对应的 Uri content://
-     * </pre>
      * @param uri      MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
      * @param filePath 文件路径
      * @return 指定文件 {@link Uri}

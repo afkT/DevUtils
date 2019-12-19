@@ -37,27 +37,6 @@ public final class ContentResolverUtils {
     private static final String TAG = ContentResolverUtils.class.getSimpleName();
 
     /**
-     * 通知刷新本地资源
-     * <pre>
-     *     注意事项: 部分手机 ( 如小米 ) 通知文件地址层级过深, 将会并入相册文件夹中
-     *     尽量放在 SDCrad/XXX/xx.jpg 层级中
-     * </pre>
-     * @param file 文件
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean notifyMediaStore(final File file) {
-        if (file != null) {
-            try {
-                // 通知图库扫描更新
-                return AppUtils.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "notifyMediaStore");
-            }
-        }
-        return false;
-    }
-
-    /**
      * 添加图片到系统相册 ( 包含原图、相册图, 会存在两张 ) - 想要一张, 直接调用 notifyMediaStore()
      * @param file     文件
      * @param fileName 文件名
@@ -71,7 +50,7 @@ public final class ContentResolverUtils {
                 MediaStore.Images.Media.insertImage(ResourceUtils.getContentResolver(),
                         file.getAbsolutePath(), TextUtils.isEmpty(fileName) ? file.getName() : fileName, null);
                 // 通知图库扫描更新
-                if (isNotify) notifyMediaStore(file);
+                if (isNotify) MediaStoreUtils.notifyMediaStore(file);
                 return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "insertImageIntoMediaStore");

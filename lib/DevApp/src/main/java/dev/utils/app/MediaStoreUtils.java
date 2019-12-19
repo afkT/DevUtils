@@ -1,21 +1,24 @@
 package dev.utils.app;
 
+import android.content.Intent;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
 
+import java.io.File;
 import java.io.InputStream;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.image.BitmapUtils;
 import dev.utils.common.ConvertUtils;
+import dev.utils.common.FileUtils;
 
 /**
  * detail: MediaStore 工具类
  * <pre>
- *     通过 FileProvider Uri 是无法进行读取 ( MediaStore Cursor 是无法进行保存的 )
+ *     通过 FileProvider Uri 是无法进行读取 ( MediaStore Cursor 无法扫描 内部存储、外部存储 ( 私有目录 ) )
  *     需通过 {@link ResourceUtils#openInputStream(Uri)} 获取并保存到 {@link PathUtils#getAppExternal()}  外部存储 ( 私有目录 ) 中
  *     调用此类方法传入 filePath 获取所需信息 ( 私有目录不需要兼容 Android Q )
  * </pre>
@@ -28,6 +31,51 @@ public final class MediaStoreUtils {
 
     // 日志 TAG
     private static final String TAG = MediaStoreUtils.class.getSimpleName();
+
+    // ============
+    // = 通知相册 =
+    // ============
+
+    /**
+     * 通知刷新本地资源
+     * @param filePath 文件路径
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean notifyMediaStore(final String filePath) {
+        return notifyMediaStore(FileUtils.getFile(filePath));
+    }
+
+    /**
+     * 通知刷新本地资源
+     * <pre>
+     *     注意事项: 部分手机 ( 如小米 ) 通知文件地址层级过深, 将会并入相册文件夹中
+     *     尽量放在 SDCrad/XXX/xx.jpg 层级中, 推荐直接存储到 {@link PathUtils#getSDCard().getDCIMPath()}
+     *     该方法只能通知刷新 外部存储 ( 公开目录 ) SDCard 文件地址
+     *     MediaStore Cursor 无法扫描 内部存储、外部存储 ( 私有目录 )
+     *     <p></p>
+     *     正确的操作应该是: 不论版本统一存储到 外部存储 ( 私有目录 ) 再通过 MediaStore 插入数据
+     * </pre>
+     * @param file 文件
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean notifyMediaStore(final File file) {
+        // Android Q 以后的版本需要通过 MediaStore 插入数据
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            if (file != null) {
+                try {
+                    // 通知图库扫描更新
+                    return AppUtils.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "notifyMediaStore");
+                }
+            }
+        }
+        return false;
+    }
+
+    // ============
+    // = 资源信息 =
+    // ============
 
     /**
      * 获取本地视频时长
