@@ -20,12 +20,15 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.image.BitmapUtils;
 import dev.utils.app.image.ImageUtils;
+import dev.utils.common.CloseUtils;
 import dev.utils.common.ConvertUtils;
 import dev.utils.common.DateUtils;
+import dev.utils.common.FileIOUtils;
 import dev.utils.common.FileUtils;
 
 /**
  * detail: MediaStore 工具类
+ * @author Ttt
  * <pre>
  *     通过 FileProvider Uri 是无法进行读取 ( MediaStore Cursor 无法扫描 内部存储、外部存储 ( 私有目录 ) )
  *     需通过 {@link ResourceUtils#openInputStream(Uri)} 获取并保存到 {@link PathUtils#getAppExternal()}  外部存储 ( 私有目录 ) 中
@@ -34,7 +37,6 @@ import dev.utils.common.FileUtils;
  *     存储后缀根据 MIME_TYPE 决定, 值类型 {@link libcore.net.MimeUtils}
  *     @see <a href="https://github.com/LuckSiege/PictureSelector/blob/master/picture_library/src/main/java/com/luck/picture/lib/tools/PictureFileUtils.java"/>
  * </pre>
- * @author Ttt
  */
 public final class MediaStoreUtils {
 
@@ -99,6 +101,10 @@ public final class MediaStoreUtils {
     public final static String MIME_TYPE_VIDEO = "video/mp4";
     // 音频类型
     public final static String MIME_TYPE_AUDIO = "audio/mpeg";
+    // 图片文件夹
+    public final static String RELATIVE_IMAGE_PATH = Environment.DIRECTORY_PICTURES;
+    // 视频文件夹
+    public final static String RELATIVE_VIDEO_PATH = Environment.DIRECTORY_DCIM + "/Video";
 
     /**
      * 获取待显示名
@@ -133,27 +139,29 @@ public final class MediaStoreUtils {
         return getDisplayName("AUD");
     }
 
-    // =
+    // ========
+    // = 图片 =
+    // ========
 
     /**
-     * 创建一条图片 Uri
+     * 创建图片 Uri
      * @return 图片 Uri
      */
     public static Uri createImageUri() {
-        return createImageUri(getImageDisplayName(), System.currentTimeMillis(), MIME_TYPE_IMAGE, Environment.DIRECTORY_PICTURES);
+        return createImageUri(getImageDisplayName(), System.currentTimeMillis(), MIME_TYPE_IMAGE, RELATIVE_IMAGE_PATH);
     }
 
     /**
-     * 创建一条图片 Uri
+     * 创建图片 Uri
      * @param mimeType 资源类型
      * @return 图片 Uri
      */
     public static Uri createImageUri(final String mimeType) {
-        return createImageUri(getImageDisplayName(), System.currentTimeMillis(), mimeType, Environment.DIRECTORY_PICTURES);
+        return createImageUri(getImageDisplayName(), System.currentTimeMillis(), mimeType, RELATIVE_IMAGE_PATH);
     }
 
     /**
-     * 创建一条图片 Uri
+     * 创建图片 Uri
      * @param mimeType     资源类型
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return 图片 Uri
@@ -163,7 +171,7 @@ public final class MediaStoreUtils {
     }
 
     /**
-     * 创建一条图片 Uri
+     * 创建图片 Uri
      * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定)
      * @param createTime   创建时间
      * @param mimeType     资源类型
@@ -174,30 +182,73 @@ public final class MediaStoreUtils {
         return createMediaUri(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
     }
 
+    // ========
+    // = 视频 =
+    // ========
+
+    /**
+     * 创建视频 Uri
+     * @return 视频 Uri
+     */
+    public static Uri createVideoUri() {
+        return createVideoUri(getVideoDisplayName(), System.currentTimeMillis(), MIME_TYPE_VIDEO, RELATIVE_VIDEO_PATH);
+    }
+
+    /**
+     * 创建视频 Uri
+     * @param mimeType 资源类型
+     * @return 视频 Uri
+     */
+    public static Uri createVideoUri(final String mimeType) {
+        return createVideoUri(getVideoDisplayName(), System.currentTimeMillis(), mimeType, RELATIVE_VIDEO_PATH);
+    }
+
+    /**
+     * 创建视频 Uri
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @return 视频 Uri
+     */
+    public static Uri createVideoUri(final String mimeType, final String relativePath) {
+        return createVideoUri(getVideoDisplayName(), System.currentTimeMillis(), mimeType, relativePath);
+    }
+
+    /**
+     * 创建视频 Uri
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定)
+     * @param createTime   创建时间
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @return 视频 Uri
+     */
+    public static Uri createVideoUri(final String displayName, final long createTime, final String mimeType, final String relativePath) {
+        return createMediaUri(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
+    }
+
     // ============
     // = 通用创建 =
     // ============
 
     /**
-     * 创建一条预存储 Media Uri
+     * 创建预存储 Media Uri
      * @param uri          MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
      * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定)
      * @param mimeType     资源类型
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
-     * @return 图片 Uri
+     * @return Media Uri
      */
     public static Uri createMediaUri(final Uri uri, final String displayName, final String mimeType, final String relativePath) {
         return createMediaUri(uri, displayName, System.currentTimeMillis(), mimeType, relativePath);
     }
 
     /**
-     * 创建一条预存储 Media Uri
+     * 创建预存储 Media Uri
      * @param uri          MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
      * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定)
      * @param createTime   创建时间
      * @param mimeType     资源类型
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
-     * @return 图片 Uri
+     * @return Media Uri
      */
     public static Uri createMediaUri(final Uri uri, final String displayName, final long createTime, final String mimeType, final String relativePath) {
         boolean isAndroidQ = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q);
@@ -263,13 +314,41 @@ public final class MediaStoreUtils {
     public static boolean insertImage(final Uri uri, final Uri inputUri, final Bitmap.CompressFormat format,
                                       @IntRange(from = 0, to = 100) final int quality) {
         if (uri == null || inputUri == null || format == null) return false;
+        OutputStream outputStream = null;
+        ParcelFileDescriptor inputDescriptor = null;
         try {
-            OutputStream outputStream = ResourceUtils.openOutputStream(uri);
-            ParcelFileDescriptor inputDescriptor = ResourceUtils.openFileDescriptor(inputUri, "r");
+            outputStream = ResourceUtils.openOutputStream(uri);
+            inputDescriptor = ResourceUtils.openFileDescriptor(inputUri, "r");
             Bitmap bitmap = ImageUtils.decodeFileDescriptor(inputDescriptor.getFileDescriptor());
             return ImageUtils.saveBitmapToStream(bitmap, outputStream, format, quality);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "insertImage");
+        } finally {
+            CloseUtils.closeIOQuietly(outputStream, inputDescriptor);
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 插入一条视频
+     * @param uri      {@link #createVideoUri} or {@link #createMediaUri}
+     * @param inputUri 输入 Uri ( 待存储文件 Uri )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertVideo(final Uri uri, final Uri inputUri) {
+        if (uri == null || inputUri == null) return false;
+        OutputStream outputStream = null;
+        InputStream inputStream = null;
+        try {
+            outputStream = ResourceUtils.openOutputStream(uri);
+            inputStream = ResourceUtils.openInputStream(inputUri);
+            return FileIOUtils.copyLarge(inputStream, outputStream) != -1;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "insertVideo");
+        } finally {
+            CloseUtils.closeIOQuietly(inputStream, outputStream);
         }
         return false;
     }
