@@ -47,6 +47,12 @@ public final class PathUtils {
     private static final AppExternalPath sAppExternalPath = new AppExternalPath();
     // SDCard 外部存储路径类
     private static final SDCardPath sSDCardPath = new SDCardPath();
+    // Internal
+    public static final String INTERNAL = "internal";
+    // External
+    public static final String EXTERNAL = "external";
+    // DCIM
+    public static final String DCIM = Environment.DIRECTORY_DCIM;
 
     /**
      * 获取内部存储路径类

@@ -37,6 +37,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -642,6 +643,37 @@ public final class ResourceUtils {
             return ResourceUtils.getContentResolver().openInputStream(uri);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openInputStream " + uri.toString());
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Uri OutputStream
+     * @param uri {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @return Uri OutputStream
+     */
+    public static OutputStream openOutputStream(final Uri uri) {
+        if (uri == null) return null;
+        try {
+            return ResourceUtils.getContentResolver().openOutputStream(uri);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openOutputStream " + uri.toString());
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Uri OutputStream
+     * @param uri {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @param mode 读写模式
+     * @return Uri OutputStream
+     */
+    public static OutputStream openOutputStream(final Uri uri, final String mode) {
+        if (uri == null) return null;
+        try {
+            return ResourceUtils.getContentResolver().openOutputStream(uri, mode);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openOutputStream mode: " + mode + ", " + uri.toString());
         }
         return null;
     }

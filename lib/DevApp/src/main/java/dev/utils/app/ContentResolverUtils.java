@@ -119,7 +119,7 @@ public final class ContentResolverUtils {
     // ==========
 
     // 卷名
-    private static final String VOLUME_EXTERNAL = "external";
+    private static final String VOLUME_EXTERNAL = PathUtils.EXTERNAL;
     // 文件搜索 URI
     private static final Uri FILES_URI = MediaStore.Files.getContentUri(VOLUME_EXTERNAL);
 

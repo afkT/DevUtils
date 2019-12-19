@@ -1,9 +1,11 @@
 package dev.utils.app;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 
 import java.io.File;
@@ -71,6 +73,60 @@ public final class MediaStoreUtils {
             }
         }
         return false;
+    }
+
+    // ============
+    // = 插入数据 =
+    // ============
+
+    // 图片类型
+    public final static String MIME_TYPE_IMAGE = "image/jpeg";
+    // 视频类型
+    public final static String MIME_TYPE_VIDEO = "video/mp4";
+    // 音频类型
+    public final static String MIME_TYPE_AUDIO = "audio/mpeg";
+
+    /**
+     * 创建一条图片 Uri
+     * @return 图片 Uri
+     */
+    public static Uri createImageUri() {
+        long createTime = System.currentTimeMillis();
+        return createImageUri("IMG_" + createTime, createTime);
+    }
+
+    /**
+     * 创建一条图片 Uri
+     * @param fileName 文件名
+     * @return 图片 Uri
+     */
+    public static Uri createImageUri(final String fileName) {
+        return createImageUri(fileName, System.currentTimeMillis());
+    }
+
+    /**
+     * 创建一条图片 Uri
+     * @param fileName 文件名
+     * @param createTime 创建时间
+     * @return 图片 Uri
+     */
+    public static Uri createImageUri(final String fileName, final long createTime) {
+        boolean isAndroidQ = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q);
+
+        ContentValues values = new ContentValues(isAndroidQ ? 4 : 3);
+        values.put(MediaStore.Images.Media.DISPLAY_NAME, fileName); // 文件名
+        values.put(MediaStore.Images.Media.DATE_TAKEN, createTime); // 创建时间
+        values.put(MediaStore.Images.Media.MIME_TYPE, MIME_TYPE_IMAGE);
+        if (isAndroidQ) {
+            // MediaStore 会根据文件的 RELATIVE_PATH 去自动进行分类存储
+            values.put(MediaStore.Images.Media.RELATIVE_PATH, PathUtils.DCIM);
+        }
+        try {
+            return ResourceUtils.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "createImageUri");
+        }
+        return null;
     }
 
     // ============

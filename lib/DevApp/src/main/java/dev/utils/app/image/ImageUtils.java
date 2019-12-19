@@ -228,10 +228,10 @@ public final class ImageUtils {
      */
     public static boolean isPNG(final byte[] data) {
         return data != null && data.length >= 8
-                && (data[0] == (byte) 137 && data[1] == (byte) 80
-                && data[2] == (byte) 78 && data[3] == (byte) 71
-                && data[4] == (byte) 13 && data[5] == (byte) 10
-                && data[6] == (byte) 26 && data[7] == (byte) 10);
+            && (data[0] == (byte) 137 && data[1] == (byte) 80
+            && data[2] == (byte) 78 && data[3] == (byte) 71
+            && data[4] == (byte) 13 && data[5] == (byte) 10
+            && data[6] == (byte) 26 && data[7] == (byte) 10);
     }
 
     /**
@@ -259,7 +259,7 @@ public final class ImageUtils {
      */
     public static boolean isGif(final byte[] data) {
         return data != null && data.length >= 6 && data[0] == 'G' && data[1] == 'I' && data[2] == 'F'
-                && data[3] == '8' && (data[4] == '7' || data[4] == '9') && data[5] == 'a';
+            && data[3] == '8' && (data[4] == '7' || data[4] == '9') && data[5] == 'a';
     }
 
     /**
@@ -269,7 +269,7 @@ public final class ImageUtils {
      */
     public static boolean isWEBP(final byte[] data) {
         return data != null && data.length >= 12 && data[0] == 'R' && data[1] == 'I' && data[2] == 'F' && data[3] == 'F'
-                && data[8] == 'W' && (data[9] == 'E' || data[10] == 'B') && data[11] == 'P';
+            && data[8] == 'W' && (data[9] == 'E' || data[10] == 'B') && data[11] == 'P';
     }
 
     /**
@@ -665,6 +665,98 @@ public final class ImageUtils {
             return false;
         } finally {
             CloseUtils.closeIOQuietly(os);
+        }
+        return true;
+    }
+
+    // ================
+    // = OutputStream =
+    // ================
+
+    /**
+     * 保存 JPEG 图片
+     * @param bitmap 待保存图片
+     * @param stream {@link OutputStream}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToStreamJPEG(final Bitmap bitmap, final OutputStream stream) {
+        return saveBitmapToStream(bitmap, stream, Bitmap.CompressFormat.JPEG, 100);
+    }
+
+    /**
+     * 保存 JPEG 图片
+     * @param bitmap  待保存图片
+     * @param stream  {@link OutputStream}
+     * @param quality 质量
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToStreamJPEG(final Bitmap bitmap, final OutputStream stream,
+                                                 @IntRange(from = 0, to = 100) final int quality) {
+        return saveBitmapToStream(bitmap, stream, Bitmap.CompressFormat.JPEG, quality);
+    }
+
+    /**
+     * 保存 PNG 图片
+     * @param bitmap 待保存图片
+     * @param stream {@link OutputStream}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToStreamPNG(final Bitmap bitmap, final OutputStream stream) {
+        return saveBitmapToStream(bitmap, stream, Bitmap.CompressFormat.PNG, 100);
+    }
+
+    /**
+     * 保存 PNG 图片
+     * @param bitmap  待保存图片
+     * @param stream  {@link OutputStream}
+     * @param quality 质量
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToStreamPNG(final Bitmap bitmap, final OutputStream stream,
+                                                @IntRange(from = 0, to = 100) final int quality) {
+        return saveBitmapToStream(bitmap, stream, Bitmap.CompressFormat.PNG, quality);
+    }
+
+    /**
+     * 保存 WEBP 图片
+     * @param bitmap 待保存图片
+     * @param stream {@link OutputStream}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToStreamWEBP(final Bitmap bitmap, final OutputStream stream) {
+        return saveBitmapToStream(bitmap, stream, Bitmap.CompressFormat.WEBP, 100);
+    }
+
+    /**
+     * 保存 WEBP 图片
+     * @param bitmap  待保存图片
+     * @param stream  {@link OutputStream}
+     * @param quality 质量
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToStreamWEBP(final Bitmap bitmap, final OutputStream stream,
+                                                 @IntRange(from = 0, to = 100) final int quality) {
+        return saveBitmapToStream(bitmap, stream, Bitmap.CompressFormat.WEBP, quality);
+    }
+
+    /**
+     * 保存图片
+     * @param bitmap  待保存图片
+     * @param stream  {@link OutputStream}
+     * @param format  如 Bitmap.CompressFormat.PNG
+     * @param quality 质量
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveBitmapToStream(final Bitmap bitmap, final OutputStream stream, final Bitmap.CompressFormat format,
+                                             @IntRange(from = 0, to = 100) final int quality) {
+        if (bitmap == null || stream == null || format == null) return false;
+        try {
+            bitmap.compress(format, quality, stream);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "saveBitmapToStream");
+            return false;
+        } finally {
+            CloseUtils.closeIOQuietly(stream);
         }
         return true;
     }
