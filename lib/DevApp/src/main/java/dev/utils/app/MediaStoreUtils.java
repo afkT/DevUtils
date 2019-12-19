@@ -169,7 +169,7 @@ public final class MediaStoreUtils {
      */
     public static int[] getImageWidthHeight(final Uri uri) {
         try {
-            InputStream inputStream = ResourceUtils.getContentResolver().openInputStream(uri);
+            InputStream inputStream = ResourceUtils.openInputStream(uri);
             return BitmapUtils.getBitmapWidthHeight(inputStream);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getImageWidthHeight");

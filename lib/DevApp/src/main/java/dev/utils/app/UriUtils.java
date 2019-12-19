@@ -125,22 +125,12 @@ public final class UriUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isUriExists(final Uri uri) {
-        if (uri == null) return false;
-        AssetFileDescriptor afd = null;
+        AssetFileDescriptor afd = ResourceUtils.openAssetFileDescriptor(uri, "r");
         try {
-            afd = ResourceUtils.getContentResolver().openAssetFileDescriptor(uri, "r");
-            if (afd == null) {
-                return false;
-            } else {
-                CloseUtils.closeIOQuietly(afd);
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "isUriExists");
-            return false;
+            return (afd != null);
         } finally {
             CloseUtils.closeIOQuietly(afd);
         }
-        return true;
     }
 
     // =============
