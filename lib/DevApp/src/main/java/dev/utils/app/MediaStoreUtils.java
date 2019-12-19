@@ -35,7 +35,7 @@ import dev.utils.common.FileUtils;
  *     调用此类方法传入 filePath 获取所需信息 ( 私有目录不需要兼容 Android Q )
  *     <p></p>
  *     存储后缀根据 MIME_TYPE 决定, 值类型 {@link libcore.net.MimeUtils}
- *     @see <a href="https://github.com/LuckSiege/PictureSelector/blob/master/picture_library/src/main/java/com/luck/picture/lib/tools/PictureFileUtils.java"/>
+ *     @see <a href="https://www.androidos.net.cn/android/9.0.0_r8/xref/libcore/luni/src/main/java/libcore/net/MimeUtils.java"/>
  * </pre>
  */
 public final class MediaStoreUtils {
@@ -105,6 +105,8 @@ public final class MediaStoreUtils {
     public final static String RELATIVE_IMAGE_PATH = Environment.DIRECTORY_PICTURES;
     // 视频文件夹
     public final static String RELATIVE_VIDEO_PATH = Environment.DIRECTORY_DCIM + "/Video";
+    // 音频文件夹
+    public final static String RELATIVE_AUDIO_PATH = Environment.DIRECTORY_MUSIC;
 
     /**
      * 获取待显示名
@@ -225,6 +227,49 @@ public final class MediaStoreUtils {
         return createMediaUri(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
     }
 
+    // ========
+    // = 音频 =
+    // ========
+
+    /**
+     * 创建音频 Uri
+     * @return 音频 Uri
+     */
+    public static Uri createAudioUri() {
+        return createAudioUri(getAudioDisplayName(), System.currentTimeMillis(), MIME_TYPE_AUDIO, RELATIVE_AUDIO_PATH);
+    }
+
+    /**
+     * 创建音频 Uri
+     * @param mimeType 资源类型
+     * @return 音频 Uri
+     */
+    public static Uri createAudioUri(final String mimeType) {
+        return createAudioUri(getAudioDisplayName(), System.currentTimeMillis(), mimeType, RELATIVE_AUDIO_PATH);
+    }
+
+    /**
+     * 创建音频 Uri
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @return 音频 Uri
+     */
+    public static Uri createAudioUri(final String mimeType, final String relativePath) {
+        return createAudioUri(getAudioDisplayName(), System.currentTimeMillis(), mimeType, relativePath);
+    }
+
+    /**
+     * 创建音频 Uri
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定)
+     * @param createTime   创建时间
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @return 音频 Uri
+     */
+    public static Uri createAudioUri(final String displayName, final long createTime, final String mimeType, final String relativePath) {
+        return createMediaUri(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
+    }
+
     // ============
     // = 通用创建 =
     // ============
@@ -297,16 +342,6 @@ public final class MediaStoreUtils {
      * 插入一张图片
      * @param uri      {@link #createImageUri} or {@link #createMediaUri}
      * @param inputUri 输入 Uri ( 待存储文件 Uri )
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean insertImage(final Uri uri, final Uri inputUri) {
-        return insertImage(uri, inputUri, Bitmap.CompressFormat.PNG, 100);
-    }
-
-    /**
-     * 插入一张图片
-     * @param uri      {@link #createImageUri} or {@link #createMediaUri}
-     * @param inputUri 输入 Uri ( 待存储文件 Uri )
      * @param format   如 Bitmap.CompressFormat.PNG
      * @param quality  质量
      * @return {@code true} success, {@code false} fail
@@ -332,12 +367,42 @@ public final class MediaStoreUtils {
     // =
 
     /**
+     * 插入一张图片
+     * @param uri      {@link #createImageUri} or {@link #createMediaUri}
+     * @param inputUri 输入 Uri ( 待存储文件 Uri )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertImage(final Uri uri, final Uri inputUri) {
+        return insertMedia(uri, inputUri);
+    }
+
+    /**
      * 插入一条视频
      * @param uri      {@link #createVideoUri} or {@link #createMediaUri}
      * @param inputUri 输入 Uri ( 待存储文件 Uri )
      * @return {@code true} success, {@code false} fail
      */
     public static boolean insertVideo(final Uri uri, final Uri inputUri) {
+        return insertMedia(uri, inputUri);
+    }
+
+    /**
+     * 插入一条音频
+     * @param uri      {@link #createAudioUri()} or {@link #createMediaUri}
+     * @param inputUri 输入 Uri ( 待存储文件 Uri )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertAudio(final Uri uri, final Uri inputUri) {
+        return insertMedia(uri, inputUri);
+    }
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri      {@link #createVideoUri} or {@link #createMediaUri}
+     * @param inputUri 输入 Uri ( 待存储文件 Uri )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final Uri inputUri) {
         if (uri == null || inputUri == null) return false;
         OutputStream outputStream = null;
         InputStream inputStream = null;
@@ -346,7 +411,7 @@ public final class MediaStoreUtils {
             inputStream = ResourceUtils.openInputStream(inputUri);
             return FileIOUtils.copyLarge(inputStream, outputStream) != -1;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "insertVideo");
+            LogPrintUtils.eTag(TAG, e, "insertMedia");
         } finally {
             CloseUtils.closeIOQuietly(inputStream, outputStream);
         }
