@@ -607,20 +607,6 @@ public final class DevHelper {
     // ========================
 
     /**
-     * 添加图片到系统相册 ( 包含原图、相册图, 会存在两张 ) - 想要一张, 直接调用 notifyMediaStore()
-     * @param file     文件
-     * @param fileName 文件名
-     * @param isNotify 是否广播通知图库扫描
-     * @return {@link DevHelper}
-     */
-    public DevHelper insertImageIntoMediaStore(final File file, final String fileName, final boolean isNotify) {
-        ContentResolverUtils.insertImageIntoMediaStore(file, fileName, isNotify);
-        return this;
-    }
-
-    // =
-
-    /**
      * 添加视频到系统相册
      * @param file 文件
      * @return {@link DevHelper}

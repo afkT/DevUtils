@@ -37,31 +37,6 @@ public final class ContentResolverUtils {
     private static final String TAG = ContentResolverUtils.class.getSimpleName();
 
     /**
-     * 添加图片到系统相册 ( 包含原图、相册图, 会存在两张 ) - 想要一张, 直接调用 notifyMediaStore()
-     * @param file     文件
-     * @param fileName 文件名
-     * @param isNotify 是否广播通知图库扫描
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean insertImageIntoMediaStore(final File file, final String fileName, final boolean isNotify) {
-        if (file != null) {
-            try {
-                // 添加到相册
-                MediaStore.Images.Media.insertImage(ResourceUtils.getContentResolver(),
-                        file.getAbsolutePath(), TextUtils.isEmpty(fileName) ? file.getName() : fileName, null);
-                // 通知图库扫描更新
-                if (isNotify) MediaStoreUtils.notifyMediaStore(file);
-                return true;
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "insertImageIntoMediaStore");
-            }
-        }
-        return false;
-    }
-
-    // =
-
-    /**
      * 添加视频到系统相册
      * @param file 文件
      * @return {@code true} success, {@code false} fail
@@ -120,8 +95,8 @@ public final class ContentResolverUtils {
 
     // 卷名
     private static final String VOLUME_EXTERNAL = PathUtils.EXTERNAL;
-    // 文件搜索 URI
-    private static final Uri FILES_URI = MediaStore.Files.getContentUri(VOLUME_EXTERNAL);
+    // 文件 URI
+    public static final Uri FILES_URI = MediaStore.Files.getContentUri(VOLUME_EXTERNAL);
 
     /**
      * 获取 Uri Cursor

@@ -51,8 +51,6 @@ public final class PathUtils {
     public static final String INTERNAL = "internal";
     // External
     public static final String EXTERNAL = "external";
-    // DCIM
-    public static final String DCIM = Environment.DIRECTORY_DCIM;
 
     /**
      * 获取内部存储路径类

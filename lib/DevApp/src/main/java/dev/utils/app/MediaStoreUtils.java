@@ -2,19 +2,26 @@ package dev.utils.app;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
+import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
+import android.support.annotation.IntRange;
 import android.text.TextUtils;
 
 import java.io.File;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.image.BitmapUtils;
+import dev.utils.app.image.ImageUtils;
 import dev.utils.common.ConvertUtils;
+import dev.utils.common.DateUtils;
 import dev.utils.common.FileUtils;
 
 /**
@@ -23,6 +30,9 @@ import dev.utils.common.FileUtils;
  *     通过 FileProvider Uri 是无法进行读取 ( MediaStore Cursor 无法扫描 内部存储、外部存储 ( 私有目录 ) )
  *     需通过 {@link ResourceUtils#openInputStream(Uri)} 获取并保存到 {@link PathUtils#getAppExternal()}  外部存储 ( 私有目录 ) 中
  *     调用此类方法传入 filePath 获取所需信息 ( 私有目录不需要兼容 Android Q )
+ *     <p></p>
+ *     存储后缀根据 MIME_TYPE 决定, 值类型 {@link libcore.net.MimeUtils}
+ *     @see <a href="https://github.com/LuckSiege/PictureSelector/blob/master/picture_library/src/main/java/com/luck/picture/lib/tools/PictureFileUtils.java"/>
  * </pre>
  * @author Ttt
  */
@@ -76,57 +86,192 @@ public final class MediaStoreUtils {
     }
 
     // ============
-    // = 插入数据 =
+    // = 创建 Uri =
     // ============
 
+    // PNG
+    public final static String MIME_TYPE_IMAGE_PNG = "image/png";
+    // JPEG
+    public final static String MIME_TYPE_IMAGE_JPG = "image/jpeg";
     // 图片类型
-    public final static String MIME_TYPE_IMAGE = "image/jpeg";
+    public final static String MIME_TYPE_IMAGE = MIME_TYPE_IMAGE_PNG;
     // 视频类型
     public final static String MIME_TYPE_VIDEO = "video/mp4";
     // 音频类型
     public final static String MIME_TYPE_AUDIO = "audio/mpeg";
 
     /**
+     * 获取待显示名
+     * @param prefix 前缀
+     * @return DISPLAY_NAME
+     */
+    public static String getDisplayName(final String prefix) {
+        return prefix + "_" + DateUtils.getDateNow(DateUtils.yyyyMMdd_HHmmss);
+    }
+
+    /**
+     * 获取 Image 显示名
+     * @return Image DISPLAY_NAME
+     */
+    public static String getImageDisplayName() {
+        return getDisplayName("IMG");
+    }
+
+    /**
+     * 获取 Video 显示名
+     * @return Video DISPLAY_NAME
+     */
+    public static String getVideoDisplayName() {
+        return getDisplayName("VID");
+    }
+
+    /**
+     * 获取 Audio 显示名
+     * @return Audio DISPLAY_NAME
+     */
+    public static String getAudioDisplayName() {
+        return getDisplayName("AUD");
+    }
+
+    // =
+
+    /**
      * 创建一条图片 Uri
      * @return 图片 Uri
      */
     public static Uri createImageUri() {
-        long createTime = System.currentTimeMillis();
-        return createImageUri("IMG_" + createTime, createTime);
+        return createImageUri(getImageDisplayName(), System.currentTimeMillis(), MIME_TYPE_IMAGE, Environment.DIRECTORY_PICTURES);
     }
 
     /**
      * 创建一条图片 Uri
-     * @param fileName 文件名
+     * @param mimeType 资源类型
      * @return 图片 Uri
      */
-    public static Uri createImageUri(final String fileName) {
-        return createImageUri(fileName, System.currentTimeMillis());
+    public static Uri createImageUri(final String mimeType) {
+        return createImageUri(getImageDisplayName(), System.currentTimeMillis(), mimeType, Environment.DIRECTORY_PICTURES);
     }
 
     /**
      * 创建一条图片 Uri
-     * @param fileName 文件名
-     * @param createTime 创建时间
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return 图片 Uri
      */
-    public static Uri createImageUri(final String fileName, final long createTime) {
+    public static Uri createImageUri(final String mimeType, final String relativePath) {
+        return createImageUri(getImageDisplayName(), System.currentTimeMillis(), mimeType, relativePath);
+    }
+
+    /**
+     * 创建一条图片 Uri
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定)
+     * @param createTime   创建时间
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @return 图片 Uri
+     */
+    public static Uri createImageUri(final String displayName, final long createTime, final String mimeType, final String relativePath) {
+        return createMediaUri(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
+    }
+
+    // ============
+    // = 通用创建 =
+    // ============
+
+    /**
+     * 创建一条预存储 Media Uri
+     * @param uri          MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定)
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @return 图片 Uri
+     */
+    public static Uri createMediaUri(final Uri uri, final String displayName, final String mimeType, final String relativePath) {
+        return createMediaUri(uri, displayName, System.currentTimeMillis(), mimeType, relativePath);
+    }
+
+    /**
+     * 创建一条预存储 Media Uri
+     * @param uri          MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定)
+     * @param createTime   创建时间
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @return 图片 Uri
+     */
+    public static Uri createMediaUri(final Uri uri, final String displayName, final long createTime, final String mimeType, final String relativePath) {
         boolean isAndroidQ = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q);
-
         ContentValues values = new ContentValues(isAndroidQ ? 4 : 3);
-        values.put(MediaStore.Images.Media.DISPLAY_NAME, fileName); // 文件名
-        values.put(MediaStore.Images.Media.DATE_TAKEN, createTime); // 创建时间
-        values.put(MediaStore.Images.Media.MIME_TYPE, MIME_TYPE_IMAGE);
-        if (isAndroidQ) {
-            // MediaStore 会根据文件的 RELATIVE_PATH 去自动进行分类存储
-            values.put(MediaStore.Images.Media.RELATIVE_PATH, PathUtils.DCIM);
+        values.put(MediaStore.Files.FileColumns.DISPLAY_NAME, displayName); // 文件名
+        values.put(MediaStore.Files.FileColumns.DATE_TAKEN, createTime); // 创建时间
+        values.put(MediaStore.Files.FileColumns.MIME_TYPE, mimeType); // 资源类型
+        if (isAndroidQ) { // MediaStore 会根据文件的 RELATIVE_PATH 去自动进行分类存储
+            values.put(MediaStore.Files.FileColumns.RELATIVE_PATH, relativePath);
         }
         try {
-            return ResourceUtils.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+            return ResourceUtils.getContentResolver().insert(uri, values);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "createImageUri");
+            LogPrintUtils.eTag(TAG, e, "createMediaUri");
         }
         return null;
+    }
+
+    // ============
+    // = 插入数据 =
+    // ============
+
+    /**
+     * 插入一张图片
+     * <pre>
+     *     Android Q 已抛弃仍可用, 推荐使用传入 Uri 方式 {@link #createImageUri}
+     * </pre>
+     * @param filePath 文件路径
+     * @param name     保存文件名
+     * @return {@code true} success, {@code false} fail
+     */
+    @Deprecated
+    public static Uri insertImage(final String filePath, final String name) {
+        if (filePath != null && name != null) {
+            try {
+                String uriString = MediaStore.Images.Media.insertImage(ResourceUtils.getContentResolver(), filePath, name, null);
+                return Uri.parse(uriString);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "insertImage");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 插入一张图片
+     * @param uri      {@link #createImageUri} or {@link #createMediaUri}
+     * @param inputUri 输入 Uri ( 待存储文件 Uri )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertImage(final Uri uri, final Uri inputUri) {
+        return insertImage(uri, inputUri, Bitmap.CompressFormat.PNG, 100);
+    }
+
+    /**
+     * 插入一张图片
+     * @param uri      {@link #createImageUri} or {@link #createMediaUri}
+     * @param inputUri 输入 Uri ( 待存储文件 Uri )
+     * @param format   如 Bitmap.CompressFormat.PNG
+     * @param quality  质量
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertImage(final Uri uri, final Uri inputUri, final Bitmap.CompressFormat format,
+                                      @IntRange(from = 0, to = 100) final int quality) {
+        if (uri == null || inputUri == null || format == null) return false;
+        try {
+            OutputStream outputStream = ResourceUtils.openOutputStream(uri);
+            ParcelFileDescriptor inputDescriptor = ResourceUtils.openFileDescriptor(inputUri, "r");
+            Bitmap bitmap = ImageUtils.decodeFileDescriptor(inputDescriptor.getFileDescriptor());
+            return ImageUtils.saveBitmapToStream(bitmap, outputStream, format, quality);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "insertImage");
+        }
+        return false;
     }
 
     // ============
@@ -157,7 +302,7 @@ public final class MediaStoreUtils {
             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
             mmr.setDataSource(filePath);
             return Long.parseLong(mmr.extractMetadata
-                    (MediaMetadataRetriever.METADATA_KEY_DURATION));
+                (MediaMetadataRetriever.METADATA_KEY_DURATION));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVideoDuration");
             return 0;
@@ -175,7 +320,7 @@ public final class MediaStoreUtils {
             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
             mmr.setDataSource(DevUtils.getContext(), uri);
             return Long.parseLong(mmr.extractMetadata
-                    (MediaMetadataRetriever.METADATA_KEY_DURATION));
+                (MediaMetadataRetriever.METADATA_KEY_DURATION));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVideoDuration");
             return 0;
@@ -208,9 +353,9 @@ public final class MediaStoreUtils {
             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
             mmr.setDataSource(filePath);
             size[0] = ConvertUtils.toInt(mmr.extractMetadata
-                    (MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
+                (MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
             size[1] = ConvertUtils.toInt(mmr.extractMetadata
-                    (MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
+                (MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVideoSize");
         }
@@ -228,9 +373,9 @@ public final class MediaStoreUtils {
             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
             mmr.setDataSource(DevUtils.getContext(), uri);
             size[0] = ConvertUtils.toInt(mmr.extractMetadata
-                    (MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
+                (MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
             size[1] = ConvertUtils.toInt(mmr.extractMetadata
-                    (MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
+                (MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVideoSize");
         }
