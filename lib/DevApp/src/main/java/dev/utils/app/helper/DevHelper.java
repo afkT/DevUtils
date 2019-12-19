@@ -34,6 +34,7 @@ import dev.utils.app.HandlerUtils;
 import dev.utils.app.KeyBoardUtils;
 import dev.utils.app.LanguageUtils;
 import dev.utils.app.ListenerUtils;
+import dev.utils.app.MediaStoreUtils;
 import dev.utils.app.NotificationUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.ScreenUtils;
@@ -577,9 +578,19 @@ public final class DevHelper {
         return this;
     }
 
-    // ========================
-    // = ContentResolverUtils =
-    // ========================
+    // ===================
+    // = MediaStoreUtils =
+    // ===================
+
+    /**
+     * 通知刷新本地资源
+     * @param filePath 文件路径
+     * @return {@link DevHelper}
+     */
+    public DevHelper notifyMediaStore(final String filePath) {
+        MediaStoreUtils.notifyMediaStore(filePath);
+        return this;
+    }
 
     /**
      * 通知刷新本地资源
@@ -587,9 +598,13 @@ public final class DevHelper {
      * @return {@link DevHelper}
      */
     public DevHelper notifyMediaStore(final File file) {
-        ContentResolverUtils.notifyMediaStore(file);
+        MediaStoreUtils.notifyMediaStore(file);
         return this;
     }
+
+    // ========================
+    // = ContentResolverUtils =
+    // ========================
 
     /**
      * 添加图片到系统相册 ( 包含原图、相册图, 会存在两张 ) - 想要一张, 直接调用 notifyMediaStore()
