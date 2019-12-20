@@ -1,8 +1,10 @@
 package dev.assist;
 
+import android.graphics.Paint;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.view.KeyEvent;
+import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.ValueCallback;
@@ -108,7 +110,9 @@ public class WebViewAssist {
      * @param mimeType 加载网页的类型
      * @param encoding 编码格式
      * @return {@link WebViewAssist}
+     * @deprecated 推荐使用 loadDataWithBaseURL
      */
+    @Deprecated
     public WebViewAssist loadData(final String data, final String mimeType, final String encoding) {
         if (isWebViewNotEmpty()) {
             mWebView.loadData(data, mimeType, encoding);
@@ -480,6 +484,14 @@ public class WebViewAssist {
     }
 
     /**
+     * 获取当前内容横向滚动距离
+     * @return 当前内容横向滚动距离
+     */
+    public int getScrollX() {
+        return isWebViewNotEmpty() ? mWebView.getScrollX() : 0;
+    }
+
+    /**
      * 获取 HTML 的高度 ( 原始高度, 不包括缩放后的高度 )
      * <pre>
      *     可通过 setWebViewClient onScaleChanged(WebView view, float oldScale, float newScale) 获取缩放比例
@@ -535,7 +547,6 @@ public class WebViewAssist {
      */
     public WebViewAssist pageUp(final boolean top) {
         if (isWebViewNotEmpty()) {
-            mWebView.onResume();
             mWebView.pageUp(top);
         }
         return this;
@@ -561,6 +572,82 @@ public class WebViewAssist {
             return true;
         }
         return false;
+    }
+
+    /**
+     * 关闭 WebView 硬件加速功能
+     * <pre>
+     *     解决 WebView 闪烁问题
+     * </pre>
+     * @return {@link WebViewAssist}
+     */
+    public WebViewAssist setLayerTypeSoftware() {
+        return setLayerType(View.LAYER_TYPE_SOFTWARE,null);
+    }
+
+    /**
+     * 设置 WebView 硬件加速类型
+     * @param layerType 硬件加速类型
+     * @param paint     {@link Paint}
+     * @return {@link WebViewAssist}
+     */
+    public WebViewAssist setLayerType(final int layerType, final Paint paint) {
+        if (isWebViewNotEmpty()) {
+            mWebView.setLayerType(layerType, paint);
+        }
+        return this;
+    }
+
+    /**
+     * 获取当前 Url
+     * @return 当前 Url
+     */
+    public String getUrl() {
+        return isWebViewNotEmpty() ? mWebView.getUrl() : null;
+    }
+
+    /**
+     * 获取最初请求 Url
+     * @return 最初请求 Url
+     */
+    public String getOriginalUrl() {
+        return isWebViewNotEmpty() ? mWebView.getOriginalUrl() : null;
+    }
+
+    /**
+     * 获取长按事件类型
+     * <pre>
+     *     WebView.HitTestResult.UNKNOWN_TYPE // 未知类型
+     *     WebView.HitTestResult.PHONE_TYPE // 电话类型
+     *     WebView.HitTestResult.EMAIL_TYPE // 电子邮件类型
+     *     WebView.HitTestResult.GEO_TYPE // 地图类型
+     *     WebView.HitTestResult.SRC_ANCHOR_TYPE // 超链接类型
+     *     WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE // 带有链接的图片类型
+     *     WebView.HitTestResult.IMAGE_TYPE // 单纯的图片类型
+     *     WebView.HitTestResult.EDIT_TEXT_TYPE // 选中的文字类型
+     *     <p></p>
+     *     mWebView.setOnLongClickListener(new View.OnLongClickListener() {
+     *          @Override
+     *          public boolean onLongClick(View view) {
+     *              WebView.HitTestResult result = webViewAssist.getHitTestResult();
+     *              if(result != null) {
+     *                  switch (result.getType()) {
+     *                      case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE:
+     *                          String imgUrl = result.getExtra();
+     *                          return true;
+     *                  }
+     *              }
+     *              return false;
+     *          }
+     *      });
+     *      <p></p>
+     *      HitTestResult.getType() 获取所选中目标的类型, 可以是图片、超链接、邮件、电话等等
+     *      HitTestResult.getExtra() 获取额外的信息
+     * </pre>
+     * @return 长按事件类型
+     */
+    public WebView.HitTestResult getHitTestResult() {
+        return isWebViewNotEmpty() ? mWebView.getHitTestResult() : null;
     }
 
     // ==========
