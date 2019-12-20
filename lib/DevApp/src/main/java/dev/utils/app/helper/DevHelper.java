@@ -602,33 +602,6 @@ public final class DevHelper {
         return this;
     }
 
-    // ========================
-    // = ContentResolverUtils =
-    // ========================
-
-    /**
-     * 添加视频到系统相册
-     * @param file 文件
-     * @return {@link DevHelper}
-     */
-    public DevHelper insertVideoIntoMediaStore(final File file) {
-        ContentResolverUtils.insertVideoIntoMediaStore(file);
-        return this;
-    }
-
-    /**
-     * 保存到系统相册
-     * @param file       文件
-     * @param createTime 创建时间
-     * @param isVideo    是否视频
-     * @param mimeType   资源类型
-     * @return {@link DevHelper}
-     */
-    public DevHelper insertIntoMediaStore(final File file, final long createTime, final boolean isVideo, final String mimeType) {
-        ContentResolverUtils.insertIntoMediaStore(file, createTime, isVideo, mimeType);
-        return this;
-    }
-
     // ===============
     // = DialogUtils =
     // ===============

@@ -256,7 +256,7 @@ public final class UriUtils {
                 }
             }
         }
-        return null;
+        return ContentResolverUtils.getDataColumn(uri, null, null);
     }
 
     /**

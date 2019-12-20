@@ -323,14 +323,17 @@ public final class MediaStoreUtils {
      * </pre>
      * @param filePath 文件路径
      * @param name     保存文件名
+     * @param notify 是否通知相册
      * @return {@code true} success, {@code false} fail
      */
     @Deprecated
-    public static Uri insertImage(final String filePath, final String name) {
+    public static Uri insertImage(final String filePath, final String name, final boolean notify) {
         if (filePath != null && name != null) {
             try {
                 String uriString = MediaStore.Images.Media.insertImage(ResourceUtils.getContentResolver(), filePath, name, null);
-                return Uri.parse(uriString);
+                Uri uri = Uri.parse(uriString);
+                if (notify) notifyMediaStore(UriUtils.getFilePathByUri(uri));
+                return uri;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "insertImage");
             }
