@@ -2,6 +2,7 @@ package dev.assist;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.view.KeyEvent;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.ValueCallback;
@@ -310,6 +311,7 @@ public class WebViewAssist {
      * <pre>
      *     避免 WebView 引起的内存泄漏
      *     可通过 WebView 所在的 Activity 新启一个进程结束时 System.exit(0) 退出当前进程
+     *     Activity onDestroy use
      * </pre>
      * @return {@link WebViewAssist}
      */
@@ -459,6 +461,17 @@ public class WebViewAssist {
     }
 
     /**
+     * 获取缩放比例
+     * @return 缩放比例
+     */
+    public float getScale() {
+        if (isWebViewNotEmpty()) {
+            return mWebView.getScale();
+        }
+        return 1.0f;
+    }
+
+    /**
      * 获取当前可见区域的顶端距整个页面顶端的距离 ( 当前内容滚动的距离 )
      * @return 当前内容滚动的距离
      */
@@ -476,6 +489,31 @@ public class WebViewAssist {
      */
     public int getContentHeight() {
         return isWebViewNotEmpty() ? mWebView.getContentHeight() : 0;
+    }
+
+    /**
+     * 获取缩放高度
+     * @return 缩放高度
+     */
+    public int getScaleHeight() {
+        return getScaleHeight(getScale());
+    }
+
+    /**
+     * 获取缩放高度
+     * @param scale 缩放比例
+     * @return 缩放高度
+     */
+    public int getScaleHeight(final float scale) {
+        return (int) (getContentHeight() * scale);
+    }
+
+    /**
+     * 获取 WebView 控件高度
+     * @return WebView 控件高度
+     */
+    public int getHeight() {
+        return isWebViewNotEmpty() ? mWebView.getHeight() : 0;
     }
 
     /**
@@ -501,6 +539,28 @@ public class WebViewAssist {
             mWebView.pageUp(top);
         }
         return this;
+    }
+
+    /**
+     * 处理按键 ( 是否回退 )
+     * <pre>
+     *     Activity use
+     *     @Override
+     *     public boolean onKeyDown(int keyCode, KeyEvent event) {
+     *          if (webViewAssist.handlerKeyDown(keyCode, event)) return true;
+     *          return super.onKeyDown(keyCode, event);
+     *     }
+     * </pre>
+     * @param keyCode 按键类型
+     * @param event   按键事件
+     * @return {@code true} 拦截事件, {@code false} 不拦截接着处理
+     */
+    public boolean handlerKeyDown(final int keyCode, final KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && canGoBack()) {
+            goBack();
+            return true;
+        }
+        return false;
     }
 
     // ==========
