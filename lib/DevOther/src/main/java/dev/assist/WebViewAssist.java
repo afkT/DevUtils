@@ -39,6 +39,8 @@ public class WebViewAssist {
     private static final String TAG = WebViewAssist.class.getSimpleName();
     // WebView
     private WebView mWebView;
+    // WebView 常用配置构建类
+    private Builder mBuilder;
 
     public WebViewAssist() {
     }
@@ -59,6 +61,27 @@ public class WebViewAssist {
      */
     public WebView getWebView() {
         return mWebView;
+    }
+
+    /**
+     * 设置 WebView 常用配置构建类
+     * @param builder {@link Builder}
+     * @return {@link WebViewAssist}
+     */
+    public WebViewAssist setBuilder(final Builder builder) {
+        this.mBuilder = builder;
+        if (this.mBuilder != null) {
+            this.mBuilder.setWebViewAssist(this).apply();
+        }
+        return this;
+    }
+
+    /**
+     * 获取 WebView 常用配置构建类
+     * @return {@link Builder}
+     */
+    public Builder getBuilder() {
+        return mBuilder;
     }
 
     /**
@@ -582,7 +605,7 @@ public class WebViewAssist {
      * @return {@link WebViewAssist}
      */
     public WebViewAssist setLayerTypeSoftware() {
-        return setLayerType(View.LAYER_TYPE_SOFTWARE,null);
+        return setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     }
 
     /**
@@ -740,5 +763,99 @@ public class WebViewAssist {
             LogPrintUtils.eTag(TAG, e, "removeAllCookie");
         }
         return false;
+    }
+
+    // ============
+    // = 配置相关 =
+    // ============
+
+    /**
+     * detail: WebView 常用配置构建类
+     * @author Ttt
+     */
+    public static class Builder {
+
+        // WebView 辅助类
+        private WebViewAssist mWebViewAssist;
+        // 应用配置监听事件
+        private OnApplyListener mApplyListener;
+
+        public Builder() {
+        }
+
+        public Builder(final OnApplyListener applyListener) {
+            setOnApplyListener(applyListener);
+        }
+
+        // =
+
+        /**
+         * 设置 WebView 辅助类
+         * @param webViewAssist WebView 辅助类
+         * @return {@link Builder}
+         */
+        private Builder setWebViewAssist(final WebViewAssist webViewAssist) {
+            this.mWebViewAssist = webViewAssist;
+            return this;
+        }
+
+        /**
+         * 应用 (设置) 配置
+         * @return {@link Builder}
+         */
+        public Builder apply() {
+            return applyPri();
+        }
+
+        // ========
+        // = 事件 =
+        // ========
+
+        /**
+         * 设置应用配置监听事件
+         * @param applyListener {@link OnApplyListener}
+         * @return {@link Builder}
+         */
+        public Builder setOnApplyListener(final OnApplyListener applyListener) {
+            this.mApplyListener = applyListener;
+            return this;
+        }
+
+        /**
+         * 获取应用配置监听事件
+         * @return {@link OnApplyListener}
+         */
+        public OnApplyListener getApplyListener() {
+            return mApplyListener;
+        }
+
+        /**
+         * detail: 应用配置监听事件
+         * @author Ttt
+         */
+        public interface OnApplyListener {
+
+            /**
+             * 应用配置通知方法
+             * @param webViewAssist WebView 辅助类
+             * @param builder       WebView 常用配置构建类
+             */
+            void onApply(WebViewAssist webViewAssist, Builder builder);
+        }
+
+        // ============
+        // = 配置方法 =
+        // ============
+
+        /**
+         * 应用 (设置) 配置
+         * @return {@link Builder}
+         */
+        private Builder applyPri() {
+            if (mApplyListener != null) {
+                mApplyListener.onApply(mWebViewAssist, this);
+            }
+            return this;
+        }
     }
 }
