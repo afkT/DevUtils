@@ -31,6 +31,10 @@ import dev.utils.app.ViewUtils;
  *     @see <a href="https://www.cnblogs.com/Free-Thinker/p/6179016.html"/>
  *     WebView 与 JavaScript 的交互总结
  *     @see <a href="https://www.jianshu.com/p/5cc2eae14e07"/>
+ *     WebView 使用漏洞
+ *     @see <a href="https://blog.csdn.net/carson_ho/article/details/64904635"/>
+ *     Android Webview H5 交互之 LocalStorage
+ *     @see <a href="https://www.jianshu.com/p/379a0681ce25"/>
  * </pre>
  */
 public class WebViewAssist {
@@ -63,6 +67,9 @@ public class WebViewAssist {
 
     /**
      * 设置 WebView
+     * <pre>
+     *     如果在 {@link #setWebView} 前调用了 {@link #setBuilder} 则需要手动调用 {@link #apply}
+     * </pre>
      * @param webView {@link WebView}
      * @return {@link WebViewAssist}
      */
@@ -99,7 +106,7 @@ public class WebViewAssist {
     /**
      * 设置 WebView 常用配置构建类
      * @param builder {@link Builder}
-     * @param apply 是否应用配置
+     * @param apply   是否应用配置
      * @return {@link WebViewAssist}
      */
     public WebViewAssist setBuilder(final Builder builder, final boolean apply) {
@@ -210,6 +217,22 @@ public class WebViewAssist {
     public WebViewAssist loadDataWithBaseURL(final String baseUrl, final String data, final String mimeType, final String encoding, final String historyUrl) {
         if (isWebViewNotEmpty()) {
             mWebView.loadDataWithBaseURL(baseUrl, data, mimeType, encoding, historyUrl);
+        }
+        return this;
+    }
+
+    /**
+     * 使用 POST 方法将带有 postData 的 url 加载到 WebView 中
+     * <pre>
+     *     如果 url 不是网络 url {@link #loadUrl(String)} 加载
+     * </pre>
+     * @param url      资源地址
+     * @param postData post 数据 ( 注意 UrlEncode )
+     * @return {@link WebViewAssist}
+     */
+    public WebViewAssist postUrl(final String url, final byte[] postData) {
+        if (isWebViewNotEmpty()) {
+            mWebView.postUrl(url, postData);
         }
         return this;
     }
@@ -919,18 +942,239 @@ public class WebViewAssist {
             if (listener) { // 复用监听事件
                 builder.setOnApplyListener(mApplyListener);
             }
+            builder.mJavaScriptEnabled = mJavaScriptEnabled;
+            builder.mRenderPriority = mRenderPriority;
+            builder.mUseWideViewPort = mUseWideViewPort;
+            builder.mLoadWithOverviewMode = mLoadWithOverviewMode;
+            builder.mLayoutAlgorithm = mLayoutAlgorithm;
+            builder.mSupportZoom = mSupportZoom;
+            builder.mBuiltInZoomControls = mBuiltInZoomControls;
+            builder.mDisplayZoomControls = mDisplayZoomControls;
+            builder.mTextZoom = mTextZoom;
+            builder.mStandardFontFamily = mStandardFontFamily;
+            builder.mDefaultFontSize = mDefaultFontSize;
+            builder.mMinimumFontSize = mMinimumFontSize;
+            builder.mMixedContentMode = mMixedContentMode;
+            builder.mLoadsImagesAutomatically = mLoadsImagesAutomatically;
+            builder.mJavaScriptCanOpenWindowsAutomatically = mJavaScriptCanOpenWindowsAutomatically;
+            builder.mDefaultTextEncodingName = mDefaultTextEncodingName;
+            builder.mGeolocationEnabled = mGeolocationEnabled;
+            builder.mUserAgentString = mUserAgentString;
+            builder.mAllowFileAccess = mAllowFileAccess;
+            builder.mAllowFileAccessFromFileURLs = mAllowFileAccessFromFileURLs;
+            builder.mAllowUniversalAccessFromFileURLs = mAllowUniversalAccessFromFileURLs;
+            builder.mCacheMode = mCacheMode;
+            builder.mDomStorageEnabled = mDomStorageEnabled;
+            builder.mAppCacheEnabled = mAppCacheEnabled;
+            builder.mAppCachePath = mAppCachePath;
+            builder.mAppCacheMaxSize = mAppCacheMaxSize;
+            builder.mDatabaseEnabled = mDatabaseEnabled;
+            builder.mDatabasePath = mDatabasePath;
             return builder;
+        }
+
+        /**
+         * 重置方法
+         * @return {@link Builder}
+         */
+        public Builder reset() {
+            this.mJavaScriptEnabled = true;
+            this.mRenderPriority = null;
+            this.mUseWideViewPort = true;
+            this.mLoadWithOverviewMode = true;
+            this.mLayoutAlgorithm = null;
+            this.mSupportZoom = true;
+            this.mBuiltInZoomControls = false;
+            this.mDisplayZoomControls = false;
+            this.mTextZoom = 0;
+            this.mStandardFontFamily = null;
+            this.mDefaultFontSize = 0;
+            this.mMinimumFontSize = 0;
+            this.mMixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW;
+            this.mLoadsImagesAutomatically = true;
+            this.mJavaScriptCanOpenWindowsAutomatically = true;
+            this.mDefaultTextEncodingName = "utf-8";
+            this.mGeolocationEnabled = true;
+            this.mUserAgentString = null;
+            this.mAllowFileAccess = true;
+            this.mAllowFileAccessFromFileURLs = false;
+            this.mAllowUniversalAccessFromFileURLs = false;
+            this.mCacheMode = WebSettings.LOAD_NO_CACHE;
+            this.mDomStorageEnabled = true;
+            this.mAppCacheEnabled = true;
+            this.mAppCachePath = null;
+            this.mAppCacheMaxSize = 5 * 1024 * 1024;
+            this.mDatabaseEnabled = true;
+            this.mDatabasePath = null;
+            return this;
         }
 
         // ============
         // = 配置方法 =
         // ============
 
+        // 是否支持 JavaScript
+        private boolean mJavaScriptEnabled = true;
+        // 渲染优先级
+        private WebSettings.RenderPriority mRenderPriority = null;
+        // 是否使用宽视图
+        private boolean mUseWideViewPort = true;
+        // 是否按宽度缩小内容以适合屏幕
+        private boolean mLoadWithOverviewMode = true;
+        // 基础布局算法
+        private WebSettings.LayoutAlgorithm mLayoutAlgorithm = null;
+        // 是否支持缩放
+        private boolean mSupportZoom = true;
+        // 是否显示内置缩放工具
+        private boolean mBuiltInZoomControls = false;
+        // 是否显示缩放工具
+        private boolean mDisplayZoomControls = false;
+        // 文本缩放倍数
+        private int mTextZoom = 0;
+        // WebView 字体, 默认字体 "sans-serif"
+        private String mStandardFontFamily = null;
+        // WebView 字体大小
+        private int mDefaultFontSize = 0;
+        // WebView 支持最小字体大小
+        private int mMinimumFontSize = 0;
+        // 混合内容模式
+        private int mMixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW;
+        // 是否支持自动加载图片
+        private boolean mLoadsImagesAutomatically = true;
+        // 是否支持通过 JS 打开新窗口
+        private boolean mJavaScriptCanOpenWindowsAutomatically = true;
+        // 编码格式
+        private String mDefaultTextEncodingName = "utf-8";
+        // 是否允许网页执行定位操作
+        private boolean mGeolocationEnabled = true;
+        // 浏览器标识 UA
+        private String mUserAgentString = null;
+        // 是否可以访问文件 ( false 不影响 assets 和 resources 资源的加载 )
+        private boolean mAllowFileAccess = true;
+        // 是否允许通过 file url 加载的 JS 代码读取其他的本地文件
+        private boolean mAllowFileAccessFromFileURLs = false;
+        // 是否允许通过 file url 加载的 JS 可以访问其他的源 ( 包括 http、https 等源 )
+        private boolean mAllowUniversalAccessFromFileURLs = false;
+        // WebView 缓存模式
+        private int mCacheMode = WebSettings.LOAD_NO_CACHE;
+        // 是否支持 DOM Storage
+        private boolean mDomStorageEnabled = true;
+        // 是否开启 Application Caches 功能
+        private boolean mAppCacheEnabled = true;
+        // Application Caches 地址
+        private String mAppCachePath = null;
+        // Application Caches 大小
+        private long mAppCacheMaxSize = 5 * 1024 * 1024;
+        // 是否支持数据库缓存
+        private boolean mDatabaseEnabled = true;
+        // 数据库缓存路径
+        private String mDatabasePath = null;
+
         /**
          * 应用 (设置) 配置
          * @return {@link Builder}
          */
         private Builder applyPri() {
+            if (mWebViewAssist != null) {
+                WebSettings webSettings = mWebViewAssist.getSettings();
+                if (webSettings != null) {
+                    // 如果访问的页面中要与 JavaScript 交互, 则 WebView 必须设置支持 JavaScript
+                    webSettings.setJavaScriptEnabled(mJavaScriptEnabled);
+
+                    if (mRenderPriority != null) {
+                        webSettings.setRenderPriority(mRenderPriority);  // 设置渲染优先级
+                    }
+
+                    // 设置自适应屏幕两者合用
+                    webSettings.setUseWideViewPort(mUseWideViewPort); // 是否使用宽视图
+                    webSettings.setLoadWithOverviewMode(mLoadWithOverviewMode); // 是否按宽度缩小内容以适合屏幕
+                    if (mLayoutAlgorithm != null) { // WebSettings.LayoutAlgorithm.SINGLE_COLUMN 4.4 抛弃了
+                        webSettings.setLayoutAlgorithm(mLayoutAlgorithm);
+                    }
+
+                    // 缩放操作
+                    webSettings.setSupportZoom(mSupportZoom); // 是否支持缩放
+                    webSettings.setBuiltInZoomControls(mBuiltInZoomControls); // 是否显示内置缩放工具, 若为 false 则该 WebView 不可缩放
+                    webSettings.setDisplayZoomControls(mDisplayZoomControls); // 是否显示缩放工具
+
+                    if (mTextZoom > 0) {
+                        webSettings.setTextZoom(mTextZoom); // 文本缩放倍数
+                    }
+                    if (mStandardFontFamily != null) {
+                        webSettings.setStandardFontFamily(mStandardFontFamily); // 设置 WebView 字体
+                    }
+                    if (mDefaultFontSize > 0) {
+                        webSettings.setDefaultFontSize(mDefaultFontSize); // 设置 WebView 字体大小
+                    }
+                    if (mMinimumFontSize > 0) {
+                        webSettings.setMinimumFontSize(mMinimumFontSize); // 设置 WebView 支持最小字体大小
+                    }
+
+                    // 5.0 以上默认禁止了 https 和 http 混用以下方式是开启
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        webSettings.setMixedContentMode(mMixedContentMode);
+                    }
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                        webSettings.setLoadsImagesAutomatically(mLoadsImagesAutomatically); // 是否支持自动加载图片
+                    }
+
+                    // 是否支持通过 JS 打开新窗口
+                    webSettings.setJavaScriptCanOpenWindowsAutomatically(mJavaScriptCanOpenWindowsAutomatically);
+                    // 设置编码格式
+                    if (mDefaultTextEncodingName != null) {
+                        webSettings.setDefaultTextEncodingName(mDefaultTextEncodingName);
+                    }
+                    // 是否允许网页执行定位操作
+                    webSettings.setGeolocationEnabled(mGeolocationEnabled);
+                    // 设置浏览器标识 UA
+                    if (mUserAgentString != null) {
+                        webSettings.setUserAgentString(mUserAgentString);
+                    }
+
+                    // 是否可以访问文件
+                    webSettings.setAllowFileAccess(mAllowFileAccess);
+                    // 是否允许通过 file url 加载的 JS 代码读取其他的本地文件
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        webSettings.setAllowFileAccessFromFileURLs(mAllowFileAccessFromFileURLs);
+                    }
+                    // 是否允许通过 file url 加载的 JS 可以访问其他的源 ( 包括 http、https 等源 )
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        webSettings.setAllowUniversalAccessFromFileURLs(mAllowUniversalAccessFromFileURLs);
+                    }
+                    // 设置 WebView 缓存模式
+                    if (mCacheMode > 0) {
+                        // LOAD_CACHE_ONLY 不使用网络, 只读取本地缓存数据
+                        // LOAD_DEFAULT ( 默认 ) 根据 cache-control 决定是否从网络上取数据
+                        // LOAD_NO_CACHE 不使用缓存, 只从网络获取数据.
+                        // LOAD_CACHE_ELSE_NETWORK 只要本地有, 无论是否过期或者 no-cache 都使用缓存中的数据
+                        webSettings.setCacheMode(mCacheMode);
+                    }
+
+                    // 是否支持 DOM Storage
+                    webSettings.setDomStorageEnabled(mDomStorageEnabled);
+                    // 是否开启 Application Caches 功能
+                    webSettings.setAppCacheEnabled(mAppCacheEnabled);
+                    if (mAppCacheEnabled) {
+                        // Application Caches 地址
+                        if (mAppCachePath != null) {
+                            webSettings.setAppCachePath(mAppCachePath);
+                        }
+                        // Application Caches 大小
+                        webSettings.setAppCacheMaxSize(mAppCacheMaxSize);
+                    }
+
+                    // 是否支持数据库缓存
+                    webSettings.setDatabaseEnabled(mDatabaseEnabled);
+                    if (mDatabaseEnabled) {
+                        // 数据库缓存路径
+                        if (mDatabasePath != null) {
+                            webSettings.setDatabasePath(mDatabasePath);
+                        }
+                    }
+                }
+            }
+
             if (mApplyListener != null) {
                 mApplyListener.onApply(mWebViewAssist, this);
             }
