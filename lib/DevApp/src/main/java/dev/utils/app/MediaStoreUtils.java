@@ -39,7 +39,7 @@ import dev.utils.common.FileUtils;
  *     <p></p>
  *     访问下载内容 ( 文档和电子书籍 ) - 加载系统的文件选择器
  *     {@link IntentUtils#getOpenDocumentIntent()}
- *     使用存储访问框架打开文件
+ *     使用存储访问框架打开文件 - {@link ResourceUtils#openInputStream(Uri)}
  *     @see <a href="https://developer.android.google.cn/guide/topics/providers/document-provider#java"/>
  * </pre>
  */

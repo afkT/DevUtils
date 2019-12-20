@@ -5,7 +5,9 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 
 import java.io.File;
@@ -97,9 +99,40 @@ public final class ContentResolverUtils {
         return 0;
     }
 
+    // =
+
+    /**
+     * 删除文件
+     * <pre>
+     *     {@link IntentUtils#getCreateDocumentIntent(String, String)}
+     *     {@link IntentUtils#getOpenDocumentIntent()}
+     *     通过这两个方法跳转回传的 Uri 删除
+     * </pre>
+     * @param uri {@link Uri}
+     * @return {@code true} success, {@code false} fail
+     */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public static boolean deleteDocument(final Uri uri) {
+        try {
+            return DocumentsContract.deleteDocument(ResourceUtils.getContentResolver(), uri);
+        } catch (Exception e){
+            LogPrintUtils.eTag(TAG, e, "deleteDocument");
+        }
+        return false;
+    }
+
     // =========
     // = Query =
     // =========
+
+    /**
+     * 获取 Uri Cursor
+     * @param uri 具体 Uri
+     * @return {@link Cursor}
+     */
+    public static Cursor query(final Uri uri) {
+        return query(uri, null, null, null, null);
+    }
 
     /**
      * 获取 Uri Cursor

@@ -634,4 +634,29 @@ public final class IntentUtils {
         }
         return null;
     }
+
+    /**
+     * 获取创建文件的意图
+     * <pre>
+     *     getCreateDocumentIntent("text/plain", "foobar.txt");
+     *     getCreateDocumentIntent("image/png", "mypicture.png");
+     *     <p></p>
+     *     创建后在 onActivityResult 中获取到 Uri, 对 Uri 进行读写
+     * </pre>
+     * @param mimeType 资源类型
+     * @param fileName 文件名
+     * @return 创建文件的意图
+     */
+    public static Intent getCreateDocumentIntent(final String mimeType, final String fileName) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType(mimeType);
+            intent.putExtra(Intent.EXTRA_TITLE, fileName);
+            return intent;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getCreateDocumentIntent");
+        }
+        return null;
+    }
 }
