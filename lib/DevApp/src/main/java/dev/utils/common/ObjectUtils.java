@@ -25,7 +25,7 @@ public final class ObjectUtils {
     /**
      * 判断对象是否为空
      * @param object 对象
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final Object object) {
         if (object == null) return true;
@@ -51,7 +51,7 @@ public final class ObjectUtils {
     /**
      * 判断对象是否非空
      * @param object 对象
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final Object object) {
         return !isEmpty(object);

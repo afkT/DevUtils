@@ -32,7 +32,7 @@ public final class MapUtils {
     /**
      * 判断 Map 是否为 null
      * @param map {@link Map}
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final Map map) {
         return (map == null || map.size() == 0);
@@ -41,7 +41,7 @@ public final class MapUtils {
     /**
      * 判断 Map 是否不为 null
      * @param map {@link Map}
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final Map map) {
         return (map != null && map.size() != 0);

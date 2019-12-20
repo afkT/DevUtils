@@ -30,7 +30,7 @@ public final class StringUtils {
     /**
      * 判断字符串是否为 null
      * @param str 待校验的字符串
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final String str) {
         return (str == null || str.length() == 0);
@@ -40,7 +40,7 @@ public final class StringUtils {
      * 判断字符串是否为 null
      * @param str    待校验的字符串
      * @param isTrim 是否调用 trim()
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final String str, final boolean isTrim) {
         if (str != null) {
@@ -52,7 +52,7 @@ public final class StringUtils {
     /**
      * 判断多个字符串是否存在为 null 的字符串
      * @param strs 待校验的字符串数组
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final String... strs) {
         if (strs != null && strs.length != 0) {
@@ -72,7 +72,7 @@ public final class StringUtils {
     /**
      * 判断字符串是否不为 null
      * @param str 待校验的字符串
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final String str) {
         return (str != null && str.length() != 0);
@@ -82,7 +82,7 @@ public final class StringUtils {
      * 判断字符串是否不为 null
      * @param str    待校验的字符串
      * @param isTrim 是否调用 trim()
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final String str, final boolean isTrim) {
         return isNotEmpty(isTrim ? str.trim() : str);
