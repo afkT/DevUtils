@@ -853,6 +853,9 @@ public class WebViewAssist {
     /**
      * detail: WebView 常用配置构建类
      * @author Ttt
+     * <pre>
+     *     有特殊配置可在 {@link OnApplyListener#onApply(WebViewAssist, Builder)} 回调中进行增加配置设置
+     * </pre>
      */
     public static class Builder {
 
@@ -1178,6 +1181,514 @@ public class WebViewAssist {
             if (mApplyListener != null) {
                 mApplyListener.onApply(mWebViewAssist, this);
             }
+            return this;
+        }
+
+        // ===========
+        // = get/set =
+        // ===========
+
+        /**
+         * 是否支持 JavaScript
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isJavaScriptEnabled() {
+            return mJavaScriptEnabled;
+        }
+
+        /**
+         * 设置是否支持 JavaScript
+         * @param javaScriptEnabled {@code true} yes, {@code false} no
+         * @return {@link Builder}
+         */
+        public Builder setJavaScriptEnabled(final boolean javaScriptEnabled) {
+            this.mJavaScriptEnabled = javaScriptEnabled;
+            return this;
+        }
+
+        /**
+         * 获取渲染优先级
+         * @return 渲染优先级
+         */
+        public WebSettings.RenderPriority getRenderPriority() {
+            return mRenderPriority;
+        }
+
+        /**
+         * 设置渲染优先级
+         * @param renderPriority 渲染优先级
+         * @return {@link Builder}
+         */
+        public Builder setRenderPriority(final WebSettings.RenderPriority renderPriority) {
+            this.mRenderPriority = renderPriority;
+            return this;
+        }
+
+        /**
+         * 是否使用宽视图
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isUseWideViewPort() {
+            return mUseWideViewPort;
+        }
+
+        /**
+         * 设置是否使用宽视图
+         * @param useWideViewPort {@code true} yes, {@code false} no
+         * @return {@link Builder}
+         */
+        public Builder setUseWideViewPort(final boolean useWideViewPort) {
+            this.mUseWideViewPort = useWideViewPort;
+            return this;
+        }
+
+        /**
+         * 是否按宽度缩小内容以适合屏幕
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isLoadWithOverviewMode() {
+            return mLoadWithOverviewMode;
+        }
+
+        /**
+         * 设置是否按宽度缩小内容以适合屏幕
+         * @param loadWithOverviewMode {@code true} yes, {@code false} no
+         * @return {@link Builder}
+         */
+        public Builder setLoadWithOverviewMode(final boolean loadWithOverviewMode) {
+            this.mLoadWithOverviewMode = loadWithOverviewMode;
+            return this;
+        }
+
+        /**
+         * 获取基础布局算法
+         * @return 基础布局算法
+         */
+        public WebSettings.LayoutAlgorithm getLayoutAlgorithm() {
+            return mLayoutAlgorithm;
+        }
+
+        /**
+         * 设置基础布局算法
+         * @param layoutAlgorithm 基础布局算法
+         * @return {@link Builder}
+         */
+        public Builder setLayoutAlgorithm(final WebSettings.LayoutAlgorithm layoutAlgorithm) {
+            this.mLayoutAlgorithm = layoutAlgorithm;
+            return this;
+        }
+
+        /**
+         * 是否支持缩放
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isSupportZoom() {
+            return mSupportZoom;
+        }
+
+        /**
+         * 设置是否支持缩放
+         * @param supportZoom {@code true} yes, {@code false} no
+         * @return {@link Builder}
+         */
+        public Builder setSupportZoom(final boolean supportZoom) {
+            this.mSupportZoom = supportZoom;
+            return this;
+        }
+
+        /**
+         * 是否显示内置缩放工具
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isBuiltInZoomControls() {
+            return mBuiltInZoomControls;
+        }
+
+        /**
+         * 设置是否显示内置缩放工具
+         * @param builtInZoomControls {@code true} yes, {@code false} no
+         * @return {@link Builder}
+         */
+        public Builder setBuiltInZoomControls(final boolean builtInZoomControls) {
+            this.mBuiltInZoomControls = builtInZoomControls;
+            return this;
+        }
+
+        /**
+         * 是否显示缩放工具
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isDisplayZoomControls() {
+            return mDisplayZoomControls;
+        }
+
+        /**
+         * 设置是否显示缩放工具
+         * @param displayZoomControls {@code true} yes, {@code false} no
+         * @return {@link Builder}
+         */
+        public Builder setDisplayZoomControls(final boolean displayZoomControls) {
+            this.mDisplayZoomControls = displayZoomControls;
+            return this;
+        }
+
+        /**
+         * 获取文本缩放倍数
+         * @return 文本缩放倍数
+         */
+        public int getTextZoom() {
+            return mTextZoom;
+        }
+
+        /**
+         * 设置文本缩放倍数
+         * @param textZoom 文本缩放倍数
+         * @return {@link Builder}
+         */
+        public Builder setTextZoom(final int textZoom) {
+            this.mTextZoom = textZoom;
+            return this;
+        }
+
+        /**
+         * 获取 WebView 字体
+         * @return WebView 字体
+         */
+        public String getStandardFontFamily() {
+            return mStandardFontFamily;
+        }
+
+        /**
+         * 设置 WebView 字体
+         * @param standardFontFamily WebView 字体
+         * @return {@link Builder}
+         */
+        public Builder setStandardFontFamily(final String standardFontFamily) {
+            this.mStandardFontFamily = standardFontFamily;
+            return this;
+        }
+
+        /**
+         * 获取 WebView 字体大小
+         * @return WebView 字体大小
+         */
+        public int getDefaultFontSize() {
+            return mDefaultFontSize;
+        }
+
+        /**
+         * 设置 WebView 字体大小
+         * @param defaultFontSize WebView 字体大小
+         * @return {@link Builder}
+         */
+        public Builder setDefaultFontSize(final int defaultFontSize) {
+            this.mDefaultFontSize = defaultFontSize;
+            return this;
+        }
+
+        /**
+         * 获取 WebView 支持最小字体大小
+         * @return WebView 支持最小字体大小
+         */
+        public int getMinimumFontSize() {
+            return mMinimumFontSize;
+        }
+
+        /**
+         * 设置 WebView 支持最小字体大小
+         * @param minimumFontSize WebView 支持最小字体大小
+         * @return {@link Builder}
+         */
+        public Builder setMinimumFontSize(final int minimumFontSize) {
+            this.mMinimumFontSize = minimumFontSize;
+            return this;
+        }
+
+        /**
+         * 获取混合内容模式
+         * @return 混合内容模式
+         */
+        public int getMixedContentMode() {
+            return mMixedContentMode;
+        }
+
+        /**
+         * 设置混合内容模式
+         * @param mixedContentMode 混合内容模式
+         * @return {@link Builder}
+         */
+        public Builder setMixedContentMode(final int mixedContentMode) {
+            this.mMixedContentMode = mixedContentMode;
+            return this;
+        }
+
+        /**
+         * 是否支持自动加载图片
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isLoadsImagesAutomatically() {
+            return mLoadsImagesAutomatically;
+        }
+
+        /**
+         * 设置是否支持自动加载图片
+         * @param loadsImagesAutomatically {@code true} yes, {@code false} no
+         * @return {@link Builder}
+         */
+        public Builder setLoadsImagesAutomatically(final boolean loadsImagesAutomatically) {
+            this.mLoadsImagesAutomatically = loadsImagesAutomatically;
+            return this;
+        }
+
+        /**
+         * 是否支持通过 JS 打开新窗口
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isJavaScriptCanOpenWindowsAutomatically() {
+            return mJavaScriptCanOpenWindowsAutomatically;
+        }
+
+        /**
+         * 设置是否支持通过 JS 打开新窗口
+         * @param javaScriptCanOpenWindowsAutomatically {@code true} yes, {@code false} no
+         * @return {@link Builder}
+         */
+        public Builder setJavaScriptCanOpenWindowsAutomatically(final boolean javaScriptCanOpenWindowsAutomatically) {
+            this.mJavaScriptCanOpenWindowsAutomatically = javaScriptCanOpenWindowsAutomatically;
+            return this;
+        }
+
+        /**
+         * 获取编码格式
+         * @return 编码格式
+         */
+        public String getDefaultTextEncodingName() {
+            return mDefaultTextEncodingName;
+        }
+
+        /**
+         * 设置编码格式
+         * @param defaultTextEncodingName 编码格式
+         * @return {@link Builder}
+         */
+        public Builder setDefaultTextEncodingName(final String defaultTextEncodingName) {
+            this.mDefaultTextEncodingName = defaultTextEncodingName;
+            return this;
+        }
+
+        /**
+         * 是否允许网页执行定位操作
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isGeolocationEnabled() {
+            return mGeolocationEnabled;
+        }
+
+        /**
+         * 设置是否允许网页执行定位操作
+         * @param geolocationEnabled {@code true} yes, {@code false} no
+         * @return {@link Builder}
+         */
+        public Builder setGeolocationEnabled(final boolean geolocationEnabled) {
+            this.mGeolocationEnabled = geolocationEnabled;
+            return this;
+        }
+
+        /**
+         * 获取浏览器标识 UA
+         * @return 浏览器标识 UA
+         */
+        public String getUserAgentString() {
+            return mUserAgentString;
+        }
+
+        /**
+         * 设置浏览器标识 UA
+         * @param userAgentString 浏览器标识 UA
+         * @return {@link Builder}
+         */
+        public Builder setUserAgentString(final String userAgentString) {
+            this.mUserAgentString = userAgentString;
+            return this;
+        }
+
+        /**
+         * 是否可以访问文件 ( false 不影响 assets 和 resources 资源的加载 )
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isAllowFileAccess() {
+            return mAllowFileAccess;
+        }
+
+        /**
+         * 设置是否可以访问文件 ( false 不影响 assets 和 resources 资源的加载 )
+         * @param allowFileAccess {@code true} yes, {@code false} no
+         * @return {@link Builder}
+         */
+        public Builder setAllowFileAccess(final boolean allowFileAccess) {
+            this.mAllowFileAccess = allowFileAccess;
+            return this;
+        }
+
+        /**
+         * 是否允许通过 file url 加载的 JS 代码读取其他的本地文件
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isAllowFileAccessFromFileURLs() {
+            return mAllowFileAccessFromFileURLs;
+        }
+
+        /**
+         * 设置是否允许通过 file url 加载的 JS 代码读取其他的本地文件
+         * @param allowFileAccessFromFileURLs {@code true} yes, {@code false} no
+         * @return {@link Builder}
+         */
+        public Builder setAllowFileAccessFromFileURLs(final boolean allowFileAccessFromFileURLs) {
+            this.mAllowFileAccessFromFileURLs = allowFileAccessFromFileURLs;
+            return this;
+        }
+
+        /**
+         * 是否允许通过 file url 加载的 JS 可以访问其他的源 ( 包括 http、https 等源 )
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isAllowUniversalAccessFromFileURLs() {
+            return mAllowUniversalAccessFromFileURLs;
+        }
+
+        /**
+         * 设置是否允许通过 file url 加载的 JS 可以访问其他的源 ( 包括 http、https 等源 )
+         * @param allowUniversalAccessFromFileURLs {@code true} yes, {@code false} no
+         * @return {@link Builder}
+         */
+        public Builder setAllowUniversalAccessFromFileURLs(final boolean allowUniversalAccessFromFileURLs) {
+            this.mAllowUniversalAccessFromFileURLs = allowUniversalAccessFromFileURLs;
+            return this;
+        }
+
+        /**
+         * 获取 WebView 缓存模式
+         * @return WebView 缓存模式
+         */
+        public int getCacheMode() {
+            return mCacheMode;
+        }
+
+        /**
+         * 设置 WebView 缓存模式
+         * @param cacheMode WebView 缓存模式
+         * @return {@link Builder}
+         */
+        public Builder setCacheMode(final int cacheMode) {
+            this.mCacheMode = cacheMode;
+            return this;
+        }
+
+        /**
+         * 是否支持 DOM Storage
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isDomStorageEnabled() {
+            return mDomStorageEnabled;
+        }
+
+        /**
+         * 设置是否支持 DOM Storage
+         * @param domStorageEnabled {@code true} yes, {@code false} no
+         * @return {@link Builder}
+         */
+        public Builder setDomStorageEnabled(final boolean domStorageEnabled) {
+            this.mDomStorageEnabled = domStorageEnabled;
+            return this;
+        }
+
+        /**
+         * 是否开启 Application Caches 功能
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isAppCacheEnabled() {
+            return mAppCacheEnabled;
+        }
+
+        /**
+         * 设置是否开启 Application Caches 功能
+         * @param appCacheEnabled {@code true} yes, {@code false} no
+         * @return {@link Builder}
+         */
+        public Builder setAppCacheEnabled(final boolean appCacheEnabled) {
+            this.mAppCacheEnabled = appCacheEnabled;
+            return this;
+        }
+
+        /**
+         * 获取 Application Caches 地址
+         * @return Application Caches 地址
+         */
+        public String getAppCachePath() {
+            return mAppCachePath;
+        }
+
+        /**
+         * 设置 Application Caches 地址
+         * @param appCachePath Application Caches 地址
+         * @return {@link Builder}
+         */
+        public Builder setAppCachePath(final String appCachePath) {
+            this.mAppCachePath = appCachePath;
+            return this;
+        }
+
+        /**
+         * 获取 Application Caches 大小
+         * @return Application Caches 大小
+         */
+        public long getAppCacheMaxSize() {
+            return mAppCacheMaxSize;
+        }
+
+        /**
+         * 设置 Application Caches 大小
+         * @param appCacheMaxSize Application Caches 大小
+         * @return {@link Builder}
+         */
+        public Builder setAppCacheMaxSize(final long appCacheMaxSize) {
+            this.mAppCacheMaxSize = appCacheMaxSize;
+            return this;
+        }
+
+        /**
+         * 是否支持数据库缓存
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isDatabaseEnabled() {
+            return mDatabaseEnabled;
+        }
+
+        /**
+         * 设置是否支持数据库缓存
+         * @param databaseEnabled {@code true} yes, {@code false} no
+         * @return {@link Builder}
+         */
+        public Builder setDatabaseEnabled(final boolean databaseEnabled) {
+            this.mDatabaseEnabled = databaseEnabled;
+            return this;
+        }
+
+        /**
+         * 获取数据库缓存路径
+         * @return 数据库缓存路径
+         */
+        public String getDatabasePath() {
+            return mDatabasePath;
+        }
+
+        /**
+         * 设置数据库缓存路径
+         * @param databasePath 数据库缓存路径
+         * @return {@link Builder}
+         */
+        public Builder setDatabasePath(final String databasePath) {
+            this.mDatabasePath = databasePath;
             return this;
         }
     }
