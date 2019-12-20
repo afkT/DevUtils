@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 
 import java.io.File;
+import java.util.Arrays;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.common.ArrayUtils;
@@ -35,68 +36,47 @@ public final class ContentResolverUtils {
 
     // 日志 TAG
     private static final String TAG = ContentResolverUtils.class.getSimpleName();
-
-    /**
-     * 添加视频到系统相册
-     * @param file 文件
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean insertVideoIntoMediaStore(final File file) {
-        return insertIntoMediaStore(file, -1, true, "video/3gp");
-    }
-
-    /**
-     * 保存到系统相册
-     * @param file       文件
-     * @param createTime 创建时间
-     * @param isVideo    是否视频
-     * @param mimeType   资源类型
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean insertIntoMediaStore(final File file, final long createTime, final boolean isVideo, final String mimeType) {
-        if (file != null && !TextUtils.isEmpty(mimeType)) {
-            try {
-                ContentResolver resolver = ResourceUtils.getContentResolver();
-                // 插入时间
-                long insertTime = createTime;
-                // 防止创建时间为 null
-                if (insertTime <= 0)
-                    insertTime = System.currentTimeMillis();
-
-                ContentValues values = new ContentValues();
-                values.put(MediaStore.MediaColumns.TITLE, file.getName());
-                values.put(MediaStore.MediaColumns.DISPLAY_NAME, file.getName());
-                // 值一样, 但是还是用常量区分对待
-                values.put(isVideo ? MediaStore.Video.VideoColumns.DATE_TAKEN : MediaStore.Images.ImageColumns.DATE_TAKEN, insertTime);
-                values.put(MediaStore.MediaColumns.DATE_MODIFIED, System.currentTimeMillis());
-                values.put(MediaStore.MediaColumns.DATE_ADDED, System.currentTimeMillis());
-                if (!isVideo)
-                    values.put(MediaStore.Images.ImageColumns.ORIENTATION, 0);
-                // 文件路径
-                values.put(MediaStore.MediaColumns.DATA, file.getAbsolutePath());
-                // 文件大小
-                values.put(MediaStore.MediaColumns.SIZE, file.length());
-                // 文件类型
-                values.put(MediaStore.MediaColumns.MIME_TYPE, mimeType);
-                // 生成所属的 URI 资源
-                Uri uri = resolver.insert(isVideo ? MediaStore.Video.Media.EXTERNAL_CONTENT_URI : MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-                // 最后通知图库更新
-                return AppUtils.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "insertIntoMediaStore");
-            }
-        }
-        return false;
-    }
-
-    // ==========
-    // = Cursor =
-    // ==========
-
     // 卷名
     private static final String VOLUME_EXTERNAL = PathUtils.EXTERNAL;
     // 文件 URI
     public static final Uri FILES_URI = MediaStore.Files.getContentUri(VOLUME_EXTERNAL);
+
+    /**
+     * 删除多媒体资源
+     * @param uri           {@link Uri}
+     * @param where         删除条件
+     * @param selectionArgs 删除条件参数
+     * @return 删除条数
+     */
+    public static int delete(final Uri uri, final String where, final String[] selectionArgs) {
+        try {
+            return ResourceUtils.getContentResolver().delete(uri, where, selectionArgs);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "delete where: " + where + ", args: " + Arrays.toString(selectionArgs));
+        }
+        return 0;
+    }
+
+    /**
+     * 更新多媒体资源
+     * @param uri           {@link Uri}
+     * @param values        更新值
+     * @param where         更新条件
+     * @param selectionArgs 更新条件参数
+     * @return 更新条数
+     */
+    public static int update(final Uri uri, final ContentValues values, final String where, final String[] selectionArgs) {
+        try {
+            return ResourceUtils.getContentResolver().update(uri, values, where, selectionArgs);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "update where: " + where + ", args: " + Arrays.toString(selectionArgs));
+        }
+        return 0;
+    }
+
+    // =========
+    // = Query =
+    // =========
 
     /**
      * 获取 Uri Cursor
