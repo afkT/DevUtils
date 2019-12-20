@@ -293,6 +293,9 @@ public final class MediaStoreUtils {
 
     /**
      * 创建预存储 Media Uri
+     * <pre>
+     *     也可通过 {@link IntentUtils#getCreateDocumentIntent(String, String)} 创建
+     * </pre>
      * @param uri          MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
      * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定)
      * @param createTime   创建时间
