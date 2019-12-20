@@ -179,7 +179,7 @@ public final class MediaStoreUtils {
 
     /**
      * 创建图片 Uri
-     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定)
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
      * @param createTime   创建时间
      * @param mimeType     资源类型
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
@@ -222,7 +222,7 @@ public final class MediaStoreUtils {
 
     /**
      * 创建视频 Uri
-     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定)
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
      * @param createTime   创建时间
      * @param mimeType     资源类型
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
@@ -265,7 +265,7 @@ public final class MediaStoreUtils {
 
     /**
      * 创建音频 Uri
-     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定)
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
      * @param createTime   创建时间
      * @param mimeType     资源类型
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
@@ -282,7 +282,7 @@ public final class MediaStoreUtils {
     /**
      * 创建预存储 Media Uri
      * @param uri          MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
-     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定)
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
      * @param mimeType     资源类型
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return Media Uri
@@ -297,7 +297,7 @@ public final class MediaStoreUtils {
      *     也可通过 {@link IntentUtils#getCreateDocumentIntent(String, String)} 创建
      * </pre>
      * @param uri          MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
-     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定)
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
      * @param createTime   创建时间
      * @param mimeType     资源类型
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
