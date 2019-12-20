@@ -478,6 +478,31 @@ public class WebViewAssist {
         return isWebViewNotEmpty() ? mWebView.getContentHeight() : 0;
     }
 
+    /**
+     * 将视图内容向下滚动一半页面大小
+     * @param bottom 是否滑动到底部
+     * @return {@link WebViewAssist}
+     */
+    public WebViewAssist pageDown(final boolean bottom) {
+        if (isWebViewNotEmpty()) {
+            mWebView.pageDown(bottom);
+        }
+        return this;
+    }
+
+    /**
+     * 将视图内容向上滚动一半页面大小
+     * @param top 是否滑动到顶部
+     * @return {@link WebViewAssist}
+     */
+    public WebViewAssist pageUp(final boolean top) {
+        if (isWebViewNotEmpty()) {
+            mWebView.onResume();
+            mWebView.pageUp(top);
+        }
+        return this;
+    }
+
     // ==========
     // = Cookie =
     // ==========
