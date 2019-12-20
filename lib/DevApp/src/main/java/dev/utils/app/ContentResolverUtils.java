@@ -115,7 +115,7 @@ public final class ContentResolverUtils {
     public static boolean deleteDocument(final Uri uri) {
         try {
             return DocumentsContract.deleteDocument(ResourceUtils.getContentResolver(), uri);
-        } catch (Exception e){
+        } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "deleteDocument");
         }
         return false;

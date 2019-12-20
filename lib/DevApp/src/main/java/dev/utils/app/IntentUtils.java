@@ -614,7 +614,7 @@ public final class IntentUtils {
      * 获取存储访问框架的意图
      * @return 存储访问框架的意图
      */
-    public static Intent getOpenDocumentIntent(){
+    public static Intent getOpenDocumentIntent() {
         return getOpenDocumentIntent("*/*");
     }
 
@@ -623,7 +623,7 @@ public final class IntentUtils {
      * @param type 跳转类型
      * @return 存储访问框架的意图
      */
-    public static Intent getOpenDocumentIntent(final String type){
+    public static Intent getOpenDocumentIntent(final String type) {
         try {
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);

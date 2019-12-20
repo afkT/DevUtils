@@ -604,7 +604,7 @@ public final class FileIOUtils {
 
     /**
      * 复制 InputStream 到 OutputStream
-     * @param inputStream {@link InputStream} 读取流
+     * @param inputStream  {@link InputStream} 读取流
      * @param outputStream {@link OutputStream} 写入流
      * @return bytes number
      */

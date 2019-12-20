@@ -331,7 +331,7 @@ public final class MediaStoreUtils {
      * </pre>
      * @param filePath 文件路径
      * @param name     保存文件名
-     * @param notify 是否通知相册
+     * @param notify   是否通知相册
      * @return {@code true} success, {@code false} fail
      */
     @Deprecated
@@ -457,7 +457,7 @@ public final class MediaStoreUtils {
             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
             mmr.setDataSource(filePath);
             return Long.parseLong(mmr.extractMetadata
-                (MediaMetadataRetriever.METADATA_KEY_DURATION));
+                    (MediaMetadataRetriever.METADATA_KEY_DURATION));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVideoDuration");
             return 0;
@@ -475,7 +475,7 @@ public final class MediaStoreUtils {
             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
             mmr.setDataSource(DevUtils.getContext(), uri);
             return Long.parseLong(mmr.extractMetadata
-                (MediaMetadataRetriever.METADATA_KEY_DURATION));
+                    (MediaMetadataRetriever.METADATA_KEY_DURATION));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVideoDuration");
             return 0;
@@ -508,9 +508,9 @@ public final class MediaStoreUtils {
             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
             mmr.setDataSource(filePath);
             size[0] = ConvertUtils.toInt(mmr.extractMetadata
-                (MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
+                    (MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
             size[1] = ConvertUtils.toInt(mmr.extractMetadata
-                (MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
+                    (MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVideoSize");
         }
@@ -528,9 +528,9 @@ public final class MediaStoreUtils {
             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
             mmr.setDataSource(DevUtils.getContext(), uri);
             size[0] = ConvertUtils.toInt(mmr.extractMetadata
-                (MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
+                    (MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
             size[1] = ConvertUtils.toInt(mmr.extractMetadata
-                (MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
+                    (MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVideoSize");
         }

@@ -664,7 +664,7 @@ public final class ResourceUtils {
 
     /**
      * 获取 Uri OutputStream
-     * @param uri {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @param uri  {@link Uri} FileProvider Uri、Content Uri、File Uri
      * @param mode 读写模式
      * @return Uri OutputStream
      */
