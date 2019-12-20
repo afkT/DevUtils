@@ -20,11 +20,14 @@ import dev.utils.app.ViewUtils;
  * detail: WebView 辅助类
  * @author Ttt
  * <pre>
+ *     WebView 截图使用 {@link dev.utils.app.CapturePictureUtils#snapshotByWebView(WebView)}
+ *     <p></p>
  *     WebView 全面解析
  *     @see <a href="https://www.jianshu.com/p/3e0136c9e748"/>
  *     Android WebView 常见问题及解决方案汇总
  *     @see <a href="https://www.cnblogs.com/Free-Thinker/p/6179016.html"/>
- *     WebView 截图使用 {@link dev.utils.app.CapturePictureUtils#snapshotByWebView(WebView)}
+ *     WebView 与 JavaScript 的交互总结
+ *     @see <a href="https://www.jianshu.com/p/5cc2eae14e07"/>
  * </pre>
  */
 public class WebViewAssist {
@@ -237,7 +240,7 @@ public class WebViewAssist {
      *     常用方法
      *     onPageStarted()onPageFinished() 页面加载时和页面加载完毕时调用
      *     shouldOverrideKeyEvent() 重写此方法才能处理浏览器中的按键事件
-     *     shouldInterceptRequest() 页面每一次请求资源之前都会调用这个方法 ( 非UI线程调用 )
+     *     shouldInterceptRequest() 页面每一次请求资源之前都会调用这个方法 ( 非 UI 线程调用 )
      *     onLoadResource() 页面加载资源时调用, 每加载一个资源 ( 比如图片 ) 就调用一次
      *     onReceivedError() 加载页面的服务器出现错误 ( 比如 404 ) 时回调
      *     onReceivedSslError() 重写此方法可以让 WebView 处理 https 请求
@@ -418,12 +421,12 @@ public class WebViewAssist {
     /**
      * 清除资源缓存
      * <pre>
-     *     缓存是针对每个应用程序的，因此这将清除所有使用的 WebView 的缓存
+     *     缓存是针对每个应用程序的, 因此这将清除所有使用的 WebView 的缓存
      * </pre>
-     * @param includeDiskFiles 是否清空本地缓存 ( false 则只会清空内存缓存, true 全部清空)
+     * @param includeDiskFiles 是否清空本地缓存 ( false 则只会清空内存缓存, true 全部清空 )
      * @return {@link WebViewAssist}
      */
-    public WebViewAssist clearCache(boolean includeDiskFiles) {
+    public WebViewAssist clearCache(final boolean includeDiskFiles) {
         if (isWebViewNotEmpty()) {
             mWebView.clearCache(includeDiskFiles);
         }
@@ -488,6 +491,7 @@ public class WebViewAssist {
      * </pre>
      * @param url    加载的 Url
      * @param cookie 同步的 cookie
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean setCookie(final String url, final String cookie) {
         try {
@@ -531,7 +535,7 @@ public class WebViewAssist {
     /**
      * 移除 Session Cookie
      * @param callback 移除回调
-     * @return {@code true} yes, {@code false} no
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean removeSessionCookie(final ValueCallback<Boolean> callback) {
         try {
@@ -550,7 +554,7 @@ public class WebViewAssist {
     /**
      * 移除所有的 Cookie
      * @param callback 移除回调
-     * @return {@code true} yes, {@code false} no
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean removeAllCookie(final ValueCallback<Boolean> callback) {
         try {
