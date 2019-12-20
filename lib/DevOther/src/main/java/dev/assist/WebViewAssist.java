@@ -41,8 +41,24 @@ public class WebViewAssist {
     private WebView mWebView;
     // WebView 常用配置构建类
     private Builder mBuilder;
+    // 全局配置
+    private static Builder sGlobalBuilder;
 
     public WebViewAssist() {
+        this(true);
+    }
+
+    /**
+     * 构造函数
+     * <pre>
+     *     使用全局配置, 需要手动调用 {@link #apply} 方法
+     * </pre>
+     * @param listener 是否复用监听事件
+     */
+    public WebViewAssist(final boolean listener) {
+        if (sGlobalBuilder != null) {
+            mBuilder = sGlobalBuilder.clone(listener);
+        }
     }
 
     /**
@@ -64,14 +80,35 @@ public class WebViewAssist {
     }
 
     /**
+     * WebView 是否不为 null
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isWebViewNotEmpty() {
+        return mWebView != null;
+    }
+
+    /**
      * 设置 WebView 常用配置构建类
      * @param builder {@link Builder}
      * @return {@link WebViewAssist}
      */
     public WebViewAssist setBuilder(final Builder builder) {
+        return setBuilder(builder, true);
+    }
+
+    /**
+     * 设置 WebView 常用配置构建类
+     * @param builder {@link Builder}
+     * @param apply 是否应用配置
+     * @return {@link WebViewAssist}
+     */
+    public WebViewAssist setBuilder(final Builder builder, final boolean apply) {
         this.mBuilder = builder;
         if (this.mBuilder != null) {
-            this.mBuilder.setWebViewAssist(this).apply();
+            this.mBuilder.setWebViewAssist(this);
+            if (apply) {
+                this.mBuilder.apply();
+            }
         }
         return this;
     }
@@ -85,11 +122,29 @@ public class WebViewAssist {
     }
 
     /**
-     * WebView 是否不为 null
-     * @return {@code true} yes, {@code false} no
+     * 应用 (设置) 配置
+     * @return {@link Builder}
      */
-    public boolean isWebViewNotEmpty() {
-        return mWebView != null;
+    public WebViewAssist apply() {
+        return setBuilder(mBuilder);
+    }
+
+    // =
+
+    /**
+     * 设置全局 WebView 常用配置构建类
+     * @param builder {@link Builder}
+     */
+    public static void setGlobalBuilder(final Builder builder) {
+        WebViewAssist.sGlobalBuilder = builder;
+    }
+
+    /**
+     * 获取全局 WebView 常用配置构建类
+     * @return {@link Builder}
+     */
+    public static Builder getGlobalBuilder() {
+        return WebViewAssist.sGlobalBuilder;
     }
 
     // ============
@@ -352,6 +407,9 @@ public class WebViewAssist {
             mWebView.setWebViewClient(null);
             mWebView.destroy();
             mWebView = null;
+            if (mBuilder != null) {
+                mBuilder.setWebViewAssist(null);
+            }
         }
         return this;
     }
@@ -783,6 +841,10 @@ public class WebViewAssist {
         public Builder() {
         }
 
+        /**
+         * 构造函数
+         * @param applyListener 应用配置监听事件
+         */
         public Builder(final OnApplyListener applyListener) {
             setOnApplyListener(applyListener);
         }
@@ -841,6 +903,23 @@ public class WebViewAssist {
              * @param builder       WebView 常用配置构建类
              */
             void onApply(WebViewAssist webViewAssist, Builder builder);
+        }
+
+        // ============
+        // = 克隆方法 =
+        // ============
+
+        /**
+         * 克隆方法 ( 用于全局配置克隆操作 )
+         * @param listener 是否复用监听事件
+         * @return {@link Builder}
+         */
+        public Builder clone(final boolean listener) {
+            Builder builder = new Builder();
+            if (listener) { // 复用监听事件
+                builder.setOnApplyListener(mApplyListener);
+            }
+            return builder;
         }
 
         // ============
