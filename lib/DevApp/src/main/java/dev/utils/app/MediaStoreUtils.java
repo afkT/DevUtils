@@ -36,6 +36,11 @@ import dev.utils.common.FileUtils;
  *     <p></p>
  *     存储后缀根据 MIME_TYPE 决定, 值类型 {@link libcore.net.MimeUtils}
  *     @see <a href="https://www.androidos.net.cn/android/9.0.0_r8/xref/libcore/luni/src/main/java/libcore/net/MimeUtils.java"/>
+ *     <p></p>
+ *     访问下载内容 ( 文档和电子书籍 ) - 加载系统的文件选择器
+ *     {@link IntentUtils#getOpenDocumentIntent()}
+ *     使用存储访问框架打开文件
+ *     @see <a href="https://developer.android.google.cn/guide/topics/providers/document-provider#java"/>
  * </pre>
  */
 public final class MediaStoreUtils {

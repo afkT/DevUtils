@@ -17,14 +17,12 @@ import dev.utils.common.FileUtils;
  *     @see <a href="https://www.jianshu.com/p/c04b8899cf85"/>
  *     Android 中的存储路径之外部存储
  *     @see <a href="https://www.jianshu.com/p/2881260e74d7"/>
- *     将文件保存到外部存储 ( 保存到公开目录 )
- *     @see <a href="https://developer.android.google.cn/training/data-storage/files/external#PublicFiles"/>
  *     处理外部存储中的媒体文件
  *     @see <a href="https://developer.android.google.cn/training/data-storage/files/media"/>
+ *     管理分区外部存储访问
+ *     @see <a href="https://developer.android.google.cn/training/data-storage/files/external-scoped"/>
  *     Android Q 适配指南
  *     @see <a href="https://juejin.im/post/5ddd2417f265da060a5217ff"/>
- *     Android 10 Scoped Storage
- *     @see <a href="https://zhuanlan.zhihu.com/p/89355975"/>
  *     <p></p>
  *     内部存储 : /data/data/package/ 目录
  *     外部存储 ( 私有目录 ) : /storage/emulated/0/Android/data/package/ 目录
@@ -32,6 +30,12 @@ import dev.utils.common.FileUtils;
  *     <p></p>
  *     推荐使用 {@link PathUtils#getAppExternal()}、 {@link PathUtils#getInternal()} ( 外部存储 ( 私有目录 ) 、内部存储 )
  *     Android 11 对外部存储 ( 公开目录 ) 进行限制 Scoped Storage, 或使用 MediaStore 对部分公开目录进行操作
+ *     <p></p>
+ *     关于路径建议及兼容:
+ *     推荐隐私数据存储到内部存储中 {@link PathUtils#getInternal()}
+ *     应用数据全部存储到 外部存储 ( 私有目录 ) 中 {@link PathUtils#getAppExternal()}
+ *     SDCard 目录推荐使用 {@link MediaStoreUtils} 存储常用 Image、Video、Document 等, 尽量减少需适配情况
+ *     并且能够完善项目存储目录结构, 减少外部存储 ( 公开目录 ) 目录混乱等
  * </pre>
  */
 public final class PathUtils {
