@@ -42,6 +42,31 @@ public final class ContentResolverUtils {
     public static final Uri FILES_URI = MediaStore.Files.getContentUri(VOLUME_EXTERNAL);
 
     /**
+     * 获取 Uri Cursor 对应条件的数据行 data 字段
+     * @param uri           {@link Uri}
+     * @param selection     查询条件
+     * @param selectionArgs 查询条件的参数
+     * @return 对应条件的数据行 data 字段
+     */
+    public static String getDataColumn(final Uri uri, final String selection, final String[] selectionArgs) {
+        Cursor cursor = null;
+        final String column = "_data";
+        final String[] projection = {column};
+        try {
+            cursor = ResourceUtils.getContentResolver().query(uri, projection, selection, selectionArgs, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                final int column_index = cursor.getColumnIndexOrThrow(column);
+                return cursor.getString(column_index);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getDataColumn");
+        } finally {
+            CloseUtils.closeIOQuietly(cursor);
+        }
+        return null;
+    }
+
+    /**
      * 删除多媒体资源
      * @param uri           {@link Uri}
      * @param where         删除条件
@@ -88,7 +113,7 @@ public final class ContentResolverUtils {
      * </pre>
      * @param uri           {@link Uri}
      * @param projection    查询的字段
-     * @param selection     查询的条件
+     * @param selection     查询条件
      * @param selectionArgs 查询条件的参数
      * @param sortOrder     排序方式
      * @return {@link Cursor}
@@ -258,10 +283,10 @@ public final class ContentResolverUtils {
         public abstract String[] getProjection(Uri uri, String filePath);
 
         /**
-         * 获取查询的条件
+         * 获取查询条件
          * @param uri      Uri
          * @param filePath 文件路径
-         * @return 查询的条件
+         * @return 查询条件
          */
         public abstract String getSelection(Uri uri, String filePath);
 
