@@ -181,6 +181,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_DEVICE_INFO, "设备信息"));
         lists.add(new ButtonValue(BTN_SCREEN_INFO, "屏幕信息"));
         lists.add(new ButtonValue(BTN_PATH, "路径信息"));
+        lists.add(new ButtonValue(BTN_WEBVIEW, "WebView 辅助类"));
         return lists;
     }
 
@@ -660,4 +661,7 @@ public class ButtonValue {
     public static final int BTN_PATH_APP_EXTERNAL = BTN_PATH + 2;
     // 外部存储路径 ( SDCard )
     public static final int BTN_PATH_SDCARD = BTN_PATH + 3;
+
+    // WebView 辅助类
+    public static final int BTN_WEBVIEW = MODULE_OTHER + 1400;
 }

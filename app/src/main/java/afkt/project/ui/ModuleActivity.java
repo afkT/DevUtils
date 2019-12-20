@@ -42,6 +42,7 @@ import afkt.project.ui.activity.TimerActivity;
 import afkt.project.ui.activity.ToastTintActivity;
 import afkt.project.ui.activity.UIEffectActivity;
 import afkt.project.ui.activity.ViewPagerActivity;
+import afkt.project.ui.activity.WebViewActivity;
 import afkt.project.ui.activity.WifiActivity;
 import afkt.project.ui.activity.WrapActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
@@ -220,6 +221,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_PATH: // 路径信息
                         SkipUtils.startActivity(PathActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_WEBVIEW: // WebView 辅助类
+                        SkipUtils.startActivity(WebViewActivity.class, buttonValue);
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");

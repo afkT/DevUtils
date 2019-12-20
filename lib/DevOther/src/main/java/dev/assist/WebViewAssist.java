@@ -129,7 +129,7 @@ public class WebViewAssist {
     }
 
     /**
-     * 应用 (设置) 配置
+     * 应用 ( 设置 ) 配置
      * @return {@link Builder}
      */
     public WebViewAssist apply() {
@@ -888,7 +888,7 @@ public class WebViewAssist {
         }
 
         /**
-         * 应用 (设置) 配置
+         * 应用 ( 设置 ) 配置
          * @return {@link Builder}
          */
         public Builder apply() {
@@ -1074,7 +1074,7 @@ public class WebViewAssist {
         private String mDatabasePath = null;
 
         /**
-         * 应用 (设置) 配置
+         * 应用 ( 设置 ) 配置
          * @return {@link Builder}
          */
         private Builder applyPri() {
