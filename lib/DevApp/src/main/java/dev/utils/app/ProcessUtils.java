@@ -202,9 +202,9 @@ public final class ProcessUtils {
             try {
                 PackageManager packageManager = AppUtils.getPackageManager();
                 Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
-                List<ResolveInfo> listResolves = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+                List<ResolveInfo> lists = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
                 // 无权限
-                if (listResolves.size() <= 0) {
+                if (lists.size() == 0) {
                     return null;
                 }
 
