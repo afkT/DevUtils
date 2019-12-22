@@ -139,6 +139,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_SIGN_VIEW, "签名 View"));
         lists.add(new ButtonValue(BTN_LINE_VIEW, "换行监听 View"));
         lists.add(new ButtonValue(BTN_CAPTURE_PICTURE, "CapturePictureUtils 截图工具类"));
+        lists.add(new ButtonValue(BTN_TEXTVIEW, "两个 TextView 显示效果"));
         return lists;
     }
 
@@ -485,6 +486,9 @@ public class ButtonValue {
 
     // CapturePictureUtils 截图工具类
     public static final int BTN_CAPTURE_PICTURE = MODULE_UI + 1700;
+
+    // 两个 TextView 显示效果
+    public static final int BTN_TEXTVIEW = MODULE_UI + 1800;
 
     // ============
     // = 其他功能 =

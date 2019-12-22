@@ -38,6 +38,7 @@ import afkt.project.ui.activity.ScreenInfoActivity;
 import afkt.project.ui.activity.SignActivity;
 import afkt.project.ui.activity.StatusBarActivity;
 import afkt.project.ui.activity.TextCalcActivity;
+import afkt.project.ui.activity.TextViewActivity;
 import afkt.project.ui.activity.TimerActivity;
 import afkt.project.ui.activity.ToastTintActivity;
 import afkt.project.ui.activity.UIEffectActivity;
@@ -174,6 +175,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_CAPTURE_PICTURE: // CapturePictureUtils 截图工具类
                         SkipUtils.startActivity(CapturePictureActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_TEXTVIEW: // 两个 TextView 显示效果
+                        SkipUtils.startActivity(TextViewActivity.class, buttonValue);
                         break;
 
                     // ============
