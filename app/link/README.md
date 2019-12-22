@@ -135,6 +135,34 @@
 
 * [Material Designer 的低版本兼容实现 ActivityOptionsCompat](https://www.cnblogs.com/tianzhijiexian/p/4087917.html)
 
+#### 效果
+
+* [AppbarLayout 的简单用法](https://www.jianshu.com/p/bbc703a0015e)
+
+* [Android 详细分析 AppBarLayout 的五种 ScrollFlags](https://www.jianshu.com/p/7caa5f4f49bd)
+
+* [一篇文章学会 Coordinatorlayout + AppbarLayout](https://www.jianshu.com/p/cd93da2b7a24)
+
+* [Toolbar 的正确使用姿势](https://www.jianshu.com/p/05ef48b777cc)
+
+* [Android 实现 SwipeBack ( 右滑退出 ) 效果](https://segmentfault.com/a/1190000002977515#articleHeader0)
+
+* [三次贝塞尔曲线练习之弹性的圆](https://www.jianshu.com/p/791d3a791ec2)
+
+* [Android 多点触控技术, 实现对图片的放大缩小平移, 惯性滑动等功能](https://blog.csdn.net/nugongahou110/article/details/50668925)
+
+* [Android 实现淘宝头条滚动广告的效果](https://www.jianshu.com/p/407d92907681)
+
+* [关于如何实现 Android 透明状态栏的总结](https://www.jianshu.com/p/e89ee0a77bb5)
+
+* [Android标题栏 TitleBar 绝佳解决方案](https://www.jianshu.com/p/617be02dc265)
+
+* [可垂直跑、可水平跑的跑马灯](https://github.com/sunfusheng/MarqueeView)
+
+* [日历控件](https://github.com/huanghaibin-dev/CalendarView)
+
+* [懂得智能配色的 ImageView](https://github.com/DingMouRen/PaletteImageView)
+
 #### Retrofit2
 
 * [Retrofit2](https://square.github.io/retrofit)
@@ -189,7 +217,21 @@
 
 * [Android 博客大汇总](https://juejin.im/post/5d60ad5df265da03c42899f1)
 
-* [Android 实现 SwipeBack ( 右滑退出 ) 效果](https://segmentfault.com/a/1190000002977515#articleHeader0)
+* [安卓架构文章合集](https://github.com/CameloeAnthony/AndroidArchitectureCollection)
 
-* [Android 实现 SwipeBack ( 右滑退出 ) 效果](https://www.jianshu.com/p/791d3a791ec2)
+#### 算法、面试
+
+* [Android 校招面试指南](https://github.com/LRH1993/android_interview)
+
+* [Android 面试题集](https://github.com/Ellen2018/AndroidFaceInterview)
+
+* [Android开发工程师面试指南 ( 面试题集附答案、简历模板)](https://juejin.im/post/5ac1f77cf265da238155cbb7)
+
+* [数据结构和算法必知必会的 50 个代码实现](https://github.com/wangzheng0822/algo)
+
+* [常用排序算法总结 : 冒泡、选择、插入排序、希尔排序、归并排序、堆排序、快排](https://mp.weixin.qq.com/s?__biz=MzI2NjA3NTc4Ng==&mid=2652080141&idx=1&sn=8f2c0db4d304fcf1e22cd002df3a530f&chksm=f17483e8c6030afe9d83fabbd3419526b6020c5cf8a6fca5452a9caed75ecbf508ce8f8578c3&scene=0#rd)
+
+#### 第三方库
+
+* [Aria 下载可以很简单](https://github.com/AriaLyy/Aria)
 
