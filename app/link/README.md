@@ -99,11 +99,49 @@
 
 * [Luban](https://github.com/Curzibn/Luban)
 
+#### UI
+
+* [自定义控件详解 Paint 画笔路径效果](https://www.cnblogs.com/xqxacm/p/6669596.html)
+
+* [Android 利用 Canvas 画各种图形 ( 点、直线、弧、圆、椭圆、文字、矩形、多边形、曲线、圆角矩形 )](https://blog.csdn.net/rhljiayou/article/details/7212620)
+
+* [Android Canvas 绘制 剪切 clip 与 几何变换](https://blog.csdn.net/qq_30889373/article/details/78821367)
+
+* [Android 中的裁剪中 Region.Op 参数的用法](https://blog.csdn.net/eyishion/article/details/53728913)
+
+* [Android Canvas 设置绘画时重叠部分的处理模式](https://blog.csdn.net/javalfx/article/details/48319261)
+
+* [LinearGradient 线性渐变与 SweepGradient 扫描式渐变](https://www.jianshu.com/p/c2b5d7fbf8ca)
+
+* [Canvas 基础用法 - drawBitmap()、drawText() 详解](https://blog.csdn.net/u014702653/article/details/80342114)
+
+* [高仿小米时钟 - 使用 Camera 和 Matrix 实现 3D 效果](https://blog.csdn.net/qq_31715429/article/details/54668668)
+
+* [学习 ExplosionField 之粒子破碎效果](https://blog.csdn.net/XieYupeng520/article/details/49951835)
+
+* [支持自由定制外观、拖拽消除的 MaterialDesign 风格 Android BadgeView](https://github.com/qstumn/BadgeView)
+
+* [雕虫晓技 Android 超简单气泡效果](https://www.gcssloop.com/gebug/bubble-sample?utm_source=gank.io%2Fxiandu&utm_medium=website)
+
+* [Android 水波动画帮助类](https://github.com/XunMengWinter/CircularAnim)
+
+* [Android RecyclerView 吸附效果](https://github.com/Gavin-ZYX/StickyDecoration)
+
+* [使用 SearchView 的正确姿势](https://www.imooc.com/article/23246)
+
+#### 转场动画
+
+* [Android 动画 : 转场动画 ( 过度动画 )](https://blog.csdn.net/ss1168805219/article/details/53445063)
+
+* [Material Designer 的低版本兼容实现 ActivityOptionsCompat](https://www.cnblogs.com/tianzhijiexian/p/4087917.html)
+
 #### 其他
 
 * [Android GC 原理探究](https://zhuanlan.zhihu.com/p/24835977)
 
 * [新架构组件 WorkManager](https://juejin.im/post/5af4aa91f265da0b8d41f714)
+
+* [关于 RxJava 背压](http://flyou.ren/2017/04/05/%E5%85%B3%E4%BA%8ERxJava%E8%83%8C%E5%8E%8B/?utm_source=tuicool&utm_medium=referral)
 
 * [Android EditText 两种方法限制输入两位小数](https://www.jianshu.com/p/dc2419de0abf)
 
@@ -113,6 +151,18 @@
 
 * [Android 插件化系列第 动态加载技术之 apk 换肤](https://www.jianshu.com/p/d1c6e67f7889)
 
+* [励志成为较全的直播技术导航_AnyRTC](https://github.com/DyncLang/DevLiveBook)
 
+* [GitHub 上受欢迎的 Android UI Library](https://hndeveloper.github.io/2017/github-android-ui.html#Header)
+
+* [收集 Android 开发中优秀的开源组件库](https://github.com/XXApple/AndroidLibs)
+
+* [Android 优秀开源项目汇总](https://github.com/SenhLinsh/Android-Hot-Libraries)
+
+* [DevNote 大鸡排的博客归档](https://github.com/BolexLiu/DevNote)
+
+* [Android 博客大汇总](https://juejin.im/post/5d60ad5df265da03c42899f1)
+
+* [Android 实现 SwipeBack ( 右滑退出 ) 效果](https://segmentfault.com/a/1190000002977515#articleHeader0)
 
 
