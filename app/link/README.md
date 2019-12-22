@@ -59,6 +59,46 @@
 
 * [那些年 Android 黑科技 ③ : 干大事不择手段](https://www.jianshu.com/p/8f9b44302139)
 
+#### 反编译
+
+* [Apktool](https://ibotpeaches.github.io/Apktool/)
+
+* [Android 反编译工具](https://github.com/skylot/jadx)
+
+* [Android-Crack-Tool For Mac](https://github.com/Jermic/Android-Crack-Tool)
+
+* [apk 反编译 ( 使用apktool、dex2jar、jd-gui, 进行反编译 apk, 查看apk源码 )](https://blog.csdn.net/qq_34801506/article/details/80569293)
+
+* [Android 防重签名和二次打包](https://www.jianshu.com/p/d058191b404a)
+
+#### 悬浮窗
+
+* [Android Demo 悬浮窗 ( 支持 Android 7.0 )](https://www.jianshu.com/p/ac63c57d2555)
+
+* [Android FloatWindow](https://github.com/YoungBill/Android-FloatWindow)
+
+#### Camera
+
+* [Android Camera API 使用指南](https://blog.csdn.net/matrix_laboratory/article/details/82871064)
+
+* [Android Camera2 拍照入门学习](https://www.jianshu.com/p/7f766eb2f4e7)
+
+#### 保活
+
+* [Android 服务保活 / 常驻](https://github.com/xingda920813/HelloDaemon)
+
+* [Android 进程常驻](https://blog.csdn.net/marswin89/article/details/50917098)
+
+* [Android 进程保活招数概览](https://www.jianshu.com/p/c1a9e3e86666)
+
+* [Android 守护进程的实现方式](https://www.jianshu.com/p/b16631a2fe3c)
+
+#### 图片压缩
+
+* [Android 图片压缩 Luban 鲁班压缩](https://www.jianshu.com/p/b16631a2fe3c)
+
+* [Luban](https://github.com/Curzibn/Luban)
+
 #### 其他
 
 * [Android GC 原理探究](https://zhuanlan.zhihu.com/p/24835977)
@@ -70,6 +110,8 @@
 * [玩转 AppBarLayout 更酷炫的顶部栏](https://www.jianshu.com/p/d159f0176576)
 
 * [Android 安全防护 / 检查 Root / 检查 Xposed / 反调试 / 应用多开 / 模拟器检测](https://www.jianshu.com/p/c37b1bdb4757)
+
+* [Android 插件化系列第 动态加载技术之 apk 换肤](https://www.jianshu.com/p/d1c6e67f7889)
 
 
 
