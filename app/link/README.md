@@ -35,7 +35,7 @@
 
 #### 混淆
 
-* [恢复混淆代码 DeGuard](http://apk-deguard.com/)
+* [恢复混淆代码 DeGuard](http://apk-deguard.com)
 
 * [ProGuard 最全混淆规则说明](https://www.jianshu.com/p/b471db6a01af)
 
@@ -45,11 +45,11 @@
 
 * [两行代码启动未注册的 Activity](https://github.com/BolexLiu/AndroidHookStartActivity)
 
-* [Android 插件化原理解析 Hook 机制之动态代理](http://weishu.me/2016/01/28/understand-plugin-framework-proxy-hook/)
+* [Android 插件化原理解析 Hook 机制之动态代理](http://weishu.me/2016/01/28/understand-plugin-framework-proxy-hook)
 
-* [Android 插件化原理解析 Hook 机制之 Binder Hook](http://weishu.me/2016/02/16/understand-plugin-framework-binder-hook/)
+* [Android 插件化原理解析 Hook 机制之 Binder Hook](http://weishu.me/2016/02/16/understand-plugin-framework-binder-hook)
 
-* [Android 插件化原理解析 Hook 机制之 AMS & PMS](http://weishu.me/2016/03/07/understand-plugin-framework-ams-pms-hook/)
+* [Android 插件化原理解析 Hook 机制之 AMS & PMS](http://weishu.me/2016/03/07/understand-plugin-framework-ams-pms-hook)
 
 * [理解 Android Hook 技术以及简单实战](https://www.jianshu.com/p/4f6d20076922)
 
@@ -61,7 +61,7 @@
 
 #### 反编译
 
-* [Apktool](https://ibotpeaches.github.io/Apktool/)
+* [Apktool](https://ibotpeaches.github.io/Apktool)
 
 * [Android 反编译工具](https://github.com/skylot/jadx)
 
@@ -134,6 +134,32 @@
 * [Android 动画 : 转场动画 ( 过度动画 )](https://blog.csdn.net/ss1168805219/article/details/53445063)
 
 * [Material Designer 的低版本兼容实现 ActivityOptionsCompat](https://www.cnblogs.com/tianzhijiexian/p/4087917.html)
+
+#### Retrofit2
+
+* [Retrofit2](https://square.github.io/retrofit)
+
+* [Retrofit2 Github](https://github.com/square/retrofit)
+
+* [用 Retrofit2 简化 HTTP 请求](https://academy.realm.io/cn/posts/droidcon-jake-wharton-simple-http-retrofit-2)
+
+#### RxJava
+
+* [给 Android 开发者的 RxJava 详解](http://gank.io/post/560e15be2dca930e00da1083)
+
+* [这可能是最好的 RxJava 2.x 教程](https://www.jianshu.com/p/0cd258eecf60)
+
+#### 插件化、热修复
+
+* [360 RePlugin](https://github.com/Qihoo360/RePlugin/blob/master/README_CN.md)
+
+* [Android 组件化和插件化开发](https://www.cnblogs.com/android-blogs/p/5703355.html)
+
+* [Tinker](http://www.tinkerpatch.com/Docs/intro)
+
+* [阿里移动热修复](https://help.aliyun.com/product/51340.html?spm=a2c4g.11186623.6.540.16ae90f9IcZpFb)
+
+* [Bugly Android 热更新详解](https://bugly.qq.com/docs/user-guide/instruction-manual-android-hotfix-demo/?v=20181014122344)
 
 #### 其他
 
