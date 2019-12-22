@@ -13,7 +13,7 @@
 
 * [迁移到 AndroidX | Android Developers](https://developer.android.google.cn/jetpack/androidx/migrate)
 
-* [Android Studio 中文社区-安卓开发者工具集](http://www.android-studio.org)
+* [Android Studio 中文社区 - 安卓开发者工具集](http://www.android-studio.org)
 
 * [Android OS 在线源代码](https://www.androidos.net.cn)
 
@@ -67,7 +67,7 @@
 
 * [Android-Crack-Tool For Mac](https://github.com/Jermic/Android-Crack-Tool)
 
-* [apk 反编译 ( 使用apktool、dex2jar、jd-gui, 进行反编译 apk, 查看apk源码 )](https://blog.csdn.net/qq_34801506/article/details/80569293)
+* [apk 反编译 ( 使用 apktool、dex2jar、jd-gui, 进行反编译 apk, 查看 apk 源码 )](https://blog.csdn.net/qq_34801506/article/details/80569293)
 
 * [Android 防重签名和二次打包](https://www.jianshu.com/p/d058191b404a)
 
@@ -177,7 +177,7 @@
 
 * [Android 插件化系列第 动态加载技术之 apk 换肤](https://www.jianshu.com/p/d1c6e67f7889)
 
-* [励志成为较全的直播技术导航_AnyRTC](https://github.com/DyncLang/DevLiveBook)
+* [励志成为较全的直播技术导航 AnyRTC](https://github.com/DyncLang/DevLiveBook)
 
 * [GitHub 上受欢迎的 Android UI Library](https://hndeveloper.github.io/2017/github-android-ui.html#Header)
 
@@ -191,4 +191,5 @@
 
 * [Android 实现 SwipeBack ( 右滑退出 ) 效果](https://segmentfault.com/a/1190000002977515#articleHeader0)
 
+* [Android 实现 SwipeBack ( 右滑退出 ) 效果](https://www.jianshu.com/p/791d3a791ec2)
 
