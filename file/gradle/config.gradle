@@ -120,7 +120,7 @@ ext {
                     // GPU Filters https://github.com/cats-oss/android-gpuimage
                     gpuimage                     : "jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1",
                     // 动画库 https://github.com/airbnb/lottie-android
-                    lottie                       : "com.airbnb.android:lottie:2.5.0",
+                    lottie                       : "com.airbnb.android:lottie:2.5.0", // https://www.jianshu.com/p/9a2136ecbc7b
                     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
                     smartrefreshlayout           : "com.scwang.smartrefresh:SmartRefreshLayout:1.0.5",
                     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
@@ -130,9 +130,15 @@ ext {
                     zxing_android_code           : "com.google.zxing:android-core:3.3.0", // http://mvnrepository.com/artifact/com.google.zxing/android-core
                     // Glide 图形库 https://github.com/wasabeef/glide-transformations
                     glide_transformations        : "jp.wasabeef:glide-transformations:3.3.0",
+                    // ARouter 路由 https://github.com/alibaba/ARouter
+                    arouter_api                  : "com.alibaba:arouter-api:1.5.0", // https://github.com/alibaba/ARouter/blob/master/README_CN.md
+                    arouter_compiler             : "com.alibaba:arouter-compiler:1.2.2",
                     // 内存检测工具 https://github.com/square/leakcanary
                     leakcanary                   : "com.squareup.leakcanary:leakcanary-android:1.5.4",
                     leakcanary_no_op             : "com.squareup.leakcanary:leakcanary-android-no-op:1.5.4",
+                    // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
+                    blockcanary_android          : "com.github.markzhai:blockcanary-android:1.5.0",
+                    blockcanary_no_op            : "com.github.markzhai:blockcanary-no-op:1.5.0"
             ]
     ]
 }
