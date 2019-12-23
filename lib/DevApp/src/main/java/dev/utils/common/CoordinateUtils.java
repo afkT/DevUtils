@@ -3,7 +3,7 @@ package dev.utils.common;
 import static java.lang.Math.PI;
 
 /**
- * detail: 坐标 (GPS 纠偏 ) 相关工具类
+ * detail: 坐标 ( GPS 纠偏 ) 相关工具类
  * @author Ttt
  * <pre>
  *     地球坐标系 (WGS-84)
@@ -11,6 +11,11 @@ import static java.lang.Math.PI;
  *     百度坐标系 (BD09)
  *     <p></p>
  *     @see <a href="https://github.com/hujiulong/gcoord"/>
+ *     @see <a href="https://www.cnblogs.com/milkmap/p/3768379.html"/>
+ *     根据两点经纬度计算距离
+ *     @see <a href="https://www.cnblogs.com/ycsfwhh/archive/2010/12/20/1911232.html"/>
+ *     根据经纬度计算两点之间的距离的公式推导过程以及 google.maps 的测距函数
+ *     @see <a href="https://blog.csdn.net/xiejm2333/article/details/73297004"/>
  *     <p></p>
  *     1. WGS84 坐标系: 即地球坐标系, 国际上通用的坐标系, 设备一般包含 GPS 芯片或者北斗芯片获取的经纬度为 WGS84 地理坐标系
  *     谷歌地图采用的是 WGS84 地理坐标系 ( 中国范围除外 ) GPS 设备得到的经纬度就是在 WGS84 坐标系下的经纬度, 通常通过底层接口得到的定位信息都是 WGS84 坐标系
@@ -161,5 +166,47 @@ public final class CoordinateUtils {
      */
     public static boolean outOfChina(final double lng, final double lat) {
         return lng < 72.004 || lng > 137.8347 || lat < 0.8293 || lat > 55.8271;
+    }
+
+    // ================
+    // = 计算坐标距离 =
+    // ================
+
+    // 赤道半径
+    private static double EARTH_RADIUS = 6378.137;
+
+    /**
+     * 计算弧度角
+     * @param degree 度数
+     * @return 弧度角
+     */
+    private static double rad(final double degree) {
+        return degree * Math.PI / 180.0;
+    }
+
+    /**
+     * 计算两个坐标相距距离 ( 单位: 米 )
+     * <pre>
+     *     计算点与点直线间距离
+     * </pre>
+     * @param originLng      出发点经度
+     * @param originLat      出发点纬度
+     * @param destinationLng 目的地经度
+     * @param destinationLat 目的地纬度
+     * @return 两个坐标相距距离 ( 单位: 米 )
+     */
+    public static double getDistance(final double originLng, final double originLat,
+                                     final double destinationLng, final double destinationLat) {
+        double radLat1 = rad(originLat);
+        double radLat2 = rad(destinationLat);
+        double a = radLat1 - radLat2;
+        double b = rad(originLng) - rad(destinationLng);
+        double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2)
+            + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+        s = s * EARTH_RADIUS;
+        // 保留两位小数
+        s = Math.round(s * 100d) / 100d;
+        s = s * 1000;
+        return s;
     }
 }
