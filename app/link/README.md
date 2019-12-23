@@ -171,6 +171,8 @@
 
 * [用 Retrofit2 简化 HTTP 请求](https://academy.realm.io/cn/posts/droidcon-jake-wharton-simple-http-retrofit-2)
 
+* [你真的会用 Retrofit2 吗? Retrofit2 完全教程](https://www.jianshu.com/p/308f3c54abdd)
+
 #### RxJava
 
 * [给 Android 开发者的 RxJava 详解](http://gank.io/post/560e15be2dca930e00da1083)
@@ -219,6 +221,12 @@
 
 * [安卓架构文章合集](https://github.com/CameloeAnthony/AndroidArchitectureCollection)
 
+* [处于萌芽阶段的 Java 核心知识库](https://github.com/crossoverJie/JCSprout)
+
+* [一份涵盖大部分 Java 程序员所需要掌握的核心知识](https://github.com/Snailclimb/JavaGuide)
+
+* [软件工程技术面试个人指南 interviews](https://www.wanandroid.com/blog/show/2318)
+
 #### 算法、面试
 
 * [Android 校招面试指南](https://github.com/LRH1993/android_interview)
@@ -226,6 +234,8 @@
 * [Android 面试题集](https://github.com/Ellen2018/AndroidFaceInterview)
 
 * [Android开发工程师面试指南 ( 面试题集附答案、简历模板)](https://juejin.im/post/5ac1f77cf265da238155cbb7)
+
+* [Awesome-Android-Interview](https://github.com/JsonChao/Awesome-Android-Interview)
 
 * [数据结构和算法必知必会的 50 个代码实现](https://github.com/wangzheng0822/algo)
 
