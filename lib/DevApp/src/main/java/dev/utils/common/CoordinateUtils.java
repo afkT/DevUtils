@@ -168,9 +168,9 @@ public final class CoordinateUtils {
         return lng < 72.004 || lng > 137.8347 || lat < 0.8293 || lat > 55.8271;
     }
 
-    // ================
-    // = 计算坐标距离 =
-    // ================
+    // ============
+    // = 计算坐标 =
+    // ============
 
     // 赤道半径
     private static double EARTH_RADIUS = 6378.137;
@@ -189,18 +189,18 @@ public final class CoordinateUtils {
      * <pre>
      *     计算点与点直线间距离
      * </pre>
-     * @param originLng      出发点经度
-     * @param originLat      出发点纬度
-     * @param destinationLng 目的地经度
-     * @param destinationLat 目的地纬度
+     * @param originLng 起点经度
+     * @param originLat 起点纬度
+     * @param targetLng 目标经度
+     * @param targetLat 目标纬度
      * @return 两个坐标相距距离 ( 单位: 米 )
      */
     public static double getDistance(final double originLng, final double originLat,
-                                     final double destinationLng, final double destinationLat) {
+                                     final double targetLng, final double targetLat) {
         double radLat1 = rad(originLat);
-        double radLat2 = rad(destinationLat);
+        double radLat2 = rad(targetLat);
         double a = radLat1 - radLat2;
-        double b = rad(originLng) - rad(destinationLng);
+        double b = rad(originLng) - rad(targetLng);
         double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2)
             + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
         s = s * EARTH_RADIUS;
@@ -208,5 +208,85 @@ public final class CoordinateUtils {
         s = Math.round(s * 100d) / 100d;
         s = s * 1000;
         return s;
+    }
+
+    /**
+     * 计算两个坐标的方向角度
+     * <pre>
+     *     以 origin 为参考点坐标, 获取目标坐标位于参考点坐标方向
+     * </pre>
+     * @param originLng 起点经度
+     * @param originLat 起点纬度
+     * @param targetLng 目标经度
+     * @param targetLat 目标纬度
+     * @return 两个坐标的方向角度
+     */
+    public static double getAngle(final double originLng, final double originLat,
+                                  final double targetLng, final double targetLat) {
+        double radLat1 = rad(originLat);
+        double radLng1 = rad(originLng);
+        double radLat2 = rad(targetLat);
+        double radLng2 = rad(targetLng);
+        double ret;
+        if (radLng1 == radLng2) {
+            if (radLat1 > radLat2)
+                return 270; // 北半球的情况, 南半球忽略
+            else if (radLat1 < radLat2)
+                return 90;
+            else
+                return -1; // 位置完全相同
+        }
+        ret = 4 * Math.pow(Math.sin((radLat1 - radLat2) / 2), 2)
+            - Math.pow(Math.sin((radLng1 - radLng2) / 2) * (Math.cos(radLat1) - Math.cos(radLat2)), 2);
+        ret = Math.sqrt(ret);
+        ret = ret / Math.sin(Math.abs(radLng1 - radLng2) / 2) * (Math.cos(radLat1) + Math.cos(radLat2));
+        ret = Math.atan(ret) / Math.PI * 180;
+        if (radLng1 > radLng2) { // 以 origin 为参考点坐标
+            if (radLat1 > radLat2)
+                ret += 180;
+            else
+                ret = 180 - ret;
+        } else if (radLat1 > radLat2)
+            ret = 360 - ret;
+        return ret;
+    }
+
+    /**
+     * 计算两个坐标的方向
+     * @param originLng 起点经度
+     * @param originLat 起点纬度
+     * @param targetLng 目标经度
+     * @param targetLat 目标纬度
+     * @return 两个坐标的方向
+     */
+    public static String getDirection(final double originLng, final double originLat,
+                                      final double targetLng, final double targetLat) {
+        double angle = getAngle(originLng, originLat, targetLng, targetLat);
+        return getDirection(angle);
+    }
+
+    /**
+     * 通过角度获取方向
+     * @param angle 角度
+     * @return 方向
+     */
+    public static String getDirection(final double angle) {
+        if ((angle <= 10) || (angle > 350))
+            return "东";
+        if ((angle > 10) && (angle <= 80))
+            return "东北";
+        if ((angle > 80) && (angle <= 100))
+            return "北";
+        if ((angle > 100) && (angle <= 170))
+            return "西北";
+        if ((angle > 170) && (angle <= 190))
+            return "西";
+        if ((angle > 190) && (angle <= 260))
+            return "西南";
+        if ((angle > 260) && (angle <= 280))
+            return "南";
+        if ((angle > 280) && (angle <= 350))
+            return "东南";
+        return "";
     }
 }
