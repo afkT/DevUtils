@@ -202,7 +202,7 @@ public final class CoordinateUtils {
         double a = radLat1 - radLat2;
         double b = rad(originLng) - rad(targetLng);
         double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2)
-            + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+                + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
         s = s * EARTH_RADIUS;
         // 保留两位小数
         s = Math.round(s * 100d) / 100d;
@@ -237,7 +237,7 @@ public final class CoordinateUtils {
                 return Integer.MAX_VALUE; // 位置完全相同
         }
         ret = 4 * Math.pow(Math.sin((radLat1 - radLat2) / 2), 2)
-            - Math.pow(Math.sin((radLng1 - radLng2) / 2) * (Math.cos(radLat1) - Math.cos(radLat2)), 2);
+                - Math.pow(Math.sin((radLng1 - radLng2) / 2) * (Math.cos(radLat1) - Math.cos(radLat2)), 2);
         ret = Math.sqrt(ret);
         ret = ret / Math.sin(Math.abs(radLng1 - radLng2) / 2) * (Math.cos(radLat1) + Math.cos(radLat2));
         ret = Math.atan(ret) / Math.PI * 180;
