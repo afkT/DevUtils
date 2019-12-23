@@ -234,7 +234,7 @@ public final class CoordinateUtils {
             else if (radLat1 < radLat2)
                 return 90;
             else
-                return -1; // 位置完全相同
+                return Integer.MAX_VALUE; // 位置完全相同
         }
         ret = 4 * Math.pow(Math.sin((radLat1 - radLat2) / 2), 2)
             - Math.pow(Math.sin((radLng1 - radLng2) / 2) * (Math.cos(radLat1) - Math.cos(radLat2)), 2);
@@ -259,8 +259,8 @@ public final class CoordinateUtils {
      * @param targetLat 目标纬度
      * @return 两个坐标的方向
      */
-    public static String getDirection(final double originLng, final double originLat,
-                                      final double targetLng, final double targetLat) {
+    public static Direction getDirection(final double originLng, final double originLat,
+                                         final double targetLng, final double targetLat) {
         double angle = getAngle(originLng, originLat, targetLng, targetLat);
         return getDirection(angle);
     }
@@ -270,23 +270,55 @@ public final class CoordinateUtils {
      * @param angle 角度
      * @return 方向
      */
-    public static String getDirection(final double angle) {
+    public static Direction getDirection(final double angle) {
+        if (angle == Integer.MAX_VALUE) return Direction.SAME;
         if ((angle <= 10) || (angle > 350))
-            return "东";
+            return Direction.RIGHT;
         if ((angle > 10) && (angle <= 80))
-            return "东北";
+            return Direction.RIGHT_TOP;
         if ((angle > 80) && (angle <= 100))
-            return "北";
+            return Direction.TOP;
         if ((angle > 100) && (angle <= 170))
-            return "西北";
+            return Direction.LEFT_TOP;
         if ((angle > 170) && (angle <= 190))
-            return "西";
+            return Direction.LEFT;
         if ((angle > 190) && (angle <= 260))
-            return "西南";
+            return Direction.LEFT_BOTTOM;
         if ((angle > 260) && (angle <= 280))
-            return "南";
+            return Direction.BOTTOM;
         if ((angle > 280) && (angle <= 350))
-            return "东南";
-        return "";
+            return Direction.RIGHT_BOTTOM;
+        return Direction.SAME;
+    }
+
+    /**
+     * detail: 坐标方向
+     * @author Ttt
+     */
+    public enum Direction {
+
+        SAME("相同"), // 坐标相同
+        TOP("北"), // 上 - 北
+        BOTTOM("南"), // 下 - 南
+        LEFT("西"), // 左 - 西
+        RIGHT("东"), // 右 - 东
+        LEFT_TOP("西北"), // 左上 - 西北
+        LEFT_BOTTOM("西南"), // 左下 - 西南
+        RIGHT_TOP("东北"), // 右上 - 东北
+        RIGHT_BOTTOM("东南"); // 右下 - 东南
+
+        private String value;
+
+        Direction(String value) {
+            this.value = value;
+        }
+
+        /**
+         * 获取中文方向值
+         * @return 中文方向值
+         */
+        public String getValue() {
+            return value;
+        }
     }
 }
