@@ -1904,7 +1904,7 @@ public final class ViewHelper {
 
     /**
      * 切换 View 显示的状态
-     * @param state   {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param state    {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param viewArys View[]
      * @param views    View[]
      * @return {@link ViewHelper}
@@ -1916,7 +1916,7 @@ public final class ViewHelper {
 
     /**
      * 反转 View 显示的状态
-     * @param state   {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param state    {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param viewArys View[]
      * @param views    View[]
      * @return {@link ViewHelper}
@@ -1941,8 +1941,8 @@ public final class ViewHelper {
     /**
      * 反转 View 显示的状态
      * @param state {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
-     * @param view   {@link View}
-     * @param views  View[]
+     * @param view  {@link View}
+     * @param views View[]
      * @return {@link ViewHelper}
      */
     public ViewHelper reverseVisibilitys(final int state, final View view, final View... views) {
