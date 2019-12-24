@@ -1904,25 +1904,25 @@ public final class ViewHelper {
 
     /**
      * 切换 View 显示的状态
-     * @param status   {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param state   {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param viewArys View[]
      * @param views    View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper toggleVisibilitys(final int status, final View[] viewArys, final View... views) {
-        ViewUtils.toggleVisibilitys(status, viewArys, views);
+    public ViewHelper toggleVisibilitys(final int state, final View[] viewArys, final View... views) {
+        ViewUtils.toggleVisibilitys(state, viewArys, views);
         return this;
     }
 
     /**
      * 反转 View 显示的状态
-     * @param status   {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param state   {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param viewArys View[]
      * @param views    View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper reverseVisibilitys(final int status, final View[] viewArys, final View... views) {
-        ViewUtils.reverseVisibilitys(status, viewArys, views);
+    public ViewHelper reverseVisibilitys(final int state, final View[] viewArys, final View... views) {
+        ViewUtils.reverseVisibilitys(state, viewArys, views);
         return this;
     }
 
@@ -1940,13 +1940,13 @@ public final class ViewHelper {
 
     /**
      * 反转 View 显示的状态
-     * @param status {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param state {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param view   {@link View}
      * @param views  View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper reverseVisibilitys(final int status, final View view, final View... views) {
-        ViewUtils.reverseVisibilitys(status, view, views);
+    public ViewHelper reverseVisibilitys(final int state, final View view, final View... views) {
+        ViewUtils.reverseVisibilitys(state, view, views);
         return this;
     }
 
