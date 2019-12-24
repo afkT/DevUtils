@@ -23,13 +23,15 @@ public interface IMultiSelectEdit {
     /**
      * 设置编辑状态
      * @param isEdit {@code true} yes, {@code false} no
+     * @return {@link IMultiSelectEdit}
      */
-    void setEditState(boolean isEdit);
+    IMultiSelectEdit setEditState(boolean isEdit);
 
     /**
      * 切换编辑状态
+     * @return {@link IMultiSelectEdit}
      */
-    void toggleEditState();
+    IMultiSelectEdit toggleEditState();
 
     // ============
     // = 选择操作 =
@@ -37,18 +39,21 @@ public interface IMultiSelectEdit {
 
     /**
      * 全选
+     * @return {@link IMultiSelectEdit}
      */
-    void selectAll();
+    IMultiSelectEdit selectAll();
 
     /**
      * 清空全选 ( 非全选 )
+     * @return {@link IMultiSelectEdit}
      */
-    void clearSelectAll();
+    IMultiSelectEdit clearSelectAll();
 
     /**
      * 反选
+     * @return {@link IMultiSelectEdit}
      */
-    void inverseSelect();
+    IMultiSelectEdit inverseSelect();
 
     // ============
     // = 判断处理 =
@@ -71,4 +76,20 @@ public interface IMultiSelectEdit {
      * @return {@code true} yes, {@code false} no
      */
     boolean isNotSelect();
+
+    // ==========
+    // = 数量值 =
+    // ==========
+
+    /**
+     * 获取选中的数据条数
+     * @return 选中的数据条数
+     */
+    int getSelectSize();
+
+    /**
+     * 获取数据总数
+     * @return 数据总数
+     */
+    int getDataCount();
 }

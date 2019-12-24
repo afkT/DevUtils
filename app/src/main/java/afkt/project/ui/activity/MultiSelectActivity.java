@@ -105,8 +105,7 @@ public class MultiSelectActivity extends BaseToolbarActivity {
         vid_bt_toolbar.addView(cancelView = createTextView("取消", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                multiSelectAdapter.setEditState(false);
-                multiSelectAdapter.clearSelectAll();
+                multiSelectAdapter.setEditState(false).clearSelectAll();
                 // 显示编辑按钮、隐藏其他按钮
                 ViewUtils.toggleVisibilitys(editView, cancelView, confirmView, allSelectView, unAllSelectView, inverseSelectView);
             }
@@ -117,8 +116,8 @@ public class MultiSelectActivity extends BaseToolbarActivity {
                 StringBuilder builder = new StringBuilder();
                 builder.append("是否全选: " + multiSelectAdapter.isSelectAll());
                 builder.append("\n是否选中: " + multiSelectAdapter.isSelect());
-                builder.append("\n选中数量: " + multiSelectAdapter.getmultiSelectMapAssist().getSelectSize());
-                builder.append("\n总数: " + multiSelectAdapter.getData().size());
+                builder.append("\n选中数量: " + multiSelectAdapter.getSelectSize());
+                builder.append("\n总数: " + multiSelectAdapter.getDataCount());
                 ToastTintUtils.normal(builder.toString());
             }
         }));

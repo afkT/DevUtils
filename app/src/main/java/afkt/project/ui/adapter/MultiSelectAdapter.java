@@ -98,20 +98,21 @@ public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, 
     }
 
     @Override
-    public void setEditState(boolean isEdit) {
+    public IMultiSelectEdit setEditState(boolean isEdit) {
         this.isEdit = isEdit;
         // 刷新适配器
         notifyDataSetChanged();
+        return this;
     }
 
     @Override
-    public void toggleEditState() {
+    public IMultiSelectEdit toggleEditState() {
         // 切换选择状态
-        setEditState(!isEdit);
+        return setEditState(!isEdit);
     }
 
     @Override
-    public void selectAll() {
+    public IMultiSelectEdit selectAll() {
         LinkedHashMap<Integer, CommodityEvaluateBean> linkedHashMap = new LinkedHashMap<>();
         for (int i = 0, len = getData().size(); i < len; i++) {
             linkedHashMap.put(i, getData().get(i));
@@ -119,18 +120,20 @@ public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, 
         multiSelectMapAssist.putSelects(linkedHashMap);
         // 刷新适配器
         notifyDataSetChanged();
+        return this;
     }
 
     @Override
-    public void clearSelectAll() {
+    public IMultiSelectEdit clearSelectAll() {
         // 清空选中
         multiSelectMapAssist.clearSelects();
         // 刷新适配器
         notifyDataSetChanged();
+        return this;
     }
 
     @Override
-    public void inverseSelect() {
+    public IMultiSelectEdit inverseSelect() {
         // 获取目前选中的数据
         List<Integer> listKeys = multiSelectMapAssist.getSelectKeys();
 
@@ -149,6 +152,7 @@ public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, 
         }
         // 刷新适配器
         notifyDataSetChanged();
+        return this;
     }
 
     @Override
@@ -167,6 +171,16 @@ public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, 
     @Override
     public boolean isNotSelect() {
         return !multiSelectMapAssist.isSelect();
+    }
+
+    @Override
+    public int getSelectSize() {
+        return multiSelectMapAssist.getSelectSize();
+    }
+
+    @Override
+    public int getDataCount() {
+        return getItemCount();
     }
 
     // ================
