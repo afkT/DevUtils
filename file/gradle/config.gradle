@@ -38,19 +38,19 @@ ext {
             // ===========
 
             // 版本号
-            dev_app_versionCode   : 185,
+            dev_app_versionCode   : 186,
             // 版本名
-            dev_app_versionName   : '1.8.5',
+            dev_app_versionName   : '1.8.6',
 
             // 版本号
-            dev_assist_versionCode: 102,
+            dev_assist_versionCode: 103,
             // 版本名
-            dev_assist_versionName: '1.0.2',
+            dev_assist_versionName: '1.0.3',
 
             // 版本号
-            dev_java_versionCode  : 106,
+            dev_java_versionCode  : 107,
             // 版本名
-            dev_java_version      : '1.0.6',
+            dev_java_version      : '1.0.7',
     ]
 
     deps = [

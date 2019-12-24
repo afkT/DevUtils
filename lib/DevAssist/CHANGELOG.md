@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 1.0.3 *(2019-12-25)*
+----------------------------
+ 
+ * `[Add]` IJSONEngine#isJSONObject、isJSONArray
+ 
+ * `[Add]` IMultiSelectEdit#getSelectSize、getDataCount
+ 
+ * `[Update]` RequestStatusAssist 为 RequestStateAssist 以及方法名 Status 修改为 State
+
 
 Version 1.0.2 *(2019-09-19)*
 ----------------------------

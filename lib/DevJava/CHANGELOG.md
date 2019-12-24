@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+Version 1.0.7 *(2019-12-25)*
+----------------------------
+
+* `[Add]` ColorUtils#getARGB、grayLevel、sortGray、sortHSB 并增加内部类 ColorInfo, 支持颜色排序
+
+* `[Add]` FileIOUtils#copyLarge、DateUtils#yyyyMMdd_HHmmss、CoordinateUtils#getDistance、getAngle、getDirection
+
+* `[Add]` DevCommonUtils、StringUtils#appendsIgnoreLast
+
+* `[Update]` 删除 DevCommonUtils、StringUtils 几个重载方法 appends
+
+* `[Update]` 更新部分工具类、方法注释代码、代码间距等
+
 Version 1.0.6 *(2019-11-25)*
 ----------------------------
 
