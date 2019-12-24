@@ -2,7 +2,6 @@ package dev.assist;
 
 import android.graphics.Paint;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.CookieManager;
@@ -12,6 +11,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.Map;
 

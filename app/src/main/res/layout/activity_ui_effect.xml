@@ -169,7 +169,7 @@
                 android:layout_marginBottom="10.0dip"
                 android:text="TabLayout Tab" />
 
-            <android.support.design.widget.TabLayout
+            <com.google.android.material.tabs.TabLayout
                 android:id="@+id/vid_aue_8_0_tab"
                 android:layout_width="match_parent"
                 android:layout_height="44.0dip"
@@ -182,7 +182,7 @@
                 app:tabMinWidth="80.0dip"
                 app:tabMode="scrollable" />
 
-            <android.support.design.widget.TabLayout
+            <com.google.android.material.tabs.TabLayout
                 android:id="@+id/vid_aue_9_0_tab"
                 android:layout_width="match_parent"
                 android:layout_height="44.0dip"

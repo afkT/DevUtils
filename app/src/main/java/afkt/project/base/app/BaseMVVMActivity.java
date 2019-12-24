@@ -1,7 +1,8 @@
 package afkt.project.base.app;
 
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+
+import androidx.databinding.ViewDataBinding;
 
 /**
  * detail: Activity MVVM 基类

@@ -9,8 +9,9 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
-import android.support.annotation.IntRange;
 import android.text.TextUtils;
+
+import androidx.annotation.IntRange;
 
 import java.io.File;
 import java.io.InputStream;

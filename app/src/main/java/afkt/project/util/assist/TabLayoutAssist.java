@@ -1,9 +1,10 @@
 package afkt.project.util.assist;
 
 import android.content.Context;
-import android.support.design.widget.TabLayout;
 import android.view.LayoutInflater;
 import android.view.View;
+
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;

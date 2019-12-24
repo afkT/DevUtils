@@ -1,9 +1,10 @@
 package dev.utils.app;
 
 import android.os.Build;
-import android.support.annotation.RequiresPermission;
-import android.support.annotation.StringRes;
 import android.text.TextUtils;
+
+import androidx.annotation.RequiresPermission;
+import androidx.annotation.StringRes;
 
 import java.util.UUID;
 

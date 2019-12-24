@@ -1,10 +1,11 @@
 package afkt.project.framework.mvvm;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.tt.whorlviewlibrary.WhorlView;
 

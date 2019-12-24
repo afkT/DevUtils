@@ -156,7 +156,7 @@
 
         <!-- 选择的图片 -->
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vid_aie_pic_recy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -2,11 +2,13 @@ package afkt.project.ui.activity;
 
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+
+import androidx.core.content.ContextCompat;
+
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;

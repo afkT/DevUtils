@@ -1,10 +1,11 @@
 package dev.widget;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
+
+import androidx.annotation.LayoutRes;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;

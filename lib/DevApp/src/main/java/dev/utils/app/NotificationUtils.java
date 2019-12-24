@@ -10,8 +10,9 @@ import android.content.pm.ApplicationInfo;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.annotation.DrawableRes;
-import android.support.v4.app.NotificationManagerCompat;
+
+import androidx.annotation.DrawableRes;
+import androidx.core.app.NotificationManagerCompat;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

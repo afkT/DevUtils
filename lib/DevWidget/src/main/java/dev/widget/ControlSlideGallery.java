@@ -1,11 +1,12 @@
 package dev.widget;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.widget.Gallery;
+
+import androidx.annotation.Nullable;
 
 /**
  * detail: Gallery 滑动控制

@@ -1,6 +1,6 @@
 package afkt.project.util.zxing.decode;
 
-import android.support.annotation.IntDef;
+import androidx.annotation.IntDef;
 
 import com.google.zxing.BarcodeFormat;
 

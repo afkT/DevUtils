@@ -101,8 +101,8 @@ ext {
                     // fastjson https://github.com/alibaba/fastjson
                     fastjson                     : "com.alibaba:fastjson:1.2.47",
                     // View 注入框架 https://github.com/JakeWharton/butterknife
-                    butterknife                  : "com.jakewharton:butterknife:8.5.1",
-                    butterknife_compiler         : "com.jakewharton:butterknife-compiler:8.5.1",
+                    butterknife                  : "com.jakewharton:butterknife:10.2.1",
+                    butterknife_compiler         : "com.jakewharton:butterknife-compiler:10.2.1",
                     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
                     pictureSelector              : "com.github.LuckSiege.PictureSelector:picture_library:v2.2.4",
                     // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 ) https://github.com/google/flexbox-layout

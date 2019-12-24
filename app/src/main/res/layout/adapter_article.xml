@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:background="@color/color_f5">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/vid_aa_cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -75,5 +75,5 @@
                     tools:text="时间" />
             </LinearLayout>
         </RelativeLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

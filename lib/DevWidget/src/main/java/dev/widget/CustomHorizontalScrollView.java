@@ -2,10 +2,11 @@ package dev.widget;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.HorizontalScrollView;
+
+import androidx.annotation.Nullable;
 
 /**
  * detail: 自定义 HorizontalScrollView 监听滑动改变
