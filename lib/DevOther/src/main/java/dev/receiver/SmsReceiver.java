@@ -42,13 +42,13 @@ public final class SmsReceiver extends BroadcastReceiver {
                     originatingAddress = sms.getOriginatingAddress();
                     serviceCenterAddress = sms.getServiceCenterAddress();
                     // 触发事件
-                    if (smsListener != null) {
-                        smsListener.onMessage(sms);
+                    if (sListener != null) {
+                        sListener.onMessage(sms);
                     }
                 }
                 // 触发事件
-                if (smsListener != null) {
-                    smsListener.onMessage(message, originatingAddress, serviceCenterAddress);
+                if (sListener != null) {
+                    sListener.onMessage(message, originatingAddress, serviceCenterAddress);
                 }
             }
         } catch (Exception e) {
@@ -86,7 +86,7 @@ public final class SmsReceiver extends BroadcastReceiver {
     // =
 
     // 短信监听广播
-    private static final SmsReceiver smsReceiver = new SmsReceiver();
+    private static final SmsReceiver sReceiver = new SmsReceiver();
 
     /**
      * 注册短信监听广播
@@ -98,7 +98,7 @@ public final class SmsReceiver extends BroadcastReceiver {
             filter.addAction("android.provider.Telephony.SMS_RECEIVED");
             filter.setPriority(Integer.MAX_VALUE);
             // 注册广播
-            AppUtils.registerReceiver(smsReceiver, filter);
+            AppUtils.registerReceiver(sReceiver, filter);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
@@ -109,7 +109,7 @@ public final class SmsReceiver extends BroadcastReceiver {
      */
     public static void unregisterReceiver() {
         try {
-            AppUtils.unregisterReceiver(smsReceiver);
+            AppUtils.unregisterReceiver(sReceiver);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }
@@ -118,7 +118,7 @@ public final class SmsReceiver extends BroadcastReceiver {
     // =
 
     // 短信监听事件
-    private static SmsListener smsListener;
+    private static SmsListener sListener;
 
     /**
      * 设置短信监听事件
@@ -126,8 +126,8 @@ public final class SmsReceiver extends BroadcastReceiver {
      * @return {@link SmsReceiver}
      */
     public static SmsReceiver setSmsListener(final SmsListener listener) {
-        SmsReceiver.smsListener = listener;
-        return smsReceiver;
+        SmsReceiver.sListener = listener;
+        return sReceiver;
     }
 
     /**

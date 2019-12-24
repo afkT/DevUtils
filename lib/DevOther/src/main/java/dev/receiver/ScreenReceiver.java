@@ -30,18 +30,18 @@ public final class ScreenReceiver extends BroadcastReceiver {
             // 判断类型
             switch (action) {
                 case Intent.ACTION_SCREEN_ON: // 开屏
-                    if (screenListener != null) {
-                        screenListener.screenOn();
+                    if (sListener != null) {
+                        sListener.screenOn();
                     }
                     break;
                 case Intent.ACTION_SCREEN_OFF: // 锁屏
-                    if (screenListener != null) {
-                        screenListener.screenOff();
+                    if (sListener != null) {
+                        sListener.screenOff();
                     }
                     break;
                 case Intent.ACTION_USER_PRESENT: // 解锁
-                    if (screenListener != null) {
-                        screenListener.userPresent();
+                    if (sListener != null) {
+                        sListener.userPresent();
                     }
                     break;
             }
@@ -55,7 +55,7 @@ public final class ScreenReceiver extends BroadcastReceiver {
     // ================
 
     // 屏幕广播监听
-    private static final ScreenReceiver screenReceiver = new ScreenReceiver();
+    private static final ScreenReceiver sReceiver = new ScreenReceiver();
 
     /**
      * 注册屏幕监听广播
@@ -69,7 +69,7 @@ public final class ScreenReceiver extends BroadcastReceiver {
             filter.addAction(Intent.ACTION_USER_PRESENT);
             filter.setPriority(Integer.MAX_VALUE);
             // 注册广播
-            AppUtils.registerReceiver(screenReceiver, filter);
+            AppUtils.registerReceiver(sReceiver, filter);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
@@ -80,7 +80,7 @@ public final class ScreenReceiver extends BroadcastReceiver {
      */
     public static void unregisterReceiver() {
         try {
-            AppUtils.unregisterReceiver(screenReceiver);
+            AppUtils.unregisterReceiver(sReceiver);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }
@@ -89,7 +89,7 @@ public final class ScreenReceiver extends BroadcastReceiver {
     // =
 
     // 屏幕监听事件
-    private static ScreenListener screenListener;
+    private static ScreenListener sListener;
 
     /**
      * 设置屏幕监听事件
@@ -97,8 +97,8 @@ public final class ScreenReceiver extends BroadcastReceiver {
      * @return {@link ScreenReceiver}
      */
     public static ScreenReceiver setScreenListener(final ScreenListener listener) {
-        ScreenReceiver.screenListener = listener;
-        return screenReceiver;
+        ScreenReceiver.sListener = listener;
+        return sReceiver;
     }
 
     /**

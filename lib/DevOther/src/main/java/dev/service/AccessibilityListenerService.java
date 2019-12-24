@@ -31,7 +31,7 @@ public final class AccessibilityListenerService extends AccessibilityService {
     // 日志 TAG
     private static final String TAG = AccessibilityService.class.getSimpleName();
     // 当前服务所持对象
-    private static AccessibilityListenerService self;
+    private static AccessibilityListenerService sSelf;
 
     /**
      * 通过这个函数可以接收系统发送来的 AccessibilityEvent
@@ -42,8 +42,8 @@ public final class AccessibilityListenerService extends AccessibilityService {
      */
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        if (accessibilityListener != null) {
-            accessibilityListener.onAccessibilityEvent(event, this);
+        if (sListener != null) {
+            sListener.onAccessibilityEvent(event, this);
         }
     }
 
@@ -54,8 +54,8 @@ public final class AccessibilityListenerService extends AccessibilityService {
     public void onInterrupt() {
         LogPrintUtils.dTag(TAG, "onInterrupt");
 
-        if (accessibilityListener != null) {
-            accessibilityListener.onInterrupt();
+        if (sListener != null) {
+            sListener.onInterrupt();
         }
     }
 
@@ -77,10 +77,10 @@ public final class AccessibilityListenerService extends AccessibilityService {
         super.onCreate();
         LogPrintUtils.dTag(TAG, "onCreate");
 
-        if (accessibilityListener != null) {
-            accessibilityListener.onServiceCreated(this);
+        if (sListener != null) {
+            sListener.onServiceCreated(this);
         }
-        self = this;
+        sSelf = this;
     }
 
     @Override
@@ -88,11 +88,11 @@ public final class AccessibilityListenerService extends AccessibilityService {
         super.onDestroy();
         LogPrintUtils.dTag(TAG, "onDestroy");
 
-        if (accessibilityListener != null) {
-            accessibilityListener.onServiceDestroy();
-            accessibilityListener = null;
+        if (sListener != null) {
+            sListener.onServiceDestroy();
+            sListener = null;
         }
-        self = null;
+        sSelf = null;
     }
 
     // ================
@@ -104,7 +104,7 @@ public final class AccessibilityListenerService extends AccessibilityService {
      * @return {@link AccessibilityListenerService}
      */
     public static AccessibilityListenerService getSelf() {
-        return self;
+        return sSelf;
     }
 
     /**
@@ -158,14 +158,14 @@ public final class AccessibilityListenerService extends AccessibilityService {
     // =
 
     // 监听事件
-    private static AccessibilityListener accessibilityListener;
+    private static AccessibilityListener sListener;
 
     /**
      * 设置监听事件
      * @param listener {@link AccessibilityListener}
      */
     public static void setAccessibilityListener(final AccessibilityListener listener) {
-        AccessibilityListenerService.accessibilityListener = listener;
+        AccessibilityListenerService.sListener = listener;
     }
 
     /**

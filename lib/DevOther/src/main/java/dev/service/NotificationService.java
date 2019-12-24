@@ -25,7 +25,7 @@ public final class NotificationService extends NotificationListenerService {
     // 日志 TAG
     private static final String TAG = NotificationService.class.getSimpleName();
     // 当前服务所持对象
-    private static NotificationService self;
+    private static NotificationService sSelf;
 
     // ============
     // = 通知回调 =
@@ -37,8 +37,8 @@ public final class NotificationService extends NotificationListenerService {
      */
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
-        if (self != null && notificationListener != null) {
-            notificationListener.onNotificationPosted(sbn);
+        if (sSelf != null && sListener != null) {
+            sListener.onNotificationPosted(sbn);
         }
     }
 
@@ -48,8 +48,8 @@ public final class NotificationService extends NotificationListenerService {
      */
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
-        if (self != null && notificationListener != null) {
-            notificationListener.onNotificationRemoved(sbn);
+        if (sSelf != null && sListener != null) {
+            sListener.onNotificationRemoved(sbn);
         }
     }
 
@@ -62,10 +62,10 @@ public final class NotificationService extends NotificationListenerService {
         super.onCreate();
         LogPrintUtils.dTag(TAG, "onCreate");
 
-        if (notificationListener != null) {
-            notificationListener.onServiceCreated(this);
+        if (sListener != null) {
+            sListener.onServiceCreated(this);
         }
-        self = this;
+        sSelf = this;
     }
 
     @Override
@@ -73,18 +73,18 @@ public final class NotificationService extends NotificationListenerService {
         super.onDestroy();
         LogPrintUtils.dTag(TAG, "onDestroy");
 
-        if (notificationListener != null) {
-            notificationListener.onServiceDestroy();
-            notificationListener = null;
+        if (sListener != null) {
+            sListener.onServiceDestroy();
+            sListener = null;
         }
-        self = null;
+        sSelf = null;
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         LogPrintUtils.dTag(TAG, "onStartCommand");
 
-        return notificationListener == null ? START_STICKY : notificationListener.onStartCommand(this, intent, flags, startId);
+        return sListener == null ? START_STICKY : sListener.onStartCommand(this, intent, flags, startId);
     }
 
     // ================
@@ -96,7 +96,7 @@ public final class NotificationService extends NotificationListenerService {
      * @return {@link NotificationService}
      */
     public static NotificationService getSelf() {
-        return self;
+        return sSelf;
     }
 
     /**
@@ -171,14 +171,14 @@ public final class NotificationService extends NotificationListenerService {
     // =
 
     // 通知栏监听事件
-    private static NotificationListener notificationListener;
+    private static NotificationListener sListener;
 
     /**
      * 设置通知栏监听事件
      * @param listener {@link NotificationListener}
      */
     public static void setNotificationListener(final NotificationListener listener) {
-        NotificationService.notificationListener = listener;
+        NotificationService.sListener = listener;
     }
 
     /**

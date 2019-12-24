@@ -32,33 +32,33 @@ public final class BatteryReceiver extends BroadcastReceiver {
             // 判断类型
             switch (action) {
                 case Intent.ACTION_BATTERY_CHANGED: // 电量状态发送改变
-                    if (batteryListener != null) {
-                        batteryListener.onBatteryChanged(level);
+                    if (sListener != null) {
+                        sListener.onBatteryChanged(level);
                     }
                     break;
                 case Intent.ACTION_BATTERY_LOW: // 电量低
-                    if (batteryListener != null) {
-                        batteryListener.onBatteryLow(level);
+                    if (sListener != null) {
+                        sListener.onBatteryLow(level);
                     }
                     break;
                 case Intent.ACTION_BATTERY_OKAY: // 电量从低变回高通知
-                    if (batteryListener != null) {
-                        batteryListener.onBatteryOkay(level);
+                    if (sListener != null) {
+                        sListener.onBatteryOkay(level);
                     }
                     break;
                 case Intent.ACTION_POWER_CONNECTED: // 连接充电器
-                    if (batteryListener != null) {
-                        batteryListener.onPowerConnected(level, true);
+                    if (sListener != null) {
+                        sListener.onPowerConnected(level, true);
                     }
                     break;
                 case Intent.ACTION_POWER_DISCONNECTED: // 断开充电器
-                    if (batteryListener != null) {
-                        batteryListener.onPowerConnected(level, false);
+                    if (sListener != null) {
+                        sListener.onPowerConnected(level, false);
                     }
                     break;
                 case Intent.ACTION_POWER_USAGE_SUMMARY: // 电力使用情况总结
-                    if (batteryListener != null) {
-                        batteryListener.onPowerUsageSummary(level);
+                    if (sListener != null) {
+                        sListener.onPowerUsageSummary(level);
                     }
                     break;
             }
@@ -72,7 +72,7 @@ public final class BatteryReceiver extends BroadcastReceiver {
     // ================
 
     // 电量监听广播
-    private static final BatteryReceiver batteryReceiver = new BatteryReceiver();
+    private static final BatteryReceiver sReceiver = new BatteryReceiver();
 
     /**
      * 注册电量监听广播
@@ -93,7 +93,7 @@ public final class BatteryReceiver extends BroadcastReceiver {
             // 电力使用情况总结
             filter.addAction(Intent.ACTION_POWER_USAGE_SUMMARY);
             // 注册广播
-            AppUtils.registerReceiver(batteryReceiver, filter);
+            AppUtils.registerReceiver(sReceiver, filter);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
@@ -104,7 +104,7 @@ public final class BatteryReceiver extends BroadcastReceiver {
      */
     public static void unregisterReceiver() {
         try {
-            AppUtils.unregisterReceiver(batteryReceiver);
+            AppUtils.unregisterReceiver(sReceiver);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }
@@ -113,7 +113,7 @@ public final class BatteryReceiver extends BroadcastReceiver {
     // =
 
     // 电量监听事件
-    private static BatteryListener batteryListener;
+    private static BatteryListener sListener;
 
     /**
      * 设置电量监听事件
@@ -121,8 +121,8 @@ public final class BatteryReceiver extends BroadcastReceiver {
      * @return {@link BatteryReceiver}
      */
     public static BatteryReceiver setBatteryListener(final BatteryListener listener) {
-        BatteryReceiver.batteryListener = listener;
-        return batteryReceiver;
+        BatteryReceiver.sListener = listener;
+        return sReceiver;
     }
 
     /**

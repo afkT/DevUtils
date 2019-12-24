@@ -52,8 +52,8 @@ public final class NetWorkReceiver extends BroadcastReceiver {
                 // 设置连接类型
                 mConnectState = getConnectType();
                 // 触发事件
-                if (NetWorkReceiver.networdStateListener != null) {
-                    NetWorkReceiver.networdStateListener.onNetworkState(mConnectState);
+                if (NetWorkReceiver.sListener != null) {
+                    NetWorkReceiver.sListener.onNetworkState(mConnectState);
                 }
             }
         } catch (Exception e) {
@@ -120,7 +120,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
     // =
 
     // 网络广播监听
-    private static final NetWorkReceiver netReceiver = new NetWorkReceiver();
+    private static final NetWorkReceiver sReceiver = new NetWorkReceiver();
 
     /**
      * 注册网络广播监听
@@ -132,7 +132,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
             filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
             filter.setPriority(Integer.MAX_VALUE);
             // 注册广播
-            AppUtils.registerReceiver(netReceiver, filter);
+            AppUtils.registerReceiver(sReceiver, filter);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
@@ -143,7 +143,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
      */
     public static void unregisterReceiver() {
         try {
-            AppUtils.unregisterReceiver(netReceiver);
+            AppUtils.unregisterReceiver(sReceiver);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }
@@ -152,7 +152,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
     // =
 
     // 监听通知事件
-    private static NetwordStateListener networdStateListener;
+    private static NetwordStateListener sListener;
 
     /**
      * 设置监听通知事件
@@ -160,8 +160,8 @@ public final class NetWorkReceiver extends BroadcastReceiver {
      * @return {@link NetWorkReceiver}
      */
     public static NetWorkReceiver setNetListener(final NetwordStateListener listener) {
-        NetWorkReceiver.networdStateListener = listener;
-        return netReceiver;
+        NetWorkReceiver.sListener = listener;
+        return sReceiver;
     }
 
     /**

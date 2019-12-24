@@ -30,18 +30,18 @@ public final class TimeReceiver extends BroadcastReceiver {
             // 判断类型
             switch (action) {
                 case Intent.ACTION_TIMEZONE_CHANGED: // 时区改变
-                    if (timeListener != null) {
-                        timeListener.onTimeZoneChanged();
+                    if (sListener != null) {
+                        sListener.onTimeZoneChanged();
                     }
                     break;
                 case Intent.ACTION_TIME_CHANGED: // 设置时间
-                    if (timeListener != null) {
-                        timeListener.onTimeChanged();
+                    if (sListener != null) {
+                        sListener.onTimeChanged();
                     }
                     break;
                 case Intent.ACTION_TIME_TICK: // 每分钟调用
-                    if (timeListener != null) {
-                        timeListener.onTimeTick();
+                    if (sListener != null) {
+                        sListener.onTimeTick();
                     }
                     break;
             }
@@ -55,7 +55,7 @@ public final class TimeReceiver extends BroadcastReceiver {
     // ================
 
     // 时间监听广播
-    private static final TimeReceiver timeReceiver = new TimeReceiver();
+    private static final TimeReceiver sReceiver = new TimeReceiver();
 
     /**
      * 注册时间监听广播
@@ -69,7 +69,7 @@ public final class TimeReceiver extends BroadcastReceiver {
             filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
             filter.setPriority(Integer.MAX_VALUE);
             // 注册广播
-            AppUtils.registerReceiver(timeReceiver, filter);
+            AppUtils.registerReceiver(sReceiver, filter);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
@@ -80,7 +80,7 @@ public final class TimeReceiver extends BroadcastReceiver {
      */
     public static void unregisterReceiver() {
         try {
-            AppUtils.unregisterReceiver(timeReceiver);
+            AppUtils.unregisterReceiver(sReceiver);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }
@@ -89,7 +89,7 @@ public final class TimeReceiver extends BroadcastReceiver {
     // =
 
     // 时间监听事件
-    private static TimeListener timeListener;
+    private static TimeListener sListener;
 
     /**
      * 设置时间监听事件
@@ -97,8 +97,8 @@ public final class TimeReceiver extends BroadcastReceiver {
      * @return {@link TimeReceiver}
      */
     public static TimeReceiver setTimeListener(final TimeListener listener) {
-        TimeReceiver.timeListener = listener;
-        return timeReceiver;
+        TimeReceiver.sListener = listener;
+        return sReceiver;
     }
 
     /**

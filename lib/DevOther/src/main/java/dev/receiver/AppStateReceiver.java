@@ -38,18 +38,18 @@ public final class AppStateReceiver extends BroadcastReceiver {
             // 判断类型
             switch (action) {
                 case Intent.ACTION_PACKAGE_ADDED: // 应用安装
-                    if (appStateListener != null) {
-                        appStateListener.onAdded(packageName);
+                    if (sListener != null) {
+                        sListener.onAdded(packageName);
                     }
                     break;
                 case Intent.ACTION_PACKAGE_REPLACED: // 应用更新
-                    if (appStateListener != null) {
-                        appStateListener.onReplaced(packageName);
+                    if (sListener != null) {
+                        sListener.onReplaced(packageName);
                     }
                     break;
                 case Intent.ACTION_PACKAGE_REMOVED: // 应用卸载
-                    if (appStateListener != null) {
-                        appStateListener.onRemoved(packageName);
+                    if (sListener != null) {
+                        sListener.onRemoved(packageName);
                     }
                     break;
             }
@@ -63,7 +63,7 @@ public final class AppStateReceiver extends BroadcastReceiver {
     // ================
 
     // 应用状态监听广播
-    private static final AppStateReceiver appStateReceiver = new AppStateReceiver();
+    private static final AppStateReceiver sReceiver = new AppStateReceiver();
 
     /**
      * 注册应用状态监听广播
@@ -79,7 +79,7 @@ public final class AppStateReceiver extends BroadcastReceiver {
             filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
             filter.addDataScheme("package");
             // 注册广播
-            AppUtils.registerReceiver(appStateReceiver, filter);
+            AppUtils.registerReceiver(sReceiver, filter);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
@@ -90,7 +90,7 @@ public final class AppStateReceiver extends BroadcastReceiver {
      */
     public static void unregisterReceiver() {
         try {
-            AppUtils.unregisterReceiver(appStateReceiver);
+            AppUtils.unregisterReceiver(sReceiver);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }
@@ -99,7 +99,7 @@ public final class AppStateReceiver extends BroadcastReceiver {
     // =
 
     // 应用状态监听事件
-    private static AppStateListener appStateListener;
+    private static AppStateListener sListener;
 
     /**
      * 设置应用状态监听事件
@@ -107,8 +107,8 @@ public final class AppStateReceiver extends BroadcastReceiver {
      * @return {@link AppStateReceiver}
      */
     public static AppStateReceiver setAppStateListener(final AppStateListener listener) {
-        AppStateReceiver.appStateListener = listener;
-        return appStateReceiver;
+        AppStateReceiver.sListener = listener;
+        return sReceiver;
     }
 
     /**
