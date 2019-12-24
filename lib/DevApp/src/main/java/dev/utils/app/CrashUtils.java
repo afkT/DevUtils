@@ -20,7 +20,7 @@ public final class CrashUtils implements UncaughtExceptionHandler {
     // 系统默认的 UncaughtException 处理器
     private UncaughtExceptionHandler mDefaultHandler;
     // 捕获异常事件处理
-    private CrashCatchListener crashCatchListener;
+    private CrashCatchListener mCrashCatchListener;
 
     private CrashUtils() {
     }
@@ -40,7 +40,7 @@ public final class CrashUtils implements UncaughtExceptionHandler {
      */
     public void init(Context context, CrashCatchListener crashCatchListener) {
         this.mContext = context;
-        this.crashCatchListener = crashCatchListener;
+        this.mCrashCatchListener = crashCatchListener;
         // 获取系统默认的 UncaughtException 处理器
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         // 设置该 CrashUtils 为程序的默认处理器
@@ -58,8 +58,8 @@ public final class CrashUtils implements UncaughtExceptionHandler {
             // 如果用户没有处理则让系统默认的异常处理器来处理
             mDefaultHandler.uncaughtException(thread, ex);
         } else {
-            if (crashCatchListener != null) {
-                crashCatchListener.uncaughtException(mContext, thread, ex);
+            if (mCrashCatchListener != null) {
+                mCrashCatchListener.uncaughtException(mContext, thread, ex);
             }
         }
     }
@@ -72,8 +72,8 @@ public final class CrashUtils implements UncaughtExceptionHandler {
     private boolean handleException(Throwable ex) {
         if (ex == null) return false;
         // 触发回调
-        if (crashCatchListener != null) {
-            crashCatchListener.handleException(ex);
+        if (mCrashCatchListener != null) {
+            mCrashCatchListener.handleException(ex);
         }
         return true;
     }

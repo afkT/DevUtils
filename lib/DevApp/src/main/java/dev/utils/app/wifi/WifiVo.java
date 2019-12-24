@@ -20,13 +20,13 @@ public class WifiVo implements Parcelable {
     private static final String TAG = WifiVo.class.getSimpleName();
 
     @Keep // Wifi ssid
-    public String wSSID = null;
+    public String wifiSSID = null;
     @Keep // Wifi 密码
-    public String wPwd = null;
+    public String wifiPwd = null;
     @Keep // Wifi 加密类型
-    public int wType = WifiUtils.NOPWD;
+    public int wifiType = WifiUtils.NOPWD;
     @Keep // Wifi 信号等级
-    public int wLevel = 0;
+    public int wifiLevel = 0;
 
     public WifiVo() {
     }
@@ -55,11 +55,11 @@ public class WifiVo implements Parcelable {
                 }
                 WifiVo wifiVo = new WifiVo();
                 // Wifi ssid
-                wifiVo.wSSID = WifiUtils.formatSSID(scanResult.SSID, isAppend);
+                wifiVo.wifiSSID = WifiUtils.formatSSID(scanResult.SSID, isAppend);
                 // Wifi 加密类型
-                wifiVo.wType = WifiUtils.getWifiType(scanResult.capabilities);
+                wifiVo.wifiType = WifiUtils.getWifiType(scanResult.capabilities);
                 // Wifi 信号等级
-                wifiVo.wLevel = scanResult.level;
+                wifiVo.wifiLevel = scanResult.level;
                 return wifiVo;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "createWifiVo");
@@ -113,10 +113,10 @@ public class WifiVo implements Parcelable {
     // ==============
 
     protected WifiVo(Parcel in) {
-        wSSID = in.readString();
-        wPwd = in.readString();
-        wType = in.readInt();
-        wLevel = in.readInt();
+        wifiSSID = in.readString();
+        wifiPwd = in.readString();
+        wifiType = in.readInt();
+        wifiLevel = in.readInt();
     }
 
     public static final Creator<WifiVo> CREATOR = new Creator<WifiVo>() {
@@ -138,9 +138,9 @@ public class WifiVo implements Parcelable {
 
     @Override
     public void writeToParcel(final Parcel dest, final int flags) {
-        dest.writeString(wSSID);
-        dest.writeString(wPwd);
-        dest.writeInt(wType);
-        dest.writeInt(wLevel);
+        dest.writeString(wifiSSID);
+        dest.writeString(wifiPwd);
+        dest.writeInt(wifiType);
+        dest.writeInt(wifiLevel);
     }
 }

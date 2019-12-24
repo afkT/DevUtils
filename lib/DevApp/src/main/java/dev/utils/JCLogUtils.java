@@ -79,8 +79,8 @@ public final class JCLogUtils {
      * @param message 日志信息
      */
     private static void printLog(final int logType, final String tag, final String message) {
-        if (JCLogUtils.print != null) {
-            JCLogUtils.print.printLog(logType, tag, message);
+        if (JCLogUtils.sPrint != null) {
+            JCLogUtils.sPrint.printLog(logType, tag, message);
         }
 
         if (JUDGE_CONTROL_PRINT_LOG) {
@@ -249,14 +249,14 @@ public final class JCLogUtils {
     // = 通知输出 =
     // ============
 
-    private static Print print;
+    private static Print sPrint;
 
     /**
      * 设置日志输出接口
      * @param print 日志输出接口
      */
     public static void setPrint(final Print print) {
-        JCLogUtils.print = print;
+        JCLogUtils.sPrint = print;
     }
 
     /**

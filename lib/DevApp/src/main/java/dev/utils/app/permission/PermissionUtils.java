@@ -77,7 +77,7 @@ public final class PermissionUtils {
     // 判断是否请求过
     private boolean mIsRequest = false;
     // 是否需要在 Activity 的 onRequestPermissionsResult 回调中, 调用 PermissionUtils.onRequestPermissionsResult(this);
-    private boolean isRequestPermissionsResult = false; // 默认使用内部 PermissionActivity
+    private boolean mIsRequestPermissionsResult = false; // 默认使用内部 PermissionActivity
     // Permission 请求 Code
     public static final int P_REQUEST_CODE = 10101;
 
@@ -129,7 +129,7 @@ public final class PermissionUtils {
      */
     public PermissionUtils setRequestPermissionsResult(final boolean requestPermissionsResult) {
         if (mIsRequest) return this;
-        this.isRequestPermissionsResult = requestPermissionsResult;
+        this.mIsRequestPermissionsResult = requestPermissionsResult;
         return this;
     }
 
@@ -154,7 +154,7 @@ public final class PermissionUtils {
                 // 请求权限
                 String[] permissions = mPermissionsRequestLists.toArray(new String[mPermissionsRequestLists.size()]);
                 // 判断请求方式
-                if (this.isRequestPermissionsResult) {
+                if (this.mIsRequestPermissionsResult) {
                     // 请求权限
                     ActivityCompat.requestPermissions(activity, permissions, requestCode);
                 } else {
