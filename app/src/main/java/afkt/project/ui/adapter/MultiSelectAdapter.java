@@ -59,12 +59,12 @@ public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, 
 
         BaseImageView vid_ams_igview = helper.getView(R.id.vid_ams_igview);
         // 是否显示编辑按钮、以及是否选中
-        ViewHelper.get().setVisibility(isEditStatus(), vid_ams_igview)
+        ViewHelper.get().setVisibility(isEditState(), vid_ams_igview)
                 .setSelected(multiSelectMapAssist.isSelectKey(position), vid_ams_igview)
                 .setOnClicks(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (!isEditStatus()) return;
+                        if (!isEditState()) return;
                         // 反选处理
                         multiSelectMapAssist.toggle(position, item);
                         // 设置是否选中
@@ -93,21 +93,21 @@ public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, 
     private boolean isEdit;
 
     @Override
-    public boolean isEditStatus() {
+    public boolean isEditState() {
         return isEdit;
     }
 
     @Override
-    public void setEditStatus(boolean isEdit) {
+    public void setEditState(boolean isEdit) {
         this.isEdit = isEdit;
         // 刷新适配器
         notifyDataSetChanged();
     }
 
     @Override
-    public void toggleEditStatus() {
+    public void toggleEditState() {
         // 切换选择状态
-        setEditStatus(!isEdit);
+        setEditState(!isEdit);
     }
 
     @Override

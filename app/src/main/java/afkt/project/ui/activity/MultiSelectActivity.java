@@ -97,7 +97,7 @@ public class MultiSelectActivity extends BaseToolbarActivity {
         vid_bt_toolbar.addView(editView = createTextView("编辑", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                multiSelectAdapter.setEditStatus(true);
+                multiSelectAdapter.setEditState(true);
                 // 显示其他按钮、隐藏编辑按钮
                 ViewUtils.toggleVisibilitys(new View[]{cancelView, confirmView, allSelectView, unAllSelectView, inverseSelectView}, editView);
             }
@@ -105,7 +105,7 @@ public class MultiSelectActivity extends BaseToolbarActivity {
         vid_bt_toolbar.addView(cancelView = createTextView("取消", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                multiSelectAdapter.setEditStatus(false);
+                multiSelectAdapter.setEditState(false);
                 multiSelectAdapter.clearSelectAll();
                 // 显示编辑按钮、隐藏其他按钮
                 ViewUtils.toggleVisibilitys(editView, cancelView, confirmView, allSelectView, unAllSelectView, inverseSelectView);

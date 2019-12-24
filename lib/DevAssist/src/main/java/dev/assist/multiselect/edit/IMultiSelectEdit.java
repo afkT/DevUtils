@@ -18,18 +18,18 @@ public interface IMultiSelectEdit {
      * 是否编辑状态
      * @return {@code true} yes, {@code false} no
      */
-    boolean isEditStatus();
+    boolean isEditState();
 
     /**
      * 设置编辑状态
      * @param isEdit {@code true} yes, {@code false} no
      */
-    void setEditStatus(boolean isEdit);
+    void setEditState(boolean isEdit);
 
     /**
      * 切换编辑状态
      */
-    void toggleEditStatus();
+    void toggleEditState();
 
     // ============
     // = 选择操作 =

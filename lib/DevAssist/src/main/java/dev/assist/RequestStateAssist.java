@@ -8,7 +8,7 @@ import dev.utils.common.ObjectUtils;
  * detail: 请求状态辅助类
  * @author Ttt
  */
-public class RequestStatusAssist<T> {
+public class RequestStateAssist<T> {
 
     private static final int BASE = 102030;
     // 默认状态 ( 暂未进行操作 )
@@ -29,7 +29,7 @@ public class RequestStatusAssist<T> {
     // 请求 HashCode
     private long mRequestHashCode = UUID.randomUUID().hashCode();
     // 请求状态 - 默认状态 ( 暂未进行操作 )
-    private int mRequestStatus = REQUEST_NORMAL;
+    private int mRequestState = REQUEST_NORMAL;
 
     // ================
     // = 对外公开方法 =
@@ -55,9 +55,9 @@ public class RequestStatusAssist<T> {
     /**
      * 设置请求类型
      * @param requestType 请求类型
-     * @return {@link RequestStatusAssist}
+     * @return {@link RequestStateAssist}
      */
-    public RequestStatusAssist<T> setRequestType(final T requestType) {
+    public RequestStateAssist<T> setRequestType(final T requestType) {
         this.mRequestType = requestType;
         return this;
     }
@@ -104,26 +104,26 @@ public class RequestStatusAssist<T> {
      * 获取请求状态
      * @return 请求状态
      */
-    public int getRequestStatus() {
-        return mRequestStatus;
+    public int getRequestState() {
+        return mRequestState;
     }
 
     /**
      * 获取请求状态
-     * @param requestStatus 请求状态
+     * @param requestState 请求状态
      * @return 请求状态
      */
-    public int getRequestStatus(final int requestStatus) {
-        return (this.mRequestStatus = requestStatus);
+    public int getRequestState(final int requestState) {
+        return (this.mRequestState = requestState);
     }
 
     /**
      * 设置请求状态
-     * @param requestStatus 请求状态
-     * @return {@link RequestStatusAssist}
+     * @param requestState 请求状态
+     * @return {@link RequestStateAssist}
      */
-    public RequestStatusAssist<T> setRequestStatus(final int requestStatus) {
-        this.mRequestStatus = requestStatus;
+    public RequestStateAssist<T> setRequestState(final int requestState) {
+        this.mRequestState = requestState;
         return this;
     }
 
@@ -136,7 +136,7 @@ public class RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isRequestNormal() {
-        return this.mRequestStatus == REQUEST_NORMAL;
+        return this.mRequestState == REQUEST_NORMAL;
     }
 
     /**
@@ -144,7 +144,7 @@ public class RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isRequestNever() {
-        return this.mRequestStatus == REQUEST_NEVER;
+        return this.mRequestState == REQUEST_NEVER;
     }
 
     /**
@@ -152,7 +152,7 @@ public class RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isRequestIng() {
-        return this.mRequestStatus == REQUEST_ING;
+        return this.mRequestState == REQUEST_ING;
     }
 
     /**
@@ -160,7 +160,7 @@ public class RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isRequestSuccess() {
-        return this.mRequestStatus == REQUEST_SUC;
+        return this.mRequestState == REQUEST_SUC;
     }
 
     /**
@@ -168,7 +168,7 @@ public class RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isRequestFail() {
-        return this.mRequestStatus == REQUEST_FAIL;
+        return this.mRequestState == REQUEST_FAIL;
     }
 
     /**
@@ -176,7 +176,7 @@ public class RequestStatusAssist<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isRequestError() {
-        return this.mRequestStatus == REQUEST_ERROR;
+        return this.mRequestState == REQUEST_ERROR;
     }
 
     // =======
@@ -185,55 +185,55 @@ public class RequestStatusAssist<T> {
 
     /**
      * 设置状态为默认状态 ( 暂未进行操作 )
-     * @return {@link RequestStatusAssist}
+     * @return {@link RequestStateAssist}
      */
-    public RequestStatusAssist<T> setRequestNormal() {
-        this.mRequestStatus = REQUEST_NORMAL;
+    public RequestStateAssist<T> setRequestNormal() {
+        this.mRequestState = REQUEST_NORMAL;
         return this;
     }
 
     /**
      * 设置状态为未请求过
-     * @return {@link RequestStatusAssist}
+     * @return {@link RequestStateAssist}
      */
-    public RequestStatusAssist<T> setRequestNever() {
-        this.mRequestStatus = REQUEST_NEVER;
+    public RequestStateAssist<T> setRequestNever() {
+        this.mRequestState = REQUEST_NEVER;
         return this;
     }
 
     /**
      * 设置状态为请求中
-     * @return {@link RequestStatusAssist}
+     * @return {@link RequestStateAssist}
      */
-    public RequestStatusAssist<T> setRequestIng() {
-        this.mRequestStatus = REQUEST_ING;
+    public RequestStateAssist<T> setRequestIng() {
+        this.mRequestState = REQUEST_ING;
         return this;
     }
 
     /**
      * 设置状态为请求成功
-     * @return {@link RequestStatusAssist}
+     * @return {@link RequestStateAssist}
      */
-    public RequestStatusAssist<T> setRequestSuccess() {
-        this.mRequestStatus = REQUEST_SUC;
+    public RequestStateAssist<T> setRequestSuccess() {
+        this.mRequestState = REQUEST_SUC;
         return this;
     }
 
     /**
      * 设置状态为请求失败
-     * @return {@link RequestStatusAssist}
+     * @return {@link RequestStateAssist}
      */
-    public RequestStatusAssist<T> setRequestFail() {
-        this.mRequestStatus = REQUEST_FAIL;
+    public RequestStateAssist<T> setRequestFail() {
+        this.mRequestState = REQUEST_FAIL;
         return this;
     }
 
     /**
      * 设置状态为请求异常
-     * @return {@link RequestStatusAssist}
+     * @return {@link RequestStateAssist}
      */
-    public RequestStatusAssist<T> setRequestError() {
-        this.mRequestStatus = REQUEST_ERROR;
+    public RequestStateAssist<T> setRequestError() {
+        this.mRequestState = REQUEST_ERROR;
         return this;
     }
 }

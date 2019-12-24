@@ -13,14 +13,14 @@ import dev.utils.app.AppUtils;
  * detail: 应用状态监听广播 ( 安装、更新、卸载 )
  * @author Ttt
  */
-public final class AppStatusReceiver extends BroadcastReceiver {
+public final class AppStateReceiver extends BroadcastReceiver {
 
-    private AppStatusReceiver() {
+    private AppStateReceiver() {
         super();
     }
 
     // 日志 TAG
-    private static final String TAG = AppStatusReceiver.class.getSimpleName();
+    private static final String TAG = AppStateReceiver.class.getSimpleName();
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -38,18 +38,18 @@ public final class AppStatusReceiver extends BroadcastReceiver {
             // 判断类型
             switch (action) {
                 case Intent.ACTION_PACKAGE_ADDED: // 应用安装
-                    if (appStatusListener != null) {
-                        appStatusListener.onAdded(packageName);
+                    if (appStateListener != null) {
+                        appStateListener.onAdded(packageName);
                     }
                     break;
                 case Intent.ACTION_PACKAGE_REPLACED: // 应用更新
-                    if (appStatusListener != null) {
-                        appStatusListener.onReplaced(packageName);
+                    if (appStateListener != null) {
+                        appStateListener.onReplaced(packageName);
                     }
                     break;
                 case Intent.ACTION_PACKAGE_REMOVED: // 应用卸载
-                    if (appStatusListener != null) {
-                        appStatusListener.onRemoved(packageName);
+                    if (appStateListener != null) {
+                        appStateListener.onRemoved(packageName);
                     }
                     break;
             }
@@ -63,7 +63,7 @@ public final class AppStatusReceiver extends BroadcastReceiver {
     // ================
 
     // 应用状态监听广播
-    private static final AppStatusReceiver appStatusReceiver = new AppStatusReceiver();
+    private static final AppStateReceiver appStateReceiver = new AppStateReceiver();
 
     /**
      * 注册应用状态监听广播
@@ -79,7 +79,7 @@ public final class AppStatusReceiver extends BroadcastReceiver {
             filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
             filter.addDataScheme("package");
             // 注册广播
-            AppUtils.registerReceiver(appStatusReceiver, filter);
+            AppUtils.registerReceiver(appStateReceiver, filter);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
@@ -90,7 +90,7 @@ public final class AppStatusReceiver extends BroadcastReceiver {
      */
     public static void unregisterReceiver() {
         try {
-            AppUtils.unregisterReceiver(appStatusReceiver);
+            AppUtils.unregisterReceiver(appStateReceiver);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }
@@ -99,23 +99,23 @@ public final class AppStatusReceiver extends BroadcastReceiver {
     // =
 
     // 应用状态监听事件
-    private static AppStatusListener appStatusListener;
+    private static AppStateListener appStateListener;
 
     /**
      * 设置应用状态监听事件
-     * @param listener {@link AppStatusListener}
-     * @return {@link AppStatusReceiver}
+     * @param listener {@link AppStateListener}
+     * @return {@link AppStateReceiver}
      */
-    public static AppStatusReceiver setAppStatusListener(final AppStatusListener listener) {
-        AppStatusReceiver.appStatusListener = listener;
-        return appStatusReceiver;
+    public static AppStateReceiver setAppStateListener(final AppStateListener listener) {
+        AppStateReceiver.appStateListener = listener;
+        return appStateReceiver;
     }
 
     /**
      * detail: 应用状态监听事件
      * @author Ttt
      */
-    public interface AppStatusListener {
+    public interface AppStateListener {
 
         /**
          * 应用安装
