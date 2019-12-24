@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevAssist:1.0.2'
+implementation 'com.afkt:DevAssist:1.0.3'
 ```
 
 ## 目录结构
@@ -132,7 +132,7 @@ implementation 'com.afkt:DevAssist:1.0.2'
 | reset | 重置操作 |
 
 
-* **请求状态辅助类 ->** [RequestStatusAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/RequestStatusAssist.java)
+* **请求状态辅助类 ->** [RequestStateAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/RequestStateAssist.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -142,8 +142,8 @@ implementation 'com.afkt:DevAssist:1.0.2'
 | getRequestHashCode | 获取请求 HashCode |
 | getRequestHashCodeRandom | 获取请求 HashCode - 随机生成并赋值 |
 | equalsHashCode | 判断 HashCode 是否一致 |
-| getRequestStatus | 获取请求状态 |
-| setRequestStatus | 设置请求状态 |
+| getRequestState | 获取请求状态 |
+| setRequestState | 设置请求状态 |
 | isRequestNormal | 判断是否默认状态 ( 暂未进行操作 ) |
 | isRequestNever | 判断是否未请求过 |
 | isRequestIng | 判断是否请求中 |
@@ -318,15 +318,17 @@ implementation 'com.afkt:DevAssist:1.0.2'
 
 | 方法 | 注释 |
 | :- | :- |
-| isEditStatus | 是否编辑状态 |
-| setEditStatus | 设置编辑状态 |
-| toggleEditStatus | 切换编辑状态 |
+| isEditState | 是否编辑状态 |
+| setEditState | 设置编辑状态 |
+| toggleEditState | 切换编辑状态 |
 | selectAll | 全选 |
 | clearSelectAll | 清空全选 ( 非全选 ) |
 | inverseSelect | 反选 |
 | isSelectAll | 判断是否全选 |
 | isSelect | 判断是否存在选中的数据 |
 | isNotSelect | 判断是否不存在选中的数据 |
+| getSelectSize | 获取选中的数据条数 |
+| getDataCount | 获取数据总数 |
 
 
 ## <span id="devbase">**`dev.base`**</span>

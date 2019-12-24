@@ -3,8 +3,8 @@
 ## 目录结构
 
 ```
-- dev            | 根目录
-   - widget      | 自定义 View 包目录
+- dev                                                 | 根目录
+   - widget                                           | 自定义 View 包目录
 ```
 
 
@@ -16,8 +16,8 @@
 ## API
 
 
-- dev                                | 根目录
-   - [widget](#devwidget)            | 自定义 View 包目录
+- dev                                                 | 根目录
+   - [widget](#devwidget)                             | 自定义 View 包目录
 
 
 
