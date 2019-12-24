@@ -2,25 +2,20 @@ package dev.utils.app;
 
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
-import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.RequiresApi;
-
 import java.lang.reflect.Field;
 
 import dev.utils.LogPrintUtils;
-import dev.utils.app.image.ImageUtils;
 
 /**
  * detail: ImageView 工具类
@@ -135,177 +130,6 @@ public final class ImageViewUtils {
             imageView.setMaxWidth(maxWidth);
         }
         return imageView;
-    }
-
-    // ========
-    // = 背景 =
-    // ========
-
-    /**
-     * 设置背景图片
-     * @param view       {@link View}
-     * @param background 背景图片
-     * @return {@link View}
-     */
-    public static View setBackground(final View view, final Drawable background) {
-        if (view != null) {
-            try {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    view.setBackground(background);
-                } else {
-                    view.setBackgroundDrawable(background);
-                }
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "setBackground");
-            }
-        }
-        return view;
-    }
-
-    /**
-     * 设置背景颜色
-     * @param view  {@link View}
-     * @param color 背景颜色
-     * @return {@link View}
-     */
-    public static View setBackgroundColor(final View view, @ColorInt final int color) {
-        if (view != null) {
-            try {
-                view.setBackgroundColor(color);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "setBackgroundColor");
-            }
-        }
-        return view;
-    }
-
-    /**
-     * 设置背景资源
-     * @param view  {@link View}
-     * @param resId resource identifier
-     * @return {@link View}
-     */
-    public static View setBackgroundResource(final View view, @DrawableRes final int resId) {
-        if (view != null) {
-            try {
-                view.setBackgroundResource(resId);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "setBackgroundResource");
-            }
-        }
-        return view;
-    }
-
-    /**
-     * 设置背景着色颜色
-     * @param view {@link View}
-     * @param tint 着色颜色
-     * @return {@link View}
-     */
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static View setBackgroundTintList(final View view, final ColorStateList tint) {
-        if (view != null) {
-            try {
-                view.setBackgroundTintList(tint);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "setBackgroundTintList");
-            }
-        }
-        return view;
-    }
-
-    /**
-     * 设置背景着色模式
-     * @param view     {@link View}
-     * @param tintMode 着色模式 {@link PorterDuff.Mode}
-     * @return {@link View}
-     */
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static View setBackgroundTintMode(final View view, final PorterDuff.Mode tintMode) {
-        if (view != null) {
-            try {
-                view.setBackgroundTintMode(tintMode);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "setBackgroundTintMode");
-            }
-        }
-        return view;
-    }
-
-    // ========
-    // = 前景 =
-    // ========
-
-    /**
-     * 设置前景图片
-     * @param view       {@link View}
-     * @param foreground 前景图片
-     * @return {@link View}
-     */
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public static View setForeground(final View view, final Drawable foreground) {
-        if (view != null) {
-            try {
-                view.setForeground(foreground);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "setForeground");
-            }
-        }
-        return view;
-    }
-
-    /**
-     * 设置前景重心
-     * @param view    {@link View}
-     * @param gravity 重心
-     * @return {@link View}
-     */
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public static View setForegroundGravity(final View view, final int gravity) {
-        if (view != null) {
-            try {
-                view.setForegroundGravity(gravity);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "setForegroundGravity");
-            }
-        }
-        return view;
-    }
-
-    /**
-     * 设置前景着色颜色
-     * @param view {@link View}
-     * @param tint 着色颜色
-     * @return {@link View}
-     */
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public static View setForegroundTintList(final View view, final ColorStateList tint) {
-        if (view != null) {
-            try {
-                view.setForegroundTintList(tint);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "setForegroundTintList");
-            }
-        }
-        return view;
-    }
-
-    /**
-     * 设置前景着色模式
-     * @param view     {@link View}
-     * @param tintMode 着色模式 {@link PorterDuff.Mode}
-     * @return {@link View}
-     */
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public static View setForegroundTintMode(final View view, final PorterDuff.Mode tintMode) {
-        if (view != null) {
-            try {
-                view.setForegroundTintMode(tintMode);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "setForegroundTintMode");
-            }
-        }
-        return view;
     }
 
     // =============
@@ -536,86 +360,6 @@ public final class ImageViewUtils {
     // ========
 
     /**
-     * 获取 View 背景 Drawable
-     * @param view {@link View}
-     * @return 背景 Drawable
-     */
-    public static Drawable getBackground(final View view) {
-        if (view != null) return view.getBackground();
-        return null;
-    }
-
-    /**
-     * 获取 View 背景着色颜色
-     * @param view {@link View}
-     * @return 背景着色颜色 {@link ColorStateList}
-     */
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static ColorStateList getBackgroundTintList(final View view) {
-        if (view != null) return view.getBackgroundTintList();
-        return null;
-    }
-
-    /**
-     * 获取 View 背景着色模式
-     * @param view {@link View}
-     * @return 背景着色模式 {@link PorterDuff.Mode}
-     */
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static PorterDuff.Mode getBackgroundTintMode(final View view) {
-        if (view != null) return view.getBackgroundTintMode();
-        return null;
-    }
-
-    // =
-
-    /**
-     * 获取 View 前景 Drawable
-     * @param view {@link View}
-     * @return 前景 Drawable
-     */
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public static Drawable getForeground(final View view) {
-        if (view != null) return view.getForeground();
-        return null;
-    }
-
-    /**
-     * 获取 View 前景重心
-     * @param view {@link View}
-     * @return 前景重心 {@link Gravity}
-     */
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public static int getForegroundGravity(final View view) {
-        if (view != null) return view.getForegroundGravity();
-        return Gravity.FILL;
-    }
-
-    /**
-     * 获取 View 前景着色颜色
-     * @param view {@link View}
-     * @return 前景着色颜色 {@link ColorStateList}
-     */
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public static ColorStateList getForegroundTintList(final View view) {
-        if (view != null) return view.getForegroundTintList();
-        return null;
-    }
-
-    /**
-     * 获取 View 前景着色模式
-     * @param view {@link View}
-     * @return 前景着色模式 {@link PorterDuff.Mode}
-     */
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public static PorterDuff.Mode getForegroundTintMode(final View view) {
-        if (view != null) return view.getForegroundTintMode();
-        return null;
-    }
-
-    // =
-
-    /**
      * 获取 ImageView Matrix
      * @param view {@link View}
      * @return {@link Matrix}
@@ -725,68 +469,6 @@ public final class ImageViewUtils {
     public static <T extends ImageView> Drawable getDrawable(final T imageView) {
         if (imageView != null) return imageView.getDrawable();
         return null;
-    }
-
-    // ============
-    // = 着色处理 =
-    // ============
-
-    /**
-     * ImageView 着色处理
-     * @param imageView {@link ImageView}
-     * @param color     颜色值
-     * @param <T>       泛型
-     * @return {@link ImageView}
-     */
-    public static <T extends ImageView> T setColorFilter(final T imageView, @ColorInt final int color) {
-        return setColorFilter(imageView, getDrawable(imageView), color);
-    }
-
-    /**
-     * ImageView 着色处理, 并且设置 Drawable
-     * @param imageView {@link ImageView}
-     * @param drawable  {@link Drawable}
-     * @param color     颜色值
-     * @param <T>       泛型
-     * @return {@link ImageView}
-     */
-    public static <T extends ImageView> T setColorFilter(final T imageView, final Drawable drawable, @ColorInt final int color) {
-        try {
-            setBackground(imageView, ImageUtils.setColorFilter(drawable, color));
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "setColorFilter");
-        }
-        return imageView;
-    }
-
-    // =
-
-    /**
-     * ImageView 着色处理
-     * @param imageView   {@link ImageView}
-     * @param colorFilter 颜色过滤 ( 效果 )
-     * @param <T>         泛型
-     * @return {@link ImageView}
-     */
-    public static <T extends ImageView> T setColorFilter(final T imageView, final ColorFilter colorFilter) {
-        return setColorFilter(imageView, getDrawable(imageView), colorFilter);
-    }
-
-    /**
-     * ImageView 着色处理, 并且设置 Drawable
-     * @param imageView   {@link ImageView}
-     * @param drawable    {@link Drawable}
-     * @param colorFilter 颜色过滤 ( 效果 )
-     * @param <T>         泛型
-     * @return {@link ImageView}
-     */
-    public static <T extends ImageView> T setColorFilter(final T imageView, final Drawable drawable, final ColorFilter colorFilter) {
-        try {
-            setBackground(imageView, ImageUtils.setColorFilter(drawable, colorFilter));
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "setColorFilter");
-        }
-        return imageView;
     }
 
     // ============

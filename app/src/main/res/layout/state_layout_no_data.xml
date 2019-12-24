@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <afkt.project.ui.widget.BaseImageView
+            android:layout_width="180.0dp"
+            android:layout_height="180.0dp"
+            android:background="@drawable/icon_tips" />
+
+        <afkt.project.ui.widget.BaseTextView
+            android:id="@+id/vid_slnd_tips_tv"
+            style="@style/AppTheme.Base_TextView"
+            android:layout_marginTop="20.0dip"
+            android:gravity="center"
+            android:textSize="15.0sp" />
+    </LinearLayout>
+</FrameLayout>

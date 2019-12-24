@@ -289,7 +289,7 @@ public final class ADBUtils {
 
     /**
      * 安装应用
-     * @param filePath /sdcard/xxx/x.apk
+     * @param filePath 文件路径
      * @return {@code true} success, {@code false} fail
      */
     public static boolean installApp(final String filePath) {
@@ -306,7 +306,7 @@ public final class ADBUtils {
      *     -d 允许降级覆盖安装
      *     -g 授予所有运行时权限
      * </pre>
-     * @param filePath /sdcard/xxx/x.apk
+     * @param filePath 文件路径
      * @param params   安装选项
      * @return {@code true} success, {@code false} fail
      */
@@ -1371,7 +1371,7 @@ public final class ADBUtils {
 
     /**
      * 屏幕截图
-     * @param path 保存路径 /sdcard/xxx/x.png
+     * @param path 保存路径
      * @return {@code true} success, {@code false} fail
      */
     public static boolean screencap(final String path) {
@@ -1380,7 +1380,7 @@ public final class ADBUtils {
 
     /**
      * 屏幕截图
-     * @param path      保存路径 /sdcard/xxx/x.png
+     * @param path      保存路径
      * @param displayId -d display-id 指定截图的显示屏编号 ( 有多显示屏的情况下 ) 默认 0
      * @return {@code true} success, {@code false} fail
      */
@@ -1398,8 +1398,8 @@ public final class ADBUtils {
     }
 
     /**
-     * 录制屏幕 ( 以 mp4 格式保存到 /sdcard)
-     * @param path 保存路径 /sdcard/xxx/x.mp4
+     * 录制屏幕 ( 以 mp4 格式保存 )
+     * @param path 保存路径
      * @return {@code true} success, {@code false} fail
      */
     public static boolean screenrecord(final String path) {
@@ -1407,8 +1407,8 @@ public final class ADBUtils {
     }
 
     /**
-     * 录制屏幕 ( 以 mp4 格式保存到 /sdcard)
-     * @param path 保存路径 /sdcard/xxx/x.mp4
+     * 录制屏幕 ( 以 mp4 格式保存 )
+     * @param path 保存路径
      * @param time 录制时长, 单位秒 ( 默认 / 最长 180 秒 )
      * @return {@code true} success, {@code false} fail
      */
@@ -1417,8 +1417,8 @@ public final class ADBUtils {
     }
 
     /**
-     * 录制屏幕 ( 以 mp4 格式保存到 /sdcard)
-     * @param path 保存路径 /sdcard/xxx/x.mp4
+     * 录制屏幕 ( 以 mp4 格式保存到 )
+     * @param path 保存路径
      * @param size 视频的尺寸, 比如 1280x720, 默认是屏幕分辨率
      * @param time 录制时长, 单位秒 ( 默认 / 最长 180 秒 )
      * @return {@code true} success, {@code false} fail
@@ -1428,8 +1428,8 @@ public final class ADBUtils {
     }
 
     /**
-     * 录制屏幕 ( 以 mp4 格式保存到 /sdcard)
-     * @param path    保存路径 /sdcard/xxx/x.mp4
+     * 录制屏幕 ( 以 mp4 格式保存到 )
+     * @param path    保存路径
      * @param size    视频的尺寸, 比如 1280x720, 默认是屏幕分辨率
      * @param bitRate 视频的比特率, 默认是 4Mbps
      * @param time    录制时长, 单位秒 ( 默认 / 最长 180 秒 )

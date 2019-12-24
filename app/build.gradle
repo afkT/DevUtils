@@ -4,7 +4,12 @@ apply {
 
 android {
     defaultConfig {
-        applicationId "com.dev"
+        applicationId "afkt.project"
+    }
+
+    // data binding
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -12,24 +17,71 @@ dependencies {
     implementation project(path: ':DevApp')
     implementation project(path: ':DevAssist')
     implementation project(path: ':DevOther')
+    implementation project(path: ':DevBase')
+    implementation project(path: ':DevWidget')
 
-    // =======
-    // = lib =
-    // =======
+    // ============
+    // = 第三方库 =
+    // ============
 
-    // Multidex
-    implementation deps.android.multidex
-    // Gson
+    // ==============
+    // = 快捷开发库 =
+    // ==============
+
+    // View 注入框架 https://github.com/JakeWharton/butterknife
+    implementation deps.lib.butterknife
+    annotationProcessor deps.lib.butterknife_compiler
+    // OkHttp3 网络请求框架 https://github.com/square/okhttp
+    implementation deps.lib.okhttp3
+    implementation deps.lib.okhttp3_logging
+    // Okgo https://github.com/jeasonlzy/okhttp-OkGo
+    implementation deps.lib.okgo
+    // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
+    implementation deps.lib.okserver
+    // Gson https://github.com/google/gson
     implementation deps.lib.gson
-    // Imageloader
+    // fastjson https://github.com/alibaba/fastjson
+    implementation deps.lib.fastjson
+    // Imageloader 图片加载框架 https://github.com/nostra13/Android-Universal-Image-Loader
     implementation deps.lib.imageloader
-    // Glide
+    // Glide 加载框架 https://github.com/bumptech/glide
     implementation deps.lib.glide
     annotationProcessor deps.lib.glide_compiler
-    // EventBus
+    // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
     implementation deps.lib.eventbus
-    // OkHttp3
-    implementation deps.lib.okhttp3
-    // PictureSelector
+
+    // ===============================
+    // = 其他第三方库 - 小功能、简约 =
+    // ===============================
+
+    // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 ) https://github.com/google/flexbox-layout
+    implementation deps.lib.flexbox // https://juejin.im/post/58d1035161ff4b00603ca9c4
+    // 评价等级控件 https://github.com/hedge-hog/RatingBar
+    implementation deps.lib.ratingbar
+    // 加载动画效果 https://github.com/Kyson/WhorlView
+    implementation deps.lib.whorlviewlibrary
+    // 圆形 ImageView https://github.com/hdodenhof/CircleImageView
+    implementation deps.lib.circleimageview
+    // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
+    implementation deps.lib.pickerview // https://blog.csdn.net/qq_22393017/article/details/58099486
+    // 图片缩放 https://github.com/chrisbanes/PhotoView
+    implementation deps.lib.photoview
+    // GPU Filters https://github.com/cats-oss/android-gpuimage
+    implementation deps.lib.gpuimage
+    // 动画库 https://github.com/airbnb/lottie-android
+    implementation deps.lib.lottie
+    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
     implementation deps.lib.pictureSelector
+    // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
+    implementation deps.lib.smartrefreshlayout
+    // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+    implementation deps.lib.baserecyclerviewadapterhelper
+    // 二维码 ZXing https://github.com/zxing/zxing
+    implementation deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
+    implementation deps.lib.zxing_android_code // http://mvnrepository.com/artifact/com.google.zxing/android-core
+    // Glide 图形库 https://github.com/wasabeef/glide-transformations
+    implementation deps.lib.glide_transformations
+    // 内存检测工具 https://github.com/square/leakcanary
+    debugImplementation deps.lib.leakcanary
+    releaseImplementation deps.lib.leakcanary_no_op
 }

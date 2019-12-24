@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <SurfaceView
+        android:id="@+id/vid_ass_surface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <dev.widget.ScanShapeView
+        android:id="@+id/vid_ass_scanview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:layout_margin="15.0dip"
+        android:orientation="horizontal">
+
+        <afkt.project.ui.widget.BaseImageView
+            android:id="@+id/vid_ass_image_igview"
+            android:layout_width="30.0dip"
+            android:layout_height="30.0dip"
+            android:background="@drawable/icon_image"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <afkt.project.ui.widget.BaseImageView
+            android:id="@+id/vid_ass_flashlight_igview"
+            android:layout_width="30.0dip"
+            android:layout_height="30.0dip"
+            android:layout_marginLeft="20.0dip"
+            android:background="@drawable/shape_flashlight_selector" />
+
+        <afkt.project.ui.widget.BaseImageView
+            android:id="@+id/vid_ass_square_igview"
+            android:layout_width="30.0dip"
+            android:layout_height="30.0dip"
+            android:layout_marginLeft="20.0dip"
+            android:background="@drawable/icon_square" />
+
+        <afkt.project.ui.widget.BaseImageView
+            android:id="@+id/vid_ass_hexagon_igview"
+            android:layout_width="30.0dip"
+            android:layout_height="30.0dip"
+            android:layout_marginLeft="20.0dip"
+            android:background="@drawable/icon_hexagon" />
+
+        <afkt.project.ui.widget.BaseImageView
+            android:id="@+id/vid_ass_annulus_igview"
+            android:layout_width="30.0dip"
+            android:layout_height="30.0dip"
+            android:layout_marginLeft="20.0dip"
+            android:background="@drawable/icon_annulus" />
+
+    </LinearLayout>
+</FrameLayout>

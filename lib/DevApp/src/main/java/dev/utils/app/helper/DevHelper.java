@@ -28,13 +28,13 @@ import dev.utils.app.AnalysisRecordUtils;
 import dev.utils.app.CleanUtils;
 import dev.utils.app.ClickUtils;
 import dev.utils.app.ClipboardUtils;
-import dev.utils.app.ContentResolverUtils;
 import dev.utils.app.DialogUtils;
 import dev.utils.app.EditTextUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.KeyBoardUtils;
 import dev.utils.app.LanguageUtils;
 import dev.utils.app.ListenerUtils;
+import dev.utils.app.MediaStoreUtils;
 import dev.utils.app.NotificationUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.ScreenUtils;
@@ -451,8 +451,8 @@ public final class DevHelper {
      * 清除内部缓存 - path /data/data/package/cache
      * @return {@link DevHelper}
      */
-    public DevHelper cleanInternalCache() {
-        CleanUtils.cleanInternalCache();
+    public DevHelper cleanAppCache() {
+        CleanUtils.cleanAppCache();
         return this;
     }
 
@@ -460,8 +460,8 @@ public final class DevHelper {
      * 清除内部文件 - path /data/data/package/files
      * @return {@link DevHelper}
      */
-    public DevHelper cleanInternalFiles() {
-        CleanUtils.cleanInternalFiles();
+    public DevHelper cleanAppFiles() {
+        CleanUtils.cleanAppFiles();
         return this;
     }
 
@@ -469,8 +469,8 @@ public final class DevHelper {
      * 清除内部数据库 - path /data/data/package/databases
      * @return {@link DevHelper}
      */
-    public DevHelper cleanInternalDbs() {
-        CleanUtils.cleanInternalDbs();
+    public DevHelper cleanAppDbs() {
+        CleanUtils.cleanAppDbs();
         return this;
     }
 
@@ -479,8 +479,8 @@ public final class DevHelper {
      * @param dbName 数据库名
      * @return {@link DevHelper}
      */
-    public DevHelper cleanInternalDbByName(final String dbName) {
-        CleanUtils.cleanInternalDbByName(dbName);
+    public DevHelper cleanAppDbByName(final String dbName) {
+        CleanUtils.cleanAppDbByName(dbName);
         return this;
     }
 
@@ -488,8 +488,18 @@ public final class DevHelper {
      * 清除内部 SP - path /data/data/package/shared_prefs
      * @return {@link DevHelper}
      */
-    public DevHelper cleanInternalSp() {
-        CleanUtils.cleanInternalSp();
+    public DevHelper cleanAppSp() {
+        CleanUtils.cleanAppSp();
+        return this;
+    }
+
+    /**
+     * 清除内部 SP - path /data/data/package/shared_prefs
+     * @param spName SP 文件名
+     * @return {@link DevHelper}
+     */
+    public DevHelper cleanAppSp(final String spName) {
+        CleanUtils.cleanAppSp(spName);
         return this;
     }
 
@@ -497,8 +507,8 @@ public final class DevHelper {
      * 清除外部缓存 - path /storage/emulated/0/android/data/package/cache
      * @return {@link DevHelper}
      */
-    public DevHelper cleanExternalCache() {
-        CleanUtils.cleanExternalCache();
+    public DevHelper cleanCache() {
+        CleanUtils.cleanCache();
         return this;
     }
 
@@ -568,9 +578,19 @@ public final class DevHelper {
         return this;
     }
 
-    // ========================
-    // = ContentResolverUtils =
-    // ========================
+    // ===================
+    // = MediaStoreUtils =
+    // ===================
+
+    /**
+     * 通知刷新本地资源
+     * @param filePath 文件路径
+     * @return {@link DevHelper}
+     */
+    public DevHelper notifyMediaStore(final String filePath) {
+        MediaStoreUtils.notifyMediaStore(filePath);
+        return this;
+    }
 
     /**
      * 通知刷新本地资源
@@ -578,44 +598,7 @@ public final class DevHelper {
      * @return {@link DevHelper}
      */
     public DevHelper notifyMediaStore(final File file) {
-        ContentResolverUtils.notifyMediaStore(file);
-        return this;
-    }
-
-    /**
-     * 添加图片到系统相册 ( 包含原图、相册图, 会存在两张 ) - 想要一张, 直接调用 notifyMediaStore()
-     * @param file     文件
-     * @param fileName 文件名
-     * @param isNotify 是否广播通知图库扫描
-     * @return {@link DevHelper}
-     */
-    public DevHelper insertImageIntoMediaStore(final File file, final String fileName, final boolean isNotify) {
-        ContentResolverUtils.insertImageIntoMediaStore(file, fileName, isNotify);
-        return this;
-    }
-
-    // =
-
-    /**
-     * 添加视频到系统相册
-     * @param file 文件
-     * @return {@link DevHelper}
-     */
-    public DevHelper insertVideoIntoMediaStore(final File file) {
-        ContentResolverUtils.insertVideoIntoMediaStore(file);
-        return this;
-    }
-
-    /**
-     * 保存到系统相册
-     * @param file       文件
-     * @param createTime 创建时间
-     * @param isVideo    是否视频
-     * @param mimeType   资源类型
-     * @return {@link DevHelper}
-     */
-    public DevHelper insertIntoMediaStore(final File file, final long createTime, final boolean isVideo, final String mimeType) {
-        ContentResolverUtils.insertIntoMediaStore(file, createTime, isVideo, mimeType);
+        MediaStoreUtils.notifyMediaStore(file);
         return this;
     }
 

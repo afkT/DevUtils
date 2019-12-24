@@ -50,7 +50,7 @@ public final class PhoneReceiver extends BroadcastReceiver {
         try {
             String action = intent.getAction();
             // 打印当前触发的广播
-            LogPrintUtils.dTag(TAG, "PhoneReceiver onReceive Action: " + action);
+            LogPrintUtils.dTag(TAG, "onReceive Action: " + action);
             // 判断类型
             if (NEW_OUTGOING_CALL.equals(action)) {
                 // 表示属于拨号
@@ -58,8 +58,8 @@ public final class PhoneReceiver extends BroadcastReceiver {
                 // 拨出号码
                 mNumber = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
                 // 触发事件
-                if (phoneListener != null) { // 播出电话
-                    phoneListener.onPhoneStateChanged(CallState.Outgoing, mNumber);
+                if (sListener != null) { // 播出电话
+                    sListener.onPhoneStateChanged(CallState.Outgoing, mNumber);
                 }
             } else if (PHONE_STATE.equals(action)) {
                 // 通话号码
@@ -70,23 +70,23 @@ public final class PhoneReceiver extends BroadcastReceiver {
                 switch (state) {
                     case RINGING: // 未接
                         mIsDialOut = false;
-                        if (phoneListener != null) { // 接入电话铃响
-                            phoneListener.onPhoneStateChanged(CallState.IncomingRing, mNumber);
+                        if (sListener != null) { // 接入电话铃响
+                            sListener.onPhoneStateChanged(CallState.IncomingRing, mNumber);
                         }
                         break;
                     case OFFHOOK: // 已接
-                        if (!mIsDialOut && phoneListener != null) { // 接入通话中
-                            phoneListener.onPhoneStateChanged(CallState.Incoming, mNumber);
+                        if (!mIsDialOut && sListener != null) { // 接入通话中
+                            sListener.onPhoneStateChanged(CallState.Incoming, mNumber);
                         }
                         break;
                     case IDLE: // 挂断
                         if (mIsDialOut) {
-                            if (phoneListener != null) { // 播出电话结束
-                                phoneListener.onPhoneStateChanged(CallState.OutgoingEnd, mNumber);
+                            if (sListener != null) { // 播出电话结束
+                                sListener.onPhoneStateChanged(CallState.OutgoingEnd, mNumber);
                             }
                         } else {
-                            if (phoneListener != null) { // 接入通话完毕
-                                phoneListener.onPhoneStateChanged(CallState.IncomingEnd, mNumber);
+                            if (sListener != null) { // 接入通话完毕
+                                sListener.onPhoneStateChanged(CallState.IncomingEnd, mNumber);
                             }
                         }
                         break;
@@ -102,7 +102,7 @@ public final class PhoneReceiver extends BroadcastReceiver {
     // ================
 
     // 电话监听广播
-    private static final PhoneReceiver phoneReceiver = new PhoneReceiver();
+    private static final PhoneReceiver sReceiver = new PhoneReceiver();
 
     /**
      * 注册电话监听广播
@@ -115,7 +115,7 @@ public final class PhoneReceiver extends BroadcastReceiver {
             filter.addAction(NEW_OUTGOING_CALL);
             filter.setPriority(Integer.MAX_VALUE);
             // 注册广播
-            AppUtils.registerReceiver(phoneReceiver, filter);
+            AppUtils.registerReceiver(sReceiver, filter);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
@@ -126,7 +126,7 @@ public final class PhoneReceiver extends BroadcastReceiver {
      */
     public static void unregisterReceiver() {
         try {
-            AppUtils.unregisterReceiver(phoneReceiver);
+            AppUtils.unregisterReceiver(sReceiver);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }
@@ -135,14 +135,16 @@ public final class PhoneReceiver extends BroadcastReceiver {
     // =
 
     // 电话状态监听事件
-    private static PhoneListener phoneListener;
+    private static PhoneListener sListener;
 
     /**
      * 设置电话状态监听事件
      * @param listener {@link PhoneListener}
+     * @return {@link PhoneReceiver}
      */
-    public static void setPhoneListener(final PhoneListener listener) {
-        PhoneReceiver.phoneListener = listener;
+    public static PhoneReceiver setPhoneListener(final PhoneListener listener) {
+        PhoneReceiver.sListener = listener;
+        return sReceiver;
     }
 
     /**

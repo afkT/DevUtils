@@ -945,7 +945,7 @@ public final class DevUtils {
      * @return 指定文件 {@link Uri}
      */
     public static Uri getUriForPath(final String filePath) {
-        return getUriForFile(FileUtils.getFileByPath(filePath));
+        return UriUtils.getUriForFile(FileUtils.getFileByPath(filePath), getAuthority());
     }
 
     /**

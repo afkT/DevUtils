@@ -38,7 +38,7 @@ public final class CollectionUtils {
     /**
      * 判断 Collection 是否为 null
      * @param collection {@link Collection}
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final Collection collection) {
         return (collection == null || collection.size() == 0);
@@ -47,7 +47,7 @@ public final class CollectionUtils {
     /**
      * 判断 Collection 是否不为 null
      * @param collection {@link Collection}
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final Collection collection) {
         return (collection != null && collection.size() != 0);

@@ -381,6 +381,16 @@ public final class ViewHelper {
 
     /**
      * 设置 TextView 是否加粗
+     * @param view {@link TextView}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setBold(final View view) {
+        TextViewUtils.setBold(view);
+        return this;
+    }
+
+    /**
+     * 设置 TextView 是否加粗
      * @param view   {@link TextView}
      * @param isBold {@code true} yes, {@code false} no
      * @return {@link ViewHelper}
@@ -895,7 +905,7 @@ public final class ViewHelper {
      * @return {@link ViewHelper}
      */
     public ViewHelper setBackground(final View view, final Drawable background) {
-        ImageViewUtils.setBackground(view, background);
+        ViewUtils.setBackground(view, background);
         return this;
     }
 
@@ -906,7 +916,7 @@ public final class ViewHelper {
      * @return {@link ViewHelper}
      */
     public ViewHelper setBackgroundColor(final View view, @ColorInt final int color) {
-        ImageViewUtils.setBackgroundColor(view, color);
+        ViewUtils.setBackgroundColor(view, color);
         return this;
     }
 
@@ -917,7 +927,7 @@ public final class ViewHelper {
      * @return {@link ViewHelper}
      */
     public ViewHelper setBackgroundResource(final View view, @DrawableRes final int resId) {
-        ImageViewUtils.setBackgroundResource(view, resId);
+        ViewUtils.setBackgroundResource(view, resId);
         return this;
     }
 
@@ -929,7 +939,7 @@ public final class ViewHelper {
      */
     public ViewHelper setBackgroundTintList(final View view, final ColorStateList tint) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ImageViewUtils.setBackgroundTintList(view, tint);
+            ViewUtils.setBackgroundTintList(view, tint);
         }
         return this;
     }
@@ -942,7 +952,7 @@ public final class ViewHelper {
      */
     public ViewHelper setBackgroundTintMode(final View view, final PorterDuff.Mode tintMode) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ImageViewUtils.setBackgroundTintMode(view, tintMode);
+            ViewUtils.setBackgroundTintMode(view, tintMode);
         }
         return this;
     }
@@ -955,7 +965,7 @@ public final class ViewHelper {
      */
     public ViewHelper setForeground(final View view, final Drawable foreground) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            ImageViewUtils.setForeground(view, foreground);
+            ViewUtils.setForeground(view, foreground);
         }
         return this;
     }
@@ -968,7 +978,7 @@ public final class ViewHelper {
      */
     public ViewHelper setForegroundGravity(final View view, final int gravity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            ImageViewUtils.setForegroundGravity(view, gravity);
+            ViewUtils.setForegroundGravity(view, gravity);
         }
         return this;
     }
@@ -981,7 +991,7 @@ public final class ViewHelper {
      */
     public ViewHelper setForegroundTintList(final View view, final ColorStateList tint) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            ImageViewUtils.setForegroundTintList(view, tint);
+            ViewUtils.setForegroundTintList(view, tint);
         }
         return this;
     }
@@ -994,7 +1004,7 @@ public final class ViewHelper {
      */
     public ViewHelper setForegroundTintMode(final View view, final PorterDuff.Mode tintMode) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            ImageViewUtils.setForegroundTintMode(view, tintMode);
+            ViewUtils.setForegroundTintMode(view, tintMode);
         }
         return this;
     }
@@ -1082,47 +1092,47 @@ public final class ViewHelper {
 
     /**
      * ImageView 着色处理
-     * @param imageView {@link ImageView}
-     * @param color     颜色值
+     * @param view  {@link View}
+     * @param color 颜色值
      * @return {@link ViewHelper}
      */
-    public ViewHelper setColorFilter(final ImageView imageView, @ColorInt final int color) {
-        ImageViewUtils.setColorFilter(imageView, color);
+    public ViewHelper setColorFilter(final View view, @ColorInt final int color) {
+        ViewUtils.setColorFilter(view, color);
         return this;
     }
 
     /**
      * ImageView 着色处理, 并且设置 Drawable
-     * @param imageView {@link ImageView}
-     * @param drawable  {@link Drawable}
-     * @param color     颜色值
+     * @param view     {@link View}
+     * @param drawable {@link Drawable}
+     * @param color    颜色值
      * @return {@link ViewHelper}
      */
-    public ViewHelper setColorFilter(final ImageView imageView, final Drawable drawable, @ColorInt final int color) {
-        ImageViewUtils.setColorFilter(imageView, drawable, color);
+    public ViewHelper setColorFilter(final View view, final Drawable drawable, @ColorInt final int color) {
+        ViewUtils.setColorFilter(view, drawable, color);
         return this;
     }
 
     /**
      * ImageView 着色处理
-     * @param imageView   {@link ImageView}
+     * @param view        {@link View}
      * @param colorFilter 颜色过滤 ( 效果 )
      * @return {@link ViewHelper}
      */
-    public ViewHelper setColorFilter(final ImageView imageView, final ColorFilter colorFilter) {
-        ImageViewUtils.setColorFilter(imageView, colorFilter);
+    public ViewHelper setColorFilter(final View view, final ColorFilter colorFilter) {
+        ViewUtils.setColorFilter(view, colorFilter);
         return this;
     }
 
     /**
      * ImageView 着色处理, 并且设置 Drawable
-     * @param imageView   {@link ImageView}
+     * @param view        {@link View}
      * @param drawable    {@link Drawable}
      * @param colorFilter 颜色过滤 ( 效果 )
      * @return {@link ViewHelper}
      */
-    public ViewHelper setColorFilter(final ImageView imageView, final Drawable drawable, final ColorFilter colorFilter) {
-        ImageViewUtils.setColorFilter(imageView, drawable, colorFilter);
+    public ViewHelper setColorFilter(final View view, final Drawable drawable, final ColorFilter colorFilter) {
+        ViewUtils.setColorFilter(view, drawable, colorFilter);
         return this;
     }
 
@@ -1734,6 +1744,16 @@ public final class ViewHelper {
     }
 
     /**
+     * 切换获取焦点状态
+     * @param views View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper toggleFocusable(final View... views) {
+        ViewUtils.toggleFocusable(views);
+        return this;
+    }
+
+    /**
      * 设置 View 是否选中
      * @param selected {@code true} 选中, {@code false} 非选中
      * @param views    View[]
@@ -1741,6 +1761,16 @@ public final class ViewHelper {
      */
     public ViewHelper setSelected(final boolean selected, final View... views) {
         ViewUtils.setSelected(selected, views);
+        return this;
+    }
+
+    /**
+     * 切换选中状态
+     * @param views View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper toggleSelected(final View... views) {
+        ViewUtils.toggleSelected(views);
         return this;
     }
 
@@ -1756,6 +1786,16 @@ public final class ViewHelper {
     }
 
     /**
+     * 切换 View 是否启用状态
+     * @param views View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper toggleEnabled(final View... views) {
+        ViewUtils.toggleEnabled(views);
+        return this;
+    }
+
+    /**
      * 设置 View 是否可以点击
      * @param clickable {@code true} 可点击, {@code false} 不可点击
      * @param views     View[]
@@ -1767,6 +1807,16 @@ public final class ViewHelper {
     }
 
     /**
+     * 切换 View 是否可以点击状态
+     * @param views View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper toggleClickable(final View... views) {
+        ViewUtils.toggleClickable(views);
+        return this;
+    }
+
+    /**
      * 设置 View 是否可以长按
      * @param longClickable {@code true} 可长按, {@code false} 不可长按
      * @param views         View[]
@@ -1774,6 +1824,16 @@ public final class ViewHelper {
      */
     public ViewHelper setLongClickable(final boolean longClickable, final View... views) {
         ViewUtils.setLongClickable(longClickable, views);
+        return this;
+    }
+
+    /**
+     * 切换 View 是否可以长按状态
+     * @param views View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper toggleLongClickable(final View... views) {
+        ViewUtils.toggleLongClickable(views);
         return this;
     }
 
@@ -1845,25 +1905,25 @@ public final class ViewHelper {
 
     /**
      * 切换 View 显示的状态
-     * @param status   {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param state    {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param viewArys View[]
      * @param views    View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper toggleVisibilitys(final int status, final View[] viewArys, final View... views) {
-        ViewUtils.toggleVisibilitys(status, viewArys, views);
+    public ViewHelper toggleVisibilitys(final int state, final View[] viewArys, final View... views) {
+        ViewUtils.toggleVisibilitys(state, viewArys, views);
         return this;
     }
 
     /**
      * 反转 View 显示的状态
-     * @param status   {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param state    {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param viewArys View[]
      * @param views    View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper reverseVisibilitys(final int status, final View[] viewArys, final View... views) {
-        ViewUtils.reverseVisibilitys(status, viewArys, views);
+    public ViewHelper reverseVisibilitys(final int state, final View[] viewArys, final View... views) {
+        ViewUtils.reverseVisibilitys(state, viewArys, views);
         return this;
     }
 
@@ -1881,13 +1941,13 @@ public final class ViewHelper {
 
     /**
      * 反转 View 显示的状态
-     * @param status {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
-     * @param view   {@link View}
-     * @param views  View[]
+     * @param state {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param view  {@link View}
+     * @param views View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper reverseVisibilitys(final int status, final View view, final View... views) {
-        ViewUtils.reverseVisibilitys(status, view, views);
+    public ViewHelper reverseVisibilitys(final int state, final View view, final View... views) {
+        ViewUtils.reverseVisibilitys(state, view, views);
         return this;
     }
 
@@ -2257,13 +2317,24 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置 CompoundDrawables Padding
+     * @param textView {@link TextView}
+     * @param padding  CompoundDrawables Padding
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setCompoundDrawablePadding(final TextView textView, final int padding) {
+        TextViewUtils.setCompoundDrawablePadding(textView, padding);
+        return this;
+    }
+
+    /**
      * 设置 Left CompoundDrawables
      * @param textView {@link TextView}
      * @param left     left Drawable
      * @return {@link ViewHelper}
      */
     public ViewHelper setCompoundDrawablesByLeft(final TextView textView, final Drawable left) {
-        ViewUtils.setCompoundDrawablesByLeft(textView, left);
+        TextViewUtils.setCompoundDrawablesByLeft(textView, left);
         return this;
     }
 
@@ -2274,7 +2345,7 @@ public final class ViewHelper {
      * @return {@link ViewHelper}
      */
     public ViewHelper setCompoundDrawablesByTop(final TextView textView, final Drawable top) {
-        ViewUtils.setCompoundDrawablesByTop(textView, top);
+        TextViewUtils.setCompoundDrawablesByTop(textView, top);
         return this;
     }
 
@@ -2285,7 +2356,7 @@ public final class ViewHelper {
      * @return {@link ViewHelper}
      */
     public ViewHelper setCompoundDrawablesByRight(final TextView textView, final Drawable right) {
-        ViewUtils.setCompoundDrawablesByRight(textView, right);
+        TextViewUtils.setCompoundDrawablesByRight(textView, right);
         return this;
     }
 
@@ -2296,7 +2367,7 @@ public final class ViewHelper {
      * @return {@link ViewHelper}
      */
     public ViewHelper setCompoundDrawablesByBottom(final TextView textView, final Drawable bottom) {
-        ViewUtils.setCompoundDrawablesByBottom(textView, bottom);
+        TextViewUtils.setCompoundDrawablesByBottom(textView, bottom);
         return this;
     }
 
@@ -2317,7 +2388,7 @@ public final class ViewHelper {
     public ViewHelper setCompoundDrawables(final TextView textView,
                                            final Drawable left, final Drawable top,
                                            final Drawable right, final Drawable bottom) {
-        ViewUtils.setCompoundDrawables(textView, left, top, right, bottom);
+        TextViewUtils.setCompoundDrawables(textView, left, top, right, bottom);
         return this;
     }
 
@@ -2328,7 +2399,7 @@ public final class ViewHelper {
      * @return {@link ViewHelper}
      */
     public ViewHelper setCompoundDrawablesWithIntrinsicBoundsByLeft(final TextView textView, final Drawable left) {
-        ViewUtils.setCompoundDrawablesWithIntrinsicBoundsByLeft(textView, left);
+        TextViewUtils.setCompoundDrawablesWithIntrinsicBoundsByLeft(textView, left);
         return this;
     }
 
@@ -2339,7 +2410,7 @@ public final class ViewHelper {
      * @return {@link ViewHelper}
      */
     public ViewHelper setCompoundDrawablesWithIntrinsicBoundsByTop(final TextView textView, final Drawable top) {
-        ViewUtils.setCompoundDrawablesWithIntrinsicBoundsByTop(textView, top);
+        TextViewUtils.setCompoundDrawablesWithIntrinsicBoundsByTop(textView, top);
         return this;
     }
 
@@ -2350,7 +2421,7 @@ public final class ViewHelper {
      * @return {@link ViewHelper}
      */
     public ViewHelper setCompoundDrawablesWithIntrinsicBoundsByRight(final TextView textView, final Drawable right) {
-        ViewUtils.setCompoundDrawablesWithIntrinsicBoundsByRight(textView, right);
+        TextViewUtils.setCompoundDrawablesWithIntrinsicBoundsByRight(textView, right);
         return this;
     }
 
@@ -2361,7 +2432,7 @@ public final class ViewHelper {
      * @return {@link ViewHelper}
      */
     public ViewHelper setCompoundDrawablesWithIntrinsicBoundsByBottom(final TextView textView, final Drawable bottom) {
-        ViewUtils.setCompoundDrawablesWithIntrinsicBoundsByBottom(textView, bottom);
+        TextViewUtils.setCompoundDrawablesWithIntrinsicBoundsByBottom(textView, bottom);
         return this;
     }
 
@@ -2377,7 +2448,7 @@ public final class ViewHelper {
     public ViewHelper setCompoundDrawablesWithIntrinsicBounds(final TextView textView,
                                                               final Drawable left, final Drawable top,
                                                               final Drawable right, final Drawable bottom) {
-        ViewUtils.setCompoundDrawablesWithIntrinsicBounds(textView, left, top, right, bottom);
+        TextViewUtils.setCompoundDrawablesWithIntrinsicBounds(textView, left, top, right, bottom);
         return this;
     }
 

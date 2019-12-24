@@ -1,6 +1,6 @@
 # Toast 工具类
 
-#### 使用演示类 [DevToastUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/toast/DevToastUse.java) 介绍了配置参数及使用
+#### 使用演示类 [DevToastUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/toast/DevToastUse.java) 介绍了配置参数及使用
 
 > 1. 支持子线程弹出 Toast, 可通过开关配置
 > 2. 内部解决 Android 7.1.1 崩溃问题

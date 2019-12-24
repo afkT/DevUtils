@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dev.widget.CustomNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+    <LinearLayout
+        style="@style/AppTheme.padding_lr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="30.0dip"
+            android:layout_gravity="center"
+            android:layout_marginTop="20.0dip"
+            android:orientation="horizontal">
+
+            <afkt.project.ui.widget.BaseTextView
+                android:id="@+id/vid_aue_1_0_tv"
+                android:layout_width="120.0dip"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_tab_left_selector"
+                android:gravity="center"
+                android:text="热门"
+                android:textColor="@color/selector_tab_text_color" />
+
+            <afkt.project.ui.widget.BaseTextView
+                android:id="@+id/vid_aue_1_1_tv"
+                android:layout_width="120.0dip"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_tab_right_selector"
+                android:gravity="center"
+                android:text="最新"
+                android:textColor="@color/selector_tab_text_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="30.0dip"
+            android:layout_gravity="center"
+            android:layout_marginTop="20.0dip"
+            android:orientation="horizontal">
+
+            <afkt.project.ui.widget.BaseTextView
+                android:id="@+id/vid_aue_2_0_tv"
+                android:layout_width="120.0dip"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="文章" />
+
+            <afkt.project.ui.widget.BaseTextView
+                android:id="@+id/vid_aue_2_1_tv"
+                android:layout_width="120.0dip"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="视频" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="30.0dip"
+            android:layout_gravity="center"
+            android:layout_marginTop="20.0dip"
+            android:orientation="horizontal">
+
+            <afkt.project.ui.widget.BaseTextView
+                android:id="@+id/vid_aue_3_0_tv"
+                android:layout_width="120.0dip"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="精选" />
+
+            <afkt.project.ui.widget.BaseTextView
+                android:id="@+id/vid_aue_3_1_tv"
+                android:layout_width="120.0dip"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="推荐" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40.0dip"
+            android:layout_gravity="center"
+            android:layout_marginTop="20.0dip"
+            android:orientation="horizontal">
+
+            <afkt.project.ui.widget.BaseButton
+                android:id="@+id/vid_aue_4_0_btn"
+                android:layout_width="120.0dip"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5.0dip"
+                android:text="登录" />
+
+            <afkt.project.ui.widget.BaseButton
+                android:id="@+id/vid_aue_4_1_btn"
+                android:layout_width="120.0dip"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5.0dip"
+                android:text="注册" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="240.0dip"
+            android:layout_height="150.0dip"
+            android:layout_gravity="center"
+            android:layout_marginTop="20.0dip"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/vid_aue_5_0_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="240.0dip"
+            android:layout_height="150.0dip"
+            android:layout_gravity="center"
+            android:layout_marginTop="20.0dip"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/vid_aue_6_0_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:orientation="vertical">
+
+            <afkt.project.ui.widget.BaseTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10.0dip"
+                android:layout_marginBottom="10.0dip"
+                android:text="HorizontalScrollView Tab" />
+
+            <HorizontalScrollView
+                android:id="@+id/vid_aue_7_0_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/vid_aue_7_0_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:orientation="vertical">
+
+            <afkt.project.ui.widget.BaseTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10.0dip"
+                android:layout_marginBottom="10.0dip"
+                android:text="TabLayout Tab" />
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/vid_aue_8_0_tab"
+                android:layout_width="match_parent"
+                android:layout_height="44.0dip"
+                android:background="@color/white"
+                android:paddingLeft="0.0dip"
+                android:paddingRight="0.0dip"
+                app:tabBackground="@android:color/transparent"
+                app:tabIndicatorHeight="0dp"
+                app:tabMaxWidth="80.0dip"
+                app:tabMinWidth="80.0dip"
+                app:tabMode="scrollable" />
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/vid_aue_9_0_tab"
+                android:layout_width="match_parent"
+                android:layout_height="44.0dip"
+                android:layout_marginTop="20.0dip"
+                android:background="@color/white"
+                android:paddingLeft="0.0dip"
+                android:paddingRight="0.0dip"
+                app:tabBackground="@android:color/transparent"
+                app:tabIndicatorHeight="0dp"
+                app:tabMode="fixed" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50.0dip" />
+    </LinearLayout>
+</dev.widget.CustomNestedScrollView>

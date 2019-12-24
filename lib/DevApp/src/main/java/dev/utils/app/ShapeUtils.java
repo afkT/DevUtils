@@ -53,7 +53,7 @@ public final class ShapeUtils {
      * @return {@link View}
      */
     public <T extends View> T setDrawable(final T view) {
-        ImageViewUtils.setBackground(view, mDrawable);
+        ViewUtils.setBackground(view, mDrawable);
         return view;
     }
 

@@ -1,6 +1,9 @@
 package dev.utils.common;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import dev.utils.JCLogUtils;
@@ -8,6 +11,12 @@ import dev.utils.JCLogUtils;
 /**
  * detail: 颜色工具类 ( 包括常用的色值 )
  * @author Ttt
+ * <pre>
+ *     颜色信息和转换工具
+ *     @see <a href="https://zh.spycolor.com"/>
+ *     RGB 颜色空间、色调、饱和度、亮度、HSV 颜色空间详解
+ *     @see <a href="https://blog.csdn.net/bjbz_cxy/article/details/79701006"/>
+ * </pre>
  */
 public final class ColorUtils {
 
@@ -83,9 +92,16 @@ public final class ColorUtils {
      * 0-255 十进值转换成十六进制, 如 255 就是 ff
      * 255 * 0.x = 十进制 转 十六进制
      * <p></p>
-     * 透明度 0-100
+     * 透明度 0 - 100
      * 00、19、33、4C、66、7F、99、B2、CC、E5、FF
+     * 透明度 5 - 95
+     * 0D、26、40、59、73、8C、A6、BF、D9、F2
      */
+
+    static {
+        // 设置 Color 解析器
+        setParser(new ColorInfo.ColorParser());
+    }
 
     /**
      * 获取十六进制透明度字符串
@@ -101,6 +117,26 @@ public final class ColorUtils {
             JCLogUtils.eTag(TAG, e, "toHexAlpha");
         }
         return null;
+    }
+
+    // =
+
+    /**
+     * 返回一个颜色 ARGB 色值数组 ( 返回十进制 )
+     * @param color argb/rgb color
+     * @return ARGB 色值数组 { alpha, red, green, blue }
+     */
+    public static int[] getARGB(final int color) {
+        int[] argb = new int[4];
+        if (ColorUtils.isARGB(color)) {
+            argb[0] = alpha(color);
+        } else {
+            argb[0] = 255;
+        }
+        argb[1] = red(color);
+        argb[2] = green(color);
+        argb[3] = blue(color);
+        return argb;
     }
 
     // =
@@ -148,7 +184,7 @@ public final class ColorUtils {
     /**
      * 返回一个颜色中绿色的色值 ( 返回十进制 )
      * @param color argb/rgb color
-     * @return green 百分比值
+     * @return green 值
      */
     public static int green(final int color) {
         return (color >> 8) & 0xFF;
@@ -168,7 +204,7 @@ public final class ColorUtils {
     /**
      * 返回一个颜色中蓝色的色值 ( 返回十进制 )
      * @param color argb/rgb color
-     * @return blue 百分比值
+     * @return blue 值
      */
     public static int blue(final int color) {
         return color & 0xFF;
@@ -606,6 +642,31 @@ public final class ColorUtils {
 
     // =
 
+    /**
+     * 获取灰度值
+     * @param colorStr color String
+     * @return 灰度值
+     */
+    public static int grayLevel(final String colorStr) {
+        int color = parseColor(colorStr);
+        if (color == -1) return -1;
+        int[] argb = getARGB(color);
+        return (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114f);
+    }
+
+    /**
+     * 获取灰度值
+     * @param color int color
+     * @return 灰度值
+     */
+    public static int grayLevel(final int color) {
+        // [] { alpha, red, green, blue }
+        int[] argb = getARGB(color);
+        return (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114f);
+    }
+
+    // =
+
     // 颜色字典集合
     private static final HashMap<String, Integer> sColorNameMaps;
 
@@ -644,5 +705,352 @@ public final class ColorUtils {
         sColorNameMaps.put("navy", 0xFF000080);
         sColorNameMaps.put("olive", 0xFF808000);
         sColorNameMaps.put("teal", 0xFF008080);
+    }
+
+    // ============
+    // = 颜色信息 =
+    // ============
+
+    // 内部解析器
+    private static ColorInfo.Parser sParser;
+
+    /**
+     * 设置 Color 解析器
+     * @param parser {@link ColorInfo.Parser}
+     */
+    public static void setParser(final ColorInfo.Parser parser) {
+        ColorUtils.sParser = parser;
+    }
+
+    /**
+     * detail: 颜色信息
+     * @author Ttt
+     */
+    public static class ColorInfo {
+
+        // key
+        private String key;
+        // value ( 如: #000000 )
+        private String value;
+        // value 解析后的值 ( 如: #000 => #000000 )
+        private String valueParser;
+        // ARGB/RGB color
+        private long valueColor;
+        // A、R、G、B
+        private int alpha = 255, red = 0, green = 0, blue = 0;
+        // 灰度值
+        private int grayLevel;
+        // H、S、B ( V )
+        private float hue, saturation, brightness;
+
+        /**
+         * 构造函数
+         * @param key   Key
+         * @param value Value ( 如: #000000 )
+         */
+        public ColorInfo(final String key, final String value) {
+            this.key = key;
+            this.value = value;
+            priConvert();
+        }
+
+        /**
+         * 构造函数
+         * @param key        Key
+         * @param valueColor ARGB/RGB color
+         */
+        public ColorInfo(final String key, final int valueColor) {
+            this(key, ColorUtils.intToArgbString(valueColor));
+        }
+
+        /**
+         * 获取 Key
+         * @return key String
+         */
+        public String getKey() {
+            return key;
+        }
+
+        /**
+         * 获取 Value
+         * @return value String
+         */
+        public String getValue() {
+            return value;
+        }
+
+        /**
+         * 获取 Value 解析后的值 ( 如: #000 => #000000 )
+         * @return value 解析后的值 ( 如: #000 => #000000 )
+         */
+        public String getValueParser() {
+            return valueParser;
+        }
+
+        /**
+         * 获取 ARGB/RGB color
+         * @return ARGB/RGB color
+         */
+        public long getValueColor() {
+            return valueColor;
+        }
+
+        /**
+         * 返回颜色中的透明度值 ( 返回十进制 )
+         * @return alpha 值
+         */
+        public int getAlpha() {
+            return alpha;
+        }
+
+        /**
+         * 返回颜色中红色的色值 ( 返回十进制 )
+         * @return red 值
+         */
+        public int getRed() {
+            return red;
+        }
+
+        /**
+         * 返回颜色中绿色的色值 ( 返回十进制 )
+         * @return green 值
+         */
+        public int getGreen() {
+            return green;
+        }
+
+        /**
+         * 返回颜色中蓝色的色值 ( 返回十进制 )
+         * @return blue 值
+         */
+        public int getBlue() {
+            return blue;
+        }
+
+        /**
+         * 获取灰度值
+         * @return 灰度值
+         */
+        public int getGrayLevel() {
+            return grayLevel;
+        }
+
+        /**
+         * 获取颜色色调
+         * @return 颜色色调
+         */
+        public float getHue() {
+            return hue;
+        }
+
+        /**
+         * 获取颜色饱和度
+         * @return 颜色饱和度
+         */
+        public float getSaturation() {
+            return saturation;
+        }
+
+        /**
+         * 获取颜色亮度
+         * @return 颜色亮度
+         */
+        public float getBrightness() {
+            return brightness;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder builder = new StringBuilder();
+            builder.append("key : " + key);
+            builder.append("\nvalue : " + value);
+            builder.append("\nvalueParser : " + valueParser);
+            builder.append("\nalpha : " + alpha);
+            builder.append("\nred : " + red);
+            builder.append("\ngreen : " + green);
+            builder.append("\nblue : " + blue);
+            builder.append("\ngrayLevel : " + grayLevel);
+            builder.append("\nintToRgbString : " + ColorUtils.intToRgbString((int) valueColor));
+            builder.append("\nintToArgbString : " + ColorUtils.intToArgbString((int) valueColor));
+            return builder.toString();
+        }
+
+        // ============
+        // = 内部处理 =
+        // ============
+
+        /**
+         * 内部转换处理
+         */
+        private void priConvert() {
+            String temp = value;
+            if (sParser != null) {
+                temp = sParser.handleColor(value);
+                // 保存解析后的值
+                valueParser = temp;
+            }
+            if (temp == null) return;
+            // 转换 long 颜色值
+            valueColor = ColorUtils.parseColor(temp);
+            // 解析失败则不处理
+            if (valueColor == -1) return;
+
+            int[] argb = ColorUtils.getARGB((int) valueColor);
+            // 获取 ARGB
+            alpha = argb[0];
+            red = argb[1];
+            green = argb[2];
+            blue = argb[3];
+            // 获取灰度值
+            grayLevel = (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114f);
+            // 获取 HSB
+            float[] hsbvals = RGBtoHSB(red, green, blue, null);
+            hue = hsbvals[0]; // 色调
+            saturation = hsbvals[1]; // 饱和度
+            brightness = hsbvals[2]; // 亮度
+        }
+
+        // ==============
+        // = 解析器相关 =
+        // ==============
+
+        /**
+         * detail: Color 解析器
+         * @author Ttt
+         */
+        public interface Parser {
+
+            /**
+             * 处理 color
+             * @param value 如: #000000
+             * @return 处理后的 value
+             */
+            String handleColor(String value);
+        }
+
+        /**
+         * detail: Color 解析器
+         * @author Ttt
+         */
+        public static class ColorParser implements Parser {
+            @Override
+            public String handleColor(String value) {
+                if (value == null) return null;
+                String color = StringUtils.toClearSpace(value);
+                char[] chars = color.toCharArray();
+                int length = chars.length;
+                if (length != 0 && chars[0] == '#') {
+                    if (length == 4) {
+                        String colorsub = color.substring(1);
+                        // #000 => #000000
+                        return color + colorsub;
+                    } else if (length == 5) {
+                        String colorsub = color.substring(3);
+                        // #0011 => #00111111
+                        return color + colorsub + colorsub;
+                    }
+                }
+                return color;
+            }
+        }
+
+        // ============
+        // = 转换处理 =
+        // ============
+
+        /**
+         * RGB 转换 HSB
+         * <pre>
+         *     HSB 等于 HSV, 不同的叫法
+         *     java.awt.Color#RGBtoHSB
+         *     android.graphics.Color#RGBToHSV
+         * </pre>
+         * @param r       红色值 [0-255]
+         * @param g       绿色值 [0-255]
+         * @param b       蓝色值 [0-255]
+         * @param hsbvals HSB 数组
+         * @return [] { hue, saturation, brightness }
+         */
+        private static float[] RGBtoHSB(int r, int g, int b, float[] hsbvals) {
+            float hue, saturation, brightness;
+            if (hsbvals == null) {
+                hsbvals = new float[3];
+            }
+            int cmax = (r > g) ? r : g;
+            if (b > cmax) cmax = b;
+            int cmin = (r < g) ? r : g;
+            if (b < cmin) cmin = b;
+
+            brightness = ((float) cmax) / 255.0f;
+            if (cmax != 0)
+                saturation = ((float) (cmax - cmin)) / ((float) cmax);
+            else
+                saturation = 0;
+            if (saturation == 0)
+                hue = 0;
+            else {
+                float redc = ((float) (cmax - r)) / ((float) (cmax - cmin));
+                float greenc = ((float) (cmax - g)) / ((float) (cmax - cmin));
+                float bluec = ((float) (cmax - b)) / ((float) (cmax - cmin));
+                if (r == cmax)
+                    hue = bluec - greenc;
+                else if (g == cmax)
+                    hue = 2.0f + redc - bluec;
+                else
+                    hue = 4.0f + greenc - redc;
+                hue = hue / 6.0f;
+                if (hue < 0)
+                    hue = hue + 1.0f;
+            }
+            hsbvals[0] = hue;
+            hsbvals[1] = saturation;
+            hsbvals[2] = brightness;
+            return hsbvals;
+        }
+    }
+
+    // ============
+    // = 颜色排序 =
+    // ============
+
+    /**
+     * 灰度值排序
+     * @param lists 待排序颜色集合
+     */
+    public static void sortGray(final List<ColorInfo> lists) {
+        Collections.sort(lists, new Comparator<ColorInfo>() {
+            @Override
+            public int compare(ColorUtils.ColorInfo c1, ColorUtils.ColorInfo c2) {
+                long diff = c1.getGrayLevel() - c2.getGrayLevel();
+                if (diff < 0) {
+                    return 1;
+                } else if (diff > 0) {
+                    return -1;
+                }
+                return 0;
+            }
+        });
+    }
+
+    /**
+     * HSB ( HSV) 排序
+     * @param lists 待排序颜色集合
+     */
+    public static void sortHSB(final List<ColorInfo> lists) {
+        Collections.sort(lists, new Comparator<ColorUtils.ColorInfo>() {
+            @Override
+            public int compare(ColorUtils.ColorInfo c1, ColorUtils.ColorInfo c2) {
+                float diff = c1.getHue() - c2.getHue();
+                if (c1.getHue() == 0) {
+                    diff = c1.getSaturation() - c2.getSaturation();
+                }
+                if (diff > 0) {
+                    return 1;
+                } else if (diff < 0) {
+                    return -1;
+                }
+                return 0;
+            }
+        });
     }
 }

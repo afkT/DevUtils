@@ -3,17 +3,11 @@ package dev.service;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
-import android.provider.Settings;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 
-import androidx.core.app.NotificationManagerCompat;
-
-import java.util.Set;
-
-import dev.DevUtils;
 import dev.utils.LogPrintUtils;
-import dev.utils.app.AppUtils;
+import dev.utils.app.NotificationUtils;
 import dev.utils.app.ServiceUtils;
 
 /**
@@ -31,7 +25,7 @@ public final class NotificationService extends NotificationListenerService {
     // 日志 TAG
     private static final String TAG = NotificationService.class.getSimpleName();
     // 当前服务所持对象
-    private static NotificationService self;
+    private static NotificationService sSelf;
 
     // ============
     // = 通知回调 =
@@ -43,8 +37,8 @@ public final class NotificationService extends NotificationListenerService {
      */
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
-        if (self != null && notificationListener != null) {
-            notificationListener.onNotificationPosted(sbn);
+        if (sSelf != null && sListener != null) {
+            sListener.onNotificationPosted(sbn);
         }
     }
 
@@ -54,8 +48,8 @@ public final class NotificationService extends NotificationListenerService {
      */
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
-        if (self != null && notificationListener != null) {
-            notificationListener.onNotificationRemoved(sbn);
+        if (sSelf != null && sListener != null) {
+            sListener.onNotificationRemoved(sbn);
         }
     }
 
@@ -68,10 +62,10 @@ public final class NotificationService extends NotificationListenerService {
         super.onCreate();
         LogPrintUtils.dTag(TAG, "onCreate");
 
-        if (notificationListener != null) {
-            notificationListener.onServiceCreated(this);
+        if (sListener != null) {
+            sListener.onServiceCreated(this);
         }
-        self = this;
+        sSelf = this;
     }
 
     @Override
@@ -79,18 +73,18 @@ public final class NotificationService extends NotificationListenerService {
         super.onDestroy();
         LogPrintUtils.dTag(TAG, "onDestroy");
 
-        if (notificationListener != null) {
-            notificationListener.onServiceDestroy();
-            notificationListener = null;
+        if (sListener != null) {
+            sListener.onServiceDestroy();
+            sListener = null;
         }
-        self = null;
+        sSelf = null;
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         LogPrintUtils.dTag(TAG, "onStartCommand");
 
-        return notificationListener == null ? START_STICKY : notificationListener.onStartCommand(this, intent, flags, startId);
+        return sListener == null ? START_STICKY : sListener.onStartCommand(this, intent, flags, startId);
     }
 
     // ================
@@ -102,7 +96,7 @@ public final class NotificationService extends NotificationListenerService {
      * @return {@link NotificationService}
      */
     public static NotificationService getSelf() {
-        return self;
+        return sSelf;
     }
 
     /**
@@ -126,11 +120,7 @@ public final class NotificationService extends NotificationListenerService {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean checkAndIntentSetting() {
-        if (!isNotificationListenerEnabled()) {
-            startNotificationListenSettings();
-            return false;
-        }
-        return true;
+        return NotificationUtils.checkAndIntentSetting();
     }
 
     /**
@@ -138,7 +128,7 @@ public final class NotificationService extends NotificationListenerService {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotificationListenerEnabled() {
-        return isNotificationListenerEnabled(AppUtils.getPackageName());
+        return NotificationUtils.isNotificationListenerEnabled();
     }
 
     /**
@@ -147,25 +137,14 @@ public final class NotificationService extends NotificationListenerService {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotificationListenerEnabled(final String packageName) {
-        Set<String> packageNames = NotificationManagerCompat.getEnabledListenerPackages(DevUtils.getContext());
-        return packageNames.contains(packageName);
+        return NotificationUtils.isNotificationListenerEnabled(packageName);
     }
 
     /**
      * 跳转到设置页面, 开启获取通知栏信息权限
      */
     public static void startNotificationListenSettings() {
-        try {
-            Intent intent;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-                intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
-            } else {
-                intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-            }
-            AppUtils.startActivity(intent);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "startNotificationListenSettings");
-        }
+        NotificationUtils.startNotificationListenSettings();
     }
 
     // =
@@ -192,14 +171,14 @@ public final class NotificationService extends NotificationListenerService {
     // =
 
     // 通知栏监听事件
-    private static NotificationListener notificationListener;
+    private static NotificationListener sListener;
 
     /**
      * 设置通知栏监听事件
      * @param listener {@link NotificationListener}
      */
     public static void setNotificationListener(final NotificationListener listener) {
-        NotificationService.notificationListener = listener;
+        NotificationService.sListener = listener;
     }
 
     /**

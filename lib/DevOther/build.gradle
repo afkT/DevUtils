@@ -2,26 +2,26 @@ apply {
     from rootProject.file(files.app_lib_gradle)
 }
 
-android.defaultConfig {
-    versionCode versions.dev_other_versionCode
-    versionName versions.dev_other_versionName
-}
-
 dependencies {
     compileOnly project(path: ':DevApp')
     compileOnly project(path: ':DevAssist')
 
-    // Gson
+    // Gson https://github.com/google/gson
     implementation deps.lib.gson
-    // Imageloader
+    // fastjson https://github.com/alibaba/fastjson
+    implementation deps.lib.fastjson
+    // Imageloader 图片加载框架 https://github.com/nostra13/Android-Universal-Image-Loader
     implementation deps.lib.imageloader
-    // Glide
+    // Glide 加载框架 https://github.com/bumptech/glide
     implementation deps.lib.glide
     annotationProcessor deps.lib.glide_compiler
-    // EventBus
+    // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
     implementation deps.lib.eventbus
-    // OkHttp3
+    // OkHttp3 网络请求框架 https://github.com/square/okhttp
     implementation deps.lib.okhttp3
-    // PictureSelector
+    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
     implementation deps.lib.pictureSelector
+    // 二维码 ZXing https://github.com/zxing/zxing
+    implementation deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
+    implementation deps.lib.zxing_android_code // http://mvnrepository.com/artifact/com.google.zxing/android-core
 }

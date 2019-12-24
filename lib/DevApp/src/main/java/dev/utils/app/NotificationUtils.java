@@ -10,11 +10,12 @@ import android.content.pm.ApplicationInfo;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
-
-import androidx.annotation.DrawableRes;
+import android.support.annotation.DrawableRes;
+import android.support.v4.app.NotificationManagerCompat;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Set;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -81,6 +82,44 @@ public final class NotificationUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * 检查是否有获取通知栏信息权限并跳转设置页面
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean checkAndIntentSetting() {
+        if (!isNotificationListenerEnabled()) {
+            startNotificationListenSettings();
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 判断是否有获取通知栏信息权限
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isNotificationListenerEnabled() {
+        return isNotificationListenerEnabled(AppUtils.getPackageName());
+    }
+
+    /**
+     * 判断是否有获取通知栏信息权限
+     * @param packageName 应用包名
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isNotificationListenerEnabled(final String packageName) {
+        Set<String> packageNames = NotificationManagerCompat.getEnabledListenerPackages(DevUtils.getContext());
+        return packageNames.contains(packageName);
+    }
+
+    /**
+     * 跳转到设置页面, 开启获取通知栏信息权限
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean startNotificationListenSettings() {
+        return AppUtils.startActivity(IntentUtils.getLaunchAppNotificationListenSettingsIntent());
     }
 
     // =
@@ -383,7 +422,7 @@ public final class NotificationUtils {
 
         /**
          * 判断是否为 null
-         * @return {@code true} is null, {@code false} not null
+         * @return {@code true} yes, {@code false} no
          */
         public boolean isEmpty() {
             return (vibrates == null || vibrates.length == 0);

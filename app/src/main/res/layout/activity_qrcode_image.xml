@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dev.widget.CustomNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+    <LinearLayout
+        style="@style/AppTheme.padding_lr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <afkt.project.ui.widget.BaseButton
+            android:id="@+id/vid_aqi_select_btn"
+            style="@style/AppTheme.Base_Button"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="选择图片" />
+
+        <afkt.project.ui.widget.BaseTextView
+            android:id="@+id/vid_aqi_tv"
+            style="@style/AppTheme.Base_TextView"
+            android:layout_marginTop="10.0dip"
+            android:textSize="17.0sp"
+            tools:text="解析结果" />
+    </LinearLayout>
+</dev.widget.CustomNestedScrollView>

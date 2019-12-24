@@ -36,6 +36,8 @@ public final class FileIOUtils {
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
     // 缓存大小
     private static int sBufferSize = 8192;
+    // 无数据读取
+    public static final int EOF = -1;
 
     /**
      * 设置缓冲区的大小, 默认大小等于 8192 字节
@@ -90,7 +92,7 @@ public final class FileIOUtils {
             os = new BufferedOutputStream(new FileOutputStream(file, append));
             byte[] data = new byte[sBufferSize];
             int len;
-            while ((len = inputStream.read(data, 0, sBufferSize)) != -1) {
+            while ((len = inputStream.read(data, 0, sBufferSize)) != EOF) {
                 os.write(data, 0, len);
             }
             return true;
@@ -522,7 +524,7 @@ public final class FileIOUtils {
             baos = new ByteArrayOutputStream();
             byte[] b = new byte[sBufferSize];
             int len;
-            while ((len = fis.read(b, 0, sBufferSize)) != -1) {
+            while ((len = fis.read(b, 0, sBufferSize)) != EOF) {
                 baos.write(b, 0, len);
             }
             return baos.toByteArray();
@@ -596,5 +598,31 @@ public final class FileIOUtils {
         } finally {
             CloseUtils.closeIOQuietly(fc);
         }
+    }
+
+    // =
+
+    /**
+     * 复制 InputStream 到 OutputStream
+     * @param inputStream  {@link InputStream} 读取流
+     * @param outputStream {@link OutputStream} 写入流
+     * @return bytes number
+     */
+    public static long copyLarge(final InputStream inputStream, final OutputStream outputStream) {
+        try {
+            byte[] data = new byte[sBufferSize];
+            long count = 0;
+            int n;
+            while (EOF != (n = inputStream.read(data))) {
+                outputStream.write(data, 0, n);
+                count += n;
+            }
+            return count;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "copyLarge");
+        } finally {
+            CloseUtils.closeIOQuietly(inputStream, outputStream);
+        }
+        return -1;
     }
 }

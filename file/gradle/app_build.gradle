@@ -7,31 +7,63 @@ android {
     compileSdkVersion versions.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion versions.minSdkVersion
+        minSdkVersion versions.app_minSdkVersion
         versionCode versions.versionCode
         versionName versions.versionName
-    }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+        // 开启 multidex
+        multiDexEnabled true
     }
 
     lintOptions {
+        // https://blog.csdn.net/berber78/article/details/60766091
         abortOnError false
+        checkReleaseBuilds false
     }
 
     compileOptions {
         sourceCompatibility versions.javaVersion
         targetCompatibility versions.javaVersion
     }
+
+    // 签名配置
+    signingConfigs {
+        release {
+            storeFile rootProject.file("file/sign/demo.jks")
+            storePassword "123456"
+            keyAlias "demo"
+            keyPassword "123456"
+        }
+
+        debug {
+            storeFile rootProject.file("file/sign/demo.jks")
+            storePassword "123456"
+            keyAlias "demo"
+            keyPassword "123456"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps.androidx.appcompat
-    implementation deps.androidx.support_v4
-    implementation deps.androidx.design
+    implementation deps.android.appcompat_v7
+    implementation deps.android.support_v4
+    implementation deps.android.design
+    implementation deps.android.cardview
+    implementation deps.android.recyclerview
+    implementation deps.android.multidex
+    implementation deps.android.constraint_layout
 }

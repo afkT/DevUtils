@@ -99,15 +99,19 @@ public final class FlashlightUtils {
      */
     public boolean setFlashlightOn(final Camera camera) {
         if (camera != null) {
-            Camera.Parameters parameters = camera.getParameters();
-            if (parameters != null && !Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
-                try {
-                    parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-                    camera.setParameters(parameters);
-                    return true;
-                } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "setFlashlightOn");
+            try {
+                Camera.Parameters parameters = camera.getParameters();
+                if (parameters != null && !Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
+                    try {
+                        parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                        camera.setParameters(parameters);
+                        return true;
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setFlashlightOn");
+                    }
                 }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setFlashlightOn - getParameters");
             }
         }
         return false;
@@ -130,15 +134,19 @@ public final class FlashlightUtils {
      */
     public boolean setFlashlightOff(final Camera camera) {
         if (camera != null) {
-            Camera.Parameters parameters = camera.getParameters();
-            if (parameters != null && Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
-                try {
-                    parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-                    camera.setParameters(parameters);
-                    return true;
-                } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "setFlashlightOff");
+            try {
+                Camera.Parameters parameters = camera.getParameters();
+                if (parameters != null && Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
+                    try {
+                        parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+                        camera.setParameters(parameters);
+                        return true;
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "setFlashlightOff");
+                    }
                 }
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setFlashlightOff - getParameters");
             }
         }
         return false;

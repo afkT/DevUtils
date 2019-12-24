@@ -31,9 +31,10 @@ public final class DevCommonUtils {
      * @param builder   拼接 Builder
      * @param startTime 开始时间
      * @param endTime   结束时间
+     * @return {@link StringBuilder}
      */
-    public static void timeRecord(final StringBuilder builder, final long startTime, final long endTime) {
-        timeRecord(builder, null, startTime, endTime);
+    public static StringBuilder timeRecord(final StringBuilder builder, final long startTime, final long endTime) {
+        return timeRecord(builder, null, startTime, endTime);
     }
 
     /**
@@ -42,9 +43,10 @@ public final class DevCommonUtils {
      * @param title     标题
      * @param startTime 开始时间
      * @param endTime   结束时间
+     * @return {@link StringBuilder}
      */
-    public static void timeRecord(final StringBuilder builder, final String title, final long startTime, final long endTime) {
-        if (builder == null) return;
+    public static StringBuilder timeRecord(final StringBuilder builder, final String title, final long startTime, final long endTime) {
+        if (builder == null) return builder;
         // 使用时间
         long diffTime = endTime - startTime;
         // 计算时间
@@ -57,6 +59,7 @@ public final class DevCommonUtils {
         builder.append(NEW_LINE_STR + "结束时间: " + DateUtils.formatTime(endTime, DateUtils.yyyyMMddHHmmss));
         builder.append(NEW_LINE_STR + "所用时间(毫秒): " + diffTime);
         builder.append(NEW_LINE_STR + "所用时间(秒): " + (diffTime / 1000));
+        return builder;
     }
 
     // =
@@ -234,7 +237,7 @@ public final class DevCommonUtils {
     /**
      * 判断对象是否为空
      * @param object 对象
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final Object object) {
         return ObjectUtils.isEmpty(object);
@@ -243,7 +246,7 @@ public final class DevCommonUtils {
     /**
      * 判断对象是否非空
      * @param object 对象
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final Object object) {
         return ObjectUtils.isNotEmpty(object);
@@ -256,7 +259,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否为 null
      * @param objects object[]
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final Object[] objects) {
         return ArrayUtils.isEmpty(objects);
@@ -265,7 +268,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否为 null
      * @param ints int[]
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final int[] ints) {
         return ArrayUtils.isEmpty(ints);
@@ -274,7 +277,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否为 null
      * @param bytes byte[]
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final byte[] bytes) {
         return ArrayUtils.isEmpty(bytes);
@@ -283,7 +286,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否为 null
      * @param chars char[]
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final char[] chars) {
         return ArrayUtils.isEmpty(chars);
@@ -292,7 +295,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否为 null
      * @param shorts short[]
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final short[] shorts) {
         return ArrayUtils.isEmpty(shorts);
@@ -301,7 +304,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否为 null
      * @param longs long[]
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final long[] longs) {
         return ArrayUtils.isEmpty(longs);
@@ -310,7 +313,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否为 null
      * @param floats float[]
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final float[] floats) {
         return ArrayUtils.isEmpty(floats);
@@ -319,7 +322,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否为 null
      * @param doubles double[]
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final double[] doubles) {
         return ArrayUtils.isEmpty(doubles);
@@ -328,7 +331,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否为 null
      * @param booleans boolean[]
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final boolean[] booleans) {
         return ArrayUtils.isEmpty(booleans);
@@ -339,7 +342,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否不为 null
      * @param objects object[]
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final Object[] objects) {
         return ArrayUtils.isNotEmpty(objects);
@@ -348,7 +351,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否不为 null
      * @param ints int[]
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final int[] ints) {
         return ArrayUtils.isNotEmpty(ints);
@@ -357,7 +360,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否不为 null
      * @param bytes byte[]
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final byte[] bytes) {
         return ArrayUtils.isNotEmpty(bytes);
@@ -366,7 +369,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否不为 null
      * @param chars char[]
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final char[] chars) {
         return ArrayUtils.isNotEmpty(chars);
@@ -375,7 +378,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否不为 null
      * @param shorts short[]
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final short[] shorts) {
         return ArrayUtils.isNotEmpty(shorts);
@@ -384,7 +387,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否不为 null
      * @param longs long[]
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final long[] longs) {
         return ArrayUtils.isNotEmpty(longs);
@@ -393,7 +396,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否不为 null
      * @param floats float[]
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final float[] floats) {
         return ArrayUtils.isNotEmpty(floats);
@@ -402,7 +405,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否不为 null
      * @param doubles double[]
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final double[] doubles) {
         return ArrayUtils.isNotEmpty(doubles);
@@ -411,7 +414,7 @@ public final class DevCommonUtils {
     /**
      * 判断数组是否不为 null
      * @param booleans boolean[]
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final boolean[] booleans) {
         return ArrayUtils.isNotEmpty(booleans);
@@ -693,7 +696,7 @@ public final class DevCommonUtils {
     /**
      * 判断 Collection 是否为 null
      * @param collection {@link Collection}
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final Collection collection) {
         return CollectionUtils.isEmpty(collection);
@@ -702,7 +705,7 @@ public final class DevCommonUtils {
     /**
      * 判断 Collection 是否不为 null
      * @param collection {@link Collection}
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final Collection collection) {
         return CollectionUtils.isNotEmpty(collection);
@@ -750,7 +753,7 @@ public final class DevCommonUtils {
     /**
      * 判断 Map 是否为 null
      * @param map {@link Map}
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final Map map) {
         return MapUtils.isEmpty(map);
@@ -759,7 +762,7 @@ public final class DevCommonUtils {
     /**
      * 判断 Map 是否不为 null
      * @param map {@link Map}
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final Map map) {
         return MapUtils.isNotEmpty(map);
@@ -807,7 +810,7 @@ public final class DevCommonUtils {
     /**
      * 判断字符串是否为 null
      * @param str 待校验的字符串
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final String str) {
         return StringUtils.isEmpty(str);
@@ -817,7 +820,7 @@ public final class DevCommonUtils {
      * 判断字符串是否为 null
      * @param str    待校验的字符串
      * @param isTrim 是否调用 trim()
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final String str, final boolean isTrim) {
         return StringUtils.isEmpty(str, isTrim);
@@ -826,7 +829,7 @@ public final class DevCommonUtils {
     /**
      * 判断多个字符串是否存在为 null 的字符串
      * @param strs 待校验的字符串数组
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final String... strs) {
         return StringUtils.isEmpty(strs);
@@ -837,7 +840,7 @@ public final class DevCommonUtils {
     /**
      * 判断字符串是否不为 null
      * @param str 待校验的字符串
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final String str) {
         return StringUtils.isNotEmpty(str);
@@ -847,7 +850,7 @@ public final class DevCommonUtils {
      * 判断字符串是否不为 null
      * @param str    待校验的字符串
      * @param isTrim 是否调用 trim()
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final String str, final boolean isTrim) {
         return StringUtils.isNotEmpty(str, isTrim);
@@ -1156,25 +1159,6 @@ public final class DevCommonUtils {
 
     /**
      * StringBuilder 拼接处理
-     * @param args 拼接数据源
-     * @return {@link StringBuilder}
-     */
-    public static StringBuilder appends(final Object... args) {
-        return StringUtils.appends(args);
-    }
-
-    /**
-     * StringBuilder 拼接处理
-     * @param split 追加间隔
-     * @param args  拼接数据源
-     * @return {@link StringBuilder}
-     */
-    public static StringBuilder appends(final String split, final Object... args) {
-        return StringUtils.appends(split, args);
-    }
-
-    /**
-     * StringBuilder 拼接处理
      * @param builder 拼接 Builder
      * @param split   追加间隔
      * @param args    拼接数据源
@@ -1185,15 +1169,14 @@ public final class DevCommonUtils {
     }
 
     /**
-     * StringBuilder 拼接处理
+     * StringBuilder 拼接处理 ( 最后一个不追加间隔 )
      * @param builder 拼接 Builder
      * @param split   追加间隔
-     * @param end     结尾是否追加
      * @param args    拼接数据源
      * @return {@link StringBuilder}
      */
-    public static StringBuilder appends(final StringBuilder builder, final String split, final boolean end, final Object... args) {
-        return StringUtils.appends(builder, split, end, args);
+    public static StringBuilder appendsIgnoreLast(final StringBuilder builder, final String split, final Object... args) {
+        return StringUtils.appendsIgnoreLast(builder, split, args);
     }
 
     // ==============

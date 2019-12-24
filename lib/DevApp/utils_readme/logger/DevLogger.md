@@ -1,6 +1,6 @@
 # DevLogger 日志工具类
 
-#### 使用演示类 [LoggerUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/logger/LoggerUse.java) 介绍了配置参数及使用
+#### 使用演示类 [LoggerUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/logger/LoggerUse.java) 介绍了配置参数及使用
 
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/logger)
 
@@ -68,7 +68,7 @@
 #### 全局配置
 
 ```java
-// = 在BaseApplication 中调用 =
+// = 在 BaseApplication 中调用 =
 // 初始化日志配置
 LogConfig logConfig = new LogConfig();
 // 堆栈方法总数(显示经过的方法)

@@ -1,10 +1,11 @@
 package dev.utils.app;
 
 import android.os.Build;
+import android.support.annotation.RequiresPermission;
+import android.support.annotation.StringRes;
 import android.text.TextUtils;
 
-import androidx.annotation.RequiresPermission;
-import androidx.annotation.StringRes;
+import java.util.UUID;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.common.StringUtils;
@@ -78,6 +79,29 @@ public final class AppCommonUtils {
     public static String getUUID() {
         return PhoneUtils.getUUID();
     }
+
+    /**
+     * 获取设备唯一 UUID ( 使用硬件信息拼凑出来的 )
+     * @return 设备唯一 UUID
+     * <pre>
+     *     https://developer.android.com/training/articles/user-data-ids
+     * </pre>
+     */
+    public static String getUUIDDevice() {
+        String serial = "serial";
+        String m_szDevIDShort = "35" +
+                Build.BOARD.length() % 10 + Build.BRAND.length() % 10 +
+                Build.CPU_ABI.length() % 10 + Build.DEVICE.length() % 10 +
+                Build.DISPLAY.length() % 10 + Build.HOST.length() % 10 +
+                Build.ID.length() % 10 + Build.MANUFACTURER.length() % 10 +
+                Build.MODEL.length() % 10 + Build.PRODUCT.length() % 10 +
+                Build.TAGS.length() % 10 + Build.TYPE.length() % 10 +
+                Build.USER.length() % 10; // 13 位
+        // 使用硬件信息拼凑出来的 15 位号码
+        return new UUID(m_szDevIDShort.hashCode(), serial.hashCode()).toString();
+    }
+
+    // =
 
     /**
      * 获取 R.string 资源的格式化字符串

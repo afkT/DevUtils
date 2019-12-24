@@ -1,6 +1,31 @@
 Change Log
 ==========
 
+Version 1.8.6 *(2019-12-25)*
+----------------------------
+
+* `[Feature]` 适配 Android Q 并重构 PathUtils 工具类, 提供适配思路以及增加 MediaStoreUtils 多媒体工具类用于外部存储适配操作
+
+* `[Add]` ViewUtils#toggleFocusable、toggleSelected、toggleEnabled、toggleClickable、toggleLongClickable、getChilds
+
+* `[Add]` AppCommonUtils#getUUIDDevice、NotificationUtils#checkAndIntentSetting、isNotificationListenerEnabled、startNotificationListenSettings
+
+* `[Add]` UriUtils#isUriExists、IntentUtils#getLaunchAppNotificationListenSettingsIntent、getOpenBrowserIntent、getCreateDocumentIntent、getOpenDocumentIntent
+
+* `[Add]` CrashUtils UncaughtException 处理工具类、MediaStoreUtils 多媒体工具类
+
+* `[Change]` 移动 ImageViewUtils 部分方法到 ViewUtils、更新 ContentResolverUtils 工具类代码, 拆分到 UriUtils、MediaStoreUtils
+
+* `[Add]` ColorUtils#getARGB、grayLevel、sortGray、sortHSB 并增加内部类 ColorInfo, 支持颜色排序
+
+* `[Add]` FileIOUtils#copyLarge、DateUtils#yyyyMMdd_HHmmss、CoordinateUtils#getDistance、getAngle、getDirection
+
+* `[Add]` DevCommonUtils、StringUtils#appendsIgnoreLast
+
+* `[Update]` 删除 DevCommonUtils、StringUtils 几个重载方法 appends
+
+* `[Update]` 更新部分工具类、方法注释代码、代码间距等
+
 Version 1.8.5 *(2019-11-25)*
 ----------------------------
 
@@ -102,7 +127,7 @@ Version 1.7.9 *(2019-09-19)*
  
  * `[Update]` ImageUtils#getImageType、ImageUtils#isImage modify to isImageFormats
  
- * `[Update]` 修改部分方法 void 返回值 (返回当前对象, 方便链式调用)
+ * `[Update]` 修改部分方法 void 返回值 ( 返回当前对象, 方便链式调用 )
  
  * `[Add]` AppCommonUtils#isQ
  
@@ -159,4 +184,3 @@ Version 1.0.0~1.7.5 *(2019-07-26)*
 ----------------------------
 
  * 整个工具类 review code, 并规范代码风格、检测注释、代码间距等
-

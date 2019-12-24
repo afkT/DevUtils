@@ -155,12 +155,12 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
                 @Override
                 public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
                     // 获取资源文件
-                    AssetFileDescriptor file = ResourceUtils.openRawResourceFd(rawId);
+                    AssetFileDescriptor afd = ResourceUtils.openRawResourceFd(rawId);
                     try {
                         // 设置播放路径
-                        mMediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
+                        mMediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
                     } finally {
-                        CloseUtils.closeIOQuietly(file);
+                        CloseUtils.closeIOQuietly(afd);
                     }
                 }
 
@@ -209,12 +209,12 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
                 @Override
                 public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
                     // 获取资源文件
-                    AssetFileDescriptor file = ResourceUtils.openNonAssetFd("assets" + tempPlayUri);
+                    AssetFileDescriptor afd = ResourceUtils.openNonAssetFd("assets" + tempPlayUri);
                     try {
                         // 设置播放路径
-                        mMediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
+                        mMediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
                     } finally {
-                        CloseUtils.closeIOQuietly(file);
+                        CloseUtils.closeIOQuietly(afd);
                     }
                 }
 

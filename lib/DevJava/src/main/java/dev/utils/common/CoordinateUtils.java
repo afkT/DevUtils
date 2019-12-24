@@ -3,7 +3,7 @@ package dev.utils.common;
 import static java.lang.Math.PI;
 
 /**
- * detail: 坐标 (GPS 纠偏 ) 相关工具类
+ * detail: 坐标 ( GPS 纠偏 ) 相关工具类
  * @author Ttt
  * <pre>
  *     地球坐标系 (WGS-84)
@@ -11,6 +11,11 @@ import static java.lang.Math.PI;
  *     百度坐标系 (BD09)
  *     <p></p>
  *     @see <a href="https://github.com/hujiulong/gcoord"/>
+ *     @see <a href="https://www.cnblogs.com/milkmap/p/3768379.html"/>
+ *     根据两点经纬度计算距离
+ *     @see <a href="https://www.cnblogs.com/ycsfwhh/archive/2010/12/20/1911232.html"/>
+ *     根据经纬度计算两点之间的距离的公式推导过程以及 google.maps 的测距函数
+ *     @see <a href="https://blog.csdn.net/xiejm2333/article/details/73297004"/>
  *     <p></p>
  *     1. WGS84 坐标系: 即地球坐标系, 国际上通用的坐标系, 设备一般包含 GPS 芯片或者北斗芯片获取的经纬度为 WGS84 地理坐标系
  *     谷歌地图采用的是 WGS84 地理坐标系 ( 中国范围除外 ) GPS 设备得到的经纬度就是在 WGS84 坐标系下的经纬度, 通常通过底层接口得到的定位信息都是 WGS84 坐标系
@@ -161,5 +166,159 @@ public final class CoordinateUtils {
      */
     public static boolean outOfChina(final double lng, final double lat) {
         return lng < 72.004 || lng > 137.8347 || lat < 0.8293 || lat > 55.8271;
+    }
+
+    // ============
+    // = 计算坐标 =
+    // ============
+
+    // 赤道半径
+    private static double EARTH_RADIUS = 6378.137;
+
+    /**
+     * 计算弧度角
+     * @param degree 度数
+     * @return 弧度角
+     */
+    private static double rad(final double degree) {
+        return degree * Math.PI / 180.0;
+    }
+
+    /**
+     * 计算两个坐标相距距离 ( 单位: 米 )
+     * <pre>
+     *     计算点与点直线间距离
+     * </pre>
+     * @param originLng 起点经度
+     * @param originLat 起点纬度
+     * @param targetLng 目标经度
+     * @param targetLat 目标纬度
+     * @return 两个坐标相距距离 ( 单位: 米 )
+     */
+    public static double getDistance(final double originLng, final double originLat,
+                                     final double targetLng, final double targetLat) {
+        double radLat1 = rad(originLat);
+        double radLat2 = rad(targetLat);
+        double a = radLat1 - radLat2;
+        double b = rad(originLng) - rad(targetLng);
+        double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2)
+                + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+        s = s * EARTH_RADIUS;
+        // 保留两位小数
+        s = Math.round(s * 100d) / 100d;
+        s = s * 1000;
+        return s;
+    }
+
+    /**
+     * 计算两个坐标的方向角度
+     * <pre>
+     *     以 origin 为参考点坐标, 获取目标坐标位于参考点坐标方向
+     * </pre>
+     * @param originLng 起点经度
+     * @param originLat 起点纬度
+     * @param targetLng 目标经度
+     * @param targetLat 目标纬度
+     * @return 两个坐标的方向角度
+     */
+    public static double getAngle(final double originLng, final double originLat,
+                                  final double targetLng, final double targetLat) {
+        double radLat1 = rad(originLat);
+        double radLng1 = rad(originLng);
+        double radLat2 = rad(targetLat);
+        double radLng2 = rad(targetLng);
+        double ret;
+        if (radLng1 == radLng2) {
+            if (radLat1 > radLat2)
+                return 270; // 北半球的情况, 南半球忽略
+            else if (radLat1 < radLat2)
+                return 90;
+            else
+                return Integer.MAX_VALUE; // 位置完全相同
+        }
+        ret = 4 * Math.pow(Math.sin((radLat1 - radLat2) / 2), 2)
+                - Math.pow(Math.sin((radLng1 - radLng2) / 2) * (Math.cos(radLat1) - Math.cos(radLat2)), 2);
+        ret = Math.sqrt(ret);
+        ret = ret / Math.sin(Math.abs(radLng1 - radLng2) / 2) * (Math.cos(radLat1) + Math.cos(radLat2));
+        ret = Math.atan(ret) / Math.PI * 180;
+        if (radLng1 > radLng2) { // 以 origin 为参考点坐标
+            if (radLat1 > radLat2)
+                ret += 180;
+            else
+                ret = 180 - ret;
+        } else if (radLat1 > radLat2)
+            ret = 360 - ret;
+        return ret;
+    }
+
+    /**
+     * 计算两个坐标的方向
+     * @param originLng 起点经度
+     * @param originLat 起点纬度
+     * @param targetLng 目标经度
+     * @param targetLat 目标纬度
+     * @return 两个坐标的方向
+     */
+    public static Direction getDirection(final double originLng, final double originLat,
+                                         final double targetLng, final double targetLat) {
+        double angle = getAngle(originLng, originLat, targetLng, targetLat);
+        return getDirection(angle);
+    }
+
+    /**
+     * 通过角度获取方向
+     * @param angle 角度
+     * @return 方向
+     */
+    public static Direction getDirection(final double angle) {
+        if (angle == Integer.MAX_VALUE) return Direction.SAME;
+        if ((angle <= 10) || (angle > 350))
+            return Direction.RIGHT;
+        if ((angle > 10) && (angle <= 80))
+            return Direction.RIGHT_TOP;
+        if ((angle > 80) && (angle <= 100))
+            return Direction.TOP;
+        if ((angle > 100) && (angle <= 170))
+            return Direction.LEFT_TOP;
+        if ((angle > 170) && (angle <= 190))
+            return Direction.LEFT;
+        if ((angle > 190) && (angle <= 260))
+            return Direction.LEFT_BOTTOM;
+        if ((angle > 260) && (angle <= 280))
+            return Direction.BOTTOM;
+        if ((angle > 280) && (angle <= 350))
+            return Direction.RIGHT_BOTTOM;
+        return Direction.SAME;
+    }
+
+    /**
+     * detail: 坐标方向
+     * @author Ttt
+     */
+    public enum Direction {
+
+        SAME("相同"), // 坐标相同
+        TOP("北"), // 上 - 北
+        BOTTOM("南"), // 下 - 南
+        LEFT("西"), // 左 - 西
+        RIGHT("东"), // 右 - 东
+        LEFT_TOP("西北"), // 左上 - 西北
+        LEFT_BOTTOM("西南"), // 左下 - 西南
+        RIGHT_TOP("东北"), // 右上 - 东北
+        RIGHT_BOTTOM("东南"); // 右下 - 东南
+
+        private String value;
+
+        Direction(String value) {
+            this.value = value;
+        }
+
+        /**
+         * 获取中文方向值
+         * @return 中文方向值
+         */
+        public String getValue() {
+            return value;
+        }
     }
 }

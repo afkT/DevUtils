@@ -4,6 +4,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Html;
 import android.text.InputFilter;
@@ -918,6 +919,16 @@ public final class TextViewUtils {
     /**
      * 设置 TextView 是否加粗
      * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return {@link TextView}
+     */
+    public static <T extends TextView> T setBold(final T textView) {
+        return setBold(textView, true);
+    }
+
+    /**
+     * 设置 TextView 是否加粗
+     * @param textView {@link TextView}
      * @param isBold   {@code true} yes, {@code false} no
      * @param <T>      泛型
      * @return {@link TextView}
@@ -942,6 +953,16 @@ public final class TextViewUtils {
             textView.setTypeface(typeface, isBold ? Typeface.BOLD : Typeface.NORMAL);
         }
         return textView;
+    }
+
+    /**
+     * 设置 TextView 是否加粗
+     * @param view {@link TextView}
+     * @return {@link View}
+     */
+    public static View setBold(final View view) {
+        setBold(getTextView(view), true);
+        return view;
     }
 
     /**
@@ -2227,5 +2248,194 @@ public final class TextViewUtils {
             return ((allTextWidth - width * result == 0f) ? result : result + 1);
         }
         return 0;
+    }
+
+    // =====================
+    // = CompoundDrawables =
+    // =====================
+
+    /**
+     * 获取 CompoundDrawables
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return Drawable[] { left, top, right, bottom }
+     */
+    public static <T extends TextView> Drawable[] getCompoundDrawables(final T textView) {
+        if (textView != null) {
+            return textView.getCompoundDrawables();
+        }
+        return new Drawable[]{null, null, null, null};
+    }
+
+    /**
+     * 获取 CompoundDrawables Padding
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return CompoundDrawables Padding
+     */
+    public static <T extends TextView> int getCompoundDrawablePadding(final T textView) {
+        if (textView != null) {
+            return textView.getCompoundDrawablePadding();
+        }
+        return 0;
+    }
+
+    /**
+     * 设置 CompoundDrawables Padding
+     * @param textView {@link TextView}
+     * @param padding  CompoundDrawables Padding
+     * @param <T>      泛型
+     * @return {@link View}
+     */
+    public static <T extends TextView> T setCompoundDrawablePadding(final T textView, final int padding) {
+        if (textView != null) textView.setCompoundDrawablePadding(padding);
+        return textView;
+    }
+
+    // ========================
+    // = setCompoundDrawables =
+    // ========================
+
+    /**
+     * 设置 Left CompoundDrawables
+     * @param textView {@link TextView}
+     * @param left     left Drawable
+     * @param <T>      泛型
+     * @return {@link View}
+     */
+    public static <T extends TextView> T setCompoundDrawablesByLeft(final T textView, final Drawable left) {
+        return setCompoundDrawables(textView, left, null, null, null);
+    }
+
+    /**
+     * 设置 Top CompoundDrawables
+     * @param textView {@link TextView}
+     * @param top      top Drawable
+     * @param <T>      泛型
+     * @return {@link View}
+     */
+    public static <T extends TextView> T setCompoundDrawablesByTop(final T textView, final Drawable top) {
+        return setCompoundDrawables(textView, null, top, null, null);
+    }
+
+    /**
+     * 设置 Right CompoundDrawables
+     * @param textView {@link TextView}
+     * @param right    right Drawable
+     * @param <T>      泛型
+     * @return {@link View}
+     */
+    public static <T extends TextView> T setCompoundDrawablesByRight(final T textView, final Drawable right) {
+        return setCompoundDrawables(textView, null, null, right, null);
+    }
+
+    /**
+     * 设置 Bottom CompoundDrawables
+     * @param textView {@link TextView}
+     * @param bottom   bottom Drawable
+     * @param <T>      泛型
+     * @return {@link View}
+     */
+    public static <T extends TextView> T setCompoundDrawablesByBottom(final T textView, final Drawable bottom) {
+        return setCompoundDrawables(textView, null, null, null, bottom);
+    }
+
+    /**
+     * 设置 CompoundDrawables
+     * <pre>
+     *     CompoundDrawable 的大小控制是通过 drawable.setBounds() 控制
+     *     需要先设置 Drawable 的 setBounds
+     *     {@link dev.utils.app.image.ImageUtils#setBounds}
+     * </pre>
+     * @param textView {@link TextView}
+     * @param left     left Drawable
+     * @param top      top Drawable
+     * @param right    right Drawable
+     * @param bottom   bottom Drawable
+     * @param <T>      泛型
+     * @return {@link View}
+     */
+    public static <T extends TextView> T setCompoundDrawables(final T textView,
+                                                              final Drawable left, final Drawable top,
+                                                              final Drawable right, final Drawable bottom) {
+        if (textView != null) {
+            try {
+                textView.setCompoundDrawables(left, top, right, bottom);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setCompoundDrawables");
+            }
+        }
+        return textView;
+    }
+
+    // ===========================================
+    // = setCompoundDrawablesWithIntrinsicBounds =
+    // ===========================================
+
+    /**
+     * 设置 Left CompoundDrawables - 按照原有比例大小显示图片
+     * @param textView {@link TextView}
+     * @param left     left Drawable
+     * @param <T>      泛型
+     * @return {@link View}
+     */
+    public static <T extends TextView> T setCompoundDrawablesWithIntrinsicBoundsByLeft(final T textView, final Drawable left) {
+        return setCompoundDrawablesWithIntrinsicBounds(textView, left, null, null, null);
+    }
+
+    /**
+     * 设置 Top CompoundDrawables - 按照原有比例大小显示图片
+     * @param textView {@link TextView}
+     * @param top      top Drawable
+     * @param <T>      泛型
+     * @return {@link View}
+     */
+    public static <T extends TextView> T setCompoundDrawablesWithIntrinsicBoundsByTop(final T textView, final Drawable top) {
+        return setCompoundDrawablesWithIntrinsicBounds(textView, null, top, null, null);
+    }
+
+    /**
+     * 设置 Right CompoundDrawables - 按照原有比例大小显示图片
+     * @param textView {@link TextView}
+     * @param right    right Drawable
+     * @param <T>      泛型
+     * @return {@link View}
+     */
+    public static <T extends TextView> T setCompoundDrawablesWithIntrinsicBoundsByRight(final T textView, final Drawable right) {
+        return setCompoundDrawablesWithIntrinsicBounds(textView, null, null, right, null);
+    }
+
+    /**
+     * 设置 Bottom CompoundDrawables - 按照原有比例大小显示图片
+     * @param textView {@link TextView}
+     * @param bottom   bottom Drawable
+     * @param <T>      泛型
+     * @return {@link View}
+     */
+    public static <T extends TextView> T setCompoundDrawablesWithIntrinsicBoundsByBottom(final T textView, final Drawable bottom) {
+        return setCompoundDrawablesWithIntrinsicBounds(textView, null, null, null, bottom);
+    }
+
+    /**
+     * 设置 CompoundDrawables - 按照原有比例大小显示图片
+     * @param textView {@link TextView}
+     * @param left     left Drawable
+     * @param top      top Drawable
+     * @param right    right Drawable
+     * @param bottom   bottom Drawable
+     * @param <T>      泛型
+     * @return {@link View}
+     */
+    public static <T extends TextView> T setCompoundDrawablesWithIntrinsicBounds(final T textView,
+                                                                                 final Drawable left, final Drawable top,
+                                                                                 final Drawable right, final Drawable bottom) {
+        if (textView != null) {
+            try {
+                textView.setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setCompoundDrawablesWithIntrinsicBounds");
+            }
+        }
+        return textView;
     }
 }

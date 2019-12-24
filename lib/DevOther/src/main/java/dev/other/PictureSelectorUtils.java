@@ -354,7 +354,7 @@ public final class PictureSelectorUtils {
      * @param pictureSelector {@link PictureSelector}
      * @return {@code true} success, {@code false} fail
      */
-    public boolean openGallery(final PictureSelector pictureSelector) {
+    public static boolean openGallery(final PictureSelector pictureSelector) {
         return openGallery(pictureSelector, PIC_CONFIG);
     }
 
@@ -364,7 +364,7 @@ public final class PictureSelectorUtils {
      * @param picConfig       {@link PicConfig}
      * @return {@code true} success, {@code false} fail
      */
-    public boolean openGallery(final PictureSelector pictureSelector, final PicConfig picConfig) {
+    public static boolean openGallery(final PictureSelector pictureSelector, final PicConfig picConfig) {
         PictureSelectionModel pictureSelectionModel = getPictureSelectionModel(pictureSelector, picConfig, false);
         if (pictureSelectionModel != null) {
             pictureSelectionModel.forResult(PIC_REQUEST_CODE);

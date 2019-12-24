@@ -29,6 +29,8 @@ import dev.utils.LogPrintUtils;
  * detail: Glide 工具类
  * @author Ttt
  * <pre>
+ *     必须调用 {@link GlideUtils#init(Context)}
+ *     <p></p>
  *     init: GlideUtils.init(getApplicationContext());
  *     use modify: 修改 defaultOptions() 配置、以及加载默认图片资源
  *     <p></p>
@@ -114,7 +116,7 @@ public final class GlideUtils {
     // ==========
 
     /**
-     * 初始化方法
+     * 初始化方法 ( 必须调用 )
      * @param context {@link Context}
      */
     public static void init(final Context context) {
@@ -252,7 +254,7 @@ public final class GlideUtils {
      * detail: Glide Loader 封装内部类
      * @author Ttt
      */
-    public final static class GlideLoader {
+    public static final class GlideLoader {
 
         // RequestManager
         private RequestManager mRequestManager;

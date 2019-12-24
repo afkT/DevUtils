@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dev.widget.CustomNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <afkt.project.ui.widget.BaseTextView
+            android:id="@+id/vid_al_tv"
+            style="@style/AppTheme.Base_TextView"
+            android:layout_height="100.0dip"
+            android:gravity="center"
+            android:lineSpacingExtra="5dip" />
+
+        <View
+            style="@style/AppTheme.Base_Line_Vertical"
+            android:background="@color/gray" />
+
+        <dev.widget.LineTextView
+            android:id="@+id/vid_al_content_tv"
+            style="@style/AppTheme.Base_TextView"
+            android:layout_margin="15.0dip"
+            android:gravity="center"
+            android:lineSpacingExtra="5dip" />
+
+    </LinearLayout>
+</dev.widget.CustomNestedScrollView>

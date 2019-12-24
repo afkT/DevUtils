@@ -1,6 +1,6 @@
 # Snackbar 工具类
 
-#### 使用演示类 [SnackbarUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/snackbar/SnackbarUse.java) 介绍了配置参数及使用
+#### 使用演示类 [SnackbarUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/snackbar/SnackbarUse.java) 介绍了配置参数及使用
 
 #### 项目类结构
 

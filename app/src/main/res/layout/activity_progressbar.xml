@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <dev.widget.CustomProgressBar
+                android:id="@+id/vid_ap_bar1"
+                android:layout_width="120.0dip"
+                android:layout_height="120.0dip"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <dev.widget.CustomProgressBar
+                android:id="@+id/vid_ap_bar2"
+                android:layout_width="120.0dip"
+                android:layout_height="120.0dip"
+                android:layout_gravity="center" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <dev.widget.CustomProgressBar
+                android:id="@+id/vid_ap_bar3"
+                android:layout_width="120.0dip"
+                android:layout_height="120.0dip"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <dev.widget.CustomProgressBar
+                android:id="@+id/vid_ap_bar4"
+                android:layout_width="120.0dip"
+                android:layout_height="120.0dip"
+                android:layout_gravity="center" />
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

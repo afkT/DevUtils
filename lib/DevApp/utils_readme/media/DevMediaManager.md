@@ -1,6 +1,6 @@
 # 多媒体工具类
 
-#### 使用演示类 [MediaUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/media/MediaUse.java) 介绍了配置参数及使用
+#### 使用演示类 [MediaUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/media/MediaUse.java) 介绍了配置参数及使用
 
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/player)
 
@@ -161,7 +161,7 @@ DevMediaManager.getInstance().setMeidaListener(new DevMediaManager.MediaListener
 // 播放音频
 DevMediaManager.getInstance().playPrepareRaw(R.raw.dev_beep);
 DevMediaManager.getInstance().playPrepareAssets("a.mp3");
-DevMediaManager.getInstance().playPrepare(SDCardUtils.getSDCardPath() + "/a.mp3");
+DevMediaManager.getInstance().playPrepare(PathUtils.getSDCard().getSDCardPath() + "/a.mp3");
 DevMediaManager.getInstance().playPrepare("http://xxx.mp3");
 DevMediaManager.getInstance().playPrepare(new DevMediaManager.MediaSet() {
     @Override
@@ -175,7 +175,7 @@ DevMediaManager.getInstance().playPrepare(new DevMediaManager.MediaSet() {
 SurfaceView surfaceView = null;
 // 播放视频
 DevVideoPlayerControl control = new DevVideoPlayerControl(surfaceView);
-control.startPlayer(SDCardUtils.getSDCardPath() + "/video_3.mp4");
+control.startPlayer(PathUtils.getSDCard().getSDCardPath() + "/video_3.mp4");
 control.startPlayer("http://xxx.mp4");
 control.startPlayer(new DevMediaManager.MediaSet() {
     @Override

@@ -21,7 +21,7 @@ public class AsyncExecutor {
 
     // 日志 TAG
     private final String TAG = AsyncExecutor.class.getSimpleName();
-    // 主线程 Hander
+    // 主线程 Handler
     private Handler mHandler = new Handler(Looper.getMainLooper());
     // 线程池
     private ExecutorService mThreadPool;

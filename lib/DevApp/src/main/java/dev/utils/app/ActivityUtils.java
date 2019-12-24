@@ -142,8 +142,8 @@ public final class ActivityUtils {
             } else if (intent.resolveActivity(packageManager) == null) {
                 result = false;
             } else {
-                List<ResolveInfo> list = packageManager.queryIntentActivities(intent, 0);
-                if (list.size() == 0) {
+                List<ResolveInfo> lists = packageManager.queryIntentActivities(intent, 0);
+                if (lists.size() == 0) {
                     result = false;
                 }
             }

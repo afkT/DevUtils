@@ -740,7 +740,7 @@ public final class PhoneUtils {
 
     /**
      * 获取手机短信并保存到 xml 中
-     * @param filePath 文件路径 /sdcard/xxx.xml
+     * @param filePath 文件路径
      * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(allOf = {android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_SMS})
@@ -756,7 +756,7 @@ public final class PhoneUtils {
             Uri uri = Uri.parse("content://sms");
             // 1.4 查询操作
             // projection 查询的字段
-            // selection 查询的条件
+            // selection 查询条件
             // selectionArgs 查询条件的参数
             // sortOrder 排序
             cursor = resolver.query(uri, new String[]{"address", "date", "type", "body"}, null, null, null);

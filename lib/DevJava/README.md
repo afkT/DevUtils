@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevJava:1.0.6'
+implementation 'com.afkt:DevJava:1.0.7'
 ```
 
 ## 目录结构
@@ -217,6 +217,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | 方法 | 注释 |
 | :- | :- |
 | toHexAlpha | 获取十六进制透明度字符串 |
+| getARGB | 返回一个颜色 ARGB 色值数组 ( 返回十进制 ) |
 | alpha | 返回一个颜色中的透明度值 ( 返回十进制 ) |
 | alphaPercent | 返回一个颜色中的透明度百分比值 |
 | red | 返回一个颜色中红色的色值 ( 返回十进制 ) |
@@ -242,6 +243,24 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | setLight | 颜色变浅, 变亮 ( 单独修改 RGB 值, 不变动透明度 ) |
 | setAlphaDark | 设置透明度加深 |
 | setAlphaLight | 设置透明度变浅 |
+| grayLevel | 获取灰度值 |
+| setParser | 设置 Color 解析器 |
+| sortGray | 灰度值排序 |
+| sortHSB | HSB ( HSV) 排序 |
+| getKey | 获取 Key |
+| getValue | 获取 Value |
+| getValueParser | 获取 Value 解析后的值 ( 如: #000 => #000000 ) |
+| getValueColor | 获取 ARGB/RGB color |
+| getAlpha | 返回颜色中的透明度值 ( 返回十进制 ) |
+| getRed | 返回颜色中红色的色值 ( 返回十进制 ) |
+| getGreen | 返回颜色中绿色的色值 ( 返回十进制 ) |
+| getBlue | 返回颜色中蓝色的色值 ( 返回十进制 ) |
+| getGrayLevel | 获取灰度值 |
+| getHue | 获取颜色色调 |
+| getSaturation | 获取颜色饱和度 |
+| getBrightness | 获取颜色亮度 |
+| toString | toString |
+| handleColor | 处理 color |
 
 
 * **转换工具类 (Byte、Hex 等 ) ->** [ConvertUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/ConvertUtils.java)
@@ -291,7 +310,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | bytesBitwiseAND | 按位求补 byte[] 位移编解码 ( 共用同一个方法 ) |
 
 
-* **坐标 (GPS 纠偏 ) 相关工具类 ->** [CoordinateUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/CoordinateUtils.java)
+* **坐标 ( GPS 纠偏 ) 相关工具类 ->** [CoordinateUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/CoordinateUtils.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -302,6 +321,10 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | bd09ToWGS84 | BD09 坐标转 WGS84 坐标 |
 | wgs84ToBd09 | WGS84 坐标转 BD09 坐标 |
 | outOfChina | 判断是否中国境外 |
+| getDistance | 计算两个坐标相距距离 ( 单位: 米 ) |
+| getAngle | 计算两个坐标的方向角度 |
+| getDirection | 计算两个坐标的方向 |
+| getValue | 获取中文方向值 |
 
 
 * **日期工具类 ->** [DateUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/DateUtils.java)
@@ -386,6 +409,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getAutoFormatString | 获取自动数量格式化后的字符串 ( 可变参数 ) |
 | getAutoFormatString2 | 获取自动数量格式化后的字符串 ( 可变参数 ) |
 | appends | StringBuilder 拼接处理 |
+| appendsIgnoreLast | StringBuilder 拼接处理 ( 最后一个不追加间隔 ) |
 | converHideMobile | 转换手机号 |
 | converSymbolHide | 转换符号处理 |
 | subEllipsize | 裁剪超出的内容, 并且追加符号 ( 如 ...) |
@@ -459,6 +483,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | readFileToBytesByStream | 读取文件内容, 返回 byte[] |
 | readFileToBytesByChannel | 通过 FileChannel, 读取文件内容, 返回 byte[] |
 | readFileToBytesByMap | 通过 MappedByteBuffer, 读取文件内容, 返回 byte[] |
+| copyLarge | 复制 InputStream 到 OutputStream |
 
 
 * **文件记录工具类 ->** [FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/FileRecordUtils.java)
@@ -762,11 +787,11 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | equals | 判断两个值是否一样 |
 | isEquals | 判断多个字符串是否相等, 只有全相等才返回 true - 对比大小写 |
 | isOrEquals | 判断多个字符串, 只要有一个符合条件则通过 |
-| countMatches | 统计字符串匹配个数 |
-| countMatches2 | 统计字符串匹配个数 |
 | isContains | 判断一堆值中, 是否存在符合该条件的 ( 包含 ) |
 | isStartsWith | 判断内容, 是否属于特定字符串开头 - 对比大小写 |
 | isEndsWith | 判断内容, 是否属于特定字符串结尾 - 对比大小写 |
+| countMatches | 统计字符串匹配个数 |
+| countMatches2 | 统计字符串匹配个数 |
 | isSpace | 判断字符串是否为 null 或全为空白字符 |
 | toClearSpace | 清空字符串全部空格 |
 | toClearSpaceTrim | 清空字符串前后所有空格 |
@@ -781,6 +806,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getAutoFormatString | 获取自动数量格式化后的字符串 ( 可变参数 ) |
 | getAutoFormatString2 | 获取自动数量格式化后的字符串 ( 可变参数 ) |
 | appends | StringBuilder 拼接处理 |
+| appendsIgnoreLast | StringBuilder 拼接处理 ( 最后一个不追加间隔 ) |
 | toGBKEncode | 字符串进行 GBK 编码 |
 | toGBK2312Encode | 字符串进行 GBK2312 编码 |
 | toUTF8Encode | 字符串进行 UTF-8 编码 |

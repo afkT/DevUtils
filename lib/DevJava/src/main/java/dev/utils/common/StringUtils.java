@@ -30,7 +30,7 @@ public final class StringUtils {
     /**
      * 判断字符串是否为 null
      * @param str 待校验的字符串
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final String str) {
         return (str == null || str.length() == 0);
@@ -40,7 +40,7 @@ public final class StringUtils {
      * 判断字符串是否为 null
      * @param str    待校验的字符串
      * @param isTrim 是否调用 trim()
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final String str, final boolean isTrim) {
         if (str != null) {
@@ -52,7 +52,7 @@ public final class StringUtils {
     /**
      * 判断多个字符串是否存在为 null 的字符串
      * @param strs 待校验的字符串数组
-     * @return {@code true} is null, {@code false} not null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final String... strs) {
         if (strs != null && strs.length != 0) {
@@ -72,7 +72,7 @@ public final class StringUtils {
     /**
      * 判断字符串是否不为 null
      * @param str 待校验的字符串
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final String str) {
         return (str != null && str.length() != 0);
@@ -82,7 +82,7 @@ public final class StringUtils {
      * 判断字符串是否不为 null
      * @param str    待校验的字符串
      * @param isTrim 是否调用 trim()
-     * @return {@code true} not null, {@code false} is null
+     * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmpty(final String str, final boolean isTrim) {
         return isNotEmpty(isTrim ? str.trim() : str);
@@ -230,53 +230,6 @@ public final class StringUtils {
             }
         }
         return false;
-    }
-
-    /**
-     * 统计字符串匹配个数
-     * @param str     待匹配字符串
-     * @param keyword 匹配 key
-     * @return 字符串 key 匹配个数
-     */
-    public static int countMatches(final String str, final String keyword) {
-        if (isEmpty(str) || isEmpty(keyword)) return 0;
-        try {
-            int count = 0;
-            Matcher matcher = Pattern.compile(keyword).matcher(str);
-            // find() 对字符串进行匹配, 匹配到的字符串可以在任何位置
-            while (matcher.find()) {
-                count++;
-            }
-            return count;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "countMatches");
-        }
-        return -1;
-    }
-
-    /**
-     * 统计字符串匹配个数
-     * @param str     待匹配字符串
-     * @param keyword 匹配 key
-     * @return 字符串 key 匹配个数
-     */
-    public static int countMatches2(final String str, final String keyword) {
-        if (isEmpty(str) || isEmpty(keyword)) return 0;
-        try {
-            // 获取匹配 key 长度
-            int keyLength = keyword.length();
-            // =
-            int count = 0;
-            int index = 0;
-            while ((index = str.indexOf(keyword, index)) != -1) {
-                index = index + keyLength;
-                count++;
-            }
-            return count;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "countMatches2");
-        }
-        return -1;
     }
 
     /**
@@ -434,6 +387,53 @@ public final class StringUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * 统计字符串匹配个数
+     * @param str     待匹配字符串
+     * @param keyword 匹配 key
+     * @return 字符串 key 匹配个数
+     */
+    public static int countMatches(final String str, final String keyword) {
+        if (isEmpty(str) || isEmpty(keyword)) return 0;
+        try {
+            int count = 0;
+            Matcher matcher = Pattern.compile(keyword).matcher(str);
+            // find() 对字符串进行匹配, 匹配到的字符串可以在任何位置
+            while (matcher.find()) {
+                count++;
+            }
+            return count;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "countMatches");
+        }
+        return -1;
+    }
+
+    /**
+     * 统计字符串匹配个数
+     * @param str     待匹配字符串
+     * @param keyword 匹配 key
+     * @return 字符串 key 匹配个数
+     */
+    public static int countMatches2(final String str, final String keyword) {
+        if (isEmpty(str) || isEmpty(keyword)) return 0;
+        try {
+            // 获取匹配 key 长度
+            int keyLength = keyword.length();
+            // =
+            int count = 0;
+            int index = 0;
+            while ((index = str.indexOf(keyword, index)) != -1) {
+                index = index + keyLength;
+                count++;
+            }
+            return count;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "countMatches2");
+        }
+        return -1;
     }
 
     // ============
@@ -694,58 +694,45 @@ public final class StringUtils {
 
     /**
      * StringBuilder 拼接处理
-     * @param args 拼接数据源
-     * @return {@link StringBuilder}
-     */
-    public static StringBuilder appends(final Object... args) {
-        return appends(new StringBuilder(), null, false, args);
-    }
-
-    /**
-     * StringBuilder 拼接处理
-     * @param split 追加间隔
-     * @param args  拼接数据源
-     * @return {@link StringBuilder}
-     */
-    public static StringBuilder appends(final String split, final Object... args) {
-        return appends(new StringBuilder(), split, false, args);
-    }
-
-    /**
-     * StringBuilder 拼接处理
      * @param builder 拼接 Builder
      * @param split   追加间隔
      * @param args    拼接数据源
      * @return {@link StringBuilder}
      */
     public static StringBuilder appends(final StringBuilder builder, final String split, final Object... args) {
-        return appends(builder, split, false, args);
-    }
-
-    /**
-     * StringBuilder 拼接处理
-     * @param builder 拼接 Builder
-     * @param split   追加间隔
-     * @param end     结尾是否追加
-     * @param args    拼接数据源
-     * @return {@link StringBuilder}
-     */
-    public static StringBuilder appends(final StringBuilder builder, final String split, final boolean end, final Object... args) {
         if (builder != null && args != null) {
             // 获取间隔字符串, 优化循环判断
             String str = isEmpty(split) ? "" : split;
             // 循环处理
             for (int i = 0, len = args.length; i < len; i++) {
                 builder.append(args[i]); // 拼接数据
-                // 判断是否结尾
-                if (len - i == 1) {
-                    // 判断结尾是否追加
-                    if (end) builder.append(str); // 间隔追加
-                } else {
+                // 追加间隔
+                builder.append(str);
+            }
+        }
+        return builder;
+    }
+
+    /**
+     * StringBuilder 拼接处理 ( 最后一个不追加间隔 )
+     * @param builder 拼接 Builder
+     * @param split   追加间隔
+     * @param args    拼接数据源
+     * @return {@link StringBuilder}
+     */
+    public static StringBuilder appendsIgnoreLast(final StringBuilder builder, final String split, final Object... args) {
+        if (builder != null && args != null) {
+            // 获取间隔字符串, 优化循环判断
+            String str = isEmpty(split) ? "" : split;
+            int len = args.length;
+            if (len > 0) {
+                // 循环处理
+                for (int i = 0; i < len - 1; i++) {
+                    builder.append(args[i]); // 拼接数据
                     builder.append(str); // 间隔追加
                 }
+                builder.append(args[len - 1]); // 拼接数据
             }
-            return builder;
         }
         return builder;
     }

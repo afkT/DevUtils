@@ -1,14 +1,10 @@
 package dev.service;
 
 import android.accessibilityservice.AccessibilityService;
-import android.content.Intent;
-import android.provider.Settings;
 import android.view.accessibility.AccessibilityEvent;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AccessibilityUtils;
-import dev.utils.app.AppUtils;
-import dev.utils.app.ResourceUtils;
 import dev.utils.app.ServiceUtils;
 
 /**
@@ -25,7 +21,7 @@ import dev.utils.app.ServiceUtils;
  *     AccessibilityServiceInfo serviceInfo = new AccessibilityServiceInfo();
  *     serviceInfo.eventTypes = AccessibilityEvent.TYPES_ALL_MASK;
  *     serviceInfo.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC;
- *     serviceInfo.packageNames = new String[]{ "com.dev"" };
+ *     serviceInfo.packageNames = new String[]{ "afkt.project"" };
  *     serviceInfo.notificationTimeout=100;
  *     setServiceInfo(serviceInfo);
  * </pre>
@@ -35,7 +31,7 @@ public final class AccessibilityListenerService extends AccessibilityService {
     // 日志 TAG
     private static final String TAG = AccessibilityService.class.getSimpleName();
     // 当前服务所持对象
-    private static AccessibilityListenerService self;
+    private static AccessibilityListenerService sSelf;
 
     /**
      * 通过这个函数可以接收系统发送来的 AccessibilityEvent
@@ -46,8 +42,8 @@ public final class AccessibilityListenerService extends AccessibilityService {
      */
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        if (accessibilityListener != null) {
-            accessibilityListener.onAccessibilityEvent(event, this);
+        if (sListener != null) {
+            sListener.onAccessibilityEvent(event, this);
         }
     }
 
@@ -58,8 +54,8 @@ public final class AccessibilityListenerService extends AccessibilityService {
     public void onInterrupt() {
         LogPrintUtils.dTag(TAG, "onInterrupt");
 
-        if (accessibilityListener != null) {
-            accessibilityListener.onInterrupt();
+        if (sListener != null) {
+            sListener.onInterrupt();
         }
     }
 
@@ -81,10 +77,10 @@ public final class AccessibilityListenerService extends AccessibilityService {
         super.onCreate();
         LogPrintUtils.dTag(TAG, "onCreate");
 
-        if (accessibilityListener != null) {
-            accessibilityListener.onServiceCreated(this);
+        if (sListener != null) {
+            sListener.onServiceCreated(this);
         }
-        self = this;
+        sSelf = this;
     }
 
     @Override
@@ -92,11 +88,11 @@ public final class AccessibilityListenerService extends AccessibilityService {
         super.onDestroy();
         LogPrintUtils.dTag(TAG, "onDestroy");
 
-        if (accessibilityListener != null) {
-            accessibilityListener.onServiceDestroy();
-            accessibilityListener = null;
+        if (sListener != null) {
+            sListener.onServiceDestroy();
+            sListener = null;
         }
-        self = null;
+        sSelf = null;
     }
 
     // ================
@@ -108,7 +104,7 @@ public final class AccessibilityListenerService extends AccessibilityService {
      * @return {@link AccessibilityListenerService}
      */
     public static AccessibilityListenerService getSelf() {
-        return self;
+        return sSelf;
     }
 
     /**
@@ -135,7 +131,7 @@ public final class AccessibilityListenerService extends AccessibilityService {
      * @return {@code true} open, {@code false} close
      */
     public static boolean checkAccessibility() {
-        return checkAccessibility(AppUtils.getPackageName());
+        return AccessibilityUtils.checkAccessibility();
     }
 
     /**
@@ -147,14 +143,7 @@ public final class AccessibilityListenerService extends AccessibilityService {
      * @return {@code true} open, {@code false} close
      */
     public static boolean checkAccessibility(final String packageName) {
-        if (packageName == null) return false;
-        // 判断辅助功能是否开启
-        if (!isAccessibilitySettingsOn(packageName)) {
-            // 跳转至辅助功能设置页面
-            AppUtils.startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
-            return false;
-        }
-        return true;
+        return AccessibilityUtils.checkAccessibility(packageName);
     }
 
     /**
@@ -163,38 +152,20 @@ public final class AccessibilityListenerService extends AccessibilityService {
      * @return {@code true} open, {@code false} close
      */
     public static boolean isAccessibilitySettingsOn(final String packageName) {
-        if (packageName == null) return false;
-        // 无障碍功能开启状态
-        int accessibilityEnabled = 0;
-        try {
-            accessibilityEnabled = Settings.Secure.getInt(ResourceUtils.getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);
-        } catch (Settings.SettingNotFoundException e) {
-            LogPrintUtils.eTag(TAG, e, "isAccessibilitySettingsOn - Settings.Secure.ACCESSIBILITY_ENABLED");
-        }
-        if (accessibilityEnabled == 1) {
-            try {
-                String services = Settings.Secure.getString(ResourceUtils.getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
-                if (services != null) {
-                    return services.toLowerCase().contains(packageName.toLowerCase());
-                }
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "isAccessibilitySettingsOn - Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES");
-            }
-        }
-        return false;
+        return AccessibilityUtils.isAccessibilitySettingsOn(packageName);
     }
 
     // =
 
     // 监听事件
-    private static AccessibilityListener accessibilityListener;
+    private static AccessibilityListener sListener;
 
     /**
      * 设置监听事件
      * @param listener {@link AccessibilityListener}
      */
     public static void setAccessibilityListener(final AccessibilityListener listener) {
-        AccessibilityListenerService.accessibilityListener = listener;
+        AccessibilityListenerService.sListener = listener;
     }
 
     /**

@@ -1,6 +1,6 @@
 # Cache 工具类
 
-#### 使用演示类 [CacheUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/cache/CacheUse.java) 介绍了配置参数及使用
+#### 使用演示类 [CacheUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/cache/CacheUse.java) 介绍了配置参数及使用
 
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/cache)
 
@@ -44,7 +44,7 @@ DevLogger.dTag(TAG, "保存后: " + ctv.toString());
 DevCache.obtain().put("ctva", new CacheVo("测试有效时间"), 1);
 
 // 保存到指定文件夹下
-DevCache.obtain(new File(SDCardUtils.getSDCardPath(), "Cache")).put("key", "保存数据");
+DevCache.obtain(new File(PathUtils.getSDCard().getSDCardPath(), "Cache")).put("key", "保存数据");
 
 // 延迟后
 new Thread(new Runnable() {

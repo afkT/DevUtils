@@ -69,21 +69,21 @@ public final class WifiReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         try {
             // 触发回调通知 ( 每次进入都通知 )
-            if (wifiListener != null) wifiListener.onIntoTrigger();
+            if (sListener != null) sListener.onIntoTrigger();
             // 触发意图
             String action = intent.getAction();
             // 打印当前触发的广播
-            LogPrintUtils.dTag(TAG, "WifiReceiver onReceive Action: " + action);
+            LogPrintUtils.dTag(TAG, "onReceive Action: " + action);
             // 判断类型
             switch (action) {
                 case WifiManager.SCAN_RESULTS_AVAILABLE_ACTION: // 当调用 WifiManager 的 startScan() 方法, 扫描结束后, 系统会发出改 Action 广播
-                    if (wifiListener != null) {
-                        wifiListener.onTrigger(WIFI_SCAN_FINISH);
+                    if (sListener != null) {
+                        sListener.onTrigger(WIFI_SCAN_FINISH);
                     }
                     break;
                 case WifiManager.RSSI_CHANGED_ACTION: // 当前连接的 Wifi 强度发生变化触发
-                    if (wifiListener != null) {
-                        wifiListener.onTrigger(WIFI_RSSI_CHANGED);
+                    if (sListener != null) {
+                        sListener.onTrigger(WIFI_RSSI_CHANGED);
                     }
                     break;
                 case WifiManager.SUPPLICANT_STATE_CHANGED_ACTION: // 发送 Wifi 连接的过程信息, 如果出错 ERROR 信息才会收到, 连接 Wifi 时触发, 触发多次
@@ -92,13 +92,13 @@ public final class WifiReceiver extends BroadcastReceiver {
                     // 获取错误状态
                     switch (wifiErrorCode) {
                         case WifiManager.ERROR_AUTHENTICATING: // 认证错误, 如密码错误等
-                            if (wifiListener != null) {
-                                wifiListener.onTrigger(WIFI_ERROR_AUTHENTICATING);
+                            if (sListener != null) {
+                                sListener.onTrigger(WIFI_ERROR_AUTHENTICATING);
                             }
                             break;
                         default: // 连接错误 ( 其他错误 )
-                            if (wifiListener != null) {
-                                wifiListener.onTrigger(WIFI_ERROR_UNKNOWN);
+                            if (sListener != null) {
+                                sListener.onTrigger(WIFI_ERROR_UNKNOWN);
                             }
                             break;
                     }
@@ -108,28 +108,28 @@ public final class WifiReceiver extends BroadcastReceiver {
                     int wifiState = intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE, WifiManager.WIFI_STATE_UNKNOWN);
                     switch (wifiState) {
                         case WifiManager.WIFI_STATE_ENABLED: // 已打开
-                            if (wifiListener != null) {
-                                wifiListener.onTrigger(WIFI_STATE_ENABLED);
+                            if (sListener != null) {
+                                sListener.onTrigger(WIFI_STATE_ENABLED);
                             }
                             break;
                         case WifiManager.WIFI_STATE_ENABLING: // 正在打开
-                            if (wifiListener != null) {
-                                wifiListener.onTrigger(WIFI_STATE_ENABLING);
+                            if (sListener != null) {
+                                sListener.onTrigger(WIFI_STATE_ENABLING);
                             }
                             break;
                         case WifiManager.WIFI_STATE_DISABLED: // 已关闭
-                            if (wifiListener != null) {
-                                wifiListener.onTrigger(WIFI_STATE_DISABLED);
+                            if (sListener != null) {
+                                sListener.onTrigger(WIFI_STATE_DISABLED);
                             }
                             break;
                         case WifiManager.WIFI_STATE_DISABLING: // 正在关闭
-                            if (wifiListener != null) {
-                                wifiListener.onTrigger(WIFI_STATE_DISABLING);
+                            if (sListener != null) {
+                                sListener.onTrigger(WIFI_STATE_DISABLING);
                             }
                             break;
                         case WifiManager.WIFI_STATE_UNKNOWN: // 未知
-                            if (wifiListener != null) {
-                                wifiListener.onTrigger(WIFI_STATE_UNKNOWN);
+                            if (sListener != null) {
+                                sListener.onTrigger(WIFI_STATE_UNKNOWN);
                             }
                             break;
                     }
@@ -164,8 +164,8 @@ public final class WifiReceiver extends BroadcastReceiver {
                                 break;
                         }
                         // 触发回调
-                        if (wifiListener != null) {
-                            wifiListener.onTrigger(msg.what, msg);
+                        if (sListener != null) {
+                            sListener.onTrigger(msg.what, msg);
                         }
                     }
                     break;
@@ -173,8 +173,8 @@ public final class WifiReceiver extends BroadcastReceiver {
                     // 判断是否打开 Wifi
                     boolean isOpenWifi = intent.getBooleanExtra(WifiManager.EXTRA_SUPPLICANT_CONNECTED, false);
                     // 触发回调
-                    if (wifiListener != null) {
-                        wifiListener.onWifiSwitch(isOpenWifi);
+                    if (sListener != null) {
+                        sListener.onWifiSwitch(isOpenWifi);
                     }
                     break;
             }
@@ -188,7 +188,7 @@ public final class WifiReceiver extends BroadcastReceiver {
     // ================
 
     // Wifi 监听广播
-    private static final WifiReceiver wifiReceiver = new WifiReceiver();
+    private static final WifiReceiver sReceiver = new WifiReceiver();
 
     /**
      * 注册 Wifi 监听广播
@@ -209,7 +209,7 @@ public final class WifiReceiver extends BroadcastReceiver {
             // 判断是否 Wifi 打开了, 变化触发一次
             filter.addAction(WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION);
             // 注册广播
-            AppUtils.registerReceiver(wifiReceiver, filter);
+            AppUtils.registerReceiver(sReceiver, filter);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
@@ -220,7 +220,7 @@ public final class WifiReceiver extends BroadcastReceiver {
      */
     public static void unregisterReceiver() {
         try {
-            AppUtils.unregisterReceiver(wifiReceiver);
+            AppUtils.unregisterReceiver(sReceiver);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }
@@ -229,14 +229,16 @@ public final class WifiReceiver extends BroadcastReceiver {
     // =
 
     // Wifi 监听事件
-    private static WifiListener wifiListener;
+    private static WifiListener sListener;
 
     /**
      * 设置 Wifi 监听事件
      * @param listener {@link WifiListener}
+     * @return {@link WifiReceiver}
      */
-    public static void setWifiListener(final WifiListener listener) {
-        WifiReceiver.wifiListener = listener;
+    public static WifiReceiver setWifiListener(final WifiListener listener) {
+        WifiReceiver.sListener = listener;
+        return sReceiver;
     }
 
     /**
@@ -266,7 +268,7 @@ public final class WifiReceiver extends BroadcastReceiver {
 
         /**
          * Wifi 开关状态
-         * @param isOpenWifi 是否打开 wifi
+         * @param isOpenWifi 是否打开 Wifi
          */
         public abstract void onWifiSwitch(boolean isOpenWifi);
     }

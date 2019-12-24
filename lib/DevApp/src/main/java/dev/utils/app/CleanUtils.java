@@ -24,40 +24,49 @@ public final class CleanUtils {
      * 清除外部缓存 - path /storage/emulated/0/android/data/package/cache
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean cleanExternalCache() {
-        return FileUtils.deleteFilesInDir(PathUtils.getExternalAppCachePath());
+    public static boolean cleanCache() {
+        return FileUtils.deleteFilesInDir(PathUtils.getAppExternal().getAppCachePath());
     }
 
     /**
      * 清除内部缓存 - path /data/data/package/cache
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean cleanInternalCache() {
-        return FileUtils.deleteFilesInDir(PathUtils.getInternalCachePath());
+    public static boolean cleanAppCache() {
+        return FileUtils.deleteFilesInDir(PathUtils.getInternal().getAppCachePath());
     }
 
     /**
      * 清除内部文件 - path /data/data/package/files
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean cleanInternalFiles() {
-        return FileUtils.deleteFilesInDir(PathUtils.getInternalAppFilesPath());
+    public static boolean cleanAppFiles() {
+        return FileUtils.deleteFilesInDir(PathUtils.getInternal().getAppFilesPath());
     }
 
     /**
      * 清除内部 SP - path /data/data/package/shared_prefs
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean cleanInternalSp() {
-        return FileUtils.deleteFilesInDir(PathUtils.getInternalAppSpPath());
+    public static boolean cleanAppSp() {
+        return FileUtils.deleteFilesInDir(PathUtils.getInternal().getAppSpPath());
+    }
+
+    /**
+     * 清除内部 SP - path /data/data/package/shared_prefs
+     * @param spName SP 文件名
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean cleanAppSp(final String spName) {
+        return FileUtils.deleteFilesInDir(PathUtils.getInternal().getAppSpPath(spName));
     }
 
     /**
      * 清除内部数据库 - path /data/data/package/databases
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean cleanInternalDbs() {
-        return FileUtils.deleteFilesInDir(PathUtils.getInternalAppDbsPath());
+    public static boolean cleanAppDbs() {
+        return FileUtils.deleteFilesInDir(PathUtils.getInternal().getAppDbsPath());
     }
 
     /**
@@ -65,7 +74,7 @@ public final class CleanUtils {
      * @param dbName 数据库名
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean cleanInternalDbByName(final String dbName) {
+    public static boolean cleanAppDbByName(final String dbName) {
         return AppUtils.deleteDatabase(dbName);
     }
 
@@ -97,11 +106,11 @@ public final class CleanUtils {
     public static boolean cleanApplicationData(final String... filePaths) {
         boolean result = true;
         try {
-            cleanExternalCache();
-            cleanInternalCache();
-            cleanInternalFiles();
-            cleanInternalSp();
-            cleanInternalDbs();
+            cleanCache();
+            cleanAppCache();
+            cleanAppFiles();
+            cleanAppSp();
+            cleanAppDbs();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "cleanApplicationData");
             result = false;

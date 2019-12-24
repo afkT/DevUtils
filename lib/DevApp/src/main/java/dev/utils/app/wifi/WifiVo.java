@@ -20,21 +20,21 @@ public class WifiVo implements Parcelable {
     // 日志 TAG
     private static final String TAG = WifiVo.class.getSimpleName();
 
-    @Keep // wifi ssid
-    public String wSSID = null;
-    @Keep // wifi 密码
-    public String wPwd = null;
-    @Keep // wifi 加密类型
-    public int wType = WifiUtils.NOPWD;
-    @Keep // wifi 信号等级
-    public int wLevel = 0;
+    @Keep // Wifi ssid
+    public String wifiSSID = null;
+    @Keep // Wifi 密码
+    public String wifiPwd = null;
+    @Keep // Wifi 加密类型
+    public int wifiType = WifiUtils.NOPWD;
+    @Keep // Wifi 信号等级
+    public int wifiLevel = 0;
 
     public WifiVo() {
     }
 
     /**
-     * 获取 wifi 信息
-     * @param scanResult 扫描的 wifi 信息
+     * 获取 Wifi 信息
+     * @param scanResult 扫描的 Wifi 信息
      * @return {@link WifiVo}
      */
     public static WifiVo createWifiVo(final ScanResult scanResult) {
@@ -42,25 +42,25 @@ public class WifiVo implements Parcelable {
     }
 
     /**
-     * 获取 wifi 信息
-     * @param scanResult 扫描的 wifi 信息
+     * 获取 Wifi 信息
+     * @param scanResult 扫描的 Wifi 信息
      * @param isAppend   {@code true} 添加引号, {@code false} 删除引号
      * @return {@link WifiVo}
      */
     public static WifiVo createWifiVo(final ScanResult scanResult, final boolean isAppend) {
         if (scanResult != null) {
             try {
-                // 防止 wifi 名长度为 0
+                // 防止 Wifi 名长度为 0
                 if (scanResult.SSID.length() == 0) {
                     return null;
                 }
                 WifiVo wifiVo = new WifiVo();
-                // wifi ssid
-                wifiVo.wSSID = WifiUtils.formatSSID(scanResult.SSID, isAppend);
-                // wifi 加密类型
-                wifiVo.wType = WifiUtils.getWifiType(scanResult.capabilities);
-                // wifi 信号等级
-                wifiVo.wLevel = scanResult.level;
+                // Wifi ssid
+                wifiVo.wifiSSID = WifiUtils.formatSSID(scanResult.SSID, isAppend);
+                // Wifi 加密类型
+                wifiVo.wifiType = WifiUtils.getWifiType(scanResult.capabilities);
+                // Wifi 信号等级
+                wifiVo.wifiLevel = scanResult.level;
                 return wifiVo;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "createWifiVo");
@@ -70,7 +70,7 @@ public class WifiVo implements Parcelable {
     }
 
     /**
-     * 扫描 wifi 信息
+     * 扫描 Wifi 信息
      * @param listScanResults 扫描返回的数据
      * @return {@link List<WifiVo>}
      */
@@ -81,7 +81,7 @@ public class WifiVo implements Parcelable {
     }
 
     /**
-     * 扫描 wifi 信息
+     * 扫描 Wifi 信息
      * @param listWifiVos     数据源
      * @param listScanResults 扫描返回的数据
      * @return {@code true} success, {@code false} fail
@@ -90,17 +90,17 @@ public class WifiVo implements Parcelable {
         if (listWifiVos == null || listScanResults == null) return false;
         // 清空旧数据
         listWifiVos.clear();
-        // 遍历 wifi 列表数据
+        // 遍历 Wifi 列表数据
         for (int i = 0, len = listScanResults.size(); i < len; i++) {
-            // 如果出现异常、或者失败, 则无视当前的索引 wifi 信息
+            // 如果出现异常、或者失败, 则无视当前的索引 Wifi 信息
             try {
-                // 获取当前索引的 wifi 信息
+                // 获取当前索引的 Wifi 信息
                 ScanResult scanResult = listScanResults.get(i);
-                // 防止 wifi 名长度为 0
+                // 防止 Wifi 名长度为 0
                 if (scanResult.SSID.length() == 0) {
                     continue;
                 }
-                // 保存 wifi 信息
+                // 保存 Wifi 信息
                 listWifiVos.add(createWifiVo(scanResult));
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "scanWifiVos");
@@ -114,10 +114,10 @@ public class WifiVo implements Parcelable {
     // ==============
 
     protected WifiVo(Parcel in) {
-        wSSID = in.readString();
-        wPwd = in.readString();
-        wType = in.readInt();
-        wLevel = in.readInt();
+        wifiSSID = in.readString();
+        wifiPwd = in.readString();
+        wifiType = in.readInt();
+        wifiLevel = in.readInt();
     }
 
     public static final Creator<WifiVo> CREATOR = new Creator<WifiVo>() {
@@ -139,9 +139,9 @@ public class WifiVo implements Parcelable {
 
     @Override
     public void writeToParcel(final Parcel dest, final int flags) {
-        dest.writeString(wSSID);
-        dest.writeString(wPwd);
-        dest.writeInt(wType);
-        dest.writeInt(wLevel);
+        dest.writeString(wifiSSID);
+        dest.writeString(wifiPwd);
+        dest.writeInt(wifiType);
+        dest.writeInt(wifiLevel);
     }
 }

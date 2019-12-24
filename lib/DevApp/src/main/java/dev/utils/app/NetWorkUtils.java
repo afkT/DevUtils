@@ -157,7 +157,7 @@ public final class NetWorkUtils {
             ConnectivityManager cManager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-                // 判断连接的是否 wifi
+                // 判断连接的是否 Wifi
                 State wifiState = cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
                 // 判断是否连接上
                 if (wifiState == State.CONNECTED || wifiState == State.CONNECTING) {
@@ -175,7 +175,7 @@ public final class NetWorkUtils {
                 Network network = cManager.getActiveNetwork();
                 if (network != null) {
                     NetworkCapabilities networkCapabilities = cManager.getNetworkCapabilities(network);
-                    // 判断连接的是否 wifi
+                    // 判断连接的是否 Wifi
                     if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                         return 1;
                     } else if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
@@ -315,7 +315,7 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 判断 wifi 是否打开
+     * 判断 Wifi 是否打开
      * @return {@code true} yes, {@code false} no
      */
     public static boolean getWifiEnabled() {
@@ -330,7 +330,7 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 判断 wifi 数据是否可用
+     * 判断 Wifi 数据是否可用
      * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(allOf = {android.Manifest.permission.ACCESS_NETWORK_STATE, android.Manifest.permission.INTERNET})
@@ -444,7 +444,7 @@ public final class NetWorkUtils {
                     // 获取网络连接信息
                     NetworkCapabilities networkCapabilities = cManager.getNetworkCapabilities(network);
                     // 判断连接类型
-                    if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) { // 判断是否连接 wifi
+                    if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) { // 判断是否连接 Wifi
                         netType = NetworkType.NETWORK_WIFI;
                     } else if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) { // 判断连接的是否移动网络
                         TelephonyManager telephonyManager = AppUtils.getTelephonyManager();

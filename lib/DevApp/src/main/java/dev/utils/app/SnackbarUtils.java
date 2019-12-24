@@ -1184,7 +1184,7 @@ public final class SnackbarUtils {
             // 如果等于 null
             if (rootBackgroundDrawable != null) {
                 // 设置背景
-                ImageViewUtils.setBackground(rootView, rootBackgroundDrawable);
+                ViewUtils.setBackground(rootView, rootBackgroundDrawable);
             } else {
                 if (style.getRootBackgroundTintColor() != 0) {
                     GradientDrawable drawable = new GradientDrawable();
@@ -1193,7 +1193,7 @@ public final class SnackbarUtils {
                     // 设置圆角大小
                     drawable.setCornerRadius(style.getRootCornerRadius());
                     // 设置背景
-                    ImageViewUtils.setBackground(rootView, drawable);
+                    ViewUtils.setBackground(rootView, drawable);
                 }
             }
 
@@ -1283,7 +1283,7 @@ public final class SnackbarUtils {
                 // 如果等于 null
                 if (actionBackgroundDrawable != null) {
                     // 设置背景
-                    ImageViewUtils.setBackground(actionButton, actionBackgroundDrawable);
+                    ViewUtils.setBackground(actionButton, actionBackgroundDrawable);
                 } else {
                     if (style.getActionBackgroundTintColor() != 0) {
                         GradientDrawable drawable = new GradientDrawable();
@@ -1292,7 +1292,7 @@ public final class SnackbarUtils {
                         // 设置圆角大小
                         drawable.setCornerRadius(style.getActionCornerRadius());
                         // 设置背景
-                        ImageViewUtils.setBackground(actionButton, drawable);
+                        ViewUtils.setBackground(actionButton, drawable);
                     }
                 }
             }

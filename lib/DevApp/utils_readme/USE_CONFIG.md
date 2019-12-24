@@ -3,7 +3,7 @@
 
 ```java
 /**
- * detail: 全局Application
+ * detail: 全局 Application
  * @author Ttt
  */
 public class BaseApplication extends Application {
@@ -15,14 +15,15 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // 初始化工具类
-        DevUtils.init(this.getApplicationContext());
+//        // 初始化工具类 - 可不调用, 在 DevUtils FileProviderDevApp 中已初始化 , 无需主动调用
+//        DevUtils.init(this.getApplicationContext());
         // = 初始化日志配置 =
-        // 设置默认Logger配置
+        // 设置默认 Logger 配置
         LogConfig logConfig = new LogConfig();
         logConfig.logLevel = LogLevel.DEBUG;
         logConfig.tag = LOG_TAG;
         logConfig.sortLog = true; // 美化日志, 边框包围
+        logConfig.methodCount = 0;
         DevLogger.init(logConfig);
         // 打开 lib 内部日志 - 线上环境, 不调用方法就行
         DevUtils.openLog();
@@ -60,4 +61,4 @@ public class BaseApplication extends Application {
 
 # == 使用相关 ==
 
-## [TextViewUtils - 字体计算工具类使用](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils/text/TextCalcUse.java)
+## [TextViewUtils - 字体计算工具类使用](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/text/TextCalcUse.java)

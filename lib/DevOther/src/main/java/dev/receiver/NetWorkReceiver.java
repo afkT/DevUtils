@@ -47,14 +47,14 @@ public final class NetWorkReceiver extends BroadcastReceiver {
         try {
             String action = intent.getAction();
             // 打印当前触发的广播
-            LogPrintUtils.dTag(TAG, "NetWorkReceiver onReceive Action: " + action);
+            LogPrintUtils.dTag(TAG, "onReceive Action: " + action);
             // 网络连接状态改变时通知
             if (ConnectivityManager.CONNECTIVITY_ACTION.equals(action)) {
                 // 设置连接类型
                 mConnectState = getConnectType();
                 // 触发事件
-                if (NetWorkReceiver.networdStateListener != null) {
-                    NetWorkReceiver.networdStateListener.onNetworkState(mConnectState);
+                if (NetWorkReceiver.sListener != null) {
+                    NetWorkReceiver.sListener.onNetworkState(mConnectState);
                 }
             }
         } catch (Exception e) {
@@ -86,7 +86,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
             ConnectivityManager cManager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-                // 判断连接的是否 wifi
+                // 判断连接的是否 Wifi
                 NetworkInfo.State wifiState = cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
                 // 判断是否连接上
                 if (wifiState == NetworkInfo.State.CONNECTED || wifiState == NetworkInfo.State.CONNECTING) {
@@ -104,7 +104,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
                 Network network = cManager.getActiveNetwork();
                 if (network != null) {
                     NetworkCapabilities networkCapabilities = cManager.getNetworkCapabilities(network);
-                    // 判断连接的是否 wifi
+                    // 判断连接的是否 Wifi
                     if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                         return NET_WIFI;
                     } else if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
@@ -121,7 +121,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
     // =
 
     // 网络广播监听
-    private static final NetWorkReceiver netReceiver = new NetWorkReceiver();
+    private static final NetWorkReceiver sReceiver = new NetWorkReceiver();
 
     /**
      * 注册网络广播监听
@@ -133,7 +133,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
             filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
             filter.setPriority(Integer.MAX_VALUE);
             // 注册广播
-            AppUtils.registerReceiver(netReceiver, filter);
+            AppUtils.registerReceiver(sReceiver, filter);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "registerReceiver");
         }
@@ -144,7 +144,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
      */
     public static void unregisterReceiver() {
         try {
-            AppUtils.unregisterReceiver(netReceiver);
+            AppUtils.unregisterReceiver(sReceiver);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "unregisterReceiver");
         }
@@ -153,14 +153,16 @@ public final class NetWorkReceiver extends BroadcastReceiver {
     // =
 
     // 监听通知事件
-    private static NetwordStateListener networdStateListener;
+    private static NetwordStateListener sListener;
 
     /**
      * 设置监听通知事件
      * @param listener {@link NetwordStateListener}
+     * @return {@link NetWorkReceiver}
      */
-    public static void setNetListener(final NetwordStateListener listener) {
-        NetWorkReceiver.networdStateListener = listener;
+    public static NetWorkReceiver setNetListener(final NetwordStateListener listener) {
+        NetWorkReceiver.sListener = listener;
+        return sReceiver;
     }
 
     /**

@@ -2,8 +2,10 @@ package dev.utils.app;
 
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +17,8 @@ import androidx.annotation.RequiresPermission;
 import androidx.core.content.FileProvider;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.List;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -232,6 +236,29 @@ public final class IntentUtils {
             LogPrintUtils.eTag(TAG, e, "getLaunchAppNotificationSettingsIntent");
         }
         return null;
+    }
+
+    /**
+     * 获取 APP 通知使用权页面
+     * @return APP 通知使用权页面
+     */
+    public static Intent getLaunchAppNotificationListenSettingsIntent() {
+        return getLaunchAppNotificationListenSettingsIntent(false);
+    }
+
+    /**
+     * 获取 APP 通知使用权页面
+     * @param isNewTask 是否开启新的任务栈
+     * @return APP 通知使用权页面
+     */
+    public static Intent getLaunchAppNotificationListenSettingsIntent(final boolean isNewTask) {
+        Intent intent;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
+        } else {
+            intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+        }
+        return getIntent(intent, isNewTask);
     }
 
     /**
@@ -584,6 +611,123 @@ public final class IntentUtils {
             return getIntent(intent, isNewTask);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getCaptureIntent");
+        }
+        return null;
+    }
+
+    /**
+     * 获取存储访问框架的意图
+     * @return 存储访问框架的意图
+     */
+    public static Intent getOpenDocumentIntent() {
+        return getOpenDocumentIntent("*/*");
+    }
+
+    /**
+     * 获取存储访问框架的意图
+     * @param type 跳转类型
+     * @return 存储访问框架的意图
+     */
+    public static Intent getOpenDocumentIntent(final String type) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType(type);
+            return intent;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getOpenDocumentIntent");
+        }
+        return null;
+    }
+
+    /**
+     * 获取创建文件的意图
+     * <pre>
+     *     getCreateDocumentIntent("text/plain", "foobar.txt");
+     *     getCreateDocumentIntent("image/png", "mypicture.png");
+     *     <p></p>
+     *     创建后在 onActivityResult 中获取到 Uri, 对 Uri 进行读写
+     * </pre>
+     * @param mimeType 资源类型
+     * @param fileName 文件名
+     * @return 创建文件的意图
+     */
+    public static Intent getCreateDocumentIntent(final String mimeType, final String fileName) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType(mimeType);
+            intent.putExtra(Intent.EXTRA_TITLE, fileName);
+            return intent;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getCreateDocumentIntent");
+        }
+        return null;
+    }
+
+    /**
+     * 获取打开浏览器的意图
+     * <pre>
+     *     Uri uri = Uri.parse("https://www.baidu.com")
+     *     如果手机本身安装了多个浏览器而又没有设置默认浏览器的话, 系统将让用户选择使用哪个浏览器来打开链接
+     * </pre>
+     * @param uri       链接地址
+     * @param isNewTask 是否开启新的任务栈
+     * @return 打开浏览器的意图
+     */
+    public static Intent getOpenBrowserIntent(final Uri uri, final boolean isNewTask) {
+        return getOpenBrowserIntent(uri, null, null, isNewTask);
+    }
+
+    /**
+     * 获取打开 Android 浏览器的意图
+     * @param uri       链接地址
+     * @param isNewTask 是否开启新的任务栈
+     * @return 打开 Android 浏览器的意图
+     */
+    public static Intent getOpenAndroidBrowserIntent(final Uri uri, final boolean isNewTask) {
+        return getOpenBrowserIntent(uri, "com.android.browser", "com.android.browser.BrowserActivity", isNewTask);
+    }
+
+    /**
+     * 获取打开指定浏览器的意图
+     * <pre>
+     *     打开指定浏览器, 如:
+     *     intent.setClassName("com.UCMobile", "com.uc.browser.InnerUCMobile"); // 打开 UC 浏览器
+     *     intent.setClassName("com.tencent.mtt", "com.tencent.mtt.MainActivity"); // 打开 QQ 浏览器
+     *     intent.setClassName("com.android.browser", "com.android.browser.BrowserActivity"); // 系统指定浏览器
+     * </pre>
+     * @param uri         链接地址
+     * @param packageName 应用包名
+     * @param className   完整类名 ( 可不传 )
+     * @param isNewTask   是否开启新的任务栈
+     * @return 打开指定浏览器的意图
+     */
+    public static Intent getOpenBrowserIntent(final Uri uri, final String packageName, final String className, final boolean isNewTask) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            if (!TextUtils.isEmpty(packageName)) {
+//                intent.setClassName(packageName, className);
+                List<ResolveInfo> lists = AppUtils.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+                HashMap<String, String> browsers = new HashMap<>();
+                for (ResolveInfo resolveInfo : lists) {
+                    ActivityInfo activityInfo = resolveInfo.activityInfo;
+                    if (activityInfo != null) { // 包名, Activity Name
+                        browsers.put(activityInfo.packageName, activityInfo.targetActivity);
+                    }
+                }
+                if (browsers.containsKey(packageName)) {
+                    if (TextUtils.isEmpty(className)) {
+                        intent.setComponent(new ComponentName(packageName, browsers.get(packageName)));
+                    } else {
+                        intent.setComponent(new ComponentName(packageName, className));
+                    }
+                }
+            }
+            return getIntent(intent, isNewTask);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getOpenBrowserIntent");
         }
         return null;
     }
