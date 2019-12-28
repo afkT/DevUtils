@@ -94,7 +94,7 @@ public final class ClipboardUtils {
 
     /**
      * 复制意图到剪贴板
-     * @param intent 意图
+     * @param intent {@link Intent}
      * @return {@code true} success, {@code false} fail
      */
     public static boolean copyIntent(final Intent intent) {
