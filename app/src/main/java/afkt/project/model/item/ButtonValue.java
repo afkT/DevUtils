@@ -183,6 +183,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_SCREEN_INFO, "屏幕信息"));
         lists.add(new ButtonValue(BTN_PATH, "路径信息"));
         lists.add(new ButtonValue(BTN_WEBVIEW, "WebView 辅助类"));
+        lists.add(new ButtonValue(BTN_ACTIVITY_RESULT_CALLBACK, "startActivityForResult CallBack"));
         return lists;
     }
 
@@ -668,4 +669,7 @@ public class ButtonValue {
 
     // WebView 辅助类
     public static final int BTN_WEBVIEW = MODULE_OTHER + 1400;
+
+    // startActivityForResult CallBack
+    public static final int BTN_ACTIVITY_RESULT_CALLBACK = MODULE_OTHER + 1500;
 }
