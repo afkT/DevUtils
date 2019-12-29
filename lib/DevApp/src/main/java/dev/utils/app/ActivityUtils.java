@@ -825,7 +825,7 @@ public final class ActivityUtils {
      * 退出应用程序
      * @return {@link ActivityUtils}
      */
-    public ActivityUtils appExit() {
+    public ActivityUtils exitApplication() {
         try {
             finishAllActivity();
             // 退出 JVM (Java 虚拟机 ) 释放所占内存资源, 0 表示正常退出、非 0 的都为异常退出
@@ -833,7 +833,7 @@ public final class ActivityUtils {
             // 从操作系统中结束掉当前程序的进程
             android.os.Process.killProcess(android.os.Process.myPid());
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "appExit");
+            LogPrintUtils.eTag(TAG, e, "exitApplication");
             // =
             System.exit(-1);
         }
@@ -952,7 +952,6 @@ public final class ActivityUtils {
                 LogPrintUtils.eTag(TAG, e, "onCreate");
             }
             if (!result) {
-                // 触发回调
                 if (mResultCallback != null) {
                     mResultCallback.onActivityResult(false, Activity.RESULT_CANCELED, null);
                 }
