@@ -79,7 +79,7 @@ public class CrashCatchActivity extends BaseToolbarActivity {
 //                // 从操作系统中结束掉当前程序的进程
 //                android.os.Process.killProcess(android.os.Process.myPid());
                 // 关闭 APP
-                ActivityUtils.getManager().appExit();
+                ActivityUtils.getManager().exitApplication();
                 // 可开启定时任务, 延迟几秒启动 APP
             }
         });
