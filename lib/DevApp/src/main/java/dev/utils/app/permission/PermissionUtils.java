@@ -18,6 +18,7 @@ import android.text.TextUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -305,14 +306,47 @@ public final class PermissionUtils {
     }
 
     /**
-     * 是否拒绝了权限 - 拒绝过一次, 再次申请时, 弹出选择不再提醒并拒绝才会触发 true
-     * @param activity   {@link Activity}
-     * @param permission 待判断权限
-     * @return {@code true} yes, {@code false} no
+     * 获取拒绝权限询问勾选状态
+     * <pre>
+     *     拒绝过一次, 再次申请时, 弹出选择进行拒绝, 获取询问勾选状态
+     *     true 表示没有勾选不再询问, 而 false 则表示勾选了不再询问
+     * </pre>
+     * @param activity    {@link Activity}
+     * @param permissions 待判断权限
+     * @return {@code true} 没有勾选不再询问, {@code false} 勾选了不再询问
      */
-    public static boolean shouldShowRequestPermissionRationale(final Activity activity, final String permission) {
-        if (activity == null || permission == null) return false;
-        return ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
+    public static boolean shouldShowRequestPermissionRationale(final Activity activity, final String... permissions) {
+        if (activity == null || permissions == null) return false;
+        boolean shouldShowRequestPermissionRationale = false; // 表示勾选了不再询问
+        for (String permission : permissions) {
+            if (permission != null && !isGranted(activity, permission)) {
+                shouldShowRequestPermissionRationale = ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
+                if (!shouldShowRequestPermissionRationale) return false;
+            }
+        }
+        return shouldShowRequestPermissionRationale;
+    }
+
+    /**
+     * 获取拒绝权限询问状态集合
+     * @param activity    {@link Activity}
+     * @param shouldShow  {@code true} 没有勾选不再询问, {@code false} 勾选了不再询问
+     * @param permissions 待判断权限
+     * @return 拒绝权限询问状态集合
+     */
+    public static List<String> getDeniedPermissionStatus(final Activity activity, final boolean shouldShow,
+                                                         final String... permissions) {
+        if (activity == null || permissions == null) return Collections.EMPTY_LIST;
+        Set<String> sets = new HashSet<>();
+        for (String permission : permissions) {
+            if (permission != null && !sets.contains(permission) && !isGranted(activity, permission)) {
+                boolean shouldShowRequestPermissionRationale = ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
+                if (shouldShow == shouldShowRequestPermissionRationale) {
+                    sets.add(permission);
+                }
+            }
+        }
+        return new ArrayList<>(sets);
     }
 
     // ================
