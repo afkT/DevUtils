@@ -17,48 +17,55 @@ ext {
     versions = [
 
             // 版本号
-            versionCode           : 1,
+            versionCode            : 1,
             // 版本名
-            versionName           : '1.0.0',
+            versionName            : '1.0.0',
             // 支持最小的 SDK
-            minSdkVersion         : 14,
+            minSdkVersion          : 14,
             // 支持最小的 SDK
-            app_minSdkVersion     : 19,
+            app_minSdkVersion      : 19,
             // 编译 SDK 版本
-            compileSdkVersion     : 29,
+            compileSdkVersion      : 29,
             // 向前兼容 SDK 版本
-            targetSdkVersion      : 29,
+            targetSdkVersion       : 29,
             // support 包 Lib 版本
-            supportLibVersion     : '28.0.0',
+            supportLibVersion      : '28.0.0',
             // java 版本
-            javaVersion           : JavaVersion.VERSION_1_8,
+            javaVersion            : JavaVersion.VERSION_1_8,
 
             // ===========
             // = Dev Lib =
             // ===========
 
             // 版本号
-            dev_app_versionCode   : 186,
+            dev_app_versionCode    : 186,
             // 版本名
-            dev_app_versionName   : '1.8.6',
+            dev_app_versionName    : '1.8.6',
 
             // 版本号
-            dev_assist_versionCode: 103,
+            dev_assist_versionCode : 103,
             // 版本名
-            dev_assist_versionName: '1.0.3',
+            dev_assist_versionName : '1.0.3',
 
             // 版本号
-            dev_java_versionCode  : 107,
+            dev_java_versionCode   : 107,
             // 版本名
-            dev_java_version      : '1.0.7',
+            dev_java_version       : '1.0.7',
+
+            // 版本名
+            dev_environment_version: '1.0.0',
     ]
 
     deps = [
             'dev'     : [
                     // https://github.com/afkT/DevUtils
-                    dev_app   : "com.afkt:DevApp:${versions.dev_app_versionName}",
-                    dev_assist: "com.afkt:DevAssist:${versions.dev_assist_versionName}",
-                    dev_java  : "com.afkt:DevJava:${versions.dev_java_version}",
+                    dev_app                         : "com.afkt:DevApp:${versions.dev_app_versionName}",
+                    dev_assist                      : "com.afkt:DevAssist:${versions.dev_assist_versionName}",
+                    dev_java                        : "com.afkt:DevJava:${versions.dev_java_version}",
+                    // 环境配置切换库
+                    dev_environment_base            : "com.afkt:DevEnvironment-base:${versions.dev_environment_version}",
+                    dev_environment_compiler        : "com.afkt:DevEnvironment-compiler:${versions.dev_environment_version}",
+                    dev_environment_compiler_release: "com.afkt:DevEnvironment-compiler-release:${versions.dev_environment_version}"
             ],
             'android' : [
                     appcompat_v7     : "com.android.support:appcompat-v7:${versions.supportLibVersion}",
@@ -138,7 +145,11 @@ ext {
                     leakcanary_no_op             : "com.squareup.leakcanary:leakcanary-android-no-op:1.5.4",
                     // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
                     blockcanary_android          : "com.github.markzhai:blockcanary-android:1.5.0",
-                    blockcanary_no_op            : "com.github.markzhai:blockcanary-no-op:1.5.0"
+                    blockcanary_no_op            : "com.github.markzhai:blockcanary-no-op:1.5.0",
+                    // JavaPoet 编译时代码生成 https://github.com/square/javapoet
+                    javapoet                     : "com.squareup:javapoet:1.10.0",
+                    // APT 编译时注解简化服务 https://github.com/google/auto/tree/master/service
+                    auto_service                 : "com.google.auto.service:auto-service:1.0-rc6"
             ]
     ]
 }
