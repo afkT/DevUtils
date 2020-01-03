@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.util.Pair;
 import android.view.View;
 
@@ -901,7 +902,7 @@ public final class ActivityUtils {
      * detail: 回传结果处理 Activity
      * @author Ttt
      */
-    public static class ResultActivity extends Activity {
+    public static class ResultActivity extends FragmentActivity {
 
         // 日志 TAG
         private static final String TAG = ResultActivity.class.getSimpleName();

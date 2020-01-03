@@ -184,7 +184,7 @@ public final class IntentUtils {
      * @return APP 安装权限设置的意图
      */
     public static Intent getLaunchAppInstallPermissionSettingsIntent() {
-        return getLaunchAppInstallPermissionSettingsIntent(AppUtils.getPackageName());
+        return getLaunchAppInstallPermissionSettingsIntent(AppUtils.getPackageName(), false);
     }
 
     /**
@@ -218,7 +218,7 @@ public final class IntentUtils {
      * @return APP 通知权限设置的意图
      */
     public static Intent getLaunchAppNotificationSettingsIntent() {
-        return getLaunchAppNotificationSettingsIntent(AppUtils.getPackageName());
+        return getLaunchAppNotificationSettingsIntent(AppUtils.getPackageName(), false);
     }
 
     /**
@@ -305,7 +305,7 @@ public final class IntentUtils {
      * @return APP 具体设置的意图
      */
     public static Intent getLaunchAppDetailsSettingsIntent() {
-        return getLaunchAppDetailsSettingsIntent(AppUtils.getPackageName());
+        return getLaunchAppDetailsSettingsIntent(AppUtils.getPackageName(), false);
     }
 
     /**
