@@ -67,3 +67,8 @@ dependencies {
     implementation deps.android.multidex
     implementation deps.android.constraint_layout
 }
+
+// 编码设置
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
