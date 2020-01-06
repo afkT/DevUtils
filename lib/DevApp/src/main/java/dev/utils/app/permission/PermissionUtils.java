@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,7 +27,9 @@ import java.util.Set;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
+import dev.utils.app.IntentUtils;
 import dev.utils.app.info.AppInfoUtils;
+import dev.utils.common.CollectionUtils;
 
 /**
  * detail: 权限请求工具类
@@ -306,14 +309,73 @@ public final class PermissionUtils {
     }
 
     /**
-     * 是否拒绝了权限 - 拒绝过一次, 再次申请时, 弹出选择不再提醒并拒绝才会触发 true
-     * @param activity   {@link Activity}
-     * @param permission 待判断权限
-     * @return {@code true} yes, {@code false} no
+     * 获取拒绝权限询问勾选状态
+     * <pre>
+     *     拒绝过一次, 再次申请时, 弹出选择进行拒绝, 获取询问勾选状态
+     *     true 表示没有勾选不再询问, 而 false 则表示勾选了不再询问
+     * </pre>
+     * @param activity    {@link Activity}
+     * @param permissions 待判断权限
+     * @return {@code true} 没有勾选不再询问, {@code false} 勾选了不再询问
      */
-    public static boolean shouldShowRequestPermissionRationale(final Activity activity, final String permission) {
-        if (activity == null || permission == null) return false;
-        return ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
+    public static boolean shouldShowRequestPermissionRationale(final Activity activity, final String... permissions) {
+        if (activity == null || permissions == null) return false;
+        boolean shouldShowRequestPermissionRationale = false; // 表示勾选了不再询问
+        for (String permission : permissions) {
+            if (permission != null && !isGranted(activity, permission)) {
+                shouldShowRequestPermissionRationale = ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
+                if (!shouldShowRequestPermissionRationale) return false;
+            }
+        }
+        return shouldShowRequestPermissionRationale;
+    }
+
+    /**
+     * 获取拒绝权限询问状态集合
+     * @param activity    {@link Activity}
+     * @param shouldShow  {@code true} 没有勾选不再询问, {@code false} 勾选了不再询问
+     * @param permissions 待判断权限
+     * @return 拒绝权限询问状态集合
+     */
+    public static List<String> getDeniedPermissionStatus(final Activity activity, final boolean shouldShow,
+                                                         final String... permissions) {
+        if (activity == null || permissions == null) return Collections.EMPTY_LIST;
+        Set<String> sets = new HashSet<>();
+        for (String permission : permissions) {
+            if (permission != null && !sets.contains(permission) && !isGranted(activity, permission)) {
+                boolean shouldShowRequestPermissionRationale = ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
+                if (shouldShow == shouldShowRequestPermissionRationale) {
+                    sets.add(permission);
+                }
+            }
+        }
+        return new ArrayList<>(sets);
+    }
+
+    /**
+     * 再次请求处理操作
+     * <pre>
+     *     如果存在拒绝了且不再询问则跳转到应用设置页面
+     *     否则则再次请求拒绝的权限
+     * </pre>
+     * @param activity   {@link Activity}
+     * @param callBack   {@link PermissionCallBack}
+     * @param deniedList 申请未通过的权限集合
+     * @return 0 不符合要求无任何操作、1 再次请求操作、2  跳转到应用设置页面
+     */
+    public static int againRequest(final Activity activity, final PermissionUtils.PermissionCallBack callBack,
+                                   final List<String> deniedList) {
+        if (activity == null || CollectionUtils.isEmpty(deniedList)) return 0;
+        // 获取拒绝的权限记录
+        String[] deniedArys = deniedList.toArray(new String[deniedList.size()]);
+        // 获取拒绝权限询问勾选状态 true 表示没有勾选不再询问, 而 false 则表示勾选了不再询问
+        if (PermissionUtils.shouldShowRequestPermissionRationale(activity, deniedArys)) { // 再次请求
+            PermissionUtils.permission(deniedArys).callBack(callBack).request(activity);
+            return 1;
+        } else { // 拒绝权限且不再询问, 跳转到应用设置页面
+            AppUtils.startActivity(IntentUtils.getLaunchAppDetailsSettingsIntent());
+            return 2;
+        }
     }
 
     // ================
@@ -349,8 +411,11 @@ public final class PermissionUtils {
                     // 判断是否通过请求
                     if (isGranted(activity, permission)) {
                         mPermissionsGrantedLists.add(permission); // 权限允许通过
-                    } else {
-                        // 判断是否已拒绝
+                        // 如果原本已经永久拒绝现在通过, 则移除
+                        if (sPermissionsDeniedForeverLists.contains(permission)) { // 移除永久拒绝的权限记录
+                            CollectionUtils.remove(sPermissionsDeniedForeverLists, permission);
+                        }
+                    } else { // 判断是否已拒绝但可再次请求
                         if (!sPermissionsDeniedForeverLists.contains(permission)) { // 不存在, 则进行保存
                             mPermissionsRequestLists.add(permission); // 准备请求权限
                         }
@@ -409,7 +474,7 @@ public final class PermissionUtils {
             } else {
                 // 未授权
                 mPermissionsDeniedLists.add(permission);
-                // 拒绝权限
+                // 拒绝权限并不再询问
                 if (!shouldShowRequestPermissionRationale(activity, permission)) {
                     sPermissionsDeniedForeverLists.add(permission);
                 }

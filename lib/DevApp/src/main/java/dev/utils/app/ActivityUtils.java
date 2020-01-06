@@ -12,15 +12,20 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
+import androidx.fragment.app.FragmentActivity;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.DevCommonUtils;
 
 /**
  * detail: Activity 工具类 ( 包含 Activity 控制管理 )
@@ -822,7 +827,7 @@ public final class ActivityUtils {
      * 退出应用程序
      * @return {@link ActivityUtils}
      */
-    public ActivityUtils appExit() {
+    public ActivityUtils exitApplication() {
         try {
             finishAllActivity();
             // 退出 JVM (Java 虚拟机 ) 释放所占内存资源, 0 表示正常退出、非 0 的都为异常退出
@@ -830,7 +835,7 @@ public final class ActivityUtils {
             // 从操作系统中结束掉当前程序的进程
             android.os.Process.killProcess(android.os.Process.myPid());
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "appExit");
+            LogPrintUtils.eTag(TAG, e, "exitApplication");
             // =
             System.exit(-1);
         }
@@ -850,5 +855,126 @@ public final class ActivityUtils {
             LogPrintUtils.eTag(TAG, e, "restartApplication");
         }
         return this;
+    }
+
+    // ============
+    // = 跳转回传 =
+    // ============
+
+    // 跳转回传回调 Map
+    private static final Map<Integer, ResultCallback> sResultCallbackMaps = new HashMap<>();
+
+    /**
+     * Activity 跳转回传
+     * @param resultCallback Activity 跳转回传回调
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean startActivityForResult(final ResultCallback resultCallback) {
+        return ActivityUtils.ResultActivity.start(resultCallback);
+    }
+
+    /**
+     * detail: Activity 跳转回传回调
+     * @author Ttt
+     */
+    public interface ResultCallback {
+
+        /**
+         * 跳转 Activity 操作
+         * <pre>
+         *     跳转失败, 必须返回 false 内部会根据返回值关闭 ResultActivity
+         *     必须返回正确的值, 表示是否跳转成功
+         * </pre>
+         * @param activity {@link Activity}
+         * @return {@code true} success, {@code false} fail
+         */
+        boolean onStartActivityForResult(Activity activity);
+
+        /**
+         * 回传处理
+         * @param result     resultCode 是否等于 {@link Activity#RESULT_OK}
+         * @param resultCode resultCode
+         * @param data       回传数据
+         */
+        void onActivityResult(boolean result, int resultCode, Intent data);
+    }
+
+    /**
+     * detail: 回传结果处理 Activity
+     * @author Ttt
+     */
+    public static class ResultActivity extends FragmentActivity {
+
+        // 日志 TAG
+        private static final String TAG = ResultActivity.class.getSimpleName();
+        // 传参 UUID Key
+        private static final String EXTRA_UUID = "uuid";
+        // 跳转回传回调
+        private ResultCallback mResultCallback;
+        // 跳转回传回调
+        private Integer mUUIDHash;
+
+        /**
+         * 跳转回传结果处理 Activity 内部方法
+         * @param resultCallback Activity 跳转回传回调
+         * @return {@code true} success, {@code false} fail
+         */
+        protected static boolean start(final ResultCallback resultCallback) {
+            int uuid = -1;
+            boolean result = false;
+            if (resultCallback != null) {
+                uuid = DevCommonUtils.randomUUIDToHashCode();
+                while (sResultCallbackMaps.containsKey(uuid)) {
+                    uuid = DevCommonUtils.randomUUIDToHashCode();
+                }
+                sResultCallbackMaps.put(uuid, resultCallback);
+                try {
+                    Intent intent = new Intent(DevUtils.getContext(), ResultActivity.class);
+                    intent.putExtra(EXTRA_UUID, uuid);
+                    result = AppUtils.startActivity(intent);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "start");
+                }
+            }
+            if (!result && uuid != -1) {
+                sResultCallbackMaps.remove(uuid);
+            }
+            return result;
+        }
+
+        @Override
+        protected void onCreate(@Nullable Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            boolean result = false; // 跳转结果
+            try {
+                mUUIDHash = getIntent().getIntExtra(EXTRA_UUID, -1);
+                mResultCallback = sResultCallbackMaps.get(mUUIDHash);
+                result = mResultCallback.onStartActivityForResult(this);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "onCreate");
+            }
+            if (!result) {
+                if (mResultCallback != null) {
+                    mResultCallback.onActivityResult(false, Activity.RESULT_CANCELED, null);
+                }
+                finish();
+            }
+        }
+
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+            if (mResultCallback != null) {
+                mResultCallback.onActivityResult(resultCode == Activity.RESULT_OK, resultCode, data);
+            }
+            finish();
+        }
+
+        @Override
+        protected void onDestroy() {
+            super.onDestroy();
+            // 移除操作
+            sResultCallbackMaps.remove(mUUIDHash);
+        }
     }
 }

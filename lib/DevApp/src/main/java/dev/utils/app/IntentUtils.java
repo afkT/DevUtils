@@ -182,6 +182,14 @@ public final class IntentUtils {
 
     /**
      * 获取 APP 安装权限设置的意图
+     * @return APP 安装权限设置的意图
+     */
+    public static Intent getLaunchAppInstallPermissionSettingsIntent() {
+        return getLaunchAppInstallPermissionSettingsIntent(AppUtils.getPackageName(), false);
+    }
+
+    /**
+     * 获取 APP 安装权限设置的意图
      * @param packageName 应用包名
      * @return APP 安装权限设置的意图
      */
@@ -204,6 +212,14 @@ public final class IntentUtils {
             LogPrintUtils.eTag(TAG, e, "getLaunchAppInstallPermissionSettingsIntent");
         }
         return null;
+    }
+
+    /**
+     * 获取 APP 通知权限设置的意图
+     * @return APP 通知权限设置的意图
+     */
+    public static Intent getLaunchAppNotificationSettingsIntent() {
+        return getLaunchAppNotificationSettingsIntent(AppUtils.getPackageName(), false);
     }
 
     /**
@@ -259,6 +275,38 @@ public final class IntentUtils {
             intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
         }
         return getIntent(intent, isNewTask);
+    }
+
+    /**
+     * 获取 APP 悬浮窗口权限详情页的意图
+     * @return APP 悬浮窗口权限详情页的意图
+     */
+    public static Intent getManageOverlayPermissionIntent() {
+        return getManageOverlayPermissionIntent(false);
+    }
+
+    /**
+     * 获取 APP 悬浮窗口权限详情页的意图
+     * @param isNewTask 是否开启新的任务栈
+     * @return APP 悬浮窗口权限详情页的意图
+     */
+    public static Intent getManageOverlayPermissionIntent(final boolean isNewTask) {
+        try {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+            intent.setData(Uri.parse("package:" + AppUtils.getPackageName()));
+            return getIntent(intent, isNewTask);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getManageOverlayPermissionIntent");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 APP 具体设置的意图
+     * @return APP 具体设置的意图
+     */
+    public static Intent getLaunchAppDetailsSettingsIntent() {
+        return getLaunchAppDetailsSettingsIntent(AppUtils.getPackageName(), false);
     }
 
     /**

@@ -94,6 +94,8 @@ public class MainActivity extends BaseActivity {
                 builder.append("\ndeniedList: " + Arrays.toString(deniedList.toArray()));
                 builder.append("\nnotFoundList: " + Arrays.toString(notFoundList.toArray()));
                 DevLogger.d(builder.toString());
+                // 拒绝了则再次请求处理
+                PermissionUtils.againRequest(MainActivity.this, this, deniedList);
             }
         }).request(this);
     }

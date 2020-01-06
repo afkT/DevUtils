@@ -570,7 +570,7 @@ public final class DevHelper {
 
     /**
      * 复制意图到剪贴板
-     * @param intent 意图
+     * @param intent {@link Intent}
      * @return {@link DevHelper}
      */
     public DevHelper copyIntent(final Intent intent) {

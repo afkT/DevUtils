@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 1.8.7 *(2020-01-07)*
+----------------------------
+
+* `[Update]` PermissionUtils#shouldShowRequestPermissionRationale 方法, 增加可变数组权限传入
+
+* `[Add]` PermissionUtils#getDeniedPermissionStatus 获取拒绝权限询问状态集合方法、PermissionUtils#againRequest 处理拒绝权限操作方法
+
+* `[Update]` ActivityUtils#appExit 为 exitApplication
+
+* `[Add]` ActivityUtils#startActivityForResult 跳转方法, 支持通过接口回调方式通知
+
 Version 1.8.6 *(2019-12-25)*
 ----------------------------
 
