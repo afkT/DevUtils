@@ -3,11 +3,13 @@ package dev.standard.catalog;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import dev.utils.common.StringUtils;
 
 /**
  * detail: 包目录结构生成
+ *
  * @author Ttt
  */
 final class PackageCatalog {
@@ -21,12 +23,14 @@ final class PackageCatalog {
 
     /**
      * detail: 文件目录层级回调
+     *
      * @author Ttt
      */
     private interface CatalogCallback {
 
         /**
          * 回调通知
+         *
          * @param name       目录名
          * @param lineNumber 行数
          * @param linkTag    锚链接 TAG 标记
@@ -40,6 +44,7 @@ final class PackageCatalog {
 
     /**
      * detail: 目录实体类
+     *
      * @author Ttt
      */
     private static class Catalog {
@@ -47,20 +52,22 @@ final class PackageCatalog {
         // 文件夹对象
         private File cataFile;
         // 文件夹内的子文件列表
-        private ArrayList<Catalog> listCataLogs = new ArrayList<>();
+        private List<Catalog> listCataLogs = new ArrayList<>();
 
         /**
          * 构造函数
+         *
          * @param file  文件夹对象
          * @param lists 文件夹内的子文件列表
          */
-        public Catalog(File file, ArrayList<Catalog> lists) {
+        public Catalog(File file, List<Catalog> lists) {
             this.cataFile = file;
             this.listCataLogs = lists;
         }
 
         /**
          * 获取文件夹对象
+         *
          * @return {@link File}
          */
         public File getCataFile() {
@@ -69,18 +76,20 @@ final class PackageCatalog {
 
         /**
          * 获取文件夹内的子文件列表
+         *
          * @return {@link ArrayList}
          */
-        public ArrayList<Catalog> getListCataLogs() {
+        public List<Catalog> getListCataLogs() {
             return listCataLogs;
         }
     }
 
     /**
      * 获取文件夹目录列表
+     *
      * @param path            文件路径
      * @param catalogCallback 目录回调通知
-     * @param layer           层级
+     * @param layer           目录层级
      * @return 文件夹目录列表集合
      */
     private static ArrayList<Catalog> getFolderLists(final String path, final CatalogCallback catalogCallback, final int layer) {
@@ -125,6 +134,7 @@ final class PackageCatalog {
 
     /**
      * 计算目录最大长度
+     *
      * @param isAnchor    是否增加锚链接
      * @param packageName 包名
      * @param name        目录名
@@ -146,6 +156,7 @@ final class PackageCatalog {
 
     /**
      * 创建目录信息
+     *
      * @param isAnchor    是否增加锚链接
      * @param packageName 包名
      * @param name        目录名
@@ -174,6 +185,7 @@ final class PackageCatalog {
 
     /**
      * 创建目录行
+     *
      * @param isAnchor    是否增加锚链接
      * @param packageName 包名
      * @param name        目录名
@@ -198,6 +210,7 @@ final class PackageCatalog {
 
     /**
      * 递归目录拼接目录列表信息
+     *
      * @param buffer      拼接 Buffer
      * @param lists       目录列表
      * @param isAnchor    是否增加锚链接
@@ -206,7 +219,7 @@ final class PackageCatalog {
      * @param linkTag     锚链接 TAG 标记
      * @param mapCatelog  对应目录注释
      */
-    private static void forCatelog(final StringBuffer buffer, final ArrayList<Catalog> lists,
+    private static void forCatelog(final StringBuffer buffer, final List<Catalog> lists,
                                    final boolean isAnchor, final String packageName,
                                    final int lineNumber, final String linkTag,
                                    final HashMap<String, String> mapCatelog) {
@@ -220,11 +233,11 @@ final class PackageCatalog {
             buffer.append("\n");
             // 添加目录行
             buffer.append(createCataLogLine(isAnchor, packageName, name, lineNumber,
-                    linkTag + "." + name, mapCatelog));
+                linkTag + "." + name, mapCatelog));
             // 判断是否存在子文件夹
             if (catalog.getListCataLogs().size() != 0) {
                 forCatelog(buffer, catalog.getListCataLogs(), isAnchor, packageName,
-                        lineNumber + 1, linkTag + "." + name, mapCatelog);
+                    lineNumber + 1, linkTag + "." + name, mapCatelog);
             }
         }
     }
@@ -234,45 +247,32 @@ final class PackageCatalog {
     // ================
 
     /**
-     * 创建目录信息
-     * @param isAnchor    是否增加锚链接
+     * 生成目录信息
      * @param path        文件路径
      * @param packageName 包名
      * @param mapCatelog  对应目录注释
+     * @param layer       目录层级
      * @return 目录信息
      */
-    public static String apiCatalog(final boolean isAnchor, final String path, final String packageName,
-                                    final HashMap<String, String> mapCatelog) {
-
-        // 拼接信息
+    public static String apiCatalog(final String path, final String packageName,
+                                    final HashMap<String, String> mapCatelog, final int layer) {
         StringBuffer buffer = new StringBuffer();
         // 获取文件夹列表
-        ArrayList<Catalog> lists = getFolderLists(path, new CatalogCallback() {
+        List<Catalog> lists = getFolderLists(path, new CatalogCallback() {
             @Override
             public void callback(String name, int lineNumber, String linkTag) {
                 // 计算目录最大长度
-                calculateMaxLength(isAnchor, packageName, name, lineNumber, linkTag);
+                calculateMaxLength(false, packageName, name, lineNumber, linkTag);
             }
         }, 0);
         // 默认头部
         String head = "- " + packageName;
-        // 判断是否增加锚链接处理
-        if (isAnchor) {
-            buffer.append("\n");
-        } else {
-            buffer.append("```\n");
-        }
+        buffer.append("```\n");
         // 增加根目录
         buffer.append(head + StringUtils.appendSpace(sMaxLength - head.length()) + "| " + mapCatelog.get(packageName));
         // 递归循环目录
-        forCatelog(buffer, lists, isAnchor, packageName, 1, "", mapCatelog);
-        // 判断是否增加锚链接处理
-        if (isAnchor) {
-            buffer.append("\n\n");
-        } else {
-            buffer.append("\n```\n");
-        }
-        // 返回数据
+        forCatelog(buffer, lists, false, packageName, 1, "", mapCatelog);
+        buffer.append("\n```\n");
         return buffer.toString();
     }
 }

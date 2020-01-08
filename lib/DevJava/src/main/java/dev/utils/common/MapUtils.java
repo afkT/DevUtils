@@ -1075,10 +1075,10 @@ public final class MapUtils {
      * @param <T>   value type
      * @return {@code true} success, {@code false} fail
      */
-    public static <K, T> boolean removeToLists(final Map<K, ArrayList<T>> map, final K key, final ArrayList<T> lists) {
+    public static <K, T> boolean removeToLists(final Map<K, List<T>> map, final K key, final List<T> lists) {
         if (map != null && lists != null) {
             if (map.containsKey(key)) {
-                ArrayList<T> list = map.get(key);
+                List<T> list = map.get(key);
                 if (list != null) {
                     try {
                         list.removeAll(lists);
