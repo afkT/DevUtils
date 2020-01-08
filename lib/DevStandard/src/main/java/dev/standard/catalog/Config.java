@@ -1,7 +1,9 @@
 package dev.standard.catalog;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import dev.utils.common.FileUtils;
 
@@ -23,39 +25,41 @@ final class Config {
     // = Android =
     // ===========
 
-    // Android 项目包
-    public static final String ANDROID_PACKAGE = "Android";
+    // Android 文件名
+    public static final String ANDROID_DIR_NAME = "Android";
     // Android 项目本地路径
-    public static final String ANDROID_LOCAL_PATH = DIR + File.separator + ANDROID_PACKAGE;
+    public static final String ANDROID_LOCAL_PATH = DIR + File.separator + ANDROID_DIR_NAME;
 
     // ========
     // = Java =
     // ========
 
-    // Java 项目包
-    public static final String JAVA_PACKAGE = "Java";
+    // Java 文件名
+    public static final String JAVA_DIR_NAME = "Java";
     // Java 项目本地路径
-    public static final String JAVA_LOCAL_PATH = DIR + File.separator + JAVA_PACKAGE;
+    public static final String JAVA_LOCAL_PATH = DIR + File.separator + JAVA_DIR_NAME;
 
-    // ============
-    // = DevUtils =
-    // ============
+    // ================
+    // = DevUtils Lib =
+    // ================
 
-    // DevUtils 项目包
-    public static final String DEV_UTILS_PACKAGE = "lib";
-    // DevUtils 项目本地路径
-    public static final String DEV_UTILS_LOCAL_PATH = USER_DIR + File.separator + DEV_UTILS_PACKAGE;
+    // DevUtils Lib 文件名
+    public static final String DEV_UTILS_DIR_NAME = "lib";
+    // DevUtils Lib 项目本地路径
+    public static final String DEV_UTILS_LOCAL_PATH = USER_DIR + File.separator + DEV_UTILS_DIR_NAME;
 
     // =======
     // = Map =
     // =======
 
-    // Android 包名目录注释
+    // Android 文件目录注释
     public static final HashMap<String, String> sAndroidCatelogMap = new HashMap<>();
-    // Java 包名目录注释
+    // Java 文件目录注释
     public static final HashMap<String, String> sJavaCatelogMap = new HashMap<>();
-    // DevUtils 包名目录注释
+    // DevUtils Lib 文件目录注释
     public static final HashMap<String, String> sDevUtilsCatelogMap = new HashMap<>();
+    // DevUtils Lib 忽略目录
+    public static final List<String> sDevUtilsIgnoreCatelogs = new ArrayList<>();
 
     static {
 
@@ -84,9 +88,9 @@ final class Config {
         sJavaCatelogMap.put("Java", "根目录");
         sJavaCatelogMap.put(".VideoClip", "Java 实现 MP4 裁剪功能");
 
-        // ============
-        // = DevUtils =
-        // ============
+        // ================
+        // = DevUtils Lib =
+        // ================
 
         sDevUtilsCatelogMap.put("lib", "根目录");
         sDevUtilsCatelogMap.put(".DevApp", "Android 工具类库");
@@ -96,5 +100,17 @@ final class Config {
         sDevUtilsCatelogMap.put(".DevOther", "第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用");
         sDevUtilsCatelogMap.put(".DevStandard", "项目规范统一检测、生成替换等");
         sDevUtilsCatelogMap.put(".DevWidget", "部分自定义 View 功能、效果");
+
+        // =========================
+        // = DevUtils Lib 忽略目录 =
+        // =========================
+
+        sDevUtilsIgnoreCatelogs.add("DevApp");
+        sDevUtilsIgnoreCatelogs.add("DevAssist");
+        sDevUtilsIgnoreCatelogs.add("DevBase");
+        sDevUtilsIgnoreCatelogs.add("DevJava");
+        sDevUtilsIgnoreCatelogs.add("DevOther");
+        sDevUtilsIgnoreCatelogs.add("DevStandard");
+        sDevUtilsIgnoreCatelogs.add("DevWidget");
     }
 }
