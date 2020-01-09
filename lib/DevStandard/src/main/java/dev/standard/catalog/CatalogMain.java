@@ -13,11 +13,11 @@ import dev.utils.common.StringUtils;
 final class CatalogMain {
 
     public static void main(String[] args) {
-//        // 生成 Android 汇总项目目录结构 - https://github.com/afkT/Android
-//        print(Config.ANDROID_LOCAL_PATH, Config.ANDROID_DIR_NAME, Config.sAndroidCatelogMap, null, 0);
-//
-//        // 生成 Java 汇总项目目录结构 - https://github.com/afkT/Java
-//        print(Config.JAVA_LOCAL_PATH, Config.JAVA_DIR_NAME, Config.sJavaCatelogMap, null, 0);
+        // 生成 Android 汇总项目目录结构 - https://github.com/afkT/Android
+        print(Config.ANDROID_LOCAL_PATH, Config.ANDROID_DIR_NAME, Config.sAndroidCatelogMap, null, 0);
+
+        // 生成 Java 汇总项目目录结构 - https://github.com/afkT/Java
+        print(Config.JAVA_LOCAL_PATH, Config.JAVA_DIR_NAME, Config.sJavaCatelogMap, null, 0);
 
         // 生成 DevUtils Lib 汇总项目目录结构 - https://github.com/afkT/DevUtils/tree/master/lib
         print(Config.DEV_UTILS_LOCAL_PATH, Config.DEV_UTILS_DIR_NAME, Config.sDevUtilsCatelogMap, Config.sDevUtilsIgnoreCatelogs, 1);
