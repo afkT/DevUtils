@@ -27,6 +27,7 @@ import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.PowerManager;
 import android.os.Vibrator;
 import android.os.storage.StorageManager;
@@ -432,7 +433,7 @@ public final class AppUtils {
      * 获取 APP versionCode
      * @return APP versionCode
      */
-    public static int getAppVersionCode() {
+    public static long getAppVersionCode() {
         return getAppVersionCode(getPackageName());
     }
 
@@ -441,11 +442,15 @@ public final class AppUtils {
      * @param packageName 应用包名
      * @return APP versionCode
      */
-    public static int getAppVersionCode(final String packageName) {
+    public static long getAppVersionCode(final String packageName) {
         if (StringUtils.isSpace(packageName)) return -1;
         try {
             PackageInfo packageInfo = getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
-            return packageInfo == null ? -1 : packageInfo.versionCode;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                return packageInfo.getLongVersionCode();
+            } else {
+                return packageInfo.versionCode;
+            }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersionCode");
             return -1;

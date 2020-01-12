@@ -4,6 +4,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.Keep;
 
 import dev.utils.LogPrintUtils;
@@ -27,7 +28,7 @@ public class AppInfoBean {
     @Keep // APP 类型
     private AppType appType;
     @Keep // APP 版本号
-    private int versionCode;
+    private long versionCode;
     @Keep // APP 版本名
     private String versionName;
     @Keep // APP 首次安装时间
@@ -76,7 +77,11 @@ public class AppInfoBean {
         // APP 类型
         appType = AppInfoBean.getAppType(packageInfo);
         // APP 版本号
-        versionCode = packageInfo.versionCode;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            versionCode = packageInfo.getLongVersionCode();
+        } else {
+            versionCode = packageInfo.versionCode;
+        }
         // APP 版本名
         versionName = packageInfo.versionName;
         // APP 首次安装时间
@@ -125,7 +130,7 @@ public class AppInfoBean {
      * 获取 versionCode
      * @return versionCode
      */
-    public int getVersionCode() {
+    public long getVersionCode() {
         return versionCode;
     }
 
