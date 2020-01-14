@@ -20,21 +20,24 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--dontwarn android.support.**
+-dontwarn dev.**
 
-# Understand the @Keep support annotation.
--keep class android.support.annotation.Keep
-
--keep @android.support.annotation.Keep class * {*;}
-
--keepclasseswithmembers class * {
-    @android.support.annotation.Keep <methods>;
-}
-
--keepclasseswithmembers class * {
-    @android.support.annotation.Keep <fields>;
-}
-
--keepclasseswithmembers class * {
-    @android.support.annotation.Keep <init>(...);
-}
+# 如果需要直接导出 ApkInfoItem、AppInfoItem、AppInfoBean、KeyValueBean 等实体类 JSON 字符串则在自己项目中加入以下忽略配置
+#-dontwarn android.support.**
+#
+## Understand the @Keep support annotation.
+#-keep class android.support.annotation.Keep
+#
+#-keep @android.support.annotation.Keep class * {*;}
+#
+#-keepclasseswithmembers class * {
+#    @android.support.annotation.Keep <methods>;
+#}
+#
+#-keepclasseswithmembers class * {
+#    @android.support.annotation.Keep <fields>;
+#}
+#
+#-keepclasseswithmembers class * {
+#    @android.support.annotation.Keep <init>(...);
+#}
