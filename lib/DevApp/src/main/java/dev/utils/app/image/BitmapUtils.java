@@ -27,6 +27,7 @@ import java.io.InputStream;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.common.FileUtils;
+import dev.utils.common.ScaleUtils;
 
 /**
  * detail: Bitmap 工具类
@@ -1102,6 +1103,9 @@ public final class BitmapUtils {
 
     /**
      * 按缩放宽高压缩
+     * <pre>
+     *     可搭配 {@link ScaleUtils} 工具类使用
+     * </pre>
      * @param bitmap    待操作源图片
      * @param newWidth  新宽度
      * @param newHeight 新高度
@@ -1113,6 +1117,9 @@ public final class BitmapUtils {
 
     /**
      * 按缩放比例压缩
+     * <pre>
+     *     可搭配 {@link ScaleUtils} 工具类使用
+     * </pre>
      * @param bitmap 待操作源图片
      * @param scaleX 横向缩放比例 ( 缩放宽度倍数 )
      * @param scaleY 纵向缩放比例 ( 缩放高度倍数 )
@@ -1357,7 +1364,7 @@ public final class BitmapUtils {
      * @return 最佳压缩质量值
      */
     public static int calculateQuality(final Bitmap bitmap, final Bitmap.CompressFormat format, final long maxByteSize) {
-        if (isEmpty(bitmap) || maxByteSize <= 0) return 0;
+        if (isEmpty(bitmap) || maxByteSize <= 0) return -1;
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(format, 100, baos);
