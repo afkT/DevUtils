@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
-import android.os.PowerManager;
 import android.provider.Settings;
 import android.support.annotation.RequiresApi;
 import android.support.annotation.RequiresPermission;
@@ -673,8 +672,7 @@ public final class DeviceUtils {
      */
     public static boolean reboot(final String reason) {
         try {
-            PowerManager mPowerManager = AppUtils.getPowerManager();
-            mPowerManager.reboot(reason);
+            AppUtils.getPowerManager().reboot(reason);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "reboot");

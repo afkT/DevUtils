@@ -76,8 +76,12 @@ public final class PowerManagerUtils {
      */
     public boolean turnScreenOn() {
         if (mWakeLock != null && !mWakeLock.isHeld()) {
-            mWakeLock.acquire();
-            return true;
+            try {
+                mWakeLock.acquire();
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "turnScreenOn");
+            }
         }
         return false;
     }
@@ -88,8 +92,12 @@ public final class PowerManagerUtils {
      */
     public boolean turnScreenOff() {
         if (mWakeLock != null && mWakeLock.isHeld()) {
-            mWakeLock.release();
-            return true;
+            try {
+                mWakeLock.release();
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "turnScreenOff");
+            }
         }
         return false;
     }
