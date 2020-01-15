@@ -8,6 +8,8 @@ android {
 
     defaultConfig {
         minSdkVersion versions.minSdkVersion
+        // 混淆配置
+        consumerProguardFiles 'proguard-rules.pro'
     }
 
     lintOptions {

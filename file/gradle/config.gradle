@@ -38,9 +38,9 @@ ext {
             // ===========
 
             // 版本号
-            dev_app_versionCode    : 187,
+            dev_app_versionCode    : 188,
             // 版本名
-            dev_app_versionName    : '1.8.7',
+            dev_app_versionName    : '1.8.8',
 
             // 版本号
             dev_assist_versionCode : 103,
@@ -48,9 +48,9 @@ ext {
             dev_assist_versionName : '1.0.3',
 
             // 版本号
-            dev_java_versionCode   : 107,
+            dev_java_versionCode   : 108,
             // 版本名
-            dev_java_version       : '1.0.7',
+            dev_java_version       : '1.0.8',
 
             // 版本名
             dev_environment_version: '1.0.0',

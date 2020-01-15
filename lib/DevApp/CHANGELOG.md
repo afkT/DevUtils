@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 1.8.8 *(2020-01-16)*
+----------------------------
+
+* `[Add]` BitmapUtils#calculateQuality 计算最佳压缩质量值方法
+
+* `[Add]` FileUtils#listFilesInDirBean、listFilesInDirWithFilterBean 方法, 获取文件目录列表集合 FileList
+
+* `[Fix]` 修复 AppUtils#isInstalledApp 判断是否安装错误情况
+
+* `[Update]` 兼容 Android P 获取 versionCode 处理 ( getLongVersionCode )
+
 Version 1.8.7 *(2020-01-07)*
 ----------------------------
 

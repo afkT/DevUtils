@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.0.8 *(2020-01-16)*
+----------------------------
+
+* `[Add]` FileUtils#listFilesInDirBean、listFilesInDirWithFilterBean 方法, 获取文件目录列表集合 FileList
+
 Version 1.0.7 *(2019-12-25)*
 ----------------------------
 

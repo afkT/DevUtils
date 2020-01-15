@@ -7,9 +7,9 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ProviderInfo;
 import android.content.pm.ServiceInfo;
+import android.os.Build;
 
 import dev.utils.LogPrintUtils;
-import dev.utils.common.StringUtils;
 
 /**
  * detail: Android Manifest 工具类
@@ -228,7 +228,12 @@ public final class ManifestUtils {
             PackageInfo packageInfo = AppUtils.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             if (packageInfo != null) {
                 String versionName = packageInfo.versionName == null ? "null" : packageInfo.versionName;
-                String versionCode = packageInfo.versionCode + "";
+                String versionCode;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    versionCode = packageInfo.getLongVersionCode() + "";
+                } else {
+                    versionCode = packageInfo.versionCode + "";
+                }
                 return new String[]{versionName, versionCode};
             }
         } catch (Exception e) {
@@ -241,8 +246,8 @@ public final class ManifestUtils {
      * 获取 APP versionCode
      * @return APP versionCode
      */
-    public static int getAppVersionCode() {
-        return getAppVersionCode(AppUtils.getPackageName());
+    public static long getAppVersionCode() {
+        return AppUtils.getAppVersionCode();
     }
 
     /**
@@ -250,7 +255,7 @@ public final class ManifestUtils {
      * @return APP versionName
      */
     public static String getAppVersionName() {
-        return getAppVersionName(AppUtils.getPackageName());
+        return AppUtils.getAppVersionName();
     }
 
     // =
@@ -260,15 +265,8 @@ public final class ManifestUtils {
      * @param packageName 应用包名
      * @return APP versionCode
      */
-    public static int getAppVersionCode(final String packageName) {
-        if (StringUtils.isSpace(packageName)) return -1;
-        try {
-            PackageInfo packageInfo = AppUtils.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
-            return packageInfo == null ? -1 : packageInfo.versionCode;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAppVersionCode - " + packageName);
-            return -1;
-        }
+    public static long getAppVersionCode(final String packageName) {
+        return AppUtils.getAppVersionCode(packageName);
     }
 
     /**
@@ -277,13 +275,6 @@ public final class ManifestUtils {
      * @return APP versionName
      */
     public static String getAppVersionName(final String packageName) {
-        if (StringUtils.isSpace(packageName)) return null;
-        try {
-            PackageInfo packageInfo = AppUtils.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
-            return packageInfo == null ? null : packageInfo.versionName;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAppVersionName - " + packageName);
-            return null;
-        }
+        return AppUtils.getAppVersionName(packageName);
     }
 }

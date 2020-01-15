@@ -1483,6 +1483,19 @@ public final class FileUtils {
     // =
 
     /**
+     * detail: 覆盖 / 替换事件
+     * @author Ttt
+     */
+    public interface OnReplaceListener {
+
+        /**
+         * 是否覆盖 / 替换文件
+         * @return {@code true} yes, {@code false} no
+         */
+        boolean onReplace();
+    }
+
+    /**
      * 复制或移动目录
      * @param srcDirPath  源目录路径
      * @param destDirPath 目标目录路径
@@ -1877,7 +1890,6 @@ public final class FileUtils {
                     list.add(file);
                 }
                 if (isRecursive && file.isDirectory()) {
-                    // noinspection ConstantConditions
                     list.addAll(listFilesInDirWithFilter(file, filter, true));
                 }
             }
@@ -1885,17 +1897,158 @@ public final class FileUtils {
         return list;
     }
 
+    // =
+
     /**
-     * detail: 覆盖 / 替换事件
+     * detail: 文件列表
      * @author Ttt
      */
-    public interface OnReplaceListener {
+    public static class FileList {
+
+        // 当前文件夹
+        private File mFile;
+        // 文件夹内子文件列表
+        private List<FileList> mSubFiles;
 
         /**
-         * 是否覆盖 / 替换文件
-         * @return {@code true} yes, {@code false} no
+         * 构造函数
+         * @param file 当前文件夹
          */
-        boolean onReplace();
+        public FileList(File file) {
+            this(file, new ArrayList<>(0));
+        }
+
+        /**
+         * 构造函数
+         * @param file  当前文件夹
+         * @param lists 文件夹内子文件列表
+         */
+        public FileList(File file, List<FileList> lists) {
+            this.mFile = file;
+            this.mSubFiles = lists;
+        }
+
+        // =
+
+        /**
+         * 获取当前文件夹
+         * @return {@link File}
+         */
+        public File getFile() {
+            return mFile;
+        }
+
+        /**
+         * 获取文件夹内子文件列表
+         * @return {@link ArrayList}
+         */
+        public List<FileList> getSubFiles() {
+            return mSubFiles;
+        }
+    }
+
+    // =
+
+    /**
+     * 获取目录下所有文件 - 不递归进子目录
+     * @param dirPath 目录路径
+     * @return 文件链表
+     */
+    public static List<FileList> listFilesInDirBean(final String dirPath) {
+        return listFilesInDirBean(dirPath, false);
+    }
+
+    /**
+     * 获取目录下所有文件 - 不递归进子目录
+     * @param dir 目录
+     * @return 文件链表
+     */
+    public static List<FileList> listFilesInDirBean(final File dir) {
+        return listFilesInDirBean(dir, false);
+    }
+
+    /**
+     * 获取目录下所有文件
+     * @param dirPath     目录路径
+     * @param isRecursive 是否递归进子目录
+     * @return 文件链表
+     */
+    public static List<FileList> listFilesInDirBean(final String dirPath, final boolean isRecursive) {
+        return listFilesInDirBean(getFileByPath(dirPath), isRecursive);
+    }
+
+    /**
+     * 获取目录下所有文件
+     * @param dir         目录
+     * @param isRecursive 是否递归进子目录
+     * @return 文件链表
+     */
+    public static List<FileList> listFilesInDirBean(final File dir, final boolean isRecursive) {
+        return listFilesInDirWithFilterBean(dir, new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                return true;
+            }
+        }, isRecursive);
+    }
+
+    /**
+     * 获取目录下所有过滤的文件 - 不递归进子目录
+     * @param dirPath 目录路径
+     * @param filter  过滤器
+     * @return 文件链表
+     */
+    public static List<FileList> listFilesInDirWithFilterBean(final String dirPath, final FileFilter filter) {
+        return listFilesInDirWithFilterBean(getFileByPath(dirPath), filter, false);
+    }
+
+    /**
+     * 获取目录下所有过滤的文件 - 不递归进子目录
+     * @param dir    目录
+     * @param filter 过滤器
+     * @return 文件链表
+     */
+    public static List<FileList> listFilesInDirWithFilterBean(final File dir, final FileFilter filter) {
+        return listFilesInDirWithFilterBean(dir, filter, false);
+    }
+
+    /**
+     * 获取目录下所有过滤的文件
+     * @param dirPath     目录路径
+     * @param filter      过滤器
+     * @param isRecursive 是否递归进子目录
+     * @return 文件链表
+     */
+    public static List<FileList> listFilesInDirWithFilterBean(final String dirPath, final FileFilter filter, final boolean isRecursive) {
+        return listFilesInDirWithFilterBean(getFileByPath(dirPath), filter, isRecursive);
+    }
+
+    /**
+     * 获取目录下所有过滤的文件
+     * @param dir         目录
+     * @param filter      过滤器
+     * @param isRecursive 是否递归进子目录
+     * @return 文件链表
+     */
+    public static List<FileList> listFilesInDirWithFilterBean(final File dir, final FileFilter filter, final boolean isRecursive) {
+        if (!isDirectory(dir) || filter == null) return null;
+        List<FileList> list = new ArrayList<>();
+        File[] files = dir.listFiles();
+        if (files != null && files.length != 0) {
+            for (File file : files) {
+                if (filter.accept(file)) {
+                    FileList fileList;
+                    if (isRecursive && file.isDirectory()) {
+                        List<FileList> subs = listFilesInDirWithFilterBean(file, filter, true);
+                        fileList = new FileList(file, subs);
+                    } else {
+                        fileList = new FileList(file);
+                    }
+                    list.add(fileList);
+                }
+            }
+        }
+        return list;
     }
 
     // ================

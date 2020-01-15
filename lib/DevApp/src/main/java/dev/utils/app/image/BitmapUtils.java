@@ -28,6 +28,7 @@ import java.io.InputStream;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.common.FileUtils;
+import dev.utils.common.ScaleUtils;
 
 /**
  * detail: Bitmap 工具类
@@ -37,6 +38,8 @@ import dev.utils.common.FileUtils;
  *     @see <a href="https://www.jianshu.com/p/d11892bbe055"/>
  *     Android 中一张图片占据的内存大小是如何计算
  *     @see <a href="https://www.cnblogs.com/dasusu/p/9789389.html"/>
+ *     Bitmap 的六种压缩方式, Android 图片压缩
+ *     @see <a href="https://blog.csdn.net/harryweasley/article/details/51955467"/>
  * </pre>
  */
 public final class BitmapUtils {
@@ -1101,6 +1104,9 @@ public final class BitmapUtils {
 
     /**
      * 按缩放宽高压缩
+     * <pre>
+     *     可搭配 {@link ScaleUtils} 工具类使用
+     * </pre>
      * @param bitmap    待操作源图片
      * @param newWidth  新宽度
      * @param newHeight 新高度
@@ -1112,6 +1118,9 @@ public final class BitmapUtils {
 
     /**
      * 按缩放比例压缩
+     * <pre>
+     *     可搭配 {@link ScaleUtils} 工具类使用
+     * </pre>
      * @param bitmap 待操作源图片
      * @param scaleX 横向缩放比例 ( 缩放宽度倍数 )
      * @param scaleY 纵向缩放比例 ( 缩放高度倍数 )
@@ -1343,5 +1352,56 @@ public final class BitmapUtils {
             inSampleSize <<= 1;
         }
         return inSampleSize;
+    }
+
+    /**
+     * 计算最佳压缩质量值
+     * <pre>
+     *     搭配 {@link ImageUtils#saveBitmapToSDCard} 等需要传入 quality 方法使用
+     * </pre>
+     * @param bitmap      待操作源图片
+     * @param format      图片压缩格式
+     * @param maxByteSize 允许最大值字节数
+     * @return 最佳压缩质量值
+     */
+    public static int calculateQuality(final Bitmap bitmap, final Bitmap.CompressFormat format, final long maxByteSize) {
+        if (isEmpty(bitmap) || maxByteSize <= 0) return -1;
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(format, 100, baos);
+            if (baos.size() <= maxByteSize) { // 最好质量的不大于最大字节, 则返回最佳质量
+                return 100;
+            } else {
+                baos.reset();
+                bitmap.compress(format, 0, baos);
+                if (baos.size() >= maxByteSize) { // 最差质量不小于最大字节, 则返回最差质量
+                    return 0;
+                } else { // 二分法寻找最佳质量
+                    int start = 0;
+                    int end = 100;
+                    int mid = 0;
+                    while (start < end) {
+                        mid = (start + end) / 2;
+                        baos.reset();
+                        bitmap.compress(format, mid, baos);
+                        int len = baos.size();
+                        if (len == maxByteSize) {
+                            return mid;
+                        } else if (len > maxByteSize) {
+                            end = mid - 1;
+                        } else {
+                            start = mid + 1;
+                        }
+                    }
+                    if (end == mid - 1) {
+                        return start;
+                    }
+                    return mid;
+                }
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "calculateQuality");
+        }
+        return -1;
     }
 }
