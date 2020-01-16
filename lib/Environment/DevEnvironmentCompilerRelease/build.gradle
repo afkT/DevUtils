@@ -1,0 +1,15 @@
+apply {
+    from rootProject.file(files.java_lib_gradle)
+}
+
+version versions.dev_environment_version
+
+dependencies {
+    compileOnly deps.lib.auto_service
+    annotationProcessor deps.lib.auto_service
+
+    // 编译时使用
+    api project(':DevEnvironmentBase')
+//    // 打包时使用
+//    api deps.dev.dev_environment_base
+}
