@@ -1,12 +1,19 @@
 package dev.environment.compiler;
 
+import com.squareup.javapoet.CodeBlock;
 import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.lang.model.element.Element;
@@ -29,18 +36,24 @@ final class Utils {
     // 工具类文件名
     static final String ENVIRONMENT_FILE_NAME = "DevEnvironment";
 
-    // 获取 Module 列表方法名
-    static final String METHOD_NAME_GET_MODULE_LIST = "getModuleList";
+    // 方法名
+    static final String METHOD_GET_MODULE_LIST = "getModuleList";
+    static final String METHOD_GET_MODULE_ENVIRONMENTS_LIST = "getEnvironments";
+    static final String METHOD_GET_ENVIRONMENTS_VALUE = "getValue";
     // 变量相关
     static final String VAR_MODULE_PREFIX = "MODULE_";
     static final String VAR_ENVIRONMENT_PREFIX = "ENVIRONMENT_";
-//    static final String VAR_ENVIRONMENT_VALUE_SUFFIX = "Value";
-//    static final String VAR_ENVIRONMENT_NAME_SUFFIX = "Name";
-//    static final String VAR_ENVIRONMENT_ALIAS_SUFFIX = "Alias";
+    static final String VAR_MODULE_LIST = "MODULE_LIST";
+    // 常量字符串
+    static final String STR_ENVIRONMENT = "Environment";
+    static final String STR_ENVIRONMENT_VALUE = "EnvironmentValue";
 
     // ================
     // = 内部生成方法 =
     // ================
+
+    // 用于记录 Module 名 Map<Module Name, List<Environment var Name>>
+    static final LinkedHashMap<String, List<String>> sModuleNameMap = new LinkedHashMap<>();
 
     // ========
     // = 通用 =
@@ -100,6 +113,9 @@ final class Utils {
         // 获取 Module Release Environment 数据
         Element environmentElement = getModuleReleaseEnvironment(moduleElement, processingEnv);
         if (environmentElement != null) {
+            // 创建 Environment 变量名 List
+            List<String> environmentVarNameList = new ArrayList<>();
+            sModuleNameMap.put(moduleName, environmentVarNameList);
             // 创建私有常量变量
             // private static final ModuleBean MODULE_XXX = new ModuleBean();
             FieldSpec moduleField = FieldSpec
@@ -132,21 +148,116 @@ final class Utils {
         String environmentNameUpperCase = environmentName.toUpperCase();
         String environmentValue = environmentAnnotation.value();
         String environmentAlias = environmentAnnotation.alias();
+        // Environment 变量名
+        String environmentVarName = VAR_ENVIRONMENT_PREFIX + moduleNameUpperCase + "_" + environmentNameUpperCase;
 
         // 创建私有常量变量
         // private static final EnvironmentBean ENVIRONMENT_MODULENAME_XXX = new EnvironmentBean();
         FieldSpec environmentField = FieldSpec
-            .builder(EnvironmentBean.class, VAR_ENVIRONMENT_PREFIX + moduleNameUpperCase + "_" + environmentNameUpperCase)
+            .builder(EnvironmentBean.class, environmentVarName)
             .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
             .initializer("new $T($S, $S, $S, $L)", EnvironmentBean.class, environmentName,
                 environmentValue, environmentAlias, VAR_MODULE_PREFIX + moduleNameUpperCase)
             .addJavadoc(String.format("[ Environment ] name: %s, alias: %s, [ Module ] name: %s\n", environmentName, environmentAlias, moduleName))
             .build();
         builder.addField(environmentField);
+
+        // 记录 Environment 变量名
+        sModuleNameMap.get(moduleName).add(environmentVarName);
+    }
+
+    /**
+     * 构建 static{} 初始化代码
+     * @param builder DevEnvironment 构建类对象
+     */
+    public static void builderStaticInit(final TypeSpec.Builder builder) {
+        // 创建 List 集合变量
+        builderList(builder);
+
+        if (!sModuleNameMap.isEmpty()) {
+            // 构建 static {} 初始化代码
+            CodeBlock.Builder staticCodeBlockBuilder = CodeBlock.builder();
+
+            Iterator<Map.Entry<String, List<String>>> iterator = sModuleNameMap.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<String, List<String>> entry = iterator.next();
+                // Module 名
+                String moduleName = entry.getKey();
+                // Module 变量名
+                String moduleVarName = VAR_MODULE_PREFIX + moduleName.toUpperCase();
+                // Environment 变量名 ( 因为 release 只能有一个, 这里直接获取 0 )
+                String environmentVarName = entry.getValue().get(0);
+
+                // 添加 moduleVarName 到 VAR_MODULE_LIST 中
+                staticCodeBlockBuilder.add("\n").addStatement("$N.add($N)", VAR_MODULE_LIST, moduleVarName);
+                // 添加 Environment 到对应 ModuleBean.getEnvironments() 中
+                staticCodeBlockBuilder.addStatement("$N.$N().add($N)", moduleVarName, METHOD_GET_MODULE_ENVIRONMENTS_LIST, environmentVarName);
+            }
+            // 创建代码
+            builder.addStaticBlock(staticCodeBlockBuilder.build());
+        }
+    }
+
+    /**
+     * 创建 List 集合变量
+     * @param builder DevEnvironment 构建类对象
+     */
+    public static void builderList(final TypeSpec.Builder builder) {
+        FieldSpec moduleListField = FieldSpec
+            .builder(getListType(ModuleBean.class), VAR_MODULE_LIST, Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+            .initializer("new $T<$T>()", ArrayList.class, ModuleBean.class)
+            .addJavadoc("Module List\n")
+            .build();
+        builder.addField(moduleListField);
+    }
+
+    /**
+     * 构建 getXxx 方法代码
+     * @param builder DevEnvironment 构建类对象
+     */
+    public static void builderGetMethod(final TypeSpec.Builder builder) {
+        // public static List<ModuleBean> getModuleList(){}
+        MethodSpec.Builder getModuleListMethodBuilder = MethodSpec
+            .methodBuilder(METHOD_GET_MODULE_LIST).addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+            .returns(getListType(ModuleBean.class))
+            .addStatement("return $N", VAR_MODULE_LIST)
+            .addJavadoc("Get All $N List\n", ModuleBean.class.getSimpleName())
+            .addJavadoc("@return List<$N>\n", ModuleBean.class.getSimpleName());
+        builder.addMethod(getModuleListMethodBuilder.build());
+
+        // 创建 Module Release Environment 获取方法
+        Iterator<Map.Entry<String, List<String>>> iterator = sModuleNameMap.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, List<String>> entry = iterator.next();
+            // Module 名
+            String moduleName = entry.getKey();
+            // Environment 变量名 ( 因为 release 只能有一个, 这里直接获取 0 )
+            String environmentVarName = entry.getValue().get(0);
+
+            String getModuleEnvironmentMethod = "get" + moduleName + STR_ENVIRONMENT;
+            // public static EnvironmentBean getModuleEnvironment(){}
+            MethodSpec.Builder getModuleEnvironmentMethodBuilder = MethodSpec
+                .methodBuilder(getModuleEnvironmentMethod).addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .returns(EnvironmentBean.class)
+                .addStatement("return $N", environmentVarName)
+                .addJavadoc("Get $N [ Module ] Release Environment Bean\n", moduleName)
+                .addJavadoc("@return $N [ Module ] Release Environment Bean\n", moduleName);
+            builder.addMethod(getModuleEnvironmentMethodBuilder.build());
+
+            // public static String getModuleEnvironmentValue(){}
+            String getModuleEnvironmentValueMethod = "get" + moduleName + STR_ENVIRONMENT_VALUE;
+            MethodSpec.Builder getModuleEnvironmentValueMethodBuilder = MethodSpec
+                .methodBuilder(getModuleEnvironmentValueMethod).addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .returns(String.class)
+                .addStatement("return $N.$N()", environmentVarName, METHOD_GET_ENVIRONMENTS_VALUE)
+                .addJavadoc("Get $N [ Module ] Release Environment Value\n", moduleName)
+                .addJavadoc("@return $N [ Module ] Release Environment Value\n", moduleName);
+            builder.addMethod(getModuleEnvironmentValueMethodBuilder.build());
+        }
     }
 
     // ============
-    // = 判断方法 =
+    // = 其他方法 =
     // ============
 
     /**
@@ -171,5 +282,14 @@ final class Utils {
             }
         }
         return environmentElement;
+    }
+
+    /**
+     * 获取 List Type
+     * @param type Bean.class
+     * @return List<Bean> Type
+     */
+    private static Type getListType(final Class<?> type) {
+        return new ParameterizedTypeImpl(new Type[]{type}, null, List.class);
     }
 }

@@ -56,6 +56,10 @@ public class DevEnvironmentCompilerRelease extends AbstractProcessor {
                 e.printStackTrace();
             }
         }
+        // 构建 static{} 初始化代码
+        Utils.builderStaticInit(devEnvironmentClassBuilder);
+        // 构建 getXxx 方法代码
+        Utils.builderGetMethod(devEnvironmentClassBuilder);
         // 创建 DevEnvironment JAVA 文件
         return Utils.createDevEnvironmentJavaFile(devEnvironmentClassBuilder, processingEnv);
     }
