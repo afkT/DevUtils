@@ -4,9 +4,6 @@ import com.google.auto.service.AutoService;
 import com.squareup.javapoet.TypeSpec;
 
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
@@ -49,14 +46,15 @@ public class DevEnvironmentCompilerRelease extends AbstractProcessor {
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
         // 构建 DevEnvironment 类对象
         TypeSpec.Builder devEnvironmentClassBuilder = Utils.builderDevEnvironment_Class();
-        // 创建 DevEnvironment 无参构造函数
-        Utils.builderDevEnvironmentConstructor_Method(devEnvironmentClassBuilder);
         // 获取使用注解修饰的 Element
         Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(Module.class);
         for (Element element : elements) {
-            Element parent = element.getEnclosingElement();
-            String parentName = parent.getSimpleName().toString();
-
+            try {
+                // 创建 Module 数据
+                Utils.builderModule_DATA(devEnvironmentClassBuilder, element, processingEnv);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         // 创建 DevEnvironment JAVA 文件
         return Utils.createDevEnvironmentJavaFile(devEnvironmentClassBuilder, processingEnv);
