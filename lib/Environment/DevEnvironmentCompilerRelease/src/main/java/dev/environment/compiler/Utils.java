@@ -9,7 +9,6 @@ import com.squareup.javapoet.TypeSpec;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -66,18 +65,18 @@ final class Utils {
     public static TypeSpec.Builder builderDevEnvironment_Class() {
         // 创建 DevEnvironment 类
         TypeSpec.Builder builder = TypeSpec.classBuilder(Utils.ENVIRONMENT_FILE_NAME)
-            .addModifiers(Modifier.PUBLIC, Modifier.FINAL);
-        // 添加注释
-        builder.addJavadoc("detail: 环境配置工具类")
-            .addJavadoc("\n@author Ttt\n");
-        // 创建 DevEnvironment 无参构造函数 private DevEnvironment(){}
+                .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
+                .addJavadoc("detail: 环境配置工具类\n")
+                .addJavadoc("@author Ttt\n");
+        // 创建 DevEnvironment 无参构造函数
+        // private DevEnvironment() {}
         MethodSpec constructor = MethodSpec.constructorBuilder().addModifiers(Modifier.PRIVATE).build();
         return builder.addMethod(constructor);
     }
 
     /**
      * 创建 DevEnvironment JAVA 文件
-     * @param builder DevEnvironment 类构建对象
+     * @param builder       DevEnvironment 类构建对象
      * @param processingEnv {@link ProcessingEnvironment}
      * @return {@code true} success, {@code false} fail
      */
@@ -97,7 +96,7 @@ final class Utils {
 
     /**
      * 创建 Module 数据
-     * @param builder DevEnvironment 构建类对象
+     * @param builder       DevEnvironment 类构建对象
      * @param moduleElement 使用注解修饰的 Module Element
      * @param processingEnv {@link ProcessingEnvironment}
      */
@@ -107,11 +106,10 @@ final class Utils {
         if (moduleAnnotation == null) return;
         // Module 信息
         String moduleName = moduleElement.getSimpleName().toString();
-        String moduleNameUpperCase = moduleName.toUpperCase();
         String moduleAlias = moduleAnnotation.alias();
 
         // 获取 Module Release Environment 数据
-        Element environmentElement = getModuleReleaseEnvironment(moduleElement, processingEnv);
+        Element environmentElement = _getModuleReleaseEnvironment(moduleElement, processingEnv);
         if (environmentElement != null) {
             // 创建 Environment 变量名 List
             List<String> environmentVarNameList = new ArrayList<>();
@@ -119,11 +117,11 @@ final class Utils {
             // 创建私有常量变量
             // private static final ModuleBean MODULE_XXX = new ModuleBean();
             FieldSpec moduleField = FieldSpec
-                .builder(ModuleBean.class, VAR_MODULE_PREFIX + moduleNameUpperCase)
-                .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
-                .initializer("new $T($S, $S)", ModuleBean.class, moduleName, moduleAlias)
-                .addJavadoc(String.format("[ Module ] name: %s, alias: %s\n", moduleName, moduleAlias))
-                .build();
+                    .builder(ModuleBean.class, _getModuleVarName_UpperCase(moduleName))
+                    .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+                    .initializer("new $T($S, $S)", ModuleBean.class, moduleName, moduleAlias)
+                    .addJavadoc(String.format("[ Module ] name: %s, alias: %s\n", moduleName, moduleAlias))
+                    .build();
             builder.addField(moduleField);
 
             // 创建 Module Environment 数据
@@ -133,42 +131,39 @@ final class Utils {
 
     /**
      * 创建 Module Environment 数据
-     * @param builder DevEnvironment 构建类对象
-     * @param moduleElement 使用注解修饰的 Module Element
+     * @param builder            DevEnvironment 类构建对象
+     * @param moduleElement      使用注解修饰的 Module Element
      * @param environmentElement 使用注解修饰的 Environment Element
      */
     public static void builderModuleEnvironment_DATA(final TypeSpec.Builder builder, final Element moduleElement,
                                                      final Element environmentElement) {
         // Module 信息
         String moduleName = moduleElement.getSimpleName().toString();
-        String moduleNameUpperCase = moduleName.toUpperCase();
         // Environment 信息
         Environment environmentAnnotation = environmentElement.getAnnotation(Environment.class);
         String environmentName = environmentElement.getSimpleName().toString();
-        String environmentNameUpperCase = environmentName.toUpperCase();
         String environmentValue = environmentAnnotation.value();
         String environmentAlias = environmentAnnotation.alias();
-        // Environment 变量名
-        String environmentVarName = VAR_ENVIRONMENT_PREFIX + moduleNameUpperCase + "_" + environmentNameUpperCase;
 
         // 创建私有常量变量
         // private static final EnvironmentBean ENVIRONMENT_MODULENAME_XXX = new EnvironmentBean();
         FieldSpec environmentField = FieldSpec
-            .builder(EnvironmentBean.class, environmentVarName)
-            .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
-            .initializer("new $T($S, $S, $S, $L)", EnvironmentBean.class, environmentName,
-                environmentValue, environmentAlias, VAR_MODULE_PREFIX + moduleNameUpperCase)
-            .addJavadoc(String.format("[ Environment ] name: %s, alias: %s, [ Module ] name: %s\n", environmentName, environmentAlias, moduleName))
-            .build();
+                .builder(EnvironmentBean.class, _getEnvironmentVarName_UpperCase(moduleName, environmentName))
+                .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+                .initializer("new $T($S, $S, $S, $L)", EnvironmentBean.class, environmentName,
+                        environmentValue, environmentAlias, _getModuleVarName_UpperCase(moduleName))
+                .addJavadoc(String.format("[ Environment ] name: %s, alias: %s, [ Module ] name: %s\n",
+                        environmentName, environmentAlias, moduleName))
+                .build();
         builder.addField(environmentField);
 
         // 记录 Environment 变量名
-        sModuleNameMap.get(moduleName).add(environmentVarName);
+        sModuleNameMap.get(moduleName).add(_getEnvironmentVarName_UpperCase(moduleName, environmentName));
     }
 
     /**
      * 构建 static{} 初始化代码
-     * @param builder DevEnvironment 构建类对象
+     * @param builder DevEnvironment 类构建对象
      */
     public static void builderStaticInit(final TypeSpec.Builder builder) {
         // 创建 List 集合变量
@@ -183,15 +178,15 @@ final class Utils {
                 Map.Entry<String, List<String>> entry = iterator.next();
                 // Module 名
                 String moduleName = entry.getKey();
-                // Module 变量名
-                String moduleVarName = VAR_MODULE_PREFIX + moduleName.toUpperCase();
                 // Environment 变量名 ( 因为 release 只能有一个, 这里直接获取 0 )
                 String environmentVarName = entry.getValue().get(0);
 
                 // 添加 moduleVarName 到 VAR_MODULE_LIST 中
-                staticCodeBlockBuilder.add("\n").addStatement("$N.add($N)", VAR_MODULE_LIST, moduleVarName);
+                staticCodeBlockBuilder.add("\n")
+                        .addStatement("$N.add($N)", VAR_MODULE_LIST, _getModuleVarName_UpperCase(moduleName));
                 // 添加 Environment 到对应 ModuleBean.getEnvironments() 中
-                staticCodeBlockBuilder.addStatement("$N.$N().add($N)", moduleVarName, METHOD_GET_MODULE_ENVIRONMENTS_LIST, environmentVarName);
+                staticCodeBlockBuilder.addStatement("$N.$N().add($N)", _getModuleVarName_UpperCase(moduleName),
+                        METHOD_GET_MODULE_ENVIRONMENTS_LIST, environmentVarName);
             }
             // 创建代码
             builder.addStaticBlock(staticCodeBlockBuilder.build());
@@ -200,32 +195,33 @@ final class Utils {
 
     /**
      * 创建 List 集合变量
-     * @param builder DevEnvironment 构建类对象
+     * @param builder DevEnvironment 类构建对象
      */
     public static void builderList(final TypeSpec.Builder builder) {
         FieldSpec moduleListField = FieldSpec
-            .builder(getListType(ModuleBean.class), VAR_MODULE_LIST, Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
-            .initializer("new $T<$T>()", ArrayList.class, ModuleBean.class)
-            .addJavadoc("Module List\n")
-            .build();
+                .builder(_getListType(ModuleBean.class), VAR_MODULE_LIST, Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+                .initializer("new $T<$T>()", ArrayList.class, ModuleBean.class)
+                .addJavadoc("Module List\n")
+                .build();
         builder.addField(moduleListField);
     }
 
     /**
      * 构建 getXxx 方法代码
-     * @param builder DevEnvironment 构建类对象
+     * @param builder DevEnvironment 类构建对象
      */
     public static void builderGetMethod(final TypeSpec.Builder builder) {
-        // public static List<ModuleBean> getModuleList(){}
-        MethodSpec.Builder getModuleListMethodBuilder = MethodSpec
-            .methodBuilder(METHOD_GET_MODULE_LIST).addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-            .returns(getListType(ModuleBean.class))
-            .addStatement("return $N", VAR_MODULE_LIST)
-            .addJavadoc("Get All $N List\n", ModuleBean.class.getSimpleName())
-            .addJavadoc("@return List<$N>\n", ModuleBean.class.getSimpleName());
-        builder.addMethod(getModuleListMethodBuilder.build());
+        // public static List<ModuleBean> getModuleList() {}
+        MethodSpec getModuleListMethod = MethodSpec
+                .methodBuilder(METHOD_GET_MODULE_LIST).addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .returns(_getListType(ModuleBean.class))
+                .addStatement("return $N", VAR_MODULE_LIST)
+                .addJavadoc("Get All $N List\n", ModuleBean.class.getSimpleName())
+                .addJavadoc("@return List<$N>\n", ModuleBean.class.getSimpleName())
+                .build();
+        builder.addMethod(getModuleListMethod);
 
-        // 创建 Module Release Environment 获取方法
+        // 创建 Module Release Environment get 方法
         Iterator<Map.Entry<String, List<String>>> iterator = sModuleNameMap.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<String, List<String>> entry = iterator.next();
@@ -234,24 +230,24 @@ final class Utils {
             // Environment 变量名 ( 因为 release 只能有一个, 这里直接获取 0 )
             String environmentVarName = entry.getValue().get(0);
 
-            String getModuleEnvironmentMethod = "get" + moduleName + STR_ENVIRONMENT;
-            // public static EnvironmentBean getModuleEnvironment(){}
+            String getModuleEnvironmentMethodName = "get" + moduleName + STR_ENVIRONMENT;
+            // public static EnvironmentBean getModuleEnvironment() {}
             MethodSpec.Builder getModuleEnvironmentMethodBuilder = MethodSpec
-                .methodBuilder(getModuleEnvironmentMethod).addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                .returns(EnvironmentBean.class)
-                .addStatement("return $N", environmentVarName)
-                .addJavadoc("Get $N [ Module ] Release Environment Bean\n", moduleName)
-                .addJavadoc("@return $N [ Module ] Release Environment Bean\n", moduleName);
+                    .methodBuilder(getModuleEnvironmentMethodName).addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                    .returns(EnvironmentBean.class)
+                    .addStatement("return $N", environmentVarName)
+                    .addJavadoc("Get $N [ Module ] Release Environment Bean\n", moduleName)
+                    .addJavadoc("@return $N [ Module ] Release Environment Bean\n", moduleName);
             builder.addMethod(getModuleEnvironmentMethodBuilder.build());
 
-            // public static String getModuleEnvironmentValue(){}
-            String getModuleEnvironmentValueMethod = "get" + moduleName + STR_ENVIRONMENT_VALUE;
+            // public static String getModuleEnvironmentValue() {}
+            String getModuleEnvironmentValueMethodName = "get" + moduleName + STR_ENVIRONMENT_VALUE;
             MethodSpec.Builder getModuleEnvironmentValueMethodBuilder = MethodSpec
-                .methodBuilder(getModuleEnvironmentValueMethod).addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                .returns(String.class)
-                .addStatement("return $N.$N()", environmentVarName, METHOD_GET_ENVIRONMENTS_VALUE)
-                .addJavadoc("Get $N [ Module ] Release Environment Value\n", moduleName)
-                .addJavadoc("@return $N [ Module ] Release Environment Value\n", moduleName);
+                    .methodBuilder(getModuleEnvironmentValueMethodName).addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                    .returns(String.class)
+                    .addStatement("return $N.$N()", environmentVarName, METHOD_GET_ENVIRONMENTS_VALUE)
+                    .addJavadoc("Get $N [ Module ] Release Environment Value\n", moduleName)
+                    .addJavadoc("@return $N [ Module ] Release Environment Value\n", moduleName);
             builder.addMethod(getModuleEnvironmentValueMethodBuilder.build());
         }
     }
@@ -261,18 +257,19 @@ final class Utils {
     // ============
 
     /**
-     * 获取 Module 中的 Release Environment 数据
+     * 获取 Module Release Environment 数据
      * @param moduleElement 使用注解修饰的 Module Element
      * @param processingEnv {@link ProcessingEnvironment}
      * @return Module Release Environment 数据
      */
-    public static Element getModuleReleaseEnvironment(final Element moduleElement, final ProcessingEnvironment processingEnv) throws Exception {
+    private static Element _getModuleReleaseEnvironment(final Element moduleElement,
+                                                        final ProcessingEnvironment processingEnv) throws Exception {
         Element environmentElement = null;
         List<? extends Element> allMembers = processingEnv.getElementUtils().getAllMembers((TypeElement) moduleElement);
         for (Element member : allMembers) {
             Environment environmentAnnotation = member.getAnnotation(Environment.class);
             if (environmentAnnotation == null) continue;
-            // 判断是否存在
+
             if (environmentAnnotation.isRelease()) {
                 if (environmentElement != null) { // 每个 Module 只能有一个 release 环境配置
                     String moduleName = moduleElement.getSimpleName().toString();
@@ -289,7 +286,26 @@ final class Utils {
      * @param type Bean.class
      * @return List<Bean> Type
      */
-    private static Type getListType(final Class<?> type) {
+    private static Type _getListType(final Class<?> type) {
         return new ParameterizedTypeImpl(new Type[]{type}, null, List.class);
+    }
+
+    /**
+     * 获取 Module 拼接变量名
+     * @param moduleName Module Name
+     * @return Module 拼接变量名
+     */
+    private static String _getModuleVarName_UpperCase(final String moduleName) {
+        return VAR_MODULE_PREFIX + moduleName.toUpperCase();
+    }
+
+    /**
+     * 获取 Environment 拼接变量名
+     * @param moduleName      Module Name
+     * @param environmentName Environment Name
+     * @return Environment 拼接变量名
+     */
+    private static String _getEnvironmentVarName_UpperCase(final String moduleName, final String environmentName) {
+        return VAR_ENVIRONMENT_PREFIX + moduleName.toUpperCase() + "_" + environmentName.toUpperCase();
     }
 }
