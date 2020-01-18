@@ -1,9 +1,11 @@
 package dev.environment.compiler;
 
+import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.CodeBlock;
 import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 
 import java.io.IOException;
@@ -23,6 +25,7 @@ import dev.environment.annotation.Environment;
 import dev.environment.annotation.Module;
 import dev.environment.bean.EnvironmentBean;
 import dev.environment.bean.ModuleBean;
+import dev.environment.type.ParameterizedTypeImpl;
 
 /**
  * detail: 内部工具类
@@ -44,9 +47,13 @@ final class Utils {
     static final String VAR_MODULE_PREFIX = "MODULE_";
     static final String VAR_ENVIRONMENT_PREFIX = "ENVIRONMENT_";
     static final String VAR_MODULE_LIST = "MODULE_LIST";
+    static final String VAR_CONTEXT = "context";
+    static final String VAR_NEW_ENVIRONMENT = "newEnvironment";
     // 常量字符串
     static final String STR_ENVIRONMENT = "Environment";
     static final String STR_ENVIRONMENT_VALUE = "EnvironmentValue";
+    // 其他
+    static final TypeName TYPE_NAME_CONTEXT = ClassName.get("android.content", "Context");
 
     // ================
     // = 内部生成方法 =
@@ -248,27 +255,46 @@ final class Utils {
             // Environment 变量名 ( 因为 release 只能有一个, 这里直接获取 0 )
             String environmentVarName = entry.getValue().get(0);
 
+            // public static EnvironmentBean getModuleEnvironment(final Context context) {}
             String getModuleEnvironmentMethodName = "get" + moduleName + STR_ENVIRONMENT;
-            // public static EnvironmentBean getModuleEnvironment() {}
             MethodSpec.Builder getModuleEnvironmentMethodBuilder = MethodSpec
                     .methodBuilder(getModuleEnvironmentMethodName)
                     .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                    .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                     .returns(EnvironmentBean.class)
                     .addStatement("return $N", environmentVarName)
                     .addJavadoc("Get $N [ Module ] Release Environment Bean\n", moduleName)
+                    .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
                     .addJavadoc("@return $N [ Module ] Release Environment Bean\n", moduleName);
             builder.addMethod(getModuleEnvironmentMethodBuilder.build());
 
-            // public static String getModuleEnvironmentValue() {}
+            // public static String getModuleEnvironmentValue(final Context context) {}
             String getModuleEnvironmentValueMethodName = "get" + moduleName + STR_ENVIRONMENT_VALUE;
             MethodSpec.Builder getModuleEnvironmentValueMethodBuilder = MethodSpec
                     .methodBuilder(getModuleEnvironmentValueMethodName)
                     .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                    .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                     .returns(String.class)
                     .addStatement("return $N.$N()", environmentVarName, METHOD_GET_ENVIRONMENTS_VALUE)
                     .addJavadoc("Get $N [ Module ] Release Environment Value\n", moduleName)
+                    .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
                     .addJavadoc("@return $N [ Module ] Release Environment Value\n", moduleName);
             builder.addMethod(getModuleEnvironmentValueMethodBuilder.build());
+
+            // public static boolean setModuleEnvironment(final Context context, final EnvironmentBean newEnvironment) {}
+            String setModuleEnvironmentMethodName = "set" + moduleName + STR_ENVIRONMENT;
+            MethodSpec.Builder setModuleEnvironmentMethodBuilder = MethodSpec
+                    .methodBuilder(setModuleEnvironmentMethodName)
+                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                    .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
+                    .addParameter(EnvironmentBean.class, VAR_NEW_ENVIRONMENT, Modifier.FINAL)
+                    .returns(Boolean.class)
+                    .addStatement("return false")
+                    .addJavadoc("Set $N [ Module ] Debug Environment Bean\n", moduleName)
+                    .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
+                    .addJavadoc("@param $N debug annotation compile use\n", VAR_NEW_ENVIRONMENT)
+                    .addJavadoc("@return {@code true} success, {@code false} fail\n");
+            builder.addMethod(setModuleEnvironmentMethodBuilder.build());
         }
     }
 
