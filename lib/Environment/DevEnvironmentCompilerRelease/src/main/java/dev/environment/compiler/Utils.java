@@ -36,6 +36,7 @@ final class Utils {
     static final String ENVIRONMENT_FILE_NAME = "DevEnvironment";
 
     // 方法名
+    static final String METHOD_IS_RELEASE = "isRelease";
     static final String METHOD_GET_MODULE_LIST = "getModuleList";
     static final String METHOD_GET_MODULE_ENVIRONMENTS_LIST = "getEnvironments";
     static final String METHOD_GET_ENVIRONMENTS_VALUE = "getValue";
@@ -162,6 +163,22 @@ final class Utils {
     }
 
     /**
+     * 构建是否 release annotation 方法
+     * @param builder DevEnvironment 类构建对象
+     */
+    public static void builderIsReleaseMethod(final TypeSpec.Builder builder) {
+        // public static boolean isRelease() {}
+        MethodSpec.Builder isReleaseMethodBuilder = MethodSpec
+                .methodBuilder(METHOD_IS_RELEASE)
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                .returns(Boolean.class)
+                .addStatement("return true")
+                .addJavadoc("Whether Release Annotation Compile\n")
+                .addJavadoc("@return {@code true} yes, {@code false} no\n");
+        builder.addMethod(isReleaseMethodBuilder.build());
+    }
+
+    /**
      * 构建 static{} 初始化代码
      * @param builder DevEnvironment 类构建对象
      */
@@ -213,7 +230,8 @@ final class Utils {
     public static void builderGetMethod(final TypeSpec.Builder builder) {
         // public static List<ModuleBean> getModuleList() {}
         MethodSpec getModuleListMethod = MethodSpec
-                .methodBuilder(METHOD_GET_MODULE_LIST).addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .methodBuilder(METHOD_GET_MODULE_LIST)
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                 .returns(_getListType(ModuleBean.class))
                 .addStatement("return $N", VAR_MODULE_LIST)
                 .addJavadoc("Get All $N List\n", ModuleBean.class.getSimpleName())
@@ -233,7 +251,8 @@ final class Utils {
             String getModuleEnvironmentMethodName = "get" + moduleName + STR_ENVIRONMENT;
             // public static EnvironmentBean getModuleEnvironment() {}
             MethodSpec.Builder getModuleEnvironmentMethodBuilder = MethodSpec
-                    .methodBuilder(getModuleEnvironmentMethodName).addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                    .methodBuilder(getModuleEnvironmentMethodName)
+                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                     .returns(EnvironmentBean.class)
                     .addStatement("return $N", environmentVarName)
                     .addJavadoc("Get $N [ Module ] Release Environment Bean\n", moduleName)
@@ -243,7 +262,8 @@ final class Utils {
             // public static String getModuleEnvironmentValue() {}
             String getModuleEnvironmentValueMethodName = "get" + moduleName + STR_ENVIRONMENT_VALUE;
             MethodSpec.Builder getModuleEnvironmentValueMethodBuilder = MethodSpec
-                    .methodBuilder(getModuleEnvironmentValueMethodName).addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                    .methodBuilder(getModuleEnvironmentValueMethodName)
+                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                     .returns(String.class)
                     .addStatement("return $N.$N()", environmentVarName, METHOD_GET_ENVIRONMENTS_VALUE)
                     .addJavadoc("Get $N [ Module ] Release Environment Value\n", moduleName)
