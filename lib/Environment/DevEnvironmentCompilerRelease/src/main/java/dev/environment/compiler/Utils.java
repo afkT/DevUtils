@@ -25,6 +25,7 @@ import dev.environment.annotation.Environment;
 import dev.environment.annotation.Module;
 import dev.environment.bean.EnvironmentBean;
 import dev.environment.bean.ModuleBean;
+import dev.environment.listener.OnEnvironmentChangeListener;
 import dev.environment.type.ParameterizedTypeImpl;
 
 /**
@@ -43,12 +44,16 @@ final class Utils {
     static final String METHOD_GET_MODULE_LIST = "getModuleList";
     static final String METHOD_GET_MODULE_ENVIRONMENTS_LIST = "getEnvironments";
     static final String METHOD_GET_ENVIRONMENTS_VALUE = "getValue";
+    static final String METHOD_ADD_ONENVIRONMENT_CHANGE_LISTENER = "addOnEnvironmentChangeListener";
+    static final String METHOD_REMOVE_ONENVIRONMENT_CHANGE_LISTENER = "removeOnEnvironmentChangeListener";
+    static final String METHOD_CLEAR_ONENVIRONMENT_CHANGE_LISTENER = "clearOnEnvironmentChangeListener";
     // 变量相关
     static final String VAR_MODULE_PREFIX = "MODULE_";
     static final String VAR_ENVIRONMENT_PREFIX = "ENVIRONMENT_";
     static final String VAR_MODULE_LIST = "MODULE_LIST";
     static final String VAR_CONTEXT = "context";
-    static final String VAR_NEW_ENVIRONMENT = "newEnvironment";
+    static final String VAR_PARAM_NAME_NEW_ENVIRONMENT = "newEnvironment";
+    static final String VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER = "listener";
     // 常量字符串
     static final String STR_ENVIRONMENT = "Environment";
     static final String STR_ENVIRONMENT_VALUE = "EnvironmentValue";
@@ -170,7 +175,7 @@ final class Utils {
     }
 
     /**
-     * 构建是否 release annotation 方法
+     * 构建 isRelease 方法
      * @param builder DevEnvironment 类构建对象
      */
     public static void builderIsReleaseMethod(final TypeSpec.Builder builder) {
@@ -180,7 +185,8 @@ final class Utils {
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                 .returns(Boolean.class)
                 .addStatement("return true")
-                .addJavadoc("Whether Release Annotation Compile\n")
+                .addJavadoc("Whether Release Annotation Processor Compile\n")
+                .addJavadoc("<p>是否使用 releaseAnnotationProcessor 构建\n")
                 .addJavadoc("@return {@code true} yes, {@code false} no\n");
         builder.addMethod(isReleaseMethodBuilder.build());
     }
@@ -242,6 +248,7 @@ final class Utils {
                 .returns(_getListType(ModuleBean.class))
                 .addStatement("return $N", VAR_MODULE_LIST)
                 .addJavadoc("Get All $N List\n", ModuleBean.class.getSimpleName())
+                .addJavadoc("<p>获取全部 $N 配置列表\n", ModuleBean.class.getSimpleName())
                 .addJavadoc("@return List<$N>\n", ModuleBean.class.getSimpleName())
                 .build();
         builder.addMethod(getModuleListMethod);
@@ -264,6 +271,7 @@ final class Utils {
                     .returns(EnvironmentBean.class)
                     .addStatement("return $N", environmentVarName)
                     .addJavadoc("Get $N [ Module ] Release Environment Bean\n", moduleName)
+                    .addJavadoc("<p>获取 $N [ Module ] Release Environment Bean\n", moduleName)
                     .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
                     .addJavadoc("@return $N [ Module ] Release Environment Bean\n", moduleName);
             builder.addMethod(getModuleEnvironmentMethodBuilder.build());
@@ -277,6 +285,7 @@ final class Utils {
                     .returns(String.class)
                     .addStatement("return $N.$N()", environmentVarName, METHOD_GET_ENVIRONMENTS_VALUE)
                     .addJavadoc("Get $N [ Module ] Release Environment Value\n", moduleName)
+                    .addJavadoc("<p>获取 $N [ Module ] Release Environment Value\n", moduleName)
                     .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
                     .addJavadoc("@return $N [ Module ] Release Environment Value\n", moduleName);
             builder.addMethod(getModuleEnvironmentValueMethodBuilder.build());
@@ -287,15 +296,59 @@ final class Utils {
                     .methodBuilder(setModuleEnvironmentMethodName)
                     .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                     .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
-                    .addParameter(EnvironmentBean.class, VAR_NEW_ENVIRONMENT, Modifier.FINAL)
+                    .addParameter(EnvironmentBean.class, VAR_PARAM_NAME_NEW_ENVIRONMENT, Modifier.FINAL)
                     .returns(Boolean.class)
                     .addStatement("return false")
                     .addJavadoc("Set $N [ Module ] Debug Environment Bean\n", moduleName)
+                    .addJavadoc("<p>设置 $N [ Module ] Debug Environment Bean\n", moduleName)
                     .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
-                    .addJavadoc("@param $N debug annotation compile use\n", VAR_NEW_ENVIRONMENT)
+                    .addJavadoc("@param $N debug annotation compile use\n", VAR_PARAM_NAME_NEW_ENVIRONMENT)
                     .addJavadoc("@return {@code true} success, {@code false} fail\n");
             builder.addMethod(setModuleEnvironmentMethodBuilder.build());
         }
+    }
+
+    /**
+     * 构建模块环境改变回调事件方法
+     * @param builder DevEnvironment 类构建对象
+     */
+    public static void builderEnvironmentChangeListener(final TypeSpec.Builder builder) {
+        // public static void addOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
+        MethodSpec.Builder addOnEnvironmentChangeListenerMethodBuilder = MethodSpec
+                .methodBuilder(METHOD_ADD_ONENVIRONMENT_CHANGE_LISTENER)
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                .addParameter(OnEnvironmentChangeListener.class, VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER, Modifier.FINAL)
+                .returns(Boolean.class)
+                .addStatement("return false")
+                .addJavadoc("Add Environment Change Listener\n")
+                .addJavadoc("<p>添加模块环境改变回调事件\n")
+                .addJavadoc("@param $N debug annotation compile use\n", VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER)
+                .addJavadoc("@return {@code true} success, {@code false} fail\n");
+        builder.addMethod(addOnEnvironmentChangeListenerMethodBuilder.build());
+
+        // public static void removeOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
+        MethodSpec.Builder removeOnEnvironmentChangeListenerBuilder = MethodSpec
+                .methodBuilder(METHOD_REMOVE_ONENVIRONMENT_CHANGE_LISTENER)
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                .addParameter(OnEnvironmentChangeListener.class, VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER, Modifier.FINAL)
+                .returns(Boolean.class)
+                .addStatement("return false")
+                .addJavadoc("Remove Environment Change Listener\n")
+                .addJavadoc("<p>移除模块环境改变回调事件\n")
+                .addJavadoc("@param $N debug annotation compile use\n", VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER)
+                .addJavadoc("@return {@code true} success, {@code false} fail\n");
+        builder.addMethod(removeOnEnvironmentChangeListenerBuilder.build());
+
+        // public static void clearOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
+        MethodSpec.Builder clearOnEnvironmentChangeListenerBuilder = MethodSpec
+                .methodBuilder(METHOD_CLEAR_ONENVIRONMENT_CHANGE_LISTENER)
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                .returns(Boolean.class)
+                .addStatement("return false")
+                .addJavadoc("Clear All Environment Change Listener\n")
+                .addJavadoc("<p>清空模块环境改变回调事件\n")
+                .addJavadoc("@return {@code true} success, {@code false} fail\n");
+        builder.addMethod(clearOnEnvironmentChangeListenerBuilder.build());
     }
 
     // ============
