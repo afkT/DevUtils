@@ -188,7 +188,7 @@ final class Utils {
                 .methodBuilder(METHOD_IS_RELEASE)
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                 .returns(Boolean.class)
-                .addStatement("return true")
+                .addStatement("return false")
                 .addJavadoc("是否使用 releaseAnnotationProcessor 构建\n")
                 .addJavadoc("<p>Whether Release Annotation Processor Compile\n")
                 .addJavadoc("@return {@code true} yes, {@code false} no\n");
@@ -286,10 +286,10 @@ final class Utils {
                     .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                     .returns(EnvironmentBean.class)
                     .addStatement("return $N", environmentVarName)
-                    .addJavadoc("获取 $N [ Module ] Release Environment Bean\n", moduleName)
-                    .addJavadoc("<p>Get $N [ Module ] Release Environment Bean\n", moduleName)
+                    .addJavadoc("获取 $N [ Module ] Debug Environment Bean\n", moduleName)
+                    .addJavadoc("<p>Get $N [ Module ] Debug Environment Bean\n", moduleName)
                     .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
-                    .addJavadoc("@return $N [ Module ] Release Environment Bean\n", moduleName);
+                    .addJavadoc("@return $N [ Module ] Debug Environment Bean\n", moduleName);
             builder.addMethod(getModuleEnvironmentMethodBuilder.build());
 
             // public static final String getModuleEnvironmentValue(final Context context) {}
@@ -300,10 +300,10 @@ final class Utils {
                     .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                     .returns(String.class)
                     .addStatement("return $N($N).$N()", getModuleEnvironmentMethodName, VAR_CONTEXT, METHOD_GET_ENVIRONMENTS_VALUE)
-                    .addJavadoc("获取 $N [ Module ] Release Environment Value\n", moduleName)
-                    .addJavadoc("<p>Get $N [ Module ] Release Environment Value\n", moduleName)
+                    .addJavadoc("获取 $N [ Module ] Debug Environment Value\n", moduleName)
+                    .addJavadoc("<p>Get $N [ Module ] Debug Environment Value\n", moduleName)
                     .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
-                    .addJavadoc("@return $N [ Module ] Release Environment Value\n", moduleName);
+                    .addJavadoc("@return $N [ Module ] Debug Environment Value\n", moduleName);
             builder.addMethod(getModuleEnvironmentValueMethodBuilder.build());
 
             // public static final Boolean setModuleEnvironment(final Context context, final EnvironmentBean newEnvironment) {}
