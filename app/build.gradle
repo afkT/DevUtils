@@ -20,9 +20,9 @@ dependencies {
     implementation project(path: ':DevBase')
     implementation project(path: ':DevWidget')
     implementation project(path: ':DevEnvironmentBase')
-//    debugAnnotationProcessor project(':DevEnvironmentCompiler')
-//    releaseAnnotationProcessor project(':DevEnvironmentCompilerRelease')
-    annotationProcessor project(':DevEnvironmentCompilerRelease')
+    debugAnnotationProcessor project(':DevEnvironmentCompiler')
+    releaseAnnotationProcessor project(':DevEnvironmentCompilerRelease')
+//    annotationProcessor project(':DevEnvironmentCompilerRelease')
 
     // ============
     // = 第三方库 =
