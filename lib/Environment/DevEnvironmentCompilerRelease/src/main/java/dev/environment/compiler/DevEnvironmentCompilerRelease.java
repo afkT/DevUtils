@@ -64,6 +64,8 @@ public class DevEnvironmentCompilerRelease extends AbstractProcessor {
         Utils.builderGetMethod(devEnvironmentClassBuilder);
         // 构建模块环境改变触发事件方法
         Utils.builderEnvironmentChangeListener(devEnvironmentClassBuilder);
+        // 构建存储相关方法
+        Utils.builderStorageMethod(devEnvironmentClassBuilder);
         // 创建 DevEnvironment JAVA 文件
         return Utils.createDevEnvironmentJavaFile(devEnvironmentClassBuilder, processingEnv);
     }

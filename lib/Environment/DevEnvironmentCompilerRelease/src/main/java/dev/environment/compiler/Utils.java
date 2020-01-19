@@ -8,6 +8,7 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ final class Utils {
     static final String METHOD_ADD_ONENVIRONMENT_CHANGE_LISTENER = "addOnEnvironmentChangeListener";
     static final String METHOD_REMOVE_ONENVIRONMENT_CHANGE_LISTENER = "removeOnEnvironmentChangeListener";
     static final String METHOD_CLEAR_ONENVIRONMENT_CHANGE_LISTENER = "clearOnEnvironmentChangeListener";
+    static final String METHOD_GET_STORAGE_DIR = "getStorageDir";
     // 变量相关
     static final String VAR_MODULE_PREFIX = "MODULE_";
     static final String VAR_ENVIRONMENT_PREFIX = "ENVIRONMENT_";
@@ -185,8 +187,8 @@ final class Utils {
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                 .returns(Boolean.class)
                 .addStatement("return true")
-                .addJavadoc("Whether Release Annotation Processor Compile\n")
-                .addJavadoc("<p>是否使用 releaseAnnotationProcessor 构建\n")
+                .addJavadoc("是否使用 releaseAnnotationProcessor 构建\n")
+                .addJavadoc("<p>Whether Release Annotation Processor Compile\n")
                 .addJavadoc("@return {@code true} yes, {@code false} no\n");
         builder.addMethod(isReleaseMethodBuilder.build());
     }
@@ -247,8 +249,8 @@ final class Utils {
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                 .returns(_getListType(ModuleBean.class))
                 .addStatement("return $N", VAR_MODULE_LIST)
-                .addJavadoc("Get All $N List\n", ModuleBean.class.getSimpleName())
-                .addJavadoc("<p>获取全部 $N 配置列表\n", ModuleBean.class.getSimpleName())
+                .addJavadoc("获取全部 $N 配置列表\n", ModuleBean.class.getSimpleName())
+                .addJavadoc("<p>Get All $N List\n", ModuleBean.class.getSimpleName())
                 .addJavadoc("@return List<$N>\n", ModuleBean.class.getSimpleName())
                 .build();
         builder.addMethod(getModuleListMethod);
@@ -270,8 +272,8 @@ final class Utils {
                     .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                     .returns(EnvironmentBean.class)
                     .addStatement("return $N", environmentVarName)
-                    .addJavadoc("Get $N [ Module ] Release Environment Bean\n", moduleName)
-                    .addJavadoc("<p>获取 $N [ Module ] Release Environment Bean\n", moduleName)
+                    .addJavadoc("获取 $N [ Module ] Release Environment Bean\n", moduleName)
+                    .addJavadoc("<p>Get $N [ Module ] Release Environment Bean\n", moduleName)
                     .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
                     .addJavadoc("@return $N [ Module ] Release Environment Bean\n", moduleName);
             builder.addMethod(getModuleEnvironmentMethodBuilder.build());
@@ -284,8 +286,8 @@ final class Utils {
                     .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                     .returns(String.class)
                     .addStatement("return $N.$N()", environmentVarName, METHOD_GET_ENVIRONMENTS_VALUE)
-                    .addJavadoc("Get $N [ Module ] Release Environment Value\n", moduleName)
-                    .addJavadoc("<p>获取 $N [ Module ] Release Environment Value\n", moduleName)
+                    .addJavadoc("获取 $N [ Module ] Release Environment Value\n", moduleName)
+                    .addJavadoc("<p>Get $N [ Module ] Release Environment Value\n", moduleName)
                     .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
                     .addJavadoc("@return $N [ Module ] Release Environment Value\n", moduleName);
             builder.addMethod(getModuleEnvironmentValueMethodBuilder.build());
@@ -299,8 +301,8 @@ final class Utils {
                     .addParameter(EnvironmentBean.class, VAR_PARAM_NAME_NEW_ENVIRONMENT, Modifier.FINAL)
                     .returns(Boolean.class)
                     .addStatement("return false")
-                    .addJavadoc("Set $N [ Module ] Debug Environment Bean\n", moduleName)
-                    .addJavadoc("<p>设置 $N [ Module ] Debug Environment Bean\n", moduleName)
+                    .addJavadoc("设置 $N [ Module ] Debug Environment Bean\n", moduleName)
+                    .addJavadoc("<p>Set $N [ Module ] Debug Environment Bean\n", moduleName)
                     .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
                     .addJavadoc("@param $N debug annotation compile use\n", VAR_PARAM_NAME_NEW_ENVIRONMENT)
                     .addJavadoc("@return {@code true} success, {@code false} fail\n");
@@ -320,8 +322,8 @@ final class Utils {
                 .addParameter(OnEnvironmentChangeListener.class, VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER, Modifier.FINAL)
                 .returns(Boolean.class)
                 .addStatement("return false")
-                .addJavadoc("Add Environment Change Listener\n")
-                .addJavadoc("<p>添加模块环境改变触发事件\n")
+                .addJavadoc("添加模块环境改变触发事件\n")
+                .addJavadoc("<p>Add Environment Change Listener\n")
                 .addJavadoc("@param $N debug annotation compile use\n", VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER)
                 .addJavadoc("@return {@code true} success, {@code false} fail\n");
         builder.addMethod(addOnEnvironmentChangeListenerMethodBuilder.build());
@@ -333,8 +335,8 @@ final class Utils {
                 .addParameter(OnEnvironmentChangeListener.class, VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER, Modifier.FINAL)
                 .returns(Boolean.class)
                 .addStatement("return false")
-                .addJavadoc("Remove Environment Change Listener\n")
-                .addJavadoc("<p>移除模块环境改变触发事件\n")
+                .addJavadoc("移除模块环境改变触发事件\n")
+                .addJavadoc("<p>Remove Environment Change Listener\n")
                 .addJavadoc("@param $N debug annotation compile use\n", VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER)
                 .addJavadoc("@return {@code true} success, {@code false} fail\n");
         builder.addMethod(removeOnEnvironmentChangeListenerBuilder.build());
@@ -345,10 +347,40 @@ final class Utils {
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                 .returns(Boolean.class)
                 .addStatement("return false")
-                .addJavadoc("Clear All Environment Change Listener\n")
-                .addJavadoc("<p>清空模块环境改变触发事件\n")
+                .addJavadoc("清空模块环境改变触发事件\n")
+                .addJavadoc("<p>Clear All Environment Change Listener\n")
                 .addJavadoc("@return {@code true} success, {@code false} fail\n");
         builder.addMethod(clearOnEnvironmentChangeListenerBuilder.build());
+    }
+
+    /**
+     * 构建存储相关方法
+     * @param builder DevEnvironment 类构建对象
+     */
+    public static void builderStorageMethod(final TypeSpec.Builder builder) {
+        // 构建 getStorageDir 实现代码
+        CodeBlock.Builder getStorageDirCodeBlockBuilder = CodeBlock.builder();
+        getStorageDirCodeBlockBuilder.add("try {\n");
+        getStorageDirCodeBlockBuilder.add("    File file = new File(context.getCacheDir(), $S);\n", ENVIRONMENT_FILE_NAME);
+        getStorageDirCodeBlockBuilder.add("    if (!file.exists()) file.mkdirs();\n");
+        getStorageDirCodeBlockBuilder.add("    return file;\n");
+        getStorageDirCodeBlockBuilder.add("} catch (Exception e) {\n");
+        getStorageDirCodeBlockBuilder.add("    e.printStackTrace();\n");
+        getStorageDirCodeBlockBuilder.add("}\n");
+
+        // public static File getStorageDir(final Context context) {}
+        MethodSpec.Builder getStorageDirMethodBuilder = MethodSpec
+            .methodBuilder(METHOD_GET_STORAGE_DIR)
+            .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+            .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
+            .returns(File.class)
+            .addCode(getStorageDirCodeBlockBuilder.build())
+            .addStatement("return null")
+            .addJavadoc("获取环境配置存储路径 - path /data/data/package/cache/$N\n", ENVIRONMENT_FILE_NAME)
+            .addJavadoc("<p>Get Environment Configure Storage Dir - path /data/data/package/cache/$N\n", ENVIRONMENT_FILE_NAME)
+            .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
+            .addJavadoc("@return /data/data/package/cache/$N\n", ENVIRONMENT_FILE_NAME);
+        builder.addMethod(getStorageDirMethodBuilder.build());
     }
 
     // ============
