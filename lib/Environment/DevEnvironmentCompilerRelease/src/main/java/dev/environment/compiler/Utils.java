@@ -49,6 +49,7 @@ final class Utils {
     static final String METHOD_REMOVE_ONENVIRONMENT_CHANGE_LISTENER = "removeOnEnvironmentChangeListener";
     static final String METHOD_CLEAR_ONENVIRONMENT_CHANGE_LISTENER = "clearOnEnvironmentChangeListener";
     static final String METHOD_GET_STORAGE_DIR = "getStorageDir";
+    static final String METHOD_DELETE_STORAGE_DIR = "deleteStorageDir";
     // 变量相关
     static final String VAR_MODULE_PREFIX = "MODULE_";
     static final String VAR_ENVIRONMENT_PREFIX = "ENVIRONMENT_";
@@ -57,6 +58,7 @@ final class Utils {
     static final String VAR_PARAM_NAME_NEW_ENVIRONMENT = "newEnvironment";
     static final String VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER = "listener";
     // 常量字符串
+    static final String STR_MODULE = "Module";
     static final String STR_ENVIRONMENT = "Environment";
     static final String STR_ENVIRONMENT_VALUE = "EnvironmentValue";
     // 其他
@@ -181,7 +183,7 @@ final class Utils {
      * @param builder DevEnvironment 类构建对象
      */
     public static void builderIsReleaseMethod(final TypeSpec.Builder builder) {
-        // public static boolean isRelease() {}
+        // public static final Boolean isRelease() {}
         MethodSpec.Builder isReleaseMethodBuilder = MethodSpec
                 .methodBuilder(METHOD_IS_RELEASE)
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
@@ -243,7 +245,7 @@ final class Utils {
      * @param builder DevEnvironment 类构建对象
      */
     public static void builderGetMethod(final TypeSpec.Builder builder) {
-        // public static List<ModuleBean> getModuleList() {}
+        // public static final List<ModuleBean> getModuleList() {}
         MethodSpec getModuleListMethod = MethodSpec
                 .methodBuilder(METHOD_GET_MODULE_LIST)
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
@@ -264,7 +266,19 @@ final class Utils {
             // Environment 变量名 ( 因为 release 只能有一个, 这里直接获取 0 )
             String environmentVarName = entry.getValue().get(0);
 
-            // public static EnvironmentBean getModuleEnvironment(final Context context) {}
+            // public static final ModuleBean getModule() {}
+            String getModuleMethodName = "get" + moduleName + STR_MODULE;
+            MethodSpec.Builder getModuleMethodBuilder = MethodSpec
+                .methodBuilder(getModuleMethodName)
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                .returns(ModuleBean.class)
+                .addStatement("return $N", _getModuleVarName_UpperCase(moduleName))
+                .addJavadoc("获取 $N [ Module ] Bean\n", moduleName)
+                .addJavadoc("<p>Get $N [ Module ] Bean\n", moduleName)
+                .addJavadoc("@return $N [ Module ] Bean\n", moduleName);
+            builder.addMethod(getModuleMethodBuilder.build());
+
+            // public static final EnvironmentBean getModuleEnvironment(final Context context) {}
             String getModuleEnvironmentMethodName = "get" + moduleName + STR_ENVIRONMENT;
             MethodSpec.Builder getModuleEnvironmentMethodBuilder = MethodSpec
                     .methodBuilder(getModuleEnvironmentMethodName)
@@ -278,21 +292,21 @@ final class Utils {
                     .addJavadoc("@return $N [ Module ] Release Environment Bean\n", moduleName);
             builder.addMethod(getModuleEnvironmentMethodBuilder.build());
 
-            // public static String getModuleEnvironmentValue(final Context context) {}
+            // public static final String getModuleEnvironmentValue(final Context context) {}
             String getModuleEnvironmentValueMethodName = "get" + moduleName + STR_ENVIRONMENT_VALUE;
             MethodSpec.Builder getModuleEnvironmentValueMethodBuilder = MethodSpec
                     .methodBuilder(getModuleEnvironmentValueMethodName)
                     .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                     .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                     .returns(String.class)
-                    .addStatement("return $N.$N()", environmentVarName, METHOD_GET_ENVIRONMENTS_VALUE)
+                    .addStatement("return $N($N).$N()", getModuleEnvironmentMethodName, VAR_CONTEXT, METHOD_GET_ENVIRONMENTS_VALUE)
                     .addJavadoc("获取 $N [ Module ] Release Environment Value\n", moduleName)
                     .addJavadoc("<p>Get $N [ Module ] Release Environment Value\n", moduleName)
                     .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
                     .addJavadoc("@return $N [ Module ] Release Environment Value\n", moduleName);
             builder.addMethod(getModuleEnvironmentValueMethodBuilder.build());
 
-            // public static boolean setModuleEnvironment(final Context context, final EnvironmentBean newEnvironment) {}
+            // public static final Boolean setModuleEnvironment(final Context context, final EnvironmentBean newEnvironment) {}
             String setModuleEnvironmentMethodName = "set" + moduleName + STR_ENVIRONMENT;
             MethodSpec.Builder setModuleEnvironmentMethodBuilder = MethodSpec
                     .methodBuilder(setModuleEnvironmentMethodName)
@@ -315,7 +329,7 @@ final class Utils {
      * @param builder DevEnvironment 类构建对象
      */
     public static void builderEnvironmentChangeListener(final TypeSpec.Builder builder) {
-        // public static void addOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
+        // public static final Boolean addOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
         MethodSpec.Builder addOnEnvironmentChangeListenerMethodBuilder = MethodSpec
                 .methodBuilder(METHOD_ADD_ONENVIRONMENT_CHANGE_LISTENER)
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
@@ -328,7 +342,7 @@ final class Utils {
                 .addJavadoc("@return {@code true} success, {@code false} fail\n");
         builder.addMethod(addOnEnvironmentChangeListenerMethodBuilder.build());
 
-        // public static void removeOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
+        // public static final Boolean removeOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
         MethodSpec.Builder removeOnEnvironmentChangeListenerBuilder = MethodSpec
                 .methodBuilder(METHOD_REMOVE_ONENVIRONMENT_CHANGE_LISTENER)
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
@@ -341,7 +355,7 @@ final class Utils {
                 .addJavadoc("@return {@code true} success, {@code false} fail\n");
         builder.addMethod(removeOnEnvironmentChangeListenerBuilder.build());
 
-        // public static void clearOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
+        // public static final Boolean clearOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
         MethodSpec.Builder clearOnEnvironmentChangeListenerBuilder = MethodSpec
                 .methodBuilder(METHOD_CLEAR_ONENVIRONMENT_CHANGE_LISTENER)
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
@@ -368,7 +382,7 @@ final class Utils {
         getStorageDirCodeBlockBuilder.add("    e.printStackTrace();\n");
         getStorageDirCodeBlockBuilder.add("}\n");
 
-        // public static File getStorageDir(final Context context) {}
+        // public static final File getStorageDir(final Context context) {}
         MethodSpec.Builder getStorageDirMethodBuilder = MethodSpec
             .methodBuilder(METHOD_GET_STORAGE_DIR)
             .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
@@ -381,6 +395,36 @@ final class Utils {
             .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
             .addJavadoc("@return /data/data/package/cache/$N\n", ENVIRONMENT_FILE_NAME);
         builder.addMethod(getStorageDirMethodBuilder.build());
+
+        // 构建 deleteStorageDir 实现代码
+        CodeBlock.Builder deleteStorageDirCodeBlockBuilder = CodeBlock.builder();
+        deleteStorageDirCodeBlockBuilder.add("try {\n");
+        deleteStorageDirCodeBlockBuilder.add("    File storage = $N($N);\n", METHOD_GET_STORAGE_DIR, VAR_CONTEXT);
+        deleteStorageDirCodeBlockBuilder.add("    if (storage != null) {\n");
+        deleteStorageDirCodeBlockBuilder.add("        String[] strs = storage.list();\n");
+        deleteStorageDirCodeBlockBuilder.add("        for (String fileName : strs) {\n");
+        deleteStorageDirCodeBlockBuilder.add("            File file = new File(storage, fileName);\n");
+        deleteStorageDirCodeBlockBuilder.add("            if (!file.isDirectory()) file.delete();\n");
+        deleteStorageDirCodeBlockBuilder.add("        }\n");
+        deleteStorageDirCodeBlockBuilder.add("        return true;\n");
+        deleteStorageDirCodeBlockBuilder.add("    }\n");
+        deleteStorageDirCodeBlockBuilder.add("} catch (Exception e) {\n");
+        deleteStorageDirCodeBlockBuilder.add("    e.printStackTrace();\n");
+        deleteStorageDirCodeBlockBuilder.add("}\n");
+
+        // public static final Boolean deleteStorageDir(final Context context) {}
+        MethodSpec.Builder deleteStorageDirMethodBuilder = MethodSpec
+            .methodBuilder(METHOD_DELETE_STORAGE_DIR)
+            .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+            .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
+            .returns(Boolean.class)
+            .addCode(deleteStorageDirCodeBlockBuilder.build())
+            .addStatement("return false")
+            .addJavadoc("删除环境存储配置文件\n")
+            .addJavadoc("<p>Delete Environment Storage Configure File\n")
+            .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
+            .addJavadoc("@return {@code true} success, {@code false} fail\n");
+        builder.addMethod(deleteStorageDirMethodBuilder.build());
     }
 
     // ============
