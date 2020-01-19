@@ -4,7 +4,7 @@ import dev.environment.bean.EnvironmentBean;
 import dev.environment.bean.ModuleBean;
 
 /**
- * detail: 模块环境改变回调事件
+ * detail: 模块环境改变触发事件
  * @author Ttt
  */
 public interface OnEnvironmentChangeListener {

@@ -309,7 +309,7 @@ final class Utils {
     }
 
     /**
-     * 构建模块环境改变回调事件方法
+     * 构建模块环境改变触发事件方法
      * @param builder DevEnvironment 类构建对象
      */
     public static void builderEnvironmentChangeListener(final TypeSpec.Builder builder) {
@@ -321,7 +321,7 @@ final class Utils {
                 .returns(Boolean.class)
                 .addStatement("return false")
                 .addJavadoc("Add Environment Change Listener\n")
-                .addJavadoc("<p>添加模块环境改变回调事件\n")
+                .addJavadoc("<p>添加模块环境改变触发事件\n")
                 .addJavadoc("@param $N debug annotation compile use\n", VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER)
                 .addJavadoc("@return {@code true} success, {@code false} fail\n");
         builder.addMethod(addOnEnvironmentChangeListenerMethodBuilder.build());
@@ -334,7 +334,7 @@ final class Utils {
                 .returns(Boolean.class)
                 .addStatement("return false")
                 .addJavadoc("Remove Environment Change Listener\n")
-                .addJavadoc("<p>移除模块环境改变回调事件\n")
+                .addJavadoc("<p>移除模块环境改变触发事件\n")
                 .addJavadoc("@param $N debug annotation compile use\n", VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER)
                 .addJavadoc("@return {@code true} success, {@code false} fail\n");
         builder.addMethod(removeOnEnvironmentChangeListenerBuilder.build());
@@ -346,7 +346,7 @@ final class Utils {
                 .returns(Boolean.class)
                 .addStatement("return false")
                 .addJavadoc("Clear All Environment Change Listener\n")
-                .addJavadoc("<p>清空模块环境改变回调事件\n")
+                .addJavadoc("<p>清空模块环境改变触发事件\n")
                 .addJavadoc("@return {@code true} success, {@code false} fail\n");
         builder.addMethod(clearOnEnvironmentChangeListenerBuilder.build());
     }
