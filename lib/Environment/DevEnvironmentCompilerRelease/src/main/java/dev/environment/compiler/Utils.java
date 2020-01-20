@@ -61,6 +61,7 @@ final class Utils {
     static final String STR_MODULE = "Module";
     static final String STR_ENVIRONMENT = "Environment";
     static final String STR_ENVIRONMENT_VALUE = "EnvironmentValue";
+    static final String STR_RELEASE_ENVIRONMENT = "ReleaseEnvironment";
     // 其他
     static final TypeName TYPE_NAME_CONTEXT = ClassName.get("android.content", "Context");
 
@@ -272,6 +273,19 @@ final class Utils {
                 .build();
             classBuilder.addMethod(getModuleMethod);
 
+            // public static final EnvironmentBean getModuleReleaseEnvironment(final Context context) {}
+            String getModuleReleaseEnvironmentMethodName = "get" + moduleName + STR_RELEASE_ENVIRONMENT;
+            MethodSpec getModuleReleaseEnvironmentMethod = MethodSpec
+                .methodBuilder(getModuleReleaseEnvironmentMethodName)
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                .returns(EnvironmentBean.class)
+                .addStatement("return $N", environmentVarName)
+                .addJavadoc("获取 $N [ Module ] Release Environment Bean\n", moduleName)
+                .addJavadoc("<p>Get $N [ Module ] Release Environment Bean\n", moduleName)
+                .addJavadoc("@return $N [ Module ] Release Environment Bean\n", moduleName)
+                .build();
+            classBuilder.addMethod(getModuleReleaseEnvironmentMethod);
+
             // public static final EnvironmentBean getModuleEnvironment(final Context context) {}
             String getModuleEnvironmentMethodName = "get" + moduleName + STR_ENVIRONMENT;
             MethodSpec getModuleEnvironmentMethod = MethodSpec
@@ -280,10 +294,10 @@ final class Utils {
                 .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                 .returns(EnvironmentBean.class)
                 .addStatement("return $N", environmentVarName)
-                .addJavadoc("获取 $N [ Module ] Release Environment Bean\n", moduleName)
-                .addJavadoc("<p>Get $N [ Module ] Release Environment Bean\n", moduleName)
+                .addJavadoc("获取 $N [ Module ] Selected Environment Bean\n", moduleName)
+                .addJavadoc("<p>Get $N [ Module ] Selected Environment Bean\n", moduleName)
                 .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
-                .addJavadoc("@return $N [ Module ] Release Environment Bean\n", moduleName)
+                .addJavadoc("@return $N [ Module ] Selected Environment Bean\n", moduleName)
                 .build();
             classBuilder.addMethod(getModuleEnvironmentMethod);
 
@@ -295,10 +309,10 @@ final class Utils {
                 .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                 .returns(String.class)
                 .addStatement("return $N($N).$N()", getModuleEnvironmentMethodName, VAR_CONTEXT, METHOD_GET_ENVIRONMENTS_VALUE)
-                .addJavadoc("获取 $N [ Module ] Release Environment Value\n", moduleName)
-                .addJavadoc("<p>Get $N [ Module ] Release Environment Value\n", moduleName)
+                .addJavadoc("获取 $N [ Module ] Selected Environment Value\n", moduleName)
+                .addJavadoc("<p>Get $N [ Module ] Selected Environment Value\n", moduleName)
                 .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
-                .addJavadoc("@return $N [ Module ] Release Environment Value\n", moduleName)
+                .addJavadoc("@return $N [ Module ] Selected Environment Value\n", moduleName)
                 .build();
             classBuilder.addMethod(getModuleEnvironmentValueMethod);
 
@@ -454,6 +468,10 @@ final class Utils {
                 }
                 environmentElement = member;
             }
+        }
+        if (environmentElement == null) { // 每个 Module 必须有一个 release 环境配置
+            String moduleName = moduleElement.getSimpleName().toString();
+            throw new Exception(moduleName + " module must have a release environment configuration");
         }
         return environmentElement;
     }

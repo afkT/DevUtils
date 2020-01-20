@@ -65,6 +65,7 @@ final class Utils {
     static final String STR_MODULE = "Module";
     static final String STR_ENVIRONMENT = "Environment";
     static final String STR_ENVIRONMENT_VALUE = "EnvironmentValue";
+    static final String STR_RELEASE_ENVIRONMENT = "ReleaseEnvironment";
     // 其他
     static final TypeName TYPE_NAME_CONTEXT = ClassName.get("android.content", "Context");
 
@@ -284,10 +285,10 @@ final class Utils {
                 .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                 .returns(EnvironmentBean.class)
                 .addStatement("return $N", environmentVarName)
-                .addJavadoc("获取 $N [ Module ] Debug Environment Bean\n", moduleName)
-                .addJavadoc("<p>Get $N [ Module ] Debug Environment Bean\n", moduleName)
+                .addJavadoc("获取 $N [ Module ] Selected Environment Bean\n", moduleName)
+                .addJavadoc("<p>Get $N [ Module ] Selected Environment Bean\n", moduleName)
                 .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
-                .addJavadoc("@return $N [ Module ] Debug Environment Bean\n", moduleName)
+                .addJavadoc("@return $N [ Module ] Selected Environment Bean\n", moduleName)
                 .build();
             classBuilder.addMethod(getModuleEnvironmentMethod);
 
@@ -299,10 +300,10 @@ final class Utils {
                 .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                 .returns(String.class)
                 .addStatement("return $N($N).$N()", getModuleEnvironmentMethodName, VAR_CONTEXT, METHOD_GET_ENVIRONMENTS_VALUE)
-                .addJavadoc("获取 $N [ Module ] Debug Environment Value\n", moduleName)
-                .addJavadoc("<p>Get $N [ Module ] Debug Environment Value\n", moduleName)
+                .addJavadoc("获取 $N [ Module ] Selected Environment Value\n", moduleName)
+                .addJavadoc("<p>Get $N [ Module ] Selected Environment Value\n", moduleName)
                 .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
-                .addJavadoc("@return $N [ Module ] Debug Environment Value\n", moduleName)
+                .addJavadoc("@return $N [ Module ] Selected Environment Value\n", moduleName)
                 .build();
             classBuilder.addMethod(getModuleEnvironmentValueMethod);
 
@@ -339,6 +340,7 @@ final class Utils {
         classBuilder.addField(listenerListField);
 
         // =
+
         // Listener param String
         String listener = VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER;
 
@@ -538,6 +540,10 @@ final class Utils {
                 }
                 environmentElement = member;
             }
+        }
+        if (environmentElement == null) { // 每个 Module 必须有一个 release 环境配置
+            String moduleName = moduleElement.getSimpleName().toString();
+            throw new Exception(moduleName + " module must have a release environment configuration");
         }
         return environmentElement;
     }
