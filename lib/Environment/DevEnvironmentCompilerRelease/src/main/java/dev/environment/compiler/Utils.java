@@ -250,7 +250,7 @@ final class Utils {
             .build();
         classBuilder.addMethod(getModuleListMethod);
 
-        // 创建 Module Release Environment get 方法
+        // 创建 Module Environment get 方法
         Iterator<Map.Entry<String, List<String>>> iterator = sModuleNameMap.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<String, List<String>> entry = iterator.next();

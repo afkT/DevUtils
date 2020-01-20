@@ -81,25 +81,25 @@ final class Utils {
      */
     public static TypeSpec.Builder builderDevEnvironment_Class() {
         // 创建 DevEnvironment 类
-        TypeSpec.Builder builder = TypeSpec.classBuilder(Utils.ENVIRONMENT_FILE_NAME)
-                .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
-                .addJavadoc("detail: 环境配置工具类\n")
-                .addJavadoc("@author Ttt\n");
+        TypeSpec.Builder classBuilder = TypeSpec.classBuilder(Utils.ENVIRONMENT_FILE_NAME)
+            .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
+            .addJavadoc("detail: 环境配置工具类\n")
+            .addJavadoc("@author Ttt\n");
         // 创建 DevEnvironment 无参构造函数
         // private DevEnvironment() {}
         MethodSpec constructor = MethodSpec.constructorBuilder().addModifiers(Modifier.PRIVATE).build();
-        return builder.addMethod(constructor);
+        return classBuilder.addMethod(constructor);
     }
 
     /**
      * 创建 DevEnvironment JAVA 文件
-     * @param builder       DevEnvironment 类构建对象
+     * @param classBuilder  DevEnvironment 类构建对象
      * @param processingEnv {@link ProcessingEnvironment}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean createDevEnvironmentJavaFile(final TypeSpec.Builder builder,
+    public static boolean createDevEnvironmentJavaFile(final TypeSpec.Builder classBuilder,
                                                        final ProcessingEnvironment processingEnv) {
-        JavaFile javaFile = JavaFile.builder(Utils.PACKAGE_NAME, builder.build()).build();
+        JavaFile javaFile = JavaFile.builder(Utils.PACKAGE_NAME, classBuilder.build()).build();
         try {
             javaFile.writeTo(processingEnv.getFiler());
             return true;
@@ -113,11 +113,11 @@ final class Utils {
 
     /**
      * 创建 Module 数据
-     * @param builder       DevEnvironment 类构建对象
+     * @param classBuilder  DevEnvironment 类构建对象
      * @param moduleElement 使用注解修饰的 Module Element
      * @param processingEnv {@link ProcessingEnvironment}
      */
-    public static void builderModule_DATA(final TypeSpec.Builder builder, final Element moduleElement,
+    public static void builderModule_DATA(final TypeSpec.Builder classBuilder, final Element moduleElement,
                                           final ProcessingEnvironment processingEnv) throws Exception {
         Module moduleAnnotation = moduleElement.getAnnotation(Module.class);
         if (moduleAnnotation == null) return;
@@ -134,25 +134,25 @@ final class Utils {
             // 创建私有常量变量
             // private static final ModuleBean MODULE_XXX = new ModuleBean();
             FieldSpec moduleField = FieldSpec
-                    .builder(ModuleBean.class, _getModuleVarName_UpperCase(moduleName))
-                    .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
-                    .initializer("new $T($S, $S)", ModuleBean.class, moduleName, moduleAlias)
-                    .addJavadoc(String.format("[ Module ] name: %s, alias: %s\n", moduleName, moduleAlias))
-                    .build();
-            builder.addField(moduleField);
+                .builder(ModuleBean.class, _getModuleVarName_UpperCase(moduleName))
+                .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+                .initializer("new $T($S, $S)", ModuleBean.class, moduleName, moduleAlias)
+                .addJavadoc(String.format("[ Module ] name: %s, alias: %s\n", moduleName, moduleAlias))
+                .build();
+            classBuilder.addField(moduleField);
 
             // 创建 Module Environment 数据
-            builderModuleEnvironment_DATA(builder, moduleElement, environmentElement);
+            builderModuleEnvironment_DATA(classBuilder, moduleElement, environmentElement);
         }
     }
 
     /**
      * 创建 Module Environment 数据
-     * @param builder            DevEnvironment 类构建对象
+     * @param classBuilder       DevEnvironment 类构建对象
      * @param moduleElement      使用注解修饰的 Module Element
      * @param environmentElement 使用注解修饰的 Environment Element
      */
-    public static void builderModuleEnvironment_DATA(final TypeSpec.Builder builder, final Element moduleElement,
+    public static void builderModuleEnvironment_DATA(final TypeSpec.Builder classBuilder, final Element moduleElement,
                                                      final Element environmentElement) {
         // Module 信息
         String moduleName = moduleElement.getSimpleName().toString();
@@ -165,14 +165,14 @@ final class Utils {
         // 创建私有常量变量
         // private static final EnvironmentBean ENVIRONMENT_MODULENAME_XXX = new EnvironmentBean();
         FieldSpec environmentField = FieldSpec
-                .builder(EnvironmentBean.class, _getEnvironmentVarName_UpperCase(moduleName, environmentName))
-                .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
-                .initializer("new $T($S, $S, $S, $L)", EnvironmentBean.class, environmentName,
-                        environmentValue, environmentAlias, _getModuleVarName_UpperCase(moduleName))
-                .addJavadoc(String.format("[ Environment ] name: %s, alias: %s, [ Module ] name: %s\n",
-                        environmentName, environmentAlias, moduleName))
-                .build();
-        builder.addField(environmentField);
+            .builder(EnvironmentBean.class, _getEnvironmentVarName_UpperCase(moduleName, environmentName))
+            .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+            .initializer("new $T($S, $S, $S, $L)", EnvironmentBean.class, environmentName,
+                environmentValue, environmentAlias, _getModuleVarName_UpperCase(moduleName))
+            .addJavadoc(String.format("[ Environment ] name: %s, alias: %s, [ Module ] name: %s\n",
+                environmentName, environmentAlias, moduleName))
+            .build();
+        classBuilder.addField(environmentField);
 
         // 记录 Environment 变量名
         sModuleNameMap.get(moduleName).add(_getEnvironmentVarName_UpperCase(moduleName, environmentName));
@@ -180,28 +180,34 @@ final class Utils {
 
     /**
      * 构建 isRelease 方法
-     * @param builder DevEnvironment 类构建对象
+     * @param classBuilder DevEnvironment 类构建对象
      */
-    public static void builderIsReleaseMethod(final TypeSpec.Builder builder) {
+    public static void builderIsReleaseMethod(final TypeSpec.Builder classBuilder) {
         // public static final Boolean isRelease() {}
-        MethodSpec.Builder isReleaseMethodBuilder = MethodSpec
-                .methodBuilder(METHOD_IS_RELEASE)
-                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-                .returns(Boolean.class)
-                .addStatement("return false")
-                .addJavadoc("是否使用 releaseAnnotationProcessor 构建\n")
-                .addJavadoc("<p>Whether Release Annotation Processor Compile\n")
-                .addJavadoc("@return {@code true} yes, {@code false} no\n");
-        builder.addMethod(isReleaseMethodBuilder.build());
+        MethodSpec isReleaseMethod = MethodSpec
+            .methodBuilder(METHOD_IS_RELEASE)
+            .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+            .returns(Boolean.class)
+            .addStatement("return false")
+            .addJavadoc("是否使用 releaseAnnotationProcessor 构建\n")
+            .addJavadoc("<p>Whether Release Annotation Processor Compile\n")
+            .addJavadoc("@return {@code true} yes, {@code false} no\n")
+            .build();
+        classBuilder.addMethod(isReleaseMethod);
     }
 
     /**
      * 构建 static{} 初始化代码
-     * @param builder DevEnvironment 类构建对象
+     * @param classBuilder DevEnvironment 类构建对象
      */
-    public static void builderStaticInit(final TypeSpec.Builder builder) {
+    public static void builderStaticInit(final TypeSpec.Builder classBuilder) {
         // 创建 List 集合变量
-        builderList(builder);
+        FieldSpec moduleListField = FieldSpec
+            .builder(_getListType(ModuleBean.class), VAR_MODULE_LIST, Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+            .initializer("new $T<$T>()", ArrayList.class, ModuleBean.class)
+            .addJavadoc("Module List\n")
+            .build();
+        classBuilder.addField(moduleListField);
 
         if (!sModuleNameMap.isEmpty()) {
             // 构建 static {} 初始化代码
@@ -217,47 +223,34 @@ final class Utils {
 
                 // 添加 moduleVarName 到 VAR_MODULE_LIST 中
                 staticCodeBlockBuilder.add("\n")
-                        .addStatement("$N.add($N)", VAR_MODULE_LIST, _getModuleVarName_UpperCase(moduleName));
+                    .addStatement("$N.add($N)", VAR_MODULE_LIST, _getModuleVarName_UpperCase(moduleName));
                 // 添加 Environment 到对应 ModuleBean.getEnvironments() 中
                 staticCodeBlockBuilder.addStatement("$N.$N().add($N)", _getModuleVarName_UpperCase(moduleName),
-                        METHOD_GET_MODULE_ENVIRONMENTS_LIST, environmentVarName);
+                    METHOD_GET_MODULE_ENVIRONMENTS_LIST, environmentVarName);
             }
             // 创建代码
-            builder.addStaticBlock(staticCodeBlockBuilder.build());
+            classBuilder.addStaticBlock(staticCodeBlockBuilder.build());
         }
     }
 
     /**
-     * 创建 List 集合变量
-     * @param builder DevEnvironment 类构建对象
-     */
-    public static void builderList(final TypeSpec.Builder builder) {
-        FieldSpec moduleListField = FieldSpec
-                .builder(_getListType(ModuleBean.class), VAR_MODULE_LIST, Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
-                .initializer("new $T<$T>()", ArrayList.class, ModuleBean.class)
-                .addJavadoc("Module List\n")
-                .build();
-        builder.addField(moduleListField);
-    }
-
-    /**
      * 构建 getXxx 方法代码
-     * @param builder DevEnvironment 类构建对象
+     * @param classBuilder DevEnvironment 类构建对象
      */
-    public static void builderGetMethod(final TypeSpec.Builder builder) {
+    public static void builderGetMethod(final TypeSpec.Builder classBuilder) {
         // public static final List<ModuleBean> getModuleList() {}
         MethodSpec getModuleListMethod = MethodSpec
-                .methodBuilder(METHOD_GET_MODULE_LIST)
-                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-                .returns(_getListType(ModuleBean.class))
-                .addStatement("return $N", VAR_MODULE_LIST)
-                .addJavadoc("获取全部 $N 配置列表\n", ModuleBean.class.getSimpleName())
-                .addJavadoc("<p>Get All $N List\n", ModuleBean.class.getSimpleName())
-                .addJavadoc("@return List<$N>\n", ModuleBean.class.getSimpleName())
-                .build();
-        builder.addMethod(getModuleListMethod);
+            .methodBuilder(METHOD_GET_MODULE_LIST)
+            .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+            .returns(_getListType(ModuleBean.class))
+            .addStatement("return $N", VAR_MODULE_LIST)
+            .addJavadoc("获取全部 $N 配置列表\n", ModuleBean.class.getSimpleName())
+            .addJavadoc("<p>Get All $N List\n", ModuleBean.class.getSimpleName())
+            .addJavadoc("@return List<$N>\n", ModuleBean.class.getSimpleName())
+            .build();
+        classBuilder.addMethod(getModuleListMethod);
 
-        // 创建 Module Release Environment get 方法
+        // 创建 Module Environment get 方法
         Iterator<Map.Entry<String, List<String>>> iterator = sModuleNameMap.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<String, List<String>> entry = iterator.next();
@@ -268,110 +261,117 @@ final class Utils {
 
             // public static final ModuleBean getModule() {}
             String getModuleMethodName = "get" + moduleName + STR_MODULE;
-            MethodSpec.Builder getModuleMethodBuilder = MethodSpec
+            MethodSpec getModuleMethod = MethodSpec
                 .methodBuilder(getModuleMethodName)
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                 .returns(ModuleBean.class)
                 .addStatement("return $N", _getModuleVarName_UpperCase(moduleName))
                 .addJavadoc("获取 $N [ Module ] Bean\n", moduleName)
                 .addJavadoc("<p>Get $N [ Module ] Bean\n", moduleName)
-                .addJavadoc("@return $N [ Module ] Bean\n", moduleName);
-            builder.addMethod(getModuleMethodBuilder.build());
+                .addJavadoc("@return $N [ Module ] Bean\n", moduleName)
+                .build();
+            classBuilder.addMethod(getModuleMethod);
 
             // public static final EnvironmentBean getModuleEnvironment(final Context context) {}
             String getModuleEnvironmentMethodName = "get" + moduleName + STR_ENVIRONMENT;
-            MethodSpec.Builder getModuleEnvironmentMethodBuilder = MethodSpec
-                    .methodBuilder(getModuleEnvironmentMethodName)
-                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-                    .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
-                    .returns(EnvironmentBean.class)
-                    .addStatement("return $N", environmentVarName)
-                    .addJavadoc("获取 $N [ Module ] Debug Environment Bean\n", moduleName)
-                    .addJavadoc("<p>Get $N [ Module ] Debug Environment Bean\n", moduleName)
-                    .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
-                    .addJavadoc("@return $N [ Module ] Debug Environment Bean\n", moduleName);
-            builder.addMethod(getModuleEnvironmentMethodBuilder.build());
+            MethodSpec getModuleEnvironmentMethod = MethodSpec
+                .methodBuilder(getModuleEnvironmentMethodName)
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
+                .returns(EnvironmentBean.class)
+                .addStatement("return $N", environmentVarName)
+                .addJavadoc("获取 $N [ Module ] Debug Environment Bean\n", moduleName)
+                .addJavadoc("<p>Get $N [ Module ] Debug Environment Bean\n", moduleName)
+                .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
+                .addJavadoc("@return $N [ Module ] Debug Environment Bean\n", moduleName)
+                .build();
+            classBuilder.addMethod(getModuleEnvironmentMethod);
 
             // public static final String getModuleEnvironmentValue(final Context context) {}
             String getModuleEnvironmentValueMethodName = "get" + moduleName + STR_ENVIRONMENT_VALUE;
-            MethodSpec.Builder getModuleEnvironmentValueMethodBuilder = MethodSpec
-                    .methodBuilder(getModuleEnvironmentValueMethodName)
-                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-                    .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
-                    .returns(String.class)
-                    .addStatement("return $N($N).$N()", getModuleEnvironmentMethodName, VAR_CONTEXT, METHOD_GET_ENVIRONMENTS_VALUE)
-                    .addJavadoc("获取 $N [ Module ] Debug Environment Value\n", moduleName)
-                    .addJavadoc("<p>Get $N [ Module ] Debug Environment Value\n", moduleName)
-                    .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
-                    .addJavadoc("@return $N [ Module ] Debug Environment Value\n", moduleName);
-            builder.addMethod(getModuleEnvironmentValueMethodBuilder.build());
+            MethodSpec getModuleEnvironmentValueMethod = MethodSpec
+                .methodBuilder(getModuleEnvironmentValueMethodName)
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
+                .returns(String.class)
+                .addStatement("return $N($N).$N()", getModuleEnvironmentMethodName, VAR_CONTEXT, METHOD_GET_ENVIRONMENTS_VALUE)
+                .addJavadoc("获取 $N [ Module ] Debug Environment Value\n", moduleName)
+                .addJavadoc("<p>Get $N [ Module ] Debug Environment Value\n", moduleName)
+                .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
+                .addJavadoc("@return $N [ Module ] Debug Environment Value\n", moduleName)
+                .build();
+            classBuilder.addMethod(getModuleEnvironmentValueMethod);
 
             // public static final Boolean setModuleEnvironment(final Context context, final EnvironmentBean newEnvironment) {}
             String setModuleEnvironmentMethodName = "set" + moduleName + STR_ENVIRONMENT;
-            MethodSpec.Builder setModuleEnvironmentMethodBuilder = MethodSpec
-                    .methodBuilder(setModuleEnvironmentMethodName)
-                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-                    .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
-                    .addParameter(EnvironmentBean.class, VAR_PARAM_NAME_NEW_ENVIRONMENT, Modifier.FINAL)
-                    .returns(Boolean.class)
-                    .addStatement("return false")
-                    .addJavadoc("设置 $N [ Module ] Debug Environment Bean\n", moduleName)
-                    .addJavadoc("<p>Set $N [ Module ] Debug Environment Bean\n", moduleName)
-                    .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
-                    .addJavadoc("@param $N debug annotation compile use\n", VAR_PARAM_NAME_NEW_ENVIRONMENT)
-                    .addJavadoc("@return {@code true} success, {@code false} fail\n");
-            builder.addMethod(setModuleEnvironmentMethodBuilder.build());
+            MethodSpec setModuleEnvironmentMethod = MethodSpec
+                .methodBuilder(setModuleEnvironmentMethodName)
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
+                .addParameter(EnvironmentBean.class, VAR_PARAM_NAME_NEW_ENVIRONMENT, Modifier.FINAL)
+                .returns(Boolean.class)
+                .addStatement("return false")
+                .addJavadoc("设置 $N [ Module ] Debug Environment Bean\n", moduleName)
+                .addJavadoc("<p>Set $N [ Module ] Debug Environment Bean\n", moduleName)
+                .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
+                .addJavadoc("@param $N debug annotation compile use\n", VAR_PARAM_NAME_NEW_ENVIRONMENT)
+                .addJavadoc("@return {@code true} success, {@code false} fail\n")
+                .build();
+            classBuilder.addMethod(setModuleEnvironmentMethod);
         }
     }
 
     /**
      * 构建模块环境改变触发事件方法
-     * @param builder DevEnvironment 类构建对象
+     * @param classBuilder DevEnvironment 类构建对象
      */
-    public static void builderEnvironmentChangeListener(final TypeSpec.Builder builder) {
+    public static void builderEnvironmentChangeListener(final TypeSpec.Builder classBuilder) {
         // public static final Boolean addOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
-        MethodSpec.Builder addOnEnvironmentChangeListenerMethodBuilder = MethodSpec
-                .methodBuilder(METHOD_ADD_ONENVIRONMENT_CHANGE_LISTENER)
-                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-                .addParameter(OnEnvironmentChangeListener.class, VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER, Modifier.FINAL)
-                .returns(Boolean.class)
-                .addStatement("return false")
-                .addJavadoc("添加模块环境改变触发事件\n")
-                .addJavadoc("<p>Add Environment Change Listener\n")
-                .addJavadoc("@param $N debug annotation compile use\n", VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER)
-                .addJavadoc("@return {@code true} success, {@code false} fail\n");
-        builder.addMethod(addOnEnvironmentChangeListenerMethodBuilder.build());
+        MethodSpec addOnEnvironmentChangeListenerMethod = MethodSpec
+            .methodBuilder(METHOD_ADD_ONENVIRONMENT_CHANGE_LISTENER)
+            .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+            .addParameter(OnEnvironmentChangeListener.class, VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER, Modifier.FINAL)
+            .returns(Boolean.class)
+            .addStatement("return false")
+            .addJavadoc("添加模块环境改变触发事件\n")
+            .addJavadoc("<p>Add Environment Change Listener\n")
+            .addJavadoc("@param $N debug annotation compile use\n", VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER)
+            .addJavadoc("@return {@code true} success, {@code false} fail\n")
+            .build();
+        classBuilder.addMethod(addOnEnvironmentChangeListenerMethod);
 
         // public static final Boolean removeOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
-        MethodSpec.Builder removeOnEnvironmentChangeListenerBuilder = MethodSpec
-                .methodBuilder(METHOD_REMOVE_ONENVIRONMENT_CHANGE_LISTENER)
-                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-                .addParameter(OnEnvironmentChangeListener.class, VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER, Modifier.FINAL)
-                .returns(Boolean.class)
-                .addStatement("return false")
-                .addJavadoc("移除模块环境改变触发事件\n")
-                .addJavadoc("<p>Remove Environment Change Listener\n")
-                .addJavadoc("@param $N debug annotation compile use\n", VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER)
-                .addJavadoc("@return {@code true} success, {@code false} fail\n");
-        builder.addMethod(removeOnEnvironmentChangeListenerBuilder.build());
+        MethodSpec removeOnEnvironmentChangeListenerMethod = MethodSpec
+            .methodBuilder(METHOD_REMOVE_ONENVIRONMENT_CHANGE_LISTENER)
+            .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+            .addParameter(OnEnvironmentChangeListener.class, VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER, Modifier.FINAL)
+            .returns(Boolean.class)
+            .addStatement("return false")
+            .addJavadoc("移除模块环境改变触发事件\n")
+            .addJavadoc("<p>Remove Environment Change Listener\n")
+            .addJavadoc("@param $N debug annotation compile use\n", VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER)
+            .addJavadoc("@return {@code true} success, {@code false} fail\n")
+            .build();
+        classBuilder.addMethod(removeOnEnvironmentChangeListenerMethod);
 
         // public static final Boolean clearOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
-        MethodSpec.Builder clearOnEnvironmentChangeListenerBuilder = MethodSpec
-                .methodBuilder(METHOD_CLEAR_ONENVIRONMENT_CHANGE_LISTENER)
-                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-                .returns(Boolean.class)
-                .addStatement("return false")
-                .addJavadoc("清空模块环境改变触发事件\n")
-                .addJavadoc("<p>Clear All Environment Change Listener\n")
-                .addJavadoc("@return {@code true} success, {@code false} fail\n");
-        builder.addMethod(clearOnEnvironmentChangeListenerBuilder.build());
+        MethodSpec clearOnEnvironmentChangeListenerMethod = MethodSpec
+            .methodBuilder(METHOD_CLEAR_ONENVIRONMENT_CHANGE_LISTENER)
+            .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+            .returns(Boolean.class)
+            .addStatement("return false")
+            .addJavadoc("清空模块环境改变触发事件\n")
+            .addJavadoc("<p>Clear All Environment Change Listener\n")
+            .addJavadoc("@return {@code true} success, {@code false} fail\n")
+            .build();
+        classBuilder.addMethod(clearOnEnvironmentChangeListenerMethod);
     }
 
     /**
      * 构建存储相关方法
-     * @param builder DevEnvironment 类构建对象
+     * @param classBuilder DevEnvironment 类构建对象
      */
-    public static void builderStorageMethod(final TypeSpec.Builder builder) {
+    public static void builderStorageMethod(final TypeSpec.Builder classBuilder) {
         // 构建 getStorageDir 实现代码
         CodeBlock.Builder getStorageDirCodeBlockBuilder = CodeBlock.builder();
         getStorageDirCodeBlockBuilder.add("try {\n");
@@ -383,7 +383,7 @@ final class Utils {
         getStorageDirCodeBlockBuilder.add("}\n");
 
         // public static final File getStorageDir(final Context context) {}
-        MethodSpec.Builder getStorageDirMethodBuilder = MethodSpec
+        MethodSpec getStorageDirMethod = MethodSpec
             .methodBuilder(METHOD_GET_STORAGE_DIR)
             .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
             .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
@@ -393,8 +393,9 @@ final class Utils {
             .addJavadoc("获取环境配置存储路径 - path /data/data/package/cache/$N\n", ENVIRONMENT_FILE_NAME)
             .addJavadoc("<p>Get Environment Configure Storage Dir - path /data/data/package/cache/$N\n", ENVIRONMENT_FILE_NAME)
             .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
-            .addJavadoc("@return /data/data/package/cache/$N\n", ENVIRONMENT_FILE_NAME);
-        builder.addMethod(getStorageDirMethodBuilder.build());
+            .addJavadoc("@return /data/data/package/cache/$N\n", ENVIRONMENT_FILE_NAME)
+            .build();
+        classBuilder.addMethod(getStorageDirMethod);
 
         // 构建 deleteStorageDir 实现代码
         CodeBlock.Builder deleteStorageDirCodeBlockBuilder = CodeBlock.builder();
@@ -413,7 +414,7 @@ final class Utils {
         deleteStorageDirCodeBlockBuilder.add("}\n");
 
         // public static final Boolean deleteStorageDir(final Context context) {}
-        MethodSpec.Builder deleteStorageDirMethodBuilder = MethodSpec
+        MethodSpec deleteStorageDirMethod = MethodSpec
             .methodBuilder(METHOD_DELETE_STORAGE_DIR)
             .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
             .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
@@ -423,8 +424,9 @@ final class Utils {
             .addJavadoc("删除环境存储配置文件\n")
             .addJavadoc("<p>Delete Environment Storage Configure File\n")
             .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
-            .addJavadoc("@return {@code true} success, {@code false} fail\n");
-        builder.addMethod(deleteStorageDirMethodBuilder.build());
+            .addJavadoc("@return {@code true} success, {@code false} fail\n")
+            .build();
+        classBuilder.addMethod(deleteStorageDirMethod);
     }
 
     // ============
