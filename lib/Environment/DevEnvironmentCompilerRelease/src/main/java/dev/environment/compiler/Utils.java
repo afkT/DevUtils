@@ -55,8 +55,8 @@ final class Utils {
     static final String VAR_ENVIRONMENT_PREFIX = "ENVIRONMENT_";
     static final String VAR_MODULE_LIST = "MODULE_LIST";
     static final String VAR_CONTEXT = "context";
-    static final String VAR_PARAM_NAME_NEW_ENVIRONMENT = "newEnvironment";
-    static final String VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER = "listener";
+    static final String VAR_NEW_ENVIRONMENT = "newEnvironment";
+    static final String VAR_LISTENER = "listener";
     // 常量字符串
     static final String STR_MODULE = "Module";
     static final String STR_ENVIRONMENT = "Environment";
@@ -322,13 +322,13 @@ final class Utils {
                 .methodBuilder(setModuleEnvironmentMethodName)
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                 .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
-                .addParameter(EnvironmentBean.class, VAR_PARAM_NAME_NEW_ENVIRONMENT, Modifier.FINAL)
+                .addParameter(EnvironmentBean.class, VAR_NEW_ENVIRONMENT, Modifier.FINAL)
                 .returns(Boolean.class)
                 .addStatement("return false")
-                .addJavadoc("设置 $N [ Module ] Debug Environment Bean\n", moduleName)
-                .addJavadoc("<p>Set $N [ Module ] Debug Environment Bean\n", moduleName)
+                .addJavadoc("设置 $N [ Module ] Selected Environment Bean\n", moduleName)
+                .addJavadoc("<p>Set $N [ Module ] Selected Environment Bean\n", moduleName)
                 .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
-                .addJavadoc("@param $N debug annotation compile use\n", VAR_PARAM_NAME_NEW_ENVIRONMENT)
+                .addJavadoc("@param $N debug annotation compile use\n", VAR_NEW_ENVIRONMENT)
                 .addJavadoc("@return {@code true} success, {@code false} fail\n")
                 .build();
             classBuilder.addMethod(setModuleEnvironmentMethod);
@@ -344,12 +344,12 @@ final class Utils {
         MethodSpec addOnEnvironmentChangeListenerMethod = MethodSpec
             .methodBuilder(METHOD_ADD_ONENVIRONMENT_CHANGE_LISTENER)
             .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-            .addParameter(OnEnvironmentChangeListener.class, VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER, Modifier.FINAL)
+            .addParameter(OnEnvironmentChangeListener.class, VAR_LISTENER, Modifier.FINAL)
             .returns(Boolean.class)
             .addStatement("return false")
             .addJavadoc("添加模块环境改变触发事件\n")
             .addJavadoc("<p>Add Environment Change Listener\n")
-            .addJavadoc("@param $N debug annotation compile use\n", VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER)
+            .addJavadoc("@param $N debug annotation compile use\n", VAR_LISTENER)
             .addJavadoc("@return {@code true} success, {@code false} fail\n")
             .build();
         classBuilder.addMethod(addOnEnvironmentChangeListenerMethod);
@@ -358,12 +358,12 @@ final class Utils {
         MethodSpec removeOnEnvironmentChangeListenerMethod = MethodSpec
             .methodBuilder(METHOD_REMOVE_ONENVIRONMENT_CHANGE_LISTENER)
             .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-            .addParameter(OnEnvironmentChangeListener.class, VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER, Modifier.FINAL)
+            .addParameter(OnEnvironmentChangeListener.class, VAR_LISTENER, Modifier.FINAL)
             .returns(Boolean.class)
             .addStatement("return false")
             .addJavadoc("移除模块环境改变触发事件\n")
             .addJavadoc("<p>Remove Environment Change Listener\n")
-            .addJavadoc("@param $N debug annotation compile use\n", VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER)
+            .addJavadoc("@param $N debug annotation compile use\n", VAR_LISTENER)
             .addJavadoc("@return {@code true} success, {@code false} fail\n")
             .build();
         classBuilder.addMethod(removeOnEnvironmentChangeListenerMethod);
