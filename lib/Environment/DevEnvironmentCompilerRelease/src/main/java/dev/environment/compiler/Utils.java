@@ -201,7 +201,7 @@ final class Utils {
      * @param classBuilder DevEnvironment 类构建对象
      */
     public static void builderStaticInit(final TypeSpec.Builder classBuilder) {
-        // 创建 List 集合变量
+        // 创建 Module List 集合变量
         FieldSpec moduleListField = FieldSpec
             .builder(_getListType(ModuleBean.class), VAR_MODULE_LIST, Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
             .initializer("new $T<$T>()", ArrayList.class, ModuleBean.class)

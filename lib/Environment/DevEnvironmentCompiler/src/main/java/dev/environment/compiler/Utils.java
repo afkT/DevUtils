@@ -48,13 +48,17 @@ final class Utils {
     static final String METHOD_ADD_ONENVIRONMENT_CHANGE_LISTENER = "addOnEnvironmentChangeListener";
     static final String METHOD_REMOVE_ONENVIRONMENT_CHANGE_LISTENER = "removeOnEnvironmentChangeListener";
     static final String METHOD_CLEAR_ONENVIRONMENT_CHANGE_LISTENER = "clearOnEnvironmentChangeListener";
+    static final String METHOD_NOTIFY_ONENVIRONMENT_CHANGE_LISTENER = "notifyOnEnvironmentChangeListener";
     static final String METHOD_GET_STORAGE_DIR = "getStorageDir";
     static final String METHOD_DELETE_STORAGE_DIR = "deleteStorageDir";
     // 变量相关
     static final String VAR_MODULE_PREFIX = "MODULE_";
     static final String VAR_ENVIRONMENT_PREFIX = "ENVIRONMENT_";
     static final String VAR_MODULE_LIST = "MODULE_LIST";
+    static final String VAR_LISTENER_LIST = "LISTENER_LIST";
     static final String VAR_CONTEXT = "context";
+    static final String VAR_PARAM_NAME_MODULE = "module";
+    static final String VAR_PARAM_NAME_OLD_ENVIRONMENT = "oldEnvironment";
     static final String VAR_PARAM_NAME_NEW_ENVIRONMENT = "newEnvironment";
     static final String VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER = "listener";
     // 常量字符串
@@ -201,7 +205,7 @@ final class Utils {
      * @param classBuilder DevEnvironment 类构建对象
      */
     public static void builderStaticInit(final TypeSpec.Builder classBuilder) {
-        // 创建 List 集合变量
+        // 创建 Module List 集合变量
         FieldSpec moduleListField = FieldSpec
             .builder(_getListType(ModuleBean.class), VAR_MODULE_LIST, Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
             .initializer("new $T<$T>()", ArrayList.class, ModuleBean.class)
@@ -326,12 +330,35 @@ final class Utils {
      * @param classBuilder DevEnvironment 类构建对象
      */
     public static void builderEnvironmentChangeListener(final TypeSpec.Builder classBuilder) {
+        // 创建 Listener List 集合变量
+        FieldSpec listenerListField = FieldSpec
+            .builder(_getListType(OnEnvironmentChangeListener.class), VAR_LISTENER_LIST, Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+            .initializer("new $T<$T>()", ArrayList.class, OnEnvironmentChangeListener.class)
+            .addJavadoc("Environment Change Listener List\n")
+            .build();
+        classBuilder.addField(listenerListField);
+
+        // =
+        // Listener param String
+        String listener = VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER;
+
+        // 构建 addOnEnvironmentChangeListener 实现代码
+        CodeBlock.Builder codeBlockBuilder = CodeBlock.builder();
+        codeBlockBuilder.add("if ($N != null && !$N.contains($N)) {\n", listener, VAR_LISTENER_LIST, listener);
+        codeBlockBuilder.add("    try {\n");
+        codeBlockBuilder.add("        return $N.add($N);\n", VAR_LISTENER_LIST, listener);
+        codeBlockBuilder.add("    } catch (Exception e) {\n");
+        codeBlockBuilder.add("        e.printStackTrace();\n");
+        codeBlockBuilder.add("    }\n");
+        codeBlockBuilder.add("}\n");
+
         // public static final Boolean addOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
         MethodSpec addOnEnvironmentChangeListenerMethod = MethodSpec
             .methodBuilder(METHOD_ADD_ONENVIRONMENT_CHANGE_LISTENER)
             .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
             .addParameter(OnEnvironmentChangeListener.class, VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER, Modifier.FINAL)
             .returns(Boolean.class)
+            .addCode(codeBlockBuilder.build())
             .addStatement("return false")
             .addJavadoc("添加模块环境改变触发事件\n")
             .addJavadoc("<p>Add Environment Change Listener\n")
@@ -340,12 +367,25 @@ final class Utils {
             .build();
         classBuilder.addMethod(addOnEnvironmentChangeListenerMethod);
 
+        // =
+
+        // 构建 removeOnEnvironmentChangeListener 实现代码
+        codeBlockBuilder = CodeBlock.builder();
+        codeBlockBuilder.add("if ($N != null) {\n", listener);
+        codeBlockBuilder.add("    try {\n");
+        codeBlockBuilder.add("        return $N.remove($N);\n", VAR_LISTENER_LIST, listener);
+        codeBlockBuilder.add("    } catch (Exception e) {\n");
+        codeBlockBuilder.add("        e.printStackTrace();\n");
+        codeBlockBuilder.add("    }\n");
+        codeBlockBuilder.add("}\n");
+
         // public static final Boolean removeOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
         MethodSpec removeOnEnvironmentChangeListenerMethod = MethodSpec
             .methodBuilder(METHOD_REMOVE_ONENVIRONMENT_CHANGE_LISTENER)
             .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
             .addParameter(OnEnvironmentChangeListener.class, VAR_PARAM_NAME_ONENVIRONMENT_CHANGE_LISTENER, Modifier.FINAL)
             .returns(Boolean.class)
+            .addCode(codeBlockBuilder.build())
             .addStatement("return false")
             .addJavadoc("移除模块环境改变触发事件\n")
             .addJavadoc("<p>Remove Environment Change Listener\n")
@@ -354,17 +394,61 @@ final class Utils {
             .build();
         classBuilder.addMethod(removeOnEnvironmentChangeListenerMethod);
 
+        // =
+
+        // 构建 clearOnEnvironmentChangeListener 实现代码
+        codeBlockBuilder = CodeBlock.builder();
+        codeBlockBuilder.add("try {\n");
+        codeBlockBuilder.add("    $N.clear();\n", VAR_LISTENER_LIST);
+        codeBlockBuilder.add("    return true;\n");
+        codeBlockBuilder.add("} catch (Exception e) {\n");
+        codeBlockBuilder.add("    e.printStackTrace();\n");
+        codeBlockBuilder.add("}\n");
+
         // public static final Boolean clearOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
         MethodSpec clearOnEnvironmentChangeListenerMethod = MethodSpec
             .methodBuilder(METHOD_CLEAR_ONENVIRONMENT_CHANGE_LISTENER)
             .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
             .returns(Boolean.class)
+            .addCode(codeBlockBuilder.build())
             .addStatement("return false")
             .addJavadoc("清空模块环境改变触发事件\n")
             .addJavadoc("<p>Clear All Environment Change Listener\n")
             .addJavadoc("@return {@code true} success, {@code false} fail\n")
             .build();
         classBuilder.addMethod(clearOnEnvironmentChangeListenerMethod);
+
+        // ================
+        // = 私有通知方法 =
+        // ================
+
+        // 构建 notifyOnEnvironmentChangeListener 实现代码
+        codeBlockBuilder = CodeBlock.builder();
+        codeBlockBuilder.add("List<$T> list = new ArrayList<>($N);\n", OnEnvironmentChangeListener.class, VAR_LISTENER_LIST);
+        codeBlockBuilder.add("for ($T $N : list) {\n", OnEnvironmentChangeListener.class, listener);
+        codeBlockBuilder.add("    try {\n");
+        codeBlockBuilder.add("        $N.onEnvironmentChanged($N, $N, $N);\n", listener,
+            VAR_PARAM_NAME_MODULE, VAR_PARAM_NAME_OLD_ENVIRONMENT, VAR_PARAM_NAME_NEW_ENVIRONMENT);
+        codeBlockBuilder.add("    } catch (Exception e) {\n");
+        codeBlockBuilder.add("        e.printStackTrace();\n");
+        codeBlockBuilder.add("    }\n");
+        codeBlockBuilder.add("}\n");
+
+        // public static final Boolean notifyOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
+        MethodSpec notifyOnEnvironmentChangeListenerMethod = MethodSpec
+            .methodBuilder(METHOD_NOTIFY_ONENVIRONMENT_CHANGE_LISTENER)
+            .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+            .addParameter(ModuleBean.class, VAR_PARAM_NAME_MODULE, Modifier.FINAL)
+            .addParameter(EnvironmentBean.class, VAR_PARAM_NAME_OLD_ENVIRONMENT, Modifier.FINAL)
+            .addParameter(EnvironmentBean.class, VAR_PARAM_NAME_NEW_ENVIRONMENT, Modifier.FINAL)
+            .addCode(codeBlockBuilder.build())
+            .addJavadoc("模块环境发生变化时触发\n")
+            .addJavadoc("<p>Triggered when the module environment changes\n")
+            .addJavadoc("@param module         Module\n")
+            .addJavadoc("@param oldEnvironment The old environment of the module\n")
+            .addJavadoc("@param newEnvironment The latest environment of the module\n")
+            .build();
+        classBuilder.addMethod(notifyOnEnvironmentChangeListenerMethod);
     }
 
     /**
