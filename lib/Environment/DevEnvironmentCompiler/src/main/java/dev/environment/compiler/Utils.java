@@ -51,6 +51,7 @@ final class Utils {
     static final String METHOD_NOTIFY_ONENVIRONMENT_CHANGE_LISTENER = "notifyOnEnvironmentChangeListener";
     static final String METHOD_GET_STORAGE_DIR = "getStorageDir";
     static final String METHOD_DELETE_STORAGE_DIR = "deleteStorageDir";
+    static final String METHOD_WRITE_STORAGE = "writeStorage";
     // 变量相关
     static final String VAR_MODULE_PREFIX = "MODULE_";
     static final String VAR_ENVIRONMENT_PREFIX = "ENVIRONMENT_";
@@ -59,6 +60,8 @@ final class Utils {
     static final String VAR_LISTENER_LIST = "LISTENER_LIST";
     static final String VAR_CONTEXT = "context";
     static final String VAR_MODULE = "module";
+    static final String VAR_MODULE_NAME = "moduleName";
+    static final String VAR_ENVIRONMENT = "environment";
     static final String VAR_OLD_ENVIRONMENT = "oldEnvironment";
     static final String VAR_NEW_ENVIRONMENT = "newEnvironment";
     static final String VAR_LISTENER = "listener";
@@ -148,9 +151,9 @@ final class Utils {
             classBuilder.addField(moduleField);
 
             // 创建私有变量 - 用于记录当前选中的环境
-            // private static EnvironmentBean sSelectModuleEnvironment = null;
+            // private static EnvironmentBean sSelectModule = null;
             FieldSpec sSelectModuleEnvironmentField = FieldSpec
-                .builder(EnvironmentBean.class, VAR_SELECT_ENVIRONMENT + "" + moduleName + STR_ENVIRONMENT)
+                .builder(EnvironmentBean.class, VAR_SELECT_ENVIRONMENT + moduleName)
                 .addModifiers(Modifier.PRIVATE, Modifier.STATIC)
                 .addJavadoc(String.format("%s [ Module ] Environment of selected\n", moduleName))
                 .build();
@@ -310,7 +313,7 @@ final class Utils {
                 .addStatement("return $N", environmentVarName)
                 .addJavadoc("获取 $N [ Module ] Selected Environment Bean\n", moduleName)
                 .addJavadoc("<p>Get $N [ Module ] Selected Environment Bean\n", moduleName)
-                .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
+                .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
                 .addJavadoc("@return $N [ Module ] Selected Environment Bean\n", moduleName)
                 .build();
             classBuilder.addMethod(getModuleEnvironmentMethod);
@@ -325,7 +328,7 @@ final class Utils {
                 .addStatement("return $N($N).$N()", getModuleEnvironmentMethodName, VAR_CONTEXT, METHOD_GET_ENVIRONMENTS_VALUE)
                 .addJavadoc("获取 $N [ Module ] Selected Environment Value\n", moduleName)
                 .addJavadoc("<p>Get $N [ Module ] Selected Environment Value\n", moduleName)
-                .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
+                .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
                 .addJavadoc("@return $N [ Module ] Selected Environment Value\n", moduleName)
                 .build();
             classBuilder.addMethod(getModuleEnvironmentValueMethod);
@@ -341,8 +344,8 @@ final class Utils {
                 .addStatement("return false")
                 .addJavadoc("设置 $N [ Module ] Selected Environment Bean\n", moduleName)
                 .addJavadoc("<p>Set $N [ Module ] Selected Environment Bean\n", moduleName)
-                .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
-                .addJavadoc("@param $N debug annotation compile use\n", VAR_NEW_ENVIRONMENT)
+                .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
+                .addJavadoc("@param $N environment bean\n", VAR_NEW_ENVIRONMENT)
                 .addJavadoc("@return {@code true} success, {@code false} fail\n")
                 .build();
             classBuilder.addMethod(setModuleEnvironmentMethod);
@@ -384,7 +387,7 @@ final class Utils {
             .addStatement("return false")
             .addJavadoc("添加模块环境改变触发事件\n")
             .addJavadoc("<p>Add Environment Change Listener\n")
-            .addJavadoc("@param $N debug annotation compile use\n", VAR_LISTENER)
+            .addJavadoc("@param $N environment change listener\n", VAR_LISTENER)
             .addJavadoc("@return {@code true} success, {@code false} fail\n")
             .build();
         classBuilder.addMethod(addOnEnvironmentChangeListenerMethod);
@@ -411,7 +414,7 @@ final class Utils {
             .addStatement("return false")
             .addJavadoc("移除模块环境改变触发事件\n")
             .addJavadoc("<p>Remove Environment Change Listener\n")
-            .addJavadoc("@param $N debug annotation compile use\n", VAR_LISTENER)
+            .addJavadoc("@param $N environment change listener\n", VAR_LISTENER)
             .addJavadoc("@return {@code true} success, {@code false} fail\n")
             .build();
         classBuilder.addMethod(removeOnEnvironmentChangeListenerMethod);
@@ -479,14 +482,14 @@ final class Utils {
      */
     public static void builderStorageMethod(final TypeSpec.Builder classBuilder) {
         // 构建 getStorageDir 实现代码
-        CodeBlock.Builder getStorageDirCodeBlockBuilder = CodeBlock.builder();
-        getStorageDirCodeBlockBuilder.add("try {\n");
-        getStorageDirCodeBlockBuilder.add("    File file = new File(context.getCacheDir(), $S);\n", ENVIRONMENT_FILE_NAME);
-        getStorageDirCodeBlockBuilder.add("    if (!file.exists()) file.mkdirs();\n");
-        getStorageDirCodeBlockBuilder.add("    return file;\n");
-        getStorageDirCodeBlockBuilder.add("} catch (Exception e) {\n");
-        getStorageDirCodeBlockBuilder.add("    e.printStackTrace();\n");
-        getStorageDirCodeBlockBuilder.add("}\n");
+        CodeBlock.Builder codeBlockBuilder = CodeBlock.builder();
+        codeBlockBuilder.add("try {\n");
+        codeBlockBuilder.add("    File file = new File(context.getCacheDir(), $S);\n", ENVIRONMENT_FILE_NAME);
+        codeBlockBuilder.add("    if (!file.exists()) file.mkdirs();\n");
+        codeBlockBuilder.add("    return file;\n");
+        codeBlockBuilder.add("} catch (Exception e) {\n");
+        codeBlockBuilder.add("    e.printStackTrace();\n");
+        codeBlockBuilder.add("}\n");
 
         // public static final File getStorageDir(final Context context) {}
         MethodSpec getStorageDirMethod = MethodSpec
@@ -494,7 +497,7 @@ final class Utils {
             .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
             .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
             .returns(File.class)
-            .addCode(getStorageDirCodeBlockBuilder.build())
+            .addCode(codeBlockBuilder.build())
             .addStatement("return null")
             .addJavadoc("获取环境配置存储路径 - path /data/data/package/cache/$N\n", ENVIRONMENT_FILE_NAME)
             .addJavadoc("<p>Get Environment Configure Storage Dir - path /data/data/package/cache/$N\n", ENVIRONMENT_FILE_NAME)
@@ -504,20 +507,20 @@ final class Utils {
         classBuilder.addMethod(getStorageDirMethod);
 
         // 构建 deleteStorageDir 实现代码
-        CodeBlock.Builder deleteStorageDirCodeBlockBuilder = CodeBlock.builder();
-        deleteStorageDirCodeBlockBuilder.add("try {\n");
-        deleteStorageDirCodeBlockBuilder.add("    File storage = $N($N);\n", METHOD_GET_STORAGE_DIR, VAR_CONTEXT);
-        deleteStorageDirCodeBlockBuilder.add("    if (storage != null) {\n");
-        deleteStorageDirCodeBlockBuilder.add("        String[] strs = storage.list();\n");
-        deleteStorageDirCodeBlockBuilder.add("        for (String fileName : strs) {\n");
-        deleteStorageDirCodeBlockBuilder.add("            File file = new File(storage, fileName);\n");
-        deleteStorageDirCodeBlockBuilder.add("            if (!file.isDirectory()) file.delete();\n");
-        deleteStorageDirCodeBlockBuilder.add("        }\n");
-        deleteStorageDirCodeBlockBuilder.add("        return true;\n");
-        deleteStorageDirCodeBlockBuilder.add("    }\n");
-        deleteStorageDirCodeBlockBuilder.add("} catch (Exception e) {\n");
-        deleteStorageDirCodeBlockBuilder.add("    e.printStackTrace();\n");
-        deleteStorageDirCodeBlockBuilder.add("}\n");
+        codeBlockBuilder = CodeBlock.builder();
+        codeBlockBuilder.add("try {\n");
+        codeBlockBuilder.add("    File storage = $N($N);\n", METHOD_GET_STORAGE_DIR, VAR_CONTEXT);
+        codeBlockBuilder.add("    if (storage != null) {\n");
+        codeBlockBuilder.add("        String[] strs = storage.list();\n");
+        codeBlockBuilder.add("        for (String fileName : strs) {\n");
+        codeBlockBuilder.add("            File file = new File(storage, fileName);\n");
+        codeBlockBuilder.add("            if (!file.isDirectory()) file.delete();\n");
+        codeBlockBuilder.add("        }\n");
+        codeBlockBuilder.add("        return true;\n");
+        codeBlockBuilder.add("    }\n");
+        codeBlockBuilder.add("} catch (Exception e) {\n");
+        codeBlockBuilder.add("    e.printStackTrace();\n");
+        codeBlockBuilder.add("}\n");
 
         // public static final Boolean deleteStorageDir(final Context context) {}
         MethodSpec deleteStorageDirMethod = MethodSpec
@@ -525,7 +528,7 @@ final class Utils {
             .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
             .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
             .returns(Boolean.class)
-            .addCode(deleteStorageDirCodeBlockBuilder.build())
+            .addCode(codeBlockBuilder.build())
             .addStatement("return false")
             .addJavadoc("删除环境存储配置文件\n")
             .addJavadoc("<p>Delete Environment Storage Configure File\n")

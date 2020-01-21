@@ -387,14 +387,14 @@ final class Utils {
      */
     public static void builderStorageMethod(final TypeSpec.Builder classBuilder) {
         // 构建 getStorageDir 实现代码
-        CodeBlock.Builder getStorageDirCodeBlockBuilder = CodeBlock.builder();
-        getStorageDirCodeBlockBuilder.add("try {\n");
-        getStorageDirCodeBlockBuilder.add("    File file = new File(context.getCacheDir(), $S);\n", ENVIRONMENT_FILE_NAME);
-        getStorageDirCodeBlockBuilder.add("    if (!file.exists()) file.mkdirs();\n");
-        getStorageDirCodeBlockBuilder.add("    return file;\n");
-        getStorageDirCodeBlockBuilder.add("} catch (Exception e) {\n");
-        getStorageDirCodeBlockBuilder.add("    e.printStackTrace();\n");
-        getStorageDirCodeBlockBuilder.add("}\n");
+        CodeBlock.Builder codeBlockBuilder = CodeBlock.builder();
+        codeBlockBuilder.add("try {\n");
+        codeBlockBuilder.add("    File file = new File(context.getCacheDir(), $S);\n", ENVIRONMENT_FILE_NAME);
+        codeBlockBuilder.add("    if (!file.exists()) file.mkdirs();\n");
+        codeBlockBuilder.add("    return file;\n");
+        codeBlockBuilder.add("} catch (Exception e) {\n");
+        codeBlockBuilder.add("    e.printStackTrace();\n");
+        codeBlockBuilder.add("}\n");
 
         // public static final File getStorageDir(final Context context) {}
         MethodSpec getStorageDirMethod = MethodSpec
@@ -402,7 +402,7 @@ final class Utils {
             .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
             .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
             .returns(File.class)
-            .addCode(getStorageDirCodeBlockBuilder.build())
+            .addCode(codeBlockBuilder.build())
             .addStatement("return null")
             .addJavadoc("获取环境配置存储路径 - path /data/data/package/cache/$N\n", ENVIRONMENT_FILE_NAME)
             .addJavadoc("<p>Get Environment Configure Storage Dir - path /data/data/package/cache/$N\n", ENVIRONMENT_FILE_NAME)
@@ -412,20 +412,20 @@ final class Utils {
         classBuilder.addMethod(getStorageDirMethod);
 
         // 构建 deleteStorageDir 实现代码
-        CodeBlock.Builder deleteStorageDirCodeBlockBuilder = CodeBlock.builder();
-        deleteStorageDirCodeBlockBuilder.add("try {\n");
-        deleteStorageDirCodeBlockBuilder.add("    File storage = $N($N);\n", METHOD_GET_STORAGE_DIR, VAR_CONTEXT);
-        deleteStorageDirCodeBlockBuilder.add("    if (storage != null) {\n");
-        deleteStorageDirCodeBlockBuilder.add("        String[] strs = storage.list();\n");
-        deleteStorageDirCodeBlockBuilder.add("        for (String fileName : strs) {\n");
-        deleteStorageDirCodeBlockBuilder.add("            File file = new File(storage, fileName);\n");
-        deleteStorageDirCodeBlockBuilder.add("            if (!file.isDirectory()) file.delete();\n");
-        deleteStorageDirCodeBlockBuilder.add("        }\n");
-        deleteStorageDirCodeBlockBuilder.add("        return true;\n");
-        deleteStorageDirCodeBlockBuilder.add("    }\n");
-        deleteStorageDirCodeBlockBuilder.add("} catch (Exception e) {\n");
-        deleteStorageDirCodeBlockBuilder.add("    e.printStackTrace();\n");
-        deleteStorageDirCodeBlockBuilder.add("}\n");
+        codeBlockBuilder = CodeBlock.builder();
+        codeBlockBuilder.add("try {\n");
+        codeBlockBuilder.add("    File storage = $N($N);\n", METHOD_GET_STORAGE_DIR, VAR_CONTEXT);
+        codeBlockBuilder.add("    if (storage != null) {\n");
+        codeBlockBuilder.add("        String[] strs = storage.list();\n");
+        codeBlockBuilder.add("        for (String fileName : strs) {\n");
+        codeBlockBuilder.add("            File file = new File(storage, fileName);\n");
+        codeBlockBuilder.add("            if (!file.isDirectory()) file.delete();\n");
+        codeBlockBuilder.add("        }\n");
+        codeBlockBuilder.add("        return true;\n");
+        codeBlockBuilder.add("    }\n");
+        codeBlockBuilder.add("} catch (Exception e) {\n");
+        codeBlockBuilder.add("    e.printStackTrace();\n");
+        codeBlockBuilder.add("}\n");
 
         // public static final Boolean deleteStorageDir(final Context context) {}
         MethodSpec deleteStorageDirMethod = MethodSpec
@@ -433,7 +433,7 @@ final class Utils {
             .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
             .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
             .returns(Boolean.class)
-            .addCode(deleteStorageDirCodeBlockBuilder.build())
+            .addCode(codeBlockBuilder.build())
             .addStatement("return false")
             .addJavadoc("删除环境存储配置文件\n")
             .addJavadoc("<p>Delete Environment Storage Configure File\n")
