@@ -389,7 +389,7 @@ final class Utils {
         // 构建 getStorageDir 实现代码
         CodeBlock.Builder codeBlockBuilder = CodeBlock.builder();
         codeBlockBuilder.add("try {\n");
-        codeBlockBuilder.add("    File file = new File(context.getCacheDir(), $S);\n", ENVIRONMENT_FILE_NAME);
+        codeBlockBuilder.add("    File file = new File($N.getCacheDir(), $S);\n", VAR_CONTEXT, ENVIRONMENT_FILE_NAME);
         codeBlockBuilder.add("    if (!file.exists()) file.mkdirs();\n");
         codeBlockBuilder.add("    return file;\n");
         codeBlockBuilder.add("} catch (Exception e) {\n");

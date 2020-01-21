@@ -50,6 +50,7 @@ final class Utils {
     static final String METHOD_GET_MODULE_LIST = "getModuleList";
     static final String METHOD_GET_MODULE_ENVIRONMENTS_LIST = "getEnvironments";
     static final String METHOD_GET_ENVIRONMENTS_VALUE = "getValue";
+    static final String METHOD_ONENVIRONMENT_CHANGED = "onEnvironmentChanged";
     static final String METHOD_ADD_ONENVIRONMENT_CHANGE_LISTENER = "addOnEnvironmentChangeListener";
     static final String METHOD_REMOVE_ONENVIRONMENT_CHANGE_LISTENER = "removeOnEnvironmentChangeListener";
     static final String METHOD_CLEAR_ONENVIRONMENT_CHANGE_LISTENER = "clearOnEnvironmentChangeListener";
@@ -313,6 +314,17 @@ final class Utils {
                 .build();
             classBuilder.addMethod(getModuleReleaseEnvironmentMethod);
 
+            // =
+
+            String sSelectModule = VAR_SELECT_ENVIRONMENT + moduleName;
+            // 构建 getModuleEnvironment 实现代码
+            CodeBlock.Builder codeBlockBuilder = CodeBlock.builder();
+            codeBlockBuilder.add("if ($N != null) return $N;\n", sSelectModule, sSelectModule);
+            codeBlockBuilder.add("EnvironmentBean environmentBean = $N($N, $S, $N);\n", METHOD_READ_STORAGE,
+                VAR_CONTEXT, _getModuleVarName_UpperCase(moduleName), _getModuleVarName_UpperCase(moduleName));
+            codeBlockBuilder.add("if (environmentBean != null) return $N = environmentBean;\n", sSelectModule);
+            codeBlockBuilder.add("$N = $N();\n", sSelectModule, getModuleReleaseEnvironmentMethodName);
+
             // public static final EnvironmentBean getModuleEnvironment(final Context context) {}
             String getModuleEnvironmentMethodName = "get" + moduleName + STR_ENVIRONMENT;
             MethodSpec getModuleEnvironmentMethod = MethodSpec
@@ -320,6 +332,7 @@ final class Utils {
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                 .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                 .returns(EnvironmentBean.class)
+                .addCode(codeBlockBuilder.build())
                 .addStatement("return $N()", getModuleReleaseEnvironmentMethodName)
                 .addJavadoc("获取 $N [ Module ] Selected Environment Bean\n", moduleName)
                 .addJavadoc("<p>Get $N [ Module ] Selected Environment Bean\n", moduleName)
@@ -343,6 +356,21 @@ final class Utils {
                 .build();
             classBuilder.addMethod(getModuleEnvironmentValueMethod);
 
+            // =
+
+            // 构建 setModuleEnvironment 实现代码
+            codeBlockBuilder = CodeBlock.builder();
+            codeBlockBuilder.add("if ($N == null || $N == null) return false;\n", VAR_CONTEXT, VAR_NEW_ENVIRONMENT);
+            codeBlockBuilder.add("if ($N($N).equals($N)) return false;\n", getModuleEnvironmentMethodName, VAR_CONTEXT, VAR_NEW_ENVIRONMENT);
+            codeBlockBuilder.add("if ($N($N, $S, $N)) {\n", METHOD_WRITE_STORAGE,
+                VAR_CONTEXT, _getModuleVarName_UpperCase(moduleName), VAR_NEW_ENVIRONMENT);
+            codeBlockBuilder.add("    EnvironmentBean temp = $N;\n", sSelectModule);
+            codeBlockBuilder.add("    $N = $N;\n", sSelectModule, VAR_NEW_ENVIRONMENT);
+            codeBlockBuilder.add("    $N($N, temp, $N);\n", METHOD_NOTIFY_ONENVIRONMENT_CHANGE_LISTENER
+                , _getModuleVarName_UpperCase(moduleName), sSelectModule);
+            codeBlockBuilder.add("    return true;\n");
+            codeBlockBuilder.add("}\n");
+
             // public static final Boolean setModuleEnvironment(final Context context, final EnvironmentBean newEnvironment) {}
             String setModuleEnvironmentMethodName = "set" + moduleName + STR_ENVIRONMENT;
             MethodSpec setModuleEnvironmentMethod = MethodSpec
@@ -351,6 +379,7 @@ final class Utils {
                 .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                 .addParameter(EnvironmentBean.class, VAR_NEW_ENVIRONMENT, Modifier.FINAL)
                 .returns(Boolean.class)
+                .addCode(codeBlockBuilder.build())
                 .addStatement("return false")
                 .addJavadoc("设置 $N [ Module ] Selected Environment Bean\n", moduleName)
                 .addJavadoc("<p>Set $N [ Module ] Selected Environment Bean\n", moduleName)
@@ -462,7 +491,7 @@ final class Utils {
         codeBlockBuilder.add("List<$T> list = new ArrayList<>($N);\n", OnEnvironmentChangeListener.class, VAR_LISTENER_LIST);
         codeBlockBuilder.add("for ($T $N : list) {\n", OnEnvironmentChangeListener.class, VAR_LISTENER);
         codeBlockBuilder.add("    try {\n");
-        codeBlockBuilder.add("        $N.onEnvironmentChanged($N, $N, $N);\n", VAR_LISTENER,
+        codeBlockBuilder.add("        $N.$N($N, $N, $N);\n", VAR_LISTENER, METHOD_ONENVIRONMENT_CHANGED,
             VAR_MODULE, VAR_OLD_ENVIRONMENT, VAR_NEW_ENVIRONMENT);
         codeBlockBuilder.add("    } catch (Exception e) {\n");
         codeBlockBuilder.add("        e.printStackTrace();\n");
@@ -494,7 +523,7 @@ final class Utils {
         // 构建 getStorageDir 实现代码
         CodeBlock.Builder codeBlockBuilder = CodeBlock.builder();
         codeBlockBuilder.add("try {\n");
-        codeBlockBuilder.add("    File file = new File(context.getCacheDir(), $S);\n", ENVIRONMENT_FILE_NAME);
+        codeBlockBuilder.add("    File file = new File($N.getCacheDir(), $S);\n", VAR_CONTEXT, ENVIRONMENT_FILE_NAME);
         codeBlockBuilder.add("    if (!file.exists()) file.mkdirs();\n");
         codeBlockBuilder.add("    return file;\n");
         codeBlockBuilder.add("} catch (Exception e) {\n");
@@ -553,13 +582,13 @@ final class Utils {
 
         // 构建 writeStorage 实现代码
         codeBlockBuilder = CodeBlock.builder();
-        codeBlockBuilder.add("if (context == null || moduleName == null || environment == null) return false;\n");
+        codeBlockBuilder.add("if ($N == null || $N == null || $N == null) return false;\n", VAR_CONTEXT, VAR_MODULE_NAME, VAR_ENVIRONMENT);
         codeBlockBuilder.add("$T bw = null;\n", BufferedWriter.class);
         codeBlockBuilder.add("try {\n");
-        codeBlockBuilder.add("    File storage = getStorageDir(context);\n");
-        codeBlockBuilder.add("    File file = new File(storage, moduleName);\n");
+        codeBlockBuilder.add("    File storage = getStorageDir($N);\n", VAR_CONTEXT);
+        codeBlockBuilder.add("    File file = new File(storage, $N);\n", VAR_MODULE_NAME);
         codeBlockBuilder.add("    bw = new BufferedWriter(new $T(file, false));\n", FileWriter.class);
-        codeBlockBuilder.add("    bw.write(environment.toString());\n");
+        codeBlockBuilder.add("    bw.write($N.toString());\n", VAR_ENVIRONMENT);
         codeBlockBuilder.add("    return true;\n");
         codeBlockBuilder.add("} catch (Exception e) {\n");
         codeBlockBuilder.add("    e.printStackTrace();\n");
@@ -595,11 +624,11 @@ final class Utils {
 
         // 构建 readStorage 实现代码
         codeBlockBuilder = CodeBlock.builder();
-        codeBlockBuilder.add("if (context == null || moduleName == null || module == null) return null;\n");
+        codeBlockBuilder.add("if ($N == null || $N == null || $N == null) return null;\n", VAR_CONTEXT, VAR_MODULE_NAME, VAR_MODULE);
         codeBlockBuilder.add("$T br = null;\n", BufferedReader.class);
         codeBlockBuilder.add("try {\n");
-        codeBlockBuilder.add("    File storage = getStorageDir(context);\n");
-        codeBlockBuilder.add("    File file = new File(storage, moduleName);\n");
+        codeBlockBuilder.add("    File storage = getStorageDir($N);\n", VAR_CONTEXT);
+        codeBlockBuilder.add("    File file = new File(storage, $N);\n", VAR_MODULE_NAME);
         codeBlockBuilder.add("    $T builder = new StringBuilder();\n", StringBuilder.class);
         codeBlockBuilder.add("    br = new BufferedReader(new $T(new $T(file)));\n", InputStreamReader.class, FileInputStream.class);
         codeBlockBuilder.add("    String line;\n");
@@ -610,7 +639,7 @@ final class Utils {
         codeBlockBuilder.add("    String name = jsonObject.getString($S);\n", VAR_NAME);
         codeBlockBuilder.add("    String value = jsonObject.getString($S);\n", VAR_VALUE);
         codeBlockBuilder.add("    String alias = jsonObject.getString($S);\n", VAR_ALIAS);
-        codeBlockBuilder.add("    return new EnvironmentBean(name, value, alias, module);\n");
+        codeBlockBuilder.add("    return new $T(name, value, alias, module);\n", EnvironmentBean.class);
         codeBlockBuilder.add("} catch (Exception e) {\n");
         codeBlockBuilder.add("    e.printStackTrace();\n");
         codeBlockBuilder.add("} finally {\n");
