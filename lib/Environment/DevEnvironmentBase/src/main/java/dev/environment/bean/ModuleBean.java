@@ -37,7 +37,7 @@ public class ModuleBean implements Serializable {
     }
 
     @Override
-    public boolean equals(Object object) {
+    public final boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
 
@@ -48,7 +48,7 @@ public class ModuleBean implements Serializable {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (alias != null ? alias.hashCode() : 0);
         result = 31 * result + (environments != null ? environments.hashCode() : 0);
@@ -58,7 +58,7 @@ public class ModuleBean implements Serializable {
     private final String JSON_FORMAT = "{\"name\":\"%s\",\"alias\":\"%s\",\"environments\":%s}";
 
     @Override
-    public String toString() {
+    public final String toString() {
         return String.format(JSON_FORMAT, getName(), getAlias(), getEnvironments());
     }
 }

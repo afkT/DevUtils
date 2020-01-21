@@ -8,8 +8,13 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -52,6 +57,7 @@ final class Utils {
     static final String METHOD_GET_STORAGE_DIR = "getStorageDir";
     static final String METHOD_DELETE_STORAGE_DIR = "deleteStorageDir";
     static final String METHOD_WRITE_STORAGE = "writeStorage";
+    static final String METHOD_READ_STORAGE = "readStorage";
     // 变量相关
     static final String VAR_MODULE_PREFIX = "MODULE_";
     static final String VAR_ENVIRONMENT_PREFIX = "ENVIRONMENT_";
@@ -65,6 +71,9 @@ final class Utils {
     static final String VAR_OLD_ENVIRONMENT = "oldEnvironment";
     static final String VAR_NEW_ENVIRONMENT = "newEnvironment";
     static final String VAR_LISTENER = "listener";
+    static final String VAR_NAME = "name";
+    static final String VAR_VALUE = "value";
+    static final String VAR_ALIAS = "alias";
     // 常量字符串
     static final String STR_MODULE = "Module";
     static final String STR_ENVIRONMENT = "Environment";
@@ -72,6 +81,7 @@ final class Utils {
     static final String STR_RELEASE_ENVIRONMENT = "ReleaseEnvironment";
     // 其他
     static final TypeName TYPE_NAME_CONTEXT = ClassName.get("android.content", "Context");
+    static final TypeName TYPE_NAME_JSONOBJECT = ClassName.get("org.json", "JSONObject");
 
     // ================
     // = 内部生成方法 =
@@ -459,7 +469,7 @@ final class Utils {
         codeBlockBuilder.add("    }\n");
         codeBlockBuilder.add("}\n");
 
-        // public static final Boolean notifyOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
+        // public static final Boolean notifyOnEnvironmentChangeListener(module, oldEnvironment, newEnvironment) {}
         MethodSpec notifyOnEnvironmentChangeListenerMethod = MethodSpec
             .methodBuilder(METHOD_NOTIFY_ONENVIRONMENT_CHANGE_LISTENER)
             .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
@@ -506,6 +516,8 @@ final class Utils {
             .build();
         classBuilder.addMethod(getStorageDirMethod);
 
+        // =
+
         // 构建 deleteStorageDir 实现代码
         codeBlockBuilder = CodeBlock.builder();
         codeBlockBuilder.add("try {\n");
@@ -536,6 +548,98 @@ final class Utils {
             .addJavadoc("@return {@code true} success, {@code false} fail\n")
             .build();
         classBuilder.addMethod(deleteStorageDirMethod);
+
+        // =
+
+        // 构建 writeStorage 实现代码
+        codeBlockBuilder = CodeBlock.builder();
+        codeBlockBuilder.add("if (context == null || moduleName == null || environment == null) return false;\n");
+        codeBlockBuilder.add("$T bw = null;\n", BufferedWriter.class);
+        codeBlockBuilder.add("try {\n");
+        codeBlockBuilder.add("    File storage = getStorageDir(context);\n");
+        codeBlockBuilder.add("    File file = new File(storage, moduleName);\n");
+        codeBlockBuilder.add("    bw = new BufferedWriter(new $T(file, false));\n", FileWriter.class);
+        codeBlockBuilder.add("    bw.write(environment.toString());\n");
+        codeBlockBuilder.add("    return true;\n");
+        codeBlockBuilder.add("} catch (Exception e) {\n");
+        codeBlockBuilder.add("    e.printStackTrace();\n");
+        codeBlockBuilder.add("} finally {\n");
+        codeBlockBuilder.add("    if (bw != null) {\n");
+        codeBlockBuilder.add("        try {\n");
+        codeBlockBuilder.add("            bw.close();\n");
+        codeBlockBuilder.add("        } catch (Exception ignore) {\n");
+        codeBlockBuilder.add("        }\n");
+        codeBlockBuilder.add("    }\n");
+        codeBlockBuilder.add("}\n");
+
+        // public static final Boolean writeStorage(context, moduleName, environment) {}
+        MethodSpec writeStorageMethod = MethodSpec
+            .methodBuilder(METHOD_WRITE_STORAGE)
+            .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+            .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
+            .addParameter(String.class, VAR_MODULE_NAME, Modifier.FINAL)
+            .addParameter(EnvironmentBean.class, VAR_ENVIRONMENT, Modifier.FINAL)
+            .returns(Boolean.class)
+            .addCode(codeBlockBuilder.build())
+            .addStatement("return false")
+            .addJavadoc("写入环境存储配置文件\n")
+            .addJavadoc("<p>Write Environment Storage Configure File\n")
+            .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
+            .addJavadoc("@param $N module Name\n", VAR_MODULE_NAME)
+            .addJavadoc("@param $N environment bean\n", VAR_ENVIRONMENT)
+            .addJavadoc("@return {@code true} success, {@code false} fail\n")
+            .build();
+        classBuilder.addMethod(writeStorageMethod);
+
+        // =
+
+        // 构建 readStorage 实现代码
+        codeBlockBuilder = CodeBlock.builder();
+        codeBlockBuilder.add("if (context == null || moduleName == null || module == null) return null;\n");
+        codeBlockBuilder.add("$T br = null;\n", BufferedReader.class);
+        codeBlockBuilder.add("try {\n");
+        codeBlockBuilder.add("    File storage = getStorageDir(context);\n");
+        codeBlockBuilder.add("    File file = new File(storage, moduleName);\n");
+        codeBlockBuilder.add("    $T builder = new StringBuilder();\n", StringBuilder.class);
+        codeBlockBuilder.add("    br = new BufferedReader(new $T(new $T(file)));\n", InputStreamReader.class, FileInputStream.class);
+        codeBlockBuilder.add("    String line;\n");
+        codeBlockBuilder.add("    while ((line = br.readLine()) != null) {\n");
+        codeBlockBuilder.add("        builder.append(line);\n");
+        codeBlockBuilder.add("    }\n");
+        codeBlockBuilder.add("    $T jsonObject = new JSONObject(builder.toString());\n", TYPE_NAME_JSONOBJECT);
+        codeBlockBuilder.add("    String name = jsonObject.getString($S);\n", VAR_NAME);
+        codeBlockBuilder.add("    String value = jsonObject.getString($S);\n", VAR_VALUE);
+        codeBlockBuilder.add("    String alias = jsonObject.getString($S);\n", VAR_ALIAS);
+        codeBlockBuilder.add("    return new EnvironmentBean(name, value, alias, module);\n");
+        codeBlockBuilder.add("} catch (Exception e) {\n");
+        codeBlockBuilder.add("    e.printStackTrace();\n");
+        codeBlockBuilder.add("} finally {\n");
+        codeBlockBuilder.add("    if (br != null) {\n");
+        codeBlockBuilder.add("        try {\n");
+        codeBlockBuilder.add("            br.close();\n");
+        codeBlockBuilder.add("        } catch (Exception ignore) {\n");
+        codeBlockBuilder.add("        }\n");
+        codeBlockBuilder.add("    }\n");
+        codeBlockBuilder.add("}\n");
+
+        // public static final Boolean readStorage(context, moduleName, module) {}
+        MethodSpec readStorageMethod = MethodSpec
+            .methodBuilder(METHOD_READ_STORAGE)
+            .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+            .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
+            .addParameter(String.class, VAR_MODULE_NAME, Modifier.FINAL)
+            .addParameter(ModuleBean.class, VAR_MODULE, Modifier.FINAL)
+            .returns(EnvironmentBean.class)
+            .addCode(codeBlockBuilder.build())
+            .addStatement("return null")
+            .addJavadoc("读取环境存储配置文件\n")
+            .addJavadoc("<p>Read Environment Storage Configure File\n")
+            .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
+            .addJavadoc("@param $N module Name\n", VAR_MODULE_NAME)
+            .addJavadoc("@param $N module bean\n", VAR_MODULE)
+            .addJavadoc("@return {@link $N}\n", EnvironmentBean.class.getSimpleName())
+            .build();
+        classBuilder.addMethod(readStorageMethod);
     }
 
     // ============

@@ -411,6 +411,8 @@ final class Utils {
             .build();
         classBuilder.addMethod(getStorageDirMethod);
 
+        // =
+
         // 构建 deleteStorageDir 实现代码
         codeBlockBuilder = CodeBlock.builder();
         codeBlockBuilder.add("try {\n");
