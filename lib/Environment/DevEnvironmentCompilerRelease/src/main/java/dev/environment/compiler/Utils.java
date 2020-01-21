@@ -273,7 +273,7 @@ final class Utils {
                 .build();
             classBuilder.addMethod(getModuleMethod);
 
-            // public static final EnvironmentBean getModuleReleaseEnvironment(final Context context) {}
+            // public static final EnvironmentBean getModuleReleaseEnvironment() {}
             String getModuleReleaseEnvironmentMethodName = "get" + moduleName + STR_RELEASE_ENVIRONMENT;
             MethodSpec getModuleReleaseEnvironmentMethod = MethodSpec
                 .methodBuilder(getModuleReleaseEnvironmentMethodName)
@@ -293,7 +293,7 @@ final class Utils {
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                 .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                 .returns(EnvironmentBean.class)
-                .addStatement("return $N", environmentVarName)
+                .addStatement("return $N()", getModuleReleaseEnvironmentMethodName)
                 .addJavadoc("获取 $N [ Module ] Selected Environment Bean\n", moduleName)
                 .addJavadoc("<p>Get $N [ Module ] Selected Environment Bean\n", moduleName)
                 .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
@@ -340,7 +340,7 @@ final class Utils {
      * @param classBuilder DevEnvironment 类构建对象
      */
     public static void builderEnvironmentChangeListener(final TypeSpec.Builder classBuilder) {
-        // public static final Boolean addOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
+        // public static final Boolean addOnEnvironmentChangeListener(final OnEnvironmentChangeListener listener) {}
         MethodSpec addOnEnvironmentChangeListenerMethod = MethodSpec
             .methodBuilder(METHOD_ADD_ONENVIRONMENT_CHANGE_LISTENER)
             .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
@@ -354,7 +354,7 @@ final class Utils {
             .build();
         classBuilder.addMethod(addOnEnvironmentChangeListenerMethod);
 
-        // public static final Boolean removeOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
+        // public static final Boolean removeOnEnvironmentChangeListener(final OnEnvironmentChangeListener listener) {}
         MethodSpec removeOnEnvironmentChangeListenerMethod = MethodSpec
             .methodBuilder(METHOD_REMOVE_ONENVIRONMENT_CHANGE_LISTENER)
             .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
@@ -368,7 +368,7 @@ final class Utils {
             .build();
         classBuilder.addMethod(removeOnEnvironmentChangeListenerMethod);
 
-        // public static final Boolean clearOnEnvironmentChangeListener(OnEnvironmentChangeListener listener) {}
+        // public static final Boolean clearOnEnvironmentChangeListener() {}
         MethodSpec clearOnEnvironmentChangeListenerMethod = MethodSpec
             .methodBuilder(METHOD_CLEAR_ONENVIRONMENT_CHANGE_LISTENER)
             .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
