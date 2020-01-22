@@ -175,6 +175,9 @@ final class Utils {
 
             // 创建 Module Environment 数据
             builderModuleEnvironment_DATA(classBuilder, moduleElement, environmentElement);
+
+            // 创建 Module 非 Release Environment 数据
+            builderModuleEnvironment_DATA_NON_RELEASE(classBuilder, moduleElement, processingEnv);
         }
     }
 
@@ -208,6 +211,27 @@ final class Utils {
 
         // 记录 Environment 变量名 ( 传入的 environmentElement ) 属于 Release Environment Element 存储在 index 0
         sModuleNameMap.get(moduleName).add(_getEnvironmentVarName_UpperCase(moduleName, environmentName));
+    }
+
+    /**
+     * 创建 Module 非 Release Environment 数据
+     * @param classBuilder  DevEnvironment 类构建对象
+     * @param moduleElement 使用注解修饰的 Module Element
+     * @param processingEnv {@link ProcessingEnvironment}
+     */
+    public static void builderModuleEnvironment_DATA_NON_RELEASE(final TypeSpec.Builder classBuilder, final Element moduleElement,
+                                                                 final ProcessingEnvironment processingEnv) {
+
+        List<? extends Element> allMembers = processingEnv.getElementUtils().getAllMembers((TypeElement) moduleElement);
+        for (Element member : allMembers) {
+            Environment environmentAnnotation = member.getAnnotation(Environment.class);
+            if (environmentAnnotation == null) continue;
+
+            if (!environmentAnnotation.isRelease()) {
+                // ( 方法复用) 该传入的 member 非 Release Environment Element
+                builderModuleEnvironment_DATA(classBuilder, moduleElement, member);
+            }
+        }
     }
 
     /**
@@ -250,15 +274,17 @@ final class Utils {
                 Map.Entry<String, List<String>> entry = iterator.next();
                 // Module 名
                 String moduleName = entry.getKey();
-                // Environment 变量名 ( 因为 release 只能有一个, 这里直接获取 0 )
-                String environmentVarName = entry.getValue().get(0);
+                // Environment 变量名集合
+                List<String> environmentVarNameList = entry.getValue();
 
                 // 添加 moduleVarName 到 VAR_MODULE_LIST 中
                 staticCodeBlockBuilder.add("\n")
                         .addStatement("$N.add($N)", VAR_MODULE_LIST, _getModuleVarName_UpperCase(moduleName));
                 // 添加 Environment 到对应 ModuleBean.getEnvironments() 中
-                staticCodeBlockBuilder.addStatement("$N.$N().add($N)", _getModuleVarName_UpperCase(moduleName),
-                        METHOD_GET_MODULE_ENVIRONMENTS_LIST, environmentVarName);
+                for (String environmentVarName : environmentVarNameList) {
+                    staticCodeBlockBuilder.addStatement("$N.$N().add($N)", _getModuleVarName_UpperCase(moduleName),
+                            METHOD_GET_MODULE_ENVIRONMENTS_LIST, environmentVarName);
+                }
             }
             // 创建代码
             classBuilder.addStaticBlock(staticCodeBlockBuilder.build());
