@@ -168,7 +168,7 @@ final class Utils {
         FieldSpec environmentField = FieldSpec
             .builder(EnvironmentBean.class, _getEnvironmentVarName_UpperCase(moduleName, environmentName))
             .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
-            .initializer("new $T($S, $S, $S, $L)", EnvironmentBean.class, environmentName,
+            .initializer("new $T($S, $S, $S, $N)", EnvironmentBean.class, environmentName,
                 environmentValue, environmentAlias, _getModuleVarName_UpperCase(moduleName))
             .addJavadoc(String.format("[ Environment ] name: %s, alias: %s, [ Module ] name: %s\n",
                 environmentName, environmentAlias, moduleName))
@@ -273,6 +273,8 @@ final class Utils {
                 .build();
             classBuilder.addMethod(getModuleMethod);
 
+            // =
+
             // public static final EnvironmentBean getModuleReleaseEnvironment() {}
             String getModuleReleaseEnvironmentMethodName = "get" + moduleName + STR_RELEASE_ENVIRONMENT;
             MethodSpec getModuleReleaseEnvironmentMethod = MethodSpec
@@ -286,6 +288,8 @@ final class Utils {
                 .build();
             classBuilder.addMethod(getModuleReleaseEnvironmentMethod);
 
+            // =
+
             // public static final EnvironmentBean getModuleEnvironment(final Context context) {}
             String getModuleEnvironmentMethodName = "get" + moduleName + STR_ENVIRONMENT;
             MethodSpec getModuleEnvironmentMethod = MethodSpec
@@ -296,10 +300,12 @@ final class Utils {
                 .addStatement("return $N()", getModuleReleaseEnvironmentMethodName)
                 .addJavadoc("获取 $N [ Module ] Selected Environment Bean\n", moduleName)
                 .addJavadoc("<p>Get $N [ Module ] Selected Environment Bean\n", moduleName)
-                .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
+                .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
                 .addJavadoc("@return $N [ Module ] Selected Environment Bean\n", moduleName)
                 .build();
             classBuilder.addMethod(getModuleEnvironmentMethod);
+
+            // =
 
             // public static final String getModuleEnvironmentValue(final Context context) {}
             String getModuleEnvironmentValueMethodName = "get" + moduleName + STR_ENVIRONMENT_VALUE;
@@ -311,10 +317,12 @@ final class Utils {
                 .addStatement("return $N($N).$N()", getModuleEnvironmentMethodName, VAR_CONTEXT, METHOD_GET_ENVIRONMENTS_VALUE)
                 .addJavadoc("获取 $N [ Module ] Selected Environment Value\n", moduleName)
                 .addJavadoc("<p>Get $N [ Module ] Selected Environment Value\n", moduleName)
-                .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
+                .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
                 .addJavadoc("@return $N [ Module ] Selected Environment Value\n", moduleName)
                 .build();
             classBuilder.addMethod(getModuleEnvironmentValueMethod);
+
+            // =
 
             // public static final Boolean setModuleEnvironment(final Context context, final EnvironmentBean newEnvironment) {}
             String setModuleEnvironmentMethodName = "set" + moduleName + STR_ENVIRONMENT;
@@ -327,8 +335,8 @@ final class Utils {
                 .addStatement("return false")
                 .addJavadoc("设置 $N [ Module ] Selected Environment Bean\n", moduleName)
                 .addJavadoc("<p>Set $N [ Module ] Selected Environment Bean\n", moduleName)
-                .addJavadoc("@param $N debug annotation compile use\n", VAR_CONTEXT)
-                .addJavadoc("@param $N debug annotation compile use\n", VAR_NEW_ENVIRONMENT)
+                .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
+                .addJavadoc("@param $N environment bean\n", VAR_NEW_ENVIRONMENT)
                 .addJavadoc("@return {@code true} success, {@code false} fail\n")
                 .build();
             classBuilder.addMethod(setModuleEnvironmentMethod);
@@ -349,10 +357,12 @@ final class Utils {
             .addStatement("return false")
             .addJavadoc("添加模块环境改变触发事件\n")
             .addJavadoc("<p>Add Environment Change Listener\n")
-            .addJavadoc("@param $N debug annotation compile use\n", VAR_LISTENER)
+            .addJavadoc("@param $N environment change listener\n", VAR_LISTENER)
             .addJavadoc("@return {@code true} success, {@code false} fail\n")
             .build();
         classBuilder.addMethod(addOnEnvironmentChangeListenerMethod);
+
+        // =
 
         // public static final Boolean removeOnEnvironmentChangeListener(final OnEnvironmentChangeListener listener) {}
         MethodSpec removeOnEnvironmentChangeListenerMethod = MethodSpec
@@ -363,10 +373,12 @@ final class Utils {
             .addStatement("return false")
             .addJavadoc("移除模块环境改变触发事件\n")
             .addJavadoc("<p>Remove Environment Change Listener\n")
-            .addJavadoc("@param $N debug annotation compile use\n", VAR_LISTENER)
+            .addJavadoc("@param $N environment change listener\n", VAR_LISTENER)
             .addJavadoc("@return {@code true} success, {@code false} fail\n")
             .build();
         classBuilder.addMethod(removeOnEnvironmentChangeListenerMethod);
+
+        // =
 
         // public static final Boolean clearOnEnvironmentChangeListener() {}
         MethodSpec clearOnEnvironmentChangeListenerMethod = MethodSpec
@@ -466,14 +478,14 @@ final class Utils {
             if (environmentAnnotation.isRelease()) {
                 if (environmentElement != null) { // 每个 Module 只能有一个 release 环境配置
                     String moduleName = moduleElement.getSimpleName().toString();
-                    throw new Exception(moduleName + " module can be only one release environment configuration");
+                    throw new Exception(moduleName + " module can be only one release environment configuration ( 每个 Module 只能有一个 release 环境配置 )");
                 }
                 environmentElement = member;
             }
         }
         if (environmentElement == null) { // 每个 Module 必须有一个 release 环境配置
             String moduleName = moduleElement.getSimpleName().toString();
-            throw new Exception(moduleName + " module must have a release environment configuration");
+            throw new Exception(moduleName + " module must have a release environment configuration ( 每个 Module 必须有一个 release 环境配置 )");
         }
         return environmentElement;
     }

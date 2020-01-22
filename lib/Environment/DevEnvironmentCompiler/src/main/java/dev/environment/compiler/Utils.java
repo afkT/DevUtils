@@ -196,7 +196,7 @@ final class Utils {
         FieldSpec environmentField = FieldSpec
             .builder(EnvironmentBean.class, _getEnvironmentVarName_UpperCase(moduleName, environmentName))
             .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
-            .initializer("new $T($S, $S, $S, $L)", EnvironmentBean.class, environmentName,
+            .initializer("new $T($S, $S, $S, $N)", EnvironmentBean.class, environmentName,
                 environmentValue, environmentAlias, _getModuleVarName_UpperCase(moduleName))
             .addJavadoc(String.format("[ Environment ] name: %s, alias: %s, [ Module ] name: %s\n",
                 environmentName, environmentAlias, moduleName))
@@ -692,14 +692,14 @@ final class Utils {
             if (environmentAnnotation.isRelease()) {
                 if (environmentElement != null) { // 每个 Module 只能有一个 release 环境配置
                     String moduleName = moduleElement.getSimpleName().toString();
-                    throw new Exception(moduleName + " module can be only one release environment configuration");
+                    throw new Exception(moduleName + " module can be only one release environment configuration ( 每个 Module 只能有一个 release 环境配置 )");
                 }
                 environmentElement = member;
             }
         }
         if (environmentElement == null) { // 每个 Module 必须有一个 release 环境配置
             String moduleName = moduleElement.getSimpleName().toString();
-            throw new Exception(moduleName + " module must have a release environment configuration");
+            throw new Exception(moduleName + " module must have a release environment configuration ( 每个 Module 必须有一个 release 环境配置 )");
         }
         return environmentElement;
     }
