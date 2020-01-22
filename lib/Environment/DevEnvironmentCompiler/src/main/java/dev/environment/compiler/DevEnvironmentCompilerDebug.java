@@ -34,7 +34,7 @@ public class DevEnvironmentCompilerDebug extends AbstractProcessor {
     }
 
     /**
-     * 返回该 Processor 能够处理的注解
+     * 获取该 Processor 能够处理的注解
      * @return 该 Processor 能够处理的注解
      */
     @Override
