@@ -151,6 +151,7 @@ final class Utils {
             // 创建 Environment 变量名 List
             List<String> environmentVarNameList = new ArrayList<>();
             sModuleNameMap.put(moduleName, environmentVarNameList);
+
             // 创建私有常量变量
             // private static final ModuleBean MODULE_XXX = new ModuleBean();
             FieldSpec moduleField = FieldSpec
@@ -160,6 +161,8 @@ final class Utils {
                 .addJavadoc(String.format("[ Module ] name: %s, alias: %s\n", moduleName, moduleAlias))
                 .build();
             classBuilder.addField(moduleField);
+
+            // =
 
             // 创建私有变量 - 用于记录当前选中的环境
             // private static EnvironmentBean sSelectModule = null;
@@ -301,6 +304,8 @@ final class Utils {
                 .build();
             classBuilder.addMethod(getModuleMethod);
 
+            // =
+
             // public static final EnvironmentBean getModuleReleaseEnvironment() {}
             String getModuleReleaseEnvironmentMethodName = "get" + moduleName + STR_RELEASE_ENVIRONMENT;
             MethodSpec getModuleReleaseEnvironmentMethod = MethodSpec
@@ -340,6 +345,8 @@ final class Utils {
                 .addJavadoc("@return $N [ Module ] Selected Environment Bean\n", moduleName)
                 .build();
             classBuilder.addMethod(getModuleEnvironmentMethod);
+
+            // =
 
             // public static final String getModuleEnvironmentValue(final Context context) {}
             String getModuleEnvironmentValueMethodName = "get" + moduleName + STR_ENVIRONMENT_VALUE;
@@ -585,7 +592,7 @@ final class Utils {
         codeBlockBuilder.add("if ($N == null || $N == null || $N == null) return false;\n", VAR_CONTEXT, VAR_MODULE_NAME, VAR_ENVIRONMENT);
         codeBlockBuilder.add("$T bw = null;\n", BufferedWriter.class);
         codeBlockBuilder.add("try {\n");
-        codeBlockBuilder.add("    File storage = getStorageDir($N);\n", VAR_CONTEXT);
+        codeBlockBuilder.add("    File storage = $N($N);\n", METHOD_GET_STORAGE_DIR, VAR_CONTEXT);
         codeBlockBuilder.add("    File file = new File(storage, $N);\n", VAR_MODULE_NAME);
         codeBlockBuilder.add("    bw = new BufferedWriter(new $T(file, false));\n", FileWriter.class);
         codeBlockBuilder.add("    bw.write($N.toString());\n", VAR_ENVIRONMENT);
@@ -627,7 +634,7 @@ final class Utils {
         codeBlockBuilder.add("if ($N == null || $N == null || $N == null) return null;\n", VAR_CONTEXT, VAR_MODULE_NAME, VAR_MODULE);
         codeBlockBuilder.add("$T br = null;\n", BufferedReader.class);
         codeBlockBuilder.add("try {\n");
-        codeBlockBuilder.add("    File storage = getStorageDir($N);\n", VAR_CONTEXT);
+        codeBlockBuilder.add("    File storage = $N($N);\n", METHOD_GET_STORAGE_DIR, VAR_CONTEXT);
         codeBlockBuilder.add("    File file = new File(storage, $N);\n", VAR_MODULE_NAME);
         codeBlockBuilder.add("    $T builder = new StringBuilder();\n", StringBuilder.class);
         codeBlockBuilder.add("    br = new BufferedReader(new $T(new $T(file)));\n", InputStreamReader.class, FileInputStream.class);
@@ -639,7 +646,7 @@ final class Utils {
         codeBlockBuilder.add("    String name = jsonObject.getString($S);\n", VAR_NAME);
         codeBlockBuilder.add("    String value = jsonObject.getString($S);\n", VAR_VALUE);
         codeBlockBuilder.add("    String alias = jsonObject.getString($S);\n", VAR_ALIAS);
-        codeBlockBuilder.add("    return new $T(name, value, alias, module);\n", EnvironmentBean.class);
+        codeBlockBuilder.add("    return new $T(name, value, alias, $N);\n", EnvironmentBean.class, VAR_MODULE);
         codeBlockBuilder.add("} catch (Exception e) {\n");
         codeBlockBuilder.add("    e.printStackTrace();\n");
         codeBlockBuilder.add("} finally {\n");

@@ -132,6 +132,7 @@ final class Utils {
             // 创建 Environment 变量名 List
             List<String> environmentVarNameList = new ArrayList<>();
             sModuleNameMap.put(moduleName, environmentVarNameList);
+
             // 创建私有常量变量
             // private static final ModuleBean MODULE_XXX = new ModuleBean();
             FieldSpec moduleField = FieldSpec
