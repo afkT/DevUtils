@@ -206,7 +206,7 @@ final class Utils {
             .build();
         classBuilder.addField(environmentField);
 
-        // 记录 Environment 变量名
+        // 记录 Environment 变量名 ( 传入的 environmentElement ) 属于 Release Environment Element 存储在 index 0
         sModuleNameMap.get(moduleName).add(_getEnvironmentVarName_UpperCase(moduleName, environmentName));
     }
 
