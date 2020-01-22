@@ -228,7 +228,7 @@ final class Utils {
             if (environmentAnnotation == null) continue;
 
             if (!environmentAnnotation.isRelease()) {
-                // ( 方法复用) 该传入的 member 非 Release Environment Element
+                // ( 方法复用 ) 该传入的 member 非 Release Environment Element
                 builderModuleEnvironment_DATA(classBuilder, moduleElement, member);
             }
         }
