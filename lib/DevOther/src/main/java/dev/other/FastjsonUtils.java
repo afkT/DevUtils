@@ -1,7 +1,5 @@
 package dev.other;
 
-import android.support.annotation.NonNull;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -185,7 +183,6 @@ public final class FastjsonUtils {
      */
     public static Type getArrayType(final Type type) {
         return new GenericArrayType() {
-            @NonNull
             @Override
             public Type getGenericComponentType() {
                 return type;
@@ -215,7 +212,7 @@ public final class FastjsonUtils {
      * 获取 Map Type
      * @param keyType   Key.class
      * @param valueType Value.class
-     * @return Map<Bean> Type
+     * @return Map<Key, Value> Type
      */
     public static Type getMapType(final Type keyType, final Type valueType) {
         return new ParameterizedTypeImpl(new Type[]{keyType, valueType}, null, Map.class);
