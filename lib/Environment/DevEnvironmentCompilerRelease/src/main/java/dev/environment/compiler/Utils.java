@@ -203,6 +203,7 @@ final class Utils {
                 .addJavadoc("重置操作\n")
                 .addJavadoc("<p>Reset Operating\n")
                 .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
+                .addJavadoc("@return {@code true} success, {@code false} fail\n")
                 .build();
         classBuilder.addMethod(resetMethod);
     }

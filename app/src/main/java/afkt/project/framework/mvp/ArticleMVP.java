@@ -49,7 +49,7 @@ public final class ArticleMVP {
             mModel = new Model() {
                 @Override
                 public void requestArticleLists() {
-                    HttpURLConnectionUtils.doGetAsyn(String.format(HttpApis.ARTICLE_LIST, "0"),
+                    HttpURLConnectionUtils.doGetAsyn(String.format(HttpApis.getArticleListUrl(), "0"),
                             new HttpURLConnectionUtils.CallBack() {
                                 @Override
                                 public void onResponse(String result, long response) {
