@@ -43,8 +43,10 @@ public class ModuleBean implements Serializable {
 
         ModuleBean that = (ModuleBean) object;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (alias != null ? !alias.equals(that.alias) : that.alias != null) return false;
-        return environments != null ? environments.equals(that.environments) : that.environments == null;
+        return alias != null ? alias.equals(that.alias) : that.alias == null;
+//        // 不需要判断 List 因为内部 list 会调用 Object ( EnvironmentBean ) equals() 导致死循环
+//        if (alias != null ? !alias.equals(that.alias) : that.alias != null) return false;
+//        return environments != null ? environments.equals(that.environments) : that.environments == null;
     }
 
     @Override
