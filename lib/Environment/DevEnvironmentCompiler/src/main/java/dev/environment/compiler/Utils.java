@@ -46,6 +46,7 @@ final class Utils {
     static final String ENVIRONMENT_FILE_NAME = "DevEnvironment";
 
     // 方法名
+    static final String METHOD_RESET = "reset";
     static final String METHOD_IS_RELEASE = "isRelease";
     static final String METHOD_GET_MODULE_LIST = "getModuleList";
     static final String METHOD_GET_MODULE_ENVIRONMENTS_LIST = "getEnvironments";
@@ -232,6 +233,43 @@ final class Utils {
                 builderModuleEnvironment_DATA(classBuilder, moduleElement, member);
             }
         }
+    }
+
+    /**
+     * 构建 Reset 方法
+     * @param classBuilder DevEnvironment 类构建对象
+     */
+    public static void builderResetMethod(final TypeSpec.Builder classBuilder) {
+        StringBuilder varBuilder = new StringBuilder();
+        Iterator<Map.Entry<String, List<String>>> iterator = sModuleNameMap.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, List<String>> entry = iterator.next();
+            // Module 名
+            String moduleName = entry.getKey();
+            // 拼接变量设置为 null
+            varBuilder.append(String.format("    %s = null;\n", VAR_SELECT_ENVIRONMENT + moduleName));
+        }
+
+        // 构建 reset 实现代码
+        CodeBlock.Builder codeBlockBuilder = CodeBlock.builder();
+        codeBlockBuilder.add("if ($N != null && $N($N)) {\n", VAR_CONTEXT, METHOD_DELETE_STORAGE_DIR, VAR_CONTEXT);
+        codeBlockBuilder.add(varBuilder.toString());
+        codeBlockBuilder.add("    return true;\n");
+        codeBlockBuilder.add("}\n");
+
+        // public static final void reset() {}
+        MethodSpec resetMethod = MethodSpec
+                .methodBuilder(METHOD_RESET)
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
+                .addCode(codeBlockBuilder.build())
+                .returns(Boolean.class)
+                .addStatement("return false")
+                .addJavadoc("重置操作\n")
+                .addJavadoc("<p>Reset Operating\n")
+                .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
+                .build();
+        classBuilder.addMethod(resetMethod);
     }
 
     /**

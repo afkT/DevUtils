@@ -41,6 +41,7 @@ final class Utils {
     static final String ENVIRONMENT_FILE_NAME = "DevEnvironment";
 
     // 方法名
+    static final String METHOD_RESET = "reset";
     static final String METHOD_IS_RELEASE = "isRelease";
     static final String METHOD_GET_MODULE_LIST = "getModuleList";
     static final String METHOD_GET_MODULE_ENVIRONMENTS_LIST = "getEnvironments";
@@ -178,6 +179,32 @@ final class Utils {
 
         // 记录 Environment 变量名 ( 传入的 environmentElement ) 属于 Release Environment Element 存储在 index 0
         sModuleNameMap.get(moduleName).add(_getEnvironmentVarName_UpperCase(moduleName, environmentName));
+    }
+
+    /**
+     * 构建 Reset 方法
+     * @param classBuilder DevEnvironment 类构建对象
+     */
+    public static void builderResetMethod(final TypeSpec.Builder classBuilder) {
+        // 构建 reset 实现代码
+        CodeBlock.Builder codeBlockBuilder = CodeBlock.builder();
+        codeBlockBuilder.add("if ($N != null && $N($N)) {\n", VAR_CONTEXT, METHOD_DELETE_STORAGE_DIR, VAR_CONTEXT);
+        codeBlockBuilder.add("    return true;\n");
+        codeBlockBuilder.add("}\n");
+
+        // public static final void reset() {}
+        MethodSpec resetMethod = MethodSpec
+                .methodBuilder(METHOD_RESET)
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
+                .addCode(codeBlockBuilder.build())
+                .returns(Boolean.class)
+                .addStatement("return false")
+                .addJavadoc("重置操作\n")
+                .addJavadoc("<p>Reset Operating\n")
+                .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
+                .build();
+        classBuilder.addMethod(resetMethod);
     }
 
     /**

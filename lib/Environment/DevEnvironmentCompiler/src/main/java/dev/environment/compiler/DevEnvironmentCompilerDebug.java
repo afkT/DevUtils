@@ -66,6 +66,8 @@ public class DevEnvironmentCompilerDebug extends AbstractProcessor {
         Utils.builderEnvironmentChangeListener(devEnvironmentClassBuilder);
         // 构建存储相关方法
         Utils.builderStorageMethod(devEnvironmentClassBuilder);
+        // 构建 Reset 方法
+        Utils.builderResetMethod(devEnvironmentClassBuilder);
         // 创建 DevEnvironment JAVA 文件
         return Utils.createDevEnvironmentJavaFile(devEnvironmentClassBuilder, processingEnv);
     }
