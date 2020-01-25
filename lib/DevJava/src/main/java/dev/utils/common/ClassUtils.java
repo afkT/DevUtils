@@ -3,6 +3,8 @@ package dev.utils.common;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
+import java.lang.reflect.WildcardType;
 import java.util.Collection;
 import java.util.Map;
 
@@ -74,6 +76,36 @@ public final class ClassUtils {
     }
 
     /**
+     * 获取 Type Class
+     * @param type {@link Type}
+     * @return Type Class
+     */
+    public static Class<?> getClass(final Type type) {
+        if (type == null) return null;
+        try {
+            if (type.getClass() == Class.class) {
+                return (Class<?>) type;
+            }
+            if (type instanceof ParameterizedType) {
+                return getClass(((ParameterizedType) type).getRawType());
+            }
+            if (type instanceof TypeVariable) {
+                Type boundType = ((TypeVariable<?>) type).getBounds()[0];
+                return (Class<?>) boundType;
+            }
+            if (type instanceof WildcardType) {
+                Type[] upperBounds = ((WildcardType) type).getUpperBounds();
+                if (upperBounds.length == 1) {
+                    return getClass(upperBounds[0]);
+                }
+            }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getClass");
+        }
+        return Object.class;
+    }
+
+    /**
      * 判断 Class 是否为原始类型
      * @param clazz {@link Class}
      * @return {@code true} yes, {@code false} no
@@ -107,6 +139,49 @@ public final class ClassUtils {
      */
     public static boolean isArray(final Class clazz) {
         return (clazz != null && clazz.isArray());
+    }
+
+    /**
+     * 判断是否参数类型
+     * @param type {@link Type}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isGenericParamType(final Type type) {
+        if (type != null) {
+            if (type instanceof ParameterizedType) {
+                return true;
+            }
+            if (type instanceof Class) {
+                try {
+                    Type superType = ((Class<?>) type).getGenericSuperclass();
+                    return superType != Object.class && isGenericParamType(superType);
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "isGenericParamType");
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 获取参数类型
+     * @param type {@link Type}
+     * @return {@link Type}
+     */
+    public static Type getGenericParamType(final Type type) {
+        if (type != null) {
+            if (type instanceof ParameterizedType) {
+                return type;
+            }
+            if (type instanceof Class) {
+                try {
+                    return getGenericParamType(((Class<?>) type).getGenericSuperclass());
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "getGenericParamType");
+                }
+            }
+        }
+        return type;
     }
 
     // =
