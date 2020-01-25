@@ -4,6 +4,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Arrays;
 
 import dev.utils.JCLogUtils;
@@ -53,111 +55,92 @@ public final class ConvertUtils {
         return null;
     }
 
-    // =
-
-    /**
-     * char[] 转 String
-     * @param data char[]
-     * @return {@link String}
-     */
-    public static String toString(final char[] data) {
-        return toString(data, null);
-    }
-
     /**
      * byte[] 转 String
      * @param data byte[]
      * @return {@link String}
+     * @deprecated {@link #newString}
      */
-    public static String toString(final byte[] data) {
-        return toString(data, null);
-    }
-
-    /**
-     * char[] 转 String
-     * @param data       char[]
-     * @param defaultStr 默认字符串
-     * @return {@link String} 如果转换失败, 则返回 defaultStr
-     */
-    public static String toString(final char[] data, final String defaultStr) {
-        if (ArrayUtils.length(data) == 0) {
-            try {
-                return new String(data);
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "toString");
-            }
-        }
-        return defaultStr;
+    @Deprecated
+    public static String toString(final byte[] data) throws Exception {
+        return newString(data, null);
     }
 
     /**
      * byte[] 转 String
      * @param data       byte[]
      * @param defaultStr 默认字符串
-     * @return {@link String} 如果转换失败, 则返回 defaultStr
+     * @return {@link String} 如果转换失败则返回 defaultStr
+     * @deprecated {@link #newString}
      */
-    public static String toString(final byte[] data, final String defaultStr) {
-        if (data != null) {
+    @Deprecated
+    public static String toString(final byte[] data, final String defaultStr) throws Exception {
+        return newString(data, defaultStr);
+    }
+
+    /**
+     * char[] 转 String
+     * @param data char[]
+     * @return {@link String}
+     * @deprecated {@link #newString}
+     */
+    @Deprecated
+    public static String toString(final char[] data) throws Exception {
+        return newString(data, null);
+    }
+
+    /**
+     * char[] 转 String
+     * @param data       char[]
+     * @param defaultStr 默认字符串
+     * @return {@link String} 如果转换失败则返回 defaultStr
+     * @deprecated {@link #newString}
+     */
+    @Deprecated
+    public static String toString(final char[] data, final String defaultStr) throws Exception {
+        return newString(data, defaultStr);
+    }
+
+    /**
+     * Object 转 String
+     * @param value Value
+     * @return {@link String}
+     */
+    public static String newString(final Object value) {
+        return newString(value, null);
+    }
+
+    /**
+     * Object 转 String
+     * @param value      Value
+     * @param defaultStr 默认字符串
+     * @return {@link String} 如果转换失败则返回 defaultStr
+     */
+    public static String newString(final Object value, final String defaultStr) {
+        if (value != null) {
             try {
-                return new String(data);
+                if (value instanceof byte[]) {
+                    return new String((byte[]) value);
+                }
+                if (value instanceof char[]) {
+                    return new String((char[]) value);
+                }
+                if (value instanceof String) {
+                    return (String) value;
+                }
+                if (value instanceof StringBuffer) {
+                    return new String((StringBuffer) value);
+                }
+                if (value instanceof StringBuilder) {
+                    return new String((StringBuilder) value);
+                }
+                throw new Exception("can not new string, value : " + value);
             } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "toString");
+                JCLogUtils.eTag(TAG, e, "newString");
             }
         }
         return defaultStr;
     }
-
-    // =
-
-    /**
-     * char 转 String
-     * @param data char
-     * @return {@link String}
-     */
-    public static String toString(final char data) {
-        return toString(data, null);
-    }
-
-    /**
-     * byte 转 String
-     * @param data byte
-     * @return {@link String}
-     */
-    public static String toString(final byte data) {
-        return toString(data, null);
-    }
-
-    /**
-     * char 转 String
-     * @param data       char
-     * @param defaultStr 默认字符串
-     * @return {@link String} 如果转换失败, 则返回 defaultStr
-     */
-    public static String toString(final char data, final String defaultStr) {
-        try {
-            return Character.toString(data);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toString");
-        }
-        return defaultStr;
-    }
-
-    /**
-     * byte 转 String
-     * @param data       byte
-     * @param defaultStr 默认字符串
-     * @return {@link String} 如果转换失败, 则返回 defaultStr
-     */
-    public static String toString(final byte data, final String defaultStr) {
-        try {
-            return Byte.toString(data);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toString");
-        }
-        return defaultStr;
-    }
-
-    // =
 
     /**
      * Object 转 String
@@ -172,39 +155,62 @@ public final class ConvertUtils {
      * Object 转 String
      * @param object     Object
      * @param defaultStr 默认字符串
-     * @return {@link String} 如果转换失败, 则返回 defaultStr
+     * @return {@link String} 如果转换失败则返回 defaultStr
      */
     public static String toString(final Object object, final String defaultStr) {
         if (object != null) {
             try {
                 if (object instanceof String) {
                     return (String) object;
-                } else {
-                    Class<?> clazz = object.getClass();
-                    // 判断是否数组类型
-                    if (clazz.isArray()) {
-                        // = 基本数据类型 =
-                        if (clazz.isAssignableFrom(int[].class)) {
-                            return Arrays.toString((int[]) object);
-                        } else if (clazz.isAssignableFrom(boolean[].class)) {
-                            return Arrays.toString((boolean[]) object);
-                        } else if (clazz.isAssignableFrom(long[].class)) {
-                            return Arrays.toString((long[]) object);
-                        } else if (clazz.isAssignableFrom(double[].class)) {
-                            return Arrays.toString((double[]) object);
-                        } else if (clazz.isAssignableFrom(float[].class)) {
-                            return Arrays.toString((float[]) object);
-                        } else if (clazz.isAssignableFrom(byte[].class)) {
-                            return Arrays.toString((byte[]) object);
-                        } else if (clazz.isAssignableFrom(char[].class)) {
-                            return Arrays.toString((char[]) object);
-                        } else if (clazz.isAssignableFrom(short[].class)) {
-                            return Arrays.toString((short[]) object);
-                        }
-                        return Arrays.toString((Object[]) object);
-                    }
-                    return object.toString();
                 }
+                if (object instanceof Integer) {
+                    return Integer.toString((Integer) object);
+                }
+                if (object instanceof Boolean) {
+                    return Boolean.toString((Boolean) object);
+                }
+                if (object instanceof Long) {
+                    return Long.toString((Long) object);
+                }
+                if (object instanceof Double) {
+                    return Double.toString((Double) object);
+                }
+                if (object instanceof Float) {
+                    return Float.toString((Float) object);
+                }
+                if (object instanceof Byte) {
+                    return Byte.toString((Byte) object);
+                }
+                if (object instanceof Character) {
+                    return Character.toString((Character) object);
+                }
+                if (object instanceof Short) {
+                    return Short.toString((Short) object);
+                }
+                Class<?> clazz = object.getClass();
+                // 判断是否数组类型
+                if (clazz.isArray()) {
+                    // = 基本数据类型 =
+                    if (clazz.isAssignableFrom(int[].class)) {
+                        return Arrays.toString((int[]) object);
+                    } else if (clazz.isAssignableFrom(boolean[].class)) {
+                        return Arrays.toString((boolean[]) object);
+                    } else if (clazz.isAssignableFrom(long[].class)) {
+                        return Arrays.toString((long[]) object);
+                    } else if (clazz.isAssignableFrom(double[].class)) {
+                        return Arrays.toString((double[]) object);
+                    } else if (clazz.isAssignableFrom(float[].class)) {
+                        return Arrays.toString((float[]) object);
+                    } else if (clazz.isAssignableFrom(byte[].class)) {
+                        return Arrays.toString((byte[]) object);
+                    } else if (clazz.isAssignableFrom(char[].class)) {
+                        return Arrays.toString((char[]) object);
+                    } else if (clazz.isAssignableFrom(short[].class)) {
+                        return Arrays.toString((short[]) object);
+                    }
+                    return Arrays.toString((Object[]) object);
+                }
+                return object.toString();
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "toString");
             }
@@ -212,27 +218,41 @@ public final class ConvertUtils {
         return defaultStr;
     }
 
-    // =
-
     /**
-     * 字符串 转 int
-     * @param str String
-     * @return int
+     * Object 转 Integer
+     * @param value Value
+     * @return Integer
      */
-    public static int toInt(final String str) {
-        return toInt(str, 0);
+    public static Integer toInt(final Object value) {
+        return toInt(value, 0);
     }
 
     /**
-     * 字符串 转 int
-     * @param str          String
+     * Object 转 Integer
+     * @param value        Value
      * @param defaultValue 默认值
-     * @return int 如果转换失败, 则返回 defaultValue
+     * @return Integer, 如果转换失败则返回 defaultValue
      */
-    public static int toInt(final String str, final int defaultValue) {
-        if (str == null) return defaultValue;
+    public static Integer toInt(final Object value, final Integer defaultValue) {
+        if (value == null) return defaultValue;
         try {
-            return Integer.parseInt(str);
+            if (value instanceof Integer) {
+                return (Integer) value;
+            }
+            if (value instanceof Number) {
+                return ((Number) value).intValue();
+            }
+            if (value instanceof String) {
+                String strVal = (String) value;
+                if (strVal.indexOf(',') != 0) {
+                    strVal = strVal.replaceAll(",", "");
+                }
+                return Integer.parseInt(strVal);
+            }
+            if (value instanceof Boolean) {
+                return ((Boolean) value).booleanValue() ? 1 : 0;
+            }
+            throw new Exception("can not cast to int, value : " + value);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toInt");
         }
@@ -240,24 +260,47 @@ public final class ConvertUtils {
     }
 
     /**
-     * 字符串 转 boolean
-     * @param str String
-     * @return boolean
+     * Object 转 Boolean
+     * @param value Value
+     * @return Boolean
      */
-    public static boolean toBoolean(final String str) {
-        return toBoolean(str, false);
+    public static Boolean toBoolean(final Object value) {
+        return toBoolean(value, false);
     }
 
     /**
-     * 字符串 转 boolean
-     * @param str          String
+     * Object 转 Boolean
+     * @param value        Value
      * @param defaultValue 默认值
-     * @return boolean 如果转换失败, 则返回 defaultValue
+     * @return Boolean, 如果转换失败则返回 defaultValue
      */
-    public static boolean toBoolean(final String str, final boolean defaultValue) {
-        if (str == null) return defaultValue;
+    public static Boolean toBoolean(final Object value, final Boolean defaultValue) {
+        if (value == null) return defaultValue;
         try {
-            return str.equalsIgnoreCase("true") || str.equalsIgnoreCase("1");
+            if (value instanceof Boolean) {
+                return (Boolean) value;
+            }
+            if (value instanceof Number) {
+                return ((Number) value).intValue() == 1;
+            }
+            if (value instanceof String) {
+                String strVal = (String) value;
+                if ("true".equalsIgnoreCase(strVal) || "1".equals(strVal)) {
+                    return Boolean.TRUE;
+                }
+                if ("false".equalsIgnoreCase(strVal) || "0".equals(strVal)) {
+                    return Boolean.FALSE;
+                }
+                // YES、TRUE
+                if ("Y".equalsIgnoreCase(strVal) || "T".equalsIgnoreCase(strVal)) {
+                    return Boolean.TRUE;
+                }
+                // NO、FALSE
+                if ("N".equalsIgnoreCase(strVal) || "F".equalsIgnoreCase(strVal)) {
+                    return Boolean.FALSE;
+                }
+            }
+            throw new Exception("can not cast to boolean, value : " + value);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toBoolean");
         }
@@ -265,24 +308,37 @@ public final class ConvertUtils {
     }
 
     /**
-     * 字符串 转 float
-     * @param str String
-     * @return float
+     * Object 转 Float
+     * @param value Value
+     * @return Float
      */
-    public static float toFloat(final String str) {
-        return toFloat(str, 0f);
+    public static Float toFloat(final Object value) {
+        return toFloat(value, 0f);
     }
 
     /**
-     * 字符串 转 float
-     * @param str          String
+     * Object 转 Float
+     * @param value        Value
      * @param defaultValue 默认值
-     * @return float 如果转换失败, 则返回 defaultValue
+     * @return Float, 如果转换失败则返回 defaultValue
      */
-    public static float toFloat(final String str, final float defaultValue) {
-        if (str == null) return defaultValue;
+    public static Float toFloat(final Object value, final Float defaultValue) {
+        if (value == null) return defaultValue;
         try {
-            return Float.parseFloat(str);
+            if (value instanceof Float) {
+                return (Float) value;
+            }
+            if (value instanceof Number) {
+                return ((Number) value).floatValue();
+            }
+            if (value instanceof String) {
+                String strVal = (String) value;
+                if (strVal.indexOf(',') != 0) {
+                    strVal = strVal.replaceAll(",", "");
+                }
+                return Float.parseFloat(strVal);
+            }
+            throw new Exception("can not cast to float, value : " + value);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toFloat");
         }
@@ -290,24 +346,37 @@ public final class ConvertUtils {
     }
 
     /**
-     * 字符串 转 double
-     * @param str String
-     * @return double
+     * Object 转 Double
+     * @param value Value
+     * @return Double
      */
-    public static double toDouble(final String str) {
-        return toDouble(str, 0d);
+    public static Double toDouble(final Object value) {
+        return toDouble(value, 0d);
     }
 
     /**
-     * 字符串 转 double
-     * @param str          String
+     * Object 转 Double
+     * @param value        Value
      * @param defaultValue 默认值
-     * @return double 如果转换失败, 则返回 defaultValue
+     * @return Double, 如果转换失败则返回 defaultValue
      */
-    public static double toDouble(final String str, final double defaultValue) {
-        if (str == null) return defaultValue;
+    public static Double toDouble(final Object value, final Double defaultValue) {
+        if (value == null) return defaultValue;
         try {
-            return Double.parseDouble(str);
+            if (value instanceof Double) {
+                return (Double) value;
+            }
+            if (value instanceof Number) {
+                return ((Number) value).doubleValue();
+            }
+            if (value instanceof String) {
+                String strVal = (String) value;
+                if (strVal.indexOf(',') != 0) {
+                    strVal = strVal.replaceAll(",", "");
+                }
+                return Double.parseDouble(strVal);
+            }
+            throw new Exception("can not cast to double, value : " + value);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toDouble");
         }
@@ -315,218 +384,254 @@ public final class ConvertUtils {
     }
 
     /**
-     * 字符串 转 long
-     * @param str String
-     * @return long
+     * Object 转 Long
+     * @param value Value
+     * @return Long
      */
-    public static long toLong(final String str) {
-        return toLong(str, 0L);
+    public static Long toLong(final Object value) {
+        return toLong(value, 0L);
     }
 
     /**
-     * 字符串 转 long
-     * @param str          String
+     * Object 转 Long
+     * @param value        Value
      * @param defaultValue 默认值
-     * @return long 如果转换失败, 则返回 defaultValue
+     * @return Long, 如果转换失败则返回 defaultValue
      */
-    public static long toLong(final String str, final long defaultValue) {
-        if (str == null) return defaultValue;
+    public static Long toLong(final Object value, final Long defaultValue) {
+        if (value == null) return defaultValue;
         try {
-            return Long.parseLong(str);
+            if (value instanceof Long) {
+                return (Long) value;
+            }
+            if (value instanceof Number) {
+                return ((Number) value).longValue();
+            }
+            if (value instanceof String) {
+                String strVal = (String) value;
+                if (strVal.indexOf(',') != 0) {
+                    strVal = strVal.replaceAll(",", "");
+                }
+                return Long.parseLong(strVal);
+            }
+            throw new Exception("can not cast to long, value : " + value);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toLong");
         }
         return defaultValue;
     }
 
-    // ============
-    // = 转换对象 =
-    // ============
-
     /**
-     * 基本类型对象 转 int
-     * @param value Integer
-     * @return int
+     * Object 转 Short
+     * @param value Value
+     * @return Short
      */
-    public static int toInt(final Integer value) {
-        return toInt(value, 0);
-    }
-
-    /**
-     * 基本类型对象 转 int
-     * @param value        Integer
-     * @param defaultValue 默认值
-     * @return int 如果转换失败, 则返回 defaultValue
-     */
-    public static int toInt(final Integer value, final int defaultValue) {
-        return (value == null) ? defaultValue : value;
-    }
-
-    /**
-     * 基本类型对象 转 boolean
-     * @param value Boolean
-     * @return boolean 如果转换失败, 则返回 defaultValue
-     */
-    public static boolean toBoolean(final Boolean value) {
-        return toBoolean(value, false);
-    }
-
-    /**
-     * 基本类型对象 转 boolean
-     * @param value        Boolean
-     * @param defaultValue 默认值
-     * @return boolean 如果转换失败, 则返回 defaultValue
-     */
-    public static boolean toBoolean(final Boolean value, final boolean defaultValue) {
-        return (value == null) ? defaultValue : value;
-    }
-
-    /**
-     * 基本类型对象 转 float
-     * @param value Float
-     * @return float 如果转换失败, 则返回 defaultValue
-     */
-    public static float toFloat(final Float value) {
-        return toFloat(value, 0f);
-    }
-
-    /**
-     * 基本类型对象 转 float
-     * @param value        Float
-     * @param defaultValue 默认值
-     * @return float 如果转换失败, 则返回 defaultValue
-     */
-    public static float toFloat(final Float value, final float defaultValue) {
-        return (value == null) ? defaultValue : value;
-    }
-
-    /**
-     * 基本类型对象 转 double
-     * @param value Double
-     * @return double 如果转换失败, 则返回 defaultValue
-     */
-    public static double toDouble(final Double value) {
-        return toDouble(value, 0d);
-    }
-
-    /**
-     * 基本类型对象 转 double
-     * @param value        Double
-     * @param defaultValue 默认值
-     * @return double 如果转换失败, 则返回 defaultValue
-     */
-    public static double toDouble(final Double value, final double defaultValue) {
-        return (value == null) ? defaultValue : value;
-    }
-
-    /**
-     * 基本类型对象 转 long
-     * @param value Long
-     * @return long 如果转换失败, 则返回 defaultValue
-     */
-    public static long toLong(final Long value) {
-        return toLong(value, 0L);
-    }
-
-    /**
-     * 基本类型对象 转 long
-     * @param value        Long
-     * @param defaultValue 默认值
-     * @return long 如果转换失败, 则返回 defaultValue
-     */
-    public static long toLong(final Long value, final long defaultValue) {
-        return (value == null) ? defaultValue : value;
-    }
-
-    /**
-     * 基本类型对象 转 short
-     * @param value Short
-     * @return short 如果转换失败, 则返回 defaultValue
-     */
-    public static short toShort(final Short value) {
+    public static Short toShort(final Object value) {
         return toShort(value, (short) 0);
     }
 
     /**
-     * 基本类型对象 转 short
-     * @param value        Short
+     * Object 转 Short
+     * @param value        Value
      * @param defaultValue 默认值
-     * @return short 如果转换失败, 则返回 defaultValue
+     * @return Short, 如果转换失败则返回 defaultValue
      */
-    public static short toShort(final Short value, final short defaultValue) {
-        return (value == null) ? defaultValue : value;
+    public static Short toShort(final Object value, final Short defaultValue) {
+        if (value == null) return defaultValue;
+        try {
+            if (value instanceof Short) {
+                return (Short) value;
+            }
+            if (value instanceof Number) {
+                return ((Number) value).shortValue();
+            }
+            if (value instanceof String) {
+                String strVal = (String) value;
+                return Short.parseShort(strVal);
+            }
+            throw new Exception("can not cast to short, value : " + value);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toShort");
+        }
+        return defaultValue;
     }
 
     /**
-     * 基本类型对象 转 char
-     * @param value Character
-     * @return char 如果转换失败, 则返回 defaultValue
+     * Object 转 Character
+     * @param value Value
+     * @return Character
      */
-    public static char toChar(final Character value) {
+    public static Character toChar(final Object value) {
         return toChar(value, (char) 0);
     }
 
     /**
-     * 基本类型对象 转 char
-     * @param value        Character
+     * Object 转 Character
+     * @param value        Value
      * @param defaultValue 默认值
-     * @return char 如果转换失败, 则返回 defaultValue
+     * @return Character, 如果转换失败则返回 defaultValue
      */
-    public static char toChar(final Character value, final char defaultValue) {
-        return (value == null) ? defaultValue : value;
-    }
-
-    /**
-     * 基本类型对象 转 byte
-     * @param value Byte
-     * @return byte 如果转换失败, 则返回 defaultValue
-     */
-    public static byte toByte(final Byte value) {
-        return toByte(value, (byte) 0);
-    }
-
-    /**
-     * 基本类型对象 转 byte
-     * @param value        Byte
-     * @param defaultValue 默认值
-     * @return byte 如果转换失败, 则返回 defaultValue
-     */
-    public static byte toByte(final Byte value, final byte defaultValue) {
-        return (value == null) ? defaultValue : value;
-    }
-
-    // ========
-    // = 其他 =
-    // ========
-
-    /**
-     * 字符串 获取 char ( 默认第一位 )
-     * @param str          String
-     * @param defaultValue 默认值
-     * @return 第一位值, 如果获取失败则返回 defaultValue
-     */
-    public static char toChar(final String str, final char defaultValue) {
-        return toChar(str, 0, defaultValue);
-    }
-
-    /**
-     * 字符串 获取 char
-     * @param str          String
-     * @param pos          索引
-     * @param defaultValue 默认值
-     * @return 指定索引的值, 如果获取失败则返回 defaultValue
-     */
-    public static char toChar(final String str, final int pos, final char defaultValue) {
-        if (str == null || pos < 0) return defaultValue;
+    public static Character toChar(final Object value, final Character defaultValue) {
+        if (value == null) return defaultValue;
         try {
-            return str.charAt(pos);
+            if (value instanceof Character) {
+                return (Character) value;
+            }
+            if (value instanceof String) {
+                String strVal = (String) value;
+                if (strVal.length() == 1) {
+                    return strVal.charAt(0);
+                }
+            }
+            throw new Exception("can not cast to char, value : " + value);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toChar");
         }
         return defaultValue;
     }
 
-    // =
+    /**
+     * Object 转 Byte
+     * @param value Value
+     * @return Byte
+     */
+    public static byte toByte(final Object value) {
+        return toByte(value, (byte) 0);
+    }
+
+    /**
+     * Object 转 Byte
+     * @param value        Value
+     * @param defaultValue 默认值
+     * @return Byte, 如果转换失败则返回 defaultValue
+     */
+    public static byte toByte(final Object value, final Byte defaultValue) {
+        if (value == null) return defaultValue;
+        try {
+            if (value instanceof Byte) {
+                return (Byte) value;
+            }
+            if (value instanceof Number) {
+                return ((Number) value).byteValue();
+            }
+            if (value instanceof String) {
+                String strVal = (String) value;
+                return Byte.parseByte(strVal);
+            }
+            throw new Exception("can not cast to byte, value : " + value);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toByte");
+        }
+        return defaultValue;
+    }
+
+    /**
+     * Object 转 BigDecimal
+     * @param value Value
+     * @return BigDecimal
+     */
+    public static BigDecimal toBigDecimal(final Object value) {
+        return toBigDecimal(value, new BigDecimal(0));
+    }
+
+    /**
+     * Object 转 BigDecimal
+     * @param value        Value
+     * @param defaultValue 默认值
+     * @return BigDecimal, 如果转换失败则返回 defaultValue
+     */
+    public static BigDecimal toBigDecimal(final Object value, final BigDecimal defaultValue) {
+        if (value == null) return defaultValue;
+        try {
+            if (value instanceof BigDecimal) {
+                return (BigDecimal) value;
+            }
+            if (value instanceof BigInteger) {
+                return new BigDecimal((BigInteger) value);
+            }
+            if (value instanceof String) {
+                String strVal = (String) value;
+                return new BigDecimal(strVal);
+            }
+            throw new Exception("can not cast to BigDecimal, value : " + value);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toBigDecimal");
+        }
+        return defaultValue;
+    }
+
+    /**
+     * Object 转 BigInteger
+     * @param value Value
+     * @return BigInteger
+     */
+    public static BigInteger toBigInteger(final Object value) {
+        return toBigInteger(value, BigInteger.valueOf(0L));
+    }
+
+    /**
+     * Object 转 BigInteger
+     * @param value        Value
+     * @param defaultValue 默认值
+     * @return BigInteger, 如果转换失败则返回 defaultValue
+     */
+    public static BigInteger toBigInteger(final Object value, final BigInteger defaultValue) {
+        if (value == null) return defaultValue;
+        try {
+            if (value instanceof BigInteger) {
+                return (BigInteger) value;
+            }
+            if (value instanceof Float || value instanceof Double) {
+                return BigInteger.valueOf(((Number) value).longValue());
+            }
+            if (value instanceof String) {
+                String strVal = (String) value;
+                return new BigInteger(strVal);
+            }
+            throw new Exception("can not cast to BigInteger, value : " + value);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toBigInteger");
+        }
+        return defaultValue;
+    }
+
+    /**
+     * Object 获取 char[]
+     * @param value Value
+     * @return char[]
+     */
+    public static char[] toChars(final Object value) {
+        try {
+            if (value instanceof char[]) {
+                return (char[]) value;
+            }
+            if (value instanceof String) {
+                return ((String) value).toCharArray();
+            }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toChars");
+        }
+        return null;
+    }
+
+    /**
+     * Object 获取 byte[]
+     * @param value Value
+     * @return byte[]
+     */
+    public static byte[] toBytes(final Object value) {
+        try {
+            if (value instanceof byte[]) {
+                return (byte[]) value;
+            }
+            if (value instanceof String) {
+                return ((String) value).getBytes();
+            }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toBytes");
+        }
+        return null;
+    }
 
     /**
      * char 转换 unicode 编码
@@ -538,21 +643,30 @@ public final class ConvertUtils {
     }
 
     /**
-     * 字符串 获取 char[]
-     * @param str String
-     * @return char[]
+     * Object 获取 char ( 默认第一位 )
+     * @param value        Value
+     * @param defaultValue 默认值
+     * @return 第一位值, 如果获取失败则返回 defaultValue
      */
-    public static char[] toChars(final String str) {
-        return (str != null) ? str.toCharArray() : null;
+    public static char charAt(final Object value, final char defaultValue) {
+        return charAt(value, 0, defaultValue);
     }
 
     /**
-     * 字符串 获取 byte[]
-     * @param str String
-     * @return byte[]
+     * Object 获取 char
+     * @param value        Value
+     * @param pos          索引
+     * @param defaultValue 默认值
+     * @return 指定索引的值, 如果获取失败则返回 defaultValue
      */
-    public static byte[] toBytes(final String str) {
-        return (str != null) ? str.getBytes() : null;
+    public static char charAt(final Object value, final int pos, final char defaultValue) {
+        if (value == null || pos < 0) return defaultValue;
+        try {
+            return toChars(value)[pos];
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "charAt");
+        }
+        return defaultValue;
     }
 
     // =
