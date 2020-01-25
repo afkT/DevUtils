@@ -4,6 +4,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Arrays;
 
 import dev.utils.JCLogUtils;
@@ -68,7 +70,7 @@ public final class ConvertUtils {
      * byte[] 转 String
      * @param data       byte[]
      * @param defaultStr 默认字符串
-     * @return {@link String} 如果转换失败, 则返回 defaultStr
+     * @return {@link String} 如果转换失败则返回 defaultStr
      * @deprecated {@link #newString}
      */
     @Deprecated
@@ -91,7 +93,7 @@ public final class ConvertUtils {
      * char[] 转 String
      * @param data       char[]
      * @param defaultStr 默认字符串
-     * @return {@link String} 如果转换失败, 则返回 defaultStr
+     * @return {@link String} 如果转换失败则返回 defaultStr
      * @deprecated {@link #newString}
      */
     @Deprecated
@@ -112,7 +114,7 @@ public final class ConvertUtils {
      * Object 转 String
      * @param value      Value
      * @param defaultStr 默认字符串
-     * @return {@link String} 如果转换失败, 则返回 defaultStr
+     * @return {@link String} 如果转换失败则返回 defaultStr
      */
     public static String newString(final Object value, final String defaultStr) {
         if (value != null) {
@@ -153,7 +155,7 @@ public final class ConvertUtils {
      * Object 转 String
      * @param object     Object
      * @param defaultStr 默认字符串
-     * @return {@link String} 如果转换失败, 则返回 defaultStr
+     * @return {@link String} 如果转换失败则返回 defaultStr
      */
     public static String toString(final Object object, final String defaultStr) {
         if (object != null) {
@@ -519,6 +521,76 @@ public final class ConvertUtils {
             throw new Exception("can not cast to byte, value : " + value);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "toByte");
+        }
+        return defaultValue;
+    }
+
+    /**
+     * Object 转 BigDecimal
+     * @param value Value
+     * @return BigDecimal
+     */
+    public static BigDecimal toBigDecimal(final Object value) {
+        return toBigDecimal(value, new BigDecimal(0));
+    }
+
+    /**
+     * Object 转 BigDecimal
+     * @param value        Value
+     * @param defaultValue 默认值
+     * @return BigDecimal, 如果转换失败则返回 defaultValue
+     */
+    public static BigDecimal toBigDecimal(final Object value, final BigDecimal defaultValue) {
+        if (value == null) return defaultValue;
+        try {
+            if (value instanceof BigDecimal) {
+                return (BigDecimal) value;
+            }
+            if (value instanceof BigInteger) {
+                return new BigDecimal((BigInteger) value);
+            }
+            if (value instanceof String) {
+                String strVal = (String) value;
+                return new BigDecimal(strVal);
+            }
+            throw new Exception("can not cast to BigDecimal, value : " + value);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toBigDecimal");
+        }
+        return defaultValue;
+    }
+
+    /**
+     * Object 转 BigInteger
+     * @param value Value
+     * @return BigInteger
+     */
+    public static BigInteger toBigInteger(final Object value) {
+        return toBigInteger(value, BigInteger.valueOf(0L));
+    }
+
+    /**
+     * Object 转 BigInteger
+     * @param value        Value
+     * @param defaultValue 默认值
+     * @return BigInteger, 如果转换失败则返回 defaultValue
+     */
+    public static BigInteger toBigInteger(final Object value, final BigInteger defaultValue) {
+        if (value == null) return defaultValue;
+        try {
+            if (value instanceof BigInteger) {
+                return (BigInteger) value;
+            }
+            if (value instanceof Float || value instanceof Double) {
+                return BigInteger.valueOf(((Number) value).longValue());
+            }
+            if (value instanceof String) {
+                String strVal = (String) value;
+                return new BigInteger(strVal);
+            }
+            throw new Exception("can not cast to BigInteger, value : " + value);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "toBigInteger");
         }
         return defaultValue;
     }
