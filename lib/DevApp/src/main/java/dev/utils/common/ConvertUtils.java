@@ -56,7 +56,7 @@ public final class ConvertUtils {
     }
 
     /**
-     * byte[] 转 String
+     * Object 转 String
      * @param data byte[]
      * @return {@link String}
      * @deprecated {@link #newString}
@@ -67,7 +67,7 @@ public final class ConvertUtils {
     }
 
     /**
-     * byte[] 转 String
+     * Object 转 String
      * @param data       byte[]
      * @param defaultStr 默认字符串
      * @return {@link String} 如果转换失败则返回 defaultStr
@@ -79,7 +79,7 @@ public final class ConvertUtils {
     }
 
     /**
-     * char[] 转 String
+     * Object 转 String
      * @param data char[]
      * @return {@link String}
      * @deprecated {@link #newString}
@@ -90,7 +90,7 @@ public final class ConvertUtils {
     }
 
     /**
-     * char[] 转 String
+     * Object 转 String
      * @param data       char[]
      * @param defaultStr 默认字符串
      * @return {@link String} 如果转换失败则返回 defaultStr
