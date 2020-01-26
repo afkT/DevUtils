@@ -984,7 +984,7 @@ public class WebViewAssist {
         public Builder reset() {
             this.mJavaScriptEnabled = true;
             this.mRenderPriority = null;
-            this.mUseWideViewPort = true;
+            this.mUseWideViewPort = false;
             this.mLoadWithOverviewMode = true;
             this.mLayoutAlgorithm = null;
             this.mSupportZoom = true;
@@ -1021,8 +1021,8 @@ public class WebViewAssist {
         private boolean mJavaScriptEnabled = true;
         // 渲染优先级
         private WebSettings.RenderPriority mRenderPriority = null;
-        // 是否使用宽视图
-        private boolean mUseWideViewPort = true;
+        // 是否使用宽视图 ( 是否支持 html viewport 设置了会导致字体变小 )
+        private boolean mUseWideViewPort = false;
         // 是否按宽度缩小内容以适合屏幕
         private boolean mLoadWithOverviewMode = true;
         // 基础布局算法
@@ -1235,6 +1235,9 @@ public class WebViewAssist {
 
         /**
          * 设置是否使用宽视图
+         * <pre>
+         *      是否支持 html viewport 设置了会导致字体变小
+         * </pre>
          * @param useWideViewPort {@code true} yes, {@code false} no
          * @return {@link Builder}
          */

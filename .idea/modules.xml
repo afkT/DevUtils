@@ -5,6 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/lib/DevApp/DevApp.iml" filepath="$PROJECT_DIR$/lib/DevApp/DevApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/DevAssist/DevAssist.iml" filepath="$PROJECT_DIR$/lib/DevAssist/DevAssist.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/DevBase/DevBase.iml" filepath="$PROJECT_DIR$/lib/DevBase/DevBase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/Environment/DevEnvironmentBase/DevEnvironmentBase.iml" filepath="$PROJECT_DIR$/lib/Environment/DevEnvironmentBase/DevEnvironmentBase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/Environment/DevEnvironmentCompiler/DevEnvironmentCompiler.iml" filepath="$PROJECT_DIR$/lib/Environment/DevEnvironmentCompiler/DevEnvironmentCompiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/Environment/DevEnvironmentCompilerRelease/DevEnvironmentCompilerRelease.iml" filepath="$PROJECT_DIR$/lib/Environment/DevEnvironmentCompilerRelease/DevEnvironmentCompilerRelease.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/DevJava/DevJava.iml" filepath="$PROJECT_DIR$/lib/DevJava/DevJava.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/DevOther/DevOther.iml" filepath="$PROJECT_DIR$/lib/DevOther/DevOther.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/DevStandard/DevStandard.iml" filepath="$PROJECT_DIR$/lib/DevStandard/DevStandard.iml" />

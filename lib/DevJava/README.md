@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevJava:1.0.8'
+implementation 'com.afkt:DevJava:1.0.9'
 ```
 
 ## 目录结构
@@ -127,6 +127,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | isCollection | 判断是否 Collection 类型 |
 | isMap | 判断是否 Map 类型 |
 | isArray | 判断是否 Array 类型 |
+| isGenericParamType | 判断是否参数类型 |
+| getGenericParamType | 获取参数类型 |
 | getGenericSuperclass | 获取父类泛型类型 |
 | getGenericInterfaces | 获取接口泛型类型 |
 
@@ -268,18 +270,22 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | 方法 | 注释 |
 | :- | :- |
 | convert | Object 转换所需类型对象 |
-| toString | char[] 转 String |
-| toInt | 字符串 转 int |
-| toBoolean | 字符串 转 boolean |
-| toFloat | 字符串 转 float |
-| toDouble | 字符串 转 double |
-| toLong | 字符串 转 long |
-| toShort | 基本类型对象 转 short |
-| toChar | 基本类型对象 转 char |
-| toByte | 基本类型对象 转 byte |
+| toString | Object 转 String |
+| newString | Object 转 String |
+| toInt | Object 转 Integer |
+| toBoolean | Object 转 Boolean |
+| toFloat | Object 转 Float |
+| toDouble | Object 转 Double |
+| toLong | Object 转 Long |
+| toShort | Object 转 Short |
+| toChar | Object 转 Character |
+| toByte | Object 转 Byte |
+| toBigDecimal | Object 转 BigDecimal |
+| toBigInteger | Object 转 BigInteger |
+| toChars | Object 获取 char[] |
+| toBytes | Object 获取 byte[] |
 | toCharInt | char 转换 unicode 编码 |
-| toChars | 字符串 获取 char[] |
-| toBytes | 字符串 获取 byte[] |
+| charAt | Object 获取 char ( 默认第一位 ) |
 | parseInt | 字符串转换对应的进制 |
 | parseLong | 字符串转换对应的进制 |
 | bytesToObject | byte[] 转为 Object |
@@ -853,6 +859,17 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | :- | :- |
 | getThrowable | 获取异常信息 |
 | getThrowableStackTrace | 获取异常栈信息 |
+
+
+* **类型工具类 ->** [TypeUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/TypeUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getArrayType | 获取 Array Type |
+| getListType | 获取 List Type |
+| getSetType | 获取 Set Type |
+| getMapType | 获取 Map Type |
+| getType | 获取 Type |
 
 
 * **压缩相关工具类 ->** [ZipUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/ZipUtils.java)

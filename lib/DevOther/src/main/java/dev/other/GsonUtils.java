@@ -308,7 +308,7 @@ public final class GsonUtils {
      * 获取 Map Type
      * @param keyType   Key.class
      * @param valueType Value.class
-     * @return Map<Bean> Type
+     * @return Map<Key, Value> Type
      */
     public static Type getMapType(final Type keyType, final Type valueType) {
         return TypeToken.getParameterized(Map.class, keyType, valueType).getType();

@@ -1,0 +1,9 @@
+apply {
+    from rootProject.file(files.java_lib_gradle)
+}
+
+version versions.dev_environment_version
+
+dependencies {
+    api deps.lib.javapoet
+}

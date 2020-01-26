@@ -105,7 +105,7 @@ public final class EncodeUtils {
      */
     public static String base64EncodeToString(final byte[] input, final int flags) {
         if (input == null) return null;
-        return ConvertUtils.toString(Base64.encode(input, flags));
+        return ConvertUtils.newString(Base64.encode(input, flags));
     }
 
     // ===============
@@ -189,7 +189,7 @@ public final class EncodeUtils {
      */
     public static String base64DecodeToString(final byte[] input, final int flags) {
         if (input == null) return null;
-        return ConvertUtils.toString(Base64.decode(input, flags));
+        return ConvertUtils.newString(Base64.decode(input, flags));
     }
 
     // ========
