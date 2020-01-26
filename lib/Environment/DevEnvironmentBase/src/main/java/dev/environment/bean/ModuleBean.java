@@ -57,6 +57,12 @@ public class ModuleBean implements Serializable {
         return result;
     }
 
+    public final int hashCode2() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (alias != null ? alias.hashCode() : 0);
+        return result;
+    }
+
     private final String JSON_FORMAT = "{\"name\":\"%s\",\"alias\":\"%s\",\"environments\":%s}";
 
     @Override
