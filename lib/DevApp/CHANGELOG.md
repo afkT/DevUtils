@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 1.8.9 *(2020-01-26)*
+----------------------------
+
+* `[Add]` TypeUtils 类型工具类
+
+* `[Add]` ClassUtils#getClass、isGenericParamType、getGenericParamType
+
+* `[Add]` ConvertUtils#toBigDecimal、toBigInteger、newString、charAt
+
+* `[Update]` ConvertUtils#toString、toInt、toBoolean、toFloat、toDouble、toLong、toShort、toChar、toByte、toChars、toBytes
+
 Version 1.8.8 *(2020-01-16)*
 ----------------------------
 
