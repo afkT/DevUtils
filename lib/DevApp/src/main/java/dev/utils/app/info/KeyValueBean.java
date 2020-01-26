@@ -3,13 +3,15 @@ package dev.utils.app.info;
 import android.support.annotation.Keep;
 import android.support.annotation.StringRes;
 
+import java.io.Serializable;
+
 import dev.utils.app.ResourceUtils;
 
 /**
  * detail: 键对值实体类
  * @author Ttt
  */
-public class KeyValueBean {
+public class KeyValueBean implements Serializable {
 
     @Keep // 键 - 提示
     protected String key = "";
