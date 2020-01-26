@@ -71,7 +71,7 @@ public final class ClassUtils {
      * @param object {@link Object}
      * @return Object Class
      */
-    public static Class getClass(final Object object) {
+    public static Class<?> getClass(final Object object) {
         return (object != null) ? object.getClass() : null;
     }
 
