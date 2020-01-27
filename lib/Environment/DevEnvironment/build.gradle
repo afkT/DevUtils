@@ -1,0 +1,15 @@
+apply {
+    from rootProject.file(files.app_lib_gradle)
+}
+
+android.defaultConfig {
+    versionCode versions.dev_environment_versionCode
+    versionName versions.dev_environment_version
+}
+
+dependencies {
+    // 编译时使用
+    api project(':DevEnvironmentBase')
+//    // 打包时使用
+//    api deps.dev.dev_environment_base
+}

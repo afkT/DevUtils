@@ -52,6 +52,8 @@ ext {
             // 版本名
             dev_java_version       : '1.0.9',
 
+            // 版本号
+            dev_environment_versionCode   : 100,
             // 版本名
             dev_environment_version: '1.0.0',
     ]
