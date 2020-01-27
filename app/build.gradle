@@ -19,7 +19,7 @@ dependencies {
     implementation project(path: ':DevOther')
     implementation project(path: ':DevBase')
     implementation project(path: ':DevWidget')
-    implementation project(path: ':DevEnvironmentBase')
+    implementation project(path: ':DevEnvironment')
     debugAnnotationProcessor project(':DevEnvironmentCompiler')
     releaseAnnotationProcessor project(':DevEnvironmentCompilerRelease')
 //    annotationProcessor project(':DevEnvironmentCompilerRelease')
