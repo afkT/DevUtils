@@ -39,7 +39,7 @@ import dev.environment.type.ParameterizedTypeImpl;
  * detail: 内部工具类
  * @author Ttt
  */
-final class Utils {
+final class Util {
 
     // 包名
     static final String PACKAGE_NAME = "dev.environment";
@@ -104,7 +104,7 @@ final class Utils {
      */
     public static TypeSpec.Builder builderDevEnvironment_Class() {
         // 创建 DevEnvironment 类
-        TypeSpec.Builder classBuilder = TypeSpec.classBuilder(Utils.ENVIRONMENT_FILE_NAME)
+        TypeSpec.Builder classBuilder = TypeSpec.classBuilder(ENVIRONMENT_FILE_NAME)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
                 .addJavadoc("detail: 环境配置工具类\n")
                 .addJavadoc("@author Ttt\n");
@@ -122,7 +122,7 @@ final class Utils {
      */
     public static boolean createDevEnvironmentJavaFile(final TypeSpec.Builder classBuilder,
                                                        final ProcessingEnvironment processingEnv) {
-        JavaFile javaFile = JavaFile.builder(Utils.PACKAGE_NAME, classBuilder.build()).build();
+        JavaFile javaFile = JavaFile.builder(PACKAGE_NAME, classBuilder.build()).build();
         try {
             javaFile.writeTo(processingEnv.getFiler());
             return true;

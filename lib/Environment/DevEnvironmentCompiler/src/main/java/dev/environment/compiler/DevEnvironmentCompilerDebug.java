@@ -45,30 +45,30 @@ public class DevEnvironmentCompilerDebug extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
         // 构建 DevEnvironment 类对象
-        TypeSpec.Builder devEnvironmentClassBuilder = Utils.builderDevEnvironment_Class();
+        TypeSpec.Builder devEnvironmentClassBuilder = Util.builderDevEnvironment_Class();
         // 获取使用注解修饰的 Module Element
         Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(Module.class);
         for (Element element : elements) {
             try {
                 // 创建 Module 数据
-                Utils.builderModule_DATA(devEnvironmentClassBuilder, element, processingEnv);
+                Util.builderModule_DATA(devEnvironmentClassBuilder, element, processingEnv);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         // 构建 static{} 初始化代码
-        Utils.builderStaticInit(devEnvironmentClassBuilder);
+        Util.builderStaticInit(devEnvironmentClassBuilder);
         // 构建 isRelease 方法
-        Utils.builderIsReleaseMethod(devEnvironmentClassBuilder);
+        Util.builderIsReleaseMethod(devEnvironmentClassBuilder);
         // 构建 getXxx 方法代码
-        Utils.builderGetMethod(devEnvironmentClassBuilder);
+        Util.builderGetMethod(devEnvironmentClassBuilder);
         // 构建模块环境改变触发事件方法
-        Utils.builderEnvironmentChangeListener(devEnvironmentClassBuilder);
+        Util.builderEnvironmentChangeListener(devEnvironmentClassBuilder);
         // 构建存储相关方法
-        Utils.builderStorageMethod(devEnvironmentClassBuilder);
+        Util.builderStorageMethod(devEnvironmentClassBuilder);
         // 构建 Reset 方法
-        Utils.builderResetMethod(devEnvironmentClassBuilder);
+        Util.builderResetMethod(devEnvironmentClassBuilder);
         // 创建 DevEnvironment JAVA 文件
-        return Utils.createDevEnvironmentJavaFile(devEnvironmentClassBuilder, processingEnv);
+        return Util.createDevEnvironmentJavaFile(devEnvironmentClassBuilder, processingEnv);
     }
 }
