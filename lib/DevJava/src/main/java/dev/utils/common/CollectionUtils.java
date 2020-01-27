@@ -21,6 +21,9 @@ import dev.utils.JCLogUtils;
  *     Collections.sort(list, Collections.reverseOrder());
  *     // 逆序
  *     Collections.reverse(list);
+ *     // 创建不可修改集合
+ *     Collections.unmodifiableList()
+ *     Arrays.asList()
  * </pre>
  */
 public final class CollectionUtils {
