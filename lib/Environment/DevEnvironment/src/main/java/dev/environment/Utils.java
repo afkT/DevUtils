@@ -20,42 +20,10 @@ class Utils {
     // 工具类文件名
     static final String ENVIRONMENT_FILE_NAME = "DevEnvironment";
     // 方法名
-    static final String METHOD_RESET = "reset";
     static final String METHOD_IS_RELEASE = "isRelease";
     static final String METHOD_GET_MODULE_LIST = "getModuleList";
-    static final String METHOD_GET_MODULE_ENVIRONMENTS_LIST = "getEnvironments";
-    static final String METHOD_GET_ENVIRONMENTS_VALUE = "getValue";
-    static final String METHOD_ONENVIRONMENT_CHANGED = "onEnvironmentChanged";
-    static final String METHOD_ADD_ONENVIRONMENT_CHANGE_LISTENER = "addOnEnvironmentChangeListener";
-    static final String METHOD_REMOVE_ONENVIRONMENT_CHANGE_LISTENER = "removeOnEnvironmentChangeListener";
-    static final String METHOD_CLEAR_ONENVIRONMENT_CHANGE_LISTENER = "clearOnEnvironmentChangeListener";
-    static final String METHOD_NOTIFY_ONENVIRONMENT_CHANGE_LISTENER = "notifyOnEnvironmentChangeListener";
-    static final String METHOD_GET_STORAGE_DIR = "getStorageDir";
-    static final String METHOD_DELETE_STORAGE_DIR = "deleteStorageDir";
-    static final String METHOD_WRITE_STORAGE = "writeStorage";
-    static final String METHOD_READ_STORAGE = "readStorage";
-    // 变量相关
-    static final String VAR_MODULE_PREFIX = "MODULE_";
-    static final String VAR_ENVIRONMENT_PREFIX = "ENVIRONMENT_";
-    static final String VAR_MODULELIST = "moduleList";
-    static final String VAR_MODULE_LIST = "MODULE_LIST";
-    static final String VAR_SELECT_ENVIRONMENT = "sSelect";
-    static final String VAR_LISTENER_LIST = "LISTENER_LIST";
-    static final String VAR_CONTEXT = "context";
-    static final String VAR_MODULE = "module";
-    static final String VAR_MODULE_NAME = "moduleName";
-    static final String VAR_ENVIRONMENT = "environment";
-    static final String VAR_OLD_ENVIRONMENT = "oldEnvironment";
-    static final String VAR_NEW_ENVIRONMENT = "newEnvironment";
-    static final String VAR_LISTENER = "listener";
-    static final String VAR_NAME = "name";
-    static final String VAR_VALUE = "value";
-    static final String VAR_ALIAS = "alias";
     // 常量字符串
-    static final String STR_MODULE = "Module";
     static final String STR_ENVIRONMENT = "Environment";
-    static final String STR_ENVIRONMENT_VALUE = "EnvironmentValue";
-    static final String STR_RELEASE_ENVIRONMENT = "ReleaseEnvironment";
 
     // callback
     protected static RestartCallBack sRestartCallBack;
@@ -136,7 +104,7 @@ class Utils {
     }
 
     /**
-     * 获取 Module 选中的 Environment
+     * 获取 Module Selected Environment
      * @param context {@link Context}
      * @param moduleName module Name
      * @return {@link EnvironmentBean}
@@ -150,5 +118,24 @@ class Utils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 设置 Module Selected Environment
+     * @param context {@link Context}
+     * @param newEnvironment environment bean
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setModuleEnvironment(final Context context, final EnvironmentBean newEnvironment) {
+        try {
+            String moduleName = newEnvironment.getModule().getName();
+            String setModuleEnvironmentMethodName = "set" + moduleName + STR_ENVIRONMENT;
+            Method setModuleEnvironmentMethod = devEnvironmentClass.getMethod(setModuleEnvironmentMethodName,
+                    Context.class, EnvironmentBean.class);
+            return (boolean) setModuleEnvironmentMethod.invoke(null, context, newEnvironment);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

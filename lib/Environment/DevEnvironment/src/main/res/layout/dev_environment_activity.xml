@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/dev_environment_bg"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
@@ -51,7 +51,7 @@
     <ListView
         android:id="@+id/vid_dea_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:divider="@null"
         android:scrollbars="none" />
 </LinearLayout>

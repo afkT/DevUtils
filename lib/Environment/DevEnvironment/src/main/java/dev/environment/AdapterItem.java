@@ -79,10 +79,23 @@ class AdapterItem {
     }
 
     /**
+     * 改变 HashCode
+     * @param newEnvironment environment bean
+     */
+    public static void changeHashCode(final EnvironmentBean newEnvironment) {
+        try {
+            sModuleHashCodeMap.put(newEnvironment.getModule().getName(), newEnvironment.hashCode());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * 获取 Item List
+     * @param context {@link Context}
      * @return AdapterItem List
      */
-    public static List<AdapterItem> getAdapterItems() {
+    public static List<AdapterItem> getAdapterItems(final Context context) {
         List<AdapterItem> items = new ArrayList<>();
         List<ModuleBean> modules = Utils.getModuleList();
         if (modules != null) {
@@ -92,11 +105,23 @@ class AdapterItem {
                     if (environments != null && environments.size() != 0) {
                         // 添加 Module Type
                         items.add(new AdapterItem(moduleBean));
+                        // 判断是否添加自定义配置
+                        boolean addCustom = true;
                         for (EnvironmentBean environmentBean : environments) {
                             if (environmentBean != null) {
                                 // 添加 Environment Type
-                                items.add(new AdapterItem(environmentBean));
+                                AdapterItem adapterItem = new AdapterItem(environmentBean);
+                                items.add(adapterItem);
+                                if (adapterItem.isSelect()) {
+                                    addCustom = false;
+                                }
                             }
+                        }
+                        if (addCustom) {
+                            // 获取选中的环境
+                            EnvironmentBean environmentSelect = Utils.getModuleEnvironment(context, moduleBean.getName());
+                            // 添加 Environment Type
+                            items.add(new AdapterItem(environmentSelect));
                         }
                     }
                 }
