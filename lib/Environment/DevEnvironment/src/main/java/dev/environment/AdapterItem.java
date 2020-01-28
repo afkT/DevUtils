@@ -2,6 +2,7 @@ package dev.environment;
 
 import android.content.Context;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -63,9 +64,9 @@ class AdapterItem {
      * @param context {@link Context}
      */
     public static void refreshHashCode(final Context context) {
-        List<ModuleBean> lists = Utils.getModuleList();
-        if (lists != null) {
-            for (ModuleBean moduleBean : lists) {
+        List<ModuleBean> modules = Utils.getModuleList();
+        if (modules != null) {
+            for (ModuleBean moduleBean : modules) {
                 if (moduleBean != null) {
                     String key = moduleBean.getName();
                     EnvironmentBean environmentBean = Utils.getModuleEnvironment(context, key);
@@ -75,5 +76,32 @@ class AdapterItem {
                 }
             }
         }
+    }
+
+    /**
+     * 获取 Item List
+     * @return AdapterItem List
+     */
+    public static List<AdapterItem> getAdapterItems() {
+        List<AdapterItem> items = new ArrayList<>();
+        List<ModuleBean> modules = Utils.getModuleList();
+        if (modules != null) {
+            for (ModuleBean moduleBean : modules) {
+                if (moduleBean != null) {
+                    List<EnvironmentBean> environments = moduleBean.getEnvironments();
+                    if (environments != null && environments.size() != 0) {
+                        // 添加 Module Type
+                        items.add(new AdapterItem(moduleBean));
+                        for (EnvironmentBean environmentBean : environments) {
+                            if (environmentBean != null) {
+                                // 添加 Environment Type
+                                items.add(new AdapterItem(environmentBean));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return items;
     }
 }

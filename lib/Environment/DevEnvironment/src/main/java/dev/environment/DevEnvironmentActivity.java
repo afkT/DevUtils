@@ -38,8 +38,8 @@ public final class DevEnvironmentActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            try {
                 View decorView = getWindow().getDecorView();
                 // 设置全屏和状态栏透明
                 decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
@@ -47,8 +47,8 @@ public final class DevEnvironmentActivity extends Activity {
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                 // 设置状态栏为主题色
                 getWindow().setStatusBarColor(this.getResources().getColor(R.color.dev_environment_color));
+            } catch (Exception e) {
             }
-        } catch (Exception e) {
         }
         setContentView(R.layout.dev_environment_activity);
         // back
