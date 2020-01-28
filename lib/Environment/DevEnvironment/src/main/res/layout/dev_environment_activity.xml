@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="56.0dp"
-        android:background="@android:color/holo_blue_light">
+        android:background="@color/dev_environment_color">
 
         <ImageView
             android:id="@+id/vid_dea_back_igview"
@@ -29,7 +30,8 @@
             android:maxLines="1"
             android:text="@string/dev_environment_title"
             android:textColor="@android:color/white"
-            android:textSize="18.0sp" />
+            android:textSize="18.0sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/vid_dea_restart_tv"
