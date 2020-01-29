@@ -40,6 +40,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(MODULE_LIB, "Lib 框架"));
         lists.add(new ButtonValue(MODULE_UI, "UI 效果"));
         lists.add(new ButtonValue(MODULE_OTHER, "其他功能"));
+        lists.add(new ButtonValue(MODULE_DEV_ENVIRONMENT, "DevEnvironment 环境配置切换库"));
         return lists;
     }
 
@@ -360,6 +361,21 @@ public class ButtonValue {
         return lists;
     }
 
+    // =================================
+    // = DevEnvironment 环境配置切换库 =
+    // =================================
+
+    /**
+     * 获取 DevEnvironment Module Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getModuleDevEnvironmentButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_DEV_ENVIRONMENT, "环境配置切换"));
+        lists.add(new ButtonValue(BTN_USE_CUSTOM, "使用自定义配置"));
+        return lists;
+    }
+
     // ========
     // = 常量 =
     // ========
@@ -373,6 +389,8 @@ public class ButtonValue {
     public static final int MODULE_UI = BASE + 30000;
     // 其他功能
     public static final int MODULE_OTHER = BASE + 40000;
+    // DevEnvironment 环境配置切换库
+    public static final int MODULE_DEV_ENVIRONMENT = BASE + 50000;
 
     // =============
     // = Framework =
@@ -672,4 +690,13 @@ public class ButtonValue {
 
     // startActivityForResult CallBack
     public static final int BTN_ACTIVITY_RESULT_CALLBACK = MODULE_OTHER + 1500;
+
+    // =================================
+    // = DevEnvironment 环境配置切换库 =
+    // =================================
+
+    // 环境配置切换
+    public static final int BTN_DEV_ENVIRONMENT = MODULE_DEV_ENVIRONMENT;
+    // 使用自定义配置
+    public static final int BTN_USE_CUSTOM = BTN_DEV_ENVIRONMENT + 1;
 }

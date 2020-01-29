@@ -13,6 +13,7 @@ import java.util.List;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.ModuleActivity;
+import afkt.project.ui.activity.DevEnvironmentLibActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.ui.widget.BaseTextView;
 import afkt.project.util.SkipUtils;
@@ -118,6 +119,9 @@ public class MainActivity extends BaseActivity {
                     case ButtonValue.MODULE_UI:
                     case ButtonValue.MODULE_OTHER:
                         SkipUtils.startActivity(ModuleActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.MODULE_DEV_ENVIRONMENT:
+                        SkipUtils.startActivity(DevEnvironmentLibActivity.class, buttonValue);
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
