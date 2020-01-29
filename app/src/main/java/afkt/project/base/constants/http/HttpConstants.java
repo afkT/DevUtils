@@ -47,4 +47,21 @@ public final class HttpConstants {
         @Environment(value = "https://im.debug.com", alias = "测试环境")
         private String debug;
     }
+
+    @Module(alias = "地图")
+    private class Map {
+
+        @Environment(value = "a3f4a5b080e2a4ef4a708b9c9f5ad003", isRelease = true, alias = "百度地图")
+        private String baidu;
+
+        @Environment(value = "9cc1b3fbd4e4d2f69994df700d648c40", alias = "高德地图")
+        private String gaode;
+
+        @Environment(value = "6b3d3b354aff2b2e4e37db5409e0ce7f", alias = "谷歌地图")
+        private String google;
+
+        @Environment(value = "1977803150186fe4d2a3e226e2869497", alias = "腾讯地图")
+        private String qq;
+
+    }
 }
