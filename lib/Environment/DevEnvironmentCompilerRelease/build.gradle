@@ -2,9 +2,10 @@ apply {
     from rootProject.file(files.java_lib_gradle)
 }
 
-version versions.dev_environment_version
+version versions.dev_environment_compiler_release_version
 
 dependencies {
+    api deps.lib.javapoet
     compileOnly deps.lib.auto_service
     annotationProcessor deps.lib.auto_service
 
