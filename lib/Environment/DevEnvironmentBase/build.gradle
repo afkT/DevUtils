@@ -6,3 +6,8 @@ version versions.dev_environment_base_version
 
 dependencies {
 }
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from : rootProject.file(files.java_bintray_upload)

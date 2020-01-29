@@ -13,3 +13,8 @@ dependencies {
 //    // 打包时使用
 //    api deps.dev.dev_environment_base
 }
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from : rootProject.file(files.app_bintray_upload)
