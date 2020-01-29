@@ -85,7 +85,9 @@ public final class DevEnvironmentActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     finish();
-                    Utils.sRestartCallBack.onRestart();
+                    if (Utils.sRestartCallBack != null) {
+                        Utils.sRestartCallBack.onRestart();
+                    }
                 }
             });
         }
@@ -132,7 +134,7 @@ public final class DevEnvironmentActivity extends Activity {
             switch (item.itemType) {
                 case AdapterItem.MODULE_TYPE: // Module Type
                     convertView = LayoutInflater.from(parent.getContext()).inflate(
-                            R.layout.dev_environment_item_module,parent, false);
+                            R.layout.dev_environment_item_module, parent, false);
                     TextView vid_deim_name_tv = convertView.findViewById(R.id.vid_deim_name_tv);
 
                     ModuleBean moduleBean = item.moduleBean;
@@ -142,7 +144,7 @@ public final class DevEnvironmentActivity extends Activity {
                     break;
                 case AdapterItem.ENVIRONMENT_TYPE: // Environment Type
                     convertView = LayoutInflater.from(parent.getContext()).inflate(
-                            R.layout.dev_environment_item_environment,parent, false);
+                            R.layout.dev_environment_item_environment, parent, false);
                     TextView vid_deie_name_tv = convertView.findViewById(R.id.vid_deie_name_tv);
                     TextView vid_deie_value_tv = convertView.findViewById(R.id.vid_deie_value_tv);
                     ImageView vid_deie_mark_igview = convertView.findViewById(R.id.vid_deie_mark_igview);

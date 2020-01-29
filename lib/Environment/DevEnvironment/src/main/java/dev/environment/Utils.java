@@ -52,7 +52,7 @@ class Utils {
 
     /**
      * 跳转 DevEnvironment Activity
-     * @param context {@link Context}
+     * @param context         {@link Context}
      * @param restartCallBack {@link RestartCallBack}
      * @return {@code true} success, {@code false} fail
      */
@@ -105,7 +105,7 @@ class Utils {
 
     /**
      * 获取 Module Selected Environment
-     * @param context {@link Context}
+     * @param context    {@link Context}
      * @param moduleName module Name
      * @return {@link EnvironmentBean}
      */
@@ -122,7 +122,7 @@ class Utils {
 
     /**
      * 设置 Module Selected Environment
-     * @param context {@link Context}
+     * @param context        {@link Context}
      * @param newEnvironment environment bean
      * @return {@code true} success, {@code false} fail
      */
