@@ -65,6 +65,10 @@ public final class DevEnvironmentActivity extends Activity {
             } catch (Exception e) {
             }
         }
+        if (Utils.isRelease()) {
+            finish();
+            return;
+        }
         setContentView(R.layout.dev_environment_activity);
         // back
         findViewById(R.id.vid_dea_back_igview).setOnClickListener(new View.OnClickListener() {

@@ -93,7 +93,7 @@ public class DevEnvironmentLibActivity extends BaseToolbarActivity {
                 builder.append("\nname: " + newEnvironment.getName());
                 builder.append("\nvalue: " + newEnvironment.getValue());
                 builder.append("\nalias: " + newEnvironment.getAlias());
-                ToastTintUtils.info(builder.toString());
+                ToastTintUtils.normal(builder.toString());
 
                 DevLogger.dTag(mTag, builder.toString());
             }
