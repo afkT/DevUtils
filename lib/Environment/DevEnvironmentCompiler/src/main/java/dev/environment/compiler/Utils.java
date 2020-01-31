@@ -578,7 +578,7 @@ final class Utils {
         codeBlockBuilder.add("    }\n");
         codeBlockBuilder.add("}\n");
 
-        // public static final Boolean notifyOnEnvironmentChangeListener(module, oldEnvironment, newEnvironment) {}
+        // private static final void notifyOnEnvironmentChangeListener(module, oldEnvironment, newEnvironment) {}
         MethodSpec notifyOnEnvironmentChangeListenerMethod = MethodSpec
                 .methodBuilder(METHOD_NOTIFY_ONENVIRONMENT_CHANGE_LISTENER)
                 .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
@@ -681,7 +681,7 @@ final class Utils {
         codeBlockBuilder.add("    }\n");
         codeBlockBuilder.add("}\n");
 
-        // public static final Boolean writeStorage(context, moduleName, environment) {}
+        // private static final Boolean writeStorage(context, moduleName, environment) {}
         MethodSpec writeStorageMethod = MethodSpec
                 .methodBuilder(METHOD_WRITE_STORAGE)
                 .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
@@ -731,7 +731,7 @@ final class Utils {
         codeBlockBuilder.add("    }\n");
         codeBlockBuilder.add("}\n");
 
-        // public static final Boolean readStorage(context, moduleName, module) {}
+        // private static final Boolean readStorage(context, moduleName, module) {}
         MethodSpec readStorageMethod = MethodSpec
                 .methodBuilder(METHOD_READ_STORAGE)
                 .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
