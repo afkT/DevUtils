@@ -68,9 +68,10 @@ ext {
                     dev_assist                      : "com.afkt:DevAssist:${versions.dev_assist_versionName}",
                     dev_java                        : "com.afkt:DevJava:${versions.dev_java_version}",
                     // 环境配置切换库
-                    dev_environment_base            : "com.afkt:DevEnvironment-base:${versions.dev_environment_base_version}",
-                    dev_environment_compiler        : "com.afkt:DevEnvironment-compiler:${versions.dev_environment_compiler_version}",
-                    dev_environment_compiler_release: "com.afkt:DevEnvironment-compiler-release:${versions.dev_environment_compiler_release_version}"
+                    dev_environment                 : "com.afkt:DevEnvironment:${versions.dev_environment_version}",
+                    dev_environment_base            : "com.afkt:DevEnvironmentBase:${versions.dev_environment_base_version}",
+                    dev_environment_compiler        : "com.afkt:DevEnvironmentCompiler:${versions.dev_environment_compiler_version}",
+                    dev_environment_compiler_release: "com.afkt:DevEnvironmentCompilerRelease:${versions.dev_environment_compiler_release_version}"
             ],
             'android' : [
                     appcompat_v7     : "com.android.support:appcompat-v7:${versions.supportLibVersion}",
