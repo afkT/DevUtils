@@ -15,7 +15,7 @@ DevEnvironment 是一个在 Android 环境配置切换库，运用 Java 注解�
 
 * 支持通过后台数据动态设置配置信息
 
-* 环境地址在代码中写死，导致每次修改环境之后代码管理工具 ( Git、SVN ) 都会提示代码改动，一旦疏忽就提交了，这对于代码管理是不严谨的
+* 环境配置在代码中写死，导致每次修改环境之后代码管理工具 ( Git、SVN ) 都会提示代码改动，一旦疏忽就提交了，这对于代码管理是不严谨的
 
 
 ### DevEnvironment 库亮点
@@ -150,3 +150,20 @@ public final class Config {
 `isRelease`：是一个 Boolean 型的属性，默认为 false，当值为 true 时，它就是所在 `@Module` 的默认环境
 
 > 每个 `@Module` 必须有且只有一个 `@Environment` 的 `isRelease` 值为 true
+
+
+#### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment)
+
+* Module 类（[Module](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/annotation/Module.java)）：模块 ( 注解标记类 )
+
+* Environment 类（[Environment](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/annotation/Environment.java)）：环境配置 ( 注解标记类 )
+
+* 模块环境改变接口（[OnEnvironmentChangeListener](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/listener/OnEnvironmentChangeListener.java)）：模块环境发生变化时触发
+
+> 每个 `@Module`、`@Environment` 都会生成对应的 `ModuleBean`、`EnvironmentBean` 实体类
+
+* Module 映射实体类（[ModuleBean](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/bean/ModuleBean.java)）：模块 ( 注解标记类 ) 映射实体类
+
+* Environment 映射实体类（[EnvironmentBean](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/bean/EnvironmentBean.java)）：环境配置 ( 注解标记类 ) 映射实体类
+
+
