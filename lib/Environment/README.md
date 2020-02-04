@@ -147,11 +147,11 @@ public final class Config {
 }
 ```
 
-* @Module
+* **@Module**
 
 被 `@Module` 修饰的类或接口表示一个模块，每个 `@Module` 有 n ( n > 0 ) 个被 `@Environment` 修饰的属性，表示该模块中有 n 种环境配置
 
-* @Environment
+* **@Environment**
 
 被 `@Environment` 修饰的属性表示一个环境，必须指定 `value` 的值，此外还有两个可选属性：`isRelease` 和 `alias`
 
@@ -159,7 +159,7 @@ public final class Config {
 
 `isRelease`：是一个 Boolean 型的属性，默认为 false，当值为 true 时，它就是所在 `@Module` 的默认环境
 
-> 每个 `@Module` 必须有且只有一个 `isRelease` 值为 true 的 `@Environment`
+> 每个 `@Module` **必须有且只有一个** `isRelease` 值为 true 的 `@Environment`
 
 
 ### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment)
