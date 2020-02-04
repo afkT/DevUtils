@@ -1,9 +1,9 @@
 
-[![Cocoapods](https://img.shields.io/badge/GitHub-afkT-blue.svg)](https://github.com/afkT)
+[![GitHub](https://img.shields.io/badge/GitHub-afkT-blue.svg)](https://github.com/afkT)
 [![GitHub license](https://img.shields.io/github/license/afkT/DevUtils.svg)](https://github.com/afkT/DevUtils/blob/master/LICENSE)
-[![Cocoapods](https://img.shields.io/badge/DevUtils-1.8.9-brightgreen.svg)](https://github.com/afkT/DevUtils)
+[![Bintray](https://img.shields.io/badge/DevUtils-1.8.9-brightgreen.svg)](https://bintray.com/afkt/maven/DevApp)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
-[![Cocoapods](https://img.shields.io/badge/utils-160+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
+[![Utils](https://img.shields.io/badge/utils-160+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
 # About (持续更新，目前含160+工具类)
 
