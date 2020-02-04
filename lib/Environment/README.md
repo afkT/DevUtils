@@ -289,7 +289,7 @@ EnvironmentBean imEnvironment = DevEnvironment.getIMEnvironment(mContext);
 
 ### 实现原理
 
-同 Butterknife、Greendao 等第三方库，编译时注解 ( APT 技术 ) 生成具体可参考该库实现代码及 [link.mk](https://github.com/afkT/DevUtils/blob/master/lib/Environment/link.md)
+同 Butterknife、Greendao 等第三方库，通过编译时注解 ( APT 技术 ) 实现，具体可参考该库实现代码及 [link.mk](https://github.com/afkT/DevUtils/blob/master/lib/Environment/link.md) 技术链接
 
 
 
