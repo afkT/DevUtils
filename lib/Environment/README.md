@@ -177,7 +177,7 @@ public final class Config {
 
 ### DevEnvironmentCompiler、DevEnvironmentCompilerRelease 区别
 
-* DevEnvironmentCompiler 属于 Debug ( 打包 / 编译时 ) 注解处理器，使用该 ( DevEnvironmentCompiler ) 注解处理时生成的 DevEnvironment 允许设置选中的环境 ( `setXXEnvironment` 通过该方法设置，只有使用该注解处理才会实现该方法代码 )
+* DevEnvironmentCompiler 属于 Debug ( 打包 / 编译时 ) 注解处理器，使用该注解处理时生成的 DevEnvironment 允许设置选中的环境 ( `setXXEnvironment` 通过该方法设置，只有使用该注解处理才会实现该方法代码 )
 
     1. `getXXModule` 获取对应 Module 映射实体类 ModuleBean
     
@@ -189,7 +189,7 @@ public final class Config {
     
     5. `setXXEnvironment` 设置对应 Module 选中的 Environment
     
-* DevEnvironmentCompilerRelease 属于 Release ( 打包 / 编译时 ) 注解处理器，使用该 ( DevEnvironmentCompilerRelease ) 注解处理时生成的 DevEnvironment 每个 Module 只会生成一个常量 Environment，并且无法进行修改设置
+* DevEnvironmentCompilerRelease 属于 Release ( 打包 / 编译时 ) 注解处理器，使用该注解处理时生成的 DevEnvironment 每个 Module 只会生成一个常量 Environment，并且无法进行修改设置
 
     1. `getXXModule` 获取对应 Module 映射实体类 ModuleBean
     
@@ -203,7 +203,7 @@ public final class Config {
     
 > DevEnvironmentCompilerRelease 编译生成的 DevEnvironment 类，全部属于 final 无法进行修改、设置，且部分方法内部不进行实现
 
-> 而 DevEnvironmentCompiler 编译生成的 DevEnvironment 类，允许修改选中的 Environment 支持可视化切换、内部代码切换 ( 无特殊需求一般用于 debugAnnotationProcessor， 如果需要 Release 下可切换环境则使用 annotationProcessor )
+> 而 DevEnvironmentCompiler 编译生成的 DevEnvironment 类，允许修改选中的 Environment 支持可视化切换、内部代码切换 ( 无特殊需求一般用于 debugAnnotationProcessor，如果需要 Release 下可切换环境则使用 annotationProcessor )
 
 
 --------
@@ -213,10 +213,12 @@ public final class Config {
 
 示例：[DevEnvironmentLibActivity](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/ui/activity/DevEnvironmentLibActivity.java)
 
+> 注：使用 DevEnvironmentCompilerRelease 注解编译生成将无法进行以下两种方式设置
+
 1. 通过代码方式设置 setXXEnvironment
 
 ```java
-// 如果准备设置环境等于当前选中的环境, 则会返回 false
+// 如果准备设置环境等于当前选中的环境，则会返回 false
 EnvironmentBean custom = new EnvironmentBean("自定义配置",
         "https://custom.com", "动态自定义", DevEnvironment.getServiceModule());
 boolean result = DevEnvironment.setServiceEnvironment(mContext, custom);
@@ -258,4 +260,29 @@ DevEnvironment.addOnEnvironmentChangeListener(new OnEnvironmentChangeListener() 
 DevEnvironment.removeOnEnvironmentChangeListener(listener);
 // 移除全部环境改变监听事件
 DevEnvironment.clearOnEnvironmentChangeListener();
+```
+
+### 获取 Module
+
+```java
+// 有多少个 @Module 修饰，则会生成多少个 getXXModule 方法
+ModuleBean serviceModule = DevEnvironment.getServiceModule();
+ModuleBean switchModule = DevEnvironment.getSwitchModule();
+ModuleBean imModule = DevEnvironment.getIMModule();
+```
+
+### 获取 Module Environment
+
+```java
+// getXXReleaseEnvironment 永远不会变动，该方法获取的为 isRelease 值为 true 的 Environment
+// 而 getXXEnvironment 获取的为当前 Module 选中的 Environment，可通过 setXXEnvironment 进行修改
+
+EnvironmentBean serviceReleaseEnvironment = DevEnvironment.getServiceReleaseEnvironment();
+EnvironmentBean serviceEnvironment = DevEnvironment.getServiceEnvironment(mContext);
+
+EnvironmentBean switchReleaseEnvironment = DevEnvironment.getSwitchReleaseEnvironment();
+EnvironmentBean switchEnvironment = DevEnvironment.getSwitchEnvironment(mContext);
+
+EnvironmentBean imReleaseEnvironment = DevEnvironment.getIMReleaseEnvironment();
+EnvironmentBean imEnvironment = DevEnvironment.getIMEnvironment(mContext);
 ```
