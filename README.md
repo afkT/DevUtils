@@ -26,7 +26,7 @@
 
 - [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/README.md)
 
-### DevJava - Java 工具类库 (不依赖 android api)
+### DevJava - Java 工具类库 ( 不依赖 android api )
 
 - [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md)
 
