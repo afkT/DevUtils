@@ -166,11 +166,10 @@ public final class Config {
 
 * @Environment 映射实体类（[EnvironmentBean](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/bean/EnvironmentBean.java)）：@Environment ( 注解标记类 ) 映射实体类
 
-　
-　
-　
-　
-　
+  
+  
+  
+  
 #### DevEnvironmentCompiler、DevEnvironmentCompilerRelease 区别
 
 * DevEnvironmentCompiler 属于 Debug ( 打包 / 编译时 ) 注解处理器，使用该 ( DevEnvironmentCompiler ) 注解处理时生成的 DevEnvironment 允许设置选中的环境 ( `setXXEnvironment` 通过该方法设置，只有使用该注解处理才会实现该方法代码 )
