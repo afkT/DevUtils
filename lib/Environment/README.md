@@ -45,14 +45,12 @@ DevEnvironment 是一个 Android 环境配置切换库，运用 Java 注解、AP
 | 测试环境不泄露 | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | …… | —— | —— | —— |
 
-[//]: √ => :heavy_check_mark:
-[//]: × => :x:
 
 ### 版本信息
 
 module | DevEnvironment | DevEnvironmentCompiler | DevEnvironmentCompilerRelease
 :---:|:---:|:---:|:---:
-version | [![Bintray](https://img.shields.io/badge/new-1.0.0-blue.svg)](https://bintray.com/afkt/maven/DevEnvironment) | [![Bintray](https://img.shields.io/badge/new-1.0.0-blue.svg)](https://bintray.com/afkt/maven/DevEnvironmentCompiler) | [![Bintray](https://img.shields.io/badge/new-1.0.0-blue.svg)](https://bintray.com/afkt/maven/DevEnvironmentCompilerRelease)
+version | [![Bintray](https://api.bintray.com/packages/afkt/maven/DevEnvironment/images/download.svg)](https://bintray.com/afkt/maven/DevEnvironment/_latestVersion) | [![Bintray](https://api.bintray.com/packages/afkt/maven/DevEnvironmentCompiler/images/download.svg)](https://bintray.com/afkt/maven/DevEnvironmentCompiler/_latestVersion) | [![Bintray](https://api.bintray.com/packages/afkt/maven/DevEnvironmentCompilerRelease/images/download.svg)](https://bintray.com/afkt/maven/DevEnvironmentCompilerRelease/_latestVersion)
 
 
 ### 使用方法
