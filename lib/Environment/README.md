@@ -153,7 +153,7 @@ public final class Config {
 
 * **@Environment**
 
-被 `@Environment` 修饰的属性表示一个环境，必须指定 `value` 的值，此外还有两个可选属性：`isRelease` 和 `alias`
+被 `@Environment` 修饰的属性表示一个环境，必须指定 **value** 的值，此外还有两个可选属性：**isRelease** 和 **alias**
 
 `value`：该环境配置值
 
@@ -170,7 +170,7 @@ public final class Config {
 
 * 模块环境改变接口（[OnEnvironmentChangeListener](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/listener/OnEnvironmentChangeListener.java)）：模块环境发生变化时触发
 
-> 每个 `@Module`、`@Environment` 都会生成对应的 `ModuleBean`、`EnvironmentBean` 实体类
+> 每个 `@Module`、`@Environment` 都会生成对应的 **ModuleBean**、**EnvironmentBean** 实体类
 
 * @Module 映射实体类（[ModuleBean](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/bean/ModuleBean.java)）：@Module ( 注解标记类 ) 映射实体类
 
@@ -204,11 +204,13 @@ public final class Config {
     
     4. `getXXEnvironmentValue` 内部调用 `getXXEnvironment` 获取 Value
     
-    5. `setXXEnvironment` 内部不实现代码，直接返回 false ( 表示设置失败 )
+    5. `setXXEnvironment` 内部不实现代码，直接返回 false ( 表示不支持设置 )
     
-> DevEnvironmentCompilerRelease 编译生成的 DevEnvironment 类，全部属于 final 无法进行修改、设置，且部分方法内部不进行实现
+> DevEnvironmentCompilerRelease 编译生成的 DevEnvironment 类，全部属于 final 无法进行修改、设置，且部分方法内部不进行代码实现
 
-> 而 DevEnvironmentCompiler 编译生成的 DevEnvironment 类，允许修改选中的 Environment 支持可视化切换、内部代码切换 ( 无特殊需求一般用于 debugAnnotationProcessor，如果需要 Release 下可切换环境则使用 annotationProcessor )
+> 而 DevEnvironmentCompiler 编译生成的 DevEnvironment 类，允许修改选中的 Environment 支持可视化切换、代码方式切换
+> 无特殊需求一般用于 debugAnnotationProcessor DevEnvironmentCompiler
+> 如果需要 Release 下可切换环境则使用 annotationProcessor DevEnvironmentCompiler
 
 
 --------
