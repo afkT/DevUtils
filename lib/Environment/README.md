@@ -46,7 +46,7 @@ DevEnvironment 是一个 Android 环境配置切换库，运用 Java 注解、AP
 | …… | —— | —— | —— |
 
 
-### 版本信息
+### 最新版本
 
 module | DevEnvironment | DevEnvironmentCompiler | DevEnvironmentCompilerRelease
 :---:|:---:|:---:|:---:
@@ -65,11 +65,16 @@ dependencies {
 }
 ```
 
+
 ### 构建 DevEnvironment 类
 
-点击菜单栏中的 “Build” -> “Rebuild Project”，等待编译完成
+> 点击菜单栏中的 “Build” -> “Rebuild Project”，等待编译完成
 
-正常会在 \build\generated\ap_generated_sources\debug\out\dev\environment 中创建 DevEnvironment.java
+正常会在 `\build\generated\ap_generated_sources\debug\out\dev\environment` 内创建 DevEnvironment.java
+
+
+--------
+
 
 ### API
 
