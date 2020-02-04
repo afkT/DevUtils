@@ -50,7 +50,7 @@ DevEnvironment 是一个在 Android 环境配置切换库，运用 Java 注解�
 
 module | DevEnvironment | DevEnvironmentCompiler | DevEnvironmentCompilerRelease
 :---:|:---:|:---:|:---:
-version | [![Download](https://api.bintray.com/packages/afkt/maven/DevEnvironment/images/download.svg)](https://bintray.com/afkt/maven/DevEnvironment/_latestVersion) | [![Download](https://api.bintray.com/packages/afkt/maven/DevEnvironmentCompiler/images/download.svg)](https://bintray.com/afkt/maven/DevEnvironmentCompiler/_latestVersion) | [![Download](https://api.bintray.com/packages/afkt/maven/DevEnvironmentCompilerRelease/images/download.svg)](https://bintray.com/afkt/maven/DevEnvironmentCompilerRelease/_latestVersion)
+version | [![Cocoapods](https://img.shields.io/badge/1.0.0-blue.svg)](https://bintray.com/afkt/maven/DevEnvironment) | [![Cocoapods](https://img.shields.io/badge/1.0.0-blue.svg)](https://bintray.com/afkt/maven/DevEnvironmentCompiler) | [![Cocoapods](https://img.shields.io/badge/1.0.0-blue.svg)](https://bintray.com/afkt/maven/DevEnvironmentCompilerRelease)
 
 
 ### 使用方法
@@ -286,3 +286,10 @@ EnvironmentBean switchEnvironment = DevEnvironment.getSwitchEnvironment(mContext
 EnvironmentBean imReleaseEnvironment = DevEnvironment.getIMReleaseEnvironment();
 EnvironmentBean imEnvironment = DevEnvironment.getIMEnvironment(mContext);
 ```
+
+### 实现原理
+
+同 Butterknife、Greendao 等第三方库，编译时注解 ( APT 技术 ) 生成具体可参考该库实现代码及 [link.mk](https://github.com/afkT/DevUtils/blob/master/lib/Environment/link.md)
+
+
+
