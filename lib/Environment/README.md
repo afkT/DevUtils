@@ -65,6 +65,11 @@ dependencies {
 }
 ```
 
+### 构建 DevEnvironment 类
+
+点击菜单栏中的 “Build” -> “Rebuild Project”，等待编译完成
+
+正常会在 \build\generated\ap_generated_sources\debug\out\dev\environment 中创建 DevEnvironment.java
 
 ### API
 
@@ -152,7 +157,7 @@ public final class Config {
 > 每个 `@Module` 必须有且只有一个 `isRelease` 值为 true 的 `@Environment`
 
 
-#### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment)
+### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment)
 
 * Module 类（[@Module](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/annotation/Module.java)）：模块 ( 注解标记类 )
 
@@ -170,7 +175,7 @@ public final class Config {
 --------
 
 
-#### DevEnvironmentCompiler、DevEnvironmentCompilerRelease 区别
+### DevEnvironmentCompiler、DevEnvironmentCompilerRelease 区别
 
 * DevEnvironmentCompiler 属于 Debug ( 打包 / 编译时 ) 注解处理器，使用该 ( DevEnvironmentCompiler ) 注解处理时生成的 DevEnvironment 允许设置选中的环境 ( `setXXEnvironment` 通过该方法设置，只有使用该注解处理才会实现该方法代码 )
 
@@ -204,19 +209,20 @@ public final class Config {
 --------
 
 
-#### 切换环境方式
+### 切换环境方式
 
 示例：[DevEnvironmentLibActivity](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/ui/activity/DevEnvironmentLibActivity.java)
 
-1. 通过代码设置 setXXEnvironment
+1. 通过代码方式设置 setXXEnvironment
 
 ```java
 // 如果准备设置环境等于当前选中的环境, 则会返回 false
-EnvironmentBean custom = new EnvironmentBean("自定义配置", "https://custom.com", "动态自定义", DevEnvironment.getServiceModule());
+EnvironmentBean custom = new EnvironmentBean("自定义配置",
+        "https://custom.com", "动态自定义", DevEnvironment.getServiceModule());
 boolean result = DevEnvironment.setServiceEnvironment(mContext, custom);
 ```
 
-2. 通过可视化界面切换
+2. 通过可视化界面方式切换
 
 ```java
 // 显示右上角重启按钮
@@ -230,7 +236,7 @@ boolean result = DevEnvironmentActivity.start(mContext, new RestartCallBack() {
 boolean result = DevEnvironmentActivity.start(mContext);
 ```
 
-#### 环境切换监听事件
+### 环境切换监听事件
 
 ```java
 // 添加环境改变监听事件
@@ -243,7 +249,8 @@ DevEnvironment.addOnEnvironmentChangeListener(new OnEnvironmentChangeListener() 
      * @param newEnvironment 该模块的最新环境
      */
     @Override
-    public void onEnvironmentChanged(ModuleBean module, EnvironmentBean oldEnvironment, EnvironmentBean newEnvironment) {
+    public void onEnvironmentChanged(ModuleBean module, EnvironmentBean oldEnvironment,
+                    EnvironmentBean newEnvironment) {
         
     }
 });
