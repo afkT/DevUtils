@@ -153,7 +153,7 @@ public final class Config {
 
 * **@Environment**
 
-被 `@Environment` 修饰的属性表示一个环境，必须指定 **value** 的值，此外还有两个可选属性：**isRelease** 和 **alias**
+被 `@Environment` 修饰的属性表示一个环境，必须指定 **value** 属性值，此外还有两个可选属性：**isRelease** 和 **alias**
 
 `value`：该环境配置值
 
@@ -209,7 +209,9 @@ public final class Config {
 > DevEnvironmentCompilerRelease 编译生成的 DevEnvironment 类，全部属于 final 无法进行修改、设置，且部分方法内部不进行代码实现
 
 > 而 DevEnvironmentCompiler 编译生成的 DevEnvironment 类，允许修改选中的 Environment 支持可视化切换、代码方式切换
+>
 > 无特殊需求一般用于 debugAnnotationProcessor DevEnvironmentCompiler
+>
 > 如果需要 Release 下可切换环境则使用 annotationProcessor DevEnvironmentCompiler
 
 
@@ -220,7 +222,7 @@ public final class Config {
 
 示例：[DevEnvironmentLibActivity](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/ui/activity/DevEnvironmentLibActivity.java)
 
-> 注：使用 DevEnvironmentCompilerRelease 注解编译生成将无法进行以下两种方式设置
+> 注：使用 DevEnvironmentCompilerRelease 注解编译生成不支持环境配置切换
 
 1. 通过代码方式设置 setXXEnvironment
 
@@ -245,6 +247,7 @@ boolean result = DevEnvironmentActivity.start(mContext, new RestartCallBack() {
 boolean result = DevEnvironmentActivity.start(mContext);
 ```
 
+
 ### 环境切换监听事件
 
 ```java
@@ -260,7 +263,6 @@ DevEnvironment.addOnEnvironmentChangeListener(new OnEnvironmentChangeListener() 
     @Override
     public void onEnvironmentChanged(ModuleBean module, EnvironmentBean oldEnvironment,
                     EnvironmentBean newEnvironment) {
-        
     }
 });
 // 移除环境改变监听事件
@@ -268,6 +270,7 @@ DevEnvironment.removeOnEnvironmentChangeListener(listener);
 // 移除全部环境改变监听事件
 DevEnvironment.clearOnEnvironmentChangeListener();
 ```
+
 
 ### 获取 Module
 
@@ -278,10 +281,11 @@ ModuleBean switchModule = DevEnvironment.getSwitchModule();
 ModuleBean imModule = DevEnvironment.getIMModule();
 ```
 
+
 ### 获取 Module Environment
 
 ```java
-// getXXReleaseEnvironment 永远不会变动，该方法获取的为 isRelease 值为 true 的 Environment
+// getXXReleaseEnvironment 该方法返回 isRelease 值为 true 的 Environment ( 必须有且只有一个 )
 // 而 getXXEnvironment 获取的为当前 Module 选中的 Environment，可通过 setXXEnvironment 进行修改
 
 EnvironmentBean serviceReleaseEnvironment = DevEnvironment.getServiceReleaseEnvironment();
@@ -294,9 +298,18 @@ EnvironmentBean imReleaseEnvironment = DevEnvironment.getIMReleaseEnvironment();
 EnvironmentBean imEnvironment = DevEnvironment.getIMEnvironment(mContext);
 ```
 
+
 ### 实现原理
 
 同 Butterknife、Greendao 等第三方库，通过编译时注解 ( APT 技术 ) 实现，具体可参考该库实现代码及 [link.mk](https://github.com/afkT/DevUtils/blob/master/lib/Environment/link.md) 技术链接
 
+
+### 使用示例参考
+
+DevEnvironment 文件生成配置：[HttpConstants](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/base/constants/http/HttpConstants.java)
+
+DevEnvironment 使用：[DevEnvironmentLibActivity](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/ui/activity/DevEnvironmentLibActivity.java)
+
+> 点击菜单栏中的 “Build” -> “Rebuild Project”，等待编译完成
 
 
