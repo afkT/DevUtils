@@ -166,11 +166,11 @@ public final class Config {
 
 * @Environment 映射实体类（[EnvironmentBean](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/bean/EnvironmentBean.java)）：@Environment ( 注解标记类 ) 映射实体类
 
-  
-  
-  
-  
-  
+　
+　
+　
+　
+　
 #### DevEnvironmentCompiler、DevEnvironmentCompilerRelease 区别
 
 * DevEnvironmentCompiler 属于 Debug ( 打包 / 编译时 ) 注解处理器，使用该 ( DevEnvironmentCompiler ) 注解处理时生成的 DevEnvironment 允许设置选中的环境 ( `setXXEnvironment` 通过该方法设置，只有使用该注解处理才会实现该方法代码 )
@@ -199,6 +199,6 @@ public final class Config {
     
 > DevEnvironmentCompilerRelease 编译生成的 DevEnvironment 类，全部属于 final 无法进行修改、设置，且部分方法内部不进行实现
 
-> 而 DevEnvironmentCompiler 编译生成的 DevEnvironment 类，允许修改选中的 Environment 支持可视化切换、内部代码切换 ( 无特殊需求一般用于 debugAnnotationProcessor， 如果 Release 需要可切换环境则使用 annotationProcessor )
+> 而 DevEnvironmentCompiler 编译生成的 DevEnvironment 类，允许修改选中的 Environment 支持可视化切换、内部代码切换 ( 无特殊需求一般用于 debugAnnotationProcessor， 如果需要 Release 下可切换环境则使用 annotationProcessor )
 
 
