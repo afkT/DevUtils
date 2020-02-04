@@ -166,10 +166,10 @@ public final class Config {
 
 * @Environment 映射实体类（[EnvironmentBean](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironmentBase/src/main/java/dev/environment/bean/EnvironmentBean.java)）：@Environment ( 注解标记类 ) 映射实体类
 
-  
-  
-  
-  
+
+--------
+
+
 #### DevEnvironmentCompiler、DevEnvironmentCompilerRelease 区别
 
 * DevEnvironmentCompiler 属于 Debug ( 打包 / 编译时 ) 注解处理器，使用该 ( DevEnvironmentCompiler ) 注解处理时生成的 DevEnvironment 允许设置选中的环境 ( `setXXEnvironment` 通过该方法设置，只有使用该注解处理才会实现该方法代码 )
@@ -201,3 +201,54 @@ public final class Config {
 > 而 DevEnvironmentCompiler 编译生成的 DevEnvironment 类，允许修改选中的 Environment 支持可视化切换、内部代码切换 ( 无特殊需求一般用于 debugAnnotationProcessor， 如果需要 Release 下可切换环境则使用 annotationProcessor )
 
 
+--------
+
+
+#### 切换环境方式
+
+示例：[DevEnvironmentLibActivity](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/afkt/project/ui/activity/DevEnvironmentLibActivity.java)
+
+1. 通过代码设置 setXXEnvironment
+
+```java
+// 如果准备设置环境等于当前选中的环境, 则会返回 false
+EnvironmentBean custom = new EnvironmentBean("自定义配置", "https://custom.com", "动态自定义", DevEnvironment.getServiceModule());
+boolean result = DevEnvironment.setServiceEnvironment(mContext, custom);
+```
+
+2. 通过可视化界面切换
+
+```java
+// 显示右上角重启按钮
+boolean result = DevEnvironmentActivity.start(mContext, new RestartCallBack() {
+    @Override
+    public void onRestart() {
+        ActivityUtils.getManager().exitApplication();
+    }
+});
+// 不显示右上角重启按钮
+boolean result = DevEnvironmentActivity.start(mContext);
+```
+
+#### 环境切换监听事件
+
+```java
+// 添加环境改变监听事件
+DevEnvironment.addOnEnvironmentChangeListener(new OnEnvironmentChangeListener() {
+
+    /**
+     * 模块环境发生变化时触发
+     * @param module         环境发生变化的模块
+     * @param oldEnvironment 该模块的旧环境
+     * @param newEnvironment 该模块的最新环境
+     */
+    @Override
+    public void onEnvironmentChanged(ModuleBean module, EnvironmentBean oldEnvironment, EnvironmentBean newEnvironment) {
+        
+    }
+});
+// 移除环境改变监听事件
+DevEnvironment.removeOnEnvironmentChangeListener(listener);
+// 移除全部环境改变监听事件
+DevEnvironment.clearOnEnvironmentChangeListener();
+```
