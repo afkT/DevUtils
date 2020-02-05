@@ -24,6 +24,11 @@ dependencies {
     releaseAnnotationProcessor project(':DevEnvironmentCompilerRelease')
 //    annotationProcessor project(':DevEnvironmentCompilerRelease')
 
+//    // DevEnvironment
+//    implementation deps.dev.dev_environment
+//    debugAnnotationProcessor deps.dev.dev_environment_compiler
+//    releaseAnnotationProcessor deps.dev.dev_environment_compiler_release
+
     // ============
     // = 第三方库 =
     // ============
