@@ -26,10 +26,10 @@ public class ColorSortMain {
 
     public static void main(String[] args) throws Exception {
         // colors.xml 文件地址
-        String xmlFile = "app/src/main/res/values/colors.xml";
+        String xmlPath = "app/src/main/res/values/colors.xml";
 
         // 解析 colors.xml
-        new SAXXml(xmlFile).analysisColorsXml(new SAXXml.DocumentListener() {
+        new SAXXml(xmlPath).analysisColorsXml(new SAXXml.DocumentListener() {
             @Override
             public void OnEnd(List<ColorUtils.ColorInfo> lists) {
                 if (CollectionUtils.isEmpty(lists)) {
@@ -41,7 +41,7 @@ public class ColorSortMain {
                 // 生成 XML 文件内容
                 String content = Builder.createXML(lists);
                 // 覆盖处理
-                boolean result = FileUtils.saveFile(FileUtils.getFile(xmlFile), content.getBytes());
+                boolean result = FileUtils.saveFile(xmlPath, StringUtils.getBytes(content));
                 // 获取结果
                 System.out.println("result: " + result);
             }
@@ -85,10 +85,10 @@ public class ColorSortMain {
     static final class SAXXml {
 
         // colors.xml 文件地址
-        private String xmlFile;
+        private String xmlPath;
 
-        private SAXXml(String xmlFile) {
-            this.xmlFile = xmlFile;
+        private SAXXml(String xmlPath) {
+            this.xmlPath = xmlPath;
         }
 
         /**
@@ -102,7 +102,7 @@ public class ColorSortMain {
             // 获取 SAXParser 实例
             SAXParser saxParser = factory.newSAXParser();
             // 创建 Handler 对象并进行解析
-            saxParser.parse(xmlFile, new SAXDemoHandel(listener));
+            saxParser.parse(xmlPath, new SAXDemoHandel(listener));
         }
 
         /**
