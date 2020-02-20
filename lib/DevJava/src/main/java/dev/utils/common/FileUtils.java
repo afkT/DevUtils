@@ -1098,12 +1098,7 @@ public final class FileUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "appendFile");
         } finally {
-            if (writer != null) {
-                try {
-                    writer.close();
-                } catch (IOException e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(writer);
         }
         return false;
     }
@@ -1276,13 +1271,7 @@ public final class FileUtils {
             JCLogUtils.eTag(TAG, e, "copyFile");
             return false;
         } finally {
-            try {
-                if (os != null)
-                    os.close();
-                if (is != null)
-                    is.close();
-            } catch (IOException e) {
-            }
+            CloseUtils.closeIOQuietly(os, is);
         }
     }
 
@@ -1344,13 +1333,7 @@ public final class FileUtils {
             JCLogUtils.eTag(TAG, e, "copyFile");
             return false;
         } finally {
-            try {
-                if (os != null)
-                    os.close();
-                if (is != null)
-                    is.close();
-            } catch (IOException e) {
-            }
+            CloseUtils.closeIOQuietly(os, is);
         }
     }
 
