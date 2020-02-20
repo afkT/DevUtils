@@ -49,6 +49,8 @@ public final class FileRecordUse {
      * AnalysisRecordUtils 工具类使用方法
      */
     public static void analysisRecord() {
+        AnalysisRecordUtils.setLogFolderName("LogRecord");
+
         // 默认存储到 android/data/包名/cache文件/, 可以自己特殊设置
         AnalysisRecordUtils.setLogStoragePath(PathUtils.getSDCard().getSDCardPath());
 

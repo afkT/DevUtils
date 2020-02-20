@@ -14,6 +14,7 @@ import java.util.Map;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.DateUtils;
 import dev.utils.common.FileUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: 日志记录分析工具类
@@ -226,12 +227,10 @@ public final class AnalysisRecordUtils {
             // 日志保存路径
             String logPath = fileInfo.getLogPath();
             // 获取日志地址
-            String logFile = logPath + File.separator + fileName;
-            // 返回地址
-            File file = new File(logFile);
+            File file = new File(logPath, fileName);
             // 判断是否存在
             if (file.exists()) {
-                result = FileUtils.appendFile(logFile, logContent);
+                result = FileUtils.appendFile(file, StringUtils.getBytes(logContent));
             } else {
                 // = 首次则保存设备、APP 信息 =
                 StringBuilder builder = new StringBuilder();
@@ -277,9 +276,9 @@ public final class AnalysisRecordUtils {
                 builder.append(NEW_LINE_STR_X2);
                 builder.append("===========================");
                 // 创建文件夹, 并且进行处理
-                FileUtils.saveFile(logPath, fileName, builder.toString());
+                FileUtils.saveFile(file, StringUtils.getBytes(builder.toString()));
                 // 追加内容
-                result = FileUtils.appendFile(logFile, logContent);
+                result = FileUtils.appendFile(file, StringUtils.getBytes(logContent));
             }
             // 触发回调
             if (RECORD_CALLBACK != null) {
