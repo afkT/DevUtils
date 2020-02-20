@@ -1191,23 +1191,7 @@ public final class FileUtils {
      * @return 文件内容字符串
      */
     public static String readFile(final InputStream inputStream) {
-        if (inputStream != null) {
-            try {
-                InputStreamReader isr = new InputStreamReader(inputStream);
-                BufferedReader br = new BufferedReader(isr);
-                StringBuilder builder = new StringBuilder();
-                String line;
-                while ((line = br.readLine()) != null) {
-                    builder.append(line);
-                }
-                isr.close();
-                br.close();
-                return builder.toString();
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "readFile");
-            }
-        }
-        return null;
+        return readFile(inputStream, null);
     }
 
     /**
