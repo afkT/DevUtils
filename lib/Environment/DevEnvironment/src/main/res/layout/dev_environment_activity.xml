@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dev_environment_bg"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56.0dp"
+        android:background="@color/dev_environment_color">
+
+        <ImageView
+            android:id="@+id/vid_dea_back_igview"
+            android:layout_width="56.0dp"
+            android:layout_height="56.0dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/dev_environment_back"
+            android:padding="15.0dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/vid_dea_restart_tv"
+            android:layout_toRightOf="@id/vid_dea_back_igview"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="@string/dev_environment_title"
+            android:textColor="@android:color/white"
+            android:textSize="18.0sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/vid_dea_restart_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingLeft="13.0dp"
+            android:paddingRight="13.0dp"
+            android:text="@string/dev_environment_restart"
+            android:textColor="@android:color/white"
+            android:textSize="16.0sp"
+            android:visibility="invisible"
+            tools:visibility="visible" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/vid_dea_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:scrollbars="none" />
+</LinearLayout>

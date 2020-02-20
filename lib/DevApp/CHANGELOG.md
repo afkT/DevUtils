@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 1.9.0 *(2020-02-21)*
+----------------------------
+
+* `[Add]` StringUtils#getBytes
+
+* `[Add]` FileIOUtils#getFileInputStream、getFileOutputStream
+
+* `[Update]` FileUtils#saveFile、appendFile
+
+* `[Update]` FileRecordUtils、AnalysisRecordUtils 关联引用 saveFile、appendFile 方法处理
+
 Version 1.8.9 *(2020-01-26)*
 ----------------------------
 

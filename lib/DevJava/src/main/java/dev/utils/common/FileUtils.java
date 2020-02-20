@@ -8,13 +8,10 @@ import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -967,16 +964,26 @@ public final class FileUtils {
 
     /**
      * 保存文件
-     * @param file 保存文件
-     * @param data 保存内容
+     * @param filePath 文件路径
+     * @param data     待存储数据
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean saveFile(final String filePath, final byte[] data) {
+        return saveFile(FileUtils.getFile(filePath), data);
+    }
+
+    /**
+     * 保存文件
+     * @param file 文件
+     * @param data 待存储数据
      * @return {@code true} success, {@code false} fail
      */
     public static boolean saveFile(final File file, final byte[] data) {
         if (file != null && data != null) {
             try {
-                // 防止文件没创建
+                // 防止文件夹没创建
                 createFolder(getDirName(file));
-                // 保存内容到一个文件
+                // 写入文件
                 FileOutputStream fos = new FileOutputStream(file);
                 BufferedOutputStream bos = new BufferedOutputStream(fos);
                 bos.write(data);
@@ -991,119 +998,38 @@ public final class FileUtils {
     }
 
     /**
-     * 保存文件
-     * @param filePath 保存路径
-     * @param fileName 文件名. 后缀
-     * @param data     保存内容
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean saveFile(final String filePath, final String fileName, final byte[] data) {
-        if (filePath != null && fileName != null && data != null) {
-            try {
-                // 防止文件没创建
-                createFolder(filePath);
-                // 保存路径
-                File file = new File(filePath, fileName);
-                // 保存内容到一个文件
-                FileOutputStream fos = new FileOutputStream(file);
-                BufferedOutputStream bos = new BufferedOutputStream(fos);
-                bos.write(data);
-                bos.close();
-                fos.close();
-                return true;
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "saveFile");
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 保存文件
-     * @param filePath 保存路径
-     * @param fileName 文件名. 后缀
-     * @param content  保存内容
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean saveFile(final String filePath, final String fileName, final String content) {
-        if (filePath != null && fileName != null && content != null) {
-            try {
-                // 防止文件没创建
-                createFolder(filePath);
-                // 保存路径
-                File file = new File(filePath, fileName);
-                // 保存内容到一个文件
-                FileOutputStream fos = new FileOutputStream(file);
-                fos.write(content.getBytes());
-                fos.close();
-                return true;
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "saveFile");
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 保存文件
-     * @param filePath 保存路径
-     * @param fileName 文件名. 后缀
-     * @param content  保存内容
-     * @param coding   编码格式
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean saveFile(final String filePath, final String fileName, final String content, final String coding) {
-        if (filePath != null && fileName != null && content != null) {
-            try {
-                // 防止文件没创建
-                createFolder(filePath);
-                // 保存路径
-                File file = new File(filePath, fileName);
-                // 保存内容到一个文件
-                FileOutputStream fos = new FileOutputStream(file);
-                Writer out;
-                if (coding != null) {
-                    out = new OutputStreamWriter(fos, coding);
-                } else {
-                    out = new OutputStreamWriter(fos);
-                }
-                out.write(content);
-                out.close();
-                fos.close();
-                return true;
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "saveFile");
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 追加文件 ( 使用 FileWriter)
+     * 追加文件
      * @param filePath 文件路径
-     * @param content  追加内容
+     * @param data     待追加数据
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean appendFile(final String filePath, final String content) {
-        if (filePath == null || content == null) return false;
-        File file = new File(filePath);
-        // 如果文件不存在, 则跳过
-        if (!file.exists()) return false;
-        FileWriter writer = null;
+    public static boolean appendFile(final String filePath, final byte[] data) {
+        return appendFile(FileUtils.getFile(filePath), data);
+    }
+
+    /**
+     * 追加文件
+     * <pre>
+     *     如果未创建文件, 则会创建并写入数据 ( 等同 {@link #saveFile} )
+     *     如果已创建文件, 则在结尾追加数据
+     * </pre>
+     * @param file 文件
+     * @param data 待追加数据
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean appendFile(final File file, final byte[] data) {
         try {
-            // 打开一个写文件器, 构造函数中的第二个参数 true 表示以追加形式写文件
-            writer = new FileWriter(file, true);
-            writer.write(content);
+            // 防止文件夹没创建
+            createFolder(getDirName(file));
+            // 写入文件
+            FileOutputStream fos = new FileOutputStream(file, true);
+            BufferedOutputStream bos = new BufferedOutputStream(fos);
+            bos.write(data);
+            bos.close();
+            fos.close();
             return true;
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "appendFile");
-        } finally {
-            if (writer != null) {
-                try {
-                    writer.close();
-                } catch (IOException e) {
-                }
-            }
         }
         return false;
     }
@@ -1191,23 +1117,7 @@ public final class FileUtils {
      * @return 文件内容字符串
      */
     public static String readFile(final InputStream inputStream) {
-        if (inputStream != null) {
-            try {
-                InputStreamReader isr = new InputStreamReader(inputStream);
-                BufferedReader br = new BufferedReader(isr);
-                StringBuilder builder = new StringBuilder();
-                String line;
-                while ((line = br.readLine()) != null) {
-                    builder.append(line);
-                }
-                isr.close();
-                br.close();
-                return builder.toString();
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "readFile");
-            }
-        }
-        return null;
+        return readFile(inputStream, null);
     }
 
     /**
@@ -1292,13 +1202,7 @@ public final class FileUtils {
             JCLogUtils.eTag(TAG, e, "copyFile");
             return false;
         } finally {
-            try {
-                if (os != null)
-                    os.close();
-                if (is != null)
-                    is.close();
-            } catch (IOException e) {
-            }
+            CloseUtils.closeIOQuietly(os, is);
         }
     }
 
@@ -1360,13 +1264,7 @@ public final class FileUtils {
             JCLogUtils.eTag(TAG, e, "copyFile");
             return false;
         } finally {
-            try {
-                if (os != null)
-                    os.close();
-                if (is != null)
-                    is.close();
-            } catch (IOException e) {
-            }
+            CloseUtils.closeIOQuietly(os, is);
         }
     }
 

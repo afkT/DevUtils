@@ -48,6 +48,76 @@ public final class FileIOUtils {
     }
 
     /**
+     * 获取输入流
+     * @param filePath 文件路径
+     * @return {@link FileInputStream}
+     */
+    public static FileInputStream getFileInputStream(final String filePath) {
+        return getFileInputStream(FileUtils.getFile(filePath));
+    }
+
+    /**
+     * 获取输入流
+     * @param file 文件
+     * @return {@link FileInputStream}
+     */
+    public static FileInputStream getFileInputStream(final File file) {
+        if (file == null) return null;
+        try {
+            return new FileInputStream(file);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getFileInputStream");
+        }
+        return null;
+    }
+
+    /**
+     * 获取输出流
+     * @param filePath 文件路径
+     * @return {@link FileOutputStream}
+     */
+    public static FileOutputStream getFileOutputStream(final String filePath) {
+        return getFileOutputStream(FileUtils.getFile(filePath));
+    }
+
+    /**
+     * 获取输出流
+     * @param filePath 文件路径
+     * @param append   是否追加到结尾
+     * @return {@link FileOutputStream}
+     */
+    public static FileOutputStream getFileOutputStream(final String filePath, final boolean append) {
+        return getFileOutputStream(FileUtils.getFile(filePath), append);
+    }
+
+    /**
+     * 获取输出流
+     * @param file 文件
+     * @return {@link FileOutputStream}
+     */
+    public static FileOutputStream getFileOutputStream(final File file) {
+        return getFileOutputStream(file, false);
+    }
+
+    /**
+     * 获取输出流
+     * @param file   文件
+     * @param append 是否追加到结尾
+     * @return {@link FileOutputStream}
+     */
+    public static FileOutputStream getFileOutputStream(final File file, final boolean append) {
+        if (file == null) return null;
+        try {
+            return new FileOutputStream(file, append);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getFileOutputStream");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
      * 通过输入流写入文件
      * @param filePath    文件路径
      * @param inputStream {@link InputStream}

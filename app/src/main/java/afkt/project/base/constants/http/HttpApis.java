@@ -17,7 +17,7 @@ public final class HttpApis {
      * @return 文章列表请求地址
      */
     public static final String getArticleListUrl() {
-         return DevEnvironment.getServiceEnvironmentValue(DevUtils.getContext())
-                 + "article/list/%s/json";
+        return DevEnvironment.getServiceEnvironmentValue(DevUtils.getContext())
+                + "article/list/%s/json";
     }
 }

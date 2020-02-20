@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 1.1.0 *(2020-02-21)*
+----------------------------
+
+* `[Add]` StringUtils#getBytes
+
+* `[Add]` FileIOUtils#getFileInputStream、getFileOutputStream
+
+* `[Update]` FileUtils#saveFile、appendFile
+
 Version 1.0.9 *(2020-01-26)*
 ----------------------------
 

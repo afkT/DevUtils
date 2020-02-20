@@ -1,4 +1,4 @@
-include ':app', ':DevApp', ':DevJava', ':DevAssist', ':DevOther', ':DevBase', ':DevWidget', ':DevStandard', ':DevEnvironmentBase', ':DevEnvironmentCompiler', ':DevEnvironmentCompilerRelease'
+include ':app', ':DevApp', ':DevJava', ':DevAssist', ':DevOther', ':DevBase', ':DevWidget', ':DevStandard', ':DevEnvironmentBase', ':DevEnvironmentCompiler', ':DevEnvironmentCompilerRelease', ':DevEnvironment'
 project(':DevApp').projectDir = new File('lib/DevApp')
 project(':DevJava').projectDir = new File('lib/DevJava')
 project(':DevAssist').projectDir = new File('lib/DevAssist')
@@ -9,3 +9,4 @@ project(':DevStandard').projectDir = new File('lib/DevStandard')
 project(':DevEnvironmentBase').projectDir = new File('lib/Environment/DevEnvironmentBase')
 project(':DevEnvironmentCompiler').projectDir = new File('lib/Environment/DevEnvironmentCompiler')
 project(':DevEnvironmentCompilerRelease').projectDir = new File('lib/Environment/DevEnvironmentCompilerRelease')
+project(':DevEnvironment').projectDir = new File('lib/Environment/DevEnvironment')

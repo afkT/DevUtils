@@ -1,5 +1,7 @@
 package dev.utils.common;
 
+import java.io.File;
+
 /**
  * detail: 文件记录工具类
  * @author Ttt
@@ -189,8 +191,10 @@ public final class FileRecordUtils {
             builder.append(bottom);
             builder.append(NEW_LINE_STR_X2);
         }
+        File file = FileUtils.getFile(filePath, fileName);
+        String content = builder.toString();
         // 保存日志到文件
-        boolean result = FileUtils.saveFile(filePath, fileName, builder.toString());
+        boolean result = FileUtils.saveFile(file, StringUtils.getBytes(content));
         // 触发回调
         if (RECORD_CALLBACK != null) {
             RECORD_CALLBACK.callback(result, log, filePath, fileName, head, bottom, printInsertInfo, INSERT_INFO);

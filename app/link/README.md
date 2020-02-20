@@ -203,6 +203,8 @@
 
 * [玩转 AppBarLayout 更酷炫的顶部栏](https://www.jianshu.com/p/d159f0176576)
 
+* [Android 如何设置顶部状态栏颜色 ( 主题 )](https://blog.csdn.net/qq_36982160/article/details/82350993)
+
 * [Android 安全防护 / 检查 Root / 检查 Xposed / 反调试 / 应用多开 / 模拟器检测](https://www.jianshu.com/p/c37b1bdb4757)
 
 * [Android 插件化系列第 动态加载技术之 apk 换肤](https://www.jianshu.com/p/d1c6e67f7889)

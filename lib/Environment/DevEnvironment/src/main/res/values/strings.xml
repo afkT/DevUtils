@@ -1,0 +1,4 @@
+<resources>
+    <string name="dev_environment_restart">Restart</string>
+    <string name="dev_environment_title">Environment Config</string>
+</resources>

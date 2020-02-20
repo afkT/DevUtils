@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -63,6 +64,7 @@ final class Utils {
     // 变量相关
     static final String VAR_MODULE_PREFIX = "MODULE_";
     static final String VAR_ENVIRONMENT_PREFIX = "ENVIRONMENT_";
+    static final String VAR_MODULELIST = "moduleList";
     static final String VAR_MODULE_LIST = "MODULE_LIST";
     static final String VAR_SELECT_ENVIRONMENT = "sSelect";
     static final String VAR_LISTENER_LIST = "LISTENER_LIST";
@@ -102,7 +104,7 @@ final class Utils {
      */
     public static TypeSpec.Builder builderDevEnvironment_Class() {
         // 创建 DevEnvironment 类
-        TypeSpec.Builder classBuilder = TypeSpec.classBuilder(Utils.ENVIRONMENT_FILE_NAME)
+        TypeSpec.Builder classBuilder = TypeSpec.classBuilder(ENVIRONMENT_FILE_NAME)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
                 .addJavadoc("detail: 环境配置工具类\n")
                 .addJavadoc("@author Ttt\n");
@@ -120,7 +122,7 @@ final class Utils {
      */
     public static boolean createDevEnvironmentJavaFile(final TypeSpec.Builder classBuilder,
                                                        final ProcessingEnvironment processingEnv) {
-        JavaFile javaFile = JavaFile.builder(Utils.PACKAGE_NAME, classBuilder.build()).build();
+        JavaFile javaFile = JavaFile.builder(PACKAGE_NAME, classBuilder.build()).build();
         try {
             javaFile.writeTo(processingEnv.getFiler());
             return true;
@@ -299,7 +301,7 @@ final class Utils {
         // 创建 Module List 集合变量
         FieldSpec moduleListField = FieldSpec
                 .builder(_getListType(ModuleBean.class), VAR_MODULE_LIST, Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
-                .initializer("new $T<$T>()", ArrayList.class, ModuleBean.class)
+//                .initializer("new $T<$T>()", ArrayList.class, ModuleBean.class)
                 .addJavadoc("Module List\n")
                 .build();
         classBuilder.addField(moduleListField);
@@ -307,6 +309,9 @@ final class Utils {
         if (!sModuleNameMap.isEmpty()) {
             // 构建 static {} 初始化代码
             CodeBlock.Builder staticCodeBlockBuilder = CodeBlock.builder();
+            // 创建 module List 集合 VAR_MODULELIST
+            staticCodeBlockBuilder.addStatement("List<$T> $N = new $T<>()", ModuleBean.class,
+                    VAR_MODULELIST, ArrayList.class);
 
             Iterator<Map.Entry<String, List<String>>> iterator = sModuleNameMap.entrySet().iterator();
             while (iterator.hasNext()) {
@@ -316,15 +321,18 @@ final class Utils {
                 // Environment 变量名集合
                 List<String> environmentVarNameList = entry.getValue();
 
-                // 添加 moduleVarName 到 VAR_MODULE_LIST 中
+                // 添加 moduleVarName 到 VAR_MODULELIST 中
                 staticCodeBlockBuilder.add("\n")
-                        .addStatement("$N.add($N)", VAR_MODULE_LIST, _getModuleVarName_UpperCase(moduleName));
+                        .addStatement("$N.add($N)", VAR_MODULELIST, _getModuleVarName_UpperCase(moduleName));
                 // 添加 Environment 到对应 ModuleBean.getEnvironments() 中
                 for (String environmentVarName : environmentVarNameList) {
                     staticCodeBlockBuilder.addStatement("$N.$N().add($N)", _getModuleVarName_UpperCase(moduleName),
                             METHOD_GET_MODULE_ENVIRONMENTS_LIST, environmentVarName);
                 }
             }
+            // 初始化 Module List 集合变量 VAR_MODULE_LIST
+            staticCodeBlockBuilder.add("\n")
+                    .addStatement("$N = $T.unmodifiableList($N)", VAR_MODULE_LIST, Collections.class, VAR_MODULELIST);
             // 创建代码
             classBuilder.addStaticBlock(staticCodeBlockBuilder.build());
         }
@@ -570,7 +578,7 @@ final class Utils {
         codeBlockBuilder.add("    }\n");
         codeBlockBuilder.add("}\n");
 
-        // public static final Boolean notifyOnEnvironmentChangeListener(module, oldEnvironment, newEnvironment) {}
+        // private static final void notifyOnEnvironmentChangeListener(module, oldEnvironment, newEnvironment) {}
         MethodSpec notifyOnEnvironmentChangeListenerMethod = MethodSpec
                 .methodBuilder(METHOD_NOTIFY_ONENVIRONMENT_CHANGE_LISTENER)
                 .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
@@ -673,7 +681,7 @@ final class Utils {
         codeBlockBuilder.add("    }\n");
         codeBlockBuilder.add("}\n");
 
-        // public static final Boolean writeStorage(context, moduleName, environment) {}
+        // private static final Boolean writeStorage(context, moduleName, environment) {}
         MethodSpec writeStorageMethod = MethodSpec
                 .methodBuilder(METHOD_WRITE_STORAGE)
                 .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
@@ -723,7 +731,7 @@ final class Utils {
         codeBlockBuilder.add("    }\n");
         codeBlockBuilder.add("}\n");
 
-        // public static final Boolean readStorage(context, moduleName, module) {}
+        // private static final Boolean readStorage(context, moduleName, module) {}
         MethodSpec readStorageMethod = MethodSpec
                 .methodBuilder(METHOD_READ_STORAGE)
                 .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)

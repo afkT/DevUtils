@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dev_environment_item_selector"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/vid_deie_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingLeft="15.0dp"
+            android:paddingRight="15.0dp"
+            tools:text="Name" />
+
+        <TextView
+            android:id="@+id/vid_deie_value_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@android:color/darker_gray"
+            tools:text="Environment Value" />
+
+        <ImageView
+            android:id="@+id/vid_deie_mark_igview"
+            android:layout_width="50.0dp"
+            android:layout_height="50.0dp"
+            android:layout_gravity="center"
+            android:background="@drawable/dev_environment_mark" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dip"
+        android:background="@color/dev_environment_divider" />
+</LinearLayout>

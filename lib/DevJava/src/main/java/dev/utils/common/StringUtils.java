@@ -456,6 +456,15 @@ public final class StringUtils {
     }
 
     /**
+     * 字符串 转 byte[]
+     * @param str 待处理字符串
+     * @return byte[]
+     */
+    public static byte[] getBytes(final String str) {
+        return (str != null) ? str.getBytes() : null;
+    }
+
+    /**
      * 清空字符串全部空格
      * @param str 待处理字符串
      * @return 处理后的字符串

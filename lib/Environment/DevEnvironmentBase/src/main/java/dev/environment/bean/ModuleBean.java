@@ -53,7 +53,8 @@ public class ModuleBean implements Serializable {
     public final int hashCode() {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (alias != null ? alias.hashCode() : 0);
-        result = 31 * result + (environments != null ? environments.hashCode() : 0);
+//        // 同 equals
+//        result = 31 * result + (environments != null ? environments.hashCode() : 0);
         return result;
     }
 
