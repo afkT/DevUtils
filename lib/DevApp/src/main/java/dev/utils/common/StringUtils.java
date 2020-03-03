@@ -1542,13 +1542,13 @@ public final class StringUtils {
      * @param replace 替换的内容
      * @return 处理后的字符串
      */
-    public static String replaceStr(final String str, final String suffix, final String replace) {
+    public static String replaceAll(final String str, final String suffix, final String replace) {
         // 如果替换的内容或者判断的字符串为 null, 则直接跳过
         if (!isEmpty(str) && !isEmpty(suffix) && replace != null && !suffix.equals(replace)) {
             try {
                 return str.replaceAll(suffix, replace);
             } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "replaceStr");
+                JCLogUtils.eTag(TAG, e, "replaceAll");
             }
         }
         return str;
@@ -1561,13 +1561,13 @@ public final class StringUtils {
      * @param replace 替换的内容
      * @return 处理后的字符串, 替换失败则返回 null
      */
-    public static String replaceStrToNull(final String str, final String suffix, final String replace) {
+    public static String replaceAllToNull(final String str, final String suffix, final String replace) {
         // 如果替换的内容或者判断的字符串为 null, 则直接跳过
         if (!isEmpty(str) && !isEmpty(suffix) && replace != null && !suffix.equals(replace)) {
             try {
                 return str.replaceAll(suffix, replace);
             } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "replaceStrToNull");
+                JCLogUtils.eTag(TAG, e, "replaceAllToNull");
             }
         }
         return null;
@@ -1580,7 +1580,7 @@ public final class StringUtils {
      * @param replaceArys 准备替换的字符串数组
      * @return 处理后的字符串
      */
-    public static String replaceStrs(final String str, final String[] suffixArys, final String[] replaceArys) {
+    public static String replaceAlls(final String str, final String[] suffixArys, final String[] replaceArys) {
         // 防止数据为 null
         if (str != null && suffixArys != null && replaceArys != null) {
             String tempString = str;
@@ -1593,7 +1593,7 @@ public final class StringUtils {
                 // 遍历进行判断
                 for (int i = 0; i < spCount; i++) {
                     // 进行替换字符串
-                    tempString = replaceStr(tempString, suffixArys[i], replaceArys[i]);
+                    tempString = replaceAll(tempString, suffixArys[i], replaceArys[i]);
                 }
                 return tempString;
             }

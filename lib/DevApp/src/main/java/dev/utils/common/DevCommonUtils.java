@@ -1403,8 +1403,8 @@ public final class DevCommonUtils {
      * @param replace 替换的内容
      * @return 处理后的字符串
      */
-    public static String replaceStr(final String str, final String suffix, final String replace) {
-        return StringUtils.replaceStr(str, suffix, replace);
+    public static String replaceAll(final String str, final String suffix, final String replace) {
+        return StringUtils.replaceAll(str, suffix, replace);
     }
 
     /**
@@ -1414,8 +1414,8 @@ public final class DevCommonUtils {
      * @param replace 替换的内容
      * @return 处理后的字符串, 替换失败则返回 null
      */
-    public static String replaceStrToNull(final String str, final String suffix, final String replace) {
-        return StringUtils.replaceStrToNull(str, suffix, replace);
+    public static String replaceAllToNull(final String str, final String suffix, final String replace) {
+        return StringUtils.replaceAllToNull(str, suffix, replace);
     }
 
     /**
@@ -1425,7 +1425,7 @@ public final class DevCommonUtils {
      * @param replaceArys 准备替换的字符串数组
      * @return 处理后的字符串
      */
-    public static String replaceStrs(final String str, final String[] suffixArys, final String[] replaceArys) {
-        return StringUtils.replaceStrs(str, suffixArys, replaceArys);
+    public static String replaceAlls(final String str, final String[] suffixArys, final String[] replaceArys) {
+        return StringUtils.replaceAlls(str, suffixArys, replaceArys);
     }
 }
