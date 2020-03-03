@@ -1428,4 +1428,38 @@ public final class DevCommonUtils {
     public static String replaceAlls(final String str, final String[] suffixArys, final String[] replaceArys) {
         return StringUtils.replaceAlls(str, suffixArys, replaceArys);
     }
+
+    /**
+     * 拆分字符串
+     * @param str   待处理字符串
+     * @param regex 正则表达式
+     * @return 拆分后的数组
+     */
+    public static String[] split(final String str, final String regex) {
+        return StringUtils.split(str, regex);
+    }
+
+    /**
+     * 拆分字符串获取指定索引
+     * @param str   待处理字符串
+     * @param regex 正则表达式
+     * @param index 索引
+     * @return 拆分后的数组
+     */
+    public static String split(final String str, final String regex, final int index) {
+        return StringUtils.split(str, regex, index);
+    }
+
+    /**
+     * 拆分字符串获取指定索引
+     * @param str        待处理字符串
+     * @param regex      正则表达式
+     * @param index      索引
+     * @param defaultStr 默认字符串
+     * @return 拆分后的数组
+     */
+    public static String split(final String str, final String regex,
+                               final int index, final String defaultStr) {
+        return StringUtils.split(str, regex, index, defaultStr);
+    }
 }
