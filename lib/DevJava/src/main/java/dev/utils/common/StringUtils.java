@@ -1288,7 +1288,7 @@ public final class StringUtils {
 
     /**
      * 裁剪字符串
-     * @param str      需要裁剪的字符串
+     * @param str      待裁剪字符串
      * @param endIndex 结束裁剪的位置
      * @return 裁剪后的字符串
      */
@@ -1298,7 +1298,7 @@ public final class StringUtils {
 
     /**
      * 裁剪字符串
-     * @param str      需要裁剪的字符串
+     * @param str      待裁剪字符串
      * @param endIndex 结束裁剪的位置
      * @param isReturn 开始位置超过限制是否返回内容
      * @return 裁剪后的字符串
@@ -1309,7 +1309,7 @@ public final class StringUtils {
 
     /**
      * 裁剪字符串
-     * @param str        需要裁剪的字符串
+     * @param str        待裁剪字符串
      * @param beginIndex 开始裁剪的位置
      * @param endIndex   结束裁剪的位置
      * @param isReturn   开始位置超过限制是否返回内容
@@ -1542,13 +1542,13 @@ public final class StringUtils {
      * @param replace 替换的内容
      * @return 处理后的字符串
      */
-    public static String replaceStr(final String str, final String suffix, final String replace) {
+    public static String replaceAll(final String str, final String suffix, final String replace) {
         // 如果替换的内容或者判断的字符串为 null, 则直接跳过
         if (!isEmpty(str) && !isEmpty(suffix) && replace != null && !suffix.equals(replace)) {
             try {
                 return str.replaceAll(suffix, replace);
             } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "replaceStr");
+                JCLogUtils.eTag(TAG, e, "replaceAll");
             }
         }
         return str;
@@ -1561,13 +1561,13 @@ public final class StringUtils {
      * @param replace 替换的内容
      * @return 处理后的字符串, 替换失败则返回 null
      */
-    public static String replaceStrToNull(final String str, final String suffix, final String replace) {
+    public static String replaceAllToNull(final String str, final String suffix, final String replace) {
         // 如果替换的内容或者判断的字符串为 null, 则直接跳过
         if (!isEmpty(str) && !isEmpty(suffix) && replace != null && !suffix.equals(replace)) {
             try {
                 return str.replaceAll(suffix, replace);
             } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "replaceStrToNull");
+                JCLogUtils.eTag(TAG, e, "replaceAllToNull");
             }
         }
         return null;
@@ -1575,12 +1575,12 @@ public final class StringUtils {
 
     /**
      * 替换字符串
-     * @param str         内容
+     * @param str         待处理字符串
      * @param suffixArys  匹配判断字符串数组
      * @param replaceArys 准备替换的字符串数组
      * @return 处理后的字符串
      */
-    public static String replaceStrs(final String str, final String[] suffixArys, final String[] replaceArys) {
+    public static String replaceAlls(final String str, final String[] suffixArys, final String[] replaceArys) {
         // 防止数据为 null
         if (str != null && suffixArys != null && replaceArys != null) {
             String tempString = str;
@@ -1593,11 +1593,54 @@ public final class StringUtils {
                 // 遍历进行判断
                 for (int i = 0; i < spCount; i++) {
                     // 进行替换字符串
-                    tempString = replaceStr(tempString, suffixArys[i], replaceArys[i]);
+                    tempString = replaceAll(tempString, suffixArys[i], replaceArys[i]);
                 }
                 return tempString;
             }
         }
         return null;
+    }
+
+    /**
+     * 拆分字符串
+     * @param str   待处理字符串
+     * @param regex 正则表达式
+     * @return 拆分后的数组
+     */
+    public static String[] split(final String str, final String regex) {
+        if (!StringUtils.isEmpty(str) && !StringUtils.isEmpty(regex)) {
+            return str.split(regex);
+        }
+        return null;
+    }
+
+    /**
+     * 拆分字符串获取指定索引
+     * @param str   待处理字符串
+     * @param regex 正则表达式
+     * @param index 索引
+     * @return 拆分后的数组
+     */
+    public static String split(final String str, final String regex, final int index) {
+        return split(str, regex, index, null);
+    }
+
+    /**
+     * 拆分字符串获取指定索引
+     * @param str        待处理字符串
+     * @param regex      正则表达式
+     * @param index      索引
+     * @param defaultStr 默认字符串
+     * @return 拆分后的数组
+     */
+    public static String split(final String str, final String regex,
+                               final int index, final String defaultStr) {
+        if (index >= 0) {
+            String[] arrays = split(str, regex);
+            if (arrays != null && arrays.length > index) {
+                return arrays[index];
+            }
+        }
+        return defaultStr;
     }
 }

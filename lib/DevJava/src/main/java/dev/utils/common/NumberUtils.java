@@ -745,6 +745,28 @@ public final class NumberUtils {
         return (float) value / (float) divisor;
     }
 
+    /**
+     * 计算指定单位倍数
+     * @param units 单位数组
+     * @param value 待计算数值
+     * @return 单位数组对应倍数值
+     */
+    public static int[] calculateUnit(final double[] units, final double value) {
+        if (units == null) return null;
+        if (value <= 0) return null;
+        int len = units.length;
+        int[] arrays = new int[len];
+        double temp = value;
+        for (int i = 0; i < len; i++) {
+            if (temp >= units[i]) {
+                int mode = (int) (temp / units[i]);
+                temp -= mode * units[i];
+                arrays[i] = mode;
+            }
+        }
+        return arrays;
+    }
+
     // ==================
     // = 数字、中文互转 =
     // ==================
