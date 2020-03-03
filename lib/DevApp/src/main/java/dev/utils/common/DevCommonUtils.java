@@ -1256,7 +1256,7 @@ public final class DevCommonUtils {
 
     /**
      * 裁剪字符串
-     * @param str      需要裁剪的字符串
+     * @param str      待裁剪字符串
      * @param endIndex 结束裁剪的位置
      * @return 裁剪后的字符串
      */
@@ -1266,7 +1266,7 @@ public final class DevCommonUtils {
 
     /**
      * 裁剪字符串
-     * @param str      需要裁剪的字符串
+     * @param str      待裁剪字符串
      * @param endIndex 结束裁剪的位置
      * @param isReturn 开始位置超过限制是否返回内容
      * @return 裁剪后的字符串
@@ -1277,7 +1277,7 @@ public final class DevCommonUtils {
 
     /**
      * 裁剪字符串
-     * @param str        需要裁剪的字符串
+     * @param str        待裁剪字符串
      * @param beginIndex 开始裁剪的位置
      * @param endIndex   结束裁剪的位置
      * @param isReturn   开始位置超过限制是否返回内容
@@ -1420,7 +1420,7 @@ public final class DevCommonUtils {
 
     /**
      * 替换字符串
-     * @param str         内容
+     * @param str         待处理数据
      * @param suffixArys  匹配判断字符串数组
      * @param replaceArys 准备替换的字符串数组
      * @return 处理后的字符串

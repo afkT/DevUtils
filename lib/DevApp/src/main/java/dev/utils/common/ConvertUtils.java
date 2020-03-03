@@ -676,7 +676,7 @@ public final class ConvertUtils {
      * <pre>
      *     如: parseInt("1f603", 16) = 128515
      * </pre>
-     * @param str   String
+     * @param str   待处理字符串
      * @param radix 进制
      * @return 对应进制的值
      */
@@ -692,7 +692,7 @@ public final class ConvertUtils {
 
     /**
      * 字符串转换对应的进制
-     * @param str   String
+     * @param str   待处理字符串
      * @param radix 进制
      * @return 对应进制的值
      */
@@ -1485,7 +1485,7 @@ public final class ConvertUtils {
      * <pre>
      *     例: "011000010111001101100100" 传入 decodeBinary, 返回 byte[], 通过 new String(byte()) 获取配合 toBinaryString 使用
      * </pre>
-     * @param str String
+     * @param str 待处理字符串
      * @return 解码后的 byte[]
      */
     public static byte[] decodeBinary(final String str) {
@@ -1551,7 +1551,7 @@ public final class ConvertUtils {
 
     /**
      * 将十六进制字符串解码
-     * @param str 十六进制 String
+     * @param str 十六进制字符串
      * @return 十六进制转 ( 解 ) 码后的数据
      */
     public static byte[] decodeHex(final String str) {
@@ -1682,7 +1682,7 @@ public final class ConvertUtils {
 
     /**
      * 将 string 转换为 十六进制 char[]
-     * @param str String
+     * @param str 待处理字符串
      * @return 十六进制 char[]
      */
     public static char[] toHexChars(final String str) {
@@ -1691,7 +1691,7 @@ public final class ConvertUtils {
 
     /**
      * 将 string 转换为 十六进制 char[]
-     * @param str         String
+     * @param str         待处理字符串
      * @param toLowerCase {@code true} 小写格式, {@code false} 大写格式
      * @return 十六进制 char[]
      */

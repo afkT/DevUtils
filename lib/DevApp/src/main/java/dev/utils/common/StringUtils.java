@@ -1288,7 +1288,7 @@ public final class StringUtils {
 
     /**
      * 裁剪字符串
-     * @param str      需要裁剪的字符串
+     * @param str      待裁剪字符串
      * @param endIndex 结束裁剪的位置
      * @return 裁剪后的字符串
      */
@@ -1298,7 +1298,7 @@ public final class StringUtils {
 
     /**
      * 裁剪字符串
-     * @param str      需要裁剪的字符串
+     * @param str      待裁剪字符串
      * @param endIndex 结束裁剪的位置
      * @param isReturn 开始位置超过限制是否返回内容
      * @return 裁剪后的字符串
@@ -1309,7 +1309,7 @@ public final class StringUtils {
 
     /**
      * 裁剪字符串
-     * @param str        需要裁剪的字符串
+     * @param str        待裁剪字符串
      * @param beginIndex 开始裁剪的位置
      * @param endIndex   结束裁剪的位置
      * @param isReturn   开始位置超过限制是否返回内容
@@ -1575,7 +1575,7 @@ public final class StringUtils {
 
     /**
      * 替换字符串
-     * @param str         内容
+     * @param str         待处理字符串
      * @param suffixArys  匹配判断字符串数组
      * @param replaceArys 准备替换的字符串数组
      * @return 处理后的字符串
@@ -1599,5 +1599,48 @@ public final class StringUtils {
             }
         }
         return null;
+    }
+
+    /**
+     * 拆分字符串
+     * @param str   待处理字符串
+     * @param regex 正则表达式
+     * @return 拆分后的数组
+     */
+    public static String[] split(final String str, final String regex) {
+        if (!StringUtils.isEmpty(str) && !StringUtils.isEmpty(regex)) {
+            return str.split(regex);
+        }
+        return null;
+    }
+
+    /**
+     * 拆分字符串获取指定索引
+     * @param str   待处理字符串
+     * @param regex 正则表达式
+     * @param index 索引
+     * @return 拆分后的数组
+     */
+    public static String split(final String str, final String regex, final int index) {
+        return split(str, regex, index, null);
+    }
+
+    /**
+     * 拆分字符串获取指定索引
+     * @param str        待处理字符串
+     * @param regex      正则表达式
+     * @param index      索引
+     * @param defaultStr 默认字符串
+     * @return 拆分后的数组
+     */
+    public static String split(final String str, final String regex,
+                               final int index, final String defaultStr) {
+        if (index >= 0) {
+            String[] arrays = split(str, regex);
+            if (arrays != null && arrays.length > index) {
+                return arrays[index];
+            }
+        }
+        return defaultStr;
     }
 }
