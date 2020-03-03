@@ -3,13 +3,27 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <compositeConfiguration>
-          <compositeBuild compositeDefinitionSource="SCRIPT" />
-        </compositeConfiguration>
+        <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/lib/DevApp" />
+            <option value="$PROJECT_DIR$/lib/DevAssist" />
+            <option value="$PROJECT_DIR$/lib/DevBase" />
+            <option value="$PROJECT_DIR$/lib/DevJava" />
+            <option value="$PROJECT_DIR$/lib/DevOther" />
+            <option value="$PROJECT_DIR$/lib/DevStandard" />
+            <option value="$PROJECT_DIR$/lib/DevWidget" />
+            <option value="$PROJECT_DIR$/lib/Environment/DevEnvironment" />
+            <option value="$PROJECT_DIR$/lib/Environment/DevEnvironmentBase" />
+            <option value="$PROJECT_DIR$/lib/Environment/DevEnvironmentCompiler" />
+            <option value="$PROJECT_DIR$/lib/Environment/DevEnvironmentCompilerRelease" />
+          </set>
+        </option>
         <option name="resolveModulePerSourceSet" value="false" />
-        <option name="testRunner" value="PLATFORM" />
       </GradleProjectSettings>
     </option>
   </component>
