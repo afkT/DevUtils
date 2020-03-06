@@ -164,7 +164,7 @@ public class Pangu {
         } finally {
             br.close();
 
-            // 避免 writer 沒有實際操作就 close()，產生一個空檔案
+            // 避免 writer 沒有實際操作就 close() 產生一個空檔案
             if (bw != null) {
                 bw.close();
             }
