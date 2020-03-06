@@ -428,7 +428,7 @@ public final class TimerManager {
          *     如果外部通过了 createTimer 或者直接 new AbsTimer 初始化了对象, 没有调用 startTimer, 都不会保存到 mTimerLists 并不影响对定时器的控制
          * </pre>
          */
-        public void startTimer() {
+        public AbsTimer startTimer() {
             // 标记状态 - 不需要回收
             this.markSweep = false;
             synchronized (mTimerLists) {
@@ -437,14 +437,16 @@ public final class TimerManager {
                     mTimerLists.add(this);
                 }
             }
+            return this;
         }
 
         /**
          * 关闭定时器
          */
-        public void closeTimer() {
+        public AbsTimer closeTimer() {
             // 标记状态 - 需要回收
             this.markSweep = true;
+            return this;
         }
 
         /**
@@ -628,20 +630,22 @@ public final class TimerManager {
          * 运行定时器
          */
         @Override
-        public void startTimer() {
+        public AbsTimer startTimer() {
             super.startTimer(); // 必须保留这句话
             // 开始定时器任务
             start();
+            return this;
         }
 
         /**
          * 关闭定时器
          */
         @Override
-        public void closeTimer() {
+        public AbsTimer closeTimer() {
             super.closeTimer(); // 必须保留这句话
             // 关闭定时器任务
             close();
+            return this;
         }
 
         /**
