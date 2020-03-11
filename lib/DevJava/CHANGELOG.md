@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 1.1.1 *(2020-03-11)*
+----------------------------
+
+* `[Add]` StringUtils#split
+
+* `[Add]` NumberUtils#calculateUnit
+
+* `[Update]` StringUtils#replaceStr、replaceStrToNull 方法名为 StringUtils#replaceAll、replaceAllToNull
+
 Version 1.1.0 *(2020-02-21)*
 ----------------------------
 

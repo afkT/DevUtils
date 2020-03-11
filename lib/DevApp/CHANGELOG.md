@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+Version 1.9.1 *(2020-03-11)*
+----------------------------
+
+* `[Add]` ViewUtils#isShown、isShowns
+
+* `[Add]` StringUtils#split
+
+* `[Add]` NumberUtils#calculateUnit
+
+* `[Update]` StringUtils#replaceStr、replaceStrToNull 方法名为 StringUtils#replaceAll、replaceAllToNull
+
+* `[Update]` TimerManager#startTimer、closeTimer 返回值为 AbsTimer
+
 Version 1.9.0 *(2020-02-21)*
 ----------------------------
 
