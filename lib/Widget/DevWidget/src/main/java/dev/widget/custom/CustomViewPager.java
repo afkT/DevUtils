@@ -1,10 +1,11 @@
 package dev.widget.custom;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+
+import androidx.annotation.Nullable;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * detail: 自定义 ViewPager 滑动监听、滑动控制
