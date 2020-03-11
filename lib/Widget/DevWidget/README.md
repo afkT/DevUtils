@@ -4,7 +4,9 @@
 
 ```
 - dev                                                 | 根目录
-   - widget                                           | 自定义 View 包目录
+   - widget                                           | 自定义 View 根目录
+      - adjust                                        | 自动调节高度 View
+      - custom                                        | 自定义 View
 ```
 
 
@@ -17,7 +19,9 @@
 
 
 - dev                                                 | 根目录
-   - [widget](#devwidget)                             | 自定义 View 包目录
+   - [widget](#devwidget)                             | 自定义 View 根目录
+      - [adjust](#devwidgetadjust)                    | 自动调节高度 View
+      - [custom](#devwidgetcustom)                    | 自定义 View
 
 
 
@@ -28,92 +32,7 @@
 ## <span id="devwidget">**`dev.widget`**</span>
 
 
-* **自动调节高度 GridView ->** [AdjustHeightGridView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/AdjustHeightGridView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onMeasure | onMeasure |
-
-
-* **自动调节高度 ListView ->** [AdjustHeightListView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/AdjustHeightListView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onMeasure | onMeasure |
-
-
-* **自动调节高度 RecyclerView ->** [AdjustHeightRecyclerView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/AdjustHeightRecyclerView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onMeasure | onMeasure |
-
-
-* **自动调节高度 WebView ->** [AdjustHeightWebView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/AdjustHeightWebView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onMeasure | onMeasure |
-
-
-* **Gallery 滑动控制 ->** [ControlSlideGallery.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ControlSlideGallery.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onFling | onFling |
-| onTouchEvent | onTouchEvent |
-| isSlide | 是否允许滑动 |
-| setSlide | 设置是否允许滑动 |
-| toggleSlide | 切换滑动状态 |
-
-
-* **ViewPager 滑动控制 ->** [ControlSlideViewPager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ControlSlideViewPager.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onTouchEvent | onTouchEvent |
-| onInterceptTouchEvent | onInterceptTouchEvent |
-| isSlide | 是否允许滑动 |
-| setSlide | 设置是否允许滑动 |
-| toggleSlide | 切换滑动状态 |
-| onPageScrolled | onPageScrolled |
-| onPageScrollStateChanged | onPageScrollStateChanged |
-| onSlideDirection | 滑动方向 |
-
-
-* **自定义 HorizontalScrollView 监听滑动改变 ->** [CustomHorizontalScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/CustomHorizontalScrollView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onScrollChanged | onScrollChanged |
-| computeScrollDeltaToGetChildRectOnScreen | computeScrollDeltaToGetChildRectOnScreen |
-| onTouchEvent | onTouchEvent |
-| onInterceptTouchEvent | onInterceptTouchEvent |
-| isSlide | 是否允许滑动 |
-| setSlide | 设置是否允许滑动 |
-| toggleSlide | 切换滑动状态 |
-| isSlideListener | 是否监听滑动 |
-| setSlideListener | 设置是否监听滑动 |
-| setScrollCallBack | 设置滑动回调 |
-
-
-* **自定义 ScrollView 监听滑动改变 ->** [CustomNestedScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/CustomNestedScrollView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onScrollChanged | onScrollChanged |
-| computeScrollDeltaToGetChildRectOnScreen | computeScrollDeltaToGetChildRectOnScreen |
-| onTouchEvent | onTouchEvent |
-| onInterceptTouchEvent | onInterceptTouchEvent |
-| isSlide | 是否允许滑动 |
-| setSlide | 设置是否允许滑动 |
-| toggleSlide | 切换滑动状态 |
-| isSlideListener | 是否监听滑动 |
-| setSlideListener | 设置是否监听滑动 |
-| setScrollCallBack | 设置滑动回调 |
-
-
-* **自定义 ProgressBar 样式 View ->** [CustomProgressBar.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/CustomProgressBar.java)
+* **自定义 ProgressBar 样式 View ->** [CustomProgressBar.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/CustomProgressBar.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -141,55 +60,7 @@
 | setNumberTextColor | 设置绘制的数字颜色 |
 
 
-* **自定义 RecyclerView 监听滑动改变 ->** [CustomRecyclerView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/CustomRecyclerView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onScrolled | onScrolled |
-| onScrollStateChanged | onScrollStateChanged |
-| onTouchEvent | onTouchEvent |
-| onInterceptTouchEvent | onInterceptTouchEvent |
-| isSlide | 是否允许滑动 |
-| setSlide | 设置是否允许滑动 |
-| toggleSlide | 切换滑动状态 |
-| isSlideListener | 是否监听滑动 |
-| setSlideListener | 设置是否监听滑动 |
-| setScrollCallBack | 设置滑动回调 |
-| onScrollChanged | 滑动改变通知 |
-
-
-* **自定义 ScrollView 监听滑动改变 ->** [CustomScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/CustomScrollView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onScrollChanged | onScrollChanged |
-| computeScrollDeltaToGetChildRectOnScreen | computeScrollDeltaToGetChildRectOnScreen |
-| onTouchEvent | onTouchEvent |
-| onInterceptTouchEvent | onInterceptTouchEvent |
-| isSlide | 是否允许滑动 |
-| setSlide | 设置是否允许滑动 |
-| toggleSlide | 切换滑动状态 |
-| isSlideListener | 是否监听滑动 |
-| setSlideListener | 设置是否监听滑动 |
-| setScrollCallBack | 设置滑动回调 |
-
-
-* **自定义 WebView 监听滑动改变 ->** [CustomWebView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/CustomWebView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onScrollChanged | onScrollChanged |
-| onTouchEvent | onTouchEvent |
-| onInterceptTouchEvent | onInterceptTouchEvent |
-| isSlide | 是否允许滑动 |
-| setSlide | 设置是否允许滑动 |
-| toggleSlide | 切换滑动状态 |
-| isSlideListener | 是否监听滑动 |
-| setSlideListener | 设置是否监听滑动 |
-| setScrollCallBack | 设置滑动回调 |
-
-
-* **换行通知 TextView ->** [LineTextView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/LineTextView.java)
+* **换行通知 TextView ->** [LineTextView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/LineTextView.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -200,7 +71,7 @@
 | onNewLine | 换行触发 |
 
 
-* **最大高度限制 ScrollView ->** [MaxHeightScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/MaxHeightScrollView.java)
+* **最大高度限制 ScrollView ->** [MaxHeightScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/MaxHeightScrollView.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -209,7 +80,7 @@
 | setMaxHeight | 设置 View 最大高度 |
 
 
-* **自定义右边清空 EditText ->** [RightClearEditText.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/RightClearEditText.java)
+* **自定义右边清空 EditText ->** [RightClearEditText.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/RightClearEditText.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -225,7 +96,7 @@
 | afterTextChanged | 在文本变化后调用 |
 
 
-* **扫描形状 View ->** [ScanShapeView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ScanShapeView.java)
+* **扫描形状 View ->** [ScanShapeView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ScanShapeView.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -306,7 +177,7 @@
 | getRadius | getRadius |
 
 
-* **签名画笔 View ->** [SignView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/SignView.java)
+* **签名画笔 View ->** [SignView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/SignView.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -315,42 +186,7 @@
 | setPaint | 设置画笔 |
 
 
-* **滑动 ImageView ( 未调整 ) ->** [SlideImageView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/SlideImageView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onMeasure | onMeasure |
-| onDraw | onDraw |
-| onTouchEvent | onTouchEvent |
-| resizeImage | 重新计算大小, 以宽度为基准 |
-| resizeImageH | 重新计算大小, 以高度为基准 |
-| getEstimateWidth | 获取设置的预计宽度 |
-| setEstimateWidth | 设置预计高度 |
-| getMeasureCount | 获取计算次数 |
-| setMeasureCount | 设置计算次数 |
-| isNeedSlide | 是否需要滑动 -> 图片是否符合要求能够滑动 |
-| setNeedSlide | 设置是否需要滑动 |
-| isAllowSlide | 是否允许滑动 |
-| setAllowSlide | 设置是否允许滑动 |
-| getScale | 获取比例 |
-| setScale | 设置计算比例 |
-| startAnim | 启动动画 |
-| stopAnim | 关闭动画 |
-| isStartAnim | 是否启动了动画 |
-| getSlideLenth | 获取滑动长度 |
-| setSlideLenth | 设置滑动长度 |
-| getSlideSpeed | 获取滑动速度 - 时间 |
-| setSlideSpeed | 设置滑动速度 - 时间 |
-| getCheckTime | 获取检测时间 |
-| setCheckTime | 设置检测时间 |
-| isScrollBottom | 是否向下滑动 |
-| setScrollDirection | 设置滑动方向 |
-| getSlideHeight | 获取当前滑动的高度 |
-| setSlideHeight | 设置当前滑动的高度 |
-| setSlideHeightScale | 设置滑动比例 |
-
-
-* **状态布局 ->** [StateLayout.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/StateLayout.java)
+* **状态布局 ->** [StateLayout.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/StateLayout.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -372,7 +208,7 @@
 | OnChanged | 状态值改变触发回调 |
 
 
-* **换行 View ->** [WrapView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/WrapView.java)
+* **换行 View ->** [WrapView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/WrapView.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -386,3 +222,133 @@
 | setViewLeftMargin | 设置每个 View 之间的 Left 边距 |
 | setRowFristLeftMargin | 设置每一行第一个 View Left 边距 |
 | setRowViewMargin | 设置 Row View 边距 |
+
+
+## <span id="devwidgetadjust">**`dev.widget.adjust`**</span>
+
+
+* **自动调节高度 GridView ->** [AdjustHeightGridView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/adjust/AdjustHeightGridView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onMeasure | onMeasure |
+
+
+* **自动调节高度 ListView ->** [AdjustHeightListView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/adjust/AdjustHeightListView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onMeasure | onMeasure |
+
+
+* **自动调节高度 RecyclerView ->** [AdjustHeightRecyclerView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/adjust/AdjustHeightRecyclerView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onMeasure | onMeasure |
+
+
+* **自动调节高度 WebView ->** [AdjustHeightWebView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/adjust/AdjustHeightWebView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onMeasure | onMeasure |
+
+
+## <span id="devwidgetcustom">**`dev.widget.custom`**</span>
+
+
+* **自定义 Gallery 滑动控制 ->** [CustomGallery.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomGallery.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onFling | onFling |
+| onTouchEvent | onTouchEvent |
+| onInterceptTouchEvent | onInterceptTouchEvent |
+| isSlide | 是否允许滑动 |
+| setSlide | 设置是否允许滑动 |
+| toggleSlide | 切换滑动控制状态 |
+
+
+* **自定义 HorizontalScrollView 滑动监听、滑动控制 ->** [CustomHorizontalScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomHorizontalScrollView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onScrollChanged | onScrollChanged |
+| computeScrollDeltaToGetChildRectOnScreen | computeScrollDeltaToGetChildRectOnScreen |
+| onTouchEvent | onTouchEvent |
+| onInterceptTouchEvent | onInterceptTouchEvent |
+| isSlide | 是否允许滑动 |
+| setSlide | 设置是否允许滑动 |
+| toggleSlide | 切换滑动控制状态 |
+| setScrollCallBack | 设置滑动监听回调 |
+
+
+* **自定义 NestedScrollView 滑动监听、滑动控制 ->** [CustomNestedScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomNestedScrollView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onScrollChanged | onScrollChanged |
+| computeScrollDeltaToGetChildRectOnScreen | computeScrollDeltaToGetChildRectOnScreen |
+| onTouchEvent | onTouchEvent |
+| onInterceptTouchEvent | onInterceptTouchEvent |
+| isSlide | 是否允许滑动 |
+| setSlide | 设置是否允许滑动 |
+| toggleSlide | 切换滑动控制状态 |
+| setScrollCallBack | 设置滑动监听回调 |
+
+
+* **自定义 RecyclerView 滑动监听、滑动控制 ->** [CustomRecyclerView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomRecyclerView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onScrolled | onScrolled |
+| onScrollStateChanged | onScrollStateChanged |
+| onTouchEvent | onTouchEvent |
+| onInterceptTouchEvent | onInterceptTouchEvent |
+| isSlide | 是否允许滑动 |
+| setSlide | 设置是否允许滑动 |
+| toggleSlide | 切换滑动控制状态 |
+| setScrollCallBack | 设置滑动监听回调 |
+| onScrollChanged | 滑动改变通知 |
+
+
+* **自定义 ScrollView 滑动监听、滑动控制 ->** [CustomScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomScrollView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onScrollChanged | onScrollChanged |
+| computeScrollDeltaToGetChildRectOnScreen | computeScrollDeltaToGetChildRectOnScreen |
+| onTouchEvent | onTouchEvent |
+| onInterceptTouchEvent | onInterceptTouchEvent |
+| isSlide | 是否允许滑动 |
+| setSlide | 设置是否允许滑动 |
+| toggleSlide | 切换滑动控制状态 |
+| setScrollCallBack | 设置滑动监听回调 |
+
+
+* **自定义 ViewPager 滑动监听、滑动控制 ->** [CustomViewPager.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomViewPager.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onTouchEvent | onTouchEvent |
+| onInterceptTouchEvent | onInterceptTouchEvent |
+| isSlide | 是否允许滑动 |
+| setSlide | 设置是否允许滑动 |
+| toggleSlide | 切换滑动控制状态 |
+| onPageScrolled | onPageScrolled |
+| onPageScrollStateChanged | onPageScrollStateChanged |
+| onSlideDirection | 滑动方向 |
+
+
+* **自定义 WebView 滑动监听、滑动控制 ->** [CustomWebView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomWebView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onScrollChanged | onScrollChanged |
+| onTouchEvent | onTouchEvent |
+| onInterceptTouchEvent | onInterceptTouchEvent |
+| isSlide | 是否允许滑动 |
+| setSlide | 设置是否允许滑动 |
+| toggleSlide | 切换滑动控制状态 |
+| setScrollCallBack | 设置滑动监听回调 |
