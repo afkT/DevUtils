@@ -14,7 +14,7 @@ import android.view.MotionEvent;
 public class ControlSlideViewPager extends ViewPager {
 
     // 是否允许滑动
-    private boolean mIsSlide = true;
+    private boolean mSlide = true;
 
     public ControlSlideViewPager(@NonNull Context context) {
         super(context);
@@ -26,13 +26,13 @@ public class ControlSlideViewPager extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if (!this.mIsSlide) return false;
+        if (!this.mSlide) return false;
         return super.onTouchEvent(ev);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent arg0) {
-        if (!this.mIsSlide) return false;
+        if (!this.mSlide) return false;
         return super.onInterceptTouchEvent(arg0);
     }
 
@@ -41,7 +41,7 @@ public class ControlSlideViewPager extends ViewPager {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isSlide() {
-        return mIsSlide;
+        return mSlide;
     }
 
     /**
@@ -50,16 +50,16 @@ public class ControlSlideViewPager extends ViewPager {
      * @return {@link ControlSlideViewPager}
      */
     public ControlSlideViewPager setSlide(boolean isSlide) {
-        this.mIsSlide = isSlide;
+        this.mSlide = isSlide;
         return this;
     }
 
     /**
-     * 切换滑动状态
+     * 切换滑动控制状态
      * @return {@link ControlSlideViewPager}
      */
     public ControlSlideViewPager toggleSlide() {
-        this.mIsSlide = !this.mIsSlide;
+        this.mSlide = !this.mSlide;
         return this;
     }
 
@@ -70,15 +70,25 @@ public class ControlSlideViewPager extends ViewPager {
     /**
      * detail: 滑动方向监听
      * @author Ttt
+     * <pre>
+     *     viewpager.setOnPageChangeListener(new ControlSlideViewPager.OnDirectionListener() {
+     *             @Override
+     *             public void onSlideDirection(boolean left, boolean right) {
+     *             }
+     *             @Override
+     *             public void onPageSelected(int index) {
+     *             }
+     *         });
+     * </pre>
      */
     public static abstract class OnDirectionListener implements OnPageChangeListener {
 
         // 最后滑动的位置
         private int mLastValue = -1;
         // 是否滑动中
-        private boolean mIsScrolling;
+        private boolean mScrolling;
         // 是否滑向左边、右边
-        private boolean mIsLeft, mIsRight;
+        private boolean mLeft, mRight;
         // 是否向左滑动
         protected boolean mLeftScroll = false;
 
@@ -88,20 +98,20 @@ public class ControlSlideViewPager extends ViewPager {
             // arg1 当前页面偏移的百分比
             // arg2 当前页面偏移的像素位置
 
-            if (mIsScrolling) {
+            if (mScrolling) {
                 if (mLastValue > arg2) {
-                    mIsRight = true;
-                    mIsLeft = false;
+                    mRight = true;
+                    mLeft = false;
                     mLeftScroll = false;
                 } else if (mLastValue < arg2) {
-                    mIsRight = false;
-                    mIsLeft = true;
+                    mRight = false;
+                    mLeft = true;
                     mLeftScroll = true;
                 } else if (mLastValue == arg2) {
-                    mIsRight = mIsLeft = false;
+                    mRight = mLeft = false;
                 }
                 // 触发滑动方向回调
-                onSlideDirection(mIsLeft, mIsRight);
+                onSlideDirection(mLeft, mRight);
             }
             mLastValue = arg2;
         }
@@ -114,13 +124,13 @@ public class ControlSlideViewPager extends ViewPager {
             // state == 2 表示滑动完毕了
 
             // 判断是否滑动中
-            mIsScrolling = (state == 1);
+            mScrolling = (state == 1);
 
             if (state == 2) {
                 // 触发滑动方向回调
-                onSlideDirection(mIsLeft, mIsRight);
+                onSlideDirection(mLeft, mRight);
                 // 重置方向
-                mIsRight = mIsLeft = false;
+                mRight = mLeft = false;
             }
         }
 

@@ -49,8 +49,8 @@ public class ViewPagerActivity extends BaseToolbarActivity {
             }
 
             @Override
-            public void onPageSelected(int i) {
-                DevLogger.dTag(mTag, "索引变动: " + i);
+            public void onPageSelected(int index) {
+                DevLogger.dTag(mTag, "索引变动: " + index);
 
                 if (mLeftScroll) {
                     showToast("往左滑 - 从右往左");
