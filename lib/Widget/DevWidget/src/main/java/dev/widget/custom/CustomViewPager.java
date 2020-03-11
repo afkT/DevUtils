@@ -1,4 +1,4 @@
-package dev.widget.control;
+package dev.widget.custom;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,31 +8,31 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 /**
- * detail: ViewPager 滑动控制
+ * detail: 自定义 ViewPager 滑动监听、滑动控制
  * @author Ttt
  */
-public class ControlSlideViewPager extends ViewPager {
+public class CustomViewPager extends ViewPager {
 
     // 是否允许滑动
-    private boolean mSlide = true;
+    private boolean mIsSlide = true;
 
-    public ControlSlideViewPager(@NonNull Context context) {
+    public CustomViewPager(@NonNull Context context) {
         super(context);
     }
 
-    public ControlSlideViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public CustomViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if (!this.mSlide) return false;
+        if (!this.mIsSlide) return false;
         return super.onTouchEvent(ev);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent arg0) {
-        if (!this.mSlide) return false;
+        if (!this.mIsSlide) return false;
         return super.onInterceptTouchEvent(arg0);
     }
 
@@ -41,25 +41,25 @@ public class ControlSlideViewPager extends ViewPager {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isSlide() {
-        return mSlide;
+        return mIsSlide;
     }
 
     /**
      * 设置是否允许滑动
      * @param isSlide {@code true} yes, {@code false} no
-     * @return {@link ControlSlideViewPager}
+     * @return {@link CustomViewPager}
      */
-    public ControlSlideViewPager setSlide(boolean isSlide) {
-        this.mSlide = isSlide;
+    public CustomViewPager setSlide(boolean isSlide) {
+        this.mIsSlide = isSlide;
         return this;
     }
 
     /**
      * 切换滑动控制状态
-     * @return {@link ControlSlideViewPager}
+     * @return {@link CustomViewPager}
      */
-    public ControlSlideViewPager toggleSlide() {
-        this.mSlide = !this.mSlide;
+    public CustomViewPager toggleSlide() {
+        this.mIsSlide = !this.mIsSlide;
         return this;
     }
 
@@ -86,9 +86,9 @@ public class ControlSlideViewPager extends ViewPager {
         // 最后滑动的位置
         private int mLastValue = -1;
         // 是否滑动中
-        private boolean mScrolling;
+        private boolean mIsScrolling;
         // 是否滑向左边、右边
-        private boolean mLeft, mRight;
+        private boolean mIsLeft, mIsRight;
         // 是否向左滑动
         protected boolean mLeftScroll = false;
 
@@ -98,20 +98,20 @@ public class ControlSlideViewPager extends ViewPager {
             // arg1 当前页面偏移的百分比
             // arg2 当前页面偏移的像素位置
 
-            if (mScrolling) {
+            if (mIsScrolling) {
                 if (mLastValue > arg2) {
-                    mRight = true;
-                    mLeft = false;
+                    mIsRight = true;
+                    mIsLeft = false;
                     mLeftScroll = false;
                 } else if (mLastValue < arg2) {
-                    mRight = false;
-                    mLeft = true;
+                    mIsRight = false;
+                    mIsLeft = true;
                     mLeftScroll = true;
                 } else if (mLastValue == arg2) {
-                    mRight = mLeft = false;
+                    mIsRight = mIsLeft = false;
                 }
                 // 触发滑动方向回调
-                onSlideDirection(mLeft, mRight);
+                onSlideDirection(mIsLeft, mIsRight);
             }
             mLastValue = arg2;
         }
@@ -124,13 +124,13 @@ public class ControlSlideViewPager extends ViewPager {
             // state == 2 表示滑动完毕了
 
             // 判断是否滑动中
-            mScrolling = (state == 1);
+            mIsScrolling = (state == 1);
 
             if (state == 2) {
                 // 触发滑动方向回调
-                onSlideDirection(mLeft, mRight);
+                onSlideDirection(mIsLeft, mIsRight);
                 // 重置方向
-                mRight = mLeft = false;
+                mIsRight = mIsLeft = false;
             }
         }
 

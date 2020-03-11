@@ -14,7 +14,7 @@ import android.widget.Gallery;
 public class ControlSlideGallery extends Gallery {
 
     // 是否允许滑动
-    private boolean mSlide = true;
+    private boolean mIsSlide = true;
 
     public ControlSlideGallery(Context context) {
         super(context);
@@ -42,7 +42,7 @@ public class ControlSlideGallery extends Gallery {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (mSlide) {
+        if (mIsSlide) {
             return super.onTouchEvent(event);
         } else {
             return false;
@@ -64,7 +64,7 @@ public class ControlSlideGallery extends Gallery {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isSlide() {
-        return mSlide;
+        return mIsSlide;
     }
 
     /**
@@ -73,7 +73,7 @@ public class ControlSlideGallery extends Gallery {
      * @return {@link ControlSlideGallery}
      */
     public ControlSlideGallery setSlide(boolean isSlide) {
-        this.mSlide = isSlide;
+        this.mIsSlide = isSlide;
         return this;
     }
 
@@ -82,7 +82,7 @@ public class ControlSlideGallery extends Gallery {
      * @return {@link ControlSlideGallery}
      */
     public ControlSlideGallery toggleSlide() {
-        this.mSlide = !this.mSlide;
+        this.mIsSlide = !this.mIsSlide;
         return this;
     }
 }

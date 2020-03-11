@@ -19,7 +19,7 @@
         android:maxLines="1"
         android:text="禁止滑动" />
 
-    <dev.widget.control.ControlSlideViewPager
+    <dev.widget.custom.CustomViewPager
         android:id="@+id/vid_avp_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
