@@ -1,25 +1,25 @@
-package dev.widget;
+package dev.widget.adjust;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.widget.ListView;
+import android.widget.GridView;
 
 /**
- * detail: 自动调节高度 ListView
+ * detail: 自动调节高度 GridView
  * @author Ttt
  */
-public class AdjustHeightListView extends ListView {
+public class AdjustHeightGridView extends GridView {
 
-    public AdjustHeightListView(Context context) {
+    public AdjustHeightGridView(Context context) {
         super(context);
     }
 
-    public AdjustHeightListView(Context context, @Nullable AttributeSet attrs) {
+    public AdjustHeightGridView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public AdjustHeightListView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public AdjustHeightGridView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

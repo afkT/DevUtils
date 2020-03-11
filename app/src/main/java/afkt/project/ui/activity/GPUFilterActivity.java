@@ -22,7 +22,7 @@ import dev.other.PictureSelectorUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.image.ImageUtils;
 import dev.utils.app.logger.DevLogger;
-import dev.widget.ControlSlideGallery;
+import dev.widget.control.ControlSlideGallery;
 
 /**
  * detail: GPU 滤镜效果

@@ -11,7 +11,7 @@ import afkt.project.ui.adapter.ViewPagerAdapter;
 import butterknife.BindView;
 import butterknife.OnClick;
 import dev.utils.app.logger.DevLogger;
-import dev.widget.ControlSlideViewPager;
+import dev.widget.control.ControlSlideViewPager;
 
 /**
  * detail: ViewPager 滑动监听、控制滑动

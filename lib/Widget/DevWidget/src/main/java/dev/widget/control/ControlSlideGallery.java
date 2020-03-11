@@ -1,4 +1,4 @@
-package dev.widget;
+package dev.widget.control;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
