@@ -53,6 +53,11 @@ ext {
             dev_java_version                        : '1.1.1',
 
             // 版本号
+            dev_widget_versionCode                  : 100,
+            // 版本名
+            dev_widget_versionName                  : '1.0.0',
+
+            // 版本号
             dev_environment_versionCode             : 100,
             // 版本名
             dev_environment_version                 : '1.0.0',
@@ -67,6 +72,7 @@ ext {
                     dev_app                         : "com.afkt:DevApp:${versions.dev_app_versionName}",
                     dev_assist                      : "com.afkt:DevAssist:${versions.dev_assist_versionName}",
                     dev_java                        : "com.afkt:DevJava:${versions.dev_java_version}",
+                    dev_widget                      : "com.afkt:DevWidget:${versions.dev_widget_versionName}",
                     // 环境配置切换库
                     dev_environment                 : "com.afkt:DevEnvironment:${versions.dev_environment_version}",
                     dev_environment_base            : "com.afkt:DevEnvironmentBase:${versions.dev_environment_base_version}",

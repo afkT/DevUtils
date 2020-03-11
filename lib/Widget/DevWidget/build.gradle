@@ -2,6 +2,11 @@ apply {
     from rootProject.file(files.app_lib_gradle)
 }
 
+android.defaultConfig {
+    versionCode versions.dev_widget_versionCode
+    versionName versions.dev_widget_versionName
+}
+
 dependencies {
     implementation deps.android.appcompat_v7
     implementation deps.android.support_v4
