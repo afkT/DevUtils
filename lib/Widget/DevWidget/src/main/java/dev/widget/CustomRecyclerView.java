@@ -115,7 +115,7 @@ public class CustomRecyclerView extends RecyclerView {
     }
 
     /**
-     * 切换滑动状态
+     * 切换滑动控制状态
      * @return {@link CustomRecyclerView}
      */
     public CustomRecyclerView toggleSlide() {

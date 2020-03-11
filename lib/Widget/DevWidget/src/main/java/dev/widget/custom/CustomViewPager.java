@@ -1,7 +1,6 @@
 package dev.widget.custom;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -16,11 +15,11 @@ public class CustomViewPager extends ViewPager {
     // 是否允许滑动
     private boolean mIsSlide = true;
 
-    public CustomViewPager(@NonNull Context context) {
+    public CustomViewPager(Context context) {
         super(context);
     }
 
-    public CustomViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public CustomViewPager(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -71,7 +70,7 @@ public class CustomViewPager extends ViewPager {
      * detail: 滑动方向监听
      * @author Ttt
      * <pre>
-     *     viewpager.setOnPageChangeListener(new ControlSlideViewPager.OnDirectionListener() {
+     *     viewpager.setOnPageChangeListener(new CustomViewPager.OnDirectionListener() {
      *             @Override
      *             public void onSlideDirection(boolean left, boolean right) {
      *             }

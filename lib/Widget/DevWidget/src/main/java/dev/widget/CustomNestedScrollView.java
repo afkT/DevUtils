@@ -80,7 +80,7 @@ public class CustomNestedScrollView extends NestedScrollView {
     }
 
     /**
-     * 切换滑动状态
+     * 切换滑动控制状态
      * @return {@link CustomNestedScrollView}
      */
     public CustomNestedScrollView toggleSlide() {

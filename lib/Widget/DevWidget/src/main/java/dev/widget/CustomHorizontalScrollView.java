@@ -76,7 +76,7 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
     }
 
     /**
-     * 切换滑动状态
+     * 切换滑动控制状态
      * @return {@link CustomHorizontalScrollView}
      */
     public CustomHorizontalScrollView toggleSlide() {

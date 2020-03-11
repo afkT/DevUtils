@@ -17,7 +17,7 @@
             android:maxLines="1"
             android:text="选择图片" />
 
-        <dev.widget.control.ControlSlideGallery
+        <dev.widget.custom.CustomGallery
             android:id="@+id/vid_agf_gallery"
             android:layout_width="match_parent"
             android:layout_height="70.0dip" />

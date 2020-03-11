@@ -70,7 +70,7 @@ public class CustomWebView extends WebView {
     }
 
     /**
-     * 切换滑动状态
+     * 切换滑动控制状态
      * @return {@link CustomWebView}
      */
     public CustomWebView toggleSlide() {
