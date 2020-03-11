@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevJava:1.1.0'
+implementation 'com.afkt:DevJava:1.1.1'
 ```
 
 ## 目录结构
@@ -428,9 +428,10 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | toClearSEWiths | 这个方法功能主要把字符符合标记的 头部和尾部都替换成 "" |
 | toClearStartsWith | 清空属于特定字符串开头的字段 |
 | toClearEndsWith | 清空属于特定字符串结尾的字段 |
-| replaceStr | 替换字符串 |
-| replaceStrToNull | 替换字符串 |
-| replaceStrs | 替换字符串 |
+| replaceAll | 替换字符串 |
+| replaceAllToNull | 替换字符串 |
+| replaceAlls | 替换字符串 |
+| split | 拆分字符串 |
 
 
 * **编码工具类 ->** [EncodeUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/EncodeUtils.java)
@@ -680,6 +681,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getMultipleD | 获取倍数 |
 | getMultipleL | 获取倍数 |
 | getMultipleF | 获取倍数 |
+| calculateUnit | 计算指定单位倍数 |
 | numberToCHN | 数字转中文数值 |
 | isNumber | 检验数字 |
 | isNumberDecimal | 检验数字或包含小数点 |
@@ -851,9 +853,10 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | toClearSEWiths | 这个方法功能主要把字符符合标记的 头部和尾部都替换成 "" |
 | toClearStartsWith | 清空属于特定字符串开头的字段 |
 | toClearEndsWith | 清空属于特定字符串结尾的字段 |
-| replaceStr | 替换字符串 |
-| replaceStrToNull | 替换字符串 |
-| replaceStrs | 替换字符串 |
+| replaceAll | 替换字符串 |
+| replaceAllToNull | 替换字符串 |
+| replaceAlls | 替换字符串 |
+| split | 拆分字符串 |
 
 
 * **异常处理工具类 ->** [ThrowableUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/ThrowableUtils.java)
