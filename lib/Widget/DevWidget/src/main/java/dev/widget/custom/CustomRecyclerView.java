@@ -1,4 +1,4 @@
-package dev.widget;
+package dev.widget.custom;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -7,11 +7,9 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 /**
- * detail: 自定义 RecyclerView 监听滑动改变
+ * detail: 自定义 RecyclerView 滑动监听、滑动控制
  * @author Ttt
  * <pre>
- *     RecyclerView 滑动监听
- *     @see <a href="https://blog.csdn.net/qq_36676433/article/details/81973831"/>
  *     解决 ScrollView 嵌套 RecyclerView 的显示及滑动问题
  *     @see <a href="https://segmentfault.com/a/1190000011553735"/>
  *     RecyclerView 使用 GridLayoutManager 间距设置
@@ -24,7 +22,7 @@ import android.view.MotionEvent;
  *     @see <a href="https://www.zhangshengrong.com/p/JKN8Ejo5X6/"/>
  *     @see <a href="https://github.com/LidongWen/MultiTypeAdapter"/>
  *     <p></p>
- *     RecyclerView 用 LinearLayout/RelativeLayout 包住、使用 CustomNestedScrollView
+ *     RecyclerView 用 LinearLayout/RelativeLayout 包住、使用 {@link dev.widget.CustomNestedScrollView}
  *     <p></p>
  *     // 此方法常用作判断是否能下拉刷新, 来解决滑动冲突
  *     int findFirstCompletelyVisibleItemPosition = ((LinearLayoutManager) manager).findFirstCompletelyVisibleItemPosition();
@@ -40,8 +38,6 @@ public class CustomRecyclerView extends RecyclerView {
 
     // 是否允许滑动
     private boolean mIsSlide = true;
-    // 是否监听滑动
-    private boolean mIsSlideListener = true;
     // 滑动监听回调
     private ScrollCallBack mScrollCallBack = null;
     // 距离左边距离
@@ -70,7 +66,7 @@ public class CustomRecyclerView extends RecyclerView {
         mScrollX = Math.abs(mScrollX);
         mScrollY = Math.abs(mScrollY);
         // 触发回调
-        if (mIsSlideListener && mScrollCallBack != null) {
+        if (mScrollCallBack != null) {
             mScrollCallBack.onScrollChanged(this, dx, dy, mScrollX, mScrollY);
         }
     }
@@ -79,7 +75,7 @@ public class CustomRecyclerView extends RecyclerView {
     public void onScrollStateChanged(int state) {
         super.onScrollStateChanged(state);
         // 触发回调
-        if (mIsSlideListener && mScrollCallBack != null) {
+        if (mScrollCallBack != null) {
             mScrollCallBack.onScrollStateChanged(this, state);
         }
     }
@@ -124,25 +120,7 @@ public class CustomRecyclerView extends RecyclerView {
     }
 
     /**
-     * 是否监听滑动
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean isSlideListener() {
-        return mIsSlideListener;
-    }
-
-    /**
-     * 设置是否监听滑动
-     * @param slideListener {@code true} yes, {@code false} no
-     * @return {@link CustomRecyclerView}
-     */
-    public CustomRecyclerView setSlideListener(boolean slideListener) {
-        this.mIsSlideListener = slideListener;
-        return this;
-    }
-
-    /**
-     * 设置滑动回调
+     * 设置滑动监听回调
      * @param scrollCallBack {@link ScrollCallBack}
      * @return {@link CustomRecyclerView}
      */

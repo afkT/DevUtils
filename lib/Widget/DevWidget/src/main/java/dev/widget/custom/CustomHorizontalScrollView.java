@@ -1,4 +1,4 @@
-package dev.widget;
+package dev.widget.custom;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -8,15 +8,13 @@ import android.view.MotionEvent;
 import android.widget.HorizontalScrollView;
 
 /**
- * detail: 自定义 HorizontalScrollView 监听滑动改变
+ * detail: 自定义 HorizontalScrollView 滑动监听、滑动控制
  * @author Ttt
  */
 public class CustomHorizontalScrollView extends HorizontalScrollView {
 
     // 是否允许滑动
     private boolean mIsSlide = true;
-    // 是否监听滑动
-    private boolean mIsSlideListener = true;
     // 滑动监听回调
     private ScrollCallBack mScrollCallBack = null;
 
@@ -35,7 +33,7 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
     @Override
     protected void onScrollChanged(int left, int top, int oldLeft, int oldTop) {
         super.onScrollChanged(left, top, oldLeft, oldTop);
-        if (mIsSlideListener && mScrollCallBack != null) {
+        if (mScrollCallBack != null) {
             mScrollCallBack.onScrollChanged(left, top, oldLeft, oldTop);
         }
     }
@@ -85,25 +83,7 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
     }
 
     /**
-     * 是否监听滑动
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean isSlideListener() {
-        return mIsSlideListener;
-    }
-
-    /**
-     * 设置是否监听滑动
-     * @param slideListener {@code true} yes, {@code false} no
-     * @return {@link CustomHorizontalScrollView}
-     */
-    public CustomHorizontalScrollView setSlideListener(boolean slideListener) {
-        this.mIsSlideListener = slideListener;
-        return this;
-    }
-
-    /**
-     * 设置滑动回调
+     * 设置滑动监听回调
      * @param scrollCallBack {@link ScrollCallBack}
      * @return {@link CustomHorizontalScrollView}
      */

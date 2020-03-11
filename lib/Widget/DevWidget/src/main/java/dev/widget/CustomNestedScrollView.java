@@ -39,7 +39,7 @@ public class CustomNestedScrollView extends NestedScrollView {
     @Override
     protected void onScrollChanged(int left, int top, int oldLeft, int oldTop) {
         super.onScrollChanged(left, top, oldLeft, oldTop);
-        if (mIsSlideListener && mScrollCallBack != null) {
+        if (mScrollCallBack != null) {
             mScrollCallBack.onScrollChanged(left, top, oldLeft, oldTop);
         }
     }
@@ -107,7 +107,7 @@ public class CustomNestedScrollView extends NestedScrollView {
     }
 
     /**
-     * 设置滑动回调
+     * 设置滑动监听回调
      * @param scrollCallBack {@link ScrollCallBack}
      * @return {@link CustomNestedScrollView}
      */
