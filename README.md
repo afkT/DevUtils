@@ -39,7 +39,7 @@
 
 > [DevOther](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/README.md) 第三方库封装、以及部分特殊工具类等，方便 copy 封装类使用
 >
-> [DevWidget](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md) 部分自定义 View 功能、效果
+> [Widget](https://github.com/afkT/DevUtils/blob/master/lib/Widget) 部分自定义 View 功能、效果
 >
 > [DevBase](https://github.com/afkT/DevUtils/blob/master/lib/DevBase/src/main/java/dev/base) Base ( Activity、Fragment )、MVP 基类等
 >

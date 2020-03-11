@@ -6,5 +6,9 @@ dependencies {
     implementation deps.android.appcompat_v7
     implementation deps.android.support_v4
     implementation deps.android.design
-    compileOnly project(path: ':DevApp')
+
+    // 编译时使用
+    api project(path: ':DevApp')
+//    // 打包时使用
+//    api deps.dev.dev_app
 }
