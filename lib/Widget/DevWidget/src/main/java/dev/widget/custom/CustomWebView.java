@@ -1,4 +1,4 @@
-package dev.widget;
+package dev.widget.custom;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -7,15 +7,13 @@ import android.view.MotionEvent;
 import android.webkit.WebView;
 
 /**
- * detail: 自定义 WebView 监听滑动改变
+ * detail: 自定义 WebView 滑动监听、滑动控制
  * @author Ttt
  */
 public class CustomWebView extends WebView {
 
     // 是否允许滑动
     private boolean mIsSlide = true;
-    // 是否监听滑动
-    private boolean mIsSlideListener = true;
     // 滑动监听回调
     private ScrollCallBack mScrollCallBack = null;
 
@@ -75,24 +73,6 @@ public class CustomWebView extends WebView {
      */
     public CustomWebView toggleSlide() {
         this.mIsSlide = !this.mIsSlide;
-        return this;
-    }
-
-    /**
-     * 是否监听滑动
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean isSlideListener() {
-        return mIsSlideListener;
-    }
-
-    /**
-     * 设置是否监听滑动
-     * @param slideListener {@code true} yes, {@code false} no
-     * @return {@link CustomWebView}
-     */
-    public CustomWebView setSlideListener(boolean slideListener) {
-        this.mIsSlideListener = slideListener;
         return this;
     }
 
