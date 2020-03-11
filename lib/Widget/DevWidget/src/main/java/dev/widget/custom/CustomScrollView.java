@@ -7,8 +7,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ScrollView;
 
-import dev.widget.CustomNestedScrollView;
-
 /**
  * detail: 自定义 ScrollView 滑动监听、滑动控制
  * @author Ttt

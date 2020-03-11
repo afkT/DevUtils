@@ -22,7 +22,7 @@ import android.view.MotionEvent;
  *     @see <a href="https://www.zhangshengrong.com/p/JKN8Ejo5X6/"/>
  *     @see <a href="https://github.com/LidongWen/MultiTypeAdapter"/>
  *     <p></p>
- *     RecyclerView 用 LinearLayout/RelativeLayout 包住、使用 {@link dev.widget.CustomNestedScrollView}
+ *     RecyclerView 用 LinearLayout/RelativeLayout 包住、使用 {@link CustomNestedScrollView}
  *     <p></p>
  *     // 此方法常用作判断是否能下拉刷新, 来解决滑动冲突
  *     int findFirstCompletelyVisibleItemPosition = ((LinearLayoutManager) manager).findFirstCompletelyVisibleItemPosition();
