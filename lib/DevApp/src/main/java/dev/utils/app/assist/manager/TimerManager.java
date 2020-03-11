@@ -427,6 +427,7 @@ public final class TimerManager {
          * <pre>
          *     如果外部通过了 createTimer 或者直接 new AbsTimer 初始化了对象, 没有调用 startTimer, 都不会保存到 mTimerLists 并不影响对定时器的控制
          * </pre>
+         * @return {@link AbsTimer}
          */
         public AbsTimer startTimer() {
             // 标记状态 - 不需要回收
@@ -442,6 +443,7 @@ public final class TimerManager {
 
         /**
          * 关闭定时器
+         * @return {@link AbsTimer}
          */
         public AbsTimer closeTimer() {
             // 标记状态 - 需要回收
@@ -628,6 +630,7 @@ public final class TimerManager {
 
         /**
          * 运行定时器
+         * @return {@link AbsTimer}
          */
         @Override
         public AbsTimer startTimer() {
@@ -639,6 +642,7 @@ public final class TimerManager {
 
         /**
          * 关闭定时器
+         * @return {@link AbsTimer}
          */
         @Override
         public AbsTimer closeTimer() {
