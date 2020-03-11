@@ -1,4 +1,4 @@
-package dev.widget;
+package dev.widget.adjust;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -198,6 +198,6 @@ public final class HtmlUtils {
      * @return Html 内容字符串
      */
     public static String keywordReplaceHtmlColor(final String content, final String keyword, final String color) {
-        return StringUtils.replaceStr(content, keyword, addHtmlColor(keyword, color));
+        return StringUtils.replaceAll(content, keyword, addHtmlColor(keyword, color));
     }
 }

@@ -1,4 +1,4 @@
-package dev.widget;
+package dev.widget.custom;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -9,23 +9,23 @@ import android.widget.Gallery;
 import androidx.annotation.Nullable;
 
 /**
- * detail: Gallery 滑动控制
+ * detail: 自定义 Gallery 滑动控制
  * @author Ttt
  */
-public class ControlSlideGallery extends Gallery {
+public class CustomGallery extends Gallery {
 
     // 是否允许滑动
     private boolean mIsSlide = true;
 
-    public ControlSlideGallery(Context context) {
+    public CustomGallery(Context context) {
         super(context);
     }
 
-    public ControlSlideGallery(Context context, @Nullable AttributeSet attrs) {
+    public CustomGallery(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ControlSlideGallery(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public CustomGallery(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -42,12 +42,15 @@ public class ControlSlideGallery extends Gallery {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (mIsSlide) {
-            return super.onTouchEvent(event);
-        } else {
-            return false;
-        }
+    public boolean onTouchEvent(MotionEvent ev) {
+        if (!this.mIsSlide) return false;
+        return super.onTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent arg0) {
+        if (!this.mIsSlide) return false;
+        return super.onInterceptTouchEvent(arg0);
     }
 
     /**
@@ -71,18 +74,18 @@ public class ControlSlideGallery extends Gallery {
     /**
      * 设置是否允许滑动
      * @param isSlide {@code true} yes, {@code false} no
-     * @return {@link ControlSlideGallery}
+     * @return {@link CustomGallery}
      */
-    public ControlSlideGallery setSlide(boolean isSlide) {
+    public CustomGallery setSlide(boolean isSlide) {
         this.mIsSlide = isSlide;
         return this;
     }
 
     /**
-     * 切换滑动状态
-     * @return {@link ControlSlideGallery}
+     * 切换滑动控制状态
+     * @return {@link CustomGallery}
      */
-    public ControlSlideGallery toggleSlide() {
+    public CustomGallery toggleSlide() {
         this.mIsSlide = !this.mIsSlide;
         return this;
     }

@@ -1,49 +1,41 @@
-package dev.widget;
+package dev.widget.custom;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.widget.HorizontalScrollView;
+import android.webkit.WebView;
 
 import androidx.annotation.Nullable;
 
 /**
- * detail: 自定义 HorizontalScrollView 监听滑动改变
+ * detail: 自定义 WebView 滑动监听、滑动控制
  * @author Ttt
  */
-public class CustomHorizontalScrollView extends HorizontalScrollView {
+public class CustomWebView extends WebView {
 
     // 是否允许滑动
     private boolean mIsSlide = true;
-    // 是否监听滑动
-    private boolean mIsSlideListener = true;
     // 滑动监听回调
     private ScrollCallBack mScrollCallBack = null;
 
-    public CustomHorizontalScrollView(Context context) {
+    public CustomWebView(Context context) {
         super(context);
     }
 
-    public CustomHorizontalScrollView(Context context, @Nullable AttributeSet attrs) {
+    public CustomWebView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CustomHorizontalScrollView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public CustomWebView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
     @Override
     protected void onScrollChanged(int left, int top, int oldLeft, int oldTop) {
         super.onScrollChanged(left, top, oldLeft, oldTop);
-        if (mIsSlideListener && mScrollCallBack != null) {
+        if (mScrollCallBack != null) {
             mScrollCallBack.onScrollChanged(left, top, oldLeft, oldTop);
         }
-    }
-
-    @Override
-    protected int computeScrollDeltaToGetChildRectOnScreen(Rect rect) {
-        return 0; // 解决禁止 ScrollView 内的控件改变之后自动滚动
     }
 
     @Override
@@ -69,46 +61,28 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
     /**
      * 设置是否允许滑动
      * @param isSlide {@code true} yes, {@code false} no
-     * @return {@link CustomHorizontalScrollView}
+     * @return {@link CustomWebView}
      */
-    public CustomHorizontalScrollView setSlide(boolean isSlide) {
+    public CustomWebView setSlide(boolean isSlide) {
         this.mIsSlide = isSlide;
         return this;
     }
 
     /**
-     * 切换滑动状态
-     * @return {@link CustomHorizontalScrollView}
+     * 切换滑动控制状态
+     * @return {@link CustomWebView}
      */
-    public CustomHorizontalScrollView toggleSlide() {
+    public CustomWebView toggleSlide() {
         this.mIsSlide = !this.mIsSlide;
         return this;
     }
 
     /**
-     * 是否监听滑动
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean isSlideListener() {
-        return mIsSlideListener;
-    }
-
-    /**
-     * 设置是否监听滑动
-     * @param slideListener {@code true} yes, {@code false} no
-     * @return {@link CustomHorizontalScrollView}
-     */
-    public CustomHorizontalScrollView setSlideListener(boolean slideListener) {
-        this.mIsSlideListener = slideListener;
-        return this;
-    }
-
-    /**
-     * 设置滑动回调
+     * 设置滑动监听回调
      * @param scrollCallBack {@link ScrollCallBack}
-     * @return {@link CustomHorizontalScrollView}
+     * @return {@link CustomWebView}
      */
-    public CustomHorizontalScrollView setScrollCallBack(ScrollCallBack scrollCallBack) {
+    public CustomWebView setScrollCallBack(ScrollCallBack scrollCallBack) {
         this.mScrollCallBack = scrollCallBack;
         return this;
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<dev.widget.CustomNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<dev.widget.custom.CustomNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -39,4 +39,4 @@
 
         <include layout="@layout/base_view_recyclerview" />
     </LinearLayout>
-</dev.widget.CustomNestedScrollView>
+</dev.widget.custom.CustomNestedScrollView>

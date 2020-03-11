@@ -1,7 +1,7 @@
 package dev.base.mvp;
 
 /**
- * detail: MVP 类
+ * detail: MVP Contract 类
  * @author Ttt
  */
 public final class MVP {

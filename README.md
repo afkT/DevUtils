@@ -1,7 +1,7 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-afkT-blue.svg)](https://github.com/afkT)
 [![GitHub license](https://img.shields.io/github/license/afkT/DevUtils.svg)](https://github.com/afkT/DevUtils/blob/master/LICENSE)
-[![Bintray](https://img.shields.io/badge/DevUtils-1.9.0-brightgreen.svg)](https://bintray.com/afkt/maven/DevApp)
+[![Bintray](https://img.shields.io/badge/DevUtils-1.9.1-brightgreen.svg)](https://bintray.com/afkt/maven/DevApp)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Utils](https://img.shields.io/badge/utils-160+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
@@ -39,7 +39,7 @@
 
 > [DevOther](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/README.md) 第三方库封装、以及部分特殊工具类等，方便 copy 封装类使用
 >
-> [DevWidget](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md) 部分自定义 View 功能、效果
+> [Widget](https://github.com/afkT/DevUtils/blob/master/lib/Widget) 部分自定义 View 功能、效果
 >
 > [DevBase](https://github.com/afkT/DevUtils/blob/master/lib/DevBase/src/main/java/dev/base) Base ( Activity、Fragment )、MVP 基类等
 >

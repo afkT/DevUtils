@@ -11,7 +11,7 @@ import afkt.project.ui.adapter.ViewPagerAdapter;
 import butterknife.BindView;
 import butterknife.OnClick;
 import dev.utils.app.logger.DevLogger;
-import dev.widget.ControlSlideViewPager;
+import dev.widget.custom.CustomViewPager;
 
 /**
  * detail: ViewPager 滑动监听、控制滑动
@@ -21,7 +21,7 @@ public class ViewPagerActivity extends BaseToolbarActivity {
 
     // = View =
     @BindView(R.id.vid_avp_viewpager)
-    ControlSlideViewPager vid_avp_viewpager;
+    CustomViewPager vid_avp_viewpager;
 
     @Override
     public int getLayoutId() {
@@ -38,7 +38,7 @@ public class ViewPagerActivity extends BaseToolbarActivity {
         }
         vid_avp_viewpager.setAdapter(new ViewPagerAdapter(lists));
         vid_avp_viewpager.setCurrentItem(lists.size() * 100, false);
-        vid_avp_viewpager.setOnPageChangeListener(new ControlSlideViewPager.OnDirectionListener() {
+        vid_avp_viewpager.setOnPageChangeListener(new CustomViewPager.OnDirectionListener() {
             @Override
             public void onSlideDirection(boolean left, boolean right) {
                 if (left && !right) {
@@ -49,8 +49,8 @@ public class ViewPagerActivity extends BaseToolbarActivity {
             }
 
             @Override
-            public void onPageSelected(int i) {
-                DevLogger.dTag(mTag, "索引变动: " + i);
+            public void onPageSelected(int index) {
+                DevLogger.dTag(mTag, "索引变动: " + index);
 
                 if (mLeftScroll) {
                     showToast("往左滑 - 从右往左");

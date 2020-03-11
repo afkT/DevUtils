@@ -26,7 +26,7 @@ import dev.utils.app.HandlerUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.image.ImageUtils;
 import dev.utils.app.logger.DevLogger;
-import dev.widget.ControlSlideGallery;
+import dev.widget.custom.CustomGallery;
 import jp.co.cyberagent.android.gpuimage.GPUImageToneCurveFilter;
 
 /**
@@ -37,7 +37,7 @@ public class GPUFilterACVActivity extends BaseToolbarActivity {
 
     // = View =
     @BindView(R.id.vid_agf_gallery)
-    ControlSlideGallery vid_agf_gallery;
+    CustomGallery vid_agf_gallery;
     @BindView(R.id.vid_agf_igview)
     BaseImageView vid_agf_igview;
     // 适配器

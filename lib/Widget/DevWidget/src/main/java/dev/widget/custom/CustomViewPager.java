@@ -1,27 +1,25 @@
-package dev.widget;
+package dev.widget.custom;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.viewpager.widget.ViewPager;
-
 /**
- * detail: ViewPager 滑动控制
+ * detail: 自定义 ViewPager 滑动监听、滑动控制
  * @author Ttt
  */
-public class ControlSlideViewPager extends ViewPager {
+public class CustomViewPager extends ViewPager {
 
     // 是否允许滑动
     private boolean mIsSlide = true;
 
-    public ControlSlideViewPager(@NonNull Context context) {
+    public CustomViewPager(Context context) {
         super(context);
     }
 
-    public ControlSlideViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public CustomViewPager(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -48,18 +46,18 @@ public class ControlSlideViewPager extends ViewPager {
     /**
      * 设置是否允许滑动
      * @param isSlide {@code true} yes, {@code false} no
-     * @return {@link ControlSlideViewPager}
+     * @return {@link CustomViewPager}
      */
-    public ControlSlideViewPager setSlide(boolean isSlide) {
+    public CustomViewPager setSlide(boolean isSlide) {
         this.mIsSlide = isSlide;
         return this;
     }
 
     /**
-     * 切换滑动状态
-     * @return {@link ControlSlideViewPager}
+     * 切换滑动控制状态
+     * @return {@link CustomViewPager}
      */
-    public ControlSlideViewPager toggleSlide() {
+    public CustomViewPager toggleSlide() {
         this.mIsSlide = !this.mIsSlide;
         return this;
     }
@@ -71,6 +69,16 @@ public class ControlSlideViewPager extends ViewPager {
     /**
      * detail: 滑动方向监听
      * @author Ttt
+     * <pre>
+     *     viewpager.setOnPageChangeListener(new CustomViewPager.OnDirectionListener() {
+     *             @Override
+     *             public void onSlideDirection(boolean left, boolean right) {
+     *             }
+     *             @Override
+     *             public void onPageSelected(int index) {
+     *             }
+     *         });
+     * </pre>
      */
     public static abstract class OnDirectionListener implements OnPageChangeListener {
 

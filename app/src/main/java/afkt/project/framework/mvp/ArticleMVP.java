@@ -8,7 +8,7 @@ import dev.utils.app.HandlerUtils;
 import dev.utils.common.HttpURLConnectionUtils;
 
 /**
- * detail: 文章 MVP
+ * detail: 文章 MVP Contract
  * @author Ttt
  */
 public final class ArticleMVP {

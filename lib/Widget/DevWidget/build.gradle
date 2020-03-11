@@ -1,0 +1,19 @@
+apply {
+    from rootProject.file(files.app_lib_gradle)
+}
+
+android.defaultConfig {
+    versionCode versions.dev_widget_versionCode
+    versionName versions.dev_widget_versionName
+}
+
+dependencies {
+    implementation deps.android.appcompat_v7
+    implementation deps.android.support_v4
+    implementation deps.android.design
+
+    // 编译时使用
+    api project(path: ':DevApp')
+//    // 打包时使用
+//    api deps.dev.dev_app
+}

@@ -13,7 +13,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import dev.utils.app.CapturePictureUtils;
 import dev.utils.app.image.ImageUtils;
-import dev.widget.CustomNestedScrollView;
+import dev.widget.custom.CustomNestedScrollView;
 
 /**
  * detail: CapturePictureUtils 截图工具类

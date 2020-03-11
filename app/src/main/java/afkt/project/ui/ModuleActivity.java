@@ -84,6 +84,11 @@ public class ModuleActivity extends BaseToolbarActivity {
                     // = Framework =
                     // =============
 
+                    /**
+                     * MVC、MVP、MVVM 介绍对比
+                     * @see afkt.project.base.app.BaseMVVMActivity
+                     */
+
                     // 架构只是一种思维方式, 不管是MVC、MVP, 还是MVVM, 都只是一种思考问题解决问题的思维
                     // 其目的是要解决编程过程中, 模块内部高内聚、模块与模块之间低耦合、可维护性、易测试等问题
 

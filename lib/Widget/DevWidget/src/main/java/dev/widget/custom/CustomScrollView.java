@@ -1,4 +1,4 @@
-package dev.widget;
+package dev.widget.custom;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -9,19 +9,15 @@ import android.widget.ScrollView;
 import androidx.annotation.Nullable;
 
 /**
- * detail: 自定义 ScrollView 监听滑动改变
+ * detail: 自定义 ScrollView 滑动监听、滑动控制
  * @author Ttt
- * <pre>
- *     推荐使用 {@link CustomNestedScrollView}
- * </pre>
+ * @deprecated 推荐使用 {@link CustomNestedScrollView}
  */
 @Deprecated
 public class CustomScrollView extends ScrollView {
 
     // 是否允许滑动
     private boolean mIsSlide = true;
-    // 是否监听滑动
-    private boolean mIsSlideListener = true;
     // 滑动监听回调
     private ScrollCallBack mScrollCallBack = null;
 
@@ -40,7 +36,7 @@ public class CustomScrollView extends ScrollView {
     @Override
     protected void onScrollChanged(int left, int top, int oldLeft, int oldTop) {
         super.onScrollChanged(left, top, oldLeft, oldTop);
-        if (mIsSlideListener && mScrollCallBack != null) {
+        if (mScrollCallBack != null) {
             mScrollCallBack.onScrollChanged(left, top, oldLeft, oldTop);
         }
     }
@@ -81,7 +77,7 @@ public class CustomScrollView extends ScrollView {
     }
 
     /**
-     * 切换滑动状态
+     * 切换滑动控制状态
      * @return {@link CustomScrollView}
      */
     public CustomScrollView toggleSlide() {
@@ -90,25 +86,7 @@ public class CustomScrollView extends ScrollView {
     }
 
     /**
-     * 是否监听滑动
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean isSlideListener() {
-        return mIsSlideListener;
-    }
-
-    /**
-     * 设置是否监听滑动
-     * @param slideListener {@code true} yes, {@code false} no
-     * @return {@link CustomScrollView}
-     */
-    public CustomScrollView setSlideListener(boolean slideListener) {
-        this.mIsSlideListener = slideListener;
-        return this;
-    }
-
-    /**
-     * 设置滑动回调
+     * 设置滑动监听回调
      * @param scrollCallBack {@link ScrollCallBack}
      * @return {@link CustomScrollView}
      */

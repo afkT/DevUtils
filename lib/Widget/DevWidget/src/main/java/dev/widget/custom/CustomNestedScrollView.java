@@ -1,4 +1,4 @@
-package dev.widget;
+package dev.widget.custom;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -9,10 +9,10 @@ import androidx.annotation.Nullable;
 import androidx.core.widget.NestedScrollView;
 
 /**
- * detail: 自定义 ScrollView 监听滑动改变
+ * detail: 自定义 NestedScrollView 滑动监听、滑动控制
  * @author Ttt
  * <pre>
- *     ScrollView 默认位置不是最顶部最全解决方案
+ *     ScrollView 默认位置不是最顶部解决方案
  *     @see <a href="https://blog.csdn.net/jiaoyaning1210/article/details/51084246"/>
  * </pre>
  */
@@ -20,8 +20,6 @@ public class CustomNestedScrollView extends NestedScrollView {
 
     // 是否允许滑动
     private boolean mIsSlide = true;
-    // 是否监听滑动
-    private boolean mIsSlideListener = true;
     // 滑动监听回调
     private ScrollCallBack mScrollCallBack = null;
 
@@ -40,7 +38,7 @@ public class CustomNestedScrollView extends NestedScrollView {
     @Override
     protected void onScrollChanged(int left, int top, int oldLeft, int oldTop) {
         super.onScrollChanged(left, top, oldLeft, oldTop);
-        if (mIsSlideListener && mScrollCallBack != null) {
+        if (mScrollCallBack != null) {
             mScrollCallBack.onScrollChanged(left, top, oldLeft, oldTop);
         }
     }
@@ -81,7 +79,7 @@ public class CustomNestedScrollView extends NestedScrollView {
     }
 
     /**
-     * 切换滑动状态
+     * 切换滑动控制状态
      * @return {@link CustomNestedScrollView}
      */
     public CustomNestedScrollView toggleSlide() {
@@ -90,25 +88,7 @@ public class CustomNestedScrollView extends NestedScrollView {
     }
 
     /**
-     * 是否监听滑动
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean isSlideListener() {
-        return mIsSlideListener;
-    }
-
-    /**
-     * 设置是否监听滑动
-     * @param slideListener {@code true} yes, {@code false} no
-     * @return {@link CustomNestedScrollView}
-     */
-    public CustomNestedScrollView setSlideListener(boolean slideListener) {
-        this.mIsSlideListener = slideListener;
-        return this;
-    }
-
-    /**
-     * 设置滑动回调
+     * 设置滑动监听回调
      * @param scrollCallBack {@link ScrollCallBack}
      * @return {@link CustomNestedScrollView}
      */

@@ -57,6 +57,7 @@ version | [![Bintray](https://api.bintray.com/packages/afkt/maven/DevEnvironment
 
 ```groovy
 dependencies {
+    // $version 1.0.0
     implementation 'com.afkt:DevEnvironment:$version'
     debugAnnotationProcessor 'com.afkt:DevEnvironmentCompiler:$version'
     releaseAnnotationProcessor 'com.afkt:DevEnvironmentCompilerRelease:$version'
