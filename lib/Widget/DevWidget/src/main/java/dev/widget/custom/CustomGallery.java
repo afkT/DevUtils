@@ -1,30 +1,55 @@
 package dev.widget.custom;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.widget.Gallery;
 
+import dev.utils.app.WidgetUtils;
+import dev.widget.R;
+
 /**
  * detail: 自定义 Gallery 滑动控制
  * @author Ttt
+ * <pre>
+ *     app:dev_slide=""
+ *     app:dev_maxWidth=""
+ *     app:dev_maxHeight=""
+ * </pre>
  */
 public class CustomGallery extends Gallery {
 
     // 是否允许滑动
     private boolean mIsSlide = true;
+    // 最大显示宽度
+    private int mMaxWidth = WidgetUtils.DEF_VALUE;
+    // 最大显示高度
+    private int mMaxHeight = WidgetUtils.DEF_VALUE;
 
     public CustomGallery(Context context) {
         super(context);
     }
 
     public CustomGallery(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public CustomGallery(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
+        mIsSlide = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
+        mMaxWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_maxWidth, WidgetUtils.DEF_VALUE);
+        mMaxHeight = a.getLayoutDimension(R.styleable.DevWidget_dev_maxHeight, WidgetUtils.DEF_VALUE);
+        a.recycle();
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int[] measureSpecs = WidgetUtils.viewMeasure(this, widthMeasureSpec, heightMeasureSpec, mMaxWidth, mMaxHeight);
+        super.onMeasure(measureSpecs[0], measureSpecs[1]);
     }
 
     @Override
@@ -59,6 +84,42 @@ public class CustomGallery extends Gallery {
      */
     private boolean isScrollingLeft(MotionEvent e1, MotionEvent e2) {
         return e2.getX() > e1.getX();
+    }
+
+    /**
+     * 获取 View 最大显示宽度
+     * @return View 最大显示宽度
+     */
+    public int getMaxWidth() {
+        return mMaxWidth;
+    }
+
+    /**
+     * 设置 View 最大显示宽度
+     * @param maxWidth View 最大显示宽度
+     * @return {@link CustomGallery}
+     */
+    public CustomGallery setMaxWidth(int maxWidth) {
+        this.mMaxWidth = maxWidth;
+        return this;
+    }
+
+    /**
+     * 获取 View 最大显示高度
+     * @return View 最大显示高度
+     */
+    public int getMaxHeight() {
+        return mMaxHeight;
+    }
+
+    /**
+     * 设置 View 最大显示高度
+     * @param maxHeight View 最大显示高度
+     * @return {@link CustomGallery}
+     */
+    public CustomGallery setMaxHeight(int maxHeight) {
+        this.mMaxHeight = maxHeight;
+        return this;
     }
 
     /**
