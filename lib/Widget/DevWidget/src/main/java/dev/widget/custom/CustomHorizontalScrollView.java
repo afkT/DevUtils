@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.HorizontalScrollView;
 
+import dev.utils.app.WidgetUtils;
 import dev.widget.R;
 
 /**
@@ -19,12 +20,10 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
     private boolean mIsSlide = true;
     // 滑动监听回调
     private ScrollCallBack mScrollCallBack = null;
-    // 默认值
-    private final int DEF_VALUE = 0;
     // 最大显示宽度
-    private int mMaxWidth = DEF_VALUE;
+    private int mMaxWidth = WidgetUtils.DEF_VALUE;
     // 最大显示高度
-    private int mMaxHeight = DEF_VALUE;
+    private int mMaxHeight = WidgetUtils.DEF_VALUE;
 
     public CustomHorizontalScrollView(Context context) {
         super(context);
@@ -38,22 +37,15 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
         super(context, attrs, defStyle);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
-        mMaxWidth = a.getLayoutDimension(R.styleable.DevWidget_maxWidth, DEF_VALUE);
-        mMaxHeight = a.getLayoutDimension(R.styleable.DevWidget_maxHeight, DEF_VALUE);
+        mMaxWidth = a.getLayoutDimension(R.styleable.DevWidget_maxWidth, WidgetUtils.DEF_VALUE);
+        mMaxHeight = a.getLayoutDimension(R.styleable.DevWidget_maxHeight, WidgetUtils.DEF_VALUE);
         a.recycle();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//        if (mMaxWidth > DEF_VALUE && mMaxHeight > DEF_VALUE) {
-//            widthMeasureSpec = MeasureSpec.makeMeasureSpec(mMaxWidth, MeasureSpec.AT_MOST);
-//            heightMeasureSpec = MeasureSpec.makeMeasureSpec(mMaxHeight, MeasureSpec.AT_MOST);
-//        } else if (mMaxWidth > DEF_VALUE) {
-//            widthMeasureSpec = MeasureSpec.makeMeasureSpec(mMaxWidth, MeasureSpec.AT_MOST);
-//        } else if (mMaxHeight > DEF_VALUE) {
-//            heightMeasureSpec = MeasureSpec.makeMeasureSpec(mMaxHeight, MeasureSpec.AT_MOST);
-//        }
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int[] measureSpecs = WidgetUtils.viewMeasure(this, widthMeasureSpec, heightMeasureSpec, mMaxWidth, mMaxHeight);
+        super.onMeasure(measureSpecs[0], measureSpecs[1]);
     }
 
     @Override

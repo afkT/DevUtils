@@ -1431,7 +1431,7 @@ public final class SnackbarUtils {
                 // 防止等于 0
                 if (screenHeight != 0) {
                     // 获取测量高度 ( 不一定准确 )
-                    int measuredHeight = ViewUtils.getMeasuredHeight(rootView);
+                    int measuredHeight = WidgetUtils.getMeasuredHeight(rootView);
                     // 判断方向, 在指定坐标上方, 判断是否够空间
                     if (mViewGravity == Gravity.TOP) {
                         // 判断是否超出可显示高度

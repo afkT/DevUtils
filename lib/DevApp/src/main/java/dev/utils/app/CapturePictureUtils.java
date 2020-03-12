@@ -591,7 +591,7 @@ public final class CapturePictureUtils {
             // 循环绘制每个 Item 并保存 Bitmap
             for (int i = 0; i < itemCount; i++) {
                 View childView = listAdapter.getView(i, null, listView);
-                ViewUtils.measureView(childView, listView.getWidth());
+                WidgetUtils.measureView(childView, listView.getWidth());
                 bitmaps[i] = canvasBitmap(childView, config);
                 height += childView.getMeasuredHeight();
             }
@@ -675,7 +675,7 @@ public final class CapturePictureUtils {
                 // 循环绘制每个 Item 并保存 Bitmap
                 for (int i = 0; i < itemCount; i++) {
                     View childView = listAdapter.getView(i, null, gridView);
-                    ViewUtils.measureView(childView, gridView.getWidth());
+                    WidgetUtils.measureView(childView, gridView.getWidth());
                     bitmaps[i] = canvasBitmap(childView, config);
                     height += childView.getMeasuredHeight();
                 }
@@ -718,7 +718,7 @@ public final class CapturePictureUtils {
                         // 小于总数才处理
                         if (position < itemCount) {
                             View childView = listAdapter.getView(position, null, gridView);
-                            ViewUtils.measureView(childView, childWidth);
+                            WidgetUtils.measureView(childView, childWidth);
                             bitmaps[position] = canvasBitmap(childView, config);
 
                             int itemHeight = childView.getMeasuredHeight();
@@ -931,7 +931,7 @@ public final class CapturePictureUtils {
                             RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(position));
                             adapter.onBindViewHolder(holder, position);
                             View childView = holder.itemView;
-                            ViewUtils.measureView(childView, childWidth);
+                            WidgetUtils.measureView(childView, childWidth);
                             bitmaps[position] = canvasBitmap(childView, config);
                             int itemHeight = childView.getMeasuredHeight();
                             // 保留最大高度
@@ -1011,7 +1011,7 @@ public final class CapturePictureUtils {
                             RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(position));
                             adapter.onBindViewHolder(holder, position);
                             View childView = holder.itemView;
-                            ViewUtils.measureView(childView, 0);
+                            WidgetUtils.measureView(childView, 0);
                             bitmaps[position] = canvasBitmap(childView, config);
                             rowWidthArrays[i] += childView.getMeasuredWidth();
                             int itemHeight = childView.getMeasuredHeight();
@@ -1118,7 +1118,7 @@ public final class CapturePictureUtils {
                     RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
                     adapter.onBindViewHolder(holder, i);
                     View childView = holder.itemView;
-                    ViewUtils.measureView(childView, recyclerView.getWidth());
+                    WidgetUtils.measureView(childView, recyclerView.getWidth());
                     bitmaps[i] = canvasBitmap(childView, config);
                     height += childView.getMeasuredHeight();
                 }
@@ -1153,7 +1153,7 @@ public final class CapturePictureUtils {
                     RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
                     adapter.onBindViewHolder(holder, i);
                     View childView = holder.itemView;
-                    ViewUtils.measureView(childView, 0);
+                    WidgetUtils.measureView(childView, 0);
                     bitmaps[i] = canvasBitmap(childView, config);
                     width += childView.getMeasuredWidth();
                     int itemHeight = childView.getMeasuredHeight();
@@ -1238,7 +1238,7 @@ public final class CapturePictureUtils {
                     RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
                     adapter.onBindViewHolder(holder, i);
                     View childView = holder.itemView;
-                    ViewUtils.measureView(childView, childWidth);
+                    WidgetUtils.measureView(childView, childWidth);
                     bitmaps[i] = canvasBitmap(childView, config);
                     itemHeightArrays[i] = childView.getMeasuredHeight();
                 }
@@ -1313,7 +1313,7 @@ public final class CapturePictureUtils {
                     RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
                     adapter.onBindViewHolder(holder, i);
                     View childView = holder.itemView;
-                    ViewUtils.measureView(childView, 0);
+                    WidgetUtils.measureView(childView, 0);
                     bitmaps[i] = canvasBitmap(childView, config);
                     itemWidthArrays[i] = childView.getMeasuredWidth();
                     itemHeightArrays[i] = childView.getMeasuredHeight();
