@@ -3,7 +3,6 @@ package dev.widget;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
@@ -24,11 +23,11 @@ public class LineTextView extends AppCompatTextView {
         this(context, null);
     }
 
-    public LineTextView(Context context, @Nullable AttributeSet attrs) {
+    public LineTextView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public LineTextView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public LineTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

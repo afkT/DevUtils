@@ -1,7 +1,6 @@
 package dev.widget.custom;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.webkit.WebView;
@@ -21,11 +20,11 @@ public class CustomWebView extends WebView {
         super(context);
     }
 
-    public CustomWebView(Context context, @Nullable AttributeSet attrs) {
+    public CustomWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CustomWebView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public CustomWebView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

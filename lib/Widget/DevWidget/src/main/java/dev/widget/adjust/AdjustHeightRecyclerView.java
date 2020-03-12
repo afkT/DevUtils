@@ -1,7 +1,6 @@
 package dev.widget.adjust;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
@@ -16,11 +15,11 @@ public class AdjustHeightRecyclerView extends RecyclerView {
         super(context);
     }
 
-    public AdjustHeightRecyclerView(Context context, @Nullable AttributeSet attrs) {
+    public AdjustHeightRecyclerView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public AdjustHeightRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public AdjustHeightRecyclerView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

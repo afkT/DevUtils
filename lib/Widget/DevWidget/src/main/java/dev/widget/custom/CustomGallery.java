@@ -1,7 +1,6 @@
 package dev.widget.custom;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -20,11 +19,11 @@ public class CustomGallery extends Gallery {
         super(context);
     }
 
-    public CustomGallery(Context context, @Nullable AttributeSet attrs) {
+    public CustomGallery(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CustomGallery(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public CustomGallery(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

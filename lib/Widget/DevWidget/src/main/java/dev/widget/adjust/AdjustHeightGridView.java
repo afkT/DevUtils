@@ -1,7 +1,6 @@
 package dev.widget.adjust;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.GridView;
 
@@ -15,11 +14,11 @@ public class AdjustHeightGridView extends GridView {
         super(context);
     }
 
-    public AdjustHeightGridView(Context context, @Nullable AttributeSet attrs) {
+    public AdjustHeightGridView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public AdjustHeightGridView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public AdjustHeightGridView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

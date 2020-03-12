@@ -1,7 +1,6 @@
 package dev.widget.adjust;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.ListView;
 
@@ -15,11 +14,11 @@ public class AdjustHeightListView extends ListView {
         super(context);
     }
 
-    public AdjustHeightListView(Context context, @Nullable AttributeSet attrs) {
+    public AdjustHeightListView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public AdjustHeightListView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public AdjustHeightListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

@@ -1,11 +1,13 @@
 package dev.widget.custom;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Rect;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.HorizontalScrollView;
+
+import dev.widget.R;
 
 /**
  * detail: 自定义 HorizontalScrollView 滑动监听、滑动控制
@@ -17,28 +19,41 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
     private boolean mIsSlide = true;
     // 滑动监听回调
     private ScrollCallBack mScrollCallBack = null;
+    // 默认值
+    private final int DEF_VALUE = 0;
+    // 最大显示宽度
+    private int mMaxWidth = DEF_VALUE;
     // 最大显示高度
-    private int mMaxHeight = 0;
+    private int mMaxHeight = DEF_VALUE;
 
     public CustomHorizontalScrollView(Context context) {
         super(context);
     }
 
-    public CustomHorizontalScrollView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+    public CustomHorizontalScrollView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
     }
 
-    public CustomHorizontalScrollView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public CustomHorizontalScrollView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
+        mMaxWidth = a.getLayoutDimension(R.styleable.DevWidget_maxWidth, DEF_VALUE);
+        mMaxHeight = a.getLayoutDimension(R.styleable.DevWidget_maxHeight, DEF_VALUE);
+        a.recycle();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if (mMaxHeight > 0) {
-            super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(mMaxHeight, MeasureSpec.AT_MOST));
-        } else {
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        }
+//        if (mMaxWidth > DEF_VALUE && mMaxHeight > DEF_VALUE) {
+//            widthMeasureSpec = MeasureSpec.makeMeasureSpec(mMaxWidth, MeasureSpec.AT_MOST);
+//            heightMeasureSpec = MeasureSpec.makeMeasureSpec(mMaxHeight, MeasureSpec.AT_MOST);
+//        } else if (mMaxWidth > DEF_VALUE) {
+//            widthMeasureSpec = MeasureSpec.makeMeasureSpec(mMaxWidth, MeasureSpec.AT_MOST);
+//        } else if (mMaxHeight > DEF_VALUE) {
+//            heightMeasureSpec = MeasureSpec.makeMeasureSpec(mMaxHeight, MeasureSpec.AT_MOST);
+//        }
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override

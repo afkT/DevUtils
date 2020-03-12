@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.ColorInt;
-import android.support.annotation.Nullable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
@@ -74,11 +73,11 @@ public class CustomProgressBar extends View {
         this(context, null);
     }
 
-    public CustomProgressBar(Context context, @Nullable AttributeSet attrs) {
+    public CustomProgressBar(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CustomProgressBar(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public CustomProgressBar(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         // 初始化
         init();

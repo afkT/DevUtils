@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -27,11 +26,11 @@ public class SignView extends View {
         this(context, null);
     }
 
-    public SignView(Context context, @Nullable AttributeSet attrs) {
+    public SignView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SignView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public SignView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         // 初始化画笔
         mPaint.setStyle(Paint.Style.STROKE);

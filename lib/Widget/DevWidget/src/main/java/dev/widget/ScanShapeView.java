@@ -20,7 +20,6 @@ import android.graphics.SweepGradient;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
-import android.support.annotation.Nullable;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.AttributeSet;
 import android.view.View;
@@ -228,7 +227,7 @@ public class ScanShapeView extends View {
         this(context, attrs, 0);
     }
 
-    public ScanShapeView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public ScanShapeView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         // 初始化
         init();

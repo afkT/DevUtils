@@ -2,7 +2,6 @@ package dev.widget.custom;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -26,11 +25,11 @@ public class CustomNestedScrollView extends NestedScrollView {
         super(context);
     }
 
-    public CustomNestedScrollView(Context context, @Nullable AttributeSet attrs) {
+    public CustomNestedScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CustomNestedScrollView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public CustomNestedScrollView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
