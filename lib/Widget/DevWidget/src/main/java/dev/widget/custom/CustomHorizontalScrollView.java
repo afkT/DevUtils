@@ -17,6 +17,8 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
     private boolean mIsSlide = true;
     // 滑动监听回调
     private ScrollCallBack mScrollCallBack = null;
+    // 最大显示高度
+    private int mMaxHeight = 0;
 
     public CustomHorizontalScrollView(Context context) {
         super(context);
@@ -28,6 +30,15 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
 
     public CustomHorizontalScrollView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        if (mMaxHeight > 0) {
+            super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(mMaxHeight, MeasureSpec.AT_MOST));
+        } else {
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        }
     }
 
     @Override
@@ -53,6 +64,27 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
     public boolean onInterceptTouchEvent(MotionEvent arg0) {
         if (!this.mIsSlide) return false;
         return super.onInterceptTouchEvent(arg0);
+    }
+
+    /**
+     * 获取 View 最大显示高度
+     * @return View 最大显示高度
+     */
+    public int getMaxHeight() {
+        return mMaxHeight;
+    }
+
+    /**
+     * 设置 View 最大显示高度
+     * <pre>
+     *     如果未超过此高度，则内部多高就占用多高
+     * </pre>
+     * @param maxHeight View 最大显示高度
+     * @return {@link CustomHorizontalScrollView}
+     */
+    public CustomHorizontalScrollView setMaxHeight(int maxHeight) {
+        this.mMaxHeight = maxHeight;
+        return this;
     }
 
     /**
