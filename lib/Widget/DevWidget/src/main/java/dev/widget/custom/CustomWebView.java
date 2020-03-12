@@ -21,7 +21,7 @@ public class CustomWebView extends WebView {
     }
 
     public CustomWebView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public CustomWebView(Context context, AttributeSet attrs, int defStyle) {

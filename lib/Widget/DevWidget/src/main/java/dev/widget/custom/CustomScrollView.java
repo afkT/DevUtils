@@ -25,12 +25,12 @@ public class CustomScrollView extends ScrollView {
 
     // 是否允许滑动
     private boolean mIsSlide = true;
-    // 滑动监听回调
-    private ScrollCallBack mScrollCallBack = null;
     // 最大显示宽度
     private int mMaxWidth = WidgetUtils.DEF_VALUE;
     // 最大显示高度
     private int mMaxHeight = WidgetUtils.DEF_VALUE;
+    // 滑动监听回调
+    private ScrollCallBack mScrollCallBack = null;
 
     public CustomScrollView(Context context) {
         super(context);
