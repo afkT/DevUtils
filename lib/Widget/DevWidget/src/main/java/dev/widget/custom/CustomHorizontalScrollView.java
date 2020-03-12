@@ -13,6 +13,11 @@ import dev.widget.R;
 /**
  * detail: 自定义 HorizontalScrollView 滑动监听、滑动控制
  * @author Ttt
+ * <pre>
+ *     app:dev_slide=""
+ *     app:dev_maxWidth=""
+ *     app:dev_maxHeight=""
+ * </pre>
  */
 public class CustomHorizontalScrollView extends HorizontalScrollView {
 
@@ -37,8 +42,9 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
         super(context, attrs, defStyle);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
-        mMaxWidth = a.getLayoutDimension(R.styleable.DevWidget_maxWidth, WidgetUtils.DEF_VALUE);
-        mMaxHeight = a.getLayoutDimension(R.styleable.DevWidget_maxHeight, WidgetUtils.DEF_VALUE);
+        mIsSlide = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
+        mMaxWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_maxWidth, WidgetUtils.DEF_VALUE);
+        mMaxHeight = a.getLayoutDimension(R.styleable.DevWidget_dev_maxHeight, WidgetUtils.DEF_VALUE);
         a.recycle();
     }
 
@@ -74,6 +80,24 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
     }
 
     /**
+     * 获取 View 最大显示宽度
+     * @return View 最大显示宽度
+     */
+    public int getMaxWidth() {
+        return mMaxWidth;
+    }
+
+    /**
+     * 设置 View 最大显示宽度
+     * @param maxWidth View 最大显示宽度
+     * @return {@link CustomHorizontalScrollView}
+     */
+    public CustomHorizontalScrollView setMaxWidth(int maxWidth) {
+        this.mMaxWidth = maxWidth;
+        return this;
+    }
+
+    /**
      * 获取 View 最大显示高度
      * @return View 最大显示高度
      */
@@ -83,9 +107,6 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
 
     /**
      * 设置 View 最大显示高度
-     * <pre>
-     *     如果未超过此高度，则内部多高就占用多高
-     * </pre>
      * @param maxHeight View 最大显示高度
      * @return {@link CustomHorizontalScrollView}
      */

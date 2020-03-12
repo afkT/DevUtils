@@ -2,7 +2,8 @@
 <resources>
 
     <declare-styleable name="DevWidget">
-        <attr name="maxWidth" format="dimension" />
-        <attr name="maxHeight" format="dimension" />
+        <attr name="dev_maxWidth" format="dimension" />
+        <attr name="dev_maxHeight" format="dimension" />
+        <attr name="dev_slide" format="boolean" />
     </declare-styleable>
 </resources>
