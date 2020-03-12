@@ -1,18 +1,31 @@
 package dev.widget.custom;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import dev.utils.app.WidgetUtils;
+import dev.widget.R;
+
 /**
  * detail: 自定义 ViewPager 滑动监听、滑动控制
  * @author Ttt
+ * <pre>
+ *     app:dev_slide=""
+ *     app:dev_maxWidth=""
+ *     app:dev_maxHeight=""
+ * </pre>
  */
 public class CustomViewPager extends ViewPager {
 
     // 是否允许滑动
     private boolean mIsSlide = true;
+    // 最大显示宽度
+    private int mMaxWidth = WidgetUtils.DEF_VALUE;
+    // 最大显示高度
+    private int mMaxHeight = WidgetUtils.DEF_VALUE;
 
     public CustomViewPager(Context context) {
         super(context);
@@ -20,6 +33,18 @@ public class CustomViewPager extends ViewPager {
 
     public CustomViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
+        mIsSlide = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
+        mMaxWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_maxWidth, WidgetUtils.DEF_VALUE);
+        mMaxHeight = a.getLayoutDimension(R.styleable.DevWidget_dev_maxHeight, WidgetUtils.DEF_VALUE);
+        a.recycle();
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int[] measureSpecs = WidgetUtils.viewMeasure(this, widthMeasureSpec, heightMeasureSpec, mMaxWidth, mMaxHeight);
+        super.onMeasure(measureSpecs[0], measureSpecs[1]);
     }
 
     @Override
@@ -32,6 +57,42 @@ public class CustomViewPager extends ViewPager {
     public boolean onInterceptTouchEvent(MotionEvent arg0) {
         if (!this.mIsSlide) return false;
         return super.onInterceptTouchEvent(arg0);
+    }
+
+    /**
+     * 获取 View 最大显示宽度
+     * @return View 最大显示宽度
+     */
+    public int getMaxWidth() {
+        return mMaxWidth;
+    }
+
+    /**
+     * 设置 View 最大显示宽度
+     * @param maxWidth View 最大显示宽度
+     * @return {@link CustomViewPager}
+     */
+    public CustomViewPager setMaxWidth(int maxWidth) {
+        this.mMaxWidth = maxWidth;
+        return this;
+    }
+
+    /**
+     * 获取 View 最大显示高度
+     * @return View 最大显示高度
+     */
+    public int getMaxHeight() {
+        return mMaxHeight;
+    }
+
+    /**
+     * 设置 View 最大显示高度
+     * @param maxHeight View 最大显示高度
+     * @return {@link CustomViewPager}
+     */
+    public CustomViewPager setMaxHeight(int maxHeight) {
+        this.mMaxHeight = maxHeight;
+        return this;
     }
 
     /**
