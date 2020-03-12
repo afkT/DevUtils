@@ -11,7 +11,7 @@ import butterknife.OnClick;
 import dev.temp.ChineseUtils;
 import dev.utils.app.helper.ViewHelper;
 import dev.utils.common.RandomUtils;
-import dev.widget.LineTextView;
+import dev.widget.function.LineTextView;
 
 /**
  * detail: 自动换行 View

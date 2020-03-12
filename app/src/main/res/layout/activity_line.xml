@@ -20,7 +20,7 @@
             style="@style/AppTheme.Base_Line_Vertical"
             android:background="@color/gray" />
 
-        <dev.widget.LineTextView
+        <dev.widget.function.LineTextView
             android:id="@+id/vid_al_content_tv"
             style="@style/AppTheme.Base_TextView"
             android:layout_margin="15.0dip"
