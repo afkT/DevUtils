@@ -37,17 +37,28 @@ public class CustomScrollView extends ScrollView {
     }
 
     public CustomScrollView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        initAttrs(context, attrs);
     }
 
     public CustomScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initAttrs(context, attrs);
+    }
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
-        mIsSlide = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
-        mMaxWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_maxWidth, WidgetUtils.DEF_VALUE);
-        mMaxHeight = a.getLayoutDimension(R.styleable.DevWidget_dev_maxHeight, WidgetUtils.DEF_VALUE);
-        a.recycle();
+    /**
+     * 初始化
+     * @param context {@link Context}
+     * @param attrs   {@link AttributeSet}
+     */
+    private void initAttrs(Context context, AttributeSet attrs) {
+        if (context != null && attrs != null) {
+            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
+            mIsSlide = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
+            mMaxWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_maxWidth, WidgetUtils.DEF_VALUE);
+            mMaxHeight = a.getLayoutDimension(R.styleable.DevWidget_dev_maxHeight, WidgetUtils.DEF_VALUE);
+            a.recycle();
+        }
     }
 
     @Override

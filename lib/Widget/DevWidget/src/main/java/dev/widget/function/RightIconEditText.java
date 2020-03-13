@@ -166,9 +166,11 @@ public class RightIconEditText extends AppCompatEditText {
 
     /**
      * 初始化
+     * @param context {@link Context}
+     * @param attrs   {@link AttributeSet}
      */
     private void init(Context context, AttributeSet attrs) {
-        if (attrs != null) {
+        if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
             mRangeMultiple = a.getFloat(R.styleable.DevWidget_dev_rangeMultiple, 2.0f);
             mIsDrawRightIcon = a.getBoolean(R.styleable.DevWidget_dev_drawRightIcon, true);
