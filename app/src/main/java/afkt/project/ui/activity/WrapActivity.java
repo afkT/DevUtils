@@ -16,7 +16,7 @@ import dev.utils.app.ResourceUtils;
 import dev.utils.app.ShapeUtils;
 import dev.utils.app.helper.ViewHelper;
 import dev.utils.common.RandomUtils;
-import dev.widget.WrapView;
+import dev.widget.ui.WrapView;
 
 /**
  * detail: 自动换行 View

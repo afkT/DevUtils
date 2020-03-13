@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <dev.widget.WrapView
+        <dev.widget.ui.WrapView
             android:id="@+id/vid_aw_wrapview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

@@ -1,4 +1,4 @@
-package dev.widget;
+package dev.widget.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
  * <pre>
  *     Google FlexboxLayout 推荐使用该库, 支持 RecyclerView (FlexboxLayoutManager)
  *     @see <a href="https://github.com/google/flexbox-layout"/>
- *     Android 可伸缩布局 －FlexboxLayout ( 支持 RecyclerView 集成 )
+ *     Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 )
  *     @see <a href="https://juejin.im/post/58d1035161ff4b00603ca9c4"/>
  * </pre>
  */
@@ -176,9 +176,9 @@ public class WrapView extends ViewGroup {
         return getPaddingTop() + calcHeight + getPaddingBottom();
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 刷新绘制 ( 更新配置信息后, 必须调用 )
