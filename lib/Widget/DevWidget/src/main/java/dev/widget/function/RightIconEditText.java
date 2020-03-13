@@ -101,7 +101,7 @@ public class RightIconEditText extends AppCompatEditText {
      * @return 右边 Icon 触发范围倍数
      */
     public float getRangeMultiple() {
-        return this.mRangeMultiple;
+        return mRangeMultiple;
     }
 
     /**
@@ -119,7 +119,7 @@ public class RightIconEditText extends AppCompatEditText {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isDrawRightIcon() {
-        return this.mIsDrawRightIcon;
+        return mIsDrawRightIcon;
     }
 
     /**
@@ -138,7 +138,7 @@ public class RightIconEditText extends AppCompatEditText {
      * @return {@link Drawable}
      */
     public Drawable getRightIcon() {
-        return this.mRight;
+        return mRight;
     }
 
     /**
