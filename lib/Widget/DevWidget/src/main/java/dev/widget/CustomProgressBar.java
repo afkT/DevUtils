@@ -77,8 +77,8 @@ public class CustomProgressBar extends View {
         this(context, attrs, 0);
     }
 
-    public CustomProgressBar(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public CustomProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         // 初始化
         init();
     }

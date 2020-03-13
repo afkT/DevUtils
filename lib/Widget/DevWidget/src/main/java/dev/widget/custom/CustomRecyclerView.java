@@ -64,8 +64,8 @@ public class CustomRecyclerView extends RecyclerView {
         this(context, attrs, 0);
     }
 
-    public CustomRecyclerView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public CustomRecyclerView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
         mIsSlide = a.getBoolean(R.styleable.DevWidget_dev_slide, true);

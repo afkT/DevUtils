@@ -7,5 +7,8 @@
         <attr name="dev_slide" format="boolean" />
         <attr name="dev_drawRightIcon" format="boolean" />
         <attr name="dev_rangeMultiple" format="float" />
+        <attr name="dev_rowTopMargin" format="dimension" />
+        <attr name="dev_viewLeftMargin" format="dimension" />
+        <attr name="dev_rowFristLeftMargin" format="dimension" />
     </declare-styleable>
 </resources>

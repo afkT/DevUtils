@@ -34,7 +34,7 @@ public class WrapView extends ViewGroup {
     }
 
     public WrapView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public WrapView(Context context, AttributeSet attrs, int defStyleAttr) {

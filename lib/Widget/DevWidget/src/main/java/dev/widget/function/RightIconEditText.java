@@ -48,8 +48,8 @@ public class RightIconEditText extends AppCompatEditText {
         init(context, attrs);
     }
 
-    public RightIconEditText(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public RightIconEditText(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
 

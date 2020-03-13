@@ -43,8 +43,8 @@ public class SignView extends View {
         super(context, attrs);
     }
 
-    public SignView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public SignView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
     }
 
     @Override

@@ -31,8 +31,8 @@ public class LimitLayout extends FrameLayout {
         this(context, attrs, 0);
     }
 
-    public LimitLayout(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public LimitLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
         mMaxWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_maxWidth, WidgetUtils.DEF_VALUE);

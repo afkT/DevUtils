@@ -42,8 +42,8 @@ public class StateLayout extends FrameLayout {
         this(context, attrs, 0);
     }
 
-    public StateLayout(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public StateLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         // 初始化操作
         init();
     }

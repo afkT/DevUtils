@@ -27,8 +27,8 @@ public class LineTextView extends AppCompatTextView {
         super(context, attrs);
     }
 
-    public LineTextView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public LineTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
     }
 
     @Override
