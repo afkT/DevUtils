@@ -1,10 +1,11 @@
-package dev.widget;
+package dev.widget.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -28,9 +29,10 @@ import java.util.Arrays;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.SizeUtils;
+import dev.widget.R;
 
 /**
- * detail: 扫描形状 View
+ * detail: 自定义扫描形状 View
  * @author Ttt
  */
 public class ScanShapeView extends View {
@@ -220,17 +222,32 @@ public class ScanShapeView extends View {
     // ============
 
     public ScanShapeView(Context context) {
-        this(context, null, 0);
+        super(context);
+        initAttrs(context, null);
     }
 
     public ScanShapeView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        initAttrs(context, attrs);
     }
 
     public ScanShapeView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        // 初始化
-        init();
+        initAttrs(context, attrs);
+    }
+
+    /**
+     * 初始化
+     * @param context {@link Context}
+     * @param attrs   {@link AttributeSet}
+     */
+    private void initAttrs(Context context, AttributeSet attrs) {
+        init(); // 默认初始化配置
+
+        if (context != null && attrs != null) {
+            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
+            a.recycle();
+        }
     }
 
     /**
@@ -1746,7 +1763,6 @@ public class ScanShapeView extends View {
     // 动画操作
     private final int START_ANIM = 10; // 开始动画
     private final int STOP_ANIM = 11; // 停止动画
-//    private final int PAUSE_ANIM = 12; // 暂停动画
 
     /**
      * 启动动画
@@ -1763,13 +1779,6 @@ public class ScanShapeView extends View {
     public void stopAnim() {
         animSwitch(STOP_ANIM);
     }
-
-//    /**
-//     * 暂停动画
-//     */
-//    public void pauseAnim(){
-//        animSwitch(PAUSE_ANIM);
-//    }
 
     /**
      * 动画开关统一方法
@@ -1794,18 +1803,11 @@ public class ScanShapeView extends View {
             if (valueAnimator != null) {
                 switch (operate) {
                     case START_ANIM:
-                        if (valueAnimator.isPaused()) {
-                            valueAnimator.resume();
-                        } else {
-                            valueAnimator.start();
-                        }
+                        valueAnimator.start();
                         break;
                     case STOP_ANIM:
                         valueAnimator.cancel();
                         break;
-//                    case PAUSE_ANIM:
-//                        valueAnimator.pause();
-//                        break;
                 }
             }
         } catch (Exception e) {

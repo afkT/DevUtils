@@ -12,7 +12,7 @@ import dev.other.GlideUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.SizeUtils;
 import dev.utils.common.FileUtils;
-import dev.widget.ScanShapeView;
+import dev.widget.ui.ScanShapeView;
 
 /**
  * detail: 项目工具类

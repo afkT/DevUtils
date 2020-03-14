@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <dev.widget.ScanShapeView
+    <dev.widget.ui.ScanShapeView
         android:id="@+id/vid_ass_scanview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

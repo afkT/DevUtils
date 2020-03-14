@@ -21,7 +21,7 @@ import dev.utils.app.camera1.CameraUtils;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.permission.PermissionUtils;
 import dev.utils.app.toast.ToastTintUtils;
-import dev.widget.ScanShapeView;
+import dev.widget.ui.ScanShapeView;
 
 /**
  * detail: 自定义扫描 View ( QRCode、AR )
