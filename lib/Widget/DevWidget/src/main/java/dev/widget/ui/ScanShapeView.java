@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -223,31 +222,17 @@ public class ScanShapeView extends View {
 
     public ScanShapeView(Context context) {
         super(context);
-        initAttrs(context, null);
+        init();
     }
 
     public ScanShapeView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initAttrs(context, attrs);
+        init();
     }
 
     public ScanShapeView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initAttrs(context, attrs);
-    }
-
-    /**
-     * 初始化
-     * @param context {@link Context}
-     * @param attrs   {@link AttributeSet}
-     */
-    private void initAttrs(Context context, AttributeSet attrs) {
-        init(); // 默认初始化配置
-
-        if (context != null && attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
-            a.recycle();
-        }
+        init();
     }
 
     /**
