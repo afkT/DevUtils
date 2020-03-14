@@ -2112,9 +2112,19 @@ public final class TextViewUtils {
      * @return 字体大小
      */
     public static float reckonTextSizeByHeight(final int height) {
+        return reckonTextSizeByHeight(height, 40.0f);
+    }
+
+    /**
+     * 通过需要的高度, 计算字体大小
+     * @param height    需要的高度
+     * @param startSize 字体开始预估大小
+     * @return 字体大小
+     */
+    public static float reckonTextSizeByHeight(final int height, final float startSize) {
         Paint paint = new Paint();
         // 默认字体大小
-        float textSize = 90.0f;
+        float textSize = startSize;
         // 计算内容高度
         int calcTextHeight = -1;
         // 循环计算
