@@ -40,7 +40,7 @@ public final class TextCalcUse {
         // 获取字体高度
         TextViewUtils.getTextHeight(tv);
         // 获取字体大小
-        TextViewUtils.reckonTextSize(90); // 获取字体高度为 90 的字体大小
+        TextViewUtils.reckonTextSizeByHeight(90); // 获取字体高度为 90 的字体大小
     }
 
     // =
@@ -56,7 +56,7 @@ public final class TextCalcUse {
         builder.append("\n偏移高度: " + TextViewUtils.getTextTopOffsetHeight(textView));
         builder.append("\n宽度: " + TextViewUtils.getTextWidth(textView));
         builder.append("\n字体大小: " + textView.getTextSize());
-        builder.append("\n计算字体大小: " + TextViewUtils.reckonTextSize(TextViewUtils.getTextHeight(textView)));
+        builder.append("\n计算字体大小: " + TextViewUtils.reckonTextSizeByHeight(TextViewUtils.getTextHeight(textView)));
         // 打印日志
         DevLogger.dTag(TAG, builder.toString());
     }

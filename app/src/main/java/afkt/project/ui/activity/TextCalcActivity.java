@@ -56,7 +56,7 @@ public class TextCalcActivity extends BaseToolbarActivity {
                     builder.append("\n偏移高度: " + TextViewUtils.getTextTopOffsetHeight(baseTextView));
                     builder.append("\n字体宽度: " + TextViewUtils.getTextWidth(baseTextView));
                     builder.append("\n字体大小: " + baseTextView.getTextSize());
-                    builder.append("\n计算字体大小: " + TextViewUtils.reckonTextSize(TextViewUtils.getTextHeight(baseTextView)));
+                    builder.append("\n计算字体大小: " + TextViewUtils.reckonTextSizeByHeight(TextViewUtils.getTextHeight(baseTextView)));
                     builder.append("\n计算行数: " + TextViewUtils.calcTextLine(baseTextView, text, baseTextView.getMeasuredWidth()));
 
                     String content = builder.toString();

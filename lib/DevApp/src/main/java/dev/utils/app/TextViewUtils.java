@@ -2108,11 +2108,10 @@ public final class TextViewUtils {
 
     /**
      * 通过需要的高度, 计算字体大小
-     * @param textHeight 需要的字体高度
+     * @param height 需要的高度
      * @return 字体大小
      */
-    public static float reckonTextSize(final int textHeight) {
-        // 创建画笔
+    public static float reckonTextSizeByHeight(final int height) {
         Paint paint = new Paint();
         // 默认字体大小
         float textSize = 90.0f;
@@ -2127,9 +2126,9 @@ public final class TextViewUtils {
             // 计算内容高度
             calcTextHeight = (int) Math.ceil((fontMetrics.descent - fontMetrics.ascent));
             // 符合条件则直接返回
-            if (calcTextHeight == textHeight) {
+            if (calcTextHeight == height) {
                 return textSize;
-            } else if (calcTextHeight > textHeight) { // 如果计算的字体高度大于
+            } else if (calcTextHeight > height) { // 如果计算的字体高度大于
                 textSize -= 0.5f;
             } else {
                 textSize += 0.5f;
