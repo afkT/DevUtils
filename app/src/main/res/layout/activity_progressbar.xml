@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -19,7 +20,12 @@
                 android:id="@+id/vid_ap_bar1"
                 android:layout_width="120.0dip"
                 android:layout_height="120.0dip"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                app:dev_canvasNumber="true"
+                app:dev_outerRingColor="@color/khaki"
+                app:dev_outerRingWidth="5.0dp"
+                app:dev_progressColor="#888888"
+                app:dev_progressStyle="def" />
         </FrameLayout>
 
         <FrameLayout
@@ -31,7 +37,10 @@
                 android:id="@+id/vid_ap_bar2"
                 android:layout_width="120.0dip"
                 android:layout_height="120.0dip"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                app:dev_canvasNumber="true"
+                app:dev_progressColor="@color/sky_blue"
+                app:dev_progressStyle="fan_shaped" />
         </FrameLayout>
     </LinearLayout>
 
@@ -50,7 +59,13 @@
                 android:id="@+id/vid_ap_bar3"
                 android:layout_width="120.0dip"
                 android:layout_height="120.0dip"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                app:dev_canvasNumber="true"
+                app:dev_numberTextColor="#FB7D00"
+                app:dev_outerRingColor="@color/red"
+                app:dev_outerRingWidth="1.0dp"
+                app:dev_progressColor="@color/mediumturquoise"
+                app:dev_progressStyle="arc_fan_shaped" />
         </FrameLayout>
 
         <FrameLayout
@@ -62,7 +77,10 @@
                 android:id="@+id/vid_ap_bar4"
                 android:layout_width="120.0dip"
                 android:layout_height="120.0dip"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                app:dev_numberTextColor="@color/deeppink"
+                app:dev_numberTextSize="40sp"
+                app:dev_progressStyle="number" />
         </FrameLayout>
     </LinearLayout>
 </LinearLayout>

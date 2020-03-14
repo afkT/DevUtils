@@ -19,28 +19,59 @@ import dev.widget.R;
  * @author Ttt
  * <pre>
  *     内外圆环 + 数字 + 无扇形
- *     view.setProgressStyle(CustomProgressBar.ProgressStyle.DEFAULT)
- *              .setOuterRingWidth(SizeUtils.dipConvertPx(1)) // 内环宽度
- *              .setOuterRingColor(Color.BLUE) // 内环颜色
- *              .setProgressColor(ResourceUtils.getColor(R.color.black)) // 进度颜色
+ *     view.setProgressStyle(LoadProgressBar.ProgressStyle.DEFAULT)
+ *              .setOuterRingWidth(SizeUtils.dipConvertPx(5)) // 内环宽度
+ *              .setOuterRingColor(ResourceUtils.getColor(R.color.khaki)) // 内环颜色
+ *              .setProgressColor(ResourceUtils.getColor(R.color.color_88)) // 进度颜色
  *              .setCanvasNumber(true); // 是否绘制数字
+ *     <dev.widget.ui.LoadProgressBar
+ *        app:dev_canvasNumber="true"
+ *        app:dev_outerRingColor="@color/khaki"
+ *        app:dev_outerRingWidth="5.0dp"
+ *        app:dev_progressColor="#888888"
+ *        app:dev_progressStyle="def" />
  *     <p></p>
  *     扇形 + 数字 + 无内外圆环
  *     view.setProgressStyle(CustomProgressBar.ProgressStyle.FAN_SHAPED)
- *              .setProgressColor(ResourceUtils.getColor(R.color.white)) // 进度颜色
+ *              .setProgressColor(ResourceUtils.getColor(R.color.sky_blue)) // 进度颜色
  *              .setCanvasNumber(true); // 是否绘制数字
+ *     <dev.widget.ui.LoadProgressBar
+ *        app:dev_canvasNumber="true"
+ *        app:dev_progressColor="@color/sky_blue"
+ *        app:dev_progressStyle="fan_shaped" />
  *     <p></p>
  *     扇形 + 数字 + 外圆环
- *     view.setProgressStyle(CustomProgressBar.ProgressStyle.ARC_FAN_SHAPED)
+ *     view.setProgressStyle(LoadProgressBar.ProgressStyle.ARC_FAN_SHAPED)
  *              .setOuterRingWidth(SizeUtils.dipConvertPx(1)) // 内环宽度
  *              .setOuterRingColor(Color.RED) // 内环颜色
- *              .setProgressColor(ResourceUtils.getColor(R.color.white)) // 进度颜色
+ *              .setProgressColor(ResourceUtils.getColor(R.color.mediumturquoise)) // 进度颜色
+ *              .setNumberTextColor(Color.parseColor("#FB7D00")) // 字体颜色
  *              .setCanvasNumber(true); // 是否绘制数字
+ *     <dev.widget.ui.LoadProgressBar
+ *        app:dev_canvasNumber="true"
+ *        app:dev_numberTextColor="#FB7D00"
+ *        app:dev_outerRingColor="@color/red"
+ *        app:dev_outerRingWidth="1.0dp"
+ *        app:dev_progressColor="@color/mediumturquoise"
+ *        app:dev_progressStyle="arc_fan_shaped" />
  *     <p></p>
  *     单独字体
  *     view.setProgressStyle(CustomProgressBar.ProgressStyle.NUMBER)
  *              .setNumberTextSize(20f) // 字体大小
  *              .setNumberTextColor(ResourceUtils.getColor(R.color.deeppink)); // 字体颜色
+ *     <dev.widget.ui.LoadProgressBar
+ *        app:dev_numberTextColor="@color/deeppink"
+ *        app:dev_numberTextSize="40sp"
+ *        app:dev_progressStyle="number" />
+ *     <p></p>
+ *     app:dev_canvasNumber=""
+ *     app:dev_progressColor=""
+ *     app:dev_outerRingColor=""
+ *     app:dev_insideCircleWidth=""
+ *     app:dev_outerRingWidth=""
+ *     app:dev_numberTextSize=""
+ *     app:dev_numberTextColor=""
+ *     app:dev_progressStyle=""
  * </pre>
  */
 public class LoadProgressBar extends View {
@@ -61,14 +92,12 @@ public class LoadProgressBar extends View {
     private float mInsideCircleWidth;
     // 外环进度条宽度
     private float mOuterRingWidth;
-    // 计算后的字体大小
-    private float mCalcTextSize;
     // 绘制的字体大小
     private float mNumberTextSize;
     // 绘制的数字颜色
     private int mNumberTextColor;
     // 是否绘制数字
-    private boolean mIsCanvasNumber = true;
+    private boolean mIsCanvasNumber = false;
 
     public LoadProgressBar(Context context) {
         super(context);
@@ -95,6 +124,7 @@ public class LoadProgressBar extends View {
 
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
+            mIsCanvasNumber = a.getBoolean(R.styleable.DevWidget_dev_canvasNumber, mIsCanvasNumber);
             mProgressColor = a.getColor(R.styleable.DevWidget_dev_progressColor, mProgressColor);
             mOuterRingColor = a.getColor(R.styleable.DevWidget_dev_outerRingColor, mOuterRingColor);
             mInsideCircleWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_insideCircleWidth, (int) mInsideCircleWidth);
@@ -144,7 +174,6 @@ public class LoadProgressBar extends View {
         // 设置绘制的数字颜色
         mNumberTextColor = Color.BLACK;
         // 初始化处理
-        mCalcTextSize = 0;
         mNumberTextSize = 0;
         mInsideCircleWidth = 0;
         mIsCanvasNumber = false;
@@ -221,12 +250,12 @@ public class LoadProgressBar extends View {
             // 绘制的内容
             String progressText = mProgress * 100 / mMax + "%";
             // 判断是否存在计算的字体大小
-            if (mCalcTextSize <= 0) {
+            if (mNumberTextSize <= 0) {
                 // 计算字体大小
-                mCalcTextSize = calcTextSizeToWidth(getWidth(), "100%");
+                mNumberTextSize = calcTextSizeToWidth(getWidth(), "100%");
             }
             // 绘制进度文本
-            drawProgressText(canvas, mCalcTextSize, mNumberTextColor, progressText);
+            drawProgressText(canvas, mNumberTextSize, mNumberTextColor, progressText);
             // 已经绘制数字, 则不绘制
             isDrawNumber = false;
         }
