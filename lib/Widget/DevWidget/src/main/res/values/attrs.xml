@@ -31,7 +31,7 @@
         <attr name="dev_numberTextSize" format="dimension" />
         <attr name="dev_numberTextColor" format="color" />
         <attr name="dev_progressStyle" format="enum">
-            <enum name="def" value="0" />
+            <enum name="rings" value="0" />
             <enum name="fan_shaped" value="1" />
             <enum name="arc_fan_shaped" value="2" />
             <enum name="number" value="3" />

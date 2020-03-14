@@ -35,7 +35,7 @@ public class ProgressBarActivity extends BaseToolbarActivity {
         super.initValues();
 
 //        // 内外圆环 + 数字 + 无扇形
-//        vid_ap_bar1.setProgressStyle(LoadProgressBar.ProgressStyle.DEFAULT)
+//        vid_ap_bar1.setProgressStyle(LoadProgressBar.ProgressStyle.RINGS)
 //                .setOuterRingWidth(SizeUtils.dipConvertPx(5)) // 内环宽度
 //                .setOuterRingColor(ResourceUtils.getColor(R.color.khaki)) // 内环颜色
 //                .setProgressColor(ResourceUtils.getColor(R.color.color_88)) // 进度颜色

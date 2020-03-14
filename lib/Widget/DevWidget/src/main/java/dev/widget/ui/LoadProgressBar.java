@@ -19,7 +19,7 @@ import dev.widget.R;
  * @author Ttt
  * <pre>
  *     内外圆环 + 数字 + 无扇形
- *     view.setProgressStyle(LoadProgressBar.ProgressStyle.DEFAULT)
+ *     view.setProgressStyle(LoadProgressBar.ProgressStyle.RINGS)
  *              .setOuterRingWidth(SizeUtils.dipConvertPx(5)) // 内环宽度
  *              .setOuterRingColor(ResourceUtils.getColor(R.color.khaki)) // 内环颜色
  *              .setProgressColor(ResourceUtils.getColor(R.color.color_88)) // 进度颜色
@@ -29,7 +29,7 @@ import dev.widget.R;
  *        app:dev_outerRingColor="@color/khaki"
  *        app:dev_outerRingWidth="5.0dp"
  *        app:dev_progressColor="#888888"
- *        app:dev_progressStyle="def" />
+ *        app:dev_progressStyle="rings" />
  *     <p></p>
  *     扇形 + 数字 + 无内外圆环
  *     view.setProgressStyle(CustomProgressBar.ProgressStyle.FAN_SHAPED)
@@ -76,14 +76,14 @@ import dev.widget.R;
  */
 public class LoadProgressBar extends View {
 
+    // 画笔
+    private Paint mPaint;
     // 最大进度
     private int mMax = 100;
     // 当前进度
     private int mProgress = 0;
     // 进度条样式
-    private ProgressStyle mProgressStyle = ProgressStyle.DEFAULT;
-    // 画笔
-    private Paint mPaint;
+    private ProgressStyle mProgressStyle = ProgressStyle.RINGS;
     // 进度条颜色
     private int mProgressColor;
     // 外环进度条颜色
@@ -92,12 +92,12 @@ public class LoadProgressBar extends View {
     private float mInsideCircleWidth;
     // 外环进度条宽度
     private float mOuterRingWidth;
+    // 是否绘制数字
+    private boolean mIsCanvasNumber = false;
     // 绘制的字体大小
     private float mNumberTextSize;
     // 绘制的数字颜色
     private int mNumberTextColor;
-    // 是否绘制数字
-    private boolean mIsCanvasNumber = false;
 
     public LoadProgressBar(Context context) {
         super(context);
@@ -136,7 +136,7 @@ public class LoadProgressBar extends View {
 
             switch (progressStyle) {
                 case 0:
-                    mProgressStyle = ProgressStyle.DEFAULT;
+                    mProgressStyle = ProgressStyle.RINGS;
                     break;
                 case 1:
                     mProgressStyle = ProgressStyle.FAN_SHAPED;
@@ -148,7 +148,7 @@ public class LoadProgressBar extends View {
                     mProgressStyle = ProgressStyle.NUMBER;
                     break;
                 default:
-                    mProgressStyle = ProgressStyle.DEFAULT;
+                    mProgressStyle = ProgressStyle.RINGS;
                     break;
             }
         }
@@ -186,9 +186,9 @@ public class LoadProgressBar extends View {
         // 是否绘制数字
         boolean isDrawNumber = mIsCanvasNumber;
         // 防止没有设置样式
-        if (mProgressStyle == null) mProgressStyle = ProgressStyle.DEFAULT;
+        if (mProgressStyle == null) mProgressStyle = ProgressStyle.RINGS;
         // 属于默认类型
-        if (mProgressStyle == ProgressStyle.DEFAULT) { // 绘制圆环
+        if (mProgressStyle == ProgressStyle.RINGS) { // 绘制圆环
             float centre = getWidth() / 2; // 获取圆心的 x 坐标
             float radius = (centre - mOuterRingWidth / 2); // 圆环的半径
             mPaint.setColor(mOuterRingColor); // 设置圆环的颜色
@@ -265,7 +265,7 @@ public class LoadProgressBar extends View {
             mPaint.setStyle(Paint.Style.FILL);
             // 判断样式
             switch (mProgressStyle) {
-                case DEFAULT: // 圆环
+                case RINGS: // 圆环
                 case FAN_SHAPED: // 扇形
                     // 判断是否存在计算的字体大小
                     if (mNumberTextSize <= 0) {
@@ -434,24 +434,6 @@ public class LoadProgressBar extends View {
     }
 
     /**
-     * 获取进度条样式
-     * @return {@link ProgressStyle}
-     */
-    public ProgressStyle getProgressStyle() {
-        return mProgressStyle;
-    }
-
-    /**
-     * 设置进度条样式
-     * @param progressStyle {@link ProgressStyle}
-     * @return {@link LoadProgressBar}
-     */
-    public LoadProgressBar setProgressStyle(ProgressStyle progressStyle) {
-        this.mProgressStyle = (progressStyle == null) ? ProgressStyle.DEFAULT : progressStyle;
-        return this;
-    }
-
-    /**
      * 获取进度条颜色
      * @return 进度条颜色
      */
@@ -577,6 +559,24 @@ public class LoadProgressBar extends View {
         return this;
     }
 
+    /**
+     * 获取进度条样式
+     * @return {@link ProgressStyle}
+     */
+    public ProgressStyle getProgressStyle() {
+        return mProgressStyle;
+    }
+
+    /**
+     * 设置进度条样式
+     * @param progressStyle {@link ProgressStyle}
+     * @return {@link LoadProgressBar}
+     */
+    public LoadProgressBar setProgressStyle(ProgressStyle progressStyle) {
+        this.mProgressStyle = (progressStyle == null) ? ProgressStyle.RINGS : progressStyle;
+        return this;
+    }
+
     // ==============
     // = 进度条样式 =
     // ==============
@@ -587,8 +587,8 @@ public class LoadProgressBar extends View {
      */
     public enum ProgressStyle {
 
-        // 默认样式 ( 圆环 )
-        DEFAULT,
+        // 圆环
+        RINGS,
 
         // 扇形进度样式
         FAN_SHAPED,

@@ -25,7 +25,7 @@
                 app:dev_outerRingColor="@color/khaki"
                 app:dev_outerRingWidth="5.0dp"
                 app:dev_progressColor="#888888"
-                app:dev_progressStyle="def" />
+                app:dev_progressStyle="rings" />
         </FrameLayout>
 
         <FrameLayout
