@@ -1,6 +1,7 @@
 package dev.widget.ui;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,6 +12,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import dev.utils.app.SizeUtils;
+import dev.widget.R;
 
 /**
  * detail: 自定义加载 ProgressBar 样式 View
@@ -41,7 +43,7 @@ import dev.utils.app.SizeUtils;
  *              .setNumberTextColor(ResourceUtils.getColor(R.color.deeppink)); // 字体颜色
  * </pre>
  */
-public class LoadingProgressBar extends View {
+public class LoadProgressBar extends View {
 
     // 最大进度
     private int mMax = 100;
@@ -59,7 +61,6 @@ public class LoadingProgressBar extends View {
     private float mInsideCircleWidth;
     // 外环进度条宽度
     private float mOuterRingWidth;
-    // = 字体 =
     // 计算后的字体大小
     private float mCalcTextSize;
     // 绘制的字体大小
@@ -69,19 +70,37 @@ public class LoadingProgressBar extends View {
     // 是否绘制数字
     private boolean mIsCanvasNumber = true;
 
-    public LoadingProgressBar(Context context) {
+    public LoadProgressBar(Context context) {
         super(context);
-        init();
+        initAttrs(context, null);
     }
 
-    public LoadingProgressBar(Context context, AttributeSet attrs) {
+    public LoadProgressBar(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        initAttrs(context, attrs);
     }
 
-    public LoadingProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LoadProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        initAttrs(context, attrs);
+    }
+
+    /**
+     * 初始化
+     * @param context {@link Context}
+     * @param attrs   {@link AttributeSet}
+     */
+    private void initAttrs(Context context, AttributeSet attrs) {
+        if (context != null && attrs != null) {
+            init();
+
+            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
+//            mMaxLine = a.getInteger(R.styleable.DevWidget_dev_maxLine, Integer.MAX_VALUE);
+//            mRowTopMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_rowTopMargin, 20);
+//            mViewLeftMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_viewLeftMargin, 20);
+//            mRowFristLeftMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_rowFristLeftMargin, 20);
+            a.recycle();
+        }
     }
 
     // ===============
@@ -90,9 +109,9 @@ public class LoadingProgressBar extends View {
 
     /**
      * 初始化方法
-     * @return {@link LoadingProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    private LoadingProgressBar init() {
+    private LoadProgressBar init() {
         // 初始化画笔
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         // 设置进度颜色值 ( 白色 )
@@ -314,9 +333,9 @@ public class LoadingProgressBar extends View {
 
     /**
      * 重置参数
-     * @return {@link LoadingProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public LoadingProgressBar reset() {
+    public LoadProgressBar reset() {
         return init();
     }
 
@@ -331,9 +350,9 @@ public class LoadingProgressBar extends View {
     /**
      * 设置最大值
      * @param max 最大值
-     * @return {@link LoadingProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public synchronized LoadingProgressBar setMax(int max) {
+    public synchronized LoadProgressBar setMax(int max) {
         if (max <= 0) throw new IllegalArgumentException("max not less than 0");
         this.mMax = max;
         return this;
@@ -350,9 +369,9 @@ public class LoadingProgressBar extends View {
     /**
      * 设置当前进度
      * @param progress 当前进度
-     * @return {@link LoadingProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public synchronized LoadingProgressBar setProgress(int progress) {
+    public synchronized LoadProgressBar setProgress(int progress) {
         if (progress < 0) throw new IllegalArgumentException("progress not less than 0");
         if (progress > mMax) {
             progress = mMax;
@@ -375,9 +394,9 @@ public class LoadingProgressBar extends View {
     /**
      * 设置进度条样式
      * @param progressStyle {@link ProgressStyle}
-     * @return {@link LoadingProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public LoadingProgressBar setProgressStyle(ProgressStyle progressStyle) {
+    public LoadProgressBar setProgressStyle(ProgressStyle progressStyle) {
         mProgressStyle = (progressStyle == null) ? ProgressStyle.DEFAULT : progressStyle;
         return this;
     }
@@ -393,9 +412,9 @@ public class LoadingProgressBar extends View {
     /**
      * 设置进度条颜色
      * @param progressColor 进度条颜色
-     * @return {@link LoadingProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public LoadingProgressBar setProgressColor(@ColorInt int progressColor) {
+    public LoadProgressBar setProgressColor(@ColorInt int progressColor) {
         this.mProgressColor = progressColor;
         return this;
     }
@@ -411,9 +430,9 @@ public class LoadingProgressBar extends View {
     /**
      * 设置外环进度条颜色
      * @param outerRingColor 外环进度条颜色
-     * @return {@link LoadingProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public LoadingProgressBar setOuterRingColor(@ColorInt int outerRingColor) {
+    public LoadProgressBar setOuterRingColor(@ColorInt int outerRingColor) {
         this.mOuterRingColor = outerRingColor;
         return this;
     }
@@ -429,9 +448,9 @@ public class LoadingProgressBar extends View {
     /**
      * 设置内环进度条宽度
      * @param insideCircleWidth 内环进度条宽度
-     * @return {@link LoadingProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public LoadingProgressBar setInsideCircleWidth(float insideCircleWidth) {
+    public LoadProgressBar setInsideCircleWidth(float insideCircleWidth) {
         this.mInsideCircleWidth = Math.abs(insideCircleWidth);
         return this;
     }
@@ -447,9 +466,9 @@ public class LoadingProgressBar extends View {
     /**
      * 设置外环进度条宽度
      * @param outerRingWidth 外环进度条宽度
-     * @return {@link LoadingProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public LoadingProgressBar setOuterRingWidth(float outerRingWidth) {
+    public LoadProgressBar setOuterRingWidth(float outerRingWidth) {
         this.mOuterRingWidth = Math.abs(outerRingWidth);
         return this;
     }
@@ -465,9 +484,9 @@ public class LoadingProgressBar extends View {
     /**
      * 设置是否绘制数字
      * @param canvasNumber {@code true} yes, {@code false} no
-     * @return {@link LoadingProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public LoadingProgressBar setCanvasNumber(boolean canvasNumber) {
+    public LoadProgressBar setCanvasNumber(boolean canvasNumber) {
         mIsCanvasNumber = canvasNumber;
         return this;
     }
@@ -483,9 +502,9 @@ public class LoadingProgressBar extends View {
     /**
      * 设置绘制的字体大小
      * @param numberTextSize 绘制的字体大小
-     * @return {@link LoadingProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public LoadingProgressBar setNumberTextSize(float numberTextSize) {
+    public LoadProgressBar setNumberTextSize(float numberTextSize) {
         this.mNumberTextSize = numberTextSize;
         return this;
     }
@@ -501,9 +520,9 @@ public class LoadingProgressBar extends View {
     /**
      * 设置绘制的数字颜色
      * @param numberTextColor 绘制的数字颜色
-     * @return {@link LoadingProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public LoadingProgressBar setNumberTextColor(@ColorInt int numberTextColor) {
+    public LoadProgressBar setNumberTextColor(@ColorInt int numberTextColor) {
         this.mNumberTextColor = numberTextColor;
         return this;
     }
