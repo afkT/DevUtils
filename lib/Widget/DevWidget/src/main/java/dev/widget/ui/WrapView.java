@@ -92,6 +92,7 @@ public class WrapView extends ViewGroup {
         int rowLine = 0; // 当前绘制的行数
         int calcHeight = 0; // 计算累加的高度
         int width = getWidth() - (paddingLeft + getPaddingRight()); // 宽度减去左右边距
+        int widthSubRight = getWidth() - getPaddingRight(); // 宽度减去右边距
         // 循环所有子 View
         for (int i = 0, size = getChildCount(); i < size; i++) {
             final View child = this.getChildAt(i);
@@ -126,8 +127,12 @@ public class WrapView extends ViewGroup {
             if (newLine) drawX = childViewWidth + leftMargin;
             // 累加高度 = ( 行数 (0+) + 1) * ( view 的高度 + 每行向上的边距 )
             calcHeight = (rowLine + 1) * (childViewHeight + mRowTopMargin) + paddingTop;
+            // 防止超出整个 View 宽度
+            int right = paddingLeft + drawX;
+            if (right > widthSubRight) right = widthSubRight;
             // 绘制 View 位置
-            child.layout(paddingLeft + drawX - childViewWidth, calcHeight - childViewHeight, paddingLeft + drawX, calcHeight);
+            child.layout(paddingLeft + drawX - childViewWidth, calcHeight - childViewHeight, right, calcHeight);
+//            child.layout(paddingLeft + drawX - childViewWidth, calcHeight - childViewHeight, paddingLeft + drawX, calcHeight);
         }
     }
 
