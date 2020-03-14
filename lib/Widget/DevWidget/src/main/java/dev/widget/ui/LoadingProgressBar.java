@@ -1,4 +1,4 @@
-package dev.widget;
+package dev.widget.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,7 +13,7 @@ import android.view.View;
 import dev.utils.app.SizeUtils;
 
 /**
- * detail: 自定义 ProgressBar 样式 View
+ * detail: 自定义加载 ProgressBar 样式 View
  * @author Ttt
  * <pre>
  *     内外圆环 + 数字 + 无扇形
@@ -41,7 +41,7 @@ import dev.utils.app.SizeUtils;
  *              .setNumberTextColor(ResourceUtils.getColor(R.color.deeppink)); // 字体颜色
  * </pre>
  */
-public class CustomProgressBar extends View {
+public class LoadingProgressBar extends View {
 
     // 最大进度
     private int mMax = 100;
@@ -69,17 +69,18 @@ public class CustomProgressBar extends View {
     // 是否绘制数字
     private boolean mIsCanvasNumber = true;
 
-    public CustomProgressBar(Context context) {
-        this(context, null);
+    public LoadingProgressBar(Context context) {
+        super(context);
+        init();
     }
 
-    public CustomProgressBar(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+    public LoadingProgressBar(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
     }
 
-    public CustomProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LoadingProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        // 初始化
         init();
     }
 
@@ -89,9 +90,9 @@ public class CustomProgressBar extends View {
 
     /**
      * 初始化方法
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadingProgressBar}
      */
-    private CustomProgressBar init() {
+    private LoadingProgressBar init() {
         // 初始化画笔
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         // 设置进度颜色值 ( 白色 )
@@ -313,9 +314,9 @@ public class CustomProgressBar extends View {
 
     /**
      * 重置参数
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadingProgressBar}
      */
-    public CustomProgressBar reset() {
+    public LoadingProgressBar reset() {
         return init();
     }
 
@@ -330,9 +331,9 @@ public class CustomProgressBar extends View {
     /**
      * 设置最大值
      * @param max 最大值
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadingProgressBar}
      */
-    public synchronized CustomProgressBar setMax(int max) {
+    public synchronized LoadingProgressBar setMax(int max) {
         if (max <= 0) throw new IllegalArgumentException("max not less than 0");
         this.mMax = max;
         return this;
@@ -349,9 +350,9 @@ public class CustomProgressBar extends View {
     /**
      * 设置当前进度
      * @param progress 当前进度
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadingProgressBar}
      */
-    public synchronized CustomProgressBar setProgress(int progress) {
+    public synchronized LoadingProgressBar setProgress(int progress) {
         if (progress < 0) throw new IllegalArgumentException("progress not less than 0");
         if (progress > mMax) {
             progress = mMax;
@@ -374,9 +375,9 @@ public class CustomProgressBar extends View {
     /**
      * 设置进度条样式
      * @param progressStyle {@link ProgressStyle}
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadingProgressBar}
      */
-    public CustomProgressBar setProgressStyle(ProgressStyle progressStyle) {
+    public LoadingProgressBar setProgressStyle(ProgressStyle progressStyle) {
         mProgressStyle = (progressStyle == null) ? ProgressStyle.DEFAULT : progressStyle;
         return this;
     }
@@ -392,9 +393,9 @@ public class CustomProgressBar extends View {
     /**
      * 设置进度条颜色
      * @param progressColor 进度条颜色
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadingProgressBar}
      */
-    public CustomProgressBar setProgressColor(@ColorInt int progressColor) {
+    public LoadingProgressBar setProgressColor(@ColorInt int progressColor) {
         this.mProgressColor = progressColor;
         return this;
     }
@@ -410,9 +411,9 @@ public class CustomProgressBar extends View {
     /**
      * 设置外环进度条颜色
      * @param outerRingColor 外环进度条颜色
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadingProgressBar}
      */
-    public CustomProgressBar setOuterRingColor(@ColorInt int outerRingColor) {
+    public LoadingProgressBar setOuterRingColor(@ColorInt int outerRingColor) {
         this.mOuterRingColor = outerRingColor;
         return this;
     }
@@ -428,9 +429,9 @@ public class CustomProgressBar extends View {
     /**
      * 设置内环进度条宽度
      * @param insideCircleWidth 内环进度条宽度
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadingProgressBar}
      */
-    public CustomProgressBar setInsideCircleWidth(float insideCircleWidth) {
+    public LoadingProgressBar setInsideCircleWidth(float insideCircleWidth) {
         this.mInsideCircleWidth = Math.abs(insideCircleWidth);
         return this;
     }
@@ -446,9 +447,9 @@ public class CustomProgressBar extends View {
     /**
      * 设置外环进度条宽度
      * @param outerRingWidth 外环进度条宽度
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadingProgressBar}
      */
-    public CustomProgressBar setOuterRingWidth(float outerRingWidth) {
+    public LoadingProgressBar setOuterRingWidth(float outerRingWidth) {
         this.mOuterRingWidth = Math.abs(outerRingWidth);
         return this;
     }
@@ -464,9 +465,9 @@ public class CustomProgressBar extends View {
     /**
      * 设置是否绘制数字
      * @param canvasNumber {@code true} yes, {@code false} no
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadingProgressBar}
      */
-    public CustomProgressBar setCanvasNumber(boolean canvasNumber) {
+    public LoadingProgressBar setCanvasNumber(boolean canvasNumber) {
         mIsCanvasNumber = canvasNumber;
         return this;
     }
@@ -482,9 +483,9 @@ public class CustomProgressBar extends View {
     /**
      * 设置绘制的字体大小
      * @param numberTextSize 绘制的字体大小
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadingProgressBar}
      */
-    public CustomProgressBar setNumberTextSize(float numberTextSize) {
+    public LoadingProgressBar setNumberTextSize(float numberTextSize) {
         this.mNumberTextSize = numberTextSize;
         return this;
     }
@@ -500,9 +501,9 @@ public class CustomProgressBar extends View {
     /**
      * 设置绘制的数字颜色
      * @param numberTextColor 绘制的数字颜色
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadingProgressBar}
      */
-    public CustomProgressBar setNumberTextColor(@ColorInt int numberTextColor) {
+    public LoadingProgressBar setNumberTextColor(@ColorInt int numberTextColor) {
         this.mNumberTextColor = numberTextColor;
         return this;
     }

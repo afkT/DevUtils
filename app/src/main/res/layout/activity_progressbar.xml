@@ -15,7 +15,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <dev.widget.CustomProgressBar
+            <dev.widget.ui.LoadingProgressBar
                 android:id="@+id/vid_ap_bar1"
                 android:layout_width="120.0dip"
                 android:layout_height="120.0dip"
@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <dev.widget.CustomProgressBar
+            <dev.widget.ui.LoadingProgressBar
                 android:id="@+id/vid_ap_bar2"
                 android:layout_width="120.0dip"
                 android:layout_height="120.0dip"
@@ -46,7 +46,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <dev.widget.CustomProgressBar
+            <dev.widget.ui.LoadingProgressBar
                 android:id="@+id/vid_ap_bar3"
                 android:layout_width="120.0dip"
                 android:layout_height="120.0dip"
@@ -58,7 +58,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <dev.widget.CustomProgressBar
+            <dev.widget.ui.LoadingProgressBar
                 android:id="@+id/vid_ap_bar4"
                 android:layout_width="120.0dip"
                 android:layout_height="120.0dip"
