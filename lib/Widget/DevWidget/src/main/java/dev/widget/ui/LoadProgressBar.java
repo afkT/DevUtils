@@ -95,11 +95,32 @@ public class LoadProgressBar extends View {
 
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
-//            mMaxLine = a.getInteger(R.styleable.DevWidget_dev_maxLine, Integer.MAX_VALUE);
-//            mRowTopMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_rowTopMargin, 20);
-//            mViewLeftMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_viewLeftMargin, 20);
-//            mRowFristLeftMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_rowFristLeftMargin, 20);
+            mProgressColor = a.getColor(R.styleable.DevWidget_dev_progressColor, mProgressColor);
+            mOuterRingColor = a.getColor(R.styleable.DevWidget_dev_outerRingColor, mOuterRingColor);
+            mInsideCircleWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_insideCircleWidth, (int) mInsideCircleWidth);
+            mOuterRingWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_outerRingWidth, (int) mOuterRingWidth);
+            mNumberTextSize = a.getDimensionPixelSize(R.styleable.DevWidget_dev_numberTextSize, (int) mNumberTextSize);
+            mNumberTextColor = a.getColor(R.styleable.DevWidget_dev_numberTextColor, mNumberTextColor);
+            int progressStyle = a.getInt(R.styleable.DevWidget_dev_progressStyle, 0);
             a.recycle();
+
+            switch (progressStyle) {
+                case 0:
+                    mProgressStyle = ProgressStyle.DEFAULT;
+                    break;
+                case 1:
+                    mProgressStyle = ProgressStyle.FAN_SHAPED;
+                    break;
+                case 2:
+                    mProgressStyle = ProgressStyle.ARC_FAN_SHAPED;
+                    break;
+                case 3:
+                    mProgressStyle = ProgressStyle.NUMBER;
+                    break;
+                default:
+                    mProgressStyle = ProgressStyle.DEFAULT;
+                    break;
+            }
         }
     }
 

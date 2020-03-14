@@ -58,7 +58,7 @@ public class WrapView extends ViewGroup {
     private void initAttrs(Context context, AttributeSet attrs) {
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
-            mMaxLine = a.getInteger(R.styleable.DevWidget_dev_maxLine, Integer.MAX_VALUE);
+            mMaxLine = a.getInt(R.styleable.DevWidget_dev_maxLine, Integer.MAX_VALUE);
             mRowTopMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_rowTopMargin, 20);
             mViewLeftMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_viewLeftMargin, 20);
             mRowFristLeftMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_rowFristLeftMargin, 20);

@@ -2,14 +2,38 @@
 <resources>
 
     <declare-styleable name="DevWidget">
+
+        <!-- CustomXxx -->
+
+        <attr name="dev_slide" format="boolean" />
         <attr name="dev_maxWidth" format="dimension" />
         <attr name="dev_maxHeight" format="dimension" />
-        <attr name="dev_slide" format="boolean" />
-        <attr name="dev_drawRightIcon" format="boolean" />
+
+        <!-- RightIconEditText -->
+
         <attr name="dev_rangeMultiple" format="float" />
+        <attr name="dev_drawRightIcon" format="boolean" />
+
+        <!-- WrapView -->
+
         <attr name="dev_maxLine" format="integer" />
         <attr name="dev_rowTopMargin" format="dimension" />
         <attr name="dev_viewLeftMargin" format="dimension" />
         <attr name="dev_rowFristLeftMargin" format="dimension" />
+
+        <!-- LoadProgressBar -->
+
+        <attr name="dev_progressColor" format="color" />
+        <attr name="dev_outerRingColor" format="color" />
+        <attr name="dev_insideCircleWidth" format="dimension" />
+        <attr name="dev_outerRingWidth" format="dimension" />
+        <attr name="dev_numberTextSize" format="dimension" />
+        <attr name="dev_numberTextColor" format="color" />
+        <attr name="dev_progressStyle" format="enum">
+            <enum name="def" value="0" />
+            <enum name="fan_shaped" value="1" />
+            <enum name="arc_fan_shaped" value="1" />
+            <enum name="number" value="1" />
+        </attr>
     </declare-styleable>
 </resources>
