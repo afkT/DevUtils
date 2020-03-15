@@ -7,11 +7,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.ColorInt;
-import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
 
 import dev.utils.app.SizeUtils;
+import dev.utils.app.TextViewUtils;
 import dev.widget.R;
 
 /**
@@ -78,6 +78,8 @@ public class LoadProgressBar extends View {
 
     // 画笔
     private Paint mPaint;
+    // 字体画笔
+    private Paint mTextPaint = new Paint();
     // 最大进度
     private int mMax = 100;
     // 当前进度
@@ -244,15 +246,18 @@ public class LoadProgressBar extends View {
             // 边距
             float margin = (getWidth() - mInsideCircleWidth) / 2;
             // 绘制扇形
-            RectF oval = new RectF(margin + centre - radius, margin + centre - radius, margin + centre + radius, margin + centre + radius);
+            RectF oval = new RectF(margin + centre - radius, margin + centre - radius,
+                    margin + centre + radius, margin + centre + radius);
             canvas.drawArc(oval, 270, (360 * mProgress) / mMax, true, mPaint);  // 根据进度画圆弧
         } else if (mProgressStyle == ProgressStyle.NUMBER) {
             // 绘制的内容
             String progressText = mProgress * 100 / mMax + "%";
             // 判断是否存在计算的字体大小
             if (mNumberTextSize <= 0) {
+                int tempWidth = getWidth();
                 // 计算字体大小
-                mNumberTextSize = calcTextSizeToWidth(getWidth(), "100%");
+                mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(tempWidth, mTextPaint,
+                        SizeUtils.pxConvertSp(tempWidth), "100%");
             }
             // 绘制进度文本
             drawProgressText(canvas, mNumberTextSize, mNumberTextColor, progressText);
@@ -269,8 +274,10 @@ public class LoadProgressBar extends View {
                 case FAN_SHAPED: // 扇形
                     // 判断是否存在计算的字体大小
                     if (mNumberTextSize <= 0) {
+                        int tempWidth = getWidth() / 3 * 2;
                         // 计算字体大小
-                        mNumberTextSize = calcTextSizeToWidth(getWidth() / 3 * 2, "100%");
+                        mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(tempWidth, mTextPaint,
+                                SizeUtils.pxConvertSp(tempWidth), "100%");
                     }
                     // 绘制进度文本
                     drawProgressText(canvas, mNumberTextSize, mNumberTextColor, mProgress * 100 / mMax + "%");
@@ -280,9 +287,15 @@ public class LoadProgressBar extends View {
                     if (mNumberTextSize <= 0) {
                         // 计算字体大小
                         if (mInsideCircleWidth < 0f) {
-                            mNumberTextSize = calcTextSizeToWidth(getWidth() / 3 * 2, "100%");
+                            int tempWidth = getWidth() / 3 * 2;
+                            // 计算字体大小
+                            mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(tempWidth, mTextPaint,
+                                    SizeUtils.pxConvertSp(tempWidth), "100%");
                         } else {
-                            mNumberTextSize = calcTextSizeToWidth((int) mInsideCircleWidth / 3 * 2, "100%");
+                            int tempWidth = (int) mInsideCircleWidth / 3 * 2;
+                            // 计算字体大小
+                            mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(tempWidth, mTextPaint,
+                                    SizeUtils.pxConvertSp(tempWidth), "100%");
                         }
                     }
                     // 绘制进度文本
@@ -327,54 +340,6 @@ public class LoadProgressBar extends View {
         float y = height / 2 + offY;
         // 绘制内容
         canvas.drawText(progressText, x, y, mPaint);
-    }
-
-    /**
-     * 计算字体大小
-     * @param textWidth  需要的字体宽度
-     * @param contentStr 最终的内容长度
-     * @return 返回适配的字体大小
-     */
-    private float calcTextSizeToWidth(int textWidth, String contentStr) {
-        // 获取对应的字体大小
-        int textSize = SizeUtils.pxConvertSp(textWidth);
-        // 创建画笔
-        Paint paint = new Paint();
-        // 初始化内容画笔, 计算宽高
-        TextPaint tvPaint = new TextPaint(paint);
-        // 设置画笔大小
-        tvPaint.setTextSize(textSize);
-        // 获取字体内容宽度
-        float tWidth = tvPaint.measureText(contentStr);
-        // 如果需要宽度小于计算出来后的宽度
-        if (textWidth < tWidth) {
-            // 遍历计算字体大小
-            for (float i = textSize; i >= 0f; i -= 0.5f) {
-                // 设置画笔大小
-                tvPaint.setTextSize(i);
-                // 获取字体内容宽度
-                tWidth = tvPaint.measureText(contentStr);
-                if ((int) tWidth <= textWidth) {
-                    return i;
-                }
-            }
-        } else { // 需要宽度大于计算出来后的宽度
-            // 设置字体大小基数
-            float i = textSize;
-            // 进行循环
-            while (true) {
-                // 进行累加字体
-                i += 0.5f;
-                // 设置画笔大小
-                tvPaint.setTextSize(i);
-                // 获取字体内容宽度
-                tWidth = tvPaint.measureText(contentStr);
-                if ((int) tWidth >= textWidth) {
-                    return i;
-                }
-            }
-        }
-        return textSize;
     }
 
     // ================
