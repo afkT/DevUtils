@@ -40,6 +40,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(MODULE_LIB, "Lib 框架"));
         lists.add(new ButtonValue(MODULE_UI, "UI 效果"));
         lists.add(new ButtonValue(MODULE_OTHER, "其他功能"));
+        lists.add(new ButtonValue(MODULE_DEV_WIDGET, "DevWidget UI 库"));
         lists.add(new ButtonValue(MODULE_DEV_ENVIRONMENT, "DevEnvironment 环境配置切换库"));
         return lists;
     }
@@ -59,6 +60,8 @@ public class ButtonValue {
                 return getModuleUIButtonValues();
             case ButtonValue.MODULE_OTHER:
                 return getModuleOtherButtonValues();
+            case ButtonValue.MODULE_DEV_WIDGET:
+                return getModuleDevWidgetButtonValues();
         }
         return Collections.emptyList();
     }
@@ -361,6 +364,21 @@ public class ButtonValue {
         return lists;
     }
 
+    // ===================
+    // = DevWidget UI 库 =
+    // ===================
+
+    /**
+     * 获取 DevWidget Module Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getModuleDevWidgetButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_DEV_ENVIRONMENT, "环境配置切换"));
+        lists.add(new ButtonValue(BTN_USE_CUSTOM, "使用自定义配置"));
+        return lists;
+    }
+
     // =================================
     // = DevEnvironment 环境配置切换库 =
     // =================================
@@ -389,8 +407,10 @@ public class ButtonValue {
     public static final int MODULE_UI = BASE + 30000;
     // 其他功能
     public static final int MODULE_OTHER = BASE + 40000;
+    // DevWidget UI 库
+    public static final int MODULE_DEV_WIDGET = BASE + 50000;
     // DevEnvironment 环境配置切换库
-    public static final int MODULE_DEV_ENVIRONMENT = BASE + 50000;
+    public static final int MODULE_DEV_ENVIRONMENT = BASE + 60000;
 
     // =============
     // = Framework =
@@ -691,9 +711,16 @@ public class ButtonValue {
     // startActivityForResult CallBack
     public static final int BTN_ACTIVITY_RESULT_CALLBACK = MODULE_OTHER + 1500;
 
-    // =================================
+    // ===================
+    // = DevWidget UI 库 =
+    // ===================
+
+    // DevWidget
+    public static final int BTN_DEV_WIDGET = MODULE_DEV_WIDGET;
+
+    // ================================
     // = DevEnvironment 环境配置切换库 =
-    // =================================
+    // ================================
 
     // 环境配置切换
     public static final int BTN_DEV_ENVIRONMENT = MODULE_DEV_ENVIRONMENT;

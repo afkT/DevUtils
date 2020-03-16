@@ -118,6 +118,7 @@ public class MainActivity extends BaseActivity {
                     case ButtonValue.MODULE_LIB:
                     case ButtonValue.MODULE_UI:
                     case ButtonValue.MODULE_OTHER:
+                    case ButtonValue.MODULE_DEV_WIDGET:
                         SkipUtils.startActivity(ModuleActivity.class, buttonValue);
                         break;
                     case ButtonValue.MODULE_DEV_ENVIRONMENT:
