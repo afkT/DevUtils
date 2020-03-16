@@ -12,6 +12,8 @@ implementation 'com.afkt:DevWidgetX:Xxx'
 
 [README - API](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/README_API.md)
 
+[Change Log](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/CHANGELOG.md)
+
 
 ## Preview
 
