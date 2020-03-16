@@ -19,6 +19,12 @@ implementation 'com.afkt:DevWidgetX:Xxx'
       - ui         | UI View
 ```
 
+## README
+
+[Preview README](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/README.md)
+
+[Change Log](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/CHANGELOG.md)
+
 
 ## API
 
