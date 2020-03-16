@@ -724,5 +724,5 @@ public class ButtonValue {
     public static final int BTN_DEV_ENVIRONMENT = MODULE_DEV_ENVIRONMENT;
 
     // 使用自定义配置
-    public static final int BTN_USE_CUSTOM = BTN_DEV_ENVIRONMENT + 1;
+    public static final int BTN_USE_CUSTOM = BTN_DEV_ENVIRONMENT + 100;
 }

@@ -31,7 +31,7 @@ import dev.utils.app.SizeUtils;
 import dev.widget.R;
 
 /**
- * detail: 自定义扫描形状 View
+ * detail: 自定义扫描 ( 二维码 / AR ) 效果形状 View
  * @author Ttt
  */
 public class ScanShapeView extends View {
