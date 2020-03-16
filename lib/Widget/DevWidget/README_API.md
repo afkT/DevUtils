@@ -2,10 +2,10 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevWidget:Xxx'
+implementation 'com.afkt:DevWidget:1.0.0'
 
 // AndroidX
-implementation 'com.afkt:DevWidgetX:Xxx'
+implementation 'com.afkt:DevWidgetX:1.0.0'
 ```
 
 ## 目录结构
@@ -18,6 +18,7 @@ implementation 'com.afkt:DevWidgetX:Xxx'
       - function   | 需求功能 View
       - ui         | UI View
 ```
+
 
 ## README
 
@@ -35,6 +36,7 @@ implementation 'com.afkt:DevWidgetX:Xxx'
       - [custom](#devwidgetcustom)         | 自定义 View
       - [function](#devwidgetfunction)     | 需求功能 View
       - [ui](#devwidgetui)                 | UI View
+
 
 
 
@@ -295,7 +297,7 @@ implementation 'com.afkt:DevWidgetX:Xxx'
 | setProgressStyle | 设置进度条样式 |
 
 
-* **自定义扫描形状 View ->** [ScanShapeView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/ScanShapeView.java)
+* **自定义扫描 ( 二维码 / AR ) 效果形状 View ->** [ScanShapeView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/ScanShapeView.java)
 
 | 方法 | 注释 |
 | :- | :- |

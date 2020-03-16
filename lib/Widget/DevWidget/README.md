@@ -2,10 +2,10 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevWidget:Xxx'
+implementation 'com.afkt:DevWidget:1.0.0'
 
 // AndroidX
-implementation 'com.afkt:DevWidgetX:Xxx'
+implementation 'com.afkt:DevWidgetX:1.0.0'
 ```
 
 ## API
