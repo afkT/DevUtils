@@ -2124,7 +2124,7 @@ public final class TextViewUtils {
      * @return 字体大小
      */
     public static float reckonTextSizeByHeight(final int height, final float startSize) {
-        if (height <= 0 || startSize <= 0) return -1;
+        if (height <= 0 || startSize <= 0) return 0f;
         Paint paint = new Paint();
         // 默认字体大小
         float textSize = startSize;
@@ -2181,7 +2181,7 @@ public final class TextViewUtils {
      * @return 字体大小
      */
     public static float reckonTextSizeByWidth(final int width, final TextView textView, final String content) {
-        if (textView == null || content == null) return -1;
+        if (textView == null || content == null) return 0f;
         return reckonTextSizeByWidth(width, TextViewUtils.getPaint(textView),
                 TextViewUtils.getTextSize(textView), content);
     }
@@ -2194,7 +2194,7 @@ public final class TextViewUtils {
      * @return 字体大小
      */
     public static float reckonTextSizeByWidth(final int width, final float curTextSize, final String content) {
-        if (width <= 0 || curTextSize <= 0 || content == null) return -1;
+        if (width <= 0 || curTextSize <= 0 || content == null) return 0f;
         return reckonTextSizeByWidth(width, new Paint(), curTextSize, content);
     }
 
@@ -2208,7 +2208,7 @@ public final class TextViewUtils {
      */
     public static float reckonTextSizeByWidth(final int width, final Paint paint,
                                               final float curTextSize, final String content) {
-        if (paint == null || width <= 0 || curTextSize <= 0 || content == null) return -1;
+        if (paint == null || width <= 0 || curTextSize <= 0 || content == null) return 0f;
         if (StringUtils.isEmpty(content)) return curTextSize;
         // 初始化内容画笔, 计算宽高
         TextPaint tvPaint = new TextPaint(paint);
