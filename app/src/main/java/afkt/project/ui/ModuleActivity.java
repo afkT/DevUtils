@@ -131,14 +131,8 @@ public class ModuleActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_TOAST_TINT: // ToastTint ( 着色美化 Toast )
                         SkipUtils.startActivity(ToastTintActivity.class, buttonValue);
                         break;
-                    case ButtonValue.BTN_CUSTOM_PROGRESS_BAR: // 自定义 ProgressBar 样式 View
-                        SkipUtils.startActivity(ProgressBarActivity.class, buttonValue);
-                        break;
                     case ButtonValue.BTN_UI_EFFECT: // 常见 UI、GradientDrawable 效果等
                         SkipUtils.startActivity(UIEffectActivity.class, buttonValue);
-                        break;
-                    case ButtonValue.BTN_VIEW_PAGER: // ViewPager 滑动监听、控制滑动
-                        SkipUtils.startActivity(ViewPagerActivity.class, buttonValue);
                         break;
                     case ButtonValue.BTN_STATUS_BAR: // 点击 显示 / 隐藏 ( 状态栏 )
                         SkipUtils.startActivity(StatusBarActivity.class, buttonValue);
@@ -158,9 +152,6 @@ public class ModuleActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_GPU_FILTER: // GPU 滤镜效果
                         SkipUtils.startActivity(GPUFilterActivity.class, buttonValue);
                         break;
-                    case ButtonValue.BTN_SCAN_VIEW: // 自定义扫描 View ( QRCode、AR )
-                        SkipUtils.startActivity(ScanShapeActivity.class, buttonValue);
-                        break;
                     case ButtonValue.BTN_QRCODE_CREATE: // 创建二维码
                         SkipUtils.startActivity(QRCodeCreateActivity.class, buttonValue);
                         break;
@@ -169,15 +160,6 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_QRCODE_SCAN: // 二维码扫描解析
                         SkipUtils.startActivity(QRCodeScanActivity.class, buttonValue);
-                        break;
-                    case ButtonValue.BTN_WRAP_VIEW: // 自动换行 View
-                        SkipUtils.startActivity(WrapActivity.class, buttonValue);
-                        break;
-                    case ButtonValue.BTN_SIGN_VIEW: // 签名 View
-                        SkipUtils.startActivity(SignActivity.class, buttonValue);
-                        break;
-                    case ButtonValue.BTN_LINE_VIEW: // 换行监听 View
-                        SkipUtils.startActivity(LineActivity.class, buttonValue);
                         break;
                     case ButtonValue.BTN_CAPTURE_PICTURE: // CapturePictureUtils 截图工具类
                         SkipUtils.startActivity(CapturePictureActivity.class, buttonValue);
@@ -238,6 +220,30 @@ public class ModuleActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_ACTIVITY_RESULT_CALLBACK: // startActivityForResult CallBack
                         SkipUtils.startActivity(ActivityResultCallBackActivity.class, buttonValue);
                         break;
+
+                    // =============
+                    // = DevWidget =
+                    // =============
+
+                    case ButtonValue.BTN_VIEW_PAGER: // ViewPager 滑动监听、控制滑动
+                        SkipUtils.startActivity(ViewPagerActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_CUSTOM_PROGRESS_BAR: // 自定义 ProgressBar 样式 View
+                        SkipUtils.startActivity(ProgressBarActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_SCAN_VIEW: // 自定义扫描 View ( QRCode、AR )
+                        SkipUtils.startActivity(ScanShapeActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_WRAP_VIEW: // 自动换行 View
+                        SkipUtils.startActivity(WrapActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_SIGN_VIEW: // 签名 View
+                        SkipUtils.startActivity(SignActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_LINE_VIEW: // 换行监听 View
+                        SkipUtils.startActivity(LineActivity.class, buttonValue);
+                        break;
+
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
                         break;
