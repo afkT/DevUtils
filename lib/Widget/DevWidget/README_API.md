@@ -22,6 +22,8 @@ implementation 'com.afkt:DevWidgetX:1.0.0'
 
 ## README
 
+- 效果可运行 DevUtils 项目点击 DevWidget UI 库查看
+
 [Preview README](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/README.md)
 
 [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/CHANGELOG.md)
