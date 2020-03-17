@@ -23,6 +23,6 @@ implementation 'com.afkt:DevWidgetX:1.0.0'
 
 | WrapView | LineTextView | SignView |
 |:--:|:--:|:--:|
-| ![WrapView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/wrap_view_1.jpg =562x1000) | ![LineTextView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/line_text_view_1.jpg =562x1000) | ![SignView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/sign_view_1.jpg =562x1000)
+| ![WrapView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/wrap_view_1.jpg) | ![LineTextView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/line_text_view_1.jpg) | ![SignView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/sign_view_1.jpg) |
 | XX | XX | XX |
 
