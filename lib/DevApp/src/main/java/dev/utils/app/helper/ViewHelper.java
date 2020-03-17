@@ -1710,6 +1710,17 @@ public final class ViewHelper {
     // =
 
     /**
+     * 设置是否限制子 View 在其边界内绘制
+     * @param viewGroup    {@link ViewGroup}
+     * @param clipChildren {@code true} yes, {@code false} no
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setClipChildren(final ViewGroup viewGroup, final boolean clipChildren) {
+        ViewUtils.setClipChildren(viewGroup, clipChildren);
+        return this;
+    }
+
+    /**
      * 设置 View LayoutParams
      * @param view   {@link View}
      * @param params LayoutParams
