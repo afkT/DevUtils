@@ -39,7 +39,7 @@ implementation 'com.afkt:DevWidgetX:1.0.0'
 
 ## Attribute Config
 
-### <span id="LoadProgressBar">**`自定义加载 ProgressBar 样式 View - LoadProgressBar`**</span>
+### <span id="LoadProgressBar">**`自定义加载 ProgressBar 样式 View`** [LoadProgressBar.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/LoadProgressBar.java)</span>
 
 ```java
 // 内外圆环 + 数字 + 无扇形
@@ -108,7 +108,7 @@ app:dev_progressStyle=""
 ```
 
 
-### <span id="ScanShapeView">**`自定义扫描 ( 二维码 / AR ) 效果形状 View - ScanShapeView`**</span>
+### <span id="ScanShapeView">**`自定义扫描 ( 二维码 / AR ) 效果形状 View`** [ScanShapeView](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/ScanShapeView.java)</span>
 
 ```java
 /**
@@ -234,7 +234,7 @@ public static void refShape(ScanShapeView scanView, ScanShapeView.Shape scanShap
         scanView.setAnnulusWidths(SizeUtils.dipConvertPx(3), SizeUtils.dipConvertPx(7), SizeUtils.dipConvertPx(7));
         // 设置环形对应的环绘制边距 0 - 外环, 1 - 中间环, 2 - 外环
         scanView.setAnnulusMargins(SizeUtils.dipConvertPx(7), SizeUtils.dipConvertPx(7), SizeUtils.dipConvertPx(7));
-            }
+    }
 
     // 设置是否需要阴影背景
     scanView.setDrawBackground(true);
