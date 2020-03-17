@@ -12,6 +12,9 @@ implementation 'com.afkt:DevWidget:1.0.0'
 implementation 'com.afkt:DevWidgetX:1.0.0'
 ```
 
+该库依赖 [DevApp](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md) 开发，需引用 DevApp 库。
+
+
 ## README
 
 [README - API](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/README_API.md)
@@ -108,7 +111,7 @@ app:dev_progressStyle=""
 ```
 
 
-### <span id="ScanShapeView">**`自定义扫描 ( 二维码 / AR ) 效果形状 View`** [ScanShapeView](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/ScanShapeView.java)</span>
+### <span id="ScanShapeView">**`自定义扫描 ( 二维码 / AR ) 效果形状 View`** [ScanShapeView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/ScanShapeView.java)</span>
 
 ```java
 /**
