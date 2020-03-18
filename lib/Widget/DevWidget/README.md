@@ -40,6 +40,8 @@ implementation 'com.afkt:DevWidgetX:1.0.0'
 
 - [ScanShapeView](#ScanShapeView) 自定义扫描 ( 二维码 / AR ) 效果形状 View
 
+- [FlowLikeView](#FlowLikeView) 自定义点赞效果 View
+
 
 ## Attribute Config
 
@@ -281,4 +283,32 @@ public static void refShape(ScanShapeView scanView, ScanShapeView.Shape scanShap
     // 重新绘制
     scanView.postInvalidate();
 }
+```
+
+### <span id="FlowLikeView">**`自定义点赞效果 View`** [FlowLikeView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/FlowLikeView.java)</span>
+
+```java
+app:dev_animDuration="2000"
+app:dev_iconHeight="30.0dip"
+app:dev_iconWidth="30.0dip"
+
+// 设置动画时间
+vid_afl_flowlike.setAnimDuration(2000);
+// 设置图标宽度
+vid_afl_flowlike.setIconWidth(SizeUtils.dipConvertPx(30));
+// 设置图标高度
+vid_afl_flowlike.setIconHeight(SizeUtils.dipConvertPx(30));
+
+// 设置漂浮图标
+List<Drawable> lists = new ArrayList<>();
+lists.add(ResourceUtils.getDrawable(R.drawable.ic_live_brow_1));
+lists.add(ResourceUtils.getDrawable(R.drawable.ic_live_brow_2));
+lists.add(ResourceUtils.getDrawable(R.drawable.ic_live_brow_3));
+lists.add(ResourceUtils.getDrawable(R.drawable.ic_live_brow_4));
+lists.add(ResourceUtils.getDrawable(R.drawable.ic_live_brow_5));
+vid_afl_flowlike.setDrawables(lists);
+
+// 设置漂浮图标
+vid_afl_flowlike.setDrawablesById(R.drawable.ic_live_brow_1, R.drawable.ic_live_brow_2,
+    R.drawable.ic_live_brow_3, R.drawable.ic_live_brow_4, R.drawable.ic_live_brow_5);
 ```

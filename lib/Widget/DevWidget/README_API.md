@@ -273,6 +273,24 @@ implementation 'com.afkt:DevWidgetX:1.0.0'
 ## <span id="devwidgetui">**`dev.widget.ui`**</span>
 
 
+* **自定义点赞效果 View ->** [FlowLikeView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/FlowLikeView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onMeasure | onMeasure |
+| onSizeChanged | onSizeChanged |
+| like | 点赞操作 |
+| getDrawables | 获取 Icon 集合 |
+| setDrawables | 设置 Icon 集合 |
+| setDrawablesById | 设置 Icon 集合 |
+| getIconWidth | 获取点赞 Icon 宽度 |
+| setIconWidth | 设置点赞 Icon 宽度 |
+| getIconHeight | 获取点赞 Icon 高度 |
+| setIconHeight | 设置点赞 Icon 高度 |
+| getAnimDuration | 获取点赞动画执行时间 |
+| setAnimDuration | 设置点赞动画执行时间 |
+
+
 * **自定义加载 ProgressBar 样式 View ->** [LoadProgressBar.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/LoadProgressBar.java)
 
 | 方法 | 注释 |
