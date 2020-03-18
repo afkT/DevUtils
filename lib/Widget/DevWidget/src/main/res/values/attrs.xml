@@ -36,5 +36,12 @@
             <enum name="arc_fan_shaped" value="2" />
             <enum name="number" value="3" />
         </attr>
+
+        <!-- FlowLikeView -->
+
+        <attr name="dev_animDuration" format="integer" />
+        <attr name="dev_iconWidth" format="dimension" />
+        <attr name="dev_iconHeight" format="dimension" />
+
     </declare-styleable>
 </resources>

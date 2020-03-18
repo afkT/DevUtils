@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_e9">
+
+    <dev.widget.ui.FlowLikeView
+        android:id="@+id/vid_afl_flowlike"
+        android:layout_width="200.0dip"
+        android:layout_height="200.0dip"
+        android:layout_gravity="right|bottom"
+        android:layout_margin="50.0dip"
+        app:dev_animDuration="2000"
+        app:dev_iconHeight="30.0dip"
+        app:dev_iconWidth="30.0dip">
+
+        <ImageView
+            android:layout_width="60.0dip"
+            android:layout_height="60.0dip"
+            android:layout_gravity="bottom|center"
+            android:background="@mipmap/icon_launcher_round" />
+    </dev.widget.ui.FlowLikeView>
+</FrameLayout>

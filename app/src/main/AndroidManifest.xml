@@ -324,6 +324,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- 自定义点赞效果 View -->
+
+        <activity
+            android:name=".ui.activity.FlowLikeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- CapturePictureUtils 截图工具类 -->
 
         <activity

@@ -21,6 +21,7 @@ import afkt.project.ui.activity.DevExtendActivity;
 import afkt.project.ui.activity.DeviceInfoActivity;
 import afkt.project.ui.activity.EventBusActivity;
 import afkt.project.ui.activity.FileRecordActivity;
+import afkt.project.ui.activity.FlowLikeActivity;
 import afkt.project.ui.activity.FunctionActivity;
 import afkt.project.ui.activity.GPUFilterACVActivity;
 import afkt.project.ui.activity.GPUFilterActivity;
@@ -243,7 +244,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_LINE_VIEW: // 换行监听 View
                         SkipUtils.startActivity(LineActivity.class, buttonValue);
                         break;
-
+                    case ButtonValue.BTN_LIKE_VIEW: // 自定义点赞效果 View
+                        SkipUtils.startActivity(FlowLikeActivity.class, buttonValue);
+                        break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
                         break;
