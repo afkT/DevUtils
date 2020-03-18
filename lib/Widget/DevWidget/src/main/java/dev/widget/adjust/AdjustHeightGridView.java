@@ -16,12 +16,12 @@ public class AdjustHeightGridView extends GridView {
         super(context);
     }
 
-    public AdjustHeightGridView(Context context, @Nullable AttributeSet attrs) {
+    public AdjustHeightGridView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public AdjustHeightGridView(Context context, @Nullable AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public AdjustHeightGridView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
     }
 
     @Override

@@ -1,9 +1,12 @@
-package dev.widget;
+package dev.widget.ui;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+
+import dev.widget.R;
 
 /**
  * detail: 换行 View
@@ -11,8 +14,13 @@ import android.view.ViewGroup;
  * <pre>
  *     Google FlexboxLayout 推荐使用该库, 支持 RecyclerView (FlexboxLayoutManager)
  *     @see <a href="https://github.com/google/flexbox-layout"/>
- *     Android 可伸缩布局 －FlexboxLayout ( 支持 RecyclerView 集成 )
+ *     Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 )
  *     @see <a href="https://juejin.im/post/58d1035161ff4b00603ca9c4"/>
+ *     <p></p>
+ *     app:dev_maxLine=""
+ *     app:dev_rowTopMargin=""
+ *     app:dev_viewLeftMargin=""
+ *     app:dev_rowFristLeftMargin=""
  * </pre>
  */
 public class WrapView extends ViewGroup {
@@ -21,13 +29,12 @@ public class WrapView extends ViewGroup {
     private int mRowLine;
     // 支持最大行数
     private int mMaxLine = Integer.MAX_VALUE;
-    // = 边距 =
-    // 每一行向上的边距 ( 行间隔 ) Row Top Margin
+    // 每一行向上的边距 ( 行间隔 )
     private int mRowTopMargin = 20;
-    // 每个 View 之间的 Left 边距 View Left Margin
+    // 每个 View 之间的 Left 边距
     private int mViewLeftMargin = 20;
-    // 每一行第一个 View Left 边距 Frist Left Margin
-    private int mRowFristLeftMargin = 0;
+    // 每一行第一个 View Left 边距
+    private int mRowFristLeftMargin = 20;
 
     public WrapView(Context context) {
         super(context);
@@ -35,10 +42,28 @@ public class WrapView extends ViewGroup {
 
     public WrapView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        initAttrs(context, attrs);
     }
 
     public WrapView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initAttrs(context, attrs);
+    }
+
+    /**
+     * 初始化
+     * @param context {@link Context}
+     * @param attrs   {@link AttributeSet}
+     */
+    private void initAttrs(Context context, AttributeSet attrs) {
+        if (context != null && attrs != null) {
+            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
+            mMaxLine = a.getInt(R.styleable.DevWidget_dev_maxLine, Integer.MAX_VALUE);
+            mRowTopMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_rowTopMargin, 20);
+            mViewLeftMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_viewLeftMargin, 20);
+            mRowFristLeftMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_rowFristLeftMargin, 20);
+            a.recycle();
+        }
     }
 
     @Override
@@ -67,6 +92,7 @@ public class WrapView extends ViewGroup {
         int rowLine = 0; // 当前绘制的行数
         int calcHeight = 0; // 计算累加的高度
         int width = getWidth() - (paddingLeft + getPaddingRight()); // 宽度减去左右边距
+        int widthSubRight = getWidth() - getPaddingRight(); // 宽度减去右边距
         // 循环所有子 View
         for (int i = 0, size = getChildCount(); i < size; i++) {
             final View child = this.getChildAt(i);
@@ -101,8 +127,12 @@ public class WrapView extends ViewGroup {
             if (newLine) drawX = childViewWidth + leftMargin;
             // 累加高度 = ( 行数 (0+) + 1) * ( view 的高度 + 每行向上的边距 )
             calcHeight = (rowLine + 1) * (childViewHeight + mRowTopMargin) + paddingTop;
+            // 防止超出整个 View 宽度
+            int right = paddingLeft + drawX;
+            if (right > widthSubRight) right = widthSubRight;
             // 绘制 View 位置
-            child.layout(paddingLeft + drawX - childViewWidth, calcHeight - childViewHeight, paddingLeft + drawX, calcHeight);
+            child.layout(paddingLeft + drawX - childViewWidth, calcHeight - childViewHeight, right, calcHeight);
+//            child.layout(paddingLeft + drawX - childViewWidth, calcHeight - childViewHeight, paddingLeft + drawX, calcHeight);
         }
     }
 
@@ -114,7 +144,7 @@ public class WrapView extends ViewGroup {
      * 通过 View 宽度计算绘制所需高度
      * @param rootWidth          宽度
      * @param rowTopMargin       每一行向上的边距 ( 行间隔 )
-     * @param rowFristLeftMargin 每一行第一个 View 的边距
+     * @param rowFristLeftMargin 每一行第一个 View Left 边距
      * @param viewLeftMargin     每个 View 之间的 Left 边距
      * @return 计算 View 高度
      */
@@ -176,9 +206,9 @@ public class WrapView extends ViewGroup {
         return getPaddingTop() + calcHeight + getPaddingBottom();
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 刷新绘制 ( 更新配置信息后, 必须调用 )
@@ -215,6 +245,14 @@ public class WrapView extends ViewGroup {
     }
 
     /**
+     * 获取每一行向上的边距 ( 行间隔 )
+     * @return 每一行向上的边距 ( 行间隔 )
+     */
+    public int getRowTopMargin() {
+        return mRowTopMargin;
+    }
+
+    /**
      * 设置每一行向上的边距 ( 行间隔 )
      * @param rowTopMargin 每一行向上的边距 ( 行间隔 )
      * @return {@link WrapView}
@@ -225,6 +263,14 @@ public class WrapView extends ViewGroup {
     }
 
     /**
+     * 获取每个 View 之间的 Left 边距
+     * @return 每个 View 之间的 Left 边距
+     */
+    public int getViewLeftMargin() {
+        return mViewLeftMargin;
+    }
+
+    /**
      * 设置每个 View 之间的 Left 边距
      * @param viewLeftMargin 每个 View 之间的 Left 边距
      * @return {@link WrapView}
@@ -232,6 +278,14 @@ public class WrapView extends ViewGroup {
     public WrapView setViewLeftMargin(int viewLeftMargin) {
         this.mViewLeftMargin = viewLeftMargin;
         return this;
+    }
+
+    /**
+     * 获取每一行第一个 View Left 边距
+     * @return 每一行第一个 View Left 边距
+     */
+    public int getRowFristLeftMargin() {
+        return mRowFristLeftMargin;
     }
 
     /**

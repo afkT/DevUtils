@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import afkt.project.base.app.BaseToolbarActivity;
-import dev.widget.SignView;
+import dev.widget.function.SignView;
 
 /**
  * detail: 签名 View

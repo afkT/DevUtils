@@ -486,7 +486,7 @@ public final class ListViewUtils {
             // 循环绘制每个 Item 并保存 Bitmap
             for (int i = 0; i < itemCount; i++) {
                 View childView = listAdapter.getView(i, null, listView);
-                ViewUtils.measureView(childView, listView.getWidth());
+                WidgetUtils.measureView(childView, listView.getWidth());
                 height += childView.getMeasuredHeight();
             }
             // 追加子项间分隔符占用的高度
@@ -562,7 +562,7 @@ public final class ListViewUtils {
                     // 如果大于总数据则跳过
                     if (position < itemCount) {
                         View childView = listAdapter.getView(position, null, gridView);
-                        ViewUtils.measureView(childView, childWidth);
+                        WidgetUtils.measureView(childView, childWidth);
 
                         int itemHeight = childView.getMeasuredHeight();
                         // 保留最大高度

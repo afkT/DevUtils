@@ -190,7 +190,7 @@ public final class SizeUtils {
      * @return int[] 0 = 宽度, 1 = 高度
      */
     public static int[] measureView(final View view) {
-        return ViewUtils.measureView(view);
+        return WidgetUtils.measureView(view);
     }
 
     /**
@@ -199,7 +199,7 @@ public final class SizeUtils {
      * @return View 的宽度
      */
     public static int getMeasuredWidth(final View view) {
-        return ViewUtils.getMeasuredWidth(view);
+        return WidgetUtils.getMeasuredWidth(view);
     }
 
     /**
@@ -208,6 +208,6 @@ public final class SizeUtils {
      * @return View 的高度
      */
     public static int getMeasuredHeight(final View view) {
-        return ViewUtils.getMeasuredHeight(view);
+        return WidgetUtils.getMeasuredHeight(view);
     }
 }

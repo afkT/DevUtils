@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="DevWidget">
+
+        <!-- CustomXxx -->
+
+        <attr name="dev_slide" format="boolean" />
+        <attr name="dev_maxWidth" format="dimension" />
+        <attr name="dev_maxHeight" format="dimension" />
+
+        <!-- RightIconEditText -->
+
+        <attr name="dev_rangeMultiple" format="float" />
+        <attr name="dev_drawRightIcon" format="boolean" />
+
+        <!-- WrapView -->
+
+        <attr name="dev_maxLine" format="integer" />
+        <attr name="dev_rowTopMargin" format="dimension" />
+        <attr name="dev_viewLeftMargin" format="dimension" />
+        <attr name="dev_rowFristLeftMargin" format="dimension" />
+
+        <!-- LoadProgressBar -->
+
+        <attr name="dev_canvasNumber" format="boolean" />
+        <attr name="dev_progressColor" format="color" />
+        <attr name="dev_outerRingColor" format="color" />
+        <attr name="dev_insideCircleWidth" format="dimension" />
+        <attr name="dev_outerRingWidth" format="dimension" />
+        <attr name="dev_numberTextSize" format="dimension" />
+        <attr name="dev_numberTextColor" format="color" />
+        <attr name="dev_progressStyle" format="enum">
+            <enum name="rings" value="0" />
+            <enum name="fan_shaped" value="1" />
+            <enum name="arc_fan_shaped" value="2" />
+            <enum name="number" value="3" />
+        </attr>
+
+        <!-- FlowLikeView -->
+
+        <attr name="dev_animDuration" format="integer" />
+        <attr name="dev_iconWidth" format="dimension" />
+        <attr name="dev_iconHeight" format="dimension" />
+
+    </declare-styleable>
+</resources>

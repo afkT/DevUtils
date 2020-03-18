@@ -40,6 +40,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(MODULE_LIB, "Lib 框架"));
         lists.add(new ButtonValue(MODULE_UI, "UI 效果"));
         lists.add(new ButtonValue(MODULE_OTHER, "其他功能"));
+        lists.add(new ButtonValue(MODULE_DEV_WIDGET, "DevWidget UI 库"));
         lists.add(new ButtonValue(MODULE_DEV_ENVIRONMENT, "DevEnvironment 环境配置切换库"));
         return lists;
     }
@@ -59,6 +60,8 @@ public class ButtonValue {
                 return getModuleUIButtonValues();
             case ButtonValue.MODULE_OTHER:
                 return getModuleOtherButtonValues();
+            case ButtonValue.MODULE_DEV_WIDGET:
+                return getModuleDevWidgetButtonValues();
         }
         return Collections.emptyList();
     }
@@ -123,22 +126,16 @@ public class ButtonValue {
     public static List<ButtonValue> getModuleUIButtonValues() {
         List<ButtonValue> lists = new ArrayList<>();
         lists.add(new ButtonValue(BTN_TOAST_TINT, "ToastTint ( 着色美化 Toast )"));
-        lists.add(new ButtonValue(BTN_CUSTOM_PROGRESS_BAR, "自定义 ProgressBar 样式 View"));
         lists.add(new ButtonValue(BTN_UI_EFFECT, "常见 UI、GradientDrawable 效果等"));
-        lists.add(new ButtonValue(BTN_VIEW_PAGER, "ViewPager 滑动监听、控制滑动"));
         lists.add(new ButtonValue(BTN_STATUS_BAR, "点击 显示/隐藏 ( 状态栏 )"));
         lists.add(new ButtonValue(BTN_TEXT_CALC, "计算字体宽度、高度"));
         lists.add(new ButtonValue(BTN_ADAPTER_EDITS, "Adapter Item EditText 输入监听"));
         lists.add(new ButtonValue(BTN_MULTI_SELECT, "多选辅助类 MultiSelectAssist"));
         lists.add(new ButtonValue(BTN_GPU_ACV, "GPU ACV 文件滤镜效果"));
         lists.add(new ButtonValue(BTN_GPU_FILTER, "GPU 滤镜效果"));
-        lists.add(new ButtonValue(BTN_SCAN_VIEW, "自定义扫描 View ( QRCode、AR )"));
         lists.add(new ButtonValue(BTN_QRCODE_CREATE, "创建二维码"));
         lists.add(new ButtonValue(BTN_QRCODE_IMAGE, "二维码图片解析"));
         lists.add(new ButtonValue(BTN_QRCODE_SCAN, "二维码扫描解析"));
-        lists.add(new ButtonValue(BTN_WRAP_VIEW, "自动换行 View"));
-        lists.add(new ButtonValue(BTN_SIGN_VIEW, "签名 View"));
-        lists.add(new ButtonValue(BTN_LINE_VIEW, "换行监听 View"));
         lists.add(new ButtonValue(BTN_CAPTURE_PICTURE, "CapturePictureUtils 截图工具类"));
         lists.add(new ButtonValue(BTN_TEXTVIEW, "两个 TextView 显示效果"));
         return lists;
@@ -361,6 +358,26 @@ public class ButtonValue {
         return lists;
     }
 
+    // ===================
+    // = DevWidget UI 库 =
+    // ===================
+
+    /**
+     * 获取 DevWidget Module Button Value 集合
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getModuleDevWidgetButtonValues() {
+        List<ButtonValue> lists = new ArrayList<>();
+        lists.add(new ButtonValue(BTN_VIEW_PAGER, "ViewPager 滑动监听、控制滑动"));
+        lists.add(new ButtonValue(BTN_CUSTOM_PROGRESS_BAR, "自定义 ProgressBar 样式 View"));
+        lists.add(new ButtonValue(BTN_SCAN_VIEW, "自定义扫描 View ( QRCode、AR )"));
+        lists.add(new ButtonValue(BTN_WRAP_VIEW, "自动换行 View"));
+        lists.add(new ButtonValue(BTN_SIGN_VIEW, "签名 View"));
+        lists.add(new ButtonValue(BTN_LINE_VIEW, "换行监听 View"));
+        lists.add(new ButtonValue(BTN_LIKE_VIEW, "自定义点赞效果 View"));
+        return lists;
+    }
+
     // =================================
     // = DevEnvironment 环境配置切换库 =
     // =================================
@@ -389,8 +406,10 @@ public class ButtonValue {
     public static final int MODULE_UI = BASE + 30000;
     // 其他功能
     public static final int MODULE_OTHER = BASE + 40000;
+    // DevWidget UI 库
+    public static final int MODULE_DEV_WIDGET = BASE + 50000;
     // DevEnvironment 环境配置切换库
-    public static final int MODULE_DEV_ENVIRONMENT = BASE + 50000;
+    public static final int MODULE_DEV_ENVIRONMENT = BASE + 60000;
 
     // =============
     // = Framework =
@@ -455,59 +474,41 @@ public class ButtonValue {
     // Toast Custom Style
     public static final int BTN_TOAST_TINT_CUSTOM_STYLE = BTN_TOAST_TINT + 6;
 
-    // 自定义 ProgressBar 样式 View
-    public static final int BTN_CUSTOM_PROGRESS_BAR = MODULE_UI + 100;
-
     // 常见 UI、GradientDrawable 效果等
-    public static final int BTN_UI_EFFECT = MODULE_UI + 200;
-
-    // ViewPager 滑动监听、控制滑动
-    public static final int BTN_VIEW_PAGER = MODULE_UI + 300;
+    public static final int BTN_UI_EFFECT = MODULE_UI + 100;
 
     // 点击 显示/隐藏 ( 状态栏 )
-    public static final int BTN_STATUS_BAR = MODULE_UI + 400;
+    public static final int BTN_STATUS_BAR = MODULE_UI + 200;
 
     // 计算字体宽度、高度
-    public static final int BTN_TEXT_CALC = MODULE_UI + 500;
+    public static final int BTN_TEXT_CALC = MODULE_UI + 300;
 
     // Adapter Item EditText 输入监听
-    public static final int BTN_ADAPTER_EDITS = MODULE_UI + 600;
+    public static final int BTN_ADAPTER_EDITS = MODULE_UI + 400;
 
     // 多选辅助类 MultiSelectAssist
-    public static final int BTN_MULTI_SELECT = MODULE_UI + 700;
+    public static final int BTN_MULTI_SELECT = MODULE_UI + 500;
 
     // GPU ACV 文件滤镜效果
-    public static final int BTN_GPU_ACV = MODULE_UI + 800;
+    public static final int BTN_GPU_ACV = MODULE_UI + 600;
 
     // GPU 滤镜效果
-    public static final int BTN_GPU_FILTER = MODULE_UI + 900;
-
-    // 自定义扫描 View ( QRCode、AR )
-    public static final int BTN_SCAN_VIEW = MODULE_UI + 1000;
+    public static final int BTN_GPU_FILTER = MODULE_UI + 700;
 
     // 创建二维码
-    public static final int BTN_QRCODE_CREATE = MODULE_UI + 1100;
+    public static final int BTN_QRCODE_CREATE = MODULE_UI + 800;
 
     // 二维码图片解析
-    public static final int BTN_QRCODE_IMAGE = MODULE_UI + 1200;
+    public static final int BTN_QRCODE_IMAGE = MODULE_UI + 900;
 
     // 二维码扫描解析
-    public static final int BTN_QRCODE_SCAN = MODULE_UI + 1300;
-
-    // 自动换行 View
-    public static final int BTN_WRAP_VIEW = MODULE_UI + 1400;
-
-    // 签名 View
-    public static final int BTN_SIGN_VIEW = MODULE_UI + 1500;
-
-    // 换行监听 View
-    public static final int BTN_LINE_VIEW = MODULE_UI + 1600;
+    public static final int BTN_QRCODE_SCAN = MODULE_UI + 1000;
 
     // CapturePictureUtils 截图工具类
-    public static final int BTN_CAPTURE_PICTURE = MODULE_UI + 1700;
+    public static final int BTN_CAPTURE_PICTURE = MODULE_UI + 1100;
 
     // 两个 TextView 显示效果
-    public static final int BTN_TEXTVIEW = MODULE_UI + 1800;
+    public static final int BTN_TEXTVIEW = MODULE_UI + 1200;
 
     // ============
     // = 其他功能 =
@@ -691,12 +692,41 @@ public class ButtonValue {
     // startActivityForResult CallBack
     public static final int BTN_ACTIVITY_RESULT_CALLBACK = MODULE_OTHER + 1500;
 
-    // =================================
+    // ===================
+    // = DevWidget UI 库 =
+    // ===================
+
+    // DevWidget
+    public static final int BTN_DEV_WIDGET = MODULE_DEV_WIDGET;
+
+    // ViewPager 滑动监听、控制滑动
+    public static final int BTN_VIEW_PAGER = BTN_DEV_WIDGET + 100;
+
+    // 自定义 ProgressBar 样式 View
+    public static final int BTN_CUSTOM_PROGRESS_BAR = BTN_DEV_WIDGET + 200;
+
+    // 自定义扫描 View ( QRCode、AR )
+    public static final int BTN_SCAN_VIEW = BTN_DEV_WIDGET + 300;
+
+    // 自动换行 View
+    public static final int BTN_WRAP_VIEW = BTN_DEV_WIDGET + 400;
+
+    // 签名 View
+    public static final int BTN_SIGN_VIEW = BTN_DEV_WIDGET + 500;
+
+    // 换行监听 View
+    public static final int BTN_LINE_VIEW = BTN_DEV_WIDGET + 600;
+
+    // 自定义点赞效果 View
+    public static final int BTN_LIKE_VIEW = BTN_DEV_WIDGET + 700;
+
+    // ================================
     // = DevEnvironment 环境配置切换库 =
-    // =================================
+    // ================================
 
     // 环境配置切换
     public static final int BTN_DEV_ENVIRONMENT = MODULE_DEV_ENVIRONMENT;
+
     // 使用自定义配置
-    public static final int BTN_USE_CUSTOM = BTN_DEV_ENVIRONMENT + 1;
+    public static final int BTN_USE_CUSTOM = BTN_DEV_ENVIRONMENT + 100;
 }

@@ -1,354 +1,317 @@
 
+# About
 
-## 目录结构
+> DevWidget 主要是常用 UI 效果、特殊功能需求展示的自定义 View UI 库，持续增加开发中常用的 View 效果、Adapter 模式设计复用样式等，提升开发效率，便于快捷引用快速开发
 
+## Gradle
+
+```java
+implementation 'com.afkt:DevWidget:1.0.0'
+
+// AndroidX
+implementation 'com.afkt:DevWidgetX:1.0.0'
 ```
-- dev                                                 | 根目录
-   - widget                                           | 自定义 View 根目录
-      - adjust                                        | 自动调节高度 View
-      - custom                                        | 自定义 View
+
+## README
+
+- 效果可运行 DevUtils 项目点击 DevWidget UI 库查看
+
+- 该库依赖 [DevApp](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md) 开发，需引用 DevApp 库
+
+- [README - API](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/README_API.md)
+
+- [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/CHANGELOG.md)
+
+
+## Preview
+
+| WrapView | LineTextView | SignView |
+|:--:|:--:|:--:|
+| ![WrapView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/wrap_view.jpg) | ![LineTextView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/line_text_view.jpg) | ![SignView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/sign_view.jpg) |
+| ScanShapeView - Square | ScanShapeView - Hexagon | ScanShapeView - Annulus |
+| ![ScanShapeView - Square](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/scan_shape_view_square.gif) | ![ScanShapeView - Hexagon](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/scan_shape_view_hexagon.gif) | ![ScanShapeView - Annulus](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/scan_shape_view_annulus.gif) |
+| LoadProgressBar | FlowLikeView |   |
+| ![LoadProgressBar](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/load_progress_bar.gif) | ![FlowLikeView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/flow_like_view.gif) |   |
+
+
+## Catalog
+
+- [LoadProgressBar](#LoadProgressBar) 自定义加载 ProgressBar 样式 View
+
+- [ScanShapeView](#ScanShapeView) 自定义扫描 ( 二维码 / AR ) 效果形状 View
+
+- [FlowLikeView](#FlowLikeView) 自定义点赞效果 View
+
+
+## Attribute Config
+
+### <span id="LoadProgressBar">**`自定义加载 ProgressBar 样式 View`** [LoadProgressBar.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/LoadProgressBar.java)</span>
+
+```java
+// 内外圆环 + 数字 + 无扇形
+view.setProgressStyle(LoadProgressBar.ProgressStyle.RINGS)
+         .setOuterRingWidth(SizeUtils.dipConvertPx(5)) // 内环宽度
+         .setOuterRingColor(ResourceUtils.getColor(R.color.khaki)) // 内环颜色
+         .setProgressColor(ResourceUtils.getColor(R.color.color_88)) // 进度颜色
+         .setCanvasNumber(true); // 是否绘制数字
+
+<dev.widget.ui.LoadProgressBar
+   app:dev_canvasNumber="true"
+   app:dev_outerRingColor="@color/khaki"
+   app:dev_outerRingWidth="5.0dp"
+   app:dev_progressColor="#888888"
+   app:dev_progressStyle="rings" />
+
+
+// 扇形 + 数字 + 无内外圆环
+view.setProgressStyle(CustomProgressBar.ProgressStyle.FAN_SHAPED)
+         .setProgressColor(ResourceUtils.getColor(R.color.sky_blue)) // 进度颜色
+         .setCanvasNumber(true); // 是否绘制数字
+
+<dev.widget.ui.LoadProgressBar
+   app:dev_canvasNumber="true"
+   app:dev_progressColor="@color/sky_blue"
+   app:dev_progressStyle="fan_shaped" />
+
+
+// 扇形 + 数字 + 外圆环
+view.setProgressStyle(LoadProgressBar.ProgressStyle.ARC_FAN_SHAPED)
+         .setOuterRingWidth(SizeUtils.dipConvertPx(1)) // 内环宽度
+         .setOuterRingColor(Color.RED) // 内环颜色
+         .setProgressColor(ResourceUtils.getColor(R.color.mediumturquoise)) // 进度颜色
+         .setNumberTextColor(Color.parseColor("#FB7D00")) // 字体颜色
+         .setCanvasNumber(true); // 是否绘制数字
+
+<dev.widget.ui.LoadProgressBar
+   app:dev_canvasNumber="true"
+   app:dev_numberTextColor="#FB7D00"
+   app:dev_outerRingColor="@color/red"
+   app:dev_outerRingWidth="1.0dp"
+   app:dev_progressColor="@color/mediumturquoise"
+   app:dev_progressStyle="arc_fan_shaped" />
+
+
+// 单独字体
+view.setProgressStyle(CustomProgressBar.ProgressStyle.NUMBER)
+         .setNumberTextSize(20f) // 字体大小
+         .setNumberTextColor(ResourceUtils.getColor(R.color.deeppink)); // 字体颜色
+
+<dev.widget.ui.LoadProgressBar
+   app:dev_numberTextColor="@color/deeppink"
+   app:dev_numberTextSize="40sp"
+   app:dev_progressStyle="number" />
+
+
+// Attribute
+app:dev_canvasNumber=""
+app:dev_progressColor=""
+app:dev_outerRingColor=""
+app:dev_insideCircleWidth=""
+app:dev_outerRingWidth=""
+app:dev_numberTextSize=""
+app:dev_numberTextColor=""
+app:dev_progressStyle=""
 ```
 
 
-## Use
-
-> 直接 copy 所需要的类到项目中使用
-
-
-## API
-
-
-- dev                                                 | 根目录
-   - [widget](#devwidget)                             | 自定义 View 根目录
-      - [adjust](#devwidgetadjust)                    | 自动调节高度 View
-      - [custom](#devwidgetcustom)                    | 自定义 View
-
-
-
-
-## <span id="dev">**`dev`**</span>
-
-
-## <span id="devwidget">**`dev.widget`**</span>
-
-
-* **自定义 ProgressBar 样式 View ->** [CustomProgressBar.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/CustomProgressBar.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onDraw | onDraw |
-| reset | 重置参数 |
-| getMax | 获取最大值 |
-| setMax | 设置最大值 |
-| getProgress | 获取当前进度 |
-| setProgress | 设置当前进度 |
-| getProgressStyle | 获取进度条样式 |
-| setProgressStyle | 设置进度条样式 |
-| getProgressColor | 获取进度条颜色 |
-| setProgressColor | 设置进度条颜色 |
-| getOuterRingColor | 获取外环进度条颜色 |
-| setOuterRingColor | 设置外环进度条颜色 |
-| getInsideCircleWidth | 获取内环进度条宽度 |
-| setInsideCircleWidth | 设置内环进度条宽度 |
-| getOuterRingWidth | 获取外环进度条宽度 |
-| setOuterRingWidth | 设置外环进度条宽度 |
-| isCanvasNumber | 是否绘制数字 |
-| setCanvasNumber | 设置是否绘制数字 |
-| getNumberTextSize | 获取绘制的字体大小 |
-| setNumberTextSize | 设置绘制的字体大小 |
-| getNumberTextColor | 获取绘制的数字颜色 |
-| setNumberTextColor | 设置绘制的数字颜色 |
-
-
-* **换行通知 TextView ->** [LineTextView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/LineTextView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onMeasure | onMeasure |
-| onDraw | onDraw |
-| isNewLine | 判断是否换行 |
-| setNewLineCallBack | 设置换行回调事件 |
-| onNewLine | 换行触发 |
-
-
-* **最大高度限制 ScrollView ->** [MaxHeightScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/MaxHeightScrollView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onMeasure | onMeasure |
-| getMaxHeight | 获取 View 最大高度 |
-| setMaxHeight | 设置 View 最大高度 |
-
-
-* **自定义右边清空 EditText ->** [RightClearEditText.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/RightClearEditText.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| setCompoundDrawables | setCompoundDrawables |
-| onTouchEvent | onTouchEvent |
-| finalize | finalize |
-| isDrawRightIcon | 是否绘制右边图标 |
-| setDrawRightIcon | 设置是否绘制右边图标 |
-| setRightDrawable | 设置右边按钮图片 |
-| setTextWatcher | 设置输入监听回调 |
-| beforeTextChanged | 在文本变化前调用 |
-| onTextChanged | 在文本变化后调用 |
-| afterTextChanged | 在文本变化后调用 |
-
-
-* **扫描形状 View ->** [ScanShapeView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ScanShapeView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onDraw | onDraw |
-| destroy | 销毁处理 |
-| getShapeType | 获取扫描形状类型 |
-| setShapeType | 设置扫描形状类型 |
-| getCornerRadius | 获取拐角角度大小 |
-| setCornerEffect | 设置是否拐角圆角 ( 主要是控制绘制边框的线 ) - 部分特殊使用 |
-| setRegion | 设置扫描区域大小 |
-| getRegionLeft | 获取扫描绘制区域距离左 / 右边距 |
-| getRegionTop | 获取扫描绘制区域距离上 / 下边距 |
-| getRegionWidth | 获取扫描区域宽度 |
-| getRegionHeight | 获取扫描区域高度 |
-| getRegion | 获取扫描区域信息 |
-| getRegionParent | 获取在父布局中实际的位置 |
-| getBorderMargin | 获取边框边距 |
-| setBorderMargin | 设置边框边距 |
-| getBorderColor | 获取边框颜色 |
-| setBorderColor | 设置边框颜色 |
-| getBorderWidth | 获取边框宽度 |
-| setBorderWidth | 设置边框宽度 |
-| isDrawBorder | 是否绘制边框 |
-| setDrawBorder | 设置是否绘制边框 |
-| isDrawBackground | 是否绘制背景 |
-| setDrawBackground | 设置是否绘制背景 |
-| getBGColor | 获取绘制的背景颜色 |
-| setBGColor | 设置绘制的背景颜色 |
-| isDrawAnim | 是否绘制动画效果 |
-| setDrawAnim | 设置是否绘制动画效果 |
-| isAutoAnim | 是否自动播放动画 |
-| setAutoAnim | 设置是否自动播放动画 |
-| getBorderToSquare | 获取正方形描边 ( 边框 ) 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部 |
-| setBorderToSquare | 设置正方形描边 ( 边框 ) 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部 |
-| getBorderWidthToSquare | 获取正方形描边 ( 边框 ) 宽度 |
-| setBorderWidthToSquare | 设置正方形描边 ( 边框 ) 宽度 |
-| getTriAngleLength | 获取每个角的点距离 ( 长度 ) 正方形四个角落区域 |
-| setTriAngleLength | 设置每个角的点距离 ( 长度 ) 正方形四个角落区域 |
-| isSpecialToSquare | 是否特殊处理 ( 正方形边框 ) |
-| setSpecialToSquare | 设置是否特殊处理 ( 正方形边框 ) |
-| getLineDurationToSquare | 获取正方形扫描动画速度 ( 毫秒 ) |
-| setLineDurationToSquare | 设置正方形扫描动画速度 ( 毫秒 ) |
-| getBitmapToSquare | 获取正方形扫描线条 Bitmap |
-| setBitmapToSquare | 设置正方形扫描线条 Bitmap |
-| getLineMarginTopToSquare | 获取正方形扫描线条向上 ( 下 ) 边距 |
-| setLineMarginTopToSquare | 设置正方形扫描线条向上 ( 下 ) 边距 |
-| getLineMarginLeftToSquare | 获取正方形扫描线条向左 ( 右 ) 边距 |
-| setLineMarginLeftToSquare | 设置正方形扫描线条向左 ( 右 ) 边距 |
-| getLineColorToSquare | 获取正方形线条动画颜色 ( 着色 ) |
-| setLineColorToSquare | 设置正方形线条动画 ( 着色 ) |
-| getLineWidthToHexagon | 获取六边形线条动画 - 线条宽度 |
-| setLineWidthToHexagon | 设置六边形线条动画 - 线条宽度 |
-| getLineMarginToHexagon | 获取六边形线条动画 - 线条边距 |
-| setLineMarginToHexagon | 设置六边形线条动画 - 线条边距 |
-| isLineAnimDirection | 获取六边形线条动画方向 ( true = 从左到右, false = 从右到左 ) |
-| setLineAnimDirection | 设置六边形线条动画方向 ( true = 从左到右, false = 从右到左 ) |
-| getLineColorToHexagon | 获取六边形线条动画颜色 |
-| setLineColorToHexagon | 设置六边形线条动画颜色 |
-| getBitmapToAnnulus | 获取环形扫描线条 Bitmap |
-| setBitmapToAnnulus | 设置环形扫描线条 Bitmap |
-| getLineColorToAnnulus | 获取环形线条动画颜色 ( 着色 ) |
-| setLineColorToAnnulus | 设置环形线条动画 ( 着色 ) |
-| getLineOffsetSpeedToAnnulus | 获取环形扫描线条速度 |
-| setLineOffsetSpeedToAnnulus | 设置环形扫描线条速度 |
-| getAnnulusDraws | 获取环形对应的环是否绘制 0 - 外环, 1 - 中间环, 2 - 外环 |
-| setAnnulusDraws | 设置环形对应的环是否绘制 0 - 外环, 1 - 中间环, 2 - 外环 |
-| getAnnulusColors | 获取环形对应的环绘制颜色 0 - 外环, 1 - 中间环, 2 - 外环 |
-| setAnnulusColors | 设置环形对应的环绘制颜色 0 - 外环, 1 - 中间环, 2 - 外环 |
-| getAnnulusLengths | 获取环形对应的环绘制长度 0 - 外环, 1 - 中间环, 2 - 外环 |
-| setAnnulusLengths | 设置环形对应的环绘制长度 0 - 外环, 1 - 中间环, 2 - 外环 |
-| getAnnulusWidths | 获取环形对应的环绘制宽度 0 - 外环, 1 - 中间环, 2 - 外环 |
-| setAnnulusWidths | 设置环形对应的环绘制宽度 0 - 外环, 1 - 中间环, 2 - 外环 |
-| getAnnulusMargins | 获取环形对应的环绘制边距 0 - 外环, 1 - 中间环, 2 - 外环 |
-| setAnnulusMargins | 设置环形对应的环绘制边距 0 - 外环, 1 - 中间环, 2 - 外环 |
-| startAnim | 启动动画 |
-| stopAnim | 停止动画 |
-| isAnimRunning | 是否动画运行中 |
-| getRadius | getRadius |
-
-
-* **签名画笔 View ->** [SignView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/SignView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onDraw | onDraw |
-| onTouchEvent | onTouchEvent |
-| setPaint | 设置画笔 |
-
-
-* **状态布局 ->** [StateLayout.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/StateLayout.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getSize | 获取数据总数 |
-| setSize | 设置数据总数 |
-| getType | 获取功能模块类型 |
-| setType | 设置功能模块类型 |
-| getState | 获取当前状态值 |
-| setState | 设置状态值 |
-| toggleStateView | 切换状态 View |
-| getView | 获取对应状态 View |
-| insert | 插入 View Layout |
-| remove | 移除对应状态 View |
-| getStateChanged | 获取状态值改变接口 |
-| setOnStateChanged | 设置状态值改变接口 |
-| setBuilder | 设置全局配置 |
-| reset | 重置处理 |
-| getValue | 获取状态值 |
-| OnChanged | 状态值改变触发回调 |
-
-
-* **换行 View ->** [WrapView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/WrapView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onMeasure | onMeasure |
-| onLayout | onLayout |
-| refreshDraw | 刷新绘制 ( 更新配置信息后, 必须调用 ) |
-| getRowLine | 获取 View 换行行数 |
-| getMaxLine | 获取最大行数 |
-| setMaxLine | 设置最大行数 |
-| setRowTopMargin | 设置每一行向上的边距 ( 行间隔 ) |
-| setViewLeftMargin | 设置每个 View 之间的 Left 边距 |
-| setRowFristLeftMargin | 设置每一行第一个 View Left 边距 |
-| setRowViewMargin | 设置 Row View 边距 |
-
-
-## <span id="devwidgetadjust">**`dev.widget.adjust`**</span>
-
-
-* **自动调节高度 GridView ->** [AdjustHeightGridView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/adjust/AdjustHeightGridView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onMeasure | onMeasure |
-
-
-* **自动调节高度 ListView ->** [AdjustHeightListView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/adjust/AdjustHeightListView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onMeasure | onMeasure |
-
-
-* **自动调节高度 RecyclerView ->** [AdjustHeightRecyclerView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/adjust/AdjustHeightRecyclerView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onMeasure | onMeasure |
-
-
-* **自动调节高度 WebView ->** [AdjustHeightWebView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/adjust/AdjustHeightWebView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onMeasure | onMeasure |
-
-
-## <span id="devwidgetcustom">**`dev.widget.custom`**</span>
-
-
-* **自定义 Gallery 滑动控制 ->** [CustomGallery.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomGallery.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onFling | onFling |
-| onTouchEvent | onTouchEvent |
-| onInterceptTouchEvent | onInterceptTouchEvent |
-| isSlide | 是否允许滑动 |
-| setSlide | 设置是否允许滑动 |
-| toggleSlide | 切换滑动控制状态 |
-
-
-* **自定义 HorizontalScrollView 滑动监听、滑动控制 ->** [CustomHorizontalScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomHorizontalScrollView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onScrollChanged | onScrollChanged |
-| computeScrollDeltaToGetChildRectOnScreen | computeScrollDeltaToGetChildRectOnScreen |
-| onTouchEvent | onTouchEvent |
-| onInterceptTouchEvent | onInterceptTouchEvent |
-| isSlide | 是否允许滑动 |
-| setSlide | 设置是否允许滑动 |
-| toggleSlide | 切换滑动控制状态 |
-| setScrollCallBack | 设置滑动监听回调 |
-
-
-* **自定义 NestedScrollView 滑动监听、滑动控制 ->** [CustomNestedScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomNestedScrollView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onScrollChanged | onScrollChanged |
-| computeScrollDeltaToGetChildRectOnScreen | computeScrollDeltaToGetChildRectOnScreen |
-| onTouchEvent | onTouchEvent |
-| onInterceptTouchEvent | onInterceptTouchEvent |
-| isSlide | 是否允许滑动 |
-| setSlide | 设置是否允许滑动 |
-| toggleSlide | 切换滑动控制状态 |
-| setScrollCallBack | 设置滑动监听回调 |
-
-
-* **自定义 RecyclerView 滑动监听、滑动控制 ->** [CustomRecyclerView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomRecyclerView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onScrolled | onScrolled |
-| onScrollStateChanged | onScrollStateChanged |
-| onTouchEvent | onTouchEvent |
-| onInterceptTouchEvent | onInterceptTouchEvent |
-| isSlide | 是否允许滑动 |
-| setSlide | 设置是否允许滑动 |
-| toggleSlide | 切换滑动控制状态 |
-| setScrollCallBack | 设置滑动监听回调 |
-| onScrollChanged | 滑动改变通知 |
-
-
-* **自定义 ScrollView 滑动监听、滑动控制 ->** [CustomScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomScrollView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onScrollChanged | onScrollChanged |
-| computeScrollDeltaToGetChildRectOnScreen | computeScrollDeltaToGetChildRectOnScreen |
-| onTouchEvent | onTouchEvent |
-| onInterceptTouchEvent | onInterceptTouchEvent |
-| isSlide | 是否允许滑动 |
-| setSlide | 设置是否允许滑动 |
-| toggleSlide | 切换滑动控制状态 |
-| setScrollCallBack | 设置滑动监听回调 |
-
-
-* **自定义 ViewPager 滑动监听、滑动控制 ->** [CustomViewPager.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomViewPager.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onTouchEvent | onTouchEvent |
-| onInterceptTouchEvent | onInterceptTouchEvent |
-| isSlide | 是否允许滑动 |
-| setSlide | 设置是否允许滑动 |
-| toggleSlide | 切换滑动控制状态 |
-| onPageScrolled | onPageScrolled |
-| onPageScrollStateChanged | onPageScrollStateChanged |
-| onSlideDirection | 滑动方向 |
-
-
-* **自定义 WebView 滑动监听、滑动控制 ->** [CustomWebView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomWebView.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onScrollChanged | onScrollChanged |
-| onTouchEvent | onTouchEvent |
-| onInterceptTouchEvent | onInterceptTouchEvent |
-| isSlide | 是否允许滑动 |
-| setSlide | 设置是否允许滑动 |
-| toggleSlide | 切换滑动控制状态 |
-| setScrollCallBack | 设置滑动监听回调 |
+### <span id="ScanShapeView">**`自定义扫描 ( 二维码 / AR ) 效果形状 View`** [ScanShapeView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/ScanShapeView.java)</span>
+
+```java
+/**
+ * 刷新类型处理
+ * @param scanView  扫描 View
+ * @param scanShape 扫描类型
+ */
+public static void refShape(ScanShapeView scanView, ScanShapeView.Shape scanShape) {
+    // 设置扫描 View 类型
+    scanView.setShapeType(scanShape);
+
+    boolean isExecute = false;
+    if (isExecute) {
+        // ============
+        // = 处理方法 =
+        // ============
+
+        // 销毁方法
+        scanView.destroy();
+        // 启动动画
+        scanView.startAnim();
+        // 停止动画
+        scanView.stopAnim();
+        // 动画是否运行中
+        scanView.isAnimRunning();
+
+        // ========
+        // = 共用 =
+        // ========
+
+        // 设置扫描 View 类型
+        scanView.setShapeType(scanShape);
+        // 获取扫描 View 类型
+        scanView.getShapeType();
+        // 设置是否绘制背景
+        scanView.setDrawBackground(true);
+        // 设置背景颜色 - ( 黑色 百分之 40 透明度 ) #66000000
+        scanView.setBGColor(Color.argb(102, 0, 0, 0));
+        // 设置是否自动启动动画
+        scanView.setAutoAnim(false);
+        // 是否需要绘制动画 ( 效果 )
+        scanView.setDrawAnim(false);
+        // 设置拐角效果
+        scanView.setCornerEffect(new ScanShapeView.CornerEffect(10));
+        // 设置扫描区域大小 ( 扫描 View) 无关阴影背景以及整个 View 宽高
+        scanView.setRegion(700);
+        scanView.setRegion(700, 700);
+        scanView.setRegion(new Rect(0, 0, 700, 700));
+        // 获取扫描区域 距离 整个 View 的左 / 右边距 距离
+        scanView.getRegionLeft();
+        // 获取扫描区域 距离 整个 View 的上 / 下边距 距离
+        scanView.getRegionTop();
+        // 获取扫描区域位置信息
+        scanView.getRegion(); // 获取扫描区域位置信息
+        scanView.getRegion(100f, 200f); // 获取纠偏 ( 偏差 ) 位置后的扫描区域
+        scanView.getRegionParent(); // 获取扫描区域在 View 中的位置
+        scanView.getRegionWidth();
+        scanView.getRegionHeight();
+        // 获取边框边距
+        scanView.getBorderMargin();
+        // 设置扫描区域绘制边框边距
+        scanView.setBorderMargin(0);
+        // 设置扫描区域边框颜色
+        scanView.setBorderColor(Color.WHITE);
+        // 设置扫描区域边框宽度
+        scanView.setBorderWidth(SizeUtils.dipConvertPxf(2));
+        // 是否绘制边框
+        scanView.setDrawBorder(true);
+
+        // ==================
+        // = 正方形特殊配置 =
+        // ==================
+
+        // 设置 正方形描边 ( 边框 ), 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部
+        scanView.setBorderToSquare(0);
+        // 设置四个角落与边框共存时, 对应边框宽度
+        scanView.setBorderWidthToSquare(SizeUtils.dipConvertPxf(1));
+        // 设置每个角的点距离 ( 长度 )
+        scanView.setTriAngleLength(SizeUtils.dipConvertPxf(20));
+        // 设置特殊处理 ( 正方形边框 ) - 当 描边类型为 2 , 并且存在圆角时, 设置距离尺寸过大会出现边框圆角 + 四个角落圆角有部分透出背景情况
+        scanView.setSpecialToSquare(false); // 出现的时候则设置 true, 小尺寸 (setBorderWidthToSquare, setBorderWidth) 则不会出现
+        // 设置正方形扫描动画速度 ( 毫秒 )
+        scanView.setLineDurationToSquare(10l);
+        // 设置正方形扫描线条 Bitmap
+        scanView.setBitmapToSquare(ResourceUtils.getBitmap(R.drawable.line_scan));
+        // 设置正方形线条动画 ( 着色 ) -> 如果不使用自己的 Bitmap(setBitmapToSquare), 则可以使用默认内置的图片, 进行着色达到想要的颜色
+        scanView.setLineColorToSquare(Color.WHITE);
+        // 设置正方形扫描线条向上 ( 下 ) 边距
+        scanView.setLineMarginTopToSquare(0);
+        // 设置正方形扫描线条向左 ( 右 ) 边距
+        scanView.setLineMarginLeftToSquare(0);
+
+        // ==================
+        // = 六边形特殊配置 =
+        // ==================
+
+        // 设置六边形线条动画 - 线条宽度
+        scanView.setLineWidthToHexagon(4f);
+        // 置六边形线条动画 - 线条边距
+        scanView.setLineMarginToHexagon(20f);
+        // 设置六边形线条动画方向 true = 从左到右, false = 从右到左
+        scanView.setLineAnimDirection(true);
+        // 设置六边形线条动画颜色
+        scanView.setLineColorToHexagon(Color.WHITE);
+
+        // ================
+        // = 环形特殊配置 =
+        // ================
+
+        // 设置环形扫描线条 Bitmap
+        scanView.setBitmapToAnnulus(ResourceUtils.getBitmap(R.drawable.line_scan));
+        // 设置环形线条动画 ( 着色 )
+        scanView.setLineColorToAnnulus(Color.WHITE);
+        // 设置环形扫描线条速度
+        scanView.setLineOffsetSpeedToAnnulus(4);
+        // 设置环形对应的环是否绘制 0 - 外环, 1 - 中间环, 2 - 外环
+        scanView.setAnnulusDraws(false, true, true);
+        // 设置环形对应的环绘制颜色 0 - 外环, 1 - 中间环, 2 - 外环
+        scanView.setAnnulusColors(Color.BLUE, Color.RED, Color.WHITE);
+        // 设置环形对应的环绘制长度 0 - 外环, 1 - 中间环, 2 - 外环
+        scanView.setAnnulusLengths(20, 30, 85);
+        // 设置环形对应的环绘制宽度 0 - 外环, 1 - 中间环, 2 - 外环
+        scanView.setAnnulusWidths(SizeUtils.dipConvertPx(3), SizeUtils.dipConvertPx(7), SizeUtils.dipConvertPx(7));
+        // 设置环形对应的环绘制边距 0 - 外环, 1 - 中间环, 2 - 外环
+        scanView.setAnnulusMargins(SizeUtils.dipConvertPx(7), SizeUtils.dipConvertPx(7), SizeUtils.dipConvertPx(7));
+    }
+
+    // 设置是否需要阴影背景
+    scanView.setDrawBackground(true);
+
+    // 判断类型
+    switch (scanShape) {
+        case Square: // 正方形
+            // 天蓝色
+            int squareColor = Color.argb(255, 0, 128, 255);
+            // 设置扫描线条颜色
+            scanView.setLineColorToSquare(squareColor);
+            // 边框颜色
+            scanView.setBorderColor(squareColor);
+            // 设置圆角
+            scanView.setCornerEffect(new ScanShapeView.CornerEffect(10));
+//            // 不需要圆角
+//            scanView.setCornerEffect(null);
+//            // 设置 正方形描边 ( 边框 ), 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部
+//            scanView.setBorderToSquare(2);
+            break;
+        case Hexagon: // 六边形
+            // 白色
+            int hexagonColor = Color.WHITE;
+            // 边框颜色
+            scanView.setBorderColor(hexagonColor);
+            // 设置六边形线条动画颜色
+            scanView.setLineColorToHexagon(hexagonColor);
+//            // 设置六边形线条动画方向 true = 从左到右, false = 从右到左
+//            scanView.setLineAnimDirection(false);
+            break;
+        case Annulus: // 环形
+            // 设置环形线条动画 ( 着色 )
+            scanView.setLineColorToAnnulus(Color.RED);
+            // 设置是否需要阴影背景
+            scanView.setDrawBackground(false);
+//            // 设置环形扫描线条速度
+//            scanView.setLineOffsetSpeedToAnnulus(6f);
+            break;
+    }
+    // 重新绘制
+    scanView.postInvalidate();
+}
+```
+
+### <span id="FlowLikeView">**`自定义点赞效果 View`** [FlowLikeView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/FlowLikeView.java)</span>
+
+```java
+app:dev_animDuration="2000"
+app:dev_iconHeight="30.0dip"
+app:dev_iconWidth="30.0dip"
+
+// 设置动画时间
+vid_afl_flowlike.setAnimDuration(2000);
+// 设置图标宽度
+vid_afl_flowlike.setIconWidth(SizeUtils.dipConvertPx(30));
+// 设置图标高度
+vid_afl_flowlike.setIconHeight(SizeUtils.dipConvertPx(30));
+
+// 设置漂浮图标
+List<Drawable> lists = new ArrayList<>();
+lists.add(ResourceUtils.getDrawable(R.drawable.ic_live_brow_1));
+lists.add(ResourceUtils.getDrawable(R.drawable.ic_live_brow_2));
+lists.add(ResourceUtils.getDrawable(R.drawable.ic_live_brow_3));
+lists.add(ResourceUtils.getDrawable(R.drawable.ic_live_brow_4));
+lists.add(ResourceUtils.getDrawable(R.drawable.ic_live_brow_5));
+vid_afl_flowlike.setDrawables(lists);
+
+// 设置漂浮图标
+vid_afl_flowlike.setDrawablesById(R.drawable.ic_live_brow_1, R.drawable.ic_live_brow_2,
+    R.drawable.ic_live_brow_3, R.drawable.ic_live_brow_4, R.drawable.ic_live_brow_5);
+
+// 点赞操作
+vid_afl_flowlike.like();
+```

@@ -1,4 +1,4 @@
-package dev.widget;
+package dev.widget.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -19,20 +19,19 @@ import android.graphics.RectF;
 import android.graphics.SweepGradient;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.AttributeSet;
 import android.view.View;
-
-import androidx.annotation.ColorInt;
-import androidx.annotation.Nullable;
-import androidx.core.graphics.drawable.DrawableCompat;
 
 import java.util.Arrays;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.SizeUtils;
+import dev.widget.R;
 
 /**
- * detail: 扫描形状 View
+ * detail: 自定义扫描 ( 二维码 / AR ) 效果形状 View
  * @author Ttt
  */
 public class ScanShapeView extends View {
@@ -222,16 +221,17 @@ public class ScanShapeView extends View {
     // ============
 
     public ScanShapeView(Context context) {
-        this(context, null, 0);
+        super(context);
+        init();
     }
 
     public ScanShapeView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        init();
     }
 
-    public ScanShapeView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public ScanShapeView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        // 初始化
         init();
     }
 
@@ -1748,7 +1748,6 @@ public class ScanShapeView extends View {
     // 动画操作
     private final int START_ANIM = 10; // 开始动画
     private final int STOP_ANIM = 11; // 停止动画
-//    private final int PAUSE_ANIM = 12; // 暂停动画
 
     /**
      * 启动动画
@@ -1765,13 +1764,6 @@ public class ScanShapeView extends View {
     public void stopAnim() {
         animSwitch(STOP_ANIM);
     }
-
-//    /**
-//     * 暂停动画
-//     */
-//    public void pauseAnim(){
-//        animSwitch(PAUSE_ANIM);
-//    }
 
     /**
      * 动画开关统一方法
@@ -1796,18 +1788,11 @@ public class ScanShapeView extends View {
             if (valueAnimator != null) {
                 switch (operate) {
                     case START_ANIM:
-                        if (valueAnimator.isPaused()) {
-                            valueAnimator.resume();
-                        } else {
-                            valueAnimator.start();
-                        }
+                        valueAnimator.start();
                         break;
                     case STOP_ANIM:
                         valueAnimator.cancel();
                         break;
-//                    case PAUSE_ANIM:
-//                        valueAnimator.pause();
-//                        break;
                 }
             }
         } catch (Exception e) {

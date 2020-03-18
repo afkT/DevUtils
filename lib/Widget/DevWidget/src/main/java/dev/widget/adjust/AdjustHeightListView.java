@@ -16,12 +16,12 @@ public class AdjustHeightListView extends ListView {
         super(context);
     }
 
-    public AdjustHeightListView(Context context, @Nullable AttributeSet attrs) {
+    public AdjustHeightListView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public AdjustHeightListView(Context context, @Nullable AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public AdjustHeightListView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
     }
 
     @Override

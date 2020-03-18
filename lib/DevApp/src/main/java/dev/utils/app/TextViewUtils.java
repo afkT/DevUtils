@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Html;
 import android.text.InputFilter;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: TextView 工具类
@@ -2109,16 +2111,28 @@ public final class TextViewUtils {
 
     /**
      * 通过需要的高度, 计算字体大小
-     * @param textHeight 需要的字体高度
+     * @param height 需要的高度
      * @return 字体大小
      */
-    public static float reckonTextSize(final int textHeight) {
-        // 创建画笔
+    public static float reckonTextSizeByHeight(final int height) {
+        return reckonTextSizeByHeight(height, 40.0f);
+    }
+
+    /**
+     * 通过需要的高度, 计算字体大小
+     * @param height    需要的高度
+     * @param startSize 字体开始预估大小
+     * @return 字体大小
+     */
+    public static float reckonTextSizeByHeight(final int height, final float startSize) {
+        if (height <= 0 || startSize <= 0) return 0f;
         Paint paint = new Paint();
         // 默认字体大小
-        float textSize = 90.0f;
+        float textSize = startSize;
         // 计算内容高度
-        int calcTextHeight = -1;
+        int calcTextHeight;
+        // 特殊处理 ( 防止死循环记录控制 )
+        int state = 0; // 1 -=, 2 +=
         // 循环计算
         while (true) {
             // 设置画笔大小
@@ -2128,12 +2142,108 @@ public final class TextViewUtils {
             // 计算内容高度
             calcTextHeight = (int) Math.ceil((fontMetrics.descent - fontMetrics.ascent));
             // 符合条件则直接返回
-            if (calcTextHeight == textHeight) {
+            if (calcTextHeight == height) {
                 return textSize;
-            } else if (calcTextHeight > textHeight) { // 如果计算的字体高度大于
+            } else if (calcTextHeight > height) { // 如果计算的字体高度大于
                 textSize -= 0.5f;
+                if (state == 2) {
+                    if (calcTextHeight < height) {
+                        return textSize;
+                    }
+                }
+                state = 1;
             } else {
                 textSize += 0.5f;
+                if (state == 1) {
+                    if (calcTextHeight < height) {
+                        return textSize;
+                    }
+                }
+                state = 2;
+            }
+        }
+    }
+
+    /**
+     * 通过需要的宽度, 计算字体大小 ( 最接近该宽度的字体大小 )
+     * @param width    需要的宽度
+     * @param textView {@link TextView}
+     * @return 字体大小
+     */
+    public static float reckonTextSizeByWidth(final int width, final TextView textView) {
+        return reckonTextSizeByWidth(width, textView, TextViewUtils.getText(textView));
+    }
+
+    /**
+     * 通过需要的宽度, 计算字体大小 ( 最接近该宽度的字体大小 )
+     * @param width    需要的宽度
+     * @param textView {@link TextView}
+     * @param content  待计算内容
+     * @return 字体大小
+     */
+    public static float reckonTextSizeByWidth(final int width, final TextView textView, final String content) {
+        if (textView == null || content == null) return 0f;
+        return reckonTextSizeByWidth(width, TextViewUtils.getPaint(textView),
+                TextViewUtils.getTextSize(textView), content);
+    }
+
+    /**
+     * 通过需要的宽度, 计算字体大小 ( 最接近该宽度的字体大小 )
+     * @param width       需要的宽度
+     * @param curTextSize 当前字体大小
+     * @param content     待计算内容
+     * @return 字体大小
+     */
+    public static float reckonTextSizeByWidth(final int width, final float curTextSize, final String content) {
+        if (width <= 0 || curTextSize <= 0 || content == null) return 0f;
+        return reckonTextSizeByWidth(width, new Paint(), curTextSize, content);
+    }
+
+    /**
+     * 通过需要的宽度, 计算字体大小 ( 最接近该宽度的字体大小 )
+     * @param width       需要的宽度
+     * @param paint       {@link Paint}
+     * @param curTextSize 当前字体大小
+     * @param content     待计算内容
+     * @return 字体大小
+     */
+    public static float reckonTextSizeByWidth(final int width, final Paint paint,
+                                              final float curTextSize, final String content) {
+        if (paint == null || width <= 0 || curTextSize <= 0 || content == null) return 0f;
+        if (StringUtils.isEmpty(content)) return curTextSize;
+        // 初始化内容画笔, 计算宽高
+        TextPaint tvPaint = new TextPaint(paint);
+        // 字体大小
+        float textSize = curTextSize;
+        // 字体内容宽度
+        int calcTextWidth;
+        // 特殊处理 ( 防止死循环记录控制 )
+        int state = 0; // 1 -=, 2 +=
+        // 循环计算
+        while (true) {
+            // 设置画笔大小
+            tvPaint.setTextSize(textSize);
+            // 获取字体内容宽度
+            calcTextWidth = (int) tvPaint.measureText(content);
+            // 符合条件则直接返回
+            if (calcTextWidth == width) {
+                return textSize;
+            } else if (calcTextWidth > width) { // 如果计算的字体宽度大于
+                textSize -= 0.5f;
+                if (state == 2) {
+                    if (calcTextWidth < width) {
+                        return textSize;
+                    }
+                }
+                state = 1;
+            } else {
+                textSize += 0.5f;
+                if (state == 1) {
+                    if (calcTextWidth < width) {
+                        return textSize;
+                    }
+                }
+                state = 2;
             }
         }
     }

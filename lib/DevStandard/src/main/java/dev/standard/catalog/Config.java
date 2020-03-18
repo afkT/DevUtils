@@ -78,7 +78,6 @@ final class Config {
         sAndroidCatelogMap.put(".PushHandlerPro", "Android 点击推送逻辑处理、页面跳转判断");
         sAndroidCatelogMap.put(".RecordVideo", "录制视频 View (拍照 + 视频)");
         sAndroidCatelogMap.put(".RecordView", "录制进步式 View");
-        sAndroidCatelogMap.put(".ScanView", "扫描 (二维码/AR) 效果自定义 View");
         sAndroidCatelogMap.put(".SophixPro", "Android - 热修复 Sophix");
 
         // ========

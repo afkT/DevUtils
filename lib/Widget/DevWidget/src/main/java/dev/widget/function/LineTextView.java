@@ -1,53 +1,46 @@
-package dev.widget;
+package dev.widget.function;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatTextView;
 
 import dev.utils.app.TextViewUtils;
 
 /**
- * detail: 换行通知 TextView
+ * detail: TextView 换行监听
  * @author Ttt
  */
 public class LineTextView extends AppCompatTextView {
 
     // 是否换行
     private boolean mIsNewLine = false;
-    // 换行回调事件
+    // 换行监听回调
     private OnNewLineCallBack mNewLineCallBack;
 
     public LineTextView(Context context) {
-        this(context, null);
+        super(context);
     }
 
-    public LineTextView(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
+    public LineTextView(Context context, AttributeSet attrs) {
+        super(context, attrs);
     }
 
-    public LineTextView(Context context, @Nullable AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    public LineTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        // 画笔
         Paint paint = getPaint();
-        // 文本
+        // 当前文本
         String text = this.getText().toString();
         // 计算文本一共多少行
-        int line = TextViewUtils.calcTextLine(paint, text, getWidth() - getPaddingLeft() - getPaddingRight());
+        int line = TextViewUtils.calcTextLine(paint, text,
+                getWidth() - getPaddingLeft() - getPaddingRight());
         // 是否换行
         mIsNewLine = line > 1;
 
@@ -56,10 +49,6 @@ public class LineTextView extends AppCompatTextView {
             mNewLineCallBack.onNewLine(mIsNewLine, line);
         }
     }
-
-    // ================
-    // = 对外公开方法 =
-    // ================
 
     /**
      * 判断是否换行
@@ -70,7 +59,7 @@ public class LineTextView extends AppCompatTextView {
     }
 
     /**
-     * 设置换行回调事件
+     * 设置换行监听回调
      * @param newLineCallBack {@link OnNewLineCallBack}
      * @return {@link LineTextView}
      */
@@ -80,7 +69,7 @@ public class LineTextView extends AppCompatTextView {
     }
 
     /**
-     * detail: 换行回调事件
+     * detail: 换行监听回调
      * @author Ttt
      */
     public interface OnNewLineCallBack {

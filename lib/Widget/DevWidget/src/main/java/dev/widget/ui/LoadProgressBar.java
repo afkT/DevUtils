@@ -1,58 +1,91 @@
-package dev.widget;
+package dev.widget.ui;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.text.TextPaint;
+import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.view.View;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.Nullable;
-
 import dev.utils.app.SizeUtils;
+import dev.utils.app.TextViewUtils;
+import dev.widget.R;
 
 /**
- * detail: 自定义 ProgressBar 样式 View
+ * detail: 自定义加载 ProgressBar 样式 View
  * @author Ttt
  * <pre>
  *     内外圆环 + 数字 + 无扇形
- *     view.setProgressStyle(CustomProgressBar.ProgressStyle.DEFAULT)
- *              .setOuterRingWidth(SizeUtils.dipConvertPx(1)) // 内环宽度
- *              .setOuterRingColor(Color.BLUE) // 内环颜色
- *              .setProgressColor(ResourceUtils.getColor(R.color.black)) // 进度颜色
+ *     view.setProgressStyle(LoadProgressBar.ProgressStyle.RINGS)
+ *              .setOuterRingWidth(SizeUtils.dipConvertPx(5)) // 内环宽度
+ *              .setOuterRingColor(ResourceUtils.getColor(R.color.khaki)) // 内环颜色
+ *              .setProgressColor(ResourceUtils.getColor(R.color.color_88)) // 进度颜色
  *              .setCanvasNumber(true); // 是否绘制数字
+ *     <dev.widget.ui.LoadProgressBar
+ *        app:dev_canvasNumber="true"
+ *        app:dev_outerRingColor="@color/khaki"
+ *        app:dev_outerRingWidth="5.0dp"
+ *        app:dev_progressColor="#888888"
+ *        app:dev_progressStyle="rings" />
  *     <p></p>
  *     扇形 + 数字 + 无内外圆环
  *     view.setProgressStyle(CustomProgressBar.ProgressStyle.FAN_SHAPED)
- *              .setProgressColor(ResourceUtils.getColor(R.color.white)) // 进度颜色
+ *              .setProgressColor(ResourceUtils.getColor(R.color.sky_blue)) // 进度颜色
  *              .setCanvasNumber(true); // 是否绘制数字
+ *     <dev.widget.ui.LoadProgressBar
+ *        app:dev_canvasNumber="true"
+ *        app:dev_progressColor="@color/sky_blue"
+ *        app:dev_progressStyle="fan_shaped" />
  *     <p></p>
  *     扇形 + 数字 + 外圆环
- *     view.setProgressStyle(CustomProgressBar.ProgressStyle.ARC_FAN_SHAPED)
+ *     view.setProgressStyle(LoadProgressBar.ProgressStyle.ARC_FAN_SHAPED)
  *              .setOuterRingWidth(SizeUtils.dipConvertPx(1)) // 内环宽度
  *              .setOuterRingColor(Color.RED) // 内环颜色
- *              .setProgressColor(ResourceUtils.getColor(R.color.white)) // 进度颜色
+ *              .setProgressColor(ResourceUtils.getColor(R.color.mediumturquoise)) // 进度颜色
+ *              .setNumberTextColor(Color.parseColor("#FB7D00")) // 字体颜色
  *              .setCanvasNumber(true); // 是否绘制数字
+ *     <dev.widget.ui.LoadProgressBar
+ *        app:dev_canvasNumber="true"
+ *        app:dev_numberTextColor="#FB7D00"
+ *        app:dev_outerRingColor="@color/red"
+ *        app:dev_outerRingWidth="1.0dp"
+ *        app:dev_progressColor="@color/mediumturquoise"
+ *        app:dev_progressStyle="arc_fan_shaped" />
  *     <p></p>
  *     单独字体
  *     view.setProgressStyle(CustomProgressBar.ProgressStyle.NUMBER)
  *              .setNumberTextSize(20f) // 字体大小
  *              .setNumberTextColor(ResourceUtils.getColor(R.color.deeppink)); // 字体颜色
+ *     <dev.widget.ui.LoadProgressBar
+ *        app:dev_numberTextColor="@color/deeppink"
+ *        app:dev_numberTextSize="40sp"
+ *        app:dev_progressStyle="number" />
+ *     <p></p>
+ *     app:dev_canvasNumber=""
+ *     app:dev_progressColor=""
+ *     app:dev_outerRingColor=""
+ *     app:dev_insideCircleWidth=""
+ *     app:dev_outerRingWidth=""
+ *     app:dev_numberTextSize=""
+ *     app:dev_numberTextColor=""
+ *     app:dev_progressStyle=""
  * </pre>
  */
-public class CustomProgressBar extends View {
+public class LoadProgressBar extends View {
 
+    // 画笔
+    private Paint mPaint;
+    // 字体画笔
+    private Paint mTextPaint = new Paint();
     // 最大进度
     private int mMax = 100;
     // 当前进度
     private int mProgress = 0;
     // 进度条样式
-    private ProgressStyle mProgressStyle = ProgressStyle.DEFAULT;
-    // 画笔
-    private Paint mPaint;
+    private ProgressStyle mProgressStyle = ProgressStyle.RINGS;
     // 进度条颜色
     private int mProgressColor;
     // 外环进度条颜色
@@ -61,28 +94,66 @@ public class CustomProgressBar extends View {
     private float mInsideCircleWidth;
     // 外环进度条宽度
     private float mOuterRingWidth;
-    // = 字体 =
-    // 计算后的字体大小
-    private float mCalcTextSize;
+    // 是否绘制数字
+    private boolean mIsCanvasNumber = false;
     // 绘制的字体大小
     private float mNumberTextSize;
     // 绘制的数字颜色
     private int mNumberTextColor;
-    // 是否绘制数字
-    private boolean mIsCanvasNumber = true;
 
-    public CustomProgressBar(Context context) {
-        this(context, null);
+    public LoadProgressBar(Context context) {
+        super(context);
+        initAttrs(context, null);
     }
 
-    public CustomProgressBar(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
+    public LoadProgressBar(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        initAttrs(context, attrs);
     }
 
-    public CustomProgressBar(Context context, @Nullable AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        // 初始化
-        init();
+    public LoadProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        initAttrs(context, attrs);
+    }
+
+    /**
+     * 初始化
+     * @param context {@link Context}
+     * @param attrs   {@link AttributeSet}
+     */
+    private void initAttrs(Context context, AttributeSet attrs) {
+        init(); // 默认初始化配置
+
+        if (context != null && attrs != null) {
+            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
+            mIsCanvasNumber = a.getBoolean(R.styleable.DevWidget_dev_canvasNumber, mIsCanvasNumber);
+            mProgressColor = a.getColor(R.styleable.DevWidget_dev_progressColor, mProgressColor);
+            mOuterRingColor = a.getColor(R.styleable.DevWidget_dev_outerRingColor, mOuterRingColor);
+            mInsideCircleWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_insideCircleWidth, (int) mInsideCircleWidth);
+            mOuterRingWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_outerRingWidth, (int) mOuterRingWidth);
+            mNumberTextSize = a.getDimensionPixelSize(R.styleable.DevWidget_dev_numberTextSize, (int) mNumberTextSize);
+            mNumberTextColor = a.getColor(R.styleable.DevWidget_dev_numberTextColor, mNumberTextColor);
+            int progressStyle = a.getInt(R.styleable.DevWidget_dev_progressStyle, 0);
+            a.recycle();
+
+            switch (progressStyle) {
+                case 0:
+                    mProgressStyle = ProgressStyle.RINGS;
+                    break;
+                case 1:
+                    mProgressStyle = ProgressStyle.FAN_SHAPED;
+                    break;
+                case 2:
+                    mProgressStyle = ProgressStyle.ARC_FAN_SHAPED;
+                    break;
+                case 3:
+                    mProgressStyle = ProgressStyle.NUMBER;
+                    break;
+                default:
+                    mProgressStyle = ProgressStyle.RINGS;
+                    break;
+            }
+        }
     }
 
     // ===============
@@ -91,9 +162,9 @@ public class CustomProgressBar extends View {
 
     /**
      * 初始化方法
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    private CustomProgressBar init() {
+    private LoadProgressBar init() {
         // 初始化画笔
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         // 设置进度颜色值 ( 白色 )
@@ -105,7 +176,6 @@ public class CustomProgressBar extends View {
         // 设置绘制的数字颜色
         mNumberTextColor = Color.BLACK;
         // 初始化处理
-        mCalcTextSize = 0;
         mNumberTextSize = 0;
         mInsideCircleWidth = 0;
         mIsCanvasNumber = false;
@@ -118,9 +188,9 @@ public class CustomProgressBar extends View {
         // 是否绘制数字
         boolean isDrawNumber = mIsCanvasNumber;
         // 防止没有设置样式
-        if (mProgressStyle == null) mProgressStyle = ProgressStyle.DEFAULT;
+        if (mProgressStyle == null) mProgressStyle = ProgressStyle.RINGS;
         // 属于默认类型
-        if (mProgressStyle == ProgressStyle.DEFAULT) { // 绘制圆环
+        if (mProgressStyle == ProgressStyle.RINGS) { // 绘制圆环
             float centre = getWidth() / 2; // 获取圆心的 x 坐标
             float radius = (centre - mOuterRingWidth / 2); // 圆环的半径
             mPaint.setColor(mOuterRingColor); // 设置圆环的颜色
@@ -176,18 +246,21 @@ public class CustomProgressBar extends View {
             // 边距
             float margin = (getWidth() - mInsideCircleWidth) / 2;
             // 绘制扇形
-            RectF oval = new RectF(margin + centre - radius, margin + centre - radius, margin + centre + radius, margin + centre + radius);
+            RectF oval = new RectF(margin + centre - radius, margin + centre - radius,
+                    margin + centre + radius, margin + centre + radius);
             canvas.drawArc(oval, 270, (360 * mProgress) / mMax, true, mPaint);  // 根据进度画圆弧
         } else if (mProgressStyle == ProgressStyle.NUMBER) {
             // 绘制的内容
             String progressText = mProgress * 100 / mMax + "%";
             // 判断是否存在计算的字体大小
-            if (mCalcTextSize <= 0) {
+            if (mNumberTextSize <= 0) {
+                int tempWidth = getWidth();
                 // 计算字体大小
-                mCalcTextSize = calcTextSizeToWidth(getWidth(), "100%");
+                mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(tempWidth, mTextPaint,
+                        SizeUtils.pxConvertSp(tempWidth), "100%");
             }
             // 绘制进度文本
-            drawProgressText(canvas, mCalcTextSize, mNumberTextColor, progressText);
+            drawProgressText(canvas, mNumberTextSize, mNumberTextColor, progressText);
             // 已经绘制数字, 则不绘制
             isDrawNumber = false;
         }
@@ -197,12 +270,14 @@ public class CustomProgressBar extends View {
             mPaint.setStyle(Paint.Style.FILL);
             // 判断样式
             switch (mProgressStyle) {
-                case DEFAULT: // 圆环
+                case RINGS: // 圆环
                 case FAN_SHAPED: // 扇形
                     // 判断是否存在计算的字体大小
                     if (mNumberTextSize <= 0) {
+                        int tempWidth = getWidth() / 3 * 2;
                         // 计算字体大小
-                        mNumberTextSize = calcTextSizeToWidth(getWidth() / 3 * 2, "100%");
+                        mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(tempWidth, mTextPaint,
+                                SizeUtils.pxConvertSp(tempWidth), "100%");
                     }
                     // 绘制进度文本
                     drawProgressText(canvas, mNumberTextSize, mNumberTextColor, mProgress * 100 / mMax + "%");
@@ -212,9 +287,15 @@ public class CustomProgressBar extends View {
                     if (mNumberTextSize <= 0) {
                         // 计算字体大小
                         if (mInsideCircleWidth < 0f) {
-                            mNumberTextSize = calcTextSizeToWidth(getWidth() / 3 * 2, "100%");
+                            int tempWidth = getWidth() / 3 * 2;
+                            // 计算字体大小
+                            mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(tempWidth, mTextPaint,
+                                    SizeUtils.pxConvertSp(tempWidth), "100%");
                         } else {
-                            mNumberTextSize = calcTextSizeToWidth((int) mInsideCircleWidth / 3 * 2, "100%");
+                            int tempWidth = (int) mInsideCircleWidth / 3 * 2;
+                            // 计算字体大小
+                            mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(tempWidth, mTextPaint,
+                                    SizeUtils.pxConvertSp(tempWidth), "100%");
                         }
                     }
                     // 绘制进度文本
@@ -261,63 +342,15 @@ public class CustomProgressBar extends View {
         canvas.drawText(progressText, x, y, mPaint);
     }
 
-    /**
-     * 计算字体大小
-     * @param textWidth  需要的字体宽度
-     * @param contentStr 最终的内容长度
-     * @return 返回适配的字体大小
-     */
-    private float calcTextSizeToWidth(int textWidth, String contentStr) {
-        // 获取对应的字体大小
-        int textSize = SizeUtils.pxConvertSp(textWidth);
-        // 创建画笔
-        Paint paint = new Paint();
-        // 初始化内容画笔, 计算宽高
-        TextPaint tvPaint = new TextPaint(paint);
-        // 设置画笔大小
-        tvPaint.setTextSize(textSize);
-        // 获取字体内容宽度
-        float tWidth = tvPaint.measureText(contentStr);
-        // 如果需要宽度小于计算出来后的宽度
-        if (textWidth < tWidth) {
-            // 遍历计算字体大小
-            for (float i = textSize; i >= 0f; i -= 0.5f) {
-                // 设置画笔大小
-                tvPaint.setTextSize(i);
-                // 获取字体内容宽度
-                tWidth = tvPaint.measureText(contentStr);
-                if ((int) tWidth <= textWidth) {
-                    return i;
-                }
-            }
-        } else { // 需要宽度大于计算出来后的宽度
-            // 设置字体大小基数
-            float i = textSize;
-            // 进行循环
-            while (true) {
-                // 进行累加字体
-                i += 0.5f;
-                // 设置画笔大小
-                tvPaint.setTextSize(i);
-                // 获取字体内容宽度
-                tWidth = tvPaint.measureText(contentStr);
-                if ((int) tWidth >= textWidth) {
-                    return i;
-                }
-            }
-        }
-        return textSize;
-    }
-
     // ================
     // = 对外公开方法 =
     // ================
 
     /**
      * 重置参数
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public CustomProgressBar reset() {
+    public LoadProgressBar reset() {
         return init();
     }
 
@@ -332,9 +365,9 @@ public class CustomProgressBar extends View {
     /**
      * 设置最大值
      * @param max 最大值
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public synchronized CustomProgressBar setMax(int max) {
+    public synchronized LoadProgressBar setMax(int max) {
         if (max <= 0) throw new IllegalArgumentException("max not less than 0");
         this.mMax = max;
         return this;
@@ -351,9 +384,9 @@ public class CustomProgressBar extends View {
     /**
      * 设置当前进度
      * @param progress 当前进度
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public synchronized CustomProgressBar setProgress(int progress) {
+    public synchronized LoadProgressBar setProgress(int progress) {
         if (progress < 0) throw new IllegalArgumentException("progress not less than 0");
         if (progress > mMax) {
             progress = mMax;
@@ -362,24 +395,6 @@ public class CustomProgressBar extends View {
             this.mProgress = progress;
             postInvalidate();
         }
-        return this;
-    }
-
-    /**
-     * 获取进度条样式
-     * @return {@link ProgressStyle}
-     */
-    public ProgressStyle getProgressStyle() {
-        return mProgressStyle;
-    }
-
-    /**
-     * 设置进度条样式
-     * @param progressStyle {@link ProgressStyle}
-     * @return {@link CustomProgressBar}
-     */
-    public CustomProgressBar setProgressStyle(ProgressStyle progressStyle) {
-        mProgressStyle = (progressStyle == null) ? ProgressStyle.DEFAULT : progressStyle;
         return this;
     }
 
@@ -394,9 +409,9 @@ public class CustomProgressBar extends View {
     /**
      * 设置进度条颜色
      * @param progressColor 进度条颜色
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public CustomProgressBar setProgressColor(@ColorInt int progressColor) {
+    public LoadProgressBar setProgressColor(@ColorInt int progressColor) {
         this.mProgressColor = progressColor;
         return this;
     }
@@ -412,9 +427,9 @@ public class CustomProgressBar extends View {
     /**
      * 设置外环进度条颜色
      * @param outerRingColor 外环进度条颜色
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public CustomProgressBar setOuterRingColor(@ColorInt int outerRingColor) {
+    public LoadProgressBar setOuterRingColor(@ColorInt int outerRingColor) {
         this.mOuterRingColor = outerRingColor;
         return this;
     }
@@ -430,9 +445,9 @@ public class CustomProgressBar extends View {
     /**
      * 设置内环进度条宽度
      * @param insideCircleWidth 内环进度条宽度
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public CustomProgressBar setInsideCircleWidth(float insideCircleWidth) {
+    public LoadProgressBar setInsideCircleWidth(float insideCircleWidth) {
         this.mInsideCircleWidth = Math.abs(insideCircleWidth);
         return this;
     }
@@ -448,9 +463,9 @@ public class CustomProgressBar extends View {
     /**
      * 设置外环进度条宽度
      * @param outerRingWidth 外环进度条宽度
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public CustomProgressBar setOuterRingWidth(float outerRingWidth) {
+    public LoadProgressBar setOuterRingWidth(float outerRingWidth) {
         this.mOuterRingWidth = Math.abs(outerRingWidth);
         return this;
     }
@@ -466,10 +481,10 @@ public class CustomProgressBar extends View {
     /**
      * 设置是否绘制数字
      * @param canvasNumber {@code true} yes, {@code false} no
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public CustomProgressBar setCanvasNumber(boolean canvasNumber) {
-        mIsCanvasNumber = canvasNumber;
+    public LoadProgressBar setCanvasNumber(boolean canvasNumber) {
+        this.mIsCanvasNumber = canvasNumber;
         return this;
     }
 
@@ -484,9 +499,9 @@ public class CustomProgressBar extends View {
     /**
      * 设置绘制的字体大小
      * @param numberTextSize 绘制的字体大小
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public CustomProgressBar setNumberTextSize(float numberTextSize) {
+    public LoadProgressBar setNumberTextSize(float numberTextSize) {
         this.mNumberTextSize = numberTextSize;
         return this;
     }
@@ -502,10 +517,28 @@ public class CustomProgressBar extends View {
     /**
      * 设置绘制的数字颜色
      * @param numberTextColor 绘制的数字颜色
-     * @return {@link CustomProgressBar}
+     * @return {@link LoadProgressBar}
      */
-    public CustomProgressBar setNumberTextColor(@ColorInt int numberTextColor) {
+    public LoadProgressBar setNumberTextColor(@ColorInt int numberTextColor) {
         this.mNumberTextColor = numberTextColor;
+        return this;
+    }
+
+    /**
+     * 获取进度条样式
+     * @return {@link ProgressStyle}
+     */
+    public ProgressStyle getProgressStyle() {
+        return mProgressStyle;
+    }
+
+    /**
+     * 设置进度条样式
+     * @param progressStyle {@link ProgressStyle}
+     * @return {@link LoadProgressBar}
+     */
+    public LoadProgressBar setProgressStyle(ProgressStyle progressStyle) {
+        this.mProgressStyle = (progressStyle == null) ? ProgressStyle.RINGS : progressStyle;
         return this;
     }
 
@@ -519,8 +552,8 @@ public class CustomProgressBar extends View {
      */
     public enum ProgressStyle {
 
-        // 默认样式 ( 圆环 )
-        DEFAULT,
+        // 圆环
+        RINGS,
 
         // 扇形进度样式
         FAN_SHAPED,

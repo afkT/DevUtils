@@ -115,6 +115,8 @@
 
 * [Canvas 基础用法 - drawBitmap()、drawText() 详解](https://blog.csdn.net/u014702653/article/details/80342114)
 
+* [Android 自定义 View 之 Canvas](https://www.jianshu.com/p/fb18c28d6627)
+
 * [高仿小米时钟 - 使用 Camera 和 Matrix 实现 3D 效果](https://blog.csdn.net/qq_31715429/article/details/54668668)
 
 * [学习 ExplosionField 之粒子破碎效果](https://blog.csdn.net/XieYupeng520/article/details/49951835)
