@@ -8,12 +8,17 @@ android.defaultConfig {
 }
 
 dependencies {
-    implementation deps.android.appcompat_v7
-    implementation deps.android.support_v4
-    implementation deps.android.design
+    compileOnly deps.android.appcompat_v7
+    compileOnly deps.android.support_v4
+    compileOnly deps.android.design
 
     // 编译时使用
     api project(path: ':DevApp')
 //    // 打包时使用
 //    api deps.dev.dev_app
 }
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from : rootProject.file(files.app_bintray_upload)
