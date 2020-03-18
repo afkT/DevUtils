@@ -15,7 +15,7 @@ dependencies {
     // 编译时使用
     api project(path: ':DevApp')
 //    // 打包时使用
-//    api deps.dev.dev_app
+//    api deps.dev.dev_app_x
 }
 
 // gradlew clean
