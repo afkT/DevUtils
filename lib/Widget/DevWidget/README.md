@@ -311,4 +311,7 @@ vid_afl_flowlike.setDrawables(lists);
 // 设置漂浮图标
 vid_afl_flowlike.setDrawablesById(R.drawable.ic_live_brow_1, R.drawable.ic_live_brow_2,
     R.drawable.ic_live_brow_3, R.drawable.ic_live_brow_4, R.drawable.ic_live_brow_5);
+
+// 点赞操作
+vid_afl_flowlike.like();
 ```

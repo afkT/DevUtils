@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+Version 1.9.2 *(2020-03-19)*
+----------------------------
+
+* `[Add]` WidgetUtils 控件工具类
+
+* `[Add]` ViewUtils#getClipChildren、setClipChildren、getContentView、getRootParent
+
+* `[Add]` ViewHelper#setClipChildren
+
+* `[Add]` TextViewUtils#reckonTextSizeByWidth
+
+* `[Update]` TextViewUtils#reckonTextSize 方法名为 TextViewUtils#reckonTextSizeByHeight
+
 Version 1.9.1 *(2020-03-11)*
 ----------------------------
 

@@ -38,9 +38,9 @@ ext {
             // ===========
 
             // 版本号
-            dev_app_versionCode                     : 191,
+            dev_app_versionCode                     : 192,
             // 版本名
-            dev_app_versionName                     : '1.9.1',
+            dev_app_versionName                     : '1.9.2',
 
             // 版本号
             dev_assist_versionCode                  : 103,
