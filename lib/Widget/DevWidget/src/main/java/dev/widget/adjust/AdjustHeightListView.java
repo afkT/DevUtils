@@ -4,8 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ListView;
 
-import androidx.annotation.Nullable;
-
 /**
  * detail: 自动调节高度 ListView
  * @author Ttt

@@ -19,10 +19,11 @@ import android.graphics.RectF;
 import android.graphics.SweepGradient;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.ColorInt;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import java.util.Arrays;
 

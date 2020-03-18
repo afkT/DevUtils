@@ -4,8 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridView;
 
-import androidx.annotation.Nullable;
-
 /**
  * detail: 自动调节高度 GridView
  * @author Ttt

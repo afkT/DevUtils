@@ -10,12 +10,13 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import androidx.annotation.DrawableRes;
 
 import java.util.ArrayList;
 import java.util.List;

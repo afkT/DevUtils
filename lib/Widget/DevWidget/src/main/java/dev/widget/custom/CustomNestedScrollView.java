@@ -3,9 +3,10 @@ package dev.widget.custom;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
-import android.support.v4.widget.NestedScrollView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+
+import androidx.core.widget.NestedScrollView;
 
 import dev.utils.app.WidgetUtils;
 import dev.widget.R;

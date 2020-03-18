@@ -2,9 +2,10 @@ package dev.widget.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import dev.utils.app.WidgetUtils;
 import dev.widget.R;

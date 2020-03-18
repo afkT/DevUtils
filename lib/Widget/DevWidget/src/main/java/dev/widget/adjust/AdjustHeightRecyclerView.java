@@ -1,9 +1,10 @@
 package dev.widget.adjust;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * detail: 自动调节高度 RecyclerView
