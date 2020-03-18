@@ -10,4 +10,4 @@ Version 1.0.0 *(2020-03-2X)*
 
  * `[Add]` function package View LimitLayout、LineTextView、RightIconEditText、SignView
 
- * `[Add]` ui package View LoadProgressBar、ScanShapeView、WrapView
+ * `[Add]` ui package View FlowLikeView、LoadProgressBar、ScanShapeView、WrapView
