@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.0.0 *(2020-03-2X)*
+Version 1.0.0 *(2020-03-19)*
 ----------------------------
 
  * `[Add]` adjust package View AdjustHeightGridView、AdjustHeightListView、AdjustHeightRecyclerView、AdjustHeightWebView
