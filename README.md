@@ -34,6 +34,12 @@
 
 - [README - API](https://github.com/afkT/DevUtils/blob/master/lib/Environment)
 
+### DevWidget - 自定义 View UI 库
+
+- [Preview README](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget)
+
+- [README - API](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/README_API.md)
+
 
 ## Other
 
@@ -47,6 +53,31 @@
 >
 > [JavaDoc API Generate](https://github.com/afkT/JavaDoc) 该工具类 (DevUtils) API 文档，是通过 JavaDoc 项目读取 class 信息生成，并且进行代码、注释间距规范检测，生成效果示范 [DevApp - API](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
+
+## Dev 系列全部 Lib Gradle
+
+```java
+
+// DevApp Android 工具类库 https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md
+implementation 'com.afkt:DevApp:1.9.2'
+//implementation 'com.afkt:DevAppX:1.9.2' // AndroidX
+
+// DevJava Java 工具类库 ( 不依赖 android api ) https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md
+implementation 'com.afkt:DevJava:1.1.1' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
+
+// DevAssist 快捷功能辅助类库 https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/README.md
+implementation 'com.afkt:DevAssist:1.0.3'
+
+// DevEnvironment Android 环境配置切换库 https://github.com/afkT/DevUtils/blob/master/lib/Environment
+implementation 'com.afkt:DevEnvironment:1.0.0'
+debugAnnotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.0'
+releaseAnnotationProcessor 'com.afkt:DevEnvironmentCompilerRelease:1.0.0'
+//annotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.0'
+
+// DevWidget 自定义 View UI 库 https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget
+implementation 'com.afkt:DevWidget:1.0.0'
+//implementation 'com.afkt:DevWidgetX:1.0.0' // AndroidX
+```
 
 ## License
 
