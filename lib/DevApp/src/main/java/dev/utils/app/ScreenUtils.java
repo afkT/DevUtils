@@ -299,6 +299,23 @@ public final class ScreenUtils {
     }
 
     /**
+     * 屏幕是否为全屏
+     * @param activity {@link Activity}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isFullScreen(final Activity activity) {
+        if (activity != null) {
+            try {
+                int flags = activity.getWindow().getAttributes().flags;
+                return (flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "isFullScreen");
+            }
+        }
+        return true;
+    }
+
+    /**
      * 设置屏幕为全屏
      * @param activity {@link Activity}
      * @return {@code true} success, {@code false} fail

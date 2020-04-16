@@ -44,12 +44,6 @@ public final class BarUtils {
     private BarUtils() {
     }
 
-    private static final int DEFAULT_ALPHA = 112;
-    private static final String TAG_COLOR = "TAG_COLOR";
-    private static final String TAG_ALPHA = "TAG_ALPHA";
-    private static final String TAG_OFFSET = "TAG_OFFSET";
-    private static final int KEY_OFFSET = -123;
-
     private static final String TAG = BarUtils.class.getSimpleName();
 
     /**
@@ -66,6 +60,32 @@ public final class BarUtils {
         }
         return 0;
     }
+
+    /**
+     * 判断状态栏是否显示
+     * @param activity {@link Activity}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isStatusBarVisible(final Activity activity) {
+        if (activity != null) {
+            try {
+                int flags = activity.getWindow().getAttributes().flags;
+                return (flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "isStatusBarVisible");
+            }
+        }
+        return true;
+    }
+
+    // =
+
+
+    private static final int DEFAULT_ALPHA = 112;
+    private static final String TAG_COLOR = "TAG_COLOR";
+    private static final String TAG_ALPHA = "TAG_ALPHA";
+    private static final String TAG_OFFSET = "TAG_OFFSET";
+    private static final int KEY_OFFSET = -123;
 
     /**
      * 设置状态栏是否显示
@@ -93,16 +113,6 @@ public final class BarUtils {
             hideAlphaView(window);
             subtractMarginTopEqualStatusBarHeight(window);
         }
-    }
-
-    /**
-     * 判断状态栏是否显示
-     * @param activity {@link Activity}
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean isStatusBarVisible(@NonNull final Activity activity) {
-        int flags = activity.getWindow().getAttributes().flags;
-        return (flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) == 0;
     }
 
     /**
