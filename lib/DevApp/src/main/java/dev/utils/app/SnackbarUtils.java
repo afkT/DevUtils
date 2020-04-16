@@ -1363,7 +1363,7 @@ public final class SnackbarUtils {
     /**
      * 设置 Snackbar 显示在指定 View 的上方
      * @param targetView      目标 View
-     * @param appendTopMargin 追加边距 ( 如: 状态栏高度 ) {@link ScreenUtils#getStatusBarHeight}
+     * @param appendTopMargin 追加边距 ( 如: 状态栏高度 ) {@link BarUtils#getStatusBarHeight}
      * @return {@link SnackbarUtils}
      */
     public SnackbarUtils above(final View targetView, final int appendTopMargin) {
@@ -1383,7 +1383,7 @@ public final class SnackbarUtils {
     /**
      * 设置 Snackbar 显示在指定 View 的下方
      * @param targetView      目标 View
-     * @param appendTopMargin 追加边距 ( 如: 状态栏高度 ) {@link ScreenUtils#getStatusBarHeight}
+     * @param appendTopMargin 追加边距 ( 如: 状态栏高度 ) {@link BarUtils#getStatusBarHeight}
      * @return {@link SnackbarUtils}
      */
     public SnackbarUtils bellow(final View targetView, final int appendTopMargin) {

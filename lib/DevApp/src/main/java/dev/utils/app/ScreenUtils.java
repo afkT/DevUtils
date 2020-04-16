@@ -475,14 +475,7 @@ public final class ScreenUtils {
      * @return 状态栏高度
      */
     public static int getStatusBarHeight() {
-        try {
-            Resources resources = Resources.getSystem();
-            int id = resources.getIdentifier("status_bar_height", "dimen", "android");
-            return resources.getDimensionPixelSize(id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getStatusBarHeight");
-        }
-        return 0;
+        return BarUtils.getStatusBarHeight();
     }
 
     /**

@@ -141,7 +141,7 @@ public final class CapturePictureUtils {
             // 获取屏幕宽度
             int[] widthHeight = ScreenUtils.getScreenWidthHeight();
             // 获取状态栏高度
-            int statusBarHeight = ScreenUtils.getStatusBarHeight();
+            int statusBarHeight = BarUtils.getStatusBarHeight();
 
             Rect frame = new Rect();
             activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
