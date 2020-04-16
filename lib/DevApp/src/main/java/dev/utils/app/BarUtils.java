@@ -7,9 +7,8 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresPermission;
+import android.support.v4.widget.DrawerLayout;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.KeyCharacterMap;
@@ -26,7 +25,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 状态栏相关工具类
+ * detail: Bar 相关工具类
  * @author Blankj
  * @author Ttt
  * <pre>
@@ -41,13 +40,13 @@ public final class BarUtils {
 
     private static final String TAG = BarUtils.class.getSimpleName();
 
-    private static final String TAG_STATUS_BAR = "TAG_STATUS_BAR";
-    private static final String TAG_OFFSET = "TAG_OFFSET";
-    private static final int KEY_OFFSET = -123;
-
     // ==============
     // = status bar =
     // ==============
+
+    private static final String TAG_STATUS_BAR = "TAG_STATUS_BAR";
+    private static final String TAG_OFFSET = "TAG_OFFSET";
+    private static final int KEY_OFFSET = -123;
 
     /**
      * 获取 StatusBar 高度
@@ -172,7 +171,7 @@ public final class BarUtils {
     // =
 
     /**
-     * 添加 StatusBar 同等高度到 View 的顶部边距
+     * 添加 View 向上 StatusBar 同等高度边距
      * @param view {@link View}
      * @return {@code true} success, {@code false} fail
      */
@@ -183,7 +182,7 @@ public final class BarUtils {
             if (haveSetOffset != null && (Boolean) haveSetOffset) return false;
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
             layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin + getStatusBarHeight(),
-                layoutParams.rightMargin, layoutParams.bottomMargin);
+                    layoutParams.rightMargin, layoutParams.bottomMargin);
             view.setTag(KEY_OFFSET, true);
             return true;
         }
@@ -191,7 +190,7 @@ public final class BarUtils {
     }
 
     /**
-     * 移除 View 顶部 StatusBar 同等高度边距
+     * 移除 View 向上 StatusBar 同等高度边距
      * @param view {@link View}
      * @return {@code true} success, {@code false} fail
      */
@@ -201,7 +200,7 @@ public final class BarUtils {
             if (haveSetOffset == null || !(Boolean) haveSetOffset) return false;
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
             layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin - getStatusBarHeight(),
-                layoutParams.rightMargin, layoutParams.bottomMargin);
+                    layoutParams.rightMargin, layoutParams.bottomMargin);
             view.setTag(KEY_OFFSET, false);
             return true;
         }
@@ -209,7 +208,7 @@ public final class BarUtils {
     }
 
     /**
-     * 添加 StatusBar 同等高度到 View 的顶部边距
+     * 添加 View 向上 StatusBar 同等高度边距
      * @param window {@link Window}
      */
     private static void addMarginTopEqualStatusBarHeight(final Window window) {
@@ -221,7 +220,7 @@ public final class BarUtils {
     }
 
     /**
-     * 移除 View 顶部 StatusBar 同等高度边距
+     * 移除 View 向上 StatusBar 同等高度边距
      * @param window {@link Window}
      */
     private static void subtractMarginTopEqualStatusBarHeight(final Window window) {
@@ -230,6 +229,145 @@ public final class BarUtils {
             if (withTag == null) return;
             subtractMarginTopEqualStatusBarHeight(withTag);
         }
+    }
+
+    // =
+
+    /**
+     * 设置 StatusBar 颜色
+     * @param activity {@link Activity}
+     * @param color    背景颜色
+     */
+    public static View setStatusBarColor(final Activity activity, final int color) {
+        return setStatusBarColor(activity, color, false);
+    }
+
+    /**
+     * 设置 StatusBar 颜色
+     * @param activity {@link Activity}
+     * @param color    背景颜色
+     * @param isDecor  {@code true} add DecorView, {@code false} add ContentView
+     */
+    public static View setStatusBarColor(final Activity activity, final int color, final boolean isDecor) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return null;
+        transparentStatusBar(activity);
+        return applyStatusBarColor(activity, color, isDecor);
+    }
+
+    /**
+     * 设置 StatusBar 颜色
+     * @param window {@link Window}
+     * @param color  背景颜色
+     */
+    public static View setStatusBarColor(final Window window, final int color) {
+        return setStatusBarColor(window, color, false);
+    }
+
+    /**
+     * 设置 StatusBar 颜色
+     * @param window  {@link Window}
+     * @param color   背景颜色
+     * @param isDecor {@code true} add DecorView, {@code false} add ContentView
+     */
+    public static View setStatusBarColor(final Window window, final int color, final boolean isDecor) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return null;
+        transparentStatusBar(window);
+        return applyStatusBarColor(window, color, isDecor);
+    }
+
+    /**
+     * 设置 StatusBar 颜色
+     * @param fakeStatusBar StatusBar View
+     * @param color         背景颜色
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setStatusBarColor(final View fakeStatusBar, final int color) {
+        if (fakeStatusBar != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Activity activity = ActivityUtils.getActivity(fakeStatusBar.getContext());
+            if (activity == null) return false;
+            transparentStatusBar(activity);
+            fakeStatusBar.setVisibility(View.VISIBLE);
+            ViewGroup.LayoutParams layoutParams = fakeStatusBar.getLayoutParams();
+            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            layoutParams.height = getStatusBarHeight();
+            fakeStatusBar.setBackgroundColor(color);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 设置自定义 StatusBar View
+     * @param fakeStatusBar StatusBar View
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setStatusBarCustom(final View fakeStatusBar) {
+        if (fakeStatusBar != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Activity activity = ActivityUtils.getActivity(fakeStatusBar.getContext());
+            if (activity == null) return false;
+            transparentStatusBar(activity);
+            fakeStatusBar.setVisibility(View.VISIBLE);
+            ViewGroup.LayoutParams layoutParams = fakeStatusBar.getLayoutParams();
+            if (layoutParams == null) {
+                layoutParams = new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        getStatusBarHeight()
+                );
+                fakeStatusBar.setLayoutParams(layoutParams);
+            } else {
+                layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                layoutParams.height = getStatusBarHeight();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 设置 DrawerLayout StatusBar 颜色
+     * @param drawer        DrawLayout
+     * @param fakeStatusBar StatusBar View
+     * @param color         背景颜色
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setStatusBarColorDrawer(final DrawerLayout drawer,
+                                                  final View fakeStatusBar,
+                                                  final int color) {
+        return setStatusBarColorDrawer(drawer, fakeStatusBar, color, false);
+    }
+
+    /**
+     * 设置 DrawerLayout StatusBar 颜色
+     * <pre>
+     *     DrawLayout 必须添加
+     *     {@code android:fitsSystemWindows="true"}
+     * </pre>
+     * @param drawer        DrawLayout
+     * @param fakeStatusBar StatusBar View
+     * @param color         背景颜色
+     * @param isTop         是否设置 DrawerLayout 为顶层
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setStatusBarColorDrawer(final DrawerLayout drawer, final View fakeStatusBar,
+                                                  final int color, final boolean isTop) {
+        if (drawer != null && fakeStatusBar != null &&
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Activity activity = ActivityUtils.getActivity(fakeStatusBar.getContext());
+            if (activity == null) return false;
+            transparentStatusBar(activity);
+            drawer.setFitsSystemWindows(false);
+            setStatusBarColor(fakeStatusBar, color);
+            for (int i = 0, count = drawer.getChildCount(); i < count; i++) {
+                drawer.getChildAt(i).setFitsSystemWindows(false);
+            }
+            if (isTop) {
+                hideStatusBarView(activity);
+            } else {
+                setStatusBarColor(activity, color, false);
+            }
+            return true;
+        }
+        return false;
     }
 
     // =
@@ -337,7 +475,7 @@ public final class BarUtils {
     private static View createStatusBarView(final Context context, final int color) {
         View statusBarView = new View(context);
         statusBarView.setLayoutParams(new ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight()));
+                ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight()));
         statusBarView.setBackgroundColor(color);
         statusBarView.setTag(TAG_STATUS_BAR);
         return statusBarView;
@@ -445,8 +583,8 @@ public final class BarUtils {
                 }
             }
             final int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
             if (isVisible) {
                 decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~uiOptions);
             } else {
@@ -481,7 +619,7 @@ public final class BarUtils {
                 if (id != View.NO_ID) {
                     String resourceEntryName = Resources.getSystem().getResourceEntryName(id);
                     if ("navigationBarBackground".equals(resourceEntryName)
-                        && child.getVisibility() == View.VISIBLE) {
+                            && child.getVisibility() == View.VISIBLE) {
                         isVisible = true;
                         break;
                     }
@@ -522,7 +660,7 @@ public final class BarUtils {
      * @param color    Navigation Bar 颜色
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setNavBarColor(final Activity activity, @ColorInt final int color) {
+    public static boolean setNavBarColor(final Activity activity, final int color) {
         return setNavBarColor(ActivityUtils.getWindow(activity), color);
     }
 
@@ -532,7 +670,7 @@ public final class BarUtils {
      * @param color  Navigation Bar 颜色
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setNavBarColor(final Window window, @ColorInt final int color) {
+    public static boolean setNavBarColor(final Window window, final int color) {
         if (window != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setNavigationBarColor(color);
