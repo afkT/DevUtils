@@ -28,6 +28,7 @@ import android.widget.LinearLayout;
 import java.lang.reflect.Method;
 
 import dev.DevUtils;
+import dev.utils.LogPrintUtils;
 
 /**
  * detail: 状态栏相关工具类
@@ -49,14 +50,21 @@ public final class BarUtils {
     private static final String TAG_OFFSET = "TAG_OFFSET";
     private static final int KEY_OFFSET = -123;
 
+    private static final String TAG = BarUtils.class.getSimpleName();
+
     /**
      * 获取状态栏高度
      * @return 状态栏高度
      */
     public static int getStatusBarHeight() {
-        Resources resources = Resources.getSystem();
-        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
-        return resources.getDimensionPixelSize(resourceId);
+        try {
+            Resources resources = Resources.getSystem();
+            int id = resources.getIdentifier("status_bar_height", "dimen", "android");
+            return resources.getDimensionPixelSize(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getStatusBarHeight");
+        }
+        return 0;
     }
 
     /**

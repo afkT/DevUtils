@@ -7,7 +7,6 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.RequiresApi;
@@ -472,29 +471,14 @@ public final class ScreenUtils {
     // =
 
     /**
-     * 获取状态栏的高度 ( 无关 android:theme 获取状态栏高度 )
-     * @return 状态栏的高度
+     * 获取状态栏高度
+     * @return 状态栏高度
      */
-    public static int getStatusHeight() {
+    public static int getStatusBarHeight() {
         try {
-            int id = ResourceUtils.getIdentifier("status_bar_height", "dimen", "android");
-            return ResourceUtils.getResources().getDimensionPixelSize(id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getStatusHeight");
-        }
-        return 0;
-    }
-
-    /**
-     * 获取应用区域 TitleBar 高度 ( 顶部灰色 TitleBar 高度, 没有设置 android:theme 的 NoTitleBar 时会显示 )
-     * @param activity {@link Activity}
-     * @return 应用区域 TitleBar 高度
-     */
-    public static int getStatusBarHeight(final Activity activity) {
-        try {
-            Rect rect = new Rect();
-            activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-            return rect.top;
+            Resources resources = Resources.getSystem();
+            int id = resources.getIdentifier("status_bar_height", "dimen", "android");
+            return resources.getDimensionPixelSize(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getStatusBarHeight");
         }
