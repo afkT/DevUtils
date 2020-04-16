@@ -175,7 +175,7 @@ public final class BarUtils {
      * @param view {@link View}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean addMarginTopEqualStatusBarHeight(View view) {
+    public static boolean addMarginTopEqualStatusBarHeight(final View view) {
         if (view != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             view.setTag(TAG_OFFSET);
             Object haveSetOffset = view.getTag(KEY_OFFSET);
@@ -194,7 +194,7 @@ public final class BarUtils {
      * @param view {@link View}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean subtractMarginTopEqualStatusBarHeight(View view) {
+    public static boolean subtractMarginTopEqualStatusBarHeight(final View view) {
         if (view != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Object haveSetOffset = view.getTag(KEY_OFFSET);
             if (haveSetOffset == null || !(Boolean) haveSetOffset) return false;
@@ -410,7 +410,7 @@ public final class BarUtils {
      * @param isDecor  是否添加在 DecorView 上
      * @return StatusBar View
      */
-    private static View applyStatusBarColor(final Activity activity, final int color, boolean isDecor) {
+    private static View applyStatusBarColor(final Activity activity, final int color, final boolean isDecor) {
         return applyStatusBarColor(ActivityUtils.getWindow(activity), color, isDecor);
     }
 
@@ -421,7 +421,7 @@ public final class BarUtils {
      * @param isDecor 是否添加在 DecorView 上
      * @return StatusBar View
      */
-    private static View applyStatusBarColor(final Window window, final int color, boolean isDecor) {
+    private static View applyStatusBarColor(final Window window, final int color, final boolean isDecor) {
         ViewGroup parent = isDecor ? (ViewGroup) window.getDecorView() : (ViewGroup) window.findViewById(android.R.id.content);
         View fakeStatusBarView = parent.findViewWithTag(TAG_STATUS_BAR);
         if (fakeStatusBarView != null) {
