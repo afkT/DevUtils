@@ -1,7 +1,7 @@
 package dev.utils.app;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -635,15 +635,7 @@ public final class DeviceUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean shutdown() {
-        try {
-            ShellUtils.execCmd("reboot -p", true);
-            Intent intent = new Intent("android.intent.action.ACTION_REQUEST_SHUTDOWN");
-            intent.putExtra("android.intent.extra.KEY_CONFIRM", false);
-            return AppUtils.startActivity(intent);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "shutdown");
-        }
-        return false;
+        return ADBUtils.shutdown();
     }
 
     /**
@@ -651,17 +643,7 @@ public final class DeviceUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean reboot() {
-        try {
-            ShellUtils.execCmd("reboot", true);
-            Intent intent = new Intent(Intent.ACTION_REBOOT);
-            intent.putExtra("nowait", 1);
-            intent.putExtra("interval", 1);
-            intent.putExtra("window", 0);
-            return AppUtils.sendBroadcast(intent);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "reboot");
-        }
-        return false;
+        return ADBUtils.reboot();
     }
 
     /**
@@ -671,13 +653,7 @@ public final class DeviceUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean reboot(final String reason) {
-        try {
-            AppUtils.getPowerManager().reboot(reason);
-            return true;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "reboot");
-        }
-        return false;
+        return ADBUtils.reboot(reason);
     }
 
     /**
@@ -685,8 +661,7 @@ public final class DeviceUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean rebootToRecovery() {
-        ShellUtils.CommandResult result = ShellUtils.execCmd("reboot recovery", true);
-        return result.isSuccess2();
+        return ADBUtils.rebootToRecovery();
     }
 
     /**
@@ -694,7 +669,21 @@ public final class DeviceUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean rebootToBootloader() {
-        ShellUtils.CommandResult result = ShellUtils.execCmd("reboot bootloader", true);
-        return result.isSuccess2();
+        return ADBUtils.rebootToBootloader();
+    }
+
+    // =
+
+    /**
+     * 判断是否是平板
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isTablet() {
+        try {
+            return (ResourceUtils.getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isTablet");
+        }
+        return false;
     }
 }

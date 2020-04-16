@@ -466,12 +466,7 @@ public final class ScreenUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isTablet() {
-        try {
-            return (ResourceUtils.getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "isTablet");
-        }
-        return false;
+        return DeviceUtils.isTablet();
     }
 
     // =
