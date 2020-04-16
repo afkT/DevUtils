@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
-import android.os.LocaleList;
 import android.util.DisplayMetrics;
 
 import java.util.HashMap;
@@ -12,6 +11,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: 语言工具类
@@ -38,11 +38,17 @@ public final class LanguageUtils {
      * @return {@link Locale}
      */
     public static Locale getSystemPreferredLanguage() {
-        Locale locale;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            locale = LocaleList.getDefault().get(0);
-        } else {
-            locale = Locale.getDefault();
+        Locale locale = null;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                //locale = LocaleList.getDefault().get(0);
+                locale = ResourceUtils.getConfiguration().getLocales().get(0);
+            } else {
+                //locale = Locale.getDefault();
+                locale = ResourceUtils.getConfiguration().locale;
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getSystemPreferredLanguage");
         }
         return locale;
     }
@@ -191,5 +197,92 @@ public final class LanguageUtils {
             return sSupportLanguageMaps.get(language);
         }
         return null;
+    }
+
+    // ============
+    // = 语言判断 =
+    // ============
+
+    /**
+     * 判断是否为英文语言环境
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isEn() {
+        return isLanguage("en");
+    }
+
+    /**
+     * 判断是否为中文语言环境
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isZh() {
+        return isLanguage("zh");
+    }
+
+    /**
+     * 判断是否为中文简体语言环境
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isZhCN() {
+        return isRegion("CN", "zh");
+    }
+
+    /**
+     * 判断是否为中文繁体语言环境
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isZhTW() {
+        return isRegion("TW", "zh");
+    }
+
+    // =
+
+    /**
+     * 判断是否为指定语言环境
+     * @param language 语言
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isLanguage(final String language) {
+        if (StringUtils.isEmpty(language)) return false;
+        Locale locale = getSystemPreferredLanguage();
+        if (locale != null) {
+            String lang = locale.getLanguage();
+            return (lang != null && lang.equalsIgnoreCase(language));
+        }
+        return false;
+    }
+
+    /**
+     * 判断是否为指定区域语言环境
+     * @param region 区域
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isRegion(final String region) {
+        if (StringUtils.isEmpty(region)) return false;
+        Locale locale = getSystemPreferredLanguage();
+        if (locale != null) {
+            String country = locale.getCountry();
+            return (country != null && country.equalsIgnoreCase(region));
+        }
+        return false;
+    }
+
+    /**
+     * 判断是否为指定区域语言环境
+     * @param region   区域
+     * @param language 语言
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isRegion(final String region, final String language) {
+        if (StringUtils.isEmpty(region)) return false;
+        if (StringUtils.isEmpty(language)) return false;
+        Locale locale = getSystemPreferredLanguage();
+        if (locale != null) {
+            String country = locale.getCountry();
+            String lang = locale.getLanguage();
+            return (country != null && country.equalsIgnoreCase(region))
+                && (lang != null && lang.equalsIgnoreCase(language));
+        }
+        return false;
     }
 }
