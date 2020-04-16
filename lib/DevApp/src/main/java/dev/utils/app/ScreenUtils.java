@@ -488,8 +488,8 @@ public final class ScreenUtils {
     // =
 
     /**
-     * 获取状态栏高度
-     * @return 状态栏高度
+     * 获取 StatusBar 高度
+     * @return StatusBar 高度
      */
     public static int getStatusBarHeight() {
         return BarUtils.getStatusBarHeight();
