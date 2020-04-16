@@ -15,6 +15,7 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.util.Pair;
 import android.view.View;
+import android.view.Window;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -48,6 +49,24 @@ public final class ActivityUtils {
     // =====================
     // = Activity 判断处理 =
     // =====================
+
+    /**
+     * 获取 Window
+     * @param context {@link Context}
+     * @return {@link Window}
+     */
+    public static Window getWindow(final Context context) {
+        return getWindow(getActivity(context));
+    }
+
+    /**
+     * 获取 Window
+     * @param activity {@link Activity}
+     * @return {@link Window}
+     */
+    public static Window getWindow(final Activity activity) {
+        return (activity != null) ? activity.getWindow() : null;
+    }
 
     /**
      * 通过 Context 获取 Activity

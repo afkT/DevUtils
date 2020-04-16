@@ -10,7 +10,6 @@ import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.annotation.RequiresPermission;
 import android.support.v4.widget.DrawerLayout;
 import android.util.TypedValue;
@@ -54,7 +53,9 @@ public final class BarUtils {
         try {
             Resources resources = Resources.getSystem();
             int id = resources.getIdentifier("status_bar_height", "dimen", "android");
-            return resources.getDimensionPixelSize(id);
+            if (id != 0) {
+                return resources.getDimensionPixelSize(id);
+            }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getStatusBarHeight");
         }
@@ -570,12 +571,16 @@ public final class BarUtils {
 
     /**
      * 获取 ActionBar 高度
-     * @return the action bar's height
+     * @return ActionBar 高度
      */
     public static int getActionBarHeight() {
         TypedValue tv = new TypedValue();
-        if (DevUtils.getContext().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-            return TypedValue.complexToDimensionPixelSize(tv.data, ResourceUtils.getDisplayMetrics());
+        try {
+            if (DevUtils.getContext().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+                return TypedValue.complexToDimensionPixelSize(tv.data, ResourceUtils.getDisplayMetrics());
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getActionBarHeight");
         }
         return 0;
     }
@@ -585,25 +590,18 @@ public final class BarUtils {
     // ====================
 
     /**
-     * 设置通知栏是否显示
-     * @param isVisible 是否显示通知栏
+     * 设置 Notification Bar 是否显示
+     * @param isVisible 是否显示 Notification Bar
+     * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(android.Manifest.permission.EXPAND_STATUS_BAR)
-    public static void setNotificationBarVisibility(final boolean isVisible) {
+    public static boolean setNotificationBarVisibility(final boolean isVisible) {
         String methodName;
         if (isVisible) {
             methodName = (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN) ? "expand" : "expandNotificationsPanel";
         } else {
             methodName = (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN) ? "collapse" : "collapsePanels";
         }
-        invokePanels(methodName);
-    }
-
-    /**
-     * 反射调用面板
-     * @param methodName 方法名
-     */
-    private static void invokePanels(final String methodName) {
         try {
             @SuppressLint("WrongConstant")
             Object service = DevUtils.getContext().getSystemService("statusbar");
@@ -611,8 +609,11 @@ public final class BarUtils {
             Class<?> statusBarManager = Class.forName("android.app.StatusBarManager");
             Method expand = statusBarManager.getMethod(methodName);
             expand.invoke(service);
+            return true;
         } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setNotificationBarVisibility");
         }
+        return false;
     }
 
     // ==================
@@ -620,113 +621,156 @@ public final class BarUtils {
     // ==================
 
     /**
-     * 获取 NavigationView 高度
-     * @return the navigation bar's height
+     * 获取 Navigation Bar 高度
+     * @return Navigation Bar 高度
      */
     public static int getNavBarHeight() {
-        Resources res = Resources.getSystem();
-        int resourceId = res.getIdentifier("navigation_bar_height", "dimen", "android");
-        if (resourceId != 0) {
-            return res.getDimensionPixelSize(resourceId);
-        } else {
-            return 0;
+        try {
+            Resources resources = Resources.getSystem();
+            int id = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+            if (id != 0) {
+                return resources.getDimensionPixelSize(id);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getNavBarHeight");
         }
+        return 0;
     }
 
     /**
-     * 设置导航栏是否可见 ( 图标显示 )
+     * 设置 Navigation Bar 是否可见
      * @param activity  {@link Activity}
-     * @param isVisible True to set navigation bar visible, false otherwise.
+     * @param isVisible 是否显示 Navigation Bar
+     * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public static void setNavBarVisibility(@NonNull final Activity activity, final boolean isVisible) {
-        setNavBarVisibility(activity.getWindow(), isVisible);
+    public static boolean setNavBarVisibility(final Activity activity, final boolean isVisible) {
+        return setNavBarVisibility(ActivityUtils.getWindow(activity), isVisible);
     }
 
     /**
-     * 设置导航栏是否可见 ( 图标显示 )
+     * 设置 Navigation Bar 是否可见
      * @param window    {@link Window}
-     * @param isVisible True to set navigation bar visible, false otherwise.
+     * @param isVisible 是否显示 Navigation Bar
+     * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
-    public static void setNavBarVisibility(@NonNull final Window window, final boolean isVisible) {
-        final int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        final View decorView = window.getDecorView();
-        if (isVisible) {
-            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~uiOptions);
-        } else {
-            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | uiOptions);
+    public static boolean setNavBarVisibility(final Window window, final boolean isVisible) {
+        if (window != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            final ViewGroup decorView = (ViewGroup) window.getDecorView();
+            for (int i = 0, count = decorView.getChildCount(); i < count; i++) {
+                final View child = decorView.getChildAt(i);
+                final int id = child.getId();
+                if (id != View.NO_ID) {
+                    String resourceEntryName = Resources.getSystem().getResourceEntryName(id);
+                    if ("navigationBarBackground".equals(resourceEntryName)) {
+                        child.setVisibility(isVisible ? View.VISIBLE : View.INVISIBLE);
+                    }
+                }
+            }
+            final int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+            if (isVisible) {
+                decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~uiOptions);
+            } else {
+                decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | uiOptions);
+            }
+            return true;
         }
+        return false;
     }
 
     /**
-     * 判断导航栏是否可见
+     * 判断 Navigation Bar 是否可见
      * @param activity {@link Activity}
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isNavBarVisible(@NonNull final Activity activity) {
-        return isNavBarVisible(activity.getWindow());
+    public static boolean isNavBarVisible(final Activity activity) {
+        return isNavBarVisible(ActivityUtils.getWindow(activity));
     }
 
     /**
-     * 判断导航栏是否可见
+     * 判断 Navigation Bar 是否可见
      * @param window {@link Window}
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isNavBarVisible(@NonNull final Window window) {
-        View decorView = window.getDecorView();
-        int visibility = decorView.getSystemUiVisibility();
-        return (visibility & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) == 0;
+    public static boolean isNavBarVisible(final Window window) {
+        if (window != null) {
+            boolean isVisible = false;
+            ViewGroup decorView = (ViewGroup) window.getDecorView();
+            for (int i = 0, count = decorView.getChildCount(); i < count; i++) {
+                final View child = decorView.getChildAt(i);
+                final int id = child.getId();
+                if (id != View.NO_ID) {
+                    String resourceEntryName = Resources.getSystem().getResourceEntryName(id);
+                    if ("navigationBarBackground".equals(resourceEntryName)
+                        && child.getVisibility() == View.VISIBLE) {
+                        isVisible = true;
+                        break;
+                    }
+                }
+            }
+            if (isVisible) {
+                int visibility = decorView.getSystemUiVisibility();
+                isVisible = (visibility & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) == 0;
+            }
+            return isVisible;
+        }
+        return false;
     }
 
     /**
-     * 设置导航栏颜色
+     * 设置 Navigation Bar 颜色
      * @param activity {@link Activity}
-     * @param color    The navigation bar's color.
+     * @param color    Navigation Bar 颜色
+     * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    public static void setNavBarColor(@NonNull final Activity activity, @ColorInt final int color) {
-        setNavBarColor(activity.getWindow(), color);
+    public static boolean setNavBarColor(final Activity activity, @ColorInt final int color) {
+        return setNavBarColor(ActivityUtils.getWindow(activity), color);
     }
 
     /**
-     * 设置导航栏颜色
+     * 设置 Navigation Bar 颜色
      * @param window {@link Window}
-     * @param color  The navigation bar's color.
+     * @param color  Navigation Bar 颜色
+     * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    public static void setNavBarColor(@NonNull final Window window, @ColorInt final int color) {
-        window.setNavigationBarColor(color);
+    public static boolean setNavBarColor(final Window window, @ColorInt final int color) {
+        if (window != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setNavigationBarColor(color);
+        }
+        return false;
     }
 
     /**
-     * 设置导航栏颜色
+     * 获取 Navigation Bar 颜色
      * @param activity {@link Activity}
-     * @return the color of navigation bar
+     * @return Navigation Bar 颜色
      */
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    public static int getNavBarColor(@NonNull final Activity activity) {
-        return getNavBarColor(activity.getWindow());
+    public static int getNavBarColor(final Activity activity) {
+        return getNavBarColor(ActivityUtils.getWindow(activity));
     }
 
     /**
-     * 获取导航栏颜色
+     * 获取 Navigation Bar 颜色
      * @param window {@link Window}
-     * @return the color of navigation bar
+     * @return Navigation Bar 颜色
      */
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    public static int getNavBarColor(@NonNull final Window window) {
-        return window.getNavigationBarColor();
+    public static int getNavBarColor(final Window window) {
+        if (window != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return window.getNavigationBarColor();
+        }
+        return -1;
     }
 
     /**
-     * 判断是否支持导航栏
+     * 判断是否支持 Navigation Bar
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isSupportNavBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             WindowManager windowManager = AppUtils.getWindowManager();
+            if (windowManager == null) return false;
             Display display = windowManager.getDefaultDisplay();
             Point size = new Point();
             Point realSize = new Point();
