@@ -30,7 +30,17 @@ public final class LanguageUtils {
      * @return Locale Language
      */
     public static String getSystemLanguage() {
-        return getSystemPreferredLanguage().getLanguage();
+        Locale locale = getSystemPreferredLanguage();
+        return (locale != null) ? locale.getLanguage() : "";
+    }
+
+    /**
+     * 获取系统语言区域
+     * @return Locale Language
+     */
+    public static String getSystemCountry() {
+        Locale locale = getSystemPreferredLanguage();
+        return (locale != null) ? locale.getCountry() : "";
     }
 
     /**
