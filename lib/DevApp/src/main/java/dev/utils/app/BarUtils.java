@@ -719,6 +719,26 @@ public final class BarUtils {
     }
 
     /**
+     * 判断是否支持 Navigation Bar
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isSupportNavBar() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            WindowManager windowManager = AppUtils.getWindowManager();
+            if (windowManager == null) return false;
+            Display display = windowManager.getDefaultDisplay();
+            Point size = new Point();
+            Point realSize = new Point();
+            display.getSize(size);
+            display.getRealSize(realSize);
+            return realSize.y != size.y || realSize.x != size.x;
+        }
+        boolean menu = ViewConfiguration.get(DevUtils.getContext()).hasPermanentMenuKey();
+        boolean back = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
+        return !menu && !back;
+    }
+
+    /**
      * 设置 Navigation Bar 颜色
      * @param activity {@link Activity}
      * @param color    Navigation Bar 颜色
@@ -738,6 +758,7 @@ public final class BarUtils {
         if (window != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setNavigationBarColor(color);
+            return true;
         }
         return false;
     }
@@ -764,22 +785,56 @@ public final class BarUtils {
     }
 
     /**
-     * 判断是否支持 Navigation Bar
+     * 设置 Navigation Bar 是否高亮模式
+     * @param activity    {@link Activity}
+     * @param isLightMode 是否高亮模式
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setNavBarLightMode(final Activity activity, final boolean isLightMode) {
+        return setNavBarLightMode(ActivityUtils.getWindow(activity), isLightMode);
+    }
+
+    /**
+     * 设置 Navigation Bar 是否高亮模式
+     * @param window      {@link Window}
+     * @param isLightMode 是否高亮模式
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setNavBarLightMode(final Window window, final boolean isLightMode) {
+        if (window != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            View decorView = window.getDecorView();
+            int vis = decorView.getSystemUiVisibility();
+            if (isLightMode) {
+                vis |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+            } else {
+                vis &= ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+            }
+            decorView.setSystemUiVisibility(vis);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 获取 Navigation Bar 是否为高亮模式
+     * @param activity {@link Activity}
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isSupportNavBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            WindowManager windowManager = AppUtils.getWindowManager();
-            if (windowManager == null) return false;
-            Display display = windowManager.getDefaultDisplay();
-            Point size = new Point();
-            Point realSize = new Point();
-            display.getSize(size);
-            display.getRealSize(realSize);
-            return realSize.y != size.y || realSize.x != size.x;
+    public static boolean isNavBarLightMode(final Activity activity) {
+        return isNavBarLightMode(ActivityUtils.getWindow(activity));
+    }
+
+    /**
+     * 获取 Navigation Bar 是否为高亮模式
+     * @param window {@link Window}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isNavBarLightMode(final Window window) {
+        if (window != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            View decorView = window.getDecorView();
+            int vis = decorView.getSystemUiVisibility();
+            return (vis & View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR) != 0;
         }
-        boolean menu = ViewConfiguration.get(DevUtils.getContext()).hasPermanentMenuKey();
-        boolean back = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
-        return !menu && !back;
+        return false;
     }
 }
