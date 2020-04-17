@@ -1200,6 +1200,16 @@ public final class DevHelper {
     }
 
     /**
+     * 设置屏幕为全屏无标题
+     * @param activity {@link Activity}
+     * @return {@link DevHelper}
+     */
+    public DevHelper setFullScreenNoTitle(final Activity activity) {
+        ScreenUtils.setFullScreenNoTitle(activity);
+        return this;
+    }
+
+    /**
      * 设置屏幕为横屏
      * @param activity {@link Activity}
      * @return {@link DevHelper}

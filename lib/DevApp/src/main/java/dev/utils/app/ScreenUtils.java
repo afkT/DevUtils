@@ -312,7 +312,7 @@ public final class ScreenUtils {
                 LogPrintUtils.eTag(TAG, e, "isFullScreen");
             }
         }
-        return true;
+        return false;
     }
 
     /**
@@ -322,13 +322,32 @@ public final class ScreenUtils {
      */
     public static boolean setFullScreen(final Activity activity) {
         try {
-            // 隐藏标题
-            activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
             // 设置全屏
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); // | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setFullScreen");
+        }
+        return false;
+    }
+
+    /**
+     * 设置屏幕为全屏无标题
+     * <pre>
+     *     需要在 setContentView 之前调用
+     * </pre>
+     * @param activity {@link Activity}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setFullScreenNoTitle(final Activity activity) {
+        try {
+            // 隐藏标题
+            activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            // 设置全屏
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); // | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setFullScreenNoTitle");
         }
         return false;
     }
