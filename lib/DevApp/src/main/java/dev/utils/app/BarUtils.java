@@ -74,7 +74,7 @@ public final class BarUtils {
         if (activity != null) {
             try {
                 int flags = activity.getWindow().getAttributes().flags;
-                return (flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0;
+                return (flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) == 0;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "isStatusBarVisible");
             }
@@ -151,7 +151,7 @@ public final class BarUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isStatusBarLightMode(final Activity activity) {
-        return isStatusBarLightMode(activity.getWindow());
+        return isStatusBarLightMode(ActivityUtils.getWindow(activity));
     }
 
     /**
@@ -422,6 +422,7 @@ public final class BarUtils {
      * @return StatusBar View
      */
     private static View applyStatusBarColor(final Window window, final int color, final boolean isDecor) {
+        if (window == null) return null;
         ViewGroup parent = isDecor ? (ViewGroup) window.getDecorView() : (ViewGroup) window.findViewById(android.R.id.content);
         View fakeStatusBarView = parent.findViewWithTag(TAG_STATUS_BAR);
         if (fakeStatusBarView != null) {
@@ -493,7 +494,7 @@ public final class BarUtils {
         TypedValue tv = new TypedValue();
         try {
             if (DevUtils.getContext().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-                return TypedValue.complexToDimensionPixelSize(tv.data, ResourceUtils.getDisplayMetrics());
+                return TypedValue.complexToDimensionPixelSize(tv.data, Resources.getSystem().getDisplayMetrics());
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getActionBarHeight");
