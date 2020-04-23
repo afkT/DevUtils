@@ -1,6 +1,21 @@
 Change Log
 ==========
 
+Version 1.9.3 *(2020-04-24)*
+----------------------------
+
+* `[Add]` LanguageUtils#isEn、isZh、isZhCN、isZhTW、isLanguage、isRegion、getSystemCountry
+
+* `[Add]` DeviceUtils#isTablet
+
+* `[Add]` ScreenUtils#isFullScreen、setFullScreenNoTitle
+
+* `[Update]` BarUtils
+
+* `[Delete]` OSUtils
+
+* `[Add]` ROMUtils
+
 Version 1.9.2 *(2020-03-19)*
 ----------------------------
 
