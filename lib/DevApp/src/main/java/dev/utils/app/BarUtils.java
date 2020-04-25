@@ -7,8 +7,6 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Build;
-import android.support.annotation.RequiresPermission;
-import android.support.v4.widget.DrawerLayout;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.KeyCharacterMap;
@@ -18,6 +16,9 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+
+import androidx.annotation.RequiresPermission;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import java.lang.reflect.Method;
 
