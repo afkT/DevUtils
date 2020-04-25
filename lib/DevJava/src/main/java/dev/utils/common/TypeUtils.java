@@ -121,8 +121,8 @@ public final class TypeUtils {
     public static class ParameterizedTypeImpl implements ParameterizedType {
 
         private final Type[] actualTypeArguments;
-        private final Type ownerType;
-        private final Type rawType;
+        private final Type   ownerType;
+        private final Type   rawType;
 
         public ParameterizedTypeImpl(Type[] actualTypeArguments, Type ownerType, Type rawType) {
             this.actualTypeArguments = actualTypeArguments;

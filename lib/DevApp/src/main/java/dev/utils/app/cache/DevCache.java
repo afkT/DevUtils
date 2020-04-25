@@ -34,7 +34,7 @@ import dev.utils.common.FileUtils;
 /**
  * detail: 缓存工具类
  * @author 杨福海 (michael) www.yangfuhai.com
- * @author Ttt ( 重写、规范注释、逻辑判断等 )
+ * @author Ttt
  */
 public final class DevCache {
 
