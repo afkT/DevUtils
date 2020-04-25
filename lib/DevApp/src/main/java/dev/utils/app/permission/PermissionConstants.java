@@ -17,16 +17,16 @@ public class PermissionConstants {
     // = permission_group =
     // ====================
 
-    public static final String CALENDAR = Manifest.permission_group.CALENDAR;
-    public static final String CALL_LOG = Manifest.permission_group.CALL_LOG;
-    public static final String CAMERA = Manifest.permission_group.CAMERA;
-    public static final String CONTACTS = Manifest.permission_group.CONTACTS;
-    public static final String LOCATION = Manifest.permission_group.LOCATION;
+    public static final String CALENDAR   = Manifest.permission_group.CALENDAR;
+    public static final String CALL_LOG   = Manifest.permission_group.CALL_LOG;
+    public static final String CAMERA     = Manifest.permission_group.CAMERA;
+    public static final String CONTACTS   = Manifest.permission_group.CONTACTS;
+    public static final String LOCATION   = Manifest.permission_group.LOCATION;
     public static final String MICROPHONE = Manifest.permission_group.MICROPHONE;
-    public static final String PHONE = Manifest.permission_group.PHONE;
-    public static final String SENSORS = Manifest.permission_group.SENSORS;
-    public static final String SMS = Manifest.permission_group.SMS;
-    public static final String STORAGE = Manifest.permission_group.STORAGE;
+    public static final String PHONE      = Manifest.permission_group.PHONE;
+    public static final String SENSORS    = Manifest.permission_group.SENSORS;
+    public static final String SMS        = Manifest.permission_group.SMS;
+    public static final String STORAGE    = Manifest.permission_group.STORAGE;
 
     // ===================
     // = permission 数组 =

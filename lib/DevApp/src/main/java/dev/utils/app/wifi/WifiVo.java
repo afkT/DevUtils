@@ -20,13 +20,13 @@ public class WifiVo implements Parcelable {
     private static final String TAG = WifiVo.class.getSimpleName();
 
     @Keep // Wifi ssid
-    public String wifiSSID = null;
+    public String wifiSSID  = null;
     @Keep // Wifi 密码
-    public String wifiPwd = null;
+    public String wifiPwd   = null;
     @Keep // Wifi 加密类型
-    public int wifiType = WifiUtils.NOPWD;
+    public int    wifiType  = WifiUtils.NOPWD;
     @Keep // Wifi 信号等级
-    public int wifiLevel = 0;
+    public int    wifiLevel = 0;
 
     public WifiVo() {
     }

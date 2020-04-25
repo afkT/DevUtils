@@ -25,36 +25,36 @@ public final class ROMUtils {
     // = ROM 标识信息 =
     // ================
 
-    private static final String[] ROM_HUAWEI = {"huawei"};
-    private static final String[] ROM_VIVO = {"vivo"};
-    private static final String[] ROM_XIAOMI = {"xiaomi"};
-    private static final String[] ROM_OPPO = {"oppo"};
-    private static final String[] ROM_LEECO = {"leeco", "letv"};
-    private static final String[] ROM_360 = {"360", "qiku"};
-    private static final String[] ROM_ZTE = {"zte"};
-    private static final String[] ROM_ONEPLUS = {"oneplus"};
-    private static final String[] ROM_NUBIA = {"nubia"};
-    private static final String[] ROM_COOLPAD = {"coolpad", "yulong"};
-    private static final String[] ROM_LG = {"lg", "lge"};
-    private static final String[] ROM_GOOGLE = {"google"};
-    private static final String[] ROM_SAMSUNG = {"samsung"};
-    private static final String[] ROM_MEIZU = {"meizu"};
-    private static final String[] ROM_LENOVO = {"lenovo"};
+    private static final String[] ROM_HUAWEI    = {"huawei"};
+    private static final String[] ROM_VIVO      = {"vivo"};
+    private static final String[] ROM_XIAOMI    = {"xiaomi"};
+    private static final String[] ROM_OPPO      = {"oppo"};
+    private static final String[] ROM_LEECO     = {"leeco", "letv"};
+    private static final String[] ROM_360       = {"360", "qiku"};
+    private static final String[] ROM_ZTE       = {"zte"};
+    private static final String[] ROM_ONEPLUS   = {"oneplus"};
+    private static final String[] ROM_NUBIA     = {"nubia"};
+    private static final String[] ROM_COOLPAD   = {"coolpad", "yulong"};
+    private static final String[] ROM_LG        = {"lg", "lge"};
+    private static final String[] ROM_GOOGLE    = {"google"};
+    private static final String[] ROM_SAMSUNG   = {"samsung"};
+    private static final String[] ROM_MEIZU     = {"meizu"};
+    private static final String[] ROM_LENOVO    = {"lenovo"};
     private static final String[] ROM_SMARTISAN = {"smartisan"};
-    private static final String[] ROM_HTC = {"htc"};
-    private static final String[] ROM_SONY = {"sony"};
-    private static final String[] ROM_GIONEE = {"gionee", "amigo"};
-    private static final String[] ROM_MOTOROLA = {"motorola"};
+    private static final String[] ROM_HTC       = {"htc"};
+    private static final String[] ROM_SONY      = {"sony"};
+    private static final String[] ROM_GIONEE    = {"gionee", "amigo"};
+    private static final String[] ROM_MOTOROLA  = {"motorola"};
 
-    private static final String VERSION_PROPERTY_HUAWEI = "ro.build.version.emui";
-    private static final String VERSION_PROPERTY_VIVO = "ro.vivo.os.build.display.id";
-    private static final String VERSION_PROPERTY_XIAOMI = "ro.build.version.incremental";
-    private static final String VERSION_PROPERTY_OPPO = "ro.build.version.opporom";
-    private static final String VERSION_PROPERTY_LEECO = "ro.letv.release.version";
-    private static final String VERSION_PROPERTY_360 = "ro.build.uiversion";
-    private static final String VERSION_PROPERTY_ZTE = "ro.build.MiFavor_version";
+    private static final String VERSION_PROPERTY_HUAWEI  = "ro.build.version.emui";
+    private static final String VERSION_PROPERTY_VIVO    = "ro.vivo.os.build.display.id";
+    private static final String VERSION_PROPERTY_XIAOMI  = "ro.build.version.incremental";
+    private static final String VERSION_PROPERTY_OPPO    = "ro.build.version.opporom";
+    private static final String VERSION_PROPERTY_LEECO   = "ro.letv.release.version";
+    private static final String VERSION_PROPERTY_360     = "ro.build.uiversion";
+    private static final String VERSION_PROPERTY_ZTE     = "ro.build.MiFavor_version";
     private static final String VERSION_PROPERTY_ONEPLUS = "ro.rom.version";
-    private static final String VERSION_PROPERTY_NUBIA = "ro.build.rom.id";
+    private static final String VERSION_PROPERTY_NUBIA   = "ro.build.rom.id";
 
     /**
      * 判断 ROM 是否 Huawei ( 华为 )

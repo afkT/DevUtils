@@ -45,8 +45,8 @@ public final class BarUtils {
     // ==============
 
     private static final String TAG_STATUS_BAR = "TAG_STATUS_BAR";
-    private static final String TAG_OFFSET = "TAG_OFFSET";
-    private static final int KEY_OFFSET = -123;
+    private static final String TAG_OFFSET     = "TAG_OFFSET";
+    private static final int    KEY_OFFSET     = -123;
 
     /**
      * 获取 StatusBar 高度
