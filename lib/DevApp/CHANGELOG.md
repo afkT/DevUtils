@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.9.3 *(2020-04-24)*
+Version 1.9.3 *(2020-04-25)*
 ----------------------------
 
 * `[Add]` LanguageUtils#isEn、isZh、isZhCN、isZhTW、isLanguage、isRegion、getSystemCountry
