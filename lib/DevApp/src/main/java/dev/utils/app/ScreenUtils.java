@@ -7,7 +7,6 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
@@ -301,19 +300,55 @@ public final class ScreenUtils {
     }
 
     /**
+     * 屏幕是否为全屏
+     * @param activity {@link Activity}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isFullScreen(final Activity activity) {
+        if (activity != null) {
+            try {
+                int flags = activity.getWindow().getAttributes().flags;
+                return (flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "isFullScreen");
+            }
+        }
+        return false;
+    }
+
+    /**
      * 设置屏幕为全屏
      * @param activity {@link Activity}
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setFullScreen(final Activity activity) {
         try {
-            // 隐藏标题
-            activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
             // 设置全屏
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); // | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setFullScreen");
+        }
+        return false;
+    }
+
+    /**
+     * 设置屏幕为全屏无标题
+     * <pre>
+     *     需要在 setContentView 之前调用
+     * </pre>
+     * @param activity {@link Activity}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setFullScreenNoTitle(final Activity activity) {
+        try {
+            // 隐藏标题
+            activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            // 设置全屏
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); // | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setFullScreenNoTitle");
         }
         return false;
     }
@@ -467,44 +502,17 @@ public final class ScreenUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isTablet() {
-        try {
-            return (ResourceUtils.getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "isTablet");
-        }
-        return false;
+        return DeviceUtils.isTablet();
     }
 
     // =
 
     /**
-     * 获取状态栏的高度 ( 无关 android:theme 获取状态栏高度 )
-     * @return 状态栏的高度
+     * 获取 StatusBar 高度
+     * @return StatusBar 高度
      */
-    public static int getStatusHeight() {
-        try {
-            int id = ResourceUtils.getIdentifier("status_bar_height", "dimen", "android");
-            return ResourceUtils.getResources().getDimensionPixelSize(id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getStatusHeight");
-        }
-        return 0;
-    }
-
-    /**
-     * 获取应用区域 TitleBar 高度 ( 顶部灰色 TitleBar 高度, 没有设置 android:theme 的 NoTitleBar 时会显示 )
-     * @param activity {@link Activity}
-     * @return 应用区域 TitleBar 高度
-     */
-    public static int getStatusBarHeight(final Activity activity) {
-        try {
-            Rect rect = new Rect();
-            activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-            return rect.top;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getStatusBarHeight");
-        }
-        return 0;
+    public static int getStatusBarHeight() {
+        return BarUtils.getStatusBarHeight();
     }
 
     /**

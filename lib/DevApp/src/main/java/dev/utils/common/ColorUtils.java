@@ -25,68 +25,69 @@ public final class ColorUtils {
 
     // 日志 TAG
     private static final String TAG = ColorUtils.class.getSimpleName();
+    
     // 透明
-    public static final int TRANSPARENT = 0x00000000;
+    public static final int TRANSPARENT       = 0x00000000;
     // 白色
-    public static final int WHITE = 0xffffffff;
+    public static final int WHITE             = 0xffffffff;
     // 白色 - 半透明
     public static final int WHITE_TRANSLUCENT = 0x80ffffff;
     // 黑色
-    public static final int BLACK = 0xff000000;
+    public static final int BLACK             = 0xff000000;
     // 黑色 - 半透明
     public static final int BLACK_TRANSLUCENT = 0x80000000;
     // 红色
-    public static final int RED = 0xffff0000;
+    public static final int RED               = 0xffff0000;
     // 红色 - 半透明
-    public static final int RED_TRANSLUCENT = 0x80ff0000;
+    public static final int RED_TRANSLUCENT   = 0x80ff0000;
     // 绿色
-    public static final int GREEN = 0xff00ff00;
+    public static final int GREEN             = 0xff00ff00;
     // 绿色 - 半透明
     public static final int GREEN_TRANSLUCENT = 0x8000ff00;
     // 蓝色
-    public static final int BLUE = 0xff0000ff;
+    public static final int BLUE              = 0xff0000ff;
     // 蓝色 - 半透明
-    public static final int BLUE_TRANSLUCENT = 0x800000ff;
+    public static final int BLUE_TRANSLUCENT  = 0x800000ff;
     // 灰色
-    public static final int GRAY = 0xff969696;
+    public static final int GRAY              = 0xff969696;
     // 灰色 - 半透明
-    public static final int GRAY_TRANSLUCENT = 0x80969696;
+    public static final int GRAY_TRANSLUCENT  = 0x80969696;
     // 天蓝
-    public static final int SKYBLUE = 0xff87ceeb;
+    public static final int SKYBLUE           = 0xff87ceeb;
     // 橙色
-    public static final int ORANGE = 0xffffa500;
+    public static final int ORANGE            = 0xffffa500;
     // 金色
-    public static final int GOLD = 0xffffd700;
+    public static final int GOLD              = 0xffffd700;
     // 粉色
-    public static final int PINK = 0xffffc0cb;
+    public static final int PINK              = 0xffffc0cb;
     // 紫红色
-    public static final int FUCHSIA = 0xffff00ff;
+    public static final int FUCHSIA           = 0xffff00ff;
     // 灰白色
-    public static final int GRAYWHITE = 0xfff2f2f2;
+    public static final int GRAYWHITE         = 0xfff2f2f2;
     // 紫色
-    public static final int PURPLE = 0xff800080;
+    public static final int PURPLE            = 0xff800080;
     // 青色
-    public static final int CYAN = 0xff00ffff;
+    public static final int CYAN              = 0xff00ffff;
     // 黄色
-    public static final int YELLOW = 0xffffff00;
+    public static final int YELLOW            = 0xffffff00;
     // 巧克力色
-    public static final int CHOCOLATE = 0xffd2691e;
+    public static final int CHOCOLATE         = 0xffd2691e;
     // 番茄色
-    public static final int TOMATO = 0xffff6347;
+    public static final int TOMATO            = 0xffff6347;
     // 橙红色
-    public static final int ORANGERED = 0xffff4500;
+    public static final int ORANGERED         = 0xffff4500;
     // 银白色
-    public static final int SILVER = 0xffc0c0c0;
+    public static final int SILVER            = 0xffc0c0c0;
     // 深灰色
-    public static final int DKGRAY = 0xFF444444;
+    public static final int DKGRAY            = 0xFF444444;
     // 亮灰色
-    public static final int LTGRAY = 0xFFCCCCCC;
+    public static final int LTGRAY            = 0xFFCCCCCC;
     // 洋红色
-    public static final int MAGENTA = 0xFFFF00FF;
+    public static final int MAGENTA           = 0xFFFF00FF;
     // 高光
-    public static final int HIGHLIGHT = 0x33ffffff;
+    public static final int HIGHLIGHT         = 0x33ffffff;
     // 低光
-    public static final int LOWLIGHT = 0x33000000;
+    public static final int LOWLIGHT          = 0x33000000;
 
     /**
      * 0-255 十进值转换成十六进制, 如 255 就是 ff

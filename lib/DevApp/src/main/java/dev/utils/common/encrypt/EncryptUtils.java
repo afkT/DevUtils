@@ -27,7 +27,7 @@ import dev.utils.common.cipher.Base64;
 /**
  * detail: 加解密通用工具类
  * @author Blankj
- * @author Ttt ( 重写、规范注释、逻辑判断等 )
+ * @author Ttt
  */
 public final class EncryptUtils {
 

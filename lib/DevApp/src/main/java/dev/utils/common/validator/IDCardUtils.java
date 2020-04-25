@@ -13,7 +13,7 @@ import dev.utils.common.StringUtils;
 /**
  * detail: 居民身份证工具类
  * @author AbrahamCaiJin
- * @author Ttt ( 重写、规范注释、逻辑判断等 )
+ * @author Ttt
  */
 public final class IDCardUtils {
 

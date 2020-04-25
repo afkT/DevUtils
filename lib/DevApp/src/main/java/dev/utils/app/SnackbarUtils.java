@@ -1365,7 +1365,7 @@ public final class SnackbarUtils {
     /**
      * 设置 Snackbar 显示在指定 View 的上方
      * @param targetView      目标 View
-     * @param appendTopMargin 追加边距 ( 如: 状态栏高度 ) {@link ScreenUtils#getStatusBarHeight}
+     * @param appendTopMargin 追加边距 ( 如: 状态栏高度 ) {@link BarUtils#getStatusBarHeight}
      * @return {@link SnackbarUtils}
      */
     public SnackbarUtils above(final View targetView, final int appendTopMargin) {
@@ -1385,7 +1385,7 @@ public final class SnackbarUtils {
     /**
      * 设置 Snackbar 显示在指定 View 的下方
      * @param targetView      目标 View
-     * @param appendTopMargin 追加边距 ( 如: 状态栏高度 ) {@link ScreenUtils#getStatusBarHeight}
+     * @param appendTopMargin 追加边距 ( 如: 状态栏高度 ) {@link BarUtils#getStatusBarHeight}
      * @return {@link SnackbarUtils}
      */
     public SnackbarUtils bellow(final View targetView, final int appendTopMargin) {
@@ -1458,7 +1458,7 @@ public final class SnackbarUtils {
                             if (mAutoCalc) {
                                 // 思路如上: 超出高度后, 则直接设置居上, 计算边距则 view mWindowTop - 追加边距 ( 状态栏高度 ) + view height, 设置到 View 的下方
                                 // 计算处理主要是, 只需要知道 view Y 轴位置 + view height - 追加边距 ( 状态栏高度 ) = 需要的边距
-                                // 为什么需要减 状态栏高度, 是因为 view Y (view mWindowTop) 就包含状态栏的高度信息
+                                // 为什么需要减 状态栏高度, 是因为 view Y (view mWindowTop) 就包含状态栏高度信息
                                 try {
                                     FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(rootView.getLayoutParams().width, rootView.getLayoutParams().height);
                                     params.gravity = Gravity.TOP;

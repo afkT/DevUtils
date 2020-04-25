@@ -24,44 +24,43 @@ public final class DateUtils {
     // = 日期格式类型 =
     // ================
 
-    public static final String yyyy = "yyyy";
-    public static final String yyyyMMdd = "yyyy-MM-dd";
-    public static final String yyyyMMdd2 = "yyyyMMdd";
-    public static final String yyyyMMdd3 = "yyyy年MM月dd日";
-    public static final String yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss";
+    public static final String yyyy             = "yyyy";
+    public static final String yyyyMMdd         = "yyyy-MM-dd";
+    public static final String yyyyMMdd2        = "yyyyMMdd";
+    public static final String yyyyMMdd3        = "yyyy年MM月dd日";
+    public static final String yyyyMMddHHmmss   = "yyyy-MM-dd HH:mm:ss";
     public static final String yyyyMMddHHmmss_2 = "yyyy年M月d日 HH:mm:ss";
-    public static final String yyyyMMdd_HHmmss = "yyyyMMdd_HHmmss";
-    public static final String MMdd = "MM-dd";
-    public static final String MMdd2 = "MM月dd日";
-    public static final String MMdd3 = "MMdd";
-    public static final String HHmm = "HH:mm";
-    public static final String HHmm2 = "HHmm";
-    public static final String HHmmss = "HH:mm:ss";
-    public static final String HHmmss2 = "HHmmss";
-    public static final String hhmmMMDDyyyy = "hh:mm M月d日 yyyy";
-    public static final String hhmmssMMDDyyyy = "hh:mm:ss M月d日 yyyy";
+    public static final String yyyyMMdd_HHmmss  = "yyyyMMdd_HHmmss";
+    public static final String MMdd             = "MM-dd";
+    public static final String MMdd2            = "MM月dd日";
+    public static final String MMdd3            = "MMdd";
+    public static final String HHmm             = "HH:mm";
+    public static final String HHmm2            = "HHmm";
+    public static final String HHmmss           = "HH:mm:ss";
+    public static final String HHmmss2          = "HHmmss";
+    public static final String hhmmMMDDyyyy     = "hh:mm M月d日 yyyy";
+    public static final String hhmmssMMDDyyyy   = "hh:mm:ss M月d日 yyyy";
 
     // 一分钟 60 秒
-    public static final int MINUTE_S = 60;
+    public static final int  MINUTE_S = 60;
     // 一小时 60 * 60 秒
-    public static final int HOUR_S = 3600;
+    public static final int  HOUR_S   = 3600;
     // 一天 24 * 60 * 60 秒
-    public static final int DAY_S = 86400;
-
+    public static final int  DAY_S    = 86400;
     // 秒与毫秒的倍数
-    public static final long SEC = 1000;
+    public static final long SEC      = 1000;
     // 分与毫秒的倍数
-    public static final long MIN = SEC * 60;
+    public static final long MIN      = SEC * 60;
     // 时与毫秒的倍数
-    public static final long HOUR = MIN * 60;
+    public static final long HOUR     = MIN * 60;
     // 天与毫秒的倍数
-    public static final long DAY = HOUR * 24;
+    public static final long DAY      = HOUR * 24;
     // 周与毫秒的倍数
-    public static final long WEEK = DAY * 7;
+    public static final long WEEK     = DAY * 7;
     // 月与毫秒的倍数
-    public static final long MONTH = DAY * 30;
+    public static final long MONTH    = DAY * 30;
     // 年与毫秒的倍数
-    public static final long YEAR = DAY * 365;
+    public static final long YEAR     = DAY * 365;
 
     /**
      * 获取当前日期的字符串 - yyyy-MM-dd HH:mm:ss

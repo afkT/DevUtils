@@ -217,9 +217,9 @@ public final class ValidatorUtils {
 //    [\\u4e00-\\u9fa5] 注意只匹配汉字, 不匹配双字节字符
 
     // 正则表达式: 验证汉字
-    public static final String REGEX_CHINESE = "^[\u4e00-\u9fa5]+$";
+    public static final String REGEX_CHINESE      = "^[\u4e00-\u9fa5]+$";
     // 正则表达式: 验证汉字 ( 含双角符号 )
-    public static final String REGEX_CHINESE_ALL = "^[\u0391-\uFFE5]+$";
+    public static final String REGEX_CHINESE_ALL  = "^[\u0391-\uFFE5]+$";
     // 正则表达式: 验证汉字 ( 含双角符号 )
     public static final String REGEX_CHINESE_ALL2 = "[\u0391-\uFFE5]";
 
