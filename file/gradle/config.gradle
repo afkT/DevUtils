@@ -108,24 +108,24 @@ ext {
                     glide                        : "com.github.bumptech.glide:glide:4.9.0",
                     glide_compiler               : "com.github.bumptech.glide:compiler:4.9.0",
                     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
-                    eventbus                     : "org.greenrobot:eventbus:3.1.1",
+                    eventbus                     : "org.greenrobot:eventbus:3.2.0",
                     // https://github.com/square/okio
-                    okio                         : "com.squareup.okio:okio:2.4.0",
+                    okio                         : "com.squareup.okio:okio:2.6.0",
                     // OkHttp3 网络请求框架 https://github.com/square/okhttp
-                    okhttp3                      : "com.squareup.okhttp3:okhttp:4.1.0",
+                    okhttp3                      : "com.squareup.okhttp3:okhttp:4.5.0",
                     // okhttp 日志拦截器 https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor
-                    okhttp3_logging              : "com.squareup.okhttp3:logging-interceptor:4.1.1",
+                    okhttp3_logging              : "com.squareup.okhttp3:logging-interceptor:4.5.0",
                     // Okgo https://github.com/jeasonlzy/okhttp-OkGo
                     okgo                         : "com.lzy.net:okgo:3.0.4",
                     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
                     okserver                     : "com.lzy.net:okserver:2.0.5",
                     // fastjson https://github.com/alibaba/fastjson
-                    fastjson                     : "com.alibaba:fastjson:1.2.47",
+                    fastjson                     : "com.alibaba:fastjson:1.2.61",
                     // View 注入框架 https://github.com/JakeWharton/butterknife
                     butterknife                  : "com.jakewharton:butterknife:8.5.1",
                     butterknife_compiler         : "com.jakewharton:butterknife-compiler:8.5.1",
                     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-                    pictureSelector              : "com.github.LuckSiege.PictureSelector:picture_library:v2.2.4",
+                    pictureSelector              : "com.github.LuckSiege.PictureSelector:picture_library:v2.2.5",
                     // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 ) https://github.com/google/flexbox-layout
                     flexbox                      : "com.google.android:flexbox:0.2.5", // // https://juejin.im/post/58d1035161ff4b00603ca9c4
                     // 评价等级控件 https://github.com/hedge-hog/RatingBar
@@ -135,7 +135,7 @@ ext {
                     // 圆形 ImageView https://github.com/hdodenhof/CircleImageView
                     circleimageview              : "de.hdodenhof:circleimageview:2.2.0",
                     // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
-                    pickerview                   : "com.contrarywind:Android-PickerView:3.2.3", // https://blog.csdn.net/qq_22393017/article/details/58099486
+                    pickerview                   : "com.contrarywind:Android-PickerView:4.1.9", // https://blog.csdn.net/qq_22393017/article/details/58099486
                     // 图片缩放 https://github.com/chrisbanes/PhotoView
                     photoview                    : "com.github.chrisbanes:PhotoView:2.1.3",
                     // GPU Filters https://github.com/cats-oss/android-gpuimage
@@ -143,7 +143,7 @@ ext {
                     // 动画库 https://github.com/airbnb/lottie-android
                     lottie                       : "com.airbnb.android:lottie:2.5.0", // https://www.jianshu.com/p/9a2136ecbc7b
                     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
-                    smartrefreshlayout           : "com.scwang.smartrefresh:SmartRefreshLayout:1.0.5",
+                    smartrefreshlayout           : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.2",
                     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
                     baserecyclerviewadapterhelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40",
                     // 二维码 ZXing https://github.com/zxing/zxing
