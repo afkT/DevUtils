@@ -98,6 +98,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_FASTJSON, "FastjsonUtils"));
         lists.add(new ButtonValue(BTN_ZXING, "ZXingQRCodeUtils"));
         lists.add(new ButtonValue(BTN_PICTURE_SELECTOR, "PictureSelectorUtils"));
+        lists.add(new ButtonValue(BTN_OKGO, "OkUtils"));
         return lists;
     }
 
@@ -454,6 +455,9 @@ public class ButtonValue {
 
     // PictureSelectorUtils
     public static final int BTN_PICTURE_SELECTOR = MODULE_LIB + 6;
+
+    // OKUtils - OkGo
+    public static final int BTN_OKGO = MODULE_LIB + 7;
 
     // ======
     // = UI =
