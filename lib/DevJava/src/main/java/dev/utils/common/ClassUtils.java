@@ -189,10 +189,9 @@ public final class ClassUtils {
     /**
      * 获取父类泛型类型
      * @param object Object
-     * @param <?>    未知类型
      * @return 泛型类型
      */
-    public static Class<?> getGenericSuperclass(final Object object) {
+    public static Type getGenericSuperclass(final Object object) {
         return getGenericSuperclass(object, 0);
     }
 
@@ -200,10 +199,9 @@ public final class ClassUtils {
      * 获取父类泛型类型
      * @param object Object
      * @param pos    泛型参数索引
-     * @param <?>    未知类型
      * @return 泛型类型
      */
-    public static Class<?> getGenericSuperclass(final Object object, final int pos) {
+    public static Type getGenericSuperclass(final Object object, final int pos) {
         return getGenericSuperclass(getClass(object), pos);
     }
 
@@ -212,10 +210,9 @@ public final class ClassUtils {
     /**
      * 获取父类泛型类型
      * @param clazz {@link Class}
-     * @param <?>   未知类型
      * @return 泛型类型
      */
-    public static Class<?> getGenericSuperclass(final Class clazz) {
+    public static Type getGenericSuperclass(final Class clazz) {
         return getGenericSuperclass(clazz, 0);
     }
 
@@ -223,13 +220,12 @@ public final class ClassUtils {
      * 获取父类泛型类型
      * @param clazz {@link Class}
      * @param pos   泛型参数索引
-     * @param <?>   未知类型
      * @return 泛型类型
      */
-    public static Class<?> getGenericSuperclass(final Class clazz, final int pos) {
+    public static Type getGenericSuperclass(final Class clazz, final int pos) {
         if (clazz != null && pos >= 0) {
             try {
-                return (Class<?>) ((ParameterizedType) clazz.getGenericSuperclass()).getActualTypeArguments()[pos];
+                return ((ParameterizedType) clazz.getGenericSuperclass()).getActualTypeArguments()[pos];
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "getGenericSuperclass");
             }
@@ -243,10 +239,9 @@ public final class ClassUtils {
      * 获取接口泛型类型
      * @param object         Object
      * @param interfaceClazz 接口 Class
-     * @param <?>            未知类型
      * @return 泛型类型
      */
-    public static Class<?> getGenericInterfaces(final Object object, final Class interfaceClazz) {
+    public static Type getGenericInterfaces(final Object object, final Class interfaceClazz) {
         return getGenericInterfaces(object, interfaceClazz, 0);
     }
 
@@ -255,10 +250,9 @@ public final class ClassUtils {
      * @param object         Object
      * @param interfaceClazz 接口 Class
      * @param pos            泛型参数索引
-     * @param <?>            未知类型
      * @return 泛型类型
      */
-    public static Class<?> getGenericInterfaces(final Object object, final Class interfaceClazz, final int pos) {
+    public static Type getGenericInterfaces(final Object object, final Class interfaceClazz, final int pos) {
         return getGenericInterfaces(getClass(object), interfaceClazz, pos);
     }
 
@@ -268,10 +262,9 @@ public final class ClassUtils {
      * 获取接口泛型类型
      * @param clazz          {@link Class}
      * @param interfaceClazz 接口 Class
-     * @param <?>            未知类型
      * @return 泛型类型
      */
-    public static Class<?> getGenericInterfaces(final Class clazz, final Class interfaceClazz) {
+    public static Type getGenericInterfaces(final Class clazz, final Class interfaceClazz) {
         return getGenericInterfaces(clazz, interfaceClazz, 0);
     }
 
@@ -280,10 +273,9 @@ public final class ClassUtils {
      * @param clazz          {@link Class}
      * @param interfaceClazz 接口 Class
      * @param pos            泛型参数索引
-     * @param <?>            未知类型
      * @return 泛型类型
      */
-    public static Class<?> getGenericInterfaces(final Class clazz, final Class interfaceClazz, final int pos) {
+    public static Type getGenericInterfaces(final Class clazz, final Class interfaceClazz, final int pos) {
         if (clazz != null && interfaceClazz != null && pos >= 0) {
             try {
                 // 获取接口类名
@@ -300,11 +292,11 @@ public final class ClassUtils {
                         // 判断接口包名是否一致
                         if (rawType.startsWith("interface ")) {
                             if (rawType.equals("interface " + iName)) {
-                                return (Class<?>) parameterizedType.getActualTypeArguments()[pos];
+                                return parameterizedType.getActualTypeArguments()[pos];
                             }
                         } else {
                             if (rawType.equals(iName)) {
-                                return (Class<?>) parameterizedType.getActualTypeArguments()[pos];
+                                return parameterizedType.getActualTypeArguments()[pos];
                             }
                         }
                     }
