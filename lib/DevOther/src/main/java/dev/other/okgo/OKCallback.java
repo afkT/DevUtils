@@ -157,8 +157,16 @@ public abstract class OKCallback<T> extends AbsCallback<String> {
     // = 结果回调方法 =
     // ===============
 
+    /**
+     * 请求响应并处理数据无误
+     * @param response {@link OKResponse}
+     */
     abstract public void onSuccessResponse(OKResponse<T> response);
 
+    /**
+     * 请求失败, 响应错误, 数据解析错误等, 都会回调该方法,  UI 线程
+     * @param response {@link OKResponse}
+     */
     abstract public void onErrorResponse(OKResponse<T> response);
 
     // ============

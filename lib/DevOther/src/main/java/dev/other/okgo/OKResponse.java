@@ -24,6 +24,8 @@ public class OKResponse<T> {
     public final String    message;
     // 返回结果状态 ( 内部定义 )
     public final String    code;
+    // 是否需要进行 Toast 提示
+    public final boolean   toast;
     // 请求结果
     public final boolean   result;
     // 返回原始数据
@@ -35,6 +37,7 @@ public class OKResponse<T> {
         data = builder.data;
         message = builder.message;
         code = builder.code;
+        toast = builder.toast;
         result = builder.result;
         original = builder.original;
         exception = builder.exception;
@@ -70,6 +73,8 @@ public class OKResponse<T> {
         private String    message;
         // 返回结果状态 ( 内部定义 )
         private String    code;
+        // 是否需要进行 Toast 提示
+        private boolean   toast = true;
         // 请求结果
         private boolean   result;
         // 后台返回原始数据
@@ -103,6 +108,10 @@ public class OKResponse<T> {
         public Builder<T> setCode(String code) {
             this.code = code;
             return this;
+        }
+
+        public void setToast(boolean toast) {
+            this.toast = toast;
         }
 
         public Builder<T> setResult(boolean result) {
