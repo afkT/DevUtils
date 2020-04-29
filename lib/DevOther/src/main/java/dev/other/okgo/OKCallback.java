@@ -108,12 +108,20 @@ public abstract class OKCallback<T> extends AbsCallback<String> {
 
         if (response != null) {
             onErrorResponse(
-                new OKResponse.Builder<T>()
-                    .setCode(response.code() + "")
-                    .setMessage(response.message())
-                    .setOriginal(response.body())
-                    .setException(response.getException())
-                    .build()
+                    new OKResponse.Builder<T>()
+                            .setCode(response.code() + "")
+                            .setMessage(response.message())
+                            .setOriginal(response.body())
+                            .setException(response.getException())
+                            .build()
+            );
+        } else {
+            onErrorResponse(
+                    new OKResponse.Builder<T>()
+                            .setCode(Integer.MAX_VALUE + "")
+                            .setMessage("response is null")
+                            .setException(new OkGoException("response is null"))
+                            .build()
             );
         }
     }
@@ -193,14 +201,14 @@ public abstract class OKCallback<T> extends AbsCallback<String> {
         boolean result = isSuccess(code);
 
         OKResponse.Builder<T> builder = new OKResponse.Builder<T>()
-            .setOriginal(body).setCode(code)
-            .setMessage(message).setResult(result);
+                .setOriginal(body).setCode(code)
+                .setMessage(message).setResult(result);
 
         Type type = getGenericSuperclass(getClass(), 0);
         if (result && type != null) {
             try {
                 builder.setData(
-                    new Gson().fromJson(data, type)
+                        new Gson().fromJson(data, type)
                 );
             } catch (Exception e) {
                 DevLogger.eTag(TAG, e, "_response setData");
