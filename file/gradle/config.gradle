@@ -115,6 +115,8 @@ ext {
                     okhttp3                      : "com.squareup.okhttp3:okhttp:4.5.0",
                     // okhttp 日志拦截器 https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor
                     okhttp3_logging              : "com.squareup.okhttp3:logging-interceptor:4.5.0",
+                    // 网络请求库  https://github.com/square/retrofit
+                    retrofit                     : "com.squareup.retrofit2:retrofit:2.8.1",
                     // Okgo https://github.com/jeasonlzy/okhttp-OkGo
                     okgo                         : "com.lzy.net:okgo:3.0.4",
                     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
@@ -144,13 +146,30 @@ ext {
                     lottie                       : "com.airbnb.android:lottie:2.5.0", // https://www.jianshu.com/p/9a2136ecbc7b
                     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
                     smartrefreshlayout           : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.2",
+                    // 下拉刷新框架 ( 横向 ) https://github.com/scwang90/SmartRefreshHorizontal
+                    smartrefreshHorizontal       : "com.scwang.smartrefresh:SmartRefreshHorizontal:1.1.0",
                     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
                     baserecyclerviewadapterhelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40",
+                    // 文件下载库 https://github.com/lingochamp/FileDownloader/blob/master/README-zh.md
+                    filedownloader               : "com.liulishuo.filedownloader:library:1.7.7",
                     // 二维码 ZXing https://github.com/zxing/zxing
                     zxing_code                   : "com.google.zxing:core:3.3.3", // http://mvnrepository.com/artifact/com.google.zxing/core
                     zxing_android_code           : "com.google.zxing:android-core:3.3.0", // http://mvnrepository.com/artifact/com.google.zxing/android-core
                     // Glide 图形库 https://github.com/wasabeef/glide-transformations
                     glide_transformations        : "jp.wasabeef:glide-transformations:3.3.0",
+                    // 多子 view 嵌套滚动通用解决方案 https://github.com/MFC-TEC/ELinkageScroll
+                    // WebView、RecyclerView 多布局连贯滑动 https://github.com/donkingliang/ConsecutiveScroller
+                    consecutiveScroller_X        : "com.github.donkingliang:ConsecutiveScroller:2.5.0", // AndroidX
+                    consecutiveScroller          : "com.github.donkingliang:ConsecutiveScroller:1.5.1", // Android support
+                    // 图表 https://github.com/PhilJay/MPAndroidChart
+                    mpAndroidChart               : "com.github.PhilJay:MPAndroidChart:v3.1.0",
+                    // Banner 库 https://github.com/youth5201314/banner
+                    banner                       : "com.youth.banner:banner:2.0.8",
+
+                    // ========
+                    // = 其他 =
+                    // ========
+
                     // ARouter 路由 https://github.com/alibaba/ARouter
                     arouter_api                  : "com.alibaba:arouter-api:1.5.0", // https://github.com/alibaba/ARouter/blob/master/README_CN.md
                     arouter_compiler             : "com.alibaba:arouter-compiler:1.2.2",
