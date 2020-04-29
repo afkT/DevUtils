@@ -1,6 +1,7 @@
 package dev.other.okgo;
 
 import android.app.Application;
+import android.text.TextUtils;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
@@ -11,6 +12,7 @@ import com.lzy.okgo.https.HttpsUtils;
 import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.HttpParams;
+import com.lzy.okgo.request.base.Request;
 
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -118,17 +120,54 @@ public final class OkUtils {
         // =======================
 
         OkGo.getInstance().init(application)
-            // 建议设置 OkHttpClient, 不设置将使用默认的
-            .setOkHttpClient(builder.build())
-            // 全局统一缓存模式, 默认不使用缓存, 可以不传
-            .setCacheMode(CacheMode.NO_CACHE)
-            // 全局统一缓存时间, 默认永不过期, 可以不传
-            .setCacheTime(CacheEntity.CACHE_NEVER_EXPIRE)
-            // 全局统一超时重连次数, 默认为三次, 那么最差的情况会请求 4 次 ( 一次原始请求, 三次重连请求 ), 不需要可以设置为 0
-            .setRetryCount(3)
-            // 全局公共头
-            .addCommonHeaders(headers)
-            // 全局公共参数
-            .addCommonParams(params);
+                // 建议设置 OkHttpClient, 不设置将使用默认的
+                .setOkHttpClient(builder.build())
+                // 全局统一缓存模式, 默认不使用缓存, 可以不传
+                .setCacheMode(CacheMode.NO_CACHE)
+                // 全局统一缓存时间, 默认永不过期, 可以不传
+                .setCacheTime(CacheEntity.CACHE_NEVER_EXPIRE)
+                // 全局统一超时重连次数, 默认为三次, 那么最差的情况会请求 4 次 ( 一次原始请求, 三次重连请求 ), 不需要可以设置为 0
+                .setRetryCount(3)
+                // 全局公共头
+                .addCommonHeaders(headers)
+                // 全局公共参数
+                .addCommonParams(params);
+    }
+
+    // ================================
+    // = 用于请求管理控制 ( 取消请求 ) =
+    // ================================
+
+    /**
+     * 执行请求处理
+     * @param clazz    Activity class
+     * @param request  {@link Request}
+     * @param callback {@link OKCallback}
+     * @param <T>      泛型
+     */
+    public static <T> void execute(Class clazz, Request request, OKCallback<T> callback) {
+        if (clazz != null) execute(clazz.getSimpleName(), request, callback);
+    }
+
+    /**
+     * 执行请求处理
+     * <pre>
+     *     控制请求思路：例 MVP 模式 可以在 BaseView 写一个专门请求方法
+     *     传入 (Request request, OKCallback<T> callback)
+     *     并在 BaseActivity 内实现且加上 final, 内部 Presenter 请求最终调用 BaseView 请求方法
+     *     BaseView 请求方法内调用该方法, 进行设置 Tag 在 Activity#onDestroy 中调用
+     *     OkGo.getInstance().cancelTag(tag); 防止内存泄露
+     * </pre>
+     * @param tag      Activity class getSimpleName()
+     * @param request  {@link Request}
+     * @param callback {@link OKCallback}
+     * @param <T>      泛型
+     */
+    public static <T> void execute(String tag, Request request, OKCallback<T> callback) {
+        if (!TextUtils.isEmpty(tag) && request != null && callback != null) {
+            Object object = request.getTag();
+            if (object == null) request.tag(tag);
+            request.execute(callback);
+        }
     }
 }

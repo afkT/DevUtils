@@ -26,8 +26,8 @@ public class OKDemo {
      */
     public static void getUserInfo(String userId, OKCallback<UserBean> okCallback) {
         OkGo.<String>post("url")
-            .params("userId", userId)
-            .execute(okCallback);
+                .params("userId", userId)
+                .execute(okCallback);
     }
 
     /**
@@ -35,8 +35,11 @@ public class OKDemo {
      * @param okCallback
      */
     public static void getUserList(OKCallback<List<UserBean>> okCallback) {
-        OkGo.<String>post("url")
-            .execute(okCallback);
+        OkGo.<String>post("url").tag(OKDemo.class)
+                .execute(okCallback);
+        // 取消请求
+        // OkGo.getInstance().cancelTag(OKDemo.class);
+        // 请求管理控制 ( 取消请求 ) 查看 OKUtils#execute 方法
     }
 
     /**
@@ -46,8 +49,8 @@ public class OKDemo {
      */
     public static void uploadImage(File file, OKCallback<String> okCallback) {
         OkGo.<String>post("url")
-            .upFile(file)
-            .execute(okCallback);
+                .upFile(file)
+                .execute(okCallback);
     }
 
     /**
@@ -57,8 +60,8 @@ public class OKDemo {
      */
     public static void uploadImages(List<File> files, OKCallback<List<String>> okCallback) {
         OkGo.<String>post("url")
-            .addFileParams("files", files)
-            .execute(okCallback);
+                .addFileParams("files", files)
+                .execute(okCallback);
     }
 
     // =
@@ -91,7 +94,7 @@ public class OKDemo {
             }
         });
 
-        OKDemo.uploadImage(new File("xxx.jpg"), new OKCallback<String>(){
+        OKDemo.uploadImage(new File("xxx.jpg"), new OKCallback<String>() {
             @Override
             public void onSuccessResponse(OKResponse<String> response) {
 
