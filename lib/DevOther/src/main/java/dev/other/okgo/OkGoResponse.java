@@ -11,7 +11,7 @@ import org.json.JSONObject;
  *     主要用于统一解析后台返回，data、message、code 等
  * </pre>
  */
-public class OKResponse<T> {
+public class OkGoResponse<T> {
 
     // 后台返回 data、message、code 解析 key 常量
     public static final String KEY_DATA    = "data";
@@ -33,7 +33,7 @@ public class OKResponse<T> {
     // 请求异常
     public final Throwable exception;
 
-    public OKResponse(Builder<T> builder) {
+    public OkGoResponse(Builder<T> builder) {
         data = builder.data;
         message = builder.message;
         code = builder.code;
@@ -87,10 +87,10 @@ public class OKResponse<T> {
 
         /**
          * build BaseResponse 对象
-         * @return {@link OKResponse}
+         * @return {@link OkGoResponse}
          */
-        public OKResponse<T> build() {
-            return new OKResponse<>(this);
+        public OkGoResponse<T> build() {
+            return new OkGoResponse<>(this);
         }
 
         // =

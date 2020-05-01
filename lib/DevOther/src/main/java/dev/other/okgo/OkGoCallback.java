@@ -27,12 +27,13 @@ import dev.utils.app.logger.DevLogger;
  *     @see <a href="https://github.com/jeasonlzy/okhttp-OkGo/wiki/Callback#%e9%ab%98%e7%ba%a7%e8%87%aa%e5%ae%9a%e4%b9%89callback"/>
  * </pre>
  */
-public abstract class OKCallback<T> extends AbsCallback<String> {
+public abstract class OkGoCallback<T> extends AbsCallback<String> {
 
     // 日志 TAG
-    private final String TAG = OKCallback.class.getSimpleName();
+    private final String TAG = OkGoCallback.class.getSimpleName();
+
     // 请求链接
-    private       String url;
+    private String url;
 
     // ==============
     // = 非必须方法 =
@@ -108,7 +109,7 @@ public abstract class OKCallback<T> extends AbsCallback<String> {
 
         if (response != null) {
             onErrorResponse(
-                    new OKResponse.Builder<T>()
+                    new OkGoResponse.Builder<T>()
                             .setCode(response.code() + "")
                             .setMessage(response.message())
                             .setOriginal(response.body())
@@ -117,7 +118,7 @@ public abstract class OKCallback<T> extends AbsCallback<String> {
             );
         } else {
             onErrorResponse(
-                    new OKResponse.Builder<T>()
+                    new OkGoResponse.Builder<T>()
                             .setCode(Integer.MAX_VALUE + "")
                             .setMessage("response is null")
                             .setException(new OkGoException("response is null"))
@@ -167,15 +168,15 @@ public abstract class OKCallback<T> extends AbsCallback<String> {
 
     /**
      * 请求响应并处理数据无误
-     * @param response {@link OKResponse}
+     * @param response {@link OkGoResponse}
      */
-    abstract public void onSuccessResponse(OKResponse<T> response);
+    abstract public void onSuccessResponse(OkGoResponse<T> response);
 
     /**
      * 请求失败, 响应错误, 数据解析错误等, 都会回调该方法,  UI 线程
-     * @param response {@link OKResponse}
+     * @param response {@link OkGoResponse}
      */
-    abstract public void onErrorResponse(OKResponse<T> response);
+    abstract public void onErrorResponse(OkGoResponse<T> response);
 
     // ============
     // = 内部处理 =
@@ -195,12 +196,12 @@ public abstract class OKCallback<T> extends AbsCallback<String> {
             return;
         }
 
-        String data = jsonObject.optString(OKResponse.KEY_DATA);
-        String code = jsonObject.optString(OKResponse.KEY_CODE);
-        String message = jsonObject.optString(OKResponse.KEY_MESSAGE);
+        String data = jsonObject.optString(OkGoResponse.KEY_DATA);
+        String code = jsonObject.optString(OkGoResponse.KEY_CODE);
+        String message = jsonObject.optString(OkGoResponse.KEY_MESSAGE);
         boolean result = isSuccess(code);
 
-        OKResponse.Builder<T> builder = new OKResponse.Builder<T>()
+        OkGoResponse.Builder<T> builder = new OkGoResponse.Builder<T>()
                 .setOriginal(body).setCode(code)
                 .setMessage(message).setResult(result);
 
@@ -216,7 +217,7 @@ public abstract class OKCallback<T> extends AbsCallback<String> {
             }
         }
 
-        OKResponse<T> okResponse = builder.build();
+        OkGoResponse<T> okResponse = builder.build();
         if (okResponse.result) {
             onSuccessResponse(okResponse);
         } else {
@@ -233,7 +234,7 @@ public abstract class OKCallback<T> extends AbsCallback<String> {
      */
     private boolean isSuccess(String code) {
         if (!TextUtils.isEmpty(code)) {
-            if (code.equals("0000")) {
+            if (code.equals("0000")) { // 自行判断
                 return true;
             }
         }

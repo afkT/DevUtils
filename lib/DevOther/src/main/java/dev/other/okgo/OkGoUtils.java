@@ -26,13 +26,11 @@ import okhttp3.OkHttpClient;
  *     用于初始化 Okhttp 等配置相关方法, 该类可不需要
  *     @see <a href="https://github.com/jeasonlzy/okhttp-OkGo"/>
  *     @see <a href="https://github.com/jeasonlzy/okhttp-OkGo/wiki"/>
- *     <p></p>
- *     OkGo 简写 OK 快捷输入关联调用
  * </pre>
  */
-public final class OkUtils {
+public final class OkGoUtils {
 
-    private OkUtils() {
+    private OkGoUtils() {
     }
 
     /**
@@ -142,10 +140,10 @@ public final class OkUtils {
      * 执行请求处理
      * @param clazz    Activity class
      * @param request  {@link Request}
-     * @param callback {@link OKCallback}
+     * @param callback {@link OkGoCallback}
      * @param <T>      泛型
      */
-    public static <T> void execute(Class clazz, Request request, OKCallback<T> callback) {
+    public static <T> void execute(Class clazz, Request request, OkGoCallback<T> callback) {
         if (clazz != null) execute(clazz.getSimpleName(), request, callback);
     }
 
@@ -160,10 +158,10 @@ public final class OkUtils {
      * </pre>
      * @param tag      Activity class getSimpleName()
      * @param request  {@link Request}
-     * @param callback {@link OKCallback}
+     * @param callback {@link OkGoCallback}
      * @param <T>      泛型
      */
-    public static <T> void execute(String tag, Request request, OKCallback<T> callback) {
+    public static <T> void execute(String tag, Request request, OkGoCallback<T> callback) {
         if (!TextUtils.isEmpty(tag) && request != null && callback != null) {
             Object object = request.getTag();
             if (object == null) request.tag(tag);
