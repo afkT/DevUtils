@@ -241,7 +241,6 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
         return false;
     }
 
-
     /**
      * 获取父类泛型类型
      * @param clazz {@link Class}

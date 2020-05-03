@@ -179,16 +179,6 @@
 
 * [Android 屏幕适配 : 最全面的解决方案](https://www.jianshu.com/p/ec5a1a30694b)
 
-#### Retrofit2
-
-* [Retrofit2](https://square.github.io/retrofit)
-
-* [Retrofit2 Github](https://github.com/square/retrofit)
-
-* [用 Retrofit2 简化 HTTP 请求](https://academy.realm.io/cn/posts/droidcon-jake-wharton-simple-http-retrofit-2)
-
-* [你真的会用 Retrofit2 吗? Retrofit2 完全教程](https://www.jianshu.com/p/308f3c54abdd)
-
 #### RxJava
 
 * [给 Android 开发者的 RxJava 详解](http://gank.io/post/560e15be2dca930e00da1083)
