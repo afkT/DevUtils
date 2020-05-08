@@ -14,7 +14,7 @@
             style="@style/AppTheme.Base_TextView"
             android:layout_height="100.0dp"
             android:gravity="center"
-            android:lineSpacingExtra="5dp" />
+            android:lineSpacingExtra="5.0dp" />
 
         <View
             style="@style/AppTheme.Base_Line_Vertical"
@@ -25,7 +25,7 @@
             style="@style/AppTheme.Base_TextView"
             android:layout_margin="15.0dp"
             android:gravity="center"
-            android:lineSpacingExtra="5dp" />
+            android:lineSpacingExtra="5.0dp" />
 
     </LinearLayout>
 </dev.widget.custom.CustomNestedScrollView>
