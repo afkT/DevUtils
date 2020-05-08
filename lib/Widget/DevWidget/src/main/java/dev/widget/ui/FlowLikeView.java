@@ -48,13 +48,13 @@ public class FlowLikeView extends FrameLayout {
     // View 宽度、高度
     private int mViewWidth, mViewHeight;
     // 添加动画 View Layout 参数
-    private LayoutParams mLayoutParams;
+    private LayoutParams   mLayoutParams;
     // 用于产生随机数
-    private Random mRandom;
+    private Random         mRandom;
     // Icon 集合
     private List<Drawable> mDrawables;
     // 点赞 Icon 宽高
-    private int mIconWidth, mIconHeight;
+    private int            mIconWidth, mIconHeight;
     // 点赞动画执行时间
     private long mAnimDuration = 2000l;
 
@@ -189,9 +189,9 @@ public class FlowLikeView extends FrameLayout {
             PointF resultPointF = new PointF();
             // 二阶贝塞儿曲线
             resultPointF.x = (float) Math.pow(leftTime, 2) * startValue.x + 2 * fraction * leftTime * ctrlPointF.x
-                + ((float) Math.pow(fraction, 2)) * endValue.x;
+                    + ((float) Math.pow(fraction, 2)) * endValue.x;
             resultPointF.y = (float) Math.pow(leftTime, 2) * startValue.y + 2 * fraction * leftTime * ctrlPointF.y
-                + ((float) Math.pow(fraction, 2)) * endValue.y;
+                    + ((float) Math.pow(fraction, 2)) * endValue.y;
             return resultPointF;
         }
     }
@@ -216,8 +216,8 @@ public class FlowLikeView extends FrameLayout {
     private ValueAnimator generateCurveAnimation(View target) {
         CurveEvaluator evaluator = new CurveEvaluator(generateCTRLPointF(1));
         ValueAnimator valueAnimator = ValueAnimator.ofObject(evaluator,
-            new PointF((mViewWidth - mIconWidth) / 2, mViewHeight - mChildViewHeight - mIconHeight),
-            new PointF((mViewWidth) / 2 + (mRandom.nextBoolean() ? 1 : -1) * mRandom.nextInt(100), 0)
+                new PointF((mViewWidth - mIconWidth) / 2, mViewHeight - mChildViewHeight - mIconHeight),
+                new PointF((mViewWidth) / 2 + (mRandom.nextBoolean() ? 1 : -1) * mRandom.nextInt(100), 0)
         );
         valueAnimator.setDuration(mAnimDuration);
         valueAnimator.addUpdateListener(new CurveUpdateLister(target));

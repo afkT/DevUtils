@@ -27,13 +27,13 @@ import dev.utils.app.CapturePictureUtils;
 public class SignView extends View {
 
     // 绘制路径
-    private Path mPath;
+    private Path  mPath;
     // 绘制画笔
     private Paint mPaint;
     // 绘制路径 X、Y ( 临时变量 )
     private float mX, mY;
     // 是否清空画布
-    private boolean mIsClearCanvas = false;
+    private boolean        mIsClearCanvas = false;
     // 绘制回调事件
     private OnDrawCallBack mDrawCallBack;
 

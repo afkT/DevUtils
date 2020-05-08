@@ -80,13 +80,13 @@ public class ScanShapeView extends View {
     }
 
     // 形状类型 ( 默认正方形 )
-    private Shape mShapeType = Shape.Square;
+    private Shape        mShapeType    = Shape.Square;
     // 是否需要重新处理动画
-    private boolean mIsReAnim = true;
+    private boolean      mIsReAnim     = true;
     // 默认通用 DP
-    private float mDFCommonDP;
+    private float        mDFCommonDP;
     // 空白画笔 ( 绘制边框使用, 不绘制边框时 )
-    private Paint mEmptyPaint = new Paint();
+    private Paint        mEmptyPaint   = new Paint();
     // 是否设置拐角圆角 ( 圆润 )
     private CornerEffect mCornerEffect = new CornerEffect(10);
 
@@ -97,7 +97,7 @@ public class ScanShapeView extends View {
     // 是否绘制背景
     private boolean mIsDrawBackground = true;
     // 绘制背景画笔
-    private Paint mBackgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint   mBackgroundPaint  = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     // =================
     // = 绘制扫描 View =
@@ -106,24 +106,24 @@ public class ScanShapeView extends View {
     // 是否绘制扫描区域边框
     private boolean mIsDrawBorder = true;
     // 扫描边框 View
-    private Paint mBorderPaint = new Paint();
+    private Paint   mBorderPaint  = new Paint();
     // 边框边距
-    private float mBorderMargin = 0;
+    private float   mBorderMargin = 0;
     // 边框宽度
-    private float mBorderWidth;
+    private float   mBorderWidth;
     // 扫描区域块 - 绘制的宽 (x), 高 (y) - 默认 700x700
-    private PointF mPointF = new PointF(700, 700);
+    private PointF  mPointF       = new PointF(700, 700);
 
     // =======================
     // = 正方形 ( 边框相关 ) =
     // =======================
 
     // 正方形描边 ( 边框 ) 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部
-    private int mBorderToSquare = 0;
+    private int     mBorderToSquare  = 0;
     // 正方形描边 ( 边框 ) 宽度
-    private float mBorderWidthToSquare;
+    private float   mBorderWidthToSquare;
     // 每个角的点距离 ( 长度 ) 正方形四个角落区域
-    private float mTriAngleLength;
+    private float   mTriAngleLength;
     // 是否特殊处理
     private boolean mSpecialToSquare = false;
 
@@ -132,19 +132,19 @@ public class ScanShapeView extends View {
     // ============
 
     // 环形画笔, 0 - 外环, 1 - 中间环, 2 - 外环
-    private Paint[] mAnnulusPaints = new Paint[3];
+    private Paint[]   mAnnulusPaints  = new Paint[3];
     // 三个环宽度
-    private float[] mAnnulusWidths = new float[3];
+    private float[]   mAnnulusWidths  = new float[3];
     // 三个环长度
-    private int[] mAnnulusLengths = new int[]{20, 30, 85};
+    private int[]     mAnnulusLengths = new int[]{20, 30, 85};
     // 三个环是否绘制
-    private boolean[] mAnnulusDraws = new boolean[]{true, true, true};
+    private boolean[] mAnnulusDraws   = new boolean[]{true, true, true};
     // 三个环分别角度
-    private int[] mAnnulusAngles = new int[]{0, -15, 0};
+    private int[]     mAnnulusAngles  = new int[]{0, -15, 0};
     // 三个环颜色值
-    private int[] mAnnulusColors = new int[]{Color.BLUE, Color.RED, Color.WHITE};
+    private int[]     mAnnulusColors  = new int[]{Color.BLUE, Color.RED, Color.WHITE};
     // 三个环之间的边距
-    private float[] mAnnulusMargins = new float[3];
+    private float[]   mAnnulusMargins = new float[3];
 
     // ============
     // = 动画相关 =
@@ -162,19 +162,19 @@ public class ScanShapeView extends View {
     // 正方形扫描动画 对象
     private ValueAnimator mAnimToSquare;
     // 正方形扫描动画速度 ( 毫秒 )
-    private long mLineDurationToSquare = 10l;
+    private long          mLineDurationToSquare   = 10l;
     // 正方形线条画笔
-    private Paint mLinePaintToSquare = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint         mLinePaintToSquare      = new Paint(Paint.ANTI_ALIAS_FLAG);
     // 扫描线条 Bitmap
-    private Bitmap mBitmapToSquare;
+    private Bitmap        mBitmapToSquare;
     // 线条偏离值
-    private int mLineOffsetToSquare = 0;
+    private int           mLineOffsetToSquare     = 0;
     // 线条向上 ( 下 ) 边距
-    private float mLineMarginTopToSquare = 0f;
+    private float         mLineMarginTopToSquare  = 0f;
     // 线条向左 ( 右 ) 边距
-    private float mLineMarginLeftToSquare = 0f;
+    private float         mLineMarginLeftToSquare = 0f;
     // 线条颜色
-    private int mLineColorToSquare = 0;
+    private int           mLineColorToSquare      = 0;
 
     // ========================
     // = 六边形 ( 动画 ) 相关 =
@@ -183,21 +183,21 @@ public class ScanShapeView extends View {
     // 边框外动画 对象
     private ValueAnimator mAnimToHexagon;
     // 六边形线条画笔
-    private Paint mLinePaintToHexagon = new Paint();
+    private Paint         mLinePaintToHexagon  = new Paint();
     // 六边形线条路径
-    private Path mLinePathToHexagon = new Path();
+    private Path          mLinePathToHexagon   = new Path();
     // 六边形线条 Canvas( 动画中实时绘制计算路径 )
-    private Canvas mCanvasToHexagon;
+    private Canvas        mCanvasToHexagon;
     // 六边形线条 绘制出来的 Bitmap
-    private Bitmap mBitmapToHexagon;
+    private Bitmap        mBitmapToHexagon;
     // 线条中心点
-    private float mCenterToHexagon = 0;
+    private float         mCenterToHexagon     = 0;
     // 线条宽度
-    private float mLineWidthToHexagon = 4f;
+    private float         mLineWidthToHexagon  = 4f;
     // 绘制线条边距 ( 针对绘制区域 )
-    private float mLineMarginToHexagon = 20f;
+    private float         mLineMarginToHexagon = 20f;
     // 动画方向 ( 六边形线条 ) - true = 左, false = 右
-    private boolean mLineAnimDirection = true;
+    private boolean       mLineAnimDirection   = true;
 
     // ======================
     // = 环形 ( 动画 ) 相关 =
@@ -206,17 +206,17 @@ public class ScanShapeView extends View {
     // 环形动画 对象
     private ValueAnimator mAnimToAnnulus;
     // 动画效果临时变量
-    private float mAnimOffsetToAnnulus = 0f;
+    private float         mAnimOffsetToAnnulus      = 0f;
     // 是否达到偏移值最大值
-    private boolean mIsOffsetMaxToAnnulus = true;
+    private boolean       mIsOffsetMaxToAnnulus     = true;
     // 线条向上 ( 下 ) 边距
-    private float mLineOffsetToAnnulus = 0f;
+    private float         mLineOffsetToAnnulus      = 0f;
     // 扫描线条 Bitmap
-    private Bitmap mBitmapToAnnulus;
+    private Bitmap        mBitmapToAnnulus;
     // 线条颜色
-    private int mLineColorToAnnulus = 0;
+    private int           mLineColorToAnnulus       = 0;
     // 绘制扫描线条偏移速度
-    private float mLineOffsetSpeedToAnnulus = 4f;
+    private float         mLineOffsetSpeedToAnnulus = 4f;
 
     // ============
     // = 构造函数 =
@@ -1755,7 +1755,7 @@ public class ScanShapeView extends View {
 
     // 动画操作
     private final int START_ANIM = 10; // 开始动画
-    private final int STOP_ANIM = 11; // 停止动画
+    private final int STOP_ANIM  = 11; // 停止动画
 
     /**
      * 启动动画
@@ -1880,17 +1880,17 @@ public class ScanShapeView extends View {
     // = 六边形动画参数 =
     // ==================
 
-    private float mStartLinePoint; // 起点位置
-    private float mEndLinePoint; // 结束点位置
-    private float mOffsetLinePoint; // 移动点位置
+    private float   mStartLinePoint; // 起点位置
+    private float   mEndLinePoint; // 结束点位置
+    private float   mOffsetLinePoint; // 移动点位置
     // 线条颜色数组 ( 渐变 )
-    private int[] mLineColorArray;
+    private int[]   mLineColorArray;
     // 线条移动位置数组
     private float[] mLinePathArray;
     // 线条颜色
-    private int mLineColorToHexagon = Color.WHITE;
+    private int     mLineColorToHexagon = Color.WHITE;
     // 线条 rgb 色值
-    private int mLineRed, mLineGreen, mLineBlue;
+    private int     mLineRed, mLineGreen, mLineBlue;
     // 透明度 0, 透明度 255 对应的颜色
     private int mLineTran00Color, mLineTran255Color;
 
