@@ -18,7 +18,7 @@
         <afkt.project.ui.widget.BaseTextView
             android:id="@+id/vid_slnd_tips_tv"
             style="@style/AppTheme.Base_TextView"
-            android:layout_marginTop="20.0dip"
+            android:layout_marginTop="20.0dp"
             android:gravity="center"
             android:textSize="15.0sp" />
     </LinearLayout>

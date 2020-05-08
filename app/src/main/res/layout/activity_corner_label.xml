@@ -7,17 +7,17 @@
 
     <dev.widget.ui.FlowLikeView
         android:id="@+id/vid_afl_flowlike"
-        android:layout_width="200.0dip"
-        android:layout_height="200.0dip"
+        android:layout_width="200.0dp"
+        android:layout_height="200.0dp"
         android:layout_gravity="right|bottom"
-        android:layout_margin="50.0dip"
+        android:layout_margin="50.0dp"
         app:dev_animDuration="2000"
-        app:dev_iconHeight="30.0dip"
-        app:dev_iconWidth="30.0dip">
+        app:dev_iconHeight="30.0dp"
+        app:dev_iconWidth="30.0dp">
 
         <ImageView
-            android:layout_width="60.0dip"
-            android:layout_height="60.0dip"
+            android:layout_width="60.0dp"
+            android:layout_height="60.0dp"
             android:layout_gravity="bottom|center"
             android:background="@mipmap/icon_launcher_round" />
     </dev.widget.ui.FlowLikeView>

@@ -291,8 +291,8 @@ public static void refShape(ScanShapeView scanView, ScanShapeView.Shape scanShap
 
 ```java
 app:dev_animDuration="2000"
-app:dev_iconHeight="30.0dip"
-app:dev_iconWidth="30.0dip"
+app:dev_iconHeight="30.0dp"
+app:dev_iconWidth="30.0dp"
 
 // 设置动画时间
 vid_afl_flowlike.setAnimDuration(2000);

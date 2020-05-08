@@ -12,9 +12,9 @@
         <afkt.project.ui.widget.BaseTextView
             android:id="@+id/vid_al_tv"
             style="@style/AppTheme.Base_TextView"
-            android:layout_height="100.0dip"
+            android:layout_height="100.0dp"
             android:gravity="center"
-            android:lineSpacingExtra="5dip" />
+            android:lineSpacingExtra="5dp" />
 
         <View
             style="@style/AppTheme.Base_Line_Vertical"
@@ -23,9 +23,9 @@
         <dev.widget.function.LineTextView
             android:id="@+id/vid_al_content_tv"
             style="@style/AppTheme.Base_TextView"
-            android:layout_margin="15.0dip"
+            android:layout_margin="15.0dp"
             android:gravity="center"
-            android:lineSpacingExtra="5dip" />
+            android:lineSpacingExtra="5dp" />
 
     </LinearLayout>
 </dev.widget.custom.CustomNestedScrollView>

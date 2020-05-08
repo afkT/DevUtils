@@ -21,7 +21,7 @@
         <View
             android:id="@+id/vid_tiv_line"
             android:layout_width="wrap_content"
-            android:layout_height="3.0dip"
+            android:layout_height="3.0dp"
             android:layout_alignLeft="@id/vid_tiv_tv"
             android:layout_alignRight="@id/vid_tiv_tv"
             android:layout_alignParentBottom="true"
