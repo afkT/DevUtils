@@ -155,7 +155,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
     public String convertResponse(okhttp3.Response response) throws Throwable {
 //        HttpUrl httpUrl = response.request().url();
 //        DevLogger.e("url: " + httpUrl);
-        DevLogger.dTag(TAG, "响应成功，转换数据: " + url);
+        DevLogger.dTag(TAG, "响应成功, 转换数据: " + url);
         String json = new StringConvert().convertResponse(response);
         DevLogger.json(json);
         response.close();

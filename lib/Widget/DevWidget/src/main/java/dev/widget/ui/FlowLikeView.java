@@ -162,7 +162,7 @@ public class FlowLikeView extends FrameLayout {
         @Override
         public void onAnimationUpdate(ValueAnimator animation) {
             if (target != null) {
-                // 获取当前动画运行的状态值, 使得动x画作用对象沿着曲线 ( 涉及贝塞儿曲线 ) 运动
+                // 获取当前动画运行的状态值, 使得动 x 画作用对象沿着曲线 ( 涉及贝塞儿曲线 ) 运动
                 PointF pointF = (PointF) animation.getAnimatedValue();
                 target.setX(pointF.x);
                 target.setY(pointF.y);
