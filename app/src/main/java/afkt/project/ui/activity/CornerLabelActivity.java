@@ -125,5 +125,5 @@ public class CornerLabelActivity extends BaseToolbarActivity {
 
     boolean mIsLeft      = true;
     boolean mIsTop       = true;
-    boolean mIsTriangle  = true;
+    boolean mIsTriangle  = false;
 }
