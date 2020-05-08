@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:theme="@style/AppTheme.AppBarOverlay"
-    app:elevation="0dp">
+    app:elevation="0.0dp">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/vid_bt_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:elevation="0dp"
+        app:elevation="0.0dp"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
 </android.support.design.widget.AppBarLayout>

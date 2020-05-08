@@ -177,7 +177,7 @@
                 android:paddingLeft="0.0dp"
                 android:paddingRight="0.0dp"
                 app:tabBackground="@android:color/transparent"
-                app:tabIndicatorHeight="0dp"
+                app:tabIndicatorHeight="0.0dp"
                 app:tabMaxWidth="80.0dp"
                 app:tabMinWidth="80.0dp"
                 app:tabMode="scrollable" />
@@ -191,7 +191,7 @@
                 android:paddingLeft="0.0dp"
                 android:paddingRight="0.0dp"
                 app:tabBackground="@android:color/transparent"
-                app:tabIndicatorHeight="0dp"
+                app:tabIndicatorHeight="0.0dp"
                 app:tabMode="fixed" />
         </LinearLayout>
 
