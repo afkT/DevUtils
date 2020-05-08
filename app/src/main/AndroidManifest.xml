@@ -332,6 +332,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- 自定义角标 View -->
+
+        <activity
+            android:name=".ui.activity.CornerLabelActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- CapturePictureUtils 截图工具类 -->
 
         <activity

@@ -9,17 +9,17 @@ import butterknife.OnClick;
 import dev.widget.ui.FlowLikeView;
 
 /**
- * detail: 自定义点赞效果 View
+ * detail: 自定义角标 View
  * @author Ttt
  */
-public class FlowLikeActivity extends BaseToolbarActivity {
+public class CornerLabelActivity extends BaseToolbarActivity {
 
     @BindView(R.id.vid_afl_flowlike)
     FlowLikeView vid_afl_flowlike;
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_flow_like;
+        return R.layout.activity_corner_label;
     }
 
     @Override

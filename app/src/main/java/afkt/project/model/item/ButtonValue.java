@@ -376,6 +376,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_SIGN_VIEW, "签名 View"));
         lists.add(new ButtonValue(BTN_LINE_VIEW, "换行监听 View"));
         lists.add(new ButtonValue(BTN_LIKE_VIEW, "自定义点赞效果 View"));
+        lists.add(new ButtonValue(BTN_CORNER_LABEL_VIEW, "自定义角标 View"));
         return lists;
     }
 
@@ -723,6 +724,9 @@ public class ButtonValue {
 
     // 自定义点赞效果 View
     public static final int BTN_LIKE_VIEW = BTN_DEV_WIDGET + 700;
+
+    // 自定义角标 View
+    public static final int BTN_CORNER_LABEL_VIEW = BTN_DEV_WIDGET + 800;
 
     // ================================
     // = DevEnvironment 环境配置切换库 =

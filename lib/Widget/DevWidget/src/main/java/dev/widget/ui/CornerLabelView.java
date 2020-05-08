@@ -21,7 +21,7 @@ import dev.utils.app.SizeUtils;
 import dev.widget.R;
 
 /**
- * detail: 角标 View
+ * detail: 自定义角标 View
  * @author Ttt
  * <pre>
  *     <p></p>
