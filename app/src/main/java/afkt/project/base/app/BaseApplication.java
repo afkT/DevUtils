@@ -2,9 +2,10 @@ package afkt.project.base.app;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.multidex.MultiDexApplication;
 import android.view.View;
 import android.webkit.WebSettings;
+
+import androidx.multidex.MultiDexApplication;
 
 import afkt.project.R;
 import afkt.project.base.config.AppConfig;

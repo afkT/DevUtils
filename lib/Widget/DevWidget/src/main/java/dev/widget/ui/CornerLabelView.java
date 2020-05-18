@@ -12,10 +12,11 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.os.Build;
-import android.support.annotation.ColorInt;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.ColorInt;
 
 import dev.utils.app.SizeUtils;
 import dev.widget.R;

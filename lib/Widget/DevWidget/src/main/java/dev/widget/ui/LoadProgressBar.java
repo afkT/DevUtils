@@ -8,9 +8,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Build;
-import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.ColorInt;
 
 import dev.utils.app.SizeUtils;
 import dev.utils.app.TextViewUtils;
