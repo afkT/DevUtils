@@ -27,15 +27,15 @@
         <afkt.project.ui.widget.BaseEditText
             android:id="@+id/vid_aqc_content_edit"
             android:layout_width="match_parent"
-            android:layout_height="150.0dip"
-            android:layout_marginTop="10.0dip"
+            android:layout_height="150.0dp"
+            android:layout_marginTop="10.0dp"
             android:background="@color/white"
             android:gravity="left|top"
             android:hint="最多输入120个字作为生成二维码内容"
             android:inputType="textMultiLine"
             android:maxLength="120"
             android:maxLines="6"
-            android:padding="10.0dip"
+            android:padding="10.0dp"
             android:textSize="15.0sp" />
 
         <afkt.project.ui.widget.BaseImageView
@@ -43,6 +43,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10.0dip" />
+            android:layout_marginTop="10.0dp" />
     </LinearLayout>
 </dev.widget.custom.CustomNestedScrollView>

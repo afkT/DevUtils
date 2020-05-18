@@ -21,7 +21,7 @@
         <afkt.project.ui.widget.BaseTextView
             android:id="@+id/vid_aqi_tv"
             style="@style/AppTheme.Base_TextView"
-            android:layout_marginTop="10.0dip"
+            android:layout_marginTop="10.0dp"
             android:textSize="17.0sp"
             tools:text="解析结果" />
     </LinearLayout>

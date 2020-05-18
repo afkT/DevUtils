@@ -4,21 +4,21 @@
     <!-- 统一的配置 -->
 
     <!-- 圆角角度 -->
-    <dimen name="un_radius">3.0dip</dimen>
+    <dimen name="un_radius">3.0dp</dimen>
 
     <!-- 线条 -->
-    <dimen name="un_line_width">0.5dip</dimen>
+    <dimen name="un_line_width">0.5dp</dimen>
 
     <!-- 线条 -->
-    <dimen name="un_line_height">0.5dip</dimen>
+    <dimen name="un_line_height">0.5dp</dimen>
 
     <!-- 边框 ( 描边 ) 宽度 -->
-    <dimen name="un_border_width">1.0dip</dimen>
+    <dimen name="un_border_width">1.0dp</dimen>
 
     <!-- 圆角角度 -->
-    <dimen name="un_radius_10">10.0dip</dimen>
+    <dimen name="un_radius_10">10.0dp</dimen>
 
     <!-- 圆角角度 -->
-    <dimen name="un_radius_20">20.0dip</dimen>
+    <dimen name="un_radius_20">20.0dp</dimen>
 
 </resources>

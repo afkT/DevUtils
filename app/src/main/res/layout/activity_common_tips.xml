@@ -15,8 +15,8 @@
             style="@style/AppTheme.padding_lr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20.0dip"
-            android:layout_marginBottom="10.0dip"
+            android:layout_marginTop="20.0dp"
+            android:layout_marginBottom="10.0dp"
             android:orientation="vertical" />
 
         <include layout="@layout/base_view_recyclerview" />

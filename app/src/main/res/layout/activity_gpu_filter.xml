@@ -20,7 +20,7 @@
         <dev.widget.custom.CustomGallery
             android:id="@+id/vid_agf_gallery"
             android:layout_width="match_parent"
-            android:layout_height="70.0dip" />
+            android:layout_height="70.0dp" />
 
         <afkt.project.ui.widget.BaseImageView
             android:id="@+id/vid_agf_igview"

@@ -6,6 +6,7 @@
 - dev                                                 | 根目录
    - assist                                           | 常用辅助类封装
    - other                                            | 第三方库封装工具类
+      - okgo                                          | OkGo 网络请求
    - receiver                                         | BroadcastReceiver 监听相关
    - service                                          | Service 相关
    - temp                                             | 临时快捷调用工具类
@@ -23,6 +24,7 @@
 - dev                                                 | 根目录
    - [assist](#devassist)                             | 常用辅助类封装
    - [other](#devother)                               | 第三方库封装工具类
+      - [okgo](#devotherokgo)                         | OkGo 网络请求
    - [receiver](#devreceiver)                         | BroadcastReceiver 监听相关
    - [service](#devservice)                           | Service 相关
    - [temp](#devtemp)                                 | 临时快捷调用工具类
@@ -336,6 +338,58 @@
 | syncEncodeQRCode | 同步创建黑色前景色、白色背景色的二维码图片 |
 | addLogoToQRCode | 添加 Logo 到二维码图片上 |
 | onResult | 生成二维码结果回调 |
+
+
+## <span id="devotherokgo">**`dev.other.okgo`**</span>
+
+
+* **OkGo 请求统一回调处理类 ->** [OkGoCallback.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoCallback.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onStart | 请求网络开始前, UI 线程 |
+| onFinish | 请求网络结束后, UI 线程 |
+| uploadProgress | 上传过程中的进度回调, get请求不回调, UI 线程 |
+| downloadProgress | 下载过程中的进度回调, UI 线程 |
+| onCacheSuccess | 缓存成功的回调,UI 线程 |
+| onError | 请求失败, 响应错误, 数据解析错误等, 都会回调该方法,  UI 线程 |
+| onSuccess | 对返回数据进行操作的回调,  UI 线程 |
+| convertResponse | 拿到响应后, 将数据转换成需要的格式, 子线程中执行, 可以是耗时操作 |
+| onSuccessResponse | 请求响应并处理数据无误 |
+| onErrorResponse | 请求失败, 响应错误, 数据解析错误等, 都会回调该方法,  UI 线程 |
+
+
+* **OkGo 使用 Demo ->** [OkGoDemo.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoDemo.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getUserInfo | 获取用户信息 |
+| getUserList | 获取用户列表 |
+| uploadImage | 上传文件 |
+| uploadImages | 上传多个文件 |
+
+
+* **请求响应解析基类 ->** [OkGoResponse.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoResponse.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getDataString | 获取 Data 字符串 |
+| build | build BaseResponse 对象 |
+| setData | setData |
+| setMessage | setMessage |
+| setCode | setCode |
+| setToast | setToast |
+| setResult | setResult |
+| setOriginal | setOriginal |
+| setException | setException |
+
+
+* **OkGo 配置相关工具类 ->** [OkGoUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| initOkGo | 初始化 OkGo 配置 |
+| execute | 执行请求处理 |
 
 
 ## <span id="devreceiver">**`dev.receiver`**</span>

@@ -1,15 +1,16 @@
 package dev.widget.ui;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.os.Build;
+import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.view.View;
-
-import androidx.annotation.ColorInt;
 
 import dev.utils.app.SizeUtils;
 import dev.utils.app.TextViewUtils;
@@ -78,29 +79,29 @@ import dev.widget.R;
 public class LoadProgressBar extends View {
 
     // 画笔
-    private Paint mPaint;
+    private Paint         mPaint;
     // 字体画笔
-    private Paint mTextPaint = new Paint();
+    private Paint         mTextPaint      = new Paint();
     // 最大进度
-    private int mMax = 100;
+    private int           mMax            = 100;
     // 当前进度
-    private int mProgress = 0;
+    private int           mProgress       = 0;
     // 进度条样式
-    private ProgressStyle mProgressStyle = ProgressStyle.RINGS;
+    private ProgressStyle mProgressStyle  = ProgressStyle.RINGS;
     // 进度条颜色
-    private int mProgressColor;
+    private int           mProgressColor;
     // 外环进度条颜色
-    private int mOuterRingColor;
+    private int           mOuterRingColor;
     // 内环进度条宽度
-    private float mInsideCircleWidth;
+    private float         mInsideCircleWidth;
     // 外环进度条宽度
-    private float mOuterRingWidth;
+    private float         mOuterRingWidth;
     // 是否绘制数字
-    private boolean mIsCanvasNumber = false;
+    private boolean       mIsCanvasNumber = false;
     // 绘制的字体大小
-    private float mNumberTextSize;
+    private float         mNumberTextSize;
     // 绘制的数字颜色
-    private int mNumberTextColor;
+    private int           mNumberTextColor;
 
     public LoadProgressBar(Context context) {
         super(context);
@@ -114,6 +115,12 @@ public class LoadProgressBar extends View {
 
     public LoadProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initAttrs(context, attrs);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public LoadProgressBar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
         initAttrs(context, attrs);
     }
 

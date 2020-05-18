@@ -31,11 +31,11 @@ public class RightIconEditText extends AppCompatEditText {
     // drawable - left、top、right、bootom 四个方向图片
     private Drawable mLeft, mTop, mRight, mBottom;
     // Right Drawable 自身坐标信息
-    private Rect mRightBounds;
+    private Rect        mRightBounds;
     // 右边 Icon 触发范围倍数
-    private float mRangeMultiple = 2.0f;
+    private float       mRangeMultiple   = 2.0f;
     // 是否绘制右边 Icon
-    private boolean mIsDrawRightIcon = true;
+    private boolean     mIsDrawRightIcon = true;
     // 输入监听回调
     private TextWatcher mTextWatcher;
 

@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.1.2 *(2020-05-18)*
+----------------------------
+
+* `[Update]` ClassUtils#getGenericSuperclass、getGenericInterfaces 返回类型
+
 Version 1.1.1 *(2020-03-11)*
 ----------------------------
 

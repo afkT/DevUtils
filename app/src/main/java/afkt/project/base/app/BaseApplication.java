@@ -1,8 +1,8 @@
 package afkt.project.base.app;
 
-import android.app.Application;
 import android.content.Context;
 import android.os.Build;
+import android.support.multidex.MultiDexApplication;
 import android.view.View;
 import android.webkit.WebSettings;
 
@@ -33,7 +33,7 @@ import dev.widget.StateLayout;
  * detail: Base Application
  * @author Ttt
  */
-public class BaseApplication extends Application {
+public class BaseApplication extends MultiDexApplication {
 
     @Override
     public void onCreate() {

@@ -13,8 +13,8 @@
 
         <com.tt.whorlviewlibrary.WhorlView
             android:id="@+id/vid_sli_load_view"
-            android:layout_width="50.0dip"
-            android:layout_height="50.0dip"
+            android:layout_width="50.0dp"
+            android:layout_height="50.0dp"
             app:whorlview_circle_colors="#F14336_#ffffff_#5677fc_#F44336_#4CAF50"
             app:whorlview_circle_speed="270"
             app:whorlview_parallax="medium"

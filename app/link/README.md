@@ -41,6 +41,8 @@
 
 * [Android ProGuard 混淆模板](https://blog.csdn.net/damnivictory/article/details/73776397)
 
+* [关于 proguard 你需要知道的全部](https://www.jianshu.com/p/d768f6d1d93b)
+
 #### Hook
 
 * [两行代码启动未注册的 Activity](https://github.com/BolexLiu/AndroidHookStartActivity)
@@ -131,6 +133,12 @@
 
 * [使用 SearchView 的正确姿势](https://www.imooc.com/article/23246)
 
+* [ViewPager 显示两侧的 View 各显示一点](https://blog.csdn.net/baidu_40389775/article/details/96439385)
+
+* [Android 自定义 View-Path 基本操作](https://www.jianshu.com/p/726b714da133)
+
+* [Android 矢量图 : 加载本地 SVG 文件并生成 Path 路径](https://www.jianshu.com/p/1fdbcbf3b821)
+
 #### 转场动画
 
 * [Android 动画 : 转场动画 ( 过度动画 )](https://blog.csdn.net/ss1168805219/article/details/53445063)
@@ -165,15 +173,11 @@
 
 * [懂得智能配色的 ImageView](https://github.com/DingMouRen/PaletteImageView)
 
-#### Retrofit2
+#### 屏幕适配
 
-* [Retrofit2](https://square.github.io/retrofit)
+* [Android 屏幕适配方案 ( 出自今日头条 )](https://www.jianshu.com/p/1eeb0d8d1c86)
 
-* [Retrofit2 Github](https://github.com/square/retrofit)
-
-* [用 Retrofit2 简化 HTTP 请求](https://academy.realm.io/cn/posts/droidcon-jake-wharton-simple-http-retrofit-2)
-
-* [你真的会用 Retrofit2 吗? Retrofit2 完全教程](https://www.jianshu.com/p/308f3c54abdd)
+* [Android 屏幕适配 : 最全面的解决方案](https://www.jianshu.com/p/ec5a1a30694b)
 
 #### RxJava
 
@@ -248,4 +252,6 @@
 #### 第三方库
 
 * [Aria 下载可以很简单](https://github.com/AriaLyy/Aria)
+
+* [Android 屏幕适配方案](https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md)
 

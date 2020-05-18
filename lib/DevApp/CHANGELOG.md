@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.9.4 *(2020-05-18)*
+----------------------------
+
+* `[Update]` MediaStoreUtils#notifyMediaStore 通知刷新本地资源方法版本处理
+
+* `[Update]` ClassUtils#getGenericSuperclass、getGenericInterfaces 返回类型
+
 Version 1.9.3 *(2020-04-25)*
 ----------------------------
 

@@ -28,8 +28,8 @@ public class FlowLikeActivity extends BaseToolbarActivity {
 
 
 //        app:dev_animDuration="2000"
-//        app:dev_iconHeight="30.0dip"
-//        app:dev_iconWidth="30.0dip"
+//        app:dev_iconHeight="30.0dp"
+//        app:dev_iconWidth="30.0dp"
 
 //        // 设置动画时间
 //        vid_afl_flowlike.setAnimDuration(2000);
@@ -40,16 +40,16 @@ public class FlowLikeActivity extends BaseToolbarActivity {
 //
 //        // 设置漂浮图标
 //        List<Drawable> lists = new ArrayList<>();
-//        lists.add(ResourceUtils.getDrawable(R.drawable.ic_live_brow_1));
-//        lists.add(ResourceUtils.getDrawable(R.drawable.ic_live_brow_2));
-//        lists.add(ResourceUtils.getDrawable(R.drawable.ic_live_brow_3));
-//        lists.add(ResourceUtils.getDrawable(R.drawable.ic_live_brow_4));
-//        lists.add(ResourceUtils.getDrawable(R.drawable.ic_live_brow_5));
+//        lists.add(ResourceUtils.getDrawable(R.drawable.icon_live_brow_1));
+//        lists.add(ResourceUtils.getDrawable(R.drawable.icon_live_brow_2));
+//        lists.add(ResourceUtils.getDrawable(R.drawable.icon_live_brow_3));
+//        lists.add(ResourceUtils.getDrawable(R.drawable.icon_live_brow_4));
+//        lists.add(ResourceUtils.getDrawable(R.drawable.icon_live_brow_5));
 //        vid_afl_flowlike.setDrawables(lists);
 
         // 设置漂浮图标
-        vid_afl_flowlike.setDrawablesById(R.drawable.ic_live_brow_1, R.drawable.ic_live_brow_2,
-            R.drawable.ic_live_brow_3, R.drawable.ic_live_brow_4, R.drawable.ic_live_brow_5);
+        vid_afl_flowlike.setDrawablesById(R.drawable.icon_live_brow_1, R.drawable.icon_live_brow_2,
+            R.drawable.icon_live_brow_3, R.drawable.icon_live_brow_4, R.drawable.icon_live_brow_5);
     }
 
     @OnClick({R.id.vid_afl_flowlike})

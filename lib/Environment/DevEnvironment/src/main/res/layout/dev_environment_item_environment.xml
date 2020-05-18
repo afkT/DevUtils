@@ -23,7 +23,7 @@
 
         <TextView
             android:id="@+id/vid_deie_value_tv"
-            android:layout_width="0dp"
+            android:layout_width="0.0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
@@ -44,6 +44,6 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.5dip"
+        android:layout_height="0.5dp"
         android:background="@color/dev_environment_divider" />
 </LinearLayout>

@@ -1,7 +1,9 @@
 package dev.widget.function;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
@@ -19,7 +21,7 @@ import dev.widget.R;
 public class LimitLayout extends FrameLayout {
 
     // 最大显示宽度
-    private int mMaxWidth = WidgetUtils.DEF_VALUE;
+    private int mMaxWidth  = WidgetUtils.DEF_VALUE;
     // 最大显示高度
     private int mMaxHeight = WidgetUtils.DEF_VALUE;
 
@@ -34,6 +36,12 @@ public class LimitLayout extends FrameLayout {
 
     public LimitLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initAttrs(context, attrs);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public LimitLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
         initAttrs(context, attrs);
     }
 

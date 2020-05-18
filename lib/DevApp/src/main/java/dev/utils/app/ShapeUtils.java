@@ -161,10 +161,10 @@ public final class ShapeUtils {
          * 设置圆角 ( 统一处理方法 )
          * <pre>
          *     <corners
-         *          android:bottomLeftRadius="8dp"
-         *          android:bottomRightRadius="8dp"
-         *          android:topLeftRadius="8dp"
-         *          android:topRightRadius="8dp" />
+         *          android:bottomLeftRadius="8.0dp"
+         *          android:bottomRightRadius="8.0dp"
+         *          android:topLeftRadius="8.0dp"
+         *          android:topRightRadius="8.0dp" />
          * </pre>
          * @param leftTop     左上圆角大小
          * @param rightTop    左下圆角大小

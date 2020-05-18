@@ -6,12 +6,12 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevApp:1.9.3'
-implementation 'com.afkt:DevWidget:1.0.0'
+implementation 'com.afkt:DevApp:1.9.4'
+implementation 'com.afkt:DevWidget:1.0.1'
 
 // AndroidX
-implementation 'com.afkt:DevAppX:1.9.3'
-implementation 'com.afkt:DevWidgetX:1.0.0'
+implementation 'com.afkt:DevAppX:1.9.4'
+implementation 'com.afkt:DevWidgetX:1.0.1'
 ```
 
 ## README
@@ -32,8 +32,8 @@ implementation 'com.afkt:DevWidgetX:1.0.0'
 | ![WrapView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/wrap_view.jpg) | ![LineTextView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/line_text_view.jpg) | ![SignView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/sign_view.jpg) |
 | ScanShapeView - Square | ScanShapeView - Hexagon | ScanShapeView - Annulus |
 | ![ScanShapeView - Square](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/scan_shape_view_square.gif) | ![ScanShapeView - Hexagon](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/scan_shape_view_hexagon.gif) | ![ScanShapeView - Annulus](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/scan_shape_view_annulus.gif) |
-| LoadProgressBar | FlowLikeView |   |
-| ![LoadProgressBar](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/load_progress_bar.gif) | ![FlowLikeView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/flow_like_view.gif) |   |
+| LoadProgressBar | FlowLikeView | CornerLabelView |
+| ![LoadProgressBar](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/load_progress_bar.gif) | ![FlowLikeView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/flow_like_view.gif) | ![CornerLabelView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/corner_label_view.jpg) |
 
 
 ## Catalog
@@ -291,8 +291,8 @@ public static void refShape(ScanShapeView scanView, ScanShapeView.Shape scanShap
 
 ```java
 app:dev_animDuration="2000"
-app:dev_iconHeight="30.0dip"
-app:dev_iconWidth="30.0dip"
+app:dev_iconHeight="30.0dp"
+app:dev_iconWidth="30.0dp"
 
 // 设置动画时间
 vid_afl_flowlike.setAnimDuration(2000);

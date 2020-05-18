@@ -15,12 +15,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70.0dip"
+            android:layout_height="70.0dp"
             android:orientation="horizontal">
 
             <afkt.project.ui.widget.BaseImageView
-                android:layout_width="70.0dip"
-                android:layout_height="70.0dip"
+                android:layout_width="70.0dp"
+                android:layout_height="70.0dp"
                 android:background="@mipmap/icon_launcher_round"
                 android:scaleType="fitXY" />
 
@@ -37,7 +37,7 @@
             android:id="@+id/vid_acp_content_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10.0dip"
+            android:layout_marginTop="10.0dp"
             android:lineSpacingExtra="10px"
             android:lineSpacingMultiplier="1.2"
             android:textColor="@color/black"

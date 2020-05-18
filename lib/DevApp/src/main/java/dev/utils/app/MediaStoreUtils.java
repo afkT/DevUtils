@@ -79,17 +79,17 @@ public final class MediaStoreUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean notifyMediaStore(final File file) {
-        // Android Q 以后的版本需要通过 MediaStore 插入数据
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            if (file != null) {
-                try {
-                    // 通知图库扫描更新
-                    return AppUtils.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
-                } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "notifyMediaStore");
-                }
+//        // Android Q 以后的版本需要通过 MediaStore 插入数据
+//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+        if (file != null) {
+            try {
+                // 通知图库扫描更新
+                return AppUtils.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "notifyMediaStore");
             }
         }
+//        }
         return false;
     }
 

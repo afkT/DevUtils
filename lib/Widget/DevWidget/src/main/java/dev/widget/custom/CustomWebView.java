@@ -1,7 +1,9 @@
 package dev.widget.custom;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.webkit.WebView;
@@ -21,11 +23,11 @@ import dev.widget.R;
 public class CustomWebView extends WebView {
 
     // 是否允许滑动
-    private boolean mIsSlide = true;
+    private boolean        mIsSlide        = true;
     // 最大显示宽度
-    private int mMaxWidth = WidgetUtils.DEF_VALUE;
+    private int            mMaxWidth       = WidgetUtils.DEF_VALUE;
     // 最大显示高度
-    private int mMaxHeight = WidgetUtils.DEF_VALUE;
+    private int            mMaxHeight      = WidgetUtils.DEF_VALUE;
     // 滑动监听回调
     private ScrollCallBack mScrollCallBack = null;
 
@@ -40,6 +42,12 @@ public class CustomWebView extends WebView {
 
     public CustomWebView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initAttrs(context, attrs);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public CustomWebView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
         initAttrs(context, attrs);
     }
 

@@ -1,7 +1,9 @@
 package dev.widget.ui;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,11 +30,11 @@ public class WrapView extends ViewGroup {
     // View 换行行数
     private int mRowLine;
     // 支持最大行数
-    private int mMaxLine = Integer.MAX_VALUE;
+    private int mMaxLine            = Integer.MAX_VALUE;
     // 每一行向上的边距 ( 行间隔 )
-    private int mRowTopMargin = 20;
+    private int mRowTopMargin       = 20;
     // 每个 View 之间的 Left 边距
-    private int mViewLeftMargin = 20;
+    private int mViewLeftMargin     = 20;
     // 每一行第一个 View Left 边距
     private int mRowFristLeftMargin = 20;
 
@@ -47,6 +49,12 @@ public class WrapView extends ViewGroup {
 
     public WrapView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initAttrs(context, attrs);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public WrapView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
         initAttrs(context, attrs);
     }
 

@@ -18,8 +18,8 @@
 
             <dev.widget.ui.LoadProgressBar
                 android:id="@+id/vid_ap_bar1"
-                android:layout_width="120.0dip"
-                android:layout_height="120.0dip"
+                android:layout_width="120.0dp"
+                android:layout_height="120.0dp"
                 android:layout_gravity="center"
                 app:dev_canvasNumber="true"
                 app:dev_outerRingColor="@color/khaki"
@@ -35,8 +35,8 @@
 
             <dev.widget.ui.LoadProgressBar
                 android:id="@+id/vid_ap_bar2"
-                android:layout_width="120.0dip"
-                android:layout_height="120.0dip"
+                android:layout_width="120.0dp"
+                android:layout_height="120.0dp"
                 android:layout_gravity="center"
                 app:dev_canvasNumber="true"
                 app:dev_progressColor="@color/sky_blue"
@@ -57,8 +57,8 @@
 
             <dev.widget.ui.LoadProgressBar
                 android:id="@+id/vid_ap_bar3"
-                android:layout_width="120.0dip"
-                android:layout_height="120.0dip"
+                android:layout_width="120.0dp"
+                android:layout_height="120.0dp"
                 android:layout_gravity="center"
                 app:dev_canvasNumber="true"
                 app:dev_numberTextColor="#FB7D00"
@@ -75,8 +75,8 @@
 
             <dev.widget.ui.LoadProgressBar
                 android:id="@+id/vid_ap_bar4"
-                android:layout_width="120.0dip"
-                android:layout_height="120.0dip"
+                android:layout_width="120.0dp"
+                android:layout_height="120.0dp"
                 android:layout_gravity="center"
                 app:dev_numberTextColor="@color/deeppink"
                 app:dev_numberTextSize="40sp"

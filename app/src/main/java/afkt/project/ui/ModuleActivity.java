@@ -17,6 +17,7 @@ import afkt.project.ui.activity.ActivityResultCallBackActivity;
 import afkt.project.ui.activity.AdapterEditsActivity;
 import afkt.project.ui.activity.CacheActivity;
 import afkt.project.ui.activity.CapturePictureActivity;
+import afkt.project.ui.activity.CornerLabelActivity;
 import afkt.project.ui.activity.CrashCatchActivity;
 import afkt.project.ui.activity.DevExtendActivity;
 import afkt.project.ui.activity.DeviceInfoActivity;
@@ -123,6 +124,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
                         break;
                     case ButtonValue.BTN_PICTURE_SELECTOR: // PictureSelectorUtils
+                        ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
+                        break;
+                    case ButtonValue.BTN_OKGO: // OkGoUtils
                         ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
                         break;
 
@@ -247,6 +251,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_LIKE_VIEW: // 自定义点赞效果 View
                         SkipUtils.startActivity(FlowLikeActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_CORNER_LABEL_VIEW: // 自定义角标 View
+                        SkipUtils.startActivity(CornerLabelActivity.class, buttonValue);
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");

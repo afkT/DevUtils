@@ -1,8 +1,10 @@
 package dev.widget.custom;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.HorizontalScrollView;
@@ -22,11 +24,11 @@ import dev.widget.R;
 public class CustomHorizontalScrollView extends HorizontalScrollView {
 
     // 是否允许滑动
-    private boolean mIsSlide = true;
+    private boolean        mIsSlide        = true;
     // 最大显示宽度
-    private int mMaxWidth = WidgetUtils.DEF_VALUE;
+    private int            mMaxWidth       = WidgetUtils.DEF_VALUE;
     // 最大显示高度
-    private int mMaxHeight = WidgetUtils.DEF_VALUE;
+    private int            mMaxHeight      = WidgetUtils.DEF_VALUE;
     // 滑动监听回调
     private ScrollCallBack mScrollCallBack = null;
 
@@ -41,6 +43,12 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
 
     public CustomHorizontalScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initAttrs(context, attrs);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public CustomHorizontalScrollView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
         initAttrs(context, attrs);
     }
 

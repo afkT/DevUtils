@@ -43,5 +43,28 @@
         <attr name="dev_iconWidth" format="dimension" />
         <attr name="dev_iconHeight" format="dimension" />
 
+        <!-- CornerLabelView -->
+
+        <attr name="dev_paddingTop" format="dimension" />
+        <attr name="dev_paddingCenter" format="dimension" />
+        <attr name="dev_paddingBottom" format="dimension" />
+
+        <attr name="dev_text1" format="string" />
+        <attr name="dev_textColor1" format="color" />
+        <attr name="dev_textHeight1" format="dimension" />
+        <attr name="dev_textBold1" format="boolean" />
+
+        <attr name="dev_text2" format="string" />
+        <attr name="dev_textColor2" format="color" />
+        <attr name="dev_textHeight2" format="dimension" />
+        <attr name="dev_textBold2" format="boolean" />
+
+        <attr name="dev_fillColor" format="color" />
+        <attr name="dev_flags" format="integer">
+            <flag name="none" value="0" />
+            <flag name="right" value="1" />
+            <flag name="bottom" value="2" />
+            <flag name="triangle" value="4" />
+        </attr>
     </declare-styleable>
 </resources>

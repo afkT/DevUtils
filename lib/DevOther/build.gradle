@@ -24,4 +24,8 @@ dependencies {
     // 二维码 ZXing https://github.com/zxing/zxing
     implementation deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
     implementation deps.lib.zxing_android_code // http://mvnrepository.com/artifact/com.google.zxing/android-core
+    // Okgo https://github.com/jeasonlzy/okhttp-OkGo
+    implementation deps.lib.okgo
+    // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
+    implementation deps.lib.okserver
 }

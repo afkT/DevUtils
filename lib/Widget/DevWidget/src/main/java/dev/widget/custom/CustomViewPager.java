@@ -22,11 +22,11 @@ import dev.widget.R;
 public class CustomViewPager extends ViewPager {
 
     // 是否允许滑动
-    private boolean mIsSlide = true;
+    private boolean mIsSlide   = true;
     // 最大显示宽度
-    private int mMaxWidth = WidgetUtils.DEF_VALUE;
+    private int     mMaxWidth  = WidgetUtils.DEF_VALUE;
     // 最大显示高度
-    private int mMaxHeight = WidgetUtils.DEF_VALUE;
+    private int     mMaxHeight = WidgetUtils.DEF_VALUE;
 
     public CustomViewPager(Context context) {
         super(context);
@@ -154,7 +154,7 @@ public class CustomViewPager extends ViewPager {
     public static abstract class OnDirectionListener implements OnPageChangeListener {
 
         // 最后滑动的位置
-        private int mLastValue = -1;
+        private int     mLastValue = -1;
         // 是否滑动中
         private boolean mIsScrolling;
         // 是否滑向左边、右边

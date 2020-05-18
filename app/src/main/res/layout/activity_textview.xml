@@ -13,7 +13,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10.0dip"
+            android:layout_marginTop="10.0dp"
             android:orientation="horizontal">
 
             <afkt.project.ui.widget.BaseTextView
@@ -29,7 +29,7 @@
             <afkt.project.ui.widget.BaseTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10.0dip"
+                android:layout_marginLeft="10.0dp"
                 android:text="Text 2 的效果"
                 android:textColor="@color/red"
                 android:textSize="18sp" />
@@ -38,7 +38,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10.0dip"
+            android:layout_marginTop="10.0dp"
             android:orientation="horizontal">
 
             <afkt.project.ui.widget.BaseTextView
@@ -54,7 +54,7 @@
             <afkt.project.ui.widget.BaseTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10.0dip"
+                android:layout_marginLeft="10.0dp"
                 android:text="Text 2 的效果"
                 android:textColor="@color/red"
                 android:textSize="18sp" />

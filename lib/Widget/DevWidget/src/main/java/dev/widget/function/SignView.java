@@ -1,5 +1,6 @@
 package dev.widget.function;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -7,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,13 +27,13 @@ import dev.utils.app.CapturePictureUtils;
 public class SignView extends View {
 
     // 绘制路径
-    private Path mPath;
+    private Path  mPath;
     // 绘制画笔
     private Paint mPaint;
     // 绘制路径 X、Y ( 临时变量 )
     private float mX, mY;
     // 是否清空画布
-    private boolean mIsClearCanvas = false;
+    private boolean        mIsClearCanvas = false;
     // 绘制回调事件
     private OnDrawCallBack mDrawCallBack;
 
@@ -45,6 +47,11 @@ public class SignView extends View {
 
     public SignView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public SignView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @Override
