@@ -12,12 +12,11 @@ import com.lzy.okgo.request.base.Request;
 
 import org.json.JSONObject;
 
-import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-import dev.utils.JCLogUtils;
 import dev.utils.app.JSONObjectUtils;
 import dev.utils.app.logger.DevLogger;
+import dev.utils.common.ClassUtils;
 
 /**
  * detail: OkGo 请求统一回调处理类
@@ -205,7 +204,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
                 .setOriginal(body).setCode(code)
                 .setMessage(message).setResult(result);
 
-        Type type = getGenericSuperclass(getClass(), 0);
+        Type type = ClassUtils.getGenericSuperclass(getClass(), 0);
         if (result && type != null) {
             try {
                 builder.setData(
@@ -239,22 +238,5 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
             }
         }
         return false;
-    }
-
-    /**
-     * 获取父类泛型类型
-     * @param clazz {@link Class}
-     * @param pos   泛型参数索引
-     * @return 泛型类型
-     */
-    private Type getGenericSuperclass(final Class clazz, final int pos) {
-        if (clazz != null && pos >= 0) {
-            try {
-                return ((ParameterizedType) clazz.getGenericSuperclass()).getActualTypeArguments()[pos];
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "getGenericSuperclass");
-            }
-        }
-        return null;
     }
 }
