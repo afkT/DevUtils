@@ -2,12 +2,12 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevApp:1.9.3'
-implementation 'com.afkt:DevWidget:1.0.0'
+implementation 'com.afkt:DevApp:1.9.4'
+implementation 'com.afkt:DevWidget:1.0.1'
 
 // AndroidX
-implementation 'com.afkt:DevAppX:1.9.3'
-implementation 'com.afkt:DevWidgetX:1.0.0'
+implementation 'com.afkt:DevAppX:1.9.4'
+implementation 'com.afkt:DevWidgetX:1.0.1'
 ```
 
 ## 目录结构
@@ -273,6 +273,40 @@ implementation 'com.afkt:DevWidgetX:1.0.0'
 
 
 ## <span id="devwidgetui">**`dev.widget.ui`**</span>
+
+
+* **自定义角标 View ->** [CornerLabelView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/CornerLabelView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onMeasure | onMeasure |
+| onDraw | onDraw |
+| getPainter1 | 获取 Text1 Painter |
+| getPainter2 | 获取 Text2 Painter |
+| setPaddingTop | 设置顶部边距 |
+| setPaddingCenter | 设置 Text1、Text2 边距 |
+| setPaddingBottom | 设置底部边距 |
+| setFillColor | 设置背景填充颜色 |
+| setFillShader | 设置背景填充渐变色 |
+| left | 设置左边显示角标 |
+| right | 设置右边显示角标 |
+| top | 设置顶部显示角标 |
+| bottom | 设置底部显示角标 |
+| triangle | 设置角标三角形铺满样式 |
+| setText1 | 设置文本 |
+| setTextColor1 | 设置字体颜色 |
+| setTextHeight1 | 设置字体高度 |
+| setTextBold1 | 设置字体是否加粗 |
+| setText2 | 设置文本 |
+| setTextColor2 | 设置字体颜色 |
+| setTextHeight2 | 设置字体高度 |
+| setTextBold2 | 设置字体是否加粗 |
+| refresh | 刷新重绘处理 |
+| getPaint | 获取画笔 |
+| getText | 获取文本 |
+| getTextColor | 获取字体颜色 |
+| getTextHeight | 获取字体高度 |
+| isTextBold | 获取字体是否加粗 |
 
 
 * **自定义点赞效果 View ->** [FlowLikeView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/FlowLikeView.java)
