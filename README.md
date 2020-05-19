@@ -59,8 +59,7 @@
 ```java
 
 // DevApp Android 工具类库 https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md
-implementation 'com.afkt:DevApp:1.9.4'
-//implementation 'com.afkt:DevAppX:1.9.4' // AndroidX
+implementation 'com.afkt:DevAppX:1.9.4' // AndroidX
 
 // DevJava Java 工具类库 ( 不依赖 android api ) https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md
 implementation 'com.afkt:DevJava:1.1.2' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
@@ -75,8 +74,7 @@ releaseAnnotationProcessor 'com.afkt:DevEnvironmentCompilerRelease:1.0.0'
 //annotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.0'
 
 // DevWidget 自定义 View UI 库 https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget
-implementation 'com.afkt:DevWidget:1.0.1'
-//implementation 'com.afkt:DevWidgetX:1.0.1' // AndroidX
+implementation 'com.afkt:DevWidgetX:1.0.1' // AndroidX
 ```
 
 ## License

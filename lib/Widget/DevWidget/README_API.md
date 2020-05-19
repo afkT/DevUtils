@@ -2,9 +2,6 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevApp:1.9.4'
-implementation 'com.afkt:DevWidget:1.0.1'
-
 // AndroidX
 implementation 'com.afkt:DevAppX:1.9.4'
 implementation 'com.afkt:DevWidgetX:1.0.1'
