@@ -1,7 +1,7 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-afkT-blue.svg)](https://github.com/afkT)
 [![GitHub license](https://img.shields.io/github/license/afkT/DevUtils.svg)](https://github.com/afkT/DevUtils/blob/master/LICENSE)
-[![Bintray](https://img.shields.io/badge/DevUtils-1.9.4-brightgreen.svg)](https://bintray.com/afkt/maven/DevApp)
+[![Bintray](https://img.shields.io/badge/DevUtils-1.9.4-brightgreen.svg)](https://bintray.com/afkt/maven/DevAppX)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Utils](https://img.shields.io/badge/utils-160+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
@@ -36,9 +36,9 @@
 
 ### DevWidget - 自定义 View UI 库
 
-- [Preview README](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget)
-
 - [README - API](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/README_API.md)
+
+- [Preview README](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget)
 
 
 ## Other
