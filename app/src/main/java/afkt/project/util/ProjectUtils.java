@@ -145,7 +145,7 @@ public final class ProjectUtils {
             // 设置正方形扫描动画速度 ( 毫秒 )
             scanView.setLineDurationToSquare(10l);
             // 设置正方形扫描线条 Bitmap
-            scanView.setBitmapToSquare(ResourceUtils.getBitmap(R.drawable.line_scan));
+            scanView.setBitmapToSquare(ResourceUtils.getBitmap(R.drawable.dev_scan_line));
             // 设置正方形线条动画 ( 着色 ) -> 如果不使用自己的 Bitmap(setBitmapToSquare), 则可以使用默认内置的图片, 进行着色达到想要的颜色
             scanView.setLineColorToSquare(Color.WHITE);
             // 设置正方形扫描线条向上 ( 下 ) 边距
@@ -171,7 +171,7 @@ public final class ProjectUtils {
             // ================
 
             // 设置环形扫描线条 Bitmap
-            scanView.setBitmapToAnnulus(ResourceUtils.getBitmap(R.drawable.line_scan));
+            scanView.setBitmapToAnnulus(ResourceUtils.getBitmap(R.drawable.dev_scan_line));
             // 设置环形线条动画 ( 着色 )
             scanView.setLineColorToAnnulus(Color.WHITE);
             // 设置环形扫描线条速度

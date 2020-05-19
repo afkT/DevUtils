@@ -312,10 +312,10 @@ public class ScanShapeView extends View {
         handlerCornerPathEffect();
 
         // 加载正方形扫描线条
-        mBitmapToSquare = ((BitmapDrawable) (getResources().getDrawable(R.drawable.line_scan))).getBitmap();
+        mBitmapToSquare = ((BitmapDrawable) (getResources().getDrawable(R.drawable.dev_scan_line))).getBitmap();
 
         // 加载圆环扫描
-        mBitmapToAnnulus = ((BitmapDrawable) (getResources().getDrawable(R.drawable.line_scan))).getBitmap();
+        mBitmapToAnnulus = ((BitmapDrawable) (getResources().getDrawable(R.drawable.dev_scan_line))).getBitmap();
 
         // 重置动画处理
         initAnim();
