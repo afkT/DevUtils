@@ -165,6 +165,8 @@ ext {
                     mpAndroidChart               : "com.github.PhilJay:MPAndroidChart:v3.1.0",
                     // Banner 库 https://github.com/youth5201314/banner
                     banner                       : "com.youth.banner:banner:2.0.8",
+                    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
+                    mmkv                         : "com.tencent:mmkv-static:1.1.1",
 
                     // ========
                     // = 其他 =
