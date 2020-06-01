@@ -8,6 +8,8 @@ android {
 
     defaultConfig {
         minSdkVersion versions.app_minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
+
         versionCode versions.versionCode
         versionName versions.versionName
 
