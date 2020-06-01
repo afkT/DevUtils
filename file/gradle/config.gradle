@@ -101,41 +101,42 @@ ext {
             ],
             'lib'     : [
                     // Gson https://github.com/google/gson
-                    gson                         : "com.google.code.gson:gson:2.8.5",
+                    gson                         : "com.google.code.gson:gson:2.8.6",
                     // Imageloader 图片加载框架 https://github.com/nostra13/Android-Universal-Image-Loader
                     imageloader                  : "com.nostra13.universalimageloader:universal-image-loader:1.9.5",
                     // Glide 加载框架 https://github.com/bumptech/glide
-                    glide                        : "com.github.bumptech.glide:glide:4.9.0",
-                    glide_compiler               : "com.github.bumptech.glide:compiler:4.9.0",
+                    glide                        : "com.github.bumptech.glide:glide:4.11.0",
+                    glide_compiler               : "com.github.bumptech.glide:compiler:4.11.0",
                     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
                     eventbus                     : "org.greenrobot:eventbus:3.2.0",
                     // https://github.com/square/okio
                     okio                         : "com.squareup.okio:okio:2.6.0",
                     // OkHttp3 网络请求框架 https://github.com/square/okhttp
-                    okhttp3                      : "com.squareup.okhttp3:okhttp:4.5.0",
+                    okhttp3                      : "com.squareup.okhttp3:okhttp:4.7.2",
                     // okhttp 日志拦截器 https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor
-                    okhttp3_logging              : "com.squareup.okhttp3:logging-interceptor:4.5.0",
+                    okhttp3_logging              : "com.squareup.okhttp3:logging-interceptor:4.7.2",
                     // 网络请求库  https://github.com/square/retrofit
-                    retrofit                     : "com.squareup.retrofit2:retrofit:2.8.1",
+                    retrofit                     : "com.squareup.retrofit2:retrofit:2.9.0",
                     // Okgo https://github.com/jeasonlzy/okhttp-OkGo
                     okgo                         : "com.lzy.net:okgo:3.0.4",
                     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
                     okserver                     : "com.lzy.net:okserver:2.0.5",
                     // fastjson https://github.com/alibaba/fastjson
-                    fastjson                     : "com.alibaba:fastjson:1.2.61",
+                    fastjson                     : "com.alibaba:fastjson:1.2.70",
+                    fastjson_android             : "com.alibaba:fastjson:1.1.71.android",
                     // View 注入框架 https://github.com/JakeWharton/butterknife
                     butterknife                  : "com.jakewharton:butterknife:10.2.1",
                     butterknife_compiler         : "com.jakewharton:butterknife-compiler:10.2.1",
                     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
                     pictureSelector              : "com.github.LuckSiege.PictureSelector:picture_library:v2.2.5",
                     // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 ) https://github.com/google/flexbox-layout
-                    flexbox                      : "com.google.android:flexbox:0.2.5", // // https://juejin.im/post/58d1035161ff4b00603ca9c4
+                    flexbox                      : "com.google.android:flexbox:2.0.1", // // https://juejin.im/post/58d1035161ff4b00603ca9c4
                     // 评价等级控件 https://github.com/hedge-hog/RatingBar
                     ratingbar                    : "com.hedgehog.ratingbar:app:1.1.2",
                     // 加载动画效果 https://github.com/Kyson/WhorlView
                     whorlviewlibrary             : "com.tt:whorlviewlibrary:1.0.3",
                     // 圆形 ImageView https://github.com/hdodenhof/CircleImageView
-                    circleimageview              : "de.hdodenhof:circleimageview:2.2.0",
+                    circleimageview              : "de.hdodenhof:circleimageview:3.1.0",
                     // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
                     pickerview                   : "com.contrarywind:Android-PickerView:4.1.9", // https://blog.csdn.net/qq_22393017/article/details/58099486
                     // 图片缩放 https://github.com/chrisbanes/PhotoView
