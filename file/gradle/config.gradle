@@ -133,7 +133,7 @@ ext {
                     butterknife                  : "com.jakewharton:butterknife:10.2.1",
                     butterknife_compiler         : "com.jakewharton:butterknife-compiler:10.2.1",
                     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-                    pictureSelector              : "com.github.LuckSiege.PictureSelector:picture_library:v2.2.5",
+                    pictureSelector              : "com.github.LuckSiege.PictureSelector:picture_library:v2.2.5", // 2.5.8
                     // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 ) https://github.com/google/flexbox-layout
                     flexbox                      : "com.google.android:flexbox:2.0.1", // // https://juejin.im/post/58d1035161ff4b00603ca9c4
                     // 评价等级控件 https://github.com/hedge-hog/RatingBar
@@ -177,8 +177,7 @@ ext {
                     arouter_api                  : "com.alibaba:arouter-api:1.5.0", // https://github.com/alibaba/ARouter/blob/master/README_CN.md
                     arouter_compiler             : "com.alibaba:arouter-compiler:1.2.2",
                     // 内存检测工具 https://github.com/square/leakcanary
-                    leakcanary                   : "com.squareup.leakcanary:leakcanary-android:1.5.4",
-                    leakcanary_no_op             : "com.squareup.leakcanary:leakcanary-android-no-op:1.5.4",
+                    leakcanary                   : "com.squareup.leakcanary:leakcanary-android:2.3",
                     // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
                     blockcanary_android          : "com.github.markzhai:blockcanary-android:1.5.0",
                     blockcanary_no_op            : "com.github.markzhai:blockcanary-no-op:1.5.0",
