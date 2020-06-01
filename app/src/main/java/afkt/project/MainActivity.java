@@ -98,6 +98,8 @@ public class MainActivity extends BaseActivity {
                 DevLogger.d(builder.toString());
                 // 拒绝了则再次请求处理
                 PermissionUtils.againRequest(MainActivity.this, this, deniedList);
+                // Toast
+                ToastUtils.showLong("请开启读写手机存储权限.");
             }
         }).request(this);
     }
