@@ -170,6 +170,8 @@ ext {
                     banner                       : "com.youth.banner:banner:2.0.10",
                     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
                     mmkv                         : "com.tencent:mmkv-static:1.1.2",
+                    // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
+                    autosize                     : "me.jessyan:autosize:1.2.1",
 
                     // ========
                     // = 其他 =

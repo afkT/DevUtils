@@ -59,6 +59,8 @@ dependencies {
     annotationProcessor deps.lib.glide_compiler
     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
     implementation deps.lib.eventbus
+    // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
+    implementation deps.lib.autosize
 
     // ===============================
     // = 其他第三方库 - 小功能、简约 =
