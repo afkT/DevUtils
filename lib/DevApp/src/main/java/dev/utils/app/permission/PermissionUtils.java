@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import androidx.core.content.PermissionChecker;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -305,7 +304,7 @@ public final class PermissionUtils {
     private static boolean isGranted(final Context context, final String permission) {
         if (context == null || permission == null) return false;
         // SDK 版本小于 23 则表示直接通过 || 检查是否通过权限
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(context, permission);
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || PermissionChecker.PERMISSION_GRANTED == PermissionChecker.checkSelfPermission(context, permission);
     }
 
     /**
