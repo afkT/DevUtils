@@ -18,12 +18,12 @@ public class ButtonAdapter extends BaseQuickAdapter<ButtonValue, BaseViewHolder>
 
     public ButtonAdapter(@Nullable List<ButtonValue> data) {
         super(R.layout.base_view_button, data);
+        this.addChildClickViewIds(R.id.vid_bvb_btn);
+        this.addChildLongClickViewIds(R.id.vid_bvb_btn);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, ButtonValue item) {
         helper.setText(R.id.vid_bvb_btn, item.text);
-                /*.addOnClickListener(R.id.vid_bvb_btn)
-                .addOnLongClickListener(R.id.vid_bvb_btn);*/
     }
 }

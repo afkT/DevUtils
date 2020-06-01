@@ -182,9 +182,9 @@ ext {
                     blockcanary_android          : "com.github.markzhai:blockcanary-android:1.5.0",
                     blockcanary_no_op            : "com.github.markzhai:blockcanary-no-op:1.5.0",
                     // JavaPoet 编译时代码生成 https://github.com/square/javapoet
-                    javapoet                     : "com.squareup:javapoet:1.10.0",
+                    javapoet                     : "com.squareup:javapoet:1.12.1",
                     // APT 编译时注解简化服务 https://github.com/google/auto/tree/master/service
-                    auto_service                 : "com.google.auto.service:auto-service:1.0-rc6"
+                    auto_service                 : "com.google.auto.service:auto-service:1.0-rc7"
             ]
     ]
 }
