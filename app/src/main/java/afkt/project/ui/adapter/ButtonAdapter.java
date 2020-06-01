@@ -3,7 +3,7 @@ package afkt.project.ui.adapter;
 import androidx.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 
 import java.util.List;
 
@@ -22,8 +22,8 @@ public class ButtonAdapter extends BaseQuickAdapter<ButtonValue, BaseViewHolder>
 
     @Override
     protected void convert(BaseViewHolder helper, ButtonValue item) {
-        helper.setText(R.id.vid_bvb_btn, item.text)
-                .addOnClickListener(R.id.vid_bvb_btn)
-                .addOnLongClickListener(R.id.vid_bvb_btn);
+        helper.setText(R.id.vid_bvb_btn, item.text);
+                /*.addOnClickListener(R.id.vid_bvb_btn)
+                .addOnLongClickListener(R.id.vid_bvb_btn);*/
     }
 }

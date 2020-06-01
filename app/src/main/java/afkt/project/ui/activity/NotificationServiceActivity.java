@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
@@ -57,7 +58,7 @@ public class NotificationServiceActivity extends BaseToolbarActivity {
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonValue.getNotificationServiceButtonValues());
         vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this));
         vid_bvr_recy.setAdapter(buttonAdapter);
-        buttonAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+        buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);

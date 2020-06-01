@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 
 import java.util.Arrays;
 import java.util.List;
@@ -110,7 +111,7 @@ public class MainActivity extends BaseActivity {
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonValue.getMainButtonValues());
         vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this));
         vid_bvr_recy.setAdapter(buttonAdapter);
-        buttonAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+        buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);

@@ -107,6 +107,10 @@ ext {
                     // Glide 加载框架 https://github.com/bumptech/glide
                     glide                        : "com.github.bumptech.glide:glide:4.11.0",
                     glide_compiler               : "com.github.bumptech.glide:compiler:4.11.0",
+                    // Glide 图形库 https://github.com/wasabeef/glide-transformations
+                    glide_transformations        : "jp.wasabeef:glide-transformations:4.1.0",
+                    // GPU Filters https://github.com/cats-oss/android-gpuimage
+                    gpuimage                     : "jp.co.cyberagent.android:gpuimage:2.0.4",
                     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
                     eventbus                     : "org.greenrobot:eventbus:3.2.0",
                     // https://github.com/square/okio
@@ -141,33 +145,28 @@ ext {
                     pickerview                   : "com.contrarywind:Android-PickerView:4.1.9", // https://blog.csdn.net/qq_22393017/article/details/58099486
                     // 图片缩放 https://github.com/chrisbanes/PhotoView
                     photoview                    : "com.github.chrisbanes:PhotoView:2.3.0",
-                    // GPU Filters https://github.com/cats-oss/android-gpuimage
-                    gpuimage                     : "jp.co.cyberagent.android:gpuimage:2.0.4",
                     // 动画库 https://github.com/airbnb/lottie-android
-                    lottie                       : "com.airbnb.android:lottie:2.5.0", // https://www.jianshu.com/p/9a2136ecbc7b
+                    lottie                       : "com.airbnb.android:lottie:3.4.0", // https://www.jianshu.com/p/9a2136ecbc7b
                     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
                     smartrefreshlayout           : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.2",
                     // 下拉刷新框架 ( 横向 ) https://github.com/scwang90/SmartRefreshHorizontal
                     smartrefreshHorizontal       : "com.scwang.smartrefresh:SmartRefreshHorizontal:1.1.0",
                     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-                    baserecyclerviewadapterhelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40",
+                    baserecyclerviewadapterhelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4",
                     // 文件下载库 https://github.com/lingochamp/FileDownloader/blob/master/README-zh.md
                     filedownloader               : "com.liulishuo.filedownloader:library:1.7.7",
                     // 二维码 ZXing https://github.com/zxing/zxing
-                    zxing_code                   : "com.google.zxing:core:3.3.3", // http://mvnrepository.com/artifact/com.google.zxing/core
+                    zxing_code                   : "com.google.zxing:core:3.4.0", // http://mvnrepository.com/artifact/com.google.zxing/core
                     zxing_android_code           : "com.google.zxing:android-core:3.3.0", // http://mvnrepository.com/artifact/com.google.zxing/android-core
-                    // Glide 图形库 https://github.com/wasabeef/glide-transformations
-                    glide_transformations        : "jp.wasabeef:glide-transformations:3.3.0",
                     // 多子 view 嵌套滚动通用解决方案 https://github.com/MFC-TEC/ELinkageScroll
                     // WebView、RecyclerView 多布局连贯滑动 https://github.com/donkingliang/ConsecutiveScroller
-                    consecutiveScroller_X        : "com.github.donkingliang:ConsecutiveScroller:2.5.0", // AndroidX
-                    consecutiveScroller          : "com.github.donkingliang:ConsecutiveScroller:1.5.1", // Android support
+                    consecutiveScroller          : "com.github.donkingliang:ConsecutiveScroller:2.6.1", // AndroidX
                     // 图表 https://github.com/PhilJay/MPAndroidChart
                     mpAndroidChart               : "com.github.PhilJay:MPAndroidChart:v3.1.0",
                     // Banner 库 https://github.com/youth5201314/banner
-                    banner                       : "com.youth.banner:banner:2.0.8",
+                    banner                       : "com.youth.banner:banner:2.0.10",
                     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
-                    mmkv                         : "com.tencent:mmkv-static:1.1.1",
+                    mmkv                         : "com.tencent:mmkv-static:1.1.2",
 
                     // ========
                     // = 其他 =
