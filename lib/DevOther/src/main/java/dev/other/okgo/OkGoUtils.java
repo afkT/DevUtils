@@ -45,6 +45,9 @@ public final class OkGoUtils {
     public static void initOkGo(Application application) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
+        // 自定义日志拦截 JSON 打印
+        builder.addInterceptor(new dev.other.okgo.HttpLoggingInterceptor());
+
         // ========================
         // = OkGo 内置 log 拦截器 =
         // ========================
