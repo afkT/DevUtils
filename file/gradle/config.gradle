@@ -140,9 +140,9 @@ ext {
                     // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
                     pickerview                   : "com.contrarywind:Android-PickerView:4.1.9", // https://blog.csdn.net/qq_22393017/article/details/58099486
                     // 图片缩放 https://github.com/chrisbanes/PhotoView
-                    photoview                    : "com.github.chrisbanes:PhotoView:2.1.3",
+                    photoview                    : "com.github.chrisbanes:PhotoView:2.3.0",
                     // GPU Filters https://github.com/cats-oss/android-gpuimage
-                    gpuimage                     : "jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1",
+                    gpuimage                     : "jp.co.cyberagent.android:gpuimage:2.0.4",
                     // 动画库 https://github.com/airbnb/lottie-android
                     lottie                       : "com.airbnb.android:lottie:2.5.0", // https://www.jianshu.com/p/9a2136ecbc7b
                     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout

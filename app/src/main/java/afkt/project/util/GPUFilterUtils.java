@@ -8,8 +8,8 @@ import dev.DevUtils;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.common.CloseUtils;
 import jp.co.cyberagent.android.gpuimage.GPUImage;
-import jp.co.cyberagent.android.gpuimage.GPUImageFilter;
-import jp.co.cyberagent.android.gpuimage.GPUImageToneCurveFilter;
+import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilter;
+import jp.co.cyberagent.android.gpuimage.filter.GPUImageToneCurveFilter;
 
 /**
  * detail: GPU 滤镜工具类

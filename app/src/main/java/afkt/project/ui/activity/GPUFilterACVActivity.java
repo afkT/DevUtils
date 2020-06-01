@@ -27,7 +27,7 @@ import dev.utils.app.ResourceUtils;
 import dev.utils.app.image.ImageUtils;
 import dev.utils.app.logger.DevLogger;
 import dev.widget.custom.CustomGallery;
-import jp.co.cyberagent.android.gpuimage.GPUImageToneCurveFilter;
+import jp.co.cyberagent.android.gpuimage.filter.GPUImageToneCurveFilter;
 
 /**
  * detail: GPU ACV 文件滤镜效果
