@@ -26,10 +26,10 @@ ext {
             app_minSdkVersion                       : 19,
             // 编译 SDK 版本
             compileSdkVersion                       : 29,
-            // 向前兼容 SDK 版本
-            targetSdkVersion                        : 29,
-            // support 包 Lib 版本
-            supportLibVersion                       : '28.0.0',
+//            // 向前兼容 SDK 版本
+//            targetSdkVersion                        : 29,
+//            // support 包 Lib 版本
+//            supportLibVersion                       : '28.0.0',
             // java 版本
             javaVersion                             : JavaVersion.VERSION_1_8,
 
@@ -81,16 +81,17 @@ ext {
                     dev_environment_compiler        : "com.afkt:DevEnvironmentCompiler:${versions.dev_environment_compiler_version}",
                     dev_environment_compiler_release: "com.afkt:DevEnvironmentCompilerRelease:${versions.dev_environment_compiler_release_version}"
             ],
-            'android' : [
-                    appcompat_v7     : "com.android.support:appcompat-v7:${versions.supportLibVersion}",
-                    support_v4       : "com.android.support:support-v4:${versions.supportLibVersion}",
-                    design           : "com.android.support:design:${versions.supportLibVersion}",
-                    cardview         : "com.android.support:cardview-v7:${versions.supportLibVersion}",
-                    recyclerview     : "com.android.support:recyclerview-v7:${versions.supportLibVersion}",
-                    multidex         : "com.android.support:multidex:1.0.3",
-                    constraint_layout: "com.android.support.constraint:constraint-layout:1.1.3",
-            ],
+//            'android' : [
+//                    appcompat_v7     : "com.android.support:appcompat-v7:${versions.supportLibVersion}",
+//                    support_v4       : "com.android.support:support-v4:${versions.supportLibVersion}",
+//                    design           : "com.android.support:design:${versions.supportLibVersion}",
+//                    cardview         : "com.android.support:cardview-v7:${versions.supportLibVersion}",
+//                    recyclerview     : "com.android.support:recyclerview-v7:${versions.supportLibVersion}",
+//                    multidex         : "com.android.support:multidex:1.0.3",
+//                    constraint_layout: "com.android.support.constraint:constraint-layout:1.1.3",
+//            ],
             'androidx': [
+                    // https://developer.android.google.cn/jetpack/androidx/migrate/class-mappings?hl=zh_cn
                     appcompat        : "androidx.appcompat:appcompat:1.0.0",
                     support_v4       : "androidx.legacy:legacy-support-v4:1.0.0",
                     design           : "com.google.android.material:material:1.0.0",
@@ -113,9 +114,9 @@ ext {
                     gpuimage                     : "jp.co.cyberagent.android:gpuimage:2.0.4",
                     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
                     eventbus                     : "org.greenrobot:eventbus:3.2.0",
-                    // https://github.com/square/okio
+                    // okip - https://github.com/square/okio
                     okio                         : "com.squareup.okio:okio:2.6.0",
-                    // OkHttp3 网络请求框架 https://github.com/square/okhttp
+                    // okhttp3 网络请求框架 https://github.com/square/okhttp
                     okhttp3                      : "com.squareup.okhttp3:okhttp:4.7.2",
                     // okhttp 日志拦截器 https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor
                     okhttp3_logging              : "com.squareup.okhttp3:logging-interceptor:4.7.2",

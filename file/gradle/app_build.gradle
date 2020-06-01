@@ -59,13 +59,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps.android.appcompat_v7
-    implementation deps.android.support_v4
-    implementation deps.android.design
-    implementation deps.android.cardview
-    implementation deps.android.recyclerview
-    implementation deps.android.multidex
-    implementation deps.android.constraint_layout
+    implementation deps.androidx.appcompat
+    implementation deps.androidx.support_v4
+    implementation deps.androidx.design
+    implementation deps.androidx.cardview
+    implementation deps.androidx.recyclerview
+    implementation deps.androidx.multidex
+    implementation deps.androidx.constraint_layout
 }
 
 // 编码设置

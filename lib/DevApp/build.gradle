@@ -11,7 +11,7 @@ android.defaultConfig {
 }
 
 dependencies {
-    implementation deps.androidx.design
+    compileOnly deps.androidx.design
     compileOnly deps.androidx.appcompat
 }
 

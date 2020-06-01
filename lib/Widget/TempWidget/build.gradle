@@ -3,8 +3,8 @@ apply {
 }
 
 dependencies {
-    implementation deps.android.appcompat_v7
-    implementation deps.android.support_v4
-    implementation deps.android.design
+    compileOnly deps.androidx.appcompat
+    compileOnly deps.androidx.support_v4
+    compileOnly deps.androidx.design
     compileOnly project(path: ':DevApp')
 }
