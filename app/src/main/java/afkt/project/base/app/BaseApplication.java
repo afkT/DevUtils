@@ -7,6 +7,8 @@ import android.webkit.WebSettings;
 
 import androidx.multidex.MultiDexApplication;
 
+import com.tencent.mmkv.MMKV;
+
 import afkt.project.R;
 import afkt.project.base.config.AppConfig;
 import afkt.project.base.config.PathConfig;
@@ -120,6 +122,8 @@ public class BaseApplication extends MultiDexApplication {
         initCrash();
         // 初始化 WebView 辅助类全局配置
         initWebViewBuilder();
+        // 初始化其他 lib
+        initOthers();
     }
 
     /**
@@ -197,5 +201,14 @@ public class BaseApplication extends MultiDexApplication {
                     }
                 });
         WebViewAssist.setGlobalBuilder(builder);
+    }
+
+    /**
+     * 初始化其他 lib
+     */
+    private void initOthers() {
+        // 初始化 MMKV
+        String rootDir = MMKV.initialize(this);
+        DevLogger.d("MMKV rootDir: " + rootDir);
     }
 }
