@@ -31,6 +31,7 @@ import dev.utils.common.DateUtils;
 import dev.utils.common.FileRecordUtils;
 import dev.utils.common.assist.TimeCounter;
 import dev.widget.StateLayout;
+import me.jessyan.autosize.AutoSizeConfig;
 
 /**
  * detail: Base Application
@@ -210,5 +211,10 @@ public class BaseApplication extends MultiDexApplication {
         // 初始化 MMKV
         String rootDir = MMKV.initialize(this);
         DevLogger.d("MMKV rootDir: " + rootDir);
+
+        // https://github.com/JessYanCoding/AndroidAutoSize/blob/master/demo-subunits/src/main/java/me/jessyan/autosize/demo/subunits/BaseApplication.java
+        // 可不调用, 默认开启 DP 转换
+        AutoSizeConfig.getInstance().getUnitsManager()
+                .setSupportDP(true);
     }
 }
