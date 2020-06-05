@@ -256,6 +256,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_CORNER_LABEL_VIEW: // 自定义角标 View
                         SkipUtils.startActivity(CornerLabelActivity.class, buttonValue);
                         break;
+                    case ButtonValue.BTN_VIEW_ASSIST: // View 填充辅助类
+                        SkipUtils.startActivity(ButtonItemActivity.class, buttonValue);
+                        break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
                         break;

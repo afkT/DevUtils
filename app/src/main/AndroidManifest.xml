@@ -81,6 +81,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- Button -->
+
+        <activity
+            android:name=".ui.ButtonItemActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- 事件 / 广播监听 ( 网络状态、屏幕旋转等 ) -->
 
         <activity

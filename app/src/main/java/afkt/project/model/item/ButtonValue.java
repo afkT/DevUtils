@@ -66,6 +66,19 @@ public class ButtonValue {
         return Collections.emptyList();
     }
 
+    /**
+     * 获取 Button Item 集合
+     * @param type button Type
+     * @return {@link List < ButtonValue >}
+     */
+    public static List<ButtonValue> getButtonValues(int type) {
+        switch (type) {
+            case ButtonValue.BTN_VIEW_ASSIST:
+                return getModuleFrameworkButtonValues();
+        }
+        return Collections.emptyList();
+    }
+
     // =============
     // = Framework =
     // =============
@@ -377,6 +390,7 @@ public class ButtonValue {
         lists.add(new ButtonValue(BTN_LINE_VIEW, "换行监听 View"));
         lists.add(new ButtonValue(BTN_LIKE_VIEW, "自定义点赞效果 View"));
         lists.add(new ButtonValue(BTN_CORNER_LABEL_VIEW, "自定义角标 View"));
+        lists.add(new ButtonValue(BTN_VIEW_ASSIST, "View 填充辅助类"));
         return lists;
     }
 
@@ -727,6 +741,9 @@ public class ButtonValue {
 
     // 自定义角标 View
     public static final int BTN_CORNER_LABEL_VIEW = BTN_DEV_WIDGET + 800;
+
+    // View 填充辅助类
+    public static final int BTN_VIEW_ASSIST = BTN_DEV_WIDGET + 900;
 
     // ================================
     // = DevEnvironment 环境配置切换库 =
