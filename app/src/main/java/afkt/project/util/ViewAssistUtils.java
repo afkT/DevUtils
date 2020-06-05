@@ -3,6 +3,8 @@ package afkt.project.util;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import afkt.project.R;
+import dev.utils.app.ListenerUtils;
 import dev.widget.assist.ViewAssist;
 
 /**
@@ -35,12 +37,11 @@ public final class ViewAssistUtils {
         return new ViewAssist.Adapter() {
             @Override
             public View onCreateView(ViewAssist assist, LayoutInflater inflater) {
-                return null;
+                return inflater.inflate(R.layout.view_assist_recy_loading, null);
             }
 
             @Override
             public void onBindView(ViewAssist assist, View view, int type) {
-
             }
         };
     }
@@ -58,7 +59,7 @@ public final class ViewAssistUtils {
 
             @Override
             public void onBindView(ViewAssist assist, View view, int type) {
-                assist.gone();
+                assist.gone(); // 可以设置渐变动画, 并在结束时隐藏根布局 -> assist.gone()
             }
         };
     }
@@ -72,12 +73,12 @@ public final class ViewAssistUtils {
         return new ViewAssist.Adapter() {
             @Override
             public View onCreateView(ViewAssist assist, LayoutInflater inflater) {
-                return null;
+                return inflater.inflate(R.layout.view_assist_recy_failed, null);
             }
 
             @Override
             public void onBindView(ViewAssist assist, View view, int type) {
-                assist.gone();
+                ListenerUtils.setOnClicks(listener, view);
             }
         };
     }

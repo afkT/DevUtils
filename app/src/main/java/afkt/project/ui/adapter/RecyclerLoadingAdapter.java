@@ -1,6 +1,6 @@
 package afkt.project.ui.adapter;
 
-import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -46,15 +46,16 @@ public class RecyclerLoadingAdapter extends BaseQuickAdapter<String, BaseViewHol
     }
 
     private void loadImage(BaseImageView imageView, ViewAssist viewAssist, String url) {
-        GlideUtils.with().displayImage(url, imageView, new RequestListener<Bitmap>() {
+        viewAssist.showIng();
+        GlideUtils.with().displayImageToDrawable(url, imageView, new RequestListener<Drawable>() {
             @Override
-            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                 viewAssist.showFailed();
                 return false;
             }
 
             @Override
-            public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                 viewAssist.showSuccess();
                 return false;
             }
