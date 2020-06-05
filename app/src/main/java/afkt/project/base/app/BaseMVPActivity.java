@@ -14,7 +14,7 @@ import dev.base.mvp.DevBaseMVPActivity;
 import dev.base.mvp.MVP;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.toast.ToastTintUtils;
-import dev.widget.StateLayout;
+import dev.widget.assist.StateLayout;
 
 /**
  * detail: Base MVP 基类

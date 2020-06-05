@@ -14,7 +14,7 @@ import afkt.project.ui.adapter.ArticleAdapter;
 import butterknife.BindView;
 import dev.utils.app.ViewUtils;
 import dev.utils.common.CollectionUtils;
-import dev.widget.StateLayout;
+import dev.widget.assist.StateLayout;
 
 /**
  * detail: 文章 MVP Activity

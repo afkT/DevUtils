@@ -16,7 +16,7 @@ import afkt.project.base.constants.KeyConstants;
 import afkt.project.databinding.ActivityArticleMvvmBinding;
 import afkt.project.ui.adapter.ArticleAdapter;
 import dev.utils.app.ViewUtils;
-import dev.widget.StateLayout;
+import dev.widget.assist.StateLayout;
 
 /**
  * detail: 文章 MVVM Activity

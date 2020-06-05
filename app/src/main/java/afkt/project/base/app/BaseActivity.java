@@ -13,7 +13,7 @@ import butterknife.Unbinder;
 import dev.base.activity.DevBaseActivity;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.toast.ToastTintUtils;
-import dev.widget.StateLayout;
+import dev.widget.assist.StateLayout;
 
 /**
  * detail: Base 基类

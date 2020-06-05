@@ -8,7 +8,7 @@ import dev.other.GsonUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.common.CollectionUtils;
 import dev.utils.common.HttpURLConnectionUtils;
-import dev.widget.StateLayout;
+import dev.widget.assist.StateLayout;
 
 /**
  * detail: 文章 MVVM

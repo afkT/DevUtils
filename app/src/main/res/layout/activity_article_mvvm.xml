@@ -44,7 +44,7 @@
                 android:overScrollMode="never"
                 android:scrollbars="none" />
 
-            <dev.widget.StateLayout
+            <dev.widget.assist.StateLayout
                 android:id="@+id/vid_aam_state"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
