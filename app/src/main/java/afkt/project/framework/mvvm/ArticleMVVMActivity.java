@@ -97,6 +97,10 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
 
             @Override
             public void onNotFound(StateLayout layout, int type) {
+                // 切换 View 操作
+                if (type == ViewAssist.TYPE_SUCCESS) {
+                    ViewUtils.reverseVisibilitys(true, viewDataBinding.vidAamRecy, viewDataBinding.vidAamState);
+                }
             }
 
             @Override

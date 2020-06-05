@@ -277,7 +277,9 @@ public final class ViewAssist {
         if (view != null) return view;
         Adapter adapter = mMapAdapters.get(type);
         if (mWrapper == null || adapter == null) return null;
-        return adapter.onCreateView(this, LayoutInflater.from(mWrapper.getContext()));
+        view = adapter.onCreateView(this, LayoutInflater.from(mWrapper.getContext()));
+        mTypeViews.put(type, view);
+        return view;
     }
 
     public int getCurrentType() {

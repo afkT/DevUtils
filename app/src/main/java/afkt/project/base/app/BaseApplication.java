@@ -153,9 +153,11 @@ public class BaseApplication extends MultiDexApplication {
                     TextViewUtils.setText(vid_slf_tips_tv, "请求失败, 请稍后重试!");
                 }
             }
-        }).register(ViewAssist.TYPE_EMPTY_DATA, R.layout.state_layout_no_data)
+        })
+                .register(ViewAssist.TYPE_ING, R.layout.state_layout_ing)
                 .register(ViewAssist.TYPE_FAILED, R.layout.state_layout_fail)
-                .register(ViewAssist.TYPE_ING, R.layout.state_layout_ing);
+                .register(ViewAssist.TYPE_EMPTY_DATA, R.layout.state_layout_no_data)
+                ;
         // 设置全局配置
         StateLayout.setGlobal(global);
     }

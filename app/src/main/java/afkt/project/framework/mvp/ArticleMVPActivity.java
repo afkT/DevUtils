@@ -68,6 +68,10 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
 
             @Override
             public void onNotFound(StateLayout layout, int type) {
+                // 切换 View 操作
+                if (type == ViewAssist.TYPE_SUCCESS) {
+                    ViewUtils.reverseVisibilitys(true, vid_ba_content_linear, vid_ba_state_linear);
+                }
             }
 
             @Override
