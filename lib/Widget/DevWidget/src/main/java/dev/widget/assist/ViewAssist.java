@@ -207,6 +207,22 @@ public final class ViewAssist {
         return this;
     }
 
+    /**
+     * 重置处理
+     * @return {@link ViewAssist}
+     */
+    public ViewAssist reset() {
+        //gone();
+        if (mWrapper != null) mWrapper.removeAllViews();
+        mData = null;
+        mMapDatas.clear();
+        mMapAdapters.clear();
+        mTypeViews.clear();
+        mCurrentType = -1;
+        mCurrentView = null;
+        return this;
+    }
+
     // =============
     // = get / set =
     // =============
