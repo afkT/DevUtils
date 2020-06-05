@@ -12,6 +12,7 @@ import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
+import afkt.project.ui.activity.ViewAssistActivity;
 import afkt.project.ui.activity.ViewAssistRecyclerViewLoadActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.util.SkipUtils;
@@ -51,6 +52,11 @@ public class ButtonItemActivity extends BaseToolbarActivity {
 
                     case ButtonValue.BTN_VIEW_ASSIST_RECYCLER: // RecyclerView ( loading )
                         SkipUtils.startActivity(ViewAssistRecyclerViewLoadActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_VIEW_ASSIST_ERROR: // Error ( failed )
+                    case ButtonValue.BTN_VIEW_ASSIST_EMPTY: // Empty ( data )
+                    case ButtonValue.BTN_VIEW_ASSIST_CUSTOM: // Custom Type
+                        SkipUtils.startActivity(ViewAssistActivity.class, buttonValue);
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");

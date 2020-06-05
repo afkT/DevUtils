@@ -387,6 +387,9 @@ public class ButtonList {
     public static List<ButtonValue> getViewAssistButtonValues() {
         List<ButtonValue> lists = new ArrayList<>();
         lists.add(new ButtonValue(BTN_VIEW_ASSIST_RECYCLER, "RecyclerView ( loading )"));
+        lists.add(new ButtonValue(BTN_VIEW_ASSIST_ERROR, "Error ( failed )"));
+        lists.add(new ButtonValue(BTN_VIEW_ASSIST_EMPTY, "Empty ( data )"));
+        lists.add(new ButtonValue(BTN_VIEW_ASSIST_CUSTOM, "Custom Type"));
         return lists;
     }
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <afkt.project.ui.widget.BaseImageView
+        android:layout_width="50.0dp"
+        android:layout_height="50.0dp"
+        android:src="@drawable/icon_error" />
+
+    <afkt.project.ui.widget.BaseTextView
+        style="@style/AppTheme.Base_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20.0dp"
+        android:text="error click retry"
+        android:textColor="@color/color_88"
+        android:textSize="20.0sp" />
+
+</LinearLayout>

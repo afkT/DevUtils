@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/vid_vac_cardview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30.0dp"
+        android:layout_marginBottom="20.0dp"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:stateListAnimator="@drawable/touch"
+        card_view:cardCornerRadius="25.0dp"
+        card_view:cardElevation="10.0dp"
+        tools:targetApi="lollipop">
+
+        <afkt.project.ui.widget.BaseImageView
+            android:layout_width="120.0dp"
+            android:layout_height="120.0dp"
+            android:layout_gravity="center"
+            android:background="@mipmap/icon" />
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

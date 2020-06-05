@@ -5,6 +5,8 @@ import android.util.SparseArray;
 
 import java.lang.reflect.Constructor;
 
+import afkt.project.widget.render.circle.jump.DanceLoadingRenderer;
+import afkt.project.widget.render.scenery.ElectricFanLoadingRenderer;
 import afkt.project.widget.render.shapechange.CircleBroodLoadingRenderer;
 import afkt.project.widget.render.shapechange.CoolWaitLoadingRenderer;
 
@@ -12,6 +14,13 @@ public final class LoadingRendererFactory {
     private static final SparseArray<Class<? extends LoadingRenderer>> LOADING_RENDERERS = new SparseArray<>();
 
     static {
+
+        //circle jump
+        LOADING_RENDERERS.put(6, DanceLoadingRenderer.class);
+
+        //scenery
+        LOADING_RENDERERS.put(9, ElectricFanLoadingRenderer.class);
+
         //shape change
         LOADING_RENDERERS.put(14, CircleBroodLoadingRenderer.class);
         LOADING_RENDERERS.put(15, CoolWaitLoadingRenderer.class);

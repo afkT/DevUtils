@@ -359,6 +359,12 @@ public class ButtonValue {
     public static final int BTN_VIEW_ASSIST = BTN_DEV_WIDGET + 900;
     // RecyclerView ( loading )
     public static final int BTN_VIEW_ASSIST_RECYCLER = BTN_VIEW_ASSIST + 1;
+    // Error ( failed )
+    public static final int BTN_VIEW_ASSIST_ERROR = BTN_VIEW_ASSIST + 2;
+    // Empty ( data )
+    public static final int BTN_VIEW_ASSIST_EMPTY = BTN_VIEW_ASSIST + 3;
+    // Custom Type
+    public static final int BTN_VIEW_ASSIST_CUSTOM = BTN_VIEW_ASSIST + 4;
 
     // ================================
     // = DevEnvironment 环境配置切换库 =
