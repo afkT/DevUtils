@@ -298,6 +298,15 @@ public final class ResourceUtils {
     }
 
     /**
+     * 获取 Dimension
+     * @param id resource identifier
+     * @return Dimension
+     */
+    public static int getDimensionInt(@DimenRes final int id) {
+        return (int) ResourceUtils.getDimension(id);
+    }
+
+    /**
      * 获取 Boolean
      * @param id resource identifier
      * @return Boolean
