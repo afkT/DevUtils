@@ -85,17 +85,22 @@ public final class ViewAssist {
     // = 对外公开方法 =
     // ================
 
-    // Type: 加载中、加载失败、空数据
-    public static final int TYPE_LOADING     = 1;
-    public static final int TYPE_LOAD_FAILED = 2;
-    public static final int TYPE_EMPTY_DATA  = 3;
+    // Type: 操作中、失败、成功、空数据
+    public static final int TYPE_ING        = 1;
+    public static final int TYPE_FAILED     = 2;
+    public static final int TYPE_SUCCESS    = 3;
+    public static final int TYPE_EMPTY_DATA = 4;
 
-    public void showLoading() {
-        showType(TYPE_LOADING);
+    public void showIng() {
+        showType(TYPE_ING);
     }
 
-    public void showLoadFailed() {
-        showType(TYPE_LOAD_FAILED);
+    public void showFailed() {
+        showType(TYPE_FAILED);
+    }
+
+    public void showSuccess() {
+        showType(TYPE_SUCCESS);
     }
 
     public void showEmptyData() {
