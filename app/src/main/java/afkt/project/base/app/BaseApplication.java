@@ -30,6 +30,7 @@ import dev.utils.app.logger.LogLevel;
 import dev.utils.common.DateUtils;
 import dev.utils.common.FileRecordUtils;
 import dev.utils.common.assist.TimeCounter;
+import dev.widget.assist.ViewAssist;
 import dev.widget.function.StateLayout;
 import me.jessyan.autosize.AutoSizeConfig;
 
@@ -131,25 +132,32 @@ public class BaseApplication extends MultiDexApplication {
      * 初始化状态布局配置
      */
     private void initStateLayout() {
-        StateLayout.GlobalBuilder globalBuilder = new StateLayout.GlobalBuilder(new StateLayout.OnStateChanged() {
+        StateLayout.Global global = new StateLayout.Global(new StateLayout.Listener() {
             @Override
-            public void OnChanged(StateLayout stateLayout, int state, String type, int size) {
-                View view = stateLayout.getView(state);
-                if (view != null) {
-                    if (state == 4) { // NO_DATA
-                        View vid_slnd_tips_tv = ViewUtils.findViewById(view, R.id.vid_slnd_tips_tv);
-                        TextViewUtils.setText(vid_slnd_tips_tv, "暂无数据");
-                    } else if (state == 2) { // FAIL
-                        View vid_slf_tips_tv = ViewUtils.findViewById(view, R.id.vid_slf_tips_tv);
-                        TextViewUtils.setText(vid_slf_tips_tv, "请求失败, 请稍后重试!");
-                    }
+            public void onRemove(StateLayout layout, int type, boolean removeView) {
+                if (removeView) layout.gone();
+            }
+
+            @Override
+            public void onNotFound(StateLayout layout, int type) {
+                layout.gone();
+            }
+
+            @Override
+            public void onChange(StateLayout layout, int type, int oldType, View view) {
+                if (type == ViewAssist.TYPE_EMPTY_DATA) { // NO_DATA
+                    View vid_slnd_tips_tv = ViewUtils.findViewById(view, R.id.vid_slnd_tips_tv);
+                    TextViewUtils.setText(vid_slnd_tips_tv, "暂无数据");
+                } else if (type == ViewAssist.TYPE_FAILED) { // FAIL
+                    View vid_slf_tips_tv = ViewUtils.findViewById(view, R.id.vid_slf_tips_tv);
+                    TextViewUtils.setText(vid_slf_tips_tv, "请求失败, 请稍后重试!");
                 }
             }
-        }).insert(StateLayout.NO_DATA, R.layout.state_layout_no_data)
-                .insert(StateLayout.FAIL, R.layout.state_layout_fail)
-                .insert(StateLayout.ING, R.layout.state_layout_ing);
+        }).register(ViewAssist.TYPE_EMPTY_DATA, R.layout.state_layout_no_data)
+                .register(ViewAssist.TYPE_FAILED, R.layout.state_layout_fail)
+                .register(ViewAssist.TYPE_ING, R.layout.state_layout_ing);
         // 设置全局配置
-        StateLayout.setBuilder(globalBuilder);
+        StateLayout.setGlobal(global);
     }
 
     /**

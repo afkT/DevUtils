@@ -16,6 +16,7 @@ import afkt.project.base.constants.KeyConstants;
 import afkt.project.databinding.ActivityArticleMvvmBinding;
 import afkt.project.ui.adapter.ArticleAdapter;
 import dev.utils.app.ViewUtils;
+import dev.widget.assist.ViewAssist;
 import dev.widget.function.StateLayout;
 
 /**
@@ -70,7 +71,7 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
         viewDataBinding.setVariable(BR.title, title); // 设置后, 会动态刷新
 
         // 初始化 View
-        View view = viewDataBinding.vidAamState.getView(StateLayout.ING);
+        View view = viewDataBinding.vidAamState.getView(ViewAssist.TYPE_ING);
         whorlView = ViewUtils.findViewById(view, R.id.vid_sli_load_view);
     }
 
@@ -89,16 +90,24 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
     public void initListeners() {
         super.initListeners();
         // 设置监听
-        viewDataBinding.vidAamState.setOnStateChanged(new StateLayout.OnStateChanged() {
+        viewDataBinding.vidAamState.setListener(new StateLayout.Listener() {
             @Override
-            public void OnChanged(StateLayout stateLayout, int state, String type, int size) {
+            public void onRemove(StateLayout layout, int type, boolean removeView) {
+            }
+
+            @Override
+            public void onNotFound(StateLayout layout, int type) {
+            }
+
+            @Override
+            public void onChange(StateLayout layout, int type, int oldType, View view) {
                 // 判断是否操作成功
-                boolean success = (state == StateLayout.SUCCESS);
+                boolean success = (type == ViewAssist.TYPE_SUCCESS);
                 // 切换 View 操作
                 if (ViewUtils.reverseVisibilitys(success, viewDataBinding.vidAamRecy, viewDataBinding.vidAamState)) {
                     // 属于请求成功
                 } else {
-                    if (state == StateLayout.ING) {
+                    if (type == ViewAssist.TYPE_ING) {
                         if (!whorlView.isCircling()) {
                             whorlView.start();
                         }
@@ -114,7 +123,7 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
     public void initOtherOperate() {
         super.initOtherOperate();
         // 表示请求中
-        viewDataBinding.vidAamState.setState(StateLayout.ING);
+        viewDataBinding.vidAamState.showIng();
         // 获取文章列表
         viewModel.getArticleLists();
     }

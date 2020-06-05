@@ -14,6 +14,7 @@ import afkt.project.ui.adapter.ArticleAdapter;
 import butterknife.BindView;
 import dev.utils.app.ViewUtils;
 import dev.utils.common.CollectionUtils;
+import dev.widget.assist.ViewAssist;
 import dev.widget.function.StateLayout;
 
 /**
@@ -43,7 +44,7 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
     public void initViews() {
         super.initViews();
         // 初始化 View
-        View view = stateLayout.getView(StateLayout.ING);
+        View view = stateLayout.getView(ViewAssist.TYPE_ING);
         vid_sli_load_view = ViewUtils.findViewById(view, R.id.vid_sli_load_view);
     }
 
@@ -60,16 +61,24 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
     public void initListeners() {
         super.initListeners();
         // 设置监听
-        stateLayout.setOnStateChanged(new StateLayout.OnStateChanged() {
+        stateLayout.setListener(new StateLayout.Listener() {
             @Override
-            public void OnChanged(StateLayout stateLayout, int state, String type, int size) {
+            public void onRemove(StateLayout layout, int type, boolean removeView) {
+            }
+
+            @Override
+            public void onNotFound(StateLayout layout, int type) {
+            }
+
+            @Override
+            public void onChange(StateLayout layout, int type, int oldType, View view) {
                 // 判断是否操作成功
-                boolean success = (state == StateLayout.SUCCESS);
+                boolean success = (type == ViewAssist.TYPE_SUCCESS);
                 // 切换 View 操作
                 if (ViewUtils.reverseVisibilitys(success, vid_ba_content_linear, vid_ba_state_linear)) {
                     // 属于请求成功
                 } else {
-                    if (state == StateLayout.ING) {
+                    if (type == ViewAssist.TYPE_ING) {
                         if (!vid_sli_load_view.isCircling()) {
                             vid_sli_load_view.start();
                         }
@@ -85,7 +94,7 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
     public void initOtherOperate() {
         super.initOtherOperate();
         // 表示请求中
-        stateLayout.setState(StateLayout.ING);
+        stateLayout.showIng();
         // 获取文章列表
         mPresenter.getArticleLists();
     }
@@ -105,14 +114,14 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
     public void onArticleListResponse(boolean succeed, ArticleBean articleBean) {
         if (succeed) {
             if (CollectionUtils.isEmpty(articleBean.data.datas)) { // 无数据
-                stateLayout.setState(StateLayout.NO_DATA);
+                stateLayout.showEmptyData();
             } else { // 请求成功
-                stateLayout.setState(StateLayout.SUCCESS);
+                stateLayout.showSuccess();
                 // 设置数据源
                 articleAdapter.setNewData(articleBean.data.datas);
             }
         } else { // 请求失败
-            stateLayout.setState(StateLayout.FAIL);
+            stateLayout.showFailed();
         }
     }
 }

@@ -198,7 +198,7 @@ public abstract class BaseActivity extends DevBaseActivity {
                         ViewUtils.reverseVisibilitys(itemCount != 0, vid_ba_content_linear, vid_ba_state_linear);
                         // 判断是否不存在数据
                         if (itemCount == 0) {
-                            stateLayout.setState(StateLayout.NO_DATA);
+                            stateLayout.showEmptyData();
                         }
 
                         if (adapterDataObserver != null) {

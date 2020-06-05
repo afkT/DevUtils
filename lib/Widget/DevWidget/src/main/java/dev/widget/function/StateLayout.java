@@ -30,7 +30,7 @@ public class StateLayout extends FrameLayout {
     private final  String     TAG = StateLayout.class.getSimpleName();
     // View 填充辅助类
     private        ViewAssist mAssist;
-    // 状态值改变接口
+    // 类型改变接口
     private        Listener   mListener;
     // 全局配置
     private static Global     sGlobal;
@@ -145,7 +145,7 @@ public class StateLayout extends FrameLayout {
 
         // type-layout
         private Map<Integer, Integer> mapLayouts = new HashMap<>();
-        // 状态值改变接口
+        // 类型改变接口
         private Listener              listener;
 
         public Global(Listener listener) {
