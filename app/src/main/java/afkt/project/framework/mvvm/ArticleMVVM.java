@@ -8,7 +8,7 @@ import dev.other.GsonUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.common.CollectionUtils;
 import dev.utils.common.HttpURLConnectionUtils;
-import dev.widget.assist.StateLayout;
+import dev.widget.function.StateLayout;
 
 /**
  * detail: 文章 MVVM
@@ -62,9 +62,9 @@ public final class ArticleMVVM {
                             if (mActivityArticleMvvmBinding != null) {
                                 ArticleBean articleBean = GsonUtils.fromJson(result, ArticleBean.class);
                                 if (CollectionUtils.isEmpty(articleBean.data.datas)) { // 无数据
-                                    mActivityArticleMvvmBinding.vidAamState.setState(StateLayout.State.NO_DATA.getValue());
+                                    mActivityArticleMvvmBinding.vidAamState.setState(StateLayout.NO_DATA);
                                 } else { // 请求成功
-                                    mActivityArticleMvvmBinding.vidAamState.setState(StateLayout.State.SUCCESS.getValue());
+                                    mActivityArticleMvvmBinding.vidAamState.setState(StateLayout.SUCCESS);
                                     // 设置数据源
                                     mArticleAdapter.setNewData(articleBean.data.datas);
                                 }
@@ -79,7 +79,7 @@ public final class ArticleMVVM {
                         @Override
                         public void run() { // 请求失败
                             if (mActivityArticleMvvmBinding != null) {
-                                mActivityArticleMvvmBinding.vidAamState.setState(StateLayout.State.FAIL.getValue());
+                                mActivityArticleMvvmBinding.vidAamState.setState(StateLayout.FAIL);
                             }
                         }
                     });

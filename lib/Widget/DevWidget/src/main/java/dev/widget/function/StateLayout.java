@@ -1,4 +1,4 @@
-package dev.widget.assist;
+package dev.widget.function;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -11,7 +11,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import dev.utils.LogPrintUtils;
 import dev.utils.app.ViewUtils;
 
 /**
@@ -27,7 +26,7 @@ public class StateLayout extends FrameLayout {
     // 功能模块类型 ( 功能区分非状态 )
     private String mType = "";
     // 状态值
-    private int mState = State.INIT.getValue();
+    private int mState = INIT;
     // 状态值改变接口
     private OnStateChanged mOnStateChanged;
     // View Map 校验
@@ -53,56 +52,20 @@ public class StateLayout extends FrameLayout {
     // = 状态枚举 =
     // ============
 
-    /**
-     * detail: 状态枚举类
-     * @author Ttt
-     */
-    public enum State {
+    // 初始化
+    public static int INIT = 0;
 
-        // 初始化
-        INIT(0),
+    // 操作中
+    public static int ING = 1;
 
-        // 操作中
-        ING(1),
+    // 操作失败
+    public static int FAIL = 2;
 
-        // 操作失败
-        FAIL(2),
+    // 操作成功
+    public static int SUCCESS = 3;
 
-        // 操作成功
-        SUCCESS(3),
-
-        // 无数据
-        NO_DATA(4);
-
-        // 状态值
-        int value;
-
-        State(int value) {
-            this.value = value;
-        }
-
-        /**
-         * 获取状态值
-         * @return 状态值
-         */
-        public int getValue() {
-            return value;
-        }
-
-        /**
-         * 获取状态枚举类
-         * @param state 状态值
-         * @return {@link State}
-         */
-        public static State getState(int state) {
-            try {
-                return State.values()[state];
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getState");
-                return null;
-            }
-        }
-    }
+    // 无数据
+    public static int NO_DATA = 4;
 
     // ===========
     // = get/set =
@@ -320,17 +283,6 @@ public class StateLayout extends FrameLayout {
         }
 
         /**
-         * 插入 View Layout
-         * @param state    状态值
-         * @param resource layout Id
-         * @return {@link GlobalBuilder}
-         */
-        public GlobalBuilder insert(State state, @LayoutRes int resource) {
-            if (state != null) return insert(state.value, resource);
-            return this;
-        }
-
-        /**
          * 移除对应状态 View
          * @param state 状态值
          * @return {@link GlobalBuilder}
@@ -352,7 +304,7 @@ public class StateLayout extends FrameLayout {
     public StateLayout reset() {
         mSize = 0;
         mType = "";
-        mState = State.INIT.getValue();
+        mState = INIT;
         mOnStateChanged = null;
         mViewMaps = new LinkedHashMap<>();
         this.post(new Runnable() {

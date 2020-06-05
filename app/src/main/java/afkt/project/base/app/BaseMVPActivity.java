@@ -14,7 +14,7 @@ import dev.base.mvp.DevBaseMVPActivity;
 import dev.base.mvp.MVP;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.toast.ToastTintUtils;
-import dev.widget.assist.StateLayout;
+import dev.widget.function.StateLayout;
 
 /**
  * detail: Base MVP 基类
@@ -202,7 +202,7 @@ public abstract class BaseMVPActivity<P extends MVP.Presenter> extends DevBaseMV
                         ViewUtils.reverseVisibilitys(itemCount != 0, vid_ba_content_linear, vid_ba_state_linear);
                         // 判断是否不存在数据
                         if (itemCount == 0) {
-                            stateLayout.setState(StateLayout.State.NO_DATA.getValue());
+                            stateLayout.setState(StateLayout.NO_DATA);
                         }
 
                         if (adapterDataObserver != null) {

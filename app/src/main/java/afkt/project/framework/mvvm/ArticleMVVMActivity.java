@@ -16,7 +16,7 @@ import afkt.project.base.constants.KeyConstants;
 import afkt.project.databinding.ActivityArticleMvvmBinding;
 import afkt.project.ui.adapter.ArticleAdapter;
 import dev.utils.app.ViewUtils;
-import dev.widget.assist.StateLayout;
+import dev.widget.function.StateLayout;
 
 /**
  * detail: 文章 MVVM Activity
@@ -70,7 +70,7 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
         viewDataBinding.setVariable(BR.title, title); // 设置后, 会动态刷新
 
         // 初始化 View
-        View view = viewDataBinding.vidAamState.getView(StateLayout.State.ING.getValue());
+        View view = viewDataBinding.vidAamState.getView(StateLayout.ING);
         whorlView = ViewUtils.findViewById(view, R.id.vid_sli_load_view);
     }
 
@@ -93,12 +93,12 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
             @Override
             public void OnChanged(StateLayout stateLayout, int state, String type, int size) {
                 // 判断是否操作成功
-                boolean success = (state == StateLayout.State.SUCCESS.getValue());
+                boolean success = (state == StateLayout.SUCCESS);
                 // 切换 View 操作
                 if (ViewUtils.reverseVisibilitys(success, viewDataBinding.vidAamRecy, viewDataBinding.vidAamState)) {
                     // 属于请求成功
                 } else {
-                    if (state == StateLayout.State.ING.getValue()) {
+                    if (state == StateLayout.ING) {
                         if (!whorlView.isCircling()) {
                             whorlView.start();
                         }
@@ -114,7 +114,7 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
     public void initOtherOperate() {
         super.initOtherOperate();
         // 表示请求中
-        viewDataBinding.vidAamState.setState(StateLayout.State.ING.getValue());
+        viewDataBinding.vidAamState.setState(StateLayout.ING);
         // 获取文章列表
         viewModel.getArticleLists();
     }

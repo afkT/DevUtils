@@ -14,7 +14,7 @@ import afkt.project.ui.adapter.ArticleAdapter;
 import butterknife.BindView;
 import dev.utils.app.ViewUtils;
 import dev.utils.common.CollectionUtils;
-import dev.widget.assist.StateLayout;
+import dev.widget.function.StateLayout;
 
 /**
  * detail: 文章 MVP Activity
@@ -43,7 +43,7 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
     public void initViews() {
         super.initViews();
         // 初始化 View
-        View view = stateLayout.getView(StateLayout.State.ING.getValue());
+        View view = stateLayout.getView(StateLayout.ING);
         vid_sli_load_view = ViewUtils.findViewById(view, R.id.vid_sli_load_view);
     }
 
@@ -64,12 +64,12 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
             @Override
             public void OnChanged(StateLayout stateLayout, int state, String type, int size) {
                 // 判断是否操作成功
-                boolean success = (state == StateLayout.State.SUCCESS.getValue());
+                boolean success = (state == StateLayout.SUCCESS);
                 // 切换 View 操作
                 if (ViewUtils.reverseVisibilitys(success, vid_ba_content_linear, vid_ba_state_linear)) {
                     // 属于请求成功
                 } else {
-                    if (state == StateLayout.State.ING.getValue()) {
+                    if (state == StateLayout.ING) {
                         if (!vid_sli_load_view.isCircling()) {
                             vid_sli_load_view.start();
                         }
@@ -85,7 +85,7 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
     public void initOtherOperate() {
         super.initOtherOperate();
         // 表示请求中
-        stateLayout.setState(StateLayout.State.ING.getValue());
+        stateLayout.setState(StateLayout.ING);
         // 获取文章列表
         mPresenter.getArticleLists();
     }
@@ -105,14 +105,14 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
     public void onArticleListResponse(boolean succeed, ArticleBean articleBean) {
         if (succeed) {
             if (CollectionUtils.isEmpty(articleBean.data.datas)) { // 无数据
-                stateLayout.setState(StateLayout.State.NO_DATA.getValue());
+                stateLayout.setState(StateLayout.NO_DATA);
             } else { // 请求成功
-                stateLayout.setState(StateLayout.State.SUCCESS.getValue());
+                stateLayout.setState(StateLayout.SUCCESS);
                 // 设置数据源
                 articleAdapter.setNewData(articleBean.data.datas);
             }
         } else { // 请求失败
-            stateLayout.setState(StateLayout.State.FAIL.getValue());
+            stateLayout.setState(StateLayout.FAIL);
         }
     }
 }

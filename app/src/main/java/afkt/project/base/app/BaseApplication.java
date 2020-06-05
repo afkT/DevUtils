@@ -30,7 +30,7 @@ import dev.utils.app.logger.LogLevel;
 import dev.utils.common.DateUtils;
 import dev.utils.common.FileRecordUtils;
 import dev.utils.common.assist.TimeCounter;
-import dev.widget.assist.StateLayout;
+import dev.widget.function.StateLayout;
 import me.jessyan.autosize.AutoSizeConfig;
 
 /**
@@ -145,9 +145,9 @@ public class BaseApplication extends MultiDexApplication {
                     }
                 }
             }
-        }).insert(StateLayout.State.NO_DATA, R.layout.state_layout_no_data)
-                .insert(StateLayout.State.FAIL, R.layout.state_layout_fail)
-                .insert(StateLayout.State.ING, R.layout.state_layout_ing);
+        }).insert(StateLayout.NO_DATA, R.layout.state_layout_no_data)
+                .insert(StateLayout.FAIL, R.layout.state_layout_fail)
+                .insert(StateLayout.ING, R.layout.state_layout_ing);
         // 设置全局配置
         StateLayout.setBuilder(globalBuilder);
     }
