@@ -18,6 +18,7 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 
@@ -49,18 +50,19 @@ public final class GlideUtils {
 
     // 日志 TAG
     private static final String TAG = GlideUtils.class.getSimpleName();
+
     // GlideLoader
-    private static GlideLoader sGlideLoader;
+    private static GlideLoader    sGlideLoader;
     // 图片默认加载配置
-    private static RequestOptions DF_OPTIONS = defaultOptions();
+    private static RequestOptions DF_OPTIONS        = defaultOptions();
     // 全局 Context
-    private static Context sContext;
+    private static Context        sContext;
     // 图片加载中
-    private static int sImageLoadingRes = 0;
+    private static int            sImageLoadingRes  = 0;
     // 图片地址异常
-    private static int sImageUriErrorRes = 0;
+    private static int            sImageUriErrorRes = 0;
     // 图片 ( 加载 / 解码 ) 失败
-    private static int sImageFailRes = 0;
+    private static int            sImageFailRes     = 0;
 
     // ================================
     // =  GlideLoader(RequestManager) =
@@ -309,7 +311,7 @@ public final class GlideUtils {
          * @param imageView ImageView
          */
         public void displayImage(final String uri, final ImageView imageView) {
-            displayImage(uri, imageView, null);
+            displayImage(uri, imageView, null, null);
         }
 
         /**
@@ -322,11 +324,39 @@ public final class GlideUtils {
          * @param options   {@link RequestOptions}
          */
         public void displayImage(final String uri, final ImageView imageView, final RequestOptions options) {
+            displayImage(uri, imageView, options, null);
+        }
+
+        /**
+         * 图片显示
+         * <pre>
+         *     支持显示 Gif 图片第一帧
+         * </pre>
+         * @param uri       Image Uri
+         * @param imageView ImageView
+         * @param listener  加载监听事件
+         */
+        public void displayImage(final String uri, final ImageView imageView, final RequestListener<Bitmap> listener) {
+            displayImage(uri, imageView, null, listener);
+        }
+
+        /**
+         * 图片显示
+         * <pre>
+         *     支持显示 Gif 图片第一帧
+         * </pre>
+         * @param uri       Image Uri
+         * @param imageView ImageView
+         * @param options   {@link RequestOptions}
+         * @param listener  加载监听事件
+         */
+        public void displayImage(final String uri, final ImageView imageView, final RequestOptions options,
+                                 final RequestListener<Bitmap> listener) {
             if (mRequestManager != null && imageView != null) {
                 if (options != null) {
-                    mRequestManager.asBitmap().load(uri).apply(options).into(imageView);
+                    mRequestManager.asBitmap().load(uri).apply(options).listener(listener).into(imageView);
                 } else {
-                    mRequestManager.asBitmap().load(uri).into(imageView);
+                    mRequestManager.asBitmap().load(uri).listener(listener).into(imageView);
                 }
             }
         }
@@ -339,7 +369,7 @@ public final class GlideUtils {
          * @param imageView ImageView
          */
         public void displayImageToGif(final String uri, final ImageView imageView) {
-            displayImageToGif(uri, imageView, null);
+            displayImageToGif(uri, imageView, null, null);
         }
 
         /**
@@ -349,11 +379,131 @@ public final class GlideUtils {
          * @param options   {@link RequestOptions}
          */
         public void displayImageToGif(final String uri, final ImageView imageView, final RequestOptions options) {
+            displayImageToGif(uri, imageView, options, null);
+        }
+
+        /**
+         * 图片显示
+         * @param uri       Image Uri
+         * @param imageView ImageView
+         * @param listener  加载监听事件
+         */
+        public void displayImageToGif(final String uri, final ImageView imageView, final RequestListener<GifDrawable> listener) {
+            displayImageToGif(uri, imageView, null, listener);
+        }
+
+        /**
+         * 图片显示
+         * @param uri       Image Uri
+         * @param imageView ImageView
+         * @param options   {@link RequestOptions}
+         * @param listener  加载监听事件
+         */
+        public void displayImageToGif(final String uri, final ImageView imageView, final RequestOptions options,
+                                      final RequestListener<GifDrawable> listener) {
             if (mRequestManager != null && imageView != null) {
                 if (options != null) {
-                    mRequestManager.asGif().load(uri).apply(options).into(imageView);
+                    mRequestManager.asGif().load(uri).apply(options).listener(listener).into(imageView);
                 } else {
-                    mRequestManager.asGif().load(uri).into(imageView);
+                    mRequestManager.asGif().load(uri).listener(listener).into(imageView);
+                }
+            }
+        }
+
+        // =
+
+        /**
+         * 图片显示
+         * @param uri       Image Uri
+         * @param imageView ImageView
+         */
+        public void displayImageToDrawable(final String uri, final ImageView imageView) {
+            displayImageToDrawable(uri, imageView, null, null);
+        }
+
+        /**
+         * 图片显示
+         * @param uri       Image Uri
+         * @param imageView ImageView
+         * @param options   {@link RequestOptions}
+         */
+        public void displayImageToDrawable(final String uri, final ImageView imageView, final RequestOptions options) {
+            displayImageToDrawable(uri, imageView, options, null);
+        }
+
+        /**
+         * 图片显示
+         * @param uri       Image Uri
+         * @param imageView ImageView
+         * @param listener  加载监听事件
+         */
+        public void displayImageToDrawable(final String uri, final ImageView imageView, final RequestListener<Drawable> listener) {
+            displayImageToDrawable(uri, imageView, null, listener);
+        }
+
+        /**
+         * 图片显示
+         * @param uri       Image Uri
+         * @param imageView ImageView
+         * @param options   {@link RequestOptions}
+         * @param listener  加载监听事件
+         */
+        public void displayImageToDrawable(final String uri, final ImageView imageView, final RequestOptions options,
+                                           final RequestListener<Drawable> listener) {
+            if (mRequestManager != null && imageView != null) {
+                if (options != null) {
+                    mRequestManager.asDrawable().load(uri).apply(options).listener(listener).into(imageView);
+                } else {
+                    mRequestManager.asDrawable().load(uri).listener(listener).into(imageView);
+                }
+            }
+        }
+
+        // =
+
+        /**
+         * 图片显示
+         * @param uri       Image Uri
+         * @param imageView ImageView
+         */
+        public void displayImageToFile(final String uri, final ImageView imageView) {
+            displayImageToFile(uri, imageView, null, null);
+        }
+
+        /**
+         * 图片显示
+         * @param uri       Image Uri
+         * @param imageView ImageView
+         * @param options   {@link RequestOptions}
+         */
+        public void displayImageToFile(final String uri, final ImageView imageView, final RequestOptions options) {
+            displayImageToFile(uri, imageView, options, null);
+        }
+
+        /**
+         * 图片显示
+         * @param uri       Image Uri
+         * @param imageView ImageView
+         * @param listener  加载监听事件
+         */
+        public void displayImageToFile(final String uri, final ImageView imageView, final RequestListener<File> listener) {
+            displayImageToFile(uri, imageView, null, listener);
+        }
+
+        /**
+         * 图片显示
+         * @param uri       Image Uri
+         * @param imageView ImageView
+         * @param options   {@link RequestOptions}
+         * @param listener  加载监听事件
+         */
+        public void displayImageToFile(final String uri, final ImageView imageView, final RequestOptions options,
+                                       final RequestListener<File> listener) {
+            if (mRequestManager != null && imageView != null) {
+                if (options != null) {
+                    mRequestManager.asFile().load(uri).apply(options).listener(listener).into(imageView);
+                } else {
+                    mRequestManager.asFile().load(uri).listener(listener).into(imageView);
                 }
             }
         }

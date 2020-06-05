@@ -12,7 +12,7 @@ import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
-import afkt.project.ui.activity.CornerLabelActivity;
+import afkt.project.ui.activity.ViewAssistRecyclerViewLoadActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.util.SkipUtils;
 import butterknife.BindView;
@@ -50,7 +50,7 @@ public class ButtonItemActivity extends BaseToolbarActivity {
                     // =============
 
                     case ButtonValue.BTN_VIEW_ASSIST_RECYCLER: // RecyclerView ( loading )
-                        SkipUtils.startActivity(CornerLabelActivity.class, buttonValue);
+                        SkipUtils.startActivity(ViewAssistRecyclerViewLoadActivity.class, buttonValue);
                         break;
                     default:
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");

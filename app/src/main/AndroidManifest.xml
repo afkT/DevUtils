@@ -353,6 +353,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- ViewAssist RecyclerView Loading -->
+
+        <activity
+            android:name=".ui.activity.ViewAssistRecyclerViewLoadActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- CapturePictureUtils 截图工具类 -->
 
         <activity
