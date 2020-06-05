@@ -15,6 +15,7 @@ import java.util.HashMap;
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.base.config.PathConfig;
+import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
 import butterknife.BindView;
@@ -48,7 +49,7 @@ public class DevExtendActivity extends BaseToolbarActivity {
         super.initValues();
 
         // 初始化布局管理器、适配器
-        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonValue.getExtendButtonValues());
+        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getExtendButtonValues());
         vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this));
         vid_bvr_recy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {

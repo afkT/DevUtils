@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.activity.CornerLabelActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
@@ -35,7 +36,7 @@ public class ButtonItemActivity extends BaseToolbarActivity {
     public void initValues() {
         super.initValues();
         // 初始化布局管理器、适配器
-        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonValue.getButtonValues(getModuleType()));
+        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getButtonValues(getModuleType()));
         vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this));
         vid_bvr_recy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
@@ -48,7 +49,7 @@ public class ButtonItemActivity extends BaseToolbarActivity {
                     // = DevWidget =
                     // =============
 
-                    case ButtonValue.BTN_VIEW_ASSIST: // View 填充辅助类
+                    case ButtonValue.BTN_VIEW_ASSIST_RECYCLER: // RecyclerView ( loading )
                         SkipUtils.startActivity(CornerLabelActivity.class, buttonValue);
                         break;
                     default:

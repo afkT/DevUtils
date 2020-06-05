@@ -17,6 +17,7 @@ import java.util.List;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.util.QuickWifiHotUtils;
@@ -77,7 +78,7 @@ public class WifiActivity extends BaseToolbarActivity {
         PermissionUtils.permission(Manifest.permission.WRITE_SETTINGS).request(this);
 
         // 初始化布局管理器、适配器
-        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonValue.getWifiButtonValues());
+        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getWifiButtonValues());
         vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this));
         vid_bvr_recy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {

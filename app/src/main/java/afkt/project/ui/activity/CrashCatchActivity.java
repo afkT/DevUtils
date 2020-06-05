@@ -12,6 +12,7 @@ import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.base.config.PathConfig;
+import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
 import butterknife.BindView;
@@ -41,7 +42,7 @@ public class CrashCatchActivity extends BaseToolbarActivity {
         super.initValues();
 
         // 初始化布局管理器、适配器
-        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonValue.getCrashButtonValues());
+        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getCrashButtonValues());
         vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this));
         vid_bvr_recy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {

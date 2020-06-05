@@ -12,6 +12,7 @@ import java.io.Serializable;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
 import butterknife.BindView;
@@ -43,7 +44,7 @@ public class CacheActivity extends BaseToolbarActivity {
         super.initValues();
 
         // 初始化布局管理器、适配器
-        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonValue.getCacheButtonValues());
+        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getCacheButtonValues());
         vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this));
         vid_bvr_recy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {

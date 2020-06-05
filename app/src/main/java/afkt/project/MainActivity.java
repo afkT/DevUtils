@@ -15,6 +15,7 @@ import java.util.List;
 
 import afkt.project.base.app.BaseActivity;
 import afkt.project.base.constants.KeyConstants;
+import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.ModuleActivity;
 import afkt.project.ui.activity.DevEnvironmentLibActivity;
@@ -116,7 +117,7 @@ public class MainActivity extends BaseActivity {
         // 设置 Android 版本信息
         vid_am_android_tv.setText(AppCommonUtils.convertSDKVersion());
         // 初始化布局管理器、适配器
-        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonValue.getMainButtonValues());
+        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getMainButtonValues());
         vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this));
         vid_bvr_recy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
