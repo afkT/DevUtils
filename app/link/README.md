@@ -173,6 +173,8 @@
 
 * [懂得智能配色的 ImageView](https://github.com/DingMouRen/PaletteImageView)
 
+* [让你明明白白的使用 RecyclerView - SnapHelper 详解](https://www.jianshu.com/p/e54db232df62)
+
 #### 屏幕适配
 
 * [Android 屏幕适配方案 ( 出自今日头条 )](https://www.jianshu.com/p/1eeb0d8d1c86)

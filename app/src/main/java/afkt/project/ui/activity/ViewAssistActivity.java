@@ -62,16 +62,17 @@ public class ViewAssistActivity extends BaseToolbarActivity {
 
             @Override
             public void onBindView(ViewAssist assist, View view, int type) {
+                boolean isContent = (assist.getTag() == null);
                 HandlerUtils.postRunnable(new Runnable() {
                     @Override
                     public void run() {
-                        if (assist.getTag() == null) {
+                        if (isContent) {
                             assist.showType(100);
                         } else {
                             assist.showType(200);
                         }
                     }
-                }, 5000);
+                }, isContent ? 3000 : 2000);
             }
         }).register(100, new ViewAssist.Adapter() {
             @Override
@@ -115,7 +116,7 @@ public class ViewAssistActivity extends BaseToolbarActivity {
                     public void run() {
                         assist.showType(Integer.MAX_VALUE);
                     }
-                }, 8000);
+                }, 3000);
             }
         }).register(Integer.MAX_VALUE, new ViewAssist.Adapter() {
             @Override
@@ -143,7 +144,7 @@ public class ViewAssistActivity extends BaseToolbarActivity {
                     public void run() {
                         assist.showType(159);
                     }
-                }, 8000);
+                }, 3000);
             }
         }).register(159, new ViewAssist.Adapter() {
             @Override

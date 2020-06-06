@@ -31,6 +31,10 @@ implementation 'com.afkt:DevWidgetX:1.0.1'
 | ![ScanShapeView - Square](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/scan_shape_view_square.gif) | ![ScanShapeView - Hexagon](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/scan_shape_view_hexagon.gif) | ![ScanShapeView - Annulus](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/scan_shape_view_annulus.gif) |
 | LoadProgressBar | FlowLikeView | CornerLabelView |
 | ![LoadProgressBar](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/load_progress_bar.gif) | ![FlowLikeView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/flow_like_view.gif) | ![CornerLabelView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/corner_label_view.jpg) |
+| ViewAssist | ViewAssist - Loading | ViewAssist - Loading |
+| ![ViewAssist](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/view_assist.jpg) | ![ViewAssist - Loading](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/view_assist_loading.gif) | ![ViewAssist - Loading](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/view_assist_loading2.gif) |
+| ViewAssist - Error | ViewAssist - Empty | ViewAssist - Custom |
+| ![ViewAssist - Error](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/view_assist_error.gif) | ![ViewAssist - Empty](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/view_assist_empty.gif) | ![ViewAssist - Custom](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/view_assist_custom.gif) |
 
 
 ## Catalog
