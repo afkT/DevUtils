@@ -217,6 +217,8 @@
 | preload | 预加载图片 |
 | displayImage | 图片显示 |
 | displayImageToGif | 图片显示 |
+| displayImageToDrawable | 图片显示 |
+| displayImageToFile | 图片显示 |
 | loadImageBitmap | 图片加载 |
 | loadImageDrawable | 图片加载 |
 | loadImageFile | 图片加载 |
@@ -341,6 +343,13 @@
 
 
 ## <span id="devotherokgo">**`dev.other.okgo`**</span>
+
+
+* **OkHttp 打印日志拦截器 ->** [HttpLoggingInterceptor.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/HttpLoggingInterceptor.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| intercept | intercept |
 
 
 * **OkGo 请求统一回调处理类 ->** [OkGoCallback.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoCallback.java)

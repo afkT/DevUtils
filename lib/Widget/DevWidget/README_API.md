@@ -3,8 +3,8 @@
 
 ```java
 // AndroidX
-implementation 'com.afkt:DevAppX:1.9.4'
-implementation 'com.afkt:DevWidgetX:1.0.1'
+implementation 'com.afkt:DevAppX:1.9.5'
+implementation 'com.afkt:DevWidgetX:1.0.2'
 ```
 
 ## 目录结构
@@ -13,6 +13,7 @@ implementation 'com.afkt:DevWidgetX:1.0.1'
 - dev                                                 | 根目录
    - widget                                           | 自定义 View 根目录
       - adjust                                        | 自动调节高度 View
+      - assist                                        | View 辅助类
       - custom                                        | 自定义 View
       - function                                      | 需求功能 View
       - ui                                            | UI View
@@ -36,6 +37,7 @@ implementation 'com.afkt:DevWidgetX:1.0.1'
 - dev                                                 | 根目录
    - [widget](#devwidget)                             | 自定义 View 根目录
       - [adjust](#devwidgetadjust)                    | 自动调节高度 View
+      - [assist](#devwidgetassist)                    | View 辅助类
       - [custom](#devwidgetcustom)                    | 自定义 View
       - [function](#devwidgetfunction)                | 需求功能 View
       - [ui](#devwidgetui)                            | UI View
@@ -78,6 +80,37 @@ implementation 'com.afkt:DevWidgetX:1.0.1'
 | 方法 | 注释 |
 | :- | :- |
 | onMeasure | onMeasure |
+
+
+## <span id="devwidgetassist">**`dev.widget.assist`**</span>
+
+
+* **View 填充辅助类 ->** [ViewAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/assist/ViewAssist.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| wrap | 传入包裹 View |
+| showIng | showIng |
+| showFailed | showFailed |
+| showSuccess | showSuccess |
+| showEmptyData | showEmptyData |
+| showType | 显示 Type Adapter View |
+| notifyDataSetChanged | notifyDataSetChanged |
+| gone | gone |
+| visible | visible |
+| register | 注册 type |
+| unregister | 取消注册 type |
+| reset | 重置处理 |
+| getWrapper | getWrapper |
+| getTag | getTag |
+| setTag | setTag |
+| getData | getData |
+| setData | setData |
+| getAdapter | getAdapter |
+| getView | getView |
+| getCurrentType | getCurrentType |
+| getCurrentView | getCurrentView |
+| setListener | setListener |
 
 
 ## <span id="devwidgetcustom">**`dev.widget.custom`**</span>
@@ -267,6 +300,32 @@ implementation 'com.afkt:DevWidgetX:1.0.1'
 | getPaint | 获取绘制画笔 |
 | setPaint | 设置绘制画笔 |
 | setDrawCallBack | 设置绘制回调事件 |
+
+
+* **状态布局 ->** [StateLayout.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/function/StateLayout.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| reset | 重置处理 |
+| setGlobal | setGlobal |
+| setListener | setListener |
+| showIng | showIng |
+| showFailed | showFailed |
+| showSuccess | showSuccess |
+| showEmptyData | showEmptyData |
+| showType | showType |
+| notifyDataSetChanged | notifyDataSetChanged |
+| gone | gone |
+| visible | visible |
+| register | 注册 type |
+| unregister | 取消注册 type |
+| getTag | getTag |
+| setTag | setTag |
+| getData | getData |
+| setData | setData |
+| getView | getView |
+| getCurrentType | getCurrentType |
+| getCurrentView | getCurrentView |
 
 
 ## <span id="devwidgetui">**`dev.widget.ui`**</span>

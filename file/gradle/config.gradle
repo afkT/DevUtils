@@ -38,9 +38,9 @@ ext {
             // ===========
 
             // 版本号
-            dev_app_versionCode                     : 194,
+            dev_app_versionCode                     : 195,
             // 版本名
-            dev_app_versionName                     : '1.9.4',
+            dev_app_versionName                     : '1.9.5',
 
             // 版本号
             dev_assist_versionCode                  : 103,
@@ -53,9 +53,9 @@ ext {
             dev_java_version                        : '1.1.2',
 
             // 版本号
-            dev_widget_versionCode                  : 101,
+            dev_widget_versionCode                  : 102,
             // 版本名
-            dev_widget_versionName                  : '1.0.1',
+            dev_widget_versionName                  : '1.0.2',
 
             // 版本号
             dev_environment_versionCode             : 100,
@@ -69,11 +69,9 @@ ext {
     deps = [
             'dev'     : [
                     // https://github.com/afkT/DevUtils
-                    dev_app                         : "com.afkt:DevApp:${versions.dev_app_versionName}",
                     dev_app_x                       : "com.afkt:DevAppX:${versions.dev_app_versionName}",
                     dev_assist                      : "com.afkt:DevAssist:${versions.dev_assist_versionName}",
                     dev_java                        : "com.afkt:DevJava:${versions.dev_java_version}",
-                    dev_widget                      : "com.afkt:DevWidget:${versions.dev_widget_versionName}",
                     dev_widget_x                    : "com.afkt:DevWidgetX:${versions.dev_widget_versionName}",
                     // 环境配置切换库
                     dev_environment                 : "com.afkt:DevEnvironment:${versions.dev_environment_version}",

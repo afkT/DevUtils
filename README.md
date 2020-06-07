@@ -1,7 +1,7 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-afkT-blue.svg)](https://github.com/afkT)
 [![GitHub license](https://img.shields.io/github/license/afkT/DevUtils.svg)](https://github.com/afkT/DevUtils/blob/master/LICENSE)
-[![Bintray](https://img.shields.io/badge/DevUtils-1.9.4-brightgreen.svg)](https://bintray.com/afkt/maven/DevAppX)
+[![Bintray](https://img.shields.io/badge/DevUtils-1.9.5-brightgreen.svg)](https://bintray.com/afkt/maven/DevAppX)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Utils](https://img.shields.io/badge/utils-160+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
@@ -59,7 +59,7 @@
 ```java
 
 // DevApp Android 工具类库 https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md
-implementation 'com.afkt:DevAppX:1.9.4' // AndroidX
+implementation 'com.afkt:DevAppX:1.9.5' // AndroidX
 
 // DevJava Java 工具类库 ( 不依赖 android api ) https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md
 implementation 'com.afkt:DevJava:1.1.2' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
@@ -74,7 +74,7 @@ releaseAnnotationProcessor 'com.afkt:DevEnvironmentCompilerRelease:1.0.0'
 //annotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.0'
 
 // DevWidget 自定义 View UI 库 https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget
-implementation 'com.afkt:DevWidgetX:1.0.1' // AndroidX
+implementation 'com.afkt:DevWidgetX:1.0.2' // AndroidX
 ```
 
 ## License
