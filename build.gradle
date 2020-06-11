@@ -21,10 +21,12 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:4.0.0'
-        // Mavan
+        // mavan
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         // bintray
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+        // greendao
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
     }
 }
 

@@ -97,4 +97,6 @@ dependencies {
     implementation deps.lib.glide_transformations
     // 内存检测工具 https://github.com/square/leakcanary
     debugImplementation deps.lib.leakcanary
+    // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
+    implementation deps.lib.greenDAO
 }
