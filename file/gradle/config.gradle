@@ -99,6 +99,7 @@ ext {
                     multidex         : "androidx.multidex:multidex:2.0.1",
                     constraint_layout: "androidx.constraintlayout:constraintlayout:1.1.3",
                     viewpager2       : "androidx.viewpager2:viewpager2:1.0.0",
+                    sqlite           : "androidx.sqlite:sqlite:2.0.1",
             ],
             'lib'     : [
                     // Gson https://github.com/google/gson
@@ -172,6 +173,8 @@ ext {
                     autosize                     : "me.jessyan:autosize:1.2.1",
                     // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
                     greenDAO                     : "org.greenrobot:greendao:3.3.0",
+                    // SQLCipher for Android https://github.com/sqlcipher/android-database-sqlcipher
+                    sqlcipher                    : "net.zetetic:android-database-sqlcipher:4.4.0",
 
                     // ========
                     // = 其他 =

@@ -98,6 +98,7 @@ public class ButtonList {
         lists.add(new ButtonValue(BTN_ZXING, "ZXingQRCodeUtils"));
         lists.add(new ButtonValue(BTN_PICTURE_SELECTOR, "PictureSelectorUtils"));
         lists.add(new ButtonValue(BTN_OKGO, "OkGoUtils"));
+        lists.add(new ButtonValue(BTN_GREEN_DAO, "GreenDAO"));
         return lists;
     }
 

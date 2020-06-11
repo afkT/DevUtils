@@ -131,6 +131,8 @@ public class ModuleActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_OKGO: // OkGoUtils
                         ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
                         break;
+                    case ButtonValue.BTN_GREEN_DAO: // GreenDAO
+                        break;
 
                     // ======
                     // = UI =

@@ -7,9 +7,10 @@ android {
         applicationId "afkt.project"
     }
 
-    // data binding
-    buildFeatures {
-        dataBinding = true
+    // https://greenrobot.org/greendao/documentation/javadoc/
+    greendao {
+        // https://greenrobot.org/greendao/documentation/modelling-entities/
+        schemaVersion 1
     }
 }
 
@@ -99,4 +100,6 @@ dependencies {
     debugImplementation deps.lib.leakcanary
     // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
     implementation deps.lib.greenDAO
+    // SQLCipher for Android https://github.com/sqlcipher/android-database-sqlcipher
+    implementation deps.lib.sqlcipher
 }

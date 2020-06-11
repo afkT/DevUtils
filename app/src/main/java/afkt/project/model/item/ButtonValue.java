@@ -87,6 +87,9 @@ public class ButtonValue {
     // OkGoUtils
     public static final int BTN_OKGO = MODULE_LIB + 7;
 
+    // GreenDAO
+    public static final int BTN_GREEN_DAO = MODULE_LIB + 8;
+
     // ======
     // = UI =
     // ======

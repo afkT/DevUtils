@@ -16,6 +16,11 @@ android {
         multiDexEnabled true
     }
 
+    // data binding
+    buildFeatures {
+        dataBinding = true
+    }
+
     lintOptions {
         // https://blog.csdn.net/berber78/article/details/60766091
         abortOnError false
@@ -67,6 +72,7 @@ dependencies {
     implementation deps.androidx.recyclerview
     implementation deps.androidx.multidex
     implementation deps.androidx.constraint_layout
+    implementation deps.androidx.sqlite
 }
 
 // 编码设置
