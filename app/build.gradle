@@ -104,4 +104,8 @@ dependencies {
     implementation deps.lib.greenDAO
     // SQLCipher for Android https://github.com/sqlcipher/android-database-sqlcipher
     implementation deps.lib.sqlcipher
+    // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
+    implementation deps.lib.luban
+    // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
+    implementation deps.lib.stickyDecoration
 }

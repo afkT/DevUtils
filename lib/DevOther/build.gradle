@@ -28,4 +28,6 @@ dependencies {
     implementation deps.lib.okgo
     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
     implementation deps.lib.okserver
+    // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
+    implementation deps.lib.luban
 }

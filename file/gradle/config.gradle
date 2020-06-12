@@ -147,6 +147,8 @@ ext {
                     pickerview                   : "com.contrarywind:Android-PickerView:4.1.9", // https://blog.csdn.net/qq_22393017/article/details/58099486
                     // 图片缩放 https://github.com/chrisbanes/PhotoView
                     photoview                    : "com.github.chrisbanes:PhotoView:2.3.0",
+                    // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
+                    stickyDecoration             : "com.gavin.com.library:stickyDecoration:1.5.2",
                     // 动画库 https://github.com/airbnb/lottie-android
                     lottie                       : "com.airbnb.android:lottie:3.4.0", // https://www.jianshu.com/p/9a2136ecbc7b
                     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
@@ -182,6 +184,8 @@ ext {
                     greenDAO                     : "org.greenrobot:greendao:3.3.0",
                     // SQLCipher for Android https://github.com/sqlcipher/android-database-sqlcipher
                     sqlcipher                    : "net.zetetic:android-database-sqlcipher:4.4.0",
+                    // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
+                    luban                        : "top.zibin:Luban:1.1.8",
 
                     // ========
                     // = 其他 =
