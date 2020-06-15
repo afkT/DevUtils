@@ -111,24 +111,13 @@ public class ModuleActivity extends BaseToolbarActivity {
                         SkipUtils.startActivity(EventBusActivity.class, buttonValue);
                         break;
                     case ButtonValue.BTN_GLIDE: // GlideUtils
-                        ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
-                        break;
                     case ButtonValue.BTN_IMAGE_LOADER: // ImageLoaderUtils
-                        ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
-                        break;
                     case ButtonValue.BTN_GSON: // GsonUtils
-                        ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
-                        break;
                     case ButtonValue.BTN_FASTJSON: // FastjsonUtils
-                        ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
-                        break;
                     case ButtonValue.BTN_ZXING: // ZXingQRCodeUtils
-                        ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
-                        break;
                     case ButtonValue.BTN_PICTURE_SELECTOR: // PictureSelectorUtils
-                        ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
-                        break;
                     case ButtonValue.BTN_OKGO: // OkGoUtils
+                    case ButtonValue.BTN_LUBAN: // LubanUtils
                         ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
                         break;
                     case ButtonValue.BTN_GREEN_DAO: // GreenDAO

@@ -87,8 +87,11 @@ public class ButtonValue {
     // OkGoUtils
     public static final int BTN_OKGO = MODULE_LIB + 7;
 
+    // LubanUtils
+    public static final int BTN_LUBAN = MODULE_LIB + 8;
+
     // GreenDAO
-    public static final int BTN_GREEN_DAO = MODULE_LIB + 8;
+    public static final int BTN_GREEN_DAO = MODULE_LIB + 9;
 
     // ======
     // = UI =
