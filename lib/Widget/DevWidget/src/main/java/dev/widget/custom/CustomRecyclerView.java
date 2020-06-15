@@ -27,7 +27,7 @@ import dev.widget.R;
  *     android Recycleview 中 item 没有填满屏幕的问题
  *     @see <a href="https://blog.csdn.net/shanshan_1117/article/details/79363971"/>
  *     android RecyclerView 悬浮吸顶效果
- *     @see <a href="https://www.zhangshengrong.com/p/JKN8Ejo5X6/"/>
+ *     @see <a href="https://www.zhangshengrong.com/p/JKN8Ejo5X6"/>
  *     @see <a href="https://github.com/LidongWen/MultiTypeAdapter"/>
  *     <p></p>
  *     RecyclerView 用 LinearLayout/RelativeLayout 包住、使用 {@link CustomNestedScrollView}
