@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import org.greenrobot.greendao.database.Database;
 
 /**
- * detail: GreenDao DB 相关类
+ * detail: GreenDao 管理类
  * @author Ttt
  * <pre>
  *     Android ORM 框架 : GreenDao 使用详解 ( 进阶篇 )
@@ -14,13 +14,13 @@ import org.greenrobot.greendao.database.Database;
  *     @see <a href="https://greenrobot.org/greendao/documentation/modelling-entities"/>
  * </pre>
  */
-public final class GreenDaoUtils {
+public final class GreenManager {
 
-    private GreenDaoUtils() {
+    private GreenManager() {
     }
 
     // 日志 TAG
-    private static final String TAG = GreenDaoUtils.class.getSimpleName();
+    private static final String TAG = GreenManager.class.getSimpleName();
 
     private static UpgradeHelper helper;
     private static Database      db;
@@ -85,7 +85,19 @@ public final class GreenDaoUtils {
         return daoMaster;
     }
 
-    public DaoSession getDaoSession() {
+    public static DaoSession getDaoSession() {
         return daoSession;
+    }
+
+    // ========
+    // = Dao =
+    // ========
+
+    public static NoteDao getNoteDao() {
+        return daoSession.getNoteDao();
+    }
+
+    public static NotePictureDao getNotePictureDao() {
+        return daoSession.getNotePictureDao();
     }
 }

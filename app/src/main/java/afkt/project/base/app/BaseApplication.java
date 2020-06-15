@@ -12,7 +12,7 @@ import com.tencent.mmkv.MMKV;
 import afkt.project.R;
 import afkt.project.base.config.AppConfig;
 import afkt.project.base.config.PathConfig;
-import afkt.project.db.GreenDaoUtils;
+import afkt.project.db.GreenManager;
 import afkt.project.util.ProjectUtils;
 import dev.DevUtils;
 import dev.assist.WebViewAssist;
@@ -229,6 +229,6 @@ public class BaseApplication extends MultiDexApplication {
                 .setSupportDP(true);
 
         // 初始化 GreenDao
-        GreenDaoUtils.init(this);
+        GreenManager.init(this);
     }
 }
