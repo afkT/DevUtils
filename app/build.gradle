@@ -7,6 +7,7 @@ android {
         applicationId "afkt.project"
     }
 
+    // https://greenrobot.org/greendao/documentation/
     // https://greenrobot.org/greendao/documentation/javadoc/
     greendao {
         // https://greenrobot.org/greendao/documentation/modelling-entities/
