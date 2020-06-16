@@ -28,7 +28,7 @@ public class ItemStickyBean extends AdapterBean {
         String currentTime = DateUtils.getDateNow(format);
         // 设置标题
         if (currentTime.equals(timeFormat)) {
-            timeTile = "本日";
+            timeTile = "今日";
         } else {
             timeTile = DateUtils.formatTime(time, DateUtils.MMdd2);
         }
