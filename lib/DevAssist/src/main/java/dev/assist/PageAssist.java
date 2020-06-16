@@ -17,8 +17,6 @@ public class PageAssist<T> extends RequestStateAssist<T> {
 
     // 当前请求页数 ( 已成功 )
     private int mPageNum = config_page_num;
-    // 当前 ( 正在 / 准备 ) 请求的页数, 如果成功则赋值给 pageNum
-    private int mPageNumReady = config_page_num;
     // 每页请求条数
     private int mPageSize = config_page_size;
     // 数据总条数 ( 全部 ), 非当前页数有多少条
@@ -31,9 +29,7 @@ public class PageAssist<T> extends RequestStateAssist<T> {
 
     public PageAssist(int config_page_num) {
         this.config_page_num = config_page_num;
-
         this.mPageNum = config_page_num;
-        this.mPageNumReady = config_page_num;
     }
 
     public PageAssist(int config_page_num, int config_page_size) {
@@ -41,7 +37,6 @@ public class PageAssist<T> extends RequestStateAssist<T> {
         this.config_page_size = config_page_size;
 
         this.mPageNum = config_page_num;
-        this.mPageNumReady = config_page_num;
         this.mPageSize = config_page_size;
     }
 
@@ -85,35 +80,6 @@ public class PageAssist<T> extends RequestStateAssist<T> {
      */
     public PageAssist<T> setPageNum(final int pageNum) {
         this.mPageNum = pageNum;
-        return this;
-    }
-
-    // =
-
-    /**
-     * 获取当前 ( 正在 / 准备 ) 请求的页数
-     * @return 当前 ( 正在 / 准备 ) 请求的页数
-     */
-    public int getPageNumReady() {
-        return mPageNumReady;
-    }
-
-    /**
-     * 获取当前 ( 正在 / 准备 ) 请求的页数
-     * @param pageNumReady 请求的页数
-     * @return 当前 ( 正在 / 准备 ) 请求的页数
-     */
-    public int getPageNumReady(final int pageNumReady) {
-        return (this.mPageNumReady = pageNumReady);
-    }
-
-    /**
-     * 设置当前 ( 正在 / 准备 ) 请求的页数
-     * @param pageNumReady 请求的页数
-     * @return {@link PageAssist}
-     */
-    public PageAssist<T> setPageNumReady(final int pageNumReady) {
-        this.mPageNumReady = pageNumReady;
         return this;
     }
 
@@ -252,25 +218,6 @@ public class PageAssist<T> extends RequestStateAssist<T> {
         return this;
     }
 
-    // =
-
-    /**
-     * 获取下一页页数 ( 预加载页数 )
-     * @return 下一页页数 ( 预加载页数 )
-     */
-    public int getNextPageReady() {
-        return mPageNumReady + 1;
-    }
-
-    /**
-     * 设置下一页页数 ( 预加载页数 )
-     * @return {@link PageAssist}
-     */
-    public PageAssist<T> nextPageReady() {
-        mPageNumReady += 1;
-        return this;
-    }
-
     // ============
     // = 其他逻辑 =
     // ============
@@ -295,10 +242,8 @@ public class PageAssist<T> extends RequestStateAssist<T> {
      * @return {@link PageAssist}
      */
     public PageAssist<T> reset() {
-        setPageNum(config_page_num).setPageNumReady(config_page_num)
-                .setPageSize(config_page_size)
-                .setLastPage(false)
-                .setRequestNormal();
+        setPageNum(config_page_num).setPageSize(config_page_size)
+                .setLastPage(false).setRequestNormal();
         return this;
     }
 }
