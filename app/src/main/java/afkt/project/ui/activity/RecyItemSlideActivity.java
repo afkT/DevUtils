@@ -116,7 +116,7 @@ public class RecyItemSlideActivity extends BaseToolbarActivity {
 //                    // 例如有特殊需求, 需弹窗确认
 //                    // 可以先触发调用
 //                    itemSlideAdapter.notifyItemChanged(position);
-//                    // 接着弹窗, 确认要删除才移除对于 position
+//                    // 接着弹窗, 确认要删除才移除对应 position
                 }
             }
         });

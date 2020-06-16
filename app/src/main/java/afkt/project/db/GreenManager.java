@@ -8,11 +8,6 @@ import org.greenrobot.greendao.database.Database;
 /**
  * detail: GreenDao 管理类
  * @author Ttt
- * <pre>
- *     Android ORM 框架 : GreenDao 使用详解 ( 进阶篇 )
- *     @see <a href="https://blog.csdn.net/speedystone/article/details/74193053"/>
- *     @see <a href="https://greenrobot.org/greendao/documentation/modelling-entities"/>
- * </pre>
  */
 public final class GreenManager {
 
@@ -65,7 +60,7 @@ public final class GreenManager {
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 //            super.onUpgrade(db, oldVersion, newVersion);
-//            MigrationHelper
+            MigrationHelper.migrate(db, NoteDao.class, NotePictureDao.class);
         }
     }
 

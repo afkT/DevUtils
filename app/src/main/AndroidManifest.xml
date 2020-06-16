@@ -417,6 +417,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- GreenDao -->
+
+        <activity
+            android:name=".ui.activity.GreenDaoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- 文章 MVP Activity -->
 
         <activity

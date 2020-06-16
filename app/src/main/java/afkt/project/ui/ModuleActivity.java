@@ -28,6 +28,7 @@ import afkt.project.ui.activity.FlowLikeActivity;
 import afkt.project.ui.activity.FunctionActivity;
 import afkt.project.ui.activity.GPUFilterACVActivity;
 import afkt.project.ui.activity.GPUFilterActivity;
+import afkt.project.ui.activity.GreenDaoActivity;
 import afkt.project.ui.activity.ItemStickyActivity;
 import afkt.project.ui.activity.LineActivity;
 import afkt.project.ui.activity.ListenerActivity;
@@ -121,6 +122,7 @@ public class ModuleActivity extends BaseToolbarActivity {
                         ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
                         break;
                     case ButtonValue.BTN_GREEN_DAO: // GreenDAO
+                        SkipUtils.startActivity(GreenDaoActivity.class, buttonValue);
                         break;
 
                     // ======
