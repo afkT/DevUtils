@@ -34,5 +34,4 @@
             android:scrollbars="none"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
-
 </LinearLayout>

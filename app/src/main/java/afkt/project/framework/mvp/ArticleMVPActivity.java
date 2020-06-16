@@ -120,7 +120,7 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
             } else { // 请求成功
                 stateLayout.showSuccess();
                 // 设置数据源
-                articleAdapter.setNewData(articleBean.data.datas);
+                articleAdapter.setNewInstance(articleBean.data.datas);
             }
         } else { // 请求失败
             stateLayout.showFailed();

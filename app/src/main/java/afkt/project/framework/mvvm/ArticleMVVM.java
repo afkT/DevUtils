@@ -65,7 +65,7 @@ public final class ArticleMVVM {
                                 } else { // 请求成功
                                     mActivityArticleMvvmBinding.vidAamState.showSuccess();
                                     // 设置数据源
-                                    mArticleAdapter.setNewData(articleBean.data.datas);
+                                    mArticleAdapter.setNewInstance(articleBean.data.datas);
                                 }
                             }
                         }

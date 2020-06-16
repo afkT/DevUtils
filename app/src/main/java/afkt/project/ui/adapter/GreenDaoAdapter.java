@@ -1,11 +1,7 @@
 package afkt.project.ui.adapter;
 
-import androidx.annotation.Nullable;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
-
-import java.util.List;
 
 import afkt.project.R;
 import afkt.project.db.Note;
@@ -17,8 +13,8 @@ import dev.utils.app.helper.ViewHelper;
  */
 public class GreenDaoAdapter extends BaseQuickAdapter<Note, BaseViewHolder> {
 
-    public GreenDaoAdapter(@Nullable List<Note> data) {
-        super(R.layout.adapter_key_value, data);
+    public GreenDaoAdapter() {
+        super(R.layout.adapter_key_value);
     }
 
     @Override

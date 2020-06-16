@@ -31,11 +31,18 @@ public class PageAssist<T> extends RequestStateAssist<T> {
 
     public PageAssist(int config_page_num) {
         this.config_page_num = config_page_num;
+
+        this.mPageNum = config_page_num;
+        this.mPageNumReady = config_page_num;
     }
 
     public PageAssist(int config_page_num, int config_page_size) {
         this.config_page_num = config_page_num;
         this.config_page_size = config_page_size;
+
+        this.mPageNum = config_page_num;
+        this.mPageNumReady = config_page_num;
+        this.mPageSize = config_page_size;
     }
 
     // ================
@@ -288,7 +295,10 @@ public class PageAssist<T> extends RequestStateAssist<T> {
      * @return {@link PageAssist}
      */
     public PageAssist<T> reset() {
-        setPageNum(config_page_num).setPageNumReady(config_page_num).setLastPage(false).setRequestNormal();
+        setPageNum(config_page_num).setPageNumReady(config_page_num)
+                .setPageSize(config_page_size)
+                .setLastPage(false)
+                .setRequestNormal();
         return this;
     }
 }
