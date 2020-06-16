@@ -1,12 +1,30 @@
 package afkt.project.ui.activity;
 
+import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.db.GreenManager;
+import afkt.project.db.Note;
+import afkt.project.db.NotePicture;
+import afkt.project.db.NoteType;
+import afkt.project.ui.adapter.GreenDaoAdapter;
 import butterknife.BindView;
+import butterknife.OnClick;
+import dev.temp.ChineseUtils;
+import dev.utils.app.toast.ToastTintUtils;
+import dev.utils.common.RandomUtils;
 
 /**
  * detail: GreenDao 使用
@@ -29,6 +47,8 @@ public class GreenDaoActivity extends BaseToolbarActivity {
     SmartRefreshLayout vid_agd_refresh;
     @BindView(R.id.vid_agd_recy)
     RecyclerView       vid_agd_recy;
+    // = Object =
+    GreenDaoAdapter greenDaoAdapter;
 
     @Override
     public int getLayoutId() {
@@ -38,21 +58,120 @@ public class GreenDaoActivity extends BaseToolbarActivity {
     @Override
     public void initValues() {
         super.initValues();
+
+        ToastTintUtils.info("侧滑可进行删除, 长按拖动位置");
+
+        // 初始化布局管理器、适配器
+        greenDaoAdapter = new GreenDaoAdapter(GreenManager.getNoteDao().loadAll());
+        vid_agd_recy.setAdapter(greenDaoAdapter);
+
+        // =
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
+            /**
+             * 获取动作标识
+             * 动作标识分 : dragFlags 和 swipeFlags
+             * dragFlags : 列表滚动方向的动作标识 ( 如竖直列表就是上和下, 水平列表就是左和右 )
+             * wipeFlags : 与列表滚动方向垂直的动作标识 ( 如竖直列表就是左和右, 水平列表就是上和下 )
+             */
+            @Override
+            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                // 如果你不想上下拖动, 可以将 dragFlags = 0
+                int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+
+                // 如果你不想左右滑动, 可以将 swipeFlags = 0
+                int swipeFlags = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+
+                // 最终的动作标识 ( flags ) 必须要用 makeMovementFlags() 方法生成
+                int flags = makeMovementFlags(dragFlags, swipeFlags);
+                return flags;
+            }
+
+            /**
+             * 是否开启 item 长按拖拽功能
+             */
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                int fromPosition = viewHolder.getAdapterPosition();
+                int toPosition = target.getAdapterPosition();
+                Collections.swap(greenDaoAdapter.getData(), fromPosition, toPosition);
+                greenDaoAdapter.notifyItemMoved(fromPosition, toPosition);
+                return true;
+            }
+
+            /**
+             * 当 item 侧滑出去时触发 ( 竖直列表是侧滑, 水平列表是竖滑 )
+             * @param viewHolder
+             * @param direction 滑动的方向
+             */
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                if (direction == ItemTouchHelper.LEFT || direction == ItemTouchHelper.RIGHT) {
+                    Note note = greenDaoAdapter.getData().remove(position);
+                    greenDaoAdapter.notifyItemRemoved(position);
+//                    GreenManager.getNoteDao().delete(note);
+                    GreenManager.getNoteDao().deleteByKey(note.getId());
+                }
+            }
+        });
+        itemTouchHelper.attachToRecyclerView(vid_agd_recy);
     }
 
-//    @OnClick({R.id.vid_avp_allow_btn, R.id.vid_avp_ban_btn})
-//    @Override
-//    public void onClick(View v) {
-//        super.onClick(v);
-//        switch (v.getId()) {
-//            case R.id.vid_avp_allow_btn:
-//                vid_avp_viewpager.setSlide(true);
-//                showToast(true, "已允许滑动");
-//                break;
-//            case R.id.vid_avp_ban_btn:
-//                vid_avp_viewpager.setSlide(false);
-//                showToast(false, "已禁止滑动");
-//                break;
-//        }
-//    }
+    @OnClick({R.id.vid_agd_add_btn})
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()) {
+            case R.id.vid_agd_add_btn:
+                if (greenDaoAdapter.getData().isEmpty()) { // 不存在数据
+                    randomData(7);
+                    // 加载数据
+                    greenDaoAdapter.setNewData(GreenManager.getNoteDao().loadAll());
+                } else {
+                    randomData(RandomUtils.getRandom(1, 5));
+                    // 进行提示
+                    ToastTintUtils.success("添加成功, 上拉加载数据");
+                }
+                break;
+        }
+    }
+
+    // ============
+    // = 数据相关 =
+    // ============
+
+    /**
+     * 随机添加数据
+     */
+    public void randomData() {
+        Note note = new Note();
+        note.setDate(new Date());
+        note.setText(ChineseUtils.getRandomWord(RandomUtils.getRandom(6, 15)));
+        note.setComment(ChineseUtils.getRandomWord(RandomUtils.getRandom(40, 120)));
+        note.setType(NoteType.values()[RandomUtils.getRandom(0, 3)]);
+        // 添加数据
+        Long noteId = GreenManager.getNoteDao().insert(note);
+        // 不等于文本
+        if (note.getType() != NoteType.TEXT) {
+            List<NotePicture> pictures = new ArrayList<>();
+            for (int i = 0, len = RandomUtils.getRandom(1, 5); i < len; i++) {
+                NotePicture notePicture = new NotePicture();
+                notePicture.setNoteId(noteId);
+                notePicture.setPicture("https://picsum.photos/40" + RandomUtils.getRandom(0, 10));
+                pictures.add(notePicture);
+            }
+            GreenManager.getNotePictureDao().insertInTx(pictures);
+        }
+    }
+
+    /**
+     * 随机添加数据
+     * @param number 随机数量
+     */
+    public void randomData(int number) {
+        for (int i = 0; i < number; i++) {
+            randomData();
+        }
+    }
 }

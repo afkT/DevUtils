@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/AppTheme.padding_lr"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
+        style="@style/AppTheme.padding_lr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-
-
-
+        <afkt.project.ui.widget.BaseButton
+            android:id="@+id/vid_agd_add_btn"
+            style="@style/AppTheme.Base_Button"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="添加数据" />
     </LinearLayout>
-
-    <afkt.project.ui.widget.BaseTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10.0dip"
-        android:text="tips: 侧滑可进行删除, 长按拖动切换位置."
-        android:textColor="@color/color_33"
-        android:textSize="15.0sp" />
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/vid_agd_refresh"
