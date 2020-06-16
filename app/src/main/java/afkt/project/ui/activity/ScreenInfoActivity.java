@@ -3,7 +3,6 @@ package afkt.project.ui.activity;
 import android.os.Bundle;
 import android.view.ViewGroup;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -48,7 +47,6 @@ public class ScreenInfoActivity extends BaseToolbarActivity {
     public void initValues() {
         super.initValues();
 
-        vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this));
         vid_bvr_recy.setAdapter(new KeyValueAdapter(getScreenInfoLists()));
     }
 

@@ -1,6 +1,7 @@
 package afkt.project.ui.activity;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
+import android.view.ViewGroup;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gavin.com.library.StickyDecoration;
@@ -17,6 +18,7 @@ import butterknife.BindView;
 import dev.temp.ChineseUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.SizeUtils;
+import dev.utils.app.helper.ViewHelper;
 import dev.utils.common.DateUtils;
 import dev.utils.common.RandomUtils;
 
@@ -41,19 +43,24 @@ public class ItemStickyActivity extends BaseToolbarActivity {
         return R.layout.base_view_recyclerview;
     }
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//        ViewGroup parent = (ViewGroup) vid_bvr_recy.getParent();
-//        // 根布局处理
-//        ViewHelper.get().setPadding(parent, 0)
-//                .setBackgroundColor(parent, ResourceUtils.getColor(R.color.color_33));
-//    }
-
     @Override
     public void initValues() {
         super.initValues();
+
+        ViewGroup parent = (ViewGroup) vid_bvr_recy.getParent();
+        // 根布局处理
+        ViewHelper.get().setPadding(parent, 0);
+
+        // ======================
+        // = 使用自定义悬浮 View =
+        // ======================
+
+        // 自定义 View 悬浮 - PowerfulStickyDecoration
+        // https://github.com/Gavin-ZYX/StickyDecoration
+
+        // =================
+        // = 默认悬浮 View =
+        // =================
 
         GroupListener groupListener = new GroupListener() {
             @Override
@@ -76,7 +83,6 @@ public class ItemStickyActivity extends BaseToolbarActivity {
 
         // 初始化布局管理器、适配器
         itemStickyAdapter = new ItemStickyAdapter(getList());
-        vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this));
         vid_bvr_recy.setAdapter(itemStickyAdapter);
         vid_bvr_recy.addItemDecoration(decoration);
     }

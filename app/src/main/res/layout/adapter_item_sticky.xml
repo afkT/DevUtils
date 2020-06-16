@@ -20,7 +20,7 @@
         android:gravity="center|left"
         android:maxLines="1"
         android:textColor="@color/color_33"
-        android:textSize="17.0sp"
+        android:textSize="16.0sp"
         tools:text="Item Title" />
 
     <afkt.project.ui.widget.BaseTextView
@@ -33,6 +33,6 @@
         android:maxLines="1"
         android:paddingTop="5.0dip"
         android:textColor="@color/color_99"
-        android:textSize="13.0sp"
+        android:textSize="12.0sp"
         tools:text="2020.06.16" />
 </LinearLayout>

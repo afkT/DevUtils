@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -83,7 +82,6 @@ public class AdapterEditsActivity extends BaseToolbarActivity {
 
         // 初始化布局管理器、适配器
         editsAdapter = new EditsAdapter(lists);
-        vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this));
         vid_bvr_recy.setAdapter(editsAdapter);
     }
 }

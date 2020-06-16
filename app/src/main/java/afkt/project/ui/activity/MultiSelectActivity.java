@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -70,7 +69,6 @@ public class MultiSelectActivity extends BaseToolbarActivity {
                         DevLogger.eTag(mTag, "新状态: " + now + ", 商品名: " + commodityEvaluateBean.commodityName);
                     }
                 });
-        vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this));
         vid_bvr_recy.setAdapter(multiSelectAdapter);
     }
 

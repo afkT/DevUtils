@@ -2,7 +2,6 @@ package afkt.project.framework.mvp;
 
 import android.view.View;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tt.whorlviewlibrary.WhorlView;
@@ -53,7 +52,6 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
         super.initValues();
         // 初始化布局管理器、适配器
         articleAdapter = new ArticleAdapter();
-        vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this));
         vid_bvr_recy.setAdapter(articleAdapter);
     }
 

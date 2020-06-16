@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -54,7 +53,6 @@ public class DeviceInfoActivity extends BaseToolbarActivity {
     public void initValues() {
         super.initValues();
 
-        vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this));
         vid_bvr_recy.setAdapter(new KeyValueAdapter(getDeviceInfoLists()));
     }
 
