@@ -457,6 +457,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- RecyclerView 滑动删除、上下滑动 -->
+
+        <activity
+            android:name=".ui.activity.RecyItemSlideActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- startActivityForResult CallBack -->
 
         <activity

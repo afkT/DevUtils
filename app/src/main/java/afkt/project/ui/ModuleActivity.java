@@ -39,6 +39,7 @@ import afkt.project.ui.activity.ProgressBarActivity;
 import afkt.project.ui.activity.QRCodeCreateActivity;
 import afkt.project.ui.activity.QRCodeImageActivity;
 import afkt.project.ui.activity.QRCodeScanActivity;
+import afkt.project.ui.activity.RecyItemSlideActivity;
 import afkt.project.ui.activity.ScanShapeActivity;
 import afkt.project.ui.activity.ScreenInfoActivity;
 import afkt.project.ui.activity.SignActivity;
@@ -167,6 +168,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_ITEM_STICKY: // RecyclerView 吸附效果
                         SkipUtils.startActivity(ItemStickyActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_RECY_ITEM_SLIDE: // RecyclerView 滑动删除、上下滑动
+                        SkipUtils.startActivity(RecyItemSlideActivity.class, buttonValue);
                         break;
 
                     // ============

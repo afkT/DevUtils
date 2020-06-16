@@ -151,6 +151,9 @@ public class ButtonValue {
     // RecyclerView 吸附效果
     public static final int BTN_ITEM_STICKY = MODULE_UI + 1300;
 
+    // RecyclerView 滑动删除、上下滑动
+    public static final int BTN_RECY_ITEM_SLIDE = MODULE_UI + 1400;
+
     // ============
     // = 其他功能 =
     // ============

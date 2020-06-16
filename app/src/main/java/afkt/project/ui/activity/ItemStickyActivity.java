@@ -1,14 +1,11 @@
 package afkt.project.ui.activity;
 
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gavin.com.library.PowerfulStickyDecoration;
 import com.gavin.com.library.StickyDecoration;
 import com.gavin.com.library.listener.GroupListener;
-import com.gavin.com.library.listener.PowerGroupListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +18,7 @@ import butterknife.BindView;
 import dev.temp.ChineseUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.SizeUtils;
-import dev.utils.app.TextViewUtils;
-import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.ViewHelper;
-import dev.utils.app.logger.DevLogger;
 import dev.utils.common.DateUtils;
 import dev.utils.common.RandomUtils;
 
