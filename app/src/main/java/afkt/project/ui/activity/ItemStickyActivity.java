@@ -1,11 +1,14 @@
 package afkt.project.ui.activity;
 
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.gavin.com.library.PowerfulStickyDecoration;
 import com.gavin.com.library.StickyDecoration;
 import com.gavin.com.library.listener.GroupListener;
+import com.gavin.com.library.listener.PowerGroupListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +21,10 @@ import butterknife.BindView;
 import dev.temp.ChineseUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.SizeUtils;
+import dev.utils.app.TextViewUtils;
+import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.ViewHelper;
+import dev.utils.app.logger.DevLogger;
 import dev.utils.common.DateUtils;
 import dev.utils.common.RandomUtils;
 
@@ -55,8 +61,25 @@ public class ItemStickyActivity extends BaseToolbarActivity {
         // = 使用自定义悬浮 View =
         // ======================
 
-        // 自定义 View 悬浮 - PowerfulStickyDecoration
-        // https://github.com/Gavin-ZYX/StickyDecoration
+//        PowerGroupListener listener = new PowerGroupListener() {
+//            @Override
+//            public String getGroupName(int position) {
+//                return itemStickyAdapter.getData().get(position).timeTile;
+//            }
+//
+//            @Override
+//            public View getGroupView(int position) {
+//                DevLogger.dTag(mTag, position + "");
+//                View view = getLayoutInflater().inflate(R.layout.adapter_sticky_view, null, false);
+//                TextViewUtils.setText(view.findViewById(R.id.vid_asv_title_tv), getGroupName(position));
+//                return view;
+//            }
+//        };
+//        PowerfulStickyDecoration decoration = PowerfulStickyDecoration.Builder
+//                .init(listener).setGroupHeight(SizeUtils.dipConvertPx(50.0f))
+//                // 重置 span ( 注意 : 使用 GridLayoutManager 时必须调用 )
+//                //.resetSpan(mRecyclerView, (GridLayoutManager) manager)
+//                .build();
 
         // =================
         // = 默认悬浮 View =

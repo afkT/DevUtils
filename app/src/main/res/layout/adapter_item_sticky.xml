@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:paddingLeft="15.0dp"
-    android:paddingTop="10.0dip"
+    android:paddingTop="10.0dp"
     android:paddingRight="15.0dp"
     android:paddingBottom="10.0dp">
 
@@ -31,7 +31,7 @@
         android:ellipsize="end"
         android:gravity="center|left"
         android:maxLines="1"
-        android:paddingTop="5.0dip"
+        android:paddingTop="5.0dp"
         android:textColor="@color/color_99"
         android:textSize="12.0sp"
         tools:text="2020.06.16" />
