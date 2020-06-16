@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vid_ais_linear"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="15.0dp"
+    android:paddingTop="10.0dip"
+    android:paddingRight="15.0dp"
+    android:paddingBottom="10.0dp">
+
+    <afkt.project.ui.widget.BaseTextView
+        android:id="@+id/vid_ais_title_tv"
+        style="@style/AppTheme.Base_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center|left"
+        android:maxLines="1"
+        android:textColor="@color/color_33"
+        android:textSize="17.0sp"
+        tools:text="Item Title" />
+
+    <afkt.project.ui.widget.BaseTextView
+        android:id="@+id/vid_ais_time_tv"
+        style="@style/AppTheme.Base_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center|left"
+        android:maxLines="1"
+        android:paddingTop="5.0dip"
+        android:textColor="@color/color_99"
+        android:textSize="13.0sp"
+        tools:text="2020.06.16" />
+</LinearLayout>

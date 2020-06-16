@@ -449,6 +449,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- RecyclerView 吸附效果 -->
+
+        <activity
+            android:name=".ui.activity.ItemStickyActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- startActivityForResult CallBack -->
 
         <activity

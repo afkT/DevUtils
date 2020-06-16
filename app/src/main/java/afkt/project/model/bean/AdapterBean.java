@@ -17,9 +17,6 @@ public class AdapterBean {
     // 内容
     public String content;
 
-    private AdapterBean() {
-    }
-
     /**
      * 创建适配器实体类
      * @param position 索引

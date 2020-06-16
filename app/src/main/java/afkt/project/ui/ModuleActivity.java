@@ -29,6 +29,7 @@ import afkt.project.ui.activity.FlowLikeActivity;
 import afkt.project.ui.activity.FunctionActivity;
 import afkt.project.ui.activity.GPUFilterACVActivity;
 import afkt.project.ui.activity.GPUFilterActivity;
+import afkt.project.ui.activity.ItemStickyActivity;
 import afkt.project.ui.activity.LineActivity;
 import afkt.project.ui.activity.ListenerActivity;
 import afkt.project.ui.activity.LoggerActivity;
@@ -165,6 +166,9 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_TEXTVIEW: // 两个 TextView 显示效果
                         SkipUtils.startActivity(TextViewActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_ITEM_STICKY: // RecyclerView 吸附效果
+                        SkipUtils.startActivity(ItemStickyActivity.class, buttonValue);
                         break;
 
                     // ============

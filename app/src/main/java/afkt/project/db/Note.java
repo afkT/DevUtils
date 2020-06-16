@@ -1,5 +1,6 @@
 package afkt.project.db;
 
+import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Convert;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
@@ -11,8 +12,6 @@ import org.greenrobot.greendao.annotation.ToMany;
 
 import java.util.Date;
 import java.util.List;
-
-import org.greenrobot.greendao.DaoException;
 
 
 /**
@@ -173,9 +172,7 @@ public class Note {
         myDao.update(this);
     }
 
-    /**
-     * called by internal mechanisms, do not call yourself.
-     */
+    /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 799086675)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
