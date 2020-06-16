@@ -199,7 +199,7 @@ public class GreenDaoActivity extends BaseToolbarActivity {
             for (int i = 0, len = RandomUtils.getRandom(1, 5); i < len; i++) {
                 NotePicture notePicture = new NotePicture();
                 notePicture.setNoteId(noteId);
-                notePicture.setPicture("https://picsum.photos/40" + RandomUtils.getRandom(0, 10));
+                notePicture.setPicture(String.format("https://picsum.photos/id/%s/30%s", RandomUtils.getRandom(5, 10), RandomUtils.getRandom(0, 10)));
                 pictures.add(notePicture);
             }
             GreenManager.getNotePictureDao().insertInTx(pictures);
