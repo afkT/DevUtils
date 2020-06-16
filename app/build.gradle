@@ -90,6 +90,8 @@ dependencies {
     implementation deps.lib.pictureSelector
     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
     implementation deps.lib.smartrefreshlayout
+    implementation deps.lib.smartrefresh_header_classics
+    implementation deps.lib.smartrefresh_footer_classics
     // 下拉刷新框架 ( 横向 ) https://github.com/scwang90/SmartRefreshHorizontal
     implementation deps.lib.smartrefreshHorizontal
     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper

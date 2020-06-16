@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:background="@color/color_f5">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="12.0dp"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:stateListAnimator="@drawable/touch"
+        card_view:cardCornerRadius="25.0dp"
+        card_view:cardElevation="5.0dp"
+        tools:targetApi="lollipop">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15.0dp">
+
+            <afkt.project.ui.widget.BaseTextView
+                android:id="@+id/vid_agd_title_tv"
+                style="@style/AppTheme.Base_TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="25.0sp"
+                tools:text="这是标题" />
+
+            <afkt.project.ui.widget.BaseTextView
+                android:id="@+id/vid_agd_content_tv"
+                style="@style/AppTheme.Base_TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_55"
+                android:textSize="16.0sp"
+                tools:text="这是内容" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/vid_agd_recy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="4" />
+
+            <afkt.project.ui.widget.BaseTextView
+                android:id="@+id/vid_agd_time_tv"
+                style="@style/AppTheme.Base_TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5.0dp"
+                android:textColor="@color/color_99"
+                android:textSize="13.0sp"
+                tools:text="2020.06.17" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
