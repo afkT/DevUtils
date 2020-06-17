@@ -60,7 +60,7 @@ public class GreenDaoActivity extends BaseToolbarActivity {
     // Adapter
     GreenDaoAdapter greenDaoAdapter;
     // 请求页数辅助类
-    PageAssist pageAssist = new PageAssist(0, 8);
+    PageAssist      pageAssist = new PageAssist(0, 8);
 
     @Override
     public int getLayoutId() {

@@ -85,6 +85,8 @@
 
 * [Android Camera2 拍照入门学习](https://www.jianshu.com/p/7f766eb2f4e7)
 
+* [Android 平台 Camera 开发指南](https://mp.weixin.qq.com/s/dTPtjdDquce_m0LYENfAGw)
+
 #### 保活
 
 * [Android 服务保活 / 常驻](https://github.com/xingda920813/HelloDaemon)
