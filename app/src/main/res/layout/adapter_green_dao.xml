@@ -49,9 +49,11 @@
                 android:id="@+id/vid_agd_recy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5.0dp"
+                android:orientation="horizontal"
                 android:overScrollMode="never"
                 android:scrollbars="none"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:spanCount="4" />
 
             <afkt.project.ui.widget.BaseTextView
