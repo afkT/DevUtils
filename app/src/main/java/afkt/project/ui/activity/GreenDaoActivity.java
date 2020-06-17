@@ -12,6 +12,8 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;
 
+import org.greenrobot.greendao.query.DeleteQuery;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -22,12 +24,14 @@ import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.db.GreenManager;
 import afkt.project.db.Note;
 import afkt.project.db.NotePicture;
+import afkt.project.db.NotePictureDao;
 import afkt.project.db.NoteType;
 import afkt.project.ui.adapter.GreenDaoAdapter;
 import butterknife.BindView;
 import butterknife.OnClick;
 import dev.assist.PageAssist;
 import dev.temp.ChineseUtils;
+import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.common.RandomUtils;
 
@@ -151,8 +155,13 @@ public class GreenDaoActivity extends BaseToolbarActivity {
                 if (direction == ItemTouchHelper.LEFT || direction == ItemTouchHelper.RIGHT) {
                     Note note = greenDaoAdapter.getData().remove(position);
                     greenDaoAdapter.notifyItemRemoved(position);
+                    // 删除文章
 //                    GreenManager.getNoteDao().delete(note);
                     GreenManager.getNoteDao().deleteByKey(note.getId());
+                    // 删除文章图片
+                    DeleteQuery<NotePicture> deleteQuery = GreenManager.getNotePictureDao().queryBuilder()
+                            .where(NotePictureDao.Properties.NoteId.eq(note.getId())).buildDelete();
+                    deleteQuery.executeDeleteWithoutDetachingEntities();
                 }
             }
         });
@@ -226,10 +235,12 @@ public class GreenDaoActivity extends BaseToolbarActivity {
         // 刷新则重置页数
         if (refresh) pageAssist.reset();
 
-        // 请求数据
-        List<Note> notes = GreenManager.getNoteDao().queryBuilder()
-                .offset(pageAssist.getPageNum() * pageAssist.getPageSize())
-                .limit(pageAssist.getPageSize()).list();
+        List<Note> notes = offsetLimitCalculate();
+
+//        // 正常只需要这个, 没有添加功能则不需要计算偏差值
+//        List<Note> notes = GreenManager.getNoteDao().queryBuilder()
+//                .offset(pageAssist.getPageNum() * pageAssist.getPageSize())
+//                .limit(pageAssist.getPageSize()).list();
 
         // 存在数据则累加页数
         if (!notes.isEmpty()) pageAssist.nextPage();
@@ -244,5 +255,39 @@ public class GreenDaoActivity extends BaseToolbarActivity {
         // 刷新、加载成功
         vid_agd_refresh.finishRefresh()
                 .finishLoadMore();
+    }
+
+    /**
+     * 页数偏移值计算处理
+     * <pre>
+     *     为什么需要特殊计算：
+     *     正常到最后一页没有数据是禁止加载更多
+     *     为了演示 GreenDao 分页实现功能, 显示添加数据按钮并且不限制加载更多功能
+     *     可能导致新增数据 + 原有数据刚好 = 页数 * 每页条数, 导致无法加载下一页
+     * </pre>
+     */
+    private List<Note> offsetLimitCalculate() {
+        int offset, limit;
+
+        int pageSize = pageAssist.getPageSize();
+        // 获取当前数据条数
+        int size = greenDaoAdapter.getData().size();
+        // 计算当前数据实际页数
+        int page = size / pageSize;
+        int remainder = size % pageSize;
+
+        if (remainder == 0) {
+            offset = page * pageSize;
+            limit = pageSize;
+        } else {
+            int diff = Math.abs(page * pageSize - size);
+            offset = size;
+            limit = pageSize * 2 - diff;
+        }
+        DevLogger.dTag(mTag, "offset: " + offset + ", limit: " + limit);
+        // 请求数据
+        return GreenManager.getNoteDao().queryBuilder()
+                .offset(offset)
+                .limit(limit).list();
     }
 }
