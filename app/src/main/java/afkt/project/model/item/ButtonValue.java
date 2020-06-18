@@ -154,6 +154,12 @@ public class ButtonValue {
     // RecyclerView 滑动删除、上下滑动
     public static final int BTN_RECY_ITEM_SLIDE = MODULE_UI + 1400;
 
+    // LinearSnapHelper - RecyclerView
+    public static final int BTN_RECY_LINEAR_SNAP = MODULE_UI + 1500;
+
+    // PagerSnapHelper - RecyclerView
+    public static final int BTN_RECY_PAGER_SNAP = MODULE_UI + 1600;
+
     // ============
     // = 其他功能 =
     // ============

@@ -142,6 +142,8 @@ public class ButtonList {
         lists.add(new ButtonValue(BTN_TEXTVIEW, "两个 TextView 显示效果"));
         lists.add(new ButtonValue(BTN_ITEM_STICKY, "RecyclerView 吸附效果"));
         lists.add(new ButtonValue(BTN_RECY_ITEM_SLIDE, "RecyclerView 滑动删除、上下滑动"));
+        lists.add(new ButtonValue(BTN_RECY_LINEAR_SNAP, "LinearSnapHelper - RecyclerView"));
+        lists.add(new ButtonValue(BTN_RECY_PAGER_SNAP, "PagerSnapHelper - RecyclerView"));
         return lists;
     }
 

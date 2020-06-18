@@ -473,6 +473,22 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- LinearSnapHelper - RecyclerView -->
+
+        <activity
+            android:name=".ui.activity.LinearSnapActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- PagerSnapHelper - RecyclerView -->
+
+        <activity
+            android:name=".ui.activity.PagerSnapActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- startActivityForResult CallBack -->
 
         <activity
