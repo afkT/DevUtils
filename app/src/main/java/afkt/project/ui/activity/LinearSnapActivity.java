@@ -3,12 +3,18 @@ package afkt.project.ui.activity;
 import android.os.Bundle;
 import android.view.ViewGroup;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.model.bean.ItemBean;
+import afkt.project.ui.adapter.LinearSnapAdapter;
 import butterknife.BindView;
-import dev.utils.app.ResourceUtils;
 import dev.utils.app.helper.ViewHelper;
 
 /**
@@ -23,6 +29,8 @@ public class LinearSnapActivity extends BaseToolbarActivity {
     // = View =
     @BindView(R.id.vid_bvr_recy)
     RecyclerView vid_bvr_recy;
+    // = Object =
+    LinearSnapAdapter linearSnapAdapter;
 
     @Override
     public int getLayoutId() {
@@ -41,5 +49,19 @@ public class LinearSnapActivity extends BaseToolbarActivity {
     @Override
     public void initValues() {
         super.initValues();
+
+        List<ItemBean> lists = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            lists.add(ItemBean.newItemBean());
+        }
+
+        // 初始化布局管理器、适配器
+        linearSnapAdapter = new LinearSnapAdapter(lists);
+        vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+//        vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        vid_bvr_recy.setAdapter(linearSnapAdapter);
+
+        LinearSnapHelper linearSnapHelper = new LinearSnapHelper();
+        linearSnapHelper.attachToRecyclerView(vid_bvr_recy);
     }
 }

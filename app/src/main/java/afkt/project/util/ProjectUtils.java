@@ -41,6 +41,17 @@ public final class ProjectUtils {
     }
 
     /**
+     * 获取圆角 RequestOptions
+     * @return 圆角 {@link RequestOptions}
+     */
+    public static RequestOptions getRoundOptions10() {
+        // 获取默认 RequestOptions
+        RequestOptions roundOptions = GlideUtils.defaultOptions();
+        // 设置圆角, 使用 RoundedCorners 图片不会闪烁
+        return roundOptions.transform(new RoundedCorners(ResourceUtils.getDimensionInt(R.dimen.un_radius_10)));
+    }
+
+    /**
      * 初始化创建文件夹
      * @return {@code true} success, {@code false} fail
      */
