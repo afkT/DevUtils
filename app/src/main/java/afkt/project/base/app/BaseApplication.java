@@ -198,7 +198,7 @@ public class BaseApplication extends MultiDexApplication {
                 .setAppCachePath(PathUtils.getInternal().getAppCachePath("cache")) // Application Caches 地址
                 .setDatabasePath(PathUtils.getInternal().getAppCachePath("db")) // 数据库缓存路径
                 .setRenderPriority(WebSettings.RenderPriority.HIGH) // 渲染优先级高
-                .setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN) // 基础布局算法
+                .setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING) // 基础布局算法
                 .setOnApplyListener(new WebViewAssist.Builder.OnApplyListener() {
                     @Override
                     public void onApply(WebViewAssist webViewAssist, WebViewAssist.Builder builder) {

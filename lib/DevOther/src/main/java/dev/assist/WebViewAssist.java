@@ -1025,7 +1025,7 @@ public class WebViewAssist {
         private boolean mUseWideViewPort = false;
         // 是否按宽度缩小内容以适合屏幕
         private boolean mLoadWithOverviewMode = true;
-        // 基础布局算法
+        // 基础布局算法, 大于 4.4 使用 TEXT_AUTOSIZING 解决前端 REM 适配方案有误差情况
         private WebSettings.LayoutAlgorithm mLayoutAlgorithm = null;
         // 是否支持缩放
         private boolean mSupportZoom = true;
@@ -1093,6 +1093,7 @@ public class WebViewAssist {
                     webSettings.setUseWideViewPort(mUseWideViewPort); // 是否使用宽视图
                     webSettings.setLoadWithOverviewMode(mLoadWithOverviewMode); // 是否按宽度缩小内容以适合屏幕
                     if (mLayoutAlgorithm != null) { // WebSettings.LayoutAlgorithm.SINGLE_COLUMN 4.4 抛弃了
+                        // 大于 4.4 使用 TEXT_AUTOSIZING 解决前端 REM 适配方案有误差情况
                         webSettings.setLayoutAlgorithm(mLayoutAlgorithm);
                     }
 
