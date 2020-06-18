@@ -9,6 +9,7 @@ import org.greenrobot.greendao.annotation.Index;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.OrderBy;
 import org.greenrobot.greendao.annotation.ToMany;
+import org.greenrobot.greendao.annotation.Transient;
 
 import java.util.Date;
 import java.util.List;
@@ -24,9 +25,21 @@ import java.util.List;
         nameInDb = "NoteTable",
         indexes = {
                 @Index(value = "text, date DESC", unique = true)
+//                // Upgrade
+//                @Index(value = "title DESC", unique = true)
         }
 )
 public class Note {
+
+    // ===========
+    // = Upgrade =
+    // ===========
+
+//    // 给 date 字段增加 Transient 注解
+//    // 修改 text 字段名为 title
+//    @NotNull
+//    @Property(nameInDb = "TEXT")
+//    private String title;
 
     @Id
     private Long   id;
@@ -40,6 +53,9 @@ public class Note {
     @ToMany(referencedJoinProperty = "noteId")
     @OrderBy("id ASC")
     private List<NotePicture> pictures;
+
+    @Transient // 数据库不创建该字段
+    private           String     tempStr;
 
 
     /**

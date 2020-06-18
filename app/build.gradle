@@ -12,6 +12,9 @@ android {
     greendao {
         // https://greenrobot.org/greendao/documentation/modelling-entities/
         schemaVersion 1
+
+//        // Upgrade
+//        schemaVersion 2
     }
 }
 

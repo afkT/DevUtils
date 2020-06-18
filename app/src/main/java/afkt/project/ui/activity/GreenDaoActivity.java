@@ -235,7 +235,7 @@ public class GreenDaoActivity extends BaseToolbarActivity {
         // 刷新则重置页数
         if (refresh) pageAssist.reset();
 
-        List<Note> notes = offsetLimitCalculate();
+        List<Note> notes = offsetLimitCalculate(refresh);
 
 //        // 正常只需要这个, 没有添加功能则不需要计算偏差值
 //        List<Note> notes = GreenManager.getNoteDao().queryBuilder()
@@ -265,24 +265,31 @@ public class GreenDaoActivity extends BaseToolbarActivity {
      *     为了演示 GreenDao 分页实现功能, 显示添加数据按钮并且不限制加载更多功能
      *     可能导致新增数据 + 原有数据刚好 = 页数 * 每页条数, 导致无法加载下一页
      * </pre>
+     * @param refresh 是否刷新
      */
-    private List<Note> offsetLimitCalculate() {
+    private List<Note> offsetLimitCalculate(boolean refresh) {
         int offset, limit;
 
         int pageSize = pageAssist.getPageSize();
-        // 获取当前数据条数
-        int size = greenDaoAdapter.getData().size();
-        // 计算当前数据实际页数
-        int page = size / pageSize;
-        int remainder = size % pageSize;
 
-        if (remainder == 0) {
-            offset = page * pageSize;
+        if (refresh) {
+            offset = 0;
             limit = pageSize;
         } else {
-            int diff = Math.abs(page * pageSize - size);
-            offset = size;
-            limit = pageSize * 2 - diff;
+            // 获取当前数据条数
+            int size = greenDaoAdapter.getData().size();
+            // 计算当前数据实际页数
+            int page = size / pageSize;
+            int remainder = size % pageSize;
+
+            if (remainder == 0) {
+                offset = page * pageSize;
+                limit = pageSize;
+            } else {
+                int diff = Math.abs(page * pageSize - size);
+                offset = size;
+                limit = pageSize * 2 - diff;
+            }
         }
         DevLogger.dTag(mTag, "offset: " + offset + ", limit: " + limit);
         // 请求数据
