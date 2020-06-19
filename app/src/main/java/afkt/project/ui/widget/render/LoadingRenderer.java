@@ -1,4 +1,4 @@
-package afkt.project.widget.render;
+package afkt.project.ui.widget.render;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;

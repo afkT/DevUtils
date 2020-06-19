@@ -1,4 +1,4 @@
-package afkt.project.widget.render.shapechange;
+package afkt.project.ui.widget.render.shapechange;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,7 +13,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
-import afkt.project.widget.render.LoadingRenderer;
+import afkt.project.ui.widget.render.LoadingRenderer;
 import dev.utils.app.SizeUtils;
 
 public class CircleBroodLoadingRenderer extends LoadingRenderer {

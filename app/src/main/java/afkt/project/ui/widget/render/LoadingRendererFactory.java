@@ -1,14 +1,14 @@
-package afkt.project.widget.render;
+package afkt.project.ui.widget.render;
 
 import android.content.Context;
 import android.util.SparseArray;
 
 import java.lang.reflect.Constructor;
 
-import afkt.project.widget.render.circle.jump.DanceLoadingRenderer;
-import afkt.project.widget.render.scenery.ElectricFanLoadingRenderer;
-import afkt.project.widget.render.shapechange.CircleBroodLoadingRenderer;
-import afkt.project.widget.render.shapechange.CoolWaitLoadingRenderer;
+import afkt.project.ui.widget.render.circle.jump.DanceLoadingRenderer;
+import afkt.project.ui.widget.render.scenery.ElectricFanLoadingRenderer;
+import afkt.project.ui.widget.render.shapechange.CircleBroodLoadingRenderer;
+import afkt.project.ui.widget.render.shapechange.CoolWaitLoadingRenderer;
 
 public final class LoadingRendererFactory {
     private static final SparseArray<Class<? extends LoadingRenderer>> LOADING_RENDERERS = new SparseArray<>();

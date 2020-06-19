@@ -1,4 +1,4 @@
-package afkt.project.widget;
+package afkt.project.ui.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -8,9 +8,9 @@ import android.view.View;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import afkt.project.R;
-import afkt.project.widget.render.LoadingDrawable;
-import afkt.project.widget.render.LoadingRenderer;
-import afkt.project.widget.render.LoadingRendererFactory;
+import afkt.project.ui.widget.render.LoadingDrawable;
+import afkt.project.ui.widget.render.LoadingRenderer;
+import afkt.project.ui.widget.render.LoadingRendererFactory;
 
 /**
  * detail: LoadingView

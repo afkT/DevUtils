@@ -1,4 +1,4 @@
-package afkt.project.widget.render.circle.jump;
+package afkt.project.ui.widget.render.circle.jump;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,7 +13,7 @@ import android.view.animation.Interpolator;
 
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
-import afkt.project.widget.render.LoadingRenderer;
+import afkt.project.ui.widget.render.LoadingRenderer;
 import dev.utils.app.SizeUtils;
 
 

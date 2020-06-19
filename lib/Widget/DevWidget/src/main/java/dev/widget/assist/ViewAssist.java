@@ -223,9 +223,9 @@ public final class ViewAssist {
         return this;
     }
 
-    // =============
-    // = get / set =
-    // =============
+    // ===========
+    // = get/set =
+    // ===========
 
     public ViewGroup getWrapper() {
         return mWrapper;

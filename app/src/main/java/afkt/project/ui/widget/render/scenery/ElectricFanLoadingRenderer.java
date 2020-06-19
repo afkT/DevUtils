@@ -1,4 +1,4 @@
-package afkt.project.widget.render.scenery;
+package afkt.project.ui.widget.render.scenery;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Random;
 
 import afkt.project.R;
-import afkt.project.widget.render.LoadingRenderer;
+import afkt.project.ui.widget.render.LoadingRenderer;
 import dev.utils.app.SizeUtils;
 
 public class ElectricFanLoadingRenderer extends LoadingRenderer {
