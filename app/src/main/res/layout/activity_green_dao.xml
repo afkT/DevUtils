@@ -19,19 +19,8 @@
             android:text="添加数据" />
     </LinearLayout>
 
-    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+    <afkt.project.ui.widget.BaseRefreshView
         android:id="@+id/vid_agd_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:scrollbars="none">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/vid_agd_recy"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never"
-            android:scrollbars="none"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+        android:layout_height="match_parent" />
 </LinearLayout>

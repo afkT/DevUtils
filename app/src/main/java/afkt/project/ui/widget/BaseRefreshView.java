@@ -115,16 +115,20 @@ public class BaseRefreshView extends LinearLayout {
     }
 
     public BaseRefreshView setAdapter(BaseQuickAdapter adapter) {
-        this.adapter = adapter;
+        if (adapter != null) {
+            this.adapter = adapter;
+            this.recyclerView.setAdapter(adapter);
+        }
         return this;
     }
 
-    /**
-     * 获取 Page 页数辅助类
-     * @return {@link PageAssist}
-     */
     public PageAssist<String> getPageAssist() {
         return pageAssist;
+    }
+
+    public BaseRefreshView setPageAssist(PageAssist<String> pageAssist) {
+        this.pageAssist = pageAssist;
+        return this;
     }
 
     // ============
