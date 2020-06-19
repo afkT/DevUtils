@@ -143,7 +143,9 @@ public class ButtonList {
         lists.add(new ButtonValue(BTN_ITEM_STICKY, "RecyclerView 吸附效果"));
         lists.add(new ButtonValue(BTN_RECY_ITEM_SLIDE, "RecyclerView 滑动删除、上下滑动"));
         lists.add(new ButtonValue(BTN_RECY_LINEAR_SNAP, "LinearSnapHelper - RecyclerView"));
+        lists.add(new ButtonValue(BTN_RECY_LINEAR_SNAP_MAX, "LinearSnapHelper - 无限滑动"));
         lists.add(new ButtonValue(BTN_RECY_PAGER_SNAP, "PagerSnapHelper - RecyclerView"));
+        lists.add(new ButtonValue(BTN_RECY_PAGER_SNAP_MAX, "PagerSnapHelper - 无限滑动"));
         return lists;
     }
 

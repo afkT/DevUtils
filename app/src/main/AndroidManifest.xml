@@ -481,10 +481,26 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- LinearSnapHelper - 无线滑动 -->
+
+        <activity
+            android:name=".ui.activity.LinearSnapMAXActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- PagerSnapHelper - RecyclerView -->
 
         <activity
             android:name=".ui.activity.PagerSnapActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- PagerSnapHelper - 无线滑动 -->
+
+        <activity
+            android:name=".ui.activity.PagerSnapMAXActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

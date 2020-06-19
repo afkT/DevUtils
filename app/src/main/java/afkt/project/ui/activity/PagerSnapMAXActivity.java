@@ -18,13 +18,13 @@ import butterknife.BindView;
 import dev.utils.app.helper.ViewHelper;
 
 /**
- * detail: PagerSnapHelper - RecyclerView
+ * detail: PagerSnapHelper - 无限滑动
  * @author Ttt
  * <pre>
  *     PagerSnapHelper : 每次滑动一页居中显示, 类似 ViewPager
  * </pre>
  */
-public class PagerSnapActivity extends BaseToolbarActivity {
+public class PagerSnapMAXActivity extends BaseToolbarActivity {
 
     // = View =
     @BindView(R.id.vid_bvr_recy)

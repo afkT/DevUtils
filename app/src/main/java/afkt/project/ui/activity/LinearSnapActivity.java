@@ -61,7 +61,7 @@ public class LinearSnapActivity extends BaseToolbarActivity {
 //        vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         vid_bvr_recy.setAdapter(linearSnapAdapter);
 
-        LinearSnapHelper linearSnapHelper = new LinearSnapHelper();
-        linearSnapHelper.attachToRecyclerView(vid_bvr_recy);
+        LinearSnapHelper helper = new LinearSnapHelper();
+        helper.attachToRecyclerView(vid_bvr_recy);
     }
 }
