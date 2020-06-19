@@ -105,6 +105,8 @@
 
 #### UI
 
+* [Android 自定义控件进阶篇, 自定义 LayoutManager](https://blog.csdn.net/u012551350/article/details/93971801)
+
 * [自定义控件详解 Paint 画笔路径效果](https://www.cnblogs.com/xqxacm/p/6669596.html)
 
 * [Android 利用 Canvas 画各种图形 ( 点、直线、弧、圆、椭圆、文字、矩形、多边形、曲线、圆角矩形 )](https://blog.csdn.net/rhljiayou/article/details/7212620)
