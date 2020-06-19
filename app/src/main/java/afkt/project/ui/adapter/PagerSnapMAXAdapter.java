@@ -27,13 +27,13 @@ import dev.utils.app.helper.ViewHelper;
  * detail: RecyclerView Gallery 效果 Adapter
  * @author Ttt
  */
-public class LinearSnapMAXAdapter extends RecyclerView.Adapter {
+public class PagerSnapMAXAdapter extends RecyclerView.Adapter {
 
     Context        context;
     List<ItemBean> data;
     RequestOptions roundOptions;
 
-    public LinearSnapMAXAdapter(Context context, @Nullable List<ItemBean> data) {
+    public PagerSnapMAXAdapter(Context context, @Nullable List<ItemBean> data) {
         this.context = context;
         this.data = data;
         this.roundOptions = ProjectUtils.getRoundOptions10();
@@ -48,7 +48,7 @@ public class LinearSnapMAXAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ItemViewHolder(
-                ViewUtils.inflate(context, R.layout.adapter_linear_snap, parent, false)
+                ViewUtils.inflate(context, R.layout.adapter_pager_snap, parent, false)
         );
     }
 
@@ -64,27 +64,27 @@ public class LinearSnapMAXAdapter extends RecyclerView.Adapter {
             String posIndex = position + " - " + index;
 
             ViewHelper.get()
-                    .setText(itemHolder.vid_als_title_tv, itemBean.title)
-                    .setText(itemHolder.vid_als_subtitle_tv, itemBean.subtitle)
-                    .setText(itemHolder.vid_als_time_tv, itemBean.timeFormat)
-                    .setText(itemHolder.vid_als_index_tv, posIndex);
-            GlideUtils.with().displayImage(itemBean.imageUrl, itemHolder.vid_als_igview,
+                    .setText(itemHolder.vid_ags_title_tv, itemBean.title)
+                    .setText(itemHolder.vid_ags_subtitle_tv, itemBean.subtitle)
+                    .setText(itemHolder.vid_ags_time_tv, itemBean.timeFormat)
+                    .setText(itemHolder.vid_ags_index_tv, posIndex);
+            GlideUtils.with().displayImage(itemBean.imageUrl, itemHolder.vid_ags_igview,
                     roundOptions);
         }
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.vid_als_title_tv)
-        BaseTextView  vid_als_title_tv;
-        @BindView(R.id.vid_als_subtitle_tv)
-        BaseTextView  vid_als_subtitle_tv;
-        @BindView(R.id.vid_als_time_tv)
-        BaseTextView  vid_als_time_tv;
-        @BindView(R.id.vid_als_igview)
-        BaseImageView vid_als_igview;
-        @BindView(R.id.vid_als_index_tv)
-        BaseTextView  vid_als_index_tv;
+        @BindView(R.id.vid_ags_title_tv)
+        BaseTextView  vid_ags_title_tv;
+        @BindView(R.id.vid_ags_subtitle_tv)
+        BaseTextView  vid_ags_subtitle_tv;
+        @BindView(R.id.vid_ags_time_tv)
+        BaseTextView  vid_ags_time_tv;
+        @BindView(R.id.vid_ags_igview)
+        BaseImageView vid_ags_igview;
+        @BindView(R.id.vid_ags_index_tv)
+        BaseTextView  vid_ags_index_tv;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
