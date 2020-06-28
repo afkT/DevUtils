@@ -15,9 +15,9 @@
 
 ## Demo
 
-| [下载 DevUtils APK-Demo](https://github.com/afkT/DevUtils/raw/master/art/app-debug.apk) |   |
-|:--:|:--:|:--:|
-| ![apk_qrcode](https://github.com/afkT/DevUtils/raw/master/art/dev_apk_qrcode.png) |   |
+| [下载 DevUtils APK-Demo](https://github.com/afkT/DevUtils/raw/master/art/app-debug.apk) |
+|:--:|
+| ![apk_qrcode](https://github.com/afkT/DevUtils/raw/master/art/dev_apk_qrcode.png) |
 
 ## Documentation - [Lib](https://github.com/afkT/DevUtils/blob/master/lib)
 
