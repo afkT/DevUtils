@@ -26,15 +26,15 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 
 | WrapView | LineTextView | SignView |
 |:--:|:--:|:--:|
-| ![WrapView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/wrap_view.jpg) | ![LineTextView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/line_text_view.jpg) | ![SignView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/sign_view.jpg) |
+| ![WrapView](https://github.com/afkT/DevUtils/raw/master/art/wrap_view.jpg) | ![LineTextView](https://github.com/afkT/DevUtils/raw/master/art/line_text_view.jpg) | ![SignView](https://github.com/afkT/DevUtils/raw/master/art/sign_view.jpg) |
 | ScanShapeView - Square | ScanShapeView - Hexagon | ScanShapeView - Annulus |
-| ![ScanShapeView - Square](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/scan_shape_view_square.gif) | ![ScanShapeView - Hexagon](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/scan_shape_view_hexagon.gif) | ![ScanShapeView - Annulus](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/scan_shape_view_annulus.gif) |
+| ![ScanShapeView - Square](https://github.com/afkT/DevUtils/raw/master/art/scan_shape_view_square.gif) | ![ScanShapeView - Hexagon](https://github.com/afkT/DevUtils/raw/master/art/scan_shape_view_hexagon.gif) | ![ScanShapeView - Annulus](https://github.com/afkT/DevUtils/raw/master/art/scan_shape_view_annulus.gif) |
 | LoadProgressBar | FlowLikeView | CornerLabelView |
-| ![LoadProgressBar](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/load_progress_bar.gif) | ![FlowLikeView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/flow_like_view.gif) | ![CornerLabelView](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/corner_label_view.jpg) |
+| ![LoadProgressBar](https://github.com/afkT/DevUtils/raw/master/art/load_progress_bar.gif) | ![FlowLikeView](https://github.com/afkT/DevUtils/raw/master/art/flow_like_view.gif) | ![CornerLabelView](https://github.com/afkT/DevUtils/raw/master/art/corner_label_view.jpg) |
 | ViewAssist | ViewAssist - Loading | ViewAssist - Loading |
-| ![ViewAssist](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/view_assist.jpg) | ![ViewAssist - Loading](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/view_assist_loading.gif) | ![ViewAssist - Loading](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/view_assist_loading2.gif) |
+| ![ViewAssist](https://github.com/afkT/DevUtils/raw/master/art/view_assist.jpg) | ![ViewAssist - Loading](https://github.com/afkT/DevUtils/raw/master/art/view_assist_loading.gif) | ![ViewAssist - Loading](https://github.com/afkT/DevUtils/raw/master/art/view_assist_loading2.gif) |
 | ViewAssist - Error | ViewAssist - Empty | ViewAssist - Custom |
-| ![ViewAssist - Error](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/view_assist_error.gif) | ![ViewAssist - Empty](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/view_assist_empty.gif) | ![ViewAssist - Custom](https://raw.githubusercontent.com/afkT/DevUtils/master/lib/Widget/DevWidget/file/image/view_assist_custom.gif) |
+| ![ViewAssist - Error](https://github.com/afkT/DevUtils/raw/master/art/view_assist_error.gif) | ![ViewAssist - Empty](https://github.com/afkT/DevUtils/raw/master/art/view_assist_empty.gif) | ![ViewAssist - Custom](https://github.com/afkT/DevUtils/raw/master/art/view_assist_custom.gif) |
 
 
 ## Catalog
