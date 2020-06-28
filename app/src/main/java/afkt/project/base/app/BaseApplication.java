@@ -230,5 +230,8 @@ public class BaseApplication extends MultiDexApplication {
 
         // 初始化 GreenDao
         GreenManager.init(this);
+
+//        // 初始化 OkGo
+//        OkGoUtils.initOkGo(this);
     }
 }

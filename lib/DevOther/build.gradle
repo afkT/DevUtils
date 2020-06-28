@@ -19,6 +19,10 @@ dependencies {
     implementation deps.lib.eventbus
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
     implementation deps.lib.okhttp3
+    // 网络请求库  https://github.com/square/retrofit
+    implementation deps.lib.retrofit
+    // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
+    implementation deps.lib.rxjava3
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
     implementation deps.lib.pictureSelector
     // 二维码 ZXing https://github.com/zxing/zxing

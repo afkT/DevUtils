@@ -123,6 +123,8 @@ ext {
                     okhttp3_logging              : "com.squareup.okhttp3:logging-interceptor:4.7.2",
                     // 网络请求库  https://github.com/square/retrofit
                     retrofit                     : "com.squareup.retrofit2:retrofit:2.9.0",
+                    // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
+                    rxjava3                      : "io.reactivex.rxjava3:rxjava:3.0.4",
                     // Okgo https://github.com/jeasonlzy/okhttp-OkGo
                     okgo                         : "com.lzy.net:okgo:3.0.4",
                     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki

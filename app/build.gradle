@@ -49,6 +49,10 @@ dependencies {
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
     implementation deps.lib.okhttp3
     implementation deps.lib.okhttp3_logging
+    // 网络请求库  https://github.com/square/retrofit
+    implementation deps.lib.retrofit
+    // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
+    implementation deps.lib.rxjava3
     // Okgo https://github.com/jeasonlzy/okhttp-OkGo
     implementation deps.lib.okgo
     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
