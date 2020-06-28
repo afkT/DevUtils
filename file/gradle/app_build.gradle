@@ -15,10 +15,10 @@ android {
         // 开启 multidex
         multiDexEnabled true
 
-        ndk {
-            // 'armeabi'
-            abiFilters 'armeabi-v7a', 'arm64-v8a'
-        }
+//        ndk {
+//            // 'armeabi'
+//            abiFilters 'armeabi-v7a', 'arm64-v8a'
+//        }
     }
 
     // data binding

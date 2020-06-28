@@ -11,13 +11,13 @@
 >
 > 该项目尽可能的便于开发人员，快捷、高效开发安全可靠的项目，以及内置部分常用的资源文件，如 color.xml
 
-![module](https://raw.githubusercontent.com/afkT/DevUtils/master/file/DevUtils.png)
+![module](https://github.com/afkT/DevUtils/raw/master/art/module.png)
 
 ## Demo
 
-| [下载 DevUtils APK-Demo](https://gitee.com/afkT/storage/blob/master/APK/DevUtils/app-debug.apk) |   |   |
+| [下载 DevUtils APK-Demo](https://github.com/afkT/DevUtils/raw/master/art/app-debug.apk) |   |
 |:--:|:--:|:--:|
-| ![apk_qrcode](https://gitee.com/afkT/storage/blob/master/APK/DevUtils/apk_qrcode.png) |   |   |
+| ![apk_qrcode](https://github.com/afkT/DevUtils/raw/master/art/dev_apk_qrcode.png) |   |
 
 ## Documentation - [Lib](https://github.com/afkT/DevUtils/blob/master/lib)
 
