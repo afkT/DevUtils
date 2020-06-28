@@ -13,12 +13,6 @@
 
 ![module](https://github.com/afkT/DevUtils/raw/master/art/module.png)
 
-## Demo
-
-| [下载 DevUtils APK-Demo](https://github.com/afkT/DevUtils/raw/master/art/app-debug.apk) |
-|:--:|
-| ![apk_qrcode](https://github.com/afkT/DevUtils/raw/master/art/dev_apk_qrcode.png) |
-
 ## Documentation - [Lib](https://github.com/afkT/DevUtils/blob/master/lib)
 
 ### DevApp - Android 工具类库
@@ -91,6 +85,12 @@ releaseAnnotationProcessor 'com.afkt:DevEnvironmentCompilerRelease:1.0.0'
 // DevWidget 自定义 View UI 库 https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget
 implementation 'com.afkt:DevWidgetX:1.0.2' // AndroidX
 ```
+
+## Demo
+
+| [下载 DevUtils APK-Demo](https://github.com/afkT/DevUtils/raw/master/art/app-debug.apk) |
+|:--:|
+| ![apk_qrcode](https://github.com/afkT/DevUtils/raw/master/art/dev_apk_qrcode.png) |
 
 ## License
 

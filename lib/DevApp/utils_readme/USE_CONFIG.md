@@ -32,7 +32,7 @@ public class BaseApplication extends Application {
 }
 ```
 
-# 配置与使用相关 - [目录](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/com/dev/utils)
+# 配置与使用相关 - [目录](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use)
 
 ## [DevLogger 日志工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/logger/DevLogger.md)
 
