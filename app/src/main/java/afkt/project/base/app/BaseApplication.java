@@ -92,17 +92,17 @@ public class BaseApplication extends MultiDexApplication {
      * @param timeCounter {@link TimeCounter}
      */
     private void printProInfo(TimeCounter timeCounter) {
-        StringBuilder bulder = new StringBuilder();
-        bulder.append("项目名: " + ResourceUtils.getString(R.string.str_app_name) + " (" + ResourceUtils.getString(R.string.str_app_name_en) + ")");
-        bulder.append("\nSDK: " + Build.VERSION.SDK_INT + "(" + AppCommonUtils.convertSDKVersion(Build.VERSION.SDK_INT) + ")");
-        bulder.append("\nPackageName: " + AppUtils.getPackageName());
-        bulder.append("\nVersionCode: " + AppUtils.getAppVersionCode());
-        bulder.append("\nVersionName: " + AppUtils.getAppVersionName());
-        bulder.append("\nDevUtils 版本: " + DevUtils.getDevAppUtilsVersion());
-        bulder.append("\nDevJava 版本: " + DevUtils.getDevJavaUtilsVersion());
-        bulder.append("\n时间: " + DateUtils.getDateNow());
-        bulder.append("\n初始化耗时(毫秒): " + timeCounter.duration());
-        DevLogger.i(bulder.toString());
+        StringBuilder builder = new StringBuilder();
+        builder.append("项目名: " + ResourceUtils.getString(R.string.str_app_name) + " (" + ResourceUtils.getString(R.string.str_app_name_en) + ")");
+        builder.append("\nSDK: " + Build.VERSION.SDK_INT + "(" + AppCommonUtils.convertSDKVersion(Build.VERSION.SDK_INT) + ")");
+        builder.append("\nPackageName: " + AppUtils.getPackageName());
+        builder.append("\nVersionCode: " + AppUtils.getAppVersionCode());
+        builder.append("\nVersionName: " + AppUtils.getAppVersionName());
+        builder.append("\nDevUtils 版本: " + DevUtils.getDevAppUtilsVersion());
+        builder.append("\nDevJava 版本: " + DevUtils.getDevJavaUtilsVersion());
+        builder.append("\n时间: " + DateUtils.getDateNow());
+        builder.append("\n初始化耗时(毫秒): " + timeCounter.duration());
+        DevLogger.i(builder.toString());
     }
 
     // ==============

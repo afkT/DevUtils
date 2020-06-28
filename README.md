@@ -13,6 +13,11 @@
 
 ![module](https://raw.githubusercontent.com/afkT/DevUtils/master/file/DevUtils.png)
 
+## Demo
+
+| [下载 DevUtils APK-Demo](https://gitee.com/afkT/storage/blob/master/APK/DevUtils/app-debug.apk) |   |   |
+|:--:|:--:|:--:|
+| ![apk_qrcode](https://gitee.com/afkT/storage/blob/master/APK/DevUtils/apk_qrcode.png) |   |   |
 
 ## Documentation - [Lib](https://github.com/afkT/DevUtils/blob/master/lib)
 
