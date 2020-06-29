@@ -461,14 +461,21 @@ public final class ActivityUtils {
     // =====================
 
     // ActivityUtils 实例
-    private static final ActivityUtils INSTANCE = new ActivityUtils();
+    private volatile static ActivityUtils sInstance;
 
     /**
      * 获取 ActivityUtils 管理实例
      * @return {@link ActivityUtils}
      */
     public static ActivityUtils getManager() {
-        return INSTANCE;
+        if (sInstance == null) {
+            synchronized (ActivityUtils.class) {
+                if (sInstance == null) {
+                    sInstance = new ActivityUtils();
+                }
+            }
+        }
+        return sInstance;
     }
 
     // ===================

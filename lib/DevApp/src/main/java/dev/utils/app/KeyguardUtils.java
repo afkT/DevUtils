@@ -22,7 +22,7 @@ public final class KeyguardUtils {
     // 日志 TAG
     private static final String TAG = KeyguardUtils.class.getSimpleName();
     // KeyguardUtils 实例
-    private static KeyguardUtils sInstance;
+    private volatile static KeyguardUtils sInstance;
 
     /**
      * 获取 KeyguardUtils 实例

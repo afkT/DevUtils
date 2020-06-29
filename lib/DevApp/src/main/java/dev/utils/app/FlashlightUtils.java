@@ -21,7 +21,7 @@ public final class FlashlightUtils {
     // 日志 TAG
     private final String TAG = FlashlightUtils.class.getSimpleName();
     // FlashlightUtils 实例
-    private static FlashlightUtils sInstance;
+    private volatile static FlashlightUtils sInstance;
 
     /**
      * 获取 FlashlightUtils 实例
