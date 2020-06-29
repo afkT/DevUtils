@@ -26,6 +26,8 @@ import okhttp3.OkHttpClient;
  *     用于初始化 OkGo、Okhttp 等配置相关方法
  *     @see <a href="https://github.com/jeasonlzy/okhttp-OkGo"/>
  *     @see <a href="https://github.com/jeasonlzy/okhttp-OkGo/wiki"/>
+ *     OkRx
+ *     @see <a href="https://github.com/jeasonlzy/okhttp-OkGo/wiki/OkRx"/>
  *     核心类:
  *     {@link OkGoUtils}: 初始化 OkGo、OkHttp 请求配置信息
  *     {@link OkGoResponse}: 请求响应统一解析类

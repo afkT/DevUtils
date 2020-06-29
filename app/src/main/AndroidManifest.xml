@@ -32,7 +32,7 @@
     <!-- 允许访问震动设备 -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <!-- 读取短信 -->
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <!-- 快捷方式创建、卸载权限 -->
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
@@ -52,11 +52,11 @@
 
         <meta-data
             android:name="design_width_in_dp"
-            android:value="360"/>
+            android:value="360" />
 
         <meta-data
             android:name="design_height_in_dp"
-            android:value="640"/>
+            android:value="640" />
 
         <!-- LAUNCHER -->
 
