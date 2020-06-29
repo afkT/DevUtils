@@ -19,7 +19,7 @@ import dev.utils.app.logger.DevLogger;
 import dev.utils.common.ClassUtils;
 
 /**
- * detail: OkGo 请求统一回调处理类
+ * detail: 请求回调统一处理类
  * @author Ttt
  * <pre>
  *     高级自定义 Callback

@@ -23,9 +23,16 @@ import okhttp3.OkHttpClient;
  * detail: OkGo 配置相关工具类
  * @author Ttt
  * <pre>
- *     用于初始化 Okhttp 等配置相关方法, 该类可不需要
+ *     用于初始化 OkGo、Okhttp 等配置相关方法
  *     @see <a href="https://github.com/jeasonlzy/okhttp-OkGo"/>
  *     @see <a href="https://github.com/jeasonlzy/okhttp-OkGo/wiki"/>
+ *     核心类:
+ *     {@link OkGoUtils}: 初始化 OkGo、OkHttp 请求配置信息
+ *     {@link OkGoResponse}: 请求响应统一解析类
+ *     {@link OkGoCallback}: 请求回调统一处理类
+ *     请求拦截 ( 非必须 ) :
+ *     {@link dev.other.okgo.HttpLoggingInterceptor}: 自定义 OkHttp 打印日志拦截器
+ *     {@link com.lzy.okgo.interceptor.HttpLoggingInterceptor}: OkGo 实现 OkHttp 打印日志拦截器
  * </pre>
  */
 public final class OkGoUtils {

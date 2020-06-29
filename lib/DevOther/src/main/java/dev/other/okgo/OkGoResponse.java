@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import org.json.JSONObject;
 
 /**
- * detail: 请求响应解析基类
+ * detail: 请求响应统一解析类
  * @author Ttt
  * <pre>
  *     主要用于统一解析后台返回 data、message、code 等
