@@ -19,15 +19,21 @@ dependencies {
     implementation deps.lib.eventbus
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
     implementation deps.lib.okhttp3
-    // 网络请求库  https://github.com/square/retrofit
+    // Retrofit 网络请求库  https://github.com/square/retrofit
     implementation deps.lib.retrofit
+    // Retrofit Gson Converter  https://github.com/square/retrofit/tree/master/retrofit-converters/gson
+    implementation deps.lib.retrofit_gson
+//    // Retrofit RxJava2 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava2
+//    implementation deps.lib.retrofit_rxjava2
+    // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava3
+    implementation deps.lib.retrofit_rxjava3
     // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
     implementation deps.lib.rxjava3
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
     implementation deps.lib.pictureSelector
     // 二维码 ZXing https://github.com/zxing/zxing
     implementation deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
-    implementation deps.lib.zxing_android_code // http://mvnrepository.com/artifact/com.google.zxing/android-core
+    implementation deps.lib.zxing_android_code // android-core
     // Okgo https://github.com/jeasonlzy/okhttp-OkGo
     implementation deps.lib.okgo
     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki

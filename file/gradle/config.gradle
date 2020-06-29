@@ -121,8 +121,14 @@ ext {
                     okhttp3                      : "com.squareup.okhttp3:okhttp:4.7.2",
                     // okhttp 日志拦截器 https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor
                     okhttp3_logging              : "com.squareup.okhttp3:logging-interceptor:4.7.2",
-                    // 网络请求库  https://github.com/square/retrofit
+                    // Retrofit 网络请求库  https://github.com/square/retrofit
                     retrofit                     : "com.squareup.retrofit2:retrofit:2.9.0",
+                    // Retrofit Gson Converter  https://github.com/square/retrofit/tree/master/retrofit-converters/gson
+                    retrofit_gson                : "com.squareup.retrofit2:converter-gson:2.9.0",
+                    // Retrofit RxJava2 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava2
+                    retrofit_rxjava2             : "com.squareup.retrofit2:adapter-rxjava2:2.9.0",
+                    // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava3
+                    retrofit_rxjava3             : "com.squareup.retrofit2:adapter-rxjava3:2.9.0",
                     // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
                     rxjava3                      : "io.reactivex.rxjava3:rxjava:3.0.4",
                     // Okgo https://github.com/jeasonlzy/okhttp-OkGo
