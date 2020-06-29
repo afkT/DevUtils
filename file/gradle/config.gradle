@@ -125,12 +125,12 @@ ext {
                     retrofit                     : "com.squareup.retrofit2:retrofit:2.9.0",
                     // Retrofit Gson Converter  https://github.com/square/retrofit/tree/master/retrofit-converters/gson
                     retrofit_gson                : "com.squareup.retrofit2:converter-gson:2.9.0",
-                    // Retrofit RxJava2 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava2
-                    retrofit_rxjava2             : "com.squareup.retrofit2:adapter-rxjava2:2.9.0",
                     // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava3
                     retrofit_rxjava3             : "com.squareup.retrofit2:adapter-rxjava3:2.9.0",
                     // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
                     rxjava3                      : "io.reactivex.rxjava3:rxjava:3.0.4",
+                    // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
+                    rxandroid3                   : "io.reactivex.rxjava3:rxandroid:3.0.0",
                     // Okgo https://github.com/jeasonlzy/okhttp-OkGo
                     okgo                         : "com.lzy.net:okgo:3.0.4",
                     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki

@@ -53,12 +53,12 @@ dependencies {
     implementation deps.lib.retrofit
     // Retrofit Gson Converter  https://github.com/square/retrofit/tree/master/retrofit-converters/gson
     implementation deps.lib.retrofit_gson
-//    // Retrofit RxJava2 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava2
-//    implementation deps.lib.retrofit_rxjava2
     // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava3
     implementation deps.lib.retrofit_rxjava3
     // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
     implementation deps.lib.rxjava3
+    // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
+    implementation deps.lib.rxandroid3
     // Okgo https://github.com/jeasonlzy/okhttp-OkGo
     implementation deps.lib.okgo
     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
@@ -97,10 +97,10 @@ dependencies {
     implementation deps.lib.photoview
     // GPU Filters https://github.com/cats-oss/android-gpuimage
     implementation deps.lib.gpuimage
+    // Glide 图形库 https://github.com/wasabeef/glide-transformations
+    implementation deps.lib.glide_transformations
     // 动画库 https://github.com/airbnb/lottie-android
     implementation deps.lib.lottie
-    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-    implementation deps.lib.pictureSelector
     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
     implementation deps.lib.smartrefreshlayout
     implementation deps.lib.smartrefresh_header_classics
@@ -109,17 +109,17 @@ dependencies {
     implementation deps.lib.smartrefreshHorizontal
     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
     implementation deps.lib.baserecyclerviewadapterhelper
+    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
+    implementation deps.lib.pictureSelector
     // 二维码 ZXing https://github.com/zxing/zxing
     implementation deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
     implementation deps.lib.zxing_android_code // android-core
-    // Glide 图形库 https://github.com/wasabeef/glide-transformations
-    implementation deps.lib.glide_transformations
+    // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
+    implementation deps.lib.luban
     // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
     implementation deps.lib.greenDAO
     // SQLCipher for Android https://github.com/sqlcipher/android-database-sqlcipher
     implementation deps.lib.sqlcipher
-    // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
-    implementation deps.lib.luban
     // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
     implementation deps.lib.stickyDecoration
 
