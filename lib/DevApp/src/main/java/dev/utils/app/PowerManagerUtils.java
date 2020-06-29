@@ -29,7 +29,11 @@ public final class PowerManagerUtils {
      */
     public static PowerManagerUtils getInstance() {
         if (sInstance == null) {
-            sInstance = new PowerManagerUtils();
+            synchronized (PowerManagerUtils.class) {
+                if (sInstance == null) {
+                    sInstance = new PowerManagerUtils();
+                }
+            }
         }
         return sInstance;
     }

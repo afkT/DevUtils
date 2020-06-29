@@ -20,15 +20,22 @@ public final class FlashlightUtils {
 
     // 日志 TAG
     private final String TAG = FlashlightUtils.class.getSimpleName();
-    // 单例对象
-    private static final FlashlightUtils INSTANCE = new FlashlightUtils();
+    // FlashlightUtils 实例
+    private static FlashlightUtils sInstance;
 
     /**
      * 获取 FlashlightUtils 实例
      * @return {@link FlashlightUtils}
      */
     public static FlashlightUtils getInstance() {
-        return INSTANCE;
+        if (sInstance == null) {
+            synchronized (FlashlightUtils.class) {
+                if (sInstance == null) {
+                    sInstance = new FlashlightUtils();
+                }
+            }
+        }
+        return sInstance;
     }
 
     // Camera 对象

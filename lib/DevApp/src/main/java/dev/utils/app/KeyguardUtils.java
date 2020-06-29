@@ -30,7 +30,11 @@ public final class KeyguardUtils {
      */
     public static KeyguardUtils getInstance() {
         if (sInstance == null) {
-            sInstance = new KeyguardUtils();
+            synchronized (KeyguardUtils.class) {
+                if (sInstance == null) {
+                    sInstance = new KeyguardUtils();
+                }
+            }
         }
         return sInstance;
     }

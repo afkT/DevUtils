@@ -28,7 +28,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     private static String TAG = DevMediaManager.class.getSimpleName();
     // MediaPlayer 对象
     private MediaPlayer mMediaPlayer;
-    // 单例实例
+    // DevMediaManager 实例
     private static DevMediaManager sInstance;
 
     private DevMediaManager() {
@@ -40,7 +40,11 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      */
     public static DevMediaManager getInstance() {
         if (sInstance == null) {
-            sInstance = new DevMediaManager();
+            synchronized (DevMediaManager.class) {
+                if (sInstance == null) {
+                    sInstance = new DevMediaManager();
+                }
+            }
         }
         return sInstance;
     }

@@ -14,7 +14,7 @@ import java.lang.Thread.UncaughtExceptionHandler;
 public final class CrashUtils implements UncaughtExceptionHandler {
 
     // CrashUtils 实例
-    private static CrashUtils INSTANCE = new CrashUtils();
+    private static CrashUtils sInstance;
     // Context
     private Context mContext;
     // 系统默认的 UncaughtException 处理器
@@ -30,7 +30,14 @@ public final class CrashUtils implements UncaughtExceptionHandler {
      * @return {@link CrashUtils}
      */
     public static CrashUtils getInstance() {
-        return INSTANCE;
+        if (sInstance == null) {
+            synchronized (CrashUtils.class) {
+                if (sInstance == null) {
+                    sInstance = new CrashUtils();
+                }
+            }
+        }
+        return sInstance;
     }
 
     /**
