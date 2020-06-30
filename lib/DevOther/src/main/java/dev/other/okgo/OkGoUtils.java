@@ -150,7 +150,7 @@ public final class OkGoUtils {
 
     /**
      * 执行请求处理
-     * @param clazz    Activity class
+     * @param clazz    class
      * @param request  {@link Request}
      * @param callback {@link OkGoCallback}
      * @param <T>      泛型
@@ -168,7 +168,7 @@ public final class OkGoUtils {
      *     BaseView 请求方法内调用该方法, 进行设置 Tag 在 Activity#onDestroy 中调用
      *     OkGo.getInstance().cancelTag(tag); 防止内存泄露
      * </pre>
-     * @param tag      Activity class getSimpleName()
+     * @param tag      request tag
      * @param request  {@link Request}
      * @param callback {@link OkGoCallback}
      * @param <T>      泛型
