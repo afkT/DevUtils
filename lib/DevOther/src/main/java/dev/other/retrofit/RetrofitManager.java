@@ -1,21 +1,15 @@
 package dev.other.retrofit;
 
-import android.text.TextUtils;
+import java.util.HashMap;
 
-import java.util.concurrent.TimeUnit;
-
-import dev.other.okgo.HttpLoggingInterceptor;
-import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * detail: Retrofit 管理类
  * @author Ttt
  * <pre>
- *     该类封装 Retrofit + RxJava3 + RxAndroid3, 会把 RxJava3 方式网络请求管理等代码统一放入该类, 不单独创建 RxJavaUtils
- *     init: {@link RetrofitManager#getInstance()#initRetrofit()}
+ *     使用 Retrofit2 + RxJava3 + RxAndroid3, 预留多 Retrofit 处理
+ *     也可以使用单 Retrofit 通过 OkHttp Interceptor 进行拦截处理 ( 例: 通过 Header 某个字段判断重新设置 baseUrl、Header )
  *     <p></p>
  *     Android : 手把手带你深入剖析 Retrofit 2.0 源码
  *     @see <a href="https://blog.csdn.net/carson_ho/article/details/73732115"/>
@@ -23,14 +17,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  *     @see <a href="https://blog.csdn.net/carson_ho/article/details/73732076"/>
  *     封装 Retrofit2 + RxJava2 网络请求框架
  *     @see <a href="https://www.jianshu.com/p/2e8b400909b7"/>
- *     ReactiveX / RxJava 文档中文版
- *     @see <a href="https://github.com/mcxiaoke/RxDocs"/>
- *     Android RxJava : 这是一篇 清晰 & 易懂的 RxJava 入门教程
- *     @see <a href="https://www.jianshu.com/p/a406b94f3188"/>
- *     How To Use RxJava
- *     @see <a href="https://github.com/ReactiveX/RxJava/wiki/How-To-Use-RxJava"/>
- *     What's different in 3.0
- *     @see <a href="https://github.com/ReactiveX/RxJava/wiki/What%27s-different-in-3.0"/>
  * </pre>
  */
 public final class RetrofitManager {
@@ -51,70 +37,73 @@ public final class RetrofitManager {
         return sInstance;
     }
 
-    // =
-
-    // Retrofit
-    private Retrofit mRetrofit;
+    // Retrofit Map ( 多 BaseUrl、Header、OkHttp 配置等考虑 )
+    private final HashMap<String, Retrofit> mRetrofitMap = new HashMap<>();
 
     /**
-     * 初始化 Retrofit 配置
+     * 通过 tag 获取 Retrofit
+     * @param tag Retrofit tag
+     * @return {@link Retrofit}
      */
-    public void initRetrofit() {
-        initRetrofit(null);
+    public Retrofit get(final String tag) {
+        return mRetrofitMap.get(tag);
     }
 
     /**
-     * 初始化 Retrofit 配置
-     * @param baseUrl 服务器地址
+     * 通过 tag 保存 Retrofit
+     * @param tag      Retrofit tag
+     * @param retrofit {@link Retrofit}
+     * @return {@link Retrofit}
      */
-    public void initRetrofit(final String baseUrl) {
-        Retrofit.Builder builder = new Retrofit.Builder()
-                // Gson 解析
-                .addConverterFactory(GsonConverterFactory.create())
-                // RxJava3 适配器
-                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-                // OkHttpClient
-                .client(okHttpClient().build());
-        if (!TextUtils.isEmpty(baseUrl)) {
-            builder.baseUrl(baseUrl);
+    public Retrofit put(final String tag, final Retrofit retrofit) {
+        if (tag != null && retrofit != null) {
+            return mRetrofitMap.put(tag, retrofit);
         }
-        mRetrofit = builder.build();
+        return retrofit;
     }
 
     /**
-     * 构建 OkHttp 请求配置
-     * <pre>
-     *     可参照 {@link dev.other.okgo.OkGoUtils}
-     * </pre>
-     * @return {@link OkHttpClient.Builder}
+     * 通过 tag 移除 Retrofit
+     * @param tag Retrofit tag
+     * @return {@link Retrofit}
      */
-    private OkHttpClient.Builder okHttpClient() {
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        // 自定义日志拦截 JSON 打印
-        builder.addInterceptor(new HttpLoggingInterceptor());
-        // 全局的读取超时时间
-        builder.readTimeout(60000L, TimeUnit.MILLISECONDS);
-        // 全局的写入超时时间
-        builder.writeTimeout(60000L, TimeUnit.MILLISECONDS);
-        // 全局的连接超时时间
-        builder.connectTimeout(60000L, TimeUnit.MILLISECONDS);
-        return builder;
+    public Retrofit remove(final String tag) {
+        return mRetrofitMap.remove(tag);
     }
 
-    // ===============
-    // = 对外公开方法 =
-    // ===============
+    /**
+     * 通过 tag 判断是否存在 Retrofit
+     * @param tag Retrofit tag
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean contains(final String tag) {
+        return mRetrofitMap.containsKey(tag);
+    }
+
+    /**
+     * 获取 Retrofit Map
+     * @return Retrofit Map
+     */
+    public HashMap<String, Retrofit> getRetrofitMap() {
+        return mRetrofitMap;
+    }
+
+    // ====================
+    // = 代理 API Service =
+    // ====================
 
     /**
      * 创建 API Service Class
+     * @param tag     Retrofit tag
      * @param service API Service
      * @param <T>     ApiServiceT.class
      * @return API Service Instance
      */
-    public <T> T create(final Class<T> service) {
-        if (mRetrofit != null) {
+    public <T> T create(final String tag, final Class<T> service) {
+        Retrofit retrofit = mRetrofitMap.get(tag);
+        if (retrofit != null) {
             try {
-                return mRetrofit.create(service);
+                return retrofit.create(service);
             } catch (Exception e) {
                 e.printStackTrace();
             }
