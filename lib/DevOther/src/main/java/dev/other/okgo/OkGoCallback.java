@@ -16,6 +16,7 @@ import java.lang.reflect.Type;
 
 import dev.utils.app.JSONObjectUtils;
 import dev.utils.app.logger.DevLogger;
+import dev.utils.app.toast.ToastUtils;
 import dev.utils.common.ClassUtils;
 
 /**
@@ -32,7 +33,16 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
     private final String TAG = OkGoCallback.class.getSimpleName();
 
     // 请求链接
-    private String url;
+    private String  url;
+    // 是否需要进行 Toast 提示
+    private boolean toast = true;
+
+    public OkGoCallback() {
+    }
+
+    public OkGoCallback(boolean toast) {
+        this.toast = toast;
+    }
 
     // ==============
     // = 非必须方法 =
@@ -98,7 +108,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
     }
 
     /**
-     * 请求失败, 响应错误, 数据解析错误等, 都会回调该方法,  UI 线程
+     * 请求失败、响应错误、数据解析错误等, 都会回调该方法,  UI 线程
      */
     @Override
     public void onError(Response<String> response) {
@@ -109,6 +119,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
         if (response != null) {
             onErrorResponse(
                     new OkGoResponse.Builder<T>()
+                            .setToast(toast)
                             .setCode(response.code() + "")
                             .setMessage(response.message())
                             .setOriginal(response.body())
@@ -118,6 +129,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
         } else {
             onErrorResponse(
                     new OkGoResponse.Builder<T>()
+                            .setToast(toast)
                             .setCode(Integer.MAX_VALUE + "")
                             .setMessage("response is null")
                             .setException(new OkGoException("response is null"))
@@ -172,7 +184,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
     abstract public void onSuccessResponse(OkGoResponse<T> response);
 
     /**
-     * 请求失败, 响应错误, 数据解析错误等, 都会回调该方法,  UI 线程
+     * 请求失败、响应错误、数据解析错误等, 都会回调该方法,  UI 线程
      * @param response {@link OkGoResponse}
      */
     abstract public void onErrorResponse(OkGoResponse<T> response);
@@ -201,6 +213,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
         boolean result = isSuccess(code);
 
         OkGoResponse.Builder<T> builder = new OkGoResponse.Builder<T>()
+                .setToast(toast)
                 .setOriginal(body).setCode(code)
                 .setMessage(message).setResult(result);
 
@@ -235,6 +248,8 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
         if (!TextUtils.isEmpty(code)) {
             if (code.equals("0000")) { // 自行判断
                 return true;
+            } else if (code.equals("xxx")) {
+                if (toast) ToastUtils.showShort("xxx");
             }
         }
         return false;
