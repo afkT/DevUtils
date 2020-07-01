@@ -13,9 +13,14 @@ import afkt.project.R;
 import afkt.project.base.config.AppConfig;
 import afkt.project.base.config.PathConfig;
 import afkt.project.db.GreenManager;
+import afkt.project.function.http.RetrofitUtils;
 import afkt.project.util.ProjectUtils;
 import dev.DevUtils;
 import dev.assist.WebViewAssist;
+import dev.environment.DevEnvironment;
+import dev.environment.bean.EnvironmentBean;
+import dev.environment.bean.ModuleBean;
+import dev.environment.listener.OnEnvironmentChangeListener;
 import dev.other.GlideUtils;
 import dev.utils.app.ActivityUtils;
 import dev.utils.app.AppCommonUtils;
@@ -157,8 +162,7 @@ public class BaseApplication extends MultiDexApplication {
         })
                 .register(ViewAssist.TYPE_ING, R.layout.state_layout_ing)
                 .register(ViewAssist.TYPE_FAILED, R.layout.state_layout_fail)
-                .register(ViewAssist.TYPE_EMPTY_DATA, R.layout.state_layout_no_data)
-                ;
+                .register(ViewAssist.TYPE_EMPTY_DATA, R.layout.state_layout_no_data);
         // 设置全局配置
         StateLayout.setGlobal(global);
     }
@@ -233,5 +237,17 @@ public class BaseApplication extends MultiDexApplication {
 
 //        // 初始化 OkGo
 //        OkGoUtils.initOkGo(this);
+
+        // 初始化 Retrofit
+        RetrofitUtils.getInstance().initRetrofit();
+
+        // 环境 ( 服务器地址 ) 改变通知
+        DevEnvironment.addOnEnvironmentChangeListener(new OnEnvironmentChangeListener() {
+            @Override
+            public void onEnvironmentChanged(ModuleBean module, EnvironmentBean oldEnvironment, EnvironmentBean newEnvironment) {
+                // 改变地址重新初始化
+                RetrofitUtils.getInstance().initRetrofit().resetAPIService();
+            }
+        });
     }
 }

@@ -11,6 +11,7 @@ import afkt.project.R;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import dev.base.activity.DevBaseActivity;
+import dev.other.retrofit.RxJavaManager;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.widget.function.StateLayout;
@@ -31,10 +32,10 @@ public abstract class BaseActivity extends DevBaseActivity {
     // 状态布局容器
     protected LinearLayout vid_ba_state_linear;
     // 状态布局
-    protected StateLayout stateLayout;
+    protected StateLayout  stateLayout;
     // = Object =
     // Unbinder
-    public Unbinder unbinder;
+    public    Unbinder     unbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,8 @@ public abstract class BaseActivity extends DevBaseActivity {
         if (unbinder != null) {
             unbinder.unbind();
         }
+        // 取消 mTag ( Activity ) 关联的请求
+        RxJavaManager.getInstance().remove(mTag);
     }
 
     // ================

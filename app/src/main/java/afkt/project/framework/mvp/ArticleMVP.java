@@ -1,11 +1,11 @@
 package afkt.project.framework.mvp;
 
-import afkt.project.base.constants.http.HttpApis;
+import afkt.project.function.http.RetrofitUtils;
 import afkt.project.model.bean.ArticleBean;
 import dev.base.mvp.MVP;
-import dev.other.GsonUtils;
-import dev.utils.app.HandlerUtils;
-import dev.utils.common.HttpURLConnectionUtils;
+import dev.other.retrofit.RxJavaManager;
+import dev.other.retrofit.subscriber.BaseBeanSubscriber;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * detail: 文章 MVP Contract
@@ -29,6 +29,22 @@ public final class ArticleMVP {
          * @param articleBean 文章列表
          */
         void onArticleListResponse(boolean succeed, ArticleBean articleBean);
+
+        /**
+         * Retrofit 请求管理
+         * <pre>
+         *     该方法, 应该写在 MVP.IView 中并且在 MVP Activity 基类 implements MVP.IView
+         *     基类实现 addDisposable 该方法代码
+         *     RxJavaManager.getInstance().add(mTag, disposable);
+         *     用于 Retrofit 请求管理, 在 Activity onDestroy 调用
+         *     RxJavaManager.getInstance().remove(mTag);
+         *     这样能够实现请求跟随 Activity 生命周期销毁
+         *     <p></p>
+         *     目前这样写, 是不想改变 MVP 结构以及在 DevBase Module 依赖 RxJava, 具体项目 copy 改造 MVP
+         * </pre>
+         * @param disposable {@link Disposable}
+         */
+        void addDisposable(Disposable disposable);
     }
 
     public interface IPresenter extends MVP.IPresenter<View> {
@@ -49,33 +65,25 @@ public final class ArticleMVP {
             mModel = new Model() {
                 @Override
                 public void requestArticleLists() {
-                    HttpURLConnectionUtils.doGetAsyn(String.format(HttpApis.getArticleListUrl(), "0"),
-                            new HttpURLConnectionUtils.CallBack() {
+                    // 映射各种 JSON 实体类
+                    BaseBeanSubscriber<ArticleBean> articleList = RetrofitUtils.getWanAndroidService().getArticleList(0)
+                            .compose(RxJavaManager.io_main())
+                            .subscribeWith(new BaseBeanSubscriber<ArticleBean>() {
                                 @Override
-                                public void onResponse(String result, long response) {
+                                public void onSuccessResponse(ArticleBean data) {
                                     if (mView != null) {
-                                        HandlerUtils.postRunnable(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                ArticleBean articleBean = GsonUtils.fromJson(result, ArticleBean.class);
-                                                mView.onArticleListResponse(true, articleBean);
-                                            }
-                                        });
+                                        mView.onArticleListResponse(true, data);
                                     }
                                 }
 
                                 @Override
-                                public void onFail(Exception e) {
+                                public void onErrorResponse(Throwable throwable, String message) {
                                     if (mView != null) {
-                                        HandlerUtils.postRunnable(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                mView.onArticleListResponse(false, null);
-                                            }
-                                        });
+                                        mView.onArticleListResponse(false, null);
                                     }
                                 }
                             });
+                    mView.addDisposable(articleList);
                 }
             };
         }

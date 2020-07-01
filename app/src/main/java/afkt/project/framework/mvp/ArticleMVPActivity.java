@@ -11,10 +11,12 @@ import afkt.project.base.app.BaseMVPToolbarActivity;
 import afkt.project.model.bean.ArticleBean;
 import afkt.project.ui.adapter.ArticleAdapter;
 import butterknife.BindView;
+import dev.other.retrofit.RxJavaManager;
 import dev.utils.app.ViewUtils;
 import dev.utils.common.CollectionUtils;
 import dev.widget.assist.ViewAssist;
 import dev.widget.function.StateLayout;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * detail: 文章 MVP Activity
@@ -25,7 +27,7 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
     @BindView(R.id.vid_bvr_recy)
     RecyclerView vid_bvr_recy;
     // 加载动画
-    WhorlView vid_sli_load_view;
+    WhorlView      vid_sli_load_view;
     // 适配器
     ArticleAdapter articleAdapter;
 
@@ -125,5 +127,10 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
         } else { // 请求失败
             stateLayout.showFailed();
         }
+    }
+
+    @Override
+    public void addDisposable(Disposable disposable) {
+        RxJavaManager.getInstance().add(mTag, disposable);
     }
 }
