@@ -172,8 +172,6 @@ ext {
                     smartrefreshHorizontal       : "com.scwang.smart:refresh-layout-horizontal:2.0.0",
                     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
                     baserecyclerviewadapterhelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4",
-                    // 文件下载库 https://github.com/lingochamp/FileDownloader/blob/master/README-zh.md
-                    filedownloader               : "com.liulishuo.filedownloader:library:1.7.7",
                     // Aria 下载可以很简单 https://github.com/AriaLyy/Aria
                     aria_core                    : "com.arialyy.aria:core:3.8.10",
                     aria_compiler                : "com.arialyy.aria:compiler:3.8.10",
