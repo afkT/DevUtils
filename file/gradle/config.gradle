@@ -174,6 +174,12 @@ ext {
                     baserecyclerviewadapterhelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4",
                     // 文件下载库 https://github.com/lingochamp/FileDownloader/blob/master/README-zh.md
                     filedownloader               : "com.liulishuo.filedownloader:library:1.7.7",
+                    // Aria 下载可以很简单 https://github.com/AriaLyy/Aria
+                    aria_core                    : "com.arialyy.aria:core:3.8.10",
+                    aria_compiler                : "com.arialyy.aria:compiler:3.8.10",
+                    aria_ftp                     : "com.arialyy.aria:ftpComponent:3.8.10", // 如果需要使用 ftp, 请增加该组件
+                    aria_sftp                    : "com.arialyy.aria:sftpComponent:3.8.10", // 如果需要使用 ftp, 请增加该组件
+                    aria_m3u8                    : "com.arialyy.aria:m3u8Component:3.8.10", // 如果需要使用 m3u8 下载功能, 请增加该组件
                     // 二维码 ZXing https://github.com/zxing/zxing
                     zxing_code                   : "com.google.zxing:core:3.4.0", // http://mvnrepository.com/artifact/com.google.zxing/core
                     zxing_android_code           : "com.google.zxing:android-core:3.3.0", // http://mvnrepository.com/artifact/com.google.zxing/android-core
