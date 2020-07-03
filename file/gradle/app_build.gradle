@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'kotlin-kapt'
 apply plugin: 'org.greenrobot.greendao'
 
 android {
@@ -70,6 +73,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.kotlin.stdlib
+    implementation deps.androidx.core_ktx
     implementation deps.androidx.appcompat
     implementation deps.androidx.support_v4
     implementation deps.androidx.design

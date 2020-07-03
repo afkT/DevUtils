@@ -27,6 +27,8 @@ buildscript {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
         // greendao
         classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
+        // kotlin
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72"
     }
 }
 
