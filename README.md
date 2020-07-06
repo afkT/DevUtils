@@ -78,9 +78,9 @@ implementation 'com.afkt:DevAssist:1.0.3'
 
 // DevEnvironment Android 环境配置切换库
 implementation 'com.afkt:DevEnvironment:1.0.0'
-debugAnnotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.0'
-releaseAnnotationProcessor 'com.afkt:DevEnvironmentCompilerRelease:1.0.0'
-//annotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.0'
+debugAnnotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.0' // kaptDebug
+releaseAnnotationProcessor 'com.afkt:DevEnvironmentCompilerRelease:1.0.0' // kaptRelease
+//annotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.0' // kapt
 
 // DevWidget 自定义 View UI 库
 implementation 'com.afkt:DevWidgetX:1.0.2' // AndroidX
