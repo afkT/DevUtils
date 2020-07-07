@@ -327,14 +327,8 @@ public class ButtonValue {
     // 触发拓展回调
     public static final int BTN_EXTEND_TRIGGER = BTN_EXTEND + 2;
 
-    // 设备信息
-    public static final int BTN_DEVICE_INFO = MODULE_OTHER + 1100;
-
-    // 屏幕信息
-    public static final int BTN_SCREEN_INFO = MODULE_OTHER + 1200;
-
     // 路径信息
-    public static final int BTN_PATH = MODULE_OTHER + 1300;
+    public static final int BTN_PATH = MODULE_OTHER + 1100;
     // 内部存储路径
     public static final int BTN_PATH_INTERNAL = BTN_PATH + 1;
     // 应用外部存储路径
@@ -343,10 +337,10 @@ public class ButtonValue {
     public static final int BTN_PATH_SDCARD = BTN_PATH + 3;
 
     // WebView 辅助类
-    public static final int BTN_WEBVIEW = MODULE_OTHER + 1400;
+    public static final int BTN_WEBVIEW = MODULE_OTHER + 1200;
 
     // startActivityForResult CallBack
-    public static final int BTN_ACTIVITY_RESULT_CALLBACK = MODULE_OTHER + 1500;
+    public static final int BTN_ACTIVITY_RESULT_CALLBACK = MODULE_OTHER + 1300;
 
     // ===================
     // = DevWidget UI 库 =

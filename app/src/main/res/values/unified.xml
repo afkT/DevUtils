@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- 统一的配置 -->
-
     <!-- 圆角角度 -->
     <dimen name="un_radius">3.0dp</dimen>
 

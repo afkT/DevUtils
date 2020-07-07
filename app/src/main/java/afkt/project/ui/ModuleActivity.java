@@ -21,7 +21,6 @@ import afkt.project.ui.activity.CapturePictureActivity;
 import afkt.project.ui.activity.CornerLabelActivity;
 import afkt.project.ui.activity.CrashCatchActivity;
 import afkt.project.ui.activity.DevExtendActivity;
-import afkt.project.ui.activity.DeviceInfoActivity;
 import afkt.project.ui.activity.EventBusActivity;
 import afkt.project.ui.activity.FileRecordActivity;
 import afkt.project.ui.activity.FlowLikeActivity;
@@ -46,7 +45,6 @@ import afkt.project.ui.activity.QRCodeImageActivity;
 import afkt.project.ui.activity.QRCodeScanActivity;
 import afkt.project.ui.activity.RecyItemSlideActivity;
 import afkt.project.ui.activity.ScanShapeActivity;
-import afkt.project.ui.activity.ScreenInfoActivity;
 import afkt.project.ui.activity.SignActivity;
 import afkt.project.ui.activity.StatusBarActivity;
 import afkt.project.ui.activity.TextCalcActivity;
@@ -227,12 +225,6 @@ public class ModuleActivity extends BaseToolbarActivity {
                         break;
                     case ButtonValue.BTN_EXTEND: // 通用结果回调类 ( 针对 DevResultCallback 进行扩展 )
                         SkipUtils.startActivity(DevExtendActivity.class, buttonValue);
-                        break;
-                    case ButtonValue.BTN_DEVICE_INFO: // 设备信息
-                        SkipUtils.startActivity(DeviceInfoActivity.class, buttonValue);
-                        break;
-                    case ButtonValue.BTN_SCREEN_INFO: // 屏幕信息
-                        SkipUtils.startActivity(ScreenInfoActivity.class, buttonValue);
                         break;
                     case ButtonValue.BTN_PATH: // 路径信息
                         SkipUtils.startActivity(PathActivity.class, buttonValue);

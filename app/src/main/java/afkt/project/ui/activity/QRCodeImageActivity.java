@@ -63,7 +63,7 @@ public class QRCodeImageActivity extends BaseToolbarActivity {
                 // 复制到剪切板
                 ClipboardUtils.copyText(text);
                 // 进行提示
-                ToastTintUtils.success(ResourceUtils.getString(R.string.copy_suc) + " -> " + text);
+                ToastTintUtils.success(ResourceUtils.getString(R.string.str_copy_suc) + " -> " + text);
                 break;
         }
     }

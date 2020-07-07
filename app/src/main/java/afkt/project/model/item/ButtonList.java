@@ -185,8 +185,6 @@ public class ButtonList {
         lists.add(new ButtonValue(BTN_FILE_RECORD, "日志、异常文件记录保存"));
         lists.add(new ButtonValue(BTN_CRASH, "奔溃日志捕获"));
         lists.add(new ButtonValue(BTN_EXTEND, "通用结果回调类 ( 针对 DevResultCallback 进行扩展 )"));
-        lists.add(new ButtonValue(BTN_DEVICE_INFO, "设备信息"));
-        lists.add(new ButtonValue(BTN_SCREEN_INFO, "屏幕信息"));
         lists.add(new ButtonValue(BTN_PATH, "路径信息"));
         lists.add(new ButtonValue(BTN_WEBVIEW, "WebView 辅助类"));
         lists.add(new ButtonValue(BTN_ACTIVITY_RESULT_CALLBACK, "startActivityForResult CallBack"));

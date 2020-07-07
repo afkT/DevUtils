@@ -177,26 +177,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- 设备信息 -->
-
-        <activity
-            android:name=".ui.activity.DeviceInfoActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
         <!-- 路径信息 -->
 
         <activity
             android:name=".ui.activity.PathActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 屏幕信息 -->
-
-        <activity
-            android:name=".ui.activity.ScreenInfoActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
