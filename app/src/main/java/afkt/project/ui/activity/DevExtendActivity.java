@@ -58,7 +58,7 @@ public class DevExtendActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_EXTEND_SAVE:
                         String fileName = "save_" + DateUtils.getDateNow() + ".txt";
                         // 在默认的结果回调抽象类上使用
-                        saveFile(PathConfig.SDP_TEXT_PATH, fileName, new DevResultCallback<Boolean>() {
+                        saveFile(PathConfig.AEP_TEXT_PATH, fileName, new DevResultCallback<Boolean>() {
                             @Override
                             public <E extends Throwable> void onError(E e) {
                                 super.onError(e);

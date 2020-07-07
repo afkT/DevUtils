@@ -15,7 +15,6 @@ import afkt.project.base.config.AppConfig;
 import afkt.project.base.config.PathConfig;
 import afkt.project.db.GreenManager;
 import afkt.project.function.http.RetrofitUtils;
-import afkt.project.util.ProjectUtils;
 import dev.DevUtils;
 import dev.assist.WebViewAssist;
 import dev.environment.DevEnvironment;
@@ -158,7 +157,7 @@ public class BaseApplication extends MultiDexApplication {
      */
     private void init() {
         // 初始化项目文件夹
-        ProjectUtils.createFolder();
+        PathConfig.createFolder();
         // 插入设备信息
         FileRecordUtils.setInsertInfo(AppCommonUtils.getAppDeviceInfo());
         // 初始化 Glide
@@ -215,7 +214,7 @@ public class BaseApplication extends MultiDexApplication {
             @Override
             public void handleException(Throwable ex) {
                 // 保存日志信息
-                FileRecordUtils.saveErrorLog(ex, PathConfig.SDP_ERROR_PATH, "crash_" + DateUtils.getDateNow() + ".txt");
+                FileRecordUtils.saveErrorLog(ex, PathConfig.AEP_ERROR_PATH, "crash_" + DateUtils.getDateNow() + ".txt");
             }
 
             @Override
