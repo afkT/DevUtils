@@ -139,4 +139,76 @@ public class LogConfig {
         // 返回日志配置
         return logConfig;
     }
+
+    // =
+
+    /**
+     * 设置堆栈方法总数
+     * @param methodCount 堆栈方法总数
+     * @return {@link LogConfig}
+     */
+    public LogConfig methodCount(int methodCount) {
+        this.methodCount = methodCount;
+        return this;
+    }
+
+    /**
+     * 设置堆栈方法索引偏移
+     * @param methodOffset 堆栈方法索引偏移
+     * @return {@link LogConfig}
+     */
+    public LogConfig methodOffset(int methodOffset) {
+        this.methodOffset = methodOffset;
+        return this;
+    }
+
+    /**
+     * 设置是否输出全部方法
+     * @param outputMethodAll {@code true} yes, {@code false} no
+     * @return {@link LogConfig}
+     */
+    public LogConfig outputMethodAll(boolean outputMethodAll) {
+        this.outputMethodAll = outputMethodAll;
+        return this;
+    }
+
+    /**
+     * 设置是否显示日志线程信息
+     * @param displayThreadInfo {@code true} yes, {@code false} no
+     * @return {@link LogConfig}
+     */
+    public LogConfig displayThreadInfo(boolean displayThreadInfo) {
+        this.displayThreadInfo = displayThreadInfo;
+        return this;
+    }
+
+    /**
+     * 设置是否排序日志
+     * @param sortLog {@code true} yes, {@code false} no
+     * @return {@link LogConfig}
+     */
+    public LogConfig sortLog(boolean sortLog) {
+        this.sortLog = sortLog;
+        return this;
+    }
+
+    /**
+     * 设置日志级别
+     * @param logLevel 日志级别
+     * @return {@link LogConfig}
+     */
+    public LogConfig logLevel(LogLevel logLevel) {
+        this.logLevel = logLevel;
+        return this;
+    }
+
+    /**
+     * 设置 TAG
+     * @param tag TAG
+     * @return {@link LogConfig}
+     */
+    public LogConfig tag(String tag) {
+        this.tag = tag;
+        return this;
+    }
 }
