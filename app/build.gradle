@@ -133,6 +133,8 @@ dependencies {
     implementation deps.lib.sqlcipher
     // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
     implementation deps.lib.stickyDecoration
+    // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
+    implementation deps.lib.xcrash
 
 
     // 内存检测工具 https://github.com/square/leakcanary

@@ -42,6 +42,8 @@ public final class AccessibilityListenerService extends AccessibilityService {
      */
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
+        AccessibilityUtils.setService(this);
+
         if (sListener != null) {
             sListener.onAccessibilityEvent(event, this);
         }
