@@ -65,31 +65,8 @@ public final class LogPrintUtils {
      * @param message 日志信息
      */
     private static void printLog(final int logType, final String tag, final String message) {
-        // 防止 null 处理
-        if (message == null) return;
-        // 获取日志类型
-        switch (logType) {
-            case Log.ERROR:
-                Log.e(tag, message);
-                break;
-            case Log.INFO:
-                Log.i(tag, message);
-                break;
-            case Log.VERBOSE:
-                Log.v(tag, message);
-                break;
-            case Log.WARN:
-                Log.w(tag, message);
-                break;
-            case Log.ASSERT:
-                Log.wtf(tag, message);
-                break;
-            case Log.DEBUG:
-                Log.d(tag, message);
-                break;
-            default:
-                Log.d(tag, message);
-                break;
+        if (LogPrintUtils.sPrint != null) {
+            LogPrintUtils.sPrint.printLog(logType, tag, message);
         }
     }
 
@@ -322,5 +299,65 @@ public final class LogPrintUtils {
                 printLog(Log.ERROR, tag, errorInfo + "\n" + xml);
             }
         }
+    }
+
+    // ============
+    // = 通知输出 =
+    // ============
+
+    // 默认日志输出接口
+    private static Print sPrint = new Print() {
+        @Override
+        public void printLog(int logType, String tag, String message) {
+            // 防止 null 处理
+            if (message == null) return;
+            // 获取日志类型
+            switch (logType) {
+                case Log.VERBOSE:
+                    Log.v(tag, message);
+                    break;
+                case Log.DEBUG:
+                    Log.d(tag, message);
+                    break;
+                case Log.INFO:
+                    Log.i(tag, message);
+                    break;
+                case Log.WARN:
+                    Log.w(tag, message);
+                    break;
+                case Log.ERROR:
+                    Log.e(tag, message);
+                    break;
+                case Log.ASSERT:
+                    Log.wtf(tag, message);
+                    break;
+                default:
+                    Log.wtf(tag, message);
+                    break;
+            }
+        }
+    };
+
+    /**
+     * 设置日志输出接口
+     * @param print 日志输出接口
+     */
+    public static void setPrint(final Print print) {
+        LogPrintUtils.sPrint = print;
+    }
+
+    /**
+     * detail: 日志输出接口
+     * @author Ttt
+     */
+    public interface Print {
+
+        /**
+         * 日志打印
+         * @param logType 日志类型
+         * @param tag     打印 Tag
+         * @param message 日志信息
+         */
+        void printLog(final int logType, final String tag, final String message);
     }
 }

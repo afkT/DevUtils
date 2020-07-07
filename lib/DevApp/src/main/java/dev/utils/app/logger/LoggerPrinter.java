@@ -560,31 +560,8 @@ final class LoggerPrinter implements IPrinter {
      * @param message 日志信息
      */
     private void finalLogPrinter(final int logType, final String tag, final String message) {
-        // 防止 null 处理
-        if (message == null) return;
-        // 获取日志类型
-        switch (logType) {
-            case Log.VERBOSE:
-                Log.v(tag, message);
-                break;
-            case Log.DEBUG:
-                Log.d(tag, message);
-                break;
-            case Log.INFO:
-                Log.i(tag, message);
-                break;
-            case Log.WARN:
-                Log.w(tag, message);
-                break;
-            case Log.ERROR:
-                Log.e(tag, message);
-                break;
-            case Log.ASSERT:
-                Log.wtf(tag, message);
-                break;
-            default: // 默认使用, 自定义级别
-                Log.wtf(tag, message);
-                break;
+        if (DevLogger.sPrint != null) {
+            DevLogger.sPrint.printLog(logType, tag, message);
         }
     }
 
