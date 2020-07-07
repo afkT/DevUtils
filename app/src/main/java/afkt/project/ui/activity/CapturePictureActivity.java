@@ -68,7 +68,7 @@ public class CapturePictureActivity extends BaseToolbarActivity {
 
         Bitmap bitmap;
         boolean result;
-        String filePath = PathConfig.SDP_DOWN_IMAGE_PATH;
+        String filePath = PathConfig.AEP_DOWN_IMAGE_PATH;
         String fileName;
 
         switch (v.getId()) {

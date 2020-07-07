@@ -51,7 +51,7 @@ public class CapturePictureRecyActivity extends BaseToolbarActivity {
                 .setOnClicks(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String filePath = PathConfig.SDP_DOWN_IMAGE_PATH;
+                        String filePath = PathConfig.AEP_DOWN_IMAGE_PATH;
                         String fileName = "recy.jpg";
                         Bitmap bitmap;
 

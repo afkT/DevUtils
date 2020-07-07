@@ -45,7 +45,7 @@ public class CapturePictureWebActivity extends BaseToolbarActivity {
                 .setOnClicks(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String filePath = PathConfig.SDP_DOWN_IMAGE_PATH;
+                        String filePath = PathConfig.AEP_DOWN_IMAGE_PATH;
                         String fileName = "web.jpg";
 
                         Bitmap bitmap = CapturePictureUtils.snapshotByWebView(vid_acp_webview);

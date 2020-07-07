@@ -28,7 +28,7 @@ public final class PathConfig {
     // = SDCard =
     // ==========
 
-    // 已抛弃统一 private
+    // 已抛弃统一 private 做演示效果
 
     @Deprecated // SDCard 路径
     private static final String BASE_SDCARD_PATH = PathUtils.getSDCard().getSDCardPath();
@@ -45,10 +45,10 @@ public final class PathConfig {
     private static final String SDP_CACHE_PATH = SDP_PATH + "Cache" + File.separator;
 
     @Deprecated // 下载路径
-    public static final String SDP_DOWN_PATH = SDP_PATH + "Download" + File.separator;
+    private static final String SDP_DOWN_PATH = SDP_PATH + "Download" + File.separator;
 
     @Deprecated // 图片路径
-    public static final String SDP_DOWN_IMAGE_PATH = SDP_PATH + "Image" + File.separator;
+    private static final String SDP_DOWN_IMAGE_PATH = SDP_PATH + "Image" + File.separator;
 
     @Deprecated // 文本路径
     private static final String SDP_TEXT_PATH = SDP_PATH + "Text" + File.separator;
@@ -92,22 +92,22 @@ public final class PathConfig {
      * 初始化创建文件夹
      */
     public static void createFolder() {
-        // 默认创建的文件夹路径
-        String[] paths = new String[]{
-                // 临时存储
-                PathConfig.SDP_TEMP_PATH,
-                // 本地 SDCard 资源缓存地址
-                PathConfig.SDP_CACHE_PATH,
-                // 下载路径
-                PathConfig.SDP_DOWN_PATH,
-                // 图片路径
-                PathConfig.SDP_DOWN_IMAGE_PATH,
-                // 文本路径
-                PathConfig.SDP_TEXT_PATH,
-                // 错误日志路径
-                PathConfig.SDP_ERROR_PATH
-        };
-        FileUtils.createFolderByPaths(paths);
+//        // 默认创建的文件夹路径
+//        String[] paths = new String[]{
+//                // 临时存储
+//                PathConfig.SDP_TEMP_PATH,
+//                // 本地 SDCard 资源缓存地址
+//                PathConfig.SDP_CACHE_PATH,
+//                // 下载路径
+//                PathConfig.SDP_DOWN_PATH,
+//                // 图片路径
+//                PathConfig.SDP_DOWN_IMAGE_PATH,
+//                // 文本路径
+//                PathConfig.SDP_TEXT_PATH,
+//                // 错误日志路径
+//                PathConfig.SDP_ERROR_PATH
+//        };
+//        FileUtils.createFolderByPaths(paths);
 
         // 默认创建的文件夹路径
         FileUtils.createFolderByPaths(new String[]{
