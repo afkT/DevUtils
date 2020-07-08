@@ -136,7 +136,7 @@ public class BaseApplication extends MultiDexApplication {
      */
     private void printProInfo(TimeCounter timeCounter) {
         StringBuilder builder = new StringBuilder();
-        builder.append("项目名: " + ResourceUtils.getString(R.string.str_app_name) + " (" + ResourceUtils.getString(R.string.str_app_name_en) + ")");
+        builder.append("项目名: " + ResourceUtils.getString(R.string.str_app_name));
         builder.append("\nSDK: " + Build.VERSION.SDK_INT + "(" + AppCommonUtils.convertSDKVersion(Build.VERSION.SDK_INT) + ")");
         builder.append("\nPackageName: " + AppUtils.getPackageName());
         builder.append("\nVersionCode: " + AppUtils.getAppVersionCode());

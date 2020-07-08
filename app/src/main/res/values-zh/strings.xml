@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">DevUtils</string>
     <string name="str_app_name">开发项目</string>
-    <string name="str_app_name_en">DevUtils</string>
     <string name="str_copy_suc">复制成功</string>
 </resources>
