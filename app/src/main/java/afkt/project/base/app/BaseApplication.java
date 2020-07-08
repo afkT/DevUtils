@@ -261,7 +261,7 @@ public class BaseApplication extends MultiDexApplication {
      * 初始化其他 lib
      */
     private void initOthers() {
-        // xCrash 提供捕获 java 崩溃，native 崩溃和 ANR 的能力。不需要 root 权限或任何系统权限
+        // xCrash 提供捕获 java 崩溃、native 崩溃和 ANR 的能力, 不需要 root 权限或任何系统权限
         xcrash.XCrash.init(this);
 
         // 初始化 MMKV

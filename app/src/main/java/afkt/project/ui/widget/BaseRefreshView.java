@@ -136,7 +136,7 @@ public class BaseRefreshView extends LinearLayout {
     // ============
 
     /**
-     * 是否启用下拉刷新（默认启用）
+     * 是否启用下拉刷新 ( 默认启用 )
      * @param enabled 是否启用
      * @return {@link BaseRefreshView}
      */
@@ -146,7 +146,7 @@ public class BaseRefreshView extends LinearLayout {
     }
 
     /**
-     * 设置是否启用上拉加载更多（默认启用）
+     * 设置是否启用上拉加载更多 ( 默认启用 )
      * @param enabled 是否启用
      * @return {@link BaseRefreshView}
      */
@@ -156,7 +156,7 @@ public class BaseRefreshView extends LinearLayout {
     }
 
     /**
-     * 设置数据全部加载完成，将不能再次触发加载功能
+     * 设置数据全部加载完成, 将不能再次触发加载功能
      * @param noMoreData 是否有更多数据 {@code true} 无数据, {@code false} 还有数据
      * @return {@link BaseRefreshView}
      */
