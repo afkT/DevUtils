@@ -11,3 +11,10 @@ project(':DevEnvironmentCompilerRelease').projectDir = new File('lib/Environment
 project(':DevEnvironment').projectDir = new File('lib/Environment/DevEnvironment')
 project(':DevWidget').projectDir = new File('lib/Widget/DevWidget')
 project(':TempWidget').projectDir = new File('lib/Widget/TempWidget')
+
+// ===========
+// = Project =
+// ===========
+
+include ':AppInfoKtx'
+project(':AppInfoKtx').projectDir = new File(rootDir, 'project/AppInfoKtx/')
