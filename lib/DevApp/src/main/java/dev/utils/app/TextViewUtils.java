@@ -919,6 +919,54 @@ public final class TextViewUtils {
     // =
 
     /**
+     * 设置 TextView flags
+     * @param textView {@link TextView}
+     * @param flags flags
+     * @param <T>      泛型
+     * @return {@link TextView}
+     */
+    public static <T extends TextView> T setPaintFlags(final T textView, final int flags) {
+        if (textView != null) {
+            textView.setPaintFlags(flags);
+        }
+        return textView;
+    }
+
+    /**
+     * 设置 TextView flags
+     * @param view {@link TextView}
+     * @param flags flags
+     * @return {@link View}
+     */
+    public static View setPaintFlags(final View view, final int flags) {
+        setPaintFlags(getTextView(view), flags);
+        return view;
+    }
+
+    /**
+     * 设置 TextView 抗锯齿 flags
+     * @param textView {@link TextView}
+     * @param <T>      泛型
+     * @return {@link TextView}
+     */
+    public static <T extends TextView> T setAntiAliasFlag(final T textView) {
+        if (textView != null) {
+            textView.setPaintFlags(Paint.ANTI_ALIAS_FLAG);
+        }
+        return textView;
+    }
+
+    /**
+     * 设置 TextView 抗锯齿 flags
+     * @param view {@link TextView}
+     * @return {@link View}
+     */
+    public static View setAntiAliasFlag(final View view) {
+        setAntiAliasFlag(getTextView(view));
+        return view;
+    }
+
+    /**
      * 设置 TextView 是否加粗
      * @param textView {@link TextView}
      * @param <T>      泛型

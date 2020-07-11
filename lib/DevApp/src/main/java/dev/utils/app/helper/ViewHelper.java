@@ -380,6 +380,27 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置 TextView flags
+     * @param view {@link TextView}
+     * @param flags flags
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setPaintFlags(final View view, final int flags) {
+        TextViewUtils.setPaintFlags(view, flags);
+        return this;
+    }
+
+    /**
+     * 设置 TextView 抗锯齿 flags
+     * @param view {@link TextView}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setAntiAliasFlag(final View view) {
+        TextViewUtils.setAntiAliasFlag(view);
+        return this;
+    }
+
+    /**
      * 设置 TextView 是否加粗
      * @param view {@link TextView}
      * @return {@link ViewHelper}
