@@ -74,7 +74,7 @@ implementation 'com.afkt:DevAppX:1.9.5' // AndroidX
 implementation 'com.afkt:DevJava:1.1.2' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
 
 // DevAssist 快捷功能辅助类库
-implementation 'com.afkt:DevAssist:1.0.3'
+implementation 'com.afkt:DevAssist:1.0.4'
 
 // DevEnvironment Android 环境配置切换库
 implementation 'com.afkt:DevEnvironment:1.0.0'
