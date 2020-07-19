@@ -238,7 +238,6 @@ Version 1.7.9 *(2019-09-19)*
 
  * `[Add]` ViewUtils#getTag、setTag
 
-
 Version 1.7.8 *(2019-09-12)*
 ----------------------------
  
@@ -249,7 +248,6 @@ Version 1.7.8 *(2019-09-12)*
  * `[Add]` ConvertUtils#convert
 
  * `[Fix]` DialogUtils#showDialog、closeDialog try catch
- 
 
 Version 1.7.7 *(2019-08-25)*
 ----------------------------
@@ -268,7 +266,6 @@ Version 1.7.7 *(2019-08-25)*
  
  * `[Fix]` Reflect2Utils#getDeclaredFieldParent fieldNumber param 判断处理
 
-
 Version 1.7.6 *(2019-08-02)*
 ----------------------------
 
@@ -277,7 +274,6 @@ Version 1.7.6 *(2019-08-02)*
  * `[Add]` ViewUtils#set/getCompoundDrawables、set/getCompoundDrawablePadding
  
  * `[Add]` ImageUtils#setBounds
-
 
 Version 1.0.0~1.7.5 *(2019-07-26)*
 ----------------------------
