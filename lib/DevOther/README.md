@@ -7,6 +7,9 @@
    - assist                                           | 常用辅助类封装
    - other                                            | 第三方库封装工具类
       - okgo                                          | OkGo 网络请求
+      - retrofit                                      | Retrofit 网络请求
+         - response                                   | 请求响应解析
+         - subscriber                                 | 请求响应处理
    - receiver                                         | BroadcastReceiver 监听相关
    - service                                          | Service 相关
    - temp                                             | 临时快捷调用工具类
@@ -25,6 +28,9 @@
    - [assist](#devassist)                             | 常用辅助类封装
    - [other](#devother)                               | 第三方库封装工具类
       - [okgo](#devotherokgo)                         | OkGo 网络请求
+      - [retrofit](#devotherretrofit)                 | Retrofit 网络请求
+         - [response](#devotherretrofitresponse)      | 请求响应解析
+         - [subscriber](#devotherretrofitsubscriber)  | 请求响应处理
    - [receiver](#devreceiver)                         | BroadcastReceiver 监听相关
    - [service](#devservice)                           | Service 相关
    - [temp](#devtemp)                                 | 临时快捷调用工具类
@@ -281,6 +287,18 @@
 | stop | 停止图片加载 |
 
 
+* **Luban 工具类 ->** [LubanUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/LubanUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| setConfig | 设置全局默认配置 |
+| compress | 压缩方法 |
+| onStart | 压缩开始前调用 |
+| onSuccess | 压缩成功后调用 |
+| onError | 当压缩过程出现问题时调用 |
+| onComplete | 压缩完成 |
+
+
 * **Android 平台下的图片选择器 ->** [PictureSelectorUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/PictureSelectorUtils.java)
 
 | 方法 | 注释 |
@@ -352,7 +370,7 @@
 | intercept | intercept |
 
 
-* **OkGo 请求统一回调处理类 ->** [OkGoCallback.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoCallback.java)
+* **请求回调统一处理类 ->** [OkGoCallback.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoCallback.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -378,12 +396,12 @@
 | uploadImages | 上传多个文件 |
 
 
-* **请求响应解析基类 ->** [OkGoResponse.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoResponse.java)
+* **请求响应统一解析类 ->** [OkGoResponse.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoResponse.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | getDataString | 获取 Data 字符串 |
-| build | build BaseResponse 对象 |
+| build | build Response 对象 |
 | setData | setData |
 | setMessage | setMessage |
 | setCode | setCode |
@@ -399,6 +417,74 @@
 | :- | :- |
 | initOkGo | 初始化 OkGo 配置 |
 | execute | 执行请求处理 |
+
+
+## <span id="devotherretrofit">**`dev.other.retrofit`**</span>
+
+
+* **Retrofit 管理类 ->** [RetrofitManager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/retrofit/RetrofitManager.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getInstance | getInstance |
+| get | 通过 tag 获取 Retrofit |
+| put | 通过 tag 保存 Retrofit |
+| remove | 通过 tag 移除 Retrofit |
+| contains | 通过 tag 判断是否存在 Retrofit |
+| getRetrofitMap | 获取 Retrofit Map |
+| create | 创建 API Service Class |
+
+
+* **RxJava 相关管理类 ( 针对 Retrofit ) ->** [RxJavaManager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/retrofit/RxJavaManager.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getInstance | getInstance |
+| add | 通过 tag 将请求添加到统一管理对象中 |
+| remove | 通过 tag 移除请求 |
+| contains | 通过 tag 判断是否存在 CompositeDisposable |
+| getManagerMap | 获取 CompositeDisposable Map |
+| io_main | Flowable UI 线程 |
+
+
+## <span id="devotherretrofitresponse">**`dev.other.retrofit.response`**</span>
+
+
+* **请求响应统一解析类 ->** [BaseResponse.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/retrofit/response/BaseResponse.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getOriginal | getOriginal |
+
+
+## <span id="devotherretrofitsubscriber">**`dev.other.retrofit.subscriber`**</span>
+
+
+* **服务器请求响应处理, 映射各种 JSON 实体类 ->** [BaseBeanSubscriber.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/retrofit/subscriber/BaseBeanSubscriber.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onNext | onNext |
+| onError | onError |
+| onStart | onStart |
+| onComplete | onComplete |
+| onSuccessResponse | 请求响应并处理数据无误 |
+| onErrorResponse | 请求失败、响应错误、数据解析错误等, 都会回调该方法,  UI 线程 |
+| getErrorMessage | 获取异常信息 |
+
+
+* **服务器请求响应处理, 映射统一标准 JSON 格式实体类 ->** [BaseResponseSubscriber.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/retrofit/subscriber/BaseResponseSubscriber.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onNext | onNext |
+| onError | onError |
+| onStart | onStart |
+| onComplete | onComplete |
+| onSuccessResponse | 请求响应并处理数据无误 |
+| onErrorResponse | 请求失败、响应错误、数据解析错误等, 都会回调该方法,  UI 线程 |
+| getErrorMessage | 获取异常信息 |
+| isSuccess | 通过 code 判断请求是否正确 |
 
 
 ## <span id="devreceiver">**`dev.receiver`**</span>

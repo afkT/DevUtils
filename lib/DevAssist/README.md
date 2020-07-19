@@ -114,8 +114,6 @@ implementation 'com.afkt:DevAssist:1.0.4'
 | initPageConfig | 初始化全局分页配置 |
 | getPageNum | 获取当前请求页数 |
 | setPageNum | 设置当前请求页数 |
-| getPageNumReady | 获取当前 ( 正在 / 准备 ) 请求的页数 |
-| setPageNumReady | 设置当前 ( 正在 / 准备 ) 请求的页数 |
 | getPageSize | 获取每页请求条数 |
 | setPageSize | 设置每页请求条数 |
 | getTotalRow | 获取数据总条数 |
@@ -126,8 +124,6 @@ implementation 'com.afkt:DevAssist:1.0.4'
 | isAllowNextPage | 判断是否允许请求下一页 |
 | getNextPage | 获取下一页页数 |
 | nextPage | 设置下一页页数 |
-| getNextPageReady | 获取下一页页数 ( 预加载页数 ) |
-| nextPageReady | 设置下一页页数 ( 预加载页数 ) |
 | isLessThanPageSize | 判断是否小于每页请求条数 |
 | reset | 重置操作 |
 
