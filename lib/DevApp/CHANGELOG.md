@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 1.9.6 *(2020-07-19)*
+----------------------------
+
+* `[Add]` ViewHelper#setPaintFlags、setAntiAliasFlag
+
+* `[Add]` ViewUtils#setPaintFlags、setAntiAliasFlag
+
+* `[Add]` DevLogger#setPrint、LogPrintUtils#setPrint 自定义输出接口
+
+* `[Update]` ClickUtils 变量声明顺序
+
 Version 1.9.5 *(2020-06-08)*
 ----------------------------
 

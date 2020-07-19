@@ -68,7 +68,7 @@
 ```java
 
 // DevApp Android 工具类库
-implementation 'com.afkt:DevAppX:1.9.5' // AndroidX
+implementation 'com.afkt:DevAppX:1.9.6' // AndroidX
 
 // DevJava Java 工具类库 ( 不依赖 android api )
 implementation 'com.afkt:DevJava:1.1.2' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
