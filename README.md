@@ -76,14 +76,14 @@ implementation 'com.afkt:DevJava:1.1.2' // 用于纯 Java 开发，如果依赖�
 // DevAssist 快捷功能辅助类库
 implementation 'com.afkt:DevAssist:1.0.4'
 
+// DevWidget 自定义 View UI 库
+implementation 'com.afkt:DevWidgetX:1.0.2' // AndroidX
+
 // DevEnvironment Android 环境配置切换库
 implementation 'com.afkt:DevEnvironment:1.0.0'
 debugAnnotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.0' // kaptDebug
 releaseAnnotationProcessor 'com.afkt:DevEnvironmentCompilerRelease:1.0.0' // kaptRelease
 //annotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.0' // kapt
-
-// DevWidget 自定义 View UI 库
-implementation 'com.afkt:DevWidgetX:1.0.2' // AndroidX
 ```
 
 ## Demo
