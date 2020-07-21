@@ -18,3 +18,6 @@ project(':TempWidget').projectDir = new File('lib/Widget/TempWidget')
 
 include ':AppInfoKtx'
 project(':AppInfoKtx').projectDir = new File(rootDir, 'project/AppInfoKtx/')
+
+include ':AccessibilityKtx'
+project(':AccessibilityKtx').projectDir = new File(rootDir, 'project/AccessibilityKtx/')
