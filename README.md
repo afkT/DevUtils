@@ -88,9 +88,9 @@ releaseAnnotationProcessor 'com.afkt:DevEnvironmentCompilerRelease:1.0.0' // kap
 
 ## Demo
 
-| [下载 DevUtils APK-Demo](https://github.com/afkT/DevUtils/raw/master/art/app-debug.apk) | [下载 AppInfoKtx APK-Demo](https://github.com/afkT/DevUtils/raw/master/art/AppInfoKtx.apk) |
+| [下载 DevUtils APK-Demo](https://github.com/afkT/DevUtils/raw/master/art/apk/app.apk) | [下载 AppInfoKtx APK-Demo](https://github.com/afkT/DevUtils/raw/master/art/apk/AppInfoKtx.apk) |
 |:--:|:--:|
-| ![apk_qrcode](https://github.com/afkT/DevUtils/raw/master/art/dev_apk_qrcode.png) | ![apk_qrcode](https://github.com/afkT/DevUtils/raw/master/art/appinfo_apk_qrcode.png) |
+| ![apk_qrcode](https://github.com/afkT/DevUtils/raw/master/art/apk/app_apk_qrcode.png) | ![apk_qrcode](https://github.com/afkT/DevUtils/raw/master/art/apk/appinfo_apk_qrcode.png) |
 
 ## License
 
