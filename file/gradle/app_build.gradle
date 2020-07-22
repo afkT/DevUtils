@@ -31,7 +31,7 @@ android {
 
     // View Binding
     viewBinding {
-        // https://developer.android.com/topic/libraries/view-binding#findviewbyid
+        // https://developer.android.com/topic/libraries/view-binding
         enabled = true
     }
 
