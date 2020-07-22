@@ -273,22 +273,22 @@ public class BaseRefreshView extends LinearLayout {
 
     /**
      * 添加底部 View
-     * @param header header View
+     * @param footer footer View
      * @return {@link BaseRefreshView}
      */
-    public BaseRefreshView addFooterView(View header) {
-        if (adapter != null) adapter.addFooterView(header);
+    public BaseRefreshView addFooterView(View footer) {
+        if (adapter != null) adapter.addFooterView(footer);
         return this;
     }
 
     /**
      * 添加底部 View 到指定位置
-     * @param header header View
+     * @param footer footer View
      * @param index  index
      * @return {@link BaseRefreshView}
      */
-    public BaseRefreshView addFooterView(View header, int index) {
-        if (adapter != null && index >= 0) adapter.addFooterView(header, index);
+    public BaseRefreshView addFooterView(View footer, int index) {
+        if (adapter != null && index >= 0) adapter.addFooterView(footer, index);
         return this;
     }
 }
