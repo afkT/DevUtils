@@ -19,14 +19,14 @@ final class Config {
     // 当前目录
     public static final String USER_DIR = System.getProperty("user.dir");
     // 根目录
-    public static final String DIR = FileUtils.getFile(USER_DIR).getParent();
+    public static final String DIR      = FileUtils.getFile(USER_DIR).getParent();
 
     // ===========
     // = Android =
     // ===========
 
     // Android 文件名
-    public static final String ANDROID_DIR_NAME = "Android";
+    public static final String ANDROID_DIR_NAME   = "Android";
     // Android 项目本地路径
     public static final String ANDROID_LOCAL_PATH = DIR + File.separator + ANDROID_DIR_NAME;
 
@@ -35,7 +35,7 @@ final class Config {
     // ========
 
     // Java 文件名
-    public static final String JAVA_DIR_NAME = "Java";
+    public static final String JAVA_DIR_NAME   = "Java";
     // Java 项目本地路径
     public static final String JAVA_LOCAL_PATH = DIR + File.separator + JAVA_DIR_NAME;
 
@@ -44,7 +44,7 @@ final class Config {
     // ================
 
     // DevUtils Lib 文件名
-    public static final String DEV_UTILS_DIR_NAME = "lib";
+    public static final String DEV_UTILS_DIR_NAME   = "lib";
     // DevUtils Lib 项目本地路径
     public static final String DEV_UTILS_LOCAL_PATH = USER_DIR + File.separator + DEV_UTILS_DIR_NAME;
 
@@ -53,13 +53,13 @@ final class Config {
     // =======
 
     // Android 文件目录注释
-    public static final HashMap<String, String> sAndroidCatelogMap = new HashMap<>();
+    public static final HashMap<String, String> sAndroidCatelogMap      = new HashMap<>();
     // Java 文件目录注释
-    public static final HashMap<String, String> sJavaCatelogMap = new HashMap<>();
+    public static final HashMap<String, String> sJavaCatelogMap         = new HashMap<>();
     // DevUtils Lib 文件目录注释
-    public static final HashMap<String, String> sDevUtilsCatelogMap = new HashMap<>();
+    public static final HashMap<String, String> sDevUtilsCatelogMap     = new HashMap<>();
     // DevUtils Lib 忽略目录
-    public static final List<String> sDevUtilsIgnoreCatelogs = new ArrayList<>();
+    public static final List<String>            sDevUtilsIgnoreCatelogs = new ArrayList<>();
 
     static {
 

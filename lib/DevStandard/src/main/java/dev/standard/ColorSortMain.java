@@ -111,10 +111,10 @@ public class ColorSortMain {
          */
         class SAXDemoHandel extends DefaultHandler {
 
-            private String colorKey;
-            private String colorValue;
+            private String                     colorKey;
+            private String                     colorValue;
             // 解析事件
-            private DocumentListener listener;
+            private DocumentListener           listener;
             // 解析集合
             private List<ColorUtils.ColorInfo> lists = new ArrayList<>();
 

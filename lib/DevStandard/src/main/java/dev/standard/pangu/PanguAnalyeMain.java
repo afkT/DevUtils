@@ -20,13 +20,13 @@ import dev.utils.common.StringUtils;
 final class PanguAnalyeMain {
 
     // 代码间距等规范处理
-    private static final Pangu sPangu = new Pangu();
+    private static final Pangu                              sPangu                   = new Pangu();
     // 判断是否覆盖文件内容
-    private static boolean sCoverText = true;
+    private static       boolean                            sCoverText               = true;
     // 代码注释空格间距异常记录
-    private static HashMap<String, String> sAnnotationSpaceMap = new HashMap<>();
+    private static       HashMap<String, String>            sAnnotationSpaceMap      = new HashMap<>();
     // 代码注释重复换行记录
-    private static HashMap<String, ArrayList<String>> sAnnotationRepeatLineMap = new HashMap<>();
+    private static       HashMap<String, ArrayList<String>> sAnnotationRepeatLineMap = new HashMap<>();
 
     public static void main(String[] args) {
         String path = "";

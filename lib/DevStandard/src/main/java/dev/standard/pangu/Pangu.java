@@ -60,15 +60,15 @@ public class Pangu {
                     "([\\({\\[]+(.*?)[\\)}\\]]+)" +
                     "([\\p{InHiragana}\\p{InKatakana}\\p{InBopomofo}\\p{InCJKCompatibilityIdeographs}\\p{InCJKUnifiedIdeographs}])"
     );
-    private static final Pattern CJK_BRACKET = Pattern.compile(
+    private static final Pattern CJK_BRACKET     = Pattern.compile(
             "([\\p{InHiragana}\\p{InKatakana}\\p{InBopomofo}\\p{InCJKCompatibilityIdeographs}\\p{InCJKUnifiedIdeographs}])" +
                     "([\\(\\){}\\[\\]<>])"
     );
-    private static final Pattern BRACKET_CJK = Pattern.compile(
+    private static final Pattern BRACKET_CJK     = Pattern.compile(
             "([\\(\\){}\\[\\]<>])" +
                     "([\\p{InHiragana}\\p{InKatakana}\\p{InBopomofo}\\p{InCJKCompatibilityIdeographs}\\p{InCJKUnifiedIdeographs}])"
     );
-    private static final Pattern FIX_BRACKET = Pattern.compile("([(\\({\\[)]+)(\\s*)(.+?)(\\s*)([\\)}\\]]+)");
+    private static final Pattern FIX_BRACKET     = Pattern.compile("([(\\({\\[)]+)(\\s*)(.+?)(\\s*)([\\)}\\]]+)");
 
     private static final Pattern CJK_HASH = Pattern.compile(
             "([\\p{InHiragana}\\p{InKatakana}\\p{InBopomofo}\\p{InCJKCompatibilityIdeographs}\\p{InCJKUnifiedIdeographs}])" +
