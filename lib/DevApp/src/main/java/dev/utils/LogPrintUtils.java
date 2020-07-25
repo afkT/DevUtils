@@ -25,11 +25,11 @@ public final class LogPrintUtils {
     }
 
     // JSON 格式内容缩进
-    private static final int JSON_INDENT = 4;
+    private static final int     JSON_INDENT     = 4;
     // 是否打印日志 线上 (release) = false, 开发 (debug) = true
-    private static boolean JUDGE_PRINT_LOG = false;
+    private static       boolean JUDGE_PRINT_LOG = false;
     // 默认 DEFAULT_TAG
-    private static final String DEFAULT_TAG = LogPrintUtils.class.getSimpleName();
+    private static final String  DEFAULT_TAG     = LogPrintUtils.class.getSimpleName();
 
     /**
      * 判断是否打印日志

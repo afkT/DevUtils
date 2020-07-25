@@ -20,18 +20,18 @@ public final class JCLogUtils {
     }
 
     // 是否打印日志 线上 (release) = false, 开发 (debug) = true
-    private static boolean JUDGE_PRINT_LOG = false;
+    private static       boolean JUDGE_PRINT_LOG         = false;
     // 判断是否控制台打印信息
-    private static boolean JUDGE_CONTROL_PRINT_LOG = false;
+    private static       boolean JUDGE_CONTROL_PRINT_LOG = false;
     // 默认 DEFAULT_TAG
-    private static final String DEFAULT_TAG = JCLogUtils.class.getSimpleName();
+    private static final String  DEFAULT_TAG             = JCLogUtils.class.getSimpleName();
 
     // ============
     // = 日志类型 =
     // ============
 
     // INFO 模式
-    public static final int INFO = 0;
+    public static final int INFO  = 0;
     // DEBUG 模式
     public static final int DEBUG = 1;
     // ERROR 模式

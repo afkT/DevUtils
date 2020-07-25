@@ -57,12 +57,13 @@ public final class DevUtils {
 
     // 日志 TAG
     private static final String TAG = DevUtils.class.getSimpleName();
+    
     // 全局 Application 对象
     private static Application sApplication;
     // 全局 Context - getApplicationContext()
-    private static Context sContext;
+    private static Context     sContext;
     // 是否内部 Debug 模式
-    private static boolean sDebug = false;
+    private static boolean     sDebug = false;
 
     /**
      * 初始化方法 ( 必须调用 )
@@ -288,11 +289,11 @@ public final class DevUtils {
     // =================
 
     // ActivityLifecycleCallbacks 实现类, 监听 Activity
-    private static final ActivityLifecycleImpl ACTIVITY_LIFECYCLE = new ActivityLifecycleImpl();
+    private static final ActivityLifecycleImpl   ACTIVITY_LIFECYCLE             = new ActivityLifecycleImpl();
     // Activity 过滤判断接口
-    private static ActivityLifecycleFilter sActivityLifecycleFilter;
+    private static       ActivityLifecycleFilter sActivityLifecycleFilter;
     // 权限 Activity.class name
-    public static final String PERMISSION_ACTIVITY_CLASS_NAME = "dev.utils.app.permission.PermissionUtils$PermissionActivity";
+    public static final  String                  PERMISSION_ACTIVITY_CLASS_NAME = "dev.utils.app.permission.PermissionUtils$PermissionActivity";
 
     /**
      * 注册绑定 Activity 生命周期事件处理
@@ -374,18 +375,18 @@ public final class DevUtils {
     private static class ActivityLifecycleImpl implements Application.ActivityLifecycleCallbacks, ActivityLifecycleGet, ActivityLifecycleNotify {
 
         // 保存未销毁的 Activity
-        private final LinkedList<Activity> mActivityLists = new LinkedList<>();
+        private final LinkedList<Activity>                            mActivityLists         = new LinkedList<>();
         // APP 状态改变事件
-        private final Map<Object, OnAppStatusChangedListener> mStatusListenerMaps = new ConcurrentHashMap<>();
+        private final Map<Object, OnAppStatusChangedListener>         mStatusListenerMaps    = new ConcurrentHashMap<>();
         // Activity 销毁事件
         private final Map<Activity, Set<OnActivityDestroyedListener>> mDestroyedListenerMaps = new ConcurrentHashMap<>();
 
         // 前台 Activity 总数
-        private int mForegroundCount = 0;
+        private int     mForegroundCount = 0;
         // Activity Configuration 改变次数
-        private int mConfigCount = 0;
+        private int     mConfigCount     = 0;
         // 是否后台 Activity
-        private boolean mIsBackground = false;
+        private boolean mIsBackground    = false;
 
         // ==============================
         // = ActivityLifecycleCallbacks =
