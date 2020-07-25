@@ -26,6 +26,7 @@ public final class HttpURLConnectionUtils {
 
     // 日志 TAG
     private static final String TAG = HttpURLConnectionUtils.class.getSimpleName();
+
     // 请求超时时间
     private static final int TIMEOUT_IN_MILLIONS = 5000;
 

@@ -68,7 +68,7 @@ public final class Base64 {
 
     /* package */ static abstract class Coder {
         public byte[] output;
-        public int op;
+        public int    op;
 
         /**
          * Encode/decode another block of input data.  this.output is
@@ -213,7 +213,7 @@ public final class Base64 {
         /**
          * Non-data values in the DECODE arrays.
          */
-        private static final int SKIP = -1;
+        private static final int SKIP   = -1;
         private static final int EQUALS = -2;
 
         /**
@@ -565,10 +565,10 @@ public final class Base64 {
         /* package */ int tailLen;
         private int count;
 
-        final public boolean do_padding;
-        final public boolean do_newline;
-        final public boolean do_cr;
-        final private byte[] alphabet;
+        final public  boolean do_padding;
+        final public  boolean do_newline;
+        final public  boolean do_cr;
+        final private byte[]  alphabet;
 
         public Encoder(int flags, byte[] output) {
             this.output = output;

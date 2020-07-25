@@ -32,6 +32,7 @@ public final class FileUtils {
 
     // 日志 TAG
     private static final String TAG = FileUtils.class.getSimpleName();
+
     // 换行字符串
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
@@ -1804,7 +1805,7 @@ public final class FileUtils {
     public static class FileList {
 
         // 当前文件夹
-        private File mFile;
+        private File           mFile;
         // 文件夹内子文件列表
         private List<FileList> mSubFiles;
 

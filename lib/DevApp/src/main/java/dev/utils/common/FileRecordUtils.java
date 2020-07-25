@@ -16,13 +16,13 @@ public final class FileRecordUtils {
     // ============
 
     // 插入信息 ( 如设备信息等 )
-    private static String INSERT_INFO = null;
+    private static       String   INSERT_INFO     = null;
     // 文件记录回调
-    private static CallBack RECORD_CALLBACK = null;
+    private static       CallBack RECORD_CALLBACK = null;
     // 换行字符串
-    private static final String NEW_LINE_STR = System.getProperty("line.separator");
+    private static final String   NEW_LINE_STR    = System.getProperty("line.separator");
     // 换行字符串 ( 两行 )
-    private static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
+    private static final String   NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
 
     // ================
     // = 对外公开方法 =

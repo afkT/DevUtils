@@ -165,11 +165,11 @@ public final class FileDepthFirstSearchUtils {
     // 判断是否运行中
     private boolean mIsRunning = false;
     // 是否停止搜索
-    private boolean mIsStop = false;
+    private boolean mIsStop    = false;
     // 开始搜索时间
-    private long mStartTime = 0L;
+    private long    mStartTime = 0L;
     // 结束搜索时间
-    private long mEndTime = 0L;
+    private long    mEndTime   = 0L;
 
     /**
      * 搜索目录

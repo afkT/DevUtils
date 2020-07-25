@@ -38,9 +38,9 @@ import java.util.concurrent.TimeoutException;
 public final class DevThreadPool {
 
     // 线程池对象
-    private final ExecutorService mThreadPool;
+    private final ExecutorService          mThreadPool;
     // 定时任务线程池
-    private ScheduledExecutorService mScheduleExec;
+    private       ScheduledExecutorService mScheduleExec;
 
     /**
      * 构造函数
