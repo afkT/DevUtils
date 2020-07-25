@@ -31,6 +31,7 @@ public final class ZXingQRCodeUtils {
     private ZXingQRCodeUtils() {
     }
 
+    // 日志 TAG
     private static final String TAG = ZXingQRCodeUtils.class.getSimpleName();
 
     // ==============

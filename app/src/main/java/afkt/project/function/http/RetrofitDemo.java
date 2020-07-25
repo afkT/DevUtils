@@ -13,6 +13,7 @@ import dev.other.retrofit.subscriber.BaseResponseSubscriber;
  */
 public class RetrofitDemo {
 
+    // 日志 TAG
     private static final String TAG = RetrofitDemo.class.getSimpleName();
 
     /**
