@@ -11,11 +11,11 @@ import dev.environment.annotation.Environment;
 public class EnvironmentBean implements Serializable {
 
     // 环境名
-    private final String name;
+    private final String     name;
     // 环境配置值
-    private final String value;
+    private final String     value;
     // 环境别名
-    private final String alias;
+    private final String     alias;
     // 所属模块
     private final ModuleBean module;
 

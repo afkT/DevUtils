@@ -7,8 +7,8 @@ import java.util.Arrays;
 public class ParameterizedTypeImpl implements ParameterizedType {
 
     private final Type[] actualTypeArguments;
-    private final Type ownerType;
-    private final Type rawType;
+    private final Type   ownerType;
+    private final Type   rawType;
 
     public ParameterizedTypeImpl(Type[] actualTypeArguments, Type ownerType, Type rawType) {
         this.actualTypeArguments = actualTypeArguments;
@@ -35,7 +35,8 @@ public class ParameterizedTypeImpl implements ParameterizedType {
 
         ParameterizedTypeImpl that = (ParameterizedTypeImpl) object;
         if (!Arrays.equals(actualTypeArguments, that.actualTypeArguments)) return false;
-        if (ownerType != null ? !ownerType.equals(that.ownerType) : that.ownerType != null) return false;
+        if (ownerType != null ? !ownerType.equals(that.ownerType) : that.ownerType != null)
+            return false;
         return rawType != null ? rawType.equals(that.rawType) : that.rawType == null;
     }
 

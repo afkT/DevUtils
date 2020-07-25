@@ -16,19 +16,19 @@ import dev.environment.bean.ModuleBean;
 class Utils {
 
     // 包名
-    static final String PACKAGE_NAME = "dev.environment";
+    static final String PACKAGE_NAME           = "dev.environment";
     // 工具类文件名
-    static final String ENVIRONMENT_FILE_NAME = "DevEnvironment";
+    static final String ENVIRONMENT_FILE_NAME  = "DevEnvironment";
     // 方法名
-    static final String METHOD_IS_RELEASE = "isRelease";
+    static final String METHOD_IS_RELEASE      = "isRelease";
     static final String METHOD_GET_MODULE_LIST = "getModuleList";
     // 常量字符串
-    static final String STR_ENVIRONMENT = "Environment";
+    static final String STR_ENVIRONMENT        = "Environment";
 
     // callback
     protected static RestartCallBack sRestartCallBack;
     // DevEnvironment Class
-    static Class<?> devEnvironmentClass;
+    static           Class<?>        devEnvironmentClass;
 
     static {
         try {

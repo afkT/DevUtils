@@ -37,36 +37,36 @@ import dev.environment.type.ParameterizedTypeImpl;
 final class Utils {
 
     // 包名
-    static final String PACKAGE_NAME = "dev.environment";
+    static final String PACKAGE_NAME          = "dev.environment";
     // 工具类文件名
     static final String ENVIRONMENT_FILE_NAME = "DevEnvironment";
 
     // 方法名
-    static final String METHOD_RESET = "reset";
-    static final String METHOD_IS_RELEASE = "isRelease";
-    static final String METHOD_GET_MODULE_LIST = "getModuleList";
-    static final String METHOD_GET_MODULE_ENVIRONMENTS_LIST = "getEnvironments";
-    static final String METHOD_GET_ENVIRONMENTS_VALUE = "getValue";
-    static final String METHOD_ADD_ONENVIRONMENT_CHANGE_LISTENER = "addOnEnvironmentChangeListener";
-    static final String METHOD_REMOVE_ONENVIRONMENT_CHANGE_LISTENER = "removeOnEnvironmentChangeListener";
-    static final String METHOD_CLEAR_ONENVIRONMENT_CHANGE_LISTENER = "clearOnEnvironmentChangeListener";
-    static final String METHOD_GET_STORAGE_DIR = "getStorageDir";
-    static final String METHOD_DELETE_STORAGE_DIR = "deleteStorageDir";
+    static final String   METHOD_RESET                                = "reset";
+    static final String   METHOD_IS_RELEASE                           = "isRelease";
+    static final String   METHOD_GET_MODULE_LIST                      = "getModuleList";
+    static final String   METHOD_GET_MODULE_ENVIRONMENTS_LIST         = "getEnvironments";
+    static final String   METHOD_GET_ENVIRONMENTS_VALUE               = "getValue";
+    static final String   METHOD_ADD_ONENVIRONMENT_CHANGE_LISTENER    = "addOnEnvironmentChangeListener";
+    static final String   METHOD_REMOVE_ONENVIRONMENT_CHANGE_LISTENER = "removeOnEnvironmentChangeListener";
+    static final String   METHOD_CLEAR_ONENVIRONMENT_CHANGE_LISTENER  = "clearOnEnvironmentChangeListener";
+    static final String   METHOD_GET_STORAGE_DIR                      = "getStorageDir";
+    static final String   METHOD_DELETE_STORAGE_DIR                   = "deleteStorageDir";
     // 变量相关
-    static final String VAR_MODULE_PREFIX = "MODULE_";
-    static final String VAR_ENVIRONMENT_PREFIX = "ENVIRONMENT_";
-    static final String VAR_MODULELIST = "moduleList";
-    static final String VAR_MODULE_LIST = "MODULE_LIST";
-    static final String VAR_CONTEXT = "context";
-    static final String VAR_NEW_ENVIRONMENT = "newEnvironment";
-    static final String VAR_LISTENER = "listener";
+    static final String   VAR_MODULE_PREFIX                           = "MODULE_";
+    static final String   VAR_ENVIRONMENT_PREFIX                      = "ENVIRONMENT_";
+    static final String   VAR_MODULELIST                              = "moduleList";
+    static final String   VAR_MODULE_LIST                             = "MODULE_LIST";
+    static final String   VAR_CONTEXT                                 = "context";
+    static final String   VAR_NEW_ENVIRONMENT                         = "newEnvironment";
+    static final String   VAR_LISTENER                                = "listener";
     // 常量字符串
-    static final String STR_MODULE = "Module";
-    static final String STR_ENVIRONMENT = "Environment";
-    static final String STR_ENVIRONMENT_VALUE = "EnvironmentValue";
-    static final String STR_RELEASE_ENVIRONMENT = "ReleaseEnvironment";
+    static final String   STR_MODULE                                  = "Module";
+    static final String   STR_ENVIRONMENT                             = "Environment";
+    static final String   STR_ENVIRONMENT_VALUE                       = "EnvironmentValue";
+    static final String   STR_RELEASE_ENVIRONMENT                     = "ReleaseEnvironment";
     // 其他
-    static final TypeName TYPE_NAME_CONTEXT = ClassName.get("android.content", "Context");
+    static final TypeName TYPE_NAME_CONTEXT                           = ClassName.get("android.content", "Context");
 
     // ================
     // = 内部生成方法 =

@@ -13,9 +13,9 @@ import dev.environment.annotation.Module;
 public class ModuleBean implements Serializable {
 
     // 模块名
-    private final String name;
+    private final String                name;
     // 模块别名
-    private final String alias;
+    private final String                alias;
     // 模块下的环境集合
     private final List<EnvironmentBean> environments = new ArrayList<>();
 
