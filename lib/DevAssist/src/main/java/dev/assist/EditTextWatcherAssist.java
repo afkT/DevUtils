@@ -76,9 +76,9 @@ public class EditTextWatcherAssist<T> {
     // Text 改变事件
     private TextWatcher mTextWatcher;
     // 获得焦点的 EditText
-    private EditText mFocusEdit;
+    private EditText    mFocusEdit;
     // 获得焦点的索引
-    private int mFocusPos;
+    private int         mFocusPos;
 
     /**
      * 焦点改变
@@ -107,11 +107,11 @@ public class EditTextWatcherAssist<T> {
     private class FocusListener implements View.OnFocusChangeListener {
 
         // 当前索引
-        private int position;
+        private int              position;
         // EditText
-        private EditText editText;
+        private EditText         editText;
         // Object
-        private T object;
+        private T                object;
         // 输入监听事件
         private InputListener<T> listener;
 

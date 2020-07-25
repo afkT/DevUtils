@@ -11,7 +11,7 @@ public class VariableAssist {
     // Boolean 变量存储对象
     private DevBaseVariable<Object, Boolean> mBooleanVariable = new DevBaseVariable<>();
     // Object 变量存储对象
-    private DevBaseVariable<Object, Object> mObjectVariable = new DevBaseVariable<>();
+    private DevBaseVariable<Object, Object>  mObjectVariable  = new DevBaseVariable<>();
 
     /**
      * 获取 Boolean 变量存储对象

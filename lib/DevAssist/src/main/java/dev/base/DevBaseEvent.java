@@ -9,11 +9,11 @@ import dev.utils.common.ObjectUtils;
 public class DevBaseEvent<T> {
 
     // code
-    private int mCode;
+    private int    mCode;
     // code String
     private String mCodeStr;
     // value
-    private T mValue;
+    private T      mValue;
     // object
     private Object mObject;
 

@@ -9,13 +9,13 @@ import java.util.UUID;
 public abstract class AbstractCallBack<T> {
 
     // uuid 一定程度上唯一
-    private final int mUUID = UUID.randomUUID().hashCode();
+    private final int    mUUID = UUID.randomUUID().hashCode();
     // 标记 tag
-    private String mTag;
+    private       String mTag;
     // Value
-    private T mValue;
+    private       T      mValue;
     // Object
-    private Object mObject;
+    private       Object mObject;
 
     public AbstractCallBack() {
     }

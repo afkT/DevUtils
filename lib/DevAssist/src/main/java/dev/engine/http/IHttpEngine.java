@@ -22,9 +22,9 @@ public interface IHttpEngine {
         // Request
         protected Request request;
         // 发送请求时间
-        protected long sentRequestAtMillis;
+        protected long    sentRequestAtMillis;
         // 请求响应时间
-        protected long receivedResponseAtMillis;
+        protected long    receivedResponseAtMillis;
 
         /**
          * 获取 Request Object

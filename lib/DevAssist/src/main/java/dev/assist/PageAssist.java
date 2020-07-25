@@ -7,20 +7,20 @@ package dev.assist;
 public class PageAssist<T> extends RequestStateAssist<T> {
 
     // 全局默认初始化页数配置
-    public static int DF_PAGE_NUM = 1;
+    public static int DF_PAGE_NUM      = 1;
     // 全局默认配置每页请求条数
-    public static int DF_PAGE_SIZE = 20;
+    public static int DF_PAGE_SIZE     = 20;
     // 默认页数配置
-    private int config_page_num = DF_PAGE_NUM;
+    private       int config_page_num  = DF_PAGE_NUM;
     // 默认每页请求条数配置
-    private int config_page_size = DF_PAGE_SIZE;
+    private       int config_page_size = DF_PAGE_SIZE;
 
     // 当前请求页数 ( 已成功 )
-    private int mPageNum = config_page_num;
+    private int     mPageNum  = config_page_num;
     // 每页请求条数
-    private int mPageSize = config_page_size;
+    private int     mPageSize = config_page_size;
     // 数据总条数 ( 全部 ), 非当前页数有多少条
-    private int mTotalRow;
+    private int     mTotalRow;
     // 判断是否最后一页
     private boolean mLastPage;
 

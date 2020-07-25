@@ -11,15 +11,15 @@ package dev.assist;
 public class NumberControlAssist {
 
     // Object
-    private Object mObject = null;
+    private Object  mObject          = null;
     // 最小值
-    private int mMinNumber = 1;
+    private int     mMinNumber       = 1;
     // 最大值
-    private int mMaxNumber = Integer.MAX_VALUE;
+    private int     mMaxNumber       = Integer.MAX_VALUE;
     // 当前数量
-    private int mCurrentNumber = 1;
+    private int     mCurrentNumber   = 1;
     // 重置数量 - 出现异常情况, 则使用该变量赋值
-    private int mResetNumber = 1;
+    private int     mResetNumber     = 1;
     // 是否允许设置为负数
     private boolean mIsAllowNegative = false;
 

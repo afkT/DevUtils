@@ -17,7 +17,7 @@ public abstract class DevBaseModel implements Serializable {
     // uuid
     private final int mUUID = UUID.randomUUID().hashCode();
     // model id
-    private int mModelId;
+    private       int mModelId;
 
     // ================
     // = 对外公开方法 =

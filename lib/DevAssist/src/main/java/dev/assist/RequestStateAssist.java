@@ -10,26 +10,26 @@ import dev.utils.common.ObjectUtils;
  */
 public class RequestStateAssist<T> {
 
-    private static final int BASE = 102030;
+    private static final int BASE           = 102030;
     // 默认状态 ( 暂未进行操作 )
-    public static final int REQUEST_NORMAL = BASE + 1;
+    public static final  int REQUEST_NORMAL = BASE + 1;
     // 未请求过
-    public static final int REQUEST_NEVER = BASE + 2;
+    public static final  int REQUEST_NEVER  = BASE + 2;
     // 请求中
-    public static final int REQUEST_ING = BASE + 3;
+    public static final  int REQUEST_ING    = BASE + 3;
     // 请求成功
-    public static final int REQUEST_SUC = BASE + 4;
+    public static final  int REQUEST_SUC    = BASE + 4;
     // 请求失败
-    public static final int REQUEST_FAIL = BASE + 5;
+    public static final  int REQUEST_FAIL   = BASE + 5;
     // 请求异常
-    public static final int REQUEST_ERROR = BASE + 6;
+    public static final  int REQUEST_ERROR  = BASE + 6;
 
     // 请求类型
-    private T mRequestType;
+    private T    mRequestType;
     // 请求 HashCode
     private long mRequestHashCode = UUID.randomUUID().hashCode();
     // 请求状态 - 默认状态 ( 暂未进行操作 )
-    private int mRequestState = REQUEST_NORMAL;
+    private int  mRequestState    = REQUEST_NORMAL;
 
     // ================
     // = 对外公开方法 =

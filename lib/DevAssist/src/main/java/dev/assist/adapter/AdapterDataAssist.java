@@ -17,8 +17,9 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
 
     // 日志 TAG
     private static final String TAG = AdapterDataAssist.class.getSimpleName();
+
     // List Data
-    private List<V> mList = new ArrayList<>();
+    private List<V>        mList = new ArrayList<>();
     // IAdapterNotify
     private IAdapterNotify mAdapterNotify;
 
