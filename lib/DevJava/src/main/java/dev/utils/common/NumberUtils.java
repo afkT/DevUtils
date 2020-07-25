@@ -772,15 +772,15 @@ public final class NumberUtils {
     // ==================
 
     // 零索引
-    private static final int ZERO = 0;
+    private static final int      ZERO                   = 0;
     // 十位数索引
-    private static final int TEN_POS = 10;
+    private static final int      TEN_POS                = 10;
     // 中文 ( 数字单位 )
-    private static final String[] CHN_NUMBER_UNITS = {"零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "百", "千", "万", "亿", "兆"};
+    private static final String[] CHN_NUMBER_UNITS       = {"零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "百", "千", "万", "亿", "兆"};
     // 中文大写 ( 数字单位 )
     private static final String[] CHN_NUMBER_UPPER_UNITS = {"零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖", "拾", "佰", "仟", "万", "亿", "兆"};
     // 数字单位对应数值
-    private static final double[] NUMBER_UNITS = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100, 1000, 10000, 100000000, 1000000000000d};
+    private static final double[] NUMBER_UNITS           = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100, 1000, 10000, 100000000, 1000000000000d};
 
     // ============
     // = 对外公开 =

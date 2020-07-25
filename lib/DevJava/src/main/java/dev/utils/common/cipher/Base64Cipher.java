@@ -9,7 +9,7 @@ public class Base64Cipher implements Cipher {
     // 中间加密层
     private Cipher mCipher;
     // Base64 编解码 flags
-    private int mFlags = Base64.DEFAULT;
+    private int    mFlags = Base64.DEFAULT;
 
     /**
      * 构造函数

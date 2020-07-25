@@ -241,23 +241,23 @@ public final class FileBreadthFirstSearchUtils {
     // =
 
     // 根目录对象
-    private FileItem mRootFileItem;
+    private FileItem                       mRootFileItem;
     // 判断是否运行中
-    private boolean mIsRunning = false;
+    private boolean                        mIsRunning           = false;
     // 是否停止搜索
-    private boolean mIsStop = false;
+    private boolean                        mIsStop              = false;
     // 开始搜索时间
-    private long mStartTime = 0L;
+    private long                           mStartTime           = 0L;
     // 结束搜索时间
-    private long mEndTime = 0L;
+    private long                           mEndTime             = 0L;
     // 延迟时间
-    private long mDelayTime = 50L;
+    private long                           mDelayTime           = 50L;
     // 任务队列同时进行数量
-    private int mQueueSameTimeNumber = 5;
+    private int                            mQueueSameTimeNumber = 5;
     // 线程池
-    private ExecutorService mExecutor = Executors.newCachedThreadPool();
+    private ExecutorService                mExecutor            = Executors.newCachedThreadPool();
     // 任务队列
-    private LinkedBlockingQueue<FileQueue> mTaskQueue = new LinkedBlockingQueue<>();
+    private LinkedBlockingQueue<FileQueue> mTaskQueue           = new LinkedBlockingQueue<>();
 
     /**
      * 搜索目录

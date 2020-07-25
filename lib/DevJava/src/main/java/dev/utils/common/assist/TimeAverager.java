@@ -9,7 +9,7 @@ public class TimeAverager {
     // 计时器
     private TimeCounter mTimeCounter = new TimeCounter();
     // 均值器
-    private Averager mAverager = new Averager();
+    private Averager    mAverager    = new Averager();
 
     /**
      * 开始计时 ( 毫秒 )

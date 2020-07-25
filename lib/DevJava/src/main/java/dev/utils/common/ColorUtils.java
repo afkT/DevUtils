@@ -25,7 +25,7 @@ public final class ColorUtils {
 
     // 日志 TAG
     private static final String TAG = ColorUtils.class.getSimpleName();
-    
+
     // 透明
     public static final int TRANSPARENT       = 0x00000000;
     // 白色
@@ -736,11 +736,11 @@ public final class ColorUtils {
         // value 解析后的值 ( 如: #000 => #000000 )
         private String valueParser;
         // ARGB/RGB color
-        private long valueColor;
+        private long   valueColor;
         // A、R、G、B
-        private int alpha = 255, red = 0, green = 0, blue = 0;
+        private int    alpha = 255, red = 0, green = 0, blue = 0;
         // 灰度值
-        private int grayLevel;
+        private int   grayLevel;
         // H、S、B ( V )
         private float hue, saturation, brightness;
 

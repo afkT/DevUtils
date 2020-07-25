@@ -32,12 +32,13 @@ public final class FileIOUtils {
 
     // 日志 TAG
     private static final String TAG = FileIOUtils.class.getSimpleName();
+
     // 换行符
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
     // 缓存大小
-    private static int sBufferSize = 8192;
+    private static       int    sBufferSize  = 8192;
     // 无数据读取
-    public static final int EOF = -1;
+    public static final  int    EOF          = -1;
 
     /**
      * 设置缓冲区的大小, 默认大小等于 8192 字节
