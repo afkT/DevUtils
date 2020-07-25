@@ -10,13 +10,13 @@
     <!-- 全屏 白色背景 无标题 样式 -->
     <style name="DevFullscreenTheme" parent="android:Theme.Light.NoTitleBar.Fullscreen"></style>
 
-    <!-- Activity 样式 - 背景透明, 跳转无动画 -->
+    <!-- Activity 样式 - 背景透明、跳转无动画 -->
     <style name="DevActivityNoAnimTheme" parent="DevNoTitleTheme">
         <item name="android:windowAnimationStyle">@style/DevActivityJumpNoAnimationTheme</item>
         <item name="android:background">@color/transparent</item>
     </style>
 
-    <!-- Activity 样式 - 全屏, 背景透明, 跳转无动画 -->
+    <!-- Activity 样式 - 全屏、背景透明、跳转无动画 -->
     <style name="DevActivityFullScreenNoAnimTheme" parent="DevNoTitleTheme">
         <item name="android:windowAnimationStyle">@style/DevActivityJumpNoAnimationTheme</item>
         <item name="android:background">@color/transparent</item>
@@ -40,7 +40,7 @@
         <item name="android:taskToBackExitAnimation">@null</item>
     </style>
 
-    <!-- Actvitiy 透明样式 - 无标题, 全屏, 背景透明等 -->
+    <!-- Actvitiy 透明样式 - 无标题、全屏、背景透明等 -->
     <style name="DevActivityTranslucentTheme">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
@@ -65,7 +65,7 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <!-- AppCompatActivity 样式 - 无标题、ActionBar、背景透明, 跳转无动画 -->
+    <!-- AppCompatActivity 样式 - 无标题、ActionBar、背景透明、跳转无动画 -->
     <style name="DevActivityNoAnimNoActionBarTheme" parent="DevNoActionBarTheme">
         <item name="android:windowAnimationStyle">@style/DevActivityJumpNoAnimationTheme</item>
         <item name="android:background">@color/transparent</item>
@@ -78,15 +78,15 @@
 
     <!-- Dialog 全屏透明样式 -->
     <style name="DevDialogFullScreenTheme" parent="DevDialogTheme">
-        <item name="android:windowFrame">@null</item> <!-- 边框 -->
-        <item name="android:windowNoTitle">true</item> <!-- 不要标题 -->
-        <item name="android:windowIsFloating">true</item> <!-- 是否浮现在 Activity 上面 -->
-        <item name="android:windowIsTranslucent">true</item> <!-- 半透明 -->
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item> <!-- 动画样式 -->
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowSoftInputMode">adjustPan</item>
-        <item name="android:windowBackground">@android:color/transparent</item> <!-- 背景 --> <!-- @drawable/dialog_transparent -->
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
 </resources>
