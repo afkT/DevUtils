@@ -41,13 +41,13 @@ import dev.utils.app.ViewUtils;
 public class WebViewAssist {
 
     // 日志 TAG
-    private static final String TAG = WebViewAssist.class.getSimpleName();
+    private static final String  TAG = WebViewAssist.class.getSimpleName();
     // WebView
-    private WebView mWebView;
+    private              WebView mWebView;
     // WebView 常用配置构建类
-    private Builder mBuilder;
+    private              Builder mBuilder;
     // 全局配置
-    private static Builder sGlobalBuilder;
+    private static       Builder sGlobalBuilder;
 
     public WebViewAssist() {
         this(true);
@@ -861,7 +861,7 @@ public class WebViewAssist {
     public static class Builder {
 
         // WebView 辅助类
-        private WebViewAssist mWebViewAssist;
+        private WebViewAssist   mWebViewAssist;
         // 应用配置监听事件
         private OnApplyListener mApplyListener;
 
@@ -1018,61 +1018,61 @@ public class WebViewAssist {
         // ============
 
         // 是否支持 JavaScript
-        private boolean mJavaScriptEnabled = true;
+        private boolean                     mJavaScriptEnabled                     = true;
         // 渲染优先级
-        private WebSettings.RenderPriority mRenderPriority = null;
+        private WebSettings.RenderPriority  mRenderPriority                        = null;
         // 是否使用宽视图 ( 是否支持 html viewport 设置了会导致字体变小 )
-        private boolean mUseWideViewPort = false;
+        private boolean                     mUseWideViewPort                       = false;
         // 是否按宽度缩小内容以适合屏幕
-        private boolean mLoadWithOverviewMode = true;
+        private boolean                     mLoadWithOverviewMode                  = true;
         // 基础布局算法, 大于 4.4 使用 TEXT_AUTOSIZING 解决前端 REM 适配方案有误差情况
-        private WebSettings.LayoutAlgorithm mLayoutAlgorithm = null;
+        private WebSettings.LayoutAlgorithm mLayoutAlgorithm                       = null;
         // 是否支持缩放
-        private boolean mSupportZoom = true;
+        private boolean                     mSupportZoom                           = true;
         // 是否显示内置缩放工具
-        private boolean mBuiltInZoomControls = false;
+        private boolean                     mBuiltInZoomControls                   = false;
         // 是否显示缩放工具
-        private boolean mDisplayZoomControls = false;
+        private boolean                     mDisplayZoomControls                   = false;
         // 文本缩放倍数
-        private int mTextZoom = 0;
+        private int                         mTextZoom                              = 0;
         // WebView 字体, 默认字体 "sans-serif"
-        private String mStandardFontFamily = null;
+        private String                      mStandardFontFamily                    = null;
         // WebView 字体大小
-        private int mDefaultFontSize = 0;
+        private int                         mDefaultFontSize                       = 0;
         // WebView 支持最小字体大小
-        private int mMinimumFontSize = 0;
+        private int                         mMinimumFontSize                       = 0;
         // 混合内容模式
-        private int mMixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW;
+        private int                         mMixedContentMode                      = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW;
         // 是否支持自动加载图片
-        private boolean mLoadsImagesAutomatically = true;
+        private boolean                     mLoadsImagesAutomatically              = true;
         // 是否支持通过 JS 打开新窗口
-        private boolean mJavaScriptCanOpenWindowsAutomatically = true;
+        private boolean                     mJavaScriptCanOpenWindowsAutomatically = true;
         // 编码格式
-        private String mDefaultTextEncodingName = "utf-8";
+        private String                      mDefaultTextEncodingName               = "utf-8";
         // 是否允许网页执行定位操作
-        private boolean mGeolocationEnabled = true;
+        private boolean                     mGeolocationEnabled                    = true;
         // 浏览器标识 UA
-        private String mUserAgentString = null;
+        private String                      mUserAgentString                       = null;
         // 是否可以访问文件 ( false 不影响 assets 和 resources 资源的加载 )
-        private boolean mAllowFileAccess = true;
+        private boolean                     mAllowFileAccess                       = true;
         // 是否允许通过 file url 加载的 JS 代码读取其他的本地文件
-        private boolean mAllowFileAccessFromFileURLs = false;
+        private boolean                     mAllowFileAccessFromFileURLs           = false;
         // 是否允许通过 file url 加载的 JS 可以访问其他的源 ( 包括 http、https 等源 )
-        private boolean mAllowUniversalAccessFromFileURLs = false;
+        private boolean                     mAllowUniversalAccessFromFileURLs      = false;
         // WebView 缓存模式
-        private int mCacheMode = WebSettings.LOAD_NO_CACHE;
+        private int                         mCacheMode                             = WebSettings.LOAD_NO_CACHE;
         // 是否支持 DOM Storage
-        private boolean mDomStorageEnabled = true;
+        private boolean                     mDomStorageEnabled                     = true;
         // 是否开启 Application Caches 功能
-        private boolean mAppCacheEnabled = true;
+        private boolean                     mAppCacheEnabled                       = true;
         // Application Caches 地址
-        private String mAppCachePath = null;
+        private String                      mAppCachePath                          = null;
         // Application Caches 大小
-        private long mAppCacheMaxSize = 5 * 1024 * 1024;
+        private long                        mAppCacheMaxSize                       = 5 * 1024 * 1024;
         // 是否支持数据库缓存
-        private boolean mDatabaseEnabled = true;
+        private boolean                     mDatabaseEnabled                       = true;
         // 数据库缓存路径
-        private String mDatabasePath = null;
+        private String                      mDatabasePath                          = null;
 
         /**
          * 应用 ( 设置 ) 配置

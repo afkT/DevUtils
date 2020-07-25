@@ -35,35 +35,35 @@ public final class WifiReceiver extends BroadcastReceiver {
     // = 常量 =
     // ========
 
-    private static final int BASE = 302030;
+    private static final int BASE                      = 302030;
     // startScan() 扫描附近 Wifi 结束触发
-    public static final int WIFI_SCAN_FINISH = BASE + 1;
+    public static final  int WIFI_SCAN_FINISH          = BASE + 1;
     // 已连接的 Wifi 强度发生变化
-    public static final int WIFI_RSSI_CHANGED = BASE + 2;
+    public static final  int WIFI_RSSI_CHANGED         = BASE + 2;
     // Wifi 认证错误 ( 密码错误等 )
-    public static final int WIFI_ERROR_AUTHENTICATING = BASE + 3;
+    public static final  int WIFI_ERROR_AUTHENTICATING = BASE + 3;
     // 连接错误 ( 其他错误 )
-    public static final int WIFI_ERROR_UNKNOWN = BASE + 4;
+    public static final  int WIFI_ERROR_UNKNOWN        = BASE + 4;
     // Wifi 已打开
-    public static final int WIFI_STATE_ENABLED = BASE + 5;
+    public static final  int WIFI_STATE_ENABLED        = BASE + 5;
     // Wifi 正在打开
-    public static final int WIFI_STATE_ENABLING = BASE + 6;
+    public static final  int WIFI_STATE_ENABLING       = BASE + 6;
     // Wifi 已关闭
-    public static final int WIFI_STATE_DISABLED = BASE + 7;
+    public static final  int WIFI_STATE_DISABLED       = BASE + 7;
     // Wifi 正在关闭
-    public static final int WIFI_STATE_DISABLING = BASE + 8;
+    public static final  int WIFI_STATE_DISABLING      = BASE + 8;
     // Wifi 状态未知
-    public static final int WIFI_STATE_UNKNOWN = BASE + 9;
+    public static final  int WIFI_STATE_UNKNOWN        = BASE + 9;
     // Wifi 连接成功
-    public static final int CONNECTED = BASE + 10;
+    public static final  int CONNECTED                 = BASE + 10;
     // Wifi 连接中
-    public static final int CONNECTING = BASE + 11;
+    public static final  int CONNECTING                = BASE + 11;
     // Wifi 连接失败、断开
-    public static final int DISCONNECTED = BASE + 12;
+    public static final  int DISCONNECTED              = BASE + 12;
     // Wifi 暂停、延迟
-    public static final int SUSPENDED = BASE + 13;
+    public static final  int SUSPENDED                 = BASE + 13;
     // Wifi 未知
-    public static final int UNKNOWN = BASE + 14;
+    public static final  int UNKNOWN                   = BASE + 14;
 
     @Override
     public void onReceive(Context context, Intent intent) {

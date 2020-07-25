@@ -24,6 +24,7 @@ public final class NotificationService extends NotificationListenerService {
 
     // 日志 TAG
     private static final String TAG = NotificationService.class.getSimpleName();
+    
     // 当前服务所持对象
     private static NotificationService sSelf;
 

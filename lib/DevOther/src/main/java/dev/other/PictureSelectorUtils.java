@@ -43,17 +43,17 @@ public final class PictureSelectorUtils {
     }
 
     // 日志 TAG
-    private static final String TAG = PictureSelectorUtils.class.getSimpleName();
+    private static final String    TAG                   = PictureSelectorUtils.class.getSimpleName();
     // 全局请求跳转回传 code
-    public static final int PIC_REQUEST_CODE = PictureConfig.CHOOSE_REQUEST;
+    public static final  int       PIC_REQUEST_CODE      = PictureConfig.CHOOSE_REQUEST;
     // 全局相册配置
-    public static final PicConfig PIC_CONFIG = new PicConfig();
+    public static final  PicConfig PIC_CONFIG            = new PicConfig();
     // 拍照保存地址
-    private static String CAMERA_SAVA_PATH = null;
+    private static       String    CAMERA_SAVA_PATH      = null;
     // 压缩图片保存地址
-    private static String COMPRESS_SAVA_PATH = null;
+    private static       String    COMPRESS_SAVA_PATH    = null;
     // 图片大于多少才进行压缩 (kb)
-    private static int MINIMUM_COMPRESS_SIZE = 2048;
+    private static       int       MINIMUM_COMPRESS_SIZE = 2048;
 
     /**
      * 获取全局相册配置
@@ -389,35 +389,35 @@ public final class PictureSelectorUtils {
     public static class PicConfig {
 
         // 相册选择类型
-        private int mimeType = PictureMimeType.ofImage();
+        private int              mimeType            = PictureMimeType.ofImage();
         // 相册选择模式
-        private int selectionMode = PictureConfig.MULTIPLE;
+        private int              selectionMode       = PictureConfig.MULTIPLE;
         // 是否显示拍照
-        private boolean isCamera = true;
+        private boolean          isCamera            = true;
         // 是否裁减
-        private boolean isCrop = false;
+        private boolean          isCrop              = false;
         // 是否圆形裁减 true = 圆形, false = 矩形
-        private boolean isCircleCrop = false;
+        private boolean          isCircleCrop        = false;
         // 是否压缩
-        private boolean isCompress = true;
+        private boolean          isCompress          = true;
         // 图片大于多少才进行压缩 (kb)
-        private int minimumCompressSize = MINIMUM_COMPRESS_SIZE;
+        private int              minimumCompressSize = MINIMUM_COMPRESS_SIZE;
         // 裁减比例
-        private int[] withAspectRatio = new int[]{0, 0};
+        private int[]            withAspectRatio     = new int[]{0, 0};
         // 是否显示 Gif
-        private boolean isGif = false;
+        private boolean          isGif               = false;
         // 每行显示个数
-        private int imageSpanCount = 4;
+        private int              imageSpanCount      = 4;
         // 最小选择数量
-        private int minSelectNum = 1;
+        private int              minSelectNum        = 1;
         // 最大选择数量
-        private int maxSelectNum = 9;
+        private int              maxSelectNum        = 9;
         // 已选择的本地资源
         private List<LocalMedia> localMedia;
         // 拍照保存地址
-        private String cameraSavePath = CAMERA_SAVA_PATH;
+        private String           cameraSavePath      = CAMERA_SAVA_PATH;
         // 压缩图片保存地址
-        private String compressSavePath = COMPRESS_SAVA_PATH;
+        private String           compressSavePath    = COMPRESS_SAVA_PATH;
 
         // ===========
         // = get/set =

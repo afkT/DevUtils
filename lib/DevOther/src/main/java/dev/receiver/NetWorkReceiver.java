@@ -27,6 +27,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
 
     // 日志 TAG
     private static final String TAG = NetWorkReceiver.class.getSimpleName();
+    
     // 当前连接的状态
     private static int mConnectState = NetWorkReceiver.NO_NETWORK;
 
@@ -34,13 +35,13 @@ public final class NetWorkReceiver extends BroadcastReceiver {
     // = 常量 =
     // ========
 
-    private static final int BASE = 202030;
+    private static final int BASE       = 202030;
     // Wifi
-    public static final int NET_WIFI = BASE + 1;
+    public static final  int NET_WIFI   = BASE + 1;
     // 移动网络
-    public static final int NET_MOBILE = BASE + 2;
+    public static final  int NET_MOBILE = BASE + 2;
     // ( 无网络 / 未知 ) 状态
-    public static final int NO_NETWORK = BASE + 3;
+    public static final  int NO_NETWORK = BASE + 3;
 
     @Override
     public void onReceive(Context context, Intent intent) {

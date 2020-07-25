@@ -25,14 +25,15 @@ public final class PhoneReceiver extends BroadcastReceiver {
 
     // 日志 TAG
     private static final String TAG = PhoneReceiver.class.getSimpleName();
+    
     // 电话状态监听意图
-    private static final String PHONE_STATE = "android.intent.action.PHONE_STATE";
+    private static final String  PHONE_STATE       = "android.intent.action.PHONE_STATE";
     // 拨出电话意图
-    private static final String NEW_OUTGOING_CALL = "android.intent.action.NEW_OUTGOING_CALL";
+    private static final String  NEW_OUTGOING_CALL = "android.intent.action.NEW_OUTGOING_CALL";
     // 通话号码
-    private String mNumber;
+    private              String  mNumber;
     // 是否拨号打出
-    private boolean mIsDialOut;
+    private              boolean mIsDialOut;
 
     // ========
     // = 状态 =
@@ -43,7 +44,7 @@ public final class PhoneReceiver extends BroadcastReceiver {
     // 已接
     private static final String OFFHOOK = "OFFHOOK";
     // 挂断
-    private static final String IDLE = "IDLE";
+    private static final String IDLE    = "IDLE";
 
     @Override
     public void onReceive(Context context, Intent intent) {

@@ -30,13 +30,13 @@ public final class GsonUtils {
     }
 
     // 日志 TAG
-    private static final String TAG = GsonUtils.class.getSimpleName();
+    private static final String TAG         = GsonUtils.class.getSimpleName();
     // Object 转 JSON 字符串
-    private static final Gson TO_GSON = createGson(true).create();
+    private static final Gson   TO_GSON     = createGson(true).create();
     // JSON 字符串转 T Object
-    private static final Gson FROM_GSON = createGson(true).create();
+    private static final Gson   FROM_GSON   = createGson(true).create();
     // JSON 缩进
-    private static final Gson INDENT_GSON = createGson(true).setPrettyPrinting().create();
+    private static final Gson   INDENT_GSON = createGson(true).setPrettyPrinting().create();
 
     // ============
     // = 转换方法 =
