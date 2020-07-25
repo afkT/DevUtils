@@ -41,16 +41,17 @@ public final class ToastTintUtils {
 
     // 日志 TAG
     private static final String TAG = ToastTintUtils.class.getSimpleName();
+
     // Toast 判断过滤
-    private static ToastTintUtils.Filter sToastFilter = null;
+    private static       ToastTintUtils.Filter sToastFilter = null;
     // 内部持有单个 Toast
-    private static Toast sToast = null;
+    private static       Toast                 sToast       = null;
     // 判断是否使用 Handler
-    private static boolean sIsHandler = true;
+    private static       boolean               sIsHandler   = true;
     // 内部 Handler
-    private static final Handler sHandler = new Handler(Looper.getMainLooper());
+    private static final Handler               sHandler     = new Handler(Looper.getMainLooper());
     // Null 值 - null 提示值
-    private static String sNullText = null;
+    private static       String                sNullText    = null;
 
     // ============
     // = 部分配置 =
@@ -59,7 +60,7 @@ public final class ToastTintUtils {
     // 判断是否使用配置
     private static boolean sUseConfig = true;
     // Toast 的重心、X、Y 轴偏移
-    private static int sGravity, sX, sY;
+    private static int     sGravity, sX, sY;
     // 水平边距、垂直边距
     private static float sHorizontalMargin, sVerticalMargin;
 
@@ -68,26 +69,26 @@ public final class ToastTintUtils {
     // ============
 
     // 默认样式
-    private static ToastTintUtils.Style sDefaultStyle = new DefaultStyle();
+    private static ToastTintUtils.Style sDefaultStyle    = new DefaultStyle();
     // Normal 样式
-    private static ToastTintUtils.Style sNormalStyle = new NormalStyle();
+    private static ToastTintUtils.Style sNormalStyle     = new NormalStyle();
     // Info 样式
-    private static ToastTintUtils.Style sInfoStyle = new InfoStyle();
+    private static ToastTintUtils.Style sInfoStyle       = new InfoStyle();
     // Warning 样式
-    private static ToastTintUtils.Style sWarningStyle = new WarningStyle();
+    private static ToastTintUtils.Style sWarningStyle    = new WarningStyle();
     // Error 样式
-    private static ToastTintUtils.Style sErrorStyle = new ErrorStyle();
+    private static ToastTintUtils.Style sErrorStyle      = new ErrorStyle();
     // Success 样式
-    private static ToastTintUtils.Style sSuccessStyle = new SuccessStyle();
+    private static ToastTintUtils.Style sSuccessStyle    = new SuccessStyle();
     // =
     // info icon
-    private static Drawable sInfoDrawable = null;
+    private static Drawable             sInfoDrawable    = null;
     // warning icon
-    private static Drawable sWarningDrawable = null;
+    private static Drawable             sWarningDrawable = null;
     // error icon
-    private static Drawable sErrorDrawable = null;
+    private static Drawable             sErrorDrawable   = null;
     // Success icon
-    private static Drawable sSuccessDrawable = null;
+    private static Drawable             sSuccessDrawable = null;
 
     /**
      * 重置默认参数

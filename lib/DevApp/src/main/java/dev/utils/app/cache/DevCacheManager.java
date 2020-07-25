@@ -16,17 +16,17 @@ import java.util.concurrent.atomic.AtomicLong;
 final class DevCacheManager {
 
     // 总缓存大小
-    private final AtomicLong mCacheSize;
+    private final AtomicLong      mCacheSize;
     // 总缓存的文件总数
-    private final AtomicInteger mCacheCount;
+    private final AtomicInteger   mCacheCount;
     // 大小限制
-    private final long mSizeLimit;
+    private final long            mSizeLimit;
     // 文件总数限制
-    private final int mCountLimit;
+    private final int             mCountLimit;
     // 保存文件时间信息 - 文件地址, 文件最后使用时间
     private final Map<File, Long> mLastUsageDateMaps = Collections.synchronizedMap(new HashMap<>());
     // 文件目录
-    private File mCacheDir;
+    private       File            mCacheDir;
 
     /**
      * 构造函数

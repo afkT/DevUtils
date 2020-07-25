@@ -26,12 +26,13 @@ public final class CameraSizeAssist {
 
     // 日志 TAG
     private static final String TAG = CameraSizeAssist.class.getSimpleName();
+
     // 摄像头对象
-    private Camera mCamera;
+    private       Camera mCamera;
     // 默认最大的偏差
     private final double MAX_ASPECT_DISTORTION = 0.15d;
     // 最小尺寸, 小于该尺寸则不处理
-    private final int MIN_PREVIEW_PIXELS = 480 * 320;
+    private final int    MIN_PREVIEW_PIXELS    = 480 * 320;
 
     // ============
     // = 构造函数 =

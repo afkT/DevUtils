@@ -14,13 +14,13 @@ import java.lang.Thread.UncaughtExceptionHandler;
 public final class CrashUtils implements UncaughtExceptionHandler {
 
     // CrashUtils 实例
-    private volatile static CrashUtils sInstance;
+    private volatile static CrashUtils               sInstance;
     // Context
-    private Context mContext;
+    private                 Context                  mContext;
     // 系统默认的 UncaughtException 处理器
-    private UncaughtExceptionHandler mDefaultHandler;
+    private                 UncaughtExceptionHandler mDefaultHandler;
     // 捕获异常事件处理
-    private CrashCatchListener mCrashCatchListener;
+    private                 CrashCatchListener       mCrashCatchListener;
 
     private CrashUtils() {
     }

@@ -28,14 +28,15 @@ public final class AnalysisRecordUtils {
 
     // 日志 TAG
     private static final String TAG = AnalysisRecordUtils.class.getSimpleName();
+
     // 日志文件夹名字 ( 目录名 )
-    private static String sLogFolderName = "LogRecord";
+    private static String   sLogFolderName  = "LogRecord";
     // 日志存储路径
-    private static String sLogStoragePath;
+    private static String   sLogStoragePath;
     // 是否处理保存
-    private static boolean sIsHandler = true;
+    private static boolean  sIsHandler      = true;
     // 判断是否加空格
-    private static boolean sAppendSpace = true;
+    private static boolean  sAppendSpace    = true;
     // 文件记录回调
     private static CallBack RECORD_CALLBACK = null;
 
@@ -44,19 +45,19 @@ public final class AnalysisRecordUtils {
     // ============
 
     // APP 版本 ( 如 1.0.01) 显示给用户看的
-    private static String APP_VERSION_NAME = "";
+    private static       String              APP_VERSION_NAME = "";
     // android:versionCode 整数值, 代表应用程序代码的相对版本
-    private static String APP_VERSION_CODE = "";
+    private static       String              APP_VERSION_CODE = "";
     // 应用包名
-    private static String PACKAGE_NAME = "";
+    private static       String              PACKAGE_NAME     = "";
     // 设备信息
-    private static String DEVICE_INFO_STR = null;
+    private static       String              DEVICE_INFO_STR  = null;
     // 设备信息存储 Map
-    private static Map<String, String> DEVICE_INFO_MAPS = new HashMap<>();
+    private static       Map<String, String> DEVICE_INFO_MAPS = new HashMap<>();
     // 换行字符串
-    private static final String NEW_LINE_STR = System.getProperty("line.separator");
+    private static final String              NEW_LINE_STR     = System.getProperty("line.separator");
     // 换行字符串 ( 两行 )
-    private static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
+    private static final String              NEW_LINE_STR_X2  = NEW_LINE_STR + NEW_LINE_STR;
 
     /**
      * 初始化操作 ( 内部已调用 )
@@ -333,11 +334,11 @@ public final class AnalysisRecordUtils {
     // DEFAULT - 默认天, 在根目录下
     public static final int DEFAULT = 0;
     // 小时
-    public static final int HH = 1;
+    public static final int HH      = 1;
     // 分钟
-    public static final int MM = 2;
+    public static final int MM      = 2;
     // 秒
-    public static final int SS = 3;
+    public static final int SS      = 3;
 
     @IntDef({DEFAULT, HH, MM, SS})
     @Retention(RetentionPolicy.SOURCE)

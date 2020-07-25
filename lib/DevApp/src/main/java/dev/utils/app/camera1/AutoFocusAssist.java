@@ -21,6 +21,7 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
 
     // 日志 TAG
     private final String TAG = AutoFocusAssist.class.getSimpleName();
+
     // 设置对焦模式
     public static final Collection<String> FOCUS_MODES;
 
@@ -35,19 +36,19 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     // ========
 
     // 自动对焦时间间隔
-    private long mInterval;
+    private       long               mInterval;
     // 摄像头对象
-    private final Camera mCamera;
+    private final Camera             mCamera;
     // 判断摄像头是否使用对焦
-    private final boolean mUseAutoFocus;
+    private final boolean            mUseAutoFocus;
     // 判断是否停止对焦
-    private boolean mStopped;
+    private       boolean            mStopped;
     // 判断是否对焦中
-    private boolean mFocusing;
+    private       boolean            mFocusing;
     // 对焦任务
-    private AsyncTask<?, ?, ?> mOutstandingTask;
+    private       AsyncTask<?, ?, ?> mOutstandingTask;
     // 判断是否需要自动对焦
-    private boolean mAutoFocus = true;
+    private       boolean            mAutoFocus = true;
 
     // ============
     // = 构造函数 =

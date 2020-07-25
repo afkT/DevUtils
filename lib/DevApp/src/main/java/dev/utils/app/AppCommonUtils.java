@@ -26,6 +26,7 @@ public final class AppCommonUtils {
 
     // 日志 TAG
     private static final String TAG = AppCommonUtils.class.getSimpleName();
+
     // 应用、设备信息 ( 可用于 FileRecordUtils 插入信息使用 )
     private static String APP_DEVICE_INFO = null;
 

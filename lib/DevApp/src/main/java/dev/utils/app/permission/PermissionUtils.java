@@ -59,30 +59,31 @@ public final class PermissionUtils {
 
     // 日志 TAG
     private static final String TAG = PermissionUtils.class.getSimpleName();
+
     // APP 注册的权限
-    private static final Set<String> sAppPermissionSets = getAppPermissionToSet();
+    private static final Set<String>        sAppPermissionSets             = getAppPermissionToSet();
     // 申请未通过的权限 - 永久拒绝
-    private static final List<String> sPermissionsDeniedForeverLists = new ArrayList<>();
+    private static final List<String>       sPermissionsDeniedForeverLists = new ArrayList<>();
     // 申请的权限 - 传入的权限参数
-    private Set<String> mPermissionSets = new HashSet<>();
+    private              Set<String>        mPermissionSets                = new HashSet<>();
     // 准备请求的权限
-    private List<String> mPermissionsRequestLists = new ArrayList<>();
+    private              List<String>       mPermissionsRequestLists       = new ArrayList<>();
     // 申请通过的权限
-    private List<String> mPermissionsGrantedLists = new ArrayList<>();
+    private              List<String>       mPermissionsGrantedLists       = new ArrayList<>();
     // 申请未通过的权限
-    private List<String> mPermissionsDeniedLists = new ArrayList<>();
+    private              List<String>       mPermissionsDeniedLists        = new ArrayList<>();
     // 查询不到的权限 ( 包含未注册 )
-    private List<String> mPermissionsNotFoundLists = new ArrayList<>();
+    private              List<String>       mPermissionsNotFoundLists      = new ArrayList<>();
     // 操作回调
-    private PermissionCallBack mCallBack;
+    private              PermissionCallBack mCallBack;
     // 回调方法 Handler
-    private Handler mHandler = new Handler(Looper.getMainLooper());
+    private              Handler            mHandler                       = new Handler(Looper.getMainLooper());
     // 判断是否请求过
-    private boolean mIsRequest = false;
+    private              boolean            mIsRequest                     = false;
     // 是否需要在 Activity 的 onRequestPermissionsResult 回调中, 调用 PermissionUtils.onRequestPermissionsResult(this);
-    private boolean mIsRequestPermissionsResult = false; // 默认使用内部 PermissionActivity
+    private              boolean            mIsRequestPermissionsResult    = false; // 默认使用内部 PermissionActivity
     // Permission 请求 Code
-    public static final int P_REQUEST_CODE = 10101;
+    public static final  int                P_REQUEST_CODE                 = 10101;
 
     /**
      * 构造函数

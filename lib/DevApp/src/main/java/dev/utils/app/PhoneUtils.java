@@ -823,8 +823,8 @@ public final class PhoneUtils {
         public String imsi_2;
         public String imei_1;
         public String imei_2;
-        public int phoneType_1;
-        public int phoneType_2;
+        public int    phoneType_1;
+        public int    phoneType_2;
 
         /**
          * 打印 TeleInfo 信息

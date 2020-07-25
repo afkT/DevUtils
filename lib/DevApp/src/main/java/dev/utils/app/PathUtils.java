@@ -45,16 +45,17 @@ public final class PathUtils {
 
     // 日志 TAG
     private static final String TAG = PathUtils.class.getSimpleName();
+
     // 内部存储路径类
-    private static final InternalPath sInternalPath = new InternalPath();
+    private static final InternalPath    sInternalPath    = new InternalPath();
     // 应用外部存储路径类
     private static final AppExternalPath sAppExternalPath = new AppExternalPath();
     // SDCard 外部存储路径类
-    private static final SDCardPath sSDCardPath = new SDCardPath();
+    private static final SDCardPath      sSDCardPath      = new SDCardPath();
     // Internal
-    public static final String INTERNAL = "internal";
+    public static final  String          INTERNAL         = "internal";
     // External
-    public static final String EXTERNAL = "external";
+    public static final  String          EXTERNAL         = "external";
 
     /**
      * 获取内部存储路径类

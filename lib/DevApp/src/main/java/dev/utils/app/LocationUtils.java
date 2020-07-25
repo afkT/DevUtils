@@ -35,14 +35,15 @@ public final class LocationUtils {
 
     // 日志 TAG
     private static final String TAG = LocationUtils.class.getSimpleName();
+
     // 时间常量 - 2 分钟
-    private static final int MINUTES_TWO = 1000 * 60 * 2;
+    private static final int                      MINUTES_TWO = 1000 * 60 * 2;
     // 定位改变通知事件
-    private static OnLocationChangeListener sListener;
+    private static       OnLocationChangeListener sListener;
     // 自定义定位事件
-    private static CustomLocationListener sCustomLocationListener;
+    private static       CustomLocationListener   sCustomLocationListener;
     // 定位管理对象
-    private static LocationManager sLocationManager;
+    private static       LocationManager          sLocationManager;
 
     /**
      * 判断 GPS 是否可用

@@ -25,6 +25,7 @@ final class DevCacheUtils {
 
     // 日志 TAG
     private static final String TAG = DevCacheUtils.class.getSimpleName();
+
     // 空格
     private static final char mSeparator = ' ';
 

@@ -102,10 +102,10 @@ public final class SpannableStringUtils {
     private static final String TAG = SpannableStringUtils.class.getSimpleName();
 
     // 对齐类型
-    public static final int ALIGN_BOTTOM = 0;
+    public static final int ALIGN_BOTTOM   = 0;
     public static final int ALIGN_BASELINE = 1;
-    public static final int ALIGN_CENTER = 2;
-    public static final int ALIGN_TOP = 3;
+    public static final int ALIGN_CENTER   = 2;
+    public static final int ALIGN_TOP      = 3;
 
     @IntDef({ALIGN_BOTTOM, ALIGN_BASELINE, ALIGN_CENTER, ALIGN_TOP})
     @Retention(RetentionPolicy.SOURCE)
@@ -113,70 +113,70 @@ public final class SpannableStringUtils {
     }
 
     // 换行字符串
-    private static final String NEW_LINE_STR = System.getProperty("line.separator");
+    private static final String                             NEW_LINE_STR = System.getProperty("line.separator");
     // 内部 SpannableString 实现类
-    private SerializableSpannableStringBuilder mBuilder;
+    private              SerializableSpannableStringBuilder mBuilder;
     // TextView create setText
-    private TextView mTextView;
+    private              TextView                           mTextView;
     // 中转文本
-    private CharSequence mText;
+    private              CharSequence                       mText;
 
     // 内部标记应用类型
-    private int mType;
+    private       int mType;
     private final int mTypeCharSequence = 0;
-    private final int mTypeImage = 1;
-    private final int mTypeSpace = 2;
+    private final int mTypeImage        = 1;
+    private final int mTypeSpace        = 2;
 
     // 默认颜色
-    private static final int COLOR_DEFAULT = Color.WHITE;
+    private static final int                 COLOR_DEFAULT = Color.WHITE;
     // 配置参数
-    private int flag; // setSpan flag
-    private int foregroundColor; // 前景色
-    private int backgroundColor; // 背景色
-    private int lineHeight; // 行高
-    private int alignLine; // 行对齐类型
-    private int quoteColor; // 引用线颜色
-    private int stripeWidth; // 线条宽度
-    private int quoteGapWidth; // 间隙宽度
-    private int first; // 第一行缩进
-    private int rest; // 其他行缩进
-    private int bulletColor; // 列表项颜色
-    private int bulletRadius; // 列表项半径
-    private int bulletGapWidth; // 列表项间隙宽度
-    private int fontSize; // 字体大小 px
-    private boolean fontSizeIsDp; // 字体大小是否使用 dp
-    private float proportion; // 字体缩放比例
-    private float xProportion; // 字体横向缩放比例
-    private boolean isStrikethrough; // 是否中划线
-    private boolean isUnderline; // 是否下划线
-    private boolean isSuperscript; // 是否上标
-    private boolean isSubscript; // 是否下标
-    private boolean isBold; // 是否加粗
-    private boolean isItalic; // 是否斜体
-    private boolean isBoldItalic; // 是否粗斜体
-    private String fontFamily; // 字体系列
-    private Typeface typeface; // 字体
-    private Layout.Alignment alignment; // 对齐类型 ( 水平对齐 )
-    private int verticalAlign; // 垂直对齐类型
-    private ClickableSpan clickSpan; // 点击区域
-    private String url; // Url
-    private float blurRadius; // 模糊程度
-    private BlurMaskFilter.Blur style; // 模糊样式
-    private Shader shader; // 着色
-    private float shadowRadius; // 阴影半径
-    private float shadowDx; // X 轴阴影偏移值
-    private float shadowDy; // Y 轴阴影偏移值
-    private int shadowColor; // 阴影颜色
-    private int spaceSize; // 空格大小
-    private int spaceColor; // 空格颜色
-    private Object[] spans; // 自定义 setSpan 参数
+    private              int                 flag; // setSpan flag
+    private              int                 foregroundColor; // 前景色
+    private              int                 backgroundColor; // 背景色
+    private              int                 lineHeight; // 行高
+    private              int                 alignLine; // 行对齐类型
+    private              int                 quoteColor; // 引用线颜色
+    private              int                 stripeWidth; // 线条宽度
+    private              int                 quoteGapWidth; // 间隙宽度
+    private              int                 first; // 第一行缩进
+    private              int                 rest; // 其他行缩进
+    private              int                 bulletColor; // 列表项颜色
+    private              int                 bulletRadius; // 列表项半径
+    private              int                 bulletGapWidth; // 列表项间隙宽度
+    private              int                 fontSize; // 字体大小 px
+    private              boolean             fontSizeIsDp; // 字体大小是否使用 dp
+    private              float               proportion; // 字体缩放比例
+    private              float               xProportion; // 字体横向缩放比例
+    private              boolean             isStrikethrough; // 是否中划线
+    private              boolean             isUnderline; // 是否下划线
+    private              boolean             isSuperscript; // 是否上标
+    private              boolean             isSubscript; // 是否下标
+    private              boolean             isBold; // 是否加粗
+    private              boolean             isItalic; // 是否斜体
+    private              boolean             isBoldItalic; // 是否粗斜体
+    private              String              fontFamily; // 字体系列
+    private              Typeface            typeface; // 字体
+    private              Layout.Alignment    alignment; // 对齐类型 ( 水平对齐 )
+    private              int                 verticalAlign; // 垂直对齐类型
+    private              ClickableSpan       clickSpan; // 点击区域
+    private              String              url; // Url
+    private              float               blurRadius; // 模糊程度
+    private              BlurMaskFilter.Blur style; // 模糊样式
+    private              Shader              shader; // 着色
+    private              float               shadowRadius; // 阴影半径
+    private              float               shadowDx; // X 轴阴影偏移值
+    private              float               shadowDy; // Y 轴阴影偏移值
+    private              int                 shadowColor; // 阴影颜色
+    private              int                 spaceSize; // 空格大小
+    private              int                 spaceColor; // 空格颜色
+    private              Object[]            spans; // 自定义 setSpan 参数
 
     // 图片相关
-    private Bitmap imageBitmap; // Bitmap
+    private Bitmap   imageBitmap; // Bitmap
     private Drawable imageDrawable; // Drawable
-    private Uri imageUri; // Uri
-    private int imageResourceId; // resource id
-    private int alignImage; // 图片对齐类型
+    private Uri      imageUri; // Uri
+    private int      imageResourceId; // resource id
+    private int      alignImage; // 图片对齐类型
 
     // ============
     // = 构造函数 =
@@ -988,7 +988,7 @@ public final class SpannableStringUtils {
     static class VerticalAlignSpan extends ReplacementSpan {
 
         static final int ALIGN_CENTER = 2;
-        static final int ALIGN_TOP = 3;
+        static final int ALIGN_TOP    = 3;
 
         final int mVerticalAlignment;
 
@@ -1019,9 +1019,9 @@ public final class SpannableStringUtils {
         private final int height;
 
         static final int ALIGN_CENTER = 2;
-        static final int ALIGN_TOP = 3;
+        static final int ALIGN_TOP    = 3;
 
-        final int mVerticalAlignment;
+        final  int                  mVerticalAlignment;
         static Paint.FontMetricsInt sfm;
 
         CustomLineHeightSpan(int height, int verticalAlignment) {
@@ -1080,7 +1080,7 @@ public final class SpannableStringUtils {
      */
     static class SpaceSpan extends ReplacementSpan {
 
-        private final int width;
+        private final int   width;
         private final Paint paint = new Paint();
 
         private SpaceSpan(final int width) {
@@ -1255,8 +1255,8 @@ public final class SpannableStringUtils {
     static class CustomImageSpan extends CustomDynamicDrawableSpan {
 
         private Drawable mDrawable;
-        private Uri mContentUri;
-        private int mResourceId;
+        private Uri      mContentUri;
+        private int      mResourceId;
 
         private CustomImageSpan(final Bitmap bitmap, final int verticalAlignment) {
             super(verticalAlignment);
@@ -1314,11 +1314,11 @@ public final class SpannableStringUtils {
      */
     static abstract class CustomDynamicDrawableSpan extends ReplacementSpan {
 
-        static final int ALIGN_BOTTOM = 0;
+        static final int ALIGN_BOTTOM   = 0;
         static final int ALIGN_BASELINE = 1;
-        static final int ALIGN_CENTER = 2;
-        static final int ALIGN_TOP = 3;
-        final int mVerticalAlignment;
+        static final int ALIGN_CENTER   = 2;
+        static final int ALIGN_TOP      = 3;
+        final        int mVerticalAlignment;
 
         private CustomDynamicDrawableSpan() {
             mVerticalAlignment = ALIGN_BOTTOM;

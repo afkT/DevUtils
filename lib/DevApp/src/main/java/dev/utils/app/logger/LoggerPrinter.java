@@ -23,7 +23,7 @@ import javax.xml.transform.stream.StreamSource;
 final class LoggerPrinter implements IPrinter {
 
     // 日志配置
-    private static LogConfig LOG_CONFIG = null;
+    private static       LogConfig              LOG_CONFIG        = null;
     // 每个线程的日志配置信息
     private static final ThreadLocal<LogConfig> LOCAL_LOG_CONFIGS = new ThreadLocal<>();
 

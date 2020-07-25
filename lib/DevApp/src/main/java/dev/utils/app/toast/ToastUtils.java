@@ -32,16 +32,17 @@ public final class ToastUtils {
 
     // 日志 TAG
     private static final String TAG = ToastUtils.class.getSimpleName();
+
     // Toast 判断过滤
-    private static ToastUtils.Filter sToastFilter = null;
+    private static       ToastUtils.Filter sToastFilter = null;
     // 内部持有单个 Toast
-    private static Toast sToast = null;
+    private static       Toast             sToast       = null;
     // 判断是否使用 Handler
-    private static boolean sIsHandler = true;
+    private static       boolean           sIsHandler   = true;
     // 内部 Handler
-    private static final Handler sHandler = new Handler(Looper.getMainLooper());
+    private static final Handler           sHandler     = new Handler(Looper.getMainLooper());
     // Null 值 - null 提示值
-    private static String sNullText = null;
+    private static       String            sNullText    = null;
 
     // ============
     // = 部分配置 =
@@ -50,7 +51,7 @@ public final class ToastUtils {
     // 判断是否使用配置
     private static boolean sUseConfig = true;
     // Toast 的重心、X、Y 轴偏移
-    private static int sGravity, sX, sY;
+    private static int     sGravity, sX, sY;
     // 水平边距、垂直边距
     private static float sHorizontalMargin, sVerticalMargin;
 

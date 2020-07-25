@@ -30,28 +30,29 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     // 日志 TAG
     private final String TAG = IToastImpl.class.getSimpleName();
+
     // Application
-    private Application mApplication;
+    private       Application               mApplication;
     // 内部保存配置 Toast
-    private ToastFactory.BaseToast mConfigToast = null;
+    private       ToastFactory.BaseToast    mConfigToast               = null;
     // 当前显示的 Toast
-    private ToastFactory.BaseToast mToast = null;
+    private       ToastFactory.BaseToast    mToast                     = null;
     // Toast 样式信息
-    private IToast.Style mToastStyle = null;
+    private       IToast.Style              mToastStyle                = null;
     // Toast 判断过滤
-    private IToast.Filter mToastFilter = null;
+    private       IToast.Filter             mToastFilter               = null;
     // Toast 默认样式
-    private final IToast.Style mDefaultStyle = new DefaultToastStyle();
+    private final IToast.Style              mDefaultStyle              = new DefaultToastStyle();
     // 每个线程的 Toast 样式
-    private final ThreadLocal<IToast.Style> LOCAL_TOAST_STYLES = new ThreadLocal<>();
+    private final ThreadLocal<IToast.Style> LOCAL_TOAST_STYLES         = new ThreadLocal<>();
     // 判断是否使用 Handler
-    private boolean mIsHandler = true;
+    private       boolean                   mIsHandler                 = true;
     // 内部 Handler
-    private final Handler mHandler = new Handler(Looper.getMainLooper());
+    private final Handler                   mHandler                   = new Handler(Looper.getMainLooper());
     // Null 值 - null 提示值
-    private String mNullText = null;
+    private       String                    mNullText                  = null;
     // Toast 文案长度转换 显示时间
-    private int mTextLengthConvertDuration = 15;
+    private       int                       mTextLengthConvertDuration = 15;
 
     /**
      * 重置默认参数

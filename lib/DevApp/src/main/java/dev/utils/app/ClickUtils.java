@@ -20,12 +20,13 @@ public final class ClickUtils {
 
     // 日志 TAG
     private static final String TAG = ClickUtils.class.getSimpleName();
+
     // 双击间隔时间
-    private static long sGlobalIntervalTime = 1000L;
+    private static       long                     sGlobalIntervalTime = 1000L;
     // 全局共用的点击辅助类
-    private static final ClickAssist sGlobalClickAssist = new ClickAssist();
+    private static final ClickAssist              sGlobalClickAssist  = new ClickAssist();
     // 功能模块 ClickAssist Maps
-    private static final Map<Object, ClickAssist> sClickAssistMaps = new HashMap<>();
+    private static final Map<Object, ClickAssist> sClickAssistMaps    = new HashMap<>();
 
     /**
      * 增加控件的触摸范围, 最大范围只能是父布局所包含的的区域
@@ -259,15 +260,15 @@ public final class ClickUtils {
     public static class ClickAssist {
 
         // 最后一次点击的标识 id
-        private int mLastTagId = -1;
+        private       int               mLastTagId     = -1;
         // 最后一次点击时间
-        private long mLastClickTime = 0L;
+        private       long              mLastClickTime = 0L;
         // 双击间隔时间
-        private long mIntervalTime;
+        private       long              mIntervalTime;
         // 配置数据
-        private final Map<String, Long> mConfigMaps = new HashMap<>();
+        private final Map<String, Long> mConfigMaps    = new HashMap<>();
         // 点击记录数据
-        private final Map<String, Long> mRecordMaps = new HashMap<>();
+        private final Map<String, Long> mRecordMaps    = new HashMap<>();
 
         public ClickAssist() {
             this(ClickUtils.sGlobalIntervalTime);

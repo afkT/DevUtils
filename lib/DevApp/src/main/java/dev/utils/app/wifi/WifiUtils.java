@@ -39,6 +39,7 @@ public final class WifiUtils {
 
     // 日志 TAG
     private static final String TAG = WifiUtils.class.getSimpleName();
+
     // WifiManager 对象
     private WifiManager mWifiManager;
 
@@ -49,9 +50,9 @@ public final class WifiUtils {
     // 没有密码
     public static final int NOPWD = 0;
     // wep 加密方式
-    public static final int WEP = 1;
+    public static final int WEP   = 1;
     // wpa 加密方式
-    public static final int WPA = 2;
+    public static final int WPA   = 2;
 
     /**
      * 构造函数
@@ -462,11 +463,11 @@ public final class WifiUtils {
     // 默认没有密码
     public static final int SECURITY_NONE = 0;
     // WEP 加密方式
-    public static final int SECURITY_WEP = 1;
+    public static final int SECURITY_WEP  = 1;
     // PSK 加密方式
-    public static final int SECURITY_PSK = 2;
+    public static final int SECURITY_PSK  = 2;
     // EAP 加密方式
-    public static final int SECURITY_EAP = 3;
+    public static final int SECURITY_EAP  = 3;
 
     /**
      * 获取 Wifi 加密类型

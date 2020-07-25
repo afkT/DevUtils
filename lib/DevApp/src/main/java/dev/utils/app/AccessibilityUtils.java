@@ -35,10 +35,11 @@ public final class AccessibilityUtils {
 
     // 日志 TAG
     private static final String TAG = AccessibilityUtils.class.getSimpleName();
+
     // 换行字符串
-    private static final String NEW_LINE_STR = System.getProperty("line.separator");
+    private static final String               NEW_LINE_STR = System.getProperty("line.separator");
     // AccessibilityService 对象
-    private static AccessibilityService sService = null;
+    private static       AccessibilityService sService     = null;
 
     /**
      * 获取 AccessibilityService 对象

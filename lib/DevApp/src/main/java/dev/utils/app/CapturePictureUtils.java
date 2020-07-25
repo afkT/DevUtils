@@ -50,12 +50,13 @@ public final class CapturePictureUtils {
 
     // 日志 TAG
     private static final String TAG = CapturePictureUtils.class.getSimpleName();
+
     // Bitmap Config
-    private static Bitmap.Config BITMAP_CONFIG = Bitmap.Config.RGB_565;
+    private static Bitmap.Config BITMAP_CONFIG    = Bitmap.Config.RGB_565;
     // Canvas 背景色
-    private static int BACKGROUND_COLOR = Color.TRANSPARENT;
+    private static int           BACKGROUND_COLOR = Color.TRANSPARENT;
     // 画笔
-    private static Paint PAINT = new Paint();
+    private static Paint         PAINT            = new Paint();
 
     // ============
     // = 配置相关 =

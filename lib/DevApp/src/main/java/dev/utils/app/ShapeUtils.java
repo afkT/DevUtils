@@ -27,6 +27,7 @@ public final class ShapeUtils {
 
     // 日志 TAG
     private static final String TAG = ShapeUtils.class.getSimpleName();
+
     // Shape Drawable
     private final GradientDrawable mDrawable;
 

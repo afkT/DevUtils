@@ -17,6 +17,7 @@ public final class WidgetUtils {
 
     // 日志 TAG
     private static final String TAG = WidgetUtils.class.getSimpleName();
+
     // 默认值
     public static final int DEF_VALUE = -1;
 
@@ -52,7 +53,7 @@ public final class WidgetUtils {
             minimumHeight = view.getMinimumHeight();
         }
         return viewMeasure(widthMeasureSpec, heightMeasureSpec,
-            minimumWidth, maximumWidth, minimumHeight, maximumHeight, defaultValue);
+                minimumWidth, maximumWidth, minimumHeight, maximumHeight, defaultValue);
     }
 
     /**
@@ -69,7 +70,7 @@ public final class WidgetUtils {
                                     final int minimumWidth, final int maximumWidth,
                                     final int minimumHeight, final int maximumHeight) {
         return viewMeasure(widthMeasureSpec, heightMeasureSpec,
-            minimumWidth, maximumWidth, minimumHeight, maximumHeight, DEF_VALUE);
+                minimumWidth, maximumWidth, minimumHeight, maximumHeight, DEF_VALUE);
     }
 
     /**

@@ -32,12 +32,13 @@ public final class KeyBoardUtils {
 
     // 日志 TAG
     private static final String TAG = KeyBoardUtils.class.getSimpleName();
+
     // 默认延迟时间 ( 毫秒 )
-    private static long DELAY_MILLIS = 300;
+    private static      long DELAY_MILLIS     = 300;
     // 键盘显示
-    public static final int KEYBOARD_DISPLAY = 930;
+    public static final int  KEYBOARD_DISPLAY = 930;
     // 键盘隐藏
-    public static final int KEYBOARD_HIDE = 931;
+    public static final int  KEYBOARD_HIDE    = 931;
 
     /**
      * 设置延迟时间

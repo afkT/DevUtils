@@ -58,6 +58,7 @@ public final class AnimationUtils {
 
     // 日志 TAG
     private static final String TAG = AnimationUtils.class.getSimpleName();
+
     // 默认动画持续时间
     public static final long DEFAULT_ANIMATION_DURATION = 400;
 

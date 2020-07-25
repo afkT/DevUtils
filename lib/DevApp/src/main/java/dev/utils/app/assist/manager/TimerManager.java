@@ -33,6 +33,7 @@ public final class TimerManager {
 
     // 日志 TAG
     private static final String TAG = TimerManager.class.getSimpleName();
+
     // 内部保存定时器对象, 防止忘记关闭等其他情况便于控制处理
     private static final List<AbsTimer> mTimerLists = new ArrayList<>();
 
@@ -374,13 +375,13 @@ public final class TimerManager {
     public static abstract class AbsTimer {
 
         // 默认通知的 what
-        public static final int TIMER_NOTIFY_WHAT = 50000;
+        public static final int     TIMER_NOTIFY_WHAT = 50000;
         // 状态标识 - 是否标记清除
-        private boolean markSweep = true;
+        private             boolean markSweep         = true;
         // int 标记
-        private int markId = -1;
+        private             int     markId            = -1;
         // String 标记
-        private String markStr = null;
+        private             String  markStr           = null;
 
         /**
          * 获取标记 id
@@ -532,25 +533,25 @@ public final class TimerManager {
     private static final class TimerTask extends AbsTimer {
 
         // 定时器
-        private Timer timer;
+        private Timer               timer;
         // 定时器任务栈
         private java.util.TimerTask timerTask;
         // 通知 Handler
-        private Handler handler;
+        private Handler             handler;
         // 通知的数据
-        private Object notifyObj = null;
+        private Object              notifyObj     = null;
         // 通知类型
-        private int notifyWhat;
+        private int                 notifyWhat;
         // 延迟时间 - 多少毫秒后开始执行
-        private long delay;
+        private long                delay;
         // 循环时间 - 每隔多少秒执行一次
-        private long period;
+        private long                period;
         // 触发次数上限
-        private int triggerLimit;
+        private int                 triggerLimit;
         // 触发次数
-        private int triggerNumber = 0;
+        private int                 triggerNumber = 0;
         // 定时器是否运行中
-        private boolean running = false;
+        private boolean             running       = false;
 
         public TimerTask(final Handler handler, final int what, final long delay, final long period, final int triggerLimit) {
             this.handler = handler;

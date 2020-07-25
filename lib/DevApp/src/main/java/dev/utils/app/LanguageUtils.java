@@ -114,29 +114,29 @@ public final class LanguageUtils {
     // =
 
     // 英语
-    public static final String ENGLISH = "en";
+    public static final String              ENGLISH              = "en";
     // 英语 - 英式
-    public static final String UK = "enGB";
+    public static final String              UK                   = "enGB";
     // 英语 - 美式
-    public static final String US = "enUS";
+    public static final String              US                   = "enUS";
     // 法语
-    public static final String FRENCH = "fr";
+    public static final String              FRENCH               = "fr";
     // 德语
-    public static final String GERMAN = "de";
+    public static final String              GERMAN               = "de";
     // 日文
-    public static final String JAPAN = "jp";
+    public static final String              JAPAN                = "jp";
     // 韩文
-    public static final String KOREA = "kr";
+    public static final String              KOREA                = "kr";
     // 中文
-    public static final String CHINESE = "zh";
+    public static final String              CHINESE              = "zh";
     // 简体中文
-    public static final String SIMPLIFIED_CHINESE = "zhCN";
+    public static final String              SIMPLIFIED_CHINESE   = "zhCN";
     // 繁体中文 - 默认台湾
-    public static final String TRADITIONAL_CHINESE = "zhTW";
+    public static final String              TRADITIONAL_CHINESE  = "zhTW";
     // 台湾
-    public static final String TAIWAN_CHINESE = TRADITIONAL_CHINESE;
+    public static final String              TAIWAN_CHINESE       = TRADITIONAL_CHINESE;
     // 支持的语言字典
-    private static Map<String, Locale> sSupportLanguageMaps = new HashMap<>(20);
+    private static      Map<String, Locale> sSupportLanguageMaps = new HashMap<>(20);
 
     static {
         // 英语
@@ -291,7 +291,7 @@ public final class LanguageUtils {
             String country = locale.getCountry();
             String lang = locale.getLanguage();
             return (country != null && country.equalsIgnoreCase(region))
-                && (lang != null && lang.equalsIgnoreCase(language));
+                    && (lang != null && lang.equalsIgnoreCase(language));
         }
         return false;
     }

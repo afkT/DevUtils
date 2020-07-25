@@ -41,8 +41,9 @@ public final class ADBUtils {
 
     // 日志 TAG
     private static final String TAG = ADBUtils.class.getSimpleName();
+
     // 正则表达式: 空格
-    private static final String REGEX_SPACE = "\\s";
+    private static final String REGEX_SPACE  = "\\s";
     // 换行字符串
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
 

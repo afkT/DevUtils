@@ -28,6 +28,7 @@ public final class AppInfoUtils {
 
     // 日志 TAG
     private static final String TAG = AppInfoUtils.class.getSimpleName();
+
     // 换行字符串
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
 

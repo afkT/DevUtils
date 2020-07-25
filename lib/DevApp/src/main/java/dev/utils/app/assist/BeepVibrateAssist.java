@@ -28,14 +28,15 @@ public final class BeepVibrateAssist implements Closeable {
 
     // 日志 TAG
     private static final String TAG = BeepVibrateAssist.class.getSimpleName();
+
     // Activity
-    private final Activity mActivity;
+    private final Activity    mActivity;
     // 播放资源对象
-    private MediaPlayer mMediaPlayer = null;
+    private       MediaPlayer mMediaPlayer     = null;
     // 是否需要震动
-    private boolean mIsVibrate = true;
+    private       boolean     mIsVibrate       = true;
     // 震动时间
-    private long mVibrateDuration = 200L;
+    private       long        mVibrateDuration = 200L;
 
     /**
      * 构造函数

@@ -24,12 +24,13 @@ public final class MemoryUtils {
 
     // 日志 TAG
     private static final String TAG = MemoryUtils.class.getSimpleName();
+
     // 内存信息文件地址
     private static final String MEM_INFO_PATH = "/proc/meminfo";
     // 获取内存总大小
-    private static final String MEMTOTAL = "MemTotal";
+    private static final String MEMTOTAL      = "MemTotal";
     // 获取可用内存
-    private static final String MEMAVAILABLE = "MemAvailable";
+    private static final String MEMAVAILABLE  = "MemAvailable";
 
     /**
      * 获取内存信息

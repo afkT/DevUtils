@@ -14,7 +14,7 @@ import dev.utils.app.ResourceUtils;
 public class KeyValueBean implements Serializable {
 
     @Keep // 键 - 提示
-    protected String key = "";
+    protected String key   = "";
     @Keep // 值 - 参数值
     protected String value = "";
 

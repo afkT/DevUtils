@@ -19,8 +19,9 @@ public final class ShellUtils {
 
     // 日志 TAG
     private static final String TAG = ShellUtils.class.getSimpleName();
+
     // 操作成功状态码
-    private static final int SUCCESS = 0;
+    private static final int    SUCCESS      = 0;
     // 换行符
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
@@ -162,7 +163,7 @@ public final class ShellUtils {
     public static final class CommandResult {
 
         // 执行结果状态码
-        public int result;
+        public int    result;
         // 成功信息
         public String successMsg;
         // 错误信息

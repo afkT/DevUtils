@@ -36,8 +36,9 @@ public final class WifiHotUtils {
 
     // 日志 TAG
     private static final String TAG = WifiHotUtils.class.getSimpleName();
+
     // WifiManager 对象
-    private WifiManager mWifiManager;
+    private WifiManager       mWifiManager;
     // Wifi 热点配置
     private WifiConfiguration mAPWifiConfig;
 
@@ -258,19 +259,19 @@ public final class WifiHotUtils {
     /**
      * Wifi 热点已关闭 - WifiManager.WIFI_AP_STATE_DISABLED
      */
-    public static final int WIFI_AP_STATE_DISABLED = 11;
+    public static final int WIFI_AP_STATE_DISABLED  = 11;
     /**
      * Wifi 热点正在打开 - WifiManager.WIFI_AP_STATE_ENABLING
      */
-    public static final int WIFI_AP_STATE_ENABLING = 12;
+    public static final int WIFI_AP_STATE_ENABLING  = 12;
     /**
      * Wifi 热点已打开 - WifiManager.WIFI_AP_STATE_ENABLED
      */
-    public static final int WIFI_AP_STATE_ENABLED = 13;
+    public static final int WIFI_AP_STATE_ENABLED   = 13;
     /**
      * Wifi 热点状态未知 - WifiManager.WIFI_AP_STATE_FAILED
      */
-    public static final int WIFI_AP_STATE_FAILED = 14;
+    public static final int WIFI_AP_STATE_FAILED    = 14;
 
     /**
      * 获取 Wifi 热点状态
@@ -539,9 +540,9 @@ public final class WifiHotUtils {
     // ====================
 
     // Wifi ssid
-    private String mAPWifiSSID;
+    private String                                  mAPWifiSSID;
     // Wifi 密码
-    private String mAPWifiPwd;
+    private String                                  mAPWifiPwd;
     // Wifi 热点对象
     private WifiManager.LocalOnlyHotspotReservation mReservation;
 

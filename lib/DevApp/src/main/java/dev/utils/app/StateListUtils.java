@@ -32,6 +32,7 @@ public final class StateListUtils {
     private StateListUtils() {
     }
 
+    // 日志 TAG
     private static final String TAG = StateListUtils.class.getSimpleName();
 
     /**

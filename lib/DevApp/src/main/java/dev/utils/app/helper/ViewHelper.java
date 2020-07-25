@@ -381,7 +381,7 @@ public final class ViewHelper {
 
     /**
      * 设置 TextView flags
-     * @param view {@link TextView}
+     * @param view  {@link TextView}
      * @param flags flags
      * @return {@link ViewHelper}
      */

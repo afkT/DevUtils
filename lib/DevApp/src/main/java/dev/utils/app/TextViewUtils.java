@@ -921,7 +921,7 @@ public final class TextViewUtils {
     /**
      * 设置 TextView flags
      * @param textView {@link TextView}
-     * @param flags flags
+     * @param flags    flags
      * @param <T>      泛型
      * @return {@link TextView}
      */
@@ -934,7 +934,7 @@ public final class TextViewUtils {
 
     /**
      * 设置 TextView flags
-     * @param view {@link TextView}
+     * @param view  {@link TextView}
      * @param flags flags
      * @return {@link View}
      */

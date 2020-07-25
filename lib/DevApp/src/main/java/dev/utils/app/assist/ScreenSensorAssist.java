@@ -24,9 +24,9 @@ public final class ScreenSensorAssist {
     // ======================
 
     // 传感器管理对象
-    private SensorManager mSensorManager;
+    private SensorManager             mSensorManager;
     // 重力传感器
-    private Sensor mSensor;
+    private Sensor                    mSensor;
     // 重力传感器监听事件
     private OrientationSensorListener mListener;
 
@@ -35,7 +35,7 @@ public final class ScreenSensorAssist {
     // ===================================================
 
     // 传感器管理对象 ( 切屏后 )
-    private SensorManager mSensorManagerChange;
+    private SensorManager                   mSensorManagerChange;
     // 重力传感器监听事件 ( 切屏后 )
     private OrientationSensorChangeListener mListenerChange;
 
@@ -44,11 +44,11 @@ public final class ScreenSensorAssist {
     // ========
 
     // 坐标索引常量
-    private final int DATA_X = 0;
-    private final int DATA_Y = 1;
-    private final int DATA_Z = 2;
+    private final       int DATA_X                  = 0;
+    private final       int DATA_Y                  = 1;
+    private final       int DATA_Z                  = 2;
     // 方向未知常量
-    private final int ORIENTATION_UNKNOWN = -1;
+    private final       int ORIENTATION_UNKNOWN     = -1;
     // 触发屏幕方向改变回调
     public static final int CHANGE_ORIENTATION_WHAT = 9919;
 
@@ -59,7 +59,7 @@ public final class ScreenSensorAssist {
     // 是否允许切屏
     private boolean mAllowChange = false;
     // 是否是竖屏
-    private boolean mPortrait = true;
+    private boolean mPortrait    = true;
     // 回调操作
     private Handler mHandler;
 

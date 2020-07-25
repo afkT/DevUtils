@@ -21,6 +21,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     // 日志 TAG
     private final String TAG = DevVideoPlayerControl.class.getSimpleName();
+
     // 播放设置
     private DevMediaManager.MediaSet mMediaSet;
 
@@ -29,11 +30,11 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     // ========
 
     // 播放预览载体 SurfaceView
-    private SurfaceView mSurfaceview;
+    private SurfaceView   mSurfaceview;
     // 画面预览回调
     private SurfaceHolder mSurfaceHolder;
     // 判断是否自动播放
-    private boolean mAutoPlay;
+    private boolean       mAutoPlay;
 
     /**
      * 构造函数

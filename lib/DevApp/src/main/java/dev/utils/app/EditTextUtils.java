@@ -637,13 +637,13 @@ public final class EditTextUtils {
     public static abstract class DevTextWatcher implements TextWatcher {
 
         // 标记 id - 一定程度上唯一
-        private final int markId = UUID.randomUUID().hashCode();
+        private final int     markId       = UUID.randomUUID().hashCode();
         // 判断是否操作中
-        private boolean operate = false;
+        private       boolean operate      = false;
         // 标记状态, 特殊需求处理
-        private int operateState = -1;
+        private       int     operateState = -1;
         // 类型
-        private int type = -1;
+        private       int     type         = -1;
 
         /**
          * 构造函数

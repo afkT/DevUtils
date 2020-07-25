@@ -38,10 +38,11 @@ public final class SnackbarUtils {
 
     // 日志 TAG
     private final String TAG = SnackbarUtils.class.getSimpleName();
+
     // 持有 弱引用 Snackbar, 防止所属 View 销毁等
     private static WeakReference<Snackbar> sSnackbarReference;
     // 样式构造对象
-    private StyleBuilder mStyleBuilder = new StyleBuilder();
+    private        StyleBuilder            mStyleBuilder = new StyleBuilder();
 
     /**
      * 构造函数
@@ -409,53 +410,53 @@ public final class SnackbarUtils {
         // ============
 
         // RootView 的重心
-        private int rootGravity;
+        private int      rootGravity;
         // RootView 背景圆角大小
-        private float rootCornerRadius;
+        private float    rootCornerRadius;
         @ColorInt // RootView 背景着色颜色
-        private int rootBackgroundTintColor;
+        private int      rootBackgroundTintColor;
         // RootView 背景图片
         private Drawable rootBackground;
         // RootView margin 边距 - new int[] { left, top, right, bottom }
-        private int[] rootMargin;
+        private int[]    rootMargin;
         // RootView 透明度
-        private float rootAlpha = 1.0f;
+        private float    rootAlpha = 1.0f;
 
         // ===============================
         // = snackbar_text TextView 相关 =
         // ===============================
 
         // TextView 的重心
-        private int textGravity;
+        private int                  textGravity;
         @ColorInt // TextView 文本颜色
-        private int textColor;
+        private int                  textColor;
         // TextView 字体大小
-        private float textSize;
+        private float                textSize;
         // TextView 最大行数
-        private int textMaxLines;
+        private int                  textMaxLines;
         // TextView Ellipsize 效果
         private TextUtils.TruncateAt textEllipsize;
         // TextView 字体样式
-        private Typeface textTypeface;
+        private Typeface             textTypeface;
         // TextView padding 边距 - new int[] { left, top, right, bottom }
-        private int[] textPadding;
+        private int[]                textPadding;
 
         // ===============================
         // = snackbar_action Button 相关 =
         // ===============================
 
         // Action Button 的重心
-        private int actionGravity;
+        private int      actionGravity;
         @ColorInt // Action Button 文本颜色
-        private int actionColor;
+        private int      actionColor;
         // Action Button 字体大小
-        private float actionSize;
+        private float    actionSize;
         // Action Button padding 边距 - new int[] { left, top, right, bottom }
-        private int[] actionPadding;
+        private int[]    actionPadding;
         // RootView 背景圆角大小
-        private float actionCornerRadius;
+        private float    actionCornerRadius;
         @ColorInt // RootView 背景着色颜色
-        private int actionBackgroundTintColor;
+        private int      actionBackgroundTintColor;
         // RootView 背景图片
         private Drawable actionBackground;
 
@@ -1303,17 +1304,17 @@ public final class SnackbarUtils {
     // =
 
     // View 坐标
-    private int[] mViewLocations = null;
+    private int[]   mViewLocations   = null;
     // View 高度
-    private int mViewHeight = 0;
+    private int     mViewHeight      = 0;
     // 指定 View 坐标, 显示的重心方向 ( 只有 TOP、BOTTOM)
-    private int mViewGravity = -1;
+    private int     mViewGravity     = -1;
     // 追加向上边距 ( 如: 状态栏高度 )
-    private int mAppendTopMargin = 0;
+    private int     mAppendTopMargin = 0;
     // View 阴影
-    private int mShadowMargin = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ? 2 : 0;
+    private int     mShadowMargin    = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ? 2 : 0;
     // 判断是否自动计算 ( 如: 显示在 View 下面, 但是下方距离不够, 自动设置为在 View 上方显示 )
-    private boolean mAutoCalc = true;
+    private boolean mAutoCalc        = true;
 
     /**
      * 获取阴影边距

@@ -39,6 +39,7 @@ public final class BarUtils {
     private BarUtils() {
     }
 
+    // 日志 TAG
     private static final String TAG = BarUtils.class.getSimpleName();
 
     // ==============

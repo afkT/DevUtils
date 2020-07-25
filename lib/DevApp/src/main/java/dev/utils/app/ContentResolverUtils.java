@@ -37,10 +37,11 @@ public final class ContentResolverUtils {
 
     // 日志 TAG
     private static final String TAG = ContentResolverUtils.class.getSimpleName();
+
     // 卷名
     private static final String VOLUME_EXTERNAL = PathUtils.EXTERNAL;
     // 文件 URI
-    public static final Uri FILES_URI = MediaStore.Files.getContentUri(VOLUME_EXTERNAL);
+    public static final  Uri    FILES_URI       = MediaStore.Files.getContentUri(VOLUME_EXTERNAL);
 
     /**
      * 获取 Uri Cursor 对应条件的数据行 data 字段
@@ -281,11 +282,11 @@ public final class ContentResolverUtils {
     // ===============
 
     // 多媒体查询获取 Uri 处理
-    private static final MediaQueryUri MEDIA_QUERY_URI = new MediaQueryUri();
+    private static final MediaQueryUri     MEDIA_QUERY_URI      = new MediaQueryUri();
     // 多媒体查询信息处理
-    public static final MediaQueryInfo MEDIA_QUERY_INFO = new MediaQueryInfo();
+    public static final  MediaQueryInfo    MEDIA_QUERY_INFO     = new MediaQueryInfo();
     // 多媒体查询信息处理 Uri
-    public static final MediaQueryInfoUri MEDIA_QUERY_INFO_URI = new MediaQueryInfoUri();
+    public static final  MediaQueryInfoUri MEDIA_QUERY_INFO_URI = new MediaQueryInfoUri();
 
     /**
      * detail: 多媒体查询抽象类

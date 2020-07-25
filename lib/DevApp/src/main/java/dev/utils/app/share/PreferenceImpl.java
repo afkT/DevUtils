@@ -23,9 +23,9 @@ import java.util.TreeSet;
 final class PreferenceImpl implements IPreference {
 
     // 文件名
-    private static final String NAME = "SPConfig";
+    private static final String            NAME = "SPConfig";
     // SharedPreferences 对象
-    private SharedPreferences mPreferences;
+    private              SharedPreferences mPreferences;
 
     // ============
     // = 构造函数 =

@@ -14,12 +14,13 @@ public final class CameraAssist {
 
     // 日志 TAG
     private static final String TAG = CameraAssist.class.getSimpleName();
+
     // 摄像头对象
-    private Camera mCamera;
+    private Camera        mCamera;
     // 是否预览中
-    private boolean mPreviewing;
+    private boolean       mPreviewing;
     // 自动对焦时间间隔
-    private long mAutoInterval = 2000L;
+    private long          mAutoInterval = 2000L;
     // 预览通知
     private PreviewNotify mPreviewNotify;
 
@@ -30,7 +31,7 @@ public final class CameraAssist {
     // 摄像头大小计算
     private CameraSizeAssist mCameraSizeAssist;
     // 自动获取焦点辅助类
-    private AutoFocusAssist mAutoFocusAssist;
+    private AutoFocusAssist  mAutoFocusAssist;
 
     public CameraAssist() {
     }

@@ -241,9 +241,9 @@ final class ToastFactory {
     static final class ToastHelper extends Handler {
 
         // 当前 Toast 对象
-        private final Toast mToast;
+        private final Toast   mToast;
         // 判断是否显示中
-        private boolean mShow;
+        private       boolean mShow;
 
         ToastHelper(Toast toast) {
             super(Looper.getMainLooper());

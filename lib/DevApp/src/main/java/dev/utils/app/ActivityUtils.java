@@ -933,12 +933,13 @@ public final class ActivityUtils {
 
         // 日志 TAG
         private static final String TAG = ResultActivity.class.getSimpleName();
+
         // 传参 UUID Key
-        private static final String EXTRA_UUID = "uuid";
+        private static final String         EXTRA_UUID = "uuid";
         // 跳转回传回调
-        private ResultCallback mResultCallback;
+        private              ResultCallback mResultCallback;
         // 跳转回传回调
-        private Integer mUUIDHash;
+        private              Integer        mUUIDHash;
 
         /**
          * 跳转回传结果处理 Activity 内部方法

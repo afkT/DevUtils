@@ -21,6 +21,7 @@ public final class KeyguardUtils {
 
     // 日志 TAG
     private static final String TAG = KeyguardUtils.class.getSimpleName();
+
     // KeyguardUtils 实例
     private volatile static KeyguardUtils sInstance;
 
@@ -40,7 +41,7 @@ public final class KeyguardUtils {
     }
 
     // 锁屏管理类
-    private KeyguardManager mKeyguardManager;
+    private KeyguardManager              mKeyguardManager;
     // android 26 开始过时
     private KeyguardManager.KeyguardLock mKeyguardLock;
 

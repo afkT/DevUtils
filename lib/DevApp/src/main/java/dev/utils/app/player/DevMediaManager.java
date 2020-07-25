@@ -26,8 +26,9 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 
     // 日志 TAG
     private static String TAG = DevMediaManager.class.getSimpleName();
+
     // MediaPlayer 对象
-    private MediaPlayer mMediaPlayer;
+    private                 MediaPlayer     mMediaPlayer;
     // DevMediaManager 实例
     private volatile static DevMediaManager sInstance;
 
@@ -627,17 +628,17 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     // ============
 
     // 流类型
-    private int mStreamType = AudioManager.STREAM_MUSIC;
+    private int    mStreamType  = AudioManager.STREAM_MUSIC;
     // 本地资源
-    private int mPlayRawId = -1;
+    private int    mPlayRawId   = -1;
     // 播放路径 / 地址
-    private String mPlayUri = null;
+    private String mPlayUri     = null;
     // 视频宽度
-    private int mVideoWidth = 0;
+    private int    mVideoWidth  = 0;
     // 视频高度
-    private int mVideoHeight = 0;
+    private int    mVideoHeight = 0;
     // 播放音量
-    private float mVolume = -1f;
+    private float  mVolume      = -1f;
 
     /**
      * 清空播放信息

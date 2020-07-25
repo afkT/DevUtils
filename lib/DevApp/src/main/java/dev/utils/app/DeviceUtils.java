@@ -69,6 +69,7 @@ public final class DeviceUtils {
 
     // 日志 TAG
     private static final String TAG = DeviceUtils.class.getSimpleName();
+
     // 换行字符串
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
