@@ -31,25 +31,26 @@ abstract class AbstractbsDevBaseActivity extends AppCompatActivity implements ID
 
     // 日志 TAG
     protected String mTag = AbstractbsDevBaseActivity.class.getSimpleName();
+
     // Context
-    protected Context mContext = null;
+    protected Context  mContext           = null;
     // Activity
-    protected Activity mActivity = null;
+    protected Activity mActivity          = null;
     // Content View
-    protected View mContentView = null;
+    protected View     mContentView       = null;
     // 当前页面是否可见 ( 生命周期 )
-    protected boolean mIsActivityVisible = true;
+    protected boolean  mIsActivityVisible = true;
 
     // ==============
     // = UI Operate =
     // ==============
 
     // 基类 Dialog
-    protected Dialog mDialog;
+    protected Dialog         mDialog;
     // 基类 DialogFragment
     protected DialogFragment mDialogFragment;
     // 基类 PopupWindow
-    protected PopupWindow mPopupWindow;
+    protected PopupWindow    mPopupWindow;
 
     // ============
     // = 生命周期 =

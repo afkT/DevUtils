@@ -30,10 +30,11 @@ abstract class AbstractDevBaseFragment extends Fragment implements IDevBaseMetho
 
     // 日志 TAG
     protected String mTag = AbstractDevBaseFragment.class.getSimpleName();
+
     // Context
-    protected Context mContext = null;
+    protected Context mContext           = null;
     // Fragment View
-    protected View mContentView = null;
+    protected View    mContentView       = null;
     // 当前 Fragment 是否可见 ( 生命周期 )
     protected boolean mIsFragmentVisible = true;
 
@@ -42,11 +43,11 @@ abstract class AbstractDevBaseFragment extends Fragment implements IDevBaseMetho
     // ==============
 
     // 基类 Dialog
-    protected Dialog mDialog;
+    protected Dialog         mDialog;
     // 基类 DialogFragment
     protected DialogFragment mDialogFragment;
     // 基类 PopupWindow
-    protected PopupWindow mPopupWindow;
+    protected PopupWindow    mPopupWindow;
 
     // ============
     // = 生命周期 =

@@ -27,7 +27,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
 
     // 日志 TAG
     private static final String TAG = NetWorkReceiver.class.getSimpleName();
-    
+
     // 当前连接的状态
     private static int mConnectState = NetWorkReceiver.NO_NETWORK;
 
