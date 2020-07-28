@@ -17,6 +17,7 @@ import afkt.project.ui.widget.BaseTextView;
 import butterknife.BindView;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.ViewUtils;
+import dev.utils.app.helper.QuickHelper;
 import dev.utils.app.helper.ViewHelper;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
@@ -150,15 +151,15 @@ public class MultiSelectActivity extends BaseToolbarActivity {
      * @return {@link BaseTextView}
      */
     private BaseTextView createTextView(String text, View.OnClickListener onClickListener) {
-        BaseTextView baseTextView = new BaseTextView(this);
-        ViewHelper.get().setVisibility(false, baseTextView) // 默认隐藏
-                .setText(baseTextView, text)
-                .setBold(baseTextView)
-                .setTextColor(baseTextView, ResourceUtils.getColor(R.color.white))
-                .setTextSizeBySp(baseTextView, 13.0f)
-                .setPaddingLeft(baseTextView, 30)
-                .setPaddingRight(baseTextView, 30)
-                .setOnClicks(onClickListener, baseTextView);
-        return baseTextView;
+        return QuickHelper.get(new BaseTextView(this))
+                .setVisibility(false) // 默认隐藏
+                .setText(text)
+                .setBold()
+                .setTextColor(ResourceUtils.getColor(R.color.white))
+                .setTextSizeBySp(13.0f)
+                .setPaddingLeft(30)
+                .setPaddingRight(30)
+                .setOnClicks(onClickListener)
+                .getView();
     }
 }

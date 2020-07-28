@@ -16,6 +16,7 @@ import afkt.project.ui.adapter.EditsAdapter;
 import afkt.project.ui.widget.BaseTextView;
 import butterknife.BindView;
 import dev.utils.app.ResourceUtils;
+import dev.utils.app.helper.QuickHelper;
 import dev.utils.app.helper.ViewHelper;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
@@ -41,13 +42,13 @@ public class AdapterEditsActivity extends BaseToolbarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // 添加按钮
-        BaseTextView baseTextView = new BaseTextView(this);
-        ViewHelper.get().setText(baseTextView, "提交")
-                .setBold(baseTextView)
-                .setTextColor(baseTextView, ResourceUtils.getColor(R.color.white))
-                .setTextSizeBySp(baseTextView, 13.0f)
-                .setPaddingLeft(baseTextView, 30)
-                .setPaddingRight(baseTextView, 30)
+        View view = QuickHelper.get(new BaseTextView(this))
+                .setText("提交")
+                .setBold()
+                .setTextColor(ResourceUtils.getColor(R.color.white))
+                .setTextSizeBySp(13.0f)
+                .setPaddingLeft(30)
+                .setPaddingRight(30)
                 .setOnClicks(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -60,8 +61,8 @@ public class AdapterEditsActivity extends BaseToolbarActivity {
                         DevLogger.dTag(mTag, builder.toString());
                         ToastTintUtils.success("数据已打印, 请查看 Logcat");
                     }
-                }, baseTextView);
-        vid_bt_toolbar.addView(baseTextView);
+                }).getView();
+        vid_bt_toolbar.addView(view);
 
         ViewGroup parent = (ViewGroup) vid_bvr_recy.getParent();
         // 根布局处理

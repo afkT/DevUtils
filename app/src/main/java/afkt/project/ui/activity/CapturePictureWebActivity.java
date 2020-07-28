@@ -12,7 +12,7 @@ import afkt.project.ui.widget.BaseTextView;
 import butterknife.BindView;
 import dev.utils.app.CapturePictureUtils;
 import dev.utils.app.ResourceUtils;
-import dev.utils.app.helper.ViewHelper;
+import dev.utils.app.helper.QuickHelper;
 import dev.utils.app.image.ImageUtils;
 
 /**
@@ -36,12 +36,13 @@ public class CapturePictureWebActivity extends BaseToolbarActivity {
         CapturePictureUtils.enableSlowWholeDocumentDraw();
         super.onCreate(savedInstanceState);
         // 截图按钮
-        BaseTextView baseTextView = new BaseTextView(this);
-        ViewHelper.get().setText(baseTextView, "截图").setBold(baseTextView)
-                .setTextColor(baseTextView, ResourceUtils.getColor(R.color.white))
-                .setTextSizeBySp(baseTextView, 15.0f)
-                .setPaddingLeft(baseTextView, 30)
-                .setPaddingRight(baseTextView, 30)
+        View view = QuickHelper.get(new BaseTextView(this))
+                .setText("截图")
+                .setBold()
+                .setTextColor(ResourceUtils.getColor(R.color.white))
+                .setTextSizeBySp(15.0f)
+                .setPaddingLeft(30)
+                .setPaddingRight(30)
                 .setOnClicks(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -52,8 +53,8 @@ public class CapturePictureWebActivity extends BaseToolbarActivity {
                         boolean result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName);
                         showToast(result, "保存成功\n" + (filePath + fileName), "保存失败");
                     }
-                }, baseTextView);
-        vid_bt_toolbar.addView(baseTextView);
+                }).getView();
+        vid_bt_toolbar.addView(view);
     }
 
     @Override

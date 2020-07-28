@@ -10,7 +10,7 @@ import afkt.project.ui.widget.BaseTextView;
 import butterknife.BindView;
 import dev.temp.ChineseUtils;
 import dev.utils.app.TextViewUtils;
-import dev.utils.app.helper.ViewHelper;
+import dev.utils.app.helper.QuickHelper;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.common.RandomUtils;
 
@@ -37,33 +37,33 @@ public class TextCalcActivity extends BaseToolbarActivity {
             String text = ChineseUtils.getRandomWord(RandomUtils.getRandom(100)) + RandomUtils.getRandomLetters(RandomUtils.getRandom(20));
             String randomText = RandomUtils.getRandom(text.toCharArray(), text.length());
 
-            BaseTextView baseTextView = new BaseTextView(this);
-            ViewHelper.get().setPadding(baseTextView, 30)
-                    .setMarginTop(baseTextView, 40)
-                    .setMarginBottom(baseTextView, 20)
-                    .setTextColor(baseTextView, Color.BLACK)
-                    .setTextSizeBySp(baseTextView, RandomUtils.getRandom(13, 20))
-                    .setBold(baseTextView, RandomUtils.nextBoolean())
-                    .setText(baseTextView, randomText).setOnClicks(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    BaseTextView baseTextView = (BaseTextView) v;
-                    String text = baseTextView.getText().toString();
+            BaseTextView view = QuickHelper.get(new BaseTextView(this))
+                    .setPadding(30)
+                    .setMarginTop(40)
+                    .setMarginBottom(20)
+                    .setTextColor(Color.BLACK)
+                    .setTextSizeBySp(RandomUtils.getRandom(13, 20))
+                    .setBold(RandomUtils.nextBoolean())
+                    .setText(randomText).setOnClicks(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            BaseTextView textView = (BaseTextView) v;
+                            String text = textView.getText().toString();
 
-                    StringBuilder builder = new StringBuilder();
-                    builder.append("字体总数: " + text.length());
-                    builder.append("\n字体高度: " + TextViewUtils.getTextHeight(baseTextView));
-                    builder.append("\n偏移高度: " + TextViewUtils.getTextTopOffsetHeight(baseTextView));
-                    builder.append("\n字体宽度: " + TextViewUtils.getTextWidth(baseTextView));
-                    builder.append("\n字体大小: " + baseTextView.getTextSize());
-                    builder.append("\n计算字体大小: " + TextViewUtils.reckonTextSizeByHeight(TextViewUtils.getTextHeight(baseTextView)));
-                    builder.append("\n计算行数: " + TextViewUtils.calcTextLine(baseTextView, text, baseTextView.getMeasuredWidth()));
+                            StringBuilder builder = new StringBuilder();
+                            builder.append("字体总数: " + text.length());
+                            builder.append("\n字体高度: " + TextViewUtils.getTextHeight(textView));
+                            builder.append("\n偏移高度: " + TextViewUtils.getTextTopOffsetHeight(textView));
+                            builder.append("\n字体宽度: " + TextViewUtils.getTextWidth(textView));
+                            builder.append("\n字体大小: " + textView.getTextSize());
+                            builder.append("\n计算字体大小: " + TextViewUtils.reckonTextSizeByHeight(TextViewUtils.getTextHeight(textView)));
+                            builder.append("\n计算行数: " + TextViewUtils.calcTextLine(textView, textView.getMeasuredWidth()));
 
-                    String content = builder.toString();
-                    ToastTintUtils.normal(content);
-                }
-            }, baseTextView);
-            vid_atc_linear.addView(baseTextView);
+                            String content = builder.toString();
+                            ToastTintUtils.normal(content);
+                        }
+                    }).getView();
+            vid_atc_linear.addView(view);
         }
     }
 }

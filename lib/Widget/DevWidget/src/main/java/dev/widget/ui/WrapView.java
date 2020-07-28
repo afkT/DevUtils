@@ -29,11 +29,11 @@ public class WrapView extends ViewGroup {
     // View 换行行数
     private int mRowLine;
     // 支持最大行数
-    private int mMaxLine            = Integer.MAX_VALUE;
+    private int mMaxLine        = Integer.MAX_VALUE;
     // 每一行向上的边距 ( 行间隔 )
-    private int mRowTopMargin       = 20;
+    private int mRowTopMargin   = 20;
     // 每个 View 之间的 Left 边距
-    private int mViewLeftMargin     = 20;
+    private int mViewLeftMargin = 20;
 
     public WrapView(Context context) {
         super(context);
@@ -146,9 +146,9 @@ public class WrapView extends ViewGroup {
 
     /**
      * 通过 View 宽度计算绘制所需高度
-     * @param rootWidth          宽度
-     * @param rowTopMargin       每一行向上的边距 ( 行间隔 )
-     * @param viewLeftMargin     每个 View 之间的 Left 边距
+     * @param rootWidth      宽度
+     * @param rowTopMargin   每一行向上的边距 ( 行间隔 )
+     * @param viewLeftMargin 每个 View 之间的 Left 边距
      * @return 计算 View 高度
      */
     private int calc(final int rootWidth, final int rowTopMargin, final int viewLeftMargin) {
@@ -285,8 +285,8 @@ public class WrapView extends ViewGroup {
 
     /**
      * 设置 Row View 边距
-     * @param rowTopMargin       每一行向上的边距 ( 行间隔 )
-     * @param viewLeftMargin     每个 View 之间的 Left 边距
+     * @param rowTopMargin   每一行向上的边距 ( 行间隔 )
+     * @param viewLeftMargin 每个 View 之间的 Left 边距
      * @return {@link WrapView}
      */
     public WrapView setRowViewMargin(int rowTopMargin, int viewLeftMargin) {
