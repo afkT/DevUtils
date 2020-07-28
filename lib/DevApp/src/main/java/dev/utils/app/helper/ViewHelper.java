@@ -1433,12 +1433,12 @@ public final class ViewHelper {
      *     blocksDescendants : ViewGroup 会覆盖子类控件而直接获得焦点
      *     android:descendantFocusability="blocksDescendants"
      * </pre>
-     * @param view         {@link ViewGroup}
+     * @param viewGroup    {@link ViewGroup}
      * @param focusability {@link ViewGroup#FOCUS_BEFORE_DESCENDANTS}、{@link ViewGroup#FOCUS_AFTER_DESCENDANTS}、{@link ViewGroup#FOCUS_BLOCK_DESCENDANTS}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setDescendantFocusability(final ViewGroup view, final int focusability) {
-        ViewUtils.setDescendantFocusability(view, focusability);
+    public ViewHelper setDescendantFocusability(final ViewGroup viewGroup, final int focusability) {
+        ViewUtils.setDescendantFocusability(viewGroup, focusability);
         return this;
     }
 
