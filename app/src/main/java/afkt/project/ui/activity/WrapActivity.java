@@ -56,19 +56,16 @@ public class WrapActivity extends BaseToolbarActivity {
     public void initValues() {
         super.initValues();
 
-        // 清空全部 View
-        vid_aw_wrapview.removeAllViews();
-        // 设置最大行数
-        vid_aw_wrapview.setMaxLine(RandomUtils.getRandom(10, 30));
-//        // 设置每一行向上的边距 ( 行间隔 )
-//        vid_aw_wrapview.setRowTopMargin(40);
-//        // 设置每个 View 之间的 Left 边距
-//        vid_aw_wrapview.setViewLeftMargin(30);
-//        // 快捷设置两个边距
-//        vid_aw_wrapview.setRowViewMargin(40, 30, 20);
-
-        // 设置内边距
-        vid_aw_wrapview.setPadding(0, 0, 20, 0);
+        vid_aw_wrapview
+                // 设置最大行数
+                .setMaxLine(RandomUtils.getRandom(10, 30))
+                // 设置每一行向上的边距 ( 行间隔 )
+                .setRowTopMargin(30)
+                // 设置每个 View 之间的 Left 边距
+                .setViewLeftMargin(30)
+                // 快捷设置两个边距
+                .setRowViewMargin(30, 30)
+                .removeAllViews();
 
         // LayoutParams
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
