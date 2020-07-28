@@ -14,9 +14,9 @@ public final class AppConfig {
     // ============
 
     // 项目名
-    public static final String BASE_NAME = "DevUtils";
+    public static final String BASE_NAME           = "DevUtils";
     // 缩写标识 - 小写
-    public static final String BASE_NAME_SHORT = "dev_utils";
+    public static final String BASE_NAME_SHORT     = "dev_utils";
     // 缩写标识 - 大写
     public static final String BASE_NAME_SHORT_CAP = "DEV_UTILS";
 
@@ -25,7 +25,7 @@ public final class AppConfig {
     // ============
 
     // 项目日志 Tag
-    public static final String LOG_TAG = BASE_NAME + "_Log";
+    public static final String LOG_TAG            = BASE_NAME + "_Log";
     // Bugly 项目标识
     public static final String BUGLY_PRONAME_MARK = BASE_NAME + "_Android";
 }

@@ -29,14 +29,14 @@ public final class SnackbarUse {
     // 日志 TAG
     private static final String TAG = SnackbarUse.class.getSimpleName();
 
-    View view;
-    Window window;
-    Fragment fragment;
-    Activity activity;
+    View                 view;
+    Window               window;
+    Fragment             fragment;
+    Activity             activity;
     View.OnClickListener clickListener;
 
-    int viewId;
-    View targetView;
+    int      viewId;
+    View     targetView;
     TextView newTextView;
 
     public void snackbarUse() {

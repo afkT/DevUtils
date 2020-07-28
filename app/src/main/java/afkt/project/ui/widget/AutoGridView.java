@@ -10,10 +10,10 @@ import android.widget.ListAdapter;
 
 public class AutoGridView extends GridView {
 
-    private static final String TAG = "AutoGridView";
-    private int numColumnsID;
-    private int previousFirstVisible;
-    private int numColumns = 1;
+    private static final String TAG        = "AutoGridView";
+    private              int    numColumnsID;
+    private              int    previousFirstVisible;
+    private              int    numColumns = 1;
 
     public AutoGridView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);

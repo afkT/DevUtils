@@ -29,23 +29,23 @@ public class CoolWaitLoadingRenderer extends LoadingRenderer {
 
     private static final Interpolator ACCELERATE_DECELERATE_INTERPOLATOR = new AccelerateDecelerateInterpolator();
 
-    private final float DEFAULT_WIDTH = 200.0f;
-    private final float DEFAULT_HEIGHT = 150.0f;
+    private final float DEFAULT_WIDTH        = 200.0f;
+    private final float DEFAULT_HEIGHT       = 150.0f;
     private final float DEFAULT_STROKE_WIDTH = 8.0f;
-    private final float WAIT_CIRCLE_RADIUS = 50.0f;
+    private final float WAIT_CIRCLE_RADIUS   = 50.0f;
 
     private static final float WAIT_TRIM_DURATION_OFFSET = 0.5f;
-    private static final float END_TRIM_DURATION_OFFSET = 1.0f;
+    private static final float END_TRIM_DURATION_OFFSET  = 1.0f;
 
     private final long ANIMATION_DURATION = 2222;
 
     private final Paint mPaint = new Paint();
 
-    private final Path mWaitPath = new Path();
-    private final Path mCurrentTopWaitPath = new Path();
-    private final Path mCurrentMiddleWaitPath = new Path();
-    private final Path mCurrentBottomWaitPath = new Path();
-    private final PathMeasure mWaitPathMeasure = new PathMeasure();
+    private final Path        mWaitPath              = new Path();
+    private final Path        mCurrentTopWaitPath    = new Path();
+    private final Path        mCurrentMiddleWaitPath = new Path();
+    private final Path        mCurrentBottomWaitPath = new Path();
+    private final PathMeasure mWaitPathMeasure       = new PathMeasure();
 
     private final RectF mCurrentBounds = new RectF();
 

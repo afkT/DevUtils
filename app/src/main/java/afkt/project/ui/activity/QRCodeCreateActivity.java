@@ -33,7 +33,7 @@ public class QRCodeCreateActivity extends BaseToolbarActivity {
 
     // = View =
     @BindView(R.id.vid_aqc_content_edit)
-    BaseEditText vid_aqc_content_edit;
+    BaseEditText  vid_aqc_content_edit;
     @BindView(R.id.vid_aqc_igview)
     BaseImageView vid_aqc_igview;
     // 图片 Bitmap

@@ -55,7 +55,7 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
 
     // = View =
     @BindView(R.id.vid_ass_surface)
-    SurfaceView vid_ass_surface;
+    SurfaceView   vid_ass_surface;
     @BindView(R.id.vid_ass_scanview)
     ScanShapeView vid_ass_scanview;
     @BindView(R.id.vid_ass_flashlight_igview)
@@ -63,7 +63,7 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
     // 无操作计时辅助类
     private InactivityTimerAssist mInactivityTimerAssist;
     // 扫描成功响声 + 震动
-    private BeepVibrateAssist mBeepVibrateAssist;
+    private BeepVibrateAssist     mBeepVibrateAssist;
 
     @Override
     public int getLayoutId() {
@@ -383,9 +383,9 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
     // 预览回调
     private PreviewCallback mPreviewCallback;
     // 数据解析 Handler
-    private CaptureHandler mCaptureHandler;
+    private CaptureHandler  mCaptureHandler;
     // 扫描区域
-    private Rect mCropRect;
+    private Rect            mCropRect;
     // 解码类型
     private @DecodeFormat.DecodeMode
     int mDecodeMode = DecodeFormat.ALL;
@@ -397,17 +397,17 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
     private static class CaptureHandler extends Handler {
 
         // 日志 TAG
-        private static final String TAG = CaptureHandler.class.getSimpleName();
+        private static final String          TAG = CaptureHandler.class.getSimpleName();
         // 解码线程
-        private final DecodeThread mDecodeThread;
+        private final        DecodeThread    mDecodeThread;
         // 默认表示成功
-        private State mState;
+        private              State           mState;
         // Camera 辅助类
-        private CameraAssist mCameraAssist;
+        private              CameraAssist    mCameraAssist;
         // 数据回调
-        private PreviewCallback mPreviewCallback;
+        private              PreviewCallback mPreviewCallback;
         // 解码结果回调
-        private DecodeResult mDecodeResult;
+        private              DecodeResult    mDecodeResult;
 
         /**
          * 构造函数

@@ -31,7 +31,7 @@ public class ScanShapeActivity extends BaseToolbarActivity {
 
     // = View =
     @BindView(R.id.vid_ass_surface)
-    SurfaceView vid_ass_surface;
+    SurfaceView   vid_ass_surface;
     @BindView(R.id.vid_ass_scanview)
     ScanShapeView vid_ass_scanview;
     @BindView(R.id.vid_ass_flashlight_igview)

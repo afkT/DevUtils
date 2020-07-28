@@ -14,13 +14,13 @@ import dev.utils.common.RandomUtils;
 public class EvaluateItem {
 
     // 商品评价等级
-    public float evaluateLevel;
+    public float                 evaluateLevel;
     // 商品评价内容
-    public String evaluateContent;
+    public String                evaluateContent;
     // 存储对象
     public CommodityEvaluateBean commodityEvaluateBean;
     // 选择的图片
-    public List<String> imageList = new ArrayList<>();
+    public List<String>          imageList = new ArrayList<>();
 
     public EvaluateItem() {
         // 随机字符串

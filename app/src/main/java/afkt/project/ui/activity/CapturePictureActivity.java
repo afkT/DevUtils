@@ -25,7 +25,7 @@ public class CapturePictureActivity extends BaseToolbarActivity {
     @BindView(R.id.vid_acp_scroll)
     CustomNestedScrollView vid_acp_scroll;
     @BindView(R.id.vid_acp_linear)
-    LinearLayout vid_acp_linear;
+    LinearLayout           vid_acp_linear;
 
     @Override
     public int getLayoutId() {

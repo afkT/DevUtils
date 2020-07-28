@@ -43,9 +43,9 @@ public class GPUFilterACVActivity extends BaseToolbarActivity {
     // 适配器
     GPUFilterACVAdapter gpuFilterACVAdapter;
     // ACV 文件集合
-    List<ACVFileBean> listACVFiles = new ArrayList<>();
+    List<ACVFileBean>   listACVFiles = new ArrayList<>();
     // 图片 Bitmap
-    Bitmap selectBitmap;
+    Bitmap              selectBitmap;
     // 滤镜线程
     static Runnable filterThread;
 

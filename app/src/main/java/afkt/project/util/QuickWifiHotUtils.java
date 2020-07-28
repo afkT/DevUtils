@@ -19,27 +19,27 @@ import dev.utils.app.wifi.WifiUtils;
 public class QuickWifiHotUtils {
 
     // 日志 TAG
-    private final String TAG = QuickWifiHotUtils.class.getSimpleName();
+    private final        String       TAG                    = QuickWifiHotUtils.class.getSimpleName();
     // Wifi 工具类
-    private WifiUtils wifiUtils;
+    private              WifiUtils    wifiUtils;
     // Wifi 热点工具类
-    private WifiHotUtils wifiHotUtils;
+    private              WifiHotUtils wifiHotUtils;
     // 是否停止线程检查
-    private boolean isStop = false;
+    private              boolean      isStop                 = false;
     // 是否停止开启检查
-    private boolean isCheck = false;
+    private              boolean      isCheck                = false;
     // 是否线程检查热点连接状态
-    private boolean isThreadCheckHot = false;
+    private              boolean      isThreadCheckHot       = false;
     // 成功关闭 Wifi 准备开启热点
-    private static final int CLOSE_WIFI_SUCCESS = 103;
+    private static final int          CLOSE_WIFI_SUCCESS     = 103;
     // 开启热点成功
-    private static final int START_WIFISPOT_SUCCESS = 104;
+    private static final int          START_WIFISPOT_SUCCESS = 104;
     // 检查是否连接热点
-    private static final int CHECK_HOT_CONN = 105;
+    private static final int          CHECK_HOT_CONN         = 105;
     // 热点 SSID
-    private String hotSSID;
+    private              String       hotSSID;
     // 热点密码
-    private String hotPwd;
+    private              String       hotPwd;
 
     /**
      * 构造函数

@@ -150,11 +150,11 @@ public class DevExtendActivity extends BaseToolbarActivity {
      */
     public static class CallParams extends DevExResultCallback.ExpandResult {
         // 用户信息
-        public UserInfo userInfo;
+        public UserInfo                 userInfo;
         // 参数
         public HashMap<Integer, String> hashMap = new HashMap<>();
         // 类型
-        public String type;
+        public String                   type;
     }
 
     // ============

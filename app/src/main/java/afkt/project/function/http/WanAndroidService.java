@@ -18,6 +18,7 @@ public interface WanAndroidService {
     @GET("/article/list/{page}/json")
     Flowable<ArticleBean> getArticleList(@Path("page") int page);
 
-    @POST("/xxx/login") // 演示 BaseBeanSubscriber、BaseResponseSubscriber 区别
+    // 演示 BaseBeanSubscriber、BaseResponseSubscriber 区别
+    @POST("/xxx/login")
     Flowable<BaseResponse<UserBean>> login(@Query("userName") String userName, @Query("password") String password);
 }

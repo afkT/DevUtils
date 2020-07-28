@@ -35,10 +35,10 @@ public abstract class BaseMVPActivity<P extends MVP.Presenter> extends DevBaseMV
     // 状态布局容器
     protected LinearLayout vid_ba_state_linear;
     // 状态布局
-    protected StateLayout stateLayout;
+    protected StateLayout  stateLayout;
     // = Object =
     // Unbinder
-    public Unbinder unbinder;
+    public    Unbinder     unbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

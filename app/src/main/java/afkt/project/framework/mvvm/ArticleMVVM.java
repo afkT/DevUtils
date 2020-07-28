@@ -40,9 +40,9 @@ public final class ArticleMVVM {
         // ViewModel
         private ActivityArticleMvvmBinding mActivityArticleMvvmBinding;
         // 适配器
-        private ArticleAdapter mArticleAdapter;
+        private ArticleAdapter             mArticleAdapter;
         // 持有Model 类 - 具体内部实现为实现类
-        private Model mModel;
+        private Model                      mModel;
 
         public ViewModel(ActivityArticleMvvmBinding activityArticleMvvmBinding, ArticleAdapter articleAdapter) {
             this.mActivityArticleMvvmBinding = activityArticleMvvmBinding;

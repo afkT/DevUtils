@@ -28,7 +28,7 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
     // MVVM VM
     ArticleMVVM.ViewModel viewModel;
     // 加载动画
-    WhorlView whorlView;
+    WhorlView             whorlView;
 
     @Override
     public int getLayoutId() {

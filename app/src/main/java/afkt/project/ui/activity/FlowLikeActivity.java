@@ -49,7 +49,7 @@ public class FlowLikeActivity extends BaseToolbarActivity {
 
         // 设置漂浮图标
         vid_afl_flowlike.setDrawablesById(R.drawable.icon_live_brow_1, R.drawable.icon_live_brow_2,
-            R.drawable.icon_live_brow_3, R.drawable.icon_live_brow_4, R.drawable.icon_live_brow_5);
+                R.drawable.icon_live_brow_3, R.drawable.icon_live_brow_4, R.drawable.icon_live_brow_5);
     }
 
     @OnClick({R.id.vid_afl_flowlike})

@@ -115,15 +115,15 @@ public class CornerLabelActivity extends BaseToolbarActivity {
 
     static final String[] TEXTS = {"滿減", "赠品", "满送", "包邮", "拼图", "新人", "砍价", "预售", "众筹"};
 
-    float   convertPx;
+    float convertPx;
 
-    int     mText1Index  = 3;
-    float   mText1Height = 12;
+    int   mText1Index  = 3;
+    float mText1Height = 12;
 
-    int     mText2Index  = 3;
-    float   mText2Height = 8;
+    int   mText2Index  = 3;
+    float mText2Height = 8;
 
-    boolean mIsLeft      = true;
-    boolean mIsTop       = true;
-    boolean mIsTriangle  = false;
+    boolean mIsLeft     = true;
+    boolean mIsTop      = true;
+    boolean mIsTriangle = false;
 }

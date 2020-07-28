@@ -29,13 +29,13 @@ import dev.utils.app.logger.DevLogger;
 public class DecodeHandler extends Handler {
 
     // 日志 TAG
-    private final String TAG = DecodeHandler.class.getSimpleName();
+    private final String            TAG      = DecodeHandler.class.getSimpleName();
     // 是否运行中
-    private boolean mRunning = true;
+    private       boolean           mRunning = true;
     // 读取图像数据对象
     private final MultiFormatReader mMultiFormatReader;
     // 解码配置对象
-    private DecodeConfig mDecodeConfig;
+    private       DecodeConfig      mDecodeConfig;
 
     /**
      * 构造函数

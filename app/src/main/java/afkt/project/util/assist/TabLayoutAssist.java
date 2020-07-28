@@ -22,9 +22,9 @@ import dev.utils.app.helper.ViewHelper;
 public final class TabLayoutAssist {
 
     // Context
-    private Context mContext;
+    private Context       mContext;
     // TabLayout
-    private TabLayout tabLayout;
+    private TabLayout     tabLayout;
     // 数据源
     private List<TabItem> listTabs = new ArrayList<>();
 

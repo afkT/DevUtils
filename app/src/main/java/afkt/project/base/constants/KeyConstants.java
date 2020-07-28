@@ -19,9 +19,9 @@ public final class KeyConstants {
         }
 
         // KEY 数据
-        public static final String KEY_DATA = Common.KEY_DATA;
+        public static final String KEY_DATA   = Common.KEY_DATA;
         // 标题
-        public static final String KEY_TITLE = Common.KEY_TITLE;
+        public static final String KEY_TITLE  = Common.KEY_TITLE;
         // 对象
         public static final String KEY_OBJECT = Common.KEY_OBJECT;
         // 参数
@@ -38,15 +38,15 @@ public final class KeyConstants {
         }
 
         // 数据
-        public static final String KEY_DATA = "data";
+        public static final String KEY_DATA   = "data";
         // 标题
-        public static final String KEY_TITLE = "title";
+        public static final String KEY_TITLE  = "title";
         // 对象
         public static final String KEY_OBJECT = "object";
         // 参数
         public static final String KEY_PARAMS = "params";
         // 类型
-        public static final String KEY_TYPE = "type";
+        public static final String KEY_TYPE   = "type";
     }
 
     /**

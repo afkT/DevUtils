@@ -38,7 +38,7 @@ public class GPUFilterActivity extends BaseToolbarActivity {
     // 适配器
     GPUFilterAdapter gpuFilterAdapter;
     // 图片 Bitmap
-    Bitmap selectBitmap;
+    Bitmap           selectBitmap;
     // 滤镜线程
     static Runnable filterThread;
 

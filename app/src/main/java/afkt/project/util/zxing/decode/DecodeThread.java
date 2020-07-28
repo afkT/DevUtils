@@ -21,11 +21,11 @@ public class DecodeThread extends Thread {
     // 解码参数
     private final Map<DecodeHintType, Object> mHints;
     // 并发线程等待
-    private final CountDownLatch mHandlerInitLatch;
+    private final CountDownLatch              mHandlerInitLatch;
     // 解码处理 Handler ( DecodeHandler )
-    private DecodeHandler mHandler;
+    private       DecodeHandler               mHandler;
     // 解码配置对象
-    private DecodeConfig mDecodeConfig;
+    private       DecodeConfig                mDecodeConfig;
 
     /**
      * 构造函数

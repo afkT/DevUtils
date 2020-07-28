@@ -19,7 +19,7 @@ import dev.utils.app.SizeUtils;
 public class CircleBroodLoadingRenderer extends LoadingRenderer {
 
     private final Interpolator MOTHER_MOVE_INTERPOLATOR = new MotherMoveInterpolator();
-    private final Interpolator CHILD_MOVE_INTERPOLATOR = new ChildMoveInterpolator();
+    private final Interpolator CHILD_MOVE_INTERPOLATOR  = new ChildMoveInterpolator();
 
     private final Interpolator ACCELERATE_INTERPOLATOR03 = new AccelerateInterpolator(0.3f);
     private final Interpolator ACCELERATE_INTERPOLATOR05 = new AccelerateInterpolator(0.5f);
@@ -31,44 +31,44 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
     private final Interpolator DECELERATE_INTERPOLATOR08 = new DecelerateInterpolator(0.8f);
     private final Interpolator DECELERATE_INTERPOLATOR10 = new DecelerateInterpolator(1.0f);
 
-    private float STAGE_MOTHER_FORWARD_TOP_LEFT = 0.34f;
-    private float STAGE_MOTHER_BACKWARD_TOP_LEFT = 0.5f;
-    private float STAGE_MOTHER_FORWARD_BOTTOM_LEFT = 0.65f;
+    private float STAGE_MOTHER_FORWARD_TOP_LEFT     = 0.34f;
+    private float STAGE_MOTHER_BACKWARD_TOP_LEFT    = 0.5f;
+    private float STAGE_MOTHER_FORWARD_BOTTOM_LEFT  = 0.65f;
     private float STAGE_MOTHER_BACKWARD_BOTTOM_LEFT = 0.833f;
 
-    private float STAGE_CHILD_DELAY = 0.1f;
-    private float STAGE_CHILD_PRE_FORWARD_TOP_LEFT = 0.26f;
-    private float STAGE_CHILD_FORWARD_TOP_LEFT = 0.34f;
+    private float STAGE_CHILD_DELAY                 = 0.1f;
+    private float STAGE_CHILD_PRE_FORWARD_TOP_LEFT  = 0.26f;
+    private float STAGE_CHILD_FORWARD_TOP_LEFT      = 0.34f;
     private float STAGE_CHILD_PRE_BACKWARD_TOP_LEFT = 0.42f;
-    private float STAGE_CHILD_BACKWARD_TOP_LEFT = 0.5f;
-    private float STAGE_CHILD_FORWARD_BOTTOM_LEFT = 0.7f;
-    private float STAGE_CHILD_BACKWARD_BOTTOM_LEFT = 0.9f;
+    private float STAGE_CHILD_BACKWARD_TOP_LEFT     = 0.5f;
+    private float STAGE_CHILD_FORWARD_BOTTOM_LEFT   = 0.7f;
+    private float STAGE_CHILD_BACKWARD_BOTTOM_LEFT  = 0.9f;
 
     private final float OVAL_BEZIER_FACTOR = 0.55152f;
 
-    private final float DEFAULT_WIDTH = 200.0f;
-    private final float DEFAULT_HEIGHT = 150.0f;
-    private final float MAX_MATHER_OVAL_SIZE = 19;
-    private final float MIN_CHILD_OVAL_RADIUS = 5;
+    private final float DEFAULT_WIDTH                  = 200.0f;
+    private final float DEFAULT_HEIGHT                 = 150.0f;
+    private final float MAX_MATHER_OVAL_SIZE           = 19;
+    private final float MIN_CHILD_OVAL_RADIUS          = 5;
     private final float MAX_MATHER_SHAPE_CHANGE_FACTOR = 0.8452f;
 
-    private final int DEFAULT_OVAL_COLOR = Color.parseColor("#FFBE1C23");
-    private final int DEFAULT_OVAL_DEEP_COLOR = Color.parseColor("#FFB21721");
-    private final int DEFAULT_BACKGROUND_COLOR = Color.parseColor("#FFE3C172");
+    private final int DEFAULT_OVAL_COLOR            = Color.parseColor("#FFBE1C23");
+    private final int DEFAULT_OVAL_DEEP_COLOR       = Color.parseColor("#FFB21721");
+    private final int DEFAULT_BACKGROUND_COLOR      = Color.parseColor("#FFE3C172");
     private final int DEFAULT_BACKGROUND_DEEP_COLOR = Color.parseColor("#FFE2B552");
 
     private final long ANIMATION_DURATION = 4111;
 
-    private final Paint mPaint = new Paint();
-    private final RectF mCurrentBounds = new RectF();
-    private final Path mMotherOvalPath = new Path();
-    private final Path mMotherMovePath = new Path();
-    private final Path mChildMovePath = new Path();
+    private final Paint mPaint          = new Paint();
+    private final RectF mCurrentBounds  = new RectF();
+    private final Path  mMotherOvalPath = new Path();
+    private final Path  mMotherMovePath = new Path();
+    private final Path  mChildMovePath  = new Path();
 
-    private final float[] mMotherPosition = new float[2];
-    private final float[] mChildPosition = new float[2];
+    private final float[]     mMotherPosition        = new float[2];
+    private final float[]     mChildPosition         = new float[2];
     private final PathMeasure mMotherMovePathMeasure = new PathMeasure();
-    private final PathMeasure mChildMovePathMeasure = new PathMeasure();
+    private final PathMeasure mChildMovePathMeasure  = new PathMeasure();
 
     private float mChildOvalRadius;
     private float mBasicChildOvalRadius;

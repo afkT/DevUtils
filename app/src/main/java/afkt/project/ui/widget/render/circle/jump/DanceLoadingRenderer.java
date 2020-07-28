@@ -24,47 +24,47 @@ public class DanceLoadingRenderer extends LoadingRenderer {
 
     private static final long ANIMATION_DURATION = 1888;
 
-    private static final float DEFAULT_CENTER_RADIUS = 12.5f;
-    private static final float DEFAULT_STROKE_WIDTH = 1.5f;
+    private static final float DEFAULT_CENTER_RADIUS     = 12.5f;
+    private static final float DEFAULT_STROKE_WIDTH      = 1.5f;
     private static final float DEFAULT_DANCE_BALL_RADIUS = 2.0f;
 
-    private static final int NUM_POINTS = 3;
-    private static final int DEGREE_360 = 360;
-    private static final int RING_START_ANGLE = -90;
-    private static final int DANCE_START_ANGLE = 0;
+    private static final int NUM_POINTS           = 3;
+    private static final int DEGREE_360           = 360;
+    private static final int RING_START_ANGLE     = -90;
+    private static final int DANCE_START_ANGLE    = 0;
     private static final int DANCE_INTERVAL_ANGLE = 60;
 
     private static final int DEFAULT_COLOR = Color.WHITE;
 
     //the center coordinate of the oval
-    private static final float[] POINT_X = new float[NUM_POINTS];
-    private static final float[] POINT_Y = new float[NUM_POINTS];
+    private static final float[] POINT_X   = new float[NUM_POINTS];
+    private static final float[] POINT_Y   = new float[NUM_POINTS];
     //1: the coordinate x from small to large; -1: the coordinate x from large to small
-    private static final int[] DIRECTION = new int[]{1, 1, -1};
+    private static final int[]   DIRECTION = new int[]{1, 1, -1};
 
     private static final float BALL_FORWARD_START_ENTER_DURATION_OFFSET = 0f;
-    private static final float BALL_FORWARD_END_ENTER_DURATION_OFFSET = 0.125f;
+    private static final float BALL_FORWARD_END_ENTER_DURATION_OFFSET   = 0.125f;
 
     private static final float RING_FORWARD_START_ROTATE_DURATION_OFFSET = 0.125f;
-    private static final float RING_FORWARD_END_ROTATE_DURATION_OFFSET = 0.375f;
+    private static final float RING_FORWARD_END_ROTATE_DURATION_OFFSET   = 0.375f;
 
     private static final float CENTER_CIRCLE_FORWARD_START_SCALE_DURATION_OFFSET = 0.225f;
-    private static final float CENTER_CIRCLE_FORWARD_END_SCALE_DURATION_OFFSET = 0.475f;
+    private static final float CENTER_CIRCLE_FORWARD_END_SCALE_DURATION_OFFSET   = 0.475f;
 
     private static final float BALL_FORWARD_START_EXIT_DURATION_OFFSET = 0.375f;
-    private static final float BALL_FORWARD_END_EXIT_DURATION_OFFSET = 0.54f;
+    private static final float BALL_FORWARD_END_EXIT_DURATION_OFFSET   = 0.54f;
 
     private static final float RING_REVERSAL_START_ROTATE_DURATION_OFFSET = 0.5f;
-    private static final float RING_REVERSAL_END_ROTATE_DURATION_OFFSET = 0.75f;
+    private static final float RING_REVERSAL_END_ROTATE_DURATION_OFFSET   = 0.75f;
 
     private static final float BALL_REVERSAL_START_ENTER_DURATION_OFFSET = 0.6f;
-    private static final float BALL_REVERSAL_END_ENTER_DURATION_OFFSET = 0.725f;
+    private static final float BALL_REVERSAL_END_ENTER_DURATION_OFFSET   = 0.725f;
 
     private static final float CENTER_CIRCLE_REVERSAL_START_SCALE_DURATION_OFFSET = 0.675f;
-    private static final float CENTER_CIRCLE_REVERSAL_END_SCALE_DURATION_OFFSET = 0.875f;
+    private static final float CENTER_CIRCLE_REVERSAL_END_SCALE_DURATION_OFFSET   = 0.875f;
 
     private static final float BALL_REVERSAL_START_EXIT_DURATION_OFFSET = 0.875f;
-    private static final float BALL_REVERSAL_END_EXIT_DURATION_OFFSET = 1.0f;
+    private static final float BALL_REVERSAL_END_EXIT_DURATION_OFFSET   = 1.0f;
 
     private final Paint mPaint         = new Paint();
     private final RectF mTempBounds    = new RectF();

@@ -465,7 +465,7 @@ public class ListenerActivity extends BaseToolbarActivity {
     // 重力传感器辅助类
     private ScreenSensorAssist screenSensorAssist = new ScreenSensorAssist();
     // 切屏时间
-    private long cOrientationTime = 0l;
+    private long               cOrientationTime   = 0l;
 
     /**
      * 屏幕旋转监听 ( 重力传感器 )
@@ -516,11 +516,11 @@ public class ListenerActivity extends BaseToolbarActivity {
     // =
 
     // 判断是否竖屏
-    private boolean isPortrait = true;
+    private boolean                  isPortrait      = true;
     // 录制角度记录值
-    private int mRotationFlag = 90;
+    private int                      mRotationFlag   = 90;
     // 录制角度旋值
-    private int mRotationRecord = 90;
+    private int                      mRotationRecord = 90;
     // 旋转监听事件
     private OrientationEventListener mOrientationEventListener;
 

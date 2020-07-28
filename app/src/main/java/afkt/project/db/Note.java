@@ -55,7 +55,7 @@ public class Note {
     private List<NotePicture> pictures;
 
     @Transient // 数据库不创建该字段
-    private           String     tempStr;
+    private String tempStr;
 
 
     /**
@@ -188,7 +188,9 @@ public class Note {
         myDao.update(this);
     }
 
-    /** called by internal mechanisms, do not call yourself. */
+    /**
+     * called by internal mechanisms, do not call yourself.
+     */
     @Generated(hash = 799086675)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;

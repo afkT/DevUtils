@@ -22,7 +22,7 @@ public final class ToastTintUse {
     // ========
 
     private static ToastTintUtils.Style style;
-    private static Drawable iconDrawable;
+    private static Drawable             iconDrawable;
 
     /**
      * Toast 配置相关

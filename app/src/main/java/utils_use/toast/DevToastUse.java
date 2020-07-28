@@ -24,8 +24,8 @@ public final class DevToastUse {
     // = 配置 =
     // ========
 
-    private static View view = null;
-    private static int viewId = 0;
+    private static View view   = null;
+    private static int  viewId = 0;
 
     /**
      * Toast 配置相关

@@ -57,9 +57,9 @@ public final class DecodeFormat {
     // 1D 条形码
     public static final int BARCODE = 0X100;
     // 二维码
-    public static final int QRCODE = 0X200;
+    public static final int QRCODE  = 0X200;
     // 全部识别
-    public static final int ALL = 0X300;
+    public static final int ALL     = 0X300;
 
     @IntDef({BARCODE, QRCODE, ALL})
     @Retention(RetentionPolicy.SOURCE)

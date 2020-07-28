@@ -53,7 +53,7 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
         }
     };
 
-    public static final int MODE_NORMAL = 0;
+    public static final int MODE_NORMAL     = 0;
     public static final int MODE_LEAF_COUNT = 1;
 
     @IntDef({MODE_NORMAL, MODE_LEAF_COUNT})
@@ -65,27 +65,27 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
 
     private static final long ANIMATION_DURATION = 7333;
 
-    private static final int LEAF_COUNT = 28;
-    private static final int DEGREE_180 = 180;
-    private static final int DEGREE_360 = 360;
+    private static final int LEAF_COUNT          = 28;
+    private static final int DEGREE_180          = 180;
+    private static final int DEGREE_360          = 360;
     private static final int FULL_GROUP_ROTATION = (int) (5.25f * DEGREE_360);
 
-    private static final int DEFAULT_PROGRESS_COLOR = 0xfffca72e;
-    private static final int DEFAULT_PROGRESS_BGCOLOR = 0xfffcd49f;
-    private static final int DEFAULT_ELECTRIC_FAN_BGCOLOR = 0xfffccc59;
+    private static final int DEFAULT_PROGRESS_COLOR             = 0xfffca72e;
+    private static final int DEFAULT_PROGRESS_BGCOLOR           = 0xfffcd49f;
+    private static final int DEFAULT_ELECTRIC_FAN_BGCOLOR       = 0xfffccc59;
     private static final int DEFAULT_ELECTRIC_FAN_OUTLINE_COLOR = Color.WHITE;
 
-    private static final float DEFAULT_WIDTH = 182.0f;
-    private static final float DEFAULT_HEIGHT = 65.0f;
-    private static final float DEFAULT_TEXT_SIZE = 11.0f;
-    private static final float DEFAULT_STROKE_WIDTH = 2.0f;
-    private static final float DEFAULT_STROKE_INTERVAL = .2f;
-    private static final float DEFAULT_CENTER_RADIUS = 16.0f;
+    private static final float DEFAULT_WIDTH                  = 182.0f;
+    private static final float DEFAULT_HEIGHT                 = 65.0f;
+    private static final float DEFAULT_TEXT_SIZE              = 11.0f;
+    private static final float DEFAULT_STROKE_WIDTH           = 2.0f;
+    private static final float DEFAULT_STROKE_INTERVAL        = .2f;
+    private static final float DEFAULT_CENTER_RADIUS          = 16.0f;
     private static final float DEFAULT_PROGRESS_CENTER_RADIUS = 11.0f;
 
     private static final float DEFAULT_LEAF_FLY_DURATION_FACTOR = 0.1f;
 
-    private static final float LEAF_CREATE_DURATION_INTERVAL = 1.0f / LEAF_COUNT;
+    private static final float LEAF_CREATE_DURATION_INTERVAL  = 1.0f / LEAF_COUNT;
     private static final float DECELERATE_DURATION_PERCENTAGE = 0.4f;
     private static final float ACCELERATE_DURATION_PERCENTAGE = 0.6f;
 
