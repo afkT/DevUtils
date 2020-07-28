@@ -22,7 +22,6 @@ import dev.widget.R;
  *     app:dev_maxLine=""
  *     app:dev_rowTopMargin=""
  *     app:dev_viewLeftMargin=""
- *     app:dev_rowFristLeftMargin=""
  * </pre>
  */
 public class WrapView extends ViewGroup {
@@ -35,8 +34,6 @@ public class WrapView extends ViewGroup {
     private int mRowTopMargin       = 20;
     // 每个 View 之间的 Left 边距
     private int mViewLeftMargin     = 20;
-    // 每一行第一个 View Left 边距
-    private int mRowFristLeftMargin = 20;
 
     public WrapView(Context context) {
         super(context);
@@ -69,7 +66,6 @@ public class WrapView extends ViewGroup {
             mMaxLine = a.getInt(R.styleable.DevWidget_dev_maxLine, Integer.MAX_VALUE);
             mRowTopMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_rowTopMargin, 20);
             mViewLeftMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_viewLeftMargin, 20);
-            mRowFristLeftMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_rowFristLeftMargin, 20);
             a.recycle();
         }
     }
@@ -87,7 +83,7 @@ public class WrapView extends ViewGroup {
         int width = resolveSize(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec), widthMeasureSpec);
         int height = resolveSize(getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec), heightMeasureSpec);
         // 设置 View 的宽度高度
-        setMeasuredDimension(width, (isHeightWrapContent ? calc(width, mRowTopMargin, mRowFristLeftMargin, mViewLeftMargin) : height));
+        setMeasuredDimension(width, (isHeightWrapContent ? calc(width, mRowTopMargin, mViewLeftMargin) : height));
     }
 
     @Override
@@ -107,7 +103,7 @@ public class WrapView extends ViewGroup {
             int childViewWidth = child.getMeasuredWidth();
             int childViewHeight = child.getMeasuredHeight();
             // 左边距
-            int leftMargin = (drawX == 0) ? mRowFristLeftMargin : mViewLeftMargin;
+            int leftMargin = (drawX == 0) ? 0 : mViewLeftMargin;
             // 赋值处理 ( 防止 View 宽度超出剩余宽度 )
             newLine = fillWidth = (childViewWidth > width - leftMargin);
             // 宽度处理
@@ -121,7 +117,7 @@ public class WrapView extends ViewGroup {
                 // 累加行数
                 rowLine++;
                 // 如果超过了则修改边距
-                leftMargin = mRowFristLeftMargin;
+                leftMargin = 0;
             } else if (fillWidth) { // 属于铺满的, 则重置处理
                 // 表示属于换行
                 newLine = true;
@@ -152,11 +148,10 @@ public class WrapView extends ViewGroup {
      * 通过 View 宽度计算绘制所需高度
      * @param rootWidth          宽度
      * @param rowTopMargin       每一行向上的边距 ( 行间隔 )
-     * @param rowFristLeftMargin 每一行第一个 View Left 边距
      * @param viewLeftMargin     每个 View 之间的 Left 边距
      * @return 计算 View 高度
      */
-    private int calc(final int rootWidth, final int rowTopMargin, final int rowFristLeftMargin, final int viewLeftMargin) {
+    private int calc(final int rootWidth, final int rowTopMargin, final int viewLeftMargin) {
         boolean newLine = false; // 判断是否换行
         boolean fillWidth = false; // 判断是否填满宽度 (View 直接超过一行宽度 )
         int drawX = 0; // 已绘制的 X 轴距离
@@ -169,7 +164,7 @@ public class WrapView extends ViewGroup {
             int childViewWidth = child.getMeasuredWidth();
             int childViewHeight = child.getMeasuredHeight();
             // 左边距
-            int leftMargin = (drawX == 0) ? rowFristLeftMargin : viewLeftMargin;
+            int leftMargin = (drawX == 0) ? 0 : viewLeftMargin;
             // 赋值处理 ( 防止 View 宽度超出剩余宽度 )
             newLine = fillWidth = (childViewWidth > width - leftMargin);
             // 宽度处理
@@ -206,7 +201,7 @@ public class WrapView extends ViewGroup {
                 removeViewAt(childCount - 1);
             } catch (Exception e) {
             }
-            return calc(rootWidth, rowTopMargin, rowFristLeftMargin, viewLeftMargin);
+            return calc(rootWidth, rowTopMargin, viewLeftMargin);
         }
         // 保存行数
         mRowLine = (childCount > 0) ? (rowLine + 1) : 0;
@@ -289,34 +284,14 @@ public class WrapView extends ViewGroup {
     }
 
     /**
-     * 获取每一行第一个 View Left 边距
-     * @return 每一行第一个 View Left 边距
-     */
-    public int getRowFristLeftMargin() {
-        return mRowFristLeftMargin;
-    }
-
-    /**
-     * 设置每一行第一个 View Left 边距
-     * @param rowFristLeftMargin 每一行第一个 View Left 边距
-     * @return {@link WrapView}
-     */
-    public WrapView setRowFristLeftMargin(int rowFristLeftMargin) {
-        this.mRowFristLeftMargin = rowFristLeftMargin;
-        return this;
-    }
-
-    /**
      * 设置 Row View 边距
      * @param rowTopMargin       每一行向上的边距 ( 行间隔 )
      * @param viewLeftMargin     每个 View 之间的 Left 边距
-     * @param rowFristLeftMargin 每一行第一个 View Left 边距
      * @return {@link WrapView}
      */
-    public WrapView setRowViewMargin(int rowTopMargin, int viewLeftMargin, int rowFristLeftMargin) {
+    public WrapView setRowViewMargin(int rowTopMargin, int viewLeftMargin) {
         this.mRowTopMargin = rowTopMargin;
         this.mViewLeftMargin = viewLeftMargin;
-        this.mRowFristLeftMargin = rowFristLeftMargin;
         return this;
     }
 }

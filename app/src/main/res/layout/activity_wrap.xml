@@ -7,7 +7,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="20.0dp"
+        android:paddingRight="20.0dp">
 
         <dev.widget.ui.WrapView
             android:id="@+id/vid_aw_wrapview"

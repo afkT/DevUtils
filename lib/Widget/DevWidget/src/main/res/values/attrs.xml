@@ -19,7 +19,6 @@
         <attr name="dev_maxLine" format="integer" />
         <attr name="dev_rowTopMargin" format="dimension" />
         <attr name="dev_viewLeftMargin" format="dimension" />
-        <attr name="dev_rowFristLeftMargin" format="dimension" />
 
         <!-- LoadProgressBar -->
 

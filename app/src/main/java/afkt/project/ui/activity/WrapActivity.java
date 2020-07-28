@@ -14,7 +14,7 @@ import butterknife.BindView;
 import dev.temp.ChineseUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.ShapeUtils;
-import dev.utils.app.helper.ViewHelper;
+import dev.utils.app.helper.QuickHelper;
 import dev.utils.common.RandomUtils;
 import dev.widget.ui.WrapView;
 
@@ -36,19 +36,20 @@ public class WrapActivity extends BaseToolbarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // 刷新按钮
-        BaseTextView baseTextView = new BaseTextView(this);
-        ViewHelper.get().setText(baseTextView, "刷新").setBold(baseTextView)
-                .setTextColor(baseTextView, ResourceUtils.getColor(R.color.red))
-                .setTextSizeBySp(baseTextView, 15.0f)
-                .setPaddingLeft(baseTextView, 30)
-                .setPaddingRight(baseTextView, 30)
+        View view = QuickHelper.get(new BaseTextView(this))
+                .setText("刷新")
+                .setBold()
+                .setTextColor(ResourceUtils.getColor(R.color.red))
+                .setTextSizeBySp(15.0f)
+                .setPaddingLeft(30)
+                .setPaddingRight(30)
                 .setOnClicks(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         initValues();
                     }
-                }, baseTextView);
-        vid_bt_toolbar.addView(baseTextView);
+                }).getView();
+        vid_bt_toolbar.addView(view);
     }
 
     @Override
@@ -63,9 +64,7 @@ public class WrapActivity extends BaseToolbarActivity {
 //        vid_aw_wrapview.setRowTopMargin(40);
 //        // 设置每个 View 之间的 Left 边距
 //        vid_aw_wrapview.setViewLeftMargin(30);
-        // 设置每一行第一个 View Left 边距
-        vid_aw_wrapview.setRowFristLeftMargin(20);
-//        // 快捷设置三个边距
+//        // 快捷设置两个边距
 //        vid_aw_wrapview.setRowViewMargin(40, 30, 20);
 
         // 设置内边距
@@ -80,18 +79,21 @@ public class WrapActivity extends BaseToolbarActivity {
             // 随机字符串
             String text = ChineseUtils.getRandomWord(RandomUtils.getRandom(20)) + RandomUtils.getRandomLetters(RandomUtils.getRandom(10));
             String randomText = RandomUtils.getRandom(text.toCharArray(), text.length());
-
-            BaseTextView baseTextView = new BaseTextView(this);
-            ViewHelper.get().setLayoutParams(baseTextView, layoutParams)
-                    .setPadding(baseTextView, 30, 15, 30, 15)
-                    .setBackground(baseTextView, drawable)
-                    .setMaxLines(baseTextView, 1)
-                    .setEllipsize(baseTextView, TextUtils.TruncateAt.END)
-                    .setTextColor(baseTextView, Color.WHITE)
-                    .setTextSizeBySp(baseTextView, 15f)
-                    .setBold(baseTextView, RandomUtils.nextBoolean())
-                    .setText(baseTextView, randomText);
-            vid_aw_wrapview.addView(baseTextView);
+            vid_aw_wrapview.addView(createView(randomText, layoutParams, drawable));
         }
+    }
+
+    private BaseTextView createView(String text, ViewGroup.LayoutParams layoutParams, GradientDrawable drawable) {
+        return QuickHelper.get(new BaseTextView(this))
+                .setLayoutParams(layoutParams)
+                .setPadding(30, 15, 30, 15)
+                .setBackground(drawable)
+                .setMaxLines(1)
+                .setEllipsize(TextUtils.TruncateAt.END)
+                .setTextColor(Color.WHITE)
+                .setTextSizeBySp(15f)
+                .setBold(RandomUtils.nextBoolean())
+                .setText(text)
+                .getView();
     }
 }
