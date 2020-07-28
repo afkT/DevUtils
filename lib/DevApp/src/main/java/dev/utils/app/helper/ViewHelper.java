@@ -1371,7 +1371,7 @@ public final class ViewHelper {
 
     /**
      * 设置 View 透明度
-     * @param view  View
+     * @param view  {@link View}
      * @param alpha 透明度
      * @return {@link ViewHelper}
      */
@@ -1382,7 +1382,7 @@ public final class ViewHelper {
 
     /**
      * 设置 View Tag
-     * @param view   View
+     * @param view   {@link View}
      * @param object Tag
      * @return {@link ViewHelper}
      */
@@ -1584,7 +1584,7 @@ public final class ViewHelper {
 
     /**
      * 设置 View 水平方向缩放比例
-     * @param view   View
+     * @param view   {@link View}
      * @param scaleX 水平方向缩放比例
      * @return {@link ViewHelper}
      */
@@ -1595,7 +1595,7 @@ public final class ViewHelper {
 
     /**
      * 设置 View 竖直方向缩放比例
-     * @param view   View
+     * @param view   {@link View}
      * @param scaleY 竖直方向缩放比例
      * @return {@link ViewHelper}
      */
@@ -1632,7 +1632,7 @@ public final class ViewHelper {
 
     /**
      * 设置水平方向偏转量
-     * @param view   View
+     * @param view   {@link View}
      * @param pivotX 水平方向偏转量
      * @return {@link ViewHelper}
      */
@@ -1643,7 +1643,7 @@ public final class ViewHelper {
 
     /**
      * 设置竖直方向偏转量
-     * @param view   View
+     * @param view   {@link View}
      * @param pivotY 竖直方向偏转量
      * @return {@link ViewHelper}
      */
