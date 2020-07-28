@@ -14,7 +14,7 @@ import afkt.project.model.bean.ACVFileBean;
 import afkt.project.ui.widget.BaseTextView;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.SizeUtils;
-import dev.utils.app.helper.ViewHelper;
+import dev.utils.app.helper.QuickHelper;
 
 /**
  * detail: GPU ACV 文件滤镜效果适配器
@@ -23,11 +23,11 @@ import dev.utils.app.helper.ViewHelper;
 public class GPUFilterACVAdapter extends BaseAdapter {
 
     // Context
-    Context context;
+    Context           context;
     // ACV 文件集合
     List<ACVFileBean> listACVFiles;
     // 当前选中索引
-    int selectPosition = -1;
+    int               selectPosition = -1;
 
     public GPUFilterACVAdapter(Context context, List<ACVFileBean> listACVFiles) {
         this.context = context;
@@ -75,14 +75,13 @@ public class GPUFilterACVAdapter extends BaseAdapter {
         int width = SizeUtils.dipConvertPx(100f);
         Gallery.LayoutParams layoutParams = new Gallery.LayoutParams(width, Gallery.LayoutParams.MATCH_PARENT);
         // 初始化 View
-        BaseTextView baseTextView = new BaseTextView(context);
-        ViewHelper.get().setText(baseTextView, acvFileBean.acvName)
-                .setBold(baseTextView, isSelect)
-                .setTextGravity(baseTextView, Gravity.CENTER)
-                .setTextColor(baseTextView, ResourceUtils.getColor(isSelect ? R.color.red : R.color.black))
-                .setTextSizeBySp(baseTextView, isSelect ? 18.0f : 13.0f)
-                .setLayoutParams(baseTextView, layoutParams);
-
-        return baseTextView;
+        return QuickHelper.get(new BaseTextView(context))
+                .setText(acvFileBean.acvName)
+                .setBold(isSelect)
+                .setTextGravity(Gravity.CENTER)
+                .setTextColor(ResourceUtils.getColor(isSelect ? R.color.red : R.color.black))
+                .setTextSizeBySp(isSelect ? 18.0f : 13.0f)
+                .setLayoutParams(layoutParams)
+                .getView();
     }
 }

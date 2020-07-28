@@ -26,6 +26,7 @@ import dev.utils.app.ResourceUtils;
 import dev.utils.app.ShapeUtils;
 import dev.utils.app.StateListUtils;
 import dev.utils.app.ViewUtils;
+import dev.utils.app.helper.QuickHelper;
 import dev.utils.app.helper.ViewHelper;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.common.ArrayUtils;
@@ -38,35 +39,35 @@ public class UIEffectActivity extends BaseToolbarActivity {
 
     // = View =
     @BindView(R.id.vid_aue_1_0_tv)
-    BaseTextView vid_aue_1_0_tv;
+    BaseTextView         vid_aue_1_0_tv;
     @BindView(R.id.vid_aue_1_1_tv)
-    BaseTextView vid_aue_1_1_tv;
+    BaseTextView         vid_aue_1_1_tv;
     @BindView(R.id.vid_aue_2_0_tv)
-    BaseTextView vid_aue_2_0_tv;
+    BaseTextView         vid_aue_2_0_tv;
     @BindView(R.id.vid_aue_2_1_tv)
-    BaseTextView vid_aue_2_1_tv;
+    BaseTextView         vid_aue_2_1_tv;
     @BindView(R.id.vid_aue_3_0_tv)
-    BaseTextView vid_aue_3_0_tv;
+    BaseTextView         vid_aue_3_0_tv;
     @BindView(R.id.vid_aue_3_1_tv)
-    BaseTextView vid_aue_3_1_tv;
+    BaseTextView         vid_aue_3_1_tv;
     @BindView(R.id.vid_aue_4_0_btn)
-    BaseButton vid_aue_4_0_btn;
+    BaseButton           vid_aue_4_0_btn;
     @BindView(R.id.vid_aue_4_1_btn)
-    BaseButton vid_aue_4_1_btn;
+    BaseButton           vid_aue_4_1_btn;
     @BindView(R.id.vid_aue_5_0_view)
-    View vid_aue_5_0_view;
+    View                 vid_aue_5_0_view;
     @BindView(R.id.vid_aue_6_0_view)
-    View vid_aue_6_0_view;
+    View                 vid_aue_6_0_view;
     @BindView(R.id.vid_aue_7_0_scroll)
     HorizontalScrollView vid_aue_7_0_scroll;
     @BindView(R.id.vid_aue_7_0_linear)
-    LinearLayout vid_aue_7_0_linear;
+    LinearLayout         vid_aue_7_0_linear;
     @BindView(R.id.vid_aue_8_0_tab)
-    TabLayout vid_aue_8_0_tab;
+    TabLayout            vid_aue_8_0_tab;
     @BindView(R.id.vid_aue_9_0_tab)
-    TabLayout vid_aue_9_0_tab;
+    TabLayout            vid_aue_9_0_tab;
     // 当前选中的索引
-    int selectTabIndex = -1;
+    int             selectTabIndex = -1;
     // Tab Layout 辅助类
     TabLayoutAssist tabLayoutAssist;
 
@@ -136,25 +137,26 @@ public class UIEffectActivity extends BaseToolbarActivity {
         for (int i = 0, len = listTabs.size(); i < len; i++) {
             final int position = i;
             TabItem tabItem = listTabs.get(i);
-            BaseTextView textView = new BaseTextView(this);
-            textView.setText(tabItem.getTitle());
-            textView.setTextColor(ResourceUtils.getColor(R.color.black));
-            textView.setPadding(30, 30, 30, 30);
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ViewHelper.get()
-                            .setBold(ViewUtils.getChildAt(vid_aue_7_0_linear, selectTabIndex), false)
-                            .setTextColor(ViewUtils.getChildAt(vid_aue_7_0_linear, selectTabIndex), ResourceUtils.getColor(R.color.black))
-                            .setBold(ViewUtils.getChildAt(vid_aue_7_0_linear, position), true)
-                            .setTextColor(ViewUtils.getChildAt(vid_aue_7_0_linear, position), ResourceUtils.getColor(R.color.red));
-                    // 修改索引
-                    selectTabIndex = position;
-                    // 滑动 Tab 处理
-                    scrollTab(position);
-                }
-            });
-            vid_aue_7_0_linear.addView(textView);
+
+            View view = QuickHelper.get(new BaseTextView(this))
+                    .setText(tabItem.getTitle())
+                    .setTextColor(ResourceUtils.getColor(R.color.black))
+                    .setPadding(30, 30, 30, 30)
+                    .setOnClicks(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ViewHelper.get()
+                                    .setBold(ViewUtils.getChildAt(vid_aue_7_0_linear, selectTabIndex), false)
+                                    .setTextColor(ViewUtils.getChildAt(vid_aue_7_0_linear, selectTabIndex), ResourceUtils.getColor(R.color.black))
+                                    .setBold(ViewUtils.getChildAt(vid_aue_7_0_linear, position), true)
+                                    .setTextColor(ViewUtils.getChildAt(vid_aue_7_0_linear, position), ResourceUtils.getColor(R.color.red));
+                            // 修改索引
+                            selectTabIndex = position;
+                            // 滑动 Tab 处理
+                            scrollTab(position);
+                        }
+                    }).getView();
+            vid_aue_7_0_linear.addView(view);
         }
         ViewUtils.getChildAt(vid_aue_7_0_linear).performClick();
 
