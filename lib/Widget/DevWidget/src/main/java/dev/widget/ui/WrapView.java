@@ -106,6 +106,8 @@ public class WrapView extends ViewGroup {
             int leftMargin = (drawX == 0) ? 0 : mViewLeftMargin;
             // 赋值处理 ( 防止 View 宽度超出剩余宽度 )
             newLine = fillWidth = (childViewWidth > width - leftMargin);
+            // 换行了则不需要边距
+            if (newLine) leftMargin = 0;
             // 宽度处理
             if (fillWidth) childViewWidth = width - leftMargin;
             // 保存绘制距离
@@ -129,14 +131,13 @@ public class WrapView extends ViewGroup {
             }
             // 重置起始位置
             if (newLine) drawX = childViewWidth + leftMargin;
-            // 累加高度 = ( 行数 (0+) + 1) * ( view 的高度 + 每行向上的边距 )
-            calcHeight = (rowLine + 1) * (childViewHeight + mRowTopMargin) + paddingTop;
+            // 累加高度 = ( 行数 + 1) * view 的高度 + ( 行数 * 每行向上的边距 ) + 内边距
+            calcHeight = (rowLine + 1) * childViewHeight + (rowLine * mRowTopMargin) + paddingTop;
             // 防止超出整个 View 宽度
             int right = paddingLeft + drawX;
             if (right > widthSubRight) right = widthSubRight;
             // 绘制 View 位置
-            child.layout(paddingLeft + drawX - childViewWidth, calcHeight - childViewHeight, right, calcHeight);
-//            child.layout(paddingLeft + drawX - childViewWidth, calcHeight - childViewHeight, paddingLeft + drawX, calcHeight);
+            child.layout(right - childViewWidth, calcHeight - childViewHeight, right, calcHeight);
         }
     }
 
@@ -167,6 +168,8 @@ public class WrapView extends ViewGroup {
             int leftMargin = (drawX == 0) ? 0 : viewLeftMargin;
             // 赋值处理 ( 防止 View 宽度超出剩余宽度 )
             newLine = fillWidth = (childViewWidth > width - leftMargin);
+            // 换行了则不需要边距
+            if (newLine) leftMargin = 0;
             // 宽度处理
             if (fillWidth) childViewWidth = width - leftMargin;
             // 保存绘制距离
@@ -188,8 +191,8 @@ public class WrapView extends ViewGroup {
             }
             // 重置起始位置
             if (newLine) drawX = childViewWidth + leftMargin;
-            // 累加高度 = ( 行数 (0+) + 1) * ( view 的高度 + 每行向上的边距 )
-            calcHeight = (rowLine + 1) * (childViewHeight + rowTopMargin);
+            // 累加高度 = ( 行数 + 1) * view 的高度 + ( 行数 * 每行向上的边距 )
+            calcHeight = (rowLine + 1) * childViewHeight + (rowLine * rowTopMargin);
         }
         // 获取数据总数
         int childCount = getChildCount();
