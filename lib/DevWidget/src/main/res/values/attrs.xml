@@ -65,5 +65,13 @@
             <flag name="bottom" value="2" />
             <flag name="triangle" value="4" />
         </attr>
+
+        <!-- RadiusView -->
+
+        <attr name="dev_radius" format="dimension" />
+        <attr name="dev_radius_left_top" format="dimension" />
+        <attr name="dev_radius_left_bottom" format="dimension" />
+        <attr name="dev_radius_right_top" format="dimension" />
+        <attr name="dev_radius_right_bottom" format="dimension" />
     </declare-styleable>
 </resources>
