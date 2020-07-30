@@ -13,12 +13,10 @@
    - DevJava                               | Java 工具类库 ( 不依赖 android api )
    - DevOther                              | 第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用
    - DevStandard                           | 项目规范统一检测、生成替换等
+   - DevWidget                             | 自定义 View UI 库
    - Environment                           | 环境配置切换库
       - DevEnvironment                     | 环境切换可视化 UI 操作
       - DevEnvironmentBase                 | 注解类、实体类、监听事件等通用基础
       - DevEnvironmentCompiler             | Debug ( 打包 / 编译 ) 生成实现代码
       - DevEnvironmentCompilerRelease      | Release ( 打包 / 编译 ) 生成实现代码
-   - Widget                                | 部分自定义 View 功能、效果
-      - DevWidget                          | 自定义 View UI 库
-      - TempWidget                         | 临时自定义 View 编写
 ```
