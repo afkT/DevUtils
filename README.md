@@ -52,11 +52,9 @@
 
 ## Other
 
-> [DevOther](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/README.md) 第三方库封装、以及部分特殊工具类等，方便 copy 封装类使用
->
-> [Widget](https://github.com/afkT/DevUtils/blob/master/lib/Widget) 部分自定义 View 功能、效果
->
 > [DevBase](https://github.com/afkT/DevUtils/blob/master/lib/DevBase/src/main/java/dev/base) Base ( Activity、Fragment )、MVP 基类等
+>
+> [DevOther](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/README.md) 第三方库封装、以及部分特殊工具类等，方便 copy 封装类使用
 >
 > [DevStandard](https://github.com/afkT/DevUtils/blob/master/lib/DevStandard/src/main/java/dev/standard) 项目规范统一检测、生成替换等
 >

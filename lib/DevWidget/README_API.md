@@ -506,6 +506,4 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 | setRowTopMargin | 设置每一行向上的边距 ( 行间隔 ) |
 | getViewLeftMargin | 获取每个 View 之间的 Left 边距 |
 | setViewLeftMargin | 设置每个 View 之间的 Left 边距 |
-| getRowFristLeftMargin | 获取每一行第一个 View Left 边距 |
-| setRowFristLeftMargin | 设置每一行第一个 View Left 边距 |
 | setRowViewMargin | 设置 Row View 边距 |
