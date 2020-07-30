@@ -26,9 +26,9 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 
 - 该库依赖 [DevApp](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md) 开发，需引用 DevApp 库
 
-- [Preview README](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/README.md)
+- [Preview README](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README.md)
 
-- [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/CHANGELOG.md)
+- [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/CHANGELOG.md)
 
 
 ## API
@@ -54,28 +54,28 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 ## <span id="devwidgetadjust">**`dev.widget.adjust`**</span>
 
 
-* **自动调节高度 GridView ->** [AdjustHeightGridView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/adjust/AdjustHeightGridView.java)
+* **自动调节高度 GridView ->** [AdjustHeightGridView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/adjust/AdjustHeightGridView.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | onMeasure | onMeasure |
 
 
-* **自动调节高度 ListView ->** [AdjustHeightListView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/adjust/AdjustHeightListView.java)
+* **自动调节高度 ListView ->** [AdjustHeightListView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/adjust/AdjustHeightListView.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | onMeasure | onMeasure |
 
 
-* **自动调节高度 RecyclerView ->** [AdjustHeightRecyclerView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/adjust/AdjustHeightRecyclerView.java)
+* **自动调节高度 RecyclerView ->** [AdjustHeightRecyclerView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/adjust/AdjustHeightRecyclerView.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | onMeasure | onMeasure |
 
 
-* **自动调节高度 WebView ->** [AdjustHeightWebView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/adjust/AdjustHeightWebView.java)
+* **自动调节高度 WebView ->** [AdjustHeightWebView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/adjust/AdjustHeightWebView.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -85,7 +85,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 ## <span id="devwidgetassist">**`dev.widget.assist`**</span>
 
 
-* **View 填充辅助类 ->** [ViewAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/assist/ViewAssist.java)
+* **View 填充辅助类 ->** [ViewAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/assist/ViewAssist.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -116,7 +116,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 ## <span id="devwidgetcustom">**`dev.widget.custom`**</span>
 
 
-* **自定义 Gallery 滑动控制 ->** [CustomGallery.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomGallery.java)
+* **自定义 Gallery 滑动控制 ->** [CustomGallery.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/custom/CustomGallery.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -133,7 +133,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 | toggleSlide | 切换滑动控制状态 |
 
 
-* **自定义 HorizontalScrollView 滑动监听、滑动控制 ->** [CustomHorizontalScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomHorizontalScrollView.java)
+* **自定义 HorizontalScrollView 滑动监听、滑动控制 ->** [CustomHorizontalScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/custom/CustomHorizontalScrollView.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -152,7 +152,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 | setScrollCallBack | 设置滑动监听回调 |
 
 
-* **自定义 NestedScrollView 滑动监听、滑动控制 ->** [CustomNestedScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomNestedScrollView.java)
+* **自定义 NestedScrollView 滑动监听、滑动控制 ->** [CustomNestedScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/custom/CustomNestedScrollView.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -171,7 +171,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 | setScrollCallBack | 设置滑动监听回调 |
 
 
-* **自定义 RecyclerView 滑动监听、滑动控制 ->** [CustomRecyclerView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomRecyclerView.java)
+* **自定义 RecyclerView 滑动监听、滑动控制 ->** [CustomRecyclerView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/custom/CustomRecyclerView.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -191,7 +191,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 | onScrollChanged | 滑动改变通知 |
 
 
-* **自定义 ScrollView 滑动监听、滑动控制 ->** [CustomScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomScrollView.java)
+* **自定义 ScrollView 滑动监听、滑动控制 ->** [CustomScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/custom/CustomScrollView.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -210,7 +210,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 | setScrollCallBack | 设置滑动监听回调 |
 
 
-* **自定义 ViewPager 滑动监听、滑动控制 ->** [CustomViewPager.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomViewPager.java)
+* **自定义 ViewPager 滑动监听、滑动控制 ->** [CustomViewPager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/custom/CustomViewPager.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -229,7 +229,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 | onSlideDirection | 滑动方向 |
 
 
-* **自定义 WebView 滑动监听、滑动控制 ->** [CustomWebView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/custom/CustomWebView.java)
+* **自定义 WebView 滑动监听、滑动控制 ->** [CustomWebView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/custom/CustomWebView.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -250,7 +250,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 ## <span id="devwidgetfunction">**`dev.widget.function`**</span>
 
 
-* **自定义 FrameLayout 设置最大、最小宽高 ->** [LimitLayout.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/function/LimitLayout.java)
+* **自定义 FrameLayout 设置最大、最小宽高 ->** [LimitLayout.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/function/LimitLayout.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -261,7 +261,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 | setMaxHeight | 设置 View 最大显示高度 |
 
 
-* **TextView 换行监听 ->** [LineTextView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/function/LineTextView.java)
+* **TextView 换行监听 ->** [LineTextView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/function/LineTextView.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -271,7 +271,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 | onNewLine | 换行触发 |
 
 
-* **自定义 EditText 右边 Icon ->** [RightIconEditText.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/function/RightIconEditText.java)
+* **自定义 EditText 右边 Icon ->** [RightIconEditText.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/function/RightIconEditText.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -287,7 +287,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 | setTextWatcher | 设置输入监听回调 |
 
 
-* **自定义签名 View ->** [SignView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/function/SignView.java)
+* **自定义签名 View ->** [SignView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/function/SignView.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -302,7 +302,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 | setDrawCallBack | 设置绘制回调事件 |
 
 
-* **状态布局 ->** [StateLayout.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/function/StateLayout.java)
+* **状态布局 ->** [StateLayout.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/function/StateLayout.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -331,7 +331,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 ## <span id="devwidgetui">**`dev.widget.ui`**</span>
 
 
-* **自定义角标 View ->** [CornerLabelView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/CornerLabelView.java)
+* **自定义角标 View ->** [CornerLabelView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/CornerLabelView.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -365,7 +365,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 | isTextBold | 获取字体是否加粗 |
 
 
-* **自定义点赞效果 View ->** [FlowLikeView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/FlowLikeView.java)
+* **自定义点赞效果 View ->** [FlowLikeView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/FlowLikeView.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -383,7 +383,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 | setAnimDuration | 设置点赞动画执行时间 |
 
 
-* **自定义加载 ProgressBar 样式 View ->** [LoadProgressBar.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/LoadProgressBar.java)
+* **自定义加载 ProgressBar 样式 View ->** [LoadProgressBar.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/LoadProgressBar.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -411,7 +411,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 | setProgressStyle | 设置进度条样式 |
 
 
-* **自定义扫描 ( 二维码 / AR ) 效果形状 View ->** [ScanShapeView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/ScanShapeView.java)
+* **自定义扫描 ( 二维码 / AR ) 效果形状 View ->** [ScanShapeView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/ScanShapeView.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -492,7 +492,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 | getRadius | getRadius |
 
 
-* **换行 View ->** [WrapView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/WrapView.java)
+* **换行 View ->** [WrapView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/WrapView.java)
 
 | 方法 | 注释 |
 | :- | :- |

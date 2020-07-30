@@ -43,11 +43,11 @@
 
 ### DevWidget - 自定义 View UI 库
 
-- [README - API](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/README_API.md)
+- [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README_API.md)
 
-- [Preview README](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget)
+- [Preview README](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget)
 
-- [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/CHANGELOG.md)
+- [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/CHANGELOG.md)
 
 
 ## Other

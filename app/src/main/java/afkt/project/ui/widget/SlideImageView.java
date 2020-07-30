@@ -1,4 +1,4 @@
-package dev.widget;
+package afkt.project.ui.widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,7 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 
 /**
- * detail: 滑动 ImageView ( 未调整 )
+ * detail: 滑动 ImageView ( 未优化调整 )
  * @author Ttt
  * https://blog.csdn.net/qq_18833399/article/details/60958658
  * https://blog.csdn.net/csdnwangzhan/article/details/51597142

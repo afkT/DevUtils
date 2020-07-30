@@ -17,9 +17,9 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 
 - 该库依赖 [DevApp](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md) 开发，需引用 DevApp 库
 
-- [README - API](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/README_API.md)
+- [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README_API.md)
 
-- [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/CHANGELOG.md)
+- [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/CHANGELOG.md)
 
 
 ## Preview
@@ -48,7 +48,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 
 ## Attribute Config
 
-### <span id="LoadProgressBar">**`自定义加载 ProgressBar 样式 View`** [LoadProgressBar.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/LoadProgressBar.java)</span>
+### <span id="LoadProgressBar">**`自定义加载 ProgressBar 样式 View`** [LoadProgressBar.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/LoadProgressBar.java)</span>
 
 ```java
 // 内外圆环 + 数字 + 无扇形
@@ -117,7 +117,7 @@ app:dev_progressStyle=""
 ```
 
 
-### <span id="ScanShapeView">**`自定义扫描 ( 二维码 / AR ) 效果形状 View`** [ScanShapeView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/ScanShapeView.java)</span>
+### <span id="ScanShapeView">**`自定义扫描 ( 二维码 / AR ) 效果形状 View`** [ScanShapeView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/ScanShapeView.java)</span>
 
 ```java
 /**
@@ -288,7 +288,7 @@ public static void refShape(ScanShapeView scanView, ScanShapeView.Shape scanShap
 }
 ```
 
-### <span id="FlowLikeView">**`自定义点赞效果 View`** [FlowLikeView.java](https://github.com/afkT/DevUtils/blob/master/lib/Widget/DevWidget/src/main/java/dev/widget/ui/FlowLikeView.java)</span>
+### <span id="FlowLikeView">**`自定义点赞效果 View`** [FlowLikeView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/FlowLikeView.java)</span>
 
 ```java
 app:dev_animDuration="2000"
