@@ -557,9 +557,9 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         public abstract void setMediaConfig(MediaPlayer mediaPlayer) throws Exception;
     }
 
-    // ================
-    // = get/set 方法 =
-    // ================
+    // ===========
+    // = get/set =
+    // ===========
 
     /**
      * 判断 MediaPlayer 是否为 null

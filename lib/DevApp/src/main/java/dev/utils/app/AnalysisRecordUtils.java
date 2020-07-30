@@ -481,9 +481,9 @@ public final class AnalysisRecordUtils {
             return new FileInfo(storagePath, folderName, fileName, fileFunction, fileIntervalTime, isHandler);
         }
 
-        // ================
-        // = get/set 方法 =
-        // ================
+        // ===========
+        // = get/set =
+        // ===========
 
         /**
          * 获取存储路径
