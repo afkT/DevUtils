@@ -97,13 +97,15 @@ public class WrapView extends ViewGroup {
         int calcHeight = 0; // 计算累加的高度
         int width = getWidth() - (paddingLeft + getPaddingRight()); // 宽度减去左右边距
         int widthSubRight = getWidth() - getPaddingRight(); // 宽度减去右边距
+        int rowTopMargin = mRowTopMargin;
+        int viewLeftMargin = mViewLeftMargin;
         // 循环所有子 View
         for (int i = 0, size = getChildCount(); i < size; i++) {
             final View child = this.getChildAt(i);
             int childViewWidth = child.getMeasuredWidth();
             int childViewHeight = child.getMeasuredHeight();
             // 左边距
-            int leftMargin = (drawX == 0) ? 0 : mViewLeftMargin;
+            int leftMargin = (drawX == 0) ? 0 : viewLeftMargin;
             // 赋值处理 ( 防止 View 宽度超出剩余宽度 )
             newLine = fillWidth = (childViewWidth > width - leftMargin);
             // 换行了则不需要边距
@@ -132,7 +134,7 @@ public class WrapView extends ViewGroup {
             // 重置起始位置
             if (newLine) drawX = childViewWidth + leftMargin;
             // 累加高度 = ( 行数 + 1) * view 的高度 + ( 行数 * 每行向上的边距 ) + 内边距
-            calcHeight = (rowLine + 1) * childViewHeight + (rowLine * mRowTopMargin) + paddingTop;
+            calcHeight = (rowLine + 1) * childViewHeight + (rowLine * rowTopMargin) + paddingTop;
             // 防止超出整个 View 宽度
             int right = paddingLeft + drawX;
             if (right > widthSubRight) right = widthSubRight;
@@ -180,6 +182,8 @@ public class WrapView extends ViewGroup {
                 newLine = true;
                 // 累加行数
                 rowLine++;
+                // 如果超过了则修改边距
+                leftMargin = 0;
             } else if (fillWidth) { // 属于铺满的, 则重置处理
                 // 表示属于换行
                 newLine = true;
