@@ -92,6 +92,7 @@ public class RadiusView extends FrameLayout {
      */
     public RadiusView setRadius(float radius) {
         mRadiusUtils.setRadius(radius);
+        postInvalidate();
         return this;
     }
 
@@ -102,6 +103,7 @@ public class RadiusView extends FrameLayout {
      */
     public RadiusView setRadiusLeftTop(float radiusLeftTop) {
         mRadiusUtils.setRadiusLeftTop(radiusLeftTop);
+        postInvalidate();
         return this;
     }
 
@@ -112,6 +114,7 @@ public class RadiusView extends FrameLayout {
      */
     public RadiusView setRadiusLeftBottom(float radiusLeftBottom) {
         mRadiusUtils.setRadiusLeftBottom(radiusLeftBottom);
+        postInvalidate();
         return this;
     }
 
@@ -122,6 +125,7 @@ public class RadiusView extends FrameLayout {
      */
     public RadiusView setRadiusRightTop(float radiusRightTop) {
         mRadiusUtils.setRadiusRightTop(radiusRightTop);
+        postInvalidate();
         return this;
     }
 
@@ -132,6 +136,7 @@ public class RadiusView extends FrameLayout {
      */
     public RadiusView setRadiusRightBottom(float radiusRightBottom) {
         mRadiusUtils.setRadiusRightBottom(radiusRightBottom);
+        postInvalidate();
         return this;
     }
 
@@ -144,6 +149,7 @@ public class RadiusView extends FrameLayout {
      */
     public RadiusView setRadiusLeft(int radiusLeft) {
         mRadiusUtils.setRadiusLeft(radiusLeft);
+        postInvalidate();
         return this;
     }
 
@@ -154,6 +160,7 @@ public class RadiusView extends FrameLayout {
      */
     public RadiusView setRadiusRight(int radiusRight) {
         mRadiusUtils.setRadiusRight(radiusRight);
+        postInvalidate();
         return this;
     }
 
@@ -164,6 +171,7 @@ public class RadiusView extends FrameLayout {
      */
     public RadiusView setRadiusTop(int radiusTop) {
         mRadiusUtils.setRadiusTop(radiusTop);
+        postInvalidate();
         return this;
     }
 
@@ -174,6 +182,7 @@ public class RadiusView extends FrameLayout {
      */
     public RadiusView setRadiusBottom(int radiusBottom) {
         mRadiusUtils.setRadiusBottom(radiusBottom);
+        postInvalidate();
         return this;
     }
 
