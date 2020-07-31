@@ -84,4 +84,138 @@ public class RadiusView extends FrameLayout {
     // ===========
     // = get/set =
     // ===========
+
+    /**
+     * 设置圆角值
+     * @param radius 圆角值
+     * @return {@link RadiusView}
+     */
+    public RadiusView setRadius(float radius) {
+        mRadiusUtils.setRadius(radius);
+        return this;
+    }
+
+    /**
+     * 设置左上圆角值
+     * @param radiusLeftTop 左上圆角值
+     * @return {@link RadiusView}
+     */
+    public RadiusView setRadiusLeftTop(float radiusLeftTop) {
+        mRadiusUtils.setRadiusLeftTop(radiusLeftTop);
+        return this;
+    }
+
+    /**
+     * 设置左下圆角值
+     * @param radiusLeftBottom 左下圆角值
+     * @return {@link RadiusView}
+     */
+    public RadiusView setRadiusLeftBottom(float radiusLeftBottom) {
+        mRadiusUtils.setRadiusLeftBottom(radiusLeftBottom);
+        return this;
+    }
+
+    /**
+     * 设置右上圆角值
+     * @param radiusRightTop 右上圆角值
+     * @return {@link RadiusView}
+     */
+    public RadiusView setRadiusRightTop(float radiusRightTop) {
+        mRadiusUtils.setRadiusRightTop(radiusRightTop);
+        return this;
+    }
+
+    /**
+     * 设置右下圆角值
+     * @param radiusRightBottom 右下圆角值
+     * @return {@link RadiusView}
+     */
+    public RadiusView setRadiusRightBottom(float radiusRightBottom) {
+        mRadiusUtils.setRadiusRightBottom(radiusRightBottom);
+        return this;
+    }
+
+    // =
+
+    /**
+     * 设置左上、左下圆角值
+     * @param radiusLeft 左边圆角值
+     * @return {@link RadiusView}
+     */
+    public RadiusView setRadiusLeft(int radiusLeft) {
+        mRadiusUtils.setRadiusLeft(radiusLeft);
+        return this;
+    }
+
+    /**
+     * 设置右上、右下圆角值
+     * @param radiusRight 右边圆角值
+     * @return {@link RadiusView}
+     */
+    public RadiusView setRadiusRight(int radiusRight) {
+        mRadiusUtils.setRadiusRight(radiusRight);
+        return this;
+    }
+
+    /**
+     * 设置左上、右上圆角值
+     * @param radiusTop 上边圆角值
+     * @return {@link RadiusView}
+     */
+    public RadiusView setRadiusTop(int radiusTop) {
+        mRadiusUtils.setRadiusTop(radiusTop);
+        return this;
+    }
+
+    /**
+     * 设置左下、右下圆角值
+     * @param radiusBottom 下边圆角值
+     * @return {@link RadiusView}
+     */
+    public RadiusView setRadiusBottom(int radiusBottom) {
+        mRadiusUtils.setRadiusBottom(radiusBottom);
+        return this;
+    }
+
+    // =
+
+    /**
+     * 获取圆角值
+     * @return 圆角值
+     */
+    public float getRadius() {
+        return mRadiusUtils.getRadius();
+    }
+
+    /**
+     * 获取左上圆角值
+     * @return 左上圆角值
+     */
+    public float getRadiusLeftTop() {
+        return mRadiusUtils.getRadiusLeftTop();
+    }
+
+    /**
+     * 获取左下圆角值
+     * @return 左下圆角值
+     */
+    public float getRadiusLeftBottom() {
+        return mRadiusUtils.getRadiusLeftBottom();
+    }
+
+    /**
+     * 获取右上圆角值
+     * @return 右上圆角值
+     */
+    public float getRadiusRightTop() {
+        return mRadiusUtils.getRadiusRightTop();
+    }
+
+    /**
+     * 获取右下圆角值
+     * @return 右下圆角值
+     */
+    public float getRadiusRightBottom() {
+        return mRadiusUtils.getRadiusRightBottom();
+    }
 }
