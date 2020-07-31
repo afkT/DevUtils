@@ -342,6 +342,9 @@ public class ButtonValue {
     // startActivityForResult CallBack
     public static final int BTN_ACTIVITY_RESULT_CALLBACK = MODULE_OTHER + 1300;
 
+    // 添加联系人
+    public static final int BTN_ADD_CONTACT = MODULE_OTHER + 1400;
+
     // ===================
     // = DevWidget UI 库 =
     // ===================

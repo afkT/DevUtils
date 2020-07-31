@@ -188,6 +188,7 @@ public class ButtonList {
         lists.add(new ButtonValue(BTN_PATH, "路径信息"));
         lists.add(new ButtonValue(BTN_WEBVIEW, "WebView 辅助类"));
         lists.add(new ButtonValue(BTN_ACTIVITY_RESULT_CALLBACK, "startActivityForResult CallBack"));
+        lists.add(new ButtonValue(BTN_ADD_CONTACT, "添加联系人"));
         return lists;
     }
 
