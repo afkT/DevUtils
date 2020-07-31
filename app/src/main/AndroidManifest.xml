@@ -19,9 +19,9 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <!-- 获取网络状态 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- 这个权限用于进行网络定位 -->
+    <!-- 网络定位权限 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- 这个权限用于访问 GPS 定位 -->
+    <!-- GPS 定位权限 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 摄像头权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
@@ -36,6 +36,9 @@
     <!-- 快捷方式创建、卸载权限 -->
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+    <!-- 通讯录读写权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <!-- 读取设置 -->
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="com.android.launcher2.permission.READ_SETTINGS" />
