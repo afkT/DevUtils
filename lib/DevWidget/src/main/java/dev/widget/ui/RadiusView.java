@@ -63,21 +63,25 @@ public class RadiusView extends FrameLayout {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        super.draw(canvas);
+    public void draw(Canvas canvas) {
         canvas.save();
         canvas.clipPath(mRadiusUtils.getPath());
+        super.draw(canvas);
         canvas.restore();
     }
 
     @Override
-    public Parcelable onSaveInstanceState() {
+    protected Parcelable onSaveInstanceState() {
         return mRadiusUtils.onSaveInstanceState(super.onSaveInstanceState());
     }
 
     @Override
-    public void onRestoreInstanceState(Parcelable state) {
+    protected void onRestoreInstanceState(Parcelable state) {
         super.onRestoreInstanceState(mRadiusUtils.onRestoreInstanceState(state));
         mRadiusUtils.onSizeChanged(getWidth(), getHeight());
     }
+
+    // ===========
+    // = get/set =
+    // ===========
 }

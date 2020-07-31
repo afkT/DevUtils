@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dev.widget.custom.CustomNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,8 +24,8 @@
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
                 android:stateListAnimator="@drawable/touch"
-                card_view:cardCornerRadius="10.0dp"
-                card_view:cardElevation="10.0dp"
+                app:cardCornerRadius="10.0dp"
+                app:cardElevation="10.0dp"
                 tools:targetApi="lollipop">
 
                 <afkt.project.ui.widget.BaseImageView
@@ -87,8 +86,8 @@
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
                 android:stateListAnimator="@drawable/touch"
-                card_view:cardCornerRadius="10.0dp"
-                card_view:cardElevation="10.0dp"
+                app:cardCornerRadius="10.0dp"
+                app:cardElevation="10.0dp"
                 tools:targetApi="lollipop">
 
                 <afkt.project.ui.widget.BaseImageView
@@ -141,8 +140,8 @@
             android:clickable="true"
             android:foreground="?attr/selectableItemBackground"
             android:stateListAnimator="@drawable/touch"
-            card_view:cardCornerRadius="10.0dp"
-            card_view:cardElevation="10.0dp"
+            app:cardCornerRadius="10.0dp"
+            app:cardElevation="10.0dp"
             tools:targetApi="lollipop">
 
             <afkt.project.ui.widget.BaseImageView
