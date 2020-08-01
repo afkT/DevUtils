@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dev.widget.custom.CustomNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none">
@@ -10,11 +11,112 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <afkt.project.ui.widget.BaseTextView
+            style="@style/AppTheme.Base_TextView"
+            android:layout_marginTop="15.0dp"
+            android:text="循环添加联系人"
+            android:textColor="@color/grey"
+            android:textStyle="bold" />
+
+        <View
+            style="@style/AppTheme.Base_Line_Vertical"
+            android:layout_marginTop="15.0dp"
+            android:background="@color/gray" />
+
+        <afkt.project.ui.widget.BaseTextView
+            style="@style/AppTheme.Base_TextView"
+            android:layout_marginTop="15.0dp"
+            android:text="例 :" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15.0dp">
+
+            <afkt.project.ui.widget.BaseTextView
+                style="@style/AppTheme.Base_TextView"
+                android:layout_marginRight="150.0dp"
+                android:gravity="left"
+                android:text="137" />
+
+            <afkt.project.ui.widget.BaseTextView
+                style="@style/AppTheme.Base_TextView"
+                android:layout_marginLeft="150.0dp"
+                android:gravity="right"
+                android:text="5678" />
+
+            <afkt.project.ui.widget.BaseTextView
+                style="@style/AppTheme.Base_TextView"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="20.0dp"
+                android:gravity="center"
+                android:text="0000 - 9999" />
+        </FrameLayout>
+
+        <View
+            style="@style/AppTheme.Base_Line_Vertical"
+            android:layout_marginTop="15.0dp"
+            android:background="@color/gray" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15.0dp">
+
+            <afkt.project.ui.widget.BaseEditText
+                android:id="@+id/vid_aac_start_edit"
+                android:layout_width="120.0dp"
+                android:layout_height="40.0dp"
+                android:layout_marginRight="150.0dp"
+                android:background="@drawable/shape_border_image"
+                android:gravity="center"
+                android:hint="137"
+                android:inputType="number"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/color_33"
+                android:textColorHint="@color/color_99"
+                android:textSize="15.0sp" />
+
+            <afkt.project.ui.widget.BaseEditText
+                android:id="@+id/vid_aac_end_edit"
+                android:layout_width="120.0dp"
+                android:layout_height="40.0dp"
+                android:layout_marginLeft="150.0dp"
+                android:background="@drawable/shape_border_image"
+                android:gravity="center"
+                android:hint="5678"
+                android:inputType="number"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/color_33"
+                android:textColorHint="@color/color_99"
+                android:textSize="15.0sp" />
+        </FrameLayout>
+
+        <View
+            style="@style/AppTheme.Base_Line_Vertical"
+            android:layout_marginTop="15.0dp"
+            android:background="@color/gray" />
+
         <afkt.project.ui.widget.BaseButton
             android:id="@+id/vid_aac_add_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="添加联系人" />
+
+        <afkt.project.ui.widget.BaseTextView
+            android:id="@+id/vid_aac_tips_tv"
+            style="@style/AppTheme.Base_TextView"
+            android:layout_marginTop="20.0dp"
+            android:gravity="left"
+            android:text="需创建 xx 条数据, 已创建 xx 条"
+            android:visibility="gone"
+            tools:visibility="visible" />
     </LinearLayout>
 </dev.widget.custom.CustomNestedScrollView>
