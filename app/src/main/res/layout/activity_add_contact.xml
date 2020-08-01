@@ -115,8 +115,8 @@
             style="@style/AppTheme.Base_TextView"
             android:layout_marginTop="20.0dp"
             android:gravity="left"
-            android:text="需创建 xx 条数据, 已创建 xx 条"
             android:visibility="gone"
+            tools:text="需创建 xx 条数据, 已创建 xx 条"
             tools:visibility="visible" />
     </LinearLayout>
 </dev.widget.custom.CustomNestedScrollView>
