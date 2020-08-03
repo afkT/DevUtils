@@ -498,13 +498,7 @@ public final class StringUtils {
      * @return 指定数量的空格字符串
      */
     public static String appendSpace(final int number) {
-        StringBuilder builder = new StringBuilder();
-        if (number > 0) {
-            for (int i = 0; i < number; i++) {
-                builder.append(" ");
-            }
-        }
-        return builder.toString();
+        return forString(number, " ");
     }
 
     /**
@@ -513,13 +507,7 @@ public final class StringUtils {
      * @return 指定数量的 Tab 字符串
      */
     public static String appendTab(final int number) {
-        StringBuilder builder = new StringBuilder();
-        if (number > 0) {
-            for (int i = 0; i < number; i++) {
-                builder.append("\t");
-            }
-        }
-        return builder.toString();
+        return forString(number, "\t");
     }
 
     /**
@@ -528,10 +516,20 @@ public final class StringUtils {
      * @return 指定数量的换行字符串
      */
     public static String appendLine(final int number) {
+        return forString(number, NEW_LINE_STR);
+    }
+
+    /**
+     * 循环追加字符串
+     * @param number 空格数量
+     * @param str    待追加字符串
+     * @return 指定数量的字符串
+     */
+    public static String forString(final int number, final String str) {
         StringBuilder builder = new StringBuilder();
         if (number > 0) {
             for (int i = 0; i < number; i++) {
-                builder.append(NEW_LINE_STR);
+                builder.append(str);
             }
         }
         return builder.toString();

@@ -274,6 +274,24 @@ public final class RandomUtils {
     }
 
     /**
+     * 获取 String[] 内的随机数
+     * @param strings 随机的数据源
+     * @param length  需要最终长度
+     * @return 随机字符串
+     */
+    public static String getRandom(final String[] strings, final int length) {
+        if (length > 0 && strings != null && strings.length != 0) {
+            StringBuilder builder = new StringBuilder(length);
+            Random random = new Random();
+            for (int i = 0; i < length; i++) {
+                builder.append(strings[random.nextInt(strings.length)]);
+            }
+            return builder.toString();
+        }
+        return null;
+    }
+
+    /**
      * 获取 0 - 最大随机数之间的随机数
      * @param max 最大随机数
      * @return 随机介于 [0, max) 的区间值
