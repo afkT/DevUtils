@@ -12,7 +12,6 @@
          - subscriber                                 | 请求响应处理
    - receiver                                         | BroadcastReceiver 监听相关
    - service                                          | Service 相关
-   - temp                                             | 临时快捷调用工具类
 ```
 
 
@@ -33,7 +32,6 @@
          - [subscriber](#devotherretrofitsubscriber)  | 请求响应处理
    - [receiver](#devreceiver)                         | BroadcastReceiver 监听相关
    - [service](#devservice)                           | Service 相关
-   - [temp](#devtemp)                                 | 临时快捷调用工具类
 
 
 
@@ -634,13 +632,3 @@
 | setNotificationListener | 设置通知栏监听事件 |
 | onServiceCreated | 服务创建通知 |
 | onServiceDestroy | 服务销毁通知 |
-
-
-## <span id="devtemp">**`dev.temp`**</span>
-
-
-* **随机生成汉字工具类 ->** [ChineseUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/temp/ChineseUtils.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getRandomWord | 获取随机汉字 |

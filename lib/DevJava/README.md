@@ -116,6 +116,15 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | adjustDouble | 获取自己想要的数据格式 |
 
 
+* **中文工具类 ->** [ChineseUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/ChineseUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| randomWord | 随机生成汉字 |
+| randomName | 随机生成名字 |
+| numberToCHN | 数字转中文数值 |
+
+
 * **类 (Class) 工具类 ->** [ClassUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/ClassUtils.java)
 
 | 方法 | 注释 |
@@ -811,6 +820,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | appendSpace | 追加空格 |
 | appendTab | 追加 Tab |
 | appendLine | 追加换行 |
+| forString | 循环追加字符串 |
 | colonSplit | 冒号分割处理 |
 | toCheckValue | 检查字符串 |
 | toCheckValues | 检查字符串 - 多个值 |

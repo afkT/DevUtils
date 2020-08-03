@@ -17,6 +17,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
       - custom                                        | 自定义 View
       - function                                      | 需求功能 View
       - ui                                            | UI View
+      - utils                                         | 工具类目录
 ```
 
 
@@ -41,6 +42,7 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
       - [custom](#devwidgetcustom)                    | 自定义 View
       - [function](#devwidgetfunction)                | 需求功能 View
       - [ui](#devwidgetui)                            | UI View
+      - [utils](#devwidgetutils)                      | 工具类目录
 
 
 
@@ -411,6 +413,30 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 | setProgressStyle | 设置进度条样式 |
 
 
+* **自定义圆角 View ->** [RadiusView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/RadiusView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onSizeChanged | onSizeChanged |
+| draw | draw |
+| onSaveInstanceState | onSaveInstanceState |
+| onRestoreInstanceState | onRestoreInstanceState |
+| setRadius | 设置圆角值 |
+| setRadiusLeftTop | 设置左上圆角值 |
+| setRadiusLeftBottom | 设置左下圆角值 |
+| setRadiusRightTop | 设置右上圆角值 |
+| setRadiusRightBottom | 设置右下圆角值 |
+| setRadiusLeft | 设置左上、左下圆角值 |
+| setRadiusRight | 设置右上、右下圆角值 |
+| setRadiusTop | 设置左上、右上圆角值 |
+| setRadiusBottom | 设置左下、右下圆角值 |
+| getRadius | 获取圆角值 |
+| getRadiusLeftTop | 获取左上圆角值 |
+| getRadiusLeftBottom | 获取左下圆角值 |
+| getRadiusRightTop | 获取右上圆角值 |
+| getRadiusRightBottom | 获取右下圆角值 |
+
+
 * **自定义扫描 ( 二维码 / AR ) 效果形状 View ->** [ScanShapeView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/ScanShapeView.java)
 
 | 方法 | 注释 |
@@ -507,3 +533,30 @@ implementation 'com.afkt:DevWidgetX:1.0.2'
 | getViewLeftMargin | 获取每个 View 之间的 Left 边距 |
 | setViewLeftMargin | 设置每个 View 之间的 Left 边距 |
 | setRowViewMargin | 设置 Row View 边距 |
+
+
+## <span id="devwidgetutils">**`dev.widget.utils`**</span>
+
+
+* **RadiusView 圆角处理工具类 ->** [RadiusUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/utils/RadiusUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onSizeChanged | View 宽高改变时调用 |
+| getPath | 获取绘制路径 |
+| setRadius | 设置圆角值 |
+| setRadiusLeftTop | 设置左上圆角值 |
+| setRadiusLeftBottom | 设置左下圆角值 |
+| setRadiusRightTop | 设置右上圆角值 |
+| setRadiusRightBottom | 设置右下圆角值 |
+| setRadiusLeft | 设置左上、左下圆角值 |
+| setRadiusRight | 设置右上、右下圆角值 |
+| setRadiusTop | 设置左上、右上圆角值 |
+| setRadiusBottom | 设置左下、右下圆角值 |
+| getRadius | 获取圆角值 |
+| getRadiusLeftTop | 获取左上圆角值 |
+| getRadiusLeftBottom | 获取左下圆角值 |
+| getRadiusRightTop | 获取右上圆角值 |
+| getRadiusRightBottom | 获取右下圆角值 |
+| onSaveInstanceState | onSaveInstanceState |
+| onRestoreInstanceState | onRestoreInstanceState |
