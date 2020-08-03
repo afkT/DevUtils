@@ -1,6 +1,6 @@
 package afkt.project.model.bean;
 
-import dev.temp.ChineseUtils;
+import dev.utils.common.ChineseUtils;
 import dev.utils.common.RandomUtils;
 
 /**

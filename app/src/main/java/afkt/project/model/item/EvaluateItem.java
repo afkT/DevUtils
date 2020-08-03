@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import afkt.project.model.bean.CommodityEvaluateBean;
-import dev.temp.ChineseUtils;
+import dev.utils.common.ChineseUtils;
 import dev.utils.common.RandomUtils;
 
 /**

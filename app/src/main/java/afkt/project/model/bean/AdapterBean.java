@@ -3,7 +3,7 @@ package afkt.project.model.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.temp.ChineseUtils;
+import dev.utils.common.ChineseUtils;
 import dev.utils.common.RandomUtils;
 
 /**

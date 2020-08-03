@@ -15,10 +15,10 @@ import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.model.bean.ItemStickyBean;
 import afkt.project.ui.adapter.ItemStickyAdapter;
 import butterknife.BindView;
-import dev.temp.ChineseUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.SizeUtils;
 import dev.utils.app.helper.ViewHelper;
+import dev.utils.common.ChineseUtils;
 import dev.utils.common.DateUtils;
 import dev.utils.common.RandomUtils;
 

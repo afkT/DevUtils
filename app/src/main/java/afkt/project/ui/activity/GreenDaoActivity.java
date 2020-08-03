@@ -28,9 +28,9 @@ import afkt.project.ui.widget.BaseRefreshView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import dev.assist.PageAssist;
-import dev.temp.ChineseUtils;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
+import dev.utils.common.ChineseUtils;
 import dev.utils.common.RandomUtils;
 
 /**

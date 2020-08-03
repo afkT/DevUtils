@@ -8,10 +8,10 @@ import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.ui.widget.BaseTextView;
 import butterknife.BindView;
-import dev.temp.ChineseUtils;
 import dev.utils.app.TextViewUtils;
 import dev.utils.app.helper.QuickHelper;
 import dev.utils.app.toast.ToastTintUtils;
+import dev.utils.common.ChineseUtils;
 import dev.utils.common.RandomUtils;
 
 /**

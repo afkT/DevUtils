@@ -8,8 +8,8 @@ import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.ui.widget.BaseTextView;
 import butterknife.BindView;
 import butterknife.OnClick;
-import dev.temp.ChineseUtils;
 import dev.utils.app.helper.ViewHelper;
+import dev.utils.common.ChineseUtils;
 import dev.utils.common.RandomUtils;
 import dev.widget.function.LineTextView;
 
