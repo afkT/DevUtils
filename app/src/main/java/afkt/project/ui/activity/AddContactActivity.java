@@ -5,12 +5,16 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.view.View;
+
+import androidx.annotation.NonNull;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -159,6 +163,7 @@ public class AddContactActivity extends BaseToolbarActivity {
      * @param count 创建总数
      */
     private void createContact(String start, String end, int count) {
+        ToastTintUtils.normal("创建中...");
         ViewUtils.setVisibility(true, vid_aac_tips_tv);
         KeyBoardUtils.closeKeyboard();
         this.count = count;
@@ -206,7 +211,8 @@ public class AddContactActivity extends BaseToolbarActivity {
                             String phoneNumber = start + zero + i + end;
                             addContact(phoneNumber, phoneNumber);
                         }
-                        changeTips();
+                        // 更新提示语
+                        handler.sendEmptyMessage(0);
                         // 如果页面销毁了则不处理
                         if (ActivityUtils.isFinishing(mActivity)) return;
                     }
@@ -214,28 +220,14 @@ public class AddContactActivity extends BaseToolbarActivity {
                     for (int i = first; i < interval; i++) {
                         String phoneNumber = start + i + end;
                         addContact(phoneNumber, phoneNumber);
-                        changeTips();
+                        // 更新提示语
+                        handler.sendEmptyMessage(0);
                         // 如果页面销毁了则不处理
                         if (ActivityUtils.isFinishing(mActivity)) return;
                     }
                 }
             }
         });
-    }
-
-    /**
-     * 改变提示
-     */
-    private void changeTips() {
-        int value = index.getAndIncrement();
-        if (count == value + 1) {
-            String tips = count + " 条数据, 创建成功";
-            TextViewUtils.setText(vid_aac_tips_tv, tips);
-            ToastTintUtils.success(tips);
-            runing = false;
-        } else {
-            TextViewUtils.setText(vid_aac_tips_tv, "需创建 " + count + " 条数据, 已创建 " + (value + 1) + " 条");
-        }
     }
 
     /**
@@ -281,4 +273,21 @@ public class AddContactActivity extends BaseToolbarActivity {
         // 向联系人 Email URI 添加 Email数据
         getContentResolver().insert(Data.CONTENT_URI, values);
     }
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+
+            int value = index.getAndIncrement();
+            if (count == value + 1) {
+                String tips = count + " 条数据, 创建成功";
+                TextViewUtils.setText(vid_aac_tips_tv, tips);
+                ToastTintUtils.success(tips);
+                runing = false;
+            } else {
+                TextViewUtils.setText(vid_aac_tips_tv, "需创建 " + count + " 条数据, 已创建 " + (value + 1) + " 条");
+            }
+        }
+    };
 }
