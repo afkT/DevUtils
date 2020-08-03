@@ -22,7 +22,7 @@ public class CommodityEvaluateBean {
      */
     public static CommodityEvaluateBean newCommodityEvaluateBean() {
         CommodityEvaluateBean commodityEvaluateBean = new CommodityEvaluateBean();
-        commodityEvaluateBean.commodityName = ChineseUtils.getRandomWord(RandomUtils.getRandom(5, 40));
+        commodityEvaluateBean.commodityName = ChineseUtils.randomWord(RandomUtils.getRandom(5, 40));
         commodityEvaluateBean.commodityPicture = "https://picsum.photos/20" + RandomUtils.getRandom(0, 10);
         commodityEvaluateBean.commodityPrice = RandomUtils.nextDoubleRange(15.1f, 79.3f);
         return commodityEvaluateBean;

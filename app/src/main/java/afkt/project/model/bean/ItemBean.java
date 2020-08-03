@@ -28,9 +28,9 @@ public class ItemBean {
      */
     public static ItemBean newItemBean() {
         ItemBean item = new ItemBean();
-        item.title = ChineseUtils.getRandomWord(RandomUtils.getRandom(5, 10));
-        item.subtitle = ChineseUtils.getRandomWord(RandomUtils.getRandom(5, 10));
-        item.content = ChineseUtils.getRandomWord(RandomUtils.getRandom(30, 60));
+        item.title = ChineseUtils.randomWord(RandomUtils.getRandom(5, 10));
+        item.subtitle = ChineseUtils.randomWord(RandomUtils.getRandom(5, 10));
+        item.content = ChineseUtils.randomWord(RandomUtils.getRandom(30, 60));
         item.imageUrl = String.format("https://picsum.photos/id/%s/500", RandomUtils.getRandom(1, 50));
         item.time = System.currentTimeMillis() - RandomUtils.nextLongRange(DateUtils.MIN, DateUtils.DAY);
         item.timeFormat = DateUtils.formatTime(item.time, "yyyy.MM.dd");

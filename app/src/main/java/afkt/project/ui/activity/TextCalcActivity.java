@@ -34,7 +34,7 @@ public class TextCalcActivity extends BaseToolbarActivity {
 
         for (int i = 0; i < 15; i++) {
             // 随机字符串
-            String text = ChineseUtils.getRandomWord(RandomUtils.getRandom(100)) + RandomUtils.getRandomLetters(RandomUtils.getRandom(20));
+            String text = ChineseUtils.randomWord(RandomUtils.getRandom(100)) + RandomUtils.getRandomLetters(RandomUtils.getRandom(20));
             String randomText = RandomUtils.getRandom(text.toCharArray(), text.length());
 
             BaseTextView view = QuickHelper.get(new BaseTextView(this))

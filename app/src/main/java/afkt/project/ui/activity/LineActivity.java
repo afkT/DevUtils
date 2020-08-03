@@ -54,7 +54,7 @@ public class LineActivity extends BaseToolbarActivity {
         switch (v.getId()) {
             case R.id.vid_al_content_tv:
                 // 随机字符串
-                String text = ChineseUtils.getRandomWord(RandomUtils.getRandom(300)) + RandomUtils.getRandomLetters(RandomUtils.getRandom(50));
+                String text = ChineseUtils.randomWord(RandomUtils.getRandom(300)) + RandomUtils.getRandomLetters(RandomUtils.getRandom(50));
                 String randomText = RandomUtils.getRandom(text.toCharArray(), text.length());
                 // 设置内容
                 ViewHelper.get().setTextColor(vid_al_content_tv, Color.BLACK)

@@ -110,37 +110,37 @@ public class ItemStickyActivity extends BaseToolbarActivity {
         long time = System.currentTimeMillis();
 
         for (int i = 0; i < 8; i++) {
-            lists.add(new ItemStickyBean(ChineseUtils.getRandomWord(RandomUtils.getRandom(3, 12)), time));
+            lists.add(new ItemStickyBean(ChineseUtils.randomWord(RandomUtils.getRandom(3, 12)), time));
         }
 
         time -= DateUtils.DAY;
         for (int i = 0; i < 5; i++) {
-            lists.add(new ItemStickyBean(ChineseUtils.getRandomWord(RandomUtils.getRandom(3, 12)), time));
+            lists.add(new ItemStickyBean(ChineseUtils.randomWord(RandomUtils.getRandom(3, 12)), time));
         }
 
         time -= DateUtils.DAY * 3;
         for (int i = 0; i < 4; i++) {
-            lists.add(new ItemStickyBean(ChineseUtils.getRandomWord(RandomUtils.getRandom(3, 12)), time));
+            lists.add(new ItemStickyBean(ChineseUtils.randomWord(RandomUtils.getRandom(3, 12)), time));
         }
 
         time -= DateUtils.DAY * 2;
         for (int i = 0; i < 6; i++) {
-            lists.add(new ItemStickyBean(ChineseUtils.getRandomWord(RandomUtils.getRandom(3, 12)), time));
+            lists.add(new ItemStickyBean(ChineseUtils.randomWord(RandomUtils.getRandom(3, 12)), time));
         }
 
         time -= DateUtils.DAY;
         for (int i = 0; i < 7; i++) {
-            lists.add(new ItemStickyBean(ChineseUtils.getRandomWord(RandomUtils.getRandom(3, 12)), time));
+            lists.add(new ItemStickyBean(ChineseUtils.randomWord(RandomUtils.getRandom(3, 12)), time));
         }
 
         time -= DateUtils.DAY * 10;
         for (int i = 0; i < 7; i++) {
-            lists.add(new ItemStickyBean(ChineseUtils.getRandomWord(RandomUtils.getRandom(3, 12)), time));
+            lists.add(new ItemStickyBean(ChineseUtils.randomWord(RandomUtils.getRandom(3, 12)), time));
         }
 
         time -= DateUtils.DAY * 4;
         for (int i = 0; i < 10; i++) {
-            lists.add(new ItemStickyBean(ChineseUtils.getRandomWord(RandomUtils.getRandom(3, 12)), time));
+            lists.add(new ItemStickyBean(ChineseUtils.randomWord(RandomUtils.getRandom(3, 12)), time));
         }
         return lists;
     }

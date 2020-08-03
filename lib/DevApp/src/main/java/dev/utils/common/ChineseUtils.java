@@ -22,10 +22,10 @@ public final class ChineseUtils {
      * @param number 字数
      * @return 随机汉字
      */
-    public static String getRandomWord(final int number) {
+    public static String randomWord(final int number) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < number; i++) {
-            builder.append(getRandomWord());
+            builder.append(randomWord());
         }
         return builder.toString();
     }
@@ -34,7 +34,7 @@ public final class ChineseUtils {
      * 随机生成汉字
      * @return 一个随机汉字
      */
-    public static String getRandomWord() {
+    public static String randomWord() {
         Random random = new Random();
         int heightPos = 176 + Math.abs(random.nextInt(39));
         int lowPos = 161 + Math.abs(random.nextInt(93));
@@ -44,9 +44,23 @@ public final class ChineseUtils {
         try {
             return new String(bytes, "GBK");
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getRandomWord");
+            JCLogUtils.eTag(TAG, e, "randomWord");
         }
         return "";
+    }
+
+    /**
+     * 随机生成名字
+     * @param surnames   姓氏数组
+     * @param names      名字数组
+     * @param nameLength 名字长度
+     * @return 随机名字
+     */
+    public static String randomName(final String[] surnames, final String[] names, final int nameLength) {
+        if (surnames != null && surnames.length > 0 && names != null && names.length > 0) {
+            return RandomUtils.getRandom(surnames, 1) + RandomUtils.getRandom(names, nameLength);
+        }
+        return null;
     }
 
     // ==================

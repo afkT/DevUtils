@@ -178,8 +178,8 @@ public class GreenDaoActivity extends BaseToolbarActivity {
     private void randomData() {
         Note note = new Note();
         note.setDate(new Date());
-        note.setText(ChineseUtils.getRandomWord(RandomUtils.getRandom(6, 15)));
-        note.setComment(ChineseUtils.getRandomWord(RandomUtils.getRandom(12, 50)));
+        note.setText(ChineseUtils.randomWord(RandomUtils.getRandom(6, 15)));
+        note.setComment(ChineseUtils.randomWord(RandomUtils.getRandom(12, 50)));
         note.setType(NoteType.values()[RandomUtils.getRandom(0, 3)]);
         // 添加数据
         Long noteId = GreenManager.getNoteDao().insert(note);

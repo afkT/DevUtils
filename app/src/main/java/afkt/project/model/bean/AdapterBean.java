@@ -24,10 +24,10 @@ public class AdapterBean {
      */
     private static AdapterBean newAdapterBean(int position) {
         AdapterBean adapterBean = new AdapterBean();
-        adapterBean.title = ChineseUtils.getRandomWord(2);
+        adapterBean.title = ChineseUtils.randomWord(2);
 
         int number = RandomUtils.getRandom(10, 100) + (10 + position / 3) * 3;
-        adapterBean.content = (position + 1) + "." + ChineseUtils.getRandomWord(RandomUtils.getRandom(number));
+        adapterBean.content = (position + 1) + "." + ChineseUtils.randomWord(RandomUtils.getRandom(number));
         return adapterBean;
     }
 
