@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.1.3 *(2020-08-04)*
+----------------------------
+
+* `[Add]` ChineseUtils 中文工具类
+
+* `[Add]` StringUtils#forString
+
 Version 1.1.2 *(2020-05-18)*
 ----------------------------
 

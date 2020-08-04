@@ -222,9 +222,9 @@ public class RadiusUtils {
         return mRadiusRightBottom;
     }
 
-    // ====================
-    // = 参数信息恢复/存储 =
-    // ====================
+    // ======================
+    // = 参数信息恢复 / 存储 =
+    // ======================
 
     private static final String SUPER_DATA = "super_data";
     private static final String DATA_RADII = "data_radii";

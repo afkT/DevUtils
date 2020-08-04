@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+Version 1.9.7 *(2020-08-04)*
+----------------------------
+
+* `[Add]` ChineseUtils 中文工具类
+
+* `[Add]` QuickHelper 简化链式设置 View Helper 类
+
+* `[Add]` StringUtils#forString
+
+* `[Delete]` PhoneUtils 双卡模块代码
+
+* `[Delete]` AsyncExecutor 异步执行辅助类
+
 Version 1.9.6 *(2020-07-19)*
 ----------------------------
 
