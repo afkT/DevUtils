@@ -3,8 +3,8 @@
 
 ```java
 // AndroidX
-implementation 'com.afkt:DevAppX:1.9.6'
-implementation 'com.afkt:DevWidgetX:1.0.2'
+implementation 'com.afkt:DevAppX:1.9.7'
+implementation 'com.afkt:DevWidgetX:1.0.3'
 ```
 
 ## 目录结构
