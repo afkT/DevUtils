@@ -21,7 +21,7 @@ import afkt.project.ui.widget.BaseImageView;
 import afkt.project.util.GPUFilterUtils;
 import butterknife.BindView;
 import butterknife.OnClick;
-import dev.other.PictureSelectorUtils;
+import dev.other.picture.PictureSelectorUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.image.ImageUtils;

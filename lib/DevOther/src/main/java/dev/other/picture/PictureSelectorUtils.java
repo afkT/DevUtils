@@ -1,4 +1,4 @@
-package dev.other;
+package dev.other.picture;
 
 import android.content.Intent;
 import android.text.TextUtils;
@@ -265,6 +265,7 @@ public final class PictureSelectorUtils {
 
             // 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
             pictureSelectionModel.selectionMode(picConfig.selectionMode)
+                    .imageEngine(GlideEngine.createGlideEngine())
                     .previewImage(true) // 是否可预览图片 true or false
                     .previewVideo(true) // 是否可以预览视频 true or false
                     .enablePreviewAudio(true) // 是否可播放音频 true or false
