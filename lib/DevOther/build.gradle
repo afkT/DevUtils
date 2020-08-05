@@ -7,38 +7,38 @@ dependencies {
     compileOnly project(path: ':DevAssist')
 
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
-    implementation deps.lib.okhttp3
-    implementation deps.lib.okhttp3_logging
+    compileOnly deps.lib.okhttp3
+    compileOnly deps.lib.okhttp3_logging
     // Retrofit 网络请求库  https://github.com/square/retrofit
-    implementation deps.lib.retrofit
+    compileOnly deps.lib.retrofit
     // Retrofit Gson Converter  https://github.com/square/retrofit/tree/master/retrofit-converters/gson
-    implementation deps.lib.retrofit_gson
+    compileOnly deps.lib.retrofit_gson
     // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava3
-    implementation deps.lib.retrofit_rxjava3
+    compileOnly deps.lib.retrofit_rxjava3
     // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
-    implementation deps.lib.rxjava3
+    compileOnly deps.lib.rxjava3
     // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
-    implementation deps.lib.rxandroid3
+    compileOnly deps.lib.rxandroid3
     // Okgo https://github.com/jeasonlzy/okhttp-OkGo
-    implementation deps.lib.okgo
+    compileOnly deps.lib.okgo
     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
-    implementation deps.lib.okserver
+    compileOnly deps.lib.okserver
     // Gson https://github.com/google/gson
-    implementation deps.lib.gson
+    compileOnly deps.lib.gson
     // fastjson https://github.com/alibaba/fastjson
-    implementation deps.lib.fastjson
+    compileOnly deps.lib.fastjson
     // Imageloader 图片加载框架 https://github.com/nostra13/Android-Universal-Image-Loader
-    implementation deps.lib.imageloader
+    compileOnly deps.lib.imageloader
     // Glide 加载框架 https://github.com/bumptech/glide
-    implementation deps.lib.glide
+    compileOnly deps.lib.glide
     annotationProcessor deps.lib.glide_compiler
     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
-    implementation deps.lib.eventbus
+    compileOnly deps.lib.eventbus
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-    implementation deps.lib.pictureSelector
+    compileOnly deps.lib.pictureSelector
     // 二维码 ZXing https://github.com/zxing/zxing
-    implementation deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
-    implementation deps.lib.zxing_android_code // android-core
+    compileOnly deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
+    compileOnly deps.lib.zxing_android_code // android-core
     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
-    implementation deps.lib.luban
+    compileOnly deps.lib.luban
 }
