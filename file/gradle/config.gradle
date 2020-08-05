@@ -145,7 +145,7 @@ ext {
                     // Kotlin ButterKnife https://github.com/JakeWharton/kotterknife
                     kotterknife                  : "com.jakewharton:kotterknife:0.1.0-SNAPSHOT",
                     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-                    pictureSelector              : "com.github.LuckSiege.PictureSelector:picture_library:v2.2.5", // 2.5.8
+                    pictureSelector              : "com.github.LuckSiege.PictureSelector:picture_library:v2.5.8",
                     // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 ) https://github.com/google/flexbox-layout
                     flexbox                      : "com.google.android:flexbox:2.0.1", // // https://juejin.im/post/58d1035161ff4b00603ca9c4
                     // 评价等级控件 https://github.com/hedge-hog/RatingBar

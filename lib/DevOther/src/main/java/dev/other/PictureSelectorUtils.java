@@ -122,10 +122,11 @@ public final class PictureSelectorUtils {
      * <pre>
      *     包括裁剪和压缩后的缓存, 要在上传成功后调用, 注意: 需要系统 SDCard 权限
      * </pre>
+     * @param type {@link PictureMimeType#ofImage()} or {@link PictureMimeType#ofVideo()}
      */
-    public static void deleteCacheDirFile() {
+    public static void deleteCacheDirFile(final int type) {
         try {
-            PictureFileUtils.deleteCacheDirFile(DevUtils.getContext());
+            PictureFileUtils.deleteCacheDirFile(DevUtils.getContext(), type);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "deleteCacheDirFile");
         }
@@ -187,20 +188,20 @@ public final class PictureSelectorUtils {
     public static String getLocalMediaPath(final LocalMedia localMedia, final boolean original) {
         if (localMedia != null) {
             if (original) return localMedia.getPath();
-            // 判断资源类型
-            switch (localMedia.getMimeType()) {
-                case PictureConfig.TYPE_IMAGE: // 图片
-                    if (localMedia.isCompressed()) { // 是否压缩图片
-                        return localMedia.getCompressPath();
-                    } else if (localMedia.isCut()) { // 是否裁减图片
-                        return localMedia.getCutPath();
-                    } else { // 获取原图
-                        return localMedia.getPath();
-                    }
-                case PictureConfig.TYPE_VIDEO: // 视频
-                case PictureConfig.TYPE_AUDIO: // 音频
-                    return localMedia.getPath();
-            }
+//            // 判断资源类型
+//            switch (localMedia.getMimeType()) {
+//                case PictureConfig.TYPE_IMAGE: // 图片
+//                    if (localMedia.isCompressed()) { // 是否压缩图片
+//                        return localMedia.getCompressPath();
+//                    } else if (localMedia.isCut()) { // 是否裁减图片
+//                        return localMedia.getCutPath();
+//                    } else { // 获取原图
+//                        return localMedia.getPath();
+//                    }
+//                case PictureConfig.TYPE_VIDEO: // 视频
+//                case PictureConfig.TYPE_AUDIO: // 音频
+//                    return localMedia.getPath();
+//            }
         }
         return null;
     }
