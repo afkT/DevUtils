@@ -207,6 +207,9 @@ ext {
                     calendarview                 : "com.haibin:calendarview:3.6.9",
                     // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
                     xcrash                       : "com.iqiyi.xcrash:xcrash-android-lib:2.4.9",
+                    // 图片裁剪库 https://github.com/Yalantis/uCrop
+                    ucrop                        : "com.github.yalantis:ucrop:2.2.5", // 轻量级通用解决方案
+                    ucrop_native                 : "com.github.yalantis:ucrop:2.2.5-native", // 支持本机功能
 
                     // ========
                     // = 其他 =
