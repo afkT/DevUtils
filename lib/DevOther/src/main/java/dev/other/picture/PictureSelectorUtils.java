@@ -27,14 +27,6 @@ import dev.utils.LogPrintUtils;
  *     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
  *     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
  *     <uses-permission android:name="android.permission.CAMERA" />
- *     <p></p>
- *     Android uCrop
- *     @see <a href="https://github.com/Yalantis/uCrop"/>
- *     // 使用裁剪功能需要加入
- *     <activity
- *             android:name="com.yalantis.ucrop.UCropActivity"
- *             android:screenOrientation="portrait"
- *             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
  * </pre>
  */
 public final class PictureSelectorUtils {
@@ -188,20 +180,19 @@ public final class PictureSelectorUtils {
     public static String getLocalMediaPath(final LocalMedia localMedia, final boolean original) {
         if (localMedia != null) {
             if (original) return localMedia.getPath();
-//            // 判断资源类型
-//            switch (localMedia.getMimeType()) {
-//                case PictureConfig.TYPE_IMAGE: // 图片
-//                    if (localMedia.isCompressed()) { // 是否压缩图片
-//                        return localMedia.getCompressPath();
-//                    } else if (localMedia.isCut()) { // 是否裁减图片
-//                        return localMedia.getCutPath();
-//                    } else { // 获取原图
-//                        return localMedia.getPath();
-//                    }
-//                case PictureConfig.TYPE_VIDEO: // 视频
-//                case PictureConfig.TYPE_AUDIO: // 音频
-//                    return localMedia.getPath();
-//            }
+            // 判断资源类型
+            String mimeType = localMedia.getMimeType();
+            if (PictureMimeType.isHasImage(mimeType)) { // 图片
+                if (localMedia.isCompressed()) { // 是否压缩图片
+                    return localMedia.getCompressPath();
+                } else if (localMedia.isCut()) { // 是否裁减图片
+                    return localMedia.getCutPath();
+                } else { // 获取原图
+                    return localMedia.getPath();
+                }
+            } else {
+                return localMedia.getPath();
+            }
         }
         return null;
     }
