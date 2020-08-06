@@ -312,9 +312,9 @@ public class SlideImageView extends AppCompatImageView {
     /** 动画滑动距离 */
     private float slideLenth = 10f;
     /** 滑动速度 -> 时间 */
-    private long slideSpeed = 100l;
+    private long slideSpeed = 100L;
     /** 检测时间 */
-    private long checkTime = 20l;
+    private long checkTime = 20L;
     /** 是否滑动到底部 */
     private boolean isScrollBottom = true;
     /** 是否开启动画 */

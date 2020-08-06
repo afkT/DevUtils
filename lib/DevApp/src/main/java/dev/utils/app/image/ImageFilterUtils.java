@@ -365,7 +365,7 @@ public final class ImageFilterUtils {
             int newB = 0;
             int radius = Math.min(centerX, centerY);
 
-            final float strength = 150F; // 光照强度 100~150
+            final float strength = 150f; // 光照强度 100~150
             int[] pixels = new int[width * height];
             bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
             int pos = 0;
@@ -563,7 +563,7 @@ public final class ImageFilterUtils {
             int newB = 0;
 
             int idx = 0;
-            float alpha = 0.3F;
+            float alpha = 0.3f;
             int[] pixels = new int[width * height];
             bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
             for (int i = 1, length = height - 1; i < length; i++) {

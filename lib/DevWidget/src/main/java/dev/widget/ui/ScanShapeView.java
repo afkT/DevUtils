@@ -163,7 +163,7 @@ public class ScanShapeView extends View {
     // 正方形扫描动画 对象
     private ValueAnimator mAnimToSquare;
     // 正方形扫描动画速度 ( 毫秒 )
-    private long          mLineDurationToSquare   = 10l;
+    private long          mLineDurationToSquare   = 10L;
     // 正方形线条画笔
     private Paint         mLinePaintToSquare      = new Paint(Paint.ANTI_ALIAS_FLAG);
     // 扫描线条 Bitmap
@@ -818,7 +818,7 @@ public class ScanShapeView extends View {
      */
     public ScanShapeView setLineDurationToSquare(long lineDurationToSquare) {
         if (lineDurationToSquare <= 0) {
-            lineDurationToSquare = 10l;
+            lineDurationToSquare = 10L;
         }
         this.mLineDurationToSquare = lineDurationToSquare;
         return this;

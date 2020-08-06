@@ -57,7 +57,7 @@ public class FlowLikeView extends FrameLayout {
     // 点赞 Icon 宽高
     private int            mIconWidth, mIconHeight;
     // 点赞动画执行时间
-    private long mAnimDuration = 2000l;
+    private long mAnimDuration = 2000L;
 
     public FlowLikeView(Context context) {
         super(context);

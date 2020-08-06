@@ -465,7 +465,7 @@ public class ListenerActivity extends BaseToolbarActivity {
     // 重力传感器辅助类
     private ScreenSensorAssist screenSensorAssist = new ScreenSensorAssist();
     // 切屏时间
-    private long               cOrientationTime   = 0l;
+    private long               cOrientationTime   = 0L;
 
     /**
      * 屏幕旋转监听 ( 重力传感器 )
