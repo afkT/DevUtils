@@ -154,6 +154,56 @@ public final class ShapeUtils {
             return this;
         }
 
+        // ============
+        // = 设置上边 =
+        // ============
+
+        /**
+         * 设置圆角
+         * @param top leftTop、rightTop 圆角大小
+         * @return {@link ShapeUtils.Builder}
+         */
+        public Builder setRadiusTop(final float top) {
+            setCornerRadii(top, top, 0, 0);
+            return this;
+        }
+
+        /**
+         * 设置圆角
+         * @param leftTop  左上圆角大小
+         * @param rightTop 右上圆角大小
+         * @return {@link ShapeUtils.Builder}
+         */
+        public Builder setRadiusTop(final float leftTop, final float rightTop) {
+            setCornerRadii(leftTop, rightTop, 0, 0);
+            return this;
+        }
+
+        // ============
+        // = 设置下边 =
+        // ============
+
+        /**
+         * 设置圆角
+         * @param bottom leftBottom、rightBottom 圆角大小
+         * @return {@link ShapeUtils.Builder}
+         */
+        public Builder setRadiusBottom(final float bottom) {
+            setCornerRadii(0, 0, bottom, bottom);
+            return this;
+        }
+
+        /**
+         * 设置圆角
+         * @param leftBottom  左下圆角大小
+         * @param rightBottom 右下圆角大小
+         * @return {@link ShapeUtils.Builder}
+         */
+        public Builder setRadiusBottom(final float leftBottom, final float rightBottom) {
+            setCornerRadii(0, 0, rightBottom, leftBottom);
+            return this;
+        }
+
         // ================
         // = 圆角内部处理 =
         // ================
