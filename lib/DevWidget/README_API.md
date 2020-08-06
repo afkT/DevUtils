@@ -538,7 +538,7 @@ implementation 'com.afkt:DevWidgetX:1.0.3'
 ## <span id="devwidgetutils">**`dev.widget.utils`**</span>
 
 
-* **RadiusView 圆角处理工具类 ->** [RadiusUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/utils/RadiusUtils.java)
+* **RadiusView 圆角属性封装处理类 ->** [RadiusAttrs.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/utils/RadiusAttrs.java)
 
 | 方法 | 注释 |
 | :- | :- |
