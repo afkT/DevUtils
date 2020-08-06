@@ -8,7 +8,7 @@ import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
-import dev.widget.utils.RadiusUtils;
+import dev.widget.utils.RadiusAttrs;
 
 /**
  * detail: 自定义圆角 View
@@ -23,7 +23,7 @@ import dev.widget.utils.RadiusUtils;
  */
 public class RadiusView extends FrameLayout {
 
-    private RadiusUtils mRadiusUtils;
+    private RadiusAttrs mRadiusAttrs;
 
     public RadiusView(Context context) {
         super(context);
@@ -52,33 +52,33 @@ public class RadiusView extends FrameLayout {
      * @param attrs   {@link AttributeSet}
      */
     private void initAttrs(Context context, AttributeSet attrs) {
-        mRadiusUtils = new RadiusUtils(context, attrs);
+        mRadiusAttrs = new RadiusAttrs(context, attrs);
         setWillNotDraw(false);
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mRadiusUtils.onSizeChanged(w, h);
+        mRadiusAttrs.onSizeChanged(w, h);
     }
 
     @Override
     public void draw(Canvas canvas) {
         canvas.save();
-        canvas.clipPath(mRadiusUtils.getPath());
+        canvas.clipPath(mRadiusAttrs.getPath());
         super.draw(canvas);
         canvas.restore();
     }
 
     @Override
     protected Parcelable onSaveInstanceState() {
-        return mRadiusUtils.onSaveInstanceState(super.onSaveInstanceState());
+        return mRadiusAttrs.onSaveInstanceState(super.onSaveInstanceState());
     }
 
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
-        super.onRestoreInstanceState(mRadiusUtils.onRestoreInstanceState(state));
-        mRadiusUtils.onSizeChanged(getWidth(), getHeight());
+        super.onRestoreInstanceState(mRadiusAttrs.onRestoreInstanceState(state));
+        mRadiusAttrs.onSizeChanged(getWidth(), getHeight());
     }
 
     // ===========
@@ -91,7 +91,7 @@ public class RadiusView extends FrameLayout {
      * @return {@link RadiusView}
      */
     public RadiusView setRadius(float radius) {
-        mRadiusUtils.setRadius(radius);
+        mRadiusAttrs.setRadius(radius);
         postInvalidate();
         return this;
     }
@@ -102,7 +102,7 @@ public class RadiusView extends FrameLayout {
      * @return {@link RadiusView}
      */
     public RadiusView setRadiusLeftTop(float radiusLeftTop) {
-        mRadiusUtils.setRadiusLeftTop(radiusLeftTop);
+        mRadiusAttrs.setRadiusLeftTop(radiusLeftTop);
         postInvalidate();
         return this;
     }
@@ -113,7 +113,7 @@ public class RadiusView extends FrameLayout {
      * @return {@link RadiusView}
      */
     public RadiusView setRadiusLeftBottom(float radiusLeftBottom) {
-        mRadiusUtils.setRadiusLeftBottom(radiusLeftBottom);
+        mRadiusAttrs.setRadiusLeftBottom(radiusLeftBottom);
         postInvalidate();
         return this;
     }
@@ -124,7 +124,7 @@ public class RadiusView extends FrameLayout {
      * @return {@link RadiusView}
      */
     public RadiusView setRadiusRightTop(float radiusRightTop) {
-        mRadiusUtils.setRadiusRightTop(radiusRightTop);
+        mRadiusAttrs.setRadiusRightTop(radiusRightTop);
         postInvalidate();
         return this;
     }
@@ -135,7 +135,7 @@ public class RadiusView extends FrameLayout {
      * @return {@link RadiusView}
      */
     public RadiusView setRadiusRightBottom(float radiusRightBottom) {
-        mRadiusUtils.setRadiusRightBottom(radiusRightBottom);
+        mRadiusAttrs.setRadiusRightBottom(radiusRightBottom);
         postInvalidate();
         return this;
     }
@@ -148,7 +148,7 @@ public class RadiusView extends FrameLayout {
      * @return {@link RadiusView}
      */
     public RadiusView setRadiusLeft(int radiusLeft) {
-        mRadiusUtils.setRadiusLeft(radiusLeft);
+        mRadiusAttrs.setRadiusLeft(radiusLeft);
         postInvalidate();
         return this;
     }
@@ -159,7 +159,7 @@ public class RadiusView extends FrameLayout {
      * @return {@link RadiusView}
      */
     public RadiusView setRadiusRight(int radiusRight) {
-        mRadiusUtils.setRadiusRight(radiusRight);
+        mRadiusAttrs.setRadiusRight(radiusRight);
         postInvalidate();
         return this;
     }
@@ -170,7 +170,7 @@ public class RadiusView extends FrameLayout {
      * @return {@link RadiusView}
      */
     public RadiusView setRadiusTop(int radiusTop) {
-        mRadiusUtils.setRadiusTop(radiusTop);
+        mRadiusAttrs.setRadiusTop(radiusTop);
         postInvalidate();
         return this;
     }
@@ -181,7 +181,7 @@ public class RadiusView extends FrameLayout {
      * @return {@link RadiusView}
      */
     public RadiusView setRadiusBottom(int radiusBottom) {
-        mRadiusUtils.setRadiusBottom(radiusBottom);
+        mRadiusAttrs.setRadiusBottom(radiusBottom);
         postInvalidate();
         return this;
     }
@@ -193,7 +193,7 @@ public class RadiusView extends FrameLayout {
      * @return 圆角值
      */
     public float getRadius() {
-        return mRadiusUtils.getRadius();
+        return mRadiusAttrs.getRadius();
     }
 
     /**
@@ -201,7 +201,7 @@ public class RadiusView extends FrameLayout {
      * @return 左上圆角值
      */
     public float getRadiusLeftTop() {
-        return mRadiusUtils.getRadiusLeftTop();
+        return mRadiusAttrs.getRadiusLeftTop();
     }
 
     /**
@@ -209,7 +209,7 @@ public class RadiusView extends FrameLayout {
      * @return 左下圆角值
      */
     public float getRadiusLeftBottom() {
-        return mRadiusUtils.getRadiusLeftBottom();
+        return mRadiusAttrs.getRadiusLeftBottom();
     }
 
     /**
@@ -217,7 +217,7 @@ public class RadiusView extends FrameLayout {
      * @return 右上圆角值
      */
     public float getRadiusRightTop() {
-        return mRadiusUtils.getRadiusRightTop();
+        return mRadiusAttrs.getRadiusRightTop();
     }
 
     /**
@@ -225,6 +225,6 @@ public class RadiusView extends FrameLayout {
      * @return 右下圆角值
      */
     public float getRadiusRightBottom() {
-        return mRadiusUtils.getRadiusRightBottom();
+        return mRadiusAttrs.getRadiusRightBottom();
     }
 }

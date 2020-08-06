@@ -11,10 +11,10 @@ import android.util.AttributeSet;
 import dev.widget.R;
 
 /**
- * detail: RadiusView 圆角处理工具类
+ * detail: RadiusView 圆角属性封装处理类
  * @author arvinljw
  */
-public class RadiusUtils {
+public class RadiusAttrs {
 
     // 绘制区域
     private RectF   mRectF;
@@ -34,7 +34,7 @@ public class RadiusUtils {
      * @param context {@link Context}
      * @param attrs   {@link AttributeSet}
      */
-    public RadiusUtils(Context context, AttributeSet attrs) {
+    public RadiusAttrs(Context context, AttributeSet attrs) {
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
             mRadius = a.getLayoutDimension(R.styleable.DevWidget_dev_radius, 0);
@@ -222,9 +222,9 @@ public class RadiusUtils {
         return mRadiusRightBottom;
     }
 
-    // ======================
-    // = 参数信息恢复 / 存储 =
-    // ======================
+    // ==================
+    // = 数据恢复 / 存储 =
+    // ==================
 
     private static final String SUPER_DATA = "super_data";
     private static final String DATA_RADII = "data_radii";
