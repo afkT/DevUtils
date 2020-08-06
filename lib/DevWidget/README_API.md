@@ -413,7 +413,7 @@ implementation 'com.afkt:DevWidgetX:1.0.3'
 | setProgressStyle | 设置进度条样式 |
 
 
-* **自定义圆角 View ->** [RadiusView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/RadiusView.java)
+* **自定义圆角 View ->** [RadiusLayout.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/RadiusLayout.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -538,7 +538,7 @@ implementation 'com.afkt:DevWidgetX:1.0.3'
 ## <span id="devwidgetutils">**`dev.widget.utils`**</span>
 
 
-* **RadiusView 圆角属性封装处理类 ->** [RadiusAttrs.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/utils/RadiusAttrs.java)
+* **RadiusLayout 圆角属性封装处理类 ->** [RadiusAttrs.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/utils/RadiusAttrs.java)
 
 | 方法 | 注释 |
 | :- | :- |

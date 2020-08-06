@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import dev.widget.R;
 
 /**
- * detail: RadiusView 圆角属性封装处理类
+ * detail: RadiusLayout 圆角属性封装处理类
  * @author arvinljw
  */
 public class RadiusAttrs {

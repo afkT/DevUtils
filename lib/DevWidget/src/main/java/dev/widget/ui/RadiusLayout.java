@@ -21,27 +21,27 @@ import dev.widget.utils.RadiusAttrs;
  *     app:dev_radius_right_bottom=""
  * </pre>
  */
-public class RadiusView extends FrameLayout {
+public class RadiusLayout extends FrameLayout {
 
     private RadiusAttrs mRadiusAttrs;
 
-    public RadiusView(Context context) {
+    public RadiusLayout(Context context) {
         super(context);
         initAttrs(context, null);
     }
 
-    public RadiusView(Context context, AttributeSet attrs) {
+    public RadiusLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         initAttrs(context, attrs);
     }
 
-    public RadiusView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RadiusLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initAttrs(context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public RadiusView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public RadiusLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initAttrs(context, attrs);
     }
@@ -88,9 +88,9 @@ public class RadiusView extends FrameLayout {
     /**
      * 设置圆角值
      * @param radius 圆角值
-     * @return {@link RadiusView}
+     * @return {@link RadiusLayout}
      */
-    public RadiusView setRadius(float radius) {
+    public RadiusLayout setRadius(float radius) {
         mRadiusAttrs.setRadius(radius);
         postInvalidate();
         return this;
@@ -99,9 +99,9 @@ public class RadiusView extends FrameLayout {
     /**
      * 设置左上圆角值
      * @param radiusLeftTop 左上圆角值
-     * @return {@link RadiusView}
+     * @return {@link RadiusLayout}
      */
-    public RadiusView setRadiusLeftTop(float radiusLeftTop) {
+    public RadiusLayout setRadiusLeftTop(float radiusLeftTop) {
         mRadiusAttrs.setRadiusLeftTop(radiusLeftTop);
         postInvalidate();
         return this;
@@ -110,9 +110,9 @@ public class RadiusView extends FrameLayout {
     /**
      * 设置左下圆角值
      * @param radiusLeftBottom 左下圆角值
-     * @return {@link RadiusView}
+     * @return {@link RadiusLayout}
      */
-    public RadiusView setRadiusLeftBottom(float radiusLeftBottom) {
+    public RadiusLayout setRadiusLeftBottom(float radiusLeftBottom) {
         mRadiusAttrs.setRadiusLeftBottom(radiusLeftBottom);
         postInvalidate();
         return this;
@@ -121,9 +121,9 @@ public class RadiusView extends FrameLayout {
     /**
      * 设置右上圆角值
      * @param radiusRightTop 右上圆角值
-     * @return {@link RadiusView}
+     * @return {@link RadiusLayout}
      */
-    public RadiusView setRadiusRightTop(float radiusRightTop) {
+    public RadiusLayout setRadiusRightTop(float radiusRightTop) {
         mRadiusAttrs.setRadiusRightTop(radiusRightTop);
         postInvalidate();
         return this;
@@ -132,9 +132,9 @@ public class RadiusView extends FrameLayout {
     /**
      * 设置右下圆角值
      * @param radiusRightBottom 右下圆角值
-     * @return {@link RadiusView}
+     * @return {@link RadiusLayout}
      */
-    public RadiusView setRadiusRightBottom(float radiusRightBottom) {
+    public RadiusLayout setRadiusRightBottom(float radiusRightBottom) {
         mRadiusAttrs.setRadiusRightBottom(radiusRightBottom);
         postInvalidate();
         return this;
@@ -145,9 +145,9 @@ public class RadiusView extends FrameLayout {
     /**
      * 设置左上、左下圆角值
      * @param radiusLeft 左边圆角值
-     * @return {@link RadiusView}
+     * @return {@link RadiusLayout}
      */
-    public RadiusView setRadiusLeft(int radiusLeft) {
+    public RadiusLayout setRadiusLeft(int radiusLeft) {
         mRadiusAttrs.setRadiusLeft(radiusLeft);
         postInvalidate();
         return this;
@@ -156,9 +156,9 @@ public class RadiusView extends FrameLayout {
     /**
      * 设置右上、右下圆角值
      * @param radiusRight 右边圆角值
-     * @return {@link RadiusView}
+     * @return {@link RadiusLayout}
      */
-    public RadiusView setRadiusRight(int radiusRight) {
+    public RadiusLayout setRadiusRight(int radiusRight) {
         mRadiusAttrs.setRadiusRight(radiusRight);
         postInvalidate();
         return this;
@@ -167,9 +167,9 @@ public class RadiusView extends FrameLayout {
     /**
      * 设置左上、右上圆角值
      * @param radiusTop 上边圆角值
-     * @return {@link RadiusView}
+     * @return {@link RadiusLayout}
      */
-    public RadiusView setRadiusTop(int radiusTop) {
+    public RadiusLayout setRadiusTop(int radiusTop) {
         mRadiusAttrs.setRadiusTop(radiusTop);
         postInvalidate();
         return this;
@@ -178,9 +178,9 @@ public class RadiusView extends FrameLayout {
     /**
      * 设置左下、右下圆角值
      * @param radiusBottom 下边圆角值
-     * @return {@link RadiusView}
+     * @return {@link RadiusLayout}
      */
-    public RadiusView setRadiusBottom(int radiusBottom) {
+    public RadiusLayout setRadiusBottom(int radiusBottom) {
         mRadiusAttrs.setRadiusBottom(radiusBottom);
         postInvalidate();
         return this;

@@ -66,7 +66,7 @@
             <flag name="triangle" value="4" />
         </attr>
 
-        <!-- RadiusView -->
+        <!-- RadiusLayout -->
 
         <attr name="dev_radius" format="dimension" />
         <attr name="dev_radius_left_top" format="dimension" />
