@@ -69,14 +69,14 @@ public class WrapActivity extends BaseToolbarActivity {
 
         // LayoutParams
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        // 设置点击效果
-        GradientDrawable drawable = ShapeUtils.newBuilder(30f, R.color.color_88).build().getDrawable();
+//        // 设置点击效果
+//        GradientDrawable drawable = ShapeUtils.newBuilder(30f, R.color.color_88).build().getDrawable();
 
         for (int i = 1; i <= 20; i++) {
             // 随机字符串
             String text = ChineseUtils.randomWord(RandomUtils.getRandom(7)) + RandomUtils.getRandomLetters(RandomUtils.getRandom(5));
             String randomText = i + "." + RandomUtils.getRandom(text.toCharArray(), text.length());
-            vid_aw_wrapview.addView(createView(randomText, layoutParams, drawable));
+            vid_aw_wrapview.addView(createView(randomText, layoutParams, null));
         }
     }
 
