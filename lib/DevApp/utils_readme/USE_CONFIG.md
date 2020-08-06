@@ -46,8 +46,6 @@ public class BaseApplication extends Application {
 
 ## [SharedUtils - SharedPreferences工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/share/SharedUtils.md)
 
-## [ShapeUtils - Shape工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/shape/ShapeUtils.md)
-
 ## [DevCache - 缓存工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/cache/DevCache.md)
 
 ## [TimerManager 定时器工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/timer/TimerManager.md)
@@ -57,8 +55,5 @@ public class BaseApplication extends Application {
 ## [DevMediaManager 多媒体工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/media/DevMediaManager.md)
 
 ## [WifiHotUtils - Wifi热点工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/wifi/WifiHotUtils.md)
-
-
-# == 使用相关 ==
 
 ## [TextViewUtils - 字体计算工具类使用](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/text/TextCalcUse.java)
