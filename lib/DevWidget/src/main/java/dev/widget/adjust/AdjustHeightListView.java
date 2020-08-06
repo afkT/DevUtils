@@ -9,7 +9,9 @@ import android.widget.ListView;
 /**
  * detail: 自动调节高度 ListView
  * @author Ttt
+ * @Deprecated 推荐使用 NestedScrollView + RecyclerView 实现
  */
+@Deprecated
 public class AdjustHeightListView extends ListView {
 
     public AdjustHeightListView(Context context) {

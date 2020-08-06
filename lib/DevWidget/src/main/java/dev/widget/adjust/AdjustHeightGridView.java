@@ -9,7 +9,9 @@ import android.widget.GridView;
 /**
  * detail: 自动调节高度 GridView
  * @author Ttt
+ * @Deprecated 推荐使用 NestedScrollView + RecyclerView 实现
  */
+@Deprecated
 public class AdjustHeightGridView extends GridView {
 
     public AdjustHeightGridView(Context context) {

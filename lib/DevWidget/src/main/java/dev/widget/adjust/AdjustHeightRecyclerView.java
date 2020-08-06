@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * detail: 自动调节高度 RecyclerView
  * @author Ttt
+ * @Deprecated 推荐使用 NestedScrollView + RecyclerView 实现
  */
+@Deprecated
 public class AdjustHeightRecyclerView extends RecyclerView {
 
     public AdjustHeightRecyclerView(Context context) {

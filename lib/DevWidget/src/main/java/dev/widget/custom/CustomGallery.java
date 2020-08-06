@@ -15,12 +15,14 @@ import dev.widget.R;
 /**
  * detail: 自定义 Gallery 滑动控制
  * @author Ttt
+ * @Deprecated 推荐使用 {@link CustomRecyclerView} + LinearSnapHelper 实现
  * <pre>
  *     app:dev_slide=""
  *     app:dev_maxWidth=""
  *     app:dev_maxHeight=""
  * </pre>
  */
+@Deprecated
 public class CustomGallery extends Gallery {
 
     // 是否允许滑动
