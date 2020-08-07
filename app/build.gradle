@@ -87,9 +87,9 @@ dependencies {
     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
     implementation deps.lib.autosize
 
-    // ===============================
+    // ==============================
     // = 其他第三方库 - 小功能、简约 =
-    // ===============================
+    // ==============================
 
     // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 ) https://github.com/google/flexbox-layout
     implementation deps.lib.flexbox // https://juejin.im/post/58d1035161ff4b00603ca9c4

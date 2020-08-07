@@ -1,8 +1,1 @@
 apply from: rootProject.file(files.app_kotlin_gradle)
-
-dependencies {
-    compileOnly deps.androidx.appcompat
-    compileOnly deps.androidx.support_v4
-    compileOnly deps.androidx.design
-    compileOnly project(path: ':DevApp')
-}

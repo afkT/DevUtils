@@ -2,3 +2,75 @@ apply from: rootProject.file(files.app_lib_gradle)
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+
+dependencies {
+    compileOnly deps.kotlin.stdlib
+    compileOnly deps.androidx.core_ktx
+    compileOnly deps.androidx.appcompat
+    compileOnly deps.androidx.support_v4
+    compileOnly deps.androidx.design
+    compileOnly deps.androidx.cardview
+    compileOnly deps.androidx.recyclerview
+    compileOnly deps.androidx.multidex
+    compileOnly deps.androidx.constraint_layout
+    compileOnly deps.androidx.viewpager2
+    compileOnly deps.androidx.sqlite
+
+    // ==============
+    // = Dev Module =
+    // ==============
+
+    compileOnly project(path: ':DevApp')
+    compileOnly project(path: ':DevAssist')
+
+    // ============
+    // = 第三方库 =
+    // ============
+
+    // OkHttp3 网络请求框架 https://github.com/square/okhttp
+    compileOnly deps.lib.okhttp3
+    compileOnly deps.lib.okhttp3_logging
+    // Retrofit 网络请求库  https://github.com/square/retrofit
+    compileOnly deps.lib.retrofit
+    // Retrofit Gson Converter  https://github.com/square/retrofit/tree/master/retrofit-converters/gson
+    compileOnly deps.lib.retrofit_gson
+    // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava3
+    compileOnly deps.lib.retrofit_rxjava3
+    // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
+    compileOnly deps.lib.rxjava3
+    // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
+    compileOnly deps.lib.rxandroid3
+    // Okgo https://github.com/jeasonlzy/okhttp-OkGo
+    compileOnly deps.lib.okgo
+    // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
+    compileOnly deps.lib.okserver
+    // Gson https://github.com/google/gson
+    compileOnly deps.lib.gson
+    // fastjson https://github.com/alibaba/fastjson
+    compileOnly deps.lib.fastjson
+    // Imageloader 图片加载框架 https://github.com/nostra13/Android-Universal-Image-Loader
+    compileOnly deps.lib.imageloader
+    // Glide 加载框架 https://github.com/bumptech/glide
+    compileOnly deps.lib.glide
+    kapt deps.lib.glide_compiler
+    // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
+    compileOnly deps.lib.eventbus
+    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
+    compileOnly deps.lib.pictureSelector
+    // 二维码 ZXing https://github.com/zxing/zxing
+    compileOnly deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
+    compileOnly deps.lib.zxing_android_code // android-core
+    // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
+    compileOnly deps.lib.luban
+
+    // ==============================
+    // = 其他第三方库 - 小功能、简约 =
+    // ==============================
+
+    // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
+    compileOnly deps.lib.smartrefreshlayout
+    // 下拉刷新框架 ( 横向 ) https://github.com/scwang90/SmartRefreshHorizontal
+    compileOnly deps.lib.smartrefreshHorizontal
+    // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+    compileOnly deps.lib.baserecyclerviewadapterhelper
+}
