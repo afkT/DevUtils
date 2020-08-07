@@ -426,7 +426,7 @@ public final class ShapeUtils {
 
     /**
      * 设置渐变颜色
-     * @param colors [起始颜色、结束颜色] | [起始颜色、中间颜色、结束颜色]
+     * @param colors [ 起始颜色、结束颜色 ] | [ 起始颜色、中间颜色、结束颜色 ]
      * @return {@link ShapeUtils}
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -500,7 +500,6 @@ public final class ShapeUtils {
     // ===========
     // = padding =
     // ===========
-
 
     /**
      * 设置内边距
