@@ -6,7 +6,6 @@ version versions.dev_java_version
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    // compileOnly project(path: ':DevJava')
     implementation project(path: ':DevJava')
 
     // Gson https://github.com/google/gson

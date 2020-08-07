@@ -1,6 +1,4 @@
-apply {
-    from rootProject.file(files.app_lib_gradle)
-}
+apply from: rootProject.file(files.app_kotlin_gradle)
 
 dependencies {
     compileOnly project(path: ':DevApp')
@@ -31,7 +29,7 @@ dependencies {
     compileOnly deps.lib.imageloader
     // Glide 加载框架 https://github.com/bumptech/glide
     compileOnly deps.lib.glide
-    annotationProcessor deps.lib.glide_compiler
+    kapt deps.lib.glide_compiler
     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
     compileOnly deps.lib.eventbus
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector

@@ -1,6 +1,4 @@
-apply {
-    from rootProject.file(files.app_lib_gradle)
-}
+apply from: rootProject.file(files.app_kotlin_gradle)
 
 dependencies {
     compileOnly deps.androidx.appcompat
