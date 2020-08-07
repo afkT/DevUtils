@@ -89,33 +89,38 @@ public class UIEffectActivity extends BaseToolbarActivity {
         vid_aue_4_0_btn.setBackground(StateListUtils.newSelector(R.drawable.btn_pressed, R.drawable.btn_normal));
         vid_aue_4_0_btn.setTextColor(StateListUtils.createColorStateList(R.color.black, R.color.white));
 
-//        // 默认就设置背景色
-//        ShapeUtils.Builder builder = new ShapeUtils.Builder();
-//        builder.setRadiusLeft(10f).setColor(R.color.black);
-//        vid_aue_4_1_btn.setBackground(builder.build().getDrawable());
-//        // 设置点击效果
-//        GradientDrawable drawable1 = ShapeUtils.newBuilder(10f, R.color.black).setStroke(5, R.color.darkorange).build().getDrawable();
-//        GradientDrawable drawable2 = ShapeUtils.newBuilder(10f, R.color.sky_blue).setStroke(5, R.color.gray).build().getDrawable();
-//        vid_aue_4_1_btn.setBackground(StateListUtils.newSelector(drawable2, drawable1));
-//        vid_aue_4_1_btn.setTextColor(StateListUtils.createColorStateList(R.color.red, R.color.white));
-//
-//        // ============
-//        // = 渐变效果 =
-//        // ============
-//
-//        ShapeUtils.newBuilderToGradient(GradientDrawable.Orientation.BR_TL,
-//                new int[]{Color.RED, Color.BLUE, Color.GREEN}).build().setDrawable(vid_aue_5_0_view);
-//
-//        int[] colors = new int[3];
-//        colors[0] = ContextCompat.getColor(this, R.color.black);
-//        colors[1] = ContextCompat.getColor(this, R.color.sky_blue);
-//        colors[2] = ContextCompat.getColor(this, R.color.orange);
-//
-//        GradientDrawable drawable = ShapeUtils.newBuilderToGradient(GradientDrawable.Orientation.BR_TL, colors).build().getDrawable();
-////        drawable.setGradientType(GradientDrawable.LINEAR_GRADIENT); // 线性渐变, 这是默认设置
-////        drawable.setGradientType(GradientDrawable.RADIAL_GRADIENT); // 放射性渐变, 以开始色为中心
-//        drawable.setGradientType(GradientDrawable.SWEEP_GRADIENT); // 扫描线式的渐变
-//        vid_aue_6_0_view.setBackground(drawable);
+        // 默认就设置背景色
+        vid_aue_4_1_btn.setBackground(
+                ShapeUtils.newShape()
+                        .setCornerRadiusLeft(10.0f)
+                        .setColor(Color.BLACK)
+                        .getDrawable()
+        );
+        // 设置点击效果
+        GradientDrawable drawable1 = ShapeUtils.newShape(10f, ResourceUtils.getColor(R.color.black))
+                .setStroke(5, ResourceUtils.getColor(R.color.darkorange)).getDrawable();
+        GradientDrawable drawable2 = ShapeUtils.newShape(10f, ResourceUtils.getColor(R.color.sky_blue))
+                .setStroke(5, ResourceUtils.getColor(R.color.gray)).getDrawable();
+        vid_aue_4_1_btn.setBackground(StateListUtils.newSelector(drawable2, drawable1));
+        vid_aue_4_1_btn.setTextColor(StateListUtils.createColorStateList(R.color.red, R.color.white));
+
+        // ============
+        // = 渐变效果 =
+        // ============
+
+        ShapeUtils.newShape(GradientDrawable.Orientation.BR_TL, new int[]{Color.RED, Color.BLUE, Color.GREEN})
+                .setDrawable(vid_aue_5_0_view);
+
+        int[] colors = new int[3];
+        colors[0] = ContextCompat.getColor(this, R.color.black);
+        colors[1] = ContextCompat.getColor(this, R.color.sky_blue);
+        colors[2] = ContextCompat.getColor(this, R.color.orange);
+
+        GradientDrawable drawable = ShapeUtils.newShape(GradientDrawable.Orientation.BR_TL, colors).getDrawable();
+//        drawable.setGradientType(GradientDrawable.LINEAR_GRADIENT); // 线性渐变, 这是默认设置
+//        drawable.setGradientType(GradientDrawable.RADIAL_GRADIENT); // 放射性渐变, 以开始色为中心
+        drawable.setGradientType(GradientDrawable.SWEEP_GRADIENT); // 扫描线式的渐变
+        vid_aue_6_0_view.setBackground(drawable);
 
         // ============================
         // = HorizontalScrollView Tab =
@@ -243,28 +248,40 @@ public class UIEffectActivity extends BaseToolbarActivity {
      * @param unClickTab 未点击 Tab
      */
     private void changeTab2(BaseTextView clickTab, BaseTextView unClickTab) {
-//        // 判断点击的是左边还是右边
-//        if (clickTab.getId() == R.id.vid_aue_3_0_tv) { // 点击左边
-//            // 设置选中颜色
-//            ShapeUtils.Builder builder = new ShapeUtils.Builder();
-//            builder.setRadiusLeft(10f).setColor(R.color.sky_blue);
-//            builder.build().setDrawable(clickTab);
-//
-//            // 设置未选中颜色
-//            GradientDrawable drawable1 = ShapeUtils.newBuilderToRight(10f, R.color.sky_blue).build().getDrawable();
-//            GradientDrawable drawable2 = ShapeUtils.newBuilderToRight(10f, R.color.color_33).build().getDrawable();
-//            unClickTab.setBackground(StateListUtils.newSelector(drawable1, drawable2));
-//        } else {
-//            // 设置选中颜色
-//            ShapeUtils.Builder builder = new ShapeUtils.Builder();
-//            builder.setRadiusRight(10f).setColor(R.color.sky_blue);
-//            builder.build().setDrawable(clickTab);
-//
-//            // 设置未选中颜色
-//            GradientDrawable drawable1 = ShapeUtils.newBuilderToLeft(10f, R.color.sky_blue).build().getDrawable();
-//            GradientDrawable drawable2 = ShapeUtils.newBuilderToLeft(10f, R.color.color_33).build().getDrawable();
-//            unClickTab.setBackground(StateListUtils.newSelector(drawable1, drawable2));
-//        }
+        // 判断点击的是左边还是右边
+        if (clickTab.getId() == R.id.vid_aue_3_0_tv) { // 点击左边
+            // 设置选中颜色
+            ShapeUtils.newShape().setCornerRadiusLeft(10f)
+                    .setColor(ResourceUtils.getColor(R.color.sky_blue))
+                    .setDrawable(clickTab);
+
+            // 设置未选中颜色
+            GradientDrawable drawable1 = ShapeUtils.newShape()
+                    .setCornerRadiusRight(10f)
+                    .setColor(ResourceUtils.getColor(R.color.sky_blue))
+                    .getDrawable();
+            GradientDrawable drawable2 = ShapeUtils.newShape()
+                    .setCornerRadiusRight(10f)
+                    .setColor(ResourceUtils.getColor(R.color.color_33))
+                    .getDrawable();
+            unClickTab.setBackground(StateListUtils.newSelector(drawable1, drawable2));
+        } else {
+            // 设置选中颜色
+            ShapeUtils.newShape().setCornerRadiusRight(10f)
+                    .setColor(ResourceUtils.getColor(R.color.sky_blue))
+                    .setDrawable(clickTab);
+
+            // 设置未选中颜色
+            GradientDrawable drawable1 = ShapeUtils.newShape()
+                    .setCornerRadiusLeft(10f)
+                    .setColor(ResourceUtils.getColor(R.color.sky_blue))
+                    .getDrawable();
+            GradientDrawable drawable2 = ShapeUtils.newShape()
+                    .setCornerRadiusLeft(10f)
+                    .setColor(ResourceUtils.getColor(R.color.color_33))
+                    .getDrawable();
+            unClickTab.setBackground(StateListUtils.newSelector(drawable1, drawable2));
+        }
         // = 字体效果 =
         // 选中变白色
         clickTab.setTextColor(getResources().getColor(R.color.white));

@@ -178,7 +178,6 @@ public class GlideEngine implements ImageEngine {
                 });
     }
 
-
     /**
      * 加载 gif
      * @param context   上下文
@@ -209,7 +208,6 @@ public class GlideEngine implements ImageEngine {
                 .apply(new RequestOptions().placeholder(R.drawable.picture_image_placeholder))
                 .into(imageView);
     }
-
 
     private GlideEngine() {
     }
