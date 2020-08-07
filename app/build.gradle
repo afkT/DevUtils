@@ -1,6 +1,4 @@
-apply {
-    from rootProject.file(files.app_gradle)
-}
+apply from: rootProject.file(files.app_gradle)
 
 android {
     defaultConfig {
