@@ -11,9 +11,9 @@ import android.widget.PopupWindow;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import dev.base.able.IDevBaseContent;
 import dev.base.able.IDevBaseMethod;
 import dev.base.able.IDevBaseUIOperation;
-import dev.base.able.IDevBaseViewOperation;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.DialogUtils;
 import dev.utils.app.toast.ToastUtils;
@@ -22,7 +22,7 @@ import dev.utils.app.toast.ToastUtils;
  * detail: Fragment 抽象基类
  * @author Ttt
  */
-abstract class AbstractDevBaseFragment extends Fragment implements IDevBaseMethod, IDevBaseUIOperation, IDevBaseViewOperation {
+abstract class AbstractDevBaseFragment extends Fragment implements IDevBaseMethod, IDevBaseUIOperation, IDevBaseContent {
 
     // ==========
     // = Object =
@@ -170,20 +170,9 @@ abstract class AbstractDevBaseFragment extends Fragment implements IDevBaseMetho
         LogPrintUtils.dTag(mTag, String.format("%s -> %s", new Object[]{tag, message}));
     }
 
-    // =========================
-    // = IDevBaseViewOperation =
-    // =========================
-
-    @Override
-    public View getContentView() {
-        return mContentView;
-    }
-
-    @Override
-    public abstract int contentId();
-
-    @Override
-    public abstract View contentView();
+    // ===================
+    // = IDevBaseContent =
+    // ===================
 
     /**
      * 布局初始化处理
