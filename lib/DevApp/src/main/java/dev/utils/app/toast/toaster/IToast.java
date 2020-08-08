@@ -110,17 +110,17 @@ public final class IToast {
 
         /**
          * 显示 Toast
-         * @param text Toast 提示文本
-         * @param objs 格式化参数
+         * @param text       Toast 提示文本
+         * @param formatArgs 格式化参数
          */
-        void show(String text, Object... objs);
+        void show(String text, Object... formatArgs);
 
         /**
          * 显示 R.string.id Toast
-         * @param resId R.string.id
-         * @param objs  格式化参数
+         * @param resId      R.string.id
+         * @param formatArgs 格式化参数
          */
-        void show(@StringRes int resId, Object... objs);
+        void show(@StringRes int resId, Object... formatArgs);
 
         // =
 

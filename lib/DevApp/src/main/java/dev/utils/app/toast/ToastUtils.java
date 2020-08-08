@@ -130,42 +130,42 @@ public final class ToastUtils {
 
     /**
      * 显示 LENGTH_SHORT Toast
-     * @param text Toast 提示文本
-     * @param objs 格式化参数
+     * @param text       Toast 提示文本
+     * @param formatArgs 格式化参数
      */
-    public static void showShort(final String text, final Object... objs) {
-        showShort(null, text, objs);
+    public static void showShort(final String text, final Object... formatArgs) {
+        showShort(null, text, formatArgs);
     }
 
     /**
      * 显示 LENGTH_SHORT Toast
-     * @param context {@link Context}
-     * @param text    Toast 提示文本
-     * @param objs    格式化参数
+     * @param context    {@link Context}
+     * @param text       Toast 提示文本
+     * @param formatArgs 格式化参数
      */
-    public static void showShort(final Context context, final String text, final Object... objs) {
-        handlerToastStr(true, context, text, Toast.LENGTH_SHORT, objs);
+    public static void showShort(final Context context, final String text, final Object... formatArgs) {
+        handlerToastStr(true, context, text, Toast.LENGTH_SHORT, formatArgs);
     }
 
     // =
 
     /**
      * 显示 LENGTH_SHORT Toast
-     * @param resId R.string.id
-     * @param objs  格式化参数
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      */
-    public static void showShort(@StringRes final int resId, final Object... objs) {
-        showShort(null, resId, objs);
+    public static void showShort(@StringRes final int resId, final Object... formatArgs) {
+        showShort(null, resId, formatArgs);
     }
 
     /**
      * 显示 LENGTH_SHORT Toast
-     * @param context {@link Context}
-     * @param resId   R.string.id
-     * @param objs    格式化参数
+     * @param context    {@link Context}
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      */
-    public static void showShort(final Context context, @StringRes final int resId, final Object... objs) {
-        handlerToastRes(true, context, resId, Toast.LENGTH_SHORT, objs);
+    public static void showShort(final Context context, @StringRes final int resId, final Object... formatArgs) {
+        handlerToastRes(true, context, resId, Toast.LENGTH_SHORT, formatArgs);
     }
 
     // =====================
@@ -174,42 +174,42 @@ public final class ToastUtils {
 
     /**
      * 显示 LENGTH_LONG Toast
-     * @param text Toast 提示文本
-     * @param objs 格式化参数
+     * @param text       Toast 提示文本
+     * @param formatArgs 格式化参数
      */
-    public static void showLong(final String text, final Object... objs) {
-        showLong(null, text, objs);
+    public static void showLong(final String text, final Object... formatArgs) {
+        showLong(null, text, formatArgs);
     }
 
     /**
      * 显示 LENGTH_LONG Toast
-     * @param context {@link Context}
-     * @param text    Toast 提示文本
-     * @param objs    格式化参数
+     * @param context    {@link Context}
+     * @param text       Toast 提示文本
+     * @param formatArgs 格式化参数
      */
-    public static void showLong(final Context context, final String text, final Object... objs) {
-        handlerToastStr(true, context, text, Toast.LENGTH_LONG, objs);
+    public static void showLong(final Context context, final String text, final Object... formatArgs) {
+        handlerToastStr(true, context, text, Toast.LENGTH_LONG, formatArgs);
     }
 
     // =
 
     /**
      * 显示 LENGTH_LONG Toast
-     * @param resId R.string.id
-     * @param objs  格式化参数
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      */
-    public static void showLong(@StringRes final int resId, final Object... objs) {
-        showLong(null, resId, objs);
+    public static void showLong(@StringRes final int resId, final Object... formatArgs) {
+        showLong(null, resId, formatArgs);
     }
 
     /**
      * 显示 LENGTH_LONG Toast
-     * @param context {@link Context}
-     * @param resId   R.string.id
-     * @param objs    格式化参数
+     * @param context    {@link Context}
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      */
-    public static void showLong(final Context context, @StringRes final int resId, final Object... objs) {
-        handlerToastRes(true, context, resId, Toast.LENGTH_LONG, objs);
+    public static void showLong(final Context context, @StringRes final int resId, final Object... formatArgs) {
+        handlerToastRes(true, context, resId, Toast.LENGTH_LONG, formatArgs);
     }
 
     // ==============
@@ -264,42 +264,42 @@ public final class ToastUtils {
 
     /**
      * 显示 new LENGTH_SHORT Toast
-     * @param text Toast 提示文本
-     * @param objs 格式化参数
+     * @param text       Toast 提示文本
+     * @param formatArgs 格式化参数
      */
-    public static void showShortNew(final String text, final Object... objs) {
-        showShortNew(null, text, objs);
+    public static void showShortNew(final String text, final Object... formatArgs) {
+        showShortNew(null, text, formatArgs);
     }
 
     /**
      * 显示 new LENGTH_SHORT Toast
-     * @param context {@link Context}
-     * @param text    Toast 提示文本
-     * @param objs    格式化参数
+     * @param context    {@link Context}
+     * @param text       Toast 提示文本
+     * @param formatArgs 格式化参数
      */
-    public static void showShortNew(final Context context, final String text, final Object... objs) {
-        handlerToastStr(false, context, text, Toast.LENGTH_SHORT, objs);
+    public static void showShortNew(final Context context, final String text, final Object... formatArgs) {
+        handlerToastStr(false, context, text, Toast.LENGTH_SHORT, formatArgs);
     }
 
     // =
 
     /**
      * 显示 new LENGTH_SHORT Toast
-     * @param resId R.string.id
-     * @param objs  格式化参数
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      */
-    public static void showShortNew(@StringRes final int resId, final Object... objs) {
-        showShortNew(null, resId, objs);
+    public static void showShortNew(@StringRes final int resId, final Object... formatArgs) {
+        showShortNew(null, resId, formatArgs);
     }
 
     /**
      * 显示 new LENGTH_SHORT Toast
-     * @param context {@link Context}
-     * @param resId   R.string.id
-     * @param objs    格式化参数
+     * @param context    {@link Context}
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      */
-    public static void showShortNew(final Context context, @StringRes final int resId, final Object... objs) {
-        handlerToastRes(false, context, resId, Toast.LENGTH_SHORT, objs);
+    public static void showShortNew(final Context context, @StringRes final int resId, final Object... formatArgs) {
+        handlerToastRes(false, context, resId, Toast.LENGTH_SHORT, formatArgs);
     }
 
     // =====================
@@ -308,42 +308,42 @@ public final class ToastUtils {
 
     /**
      * 显示 new LENGTH_LONG Toast
-     * @param text Toast 提示文本
-     * @param objs 格式化参数
+     * @param text       Toast 提示文本
+     * @param formatArgs 格式化参数
      */
-    public static void showLongNew(final String text, final Object... objs) {
-        showLongNew(null, text, objs);
+    public static void showLongNew(final String text, final Object... formatArgs) {
+        showLongNew(null, text, formatArgs);
     }
 
     /**
      * 显示 new LENGTH_LONG Toast
-     * @param context {@link Context}
-     * @param text    Toast 提示文本
-     * @param objs    格式化参数
+     * @param context    {@link Context}
+     * @param text       Toast 提示文本
+     * @param formatArgs 格式化参数
      */
-    public static void showLongNew(final Context context, final String text, final Object... objs) {
-        handlerToastStr(false, context, text, Toast.LENGTH_LONG, objs);
+    public static void showLongNew(final Context context, final String text, final Object... formatArgs) {
+        handlerToastStr(false, context, text, Toast.LENGTH_LONG, formatArgs);
     }
 
     // =
 
     /**
      * 显示 new LENGTH_LONG Toast
-     * @param resId R.string.id
-     * @param objs  格式化参数
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      */
-    public static void showLongNew(@StringRes final int resId, final Object... objs) {
-        showLongNew(null, resId, objs);
+    public static void showLongNew(@StringRes final int resId, final Object... formatArgs) {
+        showLongNew(null, resId, formatArgs);
     }
 
     /**
      * 显示 new LENGTH_LONG Toast
-     * @param context {@link Context}
-     * @param resId   R.string.id
-     * @param objs    格式化参数
+     * @param context    {@link Context}
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      */
-    public static void showLongNew(final Context context, @StringRes final int resId, final Object... objs) {
-        handlerToastRes(false, context, resId, Toast.LENGTH_LONG, objs);
+    public static void showLongNew(final Context context, @StringRes final int resId, final Object... formatArgs) {
+        handlerToastRes(false, context, resId, Toast.LENGTH_LONG, formatArgs);
     }
 
     // ==============
@@ -655,21 +655,21 @@ public final class ToastUtils {
 
     /**
      * 处理 R.string 资源 Toast 的格式化
-     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
-     * @param context  {@link Context}
-     * @param resId    R.string.id
-     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG} {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
-     * @param objs     格式化参数
+     * @param isSingle   是否单例 Toast ( 全局共用 Toast)
+     * @param context    {@link Context}
+     * @param resId      R.string.id
+     * @param duration   Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG} {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param formatArgs 格式化参数
      */
-    private static void handlerToastRes(final boolean isSingle, Context context, @StringRes final int resId, final int duration, final Object... objs) {
+    private static void handlerToastRes(final boolean isSingle, Context context, @StringRes final int resId, final int duration, final Object... formatArgs) {
         if (context == null) {
             context = DevUtils.getContext();
         }
         if (context != null) {
             String text = null;
             try {
-                if (objs != null && objs.length != 0) {
-                    text = context.getString(resId, objs);
+                if (formatArgs != null && formatArgs.length != 0) {
+                    text = context.getString(resId, formatArgs);
                 } else {
                     text = context.getString(resId);
                 }
@@ -682,23 +682,23 @@ public final class ToastUtils {
 
     /**
      * 处理字符串 Toast 的格式化
-     * @param isSingle 是否单例 Toast ( 全局共用 Toast)
-     * @param context  {@link Context}
-     * @param text     Toast 提示文本
-     * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
-     * @param objs     格式化参数
+     * @param isSingle   是否单例 Toast ( 全局共用 Toast)
+     * @param context    {@link Context}
+     * @param text       Toast 提示文本
+     * @param duration   Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
+     * @param formatArgs 格式化参数
      */
-    private static void handlerToastStr(final boolean isSingle, Context context, final String text, final int duration, final Object... objs) {
+    private static void handlerToastStr(final boolean isSingle, Context context, final String text, final int duration, final Object... formatArgs) {
         if (context == null) {
             context = DevUtils.getContext();
         }
         // 防止 Context 为 null
         if (context != null) {
             // 表示需要格式化字符串, 只是为了减少 format 步骤, 增加判断, 为 null 不影响
-            if (objs != null && objs.length != 0) {
-                if (text != null) { // String.format() 中的 objs 可以为 null, 但是 text 不能为 null
+            if (formatArgs != null && formatArgs.length != 0) {
+                if (text != null) { // String.format() 中的 formatArgs 可以为 null, 但是 text 不能为 null
                     try {
-                        priShowToastText(isSingle, context, String.format(text, objs), duration);
+                        priShowToastText(isSingle, context, String.format(text, formatArgs), duration);
                     } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "handlerToastStr");
                         priShowToastText(isSingle, context, e.getMessage(), duration);

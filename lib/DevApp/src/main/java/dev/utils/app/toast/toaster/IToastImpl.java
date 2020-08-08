@@ -212,12 +212,12 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * 显示 Toast
-     * @param text Toast 提示文本
-     * @param objs 格式化参数
+     * @param text       Toast 提示文本
+     * @param formatArgs 格式化参数
      */
     @Override
-    public void show(final String text, final Object... objs) {
-        String context = StringUtils.getFormatString(text, objs);
+    public void show(final String text, final Object... formatArgs) {
+        String context = StringUtils.getFormatString(text, formatArgs);
         if (filter(context)) {
             priShowToastText(handlerContent(context));
         }
@@ -225,12 +225,12 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
 
     /**
      * 显示 R.string.id Toast
-     * @param resId R.string.id
-     * @param objs  格式化参数
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      */
     @Override
-    public void show(@StringRes final int resId, final Object... objs) {
-        String context = AppCommonUtils.getFormatRes(resId, objs);
+    public void show(@StringRes final int resId, final Object... formatArgs) {
+        String context = AppCommonUtils.getFormatRes(resId, formatArgs);
         if (filter(context)) {
             // 获取处理的内容
             priShowToastText(handlerContent(context));

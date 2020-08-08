@@ -242,22 +242,22 @@ abstract class AbstractbsDevBaseActivity extends AppCompatActivity implements ID
 
     /**
      * 显示 Toast
-     * @param text Toast 提示文本
-     * @param objs 格式化参数
+     * @param text       Toast 提示文本
+     * @param formatArgs 格式化参数
      */
     @Override
-    public void showToast(String text, Object... objs) {
-        ToastUtils.showShort(mContext, text, objs);
+    public void showToast(String text, Object... formatArgs) {
+        ToastUtils.showShort(mContext, text, formatArgs);
     }
 
     /**
      * 显示 Toast
-     * @param resId R.string.id
-     * @param objs  格式化参数
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      */
     @Override
-    public void showToast(int resId, Object... objs) {
-        ToastUtils.showShort(mContext, resId, objs);
+    public void showToast(int resId, Object... formatArgs) {
+        ToastUtils.showShort(mContext, resId, formatArgs);
     }
 
     // ===============

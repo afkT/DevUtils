@@ -17,16 +17,16 @@ interface IDevBaseUIOperation {
     /**
      * 显示 Toast
      * @param text Toast 提示文本
-     * @param objs 格式化参数
+     * @param formatArgs 格式化参数
      */
-    fun showToast(text: String?, vararg objs: Any?)
+    fun showToast(text: String?, vararg formatArgs: Any?)
 
     /**
      * 显示 Toast
      * @param resId R.string.id
-     * @param objs  格式化参数
+     * @param formatArgs  格式化参数
      */
-    fun showToast(resId: Int, vararg objs: Any?)
+    fun showToast(resId: Int, vararg formatArgs: Any?)
 
     // ===============
     // = PopupWindow =

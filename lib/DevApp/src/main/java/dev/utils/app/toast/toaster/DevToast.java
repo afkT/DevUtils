@@ -134,20 +134,20 @@ public final class DevToast {
 
     /**
      * 显示 Toast
-     * @param text Toast 提示文本
-     * @param objs 格式化参数
+     * @param text       Toast 提示文本
+     * @param formatArgs 格式化参数
      */
-    public static void show(final String text, final Object... objs) {
-        sToast.show(text, objs);
+    public static void show(final String text, final Object... formatArgs) {
+        sToast.show(text, formatArgs);
     }
 
     /**
      * 显示 R.string.id Toast
-     * @param resId R.string.id
-     * @param objs  格式化参数
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      */
-    public static void show(@StringRes final int resId, final Object... objs) {
-        sToast.show(resId, objs);
+    public static void show(@StringRes final int resId, final Object... formatArgs) {
+        sToast.show(resId, formatArgs);
     }
 
     /**

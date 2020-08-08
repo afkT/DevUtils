@@ -233,25 +233,25 @@ public final class SnackbarUtils {
 
     /**
      * 设置 Action 按钮文字内容及点击监听
-     * @param resId R.string.id
-     * @param objs  格式化参数
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      * @return {@link SnackbarUtils}
      */
-    public SnackbarUtils setAction(@StringRes final int resId, final Object... objs) {
-        return setAction(null, resId, objs);
+    public SnackbarUtils setAction(@StringRes final int resId, final Object... formatArgs) {
+        return setAction(null, resId, formatArgs);
     }
 
     /**
      * 设置 Action 按钮文字内容及点击监听
-     * @param listener 按钮点击事件
-     * @param resId    R.string.id
-     * @param objs     格式化参数
+     * @param listener   按钮点击事件
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      * @return {@link SnackbarUtils}
      */
-    public SnackbarUtils setAction(final View.OnClickListener listener, @StringRes final int resId, final Object... objs) {
+    public SnackbarUtils setAction(final View.OnClickListener listener, @StringRes final int resId, final Object... formatArgs) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
-            String content = AppCommonUtils.getFormatRes(resId, objs);
+            String content = AppCommonUtils.getFormatRes(resId, formatArgs);
             if (!TextUtils.isEmpty(content)) {
                 snackbar.setAction(content, listener);
             }
@@ -261,25 +261,25 @@ public final class SnackbarUtils {
 
     /**
      * 设置 Action 按钮文字内容及点击监听
-     * @param text 按钮文本
-     * @param objs 格式化参数
+     * @param text       按钮文本
+     * @param formatArgs 格式化参数
      * @return {@link SnackbarUtils}
      */
-    public SnackbarUtils setAction(final String text, final Object... objs) {
-        return setAction(null, text, objs);
+    public SnackbarUtils setAction(final String text, final Object... formatArgs) {
+        return setAction(null, text, formatArgs);
     }
 
     /**
      * 设置 Action 按钮文字内容及点击监听
-     * @param listener 按钮点击事件
-     * @param text     按钮文本
-     * @param objs     格式化参数
+     * @param listener   按钮点击事件
+     * @param text       按钮文本
+     * @param formatArgs 格式化参数
      * @return {@link SnackbarUtils}
      */
-    public SnackbarUtils setAction(final View.OnClickListener listener, final String text, final Object... objs) {
+    public SnackbarUtils setAction(final View.OnClickListener listener, final String text, final Object... formatArgs) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
-            String content = StringUtils.getFormatString(text, objs);
+            String content = StringUtils.getFormatString(text, formatArgs);
             if (!TextUtils.isEmpty(content)) {
                 snackbar.setAction(content, listener);
             }
@@ -315,58 +315,58 @@ public final class SnackbarUtils {
 
     /**
      * 显示 Short Snackbar
-     * @param resId R.string.id
-     * @param objs  格式化参数
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      */
-    public void showShort(@StringRes final int resId, final Object... objs) {
-        priShow(AppCommonUtils.getFormatRes(resId, objs), Snackbar.LENGTH_SHORT);
+    public void showShort(@StringRes final int resId, final Object... formatArgs) {
+        priShow(AppCommonUtils.getFormatRes(resId, formatArgs), Snackbar.LENGTH_SHORT);
     }
 
     /**
      * 显示 Long Snackbar
-     * @param resId R.string.id
-     * @param objs  格式化参数
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      */
-    public void showLong(@StringRes final int resId, final Object... objs) {
-        priShow(AppCommonUtils.getFormatRes(resId, objs), Snackbar.LENGTH_LONG);
+    public void showLong(@StringRes final int resId, final Object... formatArgs) {
+        priShow(AppCommonUtils.getFormatRes(resId, formatArgs), Snackbar.LENGTH_LONG);
     }
 
     /**
      * 显示 Indefinite Snackbar ( 无限时, 一直显示 )
-     * @param resId R.string.id
-     * @param objs  格式化参数
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      */
-    public void showIndefinite(@StringRes final int resId, final Object... objs) {
-        priShow(AppCommonUtils.getFormatRes(resId, objs), Snackbar.LENGTH_INDEFINITE);
+    public void showIndefinite(@StringRes final int resId, final Object... formatArgs) {
+        priShow(AppCommonUtils.getFormatRes(resId, formatArgs), Snackbar.LENGTH_INDEFINITE);
     }
 
     // =
 
     /**
      * 显示 Short Snackbar
-     * @param text 显示文本
-     * @param objs 格式化参数
+     * @param text       显示文本
+     * @param formatArgs 格式化参数
      */
-    public void showShort(final String text, final Object... objs) {
-        priShow(StringUtils.getFormatString(text, objs), Snackbar.LENGTH_SHORT);
+    public void showShort(final String text, final Object... formatArgs) {
+        priShow(StringUtils.getFormatString(text, formatArgs), Snackbar.LENGTH_SHORT);
     }
 
     /**
      * 显示 Long Snackbar
-     * @param text 显示文本
-     * @param objs 格式化参数
+     * @param text       显示文本
+     * @param formatArgs 格式化参数
      */
-    public void showLong(final String text, final Object... objs) {
-        priShow(StringUtils.getFormatString(text, objs), Snackbar.LENGTH_LONG);
+    public void showLong(final String text, final Object... formatArgs) {
+        priShow(StringUtils.getFormatString(text, formatArgs), Snackbar.LENGTH_LONG);
     }
 
     /**
      * 显示 Indefinite Snackbar ( 无限时, 一直显示 )
-     * @param text 显示文本
-     * @param objs 格式化参数
+     * @param text       显示文本
+     * @param formatArgs 格式化参数
      */
-    public void showIndefinite(final String text, final Object... objs) {
-        priShow(StringUtils.getFormatString(text, objs), Snackbar.LENGTH_INDEFINITE);
+    public void showIndefinite(final String text, final Object... formatArgs) {
+        priShow(StringUtils.getFormatString(text, formatArgs), Snackbar.LENGTH_INDEFINITE);
     }
 
     // ============

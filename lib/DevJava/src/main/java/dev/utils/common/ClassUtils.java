@@ -38,12 +38,12 @@ public final class ClassUtils {
                     c.setAccessible(true);
                     return (T) c.newInstance();
                 } else {
-                    Object[] objs = new Object[cls.length];
+                    Object[] objects = new Object[cls.length];
                     for (int i = 0; i < cls.length; i++) {
-                        objs[i] = getDefaultPrimiticeValue(cls[i]);
+                        objects[i] = getDefaultPrimiticeValue(cls[i]);
                     }
                     c.setAccessible(true);
-                    return (T) c.newInstance(objs);
+                    return (T) c.newInstance(objects);
                 }
             }
         } catch (Exception e) {

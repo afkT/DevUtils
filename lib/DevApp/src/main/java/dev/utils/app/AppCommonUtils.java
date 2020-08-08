@@ -107,25 +107,25 @@ public final class AppCommonUtils {
 
     /**
      * 获取 R.string 资源的格式化字符串
-     * @param resId R.string.id
-     * @param objs  格式化参数
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      * @return 格式化后的字符串
      */
-    public static String getFormatRes(@StringRes final int resId, final Object... objs) {
-        return getFormatRes(false, resId, objs);
+    public static String getFormatRes(@StringRes final int resId, final Object... formatArgs) {
+        return getFormatRes(false, resId, formatArgs);
     }
 
     /**
      * 获取 R.string 资源的格式化字符串
-     * @param errorMsg 是否设置异常信息
-     * @param resId    R.string.id
-     * @param objs     格式化参数
+     * @param errorMsg   是否设置异常信息
+     * @param resId      R.string.id
+     * @param formatArgs 格式化参数
      * @return 格式化后的字符串
      */
-    public static String getFormatRes(final boolean errorMsg, @StringRes final int resId, final Object... objs) {
+    public static String getFormatRes(final boolean errorMsg, @StringRes final int resId, final Object... formatArgs) {
         try {
-            if (objs != null && objs.length != 0) {
-                return ResourceUtils.getString(resId, objs);
+            if (formatArgs != null && formatArgs.length != 0) {
+                return ResourceUtils.getString(resId, formatArgs);
             } else {
                 return ResourceUtils.getString(resId);
             }
