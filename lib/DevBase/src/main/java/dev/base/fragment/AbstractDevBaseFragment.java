@@ -22,7 +22,7 @@ import dev.utils.app.toast.ToastUtils;
  * detail: Fragment 抽象基类
  * @author Ttt
  */
-abstract class AbstractDevBaseFragment extends Fragment implements IDevBaseMethod, IDevBaseUIOperation, IDevBaseContent {
+public abstract class AbstractDevBaseFragment extends Fragment implements IDevBaseMethod, IDevBaseUIOperation, IDevBaseContent {
 
     // ==========
     // = Object =

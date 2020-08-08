@@ -23,7 +23,7 @@ import dev.utils.app.toast.ToastUtils;
  * detail: Activity 抽象基类
  * @author Ttt
  */
-abstract class AbstractbsDevBaseActivity extends AppCompatActivity implements IDevBaseMethod, IDevBaseUIOperation, IDevBaseContent {
+public abstract class AbstractbsDevBaseActivity extends AppCompatActivity implements IDevBaseMethod, IDevBaseUIOperation, IDevBaseContent {
 
     // ==========
     // = Object =
