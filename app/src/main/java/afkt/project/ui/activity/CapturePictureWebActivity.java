@@ -58,8 +58,8 @@ public class CapturePictureWebActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
         // 加载网页
         vid_acp_webview.loadUrl("https://www.csdn.net/");
     }

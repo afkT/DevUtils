@@ -44,8 +44,8 @@ public class ItemStickyActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         ViewGroup parent = (ViewGroup) vid_bvr_recy.getParent();
         // 根布局处理

@@ -74,8 +74,8 @@ public class ScanShapeActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
         // 设置扫描类型
         ProjectUtils.refShape(vid_ass_scanview, ScanShapeView.Shape.Square);
     }

@@ -48,8 +48,8 @@ public class AccessibilityListenerServiceActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getAccessibilityListenerServiceButtonValues());
@@ -86,8 +86,8 @@ public class AccessibilityListenerServiceActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initListeners() {
-        super.initListeners();
+    public void initListener() {
+        super.initListener();
 
         // 设置监听事件
         AccessibilityListenerService.setAccessibilityListener(new AccessibilityListenerService.AccessibilityListener() {

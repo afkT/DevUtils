@@ -77,8 +77,8 @@ public class UIEffectActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         // 默认选中
         ViewHelper.get().setSelected(true, vid_aue_1_0_tv).setSelected(false, vid_aue_1_1_tv);

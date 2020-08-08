@@ -47,8 +47,8 @@ public class LinearSnapActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         List<ItemBean> lists = new ArrayList<>();
         for (int i = 0; i < 10; i++) {

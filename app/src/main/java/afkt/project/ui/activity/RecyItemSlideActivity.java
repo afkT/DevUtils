@@ -55,8 +55,8 @@ public class RecyItemSlideActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         List<CommodityEvaluateBean> lists = new ArrayList<>();
         for (int i = 0; i < 40; i++) {

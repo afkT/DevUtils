@@ -25,8 +25,8 @@ public class StatusBarActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         // 想要实现点击一下, 显示状态栏图标, 点击一下切换不显示, 并且整体不会上下移动
         // 需要先设置 Activity  Theme => android:Theme.Light.NoTitleBar

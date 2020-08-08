@@ -29,8 +29,8 @@ public class TextCalcActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         for (int i = 0; i < 15; i++) {
             // 随机字符串

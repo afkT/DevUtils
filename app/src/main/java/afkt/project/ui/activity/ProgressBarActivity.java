@@ -31,8 +31,8 @@ public class ProgressBarActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
 //        // 内外圆环 + 数字 + 无扇形
 //        vid_ap_bar1.setProgressStyle(LoadProgressBar.ProgressStyle.RINGS)

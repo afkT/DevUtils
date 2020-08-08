@@ -116,8 +116,8 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         // ================
         // = 初始化辅助类 =

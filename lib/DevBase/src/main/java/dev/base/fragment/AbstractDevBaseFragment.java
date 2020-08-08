@@ -211,15 +211,15 @@ abstract class AbstractDevBaseFragment extends Fragment implements IDevBaseMetho
     /**
      * 初始化方法顺序
      * <pre>
-     *     initViews() => initValues() => initListeners() => initOtherOperate()
+     *     initView() => initValue() => initListener() => initOther()
      * </pre>
      */
     @Override
-    public void initMethodOrder() {
-        initViews();
-        initValues();
-        initListeners();
-        initOtherOperate();
+    public void initOrder() {
+        initView();
+        initValue();
+        initListener();
+        initOther();
     }
 
     // ==============
@@ -227,35 +227,35 @@ abstract class AbstractDevBaseFragment extends Fragment implements IDevBaseMetho
     // ==============
 
     /**
-     * 初始化 Views
+     * 初始化 View
      */
     @Override
-    public void initViews() {
-        printLogPri("initViews");
+    public void initView() {
+        printLogPri("initView");
     }
 
     /**
-     * 初始化全部参数、配置
+     * 初始化参数、配置
      */
     @Override
-    public void initValues() {
-        printLogPri("initValues");
+    public void initValue() {
+        printLogPri("initValue");
     }
 
     /**
-     * 初始化绑定事件
+     * 初始化事件
      */
     @Override
-    public void initListeners() {
-        printLogPri("initListeners");
+    public void initListener() {
+        printLogPri("initListener");
     }
 
     /**
      * 初始化其他操作
      */
     @Override
-    public void initOtherOperate() {
-        printLogPri("initOtherOperate");
+    public void initOther() {
+        printLogPri("initOther");
     }
 
     // =======================

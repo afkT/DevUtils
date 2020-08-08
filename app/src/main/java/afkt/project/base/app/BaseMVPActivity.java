@@ -46,7 +46,7 @@ public abstract class BaseMVPActivity<P extends MVP.Presenter> extends DevBaseMV
         // 布局初始化
         layoutInit();
         // 默认调用初始化方法, 按顺序执行
-        initMethodOrder();
+        initOrder();
     }
 
     @Override

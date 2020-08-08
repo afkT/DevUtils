@@ -169,7 +169,7 @@ public class BaseApplication extends MultiDexApplication {
         // 初始化 WebView 辅助类全局配置
         initWebViewBuilder();
         // 初始化其他 lib
-        initOthers();
+        initOther();
     }
 
     /**
@@ -260,7 +260,7 @@ public class BaseApplication extends MultiDexApplication {
     /**
      * 初始化其他 lib
      */
-    private void initOthers() {
+    private void initOther() {
         // xCrash 提供捕获 java 崩溃、native 崩溃和 ANR 的能力, 不需要 root 权限或任何系统权限
         xcrash.XCrash.init(this);
 

@@ -50,8 +50,8 @@ public class PagerSnapMAXActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
 
         List<ItemBean> lists = new ArrayList<>();
@@ -77,8 +77,8 @@ public class PagerSnapMAXActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initListeners() {
-        super.initListeners();
+    public void initListener() {
+        super.initListener();
 
         vid_bvr_recy.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override

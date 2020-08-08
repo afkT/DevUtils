@@ -47,8 +47,8 @@ public class PagerSnapActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
 
         List<ItemBean> lists = new ArrayList<>();

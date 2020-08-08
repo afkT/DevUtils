@@ -59,8 +59,8 @@ public class GreenDaoActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         ToastTintUtils.info("侧滑可进行删除, 长按拖动位置");
 
@@ -72,8 +72,8 @@ public class GreenDaoActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initListeners() {
-        super.initListeners();
+    public void initListener() {
+        super.initListener();
         // 刷新事件
         vid_agd_refresh.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override

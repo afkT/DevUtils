@@ -33,8 +33,8 @@ public class ViewAssistActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         viewAssist = ViewAssist.wrap(vid_ava_frame);
 

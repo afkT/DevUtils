@@ -36,8 +36,8 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
     }
 
     @Override
-    public void initViews() {
-        super.initViews();
+    public void initView() {
+        super.initView();
 
         // 因现有架构与 MVVM 并非完全兼容, 需要重新设置 setContentView
         // 在一开始选型确定后, 才能专门为其设计基类
@@ -76,8 +76,8 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
         // 初始化布局管理器、适配器
         ArticleAdapter articleAdapter = new ArticleAdapter();
         viewDataBinding.vidAamRecy.setLayoutManager(new LinearLayoutManager(this));
@@ -87,8 +87,8 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
     }
 
     @Override
-    public void initListeners() {
-        super.initListeners();
+    public void initListener() {
+        super.initListener();
         // 设置监听
         viewDataBinding.vidAamState.setListener(new StateLayout.Listener() {
             @Override
@@ -124,8 +124,8 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
     }
 
     @Override
-    public void initOtherOperate() {
-        super.initOtherOperate();
+    public void initOther() {
+        super.initOther();
         // 表示请求中
         viewDataBinding.vidAamState.showIng();
         // 获取文章列表

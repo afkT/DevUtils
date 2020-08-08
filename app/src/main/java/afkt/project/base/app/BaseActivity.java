@@ -43,7 +43,7 @@ public abstract class BaseActivity extends DevBaseActivity {
         // 布局初始化
         layoutInit();
         // 默认调用初始化方法, 按顺序执行
-        initMethodOrder();
+        initOrder();
     }
 
     @Override

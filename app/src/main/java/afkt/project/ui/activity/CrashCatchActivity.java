@@ -32,8 +32,8 @@ public class CrashCatchActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         /**
          * 捕获异常处理 CrashUtils.getInstance().init()

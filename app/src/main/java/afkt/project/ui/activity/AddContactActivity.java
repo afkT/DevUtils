@@ -67,8 +67,8 @@ public class AddContactActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
     }
 
     @OnClick({R.id.vid_aac_add_btn})

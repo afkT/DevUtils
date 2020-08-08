@@ -68,8 +68,8 @@ public class CapturePictureRecyActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
 //        vid_acp_recy.setLayoutManager(new LinearLayoutManager(this));
 //        vid_acp_recy.setLayoutManager(new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false));

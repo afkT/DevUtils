@@ -43,8 +43,8 @@ public class TimerActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getTimerButtonValues());
@@ -123,8 +123,8 @@ public class TimerActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initListeners() {
-        super.initListeners();
+    public void initListener() {
+        super.initListener();
 
 //        // 创建定时器 ( 立即执行、无限循环、通知默认 what )
 //        public static TimerManager.AbsTimer createTimer(Handler handler, long period) {

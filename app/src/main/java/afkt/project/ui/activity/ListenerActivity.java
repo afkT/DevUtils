@@ -71,8 +71,8 @@ public class ListenerActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         View view = ViewUtils.inflate(R.layout.base_view_textview);
         ViewHelper.get().setText(view, "单击绑定, 长按注销")

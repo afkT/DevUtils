@@ -65,8 +65,8 @@ public class WifiActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         // 初始化工具类
         wifiUtils = new WifiUtils();
@@ -200,8 +200,8 @@ public class WifiActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initListeners() {
-        super.initListeners();
+    public void initListener() {
+        super.initListener();
 
         // 设置监听事件
         WifiReceiver.setWifiListener(new WifiReceiver.WifiListener() {

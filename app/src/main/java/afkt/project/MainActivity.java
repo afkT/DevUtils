@@ -43,8 +43,8 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void initOtherOperate() {
-        super.initOtherOperate();
+    public void initOther() {
+        super.initOther();
 
         // MMKV 简单使用
         mmkvSimple();
@@ -111,8 +111,8 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
         // 设置 Android 版本信息
         vid_am_android_tv.setText(AppCommonUtils.convertSDKVersion());
         // 初始化布局管理器、适配器

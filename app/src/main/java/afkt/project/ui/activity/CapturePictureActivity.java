@@ -33,8 +33,8 @@ public class CapturePictureActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         // ============
         // = 截图方法 =

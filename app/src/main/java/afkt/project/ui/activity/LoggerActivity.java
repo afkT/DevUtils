@@ -35,8 +35,8 @@ public class LoggerActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
 //        // = 在 BaseApplication 中调用 =
 //        // 初始化日志配置

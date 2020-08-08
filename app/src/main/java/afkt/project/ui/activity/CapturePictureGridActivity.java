@@ -66,8 +66,8 @@ public class CapturePictureGridActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         List<AdapterBean> lists = AdapterBean.newAdapterBeanList(15);
         // 设置适配器

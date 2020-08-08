@@ -42,24 +42,24 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
     }
 
     @Override
-    public void initViews() {
-        super.initViews();
+    public void initView() {
+        super.initView();
         // 初始化 View
         View view = stateLayout.getView(ViewAssist.TYPE_ING);
         vid_sli_load_view = ViewUtils.findViewById(view, R.id.vid_sli_load_view);
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
         // 初始化布局管理器、适配器
         articleAdapter = new ArticleAdapter();
         vid_bvr_recy.setAdapter(articleAdapter);
     }
 
     @Override
-    public void initListeners() {
-        super.initListeners();
+    public void initListener() {
+        super.initListener();
         // 设置监听
         stateLayout.setListener(new StateLayout.Listener() {
             @Override
@@ -95,8 +95,8 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
     }
 
     @Override
-    public void initOtherOperate() {
-        super.initOtherOperate();
+    public void initOther() {
+        super.initOther();
         // 表示请求中
         stateLayout.showIng();
         // 获取文章列表

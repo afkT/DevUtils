@@ -32,8 +32,8 @@ public class WebViewActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
         // 长按监听事件
         vid_aw_webview.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

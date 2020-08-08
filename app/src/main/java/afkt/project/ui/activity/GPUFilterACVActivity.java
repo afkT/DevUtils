@@ -61,8 +61,8 @@ public class GPUFilterACVActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         // 设置滤镜线程
         filterThread = new Runnable() {

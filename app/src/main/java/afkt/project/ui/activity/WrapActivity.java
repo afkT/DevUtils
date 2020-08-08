@@ -46,15 +46,15 @@ public class WrapActivity extends BaseToolbarActivity {
                 .setOnClicks(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        initValues();
+                        initValue();
                     }
                 }).getView();
         vid_bt_toolbar.addView(view);
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         vid_aw_wrapview
                 // 设置最大行数

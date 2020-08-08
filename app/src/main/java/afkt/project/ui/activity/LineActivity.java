@@ -30,8 +30,8 @@ public class LineActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         // 设置监听
         vid_al_content_tv.setNewLineCallBack(new LineTextView.OnNewLineCallBack() {

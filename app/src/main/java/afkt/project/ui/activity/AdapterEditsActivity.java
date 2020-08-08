@@ -71,8 +71,8 @@ public class AdapterEditsActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void initValues() {
-        super.initValues();
+    public void initValue() {
+        super.initValue();
 
         List<EvaluateItem> lists = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
