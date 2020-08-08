@@ -11,9 +11,7 @@ import android.widget.PopupWindow;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
-import dev.base.able.IDevBaseContent;
-import dev.base.able.IDevBaseMethod;
-import dev.base.able.IDevBaseUIOperation;
+import dev.base.able.IDevBase;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.DialogUtils;
 import dev.utils.app.toast.ToastUtils;
@@ -22,7 +20,7 @@ import dev.utils.app.toast.ToastUtils;
  * detail: Fragment 抽象基类
  * @author Ttt
  */
-public abstract class AbstractDevBaseFragment extends Fragment implements IDevBaseMethod, IDevBaseUIOperation, IDevBaseContent {
+public abstract class AbstractDevBaseFragment extends Fragment implements IDevBase {
 
     // ==========
     // = Object =
