@@ -20,54 +20,38 @@ import dev.utils.app.toast.ToastUtils
  * @author Ttt
  */
 abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
+
     // ==========
     // = Object =
     // ==========
-    // 日志 TAG
-    @JvmField
+
+    @JvmField // 日志 TAG
     protected var mTag = AbstractbsDevBaseActivity::class.java.simpleName
 
-    // Context
-    @JvmField
+    @JvmField // Context
     protected var mContext: Context? = null
 
-    // Activity
-    @JvmField
+    @JvmField // Activity
     protected var mActivity: Activity? = null
 
-    // Content View
+    @JvmField // Content View
     protected var mContentView: View? = null
 
-    /**
-     * 判断 Activity 是否可见状态
-     * @return `true` yes, `false` no
-     */
-    // 当前页面是否可见 ( 生命周期 )
-    protected var isActivityVisible = true
+    @JvmField // 当前页面是否可见 ( 生命周期 )
+    protected var isActivityVisible = false
 
-    /**
-     * 获取 Dialog
-     * @return [Dialog]
-     */
     // ==============
     // = UI Operate =
     // ==============
+
     // 基类 Dialog
     override var dialog: Dialog? = null
         protected set
 
-    /**
-     * 获取 DialogFragment
-     * @return [DialogFragment]
-     */
     // 基类 DialogFragment
     override var dialogFragment: DialogFragment? = null
         protected set
 
-    /**
-     * 获取 PopupWindow
-     * @return [PopupWindow]
-     */
     // 基类 PopupWindow
     override var popupWindow: PopupWindow? = null
         protected set
@@ -75,6 +59,7 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
     // ============
     // = 生命周期 =
     // ============
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         printLogPri("onCreate")
@@ -83,8 +68,8 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
         // 获取当前类名
         mTag = this.javaClass.simpleName
         // 获取 Context、Activity
+        mContext = this
         mActivity = this
-        mContext = mActivity
         // 保存 Activity
         ActivityUtils.getManager().addActivity(this)
         // Content View 初始化处理
@@ -139,17 +124,17 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
 
     /**
      * 返回键点击触发
-     * <pre>
-     * 需要注意的是, 重新实现该方法必须保留 super.onBackPressed();
-    </pre> *
+     * 重新实现该方法必须保留 super.onBackPressed();
      */
     override fun onBackPressed() {
         super.onBackPressed()
         printLogPri("onBackPressed")
     }
+
     // ============
     // = 日志处理 =
     // ============
+
     /**
      * 统一打印日志 ( 内部封装调用 )
      * @param message 打印内容
@@ -166,9 +151,10 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
     private fun printLogPri(tag: String, message: String) {
         LogPrintUtils.dTag(
             mTag,
-            String.format("%s -> %s", *arrayOf<Any>(tag, message))
+            String.format("%s -> %s", tag, message)
         )
     }
+
     // ===================
     // = IDevBaseContent =
     // ===================
@@ -334,16 +320,8 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
         isClose: Boolean,
         dialog: T
     ): T {
-        if (isClose && dialogFragment != null) {
-            try {
-                dialogFragment!!.dismiss()
-            } catch (e: Exception) {
-            }
-        }
+        if (isClose) DialogUtils.closeDialog(dialogFragment)
         dialogFragment = dialog
         return dialog
     }
-    // ================
-    // = 对外提供方法 =
-    // ================
 }
