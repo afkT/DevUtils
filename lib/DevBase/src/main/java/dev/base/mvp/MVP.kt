@@ -1,65 +1,61 @@
-package dev.base.mvp;
+package dev.base.mvp
 
 /**
  * detail: MVP Contract 类
  * @author Ttt
  */
-public final class MVP {
-
-    private MVP() {
-    }
+class MVP private constructor() {
 
     /**
      * detail: MVP 模式的 Model ( 通常作为获取数据 )
      * @author Ttt
      */
-    public interface IModel {
-    }
+    interface IModel
 
     /**
      * detail: MVP 模式的 View ( 通过 Presenter 将数据传入到该层, 负责 View 的展示相关 )
      * @author Ttt
      */
-    public interface IView {
-    }
+    interface IView
 
     /**
      * detail: MVP 模式 P 层接口类
      * @author Ttt
      */
-    public interface IPresenter<V extends IView> {
+    interface IPresenter<V : IView> {
 
         /**
          * 设置 View 层与 P 层 关联持有
-         * @param view {@link IView}
+         * @param view [IView]
          */
-        void attachView(V view);
+        fun attachView(view: V)
 
         /**
          * 销毁 View 与 P 层 关联关系
          */
-        void detachView();
+        fun detachView()
     }
 
     /**
      * detail: MVP 模式的指挥者 ( 连接 View 和 Model)
      * @author Ttt
      */
-    public static class Presenter<V extends IView, M extends IModel> implements IPresenter<V> {
+    open class Presenter<V : IView, M : IModel> : IPresenter<V> {
 
         // IView
-        protected V mView;
-        // IModel
-        protected M mModel;
+        @JvmField
+        protected var mView: V? = null
 
-        @Override
-        public void attachView(V view) {
-            mView = view;
+        // IModel
+        @JvmField
+        protected var mModel: M? = null
+
+        override fun attachView(view: V) {
+            mView = view
         }
 
-        @Override
-        public void detachView() {
-            mView = null;
+        override fun detachView() {
+            mView = null
         }
     }
 }

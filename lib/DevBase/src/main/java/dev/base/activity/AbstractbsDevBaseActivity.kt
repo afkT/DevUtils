@@ -124,7 +124,7 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
 
     /**
      * 返回键点击触发
-     * 重新实现该方法必须保留 super.onBackPressed();
+     * 重新实现该方法必须保留 super.onBackPressed()
      */
     override fun onBackPressed() {
         super.onBackPressed()
