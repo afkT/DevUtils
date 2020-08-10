@@ -44,17 +44,14 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
     // = UI Operate =
     // ==============
 
-    // 基类 Dialog
-    override var dialog: Dialog? = null
-        protected set
+    @JvmField // 基类 Dialog
+    protected var mDevDialog: Dialog? = null
 
-    // 基类 DialogFragment
-    override var dialogFragment: DialogFragment? = null
-        protected set
+    @JvmField // 基类 DialogFragment
+    protected var mDevDialogFragment: DialogFragment? = null
 
-    // 基类 PopupWindow
-    override var popupWindow: PopupWindow? = null
-        protected set
+    @JvmField // 基类 PopupWindow
+    protected var mDevPopupWindow: PopupWindow? = null
 
     // ============
     // = 生命周期 =
@@ -223,9 +220,11 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
     override fun initOther() {
         printLogPri("initOther")
     }
+
     // =======================
     // = IDevBaseUIOperation =
     // =======================
+
     // =========
     // = Toast =
     // =========
@@ -250,13 +249,17 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
     // = PopupWindow =
     // ===============
 
+    override fun getDevPopupWindow(): PopupWindow? {
+        return this.mDevPopupWindow
+    }
+
     /**
      * 设置 PopupWindow
      * @param popupWindow [PopupWindow]
      * @return [PopupWindow]
      */
-    override fun <T : PopupWindow?> setPopupWindow(popupWindow: T): T {
-        return setPopupWindow(true, popupWindow)
+    override fun <T : PopupWindow?> setDevPopupWindow(popupWindow: T): T {
+        return setDevPopupWindow(true, popupWindow)
     }
 
     /**
@@ -265,25 +268,30 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
      * @param popupWindow [PopupWindow]
      * @return [PopupWindow]
      */
-    override fun <T : PopupWindow?> setPopupWindow(
+    override fun <T : PopupWindow?> setDevPopupWindow(
         isClose: Boolean,
         popupWindow: T
     ): T {
-        if (isClose) DialogUtils.closePopupWindow(this.popupWindow)
-        this.popupWindow = popupWindow
+        if (isClose) DialogUtils.closePopupWindow(this.mDevPopupWindow)
+        this.mDevPopupWindow = popupWindow
         return popupWindow
     }
+
     // ==========
     // = Dialog =
     // ==========
+
+    override fun getDevDialog(): Dialog? {
+        return this.mDevDialog
+    }
 
     /**
      * 设置 Dialog
      * @param dialog [Dialog]
      * @return [Dialog]
      */
-    override fun <T : Dialog?> setDialog(dialog: T): T {
-        return setDialog(true, dialog)
+    override fun <T : Dialog?> setDevDialog(dialog: T): T {
+        return setDevDialog(true, dialog)
     }
 
     /**
@@ -292,22 +300,26 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
      * @param dialog  [Dialog]
      * @return [Dialog]
      */
-    override fun <T : Dialog?> setDialog(isClose: Boolean, dialog: T): T {
+    override fun <T : Dialog?> setDevDialog(isClose: Boolean, dialog: T): T {
         if (isClose) DialogUtils.closeDialog(dialog)
-        this.dialog = dialog
+        this.mDevDialog = dialog
         return dialog
     }
     // ==================
     // = DialogFragment =
     // ==================
 
+    override fun getDevDialogFragment(): DialogFragment? {
+        return this.mDevDialogFragment
+    }
+
     /**
      * 设置 DialogFragment
      * @param dialog [DialogFragment]
      * @return [DialogFragment]
      */
-    override fun <T : DialogFragment?> setDialogFragment(dialog: T): T {
-        return setDialogFragment(true, dialog)
+    override fun <T : DialogFragment?> setDevDialogFragment(dialog: T): T {
+        return setDevDialogFragment(true, dialog)
     }
 
     /**
@@ -316,12 +328,12 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
      * @param dialog  [DialogFragment]
      * @return [DialogFragment]
      */
-    override fun <T : DialogFragment?> setDialogFragment(
+    override fun <T : DialogFragment?> setDevDialogFragment(
         isClose: Boolean,
         dialog: T
     ): T {
-        if (isClose) DialogUtils.closeDialog(dialogFragment)
-        dialogFragment = dialog
+        if (isClose) DialogUtils.closeDialog(mDevDialogFragment)
+        this.mDevDialogFragment = dialog
         return dialog
     }
 }

@@ -36,14 +36,14 @@ interface IDevBaseUIOperation {
      * 获取 PopupWindow
      * @return [PopupWindow]
      */
-    val popupWindow: PopupWindow?
+    fun getDevPopupWindow(): PopupWindow?
 
     /**
      * 设置 PopupWindow
      * @param popupWindow [PopupWindow]
      * @return [PopupWindow]
      */
-    fun <T : PopupWindow?> setPopupWindow(popupWindow: T): T
+    fun <T : PopupWindow?> setDevPopupWindow(popupWindow: T): T
 
     /**
      * 设置 PopupWindow
@@ -51,7 +51,7 @@ interface IDevBaseUIOperation {
      * @param popupWindow [PopupWindow]
      * @return [PopupWindow]
      */
-    fun <T : PopupWindow?> setPopupWindow(isClose: Boolean, popupWindow: T): T
+    fun <T : PopupWindow?> setDevPopupWindow(isClose: Boolean, popupWindow: T): T
 
     // ==========
     // = Dialog =
@@ -61,14 +61,14 @@ interface IDevBaseUIOperation {
      * 获取 Dialog
      * @return [Dialog]
      */
-    val dialog: Dialog?
+    fun getDevDialog(): Dialog?
 
     /**
      * 设置 Dialog
      * @param dialog [Dialog]
      * @return [Dialog]
      */
-    fun <T : Dialog?> setDialog(dialog: T): T
+    fun <T : Dialog?> setDevDialog(dialog: T): T
 
     /**
      * 设置 Dialog
@@ -76,7 +76,7 @@ interface IDevBaseUIOperation {
      * @param dialog  [Dialog]
      * @return [Dialog]
      */
-    fun <T : Dialog?> setDialog(isClose: Boolean, dialog: T): T
+    fun <T : Dialog?> setDevDialog(isClose: Boolean, dialog: T): T
 
     // ==================
     // = DialogFragment =
@@ -86,14 +86,14 @@ interface IDevBaseUIOperation {
      * 获取 DialogFragment
      * @return [DialogFragment]
      */
-    val dialogFragment: DialogFragment?
+    fun getDevDialogFragment(): DialogFragment?
 
     /**
      * 设置 DialogFragment
      * @param dialog [DialogFragment]
      * @return [DialogFragment]
      */
-    fun <T : DialogFragment?> setDialogFragment(dialog: T): T
+    fun <T : DialogFragment?> setDevDialogFragment(dialog: T): T
 
     /**
      * 设置 DialogFragment
@@ -101,5 +101,5 @@ interface IDevBaseUIOperation {
      * @param dialog  [DialogFragment]
      * @return [DialogFragment]
      */
-    fun <T : DialogFragment?> setDialogFragment(isClose: Boolean, dialog: T): T
+    fun <T : DialogFragment?> setDevDialogFragment(isClose: Boolean, dialog: T): T
 }

@@ -282,7 +282,7 @@ public abstract class AbstractDevBaseFragment extends Fragment implements IDevBa
      * @return {@link PopupWindow}
      */
     @Override
-    public PopupWindow getPopupWindow() {
+    public PopupWindow getDevPopupWindow() {
         return mPopupWindow;
     }
 
@@ -292,8 +292,8 @@ public abstract class AbstractDevBaseFragment extends Fragment implements IDevBa
      * @return {@link PopupWindow}
      */
     @Override
-    public <T extends PopupWindow> T setPopupWindow(T popupWindow) {
-        return setPopupWindow(true, popupWindow);
+    public <T extends PopupWindow> T setDevPopupWindow(T popupWindow) {
+        return setDevPopupWindow(true, popupWindow);
     }
 
     /**
@@ -303,7 +303,7 @@ public abstract class AbstractDevBaseFragment extends Fragment implements IDevBa
      * @return {@link PopupWindow}
      */
     @Override
-    public <T extends PopupWindow> T setPopupWindow(boolean isClose, T popupWindow) {
+    public <T extends PopupWindow> T setDevPopupWindow(boolean isClose, T popupWindow) {
         if (isClose) DialogUtils.closePopupWindow(mPopupWindow);
         this.mPopupWindow = popupWindow;
         return popupWindow;
@@ -318,7 +318,7 @@ public abstract class AbstractDevBaseFragment extends Fragment implements IDevBa
      * @return {@link Dialog}
      */
     @Override
-    public Dialog getDialog() {
+    public Dialog getDevDialog() {
         return mDialog;
     }
 
@@ -328,8 +328,8 @@ public abstract class AbstractDevBaseFragment extends Fragment implements IDevBa
      * @return {@link Dialog}
      */
     @Override
-    public <T extends Dialog> T setDialog(T dialog) {
-        return setDialog(true, dialog);
+    public <T extends Dialog> T setDevDialog(T dialog) {
+        return setDevDialog(true, dialog);
     }
 
     /**
@@ -339,7 +339,7 @@ public abstract class AbstractDevBaseFragment extends Fragment implements IDevBa
      * @return {@link Dialog}
      */
     @Override
-    public <T extends Dialog> T setDialog(boolean isClose, T dialog) {
+    public <T extends Dialog> T setDevDialog(boolean isClose, T dialog) {
         if (isClose) DialogUtils.closeDialog(dialog);
         this.mDialog = dialog;
         return dialog;
@@ -354,7 +354,7 @@ public abstract class AbstractDevBaseFragment extends Fragment implements IDevBa
      * @return {@link DialogFragment}
      */
     @Override
-    public DialogFragment getDialogFragment() {
+    public DialogFragment getDevDialogFragment() {
         return mDialogFragment;
     }
 
@@ -364,8 +364,8 @@ public abstract class AbstractDevBaseFragment extends Fragment implements IDevBa
      * @return {@link DialogFragment}
      */
     @Override
-    public <T extends DialogFragment> T setDialogFragment(T dialog) {
-        return setDialogFragment(true, dialog);
+    public <T extends DialogFragment> T setDevDialogFragment(T dialog) {
+        return setDevDialogFragment(true, dialog);
     }
 
     /**
@@ -375,7 +375,7 @@ public abstract class AbstractDevBaseFragment extends Fragment implements IDevBa
      * @return {@link DialogFragment}
      */
     @Override
-    public <T extends DialogFragment> T setDialogFragment(boolean isClose, T dialog) {
+    public <T extends DialogFragment> T setDevDialogFragment(boolean isClose, T dialog) {
         if (isClose && mDialogFragment != null) {
             try {
                 mDialogFragment.dismiss();
