@@ -218,10 +218,11 @@ public final class CapturePictureUtils {
     /**
      * 截图 WebView
      * <pre>
-     *     TODO 在 Android 5.0 及以上版本, Android 对 WebView 进行了优化, 为了减少内存使用和提高性能
-     *     TODO 使用 WebView 加载网页时只绘制显示部分, 如果我们不做处理, 就会出现只截到屏幕内显示的 WebView 内容, 其它部分是空白的情况
-     *     TODO 通过调用 WebView.enableSlowWholeDocumentDraw() 方法可以关闭这种优化, 但要注意的是, 该方法需要在 WebView 实例被创建前就要调用,
-     *     TODO 否则没有效果, 所以我们在 WebView 实例被创建前加入代码
+     *     TODO
+     *      在 Android 5.0 及以上版本, Android 对 WebView 进行了优化, 为了减少内存使用和提高性能
+     *      使用 WebView 加载网页时只绘制显示部分, 如果我们不做处理, 就会出现只截到屏幕内显示的 WebView 内容, 其它部分是空白的情况
+     *      通过调用 WebView.enableSlowWholeDocumentDraw() 方法可以关闭这种优化, 但要注意的是, 该方法需要在 WebView 实例被创建前就要调用,
+     *      否则没有效果, 所以我们在 WebView 实例被创建前加入代码
      *     {@link CapturePictureUtils#enableSlowWholeDocumentDraw}
      * </pre>
      * @param webView   {@link WebView}
