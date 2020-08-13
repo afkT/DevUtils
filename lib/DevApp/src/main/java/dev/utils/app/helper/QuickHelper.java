@@ -163,6 +163,15 @@ public final class QuickHelper {
         return DevHelper.get();
     }
 
+    /**
+     * 获取 QuickHelper
+     * @param target 目标 View
+     * @return {@link QuickHelper}
+     */
+    public QuickHelper quickHelper(final View target) {
+        return QuickHelper.get(target);
+    }
+
     // ==============
     // = ViewHelper =
     // ==============

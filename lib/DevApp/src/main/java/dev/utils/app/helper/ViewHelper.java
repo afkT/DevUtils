@@ -66,7 +66,7 @@ public final class ViewHelper {
      * @return {@link ViewHelper}
      */
     public ViewHelper viewHelper() {
-        return this;
+        return HELPER;
     }
 
     /**
@@ -75,6 +75,15 @@ public final class ViewHelper {
      */
     public DevHelper devHelper() {
         return DevHelper.get();
+    }
+
+    /**
+     * 获取 QuickHelper
+     * @param target 目标 View
+     * @return {@link QuickHelper}
+     */
+    public QuickHelper quickHelper(final View target) {
+        return QuickHelper.get(target);
     }
 
     // ===========

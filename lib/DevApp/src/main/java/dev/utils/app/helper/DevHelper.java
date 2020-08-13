@@ -90,7 +90,16 @@ public final class DevHelper {
      * @return {@link DevHelper}
      */
     public DevHelper devHelper() {
-        return this;
+        return HELPER;
+    }
+
+    /**
+     * 获取 QuickHelper
+     * @param target 目标 View
+     * @return {@link QuickHelper}
+     */
+    public QuickHelper quickHelper(final View target) {
+        return QuickHelper.get(target);
     }
 
     // ===========
