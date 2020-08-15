@@ -1,11 +1,14 @@
 package dev.base.activity
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
 import dev.base.able.IDevBase
 import dev.base.utils.assist.DevBaseAssist
 import dev.utils.LogPrintUtils
@@ -142,9 +145,6 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
     // = IDevBaseMethod =
     // ==================
 
-    /**
-     * 初始化方法顺序
-     */
     override fun initOrder() {
         initView()
         initValue()
@@ -156,31 +156,71 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
     // = 初始化方法 =
     // ==============
 
-    /**
-     * 初始化 View
-     */
     override fun initView() {
         mDevBaseAssist.printLog("initView")
     }
 
-    /**
-     * 初始化参数、配置
-     */
     override fun initValue() {
         mDevBaseAssist.printLog("initValue")
     }
 
-    /**
-     * 初始化事件
-     */
     override fun initListener() {
         mDevBaseAssist.printLog("initListener")
     }
 
-    /**
-     * 初始化其他操作
-     */
     override fun initOther() {
         mDevBaseAssist.printLog("initOther")
+    }
+
+    // =======================
+    // = IDevBaseUIOperation =
+    // =======================
+
+    override fun isCurrentVisible(): Boolean {
+        return mDevBaseAssist.isCurrentVisible()
+    }
+
+    override fun showToast(text: String?, vararg formatArgs: Any) {
+        mDevBaseAssist.showToast(text, formatArgs)
+    }
+
+    override fun showToast(resId: Int, vararg formatArgs: Any) {
+        mDevBaseAssist.showToast(resId, formatArgs)
+    }
+
+    override fun getDevPopupWindow(): PopupWindow? {
+        return mDevBaseAssist.getDevPopupWindow()
+    }
+
+    override fun <T : PopupWindow?> setDevPopupWindow(popupWindow: T): T {
+        return mDevBaseAssist.setDevPopupWindow(popupWindow)
+    }
+
+    override fun <T : PopupWindow?> setDevPopupWindow(isClose: Boolean, popupWindow: T): T {
+        return mDevBaseAssist.setDevPopupWindow(isClose, popupWindow)
+    }
+
+    override fun getDevDialog(): Dialog? {
+        return mDevBaseAssist.getDevDialog()
+    }
+
+    override fun <T : Dialog?> setDevDialog(dialog: T): T {
+        return mDevBaseAssist.setDevDialog(dialog)
+    }
+
+    override fun <T : Dialog?> setDevDialog(isClose: Boolean, dialog: T): T {
+        return mDevBaseAssist.setDevDialog(isClose, dialog)
+    }
+
+    override fun getDevDialogFragment(): DialogFragment? {
+        return mDevBaseAssist.getDevDialogFragment()
+    }
+
+    override fun <T : DialogFragment?> setDevDialogFragment(dialog: T): T {
+        return mDevBaseAssist.setDevDialogFragment(dialog)
+    }
+
+    override fun <T : DialogFragment?> setDevDialogFragment(isClose: Boolean, dialog: T): T {
+        return mDevBaseAssist.setDevDialogFragment(isClose, dialog)
     }
 }
