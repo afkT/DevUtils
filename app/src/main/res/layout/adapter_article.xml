@@ -34,7 +34,7 @@
                 android:background="@drawable/shape_border_image"
                 android:padding="5.0dp">
 
-                <afkt.project.ui.widget.BaseImageView
+                <dev.base.widget.BaseImageView
                     android:id="@+id/vid_aa_pic_igview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -48,7 +48,7 @@
                 android:layout_toRightOf="@id/vid_aa_pic_frame"
                 android:orientation="vertical">
 
-                <afkt.project.ui.widget.BaseTextView
+                <dev.base.widget.BaseTextView
                     android:id="@+id/vid_aa_title_tv"
                     style="@style/AppTheme.Base_TextView"
                     android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                     android:textSize="16.0sp"
                     tools:text="标题" />
 
-                <afkt.project.ui.widget.BaseTextView
+                <dev.base.widget.BaseTextView
                     android:id="@+id/vid_aa_time_tv"
                     style="@style/AppTheme.Base_TextView"
                     android:layout_width="match_parent"

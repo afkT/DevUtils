@@ -25,7 +25,7 @@
             android:orientation="vertical"
             android:padding="15.0dp">
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/vid_agd_title_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                 android:textSize="25.0sp"
                 tools:text="这是标题" />
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/vid_agd_content_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:spanCount="4" />
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/vid_agd_time_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="match_parent"

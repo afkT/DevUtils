@@ -28,7 +28,7 @@
                 app:cardElevation="10.0dp"
                 tools:targetApi="lollipop">
 
-                <afkt.project.ui.widget.BaseImageView
+                <dev.base.widget.BaseImageView
                     android:layout_width="130.0dp"
                     android:layout_height="130.0dp"
                     android:layout_gravity="center"
@@ -90,7 +90,7 @@
                 app:cardElevation="10.0dp"
                 tools:targetApi="lollipop">
 
-                <afkt.project.ui.widget.BaseImageView
+                <dev.base.widget.BaseImageView
                     android:layout_width="130.0dp"
                     android:layout_height="130.0dp"
                     android:layout_gravity="center"
@@ -144,7 +144,7 @@
             app:cardElevation="10.0dp"
             tools:targetApi="lollipop">
 
-            <afkt.project.ui.widget.BaseImageView
+            <dev.base.widget.BaseImageView
                 android:layout_width="130.0dp"
                 android:layout_height="130.0dp"
                 android:layout_gravity="center"

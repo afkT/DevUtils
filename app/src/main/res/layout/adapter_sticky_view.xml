@@ -7,13 +7,13 @@
     android:orientation="horizontal"
     android:padding="10.0dp">
 
-    <afkt.project.ui.widget.BaseImageView
+    <dev.base.widget.BaseImageView
         android:layout_width="30.0dp"
         android:layout_height="30.0dp"
         android:layout_marginRight="10.0dp"
         android:background="@drawable/icon_live_brow_4" />
 
-    <afkt.project.ui.widget.BaseTextView
+    <dev.base.widget.BaseTextView
         android:id="@+id/vid_asv_title_tv"
         style="@style/AppTheme.Base_TextView"
         android:layout_width="match_parent"

@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center">
 
-        <afkt.project.ui.widget.BaseTextView
+        <dev.base.widget.BaseTextView
             android:id="@+id/vid_tiv_tv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

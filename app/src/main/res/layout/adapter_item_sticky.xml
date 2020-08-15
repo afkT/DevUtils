@@ -11,7 +11,7 @@
     android:paddingRight="15.0dp"
     android:paddingBottom="10.0dp">
 
-    <afkt.project.ui.widget.BaseTextView
+    <dev.base.widget.BaseTextView
         android:id="@+id/vid_ais_title_tv"
         style="@style/AppTheme.Base_TextView"
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
         android:textSize="16.0sp"
         tools:text="Item Title" />
 
-    <afkt.project.ui.widget.BaseTextView
+    <dev.base.widget.BaseTextView
         android:id="@+id/vid_ais_time_tv"
         style="@style/AppTheme.Base_TextView"
         android:layout_width="match_parent"

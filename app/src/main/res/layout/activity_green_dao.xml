@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <afkt.project.ui.widget.BaseButton
+        <dev.base.widget.BaseButton
             android:id="@+id/vid_agd_add_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"

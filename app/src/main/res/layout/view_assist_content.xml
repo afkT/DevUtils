@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
 
-    <afkt.project.ui.widget.BaseTextView
+    <dev.base.widget.BaseTextView
         style="@style/AppTheme.Base_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

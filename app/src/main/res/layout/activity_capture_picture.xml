@@ -12,56 +12,56 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <afkt.project.ui.widget.BaseButton
+        <dev.base.widget.BaseButton
             android:id="@+id/vid_acp_screen_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="当前屏幕截图 ( 含状态栏 )" />
 
-        <afkt.project.ui.widget.BaseButton
+        <dev.base.widget.BaseButton
             android:id="@+id/vid_acp_screen1_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="当前屏幕截图 ( 不含状态栏 )" />
 
-        <afkt.project.ui.widget.BaseButton
+        <dev.base.widget.BaseButton
             android:id="@+id/vid_acp_linear_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="LinearLayout 截图" />
 
-        <afkt.project.ui.widget.BaseButton
+        <dev.base.widget.BaseButton
             android:id="@+id/vid_acp_scroll_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="ScrollView 截图" />
 
-        <afkt.project.ui.widget.BaseButton
+        <dev.base.widget.BaseButton
             android:id="@+id/vid_acp_list_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="ListView 截图" />
 
-        <afkt.project.ui.widget.BaseButton
+        <dev.base.widget.BaseButton
             android:id="@+id/vid_acp_grid_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="GridView 截图" />
 
-        <afkt.project.ui.widget.BaseButton
+        <dev.base.widget.BaseButton
             android:id="@+id/vid_acp_recy_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="RecyclerView 截图" />
 
-        <afkt.project.ui.widget.BaseButton
+        <dev.base.widget.BaseButton
             android:id="@+id/vid_acp_webview_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"

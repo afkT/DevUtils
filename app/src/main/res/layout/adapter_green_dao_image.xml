@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<afkt.project.ui.widget.BaseImageView xmlns:android="http://schemas.android.com/apk/res/android"
+<dev.base.widget.BaseImageView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/vid_agdi_igview"
     android:layout_width="70.0dp"
     android:layout_height="70.0dp"

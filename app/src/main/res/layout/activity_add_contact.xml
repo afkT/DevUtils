@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <afkt.project.ui.widget.BaseTextView
+        <dev.base.widget.BaseTextView
             style="@style/AppTheme.Base_TextView"
             android:layout_marginTop="15.0dp"
             android:text="循环添加联系人"
@@ -23,7 +23,7 @@
             android:layout_marginTop="15.0dp"
             android:background="@color/gray" />
 
-        <afkt.project.ui.widget.BaseTextView
+        <dev.base.widget.BaseTextView
             style="@style/AppTheme.Base_TextView"
             android:layout_marginTop="15.0dp"
             android:text="例 :" />
@@ -34,19 +34,19 @@
             android:layout_gravity="center"
             android:layout_marginTop="15.0dp">
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 style="@style/AppTheme.Base_TextView"
                 android:layout_marginRight="150.0dp"
                 android:gravity="left"
                 android:text="137" />
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 style="@style/AppTheme.Base_TextView"
                 android:layout_marginLeft="150.0dp"
                 android:gravity="right"
                 android:text="5678" />
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 style="@style/AppTheme.Base_TextView"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="20.0dp"
@@ -65,7 +65,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="15.0dp">
 
-            <afkt.project.ui.widget.BaseEditText
+            <dev.base.widget.BaseEditText
                 android:id="@+id/vid_aac_start_edit"
                 android:layout_width="120.0dp"
                 android:layout_height="40.0dp"
@@ -81,7 +81,7 @@
                 android:textColorHint="@color/color_99"
                 android:textSize="15.0sp" />
 
-            <afkt.project.ui.widget.BaseEditText
+            <dev.base.widget.BaseEditText
                 android:id="@+id/vid_aac_end_edit"
                 android:layout_width="120.0dp"
                 android:layout_height="40.0dp"
@@ -103,14 +103,14 @@
             android:layout_marginTop="15.0dp"
             android:background="@color/gray" />
 
-        <afkt.project.ui.widget.BaseButton
+        <dev.base.widget.BaseButton
             android:id="@+id/vid_aac_add_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="添加联系人" />
 
-        <afkt.project.ui.widget.BaseTextView
+        <dev.base.widget.BaseTextView
             android:id="@+id/vid_aac_tips_tv"
             style="@style/AppTheme.Base_TextView"
             android:layout_marginTop="20.0dp"

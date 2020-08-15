@@ -25,14 +25,14 @@
             app:cardElevation="10.0dp"
             tools:targetApi="lollipop">
 
-            <afkt.project.ui.widget.BaseImageView
+            <dev.base.widget.BaseImageView
                 android:layout_width="120.0dp"
                 android:layout_height="120.0dp"
                 android:layout_gravity="center"
                 android:background="@mipmap/icon" />
         </androidx.cardview.widget.CardView>
 
-        <afkt.project.ui.widget.BaseTextView
+        <dev.base.widget.BaseTextView
             android:id="@+id/vid_am_android_tv"
             style="@style/AppTheme.Base_TextView"
             android:gravity="center" />

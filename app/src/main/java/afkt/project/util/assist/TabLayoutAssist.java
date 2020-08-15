@@ -11,7 +11,7 @@ import java.util.List;
 
 import afkt.project.R;
 import afkt.project.model.item.TabItem;
-import afkt.project.ui.widget.BaseTextView;
+import dev.base.widget.BaseTextView;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.helper.ViewHelper;
 

@@ -25,12 +25,12 @@
             android:layout_margin="15.0dp"
             android:orientation="vertical">
 
-            <afkt.project.ui.widget.BaseImageView
+            <dev.base.widget.BaseImageView
                 android:id="@+id/vid_ags_igview"
                 android:layout_width="220.0dp"
                 android:layout_height="391.0dp" />
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/vid_ags_title_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                 android:textSize="25.0sp"
                 tools:text="这是标题" />
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/vid_ags_subtitle_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="match_parent"
@@ -51,7 +51,7 @@
                 android:textSize="16.0sp"
                 tools:text="这是副标题" />
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/vid_ags_time_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                 tools:text="2020.06.17" />
         </LinearLayout>
 
-        <afkt.project.ui.widget.BaseTextView
+        <dev.base.widget.BaseTextView
             android:id="@+id/vid_ags_index_tv"
             style="@style/AppTheme.Base_TextView"
             android:layout_width="wrap_content"

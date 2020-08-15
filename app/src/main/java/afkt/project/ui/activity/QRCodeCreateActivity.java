@@ -12,10 +12,10 @@ import com.luck.picture.lib.entity.LocalMedia;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
-import afkt.project.ui.widget.BaseEditText;
-import afkt.project.ui.widget.BaseImageView;
 import butterknife.BindView;
 import butterknife.OnClick;
+import dev.base.widget.BaseEditText;
+import dev.base.widget.BaseImageView;
 import dev.other.ZXingQRCodeUtils;
 import dev.other.picture.PictureSelectorUtils;
 import dev.utils.app.EditTextUtils;

@@ -13,9 +13,9 @@ import com.luck.picture.lib.entity.LocalMedia;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
-import afkt.project.ui.widget.BaseTextView;
 import butterknife.BindView;
 import butterknife.OnClick;
+import dev.base.widget.BaseTextView;
 import dev.other.ZXingQRCodeUtils;
 import dev.other.picture.PictureSelectorUtils;
 import dev.utils.app.ClipboardUtils;

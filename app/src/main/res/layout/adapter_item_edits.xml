@@ -39,7 +39,7 @@
                 android:background="@drawable/shape_border_image"
                 android:padding="5.0dp">
 
-                <afkt.project.ui.widget.BaseImageView
+                <dev.base.widget.BaseImageView
                     android:id="@+id/vid_aie_pic_igview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -53,7 +53,7 @@
                 android:layout_toRightOf="@id/vid_aie_pic_frame"
                 android:orientation="vertical">
 
-                <afkt.project.ui.widget.BaseTextView
+                <dev.base.widget.BaseTextView
                     android:id="@+id/vid_aie_name_tv"
                     style="@style/AppTheme.Base_TextView"
                     android:layout_width="match_parent"
@@ -65,7 +65,7 @@
                     android:textSize="14.0sp"
                     tools:text="商品名" />
 
-                <afkt.project.ui.widget.BaseTextView
+                <dev.base.widget.BaseTextView
                     android:id="@+id/vid_aie_price_tv"
                     style="@style/AppTheme.Base_TextView"
                     android:layout_width="match_parent"
@@ -82,7 +82,7 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
-                    <afkt.project.ui.widget.BaseTextView
+                    <dev.base.widget.BaseTextView
                         style="@style/AppTheme.Base_TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -124,7 +124,7 @@
 
             <!-- 输入的评价内容 -->
 
-            <afkt.project.ui.widget.BaseEditText
+            <dev.base.widget.BaseEditText
                 android:id="@+id/vid_aie_content_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
 
             <!-- 输入的字数数量 -->
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/vid_aie_number_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="wrap_content"

@@ -12,10 +12,10 @@ import java.util.List;
 
 import afkt.project.R;
 import afkt.project.model.bean.CommodityEvaluateBean;
-import afkt.project.ui.widget.BaseImageView;
 import afkt.project.util.ProjectUtils;
 import dev.assist.multiselect.MultiSelectMapAssist;
 import dev.assist.multiselect.edit.IMultiSelectEdit;
+import dev.base.widget.BaseImageView;
 import dev.other.GlideUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.ViewHelper;

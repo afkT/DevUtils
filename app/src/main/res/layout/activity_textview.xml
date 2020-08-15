@@ -16,7 +16,7 @@
             android:layout_marginTop="10.0dp"
             android:orientation="horizontal">
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -26,7 +26,7 @@
                 android:textColor="@color/blue"
                 android:textSize="18sp" />
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10.0dp"
@@ -41,7 +41,7 @@
             android:layout_marginTop="10.0dp"
             android:orientation="horizontal">
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -51,7 +51,7 @@
                 android:textColor="@color/blue"
                 android:textSize="18sp" />
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10.0dp"

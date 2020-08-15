@@ -1,4 +1,4 @@
-package afkt.project.ui.widget;
+package dev.base.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;

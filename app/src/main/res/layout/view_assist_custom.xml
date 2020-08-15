@@ -20,7 +20,7 @@
         app:cardElevation="10.0dp"
         tools:targetApi="lollipop">
 
-        <afkt.project.ui.widget.BaseImageView
+        <dev.base.widget.BaseImageView
             android:layout_width="120.0dp"
             android:layout_height="120.0dp"
             android:layout_gravity="center"

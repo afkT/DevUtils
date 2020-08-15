@@ -11,14 +11,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <afkt.project.ui.widget.BaseButton
+        <dev.base.widget.BaseButton
             android:id="@+id/vid_aqi_select_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="选择图片" />
 
-        <afkt.project.ui.widget.BaseTextView
+        <dev.base.widget.BaseTextView
             android:id="@+id/vid_aqi_tv"
             style="@style/AppTheme.Base_TextView"
             android:layout_marginTop="10.0dp"

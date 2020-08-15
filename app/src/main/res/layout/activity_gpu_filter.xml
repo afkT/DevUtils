@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <afkt.project.ui.widget.BaseButton
+        <dev.base.widget.BaseButton
             android:id="@+id/vid_agf_select_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="70.0dp" />
 
-        <afkt.project.ui.widget.BaseImageView
+        <dev.base.widget.BaseImageView
             android:id="@+id/vid_agf_igview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

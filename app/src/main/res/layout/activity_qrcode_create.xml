@@ -10,21 +10,21 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <afkt.project.ui.widget.BaseButton
+        <dev.base.widget.BaseButton
             android:id="@+id/vid_aqc_create_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="生成二维码" />
 
-        <afkt.project.ui.widget.BaseButton
+        <dev.base.widget.BaseButton
             android:id="@+id/vid_aqc_select_btn"
             style="@style/AppTheme.Base_Button"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="选择 Logo 图片" />
 
-        <afkt.project.ui.widget.BaseEditText
+        <dev.base.widget.BaseEditText
             android:id="@+id/vid_aqc_content_edit"
             android:layout_width="match_parent"
             android:layout_height="150.0dp"
@@ -38,7 +38,7 @@
             android:padding="10.0dp"
             android:textSize="15.0sp" />
 
-        <afkt.project.ui.widget.BaseImageView
+        <dev.base.widget.BaseImageView
             android:id="@+id/vid_aqc_igview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

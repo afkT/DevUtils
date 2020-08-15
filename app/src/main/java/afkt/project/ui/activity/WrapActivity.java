@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
-import afkt.project.ui.widget.BaseTextView;
 import butterknife.BindView;
+import dev.base.widget.BaseTextView;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.ShapeUtils;
 import dev.utils.app.helper.QuickHelper;

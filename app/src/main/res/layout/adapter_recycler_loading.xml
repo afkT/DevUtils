@@ -5,7 +5,7 @@
     android:layout_height="250.0dp"
     tools:background="@color/white">
 
-    <afkt.project.ui.widget.BaseImageView
+    <dev.base.widget.BaseImageView
         android:id="@+id/vid_arl_igview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

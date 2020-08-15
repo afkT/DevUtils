@@ -6,8 +6,8 @@ import android.widget.LinearLayout;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
-import afkt.project.ui.widget.BaseTextView;
 import butterknife.BindView;
+import dev.base.widget.BaseTextView;
 import dev.utils.app.TextViewUtils;
 import dev.utils.app.helper.QuickHelper;
 import dev.utils.app.toast.ToastTintUtils;

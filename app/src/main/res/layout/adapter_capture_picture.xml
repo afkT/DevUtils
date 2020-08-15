@@ -18,13 +18,13 @@
             android:layout_height="70.0dp"
             android:orientation="horizontal">
 
-            <afkt.project.ui.widget.BaseImageView
+            <dev.base.widget.BaseImageView
                 android:layout_width="70.0dp"
                 android:layout_height="70.0dp"
                 android:background="@mipmap/icon_launcher_round"
                 android:scaleType="fitXY" />
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/vid_acp_title_tv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -33,7 +33,7 @@
                 android:textSize="28.0sp" />
         </LinearLayout>
 
-        <afkt.project.ui.widget.BaseTextView
+        <dev.base.widget.BaseTextView
             android:id="@+id/vid_acp_content_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

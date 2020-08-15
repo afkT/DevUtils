@@ -5,14 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <afkt.project.ui.widget.BaseButton
+    <dev.base.widget.BaseButton
         android:id="@+id/vid_avp_allow_btn"
         style="@style/AppTheme.Base_Button"
         android:ellipsize="end"
         android:maxLines="1"
         android:text="允许滑动" />
 
-    <afkt.project.ui.widget.BaseButton
+    <dev.base.widget.BaseButton
         android:id="@+id/vid_avp_ban_btn"
         style="@style/AppTheme.Base_Button"
         android:ellipsize="end"

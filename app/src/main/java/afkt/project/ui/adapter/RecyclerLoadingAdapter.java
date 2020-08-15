@@ -16,8 +16,8 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import java.util.List;
 
 import afkt.project.R;
-import afkt.project.ui.widget.BaseImageView;
 import afkt.project.util.ViewAssistUtils;
+import dev.base.widget.BaseImageView;
 import dev.other.GlideUtils;
 import dev.widget.assist.ViewAssist;
 

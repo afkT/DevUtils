@@ -10,10 +10,10 @@ import java.util.List;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseToolbarActivity;
-import afkt.project.ui.widget.BaseImageView;
 import afkt.project.util.ProjectUtils;
 import butterknife.BindView;
 import butterknife.OnClick;
+import dev.base.widget.BaseImageView;
 import dev.utils.app.FlashlightUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.camera1.CameraAssist;

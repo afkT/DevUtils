@@ -14,11 +14,11 @@ import java.util.List;
 
 import afkt.project.R;
 import afkt.project.model.bean.ItemBean;
-import afkt.project.ui.widget.BaseImageView;
-import afkt.project.ui.widget.BaseTextView;
 import afkt.project.util.ProjectUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dev.base.widget.BaseImageView;
+import dev.base.widget.BaseTextView;
 import dev.other.GlideUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.ViewHelper;

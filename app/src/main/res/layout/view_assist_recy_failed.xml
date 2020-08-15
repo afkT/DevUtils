@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
-    <afkt.project.ui.widget.BaseImageView
+    <dev.base.widget.BaseImageView
         android:layout_width="50.0dp"
         android:layout_height="50.0dp"
         android:layout_gravity="center"

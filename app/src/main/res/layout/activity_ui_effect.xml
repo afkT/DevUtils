@@ -18,7 +18,7 @@
             android:layout_marginTop="20.0dp"
             android:orientation="horizontal">
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/vid_aue_1_0_tv"
                 android:layout_width="120.0dp"
                 android:layout_height="match_parent"
@@ -27,7 +27,7 @@
                 android:text="热门"
                 android:textColor="@color/selector_tab_text_color" />
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/vid_aue_1_1_tv"
                 android:layout_width="120.0dp"
                 android:layout_height="match_parent"
@@ -44,14 +44,14 @@
             android:layout_marginTop="20.0dp"
             android:orientation="horizontal">
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/vid_aue_2_0_tv"
                 android:layout_width="120.0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="文章" />
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/vid_aue_2_1_tv"
                 android:layout_width="120.0dp"
                 android:layout_height="match_parent"
@@ -66,14 +66,14 @@
             android:layout_marginTop="20.0dp"
             android:orientation="horizontal">
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/vid_aue_3_0_tv"
                 android:layout_width="120.0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="精选" />
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/vid_aue_3_1_tv"
                 android:layout_width="120.0dp"
                 android:layout_height="match_parent"
@@ -88,14 +88,14 @@
             android:layout_marginTop="20.0dp"
             android:orientation="horizontal">
 
-            <afkt.project.ui.widget.BaseButton
+            <dev.base.widget.BaseButton
                 android:id="@+id/vid_aue_4_0_btn"
                 android:layout_width="120.0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="5.0dp"
                 android:text="登录" />
 
-            <afkt.project.ui.widget.BaseButton
+            <dev.base.widget.BaseButton
                 android:id="@+id/vid_aue_4_1_btn"
                 android:layout_width="120.0dp"
                 android:layout_height="match_parent"
@@ -135,7 +135,7 @@
             android:layout_marginTop="20.0dp"
             android:orientation="vertical">
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10.0dp"
@@ -162,7 +162,7 @@
             android:layout_marginTop="20.0dp"
             android:orientation="vertical">
 
-            <afkt.project.ui.widget.BaseTextView
+            <dev.base.widget.BaseTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10.0dp"
