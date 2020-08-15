@@ -24,7 +24,7 @@ import afkt.project.db.NotePicture;
 import afkt.project.db.NotePictureDao;
 import afkt.project.db.NoteType;
 import afkt.project.ui.adapter.GreenDaoAdapter;
-import afkt.project.ui.widget.BaseRefreshView;
+import dev.base.widget.BaseRefreshView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import dev.assist.PageAssist;

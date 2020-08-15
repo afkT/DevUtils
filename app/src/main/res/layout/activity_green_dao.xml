@@ -18,7 +18,7 @@
             android:text="添加数据" />
     </LinearLayout>
 
-    <afkt.project.ui.widget.BaseRefreshView
+    <dev.base.widget.BaseRefreshView
         android:id="@+id/vid_agd_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

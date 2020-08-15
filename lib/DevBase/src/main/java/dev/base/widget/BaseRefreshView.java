@@ -1,4 +1,4 @@
-package afkt.project.ui.widget;
+package dev.base.widget;
 
 import android.content.Context;
 import android.os.Build;
@@ -21,8 +21,8 @@ import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;
 
-import afkt.project.R;
 import dev.assist.PageAssist;
+import dev.base.R;
 
 /**
  * detail: Base Refresh、Load View
