@@ -69,6 +69,8 @@ dependencies {
 
     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
     compileOnly deps.lib.smartrefreshlayout
+    compileOnly deps.lib.smartrefresh_header_classics
+    compileOnly deps.lib.smartrefresh_footer_classics
     // 下拉刷新框架 ( 横向 ) https://github.com/scwang90/SmartRefreshHorizontal
     compileOnly deps.lib.smartrefreshHorizontal
     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
