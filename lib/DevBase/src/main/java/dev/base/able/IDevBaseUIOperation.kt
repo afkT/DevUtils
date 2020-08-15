@@ -10,6 +10,9 @@ import androidx.fragment.app.DialogFragment
  */
 interface IDevBaseUIOperation {
 
+    // 当前是否可见 ( 生命周期 )
+    fun isCurrentVisible(): Boolean
+
     // =========
     // = Toast =
     // =========
