@@ -16,6 +16,11 @@
             android:id="@+id/vid_brv_recy"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:listSelector="@null"
+            android:nestedScrollingEnabled="false"
             android:overScrollMode="never"
             android:scrollbars="none"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
