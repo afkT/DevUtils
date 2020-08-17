@@ -4,6 +4,8 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.scwang.smart.refresh.layout.api.RefreshFooter
+import com.scwang.smart.refresh.layout.api.RefreshHeader
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
@@ -14,9 +16,6 @@ import dev.assist.PageAssist
  * @author Ttt
  */
 class DevBaseRefreshAssist<T> {
-
-    // 日志 TAG
-    private val TAG = DevBaseRefreshAssist::class.java.simpleName
 
     // 请求页数辅助类
     private var mPageAssist = PageAssist<T>()
@@ -282,6 +281,26 @@ class DevBaseRefreshAssist<T> {
      */
     fun removeAllFooterView(): DevBaseRefreshAssist<T> {
         mAdapter?.removeAllFooterView()
+        return this
+    }
+
+    /**
+     * 设置指定刷新头
+     * @param header RefreshHeader 刷新头
+     * @return [DevBaseRefreshAssist]
+     */
+    fun setRefreshHeader(header: RefreshHeader): DevBaseRefreshAssist<T> {
+        mRefreshLayout?.setRefreshHeader(header)
+        return this
+    }
+
+    /**
+     * 设置指定刷新尾巴
+     * @param footer RefreshFooter 刷新尾巴
+     * @return [DevBaseRefreshAssist]
+     */
+    fun setRefreshFooter(footer: RefreshFooter): DevBaseRefreshAssist<T> {
+        mRefreshLayout?.setRefreshFooter(footer)
         return this
     }
 }
