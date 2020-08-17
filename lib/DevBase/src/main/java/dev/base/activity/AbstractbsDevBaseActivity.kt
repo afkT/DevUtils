@@ -61,7 +61,7 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
         // Content View 初始化处理
         layoutInit()
         // 设置 Content View
-        mContentView.let { setContentView(it) }
+        mContentView?.let { setContentView(it) }
     }
 
     override fun onStart() {
