@@ -72,6 +72,34 @@ public final class IntentUtils {
     }
 
     /**
+     * 获取 CATEGORY_LAUNCHER Intent
+     * @param className class.getCanonicalName()
+     * @return {@link Intent}
+     */
+    public static Intent getCategoryLauncherIntent(final String className) {
+        return getCategoryLauncherIntent(AppUtils.getPackageName(), className);
+    }
+
+    /**
+     * 获取 CATEGORY_LAUNCHER Intent
+     * @param packageName 应用包名
+     * @param className   class.getCanonicalName()
+     * @return {@link Intent}
+     */
+    public static Intent getCategoryLauncherIntent(final String packageName, final String className) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+            intent.setComponent(new ComponentName(packageName, className));
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+            return intent;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getCategoryLauncherIntent");
+        }
+        return null;
+    }
+
+    /**
      * 获取安装 APP( 支持 8.0) 的意图
      * @param filePath 文件路径
      * @return 安装 APP( 支持 8.0) 的意图
