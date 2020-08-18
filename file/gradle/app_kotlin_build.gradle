@@ -3,6 +3,25 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+android {
+    // data binding
+    buildFeatures {
+        dataBinding = true
+    }
+
+    // View Binding
+    viewBinding {
+        // https://developer.android.com/topic/libraries/view-binding
+        enabled = true
+    }
+
+    lintOptions {
+        // https://blog.csdn.net/berber78/article/details/60766091
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}
+
 dependencies {
     compileOnly deps.kotlin.stdlib
     compileOnly deps.androidx.core_ktx
