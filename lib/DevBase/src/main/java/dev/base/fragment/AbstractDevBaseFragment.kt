@@ -77,12 +77,16 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
             val parent = mContentView!!.parent as ViewGroup
             // 删除已经在显示的 View 防止切回来不加载一片空白
             parent?.removeView(mContentView)
+            mContentView = null
         }
         // View 初始化处理
         layoutInit(inflater, container)
-        // 触发初始化方法
-        onInit(mContentView, container, savedInstanceState)
         return mContentView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mDevBaseAssist.printLog("onViewCreated")
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
@@ -156,23 +160,6 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
         // 如果 View 等于 null, 则使用 contentView()
         if (mContentView == null) mContentView = contentView()
     }
-
-    // ================
-    // = 对外提供方法 =
-    // ================
-
-    /**
-     * onCreateView 初始化触发方法
-     * 需在此方法中调用 initMethodOrder
-     * @param view               [View]
-     * @param container          [ViewGroup]
-     * @param savedInstanceState [Bundle]
-     */
-    protected abstract fun onInit(
-        view: View?,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    )
 
     // ==================
     // = IDevBaseMethod =
