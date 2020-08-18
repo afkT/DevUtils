@@ -77,7 +77,17 @@ public final class IntentUtils {
      * @return {@link Intent}
      */
     public static Intent getCategoryLauncherIntent(final String className) {
-        return getCategoryLauncherIntent(AppUtils.getPackageName(), className);
+        return getCategoryLauncherIntent(AppUtils.getPackageName(), className, true);
+    }
+
+    /**
+     * 获取 CATEGORY_LAUNCHER Intent
+     * @param className class.getCanonicalName()
+     * @param isNewTask 是否开启新的任务栈
+     * @return {@link Intent}
+     */
+    public static Intent getCategoryLauncherIntent(final String className, final boolean isNewTask) {
+        return getCategoryLauncherIntent(AppUtils.getPackageName(), className, isNewTask);
     }
 
     /**
@@ -87,11 +97,24 @@ public final class IntentUtils {
      * @return {@link Intent}
      */
     public static Intent getCategoryLauncherIntent(final String packageName, final String className) {
+        return getCategoryLauncherIntent(packageName, className, true);
+    }
+
+    /**
+     * 获取 CATEGORY_LAUNCHER Intent
+     * @param packageName 应用包名
+     * @param className   class.getCanonicalName()
+     * @param isNewTask   是否开启新的任务栈
+     * @return {@link Intent}
+     */
+    public static Intent getCategoryLauncherIntent(final String packageName, final String className, final boolean isNewTask) {
         try {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
             intent.setComponent(new ComponentName(packageName, className));
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+            if (isNewTask) {
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+            }
             return intent;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getCategoryLauncherIntent");
