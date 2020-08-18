@@ -27,9 +27,9 @@ import dev.other.R;
 
 /**
  * detail: Glide 加载引擎
- * @author：luck
- * @date：2019-11-13 17:02
- * @describe：Glide 加载引擎
+ * @author: luck
+ * @date: 2019-11-13 17:02
+ * @describe: Glide 加载引擎
  */
 public class GlideEngine implements ImageEngine {
 
@@ -48,7 +48,7 @@ public class GlideEngine implements ImageEngine {
 
     /**
      * 加载网络图片适配长图方案
-     * # 注意：此方法只有加载网络图片才会回调
+     * # 注意: 此方法只有加载网络图片才会回调
      * @param context
      * @param url
      * @param imageView
@@ -110,7 +110,7 @@ public class GlideEngine implements ImageEngine {
 
     /**
      * 加载网络图片适配长图方案
-     * # 注意：此方法只有加载网络图片才会回调
+     * # 注意: 此方法只有加载网络图片才会回调
      * @param context
      * @param url
      * @param imageView

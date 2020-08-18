@@ -47,6 +47,9 @@ abstract class DevBaseViewBindingActivity<VB : ViewBinding> : DevBaseActivity() 
      * =
      * getBindingView() 可以直接返回 mContentView 视实际设计情况而定
      * 主要是为了预留, 默认使用统一 R.layout.xx 进行 add ( Title、Body ) View 等设计情况
+     * =
+     * 使用 layoutInflater 方式, 则不需要标记使用的 layout ( contentId、contentView ),
+     * 直接 set 或 add ( binding.root )
      */
     abstract fun getBindingView(): View
 }

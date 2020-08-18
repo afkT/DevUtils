@@ -19,6 +19,12 @@ import dev.widget.function.StateLayout;
 /**
  * detail: Base 基类
  * @author Ttt
+ * <pre>
+ *     设计思路:
+ *     全局统一使用 R.layout.base_activity 作为根布局进行显示
+ *     并且进行动态添加 title、body 等布局 View
+ *     能够对全局进行增删 View 控制处理, 以及后期全局需求配置
+ * </pre>
  */
 public abstract class BaseActivity extends DevBaseActivity {
 
