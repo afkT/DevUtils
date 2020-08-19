@@ -5,15 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
+import dev.base.able.IDevBaseViewBinding
 import dev.base.fragment.DevBaseFragment
-import dev.utils.LogPrintUtils
-import java.lang.reflect.ParameterizedType
+import dev.base.utils.ViewBindingUtils
 
 /**
  * detail: Fragment ViewBinding 基类
  * @author Ttt
  */
-abstract class DevBaseViewBindingFragment<VB : ViewBinding> : DevBaseFragment() {
+abstract class DevBaseViewBindingFragment<VB : ViewBinding> : DevBaseFragment(),
+    IDevBaseViewBinding<VB> {
 
     private var _binding: VB? = null
     val binding: VB get() = _binding!!
@@ -24,33 +25,26 @@ abstract class DevBaseViewBindingFragment<VB : ViewBinding> : DevBaseFragment() 
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        return viewBindingInit(container)
+        // ViewBinding 初始化处理
+        _binding = viewBinding(inflater, container)
+        return binding.root
     }
 
-    /**
-     * ViewBinding 初始化处理
-     */
-    private fun viewBindingInit(container: ViewGroup?): View? {
-        try {
-            val type = javaClass.genericSuperclass as ParameterizedType
-            val clazz = type.actualTypeArguments[0] as Class<VB>
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
-            if (mContentView != null) {
-                val method = clazz.getMethod("bind", View::class.java)
-                _binding = method.invoke(null, mContentView) as VB
-            } else {
-                val method = clazz.getMethod(
-                    "inflate",
-                    LayoutInflater::class.java,
-                    ViewGroup::class.java,
-                    Boolean::class.java
-                )
-                _binding = method.invoke(null, layoutInflater, container, false) as VB
-                mContentView = _binding!!.root
-            }
-        } catch (e: Exception) {
-            LogPrintUtils.eTag(TAG, e, "viewBindingInit")
-        }
-        return mContentView
+    override fun viewBinding(inflater: LayoutInflater, container: ViewGroup?): VB {
+        return ViewBindingUtils.viewBinding(
+            inflater,
+            container,
+            getBindingView(),
+            javaClass
+        )
+    }
+
+    override fun getBindingView(): View? {
+        return null
     }
 }

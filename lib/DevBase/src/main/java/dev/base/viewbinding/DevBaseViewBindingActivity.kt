@@ -1,55 +1,39 @@
 package dev.base.viewbinding
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
+import dev.base.able.IDevBaseViewBinding
 import dev.base.activity.DevBaseActivity
-import dev.utils.LogPrintUtils
-import java.lang.reflect.ParameterizedType
+import dev.base.utils.ViewBindingUtils
 
 /**
  * detail: Activity ViewBinding 基类
  * @author Ttt
  */
-abstract class DevBaseViewBindingActivity<VB : ViewBinding> : DevBaseActivity() {
+abstract class DevBaseViewBindingActivity<VB : ViewBinding> : DevBaseActivity(),
+    IDevBaseViewBinding<VB> {
 
     lateinit var binding: VB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // ViewBinding 初始化处理
-        viewBindingInit()
+        binding = viewBinding(layoutInflater, null)
     }
 
-    /**
-     * ViewBinding 初始化处理
-     * =
-     * 两种方式初始化 binding
-     * binding = ViewBinding.bind(View)
-     * binding = ViewBinding.inflate(layoutInflater) // setContentView(binding.root)
-     */
-    private fun viewBindingInit() {
-        try {
-            val type = javaClass.genericSuperclass as ParameterizedType
-            val clazz = type.actualTypeArguments[0] as Class<VB>
-            val method = clazz.getMethod("bind", View::class.java)
-            binding = method.invoke(null, getBindingView()) as VB
-
-//            val method = clazz.getMethod("inflate", LayoutInflater::class.java)
-//            binding = method.invoke(null, layoutInflater) as VB
-        } catch (e: Exception) {
-            LogPrintUtils.eTag(TAG, e, "viewBindingInit")
-        }
+    override fun viewBinding(inflater: LayoutInflater, container: ViewGroup?): VB {
+        return ViewBindingUtils.viewBinding(
+            inflater,
+            container,
+            getBindingView(),
+            javaClass
+        )
     }
 
-    /**
-     * 获取 ViewBinding bind View
-     * =
-     * getBindingView() 可以直接返回 mContentView 视实际设计情况而定
-     * 主要是为了预留, 默认使用统一 R.layout.xx 进行 add ( Title、Body ) View 等设计情况
-     * =
-     * 使用 layoutInflater 方式, 则不需要标记使用的 layout ( contentId、contentView ),
-     * 直接 set 或 add ( binding.root )
-     */
-    abstract fun getBindingView(): View
+    override fun getBindingView(): View? {
+        return null
+    }
 }
