@@ -80,7 +80,7 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
             mContentView = null
         }
         // View 初始化处理
-        layoutInit(inflater, container)
+        contentInit(inflater, container)
         return mContentView
     }
 
@@ -147,14 +147,14 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
      * @param inflater  [LayoutInflater]
      * @param container [ViewGroup]
      */
-    private fun layoutInit(inflater: LayoutInflater, container: ViewGroup?) {
+    private fun contentInit(inflater: LayoutInflater, container: ViewGroup?) {
         if (mContentView != null) return
         // 使用 contentId()
         if (contentId() != 0) {
             try {
                 mContentView = inflater.inflate(contentId(), container, false)
             } catch (e: Exception) {
-                LogPrintUtils.eTag(mTag, e, "layoutInit - contentId")
+                LogPrintUtils.eTag(mTag, e, "contentInit - contentId")
             }
         }
         // 如果 View 等于 null, 则使用 contentView()

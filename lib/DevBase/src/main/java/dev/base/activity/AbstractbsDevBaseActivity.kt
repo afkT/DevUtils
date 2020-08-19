@@ -59,7 +59,7 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
         // 保存 Activity
         ActivityUtils.getManager().addActivity(this)
         // Content View 初始化处理
-        layoutInit()
+        contentInit()
         // 设置 Content View
         mContentView?.let { setContentView(it) }
     }
@@ -124,7 +124,7 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
     /**
      * 布局初始化处理
      */
-    private fun layoutInit() {
+    private fun contentInit() {
         if (mContentView != null) return
         // 使用 contentId()
         if (contentId() != 0) {
@@ -134,7 +134,7 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
                         contentId(), null
                     )
             } catch (e: Exception) {
-                LogPrintUtils.eTag(mTag, e, "layoutInit - contentId")
+                LogPrintUtils.eTag(mTag, e, "contentInit - contentId")
             }
         }
         // 如果 View 等于 null, 则使用 contentView()

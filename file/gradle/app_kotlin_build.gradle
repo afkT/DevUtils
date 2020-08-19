@@ -41,6 +41,7 @@ dependencies {
 
     compileOnly project(path: ':DevApp')
     compileOnly project(path: ':DevAssist')
+    compileOnly project(path: ':DevWidget')
 
     // ============
     // = 第三方库 =
