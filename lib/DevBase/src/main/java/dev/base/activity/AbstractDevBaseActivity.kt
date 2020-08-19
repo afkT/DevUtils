@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
@@ -58,7 +59,7 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(), IDevBase {
         // 记录 Activity
         if (isActivityManager()) ActivityUtils.getManager().addActivity(this)
         // Content View 初始化处理
-        contentInit()
+        contentInit(LayoutInflater.from(this), null)
         // 设置 Content View
         mContentView?.let { setContentView(it) }
     }
@@ -130,16 +131,15 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(), IDevBase {
 
     /**
      * 布局初始化处理
+     * @param inflater  [LayoutInflater]
+     * @param container [ViewGroup]
      */
-    private fun contentInit() {
+    private fun contentInit(inflater: LayoutInflater, container: ViewGroup?) {
         if (mContentView != null) return
         // 使用 contentId()
         if (contentId() != 0) {
             try {
-                mContentView =
-                    (getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(
-                        contentId(), null
-                    )
+                mContentView = inflater.inflate(contentId(), container, false)
             } catch (e: Exception) {
                 mDevBaseAssist.printLog(e, "contentInit - contentId")
             }
