@@ -17,14 +17,14 @@ import dev.utils.app.ActivityUtils
  * detail: Activity 抽象基类
  * @author Ttt
  */
-abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
+abstract class AbstractDevBaseActivity : AppCompatActivity(), IDevBase {
 
     // ==========
     // = Object =
     // ==========
 
     @JvmField // 日志 TAG - 根据使用习惯命名大写
-    protected var TAG = AbstractbsDevBaseActivity::class.java.simpleName
+    protected var TAG = AbstractDevBaseActivity::class.java.simpleName
 
     @JvmField // Context
     protected var mContext: Context? = null
@@ -55,8 +55,8 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
         // 获取 Context、Activity
         mContext = this
         mActivity = this
-        // 保存 Activity
-        ActivityUtils.getManager().addActivity(this)
+        // 记录 Activity
+        if (isActivityManager()) ActivityUtils.getManager().addActivity(this)
         // Content View 初始化处理
         contentInit()
         // 设置 Content View
@@ -104,7 +104,7 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
             .printLog("onDestroy")
             .setCurrentVisible(false)
         // 移除当前 Activity
-        ActivityUtils.getManager().removeActivity(this)
+        if (isActivityManager()) ActivityUtils.getManager().removeActivity(this)
     }
 
     /**
@@ -114,6 +114,14 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
     override fun onBackPressed() {
         super.onBackPressed()
         mDevBaseAssist.printLog("onBackPressed")
+    }
+
+    // ==================
+    // = IDevBaseConfig =
+    // ==================
+
+    override fun isActivityManager(): Boolean {
+        return true
     }
 
     // ===================

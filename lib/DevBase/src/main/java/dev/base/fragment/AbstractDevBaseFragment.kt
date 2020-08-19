@@ -137,6 +137,14 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
             .setCurrentVisible(false)
     }
 
+    // ==================
+    // = IDevBaseConfig =
+    // ==================
+
+    override fun isActivityManager(): Boolean {
+        return false
+    }
+
     // ===================
     // = IDevBaseContent =
     // ===================
