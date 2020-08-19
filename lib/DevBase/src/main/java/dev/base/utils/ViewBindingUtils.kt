@@ -39,7 +39,9 @@ object ViewBindingUtils {
         clazz: Class<T>
     ): VB {
         try {
-            return viewBinding(inflater, container, view, getClassVB(clazz))
+            return viewBinding(
+                inflater, container, view, getClassVB(clazz)
+            )
         } catch (e: Exception) {
             LogPrintUtils.eTag(TAG, e, "viewBinding")
         }

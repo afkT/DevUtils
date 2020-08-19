@@ -32,7 +32,7 @@ abstract class DevBaseViewBindingFragment<VB : ViewBinding> : DevBaseFragment(),
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        if (isDetachBinding()) _binding = null
     }
 
     override fun viewBinding(inflater: LayoutInflater, container: ViewGroup?): VB {

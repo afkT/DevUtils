@@ -23,4 +23,11 @@ interface IDevBaseViewBinding<VB : ViewBinding> {
      * tips: 如果直接使用 R.layout.xxx 则直接返回 null 即可
      */
     fun getBindingView(): View?
+
+    /**
+     * 是否分离 ( 销毁 ) Binding
+     */
+    fun isDetachBinding(): Boolean {
+        return false
+    }
 }
