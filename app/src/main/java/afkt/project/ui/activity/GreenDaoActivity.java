@@ -273,7 +273,7 @@ public class GreenDaoActivity extends BaseToolbarActivity {
                 limit = pageSize * 2 - diff;
             }
         }
-        DevLogger.dTag(mTag, "offset: " + offset + ", limit: " + limit);
+        DevLogger.dTag(TAG, "offset: " + offset + ", limit: " + limit);
         // 请求数据
         return GreenManager.getNoteDao().queryBuilder()
                 .offset(offset)

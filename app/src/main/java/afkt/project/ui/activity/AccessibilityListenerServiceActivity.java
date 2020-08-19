@@ -96,25 +96,25 @@ public class AccessibilityListenerServiceActivity extends BaseToolbarActivity {
                 StringBuilder builder = new StringBuilder();
                 builder.append("onAccessibilityEvent");
                 builder.append("\naccessibilityEvent: " + accessibilityEvent.toString());
-                DevLogger.dTag(mTag, builder.toString());
+                DevLogger.dTag(TAG, builder.toString());
             }
 
             @Override
             public void onInterrupt() {
                 super.onInterrupt();
-                DevLogger.dTag(mTag, "onInterrupt");
+                DevLogger.dTag(TAG, "onInterrupt");
             }
 
             @Override
             public void onServiceCreated(AccessibilityListenerService service) {
                 super.onServiceCreated(service);
-                DevLogger.dTag(mTag, "onServiceCreated");
+                DevLogger.dTag(TAG, "onServiceCreated");
             }
 
             @Override
             public void onServiceDestroy() {
                 super.onServiceDestroy();
-                DevLogger.dTag(mTag, "onServiceDestroy");
+                DevLogger.dTag(TAG, "onServiceDestroy");
             }
         });
     }

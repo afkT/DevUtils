@@ -103,7 +103,7 @@ public class LinearSnapMAXActivity extends BaseToolbarActivity {
                         // 真实索引
                         int index = linearSnapAdapter.getRealIndex(currentPosition);
 
-                        DevLogger.dTag(mTag, lastItemPosition + " - " + firstItemPosition + " -> 当前显示索引: " + currentPosition + " - " + index);
+                        DevLogger.dTag(TAG, lastItemPosition + " - " + firstItemPosition + " -> 当前显示索引: " + currentPosition + " - " + index);
                     }
                 }
             }

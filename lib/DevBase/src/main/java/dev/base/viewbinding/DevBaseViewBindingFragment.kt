@@ -49,7 +49,7 @@ abstract class DevBaseViewBindingFragment<VB : ViewBinding> : DevBaseFragment() 
                 mContentView = _binding!!.root
             }
         } catch (e: Exception) {
-            LogPrintUtils.eTag(mTag, e, "viewBindingInit")
+            LogPrintUtils.eTag(TAG, e, "viewBindingInit")
         }
         return mContentView
     }

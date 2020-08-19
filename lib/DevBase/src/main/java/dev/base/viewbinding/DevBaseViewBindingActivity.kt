@@ -38,7 +38,7 @@ abstract class DevBaseViewBindingActivity<VB : ViewBinding> : DevBaseActivity() 
 //            val method = clazz.getMethod("inflate", LayoutInflater::class.java)
 //            binding = method.invoke(null, layoutInflater) as VB
         } catch (e: Exception) {
-            LogPrintUtils.eTag(mTag, e, "viewBindingInit")
+            LogPrintUtils.eTag(TAG, e, "viewBindingInit")
         }
     }
 

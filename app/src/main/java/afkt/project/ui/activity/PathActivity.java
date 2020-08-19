@@ -103,7 +103,7 @@ public class PathActivity extends BaseToolbarActivity {
                                 PathUtils.getInternal().getAppAudiobooksDir(),
                                 ""
                         );
-                        DevLogger.dTag(mTag, builder.toString());
+                        DevLogger.dTag(TAG, builder.toString());
                         showToast(true, "信息已打印, 请查看 Logcat");
                         break;
                     case ButtonValue.BTN_PATH_APP_EXTERNAL:
@@ -149,7 +149,7 @@ public class PathActivity extends BaseToolbarActivity {
                                 PathUtils.getAppExternal().getAppObbDir(),
                                 ""
                         );
-                        DevLogger.dTag(mTag, builder.toString());
+                        DevLogger.dTag(TAG, builder.toString());
                         showToast(true, "信息已打印, 请查看 Logcat");
                         break;
                     case ButtonValue.BTN_PATH_SDCARD:
@@ -186,7 +186,7 @@ public class PathActivity extends BaseToolbarActivity {
                                 PathUtils.getSDCard().getAudiobooksDir(),
                                 ""
                         );
-                        DevLogger.dTag(mTag, builder.toString());
+                        DevLogger.dTag(TAG, builder.toString());
                         showToast(true, "信息已打印, 请查看 Logcat");
                         break;
                     default:

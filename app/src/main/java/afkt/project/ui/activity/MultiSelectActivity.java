@@ -67,7 +67,7 @@ public class MultiSelectActivity extends BaseToolbarActivity {
                     @Override
                     public void onClickSelect(int pos, boolean now) {
                         CommodityEvaluateBean commodityEvaluateBean = multiSelectAdapter.getData().get(pos);
-                        DevLogger.eTag(mTag, "新状态: " + now + ", 商品名: " + commodityEvaluateBean.commodityName);
+                        DevLogger.eTag(TAG, "新状态: " + now + ", 商品名: " + commodityEvaluateBean.commodityName);
                     }
                 });
         vid_bvr_recy.setAdapter(multiSelectAdapter);

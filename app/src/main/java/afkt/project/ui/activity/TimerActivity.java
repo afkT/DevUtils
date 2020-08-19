@@ -69,9 +69,9 @@ public class TimerActivity extends BaseToolbarActivity {
                                     int number = absTimer.getTriggerNumber();
                                     // 触发次数
                                     if (number == 1) {
-                                        DevLogger.dTag(mTag, "第一次触发, 0.5 秒延迟");
+                                        DevLogger.dTag(TAG, "第一次触发, 0.5 秒延迟");
                                     } else {
-                                        DevLogger.dTag(mTag, "每隔 2 秒触发一次, 触发次数: " + number);
+                                        DevLogger.dTag(TAG, "每隔 2 秒触发一次, 触发次数: " + number);
                                     }
                                 }
                             }, NOTIFY, 500l, 2000l, -1);
@@ -177,11 +177,11 @@ public class TimerActivity extends BaseToolbarActivity {
 //                switch (msg.what) {
 //                    case NOTIFY:
 //                        // 获取触发次数
-//                        DevLogger.dTag(mTag, "已经触发次数: " + absTimer.getTriggerNumber());
-//                        DevLogger.dTag(mTag, "触发上限次数: " + absTimer.getTriggerLimit());
+//                        DevLogger.dTag(TAG, "已经触发次数: " + absTimer.getTriggerNumber());
+//                        DevLogger.dTag(TAG, "触发上限次数: " + absTimer.getTriggerLimit());
 //                        // 判断是否触发结束
 //                        if (absTimer.isTriggerEnd()) {
-//                            DevLogger.dTag(mTag, "触发结束");
+//                            DevLogger.dTag(TAG, "触发结束");
 //                        }
 //                        break;
 //                }

@@ -42,15 +42,15 @@ public class ViewPagerActivity extends BaseToolbarActivity {
             @Override
             public void onSlideDirection(boolean left, boolean right) {
                 if (left && !right) {
-                    DevLogger.dTag(mTag, "往左滑 - 从右往左");
+                    DevLogger.dTag(TAG, "往左滑 - 从右往左");
                 } else {
-                    DevLogger.dTag(mTag, "往右滑 - 从左往右");
+                    DevLogger.dTag(TAG, "往右滑 - 从左往右");
                 }
             }
 
             @Override
             public void onPageSelected(int index) {
-                DevLogger.dTag(mTag, "索引变动: " + index);
+                DevLogger.dTag(TAG, "索引变动: " + index);
 
                 if (mLeftScroll) {
                     showToast("往左滑 - 从右往左");

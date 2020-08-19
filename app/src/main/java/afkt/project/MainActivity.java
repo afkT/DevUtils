@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onFail(Exception e) {
-                DevLogger.eTag(mTag, e, "getNetTime");
+                DevLogger.eTag(TAG, e, "getNetTime");
             }
         });
 
@@ -183,6 +183,6 @@ public class MainActivity extends BaseActivity {
                 .append(StringUtils.NEW_LINE_STR)
                 .append("\t\tdata: " + mmapIdData);
 
-        DevLogger.dTag(mTag, builder.toString());
+        DevLogger.dTag(TAG, builder.toString());
     }
 }

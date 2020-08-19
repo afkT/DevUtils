@@ -123,7 +123,7 @@ public class WifiActivity extends BaseToolbarActivity {
                                                     @Override
                                                     public void onStarted(WifiConfiguration wifiConfiguration) {
                                                         String wifiap = "ssid: " + wifiConfiguration.SSID + "\npwd: " + wifiConfiguration.preSharedKey;
-                                                        DevLogger.dTag(mTag, wifiap);
+                                                        DevLogger.dTag(TAG, wifiap);
                                                         ToastTintUtils.success(wifiap);
                                                         // 表示操作结束
                                                         isOpenAPING = false;
@@ -131,14 +131,14 @@ public class WifiActivity extends BaseToolbarActivity {
 
                                                     @Override
                                                     public void onStopped() {
-                                                        DevLogger.dTag(mTag, "关闭热点");
+                                                        DevLogger.dTag(TAG, "关闭热点");
                                                         // 表示操作结束
                                                         isOpenAPING = false;
                                                     }
 
                                                     @Override
                                                     public void onFailed(int reason) {
-                                                        DevLogger.dTag(mTag, "热点异常 reason: " + reason);
+                                                        DevLogger.dTag(TAG, "热点异常 reason: " + reason);
                                                         // 表示操作结束
                                                         isOpenAPING = false;
                                                     }
@@ -207,59 +207,59 @@ public class WifiActivity extends BaseToolbarActivity {
         WifiReceiver.setWifiListener(new WifiReceiver.WifiListener() {
             @Override
             public void onWifiSwitch(boolean isOpenWifi) { // Wifi 开关状态
-                DevLogger.dTag(mTag, "Wifi 是否打开: " + isOpenWifi);
+                DevLogger.dTag(TAG, "Wifi 是否打开: " + isOpenWifi);
             }
 
             @Override
             public void onIntoTrigger() {
                 super.onIntoTrigger();
-                DevLogger.dTag(mTag, "触发回调通知 ( 每次进入都通知 )");
+                DevLogger.dTag(TAG, "触发回调通知 ( 每次进入都通知 )");
             }
 
             @Override
             public void onTrigger(int what) {
                 switch (what) {
                     case WifiReceiver.WIFI_SCAN_FINISH: // startScan() 扫描附近 Wifi 结束触发
-                        DevLogger.dTag(mTag, "startScan() 扫描附近 Wifi 结束触发");
+                        DevLogger.dTag(TAG, "startScan() 扫描附近 Wifi 结束触发");
                         break;
                     case WifiReceiver.WIFI_RSSI_CHANGED: // 已连接的 Wifi 强度发生变化
-                        DevLogger.dTag(mTag, "已连接的 Wifi 强度发生变化");
+                        DevLogger.dTag(TAG, "已连接的 Wifi 强度发生变化");
                         break;
                     case WifiReceiver.WIFI_ERROR_AUTHENTICATING: // Wifi 认证错误 ( 密码错误等 )
-                        DevLogger.dTag(mTag, "Wifi 认证错误 ( 密码错误等 )");
+                        DevLogger.dTag(TAG, "Wifi 认证错误 ( 密码错误等 )");
                         break;
                     case WifiReceiver.WIFI_ERROR_UNKNOWN: // 连接错误 ( 其他错误 )
-                        DevLogger.dTag(mTag, "连接错误 ( 其他错误 )");
+                        DevLogger.dTag(TAG, "连接错误 ( 其他错误 )");
                         break;
                     case WifiReceiver.WIFI_STATE_ENABLED: // Wifi 已打开
-                        DevLogger.dTag(mTag, "Wifi 已打开");
+                        DevLogger.dTag(TAG, "Wifi 已打开");
                         break;
                     case WifiReceiver.WIFI_STATE_ENABLING: // Wifi 正在打开
-                        DevLogger.dTag(mTag, "Wifi 正在打开");
+                        DevLogger.dTag(TAG, "Wifi 正在打开");
                         break;
                     case WifiReceiver.WIFI_STATE_DISABLED: // Wifi  已关闭
-                        DevLogger.dTag(mTag, "Wifi 已关闭");
+                        DevLogger.dTag(TAG, "Wifi 已关闭");
                         break;
                     case WifiReceiver.WIFI_STATE_DISABLING: // Wifi  正在关闭
-                        DevLogger.dTag(mTag, "Wifi 正在关闭");
+                        DevLogger.dTag(TAG, "Wifi 正在关闭");
                         break;
                     case WifiReceiver.WIFI_STATE_UNKNOWN: // Wifi  状态未知
-                        DevLogger.dTag(mTag, "Wifi 状态未知");
+                        DevLogger.dTag(TAG, "Wifi 状态未知");
                         break;
                     case WifiReceiver.CONNECTED: // Wifi  连接成功
-                        DevLogger.dTag(mTag, "Wifi 连接成功");
+                        DevLogger.dTag(TAG, "Wifi 连接成功");
                         break;
                     case WifiReceiver.CONNECTING: // Wifi  连接中
-                        DevLogger.dTag(mTag, "Wifi 连接中");
+                        DevLogger.dTag(TAG, "Wifi 连接中");
                         break;
                     case WifiReceiver.DISCONNECTED: // Wifi  连接失败、断开
-                        DevLogger.dTag(mTag, "Wifi 连接失败、断开");
+                        DevLogger.dTag(TAG, "Wifi 连接失败、断开");
                         break;
                     case WifiReceiver.SUSPENDED: // Wifi  暂停、延迟
-                        DevLogger.dTag(mTag, "Wifi 暂停、延迟");
+                        DevLogger.dTag(TAG, "Wifi 暂停、延迟");
                         break;
                     case WifiReceiver.UNKNOWN: // Wifi  未知
-                        DevLogger.dTag(mTag, "Wifi 未知");
+                        DevLogger.dTag(TAG, "Wifi 未知");
                         break;
                 }
             }
@@ -270,19 +270,19 @@ public class WifiActivity extends BaseToolbarActivity {
                 // 判断连接状态
                 switch (what) {
                     case WifiReceiver.CONNECTED: // Wifi 连接成功
-                        DevLogger.dTag(mTag, "连接 Wifi 成功: " + message.obj);
+                        DevLogger.dTag(TAG, "连接 Wifi 成功: " + message.obj);
                         break;
                     case WifiReceiver.CONNECTING: // Wifi 连接中
-                        DevLogger.dTag(mTag, "连接 Wifi 中: " + message.obj);
+                        DevLogger.dTag(TAG, "连接 Wifi 中: " + message.obj);
                         break;
                     case WifiReceiver.DISCONNECTED: // Wifi 连接失败、断开
-                        DevLogger.dTag(mTag, "连接 Wifi 断开");
+                        DevLogger.dTag(TAG, "连接 Wifi 断开");
                         break;
                     case WifiReceiver.SUSPENDED: // Wifi 暂停、延迟
-                        DevLogger.dTag(mTag, "连接 Wifi 暂停、延迟");
+                        DevLogger.dTag(TAG, "连接 Wifi 暂停、延迟");
                         break;
                     case WifiReceiver.UNKNOWN: // Wifi 未知
-                        DevLogger.dTag(mTag, "连接 Wifi 状态未知");
+                        DevLogger.dTag(TAG, "连接 Wifi 状态未知");
                         break;
                 }
             }

@@ -131,6 +131,6 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
 
     @Override
     public void addDisposable(Disposable disposable) {
-        RxJavaManager.getInstance().add(mTag, disposable);
+        RxJavaManager.getInstance().add(TAG, disposable);
     }
 }

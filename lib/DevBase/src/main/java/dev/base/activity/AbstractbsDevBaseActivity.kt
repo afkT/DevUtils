@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import dev.base.able.IDevBase
 import dev.base.utils.assist.DevBaseAssist
-import dev.utils.LogPrintUtils
 import dev.utils.app.ActivityUtils
 
 /**
@@ -24,8 +23,8 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
     // = Object =
     // ==========
 
-    @JvmField // 日志 TAG
-    protected var mTag = AbstractbsDevBaseActivity::class.java.simpleName
+    @JvmField // 日志 TAG - 根据使用习惯命名大写
+    protected var TAG = AbstractbsDevBaseActivity::class.java.simpleName
 
     @JvmField // Context
     protected var mContext: Context? = null
@@ -46,10 +45,10 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // 获取当前类名
-        mTag = this.javaClass.simpleName
+        TAG = this.javaClass.simpleName
         // 设置数据
         mDevBaseAssist
-            .setTag(mTag)
+            .setTag(TAG)
             .setContext(this)
             .printLog("onCreate")
             .setCurrentVisible(true)
@@ -134,7 +133,7 @@ abstract class AbstractbsDevBaseActivity : AppCompatActivity(), IDevBase {
                         contentId(), null
                     )
             } catch (e: Exception) {
-                LogPrintUtils.eTag(mTag, e, "contentInit - contentId")
+                mDevBaseAssist.printLog(e, "contentInit - contentId")
             }
         }
         // 如果 View 等于 null, 则使用 contentView()

@@ -58,7 +58,7 @@ public class AdapterEditsActivity extends BaseToolbarActivity {
                             builder.append("\nevaluateLevel: " + item.evaluateLevel);
                             builder.append("\n");
                         }
-                        DevLogger.dTag(mTag, builder.toString());
+                        DevLogger.dTag(TAG, builder.toString());
                         ToastTintUtils.success("数据已打印, 请查看 Logcat");
                     }
                 }).getView();

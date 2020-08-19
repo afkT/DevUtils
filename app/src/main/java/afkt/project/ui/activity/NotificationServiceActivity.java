@@ -96,12 +96,12 @@ public class NotificationServiceActivity extends BaseToolbarActivity {
         NotificationService.setNotificationListener(new NotificationService.NotificationListener() {
             @Override
             public void onServiceCreated(NotificationService service) {
-                DevLogger.dTag(mTag, "服务创建通知");
+                DevLogger.dTag(TAG, "服务创建通知");
             }
 
             @Override
             public void onServiceDestroy() {
-                DevLogger.dTag(mTag, "服务销毁通知");
+                DevLogger.dTag(TAG, "服务销毁通知");
             }
 
             @Override
@@ -111,7 +111,7 @@ public class NotificationServiceActivity extends BaseToolbarActivity {
                 builder.append("\nintent: " + intent.toString());
                 builder.append("\nflags: " + flags);
                 builder.append("\nstartId: " + startId);
-                DevLogger.dTag(mTag, builder.toString());
+                DevLogger.dTag(TAG, builder.toString());
                 return 0;
             }
 
@@ -130,7 +130,7 @@ public class NotificationServiceActivity extends BaseToolbarActivity {
                     }
                 }
                 // 打印日志
-                DevLogger.dTag(mTag, builder.toString());
+                DevLogger.dTag(TAG, builder.toString());
             }
 
             @Override
@@ -139,7 +139,7 @@ public class NotificationServiceActivity extends BaseToolbarActivity {
                 builder.append("onNotificationRemoved");
                 builder.append("\nstatusBarNotification: " + sbn.toString());
                 // 打印日志
-                DevLogger.dTag(mTag, builder.toString());
+                DevLogger.dTag(TAG, builder.toString());
             }
         });
     }

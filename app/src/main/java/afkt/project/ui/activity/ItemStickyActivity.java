@@ -63,7 +63,7 @@ public class ItemStickyActivity extends BaseToolbarActivity {
 //
 //            @Override
 //            public View getGroupView(int position) {
-//                DevLogger.dTag(mTag, position + "");
+//                DevLogger.dTag(TAG, position + "");
 //                View view = getLayoutInflater().inflate(R.layout.adapter_sticky_view, null, false);
 //                TextViewUtils.setText(view.findViewById(R.id.vid_asv_title_tv), getGroupName(position));
 //                return view;

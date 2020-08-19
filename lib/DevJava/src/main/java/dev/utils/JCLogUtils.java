@@ -123,7 +123,7 @@ public final class JCLogUtils {
 
     /**
      * 拼接错误信息
-     * @param throwable 错误异常
+     * @param throwable 异常
      * @param message   需要打印的消息
      * @param args      动态参数
      * @return 处理 ( 格式化 ) 后准备打印的日志信息

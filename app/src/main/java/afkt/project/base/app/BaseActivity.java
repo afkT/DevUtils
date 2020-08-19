@@ -59,8 +59,8 @@ public abstract class BaseActivity extends DevBaseActivity {
         if (unbinder != null) {
             unbinder.unbind();
         }
-        // 取消 mTag ( Activity ) 关联的请求
-        RxJavaManager.getInstance().remove(mTag);
+        // 取消 TAG ( Activity ) 关联的请求
+        RxJavaManager.getInstance().remove(TAG);
     }
 
     // ================

@@ -195,7 +195,7 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
                     cameraAssist.stopPreview();
                 }
             } catch (Exception e) {
-                DevLogger.eTag(mTag, e, "surfaceDestroyed");
+                DevLogger.eTag(TAG, e, "surfaceDestroyed");
             }
         }
     };
@@ -217,7 +217,7 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
                 cameraAssist.setPreviewNotify(new CameraAssist.PreviewNotify() {
                     @Override
                     public void stopPreviewNotify() {
-                        DevLogger.dTag(mTag, "停止预览通知");
+                        DevLogger.dTag(TAG, "停止预览通知");
                         // 通知处理
                         if (mPreviewCallback != null) {
                             mPreviewCallback.setHandler(null, 0);
@@ -226,7 +226,7 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
 
                     @Override
                     public void startPreviewNotify() {
-                        DevLogger.dTag(mTag, "开始预览通知");
+                        DevLogger.dTag(TAG, "开始预览通知");
                     }
                 });
                 // 获取预览大小
@@ -290,12 +290,12 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
                         public void setError(boolean isError, Exception e) {
                             this.isError = isError;
                             // 打印日志
-                            DevLogger.eTag(mTag, e, "setError");
+                            DevLogger.eTag(TAG, e, "setError");
                         }
                     }, mDecodeMode, cameraAssist, mPreviewCallback, this);
                 }
             } catch (Exception e) {
-                DevLogger.eTag(mTag, e, "checkPermission - startPreview");
+                DevLogger.eTag(TAG, e, "checkPermission - startPreview");
             }
         } else {
             ToastTintUtils.warning("需要摄像头权限预览");
@@ -344,7 +344,7 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
         // 提示解析成功声音
         mBeepVibrateAssist.playBeepSoundAndVibrate();
         // 打印结果
-        DevLogger.dTag(mTag, "handleDecode - result: " + ZXingQRCodeUtils.getResultData(result));
+        DevLogger.dTag(TAG, "handleDecode - result: " + ZXingQRCodeUtils.getResultData(result));
 
 //        // 回传
 //        Intent resultIntent = new Intent();

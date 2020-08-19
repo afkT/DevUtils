@@ -64,20 +64,21 @@ class DevBaseAssist() : IDevBaseUIOperation {
      * @return [DevBaseAssist]
      */
     fun printLog(message: String): DevBaseAssist {
-        return printLog(mTag, message)
+        LogPrintUtils.dTag(
+            mTag,
+            String.format("%s -> %s", mTag, message)
+        )
+        return this
     }
 
     /**
      * 统一打印日志 ( 内部封装调用 )
-     * @param tag     日志 TAG
-     * @param message 打印内容
+     * @param throwable 异常
+     * @param message   打印内容
      * @return [DevBaseAssist]
      */
-    fun printLog(tag: String, message: String): DevBaseAssist {
-        LogPrintUtils.dTag(
-            mTag,
-            String.format("%s -> %s", tag, message)
-        )
+    fun printLog(throwable: Throwable, message: String): DevBaseAssist {
+        LogPrintUtils.eTag(mTag, throwable, message)
         return this
     }
 

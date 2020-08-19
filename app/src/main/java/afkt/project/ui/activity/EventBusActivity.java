@@ -88,7 +88,7 @@ public class EventBusActivity extends BaseToolbarActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public final void onEventBus(DevBaseEvent<String> event) {
         // 打印数据
-        DevLogger.dTag(mTag, "value -> " + event.getValue());
+        DevLogger.dTag(TAG, "value -> " + event.getValue());
         // 进行提示
         ToastTintUtils.normal(event.getCode() + "." + event.getValue());
     }
@@ -96,7 +96,7 @@ public class EventBusActivity extends BaseToolbarActivity {
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public final void onEventBusSticky(DevBaseEvent<String> event) {
         // 打印数据
-        DevLogger.dTag(mTag, "value -> " + event.getValue());
+        DevLogger.dTag(TAG, "value -> " + event.getValue());
         // 进行提示
         ToastTintUtils.warning(event.getCode() + "." + event.getValue());
 

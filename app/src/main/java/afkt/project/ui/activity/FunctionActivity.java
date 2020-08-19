@@ -145,12 +145,12 @@ public class FunctionActivity extends BaseToolbarActivity {
                     case ButtonValue.BTN_FUNCTION_MEMORY_PRINT:
                         String memoryInfo = MemoryUtils.printMemoryInfo();
                         ToastUtils.showLong(memoryInfo);
-                        DevLogger.dTag(mTag, memoryInfo);
+                        DevLogger.dTag(TAG, memoryInfo);
                         break;
                     case ButtonValue.BTN_FUNCTION_DEVICE_PRINT:
                         String deviceInfo = DeviceUtils.handlerDeviceInfo(DeviceUtils.getDeviceInfo(), "");
                         ToastUtils.showLong(deviceInfo);
-                        DevLogger.dTag(mTag, deviceInfo);
+                        DevLogger.dTag(TAG, deviceInfo);
                         break;
                     case ButtonValue.BTN_FUNCTION_APP_DETAILS_SETTINGS:
                         result = AppUtils.launchAppDetailsSettings();

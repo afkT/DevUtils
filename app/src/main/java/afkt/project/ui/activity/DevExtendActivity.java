@@ -62,7 +62,7 @@ public class DevExtendActivity extends BaseToolbarActivity {
                             @Override
                             public <E extends Throwable> void onError(E e) {
                                 super.onError(e);
-                                DevLogger.eTag(mTag, e);
+                                DevLogger.eTag(TAG, e);
                                 ToastTintUtils.error("保存报错: " + ThrowableUtils.getThrowable(e));
                             }
 
@@ -109,7 +109,7 @@ public class DevExtendActivity extends BaseToolbarActivity {
                 builder.append("\ntype: " + callParams.type);
                 builder.append("\nuserInfo: " + GsonUtils.toJson(callParams.userInfo));
                 builder.append("\nhashMap: " + callParams.hashMap.toString());
-                DevLogger.dTag(mTag, "value: " + value + builder.toString());
+                DevLogger.dTag(TAG, "value: " + value + builder.toString());
             }
 
             @Override
@@ -122,7 +122,7 @@ public class DevExtendActivity extends BaseToolbarActivity {
                 builder.append("\ntype: " + callParams.type);
                 builder.append("\nuserInfo: " + GsonUtils.toJson(callParams.userInfo));
                 builder.append("\nhashMap: " + callParams.hashMap.toString());
-                DevLogger.dTag(mTag, "value: " + value + ", type: " + type + builder.toString());
+                DevLogger.dTag(TAG, "value: " + value + ", type: " + type + builder.toString());
             }
         };
     }

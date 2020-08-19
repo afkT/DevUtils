@@ -43,7 +43,7 @@ public class WebViewActivity extends BaseToolbarActivity {
                     switch (result.getType()) {
                         case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE:
                             String imgUrl = result.getExtra();
-                            DevLogger.dTag(mTag, "SRC_IMAGE_ANCHOR_TYPE " + imgUrl);
+                            DevLogger.dTag(TAG, "SRC_IMAGE_ANCHOR_TYPE " + imgUrl);
                             return true;
                     }
                 }
@@ -60,7 +60,7 @@ public class WebViewActivity extends BaseToolbarActivity {
             public void onProgressChanged(WebView view, int position) {
                 // 加载进度监听
                 if (position == 100) { // 加载完成
-                    DevLogger.dTag(mTag, "加载完成");
+                    DevLogger.dTag(TAG, "加载完成");
                 }
                 super.onProgressChanged(view, position);
             }
@@ -108,7 +108,7 @@ public class WebViewActivity extends BaseToolbarActivity {
                     applyListener.onApply(webViewAssist, builder);
                 }
                 // BaseApplication 也会打印 WebViewAssist Builder onApply
-                DevLogger.dTag(mTag, "自定义监听");
+                DevLogger.dTag(TAG, "自定义监听");
                 // 全局配置或者自定义配置以外, 再次配置操作
                 // 加载网页
                 mWebViewAssist.loadUrl("https://www.csdn.net/");

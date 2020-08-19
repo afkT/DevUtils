@@ -153,7 +153,7 @@ public class GPUFilterACVActivity extends BaseToolbarActivity {
             Bitmap bitmapFilter = GPUFilterUtils.getFilterBitmap(selectBitmap, gpuFilter);
             vid_agf_igview.setImageBitmap(bitmapFilter);
         } catch (Exception e) {
-            DevLogger.eTag(mTag, e, "setFilter");
+            DevLogger.eTag(TAG, e, "setFilter");
         }
     }
 }

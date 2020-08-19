@@ -175,7 +175,7 @@ public class UIEffectActivity extends BaseToolbarActivity {
                 .setTabChangeListener(new TabLayoutAssist.TabChangeListener() {
                     @Override
                     public void onTabChange(TabItem tabItem, int pos) {
-                        DevLogger.dTag(mTag, "TabItem : " + tabItem.getTitle() + ", pos: " + pos);
+                        DevLogger.dTag(TAG, "TabItem : " + tabItem.getTitle() + ", pos: " + pos);
                         // 设置选中
                         tabLayoutAssist.setSelect(pos);
                     }
@@ -186,7 +186,7 @@ public class UIEffectActivity extends BaseToolbarActivity {
                 .setSelect(0).setTabChangeListener(new TabLayoutAssist.TabChangeListener() {
             @Override
             public void onTabChange(TabItem tabItem, int pos) {
-                DevLogger.dTag(mTag, "TabItem : " + tabItem.getTitle() + ", pos: " + pos);
+                DevLogger.dTag(TAG, "TabItem : " + tabItem.getTitle() + ", pos: " + pos);
             }
         });
     }

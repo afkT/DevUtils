@@ -40,7 +40,7 @@ public interface IImageEngine {
         /**
          * 失败回调
          * @param uri       Image Uri
-         * @param throwable Throwable
+         * @param throwable 异常
          */
         void onFailure(String uri, Throwable throwable);
     }

@@ -12,7 +12,6 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import dev.base.able.IDevBase
 import dev.base.utils.assist.DevBaseAssist
-import dev.utils.LogPrintUtils
 
 /**
  * detail: Fragment 抽象基类
@@ -24,8 +23,8 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
     // = Object =
     // ==========
 
-    @JvmField // 日志 TAG
-    protected var mTag = AbstractDevBaseFragment::class.java.simpleName
+    @JvmField // 日志 TAG - 根据使用习惯命名大写
+    protected var TAG = AbstractDevBaseFragment::class.java.simpleName
 
     @JvmField // Context
     protected var mContext: Context? = null
@@ -46,10 +45,10 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         // 获取当前类名
-        mTag = this.javaClass.simpleName
+        TAG = this.javaClass.simpleName
         // 设置数据
         mDevBaseAssist
-            .setTag(mTag)
+            .setTag(TAG)
             .setContext(context)
             .printLog("onAttach")
         // 获取 Context
@@ -154,7 +153,7 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
             try {
                 mContentView = inflater.inflate(contentId(), container, false)
             } catch (e: Exception) {
-                LogPrintUtils.eTag(mTag, e, "contentInit - contentId")
+                mDevBaseAssist.printLog(e, "contentInit - contentId")
             }
         }
         // 如果 View 等于 null, 则使用 contentView()
