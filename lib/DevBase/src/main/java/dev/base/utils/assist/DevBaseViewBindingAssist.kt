@@ -22,7 +22,7 @@ class DevBaseViewBindingAssist<VB : ViewBinding> {
      * @param view      待绑定 View
      * @param clazz     VB Class
      */
-    fun <T : Any> viewBinding(
+    fun viewBinding(
         inflater: LayoutInflater, container: ViewGroup?, view: View?, clazz: Class<VB>
     ): DevBaseViewBindingAssist<VB> {
         _binding = ViewBindingUtils.viewBinding(
