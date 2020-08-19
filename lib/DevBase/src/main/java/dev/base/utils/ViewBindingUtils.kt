@@ -17,22 +17,49 @@ object ViewBindingUtils {
     private val TAG = ViewBindingUtils::class.java.simpleName
 
     /**
-     * ViewBinding 初始化处理
+     * 获取 VB Class
+     * @param clazz javaClass
+     */
+    fun <VB : ViewBinding, T : Any> getClassVB(clazz: Class<T>): Class<VB> {
+        val type = clazz.genericSuperclass as ParameterizedType
+        return type.actualTypeArguments[0] as Class<VB>
+    }
+
+    /**
+     * ViewBinding 初始化处理 ( 通过传入 javaClass )
      * @param inflater  [LayoutInflater]
      * @param container [ViewGroup]
      * @param view      待绑定 View
      * @param clazz     javaClass
      */
-    fun <VB : ViewBinding, T : Any> viewBinding(
+    fun <VB : ViewBinding, T : Any> viewBindingJavaClass(
         inflater: LayoutInflater,
         container: ViewGroup?,
         view: View?,
         clazz: Class<T>
     ): VB {
         try {
-            val type = clazz.genericSuperclass as ParameterizedType
-            val clazz = type.actualTypeArguments[0] as Class<VB>
+            return viewBinding(inflater, container, view, getClassVB(clazz))
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "viewBinding")
+        }
+        throw Exception("${clazz.simpleName} viewBinding error")
+    }
 
+    /**
+     * ViewBinding 初始化处理
+     * @param inflater  [LayoutInflater]
+     * @param container [ViewGroup]
+     * @param view      待绑定 View
+     * @param clazz     VB Class
+     */
+    fun <VB : ViewBinding> viewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        view: View?,
+        clazz: Class<VB>
+    ): VB {
+        try {
             if (view != null) {
                 val method = clazz.getMethod("bind", View::class.java)
                 return method.invoke(null, view) as VB
