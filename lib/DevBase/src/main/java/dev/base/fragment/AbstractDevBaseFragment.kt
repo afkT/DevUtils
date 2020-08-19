@@ -130,6 +130,13 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
             .setCurrentVisible(false)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mDevBaseAssist
+            .printLog("onDestroyView")
+            .setCurrentVisible(false)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         mDevBaseAssist

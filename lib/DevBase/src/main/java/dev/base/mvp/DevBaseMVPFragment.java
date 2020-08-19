@@ -28,8 +28,8 @@ public abstract class DevBaseMVPFragment<P extends MVP.Presenter> extends DevBas
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         // 取消 MVP 各个模块间的关联
         if (mPresenter != null) mPresenter.detachView();
     }
