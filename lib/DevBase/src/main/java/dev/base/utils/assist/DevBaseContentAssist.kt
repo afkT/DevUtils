@@ -123,6 +123,28 @@ class DevBaseContentAssist {
         return this
     }
 
+    // =
+
+    /**
+     * 最外层 Layout 添加 View - rootLinear
+     * @return [DevBaseContentAssist]
+     */
+    fun addRootView(view: View?): DevBaseContentAssist {
+        return addView(rootLinear, view, -1)
+    }
+
+    /**
+     * 最外层 Layout 添加 View - rootLinear
+     * @return [DevBaseContentAssist]
+     */
+    fun addRootView(view: View?, index: Int): DevBaseContentAssist {
+        return addView(rootLinear, view, index)
+    }
+
+    // ================
+    // = 内部处理方法 =
+    // ================
+
     /**
      * 添加 View
      * @param viewGroup 容器 Layout
