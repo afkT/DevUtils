@@ -13,7 +13,7 @@ import dev.utils.app.toast.ToastUtils
  * detail: DevBase 合并相同代码辅助类
  * @author Ttt
  */
-class DevBaseAssist() : IDevBaseUIOperation {
+class DevBaseAssist : IDevBaseUIOperation {
 
     // 日志 TAG
     private var mTag: String = DevBaseAssist::class.java.simpleName
