@@ -216,9 +216,9 @@ public class WrapView extends ViewGroup {
         return getPaddingTop() + calcHeight + getPaddingBottom();
     }
 
-    // ===============
+    // ================
     // = 对外公开方法 =
-    // ===============
+    // ================
 
     /**
      * 刷新绘制 ( 更新配置信息后, 必须调用 )

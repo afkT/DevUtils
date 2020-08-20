@@ -41,6 +41,8 @@ import dev.utils.LogPrintUtils;
  *     @see <a href="https://muyangmin.github.io/glide-docs-cn"/>
  *     解决 Glide 加载图片闪烁的问题 ( 圆角处理 ) - transform(new RoundedCorners(xx));
  *     @see <a href="https://blog.csdn.net/andcisco/article/details/96487800"/>
+ *     解决圆角 + centerCrop 效果叠加处理
+ *     transform(new MultiTransformation(new CenterCrop(), new RoundedCorners(xx)));
  * </pre>
  */
 public final class GlideUtils {

@@ -270,9 +270,9 @@ public class FlowLikeView extends FrameLayout {
         mLayoutParams.bottomMargin = mChildViewHeight;
     }
 
-    // ===============
+    // ================
     // = 对外公开方法 =
-    // ===============
+    // ================
 
     /**
      * 点赞操作
