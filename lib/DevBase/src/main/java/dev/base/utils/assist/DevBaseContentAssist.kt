@@ -16,9 +16,6 @@ import dev.base.R
  */
 class DevBaseContentAssist {
 
-    // 日志 TAG
-    private val TAG: String = DevBaseContentAssist::class.java.simpleName
-
     // 是否安全处理 ( 建议跟随 BuildConfig.DEBUG 取反处理, 开发阶段抛出异常 )
     private var isSafe: Boolean = false
 
@@ -46,7 +43,7 @@ class DevBaseContentAssist {
     @JvmField
     open var stateLinear: LinearLayout? = null
 
-    constructor(activity: Activity) {
+    fun bind(activity: Activity): DevBaseContentAssist {
         // R.layout.base_activity
         this.rootLinear = activity.findViewById(R.id.vid_ba_root_linear)
         this.statusBarLinear = activity.findViewById(R.id.vid_ba_status_bar_linear)
@@ -54,22 +51,24 @@ class DevBaseContentAssist {
         this.bodyFrame = activity.findViewById(R.id.vid_ba_body_frame)
         this.contentLinear = activity.findViewById(R.id.vid_ba_content_linear)
         this.stateLinear = activity.findViewById(R.id.vid_ba_state_linear)
+        return this
     }
 
-    constructor(
+    fun bind(
         rootLinear: LinearLayout?,
         statusBarLinear: LinearLayout?,
         titleLinear: LinearLayout?,
         bodyFrame: FrameLayout?,
         contentLinear: LinearLayout?,
         stateLinear: LinearLayout?
-    ) {
+    ): DevBaseContentAssist {
         this.rootLinear = rootLinear
         this.statusBarLinear = statusBarLinear
         this.titleLinear = titleLinear
         this.bodyFrame = bodyFrame
         this.contentLinear = contentLinear
         this.stateLinear = stateLinear
+        return this
     }
 
     // ================
