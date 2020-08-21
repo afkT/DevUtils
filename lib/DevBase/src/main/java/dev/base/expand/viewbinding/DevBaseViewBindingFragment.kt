@@ -1,4 +1,4 @@
-package dev.base.viewbinding
+package dev.base.expand.viewbinding
 
 import android.os.Bundle
 import android.view.LayoutInflater

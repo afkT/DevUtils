@@ -1,4 +1,4 @@
-package dev.base.mvp
+package dev.base.expand.mvp
 
 /**
  * detail: MVP Contract 类

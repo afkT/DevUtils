@@ -1,4 +1,4 @@
-package dev.base.mvp;
+package dev.base.expand.mvp;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

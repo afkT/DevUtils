@@ -2,7 +2,7 @@ package afkt.project.framework.mvp;
 
 import afkt.project.function.http.RetrofitUtils;
 import afkt.project.model.bean.ArticleBean;
-import dev.base.mvp.MVP;
+import dev.base.expand.mvp.MVP;
 import dev.other.retrofit.RxJavaManager;
 import dev.other.retrofit.subscriber.BaseBeanSubscriber;
 import io.reactivex.rxjava3.disposables.Disposable;

@@ -1,4 +1,4 @@
-package dev.base.content
+package dev.base.expand.content
 
 import android.os.Bundle
 import android.view.LayoutInflater
