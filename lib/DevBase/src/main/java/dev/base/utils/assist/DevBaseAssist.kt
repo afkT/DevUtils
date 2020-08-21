@@ -16,7 +16,7 @@ import dev.utils.app.toast.ToastUtils
 class DevBaseAssist : IDevBaseUIOperation {
 
     // 日志 TAG
-    private var mTag: String = DevBaseAssist::class.java.simpleName
+    private var mTag = DevBaseAssist::class.java.simpleName
 
     // Context
     private var mContext: Context? = null

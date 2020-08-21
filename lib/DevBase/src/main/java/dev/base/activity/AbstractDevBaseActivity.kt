@@ -130,7 +130,7 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(), IDevBase {
     // ===================
 
     /**
-     * 布局初始化处理
+     * Content View 初始化处理
      * @param inflater  [LayoutInflater]
      * @param container [ViewGroup]
      */

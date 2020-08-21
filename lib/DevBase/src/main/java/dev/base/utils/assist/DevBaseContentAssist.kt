@@ -17,7 +17,7 @@ import dev.base.R
 class DevBaseContentAssist {
 
     // 是否安全处理 ( 建议跟随 BuildConfig.DEBUG 取反处理, 开发阶段抛出异常 )
-    private var isSafe: Boolean = false
+    private var isSafe = false
 
     // 最外层 Layout
     @JvmField

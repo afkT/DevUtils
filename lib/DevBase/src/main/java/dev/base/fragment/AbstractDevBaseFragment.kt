@@ -78,7 +78,7 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
             parent?.removeView(mContentView)
             mContentView = null
         }
-        // View 初始化处理
+        // Content View 初始化处理
         contentInit(inflater, container)
         return mContentView
     }
@@ -157,7 +157,7 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
     // ===================
 
     /**
-     * 布局初始化处理
+     * Content View 初始化处理
      * @param inflater  [LayoutInflater]
      * @param container [ViewGroup]
      */
