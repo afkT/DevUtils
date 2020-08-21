@@ -61,7 +61,8 @@ public final class ArticleMVP {
      */
     public static class Presenter extends MVP.Presenter<View, Model> implements IPresenter {
 
-        public Presenter() {
+        public Presenter(ArticleMVP.View view) {
+            super(view);
             mModel = new Model() {
                 @Override
                 public void requestArticleLists() {

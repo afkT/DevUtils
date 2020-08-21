@@ -42,6 +42,10 @@ class MVP private constructor() {
      */
     open class Presenter<V : IView, M : IModel> : IPresenter<V> {
 
+        constructor(view: V) {
+            this.mView = view
+        }
+
         // IView
         @JvmField
         protected var mView: V? = null
