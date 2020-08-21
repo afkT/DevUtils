@@ -21,8 +21,14 @@ object ViewBindingUtils {
      * @param clazz javaClass
      */
     fun <VB : ViewBinding, T : Any> getClassVB(clazz: Class<T>): Class<VB> {
-        val type = clazz.genericSuperclass as ParameterizedType
-        return type.actualTypeArguments[0] as Class<VB>
+        val parameterizedType = clazz.genericSuperclass as ParameterizedType
+        val types = parameterizedType.actualTypeArguments
+        for (type in types) {
+            if (type.toString().endsWith("Binding")) {
+                return type as Class<VB>
+            }
+        }
+        return types[0] as Class<VB>
     }
 
     /**
