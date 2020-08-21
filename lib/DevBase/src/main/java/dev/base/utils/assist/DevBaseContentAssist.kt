@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import dev.base.R
-import dev.utils.app.ViewUtils
 
 /**
  * detail: DevBase ContentView 填充辅助类
@@ -27,6 +26,10 @@ class DevBaseContentAssist {
     @JvmField
     open var rootLinear: LinearLayout? = null
 
+    // StatusBar Layout
+    @JvmField
+    open var statusBarLinear: LinearLayout? = null
+
     // Title Layout
     @JvmField
     open var titleLinear: LinearLayout? = null
@@ -46,6 +49,7 @@ class DevBaseContentAssist {
     constructor(activity: Activity) {
         // R.layout.base_activity
         this.rootLinear = activity.findViewById(R.id.vid_ba_root_linear)
+        this.statusBarLinear = activity.findViewById(R.id.vid_ba_status_bar_linear)
         this.titleLinear = activity.findViewById(R.id.vid_ba_title_linear)
         this.bodyFrame = activity.findViewById(R.id.vid_ba_body_frame)
         this.contentLinear = activity.findViewById(R.id.vid_ba_content_linear)
@@ -54,12 +58,14 @@ class DevBaseContentAssist {
 
     constructor(
         rootLinear: LinearLayout?,
+        statusBarLinear: LinearLayout?,
         titleLinear: LinearLayout?,
         bodyFrame: FrameLayout?,
         contentLinear: LinearLayout?,
         stateLinear: LinearLayout?
     ) {
         this.rootLinear = rootLinear
+        this.statusBarLinear = statusBarLinear
         this.titleLinear = titleLinear
         this.bodyFrame = bodyFrame
         this.contentLinear = contentLinear
@@ -72,7 +78,6 @@ class DevBaseContentAssist {
 
     /**
      * 是否安全处理
-     * @return [DevBaseContentAssist]
      */
     fun isSafe(): Boolean {
         return isSafe
@@ -87,22 +92,40 @@ class DevBaseContentAssist {
         return this
     }
 
+    // ============
+    // = 显隐操作 =
+    // ============
+
+    /**
+     * 显示 statusBarLinear
+     * @return [DevBaseContentAssist]
+     */
+    fun visibleStatusBarLinear(): DevBaseContentAssist {
+        return setVisibility(true, statusBarLinear)
+    }
+
+    /**
+     * 显示 titleLinear
+     * @return [DevBaseContentAssist]
+     */
+    fun visibleTitleLinear(): DevBaseContentAssist {
+        return setVisibility(true, titleLinear)
+    }
+
+    /**
+     * 显示 bodyFrame
+     * @return [DevBaseContentAssist]
+     */
+    fun visibleBodyFrame(): DevBaseContentAssist {
+        return setVisibility(true, bodyFrame)
+    }
+
     /**
      * 显示 contentLinear
      * @return [DevBaseContentAssist]
      */
     fun visibleContentLinear(): DevBaseContentAssist {
-        ViewUtils.setVisibility(true, contentLinear)
-        return this
-    }
-
-    /**
-     * 隐藏 contentLinear
-     * @return [DevBaseContentAssist]
-     */
-    fun goneContentLinear(): DevBaseContentAssist {
-        ViewUtils.setVisibility(false, contentLinear)
-        return this
+        return setVisibility(true, contentLinear)
     }
 
     /**
@@ -110,8 +133,41 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun visibleStateLinear(): DevBaseContentAssist {
-        ViewUtils.setVisibility(true, stateLinear)
-        return this
+        return setVisibility(true, stateLinear)
+    }
+
+    // =
+
+    /**
+     * 隐藏 statusBarLinear
+     * @return [DevBaseContentAssist]
+     */
+    fun goneStatusBarLinear(): DevBaseContentAssist {
+        return setVisibility(false, statusBarLinear)
+    }
+
+    /**
+     * 隐藏 titleLinear
+     * @return [DevBaseContentAssist]
+     */
+    fun goneTitleLinear(): DevBaseContentAssist {
+        return setVisibility(false, titleLinear)
+    }
+
+    /**
+     * 隐藏 bodyFrame
+     * @return [DevBaseContentAssist]
+     */
+    fun goneBodyFrame(): DevBaseContentAssist {
+        return setVisibility(false, bodyFrame)
+    }
+
+    /**
+     * 隐藏 contentLinear
+     * @return [DevBaseContentAssist]
+     */
+    fun goneContentLinear(): DevBaseContentAssist {
+        return setVisibility(false, contentLinear)
     }
 
     /**
@@ -119,14 +175,15 @@ class DevBaseContentAssist {
      * @return [DevBaseContentAssist]
      */
     fun goneStateLinear(): DevBaseContentAssist {
-        ViewUtils.setVisibility(false, stateLinear)
-        return this
+        return setVisibility(false, stateLinear)
     }
 
-    // =
+    // =============
+    // = 添加 View =
+    // =============
 
     /**
-     * 最外层 Layout 添加 View - rootLinear
+     * rootLinear 添加 View
      * @return [DevBaseContentAssist]
      */
     fun addRootView(view: View?): DevBaseContentAssist {
@@ -134,11 +191,91 @@ class DevBaseContentAssist {
     }
 
     /**
-     * 最外层 Layout 添加 View - rootLinear
+     * rootLinear 添加 View
      * @return [DevBaseContentAssist]
      */
     fun addRootView(view: View?, index: Int): DevBaseContentAssist {
         return addView(rootLinear, view, index)
+    }
+
+    /**
+     * statusBarLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addStatusBarView(view: View?): DevBaseContentAssist {
+        return addView(statusBarLinear, view, -1)
+    }
+
+    /**
+     * statusBarLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addStatusBarView(view: View?, index: Int): DevBaseContentAssist {
+        return addView(statusBarLinear, view, index)
+    }
+
+    /**
+     * titleLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addTitleView(view: View?): DevBaseContentAssist {
+        return addView(titleLinear, view, -1)
+    }
+
+    /**
+     * titleLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addTitleView(view: View?, index: Int): DevBaseContentAssist {
+        return addView(titleLinear, view, index)
+    }
+
+    /**
+     * bodyFrame 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addBodyView(view: View?): DevBaseContentAssist {
+        return addView(bodyFrame, view, -1)
+    }
+
+    /**
+     * bodyFrame 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addBodyView(view: View?, index: Int): DevBaseContentAssist {
+        return addView(bodyFrame, view, index)
+    }
+
+    /**
+     * contentLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addContentView(view: View?): DevBaseContentAssist {
+        return addView(contentLinear, view, -1)
+    }
+
+    /**
+     * contentLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addContentView(view: View?, index: Int): DevBaseContentAssist {
+        return addView(contentLinear, view, index)
+    }
+
+    /**
+     * stateLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addStateView(view: View?): DevBaseContentAssist {
+        return addView(stateLinear, view, -1)
+    }
+
+    /**
+     * stateLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addStateView(view: View?, index: Int): DevBaseContentAssist {
+        return addView(stateLinear, view, index)
     }
 
     // ================
@@ -158,6 +295,17 @@ class DevBaseContentAssist {
         } else {
             viewGroup!!.addView(view, index)
         }
+        return this
+    }
+
+    /**
+     * 设置 View 显示的状态
+     * @param isVisibility `true` View.VISIBLE, `false` View.GONE
+     * @param view         [View]
+     * @return [DevBaseContentAssist]
+     */
+    private fun setVisibility(isVisibility: Boolean, view: View?): DevBaseContentAssist {
+        view?.visibility = if (isVisibility) View.VISIBLE else View.GONE
         return this
     }
 }
