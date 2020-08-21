@@ -1,32 +1,35 @@
 package dev.base.expand.mvp;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import dev.base.activity.DevBaseActivity;
+import androidx.viewbinding.ViewBinding;
+
+import dev.base.expand.viewbinding.DevBaseViewBindingFragment;
 
 /**
- * detail: MVP Activity 基类
+ * detail: MVP Fragment ViewBinding 基类
  * @author Ttt
- * <pre>
- *     需要自己实现 Contract ( 契约类 ) 用来管理 View 与 Presenter 的交互
- * </pre>
  */
-public abstract class DevBaseMVPActivity<P extends MVP.Presenter> extends DevBaseActivity implements MVP.IView {
+public abstract class DevBaseMVPViewBindingFragment<P extends MVP.Presenter, VB extends ViewBinding>
+        extends DevBaseViewBindingFragment<VB> implements MVP.IView {
 
     // MVP Presenter
     protected P mPresenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // 创建 MVP 模式的 Presenter
         createPresenter();
-        // 初始化操作
-        super.onCreate(savedInstanceState);
+        // 底层初始化操作
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         // 取消 MVP 各个模块间的关联
         if (mPresenter != null) mPresenter.detachView();
     }

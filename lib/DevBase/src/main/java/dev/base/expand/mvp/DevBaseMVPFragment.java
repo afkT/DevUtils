@@ -11,7 +11,7 @@ import dev.base.fragment.DevBaseFragment;
  * detail: MVP Fragment 基类
  * @author Ttt
  * <pre>
- *     需要自己实现 Contract( 契约类 ) 用来管理 View 与 Presenter 的交互
+ *     需要自己实现 Contract ( 契约类 ) 用来管理 View 与 Presenter 的交互
  * </pre>
  */
 public abstract class DevBaseMVPFragment<P extends MVP.Presenter> extends DevBaseFragment implements MVP.IView {
