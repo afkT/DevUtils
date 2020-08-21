@@ -23,6 +23,10 @@ abstract class DevBaseViewBindingActivity<VB : ViewBinding> : DevBaseActivity(),
         binding = viewBinding(layoutInflater, null)
     }
 
+    // =======================
+    // = IDevBaseViewBinding =
+    // =======================
+
     override fun viewBinding(inflater: LayoutInflater, container: ViewGroup?): VB {
         return ViewBindingUtils.viewBindingJavaClass(
             inflater,

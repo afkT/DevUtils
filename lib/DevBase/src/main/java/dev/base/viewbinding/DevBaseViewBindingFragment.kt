@@ -35,6 +35,10 @@ abstract class DevBaseViewBindingFragment<VB : ViewBinding> : DevBaseFragment(),
         if (isDetachBinding()) _binding = null
     }
 
+    // =======================
+    // = IDevBaseViewBinding =
+    // =======================
+
     override fun viewBinding(inflater: LayoutInflater, container: ViewGroup?): VB {
         return ViewBindingUtils.viewBindingJavaClass(
             inflater,
