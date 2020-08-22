@@ -19,7 +19,7 @@ import dev.utils.app.ViewUtils;
  *     代码与 BaseToolbarActivity 完全一致, 只是继承 BaseMVPActivity
  * </pre>
  */
-public abstract class BaseMVPToolbarActivity<P extends MVP.Presenter> extends BaseMVPActivity<P> {
+public abstract class BaseMVPToolbarActivity<P extends MVP.Presenter<? extends MVP.IView, ? extends MVP.IModel>> extends BaseMVPActivity<P> {
 
     // ToolBar
     protected Toolbar vid_bt_toolbar;

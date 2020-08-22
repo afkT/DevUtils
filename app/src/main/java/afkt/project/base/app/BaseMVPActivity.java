@@ -23,7 +23,7 @@ import dev.widget.function.StateLayout;
  *     代码与 BaseActivity 完全一致, 只是继承 DevBaseMVPActivity
  * </pre>
  */
-public abstract class BaseMVPActivity<P extends MVP.Presenter> extends DevBaseMVPActivity<P> {
+public abstract class BaseMVPActivity<P extends MVP.Presenter<? extends MVP.IView, ? extends MVP.IModel>> extends DevBaseMVPActivity<P> {
 
     // = View =
     // 最外层 View

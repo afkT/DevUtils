@@ -32,7 +32,7 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
     ArticleAdapter articleAdapter;
 
     @Override
-    protected ArticleMVP.Presenter presenter() {
+    public ArticleMVP.Presenter createPresenter() {
         return new ArticleMVP.Presenter(this);
     }
 

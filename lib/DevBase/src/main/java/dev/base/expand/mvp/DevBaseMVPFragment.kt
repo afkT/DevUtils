@@ -1,56 +1,42 @@
-package dev.base.expand.mvp;
+package dev.base.expand.mvp
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import dev.base.fragment.DevBaseFragment;
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import dev.base.fragment.DevBaseFragment
 
 /**
  * detail: MVP Fragment 基类
  * @author Ttt
- * <pre>
- *     需要自己实现 Contract ( 契约类 ) 用来管理 View 与 Presenter 的交互
- * </pre>
+ * 需要自己实现 Contract ( 契约类 ) 用来管理 View 与 Presenter 的交互
  */
-public abstract class DevBaseMVPFragment<P extends MVP.Presenter> extends DevBaseFragment implements MVP.IView {
+abstract class DevBaseMVPFragment<P : MVP.Presenter<out MVP.IView, out MVP.IModel>> :
+    DevBaseFragment() {
 
     // MVP Presenter
-    protected P mPresenter;
+    lateinit var mPresenter: P
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // 创建 MVP 模式的 Presenter
-        createPresenter();
+        mPresenter = createPresenter()
         // 底层初始化操作
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    override fun onDestroyView() {
+        super.onDestroyView()
         // 取消 MVP 各个模块间的关联
-        if (mPresenter != null) mPresenter.detachView();
+        mPresenter.detachView()
     }
-
-    /**
-     * 创建 MVP 模式的 Presenter
-     */
-    private void createPresenter() {
-        // 初始化 Presenter
-        mPresenter = presenter();
-        // 绑定关联
-        if (mPresenter != null) mPresenter.attachView(this);
-    }
-
-    // ====================
-    // = 对外要求实现方法 =
-    // ====================
 
     /**
      * 初始化创建 Presenter
-     * @return {@link MVP.Presenter}
+     * @return [MVP.Presenter]
      */
-    protected abstract P presenter();
+    abstract fun createPresenter(): P
 }
