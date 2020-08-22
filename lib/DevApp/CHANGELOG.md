@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 1.9.8 *(2020-08-23)*
+----------------------------
+
+* `[Update]` ShapeUtils
+
+* `[Add]` ViewHelper#quickHelper、QuickHelper#quickHelper、DevHelper#quickHelper
+
+* `[Add]` IntentUtils#getCategoryLauncherIntent
+
 Version 1.9.7 *(2020-08-04)*
 ----------------------------
 
