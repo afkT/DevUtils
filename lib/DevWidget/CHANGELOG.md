@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.0.4 *(2020-08-23)*
+----------------------------
+
+ * `[Update]` RadiusUtils renamed from RadiusAttrs、RadiusView renamed from RadiusLayout
+
 Version 1.0.3 *(2020-08-04)*
 ----------------------------
 
