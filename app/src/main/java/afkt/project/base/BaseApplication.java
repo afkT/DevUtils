@@ -1,4 +1,4 @@
-package afkt.project.base.app;
+package afkt.project.base;
 
 import android.content.Context;
 import android.os.Build;

@@ -9,6 +9,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import afkt.project.R;
+import afkt.project.base.BaseApplication;
 import afkt.project.base.app.BaseToolbarActivity;
 import butterknife.BindView;
 import dev.assist.WebViewAssist;
@@ -91,7 +92,7 @@ public class WebViewActivity extends BaseToolbarActivity {
 
         /**
          * 默认使用全局配置
-         * {@link afkt.project.base.app.BaseApplication#initWebViewBuilder}
+         * {@link BaseApplication#initWebViewBuilder}
          */
 //        // 如果使用全局配置, 则直接调用 apply 方法
 //        mWebViewAssist.apply();

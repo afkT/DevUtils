@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseApplication;
+import afkt.project.base.BaseApplication;
 import afkt.project.base.app.BaseToolbarActivity;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
