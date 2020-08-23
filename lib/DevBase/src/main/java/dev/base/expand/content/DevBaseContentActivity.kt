@@ -71,7 +71,7 @@ abstract class DevBaseContentActivity : DevBaseActivity() {
             try {
                 mLayoutView = inflater.inflate(layoutId(), container, false)
             } catch (e: Exception) {
-                mDevBaseAssist.printLog(e, "layoutInit - layoutId")
+                mAssist.printLog(e, "layoutInit - layoutId")
             }
         }
         // 如果 View 等于 null, 则使用 layoutView()
