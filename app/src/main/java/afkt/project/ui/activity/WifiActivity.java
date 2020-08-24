@@ -7,20 +7,18 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 
 import java.util.List;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.util.QuickWifiHotUtils;
-import butterknife.BindView;
 import dev.receiver.WifiReceiver;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.permission.PermissionConstants;
@@ -37,12 +35,8 @@ import dev.utils.app.wifi.WifiUtils;
  *     Wifi 热点状态监听等可参考 {@link QuickWifiHotUtils}
  * </pre>
  */
-public class WifiActivity extends BaseToolbarActivity {
+public class WifiActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
-    // = View =
-    @BindView(R.id.vid_bvr_recy)
-    RecyclerView vid_bvr_recy;
-    // = Object =
     // Wifi 工具类
     WifiUtils    wifiUtils;
     // Wifi 热点工具类
@@ -53,7 +47,7 @@ public class WifiActivity extends BaseToolbarActivity {
     boolean isOpenAPING = false;
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.base_view_recyclerview;
     }
 
@@ -78,7 +72,7 @@ public class WifiActivity extends BaseToolbarActivity {
 
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getWifiButtonValues());
-        vid_bvr_recy.setAdapter(buttonAdapter);
+        binding.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {

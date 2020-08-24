@@ -4,17 +4,15 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
-import butterknife.BindView;
 import dev.utils.app.assist.manager.TimerManager;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
@@ -27,18 +25,15 @@ import utils_use.timer.TimerUse;
  *     {@link TimerUse}
  * </pre>
  */
-public class TimerActivity extends BaseToolbarActivity {
+public class TimerActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
-    // = View =
-    @BindView(R.id.vid_bvr_recy)
-    RecyclerView vid_bvr_recy;
     // 创建定时器
     TimerManager.AbsTimer absTimer;
     // 通知常量
     final int NOTIFY = 100;
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.base_view_recyclerview;
     }
 
@@ -48,7 +43,7 @@ public class TimerActivity extends BaseToolbarActivity {
 
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getTimerButtonValues());
-        vid_bvr_recy.setAdapter(buttonAdapter);
+        binding.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {

@@ -12,10 +12,10 @@ import java.util.Collections;
 import java.util.List;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.bean.CommodityEvaluateBean;
 import afkt.project.ui.adapter.ItemSlideAdapter;
-import butterknife.BindView;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.helper.ViewHelper;
 
@@ -31,16 +31,13 @@ import dev.utils.app.helper.ViewHelper;
  *     @see <a href="https://www.jianshu.com/p/c769f4ed298f"/>
  * </pre>
  */
-public class RecyItemSlideActivity extends BaseToolbarActivity {
+public class RecyItemSlideActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
-    // = View =
-    @BindView(R.id.vid_bvr_recy)
-    RecyclerView vid_bvr_recy;
     // 适配器
     ItemSlideAdapter itemSlideAdapter;
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.base_view_recyclerview;
     }
 
@@ -48,7 +45,7 @@ public class RecyItemSlideActivity extends BaseToolbarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ViewGroup parent = (ViewGroup) vid_bvr_recy.getParent();
+        ViewGroup parent = (ViewGroup) binding.vidBvrRecy.getParent();
         // 根布局处理
         ViewHelper.get().setPadding(parent, 0)
                 .setBackgroundColor(parent, ResourceUtils.getColor(R.color.color_33));
@@ -65,7 +62,7 @@ public class RecyItemSlideActivity extends BaseToolbarActivity {
 
         // 初始化布局管理器、适配器
         itemSlideAdapter = new ItemSlideAdapter(lists);
-        vid_bvr_recy.setAdapter(itemSlideAdapter);
+        binding.vidBvrRecy.setAdapter(itemSlideAdapter);
 
         // =
 
@@ -120,6 +117,6 @@ public class RecyItemSlideActivity extends BaseToolbarActivity {
                 }
             }
         });
-        itemTouchHelper.attachToRecyclerView(vid_bvr_recy);
+        itemTouchHelper.attachToRecyclerView(binding.vidBvrRecy);
     }
 }

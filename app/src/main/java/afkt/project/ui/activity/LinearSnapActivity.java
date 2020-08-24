@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.bean.ItemBean;
 import afkt.project.ui.adapter.LinearSnapAdapter;
-import butterknife.BindView;
 import dev.utils.app.helper.ViewHelper;
 
 /**
@@ -24,16 +24,12 @@ import dev.utils.app.helper.ViewHelper;
  *     LinearSnapHelper : 滑动多页居中显示, 类似 Gallery
  * </pre>
  */
-public class LinearSnapActivity extends BaseToolbarActivity {
+public class LinearSnapActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
-    // = View =
-    @BindView(R.id.vid_bvr_recy)
-    RecyclerView vid_bvr_recy;
-    // = Object =
     LinearSnapAdapter linearSnapAdapter;
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.base_view_recyclerview;
     }
 
@@ -41,7 +37,7 @@ public class LinearSnapActivity extends BaseToolbarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ViewGroup parent = (ViewGroup) vid_bvr_recy.getParent();
+        ViewGroup parent = (ViewGroup) binding.vidBvrRecy.getParent();
         // 根布局处理
         ViewHelper.get().setPadding(parent, 0);
     }
@@ -57,11 +53,11 @@ public class LinearSnapActivity extends BaseToolbarActivity {
 
         // 初始化布局管理器、适配器
         linearSnapAdapter = new LinearSnapAdapter(lists);
-        vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-//        vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        vid_bvr_recy.setAdapter(linearSnapAdapter);
+        binding.vidBvrRecy.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+//        binding.vidBvrRecy.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        binding.vidBvrRecy.setAdapter(linearSnapAdapter);
 
         LinearSnapHelper helper = new LinearSnapHelper();
-        helper.attachToRecyclerView(vid_bvr_recy);
+        helper.attachToRecyclerView(binding.vidBvrRecy);
     }
 }

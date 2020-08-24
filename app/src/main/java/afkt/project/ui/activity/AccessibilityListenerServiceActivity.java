@@ -3,17 +3,15 @@ package afkt.project.ui.activity;
 import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
-import butterknife.BindView;
 import dev.service.AccessibilityListenerService;
 import dev.utils.app.AppUtils;
 import dev.utils.app.logger.DevLogger;
@@ -28,14 +26,10 @@ import dev.utils.app.toast.ToastTintUtils;
  *     <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" />
  * </pre>
  */
-public class AccessibilityListenerServiceActivity extends BaseToolbarActivity {
-
-    // = View =
-    @BindView(R.id.vid_bvr_recy)
-    RecyclerView vid_bvr_recy;
+public class AccessibilityListenerServiceActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.base_view_recyclerview;
     }
 
@@ -53,7 +47,7 @@ public class AccessibilityListenerServiceActivity extends BaseToolbarActivity {
 
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getAccessibilityListenerServiceButtonValues());
-        vid_bvr_recy.setAdapter(buttonAdapter);
+        binding.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {

@@ -3,8 +3,6 @@ package afkt.project.ui.activity;
 import android.Manifest;
 import android.view.View;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 
@@ -12,11 +10,11 @@ import java.util.List;
 
 import afkt.project.MainActivity;
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
-import butterknife.BindView;
 import dev.utils.app.ActivityUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.app.DeviceUtils;
@@ -36,14 +34,10 @@ import dev.utils.app.toast.ToastUtils;
  * detail: 铃声、震动、通知栏等功能
  * @author Ttt
  */
-public class FunctionActivity extends BaseToolbarActivity {
-
-    // = View =
-    @BindView(R.id.vid_bvr_recy)
-    RecyclerView vid_bvr_recy;
+public class FunctionActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.base_view_recyclerview;
     }
 
@@ -61,7 +55,7 @@ public class FunctionActivity extends BaseToolbarActivity {
 
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getFunctionButtonValues());
-        vid_bvr_recy.setAdapter(buttonAdapter);
+        binding.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {

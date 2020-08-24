@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.bean.ItemBean;
 import afkt.project.ui.adapter.PagerSnapAdapter;
-import butterknife.BindView;
 import dev.utils.app.helper.ViewHelper;
 
 /**
@@ -24,16 +24,12 @@ import dev.utils.app.helper.ViewHelper;
  *     PagerSnapHelper : 每次滑动一页居中显示, 类似 ViewPager
  * </pre>
  */
-public class PagerSnapActivity extends BaseToolbarActivity {
+public class PagerSnapActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
-    // = View =
-    @BindView(R.id.vid_bvr_recy)
-    RecyclerView vid_bvr_recy;
-    // = Object =
     PagerSnapAdapter pagerSnapAdapter;
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.base_view_recyclerview;
     }
 
@@ -41,7 +37,7 @@ public class PagerSnapActivity extends BaseToolbarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ViewGroup parent = (ViewGroup) vid_bvr_recy.getParent();
+        ViewGroup parent = (ViewGroup) binding.vidBvrRecy.getParent();
         // 根布局处理
         ViewHelper.get().setPadding(parent, 0);
     }
@@ -58,11 +54,11 @@ public class PagerSnapActivity extends BaseToolbarActivity {
 
         // 初始化布局管理器、适配器
         pagerSnapAdapter = new PagerSnapAdapter(lists);
-        vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-//        vid_bvr_recy.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        vid_bvr_recy.setAdapter(pagerSnapAdapter);
+        binding.vidBvrRecy.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+//        binding.vidBvrRecy.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        binding.vidBvrRecy.setAdapter(pagerSnapAdapter);
 
         PagerSnapHelper helper = new PagerSnapHelper();
-        helper.attachToRecyclerView(vid_bvr_recy);
+        helper.attachToRecyclerView(binding.vidBvrRecy);
     }
 }

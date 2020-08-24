@@ -2,13 +2,12 @@ package afkt.project.ui;
 
 import android.view.View;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.framework.mvp.ArticleMVPActivity;
 import afkt.project.framework.mvvm.ArticleMVVMActivity;
 import afkt.project.model.item.ButtonList;
@@ -59,20 +58,16 @@ import afkt.project.ui.activity.WifiActivity;
 import afkt.project.ui.activity.WrapActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.util.SkipUtils;
-import butterknife.BindView;
 import dev.utils.app.toast.ToastTintUtils;
 
 /**
  * detail: Module 列表 Activity
  * @author Ttt
  */
-public class ModuleActivity extends BaseToolbarActivity {
-
-    @BindView(R.id.vid_bvr_recy)
-    RecyclerView vid_bvr_recy;
+public class ModuleActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.base_view_recyclerview;
     }
 
@@ -81,7 +76,7 @@ public class ModuleActivity extends BaseToolbarActivity {
         super.initValue();
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getModuleButtonValues(getModuleType()));
-        vid_bvr_recy.setAdapter(buttonAdapter);
+        binding.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
@@ -278,6 +273,6 @@ public class ModuleActivity extends BaseToolbarActivity {
             }
         });
         // 注册观察者
-        registerAdapterDataObserver(vid_bvr_recy, true);
+        registerAdapterDataObserver(binding.vidBvrRecy, true);
     }
 }

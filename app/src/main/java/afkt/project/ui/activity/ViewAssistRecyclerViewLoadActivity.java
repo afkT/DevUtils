@@ -3,15 +3,14 @@ package afkt.project.ui.activity;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.ui.adapter.RecyclerLoadingAdapter;
-import butterknife.BindView;
 import dev.utils.app.helper.ViewHelper;
 import dev.utils.common.RandomUtils;
 
@@ -19,14 +18,10 @@ import dev.utils.common.RandomUtils;
  * detail: ViewAssist RecyclerView Loading
  * @author Ttt
  */
-public class ViewAssistRecyclerViewLoadActivity extends BaseToolbarActivity {
-
-    // = View =
-    @BindView(R.id.vid_bvr_recy)
-    RecyclerView vid_bvr_recy;
+public class ViewAssistRecyclerViewLoadActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.base_view_recyclerview;
     }
 
@@ -34,7 +29,7 @@ public class ViewAssistRecyclerViewLoadActivity extends BaseToolbarActivity {
     public void initValue() {
         super.initValue();
 
-        ViewGroup parent = (ViewGroup) vid_bvr_recy.getParent();
+        ViewGroup parent = (ViewGroup) binding.vidBvrRecy.getParent();
         // 根布局处理
         ViewHelper.get().setPadding(parent, 0);
 
@@ -46,7 +41,7 @@ public class ViewAssistRecyclerViewLoadActivity extends BaseToolbarActivity {
         }
 
         // 初始化布局管理器、适配器
-        vid_bvr_recy.setLayoutManager(new GridLayoutManager(this, 2));
-        vid_bvr_recy.setAdapter(new RecyclerLoadingAdapter(lists));
+        binding.vidBvrRecy.setLayoutManager(new GridLayoutManager(this, 2));
+        binding.vidBvrRecy.setAdapter(new RecyclerLoadingAdapter(lists));
     }
 }

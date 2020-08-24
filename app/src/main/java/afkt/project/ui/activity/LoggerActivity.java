@@ -2,17 +2,15 @@ package afkt.project.ui.activity;
 
 import android.view.View;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
-import butterknife.BindView;
 import dev.utils.app.toast.ToastTintUtils;
 import utils_use.logger.LoggerUse;
 
@@ -23,14 +21,10 @@ import utils_use.logger.LoggerUse;
  *     {@link LoggerUse}
  * </pre>
  */
-public class LoggerActivity extends BaseToolbarActivity {
-
-    // = View =
-    @BindView(R.id.vid_bvr_recy)
-    RecyclerView vid_bvr_recy;
+public class LoggerActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.base_view_recyclerview;
     }
 
@@ -60,7 +54,7 @@ public class LoggerActivity extends BaseToolbarActivity {
 
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getLoggerButtonValues());
-        vid_bvr_recy.setAdapter(buttonAdapter);
+        binding.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
