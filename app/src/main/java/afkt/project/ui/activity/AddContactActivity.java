@@ -20,11 +20,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
-import butterknife.BindView;
-import butterknife.OnClick;
-import dev.base.widget.BaseEditText;
-import dev.base.widget.BaseTextView;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.ActivityAddContactBinding;
 import dev.utils.app.ActivityUtils;
 import dev.utils.app.DialogUtils;
 import dev.utils.app.EditTextUtils;
@@ -44,16 +41,8 @@ import dev.utils.common.validator.ValidatorUtils;
  * detail: 添加联系人
  * @author Ttt
  */
-public class AddContactActivity extends BaseToolbarActivity {
+public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> {
 
-    // = View =
-    @BindView(R.id.vid_aac_start_edit)
-    BaseEditText vid_aac_start_edit;
-    @BindView(R.id.vid_aac_end_edit)
-    BaseEditText vid_aac_end_edit;
-    @BindView(R.id.vid_aac_tips_tv)
-    BaseTextView vid_aac_tips_tv;
-    // = Object =
     // 待创建总数
     int           count;
     // 是否运行中
@@ -62,21 +51,16 @@ public class AddContactActivity extends BaseToolbarActivity {
     AtomicInteger index = new AtomicInteger();
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_add_contact;
     }
 
     @Override
     public void initValue() {
         super.initValue();
-    }
-
-    @OnClick({R.id.vid_aac_add_btn})
-    @Override
-    public void onClick(View v) {
-        super.onClick(v);
-        switch (v.getId()) {
-            case R.id.vid_aac_add_btn:
+        binding.vidAacAddBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 if (runing) {
                     ToastTintUtils.warning("运行中");
                     return;
@@ -102,9 +86,9 @@ public class AddContactActivity extends BaseToolbarActivity {
                             public void onDenied(List<String> grantedList, List<String> deniedList, List<String> notFoundList) {
                                 ToastUtils.showLong("请开启联系人写入权限.");
                             }
-                        }).request(this);
-                break;
-        }
+                        }).request(mActivity);
+            }
+        });
     }
 
     /**
@@ -112,8 +96,8 @@ public class AddContactActivity extends BaseToolbarActivity {
      */
     private void createCheck() {
         // 获取手机号码开头、结尾
-        String start = EditTextUtils.getText(vid_aac_start_edit);
-        String end = EditTextUtils.getText(vid_aac_end_edit);
+        String start = EditTextUtils.getText(binding.vidAacStartEdit);
+        String end = EditTextUtils.getText(binding.vidAacEndEdit);
         // 判断是否符合条件
         String temp = start + end;
         if (!ValidatorUtils.isNumber(temp)) {
@@ -164,7 +148,7 @@ public class AddContactActivity extends BaseToolbarActivity {
      */
     private void createContact(String start, String end, int count) {
         ToastTintUtils.normal("创建中...");
-        ViewUtils.setVisibility(true, vid_aac_tips_tv);
+        ViewUtils.setVisibility(true, binding.vidAacTipsTv);
         KeyBoardUtils.closeKeyboard();
         this.count = count;
         this.runing = true;
@@ -282,11 +266,11 @@ public class AddContactActivity extends BaseToolbarActivity {
             int value = index.getAndIncrement();
             if (count == value + 1) {
                 String tips = count + " 条数据, 创建成功";
-                TextViewUtils.setText(vid_aac_tips_tv, tips);
+                TextViewUtils.setText(binding.vidAacTipsTv, tips);
                 ToastTintUtils.success(tips);
                 runing = false;
             } else {
-                TextViewUtils.setText(vid_aac_tips_tv, "需创建 " + count + " 条数据, 已创建 " + (value + 1) + " 条");
+                TextViewUtils.setText(binding.vidAacTipsTv, "需创建 " + count + " 条数据, 已创建 " + (value + 1) + " 条");
             }
         }
     };
