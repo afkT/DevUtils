@@ -3,25 +3,20 @@ package afkt.project.ui.activity;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.View;
-import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
 
 import androidx.core.content.ContextCompat;
-
-import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.ActivityUiEffectBinding;
 import afkt.project.model.item.TabItem;
 import afkt.project.util.assist.TabLayoutAssist;
-import butterknife.BindView;
-import butterknife.OnClick;
-import dev.base.widget.BaseButton;
 import dev.base.widget.BaseTextView;
 import dev.utils.app.HandlerUtils;
+import dev.utils.app.ListenerUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.ShapeUtils;
 import dev.utils.app.StateListUtils;
@@ -35,44 +30,15 @@ import dev.utils.common.ArrayUtils;
  * detail: 常见 UI、GradientDrawable 效果等
  * @author Ttt
  */
-public class UIEffectActivity extends BaseToolbarActivity {
+public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
 
-    // = View =
-    @BindView(R.id.vid_aue_1_0_tv)
-    BaseTextView         vid_aue_1_0_tv;
-    @BindView(R.id.vid_aue_1_1_tv)
-    BaseTextView         vid_aue_1_1_tv;
-    @BindView(R.id.vid_aue_2_0_tv)
-    BaseTextView         vid_aue_2_0_tv;
-    @BindView(R.id.vid_aue_2_1_tv)
-    BaseTextView         vid_aue_2_1_tv;
-    @BindView(R.id.vid_aue_3_0_tv)
-    BaseTextView         vid_aue_3_0_tv;
-    @BindView(R.id.vid_aue_3_1_tv)
-    BaseTextView         vid_aue_3_1_tv;
-    @BindView(R.id.vid_aue_4_0_btn)
-    BaseButton           vid_aue_4_0_btn;
-    @BindView(R.id.vid_aue_4_1_btn)
-    BaseButton           vid_aue_4_1_btn;
-    @BindView(R.id.vid_aue_5_0_view)
-    View                 vid_aue_5_0_view;
-    @BindView(R.id.vid_aue_6_0_view)
-    View                 vid_aue_6_0_view;
-    @BindView(R.id.vid_aue_7_0_scroll)
-    HorizontalScrollView vid_aue_7_0_scroll;
-    @BindView(R.id.vid_aue_7_0_linear)
-    LinearLayout         vid_aue_7_0_linear;
-    @BindView(R.id.vid_aue_8_0_tab)
-    TabLayout            vid_aue_8_0_tab;
-    @BindView(R.id.vid_aue_9_0_tab)
-    TabLayout            vid_aue_9_0_tab;
     // 当前选中的索引
     int             selectTabIndex = -1;
     // Tab Layout 辅助类
     TabLayoutAssist tabLayoutAssist;
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_ui_effect;
     }
 
@@ -81,16 +47,18 @@ public class UIEffectActivity extends BaseToolbarActivity {
         super.initValue();
 
         // 默认选中
-        ViewHelper.get().setSelected(true, vid_aue_1_0_tv).setSelected(false, vid_aue_1_1_tv);
-        changeTab1(vid_aue_2_0_tv, vid_aue_2_1_tv);
-        changeTab2(vid_aue_3_1_tv, vid_aue_3_0_tv);
+        ViewHelper.get()
+                .setSelected(true, binding.vidAue10Tv)
+                .setSelected(false, binding.vidAue11Tv);
+        changeTab1(binding.vidAue20Tv, binding.vidAue21Tv);
+        changeTab2(binding.vidAue31Tv, binding.vidAue30Tv);
 
         // 动态设置
-        vid_aue_4_0_btn.setBackground(StateListUtils.newSelector(R.drawable.btn_pressed, R.drawable.btn_normal));
-        vid_aue_4_0_btn.setTextColor(StateListUtils.createColorStateList(R.color.black, R.color.white));
+        binding.vidAue40Btn.setBackground(StateListUtils.newSelector(R.drawable.btn_pressed, R.drawable.btn_normal));
+        binding.vidAue40Btn.setTextColor(StateListUtils.createColorStateList(R.color.black, R.color.white));
 
         // 默认就设置背景色
-        vid_aue_4_1_btn.setBackground(
+        binding.vidAue41Btn.setBackground(
                 ShapeUtils.newShape()
                         .setCornerRadiusLeft(10.0f)
                         .setColor(Color.BLACK)
@@ -101,15 +69,15 @@ public class UIEffectActivity extends BaseToolbarActivity {
                 .setStroke(5, ResourceUtils.getColor(R.color.darkorange)).getDrawable();
         GradientDrawable drawable2 = ShapeUtils.newShape(10f, ResourceUtils.getColor(R.color.sky_blue))
                 .setStroke(5, ResourceUtils.getColor(R.color.gray)).getDrawable();
-        vid_aue_4_1_btn.setBackground(StateListUtils.newSelector(drawable2, drawable1));
-        vid_aue_4_1_btn.setTextColor(StateListUtils.createColorStateList(R.color.red, R.color.white));
+        binding.vidAue41Btn.setBackground(StateListUtils.newSelector(drawable2, drawable1));
+        binding.vidAue41Btn.setTextColor(StateListUtils.createColorStateList(R.color.red, R.color.white));
 
         // ============
         // = 渐变效果 =
         // ============
 
         ShapeUtils.newShape(GradientDrawable.Orientation.BR_TL, new int[]{Color.RED, Color.BLUE, Color.GREEN})
-                .setDrawable(vid_aue_5_0_view);
+                .setDrawable(binding.vidAue50View);
 
         int[] colors = new int[3];
         colors[0] = ContextCompat.getColor(this, R.color.black);
@@ -120,7 +88,7 @@ public class UIEffectActivity extends BaseToolbarActivity {
 //        drawable.setGradientType(GradientDrawable.LINEAR_GRADIENT); // 线性渐变, 这是默认设置
 //        drawable.setGradientType(GradientDrawable.RADIAL_GRADIENT); // 放射性渐变, 以开始色为中心
         drawable.setGradientType(GradientDrawable.SWEEP_GRADIENT); // 扫描线式的渐变
-        vid_aue_6_0_view.setBackground(drawable);
+        binding.vidAue60View.setBackground(drawable);
 
         // ============================
         // = HorizontalScrollView Tab =
@@ -151,26 +119,26 @@ public class UIEffectActivity extends BaseToolbarActivity {
                         @Override
                         public void onClick(View v) {
                             ViewHelper.get()
-                                    .setBold(ViewUtils.getChildAt(vid_aue_7_0_linear, selectTabIndex), false)
-                                    .setTextColor(ViewUtils.getChildAt(vid_aue_7_0_linear, selectTabIndex), ResourceUtils.getColor(R.color.black))
-                                    .setBold(ViewUtils.getChildAt(vid_aue_7_0_linear, position), true)
-                                    .setTextColor(ViewUtils.getChildAt(vid_aue_7_0_linear, position), ResourceUtils.getColor(R.color.red));
+                                    .setBold(ViewUtils.getChildAt(binding.vidAue70Linear, selectTabIndex), false)
+                                    .setTextColor(ViewUtils.getChildAt(binding.vidAue70Linear, selectTabIndex), ResourceUtils.getColor(R.color.black))
+                                    .setBold(ViewUtils.getChildAt(binding.vidAue70Linear, position), true)
+                                    .setTextColor(ViewUtils.getChildAt(binding.vidAue70Linear, position), ResourceUtils.getColor(R.color.red));
                             // 修改索引
                             selectTabIndex = position;
                             // 滑动 Tab 处理
                             scrollTab(position);
                         }
                     }).getView();
-            vid_aue_7_0_linear.addView(view);
+            binding.vidAue70Linear.addView(view);
         }
-        ViewUtils.getChildAt(vid_aue_7_0_linear).performClick();
+        ViewUtils.getChildAt(binding.vidAue70Linear).performClick();
 
         // =================
         // = TabLayout Tab =
         // =================
 
         // 设置数据源
-        tabLayoutAssist = TabLayoutAssist.obtain(vid_aue_8_0_tab);
+        tabLayoutAssist = TabLayoutAssist.obtain(binding.vidAue80Tab);
         tabLayoutAssist.setListTabs(listTabs).setSelect(tabLayoutAssist.getTabCount() - 1)
                 .setTabChangeListener(new TabLayoutAssist.TabChangeListener() {
                     @Override
@@ -181,7 +149,7 @@ public class UIEffectActivity extends BaseToolbarActivity {
                     }
                 });
 
-        TabLayoutAssist.obtain(vid_aue_9_0_tab)
+        TabLayoutAssist.obtain(binding.vidAue90Tab)
                 .setListTabs(ArrayUtils.asList(ArrayUtils.subarray(listTabs.toArray(new TabItem[0]), 0, 3)))
                 .setSelect(0).setTabChangeListener(new TabLayoutAssist.TabChangeListener() {
             @Override
@@ -191,28 +159,40 @@ public class UIEffectActivity extends BaseToolbarActivity {
         });
     }
 
-    @OnClick({R.id.vid_aue_1_0_tv, R.id.vid_aue_1_1_tv, R.id.vid_aue_2_0_tv, R.id.vid_aue_2_1_tv, R.id.vid_aue_3_0_tv, R.id.vid_aue_3_1_tv})
+    @Override
+    public void initListener() {
+        super.initListener();
+        ListenerUtils.setOnClicks(this,
+                binding.vidAue10Tv, binding.vidAue11Tv,
+                binding.vidAue20Tv, binding.vidAue21Tv,
+                binding.vidAue30Tv, binding.vidAue31Tv);
+    }
+
     @Override
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.vid_aue_1_0_tv:
-                ViewHelper.get().setSelected(true, vid_aue_1_0_tv).setSelected(false, vid_aue_1_1_tv);
+                ViewHelper.get()
+                        .setSelected(true, binding.vidAue10Tv)
+                        .setSelected(false, binding.vidAue11Tv);
                 break;
             case R.id.vid_aue_1_1_tv:
-                ViewHelper.get().setSelected(true, vid_aue_1_1_tv).setSelected(false, vid_aue_1_0_tv);
+                ViewHelper.get()
+                        .setSelected(true, binding.vidAue11Tv)
+                        .setSelected(false, binding.vidAue10Tv);
                 break;
             case R.id.vid_aue_2_0_tv:
-                changeTab1(vid_aue_2_0_tv, vid_aue_2_1_tv);
+                changeTab1(binding.vidAue20Tv, binding.vidAue21Tv);
                 break;
             case R.id.vid_aue_2_1_tv:
-                changeTab1(vid_aue_2_1_tv, vid_aue_2_0_tv);
+                changeTab1(binding.vidAue21Tv, binding.vidAue20Tv);
                 break;
             case R.id.vid_aue_3_0_tv:
-                changeTab2(vid_aue_3_0_tv, vid_aue_3_1_tv);
+                changeTab2(binding.vidAue30Tv, binding.vidAue31Tv);
                 break;
             case R.id.vid_aue_3_1_tv:
-                changeTab2(vid_aue_3_1_tv, vid_aue_3_0_tv);
+                changeTab2(binding.vidAue31Tv, binding.vidAue30Tv);
                 break;
         }
     }
@@ -304,13 +284,13 @@ public class UIEffectActivity extends BaseToolbarActivity {
                     for (int i = 1; i < position; i++) {
                         try {
                             // 累加宽度
-                            x += vid_aue_7_0_linear.getChildAt(i).getWidth();
+                            x += binding.vidAue70Linear.getChildAt(i).getWidth();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
                     // 开始移动位置
-                    vid_aue_7_0_scroll.scrollTo(x, 0);
+                    binding.vidAue70Scroll.scrollTo(x, 0);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
