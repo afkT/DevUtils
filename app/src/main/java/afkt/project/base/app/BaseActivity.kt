@@ -5,10 +5,10 @@ import dev.base.expand.mvp.MVP
 import dev.base.expand.mvp.MVPViewImpl
 
 /**
- * detail: Base 基类
+ * detail: Base ViewBinding 基类
  * @author Ttt
  */
-abstract class TempBaseActivity<VB : ViewBinding> :
+abstract class BaseActivity<VB : ViewBinding> :
     BaseMVPActivity<MVP.Presenter<out MVP.IView, out MVP.IModel>, VB>() {
 
     override fun createPresenter(): MVP.Presenter<out MVP.IView, out MVP.IModel> {

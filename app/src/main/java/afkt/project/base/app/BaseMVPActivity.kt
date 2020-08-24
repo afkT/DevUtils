@@ -19,7 +19,7 @@ import dev.utils.app.toast.ToastTintUtils
 import dev.widget.function.StateLayout
 
 /**
- * detail: Base 基类
+ * detail: Base MVP ViewBinding 基类
  * @author Ttt
  */
 abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>, VB : ViewBinding> :

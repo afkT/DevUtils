@@ -15,7 +15,7 @@ import dev.utils.app.ViewUtils;
  * detail: ToolBar Activity 基类
  * @author Ttt
  */
-public abstract class BaseToolbarActivity extends BaseActivity {
+public abstract class BaseToolbarActivity extends TempBaseActivity {
 
     // ToolBar
     protected Toolbar vid_bt_toolbar;

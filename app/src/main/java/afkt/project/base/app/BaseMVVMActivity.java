@@ -11,7 +11,7 @@ import androidx.databinding.ViewDataBinding;
  *     MVVM 需要传入 ViewDataBinding
  * </pre>
  */
-public abstract class BaseMVVMActivity<VDB extends ViewDataBinding> extends BaseActivity {
+public abstract class BaseMVVMActivity<VDB extends ViewDataBinding> extends TempBaseActivity {
 
     protected VDB viewDataBinding;
 

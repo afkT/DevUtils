@@ -10,7 +10,7 @@ import com.tencent.mmkv.MMKV;
 import java.util.Arrays;
 import java.util.List;
 
-import afkt.project.base.app.TempBaseActivity;
+import afkt.project.base.app.BaseActivity;
 import afkt.project.base.constants.KeyConstants;
 import afkt.project.databinding.ActivityMainBinding;
 import afkt.project.model.item.ButtonList;
@@ -27,7 +27,7 @@ import dev.utils.app.toast.ToastUtils;
 import dev.utils.common.HttpURLConnectionUtils;
 import dev.utils.common.StringUtils;
 
-public class MainActivity extends TempBaseActivity<ActivityMainBinding> {
+public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     @Override
     public int layoutId() {

@@ -26,7 +26,7 @@ import dev.widget.function.StateLayout;
  *     能够对全局进行增删 View 控制处理, 以及后期全局需求配置
  * </pre>
  */
-public abstract class BaseActivity extends DevBaseActivity {
+public abstract class TempBaseActivity extends DevBaseActivity {
 
     // = View =
     // 最外层 View
