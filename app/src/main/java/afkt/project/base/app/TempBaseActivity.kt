@@ -2,6 +2,7 @@ package afkt.project.base.app
 
 import androidx.viewbinding.ViewBinding
 import dev.base.expand.mvp.MVP
+import dev.base.expand.mvp.MVPViewImpl
 
 /**
  * detail: Base 基类
@@ -11,11 +12,8 @@ abstract class TempBaseActivity<VB : ViewBinding> :
     BaseMVPActivity<MVP.Presenter<out MVP.IView, out MVP.IModel>, VB>() {
 
     override fun createPresenter(): MVP.Presenter<out MVP.IView, out MVP.IModel> {
-        return MVP.Presenter(MVPView())
+        return MVP.Presenter(MVPViewImpl())
     }
-
-    // 空实现 MVPView
-    class MVPView : MVP.IView
 
     /**
      * 是否需要 ToolBar
