@@ -37,6 +37,8 @@
             style="@style/AppTheme.Base_TextView"
             android:gravity="center" />
 
-        <include layout="@layout/base_view_recyclerview" />
+        <include
+            android:id="@+id/vid_am_base_recy"
+            layout="@layout/base_view_recyclerview" />
     </LinearLayout>
 </dev.widget.custom.CustomNestedScrollView>

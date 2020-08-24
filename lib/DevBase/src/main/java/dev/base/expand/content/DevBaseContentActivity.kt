@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import dev.base.R
 import dev.base.activity.DevBaseActivity
 import dev.base.utils.assist.DevBaseContentAssist
@@ -33,13 +32,14 @@ abstract class DevBaseContentActivity : DevBaseActivity() {
         // Layout View 初始化处理
         layoutInit(layoutInflater, null)
         // 添加到 contentLinear
-        mContentAssist.addContentView(
-            mLayoutView,
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT
-            )
-        )
+        mContentAssist.addContentView(mLayoutView)
+//        mContentAssist.addContentView(
+//            mLayoutView,
+//            LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT,
+//                LinearLayout.LayoutParams.MATCH_PARENT
+//            )
+//        )
     }
 
     // ================

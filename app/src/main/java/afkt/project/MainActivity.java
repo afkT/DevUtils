@@ -3,8 +3,6 @@ package afkt.project;
 import android.Manifest;
 import android.view.View;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.tencent.mmkv.MMKV;
@@ -12,16 +10,15 @@ import com.tencent.mmkv.MMKV;
 import java.util.Arrays;
 import java.util.List;
 
-import afkt.project.base.app.BaseActivity;
+import afkt.project.base.app.TempBaseActivity;
 import afkt.project.base.constants.KeyConstants;
+import afkt.project.databinding.ActivityMainBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.ModuleActivity;
 import afkt.project.ui.activity.DevEnvironmentLibActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.util.SkipUtils;
-import butterknife.BindView;
-import dev.base.widget.BaseTextView;
 import dev.utils.app.AppCommonUtils;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.permission.PermissionUtils;
@@ -30,15 +27,10 @@ import dev.utils.app.toast.ToastUtils;
 import dev.utils.common.HttpURLConnectionUtils;
 import dev.utils.common.StringUtils;
 
-public class MainActivity extends BaseActivity {
-
-    @BindView(R.id.vid_am_android_tv)
-    BaseTextView vid_am_android_tv;
-    @BindView(R.id.vid_bvr_recy)
-    RecyclerView vid_bvr_recy;
+public class MainActivity extends TempBaseActivity<ActivityMainBinding> {
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_main;
     }
 
@@ -114,10 +106,10 @@ public class MainActivity extends BaseActivity {
     public void initValue() {
         super.initValue();
         // 设置 Android 版本信息
-        vid_am_android_tv.setText(AppCommonUtils.convertSDKVersion());
+        binding.vidAmAndroidTv.setText(AppCommonUtils.convertSDKVersion());
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getMainButtonValues());
-        vid_bvr_recy.setAdapter(buttonAdapter);
+        binding.vidAmBaseRecy.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {

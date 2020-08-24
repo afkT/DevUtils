@@ -2,15 +2,13 @@ package afkt.project.framework.mvp;
 
 import android.view.View;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.tt.whorlviewlibrary.WhorlView;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseMVPToolbarActivity;
+import afkt.project.base.app.BaseMVPActivity;
+import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.bean.ArticleBean;
 import afkt.project.ui.adapter.ArticleAdapter;
-import butterknife.BindView;
 import dev.other.retrofit.RxJavaManager;
 import dev.utils.app.ViewUtils;
 import dev.utils.common.CollectionUtils;
@@ -22,10 +20,8 @@ import io.reactivex.rxjava3.disposables.Disposable;
  * detail: 文章 MVP Activity
  * @author Ttt
  */
-public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presenter> implements ArticleMVP.View {
+public class ArticleMVPActivity extends BaseMVPActivity<ArticleMVP.Presenter, BaseViewRecyclerviewBinding> implements ArticleMVP.View {
 
-    @BindView(R.id.vid_bvr_recy)
-    RecyclerView vid_bvr_recy;
     // 加载动画
     WhorlView      vid_sli_load_view;
     // 适配器
@@ -37,7 +33,7 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
     }
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.base_view_recyclerview;
     }
 
@@ -54,7 +50,7 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
         super.initValue();
         // 初始化布局管理器、适配器
         articleAdapter = new ArticleAdapter();
-        vid_bvr_recy.setAdapter(articleAdapter);
+        binding.vidBvrRecy.setAdapter(articleAdapter);
     }
 
     @Override
@@ -70,7 +66,7 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
             public void onNotFound(StateLayout layout, int type) {
                 // 切换 View 操作
                 if (type == ViewAssist.TYPE_SUCCESS) {
-                    ViewUtils.reverseVisibilitys(true, vid_ba_content_linear, vid_ba_state_linear);
+                    ViewUtils.reverseVisibilitys(true, mContentAssist.contentLinear, mContentAssist.stateLinear);
                 }
             }
 
@@ -79,7 +75,7 @@ public class ArticleMVPActivity extends BaseMVPToolbarActivity<ArticleMVP.Presen
                 // 判断是否操作成功
                 boolean success = (type == ViewAssist.TYPE_SUCCESS);
                 // 切换 View 操作
-                if (ViewUtils.reverseVisibilitys(success, vid_ba_content_linear, vid_ba_state_linear)) {
+                if (ViewUtils.reverseVisibilitys(success, mContentAssist.contentLinear, mContentAssist.stateLinear)) {
                     // 属于请求成功
                 } else {
                     if (type == ViewAssist.TYPE_ING) {
