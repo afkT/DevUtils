@@ -198,6 +198,26 @@ class DevBaseContentAssist {
     }
 
     /**
+     * rootLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addRootView(view: View?, params: ViewGroup.LayoutParams?): DevBaseContentAssist {
+        return addView(rootLinear, view, -1, params)
+    }
+
+    /**
+     * rootLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addRootView(
+        view: View?,
+        index: Int,
+        params: ViewGroup.LayoutParams?
+    ): DevBaseContentAssist {
+        return addView(rootLinear, view, index, params)
+    }
+
+    /**
      * statusBarLinear 添加 View
      * @return [DevBaseContentAssist]
      */
@@ -211,6 +231,26 @@ class DevBaseContentAssist {
      */
     fun addStatusBarView(view: View?, index: Int): DevBaseContentAssist {
         return addView(statusBarLinear, view, index)
+    }
+
+    /**
+     * statusBarLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addStatusBarView(view: View?, params: ViewGroup.LayoutParams?): DevBaseContentAssist {
+        return addView(statusBarLinear, view, -1, params)
+    }
+
+    /**
+     * statusBarLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addStatusBarView(
+        view: View?,
+        index: Int,
+        params: ViewGroup.LayoutParams?
+    ): DevBaseContentAssist {
+        return addView(statusBarLinear, view, index, params)
     }
 
     /**
@@ -230,6 +270,26 @@ class DevBaseContentAssist {
     }
 
     /**
+     * titleLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addTitleView(view: View?, params: ViewGroup.LayoutParams?): DevBaseContentAssist {
+        return addView(titleLinear, view, -1, params)
+    }
+
+    /**
+     * titleLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addTitleView(
+        view: View?,
+        index: Int,
+        params: ViewGroup.LayoutParams?
+    ): DevBaseContentAssist {
+        return addView(titleLinear, view, index, params)
+    }
+
+    /**
      * bodyFrame 添加 View
      * @return [DevBaseContentAssist]
      */
@@ -243,6 +303,26 @@ class DevBaseContentAssist {
      */
     fun addBodyView(view: View?, index: Int): DevBaseContentAssist {
         return addView(bodyFrame, view, index)
+    }
+
+    /**
+     * bodyFrame 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addBodyView(view: View?, params: ViewGroup.LayoutParams?): DevBaseContentAssist {
+        return addView(bodyFrame, view, -1, params)
+    }
+
+    /**
+     * bodyFrame 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addBodyView(
+        view: View?,
+        index: Int,
+        params: ViewGroup.LayoutParams?
+    ): DevBaseContentAssist {
+        return addView(bodyFrame, view, index, params)
     }
 
     /**
@@ -262,6 +342,26 @@ class DevBaseContentAssist {
     }
 
     /**
+     * contentLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addContentView(view: View?, params: ViewGroup.LayoutParams?): DevBaseContentAssist {
+        return addView(contentLinear, view, -1, params)
+    }
+
+    /**
+     * contentLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addContentView(
+        view: View?,
+        index: Int,
+        params: ViewGroup.LayoutParams?
+    ): DevBaseContentAssist {
+        return addView(contentLinear, view, index, params)
+    }
+
+    /**
      * stateLinear 添加 View
      * @return [DevBaseContentAssist]
      */
@@ -275,6 +375,26 @@ class DevBaseContentAssist {
      */
     fun addStateView(view: View?, index: Int): DevBaseContentAssist {
         return addView(stateLinear, view, index)
+    }
+
+    /**
+     * stateLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addStateView(view: View?, params: ViewGroup.LayoutParams?): DevBaseContentAssist {
+        return addView(stateLinear, view, -1, params)
+    }
+
+    /**
+     * stateLinear 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addStateView(
+        view: View?,
+        index: Int,
+        params: ViewGroup.LayoutParams?
+    ): DevBaseContentAssist {
+        return addView(stateLinear, view, index, params)
     }
 
     // ================
@@ -293,6 +413,28 @@ class DevBaseContentAssist {
             view?.let { viewGroup?.addView(it, index) }
         } else {
             viewGroup!!.addView(view, index)
+        }
+        return this
+    }
+
+    /**
+     * 添加 View
+     * @param viewGroup 容器 Layout
+     * @param view      待添加 View
+     * @param index     添加索引
+     * @param params    LayoutParams
+     * @return [DevBaseContentAssist]
+     */
+    private fun addView(
+        viewGroup: ViewGroup?,
+        view: View?,
+        index: Int,
+        params: ViewGroup.LayoutParams?
+    ): DevBaseContentAssist {
+        if (isSafe) {
+            view?.let { viewGroup?.addView(it, index, params) }
+        } else {
+            viewGroup!!.addView(view, index, params)
         }
         return this
     }
