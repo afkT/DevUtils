@@ -9,8 +9,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import androidx.viewbinding.ViewBinding
-import butterknife.ButterKnife
-import butterknife.Unbinder
 import dev.base.expand.content.DevBaseContentMVPViewBindingActivity
 import dev.base.expand.mvp.MVP
 import dev.other.retrofit.RxJavaManager
@@ -31,9 +29,6 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
     // ToolBar
     var toolbar: Toolbar? = null
 
-    // Butterknife Unbinder
-    var unbinder: Unbinder? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         if (isTryViewBindingCatch()) {
             try {
@@ -53,16 +48,12 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
         }
         // 插入 StateLayout
         insertStateLayout()
-        // 绑定 View ( Butterknife ) 待更换 ViewBinding
-        unbinder = ButterKnife.bind(this, mLayoutView!!)
         // 初始化顺序 ( 按顺序调用方法 )
         initOrder()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        // 解绑 View
-        unbinder?.unbind()
         // 取消 TAG ( Activity ) 关联的请求
         RxJavaManager.getInstance().remove(TAG)
     }

@@ -13,12 +13,9 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.List;
 
 import afkt.project.R;
+import afkt.project.databinding.AdapterLinearSnapBinding;
 import afkt.project.model.bean.ItemBean;
 import afkt.project.util.ProjectUtils;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import dev.base.widget.BaseImageView;
-import dev.base.widget.BaseTextView;
 import dev.other.GlideUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.ViewHelper;
@@ -64,31 +61,22 @@ public class LinearSnapMAXAdapter extends RecyclerView.Adapter {
             String posIndex = position + " - " + index;
 
             ViewHelper.get()
-                    .setText(itemHolder.vid_als_title_tv, itemBean.title)
-                    .setText(itemHolder.vid_als_subtitle_tv, itemBean.subtitle)
-                    .setText(itemHolder.vid_als_time_tv, itemBean.timeFormat)
-                    .setText(itemHolder.vid_als_index_tv, posIndex);
-            GlideUtils.with().displayImage(itemBean.imageUrl, itemHolder.vid_als_igview,
+                    .setText(itemHolder.binding.vidAlsTitleTv, itemBean.title)
+                    .setText(itemHolder.binding.vidAlsSubtitleTv, itemBean.subtitle)
+                    .setText(itemHolder.binding.vidAlsTimeTv, itemBean.timeFormat)
+                    .setText(itemHolder.binding.vidAlsIndexTv, posIndex);
+            GlideUtils.with().displayImage(itemBean.imageUrl, itemHolder.binding.vidAlsIgview,
                     roundOptions);
         }
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.vid_als_title_tv)
-        BaseTextView  vid_als_title_tv;
-        @BindView(R.id.vid_als_subtitle_tv)
-        BaseTextView  vid_als_subtitle_tv;
-        @BindView(R.id.vid_als_time_tv)
-        BaseTextView  vid_als_time_tv;
-        @BindView(R.id.vid_als_igview)
-        BaseImageView vid_als_igview;
-        @BindView(R.id.vid_als_index_tv)
-        BaseTextView  vid_als_index_tv;
+        AdapterLinearSnapBinding binding;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            binding = AdapterLinearSnapBinding.bind(itemView);
         }
     }
 

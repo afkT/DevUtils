@@ -13,12 +13,9 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.List;
 
 import afkt.project.R;
+import afkt.project.databinding.AdapterPagerSnapBinding;
 import afkt.project.model.bean.ItemBean;
 import afkt.project.util.ProjectUtils;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import dev.base.widget.BaseImageView;
-import dev.base.widget.BaseTextView;
 import dev.other.GlideUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.ViewHelper;
@@ -64,31 +61,22 @@ public class PagerSnapMAXAdapter extends RecyclerView.Adapter {
             String posIndex = position + " - " + index;
 
             ViewHelper.get()
-                    .setText(itemHolder.vid_ags_title_tv, itemBean.title)
-                    .setText(itemHolder.vid_ags_subtitle_tv, itemBean.subtitle)
-                    .setText(itemHolder.vid_ags_time_tv, itemBean.timeFormat)
-                    .setText(itemHolder.vid_ags_index_tv, posIndex);
-            GlideUtils.with().displayImage(itemBean.imageUrl, itemHolder.vid_ags_igview,
+                    .setText(itemHolder.binding.vidAgsTitleTv, itemBean.title)
+                    .setText(itemHolder.binding.vidAgsSubtitleTv, itemBean.subtitle)
+                    .setText(itemHolder.binding.vidAgsTimeTv, itemBean.timeFormat)
+                    .setText(itemHolder.binding.vidAgsIndexTv, posIndex);
+            GlideUtils.with().displayImage(itemBean.imageUrl, itemHolder.binding.vidAgsIgview,
                     roundOptions);
         }
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.vid_ags_title_tv)
-        BaseTextView  vid_ags_title_tv;
-        @BindView(R.id.vid_ags_subtitle_tv)
-        BaseTextView  vid_ags_subtitle_tv;
-        @BindView(R.id.vid_ags_time_tv)
-        BaseTextView  vid_ags_time_tv;
-        @BindView(R.id.vid_ags_igview)
-        BaseImageView vid_ags_igview;
-        @BindView(R.id.vid_ags_index_tv)
-        BaseTextView  vid_ags_index_tv;
+        AdapterPagerSnapBinding binding;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            binding = AdapterPagerSnapBinding.bind(itemView);
         }
     }
 
