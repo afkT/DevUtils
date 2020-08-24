@@ -35,7 +35,14 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
     var unbinder: Unbinder? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        if (isTryViewBindingCatch()) {
+            try {
+                super.onCreate(savedInstanceState)
+            } catch (e: Exception) {
+            }
+        } else {
+            super.onCreate(savedInstanceState)
+        }
         // 是否需要 ToolBar
         if (isToolBar()) {
             val title = intent.getStringExtra(KeyConstants.Common.KEY_TITLE)
@@ -67,6 +74,15 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
     // ============
     // = 项目相关 =
     // ============
+
+    /**
+     * 是否捕获 ViewBinding 异常
+     * 设计时考虑为了开发中保证准确绑定, 当 [ViewBindingUtils] 解析失败会抛出异常
+     * 当 layoutId、layoutView 都不需要绑定的时候则会与设计冲突, 则通过捕获 onCreate 异常进行处理
+     */
+    open fun isTryViewBindingCatch(): Boolean {
+        return false;
+    }
 
     /**
      * 获取 Module 类型

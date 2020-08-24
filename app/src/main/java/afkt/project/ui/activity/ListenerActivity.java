@@ -5,20 +5,17 @@ import android.os.Message;
 import android.telephony.SmsMessage;
 import android.view.OrientationEventListener;
 import android.view.View;
-import android.widget.LinearLayout;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemChildLongClickListener;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.ActivityCommonTipsBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
-import butterknife.BindView;
 import dev.receiver.AppStateReceiver;
 import dev.receiver.BatteryReceiver;
 import dev.receiver.NetWorkReceiver;
@@ -38,16 +35,10 @@ import dev.utils.app.toast.ToastTintUtils;
  * detail: 事件 / 广播监听 ( 网络状态、屏幕旋转等 )
  * @author Ttt
  */
-public class ListenerActivity extends BaseToolbarActivity {
-
-    // = View =
-    @BindView(R.id.vid_act_linear)
-    LinearLayout vid_act_linear;
-    @BindView(R.id.vid_bvr_recy)
-    RecyclerView vid_bvr_recy;
+public class ListenerActivity extends BaseActivity<ActivityCommonTipsBinding> {
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_common_tips;
     }
 
@@ -77,11 +68,11 @@ public class ListenerActivity extends BaseToolbarActivity {
         View view = ViewUtils.inflate(R.layout.base_view_textview);
         ViewHelper.get().setText(view, "单击绑定, 长按注销")
                 .setTextColor(view, ResourceUtils.getColor(R.color.gray));
-        vid_act_linear.addView(view);
+        binding.vidActLinear.addView(view);
 
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getListenerButtonValues());
-        vid_bvr_recy.setAdapter(buttonAdapter);
+        binding.vidBaseRecy.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {

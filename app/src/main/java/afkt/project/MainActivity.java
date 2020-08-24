@@ -114,7 +114,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         binding.vidAmAndroidTv.setText(AppCommonUtils.convertSDKVersion());
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getMainButtonValues());
-        binding.vidAmBaseRecy.vidBvrRecy.setAdapter(buttonAdapter);
+        binding.vidBaseRecy.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {

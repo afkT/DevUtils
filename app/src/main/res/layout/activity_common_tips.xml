@@ -19,6 +19,8 @@
             android:layout_marginBottom="10.0dp"
             android:orientation="vertical" />
 
-        <include layout="@layout/base_view_recyclerview" />
+        <include
+            android:id="@+id/vid_base_recy"
+            layout="@layout/base_view_recyclerview" />
     </LinearLayout>
 </dev.widget.custom.CustomNestedScrollView>

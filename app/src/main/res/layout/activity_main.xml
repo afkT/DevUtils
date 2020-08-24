@@ -38,7 +38,7 @@
             android:gravity="center" />
 
         <include
-            android:id="@+id/vid_am_base_recy"
+            android:id="@+id/vid_base_recy"
             layout="@layout/base_view_recyclerview" />
     </LinearLayout>
 </dev.widget.custom.CustomNestedScrollView>

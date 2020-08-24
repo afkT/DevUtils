@@ -5,22 +5,29 @@ import android.graphics.Paint;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import afkt.project.base.app.BaseToolbarActivity;
+import androidx.viewbinding.ViewBinding;
+
+import afkt.project.base.app.BaseActivity;
 import dev.widget.function.SignView;
 
 /**
  * detail: 签名 View
  * @author Ttt
  */
-public class SignActivity extends BaseToolbarActivity {
+public class SignActivity extends BaseActivity<ViewBinding> {
 
     @Override
-    public int getLayoutId() {
+    public boolean isTryViewBindingCatch() {
+        return true;
+    }
+
+    @Override
+    public int layoutId() {
         return 0;
     }
 
     @Override
-    public View contentView() {
+    public View layoutView() {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
         SignView signView = new SignView(this);
