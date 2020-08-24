@@ -9,11 +9,10 @@ import android.widget.BaseAdapter;
 import java.util.List;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
 import afkt.project.base.config.PathConfig;
+import afkt.project.databinding.ActivityCapturePictureGridBinding;
 import afkt.project.model.bean.AdapterBean;
-import afkt.project.ui.widget.AutoGridView;
-import butterknife.BindView;
 import dev.base.widget.BaseTextView;
 import dev.utils.app.CapturePictureUtils;
 import dev.utils.app.ResourceUtils;
@@ -26,14 +25,10 @@ import dev.utils.app.image.ImageUtils;
  * detail: CapturePictureUtils GridView 截图
  * @author Ttt
  */
-public class CapturePictureGridActivity extends BaseToolbarActivity {
-
-    // = View =
-    @BindView(R.id.vid_acp_grid)
-    AutoGridView vid_acp_grid;
+public class CapturePictureGridActivity extends BaseActivity<ActivityCapturePictureGridBinding> {
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_capture_picture_grid;
     }
 
@@ -55,14 +50,14 @@ public class CapturePictureGridActivity extends BaseToolbarActivity {
                         String fileName = "grid.jpg";
                         Bitmap bitmap;
 
-                        bitmap = CapturePictureUtils.snapshotByGridView(vid_acp_grid);
+                        bitmap = CapturePictureUtils.snapshotByGridView(binding.vidAcpGrid);
 //                        // 保存 ListView 一样效果
-//                        bitmap = CapturePictureUtils.snapshotByGridView(vid_acp_grid, Bitmap.Config.ARGB_8888, true);
+//                        bitmap = CapturePictureUtils.snapshotByGridView(binding.vidAcpGrid, Bitmap.Config.ARGB_8888, true);
                         boolean result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName);
                         showToast(result, "保存成功\n" + (filePath + fileName), "保存失败");
                     }
                 }).getView();
-        vid_bt_toolbar.addView(view);
+        getToolbar().addView(view);
     }
 
     @Override
@@ -71,7 +66,7 @@ public class CapturePictureGridActivity extends BaseToolbarActivity {
 
         List<AdapterBean> lists = AdapterBean.newAdapterBeanList(15);
         // 设置适配器
-        vid_acp_grid.setAdapter(new BaseAdapter() {
+        binding.vidAcpGrid.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
                 return lists.size();

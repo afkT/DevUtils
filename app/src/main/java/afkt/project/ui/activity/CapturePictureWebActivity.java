@@ -3,12 +3,11 @@ package afkt.project.ui.activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.WebView;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
 import afkt.project.base.config.PathConfig;
-import butterknife.BindView;
+import afkt.project.databinding.ActivityCapturePictureWebBinding;
 import dev.base.widget.BaseTextView;
 import dev.utils.app.CapturePictureUtils;
 import dev.utils.app.ResourceUtils;
@@ -19,14 +18,10 @@ import dev.utils.app.image.ImageUtils;
  * detail: CapturePictureUtils WebView 截图
  * @author Ttt
  */
-public class CapturePictureWebActivity extends BaseToolbarActivity {
-
-    // = View =
-    @BindView(R.id.vid_acp_webview)
-    WebView vid_acp_webview;
+public class CapturePictureWebActivity extends BaseActivity<ActivityCapturePictureWebBinding> {
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_capture_picture_web;
     }
 
@@ -49,18 +44,18 @@ public class CapturePictureWebActivity extends BaseToolbarActivity {
                         String filePath = PathConfig.AEP_DOWN_IMAGE_PATH;
                         String fileName = "web.jpg";
 
-                        Bitmap bitmap = CapturePictureUtils.snapshotByWebView(vid_acp_webview);
+                        Bitmap bitmap = CapturePictureUtils.snapshotByWebView(binding.vidAcpWebview);
                         boolean result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName);
                         showToast(result, "保存成功\n" + (filePath + fileName), "保存失败");
                     }
                 }).getView();
-        vid_bt_toolbar.addView(view);
+        getToolbar().addView(view);
     }
 
     @Override
     public void initValue() {
         super.initValue();
         // 加载网页
-        vid_acp_webview.loadUrl("https://www.csdn.net/");
+        binding.vidAcpWebview.loadUrl("https://www.csdn.net/");
     }
 }

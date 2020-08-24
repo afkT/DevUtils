@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import java.util.List;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
 import afkt.project.base.config.PathConfig;
+import afkt.project.databinding.ActivityCapturePictureRecyBinding;
 import afkt.project.model.bean.AdapterBean;
-import butterknife.BindView;
 import dev.base.widget.BaseTextView;
 import dev.utils.app.CapturePictureUtils;
 import dev.utils.app.ResourceUtils;
@@ -28,14 +28,10 @@ import dev.utils.app.image.ImageUtils;
  * detail: CapturePictureUtils RecyclerView 截图
  * @author Ttt
  */
-public class CapturePictureRecyActivity extends BaseToolbarActivity {
-
-    // = View =
-    @BindView(R.id.vid_acp_recy)
-    RecyclerView vid_acp_recy;
+public class CapturePictureRecyActivity extends BaseActivity<ActivityCapturePictureRecyBinding> {
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_capture_picture_recy;
     }
 
@@ -59,29 +55,29 @@ public class CapturePictureRecyActivity extends BaseToolbarActivity {
 
                         // 支持三种布局 GridLayoutManager、LinearLayoutManager、StaggeredGridLayoutManager
                         // 以及对于的横、竖屏效果截图
-                        bitmap = CapturePictureUtils.snapshotByRecyclerView(vid_acp_recy);
+                        bitmap = CapturePictureUtils.snapshotByRecyclerView(binding.vidAcpRecy);
                         boolean result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName);
                         showToast(result, "保存成功\n" + (filePath + fileName), "保存失败");
                     }
                 }).getView();
-        vid_bt_toolbar.addView(view);
+        getToolbar().addView(view);
     }
 
     @Override
     public void initValue() {
         super.initValue();
 
-//        vid_acp_recy.setLayoutManager(new LinearLayoutManager(this));
-//        vid_acp_recy.setLayoutManager(new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false));
+//        binding.vidAcpRecy.setLayoutManager(new LinearLayoutManager(this));
+//        binding.vidAcpRecy.setLayoutManager(new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false));
 //
-//        vid_acp_recy.setLayoutManager(new GridLayoutManager(this, 3));
-//        vid_acp_recy.setLayoutManager(new GridLayoutManager(this, 3, StaggeredGridLayoutManager.HORIZONTAL, false));
+//        binding.vidAcpRecy.setLayoutManager(new GridLayoutManager(this, 3));
+//        binding.vidAcpRecy.setLayoutManager(new GridLayoutManager(this, 3, StaggeredGridLayoutManager.HORIZONTAL, false));
 
-        vid_acp_recy.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
-//        vid_acp_recy.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL));
+        binding.vidAcpRecy.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
+//        binding.vidAcpRecy.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL));
 
         final List<AdapterBean> lists = AdapterBean.newAdapterBeanList(15);
-        vid_acp_recy.setAdapter(new RecyclerView.Adapter() {
+        binding.vidAcpRecy.setAdapter(new RecyclerView.Adapter() {
 
             @Override
             public int getItemViewType(int position) {

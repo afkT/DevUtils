@@ -5,15 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 
 import java.util.List;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
 import afkt.project.base.config.PathConfig;
+import afkt.project.databinding.ActivityCapturePictureListBinding;
 import afkt.project.model.bean.AdapterBean;
-import butterknife.BindView;
 import dev.base.widget.BaseTextView;
 import dev.utils.app.CapturePictureUtils;
 import dev.utils.app.ResourceUtils;
@@ -26,14 +25,10 @@ import dev.utils.app.image.ImageUtils;
  * detail: CapturePictureUtils ListView 截图
  * @author Ttt
  */
-public class CapturePictureListActivity extends BaseToolbarActivity {
-
-    // = View =
-    @BindView(R.id.vid_acp_list)
-    ListView vid_acp_list;
+public class CapturePictureListActivity extends BaseActivity<ActivityCapturePictureListBinding> {
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_capture_picture_list;
     }
 
@@ -54,12 +49,12 @@ public class CapturePictureListActivity extends BaseToolbarActivity {
                         String filePath = PathConfig.AEP_DOWN_IMAGE_PATH;
                         String fileName = "list.jpg";
 
-                        Bitmap bitmap = CapturePictureUtils.snapshotByListView(vid_acp_list);
+                        Bitmap bitmap = CapturePictureUtils.snapshotByListView(binding.vidAcpList);
                         boolean result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName);
                         showToast(result, "保存成功\n" + (filePath + fileName), "保存失败");
                     }
                 }).getView();
-        vid_bt_toolbar.addView(view);
+        getToolbar().addView(view);
     }
 
     @Override
@@ -68,7 +63,7 @@ public class CapturePictureListActivity extends BaseToolbarActivity {
 
         List<AdapterBean> lists = AdapterBean.newAdapterBeanList(15);
         // 设置适配器
-        vid_acp_list.setAdapter(new BaseAdapter() {
+        binding.vidAcpList.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
                 return lists.size();

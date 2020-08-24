@@ -2,33 +2,25 @@ package afkt.project.ui.activity;
 
 import android.graphics.Bitmap;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
 import afkt.project.base.config.PathConfig;
+import afkt.project.databinding.ActivityCapturePictureBinding;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.util.SkipUtils;
-import butterknife.BindView;
-import butterknife.OnClick;
 import dev.utils.app.CapturePictureUtils;
+import dev.utils.app.ListenerUtils;
 import dev.utils.app.image.ImageUtils;
-import dev.widget.custom.CustomNestedScrollView;
 
 /**
  * detail: CapturePictureUtils 截图工具类
  * @author Ttt
  */
-public class CapturePictureActivity extends BaseToolbarActivity {
-
-    // = View =
-    @BindView(R.id.vid_acp_scroll)
-    CustomNestedScrollView vid_acp_scroll;
-    @BindView(R.id.vid_acp_linear)
-    LinearLayout           vid_acp_linear;
+public class CapturePictureActivity extends BaseActivity<ActivityCapturePictureBinding> {
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_capture_picture;
     }
 
@@ -55,13 +47,18 @@ public class CapturePictureActivity extends BaseToolbarActivity {
 //        | snapshotByListView | 通过 ListView 绘制为 Bitmap |
 //        | snapshotByGridView | 通过 GridView 绘制为 Bitmap |
 //        | snapshotByRecyclerView | 通过 RecyclerView 绘制为 Bitmap |
-
-
     }
 
-    @OnClick({R.id.vid_acp_screen_btn, R.id.vid_acp_screen1_btn,
-            R.id.vid_acp_linear_btn, R.id.vid_acp_scroll_btn, R.id.vid_acp_list_btn,
-            R.id.vid_acp_grid_btn, R.id.vid_acp_recy_btn, R.id.vid_acp_webview_btn})
+    @Override
+    public void initListener() {
+        super.initListener();
+        ListenerUtils.setOnClicks(this,
+                binding.vidAcpScreenBtn, binding.vidAcpScreen1Btn,
+                binding.vidAcpLinearBtn, binding.vidAcpScrollBtn,
+                binding.vidAcpListBtn, binding.vidAcpGridBtn,
+                binding.vidAcpRecyBtn, binding.vidAcpWebviewBtn);
+    }
+
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -88,14 +85,14 @@ public class CapturePictureActivity extends BaseToolbarActivity {
                 // snapshotByLinearLayout、snapshotByFrameLayout、snapshotByRelativeLayout
                 // 以上方法都是使用 snapshotByView
                 fileName = "linear.jpg";
-                bitmap = CapturePictureUtils.snapshotByLinearLayout(vid_acp_linear);
+                bitmap = CapturePictureUtils.snapshotByLinearLayout(binding.vidAcpLinear);
                 result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName);
                 showToast(result, "保存成功\n" + (filePath + fileName), "保存失败");
                 break;
             case R.id.vid_acp_scroll_btn:
                 // snapshotByScrollView、snapshotByHorizontalScrollView、snapshotByNestedScrollView
                 fileName = "scroll.jpg";
-                bitmap = CapturePictureUtils.snapshotByNestedScrollView(vid_acp_scroll);
+                bitmap = CapturePictureUtils.snapshotByNestedScrollView(binding.vidAcpScroll);
                 result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName);
                 showToast(result, "保存成功\n" + (filePath + fileName), "保存失败");
                 break;
