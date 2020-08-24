@@ -5,8 +5,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
-import butterknife.OnClick;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.ActivityStatusBarBinding;
 import dev.utils.app.BarUtils;
 import dev.utils.app.ResourceUtils;
 
@@ -14,13 +14,13 @@ import dev.utils.app.ResourceUtils;
  * detail: 点击 显示 / 隐藏 ( 状态栏 )
  * @author Ttt
  */
-public class StatusBarActivity extends BaseToolbarActivity {
+public class StatusBarActivity extends BaseActivity<ActivityStatusBarBinding> {
 
     // 判断是否显示
     boolean isVisible = true;
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_status_bar;
     }
 
@@ -39,20 +39,16 @@ public class StatusBarActivity extends BaseToolbarActivity {
         statusView.setBackgroundColor(ResourceUtils.getColor(R.color.colorPrimary));
         statusView.setLayoutParams(layoutParams);
 
-        vid_ba_root_linear.addView(statusView, 0);
+        mContentAssist.rootLinear.addView(statusView, 0);
         // 设置全屏显示, 但是会被状态栏覆盖
-        vid_ba_root_linear.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-    }
+        mContentAssist.rootLinear.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
-    @OnClick({R.id.vid_asb_toggle_btn})
-    @Override
-    public void onClick(View v) {
-        super.onClick(v);
-        switch (v.getId()) {
-            case R.id.vid_asb_toggle_btn:
+        binding.vidAsbToggleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 // 设置是否显示
-                BarUtils.setStatusBarVisibility(this, isVisible = !isVisible);
-                break;
-        }
+                BarUtils.setStatusBarVisibility(mActivity, isVisible = !isVisible);
+            }
+        });
     }
 }

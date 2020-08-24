@@ -2,11 +2,10 @@ package afkt.project.ui.activity;
 
 import android.graphics.Color;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
-import butterknife.BindView;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.ActivityTextCalcBinding;
 import dev.base.widget.BaseTextView;
 import dev.utils.app.TextViewUtils;
 import dev.utils.app.helper.QuickHelper;
@@ -18,13 +17,10 @@ import dev.utils.common.RandomUtils;
  * detail: 计算字体宽度、高度
  * @author Ttt
  */
-public class TextCalcActivity extends BaseToolbarActivity {
-
-    @BindView(R.id.vid_atc_linear)
-    LinearLayout vid_atc_linear;
+public class TextCalcActivity extends BaseActivity<ActivityTextCalcBinding> {
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_text_calc;
     }
 
@@ -63,7 +59,7 @@ public class TextCalcActivity extends BaseToolbarActivity {
                             ToastTintUtils.normal(content);
                         }
                     }).getView();
-            vid_atc_linear.addView(view);
+            binding.vidAtcLinear.addView(view);
         }
     }
 }

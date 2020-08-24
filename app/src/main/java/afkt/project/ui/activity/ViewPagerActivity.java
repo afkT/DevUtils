@@ -6,10 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.ActivityViewPagerBinding;
 import afkt.project.ui.adapter.ViewPagerAdapter;
-import butterknife.BindView;
-import butterknife.OnClick;
 import dev.utils.app.logger.DevLogger;
 import dev.widget.custom.CustomViewPager;
 
@@ -17,14 +16,10 @@ import dev.widget.custom.CustomViewPager;
  * detail: ViewPager 滑动监听、控制滑动
  * @author Ttt
  */
-public class ViewPagerActivity extends BaseToolbarActivity {
-
-    // = View =
-    @BindView(R.id.vid_avp_viewpager)
-    CustomViewPager vid_avp_viewpager;
+public class ViewPagerActivity extends BaseActivity<ActivityViewPagerBinding> {
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_view_pager;
     }
 
@@ -36,9 +31,9 @@ public class ViewPagerActivity extends BaseToolbarActivity {
         for (int i = 0; i < 5; i++) {
             lists.add((i + 1) + "");
         }
-        vid_avp_viewpager.setAdapter(new ViewPagerAdapter(lists));
-        vid_avp_viewpager.setCurrentItem(lists.size() * 100, false);
-        vid_avp_viewpager.setOnPageChangeListener(new CustomViewPager.OnDirectionListener() {
+        binding.vidAvpViewpager.setAdapter(new ViewPagerAdapter(lists));
+        binding.vidAvpViewpager.setCurrentItem(lists.size() * 100, false);
+        binding.vidAvpViewpager.setOnPageChangeListener(new CustomViewPager.OnDirectionListener() {
             @Override
             public void onSlideDirection(boolean left, boolean right) {
                 if (left && !right) {
@@ -59,21 +54,19 @@ public class ViewPagerActivity extends BaseToolbarActivity {
                 }
             }
         });
-    }
-
-    @OnClick({R.id.vid_avp_allow_btn, R.id.vid_avp_ban_btn})
-    @Override
-    public void onClick(View v) {
-        super.onClick(v);
-        switch (v.getId()) {
-            case R.id.vid_avp_allow_btn:
-                vid_avp_viewpager.setSlide(true);
+        binding.vidAvpAllowBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.vidAvpViewpager.setSlide(true);
                 showToast(true, "已允许滑动");
-                break;
-            case R.id.vid_avp_ban_btn:
-                vid_avp_viewpager.setSlide(false);
+            }
+        });
+        binding.vidAvpBanBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.vidAvpViewpager.setSlide(false);
                 showToast(false, "已禁止滑动");
-                break;
-        }
+            }
+        });
     }
 }

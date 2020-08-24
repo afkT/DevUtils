@@ -10,8 +10,8 @@ import android.webkit.WebViewClient;
 
 import afkt.project.R;
 import afkt.project.base.BaseApplication;
-import afkt.project.base.app.BaseToolbarActivity;
-import butterknife.BindView;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.ActivityWebviewBinding;
 import dev.assist.WebViewAssist;
 import dev.utils.app.logger.DevLogger;
 
@@ -19,16 +19,13 @@ import dev.utils.app.logger.DevLogger;
  * detail: WebView 辅助类
  * @author Ttt
  */
-public class WebViewActivity extends BaseToolbarActivity {
+public class WebViewActivity extends BaseActivity<ActivityWebviewBinding> {
 
-    // = View =
-    @BindView(R.id.vid_aw_webview)
-    WebView vid_aw_webview;
     // WebView 辅助类
     WebViewAssist mWebViewAssist = new WebViewAssist();
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_webview;
     }
 
@@ -36,7 +33,7 @@ public class WebViewActivity extends BaseToolbarActivity {
     public void initValue() {
         super.initValue();
         // 长按监听事件
-        vid_aw_webview.setOnLongClickListener(new View.OnLongClickListener() {
+        binding.vidAwWebview.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 WebView.HitTestResult result = ((WebView) view).getHitTestResult();
@@ -53,7 +50,7 @@ public class WebViewActivity extends BaseToolbarActivity {
         });
 
         // 设置 WebView
-        mWebViewAssist.setWebView(vid_aw_webview);
+        mWebViewAssist.setWebView(binding.vidAwWebview);
 
         // 设置辅助 WebView 处理 Javascript 对话框、标题等对象
         mWebViewAssist.setWebChromeClient(new WebChromeClient() {

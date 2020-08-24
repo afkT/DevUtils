@@ -2,12 +2,11 @@ package afkt.project.ui.activity;
 
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.ActivityViewAssistBinding;
 import afkt.project.model.item.ButtonValue;
-import butterknife.BindView;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.ListenerUtils;
 import dev.utils.app.SizeUtils;
@@ -19,16 +18,12 @@ import dev.widget.assist.ViewAssist;
  * detail: ViewAssist Activity
  * @author Ttt
  */
-public class ViewAssistActivity extends BaseToolbarActivity {
-
-    // = View =
-    @BindView(R.id.vid_ava_frame)
-    FrameLayout vid_ava_frame;
+public class ViewAssistActivity extends BaseActivity<ActivityViewAssistBinding> {
 
     ViewAssist viewAssist;
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_view_assist;
     }
 
@@ -36,7 +31,7 @@ public class ViewAssistActivity extends BaseToolbarActivity {
     public void initValue() {
         super.initValue();
 
-        viewAssist = ViewAssist.wrap(vid_ava_frame);
+        viewAssist = ViewAssist.wrap(binding.vidAvaFrame);
 
         switch (getModuleType()) {
             case ButtonValue.BTN_VIEW_ASSIST_ERROR:
@@ -52,7 +47,7 @@ public class ViewAssistActivity extends BaseToolbarActivity {
     }
 
     private void errorType() {
-        ViewUtils.setPadding(vid_ava_frame, SizeUtils.dipConvertPx(50));
+        ViewUtils.setPadding(binding.vidAvaFrame, SizeUtils.dipConvertPx(50));
 
         viewAssist.register(ViewAssist.TYPE_ING, new ViewAssist.Adapter() {
             @Override
