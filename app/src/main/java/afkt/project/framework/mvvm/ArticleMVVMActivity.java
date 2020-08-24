@@ -31,7 +31,7 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
     WhorlView             whorlView;
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_article_mvvm;
     }
 
@@ -43,7 +43,7 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
         // 在一开始选型确定后, 才能专门为其设计基类
 
         // MVVM 只需要调用此句绑定
-        viewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
+        viewDataBinding = DataBindingUtil.bind(mLayoutView);
 
         // = 处理 ActionBar =
         setSupportActionBar(viewDataBinding.vidAamToolbar);
