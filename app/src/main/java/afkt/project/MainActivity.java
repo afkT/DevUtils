@@ -30,6 +30,11 @@ import dev.utils.common.StringUtils;
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     @Override
+    public boolean isToolBar() {
+        return false;
+    }
+
+    @Override
     public int layoutId() {
         return R.layout.activity_main;
     }

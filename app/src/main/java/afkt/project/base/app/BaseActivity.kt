@@ -14,11 +14,4 @@ abstract class BaseActivity<VB : ViewBinding> :
     override fun createPresenter(): MVP.Presenter<out MVP.IView, out MVP.IModel> {
         return MVP.Presenter(MVPViewImpl())
     }
-
-    /**
-     * 是否需要 ToolBar
-     */
-    override fun isToolBar(): Boolean {
-        return false
-    }
 }
