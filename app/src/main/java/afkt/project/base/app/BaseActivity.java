@@ -30,7 +30,7 @@ public abstract class BaseActivity extends DevBaseActivity {
 
     // = View =
     // 最外层 View
-    protected LinearLayout vid_ba_linear;
+    protected LinearLayout vid_ba_root_linear;
     // Title View
     protected LinearLayout vid_ba_title_linear;
     // View 容器
@@ -95,7 +95,7 @@ public abstract class BaseActivity extends DevBaseActivity {
      */
     private void layoutInit() {
         // 初始化 View
-        vid_ba_linear = ViewUtils.findViewById(this, R.id.vid_ba_linear);
+        vid_ba_root_linear = ViewUtils.findViewById(this, R.id.vid_ba_root_linear);
         vid_ba_title_linear = ViewUtils.findViewById(this, R.id.vid_ba_title_linear);
         vid_ba_content_linear = ViewUtils.findViewById(this, R.id.vid_ba_content_linear);
         vid_ba_state_linear = ViewUtils.findViewById(this, R.id.vid_ba_state_linear);

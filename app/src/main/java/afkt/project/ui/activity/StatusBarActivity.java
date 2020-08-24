@@ -39,9 +39,9 @@ public class StatusBarActivity extends BaseToolbarActivity {
         statusView.setBackgroundColor(ResourceUtils.getColor(R.color.colorPrimary));
         statusView.setLayoutParams(layoutParams);
 
-        vid_ba_linear.addView(statusView, 0);
+        vid_ba_root_linear.addView(statusView, 0);
         // 设置全屏显示, 但是会被状态栏覆盖
-        vid_ba_linear.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        vid_ba_root_linear.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 
     @OnClick({R.id.vid_asb_toggle_btn})
