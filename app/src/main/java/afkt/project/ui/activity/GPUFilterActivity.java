@@ -11,30 +11,22 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.ActivityGpuFilterBinding;
 import afkt.project.model.item.FilterItem;
 import afkt.project.ui.adapter.GPUFilterAdapter;
 import afkt.project.util.GPUFilterUtils;
-import butterknife.BindView;
-import butterknife.OnClick;
-import dev.base.widget.BaseImageView;
 import dev.other.picture.PictureSelectorUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.image.ImageUtils;
 import dev.utils.app.logger.DevLogger;
-import dev.widget.custom.CustomGallery;
 
 /**
  * detail: GPU 滤镜效果
  * @author Ttt
  */
-public class GPUFilterActivity extends BaseToolbarActivity {
+public class GPUFilterActivity extends BaseActivity<ActivityGpuFilterBinding> {
 
-    // = View =
-    @BindView(R.id.vid_agf_gallery)
-    CustomGallery vid_agf_gallery;
-    @BindView(R.id.vid_agf_igview)
-    BaseImageView vid_agf_igview;
     // 适配器
     GPUFilterAdapter gpuFilterAdapter;
     // 图片 Bitmap
@@ -43,7 +35,7 @@ public class GPUFilterActivity extends BaseToolbarActivity {
     static Runnable filterThread;
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_gpu_filter;
     }
 
@@ -66,8 +58,8 @@ public class GPUFilterActivity extends BaseToolbarActivity {
         };
 
         // 设置适配器
-        vid_agf_gallery.setAdapter(gpuFilterAdapter = new GPUFilterAdapter(this));
-        vid_agf_gallery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.vidAgfGallery.setAdapter(gpuFilterAdapter = new GPUFilterAdapter(this));
+        binding.vidAgfGallery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 gpuFilterAdapter.setSelectPosition(position);
@@ -81,23 +73,23 @@ public class GPUFilterActivity extends BaseToolbarActivity {
             }
         });
         // 默认选中第一个
-        vid_agf_gallery.setSelection(0);
+        binding.vidAgfGallery.setSelection(0);
     }
 
-    @OnClick({R.id.vid_agf_select_btn})
     @Override
-    public void onClick(View v) {
-        super.onClick(v);
-        switch (v.getId()) {
-            case R.id.vid_agf_select_btn:
+    public void initListener() {
+        super.initListener();
+        binding.vidAgfSelectBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 // 初始化图片配置
                 PictureSelectorUtils.PicConfig picConfig = new PictureSelectorUtils.PicConfig()
                         .setCompress(false).setMaxSelectNum(1).setCrop(false).setMimeType(PictureMimeType.ofImage())
                         .setCamera(true).setGif(false);
                 // 打开图片选择器
-                PictureSelectorUtils.openGallery(PictureSelector.create(this), picConfig);
-                break;
-        }
+                PictureSelectorUtils.openGallery(PictureSelector.create(mActivity), picConfig);
+            }
+        });
     }
 
     // ============
@@ -131,12 +123,12 @@ public class GPUFilterActivity extends BaseToolbarActivity {
         try {
             if (selectBitmap == null) return;
             // 获取选中的滤镜
-            int position = vid_agf_gallery.getSelectedItemPosition();
+            int position = binding.vidAgfGallery.getSelectedItemPosition();
             // 获取滤镜 Item
             FilterItem filterItem = gpuFilterAdapter.getItem(position);
             // 设置滤镜效果
             Bitmap bitmapFilter = GPUFilterUtils.getFilterBitmap(selectBitmap, FilterItem.createFilterForType(filterItem.filterType));
-            vid_agf_igview.setImageBitmap(bitmapFilter);
+            binding.vidAgfIgview.setImageBitmap(bitmapFilter);
         } catch (Exception e) {
             DevLogger.eTag(TAG, e, "setFilter");
         }

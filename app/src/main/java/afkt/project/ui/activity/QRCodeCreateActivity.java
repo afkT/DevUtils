@@ -11,16 +11,14 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
-import butterknife.BindView;
-import butterknife.OnClick;
-import dev.base.widget.BaseEditText;
-import dev.base.widget.BaseImageView;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.ActivityQrcodeCreateBinding;
 import dev.other.ZXingQRCodeUtils;
 import dev.other.picture.PictureSelectorUtils;
 import dev.utils.app.EditTextUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.ImageViewUtils;
+import dev.utils.app.ListenerUtils;
 import dev.utils.app.SizeUtils;
 import dev.utils.app.image.ImageUtils;
 import dev.utils.common.ThrowableUtils;
@@ -29,28 +27,29 @@ import dev.utils.common.ThrowableUtils;
  * detail: 创建二维码
  * @author Ttt
  */
-public class QRCodeCreateActivity extends BaseToolbarActivity {
+public class QRCodeCreateActivity extends BaseActivity<ActivityQrcodeCreateBinding> {
 
-    // = View =
-    @BindView(R.id.vid_aqc_content_edit)
-    BaseEditText  vid_aqc_content_edit;
-    @BindView(R.id.vid_aqc_igview)
-    BaseImageView vid_aqc_igview;
     // 图片 Bitmap
     Bitmap selectBitmap;
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_qrcode_create;
     }
 
-    @OnClick({R.id.vid_aqc_create_btn, R.id.vid_aqc_select_btn})
+    @Override
+    public void initListener() {
+        super.initListener();
+        ListenerUtils.setOnClicks(this,
+                binding.vidAqcCreateBtn, binding.vidAqcSelectBtn);
+    }
+
     @Override
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.vid_aqc_create_btn:
-                String text = EditTextUtils.getText(vid_aqc_content_edit);
+                String text = EditTextUtils.getText(binding.vidAqcContentEdit);
                 // 判断是否存在内容
                 if (TextUtils.isEmpty(text)) {
                     showToast(false, "请输入生成二维码内容");
@@ -65,7 +64,7 @@ public class QRCodeCreateActivity extends BaseToolbarActivity {
                             HandlerUtils.postRunnable(new Runnable() {
                                 @Override
                                 public void run() {
-                                    ImageViewUtils.setImageBitmap(vid_aqc_igview, bitmap);
+                                    ImageViewUtils.setImageBitmap(binding.vidAqcIgview, bitmap);
                                 }
                             });
                         } else {

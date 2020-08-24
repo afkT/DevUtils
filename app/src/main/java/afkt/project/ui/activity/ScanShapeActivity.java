@@ -3,18 +3,16 @@ package afkt.project.ui.activity;
 import android.Manifest;
 import android.hardware.Camera;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 
 import java.util.List;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.ActivityScanShapeBinding;
 import afkt.project.util.ProjectUtils;
-import butterknife.BindView;
-import butterknife.OnClick;
-import dev.base.widget.BaseImageView;
 import dev.utils.app.FlashlightUtils;
+import dev.utils.app.ListenerUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.camera1.CameraAssist;
 import dev.utils.app.camera1.CameraUtils;
@@ -27,25 +25,17 @@ import dev.widget.ui.ScanShapeView;
  * detail: 自定义扫描 View ( QRCode、AR )
  * @author Ttt
  */
-public class ScanShapeActivity extends BaseToolbarActivity {
-
-    // = View =
-    @BindView(R.id.vid_ass_surface)
-    SurfaceView   vid_ass_surface;
-    @BindView(R.id.vid_ass_scanview)
-    ScanShapeView vid_ass_scanview;
-    @BindView(R.id.vid_ass_flashlight_igview)
-    BaseImageView vid_ass_flashlight_igview;
+public class ScanShapeActivity extends BaseActivity<ActivityScanShapeBinding> {
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_scan_shape;
     }
 
     @Override
     protected void onDestroy() {
         // 销毁处理
-        vid_ass_scanview.destroy();
+        binding.vidAssScanview.destroy();
         super.onDestroy();
     }
 
@@ -54,9 +44,9 @@ public class ScanShapeActivity extends BaseToolbarActivity {
         super.onResume();
         try {
             // 开始动画
-            vid_ass_scanview.startAnim();
+            binding.vidAssScanview.startAnim();
             // 添加回调
-            vid_ass_surface.getHolder().addCallback(mHolderCallBack);
+            binding.vidAssSurface.getHolder().addCallback(mHolderCallBack);
         } catch (Exception e) {
         }
     }
@@ -66,7 +56,7 @@ public class ScanShapeActivity extends BaseToolbarActivity {
         super.onPause();
         try {
             // 停止动画
-            vid_ass_scanview.stopAnim();
+            binding.vidAssScanview.stopAnim();
             // 停止预览
             cameraAssist.stopPreview();
         } catch (Exception e) {
@@ -77,11 +67,17 @@ public class ScanShapeActivity extends BaseToolbarActivity {
     public void initValue() {
         super.initValue();
         // 设置扫描类型
-        ProjectUtils.refShape(vid_ass_scanview, ScanShapeView.Shape.Square);
+        ProjectUtils.refShape(binding.vidAssScanview, ScanShapeView.Shape.Square);
     }
 
-    @OnClick({R.id.vid_ass_flashlight_igview, R.id.vid_ass_square_igview,
-            R.id.vid_ass_hexagon_igview, R.id.vid_ass_annulus_igview})
+    @Override
+    public void initListener() {
+        super.initListener();
+
+        ListenerUtils.setOnClicks(this, binding.vidAssFlashlightIgview,
+                binding.vidAssSquareIgview, binding.vidAssHexagonIgview, binding.vidAssAnnulusIgview);
+    }
+
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -92,16 +88,16 @@ public class ScanShapeActivity extends BaseToolbarActivity {
                     return;
                 }
                 // 设置开关
-                setFlashlight(!ViewUtils.isSelected(vid_ass_flashlight_igview));
+                setFlashlight(!ViewUtils.isSelected(binding.vidAssFlashlightIgview));
                 break;
             case R.id.vid_ass_square_igview:
-                ProjectUtils.refShape(vid_ass_scanview, ScanShapeView.Shape.Square);
+                ProjectUtils.refShape(binding.vidAssScanview, ScanShapeView.Shape.Square);
                 break;
             case R.id.vid_ass_hexagon_igview:
-                ProjectUtils.refShape(vid_ass_scanview, ScanShapeView.Shape.Hexagon);
+                ProjectUtils.refShape(binding.vidAssScanview, ScanShapeView.Shape.Hexagon);
                 break;
             case R.id.vid_ass_annulus_igview:
-                ProjectUtils.refShape(vid_ass_scanview, ScanShapeView.Shape.Annulus);
+                ProjectUtils.refShape(binding.vidAssScanview, ScanShapeView.Shape.Annulus);
                 break;
         }
     }
@@ -159,7 +155,7 @@ public class ScanShapeActivity extends BaseToolbarActivity {
                 parameters.setPreviewSize(size.width, size.height);
                 camera.setParameters(parameters);
                 // 开始预览
-                cameraAssist.openDriver(vid_ass_surface.getHolder()).startPreview();
+                cameraAssist.openDriver(binding.vidAssSurface.getHolder()).startPreview();
 //                // 默认开启自动对焦, 设置不需要自动对焦
 //                cameraAssist.setAutoFocus(false);
             } catch (Exception e) {
@@ -198,6 +194,6 @@ public class ScanShapeActivity extends BaseToolbarActivity {
         } else {
             cameraAssist.setFlashlightOff();
         }
-        ViewUtils.setSelected(open, vid_ass_flashlight_igview);
+        ViewUtils.setSelected(open, binding.vidAssFlashlightIgview);
     }
 }

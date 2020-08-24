@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 
 import com.google.zxing.Result;
@@ -22,20 +21,19 @@ import com.luck.picture.lib.entity.LocalMedia;
 import java.util.List;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.ActivityScanShapeBinding;
 import afkt.project.util.ProjectUtils;
 import afkt.project.util.zxing.PreviewCallback;
 import afkt.project.util.zxing.decode.DecodeConfig;
 import afkt.project.util.zxing.decode.DecodeFormat;
 import afkt.project.util.zxing.decode.DecodeResult;
 import afkt.project.util.zxing.decode.DecodeThread;
-import butterknife.BindView;
-import butterknife.OnClick;
-import dev.base.widget.BaseImageView;
 import dev.other.ZXingQRCodeUtils;
 import dev.other.picture.PictureSelectorUtils;
 import dev.utils.app.FlashlightUtils;
 import dev.utils.app.HandlerUtils;
+import dev.utils.app.ListenerUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.assist.BeepVibrateAssist;
 import dev.utils.app.assist.InactivityTimerAssist;
@@ -51,29 +49,22 @@ import dev.widget.ui.ScanShapeView;
  * detail: 二维码扫描解析
  * @author Ttt
  */
-public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeResult {
+public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> implements DecodeResult {
 
-    // = View =
-    @BindView(R.id.vid_ass_surface)
-    SurfaceView   vid_ass_surface;
-    @BindView(R.id.vid_ass_scanview)
-    ScanShapeView vid_ass_scanview;
-    @BindView(R.id.vid_ass_flashlight_igview)
-    BaseImageView vid_ass_flashlight_igview;
     // 无操作计时辅助类
     private InactivityTimerAssist mInactivityTimerAssist;
     // 扫描成功响声 + 震动
     private BeepVibrateAssist     mBeepVibrateAssist;
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_scan_shape;
     }
 
     @Override
     protected void onDestroy() {
         // 销毁处理
-        vid_ass_scanview.destroy();
+        binding.vidAssScanview.destroy();
         // 结束计时
         mInactivityTimerAssist.onDestroy();
         super.onDestroy();
@@ -87,10 +78,10 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
         // 开始计时
         mInactivityTimerAssist.onResume();
         // 开始动画
-        vid_ass_scanview.startAnim();
+        binding.vidAssScanview.startAnim();
         try {
             // 添加回调
-            vid_ass_surface.getHolder().addCallback(mHolderCallBack);
+            binding.vidAssSurface.getHolder().addCallback(mHolderCallBack);
         } catch (Exception e) {
         }
     }
@@ -107,7 +98,7 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
         // 暂停计时
         mInactivityTimerAssist.onPause();
         // 停止动画
-        vid_ass_scanview.stopAnim();
+        binding.vidAssScanview.stopAnim();
         try {
             // 停止预览
             cameraAssist.stopPreview();
@@ -128,13 +119,20 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
         // 设置扫描成功响声 + 震动
         mBeepVibrateAssist = new BeepVibrateAssist(this, R.raw.dev_beep);
         // 设置扫描类型
-        ProjectUtils.refShape(vid_ass_scanview, ScanShapeView.Shape.Square);
+        ProjectUtils.refShape(binding.vidAssScanview, ScanShapeView.Shape.Square);
         // 显示图片识别按钮
         ViewUtils.setVisibility(true, findViewById(R.id.vid_ass_image_igview));
     }
 
-    @OnClick({R.id.vid_ass_flashlight_igview, R.id.vid_ass_square_igview,
-            R.id.vid_ass_hexagon_igview, R.id.vid_ass_annulus_igview, R.id.vid_ass_image_igview})
+    @Override
+    public void initListener() {
+        super.initListener();
+
+        ListenerUtils.setOnClicks(this, binding.vidAssFlashlightIgview,
+                binding.vidAssSquareIgview, binding.vidAssHexagonIgview, binding.vidAssAnnulusIgview,
+                binding.vidAssImageIgview);
+    }
+
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -145,16 +143,16 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
                     return;
                 }
                 // 设置开关
-                setFlashlight(!ViewUtils.isSelected(vid_ass_flashlight_igview));
+                setFlashlight(!ViewUtils.isSelected(binding.vidAssFlashlightIgview));
                 break;
             case R.id.vid_ass_square_igview:
-                ProjectUtils.refShape(vid_ass_scanview, ScanShapeView.Shape.Square);
+                ProjectUtils.refShape(binding.vidAssScanview, ScanShapeView.Shape.Square);
                 break;
             case R.id.vid_ass_hexagon_igview:
-                ProjectUtils.refShape(vid_ass_scanview, ScanShapeView.Shape.Hexagon);
+                ProjectUtils.refShape(binding.vidAssScanview, ScanShapeView.Shape.Hexagon);
                 break;
             case R.id.vid_ass_annulus_igview:
-                ProjectUtils.refShape(vid_ass_scanview, ScanShapeView.Shape.Annulus);
+                ProjectUtils.refShape(binding.vidAssScanview, ScanShapeView.Shape.Annulus);
                 break;
             case R.id.vid_ass_image_igview:
                 // 初始化图片配置
@@ -236,7 +234,7 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
                 parameters.setPreviewSize(size.width, size.height);
                 camera.setParameters(parameters);
                 // 打开摄像头
-                cameraAssist.openDriver(vid_ass_surface.getHolder());
+                cameraAssist.openDriver(binding.vidAssSurface.getHolder());
                 // 初始化预览回调
                 mPreviewCallback = new PreviewCallback(size);
                 // 初始化获取 Handler
@@ -261,7 +259,7 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
                         public Rect getCropRect() {
                             if (mCropRect == null) {
                                 // 获取扫描区域
-                                RectF rectF = vid_ass_scanview.getRegion();
+                                RectF rectF = binding.vidAssScanview.getRegion();
                                 // 重设扫描区域
                                 Rect rect = new Rect();
                                 rect.left = (int) rectF.left;
@@ -330,7 +328,7 @@ public class QRCodeScanActivity extends BaseToolbarActivity implements DecodeRes
         } else {
             cameraAssist.setFlashlightOff();
         }
-        ViewUtils.setSelected(open, vid_ass_flashlight_igview);
+        ViewUtils.setSelected(open, binding.vidAssFlashlightIgview);
     }
 
     // ================

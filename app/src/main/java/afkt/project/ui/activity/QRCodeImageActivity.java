@@ -12,14 +12,13 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
-import butterknife.BindView;
-import butterknife.OnClick;
-import dev.base.widget.BaseTextView;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.ActivityQrcodeImageBinding;
 import dev.other.ZXingQRCodeUtils;
 import dev.other.picture.PictureSelectorUtils;
 import dev.utils.app.ClipboardUtils;
 import dev.utils.app.HandlerUtils;
+import dev.utils.app.ListenerUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.TextViewUtils;
 import dev.utils.app.image.ImageUtils;
@@ -31,20 +30,23 @@ import dev.utils.common.ThrowableUtils;
  * detail: 二维码图片解析
  * @author Ttt
  */
-public class QRCodeImageActivity extends BaseToolbarActivity {
+public class QRCodeImageActivity extends BaseActivity<ActivityQrcodeImageBinding> {
 
-    // = View =
-    @BindView(R.id.vid_aqi_tv)
-    BaseTextView vid_aqi_tv;
     // 图片 Bitmap
     Bitmap selectBitmap;
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_qrcode_image;
     }
 
-    @OnClick({R.id.vid_aqi_select_btn, R.id.vid_aqi_tv})
+    @Override
+    public void initListener() {
+        super.initListener();
+        ListenerUtils.setOnClicks(this,
+                binding.vidAqiSelectBtn, binding.vidAqiTv);
+    }
+
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -58,7 +60,7 @@ public class QRCodeImageActivity extends BaseToolbarActivity {
                 PictureSelectorUtils.openGallery(PictureSelector.create(this), picConfig);
                 break;
             case R.id.vid_aqi_tv:
-                String text = TextViewUtils.getText(vid_aqi_tv);
+                String text = TextViewUtils.getText(binding.vidAqiTv);
                 if (TextUtils.isEmpty(text)) return;
                 // 复制到剪切板
                 ClipboardUtils.copyText(text);
@@ -94,9 +96,9 @@ public class QRCodeImageActivity extends BaseToolbarActivity {
                                 StringBuilder builder = new StringBuilder();
                                 builder.append("二维码解析数据: \n");
                                 builder.append(DevCommonUtils.toCheckValue("null", ZXingQRCodeUtils.getResultData(result)));
-                                TextViewUtils.setText(vid_aqi_tv, builder.toString());
+                                TextViewUtils.setText(binding.vidAqiTv, builder.toString());
                             } else {
-                                TextViewUtils.setText(vid_aqi_tv, "图片非二维码 / 识别失败\n" + ThrowableUtils.getThrowableStackTrace(e));
+                                TextViewUtils.setText(binding.vidAqiTv, "图片非二维码 / 识别失败\n" + ThrowableUtils.getThrowableStackTrace(e));
                             }
                         }
                     });

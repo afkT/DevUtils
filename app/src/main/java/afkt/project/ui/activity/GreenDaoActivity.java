@@ -17,17 +17,15 @@ import java.util.Date;
 import java.util.List;
 
 import afkt.project.R;
-import afkt.project.base.app.BaseToolbarActivity;
+import afkt.project.base.app.BaseActivity;
+import afkt.project.databinding.ActivityGreenDaoBinding;
 import afkt.project.db.GreenManager;
 import afkt.project.db.Note;
 import afkt.project.db.NotePicture;
 import afkt.project.db.NotePictureDao;
 import afkt.project.db.NoteType;
 import afkt.project.ui.adapter.GreenDaoAdapter;
-import butterknife.BindView;
-import butterknife.OnClick;
 import dev.assist.PageAssist;
-import dev.base.widget.BaseRefreshView;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.common.ChineseUtils;
@@ -47,14 +45,10 @@ import dev.utils.common.RandomUtils;
  *     @see <a href="https://blog.csdn.net/speedystone/article/details/74193053"/>
  * </pre>
  */
-public class GreenDaoActivity extends BaseToolbarActivity {
-
-    // = View =
-    @BindView(R.id.vid_agd_refresh)
-    BaseRefreshView vid_agd_refresh;
+public class GreenDaoActivity extends BaseActivity<ActivityGreenDaoBinding> {
 
     @Override
-    public int getLayoutId() {
+    public int layoutId() {
         return R.layout.activity_green_dao;
     }
 
@@ -65,7 +59,7 @@ public class GreenDaoActivity extends BaseToolbarActivity {
         ToastTintUtils.info("侧滑可进行删除, 长按拖动位置");
 
         // 初始化布局管理器、适配器
-        vid_agd_refresh.setAdapter(new GreenDaoAdapter())
+        binding.vidAgdRefresh.setAdapter(new GreenDaoAdapter())
                 .setPageAssist(new PageAssist<>(0, 8));
         // 加载数据
         loadData(true);
@@ -75,7 +69,7 @@ public class GreenDaoActivity extends BaseToolbarActivity {
     public void initListener() {
         super.initListener();
         // 刷新事件
-        vid_agd_refresh.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+        binding.vidAgdRefresh.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 loadData(true);
@@ -116,7 +110,7 @@ public class GreenDaoActivity extends BaseToolbarActivity {
              */
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                GreenDaoAdapter adapter = vid_agd_refresh.getAdapter();
+                GreenDaoAdapter adapter = binding.vidAgdRefresh.getAdapter();
                 int fromPosition = viewHolder.getAdapterPosition();
                 int toPosition = target.getAdapterPosition();
                 Collections.swap(adapter.getData(), fromPosition, toPosition);
@@ -133,7 +127,7 @@ public class GreenDaoActivity extends BaseToolbarActivity {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
                 if (direction == ItemTouchHelper.LEFT || direction == ItemTouchHelper.RIGHT) {
-                    GreenDaoAdapter adapter = vid_agd_refresh.getAdapter();
+                    GreenDaoAdapter adapter = binding.vidAgdRefresh.getAdapter();
                     Note note = adapter.getData().remove(position);
                     adapter.notifyItemRemoved(position);
                     // 删除文章
@@ -146,16 +140,12 @@ public class GreenDaoActivity extends BaseToolbarActivity {
                 }
             }
         });
-        itemTouchHelper.attachToRecyclerView(vid_agd_refresh.getRecyclerView());
-    }
+        itemTouchHelper.attachToRecyclerView(binding.vidAgdRefresh.getRecyclerView());
 
-    @OnClick({R.id.vid_agd_add_btn})
-    @Override
-    public void onClick(View v) {
-        super.onClick(v);
-        switch (v.getId()) {
-            case R.id.vid_agd_add_btn:
-                if (vid_agd_refresh.getAdapter().getData().isEmpty()) { // 不存在数据
+        binding.vidAgdAddBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (binding.vidAgdRefresh.getAdapter().getData().isEmpty()) { // 不存在数据
                     randomData(13);
                     // 加载数据
                     loadData(true);
@@ -164,8 +154,8 @@ public class GreenDaoActivity extends BaseToolbarActivity {
                     // 进行提示
                     ToastTintUtils.success("添加成功, 上拉加载数据");
                 }
-                break;
-        }
+            }
+        });
     }
 
     // ============
@@ -213,8 +203,8 @@ public class GreenDaoActivity extends BaseToolbarActivity {
      * @param refresh 是否刷新
      */
     private void loadData(boolean refresh) {
-        PageAssist pageAssist = vid_agd_refresh.getPageAssist();
-        GreenDaoAdapter adapter = vid_agd_refresh.getAdapter();
+        PageAssist pageAssist = binding.vidAgdRefresh.getPageAssist();
+        GreenDaoAdapter adapter = binding.vidAgdRefresh.getAdapter();
         // 刷新则重置页数
         if (refresh) pageAssist.reset();
 
@@ -236,7 +226,7 @@ public class GreenDaoActivity extends BaseToolbarActivity {
         }
 
         // 结束刷新、加载
-        vid_agd_refresh.finishRefreshOrLoad(refresh);
+        binding.vidAgdRefresh.finishRefreshOrLoad(refresh);
     }
 
     /**
@@ -252,14 +242,14 @@ public class GreenDaoActivity extends BaseToolbarActivity {
     private List<Note> offsetLimitCalculate(boolean refresh) {
         int offset, limit;
 
-        int pageSize = vid_agd_refresh.getPageAssist().getPageSize();
+        int pageSize = binding.vidAgdRefresh.getPageAssist().getPageSize();
 
         if (refresh) {
             offset = 0;
             limit = pageSize;
         } else {
             // 获取当前数据条数
-            int size = vid_agd_refresh.getAdapter().getData().size();
+            int size = binding.vidAgdRefresh.getAdapter().getData().size();
             // 计算当前数据实际页数
             int page = size / pageSize;
             int remainder = size % pageSize;
