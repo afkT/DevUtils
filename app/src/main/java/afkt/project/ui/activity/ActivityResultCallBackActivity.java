@@ -30,14 +30,9 @@ public class ActivityResultCallBackActivity extends BaseActivity<ActivityActivit
     @Override
     public void initListener() {
         super.initListener();
-        binding.vidAarcSelectBtn.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        super.onClick(v);
-        switch (v.getId()) {
-            case R.id.vid_aarc_select_btn:
+        binding.vidAarcSelectBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 AppUtils.startActivityForResult(new ActivityUtils.ResultCallback() {
                     @Override
                     public boolean onStartActivityForResult(Activity activity) {
@@ -63,7 +58,7 @@ public class ActivityResultCallBackActivity extends BaseActivity<ActivityActivit
                         }
                     }
                 });
-                break;
-        }
+            }
+        });
     }
 }
