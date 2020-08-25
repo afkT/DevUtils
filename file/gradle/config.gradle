@@ -146,6 +146,10 @@ ext {
                     butterknife_compiler         : "com.jakewharton:butterknife-compiler:10.2.2",
                     // Kotlin ButterKnife https://github.com/JakeWharton/kotterknife
                     kotterknife                  : "com.jakewharton:kotterknife:0.1.0-SNAPSHOT",
+                    // Anchors 启动框架 https://github.com/YummyLau/Anchors/blob/master/README-zh.md
+                    anchors                      : "com.effective.android:anchors:1.1.1",
+                    // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
+                    panelSwitchHelper            : "com.effective.android:panelSwitchHelper-androidx:1.3.8",
                     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
                     pictureSelector              : "com.github.LuckSiege.PictureSelector:picture_library:v2.5.8",
                     // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 ) https://github.com/google/flexbox-layout

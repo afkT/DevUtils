@@ -51,9 +51,6 @@ dependencies {
     // = 快捷开发库 =
     // ==============
 
-    // View 注入框架 https://github.com/JakeWharton/butterknife
-    implementation deps.lib.butterknife
-    kapt deps.lib.butterknife_compiler
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
     implementation deps.lib.okhttp3
     implementation deps.lib.okhttp3_logging
@@ -132,7 +129,6 @@ dependencies {
     implementation deps.lib.stickyDecoration
     // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
     implementation deps.lib.xcrash
-
 
     // 内存检测工具 https://github.com/square/leakcanary
     debugImplementation deps.lib.leakcanary
