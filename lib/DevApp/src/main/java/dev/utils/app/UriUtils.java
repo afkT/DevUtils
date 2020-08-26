@@ -14,10 +14,12 @@ import android.text.TextUtils;
 import androidx.core.content.FileProvider;
 
 import java.io.File;
+import java.io.InputStream;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.CloseUtils;
+import dev.utils.common.FileIOUtils;
 import dev.utils.common.FileUtils;
 
 /**
@@ -175,6 +177,42 @@ public final class UriUtils {
         return ContentResolverUtils.getMediaUri(uri, filePath);
     }
 
+    // ============
+    // = 复制文件 =
+    // ============
+
+    /**
+     * 通过 Uri 复制文件
+     * @param uri {@link Uri}
+     * @return 复制后的文件路径
+     */
+    public static String copyByUri(final Uri uri) {
+        return copyByUri(uri, ContentResolverUtils.getDisplayNameColumn(uri));
+    }
+
+    /**
+     * 通过 Uri 复制文件
+     * @param uri      {@link Uri}
+     * @param fileName 文件名 {@link ContentResolverUtils#getDisplayNameColumn}
+     * @return 复制后的文件路径
+     */
+    public static String copyByUri(final Uri uri, final String fileName) {
+        if (uri == null) return null;
+        InputStream is = null;
+        try {
+            String child = TextUtils.isEmpty(fileName) ? System.currentTimeMillis() + "" : fileName;
+            is = ResourceUtils.openInputStream(uri);
+            File file = new File(PathUtils.getAppExternal().getAppCacheDir(), child);
+            FileIOUtils.writeFileFromIS(file.getAbsolutePath(), is);
+            return file.getAbsolutePath();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "copyByUri");
+        } finally {
+            CloseUtils.closeIO(is);
+        }
+        return null;
+    }
+
     // ================
     // = 获取文件路径 =
     // ================
@@ -185,7 +223,23 @@ public final class UriUtils {
      * @return 文件路径
      */
     public static String getFilePathByUri(final Uri uri) {
+        return getFilePathByUri(uri, false);
+    }
+
+    /**
+     * 通过 Uri 获取文件路径
+     * <pre>
+     *     默认不复制文件, 防止影响已经使用该方法的功能 ( 文件过大导致 ANR、耗时操作等 )
+     * </pre>
+     * @param uri     {@link Uri}
+     * @param isQCopy Android Q 及其以上版本是否复制文件
+     * @return 文件路径
+     */
+    public static String getFilePathByUri(final Uri uri, final boolean isQCopy) {
         try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && isQCopy) {
+                return copyByUri(uri);
+            }
             return getFilePathByUri(DevUtils.getContext(), uri);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getFilePathByUri");

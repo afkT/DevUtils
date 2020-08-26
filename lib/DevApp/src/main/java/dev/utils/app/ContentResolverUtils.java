@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.text.TextUtils;
 
 import androidx.annotation.RequiresApi;
@@ -62,6 +63,29 @@ public final class ContentResolverUtils {
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getDataColumn");
+        } finally {
+            CloseUtils.closeIOQuietly(cursor);
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Uri Cursor 对应条件的数据行 display_name 字段
+     * @param uri {@link Uri}
+     * @return 对应条件的数据行 display_name 字段
+     */
+    public static String getDisplayNameColumn(final Uri uri) {
+        Cursor cursor = null;
+        final String column = OpenableColumns.DISPLAY_NAME;
+        final String[] projection = {column};
+        try {
+            cursor = ResourceUtils.getContentResolver().query(uri, projection, null, null, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                final int column_index = cursor.getColumnIndexOrThrow(column);
+                return cursor.getString(column_index);
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getDisplayNameColumn");
         } finally {
             CloseUtils.closeIOQuietly(cursor);
         }
