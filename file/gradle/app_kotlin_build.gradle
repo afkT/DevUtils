@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    // data binding
+    // Data binding
     buildFeatures {
         dataBinding = true
     }
@@ -25,9 +25,9 @@ android {
 dependencies {
     compileOnly deps.kotlin.stdlib
     compileOnly deps.androidx.core_ktx
+    compileOnly deps.androidx.design
     compileOnly deps.androidx.appcompat
     compileOnly deps.androidx.support_v4
-    compileOnly deps.androidx.design
     compileOnly deps.androidx.cardview
     compileOnly deps.androidx.recyclerview
     compileOnly deps.androidx.multidex
@@ -43,9 +43,9 @@ dependencies {
     compileOnly project(path: ':DevAssist')
     compileOnly project(path: ':DevWidget')
 
-    // ============
-    // = 第三方库 =
-    // ============
+    // ==============
+    // = 快捷开发库 =
+    // ==============
 
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
     compileOnly deps.lib.okhttp3

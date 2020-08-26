@@ -6,9 +6,9 @@ android.defaultConfig {
 }
 
 dependencies {
+    compileOnly deps.androidx.design
     compileOnly deps.androidx.appcompat
     compileOnly deps.androidx.support_v4
-    compileOnly deps.androidx.design
 
     // 编译时使用
     api project(path: ':DevApp')

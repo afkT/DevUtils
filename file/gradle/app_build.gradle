@@ -25,7 +25,7 @@ android {
 //        }
     }
 
-    // data binding
+    // Data binding
     buildFeatures {
         dataBinding = true
     }
@@ -82,9 +82,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation deps.kotlin.stdlib
     implementation deps.androidx.core_ktx
+    implementation deps.androidx.design
     implementation deps.androidx.appcompat
     implementation deps.androidx.support_v4
-    implementation deps.androidx.design
     implementation deps.androidx.cardview
     implementation deps.androidx.recyclerview
     implementation deps.androidx.multidex
