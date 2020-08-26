@@ -1,7 +1,7 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-afkT-blue.svg)](https://github.com/afkT)
 [![GitHub license](https://img.shields.io/github/license/afkT/DevUtils.svg)](https://github.com/afkT/DevUtils/blob/master/LICENSE)
-[![Bintray](https://img.shields.io/badge/DevUtils-1.9.8-brightgreen.svg)](https://bintray.com/afkt/maven/DevAppX)
+[![Bintray](https://img.shields.io/badge/DevUtils-1.9.9-brightgreen.svg)](https://bintray.com/afkt/maven/DevAppX)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Utils](https://img.shields.io/badge/utils-160+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
@@ -66,7 +66,7 @@
 ```java
 
 // DevApp Android 工具类库
-implementation 'com.afkt:DevAppX:1.9.8'
+implementation 'com.afkt:DevAppX:1.9.9'
 
 // DevJava Java 工具类库 ( 不依赖 android api )
 implementation 'com.afkt:DevJava:1.1.3' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
