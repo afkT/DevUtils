@@ -88,8 +88,9 @@ ext {
             ],
             'androidx': [
                     // https://developer.android.com/jetpack/androidx/migrate/artifact-mappings
-                    // https://developer.android.google.cn/jetpack/androidx/migrate/class-mappings?hl=zh_cn
                     // https://developer.android.com/jetpack/androidx/versions
+                    // https://developer.android.com/jetpack/androidx/explorer
+
                     core_ktx         : "androidx.core:core-ktx:1.1.0",
                     appcompat        : "androidx.appcompat:appcompat:1.1.0",
                     support_v4       : "androidx.legacy:legacy-support-v4:1.0.0",

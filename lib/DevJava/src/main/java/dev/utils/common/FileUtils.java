@@ -501,6 +501,60 @@ public final class FileUtils {
         return file != null && file.exists() && file.isHidden();
     }
 
+    /**
+     * 文件是否可读
+     * @param filePath 文件路径
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean canRead(final String filePath) {
+        return canRead(getFileByPath(filePath));
+    }
+
+    /**
+     * 文件是否可读
+     * @param file 文件
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean canRead(final File file) {
+        return file != null && file.exists() && file.canRead();
+    }
+
+    /**
+     * 文件是否可写
+     * @param filePath 文件路径
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean canWrite(final String filePath) {
+        return canWrite(getFileByPath(filePath));
+    }
+
+    /**
+     * 文件是否可写
+     * @param file 文件
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean canWrite(final File file) {
+        return file != null && file.exists() && file.canWrite();
+    }
+
+    /**
+     * 文件是否可读写
+     * @param filePath 文件路径
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean canReadWrite(final String filePath) {
+        return canReadWrite(getFileByPath(filePath));
+    }
+
+    /**
+     * 文件是否可读写
+     * @param file 文件
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean canReadWrite(final File file) {
+        return file != null && file.exists() && file.canRead() && file.canWrite();
+    }
+
     // =
 
     /**
