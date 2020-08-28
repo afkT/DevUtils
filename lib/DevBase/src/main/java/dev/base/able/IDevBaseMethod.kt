@@ -9,7 +9,12 @@ interface IDevBaseMethod {
     /**
      * 初始化顺序
      */
-    fun initOrder()
+    fun initOrder() {
+        initView()
+        initValue()
+        initListener()
+        initOther()
+    }
 
     // ==============
     // = 初始化方法 =

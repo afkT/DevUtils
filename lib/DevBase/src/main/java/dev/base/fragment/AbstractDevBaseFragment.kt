@@ -179,13 +179,6 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
     // = IDevBaseMethod =
     // ==================
 
-    override fun initOrder() {
-        initView()
-        initValue()
-        initListener()
-        initOther()
-    }
-
     // ==============
     // = 初始化方法 =
     // ==============

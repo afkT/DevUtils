@@ -17,8 +17,8 @@ import dev.widget.function.SignView;
 public class SignActivity extends BaseActivity<ViewBinding> {
 
     @Override
-    public boolean isTryViewBindingCatch() {
-        return true;
+    public boolean isViewBinding() {
+        return false;
     }
 
     @Override
