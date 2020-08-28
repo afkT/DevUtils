@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevJava:1.1.3'
+implementation 'com.afkt:DevJava:1.1.4'
 ```
 
 ## 目录结构
@@ -540,6 +540,9 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | isFile | 判断是否文件 |
 | isDirectory | 判断是否文件夹 |
 | isHidden | 判断是否隐藏文件 |
+| canRead | 文件是否可读 |
+| canWrite | 文件是否可写 |
+| canReadWrite | 文件是否可读写 |
 | getFileLastModified | 获取文件最后修改的毫秒时间戳 |
 | getFileCharsetSimple | 获取文件编码格式 |
 | getFileLines | 获取文件行数 |

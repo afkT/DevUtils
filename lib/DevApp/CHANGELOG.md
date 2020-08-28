@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 2.0.0 *(2020-08-29)*
+----------------------------
+
+* `[Add]` FileUtils#canRead、canWrite、canReadWrite
+
 Version 1.9.9 *(2020-08-27)*
 ----------------------------
 
