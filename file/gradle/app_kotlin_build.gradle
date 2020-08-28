@@ -24,7 +24,7 @@ android {
 
 dependencies {
     compileOnly deps.kotlin.stdlib
-    compileOnly deps.androidx.core_ktx
+    compileOnly deps.kotlin.core_ktx
     compileOnly deps.androidx.design
     compileOnly deps.androidx.appcompat
     compileOnly deps.androidx.support_v4

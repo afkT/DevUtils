@@ -84,14 +84,14 @@ ext {
                     dev_environment_compiler_release: "com.afkt:DevEnvironmentCompilerRelease:${versions.dev_environment_compiler_release_version}"
             ],
             'kotlin'  : [
-                    stdlib: "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin_version}",
+                    stdlib  : "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin_version}",
+                    core_ktx: "androidx.core:core-ktx:1.1.0",
             ],
             'androidx': [
                     // https://developer.android.com/jetpack/androidx/migrate/artifact-mappings
                     // https://developer.android.com/jetpack/androidx/versions
                     // https://developer.android.com/jetpack/androidx/explorer
 
-                    core_ktx         : "androidx.core:core-ktx:1.1.0",
                     appcompat        : "androidx.appcompat:appcompat:1.1.0",
                     support_v4       : "androidx.legacy:legacy-support-v4:1.0.0",
                     design           : "com.google.android.material:material:1.1.0",
