@@ -27,6 +27,7 @@ dependencies {
     compileOnly deps.kotlin.core_ktx
     compileOnly deps.androidx.design
     compileOnly deps.androidx.appcompat
+    compileOnly deps.androidx.appcompat_resources
     compileOnly deps.androidx.support_v4
     compileOnly deps.androidx.cardview
     compileOnly deps.androidx.recyclerview

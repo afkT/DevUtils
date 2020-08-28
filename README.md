@@ -9,7 +9,7 @@
 
 > DevUtils 是一个 Android 工具库，主要根据不同功能模块，封装快捷使用的工具类及 API 方法调用
 >
-> 该项目尽可能的便于开发人员，快捷、高效开发安全可靠的项目，以及内置部分常用的资源文件，如 color.xml
+> 该项目尽可能的便于开发人员，快捷、高效开发安全可靠的项目。
 
 ![module](https://github.com/afkT/DevUtils/raw/master/art/module.png)
 
