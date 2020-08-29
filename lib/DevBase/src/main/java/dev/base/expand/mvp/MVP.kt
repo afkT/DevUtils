@@ -53,23 +53,23 @@ class MVP private constructor() {
     open class Presenter<V : IView, M : IModel> : IPresenter<V> {
 
         constructor(view: V) {
-            this.mView = view
+            this.mvpView = view
         }
 
         // IView
         @JvmField
-        protected var mView: V? = null
+        protected var mvpView: V? = null
 
         // IModel
         @JvmField
-        protected var mModel: M? = null
+        protected var mvpModel: M? = null
 
         override fun attachView(view: V) {
-            mView = view
+            mvpView = view
         }
 
         override fun detachView() {
-            mView = null
+            mvpView = null
         }
     }
 }

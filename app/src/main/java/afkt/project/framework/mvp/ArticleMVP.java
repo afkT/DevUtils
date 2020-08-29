@@ -63,7 +63,7 @@ public final class ArticleMVP {
 
         public Presenter(ArticleMVP.View view) {
             super(view);
-            mModel = new Model() {
+            mvpModel = new Model() {
                 @Override
                 public void requestArticleLists() {
                     // 映射各种 JSON 实体类
@@ -72,26 +72,26 @@ public final class ArticleMVP {
                             .subscribeWith(new BaseBeanSubscriber<ArticleBean>() {
                                 @Override
                                 public void onSuccessResponse(ArticleBean data) {
-                                    if (mView != null) {
-                                        mView.onArticleListResponse(true, data);
+                                    if (mvpView != null) {
+                                        mvpView.onArticleListResponse(true, data);
                                     }
                                 }
 
                                 @Override
                                 public void onErrorResponse(Throwable throwable, String message) {
-                                    if (mView != null) {
-                                        mView.onArticleListResponse(false, null);
+                                    if (mvpView != null) {
+                                        mvpView.onArticleListResponse(false, null);
                                     }
                                 }
                             });
-                    mView.addDisposable(articleList);
+                    mvpView.addDisposable(articleList);
                 }
             };
         }
 
         @Override
         public void getArticleLists() {
-            mModel.requestArticleLists();
+            mvpModel.requestArticleLists();
         }
     }
 }
