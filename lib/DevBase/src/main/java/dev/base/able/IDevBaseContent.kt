@@ -12,11 +12,11 @@ interface IDevBaseContent {
      * 获取 Content Layout Id
      * @return Content Layout Id
      */
-    fun contentId(): Int
+    fun baseContentId(): Int
 
     /**
      * 获取 Content Layout View
      * @return Content Layout View
      */
-    fun contentView(): View?
+    fun baseContentView(): View?
 }

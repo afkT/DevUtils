@@ -36,7 +36,7 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
     protected var mContentView: View? = null
 
     @JvmField // DevBase 合并相同代码辅助类
-    protected var mAssist = DevBaseAssist()
+    protected var assist = DevBaseAssist()
 
     // ============
     // = 生命周期 =
@@ -47,7 +47,7 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
         // 获取当前类名
         TAG = this.javaClass.simpleName
         // 设置数据
-        mAssist
+        assist
             .setTag(TAG)
             .setContext(context)
             .printLog("onAttach")
@@ -57,18 +57,18 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
 
     override fun onDetach() {
         super.onDetach()
-        mAssist.printLog("onDetach")
+        assist.printLog("onDetach")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mAssist.printLog("onCreate")
+        assist.printLog("onCreate")
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        mAssist.printLog("onCreateView")
+        assist.printLog("onCreateView")
         // 获取 Activity
         mActivity = activity
 
@@ -85,61 +85,61 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAssist.printLog("onViewCreated")
+        assist.printLog("onViewCreated")
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        mAssist
+        assist
             .printLog("onHiddenChanged - hidden: $hidden")
             .setCurrentVisible(!hidden)
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        mAssist
+        assist
             .printLog("setUserVisibleHint")
             .setCurrentVisible(userVisibleHint)
     }
 
     override fun onStart() {
         super.onStart()
-        mAssist
+        assist
             .printLog("onStart")
             .setCurrentVisible(true)
     }
 
     override fun onResume() {
         super.onResume()
-        mAssist
+        assist
             .printLog("onResume")
             .setCurrentVisible(true)
     }
 
     override fun onPause() {
         super.onPause()
-        mAssist
+        assist
             .printLog("onPause")
             .setCurrentVisible(false)
     }
 
     override fun onStop() {
         super.onStop()
-        mAssist
+        assist
             .printLog("onStop")
             .setCurrentVisible(false)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        mAssist
+        assist
             .printLog("onDestroyView")
             .setCurrentVisible(false)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mAssist
+        assist
             .printLog("onDestroy")
             .setCurrentVisible(false)
     }
@@ -163,16 +163,16 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
      */
     private fun contentInit(inflater: LayoutInflater, container: ViewGroup?) {
         if (mContentView != null) return
-        // 使用 contentId()
-        if (contentId() != 0) {
+        // 使用 baseContentId()
+        if (baseContentId() != 0) {
             try {
-                mContentView = inflater.inflate(contentId(), container, false)
+                mContentView = inflater.inflate(baseContentId(), container, false)
             } catch (e: Exception) {
-                mAssist.printLog(e, "contentInit - contentId")
+                assist.printLog(e, "contentInit - baseContentId")
             }
         }
-        // 如果 View 等于 null, 则使用 contentView()
-        if (mContentView == null) mContentView = contentView()
+        // 如果 View 等于 null, 则使用 baseContentView()
+        if (mContentView == null) mContentView = baseContentView()
     }
 
     // ==================
@@ -184,19 +184,19 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
     // ==============
 
     override fun initView() {
-        mAssist.printLog("initView")
+        assist.printLog("initView")
     }
 
     override fun initValue() {
-        mAssist.printLog("initValue")
+        assist.printLog("initValue")
     }
 
     override fun initListener() {
-        mAssist.printLog("initListener")
+        assist.printLog("initListener")
     }
 
     override fun initOther() {
-        mAssist.printLog("initOther")
+        assist.printLog("initOther")
     }
 
     // =======================
@@ -204,50 +204,50 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
     // =======================
 
     override fun isCurrentVisible(): Boolean {
-        return mAssist.isCurrentVisible()
+        return assist.isCurrentVisible()
     }
 
     override fun showToast(text: String?, vararg formatArgs: Any) {
-        mAssist.showToast(text, formatArgs)
+        assist.showToast(text, formatArgs)
     }
 
     override fun showToast(resId: Int, vararg formatArgs: Any) {
-        mAssist.showToast(resId, formatArgs)
+        assist.showToast(resId, formatArgs)
     }
 
     override fun getDevPopupWindow(): PopupWindow? {
-        return mAssist.getDevPopupWindow()
+        return assist.getDevPopupWindow()
     }
 
     override fun <T : PopupWindow?> setDevPopupWindow(popupWindow: T): T {
-        return mAssist.setDevPopupWindow(popupWindow)
+        return assist.setDevPopupWindow(popupWindow)
     }
 
     override fun <T : PopupWindow?> setDevPopupWindow(isClose: Boolean, popupWindow: T): T {
-        return mAssist.setDevPopupWindow(isClose, popupWindow)
+        return assist.setDevPopupWindow(isClose, popupWindow)
     }
 
     override fun getDevDialog(): Dialog? {
-        return mAssist.getDevDialog()
+        return assist.getDevDialog()
     }
 
     override fun <T : Dialog?> setDevDialog(dialog: T): T {
-        return mAssist.setDevDialog(dialog)
+        return assist.setDevDialog(dialog)
     }
 
     override fun <T : Dialog?> setDevDialog(isClose: Boolean, dialog: T): T {
-        return mAssist.setDevDialog(isClose, dialog)
+        return assist.setDevDialog(isClose, dialog)
     }
 
     override fun getDevDialogFragment(): DialogFragment? {
-        return mAssist.getDevDialogFragment()
+        return assist.getDevDialogFragment()
     }
 
     override fun <T : DialogFragment?> setDevDialogFragment(dialog: T): T {
-        return mAssist.setDevDialogFragment(dialog)
+        return assist.setDevDialogFragment(dialog)
     }
 
     override fun <T : DialogFragment?> setDevDialogFragment(isClose: Boolean, dialog: T): T {
-        return mAssist.setDevDialogFragment(isClose, dialog)
+        return assist.setDevDialogFragment(isClose, dialog)
     }
 }

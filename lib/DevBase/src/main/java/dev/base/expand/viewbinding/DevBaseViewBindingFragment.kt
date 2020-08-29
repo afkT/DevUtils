@@ -31,7 +31,7 @@ abstract class DevBaseViewBindingFragment<VB : ViewBinding> : DevBaseFragment(),
                     // ViewBinding 初始化处理
                     _binding = viewBinding(inflater, container)
                 } catch (e: Exception) {
-                    mAssist.printLog(e, "onCreate - viewBinding")
+                    assist.printLog(e, "onCreate - viewBinding")
                 }
             } else {
                 // ViewBinding 初始化处理

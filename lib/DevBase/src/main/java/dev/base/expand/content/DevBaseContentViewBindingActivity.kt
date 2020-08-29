@@ -25,7 +25,7 @@ abstract class DevBaseContentViewBindingActivity<VB : ViewBinding> : DevBaseCont
                     // ViewBinding 初始化处理
                     binding = viewBinding(layoutInflater, null)
                 } catch (e: Exception) {
-                    mAssist.printLog(e, "onCreate - viewBinding")
+                    assist.printLog(e, "onCreate - viewBinding")
                 }
             } else {
                 // ViewBinding 初始化处理

@@ -51,11 +51,11 @@ abstract class DevBaseContentActivity : DevBaseActivity(), IDevBaseLayout {
     // = Content View =
     // ================
 
-    final override fun contentId(): Int {
+    final override fun baseContentId(): Int {
         return R.layout.base_activity
     }
 
-    final override fun contentView(): View? {
+    final override fun baseContentView(): View? {
         return null
     }
 
@@ -75,7 +75,7 @@ abstract class DevBaseContentActivity : DevBaseActivity(), IDevBaseLayout {
             try {
                 layoutView = inflater.inflate(baseLayoutId(), container, false)
             } catch (e: Exception) {
-                mAssist.printLog(e, "layoutInit - baseLayoutId")
+                assist.printLog(e, "layoutInit - baseLayoutId")
             }
         }
         // 如果 View 等于 null, 则使用 baseLayoutView()
