@@ -68,7 +68,7 @@ public class BaseApplication extends MultiDexApplication {
                         .sortLog(true) // 美化日志, 边框包围
                         .methodCount(0)
         );
-        // 打开 lib 内部日志 - 线上环境, 不调用方法就行
+        // 打开 lib 内部日志 - 线上环境, 不调用方法
         DevUtils.openLog();
         DevUtils.openDebug();
 

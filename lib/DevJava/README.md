@@ -26,7 +26,7 @@ implementation 'com.afkt:DevJava:1.1.4'
 
 - 开启日志
 ```java
-// 打开 lib 内部日志 - 线上 (release) 环境，不调用方法就行
+// 打开 lib 内部日志 - 线上 (release) 环境，不调用方法
 JCLogUtils.setPrintLog(true);
 // 控制台打印日志
 JCLogUtils.setControlPrintLog(true);
