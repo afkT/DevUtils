@@ -43,7 +43,7 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
         // 在一开始选型确定后, 才能专门为其设计基类
 
         // MVVM 只需要调用此句绑定
-        viewDataBinding = DataBindingUtil.bind(mLayoutView);
+        viewDataBinding = DataBindingUtil.bind(layoutView);
 
         // = 处理 ActionBar =
         setSupportActionBar(viewDataBinding.vidAamToolbar);

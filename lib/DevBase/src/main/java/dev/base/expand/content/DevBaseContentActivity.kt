@@ -22,26 +22,29 @@ import dev.base.utils.assist.DevBaseContentAssist
 abstract class DevBaseContentActivity : DevBaseActivity(), IDevBaseLayout {
 
     @JvmField // Layout View
-    protected var mLayoutView: View? = null
+    protected var layoutView: View? = null
 
     @JvmField // DevBase ContentView 填充辅助类
-    protected var mContentAssist = DevBaseContentAssist()
+    protected var contentAssist = DevBaseContentAssist()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // 绑定 ContentView 填充辅助类
-        mContentAssist.bind(this)
+        contentAssist.bind(this)
         // Layout View 初始化处理
         layoutInit(layoutInflater, null)
         // 添加到 contentLinear
-//        mContentAssist.addContentView(mLayoutView)
-        mContentAssist.addContentView(
-            mLayoutView,
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT
+        if (isLayoutMatchParent()) {
+            contentAssist.addContentView(
+                layoutView,
+                LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+                )
             )
-        )
+        } else {
+            contentAssist.addContentView(layoutView)
+        }
     }
 
     // ================
@@ -66,16 +69,16 @@ abstract class DevBaseContentActivity : DevBaseActivity(), IDevBaseLayout {
      * @param container [ViewGroup]
      */
     private fun layoutInit(inflater: LayoutInflater, container: ViewGroup?) {
-        if (mLayoutView != null) return
+        if (layoutView != null) return
         // 使用 baseLayoutId()
         if (baseLayoutId() != 0) {
             try {
-                mLayoutView = inflater.inflate(baseLayoutId(), container, false)
+                layoutView = inflater.inflate(baseLayoutId(), container, false)
             } catch (e: Exception) {
                 mAssist.printLog(e, "layoutInit - baseLayoutId")
             }
         }
         // 如果 View 等于 null, 则使用 baseLayoutView()
-        if (mLayoutView == null) mLayoutView = baseLayoutView()
+        if (layoutView == null) layoutView = baseLayoutView()
     }
 }

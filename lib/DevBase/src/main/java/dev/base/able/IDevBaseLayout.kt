@@ -19,4 +19,11 @@ interface IDevBaseLayout {
      * @return Layout View
      */
     fun baseLayoutView(): View?
+
+    /**
+     * Layout View addView 是否 LayoutParams.MATCH_PARENT
+     */
+    fun isLayoutMatchParent(): Boolean {
+        return true
+    }
 }

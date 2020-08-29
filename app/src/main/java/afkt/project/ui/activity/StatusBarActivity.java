@@ -39,9 +39,9 @@ public class StatusBarActivity extends BaseActivity<ActivityStatusBarBinding> {
         statusView.setBackgroundColor(ResourceUtils.getColor(R.color.colorPrimary));
         statusView.setLayoutParams(layoutParams);
 
-        mContentAssist.rootLinear.addView(statusView, 0);
+        contentAssist.rootLinear.addView(statusView, 0);
         // 设置全屏显示, 但是会被状态栏覆盖
-        mContentAssist.rootLinear.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        contentAssist.rootLinear.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
         binding.vidAsbToggleBtn.setOnClickListener(new View.OnClickListener() {
             @Override

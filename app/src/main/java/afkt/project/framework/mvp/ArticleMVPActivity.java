@@ -66,7 +66,7 @@ public class ArticleMVPActivity extends BaseMVPActivity<ArticleMVP.Presenter, Ba
             public void onNotFound(StateLayout layout, int type) {
                 // 切换 View 操作
                 if (type == ViewAssist.TYPE_SUCCESS) {
-                    ViewUtils.reverseVisibilitys(true, mContentAssist.contentLinear, mContentAssist.stateLinear);
+                    ViewUtils.reverseVisibilitys(true, contentAssist.contentLinear, contentAssist.stateLinear);
                 }
             }
 
@@ -75,7 +75,7 @@ public class ArticleMVPActivity extends BaseMVPActivity<ArticleMVP.Presenter, Ba
                 // 判断是否操作成功
                 boolean success = (type == ViewAssist.TYPE_SUCCESS);
                 // 切换 View 操作
-                if (ViewUtils.reverseVisibilitys(success, mContentAssist.contentLinear, mContentAssist.stateLinear)) {
+                if (ViewUtils.reverseVisibilitys(success, contentAssist.contentLinear, contentAssist.stateLinear)) {
                     // 属于请求成功
                 } else {
                     if (type == ViewAssist.TYPE_ING) {

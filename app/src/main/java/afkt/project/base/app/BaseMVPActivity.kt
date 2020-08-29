@@ -77,7 +77,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
     fun insertStateLayout() {
         stateLayout = StateLayout(this)
         // 添加 View
-        mContentAssist.addStateView(
+        contentAssist.addStateView(
             stateLayout,
             LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -162,8 +162,8 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
                     // 如果为 null 特殊处理
                     ViewUtils.reverseVisibilitys(
                         itemCount != 0,
-                        mContentAssist.contentLinear,
-                        mContentAssist.stateLinear
+                        contentAssist.contentLinear,
+                        contentAssist.stateLinear
                     )
                     // 判断是否不存在数据
                     if (itemCount == 0) {
@@ -194,7 +194,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
     fun initToolBar() {
         val titleView = ViewUtils.inflate(this, R.layout.base_toolbar, null)
         toolbar = titleView.findViewById(R.id.vid_bt_toolbar)
-        mContentAssist.addTitleView(titleView)
+        contentAssist.addTitleView(titleView)
 
         setSupportActionBar(toolbar)
         supportActionBar?.let {

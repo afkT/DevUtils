@@ -48,6 +48,6 @@ abstract class DevBaseContentViewBindingActivity<VB : ViewBinding> : DevBaseCont
     }
 
     final override fun getBindingView(): View? {
-        return mLayoutView
+        return layoutView
     }
 }
