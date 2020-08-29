@@ -1,22 +1,52 @@
-include ':app', ':DevApp', ':DevAssist', ':DevBase', ':DevJava', ':DevOther', ':DevStandard', ':DevWidget', ':DevEnvironmentBase', ':DevEnvironmentCompiler', ':DevEnvironmentCompilerRelease', ':DevEnvironment'
+include ':app'
+
+// =======
+// = Lib =
+// =======
+
+include ':DevApp'
 project(':DevApp').projectDir = new File('lib/DevApp')
+
+include ':DevAssist'
 project(':DevAssist').projectDir = new File('lib/DevAssist')
-project(':DevBase').projectDir = new File('lib/DevBase')
+
+include ':DevJava'
 project(':DevJava').projectDir = new File('lib/DevJava')
-project(':DevOther').projectDir = new File('lib/DevOther')
-project(':DevStandard').projectDir = new File('lib/DevStandard')
+
+include ':DevWidget'
 project(':DevWidget').projectDir = new File('lib/DevWidget')
+
+include ':DevEnvironmentBase'
 project(':DevEnvironmentBase').projectDir = new File('lib/Environment/DevEnvironmentBase')
+
+include ':DevEnvironmentCompiler'
 project(':DevEnvironmentCompiler').projectDir = new File('lib/Environment/DevEnvironmentCompiler')
+
+include ':DevEnvironmentCompilerRelease'
 project(':DevEnvironmentCompilerRelease').projectDir = new File('lib/Environment/DevEnvironmentCompilerRelease')
+
+include ':DevEnvironment'
 project(':DevEnvironment').projectDir = new File('lib/Environment/DevEnvironment')
+
+// ==========
+// = Module =
+// ==========
+
+include ':DevBase'
+project(':DevBase').projectDir = new File('lib/DevBase')
+
+include ':DevOther'
+project(':DevOther').projectDir = new File('lib/DevOther')
+
+include ':DevStandard'
+project(':DevStandard').projectDir = new File('lib/DevStandard')
 
 // ===========
 // = Project =
 // ===========
 
 include ':AccessibilityKtx'
-project(':AccessibilityKtx').projectDir = new File(rootDir, 'project/AccessibilityKtx/')
+project(':AccessibilityKtx').projectDir = new File(rootDir, 'project/AccessibilityKtx')
 
 include ':AppInfoKtx'
-project(':AppInfoKtx').projectDir = new File(rootDir, 'project/AppInfoKtx/')
+project(':AppInfoKtx').projectDir = new File(rootDir, 'project/AppInfoKtx')
