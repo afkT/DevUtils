@@ -7,6 +7,16 @@ package dev.base.expand.mvp
 class MVP private constructor() {
 
     /**
+     * detail: 空实现 MVPView
+     * @author Ttt
+     */
+    class ViewImpl : IView
+
+    // =======
+    // = MVP =
+    // =======
+
+    /**
      * detail: MVP 模式的 Model ( 通常作为获取数据 )
      * @author Ttt
      */
