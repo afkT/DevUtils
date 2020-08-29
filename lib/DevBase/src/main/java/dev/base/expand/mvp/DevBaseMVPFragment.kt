@@ -15,7 +15,7 @@ abstract class DevBaseMVPFragment<P : MVP.Presenter<out MVP.IView, out MVP.IMode
     DevBaseFragment() {
 
     // MVP Presenter
-    lateinit var mPresenter: P
+    lateinit var presenter: P
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,7 +23,7 @@ abstract class DevBaseMVPFragment<P : MVP.Presenter<out MVP.IView, out MVP.IMode
         savedInstanceState: Bundle?
     ): View? {
         // 创建 MVP 模式的 Presenter
-        mPresenter = createPresenter()
+        presenter = createPresenter()
         // 底层初始化操作
         return super.onCreateView(inflater, container, savedInstanceState)
     }
@@ -31,7 +31,7 @@ abstract class DevBaseMVPFragment<P : MVP.Presenter<out MVP.IView, out MVP.IMode
     override fun onDestroyView() {
         super.onDestroyView()
         // 取消 MVP 各个模块间的关联
-        mPresenter.detachView()
+        presenter.detachView()
     }
 
     /**

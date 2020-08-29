@@ -96,7 +96,7 @@ public class ArticleMVPActivity extends BaseMVPActivity<ArticleMVP.Presenter, Ba
         // 表示请求中
         stateLayout.showIng();
         // 获取文章列表
-        mPresenter.getArticleLists();
+        presenter.getArticleLists();
     }
 
     @Override
