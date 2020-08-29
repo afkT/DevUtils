@@ -59,7 +59,7 @@ class BaseRefreshView : LinearLayout {
     // =
 
     // 最外层 View
-    private var body: FrameLayout? = null
+    private var mBody: FrameLayout? = null
 
     // DevBase RefreshLayout 辅助类
     private var mAssist = DevBaseRefreshAssist<String>()
@@ -72,7 +72,7 @@ class BaseRefreshView : LinearLayout {
         val context = context
         // 初始化 View
         val view = LayoutInflater.from(context).inflate(R.layout.base_refresh_view, null)
-        body = view.findViewById(R.id.vid_brv_frame)
+        mBody = view.findViewById(R.id.vid_brv_frame)
         // 初始化 Refresh 数据
         mAssist
             .setRecyclerView(view.findViewById(R.id.vid_brv_recy))
@@ -105,6 +105,10 @@ class BaseRefreshView : LinearLayout {
     // ===========
     // = get/set =
     // ===========
+
+    fun getBody(): FrameLayout? {
+        return mBody
+    }
 
     fun getPageAssist(): PageAssist<String> {
         return mAssist.getPageAssist()
