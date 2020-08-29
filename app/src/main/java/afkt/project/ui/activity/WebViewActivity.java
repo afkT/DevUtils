@@ -25,7 +25,7 @@ public class WebViewActivity extends BaseActivity<ActivityWebviewBinding> {
     WebViewAssist mWebViewAssist = new WebViewAssist();
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_webview;
     }
 

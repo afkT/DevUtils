@@ -20,7 +20,7 @@ public class StatusBarActivity extends BaseActivity<ActivityStatusBarBinding> {
     boolean isVisible = true;
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_status_bar;
     }
 

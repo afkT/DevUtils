@@ -37,7 +37,7 @@ import dev.utils.app.toast.ToastUtils;
 public class FunctionActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.base_view_recyclerview;
     }
 

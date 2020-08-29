@@ -24,7 +24,7 @@ import dev.utils.common.RandomUtils;
 public class WrapActivity extends BaseActivity<ActivityWrapBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_wrap;
     }
 

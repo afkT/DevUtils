@@ -15,7 +15,7 @@ import dev.utils.app.ActivityUtils;
 public class ProgressBarActivity extends BaseActivity<ActivityProgressbarBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_progressbar;
     }
 

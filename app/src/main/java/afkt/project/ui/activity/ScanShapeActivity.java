@@ -28,7 +28,7 @@ import dev.widget.ui.ScanShapeView;
 public class ScanShapeActivity extends BaseActivity<ActivityScanShapeBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_scan_shape;
     }
 

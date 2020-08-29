@@ -41,7 +41,7 @@ interface IDevBaseViewBinding<VB : ViewBinding> {
     /**
      * 是否捕获 ViewBinding 异常
      * 设计时考虑为了开发中保证准确绑定, 当 [ViewBindingUtils] 解析失败会抛出异常
-     * 当 layoutId、layoutView 都不需要绑定的时候则会与设计冲突, 则通过 return true 捕获异常进行处理
+     * 当 baseLayoutId、baseLayoutView 都不需要绑定的时候则会与设计冲突, 则通过 return true 捕获异常进行处理
      */
     fun isTryViewBindingCatch(): Boolean {
         return false

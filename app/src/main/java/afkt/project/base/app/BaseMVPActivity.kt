@@ -51,7 +51,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
         RxJavaManager.getInstance().remove(TAG)
     }
 
-    override fun layoutView(): View? {
+    override fun baseLayoutView(): View? {
         return null
     }
 

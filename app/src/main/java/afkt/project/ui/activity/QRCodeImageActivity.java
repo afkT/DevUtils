@@ -36,7 +36,7 @@ public class QRCodeImageActivity extends BaseActivity<ActivityQrcodeImageBinding
     Bitmap selectBitmap;
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_qrcode_image;
     }
 

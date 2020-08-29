@@ -20,7 +20,7 @@ import dev.utils.app.image.ImageUtils;
 public class CapturePictureActivity extends BaseActivity<ActivityCapturePictureBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_capture_picture;
     }
 

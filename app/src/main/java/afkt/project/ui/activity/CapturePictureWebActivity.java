@@ -21,7 +21,7 @@ import dev.utils.app.image.ImageUtils;
 public class CapturePictureWebActivity extends BaseActivity<ActivityCapturePictureWebBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_capture_picture_web;
     }
 

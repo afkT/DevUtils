@@ -21,7 +21,7 @@ import dev.utils.common.RandomUtils;
 public class ViewAssistRecyclerViewLoadActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.base_view_recyclerview;
     }
 

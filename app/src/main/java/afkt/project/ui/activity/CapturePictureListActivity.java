@@ -28,7 +28,7 @@ import dev.utils.app.image.ImageUtils;
 public class CapturePictureListActivity extends BaseActivity<ActivityCapturePictureListBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_capture_picture_list;
     }
 

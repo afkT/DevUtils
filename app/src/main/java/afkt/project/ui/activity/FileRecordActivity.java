@@ -24,7 +24,7 @@ import utils_use.record.FileRecordUse;
 public class FileRecordActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.base_view_recyclerview;
     }
 

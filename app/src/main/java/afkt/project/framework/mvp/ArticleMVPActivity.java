@@ -33,7 +33,7 @@ public class ArticleMVPActivity extends BaseMVPActivity<ArticleMVP.Presenter, Ba
     }
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.base_view_recyclerview;
     }
 

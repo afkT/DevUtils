@@ -22,12 +22,12 @@ public class SignActivity extends BaseActivity<ViewBinding> {
     }
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return 0;
     }
 
     @Override
-    public View layoutView() {
+    public View baseLayoutView() {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
         SignView signView = new SignView(this);

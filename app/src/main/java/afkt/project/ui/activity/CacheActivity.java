@@ -28,7 +28,7 @@ import utils_use.cache.CacheUse;
 public class CacheActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.base_view_recyclerview;
     }
 

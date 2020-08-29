@@ -9,7 +9,7 @@ import android.view.View
 interface IDevBaseContent {
 
     /**
-     * 获取 Content Layout id
+     * 获取 Content Layout Id
      * @return Content Layout Id
      */
     fun contentId(): Int

@@ -29,7 +29,7 @@ public class AdapterEditsActivity extends BaseActivity<BaseViewRecyclerviewBindi
     EditsAdapter editsAdapter;
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.base_view_recyclerview;
     }
 

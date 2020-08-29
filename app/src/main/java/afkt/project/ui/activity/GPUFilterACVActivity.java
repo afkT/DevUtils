@@ -42,7 +42,7 @@ public class GPUFilterACVActivity extends BaseActivity<ActivityGpuFilterBinding>
     static Runnable filterThread;
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_gpu_filter;
     }
 

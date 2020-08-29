@@ -29,7 +29,7 @@ public class LinearSnapActivity extends BaseActivity<BaseViewRecyclerviewBinding
     LinearSnapAdapter linearSnapAdapter;
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.base_view_recyclerview;
     }
 

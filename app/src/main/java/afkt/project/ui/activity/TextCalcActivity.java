@@ -20,7 +20,7 @@ import dev.utils.common.RandomUtils;
 public class TextCalcActivity extends BaseActivity<ActivityTextCalcBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_text_calc;
     }
 

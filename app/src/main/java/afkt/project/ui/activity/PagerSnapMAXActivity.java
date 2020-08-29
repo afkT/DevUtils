@@ -32,7 +32,7 @@ public class PagerSnapMAXActivity extends BaseActivity<BaseViewRecyclerviewBindi
     PagerSnapMAXAdapter pagerSnapAdapter;
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.base_view_recyclerview;
     }
 

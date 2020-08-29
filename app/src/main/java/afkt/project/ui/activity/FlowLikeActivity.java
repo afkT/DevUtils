@@ -13,7 +13,7 @@ import afkt.project.databinding.ActivityFlowLikeBinding;
 public class FlowLikeActivity extends BaseActivity<ActivityFlowLikeBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_flow_like;
     }
 

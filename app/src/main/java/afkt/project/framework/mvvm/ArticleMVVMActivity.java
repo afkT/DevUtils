@@ -31,7 +31,7 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
     WhorlView             whorlView;
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_article_mvvm;
     }
 

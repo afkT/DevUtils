@@ -33,7 +33,7 @@ public class QRCodeCreateActivity extends BaseActivity<ActivityQrcodeCreateBindi
     Bitmap selectBitmap;
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_qrcode_create;
     }
 

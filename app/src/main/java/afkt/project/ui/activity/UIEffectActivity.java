@@ -38,7 +38,7 @@ public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
     TabLayoutAssist tabLayoutAssist;
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_ui_effect;
     }
 

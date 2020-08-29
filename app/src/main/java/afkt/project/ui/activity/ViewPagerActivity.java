@@ -19,7 +19,7 @@ import dev.widget.custom.CustomViewPager;
 public class ViewPagerActivity extends BaseActivity<ActivityViewPagerBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_view_pager;
     }
 

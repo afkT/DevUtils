@@ -11,7 +11,7 @@ import afkt.project.databinding.ActivityTextviewBinding;
 public class TextViewActivity extends BaseActivity<ActivityTextviewBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_textview;
     }
 }

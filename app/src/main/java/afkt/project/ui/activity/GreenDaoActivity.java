@@ -48,7 +48,7 @@ import dev.utils.common.RandomUtils;
 public class GreenDaoActivity extends BaseActivity<ActivityGreenDaoBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_green_dao;
     }
 

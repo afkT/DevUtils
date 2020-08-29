@@ -51,7 +51,7 @@ public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> 
     AtomicInteger index = new AtomicInteger();
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_add_contact;
     }
 

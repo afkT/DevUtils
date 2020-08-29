@@ -19,7 +19,7 @@ import dev.widget.ui.CornerLabelView;
 public class CornerLabelActivity extends BaseActivity<ActivityCornerLabelBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_corner_label;
     }
 

@@ -30,7 +30,7 @@ public class MultiSelectActivity extends BaseActivity<BaseViewRecyclerviewBindin
     MultiSelectAdapter multiSelectAdapter;
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.base_view_recyclerview;
     }
 

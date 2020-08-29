@@ -23,7 +23,7 @@ public class ViewAssistActivity extends BaseActivity<ActivityViewAssistBinding> 
     ViewAssist viewAssist;
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_view_assist;
     }
 

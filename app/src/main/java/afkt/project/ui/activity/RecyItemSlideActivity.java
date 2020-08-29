@@ -37,7 +37,7 @@ public class RecyItemSlideActivity extends BaseActivity<BaseViewRecyclerviewBind
     ItemSlideAdapter itemSlideAdapter;
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.base_view_recyclerview;
     }
 

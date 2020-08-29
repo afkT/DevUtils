@@ -38,7 +38,7 @@ import dev.utils.app.toast.ToastTintUtils;
 public class ListenerActivity extends BaseActivity<ActivityCommonTipsBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_common_tips;
     }
 

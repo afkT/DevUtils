@@ -67,7 +67,7 @@ import dev.utils.app.toast.ToastTintUtils;
 public class ModuleActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.base_view_recyclerview;
     }
 

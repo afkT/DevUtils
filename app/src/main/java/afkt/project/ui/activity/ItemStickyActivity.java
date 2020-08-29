@@ -34,7 +34,7 @@ public class ItemStickyActivity extends BaseActivity<BaseViewRecyclerviewBinding
     ItemStickyAdapter itemStickyAdapter;
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.base_view_recyclerview;
     }
 

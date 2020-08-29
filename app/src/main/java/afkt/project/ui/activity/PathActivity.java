@@ -23,7 +23,7 @@ import dev.utils.common.StringUtils;
 public class PathActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.base_view_recyclerview;
     }
 

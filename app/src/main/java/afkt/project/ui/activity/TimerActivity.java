@@ -33,7 +33,7 @@ public class TimerActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
     final int NOTIFY = 100;
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.base_view_recyclerview;
     }
 

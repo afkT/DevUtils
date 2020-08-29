@@ -34,7 +34,7 @@ public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding>
     DevExResultCallback<String> dealResultCallback;
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.base_view_recyclerview;
     }
 

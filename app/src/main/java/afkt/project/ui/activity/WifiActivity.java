@@ -47,7 +47,7 @@ public class WifiActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
     boolean isOpenAPING = false;
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.base_view_recyclerview;
     }
 

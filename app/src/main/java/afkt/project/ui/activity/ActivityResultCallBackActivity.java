@@ -23,7 +23,7 @@ import dev.utils.app.toast.ToastTintUtils;
 public class ActivityResultCallBackActivity extends BaseActivity<ActivityActivityResultCallbackBinding> {
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_activity_result_callback;
     }
 

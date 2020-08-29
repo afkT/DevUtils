@@ -35,7 +35,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     }
 
     @Override
-    public int layoutId() {
+    public int baseLayoutId() {
         return R.layout.activity_main;
     }
 
