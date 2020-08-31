@@ -2,6 +2,8 @@ package afkt.project.base.app
 
 import afkt.project.R
 import afkt.project.base.constants.KeyConstants
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -23,6 +25,12 @@ import dev.widget.function.StateLayout
 abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>, VB : ViewBinding> :
     DevBaseContentMVPViewBindingActivity<P, VB>() {
 
+    @JvmField // Context
+    protected var mContext: Context? = null
+
+    @JvmField // Activity
+    protected var mActivity: Activity? = null
+
     // 状态布局
     lateinit var stateLayout: StateLayout
 
@@ -31,6 +39,9 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // 获取 Context、Activity
+        mContext = this
+        mActivity = this
         // 是否需要 ToolBar
         if (isToolBar()) {
             val title = intent.getStringExtra(KeyConstants.Common.KEY_TITLE)

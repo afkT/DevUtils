@@ -1,6 +1,5 @@
 package dev.base.fragment
 
-import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
@@ -26,12 +25,6 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
     @JvmField // 日志 TAG - 根据使用习惯命名大写
     protected var TAG = AbstractDevBaseFragment::class.java.simpleName
 
-    @JvmField // Context
-    protected var mContext: Context? = null
-
-    @JvmField // Activity
-    protected var mActivity: Activity? = null
-
     @JvmField // Content View
     protected var mContentView: View? = null
 
@@ -51,8 +44,6 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
             .setTag(TAG)
             .setContext(context)
             .printLog("onAttach")
-        // 获取 Context
-        mContext = context
     }
 
     override fun onDetach() {
@@ -69,8 +60,6 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         assist.printLog("onCreateView")
-        // 获取 Activity
-        mActivity = activity
 
         if (mContentView != null) {
             val parent = mContentView!!.parent as ViewGroup

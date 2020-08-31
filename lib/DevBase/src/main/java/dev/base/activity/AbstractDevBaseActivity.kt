@@ -1,8 +1,6 @@
 package dev.base.activity
 
-import android.app.Activity
 import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,12 +25,6 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(), IDevBase {
     @JvmField // 日志 TAG - 根据使用习惯命名大写
     protected var TAG = AbstractDevBaseActivity::class.java.simpleName
 
-    @JvmField // Context
-    protected var mContext: Context? = null
-
-    @JvmField // Activity
-    protected var mActivity: Activity? = null
-
     @JvmField // Content View
     protected var mContentView: View? = null
 
@@ -53,9 +45,6 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(), IDevBase {
             .setContext(this)
             .printLog("onCreate")
             .setCurrentVisible(true)
-        // 获取 Context、Activity
-        mContext = this
-        mActivity = this
         // 记录 Activity
         if (isActivityManager()) ActivityUtils.getManager().addActivity(this)
         // Content View 初始化处理
