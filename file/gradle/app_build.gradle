@@ -81,7 +81,12 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation deps.kotlin.stdlib
-    implementation deps.kotlin.core_ktx
+    implementation deps.kotlin.core
+    implementation deps.kotlin.lifecycle_runtime
+    implementation deps.kotlin.lifecycle_viewmodel
+    implementation deps.kotlin.lifecycle_livedata
+    implementation deps.kotlin.lifecycle_viewmodel_savedstate
+    implementation deps.androidx.lifecycle_common_java8
     implementation deps.androidx.design
     implementation deps.androidx.appcompat
     implementation deps.androidx.appcompat_resources

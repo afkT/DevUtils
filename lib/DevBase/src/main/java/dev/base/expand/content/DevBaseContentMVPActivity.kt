@@ -16,14 +16,10 @@ abstract class DevBaseContentMVPActivity<P : MVP.Presenter<out MVP.IView, out MV
     override fun onCreate(savedInstanceState: Bundle?) {
         // 创建 MVP 模式的 Presenter
         presenter = createPresenter()
+        // lifecycle
+        presenter?.let { lifecycle.addObserver(it) }
         // 初始化操作
         super.onCreate(savedInstanceState)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        // 取消 MVP 各个模块间的关联
-        presenter.detachView()
     }
 
     /**
