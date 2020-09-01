@@ -106,14 +106,6 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(), IDevBase {
         assist.printLog("onBackPressed")
     }
 
-    // ==================
-    // = IDevBaseConfig =
-    // ==================
-
-    override fun isActivityManager(): Boolean {
-        return true
-    }
-
     // ===================
     // = IDevBaseContent =
     // ===================

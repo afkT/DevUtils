@@ -28,7 +28,7 @@ interface IDevBaseViewBinding<VB : ViewBinding> {
      * 是否分离 ( 销毁 ) Binding
      */
     fun isDetachBinding(): Boolean {
-        return false
+        return true
     }
 
     /**
