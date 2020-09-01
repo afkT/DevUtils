@@ -35,6 +35,9 @@ project(':DevEnvironment').projectDir = new File('lib/Environment/DevEnvironment
 // = Module =
 // ==========
 
+include ':DevBase2'
+project(':DevBase2').projectDir = new File('lib/DevBase2')
+
 include ':DevOther'
 project(':DevOther').projectDir = new File('lib/DevOther')
 

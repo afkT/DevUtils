@@ -23,6 +23,7 @@ dependencies {
     implementation project(path: ':DevAssist')
     implementation project(path: ':DevOther')
     implementation project(path: ':DevBase')
+    implementation project(path: ':DevBase2')
     implementation project(path: ':DevWidget')
     implementation project(path: ':DevEnvironment')
     kaptDebug project(':DevEnvironmentCompiler') // debugAnnotationProcessor

@@ -1,0 +1,1 @@
+apply from: rootProject.file(files.app_kotlin_gradle)

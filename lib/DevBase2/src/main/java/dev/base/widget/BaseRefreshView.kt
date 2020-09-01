@@ -20,8 +20,8 @@ import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import dev.assist.PageAssist
-import dev.base.R
 import dev.base.utils.assist.DevBaseRefreshAssist
+import dev.base2.R
 
 /**
  * detail: Base Refresh、Load View
