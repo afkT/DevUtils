@@ -8,6 +8,9 @@ interface IDevBaseConfig {
 
     /**
      * 是否进行 Activity 管理控制
+     * 可通过 lifecycle 实现 Activity Manager
      */
-    fun isActivityManager(): Boolean
+    fun isActivityManager(): Boolean {
+        return true
+    }
 }
