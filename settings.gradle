@@ -10,6 +10,9 @@ project(':DevApp').projectDir = new File('lib/DevApp')
 include ':DevAssist'
 project(':DevAssist').projectDir = new File('lib/DevAssist')
 
+include ':DevBase'
+project(':DevBase').projectDir = new File('lib/DevBase')
+
 include ':DevJava'
 project(':DevJava').projectDir = new File('lib/DevJava')
 
@@ -31,9 +34,6 @@ project(':DevEnvironment').projectDir = new File('lib/Environment/DevEnvironment
 // ==========
 // = Module =
 // ==========
-
-include ':DevBase'
-project(':DevBase').projectDir = new File('lib/DevBase')
 
 include ':DevOther'
 project(':DevOther').projectDir = new File('lib/DevOther')
