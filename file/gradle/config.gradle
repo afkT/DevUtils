@@ -2,18 +2,20 @@ ext {
 
     files = [
             // Android App 配置文件地址
-            app_gradle         : 'file/gradle/app_build.gradle',
+            app_gradle           : 'file/gradle/app_build.gradle',
             // Android Lib 通用配置文件地址
-            app_lib_gradle     : 'file/gradle/app_lib_build.gradle',
+            app_lib_gradle       : 'file/gradle/app_lib_build.gradle',
+            // Android Kotlin Lib 通用配置文件地址
+            app_lib_kotlin_gradle: 'file/gradle/app_lib_kotlin_build.gradle',
             // Android Kotlin 构建项目
-            app_kotlin_gradle  : 'file/gradle/app_kotlin_build.gradle',
+            app_kotlin_gradle    : 'file/gradle/app_kotlin_build.gradle',
             // Android Bintray Upload
-            app_bintray_upload : 'file/bintray/bintrayUploadAndroid.gradle',
+            app_bintray_upload   : 'file/bintray/bintrayUploadAndroid.gradle',
 
             // Java Lib 通用配置文件地址
-            java_lib_gradle    : 'file/gradle/java_lib_build.gradle',
+            java_lib_gradle      : 'file/gradle/java_lib_build.gradle',
             // Java Bintray Upload
-            java_bintray_upload: 'file/bintray/bintrayUploadJava.gradle',
+            java_bintray_upload  : 'file/bintray/bintrayUploadJava.gradle',
     ]
 
     versions = [
@@ -50,6 +52,11 @@ ext {
             dev_assist_versionCode                  : 104,
             // 版本名
             dev_assist_versionName                  : '1.0.4',
+
+            // 版本号
+            dev_base_versionCode                    : 100,
+            // 版本名
+            dev_base_versionName                    : '1.0.0',
 
             // 版本号
             dev_java_versionCode                    : 114,

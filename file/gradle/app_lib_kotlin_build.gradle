@@ -1,0 +1,33 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+
+    compileSdkVersion versions.compileSdkVersion
+//    buildToolsVersion versions.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion versions.minSdkVersion
+        // 混淆配置
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+
+    // Data binding
+    buildFeatures {
+        dataBinding = true
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility versions.javaVersion
+        targetCompatibility versions.javaVersion
+    }
+}
+
+// 编码设置
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
