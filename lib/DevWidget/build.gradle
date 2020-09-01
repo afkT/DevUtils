@@ -9,11 +9,8 @@ dependencies {
     compileOnly deps.androidx.design
     compileOnly deps.androidx.appcompat
     compileOnly deps.androidx.support_v4
-
-    // 编译时使用
-    api project(path: ':DevApp')
-//    // 打包时使用
-//    api deps.dev.dev_app_x
+    // DevApp 依赖不参与打包
+    compileOnly project(path: ':DevApp')
 }
 
 // gradlew clean
