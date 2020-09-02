@@ -17,6 +17,11 @@ android {
         dataBinding = true
     }
 
+    // View Binding
+    viewBinding {
+        enabled = true
+    }
+
     lintOptions {
         abortOnError false
     }
