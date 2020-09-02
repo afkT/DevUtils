@@ -6,14 +6,17 @@ android.defaultConfig {
 }
 
 dependencies {
-    compileOnly deps.kotlin.stdlib
-    compileOnly deps.kotlin.core
-    compileOnly deps.kotlin.lifecycle_runtime
-    compileOnly deps.androidx.lifecycle_common_java8
-    compileOnly deps.androidx.design
-    compileOnly deps.androidx.appcompat
-    // DevApp 依赖不参与打包
-    compileOnly project(path: ':DevApp')
+    api deps.kotlin.stdlib
+    api deps.kotlin.core
+    api deps.kotlin.lifecycle_runtime
+    api deps.androidx.lifecycle_common_java8
+    api deps.androidx.design
+    api deps.androidx.appcompat
+
+    // 编译时使用
+    api project(path: ':DevApp')
+//    // 打包时使用
+//    api deps.dev.dev_app_x
 }
 
 // gradlew clean

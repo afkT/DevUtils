@@ -9,8 +9,8 @@ android.defaultConfig {
 }
 
 dependencies {
-    compileOnly deps.androidx.design
-    compileOnly deps.androidx.appcompat
+    api deps.androidx.design
+    api deps.androidx.appcompat
 }
 
 // gradlew clean

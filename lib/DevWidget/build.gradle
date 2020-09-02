@@ -6,11 +6,14 @@ android.defaultConfig {
 }
 
 dependencies {
-    compileOnly deps.androidx.design
-    compileOnly deps.androidx.appcompat
-    compileOnly deps.androidx.support_v4
-    // DevApp 依赖不参与打包
-    compileOnly project(path: ':DevApp')
+    api deps.androidx.design
+    api deps.androidx.appcompat
+    api deps.androidx.support_v4
+
+    // 编译时使用
+    api project(path: ':DevApp')
+//    // 打包时使用
+//    api deps.dev.dev_app_x
 }
 
 // gradlew clean
