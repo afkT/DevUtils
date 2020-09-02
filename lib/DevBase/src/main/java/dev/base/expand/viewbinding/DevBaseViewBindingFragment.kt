@@ -38,7 +38,7 @@ abstract class DevBaseViewBindingFragment<VB : ViewBinding> : DevBaseFragment(),
                 _binding = viewBinding(inflater, container)
             }
         }
-        return binding.root
+        return mContentView
     }
 
     override fun onDestroyView() {
