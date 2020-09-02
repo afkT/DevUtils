@@ -13,9 +13,9 @@ import dev.base.utils.assist.DevBaseContentAssist
 /**
  * detail: Content Activity 基类
  * @author Ttt
- * 内置 R.layout.base_activity 作为 contentView 并对所需 View 进行 Add
+ * 内置 R.layout.base_content_view 作为 contentView 并对所需 View 进行 Add
  * 设计思路:
- * 全局统一使用 R.layout.base_activity 作为根布局进行显示
+ * 全局统一使用 R.layout.base_content_view 作为根布局进行显示
  * 并且进行动态添加 title、body 等布局 View
  * 能够对全局进行增删 View 控制处理, 以及后期全局需求配置
  */
@@ -52,7 +52,7 @@ abstract class DevBaseContentActivity : DevBaseActivity(), IDevBaseLayout {
     // ================
 
     final override fun baseContentId(): Int {
-        return R.layout.base_activity
+        return R.layout.base_content_view
     }
 
     final override fun baseContentView(): View? {
