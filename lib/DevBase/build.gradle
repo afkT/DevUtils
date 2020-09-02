@@ -1,1 +1,22 @@
-apply from: rootProject.file(files.app_kotlin_gradle)
+apply from: rootProject.file(files.app_lib_kotlin_gradle)
+
+android.defaultConfig {
+    versionCode versions.dev_base_versionCode
+    versionName versions.dev_base_versionName
+}
+
+dependencies {
+    compileOnly deps.kotlin.stdlib
+    compileOnly deps.kotlin.core
+    compileOnly deps.kotlin.lifecycle_runtime
+    compileOnly deps.androidx.lifecycle_common_java8
+    compileOnly deps.androidx.design
+    compileOnly deps.androidx.appcompat
+    // DevApp 依赖不参与打包
+    compileOnly project(path: ':DevApp')
+}
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from : rootProject.file(files.app_bintray_upload)
