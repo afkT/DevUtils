@@ -7,19 +7,14 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import dev.base.R
 import dev.base.able.IDevBaseLayout
-import dev.base.activity.DevBaseActivity
+import dev.base.fragment.DevBaseFragment
 import dev.base.utils.assist.DevBaseContentAssist
 
 /**
- * detail: Content Activity 基类
+ * detail: Content Fragment 基类
  * @author Ttt
- * 内置 R.layout.base_content_view 作为 contentView 并对所需 View 进行 Add
- * 设计思路:
- * 全局统一使用 R.layout.base_content_view 作为根布局进行显示
- * 并且进行动态添加 title、body 等布局 View
- * 能够对全局进行增删 View 控制处理, 以及后期全局需求配置
  */
-abstract class DevBaseContentActivity : DevBaseActivity(), IDevBaseLayout {
+abstract class DevBaseContentFragment : DevBaseFragment(), IDevBaseLayout {
 
     @JvmField // Layout View
     protected var layoutView: View? = null
@@ -27,10 +22,14 @@ abstract class DevBaseContentActivity : DevBaseActivity(), IDevBaseLayout {
     @JvmField // DevBase ContentView 填充辅助类
     protected var contentAssist = DevBaseContentAssist()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
         // 绑定 ContentView 填充辅助类
-        contentAssist.bind(this)
+        contentAssist.bind(mContentView)
         // Layout View 初始化处理
         layoutInit(layoutInflater, null)
         // 添加到 contentLinear
@@ -45,6 +44,7 @@ abstract class DevBaseContentActivity : DevBaseActivity(), IDevBaseLayout {
         } else {
             contentAssist.addContentView(layoutView)
         }
+        return mContentView
     }
 
     // ===================

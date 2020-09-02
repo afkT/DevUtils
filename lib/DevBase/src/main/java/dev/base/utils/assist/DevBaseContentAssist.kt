@@ -44,13 +44,28 @@ class DevBaseContentAssist {
     open var stateLinear: LinearLayout? = null
 
     fun bind(activity: Activity): DevBaseContentAssist {
-        // R.layout.base_content_view
-        this.rootLinear = activity.findViewById(R.id.vid_bcv_root_linear)
-        this.statusBarLinear = activity.findViewById(R.id.vid_bcv_status_bar_linear)
-        this.titleLinear = activity.findViewById(R.id.vid_bcv_title_linear)
-        this.bodyFrame = activity.findViewById(R.id.vid_bcv_body_frame)
-        this.contentLinear = activity.findViewById(R.id.vid_bcv_content_linear)
-        this.stateLinear = activity.findViewById(R.id.vid_bcv_state_linear)
+        if (activity != null) {
+            // R.layout.base_content_view
+            this.rootLinear = activity.findViewById(R.id.vid_bcv_root_linear)
+            this.statusBarLinear = activity.findViewById(R.id.vid_bcv_status_bar_linear)
+            this.titleLinear = activity.findViewById(R.id.vid_bcv_title_linear)
+            this.bodyFrame = activity.findViewById(R.id.vid_bcv_body_frame)
+            this.contentLinear = activity.findViewById(R.id.vid_bcv_content_linear)
+            this.stateLinear = activity.findViewById(R.id.vid_bcv_state_linear)
+        }
+        return this
+    }
+
+    fun bind(view: View?): DevBaseContentAssist {
+        if (view != null) {
+            // R.layout.base_content_view
+            this.rootLinear = view.findViewById(R.id.vid_bcv_root_linear)
+            this.statusBarLinear = view.findViewById(R.id.vid_bcv_status_bar_linear)
+            this.titleLinear = view.findViewById(R.id.vid_bcv_title_linear)
+            this.bodyFrame = view.findViewById(R.id.vid_bcv_body_frame)
+            this.contentLinear = view.findViewById(R.id.vid_bcv_content_linear)
+            this.stateLinear = view.findViewById(R.id.vid_bcv_state_linear)
+        }
         return this
     }
 

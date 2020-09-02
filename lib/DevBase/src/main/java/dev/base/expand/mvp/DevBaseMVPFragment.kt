@@ -6,7 +6,6 @@ import dev.base.fragment.DevBaseFragment
 /**
  * detail: MVP Fragment 基类
  * @author Ttt
- * 需要自己实现 Contract ( 契约类 ) 用来管理 View 与 Presenter 的交互
  */
 abstract class DevBaseMVPFragment<P : MVP.Presenter<out MVP.IView, out MVP.IModel>> :
     DevBaseFragment() {
