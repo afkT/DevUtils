@@ -29,6 +29,12 @@
 
 - [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/CHANGELOG.md)
 
+### DevBase - Base ( Activity、Fragment )、MVP、MVVM 基类库
+
+- [Code](https://github.com/afkT/DevUtils/blob/master/lib/DevBase/src/main/java/dev/base)
+
+- [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevBase/CHANGELOG.md)
+
 ### DevJava - Java 工具类库 ( 不依赖 android api )
 
 - [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md)
@@ -49,12 +55,11 @@
 
 - [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/Environment/DevEnvironment/CHANGELOG.md)
 
-
 ## Other
 
-> [DevBase](https://github.com/afkT/DevUtils/blob/master/lib/DevBase/src/main/java/dev/base) Base ( Activity、Fragment )、MVP 基类等
+> [DevBase2](https://github.com/afkT/DevUtils/blob/master/lib/DevBase2/src/main/java/dev/base) Base 基础代码 ( 非基类库 )
 >
-> [DevOther](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/README.md) 第三方库封装、以及部分特殊工具类等，方便 copy 封装类使用
+> [DevOther](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/README.md) 第三方库封装、以及部分特殊工具类等，方便 copy 封装类使用 
 >
 > [DevStandard](https://github.com/afkT/DevUtils/blob/master/lib/DevStandard/src/main/java/dev/standard) 项目规范统一检测、生成替换等
 >
@@ -68,14 +73,14 @@
 // DevApp Android 工具类库
 implementation 'com.afkt:DevAppX:2.0.0'
 
-// DevJava Java 工具类库 ( 不依赖 android api )
-implementation 'com.afkt:DevJava:1.1.4' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
-
-// Base ( Activity、Fragment )、MVP、MVVM 基类库
-implementation 'com.afkt:DevBase:1.0.0'
-
 // DevAssist 快捷功能辅助类库
 implementation 'com.afkt:DevAssist:1.0.4'
+
+// DevBase ( Activity、Fragment )、MVP、MVVM 基类库
+implementation 'com.afkt:DevBase:1.0.0'
+
+// DevJava Java 工具类库 ( 不依赖 android api )
+implementation 'com.afkt:DevJava:1.1.4' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
 
 // DevWidget 自定义 View UI 库
 implementation 'com.afkt:DevWidgetX:1.0.4'
