@@ -21,6 +21,8 @@ public final class ClickUtils {
     // 日志 TAG
     private static final String TAG = ClickUtils.class.getSimpleName();
 
+    // 是否校验 viewId
+    private static       boolean                  sCheckViewId        = true;
     // 双击间隔时间
     private static       long                     sGlobalIntervalTime = 1000L;
     // 全局共用的点击辅助类
@@ -78,6 +80,14 @@ public final class ClickUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * 设置全局是否校验 viewId
+     * @param checkViewId 是否校验 viewId
+     */
+    public static void setCheckViewId(boolean checkViewId) {
+        ClickUtils.sCheckViewId = checkViewId;
     }
 
     /**
@@ -456,6 +466,81 @@ public final class ClickUtils {
             // 清空点击记录
             mRecordMaps.clear();
             return this;
+        }
+    }
+
+    // ========
+    // = 快捷 =
+    // ========
+
+    // 空实现 View.OnClickListener
+    public final static View.OnClickListener EMPTY_CLICK = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            LogPrintUtils.dTag(TAG, "EMPTY_CLICK viewId: " + view.getId());
+        }
+    };
+
+    /**
+     * detail: 双击点击事件
+     * @author Ttt
+     */
+    public static abstract class OnDebouncingClickListener implements View.OnClickListener {
+
+        // 是否校验 viewId
+        private boolean     mCheckViewId;
+        // 全局共用的点击辅助类
+        private ClickAssist mClickAssist;
+
+        // ============
+        // = 构造函数 =
+        // ============
+
+        public OnDebouncingClickListener() {
+            this(ClickUtils.sGlobalClickAssist, ClickUtils.sCheckViewId);
+        }
+
+        public OnDebouncingClickListener(boolean checkViewId) {
+            this(ClickUtils.sGlobalClickAssist, checkViewId);
+        }
+
+        public OnDebouncingClickListener(ClickAssist clickAssist) {
+            this(clickAssist, ClickUtils.sCheckViewId);
+        }
+
+        public OnDebouncingClickListener(ClickAssist clickAssist, boolean checkViewId) {
+            this.mClickAssist = clickAssist;
+            this.mCheckViewId = checkViewId;
+        }
+
+        // ================
+        // = 对外公开方法 =
+        // ================
+
+        /**
+         * 有效点击
+         * @param view {@link View}
+         */
+        public abstract void doClick(View view);
+
+        /**
+         * 无效点击
+         * @param view {@link View}
+         */
+        public void doInvalidClick(View view) {
+        }
+
+        // ============
+        // = 内部方法 =
+        // ============
+
+        @Override
+        public final void onClick(View view) {
+            if (mClickAssist.isFastDoubleClick(mCheckViewId ? view.getId() : -1)) {
+                doInvalidClick(view);
+            } else {
+                doClick(view);
+            }
         }
     }
 }

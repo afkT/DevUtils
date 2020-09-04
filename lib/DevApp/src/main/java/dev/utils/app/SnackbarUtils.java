@@ -268,12 +268,7 @@ public final class SnackbarUtils {
      * @return {@link SnackbarUtils}
      */
     public SnackbarUtils setAction(@StringRes final int resId, final Object... formatArgs) {
-        return setAction(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        }, resId, formatArgs);
+        return setAction(ClickUtils.EMPTY_CLICK, resId, formatArgs);
     }
 
     /**
@@ -301,12 +296,7 @@ public final class SnackbarUtils {
      * @return {@link SnackbarUtils}
      */
     public SnackbarUtils setAction(final String text, final Object... formatArgs) {
-        return setAction(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        }, text, formatArgs);
+        return setAction(ClickUtils.EMPTY_CLICK, text, formatArgs);
     }
 
     /**
