@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
@@ -231,13 +230,6 @@ public final class SnackbarUtils {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null && view != null) {
             try {
-                // 设置新建布局参数
-                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT
-                );
-                // 设置新建 View 在 Snackbar 内垂直居中显示
-                layoutParams.gravity = Gravity.CENTER_VERTICAL;
-                view.setLayoutParams(layoutParams);
                 ((Snackbar.SnackbarLayout) snackbar.getView()).addView(view, index);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "addView");

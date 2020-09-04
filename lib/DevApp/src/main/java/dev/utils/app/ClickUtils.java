@@ -622,7 +622,7 @@ public final class ClickUtils {
          * 获取总点击数
          * @return 总点击数
          */
-        public int getCount() {
+        public final int getCount() {
             return mCount.get();
         }
 
@@ -630,7 +630,7 @@ public final class ClickUtils {
          * 获取无效点击总次数
          * @return 无效点击总次数
          */
-        public int getInvalidCount() {
+        public final int getInvalidCount() {
             return mInvalidCount.get();
         }
 
@@ -638,7 +638,7 @@ public final class ClickUtils {
          * 获取每个周期无效点击次数
          * @return 每个周期无效点击次数
          */
-        public int getInvalidCycleNumber() {
+        public final int getInvalidCycleNumber() {
             return mInvalidCycleNumber.get();
         }
     }
