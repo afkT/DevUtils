@@ -494,9 +494,9 @@ public final class ListViewUtils {
 
             // 是否需要设置高度
             if (setParams) {
-                ViewGroup.LayoutParams params = listView.getLayoutParams();
-                params.height = height;
-                listView.setLayoutParams(params);
+                ViewGroup.LayoutParams layoutParams = listView.getLayoutParams();
+                layoutParams.height = height;
+                listView.setLayoutParams(layoutParams);
             }
             return height;
         } catch (Exception e) {
@@ -581,9 +581,9 @@ public final class ListViewUtils {
 
             // 是否需要设置高度
             if (setParams) {
-                ViewGroup.LayoutParams params = gridView.getLayoutParams();
-                params.height = height;
-                gridView.setLayoutParams(params);
+                ViewGroup.LayoutParams layoutParams = gridView.getLayoutParams();
+                layoutParams.height = height;
+                gridView.setLayoutParams(layoutParams);
             }
             return height;
         } catch (Exception e) {
