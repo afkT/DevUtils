@@ -6,6 +6,7 @@ import android.view.View;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import dev.utils.LogPrintUtils;
 
@@ -489,7 +490,7 @@ public final class ClickUtils {
 
         // 是否校验 viewId
         private boolean     mCheckViewId;
-        // 全局共用的点击辅助类
+        // 点击辅助类
         private ClickAssist mClickAssist;
 
         // ============
@@ -513,23 +514,6 @@ public final class ClickUtils {
             this.mCheckViewId = checkViewId;
         }
 
-        // ================
-        // = 对外公开方法 =
-        // ================
-
-        /**
-         * 有效点击
-         * @param view {@link View}
-         */
-        public abstract void doClick(View view);
-
-        /**
-         * 无效点击
-         * @param view {@link View}
-         */
-        public void doInvalidClick(View view) {
-        }
-
         // ============
         // = 内部方法 =
         // ============
@@ -541,6 +525,121 @@ public final class ClickUtils {
             } else {
                 doClick(view);
             }
+        }
+
+        // ================
+        // = 对外公开方法 =
+        // ================
+
+        /**
+         * 有效点击 ( 单击 )
+         * @param view {@link View}
+         */
+        public abstract void doClick(View view);
+
+        /**
+         * 无效点击 ( 双击 )
+         * @param view {@link View}
+         */
+        public void doInvalidClick(View view) {
+        }
+    }
+
+    /**
+     * detail: 计数点击事件
+     * @author Ttt
+     */
+    public static abstract class OnCountClickListener implements View.OnClickListener {
+
+        // 点击辅助类
+        private ClickAssist   mClickAssist;
+        // 总点击数
+        private AtomicInteger mCount              = new AtomicInteger();
+        // 无效点击总次数
+        private AtomicInteger mInvalidCount       = new AtomicInteger();
+        // 每个周期无效点击次数 ( 周期 ( 有效-无效-有效 ) )
+        private AtomicInteger mInvalidCycleNumber = new AtomicInteger();
+
+        // ============
+        // = 构造函数 =
+        // ============
+
+        public OnCountClickListener() {
+            this(ClickUtils.sGlobalClickAssist);
+        }
+
+        public OnCountClickListener(ClickAssist clickAssist) {
+            this.mClickAssist = clickAssist;
+        }
+
+        // ============
+        // = 内部方法 =
+        // ============
+
+        @Override
+        public final void onClick(View view) {
+            // 累加总点击数
+            mCount.incrementAndGet();
+
+            if (mClickAssist.isFastDoubleClick(view.getId())) {
+                // 累加无效点击总次数
+                mInvalidCount.incrementAndGet();
+                // 累加每个周期无效点击次数 ( 周期 ( 有效-无效-有效 ) )
+                int invalidCycleNumber = mInvalidCycleNumber.incrementAndGet();
+
+                doInvalidClick(view, this, invalidCycleNumber);
+            } else {
+                // 重置周期无效点击次数
+                mInvalidCycleNumber.set(0);
+
+                doClick(view, this);
+            }
+        }
+
+        // ================
+        // = 对外公开方法 =
+        // ================
+
+        /**
+         * 有效点击 ( 单击 )
+         * @param view     {@link View}
+         * @param listener {@link OnCountClickListener}
+         */
+        public abstract void doClick(View view, OnCountClickListener listener);
+
+        /**
+         * 无效点击 ( 双击 )
+         * @param view               {@link View}
+         * @param listener           {@link OnCountClickListener}
+         * @param invalidCycleNumber 每个周期无效点击次数 ( 周期 ( 有效-无效-有效 ) )
+         */
+        public void doInvalidClick(View view, OnCountClickListener listener, int invalidCycleNumber) {
+        }
+
+        // =
+
+        /**
+         * 获取总点击数
+         * @return 总点击数
+         */
+        public int getCount() {
+            return mCount.get();
+        }
+
+        /**
+         * 获取无效点击总次数
+         * @return 无效点击总次数
+         */
+        public int getInvalidCount() {
+            return mInvalidCount.get();
+        }
+
+        /**
+         * 获取每个周期无效点击次数
+         * @return 每个周期无效点击次数
+         */
+        public int getInvalidCycleNumber() {
+            return mInvalidCycleNumber.get();
         }
     }
 }
