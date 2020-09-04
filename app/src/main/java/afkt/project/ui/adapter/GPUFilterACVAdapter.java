@@ -73,7 +73,9 @@ public class GPUFilterACVAdapter extends BaseAdapter {
 
         boolean isSelect = (selectPosition == position);
         int width = SizeUtils.dipConvertPx(100f);
-        Gallery.LayoutParams layoutParams = new Gallery.LayoutParams(width, Gallery.LayoutParams.MATCH_PARENT);
+        Gallery.LayoutParams layoutParams = new Gallery.LayoutParams(
+                width, Gallery.LayoutParams.MATCH_PARENT
+        );
         // 初始化 View
         return QuickHelper.get(new BaseTextView(context))
                 .setText(acvFileBean.acvName)

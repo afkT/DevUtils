@@ -64,7 +64,9 @@ public class WrapActivity extends BaseActivity<ActivityWrapBinding> {
                 .removeAllViews();
 
         // LayoutParams
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
+        );
         // 设置点击效果
         GradientDrawable drawable = ShapeUtils.newShape(30f, ResourceUtils.getColor(R.color.color_88)).getDrawable();
 

@@ -34,7 +34,9 @@ public class StatusBarActivity extends BaseActivity<ActivityStatusBarBinding> {
 
         // 设置 LayoutParams @android:dimen/status_bar_height
         // 设置状态栏 View 高度
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, BarUtils.getStatusBarHeight());
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, BarUtils.getStatusBarHeight()
+        );
         View statusView = new View(this);
         statusView.setBackgroundColor(ResourceUtils.getColor(R.color.colorPrimary));
         statusView.setLayoutParams(layoutParams);

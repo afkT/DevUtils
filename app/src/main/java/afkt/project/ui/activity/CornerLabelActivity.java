@@ -41,6 +41,7 @@ public class CornerLabelActivity extends BaseActivity<ActivityCornerLabelBinding
 
         CornerLabelView labelView = binding.vidAclLabelview;
 
+        FrameLayout.LayoutParams layoutParams;
         switch (v.getId()) {
             case R.id.btn_color:
                 labelView.setFillColor(0xff000000 | RandomUtils.getRandom(0, 0xffffff));
@@ -52,9 +53,9 @@ public class CornerLabelActivity extends BaseActivity<ActivityCornerLabelBinding
                     labelView.left();
                 }
                 mIsLeft = !mIsLeft;
-                FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) labelView.getLayoutParams();
-                lp.gravity = (mIsLeft ? Gravity.LEFT : Gravity.RIGHT) | (mIsTop ? Gravity.TOP : Gravity.BOTTOM);
-                labelView.setLayoutParams(lp);
+                layoutParams = (FrameLayout.LayoutParams) labelView.getLayoutParams();
+                layoutParams.gravity = (mIsLeft ? Gravity.LEFT : Gravity.RIGHT) | (mIsTop ? Gravity.TOP : Gravity.BOTTOM);
+                labelView.setLayoutParams(layoutParams);
                 break;
             case R.id.btn_top:
                 if (mIsTop) {
@@ -63,9 +64,9 @@ public class CornerLabelActivity extends BaseActivity<ActivityCornerLabelBinding
                     labelView.top();
                 }
                 mIsTop = !mIsTop;
-                FrameLayout.LayoutParams lp2 = (FrameLayout.LayoutParams) labelView.getLayoutParams();
-                lp2.gravity = (mIsLeft ? Gravity.LEFT : Gravity.RIGHT) | (mIsTop ? Gravity.TOP : Gravity.BOTTOM);
-                labelView.setLayoutParams(lp2);
+                layoutParams = (FrameLayout.LayoutParams) labelView.getLayoutParams();
+                layoutParams.gravity = (mIsLeft ? Gravity.LEFT : Gravity.RIGHT) | (mIsTop ? Gravity.TOP : Gravity.BOTTOM);
+                labelView.setLayoutParams(layoutParams);
                 break;
             case R.id.btn_triangle:
                 mIsTriangle = !mIsTriangle;
