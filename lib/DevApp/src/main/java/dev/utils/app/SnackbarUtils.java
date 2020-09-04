@@ -23,6 +23,7 @@ import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.snackbar.SnackbarContentLayout;
 
 import java.lang.ref.WeakReference;
 
@@ -175,6 +176,32 @@ public final class SnackbarUtils {
     }
 
     /**
+     * 获取 Snackbar.SnackbarLayout ( FrameLayout )
+     * @return {@link Snackbar.SnackbarLayout}
+     */
+    public Snackbar.SnackbarLayout getSnackbarLayout() {
+        try {
+            return (Snackbar.SnackbarLayout) getSnackbarView();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getSnackbarLayout");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 SnackbarContentLayout ( LinearLayout ( messageView、actionView ) )
+     * @return {@link SnackbarContentLayout}
+     */
+    public SnackbarContentLayout getSnackbarContentLayout() {
+        try {
+            return (SnackbarContentLayout) getSnackbarLayout().getChildAt(0);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getSnackbarContentLayout");
+        }
+        return null;
+    }
+
+    /**
      * 向 Snackbar 布局中添加 View ( Google 不建议, 复杂的布局应该使用 DialogFragment 进行展示 )
      * @param layoutId R.layout.id
      * @param index    添加索引
@@ -241,7 +268,12 @@ public final class SnackbarUtils {
      * @return {@link SnackbarUtils}
      */
     public SnackbarUtils setAction(@StringRes final int resId, final Object... formatArgs) {
-        return setAction(null, resId, formatArgs);
+        return setAction(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        }, resId, formatArgs);
     }
 
     /**
@@ -269,7 +301,12 @@ public final class SnackbarUtils {
      * @return {@link SnackbarUtils}
      */
     public SnackbarUtils setAction(final String text, final Object... formatArgs) {
-        return setAction(null, text, formatArgs);
+        return setAction(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        }, text, formatArgs);
     }
 
     /**
