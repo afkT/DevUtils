@@ -32,7 +32,6 @@ public class StatusBarActivity extends BaseActivity<ActivityStatusBarBinding> {
         // 需要先设置 Activity  Theme => android:Theme.Light.NoTitleBar
         // 第二就是 Activity 最外层布局 view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
-        // 设置 LayoutParams @android:dimen/status_bar_height
         // 设置状态栏 View 高度
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, BarUtils.getStatusBarHeight()

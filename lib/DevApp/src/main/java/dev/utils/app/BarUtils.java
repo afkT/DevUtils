@@ -185,6 +185,7 @@ public final class BarUtils {
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
             layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin + getStatusBarHeight(),
                     layoutParams.rightMargin, layoutParams.bottomMargin);
+            view.setLayoutParams(layoutParams);
             view.setTag(KEY_OFFSET, true);
             return true;
         }
@@ -203,6 +204,7 @@ public final class BarUtils {
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
             layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin - getStatusBarHeight(),
                     layoutParams.rightMargin, layoutParams.bottomMargin);
+            view.setLayoutParams(layoutParams);
             view.setTag(KEY_OFFSET, false);
             return true;
         }
@@ -292,6 +294,7 @@ public final class BarUtils {
             ViewGroup.LayoutParams layoutParams = fakeStatusBar.getLayoutParams();
             layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
             layoutParams.height = getStatusBarHeight();
+            fakeStatusBar.setLayoutParams(layoutParams);
             fakeStatusBar.setBackgroundColor(color);
             return true;
         }
@@ -319,6 +322,7 @@ public final class BarUtils {
             } else {
                 layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
                 layoutParams.height = getStatusBarHeight();
+                fakeStatusBar.setLayoutParams(layoutParams);
             }
             return true;
         }
@@ -478,7 +482,8 @@ public final class BarUtils {
     private static View createStatusBarView(final Context context, final int color) {
         View statusBarView = new View(context);
         statusBarView.setLayoutParams(new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight()));
+                ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight()
+        ));
         statusBarView.setBackgroundColor(color);
         statusBarView.setTag(TAG_STATUS_BAR);
         return statusBarView;

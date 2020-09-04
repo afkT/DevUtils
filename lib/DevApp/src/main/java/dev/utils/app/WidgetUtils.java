@@ -171,7 +171,10 @@ public final class WidgetUtils {
             try {
                 ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
                 if (layoutParams == null) {
-                    layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    layoutParams = new ViewGroup.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT
+                    );
                 }
                 int widthSpec = ViewGroup.getChildMeasureSpec(0, 0, layoutParams.width);
                 int height = layoutParams.height;
