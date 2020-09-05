@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -27,13 +28,13 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.RequiresApi;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.viewpager.widget.ViewPager;
+
+import java.lang.reflect.Field;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.image.ImageUtils;
+import dev.utils.common.FieldUtils;
 
 /**
  * detail: View 操作相关工具类
@@ -2298,6 +2299,16 @@ public final class ViewUtils {
      * @return Layout Gravity
      */
     public static int getLayoutGravity(final View view) {
+        return getLayoutGravity(view, true);
+    }
+
+    /**
+     * 获取 View Layout Gravity
+     * @param view         {@link View}
+     * @param isReflection 是否使用反射
+     * @return Layout Gravity
+     */
+    public static int getLayoutGravity(final View view, final boolean isReflection) {
         if (view != null && view.getLayoutParams() != null) {
             try {
                 ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
@@ -2305,16 +2316,19 @@ public final class ViewUtils {
                     return ((LinearLayout.LayoutParams) layoutParams).gravity;
                 } else if (layoutParams instanceof FrameLayout.LayoutParams) {
                     return ((FrameLayout.LayoutParams) layoutParams).gravity;
-                } else if (layoutParams instanceof ViewPager.LayoutParams) {
-                    return ((ViewPager.LayoutParams) layoutParams).gravity;
-                } else if (layoutParams instanceof CoordinatorLayout.LayoutParams) {
-                    return ((CoordinatorLayout.LayoutParams) layoutParams).gravity;
-                } else if (layoutParams instanceof DrawerLayout.LayoutParams) {
-                    return ((DrawerLayout.LayoutParams) layoutParams).gravity;
-                } else {
-                    // 抛出不支持的类型
-                    throw new Exception("layoutParams:" + layoutParams.toString());
+                } else if (layoutParams instanceof WindowManager.LayoutParams) {
+                    return ((WindowManager.LayoutParams) layoutParams).gravity;
                 }
+                if (isReflection) {
+                    Field[] fields = FieldUtils.getFields(layoutParams);
+                    for (Field field : fields) {
+                        if (field.getName().equals("gravity")) {
+                            return (int) field.get(layoutParams);
+                        }
+                    }
+                }
+                // 抛出不支持的类型
+                throw new Exception("layoutParams:" + layoutParams.toString());
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getLayoutGravity");
             }
@@ -2329,29 +2343,45 @@ public final class ViewUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setLayoutGravity(final View view, final int gravity) {
+        return setLayoutGravity(view, gravity, true);
+    }
+
+    /**
+     * 设置 View Layout Gravity
+     * @param view         {@link View}
+     * @param gravity      Gravity
+     * @param isReflection 是否使用反射
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setLayoutGravity(final View view, final int gravity, final boolean isReflection) {
         if (view != null && view.getLayoutParams() != null) {
             try {
                 ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
                 if (layoutParams instanceof LinearLayout.LayoutParams) {
                     ((LinearLayout.LayoutParams) layoutParams).gravity = gravity;
                     view.setLayoutParams(layoutParams);
+                    return true;
                 } else if (layoutParams instanceof FrameLayout.LayoutParams) {
                     ((FrameLayout.LayoutParams) layoutParams).gravity = gravity;
                     view.setLayoutParams(layoutParams);
-                } else if (layoutParams instanceof ViewPager.LayoutParams) {
-                    ((ViewPager.LayoutParams) layoutParams).gravity = gravity;
+                    return true;
+                } else if (layoutParams instanceof WindowManager.LayoutParams) {
+                    ((WindowManager.LayoutParams) layoutParams).gravity = gravity;
                     view.setLayoutParams(layoutParams);
-                } else if (layoutParams instanceof CoordinatorLayout.LayoutParams) {
-                    ((CoordinatorLayout.LayoutParams) layoutParams).gravity = gravity;
-                    view.setLayoutParams(layoutParams);
-                } else if (layoutParams instanceof DrawerLayout.LayoutParams) {
-                    ((DrawerLayout.LayoutParams) layoutParams).gravity = gravity;
-                    view.setLayoutParams(layoutParams);
-                } else {
-                    // 抛出不支持的类型
-                    throw new Exception("layoutParams:" + layoutParams.toString());
+                    return true;
                 }
-                return true;
+                if (isReflection) {
+                    Field[] fields = FieldUtils.getFields(layoutParams);
+                    for (Field field : fields) {
+                        if (field.getName().equals("gravity")) {
+                            field.set(layoutParams, gravity);
+                            view.setLayoutParams(layoutParams);
+                            return true;
+                        }
+                    }
+                }
+                // 抛出不支持的类型
+                throw new Exception("layoutParams:" + layoutParams.toString());
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setLayoutGravity");
             }

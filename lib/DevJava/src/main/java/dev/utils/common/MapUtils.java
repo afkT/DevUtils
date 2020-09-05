@@ -358,7 +358,7 @@ public final class MapUtils {
     /**
      * 获取最后一条数据
      * @param map          {@link Map}
-     * @param isReflection 是否通过反射获取
+     * @param isReflection 是否使用反射
      * @param <K>          key
      * @param <V>          value
      * @return 最后一条数据 {@link Map.Entry}
