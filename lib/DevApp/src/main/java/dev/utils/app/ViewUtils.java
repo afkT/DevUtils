@@ -2298,21 +2298,22 @@ public final class ViewUtils {
      * @return Layout Gravity
      */
     public static int getLayoutGravity(final View view) {
-        if (view != null) {
+        if (view != null && view.getLayoutParams() != null) {
             try {
-                if (view.getLayoutParams() instanceof LinearLayout.LayoutParams) {
-                    return ((LinearLayout.LayoutParams) view.getLayoutParams()).gravity;
-                } else if (view.getLayoutParams() instanceof FrameLayout.LayoutParams) {
-                    return ((FrameLayout.LayoutParams) view.getLayoutParams()).gravity;
-                } else if (view.getLayoutParams() instanceof ViewPager.LayoutParams) {
-                    return ((ViewPager.LayoutParams) view.getLayoutParams()).gravity;
-                } else if (view.getLayoutParams() instanceof CoordinatorLayout.LayoutParams) {
-                    return ((CoordinatorLayout.LayoutParams) view.getLayoutParams()).gravity;
-                } else if (view.getLayoutParams() instanceof DrawerLayout.LayoutParams) {
-                    return ((DrawerLayout.LayoutParams) view.getLayoutParams()).gravity;
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                if (layoutParams instanceof LinearLayout.LayoutParams) {
+                    return ((LinearLayout.LayoutParams) layoutParams).gravity;
+                } else if (layoutParams instanceof FrameLayout.LayoutParams) {
+                    return ((FrameLayout.LayoutParams) layoutParams).gravity;
+                } else if (layoutParams instanceof ViewPager.LayoutParams) {
+                    return ((ViewPager.LayoutParams) layoutParams).gravity;
+                } else if (layoutParams instanceof CoordinatorLayout.LayoutParams) {
+                    return ((CoordinatorLayout.LayoutParams) layoutParams).gravity;
+                } else if (layoutParams instanceof DrawerLayout.LayoutParams) {
+                    return ((DrawerLayout.LayoutParams) layoutParams).gravity;
                 } else {
                     // 抛出不支持的类型
-                    throw new Exception("layoutParams:" + view.getLayoutParams().toString());
+                    throw new Exception("layoutParams:" + layoutParams.toString());
                 }
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getLayoutGravity");
@@ -2328,21 +2329,27 @@ public final class ViewUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setLayoutGravity(final View view, final int gravity) {
-        if (view != null) {
+        if (view != null && view.getLayoutParams() != null) {
             try {
-                if (view.getLayoutParams() instanceof LinearLayout.LayoutParams) {
-                    ((LinearLayout.LayoutParams) view.getLayoutParams()).gravity = gravity;
-                } else if (view.getLayoutParams() instanceof FrameLayout.LayoutParams) {
-                    ((FrameLayout.LayoutParams) view.getLayoutParams()).gravity = gravity;
-                } else if (view.getLayoutParams() instanceof ViewPager.LayoutParams) {
-                    ((ViewPager.LayoutParams) view.getLayoutParams()).gravity = gravity;
-                } else if (view.getLayoutParams() instanceof CoordinatorLayout.LayoutParams) {
-                    ((CoordinatorLayout.LayoutParams) view.getLayoutParams()).gravity = gravity;
-                } else if (view.getLayoutParams() instanceof DrawerLayout.LayoutParams) {
-                    ((DrawerLayout.LayoutParams) view.getLayoutParams()).gravity = gravity;
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                if (layoutParams instanceof LinearLayout.LayoutParams) {
+                    ((LinearLayout.LayoutParams) layoutParams).gravity = gravity;
+                    view.setLayoutParams(layoutParams);
+                } else if (layoutParams instanceof FrameLayout.LayoutParams) {
+                    ((FrameLayout.LayoutParams) layoutParams).gravity = gravity;
+                    view.setLayoutParams(layoutParams);
+                } else if (layoutParams instanceof ViewPager.LayoutParams) {
+                    ((ViewPager.LayoutParams) layoutParams).gravity = gravity;
+                    view.setLayoutParams(layoutParams);
+                } else if (layoutParams instanceof CoordinatorLayout.LayoutParams) {
+                    ((CoordinatorLayout.LayoutParams) layoutParams).gravity = gravity;
+                    view.setLayoutParams(layoutParams);
+                } else if (layoutParams instanceof DrawerLayout.LayoutParams) {
+                    ((DrawerLayout.LayoutParams) layoutParams).gravity = gravity;
+                    view.setLayoutParams(layoutParams);
                 } else {
                     // 抛出不支持的类型
-                    throw new Exception("layoutParams:" + view.getLayoutParams().toString());
+                    throw new Exception("layoutParams:" + layoutParams.toString());
                 }
                 return true;
             } catch (Exception e) {
