@@ -134,6 +134,8 @@ ext {
                     gpuimage                     : "jp.co.cyberagent.android:gpuimage:2.0.4",
                     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
                     eventbus                     : "org.greenrobot:eventbus:3.2.0",
+                    // LiveEventBus 消息总线 https://github.com/JeremyLiao/LiveEventBus
+                    live_eventbus                : "com.jeremyliao:live-event-bus-x:1.7.2",
                     // okip https://github.com/square/okio
                     okio                         : "com.squareup.okio:okio:2.7.0",
                     // okhttp3 网络请求框架 https://github.com/square/okhttp

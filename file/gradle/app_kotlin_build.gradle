@@ -79,6 +79,8 @@ dependencies {
     kapt deps.lib.glide_compiler
     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
     compileOnly deps.lib.eventbus
+    // LiveEventBus 消息总线 https://github.com/JeremyLiao/LiveEventBus
+    compileOnly deps.lib.live_eventbus
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
     compileOnly deps.lib.pictureSelector
     // 二维码 ZXing https://github.com/zxing/zxing
