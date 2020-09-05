@@ -1826,6 +1826,17 @@ public final class QuickHelper {
     }
 
     /**
+     * 设置 View Layout Gravity
+     * @param gravity      Gravity
+     * @param isReflection 是否使用反射
+     * @return {@link QuickHelper}
+     */
+    public QuickHelper setLayoutGravity(final int gravity, final boolean isReflection) {
+        ViewUtils.setLayoutGravity(targetView(), gravity, isReflection);
+        return this;
+    }
+
+    /**
      * 设置 View Left Margin
      * @param leftMargin Left Margin
      * @return {@link QuickHelper}

@@ -2026,6 +2026,18 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置 View Layout Gravity
+     * @param view         {@link View}
+     * @param gravity      Gravity
+     * @param isReflection 是否使用反射
+     * @return {@link QuickHelper}
+     */
+    public ViewHelper setLayoutGravity(final View view, final int gravity, final boolean isReflection) {
+        ViewUtils.setLayoutGravity(view, gravity, isReflection);
+        return this;
+    }
+
+    /**
      * 设置 View Left Margin
      * @param view       {@link View}
      * @param leftMargin Left Margin

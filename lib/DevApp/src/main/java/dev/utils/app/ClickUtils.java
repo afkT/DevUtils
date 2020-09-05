@@ -87,7 +87,7 @@ public final class ClickUtils {
      * 设置全局是否校验 viewId
      * @param checkViewId 是否校验 viewId
      */
-    public static void setCheckViewId(boolean checkViewId) {
+    public static void setCheckViewId(final boolean checkViewId) {
         ClickUtils.sCheckViewId = checkViewId;
     }
 
