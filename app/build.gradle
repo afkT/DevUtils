@@ -16,6 +16,18 @@ android {
 
         targetGenDir 'src/main/java'
     }
+
+    sourceSets {
+        main {
+            // https://www.jianshu.com/p/f5a49d54e16e
+            // 优化 res 资源管理, 使用 sourceSets 资源分包
+            res.srcDirs = [
+                    'src/main/res',
+                    'src/main/res-base',
+                    'src/main/res-ui',
+            ]
+        }
+    }
 }
 
 dependencies {
