@@ -22,12 +22,13 @@ android {
             // https://www.jianshu.com/p/f5a49d54e16e
             // 优化 res 资源管理, 使用 sourceSets 资源分包
             res.srcDirs = [
-                    'src/main/res',
-                    'src/main/res-base',
-                    'src/main/res-framework',
-                    'src/main/res-lib',
-                    'src/main/res-ui',
-                    'src/main/res-ui-widget',
+                    'src/main/res', // 全局通用资源文件
+                    'src/main/res-base', // Base 基础资源
+                    'src/main/res-framework', // Framework 架构
+                    'src/main/res-function', // 其他功能
+                    'src/main/res-lib', // Lib 框架
+                    'src/main/res-ui', // UI 效果
+                    'src/main/res-ui-widget', // DevWidget UI 库
             ]
         }
     }
