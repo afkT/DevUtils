@@ -14,6 +14,38 @@ public final class ScaleUtils {
     // 日志 TAG
     private static final String TAG = ScaleUtils.class.getSimpleName();
 
+    /**
+     * 计算比例 ( 商 )
+     * @param dividend 被除数
+     * @param divisor  除数
+     * @return 商
+     */
+    public static double calcScale(final double dividend, final double divisor) {
+        try {
+            return dividend / divisor;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "calcScale");
+            e.printStackTrace();
+        }
+        return -1d;
+    }
+
+    /**
+     * 计算比例 ( 被除数 ( 最大值 ) / 除数 ( 最小值 ) )
+     * @param value1 第一个值
+     * @param value2 第二个值
+     * @return 被除数 ( 最大值 ) / 除数 ( 最小值 ) = 商
+     */
+    public static double calcScaleToMath(final double value1, final double value2) {
+        try {
+            return Math.max(value1, value2) / Math.min(value1, value2);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "calcScaleToMath");
+            e.printStackTrace();
+        }
+        return -1d;
+    }
+
     // =======
     // = int =
     // =======
