@@ -1,5 +1,9 @@
 package dev.utils.common;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import dev.utils.JCLogUtils;
 
 /**
@@ -546,5 +550,92 @@ public final class ScaleUtils {
             JCLogUtils.eTag(TAG, e, "calcHeightToScale");
         }
         return null;
+    }
+
+    // =========
+    // = XY 比 =
+    // =========
+
+    /**
+     * 计算 XY 比
+     * @param x X 值
+     * @param y Y 值
+     * @return XY 比实体类
+     */
+    public static XY calcXY(final int x, final int y) {
+        return calcXY(XY_LIST, x, y);
+    }
+
+    /**
+     * 计算 XY 比
+     * @param xyLists XY 比集合
+     * @param x       X 值
+     * @param y       Y 值
+     * @return XY 比实体类
+     */
+    public static XY calcXY(final List<XY> xyLists, final int x, final int y) {
+        if (xyLists != null && xyLists.size() != 0) {
+            List<XY> lists = new ArrayList<>(xyLists);
+            Collections.sort(lists);
+            double scale = calcScale(x, y);
+            for (int i = 0, len = lists.size(); i < len; i++) {
+                XY xy = lists.get(i);
+                if (xy.scale >= scale) return xy;
+            }
+        }
+        return null;
+    }
+
+    // ==========
+    // = 实体类 =
+    // ==========
+
+    private static final List<XY> XY_LIST;
+
+    static {
+        List<XY> xys = new ArrayList<>();
+        xys.add(new XY(16, 9));
+        xys.add(new XY(16, 10));
+        xys.add(new XY(3, 2));
+        xys.add(new XY(4, 3));
+        xys.add(new XY(5, 4));
+        XY_LIST = Collections.unmodifiableList(xys);
+    }
+
+
+    /**
+     * detail: XY 比实体类
+     * @author Ttt
+     */
+    public static class XY implements Comparable<XY> {
+
+        public XY(final int x, final int y) {
+            this.x = x;
+            this.y = y;
+            this.scale = calcScale(x, y);
+        }
+
+        public final int    x;
+        public final int    y;
+        public final double scale;
+
+        public String getXYx() {
+            return getXY("x");
+        }
+
+        public String getXY() {
+            return getXY(":");
+        }
+
+        public String getXY(String joint) {
+            return x + joint + y;
+        }
+
+        @Override
+        public int compareTo(XY xy) {
+            if (this.scale < xy.scale) return 1;
+            if (this.scale > xy.scale) return -1;
+            return 0;
+        }
     }
 }
