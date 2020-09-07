@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <dev.base.widget.BaseTextView
         style="@style/AppTheme.Base_TextView"
         android:layout_width="wrap_content"
