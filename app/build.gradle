@@ -24,7 +24,9 @@ android {
             res.srcDirs = [
                     'src/main/res',
                     'src/main/res-base',
+                    'src/main/res-framework',
                     'src/main/res-ui',
+                    'src/main/res-ui-widget',
             ]
         }
     }
