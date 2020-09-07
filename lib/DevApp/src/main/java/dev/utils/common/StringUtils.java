@@ -520,10 +520,10 @@ public final class StringUtils {
     }
 
     /**
-     * 循环追加字符串
+     * 循环指定数量字符串
      * @param number 空格数量
      * @param str    待追加字符串
-     * @return 指定数量的字符串
+     * @return 指定数量字符串
      */
     public static String forString(final int number, final String str) {
         StringBuilder builder = new StringBuilder();
@@ -533,6 +533,27 @@ public final class StringUtils {
             }
         }
         return builder.toString();
+    }
+
+    /**
+     * 循环追加
+     * @param joint  待追加对象
+     * @param values 待追加值
+     * @return 追加后的值
+     */
+    public static String forJoint(final Object joint, final Object... values) {
+        if (values != null) {
+            int length = values.length;
+            if (length != 0) {
+                StringBuilder builder = new StringBuilder();
+                builder.append(values[0]);
+                for (int i = 1; i < length; i++) {
+                    builder.append(joint).append(values[i]);
+                }
+                return builder.toString();
+            }
+        }
+        return null;
     }
 
     /**

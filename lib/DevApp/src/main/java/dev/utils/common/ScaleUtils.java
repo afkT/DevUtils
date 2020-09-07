@@ -25,7 +25,6 @@ public final class ScaleUtils {
             return dividend / divisor;
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "calcScale");
-            e.printStackTrace();
         }
         return -1d;
     }
@@ -41,7 +40,6 @@ public final class ScaleUtils {
             return Math.max(value1, value2) / Math.min(value1, value2);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "calcScaleToMath");
-            e.printStackTrace();
         }
         return -1d;
     }
