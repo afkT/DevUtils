@@ -1,5 +1,9 @@
 package dev.utils.common;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import dev.utils.JCLogUtils;
 
 /**
@@ -13,6 +17,36 @@ public final class ScaleUtils {
 
     // 日志 TAG
     private static final String TAG = ScaleUtils.class.getSimpleName();
+
+    /**
+     * 计算比例 ( 商 )
+     * @param dividend 被除数
+     * @param divisor  除数
+     * @return 商
+     */
+    public static double calcScale(final double dividend, final double divisor) {
+        try {
+            return dividend / divisor;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "calcScale");
+        }
+        return -1d;
+    }
+
+    /**
+     * 计算比例 ( 被除数 ( 最大值 ) / 除数 ( 最小值 ) )
+     * @param value1 第一个值
+     * @param value2 第二个值
+     * @return 被除数 ( 最大值 ) / 除数 ( 最小值 ) = 商
+     */
+    public static double calcScaleToMath(final double value1, final double value2) {
+        try {
+            return Math.max(value1, value2) / Math.min(value1, value2);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "calcScaleToMath");
+        }
+        return -1d;
+    }
 
     // =======
     // = int =
@@ -516,5 +550,94 @@ public final class ScaleUtils {
             JCLogUtils.eTag(TAG, e, "calcHeightToScale");
         }
         return null;
+    }
+
+    // =========
+    // = XY 比 =
+    // =========
+
+    /**
+     * 计算 XY 比
+     * @param x X 值
+     * @param y Y 值
+     * @return XY 比实体类
+     */
+    public static XY calcXY(final int x, final int y) {
+        return calcXY(XY_LIST, x, y);
+    }
+
+    /**
+     * 计算 XY 比
+     * @param xyLists XY 比集合
+     * @param x       X 值
+     * @param y       Y 值
+     * @return XY 比实体类
+     */
+    public static XY calcXY(final List<XY> xyLists, final int x, final int y) {
+        if (xyLists != null && xyLists.size() != 0) {
+            List<XY> lists = new ArrayList<>(xyLists);
+            Collections.sort(lists);
+            double scale = calcScale(x, y);
+            for (int i = 0, len = lists.size(); i < len; i++) {
+                XY xy = lists.get(i);
+                if (scale >= xy.scale) return xy;
+            }
+        }
+        return null;
+    }
+
+    // ==========
+    // = 实体类 =
+    // ==========
+
+    public static final List<XY> XY_LIST;
+
+    static {
+        List<XY> xys = new ArrayList<>();
+        xys.add(new XY(16, 9));
+        xys.add(new XY(17, 10));
+        xys.add(new XY(15, 9));
+        xys.add(new XY(16, 10));
+        xys.add(new XY(3, 2));
+        xys.add(new XY(4, 3));
+        xys.add(new XY(5, 4));
+        xys.add(new XY(1, 1));
+        XY_LIST = Collections.unmodifiableList(xys);
+    }
+
+    /**
+     * detail: XY 比实体类
+     * @author Ttt
+     */
+    public static class XY implements Comparable<XY> {
+
+        public XY(final int x, final int y) {
+            this.x = x;
+            this.y = y;
+            this.scale = calcScale(x, y);
+        }
+
+        public final int    x;
+        public final int    y;
+        public final double scale;
+
+        public String getXYx() {
+            return getXY("x");
+        }
+
+        public String getXY() {
+            return getXY(":");
+        }
+
+        public String getXY(String joint) {
+            return x + joint + y;
+        }
+
+        @Override
+        public int compareTo(XY xy) {
+            if (this.scale < xy.scale) return 1;
+            if (this.scale > xy.scale) return -1;
+            return 0;
+        }
     }
 }

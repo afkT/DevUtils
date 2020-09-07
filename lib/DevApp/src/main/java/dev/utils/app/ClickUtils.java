@@ -557,7 +557,7 @@ public final class ClickUtils {
         private AtomicInteger mCount              = new AtomicInteger();
         // 无效点击总次数
         private AtomicInteger mInvalidCount       = new AtomicInteger();
-        // 每个周期无效点击次数 ( 周期 ( 有效-无效-有效 ) )
+        // 每个周期无效点击次数 ( 周期 ( 有效 - 无效 - 有效 ) )
         private AtomicInteger mInvalidCycleNumber = new AtomicInteger();
 
         // ============
@@ -584,7 +584,7 @@ public final class ClickUtils {
             if (mClickAssist.isFastDoubleClick(view.getId())) {
                 // 累加无效点击总次数
                 mInvalidCount.incrementAndGet();
-                // 累加每个周期无效点击次数 ( 周期 ( 有效-无效-有效 ) )
+                // 累加每个周期无效点击次数 ( 周期 ( 有效 - 无效 - 有效 ) )
                 int invalidCycleNumber = mInvalidCycleNumber.incrementAndGet();
 
                 doInvalidClick(view, this, invalidCycleNumber);
@@ -611,7 +611,7 @@ public final class ClickUtils {
          * 无效点击 ( 双击 )
          * @param view               {@link View}
          * @param listener           {@link OnCountClickListener}
-         * @param invalidCycleNumber 每个周期无效点击次数 ( 周期 ( 有效-无效-有效 ) )
+         * @param invalidCycleNumber 每个周期无效点击次数 ( 周期 ( 有效 - 无效 - 有效 ) )
          */
         public void doInvalidClick(View view, OnCountClickListener listener, int invalidCycleNumber) {
         }
