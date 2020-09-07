@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevJava:1.1.4'
+implementation 'com.afkt:DevJava:1.1.5'
 ```
 
 ## 目录结构
@@ -777,11 +777,14 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 
 | 方法 | 注释 |
 | :- | :- |
+| calcScale | 计算比例 ( 商 ) |
+| calcScaleToMath | 计算比例 ( 被除数 ( 最大值 ) / 除数 ( 最小值 ) ) |
 | calcScaleToWidth | 计算缩放比例 - 根据宽度比例转换高度 |
 | calcScaleToHeight | 计算缩放比例 - 根据高度比例转换宽度 |
 | calcWidthHeightToScale | 通过宽度、高度根据对应的比例, 转换成对应的比例宽度高度 - 智能转换 |
 | calcWidthToScale | 以宽度为基准, 转换对应比例的高度 |
 | calcHeightToScale | 以高度为基准, 转换对应比例的宽度 |
+| calcXY | 计算 XY 比 |
 
 
 * **流操作工具类 ->** [StreamUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/StreamUtils.java)
@@ -823,7 +826,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | appendSpace | 追加空格 |
 | appendTab | 追加 Tab |
 | appendLine | 追加换行 |
-| forString | 循环追加字符串 |
+| forString | 循环指定数量字符串 |
+| forJoint | 循环追加 |
 | colonSplit | 冒号分割处理 |
 | toCheckValue | 检查字符串 |
 | toCheckValues | 检查字符串 - 多个值 |

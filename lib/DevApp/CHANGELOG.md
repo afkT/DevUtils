@@ -8,6 +8,8 @@ Version 2.0.1 *(2020-09-07)*
 
 * `[Add]` StringUtils#forJoint
 
+* `[Add]` AppCommonUtils#isR
+
 * `[Add]` SnackbarUtils#getSnackbarLayout、getSnackbarContentLayout
 
 * `[Add]` ClickUtils#setCheckViewId 方法, OnDebouncingClickListener、OnCountClickListener 事件

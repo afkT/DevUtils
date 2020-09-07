@@ -303,6 +303,14 @@ public final class AppCommonUtils {
     }
 
     /**
+     * 是否在 11.0 版本及以上
+     * @return 是否在 11.0 版本及以上
+     */
+    public static boolean isR() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.R;
+    }
+
+    /**
      * 转换 SDK 版本 convertSDKVersion(14) = Android 4.0.0-2
      * @return SDK 版本
      */
@@ -375,6 +383,8 @@ public final class AppCommonUtils {
                 return "Android 9.0";
             case 29:
                 return "Android 10.0";
+            case 30:
+                return "Android 11.0";
         }
         return "unknown";
     }
