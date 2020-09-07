@@ -580,7 +580,7 @@ public final class ScaleUtils {
             double scale = calcScale(x, y);
             for (int i = 0, len = lists.size(); i < len; i++) {
                 XY xy = lists.get(i);
-                if (xy.scale >= scale) return xy;
+                if (scale >= xy.scale) return xy;
             }
         }
         return null;
@@ -590,18 +590,20 @@ public final class ScaleUtils {
     // = 实体类 =
     // ==========
 
-    private static final List<XY> XY_LIST;
+    public static final List<XY> XY_LIST;
 
     static {
         List<XY> xys = new ArrayList<>();
         xys.add(new XY(16, 9));
+        xys.add(new XY(17, 10));
+        xys.add(new XY(15, 9));
         xys.add(new XY(16, 10));
         xys.add(new XY(3, 2));
         xys.add(new XY(4, 3));
         xys.add(new XY(5, 4));
+        xys.add(new XY(1, 1));
         XY_LIST = Collections.unmodifiableList(xys);
     }
-
 
     /**
      * detail: XY 比实体类
