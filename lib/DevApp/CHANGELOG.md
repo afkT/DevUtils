@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+Version 2.0.1 *(2020-09-07)*
+----------------------------
+
+* `[Add]` ScaleUtils#calcScale、calcScaleToMath、calcXY
+
+* `[Add]` StringUtils#forJoint
+
+* `[Add]` SnackbarUtils#getSnackbarLayout、getSnackbarContentLayout
+
+* `[Add]` ClickUtils#setCheckViewId 方法, OnDebouncingClickListener、OnCountClickListener 事件
+
+* `[Fix]` 修复部分 LayoutParams 操作, 未 setLayoutParams 处理
+
 Version 2.0.0 *(2020-08-29)*
 ----------------------------
 

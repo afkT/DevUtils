@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.1.5 *(2020-09-07)*
+----------------------------
+
+* `[Add]` ScaleUtils#calcScale、calcScaleToMath、calcXY
+
+* `[Add]` StringUtils#forJoint
+
 Version 1.1.4 *(2020-08-29)*
 ----------------------------
 
