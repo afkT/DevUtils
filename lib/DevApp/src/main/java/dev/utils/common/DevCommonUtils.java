@@ -1028,8 +1028,8 @@ public final class DevCommonUtils {
      * @param str 待处理字符串
      * @return 处理后的字符串
      */
-    public static String toClearSpace(final String str) {
-        return StringUtils.toClearSpace(str);
+    public static String clearSpace(final String str) {
+        return StringUtils.clearSpace(str);
     }
 
     /**
@@ -1037,8 +1037,8 @@ public final class DevCommonUtils {
      * @param str 待处理字符串
      * @return 处理后的字符串
      */
-    public static String toClearSpaceTrim(final String str) {
-        return StringUtils.toClearSpaceTrim(str);
+    public static String clearSpaceTrim(final String str) {
+        return StringUtils.clearSpaceTrim(str);
     }
 
     // =
@@ -1077,8 +1077,8 @@ public final class DevCommonUtils {
      * @param str 待校验字符串
      * @return 如果待校验字符串为 null, 则返回默认字符串, 如果不为 null, 则返回该字符串
      */
-    public static String toCheckValue(final String str) {
-        return StringUtils.toCheckValue(str);
+    public static String checkValue(final String str) {
+        return StringUtils.checkValue(str);
     }
 
     /**
@@ -1087,8 +1087,8 @@ public final class DevCommonUtils {
      * @param str        待校验字符串
      * @return 如果待校验字符串为 null, 则返回 defaultStr, 如果不为 null, 则返回该字符串
      */
-    public static String toCheckValue(final String defaultStr, final String str) {
-        return StringUtils.toCheckValue(defaultStr, str);
+    public static String checkValue(final String defaultStr, final String str) {
+        return StringUtils.checkValue(defaultStr, str);
     }
 
     /**
@@ -1098,8 +1098,8 @@ public final class DevCommonUtils {
      * @param value2     第二个待校验字符串
      * @return 两个待校验字符串中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
-    public static String toCheckValue(final String defaultStr, final String value1, final String value2) {
-        return StringUtils.toCheckValue(defaultStr, value1, value2);
+    public static String checkValue(final String defaultStr, final String value1, final String value2) {
+        return StringUtils.checkValue(defaultStr, value1, value2);
     }
 
     /**
@@ -1108,8 +1108,8 @@ public final class DevCommonUtils {
      * @param strs       待校验字符串数组
      * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
-    public static String toCheckValues(final String defaultStr, final String... strs) {
-        return StringUtils.toCheckValues(defaultStr, strs);
+    public static String checkValues(final String defaultStr, final String... strs) {
+        return StringUtils.checkValues(defaultStr, strs);
     }
 
     /**
@@ -1118,8 +1118,8 @@ public final class DevCommonUtils {
      * @param strs       待校验字符串数组
      * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
-    public static String toCheckValuesSpace(final String defaultStr, final String... strs) {
-        return StringUtils.toCheckValuesSpace(defaultStr, strs);
+    public static String checkValuesSpace(final String defaultStr, final String... strs) {
+        return StringUtils.checkValuesSpace(defaultStr, strs);
     }
 
     // ==================
@@ -1297,8 +1297,8 @@ public final class DevCommonUtils {
      * @param suffix 替换符号字符串
      * @return 处理后的字符串
      */
-    public static String toReplaceSEWith(final String str, final String suffix) {
-        return StringUtils.toReplaceSEWith(str, suffix);
+    public static String replaceSEWith(final String str, final String suffix) {
+        return StringUtils.replaceSEWith(str, suffix);
     }
 
     /**
@@ -1309,8 +1309,8 @@ public final class DevCommonUtils {
      * @param value  需要替换的内容
      * @return 处理后的字符串
      */
-    public static String toReplaceSEWith(final String str, final String suffix, final String value) {
-        return StringUtils.toReplaceSEWith(str, suffix, value);
+    public static String replaceSEWith(final String str, final String suffix, final String value) {
+        return StringUtils.replaceSEWith(str, suffix, value);
     }
 
     // =
@@ -1321,8 +1321,8 @@ public final class DevCommonUtils {
      * @param prefix 开头匹配字符串
      * @return 处理后的字符串
      */
-    public static String toReplaceStartsWith(final String str, final String prefix) {
-        return StringUtils.toReplaceStartsWith(str, prefix);
+    public static String replaceStartsWith(final String str, final String prefix) {
+        return StringUtils.replaceStartsWith(str, prefix);
     }
 
     /**
@@ -1332,8 +1332,8 @@ public final class DevCommonUtils {
      * @param startAppend 开头追加的内容
      * @return 处理后的字符串
      */
-    public static String toReplaceStartsWith(final String str, final String prefix, final String startAppend) {
-        return StringUtils.toReplaceStartsWith(str, prefix, startAppend);
+    public static String replaceStartsWith(final String str, final String prefix, final String startAppend) {
+        return StringUtils.replaceStartsWith(str, prefix, startAppend);
     }
 
     /**
@@ -1342,8 +1342,8 @@ public final class DevCommonUtils {
      * @param suffix 结尾匹配字符串
      * @return 处理后的字符串
      */
-    public static String toReplaceEndsWith(final String str, final String suffix) {
-        return StringUtils.toReplaceEndsWith(str, suffix);
+    public static String replaceEndsWith(final String str, final String suffix) {
+        return StringUtils.replaceEndsWith(str, suffix);
     }
 
     /**
@@ -1353,8 +1353,8 @@ public final class DevCommonUtils {
      * @param value  需要替换的内容
      * @return 处理后的字符串
      */
-    public static String toReplaceEndsWith(final String str, final String suffix, final String value) {
-        return StringUtils.toReplaceEndsWith(str, suffix, value);
+    public static String replaceEndsWith(final String str, final String suffix, final String value) {
+        return StringUtils.replaceEndsWith(str, suffix, value);
     }
 
     // =
@@ -1367,8 +1367,8 @@ public final class DevCommonUtils {
      * @param suffix 匹配判断字符串
      * @return 处理后的字符串
      */
-    public static String toClearSEWiths(final String str, final String suffix) {
-        return StringUtils.toClearSEWiths(str, suffix);
+    public static String clearSEWiths(final String str, final String suffix) {
+        return StringUtils.clearSEWiths(str, suffix);
     }
 
     /**
@@ -1379,8 +1379,8 @@ public final class DevCommonUtils {
      * @param suffix 匹配判断字符串
      * @return 处理后的字符串
      */
-    public static String toClearStartsWith(final String str, final String suffix) {
-        return StringUtils.toClearStartsWith(str, suffix);
+    public static String clearStartsWith(final String str, final String suffix) {
+        return StringUtils.clearStartsWith(str, suffix);
     }
 
     /**
@@ -1391,8 +1391,8 @@ public final class DevCommonUtils {
      * @param suffix 匹配判断字符串
      * @return 处理后的字符串
      */
-    public static String toClearEndsWith(final String str, final String suffix) {
-        return StringUtils.toClearEndsWith(str, suffix);
+    public static String clearEndsWith(final String str, final String suffix) {
+        return StringUtils.clearEndsWith(str, suffix);
     }
 
     // =
