@@ -1051,7 +1051,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 清空字符串前后所有空格
+     * 清空字符串前后全部空格
      * @param str 待处理字符串
      * @return 处理后的字符串
      */
@@ -1060,7 +1060,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 清空字符串前后所有 Tab
+     * 清空字符串前后全部 Tab
      * @param str 待处理字符串
      * @return 处理后的字符串
      */
@@ -1069,7 +1069,7 @@ public final class DevCommonUtils {
     }
 
     /**
-     * 清空字符串前后所有换行符
+     * 清空字符串前后全部换行符
      * @param str 待处理字符串
      * @return 处理后的字符串
      */

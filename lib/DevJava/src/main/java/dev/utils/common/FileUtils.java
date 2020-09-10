@@ -1668,7 +1668,7 @@ public final class FileUtils {
     }
 
     /**
-     * 删除目录下所有东西
+     * 删除目录下所有文件
      * @param dirPath 目录路径
      * @return {@code true} 删除成功, {@code false} 删除失败
      */
@@ -1677,7 +1677,7 @@ public final class FileUtils {
     }
 
     /**
-     * 删除目录下所有东西
+     * 删除目录下所有文件
      * @param dir 目录
      * @return {@code true} 删除成功, {@code false} 删除失败
      */
