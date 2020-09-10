@@ -36,7 +36,7 @@ public class ArticleAdapter extends BaseQuickAdapter<ArticleBean.DataBean.DatasB
         // 标题
         helper.setText(R.id.vid_aa_title_tv, item.title);
         // 时间
-        helper.setText(R.id.vid_aa_time_tv, DevCommonUtils.toCheckValue(item.niceShareDate, item.niceDate));
+        helper.setText(R.id.vid_aa_time_tv, DevCommonUtils.checkValue(item.niceShareDate, item.niceDate));
         // 随机图片
         GlideUtils.with().displayImage("https://picsum.photos/2" + DateUtils.convertTime(position),
                 helper.getView(R.id.vid_aa_pic_igview), ProjectUtils.getRoundOptions());

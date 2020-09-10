@@ -470,7 +470,7 @@ public final class StringUtils {
      * @param str 待处理字符串
      * @return 处理后的字符串
      */
-    public static String toClearSpace(final String str) {
+    public static String clearSpace(final String str) {
         if (isEmpty(str)) return str;
         return str.replaceAll(" ", "");
     }
@@ -480,7 +480,7 @@ public final class StringUtils {
      * @param str 待处理字符串
      * @return 处理后的字符串
      */
-    public static String toClearSpaceTrim(final String str) {
+    public static String clearSpaceTrim(final String str) {
         if (isEmpty(str)) return str;
         String tempString = str;
         // 如果前面或者后面都是空格开头, 就一直进行处理
@@ -575,8 +575,8 @@ public final class StringUtils {
      * @param str 待校验字符串
      * @return 如果待校验字符串为 null, 则返回默认字符串, 如果不为 null, 则返回该字符串
      */
-    public static String toCheckValue(final String str) {
-        return toCheckValue("", str);
+    public static String checkValue(final String str) {
+        return checkValue("", str);
     }
 
     /**
@@ -585,7 +585,7 @@ public final class StringUtils {
      * @param str        待校验字符串
      * @return 如果待校验字符串为 null, 则返回 defaultStr, 如果不为 null, 则返回该字符串
      */
-    public static String toCheckValue(final String defaultStr, final String str) {
+    public static String checkValue(final String defaultStr, final String str) {
         return isEmpty(str) ? defaultStr : str;
     }
 
@@ -596,7 +596,7 @@ public final class StringUtils {
      * @param value2     第二个待校验字符串
      * @return 两个待校验字符串中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
-    public static String toCheckValue(final String defaultStr, final String value1, final String value2) {
+    public static String checkValue(final String defaultStr, final String value1, final String value2) {
         if (isEmpty(value1)) {
             if (isEmpty(value2)) {
                 return defaultStr;
@@ -614,7 +614,7 @@ public final class StringUtils {
      * @param strs       待校验字符串数组
      * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
-    public static String toCheckValues(final String defaultStr, final String... strs) {
+    public static String checkValues(final String defaultStr, final String... strs) {
         if (strs != null && strs.length != 0) {
             for (int i = 0, len = strs.length; i < len; i++) {
                 String val = strs[i];
@@ -632,11 +632,11 @@ public final class StringUtils {
      * @param strs       待校验字符串数组
      * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
-    public static String toCheckValuesSpace(final String defaultStr, final String... strs) {
+    public static String checkValuesSpace(final String defaultStr, final String... strs) {
         if (strs != null && strs.length != 0) {
             for (int i = 0, len = strs.length; i < len; i++) {
                 // 删除前后空格处理后, 进行返回
-                String val = toClearSpaceTrim(strs[i]);
+                String val = clearSpaceTrim(strs[i]);
                 if (!isEmpty(val)) {
                     return val;
                 }
@@ -775,8 +775,8 @@ public final class StringUtils {
      * @param str 待处理字符串
      * @return GBK 编码后的字符串
      */
-    public static String toGBKEncode(final String str) {
-        return toStrEncode(str, "GBK");
+    public static String gbkEncode(final String str) {
+        return strEncode(str, "GBK");
     }
 
     /**
@@ -784,8 +784,8 @@ public final class StringUtils {
      * @param str 待处理字符串
      * @return GBK2312 编码后的字符串
      */
-    public static String toGBK2312Encode(final String str) {
-        return toStrEncode(str, "GBK-2312");
+    public static String gbk2312Encode(final String str) {
+        return strEncode(str, "GBK-2312");
     }
 
     /**
@@ -793,8 +793,8 @@ public final class StringUtils {
      * @param str 待处理字符串
      * @return UTF-8 编码后的字符串
      */
-    public static String toUTF8Encode(final String str) {
-        return toStrEncode(str, "UTF-8");
+    public static String utf8Encode(final String str) {
+        return strEncode(str, "UTF-8");
     }
 
     /**
@@ -803,12 +803,12 @@ public final class StringUtils {
      * @param enc 编码格式
      * @return 指定编码格式编码后的字符串
      */
-    public static String toStrEncode(final String str, final String enc) {
+    public static String strEncode(final String str, final String enc) {
         if (str == null || enc == null) return null;
         try {
             return new String(str.getBytes(), enc);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toStrEncode");
+            JCLogUtils.eTag(TAG, e, "strEncode");
         }
         return str;
     }
@@ -820,8 +820,8 @@ public final class StringUtils {
      * @param str 待处理字符串
      * @return UTF-8 编码格式 URL 编码后的字符串
      */
-    public static String toUrlEncode(final String str) {
-        return toUrlEncode(str, "UTF-8");
+    public static String urlEncode(final String str) {
+        return urlEncode(str, "UTF-8");
     }
 
     /**
@@ -830,12 +830,12 @@ public final class StringUtils {
      * @param enc 编码格式
      * @return 指定编码格式 URL 编码后的字符串
      */
-    public static String toUrlEncode(final String str, final String enc) {
+    public static String urlEncode(final String str, final String enc) {
         if (str == null || enc == null) return null;
         try {
             return URLEncoder.encode(str, enc);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toUrlEncode");
+            JCLogUtils.eTag(TAG, e, "urlEncode");
         }
         return null;
     }
@@ -847,8 +847,8 @@ public final class StringUtils {
      * @param str 待处理字符串
      * @return UTF-8 编码格式 URL 解码后的字符串
      */
-    public static String toUrlDecode(final String str) {
-        return toUrlDecode(str, "UTF-8");
+    public static String urlDecode(final String str) {
+        return urlDecode(str, "UTF-8");
     }
 
     /**
@@ -857,12 +857,12 @@ public final class StringUtils {
      * @param enc 解码格式
      * @return 指定编码格式 URL 解码后的字符串
      */
-    public static String toUrlDecode(final String str, final String enc) {
+    public static String urlDecode(final String str, final String enc) {
         if (str == null || enc == null) return null;
         try {
             return URLDecoder.decode(str, enc);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toUrlDecode");
+            JCLogUtils.eTag(TAG, e, "urlDecode");
         }
         return null;
     }
@@ -874,7 +874,7 @@ public final class StringUtils {
      * @param str 待处理字符串
      * @return 字符串转 ASCII 码后的字符串
      */
-    public static String toASCII(final String str) {
+    public static String ascii(final String str) {
         if (isEmpty(str)) return str;
         try {
             StringBuilder builder = new StringBuilder();
@@ -884,7 +884,7 @@ public final class StringUtils {
             }
             return builder.toString();
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toASCII");
+            JCLogUtils.eTag(TAG, e, "ascii");
         }
         return null;
     }
@@ -894,7 +894,7 @@ public final class StringUtils {
      * @param str 待处理字符串
      * @return 字符串转 Unicode 码后的字符串
      */
-    public static String toUnicode(final String str) {
+    public static String unicode(final String str) {
         if (isEmpty(str)) return str;
         try {
             StringBuilder builder = new StringBuilder();
@@ -904,7 +904,7 @@ public final class StringUtils {
             }
             return builder.toString();
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toUnicode");
+            JCLogUtils.eTag(TAG, e, "unicode");
         }
         return null;
     }
@@ -914,7 +914,7 @@ public final class StringUtils {
      * @param chars char[]
      * @return char[] 转 Unicode 码后的字符串
      */
-    public static String toUnicodeString(final char[] chars) {
+    public static String unicodeString(final char[] chars) {
         if (chars == null) return null;
         try {
             StringBuilder builder = new StringBuilder();
@@ -923,7 +923,7 @@ public final class StringUtils {
             }
             return builder.toString();
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toUnicodeString");
+            JCLogUtils.eTag(TAG, e, "unicodeString");
         }
         return null;
     }
@@ -933,7 +933,7 @@ public final class StringUtils {
      * @param str 待处理字符串
      * @return 转换半角字符串
      */
-    public static String toDBC(final String str) {
+    public static String dbc(final String str) {
         if (isEmpty(str)) return str;
         char[] chars = str.toCharArray();
         for (int i = 0, len = chars.length; i < len; i++) {
@@ -953,7 +953,7 @@ public final class StringUtils {
      * @param str 待处理字符串
      * @return 转换全角字符串
      */
-    public static String toSBC(final String str) {
+    public static String sbc(final String str) {
         if (isEmpty(str)) return str;
         char[] chars = str.toCharArray();
         for (int i = 0, len = chars.length; i < len; i++) {
@@ -1225,7 +1225,7 @@ public final class StringUtils {
                 if (maxLength >= strLength) {
                     return str;
                 }
-                return str.substring(0, maxLength) + toCheckValue(symbol);
+                return str.substring(0, maxLength) + checkValue(symbol);
             }
         }
         return "";
@@ -1353,26 +1353,26 @@ public final class StringUtils {
 
     /**
      * 替换 ( 删除 - 替换成 "") 字符串中符合 特定标记字符的 startsWith - endsWith
-     * * 如 _____a_a_a_a________ 传入 _ 等于 ____a_a_a_a____
+     * * 如 _____a_a_a_a_____ 传入 _ 等于 ____a_a_a_a____
      * @param str    待处理字符串
      * @param suffix 替换符号字符串
      * @return 处理后的字符串
      */
-    public static String toReplaceSEWith(final String str, final String suffix) {
-        return toReplaceSEWith(str, suffix, "");
+    public static String replaceSEWith(final String str, final String suffix) {
+        return replaceSEWith(str, suffix, "");
     }
 
     /**
      * 替换字符串中符合 特定标记字符的 startsWith - endsWith
-     * 如 _____a_a_a_a________ 传入 _, c 等于 c____a_a_a_a____c
-     * @param str    待处理字符串
-     * @param suffix 替换匹配内容
-     * @param value  需要替换的内容
+     * 如 _____a_a_a_a_____ 传入 _, c 等于 c____a_a_a_a____c
+     * @param str     待处理字符串
+     * @param suffix  替换匹配内容
+     * @param replace 替换的内容
      * @return 处理后的字符串
      */
-    public static String toReplaceSEWith(final String str, final String suffix, final String value) {
+    public static String replaceSEWith(final String str, final String suffix, final String replace) {
         try {
-            if (isEmpty(str) || isEmpty(suffix) || isEmpty(value) || suffix.equals(value))
+            if (isEmpty(str) || isEmpty(suffix) || replace == null || suffix.equals(replace))
                 return str;
             // 获取编辑内容长度
             int suffixLength = suffix.length();
@@ -1382,7 +1382,7 @@ public final class StringUtils {
             if (builder.indexOf(suffix) == 0) {
                 builder.delete(0, suffixLength);
                 // 追加内容
-                builder.insert(0, value);
+                builder.insert(0, replace);
             }
             // 获取尾部的位置
             int lastIndexOf = -1;
@@ -1392,11 +1392,11 @@ public final class StringUtils {
             if ((lastIndexOf = builder.lastIndexOf(suffix)) == ((bufLength = builder.length()) - suffixLength)) {
                 builder.delete(lastIndexOf, bufLength);
                 // 追加内容
-                builder.insert(lastIndexOf, value);
+                builder.insert(lastIndexOf, replace);
             }
             return builder.toString();
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toReplaceSEWith");
+            JCLogUtils.eTag(TAG, e, "replaceSEWith");
         }
         return str;
     }
@@ -1409,8 +1409,8 @@ public final class StringUtils {
      * @param prefix 开头匹配字符串
      * @return 处理后的字符串
      */
-    public static String toReplaceStartsWith(final String str, final String prefix) {
-        return toReplaceStartsWith(str, prefix, "");
+    public static String replaceStartsWith(final String str, final String prefix) {
+        return replaceStartsWith(str, prefix, "");
     }
 
     /**
@@ -1420,14 +1420,14 @@ public final class StringUtils {
      * @param startAppend 开头追加的内容
      * @return 处理后的字符串
      */
-    public static String toReplaceStartsWith(final String str, final String prefix, final String startAppend) {
+    public static String replaceStartsWith(final String str, final String prefix, final String startAppend) {
         if (!isEmpty(str) && !isEmpty(prefix)) {
             try {
                 if (str.startsWith(prefix)) {
-                    return toCheckValue(startAppend) + str.substring(prefix.length());
+                    return checkValue(startAppend) + str.substring(prefix.length());
                 }
             } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "toReplaceStartsWith");
+                JCLogUtils.eTag(TAG, e, "replaceStartsWith");
             }
         }
         return str;
@@ -1439,25 +1439,25 @@ public final class StringUtils {
      * @param suffix 结尾匹配字符串
      * @return 处理后的字符串
      */
-    public static String toReplaceEndsWith(final String str, final String suffix) {
-        return toReplaceEndsWith(str, suffix, "");
+    public static String replaceEndsWith(final String str, final String suffix) {
+        return replaceEndsWith(str, suffix, "");
     }
 
     /**
      * 替换结尾字符串
-     * @param str    待处理字符串
-     * @param suffix 结尾匹配字符串
-     * @param value  需要替换的内容
+     * @param str     待处理字符串
+     * @param suffix  结尾匹配字符串
+     * @param replace 替换的内容
      * @return 处理后的字符串
      */
-    public static String toReplaceEndsWith(final String str, final String suffix, final String value) {
+    public static String replaceEndsWith(final String str, final String suffix, final String replace) {
         if (!isEmpty(str) && !isEmpty(suffix)) {
             try {
                 if (str.endsWith(suffix)) {
-                    return str.substring(0, str.length() - suffix.length()) + value;
+                    return str.substring(0, str.length() - suffix.length()) + replace;
                 }
             } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "toReplaceEndsWith");
+                JCLogUtils.eTag(TAG, e, "replaceEndsWith");
             }
         }
         return str;
@@ -1467,13 +1467,13 @@ public final class StringUtils {
 
     /**
      * 这个方法功能主要把字符符合标记的 头部和尾部都替换成 ""
-     * 如 _____a_a_a_a________ 传入 _ 等于 a_a_a_a
+     * 如 _____a_a_a_a_____ 传入 _ 等于 a_a_a_a
      * 替换字符串中符合 特定标记字符的 startsWith(indexOf) - endsWith(lastIndexOf)
      * @param str    待处理字符串
      * @param suffix 匹配判断字符串
      * @return 处理后的字符串
      */
-    public static String toClearSEWiths(final String str, final String suffix) {
+    public static String clearSEWiths(final String str, final String suffix) {
         if (isEmpty(str) || isEmpty(suffix)) return str;
         try {
             // 获取编辑内容长度
@@ -1494,20 +1494,20 @@ public final class StringUtils {
             }
             return builder.toString();
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toClearSEWiths");
+            JCLogUtils.eTag(TAG, e, "clearSEWiths");
         }
         return str;
     }
 
     /**
      * 清空属于特定字符串开头的字段
-     * 如 _____a_a_a_a________ 传入 _ 等于 a_a_a_a_____
+     * 如 _____a_a_a_a_____ 传入 _ 等于 a_a_a_a_____
      * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf)
      * @param str    待处理字符串
      * @param suffix 匹配判断字符串
      * @return 处理后的字符串
      */
-    public static String toClearStartsWith(final String str, final String suffix) {
+    public static String clearStartsWith(final String str, final String suffix) {
         if (isEmpty(str) || isEmpty(suffix)) return str;
         try {
             // 获取编辑内容长度
@@ -1520,20 +1520,20 @@ public final class StringUtils {
             }
             return builder.toString();
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toClearStartsWith");
+            JCLogUtils.eTag(TAG, e, "clearStartsWith");
         }
         return str;
     }
 
     /**
      * 清空属于特定字符串结尾的字段
-     * 如 _____a_a_a_a________ 传入 _ 等于 _____a_a_a_a
+     * 如 _____a_a_a_a_____ 传入 _ 等于 _____a_a_a_a
      * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf)
      * @param str    待处理字符串
      * @param suffix 匹配判断字符串
      * @return 处理后的字符串
      */
-    public static String toClearEndsWith(final String str, final String suffix) {
+    public static String clearEndsWith(final String str, final String suffix) {
         if (isEmpty(str) || isEmpty(suffix)) return str;
         try {
             // 获取编辑内容长度
@@ -1548,7 +1548,7 @@ public final class StringUtils {
             }
             return builder.toString();
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toClearEndsWith");
+            JCLogUtils.eTag(TAG, e, "clearEndsWith");
         }
         return str;
     }

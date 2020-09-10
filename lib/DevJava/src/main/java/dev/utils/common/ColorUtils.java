@@ -109,13 +109,13 @@ public final class ColorUtils {
      * @param alpha 0-255
      * @return 透明度 ( 十六进制 ) 值
      */
-    public static String toHexAlpha(final int alpha) {
+    public static String hexAlpha(final int alpha) {
         try {
             if (alpha >= 0 && alpha <= 255) {
                 return Integer.toHexString(alpha);
             }
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toHexAlpha");
+            JCLogUtils.eTag(TAG, e, "hexAlpha");
         }
         return null;
     }
@@ -937,7 +937,7 @@ public final class ColorUtils {
             @Override
             public String handleColor(String value) {
                 if (value == null) return null;
-                String color = StringUtils.toClearSpace(value);
+                String color = StringUtils.clearSpace(value);
                 char[] chars = color.toCharArray();
                 int length = chars.length;
                 if (length != 0 && chars[0] == '#') {

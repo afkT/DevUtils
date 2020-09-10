@@ -81,7 +81,7 @@ public class BaseApplication extends MultiDexApplication {
                 // 防止 null 处理
                 if (message == null) return;
                 // 进行编码处理
-                message = StringUtils.toStrEncode(message, "UTF-8");
+                message = StringUtils.strEncode(message, "UTF-8");
                 // 获取日志类型
                 switch (logType) {
                     case Log.VERBOSE:
