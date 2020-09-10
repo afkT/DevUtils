@@ -61,7 +61,7 @@ public final class HttpParamsUtils {
                         }
                         // 判断是否编码
                         if (urlEncode) {
-                            mapParams.put(key, toUrlEncode(value));
+                            mapParams.put(key, urlEncode(value));
                         } else {
                             mapParams.put(key, value);
                         }
@@ -101,7 +101,7 @@ public final class HttpParamsUtils {
                 if (index > 0) builder.append('&');
                 builder.append(entry.getKey());
                 builder.append('=');
-                builder.append(urlEncode ? toUrlEncode(entry.getValue()) : entry.getValue());
+                builder.append(urlEncode ? urlEncode(entry.getValue()) : entry.getValue());
                 index++;
             }
             return builder.toString();
@@ -140,7 +140,7 @@ public final class HttpParamsUtils {
                 builder.append('=');
                 if (urlEncode) {
                     if (entry.getValue() instanceof String) {
-                        builder.append(toUrlEncode((String) entry.getValue()));
+                        builder.append(urlEncode((String) entry.getValue()));
                     }
                 } else {
                     builder.append(entry.getValue());
@@ -164,13 +164,13 @@ public final class HttpParamsUtils {
      * @param value     数组 [key] 保存值
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean toConvertObjToMS(final Map<String, String> mapParams, final String objStr, final String key, final String value) {
+    public static boolean convertObjToMS(final Map<String, String> mapParams, final String objStr, final String key, final String value) {
         if (mapParams != null) {
             String data = null;
             try {
                 data = URLEncoder.encode(value, "UTF-8");
             } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "toConvertObjToMS");
+                JCLogUtils.eTag(TAG, e, "convertObjToMS");
             }
             mapParams.put(objStr + "[" + key + "]", data);
             return true;
@@ -186,13 +186,13 @@ public final class HttpParamsUtils {
      * @param value     数组 [key] 保存值
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean toConvertObjToMO(final Map<String, Object> mapParams, final String objStr, final String key, final Object value) {
+    public static boolean convertObjToMO(final Map<String, Object> mapParams, final String objStr, final String key, final Object value) {
         if (mapParams != null) {
             Object data = null;
             try {
                 data = URLEncoder.encode(value.toString(), "UTF-8");
             } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "toConvertObjToMO");
+                JCLogUtils.eTag(TAG, e, "convertObjToMO");
             }
             mapParams.put(objStr + "[" + key + "]", data);
             return true;
@@ -209,8 +209,8 @@ public final class HttpParamsUtils {
      * @param str 待处理字符串
      * @return UTF-8 编码格式 URL 编码后的字符串
      */
-    public static String toUrlEncode(final String str) {
-        return StringUtils.toUrlEncode(str);
+    public static String urlEncode(final String str) {
+        return StringUtils.urlEncode(str);
     }
 
     /**
@@ -219,7 +219,7 @@ public final class HttpParamsUtils {
      * @param enc 编码格式
      * @return 指定编码格式 URL 编码后的字符串
      */
-    public static String toUrlEncode(final String str, final String enc) {
-        return StringUtils.toUrlEncode(str, enc);
+    public static String urlEncode(final String str, final String enc) {
+        return StringUtils.urlEncode(str, enc);
     }
 }

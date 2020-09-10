@@ -820,8 +820,8 @@ public final class StringUtils {
      * @param str 待处理字符串
      * @return UTF-8 编码格式 URL 编码后的字符串
      */
-    public static String toUrlEncode(final String str) {
-        return toUrlEncode(str, "UTF-8");
+    public static String urlEncode(final String str) {
+        return urlEncode(str, "UTF-8");
     }
 
     /**
@@ -830,12 +830,12 @@ public final class StringUtils {
      * @param enc 编码格式
      * @return 指定编码格式 URL 编码后的字符串
      */
-    public static String toUrlEncode(final String str, final String enc) {
+    public static String urlEncode(final String str, final String enc) {
         if (str == null || enc == null) return null;
         try {
             return URLEncoder.encode(str, enc);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toUrlEncode");
+            JCLogUtils.eTag(TAG, e, "urlEncode");
         }
         return null;
     }
@@ -847,8 +847,8 @@ public final class StringUtils {
      * @param str 待处理字符串
      * @return UTF-8 编码格式 URL 解码后的字符串
      */
-    public static String toUrlDecode(final String str) {
-        return toUrlDecode(str, "UTF-8");
+    public static String urlDecode(final String str) {
+        return urlDecode(str, "UTF-8");
     }
 
     /**
@@ -857,12 +857,12 @@ public final class StringUtils {
      * @param enc 解码格式
      * @return 指定编码格式 URL 解码后的字符串
      */
-    public static String toUrlDecode(final String str, final String enc) {
+    public static String urlDecode(final String str, final String enc) {
         if (str == null || enc == null) return null;
         try {
             return URLDecoder.decode(str, enc);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "toUrlDecode");
+            JCLogUtils.eTag(TAG, e, "urlDecode");
         }
         return null;
     }

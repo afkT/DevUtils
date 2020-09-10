@@ -663,7 +663,7 @@ public final class ImageFilterUtils {
 //     * @param bitmap 待操作源图片
 //     * @return 灰度图
 //     */
-//    public static Bitmap toGray(final Bitmap bitmap) {
+//    public static Bitmap gray(final Bitmap bitmap) {
 //        if (bitmap == null) return null;
 //        try {
 //            int width = bitmap.getWidth(); // 获取位图的宽
@@ -689,7 +689,7 @@ public final class ImageFilterUtils {
 //            newBitmap.setPixels(pixels, 0, width, 0, 0, width, height);
 //            return newBitmap;
 //        } catch (Exception e) {
-//            LogPrintUtils.eTag(TAG, e, "toGray");
+//            LogPrintUtils.eTag(TAG, e, "gray");
 //        }
 //        return null;
 //    }
@@ -699,7 +699,7 @@ public final class ImageFilterUtils {
      * @param bitmap 待操作源图片
      * @return 灰度图
      */
-    public static Bitmap toGray(final Bitmap bitmap) {
+    public static Bitmap gray(final Bitmap bitmap) {
         if (bitmap == null) return null;
         try {
             Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
@@ -712,7 +712,7 @@ public final class ImageFilterUtils {
             canvas.drawBitmap(bitmap, 0, 0, paint);
             return newBitmap;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "toGray");
+            LogPrintUtils.eTag(TAG, e, "gray");
         }
         return null;
     }
