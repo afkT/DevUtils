@@ -19,6 +19,10 @@ public final class StringUtils {
     // 日志 TAG
     private static final String TAG = StringUtils.class.getSimpleName();
 
+    // 空格 字符串
+    public static final String SPACE_STR       = " ";
+    // TAB 字符串
+    public static final String TAB_STR         = "\t";
     // 换行字符串
     public static final String NEW_LINE_STR    = System.getProperty("line.separator");
     // 换行字符串 ( 两行 )
@@ -465,14 +469,33 @@ public final class StringUtils {
         return (str != null) ? str.getBytes() : null;
     }
 
+    // =
+
     /**
      * 清空字符串全部空格
      * @param str 待处理字符串
      * @return 处理后的字符串
      */
     public static String clearSpace(final String str) {
-        if (isEmpty(str)) return str;
-        return str.replaceAll(" ", "");
+        return replaceAll(str, SPACE_STR, "");
+    }
+
+    /**
+     * 清空字符串全部 Tab
+     * @param str 待处理字符串
+     * @return 处理后的字符串
+     */
+    public static String clearTab(final String str) {
+        return replaceAll(str, TAB_STR, "");
+    }
+
+    /**
+     * 清空字符串全部换行符
+     * @param str 待处理字符串
+     * @return 处理后的字符串
+     */
+    public static String clearLine(final String str) {
+        return replaceAll(str, NEW_LINE_STR, "");
     }
 
     /**
@@ -481,13 +504,25 @@ public final class StringUtils {
      * @return 处理后的字符串
      */
     public static String clearSpaceTrim(final String str) {
-        if (isEmpty(str)) return str;
-        String tempString = str;
-        // 如果前面或者后面都是空格开头, 就一直进行处理
-        while (tempString.startsWith(" ") || tempString.endsWith(" ")) {
-            tempString = tempString.trim();
-        }
-        return tempString;
+        return clearSEWiths(str, SPACE_STR);
+    }
+
+    /**
+     * 清空字符串前后所有 Tab
+     * @param str 待处理字符串
+     * @return 处理后的字符串
+     */
+    public static String clearTabTrim(final String str) {
+        return clearSEWiths(str, TAB_STR);
+    }
+
+    /**
+     * 清空字符串前后所有换行符
+     * @param str 待处理字符串
+     * @return 处理后的字符串
+     */
+    public static String clearLineTrim(final String str) {
+        return clearSEWiths(str, NEW_LINE_STR);
     }
 
     // =
@@ -498,7 +533,7 @@ public final class StringUtils {
      * @return 指定数量的空格字符串
      */
     public static String appendSpace(final int number) {
-        return forString(number, " ");
+        return forString(number, SPACE_STR);
     }
 
     /**
@@ -507,7 +542,7 @@ public final class StringUtils {
      * @return 指定数量的 Tab 字符串
      */
     public static String appendTab(final int number) {
-        return forString(number, "\t");
+        return forString(number, TAB_STR);
     }
 
     /**
@@ -1353,7 +1388,7 @@ public final class StringUtils {
 
     /**
      * 替换 ( 删除 - 替换成 "") 字符串中符合 特定标记字符的 startsWith - endsWith
-     * * 如 _____a_a_a_a_____ 传入 _ 等于 ____a_a_a_a____
+     * 如 _____a_a_a_a_____ 传入 _ 等于 ____a_a_a_a____
      * @param str    待处理字符串
      * @param suffix 替换符号字符串
      * @return 处理后的字符串
