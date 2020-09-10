@@ -2615,6 +2615,16 @@ public final class ViewHelper {
         return this;
     }
 
+    /**
+     * 取消动画
+     * @param view {@link View}
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper cancelAnimation(final View view) {
+        ViewUtils.cancelAnimation(view);
+        return this;
+    }
+
     // ============
     // = Listener =
     // ============

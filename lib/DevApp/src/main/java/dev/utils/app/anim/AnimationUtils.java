@@ -161,6 +161,15 @@ public final class AnimationUtils {
 
     /**
      * 取消动画
+     * @param view {@link View}
+     * @return {@link Animation}
+     */
+    public static Animation cancelAnimation(final View view) {
+        return cancel(getAnimation(view));
+    }
+
+    /**
+     * 取消动画
      * @param animation {@link Animation}
      * @param <T>       泛型
      * @return {@link Animation}

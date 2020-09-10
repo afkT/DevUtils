@@ -2263,6 +2263,15 @@ public final class QuickHelper {
         return this;
     }
 
+    /**
+     * 取消动画
+     * @return {@link QuickHelper}
+     */
+    public QuickHelper cancelAnimation() {
+        ViewUtils.cancelAnimation(targetView());
+        return this;
+    }
+
     // ============
     // = Listener =
     // ============

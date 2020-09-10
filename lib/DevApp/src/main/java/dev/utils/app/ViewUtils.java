@@ -33,6 +33,7 @@ import java.lang.reflect.Field;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.anim.AnimationUtils;
 import dev.utils.app.image.ImageUtils;
 import dev.utils.common.FieldUtils;
 
@@ -2991,8 +2992,7 @@ public final class ViewUtils {
      * @return {@link View}
      */
     public static View setAnimation(final View view, final Animation animation) {
-        if (view != null) view.setAnimation(animation);
-        return view;
+        return AnimationUtils.setAnimation(view, animation);
     }
 
     /**
@@ -3001,7 +3001,7 @@ public final class ViewUtils {
      * @return {@link Animation}
      */
     public static Animation getAnimation(final View view) {
-        return (view != null) ? view.getAnimation() : null;
+        return AnimationUtils.getAnimation(view);
     }
 
     /**
@@ -3010,14 +3010,7 @@ public final class ViewUtils {
      * @return {@link View}
      */
     public static View clearAnimation(final View view) {
-        if (view != null) {
-            try {
-                view.clearAnimation();
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "clearAnimation");
-            }
-        }
-        return view;
+        return AnimationUtils.clearAnimation(view);
     }
 
     /**
@@ -3027,14 +3020,7 @@ public final class ViewUtils {
      * @return {@link View}
      */
     public static View startAnimation(final View view, final Animation animation) {
-        if (view != null && animation != null) {
-            try {
-                view.startAnimation(animation);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "startAnimation");
-            }
-        }
-        return view;
+        return AnimationUtils.startAnimation(view, animation);
     }
 
     /**
@@ -3044,14 +3030,16 @@ public final class ViewUtils {
      * @return {@link Animation}
      */
     public static <T extends Animation> T startAnimation(final T animation) {
-        if (animation != null) {
-            try {
-                animation.start();
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "startAnimation");
-            }
-        }
-        return animation;
+        return AnimationUtils.startAnimation(animation);
+    }
+
+    /**
+     * 取消动画
+     * @param view {@link View}
+     * @return {@link Animation}
+     */
+    public static Animation cancelAnimation(final View view) {
+        return AnimationUtils.cancelAnimation(view);
     }
 
     /**
@@ -3061,14 +3049,7 @@ public final class ViewUtils {
      * @return {@link Animation}
      */
     public static <T extends Animation> T cancel(final T animation) {
-        if (animation != null) {
-            try {
-                animation.cancel();
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "cancel");
-            }
-        }
-        return animation;
+        return AnimationUtils.cancel(animation);
     }
 
     // ========
