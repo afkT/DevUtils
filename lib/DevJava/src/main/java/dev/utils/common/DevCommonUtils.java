@@ -1033,12 +1033,66 @@ public final class DevCommonUtils {
     }
 
     /**
+     * 清空字符串全部 Tab
+     * @param str 待处理字符串
+     * @return 处理后的字符串
+     */
+    public static String clearTab(final String str) {
+        return StringUtils.clearTab(str);
+    }
+
+    /**
+     * 清空字符串全部换行符
+     * @param str 待处理字符串
+     * @return 处理后的字符串
+     */
+    public static String clearLine(final String str) {
+        return StringUtils.clearLine(str);
+    }
+
+    /**
      * 清空字符串前后所有空格
      * @param str 待处理字符串
      * @return 处理后的字符串
      */
     public static String clearSpaceTrim(final String str) {
         return StringUtils.clearSpaceTrim(str);
+    }
+
+    /**
+     * 清空字符串前后所有 Tab
+     * @param str 待处理字符串
+     * @return 处理后的字符串
+     */
+    public static String clearTabTrim(final String str) {
+        return StringUtils.clearTabTrim(str);
+    }
+
+    /**
+     * 清空字符串前后所有换行符
+     * @param str 待处理字符串
+     * @return 处理后的字符串
+     */
+    public static String clearLineTrim(final String str) {
+        return StringUtils.clearLineTrim(str);
+    }
+
+    /**
+     * 清空字符串全部空格、Tab、换行符
+     * @param str 待处理字符串
+     * @return 处理后的字符串
+     */
+    public static String clearSpaceTabLine(final String str) {
+        return StringUtils.clearSpaceTabLine(str);
+    }
+
+    /**
+     * 清空字符串前后全部空格、Tab、换行符
+     * @param str 待处理字符串
+     * @return 处理后的字符串
+     */
+    public static String clearSpaceTabLineTrim(final String str) {
+        return StringUtils.clearSpaceTabLineTrim(str);
     }
 
     // =

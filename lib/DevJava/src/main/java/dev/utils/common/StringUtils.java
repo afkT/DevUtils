@@ -499,7 +499,7 @@ public final class StringUtils {
     }
 
     /**
-     * 清空字符串前后所有空格
+     * 清空字符串前后全部空格
      * @param str 待处理字符串
      * @return 处理后的字符串
      */
@@ -508,7 +508,7 @@ public final class StringUtils {
     }
 
     /**
-     * 清空字符串前后所有 Tab
+     * 清空字符串前后全部 Tab
      * @param str 待处理字符串
      * @return 处理后的字符串
      */
@@ -517,12 +517,48 @@ public final class StringUtils {
     }
 
     /**
-     * 清空字符串前后所有换行符
+     * 清空字符串前后全部换行符
      * @param str 待处理字符串
      * @return 处理后的字符串
      */
     public static String clearLineTrim(final String str) {
         return clearSEWiths(str, NEW_LINE_STR);
+    }
+
+    /**
+     * 清空字符串全部空格、Tab、换行符
+     * @param str 待处理字符串
+     * @return 处理后的字符串
+     */
+    public static String clearSpaceTabLine(final String str) {
+        if (isEmpty(str)) return str;
+        String value = clearSpace(str);
+        value = clearTab(value);
+        value = clearLine(value);
+        return value;
+    }
+
+    /**
+     * 清空字符串前后全部空格、Tab、换行符
+     * @param str 待处理字符串
+     * @return 处理后的字符串
+     */
+    public static String clearSpaceTabLineTrim(final String str) {
+        if (isEmpty(str)) return str;
+        String value = str;
+        while (true) {
+            boolean space = (value.startsWith(SPACE_STR) || value.endsWith(SPACE_STR));
+            if (space) value = clearSpaceTrim(value);
+
+            boolean tab = (value.startsWith(TAB_STR) || value.endsWith(TAB_STR));
+            if (tab) value = clearTabTrim(value);
+
+            boolean line = (value.startsWith(NEW_LINE_STR) || value.endsWith(NEW_LINE_STR));
+            if (line) value = clearLineTrim(value);
+
+            // 都不存在则返回值
+            if (!space && !tab && !line) return value;
+        }
     }
 
     // =
