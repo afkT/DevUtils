@@ -3048,8 +3048,8 @@ public final class ViewUtils {
      * @param <T>       泛型
      * @return {@link Animation}
      */
-    public static <T extends Animation> T cancel(final T animation) {
-        return AnimationUtils.cancel(animation);
+    public static <T extends Animation> T cancelAnimation(final T animation) {
+        return AnimationUtils.cancelAnimation(animation);
     }
 
     // ========
