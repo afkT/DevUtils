@@ -540,7 +540,7 @@ public final class EditTextUtils {
     // =
 
     /**
-     * 获取 DigitsKeyListener ( 限制只能输入字母, 默认弹出英文输入法 )
+     * 获取 DigitsKeyListener ( 限制只能输入字母, 默认弹出英文软键盘 )
      * @return {@link DigitsKeyListener}
      */
     public static DigitsKeyListener getLettersKeyListener() {
@@ -548,7 +548,7 @@ public final class EditTextUtils {
     }
 
     /**
-     * 获取 DigitsKeyListener ( 限制只能输入字母和数字, 默认弹出英文输入法 )
+     * 获取 DigitsKeyListener ( 限制只能输入字母和数字, 默认弹出英文软键盘 )
      * @return {@link DigitsKeyListener}
      */
     public static DigitsKeyListener getNumberAndLettersKeyListener() {
