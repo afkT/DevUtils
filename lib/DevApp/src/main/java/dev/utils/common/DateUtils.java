@@ -419,28 +419,22 @@ public final class DateUtils {
     }
 
     /**
-     * 转换时间处理, 小于 10, 则自动补充 0x
+     * 时间补 0 处理 ( 小于 10, 则自动补充 0x )
      * @param time 待处理时间
      * @return 自动补 0 时间字符串
      */
-    public static String convertTime(final int time) {
-        return convertTime(time, true);
+    public static String timeAddZero(final int time) {
+        return timeAddZero(time, true);
     }
 
     /**
-     * 转换时间处理, 小于 10, 则自动补充 0x
+     * 时间补 0 处理 ( 小于 10, 则自动补充 0x )
      * @param time   待处理时间
      * @param append 判断是否需要自动补 0
      * @return 自动补 0 时间字符串
      */
-    public static String convertTime(final int time, final boolean append) {
-        if (append) {
-            int timeTmpe = time;
-            // 防止出现负数
-            timeTmpe = Math.max(0, timeTmpe);
-            return timeTmpe >= 10 ? timeTmpe + "" : "0" + timeTmpe;
-        }
-        return time + "";
+    public static String timeAddZero(final int time, final boolean append) {
+        return NumberUtils.addZero(time, append);
     }
 
     // =
@@ -605,7 +599,7 @@ public final class DateUtils {
     public static List<String> getListToHH() {
         List<String> lists = new ArrayList<>();
         for (int i = 0; i < 24; i++) {
-            lists.add(convertTime(i, true));
+            lists.add(timeAddZero(i, true));
         }
         return lists;
     }
@@ -626,7 +620,7 @@ public final class DateUtils {
     public static List<String> getListToMM() {
         List<String> lists = new ArrayList<>();
         for (int i = 0; i < 60; i++) {
-            lists.add(convertTime(i, true));
+            lists.add(timeAddZero(i, true));
         }
         return lists;
     }
@@ -655,21 +649,21 @@ public final class DateUtils {
         switch (type) {
             case 0:
                 for (int i = 0; i < 24; i++) {
-                    lists.add(convertTime(i, true) + ":00");
+                    lists.add(timeAddZero(i, true) + ":00");
                 }
                 break;
             case 1:
                 for (int i = 0; i < 96; i++) { // 00 15 30 45 = 4 (24 * 4)
                     if (i % 2 == 0) { // 判断是否偶数 00、30
                         // 小时数
-                        String hour = convertTime(i / 4, true);
+                        String hour = timeAddZero(i / 4, true);
                         // 分钟数
                         String minute = i % 4 == 0 ? "00" : "30";
                         // 累加时间
                         lists.add(hour + ":" + minute);
                     } else { // 15、45
                         // 小时数
-                        String hour = convertTime(i / 4, true);
+                        String hour = timeAddZero(i / 4, true);
                         // 分钟数
                         String minute = (i - 1) % 4 == 0 ? "15" : "45";
                         // 累加时间
@@ -683,9 +677,9 @@ public final class DateUtils {
                     int hour = i / 2;
                     // 属于偶数
                     if (i % 2 == 0) {
-                        lists.add(convertTime(hour, true) + ":00");
+                        lists.add(timeAddZero(hour, true) + ":00");
                     } else {
-                        lists.add(convertTime(hour, true) + ":30");
+                        lists.add(timeAddZero(hour, true) + ":30");
                     }
                 }
                 break;

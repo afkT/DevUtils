@@ -16,8 +16,8 @@ import afkt.project.util.ProjectUtils;
 import dev.other.GlideUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.app.ListenerUtils;
-import dev.utils.common.DateUtils;
 import dev.utils.common.DevCommonUtils;
+import dev.utils.common.NumberUtils;
 
 /**
  * detail: 文章 Adapter
@@ -38,7 +38,7 @@ public class ArticleAdapter extends BaseQuickAdapter<ArticleBean.DataBean.DatasB
         // 时间
         helper.setText(R.id.vid_aa_time_tv, DevCommonUtils.checkValue(item.niceShareDate, item.niceDate));
         // 随机图片
-        GlideUtils.with().displayImage("https://picsum.photos/2" + DateUtils.convertTime(position),
+        GlideUtils.with().displayImage("https://picsum.photos/2" + NumberUtils.addZero(position),
                 helper.getView(R.id.vid_aa_pic_igview), ProjectUtils.getRoundOptions());
         // 绑定点击事件
         ListenerUtils.setOnClicks(new View.OnClickListener() {

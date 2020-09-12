@@ -16,6 +16,27 @@ public final class NumberUtils {
     // 日志 TAG
     private static final String TAG = NumberUtils.class.getSimpleName();
 
+    /**
+     * 补 0 处理 ( 小于 10, 则自动补充 0x )
+     * @param value 待处理值
+     * @return 自动补 0 字符串
+     */
+    public static String addZero(final int value) {
+        return addZero(value, true);
+    }
+
+    /**
+     * 补 0 处理 ( 小于 10, 则自动补充 0x )
+     * @param value  待处理值
+     * @param append 是否需要自动补 0
+     * @return 自动补 0 字符串
+     */
+    public static String addZero(final int value, final boolean append) {
+        if (!append) return value + "";
+        int temp = Math.max(0, value);
+        return temp >= 10 ? temp + "" : "0" + temp;
+    }
+
     // =======
     // = int =
     // =======
