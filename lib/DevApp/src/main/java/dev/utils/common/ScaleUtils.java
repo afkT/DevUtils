@@ -612,14 +612,20 @@ public final class ScaleUtils {
     public static class XY implements Comparable<XY> {
 
         public XY(final int x, final int y) {
+            this(x, y, 0);
+        }
+
+        public XY(final int x, final int y, final int type) {
             this.x = x;
             this.y = y;
             this.scale = calcScale(x, y);
+            this.type = type;
         }
 
         public final int    x;
         public final int    y;
         public final double scale;
+        public final int    type;
 
         public String getXYx() {
             return getXY("x");
