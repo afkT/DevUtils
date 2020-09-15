@@ -924,7 +924,7 @@ public final class MapUtils {
     }
 
     /**
-     * 判断 Map 是否存储了 key
+     * 判断 Map 是否存储 key
      * @param map {@link Map}
      * @param key key
      * @param <K> key
@@ -943,7 +943,7 @@ public final class MapUtils {
     }
 
     /**
-     * 判断 Map 是否存储了 value
+     * 判断 Map 是否存储 value
      * @param map   {@link Map}
      * @param value value
      * @param <K>   key

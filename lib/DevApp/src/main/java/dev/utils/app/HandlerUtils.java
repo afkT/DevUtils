@@ -164,7 +164,7 @@ public final class HandlerUtils {
     }
 
     /**
-     * 判断 Map 是否存储了 key Runnable
+     * 判断 Map 是否存储 key Runnable
      * @param key key
      * @return {@code true} yes, {@code false} no
      */
@@ -212,7 +212,7 @@ public final class HandlerUtils {
      * @param key         key
      * @param delayMillis 延迟时间
      */
-    public static void post(final String key, final long delayMillis) {
+    public static void postRunnable(final String key, final long delayMillis) {
         Runnable runnable = sRunnableMaps.get(key);
         if (runnable != null) {
             removeRunnable(runnable);
