@@ -1,6 +1,27 @@
 Change Log
 ==========
 
+Version 2.0.2 *(2020-09-15)*
+----------------------------
+
+* `[Add]` AnimationUtils#cancelAnimation
+
+* `[Add]` KeyBoardUtils#setSoftInputMode
+
+* `[Add]` HandlerUtils#isMainThread
+
+* `[Add]` HandlerUtils 新增 Key Runnable Map 方便通过 Key 快捷控制 Runnable, 进行 postDelayed、removeCallbacks
+
+* `[Add]` StringUtils#clearTab、clearTabTrim、clearLine、clearLineTrim、clearSpaceTabLine、clearSpaceTabLineTrim
+
+* `[Add]` ScaleUtils#XY type 拓展字段
+
+* `[Add]` NumberUtils#addZero
+
+* `[Update]` DateUtils#convertTime 为 timeAddZero
+
+* `[Update]` 去除部分方法名 to 前缀
+
 Version 2.0.1 *(2020-09-07)*
 ----------------------------
 

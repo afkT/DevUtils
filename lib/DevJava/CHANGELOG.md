@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+Version 1.1.6 *(2020-09-15)*
+----------------------------
+
+* `[Add]` StringUtils#clearTab、clearTabTrim、clearLine、clearLineTrim、clearSpaceTabLine、clearSpaceTabLineTrim
+
+* `[Add]` ScaleUtils#XY type 拓展字段
+
+* `[Add]` NumberUtils#addZero
+
+* `[Update]` DateUtils#convertTime 为 timeAddZero
+
+* `[Update]` 去除部分方法名 to 前缀
+
 Version 1.1.5 *(2020-09-07)*
 ----------------------------
 
