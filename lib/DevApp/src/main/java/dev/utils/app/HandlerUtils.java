@@ -3,6 +3,10 @@ package dev.utils.app;
 import android.os.Handler;
 import android.os.Looper;
 
+import java.util.HashMap;
+
+import dev.utils.JCLogUtils;
+
 /**
  * detail: Handler 工具类
  * @author Ttt
@@ -11,6 +15,9 @@ public final class HandlerUtils {
 
     private HandlerUtils() {
     }
+
+    // 日志 TAG
+    private static final String TAG = HandlerUtils.class.getSimpleName();
 
     // 主线程 Handler
     private static Handler sMainHandler;
@@ -132,5 +139,93 @@ public final class HandlerUtils {
          * @param interval    轮询时间
          */
         void onEnd(long delayMillis, int number, long interval);
+    }
+
+    // ================
+    // = Runnable Map =
+    // ================
+
+    // 通过 Key 快捷控制 Runnable, 进行 postDelayed、removeCallbacks
+    private static HashMap<String, Runnable> sRunnableMaps = new HashMap<>();
+
+    /**
+     * 获取 Key Runnable Map
+     * @return Key Runnable Map
+     */
+    public static HashMap<String, Runnable> getRunnableMaps() {
+        return new HashMap<>(sRunnableMaps);
+    }
+
+    /**
+     * 清空 Key Runnable Map
+     */
+    public static void clearRunnableMaps() {
+        sRunnableMaps.clear();
+    }
+
+    /**
+     * 判断 Map 是否存储了 key Runnable
+     * @param key key
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean containsKey(final String key) {
+        return sRunnableMaps.containsKey(key);
+    }
+
+    /**
+     * 通过 Key 存储 Runnable
+     * @param key      key
+     * @param runnable 线程任务
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean put(final String key, final Runnable runnable) {
+        if (key != null && runnable != null) {
+            try {
+                sRunnableMaps.put(key, runnable);
+                return true;
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "put");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 通过 Key 移除 Runnable
+     * @param key key
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean remove(final String key) {
+        if (key != null) {
+            try {
+                sRunnableMaps.remove(key);
+                return true;
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "remove");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 执行对应 Key Runnable
+     * @param key         key
+     * @param delayMillis 延迟时间
+     */
+    public static void post(final String key, final long delayMillis) {
+        Runnable runnable = sRunnableMaps.get(key);
+        if (runnable != null) {
+            removeRunnable(runnable);
+            postRunnable(runnable, delayMillis);
+        }
+    }
+
+    /**
+     * 清除对应 Key Runnable
+     * @param key key
+     */
+    public static void removeRunnable(final String key) {
+        Runnable runnable = sRunnableMaps.get(key);
+        if (runnable != null) removeRunnable(runnable);
     }
 }
