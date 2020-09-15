@@ -27,6 +27,14 @@ public final class HandlerUtils {
     }
 
     /**
+     * 当前线程是否主线程
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMainThread() {
+        return Looper.getMainLooper().getThread() == Thread.currentThread();
+    }
+
+    /**
      * 在主线程 Handler 中执行任务
      * @param runnable 可执行的任务
      */
