@@ -63,7 +63,7 @@ public final class DateUtils {
     public static final long YEAR     = DAY * 365;
 
     /**
-     * 获取当前日期的字符串 - yyyy-MM-dd HH:mm:ss
+     * 获取当前日期的字符串 ( yyyy-MM-dd HH:mm:ss )
      * @return 当前日期 yyyy-MM-dd HH:mm:ss 格式字符串
      */
     public static String getDateNow() {
@@ -136,7 +136,7 @@ public final class DateUtils {
     }
 
     /**
-     * 将日期字符串转换为 Date - 默认表示 time 属于 yyyy-MM-dd HH:mm:ss 格式
+     * 将日期字符串转换为 Date ( 默认表示 time 属于 yyyy-MM-dd HH:mm:ss 格式 )
      * @param time 时间
      * @return {@link Date}
      */
@@ -163,7 +163,7 @@ public final class DateUtils {
     // =
 
     /**
-     * 解析时间字符串转换为 long 毫秒 - 默认表示 time 属于 yyyy-MM-dd HH:mm:ss 格式
+     * 解析时间字符串转换为 long 毫秒 ( 默认表示 time 属于 yyyy-MM-dd HH:mm:ss 格式 )
      * @param time 时间
      * @return 毫秒时间
      */
@@ -211,7 +211,7 @@ public final class DateUtils {
     // =
 
     /**
-     * 获取时间差 - 分钟
+     * 获取时间差 ( 分钟 )
      * @param time 毫秒
      * @return 分钟
      */
@@ -220,7 +220,7 @@ public final class DateUtils {
     }
 
     /**
-     * 获取时间差 - 小时
+     * 获取时间差 ( 小时 )
      * @param time 毫秒
      * @return 小时
      */
@@ -229,7 +229,7 @@ public final class DateUtils {
     }
 
     /**
-     * 获取时间差 - 天
+     * 获取时间差 ( 天 )
      * @param time 毫秒
      * @return 天
      */
@@ -238,7 +238,7 @@ public final class DateUtils {
     }
 
     /**
-     * 获取时间差 - ( 传入时间 - 当前时间 )
+     * 获取时间差 ( 传入时间 - 当前时间 )
      * @param time 毫秒
      * @return 与当前时间的时间差 ( 毫秒 )
      */
@@ -300,7 +300,7 @@ public final class DateUtils {
     }
 
     /**
-     * 获取月 (0 - 11) + 1
+     * 获取月 ( 0 - 11 ) + 1
      * @param date 日期
      * @return 月
      */
@@ -351,7 +351,7 @@ public final class DateUtils {
     }
 
     /**
-     * 获取时 - 24
+     * 获取时 ( 24 )
      * @param date 日期
      * @return 时
      */
@@ -368,7 +368,7 @@ public final class DateUtils {
     }
 
     /**
-     * 获取时 - 12
+     * 获取时 ( 12 )
      * @param date 日期
      * @return 时
      */
@@ -472,7 +472,7 @@ public final class DateUtils {
     }
 
     /**
-     * 获取时 - 24
+     * 获取时 ( 24 )
      * @return 24 小时制小时
      */
     public static int get24Hour() {
@@ -480,7 +480,7 @@ public final class DateUtils {
     }
 
     /**
-     * 获取时 - 12
+     * 获取时 ( 12 )
      * @return 12 小时制小时
      */
     public static int get12Hour() {

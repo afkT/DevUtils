@@ -11,7 +11,7 @@ import java.util.Arrays;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 转换工具类 (Byte、Hex 等 )
+ * detail: 转换工具类 ( Byte、Hex 等 )
  * @author Ttt
  * <pre>
  *     byte 是字节数据类型、有符号型的、占 1 个字节、大小范围为 [ -128 - 127]

@@ -770,7 +770,7 @@ public final class BigDecimalUtils {
             if (value.doubleValue() == 0) {
                 return value.setScale(scale, mode).toPlainString();
             }
-            // 获取原始值字符串 - 非科学计数法
+            // 获取原始值字符串 ( 非科学计数法 )
             String valuePlain = value.toPlainString();
             // 判断是否负数
             boolean isNegative = valuePlain.startsWith("-");
@@ -787,7 +787,7 @@ public final class BigDecimalUtils {
             String symbol = (splitSymbol != null) ? splitSymbol : "";
             // 防止出现负数
             int number = Math.max(splitNumber, 0);
-            // 格式化数据 - 拼接处理
+            // 格式化数据 ( 拼接处理 )
             StringBuilder builder = new StringBuilder();
             // 进行处理小数点前的数值
             for (int len = values[0].length() - 1, i = len, splitPos = 1; i >= 0; i--) {
@@ -830,7 +830,7 @@ public final class BigDecimalUtils {
             String[] array = value.split("\\.");
             char[] tempA = new char[numOfIntPart];
             char[] tempB = new char[numOfDecimalPart];
-            // 整数部分满足精度要求 ( 情况 1)
+            // 整数部分满足精度要求 ( 情况 1 )
             if (array[0].length() == numOfIntPart) {
                 // 直接获取整数部分长度字符
                 for (int i = 0; i < array[0].length(); i++) {
@@ -857,7 +857,7 @@ public final class BigDecimalUtils {
                 }
                 return String.valueOf(tempA) + "." + String.valueOf(tempB);
             }
-            // 整数部分位数大于精度要求 ( 情况 2)
+            // 整数部分位数大于精度要求 ( 情况 2 )
             if (array[0].length() > numOfIntPart) {
                 // 先倒序获取指定位数的整数
                 for (int i = array[0].length() - 1, j = 0; (i >= array[0].length() - numOfIntPart) && (j < numOfIntPart); i--, j++) {
@@ -886,7 +886,7 @@ public final class BigDecimalUtils {
                 }
                 return String.valueOf(tempA1) + "." + String.valueOf(tempB);
             }
-            // 整数部分满足精度要求 ( 情况 3)
+            // 整数部分满足精度要求 ( 情况 3 )
             if (array[0].length() == numOfIntPart) {
                 // 直接获取整数部分长度字符
                 for (int i = 0; i < array[0].length(); i++) {
@@ -913,7 +913,7 @@ public final class BigDecimalUtils {
                 }
                 return String.valueOf(tempA) + "." + String.valueOf(tempB);
             }
-            // 整数部分大于精度要求 ( 情况 4)
+            // 整数部分大于精度要求 ( 情况 4 )
             if (array[0].length() > numOfIntPart) {
                 // 先倒序获取指定位数的整数
                 for (int i = array[0].length() - 1, j = 0; (i >= array[0].length() - numOfIntPart + 1) && (j < numOfIntPart); i--, j++) {
@@ -946,7 +946,7 @@ public final class BigDecimalUtils {
                 }
                 return String.valueOf(tempA1) + "." + String.valueOf(tempB);
             }
-            // 整数部分小于精度要求 ( 情况 5)
+            // 整数部分小于精度要求 ( 情况 5 )
             if (array[0].length() < numOfIntPart) {
                 // 先倒序获取指定位数的整数
                 char[] tempA1 = new char[numOfIntPart];
@@ -985,7 +985,7 @@ public final class BigDecimalUtils {
                 }
                 return String.valueOf(tempA2) + "." + String.valueOf(tempB);
             }
-            // ( 情况 6)
+            // ( 情况 6 )
             if ((array[0].length() < numOfIntPart) && (array[1].length() < numOfDecimalPart)) {
                 String data = value;
                 for (int i = 0; i < numOfIntPart - array[0].length(); i++) {

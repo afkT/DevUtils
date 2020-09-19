@@ -352,7 +352,7 @@ public final class IDCardUtils {
                 String year = idCardStr.substring(6, 10);
                 // 获取当前年份
                 int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-                // 当前年份 - 出生年份
+                // 当前年份 ( 出生年份 )
                 return currentYear - Integer.valueOf(year);
             }
         } catch (Exception e) {

@@ -230,7 +230,7 @@ public final class DevThreadPool {
     }
 
     /**
-     * 判断线程池是否已关闭 - isShutDown 当调用 shutdown() 方法后返回为 true
+     * 判断线程池是否已关闭 ( isShutDown 当调用 shutdown() 方法后返回为 true )
      * @return {@code true} yes, {@code false} no
      */
     public boolean isShutdown() {

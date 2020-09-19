@@ -1,7 +1,7 @@
 package dev.utils.common.validator;
 
 /**
- * detail: 检验联系 ( 手机号, 座机 ) 工具类
+ * detail: 检验联系 ( 手机号、座机 ) 工具类
  * @author Ttt
  * <pre>
  *     @see <a href="http://www.cnblogs.com/zengxiangzhan/p/phone.html"/>
