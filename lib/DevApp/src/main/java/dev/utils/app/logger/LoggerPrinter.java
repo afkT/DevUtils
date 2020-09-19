@@ -79,9 +79,9 @@ final class LoggerPrinter implements IPrinter {
         init();
     }
 
-    // ===============================
-    // = 使用默认 TAG - 日志打印方法 =
-    // ===============================
+    // ================================
+    // = 使用默认 TAG ( 日志打印方法 ) =
+    // ================================
 
     /**
      * 打印 Log.DEBUG
@@ -280,9 +280,9 @@ final class LoggerPrinter implements IPrinter {
         }
     }
 
-    // =================================
-    // = 使用自定义 TAG - 日志打印方法 =
-    // =================================
+    // ==================================
+    // = 使用自定义 TAG ( 日志打印方法 ) =
+    // ==================================
 
     /**
      * 打印 Log.DEBUG
@@ -498,7 +498,7 @@ final class LoggerPrinter implements IPrinter {
      * @return {@code true} yes, {@code false} no
      */
     private boolean isPrintLog(final LogConfig logConfig, final int logType) {
-        // 是否打印日志 - 默认不打印
+        // 是否打印日志 ( 默认不打印 )
         boolean isPrint = false;
         // 日志级别
         LogLevel logLevel = logConfig.logLevel;
@@ -506,7 +506,7 @@ final class LoggerPrinter implements IPrinter {
         switch (logLevel) {
             case NONE: // 全部不打印
                 break;
-            case DEBUG: // 调试级别 v, d - 全部打印
+            case DEBUG: // 调试级别 v, d ( 全部打印 )
                 isPrint = true;
                 break;
             case INFO: // 正常级别 i
@@ -587,7 +587,7 @@ final class LoggerPrinter implements IPrinter {
     }
 
     /**
-     * 日志处理方法 - 此方法是同步的, 以避免混乱的日志的顺序
+     * 日志处理方法 ( 此方法是同步的, 以避免混乱的日志的顺序 )
      * @param config  配置信息
      * @param tag     日志 TAG
      * @param logType 日志类型

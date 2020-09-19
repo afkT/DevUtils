@@ -48,7 +48,7 @@ import dev.utils.common.CollectionUtils;
  *     使用方法:
  *     第一种请求方式
  *     PermissionUtils.permission("").callBack(null).request(Activity);
- *     第二种请求方式 - 需要在 onRequestPermissionsResult 中通知调用
+ *     第二种请求方式 ( 需要在 onRequestPermissionsResult 中通知调用 )
  *     PermissionUtils.permission("").callBack(null).setRequestPermissionsResult(true).request(Activity);
  *     <p></p>
  *     刷新权限改变处理 ( 清空已拒绝的权限记录 )
@@ -62,9 +62,9 @@ public final class PermissionUtils {
 
     // APP 注册的权限
     private static final Set<String>        sAppPermissionSets             = getAppPermissionToSet();
-    // 申请未通过的权限 - 永久拒绝
+    // 申请未通过的权限 ( 永久拒绝 )
     private static final List<String>       sPermissionsDeniedForeverLists = new ArrayList<>();
-    // 申请的权限 - 传入的权限参数
+    // 申请的权限 ( 传入的权限参数 )
     private              Set<String>        mPermissionSets                = new HashSet<>();
     // 准备请求的权限
     private              List<String>       mPermissionsRequestLists       = new ArrayList<>();
@@ -218,7 +218,7 @@ public final class PermissionUtils {
         }
 
         /**
-         * PermissionActivity - onCreate 内部方法
+         * PermissionActivity ( onCreate 内部方法 )
          * @param savedInstanceState 关闭时存储数据
          */
         @Override
@@ -243,7 +243,7 @@ public final class PermissionUtils {
     }
 
     /**
-     * 请求回调权限回调处理 - 通用
+     * 请求回调权限回调处理
      * @param activity {@link Activity}
      */
     private void onRequestPermissionsResultCommon(final Activity activity) {
@@ -256,7 +256,7 @@ public final class PermissionUtils {
     // =
 
     /**
-     * 请求权限回调 - 需要在 Activity 的 onRequestPermissionsResult 回调中, 调用 PermissionUtils.onRequestPermissionsResult(this);
+     * 请求权限回调 ( 需要在 Activity 的 onRequestPermissionsResult 回调中, 调用 PermissionUtils.onRequestPermissionsResult(this); )
      * @param activity {@link Activity}
      */
     public static void onRequestPermissionsResult(final Activity activity) {

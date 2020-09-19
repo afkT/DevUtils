@@ -241,7 +241,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     // ============
 
     /**
-     * 预加载播放 - (file-path or http/rtsp URL) http 资源、本地资源
+     * 预加载播放 (file-path or http/rtsp URL) http 资源、本地资源
      * @param playUri 播放地址
      * @return {@code true} 执行成功, {@code false} 执行失败
      */
@@ -250,7 +250,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     }
 
     /**
-     * 预加载播放 - (file-path or http/rtsp URL) http 资源、本地资源
+     * 预加载播放 (file-path or http/rtsp URL) http 资源、本地资源
      * @param playUri   播放地址
      * @param isLooping 是否循环播放
      * @return {@code true} 执行成功, {@code false} 执行失败
@@ -284,7 +284,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     // ================
 
     /**
-     * 预加载播放 ( 最终调用方法 ) - 加载成功触发 onPrepared, 该方法内调用 mMediaPlayer.start()
+     * 预加载播放 ( 最终调用方法, 加载成功触发 onPrepared, 该方法内调用 mMediaPlayer.start() )
      * @param mediaSet 播放设置
      * @return {@code true} 执行成功, {@code false} 执行失败
      */
@@ -344,7 +344,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     }
 
     /**
-     * 停止操作 - 销毁 MediaPlayer
+     * 停止操作 ( 销毁 MediaPlayer )
      */
     public void stop() {
         // 销毁 MediaPlayer
@@ -534,7 +534,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     public static abstract class MediaSet {
 
         /**
-         * 是否循环播放 - 默认不循环
+         * 是否循环播放 ( 默认不循环 )
          * @return {@code true} yes, {@code false} no
          */
         public boolean isLooping() {
@@ -542,7 +542,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         }
 
         /**
-         * 获取播放音量 ( 设置 ) - 默认使用全局统一音量
+         * 获取播放音量 ( 设置, 默认使用全局统一音量 )
          * @return 播放音量
          */
         public float getVolume() {

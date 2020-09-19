@@ -84,7 +84,7 @@ public final class ImageConvertUtils {
             buffer[12] = 0x01;
             buffer[13] = 0x00;
             // =
-            buffer[14] = 0x20; // 位数 0x20 - 32 位
+            buffer[14] = 0x20; // 位数 0x20 ( 32 位 )
             buffer[15] = 0x00;
             // =
             buffer[16] = 0x00;

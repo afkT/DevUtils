@@ -41,7 +41,7 @@ public final class ToastUtils {
     private static       boolean           sIsHandler   = true;
     // 内部 Handler
     private static final Handler           sHandler     = new Handler(Looper.getMainLooper());
-    // Null 值 - null 提示值
+    // Null 值 ( null 提示值 )
     private static       String            sNullText    = null;
 
     // ============

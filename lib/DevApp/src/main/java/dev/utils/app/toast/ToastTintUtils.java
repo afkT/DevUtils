@@ -50,7 +50,7 @@ public final class ToastTintUtils {
     private static       boolean               sIsHandler   = true;
     // 内部 Handler
     private static final Handler               sHandler     = new Handler(Looper.getMainLooper());
-    // Null 值 - null 提示值
+    // Null 值 ( null 提示值 )
     private static       String                sNullText    = null;
 
     // ============
@@ -1223,7 +1223,7 @@ public final class ToastTintUtils {
         int getTintIconColor();
 
         /**
-         * 是否渲染图标 - getTintIconColor() 着色渲染
+         * 是否渲染图标 ( getTintIconColor() 着色渲染 )
          * @return {@code true} yes, {@code false} no
          */
         boolean isTintIcon();
@@ -1311,7 +1311,7 @@ public final class ToastTintUtils {
         }
 
         /**
-         * 是否渲染图标 - getTintIconColor() 着色渲染
+         * 是否渲染图标 ( getTintIconColor() 着色渲染 )
          * @return {@code true} yes, {@code false} no
          */
         @Override
@@ -1321,7 +1321,7 @@ public final class ToastTintUtils {
     }
 
     /**
-     * detail: Normal 样式 - 灰色
+     * detail: Normal 样式 ( 灰色 )
      * @author Ttt
      */
     public static class NormalStyle extends DefaultStyle {
@@ -1336,7 +1336,7 @@ public final class ToastTintUtils {
         }
 
         /**
-         * 是否渲染图标 - getTintIconColor() 着色渲染
+         * 是否渲染图标 ( getTintIconColor() 着色渲染 )
          * @return {@code true} yes, {@code false} no
          */
         @Override
@@ -1346,7 +1346,7 @@ public final class ToastTintUtils {
     }
 
     /**
-     * detail: Info 样式 - 海洋蓝
+     * detail: Info 样式 ( 海洋蓝 )
      * @author Ttt
      */
     public static class InfoStyle extends DefaultStyle {
@@ -1361,7 +1361,7 @@ public final class ToastTintUtils {
         }
 
         /**
-         * 是否渲染图标 - getTintIconColor() 着色渲染
+         * 是否渲染图标 ( getTintIconColor() 着色渲染 )
          * @return {@code true} yes, {@code false} no
          */
         @Override
@@ -1371,7 +1371,7 @@ public final class ToastTintUtils {
     }
 
     /**
-     * detail: Warning 样式 - 橙色
+     * detail: Warning 样式 ( 橙色 )
      * @author Ttt
      */
     public static class WarningStyle extends DefaultStyle {
@@ -1386,7 +1386,7 @@ public final class ToastTintUtils {
         }
 
         /**
-         * 是否渲染图标 - getTintIconColor() 着色渲染
+         * 是否渲染图标 ( getTintIconColor() 着色渲染 )
          * @return {@code true} yes, {@code false} no
          */
         @Override
@@ -1396,7 +1396,7 @@ public final class ToastTintUtils {
     }
 
     /**
-     * detail: Error 样式 - 红色
+     * detail: Error 样式 ( 红色 )
      * @author Ttt
      */
     public static class ErrorStyle extends DefaultStyle {
@@ -1411,7 +1411,7 @@ public final class ToastTintUtils {
         }
 
         /**
-         * 是否渲染图标 - getTintIconColor() 着色渲染
+         * 是否渲染图标 ( getTintIconColor() 着色渲染 )
          * @return {@code true} yes, {@code false} no
          */
         @Override
@@ -1421,7 +1421,7 @@ public final class ToastTintUtils {
     }
 
     /**
-     * detail: Success 样式 - 绿色
+     * detail: Success 样式 ( 绿色 )
      * @author Ttt
      */
     public static class SuccessStyle extends DefaultStyle {
@@ -1436,7 +1436,7 @@ public final class ToastTintUtils {
         }
 
         /**
-         * 是否渲染图标 - getTintIconColor() 着色渲染
+         * 是否渲染图标 ( getTintIconColor() 着色渲染 )
          * @return {@code true} yes, {@code false} no
          */
         @Override

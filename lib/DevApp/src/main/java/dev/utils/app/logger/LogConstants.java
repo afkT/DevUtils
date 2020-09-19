@@ -16,7 +16,7 @@ final class LogConstants {
     public static final boolean JUDGE_SORT_LOG = false;
 
     /**
-     * 判断是否输出全部方法 - 异常的全部方法
+     * 判断是否输出全部方法 ( 异常的全部方法 )
      */
     public static final boolean JUDGE_OUTPUT_METHOD_ALL = false;
 
@@ -41,7 +41,7 @@ final class LogConstants {
     public static final int DEFAULT_LOG_METHOD_OFFSET = 0;
 
     /**
-     * 默认日志级别 - 异常级别 ( 只有 e, wtf 才进行显示 )
+     * 默认日志级别 ( 只有 e, wtf 才进行显示 )
      */
     public static final LogLevel DEFAULT_LOG_LEVEL = LogLevel.ERROR;
 
@@ -68,9 +68,9 @@ final class LogConstants {
      */
     public static final int MIN_STACK_OFFSET = 3;
 
-    // =======================
-    // = 绘制日志格式 - 字符 =
-    // =======================
+    // ========================
+    // = 绘制日志格式 ( 字符 ) =
+    // ========================
 
     public static final char   TOP_LEFT_CORNER        = '╔';
     public static final char   BOTTOM_LEFT_CORNER     = '╚';

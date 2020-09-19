@@ -156,8 +156,8 @@ public class ToastTintActivity extends BaseActivity<BaseViewRecyclerviewBinding>
         }
 
         /**
-         * 是否渲染图标 - getTintIconColor() 着色渲染
-         * @return
+         * 是否渲染图标 ( getTintIconColor() 着色渲染 )
+         * @return {@code true} yes, {@code false} no
          */
         @Override
         public boolean isTintIcon() {

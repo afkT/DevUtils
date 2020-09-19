@@ -49,7 +49,7 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
     private       boolean                   mIsHandler                 = true;
     // 内部 Handler
     private final Handler                   mHandler                   = new Handler(Looper.getMainLooper());
-    // Null 值 - null 提示值
+    // Null 值 ( null 提示值 )
     private       String                    mNullText                  = null;
     // Toast 文案长度转换 显示时间
     private       int                       mTextLengthConvertDuration = 15;

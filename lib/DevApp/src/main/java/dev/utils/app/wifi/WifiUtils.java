@@ -412,7 +412,7 @@ public final class WifiUtils {
     }
 
     /**
-     * 判断是否连接为 null - unknown ssid
+     * 判断是否连接为 null ( unknown ssid )
      * @param ssid Wifi ssid
      * @return {@code true} yes, {@code false} no
      */

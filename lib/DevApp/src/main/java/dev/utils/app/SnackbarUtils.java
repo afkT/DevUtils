@@ -797,7 +797,7 @@ public final class SnackbarUtils {
         }
 
         /**
-         * 获取 TextView padding 边距 - new int[] { left, top, right, bottom }
+         * 获取 TextView padding 边距 ( new int[] { left, top, right, bottom } )
          * @return TextView padding[]
          */
         @Override
@@ -1072,7 +1072,7 @@ public final class SnackbarUtils {
         }
 
         /**
-         * 获取 TextView padding 边距 - new int[] { left, top, right, bottom }
+         * 获取 TextView padding 边距 ( new int[] { left, top, right, bottom } )
          * @return TextView padding[]
          */
         public int[] getTextPadding() {

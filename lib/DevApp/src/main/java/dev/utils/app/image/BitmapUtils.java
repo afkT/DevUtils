@@ -857,7 +857,7 @@ public final class BitmapUtils {
     // =
 
     /**
-     * 图片圆角处理 ( 非圆形 ) - 只有 leftTop、rightTop
+     * 图片圆角处理 ( 非圆形, 只有 leftTop、rightTop )
      * @param bitmap 待操作源图片
      * @param pixels 圆角大小
      * @return 圆角处理后的图片
@@ -867,7 +867,7 @@ public final class BitmapUtils {
     }
 
     /**
-     * 图片圆角处理 ( 非圆形 ) - 只有 leftBottom、rightBottom
+     * 图片圆角处理 ( 非圆形, 只有 leftBottom、rightBottom )
      * @param bitmap 待操作源图片
      * @param pixels 圆角大小
      * @return 圆角处理后的图片

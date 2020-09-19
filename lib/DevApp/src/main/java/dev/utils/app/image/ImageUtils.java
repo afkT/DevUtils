@@ -785,7 +785,7 @@ public final class ImageUtils {
     }
 
     /**
-     * 图片着色 - tint
+     * 图片着色 ( tint )
      * @param drawable {@link Drawable}
      * @param color    颜色值
      * @return 着色后的 {@link Drawable}
@@ -795,7 +795,7 @@ public final class ImageUtils {
     }
 
     /**
-     * 图片着色 - tint
+     * 图片着色 ( tint )
      * @param drawable {@link Drawable}
      * @param color    颜色值
      * @param mode     着色模式 {@link PorterDuff.Mode}
@@ -815,7 +815,7 @@ public final class ImageUtils {
     // =
 
     /**
-     * 图片着色 - tint
+     * 图片着色 ( tint )
      * @param drawable    {@link Drawable}
      * @param colorFilter 颜色过滤 ( 效果 )
      * @return 着色后的 {@link Drawable}

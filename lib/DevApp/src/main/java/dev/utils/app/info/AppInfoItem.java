@@ -131,8 +131,8 @@ public final class AppInfoItem {
         effective = false;
         try {
             cert.checkValidity();
-            // CertificateExpiredException - 如果证书已过期
-            // CertificateNotYetValidException - 如果证书不再有效
+            // CertificateExpiredException ( 证书已过期 )
+            // CertificateNotYetValidException ( 证书不再有效 )
         } catch (CertificateExpiredException ce) {
             effective = true;
         } catch (CertificateNotYetValidException ce) {
@@ -160,9 +160,9 @@ public final class AppInfoItem {
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_packname, appInfoBean.getAppPackName()));
         // APP MD5 签名
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_md5, appMD5));
-        // APP 版本号 - 主要用于 app 内部版本判断 int 类型
+        // APP 版本号 ( 主要用于 APP 内部版本判断 int 类型 )
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_version_code, appInfoBean.getVersionCode() + ""));
-        // APP 版本名 - 主要用于对用户显示版本信息
+        // APP 版本名 ( 主要用于对用户显示版本信息 )
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_version_name, appInfoBean.getVersionName()));
         // APP SHA1
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_sha1, appSHA1));
