@@ -28,7 +28,7 @@ import dev.widget.R;
  */
 public class RightIconEditText extends AppCompatEditText {
 
-    // drawable - left、top、right、bootom 四个方向图片
+    // drawable ( left、top、right、bootom 四个方向图片 )
     private Drawable mLeft, mTop, mRight, mBottom;
     // Right Drawable 自身坐标信息
     private Rect        mRightBounds;
@@ -75,7 +75,7 @@ public class RightIconEditText extends AppCompatEditText {
             int width = mRightBounds.width();
             int right = getRight();
             int left = getLeft();
-            // icon 点击范围 - 用于小 Icon 扩大触发范围使用
+            // icon 点击范围 ( 用于小 Icon 扩大触发范围使用 )
             int iconRange = (int) (width * mRangeMultiple);
             // 判断是否按在 right drawable 上
             if (eventX > (right - left - iconRange)) {

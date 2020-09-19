@@ -112,7 +112,7 @@ public class ScanShapeView extends View {
     private float   mBorderMargin = 0;
     // 边框宽度
     private float   mBorderWidth;
-    // 扫描区域块 - 绘制的宽 (x), 高 (y) - 默认 700x700
+    // 扫描区域块 ( 默认 700x700 ) - 绘制的宽 (x), 高 (y)
     private PointF  mPointF       = new PointF(700, 700);
 
     // =======================
@@ -445,7 +445,7 @@ public class ScanShapeView extends View {
     }
 
     /**
-     * 设置是否拐角圆角 ( 主要是控制绘制边框的线 ) - 部分特殊使用
+     * 设置是否拐角圆角 ( 主要是控制绘制边框的线 )
      * @param cornerEffect 拐角角度大小
      * @return {@link ScanShapeView}
      */
@@ -911,16 +911,16 @@ public class ScanShapeView extends View {
     // ==========
 
     /**
-     * 获取六边形线条动画 - 线条宽度
-     * @return 六边形线条动画 - 线条宽度
+     * 获取六边形线条动画 ( 线条宽度 )
+     * @return 六边形线条动画 ( 线条宽度 )
      */
     public float getLineWidthToHexagon() {
         return mLinePaintToHexagon.getStrokeWidth();
     }
 
     /**
-     * 设置六边形线条动画 - 线条宽度
-     * @param lineWidthToHexagon 六边形线条动画 - 线条宽度
+     * 设置六边形线条动画 ( 线条宽度 )
+     * @param lineWidthToHexagon 六边形线条动画 ( 线条宽度 )
      * @return {@link ScanShapeView}
      */
     public ScanShapeView setLineWidthToHexagon(float lineWidthToHexagon) {
@@ -932,16 +932,16 @@ public class ScanShapeView extends View {
     }
 
     /**
-     * 获取六边形线条动画 - 线条边距
-     * @return 六边形线条动画 - 线条边距
+     * 获取六边形线条动画 ( 线条边距 )
+     * @return 六边形线条动画 ( 线条边距 )
      */
     public float getLineMarginToHexagon() {
         return mLineMarginToHexagon;
     }
 
     /**
-     * 设置六边形线条动画 - 线条边距
-     * @param lineMarginToHexagon 六边形线条动画 - 线条边距
+     * 设置六边形线条动画 ( 线条边距 )
+     * @param lineMarginToHexagon 六边形线条动画 ( 线条边距 )
      * @return {@link ScanShapeView}
      */
     public ScanShapeView setLineMarginToHexagon(float lineMarginToHexagon) {
@@ -1239,7 +1239,7 @@ public class ScanShapeView extends View {
     }
 
     /**
-     * 获取扫描区域左边边距 ( 左右相等 ) = (View 宽度 - 扫描区域宽度 ) / 2
+     * 获取扫描区域左边边距 ( 左右相等 ) = ( View 宽度 - 扫描区域宽度 ) / 2
      * @return 扫描区域左边边距
      */
     private float getRegionMarginLeft() {
@@ -1247,7 +1247,7 @@ public class ScanShapeView extends View {
     }
 
     /**
-     * 获取扫描区域向上边距 ( 上下相等 ) = (View 宽度 - 扫描区域宽度 ) / 2
+     * 获取扫描区域向上边距 ( 上下相等 ) = ( View 宽度 - 扫描区域宽度 ) / 2
      * @return 扫描区域向上边距
      */
     private float getRegionMarginTop() {

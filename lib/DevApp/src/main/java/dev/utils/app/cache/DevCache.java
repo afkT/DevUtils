@@ -63,7 +63,7 @@ public final class DevCache {
     private static      String                sCachePath    = null;
 
     /**
-     * 获取 DevCache - 默认缓存文件名
+     * 获取 DevCache ( 默认缓存文件名 )
      * @return {@link DevCache}
      */
     public static DevCache obtain() {
@@ -71,7 +71,7 @@ public final class DevCache {
     }
 
     /**
-     * 获取 DevCache -  - 自定义缓存文件名
+     * 获取 DevCache ( 自定义缓存文件名 )
      * @param cacheName 缓存文件名
      * @return {@link DevCache}
      */
@@ -80,7 +80,7 @@ public final class DevCache {
     }
 
     /**
-     * 获取 DevCache - 自定义缓存文件地址
+     * 获取 DevCache ( 自定义缓存文件地址 )
      * @param cacheDir 缓存文件地址
      * @return {@link DevCache}
      */
@@ -89,7 +89,7 @@ public final class DevCache {
     }
 
     /**
-     * 获取 DevCache - 自定义缓存大小
+     * 获取 DevCache ( 自定义缓存大小 )
      * @param maxSize  文件最大大小
      * @param maxCount 最大存储数量
      * @return {@link DevCache}
@@ -99,7 +99,7 @@ public final class DevCache {
     }
 
     /**
-     * 获取 DevCache - 自定义缓存文件地址、大小等
+     * 获取 DevCache ( 自定义缓存文件地址、大小等 )
      * @param cacheDir 缓存文件地址
      * @param maxSize  文件最大大小
      * @param maxCount 最大存储数量
