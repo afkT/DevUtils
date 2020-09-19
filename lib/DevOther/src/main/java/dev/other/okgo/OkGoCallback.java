@@ -49,7 +49,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
     // ==============
 
     /**
-     * 请求网络开始前, UI 线程
+     * 请求网络开始前 ( UI 线程 )
      */
     @Override
     public void onStart(Request<String, ? extends Request> request) {
@@ -76,7 +76,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
     }
 
     /**
-     * 上传过程中的进度回调, get请求不回调, UI 线程
+     * 上传过程中的进度回调, get 请求不回调 ( UI 线程 )
      */
     @Override
     public void uploadProgress(Progress progress) {
@@ -86,7 +86,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
     }
 
     /**
-     * 下载过程中的进度回调, UI 线程
+     * 下载过程中的进度回调 ( UI 线程 )
      */
     @Override
     public void downloadProgress(Progress progress) {
@@ -96,7 +96,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
     }
 
     /**
-     * 缓存成功的回调,UI 线程
+     * 缓存成功的回调 ( UI 线程 )
      */
     @Override
     public void onCacheSuccess(Response<String> response) {
@@ -108,7 +108,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
     }
 
     /**
-     * 请求失败、响应错误、数据解析错误等, 都会回调该方法,  UI 线程
+     * 请求失败、响应错误、数据解析错误等, 都会回调该方法 ( UI 线程 )
      */
     @Override
     public void onError(Response<String> response) {
@@ -143,7 +143,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
     // ============
 
     /**
-     * 对返回数据进行操作的回调,  UI 线程
+     * 对返回数据进行操作的回调 ( UI 线程 )
      */
     @Override
     public void onSuccess(Response<String> response) {
@@ -160,7 +160,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
     }
 
     /**
-     * 拿到响应后, 将数据转换成需要的格式, 子线程中执行, 可以是耗时操作
+     * 拿到响应后, 将数据转换成需要的格式 ( 子线程中执行, 可以是耗时操作 )
      */
     @Override
     public String convertResponse(okhttp3.Response response) throws Throwable {
@@ -184,7 +184,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
     abstract public void onSuccessResponse(OkGoResponse<T> response);
 
     /**
-     * 请求失败、响应错误、数据解析错误等, 都会回调该方法,  UI 线程
+     * 请求失败、响应错误、数据解析错误等, 都会回调该方法 ( UI 线程 )
      * @param response {@link OkGoResponse}
      */
     abstract public void onErrorResponse(OkGoResponse<T> response);
