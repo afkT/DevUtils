@@ -43,7 +43,10 @@ public final class EscapeUtils {
     }
 
     /**
-     * 解码 - 本方法不论参数 data 是否经过 escape() 编码, 均能获取正确的 ( 解码 ) 结果
+     * 解码
+     * <pre>
+     *     本方法不论参数 data 是否经过 escape() 编码, 均能获取正确的 ( 解码 ) 结果
+     * </pre>
      * @param data 待解码数据
      * @return 解码后的字符串
      */

@@ -30,27 +30,27 @@ public final class ColorUtils {
     public static final int TRANSPARENT       = 0x00000000;
     // 白色
     public static final int WHITE             = 0xffffffff;
-    // 白色 - 半透明
+    // 白色 ( 半透明 )
     public static final int WHITE_TRANSLUCENT = 0x80ffffff;
     // 黑色
     public static final int BLACK             = 0xff000000;
-    // 黑色 - 半透明
+    // 黑色 ( 半透明 )
     public static final int BLACK_TRANSLUCENT = 0x80000000;
     // 红色
     public static final int RED               = 0xffff0000;
-    // 红色 - 半透明
+    // 红色 ( 半透明 )
     public static final int RED_TRANSLUCENT   = 0x80ff0000;
     // 绿色
     public static final int GREEN             = 0xff00ff00;
-    // 绿色 - 半透明
+    // 绿色 ( 半透明 )
     public static final int GREEN_TRANSLUCENT = 0x8000ff00;
     // 蓝色
     public static final int BLUE              = 0xff0000ff;
-    // 蓝色 - 半透明
+    // 蓝色 ( 半透明 )
     public static final int BLUE_TRANSLUCENT  = 0x800000ff;
     // 灰色
     public static final int GRAY              = 0xff969696;
-    // 灰色 - 半透明
+    // 灰色 ( 半透明 )
     public static final int GRAY_TRANSLUCENT  = 0x80969696;
     // 天蓝
     public static final int SKYBLUE           = 0xff87ceeb;

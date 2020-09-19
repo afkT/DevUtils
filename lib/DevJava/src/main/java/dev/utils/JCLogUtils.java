@@ -11,8 +11,11 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 /**
- * detail: Java Common 日志打印工具类 ( 简化版 ) - 项目内部使用 ( 主要打印 Java 日志 )
+ * detail: Java Common 日志打印工具类 ( 简化版 )
  * @author Ttt
+ * <pre>
+ *     项目内部使用 ( 主要打印 Java 日志 )
+ * </pre>
  */
 public final class JCLogUtils {
 
@@ -146,9 +149,9 @@ public final class JCLogUtils {
         return result;
     }
 
-    // ===============================
-    // = 对外公开方法 - 使用默认 TAG =
-    // ===============================
+    // ================================
+    // = 对外公开方法 ( 使用默认 TAG ) =
+    // ================================
 
     public static void d(final String message, final Object... args) {
         dTag(DEFAULT_TAG, message, args);
@@ -174,9 +177,9 @@ public final class JCLogUtils {
         xmlTag(DEFAULT_TAG, xml);
     }
 
-    // ===============================
-    // = 对外公开方法 - 日志打印方法 =
-    // ===============================
+    // ================================
+    // = 对外公开方法 ( 日志打印方法 ) =
+    // ================================
 
     public static void dTag(final String tag, final String message, final Object... args) {
         if (JUDGE_PRINT_LOG) {

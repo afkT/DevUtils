@@ -497,7 +497,7 @@ public final class MapUtils {
     }
 
     /**
-     * 添加一条数据, 不允许 key 为 null
+     * 添加一条数据 ( 不允许 key 为 null )
      * @param map   {@link Map}
      * @param key   key
      * @param value value
@@ -548,7 +548,7 @@ public final class MapUtils {
     }
 
     /**
-     * 添加一条数据, 不允许 key 为 null
+     * 添加一条数据 ( 不允许 key 为 null )
      * @param map   {@link Map}
      * @param entry entry
      * @param <K>   key
@@ -966,7 +966,7 @@ public final class MapUtils {
     // =================
 
     /**
-     * 添加一条数据 - (Value) List<T>
+     * 添加一条数据
      * @param map   待添加 {@link Map}
      * @param key   key
      * @param value value, add to list
@@ -979,7 +979,7 @@ public final class MapUtils {
     }
 
     /**
-     * 添加一条数据 - (Value) List<T>
+     * 添加一条数据
      * @param map   {@link Map}
      * @param key   key
      * @param value value, add to list
@@ -1021,7 +1021,7 @@ public final class MapUtils {
     // =
 
     /**
-     * 移除一条数据 - (Value) List<T>
+     * 移除一条数据
      * @param map {@link Map}
      * @param key key
      * @param <K> key
@@ -1041,7 +1041,7 @@ public final class MapUtils {
     }
 
     /**
-     * 移除一条数据 - (Value) List<T>
+     * 移除一条数据
      * @param map   {@link Map}
      * @param key   key
      * @param value value, remove to list
@@ -1067,7 +1067,7 @@ public final class MapUtils {
     }
 
     /**
-     * 移除多条数据 - (Value) List<T>
+     * 移除多条数据
      * @param map   {@link Map}
      * @param key   key
      * @param lists 删除的 list 数据源
@@ -1095,7 +1095,7 @@ public final class MapUtils {
     // =
 
     /**
-     * 移除多条数据 - 通过 Map 进行移除
+     * 移除多条数据 ( 通过 Map 进行移除 )
      * @param map       {@link Map}
      * @param removeMap {@link Map} 移除对比数据源
      * @param <K>       key
@@ -1107,7 +1107,7 @@ public final class MapUtils {
     }
 
     /**
-     * 移除多条数据 - 通过 Map 进行移除
+     * 移除多条数据 ( 通过 Map 进行移除 )
      * @param map             {@link Map}
      * @param removeMap       {@link Map} 移除对比数据源
      * @param removeEmpty     是否移除 null、长度为 0 的数据

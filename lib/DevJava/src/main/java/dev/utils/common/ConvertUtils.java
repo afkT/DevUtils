@@ -11,7 +11,7 @@ import java.util.Arrays;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 转换工具类 (Byte、Hex 等 )
+ * detail: 转换工具类 ( Byte、Hex 等 )
  * @author Ttt
  * <pre>
  *     byte 是字节数据类型、有符号型的、占 1 个字节、大小范围为 [ -128 - 127]
@@ -1456,9 +1456,9 @@ public final class ConvertUtils {
         return ints;
     }
 
-    // ===================
-    // = Binary - 二进制 =
-    // ===================
+    // =====================
+    // = Binary ( 二进制 ) =
+    // =====================
 
     /**
      * 将 字节转换 为 二进制字符串
@@ -1516,9 +1516,9 @@ public final class ConvertUtils {
         return null;
     }
 
-    // ======================
-    // = Hex - 十六进制处理 =
-    // ======================
+    // ====================
+    // = Hex ( 十六进制 ) =
+    // ====================
 
     /**
      * 判断是否十六进制数据

@@ -11,7 +11,7 @@ import java.util.Set;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 集合工具类 (Collection - List、Set、Queue) 等
+ * detail: 集合工具类 ( Collection - List、Set、Queue ) 等
  * @author Ttt
  * <pre>
  *     @see <a href="https://mp.weixin.qq.com/s/DmRmazyp-EmTQPXdfw9wpQ"/>
@@ -555,7 +555,7 @@ public final class CollectionUtils {
     }
 
     /**
-     * 添加一条数据 - value 不允许为 null
+     * 添加一条数据 ( value 不允许为 null )
      * @param collection {@link Collection}
      * @param value      值
      * @param <T>        泛型
@@ -611,7 +611,7 @@ public final class CollectionUtils {
     }
 
     /**
-     * 添加集合数据 - values 内的值不允许为 null
+     * 添加集合数据 ( values 内的值不允许为 null )
      * @param collection {@link Collection}
      * @param values     准备添加的值 ( 集合 )
      * @param <T>        泛型
@@ -621,9 +621,9 @@ public final class CollectionUtils {
         return addAll(collection, values, true);
     }
 
-    // ================================
-    // = 添加数据 - 到指定索引 (List) =
-    // ================================
+    // ============================
+    // = 添加数据到指定索引 (List) =
+    // ============================
 
     /**
      * 添加一条数据到指定索引后
@@ -670,7 +670,7 @@ public final class CollectionUtils {
     }
 
     /**
-     * 添加一条数据到指定索引后 - value 不允许为 null
+     * 添加一条数据到指定索引后 ( value 不允许为 null )
      * @param index 索引
      * @param list  集合
      * @param value 值
@@ -733,7 +733,7 @@ public final class CollectionUtils {
     }
 
     /**
-     * 添加集合数据到指定索引后 - values 内的值不允许为 null
+     * 添加集合数据到指定索引后 ( values 内的值不允许为 null )
      * @param index  索引
      * @param list   集合
      * @param values 准备添加的值 ( 集合 )
