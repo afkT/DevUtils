@@ -316,7 +316,7 @@ public class NumberControlAssist {
     }
 
     /**
-     * 添加数量 ( 默认累加 1)
+     * 添加数量 ( 默认累加 1 )
      * @return {@link NumberControlAssist}
      */
     public NumberControlAssist addNumber() {
@@ -324,7 +324,7 @@ public class NumberControlAssist {
     }
 
     /**
-     * 减少数量 ( 默认累减 1)
+     * 减少数量 ( 默认累减 1 )
      * @return {@link NumberControlAssist}
      */
     public NumberControlAssist subtractionNumber() {
@@ -548,13 +548,13 @@ public class NumberControlAssist {
         R numberChange(int number);
 
         /**
-         * 添加数量 ( 默认累加 1)
+         * 添加数量 ( 默认累加 1 )
          * @return R 泛型返回对象
          */
         R addNumber();
 
         /**
-         * 减少数量 ( 默认累减 1)
+         * 减少数量 ( 默认累减 1 )
          * @return R 泛型返回对象
          */
         R subtractionNumber();

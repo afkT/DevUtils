@@ -1053,7 +1053,7 @@ public class ScanShapeView extends View {
     }
 
     /**
-     * 获取环形对应的环是否绘制 []{ 外环, 中间环, 外环 }
+     * 获取环形对应的环是否绘制
      * @return 环形对应的环是否绘制
      */
     public boolean[] getAnnulusDraws() {
