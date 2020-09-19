@@ -167,7 +167,7 @@ final class Utils {
 
             // =
 
-            // 创建私有变量 - 用于记录当前选中的环境
+            // 创建私有变量 ( 用于记录当前选中的环境 )
             // private static EnvironmentBean sSelectModule = null;
             FieldSpec sSelectModuleEnvironmentField = FieldSpec
                     .builder(EnvironmentBean.class, VAR_SELECT_ENVIRONMENT + moduleName)

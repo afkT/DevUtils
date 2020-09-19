@@ -199,7 +199,7 @@ final class PanguAnalyeMain {
     private static String toJsonFormat(final Object data, final boolean includeNulls) {
         if (data != null) {
             try {
-                // 返回 JSON格式数据 - 格式化
+                // 返回 JSON格式数据 ( 格式化 )
                 return createGson(includeNulls).setPrettyPrinting().create().toJson(data);
             } catch (Exception e) {
                 e.printStackTrace();

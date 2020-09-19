@@ -1,7 +1,7 @@
 package dev.callback;
 
 /**
- * detail: 通用抽象回调 - 基类
+ * detail: 通用抽象回调 ( 基类 )
  * @author Ttt
  */
 public abstract class AbstractCommonCallBack<T> extends AbstractCallBack<T> {

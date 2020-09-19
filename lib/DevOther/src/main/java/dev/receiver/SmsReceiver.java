@@ -38,7 +38,7 @@ public final class SmsReceiver extends BroadcastReceiver {
                 // 循环拼接内容
                 for (Object object : pdus) {
                     SmsMessage sms = SmsMessage.createFromPdu((byte[]) object);
-                    message += sms.getMessageBody(); // 消息内容 - 多条消息, 合并成一条
+                    message += sms.getMessageBody(); // 消息内容 ( 多条消息合并成一条 )
                     originatingAddress = sms.getOriginatingAddress();
                     serviceCenterAddress = sms.getServiceCenterAddress();
                     // 触发事件

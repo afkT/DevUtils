@@ -215,7 +215,7 @@ public class LoadProgressBar extends View {
             mPaint.setAntiAlias(true); // 消除锯齿
             // 用于定义的圆弧的形状和大小的界限
             RectF oval = new RectF(centre - radius, centre - radius, centre + radius, centre + radius);
-            // 根据进度画圆弧 - 0 从右边开始 , 270 从上边开始
+            // 根据进度画圆弧 ( 0 从右边开始 , 270 从上边开始 )
             canvas.drawArc(oval, 270, 360 * mProgress / mMax, false, mPaint);
         } else if (mProgressStyle == ProgressStyle.FAN_SHAPED) { // 绘制扇形
             int centre = getWidth() / 2; // 获取圆心的 x 坐标

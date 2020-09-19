@@ -66,7 +66,7 @@ public class DevBaseVariable<K, V> {
     // =
 
     /**
-     * 判断是否存在变量 - 通过 value 判断
+     * 判断是否存在变量 ( 通过 value 判断 )
      * @param value Value
      * @return {@code true} yes, {@code false} no
      */
@@ -92,7 +92,7 @@ public class DevBaseVariable<K, V> {
     }
 
     /**
-     * 删除指定变量数据 - 符合条件的全部 value
+     * 删除指定变量数据 ( 符合条件的全部 value )
      * @param value Value
      * @return {@link DevBaseVariable}
      */
@@ -110,7 +110,7 @@ public class DevBaseVariable<K, V> {
     // =
 
     /**
-     * 判断是否存在变量 - 通过 key 判断
+     * 判断是否存在变量 ( 通过 key 判断 )
      * @param key Key
      * @return {@code true} yes, {@code false} no
      */
@@ -119,7 +119,7 @@ public class DevBaseVariable<K, V> {
     }
 
     /**
-     * 判断是否存在变量 - 如果不存在, 则保存
+     * 判断是否存在变量 ( 如果不存在, 则保存 )
      * @param key   Key
      * @param value Value
      * @return {@code true} yes, {@code false} no
@@ -157,7 +157,7 @@ public class DevBaseVariable<K, V> {
     }
 
     /**
-     * 移除指定变量数据 - 通过 key 判断
+     * 移除指定变量数据 ( 通过 key 判断 )
      * @param key Key
      * @return {@link DevBaseVariable}
      */

@@ -69,9 +69,9 @@ public class EditTextWatcherAssist<T> {
         void onTextChanged(CharSequence charSequence, EditText editText, int position, T object);
     }
 
-    // ================================
-    // = 处理 Adapter Item - EditText =
-    // ================================
+    // ==================================
+    // = 处理 Adapter Item ( EditText ) =
+    // ==================================
 
     // Text 改变事件
     private TextWatcher mTextWatcher;

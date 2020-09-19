@@ -22,7 +22,7 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(), IDevBase {
     // = Object =
     // ==========
 
-    @JvmField // 日志 TAG - 根据使用习惯命名大写
+    @JvmField // 日志 TAG ( 根据使用习惯命名大写 )
     protected var TAG = AbstractDevBaseActivity::class.java.simpleName
 
     @JvmField // Content View

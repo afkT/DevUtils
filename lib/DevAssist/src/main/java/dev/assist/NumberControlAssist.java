@@ -18,7 +18,7 @@ public class NumberControlAssist {
     private int     mMaxNumber       = Integer.MAX_VALUE;
     // 当前数量
     private int     mCurrentNumber   = 1;
-    // 重置数量 - 出现异常情况, 则使用该变量赋值
+    // 重置数量 ( 出现异常情况, 则使用该变量赋值 )
     private int     mResetNumber     = 1;
     // 是否允许设置为负数
     private boolean mIsAllowNegative = false;

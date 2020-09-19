@@ -3,7 +3,7 @@ package dev.assist.multiselect;
 import dev.base.DevBaseEntry;
 
 /**
- * detail: 多选操作接口 - 基类
+ * detail: 多选操作接口 ( 基类 )
  * @param <CollectionG> 集合泛型
  * @param <V>           Value
  * @author Ttt
@@ -46,7 +46,7 @@ public interface IBaseMultiSelect<CollectionG, V> {
     boolean isSelect();
 
     /**
-     * 判断是否选中 - 通过 value 判断
+     * 判断是否选中 ( 通过 value 判断 )
      * @param value Value
      * @return {@code true} yes, {@code false} no
      */
@@ -59,7 +59,7 @@ public interface IBaseMultiSelect<CollectionG, V> {
     void unselectValue(V value);
 
     /**
-     * 设置非选中 - 符合条件的全部 value
+     * 设置非选中 ( 符合条件的全部 value )
      * @param value Value
      */
     void unselectValueAll(V value);

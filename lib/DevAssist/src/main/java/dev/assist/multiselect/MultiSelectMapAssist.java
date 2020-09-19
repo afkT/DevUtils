@@ -90,7 +90,7 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
     }
 
     /**
-     * 判断是否选中 - 通过 value 判断
+     * 判断是否选中 ( 通过 value 判断 )
      * @param value Value
      * @return {@code true} yes, {@code false} no
      */
@@ -116,7 +116,7 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
     }
 
     /**
-     * 设置非选中 - 符合条件的全部 value
+     * 设置非选中 ( 符合条件的全部 value )
      * @param value Value
      */
     @Override
@@ -135,7 +135,7 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
     // =====================
 
     /**
-     * 判断是否选中 - 如果未选中, 则设置为选中
+     * 判断是否选中 ( 如果未选中, 则设置为选中 )
      * @param key   Key
      * @param value Value
      * @return {@code true} yes, {@code false} no
@@ -150,7 +150,7 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
     }
 
     /**
-     * 判断是否选中 - 通过 key 判断
+     * 判断是否选中 ( 通过 key 判断 )
      * @param key Key
      * @return {@code true} yes, {@code false} no
      */

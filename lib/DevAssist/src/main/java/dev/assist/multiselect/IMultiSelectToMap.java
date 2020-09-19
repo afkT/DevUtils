@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * detail: 多选操作接口 - Map
+ * detail: 多选操作接口 ( Map )
  * @param <CollectionG> 集合泛型
  * @param <K>           Key
  * @param <V>           Value
@@ -13,7 +13,7 @@ import java.util.Map;
 public interface IMultiSelectToMap<CollectionG extends Map, K, V> extends IBaseMultiSelect<CollectionG, V> {
 
     /**
-     * 判断是否选中 - 如果未选中, 则设置为选中
+     * 判断是否选中 ( 如果未选中, 则设置为选中 )
      * @param key   Key
      * @param value Value
      * @return {@code true} yes, {@code false} no
@@ -21,7 +21,7 @@ public interface IMultiSelectToMap<CollectionG extends Map, K, V> extends IBaseM
     boolean isSelect(K key, V value);
 
     /**
-     * 判断是否选中 - 通过 key 判断
+     * 判断是否选中 ( 通过 key 判断 )
      * @param key Key
      * @return {@code true} yes, {@code false} no
      */
