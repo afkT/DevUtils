@@ -56,7 +56,7 @@ public abstract class BaseBeanSubscriber<T> extends DisposableSubscriber<T> {
     abstract public void onSuccessResponse(T data);
 
     /**
-     * 请求失败、响应错误、数据解析错误等, 都会回调该方法,  UI 线程
+     * 请求失败、响应错误、数据解析错误等, 都会回调该方法 ( UI 线程 )
      * @param throwable {@link Throwable}
      * @param message   error message
      */
