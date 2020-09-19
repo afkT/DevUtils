@@ -445,7 +445,7 @@ implementation 'com.afkt:DevWidgetX:1.0.4'
 | getShapeType | 获取扫描形状类型 |
 | setShapeType | 设置扫描形状类型 |
 | getCornerRadius | 获取拐角角度大小 |
-| setCornerEffect | 设置是否拐角圆角 ( 主要是控制绘制边框的线 ) - 部分特殊使用 |
+| setCornerEffect | 设置是否拐角圆角 ( 主要是控制绘制边框的线 ) |
 | setRegion | 设置扫描区域大小 |
 | getRegionLeft | 获取扫描绘制区域距离左 / 右边距 |
 | getRegionTop | 获取扫描绘制区域距离上 / 下边距 |
@@ -487,10 +487,10 @@ implementation 'com.afkt:DevWidgetX:1.0.4'
 | setLineMarginLeftToSquare | 设置正方形扫描线条向左 ( 右 ) 边距 |
 | getLineColorToSquare | 获取正方形线条动画颜色 ( 着色 ) |
 | setLineColorToSquare | 设置正方形线条动画 ( 着色 ) |
-| getLineWidthToHexagon | 获取六边形线条动画 - 线条宽度 |
-| setLineWidthToHexagon | 设置六边形线条动画 - 线条宽度 |
-| getLineMarginToHexagon | 获取六边形线条动画 - 线条边距 |
-| setLineMarginToHexagon | 设置六边形线条动画 - 线条边距 |
+| getLineWidthToHexagon | 获取六边形线条动画 ( 线条宽度 ) |
+| setLineWidthToHexagon | 设置六边形线条动画 ( 线条宽度 ) |
+| getLineMarginToHexagon | 获取六边形线条动画 ( 线条边距 ) |
+| setLineMarginToHexagon | 设置六边形线条动画 ( 线条边距 ) |
 | isLineAnimDirection | 获取六边形线条动画方向 ( true = 从左到右, false = 从右到左 ) |
 | setLineAnimDirection | 设置六边形线条动画方向 ( true = 从左到右, false = 从右到左 ) |
 | getLineColorToHexagon | 获取六边形线条动画颜色 |
@@ -501,16 +501,16 @@ implementation 'com.afkt:DevWidgetX:1.0.4'
 | setLineColorToAnnulus | 设置环形线条动画 ( 着色 ) |
 | getLineOffsetSpeedToAnnulus | 获取环形扫描线条速度 |
 | setLineOffsetSpeedToAnnulus | 设置环形扫描线条速度 |
-| getAnnulusDraws | 获取环形对应的环是否绘制 0 - 外环, 1 - 中间环, 2 - 外环 |
-| setAnnulusDraws | 设置环形对应的环是否绘制 0 - 外环, 1 - 中间环, 2 - 外环 |
-| getAnnulusColors | 获取环形对应的环绘制颜色 0 - 外环, 1 - 中间环, 2 - 外环 |
-| setAnnulusColors | 设置环形对应的环绘制颜色 0 - 外环, 1 - 中间环, 2 - 外环 |
-| getAnnulusLengths | 获取环形对应的环绘制长度 0 - 外环, 1 - 中间环, 2 - 外环 |
-| setAnnulusLengths | 设置环形对应的环绘制长度 0 - 外环, 1 - 中间环, 2 - 外环 |
-| getAnnulusWidths | 获取环形对应的环绘制宽度 0 - 外环, 1 - 中间环, 2 - 外环 |
-| setAnnulusWidths | 设置环形对应的环绘制宽度 0 - 外环, 1 - 中间环, 2 - 外环 |
-| getAnnulusMargins | 获取环形对应的环绘制边距 0 - 外环, 1 - 中间环, 2 - 外环 |
-| setAnnulusMargins | 设置环形对应的环绘制边距 0 - 外环, 1 - 中间环, 2 - 外环 |
+| getAnnulusDraws | 获取环形对应的环是否绘制 |
+| setAnnulusDraws | 设置环形对应的环是否绘制 |
+| getAnnulusColors | 获取环形对应的环绘制颜色 |
+| setAnnulusColors | 设置环形对应的环绘制颜色 |
+| getAnnulusLengths | 获取环形对应的环绘制长度 |
+| setAnnulusLengths | 设置环形对应的环绘制长度 |
+| getAnnulusWidths | 获取环形对应的环绘制宽度 |
+| setAnnulusWidths | 设置环形对应的环绘制宽度 |
+| getAnnulusMargins | 获取环形对应的环绘制边距 |
+| setAnnulusMargins | 设置环形对应的环绘制边距 |
 | startAnim | 启动动画 |
 | stopAnim | 停止动画 |
 | isAnimRunning | 是否动画运行中 |

@@ -101,8 +101,8 @@ implementation 'com.afkt:DevAssist:1.0.4'
 | isAllowNegative | 获取是否允许设置为负数 |
 | setAllowNegative | 设置是否允许设置为负数 |
 | numberChange | 数量改变通知 |
-| addNumber | 添加数量 ( 默认累加 1) |
-| subtractionNumber | 减少数量 ( 默认累减 1) |
+| addNumber | 添加数量 ( 默认累加 1 ) |
+| subtractionNumber | 减少数量 ( 默认累减 1 ) |
 | getNumberListener | 获取数量监听事件接口 |
 | setNumberListener | 设置数量监听事件接口 |
 
@@ -136,7 +136,7 @@ implementation 'com.afkt:DevAssist:1.0.4'
 | setRequestType | 设置请求类型 |
 | equalsRequestType | 判断请求类型是否一致 |
 | getRequestHashCode | 获取请求 HashCode |
-| getRequestHashCodeRandom | 获取请求 HashCode - 随机生成并赋值 |
+| getRequestHashCodeRandom | 获取请求 HashCode ( 随机生成并赋值 ) |
 | equalsHashCode | 判断 HashCode 是否一致 |
 | getRequestState | 获取请求状态 |
 | setRequestState | 设置请求状态 |
@@ -217,7 +217,7 @@ implementation 'com.afkt:DevAssist:1.0.4'
 ## <span id="devassistmultiselect">**`dev.assist.multiselect`**</span>
 
 
-* **多选操作接口 - 基类 ->** [IBaseMultiSelect.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/multiselect/IBaseMultiSelect.java)
+* **多选操作接口 ( 基类 ) ->** [IBaseMultiSelect.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/multiselect/IBaseMultiSelect.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -226,16 +226,16 @@ implementation 'com.afkt:DevAssist:1.0.4'
 | getSelects | 获取选中的数据集合 |
 | putSelects | 通过集合添加选中数据 |
 | isSelect | 判断是否存在选中的数据 |
-| isSelectValue | 判断是否选中 - 通过 value 判断 |
+| isSelectValue | 判断是否选中 ( 通过 value 判断 ) |
 | unselectValue | 设置非选中 |
-| unselectValueAll | 设置非选中 - 符合条件的全部 value |
+| unselectValueAll | 设置非选中 ( 符合条件的全部 value ) |
 
 
-* **多选操作接口 - List ->** [IMultiSelectToList.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/multiselect/IMultiSelectToList.java)
+* **多选操作接口 ( List ) ->** [IMultiSelectToList.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/multiselect/IMultiSelectToList.java)
 
 | 方法 | 注释 |
 | :- | :- |
-| isSelect | 判断是否选中 - 通过 value 判断 |
+| isSelect | 判断是否选中 ( 通过 value 判断 ) |
 | select | 设置选中操作 |
 | unselect | 设置非选中操作 |
 | toggle | 切换选中状态 |
@@ -245,12 +245,12 @@ implementation 'com.afkt:DevAssist:1.0.4'
 | getSelectValueToPosition | 获取选中的数据所在的索引 |
 
 
-* **多选操作接口 - Map ->** [IMultiSelectToMap.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/multiselect/IMultiSelectToMap.java)
+* **多选操作接口 ( Map ) ->** [IMultiSelectToMap.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/multiselect/IMultiSelectToMap.java)
 
 | 方法 | 注释 |
 | :- | :- |
-| isSelect | 判断是否选中 - 如果未选中, 则设置为选中 |
-| isSelectKey | 判断是否选中 - 通过 key 判断 |
+| isSelect | 判断是否选中 ( 如果未选中, 则设置为选中 ) |
+| isSelectKey | 判断是否选中 ( 通过 key 判断 ) |
 | select | 设置选中操作 |
 | unselect | 设置非选中操作 |
 | toggle | 切换选中状态 |
@@ -271,9 +271,9 @@ implementation 'com.afkt:DevAssist:1.0.4'
 | getSelects | 获取选中的数据集合 |
 | putSelects | 通过集合添加选中数据 |
 | isSelect | 判断是否存在选中的数据 |
-| isSelectValue | 判断是否选中 - 通过 value 判断 |
+| isSelectValue | 判断是否选中 ( 通过 value 判断 ) |
 | unselectValue | 设置非选中 |
-| unselectValueAll | 设置非选中 - 符合条件的全部 value |
+| unselectValueAll | 设置非选中 ( 符合条件的全部 value ) |
 | select | 设置选中操作 |
 | unselect | 设置非选中操作 |
 | toggle | 切换选中状态 |
@@ -292,10 +292,10 @@ implementation 'com.afkt:DevAssist:1.0.4'
 | getSelects | 获取选中的数据集合 |
 | putSelects | 通过集合添加选中数据 |
 | isSelect | 判断是否存在选中的数据 |
-| isSelectValue | 判断是否选中 - 通过 value 判断 |
+| isSelectValue | 判断是否选中 ( 通过 value 判断 ) |
 | unselectValue | 设置非选中 |
-| unselectValueAll | 设置非选中 - 符合条件的全部 value |
-| isSelectKey | 判断是否选中 - 通过 key 判断 |
+| unselectValueAll | 设置非选中 ( 符合条件的全部 value ) |
+| isSelectKey | 判断是否选中 ( 通过 key 判断 ) |
 | select | 设置选中操作 |
 | unselect | 设置非选中操作 |
 | toggle | 切换选中状态 |
@@ -377,12 +377,12 @@ implementation 'com.afkt:DevAssist:1.0.4'
 | putVariables | 保存变量数据集合 |
 | getVariablesSize | 获取变量总数 |
 | isVariables | 判断是否存在变量数据 |
-| isVariableValue | 判断是否存在变量 - 通过 value 判断 |
+| isVariableValue | 判断是否存在变量 ( 通过 value 判断 ) |
 | removeVariableValue | 删除指定变量数据 |
-| removeVariableValueAll | 删除指定变量数据 - 符合条件的全部 value |
-| isVariable | 判断是否存在变量 - 通过 key 判断 |
+| removeVariableValueAll | 删除指定变量数据 ( 符合条件的全部 value ) |
+| isVariable | 判断是否存在变量 ( 通过 key 判断 ) |
 | putVariable | 保存变量数据 |
-| removeVariable | 移除指定变量数据 - 通过 key 判断 |
+| removeVariable | 移除指定变量数据 ( 通过 key 判断 ) |
 | toggle | 切换变量数据存储状态 |
 | getVariableValue | 通过 key 获取 value |
 | getVariableValueConvert | 通过 key 获取 value |
@@ -396,7 +396,7 @@ implementation 'com.afkt:DevAssist:1.0.4'
 ## <span id="devcallback">**`dev.callback`**</span>
 
 
-* **抽象回调 - 基类 ->** [AbstractCallBack.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/callback/AbstractCallBack.java)
+* **抽象回调 ( 基类 ) ->** [AbstractCallBack.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/callback/AbstractCallBack.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -409,7 +409,7 @@ implementation 'com.afkt:DevAssist:1.0.4'
 | setObject | 设置 Object |
 
 
-* **通用抽象回调 - 基类 ->** [AbstractCommonCallBack.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/callback/AbstractCommonCallBack.java)
+* **通用抽象回调 ( 基类 ) ->** [AbstractCommonCallBack.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/callback/AbstractCommonCallBack.java)
 
 | 方法 | 注释 |
 | :- | :- |

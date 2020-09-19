@@ -325,16 +325,16 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| onStart | 请求网络开始前, UI 线程 |
+| onStart | 请求网络开始前 ( UI 线程 ) |
 | onFinish | 请求网络结束后, UI 线程 |
-| uploadProgress | 上传过程中的进度回调, get请求不回调, UI 线程 |
-| downloadProgress | 下载过程中的进度回调, UI 线程 |
-| onCacheSuccess | 缓存成功的回调,UI 线程 |
-| onError | 请求失败、响应错误、数据解析错误等, 都会回调该方法,  UI 线程 |
-| onSuccess | 对返回数据进行操作的回调,  UI 线程 |
-| convertResponse | 拿到响应后, 将数据转换成需要的格式, 子线程中执行, 可以是耗时操作 |
+| uploadProgress | 上传过程中的进度回调, get 请求不回调 ( UI 线程 ) |
+| downloadProgress | 下载过程中的进度回调 ( UI 线程 ) |
+| onCacheSuccess | 缓存成功的回调 ( UI 线程 ) |
+| onError | 请求失败、响应错误、数据解析错误等, 都会回调该方法 ( UI 线程 ) |
+| onSuccess | 对返回数据进行操作的回调 ( UI 线程 ) |
+| convertResponse | 拿到响应后, 将数据转换成需要的格式 ( 子线程中执行, 可以是耗时操作 ) |
 | onSuccessResponse | 请求响应并处理数据无误 |
-| onErrorResponse | 请求失败、响应错误、数据解析错误等, 都会回调该方法,  UI 线程 |
+| onErrorResponse | 请求失败、响应错误、数据解析错误等, 都会回调该方法 ( UI 线程 ) |
 
 
 * **OkGo 使用 Demo ->** [OkGoDemo.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoDemo.java)
@@ -483,7 +483,7 @@
 | onStart | onStart |
 | onComplete | onComplete |
 | onSuccessResponse | 请求响应并处理数据无误 |
-| onErrorResponse | 请求失败、响应错误、数据解析错误等, 都会回调该方法,  UI 线程 |
+| onErrorResponse | 请求失败、响应错误、数据解析错误等, 都会回调该方法 ( UI 线程 ) |
 | getErrorMessage | 获取异常信息 |
 
 
@@ -496,7 +496,7 @@
 | onStart | onStart |
 | onComplete | onComplete |
 | onSuccessResponse | 请求响应并处理数据无误 |
-| onErrorResponse | 请求失败、响应错误、数据解析错误等, 都会回调该方法,  UI 线程 |
+| onErrorResponse | 请求失败、响应错误、数据解析错误等, 都会回调该方法 ( UI 线程 ) |
 | getErrorMessage | 获取异常信息 |
 | isSuccess | 通过 code 判断请求是否正确 |
 
