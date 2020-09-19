@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 2.0.3 *(2020-09-20)*
+----------------------------
+
+* `[Fix]` NotificationUtils#createNotification 方法新增适配处理
+
+* `[Fix]` PermissionUtils 内存泄露问题
+
+* `[Delete]` 删除 DevCommonUtils 中其他工具类快捷方法
+
+* `[Update]` 更新部分代码注释
+
 Version 2.0.2 *(2020-09-15)*
 ----------------------------
 
