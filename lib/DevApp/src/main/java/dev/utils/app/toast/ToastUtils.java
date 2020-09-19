@@ -17,7 +17,7 @@ import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: Simple Toast 工具类 ( 简单的 Toast 工具类, 支持子线程弹出 Toast)
+ * detail: Simple Toast 工具类 ( 简单的 Toast 工具类, 支持子线程弹出 Toast )
  * @author Ttt
  * <pre>
  *     支持子线程弹出 Toast, 可通过开关配置

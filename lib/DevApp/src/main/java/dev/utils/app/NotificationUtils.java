@@ -2,12 +2,12 @@ package dev.utils.app;
 
 import android.app.AppOpsManager;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 
@@ -277,6 +277,21 @@ public final class NotificationUtils {
 
     /**
      * 创建通知栏对象
+     * @param pendingIntent {@link PendingIntent}
+     * @param icon          图标
+     * @param ticker        状态栏通知文案
+     * @param title         通知栏标题
+     * @param msg           通知栏内容
+     * @param isAutoCancel  点击是否自动关闭
+     * @return {@link Notification}
+     */
+    public static Notification createNotification(final PendingIntent pendingIntent, @DrawableRes final int icon, final String ticker,
+                                                  final String title, final String msg, final boolean isAutoCancel) {
+        return createNotification(pendingIntent, icon, ticker, title, msg, isAutoCancel, null, null);
+    }
+
+    /**
+     * 创建通知栏对象
      * @param pendingIntent  {@link PendingIntent}
      * @param icon           图标
      * @param ticker         状态栏通知文案
@@ -290,78 +305,56 @@ public final class NotificationUtils {
     public static Notification createNotification(final PendingIntent pendingIntent, @DrawableRes final int icon, final String ticker,
                                                   final String title, final String msg, final boolean isAutoCancel,
                                                   final VibratePattern vibratePattern, final LightPattern lightPattern) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            Notification.Builder builder = new Notification.Builder(DevUtils.getContext());
-            // 点击通知执行 intent
-            builder.setContentIntent(pendingIntent);
-            // 设置图标
-            builder.setSmallIcon(icon);
-            // 设置图标
-            builder.setLargeIcon(BitmapFactory.decodeResource(ResourceUtils.getResources(), icon));
-            // 指定通知的 ticker 内容, 通知被创建的时候, 在状态栏一闪而过, 属于瞬时提示信息
-            builder.setTicker(ticker);
-            // 设置标题
-            builder.setContentTitle(title);
-            // 设置内容
-            builder.setContentText(msg);
-            // 设置消息提醒, 震动 | 声音
-            builder.setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND);
-            // 将 AutoCancel 设为 true 后, 当你点击通知栏的 notification 后, 它会自动被取消消失
-            builder.setAutoCancel(isAutoCancel);
-            // 设置时间
-            builder.setWhen(System.currentTimeMillis());
-            // 设置震动参数
-            if (vibratePattern != null && !vibratePattern.isEmpty()) {
-                builder.setVibrate(vibratePattern.vibrates);
-            }
-            // 设置 led 灯参数
-            if (lightPattern != null) {
-                builder.setLights(lightPattern.argb, lightPattern.durationMS, lightPattern.startOffMS);
-            }
-            // = 初始化 Notification 对象 =
-            Notification baseNF;
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-                baseNF = builder.getNotification();
-            } else {
-                baseNF = builder.build();
-            }
-            return baseNF;
-        } else {
-//            // = 初始化通知信息实体类 =
-//            Notification notification = new Notification();
-//            // 设置图标
-//            notification.icon = icon;
-//            // 设置图标
-//            notification.largeIcon = BitmapFactory.decodeResource(ResourceUtils.getResources(), icon);
-//            // 指定通知的 ticker 内容, 通知被创建的时候, 在状态栏一闪而过, 属于瞬时提示信息
-//            notification.tickerText = title;
-//            // 设置时间
-//            notification.when = System.currentTimeMillis();
-//            // 设置消息提醒, 震动 | 声音
-//            notification.defaults = Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND;
-//            // 点击了此通知则取消该通知栏
-//            if (isAutoCancel) {
-//                notification.flags |= Notification.FLAG_AUTO_CANCEL;
-//            }
-//            // 设置震动参数
-//            if (vibratePattern != null && !vibratePattern.isEmpty()) {
-//                notification.vibrate = vibratePattern.vibrates;
-//            }
-//            // 设置 led 灯参数
-//            if (lightPattern != null) {
-//                try {
-//                    notification.ledARGB = lightPattern.argb; // 控制 LED 灯的颜色, 一般有红绿蓝三种颜色可选
-//                    notification.ledOffMS = lightPattern.startOffMS; // 指定 LED 灯暗去的时长, 也是以毫秒为单位
-//                    notification.ledOnMS = lightPattern.durationMS; // 指定 LED 灯亮起的时长, 以毫秒为单位
-//                    notification.flags = Notification.FLAG_SHOW_LIGHTS;
-//                } catch (Exception e) {
-//                }
-//            }
-//            // 设置标题内容等 ( 已经移除, 现在都是支持 4.0 以上, 不需要兼容处理 )
-//            notification.setLatestEventInfo(DevUtils.getContext(), title, msg, pendingIntent);
-//            return notification;
+        // 适配处理
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    DevUtils.TAG + AppUtils.getPackageName(),
+                    DevUtils.TAG + "_" + TAG,
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+            getNotificationManager().createNotificationChannel(channel);
         }
-        return null;
+        Notification.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            builder = new Notification.Builder(DevUtils.getContext(),
+                    DevUtils.TAG + AppUtils.getPackageName());
+        } else {
+            builder = new Notification.Builder(DevUtils.getContext());
+        }
+        // 点击通知执行 intent
+        builder.setContentIntent(pendingIntent);
+        // 设置图标
+        builder.setSmallIcon(icon);
+        // 设置图标
+        builder.setLargeIcon(ResourceUtils.getBitmap(icon));
+        // 指定通知的 ticker 内容, 通知被创建的时候, 在状态栏一闪而过, 属于瞬时提示信息
+        builder.setTicker(ticker);
+        // 设置标题
+        builder.setContentTitle(title);
+        // 设置内容
+        builder.setContentText(msg);
+        // 设置消息提醒, 震动 | 声音
+        builder.setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND);
+        // 将 AutoCancel 设为 true 后, 当你点击通知栏的 notification 后, 它会自动被取消消失
+        builder.setAutoCancel(isAutoCancel);
+        // 设置时间
+        builder.setWhen(System.currentTimeMillis());
+        // 设置震动参数
+        if (vibratePattern != null && !vibratePattern.isEmpty()) {
+            builder.setVibrate(vibratePattern.vibrates);
+        }
+        // 设置 led 灯参数
+        if (lightPattern != null) {
+            builder.setLights(lightPattern.argb, lightPattern.durationMS, lightPattern.startOffMS);
+        }
+        // 初始化 Notification 对象
+        Notification baseNF;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+            baseNF = builder.getNotification();
+        } else {
+            baseNF = builder.build();
+        }
+        return baseNF;
     }
 
     /**

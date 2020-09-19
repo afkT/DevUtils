@@ -56,7 +56,7 @@ public final class DevUtils {
     }
 
     // 日志 TAG
-    private static final String TAG = DevUtils.class.getSimpleName();
+    public static final String TAG = DevUtils.class.getSimpleName();
 
     // 全局 Application 对象
     private static Application sApplication;
