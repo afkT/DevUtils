@@ -276,14 +276,14 @@ public final class TimerManager {
         return false;
     }
 
-    // ================================================================
+    // ==============================================================
     // = 对外公开初始化 AbsTimer 方法 ( 内部控制对 TimerTask 的创建 ) =
-    // ================================================================
+    // ==============================================================
 
     /**
      * 创建定时器 ( 立即执行、无限循环、通知默认 what )
      * @param handler 通知的 Handler
-     * @param period  循环时间 - 每隔多少秒执行一次
+     * @param period  循环时间 ( 每隔多少秒执行一次 )
      * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final long period) {
@@ -293,8 +293,8 @@ public final class TimerManager {
     /**
      * 创建定时器 ( 无限循环、通知默认 what )
      * @param handler 通知的 Handler
-     * @param delay   延迟时间 - 多少毫秒后开始执行
-     * @param period  循环时间 - 每隔多少秒执行一次
+     * @param delay   延迟时间 ( 多少毫秒后开始执行 )
+     * @param period  循环时间 ( 每隔多少秒执行一次 )
      * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final long delay, final long period) {
@@ -304,8 +304,8 @@ public final class TimerManager {
     /**
      * 创建定时器 ( 立即执行、通知默认 what )
      * @param handler      通知的 Handler
-     * @param period       循环时间 - 每隔多少秒执行一次
-     * @param triggerLimit 触发次数上限 (-1 表示无限循环 )
+     * @param period       循环时间 ( 每隔多少秒执行一次 )
+     * @param triggerLimit 触发次数上限 ( -1 表示无限循环 )
      * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final long period, final int triggerLimit) {
@@ -316,7 +316,7 @@ public final class TimerManager {
      * 创建定时器 ( 立即执行、无限循环 )
      * @param handler 通知的 Handler
      * @param what    通知的 what
-     * @param period  循环时间 - 每隔多少秒执行一次
+     * @param period  循环时间 ( 每隔多少秒执行一次 )
      * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final int what, final long period) {
@@ -327,8 +327,8 @@ public final class TimerManager {
      * 创建定时器 ( 无限循环 )
      * @param handler 通知的 Handler
      * @param what    通知的 what
-     * @param delay   延迟时间 - 多少毫秒后开始执行
-     * @param period  循环时间 - 每隔多少秒执行一次
+     * @param delay   延迟时间 ( 多少毫秒后开始执行 )
+     * @param period  循环时间 ( 每隔多少秒执行一次 )
      * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final int what, final long delay, final long period) {
@@ -339,8 +339,8 @@ public final class TimerManager {
      * 创建定时器 ( 立即执行 )
      * @param handler      通知的 Handler
      * @param what         通知的 what
-     * @param period       循环时间 - 每隔多少秒执行一次
-     * @param triggerLimit 触发次数上限 (-1 表示无限循环 )
+     * @param period       循环时间 ( 每隔多少秒执行一次 )
+     * @param triggerLimit 触发次数上限 ( -1 表示无限循环 )
      * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final int what, final long period, final int triggerLimit) {
@@ -351,18 +351,18 @@ public final class TimerManager {
      * 创建定时器
      * @param handler      通知的 Handler
      * @param what         通知的 what
-     * @param delay        延迟时间 - 多少毫秒后开始执行
-     * @param period       循环时间 - 每隔多少秒执行一次
-     * @param triggerLimit 触发次数上限 (-1 表示无限循环 )
+     * @param delay        延迟时间 ( 多少毫秒后开始执行 )
+     * @param period       循环时间 ( 每隔多少秒执行一次 )
+     * @param triggerLimit 触发次数上限 ( -1 表示无限循环 )
      * @return 定时器抽象对象 {@link AbsTimer}
      */
     public static AbsTimer createTimer(final Handler handler, final int what, final long delay, final long period, final int triggerLimit) {
         return new TimerTask(handler, what, delay, period, triggerLimit);
     }
 
-    // ======================================
+    // ====================================
     // = 定时器抽象类, 开放对定时器操作方法 =
-    // ======================================
+    // ====================================
 
     /**
      * detail: 定时器抽象类, 主要对内部 Timer 参数进行控制, 以及防止外部直接 new TimerTask, 照成不必要的失误
@@ -377,7 +377,7 @@ public final class TimerManager {
 
         // 默认通知的 what
         public static final int     TIMER_NOTIFY_WHAT = 50000;
-        // 状态标识 - 是否标记清除
+        // 状态标识 ( 是否标记清除 )
         private             boolean markSweep         = true;
         // int 标记
         private             int     markId            = -1;
@@ -432,7 +432,7 @@ public final class TimerManager {
          * @return {@link AbsTimer}
          */
         public AbsTimer startTimer() {
-            // 标记状态 - 不需要回收
+            // 标记状态 ( 不需要回收 )
             this.markSweep = false;
             synchronized (mTimerLists) {
                 // 不存在才进行添加
@@ -448,7 +448,7 @@ public final class TimerManager {
          * @return {@link AbsTimer}
          */
         public AbsTimer closeTimer() {
-            // 标记状态 - 需要回收
+            // 标记状态 ( 需要回收 )
             this.markSweep = true;
             return this;
         }
@@ -506,8 +506,8 @@ public final class TimerManager {
 
         /**
          * 设置时间
-         * @param delay  延迟时间 - 多少毫秒后开始执行
-         * @param period 循环时间 - 每隔多少秒执行一次
+         * @param delay  延迟时间 ( 多少毫秒后开始执行 )
+         * @param period 循环时间 ( 每隔多少秒执行一次 )
          * @return 定时器抽象对象 {@link AbsTimer}
          */
         public abstract AbsTimer setTime(long delay, long period);
@@ -520,9 +520,9 @@ public final class TimerManager {
         public abstract AbsTimer setTriggerLimit(int triggerLimit);
     }
 
-    // ====================================
+    // ==================================
     // = 定时器 具体实现类 ( 不对外开放 ) =
-    // ====================================
+    // ==================================
 
     /**
      * detail: 定时器内部封装类 ( 定时器任务类 )
@@ -543,9 +543,9 @@ public final class TimerManager {
         private Object              notifyObj     = null;
         // 通知类型
         private int                 notifyWhat;
-        // 延迟时间 - 多少毫秒后开始执行
+        // 延迟时间 ( 多少毫秒后开始执行 )
         private long                delay;
-        // 循环时间 - 每隔多少秒执行一次
+        // 循环时间 ( 每隔多少秒执行一次 )
         private long                period;
         // 触发次数上限
         private int                 triggerLimit;
@@ -584,7 +584,7 @@ public final class TimerManager {
                     triggerNumber++;
                     // 进行通知
                     if (handler != null) {
-                        // 从 Message 池中返回一个新的 Message 实例 - 通知 what, arg1 = 触发次数, arg2 = 触发上限, obj = notifyObj
+                        // 从 Message 池中返回一个新的 Message 实例 ( 通知 what, arg1 = 触发次数, arg2 = 触发上限, obj = notifyObj )
                         Message msg = handler.obtainMessage(notifyWhat, triggerNumber, triggerLimit, notifyObj);
                         handler.sendMessage(msg);
                     }
@@ -734,8 +734,8 @@ public final class TimerManager {
 
         /**
          * 设置时间
-         * @param delay  延迟时间 - 多少毫秒后开始执行
-         * @param period 循环时间 - 每隔多少秒执行一次
+         * @param delay  延迟时间 ( 多少毫秒后开始执行 )
+         * @param period 循环时间 ( 每隔多少秒执行一次 )
          * @return 定时器抽象对象 {@link AbsTimer}
          */
         @Override

@@ -18,7 +18,7 @@ import android.os.Build;
  */
 public final class InactivityTimerAssist {
 
-    // 无操作时间 ( 到时间自动关闭 ) - 默认五分钟
+    // 无操作时间 ( 到时间自动关闭, 默认五分钟 )
     private long                              mInactivityTime;
     // 对应的页面
     private Activity                          mActivity;

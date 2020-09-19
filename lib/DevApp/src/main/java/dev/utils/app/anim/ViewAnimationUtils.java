@@ -9,8 +9,11 @@ import android.view.animation.Interpolator;
 import android.view.animation.TranslateAnimation;
 
 /**
- * detail: 视图动画工具类 (AnimationUtils 基础上封装 ), 提供简单的控制视图的动画的工具方法
+ * detail: View 动画工具类
  * @author Ttt
+ * <pre>
+ *      AnimationUtils 基础上封装, 提供简单的控制视图的动画的工具方法
+ * </pre>
  */
 public final class ViewAnimationUtils {
 
@@ -22,7 +25,7 @@ public final class ViewAnimationUtils {
     // ======================
 
     /**
-     * 将给定视图渐渐隐去 - view.setVisibility(View.INVISIBLE)
+     * 将给定视图渐渐隐去
      * @param view              待处理的视图
      * @param durationMillis    动画持续时间
      * @param isBanClick        在执行动画的过程中是否禁止点击
@@ -70,7 +73,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去 - view.setVisibility(View.INVISIBLE)
+     * 将给定视图渐渐隐去
      * @param view              待处理的视图
      * @param durationMillis    动画持续时间
      * @param animationListener 动画监听器
@@ -81,7 +84,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去 - view.setVisibility(View.INVISIBLE)
+     * 将给定视图渐渐隐去
      * @param view           待处理的视图
      * @param durationMillis 动画持续时间
      * @param isBanClick     在执行动画的过程中是否禁止点击
@@ -92,7 +95,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去 - view.setVisibility(View.INVISIBLE)
+     * 将给定视图渐渐隐去
      * @param view           待处理的视图
      * @param durationMillis 动画持续时间
      * @return {@code true} success, {@code false} fail
@@ -102,7 +105,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去 - view.setVisibility(View.INVISIBLE)
+     * 将给定视图渐渐隐去
      * @param view              待处理的视图
      * @param isBanClick        在执行动画的过程中是否禁止点击
      * @param animationListener 动画监听器
@@ -113,7 +116,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去 - view.setVisibility(View.INVISIBLE)
+     * 将给定视图渐渐隐去
      * @param view              待处理的视图
      * @param animationListener 动画监听器
      * @return {@code true} success, {@code false} fail
@@ -123,7 +126,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去 - view.setVisibility(View.INVISIBLE)
+     * 将给定视图渐渐隐去
      * @param view       待处理的视图
      * @param isBanClick 在执行动画的过程中是否禁止点击
      * @return {@code true} success, {@code false} fail
@@ -133,7 +136,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去 - view.setVisibility(View.INVISIBLE)
+     * 将给定视图渐渐隐去
      * @param view 待处理的视图
      * @return {@code true} success, {@code false} fail
      */
@@ -144,7 +147,7 @@ public final class ViewAnimationUtils {
     // =
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除 - view.setVisibility(View.GONE)
+     * 将给定视图渐渐隐去最后从界面中移除
      * @param view              待处理的视图
      * @param durationMillis    动画持续时间
      * @param isBanClick        在执行动画的过程中是否禁止点击
@@ -192,7 +195,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除 - view.setVisibility(View.GONE)
+     * 将给定视图渐渐隐去最后从界面中移除
      * @param view              待处理的视图
      * @param durationMillis    动画持续时间
      * @param animationListener 动画监听器
@@ -203,7 +206,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除 - view.setVisibility(View.GONE)
+     * 将给定视图渐渐隐去最后从界面中移除
      * @param view           待处理的视图
      * @param durationMillis 动画持续时间
      * @param isBanClick     在执行动画的过程中是否禁止点击
@@ -214,7 +217,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除 - view.setVisibility(View.GONE)
+     * 将给定视图渐渐隐去最后从界面中移除
      * @param view           待处理的视图
      * @param durationMillis 动画持续时间
      * @return {@code true} success, {@code false} fail
@@ -224,7 +227,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除 - view.setVisibility(View.GONE)
+     * 将给定视图渐渐隐去最后从界面中移除
      * @param view              待处理的视图
      * @param isBanClick        在执行动画的过程中是否禁止点击
      * @param animationListener 动画监听器
@@ -235,7 +238,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除 - view.setVisibility(View.GONE)
+     * 将给定视图渐渐隐去最后从界面中移除
      * @param view              待处理的视图
      * @param animationListener 动画监听器
      * @return {@code true} success, {@code false} fail
@@ -245,7 +248,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除 - view.setVisibility(View.GONE)
+     * 将给定视图渐渐隐去最后从界面中移除
      * @param view       待处理的视图
      * @param isBanClick 在执行动画的过程中是否禁止点击
      * @return {@code true} success, {@code false} fail
@@ -255,7 +258,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐隐去最后从界面中移除 - view.setVisibility(View.GONE)
+     * 将给定视图渐渐隐去最后从界面中移除
      * @param view 待处理的视图
      * @return {@code true} success, {@code false} fail
      */
@@ -266,7 +269,7 @@ public final class ViewAnimationUtils {
     // =
 
     /**
-     * 将给定视图渐渐显示出来 - view.setVisibility(View.VISIBLE)
+     * 将给定视图渐渐显示出来
      * @param view              待处理的视图
      * @param durationMillis    动画持续时间
      * @param isBanClick        在执行动画的过程中是否禁止点击
@@ -314,7 +317,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来 - view.setVisibility(View.VISIBLE)
+     * 将给定视图渐渐显示出来
      * @param view              待处理的视图
      * @param durationMillis    动画持续时间
      * @param animationListener 动画监听器
@@ -325,7 +328,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来 - view.setVisibility(View.VISIBLE)
+     * 将给定视图渐渐显示出来
      * @param view           待处理的视图
      * @param durationMillis 动画持续时间
      * @param isBanClick     在执行动画的过程中是否禁止点击
@@ -336,7 +339,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来 - view.setVisibility(View.VISIBLE)
+     * 将给定视图渐渐显示出来
      * @param view           待处理的视图
      * @param durationMillis 动画持续时间
      * @return {@code true} success, {@code false} fail
@@ -346,7 +349,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来 - view.setVisibility(View.VISIBLE)
+     * 将给定视图渐渐显示出来
      * @param view              待处理的视图
      * @param isBanClick        在执行动画的过程中是否禁止点击
      * @param animationListener 动画监听器
@@ -357,7 +360,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来 - view.setVisibility(View.VISIBLE)
+     * 将给定视图渐渐显示出来
      * @param view              待处理的视图
      * @param animationListener 动画监听器
      * @return {@code true} success, {@code false} fail
@@ -367,7 +370,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来 - view.setVisibility(View.VISIBLE)
+     * 将给定视图渐渐显示出来
      * @param view       待处理的视图
      * @param isBanClick 在执行动画的过程中是否禁止点击
      * @return {@code true} success, {@code false} fail
@@ -377,7 +380,7 @@ public final class ViewAnimationUtils {
     }
 
     /**
-     * 将给定视图渐渐显示出来 - view.setVisibility(View.VISIBLE)
+     * 将给定视图渐渐显示出来
      * @param view 待处理的视图
      * @return {@code true} success, {@code false} fail
      */

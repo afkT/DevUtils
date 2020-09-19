@@ -19,9 +19,9 @@ public final class ScreenSensorAssist {
     // 日志 TAG
     private static final String TAG = ScreenSensorAssist.class.getSimpleName();
 
-    // ======================
+    // =====================
     // = 重力传感器监听对象 =
-    // ======================
+    // =====================
 
     // 传感器管理对象
     private SensorManager             mSensorManager;
@@ -30,9 +30,9 @@ public final class ScreenSensorAssist {
     // 重力传感器监听事件
     private OrientationSensorListener mListener;
 
-    // ===================================================
+    // ================================================
     // = 重力传感器监听对象 ( 改变方向后, 判断参数不同 ) =
-    // ===================================================
+    // ================================================
 
     // 传感器管理对象 ( 切屏后 )
     private SensorManager                   mSensorManagerChange;
@@ -75,8 +75,8 @@ public final class ScreenSensorAssist {
                     // =
                     LogPrintUtils.dTag(TAG, "当前角度: " + rotation);
                     // 判断角度
-                    if (rotation > 45 && rotation < 135) { // 横屏 - 屏幕对着别人
-                        LogPrintUtils.dTag(TAG, "切换成横屏 - 屏幕对着自己");
+                    if (rotation > 45 && rotation < 135) { // 横屏 ( 屏幕对着别人 )
+                        LogPrintUtils.dTag(TAG, "切换成横屏 ( 屏幕对着自己 )");
                         // =
                         if (mPortrait) {
                             mPortrait = false;
@@ -87,8 +87,8 @@ public final class ScreenSensorAssist {
                                 mHandler.sendMessage(vMsg);
                             }
                         }
-                    } else if (rotation > 135 && rotation < 225) { // 竖屏 - 屏幕对着别人
-                        LogPrintUtils.dTag(TAG, "切换成竖屏 - 屏幕对着别人");
+                    } else if (rotation > 135 && rotation < 225) { // 竖屏 ( 屏幕对着别人 )
+                        LogPrintUtils.dTag(TAG, "切换成竖屏 ( 屏幕对着别人 )");
                         // =
                         if (!mPortrait) {
                             mPortrait = true;
@@ -99,8 +99,8 @@ public final class ScreenSensorAssist {
                                 mHandler.sendMessage(vMsg);
                             }
                         }
-                    } else if (rotation > 225 && rotation < 315) { // 横屏 - 屏幕对着自己
-                        LogPrintUtils.dTag(TAG, "切换成横屏 - 屏幕对着自己");
+                    } else if (rotation > 225 && rotation < 315) { // 横屏 ( 屏幕对着自己 )
+                        LogPrintUtils.dTag(TAG, "切换成横屏 ( 屏幕对着自己 )");
                         // =
                         if (mPortrait) {
                             mPortrait = false;
@@ -111,8 +111,8 @@ public final class ScreenSensorAssist {
                                 mHandler.sendMessage(vMsg);
                             }
                         }
-                    } else if ((rotation > 315 && rotation < 360) || (rotation > 0 && rotation < 45)) { // 竖屏 - 屏幕对着自己
-                        LogPrintUtils.dTag(TAG, "切换成竖屏 - 屏幕对着自己");
+                    } else if ((rotation > 315 && rotation < 360) || (rotation > 0 && rotation < 45)) { // 竖屏 ( 屏幕对着自己 )
+                        LogPrintUtils.dTag(TAG, "切换成竖屏 ( 屏幕对着自己 )");
                         // =
                         if (!mPortrait) {
                             mPortrait = true;
