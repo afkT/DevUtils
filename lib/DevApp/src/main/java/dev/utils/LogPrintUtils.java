@@ -16,8 +16,11 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 /**
- * detail: Android 日志打印工具类 ( 简化版 ) - 项目内部使用 ( 主要打印 Android 日志 )
+ * detail: Android 日志打印工具类 ( 简化版 )
  * @author Ttt
+ * <pre>
+ *     项目内部使用 ( 主要打印 Android 日志 )
+ * </pre>
  */
 public final class LogPrintUtils {
 
@@ -123,9 +126,9 @@ public final class LogPrintUtils {
         return result;
     }
 
-    // ===============================
-    // = 对外公开方法 - 使用默认 TAG =
-    // ===============================
+    // ================================
+    // = 对外公开方法 ( 使用默认 TAG ) =
+    // ================================
 
     public static void d(final String message, final Object... args) {
         dTag(DEFAULT_TAG, message, args);
@@ -168,7 +171,7 @@ public final class LogPrintUtils {
     }
 
     // ===============================
-    // = 对外公开方法 - 日志打印方法 =
+    // = 对外公开方法 ( 日志打印方法 ) =
     // ===============================
 
     public static void dTag(final String tag, final String message, final Object... args) {

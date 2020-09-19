@@ -1,6 +1,6 @@
 package dev.utils.app.toast.toaster;
 
-import android.app.Application;
+import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
 
@@ -60,11 +60,11 @@ public final class DevToast {
     // =
 
     /**
-     * Application 初始化调用 ( 内部已调用 )
-     * @param application {@link Application}
+     * 初始化调用 ( 内部已调用 )
+     * @param context {@link Context}
      */
-    public static void init(final Application application) {
-        sToast.init(application);
+    public static void init(final Context context) {
+        sToast.init(context);
     }
 
     // ============

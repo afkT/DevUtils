@@ -90,7 +90,7 @@ public final class DevUtils {
         // 初始化 Record
         AnalysisRecordUtils.init();
         // 初始化 Toast
-        DevToast.init(sApplication);
+        DevToast.init(context);
 
         // ============
         // = Java Log =
@@ -215,7 +215,7 @@ public final class DevUtils {
     }
 
     /**
-     * 执行 UI 线程任务 - 延时执行
+     * 执行 UI 线程任务 ( 延时执行 )
      * @param runnable    线程任务
      * @param delayMillis 延时执行时间 ( 毫秒 )
      */

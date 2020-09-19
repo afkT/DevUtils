@@ -1,6 +1,6 @@
 package dev.utils.app.toast.toaster;
 
-import android.app.Application;
+import android.content.Context;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
@@ -52,10 +52,10 @@ public final class IToast {
         // =
 
         /**
-         * Application 初始化调用
-         * @param application {@link Application}
+         * 初始化调用
+         * @param context {@link Context}
          */
-        void init(Application application);
+        void init(Context context);
 
         // ============
         // = 配置方法 =
