@@ -275,7 +275,7 @@ public final class ListViewUtils {
     // ==============
 
     /**
-     * 滚动到指定位置 ( 有滚动过程 ) - 相对于初始位置移动
+     * 滚动到指定位置 ( 有滚动过程, 相对于初始位置移动 )
      * @param view {@link View}
      * @param x    X 轴开始坐标
      * @param y    Y 轴开始坐标
@@ -296,7 +296,7 @@ public final class ListViewUtils {
     }
 
     /**
-     * 滚动到指定位置 ( 有滚动过程 ) - 相对于上次移动的最后位置移动
+     * 滚动到指定位置 ( 有滚动过程, 相对于上次移动的最后位置移动 )
      * @param view {@link View}
      * @param x    X 轴开始坐标
      * @param y    Y 轴开始坐标
@@ -347,7 +347,7 @@ public final class ListViewUtils {
     // =============
 
     /**
-     * View 内容滚动位置 - 相对于初始位置移动
+     * View 内容滚动位置 ( 相对于初始位置移动 )
      * <pre>
      *     无滚动过程
      * </pre>
@@ -361,7 +361,7 @@ public final class ListViewUtils {
     }
 
     /**
-     * View 内部滚动位置 - 相对于上次移动的最后位置移动
+     * View 内部滚动位置 ( 相对于上次移动的最后位置移动 )
      * <pre>
      *     无滚动过程
      * </pre>

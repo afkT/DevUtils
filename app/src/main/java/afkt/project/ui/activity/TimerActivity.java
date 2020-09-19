@@ -155,9 +155,9 @@ public class TimerActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 //         * 创建定时器
 //         * @param handler 通知的 Handler
 //         * @param what 通知的 what
-//         * @param delay 延迟时间 - 多少毫秒后开始执行
-//         * @param period 循环时间 - 每隔多少秒执行一次
-//         * @param triggerLimit 触发次数上限 (-1 表示无限循环 )
+//         * @param delay 延迟时间 ( 多少毫秒后开始执行 )
+//         * @param period 循环时间 ( 每隔多少秒执行一次 )
+//         * @param triggerLimit 触发次数上限 ( -1 表示无限循环 )
 //         * @return
 //         */
 //        public static TimerManager.AbsTimer createTimer(Handler handler, int what, long delay, long period, int triggerLimit) {

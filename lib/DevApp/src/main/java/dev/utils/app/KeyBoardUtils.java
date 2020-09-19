@@ -291,7 +291,7 @@ public final class KeyBoardUtils {
     // =
 
     /**
-     * 关闭软键盘 - 特殊处理
+     * 关闭软键盘
      * @param editText {@link EditText}
      * @param dialog   {@link Dialog}
      * @return {@code true} success, {@code false} fail
@@ -309,7 +309,7 @@ public final class KeyBoardUtils {
     }
 
     /**
-     * 关闭软键盘 - 特殊处理
+     * 关闭软键盘
      * @param editText {@link EditText}
      * @param dialog   {@link Dialog}
      * @param handler  {@link Handler}
@@ -320,7 +320,7 @@ public final class KeyBoardUtils {
     }
 
     /**
-     * 关闭软键盘 - 特殊处理 ( 两个都关闭 )
+     * 关闭软键盘
      * @param editText    {@link EditText}
      * @param dialog      {@link Dialog}
      * @param handler     {@link Handler}

@@ -120,7 +120,7 @@ public final class DevCache {
     // =
 
     /**
-     * 获取进程 id - android.os.Process.myPid()
+     * 获取进程 id ( android.os.Process.myPid() )
      * @return 进程 id
      */
     private static String myPid() {

@@ -147,7 +147,7 @@ final class DevCacheUtils {
     }
 
     /**
-     * 获取时间信息 - 保存时间、过期时间
+     * 获取时间信息 ( 保存时间、过期时间 )
      * @param data 时间数据
      * @return String[]
      */

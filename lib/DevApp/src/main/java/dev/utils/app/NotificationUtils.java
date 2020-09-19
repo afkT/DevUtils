@@ -127,7 +127,7 @@ public final class NotificationUtils {
     // =
 
     /**
-     * 移除通知 - 移除所有通知
+     * 移除通知 ( 移除所有通知 )
      * <pre>
      *      只是针对当前 Context 下的所有 Notification
      * </pre>
@@ -146,7 +146,7 @@ public final class NotificationUtils {
     }
 
     /**
-     * 移除通知 - 移除标记为 id 的通知
+     * 移除通知 ( 移除标记为 id 的通知 )
      * <pre>
      *      只是针对当前 Context 下的所有 Notification
      * </pre>
@@ -168,7 +168,7 @@ public final class NotificationUtils {
     }
 
     /**
-     * 移除通知 - 移除标记为 id 的通知
+     * 移除通知 ( 移除标记为 id 的通知 )
      * <pre>
      *      只是针对当前 Context 下的所有 Notification
      * </pre>

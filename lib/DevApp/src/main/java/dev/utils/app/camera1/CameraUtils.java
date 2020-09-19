@@ -97,7 +97,7 @@ public final class CameraUtils {
         // 默认使用后置摄像头
         int cameraFacing = Camera.CameraInfo.CAMERA_FACING_BACK;
         try {
-            // 支持的摄像头 - 前置, 后置
+            // 支持的摄像头 ( 前置, 后置 )
             boolean[] cFacingArys = new boolean[]{false, false};
             // 判断是否支持前置
             cFacingArys[0] = checkCameraFacing(Camera.CameraInfo.CAMERA_FACING_FRONT);

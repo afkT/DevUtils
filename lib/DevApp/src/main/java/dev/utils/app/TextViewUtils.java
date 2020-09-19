@@ -712,7 +712,7 @@ public final class TextViewUtils {
     // =
 
     /**
-     * 设置字体大小 - px 像素
+     * 设置字体大小 ( px 像素 )
      * @param textView {@link TextView}
      * @param size     字体大小
      * @param <T>      泛型
@@ -723,7 +723,7 @@ public final class TextViewUtils {
     }
 
     /**
-     * 设置字体大小 - sp 缩放像素
+     * 设置字体大小 ( sp 缩放像素 )
      * @param textView {@link TextView}
      * @param size     字体大小
      * @param <T>      泛型
@@ -734,7 +734,7 @@ public final class TextViewUtils {
     }
 
     /**
-     * 设置字体大小 - dp 与设备无关的像素
+     * 设置字体大小 ( dp 与设备无关的像素 )
      * @param textView {@link TextView}
      * @param size     字体大小
      * @param <T>      泛型
@@ -745,7 +745,7 @@ public final class TextViewUtils {
     }
 
     /**
-     * 设置字体大小 - inches 英寸
+     * 设置字体大小 ( inches 英寸 )
      * @param textView {@link TextView}
      * @param size     字体大小
      * @param <T>      泛型
@@ -758,7 +758,7 @@ public final class TextViewUtils {
     // =
 
     /**
-     * 设置字体大小 - px 像素
+     * 设置字体大小 ( px 像素 )
      * @param view {@link TextView}
      * @param size 字体大小
      * @return {@link View}
@@ -769,7 +769,7 @@ public final class TextViewUtils {
     }
 
     /**
-     * 设置字体大小 - sp 缩放像素
+     * 设置字体大小 ( sp 缩放像素 )
      * @param view {@link TextView}
      * @param size 字体大小
      * @return {@link View}
@@ -780,7 +780,7 @@ public final class TextViewUtils {
     }
 
     /**
-     * 设置字体大小 - dp 与设备无关的像素
+     * 设置字体大小 ( dp 与设备无关的像素 )
      * @param view {@link TextView}
      * @param size 字体大小
      * @return {@link View}
@@ -791,7 +791,7 @@ public final class TextViewUtils {
     }
 
     /**
-     * 设置字体大小 - inches 英寸
+     * 设置字体大小 ( inches 英寸 )
      * @param view {@link TextView}
      * @param size 字体大小
      * @return {@link View}
@@ -2531,7 +2531,7 @@ public final class TextViewUtils {
     // ===========================================
 
     /**
-     * 设置 Left CompoundDrawables - 按照原有比例大小显示图片
+     * 设置 Left CompoundDrawables ( 按照原有比例大小显示图片 )
      * @param textView {@link TextView}
      * @param left     left Drawable
      * @param <T>      泛型
@@ -2542,7 +2542,7 @@ public final class TextViewUtils {
     }
 
     /**
-     * 设置 Top CompoundDrawables - 按照原有比例大小显示图片
+     * 设置 Top CompoundDrawables ( 按照原有比例大小显示图片 )
      * @param textView {@link TextView}
      * @param top      top Drawable
      * @param <T>      泛型
@@ -2553,7 +2553,7 @@ public final class TextViewUtils {
     }
 
     /**
-     * 设置 Right CompoundDrawables - 按照原有比例大小显示图片
+     * 设置 Right CompoundDrawables ( 按照原有比例大小显示图片 )
      * @param textView {@link TextView}
      * @param right    right Drawable
      * @param <T>      泛型
@@ -2564,7 +2564,7 @@ public final class TextViewUtils {
     }
 
     /**
-     * 设置 Bottom CompoundDrawables - 按照原有比例大小显示图片
+     * 设置 Bottom CompoundDrawables ( 按照原有比例大小显示图片 )
      * @param textView {@link TextView}
      * @param bottom   bottom Drawable
      * @param <T>      泛型
@@ -2575,7 +2575,7 @@ public final class TextViewUtils {
     }
 
     /**
-     * 设置 CompoundDrawables - 按照原有比例大小显示图片
+     * 设置 CompoundDrawables ( 按照原有比例大小显示图片 )
      * @param textView {@link TextView}
      * @param left     left Drawable
      * @param top      top Drawable
