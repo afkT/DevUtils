@@ -20,7 +20,7 @@ import dev.other.GlideUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.ViewHelper;
 import dev.utils.common.BigDecimalUtils;
-import dev.utils.common.DevCommonUtils;
+import dev.utils.common.CollectionUtils;
 
 /**
  * detail: 多选 Adapter
@@ -161,7 +161,7 @@ public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, 
         int size = multiSelectMapAssist.getSelectSize();
         if (size == 0) return false;
         // 判断数量是否一致
-        return (DevCommonUtils.length(getData()) == multiSelectMapAssist.getSelectSize());
+        return (CollectionUtils.length(getData()) == multiSelectMapAssist.getSelectSize());
     }
 
     @Override

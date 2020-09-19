@@ -210,7 +210,7 @@ public final class HttpURLConnectionUtils {
     }
 
     /**
-     * 获取网络时间 - 默认使用百度链接
+     * 获取网络时间 ( 默认使用百度链接 )
      * @param timeCallBack 请求时间回调接口
      */
     public static void getNetTime(final TimeCallBack timeCallBack) {

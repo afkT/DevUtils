@@ -93,7 +93,7 @@ public final class FileUtils {
     }
 
     /**
-     * 判断某个文件夹是否创建, 未创建则创建 ( 纯路径 - 无文件名 )
+     * 判断某个文件夹是否创建, 未创建则创建 ( 纯路径无文件名 )
      * @param dirPath 文件夹路径 ( 无文件名字. 后缀 )
      * @return {@code true} success, {@code false} fail
      */
@@ -102,7 +102,7 @@ public final class FileUtils {
     }
 
     /**
-     * 判断某个文件夹是否创建, 未创建则创建 ( 纯路径 - 无文件名 )
+     * 判断某个文件夹是否创建, 未创建则创建 ( 纯路径无文件名 )
      * @param file 文件夹路径 ( 无文件名字. 后缀 )
      * @return {@code true} success, {@code false} fail
      */
@@ -123,7 +123,7 @@ public final class FileUtils {
     }
 
     /**
-     * 创建文件夹目录 - 可以传入文件名
+     * 创建文件夹目录 ( 可以传入文件名 )
      * @param filePath 文件路径 + 文件名
      * @return {@code true} success, {@code false} fail
      */
@@ -132,12 +132,12 @@ public final class FileUtils {
     }
 
     /**
-     * 创建文件夹目录 - 可以传入文件名
+     * 创建文件夹目录 ( 可以传入文件名 )
      * @param file 文件
      * @return {@code true} success, {@code false} fail
      */
     public static boolean createFolderByPath(final File file) {
-        // 创建文件夹 - 如果失败才创建
+        // 创建文件夹 ( 如果失败才创建 )
         if (file != null) {
             if (file.exists()) {
                 return true;
@@ -744,7 +744,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获取文件大小 - 网络资源
+     * 获取文件大小 ( 网络资源 )
      * @param httpUri 文件网络链接
      * @return 文件大小
      */
@@ -813,7 +813,7 @@ public final class FileUtils {
     // =
 
     /**
-     * 重命名文件 - 同个目录下, 修改文件名
+     * 重命名文件 ( 同个目录下, 修改文件名 )
      * @param filePath    文件路径
      * @param newFileName 文件新名称
      * @return {@code true} yes, {@code false} no
@@ -823,7 +823,7 @@ public final class FileUtils {
     }
 
     /**
-     * 重命名文件 - 同个目录下, 修改文件名
+     * 重命名文件 ( 同个目录下, 修改文件名 )
      * @param file        文件
      * @param newFileName 文件新名称
      * @return {@code true} yes, {@code false} no
@@ -1380,7 +1380,7 @@ public final class FileUtils {
                         } else { // 属于文件
                             // 复制的文件地址
                             String filePath = file.getAbsolutePath();
-                            // 获取源文件地址 - 并且进行判断
+                            // 获取源文件地址并且进行判断
                             String dealSource = new File(sourcePath).getAbsolutePath();
                             // 属于最前才进行处理
                             if (filePath.indexOf(dealSource) == 0) {
@@ -1753,7 +1753,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获取目录下所有文件 - 不递归进子目录
+     * 获取目录下所有文件 ( 不递归进子目录 )
      * @param dirPath 目录路径
      * @return 文件链表
      */
@@ -1762,7 +1762,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获取目录下所有文件 - 不递归进子目录
+     * 获取目录下所有文件 ( 不递归进子目录 )
      * @param dir 目录
      * @return 文件链表
      */
@@ -1796,7 +1796,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获取目录下所有过滤的文件 - 不递归进子目录
+     * 获取目录下所有过滤的文件 ( 不递归进子目录 )
      * @param dirPath 目录路径
      * @param filter  过滤器
      * @return 文件链表
@@ -1806,7 +1806,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获取目录下所有过滤的文件 - 不递归进子目录
+     * 获取目录下所有过滤的文件 ( 不递归进子目录 )
      * @param dir    目录
      * @param filter 过滤器
      * @return 文件链表
@@ -1903,7 +1903,7 @@ public final class FileUtils {
     // =
 
     /**
-     * 获取目录下所有文件 - 不递归进子目录
+     * 获取目录下所有文件 ( 不递归进子目录 )
      * @param dirPath 目录路径
      * @return 文件链表
      */
@@ -1912,7 +1912,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获取目录下所有文件 - 不递归进子目录
+     * 获取目录下所有文件 ( 不递归进子目录 )
      * @param dir 目录
      * @return 文件链表
      */
@@ -1946,7 +1946,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获取目录下所有过滤的文件 - 不递归进子目录
+     * 获取目录下所有过滤的文件 ( 不递归进子目录 )
      * @param dirPath 目录路径
      * @param filter  过滤器
      * @return 文件链表
@@ -1956,7 +1956,7 @@ public final class FileUtils {
     }
 
     /**
-     * 获取目录下所有过滤的文件 - 不递归进子目录
+     * 获取目录下所有过滤的文件 ( 不递归进子目录 )
      * @param dir    目录
      * @param filter 过滤器
      * @return 文件链表

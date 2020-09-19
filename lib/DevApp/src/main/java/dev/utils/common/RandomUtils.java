@@ -104,7 +104,7 @@ public final class RandomUtils {
     }
 
     /**
-     * 获取伪随机 int 值 - 该值介于 [0, n) 的区间
+     * 获取伪随机 int 值 ( 该值介于 [0, n) 的区间 )
      * @param random Random
      * @param number 最大随机值
      * @return 随机介于 [0, n) 的区间值
@@ -180,7 +180,7 @@ public final class RandomUtils {
     }
 
     /**
-     * 获取伪随机 int 值 - 该值介于 [0, n) 的区间
+     * 获取伪随机 int 值 ( 该值介于 [0, n) 的区间 )
      * @param number 最大随机值
      * @return 随机介于 [0, n) 的区间值
      */

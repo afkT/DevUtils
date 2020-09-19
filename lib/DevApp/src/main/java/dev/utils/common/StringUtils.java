@@ -144,7 +144,7 @@ public final class StringUtils {
     }
 
     /**
-     * 判断多个字符串是否相等, 只有全相等才返回 true - 对比大小写
+     * 判断多个字符串是否相等, 只有全相等才返回 true ( 对比大小写 )
      * @param strs 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
@@ -293,7 +293,7 @@ public final class StringUtils {
     }
 
     /**
-     * 判断内容, 是否属于特定字符串开头 - 对比大小写
+     * 判断内容, 是否属于特定字符串开头 ( 对比大小写 )
      * @param str  待校验的字符串
      * @param strs 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
@@ -344,7 +344,7 @@ public final class StringUtils {
     }
 
     /**
-     * 判断内容, 是否属于特定字符串结尾 - 对比大小写
+     * 判断内容, 是否属于特定字符串结尾 ( 对比大小写 )
      * @param str  待校验的字符串
      * @param strs 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
@@ -661,7 +661,7 @@ public final class StringUtils {
     }
 
     /**
-     * 检查字符串 - 单独检查两个值
+     * 检查字符串 ( 单独检查两个值 )
      * @param defaultStr 默认字符串
      * @param value1     第一个待校验字符串
      * @param value2     第二个待校验字符串
@@ -680,7 +680,7 @@ public final class StringUtils {
     }
 
     /**
-     * 检查字符串 - 多个值
+     * 检查字符串 ( 多个值 )
      * @param defaultStr 默认字符串
      * @param strs       待校验字符串数组
      * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
@@ -698,7 +698,7 @@ public final class StringUtils {
     }
 
     /**
-     * 检查字符串 - 多个值 ( 删除前后空格对比判断 )
+     * 检查字符串 ( 多个值, 删除前后空格对比判断 )
      * @param defaultStr 默认字符串
      * @param strs       待校验字符串数组
      * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
@@ -1342,7 +1342,7 @@ public final class StringUtils {
     }
 
     /**
-     * 裁剪内容, 设置符号处理
+     * 裁剪内容 ( 设置符号处理 )
      * @param str               待处理字符串
      * @param frontRetainLength 前面保留的长度
      * @param rearRetainLength  后面保留的长度
@@ -1423,7 +1423,7 @@ public final class StringUtils {
     // =
 
     /**
-     * 替换 ( 删除 - 替换成 "") 字符串中符合 特定标记字符的 startsWith - endsWith
+     * 替换特定字符串开头、结尾的字符串
      * 如 _____a_a_a_a_____ 传入 _ 等于 ____a_a_a_a____
      * @param str    待处理字符串
      * @param suffix 替换符号字符串
@@ -1434,7 +1434,7 @@ public final class StringUtils {
     }
 
     /**
-     * 替换字符串中符合 特定标记字符的 startsWith - endsWith
+     * 替换特定字符串开头、结尾的字符串
      * 如 _____a_a_a_a_____ 传入 _, c 等于 c____a_a_a_a____c
      * @param str     待处理字符串
      * @param suffix  替换匹配内容
@@ -1537,9 +1537,8 @@ public final class StringUtils {
     // =
 
     /**
-     * 这个方法功能主要把字符符合标记的 头部和尾部都替换成 ""
+     * 清空特定字符串开头、结尾的字符串
      * 如 _____a_a_a_a_____ 传入 _ 等于 a_a_a_a
-     * 替换字符串中符合 特定标记字符的 startsWith(indexOf) - endsWith(lastIndexOf)
      * @param str    待处理字符串
      * @param suffix 匹配判断字符串
      * @return 处理后的字符串
@@ -1551,7 +1550,7 @@ public final class StringUtils {
             int suffixLength = suffix.length();
             // 保存新的 Builder 中, 减少内存开销
             StringBuilder builder = new StringBuilder(str);
-            // 进行循环判断 - 属于最前面的, 才进行处理
+            // 进行循环判断 ( 属于最前面的, 才进行处理 )
             while (builder.indexOf(suffix) == 0) {
                 builder.delete(0, suffixLength);
             }
@@ -1559,7 +1558,7 @@ public final class StringUtils {
             int lastIndexOf = -1;
             // 数据长度
             int bufLength = -1;
-            // 进行循环判断 - 属于最后面的, 才进行处理
+            // 进行循环判断 ( 属于最后面的, 才进行处理 )
             while ((lastIndexOf = builder.lastIndexOf(suffix)) == ((bufLength = builder.length()) - suffixLength)) {
                 builder.delete(lastIndexOf, bufLength);
             }
@@ -1571,9 +1570,8 @@ public final class StringUtils {
     }
 
     /**
-     * 清空属于特定字符串开头的字段
+     * 清空特定字符串开头的字符串
      * 如 _____a_a_a_a_____ 传入 _ 等于 a_a_a_a_____
-     * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf)
      * @param str    待处理字符串
      * @param suffix 匹配判断字符串
      * @return 处理后的字符串
@@ -1585,7 +1583,7 @@ public final class StringUtils {
             int suffixLength = suffix.length();
             // 保存新的 Builder 中, 减少内存开销
             StringBuilder builder = new StringBuilder(str);
-            // 进行循环判断 - 属于最前面的, 才进行处理
+            // 进行循环判断 ( 属于最前面的, 才进行处理 )
             while (builder.indexOf(suffix) == 0) {
                 builder.delete(0, suffixLength);
             }
@@ -1597,9 +1595,8 @@ public final class StringUtils {
     }
 
     /**
-     * 清空属于特定字符串结尾的字段
+     * 清空特定字符串结尾的字符串
      * 如 _____a_a_a_a_____ 传入 _ 等于 _____a_a_a_a
-     * 替换字符串中符合 特定标记字符的 endsWith(lastIndexOf)
      * @param str    待处理字符串
      * @param suffix 匹配判断字符串
      * @return 处理后的字符串
@@ -1613,7 +1610,7 @@ public final class StringUtils {
             StringBuilder builder = new StringBuilder(str);
             // 获取最后一位位置
             int bufLength = 0;
-            // 进行循环判断 - 属于最前面的, 才进行处理
+            // 进行循环判断 ( 属于最前面的, 才进行处理 )
             while (builder.lastIndexOf(suffix) == ((bufLength = builder.length()) - suffixLength)) {
                 builder.delete(bufLength - suffixLength, bufLength);
             }

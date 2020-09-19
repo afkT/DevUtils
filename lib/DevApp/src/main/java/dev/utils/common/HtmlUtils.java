@@ -79,8 +79,7 @@ public final class HtmlUtils {
     /**
      * 为给定的字符串添加 HTML 字体倾斜
      * <pre>
-     *     如果需要倾斜自定义角度, 需要自定义 TextView, 在 onDraw 里面加上
-     *     - 倾斜度, 上下左右居中
+     *     如果需要倾斜自定义角度, 需要自定义 TextView, 在 onDraw 里面加上倾斜度, 上下左右居中
      *     canvas.rotate( 倾斜角度, getMeasuredWidth() / 3, getMeasuredHeight() / 3);
      * </pre>
      * @param content 给定的字符串

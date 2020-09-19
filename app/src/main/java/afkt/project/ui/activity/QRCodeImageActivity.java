@@ -23,7 +23,7 @@ import dev.utils.app.ResourceUtils;
 import dev.utils.app.TextViewUtils;
 import dev.utils.app.image.ImageUtils;
 import dev.utils.app.toast.ToastTintUtils;
-import dev.utils.common.DevCommonUtils;
+import dev.utils.common.StringUtils;
 import dev.utils.common.ThrowableUtils;
 
 /**
@@ -95,7 +95,7 @@ public class QRCodeImageActivity extends BaseActivity<ActivityQrcodeImageBinding
                             if (success) {
                                 StringBuilder builder = new StringBuilder();
                                 builder.append("二维码解析数据: \n");
-                                builder.append(DevCommonUtils.checkValue("null", ZXingQRCodeUtils.getResultData(result)));
+                                builder.append(StringUtils.checkValue("null", ZXingQRCodeUtils.getResultData(result)));
                                 TextViewUtils.setText(binding.vidAqiTv, builder.toString());
                             } else {
                                 TextViewUtils.setText(binding.vidAqiTv, "图片非二维码 / 识别失败\n" + ThrowableUtils.getThrowableStackTrace(e));

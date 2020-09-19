@@ -22,7 +22,7 @@ import java.util.List;
 import dev.utils.JCLogUtils;
 
 /**
- * detail: 文件 (IO 流 ) 工具类
+ * detail: 文件 ( IO 流 ) 工具类
  * @author Ttt
  */
 public final class FileIOUtils {
