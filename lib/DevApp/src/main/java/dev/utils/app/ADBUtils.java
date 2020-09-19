@@ -184,7 +184,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 清除应用数据与缓存 - 相当于在设置里的应用信息界面点击了「清除缓存」和「清除数据」
+     * 清除应用数据与缓存 ( 相当于在设置里的应用信息界面点击了「清除缓存」和「清除数据」 )
      * @param packageName 应用包名
      * @return {@code true} success, {@code false} fail
      */
@@ -712,7 +712,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 获取对应包名的 Activity 栈 ( 处理成 List) - 最新的 Activity 越靠后
+     * 获取对应包名的 Activity 栈 ( 最新的 Activity 越靠后 )
      * @param packageName 应用包名
      * @return 对应包名的 Activity 栈信息集合
      */
@@ -1250,9 +1250,9 @@ public final class ADBUtils {
     // = Input =
     // =========
 
-    // ===============================
-    // = tap - 模拟 touch 屏幕的事件 =
-    // ===============================
+    // ================================
+    // = tap ( 模拟 touch 屏幕的事件 ) =
+    // ================================
 
     /**
      * 点击某个区域
@@ -1274,9 +1274,9 @@ public final class ADBUtils {
         return false;
     }
 
-    // ====================
-    // = swipe - 滑动事件 =
-    // ====================
+    // ======================
+    // = swipe ( 滑动事件 ) =
+    // ======================
 
     /**
      * 按压某个区域 ( 点击 )
@@ -1321,12 +1321,12 @@ public final class ADBUtils {
         return false;
     }
 
-    // ===================
-    // = text - 模拟输入 =
-    // ===================
+    // =====================
+    // = text ( 模拟输入 ) =
+    // =====================
 
     /**
-     * 输入文本 - 不支持中文
+     * 输入文本 ( 不支持中文 )
      * @param txt 文本内容
      * @return {@code true} success, {@code false} fail
      */
@@ -1344,9 +1344,9 @@ public final class ADBUtils {
         return false;
     }
 
-    // =======================
-    // = keyevent - 按键操作 =
-    // =======================
+    // =========================
+    // = keyevent ( 按键操作 ) =
+    // =========================
 
     /**
      * 触发某些按键
@@ -1585,7 +1585,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 重启设备 ( 需要 root 权限 ) - 并进行特殊的引导模式 (recovery、Fastboot)
+     * 重启设备 ( 需要 root 权限 )
      * @param reason 传递给内核来请求特殊的引导模式, 如 "recovery"
      *               重启到 Fastboot 模式 bootloader
      * @return {@code true} success, {@code false} fail
@@ -1641,9 +1641,9 @@ public final class ADBUtils {
         lists.add("sendevent /dev/input/event1 1 330 1");
         lists.add("sendevent /dev/input/event1 0 0 0");
 
-        // 判断方向 ( 手势是否从左到右 ) - View 往左滑, 手势操作往右滑
+        // 判断方向 ( 手势是否从左到右, View 往左滑, 手势操作往右滑 )
         boolean isLeftToRight = toX > x;
-        // 判断方向 ( 手势是否从上到下 ) - View 往上滑, 手势操作往下滑
+        // 判断方向 ( 手势是否从上到下, View 往上滑, 手势操作往下滑 )
         boolean isTopToBottom = toY > y;
 
         // 计算差数
@@ -1726,7 +1726,7 @@ public final class ADBUtils {
     }
 
     /**
-     * 获取设备型号 - 如 RedmiNote4X
+     * 获取设备型号 ( 如 RedmiNote4X )
      * @return 设备型号
      */
     public static String getModel() {

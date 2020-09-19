@@ -439,7 +439,7 @@ public final class SnackbarUtils {
         private int      rootBackgroundTintColor;
         // RootView 背景图片
         private Drawable rootBackground;
-        // RootView margin 边距 - new int[] { left, top, right, bottom }
+        // RootView margin 边距 new int[] { left, top, right, bottom }
         private int[]    rootMargin;
         // RootView 透明度
         private float    rootAlpha = 1.0f;
@@ -460,7 +460,7 @@ public final class SnackbarUtils {
         private TextUtils.TruncateAt textEllipsize;
         // TextView 字体样式
         private Typeface             textTypeface;
-        // TextView padding 边距 - new int[] { left, top, right, bottom }
+        // TextView padding 边距 new int[] { left, top, right, bottom }
         private int[]                textPadding;
 
         // ===============================
@@ -473,7 +473,7 @@ public final class SnackbarUtils {
         private int      actionColor;
         // Action Button 字体大小
         private float    actionSize;
-        // Action Button padding 边距 - new int[] { left, top, right, bottom }
+        // Action Button padding 边距 new int[] { left, top, right, bottom }
         private int[]    actionPadding;
         // RootView 背景圆角大小
         private float    actionCornerRadius;
@@ -509,7 +509,7 @@ public final class SnackbarUtils {
                 this.rootBackgroundTintColor = style.getRootBackgroundTintColor();
                 // RootView 背景图片
                 this.rootBackground = style.getRootBackground();
-                // RootView margin 边距 - new int[] { left, top, right, bottom }
+                // RootView margin 边距 new int[] { left, top, right, bottom }
                 this.rootMargin = style.getRootMargin();
                 // RootView 透明度
                 this.rootAlpha = style.getRootAlpha();
@@ -530,7 +530,7 @@ public final class SnackbarUtils {
                 this.textEllipsize = style.getTextEllipsize();
                 // TextView 字体样式
                 this.textTypeface = style.getTextTypeface();
-                // TextView padding 边距 - new int[] { left, top, right, bottom }
+                // TextView padding 边距 new int[] { left, top, right, bottom }
                 this.textPadding = style.getTextPadding();
 
                 // ===============================
@@ -543,7 +543,7 @@ public final class SnackbarUtils {
                 this.actionColor = style.getActionColor();
                 // Action Button 字体大小
                 this.actionSize = style.getActionSize();
-                // Action Button padding 边距 - new int[] { left, top, right, bottom }
+                // Action Button padding 边距 new int[] { left, top, right, bottom }
                 this.actionPadding = style.getActionPadding();
                 // RootView 背景圆角大小
                 this.actionCornerRadius = style.getActionCornerRadius();
@@ -640,7 +640,7 @@ public final class SnackbarUtils {
         }
 
         /**
-         * 获取 RootView margin 边距 - new int[] { left, top, right, bottom }
+         * 获取 RootView margin 边距
          * @return RootView margin[]
          */
         @Override
@@ -878,7 +878,7 @@ public final class SnackbarUtils {
         }
 
         /**
-         * 获取 Action Button padding 边距 - new int[] { left, top, right, bottom }
+         * 获取 Action Button padding 边距
          * @return Action Button padding[]
          */
         @Override
@@ -1003,7 +1003,7 @@ public final class SnackbarUtils {
         }
 
         /**
-         * 获取 RootView margin 边距 - new int[] { left, top, right, bottom }
+         * 获取 RootView margin 边距
          * @return RootView margin[]
          */
         public int[] getRootMargin() {
@@ -1109,7 +1109,7 @@ public final class SnackbarUtils {
         }
 
         /**
-         * 获取 Action Button padding 边距 - new int[] { left, top, right, bottom }
+         * 获取 Action Button padding 边距
          * @return Action Button padding[]
          */
         public int[] getActionPadding() {

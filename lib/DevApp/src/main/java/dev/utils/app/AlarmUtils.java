@@ -11,7 +11,7 @@ import androidx.annotation.RequiresApi;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: AlarmManager( 全局定时器、闹钟 ) 工具类
+ * detail: AlarmManager ( 全局定时器、闹钟 ) 工具类
  * @author Ttt
  * <pre>
  *     指定时长或以周期形式执行某项操作

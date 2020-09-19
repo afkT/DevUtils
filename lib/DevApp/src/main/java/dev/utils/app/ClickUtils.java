@@ -132,7 +132,7 @@ public final class ClickUtils {
     // ======================
 
     /**
-     * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
+     * 判断是否双击 ( 无效点击, 短时间内多次点击 )
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isFastDoubleClick() {
@@ -140,7 +140,7 @@ public final class ClickUtils {
     }
 
     /**
-     * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
+     * 判断是否双击 ( 无效点击, 短时间内多次点击 )
      * @param tagId id
      * @return {@code true} yes, {@code false} no
      */
@@ -149,7 +149,7 @@ public final class ClickUtils {
     }
 
     /**
-     * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
+     * 判断是否双击 ( 无效点击, 短时间内多次点击 )
      * @param tagId        id
      * @param intervalTime 双击时间间隔
      * @return {@code true} yes, {@code false} no
@@ -161,7 +161,7 @@ public final class ClickUtils {
     // =
 
     /**
-     * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
+     * 判断是否双击 ( 无效点击, 短时间内多次点击 )
      * @param object    key by Object
      * @param configKey 时间间隔配置 Key
      * @return {@code true} yes, {@code false} no
@@ -171,7 +171,7 @@ public final class ClickUtils {
     }
 
     /**
-     * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
+     * 判断是否双击 ( 无效点击, 短时间内多次点击 )
      * @param object       key by Object
      * @param intervalTime 双击时间间隔
      * @return {@code true} yes, {@code false} no
@@ -296,7 +296,7 @@ public final class ClickUtils {
         // =
 
         /**
-         * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
+         * 判断是否双击 ( 无效点击, 短时间内多次点击 )
          * @return {@code true} yes, {@code false} no
          */
         public boolean isFastDoubleClick() {
@@ -304,7 +304,7 @@ public final class ClickUtils {
         }
 
         /**
-         * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
+         * 判断是否双击 ( 无效点击, 短时间内多次点击 )
          * @param tagId id
          * @return {@code true} yes, {@code false} no
          */
@@ -313,7 +313,7 @@ public final class ClickUtils {
         }
 
         /**
-         * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
+         * 判断是否双击 ( 无效点击, 短时间内多次点击 )
          * @param tagId        id
          * @param intervalTime 双击间隔时间
          * @return {@code true} yes, {@code false} no
@@ -335,7 +335,7 @@ public final class ClickUtils {
         // =
 
         /**
-         * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
+         * 判断是否双击 ( 无效点击, 短时间内多次点击 )
          * @param object    key by Object
          * @param configKey 时间间隔配置 Key
          * @return {@code true} yes, {@code false} no
@@ -345,7 +345,7 @@ public final class ClickUtils {
         }
 
         /**
-         * 判断是否双击 ( 无效点击 - 短时间内多次点击 )
+         * 判断是否双击 ( 无效点击, 短时间内多次点击 )
          * @param object       key by Object
          * @param intervalTime 双击时间间隔
          * @return {@code true} yes, {@code false} no

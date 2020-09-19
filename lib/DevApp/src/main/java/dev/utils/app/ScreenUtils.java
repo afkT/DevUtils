@@ -149,7 +149,7 @@ public final class ScreenUtils {
     }
 
     /**
-     * 获取屏幕英寸 - 例 5.5 英寸
+     * 获取屏幕英寸 ( 例 5.5 英寸 )
      * @return 屏幕英寸
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)

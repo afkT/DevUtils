@@ -331,7 +331,7 @@ public final class AnalysisRecordUtils {
     // = 日志保存时间 =
     // ================
 
-    // DEFAULT - 默认天, 在根目录下
+    // DEFAULT ( 默认天, 在根目录下 )
     public static final int DEFAULT = 0;
     // 小时
     public static final int HH      = 1;

@@ -350,7 +350,7 @@ public final class ActivityUtils {
     }
 
     /**
-     * 获取系统桌面信息 - packageName
+     * 获取系统桌面信息 ( packageName )
      * <pre>
      *     注: 存在多个桌面时且未指定默认桌面时, 该方法返回 Null, 使用时需处理这个情况
      * </pre>
@@ -370,7 +370,7 @@ public final class ActivityUtils {
     }
 
     /**
-     * 获取系统桌面信息 - activityName
+     * 获取系统桌面信息 ( activityName )
      * @return activityName
      */
     public static String getLauncherCategoryHomeToActivityName() {
@@ -387,7 +387,7 @@ public final class ActivityUtils {
     }
 
     /**
-     * 获取系统桌面信息 - package/activityName
+     * 获取系统桌面信息 ( package/activityName )
      * @return package/activityName
      */
     public static String getLauncherCategoryHomeToPackageAndName() {

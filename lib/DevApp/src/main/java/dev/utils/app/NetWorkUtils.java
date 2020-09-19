@@ -339,7 +339,7 @@ public final class NetWorkUtils {
     }
 
     /**
-     * 获取网络运营商名称 - 中国移动、如中国联通、中国电信
+     * 获取网络运营商名称 ( 中国移动、如中国联通、中国电信 )
      * @return 运营商名称
      */
     public static String getNetworkOperatorName() {

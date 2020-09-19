@@ -357,7 +357,7 @@ public final class NotificationUtils {
 //                } catch (Exception e) {
 //                }
 //            }
-//            // 设置标题内容等 - 已经移除, 现在都是支持 4.0 以上, 不需要兼容处理
+//            // 设置标题内容等 ( 已经移除, 现在都是支持 4.0 以上, 不需要兼容处理 )
 //            notification.setLatestEventInfo(DevUtils.getContext(), title, msg, pendingIntent);
 //            return notification;
         }

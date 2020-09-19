@@ -115,9 +115,9 @@ public final class LanguageUtils {
 
     // 英语
     public static final String              ENGLISH              = "en";
-    // 英语 - 英式
+    // 英语 ( 英式 )
     public static final String              UK                   = "enGB";
-    // 英语 - 美式
+    // 英语 ( 美式 )
     public static final String              US                   = "enUS";
     // 法语
     public static final String              FRENCH               = "fr";
@@ -131,7 +131,7 @@ public final class LanguageUtils {
     public static final String              CHINESE              = "zh";
     // 简体中文
     public static final String              SIMPLIFIED_CHINESE   = "zhCN";
-    // 繁体中文 - 默认台湾
+    // 繁体中文 ( 默认台湾 )
     public static final String              TRADITIONAL_CHINESE  = "zhTW";
     // 台湾
     public static final String              TAIWAN_CHINESE       = TRADITIONAL_CHINESE;
@@ -141,9 +141,9 @@ public final class LanguageUtils {
     static {
         // 英语
         sSupportLanguageMaps.put(ENGLISH, Locale.ENGLISH);
-        // 英语 - 英式
+        // 英语 ( 英式 )
         sSupportLanguageMaps.put(UK, Locale.UK);
-        // 英语 - 美式
+        // 英语 ( 美式 )
         sSupportLanguageMaps.put(US, Locale.US);
         // 法语
         sSupportLanguageMaps.put(FRENCH, Locale.FRENCH);
@@ -157,7 +157,7 @@ public final class LanguageUtils {
         sSupportLanguageMaps.put(CHINESE, Locale.CHINESE);
         // 简体中文
         sSupportLanguageMaps.put(SIMPLIFIED_CHINESE, Locale.SIMPLIFIED_CHINESE);
-        // 繁体中文 - 默认香港
+        // 繁体中文 ( 默认台湾 )
         sSupportLanguageMaps.put(TRADITIONAL_CHINESE, Locale.TRADITIONAL_CHINESE);
         // 台湾
         sSupportLanguageMaps.put(TAIWAN_CHINESE, Locale.TAIWAN);

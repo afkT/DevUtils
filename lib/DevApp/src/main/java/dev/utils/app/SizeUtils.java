@@ -7,7 +7,7 @@ import android.view.View;
 import dev.utils.LogPrintUtils;
 
 /**
- * detail: 大小工具类 (dp, px, sp 转换、View 获取宽高等 )
+ * detail: 大小工具类 ( dp, px, sp 转换、View 获取宽高等 )
  * @author Ttt
  */
 public final class SizeUtils {
@@ -111,7 +111,7 @@ public final class SizeUtils {
     // =
 
     /**
-     * 各种单位转换 - 该方法存在于 TypedValue.applyDimension
+     * 各种单位转换 ( 该方法存在于 TypedValue.applyDimension )
      * @param unit  单位
      * @param value 值
      * @return 转换后的值
@@ -121,7 +121,7 @@ public final class SizeUtils {
     }
 
     /**
-     * 各种单位转换 - 该方法存在于 TypedValue.applyDimension
+     * 各种单位转换 ( 该方法存在于 TypedValue.applyDimension )
      * @param unit    单位
      * @param value   值
      * @param metrics {@link DisplayMetrics}

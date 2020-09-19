@@ -49,7 +49,7 @@ import dev.utils.common.StringUtils;
 import dev.utils.common.encrypt.EncryptUtils;
 
 /**
- * detail: APP (Android) 工具类
+ * detail: APP ( Android ) 工具类
  * @author Ttt
  * <pre>
  *     MimeType
@@ -1194,7 +1194,7 @@ public final class AppUtils {
     // =
 
     /**
-     * 打开文件 - 指定应用
+     * 打开文件 ( 指定应用 )
      * @param filePath    文件路径
      * @param packageName 应用包名
      * @param className   Activity.class.getCanonicalName()
@@ -1205,7 +1205,7 @@ public final class AppUtils {
     }
 
     /**
-     * 打开文件 - 指定应用
+     * 打开文件 ( 指定应用 )
      * @param file        文件
      * @param packageName 应用包名
      * @param className   Activity.class.getCanonicalName()

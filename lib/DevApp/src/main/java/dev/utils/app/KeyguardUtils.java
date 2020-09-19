@@ -59,7 +59,7 @@ public final class KeyguardUtils {
     }
 
     /**
-     * 是否锁屏 - android 4.1 以上支持
+     * 是否锁屏 ( android 4.1 以上支持 )
      * @return {@code true} yes, {@code false} no
      */
     public boolean isKeyguardLocked() {
@@ -70,7 +70,7 @@ public final class KeyguardUtils {
     }
 
     /**
-     * 是否有锁屏密码 - android 4.1 以上支持
+     * 是否有锁屏密码 ( android 4.1 以上支持 )
      * @return {@code true} yes, {@code false} no
      */
     public boolean isKeyguardSecure() {

@@ -870,7 +870,7 @@ public final class TextViewUtils {
     // =
 
     /**
-     * 获取 TextView 字体大小 - px
+     * 获取 TextView 字体大小 ( px )
      * @param textView {@link TextView}
      * @param <T>      泛型
      * @return 字体大小 (px)
@@ -883,7 +883,7 @@ public final class TextViewUtils {
     }
 
     /**
-     * 获取 TextView 字体大小 - px
+     * 获取 TextView 字体大小 ( px )
      * @param view {@link TextView}
      * @return 字体大小 (px)
      */

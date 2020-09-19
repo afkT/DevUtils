@@ -182,7 +182,10 @@ public final class JSONObjectUtils {
     // ============
 
     /**
-     * 包装转换 Object - {@link JSONObject#wrap(Object)}
+     * 包装转换 Object
+     * <pre>
+     *     {@link JSONObject#wrap(Object)}
+     * </pre>
      * @param object Object
      * @return 转换后的 Object
      */

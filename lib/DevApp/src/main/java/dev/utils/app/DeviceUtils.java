@@ -94,7 +94,7 @@ public final class DeviceUtils {
             try {
                 // 取消 Java 的权限控制检查
                 field.setAccessible(true);
-                // 转换当前设备支持的 ABI - CPU 指令集
+                // 转换当前设备支持的 ABI ( CPU 指令集 )
                 if (field.getName().toLowerCase().startsWith("SUPPORTED".toLowerCase())) {
                     try {
                         Object object = field.get(null);
@@ -649,7 +649,7 @@ public final class DeviceUtils {
     }
 
     /**
-     * 重启设备 ( 需要 root 权限 ) - 并进行特殊的引导模式 (recovery、Fastboot)
+     * 重启设备 ( 需要 root 权限 )
      * @param reason 传递给内核来请求特殊的引导模式, 如 "recovery"
      *               重启到 Fastboot 模式 bootloader
      * @return {@code true} success, {@code false} fail

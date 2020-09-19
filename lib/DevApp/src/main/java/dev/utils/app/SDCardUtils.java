@@ -37,7 +37,7 @@ public final class SDCardUtils {
     }
 
     /**
-     * 获取 SDCard 外部存储路径 - path /storage/emulated/0/
+     * 获取 SDCard 外部存储路径 ( path /storage/emulated/0/ )
      * @return /storage/emulated/0/
      */
     @Deprecated
@@ -46,7 +46,7 @@ public final class SDCardUtils {
     }
 
     /**
-     * 获取 SDCard 外部存储路径 - path /storage/emulated/0/
+     * 获取 SDCard 外部存储路径 ( path /storage/emulated/0/ )
      * @return /storage/emulated/0/
      */
     @Deprecated
@@ -57,7 +57,7 @@ public final class SDCardUtils {
     // =
 
     /**
-     * 获取 SDCard 外部存储路径 - path /storage/emulated/0/
+     * 获取 SDCard 外部存储路径 ( path /storage/emulated/0/ )
      * @param fileName 文件名
      * @return /storage/emulated/0/
      */
@@ -67,7 +67,7 @@ public final class SDCardUtils {
     }
 
     /**
-     * 获取 SDCard 外部存储路径 - path /storage/emulated/0/
+     * 获取 SDCard 外部存储路径 ( path /storage/emulated/0/ )
      * @param fileName 文件名
      * @return /storage/emulated/0/
      */

@@ -14,7 +14,7 @@ public final class DBUtils {
     }
 
     /**
-     * 获取应用内部存储数据库路径 - path /data/data/package/databases
+     * 获取应用内部存储数据库路径 ( path /data/data/package/databases )
      * @return /data/data/package/databases
      */
     public static String getAppDbsPath() {
@@ -22,7 +22,7 @@ public final class DBUtils {
     }
 
     /**
-     * 获取应用内部存储数据库路径 - path /data/data/package/databases/name
+     * 获取应用内部存储数据库路径 ( path /data/data/package/databases/name )
      * @param name 数据库名
      * @return /data/data/package/databases/name
      */

@@ -544,12 +544,12 @@ public final class ListViewUtils {
             int verticalSpacing = gridView.getVerticalSpacing();
             // 获取倍数 ( 行数 )
             int lineNumber = NumberUtils.getMultiple(itemCount, numColumns);
-            // 计算总共的宽度 - (GridView 宽度 - 列分割间距 ) / numColumns
+            // 计算总共的宽度 (GridView 宽度 - 列分割间距 ) / numColumns
             int childWidth = (gridView.getWidth() - (numColumns - 1) * horizontalSpacing) / numColumns;
 
             // 记录每行最大高度
             int[] rowHeightArrays = new int[lineNumber];
-            // 临时高度 - 保存行中最高的列高度
+            // 临时高度 ( 保存行中最高的列高度 )
             int tempHeight;
             // 循环每一行绘制每个 Item 并保存 Bitmap
             for (int i = 0; i < lineNumber; i++) {

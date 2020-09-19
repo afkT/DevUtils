@@ -36,7 +36,7 @@ public final class LocationUtils {
     // 日志 TAG
     private static final String TAG = LocationUtils.class.getSimpleName();
 
-    // 时间常量 - 2 分钟
+    // 时间常量 ( 2 分钟 )
     private static final int                      MINUTES_TWO = 1000 * 60 * 2;
     // 定位改变通知事件
     private static       OnLocationChangeListener sListener;
@@ -88,8 +88,9 @@ public final class LocationUtils {
     }
 
     /**
-     * 注册 - 使用完记得调用 {@link #unregister()}
+     * 注册
      * <pre>
+     *     使用完记得调用 {@link #unregister()}
      *     如果 minDistance 为 0, 则通过 minTime 来定时更新, minDistance 不为 0, 则以 minDistance 为准, 两者都为 0, 则随时刷新
      * </pre>
      * @param minTime     位置信息更新周期 ( 单位: 毫秒 )

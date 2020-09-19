@@ -673,7 +673,7 @@ public final class CapturePictureUtils {
             // View Bitmaps
             Bitmap[] bitmaps = new Bitmap[itemCount];
 
-            // 效果处理 - ListView 效果 Item 铺满
+            // 效果处理 ( ListView 效果 Item 铺满 )
             if (listViewEffect) {
                 // 循环绘制每个 Item 并保存 Bitmap
                 for (int i = 0; i < itemCount; i++) {
@@ -703,12 +703,12 @@ public final class CapturePictureUtils {
             } else {
                 // 获取倍数 ( 行数 )
                 int lineNumber = NumberUtils.getMultiple(itemCount, numColumns);
-                // 计算总共的宽度 - (GridView 宽度 - 列分割间距 ) / numColumns
+                // 计算总共的宽度 (GridView 宽度 - 列分割间距 ) / numColumns
                 int childWidth = (gridView.getWidth() - (numColumns - 1) * horizontalSpacing) / numColumns;
 
                 // 记录每行最大高度
                 int[] rowHeightArrays = new int[lineNumber];
-                // 临时高度 - 保存行中最高的列高度
+                // 临时高度 ( 保存行中最高的列高度 )
                 int tempHeight;
                 // 循环每一行绘制每个 Item 并保存 Bitmap
                 for (int i = 0; i < lineNumber; i++) {
@@ -903,7 +903,7 @@ public final class CapturePictureUtils {
             int width = 0, height = 0;
             // View Bitmaps
             Bitmap[] bitmaps = new Bitmap[itemCount];
-            // 获取布局管理器 - 判断横竖布局
+            // 获取布局管理器 ( 判断横竖布局 )
             GridLayoutManager gridLayoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
             boolean vertical = (gridLayoutManager.getOrientation() == 1);
             // 获取一共多少列
@@ -916,11 +916,11 @@ public final class CapturePictureUtils {
                 // = 竖向滑动 =
                 // ============
 
-                // 计算总共的宽度 - (GridView 宽度 - 列分割间距 ) / spanCount
+                // 计算总共的宽度 (GridView 宽度 - 列分割间距 ) / spanCount
                 int childWidth = (recyclerView.getWidth() - (spanCount - 1) * horizontalSpacing) / spanCount;
                 // 记录每行最大高度
                 int[] rowHeightArrays = new int[lineNumber];
-                // 临时高度 - 保存行中最高的列高度
+                // 临时高度 ( 保存行中最高的列高度 )
                 int tempHeight;
                 for (int i = 0; i < lineNumber; i++) {
                     // 清空高度
@@ -1000,7 +1000,7 @@ public final class CapturePictureUtils {
                 int[] rowHeightArrays = new int[lineNumber];
                 // 获取一共多少列
                 int numColumns = NumberUtils.getMultiple(itemCount, lineNumber);
-                // 临时高度 - 保存行中最高的列高度
+                // 临时高度 ( 保存行中最高的列高度 )
                 int tempHeight;
                 for (int i = 0; i < lineNumber; i++) {
                     // 清空高度
@@ -1108,7 +1108,7 @@ public final class CapturePictureUtils {
             int width = 0, height = 0;
             // View Bitmaps
             Bitmap[] bitmaps = new Bitmap[itemCount];
-            // 获取布局管理器 - 判断横竖布局
+            // 获取布局管理器 ( 判断横竖布局 )
             LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
             boolean vertical = (linearLayoutManager.getOrientation() == 1);
             if (vertical) {
@@ -1150,7 +1150,7 @@ public final class CapturePictureUtils {
                 // = 横向滑动 =
                 // ============
 
-                // 临时高度 - 保存行中最高的列高度
+                // 临时高度 ( 保存行中最高的列高度 )
                 int tempHeight = 0;
                 for (int i = 0; i < itemCount; i++) {
                     RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
@@ -1220,7 +1220,7 @@ public final class CapturePictureUtils {
             int width = 0, height = 0;
             // View Bitmaps
             Bitmap[] bitmaps = new Bitmap[itemCount];
-            // 获取布局管理器 - 判断横竖布局
+            // 获取布局管理器 ( 判断横竖布局 )
             StaggeredGridLayoutManager staggeredGridLayoutManager = (StaggeredGridLayoutManager) recyclerView.getLayoutManager();
             boolean vertical = (staggeredGridLayoutManager.getOrientation() == 1);
             // 获取一共多少列
@@ -1260,7 +1260,7 @@ public final class CapturePictureUtils {
                     columnsItemNumberArrays[minIndex] += 1;
                 }
 
-                // 计算高度 - 追加子项间分隔符占用的高度
+                // 计算高度 ( 追加子项间分隔符占用的高度 )
                 if (lineNumber >= 2) {
                     // 循环追加子项间分隔符占用的高度
                     for (int i = 0; i < spanCount; i++) {
