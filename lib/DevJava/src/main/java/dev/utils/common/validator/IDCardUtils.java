@@ -71,6 +71,7 @@ public final class IDCardUtils {
         sCityCodeMaps.put("71", "台湾");
         sCityCodeMaps.put("81", "香港");
         sCityCodeMaps.put("82", "澳门");
+        sCityCodeMaps.put("83", "台湾");
         sCityCodeMaps.put("91", "国外");
         sTWFirstCodeMaps.put("A", 10);
         sTWFirstCodeMaps.put("B", 11);
