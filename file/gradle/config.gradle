@@ -101,6 +101,11 @@ ext {
                     lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0",
                     // Saved state module for ViewModel
                     lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0",
+                    // Room VS GreenDao https://www.jianshu.com/p/5eab05820e9f
+                    // Room 持久性库 https://developer.android.com/training/data-storage/room
+                    room_runtime                  : "androidx.room:room-runtime:2.2.5",
+                    room_compiler                 : "androidx.room:room-compiler:2.2.5",
+                    room_ktx                      : "androidx.room:room-ktx:2.2.5",
             ],
             'androidx': [
                     // https://developer.android.com/jetpack/androidx/migrate/artifact-mappings
@@ -116,7 +121,7 @@ ext {
                     multidex              : "androidx.multidex:multidex:2.0.1",
                     constraint_layout     : "androidx.constraintlayout:constraintlayout:1.1.3",
                     viewpager2            : "androidx.viewpager2:viewpager2:1.0.0",
-                    sqlite                : "androidx.sqlite:sqlite:2.1.0",
+                    sqlite                : "androidx.sqlite:sqlite:2.1.0", // 推荐使用 Room Jetpack 组件
                     // DefaultLifecycleObserver Java8
                     lifecycle_common_java8: "androidx.lifecycle:lifecycle-common-java8:2.2.0",
             ],
