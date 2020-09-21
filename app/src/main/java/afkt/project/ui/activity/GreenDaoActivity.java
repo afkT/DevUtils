@@ -18,18 +18,18 @@ import java.util.List;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
-import afkt.project.databinding.ActivityGreenDaoBinding;
 import afkt.project.database.green.GreenManager;
-import afkt.project.database.green.Note;
-import afkt.project.database.green.NotePicture;
-import afkt.project.database.green.NotePictureDao;
-import afkt.project.database.green.NoteType;
+import afkt.project.database.green.bean.Note;
+import afkt.project.database.green.bean.NotePicture;
+import afkt.project.database.green.bean.NoteType;
+import afkt.project.databinding.ActivityGreenDaoBinding;
 import afkt.project.ui.adapter.GreenDaoAdapter;
 import dev.assist.PageAssist;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.common.ChineseUtils;
 import dev.utils.common.RandomUtils;
+import gen.greendao.NotePictureDao;
 
 /**
  * detail: GreenDao 使用

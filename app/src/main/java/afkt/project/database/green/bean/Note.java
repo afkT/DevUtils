@@ -1,4 +1,4 @@
-package afkt.project.database.green;
+package afkt.project.database.green.bean;
 
 import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Convert;
@@ -13,6 +13,10 @@ import org.greenrobot.greendao.annotation.Transient;
 
 import java.util.Date;
 import java.util.List;
+
+import gen.greendao.DaoSession;
+import gen.greendao.NoteDao;
+import gen.greendao.NotePictureDao;
 
 
 /**

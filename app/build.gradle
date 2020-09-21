@@ -14,6 +14,7 @@ android {
 //        // Upgrade
 //        schemaVersion 2
 
+        daoPackage 'gen.greendao' // 生成 DAOs、DaoMaster、DaoSession 包名
         targetGenDir 'src/main/java'
     }
 

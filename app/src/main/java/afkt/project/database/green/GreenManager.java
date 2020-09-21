@@ -5,6 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 
 import org.greenrobot.greendao.database.Database;
 
+import gen.greendao.DaoMaster;
+import gen.greendao.DaoSession;
+import gen.greendao.NoteDao;
+import gen.greendao.NotePictureDao;
+
 /**
  * detail: GreenDao 管理类
  * @author Ttt
