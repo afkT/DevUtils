@@ -13,7 +13,7 @@ import com.tencent.mmkv.MMKV;
 import afkt.project.R;
 import afkt.project.base.config.AppConfig;
 import afkt.project.base.config.PathConfig;
-import afkt.project.db.GreenManager;
+import afkt.project.database.green.GreenManager;
 import afkt.project.function.http.RetrofitUtils;
 import dev.DevUtils;
 import dev.assist.WebViewAssist;

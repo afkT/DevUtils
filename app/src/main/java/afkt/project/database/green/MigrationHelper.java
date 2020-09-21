@@ -1,4 +1,4 @@
-package afkt.project.db;
+package afkt.project.database.green;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
