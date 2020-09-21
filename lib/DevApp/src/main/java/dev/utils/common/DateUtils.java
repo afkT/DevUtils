@@ -507,7 +507,7 @@ public final class DateUtils {
 
     /**
      * 判断是否闰年
-     * @param year 年数
+     * @param year 年份
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLeapYear(final int year) {
@@ -516,7 +516,7 @@ public final class DateUtils {
 
     /**
      * 根据年份、月份, 获取对应的天数 ( 完整天数, 无判断是否属于未来日期 )
-     * @param year  年数
+     * @param year  年份
      * @param month 月份
      * @return 指定年份所属的月份的天数
      */

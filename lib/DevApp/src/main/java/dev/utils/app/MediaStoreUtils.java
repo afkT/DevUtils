@@ -98,21 +98,21 @@ public final class MediaStoreUtils {
     // ============
 
     // PNG
-    public final static String MIME_TYPE_IMAGE_PNG = "image/png";
+    public static final String MIME_TYPE_IMAGE_PNG = "image/png";
     // JPEG
-    public final static String MIME_TYPE_IMAGE_JPG = "image/jpeg";
+    public static final String MIME_TYPE_IMAGE_JPG = "image/jpeg";
     // 图片类型
-    public final static String MIME_TYPE_IMAGE     = MIME_TYPE_IMAGE_PNG;
+    public static final String MIME_TYPE_IMAGE     = MIME_TYPE_IMAGE_PNG;
     // 视频类型
-    public final static String MIME_TYPE_VIDEO     = "video/mp4";
+    public static final String MIME_TYPE_VIDEO     = "video/mp4";
     // 音频类型
-    public final static String MIME_TYPE_AUDIO     = "audio/mpeg";
+    public static final String MIME_TYPE_AUDIO     = "audio/mpeg";
     // 图片文件夹
-    public final static String RELATIVE_IMAGE_PATH = Environment.DIRECTORY_PICTURES;
+    public static final String RELATIVE_IMAGE_PATH = Environment.DIRECTORY_PICTURES;
     // 视频文件夹
-    public final static String RELATIVE_VIDEO_PATH = Environment.DIRECTORY_DCIM + "/Video";
+    public static final String RELATIVE_VIDEO_PATH = Environment.DIRECTORY_DCIM + "/Video";
     // 音频文件夹
-    public final static String RELATIVE_AUDIO_PATH = Environment.DIRECTORY_MUSIC;
+    public static final String RELATIVE_AUDIO_PATH = Environment.DIRECTORY_MUSIC;
 
     /**
      * 获取待显示名

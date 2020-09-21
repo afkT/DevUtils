@@ -230,7 +230,7 @@ public final class ROMUtils {
     // = 内部方法 =
     // ============
 
-    private final static String UNKNOWN = "unknown";
+    private static final String UNKNOWN = "unknown";
 
     /**
      * 是否匹配正确 ROM

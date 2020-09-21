@@ -438,7 +438,7 @@ public class CornerLabelView extends View {
      * detail: 画笔
      * @author Ttt
      */
-    public final static class Painter {
+    public static final class Painter {
 
         private Painter() {
         }

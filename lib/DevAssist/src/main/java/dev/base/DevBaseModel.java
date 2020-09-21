@@ -56,7 +56,7 @@ public abstract class DevBaseModel implements Serializable {
      * @param data {@link DevBaseModel}
      * @return {@code true} correct, {@code false} error
      */
-    public final static boolean isCorrect(final DevBaseModel data) {
+    public static final boolean isCorrect(final DevBaseModel data) {
         return data != null && data.isCorrect();
     }
 

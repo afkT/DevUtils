@@ -475,7 +475,7 @@ public final class ClickUtils {
     // ========
 
     // 空实现 View.OnClickListener
-    public final static View.OnClickListener EMPTY_CLICK = new View.OnClickListener() {
+    public static final View.OnClickListener EMPTY_CLICK = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             LogPrintUtils.dTag(TAG, "EMPTY_CLICK viewId: " + view.getId());
