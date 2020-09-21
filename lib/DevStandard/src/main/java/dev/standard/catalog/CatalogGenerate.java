@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import dev.utils.common.CollectionUtils;
-import dev.utils.common.DevCommonUtils;
 import dev.utils.common.FileUtils;
 import dev.utils.common.StringUtils;
 
@@ -80,7 +79,7 @@ final class CatalogGenerate {
                 continue;
             }
             // 判断根目录是否需要忽略
-            if (curLayer != 0 && DevCommonUtils.isContains(baseFile.getName(), ignoreCatelog)) {
+            if (curLayer != 0 && StringUtils.isContains(baseFile.getName(), ignoreCatelog)) {
                 return lists;
             }
             // 属于文件夹才处理
