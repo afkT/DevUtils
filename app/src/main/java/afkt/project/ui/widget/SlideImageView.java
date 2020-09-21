@@ -18,7 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 
 /**
- * detail: 滑动 ImageView ( 未优化调整 )
+ * detail: 滑动 ImageView ( 未调整优化 )
  * @author Ttt
  * https://blog.csdn.net/qq_18833399/article/details/60958658
  * https://blog.csdn.net/csdnwangzhan/article/details/51597142
@@ -31,24 +31,24 @@ import androidx.appcompat.widget.AppCompatImageView;
  */
 public class SlideImageView extends AppCompatImageView {
 
-    /** 判断是否允许滑动 => 如果可以滑动 isNeedSlide = true, 该参数限制才有效 */
+    // 判断是否允许滑动 => 如果可以滑动 isNeedSlide = true, 该参数限制才有效
     private boolean isAllowSlide = true;
-    /** 是否需要滑动 */
+    // 是否需要滑动
     private boolean isNeedSlide;
     // View 宽度, 高度
-    private int viewWidth, viewHeight;
-    /** 需要绘制的图片的区域 */
-    private Rect srcRect = new Rect();
-    /** 绘制的区域 */
-    private RectF dstRectF = new RectF();
-    /** 画笔 */
-    private Paint paint = new Paint();
-    /** 已经滑动过的高度 */
-    private float slideHeight;
-    /** 绘制的 Bitmap */
+    private int     viewWidth, viewHeight;
+    // 需要绘制的图片的区域
+    private Rect   srcRect  = new Rect();
+    // 绘制的区域
+    private RectF  dstRectF = new RectF();
+    // 画笔
+    private Paint  paint    = new Paint();
+    // 已经滑动过的高度
+    private float  slideHeight;
+    // 绘制的 Bitmap
     private Bitmap drawBitmap;
-    /** 设置计算倍数 */
-    private float scale = 1.0f;
+    // 设置计算倍数
+    private float  scale    = 1.0f;
 
     {
         // 初始化画笔
@@ -74,7 +74,7 @@ public class SlideImageView extends AppCompatImageView {
     // 预计宽度, 小于预计的宽度才处理
     private int estimateWidth = -1;
     // 计算次数, 计算多次后, 就不处理
-    private int measureCount = -1;
+    private int measureCount  = -1;
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -92,8 +92,8 @@ public class SlideImageView extends AppCompatImageView {
                 if (drawable != null) {
                     try {
                         // 根据图片宽度为基准, 缩放图片大小
-                        drawBitmap = resizeImage(((BitmapDrawable)drawable).getBitmap(), viewWidth);
-                        measureCount --;
+                        drawBitmap = resizeImage(((BitmapDrawable) drawable).getBitmap(), viewWidth);
+                        measureCount--;
                     } catch (Exception e) {
                         drawBitmap = null;
                     }
@@ -137,7 +137,7 @@ public class SlideImageView extends AppCompatImageView {
         }
     }
 
-    /** 触摸操作的坐标 */
+    // 触摸操作的坐标
     private float lastX, lastY;
 
     @Override
@@ -308,21 +308,21 @@ public class SlideImageView extends AppCompatImageView {
 
     // = 动画相关 =
 
-    private Handler handler = new Handler();
-    /** 动画滑动距离 */
-    private float slideLenth = 10f;
-    /** 滑动速度 -> 时间 */
-    private long slideSpeed = 100L;
-    /** 检测时间 */
-    private long checkTime = 20L;
-    /** 是否滑动到底部 */
+    private Handler handler        = new Handler();
+    // 动画滑动距离
+    private float   slideLenth     = 10f;
+    // 滑动速度 -> 时间
+    private long    slideSpeed     = 100L;
+    // 检测时间
+    private long    checkTime      = 20L;
+    // 是否滑动到底部
     private boolean isScrollBottom = true;
-    /** 是否开启动画 */
-    private boolean isStartAnim = false;
-    /** 是否关闭动画 */
-    private boolean isStopAnim = false;
+    // 是否开启动画
+    private boolean isStartAnim    = false;
+    // 是否关闭动画
+    private boolean isStopAnim     = false;
 
-    /** 动画线程 */
+    // 动画线程
     private Runnable animRunnable = new Runnable() {
         @Override
         public void run() {
@@ -489,9 +489,7 @@ public class SlideImageView extends AppCompatImageView {
         return this;
     }
 
-    // ==
-
-    /** 设置滑动比例 */
+    // 设置滑动比例
     private float slideCalcScale = -1f;
 
     /**

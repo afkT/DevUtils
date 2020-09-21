@@ -4,7 +4,7 @@ import android.hardware.Camera;
 import android.os.Handler;
 import android.os.Message;
 
-import dev.utils.LogPrintUtils;
+import dev.utils.app.logger.DevLogger;
 
 /**
  * detail: 预览回调
@@ -49,7 +49,7 @@ public class PreviewCallback implements Camera.PreviewCallback {
             message.sendToTarget();
             mPreviewHandler = null;
         } else {
-            LogPrintUtils.dTag(TAG, "Got preview callback, but no handler or resolution available");
+            DevLogger.dTag(TAG, "Got preview callback, but no handler or resolution available");
         }
     }
 }
