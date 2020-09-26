@@ -138,12 +138,12 @@ public class FunctionActivity extends BaseActivity<BaseViewRecyclerviewBinding> 
                         break;
                     case ButtonValue.BTN_FUNCTION_MEMORY_PRINT:
                         String memoryInfo = MemoryUtils.printMemoryInfo();
-                        ToastUtils.showLong(memoryInfo);
+                        ToastUtils.showShort(memoryInfo);
                         DevLogger.dTag(TAG, memoryInfo);
                         break;
                     case ButtonValue.BTN_FUNCTION_DEVICE_PRINT:
                         String deviceInfo = DeviceUtils.handlerDeviceInfo(DeviceUtils.getDeviceInfo(), "");
-                        ToastUtils.showLong(deviceInfo);
+                        ToastUtils.showShort(deviceInfo);
                         DevLogger.dTag(TAG, deviceInfo);
                         break;
                     case ButtonValue.BTN_FUNCTION_APP_DETAILS_SETTINGS:

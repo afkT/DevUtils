@@ -84,7 +84,7 @@ public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> 
                              */
                             @Override
                             public void onDenied(List<String> grantedList, List<String> deniedList, List<String> notFoundList) {
-                                ToastUtils.showLong("请开启联系人写入权限.");
+                                ToastUtils.showShort("请开启联系人写入权限.");
                             }
                         }).request(mActivity);
             }

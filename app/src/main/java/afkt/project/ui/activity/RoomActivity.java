@@ -22,7 +22,7 @@ import afkt.project.database.green.GreenManager;
 import afkt.project.database.green.bean.Note;
 import afkt.project.database.green.bean.NotePicture;
 import afkt.project.database.green.bean.NoteType;
-import afkt.project.databinding.ActivityRoomBinding;
+import afkt.project.databinding.ActivityDatabaseBinding;
 import afkt.project.ui.adapter.GreenDaoAdapter;
 import dev.assist.PageAssist;
 import dev.utils.app.logger.DevLogger;
@@ -41,11 +41,11 @@ import gen.greendao.NotePictureDao;
  *     @see <a href="https://developer.android.com/training/data-storage/room"/>
  * </pre>
  */
-public class RoomActivity extends BaseActivity<ActivityRoomBinding> {
+public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
 
     @Override
     public int baseLayoutId() {
-        return R.layout.activity_room;
+        return R.layout.activity_database;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class RoomActivity extends BaseActivity<ActivityRoomBinding> {
         ToastTintUtils.info("侧滑可进行删除, 长按拖动位置");
 
         // 初始化布局管理器、适配器
-        binding.vidArRefresh.setAdapter(new GreenDaoAdapter())
+        binding.vidAdbRefresh.setAdapter(new GreenDaoAdapter())
                 .setPageAssist(new PageAssist<>(0, 8));
         // 加载数据
         loadData(true);
@@ -65,7 +65,7 @@ public class RoomActivity extends BaseActivity<ActivityRoomBinding> {
     public void initListener() {
         super.initListener();
         // 刷新事件
-        binding.vidArRefresh.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+        binding.vidAdbRefresh.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 loadData(true);
@@ -106,7 +106,7 @@ public class RoomActivity extends BaseActivity<ActivityRoomBinding> {
              */
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                GreenDaoAdapter adapter = binding.vidArRefresh.getAdapter();
+                GreenDaoAdapter adapter = binding.vidAdbRefresh.getAdapter();
                 int fromPosition = viewHolder.getAdapterPosition();
                 int toPosition = target.getAdapterPosition();
                 Collections.swap(adapter.getData(), fromPosition, toPosition);
@@ -123,7 +123,7 @@ public class RoomActivity extends BaseActivity<ActivityRoomBinding> {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
                 if (direction == ItemTouchHelper.LEFT || direction == ItemTouchHelper.RIGHT) {
-                    GreenDaoAdapter adapter = binding.vidArRefresh.getAdapter();
+                    GreenDaoAdapter adapter = binding.vidAdbRefresh.getAdapter();
                     Note note = adapter.getData().remove(position);
                     adapter.notifyItemRemoved(position);
                     // 删除文章
@@ -136,12 +136,12 @@ public class RoomActivity extends BaseActivity<ActivityRoomBinding> {
                 }
             }
         });
-        itemTouchHelper.attachToRecyclerView(binding.vidArRefresh.getRecyclerView());
+        itemTouchHelper.attachToRecyclerView(binding.vidAdbRefresh.getRecyclerView());
 
-        binding.vidArAddBtn.setOnClickListener(new View.OnClickListener() {
+        binding.vidAdbAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (binding.vidArRefresh.getAdapter().getData().isEmpty()) { // 不存在数据
+                if (binding.vidAdbRefresh.getAdapter().getData().isEmpty()) { // 不存在数据
                     randomData(13);
                     // 加载数据
                     loadData(true);
@@ -199,8 +199,8 @@ public class RoomActivity extends BaseActivity<ActivityRoomBinding> {
      * @param refresh 是否刷新
      */
     private void loadData(boolean refresh) {
-        PageAssist pageAssist = binding.vidArRefresh.getPageAssist();
-        GreenDaoAdapter adapter = binding.vidArRefresh.getAdapter();
+        PageAssist pageAssist = binding.vidAdbRefresh.getPageAssist();
+        GreenDaoAdapter adapter = binding.vidAdbRefresh.getAdapter();
         // 刷新则重置页数
         if (refresh) pageAssist.reset();
 
@@ -213,6 +213,7 @@ public class RoomActivity extends BaseActivity<ActivityRoomBinding> {
 
         // 存在数据则累加页数
         if (!notes.isEmpty()) pageAssist.nextPage();
+        if (notes.isEmpty()) ToastTintUtils.normal("已加载至最后一页啦");
 
         if (refresh) {
             adapter.setNewInstance(notes);
@@ -222,7 +223,7 @@ public class RoomActivity extends BaseActivity<ActivityRoomBinding> {
         }
 
         // 结束刷新、加载
-        binding.vidArRefresh.finishRefreshOrLoad(refresh);
+        binding.vidAdbRefresh.finishRefreshOrLoad(refresh);
     }
 
     /**
@@ -238,14 +239,14 @@ public class RoomActivity extends BaseActivity<ActivityRoomBinding> {
     private List<Note> offsetLimitCalculate(boolean refresh) {
         int offset, limit;
 
-        int pageSize = binding.vidArRefresh.getPageAssist().getPageSize();
+        int pageSize = binding.vidAdbRefresh.getPageAssist().getPageSize();
 
         if (refresh) {
             offset = 0;
             limit = pageSize;
         } else {
             // 获取当前数据条数
-            int size = binding.vidArRefresh.getAdapter().getData().size();
+            int size = binding.vidAdbRefresh.getAdapter().getData().size();
             // 计算当前数据实际页数
             int page = size / pageSize;
             int remainder = size % pageSize;
