@@ -306,7 +306,7 @@ public final class CalendarUtils {
      * @param year         年份
      * @param month        月份
      * @param day          天数
-     * @param festivalHook 节日 Hook 处理接口
+     * @param festivalHook 节日 Hook 接口
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isFestival(final Festival festival, final int year, final int month,
@@ -339,7 +339,7 @@ public final class CalendarUtils {
      * @param year         年份
      * @param month        月份
      * @param day          天数
-     * @param festivalHook 节日 Hook 处理接口
+     * @param festivalHook 节日 Hook 接口
      * @return {@link Festival}
      */
     public static Festival getFestival(final List<Festival> list, final int year, final int month,
@@ -858,7 +858,7 @@ public final class CalendarUtils {
     // = 接口 =
     // ========
 
-    // 节日 Hook 处理接口
+    // 节日 Hook 接口
     private static FestivalHook sFestivalHook = new FestivalHook() {
         @Override
         public Festival hook(Festival festival, int year, int month, int day) {
@@ -921,7 +921,7 @@ public final class CalendarUtils {
     };
 
     /**
-     * detail: 节日 Hook
+     * detail: 节日 Hook 接口
      * @author Ttt
      * <pre>
      *     主要用于特殊节日判断, 如 除夕 非确定天数无法直接进行添加
@@ -930,7 +930,7 @@ public final class CalendarUtils {
     public interface FestivalHook {
 
         /**
-         * 节日判断 hook 处理
+         * 节日 hook 判断
          * @param festival 节日信息
          * @param year     年份
          * @param month    月份
@@ -941,7 +941,7 @@ public final class CalendarUtils {
     }
 
     /**
-     * 获取节日 Hook 处理接口
+     * 获取节日 Hook 接口
      * @return {@link FestivalHook}
      */
     public static FestivalHook getFestivalHook() {
@@ -949,7 +949,7 @@ public final class CalendarUtils {
     }
 
     /**
-     * 设置节日 Hook 处理
+     * 设置节日 Hook 接口
      * @param festivalHook {@link FestivalHook}
      */
     public static void setFestivalHook(final FestivalHook festivalHook) {
