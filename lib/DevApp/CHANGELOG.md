@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 2.0.4 *(2020-09-27)*
+----------------------------
+
+* `[Add]` DateUtils#getZodiac、getConstellation、getConstellationDate 获取生肖、星座方法
+
+* `[Add]` CalendarUtils 日历 ( 公历、农历 ) 工具类
+
 Version 2.0.3 *(2020-09-20)*
 ----------------------------
 
