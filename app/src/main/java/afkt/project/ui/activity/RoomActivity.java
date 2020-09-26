@@ -213,7 +213,7 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
 
         // 存在数据则累加页数
         if (!notes.isEmpty()) pageAssist.nextPage();
-        if (notes.isEmpty()) ToastTintUtils.normal("已加载至最后一页啦");
+        if (!refresh && notes.isEmpty()) ToastTintUtils.normal("已加载至最后一页啦");
 
         if (refresh) {
             adapter.setNewInstance(notes);
@@ -231,7 +231,7 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
      * <pre>
      *     为什么需要特殊计算 :
      *     正常到最后一页没有数据是禁止加载更多
-     *     为了演示 GreenDao 分页实现功能, 显示添加数据按钮并且不限制加载更多功能
+     *     为了演示分页实现功能, 显示添加数据按钮并且不限制加载更多功能
      *     可能导致新增数据 + 原有数据刚好 = 页数 * 每页条数, 导致无法加载下一页
      * </pre>
      * @param refresh 是否刷新

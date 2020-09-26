@@ -101,7 +101,6 @@ ext {
                     lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0",
                     // Saved state module for ViewModel
                     lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0",
-                    // Room VS GreenDao https://www.jianshu.com/p/5eab05820e9f
                     // Room 持久性库 https://developer.android.com/training/data-storage/room
                     room_runtime                  : "androidx.room:room-runtime:2.2.5",
                     room_compiler                 : "androidx.room:room-compiler:2.2.5",
