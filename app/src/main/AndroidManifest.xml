@@ -404,6 +404,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- Room -->
+
+        <activity
+            android:name=".ui.activity.RoomActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- 文章 MVP Activity -->
 
         <activity

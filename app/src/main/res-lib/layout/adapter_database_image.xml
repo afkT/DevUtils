@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dev.base.widget.BaseImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/vid_agdi_igview"
+    android:id="@+id/vid_adbi_igview"
     android:layout_width="70.0dp"
     android:layout_height="70.0dp"
     android:layout_marginRight="5.0dp"

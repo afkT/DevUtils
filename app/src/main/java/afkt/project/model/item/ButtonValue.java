@@ -93,6 +93,9 @@ public class ButtonValue {
     // GreenDAO
     public static final int BTN_GREEN_DAO = MODULE_LIB + 9;
 
+    // Room
+    public static final int BTN_ROOM = MODULE_LIB + 10;
+
     // ======
     // = UI =
     // ======

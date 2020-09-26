@@ -44,6 +44,7 @@ import afkt.project.ui.activity.QRCodeCreateActivity;
 import afkt.project.ui.activity.QRCodeImageActivity;
 import afkt.project.ui.activity.QRCodeScanActivity;
 import afkt.project.ui.activity.RecyItemSlideActivity;
+import afkt.project.ui.activity.RoomActivity;
 import afkt.project.ui.activity.ScanShapeActivity;
 import afkt.project.ui.activity.SignActivity;
 import afkt.project.ui.activity.StatusBarActivity;
@@ -121,6 +122,9 @@ public class ModuleActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
                         break;
                     case ButtonValue.BTN_GREEN_DAO: // GreenDAO
                         SkipUtils.startActivity(GreenDaoActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_ROOM: // Room
+                        SkipUtils.startActivity(RoomActivity.class, buttonValue);
                         break;
 
                     // ======
