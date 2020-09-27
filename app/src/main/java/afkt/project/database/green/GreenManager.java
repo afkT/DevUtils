@@ -23,6 +23,9 @@ public final class GreenManager {
     // 日志 TAG
     private static final String TAG = GreenManager.class.getSimpleName();
 
+    // 数据库名
+    private static final String DATABASE_NAME = "green-notes-db";
+
     private static UpgradeHelper helper;
     private static Database      db;
     private static DaoMaster     daoMaster;
@@ -34,7 +37,7 @@ public final class GreenManager {
      */
     public static void init(Context context) {
         // regular SQLite database
-        helper = new UpgradeHelper(context, "notes-db");
+        helper = new UpgradeHelper(context, DATABASE_NAME);
         db = helper.getWritableDb();
 
 //        // encrypted SQLCipher database
