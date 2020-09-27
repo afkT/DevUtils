@@ -11,9 +11,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 import afkt.project.R;
-import afkt.project.database.green.bean.Note;
-import afkt.project.database.green.bean.NotePicture;
-import afkt.project.database.green.bean.NoteType;
+import afkt.project.database.green.module.note.bean.Note;
+import afkt.project.database.green.module.note.bean.NotePicture;
+import afkt.project.database.green.module.note.bean.NoteType;
 import dev.other.GlideUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.ViewHelper;

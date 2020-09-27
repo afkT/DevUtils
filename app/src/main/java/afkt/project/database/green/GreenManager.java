@@ -1,15 +1,14 @@
 package afkt.project.database.green;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
 
-import org.greenrobot.greendao.database.Database;
+import java.util.HashMap;
+import java.util.Map;
 
+import afkt.project.database.green.able.GreenDatabase;
+import afkt.project.database.green.module.note.NoteDatabase;
 import dev.utils.app.logger.DevLogger;
-import gen.greendao.DaoMaster;
-import gen.greendao.DaoSession;
-import gen.greendao.NoteDao;
-import gen.greendao.NotePictureDao;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: GreenDao 管理类
@@ -23,86 +22,83 @@ public final class GreenManager {
     // 日志 TAG
     private static final String TAG = GreenManager.class.getSimpleName();
 
-    // 数据库名
-    private static final String DATABASE_NAME = "green-notes-db";
+    // DataBase 对象缓存
+    private static final Map<String, GreenDatabase> sDatabaseMaps = new HashMap<>();
 
-    private static UpgradeHelper helper;
-    private static Database      db;
-    private static DaoMaster     daoMaster;
-    private static DaoSession    daoSession;
+    // ============
+    // = database =
+    // ============
 
     /**
-     * 初始化操作
-     * @param context {@link Context}
+     * 获取 GreenDatabase 对象
+     * @param dbName 数据库名
+     * @param clazz  {@link GreenDatabase} 实现类
+     * @return {@link GreenDatabase}
      */
-    public static void init(Context context) {
-        // regular SQLite database
-        helper = new UpgradeHelper(context, DATABASE_NAME);
-        db = helper.getWritableDb();
-
-//        // encrypted SQLCipher database
-//        helper = new UpgradeHelper(context, "notes-db-encrypted");
-//        db = helper.getEncryptedWritableDb("encryption-key");
-
-        daoMaster = new DaoMaster(db);
-        daoSession = daoMaster.newSession();
+    public static <T extends GreenDatabase> T database(final String dbName, final Class clazz) {
+        return database(dbName, null, clazz);
     }
 
     /**
-     * detail: DB 升级 Helper
-     * <pre>
-     *     注意:
-     *     默认的 DaoMaster.DevOpenHelper 会在数据库升级时, 删除所有的表, 意味着这将导致数据的丢失
-     *     所以, 在正式的项目中, 你还应该做一层封装, 来实现数据库的安全升级
-     * </pre>
+     * 获取 GreenDatabase 对象
+     * @param dbName   数据库名
+     * @param password 数据库解密密码
+     * @param clazz    {@link GreenDatabase} 实现类
+     * @return {@link GreenDatabase}
      */
-    public static class UpgradeHelper extends DaoMaster.OpenHelper {
+    public static <T extends GreenDatabase> T database(final String dbName, final String password,
+                                                       final Class clazz) {
+        if (TextUtils.isEmpty(dbName)) return null;
 
-        public UpgradeHelper(Context context, String name) {
-            super(context, name);
+        // 获取数据库名
+        String databaseName = CREATE.getDatabaseName(dbName, password, clazz);
+
+        if (sDatabaseMaps.get(databaseName) == null) {
+            try {
+                sDatabaseMaps.put(databaseName, CREATE.create(dbName, password, clazz));
+            } catch (Exception e) {
+                DevLogger.eTag(TAG, e, "database");
+            }
         }
+        GreenDatabase greenDatabase = sDatabaseMaps.get(databaseName);
+        if (greenDatabase != null) {
+            T db = null;
+            try {
+                db = (T) greenDatabase;
+            } catch (Exception e) {
+                DevLogger.eTag(TAG, e, "database - convert T");
+            }
+            return db;
+        }
+        return null;
+    }
 
-        public UpgradeHelper(Context context, String name, SQLiteDatabase.CursorFactory factory) {
-            super(context, name, factory);
+    // ========
+    // = 创建 =
+    // ========
+
+    // 数据库创建接口
+    private static final GreenDatabase.Create CREATE = new GreenDatabase.Create() {
+
+        @Override
+        public String getDatabaseName(String dbName, String password, Class clazz) {
+            return GreenDatabase.createDatabaseName(dbName, StringUtils.isNotEmpty(password));
         }
 
         @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            DevLogger.dTag(TAG, "oldVersion: " + oldVersion + ", newVersion: " + newVersion);
-//            super.onUpgrade(db, oldVersion, newVersion);
-            MigrationHelper.migrate(db, NoteDao.class, NotePictureDao.class);
+        public GreenDatabase create(String dbName, String password, Class clazz) {
+            if (clazz == NoteDatabase.class) {
+                return NoteDatabase.database(dbName, password);
+            }
+            return null;
         }
-    }
+    };
 
-    // ============
-    // = 对外公开 =
-    // ============
+    // ===============
+    // = 快捷获取方法 =
+    // ===============
 
-    public static UpgradeHelper getHelper() {
-        return helper;
-    }
-
-    public static Database getDatabase() {
-        return db;
-    }
-
-    public static DaoMaster getDaoMaster() {
-        return daoMaster;
-    }
-
-    public static DaoSession getDaoSession() {
-        return daoSession;
-    }
-
-    // ========
-    // = Dao =
-    // ========
-
-    public static NoteDao getNoteDao() {
-        return daoSession.getNoteDao();
-    }
-
-    public static NotePictureDao getNotePictureDao() {
-        return daoSession.getNotePictureDao();
+    public static NoteDatabase getNoteDatabase() {
+        return database(NoteDatabase.TAG, NoteDatabase.class);
     }
 }

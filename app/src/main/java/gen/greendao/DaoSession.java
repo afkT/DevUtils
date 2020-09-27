@@ -8,8 +8,8 @@ import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.identityscope.IdentityScopeType;
 import org.greenrobot.greendao.internal.DaoConfig;
 
-import afkt.project.database.green.bean.Note;
-import afkt.project.database.green.bean.NotePicture;
+import afkt.project.database.green.module.note.bean.Note;
+import afkt.project.database.green.module.note.bean.NotePicture;
 
 import gen.greendao.NoteDao;
 import gen.greendao.NotePictureDao;

@@ -19,9 +19,9 @@ import java.util.List;
 import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.database.green.GreenManager;
-import afkt.project.database.green.bean.Note;
-import afkt.project.database.green.bean.NotePicture;
-import afkt.project.database.green.bean.NoteType;
+import afkt.project.database.green.module.note.bean.Note;
+import afkt.project.database.green.module.note.bean.NotePicture;
+import afkt.project.database.green.module.note.bean.NoteType;
 import afkt.project.databinding.ActivityDatabaseBinding;
 import afkt.project.ui.adapter.GreenDaoAdapter;
 import dev.assist.PageAssist;
@@ -131,11 +131,13 @@ public class GreenDaoActivity extends BaseActivity<ActivityDatabaseBinding> {
                     Note note = adapter.getData().remove(position);
                     adapter.notifyItemRemoved(position);
                     // 删除文章
-//                    GreenManager.getNoteDao().delete(note);
-                    GreenManager.getNoteDao().deleteByKey(note.getId());
+//                    GreenManager.getNoteDatabase().getNoteDao().delete(note);
+                    GreenManager.getNoteDatabase().getNoteDao().deleteByKey(note.getId());
                     // 删除文章图片
-                    DeleteQuery<NotePicture> deleteQuery = GreenManager.getNotePictureDao().queryBuilder()
-                            .where(NotePictureDao.Properties.NoteId.eq(note.getId())).buildDelete();
+                    DeleteQuery<NotePicture> deleteQuery = GreenManager.getNoteDatabase().getNotePictureDao()
+                            .queryBuilder()
+                            .where(NotePictureDao.Properties.NoteId.eq(note.getId()))
+                            .buildDelete();
                     deleteQuery.executeDeleteWithoutDetachingEntities();
                 }
             }
@@ -172,7 +174,7 @@ public class GreenDaoActivity extends BaseActivity<ActivityDatabaseBinding> {
         note.setComment(ChineseUtils.randomWord(RandomUtils.getRandom(12, 50)));
         note.setType(NoteType.values()[RandomUtils.getRandom(0, 3)]);
         // 添加数据
-        Long noteId = GreenManager.getNoteDao().insert(note);
+        Long noteId = GreenManager.getNoteDatabase().getNoteDao().insert(note);
         // 不等于文本
         if (note.getType() != NoteType.TEXT) {
             List<NotePicture> pictures = new ArrayList<>();
@@ -182,7 +184,7 @@ public class GreenDaoActivity extends BaseActivity<ActivityDatabaseBinding> {
                 notePicture.setPicture(String.format("https://picsum.photos/id/%s/30%s", RandomUtils.getRandom(5, 21), RandomUtils.getRandom(0, 10)));
                 pictures.add(notePicture);
             }
-            GreenManager.getNotePictureDao().insertInTx(pictures);
+            GreenManager.getNoteDatabase().getNotePictureDao().insertInTx(pictures);
         }
     }
 
@@ -211,7 +213,8 @@ public class GreenDaoActivity extends BaseActivity<ActivityDatabaseBinding> {
         List<Note> notes = offsetLimitCalculate(refresh);
 
 //        // 正常只需要这个, 没有添加功能则不需要计算偏差值
-//        List<Note> notes = GreenManager.getNoteDao().queryBuilder()
+//        List<Note> notes = GreenManager.getNoteDatabase().getNoteDao()
+//                .queryBuilder()
 //                .offset(pageAssist.getPageNum() * pageAssist.getPageSize())
 //                .limit(pageAssist.getPageSize()).list();
 
@@ -266,7 +269,8 @@ public class GreenDaoActivity extends BaseActivity<ActivityDatabaseBinding> {
         }
         DevLogger.dTag(TAG, "offset: " + offset + ", limit: " + limit);
         // 请求数据
-        return GreenManager.getNoteDao().queryBuilder()
+        return GreenManager.getNoteDatabase().getNoteDao()
+                .queryBuilder()
                 .offset(offset)
                 .limit(limit).list();
     }

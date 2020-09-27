@@ -13,7 +13,6 @@ import com.tencent.mmkv.MMKV;
 import afkt.project.R;
 import afkt.project.base.config.AppConfig;
 import afkt.project.base.config.PathConfig;
-import afkt.project.database.green.GreenManager;
 import afkt.project.function.http.RetrofitUtils;
 import dev.DevUtils;
 import dev.assist.WebViewAssist;
@@ -272,9 +271,6 @@ public class BaseApplication extends MultiDexApplication {
         // 可不调用, 默认开启 DP 转换
         AutoSizeConfig.getInstance().getUnitsManager()
                 .setSupportDP(true);
-
-        // 初始化 GreenDao
-        GreenManager.init(this);
 
 //        // 初始化 OkGo
 //        OkGoUtils.initOkGo(this);
