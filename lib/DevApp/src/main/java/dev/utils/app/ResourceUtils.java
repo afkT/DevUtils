@@ -121,7 +121,7 @@ public final class ResourceUtils {
      */
     public static DisplayMetrics getDisplayMetrics() {
         try {
-            return DevUtils.getContext().getResources().getDisplayMetrics();
+            return getResources().getDisplayMetrics();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getDisplayMetrics");
         }
@@ -134,7 +134,7 @@ public final class ResourceUtils {
      */
     public static Configuration getConfiguration() {
         try {
-            return DevUtils.getContext().getResources().getConfiguration();
+            return getResources().getConfiguration();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getConfiguration");
         }
@@ -162,7 +162,7 @@ public final class ResourceUtils {
      */
     public static String getString(@StringRes final int id) {
         try {
-            return DevUtils.getContext().getResources().getString(id);
+            return getResources().getString(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getString");
         }
@@ -177,7 +177,7 @@ public final class ResourceUtils {
      */
     public static String getString(@StringRes final int id, final Object... formatArgs) {
         try {
-            return DevUtils.getContext().getResources().getString(id, formatArgs);
+            return getResources().getString(id, formatArgs);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getString");
         }
@@ -261,7 +261,7 @@ public final class ResourceUtils {
      */
     public static Bitmap getBitmap(final int resId) {
         try {
-            return BitmapFactory.decodeResource(DevUtils.getContext().getResources(), resId);
+            return BitmapFactory.decodeResource(getResources(), resId);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getBitmap");
         }
@@ -276,7 +276,7 @@ public final class ResourceUtils {
      */
     public static Bitmap getBitmap(final int resId, final BitmapFactory.Options options) {
         try {
-            return BitmapFactory.decodeResource(DevUtils.getContext().getResources(), resId, options);
+            return BitmapFactory.decodeResource(getResources(), resId, options);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getBitmap");
         }
@@ -290,7 +290,7 @@ public final class ResourceUtils {
      */
     public static float getDimension(@DimenRes final int id) {
         try {
-            return DevUtils.getContext().getResources().getDimension(id);
+            return getResources().getDimension(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getDimension");
         }
@@ -303,7 +303,7 @@ public final class ResourceUtils {
      * @return Dimension
      */
     public static int getDimensionInt(@DimenRes final int id) {
-        return (int) ResourceUtils.getDimension(id);
+        return (int) getDimension(id);
     }
 
     /**
@@ -313,7 +313,7 @@ public final class ResourceUtils {
      */
     public static boolean getBoolean(@BoolRes final int id) {
         try {
-            return DevUtils.getContext().getResources().getBoolean(id);
+            return getResources().getBoolean(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getBoolean");
         }
@@ -327,7 +327,7 @@ public final class ResourceUtils {
      */
     public static int getInteger(@IntegerRes final int id) {
         try {
-            return DevUtils.getContext().getResources().getInteger(id);
+            return getResources().getInteger(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getInteger");
         }
@@ -341,7 +341,7 @@ public final class ResourceUtils {
      */
     public static XmlResourceParser getAnimation(@AnimatorRes @AnimRes final int id) {
         try {
-            return DevUtils.getContext().getResources().getAnimation(id);
+            return getResources().getAnimation(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAnimation");
         }
@@ -355,7 +355,7 @@ public final class ResourceUtils {
      */
     public static String getResourceName(@AnyRes final int id) {
         try {
-            return DevUtils.getContext().getResources().getResourceName(id);
+            return getResources().getResourceName(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getResourceName");
         }
@@ -369,7 +369,7 @@ public final class ResourceUtils {
      */
     public static int[] getIntArray(@ArrayRes final int id) {
         try {
-            return DevUtils.getContext().getResources().getIntArray(id);
+            return getResources().getIntArray(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getIntArray");
         }
@@ -383,7 +383,7 @@ public final class ResourceUtils {
      */
     public static String[] getStringArray(@ArrayRes final int id) {
         try {
-            return DevUtils.getContext().getResources().getStringArray(id);
+            return getResources().getStringArray(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getStringArray");
         }
@@ -397,7 +397,7 @@ public final class ResourceUtils {
      */
     public static CharSequence[] getTextArray(@ArrayRes final int id) {
         try {
-            return DevUtils.getContext().getResources().getTextArray(id);
+            return getResources().getTextArray(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getTextArray");
         }
@@ -560,7 +560,7 @@ public final class ResourceUtils {
      */
     public static int getIdentifier(final String resName, final String defType, final String packageName) {
         try {
-            return DevUtils.getContext().getResources().getIdentifier(resName, defType, packageName);
+            return getResources().getIdentifier(resName, defType, packageName);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getIdentifier - " + resName + " " + defType + ": " + packageName);
         }
@@ -576,7 +576,7 @@ public final class ResourceUtils {
      */
     public static InputStream open(final String fileName) {
         try {
-            return DevUtils.getContext().getAssets().open(fileName);
+            return getAssets().open(fileName);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "open");
         }
@@ -590,7 +590,7 @@ public final class ResourceUtils {
      */
     public static AssetFileDescriptor openFd(final String fileName) {
         try {
-            return DevUtils.getContext().getAssets().openFd(fileName);
+            return getAssets().openFd(fileName);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openFd");
         }
@@ -604,7 +604,7 @@ public final class ResourceUtils {
      */
     public static AssetFileDescriptor openNonAssetFd(final String fileName) {
         try {
-            return DevUtils.getContext().getAssets().openNonAssetFd(fileName);
+            return getAssets().openNonAssetFd(fileName);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openNonAssetFd");
         }
@@ -618,7 +618,7 @@ public final class ResourceUtils {
      */
     public static InputStream openRawResource(@RawRes final int id) {
         try {
-            return DevUtils.getContext().getResources().openRawResource(id);
+            return getResources().openRawResource(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openRawResource");
         }
@@ -632,7 +632,7 @@ public final class ResourceUtils {
      */
     public static AssetFileDescriptor openRawResourceFd(@RawRes final int id) {
         try {
-            return DevUtils.getContext().getResources().openRawResourceFd(id);
+            return getResources().openRawResourceFd(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openRawResourceFd");
         }
@@ -650,7 +650,7 @@ public final class ResourceUtils {
     public static InputStream openInputStream(final Uri uri) {
         if (uri == null) return null;
         try {
-            return ResourceUtils.getContentResolver().openInputStream(uri);
+            return getContentResolver().openInputStream(uri);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openInputStream " + uri.toString());
         }
@@ -665,7 +665,7 @@ public final class ResourceUtils {
     public static OutputStream openOutputStream(final Uri uri) {
         if (uri == null) return null;
         try {
-            return ResourceUtils.getContentResolver().openOutputStream(uri);
+            return getContentResolver().openOutputStream(uri);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openOutputStream " + uri.toString());
         }
@@ -681,7 +681,7 @@ public final class ResourceUtils {
     public static OutputStream openOutputStream(final Uri uri, final String mode) {
         if (uri == null) return null;
         try {
-            return ResourceUtils.getContentResolver().openOutputStream(uri, mode);
+            return getContentResolver().openOutputStream(uri, mode);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openOutputStream mode: " + mode + ", " + uri.toString());
         }
@@ -700,7 +700,7 @@ public final class ResourceUtils {
     public static ParcelFileDescriptor openFileDescriptor(final Uri uri, final String mode) {
         if (uri == null || TextUtils.isEmpty(mode)) return null;
         try {
-            return ResourceUtils.getContentResolver().openFileDescriptor(uri, mode);
+            return getContentResolver().openFileDescriptor(uri, mode);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openFileDescriptor mode: " + mode + ", " + uri.toString());
         }
@@ -719,7 +719,7 @@ public final class ResourceUtils {
     public static AssetFileDescriptor openAssetFileDescriptor(final Uri uri, final String mode) {
         if (uri == null || TextUtils.isEmpty(mode)) return null;
         try {
-            return ResourceUtils.getContentResolver().openAssetFileDescriptor(uri, mode);
+            return getContentResolver().openAssetFileDescriptor(uri, mode);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openAssetFileDescriptor mode: " + mode + ", " + uri.toString());
         }
