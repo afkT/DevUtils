@@ -24,7 +24,7 @@ public final class AppConfig {
     // = 其他配置 =
     // ============
 
-    // 项目日志 Tag
+    // 项目日志 TAG
     public static final String LOG_TAG            = BASE_NAME + "_Log";
     // Bugly 项目标识
     public static final String BUGLY_PRONAME_MARK = BASE_NAME + "_Android";
