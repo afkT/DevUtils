@@ -49,9 +49,9 @@ dependencies {
     compileOnly project(path: ':DevAssist')
     compileOnly project(path: ':DevWidget')
 
-    // ==============
+    // =============
     // = 快捷开发库 =
-    // ==============
+    // =============
 
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
     compileOnly deps.lib.okhttp3
@@ -91,9 +91,9 @@ dependencies {
     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
     compileOnly deps.lib.luban
 
-    // ==============================
+    // =============================
     // = 其他第三方库 - 小功能、简约 =
-    // ==============================
+    // =============================
 
     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
     compileOnly deps.lib.smartrefreshlayout
