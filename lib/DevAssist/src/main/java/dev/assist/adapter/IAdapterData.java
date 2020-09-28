@@ -10,9 +10,9 @@ import java.util.List;
  */
 public interface IAdapterData<V> {
 
-    // ============
+    // ===========
     // = 获取相关 =
-    // ============
+    // ===========
 
     /**
      * 获取 List Data
@@ -60,9 +60,9 @@ public interface IAdapterData<V> {
      */
     V getDataLastItem();
 
-    // ============
+    // ===========
     // = 其他方法 =
-    // ============
+    // ===========
 
     /**
      * 判断是否 First Item Data
@@ -99,9 +99,9 @@ public interface IAdapterData<V> {
      */
     void clearDataList(boolean notify);
 
-    // ================
+    // ===============
     // = 数据处理方法 =
-    // ================
+    // ===============
 
     /**
      * 添加数据

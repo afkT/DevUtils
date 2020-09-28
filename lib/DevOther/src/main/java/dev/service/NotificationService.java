@@ -28,9 +28,9 @@ public final class NotificationService extends NotificationListenerService {
     // 当前服务所持对象
     private static NotificationService sSelf;
 
-    // ============
+    // ===========
     // = 通知回调 =
-    // ============
+    // ===========
 
     /**
      * 当系统收到新的通知后触发回调
@@ -54,9 +54,9 @@ public final class NotificationService extends NotificationListenerService {
         }
     }
 
-    // ============
+    // ===========
     // = 生命周期 =
-    // ============
+    // ===========
 
     @Override
     public void onCreate() {
@@ -88,9 +88,9 @@ public final class NotificationService extends NotificationListenerService {
         return sListener == null ? START_STICKY : sListener.onStartCommand(this, intent, flags, startId);
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 获取当前服务所持对象

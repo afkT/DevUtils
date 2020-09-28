@@ -65,9 +65,9 @@ public interface IMultiSelectToList<CollectionG extends List, V> extends IBaseMu
      */
     void toggle(V value);
 
-    // ==================
+    // =================
     // = 获取选中的数据 =
-    // ==================
+    // =================
 
     /**
      * 获取选中的数据集合

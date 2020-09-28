@@ -98,9 +98,9 @@ public final class PhoneReceiver extends BroadcastReceiver {
         }
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     // 电话监听广播
     private static final PhoneReceiver sReceiver = new PhoneReceiver();

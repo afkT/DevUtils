@@ -166,7 +166,7 @@ public class LoadProgressBar extends View {
     }
 
     // ===============
-    //  内部处理方法 =
+    // = 内部处理方法 =
     // ===============
 
     /**
@@ -351,9 +351,9 @@ public class LoadProgressBar extends View {
         canvas.drawText(progressText, x, y, mPaint);
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 重置参数
@@ -551,9 +551,9 @@ public class LoadProgressBar extends View {
         return this;
     }
 
-    // ==============
+    // =============
     // = 进度条样式 =
-    // ==============
+    // =============
 
     /**
      * detail: 进度条样式

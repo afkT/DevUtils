@@ -91,18 +91,18 @@ public class ScanShapeView extends View {
     // 是否设置拐角圆角 ( 圆润 )
     private CornerEffect mCornerEffect = new CornerEffect(10);
 
-    // ============
+    // ===========
     // = 背景相关 =
-    // ============
+    // ===========
 
     // 是否绘制背景
     private boolean mIsDrawBackground = true;
     // 绘制背景画笔
     private Paint   mBackgroundPaint  = new Paint(Paint.ANTI_ALIAS_FLAG);
 
-    // =================
+    // ================
     // = 绘制扫描 View =
-    // =================
+    // ================
 
     // 是否绘制扫描区域边框
     private boolean mIsDrawBorder = true;
@@ -115,9 +115,9 @@ public class ScanShapeView extends View {
     // 扫描区域块 ( 默认 700x700 ) - 绘制的宽 (x), 高 (y)
     private PointF  mPointF       = new PointF(700, 700);
 
-    // =======================
+    // ======================
     // = 正方形 ( 边框相关 ) =
-    // =======================
+    // ======================
 
     // 正方形描边 ( 边框 ) 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部
     private int     mBorderToSquare  = 0;
@@ -128,9 +128,9 @@ public class ScanShapeView extends View {
     // 是否特殊处理
     private boolean mSpecialToSquare = false;
 
-    // ============
+    // ===========
     // = 环形相关 =
-    // ============
+    // ===========
 
     // 环形画笔, [] { 0 - 外环, 1 - 中间环, 2 - 外环 }
     private Paint[]   mAnnulusPaints  = new Paint[3];
@@ -147,18 +147,18 @@ public class ScanShapeView extends View {
     // 三个环之间的边距
     private float[]   mAnnulusMargins = new float[3];
 
-    // ============
+    // ===========
     // = 动画相关 =
-    // ============
+    // ===========
 
     // 是否绘制动画
     private boolean mIsDrawAnim = true;
     // 是否自动开启动画
     private boolean mIsAutoAnim = true;
 
-    // ========================
+    // =======================
     // = 正方形 ( 动画 ) 相关 =
-    // ========================
+    // =======================
 
     // 正方形扫描动画 对象
     private ValueAnimator mAnimToSquare;
@@ -177,9 +177,9 @@ public class ScanShapeView extends View {
     // 线条颜色
     private int           mLineColorToSquare      = 0;
 
-    // ========================
+    // =======================
     // = 六边形 ( 动画 ) 相关 =
-    // ========================
+    // =======================
 
     // 边框外动画 对象
     private ValueAnimator mAnimToHexagon;
@@ -200,9 +200,9 @@ public class ScanShapeView extends View {
     // 动画方向 ( 六边形线条 ) - true = 左, false = 右
     private boolean       mLineAnimDirection   = true;
 
-    // ======================
+    // =====================
     // = 环形 ( 动画 ) 相关 =
-    // ======================
+    // =====================
 
     // 环形动画 对象
     private ValueAnimator mAnimToAnnulus;
@@ -219,9 +219,9 @@ public class ScanShapeView extends View {
     // 绘制扫描线条偏移速度
     private float         mLineOffsetSpeedToAnnulus = 4f;
 
-    // ============
+    // ===========
     // = 构造函数 =
-    // ============
+    // ===========
 
     public ScanShapeView(Context context) {
         super(context);
@@ -299,9 +299,9 @@ public class ScanShapeView extends View {
         mAnnulusPaints[2].setStyle(Paint.Style.STROKE);
         mAnnulusPaints[2].setStrokeWidth(mAnnulusWidths[2]);
 
-        // ================
+        // ===============
         // = 动画相关画笔 =
-        // ================
+        // ===============
 
         // 六边形线条画笔
         mLinePaintToHexagon.setStrokeWidth(mLineWidthToHexagon);
@@ -344,24 +344,24 @@ public class ScanShapeView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        // ====================
+        // ===================
         // = 判断是否绘制背景 =
-        // ====================
+        // ===================
 
         if (mIsDrawBackground) { // 绘制计算背景
             makeBackground(calcShapeRegion(mBorderMargin), canvas);
         }
 
-        // =============================
+        // ===========================
         // = 绘制扫描区域 ( 包括边框 ) =
-        // =============================
+        // ===========================
 
         // 绘制计算边框
         makeShape(calcShapeRegion(), canvas, mIsDrawBorder ? mBorderPaint : mEmptyPaint, true);
 
-        // ============
+        // ===========
         // = 动画相关 =
-        // ============
+        // ===========
 
         // 判断是否需要重新处理动画
         if (mIsReAnim) { // 为了节省资源, 只用绘制一次
@@ -379,9 +379,9 @@ public class ScanShapeView extends View {
             }
         }
 
-        // ================
+        // ===============
         // = 绘制扫描动画 =
-        // ================
+        // ===============
 
         // 判断是否需要动画
         if (mIsDrawAnim) {
@@ -389,9 +389,9 @@ public class ScanShapeView extends View {
         }
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 销毁处理
@@ -721,9 +721,9 @@ public class ScanShapeView extends View {
         return this;
     }
 
-    // ==========
+    // =========
     // = 正方形 =
-    // ==========
+    // =========
 
     /**
      * 获取正方形描边 ( 边框 ) 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部
@@ -906,9 +906,9 @@ public class ScanShapeView extends View {
         return this;
     }
 
-    // ==========
+    // =========
     // = 六边形 =
-    // ==========
+    // =========
 
     /**
      * 获取六边形线条动画 ( 线条宽度 )
@@ -1210,9 +1210,9 @@ public class ScanShapeView extends View {
         return this;
     }
 
-    // ============
+    // ===========
     // = 内部方法 =
-    // ============
+    // ===========
 
     /**
      * 刷新环形画笔信息
@@ -1225,9 +1225,9 @@ public class ScanShapeView extends View {
         }
     }
 
-    // ============
+    // ===========
     // = 计算相关 =
-    // ============
+    // ===========
 
     /**
      * Math.sin 的参数为弧度, 使用起来不方便, 重新封装一个根据角度求 sin 的方法
@@ -1278,9 +1278,9 @@ public class ScanShapeView extends View {
         return rectF;
     }
 
-    // ============
+    // ===========
     // = 绘制形状 =
-    // ============
+    // ===========
 
     /**
      * 绘制计算形状 ( 边框外形 )
@@ -1731,13 +1731,13 @@ public class ScanShapeView extends View {
         }
     }
 
-    // ============
+    // ===========
     // = 动画相关 =
-    // ============
+    // ===========
 
-    // ============
+    // ===========
     // = 内部处理 =
-    // ============
+    // ===========
 
     /**
      * 重新设置动画
@@ -1839,9 +1839,9 @@ public class ScanShapeView extends View {
         return false;
     }
 
-    // ==================
+    // =================
     // = 正方形动画参数 =
-    // ==================
+    // =================
 
     /**
      * 重置线条颜色 ( 进行着色 )
@@ -1877,9 +1877,9 @@ public class ScanShapeView extends View {
         }
     }
 
-    // ==================
+    // =================
     // = 六边形动画参数 =
-    // ==================
+    // =================
 
     private float   mStartLinePoint; // 起点位置
     private float   mEndLinePoint; // 结束点位置
@@ -1913,9 +1913,9 @@ public class ScanShapeView extends View {
         mLineTran255Color = Color.argb(255, mLineRed, mLineGreen, mLineBlue);
     }
 
-    // ================
+    // ===============
     // = 环形动画参数 =
-    // ================
+    // ===============
 
     /**
      * 重置线条颜色 ( 进行着色 )
@@ -1951,9 +1951,9 @@ public class ScanShapeView extends View {
         }
     }
 
-    // ==============
+    // =============
     // = 动画初始化 =
-    // ==============
+    // =============
 
     /**
      * 初始化动画

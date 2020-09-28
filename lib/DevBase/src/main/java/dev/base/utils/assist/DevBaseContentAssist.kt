@@ -86,9 +86,9 @@ class DevBaseContentAssist {
         return this
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 是否安全处理
@@ -106,9 +106,9 @@ class DevBaseContentAssist {
         return this
     }
 
-    // ============
+    // ===========
     // = 显隐操作 =
-    // ============
+    // ===========
 
     /**
      * 显示 statusBarLinear
@@ -412,9 +412,9 @@ class DevBaseContentAssist {
         return addView(stateLinear, view, index, params)
     }
 
-    // ================
+    // ===============
     // = 内部处理方法 =
-    // ================
+    // ===============
 
     /**
      * 添加 View

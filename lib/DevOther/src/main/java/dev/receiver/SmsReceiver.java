@@ -56,9 +56,9 @@ public final class SmsReceiver extends BroadcastReceiver {
         }
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 获取消息数据

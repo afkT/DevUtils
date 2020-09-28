@@ -12,9 +12,9 @@ import android.widget.EditText;
  */
 public class EditTextWatcherAssist<T> {
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 绑定事件
@@ -48,9 +48,9 @@ public class EditTextWatcherAssist<T> {
         }
     }
 
-    // ================
+    // ===============
     // = 内部判断方法 =
-    // ================
+    // ===============
 
     /**
      * detail: 输入监听回调事件
@@ -69,9 +69,9 @@ public class EditTextWatcherAssist<T> {
         void onTextChanged(CharSequence charSequence, EditText editText, int position, T object);
     }
 
-    // ==================================
+    // =================================
     // = 处理 Adapter Item ( EditText ) =
-    // ==================================
+    // =================================
 
     // Text 改变事件
     private TextWatcher mTextWatcher;

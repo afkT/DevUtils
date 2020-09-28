@@ -133,9 +133,9 @@ public class CustomViewPager extends ViewPager {
         return this;
     }
 
-    // ============
+    // ===========
     // = 滑动方向 =
-    // ============
+    // ===========
 
     /**
      * detail: 滑动方向监听

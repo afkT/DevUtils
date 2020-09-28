@@ -59,9 +59,9 @@ public final class LubanUtils {
         return DevUtils.getContext();
     }
 
-    // ========
+    // =======
     // = 接口 =
-    // ========
+    // =======
 
     public interface OnCompressListener {
 
@@ -92,9 +92,9 @@ public final class LubanUtils {
         void onComplete(List<File> lists);
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 压缩方法

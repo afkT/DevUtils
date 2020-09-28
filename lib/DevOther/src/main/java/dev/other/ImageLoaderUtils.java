@@ -168,9 +168,9 @@ public final class ImageLoaderUtils {
         return (options != null) ? new DisplayImageOptions.Builder().cloneFrom(options) : null;
     }
 
-    // ============
+    // ===========
     // = 图片效果 =
-    // ============
+    // ===========
 
     /**
      * 获取图片渐变动画加载配置
@@ -231,9 +231,9 @@ public final class ImageLoaderUtils {
         return null;
     }
 
-    // ============
+    // ===========
     // = 图片显示 =
-    // ============
+    // ===========
 
     /**
      * 图片显示
@@ -346,9 +346,9 @@ public final class ImageLoaderUtils {
         }
     }
 
-    // ============
+    // ===========
     // = 图片加载 =
-    // ============
+    // ===========
 
     /**
      * 图片加载
@@ -418,9 +418,9 @@ public final class ImageLoaderUtils {
         ImageLoader.getInstance().loadImage(uri, imageSize, options, listener, progressListener);
     }
 
-    // ================
+    // ===============
     // = 图片同步加载 =
-    // ================
+    // ===============
 
     /**
      * 图片同步加载
@@ -462,9 +462,9 @@ public final class ImageLoaderUtils {
         return ImageLoader.getInstance().loadImageSync(uri, imageSize, options);
     }
 
-    // ============
+    // ===========
     // = 其他操作 =
-    // ============
+    // ===========
 
     /**
      * 清除磁盘缓存

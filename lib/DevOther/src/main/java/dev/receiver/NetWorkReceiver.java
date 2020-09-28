@@ -63,9 +63,9 @@ public final class NetWorkReceiver extends BroadcastReceiver {
         }
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 是否连接网络

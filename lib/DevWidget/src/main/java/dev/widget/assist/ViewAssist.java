@@ -81,9 +81,9 @@ public final class ViewAssist {
         void onChange(ViewAssist assist, int type, int oldType);
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     // Type: 操作中、失败、成功、空数据
     public static final int TYPE_ING        = 1;

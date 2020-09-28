@@ -67,9 +67,9 @@ public class StateLayout extends FrameLayout {
         void onChange(StateLayout layout, int type, int oldType, View view);
     }
 
-    // ==================
+    // =================
     // = 初始化相关代码 =
-    // ==================
+    // =================
 
     /**
      * 重置处理
@@ -197,9 +197,9 @@ public class StateLayout extends FrameLayout {
         }
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     public static void setGlobal(Global global) {
         StateLayout.sGlobal = global;

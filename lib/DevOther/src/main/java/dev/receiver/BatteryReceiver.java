@@ -67,9 +67,9 @@ public final class BatteryReceiver extends BroadcastReceiver {
         }
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     // 电量监听广播
     private static final BatteryReceiver sReceiver = new BatteryReceiver();

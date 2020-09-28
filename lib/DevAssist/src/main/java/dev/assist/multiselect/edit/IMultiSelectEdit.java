@@ -10,9 +10,9 @@ package dev.assist.multiselect.edit;
  */
 public interface IMultiSelectEdit {
 
-    // ============
+    // ===========
     // = 编辑状态 =
-    // ============
+    // ===========
 
     /**
      * 是否编辑状态
@@ -33,9 +33,9 @@ public interface IMultiSelectEdit {
      */
     IMultiSelectEdit toggleEditState();
 
-    // ============
+    // ===========
     // = 选择操作 =
-    // ============
+    // ===========
 
     /**
      * 全选
@@ -55,9 +55,9 @@ public interface IMultiSelectEdit {
      */
     IMultiSelectEdit inverseSelect();
 
-    // ============
+    // ===========
     // = 判断处理 =
-    // ============
+    // ===========
 
     /**
      * 判断是否全选
@@ -77,9 +77,9 @@ public interface IMultiSelectEdit {
      */
     boolean isNotSelect();
 
-    // ==========
+    // =========
     // = 数量值 =
-    // ==========
+    // =========
 
     /**
      * 获取选中的数据条数

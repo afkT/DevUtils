@@ -39,9 +39,9 @@ public abstract class DevExResultCallback<T> extends DevResultCallback<T> {
     public void onResult(String str, String msg, T value) {
     }
 
-    // ============
+    // ===========
     // = 扩展回调 =
-    // ============
+    // ===========
 
     /**
      * 结果回调通知
@@ -71,9 +71,9 @@ public abstract class DevExResultCallback<T> extends DevResultCallback<T> {
     public void onFailure(int type, String fail, String errorCode) {
     }
 
-    // ============
+    // ===========
     // = 扩展处理 =
-    // ============
+    // ===========
 
     /**
      * detail: 数据业务抽象类

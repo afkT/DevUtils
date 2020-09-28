@@ -35,9 +35,9 @@ public class NumberControlAssist {
         this.mMaxNumber = maxNumber;
     }
 
-    // ================
+    // ===============
     // = 对外提供方法 =
-    // ================
+    // ===============
 
     /**
      * 判断当前数量, 是否等于最小值
@@ -291,9 +291,9 @@ public class NumberControlAssist {
         return this;
     }
 
-    // ================
+    // ===============
     // = 数量变化方法 =
-    // ================
+    // ===============
 
     /**
      * 数量改变通知
@@ -331,9 +331,9 @@ public class NumberControlAssist {
         return numberChange(-1);
     }
 
-    // ================
+    // ===============
     // = 内部判断方法 =
-    // ================
+    // ===============
 
     /**
      * 检查更新处理
@@ -352,9 +352,9 @@ public class NumberControlAssist {
         setMaxNumber(mMaxNumber);
     }
 
-    // ============
+    // ===========
     // = 接口相关 =
-    // ============
+    // ===========
 
     /**
      * detail: 数量操作接口

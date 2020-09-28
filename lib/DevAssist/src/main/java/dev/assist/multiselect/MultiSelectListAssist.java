@@ -208,9 +208,9 @@ public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> 
         }
     }
 
-    // ==================
+    // =================
     // = 获取选中的数据 =
-    // ==================
+    // =================
 
     /**
      * 获取选中的数据集合

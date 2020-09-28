@@ -31,9 +31,9 @@ public class RequestStateAssist<T> {
     // 请求状态 ( 默认为暂未进行操作 )
     private int  mRequestState    = REQUEST_NORMAL;
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 获取请求类型
@@ -127,9 +127,9 @@ public class RequestStateAssist<T> {
         return this;
     }
 
-    // ============
+    // ===========
     // = 快捷方法 =
-    // ============
+    // ===========
 
     /**
      * 判断是否默认状态 ( 暂未进行操作 )

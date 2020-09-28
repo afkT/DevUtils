@@ -57,9 +57,9 @@ public final class OkGoUtils {
         // 自定义日志拦截 JSON 打印
         builder.addInterceptor(new dev.other.okgo.HttpLoggingInterceptor());
 
-        // ========================
+        // =======================
         // = OkGo 内置 log 拦截器 =
-        // ========================
+        // =======================
 
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor("OkGo");
         // log 打印级别, 决定了 log 显示的详细程度
@@ -79,9 +79,9 @@ public final class OkGoUtils {
         // 全局的连接超时时间
         builder.connectTimeout(OkGo.DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
 
-        // =============================
+        // ============================
         // = Cookie 持久化 ( Session ) =
-        // =============================
+        // ============================
 
         // 使用 sp 保持 cookie, 如果 cookie 不过期, 则一直有效
         builder.cookieJar(new CookieJarImpl(new SPCookieStore(application)));
@@ -144,9 +144,9 @@ public final class OkGoUtils {
                 .addCommonParams(params);
     }
 
-    // ================================
+    // ===============================
     // = 用于请求管理控制 ( 取消请求 ) =
-    // ================================
+    // ===============================
 
     /**
      * 执行请求处理

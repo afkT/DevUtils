@@ -31,9 +31,9 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
     @JvmField // DevBase 合并相同代码辅助类
     protected var assist = DevBaseAssist()
 
-    // ============
+    // ===========
     // = 生命周期 =
-    // ============
+    // ===========
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -160,9 +160,9 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
     // = IDevBaseMethod =
     // ==================
 
-    // ==============
+    // =============
     // = 初始化方法 =
-    // ==============
+    // =============
 
     override fun initView() {
         assist.printLog("initView")

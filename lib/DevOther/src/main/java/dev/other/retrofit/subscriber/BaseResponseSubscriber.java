@@ -80,9 +80,9 @@ public abstract class BaseResponseSubscriber<T> extends DisposableSubscriber<Bas
      */
     abstract public void onErrorResponse(BaseResponse<T> response);
 
-    // ================
+    // ===============
     // = 内部判断方法 =
-    // ================
+    // ===============
 
     /**
      * 获取异常信息

@@ -44,9 +44,9 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
         this.toast = toast;
     }
 
-    // ==============
+    // =============
     // = 非必须方法 =
-    // ==============
+    // =============
 
     /**
      * 请求网络开始前 ( UI 线程 )
@@ -138,9 +138,9 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
         }
     }
 
-    // ============
+    // ===========
     // = 必须重写 =
-    // ============
+    // ===========
 
     /**
      * 对返回数据进行操作的回调 ( UI 线程 )
@@ -189,9 +189,9 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
      */
     abstract public void onErrorResponse(OkGoResponse<T> response);
 
-    // ============
+    // ===========
     // = 内部处理 =
-    // ============
+    // ===========
 
     /**
      * 内部处理请求响应数据

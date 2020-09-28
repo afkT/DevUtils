@@ -81,9 +81,9 @@ public interface IImageEngine {
         public abstract void onFailure(String uri, Throwable throwable);
     }
 
-    // ============
+    // ===========
     // = 图片显示 =
-    // ============
+    // ===========
 
     /**
      * 图片显示
@@ -116,9 +116,9 @@ public interface IImageEngine {
      */
     void displayImage(String uri, ImageView imageView, ImageConfig config);
 
-    // ============
+    // ===========
     // = 图片加载 =
-    // ============
+    // ===========
 
     /**
      * 图片加载
@@ -135,9 +135,9 @@ public interface IImageEngine {
      */
     void loadImage(String uri, ImageCallBack imageCallback, ImageConfig config);
 
-    // ============
+    // ===========
     // = 其他方法 =
-    // ============
+    // ===========
 
     /**
      * 清除磁盘缓存

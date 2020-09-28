@@ -17,9 +17,9 @@ public class DevBaseEvent<T> {
     // object
     private Object mObject;
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 获取 Code
@@ -99,9 +99,9 @@ public class DevBaseEvent<T> {
         return this;
     }
 
-    // ============
+    // ===========
     // = 判断方法 =
-    // ============
+    // ===========
 
     /**
      * 判断 Code 是否一致

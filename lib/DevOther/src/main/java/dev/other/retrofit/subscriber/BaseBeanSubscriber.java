@@ -62,9 +62,9 @@ public abstract class BaseBeanSubscriber<T> extends DisposableSubscriber<T> {
      */
     abstract public void onErrorResponse(Throwable throwable, String message);
 
-    // ================
+    // ===============
     // = 内部判断方法 =
-    // ================
+    // ===============
 
     /**
      * 获取异常信息

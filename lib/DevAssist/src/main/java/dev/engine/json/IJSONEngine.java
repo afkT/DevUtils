@@ -15,9 +15,9 @@ public interface IJSONEngine {
     class JSONConfig {
     }
 
-    // ============
+    // ===========
     // = 转换方法 =
-    // ============
+    // ===========
 
     /**
      * 将对象转换为 JSON String
@@ -76,9 +76,9 @@ public interface IJSONEngine {
      */
     <T> T fromJson(String json, Type typeOfT, JSONConfig jsonConfig);
 
-    // ============
+    // ===========
     // = 其他方法 =
-    // ============
+    // ===========
 
     /**
      * 判断字符串是否 JSON 格式

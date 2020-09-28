@@ -50,9 +50,9 @@ public final class ScreenReceiver extends BroadcastReceiver {
         }
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     // 屏幕广播监听
     private static final ScreenReceiver sReceiver = new ScreenReceiver();

@@ -19,9 +19,9 @@ public abstract class DevBaseModel implements Serializable {
     // model id
     private       int mModelId;
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 获取 UUID

@@ -55,9 +55,9 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
     // = IAdapterData =
     // ================
 
-    // ============
+    // ===========
     // = 获取相关 =
-    // ============
+    // ===========
 
     /**
      * 获取 List Data
@@ -136,9 +136,9 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
         return getDataItem(getDataCount() - 1);
     }
 
-    // ============
+    // ===========
     // = 其他方法 =
-    // ============
+    // ===========
 
     /**
      * 判断是否 First Item Data
@@ -191,9 +191,9 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
         if (notify) adapterNotifyDataSetChanged();
     }
 
-    // ================
+    // ===============
     // = 数据处理方法 =
-    // ================
+    // ===============
 
     /**
      * 添加数据

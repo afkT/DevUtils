@@ -125,9 +125,9 @@ public class FlowLikeView extends FrameLayout {
         mViewHeight = getHeight();
     }
 
-    // ============
+    // ===========
     // = 内部处理 =
-    // ============
+    // ===========
 
     /**
      * detail: 动画结束监听器, 用于释放无用的资源
@@ -270,9 +270,9 @@ public class FlowLikeView extends FrameLayout {
         mLayoutParams.bottomMargin = mChildViewHeight;
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 点赞操作

@@ -31,9 +31,9 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(), IDevBase {
     @JvmField // DevBase 合并相同代码辅助类
     protected var assist = DevBaseAssist()
 
-    // ============
+    // ===========
     // = 生命周期 =
-    // ============
+    // ===========
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,9 +133,9 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(), IDevBase {
     // = IDevBaseMethod =
     // ==================
 
-    // ==============
+    // =============
     // = 初始化方法 =
-    // ==============
+    // =============
 
     override fun initView() {
         assist.printLog("initView")

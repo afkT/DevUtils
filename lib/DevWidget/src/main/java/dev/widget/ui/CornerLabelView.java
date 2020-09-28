@@ -177,9 +177,9 @@ public class CornerLabelView extends View {
         return path;
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 获取 Text1 Painter
@@ -481,9 +481,9 @@ public class CornerLabelView extends View {
             canvas.drawText(text, 0, (isTop ? -1 : 1) * (y + textHeight / 2) + offset, paint);
         }
 
-        // ================
+        // ===============
         // = 对外公开方法 =
-        // ================
+        // ===============
 
         /**
          * 获取画笔

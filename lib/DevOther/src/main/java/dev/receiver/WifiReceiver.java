@@ -183,9 +183,9 @@ public final class WifiReceiver extends BroadcastReceiver {
         }
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     // Wifi 监听广播
     private static final WifiReceiver sReceiver = new WifiReceiver();

@@ -91,9 +91,9 @@ public interface IHttpEngine {
          */
         boolean isEnd();
 
-        // ============
+        // ===========
         // = 操作方法 =
-        // ============
+        // ===========
 
         /**
          * 取消请求
@@ -160,9 +160,9 @@ public interface IHttpEngine {
      */
     Call newCall(Request request, RequestCallBack callBack);
 
-    // ============
+    // ===========
     // = 操作方法 =
-    // ============
+    // ===========
 
     /**
      * 取消请求 ( 全部 )

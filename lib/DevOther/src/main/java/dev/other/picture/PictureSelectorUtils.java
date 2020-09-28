@@ -105,9 +105,9 @@ public final class PictureSelectorUtils {
         MINIMUM_COMPRESS_SIZE = minimumCompressSize;
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 清空缓存
@@ -314,9 +314,9 @@ public final class PictureSelectorUtils {
 //        return null;
 //    }
 
-    // ============
+    // ===========
     // = 调用方法 =
-    // ============
+    // ===========
 
     /**
      * 打开相册拍照

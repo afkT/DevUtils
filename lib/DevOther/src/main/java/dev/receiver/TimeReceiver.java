@@ -50,9 +50,9 @@ public final class TimeReceiver extends BroadcastReceiver {
         }
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     // 时间监听广播
     private static final TimeReceiver sReceiver = new TimeReceiver();

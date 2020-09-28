@@ -64,9 +64,9 @@ public interface IMultiSelectToMap<CollectionG extends Map, K, V> extends IBaseM
      */
     void toggle(K key, V value);
 
-    // ==================
+    // =================
     // = 获取选中的数据 =
-    // ==================
+    // =================
 
     // =========
     // = Value =

@@ -58,9 +58,9 @@ public final class AppStateReceiver extends BroadcastReceiver {
         }
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     // 应用状态监听广播
     private static final AppStateReceiver sReceiver = new AppStateReceiver();

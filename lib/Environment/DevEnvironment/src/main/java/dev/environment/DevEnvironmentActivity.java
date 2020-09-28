@@ -25,9 +25,9 @@ import dev.environment.bean.ModuleBean;
  */
 public final class DevEnvironmentActivity extends Activity {
 
-    // ============
+    // ===========
     // = 跳转方法 =
-    // ============
+    // ===========
 
     /**
      * 跳转 DevEnvironment Activity
@@ -97,9 +97,9 @@ public final class DevEnvironmentActivity extends Activity {
         vid_dea_listview.setAdapter(new Adapter(AdapterItem.getAdapterItems(this)));
     }
 
-    // ==========
+    // =========
     // = 适配器 =
-    // ==========
+    // =========
 
     /**
      * detail: Item Adapter

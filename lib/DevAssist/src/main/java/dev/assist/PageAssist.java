@@ -40,9 +40,9 @@ public class PageAssist<T> extends RequestStateAssist<T> {
         this.mPageSize = config_page_size;
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 初始化全局分页配置
@@ -170,9 +170,9 @@ public class PageAssist<T> extends RequestStateAssist<T> {
         return this;
     }
 
-    // ============
+    // ===========
     // = 快捷方法 =
-    // ============
+    // ===========
 
     /**
      * 判断是否第一页
@@ -218,9 +218,9 @@ public class PageAssist<T> extends RequestStateAssist<T> {
         return this;
     }
 
-    // ============
+    // ===========
     // = 其他逻辑 =
-    // ============
+    // ===========
 
     /**
      * 判断是否小于每页请求条数
