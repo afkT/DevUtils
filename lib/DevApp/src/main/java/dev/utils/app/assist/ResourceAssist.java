@@ -36,12 +36,12 @@ public final class ResourceAssist {
 
     // Resources
     private Resources mResource;
-    // 包名
+    // 应用包名
     private String    mPackageName;
 
-    // ============
+    // ===========
     // = 构造函数 =
-    // ============
+    // ===========
 
     private ResourceAssist() {
         this(getResources(), AppUtils.getPackageName());
@@ -127,4 +127,16 @@ public final class ResourceAssist {
     // ===============
     // = 对外公开方法 =
     // ===============
+
+    /**
+     * 重置操作
+     * @param resource    {@link Resources}
+     * @param packageName 应用包名
+     * @return {@link ResourceAssist}
+     */
+    public ResourceAssist reset(final Resources resource, final String packageName) {
+        this.mResource = resource;
+        this.mPackageName = packageName;
+        return this;
+    }
 }
