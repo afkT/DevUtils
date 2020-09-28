@@ -29,16 +29,16 @@ public final class CacheUse {
         // 打印信息
         LogPrintUtils.dTag(TAG, "保存前: " + cacheVo.toString());
         // 保存数据
-        DevCache.obtain().put("ctv", cacheVo);
+        DevCache.newCache().put("ctv", cacheVo);
         // 重新获取
-        CacheVo ctv = (CacheVo) DevCache.obtain().getAsObject("ctv");
+        CacheVo ctv = (CacheVo) DevCache.newCache().getAsObject("ctv");
         // 打印获取后的数据
         DevLogger.dTag(TAG, "保存后: " + ctv.toString());
         // 设置保存有效时间 5秒
-        DevCache.obtain().put("ctva", new CacheVo("测试有效时间"), 1);
+        DevCache.newCache().put("ctva", new CacheVo("测试有效时间"), 1);
 
         // 保存到指定文件夹下
-        DevCache.obtain(new File(PathUtils.getSDCard().getSDCardPath(), "Cache")).put("key", "保存数据");
+        DevCache.newCache(new File(PathUtils.getSDCard().getSDCardPath(), "Cache")).put("key", "保存数据");
 
         // 延迟后
         new Thread(new Runnable() {
@@ -48,7 +48,7 @@ public final class CacheUse {
                     // 延迟 1.5 已经过期再去获取
                     Thread.sleep(1500);
                     // 获取数据
-                    CacheVo ctva = (CacheVo) DevCache.obtain().getAsObject("ctva");
+                    CacheVo ctva = (CacheVo) DevCache.newCache().getAsObject("ctva");
                     // 判断是否过期
                     DevLogger.dTag(TAG, "是否过期: " + (ctva == null));
                 } catch (Exception e) {

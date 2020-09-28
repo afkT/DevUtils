@@ -40,7 +40,7 @@
 | getFileFunction | 获取日志文件记录的功能 |
 | getFileIntervalTime | 获取日志文件记录间隔时间 |
 | getFolderName | 获取日志文件夹名 |
-| obtain | 获取记录分析文件信息 |
+| get | 获取记录分析文件信息 |
 | getLogPath | 获取日志地址 |
 | getIntervalTimeFolder | 获取时间间隔 - 文件夹 |
 

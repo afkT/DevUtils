@@ -66,8 +66,8 @@ public final class DevCache {
      * 获取 DevCache ( 默认缓存文件名 )
      * @return {@link DevCache}
      */
-    public static DevCache obtain() {
-        return obtain(DEF_FILE_NAME);
+    public static DevCache newCache() {
+        return newCache(DEF_FILE_NAME);
     }
 
     /**
@@ -75,8 +75,8 @@ public final class DevCache {
      * @param cacheName 缓存文件名
      * @return {@link DevCache}
      */
-    public static DevCache obtain(final String cacheName) {
-        return obtain(FileUtils.getFile(getCachePath(), cacheName), MAX_SIZE, MAX_COUNT);
+    public static DevCache newCache(final String cacheName) {
+        return newCache(FileUtils.getFile(getCachePath(), cacheName), MAX_SIZE, MAX_COUNT);
     }
 
     /**
@@ -84,8 +84,8 @@ public final class DevCache {
      * @param cacheDir 缓存文件地址
      * @return {@link DevCache}
      */
-    public static DevCache obtain(final File cacheDir) {
-        return obtain(cacheDir, MAX_SIZE, MAX_COUNT);
+    public static DevCache newCache(final File cacheDir) {
+        return newCache(cacheDir, MAX_SIZE, MAX_COUNT);
     }
 
     /**
@@ -94,8 +94,8 @@ public final class DevCache {
      * @param maxCount 最大存储数量
      * @return {@link DevCache}
      */
-    public static DevCache obtain(final long maxSize, final int maxCount) {
-        return obtain(FileUtils.getFile(getCachePath(), DEF_FILE_NAME), maxSize, maxCount);
+    public static DevCache newCache(final long maxSize, final int maxCount) {
+        return newCache(FileUtils.getFile(getCachePath(), DEF_FILE_NAME), maxSize, maxCount);
     }
 
     /**
@@ -105,7 +105,7 @@ public final class DevCache {
      * @param maxCount 最大存储数量
      * @return {@link DevCache}
      */
-    public static DevCache obtain(final File cacheDir, final long maxSize, final int maxCount) {
+    public static DevCache newCache(final File cacheDir, final long maxSize, final int maxCount) {
         if (cacheDir == null) return null;
         // 判断是否存在缓存信息
         DevCache manager = sInstanceMaps.get(cacheDir.getAbsoluteFile() + myPid());

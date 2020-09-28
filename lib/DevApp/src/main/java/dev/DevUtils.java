@@ -81,8 +81,6 @@ public final class DevUtils {
         // = 初始化工具类相关 =
         // ===================
 
-        // 初始化 Cache
-        DevCache.obtain();
         // 初始化 SharedPreferences
         SharedUtils.init(context);
         // 初始化 应用、设备信息
