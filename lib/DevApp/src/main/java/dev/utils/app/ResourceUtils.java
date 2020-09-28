@@ -59,9 +59,9 @@ public final class ResourceUtils {
     // 日志 TAG
     private static final String TAG = ResourceUtils.class.getSimpleName();
 
-    // ================
+    // ===============
     // = 快捷获取方法 =
-    // ================
+    // ===============
 
     /**
      * 获取 Resources
@@ -726,9 +726,9 @@ public final class ResourceUtils {
         return null;
     }
 
-    // ================
+    // ===============
     // = 读取资源文件 =
-    // ================
+    // ===============
 
     /**
      * 获取 Assets 资源文件数据

@@ -26,9 +26,9 @@ public final class ServiceUtils {
     // 日志 TAG
     private static final String TAG = ServiceUtils.class.getSimpleName();
 
-    // ====================
+    // ===================
     // = 判断服务是否运行 =
-    // ====================
+    // ===================
 
     /**
      * 判断服务是否运行
@@ -78,9 +78,9 @@ public final class ServiceUtils {
         return Collections.emptySet();
     }
 
-    // ============
+    // ===========
     // = 启动服务 =
-    // ============
+    // ===========
 
     /**
      * 启动服务
@@ -110,9 +110,9 @@ public final class ServiceUtils {
         return false;
     }
 
-    // ============
+    // ===========
     // = 停止服务 =
-    // ============
+    // ===========
 
     /**
      * 停止服务
@@ -142,9 +142,9 @@ public final class ServiceUtils {
         }
     }
 
-    // ============
+    // ===========
     // = 绑定服务 =
-    // ============
+    // ===========
 
     /**
      * 绑定服务
@@ -192,9 +192,9 @@ public final class ServiceUtils {
         return false;
     }
 
-    // ============
+    // ===========
     // = 解绑服务 =
-    // ============
+    // ===========
 
     /**
      * 解绑服务

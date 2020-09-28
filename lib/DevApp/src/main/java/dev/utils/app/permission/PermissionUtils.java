@@ -103,9 +103,9 @@ public final class PermissionUtils {
         }
     }
 
-    // ============
+    // ===========
     // = 使用方法 =
-    // ============
+    // ===========
 
     /**
      * 申请权限初始化
@@ -170,9 +170,9 @@ public final class PermissionUtils {
         }
     }
 
-    // ================
+    // ===============
     // = 请求权限回调 =
-    // ================
+    // ===============
 
     /**
      * detail: 权限请求回调
@@ -194,9 +194,9 @@ public final class PermissionUtils {
         void onDenied(List<String> grantedList, List<String> deniedList, List<String> notFoundList);
     }
 
-    // =================
+    // ================
     // = 内部 Activity =
-    // =================
+    // ================
 
     // 内部持有对象
     private static WeakReference<PermissionUtils> sInstance;
@@ -276,9 +276,9 @@ public final class PermissionUtils {
         sPermissionsDeniedForeverLists.clear();
     }
 
-    // ============
+    // ===========
     // = 判断方法 =
-    // ============
+    // ===========
 
     /**
      * 判断是否授予了权限
@@ -381,9 +381,9 @@ public final class PermissionUtils {
         }
     }
 
-    // ================
+    // ===============
     // = 内部处理方法 =
-    // ================
+    // ===============
 
     /**
      * 权限判断处理
@@ -485,9 +485,9 @@ public final class PermissionUtils {
         }
     }
 
-    // ============
+    // ===========
     // = 静态方法 =
-    // ============
+    // ===========
 
     /**
      * 是否存在 APK 安装权限

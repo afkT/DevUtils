@@ -57,9 +57,9 @@ public final class IToast {
          */
         void init(Context context);
 
-        // ============
+        // ===========
         // = 配置方法 =
-        // ============
+        // ===========
 
         /**
          * 使用单次 Toast 样式配置
@@ -104,9 +104,9 @@ public final class IToast {
          */
         void setView(@LayoutRes int layoutId);
 
-        // ============
+        // ===========
         // = 操作方法 =
-        // ============
+        // ===========
 
         /**
          * 显示 Toast
@@ -145,9 +145,9 @@ public final class IToast {
         void cancel();
     }
 
-    // ============
+    // ===========
     // = 其他接口 =
-    // ============
+    // ===========
 
     /**
      * detail: Toast 样式配置
@@ -210,9 +210,9 @@ public final class IToast {
          */
         Drawable getBackground();
 
-        // =================
+        // ================
         // = TextView 相关 =
-        // =================
+        // ================
 
         /**
          * 获取文本颜色

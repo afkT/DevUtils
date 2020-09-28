@@ -225,9 +225,9 @@ public final class NotificationUtils {
         return false;
     }
 
-    // ================
+    // ===============
     // = 封装外部调用 =
-    // ================
+    // ===============
 
 //    // 使用自定义 View
 //    RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.xxx);

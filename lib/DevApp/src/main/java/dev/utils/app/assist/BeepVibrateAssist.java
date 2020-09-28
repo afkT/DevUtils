@@ -66,9 +66,9 @@ public final class BeepVibrateAssist implements Closeable {
         this.mMediaPlayer = buildMediaPlayer(filePath);
     }
 
-    // ================
+    // ===============
     // = 内部判断方法 =
-    // ================
+    // ===============
 
     /**
      * 判断是否允许播放声音
@@ -98,9 +98,9 @@ public final class BeepVibrateAssist implements Closeable {
         }
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 判断是否允许播放声音
@@ -184,9 +184,9 @@ public final class BeepVibrateAssist implements Closeable {
         }
     }
 
-    // =========================
+    // ========================
     // = 创建 MediaPlayer 处理 =
-    // =========================
+    // ========================
 
     /**
      * 创建 MediaPlayer 对象

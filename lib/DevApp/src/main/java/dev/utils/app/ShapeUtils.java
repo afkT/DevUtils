@@ -136,9 +136,9 @@ public final class ShapeUtils {
         return null;
     }
 
-    // ============
+    // ===========
     // = 静态构建 =
-    // ============
+    // ===========
 
     /**
      * 创建 Shape
@@ -196,9 +196,9 @@ public final class ShapeUtils {
         return new ShapeUtils(new GradientDrawable(orientation, colors));
     }
 
-    // ============
+    // ===========
     // = 设置方法 =
-    // ============
+    // ===========
 
     /**
      * 设置透明度

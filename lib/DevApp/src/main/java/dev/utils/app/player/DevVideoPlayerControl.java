@@ -15,9 +15,9 @@ import dev.utils.LogPrintUtils;
 public class DevVideoPlayerControl implements SurfaceHolder.Callback,
         DevMediaManager.MediaListener {
 
-    // ============
+    // ===========
     // = 外部回调 =
-    // ============
+    // ===========
 
     // 日志 TAG
     private final String TAG = DevVideoPlayerControl.class.getSimpleName();
@@ -57,9 +57,9 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
         DevMediaManager.getInstance().setMeidaListener(this);
     }
 
-    // ================
+    // ===============
     // = 内部快捷控制 =
-    // ================
+    // ===============
 
     /**
      * 重置操作
@@ -79,9 +79,9 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
         mSurfaceHolder.addCallback(this);
     }
 
-    // ====================
+    // ===================
     // = Surface 回调事件 =
-    // ====================
+    // ===================
 
     /**
      * Surface 改变通知
@@ -121,9 +121,9 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
         LogPrintUtils.dTag(TAG, "surfaceDestroyed");
     }
 
-    // ========================
+    // =======================
     // = MediaPlayer 回调事件 =
-    // ========================
+    // =======================
 
     /**
      * 准备完成回调
@@ -240,9 +240,9 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
         return this;
     }
 
-    // ================
+    // ===============
     // = 播放快捷操作 =
-    // ================
+    // ===============
 
     /**
      * 暂停播放

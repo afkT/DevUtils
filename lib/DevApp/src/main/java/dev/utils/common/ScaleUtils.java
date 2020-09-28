@@ -300,9 +300,9 @@ public final class ScaleUtils {
         return null;
     }
 
-    // =========
+    // ========
     // = long =
-    // =========
+    // ========
 
     /**
      * 计算缩放比例 ( 根据宽度比例转换高度 )
@@ -586,9 +586,9 @@ public final class ScaleUtils {
         return null;
     }
 
-    // ==========
+    // =========
     // = 实体类 =
-    // ==========
+    // =========
 
     public static final List<XY> XY_LIST;
 

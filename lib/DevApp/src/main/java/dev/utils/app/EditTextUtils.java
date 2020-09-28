@@ -473,9 +473,9 @@ public final class EditTextUtils {
         return editText;
     }
 
-    // =========================
+    // ========================
     // = Key Listener 快捷处理 =
-    // =========================
+    // ========================
 
     // 0123456789
     private static final char[] NUMBERS = new char[]{48, 49, 50, 51, 52, 53, 54, 55, 56, 57};
@@ -721,9 +721,9 @@ public final class EditTextUtils {
             return this;
         }
 
-        // ============
+        // ===========
         // = 回调接口 =
-        // ============
+        // ===========
 
         /**
          * 在文本变化前调用

@@ -152,9 +152,9 @@ public final class ListViewUtils {
         return view;
     }
 
-    // ==============
+    // =============
     // = 滑动到顶部 =
-    // ==============
+    // =============
 
     /**
      * 滑动到顶部 ( 有滚动过程 )
@@ -190,9 +190,9 @@ public final class ListViewUtils {
         return view;
     }
 
-    // ==============
+    // =============
     // = 滑动到底部 =
-    // ==============
+    // =============
 
     /**
      * 滑动到底部 ( 有滚动过程 )
@@ -446,9 +446,9 @@ public final class ListViewUtils {
         return ViewUtils.setOverScrollMode(view, overScrollMode);
     }
 
-    // ============
+    // ===========
     // = 计算高度 =
-    // ============
+    // ===========
 
     // ============
     // = ListView =

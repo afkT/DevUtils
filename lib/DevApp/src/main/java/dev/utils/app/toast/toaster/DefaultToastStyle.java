@@ -95,9 +95,9 @@ public class DefaultToastStyle implements IToast.Style {
         return null;
     }
 
-    // =================
+    // ================
     // = TextView 相关 =
-    // =================
+    // ================
 
     /**
      * 获取文本颜色

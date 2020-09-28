@@ -29,9 +29,9 @@ public class PermissionConstants {
     public static final String SMS        = Manifest.permission_group.SMS;
     public static final String STORAGE    = Manifest.permission_group.STORAGE;
 
-    // ===================
+    // ==================
     // = permission 数组 =
-    // ===================
+    // ==================
 
     private static final String[] GROUP_CALENDAR = {
             Manifest.permission.READ_CALENDAR,

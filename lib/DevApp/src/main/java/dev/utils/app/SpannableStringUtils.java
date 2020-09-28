@@ -178,9 +178,9 @@ public final class SpannableStringUtils {
     private int      imageResourceId; // resource id
     private int      alignImage; // 图片对齐类型
 
-    // ============
+    // ===========
     // = 构造函数 =
-    // ============
+    // ===========
 
     /**
      * 构造函数
@@ -210,9 +210,9 @@ public final class SpannableStringUtils {
         return new SpannableStringUtils(textView);
     }
 
-    // ============
+    // ===========
     // = 实现方法 =
-    // ============
+    // ===========
 
     /**
      * 设置标识
@@ -786,9 +786,9 @@ public final class SpannableStringUtils {
         return mBuilder;
     }
 
-    // ============
+    // ===========
     // = 私有方法 =
-    // ============
+    // ===========
 
     /**
      * 应用效果
@@ -977,9 +977,9 @@ public final class SpannableStringUtils {
         imageResourceId = -1;
     }
 
-    // ============================
+    // ==========================
     // = 内部自定义 Span 效果实现 =
-    // ============================
+    // ==========================
 
     /**
      * detail: 垂直对齐 Span
@@ -1437,9 +1437,9 @@ public final class SpannableStringUtils {
         }
     }
 
-    // ============
+    // ===========
     // = 内部方法 =
-    // ============
+    // ===========
 
     /**
      * detail: SpannableStringBuilder 内部类, 实现序列化方便传值

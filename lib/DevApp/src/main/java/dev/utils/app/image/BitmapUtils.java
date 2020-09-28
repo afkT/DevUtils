@@ -72,9 +72,9 @@ public final class BitmapUtils {
         return ImageUtils.isNotEmpty(bitmap);
     }
 
-    // ============
+    // ===========
     // = 图片判断 =
-    // ============
+    // ===========
 
     /**
      * 根据文件判断是否为图片
@@ -104,9 +104,9 @@ public final class BitmapUtils {
         return false;
     }
 
-    // ========
+    // =======
     // = 宽高 =
-    // ========
+    // =======
 
     /**
      * 获取 Bitmap 宽度
@@ -343,13 +343,13 @@ public final class BitmapUtils {
         return false;
     }
 
-    // ===============
+    // ==============
     // = Bitmap 操作 =
-    // ===============
+    // ==============
 
-    // ========
+    // =======
     // = 旋转 =
-    // ========
+    // =======
 
     /**
      * 旋转图片
@@ -404,9 +404,9 @@ public final class BitmapUtils {
         }
     }
 
-    // ========
+    // =======
     // = 翻转 =
-    // ========
+    // =======
 
     /**
      * 水平翻转图片 ( 左右颠倒 )
@@ -443,9 +443,9 @@ public final class BitmapUtils {
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
     }
 
-    // ========
+    // =======
     // = 缩放 =
-    // ========
+    // =======
 
     /**
      * 缩放图片 ( 指定所需宽高 )
@@ -495,9 +495,9 @@ public final class BitmapUtils {
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
 
-    // ========
+    // =======
     // = 倾斜 =
-    // ========
+    // =======
 
     /**
      * 倾斜图片
@@ -529,9 +529,9 @@ public final class BitmapUtils {
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
 
-    // ========
+    // =======
     // = 裁剪 =
-    // ========
+    // =======
 
     /**
      * 裁剪图片
@@ -604,9 +604,9 @@ public final class BitmapUtils {
         return null;
     }
 
-    // ===============
+    // ==============
     // = 合并 / 叠加 =
-    // ===============
+    // ==============
 
     /**
      * 合并图片
@@ -749,9 +749,9 @@ public final class BitmapUtils {
         return newBitmap;
     }
 
-    // ========
+    // =======
     // = 倒影 =
-    // ========
+    // =======
 
     /**
      * 图片倒影处理
@@ -811,9 +811,9 @@ public final class BitmapUtils {
         return bitmapWithReflection;
     }
 
-    // ========
+    // =======
     // = 圆角 =
-    // ========
+    // =======
 
     /**
      * 图片圆角处理 ( 非圆形 )
@@ -899,9 +899,9 @@ public final class BitmapUtils {
         Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
         RectF rectF = new RectF(rect); // 创建一个精度更高的矩形, 用于画出圆角效果
 
-        // ================
+        // ===============
         // = 圆角方向控制 =
-        // ================
+        // ===============
 
         if (!directions[0])
             rectF.left -= pixels;
@@ -929,9 +929,9 @@ public final class BitmapUtils {
         return newBitmap;
     }
 
-    // ========
+    // =======
     // = 圆形 =
-    // ========
+    // =======
 
     /**
      * 图片圆形处理
@@ -985,9 +985,9 @@ public final class BitmapUtils {
         return newBitmap;
     }
 
-    // ==================
+    // =================
     // = 圆角、圆形边框 =
-    // ==================
+    // =================
 
     /**
      * 添加圆角边框
@@ -1046,9 +1046,9 @@ public final class BitmapUtils {
         return newBitmap;
     }
 
-    // ========
+    // =======
     // = 水印 =
-    // ========
+    // =======
 
     /**
      * 添加文字水印
@@ -1098,9 +1098,9 @@ public final class BitmapUtils {
         return newBitmap;
     }
 
-    // ========
+    // =======
     // = 压缩 =
-    // ========
+    // =======
 
     /**
      * 按缩放宽高压缩

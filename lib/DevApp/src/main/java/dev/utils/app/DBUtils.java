@@ -30,9 +30,9 @@ public final class DBUtils {
         return PathUtils.getInternal().getAppDbPath(name);
     }
 
-    // ==============
+    // =============
     // = 导出数据库 =
-    // ==============
+    // =============
 
     /**
      * 导出数据库
@@ -56,9 +56,9 @@ public final class DBUtils {
         return FileUtils.copyFile(getAppDbPath(dbName), targetFile, overlay);
     }
 
-    // ==============
+    // =============
     // = 导入数据库 =
-    // ==============
+    // =============
 
     /**
      * 导入数据库

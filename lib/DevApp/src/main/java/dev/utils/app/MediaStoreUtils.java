@@ -52,9 +52,9 @@ public final class MediaStoreUtils {
     // 日志 TAG
     private static final String TAG = MediaStoreUtils.class.getSimpleName();
 
-    // ============
+    // ===========
     // = 通知相册 =
-    // ============
+    // ===========
 
     /**
      * 通知刷新本地资源
@@ -276,9 +276,9 @@ public final class MediaStoreUtils {
         return createMediaUri(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
     }
 
-    // ============
+    // ===========
     // = 通用创建 =
-    // ============
+    // ===========
 
     /**
      * 创建预存储 Media Uri
@@ -321,9 +321,9 @@ public final class MediaStoreUtils {
         return null;
     }
 
-    // ============
+    // ===========
     // = 插入数据 =
-    // ============
+    // ===========
 
     /**
      * 插入一张图片
@@ -430,9 +430,9 @@ public final class MediaStoreUtils {
         return false;
     }
 
-    // ============
+    // ===========
     // = 资源信息 =
-    // ============
+    // ===========
 
     /**
      * 获取本地视频时长

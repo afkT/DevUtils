@@ -24,9 +24,9 @@ public final class CameraAssist {
     // 预览通知
     private PreviewNotify mPreviewNotify;
 
-    // ==============
+    // =============
     // = 内部工具类 =
-    // ==============
+    // =============
 
     // 摄像头大小计算
     private CameraSizeAssist mCameraSizeAssist;
@@ -54,9 +54,9 @@ public final class CameraAssist {
         setCamera(camera);
     }
 
-    // ============
+    // ===========
     // = 操作方法 =
-    // ============
+    // ===========
 
     /**
      * 打开摄像头程序
@@ -79,9 +79,9 @@ public final class CameraAssist {
         freeCameraResource();
     }
 
-    // ============
+    // ===========
     // = 预览相关 =
-    // ============
+    // ===========
 
     /**
      * 开始将 Camera 画面预览到手机上
@@ -140,9 +140,9 @@ public final class CameraAssist {
         }
     }
 
-    // ==============
+    // =============
     // = 摄像头相关 =
-    // ==============
+    // =============
 
     // 预览尺寸大小
     private Camera.Size mPreviewSize = null;
@@ -271,9 +271,9 @@ public final class CameraAssist {
         return FlashlightUtils.getInstance().isFlashlightOn(mCamera);
     }
 
-    // ========
+    // =======
     // = 接口 =
-    // ========
+    // =======
 
     /**
      * detail: 预览通知接口

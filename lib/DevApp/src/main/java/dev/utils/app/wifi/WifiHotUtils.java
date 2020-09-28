@@ -50,9 +50,9 @@ public final class WifiHotUtils {
         mWifiManager = AppUtils.getWifiManager();
     }
 
-    // =============
+    // ============
     // = Wifi 操作 =
-    // =============
+    // ============
 
     /**
      * 创建 Wifi 热点配置 ( 支持 无密码 /WPA2 PSK)
@@ -249,9 +249,9 @@ public final class WifiHotUtils {
         return false;
     }
 
-    // ================
+    // ===============
     // = 手机热点功能 =
-    // ================
+    // ===============
 
     /**
      * Wifi 热点正在关闭 ( WifiManager.WIFI_AP_STATE_DISABLING )
@@ -536,9 +536,9 @@ public final class WifiHotUtils {
         return builder.toString();
     }
 
-    // ====================
+    // ===================
     // = Android 8.0 相关 =
-    // ====================
+    // ===================
 
     // Wifi ssid
     private String                                  mAPWifiSSID;

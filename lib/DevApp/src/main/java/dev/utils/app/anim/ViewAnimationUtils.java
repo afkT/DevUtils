@@ -20,9 +20,9 @@ public final class ViewAnimationUtils {
     private ViewAnimationUtils() {
     }
 
-    // ======================
+    // ====================
     // = 视图透明度渐变动画 =
-    // ======================
+    // ====================
 
     /**
      * 将给定视图渐渐隐去
@@ -388,9 +388,9 @@ public final class ViewAnimationUtils {
         return visibleViewByAlpha(view, AnimationUtils.DEFAULT_ANIMATION_DURATION, false, null);
     }
 
-    // ================
+    // ===============
     // = 视图移动动画 =
-    // ================
+    // ===============
 
     /**
      * 视图移动

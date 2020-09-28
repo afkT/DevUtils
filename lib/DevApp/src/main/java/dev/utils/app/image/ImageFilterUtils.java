@@ -30,13 +30,13 @@ public final class ImageFilterUtils {
     // 日志 TAG
     private static final String TAG = ImageFilterUtils.class.getSimpleName();
 
-    // ========
+    // =======
     // = 效果 =
-    // ========
+    // =======
 
-    // ========
+    // =======
     // = 模糊 =
-    // ========
+    // =======
 
     /**
      * 图片模糊处理 ( Android RenderScript 实现, 效率最高 )
@@ -293,9 +293,9 @@ public final class ImageFilterUtils {
         return null;
     }
 
-    // ============
+    // ===========
     // = 滤镜效果 =
-    // ============
+    // ===========
 
     /**
      * 怀旧效果处理
@@ -717,9 +717,9 @@ public final class ImageFilterUtils {
         return null;
     }
 
-    // ========
+    // =======
     // = 色彩 =
-    // ========
+    // =======
 
     /**
      * 饱和度处理

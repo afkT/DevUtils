@@ -185,9 +185,9 @@ public final class AnimationUtils {
         return animation;
     }
 
-    // ================
+    // ===============
     // = 视图旋转动画 =
-    // ================
+    // ===============
 
     /**
      * 获取一个旋转动画
@@ -289,9 +289,9 @@ public final class AnimationUtils {
         return getRotateAnimationByCenter(DEFAULT_ANIMATION_DURATION, null);
     }
 
-    // ================
+    // ===============
     // = 视图渐变动画 =
-    // ================
+    // ===============
 
     /**
      * 获取一个透明度渐变动画
@@ -419,9 +419,9 @@ public final class AnimationUtils {
         return getShowAlphaAnimation(DEFAULT_ANIMATION_DURATION, null);
     }
 
-    // ================
+    // ===============
     // = 视图缩放动画 =
-    // ================
+    // ===============
 
     /**
      * 获取一个缩放动画
@@ -653,9 +653,9 @@ public final class AnimationUtils {
         return getAmplificationAnimation(DEFAULT_ANIMATION_DURATION, animationListener);
     }
 
-    // ================
+    // ===============
     // = 视图移动动画 =
-    // ================
+    // ===============
 
     /**
      * 获取一个视图移动动画

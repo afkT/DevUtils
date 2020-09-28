@@ -99,9 +99,9 @@ public final class ClickUtils {
         ClickUtils.sGlobalIntervalTime = globalIntervalTime;
     }
 
-    // ======================
+    // ====================
     // = 功能模块辅助类操作 =
-    // ======================
+    // ====================
 
     /**
      * 获取对应功能模块点击辅助类
@@ -127,9 +127,9 @@ public final class ClickUtils {
         sClickAssistMaps.remove(object);
     }
 
-    // ======================
+    // ====================
     // = 全局点击辅助类操作 =
-    // ======================
+    // ====================
 
     /**
      * 判断是否双击 ( 无效点击, 短时间内多次点击 )
@@ -470,9 +470,9 @@ public final class ClickUtils {
         }
     }
 
-    // ========
+    // =======
     // = 快捷 =
-    // ========
+    // =======
 
     // 空实现 View.OnClickListener
     public static final View.OnClickListener EMPTY_CLICK = new View.OnClickListener() {
@@ -493,9 +493,9 @@ public final class ClickUtils {
         // 点击辅助类
         private ClickAssist mClickAssist;
 
-        // ============
+        // ===========
         // = 构造函数 =
-        // ============
+        // ===========
 
         public OnDebouncingClickListener() {
             this(ClickUtils.sGlobalClickAssist, ClickUtils.sCheckViewId);
@@ -514,9 +514,9 @@ public final class ClickUtils {
             this.mCheckViewId = checkViewId;
         }
 
-        // ============
+        // ===========
         // = 内部方法 =
-        // ============
+        // ===========
 
         @Override
         public final void onClick(View view) {
@@ -527,9 +527,9 @@ public final class ClickUtils {
             }
         }
 
-        // ================
+        // ===============
         // = 对外公开方法 =
-        // ================
+        // ===============
 
         /**
          * 有效点击 ( 单击 )
@@ -560,9 +560,9 @@ public final class ClickUtils {
         // 每个周期无效点击次数 ( 周期 ( 有效 - 无效 - 有效 ) )
         private AtomicInteger mInvalidCycleNumber = new AtomicInteger();
 
-        // ============
+        // ===========
         // = 构造函数 =
-        // ============
+        // ===========
 
         public OnCountClickListener() {
             this(ClickUtils.sGlobalClickAssist);
@@ -572,9 +572,9 @@ public final class ClickUtils {
             this.mClickAssist = clickAssist;
         }
 
-        // ============
+        // ===========
         // = 内部方法 =
-        // ============
+        // ===========
 
         @Override
         public final void onClick(View view) {
@@ -596,9 +596,9 @@ public final class ClickUtils {
             }
         }
 
-        // ================
+        // ===============
         // = 对外公开方法 =
-        // ================
+        // ===============
 
         /**
          * 有效点击 ( 单击 )

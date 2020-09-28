@@ -593,9 +593,9 @@ public final class BigDecimalUtils {
         return null;
     }
 
-    // ============
+    // ===========
     // = 四舍五入 =
-    // ============
+    // ===========
 
     /**
      * 提供精确的小数位四舍五入处理
@@ -659,9 +659,9 @@ public final class BigDecimalUtils {
         return divide(v1, "1", scale, roundingMode);
     }
 
-    // ============
+    // ===========
     // = 比较大小 =
-    // ============
+    // ===========
 
     /**
      * 比较大小
@@ -708,9 +708,9 @@ public final class BigDecimalUtils {
         return -2;
     }
 
-    // ============
+    // ===========
     // = 金额分割 =
-    // ============
+    // ===========
 
     /**
      * 金额分割, 四舍五入金额

@@ -43,9 +43,9 @@ public final class WifiUtils {
     // WifiManager 对象
     private WifiManager mWifiManager;
 
-    // ========
+    // =======
     // = 常量 =
-    // ========
+    // =======
 
     // 没有密码
     public static final int NOPWD = 0;
@@ -62,9 +62,9 @@ public final class WifiUtils {
         mWifiManager = AppUtils.getWifiManager();
     }
 
-    // ===========================
+    // =========================
     // = Wifi 开关、连接状态获取 =
-    // ===========================
+    // =========================
 
     /**
      * 判断是否打开 Wifi
@@ -145,9 +145,9 @@ public final class WifiUtils {
         return WifiManager.WIFI_STATE_UNKNOWN;
     }
 
-    // ============
+    // ===========
     // = get 操作 =
-    // ============
+    // ===========
 
     /**
      * 开始扫描 Wifi
@@ -344,9 +344,9 @@ public final class WifiUtils {
         return ConvertUtils.isHex(wepKey);
     }
 
-    // ============
+    // ===========
     // = 快捷操作 =
-    // ============
+    // ===========
 
     /**
      * 获取加密类型
@@ -456,9 +456,9 @@ public final class WifiUtils {
         return null;
     }
 
-    // =================
+    // ================
     // = Wifi 配置操作 =
-    // =================
+    // ================
 
     // 默认没有密码
     public static final int SECURITY_NONE = 0;
@@ -543,9 +543,9 @@ public final class WifiUtils {
         return null;
     }
 
-    // ============
+    // ===========
     // = 配置操作 =
-    // ============
+    // ===========
 
     /**
      * 删除指定的 Wifi(SSID) 配置信息
@@ -791,9 +791,9 @@ public final class WifiUtils {
         return null;
     }
 
-    // ============
+    // ===========
     // = 连接操作 =
-    // ============
+    // ===========
 
     /**
      * 移除 Wifi 配置信息
@@ -833,9 +833,9 @@ public final class WifiUtils {
         return false;
     }
 
-    // ===========================
+    // =========================
     // = 设置静态 IP、域名等信息 =
-    // ===========================
+    // =========================
 
     /**
      * 设置静态 Wifi 配置信息

@@ -50,9 +50,9 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
     // 判断是否需要自动对焦
     private       boolean            mAutoFocus = true;
 
-    // ============
+    // ===========
     // = 构造函数 =
-    // ============
+    // ===========
 
     /**
      * 构造函数
@@ -131,9 +131,9 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
         autoFocusAgainLater();
     }
 
-    // ============
+    // ===========
     // = 内部方法 =
-    // ============
+    // ===========
 
     /**
      * 再次自动对焦

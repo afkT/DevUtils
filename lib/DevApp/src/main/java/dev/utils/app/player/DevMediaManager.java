@@ -50,9 +50,9 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         return sInstance;
     }
 
-    // ================
+    // ===============
     // = 内部处理方法 =
-    // ================
+    // ===============
 
     /**
      * 创建 MediaPlayer
@@ -132,9 +132,9 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         return this;
     }
 
-    // ============
+    // ===========
     // = 播放操作 =
-    // ============
+    // ===========
 
     /**
      * 播放 Raw 资源
@@ -236,9 +236,9 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         return false;
     }
 
-    // ============
+    // ===========
     // = 播放路径 =
-    // ============
+    // ===========
 
     /**
      * 预加载播放 (file-path or http/rtsp URL) http 资源、本地资源
@@ -279,9 +279,9 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         return false;
     }
 
-    // ================
+    // ===============
     // = 最终调用方法 =
-    // ================
+    // ===============
 
     /**
      * 预加载播放 ( 最终调用方法, 加载成功触发 onPrepared, 该方法内调用 mMediaPlayer.start() )
@@ -315,9 +315,9 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         return false;
     }
 
-    // ====================
+    // ===================
     // = MediaPlayer 操作 =
-    // ====================
+    // ===================
 
     /**
      * 是否播放中
@@ -351,9 +351,9 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         destroyMedia();
     }
 
-    // ============
+    // ===========
     // = 快捷操作 =
-    // ============
+    // ===========
 
     /**
      * 是否忽略错误类型
@@ -376,9 +376,9 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         return ignore;
     }
 
-    // ============
+    // ===========
     // = 回调事件 =
-    // ============
+    // ===========
 
     /**
      * 播放出错回调
@@ -467,9 +467,9 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         }
     }
 
-    // ================
+    // ===============
     // = 封装回调事件 =
-    // ================
+    // ===============
 
     // MediaPlayer 回调事件
     private MediaListener mMeidaListener;
@@ -623,9 +623,9 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         return this;
     }
 
-    // ============
+    // ===========
     // = 内部变量 =
-    // ============
+    // ===========
 
     // 流类型
     private int    mStreamType  = AudioManager.STREAM_MUSIC;

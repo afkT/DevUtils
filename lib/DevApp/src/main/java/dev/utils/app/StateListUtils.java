@@ -44,13 +44,13 @@ public final class StateListUtils {
         return ResourceUtils.getColorStateList(id);
     }
 
-    // ================
+    // ===============
     // = 设置字体颜色 =
-    // ================
+    // ===============
 
-    // ==============
+    // =============
     // = 字符串颜色 =
-    // ==============
+    // =============
 
     /**
      * 创建 ColorStateList
@@ -210,9 +210,9 @@ public final class StateListUtils {
         return new ColorStateList(states, colors);
     }
 
-    // =========================
+    // ========================
     // = 设置背景切换 Drawable =
-    // =========================
+    // ========================
 
     /**
      * 创建 StateListDrawable
@@ -282,9 +282,9 @@ public final class StateListUtils {
         return stateListDrawable;
     }
 
-    // =========================
+    // ========================
     // = 设置背景切换 Drawable =
-    // =========================
+    // ========================
 
     /**
      * 创建 StateListDrawable

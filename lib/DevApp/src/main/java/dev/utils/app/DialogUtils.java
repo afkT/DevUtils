@@ -31,9 +31,9 @@ public final class DialogUtils {
     // 日志 TAG
     private static final String TAG = DialogUtils.class.getSimpleName();
 
-    // ===============
+    // ==============
     // = Dialog 相关 =
-    // ===============
+    // ==============
 
     /**
      * 获取 Dialog Window
@@ -273,9 +273,9 @@ public final class DialogUtils {
         return (popupWindow != null && popupWindow.isShowing());
     }
 
-    // ===============
+    // ==============
     // = Dialog 操作 =
-    // ===============
+    // ==============
 
     /**
      * 显示 Dialog
@@ -646,9 +646,9 @@ public final class DialogUtils {
         return popupWindow;
     }
 
-    // ===================
+    // ==================
     // = 单选列表 Dialog =
-    // ===================
+    // ==================
 
     /**
      * detail: Dialog 单选事件

@@ -58,9 +58,9 @@ public final class SnackbarUtils {
         }
     }
 
-    // ============
+    // ===========
     // = 构建方法 =
-    // ============
+    // ===========
 
     /**
      * 获取 SnackbarUtils 对象
@@ -101,9 +101,9 @@ public final class SnackbarUtils {
         return new SnackbarUtils(view);
     }
 
-    // ============
+    // ===========
     // = 样式相关 =
-    // ============
+    // ===========
 
     /**
      * 获取样式
@@ -123,9 +123,9 @@ public final class SnackbarUtils {
         return this;
     }
 
-    // ============
+    // ===========
     // = 对外方法 =
-    // ============
+    // ===========
 
     /**
      * 获取 Snackbar
@@ -331,9 +331,9 @@ public final class SnackbarUtils {
         }
     }
 
-    // ============
+    // ===========
     // = 显示方法 =
-    // ============
+    // ===========
 
     /**
      * 显示 Short Snackbar
@@ -391,9 +391,9 @@ public final class SnackbarUtils {
         priShow(StringUtils.getFormatString(text, formatArgs), Snackbar.LENGTH_INDEFINITE);
     }
 
-    // ============
+    // ===========
     // = 内部方法 =
-    // ============
+    // ===========
 
     /**
      * 内部显示方法
@@ -955,9 +955,9 @@ public final class SnackbarUtils {
         }
     }
 
-    // ============
+    // ===========
     // = 其他接口 =
-    // ============
+    // ===========
 
     /**
      * detail: Snackbar 样式配置

@@ -708,9 +708,9 @@ public final class ColorUtils {
         sColorNameMaps.put("teal", 0xFF008080);
     }
 
-    // ============
+    // ===========
     // = 颜色信息 =
-    // ============
+    // ===========
 
     // 内部解析器
     private static ColorInfo.Parser sParser;
@@ -876,9 +876,9 @@ public final class ColorUtils {
             return builder.toString();
         }
 
-        // ============
+        // ===========
         // = 内部处理 =
-        // ============
+        // ===========
 
         /**
          * 内部转换处理
@@ -911,9 +911,9 @@ public final class ColorUtils {
             brightness = hsbvals[2]; // 亮度
         }
 
-        // ==============
+        // =============
         // = 解析器相关 =
-        // ==============
+        // =============
 
         /**
          * detail: Color 解析器
@@ -955,9 +955,9 @@ public final class ColorUtils {
             }
         }
 
-        // ============
+        // ===========
         // = 转换处理 =
-        // ============
+        // ===========
 
         /**
          * RGB 转换 HSB
@@ -1010,9 +1010,9 @@ public final class ColorUtils {
         }
     }
 
-    // ============
+    // ===========
     // = 颜色排序 =
-    // ============
+    // ===========
 
     /**
      * 灰度值排序

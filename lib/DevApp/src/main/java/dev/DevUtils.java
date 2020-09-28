@@ -77,9 +77,9 @@ public final class DevUtils {
         // 注册 Activity 生命周期监听
         registerActivityLifecycleCallbacks(sApplication);
 
-        // ====================
+        // ===================
         // = 初始化工具类相关 =
-        // ====================
+        // ===================
 
         // 初始化 Cache
         DevCache.obtain();
@@ -248,9 +248,9 @@ public final class DevUtils {
         return sDebug;
     }
 
-    // ==============
+    // =============
     // = 工具类版本 =
-    // ==============
+    // =============
 
     /**
      * 获取 DevApp 工具类版本
@@ -328,9 +328,9 @@ public final class DevUtils {
         }
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 获取 Activity 生命周期 相关信息获取接口类
@@ -364,9 +364,9 @@ public final class DevUtils {
         DevUtils.sActivityLifecycleFilter = activityLifecycleFilter;
     }
 
-    // ============
+    // ===========
     // = 接口相关 =
-    // ============
+    // ===========
 
     /**
      * detail: 对 Activity 的生命周期事件进行集中处理, ActivityLifecycleCallbacks 实现方法
@@ -476,9 +476,9 @@ public final class DevUtils {
             }
         }
 
-        // ====================
+        // ===================
         // = 内部处理判断方法 =
-        // ====================
+        // ===================
 
         /**
          * 保存 Activity 栈顶
@@ -668,9 +668,9 @@ public final class DevUtils {
             mDestroyedListenerMaps.clear();
         }
 
-        // ================
+        // ===============
         // = 事件通知相关 =
-        // ================
+        // ===============
 
         /**
          * 发送状态改变通知
@@ -841,9 +841,9 @@ public final class DevUtils {
         void onActivityDestroyed(Activity activity);
     }
 
-    // ============
+    // ===========
     // = 接口实现 =
-    // ============
+    // ===========
 
     // 内部 Activity 生命周期过滤处理
     private static ActivityLifecycleFilter ACTIVITY_LIFECYCLE_FILTER = new ActivityLifecycleFilter() {

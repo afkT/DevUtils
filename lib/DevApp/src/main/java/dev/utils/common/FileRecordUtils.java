@@ -11,9 +11,9 @@ public final class FileRecordUtils {
     private FileRecordUtils() {
     }
 
-    // ============
+    // ===========
     // = 配置信息 =
-    // ============
+    // ===========
 
     // 插入信息 ( 如设备信息等 )
     private static       String   INSERT_INFO     = null;
@@ -24,9 +24,9 @@ public final class FileRecordUtils {
     // 换行字符串 ( 两行 )
     private static final String   NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 设置插入信息
@@ -44,9 +44,9 @@ public final class FileRecordUtils {
         RECORD_CALLBACK = callBack;
     }
 
-    // ============
+    // ===========
     // = 异常日志 =
-    // ============
+    // ===========
 
     /**
      * 保存异常日志
@@ -102,9 +102,9 @@ public final class FileRecordUtils {
                 filePath, fileName, head, bottom, printInsertInfo);
     }
 
-    // ========
+    // =======
     // = 日志 =
-    // ========
+    // =======
 
     /**
      * 保存日志
@@ -203,9 +203,9 @@ public final class FileRecordUtils {
         return result;
     }
 
-    // ============
+    // ===========
     // = 接口回调 =
-    // ============
+    // ===========
 
     /**
      * detail: 文件记录回调

@@ -27,9 +27,9 @@ final class PreferenceImpl implements IPreference {
     // SharedPreferences 对象
     private              SharedPreferences mPreferences;
 
-    // ============
+    // ===========
     // = 构造函数 =
-    // ============
+    // ===========
 
     /**
      * 构造函数
@@ -58,9 +58,9 @@ final class PreferenceImpl implements IPreference {
         mPreferences = context.getSharedPreferences(fileName, mode);
     }
 
-    // ============
+    // ===========
     // = 内部方法 =
-    // ============
+    // ===========
 
     /**
      * 保存数据
@@ -123,9 +123,9 @@ final class PreferenceImpl implements IPreference {
         }
     }
 
-    // ================
+    // ===============
     // = 接口实现方法 =
-    // ================
+    // ===============
 
     /**
      * 保存数据

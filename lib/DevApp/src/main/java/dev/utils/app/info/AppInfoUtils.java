@@ -85,9 +85,9 @@ public final class AppInfoUtils {
         return null;
     }
 
-    // ================
+    // ===============
     // = 获取基本信息 =
-    // ================
+    // ===============
 
     /**
      * 通过 APK 路径 获取 AppInfoBean
@@ -124,9 +124,9 @@ public final class AppInfoUtils {
         return AppInfoBean.obtain(getPackageInfo(packageName));
     }
 
-    // ================
+    // ===============
     // = 获取详细信息 =
-    // ================
+    // ===============
 
     /**
      * 获取 APK 详细信息

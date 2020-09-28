@@ -21,9 +21,9 @@ public final class DevCommonUtils {
     // 换行字符串
     private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
-    // ================
+    // ===============
     // = 计时相关处理 =
-    // ================
+    // ===============
 
     /**
      * 耗时时间记录
@@ -177,9 +177,9 @@ public final class DevCommonUtils {
         return str;
     }
 
-    // ==============
+    // =============
     // = 获取唯一数 =
-    // ==============
+    // =============
 
     /**
      * 获取随机唯一数

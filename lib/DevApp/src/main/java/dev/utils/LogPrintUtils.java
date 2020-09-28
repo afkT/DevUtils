@@ -126,9 +126,9 @@ public final class LogPrintUtils {
         return result;
     }
 
-    // ================================
+    // ===============================
     // = 对外公开方法 ( 使用默认 TAG ) =
-    // ================================
+    // ===============================
 
     public static void d(final String message, final Object... args) {
         dTag(DEFAULT_TAG, message, args);
@@ -304,9 +304,9 @@ public final class LogPrintUtils {
         }
     }
 
-    // ============
+    // ===========
     // = 通知输出 =
-    // ============
+    // ===========
 
     // 默认日志输出接口
     private static Print sPrint = new Print() {

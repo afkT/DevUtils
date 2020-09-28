@@ -21,9 +21,9 @@ public final class ROMUtils {
     private ROMUtils() {
     }
 
-    // ================
+    // ===============
     // = ROM 标识信息 =
-    // ================
+    // ===============
 
     private static final String[] ROM_HUAWEI    = {"huawei"};
     private static final String[] ROM_VIVO      = {"vivo"};
@@ -226,9 +226,9 @@ public final class ROMUtils {
         return sBean;
     }
 
-    // ============
+    // ===========
     // = 内部方法 =
-    // ============
+    // ===========
 
     private static final String UNKNOWN = "unknown";
 
@@ -379,9 +379,9 @@ public final class ROMUtils {
         return "";
     }
 
-    // ==========
+    // =========
     // = 实体类 =
-    // ==========
+    // =========
 
     private static RomInfo sBean = null;
 

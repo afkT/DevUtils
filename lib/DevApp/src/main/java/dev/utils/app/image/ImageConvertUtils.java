@@ -16,9 +16,9 @@ public final class ImageConvertUtils {
     // 日志 TAG
     private static final String TAG = ImageConvertUtils.class.getSimpleName();
 
-    // =================
+    // ================
     // = 转换 BMP 图片 =
-    // =================
+    // ================
 
     /**
      * detail: 转换 BMP 内部类

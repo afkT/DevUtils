@@ -19,9 +19,9 @@ public final class ScreenSensorAssist {
     // 日志 TAG
     private static final String TAG = ScreenSensorAssist.class.getSimpleName();
 
-    // =====================
+    // ====================
     // = 重力传感器监听对象 =
-    // =====================
+    // ====================
 
     // 传感器管理对象
     private SensorManager             mSensorManager;
@@ -52,9 +52,9 @@ public final class ScreenSensorAssist {
     // 触发屏幕方向改变回调
     public static final int CHANGE_ORIENTATION_WHAT = 9919;
 
-    // ========
+    // =======
     // = 变量 =
-    // ========
+    // =======
 
     // 是否允许切屏
     private boolean mAllowChange = false;

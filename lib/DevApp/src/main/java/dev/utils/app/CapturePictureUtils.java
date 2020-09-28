@@ -58,9 +58,9 @@ public final class CapturePictureUtils {
     // 画笔
     private static Paint         PAINT            = new Paint();
 
-    // ============
+    // ===========
     // = 配置相关 =
-    // ============
+    // ===========
 
     /**
      * 设置 Bitmap Config
@@ -912,9 +912,9 @@ public final class CapturePictureUtils {
             int lineNumber = NumberUtils.getMultiple(itemCount, spanCount);
             if (vertical) {
 
-                // ============
+                // ===========
                 // = 竖向滑动 =
-                // ============
+                // ===========
 
                 // 计算总共的宽度 (GridView 宽度 - 列分割间距 ) / spanCount
                 int childWidth = (recyclerView.getWidth() - (spanCount - 1) * horizontalSpacing) / spanCount;
@@ -988,9 +988,9 @@ public final class CapturePictureUtils {
                 return bitmap;
             } else {
 
-                // ============
+                // ===========
                 // = 横向滑动 =
-                // ============
+                // ===========
 
                 // 获取行数
                 lineNumber = Math.min(spanCount, itemCount);
@@ -1113,9 +1113,9 @@ public final class CapturePictureUtils {
             boolean vertical = (linearLayoutManager.getOrientation() == 1);
             if (vertical) {
 
-                // ============
+                // ===========
                 // = 竖向滑动 =
-                // ============
+                // ===========
 
                 for (int i = 0; i < itemCount; i++) {
                     RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
@@ -1146,9 +1146,9 @@ public final class CapturePictureUtils {
                 return bitmap;
             } else {
 
-                // ============
+                // ===========
                 // = 横向滑动 =
-                // ============
+                // ===========
 
                 // 临时高度 ( 保存行中最高的列高度 )
                 int tempHeight = 0;
@@ -1229,9 +1229,9 @@ public final class CapturePictureUtils {
             int lineNumber = NumberUtils.getMultiple(itemCount, spanCount);
             if (vertical) {
 
-                // ============
+                // ===========
                 // = 竖向滑动 =
-                // ============
+                // ===========
 
                 // 计算总共的宽度 - (GridView 宽度 - 列分割间距 ) / spanCount
                 int childWidth = (recyclerView.getWidth() - (spanCount - 1) * horizontalSpacing) / spanCount;
@@ -1302,9 +1302,9 @@ public final class CapturePictureUtils {
                 return bitmap;
             } else {
 
-                // ============
+                // ===========
                 // = 横向滑动 =
-                // ============
+                // ===========
 
                 // 获取行数
                 lineNumber = Math.min(spanCount, itemCount);
@@ -1388,9 +1388,9 @@ public final class CapturePictureUtils {
         return null;
     }
 
-    // ================
+    // ===============
     // = 内部私有方法 =
-    // ================
+    // ===============
 
     /**
      * 绘制 Bitmap

@@ -90,9 +90,9 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
         this.mTextLengthConvertDuration = textLengthConvertDuration;
     }
 
-    // ==========
+    // =========
     // = 初始化 =
-    // ==========
+    // =========
 
     /**
      * 初始化调用
@@ -113,9 +113,9 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
         }
     }
 
-    // ==================================
+    // ================================
     // = 实现 IToast 接口, 对外公开方法 =
-    // ==================================
+    // ================================
 
     /**
      * 使用单次 Toast 样式配置
@@ -206,9 +206,9 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
         }
     }
 
-    // ============
+    // ===========
     // = 操作方法 =
-    // ============
+    // ===========
 
     /**
      * 显示 Toast
@@ -275,9 +275,9 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
         }
     }
 
-    // ==========================
+    // =========================
     // = IToast.Filter 实现方法 =
-    // ==========================
+    // =========================
 
     /**
      * 判断是否显示
@@ -318,9 +318,9 @@ final class IToastImpl implements IToast.Operate, IToast.Filter {
         return content;
     }
 
-    // ============
+    // ===========
     // = 内部处理 =
-    // ============
+    // ===========
 
     /**
      * 返回对应线程的 Toast 样式信息

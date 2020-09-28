@@ -43,9 +43,9 @@ public final class AudioManagerUtils {
     // 日志 TAG
     private static final String TAG = AudioManagerUtils.class.getSimpleName();
 
-    // ============
+    // ===========
     // = 音量大小 =
-    // ============
+    // ===========
 
     /**
      * 获取指定声音流最大音量大小
@@ -183,9 +183,9 @@ public final class AudioManagerUtils {
         return false;
     }
 
-    // ============
+    // ===========
     // = 静音状态 =
-    // ============
+    // ===========
 
     /**
      * 设置媒体声音静音状态
@@ -260,9 +260,9 @@ public final class AudioManagerUtils {
         return false;
     }
 
-    // ========
+    // =======
     // = 模式 =
-    // ========
+    // =======
 
     /**
      * 获取当前的音频模式
@@ -312,9 +312,9 @@ public final class AudioManagerUtils {
         return false;
     }
 
-    // ============
+    // ===========
     // = 铃声模式 =
-    // ============
+    // ===========
 
     /**
      * 获取当前的铃声模式
