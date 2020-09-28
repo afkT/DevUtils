@@ -47,11 +47,11 @@ public class AppInfoBean {
      * @param packageInfo {@link PackageInfo}
      * @return {@link AppInfoBean}
      */
-    protected static AppInfoBean obtain(final PackageInfo packageInfo) {
+    protected static AppInfoBean get(final PackageInfo packageInfo) {
         try {
             return new AppInfoBean(packageInfo);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "obtain");
+            LogPrintUtils.eTag(TAG, e, "get");
         }
         return null;
     }

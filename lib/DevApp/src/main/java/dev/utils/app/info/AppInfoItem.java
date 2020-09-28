@@ -74,11 +74,11 @@ public final class AppInfoItem {
      * @param packageInfo {@link PackageInfo}
      * @return {@link AppInfoItem}
      */
-    protected static AppInfoItem obtain(final PackageInfo packageInfo) {
+    protected static AppInfoItem get(final PackageInfo packageInfo) {
         try {
             return new AppInfoItem(packageInfo);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "obtain");
+            LogPrintUtils.eTag(TAG, e, "get");
         }
         return null;
     }

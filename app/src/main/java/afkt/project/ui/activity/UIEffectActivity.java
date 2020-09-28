@@ -138,7 +138,7 @@ public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
         // =================
 
         // 设置数据源
-        tabLayoutAssist = TabLayoutAssist.obtain(binding.vidAue80Tab);
+        tabLayoutAssist = TabLayoutAssist.get(binding.vidAue80Tab);
         tabLayoutAssist.setListTabs(listTabs).setSelect(tabLayoutAssist.getTabCount() - 1)
                 .setTabChangeListener(new TabLayoutAssist.TabChangeListener() {
                     @Override
@@ -149,7 +149,7 @@ public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
                     }
                 });
 
-        TabLayoutAssist.obtain(binding.vidAue90Tab)
+        TabLayoutAssist.get(binding.vidAue90Tab)
                 .setListTabs(ArrayUtils.asList(ArrayUtils.subarray(listTabs.toArray(new TabItem[0]), 0, 3)))
                 .setSelect(0).setTabChangeListener(new TabLayoutAssist.TabChangeListener() {
             @Override

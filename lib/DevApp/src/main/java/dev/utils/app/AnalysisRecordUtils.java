@@ -400,7 +400,7 @@ public final class AnalysisRecordUtils {
          * @param fileFunction 日志文件记录功能
          * @return {@link FileInfo}
          */
-        public static FileInfo obtain(final String fileName, final String fileFunction) {
+        public static FileInfo get(final String fileName, final String fileFunction) {
             return new FileInfo(null, null, fileName, fileFunction, DEFAULT, true);
         }
 
@@ -411,7 +411,7 @@ public final class AnalysisRecordUtils {
          * @param fileFunction 日志文件记录功能
          * @return {@link FileInfo}
          */
-        public static FileInfo obtain(final String folderName, final String fileName, final String fileFunction) {
+        public static FileInfo get(final String folderName, final String fileName, final String fileFunction) {
             return new FileInfo(null, folderName, fileName, fileFunction, DEFAULT, true);
         }
 
@@ -423,7 +423,7 @@ public final class AnalysisRecordUtils {
          * @param fileFunction 日志文件记录功能
          * @return {@link FileInfo}
          */
-        public static FileInfo obtain(final String storagePath, final String folderName, final String fileName, final String fileFunction) {
+        public static FileInfo get(final String storagePath, final String folderName, final String fileName, final String fileFunction) {
             return new FileInfo(storagePath, folderName, fileName, fileFunction, DEFAULT, true);
         }
 
@@ -436,7 +436,7 @@ public final class AnalysisRecordUtils {
          * @param fileIntervalTime 日志文件记录间隔时间
          * @return {@link FileInfo}
          */
-        public static FileInfo obtain(final String fileName, final String fileFunction, @TIME final int fileIntervalTime) {
+        public static FileInfo get(final String fileName, final String fileFunction, @TIME final int fileIntervalTime) {
             return new FileInfo(null, null, fileName, fileFunction, fileIntervalTime, true);
         }
 
@@ -448,7 +448,7 @@ public final class AnalysisRecordUtils {
          * @param fileIntervalTime 日志文件记录间隔时间
          * @return {@link FileInfo}
          */
-        public static FileInfo obtain(final String folderName, final String fileName, final String fileFunction, @TIME final int fileIntervalTime) {
+        public static FileInfo get(final String folderName, final String fileName, final String fileFunction, @TIME final int fileIntervalTime) {
             return new FileInfo(null, folderName, fileName, fileFunction, fileIntervalTime, true);
         }
 
@@ -461,8 +461,8 @@ public final class AnalysisRecordUtils {
          * @param fileIntervalTime 日志文件记录间隔时间
          * @return {@link FileInfo}
          */
-        public static FileInfo obtain(final String storagePath, final String folderName, final String fileName, final String fileFunction,
-                                      @TIME final int fileIntervalTime) {
+        public static FileInfo get(final String storagePath, final String folderName, final String fileName, final String fileFunction,
+                                   @TIME final int fileIntervalTime) {
             return new FileInfo(storagePath, folderName, fileName, fileFunction, fileIntervalTime, true);
         }
 
@@ -476,8 +476,8 @@ public final class AnalysisRecordUtils {
          * @param isHandler        是否处理日志记录
          * @return {@link FileInfo}
          */
-        public static FileInfo obtain(final String storagePath, final String folderName, final String fileName, final String fileFunction,
-                                      @TIME final int fileIntervalTime, final boolean isHandler) {
+        public static FileInfo get(final String storagePath, final String folderName, final String fileName, final String fileFunction,
+                                   @TIME final int fileIntervalTime, final boolean isHandler) {
             return new FileInfo(storagePath, folderName, fileName, fileFunction, fileIntervalTime, isHandler);
         }
 

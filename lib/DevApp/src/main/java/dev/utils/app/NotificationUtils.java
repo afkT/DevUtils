@@ -257,8 +257,8 @@ public final class NotificationUtils {
      * @return {@link Notification}
      */
     public static Notification createNotification(@DrawableRes final int icon, final String title, final String msg) {
-        return createNotification(null, icon, title, title, msg, true, VibratePattern.obtain(0, 100, 300),
-                LightPattern.obtain(Color.WHITE, 1000, 1000));
+        return createNotification(null, icon, title, title, msg, true, VibratePattern.get(0, 100, 300),
+                LightPattern.get(Color.WHITE, 1000, 1000));
     }
 
     /**
@@ -389,7 +389,7 @@ public final class NotificationUtils {
          * @param durationMS 持续时间
          * @return {@link LightPattern}
          */
-        public static LightPattern obtain(final int argb, final int startOffMS, final int durationMS) {
+        public static LightPattern get(final int argb, final int startOffMS, final int durationMS) {
             return new LightPattern(argb, startOffMS, durationMS);
         }
     }
@@ -428,7 +428,7 @@ public final class NotificationUtils {
          * @param times 震动时间数组
          * @return {@link VibratePattern}
          */
-        public static VibratePattern obtain(final long... times) {
+        public static VibratePattern get(final long... times) {
             return new VibratePattern(times);
         }
     }

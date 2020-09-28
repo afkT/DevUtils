@@ -95,7 +95,7 @@ public final class AppInfoUtils {
      * @return {@link AppInfoBean}
      */
     public static AppInfoBean getAppInfoBeanToFile(final File file) {
-        return AppInfoBean.obtain(getPackageInfoToFile(file));
+        return AppInfoBean.get(getPackageInfoToFile(file));
     }
 
     /**
@@ -104,7 +104,7 @@ public final class AppInfoUtils {
      * @return {@link AppInfoBean}
      */
     public static AppInfoBean getAppInfoBeanToPath(final String apkUri) {
-        return AppInfoBean.obtain(getPackageInfoToPath(apkUri));
+        return AppInfoBean.get(getPackageInfoToPath(apkUri));
     }
 
     /**
@@ -112,7 +112,7 @@ public final class AppInfoUtils {
      * @return {@link AppInfoBean}
      */
     public static AppInfoBean getAppInfoBean() {
-        return AppInfoBean.obtain(getPackageInfo());
+        return AppInfoBean.get(getPackageInfo());
     }
 
     /**
@@ -121,7 +121,7 @@ public final class AppInfoUtils {
      * @return {@link AppInfoBean}
      */
     public static AppInfoBean getAppInfoBean(final String packageName) {
-        return AppInfoBean.obtain(getPackageInfo(packageName));
+        return AppInfoBean.get(getPackageInfo(packageName));
     }
 
     // ===============
@@ -145,7 +145,7 @@ public final class AppInfoUtils {
      */
     public static ApkInfoItem getApkInfoItem(final String apkUri) {
         try {
-            return ApkInfoItem.obtain(getPackageInfoToPath(apkUri));
+            return ApkInfoItem.get(getPackageInfoToPath(apkUri));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getApkInfoItem");
             return null;
@@ -160,7 +160,7 @@ public final class AppInfoUtils {
      */
     public static AppInfoItem getAppInfoItem() {
         try {
-            return AppInfoItem.obtain(getPackageInfo());
+            return AppInfoItem.get(getPackageInfo());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppInfoItem");
             return null;
@@ -174,7 +174,7 @@ public final class AppInfoUtils {
      */
     public static AppInfoItem getAppInfoItem(final String packageName) {
         try {
-            return AppInfoItem.obtain(getPackageInfo(packageName));
+            return AppInfoItem.get(getPackageInfo(packageName));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppInfoItem");
             return null;

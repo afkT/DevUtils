@@ -128,7 +128,7 @@ public final class TabLayoutAssist {
      * @param tabLayout {@link TabLayout}
      * @return {@link TabLayoutAssist}
      */
-    public static TabLayoutAssist obtain(TabLayout tabLayout) {
+    public static TabLayoutAssist get(TabLayout tabLayout) {
         if (tabLayout == null) return null;
         TabLayoutAssist tabLayoutAssist = new TabLayoutAssist();
         tabLayoutAssist.mContext = tabLayout.getContext();
