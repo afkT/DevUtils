@@ -66,9 +66,9 @@ public final class GlideUtils {
     // 图片 ( 加载 / 解码 ) 失败
     private static int            sImageFailRes     = 0;
 
-    // ================================
-    // =  GlideLoader(RequestManager) =
-    // ================================
+    // ===============================
+    // = GlideLoader(RequestManager) =
+    // ===============================
 
     @NonNull
     public static GlideLoader with(@NonNull Context context) {

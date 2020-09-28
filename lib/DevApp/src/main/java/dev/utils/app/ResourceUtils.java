@@ -335,34 +335,6 @@ public final class ResourceUtils {
     }
 
     /**
-     * 获取 Animation
-     * @param id resource identifier
-     * @return XmlResourceParser
-     */
-    public static XmlResourceParser getAnimation(@AnimatorRes @AnimRes final int id) {
-        try {
-            return getResources().getAnimation(id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAnimation");
-        }
-        return null;
-    }
-
-    /**
-     * 获取给定资源标识符的全名
-     * @param id resource identifier
-     * @return Integer
-     */
-    public static String getResourceName(@AnyRes final int id) {
-        try {
-            return getResources().getResourceName(id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getResourceName");
-        }
-        return null;
-    }
-
-    /**
      * 获取 int[]
      * @param id resource identifier
      * @return int[]
@@ -400,6 +372,34 @@ public final class ResourceUtils {
             return getResources().getTextArray(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getTextArray");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Animation
+     * @param id resource identifier
+     * @return XmlResourceParser
+     */
+    public static XmlResourceParser getAnimation(@AnimatorRes @AnimRes final int id) {
+        try {
+            return getResources().getAnimation(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getAnimation");
+        }
+        return null;
+    }
+
+    /**
+     * 获取给定资源标识符的全名
+     * @param id resource identifier
+     * @return Integer
+     */
+    public static String getResourceName(@AnyRes final int id) {
+        try {
+            return getResources().getResourceName(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getResourceName");
         }
         return null;
     }
