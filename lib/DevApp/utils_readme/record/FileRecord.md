@@ -80,26 +80,26 @@ AnalysisRecordUtils.setLogStoragePath(PathUtils.getSDCard().getSDCardPath());
 AnalysisRecordUtils.setLogFolderName(AnalysisRecordUtils.getLogFolderName() + "/v" + AppUtils.getAppVersionName());
 
 // AnalysisRecordUtils.HH、MM、SS 以对应的时间, 创建文件夹 HH_23/MM_13/SS_01 依此类推, 放到对应文件夹, 不传则放到当日文件夹下
-AnalysisRecordUtils.FileInfo fileInfo = AnalysisRecordUtils.FileInfo.obtain("test_log.txt", "测试记录", AnalysisRecordUtils.HH);
+AnalysisRecordUtils.FileInfo fileInfo = AnalysisRecordUtils.FileInfo.get("test_log.txt", "测试记录", AnalysisRecordUtils.HH);
 
 // 存储路径、存储文件夹、文件名、记录功能提示、时间间隔、是否处理日志记录(是否保存)
 // FileInfo(String storagePath, String folderName, String fileName, String fileFunction, @AnalysisRecordUtils.TIME int fileIntervalTime, boolean handler)
 
 // = FileInfo 配置 =
 
-fileInfo = AnalysisRecordUtils.FileInfo.obtain("test_log.txt", "测试记录");
+fileInfo = AnalysisRecordUtils.FileInfo.get("test_log.txt", "测试记录");
 
-fileInfo = AnalysisRecordUtils.FileInfo.obtain("TempRecord","test_log.txt", "测试记录");
+fileInfo = AnalysisRecordUtils.FileInfo.get("TempRecord","test_log.txt", "测试记录");
 
-fileInfo = AnalysisRecordUtils.FileInfo.obtain(PathUtils.getSDCard().getSDCardPath(),"TempRecord","test_log.txt", "测试记录");
+fileInfo = AnalysisRecordUtils.FileInfo.get(PathUtils.getSDCard().getSDCardPath(),"TempRecord","test_log.txt", "测试记录");
 
 // =
 
-fileInfo = AnalysisRecordUtils.FileInfo.obtain("test_log.txt", "测试记录", AnalysisRecordUtils.HH);
+fileInfo = AnalysisRecordUtils.FileInfo.get("test_log.txt", "测试记录", AnalysisRecordUtils.HH);
 
-fileInfo = AnalysisRecordUtils.FileInfo.obtain("TempRecord","test_log.txt", "测试记录", AnalysisRecordUtils.MM);
+fileInfo = AnalysisRecordUtils.FileInfo.get("TempRecord","test_log.txt", "测试记录", AnalysisRecordUtils.MM);
 
-fileInfo = AnalysisRecordUtils.FileInfo.obtain(PathUtils.getSDCard().getSDCardPath(),"TempRecord","test_log.txt", "测试记录", AnalysisRecordUtils.SS);
+fileInfo = AnalysisRecordUtils.FileInfo.get(PathUtils.getSDCard().getSDCardPath(),"TempRecord","test_log.txt", "测试记录", AnalysisRecordUtils.SS);
 
 // =
 
@@ -107,11 +107,11 @@ fileInfo = AnalysisRecordUtils.FileInfo.obtain(PathUtils.getSDCard().getSDCardPa
 AnalysisRecordUtils.record(fileInfo, "日志内容");
 
 // 存储到 sdcard/LogFolderName/2018-08-23/SDRecord/xxx/log.txt
-AnalysisRecordUtils.record(AnalysisRecordUtils.FileInfo.obtain(PathUtils.getSDCard().getSDCardPath(),"SDRecord","sd_log.txt", "根目录保存", AnalysisRecordUtils.HH),
+AnalysisRecordUtils.record(AnalysisRecordUtils.FileInfo.get(PathUtils.getSDCard().getSDCardPath(),"SDRecord","sd_log.txt", "根目录保存", AnalysisRecordUtils.HH),
         "日志内容");
 
 // 存储到 sdcard/特殊地址/LogFolderName/2018-08-23/OtherRecord/xxx/log.txt
-AnalysisRecordUtils.record(AnalysisRecordUtils.FileInfo.obtain(PathUtils.getSDCard().getSDCardPath() + "/特殊地址","OtherRecord","log.txt", "临时地址", AnalysisRecordUtils.HH),
+AnalysisRecordUtils.record(AnalysisRecordUtils.FileInfo.get(PathUtils.getSDCard().getSDCardPath() + "/特殊地址","OtherRecord","log.txt", "临时地址", AnalysisRecordUtils.HH),
         "日志内容");
 
 // =
