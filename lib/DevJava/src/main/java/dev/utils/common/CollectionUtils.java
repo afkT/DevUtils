@@ -56,9 +56,9 @@ public final class CollectionUtils {
         return (collection != null && collection.size() != 0);
     }
 
-    // ============
+    // ===========
     // = 判断长度 =
-    // ============
+    // ===========
 
     /**
      * 获取 Collection 长度
@@ -135,9 +135,9 @@ public final class CollectionUtils {
         return collection != null && collection.size() <= length;
     }
 
-    // ================
+    // ===============
     // = 获取长度总和 =
-    // ================
+    // ===============
 
     /**
      * 获取 Collection 数组长度总和
@@ -153,9 +153,9 @@ public final class CollectionUtils {
         return count;
     }
 
-    // ============
+    // ===========
     // = 数据获取 =
-    // ============
+    // ===========
 
     /**
      * 获取数据
@@ -510,9 +510,9 @@ public final class CollectionUtils {
         return get(collection, value, number, true, -1);
     }
 
-    // ============
+    // ===========
     // = 添加数据 =
-    // ============
+    // ===========
 
     /**
      * 添加一条数据
@@ -621,9 +621,9 @@ public final class CollectionUtils {
         return addAll(collection, values, true);
     }
 
-    // ============================
+    // ===========================
     // = 添加数据到指定索引 (List) =
-    // ============================
+    // ===========================
 
     /**
      * 添加一条数据到指定索引后
@@ -744,9 +744,9 @@ public final class CollectionUtils {
         return addAll(index, list, values, true);
     }
 
-    // ============
+    // ===========
     // = 删除数据 =
-    // ============
+    // ===========
 
     /**
      * 移除一条数据
@@ -888,9 +888,9 @@ public final class CollectionUtils {
         return clear(collection, null);
     }
 
-    // ====================
+    // ===================
     // = 判断集合是否相同 =
-    // ====================
+    // ===================
 
     /**
      * 判断两个集合是否相同
@@ -968,13 +968,13 @@ public final class CollectionUtils {
         return false;
     }
 
-    // ============
+    // ===========
     // = 集合处理 =
-    // ============
+    // ===========
 
-    // ========
+    // =======
     // = 并集 =
-    // ========
+    // =======
 
     /**
      * 两个集合并集处理
@@ -1037,9 +1037,9 @@ public final class CollectionUtils {
         return null;
     }
 
-    // ========
+    // =======
     // = 交集 =
-    // ========
+    // =======
 
     /**
      * 两个集合交集处理
@@ -1129,9 +1129,9 @@ public final class CollectionUtils {
         return null;
     }
 
-    // ============
+    // ===========
     // = 快捷判断 =
-    // ============
+    // ===========
 
     /**
      * 判断两个值是否一样
@@ -1144,9 +1144,9 @@ public final class CollectionUtils {
         return ObjectUtils.equals(value1, value2);
     }
 
-    // ============
+    // ===========
     // = 转换处理 =
-    // ============
+    // ===========
 
     /**
      * 转换数组 to Object
@@ -1206,9 +1206,9 @@ public final class CollectionUtils {
         return null;
     }
 
-    // ==============
+    // =============
     // = 最小值索引 =
-    // ==============
+    // =============
 
     /**
      * 获取集合中最小值索引
@@ -1342,9 +1342,9 @@ public final class CollectionUtils {
         return -1;
     }
 
-    // ==============
+    // =============
     // = 最大值索引 =
-    // ==============
+    // =============
 
     /**
      * 获取集合中最大值索引
@@ -1478,9 +1478,9 @@ public final class CollectionUtils {
         return -1;
     }
 
-    // ==============
+    // =============
     // = 获取最小值 =
-    // ==============
+    // =============
 
     /**
      * 获取集合中最小值
@@ -1538,9 +1538,9 @@ public final class CollectionUtils {
         return 0d;
     }
 
-    // ==============
+    // =============
     // = 获取最大值 =
-    // ==============
+    // =============
 
     /**
      * 获取集合中最大值
@@ -1598,9 +1598,9 @@ public final class CollectionUtils {
         return 0d;
     }
 
-    // ================
+    // ===============
     // = 计算集合总和 =
-    // ================
+    // ===============
 
     /**
      * 计算集合总和
@@ -1816,9 +1816,9 @@ public final class CollectionUtils {
         return total;
     }
 
-    // ==============
+    // =============
     // = 内部实现类 =
-    // ==============
+    // =============
 
     /**
      * detail: 持有数组 TypeToken 实体类
@@ -1863,9 +1863,9 @@ public final class CollectionUtils {
             return array;
         }
 
-        // ================
+        // ===============
         // = 内部处理方法 =
-        // ================
+        // ===============
 
         /**
          * 创建数组方法

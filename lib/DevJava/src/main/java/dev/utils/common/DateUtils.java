@@ -20,9 +20,9 @@ public final class DateUtils {
     // 日志 TAG
     private static final String TAG = DateUtils.class.getSimpleName();
 
-    // ================
+    // ===============
     // = 日期格式类型 =
-    // ================
+    // ===============
 
     public static final String yyyy             = "yyyy";
     public static final String yyyyMMdd         = "yyyy-MM-dd";
@@ -278,9 +278,9 @@ public final class DateUtils {
         return -2L;
     }
 
-    // ============
+    // ===========
     // = 获取时间 =
-    // ============
+    // ===========
 
     /**
      * 获取年
@@ -908,9 +908,9 @@ public final class DateUtils {
         return timeArys;
     }
 
-    // ======================
+    // ====================
     // = 判断是否在区间范围 =
-    // ======================
+    // ====================
 
     /**
      * 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致
@@ -1100,9 +1100,9 @@ public final class DateUtils {
         return -1;
     }
 
-    // ==============
+    // =============
     // = 生肖、星座 =
-    // ==============
+    // =============
 
     // 生肖数组
     private static final String[] ZODIAC             = {"猴", "鸡", "狗", "猪", "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊"};

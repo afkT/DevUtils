@@ -53,9 +53,9 @@ public final class CalendarUtils {
         return true;
     }
 
-    // ============
+    // ===========
     // = 农历转换 =
-    // ============
+    // ===========
 
     /**
      * 公历转农历
@@ -379,9 +379,9 @@ public final class CalendarUtils {
         return getFestival(LUNAR_FESTIVAL_LIST, year, month, day);
     }
 
-    // ========
+    // =======
     // = 常量 =
-    // ========
+    // =======
 
     // 天干
     private static final String[]       TIAN_GAN            = {"甲", "乙", "丙", "丁", "戊", "己", "庚",
@@ -565,9 +565,9 @@ public final class CalendarUtils {
         // LUNAR_FESTIVAL_LIST.add(new Festival("除夕", 12, 30, false)); // 除夕得判断是 29 还是 30 需要特殊判断
     }
 
-    // ============
+    // ===========
     // = 内部方法 =
-    // ============
+    // ===========
 
     private static int getBitInt(int data, int length, int shift) {
         return (data & (((1 << length) - 1) << shift)) >> shift;
@@ -616,9 +616,9 @@ public final class CalendarUtils {
         return null;
     }
 
-    // ==========
+    // =========
     // = 实体类 =
-    // ==========
+    // =========
 
     /**
      * detail: 公历农历实体类
@@ -854,9 +854,9 @@ public final class CalendarUtils {
         }
     }
 
-    // ========
+    // =======
     // = 接口 =
-    // ========
+    // =======
 
     // 节日 Hook 接口
     private static FestivalHook sFestivalHook = new FestivalHook() {
