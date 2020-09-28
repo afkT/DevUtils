@@ -46,9 +46,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         // MMKV 简单使用
         mmkvSimple();
 
-        // ============
+        // ===========
         // = 时间校验 =
-        // ============
+        // ===========
 
         HttpURLConnectionUtils.getNetTime(new HttpURLConnectionUtils.TimeCallBack() {
             @Override
@@ -71,9 +71,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             }
         });
 
-        // ============
+        // ===========
         // = 申请权限 =
-        // ============
+        // ===========
 
         PermissionUtils.permission(Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE).callBack(new PermissionUtils.PermissionCallBack() {

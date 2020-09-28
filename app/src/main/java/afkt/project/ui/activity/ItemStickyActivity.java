@@ -70,9 +70,9 @@ public class ItemStickyActivity extends BaseActivity<BaseViewRecyclerviewBinding
 //                //.resetSpan(mRecyclerView, (GridLayoutManager) manager)
 //                .build();
 
-        // =================
+        // ================
         // = 默认悬浮 View =
-        // =================
+        // ================
 
         GroupListener groupListener = new GroupListener() {
             @Override

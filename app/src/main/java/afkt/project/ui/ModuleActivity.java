@@ -189,9 +189,9 @@ public class ModuleActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
                         SkipUtils.startActivity(PagerSnapMAXActivity.class, buttonValue);
                         break;
 
-                    // ============
+                    // ===========
                     // = 其他功能 =
-                    // ============
+                    // ===========
 
                     case ButtonValue.BTN_LISTENER: // 事件 / 广播监听 ( 网络状态、屏幕旋转等 )
                         SkipUtils.startActivity(ListenerActivity.class, buttonValue);

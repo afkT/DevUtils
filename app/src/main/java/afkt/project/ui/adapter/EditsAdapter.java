@@ -44,9 +44,9 @@ public class EditsAdapter extends BaseQuickAdapter<EvaluateItem, BaseViewHolder>
 
         CommodityEvaluateBean commodityEvaluateBean = item.commodityEvaluateBean;
 
-        // ============
+        // ===========
         // = 商品信息 =
-        // ============
+        // ===========
 
         // 商品名
         helper.setText(R.id.vid_aie_name_tv, commodityEvaluateBean.commodityName);
@@ -68,9 +68,9 @@ public class EditsAdapter extends BaseQuickAdapter<EvaluateItem, BaseViewHolder>
         // 设置评星等级
         vid_aie_ratingbar.setStar(item.evaluateLevel);
 
-        // ============
+        // ===========
         // = 输入监听 =
-        // ============
+        // ===========
 
         // 评价内容
         BaseEditText vid_aie_content_edit = helper.getView(R.id.vid_aie_content_edit);

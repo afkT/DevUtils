@@ -28,9 +28,9 @@ public class CapturePictureActivity extends BaseActivity<ActivityCapturePictureB
     public void initValue() {
         super.initValue();
 
-        // ============
+        // ===========
         // = 截图方法 =
-        // ============
+        // ===========
 
 //        | snapshotWithStatusBar | 获取当前屏幕截图, 包含状态栏 ( 顶部灰色 TitleBar 高度, 没有设置 android:theme 的 NoTitleBar 时会显示 ) |
 //        | snapshotWithoutStatusBar | 获取当前屏幕截图, 不包含状态栏 ( 如果 android:theme 全屏, 则截图无状态栏 ) |

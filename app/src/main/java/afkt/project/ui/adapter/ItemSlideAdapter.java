@@ -31,9 +31,9 @@ public class ItemSlideAdapter extends BaseQuickAdapter<CommodityEvaluateBean, Ba
         // 判断是否显示边距
         ViewUtils.setVisibility(position == 0, helper.getView(R.id.vid_ams_line));
 
-        // ============
+        // ===========
         // = 商品信息 =
-        // ============
+        // ===========
 
         // 商品名
         helper.setText(R.id.vid_ams_name_tv, item.commodityName);

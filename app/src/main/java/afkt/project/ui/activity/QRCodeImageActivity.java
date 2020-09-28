@@ -70,9 +70,9 @@ public class QRCodeImageActivity extends BaseActivity<ActivityQrcodeImageBinding
         }
     }
 
-    // ============
+    // ===========
     // = 图片回传 =
-    // ============
+    // ===========
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

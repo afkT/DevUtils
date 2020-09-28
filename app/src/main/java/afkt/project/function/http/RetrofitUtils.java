@@ -44,9 +44,9 @@ public final class RetrofitUtils {
      */
     public RetrofitUtils initRetrofit() {
 
-        // =====================
+        // ====================
         // = OkHttpClient 配置 =
-        // =====================
+        // ====================
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         // 自定义日志拦截 JSON 打印
@@ -58,9 +58,9 @@ public final class RetrofitUtils {
         // 全局的连接超时时间
         builder.connectTimeout(60000L, TimeUnit.MILLISECONDS);
 
-        // =================
+        // ================
         // = Retrofit 配置 =
-        // =================
+        // ================
 
         Retrofit retrofit = new Retrofit.Builder()
                 // Gson 解析
@@ -73,9 +73,9 @@ public final class RetrofitUtils {
                 .baseUrl(DevEnvironment.getServiceEnvironmentValue(DevUtils.getContext()))
                 .build();
 
-        // ========================
+        // =======================
         // = 存入 RetrofitManager =
-        // ========================
+        // =======================
 
         RetrofitManager.getInstance().put(TAG, retrofit);
         return this;

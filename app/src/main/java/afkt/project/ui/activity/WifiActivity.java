@@ -283,9 +283,9 @@ public class WifiActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
         });
     }
 
-    // ============
+    // ===========
     // = 检测任务 =
-    // ============
+    // ===========
 
     // 检查热点状态
     private final int CHECK_HOTSOPT_STATE = 100;

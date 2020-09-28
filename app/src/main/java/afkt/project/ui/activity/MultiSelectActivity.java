@@ -68,9 +68,9 @@ public class MultiSelectActivity extends BaseActivity<BaseViewRecyclerviewBindin
         binding.vidBvrRecy.setAdapter(multiSelectAdapter);
     }
 
-    // ================
+    // ===============
     // = 增加按钮处理 =
-    // ================
+    // ===============
 
     // 编辑按钮
     BaseTextView editView;

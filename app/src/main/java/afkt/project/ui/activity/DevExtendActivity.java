@@ -122,9 +122,9 @@ public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding>
         };
     }
 
-    // ==========
+    // =========
     // = 内部类 =
-    // ==========
+    // =========
 
     /**
      * detail: 用户信息
@@ -152,9 +152,9 @@ public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding>
         public String                   type;
     }
 
-    // ============
+    // ===========
     // = 内部方法 =
-    // ============
+    // ===========
 
     /**
      * 保存文件

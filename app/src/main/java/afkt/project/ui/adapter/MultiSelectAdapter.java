@@ -42,9 +42,9 @@ public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, 
         // 判断是否显示边距
         ViewUtils.setVisibility(position == 0, helper.getView(R.id.vid_ams_line));
 
-        // ============
+        // ===========
         // = 商品信息 =
-        // ============
+        // ===========
 
         // 商品名
         helper.setText(R.id.vid_ams_name_tv, item.commodityName);
@@ -54,9 +54,9 @@ public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, 
         // 商品图片
         GlideUtils.with().displayImage(item.commodityPicture, helper.getView(R.id.vid_ams_pic_igview), ProjectUtils.getRoundOptions());
 
-        // ============
+        // ===========
         // = 多选处理 =
-        // ============
+        // ===========
 
         BaseImageView vid_ams_igview = helper.getView(R.id.vid_ams_igview);
         // 是否显示编辑按钮、以及是否选中
@@ -184,9 +184,9 @@ public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, 
         return getItemCount();
     }
 
-    // ================
+    // ===============
     // = 操作监听事件 =
-    // ================
+    // ===============
 
     // 选择事件通知事件
     private OnSelectListener selectListener;

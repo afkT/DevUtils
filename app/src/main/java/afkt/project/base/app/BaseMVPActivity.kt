@@ -66,9 +66,9 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
         return null
     }
 
-    // ============
+    // ===========
     // = 项目相关 =
-    // ============
+    // ===========
 
     /**
      * 获取 Module 类型
@@ -132,9 +132,9 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
         }
     }
 
-    // ==============
+    // =============
     // = 适配器相关 =
-    // ==============
+    // =============
 
     /**
      * 注册 Adapter 观察者

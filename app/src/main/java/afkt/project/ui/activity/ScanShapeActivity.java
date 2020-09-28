@@ -102,9 +102,9 @@ public class ScanShapeActivity extends BaseActivity<ActivityScanShapeBinding> {
         }
     }
 
-    // ==============
+    // =============
     // = 摄像头预览 =
-    // ==============
+    // =============
 
     // 摄像头辅助类
     CameraAssist cameraAssist = new CameraAssist();
@@ -180,9 +180,9 @@ public class ScanShapeActivity extends BaseActivity<ActivityScanShapeBinding> {
         }
     }
 
-    // ==============
+    // =============
     // = 手电筒处理 =
-    // ==============
+    // =============
 
     /**
      * 设置手电筒开关

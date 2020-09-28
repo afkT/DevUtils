@@ -19,9 +19,9 @@ public final class LoggerUse {
     // 日志 TAG
     private static final String LOG_TAG = LoggerUse.class.getSimpleName();
 
-    // ========
+    // =======
     // = 配置 =
-    // ========
+    // =======
 
     /**
      * 日志配置相关

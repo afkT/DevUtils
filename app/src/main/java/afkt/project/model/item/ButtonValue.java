@@ -169,9 +169,9 @@ public class ButtonValue {
     // PagerSnapHelper - 无限滑动
     public static final int BTN_RECY_PAGER_SNAP_MAX = MODULE_UI + 1800;
 
-    // ============
+    // ===========
     // = 其他功能 =
-    // ============
+    // ===========
 
     // 事件 / 广播监听 ( 网络状态、屏幕旋转等 )
     public static final int BTN_LISTENER           = MODULE_OTHER;

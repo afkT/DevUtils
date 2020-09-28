@@ -60,9 +60,9 @@ dependencies {
 //    // 如果需要 Release 包，支持通过后台数据动态设置配置信息 则使用 debug compiler lib
 //    // kapt 'com.afkt:DevEnvironmentCompiler:1.0.0'
 
-    // ==============
+    // =============
     // = 快捷开发库 =
-    // ==============
+    // =============
 
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
     implementation deps.lib.okhttp3
@@ -99,9 +99,9 @@ dependencies {
     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
     implementation deps.lib.autosize
 
-    // ==============================
+    // =============================
     // = 其他第三方库 - 小功能、简约 =
-    // ==============================
+    // =============================
 
     // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 ) https://github.com/google/flexbox-layout
     implementation deps.lib.flexbox // https://juejin.im/post/58d1035161ff4b00603ca9c4

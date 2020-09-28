@@ -108,9 +108,9 @@ public class BaseApplication extends MultiDexApplication {
             }
         });
 
-        // ==============
+        // =============
         // = 初始化操作 =
-        // ==============
+        // =============
 
         // 初始化
         init();
@@ -147,9 +147,9 @@ public class BaseApplication extends MultiDexApplication {
         DevLogger.i(builder.toString());
     }
 
-    // ==============
+    // =============
     // = 初始化方法 =
-    // ==============
+    // =============
 
     /**
      * 统一初始化方法

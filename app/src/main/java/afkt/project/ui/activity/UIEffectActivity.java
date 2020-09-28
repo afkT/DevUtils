@@ -72,9 +72,9 @@ public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
         binding.vidAue41Btn.setBackground(StateListUtils.newSelector(drawable2, drawable1));
         binding.vidAue41Btn.setTextColor(StateListUtils.createColorStateList(R.color.red, R.color.white));
 
-        // ============
+        // ===========
         // = 渐变效果 =
-        // ============
+        // ===========
 
         ShapeUtils.newShape(GradientDrawable.Orientation.BR_TL, new int[]{Color.RED, Color.BLUE, Color.GREEN})
                 .setDrawable(binding.vidAue50View);
@@ -197,9 +197,9 @@ public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
         }
     }
 
-    // ============
+    // ===========
     // = 内部方法 =
-    // ============
+    // ===========
 
     /**
      * 切换 Tab

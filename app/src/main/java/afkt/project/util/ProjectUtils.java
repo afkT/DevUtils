@@ -60,9 +60,10 @@ public final class ProjectUtils {
 
         boolean isExecute = false;
         if (isExecute) {
-            // ============
+
+            // ===========
             // = 处理方法 =
-            // ============
+            // ===========
 
             // 销毁方法
             scanView.destroy();
@@ -73,9 +74,9 @@ public final class ProjectUtils {
             // 动画是否运行中
             scanView.isAnimRunning();
 
-            // ========
+            // =======
             // = 共用 =
-            // ========
+            // =======
 
             // 设置扫描 View 类型
             scanView.setShapeType(scanShape);
@@ -116,9 +117,9 @@ public final class ProjectUtils {
             // 是否绘制边框
             scanView.setDrawBorder(true);
 
-            // ==================
+            // =================
             // = 正方形特殊配置 =
-            // ==================
+            // =================
 
             // 设置 正方形描边 ( 边框 ), 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部
             scanView.setBorderToSquare(0);
@@ -139,9 +140,9 @@ public final class ProjectUtils {
             // 设置正方形扫描线条向左 ( 右 ) 边距
             scanView.setLineMarginLeftToSquare(0);
 
-            // ==================
+            // =================
             // = 六边形特殊配置 =
-            // ==================
+            // =================
 
             // 设置六边形线条动画 - 线条宽度
             scanView.setLineWidthToHexagon(4f);
@@ -152,9 +153,9 @@ public final class ProjectUtils {
             // 设置六边形线条动画颜色
             scanView.setLineColorToHexagon(Color.WHITE);
 
-            // ================
+            // ===============
             // = 环形特殊配置 =
-            // ================
+            // ===============
 
             // 设置环形扫描线条 Bitmap
             scanView.setBitmapToAnnulus(ResourceUtils.getBitmap(R.drawable.dev_scan_line));

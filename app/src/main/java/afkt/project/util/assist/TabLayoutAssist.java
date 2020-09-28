@@ -119,9 +119,9 @@ public final class TabLayoutAssist {
         }, 100);
     }
 
-    // ================
+    // ===============
     // = 对外公开方法 =
-    // ================
+    // ===============
 
     /**
      * 获取 TabLayout 辅助类
@@ -196,9 +196,9 @@ public final class TabLayoutAssist {
         return tabLayout.getTabCount();
     }
 
-    // ================
+    // ===============
     // = Tab 切换事件 =
-    // ================
+    // ===============
 
     /**
      * detail: Tab 切换事件

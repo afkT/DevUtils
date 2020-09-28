@@ -110,9 +110,9 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
     public void initValue() {
         super.initValue();
 
-        // ================
+        // ===============
         // = 初始化辅助类 =
-        // ================
+        // ===============
 
         // 停留在该页面无操作计时辅助类
         mInactivityTimerAssist = new InactivityTimerAssist(this);
@@ -165,9 +165,9 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
         }
     }
 
-    // ==============
+    // =============
     // = 摄像头预览 =
-    // ==============
+    // =============
 
     // 摄像头辅助类
     CameraAssist cameraAssist = new CameraAssist();
@@ -314,9 +314,9 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
         }
     }
 
-    // ==============
+    // =============
     // = 手电筒处理 =
-    // ==============
+    // =============
 
     /**
      * 设置手电筒开关
@@ -374,9 +374,9 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
         }
     }
 
-    // ==================
+    // =================
     // = 二维码识别相关 =
-    // ==================
+    // =================
 
     // 预览回调
     private PreviewCallback mPreviewCallback;
@@ -483,9 +483,9 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
             }
         }
 
-        // ================
+        // ===============
         // = 对外公开方法 =
-        // ================
+        // ===============
 
         /**
          * 同步退出解析处理
@@ -509,9 +509,9 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
         }
     }
 
-    // ============
+    // ===========
     // = 图片回传 =
-    // ============
+    // ===========
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

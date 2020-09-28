@@ -106,9 +106,9 @@ public class GPUFilterACVActivity extends BaseActivity<ActivityGpuFilterBinding>
         });
     }
 
-    // ============
+    // ===========
     // = 图片回传 =
-    // ============
+    // ===========
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -126,9 +126,9 @@ public class GPUFilterACVActivity extends BaseActivity<ActivityGpuFilterBinding>
         }
     }
 
-    // ============
+    // ===========
     // = 滤镜处理 =
-    // ============
+    // ===========
 
     /**
      * 设置滤镜效果
