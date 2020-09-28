@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
@@ -10,8 +11,6 @@ import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.util.DisplayMetrics;
@@ -21,7 +20,6 @@ import androidx.annotation.AnimatorRes;
 import androidx.annotation.AnyRes;
 import androidx.annotation.ArrayRes;
 import androidx.annotation.BoolRes;
-import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DimenRes;
 import androidx.annotation.DrawableRes;
@@ -39,6 +37,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.info.ApkInfoItem;
 import dev.utils.app.info.AppInfoBean;
@@ -68,9 +67,9 @@ public final class ResourcePluginUtils {
     // APK 信息 Item
     private ApkInfoItem mApkInfoItem;
 
-    // ==========
-    // = invoke =
-    // ==========
+    // =======================
+    // = invokeByPackageName =
+    // =======================
 
     /**
      * 通过 packageName 获取 APK Resources
@@ -78,10 +77,45 @@ public final class ResourcePluginUtils {
      * @return {@link ResourcePluginUtils}
      */
     public static final ResourcePluginUtils invokeByPackageName(final String packageName) {
+        return invokeByPackageName(packageName, DevUtils.getContext());
+    }
+
+    /**
+     * 通过 packageName 获取 APK Resources
+     * @param packageName 应用包名
+     * @param context     {@link Context}
+     * @return {@link ResourcePluginUtils}
+     */
+    public static final ResourcePluginUtils invokeByPackageName(final String packageName,
+                                                                final Context context) {
+        DisplayMetrics metrics = null;
+        Configuration config = null;
+        if (context != null) {
+            Resources resources = context.getResources();
+            metrics = resources.getDisplayMetrics();
+            config = resources.getConfiguration();
+        }
+        return invokeByPackageName(packageName, metrics, config);
+    }
+
+    /**
+     * 通过 packageName 获取 APK Resources
+     * @param packageName 应用包名
+     * @param metrics     {@link DisplayMetrics}
+     * @param config      {@link Configuration}
+     * @return {@link ResourcePluginUtils}
+     */
+    public static final ResourcePluginUtils invokeByPackageName(final String packageName,
+                                                                final DisplayMetrics metrics,
+                                                                final Configuration config) {
         AppInfoBean appInfoBean = AppInfoUtils.getAppInfoBean(packageName);
         String sourceDir = (appInfoBean != null) ? appInfoBean.getSourceDir() : null;
-        return invokeByAPKPath(sourceDir);
+        return invokeByAPKPath(sourceDir, metrics, config);
     }
+
+    // ===================
+    // = invokeByAPKPath =
+    // ===================
 
     /**
      * 通过 APK 文件获取 APK Resources
@@ -89,6 +123,35 @@ public final class ResourcePluginUtils {
      * @return {@link ResourcePluginUtils}
      */
     public static final ResourcePluginUtils invokeByAPKPath(final String apkPath) {
+        return invokeByAPKPath(apkPath, DevUtils.getContext());
+    }
+
+
+    /**
+     * 通过 APK 文件获取 APK Resources
+     * @param apkPath APK 文件路径
+     * @param context {@link Context}
+     * @return {@link ResourcePluginUtils}
+     */
+    public static final ResourcePluginUtils invokeByAPKPath(final String apkPath, final Context context) {
+        DisplayMetrics metrics = null;
+        Configuration config = null;
+        if (context != null) {
+            Resources resources = context.getResources();
+            metrics = resources.getDisplayMetrics();
+            config = resources.getConfiguration();
+        }
+        return invokeByAPKPath(apkPath, metrics, config);
+    }
+
+    /**
+     * 通过 APK 文件获取 APK Resources
+     * @param apkPath APK 文件路径
+     * @param metrics {@link DisplayMetrics}
+     * @param config  {@link Configuration}
+     * @return {@link ResourcePluginUtils}
+     */
+    public static final ResourcePluginUtils invokeByAPKPath(final String apkPath, final DisplayMetrics metrics, final Configuration config) {
         ResourcePluginUtils utils = new ResourcePluginUtils();
         utils.mAPKPath = apkPath;
         // 文件存在才进行处理
@@ -98,9 +161,7 @@ public final class ResourcePluginUtils {
                 Method addAssetPath = asset.getClass().getMethod("addAssetPath", String.class);
                 addAssetPath.invoke(asset, apkPath);
                 Resources resources = new Resources(
-                        asset,
-                        ResourceUtils.getDisplayMetrics(),
-                        ResourceUtils.getConfiguration()
+                        asset, metrics, config
                 );
                 PackageInfo packageInfo = AppUtils.getPackageManager().getPackageArchiveInfo(
                         apkPath, PackageManager.GET_ACTIVITIES
@@ -153,8 +214,6 @@ public final class ResourcePluginUtils {
         return mApkInfoItem;
     }
 
-    // =
-
     /**
      * 获取 AssetManager
      * @return {@link AssetManager}
@@ -194,6 +253,19 @@ public final class ResourcePluginUtils {
         return null;
     }
 
+    // ===========
+    // = 资源获取 =
+    // ===========
+
+    /**
+     * 获取 ColorStateList
+     * @param resName resource Name
+     * @return {@link ColorStateList}
+     */
+    public ColorStateList getColorStateList(final String resName) {
+        return getColorStateList(getColorId(resName));
+    }
+
     /**
      * 获取 ColorStateList
      * @param id resource identifier of a {@link ColorStateList}
@@ -210,6 +282,15 @@ public final class ResourcePluginUtils {
 
     /**
      * 获取 String
+     * @param resName resource Name
+     * @return String
+     */
+    public String getString(final String resName) {
+        return getString(getStringId(resName));
+    }
+
+    /**
+     * 获取 String
      * @param id R.string.id
      * @return String
      */
@@ -220,6 +301,16 @@ public final class ResourcePluginUtils {
             LogPrintUtils.eTag(TAG, e, "getString");
         }
         return null;
+    }
+
+    /**
+     * 获取 String
+     * @param resName    resource Name
+     * @param formatArgs 格式化参数
+     * @return String
+     */
+    public String getString(final String resName, final Object... formatArgs) {
+        return getString(getStringId(resName), formatArgs);
     }
 
     /**
@@ -239,6 +330,15 @@ public final class ResourcePluginUtils {
 
     /**
      * 获取 Color
+     * @param resName resource Name
+     * @return Color
+     */
+    public int getColor(final String resName) {
+        return getColor(getColorId(resName));
+    }
+
+    /**
+     * 获取 Color
      * @param colorId R.color.id
      * @return Color
      */
@@ -249,6 +349,15 @@ public final class ResourcePluginUtils {
             LogPrintUtils.eTag(TAG, e, "getColor");
         }
         return -1;
+    }
+
+    /**
+     * 获取 Drawable
+     * @param resName resource Name
+     * @return {@link Drawable}
+     */
+    public Drawable getDrawable(final String resName) {
+        return getDrawable(getDrawableId(resName));
     }
 
     /**
@@ -267,6 +376,15 @@ public final class ResourcePluginUtils {
 
     /**
      * 获取 .9 Drawable
+     * @param resName resource Name
+     * @return .9 {@link NinePatchDrawable}
+     */
+    public NinePatchDrawable getNinePatchDrawable(final String resName) {
+        return getNinePatchDrawable(getDrawableId(resName));
+    }
+
+    /**
+     * 获取 .9 Drawable
      * @param drawableId R.drawable.id
      * @return .9 {@link NinePatchDrawable}
      */
@@ -279,32 +397,14 @@ public final class ResourcePluginUtils {
         return null;
     }
 
-    /**
-     * 获取指定颜色 Drawable
-     * @param color 颜色值
-     * @return 指定颜色 Drawable
-     */
-    public ColorDrawable getColorDrawable(@ColorInt final int color) {
-        try {
-            return new ColorDrawable(color);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getColorDrawable");
-        }
-        return null;
-    }
 
     /**
-     * 获取十六进制颜色值 Drawable
-     * @param color 十六进制颜色值
-     * @return 十六进制颜色值 Drawable
+     * 获取 Bitmap
+     * @param resName resource Name
+     * @return {@link Bitmap}
      */
-    public ColorDrawable getColorDrawable(final String color) {
-        try {
-            return new ColorDrawable(Color.parseColor(color));
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getColorDrawable");
-        }
-        return null;
+    public Bitmap getBitmap(final String resName) {
+        return getBitmap(getDrawableId(resName));
     }
 
     /**
@@ -319,6 +419,16 @@ public final class ResourcePluginUtils {
             LogPrintUtils.eTag(TAG, e, "getBitmap");
         }
         return null;
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param resName resource Name
+     * @param options {@link BitmapFactory.Options}
+     * @return {@link Bitmap}
+     */
+    public Bitmap getBitmap(final String resName, final BitmapFactory.Options options) {
+        return getBitmap(getDrawableId(resName), options);
     }
 
     /**
@@ -338,6 +448,15 @@ public final class ResourcePluginUtils {
 
     /**
      * 获取 Dimension
+     * @param resName resource Name
+     * @return Dimension
+     */
+    public float getDimension(final String resName) {
+        return getDimension(getDimenId(resName));
+    }
+
+    /**
+     * 获取 Dimension
      * @param id resource identifier
      * @return Dimension
      */
@@ -352,11 +471,29 @@ public final class ResourcePluginUtils {
 
     /**
      * 获取 Dimension
+     * @param resName resource Name
+     * @return Dimension
+     */
+    public int getDimensionInt(final String resName) {
+        return getDimensionInt(getDimenId(resName));
+    }
+
+    /**
+     * 获取 Dimension
      * @param id resource identifier
      * @return Dimension
      */
     public int getDimensionInt(@DimenRes final int id) {
         return (int) getDimension(id);
+    }
+
+    /**
+     * 获取 Boolean
+     * @param resName resource Name
+     * @return Boolean
+     */
+    public boolean getBoolean(final String resName) {
+        return getBoolean(getBoolId(resName));
     }
 
     /**
@@ -375,6 +512,15 @@ public final class ResourcePluginUtils {
 
     /**
      * 获取 Integer
+     * @param resName resource Name
+     * @return Integer
+     */
+    public int getInteger(final String resName) {
+        return getInteger(getIntegerId(resName));
+    }
+
+    /**
+     * 获取 Integer
      * @param id resource identifier
      * @return Integer
      */
@@ -388,31 +534,12 @@ public final class ResourcePluginUtils {
     }
 
     /**
-     * 获取 Animation
-     * @param id resource identifier
-     * @return XmlResourceParser
+     * 获取 int[]
+     * @param resName resource Name
+     * @return int[]
      */
-    public XmlResourceParser getAnimation(@AnimatorRes @AnimRes final int id) {
-        try {
-            return mResources.getAnimation(id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAnimation");
-        }
-        return null;
-    }
-
-    /**
-     * 获取给定资源标识符的全名
-     * @param id resource identifier
-     * @return Integer
-     */
-    public String getResourceName(@AnyRes final int id) {
-        try {
-            return mResources.getResourceName(id);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getResourceName");
-        }
-        return null;
+    public int[] getIntegerArray(final String resName) {
+        return getIntegerArray(getIntegerArrayId(resName));
     }
 
     /**
@@ -420,13 +547,22 @@ public final class ResourcePluginUtils {
      * @param id resource identifier
      * @return int[]
      */
-    public int[] getIntArray(@ArrayRes final int id) {
+    public int[] getIntegerArray(@ArrayRes final int id) {
         try {
             return mResources.getIntArray(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getIntArray");
         }
         return null;
+    }
+
+    /**
+     * 获取 String[]
+     * @param resName resource Name
+     * @return String[]
+     */
+    public String[] getStringArray(final String resName) {
+        return getStringArray(getStringArrayId(resName));
     }
 
     /**
@@ -453,6 +589,34 @@ public final class ResourcePluginUtils {
             return mResources.getTextArray(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getTextArray");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Animation
+     * @param id resource identifier
+     * @return XmlResourceParser
+     */
+    public XmlResourceParser getAnimation(@AnimatorRes @AnimRes final int id) {
+        try {
+            return mResources.getAnimation(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getAnimation");
+        }
+        return null;
+    }
+
+    /**
+     * 获取给定资源标识符的全名
+     * @param id resource identifier
+     * @return Integer
+     */
+    public String getResourceName(@AnyRes final int id) {
+        try {
+            return mResources.getResourceName(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getResourceName");
         }
         return null;
     }
@@ -577,6 +741,15 @@ public final class ResourcePluginUtils {
     }
 
     /**
+     * 获取 string array id
+     * @param resName string array name
+     * @return string array id
+     */
+    public int getStringArrayId(final String resName) {
+        return getIdentifier(resName, "string-array");
+    }
+
+    /**
      * 获取 bool id
      * @param resName bool name
      * @return bool id
@@ -592,6 +765,15 @@ public final class ResourcePluginUtils {
      */
     public int getIntegerId(final String resName) {
         return getIdentifier(resName, "integer");
+    }
+
+    /**
+     * 获取 integer array id
+     * @param resName integer array name
+     * @return integer array id
+     */
+    public int getIntegerArrayId(final String resName) {
+        return getIdentifier(resName, "integer-array");
     }
 
     /**
