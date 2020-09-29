@@ -2,6 +2,7 @@ package dev.utils.app.assist;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
@@ -13,6 +14,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
+import android.net.Uri;
+import android.os.ParcelFileDescriptor;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.ViewGroup;
@@ -29,12 +33,25 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.DimenRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IntegerRes;
+import androidx.annotation.RawRes;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
+import dev.utils.common.CloseUtils;
+import dev.utils.common.FileIOUtils;
 
 /**
  * detail: Resources 辅助类
@@ -993,5 +1010,433 @@ public final class ResourceAssist {
             LogPrintUtils.eTag(TAG, e, "getColorDrawable");
         }
         return null;
+    }
+
+    // ===================
+    // = ContentResolver =
+    // ===================
+
+    /**
+     * 获取 Uri InputStream
+     * @param uri {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @return Uri InputStream
+     */
+    public InputStream openInputStream(final Uri uri) {
+        return openInputStream(uri, staticContentResolver());
+    }
+
+    /**
+     * 获取 Uri InputStream
+     * <pre>
+     *     主要用于获取到分享的 FileProvider Uri 存储起来 {@link FileIOUtils#writeFileFromIS(File, InputStream)}
+     * </pre>
+     * @param uri      {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @param resolver {@link ContentResolver}
+     * @return Uri InputStream
+     */
+    public InputStream openInputStream(final Uri uri, final ContentResolver resolver) {
+        if (uri == null) return null;
+        try {
+            return resolver.openInputStream(uri);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openInputStream " + uri.toString());
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Uri OutputStream
+     * @param uri {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @return Uri OutputStream
+     */
+    public OutputStream openOutputStream(final Uri uri) {
+        return openOutputStream(uri, staticContentResolver());
+    }
+
+    /**
+     * 获取 Uri OutputStream
+     * @param uri      {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @param resolver {@link ContentResolver}
+     * @return Uri OutputStream
+     */
+    public OutputStream openOutputStream(final Uri uri, final ContentResolver resolver) {
+        if (uri == null) return null;
+        try {
+            return resolver.openOutputStream(uri);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openOutputStream " + uri.toString());
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Uri OutputStream
+     * @param uri  {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @param mode 读写模式
+     * @return Uri OutputStream
+     */
+    public OutputStream openOutputStream(final Uri uri, final String mode) {
+        return openOutputStream(uri, mode, staticContentResolver());
+    }
+
+    /**
+     * 获取 Uri OutputStream
+     * @param uri      {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @param mode     读写模式
+     * @param resolver {@link ContentResolver}
+     * @return Uri OutputStream
+     */
+    public OutputStream openOutputStream(final Uri uri, final String mode,
+                                         final ContentResolver resolver) {
+        if (uri == null) return null;
+        try {
+            return resolver.openOutputStream(uri, mode);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openOutputStream mode: " + mode + ", " + uri.toString());
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Uri ParcelFileDescriptor
+     * @param uri  {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @param mode 读写模式
+     * @return Uri ParcelFileDescriptor
+     */
+    public ParcelFileDescriptor openFileDescriptor(final Uri uri, final String mode) {
+        return openFileDescriptor(uri, mode, staticContentResolver());
+    }
+
+    /**
+     * 获取 Uri ParcelFileDescriptor
+     * <pre>
+     *     通过 new FileInputStream(openFileDescriptor().getFileDescriptor()) 进行文件操作
+     * </pre>
+     * @param uri      {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @param mode     读写模式
+     * @param resolver {@link ContentResolver}
+     * @return Uri ParcelFileDescriptor
+     */
+    public ParcelFileDescriptor openFileDescriptor(final Uri uri, final String mode,
+                                                   final ContentResolver resolver) {
+        if (uri == null || TextUtils.isEmpty(mode)) return null;
+        try {
+            return resolver.openFileDescriptor(uri, mode);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openFileDescriptor mode: " + mode + ", " + uri.toString());
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Uri AssetFileDescriptor
+     * @param uri  {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @param mode 读写模式
+     * @return Uri AssetFileDescriptor
+     */
+    public AssetFileDescriptor openAssetFileDescriptor(final Uri uri, final String mode) {
+        return openAssetFileDescriptor(uri, mode, staticContentResolver());
+    }
+
+    /**
+     * 获取 Uri AssetFileDescriptor
+     * <pre>
+     *     通过 new FileInputStream(openAssetFileDescriptor().getFileDescriptor()) 进行文件操作
+     * </pre>
+     * @param uri      {@link Uri} FileProvider Uri、Content Uri、File Uri
+     * @param mode     读写模式
+     * @param resolver {@link ContentResolver}
+     * @return Uri AssetFileDescriptor
+     */
+    public AssetFileDescriptor openAssetFileDescriptor(final Uri uri, final String mode,
+                                                       final ContentResolver resolver) {
+        if (uri == null || TextUtils.isEmpty(mode)) return null;
+        try {
+            return resolver.openAssetFileDescriptor(uri, mode);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openAssetFileDescriptor mode: " + mode + ", " + uri.toString());
+        }
+        return null;
+    }
+
+    // ================
+    // = AssetManager =
+    // ================
+
+    /**
+     * 获取 AssetManager 指定资源 InputStream
+     * @param fileName 文件名
+     * @return {@link InputStream}
+     */
+    public InputStream open(final String fileName) {
+        try {
+            return getAssets().open(fileName);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "open");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 AssetManager 指定资源 AssetFileDescriptor
+     * @param fileName 文件名
+     * @return {@link AssetFileDescriptor}
+     */
+    public AssetFileDescriptor openFd(final String fileName) {
+        try {
+            return getAssets().openFd(fileName);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openFd");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 AssetManager 指定资源 AssetFileDescriptor
+     * @param fileName 文件名
+     * @return {@link AssetFileDescriptor}
+     */
+    public AssetFileDescriptor openNonAssetFd(final String fileName) {
+        try {
+            return getAssets().openNonAssetFd(fileName);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openNonAssetFd");
+        }
+        return null;
+    }
+
+    /**
+     * 获取对应资源 InputStream
+     * @param id resource identifier
+     * @return {@link InputStream}
+     */
+    public InputStream openRawResource(@RawRes final int id) {
+        try {
+            return mResource.openRawResource(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openRawResource");
+        }
+        return null;
+    }
+
+    /**
+     * 获取对应资源 AssetFileDescriptor
+     * @param id resource identifier
+     * @return {@link AssetFileDescriptor}
+     */
+    public AssetFileDescriptor openRawResourceFd(@RawRes final int id) {
+        try {
+            return mResource.openRawResourceFd(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "openRawResourceFd");
+        }
+        return null;
+    }
+
+    // ===============
+    // = 读取资源文件 =
+    // ===============
+
+    /**
+     * 获取 Assets 资源文件数据
+     * <pre>
+     *     直接传入文件名、文件夹 / 文件名 等
+     *     根目录 a.txt
+     *     子目录 /www/a.html
+     * </pre>
+     * @param fileName 文件名
+     * @return 文件 byte[] 数据
+     */
+    public byte[] readBytesFromAssets(final String fileName) {
+        InputStream is = null;
+        try {
+            is = open(fileName);
+            int length = is.available();
+            byte[] buffer = new byte[length];
+            is.read(buffer);
+            return buffer;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "readBytesFromAssets");
+        } finally {
+            CloseUtils.closeIOQuietly(is);
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Assets 资源文件数据
+     * @param fileName 文件名
+     * @return 文件字符串内容
+     */
+    public String readStringFromAssets(final String fileName) {
+        try {
+            return new String(readBytesFromAssets(fileName), "UTF-8");
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "readStringFromAssets");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取 Raw 资源文件数据
+     * @param resId 资源 id
+     * @return 文件 byte[] 数据
+     */
+    public byte[] readBytesFromRaw(@RawRes final int resId) {
+        InputStream is = null;
+        try {
+            is = openRawResource(resId);
+            int length = is.available();
+            byte[] buffer = new byte[length];
+            is.read(buffer);
+            return buffer;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "readBytesFromRaw");
+        } finally {
+            CloseUtils.closeIOQuietly(is);
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Raw 资源文件数据
+     * @param resId 资源 id
+     * @return 文件字符串内容
+     */
+    public String readStringFromRaw(@RawRes final int resId) {
+        try {
+            return new String(readBytesFromRaw(resId), "UTF-8");
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "readStringFromRaw");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取 Assets 资源文件数据 ( 返回 List<String> 一行的全部内容属于一个索引 )
+     * @param fileName 文件名
+     * @return {@link List <String>}
+     */
+    public List<String> geFileToListFromAssets(final String fileName) {
+        InputStream is = null;
+        BufferedReader br = null;
+        try {
+            is = open(fileName);
+            br = new BufferedReader(new InputStreamReader(is));
+
+            List<String> lists = new ArrayList<>();
+            String line;
+            while ((line = br.readLine()) != null) {
+                lists.add(line);
+            }
+            return lists;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "geFileToListFromAssets");
+        } finally {
+            CloseUtils.closeIOQuietly(is, br);
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Raw 资源文件数据 ( 返回 List<String> 一行的全部内容属于一个索引 )
+     * @param resId 资源 id
+     * @return {@link List<String>}
+     */
+    public List<String> geFileToListFromRaw(@RawRes final int resId) {
+        InputStream is = null;
+        BufferedReader br = null;
+        try {
+            is = openRawResource(resId);
+            br = new BufferedReader(new InputStreamReader(is));
+
+            List<String> lists = new ArrayList<>();
+            String line;
+            while ((line = br.readLine()) != null) {
+                lists.add(line);
+            }
+            return lists;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "geFileToListFromRaw");
+        } finally {
+            CloseUtils.closeIOQuietly(is, br);
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取 Assets 资源文件数据并保存到本地
+     * @param fileName 文件名
+     * @param file     文件保存地址
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean saveAssetsFormFile(final String fileName, final File file) {
+        try {
+            // 获取 Assets 文件
+            InputStream is = open(fileName);
+            // 存入 SDCard
+            FileOutputStream fos = new FileOutputStream(file);
+            // 设置数据缓冲
+            byte[] buffer = new byte[1024];
+            // 创建输入输出流
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            int len;
+            while ((len = is.read(buffer)) != -1) {
+                baos.write(buffer, 0, len);
+            }
+            // 保存数据
+            byte[] bytes = baos.toByteArray();
+            // 写入保存的文件
+            fos.write(bytes);
+            // 关闭流
+            CloseUtils.closeIOQuietly(baos, is);
+            fos.flush();
+            CloseUtils.closeIOQuietly(fos);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "saveAssetsFormFile");
+        }
+        return false;
+    }
+
+    /**
+     * 获取 Raw 资源文件数据并保存到本地
+     * @param resId 资源 id
+     * @param file  文件保存地址
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean saveRawFormFile(@RawRes final int resId, final File file) {
+        try {
+            // 获取 raw 文件
+            InputStream is = openRawResource(resId);
+            // 存入 SDCard
+            FileOutputStream fos = new FileOutputStream(file);
+            // 设置数据缓冲
+            byte[] buffer = new byte[1024];
+            // 创建输入输出流
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            int len;
+            while ((len = is.read(buffer)) != -1) {
+                baos.write(buffer, 0, len);
+            }
+            // 保存数据
+            byte[] bytes = baos.toByteArray();
+            // 写入保存的文件
+            fos.write(bytes);
+            // 关闭流
+            CloseUtils.closeIOQuietly(baos, is);
+            fos.flush();
+            CloseUtils.closeIOQuietly(fos);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "saveRawFormFile");
+        }
+        return false;
     }
 }
