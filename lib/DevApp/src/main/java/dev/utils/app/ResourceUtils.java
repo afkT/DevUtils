@@ -95,6 +95,7 @@ public final class ResourceUtils {
 
     /**
      * 获取 ContentResolver
+     * @param context {@link Context}
      * @return {@link ContentResolver}
      */
     public static ContentResolver getContentResolver(final Context context) {

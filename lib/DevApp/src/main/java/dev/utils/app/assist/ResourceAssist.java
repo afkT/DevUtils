@@ -84,6 +84,9 @@ public final class ResourceAssist {
     // 日志 TAG
     private static final String TAG = ResourceAssist.class.getSimpleName();
 
+    // 空实现 ResourceAssist ( 用于 ResourcePluginUtils 简化判断代码 )
+    public static final ResourceAssist EMPTY_IMPL = new ResourceAssist(null, null);
+
     // Resources
     private Resources mResource;
     // 应用包名
@@ -232,6 +235,7 @@ public final class ResourceAssist {
      * @return {@link ResourceAssist}
      */
     public ResourceAssist reset(final Resources resource, final String packageName) {
+        if (this == EMPTY_IMPL) return this;
         this.mResource = resource;
         this.mPackageName = packageName;
         return this;
