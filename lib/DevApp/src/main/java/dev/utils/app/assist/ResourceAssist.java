@@ -243,13 +243,13 @@ public final class ResourceAssist {
         return mPackageName;
     }
 
-//    /**
-//     * 获取 Resources
-//     * @return {@link Resources}
-//     */
-//    public Resources getResources() {
-//        return mResource;
-//    }
+    /**
+     * 获取 Resources
+     * @return {@link Resources}
+     */
+    public Resources getResources() {
+        return mResource;
+    }
 
     /**
      * 获取 DisplayMetrics
@@ -972,12 +972,15 @@ public final class ResourceAssist {
 
     /**
      * 获取 ColorStateList
+     * <pre>
+     *     {@link ContextCompat#getColorStateList(Context, int)}
+     * </pre>
      * @param id resource identifier of a {@link ColorStateList}
      * @return {@link ColorStateList}
      */
     public ColorStateList getColorStateList(@ColorRes final int id) {
         try {
-            return ContextCompat.getColorStateList(DevUtils.getContext(), id);
+            return mResource.getColorStateList(id);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getColorStateList");
         }
