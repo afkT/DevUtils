@@ -111,6 +111,24 @@ public final class ResourceUtils {
     }
 
     /**
+     * 获取 DisplayMetrics
+     * @param context {@link Context}
+     * @return {@link DisplayMetrics}
+     */
+    public static DisplayMetrics getDisplayMetrics(final Context context) {
+        return ResourceAssist.staticDisplayMetrics(context);
+    }
+
+    /**
+     * 获取 DisplayMetrics
+     * @param resource {@link Resources}
+     * @return {@link DisplayMetrics}
+     */
+    public static DisplayMetrics getDisplayMetrics(final Resources resource) {
+        return ResourceAssist.staticDisplayMetrics(resource);
+    }
+
+    /**
      * 获取 Configuration
      * @return {@link Configuration}
      */
@@ -119,11 +137,47 @@ public final class ResourceUtils {
     }
 
     /**
+     * 获取 Configuration
+     * @param context {@link Context}
+     * @return {@link Configuration}
+     */
+    public static Configuration getConfiguration(final Context context) {
+        return ResourceAssist.staticConfiguration(context);
+    }
+
+    /**
+     * 获取 Configuration
+     * @param resource {@link Resources}
+     * @return {@link Configuration}
+     */
+    public static Configuration getConfiguration(final Resources resource) {
+        return ResourceAssist.staticConfiguration(resource);
+    }
+
+    /**
      * 获取 AssetManager
      * @return {@link AssetManager}
      */
     public static AssetManager getAssets() {
         return ResourceAssist.getInstance().getAssets();
+    }
+
+    /**
+     * 获取 AssetManager
+     * @param context {@link Context}
+     * @return {@link AssetManager}
+     */
+    public static AssetManager getAssets(final Context context) {
+        return ResourceAssist.staticAssets(context);
+    }
+
+    /**
+     * 获取 AssetManager
+     * @param resource {@link Resources}
+     * @return {@link AssetManager}
+     */
+    public static AssetManager getAssets(final Resources resource) {
+        return ResourceAssist.staticAssets(resource);
     }
 
     /**

@@ -172,6 +172,7 @@ public final class ResourceAssist {
      * @return {@link Resources}
      */
     public static Resources staticResources(final Context context) {
+        if (context == null) return null;
         try {
             return context.getResources();
         } catch (Exception e) {
@@ -194,6 +195,7 @@ public final class ResourceAssist {
      * @return {@link Resources.Theme}
      */
     public static Resources.Theme staticTheme(final Context context) {
+        if (context == null) return null;
         try {
             return context.getTheme();
         } catch (Exception e) {
@@ -216,10 +218,107 @@ public final class ResourceAssist {
      * @return {@link ContentResolver}
      */
     public static ContentResolver staticContentResolver(final Context context) {
+        if (context == null) return null;
         try {
             return context.getContentResolver();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "staticContentResolver");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 DisplayMetrics
+     * @return {@link DisplayMetrics}
+     */
+    public static DisplayMetrics staticDisplayMetrics() {
+        return staticDisplayMetrics(staticResources());
+    }
+
+    /**
+     * 获取 DisplayMetrics
+     * @param context {@link Context}
+     * @return {@link DisplayMetrics}
+     */
+    public static DisplayMetrics staticDisplayMetrics(final Context context) {
+        return staticDisplayMetrics(staticResources(context));
+    }
+
+    /**
+     * 获取 DisplayMetrics
+     * @param resource {@link Resources}
+     * @return {@link DisplayMetrics}
+     */
+    public static DisplayMetrics staticDisplayMetrics(final Resources resource) {
+        if (resource == null) return null;
+        try {
+            return resource.getDisplayMetrics();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "staticDisplayMetrics");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Configuration
+     * @return {@link Configuration}
+     */
+    public static Configuration staticConfiguration() {
+        return staticConfiguration(staticResources());
+    }
+
+    /**
+     * 获取 Configuration
+     * @param context {@link Context}
+     * @return {@link Configuration}
+     */
+    public static Configuration staticConfiguration(final Context context) {
+        return staticConfiguration(staticResources(context));
+    }
+
+    /**
+     * 获取 Configuration
+     * @param resource {@link Resources}
+     * @return {@link Configuration}
+     */
+    public static Configuration staticConfiguration(final Resources resource) {
+        if (resource == null) return null;
+        try {
+            return resource.getConfiguration();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "staticConfiguration");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 AssetManager
+     * @return {@link AssetManager}
+     */
+    public static AssetManager staticAssets() {
+        return staticAssets(staticResources());
+    }
+
+    /**
+     * 获取 AssetManager
+     * @param context {@link Context}
+     * @return {@link AssetManager}
+     */
+    public static AssetManager staticAssets(final Context context) {
+        return staticAssets(staticResources(context));
+    }
+
+    /**
+     * 获取 AssetManager
+     * @param resource {@link Resources}
+     * @return {@link AssetManager}
+     */
+    public static AssetManager staticAssets(final Resources resource) {
+        if (resource == null) return null;
+        try {
+            return resource.getAssets();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "staticAssets");
         }
         return null;
     }
