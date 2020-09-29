@@ -128,7 +128,6 @@ public final class ResourcePluginUtils {
         return invokeByAPKPath(apkPath, DevUtils.getContext());
     }
 
-
     /**
      * 通过 APK 文件获取 APK Resources
      * @param apkPath APK 文件路径
