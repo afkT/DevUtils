@@ -11,15 +11,20 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.util.DisplayMetrics;
+import android.view.Menu;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import androidx.annotation.AnimRes;
 import androidx.annotation.AnimatorRes;
 import androidx.annotation.AnyRes;
+import androidx.annotation.ArrayRes;
+import androidx.annotation.BoolRes;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DimenRes;
 import androidx.annotation.DrawableRes;
+import androidx.annotation.IntegerRes;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 
@@ -604,9 +609,9 @@ public final class ResourceAssist {
     // =
 
     /**
-     * 获取 anim id
+     * 获取 Anim id
      * @param resName resource name
-     * @return anim id
+     * @return Anim id
      */
     public int getAnimId(final String resName) {
         return getIdentifier(resName, "anim");
@@ -676,5 +681,260 @@ public final class ResourceAssist {
             LogPrintUtils.eTag(TAG, e, "getAnimation");
         }
         return null;
+    }
+
+    // =
+
+    /**
+     * 获取 Boolean id
+     * @param resName resource name
+     * @return Boolean id
+     */
+    public int getBooleanId(final String resName) {
+        return getIdentifier(resName, "bool");
+    }
+
+    /**
+     * 获取 Boolean
+     * @param resName resource name
+     * @return Boolean
+     */
+    public boolean getBoolean(final String resName) {
+        return getBoolean(getBooleanId(resName));
+    }
+
+    /**
+     * 获取 Boolean
+     * @param id resource identifier
+     * @return Boolean
+     */
+    public boolean getBoolean(@BoolRes final int id) {
+        try {
+            return mResource.getBoolean(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBoolean");
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 获取 Integer id
+     * @param resName resource name
+     * @return Integer id
+     */
+    public int getIntegerId(final String resName) {
+        return getIdentifier(resName, "integer");
+    }
+
+    /**
+     * 获取 Integer
+     * @param resName resource name
+     * @return Integer
+     */
+    public int getInteger(final String resName) {
+        return getInteger(getIntegerId(resName));
+    }
+
+    /**
+     * 获取 Integer
+     * @param id resource identifier
+     * @return Integer
+     */
+    public int getInteger(@IntegerRes final int id) {
+        try {
+            return mResource.getInteger(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getInteger");
+        }
+        return -1;
+    }
+
+    // =
+
+    /**
+     * 获取 Array id
+     * @param resName resource name
+     * @return Array id
+     */
+    public int getArrayId(final String resName) {
+        return getIdentifier(resName, "array");
+    }
+
+    /**
+     * 获取 int[]
+     * @param resName resource name
+     * @return int[]
+     */
+    public int[] getIntArray(final String resName) {
+        return getIntArray(getArrayId(resName));
+    }
+
+    /**
+     * 获取 String[]
+     * @param resName resource name
+     * @return String[]
+     */
+    public String[] getStringArray(final String resName) {
+        return getStringArray(getArrayId(resName));
+    }
+
+    /**
+     * 获取 CharSequence[]
+     * @param resName resource name
+     * @return CharSequence[]
+     */
+    public CharSequence[] getTextArray(final String resName) {
+        return getTextArray(getArrayId(resName));
+    }
+
+    /**
+     * 获取 int[]
+     * @param id resource identifier
+     * @return int[]
+     */
+    public int[] getIntArray(@ArrayRes final int id) {
+        try {
+            return mResource.getIntArray(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getIntArray");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 String[]
+     * @param id resource identifier
+     * @return String[]
+     */
+    public String[] getStringArray(@ArrayRes final int id) {
+        try {
+            return mResource.getStringArray(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getStringArray");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 CharSequence[]
+     * @param id resource identifier
+     * @return CharSequence[]
+     */
+    public CharSequence[] getTextArray(@ArrayRes final int id) {
+        try {
+            return mResource.getTextArray(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getTextArray");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取 id ( view )
+     * @param resName resource name
+     * @return id
+     */
+    public int getId(final String resName) {
+        return getIdentifier(resName, "id");
+    }
+
+    /**
+     * 获取 Layout id
+     * <pre>
+     *     {@link android.view.LayoutInflater#inflate(int, ViewGroup)}
+     * </pre>
+     * @param resName resource name
+     * @return Layout id
+     */
+    public int getLayoutId(final String resName) {
+        return getIdentifier(resName, "layout");
+    }
+
+    /**
+     * 获取 Menu id
+     * <pre>
+     *     {@link android.view.MenuInflater#inflate(int, Menu)}
+     * </pre>
+     * @param resName resource name
+     * @return Menu id
+     */
+    public int getMenuId(final String resName) {
+        return getIdentifier(resName, "menu");
+    }
+
+    /**
+     * 获取 Raw id
+     * @param resName resource name
+     * @return Raw id
+     */
+    public int getRawId(final String resName) {
+        return getIdentifier(resName, "raw");
+    }
+
+    /**
+     * 获取 Attr id
+     * @param resName resource name
+     * @return Attr id
+     */
+    public int getAttrId(final String resName) {
+        return getIdentifier(resName, "attr");
+    }
+
+    /**
+     * 获取 Style id
+     * @param resName resource name
+     * @return Style id
+     */
+    public int getStyleId(final String resName) {
+        return getIdentifier(resName, "style");
+    }
+
+    /**
+     * 获取 Styleable id
+     * @param resName resource name
+     * @return Styleable id
+     */
+    public int getStyleableId(final String resName) {
+        return getIdentifier(resName, "styleable");
+    }
+
+    /**
+     * 获取 Animator id
+     * @param resName resource name
+     * @return Animator id
+     */
+    public int getAnimatorId(final String resName) {
+        return getIdentifier(resName, "animator");
+    }
+
+    /**
+     * 获取 Xml id
+     * @param resName resource name
+     * @return Xml id
+     */
+    public int getXmlId(final String resName) {
+        return getIdentifier(resName, "xml");
+    }
+
+    /**
+     * 获取 Interpolator id
+     * @param resName resource name
+     * @return Interpolator id
+     */
+    public int getInterpolatorId(final String resName) {
+        return getIdentifier(resName, "interpolator");
+    }
+
+    /**
+     * 获取 Plurals id
+     * @param resName resource name
+     * @return Plurals id
+     */
+    public int getPluralsId(final String resName) {
+        return getIdentifier(resName, "plurals");
     }
 }
