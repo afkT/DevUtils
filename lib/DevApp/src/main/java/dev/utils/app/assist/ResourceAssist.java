@@ -5,10 +5,16 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.NinePatchDrawable;
 import android.util.DisplayMetrics;
 
+import androidx.annotation.AnyRes;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DimenRes;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 
@@ -264,14 +270,28 @@ public final class ResourceAssist {
         return 0;
     }
 
+    /**
+     * 获取给定资源标识符的全名
+     * @param id resource identifier
+     * @return Integer
+     */
+    public String getResourceName(@AnyRes final int id) {
+        try {
+            return mResource.getResourceName(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getResourceName");
+        }
+        return null;
+    }
+
     // ===========
     // = 资源获取 =
     // ===========
 
     /**
-     * 获取 string id
+     * 获取 String id
      * @param resName resource name
-     * @return string id
+     * @return String id
      */
     public int getStringId(final String resName) {
         return getIdentifier(resName, "string");
@@ -328,9 +348,9 @@ public final class ResourceAssist {
     // =
 
     /**
-     * 获取 dimen id
+     * 获取 Dimension id
      * @param resName resource name
-     * @return dimen id
+     * @return Dimension id
      */
     public int getDimenId(final String resName) {
         return getIdentifier(resName, "dimen");
@@ -380,9 +400,9 @@ public final class ResourceAssist {
     // =
 
     /**
-     * 获取 color id
+     * 获取 Color id
      * @param resName resource name
-     * @return color id
+     * @return Color id
      */
     public int getColorId(final String resName) {
         return getIdentifier(resName, "color");
@@ -412,5 +432,163 @@ public final class ResourceAssist {
             LogPrintUtils.eTag(TAG, e, "getColor");
         }
         return -1;
+    }
+
+    // =
+
+    /**
+     * 获取 Drawable id
+     * @param resName resource name
+     * @return Drawable id
+     */
+    public int getDrawableId(final String resName) {
+        return getIdentifier(resName, "drawable");
+    }
+
+    /**
+     * 获取 Drawable
+     * @param resName resource name
+     * @return {@link Drawable}
+     */
+    public Drawable getDrawable(final String resName) {
+        return getDrawable(getDrawableId(resName));
+    }
+
+    /**
+     * 获取 .9 Drawable
+     * @param resName resource name
+     * @return .9 {@link NinePatchDrawable}
+     */
+    public NinePatchDrawable getNinePatchDrawable(final String resName) {
+        return getNinePatchDrawable(getDrawableId(resName));
+    }
+
+    /**
+     * 获取 Drawable
+     * <pre>
+     *     {@link ContextCompat#getDrawable(Context, int)}
+     * </pre>
+     * @param drawableId R.drawable.id
+     * @return {@link Drawable}
+     */
+    public Drawable getDrawable(@DrawableRes final int drawableId) {
+        try {
+            return mResource.getDrawable(drawableId);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getDrawable");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 .9 Drawable
+     * @param drawableId R.drawable.id
+     * @return .9 {@link NinePatchDrawable}
+     */
+    public NinePatchDrawable getNinePatchDrawable(@DrawableRes final int drawableId) {
+        try {
+            return (NinePatchDrawable) getDrawable(drawableId);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getNinePatchDrawable");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取 Bitmap
+     * @param resName resource name
+     * @return {@link Bitmap}
+     */
+    public Bitmap getBitmap(final String resName) {
+        return getBitmap(getDrawableId(resName));
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param resName resource name
+     * @param options {@link BitmapFactory.Options}
+     * @return {@link Bitmap}
+     */
+    public Bitmap getBitmap(final String resName, final BitmapFactory.Options options) {
+        return getBitmap(getDrawableId(resName), options);
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param resId resource identifier
+     * @return {@link Bitmap}
+     */
+    public Bitmap getBitmap(final int resId) {
+        try {
+            return BitmapFactory.decodeResource(mResource, resId);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBitmap");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Bitmap
+     * @param resId   resource identifier
+     * @param options {@link BitmapFactory.Options}
+     * @return {@link Bitmap}
+     */
+    public Bitmap getBitmap(final int resId, final BitmapFactory.Options options) {
+        try {
+            return BitmapFactory.decodeResource(mResource, resId, options);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getBitmap");
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取 Mipmap id
+     * @param resName resource name
+     * @return Mipmap id
+     */
+    public int getMipmapId(final String resName) {
+        return getIdentifier(resName, "mipmap");
+    }
+
+    /**
+     * 获取 Mipmap Drawable
+     * @param resName resource name
+     * @return {@link Drawable}
+     */
+    public Drawable getDrawableMipmap(final String resName) {
+        return getDrawable(getMipmapId(resName));
+    }
+
+    /**
+     * 获取 Mipmap .9 Drawable
+     * @param resName resource name
+     * @return .9 {@link NinePatchDrawable}
+     */
+    public NinePatchDrawable getNinePatchDrawableMipmap(final String resName) {
+        return getNinePatchDrawable(getMipmapId(resName));
+    }
+
+    /**
+     * 获取 Mipmap Bitmap
+     * @param resName resource name
+     * @return {@link Bitmap}
+     */
+    public Bitmap getBitmapMipmap(final String resName) {
+        return getBitmap(getMipmapId(resName));
+    }
+
+    /**
+     * 获取 Mipmap Bitmap
+     * @param resName resource name
+     * @param options {@link BitmapFactory.Options}
+     * @return {@link Bitmap}
+     */
+    public Bitmap getBitmapMipmap(final String resName, final BitmapFactory.Options options) {
+        return getBitmap(getMipmapId(resName), options);
     }
 }
