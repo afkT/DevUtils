@@ -5,12 +5,17 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.content.res.XmlResourceParser;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.util.DisplayMetrics;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
+import androidx.annotation.AnimRes;
+import androidx.annotation.AnimatorRes;
 import androidx.annotation.AnyRes;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DimenRes;
@@ -25,6 +30,10 @@ import dev.utils.app.AppUtils;
 /**
  * detail: Resources 辅助类
  * @author Ttt
+ * <pre>
+ *     DevApp Utils 最终 Resources 获取工具类
+ *     方便对 Resources 进行适配、统一控制、代码复用等
+ * </pre>
  */
 public final class ResourceAssist {
 
@@ -590,5 +599,82 @@ public final class ResourceAssist {
      */
     public Bitmap getBitmapMipmap(final String resName, final BitmapFactory.Options options) {
         return getBitmap(getMipmapId(resName), options);
+    }
+
+    // =
+
+    /**
+     * 获取 anim id
+     * @param resName resource name
+     * @return anim id
+     */
+    public int getAnimId(final String resName) {
+        return getIdentifier(resName, "anim");
+    }
+
+    /**
+     * 获取 Animation Xml
+     * @param resName resource name
+     * @return {@link XmlResourceParser}
+     */
+    public XmlResourceParser getAnimationXml(final String resName) {
+        return getAnimationXml(getAnimId(resName));
+    }
+
+    /**
+     * 获取 Animation Xml
+     * @param id resource identifier
+     * @return {@link XmlResourceParser}
+     */
+    public XmlResourceParser getAnimationXml(@AnimatorRes @AnimRes final int id) {
+        try {
+            return mResource.getAnimation(id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getAnimationXml");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Animation
+     * @param resName resource name
+     * @return {@link XmlResourceParser}
+     */
+    public Animation getAnimation(final String resName) {
+        return getAnimation(getAnimId(resName));
+    }
+
+    /**
+     * 获取 Animation
+     * @param resName resource name
+     * @param context {@link Context}
+     * @return {@link XmlResourceParser}
+     */
+    public Animation getAnimation(final String resName, final Context context) {
+        return getAnimation(getAnimId(resName), context);
+    }
+
+    /**
+     * 获取 Animation
+     * @param id resource identifier
+     * @return {@link XmlResourceParser}
+     */
+    public Animation getAnimation(@AnimatorRes @AnimRes final int id) {
+        return getAnimation(id, DevUtils.getContext());
+    }
+
+    /**
+     * 获取 Animation
+     * @param id      resource identifier
+     * @param context {@link Context}
+     * @return {@link XmlResourceParser}
+     */
+    public Animation getAnimation(@AnimatorRes @AnimRes final int id, final Context context) {
+        try {
+            return AnimationUtils.loadAnimation(context, id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getAnimation");
+        }
+        return null;
     }
 }
