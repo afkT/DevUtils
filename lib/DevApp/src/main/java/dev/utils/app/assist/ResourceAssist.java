@@ -3,11 +3,14 @@ package dev.utils.app.assist;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.util.DisplayMetrics;
@@ -21,6 +24,7 @@ import androidx.annotation.AnimatorRes;
 import androidx.annotation.AnyRes;
 import androidx.annotation.ArrayRes;
 import androidx.annotation.BoolRes;
+import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DimenRes;
 import androidx.annotation.DrawableRes;
@@ -936,5 +940,58 @@ public final class ResourceAssist {
      */
     public int getPluralsId(final String resName) {
         return getIdentifier(resName, "plurals");
+    }
+
+    // =
+
+    /**
+     * 获取 ColorStateList
+     * @param resName resource Name
+     * @return {@link ColorStateList}
+     */
+    public ColorStateList getColorStateList(final String resName) {
+        return getColorStateList(getColorId(resName));
+    }
+
+    /**
+     * 获取 ColorStateList
+     * @param id resource identifier of a {@link ColorStateList}
+     * @return {@link ColorStateList}
+     */
+    public ColorStateList getColorStateList(@ColorRes final int id) {
+        try {
+            return ContextCompat.getColorStateList(DevUtils.getContext(), id);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getColorStateList");
+        }
+        return null;
+    }
+
+    /**
+     * 获取十六进制颜色值 Drawable
+     * @param color 十六进制颜色值
+     * @return 十六进制颜色值 Drawable
+     */
+    public ColorDrawable getColorDrawable(final String color) {
+        try {
+            return new ColorDrawable(Color.parseColor(color));
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getColorDrawable");
+        }
+        return null;
+    }
+
+    /**
+     * 获取指定颜色 Drawable
+     * @param color 颜色值
+     * @return 指定颜色 Drawable
+     */
+    public ColorDrawable getColorDrawable(@ColorInt final int color) {
+        try {
+            return new ColorDrawable(color);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getColorDrawable");
+        }
+        return null;
     }
 }
