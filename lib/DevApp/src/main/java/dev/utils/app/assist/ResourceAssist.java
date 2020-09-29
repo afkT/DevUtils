@@ -119,7 +119,8 @@ public final class ResourceAssist {
      * @return {@link ResourceAssist}
      */
     public static ResourceAssist get() {
-        return new ResourceAssist();
+//        return new ResourceAssist();
+        return getInstance();
     }
 
     /**
@@ -208,6 +209,7 @@ public final class ResourceAssist {
 
     /**
      * 获取 ContentResolver
+     * @param context {@link Context}
      * @return {@link ContentResolver}
      */
     public static ContentResolver staticContentResolver(final Context context) {
