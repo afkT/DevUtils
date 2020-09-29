@@ -57,7 +57,7 @@ import dev.utils.common.FileIOUtils;
  * detail: Resources 辅助类
  * @author Ttt
  * <pre>
- *     DevApp Utils 最终 Resources 获取工具类
+ *     整合 DevApp Utils 代码, 最终统一通过该辅助工具类进行 Resources 获取
  *     方便对 Resources 进行适配、统一控制、代码复用等
  * </pre>
  */
