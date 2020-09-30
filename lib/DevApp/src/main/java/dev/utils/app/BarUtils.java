@@ -500,7 +500,7 @@ public final class BarUtils {
     public static int getActionBarHeight() {
         TypedValue tv = new TypedValue();
         try {
-            if (DevUtils.getContext().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+            if (ResourceUtils.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
                 return TypedValue.complexToDimensionPixelSize(tv.data, Resources.getSystem().getDisplayMetrics());
             }
         } catch (Exception e) {
@@ -528,7 +528,7 @@ public final class BarUtils {
         }
         try {
             @SuppressLint("WrongConstant")
-            Object service = DevUtils.getContext().getSystemService("statusbar");
+            Object service = AppUtils.getSystemService("statusbar");
             @SuppressLint("PrivateApi")
             Class<?> statusBarManager = Class.forName("android.app.StatusBarManager");
             Method expand = statusBarManager.getMethod(methodName);

@@ -1850,7 +1850,7 @@ public class ScanShapeView extends View {
         if (mBitmapToSquare != null && mLineColorToSquare != 0) {
             try {
                 // 转换 Drawable
-                Drawable drawable = new BitmapDrawable(getContext().getResources(), mBitmapToSquare);
+                Drawable drawable = new BitmapDrawable(getResources(), mBitmapToSquare);
                 Drawable tintDrawable = DrawableCompat.wrap(drawable);
                 // 进行着色
                 DrawableCompat.setTint(tintDrawable, mLineColorToSquare);
@@ -1924,7 +1924,7 @@ public class ScanShapeView extends View {
         if (mBitmapToAnnulus != null && mLineColorToAnnulus != 0) {
             try {
                 // 转换 Drawable
-                Drawable drawable = new BitmapDrawable(getContext().getResources(), mBitmapToAnnulus);
+                Drawable drawable = new BitmapDrawable(getResources(), mBitmapToAnnulus);
                 Drawable tintDrawable = DrawableCompat.wrap(drawable);
                 // 进行着色
                 DrawableCompat.setTint(tintDrawable, mLineColorToAnnulus);
