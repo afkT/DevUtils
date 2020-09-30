@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 2.0.5 *(2020-09-30)*
+----------------------------
+
+* `[Add]` 新增 ResourceAssist ( Resources 辅助类 )
+
+* `[Add]` 新增 ResourcePluginUtils ( 从 APK 中读取 Resources 可实现换肤等功能 )
+
+* `[Update]` 修改部分方法 obtain 为 get、newCache ( DevCache )
+
+* `[Refactor]` 整合 DevApp Utils 代码, 统一通过 ResourceAssist 辅助类进行 Resources 获取、适配控制等
+
 Version 2.0.4 *(2020-09-27)*
 ----------------------------
 
