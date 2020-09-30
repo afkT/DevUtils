@@ -16,7 +16,6 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.PermissionChecker;
 
-import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -155,7 +154,7 @@ public final class PermissionUtils {
         if (checkPermissions(activity) == 1) {
             // 如果 SDK 版本大于 23 才请求
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-                sInstance = new WeakReference<>(this);
+                sInstance = this;
                 // 请求权限
                 String[] permissions = mPermissionsRequestLists.toArray(new String[mPermissionsRequestLists.size()]);
                 // 判断请求方式
@@ -199,7 +198,7 @@ public final class PermissionUtils {
     // ================
 
     // 内部持有对象
-    private static WeakReference<PermissionUtils> sInstance;
+    private static PermissionUtils sInstance;
 
     /**
      * detail: 请求权限 Activity
@@ -225,10 +224,9 @@ public final class PermissionUtils {
         @Override
         protected void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            if (sInstance != null && sInstance.get() != null) { // 请求权限
-                int size = sInstance.get().mPermissionsRequestLists.size();
-                requestPermissions(sInstance.get().mPermissionsRequestLists.toArray(new String[size]), 1);
-            }
+            // 请求权限
+            int size = sInstance.mPermissionsRequestLists.size();
+            requestPermissions(sInstance.mPermissionsRequestLists.toArray(new String[size]), 1);
         }
 
         /**
@@ -239,9 +237,7 @@ public final class PermissionUtils {
          */
         @Override
         public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-            if (sInstance != null && sInstance.get() != null) { // 处理回调
-                sInstance.get().onRequestPermissionsResultCommon(this);
-            }
+            sInstance.onRequestPermissionsResultCommon(this); // 处理回调
             finish(); // 关闭当前页面
         }
     }
@@ -264,8 +260,8 @@ public final class PermissionUtils {
      * @param activity {@link Activity}
      */
     public static void onRequestPermissionsResult(final Activity activity) {
-        if (activity != null && sInstance != null && sInstance.get() != null) { // 触发回调
-            sInstance.get().onRequestPermissionsResultCommon(activity);
+        if (activity != null && sInstance != null) { // 触发回调
+            sInstance.onRequestPermissionsResultCommon(activity);
         }
     }
 
