@@ -1,4 +1,4 @@
-package afkt.project.database.room.dao;
+package afkt.project.database.room;
 
 import android.text.TextUtils;
 
@@ -8,6 +8,7 @@ import androidx.room.RoomDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
+import afkt.project.database.room.module.note.NoteDatabase;
 import dev.DevUtils;
 import dev.utils.app.logger.DevLogger;
 
