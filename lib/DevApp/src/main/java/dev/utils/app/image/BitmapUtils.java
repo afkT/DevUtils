@@ -14,6 +14,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.media.ExifInterface;
+import android.media.MediaMetadataRetriever;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
@@ -24,6 +25,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.InputStream;
+import java.util.HashMap;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ResourceUtils;
@@ -1403,5 +1405,53 @@ public final class BitmapUtils {
             LogPrintUtils.eTag(TAG, e, "calculateQuality");
         }
         return -1;
+    }
+
+    // =============
+    // = 视频缩略图 =
+    // =============
+
+    /**
+     * 获取视频缩略图
+     * @param path 视频路径
+     * @return {@link Bitmap}
+     */
+    public static Bitmap getVideoThumbnail(final String path) {
+        return getVideoThumbnail(path, -1);
+    }
+
+    /**
+     * 获取视频缩略图
+     * <pre>
+     *     // 获取视频的长度 ( 单位为毫秒 )
+     *     String duration = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+     *     // 缩放缩略图
+     *     ThumbnailUtils.extractThumbnail(bitmap,  width, height, ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
+     *     // 获取视频缩略图
+     *     ThumbnailUtils.createVideoThumbnail(path, MediaStore.Video.Thumbnails.MICRO_KIND);
+     * </pre>
+     * @param path   视频路径
+     * @param timeUs 对应毫秒视频帧
+     * @return {@link Bitmap}
+     */
+    public static Bitmap getVideoThumbnail(final String path, final long timeUs) {
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        try {
+            // 设置视频路径
+            if (FileUtils.isFileExists(path)) {
+                retriever.setDataSource(path);
+            } else {
+                retriever.setDataSource(path, new HashMap<>());
+            }
+            return retriever.getFrameAtTime(timeUs);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getVideoThumbnail");
+        } finally {
+            try {
+                retriever.release();
+            } catch (Exception e) {
+            }
+        }
+        return null;
     }
 }
