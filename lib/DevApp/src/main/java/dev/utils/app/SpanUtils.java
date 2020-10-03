@@ -96,10 +96,10 @@ import dev.utils.common.CloseUtils;
  *     前后都包括 前后都不包括 ( 在标志位 [start, end) 前后添加文字, 新添加的文字会有设置的属性 )
  * </pre>
  */
-public final class SpannableStringUtils {
+public final class SpanUtils {
 
     // 日志 TAG
-    private static final String TAG = SpannableStringUtils.class.getSimpleName();
+    private static final String TAG = SpanUtils.class.getSimpleName();
 
     // 对齐类型
     public static final int ALIGN_BOTTOM   = 0;
@@ -186,7 +186,7 @@ public final class SpannableStringUtils {
      * 构造函数
      * @param textView {@link TextView}
      */
-    private SpannableStringUtils(TextView textView) {
+    private SpanUtils(TextView textView) {
         this();
         mTextView = textView;
     }
@@ -194,7 +194,7 @@ public final class SpannableStringUtils {
     /**
      * 构造函数
      */
-    public SpannableStringUtils() {
+    public SpanUtils() {
         mBuilder = new SerializableSpannableStringBuilder();
         mText = "";
         mType = -1;
@@ -202,12 +202,12 @@ public final class SpannableStringUtils {
     }
 
     /**
-     * 获取持有 TextView SpannableStringUtils
+     * 获取持有 TextView SpannableString Utils
      * @param textView {@link TextView}
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public static SpannableStringUtils with(final TextView textView) {
-        return new SpannableStringUtils(textView);
+    public static SpanUtils with(final TextView textView) {
+        return new SpanUtils(textView);
     }
 
     // ===========
@@ -223,9 +223,9 @@ public final class SpannableStringUtils {
      *             <li>{@link Spanned#SPAN_EXCLUSIVE_EXCLUSIVE}</li>
      *             <li>{@link Spanned#SPAN_EXCLUSIVE_INCLUSIVE}</li>
      *             </ul>
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setFlag(final int flag) {
+    public SpanUtils setFlag(final int flag) {
         this.flag = flag;
         return this;
     }
@@ -233,9 +233,9 @@ public final class SpannableStringUtils {
     /**
      * 设置前景色
      * @param color 前景色
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setForegroundColor(@ColorInt final int color) {
+    public SpanUtils setForegroundColor(@ColorInt final int color) {
         this.foregroundColor = color;
         return this;
     }
@@ -243,9 +243,9 @@ public final class SpannableStringUtils {
     /**
      * 设置背景色
      * @param color 背景色
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setBackgroundColor(@ColorInt final int color) {
+    public SpanUtils setBackgroundColor(@ColorInt final int color) {
         this.backgroundColor = color;
         return this;
     }
@@ -253,9 +253,9 @@ public final class SpannableStringUtils {
     /**
      * 设置行高
      * @param lineHeight 行高
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setLineHeight(@IntRange(from = 0) final int lineHeight) {
+    public SpanUtils setLineHeight(@IntRange(from = 0) final int lineHeight) {
         return setLineHeight(lineHeight, ALIGN_CENTER);
     }
 
@@ -268,10 +268,10 @@ public final class SpannableStringUtils {
      *                   <li>{@link Align#ALIGN_CENTER}</li>
      *                   <li>{@link Align#ALIGN_BOTTOM}</li>
      *                   </ul>
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setLineHeight(@IntRange(from = 0) final int lineHeight,
-                                              @Align final int align) {
+    public SpanUtils setLineHeight(@IntRange(from = 0) final int lineHeight,
+                                   @Align final int align) {
         this.lineHeight = lineHeight;
         this.alignLine = align;
         return this;
@@ -280,9 +280,9 @@ public final class SpannableStringUtils {
     /**
      * 设置引用线的颜色
      * @param color 引用线颜色
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setQuoteColor(@ColorInt final int color) {
+    public SpanUtils setQuoteColor(@ColorInt final int color) {
         return setQuoteColor(color, 2, 2);
     }
 
@@ -291,11 +291,11 @@ public final class SpannableStringUtils {
      * @param color       引用线颜色
      * @param stripeWidth 线条宽度
      * @param gapWidth    间隙宽度
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setQuoteColor(@ColorInt final int color,
-                                              @IntRange(from = 1) final int stripeWidth,
-                                              @IntRange(from = 0) final int gapWidth) {
+    public SpanUtils setQuoteColor(@ColorInt final int color,
+                                   @IntRange(from = 1) final int stripeWidth,
+                                   @IntRange(from = 0) final int gapWidth) {
         this.quoteColor = color;
         this.stripeWidth = stripeWidth;
         this.quoteGapWidth = gapWidth;
@@ -306,10 +306,10 @@ public final class SpannableStringUtils {
      * 设置缩进
      * @param first 段落第一行的缩进值
      * @param rest  段落其余行的缩进值
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setLeadingMargin(@IntRange(from = 0) final int first,
-                                                 @IntRange(from = 0) final int rest) {
+    public SpanUtils setLeadingMargin(@IntRange(from = 0) final int first,
+                                      @IntRange(from = 0) final int rest) {
         this.first = first;
         this.rest = rest;
         return this;
@@ -318,9 +318,9 @@ public final class SpannableStringUtils {
     /**
      * 设置列表标记
      * @param gapWidth 列表间隙宽度
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setBullet(@IntRange(from = 0) final int gapWidth) {
+    public SpanUtils setBullet(@IntRange(from = 0) final int gapWidth) {
         return setBullet(0, 3, gapWidth);
     }
 
@@ -329,11 +329,11 @@ public final class SpannableStringUtils {
      * @param color    列表颜色
      * @param radius   列表半径
      * @param gapWidth 列表间隙宽度
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setBullet(@ColorInt final int color,
-                                          @IntRange(from = 0) final int radius,
-                                          @IntRange(from = 0) final int gapWidth) {
+    public SpanUtils setBullet(@ColorInt final int color,
+                               @IntRange(from = 0) final int radius,
+                               @IntRange(from = 0) final int gapWidth) {
         this.bulletColor = color;
         this.bulletRadius = radius;
         this.bulletGapWidth = gapWidth;
@@ -343,9 +343,9 @@ public final class SpannableStringUtils {
     /**
      * 设置字体尺寸
      * @param size 字体大小
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setFontSize(@IntRange(from = 0) final int size) {
+    public SpanUtils setFontSize(@IntRange(from = 0) final int size) {
         return setFontSize(size, false);
     }
 
@@ -353,9 +353,9 @@ public final class SpannableStringUtils {
      * 设置字体尺寸
      * @param size 字体大小
      * @param isDp 是否使用 dp
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setFontSize(@IntRange(from = 0) final int size, final boolean isDp) {
+    public SpanUtils setFontSize(@IntRange(from = 0) final int size, final boolean isDp) {
         this.fontSize = size;
         this.fontSizeIsDp = isDp;
         return this;
@@ -364,9 +364,9 @@ public final class SpannableStringUtils {
     /**
      * 设置字体比例
      * @param proportion 字体比例
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setFontProportion(final float proportion) {
+    public SpanUtils setFontProportion(final float proportion) {
         this.proportion = proportion;
         return this;
     }
@@ -374,9 +374,9 @@ public final class SpannableStringUtils {
     /**
      * 设置字体横向比例
      * @param proportion 字体横向比例
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setFontXProportion(final float proportion) {
+    public SpanUtils setFontXProportion(final float proportion) {
         this.xProportion = proportion;
         return this;
     }
@@ -385,63 +385,63 @@ public final class SpannableStringUtils {
 
     /**
      * 设置删除线
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setStrikethrough() {
+    public SpanUtils setStrikethrough() {
         this.isStrikethrough = true;
         return this;
     }
 
     /**
      * 设置下划线
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setUnderline() {
+    public SpanUtils setUnderline() {
         this.isUnderline = true;
         return this;
     }
 
     /**
      * 设置上标
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setSuperscript() {
+    public SpanUtils setSuperscript() {
         this.isSuperscript = true;
         return this;
     }
 
     /**
      * 设置下标
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setSubscript() {
+    public SpanUtils setSubscript() {
         this.isSubscript = true;
         return this;
     }
 
     /**
      * 设置粗体
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setBold() {
+    public SpanUtils setBold() {
         isBold = true;
         return this;
     }
 
     /**
      * 设置斜体
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setItalic() {
+    public SpanUtils setItalic() {
         isItalic = true;
         return this;
     }
 
     /**
      * 设置粗斜体
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setBoldItalic() {
+    public SpanUtils setBoldItalic() {
         isBoldItalic = true;
         return this;
     }
@@ -454,9 +454,9 @@ public final class SpannableStringUtils {
      *                   <li>serif</li>
      *                   <li>sans-serif</li>
      *                   </ul>
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setFontFamily(@NonNull final String fontFamily) {
+    public SpanUtils setFontFamily(@NonNull final String fontFamily) {
         this.fontFamily = fontFamily;
         return this;
     }
@@ -464,9 +464,9 @@ public final class SpannableStringUtils {
     /**
      * 设置字体
      * @param typeface {@link Typeface}
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setTypeface(@NonNull final Typeface typeface) {
+    public SpanUtils setTypeface(@NonNull final Typeface typeface) {
         this.typeface = typeface;
         return this;
     }
@@ -479,9 +479,9 @@ public final class SpannableStringUtils {
      *                  <li>{@link Layout.Alignment#ALIGN_OPPOSITE}</li>
      *                  <li>{@link Layout.Alignment#ALIGN_CENTER  }</li>
      *                  </ul>
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setHorizontalAlign(@NonNull final Layout.Alignment alignment) {
+    public SpanUtils setHorizontalAlign(@NonNull final Layout.Alignment alignment) {
         this.alignment = alignment;
         return this;
     }
@@ -495,9 +495,9 @@ public final class SpannableStringUtils {
      *              <li>{@link Align#ALIGN_BASELINE}</li>
      *              <li>{@link Align#ALIGN_BOTTOM  }</li>
      *              </ul>
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setVerticalAlign(@Align final int align) {
+    public SpanUtils setVerticalAlign(@Align final int align) {
         this.verticalAlign = align;
         return this;
     }
@@ -508,9 +508,9 @@ public final class SpannableStringUtils {
      *     需设置 {@code view.setMovementMethod(LinkMovementMethod.getInstance())}
      * </pre>
      * @param clickSpan {@link ClickableSpan}
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setClickSpan(@NonNull final ClickableSpan clickSpan) {
+    public SpanUtils setClickSpan(@NonNull final ClickableSpan clickSpan) {
         if (mTextView != null && mTextView.getMovementMethod() == null) {
             mTextView.setMovementMethod(LinkMovementMethod.getInstance());
         }
@@ -524,9 +524,9 @@ public final class SpannableStringUtils {
      *     需设置 {@code view.setMovementMethod(LinkMovementMethod.getInstance())}
      * </pre>
      * @param url 超链接
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setUrl(@NonNull final String url) {
+    public SpanUtils setUrl(@NonNull final String url) {
         if (mTextView != null && mTextView.getMovementMethod() == null) {
             mTextView.setMovementMethod(LinkMovementMethod.getInstance());
         }
@@ -544,10 +544,10 @@ public final class SpannableStringUtils {
      *               <li>{@link BlurMaskFilter.Blur#OUTER}</li>
      *               <li>{@link BlurMaskFilter.Blur#INNER}</li>
      *               </ul>
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setBlur(@FloatRange(from = 0, fromInclusive = false) final float radius,
-                                        final BlurMaskFilter.Blur style) {
+    public SpanUtils setBlur(@FloatRange(from = 0, fromInclusive = false) final float radius,
+                             final BlurMaskFilter.Blur style) {
         this.blurRadius = radius;
         this.style = style;
         return this;
@@ -556,9 +556,9 @@ public final class SpannableStringUtils {
     /**
      * 设置着色器
      * @param shader {@link Shader}
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setShader(@NonNull final Shader shader) {
+    public SpanUtils setShader(@NonNull final Shader shader) {
         this.shader = shader;
         return this;
     }
@@ -569,10 +569,10 @@ public final class SpannableStringUtils {
      * @param dx          X 轴阴影偏移值
      * @param dy          Y 轴阴影偏移值
      * @param shadowColor 阴影颜色
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setShadow(@FloatRange(from = 0, fromInclusive = false) final float radius,
-                                          final float dx, final float dy, final int shadowColor) {
+    public SpanUtils setShadow(@FloatRange(from = 0, fromInclusive = false) final float radius,
+                               final float dx, final float dy, final int shadowColor) {
         this.shadowRadius = radius;
         this.shadowDx = dx;
         this.shadowDy = dy;
@@ -585,9 +585,9 @@ public final class SpannableStringUtils {
     /**
      * 自定义 setSpan 参数
      * @param spans span 数组参数
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils setSpans(@NonNull final Object... spans) {
+    public SpanUtils setSpans(@NonNull final Object... spans) {
         if (spans.length > 0) {
             this.spans = spans;
         }
@@ -597,9 +597,9 @@ public final class SpannableStringUtils {
     /**
      * 追加文本
      * @param text 文本内容
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils append(@NonNull final CharSequence text) {
+    public SpanUtils append(@NonNull final CharSequence text) {
         apply(mTypeCharSequence);
         mText = text;
         return this;
@@ -607,9 +607,9 @@ public final class SpannableStringUtils {
 
     /**
      * 追加换行
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils appendLine() {
+    public SpanUtils appendLine() {
         apply(mTypeCharSequence);
         mText = NEW_LINE_STR;
         return this;
@@ -618,9 +618,9 @@ public final class SpannableStringUtils {
     /**
      * 追加文本 ( 换行 )
      * @param text 文本内容
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils appendLine(@NonNull final CharSequence text) {
+    public SpanUtils appendLine(@NonNull final CharSequence text) {
         apply(mTypeCharSequence);
         mText = text + NEW_LINE_STR;
         return this;
@@ -631,9 +631,9 @@ public final class SpannableStringUtils {
     /**
      * 追加 Image
      * @param bitmap {@link Bitmap} image
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils appendImage(@NonNull final Bitmap bitmap) {
+    public SpanUtils appendImage(@NonNull final Bitmap bitmap) {
         return appendImage(bitmap, ALIGN_BOTTOM);
     }
 
@@ -647,9 +647,9 @@ public final class SpannableStringUtils {
      *               <li>{@link Align#ALIGN_BASELINE}</li>
      *               <li>{@link Align#ALIGN_BOTTOM  }</li>
      *               </ul>
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils appendImage(@NonNull final Bitmap bitmap, @Align final int align) {
+    public SpanUtils appendImage(@NonNull final Bitmap bitmap, @Align final int align) {
         apply(mTypeImage);
         this.imageBitmap = bitmap;
         this.alignImage = align;
@@ -659,9 +659,9 @@ public final class SpannableStringUtils {
     /**
      * 追加 Image
      * @param drawable {@link Drawable} image
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils appendImage(@NonNull final Drawable drawable) {
+    public SpanUtils appendImage(@NonNull final Drawable drawable) {
         return appendImage(drawable, ALIGN_BOTTOM);
     }
 
@@ -675,9 +675,9 @@ public final class SpannableStringUtils {
      *                 <li>{@link Align#ALIGN_BASELINE}</li>
      *                 <li>{@link Align#ALIGN_BOTTOM  }</li>
      *                 </ul>
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils appendImage(@NonNull final Drawable drawable, @Align final int align) {
+    public SpanUtils appendImage(@NonNull final Drawable drawable, @Align final int align) {
         apply(mTypeImage);
         this.imageDrawable = drawable;
         this.alignImage = align;
@@ -687,9 +687,9 @@ public final class SpannableStringUtils {
     /**
      * 追加 Image
      * @param uri {@link Uri} image
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils appendImage(@NonNull final Uri uri) {
+    public SpanUtils appendImage(@NonNull final Uri uri) {
         return appendImage(uri, ALIGN_BOTTOM);
     }
 
@@ -703,9 +703,9 @@ public final class SpannableStringUtils {
      *              <li>{@link Align#ALIGN_BASELINE}</li>
      *              <li>{@link Align#ALIGN_BOTTOM  }</li>
      *              </ul>
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils appendImage(@NonNull final Uri uri, @Align final int align) {
+    public SpanUtils appendImage(@NonNull final Uri uri, @Align final int align) {
         apply(mTypeImage);
         this.imageUri = uri;
         this.alignImage = align;
@@ -715,9 +715,9 @@ public final class SpannableStringUtils {
     /**
      * 追加 Image
      * @param resourceId The resource id of image
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils appendImage(@DrawableRes final int resourceId) {
+    public SpanUtils appendImage(@DrawableRes final int resourceId) {
         return appendImage(resourceId, ALIGN_BOTTOM);
     }
 
@@ -731,9 +731,9 @@ public final class SpannableStringUtils {
      *                   <li>{@link Align#ALIGN_BASELINE}</li>
      *                   <li>{@link Align#ALIGN_BOTTOM  }</li>
      *                   </ul>
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils appendImage(@DrawableRes final int resourceId, @Align final int align) {
+    public SpanUtils appendImage(@DrawableRes final int resourceId, @Align final int align) {
         apply(mTypeImage);
         this.imageResourceId = resourceId;
         this.alignImage = align;
@@ -745,9 +745,9 @@ public final class SpannableStringUtils {
     /**
      * 追加空格
      * @param size 空格大小
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils appendSpace(@IntRange(from = 0) final int size) {
+    public SpanUtils appendSpace(@IntRange(from = 0) final int size) {
         return appendSpace(size, Color.TRANSPARENT);
     }
 
@@ -755,9 +755,9 @@ public final class SpannableStringUtils {
      * 追加空格
      * @param size  空格大小
      * @param color 空格颜色
-     * @return {@link SpannableStringUtils}
+     * @return {@link SpanUtils}
      */
-    public SpannableStringUtils appendSpace(@IntRange(from = 0) final int size, @ColorInt final int color) {
+    public SpanUtils appendSpace(@IntRange(from = 0) final int size, @ColorInt final int color) {
         apply(mTypeSpace);
         this.spaceSize = size;
         this.spaceColor = color;
