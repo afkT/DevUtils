@@ -23,7 +23,7 @@ public final class GreenManager {
     // 日志 TAG
     private static final String TAG = GreenManager.class.getSimpleName();
 
-    // DataBase 对象缓存
+    // Database 对象缓存
     private static final Map<String, AbsGreenDatabase> sDatabaseMaps = new HashMap<>();
 
     // ============
@@ -97,10 +97,14 @@ public final class GreenManager {
         }
     };
 
-    // ===============
-    // = 快捷获取方法 =
-    // ===============
+    // ============
+    // = 快捷方法 =
+    // ============
 
+    /**
+     * 获取 Note Database
+     * @return {@link NoteDatabase}
+     */
     public static NoteDatabase getNoteDatabase() {
         return database(NoteDatabase.TAG, NoteDatabase.class);
     }
