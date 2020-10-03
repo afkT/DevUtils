@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import afkt.project.database.green.able.AbsGreenDatabase;
+import afkt.project.database.green.module.image.ImageDatabase;
 import afkt.project.database.green.module.note.NoteDatabase;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.common.StringUtils;
@@ -89,6 +90,8 @@ public final class GreenManager {
         public AbsGreenDatabase create(String dbName, String password, Class clazz) {
             if (clazz == NoteDatabase.class) {
                 return NoteDatabase.database(dbName, password);
+            } else if (clazz == ImageDatabase.class) {
+                return ImageDatabase.database(dbName, password);
             }
             return null;
         }
