@@ -12,7 +12,7 @@ import gen.greendao.DaoSession;
  *     dbName 最好为 功能模块名, 如果涉及需要区分用户则为 功能模块名 + 用户 id
  * </pre>
  */
-public abstract class GreenDatabase {
+public abstract class AbsGreenDatabase {
 
     // 数据库名
     private static final String DATABASE_NAME = "green-db";
@@ -68,7 +68,7 @@ public abstract class GreenDatabase {
          * 获取数据库名
          * @param dbName   数据库名
          * @param password 数据库解密密码
-         * @param clazz    {@link GreenDatabase} 实现类
+         * @param clazz    {@link AbsGreenDatabase} 实现类
          * @return 数据库名
          */
         String getDatabaseName(String dbName, String password, Class clazz);
@@ -77,9 +77,9 @@ public abstract class GreenDatabase {
          * 创建数据库方法
          * @param dbName   数据库名
          * @param password 数据库解密密码
-         * @param clazz    {@link GreenDatabase} 实现类
-         * @return {@link GreenDatabase}
+         * @param clazz    {@link AbsGreenDatabase} 实现类
+         * @return {@link AbsGreenDatabase}
          */
-        GreenDatabase create(String dbName, String password, Class clazz);
+        AbsGreenDatabase create(String dbName, String password, Class clazz);
     }
 }

@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-import afkt.project.database.green.able.GreenDatabase;
+import afkt.project.database.green.able.AbsGreenDatabase;
 import afkt.project.database.green.module.note.NoteDatabase;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.common.StringUtils;
@@ -23,7 +23,7 @@ public final class GreenManager {
     private static final String TAG = GreenManager.class.getSimpleName();
 
     // DataBase 对象缓存
-    private static final Map<String, GreenDatabase> sDatabaseMaps = new HashMap<>();
+    private static final Map<String, AbsGreenDatabase> sDatabaseMaps = new HashMap<>();
 
     // ============
     // = database =
@@ -32,10 +32,10 @@ public final class GreenManager {
     /**
      * 获取 GreenDatabase 对象
      * @param dbName 数据库名
-     * @param clazz  {@link GreenDatabase} 实现类
-     * @return {@link GreenDatabase}
+     * @param clazz  {@link AbsGreenDatabase} 实现类
+     * @return {@link AbsGreenDatabase}
      */
-    public static <T extends GreenDatabase> T database(final String dbName, final Class clazz) {
+    public static <T extends AbsGreenDatabase> T database(final String dbName, final Class clazz) {
         return database(dbName, null, clazz);
     }
 
@@ -43,11 +43,11 @@ public final class GreenManager {
      * 获取 GreenDatabase 对象
      * @param dbName   数据库名
      * @param password 数据库解密密码
-     * @param clazz    {@link GreenDatabase} 实现类
-     * @return {@link GreenDatabase}
+     * @param clazz    {@link AbsGreenDatabase} 实现类
+     * @return {@link AbsGreenDatabase}
      */
-    public static <T extends GreenDatabase> T database(final String dbName, final String password,
-                                                       final Class clazz) {
+    public static <T extends AbsGreenDatabase> T database(final String dbName, final String password,
+                                                          final Class clazz) {
         if (TextUtils.isEmpty(dbName)) return null;
 
         // 获取数据库名
@@ -60,7 +60,7 @@ public final class GreenManager {
                 DevLogger.eTag(TAG, e, "database");
             }
         }
-        GreenDatabase greenDatabase = sDatabaseMaps.get(databaseName);
+        AbsGreenDatabase greenDatabase = sDatabaseMaps.get(databaseName);
         if (greenDatabase != null) {
             T db = null;
             try {
@@ -78,15 +78,15 @@ public final class GreenManager {
     // ========
 
     // 数据库创建接口
-    private static final GreenDatabase.Create CREATE = new GreenDatabase.Create() {
+    private static final AbsGreenDatabase.Create CREATE = new AbsGreenDatabase.Create() {
 
         @Override
         public String getDatabaseName(String dbName, String password, Class clazz) {
-            return GreenDatabase.createDatabaseName(dbName, StringUtils.isNotEmpty(password));
+            return AbsGreenDatabase.createDatabaseName(dbName, StringUtils.isNotEmpty(password));
         }
 
         @Override
-        public GreenDatabase create(String dbName, String password, Class clazz) {
+        public AbsGreenDatabase create(String dbName, String password, Class clazz) {
             if (clazz == NoteDatabase.class) {
                 return NoteDatabase.database(dbName, password);
             }
