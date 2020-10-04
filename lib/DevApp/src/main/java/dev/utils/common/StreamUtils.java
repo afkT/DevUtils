@@ -38,12 +38,7 @@ public final class StreamUtils {
             JCLogUtils.eTag(TAG, e, "inputToOutputStream");
             return null;
         } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(inputStream);
         }
     }
 
@@ -123,12 +118,7 @@ public final class StreamUtils {
             JCLogUtils.eTag(TAG, e, "bytesToOutputStream");
             return null;
         } finally {
-            if (baos != null) {
-                try {
-                    baos.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(baos);
         }
     }
 

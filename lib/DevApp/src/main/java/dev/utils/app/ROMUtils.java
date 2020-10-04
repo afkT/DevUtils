@@ -12,6 +12,8 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 import java.util.Properties;
 
+import dev.utils.common.CloseUtils;
+
 /**
  * detail: ROM 相关工具类
  * @author Ttt
@@ -335,12 +337,7 @@ public final class ROMUtils {
             }
         } catch (Throwable ignore) {
         } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (Exception ignore) {
-                }
-            }
+            CloseUtils.closeIOQuietly(input);
         }
         return "";
     }
