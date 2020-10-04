@@ -24,6 +24,7 @@ import java.io.Closeable;
 import java.io.File;
 import java.io.Flushable;
 import java.io.OutputStream;
+import java.io.Writer;
 import java.util.Locale;
 
 import dev.utils.app.AnalysisRecordUtils;
@@ -1371,6 +1372,26 @@ public final class DevHelper {
      */
     public DevHelper flushCloseIOQuietly(final OutputStream outputStream) {
         CloseUtils.flushCloseIOQuietly(outputStream);
+        return this;
+    }
+
+    /**
+     * 将缓冲区数据输出并关闭流
+     * @param writer {@link Writer}
+     * @return {@link DevHelper}
+     */
+    public DevHelper flushCloseIO(final Writer writer) {
+        CloseUtils.flushCloseIO(writer);
+        return this;
+    }
+
+    /**
+     * 安静将缓冲区数据输出并关闭流
+     * @param writer {@link Writer}
+     * @return {@link DevHelper}
+     */
+    public DevHelper flushCloseIOQuietly(final Writer writer) {
+        CloseUtils.flushCloseIOQuietly(writer);
         return this;
     }
 

@@ -3,6 +3,7 @@ package dev.utils.common;
 import java.io.Closeable;
 import java.io.Flushable;
 import java.io.OutputStream;
+import java.io.Writer;
 
 import dev.utils.JCLogUtils;
 
@@ -118,6 +119,40 @@ public final class CloseUtils {
         }
         try {
             outputStream.close();
+        } catch (Exception e) {
+        }
+    }
+
+    /**
+     * 将缓冲区数据输出并关闭流
+     * @param writer {@link Writer}
+     */
+    public static void flushCloseIO(final Writer writer) {
+        if (writer == null) return;
+        try {
+            writer.flush();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "flushCloseIO");
+        }
+        try {
+            writer.close();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "flushCloseIO");
+        }
+    }
+
+    /**
+     * 安静将缓冲区数据输出并关闭流
+     * @param writer {@link Writer}
+     */
+    public static void flushCloseIOQuietly(final Writer writer) {
+        if (writer == null) return;
+        try {
+            writer.flush();
+        } catch (Exception e) {
+        }
+        try {
+            writer.close();
         } catch (Exception e) {
         }
     }
