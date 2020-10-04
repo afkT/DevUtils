@@ -23,6 +23,7 @@ import androidx.fragment.app.DialogFragment;
 import java.io.Closeable;
 import java.io.File;
 import java.io.Flushable;
+import java.io.OutputStream;
 import java.util.Locale;
 
 import dev.utils.app.AnalysisRecordUtils;
@@ -1350,6 +1351,26 @@ public final class DevHelper {
      */
     public DevHelper flushQuietly(final Flushable... flushables) {
         CloseUtils.flushQuietly(flushables);
+        return this;
+    }
+
+    /**
+     * 将缓冲区数据输出并关闭流
+     * @param outputStream {@link OutputStream}
+     * @return {@link DevHelper}
+     */
+    public DevHelper flushCloseIO(final OutputStream outputStream) {
+        CloseUtils.flushCloseIO(outputStream);
+        return this;
+    }
+
+    /**
+     * 安静将缓冲区数据输出并关闭流
+     * @param outputStream {@link OutputStream}
+     * @return {@link DevHelper}
+     */
+    public DevHelper flushCloseIOQuietly(final OutputStream outputStream) {
+        CloseUtils.flushCloseIOQuietly(outputStream);
         return this;
     }
 

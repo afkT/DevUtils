@@ -2,6 +2,7 @@ package dev.utils.common;
 
 import java.io.Closeable;
 import java.io.Flushable;
+import java.io.OutputStream;
 
 import dev.utils.JCLogUtils;
 
@@ -82,6 +83,42 @@ public final class CloseUtils {
                 } catch (Exception ignore) {
                 }
             }
+        }
+    }
+
+    // =
+
+    /**
+     * 将缓冲区数据输出并关闭流
+     * @param outputStream {@link OutputStream}
+     */
+    public static void flushCloseIO(final OutputStream outputStream) {
+        if (outputStream == null) return;
+        try {
+            outputStream.flush();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "flushCloseIO");
+        }
+        try {
+            outputStream.close();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "flushCloseIO");
+        }
+    }
+
+    /**
+     * 安静将缓冲区数据输出并关闭流
+     * @param outputStream {@link OutputStream}
+     */
+    public static void flushCloseIOQuietly(final OutputStream outputStream) {
+        if (outputStream == null) return;
+        try {
+            outputStream.flush();
+        } catch (Exception e) {
+        }
+        try {
+            outputStream.close();
+        } catch (Exception e) {
         }
     }
 }
