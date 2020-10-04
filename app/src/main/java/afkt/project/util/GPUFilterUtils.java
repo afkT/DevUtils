@@ -38,7 +38,7 @@ public final class GPUFilterUtils {
             } catch (Exception e) {
                 DevLogger.eTag(TAG, e, "getGPUImageToneCurveFilter");
             } finally {
-                CloseUtils.closeIO(inputStream);
+                CloseUtils.closeIOQuietly(inputStream);
             }
         }
         return null;

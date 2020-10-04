@@ -208,7 +208,7 @@ public final class UriUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "copyByUri");
         } finally {
-            CloseUtils.closeIO(is);
+            CloseUtils.closeIOQuietly(is);
         }
         return null;
     }
