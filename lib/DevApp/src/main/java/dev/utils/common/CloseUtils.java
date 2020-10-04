@@ -1,6 +1,7 @@
 package dev.utils.common;
 
 import java.io.Closeable;
+import java.io.Flushable;
 
 import dev.utils.JCLogUtils;
 
@@ -43,6 +44,41 @@ public final class CloseUtils {
             if (closeable != null) {
                 try {
                     closeable.close();
+                } catch (Exception ignore) {
+                }
+            }
+        }
+    }
+
+    // =
+
+    /**
+     * 将缓冲区数据输出
+     * @param flushables Flushable[]
+     */
+    public static void flush(final Flushable... flushables) {
+        if (flushables == null) return;
+        for (Flushable flushable : flushables) {
+            if (flushable != null) {
+                try {
+                    flushable.flush();
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "flush");
+                }
+            }
+        }
+    }
+
+    /**
+     * 安静将缓冲区数据输出
+     * @param flushables Flushable[]
+     */
+    public static void flushQuietly(final Flushable... flushables) {
+        if (flushables == null) return;
+        for (Flushable flushable : flushables) {
+            if (flushable != null) {
+                try {
+                    flushable.flush();
                 } catch (Exception ignore) {
                 }
             }
