@@ -5,7 +5,7 @@ import android.os.Looper;
 
 import java.util.HashMap;
 
-import dev.utils.JCLogUtils;
+import dev.utils.LogPrintUtils;
 
 /**
  * detail: Handler 工具类
@@ -184,7 +184,7 @@ public final class HandlerUtils {
                 sRunnableMaps.put(key, runnable);
                 return true;
             } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "put");
+                LogPrintUtils.eTag(TAG, e, "put");
             }
         }
         return false;
@@ -201,7 +201,7 @@ public final class HandlerUtils {
                 sRunnableMaps.remove(key);
                 return true;
             } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "remove");
+                LogPrintUtils.eTag(TAG, e, "remove");
             }
         }
         return false;

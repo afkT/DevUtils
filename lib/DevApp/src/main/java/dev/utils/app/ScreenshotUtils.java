@@ -17,7 +17,19 @@ import dev.utils.common.FileUtils;
  * detail: 截图监听工具类
  * @author Ttt
  * <pre>
- *     截图使用 {@link CapturePictureUtils}
+ *     View 截图使用 {@link CapturePictureUtils}
+ *     <p></p>
+ *     {@link ScreenshotUtils} 使用方法
+ *     ScreenshotUtils.getInstance().setListener(new ScreenshotUtils.OnScreenshotListener() {
+ *             @Override
+ *             public void onScreenshot(Uri contentUri, long rowId, String dataPath, long dateTaken) {
+ *             }
+ *         }).startListen();
+ *     <p></p>
+ *     注意事项
+ *     1.部分机型会多次触发 onChange 需自行处理
+ *     2.目前 onChecker 使用了时间、文件前缀校验, 可自行新增截图宽高校验
+ *     3.支持自定义 ScreenshotChecker 截图校验逻辑接口, 可自行实现特殊校验需求
  * </pre>
  */
 public final class ScreenshotUtils {
@@ -183,7 +195,7 @@ public final class ScreenshotUtils {
     // 开始监听时间
     private long                 mStartListenTime;
     // 是否判断文件名前缀
-    private boolean              mCheckPrefix;
+    private boolean              mCheckPrefix = true;
     // 截图校验接口
     private ScreenshotChecker    mScreenshotChecker;
     // 截图校验成功回调接口
