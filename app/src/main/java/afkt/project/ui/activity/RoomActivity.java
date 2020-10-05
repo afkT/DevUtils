@@ -39,6 +39,8 @@ import gen.greendao.NotePictureDao;
  *     @see <a href="https://www.jianshu.com/p/5eab05820e9f"/>
  *     Room 持久性库
  *     @see <a href="https://developer.android.com/training/data-storage/room"/>
+ *     Room 的使用以及数据库的升级
+ *     @see <a href="https://www.jianshu.com/p/9333d607fb91"/>
  * </pre>
  */
 public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {

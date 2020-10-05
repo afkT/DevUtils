@@ -153,9 +153,7 @@ public final class ZipUtils {
             zos = new ZipOutputStream(new FileOutputStream(zipFile));
             return zipFile(resFile, "", zos, comment);
         } finally {
-            if (zos != null) {
-                CloseUtils.closeIOQuietly(zos);
-            }
+            CloseUtils.closeIOQuietly(zos);
         }
     }
 
