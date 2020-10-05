@@ -905,7 +905,7 @@ public final class CapturePictureUtils {
             Bitmap[] bitmaps = new Bitmap[itemCount];
             // 获取布局管理器 ( 判断横竖布局 )
             GridLayoutManager gridLayoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
-            boolean vertical = (gridLayoutManager.getOrientation() == 1);
+            boolean vertical = (gridLayoutManager.getOrientation() == RecyclerView.VERTICAL);
             // 获取一共多少列
             int spanCount = gridLayoutManager.getSpanCount();
             // 获取倍数 ( 行数 )
@@ -1110,7 +1110,7 @@ public final class CapturePictureUtils {
             Bitmap[] bitmaps = new Bitmap[itemCount];
             // 获取布局管理器 ( 判断横竖布局 )
             LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-            boolean vertical = (linearLayoutManager.getOrientation() == 1);
+            boolean vertical = (linearLayoutManager.getOrientation() == RecyclerView.VERTICAL);
             if (vertical) {
 
                 // ===========
