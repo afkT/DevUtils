@@ -49,12 +49,7 @@ public final class CloneUtils {
             JCLogUtils.eTag(TAG, e, "serializableToBytes");
             return null;
         } finally {
-            if (oos != null) {
-                try {
-                    oos.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(oos);
         }
     }
 
