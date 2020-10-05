@@ -1184,11 +1184,11 @@ public final class FileUtils {
     public static String readFile(final InputStream inputStream, final String encode) {
         if (inputStream != null) {
             try {
-                InputStreamReader isr = null;
+                InputStreamReader isr;
                 if (encode != null) {
-                    new InputStreamReader(inputStream, encode);
+                    isr = new InputStreamReader(inputStream, encode);
                 } else {
-                    new InputStreamReader(inputStream);
+                    isr = new InputStreamReader(inputStream);
                 }
                 BufferedReader br = new BufferedReader(isr);
                 StringBuilder builder = new StringBuilder();

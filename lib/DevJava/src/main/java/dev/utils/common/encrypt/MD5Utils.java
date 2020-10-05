@@ -6,6 +6,7 @@ import java.security.DigestInputStream;
 import java.security.MessageDigest;
 
 import dev.utils.JCLogUtils;
+import dev.utils.common.CloseUtils;
 import dev.utils.common.ConvertUtils;
 import dev.utils.common.StringUtils;
 
@@ -147,12 +148,7 @@ public final class MD5Utils {
             JCLogUtils.eTag(TAG, e, "getFileMD5");
             return null;
         } finally {
-            if (dis != null) {
-                try {
-                    dis.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(dis);
         }
     }
 }

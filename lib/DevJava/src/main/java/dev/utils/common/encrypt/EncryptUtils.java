@@ -20,6 +20,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 import dev.utils.JCLogUtils;
 import dev.utils.common.ArrayUtils;
+import dev.utils.common.CloseUtils;
 import dev.utils.common.ConvertUtils;
 import dev.utils.common.StringUtils;
 import dev.utils.common.cipher.Base64;
@@ -178,12 +179,7 @@ public final class EncryptUtils {
             JCLogUtils.eTag(TAG, e, "encryptMD5File");
             return null;
         } finally {
-            if (dis != null) {
-                try {
-                    dis.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(dis);
         }
     }
 

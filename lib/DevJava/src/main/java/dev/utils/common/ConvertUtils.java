@@ -763,12 +763,7 @@ public final class ConvertUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "bytesToObject");
         } finally {
-            if (ois != null) {
-                try {
-                    ois.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(ois);
         }
         return null;
     }
@@ -789,12 +784,7 @@ public final class ConvertUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "objectToBytes");
         } finally {
-            if (oos != null) {
-                try {
-                    oos.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(oos);
         }
         return null;
     }

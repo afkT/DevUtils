@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.zip.CRC32;
 
 import dev.utils.JCLogUtils;
+import dev.utils.common.CloseUtils;
 
 /**
  * detail: CRC 工具类
@@ -76,12 +77,7 @@ public final class CRCUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileCRC32");
         } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(is);
         }
         return null;
     }

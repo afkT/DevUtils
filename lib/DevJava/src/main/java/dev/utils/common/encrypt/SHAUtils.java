@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.security.MessageDigest;
 
 import dev.utils.JCLogUtils;
+import dev.utils.common.CloseUtils;
 import dev.utils.common.ConvertUtils;
 import dev.utils.common.StringUtils;
 
@@ -151,12 +152,7 @@ public final class SHAUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getFileSHA");
         } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                }
-            }
+            CloseUtils.closeIOQuietly(is);
         }
         return null;
     }
