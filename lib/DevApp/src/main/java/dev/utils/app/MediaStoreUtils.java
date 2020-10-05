@@ -361,17 +361,17 @@ public final class MediaStoreUtils {
     public static boolean insertImage(final Uri uri, final Uri inputUri, final Bitmap.CompressFormat format,
                                       @IntRange(from = 0, to = 100) final int quality) {
         if (uri == null || inputUri == null || format == null) return false;
-        OutputStream outputStream = null;
-        ParcelFileDescriptor inputDescriptor = null;
+        OutputStream os = null;
+        ParcelFileDescriptor fileDescriptor = null;
         try {
-            outputStream = ResourceUtils.openOutputStream(uri);
-            inputDescriptor = ResourceUtils.openFileDescriptor(inputUri, "r");
-            Bitmap bitmap = ImageUtils.decodeFileDescriptor(inputDescriptor.getFileDescriptor());
-            return ImageUtils.saveBitmapToStream(bitmap, outputStream, format, quality);
+            os = ResourceUtils.openOutputStream(uri);
+            fileDescriptor = ResourceUtils.openFileDescriptor(inputUri, "r");
+            Bitmap bitmap = ImageUtils.decodeFileDescriptor(fileDescriptor.getFileDescriptor());
+            return ImageUtils.saveBitmapToStream(bitmap, os, format, quality);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "insertImage");
         } finally {
-            CloseUtils.closeIOQuietly(outputStream, inputDescriptor);
+            CloseUtils.closeIOQuietly(os, fileDescriptor);
         }
         return false;
     }
@@ -416,16 +416,16 @@ public final class MediaStoreUtils {
      */
     public static boolean insertMedia(final Uri uri, final Uri inputUri) {
         if (uri == null || inputUri == null) return false;
-        OutputStream outputStream = null;
-        InputStream inputStream = null;
+        OutputStream os = null;
+        InputStream is = null;
         try {
-            outputStream = ResourceUtils.openOutputStream(uri);
-            inputStream = ResourceUtils.openInputStream(inputUri);
-            return FileIOUtils.copyLarge(inputStream, outputStream) != -1;
+            os = ResourceUtils.openOutputStream(uri);
+            is = ResourceUtils.openInputStream(inputUri);
+            return FileIOUtils.copyLarge(is, os) != -1;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "insertMedia");
         } finally {
-            CloseUtils.closeIOQuietly(inputStream, outputStream);
+            CloseUtils.closeIOQuietly(is, os);
         }
         return false;
     }
@@ -574,8 +574,8 @@ public final class MediaStoreUtils {
      */
     public static int[] getImageWidthHeight(final Uri uri) {
         try {
-            InputStream inputStream = ResourceUtils.openInputStream(uri);
-            return BitmapUtils.getBitmapWidthHeight(inputStream);
+            InputStream is = ResourceUtils.openInputStream(uri);
+            return BitmapUtils.getBitmapWidthHeight(is);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getImageWidthHeight");
         }
