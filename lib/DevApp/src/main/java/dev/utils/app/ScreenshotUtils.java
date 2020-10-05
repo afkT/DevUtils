@@ -22,7 +22,7 @@ import dev.utils.common.FileUtils;
  *     {@link ScreenshotUtils} 使用方法
  *     ScreenshotUtils.getInstance().setListener(new ScreenshotUtils.OnScreenshotListener() {
  *             @Override
- *             public void onScreenshot(Uri contentUri, long rowId, String dataPath, long dateTaken) {
+ *             public void onScreenshot(Uri contentUri, boolean selfChange, long rowId, String dataPath, long dateTaken) {
  *             }
  *         }).startListen();
  *     <p></p>
@@ -71,11 +71,13 @@ public final class ScreenshotUtils {
         /**
          * 截图校验成功回调
          * @param contentUri 监听 Uri
+         * @param selfChange True if this is a self-change notification
          * @param rowId      数据 id
          * @param dataPath   数据路径 ( 截图路径 )
          * @param dateTaken  截图时间
          */
-        void onScreenshot(Uri contentUri, long rowId, String dataPath, long dateTaken);
+        void onScreenshot(Uri contentUri, boolean selfChange,
+                          long rowId, String dataPath, long dateTaken);
     }
 
     /**
@@ -348,7 +350,7 @@ public final class ScreenshotUtils {
      * @param sortOrder  排序方式
      * @param checker    搜索成功则会触发 {@link ScreenshotChecker#onChecker} 方法
      */
-    public static void handleMediaContentChange(final Uri contentUri, boolean selfChange,
+    public static void handleMediaContentChange(final Uri contentUri, final boolean selfChange,
                                                 final String sortOrder, final ScreenshotChecker checker) {
         Cursor cursor = ContentResolverUtils.query(contentUri, MEDIA_PROJECTIONS,
                 null, null, sortOrder);
@@ -452,7 +454,7 @@ public final class ScreenshotUtils {
 
         // 触发回调
         if (listener != null) {
-            listener.onScreenshot(contentUri, rowId, dataPath, dateTaken);
+            listener.onScreenshot(contentUri, selfChange, rowId, dataPath, dateTaken);
         }
         return true;
     }
