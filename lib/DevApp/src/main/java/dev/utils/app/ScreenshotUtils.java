@@ -2,11 +2,16 @@ package dev.utils.app;
 
 import android.content.ContentResolver;
 import android.database.ContentObserver;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.MediaStore;
 
+import java.util.Arrays;
+
 import dev.utils.LogPrintUtils;
+import dev.utils.common.CloseUtils;
+import dev.utils.common.FileUtils;
 
 /**
  * detail: 截图监听工具类
@@ -58,7 +63,7 @@ public final class ScreenshotUtils {
          * @param dataPath   数据路径 ( 截图路径 )
          * @param dateTaken  截图时间
          */
-        void onScreenshot(Uri contentUri, long rowId, String dataPath, String dateTaken);
+        void onScreenshot(Uri contentUri, long rowId, String dataPath, long dateTaken);
     }
 
     /**
@@ -83,7 +88,7 @@ public final class ScreenshotUtils {
          * @param dateTaken  截图时间
          */
         void onChecker(Uri contentUri, boolean selfChange,
-                       long rowId, String dataPath, String dateTaken);
+                       long rowId, String dataPath, long dateTaken);
     }
 
     // ===========
@@ -177,6 +182,8 @@ public final class ScreenshotUtils {
 
     // 开始监听时间
     private long                 mStartListenTime;
+    // 是否判断文件名前缀
+    private boolean              mCheckPrefix;
     // 截图校验接口
     private ScreenshotChecker    mScreenshotChecker;
     // 截图校验成功回调接口
@@ -188,6 +195,24 @@ public final class ScreenshotUtils {
      */
     public long getStartListenTime() {
         return mStartListenTime;
+    }
+
+    /**
+     * 是否判断文件名前缀
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isCheckPrefix() {
+        return mCheckPrefix;
+    }
+
+    /**
+     * 设置是否判断文件名前缀
+     * @param checkPrefix 是否判断文件名前缀
+     * @return {@link ScreenshotUtils}
+     */
+    public ScreenshotUtils setCheckPrefix(final boolean checkPrefix) {
+        this.mCheckPrefix = checkPrefix;
+        return this;
     }
 
     /**
@@ -279,6 +304,8 @@ public final class ScreenshotUtils {
             MediaStore.Images.ImageColumns.DATA,
             MediaStore.Images.ImageColumns.DATE_TAKEN,
     };
+    // 排序字段
+    public static final  String   SORT_ORDER        = MediaStore.Images.ImageColumns.DATE_ADDED + " desc limit 1";
     // 截图关键字前缀判断
     public static final  String   PREFIX_SCREEN     = "screen";
     // 检测间隔时间
@@ -288,12 +315,133 @@ public final class ScreenshotUtils {
     public static final ScreenshotChecker CHECKER = new ScreenshotChecker() {
         @Override
         public void onChange(Uri contentUri, boolean selfChange) {
-
+            handleMediaContentChange(contentUri, selfChange, SORT_ORDER, this);
         }
 
         @Override
-        public void onChecker(Uri contentUri, boolean selfChange, long rowId, String dataPath, String dateTaken) {
-
+        public void onChecker(Uri contentUri, boolean selfChange, long rowId, String dataPath, long dateTaken) {
+            handleMediaChecker(
+                    contentUri, selfChange, rowId, dataPath, dateTaken,
+                    getInstance().mStartListenTime, INTERVAL_TIME,
+                    getInstance().isCheckPrefix(), PREFIX_SCREEN,
+                    getInstance().getListener()
+            );
         }
     };
+
+    /**
+     * 内容变更处理
+     * @param contentUri 监听 Uri
+     * @param selfChange True if this is a self-change notification
+     * @param sortOrder  排序方式
+     * @param checker    搜索成功则会触发 {@link ScreenshotChecker#onChecker} 方法
+     */
+    public static void handleMediaContentChange(final Uri contentUri, boolean selfChange,
+                                                final String sortOrder, final ScreenshotChecker checker) {
+        Cursor cursor = ContentResolverUtils.query(contentUri, MEDIA_PROJECTIONS,
+                null, null, sortOrder);
+        try {
+            if (cursor == null) {
+                LogPrintUtils.dTag(TAG, "搜索失败 uri: " + contentUri
+                        + ", projection: " + Arrays.toString(MEDIA_PROJECTIONS));
+                return;
+            }
+            if (!cursor.moveToFirst()) {
+                LogPrintUtils.dTag(TAG, "搜索成功, 但无符合条件数据 uri: " + contentUri
+                        + ", projection: " + Arrays.toString(MEDIA_PROJECTIONS));
+                return;
+            }
+            // 获取数据
+            long rowId = cursor.getLong(
+                    cursor.getColumnIndex(MediaStore.Images.ImageColumns._ID)
+            );
+            String data = cursor.getString(
+                    cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
+            );
+            long dateTaken = cursor.getLong(
+                    cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATE_TAKEN)
+            );
+            if (checker != null) {
+                checker.onChecker(
+                        contentUri, selfChange, rowId, data, dateTaken
+                );
+            }
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "handleMediaContentChange");
+        } finally {
+            CloseUtils.closeIOQuietly(cursor);
+        }
+    }
+
+    /**
+     * 内容校验处理
+     * @param contentUri      监听 Uri
+     * @param selfChange      True if this is a self-change notification
+     * @param rowId           数据 id
+     * @param dataPath        数据路径 ( 截图路径 )
+     * @param dateTaken       截图时间
+     * @param startListenTime 开始监听时间 ( 防止出现开始监听时间前的资源 )
+     * @param intervalTime    文件创建时间间隔
+     * @param checkPrefix     是否判断文件名前缀
+     * @param keyWork         文件名前缀判断
+     * @param listener        校验成功则会触发 {@link OnScreenshotListener#onScreenshot} 方法
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean handleMediaChecker(final Uri contentUri, final boolean selfChange,
+                                             final long rowId, final String dataPath, final long dateTaken,
+                                             final long startListenTime, final long intervalTime,
+                                             final boolean checkPrefix, final String keyWork,
+                                             final OnScreenshotListener listener) {
+        // ===========
+        // = 时间判断 =
+        // ===========
+
+        if (dateTaken <= 0) {
+            LogPrintUtils.dTag(TAG, "创建时间异常 dateTaken: " + dateTaken);
+            return false;
+        }
+
+        if (dateTaken < startListenTime) { // 创建时间小于开始监听时间
+            LogPrintUtils.dTag(TAG, "开始监听时间校验不通过 dateTaken: " + dateTaken
+                    + ", startListenTime: " + startListenTime
+                    + ", diff: " + (dateTaken - startListenTime)
+            );
+            return false;
+        }
+
+        // 获取当前时间
+        long curTime = System.currentTimeMillis();
+        if (curTime - dateTaken > intervalTime) { // 文件创建时间超过间隔时间
+            LogPrintUtils.dTag(TAG, "文件间隔时间校验不通过 dateTaken: " + dateTaken
+                    + ", curTime: " + curTime + ", intervalTime: " + intervalTime
+                    + ", diff: " + (curTime - dateTaken)
+            );
+            return false;
+        }
+
+        // ===========
+        // = 文件前缀 =
+        // ===========
+
+        if (checkPrefix) { // 如果检验前缀才进行处理
+            String fileName = FileUtils.getFileName(dataPath);
+            // 前缀判断结果
+            boolean checkResult = (
+                    fileName != null && keyWork != null
+                            && fileName.toLowerCase().startsWith(keyWork.toLowerCase())
+            );
+            if (!checkResult) {
+                LogPrintUtils.dTag(TAG, "文件前缀校验不通过 dataPath: " + dataPath
+                        + ", fileName: " + fileName + ", keyWork: " + keyWork
+                );
+                return false;
+            }
+        }
+
+        // 触发回调
+        if (listener != null) {
+            listener.onScreenshot(contentUri, rowId, dataPath, dateTaken);
+        }
+        return true;
+    }
 }
