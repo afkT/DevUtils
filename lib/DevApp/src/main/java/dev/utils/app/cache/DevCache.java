@@ -188,13 +188,7 @@ public final class DevCache {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "put");
         } finally {
-            if (bw != null) {
-                try {
-                    bw.flush();
-                } catch (Exception e) {
-                }
-            }
-            CloseUtils.closeIOQuietly(bw);
+            CloseUtils.flushCloseIOQuietly(bw);
             mCache.put(file);
         }
         return false;
@@ -387,13 +381,7 @@ public final class DevCache {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "put byte[]");
         } finally {
-            if (fos != null) {
-                try {
-                    fos.flush();
-                } catch (Exception e) {
-                }
-            }
-            CloseUtils.closeIOQuietly(fos);
+            CloseUtils.flushCloseIOQuietly(fos);
             mCache.put(file);
         }
         return false;

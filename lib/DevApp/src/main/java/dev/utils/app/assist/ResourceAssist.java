@@ -1504,8 +1504,7 @@ public final class ResourceAssist {
             fos.write(bytes);
             // 关闭流
             CloseUtils.closeIOQuietly(baos, is);
-            fos.flush();
-            CloseUtils.closeIOQuietly(fos);
+            CloseUtils.flushCloseIOQuietly(fos);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "saveAssetsFormFile");
@@ -1539,8 +1538,7 @@ public final class ResourceAssist {
             fos.write(bytes);
             // 关闭流
             CloseUtils.closeIOQuietly(baos, is);
-            fos.flush();
-            CloseUtils.closeIOQuietly(fos);
+            CloseUtils.flushCloseIOQuietly(fos);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "saveRawFormFile");
