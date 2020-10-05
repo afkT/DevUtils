@@ -1,6 +1,7 @@
 package afkt.project.base;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +29,7 @@ import dev.utils.app.AppUtils;
 import dev.utils.app.CrashUtils;
 import dev.utils.app.PathUtils;
 import dev.utils.app.ResourceUtils;
+import dev.utils.app.ScreenshotUtils;
 import dev.utils.app.TextViewUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.logger.DevLogger;
@@ -286,5 +288,25 @@ public class BaseApplication extends MultiDexApplication {
                 RetrofitUtils.getInstance().initRetrofit().resetAPIService();
             }
         });
+
+        // 截图监听
+        ScreenshotUtils.getInstance().setListener(new ScreenshotUtils.OnScreenshotListener() {
+            @Override
+            public void onScreenshot(Uri contentUri, boolean selfChange, long rowId, String dataPath, long dateTaken) {
+                StringBuilder builder = new StringBuilder();
+                builder.append("截图监听回调");
+                builder.append(StringUtils.NEW_LINE_STR);
+                builder.append("contentUri: " + contentUri.toString());
+                builder.append(StringUtils.NEW_LINE_STR);
+                builder.append("selfChange: " + selfChange);
+                builder.append(StringUtils.NEW_LINE_STR);
+                builder.append("rowId: " + rowId);
+                builder.append(StringUtils.NEW_LINE_STR);
+                builder.append("dataPath: " + dataPath);
+                builder.append(StringUtils.NEW_LINE_STR);
+                builder.append("dateTaken: " + dateTaken + " ( " + DateUtils.formatTime(dateTaken, DateUtils.yyyyMMddHHmmss) + " )");
+                DevLogger.d(builder.toString());
+            }
+        }).startListen();
     }
 }
