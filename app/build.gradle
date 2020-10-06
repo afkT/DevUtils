@@ -3,6 +3,14 @@ apply from: rootProject.file(files.app_gradle)
 android {
     defaultConfig {
         applicationId "afkt.project"
+
+        // 指定 room.schemaLocation 生成的文件路径
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation":
+                                      "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     // https://greenrobot.org/greendao/documentation/
