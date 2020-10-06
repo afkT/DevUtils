@@ -28,8 +28,9 @@ import dev.utils.common.FileUtils;
  *     <p></p>
  *     注意事项
  *     1.部分机型会多次触发 onChange 需自行处理
- *     2.目前 onChecker 使用了时间、文件前缀校验, 可自行新增截图宽高校验
+ *     2.目前 onChecker 使用时间 + 文件前缀校验, 可自行新增截图宽高校验
  *     3.支持自定义 ScreenshotChecker 截图校验逻辑接口, 可自行实现特殊校验需求
+ *     4.如截图无触发先检查读写权限、以及 notifyForDescendants 传参为 true 处理
  * </pre>
  */
 public final class ScreenshotUtils {
@@ -145,7 +146,7 @@ public final class ScreenshotUtils {
      */
     private boolean registerContentObserver(final ContentResolver resolver, final Handler handler,
                                             final boolean notifyForDescendants) {
-        if (resolver == null || handler == null) return false;
+        if (resolver == null) return false;
         // 注销内容观察者
         unregisterContentObserver(resolver);
         // 创建内容观察者
