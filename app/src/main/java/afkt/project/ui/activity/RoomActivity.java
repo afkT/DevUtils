@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;
 
-import org.greenrobot.greendao.query.DeleteQuery;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -18,30 +16,23 @@ import java.util.List;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
-import afkt.project.database.green.GreenManager;
-import afkt.project.database.green.module.note.bean.Note;
-import afkt.project.database.green.module.note.bean.NotePicture;
-import afkt.project.database.green.module.note.bean.NoteType;
+import afkt.project.database.room.RoomManager;
+import afkt.project.database.room.module.note.bean.Note;
+import afkt.project.database.room.module.note.bean.NoteAndPicture;
+import afkt.project.database.room.module.note.bean.NotePicture;
+import afkt.project.database.room.module.note.bean.NoteType;
 import afkt.project.databinding.ActivityDatabaseBinding;
-import afkt.project.ui.adapter.GreenDaoAdapter;
+import afkt.project.ui.adapter.RoomAdapter;
 import dev.assist.PageAssist;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.common.ChineseUtils;
+import dev.utils.common.CollectionUtils;
 import dev.utils.common.RandomUtils;
-import gen.greendao.NotePictureDao;
 
 /**
  * detail: Room 使用
  * @author Ttt
- * <pre>
- *     Room VS GreenDao
- *     @see <a href="https://www.jianshu.com/p/5eab05820e9f"/>
- *     Room 持久性库
- *     @see <a href="https://developer.android.com/training/data-storage/room"/>
- *     Room 的使用以及数据库的升级
- *     @see <a href="https://www.jianshu.com/p/9333d607fb91"/>
- * </pre>
  */
 public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
 
@@ -57,7 +48,7 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
         ToastTintUtils.info("侧滑可进行删除, 长按拖动位置");
 
         // 初始化布局管理器、适配器
-        binding.vidAdbRefresh.setAdapter(new GreenDaoAdapter())
+        binding.vidAdbRefresh.setAdapter(new RoomAdapter())
                 .setPageAssist(new PageAssist<>(0, 8));
         // 加载数据
         loadData(true);
@@ -108,7 +99,7 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
              */
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                GreenDaoAdapter adapter = binding.vidAdbRefresh.getAdapter();
+                RoomAdapter adapter = binding.vidAdbRefresh.getAdapter();
                 int fromPosition = viewHolder.getAdapterPosition();
                 int toPosition = target.getAdapterPosition();
                 Collections.swap(adapter.getData(), fromPosition, toPosition);
@@ -125,18 +116,19 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
                 if (direction == ItemTouchHelper.LEFT || direction == ItemTouchHelper.RIGHT) {
-                    GreenDaoAdapter adapter = binding.vidAdbRefresh.getAdapter();
-                    Note note = adapter.getData().remove(position);
+                    RoomAdapter adapter = binding.vidAdbRefresh.getAdapter();
+                    NoteAndPicture nap = adapter.getData().remove(position);
                     adapter.notifyItemRemoved(position);
                     // 删除文章
-//                    GreenManager.getNoteDatabase().getNoteDao().delete(note);
-                    GreenManager.getNoteDatabase().getNoteDao().deleteByKey(note.getId());
-                    // 删除文章图片
-                    DeleteQuery<NotePicture> deleteQuery = GreenManager.getNoteDatabase().getNotePictureDao()
-                            .queryBuilder()
-                            .where(NotePictureDao.Properties.NoteId.eq(note.getId()))
-                            .buildDelete();
-                    deleteQuery.executeDeleteWithoutDetachingEntities();
+                    RoomManager.getNoteDatabase().getNoteDao().deleteNote(nap.note);
+                    // 删除图片
+                    if (CollectionUtils.isNotEmpty(nap.pictures)) {
+                        int deleteCount = RoomManager.getNoteDatabase().getNoteDao()
+                                .deleteNotePictures(
+                                        CollectionUtils.toArrayT(nap.pictures)
+                                );
+                        DevLogger.dTag(TAG, "删除图片数量: " + deleteCount);
+                    }
                 }
             }
         });
@@ -145,15 +137,16 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
         binding.vidAdbAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int addNumber; // 添加数据量
                 if (binding.vidAdbRefresh.getAdapter().getData().isEmpty()) { // 不存在数据
-                    randomData(13);
+                    randomData(addNumber = 13);
                     // 加载数据
                     loadData(true);
                 } else {
-                    randomData(RandomUtils.getRandom(2, 6));
-                    // 进行提示
-                    ToastTintUtils.success("添加成功, 上拉加载数据");
+                    randomData(addNumber = RandomUtils.getRandom(2, 6));
                 }
+                // 进行提示
+                ToastTintUtils.success(String.format("添加 %s 条数据成功, 上拉加载数据", addNumber));
             }
         });
     }
@@ -167,22 +160,22 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
      */
     private void randomData() {
         Note note = new Note();
-        note.setDate(new Date());
-        note.setText(ChineseUtils.randomWord(RandomUtils.getRandom(6, 15)));
-        note.setComment(ChineseUtils.randomWord(RandomUtils.getRandom(12, 50)));
-        note.setType(NoteType.values()[RandomUtils.getRandom(0, 3)]);
+        note.date = new Date();
+        note.text = ChineseUtils.randomWord(RandomUtils.getRandom(6, 15));
+        note.comment = ChineseUtils.randomWord(RandomUtils.getRandom(12, 50));
+        note.type = NoteType.values()[RandomUtils.getRandom(0, 3)];
         // 添加数据
-        Long noteId = GreenManager.getNoteDatabase().getNoteDao().insert(note);
+        Long noteId = RoomManager.getNoteDatabase().getNoteDao().insertNote(note);
         // 不等于文本
-        if (note.getType() != NoteType.TEXT) {
+        if (note.type != NoteType.TEXT) {
             List<NotePicture> pictures = new ArrayList<>();
             for (int i = 0, len = RandomUtils.getRandom(1, 5); i < len; i++) {
-                NotePicture notePicture = new NotePicture();
-                notePicture.setNoteId(noteId);
-                notePicture.setPicture(String.format("https://picsum.photos/id/%s/30%s", RandomUtils.getRandom(5, 21), RandomUtils.getRandom(0, 10)));
+                String pictureUrl = String.format("https://picsum.photos/id/%s/30%s", RandomUtils.getRandom(5, 21), RandomUtils.getRandom(0, 10));
+                // 创建 NotePicture
+                NotePicture notePicture = new NotePicture(noteId, pictureUrl);
                 pictures.add(notePicture);
             }
-            GreenManager.getNoteDatabase().getNotePictureDao().insertInTx(pictures);
+            RoomManager.getNoteDatabase().getNoteDao().insertNotePictures(pictures);
         }
     }
 
@@ -204,17 +197,11 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
      */
     private void loadData(boolean refresh) {
         PageAssist pageAssist = binding.vidAdbRefresh.getPageAssist();
-        GreenDaoAdapter adapter = binding.vidAdbRefresh.getAdapter();
+        RoomAdapter adapter = binding.vidAdbRefresh.getAdapter();
         // 刷新则重置页数
         if (refresh) pageAssist.reset();
 
-        List<Note> notes = offsetLimitCalculate(refresh);
-
-//        // 正常只需要这个, 没有添加功能则不需要计算偏差值
-//        List<Note> notes = GreenManager.getNoteDatabase().getNoteDao()
-//                .queryBuilder()
-//                .offset(pageAssist.getPageNum() * pageAssist.getPageSize())
-//                .limit(pageAssist.getPageSize()).list();
+        List<NoteAndPicture> notes = offsetLimitCalculate(refresh);
 
         // 存在数据则累加页数
         if (!notes.isEmpty()) pageAssist.nextPage();
@@ -241,7 +228,7 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
      * </pre>
      * @param refresh 是否刷新
      */
-    private List<Note> offsetLimitCalculate(boolean refresh) {
+    private List<NoteAndPicture> offsetLimitCalculate(boolean refresh) {
         int offset, limit;
 
         int pageSize = binding.vidAdbRefresh.getPageAssist().getPageSize();
@@ -267,9 +254,7 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
         }
         DevLogger.dTag(TAG, "offset: " + offset + ", limit: " + limit);
         // 请求数据
-        return GreenManager.getNoteDatabase().getNoteDao()
-                .queryBuilder()
-                .offset(offset)
-                .limit(limit).list();
+        return RoomManager.getNoteDatabase().getNoteDao()
+                .getNoteAndPictureLists(limit, offset);
     }
 }

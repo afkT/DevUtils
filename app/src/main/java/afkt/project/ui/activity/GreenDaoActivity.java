@@ -34,16 +34,6 @@ import gen.greendao.NotePictureDao;
 /**
  * detail: GreenDao 使用
  * @author Ttt
- * <pre>
- *     官方文档
- *     @see <a href="https://greenrobot.org/greendao/documentation/modelling-entities"/>
- *     SQL 语句写到累了? 试试 GreenDAO
- *     @see <a href="https://www.jianshu.com/p/11bdd9d761e6"/>
- *     Android GreenDao 数据库
- *     @see <a href="https://www.jianshu.com/p/26c60d59e76d"/>
- *     Android ORM 框架 : GreenDao 使用详解 ( 进阶篇 )
- *     @see <a href="https://blog.csdn.net/speedystone/article/details/74193053"/>
- * </pre>
  */
 public class GreenDaoActivity extends BaseActivity<ActivityDatabaseBinding> {
 
@@ -147,15 +137,16 @@ public class GreenDaoActivity extends BaseActivity<ActivityDatabaseBinding> {
         binding.vidAdbAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int addNumber; // 添加数据量
                 if (binding.vidAdbRefresh.getAdapter().getData().isEmpty()) { // 不存在数据
-                    randomData(13);
+                    randomData(addNumber = 13);
                     // 加载数据
                     loadData(true);
                 } else {
-                    randomData(RandomUtils.getRandom(2, 6));
-                    // 进行提示
-                    ToastTintUtils.success("添加成功, 上拉加载数据");
+                    randomData(addNumber = RandomUtils.getRandom(2, 6));
                 }
+                // 进行提示
+                ToastTintUtils.success(String.format("添加 %s 条数据成功, 上拉加载数据", addNumber));
             }
         });
     }

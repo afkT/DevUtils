@@ -14,6 +14,16 @@ import dev.utils.common.StringUtils;
 /**
  * detail: GreenDao 管理类
  * @author Ttt
+ * <pre>
+ *     官方文档
+ *     @see <a href="https://greenrobot.org/greendao/documentation/modelling-entities"/>
+ *     SQL 语句写到累了? 试试 GreenDAO
+ *     @see <a href="https://www.jianshu.com/p/11bdd9d761e6"/>
+ *     Android GreenDao 数据库
+ *     @see <a href="https://www.jianshu.com/p/26c60d59e76d"/>
+ *     Android ORM 框架 : GreenDao 使用详解 ( 进阶篇 )
+ *     @see <a href="https://blog.csdn.net/speedystone/article/details/74193053"/>
+ * </pre>
  */
 public final class GreenManager {
 
