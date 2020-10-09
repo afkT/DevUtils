@@ -1035,18 +1035,20 @@ public final class FileUtils {
      */
     public static boolean saveFile(final File file, final byte[] data) {
         if (file != null && data != null) {
+            FileOutputStream fos = null;
+            BufferedOutputStream bos = null;
             try {
                 // 防止文件夹没创建
                 createFolder(getDirName(file));
                 // 写入文件
-                FileOutputStream fos = new FileOutputStream(file);
-                BufferedOutputStream bos = new BufferedOutputStream(fos);
+                fos = new FileOutputStream(file);
+                bos = new BufferedOutputStream(fos);
                 bos.write(data);
-                bos.close();
-                fos.close();
                 return true;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "saveFile");
+            } finally {
+                CloseUtils.closeIOQuietly(bos, fos);
             }
         }
         return false;
@@ -1073,18 +1075,20 @@ public final class FileUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean appendFile(final File file, final byte[] data) {
+        FileOutputStream fos = null;
+        BufferedOutputStream bos = null;
         try {
             // 防止文件夹没创建
             createFolder(getDirName(file));
             // 写入文件
-            FileOutputStream fos = new FileOutputStream(file, true);
-            BufferedOutputStream bos = new BufferedOutputStream(fos);
+            fos = new FileOutputStream(file, true);
+            bos = new BufferedOutputStream(fos);
             bos.write(data);
-            bos.close();
-            fos.close();
             return true;
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "appendFile");
+        } finally {
+            CloseUtils.closeIOQuietly(bos, fos);
         }
         return false;
     }
@@ -1107,15 +1111,17 @@ public final class FileUtils {
      */
     public static byte[] readFileBytes(final File file) {
         if (file != null && file.exists()) {
+            FileInputStream fis = null;
             try {
-                FileInputStream fis = new FileInputStream(file);
+                fis = new FileInputStream(file);
                 int length = fis.available();
                 byte[] buffer = new byte[length];
                 fis.read(buffer);
-                fis.close();
                 return buffer;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "readFileBytes");
+            } finally {
+                CloseUtils.closeIOQuietly(fis);
             }
         }
         return null;
@@ -1132,10 +1138,11 @@ public final class FileUtils {
                 int length = inputStream.available();
                 byte[] buffer = new byte[length];
                 inputStream.read(buffer);
-                inputStream.close();
                 return buffer;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "readFileBytes");
+            } finally {
+                CloseUtils.closeIOQuietly(inputStream);
             }
         }
         return null;
@@ -1183,6 +1190,7 @@ public final class FileUtils {
      */
     public static String readFile(final InputStream inputStream, final String encode) {
         if (inputStream != null) {
+            BufferedReader br = null;
             try {
                 InputStreamReader isr;
                 if (encode != null) {
@@ -1190,17 +1198,17 @@ public final class FileUtils {
                 } else {
                     isr = new InputStreamReader(inputStream);
                 }
-                BufferedReader br = new BufferedReader(isr);
+                br = new BufferedReader(isr);
                 StringBuilder builder = new StringBuilder();
                 String line;
                 while ((line = br.readLine()) != null) {
                     builder.append(line);
                 }
-                isr.close();
-                br.close();
                 return builder.toString();
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "readFile");
+            } finally {
+                CloseUtils.closeIOQuietly(br);
             }
         }
         return null;

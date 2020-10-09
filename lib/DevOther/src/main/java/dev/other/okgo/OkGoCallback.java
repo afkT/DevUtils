@@ -169,7 +169,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
         DevLogger.dTag(TAG, "响应成功, 转换数据: " + url);
         String json = new StringConvert().convertResponse(response);
         DevLogger.json(json);
-        response.close();
+        response.close(); // CloseUtils.closeIO(response);
         return json;
     }
 
