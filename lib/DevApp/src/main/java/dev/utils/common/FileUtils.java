@@ -1313,14 +1313,14 @@ public final class FileUtils {
             }
         }
         // 复制文件
-        int byteread = 0; // 读取的字节数
+        int len = 0; // 读取的字节数
         InputStream is = inputStream;
         OutputStream os = null;
         try {
             os = new FileOutputStream(destFile);
             byte[] buffer = new byte[1024];
-            while ((byteread = is.read(buffer)) != -1) {
-                os.write(buffer, 0, byteread);
+            while ((len = is.read(buffer)) != -1) {
+                os.write(buffer, 0, len);
             }
             return true;
         } catch (Exception e) {
@@ -1374,15 +1374,15 @@ public final class FileUtils {
             }
         }
         // 复制文件
-        int byteread = 0; // 读取的字节数
+        int len = 0; // 读取的字节数
         InputStream is = null;
         OutputStream os = null;
         try {
             is = new FileInputStream(srcFile);
             os = new FileOutputStream(destFile);
             byte[] buffer = new byte[1024];
-            while ((byteread = is.read(buffer)) != -1) {
-                os.write(buffer, 0, byteread);
+            while ((len = is.read(buffer)) != -1) {
+                os.write(buffer, 0, len);
             }
             return true;
         } catch (Exception e) {
