@@ -251,7 +251,7 @@ public final class FilePartUtils {
      * @param end            分片字节结束索引
      * @param destFolderPath 存储目标文件夹地址
      * @param partName       分片文件名
-     * @return 指定位置数据
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean fileSplitSave(final String filePath, final long start, final long end,
                                         final String destFolderPath, final String partName) {
@@ -265,7 +265,7 @@ public final class FilePartUtils {
      * @param end            分片字节结束索引
      * @param destFolderPath 存储目标文件夹地址
      * @param partName       分片文件名
-     * @return 指定位置数据
+     * @return {@code true} success, {@code false} fail
      */
     public static boolean fileSplitSave(final File file, final long start, final long end,
                                         final String destFolderPath, final String partName) {
@@ -289,5 +289,227 @@ public final class FilePartUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * 文件拆分并存储
+     * @param filePath       文件路径
+     * @param item           {@link FilePartItem}
+     * @param destFolderPath 存储目标文件夹地址
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitSave(final String filePath, final FilePartItem item,
+                                        final String destFolderPath) {
+        return fileSplitSave(FileUtils.getFile(filePath), item, destFolderPath);
+    }
+
+    /**
+     * 文件拆分并存储
+     * @param file           文件
+     * @param item           {@link FilePartItem}
+     * @param destFolderPath 存储目标文件夹地址
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitSave(final File file, final FilePartItem item,
+                                        final String destFolderPath) {
+        if (file == null || item == null) return false;
+        return fileSplitSave(file, item.start, item.end, destFolderPath,
+                item.getPartName(FileUtils.getFileName(file)));
+    }
+
+    /**
+     * 文件拆分并存储
+     * @param filePath       文件路径
+     * @param assist         {@link FilePartAssist}
+     * @param destFolderPath 存储目标文件夹地址
+     * @param partIndex      分片索引
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitSave(final String filePath, final FilePartAssist assist,
+                                        final String destFolderPath, final int partIndex) {
+        return fileSplitSave(FileUtils.getFile(filePath), assist, destFolderPath, partIndex);
+    }
+
+    /**
+     * 文件拆分并存储
+     * @param file           文件
+     * @param assist         {@link FilePartAssist}
+     * @param destFolderPath 存储目标文件夹地址
+     * @param partIndex      分片索引
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitSave(final File file, final FilePartAssist assist,
+                                        final String destFolderPath, final int partIndex) {
+        if (file == null || assist == null) return false;
+        return fileSplitSave(file, assist.getFilePartItem(partIndex), destFolderPath);
+    }
+
+    // =
+
+    /**
+     * 文件拆分并存储
+     * @param filePath       文件路径
+     * @param destFolderPath 存储目标文件夹地址
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitSaves(final String filePath, final String destFolderPath) {
+        return fileSplitSaves(FileUtils.getFile(filePath), destFolderPath);
+    }
+
+    /**
+     * 文件拆分并存储
+     * @param file           文件
+     * @param destFolderPath 存储目标文件夹地址
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitSaves(final File file, final String destFolderPath) {
+        return fileSplitSaves(file, getFilePartAssist(file), destFolderPath);
+    }
+
+    /**
+     * 文件拆分并存储
+     * @param filePath       文件路径
+     * @param assist         {@link FilePartAssist}
+     * @param destFolderPath 存储目标文件夹地址
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitSaves(final String filePath, final FilePartAssist assist,
+                                         final String destFolderPath) {
+        return fileSplitSaves(FileUtils.getFile(filePath), assist, destFolderPath);
+    }
+
+    /**
+     * 文件拆分并存储
+     * @param file           文件
+     * @param assist         {@link FilePartAssist}
+     * @param destFolderPath 存储目标文件夹地址
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitSaves(final File file, final FilePartAssist assist,
+                                         final String destFolderPath) {
+        if (file == null || assist == null) return false;
+        if (assist.getPartCount() <= 0) return false;
+        String fileName = FileUtils.getFileName(file);
+        if (fileName == null) return false;
+        for (int i = 0, len = assist.getPartCount(); i < len; i++) {
+            FilePartItem item = assist.getFilePartItem(i);
+            if (item != null) {
+                boolean result = fileSplitSave(file, item.start, item.end, destFolderPath,
+                        item.getPartName(fileName));
+                if (!result) return false;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // ===========
+    // = 分片删除 =
+    // ===========
+
+    /**
+     * 删除拆分文件
+     * @param filePath       文件路径
+     * @param item           {@link FilePartItem}
+     * @param destFolderPath 待删除目标文件夹地址
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitDelete(final String filePath, final FilePartItem item,
+                                          final String destFolderPath) {
+        return fileSplitDelete(FileUtils.getFile(filePath), item, destFolderPath);
+    }
+
+    /**
+     * 删除拆分文件
+     * @param file           文件
+     * @param item           {@link FilePartItem}
+     * @param destFolderPath 待删除目标文件夹地址
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitDelete(final File file, final FilePartItem item,
+                                          final String destFolderPath) {
+        if (file == null || item == null) return false;
+        return FileUtils.deleteFile(
+                FileUtils.getFile(destFolderPath, item.getPartName(FileUtils.getFileName(file)))
+        );
+    }
+
+    /**
+     * 删除拆分文件
+     * @param filePath       文件路径
+     * @param assist         {@link FilePartAssist}
+     * @param destFolderPath 待删除目标文件夹地址
+     * @param partIndex      分片索引
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitDelete(final String filePath, final FilePartAssist assist,
+                                          final String destFolderPath, final int partIndex) {
+        return fileSplitDelete(FileUtils.getFile(filePath), assist, destFolderPath, partIndex);
+    }
+
+    /**
+     * 删除拆分文件
+     * @param file           文件
+     * @param assist         {@link FilePartAssist}
+     * @param destFolderPath 待删除目标文件夹地址
+     * @param partIndex      分片索引
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitDelete(final File file, final FilePartAssist assist,
+                                          final String destFolderPath, final int partIndex) {
+        if (file == null || assist == null) return false;
+        return fileSplitDelete(file, assist.getFilePartItem(partIndex), destFolderPath);
+    }
+
+    // =
+
+    /**
+     * 删除拆分文件
+     * @param filePath       文件路径
+     * @param destFolderPath 待删除目标文件夹地址
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitDeletes(final String filePath, final String destFolderPath) {
+        return fileSplitDeletes(FileUtils.getFile(filePath), destFolderPath);
+    }
+
+    /**
+     * 删除拆分文件
+     * @param file           文件
+     * @param destFolderPath 待删除目标文件夹地址
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitDeletes(final File file, final String destFolderPath) {
+        return fileSplitDeletes(file, getFilePartAssist(file), destFolderPath);
+    }
+
+    /**
+     * 删除拆分文件
+     * @param filePath       文件路径
+     * @param assist         {@link FilePartAssist}
+     * @param destFolderPath 待删除目标文件夹地址
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitDeletes(final String filePath, final FilePartAssist assist,
+                                           final String destFolderPath) {
+        return fileSplitDeletes(FileUtils.getFile(filePath), assist, destFolderPath);
+    }
+
+    /**
+     * 删除拆分文件
+     * @param file           文件
+     * @param assist         {@link FilePartAssist}
+     * @param destFolderPath 待删除目标文件夹地址
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitDeletes(final File file, final FilePartAssist assist,
+                                           final String destFolderPath) {
+        if (file == null || assist == null) return false;
+        if (assist.getPartCount() <= 0) return false;
+        for (int i = 0, len = assist.getPartCount(); i < len; i++) {
+            fileSplitDelete(file, assist.getFilePartItem(i), destFolderPath);
+        }
+        return true;
     }
 }
