@@ -1,7 +1,5 @@
 package dev.utils.common.file;
 
-import java.io.File;
-
 /**
  * detail: 文件分片信息 Item
  * @author Ttt
@@ -73,27 +71,5 @@ public class FilePartItem {
      */
     public String getPartName(final String fileName) {
         return FilePartUtils.getPartName(fileName, partIndex);
-    }
-
-    // ===========
-    // = 文件拆分 =
-    // ===========
-
-    /**
-     * 文件拆分
-     * @param filePath 文件路径
-     * @return 指定位置数据
-     */
-    public byte[] fileSplit(final String filePath) {
-        return FilePartUtils.fileSplit(filePath, this);
-    }
-
-    /**
-     * 文件拆分
-     * @param file 文件
-     * @return 指定位置数据
-     */
-    public byte[] fileSplit(final File file) {
-        return FilePartUtils.fileSplit(file, this);
     }
 }

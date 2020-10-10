@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
+import java.util.List;
 
 import dev.utils.JCLogUtils;
 import dev.utils.common.CloseUtils;
@@ -13,6 +15,17 @@ import dev.utils.common.FileUtils;
 /**
  * detail: 文件分片工具类
  * @author Ttt
+ * <pre>
+ *     当下载大文件时, 如果网络不稳定或者程序异常退出, 会导致下载失败, 甚至重试多次仍无法完成下载
+ *     可以使用断点续传下载:
+ *     断点续传下载将需要下载的文件分成若干个分片分别下载, 所有分片都下载完成后, 将所有分片合并成完整的文件
+ *     也可以用于断点续传上传 ( 分片续传 )
+ *     <p></p>
+ *     RandomAccessFile 简介与使用
+ *     @see <a href="https://blog.csdn.net/qq_31615049/article/details/88562892"/>
+ *     <p></p>
+ *     可用 {@link FileUtils#getFileMD5(File)} 进行校验分片合成后与源文件 MD5 值是否一致
+ * </pre>
  */
 public final class FilePartUtils {
 
@@ -172,6 +185,9 @@ public final class FilePartUtils {
 
     /**
      * 文件拆分
+     * <pre>
+     *     慎用, 防止占用太多内存
+     * </pre>
      * @param file  文件
      * @param start 分片字节开始索引
      * @param end   分片字节结束索引
@@ -388,7 +404,7 @@ public final class FilePartUtils {
     public static boolean fileSplitSaves(final File file, final FilePartAssist assist,
                                          final String destFolderPath) {
         if (file == null || assist == null) return false;
-        if (assist.getPartCount() <= 0) return false;
+        if (!assist.existsPart()) return false;
         String fileName = FileUtils.getFileName(file);
         if (fileName == null) return false;
         for (int i = 0, len = assist.getPartCount(); i < len; i++) {
@@ -506,10 +522,118 @@ public final class FilePartUtils {
     public static boolean fileSplitDeletes(final File file, final FilePartAssist assist,
                                            final String destFolderPath) {
         if (file == null || assist == null) return false;
-        if (assist.getPartCount() <= 0) return false;
+        if (!assist.existsPart()) return false;
         for (int i = 0, len = assist.getPartCount(); i < len; i++) {
             fileSplitDelete(file, assist.getFilePartItem(i), destFolderPath);
         }
         return true;
+    }
+
+    // ===========
+    // = 分片合并 =
+    // ===========
+
+    /**
+     * 分片合并
+     * @param filePath 文件路径
+     * @param paths    待合并文件 ( 按顺序 )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitMergePaths(final String filePath, final List<String> paths) {
+        return fileSplitMergePaths(FileUtils.getFile(filePath), paths);
+    }
+
+    /**
+     * 分片合并
+     * @param file  文件
+     * @param paths 待合并文件 ( 按顺序 )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitMergePaths(final File file, final List<String> paths) {
+        if (file == null || paths == null) return false;
+        return fileSplitMergeFiles(file, FileUtils.convertFiles(paths));
+    }
+
+    /**
+     * 分片合并
+     * @param filePath 文件路径
+     * @param files    待合并文件 ( 按顺序 )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitMergeFiles(final String filePath, final List<File> files) {
+        return fileSplitMergeFiles(FileUtils.getFile(filePath), files);
+    }
+
+    /**
+     * 分片合并
+     * @param file  文件
+     * @param files 待合并文件 ( 按顺序 )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitMergeFiles(final File file, final List<File> files) {
+        if (file == null || files == null) return false;
+        if (files.isEmpty()) return false;
+        FileUtils.deleteFile(file);
+        RandomAccessFile raf = null;
+        RandomAccessFile reader = null;
+        try {
+            raf = new RandomAccessFile(file, "rw");
+            for (int i = 0, len = files.size(); i < len; i++) {
+                reader = new RandomAccessFile(files.get(i), "r");
+                byte[] buffer = new byte[1024];
+                int readLen = 0; // 读取的字节数
+                while ((readLen = reader.read(buffer)) != -1) {
+                    raf.write(buffer, 0, readLen);
+                }
+                CloseUtils.closeIOQuietly(reader);
+            }
+            return true;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "fileSplitMergeFiles");
+            FileUtils.deleteFile(file);
+        } finally {
+            CloseUtils.closeIOQuietly(reader, raf);
+        }
+        return false;
+    }
+
+    /**
+     * 分片合并
+     * @param filePath       文件路径
+     * @param assist         {@link FilePartAssist}
+     * @param destFolderPath 分片所在文件夹地址
+     * @param fileName       原文件名
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitMerge(final String filePath, final FilePartAssist assist,
+                                         final String destFolderPath, final String fileName) {
+        return fileSplitMerge(FileUtils.getFile(filePath), assist, destFolderPath, fileName);
+    }
+
+    /**
+     * 分片合并
+     * @param file           文件
+     * @param assist         {@link FilePartAssist}
+     * @param destFolderPath 分片所在文件夹地址
+     * @param fileName       原文件名
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean fileSplitMerge(final File file, final FilePartAssist assist,
+                                         final String destFolderPath, final String fileName) {
+        if (file == null || assist == null || destFolderPath == null || fileName == null)
+            return false;
+        if (!assist.existsPart()) return false;
+        List<File> files = new ArrayList<>();
+        try {
+            for (int i = 0, len = assist.getPartCount(); i < len; i++) {
+                FilePartItem item = assist.getFilePartItems().get(i);
+                File partFile = new File(destFolderPath, item.getPartName(fileName));
+                files.add(partFile);
+            }
+            return fileSplitMergeFiles(file, files);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "fileSplitMerge");
+        }
+        return false;
     }
 }

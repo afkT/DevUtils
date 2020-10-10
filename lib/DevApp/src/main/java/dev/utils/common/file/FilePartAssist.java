@@ -54,7 +54,7 @@ public final class FilePartAssist {
             // 余数 ( 全部加到最后一个分片 )
             long remainder = fileByteLength - partByteLength * partCount;
             // 当前分片字节累加总数
-            int total = 0;
+            long total = 0;
             if (partCount > 1) { // 如果分片大于 1 个, 则处理前面的数量
                 for (int i = 0, len = partCount - 1; i < len; i++) {
                     FilePartItem item = new FilePartItem(
@@ -142,18 +142,5 @@ public final class FilePartAssist {
      */
     public FilePartItem getFilePartItem(final int partIndex) {
         return CollectionUtils.get(filePartItems, partIndex);
-    }
-
-    // ===========
-    // = 文件拆分 =
-    // ===========
-
-    /**
-     * 文件拆分
-     * @param partIndex 分片索引
-     * @return 指定位置数据
-     */
-    public byte[] fileSplit(final int partIndex) {
-        return FilePartUtils.fileSplit(file, getFilePartItem(partIndex));
     }
 }
