@@ -23,8 +23,8 @@ public final class FilePartUtils {
 
     // 日志 TAG
     private static final String TAG         = FilePartUtils.class.getSimpleName();
-    // 文件后缀
-    public static final  String PART_SUFFIX = "_filePart_";
+    // 分片文件后缀
+    public static final  String PART_SUFFIX = "_part_";
     // 分片数量
     public static final  int    PART_COUNT  = 10;
     // 分片片段允许最小值 byte ( 1mb )
@@ -105,15 +105,8 @@ public final class FilePartUtils {
      */
     public static FilePartAssist getFilePartAssist(final File file,
                                                    final int partCount, final long minLength) {
-        // 原始文件总字节
-        long fileByteLength = FileUtils.getFileLength(file);
-        // 分片总字节
-        long partByteLength = fileByteLength / partCount;
-        if (partByteLength >= minLength) {
-            return new FilePartAssist(file, partCount);
-        } else {
-            return new FilePartAssist(file, 1);
-        }
+        boolean filePart = isFilePart(file, partCount, minLength);
+        return new FilePartAssist(file, filePart ? partCount : 1);
     }
 
     // =
@@ -187,7 +180,7 @@ public final class FilePartUtils {
      * @return 指定位置数据
      */
     public static byte[] fileSplit(final File file, final long start, final long end) {
-        if (file != null && start >= 0 && end > start) {
+        if (file != null && file.exists() && start >= 0 && end > start) {
             RandomAccessFile raf = null;
             try {
                 raf = new RandomAccessFile(file, "r");
@@ -260,7 +253,7 @@ public final class FilePartUtils {
      * @param filePath       文件路径
      * @param start          分片字节开始索引
      * @param end            分片字节结束索引
-     * @param destFolderPath 目标文件夹地址
+     * @param destFolderPath 存储目标文件夹地址
      * @param partName       分片文件名
      * @return 指定位置数据
      */
@@ -274,13 +267,13 @@ public final class FilePartUtils {
      * @param file           文件
      * @param start          分片字节开始索引
      * @param end            分片字节结束索引
-     * @param destFolderPath 目标文件夹地址
+     * @param destFolderPath 存储目标文件夹地址
      * @param partName       分片文件名
      * @return 指定位置数据
      */
     public static boolean fileSplitSave(final File file, final long start, final long end,
                                         final String destFolderPath, final String partName) {
-        if (file != null && start >= 0 && end > start) {
+        if (file != null && file.exists() && start >= 0 && end > start) {
             FileInputStream fis = null;
             FileChannel inputChannel = null;
             FileOutputStream fos = null;

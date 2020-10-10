@@ -1334,7 +1334,7 @@ public final class FileUtils {
     /**
      * 复制文件夹
      * @param srcFolderPath  待复制的文件夹地址
-     * @param destFolderPath 目标文件夹地址
+     * @param destFolderPath 存储目标文件夹地址
      * @param overlay        如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
@@ -1345,7 +1345,7 @@ public final class FileUtils {
     /**
      * 复制文件夹
      * @param srcFolderPath  待复制的文件夹地址
-     * @param destFolderPath 目标文件夹地址
+     * @param destFolderPath 存储目标文件夹地址
      * @param sourcePath     源文件地址 ( 用于保递归留记录 )
      * @param overlay        如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
@@ -1428,7 +1428,7 @@ public final class FileUtils {
     /**
      * 移动 ( 剪切 ) 文件夹
      * @param srcFilePath  待移动的文件夹地址
-     * @param destFilePath 目标文件夹地址
+     * @param destFilePath 存储目标文件夹地址
      * @param overlay      如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
