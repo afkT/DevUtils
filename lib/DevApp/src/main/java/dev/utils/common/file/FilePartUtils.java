@@ -5,10 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
-import java.util.Arrays;
 
 import dev.utils.JCLogUtils;
-import dev.utils.common.ArrayUtils;
 import dev.utils.common.CloseUtils;
 import dev.utils.common.FileUtils;
 
@@ -184,9 +182,7 @@ public final class FilePartUtils {
             RandomAccessFile raf = null;
             try {
                 raf = new RandomAccessFile(file, "r");
-                if (end > raf.length()) {
-                    return null;
-                }
+                if (end > raf.length()) return null;
                 raf.seek(start);
                 byte[] bytes = new byte[(int) (end - start)];
                 raf.read(bytes);
@@ -293,27 +289,5 @@ public final class FilePartUtils {
             }
         }
         return false;
-    }
-
-    // =======
-    // = 删除 =
-    // =======
-
-    public static void main(String[] args) throws Exception {
-        String filePath = "D:\\测试文件夹\\c.mp4";
-        String folderPath = "D:\\测试文件夹\\file\\";
-        String partName = "c.mp4_filePart_0";
-
-//        FilePartAssist assist = getFilePartAssist(filePath, 10, MIN_LENGTH);
-//
-//        byte[] bytes = fileSplit(new File(filePath), 0, 158595 + 3);
-        boolean resultAA = fileSplitSave(new File(filePath), 0, FileUtils.readFileBytes(filePath).length, folderPath, getPartName("c.mp4", 0));
-
-        byte[] bytes = FileUtils.readFileBytes(filePath);
-        byte[] asd = ArrayUtils.subarray(bytes, 0, bytes.length);
-        String a = Arrays.toString(asd);
-        String b = Arrays.toString(FileUtils.readFileBytes(new File(folderPath, partName)));
-        boolean result = a.equals(b);
-        String q = "";
     }
 }
