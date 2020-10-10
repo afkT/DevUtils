@@ -35,15 +35,6 @@ public class FilePartItem {
     // ===============
 
     /**
-     * 获取分片文件名 ( 后缀索引拼接 )
-     * @param fileName 原始文件名
-     * @return 分片文件名
-     */
-    public String getPartName(final String fileName) {
-        return FilePartUtils.getPartName(fileName, partIndex);
-    }
-
-    /**
      * 判断是否 First Item
      * @return {@code true} yes, {@code false} no
      */
@@ -60,11 +51,28 @@ public class FilePartItem {
     }
 
     /**
-     * 是否只有一个分片文件
+     * 是否存在分片
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean existsPart() {
+        return partCount != 0;
+    }
+
+    /**
+     * 是否只有一个分片
      * @return {@code true} yes, {@code false} no
      */
     public boolean isOnlyOne() {
         return partCount == 1;
+    }
+
+    /**
+     * 获取分片文件名 ( 后缀索引拼接 )
+     * @param fileName 原始文件名
+     * @return 分片文件名
+     */
+    public String getPartName(final String fileName) {
+        return FilePartUtils.getPartName(fileName, partIndex);
     }
 
     // ===========

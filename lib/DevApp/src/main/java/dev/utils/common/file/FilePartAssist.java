@@ -46,7 +46,7 @@ public final class FilePartAssist {
      */
     public FilePartAssist(final File file, final int partCount) {
         this.file = file;
-        if (file != null && partCount > 0) {
+        if (file != null && file.exists() && partCount > 0) {
             // 原始文件总字节
             long fileByteLength = file.length();
             // 分片总字节
@@ -111,7 +111,15 @@ public final class FilePartAssist {
     }
 
     /**
-     * 是否只有一个分片文件
+     * 是否存在分片
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean existsPart() {
+        return getPartCount() != 0;
+    }
+
+    /**
+     * 是否只有一个分片
      * @return {@code true} yes, {@code false} no
      */
     public boolean isOnlyOne() {
