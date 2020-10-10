@@ -103,6 +103,15 @@ public final class FilePartAssist {
     }
 
     /**
+     * 获取指定索引文件分片信息
+     * @param partIndex 分片索引
+     * @return {@link FilePartItem}
+     */
+    public FilePartItem getFilePartItem(final int partIndex) {
+        return CollectionUtils.get(filePartItems, partIndex);
+    }
+
+    /**
      * 获取分片总数
      * @return 分片总数
      */
@@ -133,14 +142,5 @@ public final class FilePartAssist {
      */
     public String getPartName(final int partIndex) {
         return FilePartUtils.getPartName(getFileName(), partIndex);
-    }
-
-    /**
-     * 获取指定索引文件分片信息
-     * @param partIndex 分片索引
-     * @return {@link FilePartItem}
-     */
-    public FilePartItem getFilePartItem(final int partIndex) {
-        return CollectionUtils.get(filePartItems, partIndex);
     }
 }

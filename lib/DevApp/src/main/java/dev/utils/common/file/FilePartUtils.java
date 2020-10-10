@@ -24,7 +24,7 @@ import dev.utils.common.FileUtils;
  *     RandomAccessFile 简介与使用
  *     @see <a href="https://blog.csdn.net/qq_31615049/article/details/88562892"/>
  *     <p></p>
- *     可用 {@link FileUtils#getFileMD5(File)} 进行校验分片合成后与源文件 MD5 值是否一致
+ *     可用 {@link FileUtils#getFileMD5(File)} 进行校验分片合并后与源文件 MD5 值是否一致
  * </pre>
  */
 public final class FilePartUtils {
@@ -38,7 +38,7 @@ public final class FilePartUtils {
     public static final  String PART_SUFFIX = "_part_";
     // 分片数量
     public static final  int    PART_COUNT  = 10;
-    // 分片片段允许最小值 byte ( 1mb )
+    // 分片片段允许最小值 byte ( 默认 1mb )
     public static final  long   MIN_LENGTH  = 1048576L;
 
     // ===============
@@ -186,7 +186,7 @@ public final class FilePartUtils {
     /**
      * 文件拆分
      * <pre>
-     *     慎用, 防止占用太多内存
+     *     慎用, 防止内存溢出
      * </pre>
      * @param file  文件
      * @param start 分片字节开始索引
