@@ -1,7 +1,7 @@
 package afkt.project.base.constants;
 
 /**
- * detail:  Key 常量
+ * detail: Key 常量
  * @author Ttt
  */
 public final class KeyConstants {

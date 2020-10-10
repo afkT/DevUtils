@@ -257,6 +257,68 @@ public final class FileUtils {
     }
 
     /**
+     * Path List 转 File List
+     * @param paths Path List
+     * @return File List
+     */
+    public static List<File> convertFiles(final List<String> paths) {
+        return convertFiles(paths, true);
+    }
+
+    /**
+     * Path List 转 File List
+     * @param paths  Path List
+     * @param ignore 是否忽略 null
+     * @return File List
+     */
+    public static List<File> convertFiles(final List<String> paths, final boolean ignore) {
+        List<File> files = new ArrayList<>();
+        if (paths != null && !paths.isEmpty()) {
+            for (int i = 0, len = paths.size(); i < len; i++) {
+                String path = paths.get(i);
+                if (path == null) {
+                    if (!ignore) files.add(null);
+                    continue;
+                }
+                files.add(new File(path));
+            }
+        }
+        return files;
+    }
+
+    /**
+     * File List 转 Path List
+     * @param files File List
+     * @return Path List
+     */
+    public static List<String> convertPaths(final List<File> files) {
+        return convertPaths(files, true);
+    }
+
+    /**
+     * File List 转 Path List
+     * @param files  File List
+     * @param ignore 是否忽略 null
+     * @return Path List
+     */
+    public static List<String> convertPaths(final List<File> files, final boolean ignore) {
+        List<String> paths = new ArrayList<>();
+        if (files != null && !files.isEmpty()) {
+            for (int i = 0, len = files.size(); i < len; i++) {
+                File file = files.get(i);
+                if (file == null) {
+                    if (!ignore) paths.add(null);
+                    continue;
+                }
+                paths.add(file.getAbsolutePath());
+            }
+        }
+        return paths;
+    }
+
+    // =
+
+    /**
      * 获取文件路径
      * @param file 文件
      * @return 文件路径

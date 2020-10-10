@@ -8,7 +8,7 @@ import dev.utils.common.ChineseUtils;
 import dev.utils.common.RandomUtils;
 
 /**
- * detail:  评价 Item
+ * detail: 评价 Item
  * @author Ttt
  */
 public class EvaluateItem {
