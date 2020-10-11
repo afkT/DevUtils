@@ -31,7 +31,7 @@
 
 ### DevBase - Base ( Activity、Fragment )、MVP、MVVM 基类库
 
-- [Code](https://github.com/afkT/DevUtils/blob/master/lib/DevBase/src/main/java/dev/base)
+- [README](https://github.com/afkT/DevUtils/blob/master/lib/DevBase)
 
 - [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevBase/CHANGELOG.md)
 

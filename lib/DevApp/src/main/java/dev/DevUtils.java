@@ -43,8 +43,8 @@ import dev.utils.common.FileUtils;
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md"/>
  *     DevAssist Api
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/README.md"/>
- *     DevBase Code
- *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevBase/src/main/java/dev/base"/>
+ *     DevBase README
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevBase"/>
  *     DevJava Api
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md"/>
  *     DevWidget Api
