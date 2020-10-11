@@ -1,6 +1,25 @@
 Change Log
 ==========
 
+Version 2.0.6 *(2020-10-XX)*
+----------------------------
+
+* `[Add]` ScreenshotUtils 截图监听工具类
+
+* `[Add]` FilePartUtils 文件分片工具类
+
+* `[Add]` BitmapUtils#getVideoThumbnail
+
+* `[Add]` DevHelper#flush、flushQuietly、flushCloseIO、flushCloseIOQuietly
+
+* `[Add]` CloseUtils#flush、flushQuietly、flushCloseIO、flushCloseIOQuietly
+
+* `[Add]` FileUtils#convertFiles、convertPaths、flushCloseIO、flushCloseIOQuietly
+
+* `[Refactor]` 修改整个库 Closeable Close 代码内部调用 CloseUtils
+
+* `[Update]` SpannableStringUtils 修改为 SpanUtils
+
 Version 2.0.5 *(2020-09-30)*
 ----------------------------
 

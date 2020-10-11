@@ -952,7 +952,7 @@ public final class FileUtils {
     }
 
     /**
-     * 字节数转合适内存大小 保留 3 位小数 (%.位数f)
+     * 字节数转合适内存大小 保留 3 位小数
      * @param byteSize 字节数
      * @return 合适内存大小字符串
      */
@@ -961,7 +961,7 @@ public final class FileUtils {
     }
 
     /**
-     * 字节数转合适内存大小 保留 number 位小数 (%.位数f)
+     * 字节数转合适内存大小 保留 number 位小数
      * @param number   保留小数位数
      * @param byteSize 字节数
      * @return 合适内存大小字符串

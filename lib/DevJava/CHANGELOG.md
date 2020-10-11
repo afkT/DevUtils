@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 1.1.9 *(2020-10-XX)*
+----------------------------
+
+* `[Add]` FilePartUtils 文件分片工具类
+
+* `[Add]` CloseUtils#flush、flushQuietly、flushCloseIO、flushCloseIOQuietly
+
+* `[Add]` FileUtils#convertFiles、convertPaths、flushCloseIO、flushCloseIOQuietly
+
+* `[Refactor]` 修改整个库 Closeable Close 代码内部调用 CloseUtils
+
 Version 1.1.8 *(2020-09-27)*
 ----------------------------
 
