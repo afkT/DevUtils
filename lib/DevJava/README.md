@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevJava:1.1.8'
+implementation 'com.afkt:DevJava:1.1.9'
 ```
 
 ## 目录结构
@@ -14,6 +14,7 @@ implementation 'com.afkt:DevJava:1.1.8'
          - search                                     | 搜索相关 ( 文件搜索等 )
       - cipher                                        | 编 / 解码工具类
       - encrypt                                       | 加密工具类
+      - file                                          | 文件分片相关
       - random                                        | 随机概率算法工具类
       - thread                                        | 线程相关
       - validator                                     | 数据校验工具类
@@ -47,6 +48,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
          - [search](#devutilscommonassistsearch)      | 搜索相关 ( 文件搜索等 )
       - [cipher](#devutilscommoncipher)               | 编 / 解码工具类
       - [encrypt](#devutilscommonencrypt)             | 加密工具类
+      - [file](#devutilscommonfile)                   | 文件分片相关
       - [random](#devutilscommonrandom)               | 随机概率算法工具类
       - [thread](#devutilscommonthread)               | 线程相关
       - [validator](#devutilscommonvalidator)         | 数据校验工具类
@@ -182,6 +184,10 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | :- | :- |
 | closeIO | 关闭 IO |
 | closeIOQuietly | 安静关闭 IO |
+| flush | 将缓冲区数据输出 |
+| flushQuietly | 安静将缓冲区数据输出 |
+| flushCloseIO | 将缓冲区数据输出并关闭流 |
+| flushCloseIOQuietly | 安静将缓冲区数据输出并关闭流 |
 
 
 * **集合工具类 ( Collection - List、Set、Queue ) 等 ->** [CollectionUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/CollectionUtils.java)
@@ -516,6 +522,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | createOrExistsDir | 判断目录是否存在, 不存在则判断是否创建成功 |
 | createOrExistsFile | 判断文件是否存在, 不存在则判断是否创建成功 |
 | createFileByDeleteOldFile | 判断文件是否存在, 存在则在创建之前删除 |
+| convertFiles | Path List 转 File List |
+| convertPaths | File List 转 Path List |
 | getPath | 获取文件路径 |
 | getAbsolutePath | 获取文件绝对路径 |
 | getName | 获取文件名 |
@@ -543,7 +551,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getDirName | 获取路径中的最长目录地址 |
 | rename | 重命名文件 ( 同个目录下, 修改文件名 ) |
 | formatFileSize | 传入文件路径, 返回对应的文件大小 |
-| formatByteMemorySize | 字节数转合适内存大小 保留 3 位小数 (%.位数f) |
+| formatByteMemorySize | 字节数转合适内存大小 保留 3 位小数 |
 | deleteFile | 删除文件 |
 | deleteFiles | 删除多个文件 |
 | deleteFolder | 删除文件夹 |
@@ -1148,6 +1156,51 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | encryptAsFix | 加解密 ( 固定 Key 方式 ) 这种方式 加解密 方法共用 |
 | encrypt | 加密 ( 非固定 Key 方式 ) |
 | decrypt | 解密 ( 非固定 Key 方式 ) |
+
+
+## <span id="devutilscommonfile">**`dev.utils.common.file`**</span>
+
+
+* **文件分片辅助类 ->** [FilePartAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/file/FilePartAssist.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getFile | 获取文件 |
+| getFileName | 获取文件名 |
+| getFilePartItems | 获取文件分片信息集合 |
+| getFilePartItem | 获取指定索引文件分片信息 |
+| getPartCount | 获取分片总数 |
+| existsPart | 是否存在分片 |
+| isOnlyOne | 是否只有一个分片 |
+| getPartName | 获取分片文件名 ( 后缀索引拼接 ) |
+
+
+* **文件分片信息 Item ->** [FilePartItem.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/file/FilePartItem.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isFirstItem | 判断是否 First Item |
+| isLastItem | 判断是否 Last Item |
+| existsPart | 是否存在分片 |
+| isOnlyOne | 是否只有一个分片 |
+| getPartName | 获取分片文件名 ( 后缀索引拼接 ) |
+
+
+* **文件分片工具类 ->** [FilePartUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/file/FilePartUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getPartName | 获取分片文件名 ( 后缀索引拼接 ) |
+| getFilePartAssist | 获取文件分片辅助类 |
+| isFilePart | 是否符合文件分片条件 |
+| fileSplit | 文件拆分 |
+| fileSplitSave | 文件拆分并存储 |
+| fileSplitSaves | 文件拆分并存储 |
+| fileSplitDelete | 删除拆分文件 |
+| fileSplitDeletes | 删除拆分文件 |
+| fileSplitMergePaths | 分片合并 |
+| fileSplitMergeFiles | 分片合并 |
+| fileSplitMerge | 分片合并 |
 
 
 ## <span id="devutilscommonrandom">**`dev.utils.common.random`**</span>
