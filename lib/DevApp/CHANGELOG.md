@@ -14,7 +14,7 @@ Version 2.0.6 *(2020-10-12)*
 
 * `[Add]` CloseUtils#flush、flushQuietly、flushCloseIO、flushCloseIOQuietly
 
-* `[Add]` FileUtils#convertFiles、convertPaths、flushCloseIO、flushCloseIOQuietly
+* `[Add]` FileUtils#convertFiles、convertPaths
 
 * `[Refactor]` 修改整个库 Closeable Close 代码内部调用 CloseUtils
 
