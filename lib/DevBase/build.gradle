@@ -3,6 +3,9 @@ apply from: rootProject.file(files.app_lib_kotlin_gradle)
 android.defaultConfig {
     versionCode versions.dev_base_versionCode
     versionName versions.dev_base_versionName
+    // DevBase Module Version
+    buildConfigField "int", "DevBase_VersionCode", "${versions.dev_base_versionCode}"
+    buildConfigField "String", "DevBase_Version", "\"${versions.dev_base_versionName}\""
 }
 
 dependencies {

@@ -256,27 +256,19 @@ public final class DevUtils {
     // =============
 
     /**
-     * 获取 DevApp 工具类版本
-     * @return DevApp versionName
-     */
-    public static String getDevAppUtilsVersion() {
-        return BuildConfig.VERSION_NAME;
-    }
-
-    /**
      * 获取 DevApp 工具类版本号
      * @return DevApp versionCode
      */
     public static int getDevAppUtilsVersionCode() {
-        return BuildConfig.VERSION_CODE;
+        return BuildConfig.DevApp_VersionCode;
     }
 
     /**
-     * 获取 DevJava 工具类版本
-     * @return DevJava version
+     * 获取 DevApp 工具类版本
+     * @return DevApp versionName
      */
-    public static String getDevJavaUtilsVersion() {
-        return BuildConfig.DevJava_Version;
+    public static String getDevAppUtilsVersion() {
+        return BuildConfig.DevApp_Version;
     }
 
     /**
@@ -285,6 +277,14 @@ public final class DevUtils {
      */
     public static int getDevJavaUtilsVersionCode() {
         return BuildConfig.DevJava_VersionCode;
+    }
+
+    /**
+     * 获取 DevJava 工具类版本
+     * @return DevJava version
+     */
+    public static String getDevJavaUtilsVersion() {
+        return BuildConfig.DevJava_Version;
     }
 
     // =================
