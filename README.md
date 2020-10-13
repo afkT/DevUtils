@@ -29,9 +29,9 @@
 
 - [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/CHANGELOG.md)
 
-### DevBase - Base ( Activity、Fragment )、MVP、MVVM 基类库
+### DevBase - Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
 
-- [README](https://github.com/afkT/DevUtils/blob/master/lib/DevBase)
+- [README](https://github.com/afkT/DevUtils/blob/master/lib/DevBase/README.md)
 
 - [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevBase/CHANGELOG.md)
 
@@ -76,7 +76,7 @@ implementation 'com.afkt:DevAppX:2.0.6'
 // DevAssist 快捷功能辅助类库
 implementation 'com.afkt:DevAssist:1.0.4'
 
-// DevBase ( Activity、Fragment )、MVP、MVVM 基类库
+// DevBase Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
 implementation 'com.afkt:DevBase:1.0.0'
 
 // DevJava Java 工具类库 ( 不依赖 android api )
