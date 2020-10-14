@@ -1,0 +1,28 @@
+apply from: rootProject.file(files.app_lib_kotlin_gradle)
+
+android.defaultConfig {
+    versionCode versions.dev_base_mvvm_versionCode
+    versionName versions.dev_base_mvvm_versionName
+    // DevBaseMVVM Module Version
+    buildConfigField "int", "DevBaseMVVM_VersionCode", "${versions.dev_base_mvvm_versionCode}"
+    buildConfigField "String", "DevBaseMVVM_Version", "\"${versions.dev_base_mvvm_versionName}\""
+}
+
+dependencies {
+    api deps.kotlin.stdlib
+    api deps.kotlin.core
+    api deps.kotlin.lifecycle_runtime
+    api deps.androidx.lifecycle_common_java8
+    api deps.androidx.design
+    api deps.androidx.appcompat
+
+    // 编译时使用
+    api project(path: ':DevBase')
+//    // 打包时使用
+//    api deps.dev.dev_base
+}
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from : rootProject.file(files.app_bintray_upload)

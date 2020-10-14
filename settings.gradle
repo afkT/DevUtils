@@ -13,6 +13,9 @@ project(':DevAssist').projectDir = new File('lib/DevAssist')
 include ':DevBase'
 project(':DevBase').projectDir = new File('lib/DevBase')
 
+include ':DevBaseMVVM'
+project(':DevBaseMVVM').projectDir = new File('lib/DevBaseMVVM')
+
 include ':DevJava'
 project(':DevJava').projectDir = new File('lib/DevJava')
 

@@ -59,6 +59,11 @@ ext {
             dev_base_versionName                    : '1.0.0',
 
             // 版本号
+            dev_base_mvvm_versionCode               : 100,
+            // 版本名
+            dev_base_mvvm_versionName               : '1.0.0',
+
+            // 版本号
             dev_java_versionCode                    : 119,
             // 版本名
             dev_java_version                        : '1.1.9',
@@ -82,6 +87,8 @@ ext {
                     // https://github.com/afkT/DevUtils
                     dev_app_x                       : "com.afkt:DevAppX:${versions.dev_app_versionName}",
                     dev_assist                      : "com.afkt:DevAssist:${versions.dev_assist_versionName}",
+                    dev_base                        : "com.afkt:DevBase:${versions.dev_base_versionName}",
+                    dev_base_mvvm                   : "com.afkt:DevBaseMVVM:${versions.dev_base_mvvm_versionName}",
                     dev_java                        : "com.afkt:DevJava:${versions.dev_java_version}",
                     dev_widget_x                    : "com.afkt:DevWidgetX:${versions.dev_widget_versionName}",
                     // 环境配置切换库

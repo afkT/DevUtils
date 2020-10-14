@@ -69,7 +69,7 @@ implementation 'com.afkt:DevBase:1.0.0'
 
 * 为什么没添加 MVVM 架构基类
 
-> 因 MVVM 需要依赖较多库，可能部分项目并不使用 MVVM 作为基础架构，为此新增 [DevBaseMVVM](https://github.com/afkT/DevUtils/tree/master/lib/DevBaseMVVM/README.md) 库进行区分，减少库依赖数量，以及 MVVM 架构代码实现设计理解
+> 因 MVVM 需要依赖较多库，可能部分项目并不使用 MVVM 作为基础架构，为此新增 [DevBaseMVVM](https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md) 库进行区分，减少库依赖数量，以及 MVVM 架构代码实现设计理解
 
 架构只是一种思维方式，不管是 MVC、MVP 还是 MVVM，都只是一种思考问题、解决问题的思维
 
