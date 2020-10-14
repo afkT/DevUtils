@@ -19,7 +19,7 @@ final class CatalogMain {
         // 生成 Java 汇总项目目录结构 - https://github.com/afkT/Java
         print(Config.JAVA_LOCAL_PATH, Config.JAVA_DIR_NAME, Config.sJavaCatelogMap, null, 0);
 
-        // 生成 DevUtils Lib 汇总项目目录结构 - https://github.com/afkT/DevUtils/tree/master/lib
+        // 生成 DevUtils Lib 汇总项目目录结构 - https://github.com/afkT/DevUtils/blob/master/lib
         print(Config.DEV_UTILS_LOCAL_PATH, Config.DEV_UTILS_DIR_NAME, Config.sDevUtilsCatelogMap, Config.sDevUtilsIgnoreCatelogs, 1);
     }
 
