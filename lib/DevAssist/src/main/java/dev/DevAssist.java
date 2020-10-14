@@ -16,7 +16,7 @@ public final class DevAssist {
     // =============
 
     /**
-     * 获取 DevAssist 工具类版本号
+     * 获取 DevAssist 版本号
      * @return DevAssist versionCode
      */
     public static int getDevAssistVersionCode() {
@@ -24,7 +24,7 @@ public final class DevAssist {
     }
 
     /**
-     * 获取 DevAssist 工具类版本
+     * 获取 DevAssist 版本
      * @return DevAssist versionName
      */
     public static String getDevAssistVersion() {
@@ -32,7 +32,7 @@ public final class DevAssist {
     }
 
     /**
-     * 获取 DevJava 工具类版本号
+     * 获取 DevJava 版本号
      * @return DevJava version
      */
     public static int getDevJavaVersionCode() {
@@ -40,7 +40,7 @@ public final class DevAssist {
     }
 
     /**
-     * 获取 DevJava 工具类版本
+     * 获取 DevJava 版本
      * @return DevJava version
      */
     public static String getDevJavaVersion() {

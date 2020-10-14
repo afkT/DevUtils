@@ -13,7 +13,7 @@ object DevBaseMVVM {
     // =============
 
     /**
-     * 获取 DevBaseMVVM 工具类版本号
+     * 获取 DevBaseMVVM 版本号
      * @return DevBaseMVVM versionCode
      */
     fun getDevBaseMVVMVersionCode(): Int {
@@ -21,7 +21,7 @@ object DevBaseMVVM {
     }
 
     /**
-     * 获取 DevBaseMVVM 工具类版本
+     * 获取 DevBaseMVVM 版本
      * @return DevBaseMVVM versionName
      */
     fun getDevBaseMVVMVersion(): String {

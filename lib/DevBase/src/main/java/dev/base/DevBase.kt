@@ -11,7 +11,7 @@ object DevBase {
     // =============
 
     /**
-     * 获取 DevBase 工具类版本号
+     * 获取 DevBase 版本号
      * @return DevBase versionCode
      */
     fun getDevBaseVersionCode(): Int {
@@ -19,7 +19,7 @@ object DevBase {
     }
 
     /**
-     * 获取 DevBase 工具类版本
+     * 获取 DevBase 版本
      * @return DevBase versionName
      */
     fun getDevBaseVersion(): String {
