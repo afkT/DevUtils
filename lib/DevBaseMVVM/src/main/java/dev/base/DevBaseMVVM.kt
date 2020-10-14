@@ -1,5 +1,7 @@
 package dev.base
 
+import dev.base.mvvm.BuildConfig
+
 /**
  * detail: DevBaseMVVM
  * @author Ttt
