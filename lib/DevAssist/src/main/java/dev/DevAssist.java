@@ -19,7 +19,7 @@ public final class DevAssist {
      * 获取 DevAssist 工具类版本号
      * @return DevAssist versionCode
      */
-    public static int getDevAssistUtilsVersionCode() {
+    public static int getDevAssistVersionCode() {
         return BuildConfig.DevAssist_VersionCode;
     }
 
@@ -27,7 +27,7 @@ public final class DevAssist {
      * 获取 DevAssist 工具类版本
      * @return DevAssist versionName
      */
-    public static String getDevAssistUtilsVersion() {
+    public static String getDevAssistVersion() {
         return BuildConfig.DevAssist_Version;
     }
 
@@ -35,7 +35,7 @@ public final class DevAssist {
      * 获取 DevJava 工具类版本号
      * @return DevJava version
      */
-    public static int getDevJavaUtilsVersionCode() {
+    public static int getDevJavaVersionCode() {
         return BuildConfig.DevJava_VersionCode;
     }
 
@@ -43,7 +43,7 @@ public final class DevAssist {
      * 获取 DevJava 工具类版本
      * @return DevJava version
      */
-    public static String getDevJavaUtilsVersion() {
+    public static String getDevJavaVersion() {
         return BuildConfig.DevJava_Version;
     }
 }

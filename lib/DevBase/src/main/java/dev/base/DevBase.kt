@@ -14,7 +14,7 @@ object DevBase {
      * 获取 DevBase 工具类版本号
      * @return DevBase versionCode
      */
-    fun getDevBaseUtilsVersionCode(): Int {
+    fun getDevBaseVersionCode(): Int {
         return BuildConfig.DevBase_VersionCode
     }
 
@@ -22,7 +22,7 @@ object DevBase {
      * 获取 DevBase 工具类版本
      * @return DevBase versionName
      */
-    fun getDevBaseUtilsVersion(): String {
+    fun getDevBaseVersion(): String {
         return BuildConfig.DevBase_Version
     }
 }

@@ -259,7 +259,7 @@ public final class DevUtils {
      * 获取 DevApp 工具类版本号
      * @return DevApp versionCode
      */
-    public static int getDevAppUtilsVersionCode() {
+    public static int getDevAppVersionCode() {
         return BuildConfig.DevApp_VersionCode;
     }
 
@@ -267,7 +267,7 @@ public final class DevUtils {
      * 获取 DevApp 工具类版本
      * @return DevApp versionName
      */
-    public static String getDevAppUtilsVersion() {
+    public static String getDevAppVersion() {
         return BuildConfig.DevApp_Version;
     }
 
@@ -275,7 +275,7 @@ public final class DevUtils {
      * 获取 DevJava 工具类版本号
      * @return DevJava version
      */
-    public static int getDevJavaUtilsVersionCode() {
+    public static int getDevJavaVersionCode() {
         return BuildConfig.DevJava_VersionCode;
     }
 
@@ -283,7 +283,7 @@ public final class DevUtils {
      * 获取 DevJava 工具类版本
      * @return DevJava version
      */
-    public static String getDevJavaUtilsVersion() {
+    public static String getDevJavaVersion() {
         return BuildConfig.DevJava_Version;
     }
 

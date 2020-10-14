@@ -142,8 +142,8 @@ public class BaseApplication extends MultiDexApplication {
         builder.append("\nPackageName: " + AppUtils.getPackageName());
         builder.append("\nVersionCode: " + AppUtils.getAppVersionCode());
         builder.append("\nVersionName: " + AppUtils.getAppVersionName());
-        builder.append("\nDevUtils 版本: " + DevUtils.getDevAppUtilsVersion());
-        builder.append("\nDevJava 版本: " + DevUtils.getDevJavaUtilsVersion());
+        builder.append("\nDevUtils 版本: " + DevUtils.getDevAppVersion());
+        builder.append("\nDevJava 版本: " + DevUtils.getDevJavaVersion());
         builder.append("\n时间: " + DateUtils.getDateNow());
         builder.append("\n初始化耗时(毫秒): " + timeCounter.duration());
         DevLogger.i(builder.toString());
