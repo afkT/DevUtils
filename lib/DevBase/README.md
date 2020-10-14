@@ -8,16 +8,16 @@ implementation 'com.afkt:DevBase:1.0.0'
 ## 目录结构
 
 ```
-- dev.base            | 根目录
-   - able             | 基类库接口相关
-   - activity         | 核心 Base Activity 代码
-   - expand           | 基于 Base Activity、Fragment 扩展包
-      - content       | Content Layout 基类
-      - mvp           | MVP 架构基类
-      - viewbinding   | ViewBinding 基类
-   - fragment         | 核心 Base Fragment 代码
-   - utils            | 依赖工具包
-      - assist        | 功能辅助类 ( 抽取通用代码 )
+- dev.base                                            | 根目录
+   - able                                             | 基类库接口相关
+   - activity                                         | 核心 Base Activity 代码
+   - expand                                           | 基于 Base Activity、Fragment 扩展包
+      - content                                       | Content Layout 基类
+      - mvp                                           | MVP 架构基类
+      - viewbinding                                   | ViewBinding 基类
+   - fragment                                         | 核心 Base Fragment 代码
+   - utils                                            | 依赖工具包
+      - assist                                        | 功能辅助类 ( 抽取通用代码 )
 ```
 
 
@@ -69,7 +69,7 @@ implementation 'com.afkt:DevBase:1.0.0'
 
 * 为什么没添加 MVVM 架构基类
 
-> 因 MVVM 需要依赖较多库，可能部分项目并不使用 MVVM 作为基础架构，为此新增 [DevBaseMVVM](https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md) 库进行区分，减少库依赖数量，以及 MVVM 架构代码实现设计理解
+> 因 MVVM 需要依赖较多库，可能部分项目并不使用 MVVM 作为基础架构，为此新增 [DevBaseMVVM](https://github.com/afkT/DevUtils/tree/master/lib/DevBaseMVVM/README.md) 库进行区分，减少库依赖数量，以及 MVVM 架构代码实现设计理解
 
 架构只是一种思维方式，不管是 MVC、MVP 还是 MVVM，都只是一种思考问题、解决问题的思维
 
