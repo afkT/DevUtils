@@ -96,6 +96,7 @@ final class Config {
         sDevUtilsCatelogMap.put(".DevAssist", "封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等");
         sDevUtilsCatelogMap.put(".DevBase", "Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库");
         sDevUtilsCatelogMap.put(".DevBase2", "Base 基础代码 ( 非基类库 )");
+        sDevUtilsCatelogMap.put(".DevBaseMVVM", "Base MVVM 基类库");
         sDevUtilsCatelogMap.put(".DevJava", "Java 工具类库 ( 不依赖 android api )");
         sDevUtilsCatelogMap.put(".DevOther", "第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用");
         sDevUtilsCatelogMap.put(".DevStandard", "项目规范统一检测、生成替换等");
@@ -114,6 +115,7 @@ final class Config {
         sDevUtilsIgnoreCatelogs.add("DevAssist");
         sDevUtilsIgnoreCatelogs.add("DevBase");
         sDevUtilsIgnoreCatelogs.add("DevBase2");
+        sDevUtilsIgnoreCatelogs.add("DevBaseMVVM");
         sDevUtilsIgnoreCatelogs.add("DevJava");
         sDevUtilsIgnoreCatelogs.add("DevOther");
         sDevUtilsIgnoreCatelogs.add("DevStandard");
