@@ -154,7 +154,7 @@ public final class IDCardUtils {
             // 判断前 17 位是否数字
             if (isNumber(code17)) {
                 try {
-                    int[] cardArys = converCharToInt(code17.toCharArray());
+                    int[] cardArys = convertCharToInt(code17.toCharArray());
                     int sum17 = getPowerSum(cardArys);
                     // 获取校验位
                     String str = getCheckCode18(sum17);
@@ -195,7 +195,7 @@ public final class IDCardUtils {
                 // 保存省市区信息 + 年 + 月日 + 后续信息 ( 顺序位、性别等 )
                 idCard18 = idCard.substring(0, 6) + year + idCard.substring(8);
                 // 转换字符数组
-                int[] cardArys = converCharToInt(idCard18.toCharArray());
+                int[] cardArys = convertCharToInt(idCard18.toCharArray());
                 int sum17 = getPowerSum(cardArys);
                 // 获取校验位
                 String str = getCheckCode18(sum17);
@@ -585,7 +585,7 @@ public final class IDCardUtils {
      * @param data char[]
      * @return int[]
      */
-    private static int[] converCharToInt(final char[] data) {
+    private static int[] convertCharToInt(final char[] data) {
         if (data == null) return null;
         int len = data.length;
         if (len == 0) return null;
@@ -596,7 +596,7 @@ public final class IDCardUtils {
             }
             return arrays;
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "converCharToInt");
+            JCLogUtils.eTag(TAG, e, "convertCharToInt");
         }
         return null;
     }

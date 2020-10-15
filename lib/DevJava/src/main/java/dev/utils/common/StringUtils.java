@@ -1230,8 +1230,8 @@ public final class StringUtils {
      * @param phone 待处理字符串
      * @return 处理后的字符串
      */
-    public static String converHideMobile(final String phone) {
-        return converHideMobile(phone, "*");
+    public static String convertHideMobile(final String phone) {
+        return convertHideMobile(phone, "*");
     }
 
     /**
@@ -1240,8 +1240,8 @@ public final class StringUtils {
      * @param symbol 转换符号
      * @return 处理后的字符串
      */
-    public static String converHideMobile(final String phone, final String symbol) {
-        return converSymbolHide(3, phone, symbol);
+    public static String convertHideMobile(final String phone, final String symbol) {
+        return convertSymbolHide(3, phone, symbol);
     }
 
     /**
@@ -1251,7 +1251,7 @@ public final class StringUtils {
      * @param symbol 转换符号
      * @return 处理后的字符串
      */
-    public static String converSymbolHide(final int start, final String str, final String symbol) {
+    public static String convertSymbolHide(final int start, final String str, final String symbol) {
         if (!isEmpty(str)) {
             if (start <= 0) {
                 return str;
