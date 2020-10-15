@@ -66,3 +66,21 @@ task clean(type: Delete) {
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
+
+// =================
+// = config.gradle =
+// =================
+
+import groovy.json.JsonOutput
+
+// 存储 config.gradle json 数据
+task saveConfigGradleJSON() {
+    println deps.toString()
+    // 获取 ext.deps json 数据
+    def depsJSON = JsonOutput.toJson(deps)
+    // 格式化 JSON
+    def formatJSON = JsonOutput.prettyPrint(depsJSON)
+    // 写入 ext.deps 配置信息
+    def file = new File("file/json/deps.json")
+    file.withPrintWriter { it.print(formatJSON) }
+}
