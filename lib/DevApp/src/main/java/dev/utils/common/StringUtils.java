@@ -1456,11 +1456,11 @@ public final class StringUtils {
                 builder.insert(0, replace);
             }
             // 获取尾部的位置
-            int lastIndexOf = -1;
+            int lastIndexOf = builder.lastIndexOf(suffix);
             // 数据长度
-            int bufLength = -1;
+            int bufLength = builder.length();
             // 判断是否在最尾部
-            if ((lastIndexOf = builder.lastIndexOf(suffix)) == ((bufLength = builder.length()) - suffixLength)) {
+            if (lastIndexOf != -1 && lastIndexOf == (bufLength - suffixLength)) {
                 builder.delete(lastIndexOf, bufLength);
                 // 追加内容
                 builder.insert(lastIndexOf, replace);
@@ -1555,12 +1555,15 @@ public final class StringUtils {
                 builder.delete(0, suffixLength);
             }
             // 获取尾部的位置
-            int lastIndexOf = -1;
+            int lastIndexOf = builder.lastIndexOf(suffix);
             // 数据长度
-            int bufLength = -1;
+            int bufLength = builder.length();
             // 进行循环判断 ( 属于最后面的, 才进行处理 )
-            while ((lastIndexOf = builder.lastIndexOf(suffix)) == ((bufLength = builder.length()) - suffixLength)) {
+            while (lastIndexOf != -1 && lastIndexOf == (bufLength - suffixLength)) {
                 builder.delete(lastIndexOf, bufLength);
+                // 重置数据
+                lastIndexOf = builder.lastIndexOf(suffix);
+                bufLength = builder.length();
             }
             return builder.toString();
         } catch (Exception e) {
@@ -1608,11 +1611,16 @@ public final class StringUtils {
             int suffixLength = suffix.length();
             // 保存新的 Builder 中, 减少内存开销
             StringBuilder builder = new StringBuilder(str);
-            // 获取最后一位位置
-            int bufLength = 0;
-            // 进行循环判断 ( 属于最前面的, 才进行处理 )
-            while (builder.lastIndexOf(suffix) == ((bufLength = builder.length()) - suffixLength)) {
-                builder.delete(bufLength - suffixLength, bufLength);
+            // 获取尾部的位置
+            int lastIndexOf = builder.lastIndexOf(suffix);
+            // 数据长度
+            int bufLength = builder.length();
+            // 进行循环判断 ( 属于最后面的, 才进行处理 )
+            while (lastIndexOf != -1 && lastIndexOf == (bufLength - suffixLength)) {
+                builder.delete(lastIndexOf, bufLength);
+                // 重置数据
+                lastIndexOf = builder.lastIndexOf(suffix);
+                bufLength = builder.length();
             }
             return builder.toString();
         } catch (Exception e) {
