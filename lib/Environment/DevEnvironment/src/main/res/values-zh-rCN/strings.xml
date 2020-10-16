@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="dev_environment_restart">重启</string>
     <string name="dev_environment_title">环境配置</string>
