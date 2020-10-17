@@ -100,7 +100,7 @@ view.setProgressStyle(CustomProgressBar.ProgressStyle.NUMBER)
 
 <dev.widget.ui.LoadProgressBar
    app:dev_numberTextColor="@color/deeppink"
-   app:dev_numberTextSize="40sp"
+   app:dev_numberTextSize="40.0sp"
    app:dev_progressStyle="number" />
 
 

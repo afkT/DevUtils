@@ -62,7 +62,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:textColor="@color/color_33"
-                    android:textSize="14.0sp"
+                    android:textSize="@dimen/un_sp_14"
                     tools:text="商品名" />
 
                 <dev.base.widget.BaseTextView
@@ -74,7 +74,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:textColor="@color/red"
-                    android:textSize="14.0sp"
+                    android:textSize="@dimen/un_sp_14"
                     tools:text="￥17.2" />
 
                 <LinearLayout
@@ -89,7 +89,7 @@
                         android:gravity="center"
                         android:text="评分描述"
                         android:textColor="@color/color_33"
-                        android:textSize="14.0sp" />
+                        android:textSize="@dimen/un_sp_14" />
 
                     <!-- 评星控件 -->
 
@@ -137,7 +137,7 @@
                 android:minHeight="110.0dp"
                 android:textColor="@color/color_33"
                 android:textColorHint="@color/color_99"
-                android:textSize="15.0sp" />
+                android:textSize="@dimen/un_sp_15" />
 
             <!-- 输入的字数数量 -->
 
@@ -150,7 +150,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="15.0dp"
                 android:textColor="@color/color_33"
-                android:textSize="14.0sp"
+                android:textSize="@dimen/un_sp_14"
                 tools:text="120" />
         </RelativeLayout>
 

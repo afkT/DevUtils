@@ -30,7 +30,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:textColor="@color/black"
-                android:textSize="28.0sp" />
+                android:textSize="@dimen/un_sp_28" />
         </LinearLayout>
 
         <dev.base.widget.BaseTextView
@@ -41,7 +41,7 @@
             android:lineSpacingExtra="10px"
             android:lineSpacingMultiplier="1.2"
             android:textColor="@color/black"
-            android:textSize="20.0sp" />
+            android:textSize="@dimen/un_sp_20" />
     </LinearLayout>
 
 </LinearLayout>

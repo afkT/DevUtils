@@ -20,6 +20,6 @@
             style="@style/AppTheme.Base_TextView"
             android:layout_marginTop="20.0dp"
             android:gravity="center"
-            android:textSize="15.0sp" />
+            android:textSize="@dimen/un_sp_15" />
     </LinearLayout>
 </FrameLayout>

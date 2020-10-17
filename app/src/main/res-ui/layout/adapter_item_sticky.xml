@@ -20,7 +20,7 @@
         android:gravity="center|left"
         android:maxLines="1"
         android:textColor="@color/color_33"
-        android:textSize="16.0sp"
+        android:textSize="@dimen/un_sp_16"
         tools:text="Item Title" />
 
     <dev.base.widget.BaseTextView
@@ -33,6 +33,6 @@
         android:maxLines="1"
         android:paddingTop="5.0dp"
         android:textColor="@color/color_99"
-        android:textSize="12.0sp"
+        android:textSize="@dimen/un_sp_12"
         tools:text="2020.06.16" />
 </LinearLayout>

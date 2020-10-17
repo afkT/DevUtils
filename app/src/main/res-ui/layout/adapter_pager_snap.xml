@@ -38,7 +38,7 @@
                 android:layout_marginTop="10.0dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textSize="25.0sp"
+                android:textSize="@dimen/un_sp_25"
                 tools:text="这是标题" />
 
             <dev.base.widget.BaseTextView
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5.0dp"
                 android:textColor="@color/color_55"
-                android:textSize="16.0sp"
+                android:textSize="@dimen/un_sp_16"
                 tools:text="这是副标题" />
 
             <dev.base.widget.BaseTextView
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5.0dp"
                 android:textColor="@color/color_99"
-                android:textSize="13.0sp"
+                android:textSize="@dimen/un_sp_13"
                 tools:text="2020.06.17" />
         </LinearLayout>
 
@@ -70,7 +70,7 @@
             android:layout_gravity="bottom|right"
             android:layout_margin="10.0dp"
             android:textColor="@color/color_55"
-            android:textSize="16.0sp"
+            android:textSize="@dimen/un_sp_16"
             android:textStyle="bold"
             tools:text="0 - 0" />
     </androidx.cardview.widget.CardView>

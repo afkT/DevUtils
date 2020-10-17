@@ -23,6 +23,6 @@
         android:gravity="center|left"
         android:maxLines="1"
         android:textColor="@color/color_33"
-        android:textSize="15.0sp"
+        android:textSize="@dimen/un_sp_15"
         tools:text="Sticky Title" />
 </LinearLayout>

@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- 通用 DP  -->
+    <dimen name="un_dp_0">0.0dp</dimen>
+    <dimen name="un_dp_1">1.0dp</dimen>
+    <dimen name="un_dp_3">3.0dp</dimen>
+    <dimen name="un_dp_5">5.0dp</dimen>
+    <dimen name="un_dp_8">8.0dp</dimen>
+    <dimen name="un_dp_10">10.0dp</dimen>
+    <dimen name="un_dp_15">15.0dp</dimen>
+    <dimen name="un_dp_17">17.0dp</dimen>
+    <dimen name="un_dp_18">18.0dp</dimen>
+    <dimen name="un_dp_20">20.0dp</dimen>
+    <dimen name="un_dp_50">50.0dp</dimen>
+    <dimen name="un_dp_55">55.0dp</dimen>
+    <dimen name="un_dp_70">70.0dp</dimen>
+    <dimen name="un_dp_180">180.0dp</dimen>
+    <dimen name="un_dp_225">225.0dp</dimen>
+    <dimen name="un_dp_255">255.0dp</dimen>
+    <dimen name="un_dp_300">300.0dp</dimen>
+
+    <!-- 通用 SP  -->
+    <dimen name="un_sp_12">12.0sp</dimen>
+    <dimen name="un_sp_13">13.0sp</dimen>
+    <dimen name="un_sp_14">14.0sp</dimen>
+    <dimen name="un_sp_15">15.0sp</dimen>
+    <dimen name="un_sp_16">16.0sp</dimen>
+    <dimen name="un_sp_17">17.0sp</dimen>
+    <dimen name="un_sp_18">18.0sp</dimen>
+    <dimen name="un_sp_20">20.0sp</dimen>
+    <dimen name="un_sp_25">25.0sp</dimen>
+    <dimen name="un_sp_28">28.0sp</dimen>
+    <dimen name="un_sp_40">40.0sp</dimen>
+    <dimen name="un_sp_50">50.0sp</dimen>
+
     <!-- 线条 -->
     <dimen name="un_line_0_5">0.5dp</dimen>
 

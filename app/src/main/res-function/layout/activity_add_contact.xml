@@ -79,7 +79,7 @@
                 android:singleLine="true"
                 android:textColor="@color/color_33"
                 android:textColorHint="@color/color_99"
-                android:textSize="15.0sp" />
+                android:textSize="@dimen/un_sp_15" />
 
             <dev.base.widget.BaseEditText
                 android:id="@+id/vid_aac_end_edit"
@@ -95,7 +95,7 @@
                 android:singleLine="true"
                 android:textColor="@color/color_33"
                 android:textColorHint="@color/color_99"
-                android:textSize="15.0sp" />
+                android:textSize="@dimen/un_sp_15" />
         </FrameLayout>
 
         <View

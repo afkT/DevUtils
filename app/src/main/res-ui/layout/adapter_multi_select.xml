@@ -72,7 +72,7 @@
                     android:gravity="center|left"
                     android:maxLines="1"
                     android:textColor="@color/color_33"
-                    android:textSize="16.0sp"
+                    android:textSize="@dimen/un_sp_16"
                     tools:text="商品名" />
 
                 <dev.base.widget.BaseTextView
@@ -85,7 +85,7 @@
                     android:gravity="center|left"
                     android:maxLines="1"
                     android:textColor="@color/red"
-                    android:textSize="15.0sp"
+                    android:textSize="@dimen/un_sp_15"
                     tools:text="￥17.2" />
             </LinearLayout>
         </RelativeLayout>

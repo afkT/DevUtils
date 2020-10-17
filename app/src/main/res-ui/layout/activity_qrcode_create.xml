@@ -36,7 +36,7 @@
             android:maxLength="120"
             android:maxLines="6"
             android:padding="10.0dp"
-            android:textSize="15.0sp" />
+            android:textSize="@dimen/un_sp_15" />
 
         <dev.base.widget.BaseImageView
             android:id="@+id/vid_aqc_igview"

@@ -8,6 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:textSize="50.0sp" />
+        android:textSize="@dimen/un_sp_50" />
 
 </FrameLayout>

@@ -17,6 +17,6 @@
         android:layout_marginTop="20.0dp"
         android:text="error click retry"
         android:textColor="@color/color_88"
-        android:textSize="20.0sp" />
+        android:textSize="@dimen/un_sp_20" />
 
 </LinearLayout>

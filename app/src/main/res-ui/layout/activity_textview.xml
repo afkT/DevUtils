@@ -24,7 +24,7 @@
                 android:singleLine="true"
                 android:text="Text 1 的效果 效果 效果 效果 效果 效果 效果 效果 效果"
                 android:textColor="@color/blue"
-                android:textSize="18sp" />
+                android:textSize="@dimen/un_sp_18" />
 
             <dev.base.widget.BaseTextView
                 android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
                 android:layout_marginLeft="10.0dp"
                 android:text="Text 2 的效果"
                 android:textColor="@color/red"
-                android:textSize="18sp" />
+                android:textSize="@dimen/un_sp_18" />
         </LinearLayout>
 
         <LinearLayout
@@ -49,7 +49,7 @@
                 android:singleLine="true"
                 android:text="Text 1 的效果"
                 android:textColor="@color/blue"
-                android:textSize="18sp" />
+                android:textSize="@dimen/un_sp_18" />
 
             <dev.base.widget.BaseTextView
                 android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
                 android:layout_marginLeft="10.0dp"
                 android:text="Text 2 的效果"
                 android:textColor="@color/red"
-                android:textSize="18sp" />
+                android:textSize="@dimen/un_sp_18" />
         </LinearLayout>
     </LinearLayout>
 </dev.widget.custom.CustomNestedScrollView>
