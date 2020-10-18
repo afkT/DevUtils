@@ -50,6 +50,13 @@
     <dimen name="un_sp_40">40.0sp</dimen>
     <dimen name="un_sp_50">50.0sp</dimen>
 
+
+    <!--
+        直接通过 un_dp_xxx 去使用, 不区分 un_line、un_border、un_radius 等
+        除非某些主题、模块相关则以指定标识新增, 如: un_nav_header_height
+        小数点以 _ 进行分割, 如 155.52dp 为 155_52
+    -->
+
     <!-- 线条 -->
     <dimen name="un_line_0_5">0.5dp</dimen>
 
@@ -58,7 +65,8 @@
 
     <!-- 圆角角度 -->
     <dimen name="un_radius_3">3.0dp</dimen>
-    <dimen name="un_radius_10">10.0dp</dimen>
-    <dimen name="un_radius_20">20.0dp</dimen>
+
+    <!-- NavigationView 顶部背景高度 -->
+    <dimen name="un_nav_header_height">176.0dp</dimen>
 
 </resources>

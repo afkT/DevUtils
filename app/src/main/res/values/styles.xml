@@ -14,9 +14,9 @@
         <!-- 设置铺满 -->
         <item name="android:layout_width">match_parent</item>
         <!-- 设置高度 -->
-        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_height">@dimen/un_dp_50</item>
         <!-- 设置向上边距 -->
-        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginTop">@dimen/un_dp_10</item>
         <!-- 设置字体颜色 -->
         <item name="android:textColor">@color/black</item>
         <!-- 解决控件字母自动大写问题 -->
@@ -50,9 +50,9 @@
         <!-- 设置高度 -->
         <item name="android:layout_height">wrap_content</item>
         <!-- 设置向上边距 -->
-        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginTop">@dimen/un_dp_20</item>
         <!-- 设置向下边距 -->
-        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginBottom">@dimen/un_dp_10</item>
         <!-- 设置字体颜色 -->
         <item name="android:textColor">@color/black</item>
         <!-- 解决控件字母自动大写问题 -->
@@ -61,14 +61,14 @@
 
     <!-- 左右 Margin 样式 -->
     <style name="AppTheme.margin_lr">
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginLeft">@dimen/un_dp_10</item>
+        <item name="android:layout_marginRight">@dimen/un_dp_10</item>
     </style>
 
     <!-- 左右 padding 样式 -->
     <style name="AppTheme.padding_lr">
-        <item name="android:paddingLeft">10dp</item>
-        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingLeft">@dimen/un_dp_10</item>
+        <item name="android:paddingRight">@dimen/un_dp_10</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">

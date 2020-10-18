@@ -40,7 +40,7 @@
         <item name="android:taskToBackExitAnimation">@null</item>
     </style>
 
-    <!-- Actvitiy 透明样式 - 无标题、全屏、背景透明等 -->
+    <!-- Activity 透明样式 - 无标题、全屏、背景透明等 -->
     <style name="DevActivityTranslucentTheme">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
@@ -70,8 +70,6 @@
         <item name="android:windowAnimationStyle">@style/DevActivityJumpNoAnimationTheme</item>
         <item name="android:background">@color/transparent</item>
     </style>
-
-    <!-- ======= -->
 
     <!-- Dialog 样式 -->
     <style name="DevDialogTheme" parent="@android:style/Theme.Dialog" />
