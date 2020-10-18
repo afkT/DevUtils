@@ -113,7 +113,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/un_line_0_5"
+            android:layout_height="@dimen/un_dp_0_5"
             android:layout_marginTop="@dimen/un_dp_10"
             android:background="@color/color_d7" />
 

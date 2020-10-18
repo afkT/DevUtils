@@ -33,7 +33,7 @@ public final class ProjectUtils {
             // 获取默认 RequestOptions
             sRoundOptions = GlideUtils.defaultOptions();
             // 设置圆角, 使用 RoundedCorners 图片不会闪烁
-            sRoundOptions.transform(new RoundedCorners(ResourceUtils.getDimensionInt(R.dimen.un_radius_3)));
+            sRoundOptions.transform(new RoundedCorners(ResourceUtils.getDimensionInt(R.dimen.un_dp_3)));
         }
         return sRoundOptions;
     }
