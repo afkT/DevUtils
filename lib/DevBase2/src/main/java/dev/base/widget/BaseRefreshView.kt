@@ -30,16 +30,16 @@ import dev.base2.R
  */
 class BaseRefreshView : LinearLayout {
 
-    constructor(context: Context?) : super(context) {
+    constructor(context: Context) : super(context) {
         init()
     }
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         init()
     }
 
     constructor(
-        context: Context?,
+        context: Context,
         attrs: AttributeSet?,
         defStyleAttr: Int
     ) : super(context, attrs, defStyleAttr) {
@@ -48,7 +48,7 @@ class BaseRefreshView : LinearLayout {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     constructor(
-        context: Context?,
+        context: Context,
         attrs: AttributeSet?,
         defStyleAttr: Int,
         defStyleRes: Int
