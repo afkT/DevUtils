@@ -19,43 +19,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|right"
-        android:layout_margin="15.0dp"
+        android:layout_margin="@dimen/un_dp_15"
         android:orientation="horizontal">
 
         <dev.base.widget.BaseImageView
             android:id="@+id/vid_ass_image_igview"
-            android:layout_width="30.0dp"
-            android:layout_height="30.0dp"
+            android:layout_width="@dimen/un_dp_30"
+            android:layout_height="@dimen/un_dp_30"
             android:background="@drawable/icon_image"
             android:visibility="gone"
             tools:visibility="visible" />
 
         <dev.base.widget.BaseImageView
             android:id="@+id/vid_ass_flashlight_igview"
-            android:layout_width="30.0dp"
-            android:layout_height="30.0dp"
-            android:layout_marginLeft="20.0dp"
+            android:layout_width="@dimen/un_dp_30"
+            android:layout_height="@dimen/un_dp_30"
+            android:layout_marginLeft="@dimen/un_dp_20"
             android:background="@drawable/shape_flashlight_selector" />
 
         <dev.base.widget.BaseImageView
             android:id="@+id/vid_ass_square_igview"
-            android:layout_width="30.0dp"
-            android:layout_height="30.0dp"
-            android:layout_marginLeft="20.0dp"
+            android:layout_width="@dimen/un_dp_30"
+            android:layout_height="@dimen/un_dp_30"
+            android:layout_marginLeft="@dimen/un_dp_20"
             android:background="@drawable/icon_square" />
 
         <dev.base.widget.BaseImageView
             android:id="@+id/vid_ass_hexagon_igview"
-            android:layout_width="30.0dp"
-            android:layout_height="30.0dp"
-            android:layout_marginLeft="20.0dp"
+            android:layout_width="@dimen/un_dp_30"
+            android:layout_height="@dimen/un_dp_30"
+            android:layout_marginLeft="@dimen/un_dp_20"
             android:background="@drawable/icon_hexagon" />
 
         <dev.base.widget.BaseImageView
             android:id="@+id/vid_ass_annulus_igview"
-            android:layout_width="30.0dp"
-            android:layout_height="30.0dp"
-            android:layout_marginLeft="20.0dp"
+            android:layout_width="@dimen/un_dp_30"
+            android:layout_height="@dimen/un_dp_30"
+            android:layout_marginLeft="@dimen/un_dp_20"
             android:background="@drawable/icon_annulus" />
 
     </LinearLayout>

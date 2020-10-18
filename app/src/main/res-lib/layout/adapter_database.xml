@@ -11,19 +11,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="12.0dp"
+        android:layout_margin="@dimen/un_dp_12"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         android:stateListAnimator="@drawable/touch"
-        app:cardCornerRadius="25.0dp"
-        app:cardElevation="5.0dp"
+        app:cardCornerRadius="@dimen/un_dp_25"
+        app:cardElevation="@dimen/un_dp_5"
         tools:targetApi="lollipop">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="15.0dp">
+            android:padding="@dimen/un_dp_15">
 
             <dev.base.widget.BaseTextView
                 android:id="@+id/vid_adb_title_tv"
@@ -48,7 +48,7 @@
                 android:id="@+id/vid_adb_recy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5.0dp"
+                android:layout_marginTop="@dimen/un_dp_5"
                 android:orientation="horizontal"
                 android:overScrollMode="never"
                 android:scrollbars="none"
@@ -60,7 +60,7 @@
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5.0dp"
+                android:layout_marginTop="@dimen/un_dp_5"
                 android:textColor="@color/color_99"
                 android:textSize="@dimen/un_sp_13"
                 tools:text="2020.06.17" />

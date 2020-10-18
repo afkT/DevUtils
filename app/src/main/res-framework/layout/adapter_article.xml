@@ -12,27 +12,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="10.0dp"
+        android:layout_margin="@dimen/un_dp_10"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         android:stateListAnimator="@drawable/touch"
-        app:cardCornerRadius="5.0dp"
-        app:cardElevation="5.0dp"
+        app:cardCornerRadius="@dimen/un_dp_5"
+        app:cardElevation="@dimen/un_dp_5"
         tools:targetApi="lollipop">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="70.0dp"
-            android:layout_margin="10.0dp">
+            android:layout_height="@dimen/un_dp_70"
+            android:layout_margin="@dimen/un_dp_10">
 
             <FrameLayout
                 android:id="@+id/vid_aa_pic_frame"
-                android:layout_width="70.0dp"
-                android:layout_height="70.0dp"
+                android:layout_width="@dimen/un_dp_70"
+                android:layout_height="@dimen/un_dp_70"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/shape_border_image"
-                android:padding="5.0dp">
+                android:padding="@dimen/un_dp_5">
 
                 <dev.base.widget.BaseImageView
                     android:id="@+id/vid_aa_pic_igview"
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:layout_marginLeft="8.0dp"
+                android:layout_marginLeft="@dimen/un_dp_8"
                 android:layout_toRightOf="@id/vid_aa_pic_frame"
                 android:orientation="vertical">
 

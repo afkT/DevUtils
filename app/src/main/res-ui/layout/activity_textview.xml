@@ -13,7 +13,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10.0dp"
+            android:layout_marginTop="@dimen/un_dp_10"
             android:orientation="horizontal">
 
             <dev.base.widget.BaseTextView
@@ -29,7 +29,7 @@
             <dev.base.widget.BaseTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10.0dp"
+                android:layout_marginLeft="@dimen/un_dp_10"
                 android:text="Text 2 的效果"
                 android:textColor="@color/red"
                 android:textSize="@dimen/un_sp_18" />
@@ -38,7 +38,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10.0dp"
+            android:layout_marginTop="@dimen/un_dp_10"
             android:orientation="horizontal">
 
             <dev.base.widget.BaseTextView
@@ -54,7 +54,7 @@
             <dev.base.widget.BaseTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10.0dp"
+                android:layout_marginLeft="@dimen/un_dp_10"
                 android:text="Text 2 的效果"
                 android:textColor="@color/red"
                 android:textSize="@dimen/un_sp_18" />

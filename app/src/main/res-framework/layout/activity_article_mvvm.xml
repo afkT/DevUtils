@@ -20,14 +20,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/AppTheme.AppBarOverlay"
-            app:elevation="0.0dp">
+            app:elevation="@dimen/un_dp_0">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/vid_aam_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:elevation="0.0dp"
+                app:elevation="@dimen/un_dp_0"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 app:title="@{title}" />
         </com.google.android.material.appbar.AppBarLayout>

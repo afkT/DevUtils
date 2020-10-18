@@ -6,10 +6,10 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:paddingLeft="15.0dp"
-    android:paddingTop="10.0dp"
-    android:paddingRight="15.0dp"
-    android:paddingBottom="10.0dp">
+    android:paddingLeft="@dimen/un_dp_15"
+    android:paddingTop="@dimen/un_dp_10"
+    android:paddingRight="@dimen/un_dp_15"
+    android:paddingBottom="@dimen/un_dp_10">
 
     <dev.base.widget.BaseTextView
         android:id="@+id/vid_ais_title_tv"
@@ -31,7 +31,7 @@
         android:ellipsize="end"
         android:gravity="center|left"
         android:maxLines="1"
-        android:paddingTop="5.0dp"
+        android:paddingTop="@dimen/un_dp_5"
         android:textColor="@color/color_99"
         android:textSize="@dimen/un_sp_12"
         tools:text="2020.06.16" />

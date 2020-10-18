@@ -6,8 +6,8 @@
     android:background="@color/colorPrimary">
 
     <dev.base.widget.BaseImageView
-        android:layout_width="50.0dp"
-        android:layout_height="50.0dp"
+        android:layout_width="@dimen/un_dp_50"
+        android:layout_height="@dimen/un_dp_50"
         android:layout_gravity="center"
         android:src="@drawable/icon_refresh" />
 

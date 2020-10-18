@@ -20,17 +20,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:layout_margin="20.0dp"
+                android:layout_margin="@dimen/un_dp_20"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
                 android:stateListAnimator="@drawable/touch"
-                app:cardCornerRadius="10.0dp"
-                app:cardElevation="10.0dp"
+                app:cardCornerRadius="@dimen/un_dp_10"
+                app:cardElevation="@dimen/un_dp_10"
                 tools:targetApi="lollipop">
 
                 <dev.base.widget.BaseImageView
-                    android:layout_width="130.0dp"
-                    android:layout_height="130.0dp"
+                    android:layout_width="@dimen/un_dp_130"
+                    android:layout_height="@dimen/un_dp_130"
                     android:layout_gravity="center"
                     android:background="@drawable/img_commodity" />
 
@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     app:dev_fillColor="#9C27B0"
                     app:dev_flags="triangle"
-                    app:dev_paddingCenter="10.0dp"
+                    app:dev_paddingCenter="@dimen/un_dp_10"
                     app:dev_text1="活动优惠"
                     app:dev_text2="特价"
                     app:dev_textColor2="#80FFFF" />
@@ -50,7 +50,7 @@
                     android:layout_gravity="right"
                     app:dev_fillColor="#F44336"
                     app:dev_flags="triangle|right"
-                    app:dev_paddingCenter="10.0dp"
+                    app:dev_paddingCenter="@dimen/un_dp_10"
                     app:dev_text1="活动优惠"
                     app:dev_text2="特价"
                     app:dev_textColor2="@color/white" />
@@ -61,7 +61,7 @@
                     android:layout_gravity="bottom"
                     app:dev_fillColor="#3F51B5"
                     app:dev_flags="triangle|bottom"
-                    app:dev_paddingCenter="10.0dp"
+                    app:dev_paddingCenter="@dimen/un_dp_10"
                     app:dev_text1="活动优惠"
                     app:dev_text2="特价"
                     app:dev_textColor2="#66ffffff" />
@@ -72,7 +72,7 @@
                     android:layout_gravity="bottom|right"
                     app:dev_fillColor="#009688"
                     app:dev_flags="triangle|right|bottom"
-                    app:dev_paddingCenter="10.0dp"
+                    app:dev_paddingCenter="@dimen/un_dp_10"
                     app:dev_text1="活动优惠"
                     app:dev_text2="特价"
                     app:dev_textColor2="@color/black" />
@@ -82,17 +82,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:layout_margin="20.0dp"
+                android:layout_margin="@dimen/un_dp_20"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
                 android:stateListAnimator="@drawable/touch"
-                app:cardCornerRadius="10.0dp"
-                app:cardElevation="10.0dp"
+                app:cardCornerRadius="@dimen/un_dp_10"
+                app:cardElevation="@dimen/un_dp_10"
                 tools:targetApi="lollipop">
 
                 <dev.base.widget.BaseImageView
-                    android:layout_width="130.0dp"
-                    android:layout_height="130.0dp"
+                    android:layout_width="@dimen/un_dp_130"
+                    android:layout_height="@dimen/un_dp_130"
                     android:layout_gravity="center"
                     android:background="@drawable/img_commodity" />
 
@@ -100,7 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:dev_fillColor="#03A9F4"
-                    app:dev_paddingCenter="3.0dp"
+                    app:dev_paddingCenter="@dimen/un_dp_3"
                     app:dev_text1="满减" />
 
                 <dev.widget.ui.CornerLabelView
@@ -109,7 +109,7 @@
                     android:layout_gravity="right"
                     app:dev_fillColor="#4CAF50"
                     app:dev_flags="right"
-                    app:dev_paddingCenter="3.0dp"
+                    app:dev_paddingCenter="@dimen/un_dp_3"
                     app:dev_text1="买送" />
 
                 <dev.widget.ui.CornerLabelView
@@ -118,7 +118,7 @@
                     android:layout_gravity="bottom"
                     app:dev_fillColor="#CDDC39"
                     app:dev_flags="bottom"
-                    app:dev_paddingCenter="3.0dp"
+                    app:dev_paddingCenter="@dimen/un_dp_3"
                     app:dev_text1="赠品" />
 
                 <dev.widget.ui.CornerLabelView
@@ -127,7 +127,7 @@
                     android:layout_gravity="bottom|right"
                     app:dev_fillColor="#795548"
                     app:dev_flags="right|bottom"
-                    app:dev_paddingCenter="3.0dp"
+                    app:dev_paddingCenter="@dimen/un_dp_3"
                     app:dev_text1="拼图" />
             </androidx.cardview.widget.CardView>
         </FrameLayout>
@@ -136,17 +136,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="20.0dp"
+            android:layout_margin="@dimen/un_dp_20"
             android:clickable="true"
             android:foreground="?attr/selectableItemBackground"
             android:stateListAnimator="@drawable/touch"
-            app:cardCornerRadius="10.0dp"
-            app:cardElevation="10.0dp"
+            app:cardCornerRadius="@dimen/un_dp_10"
+            app:cardElevation="@dimen/un_dp_10"
             tools:targetApi="lollipop">
 
             <dev.base.widget.BaseImageView
-                android:layout_width="130.0dp"
-                android:layout_height="130.0dp"
+                android:layout_width="@dimen/un_dp_130"
+                android:layout_height="@dimen/un_dp_130"
                 android:layout_gravity="center"
                 android:background="@drawable/img_commodity" />
 
@@ -155,24 +155,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:dev_fillColor="#FFC107"
-                app:dev_paddingCenter="3.0dp"
+                app:dev_paddingCenter="@dimen/un_dp_3"
                 app:dev_text1="动态" />
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10.0dp"
-            android:layout_marginRight="10.0dp"
-            android:layout_marginBottom="10.0dp"
+            android:layout_marginTop="@dimen/un_dp_10"
+            android:layout_marginRight="@dimen/un_dp_10"
+            android:layout_marginBottom="@dimen/un_dp_10"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/btn_color"
                 android:layout_width="wrap_content"
-                android:layout_height="25.0dp"
+                android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10.0dp"
+                android:layout_marginLeft="@dimen/un_dp_10"
                 android:layout_weight="1"
                 android:background="#DDD"
                 android:gravity="center"
@@ -181,9 +181,9 @@
             <TextView
                 android:id="@+id/btn_left"
                 android:layout_width="wrap_content"
-                android:layout_height="25.0dp"
+                android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10.0dp"
+                android:layout_marginLeft="@dimen/un_dp_10"
                 android:layout_weight="1"
                 android:background="#DDD"
                 android:gravity="center"
@@ -192,9 +192,9 @@
             <TextView
                 android:id="@+id/btn_top"
                 android:layout_width="wrap_content"
-                android:layout_height="25.0dp"
+                android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10.0dp"
+                android:layout_marginLeft="@dimen/un_dp_10"
                 android:layout_weight="1"
                 android:background="#DDD"
                 android:gravity="center"
@@ -203,9 +203,9 @@
             <TextView
                 android:id="@+id/btn_triangle"
                 android:layout_width="wrap_content"
-                android:layout_height="25.0dp"
+                android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10.0dp"
+                android:layout_marginLeft="@dimen/un_dp_10"
                 android:layout_weight="1"
                 android:background="#DDD"
                 android:gravity="center"
@@ -214,17 +214,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="35.0dp"
-            android:layout_marginRight="10.0dp"
-            android:layout_marginBottom="10.0dp"
+            android:layout_height="@dimen/un_dp_35"
+            android:layout_marginRight="@dimen/un_dp_10"
+            android:layout_marginBottom="@dimen/un_dp_10"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/btn_text1_minus"
                 android:layout_width="wrap_content"
-                android:layout_height="25.0dp"
+                android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10.0dp"
+                android:layout_marginLeft="@dimen/un_dp_10"
                 android:layout_weight="1"
                 android:background="#DDD"
                 android:gravity="center"
@@ -233,9 +233,9 @@
             <TextView
                 android:id="@+id/btn_text1_plus"
                 android:layout_width="wrap_content"
-                android:layout_height="25.0dp"
+                android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10.0dp"
+                android:layout_marginLeft="@dimen/un_dp_10"
                 android:layout_weight="1"
                 android:background="#DDD"
                 android:gravity="center"
@@ -244,9 +244,9 @@
             <TextView
                 android:id="@+id/btn_height1_minus"
                 android:layout_width="wrap_content"
-                android:layout_height="25.0dp"
+                android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10.0dp"
+                android:layout_marginLeft="@dimen/un_dp_10"
                 android:layout_weight="1"
                 android:background="#DDD"
                 android:gravity="center"
@@ -255,9 +255,9 @@
             <TextView
                 android:id="@+id/btn_height1_plus"
                 android:layout_width="wrap_content"
-                android:layout_height="25.0dp"
+                android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10.0dp"
+                android:layout_marginLeft="@dimen/un_dp_10"
                 android:layout_weight="1"
                 android:background="#DDD"
                 android:gravity="center"
@@ -266,17 +266,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="35.0dp"
-            android:layout_marginRight="10.0dp"
-            android:layout_marginBottom="10.0dp"
+            android:layout_height="@dimen/un_dp_35"
+            android:layout_marginRight="@dimen/un_dp_10"
+            android:layout_marginBottom="@dimen/un_dp_10"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/btn_text2_minus"
                 android:layout_width="wrap_content"
-                android:layout_height="25.0dp"
+                android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10.0dp"
+                android:layout_marginLeft="@dimen/un_dp_10"
                 android:layout_weight="1"
                 android:background="#DDD"
                 android:gravity="center"
@@ -285,9 +285,9 @@
             <TextView
                 android:id="@+id/btn_text2_plus"
                 android:layout_width="wrap_content"
-                android:layout_height="25.0dp"
+                android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10.0dp"
+                android:layout_marginLeft="@dimen/un_dp_10"
                 android:layout_weight="1"
                 android:background="#DDD"
                 android:gravity="center"
@@ -296,9 +296,9 @@
             <TextView
                 android:id="@+id/btn_height2_minus"
                 android:layout_width="wrap_content"
-                android:layout_height="25.0dp"
+                android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10.0dp"
+                android:layout_marginLeft="@dimen/un_dp_10"
                 android:layout_weight="1"
                 android:background="#DDD"
                 android:gravity="center"
@@ -307,9 +307,9 @@
             <TextView
                 android:id="@+id/btn_height2_plus"
                 android:layout_width="wrap_content"
-                android:layout_height="25.0dp"
+                android:layout_height="@dimen/un_dp_25"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10.0dp"
+                android:layout_marginLeft="@dimen/un_dp_10"
                 android:layout_weight="1"
                 android:background="#DDD"
                 android:gravity="center"

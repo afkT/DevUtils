@@ -23,6 +23,6 @@
         android:id="@+id/vid_avp_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20.0dp" />
+        android:layout_marginTop="@dimen/un_dp_20" />
 
 </LinearLayout>

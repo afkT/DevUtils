@@ -5,39 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingLeft="10.0dp"
-    android:paddingRight="10.0dp"
-    android:paddingBottom="10.0dp"
+    android:paddingLeft="@dimen/un_dp_10"
+    android:paddingRight="@dimen/un_dp_10"
+    android:paddingBottom="@dimen/un_dp_10"
     tools:background="@color/color_f5">
 
     <View
         android:id="@+id/vid_aie_line"
         android:layout_width="match_parent"
-        android:layout_height="10.0dp" />
+        android:layout_height="@dimen/un_dp_10" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_bg_white_r10"
         android:orientation="vertical"
-        android:paddingLeft="14.0dp"
-        android:paddingTop="10.0dp"
-        android:paddingRight="10.0dp">
+        android:paddingLeft="@dimen/un_dp_14"
+        android:paddingTop="@dimen/un_dp_10"
+        android:paddingRight="@dimen/un_dp_10">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="70.0dp"
-            android:layout_marginTop="10.0dp"
-            android:layout_marginBottom="10.0dp">
+            android:layout_height="@dimen/un_dp_70"
+            android:layout_marginTop="@dimen/un_dp_10"
+            android:layout_marginBottom="@dimen/un_dp_10">
 
             <FrameLayout
                 android:id="@+id/vid_aie_pic_frame"
-                android:layout_width="70.0dp"
-                android:layout_height="70.0dp"
+                android:layout_width="@dimen/un_dp_70"
+                android:layout_height="@dimen/un_dp_70"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/shape_border_image"
-                android:padding="5.0dp">
+                android:padding="@dimen/un_dp_5">
 
                 <dev.base.widget.BaseImageView
                     android:id="@+id/vid_aie_pic_igview"
@@ -49,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:layout_marginLeft="8.0dp"
+                android:layout_marginLeft="@dimen/un_dp_8"
                 android:layout_toRightOf="@id/vid_aie_pic_frame"
                 android:orientation="vertical">
 
@@ -58,7 +58,7 @@
                     style="@style/AppTheme.Base_TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="1.0dp"
+                    android:layout_marginTop="@dimen/un_dp_1"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:textColor="@color/color_33"
@@ -70,7 +70,7 @@
                     style="@style/AppTheme.Base_TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4.0dp"
+                    android:layout_marginTop="@dimen/un_dp_4"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:textColor="@color/red"
@@ -99,14 +99,14 @@
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="15.0dp"
+                        android:layout_marginLeft="@dimen/un_dp_15"
                         android:gravity="center|left"
                         app:clickable="true"
                         app:halfstart="false"
                         app:starCount="5"
                         app:starEmpty="@drawable/icon_star_unselected"
                         app:starFill="@drawable/icon_star_selected"
-                        app:starImageHeight="18.0dp" />
+                        app:starImageHeight="@dimen/un_dp_18" />
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
@@ -114,13 +114,13 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/un_line_0_5"
-            android:layout_marginTop="10.0dp"
+            android:layout_marginTop="@dimen/un_dp_10"
             android:background="@color/color_d7" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10.0dp">
+            android:layout_marginTop="@dimen/un_dp_10">
 
             <!-- 输入的评价内容 -->
 
@@ -134,7 +134,7 @@
                 android:gravity="start"
                 android:hint="分享你的评价"
                 android:maxLength="120"
-                android:minHeight="110.0dp"
+                android:minHeight="@dimen/un_dp_110"
                 android:textColor="@color/color_33"
                 android:textColorHint="@color/color_99"
                 android:textSize="@dimen/un_sp_15" />
@@ -148,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginLeft="15.0dp"
+                android:layout_marginLeft="@dimen/un_dp_15"
                 android:textColor="@color/color_33"
                 android:textSize="@dimen/un_sp_14"
                 tools:text="120" />
@@ -160,8 +160,8 @@
             android:id="@+id/vid_aie_pic_recy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10.0dp"
-            android:layout_marginBottom="12.0dp"
+            android:layout_marginTop="@dimen/un_dp_10"
+            android:layout_marginBottom="@dimen/un_dp_12"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 </LinearLayout>

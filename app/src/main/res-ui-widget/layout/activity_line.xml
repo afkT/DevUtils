@@ -12,9 +12,9 @@
         <dev.base.widget.BaseTextView
             android:id="@+id/vid_al_tv"
             style="@style/AppTheme.Base_TextView"
-            android:layout_height="100.0dp"
+            android:layout_height="@dimen/un_dp_100"
             android:gravity="center"
-            android:lineSpacingExtra="5.0dp" />
+            android:lineSpacingExtra="@dimen/un_dp_5" />
 
         <View
             style="@style/AppTheme.Base_Line_Vertical"
@@ -23,9 +23,9 @@
         <dev.widget.function.LineTextView
             android:id="@+id/vid_al_content_tv"
             style="@style/AppTheme.Base_TextView"
-            android:layout_margin="15.0dp"
+            android:layout_margin="@dimen/un_dp_15"
             android:gravity="center"
-            android:lineSpacingExtra="5.0dp" />
+            android:lineSpacingExtra="@dimen/un_dp_5" />
 
     </LinearLayout>
 </dev.widget.custom.CustomNestedScrollView>

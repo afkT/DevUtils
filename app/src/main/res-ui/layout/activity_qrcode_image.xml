@@ -21,7 +21,7 @@
         <dev.base.widget.BaseTextView
             android:id="@+id/vid_aqi_tv"
             style="@style/AppTheme.Base_TextView"
-            android:layout_marginTop="10.0dp"
+            android:layout_marginTop="@dimen/un_dp_10"
             android:textSize="@dimen/un_sp_17"
             tools:text="解析结果" />
     </LinearLayout>

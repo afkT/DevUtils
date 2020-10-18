@@ -13,63 +13,63 @@
 
         <dev.base.widget.BaseTextView
             style="@style/AppTheme.Base_TextView"
-            android:layout_marginTop="15.0dp"
+            android:layout_marginTop="@dimen/un_dp_15"
             android:text="循环添加联系人"
             android:textColor="@color/grey"
             android:textStyle="bold" />
 
         <View
             style="@style/AppTheme.Base_Line_Vertical"
-            android:layout_marginTop="15.0dp"
+            android:layout_marginTop="@dimen/un_dp_15"
             android:background="@color/gray" />
 
         <dev.base.widget.BaseTextView
             style="@style/AppTheme.Base_TextView"
-            android:layout_marginTop="15.0dp"
+            android:layout_marginTop="@dimen/un_dp_15"
             android:text="例 :" />
 
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="15.0dp">
+            android:layout_marginTop="@dimen/un_dp_15">
 
             <dev.base.widget.BaseTextView
                 style="@style/AppTheme.Base_TextView"
-                android:layout_marginRight="150.0dp"
+                android:layout_marginRight="@dimen/un_dp_150"
                 android:gravity="left"
                 android:text="137" />
 
             <dev.base.widget.BaseTextView
                 style="@style/AppTheme.Base_TextView"
-                android:layout_marginLeft="150.0dp"
+                android:layout_marginLeft="@dimen/un_dp_150"
                 android:gravity="right"
                 android:text="5678" />
 
             <dev.base.widget.BaseTextView
                 style="@style/AppTheme.Base_TextView"
                 android:layout_gravity="bottom"
-                android:layout_marginTop="20.0dp"
+                android:layout_marginTop="@dimen/un_dp_20"
                 android:gravity="center"
                 android:text="0000 - 9999" />
         </FrameLayout>
 
         <View
             style="@style/AppTheme.Base_Line_Vertical"
-            android:layout_marginTop="15.0dp"
+            android:layout_marginTop="@dimen/un_dp_15"
             android:background="@color/gray" />
 
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="15.0dp">
+            android:layout_marginTop="@dimen/un_dp_15">
 
             <dev.base.widget.BaseEditText
                 android:id="@+id/vid_aac_start_edit"
-                android:layout_width="120.0dp"
-                android:layout_height="40.0dp"
-                android:layout_marginRight="150.0dp"
+                android:layout_width="@dimen/un_dp_120"
+                android:layout_height="@dimen/un_dp_40"
+                android:layout_marginRight="@dimen/un_dp_150"
                 android:background="@drawable/shape_border_image"
                 android:gravity="center"
                 android:hint="137"
@@ -83,9 +83,9 @@
 
             <dev.base.widget.BaseEditText
                 android:id="@+id/vid_aac_end_edit"
-                android:layout_width="120.0dp"
-                android:layout_height="40.0dp"
-                android:layout_marginLeft="150.0dp"
+                android:layout_width="@dimen/un_dp_120"
+                android:layout_height="@dimen/un_dp_40"
+                android:layout_marginLeft="@dimen/un_dp_150"
                 android:background="@drawable/shape_border_image"
                 android:gravity="center"
                 android:hint="5678"
@@ -100,7 +100,7 @@
 
         <View
             style="@style/AppTheme.Base_Line_Vertical"
-            android:layout_marginTop="15.0dp"
+            android:layout_marginTop="@dimen/un_dp_15"
             android:background="@color/gray" />
 
         <dev.base.widget.BaseButton
@@ -113,7 +113,7 @@
         <dev.base.widget.BaseTextView
             android:id="@+id/vid_aac_tips_tv"
             style="@style/AppTheme.Base_TextView"
-            android:layout_marginTop="20.0dp"
+            android:layout_marginTop="@dimen/un_dp_20"
             android:gravity="left"
             android:visibility="gone"
             tools:text="需创建 xx 条数据, 已创建 xx 条"

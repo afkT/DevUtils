@@ -11,31 +11,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="12.0dp"
+        android:layout_margin="@dimen/un_dp_12"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         android:stateListAnimator="@drawable/touch"
-        app:cardCornerRadius="15.0dp"
-        app:cardElevation="5.0dp"
+        app:cardCornerRadius="@dimen/un_dp_15"
+        app:cardElevation="@dimen/un_dp_5"
         tools:targetApi="lollipop">
 
         <LinearLayout
-            android:layout_width="220.0dp"
+            android:layout_width="@dimen/un_dp_220"
             android:layout_height="wrap_content"
-            android:layout_margin="15.0dp"
+            android:layout_margin="@dimen/un_dp_15"
             android:orientation="vertical">
 
             <dev.base.widget.BaseImageView
                 android:id="@+id/vid_ags_igview"
-                android:layout_width="220.0dp"
-                android:layout_height="391.0dp" />
+                android:layout_width="@dimen/un_dp_220"
+                android:layout_height="@dimen/un_dp_391" />
 
             <dev.base.widget.BaseTextView
                 android:id="@+id/vid_ags_title_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10.0dp"
+                android:layout_marginTop="@dimen/un_dp_10"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textSize="@dimen/un_sp_25"
@@ -46,7 +46,7 @@
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5.0dp"
+                android:layout_marginTop="@dimen/un_dp_5"
                 android:textColor="@color/color_55"
                 android:textSize="@dimen/un_sp_16"
                 tools:text="这是副标题" />
@@ -56,7 +56,7 @@
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5.0dp"
+                android:layout_marginTop="@dimen/un_dp_5"
                 android:textColor="@color/color_99"
                 android:textSize="@dimen/un_sp_13"
                 tools:text="2020.06.17" />
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            android:layout_margin="10.0dp"
+            android:layout_margin="@dimen/un_dp_10"
             android:textColor="@color/color_55"
             android:textSize="@dimen/un_sp_16"
             android:textStyle="bold"

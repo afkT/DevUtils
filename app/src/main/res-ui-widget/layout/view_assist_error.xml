@@ -6,15 +6,15 @@
     android:orientation="vertical">
 
     <dev.base.widget.BaseImageView
-        android:layout_width="50.0dp"
-        android:layout_height="50.0dp"
+        android:layout_width="@dimen/un_dp_50"
+        android:layout_height="@dimen/un_dp_50"
         android:src="@drawable/icon_error" />
 
     <dev.base.widget.BaseTextView
         style="@style/AppTheme.Base_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20.0dp"
+        android:layout_marginTop="@dimen/un_dp_20"
         android:text="error click retry"
         android:textColor="@color/color_88"
         android:textSize="@dimen/un_sp_20" />
