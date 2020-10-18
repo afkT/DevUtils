@@ -143,17 +143,17 @@ ext {
                     // Glide 图形库 https://github.com/wasabeef/glide-transformations
                     glide_transformations        : "jp.wasabeef:glide-transformations:4.1.0",
                     // GPU Filters https://github.com/cats-oss/android-gpuimage
-                    gpuimage                     : "jp.co.cyberagent.android:gpuimage:2.0.4",
+                    gpuimage                     : "jp.co.cyberagent.android:gpuimage:2.1.0",
                     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
                     eventbus                     : "org.greenrobot:eventbus:3.2.0",
                     // LiveEventBus 消息总线 https://github.com/JeremyLiao/LiveEventBus
                     live_eventbus                : "com.jeremyliao:live-event-bus-x:1.7.2",
                     // okip https://github.com/square/okio
-                    okio                         : "com.squareup.okio:okio:2.7.0",
+                    okio                         : "com.squareup.okio:okio:2.9.0",
                     // okhttp3 网络请求框架 https://github.com/square/okhttp
-                    okhttp3                      : "com.squareup.okhttp3:okhttp:4.8.0",
+                    okhttp3                      : "com.squareup.okhttp3:okhttp:4.9.0",
                     // okhttp 日志拦截器 https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor
-                    okhttp3_logging              : "com.squareup.okhttp3:logging-interceptor:4.8.0",
+                    okhttp3_logging              : "com.squareup.okhttp3:logging-interceptor:4.9.0",
                     // Retrofit 网络请求库  https://github.com/square/retrofit
                     retrofit                     : "com.squareup.retrofit2:retrofit:2.9.0",
                     // Retrofit Gson Converter  https://github.com/square/retrofit/tree/master/retrofit-converters/gson
@@ -161,7 +161,7 @@ ext {
                     // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava3
                     retrofit_rxjava3             : "com.squareup.retrofit2:adapter-rxjava3:2.9.0",
                     // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
-                    rxjava3                      : "io.reactivex.rxjava3:rxjava:3.0.5",
+                    rxjava3                      : "io.reactivex.rxjava3:rxjava:3.0.7",
                     // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
                     rxandroid3                   : "io.reactivex.rxjava3:rxandroid:3.0.0",
                     // Okgo https://github.com/jeasonlzy/okhttp-OkGo
@@ -175,16 +175,16 @@ ext {
                     fastjson                     : "com.alibaba:fastjson:1.2.73",
                     fastjson_android             : "com.alibaba:fastjson:1.1.72.android",
                     // View 注入框架 https://github.com/JakeWharton/butterknife
-                    butterknife                  : "com.jakewharton:butterknife:10.2.2",
-                    butterknife_compiler         : "com.jakewharton:butterknife-compiler:10.2.2",
+                    butterknife                  : "com.jakewharton:butterknife:10.2.3",
+                    butterknife_compiler         : "com.jakewharton:butterknife-compiler:10.2.3",
                     // Kotlin ButterKnife https://github.com/JakeWharton/kotterknife
                     kotterknife                  : "com.jakewharton:kotterknife:0.1.0-SNAPSHOT",
                     // Anchors 启动框架 https://github.com/YummyLau/Anchors/blob/master/README-zh.md
-                    anchors                      : "com.effective.android:anchors:1.1.1",
+                    anchors                      : "com.effective.android:anchors:1.1.2",
                     // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
-                    panelSwitchHelper            : "com.effective.android:panelSwitchHelper-androidx:1.3.8",
+                    panelSwitchHelper            : "com.effective.android:panelSwitchHelper-androidx:1.3.10",
                     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-                    pictureSelector              : "com.github.LuckSiege.PictureSelector:picture_library:v2.5.8",
+                    pictureSelector              : "com.github.LuckSiege.PictureSelector:picture_library:v2.5.9",
                     // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 ) https://github.com/google/flexbox-layout
                     flexbox                      : "com.google.android:flexbox:2.0.1", // // https://juejin.im/post/58d1035161ff4b00603ca9c4
                     // 评价等级控件 https://github.com/hedge-hog/RatingBar
@@ -200,7 +200,7 @@ ext {
                     // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
                     stickyDecoration             : "com.gavin.com.library:stickyDecoration:1.5.2",
                     // 动画库 https://github.com/airbnb/lottie-android
-                    lottie                       : "com.airbnb.android:lottie:3.4.1", // https://www.jianshu.com/p/9a2136ecbc7b
+                    lottie                       : "com.airbnb.android:lottie:3.4.4", // https://www.jianshu.com/p/9a2136ecbc7b
                     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
                     smartrefreshlayout           : "com.scwang.smart:refresh-layout-kernel:2.0.1",
                     smartrefresh_header_classics : "com.scwang.smart:refresh-header-classics:2.0.1", // 经典刷新头
@@ -213,19 +213,19 @@ ext {
                     // 下拉刷新框架 ( 横向 ) https://github.com/scwang90/SmartRefreshHorizontal
                     smartrefreshHorizontal       : "com.scwang.smart:refresh-layout-horizontal:2.0.0",
                     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-                    baserecyclerviewadapterhelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4",
+                    baserecyclerviewadapterhelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6",
                     // Aria 下载可以很简单 https://github.com/AriaLyy/Aria
-                    aria_core                    : "com.arialyy.aria:core:3.8.10",
-                    aria_compiler                : "com.arialyy.aria:compiler:3.8.10",
-                    aria_ftp                     : "com.arialyy.aria:ftpComponent:3.8.10", // 如果需要使用 ftp, 请增加该组件
-                    aria_sftp                    : "com.arialyy.aria:sftpComponent:3.8.10", // 如果需要使用 ftp, 请增加该组件
-                    aria_m3u8                    : "com.arialyy.aria:m3u8Component:3.8.10", // 如果需要使用 m3u8 下载功能, 请增加该组件
+                    aria_core                    : "com.arialyy.aria:core:3.8.14",
+                    aria_compiler                : "com.arialyy.aria:compiler:3.8.14",
+                    aria_ftp                     : "com.arialyy.aria:ftpComponent:3.8.14", // 如果需要使用 ftp, 请增加该组件
+                    aria_sftp                    : "com.arialyy.aria:sftpComponent:3.8.14", // 如果需要使用 ftp, 请增加该组件
+                    aria_m3u8                    : "com.arialyy.aria:m3u8Component:3.8.14", // 如果需要使用 m3u8 下载功能, 请增加该组件
                     // 二维码 ZXing https://github.com/zxing/zxing
-                    zxing_code                   : "com.google.zxing:core:3.4.0", // http://mvnrepository.com/artifact/com.google.zxing/core
+                    zxing_code                   : "com.google.zxing:core:3.4.1", // http://mvnrepository.com/artifact/com.google.zxing/core
                     zxing_android_code           : "com.google.zxing:android-core:3.3.0", // http://mvnrepository.com/artifact/com.google.zxing/android-core
                     // 多子 view 嵌套滚动通用解决方案 https://github.com/MFC-TEC/ELinkageScroll
                     // WebView、RecyclerView 多布局连贯滑动 https://github.com/donkingliang/ConsecutiveScroller
-                    consecutiveScroller          : "com.github.donkingliang:ConsecutiveScroller:4.1.0", // AndroidX
+                    consecutiveScroller          : "com.github.donkingliang:ConsecutiveScroller:4.3.0", // AndroidX
                     // 图表 https://github.com/PhilJay/MPAndroidChart
                     mpAndroidChart               : "com.github.PhilJay:MPAndroidChart:v3.1.0",
                     // 波浪效果 https://github.com/gelitenight/WaveView
@@ -233,7 +233,7 @@ ext {
                     // Banner 库 https://github.com/youth5201314/banner
                     banner                       : "com.youth.banner:banner:2.1.0",
                     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
-                    mmkv                         : "com.tencent:mmkv-static:1.2.2",
+                    mmkv                         : "com.tencent:mmkv-static:1.2.3",
                     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
                     autosize                     : "me.jessyan:autosize:1.2.1",
                     // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
@@ -247,8 +247,8 @@ ext {
                     // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
                     xcrash                       : "com.iqiyi.xcrash:xcrash-android-lib:2.4.9",
                     // 图片裁剪库 https://github.com/Yalantis/uCrop
-                    ucrop                        : "com.github.yalantis:ucrop:2.2.5", // 轻量级通用解决方案
-                    ucrop_native                 : "com.github.yalantis:ucrop:2.2.5-native", // 支持本机功能
+                    ucrop                        : "com.github.yalantis:ucrop:2.2.6", // 轻量级通用解决方案
+                    ucrop_native                 : "com.github.yalantis:ucrop:2.2.6-native", // 支持本机功能
 
                     // ========
                     // = 其他 =
