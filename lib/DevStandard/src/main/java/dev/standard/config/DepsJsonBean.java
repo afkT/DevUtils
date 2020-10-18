@@ -1,6 +1,6 @@
 package dev.standard.config;
 
-import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -37,7 +37,7 @@ public final class DepsJsonBean {
         // JSON 映射 Type
         Type type = TypeToken.getParameterized(LinkedHashMap.class, String.class, valueType).getType();
         // 映射 Map
-        depsJsonBean.mDepsMaps = new Gson().fromJson(json, type);
+        depsJsonBean.mDepsMaps = new GsonBuilder().setPrettyPrinting().create().fromJson(json, type);
         return depsJsonBean;
     }
 
@@ -78,8 +78,23 @@ public final class DepsJsonBean {
      * @return Gradle Dependencies 全部依赖信息
      */
     public String getAllDependencies(final String mark) {
+        return getAllDependencies(mark, true);
+    }
+
+    /**
+     * 获取 Gradle Dependencies 全部依赖信息
+     * @param mark    标记符
+     * @param divider 是否进行分割
+     * @return Gradle Dependencies 全部依赖信息
+     */
+    public String getAllDependencies(final String mark, final boolean divider) {
         StringBuilder builder = new StringBuilder();
         for (String key : mDepsMaps.keySet()) {
+            if (divider) {
+                builder.append(StringUtils.NEW_LINE_STR_X2)
+                        .append(String.format(FORMAT_ANNOTATION, ("= " + key + " =")))
+                        .append(StringUtils.NEW_LINE_STR);
+            }
             LinkedHashMap<String, String> maps = mDepsMaps.get(key);
             builder.append(getDependencies(mark, maps));
         }

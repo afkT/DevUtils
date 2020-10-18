@@ -3,6 +3,7 @@ package dev.standard.config;
 import java.io.File;
 
 import dev.utils.common.FileUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: 配置读取 Main 方法
@@ -18,7 +19,11 @@ final class ConfigMain {
         DepsJsonBean depsJsonBean = DepsJsonBean.get(json);
         // 获取 Gradle Dependencies 全部依赖信息
         String dependencies = depsJsonBean.getAllDependencies(DepsJsonBean.IMPLEMENTATION);
-
+        // 保存文件
+        FileUtils.saveFile(
+                new File("file/json/deps_dependencies.txt"),
+                String.format("dependencies {%s%s}", dependencies, StringUtils.NEW_LINE_STR).getBytes()
+        );
         System.out.println(dependencies);
     }
 }
