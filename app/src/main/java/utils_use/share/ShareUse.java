@@ -37,7 +37,6 @@ public final class ShareUse {
         SPUtils.getPreference(DevUtils.getContext(), "xxx").put("aa", 1);
         SPUtils.getPreference(DevUtils.getContext(), "xxxxx", Context.MODE_PRIVATE).put("aa", 1);
 
-
 //        // 默认值如下
 //        switch (type) {
 //            case INTEGER:

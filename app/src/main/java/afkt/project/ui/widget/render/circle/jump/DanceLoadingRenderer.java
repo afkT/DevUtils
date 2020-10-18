@@ -16,7 +16,6 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import afkt.project.ui.widget.render.LoadingRenderer;
 import dev.utils.app.SizeUtils;
 
-
 public class DanceLoadingRenderer extends LoadingRenderer {
     private static final Interpolator MATERIAL_INTERPOLATOR   = new FastOutSlowInInterpolator();
     private static final Interpolator ACCELERATE_INTERPOLATOR = new AccelerateInterpolator();

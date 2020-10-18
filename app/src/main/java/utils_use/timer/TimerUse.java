@@ -89,7 +89,6 @@ public final class TimerUse {
         // 开始定时
         absTimer.startTimer();
 
-
 //        Handler handler = new Handler() {
 //            @Override
 //            public void handleMessage(Message msg) {

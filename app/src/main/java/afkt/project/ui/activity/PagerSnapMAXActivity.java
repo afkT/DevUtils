@@ -49,7 +49,6 @@ public class PagerSnapMAXActivity extends BaseActivity<BaseViewRecyclerviewBindi
     public void initValue() {
         super.initValue();
 
-
         List<ItemBean> lists = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             lists.add(ItemBean.newItemBeanPager());
@@ -63,7 +62,6 @@ public class PagerSnapMAXActivity extends BaseActivity<BaseViewRecyclerviewBindi
 
         PagerSnapHelper helper = new PagerSnapHelper();
         helper.attachToRecyclerView(binding.vidBvrRecy);
-
 
         int size = lists.size();
         // 滑动到中间 ( 无滑动过程 )

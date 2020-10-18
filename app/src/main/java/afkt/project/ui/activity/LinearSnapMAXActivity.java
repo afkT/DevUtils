@@ -63,7 +63,6 @@ public class LinearSnapMAXActivity extends BaseActivity<BaseViewRecyclerviewBind
         LinearSnapHelper helper = new LinearSnapHelper();
         helper.attachToRecyclerView(binding.vidBvrRecy);
 
-
         int size = lists.size();
         // 滑动到中间 ( 无滑动过程 )
         ((LinearLayoutManager) binding.vidBvrRecy.getLayoutManager()).scrollToPositionWithOffset(size * 100 - 1, 10);

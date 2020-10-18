@@ -46,7 +46,6 @@ public class PagerSnapActivity extends BaseActivity<BaseViewRecyclerviewBinding>
     public void initValue() {
         super.initValue();
 
-
         List<ItemBean> lists = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             lists.add(ItemBean.newItemBeanPager());

@@ -49,7 +49,6 @@ public class AutoGridView extends GridView {
         Log.d(TAG, "numColumns set to: " + numColumns);
     }
 
-
     /**
      * Reads the amount of columns from the resource file and
      * updates the "numColumns" variable
