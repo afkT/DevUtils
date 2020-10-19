@@ -24,15 +24,11 @@ android {
 //        }
     }
 
-    // Data binding
     buildFeatures {
+        // Data Binding
         dataBinding = true
-    }
-
-    // View Binding
-    viewBinding {
-        // https://developer.android.com/topic/libraries/view-binding
-        enabled = true
+        // View Binding
+        viewBinding = true
     }
 
     lintOptions {

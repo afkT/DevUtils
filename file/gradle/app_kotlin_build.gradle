@@ -4,14 +4,11 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    // Data binding
     buildFeatures {
+        // Data Binding
         dataBinding = true
-    }
-
-    // View Binding
-    viewBinding {
-        enabled = true
+        // View Binding
+        viewBinding = true
     }
 
     lintOptions {

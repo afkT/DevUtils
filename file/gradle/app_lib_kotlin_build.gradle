@@ -11,14 +11,11 @@ android {
         consumerProguardFiles 'proguard-rules.pro'
     }
 
-    // Data binding
     buildFeatures {
+        // Data Binding
         dataBinding = true
-    }
-
-    // View Binding
-    viewBinding {
-        enabled = true
+        // View Binding
+        viewBinding = true
     }
 
     lintOptions {
