@@ -75,7 +75,7 @@ import groovy.json.JsonOutput
 
 // 存储 config.gradle json 数据
 task saveConfigGradleJSON() {
-    println deps.toString()
+//    println deps.toString()
     // 获取 ext.deps json 数据
     def depsJSON = JsonOutput.toJson(deps)
     // 格式化 JSON
