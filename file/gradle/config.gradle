@@ -44,9 +44,9 @@ ext {
             // ===========
 
             // 版本号
-            dev_app_versionCode                     : 206,
+            dev_app_versionCode                     : 207,
             // 版本名
-            dev_app_versionName                     : '2.0.6',
+            dev_app_versionName                     : '2.0.7',
 
             // 版本号
             dev_assist_versionCode                  : 104,
@@ -64,9 +64,9 @@ ext {
             dev_base_mvvm_versionName               : '1.0.0',
 
             // 版本号
-            dev_java_versionCode                    : 119,
+            dev_java_versionCode                    : 120,
             // 版本名
-            dev_java_version                        : '1.1.9',
+            dev_java_version                        : '1.2.0',
 
             // 版本号
             dev_widget_versionCode                  : 104,
