@@ -61,10 +61,10 @@ implementation 'com.afkt:DevAssist:1.0.4'
 
 | 方法 | 注释 |
 | :- | :- |
-| getDevAssistUtilsVersion | 获取 DevAssist 工具类版本 |
-| getDevAssistUtilsVersionCode | 获取 DevAssist 工具类版本号 |
-| getDevJavaUtilsVersion | 获取 DevJava 工具类版本 |
-| getDevJavaUtilsVersionCode | 获取 DevJava 工具类版本号 |
+| getDevAssistVersionCode | 获取 DevAssist 版本号 |
+| getDevAssistVersion | 获取 DevAssist 版本 |
+| getDevJavaVersionCode | 获取 DevJava 版本号 |
+| getDevJavaVersion | 获取 DevJava 版本 |
 
 
 ## <span id="devassist">**`dev.assist`**</span>

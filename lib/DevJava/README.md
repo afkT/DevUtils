@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevJava:1.1.9'
+implementation 'com.afkt:DevJava:1.2.0'
 ```
 
 ## 目录结构
@@ -861,8 +861,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | underScoreCaseToCamelCase | 下划线命名转为驼峰命名 |
 | camelCaseToUnderScoreCase | 驼峰命名法转为下划线命名 |
 | sqliteEscape | 字符串数据库字符转义 |
-| converHideMobile | 转换手机号 |
-| converSymbolHide | 转换符号处理 |
+| convertHideMobile | 转换手机号 |
+| convertSymbolHide | 转换符号处理 |
 | subEllipsize | 裁剪超出的内容, 并且追加符号 ( 如 ...) |
 | subSymbolHide | 裁剪符号处理 |
 | subSetSymbol | 裁剪内容 ( 设置符号处理 ) |
