@@ -18,15 +18,17 @@ buildscript {
         // JitPack Maven
         maven { url 'https://jitpack.io' }
 
+        maven { url 'https://plugins.gradle.org/m2' }
+
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.0'
-        // mavan
+        // mavan https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-        // bintray
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+        // bintray https://plugins.gradle.org/plugin/com.jfrog.bintray
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
         // greendao
         classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
         // kotlin
@@ -47,6 +49,8 @@ allprojects {
 
         // JitPack Maven
         maven { url 'https://jitpack.io' }
+
+        maven { url 'https://plugins.gradle.org/m2' }
 
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
