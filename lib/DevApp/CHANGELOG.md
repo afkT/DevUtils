@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 2.0.7 *(2020-10-20)*
+----------------------------
+
+* `[Update]` StringUtils#convertHideMobile、convertSymbolHide Method Name
+
+* `[Fix]` StringUtils#replaceSEWith、clearSEWiths、clearEndsWith 索引判断问题
+
 Version 2.0.6 *(2020-10-12)*
 ----------------------------
 
