@@ -241,8 +241,6 @@ public final class NetWorkUtils {
 
     /**
      * 使用 ping ip 方式判断网络是否可用
-     * <pre>
-     * </pre>
      * @return {@code true} yes, {@code false} no
      */
     @RequiresPermission(android.Manifest.permission.INTERNET)

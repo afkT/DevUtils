@@ -12,7 +12,7 @@ import android.view.animation.TranslateAnimation;
  * detail: View 动画工具类
  * @author Ttt
  * <pre>
- *      AnimationUtils 基础上封装, 提供简单的控制视图的动画的工具方法
+ *     AnimationUtils 基础上封装, 提供简单的控制视图的动画的工具方法
  * </pre>
  */
 public final class ViewAnimationUtils {

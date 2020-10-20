@@ -1237,7 +1237,7 @@ public class WebViewAssist {
         /**
          * 设置是否使用宽视图
          * <pre>
-         *      是否支持 html viewport 设置了会导致字体变小
+         *     是否支持 html viewport 设置了会导致字体变小
          * </pre>
          * @param useWideViewPort {@code true} yes, {@code false} no
          * @return {@link Builder}

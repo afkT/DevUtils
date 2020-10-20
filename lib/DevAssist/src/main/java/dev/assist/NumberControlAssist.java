@@ -4,8 +4,7 @@ package dev.assist;
  * detail: 数量控制辅助类
  * @author Ttt
  * <pre>
- *      主要用于数量加减限制
- *      如: 购物车数量加减
+ *     主要用于数量加减限制, 如: 购物车数量加减
  * </pre>
  */
 public class NumberControlAssist {
@@ -151,7 +150,7 @@ public class NumberControlAssist {
     /**
      * 设置最小值
      * <pre>
-     *      内部判断了, 是否大于 mMaxNumber, 属于的话则自动赋值 mMaxNumber
+     *     内部判断了, 是否大于 mMaxNumber, 属于的话则自动赋值 mMaxNumber
      * </pre>
      * @param minNumber 最小值
      * @return {@link NumberControlAssist}
@@ -182,8 +181,8 @@ public class NumberControlAssist {
     /**
      * 设置最大值
      * <pre>
-     *      内部判断了, 是否小于 mMinNumber, 属于的话则自动赋值 mMinNumber
-     *      特殊情况 ( 修改为负数 ), 最好先调用 setMinNumber, 在调用 setMaxNumber
+     *     内部判断了, 是否小于 mMinNumber, 属于的话则自动赋值 mMinNumber
+     *     特殊情况 ( 修改为负数 ), 最好先调用 setMinNumber, 在调用 setMaxNumber
      * </pre>
      * @param maxNumber 最大值
      * @return {@link NumberControlAssist}
@@ -451,7 +450,7 @@ public class NumberControlAssist {
         /**
          * 设置最小值
          * <pre>
-         *      内部判断了, 是否大于 mMaxNumber, 属于的话则自动赋值 mMaxNumber
+         *     内部判断了, 是否大于 mMaxNumber, 属于的话则自动赋值 mMaxNumber
          * </pre>
          * @param minNumber 最小值
          * @return R 泛型返回对象
@@ -469,8 +468,8 @@ public class NumberControlAssist {
         /**
          * 设置最大值
          * <pre>
-         *      内部判断了, 是否小于 mMinNumber, 属于的话则自动赋值 mMinNumber
-         *      特殊情况 ( 修改为负数 ), 最好先调用 setMinNumber, 在调用 setMaxNumber
+         *     内部判断了, 是否小于 mMinNumber, 属于的话则自动赋值 mMinNumber
+         *     特殊情况 ( 修改为负数 ), 最好先调用 setMinNumber, 在调用 setMaxNumber
          * </pre>
          * @param maxNumber 最大值
          * @return R 泛型返回对象
