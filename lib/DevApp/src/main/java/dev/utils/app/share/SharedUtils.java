@@ -1,36 +1,21 @@
 package dev.utils.app.share;
 
-import android.content.Context;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import dev.DevUtils;
+
+
 /**
- * detail: SPUtils 工具类 ( 单独使用 )
+ * detail: SPUtils 快捷工具类
  * @author Ttt
  */
 public final class SharedUtils {
 
     private SharedUtils() {
     }
-
-    // 全局 Context
-    private static Context sContext;
-
-    /**
-     * 初始化操作 ( 内部已调用 )
-     * @param context {@link Context}
-     */
-    public static void init(final Context context) {
-        if (sContext == null && context != null) {
-            // 初始化全局 Context
-            sContext = context.getApplicationContext();
-        }
-    }
-
-    // =
 
     /**
      * 保存数据
@@ -39,7 +24,7 @@ public final class SharedUtils {
      * @param <T>   泛型
      */
     public static <T> void put(final String key, final T value) {
-        SPUtils.getPreference(sContext).put(key, value);
+        SPUtils.getPreference(DevUtils.getContext()).put(key, value);
     }
 
     /**
@@ -48,7 +33,7 @@ public final class SharedUtils {
      * @param <T> 泛型
      */
     public static <T> void putAll(final Map<String, T> map) {
-        SPUtils.getPreference(sContext).putAll(map);
+        SPUtils.getPreference(DevUtils.getContext()).putAll(map);
     }
 
     /**
@@ -57,7 +42,7 @@ public final class SharedUtils {
      * @param list 保存的 value
      */
     public static void putAll(final String key, final List<String> list) {
-        SPUtils.getPreference(sContext).putAll(key, list);
+        SPUtils.getPreference(DevUtils.getContext()).putAll(key, list);
     }
 
     /**
@@ -67,7 +52,7 @@ public final class SharedUtils {
      * @param comparator 排序 {@link Comparator}
      */
     public static void putAll(final String key, final List<String> list, final Comparator<String> comparator) {
-        SPUtils.getPreference(sContext).putAll(key, list, comparator);
+        SPUtils.getPreference(DevUtils.getContext()).putAll(key, list, comparator);
     }
 
     /**
@@ -78,7 +63,7 @@ public final class SharedUtils {
      * @return 存储的数据
      */
     public static <T> T get(final String key, final IPreference.DataType type) {
-        return SPUtils.getPreference(sContext).get(key, type);
+        return SPUtils.getPreference(DevUtils.getContext()).get(key, type);
     }
 
     /**
@@ -86,7 +71,7 @@ public final class SharedUtils {
      * @return 存储的数据
      */
     public static Map<String, ?> getAll() {
-        return SPUtils.getPreference(sContext).getAll();
+        return SPUtils.getPreference(DevUtils.getContext()).getAll();
     }
 
     /**
@@ -95,7 +80,7 @@ public final class SharedUtils {
      * @return 存储的数据
      */
     public static List<String> getAll(final String key) {
-        return SPUtils.getPreference(sContext).getAll(key);
+        return SPUtils.getPreference(DevUtils.getContext()).getAll(key);
     }
 
     /**
@@ -103,7 +88,7 @@ public final class SharedUtils {
      * @param key 保存的 key
      */
     public static void remove(final String key) {
-        SPUtils.getPreference(sContext).remove(key);
+        SPUtils.getPreference(DevUtils.getContext()).remove(key);
     }
 
     /**
@@ -111,7 +96,7 @@ public final class SharedUtils {
      * @param keys 保存的 key 集合
      */
     public static void removeAll(final List<String> keys) {
-        SPUtils.getPreference(sContext).removeAll(keys);
+        SPUtils.getPreference(DevUtils.getContext()).removeAll(keys);
     }
 
     /**
@@ -119,7 +104,7 @@ public final class SharedUtils {
      * @param keys 保存的 key 数组
      */
     public static void removeAll(final String[] keys) {
-        SPUtils.getPreference(sContext).removeAll(keys);
+        SPUtils.getPreference(DevUtils.getContext()).removeAll(keys);
     }
 
     /**
@@ -128,14 +113,14 @@ public final class SharedUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean contains(final String key) {
-        return SPUtils.getPreference(sContext).contains(key);
+        return SPUtils.getPreference(DevUtils.getContext()).contains(key);
     }
 
     /**
      * 清除全部数据
      */
     public static void clear() {
-        SPUtils.getPreference(sContext).clear();
+        SPUtils.getPreference(DevUtils.getContext()).clear();
     }
 
     // =
@@ -146,7 +131,7 @@ public final class SharedUtils {
      * @return 存储的数据
      */
     public static int getInt(final String key) {
-        return SPUtils.getPreference(sContext).getInt(key);
+        return SPUtils.getPreference(DevUtils.getContext()).getInt(key);
     }
 
     /**
@@ -155,7 +140,7 @@ public final class SharedUtils {
      * @return 存储的数据
      */
     public static float getFloat(final String key) {
-        return SPUtils.getPreference(sContext).getFloat(key);
+        return SPUtils.getPreference(DevUtils.getContext()).getFloat(key);
     }
 
     /**
@@ -164,7 +149,7 @@ public final class SharedUtils {
      * @return 存储的数据
      */
     public static long getLong(final String key) {
-        return SPUtils.getPreference(sContext).getLong(key);
+        return SPUtils.getPreference(DevUtils.getContext()).getLong(key);
     }
 
     /**
@@ -173,7 +158,7 @@ public final class SharedUtils {
      * @return 存储的数据
      */
     public static boolean getBoolean(final String key) {
-        return SPUtils.getPreference(sContext).getBoolean(key);
+        return SPUtils.getPreference(DevUtils.getContext()).getBoolean(key);
     }
 
     /**
@@ -182,7 +167,7 @@ public final class SharedUtils {
      * @return 存储的数据
      */
     public static String getString(final String key) {
-        return SPUtils.getPreference(sContext).getString(key);
+        return SPUtils.getPreference(DevUtils.getContext()).getString(key);
     }
 
     /**
@@ -191,6 +176,6 @@ public final class SharedUtils {
      * @return 存储的数据
      */
     public static Set<String> getSet(final String key) {
-        return SPUtils.getPreference(sContext).getSet(key);
+        return SPUtils.getPreference(DevUtils.getContext()).getSet(key);
     }
 }
