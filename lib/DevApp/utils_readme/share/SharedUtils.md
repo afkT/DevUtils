@@ -22,7 +22,6 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| init | 初始化操作 |
 | put | 保存数据 |
 | putAll | 保存 Map 集合(只能是 Integer、Long、Boolean、Float、String、Set) |
 | get | 根据 key 获取数据 |
@@ -44,10 +43,7 @@
 
 // 存在可调用的方法 IPreference
 
-// SharedUtils 二次分装 SPUtils, 直接调用
-
-// 在DevUtils.init 中初始化了, 实际可以不调用
-SharedUtils.init(DevUtils.getContext());
+// SharedUtils 二次分装 SPUtils, 快捷调用
 
 SharedUtils.put("aa", "aa");
 SharedUtils.put("ac", 123);
