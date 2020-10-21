@@ -2,9 +2,9 @@
 
 #### 使用演示类 [ShareUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/share/ShareUse.java) 介绍了配置参数及使用
 
-> 1. apply没有返回值而 commit返回boolean表明修改是否提交成功
-> 2. apply是将修改数据原子提交到内存, 而后异步真正提交到硬件磁盘, 而commit是同步的提交到硬件磁盘
-> 3. apply方法不会提示任何失败的提示 apply的效率高一些, 如果没有必要确认是否提交成功建议使用apply
+> 1.apply 没有返回值而 commit 返回 boolean 表明修改是否提交成功
+> 2.apply 是将修改数据原子提交到内存, 而后异步真正提交到硬件磁盘, 而 commit 是同步的提交到硬件磁盘
+> 3.apply 方法不会提示任何失败的提示 apply 的效率高一些, 如果没有必要确认是否提交成功建议使用 apply
 
 #### 项目类结构 - [包目录](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/share)
 
