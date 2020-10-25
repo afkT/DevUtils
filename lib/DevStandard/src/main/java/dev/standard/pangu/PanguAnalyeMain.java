@@ -26,7 +26,7 @@ final class PanguAnalyeMain {
     // 代码注释空格间距异常记录
     private static       HashMap<String, String>            sAnnotationSpaceMap      = new HashMap<>();
     // 代码注释重复换行记录
-    private static       HashMap<String, ArrayList<String>> sAnnotationRepeatLineMap = new HashMap<>();
+    private static       HashMap<String, List<String>> sAnnotationRepeatLineMap = new HashMap<>();
 
     public static void main(String[] args) {
         String path = "";
@@ -64,7 +64,7 @@ final class PanguAnalyeMain {
         System.out.println("处理结束");
 
         // 统一拼接打印数据
-        LinkedHashMap<String, HashMap<String, ArrayList<String>>> printMap = new LinkedHashMap<>();
+        LinkedHashMap<String, HashMap<String, List<String>>> printMap = new LinkedHashMap<>();
         printMap.put("1.代码注释重复换行记录", sAnnotationRepeatLineMap);
         // 转换 JSON 数据
         String mapJSON = toJsonFormat(printMap, true);

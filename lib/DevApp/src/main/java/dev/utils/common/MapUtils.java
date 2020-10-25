@@ -1111,7 +1111,7 @@ public final class MapUtils {
      * @param map             {@link Map}
      * @param removeMap       {@link Map} 移除对比数据源
      * @param removeEmpty     是否移除 null、长度为 0 的数据
-     * @param isNullRemoveAll 如果待移除的 ArrayList 是 null, 是否移除全部
+     * @param isNullRemoveAll 如果待移除的 List 是 null, 是否移除全部
      * @param <K>             key
      * @param <T>             value type
      * @return {@code true} success, {@code false} fail
