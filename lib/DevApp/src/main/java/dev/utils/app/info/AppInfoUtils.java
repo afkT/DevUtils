@@ -198,7 +198,7 @@ public final class AppInfoUtils {
      */
     public static List<AppInfoBean> getAppLists(final AppInfoBean.AppType appType) {
         // APP 信息
-        ArrayList<AppInfoBean> listApps = new ArrayList<>();
+        List<AppInfoBean> listApps = new ArrayList<>();
         // 防止为 null
         if (appType != null) {
             // 管理应用程序包

@@ -974,7 +974,7 @@ public final class MapUtils {
      * @param <T>   value type
      * @return {@code true} success, {@code false} fail
      */
-    public static <K, T> boolean putToList(final Map<K, ArrayList<T>> map, final K key, final T value) {
+    public static <K, T> boolean putToList(final Map<K, List<T>> map, final K key, final T value) {
         return putToList(map, key, value, true);
     }
 
@@ -988,10 +988,10 @@ public final class MapUtils {
      * @param <T>   value type
      * @return {@code true} success, {@code false} fail
      */
-    public static <K, T> boolean putToList(final Map<K, ArrayList<T>> map, final K key, final T value, final boolean isNew) {
+    public static <K, T> boolean putToList(final Map<K, List<T>> map, final K key, final T value, final boolean isNew) {
         if (map != null) {
             if (map.containsKey(key)) {
-                ArrayList<T> lists = map.get(key);
+                List<T> lists = map.get(key);
                 if (lists != null) {
                     try {
                         lists.add(value);
@@ -1005,7 +1005,7 @@ public final class MapUtils {
                 // 判断是否创建
                 if (isNew) {
                     try {
-                        ArrayList<T> lists = new ArrayList<>();
+                        List<T> lists = new ArrayList<>();
                         lists.add(value);
                         map.put(key, lists);
                         return true;
@@ -1028,7 +1028,7 @@ public final class MapUtils {
      * @param <T> value type
      * @return {@code true} success, {@code false} fail
      */
-    public static <K, T> boolean removeToList(final Map<K, ArrayList<T>> map, final K key) {
+    public static <K, T> boolean removeToList(final Map<K, List<T>> map, final K key) {
         if (map != null) {
             try {
                 map.remove(key);
@@ -1049,10 +1049,10 @@ public final class MapUtils {
      * @param <T>   value type
      * @return {@code true} success, {@code false} fail
      */
-    public static <K, T> boolean removeToList(final Map<K, ArrayList<T>> map, final K key, final T value) {
+    public static <K, T> boolean removeToList(final Map<K, List<T>> map, final K key, final T value) {
         if (map != null) {
             if (map.containsKey(key)) {
-                ArrayList<T> lists = map.get(key);
+                List<T> lists = map.get(key);
                 if (lists != null) {
                     try {
                         lists.remove(value);
@@ -1102,7 +1102,7 @@ public final class MapUtils {
      * @param <T>       value type
      * @return {@code true} success, {@code false} fail
      */
-    public static <K, T> boolean removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap) {
+    public static <K, T> boolean removeToMap(final Map<K, List<T>> map, final Map<K, List<T>> removeMap) {
         return removeToMap(map, removeMap, true, false);
     }
 
@@ -1116,17 +1116,17 @@ public final class MapUtils {
      * @param <T>             value type
      * @return {@code true} success, {@code false} fail
      */
-    public static <K, T> boolean removeToMap(final Map<K, ArrayList<T>> map, final Map<K, ArrayList<T>> removeMap,
+    public static <K, T> boolean removeToMap(final Map<K, List<T>> map, final Map<K, List<T>> removeMap,
                                              final boolean removeEmpty, final boolean isNullRemoveAll) {
         if (map != null && removeMap != null) {
-            Iterator<Map.Entry<K, ArrayList<T>>> iterator = removeMap.entrySet().iterator();
+            Iterator<Map.Entry<K, List<T>>> iterator = removeMap.entrySet().iterator();
             while (iterator.hasNext()) {
-                Map.Entry<K, ArrayList<T>> entry = iterator.next();
+                Map.Entry<K, List<T>> entry = iterator.next();
                 // 获取 key
                 K key = entry.getKey();
                 // 进行移除处理
                 if (map.containsKey(key)) {
-                    ArrayList<T> value = entry.getValue();
+                    List<T> value = entry.getValue();
                     try {
                         if (value != null) {
                             map.get(key).removeAll(value);
@@ -1140,7 +1140,7 @@ public final class MapUtils {
                     }
                     // 判断是否移除 null、长度为 0 的数据
                     if (removeEmpty) {
-                        ArrayList<T> lists = map.get(key);
+                        List<T> lists = map.get(key);
                         try {
                             // 不存在数据了, 则移除
                             if (lists == null || lists.size() == 0) {
