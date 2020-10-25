@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import dev.utils.common.StringUtils;
 
@@ -18,7 +19,7 @@ public final class DepsJsonBean {
     }
 
     // 映射 Map
-    public LinkedHashMap<String, LinkedHashMap<String, String>> mDepsMaps = new LinkedHashMap<>();
+    public LinkedHashMap<String, Map<String, String>> mDepsMaps = new LinkedHashMap<>();
 
     // 格式化字符串
     public final        String FORMAT_ANNOTATION   = "\t// %s";
@@ -46,7 +47,7 @@ public final class DepsJsonBean {
      * @param key Key
      * @return Map
      */
-    public LinkedHashMap<String, String> map(final String key) {
+    public Map<String, String> map(final String key) {
         return mDepsMaps.get(key);
     }
 
@@ -56,7 +57,7 @@ public final class DepsJsonBean {
      * @param maps 第三方库列表
      * @return Gradle Dependencies 依赖信息
      */
-    public String getDependencies(final String mark, final LinkedHashMap<String, String> maps) {
+    public String getDependencies(final String mark, final Map<String, String> maps) {
         if (maps != null && !maps.isEmpty()) {
             StringBuilder builder = new StringBuilder();
             for (String key : maps.keySet()) {
@@ -95,7 +96,7 @@ public final class DepsJsonBean {
                         .append(String.format(FORMAT_ANNOTATION, ("= " + key + " =")))
                         .append(StringUtils.NEW_LINE_STR);
             }
-            LinkedHashMap<String, String> maps = mDepsMaps.get(key);
+            Map<String, String> maps = mDepsMaps.get(key);
             builder.append(getDependencies(mark, maps));
         }
         return builder.toString();

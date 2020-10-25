@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import dev.utils.JCLogUtils;
 
@@ -669,7 +670,7 @@ public final class ColorUtils {
     // =
 
     // 颜色字典集合
-    private static final HashMap<String, Integer> sColorNameMaps;
+    private static final Map<String, Integer> sColorNameMaps;
 
     static {
         sColorNameMaps = new HashMap<>();

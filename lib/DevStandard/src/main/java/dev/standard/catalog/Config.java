@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import dev.utils.common.FileUtils;
 
@@ -53,11 +54,11 @@ final class Config {
     // =======
 
     // Android 文件目录注释
-    public static final HashMap<String, String> sAndroidCatelogMap      = new HashMap<>();
+    public static final Map<String, String> sAndroidCatelogMap = new HashMap<>();
     // Java 文件目录注释
-    public static final HashMap<String, String> sJavaCatelogMap         = new HashMap<>();
+    public static final Map<String, String> sJavaCatelogMap    = new HashMap<>();
     // DevUtils Lib 文件目录注释
-    public static final HashMap<String, String> sDevUtilsCatelogMap     = new HashMap<>();
+    public static final Map<String, String> sDevUtilsCatelogMap     = new HashMap<>();
     // DevUtils Lib 忽略目录
     public static final List<String>            sDevUtilsIgnoreCatelogs = new ArrayList<>();
 

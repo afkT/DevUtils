@@ -42,7 +42,7 @@ public class DevBaseVariable<K, V> {
      * @param collection {@link LinkedHashMap}
      * @return {@link DevBaseVariable}
      */
-    public DevBaseVariable<K, V> putVariables(final LinkedHashMap<K, V> collection) {
+    public DevBaseVariable<K, V> putVariables(final Map<K, V> collection) {
         if (collection != null) mLinkedHashMap.putAll(collection);
         return this;
     }

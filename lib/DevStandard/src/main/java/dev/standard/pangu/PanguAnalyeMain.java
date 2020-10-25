@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import dev.utils.common.FileIOUtils;
 import dev.utils.common.FileUtils;
@@ -64,7 +65,7 @@ final class PanguAnalyeMain {
         System.out.println("处理结束");
 
         // 统一拼接打印数据
-        LinkedHashMap<String, HashMap<String, List<String>>> printMap = new LinkedHashMap<>();
+        LinkedHashMap<String, Map<String, List<String>>> printMap = new LinkedHashMap<>();
         printMap.put("1.代码注释重复换行记录", sAnnotationRepeatLineMap);
         // 转换 JSON 数据
         String mapJSON = toJsonFormat(printMap, true);

@@ -3,6 +3,7 @@ package dev.utils.app.share;
 import android.content.Context;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * detail: IPreference 持有类, 内部返回实现类
@@ -11,7 +12,7 @@ import java.util.HashMap;
 class IPreferenceHolder {
 
     // HashMap 保存持有对象
-    private static final HashMap<String, IPreference> sHashMaps = new HashMap<>();
+    private static final Map<String, IPreference> sHashMaps = new HashMap<>();
 
     /**
      * 获取 IPreference (SharedPreferences) 操作接口
