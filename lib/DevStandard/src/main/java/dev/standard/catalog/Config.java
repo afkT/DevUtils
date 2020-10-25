@@ -54,13 +54,13 @@ final class Config {
     // =======
 
     // Android 文件目录注释
-    public static final Map<String, String> sAndroidCatelogMap = new HashMap<>();
+    public static final Map<String, String> sAndroidCatelogMap      = new HashMap<>();
     // Java 文件目录注释
-    public static final Map<String, String> sJavaCatelogMap    = new HashMap<>();
+    public static final Map<String, String> sJavaCatelogMap         = new HashMap<>();
     // DevUtils Lib 文件目录注释
     public static final Map<String, String> sDevUtilsCatelogMap     = new HashMap<>();
     // DevUtils Lib 忽略目录
-    public static final List<String>            sDevUtilsIgnoreCatelogs = new ArrayList<>();
+    public static final List<String>        sDevUtilsIgnoreCatelogs = new ArrayList<>();
 
     static {
 

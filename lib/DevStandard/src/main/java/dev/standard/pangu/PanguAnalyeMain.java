@@ -21,11 +21,11 @@ import dev.utils.common.StringUtils;
 final class PanguAnalyeMain {
 
     // 代码间距等规范处理
-    private static final Pangu                              sPangu                   = new Pangu();
+    private static final Pangu                     sPangu                   = new Pangu();
     // 判断是否覆盖文件内容
-    private static       boolean                            sCoverText               = true;
+    private static       boolean                   sCoverText               = true;
     // 代码注释空格间距异常记录
-    private static       Map<String, String>            sAnnotationSpaceMap      = new HashMap<>();
+    private static       Map<String, String>       sAnnotationSpaceMap      = new HashMap<>();
     // 代码注释重复换行记录
     private static       Map<String, List<String>> sAnnotationRepeatLineMap = new HashMap<>();
 
