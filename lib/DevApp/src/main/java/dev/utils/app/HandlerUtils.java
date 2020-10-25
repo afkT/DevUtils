@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import dev.utils.LogPrintUtils;
 
@@ -146,13 +147,13 @@ public final class HandlerUtils {
     // ================
 
     // 通过 Key 快捷控制 Runnable, 进行 postDelayed、removeCallbacks
-    private static HashMap<String, Runnable> sRunnableMaps = new HashMap<>();
+    private static Map<String, Runnable> sRunnableMaps = new HashMap<>();
 
     /**
      * 获取 Key Runnable Map
      * @return Key Runnable Map
      */
-    public static HashMap<String, Runnable> getRunnableMaps() {
+    public static Map<String, Runnable> getRunnableMaps() {
         return new HashMap<>(sRunnableMaps);
     }
 

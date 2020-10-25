@@ -16,7 +16,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -194,8 +196,8 @@ public final class SignaturesUtils {
      * @param signatures {@link Signature}[]
      * @return 签名信息 {@link List}
      */
-    public static List<HashMap<String, String>> printSignatureInfo(final Signature[] signatures) {
-        List<HashMap<String, String>> lists = new ArrayList<>();
+    public static List<Map<String, String>> printSignatureInfo(final Signature[] signatures) {
+        List<Map<String, String>> lists = new ArrayList<>();
         try {
             // 格式化日期
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -252,7 +254,7 @@ public final class SignaturesUtils {
                     String pubKey = cert.getPublicKey().toString();
 
                     // 保存信息
-                    HashMap<String, String> maps = new HashMap<>();
+                    Map<String, String> maps = new LinkedHashMap<>();
                     maps.put("证书有效期信息", effectiveStr);
                     maps.put("证书是否过期", effective + "");
                     maps.put("证书发布方", certPrincipal);

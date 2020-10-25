@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import dev.DevUtils;
 import top.zibin.luban.CompressionPredicate;
@@ -202,7 +203,7 @@ public final class LubanUtils {
         }
         if (number == 0) return false;
         int count = number;
-        LinkedHashMap<Integer, File> fileMaps = new LinkedHashMap<>();
+        Map<Integer, File> fileMaps = new LinkedHashMap<>();
         // 配置信息
         builder.ignoreBy(ignoreSize)
                 .setFocusAlpha(focusAlpha)

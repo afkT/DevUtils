@@ -19,6 +19,7 @@ import androidx.core.content.FileProvider;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -809,7 +810,7 @@ public final class IntentUtils {
             if (!TextUtils.isEmpty(packageName)) {
 //                intent.setClassName(packageName, className);
                 List<ResolveInfo> lists = AppUtils.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-                HashMap<String, String> browsers = new HashMap<>();
+                Map<String, String> browsers = new HashMap<>();
                 for (ResolveInfo resolveInfo : lists) {
                     ActivityInfo activityInfo = resolveInfo.activityInfo;
                     if (activityInfo != null) { // 包名, Activity Name

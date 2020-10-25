@@ -25,9 +25,9 @@ final class PanguAnalyeMain {
     // 判断是否覆盖文件内容
     private static       boolean                            sCoverText               = true;
     // 代码注释空格间距异常记录
-    private static       HashMap<String, String>            sAnnotationSpaceMap      = new HashMap<>();
+    private static       Map<String, String>            sAnnotationSpaceMap      = new HashMap<>();
     // 代码注释重复换行记录
-    private static       HashMap<String, List<String>> sAnnotationRepeatLineMap = new HashMap<>();
+    private static       Map<String, List<String>> sAnnotationRepeatLineMap = new HashMap<>();
 
     public static void main(String[] args) {
         String path = "";
@@ -65,7 +65,7 @@ final class PanguAnalyeMain {
         System.out.println("处理结束");
 
         // 统一拼接打印数据
-        LinkedHashMap<String, Map<String, List<String>>> printMap = new LinkedHashMap<>();
+        Map<String, Map<String, List<String>>> printMap = new LinkedHashMap<>();
         printMap.put("1.代码注释重复换行记录", sAnnotationRepeatLineMap);
         // 转换 JSON 数据
         String mapJSON = toJsonFormat(printMap, true);
