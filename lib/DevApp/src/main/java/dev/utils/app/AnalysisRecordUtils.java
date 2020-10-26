@@ -580,26 +580,26 @@ public final class AnalysisRecordUtils {
                 case MM:
                 case SS:
                     // 小时格式
-                    String hh_Foramt = DateUtils.getDateNow("HH");
+                    String hh_Format = DateUtils.getDateNow("HH");
                     // 判断属于小时格式
                     if (iTime == HH) {
                         // /folder/HH/HH_number/
                         // /LogSpace/HH/HH_15/
-                        return folder + "HH/HH_" + hh_Foramt + File.separator;
+                        return folder + "HH/HH_" + hh_Format + File.separator;
                     } else {
                         // 分钟格式
-                        String mm_Foramt = DateUtils.getDateNow("mm");
+                        String mm_Format = DateUtils.getDateNow("mm");
                         // 判断是否属于分钟
                         if (iTime == MM) {
                             // /folder/HH/HH_number/MM/MM_number/
                             // /LogSpace/HH/HH_15/MM/MM_55/
-                            return folder + "HH/HH_" + hh_Foramt + "/MM/MM_" + mm_Foramt + File.separator;
+                            return folder + "HH/HH_" + hh_Format + "/MM/MM_" + mm_Format + File.separator;
                         } else { // 属于秒
                             // 秒格式
-                            String ss_Foramt = DateUtils.getDateNow("ss");
+                            String ss_Format = DateUtils.getDateNow("ss");
                             // /folder/HH/HH_number/MM/MM_number/SS_number/
                             // /LogSpace/HH/HH_15/MM/MM_55/SS_12/
-                            return folder + "HH/HH_" + hh_Foramt + "/MM/MM_" + mm_Foramt + "/SS_" + ss_Foramt + File.separator;
+                            return folder + "HH/HH_" + hh_Format + "/MM/MM_" + mm_Format + "/SS_" + ss_Format + File.separator;
                         }
                     }
             }

@@ -1121,7 +1121,7 @@ public final class ToastTintUtils {
      */
     private static void reflectToastHandler(final Toast toast) {
         if (toast == null) return;
-        // 反射设置 Toat Handler 解决 Android 7.1.1 Toast 崩溃问题
+        // 反射设置 Toast Handler 解决 Android 7.1.1 Toast 崩溃问题
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N_MR1) {
             try {
                 Field field_tn = Toast.class.getDeclaredField("mTN");

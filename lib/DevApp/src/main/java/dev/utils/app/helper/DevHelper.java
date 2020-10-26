@@ -1430,8 +1430,8 @@ public final class DevHelper {
      * @param endCallback    结束回调通知
      * @return {@link DevHelper}
      */
-    public DevHelper waitForEndAsyn(final long keepTimeMillis, final TimeKeeper.OnEndCallback endCallback) {
-        mTimeKeeper.waitForEndAsyn(keepTimeMillis, endCallback);
+    public DevHelper waitForEndAsync(final long keepTimeMillis, final TimeKeeper.OnEndCallback endCallback) {
+        mTimeKeeper.waitForEndAsync(keepTimeMillis, endCallback);
         return this;
     }
 

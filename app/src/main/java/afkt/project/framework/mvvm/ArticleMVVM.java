@@ -27,7 +27,7 @@ public final class ArticleMVVM {
     public static class ModelImpl implements Model {
         @Override
         public void requestArticleLists(HttpURLConnectionUtils.CallBack callBack) {
-            HttpURLConnectionUtils.doGetAsyn(String.format(HttpApis.getArticleListUrl(), "0"), callBack);
+            HttpURLConnectionUtils.doGetAsync(String.format(HttpApis.getArticleListUrl(), "0"), callBack);
         }
     }
 

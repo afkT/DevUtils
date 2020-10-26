@@ -46,7 +46,7 @@ public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> 
     // 待创建总数
     int           count;
     // 是否运行中
-    boolean       runing;
+    boolean       running;
     // 递增数
     AtomicInteger index = new AtomicInteger();
 
@@ -61,7 +61,7 @@ public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> 
         binding.vidAacAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (runing) {
+                if (running) {
                     ToastTintUtils.warning("运行中");
                     return;
                 }
@@ -151,7 +151,7 @@ public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> 
         ViewUtils.setVisibility(true, binding.vidAacTipsTv);
         KeyBoardUtils.closeKeyboard();
         this.count = count;
-        this.runing = true;
+        this.running = true;
         this.index.set(0);
         // 线程数
         int threadCount = 5;
@@ -268,7 +268,7 @@ public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> 
                 String tips = count + " 条数据, 创建成功";
                 TextViewUtils.setText(binding.vidAacTipsTv, tips);
                 ToastTintUtils.success(tips);
-                runing = false;
+                running = false;
             } else {
                 TextViewUtils.setText(binding.vidAacTipsTv, "需创建 " + count + " 条数据, 已创建 " + (value + 1) + " 条");
             }

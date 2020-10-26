@@ -55,13 +55,13 @@ public final class HttpURLConnectionUtils {
      * @param urlStr   请求地址
      * @param callBack 请求回调接口
      */
-    public static void doGetAsyn(final String urlStr, final CallBack callBack) {
+    public static void doGetAsync(final String urlStr, final CallBack callBack) {
         new Thread() {
             public void run() {
                 try {
                     request("GET", urlStr, null, null, callBack);
                 } catch (Exception e) {
-                    JCLogUtils.eTag(TAG, e, "doGetAsyn");
+                    JCLogUtils.eTag(TAG, e, "doGetAsync");
                 }
             }
         }.start();
@@ -73,13 +73,13 @@ public final class HttpURLConnectionUtils {
      * @param params   请求参数
      * @param callBack 请求回调接口
      */
-    public static void doPostAsyn(final String urlStr, final String params, final CallBack callBack) {
+    public static void doPostAsync(final String urlStr, final String params, final CallBack callBack) {
         new Thread() {
             public void run() {
                 try {
                     request("POST", urlStr, null, params, callBack);
                 } catch (Exception e) {
-                    JCLogUtils.eTag(TAG, e, "doPostAsyn");
+                    JCLogUtils.eTag(TAG, e, "doPostAsync");
                 }
             }
         }.start();

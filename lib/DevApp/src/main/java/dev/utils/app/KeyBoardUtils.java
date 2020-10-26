@@ -598,13 +598,13 @@ public final class KeyBoardUtils {
                             Rect rect = new Rect();
                             decorView.getWindowVisibleDisplayFrame(rect);
                             // 计算出可见屏幕的高度
-                            int displayHight = rect.bottom - rect.top;
+                            int displayHeight = rect.bottom - rect.top;
                             // 获取屏幕整体的高度
-                            int hight = decorView.getHeight();
+                            int height = decorView.getHeight();
                             // 获取键盘高度
-                            int keyboardHeight = hight - displayHight;
+                            int keyboardHeight = height - displayHeight;
                             // 计算一定比例
-                            boolean visible = ((double) displayHight / (double) hight) < 0.8d;
+                            boolean visible = ((double) displayHeight / (double) height) < 0.8d;
                             // 判断是否显示
                             listener.onSoftInputChanged(visible, keyboardHeight);
                         } catch (Exception e) {

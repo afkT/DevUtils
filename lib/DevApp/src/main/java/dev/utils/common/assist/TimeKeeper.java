@@ -11,7 +11,7 @@ public class TimeKeeper {
      * @param keepTimeMillis 堵塞时间 ( 毫秒 )
      * @param endCallback    结束回调通知
      */
-    public void waitForEndAsyn(final long keepTimeMillis, final OnEndCallback endCallback) {
+    public void waitForEndAsync(final long keepTimeMillis, final OnEndCallback endCallback) {
         if (keepTimeMillis > 0L) {
             new Thread(new Runnable() {
                 @Override

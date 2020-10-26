@@ -139,7 +139,7 @@ public final class StateListUtils {
     /**
      * 创建 ColorStateList
      * <pre>
-     *     createColorStateList(R.color.whilte, R.color.black)
+     *     createColorStateList(R.color.white, R.color.black)
      * </pre>
      * @param pressed 按下状态
      * @param normal  默认状态
