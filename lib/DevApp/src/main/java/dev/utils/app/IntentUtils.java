@@ -334,21 +334,65 @@ public final class IntentUtils {
      * @return APP 悬浮窗口权限详情页的意图
      */
     public static Intent getManageOverlayPermissionIntent() {
-        return getManageOverlayPermissionIntent(false);
+        return getManageOverlayPermissionIntent(AppUtils.getPackageName(), false);
     }
 
     /**
      * 获取 APP 悬浮窗口权限详情页的意图
-     * @param isNewTask 是否开启新的任务栈
+     * @param packageName 应用包名
      * @return APP 悬浮窗口权限详情页的意图
      */
-    public static Intent getManageOverlayPermissionIntent(final boolean isNewTask) {
+    public static Intent getManageOverlayPermissionIntent(final String packageName) {
+        return getManageOverlayPermissionIntent(packageName, false);
+    }
+
+    /**
+     * 获取 APP 悬浮窗口权限详情页的意图
+     * @param packageName 应用包名
+     * @param isNewTask   是否开启新的任务栈
+     * @return APP 悬浮窗口权限详情页的意图
+     */
+    public static Intent getManageOverlayPermissionIntent(final String packageName, final boolean isNewTask) {
         try {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-            intent.setData(Uri.parse("package:" + AppUtils.getPackageName()));
+            intent.setData(Uri.parse("package:" + packageName));
             return getIntent(intent, isNewTask);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getManageOverlayPermissionIntent");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 APP 授予所有文件管理权限的意图
+     * @return APP 授予所有文件管理权限的意图
+     */
+    public static Intent getManageAppAllFilesAccessPermissionIntent() {
+        return getManageAppAllFilesAccessPermissionIntent(AppUtils.getPackageName(), false);
+    }
+
+    /**
+     * 获取 APP 授予所有文件管理权限的意图
+     * @param packageName 应用包名
+     * @return APP 授予所有文件管理权限的意图
+     */
+    public static Intent getManageAppAllFilesAccessPermissionIntent(final String packageName) {
+        return getManageAppAllFilesAccessPermissionIntent(packageName, false);
+    }
+
+    /**
+     * 获取 APP 授予所有文件管理权限的意图
+     * @param packageName 应用包名
+     * @param isNewTask   是否开启新的任务栈
+     * @return APP 授予所有文件管理权限的意图
+     */
+    public static Intent getManageAppAllFilesAccessPermissionIntent(final String packageName, final boolean isNewTask) {
+        try {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+            intent.setData(Uri.parse("package:" + packageName));
+            return getIntent(intent, isNewTask);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getManageAppAllFilesAccessPermissionIntent");
         }
         return null;
     }

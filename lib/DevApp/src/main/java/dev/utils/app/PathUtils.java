@@ -95,11 +95,11 @@ public final class PathUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean checkExternalStorageAndIntentSetting() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (!isExternalStorageManager()) {
-                AppUtils.startActivity(IntentUtils.getManageAllFilesAccessPermissionIntent());
-                return false;
+        if (!isExternalStorageManager()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                AppUtils.startActivity(IntentUtils.getManageAppAllFilesAccessPermissionIntent());
             }
+            return false;
         }
         return true;
     }
