@@ -354,6 +354,29 @@ public final class IntentUtils {
     }
 
     /**
+     * 获取授予所有文件管理权限的意图
+     * @return 授予所有文件管理权限的意图
+     */
+    public static Intent getManageAllFilesAccessPermissionIntent() {
+        return getManageAllFilesAccessPermissionIntent(false);
+    }
+
+    /**
+     * 获取授予所有文件管理权限的意图
+     * @param isNewTask 是否开启新的任务栈
+     * @return 授予所有文件管理权限的意图
+     */
+    public static Intent getManageAllFilesAccessPermissionIntent(final boolean isNewTask) {
+        try {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+            return getIntent(intent, isNewTask);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getManageAllFilesAccessPermissionIntent");
+        }
+        return null;
+    }
+
+    /**
      * 获取 APP 具体设置的意图
      * @return APP 具体设置的意图
      */

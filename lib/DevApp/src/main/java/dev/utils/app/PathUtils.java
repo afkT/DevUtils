@@ -79,6 +79,31 @@ public final class PathUtils {
         return sSDCardPath;
     }
 
+    /**
+     * 是否获得 MANAGE_EXTERNAL_STORAGE 权限
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isExternalStorageManager() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            return Environment.isExternalStorageManager();
+        }
+        return false;
+    }
+
+    /**
+     * 检查是否有 MANAGE_EXTERNAL_STORAGE 权限并跳转设置页面
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean checkExternalStorageAndIntentSetting() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (!isExternalStorageManager()) {
+                AppUtils.startActivity(IntentUtils.getManageAllFilesAccessPermissionIntent());
+                return false;
+            }
+        }
+        return true;
+    }
+
     // =======================================
     // = SDCard 外部存储 /storage/emulated/0/ =
     // =======================================
