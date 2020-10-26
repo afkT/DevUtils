@@ -8,6 +8,7 @@ import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.HashMap;
+import java.util.Map;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
@@ -145,11 +146,11 @@ public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding>
      */
     public static class CallParams extends DevExResultCallback.ExpandResult {
         // 用户信息
-        public UserInfo                 userInfo;
+        public UserInfo             userInfo;
         // 参数
-        public HashMap<Integer, String> hashMap = new HashMap<>();
+        public Map<Integer, String> hashMap = new HashMap<>();
         // 类型
-        public String                   type;
+        public String               type;
     }
 
     // ===========

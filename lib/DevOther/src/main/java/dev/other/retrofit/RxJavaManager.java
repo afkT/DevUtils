@@ -3,6 +3,7 @@ package dev.other.retrofit;
 import org.reactivestreams.Publisher;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -53,7 +54,7 @@ public final class RxJavaManager {
     }
 
     // 把每一个请求的 Disposable 对象都交给由统一的 CompositeDisposable 对象去管理
-    private final HashMap<String, CompositeDisposable> mManagerMap = new HashMap<>();
+    private final Map<String, CompositeDisposable> mManagerMap = new HashMap<>();
 
     /**
      * 通过 tag 将请求添加到统一管理对象中
@@ -96,7 +97,7 @@ public final class RxJavaManager {
      * 获取 CompositeDisposable Map
      * @return CompositeDisposable Map
      */
-    public HashMap<String, CompositeDisposable> getManagerMap() {
+    public Map<String, CompositeDisposable> getManagerMap() {
         return mManagerMap;
     }
 

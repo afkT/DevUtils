@@ -4,6 +4,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import dev.other.GsonUtils;
@@ -167,19 +168,19 @@ public class HttpLoggingInterceptor implements Interceptor {
 
     private class CaptureEntity {
         // 请求方法
-        public String                  requestMethod  = "";
+        public String              requestMethod  = "";
         // 请求链接
-        public String                  requestUrl     = "";
+        public String              requestUrl     = "";
         // 请求头信息
-        public HashMap<String, String> requestHeader  = new HashMap<>();
+        public Map<String, String> requestHeader  = new HashMap<>();
         // 请求体
-        public HashMap<String, String> requestBody    = new HashMap<>();
+        public Map<String, String> requestBody    = new HashMap<>();
         // 响应状态
-        public HashMap<String, String> responseStatus = new HashMap<>();
+        public Map<String, String> responseStatus = new HashMap<>();
         // 响应头信息
-        public HashMap<String, String> responseHeader = new HashMap<>();
+        public Map<String, String> responseHeader = new HashMap<>();
         // 响应体
-        public String                  responseBody   = "";
+        public String              responseBody   = "";
     }
 
     // =

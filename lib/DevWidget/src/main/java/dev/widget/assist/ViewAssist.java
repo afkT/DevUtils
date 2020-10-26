@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import dev.utils.LogPrintUtils;
 
@@ -57,13 +58,13 @@ public final class ViewAssist {
 
     // =
 
-    private Object                    mData;
-    private HashMap<String, Object>   mMapDatas    = new HashMap<>();
-    private HashMap<Integer, Adapter> mMapAdapters = new HashMap<>();
-    private SparseArray<View>         mTypeViews   = new SparseArray<>(3);
-    private int                       mCurrentType = -1;
-    private View                      mCurrentView;
-    private Listener                  mListener;
+    private Object                mData;
+    private Map<String, Object>   mMapDatas    = new HashMap<>();
+    private Map<Integer, Adapter> mMapAdapters = new HashMap<>();
+    private SparseArray<View>     mTypeViews   = new SparseArray<>(3);
+    private int                   mCurrentType = -1;
+    private View                  mCurrentView;
+    private Listener              mListener;
 
     public interface Adapter {
 

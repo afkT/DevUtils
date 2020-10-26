@@ -1,6 +1,7 @@
 package dev.other.retrofit;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Retrofit;
 
@@ -38,7 +39,7 @@ public final class RetrofitManager {
     }
 
     // Retrofit Map ( 多 BaseUrl、Header、OkHttp 配置等考虑 )
-    private final HashMap<String, Retrofit> mRetrofitMap = new HashMap<>();
+    private final Map<String, Retrofit> mRetrofitMap = new HashMap<>();
 
     /**
      * 通过 tag 获取 Retrofit
@@ -84,7 +85,7 @@ public final class RetrofitManager {
      * 获取 Retrofit Map
      * @return Retrofit Map
      */
-    public HashMap<String, Retrofit> getRetrofitMap() {
+    public Map<String, Retrofit> getRetrofitMap() {
         return mRetrofitMap;
     }
 

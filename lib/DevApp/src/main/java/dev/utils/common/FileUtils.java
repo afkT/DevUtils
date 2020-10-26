@@ -1963,7 +1963,7 @@ public final class FileUtils {
 
         /**
          * 获取文件夹内子文件列表
-         * @return {@link ArrayList}
+         * @return {@link List}
          */
         public List<FileList> getSubFiles() {
             return mSubFiles;
