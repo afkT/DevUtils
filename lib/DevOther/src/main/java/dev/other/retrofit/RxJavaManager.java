@@ -31,8 +31,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
  *     @see <a href="http://gank.io/post/560e15be2dca930e00da1083"/>
  *     这可能是最好的 RxJava 2.x 教程
  *     @see <a href="https://www.jianshu.com/p/0cd258eecf60"/>
- *     关于 RxJava 背压
- *     @see <a href="http://flyou.ren/2017/04/05/%E5%85%B3%E4%BA%8ERxJava%E8%83%8C%E5%8E%8B/?utm_source=tuicool&utm_medium=referral"/>
  * </pre>
  */
 public final class RxJavaManager {
