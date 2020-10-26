@@ -12,8 +12,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import androidx.annotation.RequiresApi;
-
 import java.util.Map;
 
 import dev.DevUtils;
@@ -327,13 +325,14 @@ public class WebViewAssist {
      * @param resultCallback 执行回调结果 ( 返回值 )
      * @return {@link WebViewAssist}
      */
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public WebViewAssist evaluateJavascript(final String script, final ValueCallback<String> resultCallback) {
         if (isWebViewNotEmpty()) {
-            try {
-                mWebView.evaluateJavascript(script, resultCallback);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "evaluateJavascript");
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                try {
+                    mWebView.evaluateJavascript(script, resultCallback);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "evaluateJavascript");
+                }
             }
         }
         return this;
@@ -371,9 +370,11 @@ public class WebViewAssist {
      * 获取处理各种通知和请求事件对象
      * @return {@link WebViewClient}
      */
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public WebViewClient getWebViewClient() {
-        return isWebViewNotEmpty() ? mWebView.getWebViewClient() : null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return isWebViewNotEmpty() ? mWebView.getWebViewClient() : null;
+        }
+        return null;
     }
 
     // =
@@ -405,9 +406,11 @@ public class WebViewAssist {
      * 获取辅助 WebView 处理 Javascript 对话框、标题等对象
      * @return {@link WebChromeClient}
      */
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public WebChromeClient getWebChromeClient() {
-        return isWebViewNotEmpty() ? mWebView.getWebChromeClient() : null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return isWebViewNotEmpty() ? mWebView.getWebChromeClient() : null;
+        }
+        return null;
     }
 
     // =
