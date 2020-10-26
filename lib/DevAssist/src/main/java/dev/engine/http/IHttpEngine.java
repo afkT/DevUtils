@@ -110,7 +110,7 @@ public interface IHttpEngine {
          * 开始请求方法 ( 异步 )
          * @return {@code true} success, {@code false} fail
          */
-        boolean startAync();
+        boolean startAsync();
     }
 
     /**

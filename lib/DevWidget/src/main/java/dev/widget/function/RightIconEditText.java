@@ -28,7 +28,7 @@ import dev.widget.R;
  */
 public class RightIconEditText extends AppCompatEditText {
 
-    // drawable ( left、top、right、bootom 四个方向图片 )
+    // drawable ( left、top、right、bottom 四个方向图片 )
     private Drawable mLeft, mTop, mRight, mBottom;
     // Right Drawable 自身坐标信息
     private Rect        mRightBounds;

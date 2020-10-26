@@ -18,7 +18,7 @@ import dev.utils.common.StringUtils;
  * detail: 全局检测处理
  * @author Ttt
  */
-final class PanguAnalyeMain {
+final class PanguAnalyzeMain {
 
     // 代码间距等规范处理
     private static final Pangu                     sPangu                   = new Pangu();
