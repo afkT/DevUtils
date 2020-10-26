@@ -1,5 +1,7 @@
 package dev.utils.app;
 
+import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,6 +18,7 @@ import androidx.annotation.IntRange;
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Collection;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
@@ -35,6 +38,8 @@ import dev.utils.common.FileUtils;
  *     需通过 {@link ResourceUtils#openInputStream(Uri)} 获取并保存到 {@link PathUtils#getAppExternal()}  外部存储 ( 私有目录 ) 中
  *     调用此类方法传入 filePath 获取所需信息 ( 私有目录不需要兼容 Android Q )
  *     <p></p>
+ *     MimeType
+ *     @see <a href="https://www.jianshu.com/p/f3fcf033be5c"/>
  *     存储后缀根据 MIME_TYPE 决定, 值类型 {@link libcore.net.MimeUtils}
  *     @see <a href="https://www.androidos.net.cn/android/9.0.0_r8/xref/libcore/luni/src/main/java/libcore/net/MimeUtils.java"/>
  *     <p></p>
@@ -610,5 +615,87 @@ public final class MediaStoreUtils {
      */
     public static String[] getMediaInfo(final Uri uri) {
         return ContentResolverUtils.mediaQuery(uri, TAG, ContentResolverUtils.MEDIA_QUERY_INFO_URI);
+    }
+
+    // ===============
+    // = 执行批量操作 =
+    // ===============
+
+    /**
+     * 获取用户向应用授予对指定媒体文件组的写入访问权限的请求
+     * <pre>
+     *     以下四个方法搭配 startIntentSenderForResult() 使用
+     *     {@link AppUtils#startIntentSenderForResult(Activity, PendingIntent, int)}
+     *     <p></p>
+     *     startIntentSenderForResult(pendingIntent.getIntentSender(), EDIT_REQUEST_CODE, null, 0, 0, 0)
+     * </pre>
+     * @param uris 待请求 Uri 集
+     * @return {@link PendingIntent}
+     */
+    public static PendingIntent createWriteRequest(final Collection<Uri> uris) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                return MediaStore.createWriteRequest(ResourceUtils.getContentResolver(), uris);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "createWriteRequest");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取用户将设备上指定的媒体文件标记为收藏的请求
+     * <pre>
+     *     对该文件具有读取访问权限的任何应用都可以看到用户已将该文件标记为收藏
+     * </pre>
+     * @param uris     待请求 Uri 集
+     * @param favorite 是否喜欢
+     * @return {@link PendingIntent}
+     */
+    public static PendingIntent createFavoriteRequest(final Collection<Uri> uris, final boolean favorite) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                return MediaStore.createFavoriteRequest(ResourceUtils.getContentResolver(), uris, favorite);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "createFavoriteRequest");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取用户将指定的媒体文件放入设备垃圾箱的请求
+     * <pre>
+     *     垃圾箱中的内容会在系统定义的时间段后被永久删除
+     * </pre>
+     * @param uris    待请求 Uri 集
+     * @param trashed 是否遗弃
+     * @return {@link PendingIntent}
+     */
+    public static PendingIntent createTrashRequest(final Collection<Uri> uris, final boolean trashed) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                return MediaStore.createTrashRequest(ResourceUtils.getContentResolver(), uris, trashed);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "createTrashRequest");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取用户立即永久删除指定的媒体文件 ( 而不是先将其放入垃圾箱 ) 的请求
+     * @param uris 待请求 Uri 集
+     * @return {@link PendingIntent}
+     */
+    public static PendingIntent createDeleteRequest(final Collection<Uri> uris) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                return MediaStore.createDeleteRequest(ResourceUtils.getContentResolver(), uris);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "createDeleteRequest");
+            }
+        }
+        return null;
     }
 }
