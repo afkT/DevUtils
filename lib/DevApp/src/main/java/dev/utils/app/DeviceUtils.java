@@ -9,7 +9,6 @@ import android.provider.Settings;
 import android.text.TextUtils;
 
 import androidx.annotation.RequiresApi;
-import androidx.annotation.RequiresPermission;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -490,7 +489,7 @@ public final class DeviceUtils {
      * </pre>
      * @return 设备 MAC 地址
      */
-    @RequiresPermission(allOf = {android.Manifest.permission.INTERNET, android.Manifest.permission.ACCESS_WIFI_STATE})
+    @SuppressLint("MissingPermission")
     public static String getMacAddress() {
         String macAddress = getMacAddressByWifiInfo();
         if (!DEFAULT_MAC_ADDRESS.equals(macAddress)) {
@@ -515,7 +514,7 @@ public final class DeviceUtils {
      * 获取 MAC 地址
      * @return MAC 地址
      */
-    @RequiresPermission(android.Manifest.permission.ACCESS_WIFI_STATE)
+    @SuppressLint("MissingPermission")
     private static String getMacAddressByWifiInfo() {
         try {
             @SuppressLint("WifiManagerLeak")
@@ -534,7 +533,7 @@ public final class DeviceUtils {
      * 获取 MAC 地址
      * @return MAC 地址
      */
-    @RequiresPermission(android.Manifest.permission.INTERNET)
+    @SuppressLint("MissingPermission")
     private static String getMacAddressByNetworkInterface() {
         try {
             Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();

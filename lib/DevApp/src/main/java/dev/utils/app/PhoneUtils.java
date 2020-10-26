@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.ContentResolver;
@@ -14,8 +15,6 @@ import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Xml;
-
-import androidx.annotation.RequiresPermission;
 
 import org.xmlpull.v1.XmlSerializer;
 
@@ -193,7 +192,7 @@ public final class PhoneUtils {
      * 获取 MEID 码
      * @return MEID 码
      */
-    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
+    @SuppressLint("MissingPermission")
     public static String getMEID() {
         return getMEID(-1);
     }
@@ -203,7 +202,7 @@ public final class PhoneUtils {
      * @param slotIndex 卡槽索引
      * @return MEID 码
      */
-    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
+    @SuppressLint("MissingPermission")
     public static String getMEID(final int slotIndex) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             try {
@@ -220,7 +219,7 @@ public final class PhoneUtils {
      * 获取 IMEI 码
      * @return IMEI 码
      */
-    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
+    @SuppressLint("MissingPermission")
     public static String getIMEI() {
         return getIMEI(-1);
     }
@@ -239,7 +238,7 @@ public final class PhoneUtils {
      * @param slotIndex 卡槽索引
      * @return IMEI 码
      */
-    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
+    @SuppressLint("MissingPermission")
     public static String getIMEI(final int slotIndex) {
         try {
             TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
@@ -276,7 +275,7 @@ public final class PhoneUtils {
      * </pre>
      * @return IMSI 码
      */
-    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
+    @SuppressLint("MissingPermission")
     public static String getIMSI() {
         try {
             return AppUtils.getTelephonyManager().getSubscriberId();
@@ -316,7 +315,7 @@ public final class PhoneUtils {
      * 通过 IMSI 获取中国运营商简称
      * @return 中国运营商简称
      */
-    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
+    @SuppressLint("MissingPermission")
     public static String getChinaOperatorByIMSI() {
         return getChinaOperatorByIMSI(getIMSI());
     }
@@ -326,7 +325,7 @@ public final class PhoneUtils {
      * @param imsi IMSI 码
      * @return 中国运营商简称
      */
-    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
+    @SuppressLint("MissingPermission")
     public static String getChinaOperatorByIMSI(final String imsi) {
         if (imsi != null) {
             if (imsi.startsWith("46000") || imsi.startsWith("46002") || imsi.startsWith("46007")) {
@@ -389,7 +388,7 @@ public final class PhoneUtils {
      * 获取设备 id
      * @return 设备 id
      */
-    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
+    @SuppressLint("MissingPermission")
     public static String getDeviceId() {
         return getDeviceId(-1);
     }
@@ -399,7 +398,7 @@ public final class PhoneUtils {
      * @param slotIndex 卡槽索引
      * @return 设备 id
      */
-    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
+    @SuppressLint("MissingPermission")
     public static String getDeviceId(final int slotIndex) {
         try {
             TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
@@ -435,7 +434,7 @@ public final class PhoneUtils {
      * 获取设备序列号
      * @return 设备序列号
      */
-    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
+    @SuppressLint("MissingPermission")
     public static String getSerialNumber() {
         try {
             return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? Build.getSerial() : Build.SERIAL;
@@ -449,7 +448,7 @@ public final class PhoneUtils {
      * 获取 SIM 卡序列号
      * @return SIM 卡序列号
      */
-    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
+    @SuppressLint("MissingPermission")
     public static String getSimSerialNumber() {
         try {
             return AppUtils.getTelephonyManager().getSimSerialNumber();
@@ -463,7 +462,7 @@ public final class PhoneUtils {
      * 获取设备唯一 UUID
      * @return 设备唯一 UUID
      */
-    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
+    @SuppressLint("MissingPermission")
     public static String getUUID() {
         String deviceId = getDeviceId() + "";
         String androidId = getAndroidId() + "";
@@ -494,7 +493,7 @@ public final class PhoneUtils {
      * </pre>
      * @return 手机状态信息
      */
-    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
+    @SuppressLint("MissingPermission")
     public static String getPhoneStatus() {
         try {
             TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
@@ -544,7 +543,7 @@ public final class PhoneUtils {
      * @param phoneNumber 电话号码
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresPermission(android.Manifest.permission.CALL_PHONE)
+    @SuppressLint("MissingPermission")
     public static boolean call(final String phoneNumber) {
         try {
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
@@ -582,7 +581,7 @@ public final class PhoneUtils {
      * @param content     短信内容
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresPermission(android.Manifest.permission.SEND_SMS)
+    @SuppressLint("MissingPermission")
     public static boolean sendSmsSilent(final String phoneNumber, final String content) {
         if (TextUtils.isEmpty(content)) return false;
         try {
@@ -645,7 +644,7 @@ public final class PhoneUtils {
      * 获取手机联系人信息
      * @return 手机联系人信息
      */
-    @RequiresPermission(allOf = {android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.READ_CONTACTS})
+    @SuppressLint("MissingPermission")
     public static List<Map<String, String>> getAllContactInfo() {
         List<Map<String, String>> list = new ArrayList<>();
         // 游标
@@ -741,7 +740,7 @@ public final class PhoneUtils {
      * @param filePath 文件路径
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresPermission(allOf = {android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_SMS})
+    @SuppressLint("MissingPermission")
     public static boolean getAllSMS(final String filePath) {
         // 游标
         Cursor cursor = null;

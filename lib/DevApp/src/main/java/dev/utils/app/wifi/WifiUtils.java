@@ -13,8 +13,6 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.text.TextUtils;
 
-import androidx.annotation.RequiresPermission;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.net.InetAddress;
@@ -425,7 +423,7 @@ public final class WifiUtils {
      * 获取连接的 Wifi 热点 SSID
      * @return Wifi 热点 SSID
      */
-    @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
+    @SuppressLint("MissingPermission")
     public static String isConnectAphot() {
         try {
             // 连接管理

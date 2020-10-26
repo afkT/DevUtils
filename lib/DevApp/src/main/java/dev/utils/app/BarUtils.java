@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.annotation.RequiresPermission;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import java.lang.reflect.Method;
@@ -518,7 +517,7 @@ public final class BarUtils {
      * @param isVisible 是否显示 Notification Bar
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresPermission(android.Manifest.permission.EXPAND_STATUS_BAR)
+    @SuppressLint("MissingPermission")
     public static boolean setNotificationBarVisibility(final boolean isVisible) {
         String methodName;
         if (isVisible) {

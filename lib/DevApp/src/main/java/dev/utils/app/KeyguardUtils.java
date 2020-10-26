@@ -1,10 +1,10 @@
 package dev.utils.app;
 
+import android.annotation.SuppressLint;
 import android.app.KeyguardManager;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
-import androidx.annotation.RequiresPermission;
 
 import dev.utils.LogPrintUtils;
 
@@ -114,7 +114,7 @@ public final class KeyguardUtils {
      * 利用 disableKeyguard 解锁, 解锁并不是真正的解锁, 只是把锁屏的界面隐藏掉而已
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresPermission(android.Manifest.permission.DISABLE_KEYGUARD)
+    @SuppressLint("MissingPermission")
     public boolean disableKeyguard() {
         if (mKeyguardLock != null) {
             mKeyguardLock.disableKeyguard();
@@ -127,7 +127,7 @@ public final class KeyguardUtils {
      * 使能显示锁屏界面, 如果你之前调用了 disableKeyguard() 方法取消锁屏界面, 那么会马上显示锁屏界面
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresPermission(android.Manifest.permission.DISABLE_KEYGUARD)
+    @SuppressLint("MissingPermission")
     public boolean reenableKeyguard() {
         if (mKeyguardLock != null) {
             mKeyguardLock.reenableKeyguard();
@@ -140,7 +140,7 @@ public final class KeyguardUtils {
      * 释放资源
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresPermission(android.Manifest.permission.DISABLE_KEYGUARD)
+    @SuppressLint("MissingPermission")
     public boolean release() {
         if (mKeyguardLock != null) {
             mKeyguardLock.reenableKeyguard();

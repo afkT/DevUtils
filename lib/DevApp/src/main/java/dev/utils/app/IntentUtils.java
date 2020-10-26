@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -13,7 +14,6 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.TextUtils;
 
-import androidx.annotation.RequiresPermission;
 import androidx.core.content.FileProvider;
 
 import java.io.File;
@@ -693,7 +693,7 @@ public final class IntentUtils {
      * @param phoneNumber 电话号码
      * @return 拨打电话意图
      */
-    @RequiresPermission(android.Manifest.permission.CALL_PHONE)
+    @SuppressLint("MissingPermission")
     public static Intent getCallIntent(final String phoneNumber) {
         return getCallIntent(phoneNumber, false);
     }
@@ -704,7 +704,7 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return 拨打电话意图
      */
-    @RequiresPermission(android.Manifest.permission.CALL_PHONE)
+    @SuppressLint("MissingPermission")
     public static Intent getCallIntent(final String phoneNumber, final boolean isNewTask) {
         try {
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));

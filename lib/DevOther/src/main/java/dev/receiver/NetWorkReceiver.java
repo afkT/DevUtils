@@ -1,5 +1,6 @@
 package dev.receiver;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,8 +10,6 @@ import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.os.Build;
-
-import androidx.annotation.RequiresPermission;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
@@ -43,6 +42,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
     // ( 无网络 / 未知 ) 状态
     public static final  int NO_NETWORK = BASE + 3;
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onReceive(Context context, Intent intent) {
         try {
@@ -79,7 +79,7 @@ public final class NetWorkReceiver extends BroadcastReceiver {
      * 获取连接的网络类型
      * @return 连接的网络类型
      */
-    @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
+    @SuppressLint("MissingPermission")
     public static int getConnectType() {
         // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
         try {

@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.Context;
@@ -15,7 +16,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.RequiresApi;
-import androidx.annotation.RequiresPermission;
 
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;
@@ -520,7 +520,7 @@ public final class ScreenUtils {
      * @param duration 时长
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresPermission(android.Manifest.permission.WRITE_SETTINGS)
+    @SuppressLint("MissingPermission")
     public static boolean setSleepDuration(final int duration) {
         try {
             Settings.System.putInt(ResourceUtils.getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, duration);

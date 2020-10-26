@@ -37,8 +37,6 @@ import android.telephony.TelephonyManager;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
-import androidx.annotation.RequiresPermission;
-
 import java.io.File;
 import java.util.List;
 
@@ -662,7 +660,7 @@ public final class AppUtils {
      * 判断 APP 是否在前台
      * @return {@code true} yes, {@code false} no
      */
-    @RequiresPermission(android.Manifest.permission.PACKAGE_USAGE_STATS)
+    @SuppressLint("MissingPermission")
     public static boolean isAppForeground() {
         return isAppForeground(getPackageName());
     }
@@ -672,7 +670,7 @@ public final class AppUtils {
      * @param packageName 应用包名
      * @return {@code true} yes, {@code false} no
      */
-    @RequiresPermission(android.Manifest.permission.PACKAGE_USAGE_STATS)
+    @SuppressLint("MissingPermission")
     public static boolean isAppForeground(final String packageName) {
         if (StringUtils.isSpace(packageName)) return false;
         try {
