@@ -330,32 +330,21 @@ public final class IntentUtils {
     }
 
     /**
-     * 获取 APP 悬浮窗口权限详情页的意图
-     * @return APP 悬浮窗口权限详情页的意图
+     * 获取悬浮窗口权限列表的意图
+     * @return 悬浮窗口权限列表的意图
      */
     public static Intent getManageOverlayPermissionIntent() {
-        return getManageOverlayPermissionIntent(AppUtils.getPackageName(), false);
+        return getManageOverlayPermissionIntent(false);
     }
 
     /**
-     * 获取 APP 悬浮窗口权限详情页的意图
-     * @param packageName 应用包名
-     * @return APP 悬浮窗口权限详情页的意图
+     * 获取悬浮窗口权限列表的意图
+     * @param isNewTask 是否开启新的任务栈
+     * @return 悬浮窗口权限列表的意图
      */
-    public static Intent getManageOverlayPermissionIntent(final String packageName) {
-        return getManageOverlayPermissionIntent(packageName, false);
-    }
-
-    /**
-     * 获取 APP 悬浮窗口权限详情页的意图
-     * @param packageName 应用包名
-     * @param isNewTask   是否开启新的任务栈
-     * @return APP 悬浮窗口权限详情页的意图
-     */
-    public static Intent getManageOverlayPermissionIntent(final String packageName, final boolean isNewTask) {
+    public static Intent getManageOverlayPermissionIntent(final boolean isNewTask) {
         try {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-            intent.setData(Uri.parse("package:" + packageName));
             return getIntent(intent, isNewTask);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getManageOverlayPermissionIntent");
@@ -398,17 +387,17 @@ public final class IntentUtils {
     }
 
     /**
-     * 获取授予所有文件管理权限的意图
-     * @return 授予所有文件管理权限的意图
+     * 获取授予所有文件管理权限列表的意图
+     * @return 授予所有文件管理权限列表的意图
      */
     public static Intent getManageAllFilesAccessPermissionIntent() {
         return getManageAllFilesAccessPermissionIntent(false);
     }
 
     /**
-     * 获取授予所有文件管理权限的意图
+     * 获取授予所有文件管理权限列表的意图
      * @param isNewTask 是否开启新的任务栈
-     * @return 授予所有文件管理权限的意图
+     * @return 授予所有文件管理权限列表的意图
      */
     public static Intent getManageAllFilesAccessPermissionIntent(final boolean isNewTask) {
         try {

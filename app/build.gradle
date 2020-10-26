@@ -155,6 +155,8 @@ dependencies {
     implementation deps.lib.stickyDecoration
     // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
     implementation deps.lib.xcrash
+    // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
+    implementation deps.lib.xxPermissions
 
     // 内存检测工具 https://github.com/square/leakcanary
     debugImplementation deps.lib.leakcanary

@@ -249,6 +249,8 @@ ext {
                     // 图片裁剪库 https://github.com/Yalantis/uCrop
                     ucrop                        : "com.github.yalantis:ucrop:2.2.6", // 轻量级通用解决方案
                     ucrop_native                 : "com.github.yalantis:ucrop:2.2.6-native", // 支持本机功能
+                    // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
+                    xxPermissions                : "com.hjq:xxpermissions:8.8",
 
                     // ========
                     // = 其他 =
