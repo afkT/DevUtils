@@ -45,26 +45,26 @@ final class CatalogGenerate {
      * 获取文件夹目录列表
      * @param path            文件路径
      * @param catalogCallback 目录回调通知
-     * @param ignoreCatelog   忽略目录
+     * @param ignoreCatalog   忽略目录
      * @param layer           目录层级
      * @return 文件夹目录列表集合
      */
     private static List<FileUtils.FileList> getFolderLists(final String path, final CatalogCallback catalogCallback,
-                                                           final String[] ignoreCatelog, final int layer) {
-        return getFolderLists(path, catalogCallback, ignoreCatelog, layer, 0);
+                                                           final String[] ignoreCatalog, final int layer) {
+        return getFolderLists(path, catalogCallback, ignoreCatalog, layer, 0);
     }
 
     /**
      * 获取文件夹目录列表
      * @param path            文件路径
      * @param catalogCallback 目录回调通知
-     * @param ignoreCatelog   忽略目录
+     * @param ignoreCatalog   忽略目录
      * @param layer           目录层级
      * @param curLayer        当前层级
      * @return 文件夹目录列表集合
      */
     private static List<FileUtils.FileList> getFolderLists(final String path, final CatalogCallback catalogCallback,
-                                                           final String[] ignoreCatelog, final int layer, final int curLayer) {
+                                                           final String[] ignoreCatalog, final int layer, final int curLayer) {
         // 当前层级大于想要的层级则 return
         if (curLayer > layer) return new ArrayList<>();
         List<FileUtils.FileList> lists = new ArrayList<>();
@@ -79,13 +79,13 @@ final class CatalogGenerate {
                 continue;
             }
             // 判断根目录是否需要忽略
-            if (curLayer != 0 && StringUtils.isContains(baseFile.getName(), ignoreCatelog)) {
+            if (curLayer != 0 && StringUtils.isContains(baseFile.getName(), ignoreCatalog)) {
                 return lists;
             }
             // 属于文件夹才处理
             if (file.isDirectory()) {
                 FileUtils.FileList catalog = new FileUtils.FileList(file,
-                        getFolderLists(file.getAbsolutePath(), catalogCallback, ignoreCatelog, layer, curLayer + 1));
+                        getFolderLists(file.getAbsolutePath(), catalogCallback, ignoreCatalog, layer, curLayer + 1));
                 lists.add(catalog);
                 // 触发回调
                 if (catalogCallback != null) {
@@ -111,7 +111,7 @@ final class CatalogGenerate {
      */
     private static void calculateMaxLength(final String name, final int lineNumber) {
         StringBuffer buffer = new StringBuffer(); // 添加目录
-        buffer.append(createCatelog(name, lineNumber));
+        buffer.append(createCatalog(name, lineNumber));
         int length = buffer.toString().length();
         // 判断长度 => 大于最大长度, 则重新设置
         if ((length + 6) >= sMaxLength) {
@@ -125,7 +125,7 @@ final class CatalogGenerate {
      * @param lineNumber 行数
      * @return 目录信息
      */
-    private static String createCatelog(final String name, final int lineNumber) {
+    private static String createCatalog(final String name, final int lineNumber) {
         StringBuffer buffer = new StringBuffer(); // 添加空格
         buffer.append(StringUtils.appendSpace(lineNumber * 3));
         buffer.append("- " + name); // 打印目录
@@ -137,17 +137,17 @@ final class CatalogGenerate {
      * @param name       目录名
      * @param lineNumber 行数
      * @param classTag   Class TAG 标记
-     * @param mapCatelog 对应目录注释
+     * @param mapCatalog 对应目录注释
      * @return 目录行信息
      */
-    private static String createCataLogLine(final String name, final int lineNumber, final String classTag,
-                                            final Map<String, String> mapCatelog) {
+    private static String createCatalogLine(final String name, final int lineNumber, final String classTag,
+                                            final Map<String, String> mapCatalog) {
         StringBuffer buffer = new StringBuffer(); // 添加目录
-        buffer.append(createCatelog(name, lineNumber));
+        buffer.append(createCatalog(name, lineNumber));
         // 设置间隔长度
         buffer.append(StringUtils.appendSpace(sMaxLength - buffer.toString().length()));
         // 添加 间隔 |
-        buffer.append("| " + mapCatelog.get(classTag));
+        buffer.append("| " + mapCatalog.get(classTag));
         return buffer.toString();
     }
 
@@ -157,11 +157,11 @@ final class CatalogGenerate {
      * @param lists      目录列表
      * @param lineNumber 行数
      * @param classTag   Class TAG 标记
-     * @param mapCatelog 对应目录注释
+     * @param mapCatalog 对应目录注释
      */
-    private static void forCatelog(final StringBuffer buffer, final List<FileUtils.FileList> lists,
+    private static void forCatalog(final StringBuffer buffer, final List<FileUtils.FileList> lists,
                                    final int lineNumber, final String classTag,
-                                   final Map<String, String> mapCatelog) {
+                                   final Map<String, String> mapCatalog) {
         for (int i = 0, len = lists.size(); i < len; i++) {
             // 获取目录
             FileUtils.FileList catalog = lists.get(i);
@@ -170,10 +170,10 @@ final class CatalogGenerate {
             // 进行换行
             buffer.append("\n");
             // 添加目录行
-            buffer.append(createCataLogLine(name, lineNumber, classTag + "." + name, mapCatelog));
+            buffer.append(createCatalogLine(name, lineNumber, classTag + "." + name, mapCatalog));
             // 判断是否存在子文件夹
             if (catalog.getSubFiles().size() != 0) {
-                forCatelog(buffer, catalog.getSubFiles(), lineNumber + 1, classTag + "." + name, mapCatelog);
+                forCatalog(buffer, catalog.getSubFiles(), lineNumber + 1, classTag + "." + name, mapCatalog);
             }
         }
     }
@@ -186,13 +186,13 @@ final class CatalogGenerate {
      * 生成目录信息
      * @param path              文件路径
      * @param dirName           文件名
-     * @param mapCatelog        对应目录注释
-     * @param listIgnoreCatelog 忽略目录
+     * @param mapCatalog        对应目录注释
+     * @param listIgnoreCatalog 忽略目录
      * @param layer             目录层级
      * @return 目录信息
      */
-    public static String generate(final String path, final String dirName, final Map<String, String> mapCatelog,
-                                  final List<String> listIgnoreCatelog, final int layer) {
+    public static String generate(final String path, final String dirName, final Map<String, String> mapCatalog,
+                                  final List<String> listIgnoreCatalog, final int layer) {
         StringBuffer buffer = new StringBuffer();
         // 获取文件夹列表
         List<FileUtils.FileList> lists = getFolderLists(path, new CatalogCallback() {
@@ -201,14 +201,14 @@ final class CatalogGenerate {
                 // 计算目录最大长度
                 calculateMaxLength(name, lineNumber);
             }
-        }, CollectionUtils.toArrayT(listIgnoreCatelog), layer);
+        }, CollectionUtils.toArrayT(listIgnoreCatalog), layer);
         // 默认头部
         String head = "- " + dirName;
         buffer.append("```\n");
         // 增加根目录
-        buffer.append(head + StringUtils.appendSpace(sMaxLength - head.length()) + "| " + mapCatelog.get(dirName));
+        buffer.append(head + StringUtils.appendSpace(sMaxLength - head.length()) + "| " + mapCatalog.get(dirName));
         // 递归循环目录
-        forCatelog(buffer, lists, 1, "", mapCatelog);
+        forCatalog(buffer, lists, 1, "", mapCatalog);
         buffer.append("\n```\n");
         return buffer.toString();
     }

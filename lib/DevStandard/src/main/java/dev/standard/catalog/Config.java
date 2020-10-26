@@ -54,13 +54,13 @@ final class Config {
     // =======
 
     // Android 文件目录注释
-    public static final Map<String, String> sAndroidCatelogMap      = new HashMap<>();
+    public static final Map<String, String> sAndroidCatalogMap      = new HashMap<>();
     // Java 文件目录注释
-    public static final Map<String, String> sJavaCatelogMap         = new HashMap<>();
+    public static final Map<String, String> sJavaCatalogMap         = new HashMap<>();
     // DevUtils Lib 文件目录注释
-    public static final Map<String, String> sDevUtilsCatelogMap     = new HashMap<>();
+    public static final Map<String, String> sDevUtilsCatalogMap     = new HashMap<>();
     // DevUtils Lib 忽略目录
-    public static final List<String>        sDevUtilsIgnoreCatelogs = new ArrayList<>();
+    public static final List<String>        sDevUtilsIgnoreCatalogs = new ArrayList<>();
 
     static {
 
@@ -68,58 +68,58 @@ final class Config {
         // = Android =
         // ===========
 
-        sAndroidCatelogMap.put("Android", "根目录");
-        sAndroidCatelogMap.put(".360RePlugin", "Android 插件化开发 - 360 RePlugin 框架");
-        sAndroidCatelogMap.put(".AndroidScreenMatch", "Android 屏幕适配生成对应的尺寸文件");
-        sAndroidCatelogMap.put(".AndroidVideoClip", "Android 视频裁剪 (含裁剪 View)");
-        sAndroidCatelogMap.put(".AppInfoPro", "AppInfoPro (APP 信息提取器)");
-        sAndroidCatelogMap.put(".AutoLockScreenPro", "AutoLockScreenPro - 推送自动锁屏");
-        sAndroidCatelogMap.put(".BuglyHotfix", "Android 热修复 - Bugly");
-        sAndroidCatelogMap.put(".PlaySeekbar", "视频裁剪自定义 View");
-        sAndroidCatelogMap.put(".PushHandlerPro", "Android 点击推送逻辑处理、页面跳转判断");
-        sAndroidCatelogMap.put(".RecordVideo", "录制视频 View (拍照 + 视频)");
-        sAndroidCatelogMap.put(".RecordView", "录制进步式 View");
-        sAndroidCatelogMap.put(".SophixPro", "Android - 热修复 Sophix");
+        sAndroidCatalogMap.put("Android", "根目录");
+        sAndroidCatalogMap.put(".360RePlugin", "Android 插件化开发 - 360 RePlugin 框架");
+        sAndroidCatalogMap.put(".AndroidScreenMatch", "Android 屏幕适配生成对应的尺寸文件");
+        sAndroidCatalogMap.put(".AndroidVideoClip", "Android 视频裁剪 (含裁剪 View)");
+        sAndroidCatalogMap.put(".AppInfoPro", "AppInfoPro (APP 信息提取器)");
+        sAndroidCatalogMap.put(".AutoLockScreenPro", "AutoLockScreenPro - 推送自动锁屏");
+        sAndroidCatalogMap.put(".BuglyHotfix", "Android 热修复 - Bugly");
+        sAndroidCatalogMap.put(".PlaySeekbar", "视频裁剪自定义 View");
+        sAndroidCatalogMap.put(".PushHandlerPro", "Android 点击推送逻辑处理、页面跳转判断");
+        sAndroidCatalogMap.put(".RecordVideo", "录制视频 View (拍照 + 视频)");
+        sAndroidCatalogMap.put(".RecordView", "录制进步式 View");
+        sAndroidCatalogMap.put(".SophixPro", "Android - 热修复 Sophix");
 
         // ========
         // = Java =
         // ========
 
-        sJavaCatelogMap.put("Java", "根目录");
-        sJavaCatelogMap.put(".VideoClip", "Java 实现 MP4 裁剪功能");
+        sJavaCatalogMap.put("Java", "根目录");
+        sJavaCatalogMap.put(".VideoClip", "Java 实现 MP4 裁剪功能");
 
         // ================
         // = DevUtils Lib =
         // ================
 
-        sDevUtilsCatelogMap.put("lib", "根目录");
-        sDevUtilsCatelogMap.put(".DevApp", "Android 工具类库");
-        sDevUtilsCatelogMap.put(".DevAssist", "封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等");
-        sDevUtilsCatelogMap.put(".DevBase", "Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库");
-        sDevUtilsCatelogMap.put(".DevBase2", "Base 基础代码 ( 非基类库 )");
-        sDevUtilsCatelogMap.put(".DevBaseMVVM", "Base MVVM 基类库");
-        sDevUtilsCatelogMap.put(".DevJava", "Java 工具类库 ( 不依赖 android api )");
-        sDevUtilsCatelogMap.put(".DevOther", "第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用");
-        sDevUtilsCatelogMap.put(".DevStandard", "项目规范统一检测、生成替换等");
-        sDevUtilsCatelogMap.put(".DevWidget", "自定义 View UI 库");
-        sDevUtilsCatelogMap.put(".Environment", "环境配置切换库");
-        sDevUtilsCatelogMap.put(".Environment.DevEnvironment", "环境切换可视化 UI 操作");
-        sDevUtilsCatelogMap.put(".Environment.DevEnvironmentBase", "注解类、实体类、监听事件等通用基础");
-        sDevUtilsCatelogMap.put(".Environment.DevEnvironmentCompiler", "Debug ( 打包 / 编译 ) 生成实现代码");
-        sDevUtilsCatelogMap.put(".Environment.DevEnvironmentCompilerRelease", "Release ( 打包 / 编译 ) 生成实现代码");
+        sDevUtilsCatalogMap.put("lib", "根目录");
+        sDevUtilsCatalogMap.put(".DevApp", "Android 工具类库");
+        sDevUtilsCatalogMap.put(".DevAssist", "封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等");
+        sDevUtilsCatalogMap.put(".DevBase", "Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库");
+        sDevUtilsCatalogMap.put(".DevBase2", "Base 基础代码 ( 非基类库 )");
+        sDevUtilsCatalogMap.put(".DevBaseMVVM", "Base MVVM 基类库");
+        sDevUtilsCatalogMap.put(".DevJava", "Java 工具类库 ( 不依赖 android api )");
+        sDevUtilsCatalogMap.put(".DevOther", "第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用");
+        sDevUtilsCatalogMap.put(".DevStandard", "项目规范统一检测、生成替换等");
+        sDevUtilsCatalogMap.put(".DevWidget", "自定义 View UI 库");
+        sDevUtilsCatalogMap.put(".Environment", "环境配置切换库");
+        sDevUtilsCatalogMap.put(".Environment.DevEnvironment", "环境切换可视化 UI 操作");
+        sDevUtilsCatalogMap.put(".Environment.DevEnvironmentBase", "注解类、实体类、监听事件等通用基础");
+        sDevUtilsCatalogMap.put(".Environment.DevEnvironmentCompiler", "Debug ( 打包 / 编译 ) 生成实现代码");
+        sDevUtilsCatalogMap.put(".Environment.DevEnvironmentCompilerRelease", "Release ( 打包 / 编译 ) 生成实现代码");
 
         // ========================
         // = DevUtils Lib 忽略目录 =
         // ========================
 
-        sDevUtilsIgnoreCatelogs.add("DevApp");
-        sDevUtilsIgnoreCatelogs.add("DevAssist");
-        sDevUtilsIgnoreCatelogs.add("DevBase");
-        sDevUtilsIgnoreCatelogs.add("DevBase2");
-        sDevUtilsIgnoreCatelogs.add("DevBaseMVVM");
-        sDevUtilsIgnoreCatelogs.add("DevJava");
-        sDevUtilsIgnoreCatelogs.add("DevOther");
-        sDevUtilsIgnoreCatelogs.add("DevStandard");
-        sDevUtilsIgnoreCatelogs.add("DevWidget");
+        sDevUtilsIgnoreCatalogs.add("DevApp");
+        sDevUtilsIgnoreCatalogs.add("DevAssist");
+        sDevUtilsIgnoreCatalogs.add("DevBase");
+        sDevUtilsIgnoreCatalogs.add("DevBase2");
+        sDevUtilsIgnoreCatalogs.add("DevBaseMVVM");
+        sDevUtilsIgnoreCatalogs.add("DevJava");
+        sDevUtilsIgnoreCatalogs.add("DevOther");
+        sDevUtilsIgnoreCatalogs.add("DevStandard");
+        sDevUtilsIgnoreCatalogs.add("DevWidget");
     }
 }
