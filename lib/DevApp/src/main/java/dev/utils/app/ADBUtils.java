@@ -24,9 +24,6 @@ import dev.utils.common.StringUtils;
  *     Awesome ADB 一份超全超详细的 ADB 用法大全
  *     @see <a href="https://github.com/mzlogin/awesome-adb"/>
  *     <p></p>
- *     获取 APP 列表 ( 包名 )
- *     @see <a href="https://blog.csdn.net/henni_719/article/details/62222439"/>
- *     <p></p>
  *     adb shell input
  *     @see <a href="https://blog.csdn.net/soslinken/article/details/49587497"/>
  *     <p></p>

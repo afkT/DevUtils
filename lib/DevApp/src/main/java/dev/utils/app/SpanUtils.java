@@ -77,8 +77,6 @@ import dev.utils.common.CloseUtils;
  *     SpannableString 之富文本显示效果
  *     @see <a href="https://www.cnblogs.com/qynprime/p/8026672.html"/>
  *     <p></p>
- *     @see <a href="https://www.jianshu.com/p/509b0d2626f4"/>
- *     <p></p>
  *     SpannableString 与 SpannableStringBuilder 区别就比如 String 和 StringBuilder 一样
  *     <p></p>
  *     setSpan() - int flags

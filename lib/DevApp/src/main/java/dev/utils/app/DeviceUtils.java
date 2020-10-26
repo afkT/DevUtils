@@ -31,7 +31,6 @@ import dev.utils.LogPrintUtils;
  * detail: 设备相关工具类
  * @author Ttt
  * <pre>
- *     @see <a href="http://blog.csdn.net/zhangcanyan/article/details/52817866"/>
  *     android.os.Build.BOARD: 获取设备基板名称
  *     android.os.Build.BOOTLOADER: 获取设备引导程序版本号
  *     android.os.Build.BRAND: 获取设备品牌

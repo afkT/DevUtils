@@ -24,7 +24,7 @@ import dev.utils.LogPrintUtils;
  * detail: EditText 工具类
  * @author Ttt
  * <pre>
- *     EditText 属性大全 ( 不局限于仅仅是 EditText)
+ *     EditText 属性大全 ( 不局限于仅仅是 EditText )
  *     @see <a href="https://my.oschina.net/xsjayz/blog/121685"/>
  *     <p></p>
  *     EditText 多行显示及所有属性

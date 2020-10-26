@@ -13,16 +13,14 @@ import dev.utils.common.FileUtils;
  * detail: 路径相关工具类
  * @author Ttt
  * <pre>
- *     Android 中的存储路径之内部存储
- *     @see <a href="https://www.jianshu.com/p/c04b8899cf85"/>
- *     Android 中的存储路径之外部存储
- *     @see <a href="https://www.jianshu.com/p/2881260e74d7"/>
  *     处理外部存储中的媒体文件
  *     @see <a href="https://developer.android.google.cn/training/data-storage/files/media"/>
  *     管理分区外部存储访问
  *     @see <a href="https://developer.android.google.cn/training/data-storage/files/external-scoped"/>
- *     Android Q 适配指南
- *     @see <a href="https://juejin.im/post/5ddd2417f265da060a5217ff"/>
+ *     Android 11 最全适配实践指南
+ *     @see <a href="https://mp.weixin.qq.com/s/ZrsO5VvURwW98PTHei0kFA"/>
+ *     MANAGE_EXTERNAL_STORAGE
+ *     @see <a href="https://developer.android.google.cn/preview/privacy/storage"/>
  *     <p></p>
  *     内部存储 : /data/data/package/ 目录
  *     外部存储 ( 私有目录 ) : /storage/emulated/0/Android/data/package/ 目录
