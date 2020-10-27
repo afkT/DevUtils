@@ -191,7 +191,8 @@ public final class MediaStoreUtils {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return 图片 Uri
      */
-    public static Uri createImageUri(final String displayName, final long createTime, final String mimeType, final String relativePath) {
+    public static Uri createImageUri(final String displayName, final long createTime,
+                                     final String mimeType, final String relativePath) {
         return createMediaUri(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
     }
 
@@ -234,7 +235,8 @@ public final class MediaStoreUtils {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return 视频 Uri
      */
-    public static Uri createVideoUri(final String displayName, final long createTime, final String mimeType, final String relativePath) {
+    public static Uri createVideoUri(final String displayName, final long createTime,
+                                     final String mimeType, final String relativePath) {
         return createMediaUri(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
     }
 
@@ -277,7 +279,8 @@ public final class MediaStoreUtils {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return 音频 Uri
      */
-    public static Uri createAudioUri(final String displayName, final long createTime, final String mimeType, final String relativePath) {
+    public static Uri createAudioUri(final String displayName, final long createTime,
+                                     final String mimeType, final String relativePath) {
         return createMediaUri(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
     }
 
@@ -293,7 +296,8 @@ public final class MediaStoreUtils {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return Media Uri
      */
-    public static Uri createMediaUri(final Uri uri, final String displayName, final String mimeType, final String relativePath) {
+    public static Uri createMediaUri(final Uri uri, final String displayName,
+                                     final String mimeType, final String relativePath) {
         return createMediaUri(uri, displayName, System.currentTimeMillis(), mimeType, relativePath);
     }
 
@@ -309,7 +313,9 @@ public final class MediaStoreUtils {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return Media Uri
      */
-    public static Uri createMediaUri(final Uri uri, final String displayName, final long createTime, final String mimeType, final String relativePath) {
+    public static Uri createMediaUri(final Uri uri, final String displayName,
+                                     final long createTime, final String mimeType,
+                                     final String relativePath) {
         boolean isAndroidQ = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q);
         ContentValues values = new ContentValues(isAndroidQ ? 4 : 3);
         values.put(MediaStore.Files.FileColumns.DISPLAY_NAME, displayName); // 文件名
@@ -415,7 +421,8 @@ public final class MediaStoreUtils {
 
     /**
      * 插入一条多媒体资源
-     * @param uri      {@link #createVideoUri} or {@link #createMediaUri}
+     * @param uri      {@link #createImageUri} or {@link #createVideoUri} or
+     *                 {@link #createAudioUri()} or {@link #createMediaUri}
      * @param inputUri 输入 Uri ( 待存储文件 Uri )
      * @return {@code true} success, {@code false} fail
      */
