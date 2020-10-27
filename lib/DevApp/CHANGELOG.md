@@ -1,6 +1,27 @@
 Change Log
 ==========
 
+Version 2.0.8 *(2020-10-XX)*
+----------------------------
+
+* `[Feature]` 适配 Android R ( Android 11 )
+
+* `[Add]` 新增 VersionHelper ( Android 版本适配 Helper 类 ), 方便快捷使用并简化需多工具类组合使用的功能
+
+* `[Add]` MediaStoreUtils#createWriteRequest、createFavoriteRequest、createTrashRequest、createDeleteRequest
+
+* `[Add]` PathUtils#isExternalStorageManager、checkExternalStorageAndIntentSetting
+
+* `[Add]` AppUtils#startIntentSenderForResult
+
+* `[Add]` IntentUtils#getManageAppAllFilesAccessPermissionIntent、getManageAllFilesAccessPermissionIntent、getImageCaptureIntent、getVideoCaptureIntent
+
+* `[Add]` ArrayUtils#asListArgs
+
+* `[Update]` MapUtils#putToList、removeToList、removeToMap 参数类型
+
+* `[Update]` 进行 Spelling typo Analyze 修改部分拼写错误字段
+
 Version 2.0.7 *(2020-10-20)*
 ----------------------------
 

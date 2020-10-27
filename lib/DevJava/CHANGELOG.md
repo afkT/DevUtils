@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 1.2.1 *(2020-10-XX)*
+----------------------------
+
+* `[Add]` ArrayUtils#asListArgs
+
+* `[Update]` MapUtils#putToList、removeToList、removeToMap 参数类型
+
+* `[Update]` 进行 Spelling typo Analyze 修改部分拼写错误字段
+
 Version 1.2.0 *(2020-10-20)*
 ----------------------------
 
