@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.net.Uri;
 
+import java.io.File;
 import java.util.Collection;
 
 import dev.utils.app.AppUtils;
+import dev.utils.app.ContentResolverUtils;
 import dev.utils.app.MediaStoreUtils;
 import dev.utils.app.PathUtils;
+import dev.utils.app.UriUtils;
 
 /**
  * detail: Android 版本适配 Helper 类
@@ -43,7 +46,144 @@ public final class VersionHelper {
     // = Android Q =
     // =============
 
+    /**
+     * 判断 Uri 路径资源是否存在
+     * <pre>
+     *     uri 非 FilePath, 可通过 {@link UriUtils#getMediaUri} 获取
+     * </pre>
+     * @param uriString uri 路径
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isUriExists(final String uriString) {
+        return UriUtils.isUriExists(uriString);
+    }
 
+    /**
+     * 判断 Uri 路径资源是否存在
+     * @param uri {@link Uri}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isUriExists(final Uri uri) {
+        return UriUtils.isUriExists(uri);
+    }
+
+    /**
+     * 通过 File 获取 Media Uri
+     * @param file 文件
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getMediaUri(final File file) {
+        return ContentResolverUtils.getMediaUri(file);
+    }
+
+    /**
+     * 通过 File 获取 Media Uri
+     * @param uri  MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
+     * @param file 文件
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getMediaUri(final Uri uri, final File file) {
+        return ContentResolverUtils.getMediaUri(uri, file);
+    }
+
+    /**
+     * 通过 File Path 获取 Media Uri
+     * @param filePath 文件路径
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getMediaUri(final String filePath) {
+        return ContentResolverUtils.getMediaUri(filePath);
+    }
+
+    /**
+     * 通过 File Path 获取 Media Uri
+     * @param uri      MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
+     * @param filePath 文件路径
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getMediaUri(final Uri uri, final String filePath) {
+        return ContentResolverUtils.getMediaUri(uri, filePath);
+    }
+
+    /**
+     * 通过 Uri 复制文件
+     * @param uri {@link Uri}
+     * @return 复制后的文件路径
+     */
+    public static String copyByUri(final Uri uri) {
+        return UriUtils.copyByUri(uri);
+    }
+
+    /**
+     * 通过 Uri 复制文件
+     * @param uri      {@link Uri}
+     * @param fileName 文件名 {@link ContentResolverUtils#getDisplayNameColumn}
+     * @return 复制后的文件路径
+     */
+    public static String copyByUri(final Uri uri, final String fileName) {
+        return UriUtils.copyByUri(uri, fileName);
+    }
+
+    /**
+     * 通过 Uri 获取文件路径
+     * @param uri {@link Uri}
+     * @return 文件路径
+     */
+    public static String getFilePathByUri(final Uri uri) {
+        return UriUtils.getFilePathByUri(uri);
+    }
+
+    /**
+     * 通过 Uri 获取文件路径
+     * <pre>
+     *     默认不复制文件, 防止影响已经使用该方法的功能 ( 文件过大导致 ANR、耗时操作等 )
+     * </pre>
+     * @param uri     {@link Uri}
+     * @param isQCopy Android Q 及其以上版本是否复制文件
+     * @return 文件路径
+     */
+    public static String getFilePathByUri(final Uri uri, final boolean isQCopy) {
+        return UriUtils.getFilePathByUri(uri, isQCopy);
+    }
+
+
+    /**
+     * 获取 FileProvider File Uri
+     * @param file 文件
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getUriForFile(final File file) {
+        return UriUtils.getUriForFile(file);
+    }
+
+    /**
+     * 获取 FileProvider File Path Uri
+     * @param filePath 文件路径
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getUriForPath(final String filePath) {
+        return UriUtils.getUriForPath(filePath);
+    }
+
+    /**
+     * 获取 FileProvider File Path Uri ( 自动添加包名 ${applicationId} )
+     * @param file         文件
+     * @param fileProvider android:authorities = ${applicationId}.fileProvider
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getUriForFileToName(final File file, final String fileProvider) {
+        return UriUtils.getUriForFileToName(file, fileProvider);
+    }
+
+    /**
+     * 获取 FileProvider File Path Uri
+     * @param file      文件
+     * @param authority android:authorities
+     * @return 指定文件 {@link Uri}
+     */
+    public static Uri getUriForFile(final File file, final String authority) {
+        return UriUtils.getUriForFile(file, authority);
+    }
 
     // =============
     // = Android R =
