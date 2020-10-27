@@ -23,8 +23,6 @@ import dev.utils.app.helper.ViewHelper;
  * detail: RecyclerView 滑动删除、上下滑动
  * @author Ttt
  * <pre>
- *     RecyclerView 之使用 ItemTouchHelper 实现交互动画
- *     @see <a href="https://www.jianshu.com/p/e3426dcc8ef1"/>
  *     RecyclerView 实现拖拽排序和侧滑删除
  *     @see <a href="http://www.imooc.com/article/80640"/>
  *     RecyclerView 扩展 ( 二 ) - 手把手教你认识 ItemTouchHelper
