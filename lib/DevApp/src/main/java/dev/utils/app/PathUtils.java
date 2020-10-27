@@ -17,10 +17,6 @@ import dev.utils.common.FileUtils;
  *     @see <a href="https://developer.android.google.cn/training/data-storage/files/media"/>
  *     管理分区外部存储访问
  *     @see <a href="https://developer.android.google.cn/training/data-storage/files/external-scoped"/>
- *     Android 11 最全适配实践指南
- *     @see <a href="https://mp.weixin.qq.com/s/ZrsO5VvURwW98PTHei0kFA"/>
- *     MANAGE_EXTERNAL_STORAGE
- *     @see <a href="https://developer.android.google.cn/preview/privacy/storage"/>
  *     <p></p>
  *     内部存储 : /data/data/package/ 目录
  *     外部存储 ( 私有目录 ) : /storage/emulated/0/Android/data/package/ 目录
