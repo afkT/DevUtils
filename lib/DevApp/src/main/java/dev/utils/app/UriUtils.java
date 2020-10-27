@@ -219,7 +219,8 @@ public final class UriUtils {
      * @return 复制后的文件路径
      */
     public static String copyByUri(final Uri uri, final String filePath, final String fileName) {
-        if (uri == null) return null;
+        if (uri == null || TextUtils.isEmpty(filePath)) return null;
+        FileUtils.createFolder(filePath);
         InputStream is = null;
         try {
             String child = TextUtils.isEmpty(fileName) ? System.currentTimeMillis() + "" : fileName;
