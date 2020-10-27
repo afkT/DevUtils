@@ -197,12 +197,34 @@ public final class UriUtils {
      * @return 复制后的文件路径
      */
     public static String copyByUri(final Uri uri, final String fileName) {
+        return copyByUri(uri, PathUtils.getAppExternal().getAppCachePath(), fileName);
+    }
+
+    /**
+     * 通过 Uri 复制文件
+     * @param uri      {@link Uri}
+     * @param file     文件
+     * @param fileName 文件名 {@link ContentResolverUtils#getDisplayNameColumn}
+     * @return 复制后的文件路径
+     */
+    public static String copyByUri(final Uri uri, final File file, final String fileName) {
+        return copyByUri(uri, FileUtils.getAbsolutePath(file), fileName);
+    }
+
+    /**
+     * 通过 Uri 复制文件
+     * @param uri      {@link Uri}
+     * @param filePath 文件路径
+     * @param fileName 文件名 {@link ContentResolverUtils#getDisplayNameColumn}
+     * @return 复制后的文件路径
+     */
+    public static String copyByUri(final Uri uri, final String filePath, final String fileName) {
         if (uri == null) return null;
         InputStream is = null;
         try {
             String child = TextUtils.isEmpty(fileName) ? System.currentTimeMillis() + "" : fileName;
             is = ResourceUtils.openInputStream(uri);
-            File file = new File(PathUtils.getAppExternal().getAppCacheDir(), child);
+            File file = new File(filePath, child);
             FileIOUtils.writeFileFromIS(file.getAbsolutePath(), is);
             return file.getAbsolutePath();
         } catch (Exception e) {
