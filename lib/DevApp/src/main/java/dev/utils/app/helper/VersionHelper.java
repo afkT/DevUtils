@@ -2,13 +2,17 @@ package dev.utils.app.helper;
 
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.graphics.Bitmap;
 import android.net.Uri;
+
+import androidx.annotation.IntRange;
 
 import java.io.File;
 import java.util.Collection;
 
 import dev.utils.app.AppUtils;
 import dev.utils.app.ContentResolverUtils;
+import dev.utils.app.IntentUtils;
 import dev.utils.app.MediaStoreUtils;
 import dev.utils.app.PathUtils;
 import dev.utils.app.UriUtils;
@@ -32,6 +36,19 @@ import dev.utils.app.UriUtils;
  *     @see <a href="https://mp.weixin.qq.com/s/ZrsO5VvURwW98PTHei0kFA"/>
  *     MANAGE_EXTERNAL_STORAGE
  *     @see <a href="https://developer.android.google.cn/preview/privacy/storage"/>
+ *     <p></p>
+ *     在 Android Q 上想要公开的资源, 通过 Image、Video、Audio、Document
+ *     {@link #createImageUri()}、{@link #createVideoUri()}、
+ *     {@link #createAudioUri()}、{@link IntentUtils#getCreateDocumentIntent(String, String)}
+ *     去创建 Uri 并写入数据
+ *     {@link #insertImage(Uri, Uri)} ()}、{@link #insertVideo(Uri, Uri)} ()}、
+ *     {@link #insertAudio(Uri, Uri)} ()}、{@link #insertMedia(Uri, Uri)} ()}
+ *     关于参数:
+ *     inputUri 输入 Uri ( 待存储文件 Uri )
+ *     通过 {@link #getUriForFile(File)} 把需要存储到外部的文件传入
+ *     <p></p>
+ *     获取文件通过 {@link IntentUtils#getOpenDocumentIntent()} startActivityForResult 获取选择的 Uri
+ *     如果需要把选中的文件进行存储调用 {@link #copyByUri(Uri)}
  * </pre>
  */
 public final class VersionHelper {
@@ -39,12 +56,13 @@ public final class VersionHelper {
     private VersionHelper() {
     }
 
-    // 日志 TAG
-    private static final String TAG = VersionHelper.class.getSimpleName();
-
     // =============
     // = Android Q =
     // =============
+
+    // ============
+    // = UriUtils =
+    // ============
 
     /**
      * 判断 Uri 路径资源是否存在
@@ -125,6 +143,28 @@ public final class VersionHelper {
     }
 
     /**
+     * 通过 Uri 复制文件
+     * @param uri      {@link Uri}
+     * @param file     文件
+     * @param fileName 文件名 {@link ContentResolverUtils#getDisplayNameColumn}
+     * @return 复制后的文件路径
+     */
+    public static String copyByUri(final Uri uri, final File file, final String fileName) {
+        return UriUtils.copyByUri(uri, file, fileName);
+    }
+
+    /**
+     * 通过 Uri 复制文件
+     * @param uri      {@link Uri}
+     * @param filePath 文件路径
+     * @param fileName 文件名 {@link ContentResolverUtils#getDisplayNameColumn}
+     * @return 复制后的文件路径
+     */
+    public static String copyByUri(final Uri uri, final String filePath, final String fileName) {
+        return UriUtils.copyByUri(uri, filePath, fileName);
+    }
+
+    /**
      * 通过 Uri 获取文件路径
      * @param uri {@link Uri}
      * @return 文件路径
@@ -145,7 +185,6 @@ public final class VersionHelper {
     public static String getFilePathByUri(final Uri uri, final boolean isQCopy) {
         return UriUtils.getFilePathByUri(uri, isQCopy);
     }
-
 
     /**
      * 获取 FileProvider File Uri
@@ -183,6 +222,232 @@ public final class VersionHelper {
      */
     public static Uri getUriForFile(final File file, final String authority) {
         return UriUtils.getUriForFile(file, authority);
+    }
+
+    // ===================
+    // = MediaStoreUtils =
+    // ===================
+
+    // ========
+    // = 图片 =
+    // ========
+
+    /**
+     * 创建图片 Uri
+     * @return 图片 Uri
+     */
+    public static Uri createImageUri() {
+        return MediaStoreUtils.createImageUri();
+    }
+
+    /**
+     * 创建图片 Uri
+     * @param mimeType 资源类型
+     * @return 图片 Uri
+     */
+    public static Uri createImageUri(final String mimeType) {
+        return MediaStoreUtils.createImageUri(mimeType);
+    }
+
+    /**
+     * 创建图片 Uri
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @return 图片 Uri
+     */
+    public static Uri createImageUri(final String mimeType, final String relativePath) {
+        return MediaStoreUtils.createImageUri(mimeType, relativePath);
+    }
+
+    /**
+     * 创建图片 Uri
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param createTime   创建时间
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @return 图片 Uri
+     */
+    public static Uri createImageUri(final String displayName, final long createTime,
+                                     final String mimeType, final String relativePath) {
+        return MediaStoreUtils.createImageUri(displayName, createTime, mimeType, relativePath);
+    }
+
+    // ========
+    // = 视频 =
+    // ========
+
+    /**
+     * 创建视频 Uri
+     * @return 视频 Uri
+     */
+    public static Uri createVideoUri() {
+        return MediaStoreUtils.createVideoUri();
+    }
+
+    /**
+     * 创建视频 Uri
+     * @param mimeType 资源类型
+     * @return 视频 Uri
+     */
+    public static Uri createVideoUri(final String mimeType) {
+        return MediaStoreUtils.createVideoUri(mimeType);
+    }
+
+    /**
+     * 创建视频 Uri
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @return 视频 Uri
+     */
+    public static Uri createVideoUri(final String mimeType, final String relativePath) {
+        return MediaStoreUtils.createVideoUri(mimeType, relativePath);
+    }
+
+    /**
+     * 创建视频 Uri
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param createTime   创建时间
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @return 视频 Uri
+     */
+    public static Uri createVideoUri(final String displayName, final long createTime,
+                                     final String mimeType, final String relativePath) {
+        return MediaStoreUtils.createVideoUri(displayName, createTime, mimeType, relativePath);
+    }
+
+    // ========
+    // = 音频 =
+    // ========
+
+    /**
+     * 创建音频 Uri
+     * @return 音频 Uri
+     */
+    public static Uri createAudioUri() {
+        return MediaStoreUtils.createAudioUri();
+    }
+
+    /**
+     * 创建音频 Uri
+     * @param mimeType 资源类型
+     * @return 音频 Uri
+     */
+    public static Uri createAudioUri(final String mimeType) {
+        return MediaStoreUtils.createAudioUri(mimeType);
+    }
+
+    /**
+     * 创建音频 Uri
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @return 音频 Uri
+     */
+    public static Uri createAudioUri(final String mimeType, final String relativePath) {
+        return MediaStoreUtils.createAudioUri(mimeType, relativePath);
+    }
+
+    /**
+     * 创建音频 Uri
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param createTime   创建时间
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @return 音频 Uri
+     */
+    public static Uri createAudioUri(final String displayName, final long createTime,
+                                     final String mimeType, final String relativePath) {
+        return MediaStoreUtils.createAudioUri(displayName, createTime, mimeType, relativePath);
+    }
+
+    // ===========
+    // = 通用创建 =
+    // ===========
+
+    /**
+     * 创建预存储 Media Uri
+     * @param uri          MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @return Media Uri
+     */
+    public static Uri createMediaUri(final Uri uri, final String displayName,
+                                     final String mimeType, final String relativePath) {
+        return MediaStoreUtils.createMediaUri(uri, displayName, mimeType, relativePath);
+    }
+
+    /**
+     * 创建预存储 Media Uri
+     * <pre>
+     *     也可通过 {@link IntentUtils#getCreateDocumentIntent(String, String)} 创建
+     * </pre>
+     * @param uri          MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param createTime   创建时间
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @return Media Uri
+     */
+    public static Uri createMediaUri(final Uri uri, final String displayName,
+                                     final long createTime, final String mimeType,
+                                     final String relativePath) {
+        return MediaStoreUtils.createMediaUri(uri, displayName, createTime, mimeType, relativePath);
+    }
+
+    // =
+
+    /**
+     * 插入一张图片
+     * @param uri      Media Uri
+     * @param inputUri 输入 Uri ( 待存储文件 Uri )
+     * @param format   如 Bitmap.CompressFormat.PNG
+     * @param quality  质量
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertImage(final Uri uri, final Uri inputUri, final Bitmap.CompressFormat format,
+                                      @IntRange(from = 0, to = 100) final int quality) {
+        return MediaStoreUtils.insertImage(uri, inputUri, format, quality);
+    }
+
+    /**
+     * 插入一张图片
+     * @param uri      Media Uri
+     * @param inputUri 输入 Uri ( 待存储文件 Uri )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertImage(final Uri uri, final Uri inputUri) {
+        return MediaStoreUtils.insertImage(uri, inputUri);
+    }
+
+    /**
+     * 插入一条视频
+     * @param uri      Media Uri
+     * @param inputUri 输入 Uri ( 待存储文件 Uri )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertVideo(final Uri uri, final Uri inputUri) {
+        return MediaStoreUtils.insertVideo(uri, inputUri);
+    }
+
+    /**
+     * 插入一条音频
+     * @param uri      Media Uri
+     * @param inputUri 输入 Uri ( 待存储文件 Uri )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertAudio(final Uri uri, final Uri inputUri) {
+        return MediaStoreUtils.insertAudio(uri, inputUri);
+    }
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri      Media Uri
+     * @param inputUri 输入 Uri ( 待存储文件 Uri )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final Uri inputUri) {
+        return MediaStoreUtils.insertMedia(uri, inputUri);
     }
 
     // =============
