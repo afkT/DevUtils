@@ -745,28 +745,55 @@ public final class IntentUtils {
     }
 
     /**
-     * 获取拍照的意图
+     * 获取图片拍摄的意图
      * @param outUri 输出的 uri ( 保存地址 )
-     * @return 拍照的意图
+     * @return 图片拍摄的意图
      */
-    public static Intent getCaptureIntent(final Uri outUri) {
-        return getCaptureIntent(outUri, false);
+    public static Intent getImageCaptureIntent(final Uri outUri) {
+        return getImageCaptureIntent(outUri, false);
     }
 
     /**
-     * 获取拍照的意图
+     * 获取图片拍摄的意图
      * @param outUri    输出的 uri ( 保存地址 )
      * @param isNewTask 是否开启新的任务栈
-     * @return 拍照的意图
+     * @return 图片拍摄的意图
      */
-    public static Intent getCaptureIntent(final Uri outUri, final boolean isNewTask) {
+    public static Intent getImageCaptureIntent(final Uri outUri, final boolean isNewTask) {
         try {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, outUri);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             return getIntent(intent, isNewTask);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getCaptureIntent");
+            LogPrintUtils.eTag(TAG, e, "getImageCaptureIntent");
+        }
+        return null;
+    }
+
+    /**
+     * 获取视频拍摄的意图
+     * @param outUri 输出的 uri ( 保存地址 )
+     * @return 视频拍摄的意图
+     */
+    public static Intent getVideoCaptureIntent(final Uri outUri) {
+        return getVideoCaptureIntent(outUri, false);
+    }
+
+    /**
+     * 获取视频拍摄的意图
+     * @param outUri    输出的 uri ( 保存地址 )
+     * @param isNewTask 是否开启新的任务栈
+     * @return 视频拍摄的意图
+     */
+    public static Intent getVideoCaptureIntent(final Uri outUri, final boolean isNewTask) {
+        try {
+            Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, outUri);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            return getIntent(intent, isNewTask);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "getVideoCaptureIntent");
         }
         return null;
     }
@@ -781,6 +808,9 @@ public final class IntentUtils {
 
     /**
      * 获取存储访问框架的意图
+     * <pre>
+     *     SAF 存储访问框架 Storage Access Framework
+     * </pre>
      * @param type 跳转类型
      * @return 存储访问框架的意图
      */
