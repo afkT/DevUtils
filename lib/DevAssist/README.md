@@ -526,7 +526,7 @@ implementation 'com.afkt:DevAssist:1.0.4'
 | isEnd | 是否请求结束 |
 | cancel | 取消请求 |
 | start | 开始请求方法 ( 同步 ) |
-| startAync | 开始请求方法 ( 异步 ) |
+| startAsync | 开始请求方法 ( 异步 ) |
 | onStart | 开始请求 |
 | onCancel | 请求取消 |
 | onResponse | 请求响应 |

@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 2.0.8 *(2020-10-XX)*
+Version 2.0.8 *(2020-10-29)*
 ----------------------------
 
 * `[Feature]` 适配 Android R ( Android 11 )

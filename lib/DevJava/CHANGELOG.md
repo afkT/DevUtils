@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.2.1 *(2020-10-XX)*
+Version 1.2.1 *(2020-10-29)*
 ----------------------------
 
 * `[Add]` ArrayUtils#asListArgs

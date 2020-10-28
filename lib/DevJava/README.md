@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevJava:1.2.0'
+implementation 'com.afkt:DevJava:1.2.1'
 ```
 
 ## 目录结构
@@ -85,6 +85,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | integersToInts | Integer[] 转换 int[] |
 | charactersToChars | Character[] 转换 char[] |
 | asList | 转换数组为集合 |
+| asListArgs | 转换数组为集合 |
 | equals | 判断两个值是否一样 |
 | arraycopy | 拼接数组 |
 | newarray | 创建指定长度数组 |
@@ -622,8 +623,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 
 | 方法 | 注释 |
 | :- | :- |
-| doGetAsyn | 异步的 Get 请求 |
-| doPostAsyn | 异步的 Post 请求 |
+| doGetAsync | 异步的 Get 请求 |
+| doPostAsync | 异步的 Post 请求 |
 | request | 发送请求 |
 | getNetTime | 获取网络时间 ( 默认使用百度链接 ) |
 
@@ -950,7 +951,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 
 | 方法 | 注释 |
 | :- | :- |
-| waitForEndAsyn | 设置等待一段时间后, 通知方法 ( 异步 ) |
+| waitForEndAsync | 设置等待一段时间后, 通知方法 ( 异步 ) |
 | waitForEnd | 设置等待一段时间后, 通知方法 ( 同步 ) |
 
 
