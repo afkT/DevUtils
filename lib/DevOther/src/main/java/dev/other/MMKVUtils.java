@@ -1,14 +1,18 @@
 package dev.other;
 
 import android.content.Context;
+import android.os.Parcelable;
 
 import com.tencent.mmkv.MMKV;
 import com.tencent.mmkv.MMKVLogLevel;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import dev.utils.app.logger.DevLogger;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: MMKV 工具类
@@ -137,7 +141,7 @@ public final class MMKVUtils {
      * detail: MMKV 持有类
      * @author Ttt
      * <pre>
-     *     只是提供部分方法, 可根据需求自行修改添加
+     *     提供常用方法, 可根据需求自行添加修改或通过 {@link #getMMKV()} 进行操作
      * </pre>
      */
     public final static class Holder {
@@ -148,6 +152,18 @@ public final class MMKVUtils {
         public Holder(MMKV mmkv) {
             this.mmkv = mmkv;
         }
+
+        /**
+         * 获取 MMKV
+         * @return {@link MMKV}
+         */
+        public MMKV getMMKV() {
+            return mmkv;
+        }
+
+        // ===========
+        // = 其他操作 =
+        // ===========
 
         /**
          * 判断 MMKV 是否为 null
@@ -163,6 +179,220 @@ public final class MMKVUtils {
          */
         public boolean isMMKVNotEmpty() {
             return mmkv != null;
+        }
+
+        /**
+         * 是否存在指定 Key value
+         * @param key Key
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean containsKey(String key) {
+            if (isMMKVEmpty()) return false;
+            if (StringUtils.isEmpty(key)) return false;
+            return mmkv.containsKey(key);
+        }
+
+        /**
+         * 通过 key 移除 value
+         * @param key Key
+         * @return {@code true} success, {@code false} fail
+         */
+        public boolean removeValueForKey(String key) {
+            if (isMMKVEmpty()) return false;
+            if (StringUtils.isEmpty(key)) return false;
+            mmkv.removeValueForKey(key);
+            return true;
+        }
+
+        /**
+         * 通过 key 数组移除 value
+         * @param keys key 数组
+         * @return {@code true} success, {@code false} fail
+         */
+        public boolean removeValuesForKeys(String[] keys) {
+            if (isMMKVEmpty()) return false;
+            if (keys == null) return false;
+            mmkv.removeValuesForKeys(keys);
+            return true;
+        }
+
+        /**
+         * 同步操作
+         * @return {@code true} success, {@code false} fail
+         */
+        public boolean sync() {
+            if (isMMKVEmpty()) return false;
+            mmkv.sync();
+            return true;
+        }
+
+        /**
+         * 异步操作
+         * @return {@code true} success, {@code false} fail
+         */
+        public boolean async() {
+            if (isMMKVEmpty()) return false;
+            mmkv.async();
+            return true;
+        }
+
+        // =======
+        // = 存储 =
+        // =======
+
+        public boolean encode(String key, boolean value) {
+            if (isMMKVEmpty()) return false;
+            if (StringUtils.isEmpty(key)) return false;
+            return mmkv.encode(key, value);
+        }
+
+        public boolean encode(String key, int value) {
+            if (isMMKVEmpty()) return false;
+            if (StringUtils.isEmpty(key)) return false;
+            return mmkv.encode(key, value);
+        }
+
+        public boolean encode(String key, long value) {
+            if (isMMKVEmpty()) return false;
+            if (StringUtils.isEmpty(key)) return false;
+            return mmkv.encode(key, value);
+        }
+
+        public boolean encode(String key, float value) {
+            if (isMMKVEmpty()) return false;
+            if (StringUtils.isEmpty(key)) return false;
+            return mmkv.encode(key, value);
+        }
+
+        public boolean encode(String key, double value) {
+            if (isMMKVEmpty()) return false;
+            if (StringUtils.isEmpty(key)) return false;
+            return mmkv.encode(key, value);
+        }
+
+        public boolean encode(String key, String value) {
+            if (isMMKVEmpty()) return false;
+            if (StringUtils.isEmpty(key)) return false;
+            return mmkv.encode(key, value);
+        }
+
+        public boolean encode(String key, Set<String> value) {
+            if (isMMKVEmpty()) return false;
+            if (StringUtils.isEmpty(key)) return false;
+            if (value == null) return false;
+            return mmkv.encode(key, value);
+        }
+
+        public boolean encode(String key, byte[] value) {
+            if (isMMKVEmpty()) return false;
+            if (StringUtils.isEmpty(key)) return false;
+            if (value == null) return false;
+            return mmkv.encode(key, value);
+        }
+
+        public boolean encode(String key, Parcelable value) {
+            if (isMMKVEmpty()) return false;
+            if (StringUtils.isEmpty(key)) return false;
+            if (value == null) return false;
+            return mmkv.encode(key, value);
+        }
+
+        // =======
+        // = 读取 =
+        // =======
+
+        public boolean decodeBool(String key) {
+            return decodeBool(key, false);
+        }
+
+        public boolean decodeBool(String key, boolean defaultValue) {
+            if (isMMKVEmpty()) return defaultValue;
+            if (StringUtils.isEmpty(key)) return defaultValue;
+            return mmkv.decodeBool(key, defaultValue);
+        }
+
+        public int decodeInt(String key) {
+            return decodeInt(key, 0);
+        }
+
+        public int decodeInt(String key, int defaultValue) {
+            if (isMMKVEmpty()) return defaultValue;
+            if (StringUtils.isEmpty(key)) return defaultValue;
+            return mmkv.decodeInt(key, defaultValue);
+        }
+
+        public long decodeLong(String key) {
+            return decodeLong(key, 0L);
+        }
+
+        public long decodeLong(String key, long defaultValue) {
+            if (isMMKVEmpty()) return defaultValue;
+            if (StringUtils.isEmpty(key)) return defaultValue;
+            return mmkv.decodeLong(key, defaultValue);
+        }
+
+        public float decodeFloat(String key) {
+            return decodeFloat(key, 0.0F);
+        }
+
+        public float decodeFloat(String key, float defaultValue) {
+            if (isMMKVEmpty()) return defaultValue;
+            if (StringUtils.isEmpty(key)) return defaultValue;
+            return mmkv.decodeFloat(key, defaultValue);
+        }
+
+        public double decodeDouble(String key) {
+            return decodeDouble(key, 0.0D);
+        }
+
+        public double decodeDouble(String key, double defaultValue) {
+            if (isMMKVEmpty()) return defaultValue;
+            if (StringUtils.isEmpty(key)) return defaultValue;
+            return mmkv.decodeDouble(key, defaultValue);
+        }
+
+        public String decodeString(String key) {
+            return decodeString(key, null);
+        }
+
+        public String decodeString(String key, String defaultValue) {
+            if (isMMKVEmpty()) return defaultValue;
+            if (StringUtils.isEmpty(key)) return defaultValue;
+            return mmkv.decodeString(key, defaultValue);
+        }
+
+        public Set<String> decodeStringSet(String key) {
+            return decodeStringSet(key, null);
+        }
+
+        public Set<String> decodeStringSet(String key, Set<String> defaultValue) {
+            return decodeStringSet(key, defaultValue, HashSet.class);
+        }
+
+        public Set<String> decodeStringSet(String key, Set<String> defaultValue, Class<? extends Set> cls) {
+            if (isMMKVEmpty()) return defaultValue;
+            if (StringUtils.isEmpty(key)) return defaultValue;
+            return mmkv.decodeStringSet(key, defaultValue, cls);
+        }
+
+        public byte[] decodeBytes(String key) {
+            return decodeBytes(key, null);
+        }
+
+        public byte[] decodeBytes(String key, byte[] defaultValue) {
+            if (isMMKVEmpty()) return defaultValue;
+            if (StringUtils.isEmpty(key)) return defaultValue;
+            return mmkv.decodeBytes(key, defaultValue);
+        }
+
+        public <T extends Parcelable> T decodeParcelable(String key, Class<T> tClass) {
+            return decodeParcelable(key, tClass, null);
+        }
+
+        public <T extends Parcelable> T decodeParcelable(String key, Class<T> tClass, T defaultValue) {
+            if (isMMKVEmpty()) return defaultValue;
+            if (StringUtils.isEmpty(key)) return defaultValue;
+            return mmkv.decodeParcelable(key, tClass, defaultValue);
         }
     }
 }
