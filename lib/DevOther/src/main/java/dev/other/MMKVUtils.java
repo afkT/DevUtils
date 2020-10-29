@@ -35,11 +35,9 @@ public final class MMKVUtils {
     private static final String TAG = MMKVUtils.class.getSimpleName();
 
     // 持有类存储 Key-Holder
-    private static final Map<String, Holder> HOLDER_MAP              = new HashMap<>();
-    // Map Value 为 null 是否返回 Default MMKV Holder
-    private static       boolean             IS_EMPTY_RETURN_DEFAULT = true;
+    private static final Map<String, Holder> HOLDER_MAP     = new HashMap<>();
     // Default MMKV Holder
-    private static       Holder              DEFAULT_HOLDER          = null;
+    private static       Holder              DEFAULT_HOLDER = null;
 
     /**
      * 初始化方法 ( 必须调用 )
@@ -78,8 +76,7 @@ public final class MMKVUtils {
      */
     public static Holder get(final String key) {
         if (containsMMKV(key)) return HOLDER_MAP.get(key);
-        if (IS_EMPTY_RETURN_DEFAULT) return defaultHolder();
-        return null;
+        return putHolder(key);
     }
 
     /**
@@ -117,22 +114,6 @@ public final class MMKVUtils {
         return DEFAULT_HOLDER;
     }
 
-    /**
-     * Map Value 为 null 是否返回 Default MMKV Holder
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean isReturnDefault() {
-        return IS_EMPTY_RETURN_DEFAULT;
-    }
-
-    /**
-     * 设置 Map Value 为 null 是否返回 Default MMKV Holder
-     * @param emptyReturnDefault {@link #defaultHolder()}
-     */
-    public static void setReturnDefault(final boolean emptyReturnDefault) {
-        IS_EMPTY_RETURN_DEFAULT = emptyReturnDefault;
-    }
-
     // =============
     // = 内部封装类 =
     // =============
@@ -159,6 +140,15 @@ public final class MMKVUtils {
          */
         public MMKV getMMKV() {
             return mmkv;
+        }
+
+        /**
+         * 获取 MMKV mmap id
+         * @return mmap id
+         */
+        public String mmapID() {
+            if (isMMKVEmpty()) return null;
+            return mmkv.mmapID();
         }
 
         // ===========
