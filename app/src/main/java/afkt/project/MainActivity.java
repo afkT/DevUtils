@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import afkt.project.base.app.BaseActivity;
-import afkt.project.base.constants.KeyConstants;
 import afkt.project.databinding.ActivityMainBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
@@ -18,14 +17,12 @@ import afkt.project.ui.ModuleActivity;
 import afkt.project.ui.activity.DevEnvironmentLibActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.util.SkipUtils;
-import dev.other.MMKVUtils;
 import dev.utils.app.AppCommonUtils;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.app.permission.PermissionUtils;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.app.toast.ToastUtils;
 import dev.utils.common.HttpURLConnectionUtils;
-import dev.utils.common.StringUtils;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
@@ -42,9 +39,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     @Override
     public void initOther() {
         super.initOther();
-
-        // MMKV 简单使用
-        mmkvSimple();
 
         // ===========
         // = 时间校验 =
@@ -136,32 +130,5 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                 }
             }
         });
-    }
-
-    /**
-     * MMKV 简单使用
-     */
-    private void mmkvSimple() {
-        MMKVUtils.defaultHolder().encode(KeyConstants.Common.KEY_DATA, "defaultHolder 存储数据");
-
-        MMKVUtils.get("temp").encode(KeyConstants.Common.KEY_DATA, "temp Holder 存储数据");
-
-        StringBuilder builder = new StringBuilder();
-        builder.append("defaultHolder MMKV")
-                .append(StringUtils.NEW_LINE_STR)
-                .append("\t\tmmapID: " + MMKVUtils.defaultHolder().mmapID())
-                .append(StringUtils.NEW_LINE_STR)
-                .append("\t\tdata: " + MMKVUtils.defaultHolder().decodeString(KeyConstants.Common.KEY_DATA));
-
-        builder.append(StringUtils.NEW_LINE_STR)
-                .append(StringUtils.NEW_LINE_STR);
-
-        builder.append("temp MMKV")
-                .append(StringUtils.NEW_LINE_STR)
-                .append("\t\tmmapID: " + MMKVUtils.get("temp").mmapID())
-                .append(StringUtils.NEW_LINE_STR)
-                .append("\t\tdata: " + MMKVUtils.get("temp").decodeString(KeyConstants.Common.KEY_DATA));
-
-        DevLogger.dTag(TAG, builder.toString());
     }
 }

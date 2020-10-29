@@ -110,6 +110,7 @@ public class ModuleActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
                     case ButtonValue.BTN_PICTURE_SELECTOR: // PictureSelectorUtils
                     case ButtonValue.BTN_OKGO: // OkGoUtils
                     case ButtonValue.BTN_LUBAN: // LubanUtils
+                    case ButtonValue.BTN_MMKV: // MMKVUtils
                         ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
                         break;
                     case ButtonValue.BTN_GREEN_DAO: // GreenDAO

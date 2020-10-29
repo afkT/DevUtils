@@ -90,11 +90,14 @@ public class ButtonValue {
     // LubanUtils
     public static final int BTN_LUBAN = MODULE_LIB + 8;
 
+    // MMKVUtils
+    public static final int BTN_MMKV = MODULE_LIB + 9;
+
     // GreenDAO
-    public static final int BTN_GREEN_DAO = MODULE_LIB + 9;
+    public static final int BTN_GREEN_DAO = MODULE_LIB + 10;
 
     // Room
-    public static final int BTN_ROOM = MODULE_LIB + 10;
+    public static final int BTN_ROOM = MODULE_LIB + 11;
 
     // ======
     // = UI =

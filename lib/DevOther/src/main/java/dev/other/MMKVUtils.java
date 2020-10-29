@@ -24,6 +24,9 @@ import dev.utils.common.StringUtils;
  *     @see <a href="https://github.com/Tencent/MMKV/blob/master/readme_cn.md"/>
  *     [Google] 再见 SharedPreferences 拥抱 Jetpack DataStore
  *     @see <a href="https://juejin.im/post/6881442312560803853"/>
+ *     <p></p>
+ *     {@link MMKVUtils#defaultHolder()}.encode/decodeXxx
+ *     {@link MMKVUtils#get(String)}.encode/decodeXxx
  * </pre>
  */
 public final class MMKVUtils {
