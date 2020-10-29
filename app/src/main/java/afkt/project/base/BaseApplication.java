@@ -22,6 +22,7 @@ import dev.environment.bean.EnvironmentBean;
 import dev.environment.bean.ModuleBean;
 import dev.environment.listener.OnEnvironmentChangeListener;
 import dev.other.GlideUtils;
+import dev.other.MMKVUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.ActivityUtils;
 import dev.utils.app.AppCommonUtils;
@@ -161,6 +162,8 @@ public class BaseApplication extends MultiDexApplication {
         PathConfig.createFolder();
         // 插入设备信息
         FileRecordUtils.setInsertInfo(AppCommonUtils.getAppDeviceInfo());
+        // 初始化 MMKV
+        MMKVUtils.init(this);
         // 初始化 Glide
         GlideUtils.init(this);
         // 初始化状态布局配置

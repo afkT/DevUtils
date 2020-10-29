@@ -87,6 +87,8 @@ dependencies {
     compileOnly deps.lib.zxing_android_code // android-core
     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
     compileOnly deps.lib.luban
+    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
+    compileOnly deps.lib.mmkv
 
     // =============================
     // = 其他第三方库 - 小功能、简约 =

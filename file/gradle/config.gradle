@@ -233,7 +233,7 @@ ext {
                     // Banner 库 https://github.com/youth5201314/banner
                     banner                       : "com.youth.banner:banner:2.1.0",
                     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
-                    mmkv                         : "com.tencent:mmkv-static:1.2.3",
+                    mmkv                         : "com.tencent:mmkv-static:1.2.4",
                     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
                     autosize                     : "me.jessyan:autosize:1.2.1",
                     // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO

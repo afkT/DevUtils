@@ -58,7 +58,7 @@ public final class RetrofitManager {
      */
     public Retrofit put(final String tag, final Retrofit retrofit) {
         if (tag != null && retrofit != null) {
-            return mRetrofitMap.put(tag, retrofit);
+            mRetrofitMap.put(tag, retrofit);
         }
         return retrofit;
     }
