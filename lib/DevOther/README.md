@@ -299,6 +299,36 @@
 | onComplete | 压缩完成 |
 
 
+* **MMKV 工具类 ->** [MMKVUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/MMKVUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| init | 初始化方法 ( 必须调用 ) |
+| containsMMKV | 是否存在指定 Key 的 MMKV Holder |
+| get | 通过 Key 获取 MMKV Holder |
+| putHolder | 保存自定义 MMKV Holder |
+| defaultHolder | 获取 Default MMKV Holder |
+| getMMKV | 获取 MMKV |
+| mmapID | 获取 MMKV mmap id |
+| isMMKVEmpty | 判断 MMKV 是否为 null |
+| isMMKVNotEmpty | 判断 MMKV 是否不为 null |
+| containsKey | 是否存在指定 Key value |
+| removeValueForKey | 通过 key 移除 value |
+| removeValuesForKeys | 通过 key 数组移除 value |
+| sync | 同步操作 |
+| async | 异步操作 |
+| encode | encode |
+| decodeBool | decodeBool |
+| decodeInt | decodeInt |
+| decodeLong | decodeLong |
+| decodeFloat | decodeFloat |
+| decodeDouble | decodeDouble |
+| decodeString | decodeString |
+| decodeStringSet | decodeStringSet |
+| decodeBytes | decodeBytes |
+| decodeParcelable | decodeParcelable |
+
+
 * **ZXing 二维码工具类 ->** [ZXingQRCodeUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/ZXingQRCodeUtils.java)
 
 | 方法 | 注释 |
