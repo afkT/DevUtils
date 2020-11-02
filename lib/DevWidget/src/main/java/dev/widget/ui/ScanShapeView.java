@@ -1273,9 +1273,10 @@ public class ScanShapeView extends View {
         // 获取向上边距
         float top = getRegionMarginTop();
         // 生成扫描区域信息
-        RectF rectF = new RectF(left - margin, top - margin, mPointF.x + left + margin, mPointF.y + top + margin);
-        // 返回计算后的扫描区域
-        return rectF;
+        return new RectF(
+                left - margin, top - margin,
+                mPointF.x + left + margin, mPointF.y + top + margin
+        );
     }
 
     // ===========

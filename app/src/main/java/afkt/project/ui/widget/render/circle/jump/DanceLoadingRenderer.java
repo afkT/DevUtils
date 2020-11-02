@@ -329,8 +329,7 @@ public class DanceLoadingRenderer extends LoadingRenderer {
         }
 
         public DanceLoadingRenderer build() {
-            DanceLoadingRenderer loadingRenderer = new DanceLoadingRenderer(mContext);
-            return loadingRenderer;
+            return new DanceLoadingRenderer(mContext);
         }
     }
 }

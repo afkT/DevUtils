@@ -466,8 +466,7 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
         }
 
         public ElectricFanLoadingRenderer build() {
-            ElectricFanLoadingRenderer loadingRenderer = new ElectricFanLoadingRenderer(mContext);
-            return loadingRenderer;
+            return new ElectricFanLoadingRenderer(mContext);
         }
     }
 }

@@ -73,8 +73,7 @@ public class ColorSortMain {
             }
             builder.append(StringUtils.NEW_LINE_STR);
             builder.append("</resources>");
-            String content = builder.toString();
-            return content;
+            return builder.toString();
         }
     }
 

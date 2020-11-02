@@ -263,8 +263,7 @@ public class CoolWaitLoadingRenderer extends LoadingRenderer {
         }
 
         public CoolWaitLoadingRenderer build() {
-            CoolWaitLoadingRenderer loadingRenderer = new CoolWaitLoadingRenderer(mContext);
-            return loadingRenderer;
+            return new CoolWaitLoadingRenderer(mContext);
         }
     }
 }

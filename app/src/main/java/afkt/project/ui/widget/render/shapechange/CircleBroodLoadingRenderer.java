@@ -667,8 +667,7 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
         }
 
         public CircleBroodLoadingRenderer build() {
-            CircleBroodLoadingRenderer loadingRenderer = new CircleBroodLoadingRenderer(mContext);
-            return loadingRenderer;
+            return new CircleBroodLoadingRenderer(mContext);
         }
     }
 }
