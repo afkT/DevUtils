@@ -19,6 +19,10 @@ import androidx.annotation.RequiresApi;
  *     @see <a href="https://www.cnblogs.com/popfisher/p/5606690.html"/>
  *     Android 开发之 Shape 详细解读
  *     @see <a href="https://www.cnblogs.com/lang-yu/p/6112052.html"/>
+ *     layer-list 的基本使用介绍
+ *     @see <a href="https://blog.csdn.net/north1989/article/details/53485729"/>
+ *     使用 layer-list 实现特殊的效果
+ *     @see <a href="https://www.cnblogs.com/jianglijs/p/9441074.html"/>
  * </pre>
  * <pre>
  *     <shape

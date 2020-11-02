@@ -20,6 +20,8 @@ import dev.utils.common.StringUtils;
  *     @see <a href="https://developer.android.com/training/data-storage/room"/>
  *     Room 的使用以及数据库的升级
  *     @see <a href="https://www.jianshu.com/p/9333d607fb91"/>
+ *     Room 踩坑: 理解 Room 的正确升库
+ *     @see <a href="https://blog.csdn.net/wjzj000/article/details/95863976"/>
  * </pre>
  */
 public final class RoomManager {
