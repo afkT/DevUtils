@@ -263,7 +263,7 @@ public final class IDCardUtils {
                 sum = sum + Integer.valueOf(c + "") * iflag;
                 iflag--;
             }
-            if (end.toUpperCase().equals("A")) {
+            if (end.equalsIgnoreCase("A")) {
                 sum = sum + 10;
             } else {
                 sum = sum + Integer.valueOf(end);

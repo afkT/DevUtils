@@ -30,7 +30,7 @@ public class TimerActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
     // 创建定时器
     TimerManager.AbsTimer absTimer;
     // 通知常量
-    final int NOTIFY = 100;
+    static final int NOTIFY = 100;
 
     @Override
     public int baseLayoutId() {

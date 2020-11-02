@@ -532,7 +532,7 @@ public final class ConvertUtils {
      * @return BigDecimal
      */
     public static BigDecimal toBigDecimal(final Object value) {
-        return toBigDecimal(value, new BigDecimal(0));
+        return toBigDecimal(value, BigDecimal.ZERO);
     }
 
     /**

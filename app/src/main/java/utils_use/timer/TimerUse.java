@@ -20,7 +20,7 @@ public final class TimerUse {
     // 创建定时器
     TimerManager.AbsTimer absTimer;
     // 通知常量
-    private final int NOTIFY = 100;
+    private static final int NOTIFY = 100;
 
     /**
      * 定时器使用方法

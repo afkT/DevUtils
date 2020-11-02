@@ -235,7 +235,7 @@ public final class ADBUtils {
                         try {
                             String[] datas = str.split("=");
                             if (datas.length == 2) {
-                                if (datas[0].toLowerCase().equals("versionCode".toLowerCase())) {
+                                if ("versionCode".equalsIgnoreCase(datas[0])) {
                                     return Integer.parseInt(datas[1]);
                                 }
                             }
@@ -267,7 +267,7 @@ public final class ADBUtils {
                         try {
                             String[] datas = str.split("=");
                             if (datas.length == 2) {
-                                if (datas[0].toLowerCase().equals("versionName".toLowerCase())) {
+                                if ("versionName".equalsIgnoreCase(datas[0])) {
                                     return datas[1];
                                 }
                             }

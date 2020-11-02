@@ -1337,14 +1337,12 @@ public final class SpanUtils {
                 int lineHeight = fm.bottom - fm.top;
                 if (lineHeight < rect.height()) {
                     if (mVerticalAlignment == ALIGN_TOP) {
-                        fm.top = fm.top;
                         fm.bottom = rect.height() + fm.top;
                     } else if (mVerticalAlignment == ALIGN_CENTER) {
                         fm.top = -rect.height() / 2 - lineHeight / 4;
                         fm.bottom = rect.height() / 2 - lineHeight / 4;
                     } else {
                         fm.top = -rect.height() + fm.bottom;
-                        fm.bottom = fm.bottom;
                     }
                     fm.ascent = fm.top;
                     fm.descent = fm.bottom;
