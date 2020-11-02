@@ -117,6 +117,10 @@ public final class HandlerUtils {
 
     /**
      * 在主线程 Handler 中清除任务
+     * <pre>
+     *     也可使用 {@link Handler#removeCallbacksAndMessages(Object)} 实现
+     *     注意: 会将所有的 Callbacks、Messages 全部清除掉
+     * </pre>
      * @param runnable 需要清除的任务
      */
     public static void removeRunnable(final Runnable runnable) {

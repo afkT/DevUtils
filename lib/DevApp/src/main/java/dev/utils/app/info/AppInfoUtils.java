@@ -281,8 +281,10 @@ public final class AppInfoUtils {
      */
     public static String[] getAppPermission(final String packageName) {
         try {
-            PackageInfo packageInfo = AppUtils.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
-            return packageInfo.requestedPermissions;
+            // packageInfo.requestedPermissions
+            return AppUtils.getPackageInfo(
+                    packageName, PackageManager.GET_PERMISSIONS
+            ).requestedPermissions;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppPermission");
         }

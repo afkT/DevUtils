@@ -602,7 +602,7 @@ public final class EditTextUtils {
      * @return {@link DigitsKeyListener}
      */
     public static DigitsKeyListener createDigitsKeyListener(final int inputType, final char[] accepted) {
-        DigitsKeyListener digitsKeyListener = new DigitsKeyListener() {
+        return new DigitsKeyListener() {
             @Override
             protected char[] getAcceptedChars() {
                 if (accepted != null) {
@@ -619,7 +619,6 @@ public final class EditTextUtils {
                 return super.getInputType();
             }
         };
-        return digitsKeyListener;
     }
 
     // ===============

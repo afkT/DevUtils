@@ -345,8 +345,7 @@ public final class CameraSizeAssist {
         // 防止数据为 null
         if (listPreviewSizes == null) {
             // 获取默认预览大小
-            Camera.Size defaultSize = params.getPreviewSize();
-            return defaultSize;
+            return params.getPreviewSize();
         }
 
         // 进行排序处理, 并以宽度 * 高度 为基准降序排序
@@ -434,14 +433,12 @@ public final class CameraSizeAssist {
         // 如果没有精确匹配, 则使用最大预览大小
         if (!listPreviewSizes.isEmpty()) {
             // 获取最大的尺寸
-            Camera.Size largestPreview = listPreviewSizes.get(0);
-            return largestPreview;
+            return listPreviewSizes.get(0);
         }
 
         // = 都不匹配, 则用默认分辨率 =
         // 获取默认预览大小
-        Camera.Size defaultSize = params.getPreviewSize();
-        return defaultSize;
+        return params.getPreviewSize();
     }
 
     // ===========
@@ -472,8 +469,7 @@ public final class CameraSizeAssist {
         // 防止数据为 null
         if (listPictureSizes == null) {
             // 获取默认拍照大小
-            Camera.Size defaultSize = params.getPictureSize();
-            return defaultSize;
+            return params.getPictureSize();
         }
 
         // 进行排序处理, 并以宽度 * 高度 为基准降序排序
@@ -512,12 +508,10 @@ public final class CameraSizeAssist {
         if (max) {
             if (!listPictureSizes.isEmpty()) {
                 // 获取最大的尺寸
-                Camera.Size largestPicture = listPictureSizes.get(0);
-                return largestPicture;
+                return listPictureSizes.get(0);
             } else {
                 // 获取默认拍照大小
-                Camera.Size defaultSize = params.getPictureSize();
-                return defaultSize;
+                return params.getPictureSize();
             }
         }
 
@@ -587,14 +581,12 @@ public final class CameraSizeAssist {
         // 如果没有精确匹配, 则使用最大尺寸大小
         if (!listPictureSizes.isEmpty()) {
             // 获取最大的尺寸
-            Camera.Size largestPicture = listPictureSizes.get(0);
-            return largestPicture;
+            return listPictureSizes.get(0);
         }
 
         // = 都不匹配, 则用默认分辨率 =
         // 获取默认拍照大小
-        Camera.Size defaultSize = params.getPictureSize();
-        return defaultSize;
+        return params.getPictureSize();
     }
 
     // ===============
@@ -626,8 +618,7 @@ public final class CameraSizeAssist {
         // 防止数据为 null
         if (listVideoSizes == null) {
             // 获取默认拍照大小
-            Camera.Size defaultSize = params.getPreferredPreviewSizeForVideo();
-            return defaultSize;
+            return params.getPreferredPreviewSizeForVideo();
         }
 
         // 进行排序处理, 并以宽度 * 高度 为基准降序排序
@@ -666,12 +657,10 @@ public final class CameraSizeAssist {
         if (max) {
             if (!listVideoSizes.isEmpty()) {
                 // 获取最大的尺寸
-                Camera.Size largestVideo = listVideoSizes.get(0);
-                return largestVideo;
+                return listVideoSizes.get(0);
             } else {
                 // 获取默认视频大小
-                Camera.Size defaultSize = params.getPreferredPreviewSizeForVideo();
-                return defaultSize;
+                return params.getPreferredPreviewSizeForVideo();
             }
         }
 
@@ -749,13 +738,11 @@ public final class CameraSizeAssist {
         // 如果没有精确匹配, 则使用最大尺寸大小
         if (!listVideoSizes.isEmpty()) {
             // 获取最大的尺寸
-            Camera.Size largestVideo = listVideoSizes.get(0);
-            return largestVideo;
+            return listVideoSizes.get(0);
         }
 
         // = 都不匹配, 则用默认分辨率 =
         // 获取默认视频大小
-        Camera.Size defaultSize = params.getPreferredPreviewSizeForVideo();
-        return defaultSize;
+        return params.getPreferredPreviewSizeForVideo();
     }
 }

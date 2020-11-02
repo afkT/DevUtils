@@ -181,8 +181,7 @@ public final class SignaturesUtils {
             try {
                 CertificateFactory cf = CertificateFactory.getInstance("X.509");
                 ByteArrayInputStream bais = new ByteArrayInputStream(signature.toByteArray());
-                X509Certificate cert = (X509Certificate) cf.generateCertificate(bais);
-                return cert;
+                return (X509Certificate) cf.generateCertificate(bais);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getX509Certificate");
             }

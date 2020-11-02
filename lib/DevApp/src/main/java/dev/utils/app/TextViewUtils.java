@@ -1969,9 +1969,7 @@ public final class TextViewUtils {
             // 获取字体高度
             Paint.FontMetricsInt fontMetrics = paint.getFontMetricsInt();
             // 计算内容高度
-            int textHeight = (int) Math.ceil((fontMetrics.descent - fontMetrics.ascent));
-            // 返回字体高度
-            return textHeight;
+            return (int) Math.ceil((fontMetrics.descent - fontMetrics.ascent));
         }
         return -1;
     }
@@ -1997,10 +1995,8 @@ public final class TextViewUtils {
         if (paint != null) {
             // 获取字体高度
             Paint.FontMetricsInt fontMetrics = paint.getFontMetricsInt();
-            // 计算字体偏差 ( 顶部偏差 )
-            int baseLine = (int) Math.ceil(Math.abs(fontMetrics.top) - Math.abs(fontMetrics.ascent));
-            // 返回顶部偏差
-            return baseLine;
+            // 计算字体偏差 ( 顶部偏差 ) baseLine
+            return (int) Math.ceil(Math.abs(fontMetrics.top) - Math.abs(fontMetrics.ascent));
         }
         return -1;
     }

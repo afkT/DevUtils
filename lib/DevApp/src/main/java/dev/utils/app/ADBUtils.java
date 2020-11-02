@@ -1859,20 +1859,19 @@ public final class ADBUtils {
             ShellUtils.CommandResult result = ShellUtils.execCmd("service call iphonesubinfo 1", true);
             if (result.isSuccess3()) {
                 try {
-                    int index = 0;
                     StringBuilder builder = new StringBuilder();
                     String subStr = result.successMsg.replaceAll("\\.", "");
                     subStr = subStr.substring(subStr.indexOf("'") + 1, subStr.indexOf("')"));
                     // 添加数据
                     builder.append(subStr.substring(0, subStr.indexOf("'")));
                     // 从指定索引开始
-                    index = subStr.indexOf("'", builder.toString().length() + 1);
+                    int index = subStr.indexOf("'", builder.length() + 1);
                     // 再次裁剪
                     subStr = subStr.substring(index + 1);
                     // 添加数据
                     builder.append(subStr.substring(0, subStr.indexOf("'")));
                     // 从指定索引开始
-                    index = subStr.indexOf("'", builder.toString().length() + 1);
+                    index = subStr.indexOf("'", builder.length() + 1);
                     // 再次裁剪
                     subStr = subStr.substring(index + 1);
                     // 最后进行添加
@@ -2181,8 +2180,7 @@ public final class ADBUtils {
         cmds[0] = "settings put global hidden_api_policy_pre_p_apps 1";
         cmds[1] = "settings put global hidden_api_policy_p_apps 1";
         // 执行 shell
-        ShellUtils.CommandResult result = ShellUtils.execCmd(cmds, true);
-        return result.result;
+        return ShellUtils.execCmd(cmds, true).result;
     }
 
     /**
@@ -2197,8 +2195,7 @@ public final class ADBUtils {
         cmds[0] = "settings delete global hidden_api_policy_pre_p_apps";
         cmds[1] = "settings delete global hidden_api_policy_p_apps";
         // 执行 shell
-        ShellUtils.CommandResult result = ShellUtils.execCmd(cmds, true);
-        return result.result;
+        return ShellUtils.execCmd(cmds, true).result;
     }
 
     /**

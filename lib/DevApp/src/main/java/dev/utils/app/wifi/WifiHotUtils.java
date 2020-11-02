@@ -302,9 +302,7 @@ public final class WifiHotUtils {
             // 获取 Wifi 热点方法
             Method method = mWifiManager.getClass().getMethod("getWifiApConfiguration");
             // 获取配置
-            WifiConfiguration wifiApConfig = (WifiConfiguration) method.invoke(mWifiManager);
-            // 返回配置信息
-            return wifiApConfig;
+            return (WifiConfiguration) method.invoke(mWifiManager);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getWifiApConfiguration");
         }
