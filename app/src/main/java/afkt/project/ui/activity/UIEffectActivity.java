@@ -286,13 +286,13 @@ public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
                             // 累加宽度
                             x += binding.vidAue70Linear.getChildAt(i).getWidth();
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            DevLogger.eTag(TAG, e, "scrollTab");
                         }
                     }
                     // 开始移动位置
                     binding.vidAue70Scroll.scrollTo(x, 0);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    DevLogger.eTag(TAG, e, "scrollTab");
                 }
             }
         }, 50);

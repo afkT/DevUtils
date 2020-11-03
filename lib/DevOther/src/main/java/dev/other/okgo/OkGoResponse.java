@@ -4,6 +4,8 @@ import android.text.TextUtils;
 
 import org.json.JSONObject;
 
+import dev.utils.LogPrintUtils;
+
 /**
  * detail: 请求响应统一解析类
  * @author Ttt
@@ -12,6 +14,9 @@ import org.json.JSONObject;
  * </pre>
  */
 public class OkGoResponse<T> {
+
+    // 日志 TAG
+    private final String TAG = OkGoResponse.class.getSimpleName();
 
     // 后台返回 data、message、code 解析 key 常量
     public static final String KEY_DATA    = "data";
@@ -53,7 +58,7 @@ public class OkGoResponse<T> {
                 JSONObject jsonObject = new JSONObject(original);
                 return jsonObject.optString(KEY_DATA);
             } catch (Exception e) {
-                e.printStackTrace();
+                LogPrintUtils.eTag(TAG, e, "getDataString");
             }
         }
         return null;

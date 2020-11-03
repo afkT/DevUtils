@@ -3,6 +3,7 @@ package dev.other.retrofit;
 import java.util.HashMap;
 import java.util.Map;
 
+import dev.utils.LogPrintUtils;
 import retrofit2.Retrofit;
 
 /**
@@ -25,6 +26,10 @@ public final class RetrofitManager {
     private RetrofitManager() {
     }
 
+    // 日志 TAG
+    private final String TAG = RetrofitManager.class.getSimpleName();
+
+    // RetrofitManager 实例
     private volatile static RetrofitManager sInstance;
 
     public static RetrofitManager getInstance() {
@@ -106,7 +111,7 @@ public final class RetrofitManager {
             try {
                 return retrofit.create(service);
             } catch (Exception e) {
-                e.printStackTrace();
+                LogPrintUtils.eTag(TAG, e, "create");
             }
         }
         return null;

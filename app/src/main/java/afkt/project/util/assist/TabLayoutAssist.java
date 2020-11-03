@@ -14,12 +14,16 @@ import afkt.project.model.item.TabItem;
 import dev.base.widget.BaseTextView;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.helper.ViewHelper;
+import dev.utils.app.logger.DevLogger;
 
 /**
  * detail: TabLayout 辅助类
  * @author Ttt
  */
 public final class TabLayoutAssist {
+
+    // 日志 TAG
+    private final String TAG = TabLayoutAssist.class.getSimpleName();
 
     // Context
     private Context       mContext;
@@ -107,13 +111,13 @@ public final class TabLayoutAssist {
                             // 累加宽度
                             x += tabLayout.getTabAt(i).getCustomView().getWidth();
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            DevLogger.eTag(TAG, e, "scrollTab");
                         }
                     }
                     // 开始移动位置
                     tabLayout.scrollTo(x, 0);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    DevLogger.eTag(TAG, e, "scrollTab");
                 }
             }
         }, 100);
