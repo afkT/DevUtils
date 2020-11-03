@@ -34,11 +34,11 @@ public final class SmsReceiver extends BroadcastReceiver {
             String serviceCenterAddress = null;
             if (pdus != null) {
                 // 消息内容
-                String message = "";
+                StringBuilder builder = new StringBuilder();
                 // 循环拼接内容
                 for (Object object : pdus) {
                     SmsMessage sms = SmsMessage.createFromPdu((byte[]) object);
-                    message += sms.getMessageBody(); // 消息内容 ( 多条消息合并成一条 )
+                    builder.append(sms.getMessageBody()); // 消息内容 ( 多条消息合并成一条 )
                     originatingAddress = sms.getOriginatingAddress();
                     serviceCenterAddress = sms.getServiceCenterAddress();
                     // 触发事件
@@ -48,7 +48,7 @@ public final class SmsReceiver extends BroadcastReceiver {
                 }
                 // 触发事件
                 if (sListener != null) {
-                    sListener.onMessage(message, originatingAddress, serviceCenterAddress);
+                    sListener.onMessage(builder.toString(), originatingAddress, serviceCenterAddress);
                 }
             }
         } catch (Exception e) {

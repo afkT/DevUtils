@@ -987,14 +987,14 @@ public final class BigDecimalUtils {
             }
             // ( 情况 6 )
             if ((array[0].length() < numOfIntPart) && (array[1].length() < numOfDecimalPart)) {
-                String data = value;
+                StringBuilder builder = new StringBuilder(value);
                 for (int i = 0; i < numOfIntPart - array[0].length(); i++) {
-                    data = "0" + data;
+                    builder.insert(0, "0");
                 }
                 for (int i = 0; i < numOfDecimalPart - array[1].length(); i++) {
-                    data = data + "0";
+                    builder.append("0");
                 }
-                return data;
+                return builder.toString();
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "adjustDouble");

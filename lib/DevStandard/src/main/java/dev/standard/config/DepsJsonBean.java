@@ -60,13 +60,11 @@ public final class DepsJsonBean {
     public String getDependencies(final String mark, final Map<String, String> maps) {
         if (maps != null && !maps.isEmpty()) {
             StringBuilder builder = new StringBuilder();
-            for (String key : maps.keySet()) {
-                String value = maps.get(key);
-
+            for (Map.Entry<String, String> entry : maps.entrySet()) {
                 builder.append(StringUtils.NEW_LINE_STR);
-                builder.append(String.format(FORMAT_ANNOTATION, key));
+                builder.append(String.format(FORMAT_ANNOTATION, entry.getKey()));
                 builder.append(StringUtils.NEW_LINE_STR);
-                builder.append(String.format(FORMAT_DEPENDENCIES, mark, value));
+                builder.append(String.format(FORMAT_DEPENDENCIES, mark, entry.getValue()));
             }
             return builder.toString();
         }
@@ -90,13 +88,13 @@ public final class DepsJsonBean {
      */
     public String getAllDependencies(final String mark, final boolean divider) {
         StringBuilder builder = new StringBuilder();
-        for (String key : mDepsMaps.keySet()) {
+        for (Map.Entry<String, Map<String, String>> entry : mDepsMaps.entrySet()) {
             if (divider) {
                 builder.append(StringUtils.NEW_LINE_STR_X2)
-                        .append(String.format(FORMAT_ANNOTATION, ("= " + key + " =")))
+                        .append(String.format(FORMAT_ANNOTATION, ("= " + entry.getKey() + " =")))
                         .append(StringUtils.NEW_LINE_STR);
             }
-            Map<String, String> maps = mDepsMaps.get(key);
+            Map<String, String> maps = entry.getValue();
             builder.append(getDependencies(mark, maps));
         }
         return builder.toString();
