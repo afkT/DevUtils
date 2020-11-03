@@ -687,16 +687,13 @@ final class LoggerPrinter implements IPrinter {
     private void logHeaderContent(final LogConfig logConfig, final int logType, final String tag, int methodCount, int methodOffset) {
         StackTraceElement[] trace = Thread.currentThread().getStackTrace();
         // 判断是否显示日志线程信息
-        if (logConfig.displayThreadInfo) {
-            // 打印线程信息 ( 线程名 )
-            finalLogPrinter(logType, tag, LogConstants.HORIZONTAL_DOUBLE_LINE + " Thread: " + Thread.currentThread().getName());
-            // 进行换行
-            logDivider(logType, tag);
-        } else {
-            // 不打印线程信息, 都设置为 0
-            methodCount = methodOffset = 0;
-            return;
-        }
+        if (!logConfig.displayThreadInfo) return;
+
+        // 打印线程信息 ( 线程名 )
+        finalLogPrinter(logType, tag, LogConstants.HORIZONTAL_DOUBLE_LINE + " Thread: " + Thread.currentThread().getName());
+        // 进行换行
+        logDivider(logType, tag);
+
         // 手动进行偏移
         String level = "";
         // 堆栈总数

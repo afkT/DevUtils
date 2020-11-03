@@ -93,14 +93,10 @@ public final class ImageFilterUtils {
         if (!bitmap.isMutable()) return null;
 
         try {
-            int width = 0;
-            int height = 0;
-            int[] pix = new int[0];
+            int width = bitmap.getWidth();
+            int height = bitmap.getHeight();
+            int[] pix = new int[width * height];
 
-            width = bitmap.getWidth();
-            height = bitmap.getHeight();
-
-            pix = new int[width * height];
             bitmap.getPixels(pix, 0, width, 0, 0, width, height);
 
             int wm = width - 1;

@@ -80,7 +80,7 @@ public class HttpLoggingInterceptor implements Interceptor {
                 requestBody.writeTo(buffer);
 
                 if (isPlaintext(buffer)) {
-                    if (requestBody != null && requestBody instanceof FormBody) {
+                    if (requestBody instanceof FormBody) {
                         FormBody formBody = (FormBody) requestBody;
                         for (int i = 0; i < formBody.size(); i++) {
                             captureEntity.requestBody.put(formBody.name(i), formBody.value(i));

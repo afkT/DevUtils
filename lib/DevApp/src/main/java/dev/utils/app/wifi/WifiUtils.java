@@ -667,13 +667,13 @@ public final class WifiUtils {
                     LogPrintUtils.eTag(TAG, e, "quickConnWifi - 关闭连接出错: " + nId);
                 }
                 // 开始连接
-                boolean isResult = mWifiManager.enableNetwork(nId, true);
+                boolean result = mWifiManager.enableNetwork(nId, true);
                 // =
-                if (!isResult) {
-                    isResult = mWifiManager.enableNetwork(nId, true);
+                if (!result) {
+                    result = mWifiManager.enableNetwork(nId, true);
                 }
                 // 打印结果
-                LogPrintUtils.dTag(TAG, "addNetwork(enableNetwork) - result: " + isResult);
+                LogPrintUtils.dTag(TAG, "addNetwork(enableNetwork) - result: " + result);
             } else {
                 // 尝试不带引号 SSID 连接
                 connWifiConfig.SSID = formatSSID(connWifiConfig.SSID, false);
@@ -695,13 +695,13 @@ public final class WifiUtils {
                         LogPrintUtils.eTag(TAG, e, "quickConnWifi - 关闭连接出错: " + nId);
                     }
                     // 开始连接
-                    boolean isResult = mWifiManager.enableNetwork(nId, true);
+                    boolean result = mWifiManager.enableNetwork(nId, true);
                     // =
-                    if (!isResult) {
-                        isResult = mWifiManager.enableNetwork(nId, true);
+                    if (!result) {
+                        result = mWifiManager.enableNetwork(nId, true);
                     }
                     // 打印结果
-                    LogPrintUtils.dTag(TAG, "addNetwork(enableNetwork) - result: " + isResult);
+                    LogPrintUtils.dTag(TAG, "addNetwork(enableNetwork) - result: " + result);
                 }
             }
             // 保存 id
@@ -804,11 +804,11 @@ public final class WifiUtils {
         if (wifiConfig == null) return false;
         try {
             // 删除配置
-            boolean isResult = mWifiManager.removeNetwork(wifiConfig.networkId);
+            boolean result = mWifiManager.removeNetwork(wifiConfig.networkId);
             // 保存操作
             mWifiManager.saveConfiguration();
             // 返回删除结果
-            return isResult;
+            return result;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, "removeWifiConfig", e);
         }

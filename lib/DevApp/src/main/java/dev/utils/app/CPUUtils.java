@@ -90,8 +90,7 @@ public final class CPUUtils {
             FileReader fr = new FileReader("/proc/cpuinfo");
             BufferedReader br = new BufferedReader(fr);
             String text = br.readLine();
-            String[] array = text.split(":\\s+", 2);
-            return array[1];
+            return text.split(":\\s+", 2)[1];
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getCpuModel");
         }
@@ -159,17 +158,15 @@ public final class CPUUtils {
      * @return CPU 当前频率 ( 单位 KHZ)
      */
     public static String getCurCpuFreq() {
-        String result = "";
         try {
             FileReader fr = new FileReader("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq");
             BufferedReader br = new BufferedReader(fr);
             String text = br.readLine();
-            result = Formatter.formatFileSize(DevUtils.getContext(), Long.parseLong(text.trim()) * 1024) + " Hz";
+            return Formatter.formatFileSize(DevUtils.getContext(), Long.parseLong(text.trim()) * 1024) + " Hz";
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getCurCpuFreq");
-            result = "unknown";
         }
-        return result;
+        return "unknown";
     }
 
     /**

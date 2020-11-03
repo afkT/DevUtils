@@ -1459,7 +1459,7 @@ public final class FileUtils {
                                 // 获取需要复制保存的地址
                                 String savePath = new File(destFolderPath, dealSource).getAbsolutePath();
                                 // 进行复制文件
-                                boolean isResult = copyFile(filePath, savePath, overlay);
+                                boolean result = copyFile(filePath, savePath, overlay);
                             }
                         }
                     }

@@ -491,7 +491,7 @@ public final class AnalysisRecordUtils {
          */
         public String getStoragePath() {
             if (TextUtils.isEmpty(storagePath)) {
-                return storagePath = getLogStoragePath();
+                storagePath = getLogStoragePath();
             }
             return storagePath;
         }
@@ -526,7 +526,7 @@ public final class AnalysisRecordUtils {
          */
         public String getFolderName() {
             if (TextUtils.isEmpty(folderName)) {
-                return folderName = getLogFolderName();
+                folderName = getLogFolderName();
             }
             return folderName;
         }

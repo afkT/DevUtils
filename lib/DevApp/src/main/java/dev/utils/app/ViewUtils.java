@@ -238,7 +238,7 @@ public final class ViewUtils {
         if (view != null) {
             try {
                 ViewParent parent = view.getParent();
-                while (parent != null && parent instanceof View) {
+                while (parent instanceof View) {
                     View root = (View) parent;
                     if (root.getId() == android.R.id.content) {
                         return (T) root;
@@ -263,7 +263,7 @@ public final class ViewUtils {
             try {
                 View root = null;
                 ViewParent parent = view.getParent();
-                while (parent != null && parent instanceof View) {
+                while (parent instanceof View) {
                     root = (View) parent;
                     parent = parent.getParent();
                 }
@@ -2191,7 +2191,7 @@ public final class ViewUtils {
         if (view != null) {
             try {
                 ViewParent parent = view.getParent();
-                if (parent != null && parent instanceof ViewGroup) {
+                if (parent instanceof ViewGroup) {
                     ViewGroup group = (ViewGroup) parent;
                     group.removeView(view);
                 }
@@ -2229,7 +2229,7 @@ public final class ViewUtils {
     public static View requestLayoutParent(final View view, final boolean allParent) {
         if (view != null) {
             ViewParent parent = view.getParent();
-            while (parent != null && parent instanceof View) {
+            while (parent instanceof View) {
                 if (!parent.isLayoutRequested()) {
                     parent.requestLayout();
                     if (!allParent) {

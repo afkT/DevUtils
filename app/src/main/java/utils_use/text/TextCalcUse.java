@@ -28,7 +28,7 @@ public final class TextCalcUse {
         // 打印信息
         for (int i = 0, len = vid_linear.getChildCount(); i < len; i++) {
             View view = vid_linear.getChildAt(i);
-            if (view != null && view instanceof TextView) {
+            if (view instanceof TextView) {
                 printInfo((TextView) view);
             }
         }

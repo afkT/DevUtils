@@ -586,7 +586,7 @@ public final class SpanUtils {
      * @return {@link SpanUtils}
      */
     public SpanUtils setSpans(@NonNull final Object... spans) {
-        if (spans.length > 0) {
+        if (spans != null && spans.length > 0) {
             this.spans = spans;
         }
         return this;

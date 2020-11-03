@@ -13,9 +13,6 @@ public final class NumberUtils {
     private NumberUtils() {
     }
 
-    // 日志 TAG
-    private static final String TAG = NumberUtils.class.getSimpleName();
-
     /**
      * 补 0 处理 ( 小于 10, 则自动补充 0x )
      * @param value 待处理值
