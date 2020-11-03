@@ -22,7 +22,7 @@ import dev.widget.R;
  *     @see <a href="https://segmentfault.com/a/1190000011553735"/>
  *     RecyclerView 使用 GridLayoutManager 间距设置
  *     @see <a href="https://www.jianshu.com/p/f85923bd14ba"/>
- *     Android 可伸缩布局 －FlexboxLayout ( 支持 RecyclerView 集成 )
+ *     Android 可伸缩布局 - FlexboxLayout ( 支持 RecyclerView 集成 )
  *     @see <a href="https://juejin.im/post/58d1035161ff4b00603ca9c4"/>
  *     android Recycleview 中 item 没有填满屏幕的问题
  *     @see <a href="https://blog.csdn.net/shanshan_1117/article/details/79363971"/>

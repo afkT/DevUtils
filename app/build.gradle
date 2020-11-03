@@ -143,8 +143,6 @@ dependencies {
     // 二维码 ZXing https://github.com/zxing/zxing
     implementation deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
     implementation deps.lib.zxing_android_code // android-core
-    // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
-    implementation deps.lib.panelSwitchHelper
     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
     implementation deps.lib.luban
     // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
@@ -157,6 +155,8 @@ dependencies {
     implementation deps.lib.xcrash
     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
     implementation deps.lib.xxPermissions
+    // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
+    implementation deps.lib.panelSwitchHelper
 
     // 内存检测工具 https://github.com/square/leakcanary
     debugImplementation deps.lib.leakcanary

@@ -22,8 +22,8 @@ public final class DepsJsonBean {
     public LinkedHashMap<String, Map<String, String>> mDepsMaps = new LinkedHashMap<>();
 
     // 格式化字符串
-    public static final        String FORMAT_ANNOTATION   = "\t// %s";
-    public static final        String FORMAT_DEPENDENCIES = "\t%s '%s'";
+    public static final String FORMAT_ANNOTATION   = "\t// %s";
+    public static final String FORMAT_DEPENDENCIES = "\t%s '%s'";
     public static final String IMPLEMENTATION      = "implementation";
 
     /**
