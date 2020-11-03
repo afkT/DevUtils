@@ -506,7 +506,7 @@ public final class WifiHotUtils {
         // 获取网关掩码
         if (ipAddress != null) {
             try {
-                int length = ipAddress.lastIndexOf(".");
+                int length = ipAddress.lastIndexOf('.');
                 // 进行裁剪
                 hsMask = ipAddress.substring(0, length) + ".255";
             } catch (Exception e) {

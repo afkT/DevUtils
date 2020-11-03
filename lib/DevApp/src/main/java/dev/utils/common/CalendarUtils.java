@@ -605,7 +605,7 @@ public final class CalendarUtils {
     private static int[] solarTermsDateSplit(final int index) {
         try {
             String date = SOLAR_TERMS_DATE[index];
-            String[] splits = date.substring(date.indexOf(".") + 1).split("-");
+            String[] splits = date.substring(date.indexOf('.') + 1).split("-");
             return new int[]{
                     ConvertUtils.toInt(splits[0]),
                     ConvertUtils.toInt(splits[1])

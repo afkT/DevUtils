@@ -520,7 +520,7 @@ public final class ADBUtils {
                         if (start != -1) {
                             try {
                                 String subData = str.substring(start + nameStr.length());
-                                if (subData.indexOf(")") != -1) {
+                                if (subData.indexOf(')') != -1) {
                                     return subData.substring(0, subData.length() - 1);
                                 }
                                 return subData;
@@ -554,8 +554,8 @@ public final class ADBUtils {
                         if (splitArys != null && splitArys.length != 0) {
                             for (String splitStr : splitArys) {
                                 if (!TextUtils.isEmpty(splitStr)) {
-                                    int start = splitStr.indexOf("/");
-                                    int lastIndex = splitStr.lastIndexOf("}");
+                                    int start = splitStr.indexOf('/');
+                                    int lastIndex = splitStr.lastIndexOf('}');
                                     if (start != -1 && lastIndex != -1) {
                                         // 获取裁剪数据
                                         String strData = splitStr.substring(0, lastIndex);
@@ -599,8 +599,8 @@ public final class ADBUtils {
                         if (splitArys != null && splitArys.length != 0) {
                             for (String splitStr : splitArys) {
                                 if (!TextUtils.isEmpty(splitStr)) {
-                                    int start = splitStr.indexOf("/");
-                                    int lastIndex = splitStr.lastIndexOf("}");
+                                    int start = splitStr.indexOf('/');
+                                    int lastIndex = splitStr.lastIndexOf('}');
                                     if (start != -1 && lastIndex != -1 && splitStr.indexOf(packageName) == 0) {
                                         // 获取裁剪数据
                                         String strData = splitStr.substring(0, lastIndex);
@@ -649,7 +649,7 @@ public final class ADBUtils {
                         if (splitArys != null && splitArys.length != 0) {
                             for (String splitStr : splitArys) {
                                 if (!TextUtils.isEmpty(splitStr)) {
-                                    int start = splitStr.indexOf("/");
+                                    int start = splitStr.indexOf('/');
                                     if (start != -1) {
                                         // 获取裁剪数据
                                         String strData = splitStr;
@@ -1861,9 +1861,9 @@ public final class ADBUtils {
                 try {
                     StringBuilder builder = new StringBuilder();
                     String subStr = result.successMsg.replaceAll("\\.", "");
-                    subStr = subStr.substring(subStr.indexOf("'") + 1, subStr.indexOf("')"));
+                    subStr = subStr.substring(subStr.indexOf('\'') + 1, subStr.indexOf("')"));
                     // 添加数据
-                    builder.append(subStr.substring(0, subStr.indexOf("'")));
+                    builder.append(subStr.substring(0, subStr.indexOf('\'')));
                     // 从指定索引开始
                     int index = subStr.indexOf("'", builder.length() + 1);
                     // 再次裁剪

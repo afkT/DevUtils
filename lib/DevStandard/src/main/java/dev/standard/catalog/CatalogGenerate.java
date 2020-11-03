@@ -112,7 +112,7 @@ final class CatalogGenerate {
     private static void calculateMaxLength(final String name, final int lineNumber) {
         StringBuilder builder = new StringBuilder(); // 添加目录
         builder.append(createCatalog(name, lineNumber));
-        int length = builder.toString().length();
+        int length = builder.length();
         // 判断长度 => 大于最大长度, 则重新设置
         if ((length + 6) >= sMaxLength) {
             sMaxLength = length + 6;
@@ -145,7 +145,7 @@ final class CatalogGenerate {
         StringBuilder builder = new StringBuilder(); // 添加目录
         builder.append(createCatalog(name, lineNumber));
         // 设置间隔长度
-        builder.append(StringUtils.appendSpace(sMaxLength - builder.toString().length()));
+        builder.append(StringUtils.appendSpace(sMaxLength - builder.length()));
         // 添加 间隔 |
         builder.append("| " + mapCatalog.get(classTag));
         return builder.toString();

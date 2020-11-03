@@ -436,7 +436,7 @@ public final class DeviceUtils {
                 String keyword = "version ";
                 int index = result.indexOf(keyword);
                 line = result.substring(index + keyword.length());
-                index = line.indexOf(" ");
+                index = line.indexOf(' ');
                 kernelVersion = line.substring(0, index);
             }
         } catch (Exception e) {

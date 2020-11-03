@@ -94,8 +94,7 @@ public final class DepsJsonBean {
                         .append(String.format(FORMAT_ANNOTATION, ("= " + entry.getKey() + " =")))
                         .append(StringUtils.NEW_LINE_STR);
             }
-            Map<String, String> maps = entry.getValue();
-            builder.append(getDependencies(mark, maps));
+            builder.append(getDependencies(mark, entry.getValue()));
         }
         return builder.toString();
     }

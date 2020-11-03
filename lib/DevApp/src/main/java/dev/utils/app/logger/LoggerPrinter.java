@@ -806,7 +806,7 @@ final class LoggerPrinter implements IPrinter {
      * @return ClassName
      */
     private String getSimpleClassName(final String name) {
-        int lastIndex = name.lastIndexOf(".");
+        int lastIndex = name.lastIndexOf('.');
         return name.substring(lastIndex + 1);
     }
 

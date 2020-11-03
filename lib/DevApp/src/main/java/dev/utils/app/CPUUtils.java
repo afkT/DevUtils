@@ -53,7 +53,7 @@ public final class CPUUtils {
                     // 查找到序列号所在行
                     if (str.indexOf("Serial") > -1) {
                         // 提取序列号
-                        cpuSerialNum = str.substring(str.indexOf(":") + 1).trim();
+                        cpuSerialNum = str.substring(str.indexOf(':') + 1).trim();
                         break;
                     }
                 } else {

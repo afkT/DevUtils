@@ -104,7 +104,7 @@ public final class FileRecordUse {
     public static void fileRecord() {
         try {
             String s = null;
-            s.indexOf("c");
+            s.indexOf('c');
         } catch (NullPointerException e) {
 
             // 设置插入信息
