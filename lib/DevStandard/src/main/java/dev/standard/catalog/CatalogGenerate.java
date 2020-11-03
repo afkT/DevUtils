@@ -110,9 +110,9 @@ final class CatalogGenerate {
      * @param lineNumber 行数
      */
     private static void calculateMaxLength(final String name, final int lineNumber) {
-        StringBuffer buffer = new StringBuffer(); // 添加目录
-        buffer.append(createCatalog(name, lineNumber));
-        int length = buffer.toString().length();
+        StringBuilder builder = new StringBuilder(); // 添加目录
+        builder.append(createCatalog(name, lineNumber));
+        int length = builder.toString().length();
         // 判断长度 => 大于最大长度, 则重新设置
         if ((length + 6) >= sMaxLength) {
             sMaxLength = length + 6;
@@ -126,10 +126,10 @@ final class CatalogGenerate {
      * @return 目录信息
      */
     private static String createCatalog(final String name, final int lineNumber) {
-        StringBuffer buffer = new StringBuffer(); // 添加空格
-        buffer.append(StringUtils.appendSpace(lineNumber * 3));
-        buffer.append("- " + name); // 打印目录
-        return buffer.toString();
+        StringBuilder builder = new StringBuilder(); // 添加空格
+        builder.append(StringUtils.appendSpace(lineNumber * 3));
+        builder.append("- " + name); // 打印目录
+        return builder.toString();
     }
 
     /**
@@ -142,24 +142,24 @@ final class CatalogGenerate {
      */
     private static String createCatalogLine(final String name, final int lineNumber, final String classTag,
                                             final Map<String, String> mapCatalog) {
-        StringBuffer buffer = new StringBuffer(); // 添加目录
-        buffer.append(createCatalog(name, lineNumber));
+        StringBuilder builder = new StringBuilder(); // 添加目录
+        builder.append(createCatalog(name, lineNumber));
         // 设置间隔长度
-        buffer.append(StringUtils.appendSpace(sMaxLength - buffer.toString().length()));
+        builder.append(StringUtils.appendSpace(sMaxLength - builder.toString().length()));
         // 添加 间隔 |
-        buffer.append("| " + mapCatalog.get(classTag));
-        return buffer.toString();
+        builder.append("| " + mapCatalog.get(classTag));
+        return builder.toString();
     }
 
     /**
      * 递归目录拼接目录列表信息
-     * @param buffer     拼接 Buffer
+     * @param builder    拼接 Builder
      * @param lists      目录列表
      * @param lineNumber 行数
      * @param classTag   Class TAG 标记
      * @param mapCatalog 对应目录注释
      */
-    private static void forCatalog(final StringBuffer buffer, final List<FileUtils.FileList> lists,
+    private static void forCatalog(final StringBuilder builder, final List<FileUtils.FileList> lists,
                                    final int lineNumber, final String classTag,
                                    final Map<String, String> mapCatalog) {
         for (int i = 0, len = lists.size(); i < len; i++) {
@@ -168,12 +168,12 @@ final class CatalogGenerate {
             // 获取目录名
             String name = catalog.getFile().getName();
             // 进行换行
-            buffer.append("\n");
+            builder.append("\n");
             // 添加目录行
-            buffer.append(createCatalogLine(name, lineNumber, classTag + "." + name, mapCatalog));
+            builder.append(createCatalogLine(name, lineNumber, classTag + "." + name, mapCatalog));
             // 判断是否存在子文件夹
             if (catalog.getSubFiles().size() != 0) {
-                forCatalog(buffer, catalog.getSubFiles(), lineNumber + 1, classTag + "." + name, mapCatalog);
+                forCatalog(builder, catalog.getSubFiles(), lineNumber + 1, classTag + "." + name, mapCatalog);
             }
         }
     }
@@ -193,7 +193,7 @@ final class CatalogGenerate {
      */
     public static String generate(final String path, final String dirName, final Map<String, String> mapCatalog,
                                   final List<String> listIgnoreCatalog, final int layer) {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
         // 获取文件夹列表
         List<FileUtils.FileList> lists = getFolderLists(path, new CatalogCallback() {
             @Override
@@ -204,12 +204,12 @@ final class CatalogGenerate {
         }, CollectionUtils.toArrayT(listIgnoreCatalog), layer);
         // 默认头部
         String head = "- " + dirName;
-        buffer.append("```\n");
+        builder.append("```\n");
         // 增加根目录
-        buffer.append(head + StringUtils.appendSpace(sMaxLength - head.length()) + "| " + mapCatalog.get(dirName));
+        builder.append(head + StringUtils.appendSpace(sMaxLength - head.length()) + "| " + mapCatalog.get(dirName));
         // 递归循环目录
-        forCatalog(buffer, lists, 1, "", mapCatalog);
-        buffer.append("\n```\n");
-        return buffer.toString();
+        forCatalog(builder, lists, 1, "", mapCatalog);
+        builder.append("\n```\n");
+        return builder.toString();
     }
 }

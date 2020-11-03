@@ -103,26 +103,27 @@ public final class CPUUtils {
      * @return CPU 最大频率 ( 单位 KHZ)
      */
     public static String getMaxCpuFreq() {
-        String result = "";
         ProcessBuilder cmd;
         InputStream is = null;
         try {
+            StringBuilder builder = new StringBuilder();
             String[] args = {"/system/bin/cat", "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"};
             cmd = new ProcessBuilder(args);
             Process process = cmd.start();
             is = process.getInputStream();
             byte[] re = new byte[24];
             while (is.read(re) != -1) {
-                result = result + new String(re);
+                builder.append(new String(re));
             }
-            result = Formatter.formatFileSize(DevUtils.getContext(), Long.parseLong(result.trim()) * 1024) + " Hz";
+            return Formatter.formatFileSize(
+                    DevUtils.getContext(), Long.parseLong(builder.toString().trim()) * 1024
+            ) + " Hz";
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMaxCpuFreq");
-            result = "unknown";
         } finally {
             CloseUtils.closeIOQuietly(is);
         }
-        return result;
+        return "unknown";
     }
 
     /**
@@ -130,26 +131,27 @@ public final class CPUUtils {
      * @return CPU 最小频率 ( 单位 KHZ)
      */
     public static String getMinCpuFreq() {
-        String result = "";
         ProcessBuilder cmd;
         InputStream is = null;
         try {
+            StringBuilder builder = new StringBuilder();
             String[] args = {"/system/bin/cat", "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq"};
             cmd = new ProcessBuilder(args);
             Process process = cmd.start();
             is = process.getInputStream();
             byte[] re = new byte[24];
             while (is.read(re) != -1) {
-                result = result + new String(re);
+                builder.append(new String(re));
             }
-            result = Formatter.formatFileSize(DevUtils.getContext(), Long.parseLong(result.trim()) * 1024) + " Hz";
+            return Formatter.formatFileSize(
+                    DevUtils.getContext(), Long.parseLong(builder.toString().trim()) * 1024
+            ) + " Hz";
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMinCpuFreq");
-            result = "unknown";
         } finally {
             CloseUtils.closeIOQuietly(is);
         }
-        return result;
+        return "unknown";
     }
 
     /**
