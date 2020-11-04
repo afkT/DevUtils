@@ -16,11 +16,11 @@ public final class TimerUse {
     }
 
     // 日志 TAG
-    private static final String TAG = TimerUse.class.getSimpleName();
+    private static final String                TAG    = TimerUse.class.getSimpleName();
     // 创建定时器
-    private TimerManager.AbsTimer absTimer;
+    private              TimerManager.AbsTimer absTimer;
     // 通知常量
-    private static final int NOTIFY = 100;
+    private static final int                   NOTIFY = 100;
 
     /**
      * 定时器使用方法

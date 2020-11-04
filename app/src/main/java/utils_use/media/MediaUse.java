@@ -60,7 +60,7 @@ public final class MediaUse {
         DevMediaManager.getInstance().pause();
 
         // 设置事件监听
-        DevMediaManager.getInstance().setMeidaListener(new DevMediaManager.MediaListener() {
+        DevMediaManager.getInstance().setMediaListener(new DevMediaManager.MediaListener() {
             @Override
             public void onPrepared() {
                 if (DevMediaManager.getInstance().isNotNullMediaPlayer()) {

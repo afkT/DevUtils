@@ -522,7 +522,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      * @param meidaListener {@link MediaListener} MediaPlayer 回调事件
      * @return {@link DevMediaManager}
      */
-    public DevMediaManager setMeidaListener(final MediaListener meidaListener) {
+    public DevMediaManager setMediaListener(final MediaListener meidaListener) {
         this.mMeidaListener = meidaListener;
         return this;
     }

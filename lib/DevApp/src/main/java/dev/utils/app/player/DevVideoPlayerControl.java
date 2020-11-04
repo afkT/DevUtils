@@ -54,7 +54,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
         this.mAutoPlay = autoPlay;
 
         // 初始化 DevMediaManager 回调事件类
-        DevMediaManager.getInstance().setMeidaListener(this);
+        DevMediaManager.getInstance().setMediaListener(this);
     }
 
     // ===============

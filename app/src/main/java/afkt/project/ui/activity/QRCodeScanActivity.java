@@ -416,7 +416,7 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
          * @param decodeResult    解码结果回调
          */
         CaptureHandler(DecodeConfig decodeConfig, @DecodeFormat.DecodeMode int decodeMode,
-                              CameraAssist cameraAssist, PreviewCallback previewCallback, DecodeResult decodeResult) {
+                       CameraAssist cameraAssist, PreviewCallback previewCallback, DecodeResult decodeResult) {
             this.mState = State.SUCCESS;
             // 初始化解码线程
             this.mDecodeThread = new DecodeThread(decodeConfig, decodeMode);

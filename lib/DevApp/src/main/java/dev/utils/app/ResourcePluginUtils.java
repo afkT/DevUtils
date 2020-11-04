@@ -89,7 +89,7 @@ public final class ResourcePluginUtils {
      * @return {@link ResourcePluginUtils}
      */
     public static ResourcePluginUtils invokeByPackageName(final String packageName,
-                                                                final Context context) {
+                                                          final Context context) {
         DisplayMetrics metrics = null;
         Configuration config = null;
         Resources resources = ResourceAssist.staticResources(context);
@@ -108,8 +108,8 @@ public final class ResourcePluginUtils {
      * @return {@link ResourcePluginUtils}
      */
     public static ResourcePluginUtils invokeByPackageName(final String packageName,
-                                                                final DisplayMetrics metrics,
-                                                                final Configuration config) {
+                                                          final DisplayMetrics metrics,
+                                                          final Configuration config) {
         AppInfoBean appInfoBean = AppInfoUtils.getAppInfoBean(packageName);
         String sourceDir = (appInfoBean != null) ? appInfoBean.getSourceDir() : null;
         return invokeByAPKPath(sourceDir, metrics, config);
