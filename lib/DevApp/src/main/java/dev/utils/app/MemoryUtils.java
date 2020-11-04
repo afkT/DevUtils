@@ -131,7 +131,7 @@ public final class MemoryUtils {
      * @return 总内存大小
      */
     public static long getTotalMemory() {
-        return getMemInfoIype(MEMTOTAL);
+        return getMemInfoType(MEMTOTAL);
     }
 
     /**
@@ -149,7 +149,7 @@ public final class MemoryUtils {
      * @return 可用内存大小
      */
     public static long getMemoryAvailable() {
-        return getMemInfoIype(MEMAVAILABLE);
+        return getMemInfoType(MEMAVAILABLE);
     }
 
     /**
@@ -165,7 +165,7 @@ public final class MemoryUtils {
      * @param type 内存类型
      * @return 对应 type 内存信息
      */
-    public static long getMemInfoIype(final String type) {
+    public static long getMemInfoType(final String type) {
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(MEM_INFO_PATH), 4 * 1024);
@@ -180,7 +180,7 @@ public final class MemoryUtils {
             // 获取系统总内存, 单位是 KB, 乘以 1024 转换为 Byte
             return Long.valueOf(array[1]).longValue() * 1024;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMemInfoIype - " + type);
+            LogPrintUtils.eTag(TAG, e, "getMemInfoType - " + type);
         } finally {
             CloseUtils.closeIOQuietly(br);
         }

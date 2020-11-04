@@ -236,16 +236,16 @@ public final class SignaturesUtils {
                     // 证书版本号
                     String certVersion = cert.getVersion() + "";
                     // 证书算法名称
-                    String certSigalgname = cert.getSigAlgName();
+                    String certSigAlgName = cert.getSigAlgName();
                     // 证书算法 OID
-                    String certSigalgoid = cert.getSigAlgOID();
+                    String certSigAlgOID = cert.getSigAlgOID();
                     // 证书机器码
                     String certSerialnumber = cert.getSerialNumber().toString();
                     // 证书 DER 编码
-                    String certDercode = null;
+                    String certDERCode = null;
                     try {
                         // 证书 DER 编码
-                        certDercode = ConvertUtils.toHexString(cert.getTBSCertificate());
+                        certDERCode = ConvertUtils.toHexString(cert.getTBSCertificate());
                     } catch (CertificateEncodingException e) {
                     }
                     // 证书公钥
@@ -257,10 +257,10 @@ public final class SignaturesUtils {
                     maps.put("证书是否过期", effective + "");
                     maps.put("证书发布方", certPrincipal);
                     maps.put("证书版本号", certVersion);
-                    maps.put("证书算法名称", certSigalgname);
-                    maps.put("证书算法 OID", certSigalgoid);
+                    maps.put("证书算法名称", certSigAlgName);
+                    maps.put("证书算法 OID", certSigAlgOID);
                     maps.put("证书机器码", certSerialnumber);
-                    maps.put("证书 DER 编码", certDercode);
+                    maps.put("证书 DER 编码", certDERCode);
                     maps.put("证书公钥", pubKey);
                     lists.add(maps);
                 }

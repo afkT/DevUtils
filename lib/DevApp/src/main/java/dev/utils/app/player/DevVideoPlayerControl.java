@@ -303,7 +303,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      * 获取 SurfaceView
      * @return {@link SurfaceView}
      */
-    public SurfaceView getSurfaceview() {
+    public SurfaceView getSurfaceView() {
         return mSurfaceview;
     }
 

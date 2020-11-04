@@ -61,13 +61,13 @@ public final class ApkInfoItem {
     @Keep // 证书版本号
     private String             certVersion;
     @Keep // 证书算法名称
-    private String             certSigalgname;
+    private String             certSigAlgName;
     @Keep // 证书算法 OID
-    private String             certSigalgoid;
+    private String             certSigAlgOID;
     @Keep // 证书机器码
     private String             certSerialnumber;
     @Keep // 证书 DER 编码
-    private String             certDercode;
+    private String             certDERCode;
     @Keep // APP 参数集
     private List<KeyValueBean> listKeyValues    = new ArrayList<>();
 
@@ -155,14 +155,14 @@ public final class ApkInfoItem {
             // 证书版本号
             certVersion = cert.getVersion() + "";
             // 证书算法名称
-            certSigalgname = cert.getSigAlgName();
+            certSigAlgName = cert.getSigAlgName();
             // 证书算法 OID
-            certSigalgoid = cert.getSigAlgOID();
+            certSigAlgOID = cert.getSigAlgOID();
             // 证书机器码
             certSerialnumber = cert.getSerialNumber().toString();
             try {
                 // 证书 DER 编码
-                certDercode = ConvertUtils.toHexString(cert.getTBSCertificate());
+                certDERCode = ConvertUtils.toHexString(cert.getTBSCertificate());
             } catch (CertificateEncodingException e) {
             }
             // 证书有效期
@@ -174,13 +174,13 @@ public final class ApkInfoItem {
             // 证书版本号
             listTemps.add(KeyValueBean.get(R.string.dev_str_version, certVersion));
             // 证书算法名称
-            listTemps.add(KeyValueBean.get(R.string.dev_str_sigalgname, certSigalgname));
+            listTemps.add(KeyValueBean.get(R.string.dev_str_sigalgname, certSigAlgName));
             // 证书算法 OID
-            listTemps.add(KeyValueBean.get(R.string.dev_str_sigalgoid, certSigalgoid));
+            listTemps.add(KeyValueBean.get(R.string.dev_str_sigalgoid, certSigAlgOID));
             // 证书机器码
             listTemps.add(KeyValueBean.get(R.string.dev_str_dercode, certSerialnumber));
             // 证书 DER 编码
-            listTemps.add(KeyValueBean.get(R.string.dev_str_serialnumber, certDercode));
+            listTemps.add(KeyValueBean.get(R.string.dev_str_serialnumber, certDERCode));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "ApkInfoItem");
             isError = true;
@@ -336,16 +336,16 @@ public final class ApkInfoItem {
      * 获取证书算法名称
      * @return 证书算法名称
      */
-    public String getCertSigalgname() {
-        return certSigalgname;
+    public String getCertSigAlgName() {
+        return certSigAlgName;
     }
 
     /**
      * 获取证书算法 OID
      * @return 证书算法 OID
      */
-    public String getCertSigalgoid() {
-        return certSigalgoid;
+    public String getCertSigAlgOID() {
+        return certSigAlgOID;
     }
 
     /**
@@ -360,7 +360,7 @@ public final class ApkInfoItem {
      * 获取证书 DER 编码
      * @return 证书 DER 编码
      */
-    public String getCertDercode() {
-        return certDercode;
+    public String getCertDERCode() {
+        return certDERCode;
     }
 }
