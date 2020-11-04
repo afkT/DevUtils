@@ -39,13 +39,13 @@ public final class PictureSelectorUtils {
     // 全局请求跳转回传 code
     public static final  int       PIC_REQUEST_CODE      = PictureConfig.CHOOSE_REQUEST;
     // 全局相册配置
-    public static final  PicConfig PIC_CONFIG         = new PicConfig();
+    public static final  PicConfig PIC_CONFIG            = new PicConfig();
     // 拍照保存地址
-    private static       String CAMERA_SAVE_PATH      = null;
+    private static       String    CAMERA_SAVE_PATH      = null;
     // 压缩图片保存地址
-    private static       String COMPRESS_SAVE_PATH    = null;
+    private static       String    COMPRESS_SAVE_PATH    = null;
     // 图片大于多少才进行压缩 (kb)
-    private static       int    MINIMUM_COMPRESS_SIZE = 2048;
+    private static       int       MINIMUM_COMPRESS_SIZE = 2048;
 
     /**
      * 获取全局相册配置

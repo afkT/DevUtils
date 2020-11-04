@@ -533,7 +533,7 @@ public final class ViewHelper {
 
     /**
      * 设置是否保留字体留白间隙区域
-     * @param view       {@link TextView}
+     * @param view           {@link TextView}
      * @param includePadding 是否保留字体留白间隙区域
      * @return {@link ViewHelper}
      */

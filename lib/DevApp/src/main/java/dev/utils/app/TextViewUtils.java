@@ -1333,9 +1333,9 @@ public final class TextViewUtils {
      * <pre>
      *     android:includeFontPadding
      * </pre>
-     * @param textView   {@link TextView}
+     * @param textView       {@link TextView}
      * @param includePadding 是否保留字体留白间隙区域
-     * @param <T>        泛型
+     * @param <T>            泛型
      * @return {@link TextView}
      */
     public static <T extends TextView> T setIncludeFontPadding(final T textView, final boolean includePadding) {
@@ -1347,7 +1347,7 @@ public final class TextViewUtils {
 
     /**
      * 设置是否保留字体留白间隙区域
-     * @param view       {@link TextView}
+     * @param view           {@link TextView}
      * @param includePadding 是否保留字体留白间隙区域
      * @return {@link View}
      */
