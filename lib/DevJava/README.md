@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevJava:1.2.1'
+implementation 'com.afkt:DevJava:1.2.2'
 ```
 
 ## 目录结构
@@ -86,6 +86,14 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | charactersToChars | Character[] 转换 char[] |
 | asList | 转换数组为集合 |
 | asListArgs | 转换数组为集合 |
+| asListArgsInt | 转换数组为集合 |
+| asListArgsByte | 转换数组为集合 |
+| asListArgsChar | 转换数组为集合 |
+| asListArgsShort | 转换数组为集合 |
+| asListArgsLong | 转换数组为集合 |
+| asListArgsFloat | 转换数组为集合 |
+| asListArgsDouble | 转换数组为集合 |
+| asListArgsBoolean | 转换数组为集合 |
 | equals | 判断两个值是否一样 |
 | arraycopy | 拼接数组 |
 | newarray | 创建指定长度数组 |
@@ -159,7 +167,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | 方法 | 注释 |
 | :- | :- |
 | newInstance | 根据类获取对象, 不再必须一个无参构造 |
-| getDefaultPrimiticeValue | 获取 Class 原始类型值 |
+| getDefaultPrimitiveValue | 获取 Class 原始类型值 |
 | getClass | 获取 Object Class |
 | isPrimitive | 判断 Class 是否为原始类型 |
 | isCollection | 判断是否 Collection 类型 |
@@ -590,10 +598,10 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | :- | :- |
 | addHtmlColor | 为给定的字符串添加 HTML 颜色标记 |
 | addHtmlBold | 为给定的字符串添加 HTML 加粗标记 |
-| addHtmlColorAndBlod | 为给定的字符串添加 HTML 颜色标记并加粗 |
+| addHtmlColorAndBold | 为给定的字符串添加 HTML 颜色标记并加粗 |
 | addHtmlUnderline | 为给定的字符串添加 HTML 下划线 |
-| addHtmlStrikeThruline | 为给定的字符串添加 HTML 中划线 |
-| addHtmlOverline | 为给定的字符串添加 HTML 上划线 |
+| addHtmlStrikeThruLine | 为给定的字符串添加 HTML 中划线 |
+| addHtmlOverLine | 为给定的字符串添加 HTML 上划线 |
 | addHtmlIncline | 为给定的字符串添加 HTML 字体倾斜 |
 | addHtmlSPAN | 为给定的字符串添加 HTML SPAN 标签 |
 | addHtmlP | 为给定的字符串添加 HTML P 标签 |
@@ -1255,7 +1263,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | 方法 | 注释 |
 | :- | :- |
 | checkBankCard | 校验银行卡卡号是否合法 |
-| getBankCardCheckCode | 从不含校验位的银行卡卡号采用 Luhm 校验算法获取校验位 |
+| getBankCardCheckCode | 从不含校验位的银行卡卡号采用 Luhn 校验算法获取校验位 |
 | getNameOfBank | 通过银行卡的 前六位确定 判断银行开户行及卡种 |
 
 

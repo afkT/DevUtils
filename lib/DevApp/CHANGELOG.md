@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 2.0.9 *(2020-11-XX)*
+Version 2.0.9 *(2020-11-05)*
 ----------------------------
 
 * `[Refactor]` 使用 QAPlugs ( PMD、findbugs、checkstyle )、IDEA Analyze 进行代码质量分析、代码优化等
