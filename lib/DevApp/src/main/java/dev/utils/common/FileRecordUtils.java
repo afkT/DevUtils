@@ -224,7 +224,7 @@ public final class FileRecordUtils {
          * @param printInsertInfo 是否打印插入信息
          * @param insertInfo      插入信息
          */
-        void callback(boolean result, final String log, final String filePath, final String fileName,
-                      final String head, final String bottom, final boolean printInsertInfo, final String insertInfo);
+        void callback(boolean result, String log, String filePath, String fileName,
+                      String head, String bottom, boolean printInsertInfo, String insertInfo);
     }
 }

@@ -30,7 +30,7 @@ public final class RetrofitManager {
     private final String TAG = RetrofitManager.class.getSimpleName();
 
     // RetrofitManager 实例
-    private volatile static RetrofitManager sInstance;
+    private static volatile RetrofitManager sInstance;
 
     public static RetrofitManager getInstance() {
         if (sInstance == null) {

@@ -20,7 +20,7 @@ public final class RetrofitUtils {
     private RetrofitUtils() {
     }
 
-    private volatile static RetrofitUtils sInstance;
+    private static volatile RetrofitUtils sInstance;
 
     public static RetrofitUtils getInstance() {
         if (sInstance == null) {

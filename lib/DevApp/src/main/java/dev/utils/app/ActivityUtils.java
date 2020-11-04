@@ -461,7 +461,7 @@ public final class ActivityUtils {
     // ====================
 
     // ActivityUtils 实例
-    private volatile static ActivityUtils sInstance;
+    private static volatile ActivityUtils sInstance;
 
     /**
      * 获取 ActivityUtils 管理实例

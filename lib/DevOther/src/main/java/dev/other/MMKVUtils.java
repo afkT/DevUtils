@@ -130,7 +130,7 @@ public final class MMKVUtils {
      *     提供常用方法, 可根据需求自行添加修改或通过 {@link #getMMKV()} 进行操作
      * </pre>
      */
-    public final static class Holder {
+    public static final class Holder {
 
         // MMKV
         private final MMKV mmkv;

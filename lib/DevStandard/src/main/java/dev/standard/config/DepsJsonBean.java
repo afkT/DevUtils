@@ -19,7 +19,7 @@ public final class DepsJsonBean {
     }
 
     // 映射 Map
-    public LinkedHashMap<String, Map<String, String>> mDepsMaps = new LinkedHashMap<>();
+    private LinkedHashMap<String, Map<String, String>> mDepsMaps = new LinkedHashMap<>();
 
     // 格式化字符串
     public static final String FORMAT_ANNOTATION   = "\t// %s";

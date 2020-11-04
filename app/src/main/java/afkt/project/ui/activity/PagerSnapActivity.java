@@ -26,7 +26,7 @@ import dev.utils.app.helper.ViewHelper;
  */
 public class PagerSnapActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
-    PagerSnapAdapter pagerSnapAdapter;
+    private PagerSnapAdapter pagerSnapAdapter;
 
     @Override
     public int baseLayoutId() {

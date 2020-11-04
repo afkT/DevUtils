@@ -22,7 +22,7 @@ public final class PowerManagerUtils {
     private static final String TAG = PowerManagerUtils.class.getSimpleName();
 
     // PowerManagerUtils 实例
-    private volatile static PowerManagerUtils sInstance;
+    private static volatile PowerManagerUtils sInstance;
 
     /**
      * 获取 PowerManagerUtils 实例

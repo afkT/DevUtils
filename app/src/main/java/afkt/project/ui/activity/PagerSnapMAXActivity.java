@@ -29,7 +29,7 @@ import dev.utils.app.logger.DevLogger;
  */
 public class PagerSnapMAXActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
-    PagerSnapMAXAdapter pagerSnapAdapter;
+    private PagerSnapMAXAdapter pagerSnapAdapter;
 
     @Override
     public int baseLayoutId() {

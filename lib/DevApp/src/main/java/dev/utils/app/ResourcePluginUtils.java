@@ -78,7 +78,7 @@ public final class ResourcePluginUtils {
      * @param packageName 应用包名
      * @return {@link ResourcePluginUtils}
      */
-    public static final ResourcePluginUtils invokeByPackageName(final String packageName) {
+    public static ResourcePluginUtils invokeByPackageName(final String packageName) {
         return invokeByPackageName(packageName, DevUtils.getContext());
     }
 
@@ -88,7 +88,7 @@ public final class ResourcePluginUtils {
      * @param context     {@link Context}
      * @return {@link ResourcePluginUtils}
      */
-    public static final ResourcePluginUtils invokeByPackageName(final String packageName,
+    public static ResourcePluginUtils invokeByPackageName(final String packageName,
                                                                 final Context context) {
         DisplayMetrics metrics = null;
         Configuration config = null;
@@ -107,7 +107,7 @@ public final class ResourcePluginUtils {
      * @param config      {@link Configuration}
      * @return {@link ResourcePluginUtils}
      */
-    public static final ResourcePluginUtils invokeByPackageName(final String packageName,
+    public static ResourcePluginUtils invokeByPackageName(final String packageName,
                                                                 final DisplayMetrics metrics,
                                                                 final Configuration config) {
         AppInfoBean appInfoBean = AppInfoUtils.getAppInfoBean(packageName);
@@ -124,7 +124,7 @@ public final class ResourcePluginUtils {
      * @param apkPath APK 文件路径
      * @return {@link ResourcePluginUtils}
      */
-    public static final ResourcePluginUtils invokeByAPKPath(final String apkPath) {
+    public static ResourcePluginUtils invokeByAPKPath(final String apkPath) {
         return invokeByAPKPath(apkPath, DevUtils.getContext());
     }
 
@@ -134,7 +134,7 @@ public final class ResourcePluginUtils {
      * @param context {@link Context}
      * @return {@link ResourcePluginUtils}
      */
-    public static final ResourcePluginUtils invokeByAPKPath(final String apkPath, final Context context) {
+    public static ResourcePluginUtils invokeByAPKPath(final String apkPath, final Context context) {
         DisplayMetrics metrics = null;
         Configuration config = null;
         Resources resources = ResourceAssist.staticResources(context);
@@ -152,7 +152,7 @@ public final class ResourcePluginUtils {
      * @param config  {@link Configuration}
      * @return {@link ResourcePluginUtils}
      */
-    public static final ResourcePluginUtils invokeByAPKPath(final String apkPath, final DisplayMetrics metrics, final Configuration config) {
+    public static ResourcePluginUtils invokeByAPKPath(final String apkPath, final DisplayMetrics metrics, final Configuration config) {
         ResourcePluginUtils utils = new ResourcePluginUtils();
         utils.mAPKPath = apkPath;
         // 文件存在才进行处理

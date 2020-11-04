@@ -653,7 +653,7 @@ public final class KeyBoardUtils {
                         declaredField.setAccessible(true);
                     }
                     Object object = declaredField.get(imm);
-                    if (object == null || !(object instanceof View)) continue;
+                    if (!(object instanceof View)) continue;
                     View view = (View) object;
                     if (view.getContext() == context) {
                         declaredField.set(imm, null);

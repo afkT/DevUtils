@@ -38,7 +38,7 @@ public final class RxJavaManager {
     private RxJavaManager() {
     }
 
-    private volatile static RxJavaManager sInstance;
+    private static volatile RxJavaManager sInstance;
 
     public static RxJavaManager getInstance() {
         if (sInstance == null) {

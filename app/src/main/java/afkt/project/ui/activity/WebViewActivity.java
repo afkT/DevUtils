@@ -22,7 +22,7 @@ import dev.utils.app.logger.DevLogger;
 public class WebViewActivity extends BaseActivity<ActivityWebviewBinding> {
 
     // WebView 辅助类
-    WebViewAssist mWebViewAssist = new WebViewAssist();
+    private WebViewAssist mWebViewAssist = new WebViewAssist();
 
     @Override
     public int baseLayoutId() {

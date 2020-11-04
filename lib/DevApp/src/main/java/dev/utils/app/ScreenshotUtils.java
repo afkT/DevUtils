@@ -42,7 +42,7 @@ public final class ScreenshotUtils {
     private static final String TAG = ScreenshotUtils.class.getSimpleName();
 
     // ScreenshotUtils 实例
-    private volatile static ScreenshotUtils sInstance;
+    private static volatile ScreenshotUtils sInstance;
 
     /**
      * 获取 ScreenshotUtils 实例

@@ -21,9 +21,9 @@ import dev.utils.app.helper.QuickHelper;
 public class GPUFilterAdapter extends BaseAdapter {
 
     // Context
-    Context context;
+    private Context context;
     // 当前选中索引
-    int     selectPosition = -1;
+    private int     selectPosition = -1;
 
     public GPUFilterAdapter(Context context) {
         this.context = context;

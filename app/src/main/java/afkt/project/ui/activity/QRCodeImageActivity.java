@@ -33,7 +33,7 @@ import dev.utils.common.ThrowableUtils;
 public class QRCodeImageActivity extends BaseActivity<ActivityQrcodeImageBinding> {
 
     // 图片 Bitmap
-    Bitmap selectBitmap;
+    private Bitmap selectBitmap;
 
     @Override
     public int baseLayoutId() {

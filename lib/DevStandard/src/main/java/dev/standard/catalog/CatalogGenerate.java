@@ -128,7 +128,7 @@ final class CatalogGenerate {
     private static String createCatalog(final String name, final int lineNumber) {
         StringBuilder builder = new StringBuilder(); // 添加空格
         builder.append(StringUtils.appendSpace(lineNumber * 3));
-        builder.append("- " + name); // 打印目录
+        builder.append("- ").append(name); // 打印目录
         return builder.toString();
     }
 
@@ -147,7 +147,7 @@ final class CatalogGenerate {
         // 设置间隔长度
         builder.append(StringUtils.appendSpace(sMaxLength - builder.length()));
         // 添加 间隔 |
-        builder.append("| " + mapCatalog.get(classTag));
+        builder.append("| ").append(mapCatalog.get(classTag));
         return builder.toString();
     }
 
@@ -206,7 +206,7 @@ final class CatalogGenerate {
         String head = "- " + dirName;
         builder.append("```\n");
         // 增加根目录
-        builder.append(head + StringUtils.appendSpace(sMaxLength - head.length()) + "| " + mapCatalog.get(dirName));
+        builder.append(head).append(StringUtils.appendSpace(sMaxLength - head.length())).append("| ").append(mapCatalog.get(dirName));
         // 递归循环目录
         forCatalog(builder, lists, 1, "", mapCatalog);
         builder.append("\n```\n");

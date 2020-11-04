@@ -64,7 +64,7 @@ import dev.utils.common.FileIOUtils;
 public final class ResourceAssist {
 
     // ResourceAssist 实例
-    private volatile static ResourceAssist sInstance;
+    private static volatile ResourceAssist sInstance;
 
     /**
      * 获取 ResourceAssist 实例

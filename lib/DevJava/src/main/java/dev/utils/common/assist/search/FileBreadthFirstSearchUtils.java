@@ -77,7 +77,7 @@ public final class FileBreadthFirstSearchUtils {
      */
     private class FileQueue {
 
-        public FileQueue(File file, FileItem fileItem) {
+        FileQueue(File file, FileItem fileItem) {
             this.file = file;
             this.fileItem = fileItem;
         }

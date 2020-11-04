@@ -33,13 +33,13 @@ import jp.co.cyberagent.android.gpuimage.filter.GPUImageToneCurveFilter;
 public class GPUFilterACVActivity extends BaseActivity<ActivityGpuFilterBinding> {
 
     // 适配器
-    GPUFilterACVAdapter gpuFilterACVAdapter;
+    private GPUFilterACVAdapter gpuFilterACVAdapter;
     // ACV 文件集合
-    List<ACVFileBean>   listACVFiles = new ArrayList<>();
+    private List<ACVFileBean>   listACVFiles = new ArrayList<>();
     // 图片 Bitmap
-    Bitmap              selectBitmap;
+    private Bitmap              selectBitmap;
     // 滤镜线程
-    static Runnable filterThread;
+    private static Runnable filterThread;
 
     @Override
     public int baseLayoutId() {

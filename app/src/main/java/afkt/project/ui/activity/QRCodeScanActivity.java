@@ -170,7 +170,7 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
     // =============
 
     // 摄像头辅助类
-    CameraAssist cameraAssist = new CameraAssist();
+    private CameraAssist cameraAssist = new CameraAssist();
 
     private SurfaceHolder.Callback mHolderCallBack = new SurfaceHolder.Callback() {
         @Override
@@ -243,7 +243,7 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
                     mCaptureHandler = new CaptureHandler(new DecodeConfig() {
 
                         // 是否出现异常
-                        boolean isError = false;
+                        private boolean isError = false;
 
                         @Override
                         public Handler getHandler() {
@@ -415,7 +415,7 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
          * @param previewCallback 预览回调
          * @param decodeResult    解码结果回调
          */
-        public CaptureHandler(DecodeConfig decodeConfig, @DecodeFormat.DecodeMode int decodeMode,
+        CaptureHandler(DecodeConfig decodeConfig, @DecodeFormat.DecodeMode int decodeMode,
                               CameraAssist cameraAssist, PreviewCallback previewCallback, DecodeResult decodeResult) {
             this.mState = State.SUCCESS;
             // 初始化解码线程

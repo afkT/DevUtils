@@ -32,7 +32,7 @@ import dev.utils.app.helper.ViewHelper;
 public class RecyItemSlideActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     // 适配器
-    ItemSlideAdapter itemSlideAdapter;
+    private ItemSlideAdapter itemSlideAdapter;
 
     @Override
     public int baseLayoutId() {
