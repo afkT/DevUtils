@@ -123,7 +123,7 @@ public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> 
         // 进行提示
         StringBuilder builder = new StringBuilder();
         builder.append("将会创建 " + middle + " 条联系人数据\n");
-        builder.append(tempNumber + " - " + tempNumber2);
+        builder.append(tempNumber).append(" - ").append(tempNumber2);
         DialogUtils.createAlertDialog(mContext, "创建提示", builder.toString(),
                 "取消", "创建", new DialogUtils.DialogListener() {
                     @Override

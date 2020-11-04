@@ -89,9 +89,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             public void onDenied(List<String> grantedList, List<String> deniedList, List<String> notFoundList) {
                 StringBuilder builder = new StringBuilder();
                 builder.append("permission");
-                builder.append("\ngrantedList: " + Arrays.toString(grantedList.toArray()));
-                builder.append("\ndeniedList: " + Arrays.toString(deniedList.toArray()));
-                builder.append("\nnotFoundList: " + Arrays.toString(notFoundList.toArray()));
+                builder.append("\ngrantedList: ").append(Arrays.toString(grantedList.toArray()));
+                builder.append("\ndeniedList: ").append(Arrays.toString(deniedList.toArray()));
+                builder.append("\nnotFoundList: ").append(Arrays.toString(notFoundList.toArray()));
                 DevLogger.d(builder.toString());
                 // 拒绝了则再次请求处理
                 PermissionUtils.againRequest(MainActivity.this, this, deniedList);

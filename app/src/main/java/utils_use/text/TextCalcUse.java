@@ -51,12 +51,14 @@ public final class TextCalcUse {
      */
     private void printInfo(TextView textView) {
         StringBuilder builder = new StringBuilder();
-        builder.append("内容: " + textView.getText().toString());
-        builder.append("\n高度: " + TextViewUtils.getTextHeight(textView));
-        builder.append("\n偏移高度: " + TextViewUtils.getTextTopOffsetHeight(textView));
-        builder.append("\n宽度: " + TextViewUtils.getTextWidth(textView));
-        builder.append("\n字体大小: " + textView.getTextSize());
-        builder.append("\n计算字体大小: " + TextViewUtils.reckonTextSizeByHeight(TextViewUtils.getTextHeight(textView)));
+        builder.append("内容: ").append(textView.getText().toString());
+        builder.append("\n字体总数: ").append(textView.getText().length());
+        builder.append("\n字体高度: ").append(TextViewUtils.getTextHeight(textView));
+        builder.append("\n偏移高度: ").append(TextViewUtils.getTextTopOffsetHeight(textView));
+        builder.append("\n字体宽度: ").append(TextViewUtils.getTextWidth(textView));
+        builder.append("\n字体大小: ").append(textView.getTextSize());
+        builder.append("\n计算字体大小: ").append(TextViewUtils.reckonTextSizeByHeight(TextViewUtils.getTextHeight(textView)));
+        builder.append("\n计算行数: ").append(TextViewUtils.calcTextLine(textView, textView.getMeasuredWidth()));
         // 打印日志
         DevLogger.dTag(TAG, builder.toString());
     }

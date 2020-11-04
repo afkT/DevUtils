@@ -138,15 +138,15 @@ public class BaseApplication extends MultiDexApplication {
      */
     private void printProInfo(TimeCounter timeCounter) {
         StringBuilder builder = new StringBuilder();
-        builder.append("项目名: " + ResourceUtils.getString(R.string.str_app_name));
-        builder.append("\nSDK: " + Build.VERSION.SDK_INT + "(" + AppCommonUtils.convertSDKVersion(Build.VERSION.SDK_INT) + ")");
-        builder.append("\nPackageName: " + AppUtils.getPackageName());
-        builder.append("\nVersionCode: " + AppUtils.getAppVersionCode());
-        builder.append("\nVersionName: " + AppUtils.getAppVersionName());
-        builder.append("\nDevUtils 版本: " + DevUtils.getDevAppVersion());
-        builder.append("\nDevJava 版本: " + DevUtils.getDevJavaVersion());
-        builder.append("\n时间: " + DateUtils.getDateNow());
-        builder.append("\n初始化耗时(毫秒): " + timeCounter.duration());
+        builder.append("项目名: ").append(ResourceUtils.getString(R.string.str_app_name));
+        builder.append("\nSDK: ").append(Build.VERSION.SDK_INT).append("(").append(AppCommonUtils.convertSDKVersion(Build.VERSION.SDK_INT)).append(")");
+        builder.append("\nPackageName: ").append(AppUtils.getPackageName());
+        builder.append("\nVersionCode: ").append(AppUtils.getAppVersionCode());
+        builder.append("\nVersionName: ").append(AppUtils.getAppVersionName());
+        builder.append("\nDevUtils 版本: ").append(DevUtils.getDevAppVersion());
+        builder.append("\nDevJava 版本: ").append(DevUtils.getDevJavaVersion());
+        builder.append("\n时间: ").append(DateUtils.getDateNow());
+        builder.append("\n初始化耗时(毫秒): ").append(timeCounter.duration());
         DevLogger.i(builder.toString());
     }
 
@@ -299,15 +299,15 @@ public class BaseApplication extends MultiDexApplication {
                 StringBuilder builder = new StringBuilder();
                 builder.append("截图监听回调");
                 builder.append(StringUtils.NEW_LINE_STR);
-                builder.append("contentUri: " + contentUri.toString());
+                builder.append("contentUri: ").append(contentUri);
                 builder.append(StringUtils.NEW_LINE_STR);
-                builder.append("selfChange: " + selfChange);
+                builder.append("selfChange: ").append(selfChange);
                 builder.append(StringUtils.NEW_LINE_STR);
-                builder.append("rowId: " + rowId);
+                builder.append("rowId: ").append(rowId);
                 builder.append(StringUtils.NEW_LINE_STR);
-                builder.append("dataPath: " + dataPath);
+                builder.append("dataPath: ").append(dataPath);
                 builder.append(StringUtils.NEW_LINE_STR);
-                builder.append("dateTaken: " + dateTaken + " ( " + DateUtils.formatTime(dateTaken, DateUtils.yyyyMMddHHmmss) + " )");
+                builder.append("dateTaken: ").append(dateTaken).append(" ( ").append(DateUtils.formatTime(dateTaken, DateUtils.yyyyMMddHHmmss)).append(" )");
                 DevLogger.d(builder.toString());
             }
         }).startListen();

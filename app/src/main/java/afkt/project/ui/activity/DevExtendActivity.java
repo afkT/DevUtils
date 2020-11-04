@@ -102,9 +102,9 @@ public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding>
                 CallParams callParams = (CallParams) getExpandResult();
 
                 StringBuilder builder = new StringBuilder();
-                builder.append("\ntype: " + callParams.type);
-                builder.append("\nuserInfo: " + GsonUtils.toJson(callParams.userInfo));
-                builder.append("\nhashMap: " + callParams.hashMap.toString());
+                builder.append("\ntype: ").append(callParams.type);
+                builder.append("\nuserInfo: ").append(GsonUtils.toJson(callParams.userInfo));
+                builder.append("\nhashMap: ").append(callParams.hashMap.toString());
                 DevLogger.dTag(TAG, "value: " + value + builder.toString());
             }
 
@@ -115,9 +115,9 @@ public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding>
                 CallParams callParams = (CallParams) getExpandResult();
 
                 StringBuilder builder = new StringBuilder();
-                builder.append("\ntype: " + callParams.type);
-                builder.append("\nuserInfo: " + GsonUtils.toJson(callParams.userInfo));
-                builder.append("\nhashMap: " + callParams.hashMap.toString());
+                builder.append("\ntype: ").append(callParams.type);
+                builder.append("\nuserInfo: ").append(GsonUtils.toJson(callParams.userInfo));
+                builder.append("\nhashMap: ").append(callParams.hashMap.toString());
                 DevLogger.dTag(TAG, "value: " + value + ", type: " + type + builder.toString());
             }
         };

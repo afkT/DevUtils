@@ -47,13 +47,13 @@ public class TextCalcActivity extends BaseActivity<ActivityTextCalcBinding> {
                             String text = textView.getText().toString();
 
                             StringBuilder builder = new StringBuilder();
-                            builder.append("字体总数: " + text.length());
-                            builder.append("\n字体高度: " + TextViewUtils.getTextHeight(textView));
-                            builder.append("\n偏移高度: " + TextViewUtils.getTextTopOffsetHeight(textView));
-                            builder.append("\n字体宽度: " + TextViewUtils.getTextWidth(textView));
-                            builder.append("\n字体大小: " + textView.getTextSize());
-                            builder.append("\n计算字体大小: " + TextViewUtils.reckonTextSizeByHeight(TextViewUtils.getTextHeight(textView)));
-                            builder.append("\n计算行数: " + TextViewUtils.calcTextLine(textView, textView.getMeasuredWidth()));
+                            builder.append("字体总数: ").append(text.length());
+                            builder.append("\n字体高度: ").append(TextViewUtils.getTextHeight(textView));
+                            builder.append("\n偏移高度: ").append(TextViewUtils.getTextTopOffsetHeight(textView));
+                            builder.append("\n字体宽度: ").append(TextViewUtils.getTextWidth(textView));
+                            builder.append("\n字体大小: ").append(textView.getTextSize());
+                            builder.append("\n计算字体大小: ").append(TextViewUtils.reckonTextSizeByHeight(TextViewUtils.getTextHeight(textView)));
+                            builder.append("\n计算行数: ").append(TextViewUtils.calcTextLine(textView, textView.getMeasuredWidth()));
 
                             String content = builder.toString();
                             ToastTintUtils.normal(content);

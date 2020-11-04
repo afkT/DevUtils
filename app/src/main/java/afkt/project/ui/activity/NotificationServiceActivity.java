@@ -102,9 +102,9 @@ public class NotificationServiceActivity extends BaseActivity<BaseViewRecyclervi
             public int onStartCommand(NotificationService service, Intent intent, int flags, int startId) { // 触发服务指令
                 StringBuilder builder = new StringBuilder();
                 builder.append("onServiceStartCommand");
-                builder.append("\nintent: " + intent.toString());
-                builder.append("\nflags: " + flags);
-                builder.append("\nstartId: " + startId);
+                builder.append("\nintent: ").append(intent);
+                builder.append("\nflags: ").append(flags);
+                builder.append("\nstartId: ").append(startId);
                 DevLogger.dTag(TAG, builder.toString());
                 return 0;
             }
@@ -115,8 +115,8 @@ public class NotificationServiceActivity extends BaseActivity<BaseViewRecyclervi
                 builder.append("onNotificationPosted");
 
                 Notification notification = sbn.getNotification();
-                builder.append("\nstatusBarNotification: " + sbn.toString());
-                builder.append("\ntickerText : " + notification.tickerText);
+                builder.append("\nstatusBarNotification: ").append(sbn);
+                builder.append("\ntickerText : ").append(notification.tickerText);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                     Bundle bundle = notification.extras;
                     for (String key : bundle.keySet()) {
@@ -131,7 +131,7 @@ public class NotificationServiceActivity extends BaseActivity<BaseViewRecyclervi
             public void onNotificationRemoved(StatusBarNotification sbn) { // 当系统通知被删掉后触发回调
                 StringBuilder builder = new StringBuilder();
                 builder.append("onNotificationRemoved");
-                builder.append("\nstatusBarNotification: " + sbn.toString());
+                builder.append("\nstatusBarNotification: ").append(sbn);
                 // 打印日志
                 DevLogger.dTag(TAG, builder.toString());
             }

@@ -49,8 +49,8 @@ public class AdapterEditsActivity extends BaseActivity<BaseViewRecyclerviewBindi
                     public void onClick(View v) {
                         StringBuilder builder = new StringBuilder();
                         for (EvaluateItem item : editsAdapter.getData()) {
-                            builder.append("\nevaluateContent: " + item.evaluateContent);
-                            builder.append("\nevaluateLevel: " + item.evaluateLevel);
+                            builder.append("\nevaluateContent: ").append(item.evaluateContent);
+                            builder.append("\nevaluateLevel: ").append(item.evaluateLevel);
                             builder.append("\n");
                         }
                         DevLogger.dTag(TAG, builder.toString());

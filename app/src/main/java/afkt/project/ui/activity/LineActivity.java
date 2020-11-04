@@ -31,8 +31,8 @@ public class LineActivity extends BaseActivity<ActivityLineBinding> {
             @Override
             public void onNewLine(boolean isNewLine, int line) {
                 StringBuilder builder = new StringBuilder();
-                builder.append("是否换行: " + isNewLine);
-                builder.append("\n换行数量: " + line);
+                builder.append("是否换行: ").append(isNewLine);
+                builder.append("\n换行数量: ").append(line);
                 binding.vidAlTv.setText(builder.toString());
             }
         });

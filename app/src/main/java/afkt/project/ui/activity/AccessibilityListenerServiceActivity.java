@@ -89,7 +89,7 @@ public class AccessibilityListenerServiceActivity extends BaseActivity<BaseViewR
             public void onAccessibilityEvent(AccessibilityEvent accessibilityEvent, AccessibilityListenerService accessibilityListenerService) {
                 StringBuilder builder = new StringBuilder();
                 builder.append("onAccessibilityEvent");
-                builder.append("\naccessibilityEvent: " + accessibilityEvent.toString());
+                builder.append("\naccessibilityEvent: ").append(accessibilityEvent);
                 DevLogger.dTag(TAG, builder.toString());
             }
 

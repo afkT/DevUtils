@@ -109,10 +109,10 @@ public class MultiSelectActivity extends BaseActivity<BaseViewRecyclerviewBindin
             @Override
             public void onClick(View v) {
                 StringBuilder builder = new StringBuilder();
-                builder.append("是否全选: " + multiSelectAdapter.isSelectAll());
-                builder.append("\n是否选中: " + multiSelectAdapter.isSelect());
-                builder.append("\n选中数量: " + multiSelectAdapter.getSelectSize());
-                builder.append("\n总数: " + multiSelectAdapter.getDataCount());
+                builder.append("是否全选: ").append(multiSelectAdapter.isSelectAll());
+                builder.append("\n是否选中: ").append(multiSelectAdapter.isSelect());
+                builder.append("\n选中数量: ").append(multiSelectAdapter.getSelectSize());
+                builder.append("\n总数: ").append(multiSelectAdapter.getDataCount());
                 ToastTintUtils.normal(builder.toString());
             }
         }));

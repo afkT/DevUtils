@@ -906,7 +906,7 @@ public final class ColorUtils {
             // 获取灰度值
             grayLevel = (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114f);
             // 获取 HSB
-            float[] hsbvals = rgbToHSB(red, green, blue, null);
+            float[] hsbvals = RGBtoHSB(red, green, blue, null);
             hue = hsbvals[0]; // 色调
             saturation = hsbvals[1]; // 饱和度
             brightness = hsbvals[2]; // 亮度
@@ -964,8 +964,8 @@ public final class ColorUtils {
          * RGB 转换 HSB
          * <pre>
          *     HSB 等于 HSV, 不同的叫法
-         *     java.awt.Color#rgbToHSB
-         *     android.graphics.Color#RGBToHSV
+         *     {@link java.awt.Color#RGBtoHSB}
+         *     {@link android.graphics.Color#RGBToHSV}
          * </pre>
          * @param r       红色值 [0-255]
          * @param g       绿色值 [0-255]
@@ -973,7 +973,7 @@ public final class ColorUtils {
          * @param hsbvals HSB 数组
          * @return [] { hue, saturation, brightness }
          */
-        private static float[] rgbToHSB(int r, int g, int b, float[] hsbvals) {
+        private static float[] RGBtoHSB(int r, int g, int b, float[] hsbvals) {
             float hue, saturation, brightness;
             if (hsbvals == null) {
                 hsbvals = new float[3];

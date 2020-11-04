@@ -76,18 +76,18 @@ public class DevEnvironmentLibActivity extends BaseActivity<BaseViewRecyclerview
 
                 StringBuilder builder = new StringBuilder();
                 builder.append("module");
-                builder.append("\nname: " + module.getName());
-                builder.append("\nalias: " + module.getAlias());
+                builder.append("\nname: ").append(module.getName());
+                builder.append("\nalias: ").append(module.getAlias());
                 builder.append("\n\n");
                 builder.append("oldEnvironment");
-                builder.append("\nname: " + oldEnvironment.getName());
-                builder.append("\nvalue: " + oldEnvironment.getValue());
-                builder.append("\nalias: " + oldEnvironment.getAlias());
+                builder.append("\nname: ").append(oldEnvironment.getName());
+                builder.append("\nvalue: ").append(oldEnvironment.getValue());
+                builder.append("\nalias: ").append(oldEnvironment.getAlias());
                 builder.append("\n\n");
                 builder.append("newEnvironment");
-                builder.append("\nname: " + newEnvironment.getName());
-                builder.append("\nvalue: " + newEnvironment.getValue());
-                builder.append("\nalias: " + newEnvironment.getAlias());
+                builder.append("\nname: ").append(newEnvironment.getName());
+                builder.append("\nvalue: ").append(newEnvironment.getValue());
+                builder.append("\nalias: ").append(newEnvironment.getAlias());
                 ToastTintUtils.normal(builder.toString());
 
                 DevLogger.dTag(TAG, builder.toString());

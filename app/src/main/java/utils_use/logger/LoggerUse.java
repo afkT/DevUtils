@@ -110,7 +110,7 @@ public final class LoggerUse {
         // 拼接时间信息
         DevCommonUtils.timeRecord(builder, "\nLogger 耗时记录 - 使用自定义日志配置", sTime, System.currentTimeMillis());
         // 打印次数
-        builder.append("\n\n打印次数: " + count);
+        builder.append("\n\n打印次数: ").append(count);
         // 打印耗时信息
         DevLogger.dTag(LOG_TAG, builder.toString());
     }

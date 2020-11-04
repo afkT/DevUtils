@@ -20,10 +20,10 @@ public class LogTools {
         try {
             if (sMsgVo != null) {
                 builder.append("打印分享信息实体类数据");
-                builder.append("\n分享标题: " + sMsgVo.sTitle);
-                builder.append("\n分享文本: " + sMsgVo.sText);
-                builder.append("\n分享的图片路径: " + sMsgVo.sImagePath);
-                builder.append("\n标题网络链接: " + sMsgVo.sTitleUrl);
+                builder.append("\n分享标题: ").append(sMsgVo.sTitle);
+                builder.append("\n分享文本: ").append(sMsgVo.sText);
+                builder.append("\n分享的图片路径: ").append(sMsgVo.sImagePath);
+                builder.append("\n标题网络链接: ").append(sMsgVo.sTitleUrl);
             } else {
                 builder.append("sMsgVo 为 null");
             }
@@ -42,9 +42,9 @@ public class LogTools {
         try {
             if (uInfoVo != null) {
                 builder.append("打印用户信息实体类数据");
-                builder.append("\n用户名: " + uInfoVo.uName);
-                builder.append("\n用户密码: " + uInfoVo.uPwd);
-                builder.append("\n用户年龄: " + uInfoVo.uAge);
+                builder.append("\n用户名: ").append(uInfoVo.uName);
+                builder.append("\n用户密码: ").append(uInfoVo.uPwd);
+                builder.append("\n用户年龄: ").append(uInfoVo.uAge);
             } else {
                 builder.append("uInfoVo 为 null");
             }
@@ -64,9 +64,9 @@ public class LogTools {
         StringBuilder builder = new StringBuilder();
         try {
             builder.append("打印零散参数数据");
-            builder.append("\nuName: " + uName);
-            builder.append("\nsTitle: " + sTitle);
-            builder.append("\nuAge: " + uAge);
+            builder.append("\nuName: ").append(uName);
+            builder.append("\nsTitle: ").append(sTitle);
+            builder.append("\nuAge: ").append(uAge);
         } catch (Exception e) {
         }
         return builder.toString();
