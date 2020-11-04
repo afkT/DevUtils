@@ -213,19 +213,19 @@ public final class AppInfoUtils {
             // 管理应用程序包
             PackageManager packageManager = AppUtils.getPackageManager();
             // 获取手机内所有应用
-            List<PackageInfo> packlist = packageManager.getInstalledPackages(0);
+            List<PackageInfo> packList = packageManager.getInstalledPackages(0);
             // 判断是否属于添加全部
             if (appType == AppInfoBean.AppType.ALL) {
                 // 遍历 APP 列表
-                for (int i = 0, len = packlist.size(); i < len; i++) {
-                    PackageInfo packageInfo = packlist.get(i);
+                for (int i = 0, len = packList.size(); i < len; i++) {
+                    PackageInfo packageInfo = packList.get(i);
                     // 添加符合条件的 APP 应用信息
                     listApps.add(new AppInfoBean(packageInfo, packageManager));
                 }
             } else {
                 // 遍历 APP 列表
-                for (int i = 0, len = packlist.size(); i < len; i++) {
-                    PackageInfo packageInfo = packlist.get(i);
+                for (int i = 0, len = packList.size(); i < len; i++) {
+                    PackageInfo packageInfo = packList.get(i);
                     // 获取 APP 类型
                     AppInfoBean.AppType cAppType = AppInfoBean.getAppType(packageInfo);
                     // 判断类型

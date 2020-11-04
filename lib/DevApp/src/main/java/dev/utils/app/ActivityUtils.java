@@ -222,10 +222,10 @@ public final class ActivityUtils {
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             List<ResolveInfo> lists = AppUtils.getPackageManager().queryIntentActivities(intent, 0);
-            for (ResolveInfo resolveinfo : lists) {
-                if (resolveinfo != null && resolveinfo.activityInfo != null) {
-                    if (resolveinfo.activityInfo.packageName.equals(packageName)) {
-                        return resolveinfo.activityInfo.name;
+            for (ResolveInfo resolveInfo : lists) {
+                if (resolveInfo != null && resolveInfo.activityInfo != null) {
+                    if (resolveInfo.activityInfo.packageName.equals(packageName)) {
+                        return resolveInfo.activityInfo.name;
                     }
                 }
             }
@@ -320,11 +320,11 @@ public final class ActivityUtils {
             resolveIntent.setPackage(packageName);
             // 通过 AppUtils.getPackageManager() 的 queryIntentActivities 方法遍历
             List<ResolveInfo> lists = AppUtils.getPackageManager().queryIntentActivities(resolveIntent, 0);
-            for (ResolveInfo resolveinfo : lists) {
-                if (resolveinfo != null && resolveinfo.activityInfo != null) {
-                    // resolveinfo.activityInfo.packageName; // packageName
-                    // 这个就是该 APP 的 LAUNCHER 的 Activity [ 组织形式: packageName.mainActivityname ]
-                    return resolveinfo.activityInfo.name;
+            for (ResolveInfo resolveInfo : lists) {
+                if (resolveInfo != null && resolveInfo.activityInfo != null) {
+                    // resolveInfo.activityInfo.packageName; // packageName
+                    // 这个就是该 APP 的 LAUNCHER 的 Activity [ 组织形式: packageName.mainActivityName ]
+                    return resolveInfo.activityInfo.name;
                 }
             }
         } catch (Exception e) {
@@ -357,13 +357,13 @@ public final class ActivityUtils {
      * @return packageName
      */
     public static String getLauncherCategoryHomeToPackageName() {
-        ResolveInfo resolveinfo = getLauncherCategoryHomeToResolveInfo();
-        if (resolveinfo != null && resolveinfo.activityInfo != null) {
+        ResolveInfo resolveInfo = getLauncherCategoryHomeToResolveInfo();
+        if (resolveInfo != null && resolveInfo.activityInfo != null) {
             // 有多个桌面程序存在, 且未指定默认项时
-            if (resolveinfo.activityInfo.packageName.equals("android")) {
+            if (resolveInfo.activityInfo.packageName.equals("android")) {
                 return null;
             } else {
-                return resolveinfo.activityInfo.packageName;
+                return resolveInfo.activityInfo.packageName;
             }
         }
         return null;
@@ -374,13 +374,13 @@ public final class ActivityUtils {
      * @return activityName
      */
     public static String getLauncherCategoryHomeToActivityName() {
-        ResolveInfo resolveinfo = getLauncherCategoryHomeToResolveInfo();
-        if (resolveinfo != null && resolveinfo.activityInfo != null) {
+        ResolveInfo resolveInfo = getLauncherCategoryHomeToResolveInfo();
+        if (resolveInfo != null && resolveInfo.activityInfo != null) {
             // 有多个桌面程序存在, 且未指定默认项时
-            if (resolveinfo.activityInfo.packageName.equals("android")) {
+            if (resolveInfo.activityInfo.packageName.equals("android")) {
                 return null;
             } else {
-                return resolveinfo.activityInfo.name;
+                return resolveInfo.activityInfo.name;
             }
         }
         return null;
@@ -391,20 +391,20 @@ public final class ActivityUtils {
      * @return package/activityName
      */
     public static String getLauncherCategoryHomeToPackageAndName() {
-        ResolveInfo resolveinfo = getLauncherCategoryHomeToResolveInfo();
-        if (resolveinfo != null && resolveinfo.activityInfo != null) {
+        ResolveInfo resolveInfo = getLauncherCategoryHomeToResolveInfo();
+        if (resolveInfo != null && resolveInfo.activityInfo != null) {
             // 有多个桌面程序存在, 且未指定默认项时
-            if (resolveinfo.activityInfo.packageName.equals("android")) {
+            if (resolveInfo.activityInfo.packageName.equals("android")) {
                 return null;
             } else {
                 // 判断是否. 开头
-                String name = resolveinfo.activityInfo.name;
+                String name = resolveInfo.activityInfo.name;
                 if (name != null) {
                     // 判断是否 . 开头
                     if (name.startsWith(".")) {
-                        name = resolveinfo.activityInfo.packageName + name;
+                        name = resolveInfo.activityInfo.packageName + name;
                     }
-                    return resolveinfo.activityInfo.packageName + "/" + name;
+                    return resolveInfo.activityInfo.packageName + "/" + name;
                 }
             }
         }

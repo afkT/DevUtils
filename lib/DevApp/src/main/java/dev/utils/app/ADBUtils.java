@@ -188,7 +188,7 @@ public final class ADBUtils {
      */
     public static boolean clearAppDataCache(final String packageName) {
         if (StringUtils.isSpace(packageName)) return false;
-        // adb shell pm clear <packagename>
+        // adb shell pm clear <packageName>
         String cmd = "pm clear %s";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, packageName), true);
@@ -393,7 +393,7 @@ public final class ADBUtils {
     public static boolean uninstallApp(final String packageName, final boolean isKeepData) {
         if (StringUtils.isSpace(packageName)) return false;
         boolean isRoot = isDeviceRooted();
-        // adb uninstall [-k] <packagename>
+        // adb uninstall [-k] <packageName>
         String cmd = "adb uninstall ";
         if (isKeepData) {
             cmd += " -k ";
@@ -952,8 +952,8 @@ public final class ADBUtils {
 
     /**
      * 查看正在运行的 Services
-     * @param packageName 应用包名, 参数不是必须的, 指定 <packagename> 表示查看与某个包名相关的 Services,
-     *                    不指定表示查看所有 Services, <packagename> 不一定要给出完整的包名,
+     * @param packageName 应用包名, 参数不是必须的, 指定 <packageName> 表示查看与某个包名相关的 Services,
+     *                    不指定表示查看所有 Services, <packageName> 不一定要给出完整的包名,
      *                    比如运行 adb shell dumpsys activity services org.mazhuang
      *                    那么包名 org.mazhuang.demo1、org.mazhuang.demo2 和 org.mazhuang123 等相关的 Services 都会列出来
      * @return 运行中的 Services 信息
@@ -1957,7 +1957,7 @@ public final class ADBUtils {
      * 获取内存信息
      * @return 内存信息
      */
-    public static String getMeminfo() {
+    public static String getMemInfo() {
         ShellUtils.CommandResult result = ShellUtils.execCmd("cat /proc/meminfo", false);
         if (result.isSuccess3()) {
             return result.successMsg;
