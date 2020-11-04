@@ -58,14 +58,14 @@ public final class CloneUtils {
     /**
      * 进行克隆
      * @param map   存储集合
-     * @param datas 需要克隆的数据源
+     * @param data 需要克隆的数据源
      * @param <K>   key
      * @param <V>   value
      * @return {@code true} success, {@code false} fail
      */
-    public static <K, V> boolean deepClone(final Map<K, V> map, final Map<K, V> datas) {
-        if (map != null && datas != null && datas.size() > 0) {
-            Iterator<Map.Entry<K, V>> iterator = datas.entrySet().iterator();
+    public static <K, V> boolean deepClone(final Map<K, V> map, final Map<K, V> data) {
+        if (map != null && data != null && data.size() > 0) {
+            Iterator<Map.Entry<K, V>> iterator = data.entrySet().iterator();
             while (iterator.hasNext()) {
                 try {
                     Map.Entry<K, V> entry = iterator.next();
@@ -89,13 +89,13 @@ public final class CloneUtils {
     /**
      * 进行克隆
      * @param collection 存储集合
-     * @param datas      需要克隆的数据源
+     * @param data      需要克隆的数据源
      * @param <T>        泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean deepClone(final Collection<T> collection, final Collection<T> datas) {
-        if (collection != null && datas != null && datas.size() > 0) {
-            Iterator<T> iterator = datas.iterator();
+    public static <T> boolean deepClone(final Collection<T> collection, final Collection<T> data) {
+        if (collection != null && data != null && data.size() > 0) {
+            Iterator<T> iterator = data.iterator();
             while (iterator.hasNext()) {
                 try {
                     // 克隆对象

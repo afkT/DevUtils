@@ -40,7 +40,7 @@ public final class ClassUtils {
                 } else {
                     Object[] objects = new Object[cls.length];
                     for (int i = 0; i < cls.length; i++) {
-                        objects[i] = getDefaultPrimiticeValue(cls[i]);
+                        objects[i] = getDefaultPrimitiveValue(cls[i]);
                     }
                     c.setAccessible(true);
                     return (T) c.newInstance(objects);
@@ -57,7 +57,7 @@ public final class ClassUtils {
      * @param clazz {@link Class}
      * @return 原始类型值
      */
-    public static Object getDefaultPrimiticeValue(final Class clazz) {
+    public static Object getDefaultPrimitiveValue(final Class clazz) {
         if (clazz != null && clazz.isPrimitive()) {
             return clazz == boolean.class ? false : 0;
         }

@@ -48,7 +48,7 @@ public final class BankCheckUtils {
     }
 
     /**
-     * 从不含校验位的银行卡卡号采用 Luhm 校验算法获取校验位
+     * 从不含校验位的银行卡卡号采用 Luhn 校验算法获取校验位
      * @param nonCheckCodeCardId 待校验银行卡号
      * @return 银行卡校验位
      */
@@ -61,7 +61,7 @@ public final class BankCheckUtils {
                 return 'N';
             }
             char[] chs = nonCheckCodeCardId.trim().toCharArray();
-            int luhmSum = 0;
+            int luhnSum = 0;
             int len = chs.length;
             for (int i = len - 1, j = 0; i >= 0; i--, j++) {
                 int k = chs[i] - '0';
@@ -69,9 +69,9 @@ public final class BankCheckUtils {
                     k *= 2;
                     k = k / 10 + k % 10;
                 }
-                luhmSum += k;
+                luhnSum += k;
             }
-            return (luhmSum % 10 == 0) ? '0' : (char) ((10 - luhmSum % 10) + '0');
+            return (luhnSum % 10 == 0) ? '0' : (char) ((10 - luhnSum % 10) + '0');
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getBankCardCheckCode");
             return 'N';

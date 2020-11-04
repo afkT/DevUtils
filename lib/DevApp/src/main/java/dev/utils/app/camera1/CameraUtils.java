@@ -98,13 +98,13 @@ public final class CameraUtils {
         int cameraFacing = Camera.CameraInfo.CAMERA_FACING_BACK;
         try {
             // 支持的摄像头 ( 前置, 后置 )
-            boolean[] cFacingArys = new boolean[]{false, false};
+            boolean[] cameraFacings = new boolean[]{false, false};
             // 判断是否支持前置
-            cFacingArys[0] = checkCameraFacing(Camera.CameraInfo.CAMERA_FACING_FRONT);
+            cameraFacings[0] = checkCameraFacing(Camera.CameraInfo.CAMERA_FACING_FRONT);
             // 判断是否支持后置
-            cFacingArys[1] = checkCameraFacing(Camera.CameraInfo.CAMERA_FACING_BACK);
+            cameraFacings[1] = checkCameraFacing(Camera.CameraInfo.CAMERA_FACING_BACK);
             // 进行判断想要使用的是前置, 还是后置
-            if (isFrontCamera && cFacingArys[0]) { // 使用前置, 必须也支持前置
+            if (isFrontCamera && cameraFacings[0]) { // 使用前置, 必须也支持前置
                 // 表示使用前置摄像头
                 cameraFacing = Camera.CameraInfo.CAMERA_FACING_FRONT;
             } else {
