@@ -76,7 +76,7 @@ public final class FileDepthFirstSearchUtils {
          * @param startTime 开始扫描时间
          * @param endTime   扫描结束时间
          */
-        void OnEndListener(List<FileItem> lists, long startTime, long endTime);
+        void onEndListener(List<FileItem> lists, long startTime, long endTime);
     }
 
     // 搜索处理接口
@@ -101,12 +101,12 @@ public final class FileDepthFirstSearchUtils {
         }
 
         @Override
-        public void OnEndListener(List<FileItem> lists, long startTime, long endTime) {
+        public void onEndListener(List<FileItem> lists, long startTime, long endTime) {
             // 表示非搜索中
             mIsRunning = false;
             // 触发回调
             if (mSearchHandler != null) {
-                mSearchHandler.OnEndListener(lists, startTime, endTime);
+                mSearchHandler.onEndListener(lists, startTime, endTime);
             }
         }
     };
@@ -181,7 +181,7 @@ public final class FileDepthFirstSearchUtils {
             return;
         } else if (path == null || path.trim().length() == 0) {
             // 触发结束回调
-            mInsideHandler.OnEndListener(null, -1, -1);
+            mInsideHandler.onEndListener(null, -1, -1);
             return;
         }
         // 表示运行中
@@ -198,7 +198,7 @@ public final class FileDepthFirstSearchUtils {
                 lists.add(new FileItem(file));
                 // 触发结束回调
                 mEndTime = System.currentTimeMillis();
-                mInsideHandler.OnEndListener(lists, mStartTime, mEndTime);
+                mInsideHandler.onEndListener(lists, mStartTime, mEndTime);
                 return;
             }
             // 获取文件夹全部子文件
@@ -213,19 +213,19 @@ public final class FileDepthFirstSearchUtils {
                         queryFile(file, lists, isRelation);
                         // 触发结束回调
                         mEndTime = System.currentTimeMillis();
-                        mInsideHandler.OnEndListener(lists, mStartTime, mEndTime);
+                        mInsideHandler.onEndListener(lists, mStartTime, mEndTime);
                     }
                 }).start();
             } else {
                 // 触发结束回调
                 mEndTime = System.currentTimeMillis();
-                mInsideHandler.OnEndListener(null, mStartTime, mEndTime);
+                mInsideHandler.onEndListener(null, mStartTime, mEndTime);
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "query");
             // 触发结束回调
             mEndTime = System.currentTimeMillis();
-            mInsideHandler.OnEndListener(null, mStartTime, mEndTime);
+            mInsideHandler.onEndListener(null, mStartTime, mEndTime);
         }
     }
 

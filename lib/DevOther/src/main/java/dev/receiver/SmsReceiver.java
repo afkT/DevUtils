@@ -68,17 +68,17 @@ public final class SmsReceiver extends BroadcastReceiver {
     public static String getMessageData(final SmsMessage message) {
         StringBuilder builder = new StringBuilder();
         if (message != null) {
-            builder.append("\ngetDisplayMessageBody: " + message.getDisplayMessageBody());
-            builder.append("\ngetDisplayOriginatingAddress: " + message.getDisplayOriginatingAddress());
-            builder.append("\ngetEmailBody: " + message.getEmailBody());
-            builder.append("\ngetEmailFrom: " + message.getEmailFrom());
-            builder.append("\ngetMessageBody: " + message.getMessageBody());
-            builder.append("\ngetOriginatingAddress: " + message.getOriginatingAddress());
-            builder.append("\ngetPseudoSubject: " + message.getPseudoSubject());
-            builder.append("\ngetServiceCenterAddress: " + message.getServiceCenterAddress());
-            builder.append("\ngetIndexOnIcc: " + message.getIndexOnIcc());
-            builder.append("\ngetMessageClass: " + message.getMessageClass());
-            builder.append("\ngetUserData: " + new String(message.getUserData()));
+            builder.append("\ngetDisplayMessageBody: ").append(message.getDisplayMessageBody());
+            builder.append("\ngetDisplayOriginatingAddress: ").append(message.getDisplayOriginatingAddress());
+            builder.append("\ngetEmailBody: ").append(message.getEmailBody());
+            builder.append("\ngetEmailFrom: ").append(message.getEmailFrom());
+            builder.append("\ngetMessageBody: ").append(message.getMessageBody());
+            builder.append("\ngetOriginatingAddress: ").append(message.getOriginatingAddress());
+            builder.append("\ngetPseudoSubject: ").append(message.getPseudoSubject());
+            builder.append("\ngetServiceCenterAddress: ").append(message.getServiceCenterAddress());
+            builder.append("\ngetIndexOnIcc: ").append(message.getIndexOnIcc());
+            builder.append("\ngetMessageClass: ").append(message.getMessageClass());
+            builder.append("\ngetUserData: ").append(new String(message.getUserData()));
         }
         return builder.toString();
     }

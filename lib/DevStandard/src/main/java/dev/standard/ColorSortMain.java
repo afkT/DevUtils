@@ -31,7 +31,7 @@ public class ColorSortMain {
         // 解析 colors.xml
         new SAXXml(xmlPath).analysisColorsXml(new SAXXml.DocumentListener() {
             @Override
-            public void OnEnd(List<ColorUtils.ColorInfo> lists) {
+            public void onEnd(List<ColorUtils.ColorInfo> lists) {
                 if (CollectionUtils.isEmpty(lists)) {
                     System.out.println(" list is empty");
                     return;
@@ -131,7 +131,7 @@ public class ColorSortMain {
                 super.endDocument(); // SAX 解析结束
                 // 触发回调
                 if (listener != null) {
-                    listener.OnEnd(lists);
+                    listener.onEnd(lists);
                 }
             }
 
@@ -171,7 +171,7 @@ public class ColorSortMain {
              * 解析结束触发
              * @param lists 解析集合
              */
-            void OnEnd(List<ColorUtils.ColorInfo> lists);
+            void onEnd(List<ColorUtils.ColorInfo> lists);
         }
     }
 }

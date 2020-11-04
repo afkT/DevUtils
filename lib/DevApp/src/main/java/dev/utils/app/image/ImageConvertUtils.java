@@ -126,7 +126,7 @@ public final class ImageConvertUtils {
          * @param height 高度
          * @return BMP ARGB byte[]
          */
-        private static byte[] addBMP_ARGB_8888(final int[] data, final int width, final int height) {
+        private static byte[] addBMP_ARGB8888(final int[] data, final int width, final int height) {
             if (data == null) return null;
             int len = data.length;
             if (len == 0) return null;
@@ -158,7 +158,7 @@ public final class ImageConvertUtils {
                 int[] pixels = new int[width * height];
                 bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
 
-                byte[] rgb = addBMP_ARGB_8888(pixels, width, height);
+                byte[] rgb = addBMP_ARGB8888(pixels, width, height);
                 byte[] header = addBMPImageHeader(rgb.length);
                 byte[] infos = addBMPImageInfosHeader(width, height);
                 byte[] buffer = new byte[54 + rgb.length];
