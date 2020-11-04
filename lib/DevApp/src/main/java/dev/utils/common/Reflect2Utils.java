@@ -436,11 +436,11 @@ public final class Reflect2Utils {
     public static <T> T newInstance(final String className, final Object[] args, final Class[] argsClass) {
         if (className == null) return null;
         try {
-            Class newoneClass = Class.forName(className);
+            Class newClass = Class.forName(className);
             if (args == null) {
-                return (T) newoneClass.newInstance();
+                return (T) newClass.newInstance();
             } else {
-                Constructor cons = newoneClass.getConstructor(argsClass);
+                Constructor cons = newClass.getConstructor(argsClass);
                 return (T) cons.newInstance(args);
             }
         } catch (Exception e) {

@@ -30,7 +30,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     // ========
 
     // 播放预览载体 SurfaceView
-    private SurfaceView   mSurfaceview;
+    private SurfaceView   mSurfaceView;
     // 画面预览回调
     private SurfaceHolder mSurfaceHolder;
     // 判断是否自动播放
@@ -38,19 +38,19 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
 
     /**
      * 构造函数
-     * @param surfaceview {@link SurfaceView}
+     * @param surfaceView {@link SurfaceView}
      */
-    public DevVideoPlayerControl(final SurfaceView surfaceview) {
-        this(surfaceview, false);
+    public DevVideoPlayerControl(final SurfaceView surfaceView) {
+        this(surfaceView, false);
     }
 
     /**
      * 构造函数
-     * @param surfaceview {@link SurfaceView}
+     * @param surfaceView {@link SurfaceView}
      * @param autoPlay    是否自动播放
      */
-    public DevVideoPlayerControl(final SurfaceView surfaceview, final boolean autoPlay) {
-        this.mSurfaceview = surfaceview;
+    public DevVideoPlayerControl(final SurfaceView surfaceView, final boolean autoPlay) {
+        this.mSurfaceView = surfaceView;
         this.mAutoPlay = autoPlay;
 
         // 初始化 DevMediaManager 回调事件类
@@ -70,7 +70,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
             mSurfaceHolder.removeCallback(this);
         }
         // 设置 Holder
-        mSurfaceHolder = mSurfaceview.getHolder();
+        mSurfaceHolder = mSurfaceView.getHolder();
         // 移除旧的回调
         if (mSurfaceHolder != null) {
             mSurfaceHolder.removeCallback(this);
@@ -132,7 +132,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     public void onPrepared() {
         LogPrintUtils.dTag(TAG, "onPrepared");
         // =
-        if (mSurfaceview != null) {
+        if (mSurfaceView != null) {
             // 如果等于 null, 或者不在显示中, 则跳过
             if (mSurfaceHolder.getSurface() == null || !mSurfaceHolder.getSurface().isValid())
                 return;
@@ -304,7 +304,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      * @return {@link SurfaceView}
      */
     public SurfaceView getSurfaceView() {
-        return mSurfaceview;
+        return mSurfaceView;
     }
 
     // =

@@ -139,7 +139,7 @@ public class WifiActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
                                                 });
                                                 // 密码必须大于等于 8 位
                                                 WifiConfiguration wifiConfiguration = WifiHotUtils.createWifiConfigToAp(wifiHotSSID, wifiHotPwd);
-                                                boolean success = wifiHotUtils.stratWifiAp(wifiConfiguration);
+                                                boolean success = wifiHotUtils.startWifiAp(wifiConfiguration);
                                                 showToast(success, "打开热点成功", "打开热点失败");
                                             }
 
@@ -164,7 +164,7 @@ public class WifiActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
                             // 如果不需要密码, 则设置为非密码
                             //wifiConfiguration = WifiHotUtils.createWifiConfigToAp("TttWifiAp1", null);
                             // 开启热点
-                            boolean success = wifiHotUtils.stratWifiAp(wifiConfiguration); // Android 7.1 以上特殊处理
+                            boolean success = wifiHotUtils.startWifiAp(wifiConfiguration); // Android 7.1 以上特殊处理
                             showToast(success, "打开热点成功", "打开热点失败");
                         }
                         break;

@@ -534,11 +534,11 @@ public final class ViewHelper {
     /**
      * 设置是否保留字体留白间隙区域
      * @param view       {@link TextView}
-     * @param includepad 是否保留字体留白间隙区域
+     * @param includePadding 是否保留字体留白间隙区域
      * @return {@link ViewHelper}
      */
-    public ViewHelper setIncludeFontPadding(final View view, final boolean includepad) {
-        TextViewUtils.setIncludeFontPadding(view, includepad);
+    public ViewHelper setIncludeFontPadding(final View view, final boolean includePadding) {
+        TextViewUtils.setIncludeFontPadding(view, includePadding);
         return this;
     }
 

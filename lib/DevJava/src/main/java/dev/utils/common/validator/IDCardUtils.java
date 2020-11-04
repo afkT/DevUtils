@@ -133,7 +133,7 @@ public final class IDCardUtils {
             Calendar calendar = Calendar.getInstance();
             if (birthDate != null) calendar.setTime(birthDate);
             // 判断是否有效日期
-            return validateDateSmllerThenNow(calendar.get(Calendar.YEAR),
+            return validateDateSmallerThenNow(calendar.get(Calendar.YEAR),
                     Integer.valueOf(birthCode.substring(2, 4)),
                     Integer.valueOf(birthCode.substring(4, 6)));
         }
@@ -331,8 +331,8 @@ public final class IDCardUtils {
         String card = idCard.trim();
         if (validateIdCard18(card)) return true;
         if (validateIdCard15(card)) return true;
-        String[] cardStrs = validateIdCard10(card);
-        return (cardStrs != null && "true".equals(cardStrs[2]));
+        String[] cardArys = validateIdCard10(card);
+        return (cardArys != null && "true".equals(cardArys[2]));
     }
 
     /**
@@ -608,7 +608,7 @@ public final class IDCardUtils {
      * @param dayData   待校验的日期 ( 日 )
      * @return {@code true} yes, {@code false} no
      */
-    private static boolean validateDateSmllerThenNow(final int yearData, final int monthData, final int dayData) {
+    private static boolean validateDateSmallerThenNow(final int yearData, final int monthData, final int dayData) {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         int datePerMonth;
         int MIN = 1930;

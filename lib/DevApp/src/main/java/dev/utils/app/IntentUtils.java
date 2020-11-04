@@ -830,7 +830,7 @@ public final class IntentUtils {
      * 获取创建文件的意图
      * <pre>
      *     getCreateDocumentIntent("text/plain", "foobar.txt");
-     *     getCreateDocumentIntent("image/png", "mypicture.png");
+     *     getCreateDocumentIntent("image/png", "picture.png");
      *     <p></p>
      *     创建后在 onActivityResult 中获取到 Uri, 对 Uri 进行读写
      * </pre>

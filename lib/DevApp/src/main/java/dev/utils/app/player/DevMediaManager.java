@@ -391,8 +391,8 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     public boolean onError(MediaPlayer mp, int what, int extra) {
         LogPrintUtils.dTag(TAG, "onError - what: " + what + ", extra: " + extra);
         // 触发回调
-        if (mMeidaListener != null) {
-            return mMeidaListener.onError(what, extra);
+        if (mMediaListener != null) {
+            return mMediaListener.onError(what, extra);
         }
         return false;
     }
@@ -409,8 +409,8 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
         mVideoWidth = width;
         mVideoHeight = height;
         // 触发回调
-        if (mMeidaListener != null) {
-            mMeidaListener.onVideoSizeChanged(width, height);
+        if (mMediaListener != null) {
+            mMediaListener.onVideoSizeChanged(width, height);
         }
     }
 
@@ -422,8 +422,8 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     public void onPrepared(MediaPlayer mp) {
         LogPrintUtils.dTag(TAG, "onPrepared");
         // 触发回调
-        if (mMeidaListener != null) {
-            mMeidaListener.onPrepared();
+        if (mMediaListener != null) {
+            mMediaListener.onPrepared();
         }
     }
 
@@ -435,8 +435,8 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     public void onCompletion(MediaPlayer mp) {
         LogPrintUtils.dTag(TAG, "onCompletion");
         // 触发回调
-        if (mMeidaListener != null) {
-            mMeidaListener.onCompletion();
+        if (mMediaListener != null) {
+            mMediaListener.onCompletion();
         }
     }
 
@@ -449,8 +449,8 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     public void onBufferingUpdate(MediaPlayer mp, int percent) {
         LogPrintUtils.dTag(TAG, "onBufferingUpdate - percent: " + percent);
         // 触发回调
-        if (mMeidaListener != null) {
-            mMeidaListener.onBufferingUpdate(percent);
+        if (mMediaListener != null) {
+            mMediaListener.onBufferingUpdate(percent);
         }
     }
 
@@ -462,8 +462,8 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     public void onSeekComplete(MediaPlayer mp) {
         LogPrintUtils.dTag(TAG, "onSeekComplete");
         // 触发回调
-        if (mMeidaListener != null) {
-            mMeidaListener.onSeekComplete();
+        if (mMediaListener != null) {
+            mMediaListener.onSeekComplete();
         }
     }
 
@@ -472,7 +472,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
     // ===============
 
     // MediaPlayer 回调事件
-    private MediaListener mMeidaListener;
+    private MediaListener mMediaListener;
 
     /**
      * detail: MediaPlayer 回调接口
@@ -519,11 +519,11 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
 
     /**
      * 设置 MediaPlayer 回调事件
-     * @param meidaListener {@link MediaListener} MediaPlayer 回调事件
+     * @param mediaListener {@link MediaListener} MediaPlayer 回调事件
      * @return {@link DevMediaManager}
      */
-    public DevMediaManager setMediaListener(final MediaListener meidaListener) {
-        this.mMeidaListener = meidaListener;
+    public DevMediaManager setMediaListener(final MediaListener mediaListener) {
+        this.mMediaListener = mediaListener;
         return this;
     }
 

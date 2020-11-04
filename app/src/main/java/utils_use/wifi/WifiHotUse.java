@@ -36,7 +36,7 @@ public final class WifiHotUse {
         wifiConfiguration = WifiHotUtils.createWifiConfigToAp("WifiHot_AP", null);
 
         // 开启热点 ( 兼容 8.0) 7.1 跳转到热点页面, 需手动开启 ( 但是配置信息使用上面的 WifiConfig)
-        wifiHotUtils.stratWifiAp(wifiConfiguration);
+        wifiHotUtils.startWifiAp(wifiConfiguration);
 
         // 关闭热点
         wifiHotUtils.closeWifiAp();

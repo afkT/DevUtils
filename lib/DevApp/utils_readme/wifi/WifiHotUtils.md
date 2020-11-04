@@ -14,7 +14,7 @@
 | 方法 | 注释 |
 | :- | :- |
 | createWifiConfigToAp | 创建 Wifi 热点配置(支持 无密码/WPA2 PSK) |
-| stratWifiAp | 开启 Wifi 热点 |
+| startWifiAp | 开启 Wifi 热点 |
 | closeWifiAp | 关闭 Wifi 热点 |
 | getWifiApState | 获取 Wifi 热点状态 |
 | getWifiApConfiguration | 获取 Wifi 热点配置信息 |
@@ -52,7 +52,7 @@ WifiConfiguration wifiConfiguration = WifiHotUtils.createWifiConfigToAp("WifiHot
 wifiConfiguration = WifiHotUtils.createWifiConfigToAp("WifiHot_AP", null);
 
 // 开启热点(兼容8.0) 7.1 跳转到热点页面, 需手动开启(但是配置信息使用上面的 WifiConfig)
-wifiHotUtils.stratWifiAp(wifiConfiguration);
+wifiHotUtils.startWifiAp(wifiConfiguration);
 
 // 关闭热点
 wifiHotUtils.closeWifiAp();

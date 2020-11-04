@@ -519,11 +519,11 @@ public final class QuickHelper {
 
     /**
      * 设置是否保留字体留白间隙区域
-     * @param includepad 是否保留字体留白间隙区域
+     * @param includePadding 是否保留字体留白间隙区域
      * @return {@link QuickHelper}
      */
-    public QuickHelper setIncludeFontPadding(final boolean includepad) {
-        TextViewUtils.setIncludeFontPadding(targetTextView(), includepad);
+    public QuickHelper setIncludeFontPadding(final boolean includePadding) {
+        TextViewUtils.setIncludeFontPadding(targetTextView(), includePadding);
         return this;
     }
 

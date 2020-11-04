@@ -424,7 +424,7 @@ public final class WifiUtils {
      * @return Wifi 热点 SSID
      */
     @SuppressLint("MissingPermission")
-    public static String isConnectAphot() {
+    public static String isConnectAPHot() {
         try {
             // 连接管理
             ConnectivityManager cManager = AppUtils.getConnectivityManager();
@@ -449,7 +449,7 @@ public final class WifiUtils {
                 }
             }
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "isConnectAphot");
+            LogPrintUtils.eTag(TAG, e, "isConnectAPHot");
         }
         return null;
     }
@@ -905,12 +905,12 @@ public final class WifiUtils {
 
     /**
      * 转换 IP 地址
-     * @param inetAddr {@link InetAddress}
+     * @param inetAddress {@link InetAddress}
      * @return IPv4 地址
      * @throws Exception 不属于 IPv4 地址
      */
-    private int inetAddressToInt(final InetAddress inetAddr) throws Exception {
-        byte[] data = inetAddr.getAddress();
+    private int inetAddressToInt(final InetAddress inetAddress) throws Exception {
+        byte[] data = inetAddress.getAddress();
         if (data.length != 4) {
             throw new IllegalArgumentException("Not an IPv4 address");
         }

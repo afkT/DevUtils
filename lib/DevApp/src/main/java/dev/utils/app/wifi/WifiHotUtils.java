@@ -114,7 +114,7 @@ public final class WifiHotUtils {
      * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("MissingPermission")
-    public boolean stratWifiAp(final WifiConfiguration wifiConfig) {
+    public boolean startWifiAp(final WifiConfiguration wifiConfig) {
         this.mAPWifiConfig = wifiConfig;
         // 大于 8.0
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -169,7 +169,7 @@ public final class WifiHotUtils {
                 }, null);
                 return true;
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "stratWifiAp");
+                LogPrintUtils.eTag(TAG, e, "startWifiAp");
             }
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) { // android 7.1 系统以上不支持自动开启热点, 需要手动开启热点
             try {
@@ -184,7 +184,7 @@ public final class WifiHotUtils {
                 AppUtils.startActivity(intent);
                 return true;
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "stratWifiAp");
+                LogPrintUtils.eTag(TAG, e, "startWifiAp");
             }
         } else {
             try {
@@ -195,7 +195,7 @@ public final class WifiHotUtils {
                 method.invoke(mWifiManager, wifiConfig, true);
                 return true;
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "stratWifiAp");
+                LogPrintUtils.eTag(TAG, e, "startWifiAp");
             }
         }
         return false;

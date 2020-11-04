@@ -45,7 +45,7 @@ public final class HtmlUtils {
      * @param color   颜色值, 如: #000000
      * @return Html 内容字符串
      */
-    public static String addHtmlColorAndBlod(final String content, final String color) {
+    public static String addHtmlColorAndBold(final String content, final String color) {
         return addHtmlBold(addHtmlColor(content, color));
     }
 
@@ -63,7 +63,7 @@ public final class HtmlUtils {
      * @param content 给定的字符串
      * @return Html 内容字符串
      */
-    public static String addHtmlStrikeThruline(final String content) {
+    public static String addHtmlStrikeThruLine(final String content) {
         return "<s>" + content + "</s>";
     }
 
@@ -72,7 +72,7 @@ public final class HtmlUtils {
      * @param content 给定的字符串
      * @return Html 内容字符串
      */
-    public static String addHtmlOverline(final String content) {
+    public static String addHtmlOverLine(final String content) {
         return "<span style=\"text-decoration: overline\">" + content + "</span>";
     }
 

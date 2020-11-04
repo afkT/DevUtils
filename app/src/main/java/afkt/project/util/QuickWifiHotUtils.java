@@ -205,7 +205,7 @@ public class QuickWifiHotUtils {
                     DevLogger.dTag(TAG, "Wifi 热点已关闭");
                     // 开启热点
                     WifiConfiguration wifiConfiguration = WifiHotUtils.createWifiConfigToAp(hotSSID, hotPwd);
-                    wifiHotUtils.stratWifiAp(wifiConfiguration);
+                    wifiHotUtils.startWifiAp(wifiConfiguration);
                     break;
                 case WifiHotUtils.WIFI_AP_STATE_ENABLING: // Wifi 热点正在打开
                     DevLogger.dTag(TAG, "Wifi 热点正在打开");
