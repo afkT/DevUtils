@@ -523,14 +523,10 @@ public final class WifiHotUtils {
      */
     private String intToString(final int data) {
         StringBuilder builder = new StringBuilder();
-        int b = (data >> 0) & 0xff;
-        builder.append(b + ".");
-        b = (data >> 8) & 0xff;
-        builder.append(b + ".");
-        b = (data >> 16) & 0xff;
-        builder.append(b + ".");
-        b = (data >> 24) & 0xff;
-        builder.append(b);
+        builder.append((data >> 0) & 0xff).append(".");
+        builder.append((data >> 8) & 0xff).append(".");
+        builder.append((data >> 16) & 0xff).append(".");
+        builder.append((data >> 24) & 0xff);
         return builder.toString();
     }
 

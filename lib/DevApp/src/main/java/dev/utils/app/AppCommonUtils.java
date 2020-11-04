@@ -56,11 +56,11 @@ public final class AppCommonUtils {
                 return null;
             }
             // 保存 APP 版本信息
-            builder.append("versionName: " + versionName);
+            builder.append("versionName: ").append(versionName);
             builder.append(StringUtils.NEW_LINE_STR);
-            builder.append("versionCode: " + versionCode);
+            builder.append("versionCode: ").append(versionCode);
             builder.append(StringUtils.NEW_LINE_STR);
-            builder.append("package: " + packageName);
+            builder.append("package: ").append(packageName);
             builder.append(StringUtils.NEW_LINE_STR);
             builder.append(deviceInfo);
             // 设置应用、设备信息

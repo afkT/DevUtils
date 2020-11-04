@@ -162,7 +162,7 @@ public final class FileRecordUtils {
         StringBuilder builder = new StringBuilder();
         // 保存时间
         builder.append(NEW_LINE_STR_X2);
-        builder.append("date: " + DateUtils.getDateNow());
+        builder.append("date: ").append(DateUtils.getDateNow());
         builder.append(NEW_LINE_STR_X2);
         builder.append("===========================");
 

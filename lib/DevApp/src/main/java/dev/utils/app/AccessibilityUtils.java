@@ -188,7 +188,7 @@ public final class AccessibilityUtils {
 
         for (CharSequence txt : event.getText()) {
             // 输出当前事件包含的文本信息
-            builder.append("text: " + txt);
+            builder.append("text: ").append(txt);
             builder.append(NEW_LINE_STR);
         }
         builder.append("=========================");

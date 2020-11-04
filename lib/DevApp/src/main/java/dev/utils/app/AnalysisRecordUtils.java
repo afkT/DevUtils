@@ -252,11 +252,11 @@ public final class AnalysisRecordUtils {
                 builder.append(NEW_LINE_STR_X2);
                 builder.append("===========================");
                 builder.append(NEW_LINE_STR_X2);
-                builder.append("versionName: " + APP_VERSION_NAME);
+                builder.append("versionName: ").append(APP_VERSION_NAME);
                 builder.append(NEW_LINE_STR);
-                builder.append("versionCode: " + APP_VERSION_CODE);
+                builder.append("versionCode: ").append(APP_VERSION_CODE);
                 builder.append(NEW_LINE_STR);
-                builder.append("package: " + PACKAGE_NAME);
+                builder.append("package: ").append(PACKAGE_NAME);
                 builder.append(NEW_LINE_STR_X2);
                 builder.append("===========================");
                 builder.append(NEW_LINE_STR_X2);

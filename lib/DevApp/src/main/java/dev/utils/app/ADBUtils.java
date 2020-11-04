@@ -1440,15 +1440,15 @@ public final class ADBUtils {
             StringBuilder builder = new StringBuilder();
             builder.append("screenrecord");
             if (!StringUtils.isSpace(size)) {
-                builder.append(" --size " + size);
+                builder.append(" --size ").append(size);
             }
             if (bitRate > 0) {
-                builder.append(" --bit-rate " + bitRate);
+                builder.append(" --bit-rate ").append(bitRate);
             }
             if (time > 0) {
-                builder.append(" --time-limit " + time);
+                builder.append(" --time-limit ").append(time);
             }
-            builder.append(" " + path);
+            builder.append(" ").append(path);
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(builder.toString(), true);
             return result.isSuccess2();
