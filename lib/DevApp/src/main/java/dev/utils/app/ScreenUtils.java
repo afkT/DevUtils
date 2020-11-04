@@ -260,19 +260,19 @@ public final class ScreenUtils {
 
                 float heightDpi = heightPixels / density;
                 float widthDpi = widthPixels / density;
-                // =
-                builder.append("heightPixels: " + heightPixels + "px");
-                builder.append("\nwidthPixels: " + widthPixels + "px");
 
-                builder.append("\nxdpi: " + xdpi + "dpi");
-                builder.append("\nydpi: " + ydpi + "dpi");
-                builder.append("\ndensityDpi: " + densityDpi + "dpi");
+                builder.append("heightPixels: ").append(heightPixels).append("px");
+                builder.append("\nwidthPixels: ").append(widthPixels).append("px");
 
-                builder.append("\ndensity: " + density);
-                builder.append("\nscaledDensity: " + scaledDensity);
+                builder.append("\nxdpi: ").append(xdpi).append("dpi");
+                builder.append("\nydpi: ").append(ydpi).append("dpi");
+                builder.append("\ndensityDpi: ").append(densityDpi).append("dpi");
 
-                builder.append("\nheightDpi: " + heightDpi + "dpi");
-                builder.append("\nwidthDpi: " + widthDpi + "dpi");
+                builder.append("\ndensity: ").append(density);
+                builder.append("\nscaledDensity: ").append(scaledDensity);
+
+                builder.append("\nheightDpi: ").append(heightDpi).append("dpi");
+                builder.append("\nwidthDpi: ").append(widthDpi).append("dpi");
                 return builder.toString();
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getScreenInfo");
