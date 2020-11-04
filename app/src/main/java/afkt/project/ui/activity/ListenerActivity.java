@@ -278,7 +278,7 @@ public class ListenerActivity extends BaseActivity<ActivityCommonTipsBinding> {
         } else {
             ToastTintUtils.success("绑定网络监听成功, 请查看 Logcat");
             // 设置监听事件
-            NetWorkReceiver.setNetListener(new NetWorkReceiver.NetwordStateListener() {
+            NetWorkReceiver.setNetListener(new NetWorkReceiver.NetWorkStateListener() {
                 @Override
                 public void onNetworkState(int nType) {
                     String state = "";

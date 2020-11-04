@@ -656,9 +656,9 @@ public final class WifiUtils {
                     // 获取当前连接的 Wifi 对象
                     WifiInfo wifiInfo = getWifiInfo();
                     // 获取连接的 id
-                    int networdId = wifiInfo.getNetworkId();
+                    int networkId = wifiInfo.getNetworkId();
                     // 禁用网络
-                    boolean isDisable = mWifiManager.disableNetwork(networdId);
+                    boolean isDisable = mWifiManager.disableNetwork(networkId);
                     // 断开之前的连接
                     boolean isDisConnect = mWifiManager.disconnect();
                     // 打印断开连接结果
@@ -684,9 +684,9 @@ public final class WifiUtils {
                         // 获取当前连接的 Wifi 对象
                         WifiInfo wifiInfo = getWifiInfo();
                         // 获取连接的 id
-                        int networdId = wifiInfo.getNetworkId();
+                        int networkId = wifiInfo.getNetworkId();
                         // 禁用网络
-                        boolean isDisable = mWifiManager.disableNetwork(networdId);
+                        boolean isDisable = mWifiManager.disableNetwork(networkId);
                         // 断开之前的连接
                         boolean isDisConnect = mWifiManager.disconnect();
                         // 打印断开连接结果

@@ -39,13 +39,13 @@ public final class PictureSelectorUtils {
     // 全局请求跳转回传 code
     public static final  int       PIC_REQUEST_CODE      = PictureConfig.CHOOSE_REQUEST;
     // 全局相册配置
-    public static final  PicConfig PIC_CONFIG            = new PicConfig();
+    public static final  PicConfig PIC_CONFIG         = new PicConfig();
     // 拍照保存地址
-    private static       String    CAMERA_SAVA_PATH      = null;
+    private static       String CAMERA_SAVE_PATH      = null;
     // 压缩图片保存地址
-    private static       String    COMPRESS_SAVA_PATH    = null;
+    private static       String COMPRESS_SAVE_PATH    = null;
     // 图片大于多少才进行压缩 (kb)
-    private static       int       MINIMUM_COMPRESS_SIZE = 2048;
+    private static       int    MINIMUM_COMPRESS_SIZE = 2048;
 
     /**
      * 获取全局相册配置
@@ -68,7 +68,7 @@ public final class PictureSelectorUtils {
      * @return 拍照保存地址
      */
     public static String getCameraSavePath() {
-        return CAMERA_SAVA_PATH;
+        return CAMERA_SAVE_PATH;
     }
 
     /**
@@ -76,7 +76,7 @@ public final class PictureSelectorUtils {
      * @return 压缩图片保存地址
      */
     public static String getCompressSavePath() {
-        return COMPRESS_SAVA_PATH;
+        return COMPRESS_SAVE_PATH;
     }
 
     /**
@@ -85,8 +85,8 @@ public final class PictureSelectorUtils {
      * @param compressSavePath 压缩图片保存地址
      */
     public static void setSavePath(final String cameraSavePath, final String compressSavePath) {
-        CAMERA_SAVA_PATH = cameraSavePath;
-        COMPRESS_SAVA_PATH = compressSavePath;
+        CAMERA_SAVE_PATH = cameraSavePath;
+        COMPRESS_SAVE_PATH = compressSavePath;
     }
 
     /**
@@ -408,9 +408,9 @@ public final class PictureSelectorUtils {
         // 已选择的本地资源
         private List<LocalMedia> localMedia;
         // 拍照保存地址
-        private String           cameraSavePath      = CAMERA_SAVA_PATH;
+        private String           cameraSavePath      = CAMERA_SAVE_PATH;
         // 压缩图片保存地址
-        private String           compressSavePath    = COMPRESS_SAVA_PATH;
+        private String           compressSavePath    = COMPRESS_SAVE_PATH;
 
         // ===========
         // = get/set =
