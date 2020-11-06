@@ -841,13 +841,14 @@ public final class StringUtils {
      */
     public static StringBuilder appends(final StringBuilder builder, final String split, final Object... args) {
         if (builder != null && args != null) {
-            // 获取间隔字符串, 优化循环判断
-            String str = isEmpty(split) ? "" : split;
-            // 循环处理
-            for (int i = 0, len = args.length; i < len; i++) {
-                builder.append(args[i]); // 拼接数据
-                // 追加间隔
-                builder.append(str);
+            if (isEmpty(split)) {
+                for (int i = 0, len = args.length; i < len; i++) {
+                    builder.append(args[i]);
+                }
+            } else {
+                for (int i = 0, len = args.length; i < len; i++) {
+                    builder.append(args[i]).append(split);
+                }
             }
         }
         return builder;
@@ -862,16 +863,18 @@ public final class StringUtils {
      */
     public static StringBuilder appendsIgnoreLast(final StringBuilder builder, final String split, final Object... args) {
         if (builder != null && args != null) {
-            // 获取间隔字符串, 优化循环判断
-            String str = isEmpty(split) ? "" : split;
             int len = args.length;
             if (len > 0) {
-                // 循环处理
-                for (int i = 0; i < len - 1; i++) {
-                    builder.append(args[i]); // 拼接数据
-                    builder.append(str); // 间隔追加
+                if (isEmpty(split)) {
+                    for (int i = 0; i < len; i++) {
+                        builder.append(args[i]);
+                    }
+                } else {
+                    for (int i = 0; i < len - 1; i++) {
+                        builder.append(args[i]).append(split);
+                    }
+                    builder.append(args[len - 1]);
                 }
-                builder.append(args[len - 1]); // 拼接数据
             }
         }
         return builder;
