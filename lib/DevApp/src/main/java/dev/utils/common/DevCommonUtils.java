@@ -212,9 +212,9 @@ public final class DevCommonUtils {
      */
     public static UUID getRandomUUID() {
         // 获取随机数
-        String random1 = (900000 + new Random().nextInt(10000)) + "";
+        String random1 = String.valueOf(900000 + new Random().nextInt(10000));
         // 获取随机数
-        String random2 = (900000 + new Random().nextInt(10000)) + "";
+        String random2 = String.valueOf(900000 + new Random().nextInt(10000));
         // 获取当前时间
         String time = System.currentTimeMillis() + random1 + random2;
         // 生成唯一随机 UUID

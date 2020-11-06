@@ -167,7 +167,7 @@ final class PanguAnalyzeMain {
                     repeat = false; // 不需要判断重复
                 } else {
                     if (code != null && repeat) {
-                        MapUtils.putToList(sAnnotationRepeatLineMap, file.getName(), (i + 1) + "");
+                        MapUtils.putToList(sAnnotationRepeatLineMap, file.getName(), String.valueOf(i + 1));
                     }
                     // 表示需要检测重复
                     repeat = true;

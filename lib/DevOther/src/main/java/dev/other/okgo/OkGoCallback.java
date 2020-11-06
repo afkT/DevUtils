@@ -120,7 +120,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
             onErrorResponse(
                     new OkGoResponse.Builder<T>()
                             .setToast(toast)
-                            .setCode(response.code() + "")
+                            .setCode(String.valueOf(response.code()))
                             .setMessage(response.message())
                             .setOriginal(response.body())
                             .setException(response.getException())
@@ -130,7 +130,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
             onErrorResponse(
                     new OkGoResponse.Builder<T>()
                             .setToast(toast)
-                            .setCode(Integer.MAX_VALUE + "")
+                            .setCode(String.valueOf(Integer.MAX_VALUE))
                             .setMessage("response is null")
                             .setException(new OkGoException("response is null"))
                             .build()

@@ -141,7 +141,7 @@ public final class AppInfoItem {
         // 证书发布方
         certPrincipal = cert.getIssuerX500Principal().toString();
         // 证书版本号
-        certVersion = cert.getVersion() + "";
+        certVersion = String.valueOf(cert.getVersion());
         // 证书算法名称
         certSigAlgName = cert.getSigAlgName();
         // 证书算法 OID
@@ -161,7 +161,7 @@ public final class AppInfoItem {
         // APP MD5 签名
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_md5, appMD5));
         // APP 版本号 ( 主要用于 APP 内部版本判断 int 类型 )
-        listKeyValues.add(KeyValueBean.get(R.string.dev_str_version_code, appInfoBean.getVersionCode() + ""));
+        listKeyValues.add(KeyValueBean.get(R.string.dev_str_version_code, String.valueOf(appInfoBean.getVersionCode())));
         // APP 版本名 ( 主要用于对用户显示版本信息 )
         listKeyValues.add(KeyValueBean.get(R.string.dev_str_version_name, appInfoBean.getVersionName()));
         // APP SHA1

@@ -223,7 +223,7 @@ public final class UriUtils {
         FileUtils.createFolder(filePath);
         InputStream is = null;
         try {
-            String child = TextUtils.isEmpty(fileName) ? System.currentTimeMillis() + "" : fileName;
+            String child = TextUtils.isEmpty(fileName) ? String.valueOf(System.currentTimeMillis()) : fileName;
             is = ResourceUtils.openInputStream(uri);
             File file = new File(filePath, child);
             FileIOUtils.writeFileFromIS(file.getAbsolutePath(), is);

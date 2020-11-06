@@ -804,7 +804,7 @@ public final class CalendarUtils {
             this.month = month;
             this.day = day;
             this.isSolarFestival = isSolarFestival;
-            this.compareValue = ConvertUtils.toInt(month + "" + NumberUtils.addZero(day));
+            this.compareValue = ConvertUtils.toInt(month + NumberUtils.addZero(day));
         }
 
         /**

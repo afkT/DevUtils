@@ -230,9 +230,9 @@ public final class ManifestUtils {
                 String versionName = packageInfo.versionName == null ? "null" : packageInfo.versionName;
                 String versionCode;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                    versionCode = packageInfo.getLongVersionCode() + "";
+                    versionCode = String.valueOf(packageInfo.getLongVersionCode());
                 } else {
-                    versionCode = packageInfo.versionCode + "";
+                    versionCode = String.valueOf(packageInfo.versionCode);
                 }
                 return new String[]{versionName, versionCode};
             }

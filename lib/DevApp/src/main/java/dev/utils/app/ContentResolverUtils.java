@@ -478,7 +478,7 @@ public final class ContentResolverUtils {
 
         @Override
         public String[] getSelectionArgs(Uri uri, String filePath) {
-//            return new String[]{ContentUris.parseId(uri) + ""};
+//            return new String[]{String.valueOf(ContentUris.parseId(uri))};
             return null;
         }
     }

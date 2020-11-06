@@ -30,6 +30,7 @@ import java.util.UUID;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.CloseUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: 手机相关工具类
@@ -464,9 +465,9 @@ public final class PhoneUtils {
      */
     @SuppressLint("MissingPermission")
     public static String getUUID() {
-        String deviceId = getDeviceId() + "";
-        String androidId = getAndroidId() + "";
-        String serialNumber = getSerialNumber() + "";
+        String deviceId = StringUtils.getString(getDeviceId());
+        String androidId = StringUtils.getString(getAndroidId());
+        String serialNumber = StringUtils.getString(getSerialNumber());
         // 生成唯一关联 uuid
         UUID deviceUUID = new UUID(androidId.hashCode(), ((long) deviceId.hashCode() << 32) | serialNumber.hashCode());
         return deviceUUID.toString();

@@ -29,9 +29,9 @@ public final class NumberUtils {
      * @return 自动补 0 字符串
      */
     public static String addZero(final int value, final boolean append) {
-        if (!append) return value + "";
+        if (!append) return String.valueOf(value);
         int temp = Math.max(0, value);
-        return temp >= 10 ? temp + "" : "0" + temp;
+        return temp >= 10 ? String.valueOf(temp) : "0" + temp;
     }
 
     // =======

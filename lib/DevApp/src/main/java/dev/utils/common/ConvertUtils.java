@@ -868,7 +868,7 @@ public final class ConvertUtils {
             return null;
         String[] strings = new String[length - off];
         for (int i = 0, len = strings.length; i < len; i++) {
-            strings[i] = datas[off + i] + "";
+            strings[i] = String.valueOf(datas[off + i]);
         }
         return strings;
     }
@@ -906,7 +906,7 @@ public final class ConvertUtils {
             return null;
         String[] strings = new String[length - off];
         for (int i = 0, len = strings.length; i < len; i++) {
-            strings[i] = datas[off + i] + "";
+            strings[i] = String.valueOf(datas[off + i]);
         }
         return strings;
     }
@@ -944,7 +944,7 @@ public final class ConvertUtils {
             return null;
         String[] strings = new String[length - off];
         for (int i = 0, len = strings.length; i < len; i++) {
-            strings[i] = datas[off + i] + "";
+            strings[i] = String.valueOf(datas[off + i]);
         }
         return strings;
     }
@@ -982,7 +982,7 @@ public final class ConvertUtils {
             return null;
         String[] strings = new String[length - off];
         for (int i = 0, len = strings.length; i < len; i++) {
-            strings[i] = datas[off + i] + "";
+            strings[i] = String.valueOf(datas[off + i]);
         }
         return strings;
     }

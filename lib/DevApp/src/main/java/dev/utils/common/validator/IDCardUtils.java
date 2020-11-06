@@ -226,7 +226,7 @@ public final class IDCardUtils {
             char[] chars = mid.toCharArray();
             Integer iflag = 8;
             for (char c : chars) {
-                sum = sum + Integer.valueOf(c + "") * iflag;
+                sum = sum + Integer.valueOf(c) * iflag;
                 iflag--;
             }
             return (sum % 10 == 0 ? 0 : 10 - sum % 10) == Integer.valueOf(end);
@@ -260,7 +260,7 @@ public final class IDCardUtils {
             char[] chars = mid.toCharArray();
             Integer iflag = 7;
             for (char c : chars) {
-                sum = sum + Integer.valueOf(c + "") * iflag;
+                sum = sum + Integer.valueOf(c) * iflag;
                 iflag--;
             }
             if (end.equalsIgnoreCase("A")) {

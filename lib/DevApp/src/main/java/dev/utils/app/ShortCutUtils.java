@@ -189,7 +189,7 @@ public final class ShortCutUtils {
                     // 如果默认桌面支持 requestPinShortcut(ShortcutInfo、IntentSender) 方法
                     if (shortcutManager != null && shortcutManager.isRequestPinShortcutSupported()) {
                         // 快捷方式创建相关信息
-                        ShortcutInfo shortcutInfo = new ShortcutInfo.Builder(context, name.hashCode() + "")
+                        ShortcutInfo shortcutInfo = new ShortcutInfo.Builder(context, String.valueOf(name.hashCode()))
                                 .setIcon(Icon.createWithResource(context, icon)) // 快捷方式图标
                                 .setShortLabel(name) // 快捷方式名字
                                 .setIntent(shortcutIntent) // 快捷方式跳转 Intent

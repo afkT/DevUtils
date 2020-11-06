@@ -27,6 +27,8 @@ public final class StringUtils {
     public static final String NEW_LINE_STR    = System.getProperty("line.separator");
     // 换行字符串 ( 两行 )
     public static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
+    // 空对象字符串
+    public static final String NULL_STR        = "null";
 
     // ==========
     // = String =
@@ -640,6 +642,44 @@ public final class StringUtils {
     }
 
     // =
+
+    /**
+     * 获取字符串 ( 判 null )
+     * @param str 待校验的字符串
+     * @return 校验后的字符串
+     */
+    public static String getString(final String str) {
+        return getString(str, NULL_STR);
+    }
+
+    /**
+     * 获取字符串 ( 判 null )
+     * @param str        待校验的字符串
+     * @param defaultStr 默认字符串
+     * @return 校验后的字符串
+     */
+    public static String getString(final String str, final String defaultStr) {
+        return str != null ? str : defaultStr;
+    }
+
+    /**
+     * 获取字符串 ( 判 null )
+     * @param object 待校验的对象
+     * @return 校验后的字符串
+     */
+    public static String getString(final Object object) {
+        return getString(object, NULL_STR);
+    }
+
+    /**
+     * 获取字符串 ( 判 null )
+     * @param object     待校验的对象
+     * @param defaultStr 默认字符串
+     * @return 校验后的字符串
+     */
+    public static String getString(final Object object, final String defaultStr) {
+        return object != null ? object.toString() : defaultStr;
+    }
 
     /**
      * 检查字符串

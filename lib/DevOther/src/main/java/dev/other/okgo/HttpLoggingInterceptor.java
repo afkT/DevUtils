@@ -58,10 +58,10 @@ public class HttpLoggingInterceptor implements Interceptor {
 
         if (hasRequestBody) {
             if (requestBody.contentType() != null) {
-                captureEntity.requestHeader.put("Content-Type", requestBody.contentType() + "");
+                captureEntity.requestHeader.put("Content-Type", String.valueOf(requestBody.contentType()));
             }
             if (requestBody.contentLength() != -1) {
-                captureEntity.requestHeader.put("Content-Length", requestBody.contentLength() + "");
+                captureEntity.requestHeader.put("Content-Length", String.valueOf(requestBody.contentLength()));
             }
         }
 

@@ -77,7 +77,7 @@ public class EditsAdapter extends BaseQuickAdapter<EvaluateItem, BaseViewHolder>
         // 评价内容字数
         TextView vid_aie_number_tv = helper.getView(R.id.vid_aie_number_tv);
         // 计算已经输入的内容长度
-        vid_aie_number_tv.setText(120 - StringUtils.length(item.evaluateContent) + "");
+        vid_aie_number_tv.setText(String.valueOf(120 - StringUtils.length(item.evaluateContent)));
         // 绑定监听事件
         editTextWatcherAssist.bindListener(item.evaluateContent, position, vid_aie_content_edit, new EditTextWatcherAssist.InputListener<EvaluateItem>() {
             @Override
@@ -89,7 +89,7 @@ public class EditsAdapter extends BaseQuickAdapter<EvaluateItem, BaseViewHolder>
                 }
                 try {
                     // 计算已经输入的内容长度
-                    vid_aie_number_tv.setText(120 - StringUtils.length(item.evaluateContent) + "");
+                    vid_aie_number_tv.setText(String.valueOf(120 - StringUtils.length(item.evaluateContent)));
                 } catch (Exception e) {
                 }
             }

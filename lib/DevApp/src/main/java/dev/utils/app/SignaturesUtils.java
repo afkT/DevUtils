@@ -234,7 +234,7 @@ public final class SignaturesUtils {
                     // 证书发布方
                     String certPrincipal = cert.getIssuerX500Principal().toString();
                     // 证书版本号
-                    String certVersion = cert.getVersion() + "";
+                    String certVersion = String.valueOf(cert.getVersion());
                     // 证书算法名称
                     String certSigAlgName = cert.getSigAlgName();
                     // 证书算法 OID
@@ -254,7 +254,7 @@ public final class SignaturesUtils {
                     // 保存信息
                     Map<String, String> maps = new LinkedHashMap<>();
                     maps.put("证书有效期信息", effectiveStr);
-                    maps.put("证书是否过期", effective + "");
+                    maps.put("证书是否过期", Boolean.toString(effective));
                     maps.put("证书发布方", certPrincipal);
                     maps.put("证书版本号", certVersion);
                     maps.put("证书算法名称", certSigAlgName);
