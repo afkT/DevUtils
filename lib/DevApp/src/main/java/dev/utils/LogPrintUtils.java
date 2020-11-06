@@ -33,6 +33,8 @@ public final class LogPrintUtils {
     private static       boolean JUDGE_PRINT_LOG = false;
     // 默认 DEFAULT_TAG
     private static final String  DEFAULT_TAG     = LogPrintUtils.class.getSimpleName();
+    // 空对象字符串
+    private static final String NULL_STR        = "null";
 
     /**
      * 判断是否打印日志
@@ -249,7 +251,7 @@ public final class LogPrintUtils {
                     printLog(Log.DEBUG, tag, "json content format error");
                 }
             } catch (Exception e) {
-                String errorInfo = "null";
+                String errorInfo = NULL_STR;
                 if (e != null) {
                     Throwable throwable = e.getCause();
                     if (throwable != null) {
@@ -286,7 +288,7 @@ public final class LogPrintUtils {
                 // 打印信息
                 printLog(Log.DEBUG, tag, message);
             } catch (Exception e) {
-                String errorInfo = "null";
+                String errorInfo = NULL_STR;
                 if (e != null) {
                     Throwable throwable = e.getCause();
                     if (throwable != null) {

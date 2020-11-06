@@ -227,7 +227,7 @@ public final class ManifestUtils {
         try {
             PackageInfo packageInfo = AppUtils.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             if (packageInfo != null) {
-                String versionName = packageInfo.versionName == null ? "null" : packageInfo.versionName;
+                String versionName = String.valueOf(packageInfo.versionName);
                 String versionCode;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     versionCode = String.valueOf(packageInfo.getLongVersionCode());

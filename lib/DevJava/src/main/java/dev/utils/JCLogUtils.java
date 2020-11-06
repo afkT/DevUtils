@@ -28,6 +28,8 @@ public final class JCLogUtils {
     private static       boolean JUDGE_CONTROL_PRINT_LOG = false;
     // 默认 DEFAULT_TAG
     private static final String  DEFAULT_TAG             = JCLogUtils.class.getSimpleName();
+    // 空对象字符串
+    private static final String NULL_STR        = "null";
 
     // ===========
     // = 日志类型 =
@@ -230,7 +232,7 @@ public final class JCLogUtils {
                 // 打印信息
                 printLog(DEBUG, tag, message);
             } catch (Exception e) {
-                String errorInfo = "null";
+                String errorInfo = NULL_STR;
                 if (e != null) {
                     Throwable throwable = e.getCause();
                     if (throwable != null) {

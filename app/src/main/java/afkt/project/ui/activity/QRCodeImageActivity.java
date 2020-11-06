@@ -95,7 +95,7 @@ public class QRCodeImageActivity extends BaseActivity<ActivityQrcodeImageBinding
                             if (success) {
                                 StringBuilder builder = new StringBuilder();
                                 builder.append("二维码解析数据: \n");
-                                builder.append(StringUtils.checkValue("null", ZXingQRCodeUtils.getResultData(result)));
+                                builder.append(StringUtils.checkValue(StringUtils.NULL_STR, ZXingQRCodeUtils.getResultData(result)));
                                 TextViewUtils.setText(binding.vidAqiTv, builder.toString());
                             } else {
                                 TextViewUtils.setText(binding.vidAqiTv, "图片非二维码 / 识别失败\n" + ThrowableUtils.getThrowableStackTrace(e));
