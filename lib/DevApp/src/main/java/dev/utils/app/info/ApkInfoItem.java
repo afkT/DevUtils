@@ -131,11 +131,11 @@ public final class ApkInfoItem {
             // 设置有效期
             StringBuilder builder = new StringBuilder();
             builder.append(sdf.format(notBefore));
-            builder.append(" " + context.getString(R.string.dev_str_to) + " "); // 至
+            builder.append(" ").append(context.getString(R.string.dev_str_to)).append(" "); // 至
             builder.append(sdf.format(notAfter));
             builder.append("\n\n");
             builder.append(notBefore);
-            builder.append(" " + context.getString(R.string.dev_str_to) + " ");
+            builder.append(" ").append(context.getString(R.string.dev_str_to)).append(" ");
             builder.append(notAfter);
             // 保存有效期转换信息
             String effectiveStr = builder.toString();

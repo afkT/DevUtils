@@ -140,16 +140,16 @@ public final class AccessibilityUtils {
         builder.append(NEW_LINE_STR);
 
         int eventType = event.getEventType(); // 事件类型
-        builder.append("packageName: " + event.getPackageName() + ""); // 响应事件的应用包名
+        builder.append("packageName: ").append(event.getPackageName()); // 响应事件的应用包名
         builder.append(NEW_LINE_STR);
 
-        builder.append("source: " + event.getSource() + ""); // 事件源信息
+        builder.append("source: ").append(event.getSource()); // 事件源信息
         builder.append(NEW_LINE_STR);
 
-        builder.append("source class: " + event.getClassName() + ""); // 事件源的类名, 如 android.widget.TextView
+        builder.append("source class: ").append(event.getClassName()); // 事件源的类名, 如 android.widget.TextView
         builder.append(NEW_LINE_STR);
 
-        builder.append("event type(int): " + eventType + "");
+        builder.append("event type(int): ").append(eventType);
         builder.append(NEW_LINE_STR);
 
         switch (eventType) {
