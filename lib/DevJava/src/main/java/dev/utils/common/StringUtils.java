@@ -833,6 +833,61 @@ public final class StringUtils {
     // =
 
     /**
+     * 字符串连接, 将参数列表拼接为一个字符串
+     * @param args 追加数据
+     * @return 拼接后的字符串
+     */
+    public static String concat(final Object... args) {
+        return concatSpiltWith("", args);
+    }
+
+    /**
+     * 字符串连接, 将参数列表拼接为一个字符串
+     * @param split 追加间隔
+     * @param args  追加数据
+     * @return 拼接后的字符串
+     */
+    public static String concatSpiltWith(final String split, final Object... args) {
+        if (args == null) return null;
+        StringBuilder builder = new StringBuilder();
+        if (isEmpty(split)) {
+            for (int i = 0, len = args.length; i < len; i++) {
+                builder.append(args[i]);
+            }
+        } else {
+            for (int i = 0, len = args.length; i < len; i++) {
+                builder.append(args[i]).append(split);
+            }
+        }
+        return builder.toString();
+    }
+
+    /**
+     * 字符串连接, 将参数列表拼接为一个字符串 ( 最后一个不追加间隔 )
+     * @param split 追加间隔
+     * @param args  追加数据
+     * @return 拼接后的字符串
+     */
+    public static String concatSpiltWithIgnoreLast(final String split, final Object... args) {
+        if (args == null) return null;
+        StringBuilder builder = new StringBuilder();
+        int len = args.length;
+        if (len > 0) {
+            if (isEmpty(split)) {
+                for (int i = 0; i < len; i++) {
+                    builder.append(args[i]);
+                }
+            } else {
+                for (int i = 0; i < len - 1; i++) {
+                    builder.append(args[i]).append(split);
+                }
+                builder.append(args[len - 1]);
+            }
+        }
+        return builder.toString();
+    }
+
+    /**
      * StringBuilder 拼接处理
      * @param builder 拼接 Builder
      * @param split   追加间隔
@@ -1168,31 +1223,6 @@ public final class StringUtils {
             chars[len - i - 1] = ch;
         }
         return new String(chars);
-    }
-
-    /**
-     * 字符串连接, 将参数列表拼接为一个字符串
-     * @param args 追加数据
-     * @return 拼接后的字符串
-     */
-    public static String concat(final Object... args) {
-        return concatSpiltWith("", args);
-    }
-
-    /**
-     * 字符串连接, 将参数列表拼接为一个字符串
-     * @param startStr 开始字符串
-     * @param args     追加数据
-     * @return 拼接后的字符串
-     */
-    public static String concatSpiltWith(final String startStr, final Object... args) {
-        if (args == null) return null;
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0, len = args.length; i < len; i++) {
-            if (i != 0) builder.append(startStr);
-            builder.append(args[i]);
-        }
-        return builder.toString();
     }
 
     /**
