@@ -54,10 +54,10 @@ public final class DevCommonUtils {
             builder.append(title);
         }
         // 计算时间
-        builder.append(NEW_LINE_STR + "开始时间: " + DateUtils.formatTime(startTime, DateUtils.yyyyMMddHHmmss));
-        builder.append(NEW_LINE_STR + "结束时间: " + DateUtils.formatTime(endTime, DateUtils.yyyyMMddHHmmss));
-        builder.append(NEW_LINE_STR + "所用时间(毫秒): " + diffTime);
-        builder.append(NEW_LINE_STR + "所用时间(秒): " + (diffTime / 1000));
+        builder.append(NEW_LINE_STR).append("开始时间: ").append(DateUtils.formatTime(startTime, DateUtils.yyyyMMddHHmmss));
+        builder.append(NEW_LINE_STR).append("结束时间: ").append(DateUtils.formatTime(endTime, DateUtils.yyyyMMddHHmmss));
+        builder.append(NEW_LINE_STR).append("所用时间(毫秒): ").append(diffTime);
+        builder.append(NEW_LINE_STR).append("所用时间(秒): ").append(diffTime / 1000);
         return builder;
     }
 

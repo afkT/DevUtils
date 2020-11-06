@@ -791,9 +791,8 @@ public final class BigDecimalUtils {
             StringBuilder builder = new StringBuilder();
             // 进行处理小数点前的数值
             for (int len = values[0].length() - 1, i = len, splitPos = 1; i >= 0; i--) {
-                // 获取数据
                 char ch = values[0].charAt(i);
-                builder.append(ch); // 保存数据
+                builder.append(ch);
                 // 判断是否需要追加符号
                 if (number > 0 && splitPos % number == 0 && i != 0) {
                     builder.append(symbol);
