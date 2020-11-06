@@ -59,8 +59,8 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
 
 //        StringBuilder builder = new StringBuilder();
 //        builder.append("请求网络开始前");
-//        builder.append("请求链接" + request.getUrl());
-//        builder.append("请求参数" + request.getParams().toString());
+//        builder.append("请求链接").append(request.getUrl());
+//        builder.append("请求参数").append(request.getParams());
 
         DevLogger.dTag(TAG, "请求网络开始前: " + url);
     }
