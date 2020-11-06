@@ -29,7 +29,7 @@ public final class JCLogUtils {
     // 默认 DEFAULT_TAG
     private static final String  DEFAULT_TAG             = JCLogUtils.class.getSimpleName();
     // 空对象字符串
-    private static final String NULL_STR        = "null";
+    private static final String  NULL_STR                = "null";
 
     // ===========
     // = 日志类型 =

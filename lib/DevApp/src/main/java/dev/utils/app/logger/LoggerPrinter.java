@@ -27,7 +27,7 @@ final class LoggerPrinter implements IPrinter {
     // 每个线程的日志配置信息
     private static final ThreadLocal<LogConfig> LOCAL_LOG_CONFIGS = new ThreadLocal<>();
     // 空对象字符串
-    private static final String NULL_STR        = "null";
+    private static final String                 NULL_STR          = "null";
 
     // ==================================
     // = 实现 IPrinter 接口, 对外公开方法 =
