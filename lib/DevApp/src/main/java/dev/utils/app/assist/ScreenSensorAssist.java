@@ -43,14 +43,14 @@ public final class ScreenSensorAssist {
     // = 常量 =
     // ========
 
-    // 坐标索引常量
-    private final       int DATA_X                  = 0;
-    private final       int DATA_Y                  = 1;
-    private final       int DATA_Z                  = 2;
     // 方向未知常量
-    private final       int ORIENTATION_UNKNOWN     = -1;
+    private final        int ORIENTATION_UNKNOWN     = -1;
+    // 坐标索引常量
+    private static final int DATA_X                  = 0;
+    private static final int DATA_Y                  = 1;
+    private static final int DATA_Z                  = 2;
     // 触发屏幕方向改变回调
-    public static final int CHANGE_ORIENTATION_WHAT = 9919;
+    public static final  int CHANGE_ORIENTATION_WHAT = 9919;
 
     // =======
     // = 变量 =

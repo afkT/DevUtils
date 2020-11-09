@@ -11,6 +11,9 @@ import java.util.Map;
  */
 class IPreferenceHolder {
 
+    public IPreferenceHolder() {
+    }
+
     // HashMap 保存持有对象
     private static final Map<String, IPreference> sHashMaps = new HashMap<>();
 

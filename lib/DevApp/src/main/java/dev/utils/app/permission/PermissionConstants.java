@@ -14,6 +14,9 @@ import java.lang.annotation.RetentionPolicy;
  */
 public class PermissionConstants {
 
+    private PermissionConstants() {
+    }
+
     // ====================
     // = permission_group =
     // ====================

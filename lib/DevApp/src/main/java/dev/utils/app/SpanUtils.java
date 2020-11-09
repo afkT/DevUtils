@@ -120,10 +120,10 @@ public final class SpanUtils {
     private              CharSequence                       mText;
 
     // 内部标记应用类型
-    private       int mType;
-    private final int TYPE_CHAR_SEQUENCE = 0;
-    private final int TYPE_IMAGE         = 1;
-    private final int TYPE_SPACE         = 2;
+    private              int mType;
+    private static final int TYPE_CHAR_SEQUENCE = 0;
+    private static final int TYPE_IMAGE         = 1;
+    private static final int TYPE_SPACE         = 2;
 
     // 默认颜色
     private static final int                 COLOR_DEFAULT = Color.WHITE;

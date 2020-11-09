@@ -6,6 +6,9 @@ package dev.utils.app.logger;
  */
 final class LogConstants {
 
+    private LogConstants() {
+    }
+
     // ===============
     // = 日志配置常量 =
     // ===============
