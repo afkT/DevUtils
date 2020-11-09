@@ -11,7 +11,7 @@ import java.util.Map;
  */
 class IPreferenceHolder {
 
-    public IPreferenceHolder() {
+    protected IPreferenceHolder() {
     }
 
     // HashMap 保存持有对象

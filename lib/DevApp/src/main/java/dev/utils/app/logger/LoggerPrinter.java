@@ -696,8 +696,6 @@ final class LoggerPrinter implements IPrinter {
         // 进行换行
         logDivider(logType, tag);
 
-        // 手动进行偏移
-        String level = "";
         // 堆栈总数
         int traceCount = trace.length;
         // 获取堆栈偏移量
@@ -716,6 +714,9 @@ final class LoggerPrinter implements IPrinter {
             // 如果打印数小于等于 0, 则直接跳过
             return;
         }
+
+        // 手动进行偏移
+        StringBuilder traceLevel = new StringBuilder();
         // 遍历打印的方法数量 ( 类名、行数、操作的方法名 )
         for (int i = methodCount; i > 0; i--) {
             int stackIndex = i + stackOffset;
@@ -725,7 +726,7 @@ final class LoggerPrinter implements IPrinter {
             // 拼接中间内容、操作的类名、行数、方法名等信息
             StringBuilder builder = new StringBuilder();
             builder.append("║ ");
-            builder.append(level);
+            builder.append(traceLevel);
             builder.append(getSimpleClassName(trace[stackIndex].getClassName()));
             builder.append(".").append(trace[stackIndex].getMethodName());
             builder.append(" (");
@@ -733,7 +734,7 @@ final class LoggerPrinter implements IPrinter {
             builder.append(":");
             builder.append(trace[stackIndex].getLineNumber());
             builder.append(")");
-            level += "   ";
+            traceLevel.append("   ");
             // 打印日志信息
             finalLogPrinter(logType, tag, builder.toString());
         }
