@@ -150,7 +150,7 @@ public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
                 });
 
         TabLayoutAssist.get(binding.vidAue90Tab)
-                .setListTabs(ArrayUtils.asList(ArrayUtils.subarray(listTabs.toArray(new TabItem[0]), 0, 3)))
+                .setListTabs(ArrayUtils.asList(ArrayUtils.subArray(listTabs.toArray(new TabItem[0]), 0, 3)))
                 .setSelect(0).setTabChangeListener(new TabLayoutAssist.TabChangeListener() {
             @Override
             public void onTabChange(TabItem tabItem, int pos) {

@@ -122,7 +122,7 @@ public final class EncryptUtils {
         if (salt == null) return ConvertUtils.toHexString(encryptMD5(data));
         if (data == null) return ConvertUtils.toHexString(encryptMD5(salt));
         // 拼接数据
-        byte[] bytes = ArrayUtils.arraycopy(data, salt);
+        byte[] bytes = ArrayUtils.arrayCopy(data, salt);
         return ConvertUtils.toHexString(encryptMD5(bytes));
     }
 
@@ -944,14 +944,14 @@ public final class EncryptUtils {
                 int index = 0;
                 for (int i = 0; i < count; i++) {
                     System.arraycopy(data, index, buffer, 0, maxLen);
-                    ret = ArrayUtils.arraycopy(ret, cipher.doFinal(buffer));
+                    ret = ArrayUtils.arrayCopy(ret, cipher.doFinal(buffer));
                     index += maxLen;
                 }
                 if (index != dataLength) {
                     int restLen = dataLength - index;
                     buffer = new byte[restLen];
                     System.arraycopy(data, index, buffer, 0, restLen);
-                    ret = ArrayUtils.arraycopy(ret, cipher.doFinal(buffer));
+                    ret = ArrayUtils.arrayCopy(ret, cipher.doFinal(buffer));
                 }
                 return ret;
             } else {

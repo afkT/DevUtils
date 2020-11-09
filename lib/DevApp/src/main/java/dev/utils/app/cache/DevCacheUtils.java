@@ -86,7 +86,7 @@ final class DevCacheUtils {
         if (data != null) {
             try {
                 byte[] dateArys = createDateInfo(second).getBytes();
-                return ArrayUtils.arraycopy(dateArys, data);
+                return ArrayUtils.arrayCopy(dateArys, data);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "newByteArrayWithDateInfo");
             }
