@@ -912,7 +912,7 @@ public final class CollectionUtils {
             }
 
             // 如果集合相等, 直接跳过
-            if (collection1 == collection2) {
+            if (collection1.equals(collection2)) {
                 return true;
             }
 

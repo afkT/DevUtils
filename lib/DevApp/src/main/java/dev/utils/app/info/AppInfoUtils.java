@@ -227,9 +227,9 @@ public final class AppInfoUtils {
                 for (int i = 0, len = packList.size(); i < len; i++) {
                     PackageInfo packageInfo = packList.get(i);
                     // 获取 APP 类型
-                    AppInfoBean.AppType cAppType = AppInfoBean.getAppType(packageInfo);
+                    AppInfoBean.AppType currentAppType = AppInfoBean.getAppType(packageInfo);
                     // 判断类型
-                    if (appType == cAppType) {
+                    if (appType.equals(currentAppType)) {
                         // 添加符合条件的 APP 应用信息
                         listApps.add(new AppInfoBean(packageInfo, packageManager));
                     }
