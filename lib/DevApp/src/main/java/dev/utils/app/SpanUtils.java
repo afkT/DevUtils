@@ -121,9 +121,9 @@ public final class SpanUtils {
 
     // 内部标记应用类型
     private       int mType;
-    private final int mTypeCharSequence = 0;
-    private final int mTypeImage        = 1;
-    private final int mTypeSpace        = 2;
+    private final int TYPE_CHAR_SEQUENCE = 0;
+    private final int TYPE_IMAGE         = 1;
+    private final int TYPE_SPACE         = 2;
 
     // 默认颜色
     private static final int                 COLOR_DEFAULT = Color.WHITE;
@@ -598,7 +598,7 @@ public final class SpanUtils {
      * @return {@link SpanUtils}
      */
     public SpanUtils append(@NonNull final CharSequence text) {
-        apply(mTypeCharSequence);
+        apply(TYPE_CHAR_SEQUENCE);
         mText = text;
         return this;
     }
@@ -608,7 +608,7 @@ public final class SpanUtils {
      * @return {@link SpanUtils}
      */
     public SpanUtils appendLine() {
-        apply(mTypeCharSequence);
+        apply(TYPE_CHAR_SEQUENCE);
         mText = NEW_LINE_STR;
         return this;
     }
@@ -619,7 +619,7 @@ public final class SpanUtils {
      * @return {@link SpanUtils}
      */
     public SpanUtils appendLine(@NonNull final CharSequence text) {
-        apply(mTypeCharSequence);
+        apply(TYPE_CHAR_SEQUENCE);
         mText = text + NEW_LINE_STR;
         return this;
     }
@@ -648,7 +648,7 @@ public final class SpanUtils {
      * @return {@link SpanUtils}
      */
     public SpanUtils appendImage(@NonNull final Bitmap bitmap, @Align final int align) {
-        apply(mTypeImage);
+        apply(TYPE_IMAGE);
         this.imageBitmap = bitmap;
         this.alignImage = align;
         return this;
@@ -676,7 +676,7 @@ public final class SpanUtils {
      * @return {@link SpanUtils}
      */
     public SpanUtils appendImage(@NonNull final Drawable drawable, @Align final int align) {
-        apply(mTypeImage);
+        apply(TYPE_IMAGE);
         this.imageDrawable = drawable;
         this.alignImage = align;
         return this;
@@ -704,7 +704,7 @@ public final class SpanUtils {
      * @return {@link SpanUtils}
      */
     public SpanUtils appendImage(@NonNull final Uri uri, @Align final int align) {
-        apply(mTypeImage);
+        apply(TYPE_IMAGE);
         this.imageUri = uri;
         this.alignImage = align;
         return this;
@@ -732,7 +732,7 @@ public final class SpanUtils {
      * @return {@link SpanUtils}
      */
     public SpanUtils appendImage(@DrawableRes final int resourceId, @Align final int align) {
-        apply(mTypeImage);
+        apply(TYPE_IMAGE);
         this.imageResourceId = resourceId;
         this.alignImage = align;
         return this;
@@ -756,7 +756,7 @@ public final class SpanUtils {
      * @return {@link SpanUtils}
      */
     public SpanUtils appendSpace(@IntRange(from = 0) final int size, @ColorInt final int color) {
-        apply(mTypeSpace);
+        apply(TYPE_SPACE);
         this.spaceSize = size;
         this.spaceColor = color;
         return this;
@@ -801,11 +801,11 @@ public final class SpanUtils {
      * 应用效果, 并重置配置
      */
     private void applyLast() {
-        if (mType == mTypeCharSequence) {
+        if (mType == TYPE_CHAR_SEQUENCE) {
             updateCharCharSequence();
-        } else if (mType == mTypeImage) {
+        } else if (mType == TYPE_IMAGE) {
             updateImage();
-        } else if (mType == mTypeSpace) {
+        } else if (mType == TYPE_SPACE) {
             updateSpace();
         }
         setDefault();
