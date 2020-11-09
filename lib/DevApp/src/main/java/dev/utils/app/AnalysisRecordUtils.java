@@ -653,7 +653,7 @@ public final class AnalysisRecordUtils {
          * @param fileName   文件名 ( 含后缀 )
          * @param logs       原始日志内容数组
          */
-        void callback(boolean result, final FileInfo fileInfo, final String logContent,
-                      final String filePath, final String fileName, final String... logs);
+        void callback(boolean result, FileInfo fileInfo, String logContent,
+                      String filePath, String fileName, String... logs);
     }
 }

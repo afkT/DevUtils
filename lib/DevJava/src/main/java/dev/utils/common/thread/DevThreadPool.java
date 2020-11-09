@@ -134,7 +134,7 @@ public final class DevThreadPool {
      * 获取线程数
      * @return {@link DevThreadPool#getCalcThreads()}
      */
-    public final int getThreads() {
+    public int getThreads() {
         return getCalcThreads();
     }
 
@@ -142,7 +142,7 @@ public final class DevThreadPool {
      * 获取线程数
      * @return 自动计算 CPU 核心数
      */
-    public final int getCalcThreads() {
+    public int getCalcThreads() {
         // 获取 CPU 核心数
         int cpuNumber = Runtime.getRuntime().availableProcessors();
         // 如果小于等于 5, 则返回 5

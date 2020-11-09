@@ -306,6 +306,6 @@ public final class DevLogger {
          * @param tag     打印 Tag
          * @param message 日志信息
          */
-        void printLog(final int logType, final String tag, final String message);
+        void printLog(int logType, String tag, String message);
     }
 }
