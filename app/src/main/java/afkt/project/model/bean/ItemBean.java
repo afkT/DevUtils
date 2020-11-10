@@ -32,7 +32,7 @@ public class ItemBean {
         item.subtitle = ChineseUtils.randomWord(RandomUtils.getRandom(5, 10));
         item.content = ChineseUtils.randomWord(RandomUtils.getRandom(30, 60));
         item.imageUrl = String.format("https://picsum.photos/id/%s/500", RandomUtils.getRandom(1, 50));
-        item.time = System.currentTimeMillis() - RandomUtils.nextLongRange(DateUtils.MIN, DateUtils.DAY);
+        item.time = System.currentTimeMillis() - RandomUtils.nextLongRange(DateUtils.MINUTE, DateUtils.DAY);
         item.timeFormat = DateUtils.formatTime(item.time, "yyyy.MM.dd");
         return item;
     }

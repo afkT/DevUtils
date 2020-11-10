@@ -48,11 +48,11 @@ public final class DateUtils {
     // 一天 24 * 60 * 60 秒
     public static final int  DAY_S    = 86400;
     // 秒与毫秒的倍数
-    public static final long SEC      = 1000;
+    public static final long SECOND   = 1000;
     // 分与毫秒的倍数
-    public static final long MIN      = SEC * 60;
+    public static final long MINUTE   = SECOND * 60;
     // 时与毫秒的倍数
-    public static final long HOUR     = MIN * 60;
+    public static final long HOUR     = MINUTE * 60;
     // 天与毫秒的倍数
     public static final long DAY      = HOUR * 24;
     // 周与毫秒的倍数
