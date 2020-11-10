@@ -199,7 +199,7 @@ public static void refShape(ScanShapeView scanView, ScanShapeView.Shape scanShap
         // 设置特殊处理 ( 正方形边框 ) - 当 描边类型为 2 , 并且存在圆角时, 设置距离尺寸过大会出现边框圆角 + 四个角落圆角有部分透出背景情况
         scanView.setSpecialToSquare(false); // 出现的时候则设置 true, 小尺寸 (setBorderWidthToSquare, setBorderWidth) 则不会出现
         // 设置正方形扫描动画速度 ( 毫秒 )
-        scanView.setLineDurationToSquare(10l);
+        scanView.setLineDurationToSquare(10L);
         // 设置正方形扫描线条 Bitmap
         scanView.setBitmapToSquare(ResourceUtils.getBitmap(R.drawable.line_scan));
         // 设置正方形线条动画 ( 着色 ) -> 如果不使用自己的 Bitmap(setBitmapToSquare), 则可以使用默认内置的图片, 进行着色达到想要的颜色

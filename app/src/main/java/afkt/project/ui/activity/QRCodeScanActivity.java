@@ -500,7 +500,7 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
             quit.sendToTarget();
             try {
                 // 进行处理解析数据
-                mDecodeThread.join(200l);
+                mDecodeThread.join(200L);
             } catch (InterruptedException e) {
             }
             // 移除堵塞在队列的消息

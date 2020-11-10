@@ -69,7 +69,7 @@ public class TimerActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
                                         DevLogger.dTag(TAG, "每隔 2 秒触发一次, 触发次数: " + number);
                                     }
                                 }
-                            }, NOTIFY, 500l, 2000l, -1);
+                            }, NOTIFY, 500L, 2000L, -1);
                             absTimer.setMarkStr("GET");
                         }
                         if (absTimer.isRunTimer()) {

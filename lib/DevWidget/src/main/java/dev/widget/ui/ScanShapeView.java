@@ -2060,7 +2060,7 @@ public class ScanShapeView extends View {
                 break;
             case Annulus: // 环形
                 mAnimToAnnulus = ValueAnimator.ofInt(10, 20);
-                mAnimToAnnulus.setDuration(1l);
+                mAnimToAnnulus.setDuration(1L);
                 mAnimToAnnulus.setRepeatCount(ValueAnimator.INFINITE);
                 mAnimToAnnulus.addListener(new AnimatorListenerAdapter() {
                     @Override

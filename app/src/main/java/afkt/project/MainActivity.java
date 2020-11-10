@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                     // 获取误差时间
                     final long diffTime = Math.abs(curTime - time);
                     // 判断是否误差超过 10 秒
-                    if (diffTime >= 10000l) {
+                    if (diffTime >= 10000L) {
                         ToastUtils.showShort("当前时间与网络时间不一致, 误差: " + (diffTime / 1000) + "秒");
                     }
                 }
