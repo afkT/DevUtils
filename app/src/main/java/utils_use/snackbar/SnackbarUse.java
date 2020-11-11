@@ -115,7 +115,7 @@ public final class SnackbarUse {
         SnackbarUtils.with(view).setAction("撤销");
 
         // 设置 Snackbar Action Button(snackbar_action) 文案 - 支持格式化字符串
-        SnackbarUtils.with(view).setAction("撤销 - %s", "3");
+        SnackbarUtils.with(view).setAction("撤销 %s", "3");
 
         // 设置 Snackbar Action Button(snackbar_action) 文案以及点击事件
         SnackbarUtils.with(view).setAction(clickListener, R.string.app_name);
