@@ -51,7 +51,7 @@ public final class MMKVUtils {
     public static void init(final Context context) {
         // 初始化 MMKV 并设置日志级别
         String rootDir = MMKV.initialize(context, MMKVLogLevel.LevelNone);
-        DevLogger.dTag(TAG, "MMKV rootDir: " + rootDir);
+        DevLogger.dTag(TAG, "MMKV rootDir: %s", rootDir);
 
 //        // 设置打印日志级别
 //        MMKV.setLogLevel(MMKVLogLevel.LevelNone);

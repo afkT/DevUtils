@@ -26,7 +26,7 @@ public final class TimeReceiver extends BroadcastReceiver {
         try {
             String action = intent.getAction();
             // 打印当前触发的广播
-            LogPrintUtils.dTag(TAG, "onReceive Action: " + action);
+            LogPrintUtils.dTag(TAG, "onReceive Action: %s", action);
             // 判断类型
             switch (action) {
                 case Intent.ACTION_TIMEZONE_CHANGED: // 时区改变

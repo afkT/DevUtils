@@ -27,7 +27,7 @@ public final class AppStateReceiver extends BroadcastReceiver {
         try {
             String action = intent.getAction();
             // 打印当前触发的广播
-            LogPrintUtils.dTag(TAG, "onReceive Action: " + action);
+            LogPrintUtils.dTag(TAG, "onReceive Action: %s", action);
             // 被操作应用包名
             String packageName = null;
             Uri uri = intent.getData();

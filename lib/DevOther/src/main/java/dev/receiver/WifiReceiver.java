@@ -73,7 +73,7 @@ public final class WifiReceiver extends BroadcastReceiver {
             // 触发意图
             String action = intent.getAction();
             // 打印当前触发的广播
-            LogPrintUtils.dTag(TAG, "onReceive Action: " + action);
+            LogPrintUtils.dTag(TAG, "onReceive Action: %s", action);
             // 判断类型
             switch (action) {
                 case WifiManager.SCAN_RESULTS_AVAILABLE_ACTION: // 当调用 WifiManager 的 startScan() 方法, 扫描结束后, 系统会发出改 Action 广播

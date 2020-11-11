@@ -44,16 +44,20 @@ public class HttpLoggingInterceptor implements Interceptor {
 
         Connection connection = chain.connection();
         Protocol protocol = connection != null ? connection.protocol() : Protocol.HTTP_1_1;
-        String requestStartMessage = request.method() + " " + protocol;
+
+        StringBuilder requestStartMessage = new StringBuilder();
+        requestStartMessage.append(request.method()).append(" ").append(protocol);
         if (hasRequestBody) {
-            requestStartMessage += " (" + requestBody.contentLength() + " - byte body)";
+            requestStartMessage.append(" (")
+                    .append(requestBody.contentLength())
+                    .append(" - byte body)");
         }
 
         // ===========
         // = 请求信息 =
         // ===========
 
-        captureEntity.requestMethod = requestStartMessage;
+        captureEntity.requestMethod = requestStartMessage.toString();
         captureEntity.requestUrl = request.url().toString();
 
         if (hasRequestBody) {
@@ -86,11 +90,17 @@ public class HttpLoggingInterceptor implements Interceptor {
                             captureEntity.requestBody.put(formBody.name(i), formBody.value(i));
                         }
                     }
-                    captureEntity.requestBody.put("body length",
-                            request.method() + " (" + requestBody.contentLength() + "- byte body)");
+                    StringBuilder bodyBuilder = new StringBuilder();
+                    bodyBuilder.append(request.method())
+                            .append(" (").append(requestBody.contentLength())
+                            .append("- byte body)");
+                    captureEntity.requestBody.put("body length", bodyBuilder.toString());
                 } else {
-                    captureEntity.requestBody.put("body length",
-                            request.method() + " (binary " + requestBody.contentLength() + "- byte body omitted)");
+                    StringBuilder bodyBuilder = new StringBuilder();
+                    bodyBuilder.append(request.method())
+                            .append(" (binary ").append(requestBody.contentLength())
+                            .append("- byte body omitted)");
+                    captureEntity.requestBody.put("body length", bodyBuilder.toString());
                 }
             }
         }

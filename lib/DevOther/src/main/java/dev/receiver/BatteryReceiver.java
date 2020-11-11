@@ -26,7 +26,7 @@ public final class BatteryReceiver extends BroadcastReceiver {
         try {
             String action = intent.getAction();
             // 打印当前触发的广播
-            LogPrintUtils.dTag(TAG, "onReceive Action: " + action);
+            LogPrintUtils.dTag(TAG, "onReceive Action: %s", action);
             // 获取当前电量, 范围是 0-100
             int level = intent.getIntExtra("level", 0);
             // 判断类型
