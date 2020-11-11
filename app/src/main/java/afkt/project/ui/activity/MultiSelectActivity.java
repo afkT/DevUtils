@@ -62,7 +62,7 @@ public class MultiSelectActivity extends BaseActivity<BaseViewRecyclerviewBindin
                     @Override
                     public void onClickSelect(int pos, boolean now) {
                         CommodityEvaluateBean commodityEvaluateBean = multiSelectAdapter.getData().get(pos);
-                        DevLogger.eTag(TAG, "新状态: " + now + ", 商品名: " + commodityEvaluateBean.commodityName);
+                        DevLogger.eTag(TAG, "新状态: %s, 商品名: %s", now, commodityEvaluateBean.commodityName);
                     }
                 });
         binding.vidBvrRecy.setAdapter(multiSelectAdapter);

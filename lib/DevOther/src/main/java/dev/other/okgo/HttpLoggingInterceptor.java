@@ -50,7 +50,7 @@ public class HttpLoggingInterceptor implements Interceptor {
         if (hasRequestBody) {
             requestStartMessage.append(" (")
                     .append(requestBody.contentLength())
-                    .append(" - byte body)");
+                    .append(" byte body)");
         }
 
         // ===========
@@ -151,7 +151,7 @@ public class HttpLoggingInterceptor implements Interceptor {
             if (contentLength != 0) {
                 captureEntity.responseBody = buffer.clone().readString(charset);
             }
-            captureEntity.responseStatus.put("body length", buffer.size() + " - byte body");
+            captureEntity.responseStatus.put("body length", buffer.size() + " byte body");
         }
 
         _finalPrintLog(captureEntity);

@@ -575,7 +575,7 @@ public final class AppUtils {
             if (signature == null || signature.length == 0) return null;
             return StringUtils.colonSplit(ConvertUtils.toHexString(EncryptUtils.hashTemplate(signature[0].toByteArray(), algorithm)));
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAppSignatureHash - packageName: " + packageName + ", algorithm: " + algorithm);
+            LogPrintUtils.eTag(TAG, e, "getAppSignatureHash - packageName: %s, algorithm: %s", packageName, algorithm);
             return null;
         }
     }

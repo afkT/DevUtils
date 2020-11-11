@@ -27,7 +27,7 @@ public final class CacheUse {
         // 初始化
         CacheVo cacheVo = new CacheVo("测试持久化");
         // 打印信息
-        LogPrintUtils.dTag(TAG, "保存前: " + cacheVo.toString());
+        LogPrintUtils.dTag(TAG, "保存前: %s", cacheVo.toString());
         // 保存数据
         DevCache.newCache().put("ctv", cacheVo);
         // 重新获取

@@ -323,10 +323,10 @@ public final class ClickUtils {
             long diffTime = curTime - mLastClickTime;
             // 判断时间是否超过
             if (mLastTagId == tagId && mLastClickTime > 0 && diffTime < intervalTime) {
-                LogPrintUtils.dTag(TAG, "isFastDoubleClick 无效点击 tagId: " + tagId + ", intervalTime: " + intervalTime);
+                LogPrintUtils.dTag(TAG, "isFastDoubleClick 无效点击 tagId: %s, intervalTime: %s", tagId, intervalTime);
                 return true;
             }
-            LogPrintUtils.dTag(TAG, "isFastDoubleClick 有效点击 tagId: " + tagId + ", intervalTime: " + intervalTime);
+            LogPrintUtils.dTag(TAG, "isFastDoubleClick 有效点击 tagId: %s, intervalTime: %s", tagId, intervalTime);
             mLastTagId = tagId;
             mLastClickTime = curTime;
             return false;
@@ -362,10 +362,10 @@ public final class ClickUtils {
             long diffTime = curTime - lastTime;
             // 判断时间是否超过
             if (lastTime > 0 && diffTime < intervalTime) {
-                LogPrintUtils.dTag(TAG, "isFastDoubleClick 无效点击 obj: " + object + ", intervalTime: " + intervalTime);
+                LogPrintUtils.dTag(TAG, "isFastDoubleClick 无效点击 obj: %s, intervalTime: %s", object, intervalTime);
                 return true;
             }
-            LogPrintUtils.dTag(TAG, "isFastDoubleClick 有效点击 obj: " + object + ", intervalTime: " + intervalTime);
+            LogPrintUtils.dTag(TAG, "isFastDoubleClick 有效点击 obj: %s, intervalTime: %s", object, intervalTime);
             // 保存上次点击时间
             mRecordMaps.put(tag, curTime);
             return false;
@@ -478,7 +478,7 @@ public final class ClickUtils {
     public static final View.OnClickListener EMPTY_CLICK = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            LogPrintUtils.dTag(TAG, "EMPTY_CLICK viewId: " + view.getId());
+            LogPrintUtils.dTag(TAG, "EMPTY_CLICK viewId: %s", view.getId());
         }
     };
 
