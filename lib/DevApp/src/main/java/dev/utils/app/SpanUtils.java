@@ -58,6 +58,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 
 import dev.DevUtils;
+import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.CloseUtils;
 
@@ -110,14 +111,12 @@ public final class SpanUtils {
     public @interface Align {
     }
 
-    // 换行字符串
-    private static final String                             NEW_LINE_STR = System.getProperty("line.separator");
     // 内部 SpannableString 实现类
-    private              SerializableSpannableStringBuilder mBuilder;
+    private SerializableSpannableStringBuilder mBuilder;
     // TextView create setText
-    private              TextView                           mTextView;
+    private TextView                           mTextView;
     // 中转文本
-    private              CharSequence                       mText;
+    private CharSequence                       mText;
 
     // 内部标记应用类型
     private              int mType;
@@ -609,7 +608,7 @@ public final class SpanUtils {
      */
     public SpanUtils appendLine() {
         apply(TYPE_CHAR_SEQUENCE);
-        mText = NEW_LINE_STR;
+        mText = DevFinal.NEW_LINE_STR;
         return this;
     }
 
@@ -620,7 +619,7 @@ public final class SpanUtils {
      */
     public SpanUtils appendLine(@NonNull final CharSequence text) {
         apply(TYPE_CHAR_SEQUENCE);
-        mText = text + NEW_LINE_STR;
+        mText = text + DevFinal.NEW_LINE_STR;
         return this;
     }
 

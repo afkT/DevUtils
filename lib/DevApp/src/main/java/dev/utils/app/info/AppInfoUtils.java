@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.common.FileUtils;
@@ -37,9 +38,6 @@ public final class AppInfoUtils {
 
     // 日志 TAG
     private static final String TAG = AppInfoUtils.class.getSimpleName();
-
-    // 换行字符串
-    private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
     /**
      * 通过 APK 路径 初始化 PackageInfo
@@ -307,7 +305,7 @@ public final class AppInfoUtils {
                 String usesPermissionName = usesPermissionsArray[i];
                 // 拼接日志
                 builder.append("usesPermissionName = ").append(usesPermissionName);
-                builder.append(NEW_LINE_STR);
+                builder.append(DevFinal.NEW_LINE_STR);
 
                 // 通过 usesPermissionName 获取该权限的详细信息
                 PermissionInfo permissionInfo = packageManager.getPermissionInfo(usesPermissionName, 0);
@@ -316,20 +314,20 @@ public final class AppInfoUtils {
                 PermissionGroupInfo permissionGroupInfo = packageManager.getPermissionGroupInfo(permissionInfo.group, 0);
                 // 拼接日志
                 builder.append("permissionGroup = ").append(permissionGroupInfo.loadLabel(packageManager).toString());
-                builder.append(NEW_LINE_STR);
+                builder.append(DevFinal.NEW_LINE_STR);
 
                 // 获取该权限的标签信息, 比如: 完全的网络访问权限
                 String permissionLabel = permissionInfo.loadLabel(packageManager).toString();
                 // 拼接日志
                 builder.append("permissionLabel = ").append(permissionLabel);
-                builder.append(NEW_LINE_STR);
+                builder.append(DevFinal.NEW_LINE_STR);
 
                 // 获取该权限的详细描述信息, 比如: 允许该应用创建网络套接字和使用自定义网络协议
                 // 浏览器和其他某些应用提供了向互联网发送数据的途径, 因此应用无需该权限即可向互联网发送数据
                 String permissionDescription = permissionInfo.loadDescription(packageManager).toString();
                 // 拼接日志
                 builder.append("permissionDescription = ").append(permissionDescription);
-                builder.append(NEW_LINE_STR);
+                builder.append(DevFinal.NEW_LINE_STR);
             }
             // 打印日志
             LogPrintUtils.dTag(TAG, builder.toString());

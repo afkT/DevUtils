@@ -2,6 +2,8 @@ package dev.utils.common;
 
 import java.io.File;
 
+import dev.utils.DevFinal;
+
 /**
  * detail: 文件记录工具类
  * @author Ttt
@@ -11,18 +13,10 @@ public final class FileRecordUtils {
     private FileRecordUtils() {
     }
 
-    // ===========
-    // = 配置信息 =
-    // ===========
-
     // 插入信息 ( 如设备信息等 )
-    private static       String   INSERT_INFO     = null;
+    private static String   INSERT_INFO     = null;
     // 文件记录回调
-    private static       CallBack RECORD_CALLBACK = null;
-    // 换行字符串
-    private static final String   NEW_LINE_STR    = System.getProperty("line.separator");
-    // 换行字符串 ( 两行 )
-    private static final String   NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
+    private static CallBack RECORD_CALLBACK = null;
 
     // ===============
     // = 对外公开方法 =
@@ -161,35 +155,35 @@ public final class FileRecordUtils {
         // 日志拼接
         StringBuilder builder = new StringBuilder();
         // 保存时间
-        builder.append(NEW_LINE_STR_X2);
+        builder.append(DevFinal.NEW_LINE_STR_X2);
         builder.append("date: ").append(DateUtils.getDateNow());
-        builder.append(NEW_LINE_STR_X2);
+        builder.append(DevFinal.NEW_LINE_STR_X2);
         builder.append("===========================");
 
         // 如果存在顶部内容, 则进行添加
         if (!StringUtils.isEmpty(head)) {
-            builder.append(NEW_LINE_STR_X2);
+            builder.append(DevFinal.NEW_LINE_STR_X2);
             builder.append(head);
-            builder.append(NEW_LINE_STR_X2);
+            builder.append(DevFinal.NEW_LINE_STR_X2);
             builder.append("===========================");
         }
         // 是否需要插入数据
         if (printInsertInfo && !StringUtils.isEmpty(INSERT_INFO)) {
-            builder.append(NEW_LINE_STR_X2);
+            builder.append(DevFinal.NEW_LINE_STR_X2);
             builder.append(INSERT_INFO);
-            builder.append(NEW_LINE_STR_X2);
+            builder.append(DevFinal.NEW_LINE_STR_X2);
             builder.append("===========================");
         }
         // 保存日志信息
-        builder.append(NEW_LINE_STR_X2);
+        builder.append(DevFinal.NEW_LINE_STR_X2);
         builder.append(log);
-        builder.append(NEW_LINE_STR_X2);
+        builder.append(DevFinal.NEW_LINE_STR_X2);
         // 如果存在顶部内容, 则进行添加
         if (!StringUtils.isEmpty(bottom)) {
             builder.append("===========================");
-            builder.append(NEW_LINE_STR_X2);
+            builder.append(DevFinal.NEW_LINE_STR_X2);
             builder.append(bottom);
-            builder.append(NEW_LINE_STR_X2);
+            builder.append(DevFinal.NEW_LINE_STR_X2);
         }
         File file = FileUtils.getFile(filePath, fileName);
         String content = builder.toString();

@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -67,9 +68,6 @@ public final class DeviceUtils {
 
     // 日志 TAG
     private static final String TAG = DeviceUtils.class.getSimpleName();
-
-    // 换行字符串
-    private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
     /**
      * 获取设备信息
@@ -138,7 +136,7 @@ public final class DeviceUtils {
                 builder.append(rnKey);
                 builder.append(" = ");
                 builder.append(rnValue);
-                builder.append(NEW_LINE_STR);
+                builder.append(DevFinal.NEW_LINE_STR);
             }
             return builder.toString();
         } catch (Exception e) {

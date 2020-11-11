@@ -19,6 +19,7 @@ import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.utils.DevFinal;
 import dev.utils.JCLogUtils;
 
 /**
@@ -33,12 +34,10 @@ public final class FileIOUtils {
     // 日志 TAG
     private static final String TAG = FileIOUtils.class.getSimpleName();
 
-    // 换行符
-    private static final String NEW_LINE_STR = System.getProperty("line.separator");
     // 缓存大小
-    private static       int    sBufferSize  = 8192;
+    private static      int sBufferSize = 8192;
     // 无数据读取
-    public static final  int    EOF          = -1;
+    public static final int EOF         = -1;
 
     /**
      * 设置缓冲区的大小, 默认大小等于 8192 字节
@@ -560,7 +559,7 @@ public final class FileIOUtils {
             if ((line = br.readLine()) != null) {
                 builder.append(line);
                 while ((line = br.readLine()) != null) {
-                    builder.append(NEW_LINE_STR).append(line);
+                    builder.append(DevFinal.NEW_LINE_STR).append(line);
                 }
             }
             return builder.toString();

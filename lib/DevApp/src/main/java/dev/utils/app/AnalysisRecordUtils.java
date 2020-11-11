@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.DateUtils;
 import dev.utils.common.FileUtils;
@@ -45,19 +46,15 @@ public final class AnalysisRecordUtils {
     // ===========
 
     // APP 版本 ( 如 1.0.01) 显示给用户看的
-    private static       String              APP_VERSION_NAME = "";
+    private static String              APP_VERSION_NAME = "";
     // android:versionCode 整数值, 代表应用程序代码的相对版本
-    private static       String              APP_VERSION_CODE = "";
+    private static String              APP_VERSION_CODE = "";
     // 应用包名
-    private static       String              PACKAGE_NAME     = "";
+    private static String              PACKAGE_NAME     = "";
     // 设备信息
-    private static       String              DEVICE_INFO_STR  = null;
+    private static String              DEVICE_INFO_STR  = null;
     // 设备信息存储 Map
-    private static       Map<String, String> DEVICE_INFO_MAPS = new HashMap<>();
-    // 换行字符串
-    private static final String              NEW_LINE_STR     = System.getProperty("line.separator");
-    // 换行字符串 ( 两行 )
-    private static final String              NEW_LINE_STR_X2  = NEW_LINE_STR + NEW_LINE_STR;
+    private static Map<String, String> DEVICE_INFO_MAPS = new HashMap<>();
 
     /**
      * 初始化操作 ( 内部已调用 )
@@ -236,46 +233,46 @@ public final class AnalysisRecordUtils {
             } else {
                 // = 首次则保存设备、APP 信息 =
                 StringBuilder builder = new StringBuilder();
-                builder.append(NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
                 builder.append("[设备信息]");
-                builder.append(NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
                 builder.append("===========================");
-                builder.append(NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
                 builder.append(handlerDeviceInfo("failed to get device information"));
-                builder.append(NEW_LINE_STR);
+                builder.append(DevFinal.NEW_LINE_STR);
                 builder.append("===========================");
-                builder.append(NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
 
-                builder.append(NEW_LINE_STR_X2);
-                builder.append(NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
                 builder.append("[版本信息]");
-                builder.append(NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
                 builder.append("===========================");
-                builder.append(NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
                 builder.append("versionName: ").append(APP_VERSION_NAME);
-                builder.append(NEW_LINE_STR);
+                builder.append(DevFinal.NEW_LINE_STR);
                 builder.append("versionCode: ").append(APP_VERSION_CODE);
-                builder.append(NEW_LINE_STR);
+                builder.append(DevFinal.NEW_LINE_STR);
                 builder.append("package: ").append(PACKAGE_NAME);
-                builder.append(NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
                 builder.append("===========================");
-                builder.append(NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
 
-                builder.append(NEW_LINE_STR_X2);
-                builder.append(NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
                 builder.append("[文件信息]");
-                builder.append(NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
                 builder.append("===========================");
-                builder.append(NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
                 builder.append(fileHint);
-                builder.append(NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
                 builder.append("===========================");
-                builder.append(NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
 
-                builder.append(NEW_LINE_STR_X2);
-                builder.append(NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
                 builder.append("[日志内容]");
-                builder.append(NEW_LINE_STR_X2);
+                builder.append(DevFinal.NEW_LINE_STR_X2);
                 builder.append("===========================");
                 // 创建文件夹, 并且进行处理
                 FileUtils.saveFile(file, StringUtils.getBytes(builder.toString()));
@@ -306,8 +303,8 @@ public final class AnalysisRecordUtils {
         // =
         StringBuilder builder = new StringBuilder();
         // 增加换行
-        builder.append(NEW_LINE_STR);
-        builder.append(NEW_LINE_STR);
+        builder.append(DevFinal.NEW_LINE_STR);
+        builder.append(DevFinal.NEW_LINE_STR);
         // 获取保存时间
         builder.append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         // 追加边距

@@ -16,6 +16,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import dev.utils.DevFinal;
+
 /**
  * detail: 日志输出类 ( 处理方法 )
  * @author Ttt
@@ -26,8 +28,6 @@ final class LoggerPrinter implements IPrinter {
     private static       LogConfig              LOG_CONFIG        = null;
     // 每个线程的日志配置信息
     private static final ThreadLocal<LogConfig> LOCAL_LOG_CONFIGS = new ThreadLocal<>();
-    // 空对象字符串
-    private static final String                 NULL_STR          = "null";
 
     // ==================================
     // = 实现 IPrinter 接口, 对外公开方法 =
@@ -217,7 +217,7 @@ final class LoggerPrinter implements IPrinter {
                 logHandle(logConfig, tag, Log.DEBUG, "json content format error");
             }
         } catch (Exception e) {
-            String errorInfo = NULL_STR;
+            String errorInfo = DevFinal.NULL_STR;
             if (e != null) {
                 Throwable throwable = e.getCause();
                 if (throwable != null) {
@@ -265,7 +265,7 @@ final class LoggerPrinter implements IPrinter {
             // 打印信息
             logHandle(logConfig, tag, Log.DEBUG, message);
         } catch (Exception e) {
-            String errorInfo = NULL_STR;
+            String errorInfo = DevFinal.NULL_STR;
             if (e != null) {
                 Throwable throwable = e.getCause();
                 if (throwable != null) {
@@ -425,7 +425,7 @@ final class LoggerPrinter implements IPrinter {
                 logHandle(logConfig, tag, Log.DEBUG, "json content format error");
             }
         } catch (Exception e) {
-            String errorInfo = NULL_STR;
+            String errorInfo = DevFinal.NULL_STR;
             if (e != null) {
                 Throwable throwable = e.getCause();
                 if (throwable != null) {
@@ -472,7 +472,7 @@ final class LoggerPrinter implements IPrinter {
             // 打印信息
             logHandle(logConfig, tag, Log.DEBUG, message);
         } catch (Exception e) {
-            String errorInfo = NULL_STR;
+            String errorInfo = DevFinal.NULL_STR;
             if (e != null) {
                 Throwable throwable = e.getCause();
                 if (throwable != null) {
@@ -774,7 +774,7 @@ final class LoggerPrinter implements IPrinter {
      * @param msg     日志信息
      */
     private void logContent(final int logType, final String tag, final String msg) {
-        String[] lines = msg.split(System.getProperty("line.separator"));
+        String[] lines = msg.split(DevFinal.NEW_LINE_STR);
         for (String line : lines) {
             finalLogPrinter(logType, tag, LogConstants.HORIZONTAL_DOUBLE_LINE + " " + line);
         }

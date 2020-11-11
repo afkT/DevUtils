@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 
+import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.CloseUtils;
 
@@ -21,9 +22,7 @@ public final class ShellUtils {
     private static final String TAG = ShellUtils.class.getSimpleName();
 
     // 操作成功状态码
-    private static final int    SUCCESS      = 0;
-    // 换行符
-    private static final String NEW_LINE_STR = System.getProperty("line.separator");
+    private static final int SUCCESS = 0;
 
     /**
      * 执行 shell 命令
@@ -100,10 +99,10 @@ public final class ShellUtils {
             for (String command : commands) {
                 if (command == null) continue;
                 dos.write(command.getBytes());
-                dos.writeBytes(NEW_LINE_STR);
+                dos.writeBytes(DevFinal.NEW_LINE_STR);
                 dos.flush();
             }
-            dos.writeBytes("exit" + NEW_LINE_STR);
+            dos.writeBytes("exit" + DevFinal.NEW_LINE_STR);
             dos.flush();
             // 为了避免 Process.waitFor() 导致主线程堵塞问题, 最好读取信息
             if (isNeedResultMsg) { // 如果程序不断在向输出流和错误流写数据, 而 JVM 不读取的话, 当缓冲区满之后将无法继续写入数据, 最终造成阻塞在 waitFor() 这里
@@ -140,7 +139,7 @@ public final class ShellUtils {
             if ((str = br.readLine()) != null) {
                 builder.append(str);
                 while ((str = br.readLine()) != null) {
-                    builder.append(NEW_LINE_STR).append(str);
+                    builder.append(DevFinal.NEW_LINE_STR).append(str);
                 }
             }
             return builder.toString();

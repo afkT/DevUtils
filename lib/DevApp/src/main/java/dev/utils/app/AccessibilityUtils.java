@@ -12,6 +12,7 @@ import androidx.annotation.RequiresApi;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -35,10 +36,8 @@ public final class AccessibilityUtils {
     // 日志 TAG
     private static final String TAG = AccessibilityUtils.class.getSimpleName();
 
-    // 换行字符串
-    private static final String               NEW_LINE_STR = System.getProperty("line.separator");
     // AccessibilityService 对象
-    private static       AccessibilityService sService     = null;
+    private static AccessibilityService sService = null;
 
     /**
      * 获取 AccessibilityService 对象
@@ -137,20 +136,20 @@ public final class AccessibilityUtils {
 
         StringBuilder builder = new StringBuilder();
         builder.append("=========================");
-        builder.append(NEW_LINE_STR);
+        builder.append(DevFinal.NEW_LINE_STR);
 
         int eventType = event.getEventType(); // 事件类型
         builder.append("packageName: ").append(event.getPackageName()); // 响应事件的应用包名
-        builder.append(NEW_LINE_STR);
+        builder.append(DevFinal.NEW_LINE_STR);
 
         builder.append("source: ").append(event.getSource()); // 事件源信息
-        builder.append(NEW_LINE_STR);
+        builder.append(DevFinal.NEW_LINE_STR);
 
         builder.append("source class: ").append(event.getClassName()); // 事件源的类名, 如 android.widget.TextView
-        builder.append(NEW_LINE_STR);
+        builder.append(DevFinal.NEW_LINE_STR);
 
         builder.append("event type(int): ").append(eventType);
-        builder.append(NEW_LINE_STR);
+        builder.append(DevFinal.NEW_LINE_STR);
 
         switch (eventType) {
             case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED:// 通知栏事件
@@ -184,12 +183,12 @@ public final class AccessibilityUtils {
                 builder.append("event type: TYPE_VIEW_TEXT_SELECTION_CHANGED");
                 break;
         }
-        builder.append(NEW_LINE_STR);
+        builder.append(DevFinal.NEW_LINE_STR);
 
         for (CharSequence txt : event.getText()) {
             // 输出当前事件包含的文本信息
             builder.append("text: ").append(txt);
-            builder.append(NEW_LINE_STR);
+            builder.append(DevFinal.NEW_LINE_STR);
         }
         builder.append("=========================");
 
