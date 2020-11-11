@@ -66,69 +66,82 @@ public final class DevFinal {
     // = 其他常用字段 =
     // ===============
 
-    public static final String ID       = "id";
-    public static final String UUID     = "uuid";
-    public static final String DATA     = "data";
-    public static final String MESSAGE  = "message";
-    public static final String CODE     = "code";
-    public static final String TITLE    = "title";
-    public static final String OBJECT   = "object";
-    public static final String PARAMS   = "params";
-    public static final String TYPE     = "type";
-    public static final String PAGE     = "page";
-    public static final String SIZE     = "size";
-    public static final String COUNT    = "count";
-    public static final String URL      = "url";
-    public static final String TIME     = "time";
-    public static final String DATE     = "date";
-    public static final String KEY      = "key";
-    public static final String VALUE    = "value";
-    public static final String CLIENT   = "client";
-    public static final String SOURCE   = "source";
-    public static final String CONFIG   = "config";
-    public static final String FLAG     = "flag";
-    public static final String RESULT   = "result";
-    public static final String SUCCESS  = "success";
-    public static final String FAIL     = "fail";
-    public static final String ERROR    = "error";
-    public static final String METHOD   = "method";
-    public static final String TOKEN    = "token";
-    public static final String TEXT     = "text";
-    public static final String CONTENT  = "content";
-    public static final String IMAGE    = "image";
-    public static final String VIDEO    = "video";
-    public static final String AUDIO    = "audio";
-    public static final String LIST     = "list";
-    public static final String MAP      = "map";
-    public static final String ARRAY    = "array";
-    public static final String GET      = "get";
-    public static final String SET      = "set";
-    public static final String ITEM     = "item";
-    public static final String CHECK    = "check";
-    public static final String STATE    = "state";
-    public static final String HASH     = "hash";
-    public static final String HEIGHT   = "height";
-    public static final String WEIGHT   = "weight";
-    public static final String CHANNEL  = "channel";
-    public static final String VERSION  = "version";
-    public static final String REMARK   = "remark";
-    public static final String PATH     = "path";
-    public static final String FILE     = "file";
-    public static final String INTENT   = "intent";
+    public static final String FILE   = "file";
+    public static final String PATH   = "path";
+    public static final String SOURCE = "source";
+    public static final String AUDIO  = "audio";
+    public static final String IMAGE  = "image";
+    public static final String VIDEO  = "video";
+    public static final String HEIGHT = "height";
+    public static final String WEIGHT = "weight";
+    public static final String SCREEN = "screen";
+
     public static final String ACTIVITY = "activity";
-    public static final String SORT     = "sort";
-    public static final String TASK     = "task";
-    public static final String USER     = "user";
+    public static final String VERSION  = "version";
+    public static final String INTENT   = "intent";
+
     public static final String ACCOUNT  = "account";
     public static final String PASSWORD = "password";
+    public static final String USER     = "user";
     public static final String NAME     = "name";
-    public static final String KEYWORD  = "keyword";
-    public static final String LIMIT    = "limit";
-    public static final String MAX      = "max";
-    public static final String MIN      = "min";
-    public static final String TAG      = "tag";
-    public static final String UNKNOWN  = "unknown";
-    public static final String SCREEN   = "screen";
+
+    public static final String KEYWORD = "keyword";
+    public static final String KEY     = "key";
+    public static final String VALUE   = "value";
+    public static final String LIMIT   = "limit";
+    public static final String SORT    = "sort";
+
+    public static final String MAX   = "max";
+    public static final String MIN   = "min";
+    public static final String SIZE  = "size";
+    public static final String PAGE  = "page";
+    public static final String COUNT = "count";
+
+    public static final String ARRAY = "array";
+    public static final String LIST  = "list";
+    public static final String MAP   = "map";
+    public static final String SET   = "set";
+    public static final String GET   = "get";
+
+    public static final String TAG     = "tag";
+    public static final String ID      = "id";
+    public static final String UUID    = "uuid";
+    public static final String FLAG    = "flag";
+    public static final String HASH    = "hash";
+    public static final String MESSAGE = "message";
+    public static final String CHECK   = "check";
+    public static final String OBJECT  = "object";
+
+    public static final String SUCCESS = "success";
+    public static final String FAIL    = "fail";
+    public static final String ERROR   = "error";
+
+    public static final String URL    = "url";
+    public static final String CODE   = "code";
+    public static final String DATA   = "data";
+    public static final String DATE   = "date";
+    public static final String TIME   = "time";
+    public static final String RESULT = "result";
+    public static final String TOKEN  = "token";
+    public static final String STATE  = "state";
+    public static final String PARAMS = "params";
+    public static final String TYPE   = "type";
+
+    public static final String XML     = "xml";
+    public static final String JSON    = "json";
+    public static final String TEXT    = "text";
+    public static final String TITLE   = "title";
+    public static final String CONTENT = "content";
+
+    public static final String TASK   = "task";
+    public static final String CONFIG = "config";
+
+    public static final String ITEM    = "item";
+    public static final String METHOD  = "method";
+    public static final String REMARK  = "remark";
+    public static final String CHANNEL = "channel";
+    public static final String CLIENT  = "client";
+    public static final String UNKNOWN = "unknown";
 
     // ===========
     // = 常量数组 =
@@ -180,11 +193,6 @@ public final class DevFinal {
     // 生肖数组
     public static final String[] ZODIAC = {
             "猴", "鸡", "狗", "猪", "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊"
-    };
-
-    // 星座截止天数
-    public static final int[] CONSTELLATION_DAY = {
-            20, 19, 21, 21, 21, 22, 23, 23, 23, 24, 23, 22
     };
 
     // 星座对应日期
