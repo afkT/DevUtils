@@ -229,7 +229,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
                 }
             });
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "playPrepareAssets - " + playUri);
+            LogPrintUtils.eTag(TAG, e, "playPrepareAssets %s", playUri);
             // 销毁资源
             destroyMedia();
         }

@@ -98,7 +98,7 @@ public final class ADBUtils {
                 String[] arrays = result.successMsg.split(DevFinal.NEW_LINE_STR);
                 return Arrays.asList(arrays);
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getAppList type: " + typeStr);
+                LogPrintUtils.eTag(TAG, e, "getAppList type: %s", typeStr);
             }
         }
         return null;
@@ -486,7 +486,7 @@ public final class ADBUtils {
                         }
                     }
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "getActivityToLauncher " + packageName);
+                    LogPrintUtils.eTag(TAG, e, "getActivityToLauncher %s", packageName);
                 }
             }
         }

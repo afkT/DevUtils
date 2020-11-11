@@ -230,7 +230,7 @@ public final class ContentResolverUtils {
                 // 返回外部存储 ( 公开目录 ) SDCard 文件地址获取对应的 Uri content://
                 return MediaStore.Files.getContentUri(result[1], ConvertUtils.toLong(result[0]));
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getMediaUri - " + filePath);
+                LogPrintUtils.eTag(TAG, e, "getMediaUri %s", filePath);
             }
         }
         return null;
@@ -294,7 +294,7 @@ public final class ContentResolverUtils {
                 return mediaQuery.getResult(uri, filePath, cursor);
             }
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "mediaQuery - " + filePath);
+            LogPrintUtils.eTag(TAG, e, "mediaQuery %s", filePath);
         } finally {
             CloseUtils.closeIOQuietly(cursor);
         }

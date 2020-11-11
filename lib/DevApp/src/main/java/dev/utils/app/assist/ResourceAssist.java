@@ -405,7 +405,7 @@ public final class ResourceAssist {
         try {
             return mResource.getIdentifier(resName, defType, mPackageName);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getIdentifier - " + resName + " " + defType + ": " + mPackageName);
+            LogPrintUtils.eTag(TAG, e, "getIdentifier - %s %s: %s", resName, defType, mPackageName);
         }
         return 0;
     }

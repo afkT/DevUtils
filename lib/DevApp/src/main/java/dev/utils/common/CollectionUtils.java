@@ -174,13 +174,13 @@ public final class CollectionUtils {
                 try {
                     return (T) ((List) collection).get(pos);
                 } catch (Exception e) {
-                    JCLogUtils.eTag(TAG, e, "get - " + pos);
+                    JCLogUtils.eTag(TAG, e, "get - %s", pos);
                 }
             } else {
                 try {
                     return (T) collection.toArray()[pos];
                 } catch (Exception e) {
-                    JCLogUtils.eTag(TAG, e, "get - " + pos);
+                    JCLogUtils.eTag(TAG, e, "get - %s", pos);
                 }
             }
         }

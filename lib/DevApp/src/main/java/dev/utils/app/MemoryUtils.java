@@ -180,7 +180,7 @@ public final class MemoryUtils {
             // 获取系统总内存, 单位是 KB, 乘以 1024 转换为 Byte
             return Long.valueOf(array[1]).longValue() * 1024;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getMemInfoType - " + type);
+            LogPrintUtils.eTag(TAG, e, "getMemInfoType %s", type);
         } finally {
             CloseUtils.closeIOQuietly(br);
         }

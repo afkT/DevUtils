@@ -1051,7 +1051,7 @@ public final class PathUtils {
             try {
                 return DevUtils.getContext().getDatabasePath(name);
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "getAppDbFile - " + name);
+                LogPrintUtils.eTag(TAG, e, "getAppDbFile %s", name);
             }
             return null;
         }
