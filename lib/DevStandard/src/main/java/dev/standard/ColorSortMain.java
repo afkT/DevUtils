@@ -10,6 +10,7 @@ import java.util.List;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import dev.utils.DevFinal;
 import dev.utils.common.CollectionUtils;
 import dev.utils.common.ColorUtils;
 import dev.utils.common.FileUtils;
@@ -65,13 +66,13 @@ public class ColorSortMain {
         public static String createXML(final List<ColorUtils.ColorInfo> lists) {
             StringBuilder builder = new StringBuilder();
             builder.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-            builder.append(StringUtils.NEW_LINE_STR);
+            builder.append(DevFinal.NEW_LINE_STR);
             builder.append("<resources>");
             // 解析数据
             for (ColorUtils.ColorInfo colorInfo : lists) {
-                builder.append(String.format(XML_CONTENT, StringUtils.NEW_LINE_STR, colorInfo.getKey(), colorInfo.getValue()));
+                builder.append(String.format(XML_CONTENT, DevFinal.NEW_LINE_STR, colorInfo.getKey(), colorInfo.getValue()));
             }
-            builder.append(StringUtils.NEW_LINE_STR);
+            builder.append(DevFinal.NEW_LINE_STR);
             builder.append("</resources>");
             return builder.toString();
         }

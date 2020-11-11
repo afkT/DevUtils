@@ -3,8 +3,8 @@ package dev.standard.catalog;
 import java.util.List;
 import java.util.Map;
 
+import dev.utils.DevFinal;
 import dev.utils.common.FileUtils;
-import dev.utils.common.StringUtils;
 
 /**
  * detail: 目录生成 Main 方法
@@ -37,7 +37,7 @@ final class CatalogMain {
      */
     private static void print(final String path, final String dirName, final Map<String, String> mapCatalog,
                               final List<String> listIgnoreCatalog, final int layer) {
-        System.out.println(StringUtils.NEW_LINE_STR_X2);
+        System.out.println(DevFinal.NEW_LINE_STR_X2);
         if (FileUtils.isFileExists(path)) {
             System.out.println(CatalogGenerate.generate(path, dirName, mapCatalog, listIgnoreCatalog, layer));
         } else {

@@ -2,8 +2,8 @@ package dev.standard.config;
 
 import java.io.File;
 
+import dev.utils.DevFinal;
 import dev.utils.common.FileUtils;
-import dev.utils.common.StringUtils;
 
 /**
  * detail: 配置读取 Main 方法
@@ -22,7 +22,7 @@ final class ConfigMain {
         // 保存文件
         FileUtils.saveFile(
                 new File("file/json/deps_dependencies.gradle"),
-                String.format("dependencies {%s%s}", dependencies, StringUtils.NEW_LINE_STR).getBytes()
+                String.format("dependencies {%s%s}", dependencies, DevFinal.NEW_LINE_STR).getBytes()
         );
         System.out.println(dependencies);
     }

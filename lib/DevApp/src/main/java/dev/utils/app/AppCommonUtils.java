@@ -8,8 +8,8 @@ import androidx.annotation.StringRes;
 
 import java.util.UUID;
 
+import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
-import dev.utils.common.StringUtils;
 
 /**
  * detail: APP 通用工具类
@@ -57,11 +57,11 @@ public final class AppCommonUtils {
             }
             // 保存 APP 版本信息
             builder.append("versionName: ").append(versionName);
-            builder.append(StringUtils.NEW_LINE_STR);
+            builder.append(DevFinal.NEW_LINE_STR);
             builder.append("versionCode: ").append(versionCode);
-            builder.append(StringUtils.NEW_LINE_STR);
+            builder.append(DevFinal.NEW_LINE_STR);
             builder.append("package: ").append(packageName);
-            builder.append(StringUtils.NEW_LINE_STR);
+            builder.append(DevFinal.NEW_LINE_STR);
             builder.append(deviceInfo);
             // 设置应用、设备信息
             APP_DEVICE_INFO = builder.toString();

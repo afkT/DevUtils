@@ -7,7 +7,7 @@ import java.lang.reflect.Type;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import dev.utils.common.StringUtils;
+import dev.utils.DevFinal;
 
 /**
  * detail: Dpes json 映射实体类
@@ -61,9 +61,9 @@ public final class DepsJsonBean {
         if (maps != null && !maps.isEmpty()) {
             StringBuilder builder = new StringBuilder();
             for (Map.Entry<String, String> entry : maps.entrySet()) {
-                builder.append(StringUtils.NEW_LINE_STR);
+                builder.append(DevFinal.NEW_LINE_STR);
                 builder.append(String.format(FORMAT_ANNOTATION, entry.getKey()));
-                builder.append(StringUtils.NEW_LINE_STR);
+                builder.append(DevFinal.NEW_LINE_STR);
                 builder.append(String.format(FORMAT_DEPENDENCIES, mark, entry.getValue()));
             }
             return builder.toString();
@@ -90,9 +90,9 @@ public final class DepsJsonBean {
         StringBuilder builder = new StringBuilder();
         for (Map.Entry<String, Map<String, String>> entry : mDepsMaps.entrySet()) {
             if (divider) {
-                builder.append(StringUtils.NEW_LINE_STR_X2)
+                builder.append(DevFinal.NEW_LINE_STR_X2)
                         .append(String.format(FORMAT_ANNOTATION, ("= " + entry.getKey() + " =")))
-                        .append(StringUtils.NEW_LINE_STR);
+                        .append(DevFinal.NEW_LINE_STR);
             }
             builder.append(getDependencies(mark, entry.getValue()));
         }
