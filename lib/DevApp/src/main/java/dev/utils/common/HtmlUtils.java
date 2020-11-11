@@ -9,6 +9,18 @@ public final class HtmlUtils {
     private HtmlUtils() {
     }
 
+    // 移除 padding、margin style
+    public static final String REMOVE_PADDING_MARGIN_STYLE = "<style>*{ margin:0; padding:0; }</style>";
+
+    /**
+     * 为给定的 Html 移除 padding、margin
+     * @param html HTML 字符串
+     * @return Html 内容字符串
+     */
+    public static String addRemovePaddingMargin(final String html) {
+        return REMOVE_PADDING_MARGIN_STYLE + html;
+    }
+
     /**
      * 为给定的字符串添加 HTML 颜色标记
      * @param content 给定的字符串
