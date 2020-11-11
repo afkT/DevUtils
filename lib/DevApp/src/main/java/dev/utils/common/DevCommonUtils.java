@@ -3,6 +3,7 @@ package dev.utils.common;
 import java.util.Random;
 import java.util.UUID;
 
+import dev.utils.DevFinal;
 import dev.utils.JCLogUtils;
 import dev.utils.common.encrypt.MD5Utils;
 
@@ -17,9 +18,6 @@ public final class DevCommonUtils {
 
     // 日志 TAG
     private static final String TAG = DevCommonUtils.class.getSimpleName();
-
-    // 换行字符串
-    private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
     // ===============
     // = 计时相关处理 =
@@ -50,14 +48,18 @@ public final class DevCommonUtils {
         long diffTime = endTime - startTime;
         // 计算时间
         if (!StringUtils.isEmpty(title)) {
-            builder.append(NEW_LINE_STR);
+            builder.append(DevFinal.NEW_LINE_STR);
             builder.append(title);
         }
         // 计算时间
-        builder.append(NEW_LINE_STR).append("开始时间: ").append(DateUtils.formatTime(startTime, DateUtils.yyyyMMddHHmmss));
-        builder.append(NEW_LINE_STR).append("结束时间: ").append(DateUtils.formatTime(endTime, DateUtils.yyyyMMddHHmmss));
-        builder.append(NEW_LINE_STR).append("所用时间(毫秒): ").append(diffTime);
-        builder.append(NEW_LINE_STR).append("所用时间(秒): ").append(diffTime / 1000);
+        builder.append(DevFinal.NEW_LINE_STR).append("开始时间: ")
+                .append(DateUtils.formatTime(startTime, DateUtils.yyyyMMddHHmmss))
+                .append(DevFinal.NEW_LINE_STR).append("结束时间: ")
+                .append(DateUtils.formatTime(endTime, DateUtils.yyyyMMddHHmmss))
+                .append(DevFinal.NEW_LINE_STR).append("所用时间(毫秒): ")
+                .append(diffTime)
+                .append(DevFinal.NEW_LINE_STR).append("所用时间(秒): ")
+                .append(diffTime / 1000);
         return builder;
     }
 

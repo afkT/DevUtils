@@ -18,6 +18,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.utils.DevFinal;
 import dev.utils.JCLogUtils;
 import dev.utils.common.encrypt.MD5Utils;
 
@@ -32,9 +33,6 @@ public final class FileUtils {
 
     // 日志 TAG
     private static final String TAG = FileUtils.class.getSimpleName();
-
-    // 换行字符串
-    private static final String NEW_LINE_STR = System.getProperty("line.separator");
 
     /**
      * 获取文件
@@ -698,7 +696,7 @@ public final class FileUtils {
             is = new BufferedInputStream(new FileInputStream(file));
             byte[] buffer = new byte[1024];
             int readChars;
-            if (NEW_LINE_STR.endsWith("\n")) {
+            if (DevFinal.NEW_LINE_STR.endsWith("\n")) {
                 while ((readChars = is.read(buffer, 0, 1024)) != -1) {
                     for (int i = 0; i < readChars; ++i) {
                         if (buffer[i] == '\n') ++lineCount;

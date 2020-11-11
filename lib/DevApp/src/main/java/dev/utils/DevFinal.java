@@ -90,6 +90,7 @@ public final class DevFinal {
     public static final String RESULT   = "result";
     public static final String SUCCESS  = "success";
     public static final String FAIL     = "fail";
+    public static final String ERROR     = "error";
     public static final String METHOD   = "method";
     public static final String TOKEN    = "token";
     public static final String TEXT     = "text";
