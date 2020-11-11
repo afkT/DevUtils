@@ -106,7 +106,6 @@ public final class DevFinal {
     public static final String CHECK    = "check";
     public static final String STATE    = "state";
     public static final String HASH     = "hash";
-    public static final String HASHCODE = "hashCode";
     public static final String HEIGHT   = "height";
     public static final String WEIGHT   = "weight";
     public static final String CHANNEL  = "channel";
@@ -125,4 +124,52 @@ public final class DevFinal {
     public static final String LIMIT    = "limit";
     public static final String MAX      = "max";
     public static final String MIN      = "min";
+    public static final String TAG      = "tag";
+    public static final String UNKNOWN  = "unknown";
+
+    // ===========
+    // = 常量数组 =
+    // ===========
+
+    // 用于建立十六进制字符的输出的小写字符数组
+    public static final char[] HEX_DIGITS       = {
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
+    };
+    // 用于建立十六进制字符的输出的大写字符数组
+    public static final char[] HEX_DIGITS_UPPER = {
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
+    };
+
+    // 0123456789
+    public static final char[] NUMBERS = {
+            48, 49, 50, 51, 52, 53, 54, 55, 56, 57
+    };
+
+    // abcdefghijklmnopqrstuvwxyz
+    public static final char[] LOWER_CASE_LETTERS = {
+            97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109,
+            110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122
+    };
+
+    // ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    public static final char[] CAPITAL_LETTERS = {
+            65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80,
+            81, 82, 83, 84, 85, 86, 87, 88, 89, 90
+    };
+
+    // abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+    public static final char[] LETTERS = {
+            97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110,
+            111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 65, 66,
+            67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83,
+            84, 85, 86, 87, 88, 89, 90
+    };
+
+    // 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+    public static final char[] NUMBERS_AND_LETTERS = {
+            48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 97, 98, 99, 100, 101, 102,
+            103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115,
+            116, 117, 118, 119, 120, 121, 122, 65, 66, 67, 68, 69, 70, 71, 72,
+            73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90
+    };
 }
