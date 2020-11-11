@@ -17,24 +17,24 @@ public final class RandomUtils {
     private static final String TAG = RandomUtils.class.getSimpleName();
 
     // 0123456789
-    public static final char[] NUMBERS = {
+    private static final char[] NUMBERS = {
             48, 49, 50, 51, 52, 53, 54, 55, 56, 57
     };
 
     // abcdefghijklmnopqrstuvwxyz
-    public static final char[] LOWER_CASE_LETTERS = {
+    private static final char[] LOWER_CASE_LETTERS = {
             97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109,
             110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122
     };
 
     // ABCDEFGHIJKLMNOPQRSTUVWXYZ
-    public static final char[] CAPITAL_LETTERS = {
+    private static final char[] CAPITAL_LETTERS = {
             65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80,
             81, 82, 83, 84, 85, 86, 87, 88, 89, 90
     };
 
     // abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
-    public static final char[] LETTERS = {
+    private static final char[] LETTERS = {
             97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110,
             111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 65, 66,
             67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83,
@@ -42,7 +42,7 @@ public final class RandomUtils {
     };
 
     // 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
-    public static final char[] NUMBERS_AND_LETTERS = {
+    private static final char[] NUMBERS_AND_LETTERS = {
             48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 97, 98, 99, 100, 101, 102,
             103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115,
             116, 117, 118, 119, 120, 121, 122, 65, 66, 67, 68, 69, 70, 71, 72,
