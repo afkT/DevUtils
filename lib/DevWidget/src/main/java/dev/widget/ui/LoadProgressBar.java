@@ -260,7 +260,7 @@ public class LoadProgressBar extends View {
             canvas.drawArc(oval, 270, (360 * mProgress) / mMax, true, mPaint);  // 根据进度画圆弧
         } else if (mProgressStyle == ProgressStyle.NUMBER) {
             // 绘制的内容
-            String progressText = mProgress * 100 / mMax + "%";
+            String progressText = (mProgress * 100 / mMax) + "%";
             // 判断是否存在计算的字体大小
             if (mNumberTextSize <= 0) {
                 int tempWidth = getWidth();
@@ -289,7 +289,7 @@ public class LoadProgressBar extends View {
                                 SizeUtils.pxConvertSp(tempWidth), "100%");
                     }
                     // 绘制进度文本
-                    drawProgressText(canvas, mNumberTextSize, mNumberTextColor, mProgress * 100 / mMax + "%");
+                    drawProgressText(canvas, mNumberTextSize, mNumberTextColor, (mProgress * 100 / mMax) + "%");
                     break;
                 case ARC_FAN_SHAPED:
                     // 判断是否存在计算的字体大小
@@ -308,7 +308,7 @@ public class LoadProgressBar extends View {
                         }
                     }
                     // 绘制进度文本
-                    drawProgressText(canvas, mNumberTextSize, mNumberTextColor, mProgress * 100 / mMax + "%");
+                    drawProgressText(canvas, mNumberTextSize, mNumberTextColor, (mProgress * 100 / mMax) + "%");
                     break;
             }
         }
