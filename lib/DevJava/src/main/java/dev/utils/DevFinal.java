@@ -77,7 +77,6 @@ public final class DevFinal {
     public static final String SCREEN = "screen";
 
     public static final String ACTIVITY = "activity";
-    public static final String VERSION  = "version";
     public static final String INTENT   = "intent";
 
     public static final String ACCOUNT  = "account";
@@ -90,6 +89,7 @@ public final class DevFinal {
     public static final String VALUE   = "value";
     public static final String LIMIT   = "limit";
     public static final String SORT    = "sort";
+    public static final String DB      = "db";
 
     public static final String MAX   = "max";
     public static final String MIN   = "min";
@@ -111,6 +111,7 @@ public final class DevFinal {
     public static final String MESSAGE = "message";
     public static final String CHECK   = "check";
     public static final String OBJECT  = "object";
+    public static final String VERSION = "version";
 
     public static final String SUCCESS = "success";
     public static final String FAIL    = "fail";
