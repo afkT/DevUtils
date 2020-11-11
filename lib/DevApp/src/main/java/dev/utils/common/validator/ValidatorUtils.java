@@ -60,7 +60,7 @@ public final class ValidatorUtils {
     public static final String REGEX_URL = "http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?";
 
     // 正则表达式: 验证 IP 地址
-    public static final String REGEX_IP_ADDR = "(2[5][0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})";
+    public static final String REGEX_IP_ADDRESS = "(2[5][0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})\\.(25[0-5]|2[0-4]\\d|1\\d{2}|\\d{1,2})";
 
     /**
      * 通用匹配函数
@@ -207,13 +207,15 @@ public final class ValidatorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isIPAddress(final String str) {
-        return match(REGEX_IP_ADDR, str);
+        return match(REGEX_IP_ADDRESS, str);
     }
 
     // 正则表达式: 验证汉字
-    public static final String REGEX_CHINESE      = "^[\u4e00-\u9fa5]+$";
+    public static final String REGEX_CHINESE = "^[\u4e00-\u9fa5]+$";
+
     // 正则表达式: 验证汉字 ( 含双角符号 )
-    public static final String REGEX_CHINESE_ALL  = "^[\u0391-\uFFE5]+$";
+    public static final String REGEX_CHINESE_ALL = "^[\u0391-\uFFE5]+$";
+
     // 正则表达式: 验证汉字 ( 含双角符号 )
     public static final String REGEX_CHINESE_ALL2 = "[\u0391-\uFFE5]";
 
