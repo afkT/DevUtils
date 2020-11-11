@@ -118,6 +118,7 @@ public final class DevFinal {
     public static final String ACTIVITY = "activity";
     public static final String SORT     = "sort";
     public static final String TASK     = "task";
+    public static final String USER     = "user";
     public static final String ACCOUNT  = "account";
     public static final String PASSWORD = "password";
     public static final String NAME     = "name";
@@ -173,6 +174,28 @@ public final class DevFinal {
             103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115,
             116, 117, 118, 119, 120, 121, 122, 65, 66, 67, 68, 69, 70, 71, 72,
             73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90
+    };
+
+    // 生肖数组
+    public static final String[] ZODIAC = {
+            "猴", "鸡", "狗", "猪", "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊"
+    };
+
+    // 星座截止天数
+    public static final int[] CONSTELLATION_DAY = {
+            20, 19, 21, 21, 21, 22, 23, 23, 23, 24, 23, 22
+    };
+
+    // 星座对应日期
+    public static final String[] CONSTELLATION_DATE = {
+            "01.20-02.18", "02.19-03.20", "03.21-04.19", "04.20-05.20", "05.21-06.21", "06.22-07.22",
+            "07.23-08.22", "08.23-09.22", "09.23-10.23", "10.24-11.22", "11.23-12.21", "12.22-01.19"
+    };
+
+    // 星座数组
+    public static final String[] CONSTELLATION = {
+            "水瓶座", "双鱼座", "白羊座", "金牛座", "双子座", "巨蟹座",
+            "狮子座", "处女座", "天秤座", "天蝎座", "射手座", "摩羯座"
     };
 
     // ==================

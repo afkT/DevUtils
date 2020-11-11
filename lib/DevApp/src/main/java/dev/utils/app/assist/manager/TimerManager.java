@@ -37,9 +37,9 @@ public final class TimerManager {
     // 内部保存定时器对象, 防止忘记关闭等其他情况便于控制处理
     private static final List<AbsTimer> mTimerLists = new ArrayList<>();
 
-    // =================
-    // = 对外公开的方法 =
-    // =================
+    // ===============
+    // = 对外公开方法 =
+    // ===============
 
     /**
      * 回收定时器资源
