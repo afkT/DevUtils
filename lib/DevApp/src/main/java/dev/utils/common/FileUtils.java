@@ -2079,7 +2079,9 @@ public final class FileUtils {
     // ===============
 
     // 图片格式
-    private static final String[] IMAGE_FORMATS = new String[]{".PNG", ".JPG", ".JPEG", ".BMP", ".GIF", ".WEBP"};
+    private static final String[] IMAGE_FORMATS = {
+            ".PNG", ".JPG", ".JPEG", ".BMP", ".GIF", ".WEBP"
+    };
 
     /**
      * 根据文件名判断文件是否为图片
@@ -2114,7 +2116,9 @@ public final class FileUtils {
     // ===============
 
     // 音频格式
-    private static final String[] AUDIO_FORMATS = new String[]{".MP3", ".AAC", ".OGG", ".WMA", ".APE", ".FLAC", ".RA"};
+    private static final String[] AUDIO_FORMATS = {
+            ".MP3", ".AAC", ".OGG", ".WMA", ".APE", ".FLAC", ".RA"
+    };
 
     /**
      * 根据文件名判断文件是否为音频
@@ -2149,7 +2153,9 @@ public final class FileUtils {
     // ===============
 
     // 视频格式
-    private static final String[] VIDEO_FORMATS = new String[]{".MP4", ".AVI", ".MOV", ".ASF", ".MPG", ".MPEG", ".WMV", ".RM", ".RMVB", ".3GP", ".MKV"};
+    private static final String[] VIDEO_FORMATS = {
+            ".MP4", ".AVI", ".MOV", ".ASF", ".MPG", ".MPEG", ".WMV", ".RM", ".RMVB", ".3GP", ".MKV"
+    };
 
     /**
      * 根据文件名判断文件是否为视频
