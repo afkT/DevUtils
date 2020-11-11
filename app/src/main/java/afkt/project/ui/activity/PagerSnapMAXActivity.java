@@ -98,7 +98,7 @@ public class PagerSnapMAXActivity extends BaseActivity<BaseViewRecyclerviewBindi
                         // 真实索引
                         int index = pagerSnapAdapter.getRealIndex(currentPosition);
 
-                        DevLogger.dTag(TAG, lastItemPosition + " - " + firstItemPosition + " -> 当前显示索引: " + currentPosition + " - " + index);
+                        DevLogger.dTag(TAG, "%s - %s 当前显示索引: %s - %s", lastItemPosition, firstItemPosition, currentPosition, index);
                     }
                 }
             }

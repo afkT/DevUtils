@@ -127,7 +127,7 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
                                 .deleteNotePictures(
                                         CollectionUtils.toArrayT(nap.pictures)
                                 );
-                        DevLogger.dTag(TAG, "删除图片数量: " + deleteCount);
+                        DevLogger.dTag(TAG, "删除图片数量: %s", deleteCount);
                     }
                 }
             }
@@ -252,7 +252,7 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
                 limit = pageSize * 2 - diff;
             }
         }
-        DevLogger.dTag(TAG, "offset: " + offset + ", limit: " + limit);
+        DevLogger.dTag(TAG, "offset: %s, limit: %s", offset, limit);
         // 请求数据
         return RoomManager.getNoteDatabase().getNoteDao()
                 .getNoteAndPictureLists(limit, offset);

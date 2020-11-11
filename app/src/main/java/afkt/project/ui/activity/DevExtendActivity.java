@@ -105,7 +105,7 @@ public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding>
                 builder.append("\ntype: ").append(callParams.type);
                 builder.append("\nuserInfo: ").append(GsonUtils.toJson(callParams.userInfo));
                 builder.append("\nhashMap: ").append(callParams.hashMap.toString());
-                DevLogger.dTag(TAG, "value: " + value + builder.toString());
+                DevLogger.dTag(TAG, "value: %s%s", value, builder.toString());
             }
 
             @Override
@@ -118,7 +118,7 @@ public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding>
                 builder.append("\ntype: ").append(callParams.type);
                 builder.append("\nuserInfo: ").append(GsonUtils.toJson(callParams.userInfo));
                 builder.append("\nhashMap: ").append(callParams.hashMap.toString());
-                DevLogger.dTag(TAG, "value: " + value + ", type: " + type + builder.toString());
+                DevLogger.dTag(TAG, "value: %s, type: %s%s", value, type, builder.toString());
             }
         };
     }

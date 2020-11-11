@@ -342,7 +342,7 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
         // 提示解析成功声音
         mBeepVibrateAssist.playBeepSoundAndVibrate();
         // 打印结果
-        DevLogger.dTag(TAG, "handleDecode - result: " + ZXingQRCodeUtils.getResultData(result));
+        DevLogger.dTag(TAG, "handleDecode - result: %s", ZXingQRCodeUtils.getResultData(result));
 
 //        // 回传
 //        Intent resultIntent = new Intent();

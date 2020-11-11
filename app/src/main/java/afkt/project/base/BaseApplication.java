@@ -9,8 +9,6 @@ import android.webkit.WebSettings;
 
 import androidx.multidex.MultiDexApplication;
 
-import com.tencent.mmkv.MMKV;
-
 import afkt.project.R;
 import afkt.project.base.config.AppConfig;
 import afkt.project.base.config.PathConfig;
@@ -268,10 +266,6 @@ public class BaseApplication extends MultiDexApplication {
     private void initOther() {
         // xCrash 提供捕获 java 崩溃、native 崩溃和 ANR 的能力, 不需要 root 权限或任何系统权限
         xcrash.XCrash.init(this);
-
-        // 初始化 MMKV
-        String rootDir = MMKV.initialize(this);
-        DevLogger.d("MMKV rootDir: " + rootDir);
 
         // https://github.com/JessYanCoding/AndroidAutoSize/blob/master/demo-subunits/src/main/java/me/jessyan/autosize/demo/subunits/BaseApplication.java
         // 可不调用, 默认开启 DP 转换

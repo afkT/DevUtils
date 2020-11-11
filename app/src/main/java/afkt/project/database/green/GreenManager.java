@@ -77,7 +77,7 @@ public final class GreenManager {
             try {
                 db = (T) greenDatabase;
             } catch (Exception e) {
-                DevLogger.eTag(TAG, e, "database - convert T");
+                DevLogger.eTag(TAG, e, "database convert T");
             }
             return db;
         }

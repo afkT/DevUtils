@@ -179,7 +179,7 @@ public class ListenerActivity extends BaseActivity<ActivityCommonTipsBinding> {
             WifiReceiver.setWifiListener(new WifiReceiver.WifiListener() {
                 @Override
                 public void onWifiSwitch(boolean isOpenWifi) { // Wifi 开关状态
-                    DevLogger.dTag(TAG, "Wifi 是否打开: " + isOpenWifi);
+                    DevLogger.dTag(TAG, "Wifi 是否打开: %s", isOpenWifi);
                 }
 
                 @Override
@@ -242,10 +242,10 @@ public class ListenerActivity extends BaseActivity<ActivityCommonTipsBinding> {
                     // 判断连接状态
                     switch (what) {
                         case WifiReceiver.CONNECTED: // Wifi 连接成功
-                            DevLogger.dTag(TAG, "连接 Wifi 成功: " + message.obj);
+                            DevLogger.dTag(TAG, "连接 Wifi 成功: %s", message.obj);
                             break;
                         case WifiReceiver.CONNECTING: // Wifi 连接中
-                            DevLogger.dTag(TAG, "连接 Wifi 中: " + message.obj);
+                            DevLogger.dTag(TAG, "连接 Wifi 中: %s", message.obj);
                             break;
                         case WifiReceiver.DISCONNECTED: // Wifi 连接失败、断开
                             DevLogger.dTag(TAG, "连接 Wifi 断开");
@@ -293,7 +293,7 @@ public class ListenerActivity extends BaseActivity<ActivityCommonTipsBinding> {
                             state = "( 无网络 / 未知 ) 状态";
                             break;
                     }
-                    DevLogger.dTag(TAG, "网络连接状态 -> " + state);
+                    DevLogger.dTag(TAG, "网络连接状态 %s", state);
                 }
             });
             // 注册监听
@@ -328,19 +328,19 @@ public class ListenerActivity extends BaseActivity<ActivityCommonTipsBinding> {
                      */
                     switch (callState) {
                         case Outgoing:
-                            DevLogger.dTag(TAG, "播出电话: " + number);
+                            DevLogger.dTag(TAG, "播出电话: %s", number);
                             break;
                         case OutgoingEnd:
-                            DevLogger.dTag(TAG, "播出电话结束: " + number);
+                            DevLogger.dTag(TAG, "播出电话结束: %s", number);
                             break;
                         case IncomingRing:
-                            DevLogger.dTag(TAG, "接入电话铃响: " + number);
+                            DevLogger.dTag(TAG, "接入电话铃响: %s", number);
                             break;
                         case Incoming:
-                            DevLogger.dTag(TAG, "接入通话中: " + number);
+                            DevLogger.dTag(TAG, "接入通话中: %s", number);
                             break;
                         case IncomingEnd:
-                            DevLogger.dTag(TAG, "接入通话完毕: " + number);
+                            DevLogger.dTag(TAG, "接入通话完毕: %s", number);
                             break;
                     }
                 }
@@ -367,13 +367,13 @@ public class ListenerActivity extends BaseActivity<ActivityCommonTipsBinding> {
             SmsReceiver.setSmsListener(new SmsReceiver.SmsListener() {
                 @Override
                 public void onMessage(String msg, String fromAddress, String serviceCenterAddress) {
-                    DevLogger.dTag(TAG, "onMessage\nmsg: " + msg + "\nfromAddress: " + fromAddress + "\nserviceCenterAddress: " + serviceCenterAddress);
+                    DevLogger.dTag(TAG, "onMessage\nmsg: %s\nfromAddress: %s\nserviceCenterAddress: %s", msg, fromAddress, serviceCenterAddress);
                 }
 
                 @Override
                 public void onMessage(SmsMessage msg) {
                     super.onMessage(msg);
-                    DevLogger.dTag(TAG, "onMessage\nSmsMessage: " + msg.toString());
+                    DevLogger.dTag(TAG, "onMessage\nSmsMessage: %s", msg.toString());
                 }
             });
             // 注册监听
@@ -601,27 +601,27 @@ public class ListenerActivity extends BaseActivity<ActivityCommonTipsBinding> {
             BatteryReceiver.setBatteryListener(new BatteryReceiver.BatteryListener() {
                 @Override
                 public void onBatteryChanged(int level) {
-                    DevLogger.dTag(TAG, "电量改变通知 level: " + level);
+                    DevLogger.dTag(TAG, "电量改变通知 level: %s", level);
                 }
 
                 @Override
                 public void onBatteryLow(int level) {
-                    DevLogger.dTag(TAG, "电量低通知 level: " + level);
+                    DevLogger.dTag(TAG, "电量低通知 level: %s", level);
                 }
 
                 @Override
                 public void onBatteryOkay(int level) {
-                    DevLogger.dTag(TAG, "电量从低变回高通知 level: " + level);
+                    DevLogger.dTag(TAG, "电量从低变回高通知 level: %s", level);
                 }
 
                 @Override
                 public void onPowerConnected(int level, boolean isConnected) {
-                    DevLogger.dTag(TAG, "充电状态改变通知 level: " + level + ", 是否充电中: " + isConnected);
+                    DevLogger.dTag(TAG, "充电状态改变通知 level: %s, 是否充电中: %s", level, isConnected);
                 }
 
                 @Override
                 public void onPowerUsageSummary(int level) {
-                    DevLogger.dTag(TAG, "电力使用情况总结 level: " + level);
+                    DevLogger.dTag(TAG, "电力使用情况总结 level: %s", level);
                 }
             });
             // 注册监听
@@ -646,17 +646,17 @@ public class ListenerActivity extends BaseActivity<ActivityCommonTipsBinding> {
             AppStateReceiver.setAppStateListener(new AppStateReceiver.AppStateListener() {
                 @Override
                 public void onAdded(String packageName) {
-                    DevLogger.dTag(TAG, "应用安装 packageName: " + packageName);
+                    DevLogger.dTag(TAG, "应用安装 packageName: %s", packageName);
                 }
 
                 @Override
                 public void onReplaced(String packageName) {
-                    DevLogger.dTag(TAG, "应用更新 packageName: " + packageName);
+                    DevLogger.dTag(TAG, "应用更新 packageName: %s", packageName);
                 }
 
                 @Override
                 public void onRemoved(String packageName) {
-                    DevLogger.dTag(TAG, "应用卸载 packageName: " + packageName);
+                    DevLogger.dTag(TAG, "应用卸载 packageName: %s", packageName);
                 }
             });
             // 注册监听

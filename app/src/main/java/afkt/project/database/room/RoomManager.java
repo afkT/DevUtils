@@ -76,7 +76,7 @@ public final class RoomManager {
             try {
                 db = (T) roomDatabase;
             } catch (Exception e) {
-                DevLogger.eTag(TAG, e, "database - convert T");
+                DevLogger.eTag(TAG, e, "database convert T");
             }
             return db;
         }

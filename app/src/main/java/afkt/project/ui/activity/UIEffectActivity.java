@@ -143,7 +143,7 @@ public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
                 .setTabChangeListener(new TabLayoutAssist.TabChangeListener() {
                     @Override
                     public void onTabChange(TabItem tabItem, int pos) {
-                        DevLogger.dTag(TAG, "TabItem : " + tabItem.getTitle() + ", pos: " + pos);
+                        DevLogger.dTag(TAG, "TabItem : %s, pos: %s", tabItem.getTitle(), pos);
                         // 设置选中
                         tabLayoutAssist.setSelect(pos);
                     }
@@ -154,7 +154,7 @@ public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
                 .setSelect(0).setTabChangeListener(new TabLayoutAssist.TabChangeListener() {
             @Override
             public void onTabChange(TabItem tabItem, int pos) {
-                DevLogger.dTag(TAG, "TabItem : " + tabItem.getTitle() + ", pos: " + pos);
+                DevLogger.dTag(TAG, "TabItem : %s, pos: %s", tabItem.getTitle(), pos);
             }
         });
     }

@@ -82,7 +82,7 @@ public final class TimerUse {
                 if (number == 1) {
                     DevLogger.dTag(TAG, "第一次触发, 0.5 秒延迟");
                 } else {
-                    DevLogger.dTag(TAG, "每隔 2 秒触发一次, 触发次数: " + number);
+                    DevLogger.dTag(TAG, "每隔 2 秒触发一次, 触发次数: %s", number);
                 }
             }
         }, NOTIFY, 500L, 2000L, -1);
@@ -97,8 +97,8 @@ public final class TimerUse {
 //                switch (msg.what) {
 //                    case NOTIFY:
 //                        // 获取触发次数
-//                        DevLogger.dTag(TAG, "已经触发次数: " + absTimer.getTriggerNumber());
-//                        DevLogger.dTag(TAG, "触发上限次数: " + absTimer.getTriggerLimit());
+//                        DevLogger.dTag(TAG, "已经触发次数: %s", absTimer.getTriggerNumber());
+//                        DevLogger.dTag(TAG, "触发上限次数: %s", absTimer.getTriggerLimit());
 //                        // 判断是否触发结束
 //                        if (absTimer.isTriggerEnd()) {
 //                            DevLogger.dTag(TAG, "触发结束");

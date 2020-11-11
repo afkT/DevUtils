@@ -86,8 +86,8 @@ public final class LoggerUse {
         sTime = System.currentTimeMillis();
         // 开始遍历
         for (int i = 0; i < count; i++) {
-            // DevLogger.d("B: " + (i + 1));
-            DevLogger.dTag(tag, "B: " + (i + 1));
+            // DevLogger.d("B: %s", (i + 1));
+            DevLogger.dTag(tag, "B: %s", (i + 1));
         }
         // 拼接时间信息
         DevCommonUtils.timeRecord(builder, "\nLogger 耗时记录", sTime, System.currentTimeMillis());
@@ -105,7 +105,7 @@ public final class LoggerUse {
         sTime = System.currentTimeMillis();
         // 开始遍历
         for (int i = 0; i < count; i++) {
-            DevLogger.other(logConfig).dTag(tag, "C: " + (i + 1));
+            DevLogger.other(logConfig).dTag(tag, "C: %s", (i + 1));
         }
         // 拼接时间信息
         DevCommonUtils.timeRecord(builder, "\nLogger 耗时记录 - 使用自定义日志配置", sTime, System.currentTimeMillis());
@@ -164,9 +164,9 @@ public final class LoggerUse {
             DevLogger.e(e, "发生异常");
         }
         // 占位符 ( 其他类型, 一样 )
-        DevLogger.d("%s 测试占位符数据 - d%s", "1.", "Format");
+        DevLogger.d("%s 测试占位符数据 d%s", "1.", "Format");
         // =
-        DevLogger.dTag(tag, "%s 测试占位符数据 - d%s", "1.", "Format");
+        DevLogger.dTag(tag, "%s 测试占位符数据 d%s", "1.", "Format");
 
         // = 使用自定义临时配置 =
         // 自定义配置, 如下使用方式

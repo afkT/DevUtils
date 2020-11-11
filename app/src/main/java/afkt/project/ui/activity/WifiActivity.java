@@ -132,7 +132,7 @@ public class WifiActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
                                                     @Override
                                                     public void onFailed(int reason) {
-                                                        DevLogger.dTag(TAG, "热点异常 reason: " + reason);
+                                                        DevLogger.dTag(TAG, "热点异常 reason: %s", reason);
                                                         // 表示操作结束
                                                         isOpenAPING = false;
                                                     }
@@ -201,7 +201,7 @@ public class WifiActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
         WifiReceiver.setWifiListener(new WifiReceiver.WifiListener() {
             @Override
             public void onWifiSwitch(boolean isOpenWifi) { // Wifi 开关状态
-                DevLogger.dTag(TAG, "Wifi 是否打开: " + isOpenWifi);
+                DevLogger.dTag(TAG, "Wifi 是否打开: %s", isOpenWifi);
             }
 
             @Override
@@ -264,10 +264,10 @@ public class WifiActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
                 // 判断连接状态
                 switch (what) {
                     case WifiReceiver.CONNECTED: // Wifi 连接成功
-                        DevLogger.dTag(TAG, "连接 Wifi 成功: " + message.obj);
+                        DevLogger.dTag(TAG, "连接 Wifi 成功: %s", message.obj);
                         break;
                     case WifiReceiver.CONNECTING: // Wifi 连接中
-                        DevLogger.dTag(TAG, "连接 Wifi 中: " + message.obj);
+                        DevLogger.dTag(TAG, "连接 Wifi 中: %s", message.obj);
                         break;
                     case WifiReceiver.DISCONNECTED: // Wifi 连接失败、断开
                         DevLogger.dTag(TAG, "连接 Wifi 断开");

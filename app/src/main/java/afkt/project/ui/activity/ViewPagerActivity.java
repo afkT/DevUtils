@@ -45,7 +45,7 @@ public class ViewPagerActivity extends BaseActivity<ActivityViewPagerBinding> {
 
             @Override
             public void onPageSelected(int index) {
-                DevLogger.dTag(TAG, "索引变动: " + index);
+                DevLogger.dTag(TAG, "索引变动: %s", index);
 
                 if (mLeftScroll) {
                     showToast("往左滑 - 从右往左");

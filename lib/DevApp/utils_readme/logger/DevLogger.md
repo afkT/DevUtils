@@ -123,9 +123,9 @@ DevLogger.eTag(tag, "错误 - e");
 DevLogger.wtfTag(tag, "测试数据 - wtf");
 
 // 占位符(其他类型, 一样)
-DevLogger.d("%s测试占位符数据 - d%s", new Object[]{"1.", " - Format"});
+DevLogger.d("%s测试占位符数据 d%s", new Object[]{"1.", " - Format"});
 // =
-DevLogger.dTag(tag, "%s测试占位符数据 - d%s", new Object[]{"1.", " - Format"});
+DevLogger.dTag(tag, "%s测试占位符数据 d%s", new Object[]{"1.", " - Format"});
 
 // 打印 JSON、XML 格式字符串数据
 // JSON对象

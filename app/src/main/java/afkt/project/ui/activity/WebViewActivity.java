@@ -41,7 +41,7 @@ public class WebViewActivity extends BaseActivity<ActivityWebviewBinding> {
                     switch (result.getType()) {
                         case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE:
                             String imgUrl = result.getExtra();
-                            DevLogger.dTag(TAG, "SRC_IMAGE_ANCHOR_TYPE " + imgUrl);
+                            DevLogger.dTag(TAG, "SRC_IMAGE_ANCHOR_TYPE %s", imgUrl);
                             return true;
                     }
                 }

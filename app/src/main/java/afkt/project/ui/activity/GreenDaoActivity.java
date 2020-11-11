@@ -258,7 +258,7 @@ public class GreenDaoActivity extends BaseActivity<ActivityDatabaseBinding> {
                 limit = pageSize * 2 - diff;
             }
         }
-        DevLogger.dTag(TAG, "offset: " + offset + ", limit: " + limit);
+        DevLogger.dTag(TAG, "offset: %s, limit: %s", offset, limit);
         // 请求数据
         return GreenManager.getNoteDatabase().getNoteDao()
                 .queryBuilder()

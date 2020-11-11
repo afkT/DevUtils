@@ -265,7 +265,7 @@ public class QuickWifiHotUtils {
      */
     public void openHotspot(String ssid, String pwd) {
         // 打印日志
-        DevLogger.dTag(TAG, "openHotspot - 开启热点 ssid: " + ssid + ", pwd: " + pwd);
+        DevLogger.dTag(TAG, "openHotspot 开启热点 ssid: %s, pwd: %s", ssid, pwd);
         hotSSID = ssid;
         hotPwd = pwd;
         // 如果开启了 Wifi 则进行关闭 Wifi
