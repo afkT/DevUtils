@@ -78,6 +78,7 @@ public final class DevFinal {
 
     public static final String ACTIVITY = "activity";
     public static final String INTENT   = "intent";
+    public static final String ASSETS   = "assets";
 
     public static final String ACCOUNT  = "account";
     public static final String PASSWORD = "password";
@@ -97,11 +98,14 @@ public final class DevFinal {
     public static final String PAGE  = "page";
     public static final String COUNT = "count";
 
-    public static final String ARRAY = "array";
-    public static final String LIST  = "list";
-    public static final String MAP   = "map";
-    public static final String SET   = "set";
-    public static final String GET   = "get";
+    public static final String ARRAY  = "array";
+    public static final String LIST   = "list";
+    public static final String MAP    = "map";
+    public static final String SET    = "set";
+    public static final String GET    = "get";
+    public static final String REMOVE = "remove";
+    public static final String ADD    = "add";
+    public static final String PUT    = "put";
 
     public static final String TAG     = "tag";
     public static final String ID      = "id";
@@ -134,8 +138,16 @@ public final class DevFinal {
     public static final String TITLE   = "title";
     public static final String CONTENT = "content";
 
-    public static final String TASK   = "task";
-    public static final String CONFIG = "config";
+    public static final String TASK     = "task";
+    public static final String START    = "start";
+    public static final String END      = "end";
+    public static final String STOP     = "stop";
+    public static final String PAUSE    = "pause";
+    public static final String RESTART  = "restart";
+    public static final String DOWNLOAD = "download";
+    public static final String LOADING  = "loading";
+    public static final String WAITING  = "waiting";
+    public static final String CONFIG   = "config";
 
     public static final String ITEM    = "item";
     public static final String METHOD  = "method";

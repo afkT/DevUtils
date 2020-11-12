@@ -78,6 +78,7 @@ public final class DevFinal {
 
     public static final String ACTIVITY = "activity";
     public static final String INTENT   = "intent";
+    public static final String ASSETS   = "assets";
 
     public static final String ACCOUNT  = "account";
     public static final String PASSWORD = "password";
