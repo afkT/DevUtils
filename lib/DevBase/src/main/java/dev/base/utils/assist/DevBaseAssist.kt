@@ -64,10 +64,7 @@ class DevBaseAssist : IDevBaseUIOperation {
      * @return [DevBaseAssist]
      */
     fun printLog(message: String): DevBaseAssist {
-        LogPrintUtils.dTag(
-            mTag,
-            String.format("%s -> %s", mTag, message)
-        )
+        LogPrintUtils.dTag(mTag, "%s -> %s", mTag, message)
         return this
     }
 
