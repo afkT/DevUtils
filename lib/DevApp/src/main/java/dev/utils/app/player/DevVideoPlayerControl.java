@@ -92,7 +92,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      */
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-        LogPrintUtils.dTag(TAG, "surfaceChanged - format: " + format + ", width: " + width + ", height: " + height);
+        LogPrintUtils.dTag(TAG, "surfaceChanged - format: %s, width: %s, height: %s", format, width, height);
     }
 
     /**
@@ -176,7 +176,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      */
     @Override
     public void onBufferingUpdate(int percent) {
-        LogPrintUtils.dTag(TAG, "onBufferingUpdate: " + percent);
+        LogPrintUtils.dTag(TAG, "onBufferingUpdate: %s", percent);
         // 触发回调
         if (mMediaListener != null) {
             mMediaListener.onBufferingUpdate(percent);
@@ -203,7 +203,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      */
     @Override
     public boolean onError(int what, int extra) {
-        LogPrintUtils.dTag(TAG, "onError - what: " + what + ", extra: " + extra);
+        LogPrintUtils.dTag(TAG, "onError what: %s, extra: %s", what, extra);
         // 触发回调
         if (mMediaListener != null) {
             return mMediaListener.onError(what, extra);
@@ -218,7 +218,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      */
     @Override
     public void onVideoSizeChanged(int width, int height) {
-        LogPrintUtils.dTag(TAG, "onVideoSizeChanged - width: " + width + ", height: " + height);
+        LogPrintUtils.dTag(TAG, "onVideoSizeChanged - width: %s, height: %s", width, height);
         // 触发回调
         if (mMediaListener != null) {
             mMediaListener.onVideoSizeChanged(width, height);
@@ -331,7 +331,7 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
                 try {
                     return DevMediaManager.getInstance().isPlaying();
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "isPlaying - uri: " + uri);
+                    LogPrintUtils.eTag(TAG, e, "isPlaying uri: %s", uri);
                 }
             }
         }

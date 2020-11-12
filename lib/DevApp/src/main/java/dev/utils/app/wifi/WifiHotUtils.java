@@ -138,7 +138,7 @@ public final class WifiHotUtils {
                         mAPWifiSSID = wifiConfiguration.SSID;
                         mAPWifiPwd = wifiConfiguration.preSharedKey;
                         // 打印信息
-                        LogPrintUtils.dTag(TAG, "Android 8.0 onStarted wifiAp ssid: " + mAPWifiSSID + ", pwd: " + mAPWifiPwd);
+                        LogPrintUtils.dTag(TAG, "Android 8.0 onStarted wifiAp ssid: %s, pwd: %s", mAPWifiSSID, mAPWifiPwd);
                         // 触发回调
                         if (mWifiAPListener != null) {
                             mWifiAPListener.onStarted(wifiConfiguration);
@@ -160,7 +160,7 @@ public final class WifiHotUtils {
                     public void onFailed(int reason) {
                         super.onFailed(reason);
                         // 打印信息
-                        LogPrintUtils.eTag(TAG, "Android 8.0 onFailed wifiAp, reason: " + reason);
+                        LogPrintUtils.eTag(TAG, "Android 8.0 onFailed wifiAp, reason: %s", reason);
                         // 触发回调
                         if (mWifiAPListener != null) {
                             mWifiAPListener.onFailed(reason);
@@ -176,7 +176,7 @@ public final class WifiHotUtils {
                 // 先设置 Wifi 热点信息, 这样跳转前保存热点信息, 开启热点则是对应设置的信息
                 boolean setResult = setWifiApConfiguration(wifiConfig);
                 // 打印日志
-                LogPrintUtils.dTag(TAG, "设置 Wifi 热点信息是否成功: " + setResult);
+                LogPrintUtils.dTag(TAG, "设置 Wifi 热点信息是否成功: %s", setResult);
                 // 跳转到便携式热点设置页面
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_MAIN);
@@ -285,7 +285,7 @@ public final class WifiHotUtils {
             // 调用方法, 获取状态
             int wifiApState = (Integer) method.invoke(mWifiManager);
             // 打印状态
-            LogPrintUtils.dTag(TAG, "WifiApState: " + wifiApState);
+            LogPrintUtils.dTag(TAG, "WifiApState: %s", wifiApState);
             return wifiApState;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getWifiApState");

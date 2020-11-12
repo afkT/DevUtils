@@ -205,7 +205,7 @@ public final class CameraUtils {
             }
             return camera;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "open - cameraId: " + cameraId);
+            LogPrintUtils.eTag(TAG, e, "open - cameraId: %s", cameraId);
         }
         return null;
     }

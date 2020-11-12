@@ -272,7 +272,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
                 }
             });
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "playPrepare - playUri: " + playUri);
+            LogPrintUtils.eTag(TAG, e, "playPrepare playUri: %s", playUri);
             // 销毁资源
             destroyMedia();
         }
@@ -389,7 +389,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      */
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
-        LogPrintUtils.dTag(TAG, "onError - what: " + what + ", extra: " + extra);
+        LogPrintUtils.dTag(TAG, "onError what: %s, extra: %s", what, extra);
         // 触发回调
         if (mMediaListener != null) {
             return mMediaListener.onError(what, extra);
@@ -405,7 +405,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      */
     @Override
     public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
-        LogPrintUtils.dTag(TAG, "onVideoSizeChanged - width: " + width + ", height: " + height);
+        LogPrintUtils.dTag(TAG, "onVideoSizeChanged - width: %s, height: %s", width, height);
         mVideoWidth = width;
         mVideoHeight = height;
         // 触发回调
@@ -447,7 +447,7 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      */
     @Override
     public void onBufferingUpdate(MediaPlayer mp, int percent) {
-        LogPrintUtils.dTag(TAG, "onBufferingUpdate - percent: " + percent);
+        LogPrintUtils.dTag(TAG, "onBufferingUpdate - percent: %s", percent);
         // 触发回调
         if (mMediaListener != null) {
             mMediaListener.onBufferingUpdate(percent);

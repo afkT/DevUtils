@@ -357,13 +357,13 @@ public final class ScreenshotUtils {
                 null, null, sortOrder);
         try {
             if (cursor == null) {
-                LogPrintUtils.dTag(TAG, "搜索失败 uri: " + contentUri
-                        + ", projection: " + Arrays.toString(MEDIA_PROJECTIONS));
+                LogPrintUtils.dTag(TAG, "搜索失败 uri: %s, projection: %s",
+                        contentUri, Arrays.toString(MEDIA_PROJECTIONS));
                 return;
             }
             if (!cursor.moveToFirst()) {
-                LogPrintUtils.dTag(TAG, "搜索成功, 但无符合条件数据 uri: " + contentUri
-                        + ", projection: " + Arrays.toString(MEDIA_PROJECTIONS));
+                LogPrintUtils.dTag(TAG, "搜索成功, 但无符合条件数据 uri: %s, projection: %s",
+                        contentUri, Arrays.toString(MEDIA_PROJECTIONS));
                 return;
             }
             // 获取数据
@@ -412,14 +412,14 @@ public final class ScreenshotUtils {
         // ===========
 
         if (dateTaken <= 0) {
-            LogPrintUtils.dTag(TAG, "创建时间异常 dateTaken: " + dateTaken);
+            LogPrintUtils.dTag(TAG, "创建时间异常 dateTaken: %s", dateTaken);
             return false;
         }
 
         if (dateTaken < startListenTime) { // 创建时间小于开始监听时间
-            LogPrintUtils.dTag(TAG, "开始监听时间校验不通过 dateTaken: " + dateTaken
-                    + ", startListenTime: " + startListenTime
-                    + ", diff: " + (dateTaken - startListenTime)
+            LogPrintUtils.dTag(TAG,
+                    "开始监听时间校验不通过 dateTaken: %s, startListenTime: %s, diff: %s",
+                    dateTaken, startListenTime, (dateTaken - startListenTime)
             );
             return false;
         }
@@ -427,9 +427,9 @@ public final class ScreenshotUtils {
         // 获取当前时间
         long curTime = System.currentTimeMillis();
         if (curTime - dateTaken > intervalTime) { // 文件创建时间超过间隔时间
-            LogPrintUtils.dTag(TAG, "文件间隔时间校验不通过 dateTaken: " + dateTaken
-                    + ", curTime: " + curTime + ", intervalTime: " + intervalTime
-                    + ", diff: " + (curTime - dateTaken)
+            LogPrintUtils.dTag(TAG,
+                    "文件间隔时间校验不通过 dateTaken: %s, curTime: %s, intervalTime: %s, diff: %s",
+                    dateTaken, curTime, intervalTime, (curTime - dateTaken)
             );
             return false;
         }
@@ -446,8 +446,9 @@ public final class ScreenshotUtils {
                             && fileName.toLowerCase().startsWith(keyWork.toLowerCase())
             );
             if (!checkResult) {
-                LogPrintUtils.dTag(TAG, "文件前缀校验不通过 dataPath: " + dataPath
-                        + ", fileName: " + fileName + ", keyWork: " + keyWork
+                LogPrintUtils.dTag(TAG,
+                        "文件前缀校验不通过 dataPath: %s, fileName: %s, keyWork: %s",
+                        dataPath, fileName, keyWork
                 );
                 return false;
             }

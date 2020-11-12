@@ -160,7 +160,7 @@ public final class NotificationUtils {
                     sNotificationManager.cancel(id);
                     return true;
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "cancel - id: " + id);
+                    LogPrintUtils.eTag(TAG, e, "cancel - id: %s", id);
                 }
             }
         }
@@ -182,7 +182,7 @@ public final class NotificationUtils {
                 sNotificationManager.cancel(tag, id);
                 return true;
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "cancel - id: " + id + ", tag: " + tag);
+                LogPrintUtils.eTag(TAG, e, "cancel - id: %s, tag: %s", id, tag);
             }
         }
         return false;
@@ -200,7 +200,7 @@ public final class NotificationUtils {
                 sNotificationManager.notify(id, notification);
                 return true;
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "notify - id: " + id);
+                LogPrintUtils.eTag(TAG, e, "notify - id: %s", id);
             }
         }
         return false;
@@ -219,7 +219,7 @@ public final class NotificationUtils {
                 sNotificationManager.notify(tag, id, notification);
                 return true;
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "notify - id: " + id + ", tag: " + tag);
+                LogPrintUtils.eTag(TAG, e, "notify - id: %s, tag: %s", id, tag);
             }
         }
         return false;

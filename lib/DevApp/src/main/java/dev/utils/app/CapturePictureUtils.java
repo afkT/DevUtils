@@ -255,7 +255,7 @@ public final class CapturePictureUtils {
                     webView.draw(canvas);
                     return bitmap;
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "snapshotByWebView - SDK_INT >= 21(5.0)");
+                    LogPrintUtils.eTag(TAG, e, "snapshotByWebView SDK_INT >= 21(5.0)");
                 }
             } else {
                 try {
@@ -273,7 +273,7 @@ public final class CapturePictureUtils {
                         return bitmap;
                     }
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "snapshotByWebView - SDK_INT < 21(5.0)");
+                    LogPrintUtils.eTag(TAG, e, "snapshotByWebView SDK_INT < 21(5.0)");
                 }
             }
         }

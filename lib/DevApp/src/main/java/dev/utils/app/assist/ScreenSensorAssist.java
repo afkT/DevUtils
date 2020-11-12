@@ -73,7 +73,7 @@ public final class ScreenSensorAssist {
                     // 获取角度
                     int rotation = msg.arg1;
                     // =
-                    LogPrintUtils.dTag(TAG, "当前角度: " + rotation);
+                    LogPrintUtils.dTag(TAG, "当前角度: %s", rotation);
                     // 判断角度
                     if (rotation > 45 && rotation < 135) { // 横屏 ( 屏幕对着别人 )
                         LogPrintUtils.dTag(TAG, "切换成横屏 ( 屏幕对着自己 )");
@@ -124,7 +124,7 @@ public final class ScreenSensorAssist {
                             }
                         }
                     } else {
-                        LogPrintUtils.dTag(TAG, "其他角度: " + rotation);
+                        LogPrintUtils.dTag(TAG, "其他角度: %s", rotation);
                     }
                     break;
             }

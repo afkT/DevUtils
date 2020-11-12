@@ -259,10 +259,10 @@ public final class NetWorkUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format("ping -c 1 %s", ip), false);
         // 打印信息
         if (result.errorMsg != null) {
-            LogPrintUtils.dTag(TAG, "isAvailableByPing - errorMsg: " + result.errorMsg);
+            LogPrintUtils.dTag(TAG, "isAvailableByPing - errorMsg: %s", result.errorMsg);
         }
         if (result.successMsg != null) {
-            LogPrintUtils.dTag(TAG, "isAvailableByPing - successMsg: " + result.successMsg);
+            LogPrintUtils.dTag(TAG, "isAvailableByPing - successMsg: %s", result.successMsg);
         }
         // 判断结果, 返回数据不为 null
         return result.isSuccess3();

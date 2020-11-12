@@ -215,7 +215,7 @@ public final class BeepVibrateAssist implements Closeable {
         mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
             @Override
             public synchronized boolean onError(MediaPlayer mp, int what, int extra) {
-                LogPrintUtils.dTag(TAG, "buildMediaPlayer - onError what: " + what + ", extra: " + extra);
+                LogPrintUtils.dTag(TAG, "buildMediaPlayer onError what: %s, extra: %s", what, extra);
                 // 播放异常, 直接不处理
                 return true;
             }
@@ -266,7 +266,7 @@ public final class BeepVibrateAssist implements Closeable {
         mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
             @Override
             public synchronized boolean onError(MediaPlayer mp, int what, int extra) {
-                LogPrintUtils.dTag(TAG, "buildMediaPlayer - onError what: " + what + ", extra: " + extra);
+                LogPrintUtils.dTag(TAG, "buildMediaPlayer onError what: %s, extra: %s", what, extra);
                 // 播放异常, 直接不处理
                 return true;
             }

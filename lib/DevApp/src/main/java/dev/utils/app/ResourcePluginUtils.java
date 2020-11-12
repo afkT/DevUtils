@@ -171,7 +171,7 @@ public final class ResourcePluginUtils {
                         resources, packageInfo.packageName
                 );
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "invokeByAPKPath - apkPath: " + apkPath);
+                LogPrintUtils.eTag(TAG, e, "invokeByAPKPath - apkPath: %s", apkPath);
             }
         }
         return utils;

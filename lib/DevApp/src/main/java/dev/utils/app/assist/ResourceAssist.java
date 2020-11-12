@@ -1147,7 +1147,7 @@ public final class ResourceAssist {
         try {
             return resolver.openInputStream(uri);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openInputStream " + uri.toString());
+            LogPrintUtils.eTag(TAG, e, "openInputStream %s", uri.toString());
         }
         return null;
     }
@@ -1172,7 +1172,7 @@ public final class ResourceAssist {
         try {
             return resolver.openOutputStream(uri);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openOutputStream " + uri.toString());
+            LogPrintUtils.eTag(TAG, e, "openOutputStream %s", uri.toString());
         }
         return null;
     }
@@ -1200,7 +1200,7 @@ public final class ResourceAssist {
         try {
             return resolver.openOutputStream(uri, mode);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openOutputStream mode: " + mode + ", " + uri.toString());
+            LogPrintUtils.eTag(TAG, e, "openOutputStream mode: %s, %s", mode, uri.toString());
         }
         return null;
     }
@@ -1231,7 +1231,7 @@ public final class ResourceAssist {
         try {
             return resolver.openFileDescriptor(uri, mode);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openFileDescriptor mode: " + mode + ", " + uri.toString());
+            LogPrintUtils.eTag(TAG, e, "openFileDescriptor mode: %s, %s", mode, uri.toString());
         }
         return null;
     }
@@ -1262,7 +1262,7 @@ public final class ResourceAssist {
         try {
             return resolver.openAssetFileDescriptor(uri, mode);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openAssetFileDescriptor mode: " + mode + ", " + uri.toString());
+            LogPrintUtils.eTag(TAG, e, "openAssetFileDescriptor mode: %s, %s", mode, uri.toString());
         }
         return null;
     }

@@ -1291,14 +1291,14 @@ public final class SpanUtils {
                     drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
                     CloseUtils.closeIOQuietly(is);
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "Failed to loaded content " + mContentUri);
+                    LogPrintUtils.eTag(TAG, e, "Failed to loaded content %s", mContentUri);
                 }
             } else {
                 try {
                     drawable = ContextCompat.getDrawable(getContext(), mResourceId);
                     drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "Unable to find resource: " + mResourceId);
+                    LogPrintUtils.eTag(TAG, e, "Unable to find resource: %s", mResourceId);
                 }
             }
             return drawable;
