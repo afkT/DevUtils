@@ -66,7 +66,7 @@ public class QuickWifiHotUtils {
             switch (msg.what) {
                 case CLOSE_WIFI_SUCCESS: // 成功关闭 Wifi 准备开启热点
                     // 打印日志
-                    DevLogger.dTag(TAG, "hotHandler - 关闭 Wifi 成功, 开启热点中");
+                    DevLogger.dTag(TAG, "hotHandler 关闭 Wifi 成功, 开启热点中");
                     // 停止线程检查
                     setWifiCheck(false);
                     // 开始进行线程检查
@@ -76,7 +76,7 @@ public class QuickWifiHotUtils {
                     break;
                 case START_WIFISPOT_SUCCESS: // 开启热点成功
                     // 打印日志
-                    DevLogger.dTag(TAG, "hotHandler - 开启热点成功");
+                    DevLogger.dTag(TAG, "hotHandler 开启热点成功");
                     // 停止线程检查
                     setWifiApCheck(false);
                     // 需要检查连接状态
@@ -86,7 +86,7 @@ public class QuickWifiHotUtils {
                     break;
                 case CHECK_HOT_CONN: // 检查是否连接热点
                     // 打印日志
-                    DevLogger.dTag(TAG, "hotHandler - 检查是否连接热点");
+                    DevLogger.dTag(TAG, "hotHandler 检查是否连接热点");
                     // 判断是否存在设备连接热点
                     boolean isConnectHot = wifiHotUtils.isConnectHot();
                     // 如果存在, 则尝试连接

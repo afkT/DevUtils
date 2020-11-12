@@ -159,7 +159,7 @@ public class ScanShapeActivity extends BaseActivity<ActivityScanShapeBinding> {
 //                // 默认开启自动对焦, 设置不需要自动对焦
 //                cameraAssist.setAutoFocus(false);
             } catch (Exception e) {
-                DevLogger.eTag(TAG, e, "checkPermission - startPreview");
+                DevLogger.eTag(TAG, e, "checkPermission startPreview");
             }
         } else {
             ToastTintUtils.warning("需要摄像头权限预览");

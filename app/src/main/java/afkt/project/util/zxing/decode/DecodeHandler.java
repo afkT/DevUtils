@@ -152,7 +152,7 @@ public class DecodeHandler extends Handler {
         if (mDecodeConfig == null) {
             return null;
         }
-        DevLogger.dTag(TAG, "buildLuminanceSource - 解析摄像头数据");
+        DevLogger.dTag(TAG, "buildLuminanceSource 解析摄像头数据");
         // 判断是否裁减
         if (mDecodeConfig.isCropRect() && mDecodeConfig.getCropRect() != null) {
             // 判断是否出现异常
