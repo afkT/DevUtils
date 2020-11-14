@@ -44,9 +44,9 @@ ext {
             // ===========
 
             // 版本号
-            dev_app_versionCode                     : 209,
+            dev_app_versionCode                     : 210,
             // 版本名
-            dev_app_versionName                     : '2.0.9',
+            dev_app_versionName                     : '2.1.0',
 
             // 版本号
             dev_assist_versionCode                  : 104,
@@ -64,9 +64,9 @@ ext {
             dev_base_mvvm_versionName               : '1.0.0',
 
             // 版本号
-            dev_java_versionCode                    : 122,
+            dev_java_versionCode                    : 123,
             // 版本名
-            dev_java_version                        : '1.2.2',
+            dev_java_version                        : '1.2.3',
 
             // 版本号
             dev_widget_versionCode                  : 104,
@@ -260,7 +260,7 @@ ext {
                     arouter_api                  : "com.alibaba:arouter-api:1.5.0", // https://github.com/alibaba/ARouter/blob/master/README_CN.md
                     arouter_compiler             : "com.alibaba:arouter-compiler:1.2.2",
                     // 内存检测工具 https://github.com/square/leakcanary
-                    leakcanary                   : "com.squareup.leakcanary:leakcanary-android:2.5",
+                    leakcanary                   : "com.squareup.leakcanary:leakcanary-android:2.4",
                     // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
                     blockcanary_android          : "com.github.markzhai:blockcanary-android:1.5.0",
                     blockcanary_no_op            : "com.github.markzhai:blockcanary-no-op:1.5.0",
