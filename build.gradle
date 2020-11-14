@@ -3,10 +3,7 @@ apply from: rootProject.file('file/gradle/config.gradle')
 
 buildscript {
 
-    repositories {
-//        // bintray maven 出现 Failed to resolve: DevAppX-x.x.x 可考虑加上这句
-//        maven { url 'https://dl.bintray.com/afkt/maven' }
-
+    repositories { // 该 repositories 用于 buildscript dependencies 插件、脚本依赖加载
         // AliRepo 阿里仓库服务 https://maven.aliyun.com/mvn/view
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
@@ -25,7 +22,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:4.1.1'
         // android maven https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         // bintray https://plugins.gradle.org/plugin/com.jfrog.bintray
@@ -38,9 +35,9 @@ buildscript {
 }
 
 allprojects {
-    repositories {
-//        // bintray maven 出现 Failed to resolve: DevAppX-x.x.x 可考虑加上这句
-//        maven { url 'https://dl.bintray.com/afkt/maven' }
+    repositories { // 该 repositories 用于 app、module dependencies 第三方库 implementation 等依赖加载
+        // bintray maven 出现 Failed to resolve: DevAppX-x.x.x 可考虑加上这句
+        maven { url 'https://dl.bintray.com/afkt/maven' }
 
         // AliRepo 阿里仓库服务 https://maven.aliyun.com/mvn/view
         maven { url 'https://maven.aliyun.com/repository/google' }
