@@ -4,8 +4,8 @@ package dev.engine.http;
  * detail: Http Engine
  * @author Ttt
  * <pre>
- *     Application: IHttpEngine.initEngine()
- *     use: IHttpEngine.xxx
+ *     Application: DevHttpEngine.initEngine()
+ *     use: DevHttpEngine.xxx
  * </pre>
  */
 public final class DevHttpEngine {
