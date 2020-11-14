@@ -8,8 +8,7 @@ File localPropertiesFile = new File("bintray.properties");
 if (localPropertiesFile.exists()) {
     properties.load(localPropertiesFile.newDataInputStream())
 }
-//File projectPropertiesFile = project.file("project.properties");
-File projectPropertiesFile = new File("project.properties");
+File projectPropertiesFile = project.file("project.properties");
 if (projectPropertiesFile.exists()) {
     properties.load(projectPropertiesFile.newDataInputStream())
 }
