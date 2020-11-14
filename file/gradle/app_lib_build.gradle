@@ -5,7 +5,7 @@ android {
     compileSdkVersion versions.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion versions.minSdkVersion
+        minSdkVersion versions.lib_minSdkVersion
         // 混淆配置
         consumerProguardFiles 'proguard-rules.pro'
     }

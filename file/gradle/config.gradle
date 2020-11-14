@@ -21,13 +21,13 @@ ext {
     versions = [
 
             // 版本号
-            versionCode                             : 101,
+            versionCode                             : 102,
             // 版本名
-            versionName                             : '1.0.1',
+            versionName                             : '1.0.2',
             // 支持最小的 SDK
-            minSdkVersion                           : 14,
+            lib_minSdkVersion                       : 14,
             // 支持最小的 SDK
-            app_minSdkVersion                       : 19,
+            app_minSdkVersion                       : 21,
             // 编译 SDK 版本
             compileSdkVersion                       : 30,
             // 向前兼容 SDK 版本
@@ -126,7 +126,7 @@ ext {
                     cardview              : "androidx.cardview:cardview:1.0.0",
                     recyclerview          : "androidx.recyclerview:recyclerview:1.1.0",
                     multidex              : "androidx.multidex:multidex:2.0.1",
-                    constraint_layout     : "androidx.constraintlayout:constraintlayout:2.0.2",
+                    constraint_layout     : "androidx.constraintlayout:constraintlayout:2.0.4",
                     viewpager2            : "androidx.viewpager2:viewpager2:1.0.0",
                     sqlite                : "androidx.sqlite:sqlite:2.1.0", // 推荐使用 Room Jetpack 组件
                     // DefaultLifecycleObserver Java8
@@ -141,7 +141,7 @@ ext {
                     glide                        : "com.github.bumptech.glide:glide:4.11.0",
                     glide_compiler               : "com.github.bumptech.glide:compiler:4.11.0",
                     // Glide 图形库 https://github.com/wasabeef/glide-transformations
-                    glide_transformations        : "jp.wasabeef:glide-transformations:4.1.0",
+                    glide_transformations        : "jp.wasabeef:glide-transformations:4.3.0",
                     // GPU Filters https://github.com/cats-oss/android-gpuimage
                     gpuimage                     : "jp.co.cyberagent.android:gpuimage:2.1.0",
                     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
@@ -260,7 +260,7 @@ ext {
                     arouter_api                  : "com.alibaba:arouter-api:1.5.0", // https://github.com/alibaba/ARouter/blob/master/README_CN.md
                     arouter_compiler             : "com.alibaba:arouter-compiler:1.2.2",
                     // 内存检测工具 https://github.com/square/leakcanary
-                    leakcanary                   : "com.squareup.leakcanary:leakcanary-android:2.4",
+                    leakcanary                   : "com.squareup.leakcanary:leakcanary-android:2.5",
                     // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
                     blockcanary_android          : "com.github.markzhai:blockcanary-android:1.5.0",
                     blockcanary_no_op            : "com.github.markzhai:blockcanary-no-op:1.5.0",
