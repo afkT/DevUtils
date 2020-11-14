@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevJava:1.2.2'
+implementation 'com.afkt:DevJava:1.2.3'
 ```
 
 ## 目录结构
@@ -95,15 +95,15 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | asListArgsDouble | 转换数组为集合 |
 | asListArgsBoolean | 转换数组为集合 |
 | equals | 判断两个值是否一样 |
-| arraycopy | 拼接数组 |
-| newarray | 创建指定长度数组 |
-| subarray | 从数组上截取一段 |
+| arrayCopy | 拼接数组 |
+| newArray | 创建指定长度数组 |
+| subArray | 从数组上截取一段 |
 | appendToString | 追加数组内容字符串 |
 | getMinimumIndex | 获取数组中最小值索引 |
 | getMaximumIndex | 获取数组中最大值索引 |
 | getMinimum | 获取数组中最小值 |
 | getMaximum | 获取数组中最大值 |
-| sumarray | 计算数组总和 |
+| sumArray | 计算数组总和 |
 
 
 * **资金运算工具类 ->** [BigDecimalUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/BigDecimalUtils.java)
@@ -596,6 +596,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 
 | 方法 | 注释 |
 | :- | :- |
+| addRemovePaddingMargin | 为给定的 Html 移除 padding、margin |
 | addHtmlColor | 为给定的字符串添加 HTML 颜色标记 |
 | addHtmlBold | 为给定的字符串添加 HTML 加粗标记 |
 | addHtmlColorAndBold | 为给定的字符串添加 HTML 颜色标记并加粗 |
@@ -841,12 +842,16 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | forString | 循环指定数量字符串 |
 | forJoint | 循环追加 |
 | colonSplit | 冒号分割处理 |
+| getString | 获取字符串 ( 判 null ) |
 | checkValue | 检查字符串 |
 | checkValues | 检查字符串 ( 多个值 ) |
 | checkValuesSpace | 检查字符串 ( 多个值, 删除前后空格对比判断 ) |
 | getFormatString | 获取格式化后的字符串 |
 | getAutoFormatString | 获取自动数量格式化后的字符串 ( 可变参数 ) |
 | getAutoFormatString2 | 获取自动数量格式化后的字符串 ( 可变参数 ) |
+| concat | 字符串连接, 将参数列表拼接为一个字符串 |
+| concatSpiltWith | 字符串连接, 将参数列表拼接为一个字符串 |
+| concatSpiltWithIgnoreLast | 字符串连接, 将参数列表拼接为一个字符串 ( 最后一个不追加间隔 ) |
 | appends | StringBuilder 拼接处理 |
 | appendsIgnoreLast | StringBuilder 拼接处理 ( 最后一个不追加间隔 ) |
 | gbkEncode | 字符串进行 GBK 编码 |
@@ -865,8 +870,6 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | upperFirstLetter | 首字母大写 |
 | lowerFirstLetter | 首字母小写 |
 | reverse | 反转字符串 |
-| concat | 字符串连接, 将参数列表拼接为一个字符串 |
-| concatSpiltWith | 字符串连接, 将参数列表拼接为一个字符串 |
 | underScoreCaseToCamelCase | 下划线命名转为驼峰命名 |
 | camelCaseToUnderScoreCase | 驼峰命名法转为下划线命名 |
 | sqliteEscape | 字符串数据库字符转义 |
