@@ -9,6 +9,10 @@ android.defaultConfig {
 }
 
 dependencies {
+    api deps.kotlin.lifecycle_viewmodel
+    api deps.kotlin.lifecycle_livedata
+    api deps.kotlin.lifecycle_viewmodel_savedstate
+
     // 编译时使用
     api project(path: ':DevBase')
 //    // 打包时使用
