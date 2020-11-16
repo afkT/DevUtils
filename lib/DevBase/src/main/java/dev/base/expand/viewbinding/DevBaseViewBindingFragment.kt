@@ -58,4 +58,8 @@ abstract class DevBaseViewBindingFragment<VB : ViewBinding> : DevBaseFragment(),
             javaClass
         )
     }
+
+    final override fun getBindingView(): View? {
+        return mContentView
+    }
 }
