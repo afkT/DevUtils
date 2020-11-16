@@ -33,11 +33,6 @@ import dev.utils.common.CollectionUtils;
 /**
  * detail: 权限请求工具类
  * @author Ttt
- * <pre>
- *     暂时对权限操作进行 @Deprecated 注解标记,
- *     因实现方式使用透明 Activity 实现, 会导致申请页面触发 onPause/onResume
- *     后续变更为使用 Fragment 实现
- * </pre>
  */
 public final class PermissionUtils {
 
@@ -231,7 +226,6 @@ public final class PermissionUtils {
      * 构造函数
      * @param permissions 待申请权限
      */
-    @Deprecated
     private PermissionUtils(final String... permissions) {
         mPermissionSets.clear();
         // 防止数据为 null
@@ -254,7 +248,6 @@ public final class PermissionUtils {
      * @param permissions 待申请权限
      * @return {@link PermissionUtils}
      */
-    @Deprecated
     public static PermissionUtils permission(final String... permissions) {
         return new PermissionUtils(permissions);
     }
@@ -264,7 +257,6 @@ public final class PermissionUtils {
      * @param callBack {@link PermissionCallBack}
      * @return {@link PermissionUtils}
      */
-    @Deprecated
     public PermissionUtils callBack(final PermissionCallBack callBack) {
         if (mIsRequest) return this;
         this.mCallBack = callBack;
@@ -276,7 +268,6 @@ public final class PermissionUtils {
      * @param requestPermissionsResult {@code true} yes, {@code false} no
      * @return {@link PermissionUtils}
      */
-    @Deprecated
     public PermissionUtils setRequestPermissionsResult(final boolean requestPermissionsResult) {
         if (mIsRequest) return this;
         this.mIsRequestPermissionsResult = requestPermissionsResult;
@@ -287,7 +278,6 @@ public final class PermissionUtils {
      * 请求权限
      * @param activity {@link Activity}
      */
-    @Deprecated
     public void request(final Activity activity) {
         request(activity, P_REQUEST_CODE);
     }
@@ -297,7 +287,6 @@ public final class PermissionUtils {
      * @param activity    {@link Activity}
      * @param requestCode 请求 code
      */
-    @Deprecated
     public void request(final Activity activity, final int requestCode) {
         if (checkPermissions(activity) == 1) {
             // 如果 SDK 版本大于 23 才请求
@@ -325,7 +314,6 @@ public final class PermissionUtils {
      * detail: 权限请求回调
      * @author Ttt
      */
-    @Deprecated
     public interface PermissionCallBack {
 
         /**
@@ -395,7 +383,6 @@ public final class PermissionUtils {
      * 请求回调权限回调处理
      * @param activity {@link Activity}
      */
-    @Deprecated
     private void onRequestPermissionsResultCommon(final Activity activity) {
         // 获取权限状态
         getPermissionsStatus(activity);
@@ -407,7 +394,6 @@ public final class PermissionUtils {
      * 请求权限回调 ( 需要在 Activity 的 onRequestPermissionsResult 回调中, 调用 PermissionUtils.onRequestPermissionsResult(this); )
      * @param activity {@link Activity}
      */
-    @Deprecated
     public static void onRequestPermissionsResult(final Activity activity) {
         if (activity != null && sInstance != null) { // 触发回调
             sInstance.onRequestPermissionsResultCommon(activity);
@@ -417,7 +403,6 @@ public final class PermissionUtils {
     /**
      * 刷新权限改变处理 ( 清空已拒绝的权限记录 )
      */
-    @Deprecated
     public static void notifyPermissionsChange() {
         sPermissionsDeniedForeverLists.clear();
     }
@@ -433,7 +418,6 @@ public final class PermissionUtils {
      * @param deniedList 申请未通过的权限集合
      * @return 0 不符合要求无任何操作、1 再次请求操作、2  跳转到应用设置页面
      */
-    @Deprecated
     public static int againRequest(final Activity activity, final PermissionCallBack callBack,
                                    final List<String> deniedList) {
         if (activity == null || CollectionUtils.isEmpty(deniedList)) return 0;
@@ -458,7 +442,6 @@ public final class PermissionUtils {
      * @param activity {@link Activity}
      * @return -1 已经请求 ( 中 ) 过, 0 = 不处理 ( 通知回调 ), 1 = 需要请求
      */
-    @Deprecated
     private int checkPermissions(final Activity activity) {
         if (activity == null) {
             // 处理请求回调
@@ -511,7 +494,6 @@ public final class PermissionUtils {
     /**
      * 内部请求回调, 统一处理方法
      */
-    @Deprecated
     private void requestCallback() {
         if (mCallBack != null) {
             // 判断是否授权全部权限
@@ -539,7 +521,6 @@ public final class PermissionUtils {
      * 获取权限状态
      * @param activity {@link Activity}
      */
-    @Deprecated
     private void getPermissionsStatus(final Activity activity) {
         for (String permission : mPermissionsRequestLists) {
             // 判断是否通过请求
