@@ -51,6 +51,9 @@ project(':DevStandard').projectDir = new File('lib/DevStandard')
 // = Project =
 // ===========
 
+include ':DemoKtx'
+project(':DemoKtx').projectDir = new File(rootDir, 'project/DemoKtx')
+
 include ':AccessibilityKtx'
 project(':AccessibilityKtx').projectDir = new File(rootDir, 'project/AccessibilityKtx')
 
