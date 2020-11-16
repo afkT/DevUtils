@@ -6,7 +6,7 @@
 
         <variable
             name="title"
-            type="String" />
+            type="java.lang.String" />
     </data>
 
     <LinearLayout

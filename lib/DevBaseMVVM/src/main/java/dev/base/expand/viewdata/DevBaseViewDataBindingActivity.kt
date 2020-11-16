@@ -10,8 +10,6 @@ import dev.base.activity.DevBaseActivity
 /**
  * detail: Activity ViewDataBinding 基类
  * @author Ttt
- * DataBindingUtil.bind<VDB>(View)
- * DataBindingUtil.setContentView<VDB>(Activity, layoutId)
  */
 abstract class DevBaseViewDataBindingActivity<VDB : ViewDataBinding> : DevBaseActivity(),
     IDevBaseViewDataBinding<VDB> {
