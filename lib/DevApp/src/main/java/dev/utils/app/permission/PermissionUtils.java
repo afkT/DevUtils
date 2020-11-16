@@ -193,9 +193,9 @@ public final class PermissionUtils {
         return AppInfoUtils.getAppPermission(packageName);
     }
 
-    // ===============
-    // = 原始实现代码 =
-    // ===============
+    // ===========
+    // = 权限申请 =
+    // ===========
 
     // APP 注册的权限
     private static final Set<String>        sAppPermissionSets             = getAppPermissionToSet();
@@ -323,6 +323,12 @@ public final class PermissionUtils {
 
         /**
          * 授权未通过权限回调
+         * <pre>
+         *     判断 deniedList 申请未通过的权限中拒绝状态
+         *     可通过 {@link #getDeniedPermissionStatus(Activity, boolean, String...)} 进行获取
+         *     第二个参数 shouldShow ( boolean )
+         *     {@code true} 没有勾选不再询问, {@code false} 勾选了不再询问
+         * </pre>
          * @param grantedList  申请通过的权限
          * @param deniedList   申请未通过的权限
          * @param notFoundList 查询不到的权限 ( 包含未注册 )
