@@ -13,10 +13,6 @@ abstract class BaseMVVMActivity<VDB : ViewDataBinding> : DevBaseViewDataBindingA
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        // MVVM 只需要调用此句绑定
-//        viewDataBinding = DataBindingUtil.bind(mContentView)
-//        viewDataBinding = DataBindingUtil.setContentView(this, baseLayoutId())
-
         // 初始化顺序 ( 按顺序调用方法 )
         initOrder()
     }
