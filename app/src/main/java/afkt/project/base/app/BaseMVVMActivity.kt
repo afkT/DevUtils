@@ -3,16 +3,13 @@ package afkt.project.base.app
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import dev.base.expand.content.DevBaseContentActivity
+import dev.base.expand.viewdata.DevBaseViewDataBindingActivity
 
 /**
  * detail: Activity MVVM 基类
  * @author Ttt
  */
-abstract class BaseMVVMActivity<VDB : ViewDataBinding?> : DevBaseContentActivity() {
-
-    @JvmField
-    protected var viewDataBinding: VDB? = null
+abstract class BaseMVVMActivity<VDB : ViewDataBinding> : DevBaseViewDataBindingActivity<VDB>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,13 +21,7 @@ abstract class BaseMVVMActivity<VDB : ViewDataBinding?> : DevBaseContentActivity
         initOrder()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        // 取消 MVVM 绑定
-        viewDataBinding?.unbind()
-    }
-
-    override fun baseLayoutView(): View? {
+    override fun baseContentView(): View? {
         return null
     }
 }

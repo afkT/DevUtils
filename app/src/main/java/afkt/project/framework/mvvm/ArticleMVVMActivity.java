@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.tt.whorlviewlibrary.WhorlView;
@@ -31,7 +30,7 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
     WhorlView             whorlView;
 
     @Override
-    public int baseLayoutId() {
+    public int baseContentId() {
         return R.layout.activity_article_mvvm;
     }
 
@@ -39,14 +38,8 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
     public void initView() {
         super.initView();
 
-        // 因现有架构与 MVVM 并非完全兼容, 需要重新设置 setContentView
-        // 在一开始选型确定后, 才能专门为其设计基类
-
-        // MVVM 只需要调用此句绑定
-        viewDataBinding = DataBindingUtil.bind(layoutView);
-
         // = 处理 ActionBar =
-        setSupportActionBar(viewDataBinding.vidAamToolbar);
+        setSupportActionBar(binding.vidAamToolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             // 给左上角图标的左边加上一个返回的图标
@@ -55,7 +48,7 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
             actionBar.setDisplayShowTitleEnabled(false);
         }
         // 设置点击事件
-        viewDataBinding.vidAamToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        binding.vidAamToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 关闭页面
@@ -67,11 +60,11 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
         // 获取标题
         String title = intent.getStringExtra(KeyConstants.Common.KEY_TITLE);
         // 设置标题
-        viewDataBinding.setTitle(title);
-        viewDataBinding.setVariable(BR.title, title); // 设置后, 会动态刷新
+        binding.setTitle(title);
+        binding.setVariable(BR.title, title); // 设置后, 会动态刷新
 
         // 初始化 View
-        View view = viewDataBinding.vidAamState.getView(ViewAssist.TYPE_ING);
+        View view = binding.vidAamState.getView(ViewAssist.TYPE_ING);
         whorlView = ViewUtils.findViewById(view, R.id.vid_sli_load_view);
     }
 
@@ -80,17 +73,17 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
         super.initValue();
         // 初始化布局管理器、适配器
         ArticleAdapter articleAdapter = new ArticleAdapter();
-        viewDataBinding.vidAamRecy.setLayoutManager(new LinearLayoutManager(this));
-        viewDataBinding.vidAamRecy.setAdapter(articleAdapter);
+        binding.vidAamRecy.setLayoutManager(new LinearLayoutManager(this));
+        binding.vidAamRecy.setAdapter(articleAdapter);
         // 初始化 VM
-        viewModel = new ArticleMVVM.ViewModel(viewDataBinding, articleAdapter);
+        viewModel = new ArticleMVVM.ViewModel(binding, articleAdapter);
     }
 
     @Override
     public void initListener() {
         super.initListener();
         // 设置监听
-        viewDataBinding.vidAamState.setListener(new StateLayout.Listener() {
+        binding.vidAamState.setListener(new StateLayout.Listener() {
             @Override
             public void onRemove(StateLayout layout, int type, boolean removeView) {
             }
@@ -99,7 +92,7 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
             public void onNotFound(StateLayout layout, int type) {
                 // 切换 View 操作
                 if (type == ViewAssist.TYPE_SUCCESS) {
-                    ViewUtils.reverseVisibilitys(true, viewDataBinding.vidAamRecy, viewDataBinding.vidAamState);
+                    ViewUtils.reverseVisibilitys(true, binding.vidAamRecy, binding.vidAamState);
                 }
             }
 
@@ -108,7 +101,7 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
                 // 判断是否操作成功
                 boolean success = (type == ViewAssist.TYPE_SUCCESS);
                 // 切换 View 操作
-                if (ViewUtils.reverseVisibilitys(success, viewDataBinding.vidAamRecy, viewDataBinding.vidAamState)) {
+                if (ViewUtils.reverseVisibilitys(success, binding.vidAamRecy, binding.vidAamState)) {
                     // 属于请求成功
                 } else {
                     if (type == ViewAssist.TYPE_ING) {
@@ -127,7 +120,7 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
     public void initOther() {
         super.initOther();
         // 表示请求中
-        viewDataBinding.vidAamState.showIng();
+        binding.vidAamState.showIng();
         // 获取文章列表
         viewModel.getArticleLists();
     }
