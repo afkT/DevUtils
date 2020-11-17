@@ -79,6 +79,7 @@ public final class DevFinal {
     public static final String ACTIVITY = "activity";
     public static final String INTENT   = "intent";
     public static final String ASSETS   = "assets";
+    public static final String VIEW     = "view";
 
     public static final String ACCOUNT  = "account";
     public static final String PASSWORD = "password";
@@ -92,11 +93,13 @@ public final class DevFinal {
     public static final String SORT    = "sort";
     public static final String DB      = "db";
 
-    public static final String MAX   = "max";
-    public static final String MIN   = "min";
-    public static final String SIZE  = "size";
-    public static final String PAGE  = "page";
-    public static final String COUNT = "count";
+    public static final String MAX      = "max";
+    public static final String MIN      = "min";
+    public static final String SIZE     = "size";
+    public static final String PAGE     = "page";
+    public static final String POSITION = "position";
+    public static final String INDEX    = "index";
+    public static final String COUNT    = "count";
 
     public static final String ARRAY  = "array";
     public static final String LIST   = "list";
@@ -149,12 +152,18 @@ public final class DevFinal {
     public static final String WAITING  = "waiting";
     public static final String CONFIG   = "config";
 
+    public static final String SUB     = "sub";
+    public static final String CHILD   = "child";
     public static final String ITEM    = "item";
     public static final String METHOD  = "method";
     public static final String REMARK  = "remark";
     public static final String CHANNEL = "channel";
     public static final String CLIENT  = "client";
+    public static final String PARENT  = "parent";
     public static final String UNKNOWN = "unknown";
+
+    public static final String MODEL  = "model";
+    public static final String MODULE = "module";
 
     // ===========
     // = 常量数组 =

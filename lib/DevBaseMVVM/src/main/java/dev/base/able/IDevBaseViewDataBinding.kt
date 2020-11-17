@@ -4,7 +4,7 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 
 /**
- * detail: ViewDataBinding 基类接口
+ * detail: 基类 ViewDataBinding 接口
  * @author Ttt
  */
 interface IDevBaseViewDataBinding<VDB : ViewDataBinding> {

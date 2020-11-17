@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 
 /**
- * detail: ViewBinding 基类接口
+ * detail: 基类 ViewBinding 接口
  * @author Ttt
  */
 interface IDevBaseViewBinding<VB : ViewBinding> {
