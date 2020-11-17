@@ -328,6 +328,17 @@ public final class ViewUtils {
     }
 
     /**
+     * 获取最后一个索引 View
+     * @param viewGroup {@link ViewGroup}
+     * @param <T>       泛型
+     * @return {@link View}
+     */
+    public static <T extends View> T getChildAtLast(final ViewGroup viewGroup) {
+        if (viewGroup == null) return null;
+        return getChildAt(viewGroup, viewGroup.getChildCount() - 1);
+    }
+
+    /**
      * 获取指定索引 View
      * @param viewGroup {@link ViewGroup}
      * @param index     索引

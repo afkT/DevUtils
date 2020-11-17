@@ -22,28 +22,42 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" />
 
-    <!-- 内容主体 -->
+    <!-- 内容区域块 -->
 
     <FrameLayout
-        android:id="@+id/vid_bcv_body_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- 填充容器 -->
+        <!-- 内容主体 -->
 
-        <LinearLayout
-            android:id="@+id/vid_bcv_content_linear"
+        <FrameLayout
+            android:id="@+id/vid_bcv_body_frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" />
+            android:layout_height="match_parent">
 
-        <!-- 状态布局容器 -->
+            <!-- 填充容器 -->
 
-        <LinearLayout
-            android:id="@+id/vid_bcv_state_linear"
+            <LinearLayout
+                android:id="@+id/vid_bcv_content_linear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" />
+
+            <!-- 状态布局容器 -->
+
+            <LinearLayout
+                android:id="@+id/vid_bcv_state_linear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <!-- 悬浮容器 -->
+
+        <FrameLayout
+            android:id="@+id/vid_bcv_float_frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone" />
+            android:layout_height="match_parent" />
     </FrameLayout>
 </LinearLayout>

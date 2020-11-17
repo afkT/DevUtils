@@ -43,6 +43,10 @@ class DevBaseContentAssist {
     @JvmField
     open var stateLinear: LinearLayout? = null
 
+    // 悬浮容器
+    @JvmField
+    open var floatFrame: FrameLayout? = null
+
     fun bind(activity: Activity): DevBaseContentAssist {
         if (activity != null) {
             // R.layout.base_content_view
@@ -52,6 +56,7 @@ class DevBaseContentAssist {
             this.bodyFrame = activity.findViewById(R.id.vid_bcv_body_frame)
             this.contentLinear = activity.findViewById(R.id.vid_bcv_content_linear)
             this.stateLinear = activity.findViewById(R.id.vid_bcv_state_linear)
+            this.floatFrame = activity.findViewById(R.id.vid_bcv_float_frame)
         }
         return this
     }
@@ -65,6 +70,7 @@ class DevBaseContentAssist {
             this.bodyFrame = view.findViewById(R.id.vid_bcv_body_frame)
             this.contentLinear = view.findViewById(R.id.vid_bcv_content_linear)
             this.stateLinear = view.findViewById(R.id.vid_bcv_state_linear)
+            this.floatFrame = view.findViewById(R.id.vid_bcv_float_frame)
         }
         return this
     }
@@ -75,7 +81,8 @@ class DevBaseContentAssist {
         titleLinear: LinearLayout?,
         bodyFrame: FrameLayout?,
         contentLinear: LinearLayout?,
-        stateLinear: LinearLayout?
+        stateLinear: LinearLayout?,
+        floatFrame: FrameLayout?,
     ): DevBaseContentAssist {
         this.rootLinear = rootLinear
         this.statusBarLinear = statusBarLinear
@@ -83,6 +90,7 @@ class DevBaseContentAssist {
         this.bodyFrame = bodyFrame
         this.contentLinear = contentLinear
         this.stateLinear = stateLinear
+        this.floatFrame = floatFrame
         return this
     }
 
@@ -150,6 +158,14 @@ class DevBaseContentAssist {
         return setVisibility(true, stateLinear)
     }
 
+    /**
+     * 显示 floatFrame
+     * @return [DevBaseContentAssist]
+     */
+    fun visibleFloatFrame(): DevBaseContentAssist {
+        return setVisibility(true, floatFrame)
+    }
+
     // =
 
     /**
@@ -190,6 +206,14 @@ class DevBaseContentAssist {
      */
     fun goneStateLinear(): DevBaseContentAssist {
         return setVisibility(false, stateLinear)
+    }
+
+    /**
+     * 隐藏 floatFrame
+     * @return [DevBaseContentAssist]
+     */
+    fun goneFloatFrame(): DevBaseContentAssist {
+        return setVisibility(false, floatFrame)
     }
 
     // =============
@@ -410,6 +434,42 @@ class DevBaseContentAssist {
         params: ViewGroup.LayoutParams?
     ): DevBaseContentAssist {
         return addView(stateLinear, view, index, params)
+    }
+
+    /**
+     * floatFrame 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addFloatView(view: View?): DevBaseContentAssist {
+        return addView(floatFrame, view, -1)
+    }
+
+    /**
+     * floatFrame 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addFloatView(view: View?, index: Int): DevBaseContentAssist {
+        return addView(floatFrame, view, index)
+    }
+
+    /**
+     * floatFrame 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addFloatView(view: View?, params: ViewGroup.LayoutParams?): DevBaseContentAssist {
+        return addView(floatFrame, view, -1, params)
+    }
+
+    /**
+     * floatFrame 添加 View
+     * @return [DevBaseContentAssist]
+     */
+    fun addFloatView(
+        view: View?,
+        index: Int,
+        params: ViewGroup.LayoutParams?
+    ): DevBaseContentAssist {
+        return addView(floatFrame, view, index, params)
     }
 
     // ===============
