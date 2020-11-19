@@ -178,7 +178,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
                     )
                     // 判断是否不存在数据
                     if (itemCount == 0) {
-                        stateLayout?.showEmptyData()
+                        stateLayout.showEmptyData()
                     }
                     adapterDataObserver?.onChanged()
                 }
