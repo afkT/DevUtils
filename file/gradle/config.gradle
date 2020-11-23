@@ -243,6 +243,8 @@ ext {
                     sqlcipher                    : "net.zetetic:android-database-sqlcipher:4.4.0",
                     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
                     luban                        : "top.zibin:Luban:1.1.8",
+                    // Kotlin Luban 图片压缩 https://github.com/forJrking/KLuban
+                    kluban                       : "com.github.forJrking:KLuban:1.0.2",
                     // CalendarView 日历控件 https://github.com/huanghaibin-dev/CalendarView
                     calendarview                 : "com.haibin:calendarview:3.6.9",
                     // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
