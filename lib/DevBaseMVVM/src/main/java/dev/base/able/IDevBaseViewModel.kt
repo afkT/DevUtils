@@ -15,17 +15,21 @@ interface IDevBaseViewModel<VDB : ViewModel> {
      */
     fun initViewModel()
 
+    // ==============================
+    // = Base Application ViewModel =
+    // ==============================
+
     /**
      * 获取 Application ViewModelProvider
      * @param application [Application]
      * @return [ViewModelProvider]
      */
-    fun getAppViewModelProvider(application: Application): ViewModelProvider?
+    fun getAppViewModelProvider(application: Application?): ViewModelProvider?
 
     /**
      * 获取 Application AndroidViewModel Factory
      * @param application [Application]
      * @return [ViewModelProvider.Factory]
      */
-    fun getAppFactory(application: Application): ViewModelProvider.Factory?
+    fun getAppFactory(application: Application?): ViewModelProvider.Factory?
 }

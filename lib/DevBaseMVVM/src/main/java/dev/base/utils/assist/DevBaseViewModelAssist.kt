@@ -7,14 +7,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 
-
 /**
  * detail: DevBase ViewModel 辅助类
  * @author Ttt
  * <p></p>
  * 使用全局 ViewModel 则通过 Base Application implements ViewModelStoreOwner
  * 并通过 [getAppViewModelProvider] 进行 [ViewModelProvider.get] 获取全局 ViewModel
- *
  */
 class DevBaseViewModelAssist {
 
@@ -45,7 +43,7 @@ class DevBaseViewModelAssist {
      * @param application [Application]
      * @return [ViewModelProvider]
      */
-    fun getAppViewModelProvider(application: Application): ViewModelProvider? {
+    fun getAppViewModelProvider(application: Application?): ViewModelProvider? {
         if (application is ViewModelStoreOwner) {
             return ViewModelProvider(
                 application as ViewModelStoreOwner, getAppFactory(application)!!
@@ -59,7 +57,7 @@ class DevBaseViewModelAssist {
      * @param application [Application]
      * @return [ViewModelProvider.Factory]
      */
-    fun getAppFactory(application: Application): ViewModelProvider.Factory? {
+    fun getAppFactory(application: Application?): ViewModelProvider.Factory? {
         if (mFactory != null) return mFactory
         if (application == null) return null
         if (mFactory == null) {
