@@ -1,6 +1,7 @@
 package dev.base.able
 
 import android.app.Application
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
@@ -25,6 +26,30 @@ interface IDevBaseViewModel<VDB : ViewModel> {
      * @return [T]
      */
     fun <T : ViewModel?> getActivityViewModel(
+        modelClass: Class<T>
+    ): T?
+
+    // =====================
+    // = Fragment Provider =
+    // =====================
+
+    /**
+     * 获取 Fragment ViewModel
+     * @param modelClass [ViewModel]
+     * @return [T]
+     */
+    fun <T : ViewModel?> getFragmentViewModel(
+        modelClass: Class<T>
+    ): T?
+
+    /**
+     * 获取 Fragment ViewModel
+     * @param fragment [Fragment]
+     * @param modelClass [ViewModel]
+     * @return [T]
+     */
+    fun <T : ViewModel?> getFragmentViewModel(
+        fragment: Fragment?,
         modelClass: Class<T>
     ): T?
 

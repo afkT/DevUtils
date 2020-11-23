@@ -2,6 +2,7 @@ package dev.base.expand.mvvm
 
 import android.app.Application
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dev.base.able.IDevBaseViewModel
@@ -30,7 +31,22 @@ abstract class DevBaseMVVMActivity<VDB : ViewDataBinding, VM : ViewModel> :
     // =====================
 
     override fun <T : ViewModel?> getActivityViewModel(modelClass: Class<T>): T? {
-        return viewModelAssist.getActivityViewModel(this, modelClass)
+        return viewModelAssist.getActivityViewModelCache(this, modelClass)
+    }
+
+    // =====================
+    // = Fragment Provider =
+    // =====================
+
+    override fun <T : ViewModel?> getFragmentViewModel(modelClass: Class<T>): T? {
+        return null
+    }
+
+    override fun <T : ViewModel?> getFragmentViewModel(
+        fragment: Fragment?,
+        modelClass: Class<T>
+    ): T? {
+        return null
     }
 
     // ========================

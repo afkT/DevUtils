@@ -1,6 +1,7 @@
 package dev.base.utils.assist
 
 import android.app.Application
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -34,10 +35,59 @@ class DevBaseViewModelAssist {
         modelClass: Class<T>
     ): T? {
         if (activity == null) return null
+        return ViewModelProvider(activity)!!.get(modelClass)
+    }
+
+    /**
+     * 获取 Activity ViewModel
+     * @param activity [FragmentActivity]
+     * @param modelClass [ViewModel]
+     * @return [T]
+     */
+    fun <T : ViewModel?> getActivityViewModelCache(
+        activity: FragmentActivity?,
+        modelClass: Class<T>
+    ): T? {
+        if (activity == null) return null
         if (mActivityProvider == null) {
             mActivityProvider = ViewModelProvider(activity)
         }
         return mActivityProvider!!.get(modelClass)
+    }
+
+    // =====================
+    // = Fragment Provider =
+    // =====================
+
+    /**
+     * 获取 Fragment ViewModel
+     * @param fragment [Fragment]
+     * @param modelClass [ViewModel]
+     * @return [T]
+     */
+    fun <T : ViewModel?> getFragmentViewModel(
+        fragment: Fragment?,
+        modelClass: Class<T>
+    ): T? {
+        if (fragment == null) return null
+        return ViewModelProvider(fragment)!!.get(modelClass)
+    }
+
+    /**
+     * 获取 Fragment ViewModel
+     * @param fragment [Fragment]
+     * @param modelClass [ViewModel]
+     * @return [T]
+     */
+    fun <T : ViewModel?> getFragmentViewModelCache(
+        fragment: Fragment?,
+        modelClass: Class<T>
+    ): T? {
+        if (fragment == null) return null
+        if (mFragmentProvider == null) {
+            mFragmentProvider = ViewModelProvider(fragment)
+        }
+        return mFragmentProvider!!.get(modelClass)
     }
 
     // ========================
