@@ -15,6 +15,19 @@ interface IDevBaseViewModel<VDB : ViewModel> {
      */
     fun initViewModel()
 
+    // =====================
+    // = Activity Provider =
+    // =====================
+
+    /**
+     * 获取 Activity ViewModel
+     * @param modelClass [ViewModel]
+     * @return [T]
+     */
+    fun <T : ViewModel?> getActivityViewModel(
+        modelClass: Class<T>
+    ): T?
+
     // ========================
     // = Application Provider =
     // ========================
@@ -23,6 +36,7 @@ interface IDevBaseViewModel<VDB : ViewModel> {
      * 获取 Application ViewModel
      * @param application [Application]
      * @param modelClass [ViewModel]
+     * @return [T]
      */
     fun <T : ViewModel?> getAppViewModel(
         application: Application?,

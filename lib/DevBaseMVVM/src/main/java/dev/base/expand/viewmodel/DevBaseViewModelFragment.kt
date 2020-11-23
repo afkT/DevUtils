@@ -23,6 +23,18 @@ abstract class DevBaseViewModelFragment<VM : ViewModel> : DevBaseFragment(),
     // = IDevBaseViewModel =
     // =====================
 
+    // =====================
+    // = Activity Provider =
+    // =====================
+
+    override fun <T : ViewModel?> getActivityViewModel(modelClass: Class<T>): T? {
+        return viewModelAssist.getActivityViewModel(activity, modelClass)
+    }
+
+    // ========================
+    // = Application Provider =
+    // ========================
+
     override fun <T : ViewModel?> getAppViewModel(
         application: Application?,
         modelClass: Class<T>

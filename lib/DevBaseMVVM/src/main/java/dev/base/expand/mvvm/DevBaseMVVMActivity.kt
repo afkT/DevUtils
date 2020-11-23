@@ -25,6 +25,18 @@ abstract class DevBaseMVVMActivity<VDB : ViewDataBinding, VM : ViewModel> :
     // = IDevBaseViewModel =
     // =====================
 
+    // =====================
+    // = Activity Provider =
+    // =====================
+
+    override fun <T : ViewModel?> getActivityViewModel(modelClass: Class<T>): T? {
+        return viewModelAssist.getActivityViewModel(this, modelClass)
+    }
+
+    // ========================
+    // = Application Provider =
+    // ========================
+
     override fun <T : ViewModel?> getAppViewModel(
         application: Application?,
         modelClass: Class<T>

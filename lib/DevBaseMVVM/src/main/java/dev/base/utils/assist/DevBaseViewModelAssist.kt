@@ -15,14 +15,20 @@ import androidx.lifecycle.ViewModelStoreOwner
  */
 class DevBaseViewModelAssist {
 
-    private var mFragmentProvider: ViewModelProvider? = null
     private var mActivityProvider: ViewModelProvider? = null
+    private var mFragmentProvider: ViewModelProvider? = null
     private var mFactory: ViewModelProvider.Factory? = null
 
     // =====================
     // = Activity Provider =
     // =====================
 
+    /**
+     * 获取 Activity ViewModel
+     * @param activity [FragmentActivity]
+     * @param modelClass [ViewModel]
+     * @return [T]
+     */
     fun <T : ViewModel?> getActivityViewModel(
         activity: FragmentActivity?,
         modelClass: Class<T>
@@ -42,6 +48,7 @@ class DevBaseViewModelAssist {
      * 获取 Application ViewModel
      * @param application [Application]
      * @param modelClass [ViewModel]
+     * @return [T]
      */
     fun <T : ViewModel?> getAppViewModel(
         application: Application?,
