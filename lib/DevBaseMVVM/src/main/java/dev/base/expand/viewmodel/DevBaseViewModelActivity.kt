@@ -23,6 +23,13 @@ abstract class DevBaseViewModelActivity<VM : ViewModel> : DevBaseActivity(),
     // = IDevBaseViewModel =
     // =====================
 
+    override fun <T : ViewModel?> getAppViewModel(
+        application: Application?,
+        modelClass: Class<T>
+    ): T? {
+        return viewModelAssist.getAppViewModel(application, modelClass)
+    }
+
     override fun getAppViewModelProvider(application: Application?): ViewModelProvider? {
         return viewModelAssist.getAppViewModelProvider(application)
     }

@@ -1,7 +1,6 @@
 package dev.base.utils.assist
 
 import android.app.Application
-import androidx.annotation.NonNull
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -11,8 +10,8 @@ import androidx.lifecycle.ViewModelStoreOwner
  * detail: DevBase ViewModel 辅助类
  * @author Ttt
  * <p></p>
- * 使用全局 ViewModel 则通过 Base Application implements ViewModelStoreOwner
- * 并通过 [getAppViewModelProvider] 进行 [ViewModelProvider.get] 获取全局 ViewModel
+ * 使用全局 ViewModel 则通过 Application implements ViewModelStoreOwner
+ * 并通过 [getAppViewModel] 获取全局 ViewModel
  */
 class DevBaseViewModelAssist {
 
@@ -20,23 +19,37 @@ class DevBaseViewModelAssist {
     private var mActivityProvider: ViewModelProvider? = null
     private var mFactory: ViewModelProvider.Factory? = null
 
-    // ===================
-    // = 内部最终调用方法 =
-    // ===================
+    // =====================
+    // = Activity Provider =
+    // =====================
 
     fun <T : ViewModel?> getActivityViewModel(
-        activity: FragmentActivity,
-        @NonNull modelClass: Class<T>
-    ): T {
+        activity: FragmentActivity?,
+        modelClass: Class<T>
+    ): T? {
+        if (activity == null) return null
         if (mActivityProvider == null) {
             mActivityProvider = ViewModelProvider(activity)
         }
         return mActivityProvider!!.get(modelClass)
     }
 
-    // ==============================
-    // = Base Application ViewModel =
-    // ==============================
+    // ========================
+    // = Application Provider =
+    // ========================
+
+    /**
+     * 获取 Application ViewModel
+     * @param application [Application]
+     * @param modelClass [ViewModel]
+     */
+    fun <T : ViewModel?> getAppViewModel(
+        application: Application?,
+        modelClass: Class<T>
+    ): T? {
+        if (application == null) return null
+        return getAppViewModelProvider(application)?.get(modelClass)
+    }
 
     /**
      * 获取 Application ViewModelProvider
