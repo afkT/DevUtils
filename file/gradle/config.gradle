@@ -37,7 +37,7 @@ ext {
             // java 版本
             javaVersion                             : JavaVersion.VERSION_1_8,
             // Kotlin 版本
-            kotlin_version                          : '1.4.10',
+            kotlin_version                          : '1.4.20',
 
             // ===========
             // = Dev Lib =
