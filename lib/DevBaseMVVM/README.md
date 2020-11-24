@@ -40,4 +40,29 @@ implementation 'com.afkt:DevBaseMVVM:1.0.0'
 
 * ViewDataBinding 基类（[viewdata](https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/src/main/java/dev/base/expand/viewdata)）：使用 ViewDataBinding 实现对 View 进行 bind、数据双向绑定基类
 
-* ViewModel 基类（[viewmodel](https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/src/main/java/dev/base/expand/viewmodel)）：使用 ViewModel 进行数据管理基类
+* ViewModel 基类（[viewmodel](https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/src/main/java/dev/base/expand/viewmodel)）：使用 ViewModel 进行数据管理、交互基类
+
+## Google
+
+* [android / sunflower](https://github.com/android/sunflower)
+
+* [ViewModel 概览](https://developer.android.com/topic/libraries/architecture/viewmodel)
+
+* [LiveData 概览](https://developer.android.com/topic/libraries/architecture/livedata)
+
+## 其他
+
+* [MVPVM in Action, 谁告诉你 MVP 和 MVVM 是互斥的](http://blog.zhaiyifan.cn/2016/03/16/android-new-project-from-0-p3)
+
+* [是让人耳目一新的 Jetpack MVVM 精讲啊！](https://juejin.cn/post/6844903976240939021)
+
+* [DataBinding 最全使用说明](https://juejin.cn/post/6844903549223059463)
+
+* [Android 官方 MVVM 框架实现组件化之整体结构](https://www.jianshu.com/p/c0988e7f31fd)
+
+* [AndroidX Jetpack Practice](https://github.com/hi-dhl/AndroidX-Jetpack-Practice)
+
+* [深入浅出 MVVM 教程](https://www.jianshu.com/p/bcdb7c2a07eb)
+
+* [AndroidLibs / 框架](https://github.com/GuoYangGit/AndroidLibs/tree/master/%E6%A1%86%E6%9E%B6)
+
