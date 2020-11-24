@@ -35,6 +35,12 @@
 
 - [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevBase/CHANGELOG.md)
 
+### DevBaseMVVM - MVVM ( ViewDataBinding + ViewModel ) 基类库
+
+- [README](https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md)
+
+- [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/CHANGELOG.md)
+
 ### DevJava - Java 工具类库 ( 不依赖 android api )
 
 - [README - API](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md)
