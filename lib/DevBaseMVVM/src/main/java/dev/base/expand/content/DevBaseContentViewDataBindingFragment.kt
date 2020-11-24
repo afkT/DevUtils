@@ -13,7 +13,8 @@ import dev.base.able.IDevBaseViewDataBinding
  * @author Ttt
  */
 abstract class DevBaseContentViewDataBindingFragment<VDB : ViewDataBinding> :
-    DevBaseContentFragment(), IDevBaseViewDataBinding<VDB> {
+    DevBaseContentFragment(),
+    IDevBaseViewDataBinding<VDB> {
 
     private var _binding: VDB? = null
     val binding: VDB get() = _binding!!

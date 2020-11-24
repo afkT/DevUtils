@@ -11,7 +11,8 @@ import dev.base.able.IDevBaseViewDataBinding
  * @author Ttt
  */
 abstract class DevBaseContentViewDataBindingActivity<VDB : ViewDataBinding> :
-    DevBaseContentActivity(), IDevBaseViewDataBinding<VDB> {
+    DevBaseContentActivity(),
+    IDevBaseViewDataBinding<VDB> {
 
     lateinit var binding: VDB
 
