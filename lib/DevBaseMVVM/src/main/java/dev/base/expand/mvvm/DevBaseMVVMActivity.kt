@@ -46,7 +46,7 @@ abstract class DevBaseMVVMActivity<VDB : ViewDataBinding, VM : ViewModel> :
         fragment: Fragment?,
         modelClass: Class<T>
     ): T? {
-        return null
+        return viewModelAssist.getFragmentViewModel(fragment, modelClass)
     }
 
     // ========================

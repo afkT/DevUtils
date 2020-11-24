@@ -44,7 +44,7 @@ abstract class DevBaseViewModelActivity<VM : ViewModel> : DevBaseActivity(),
         fragment: Fragment?,
         modelClass: Class<T>
     ): T? {
-        return null
+        return viewModelAssist.getFragmentViewModel(fragment, modelClass)
     }
 
     // ========================
