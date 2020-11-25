@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.0.0 *(2020-12-XX)*
+Version 1.0.0 *(2020-11-25)*
 ----------------------------
 
  Initial release
