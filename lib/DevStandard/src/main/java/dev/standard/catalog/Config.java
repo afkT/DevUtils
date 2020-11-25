@@ -97,7 +97,7 @@ final class Config {
         sDevUtilsCatalogMap.put(".DevAssist", "封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等");
         sDevUtilsCatalogMap.put(".DevBase", "Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库");
         sDevUtilsCatalogMap.put(".DevBase2", "Base 基础代码 ( 非基类库 )");
-        sDevUtilsCatalogMap.put(".DevBaseMVVM", "Base MVVM 基类库");
+        sDevUtilsCatalogMap.put(".DevBaseMVVM", "MVVM ( ViewDataBinding + ViewModel ) 基类库");
         sDevUtilsCatalogMap.put(".DevJava", "Java 工具类库 ( 不依赖 android api )");
         sDevUtilsCatalogMap.put(".DevOther", "第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用");
         sDevUtilsCatalogMap.put(".DevStandard", "项目规范统一检测、生成替换等");

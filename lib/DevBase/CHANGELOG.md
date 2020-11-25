@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.0.2 *(2020-11-25)*
+Version 1.0.2 *(2020-11-26)*
 ----------------------------
 
 * `[Add]` 新增 IDevBaseMethod#preLoad 预加载方法
