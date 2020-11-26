@@ -33,6 +33,7 @@ import dev.environment.annotation.Module;
 import dev.environment.bean.EnvironmentBean;
 import dev.environment.bean.ModuleBean;
 import dev.environment.listener.OnEnvironmentChangeListener;
+import dev.environment.log.LogUtils;
 import dev.environment.type.ParameterizedTypeImpl;
 
 /**
@@ -493,7 +494,7 @@ final class Utils {
         codeBlockBuilder.add("    try {\n");
         codeBlockBuilder.add("        return $N.add($N);\n", VAR_LISTENER_LIST, VAR_LISTENER);
         codeBlockBuilder.add("    } catch (Exception e) {\n");
-        codeBlockBuilder.add("        e.printStackTrace();\n");
+        codeBlockBuilder.add("        $T.printStackTrace(e);\n", LogUtils.class);
         codeBlockBuilder.add("    }\n");
         codeBlockBuilder.add("}\n");
 
@@ -520,7 +521,7 @@ final class Utils {
         codeBlockBuilder.add("    try {\n");
         codeBlockBuilder.add("        return $N.remove($N);\n", VAR_LISTENER_LIST, VAR_LISTENER);
         codeBlockBuilder.add("    } catch (Exception e) {\n");
-        codeBlockBuilder.add("        e.printStackTrace();\n");
+        codeBlockBuilder.add("        $T.printStackTrace(e);\n", LogUtils.class);
         codeBlockBuilder.add("    }\n");
         codeBlockBuilder.add("}\n");
 
@@ -547,7 +548,7 @@ final class Utils {
         codeBlockBuilder.add("    $N.clear();\n", VAR_LISTENER_LIST);
         codeBlockBuilder.add("    return true;\n");
         codeBlockBuilder.add("} catch (Exception e) {\n");
-        codeBlockBuilder.add("    e.printStackTrace();\n");
+        codeBlockBuilder.add("    $T.printStackTrace(e);\n", LogUtils.class);
         codeBlockBuilder.add("}\n");
 
         // public static final Boolean clearOnEnvironmentChangeListener() {}
@@ -575,7 +576,7 @@ final class Utils {
         codeBlockBuilder.add("        $N.$N($N, $N, $N);\n", VAR_LISTENER, METHOD_ONENVIRONMENT_CHANGED,
                 VAR_MODULE, VAR_OLD_ENVIRONMENT, VAR_NEW_ENVIRONMENT);
         codeBlockBuilder.add("    } catch (Exception e) {\n");
-        codeBlockBuilder.add("        e.printStackTrace();\n");
+        codeBlockBuilder.add("        $T.printStackTrace(e);\n", LogUtils.class);
         codeBlockBuilder.add("    }\n");
         codeBlockBuilder.add("}\n");
 
@@ -608,7 +609,7 @@ final class Utils {
         codeBlockBuilder.add("    if (!file.exists()) file.mkdirs();\n");
         codeBlockBuilder.add("    return file;\n");
         codeBlockBuilder.add("} catch (Exception e) {\n");
-        codeBlockBuilder.add("    e.printStackTrace();\n");
+        codeBlockBuilder.add("    $T.printStackTrace(e);\n", LogUtils.class);
         codeBlockBuilder.add("}\n");
 
         // public static final File getStorageDir(final Context context) {}
@@ -641,7 +642,7 @@ final class Utils {
         codeBlockBuilder.add("        return true;\n");
         codeBlockBuilder.add("    }\n");
         codeBlockBuilder.add("} catch (Exception e) {\n");
-        codeBlockBuilder.add("    e.printStackTrace();\n");
+        codeBlockBuilder.add("    $T.printStackTrace(e);\n", LogUtils.class);
         codeBlockBuilder.add("}\n");
 
         // public static final Boolean deleteStorageDir(final Context context) {}
@@ -672,7 +673,7 @@ final class Utils {
         codeBlockBuilder.add("    bw.write($N.toString());\n", VAR_ENVIRONMENT);
         codeBlockBuilder.add("    return true;\n");
         codeBlockBuilder.add("} catch (Exception e) {\n");
-        codeBlockBuilder.add("    e.printStackTrace();\n");
+        codeBlockBuilder.add("    $T.printStackTrace(e);\n", LogUtils.class);
         codeBlockBuilder.add("} finally {\n");
         codeBlockBuilder.add("    if (bw != null) {\n");
         codeBlockBuilder.add("        try {\n");
@@ -723,7 +724,7 @@ final class Utils {
         codeBlockBuilder.add("    String alias = jsonObject.getString($S);\n", VAR_ALIAS);
         codeBlockBuilder.add("    return new $T(name, value, alias, $N);\n", EnvironmentBean.class, VAR_MODULE);
         codeBlockBuilder.add("} catch (Exception e) {\n");
-        codeBlockBuilder.add("    e.printStackTrace();\n");
+        codeBlockBuilder.add("    $T.printStackTrace(e);\n", LogUtils.class);
         codeBlockBuilder.add("} finally {\n");
         codeBlockBuilder.add("    if (br != null) {\n");
         codeBlockBuilder.add("        try {\n");

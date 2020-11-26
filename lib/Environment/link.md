@@ -14,3 +14,5 @@
 
 * [Gradle Annotation Processor](https://docs.gradle.org/5.4.1/userguide/java_plugin.html#making_an_annotation_processor_incremental)
 
+* [自定义注解生成代码之 JavaPoet API 详解](https://blog.csdn.net/bencheng06/article/details/103220774)
+

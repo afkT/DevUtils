@@ -28,6 +28,7 @@ import dev.environment.annotation.Module;
 import dev.environment.bean.EnvironmentBean;
 import dev.environment.bean.ModuleBean;
 import dev.environment.listener.OnEnvironmentChangeListener;
+import dev.environment.log.LogUtils;
 import dev.environment.type.ParameterizedTypeImpl;
 
 /**
@@ -442,7 +443,7 @@ final class Utils {
         codeBlockBuilder.add("    if (!file.exists()) file.mkdirs();\n");
         codeBlockBuilder.add("    return file;\n");
         codeBlockBuilder.add("} catch (Exception e) {\n");
-        codeBlockBuilder.add("    e.printStackTrace();\n");
+        codeBlockBuilder.add("    $T.printStackTrace(e);\n", LogUtils.class);
         codeBlockBuilder.add("}\n");
 
         // public static final File getStorageDir(final Context context) {}
@@ -475,7 +476,7 @@ final class Utils {
         codeBlockBuilder.add("        return true;\n");
         codeBlockBuilder.add("    }\n");
         codeBlockBuilder.add("} catch (Exception e) {\n");
-        codeBlockBuilder.add("    e.printStackTrace();\n");
+        codeBlockBuilder.add("    $T.printStackTrace(e);\n", LogUtils.class);
         codeBlockBuilder.add("}\n");
 
         // public static final Boolean deleteStorageDir(final Context context) {}
