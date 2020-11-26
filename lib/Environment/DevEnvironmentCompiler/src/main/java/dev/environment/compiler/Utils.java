@@ -60,6 +60,7 @@ final class Utils {
     static final String   METHOD_NOTIFY_ONENVIRONMENT_CHANGE_LISTENER = "notifyOnEnvironmentChangeListener";
     static final String   METHOD_GET_STORAGE_DIR                      = "getStorageDir";
     static final String   METHOD_DELETE_STORAGE_DIR                   = "deleteStorageDir";
+    static final String   METHOD_DELETE_STORAGE                       = "deleteStorage";
     static final String   METHOD_WRITE_STORAGE                        = "writeStorage";
     static final String   METHOD_READ_STORAGE                         = "readStorage";
     // 变量相关
@@ -79,6 +80,7 @@ final class Utils {
     static final String   VAR_NAME                                    = "name";
     static final String   VAR_VALUE                                   = "value";
     static final String   VAR_ALIAS                                   = "alias";
+    static final String   VAR_FILE_NAME                               = "fileName";
     // 常量字符串
     static final String   STR_MODULE                                  = "Module";
     static final String   STR_ENVIRONMENT                             = "Environment";
@@ -86,6 +88,7 @@ final class Utils {
     static final String   STR_RELEASE_ENVIRONMENT                     = "ReleaseEnvironment";
     // 其他
     static final String   JSON_FILE                                   = "\".json\"";
+    static final String   JSON_FILE_FORMAT                            = "\"%s.json\"";
     static final TypeName TYPE_NAME_CONTEXT                           = ClassName.get("android.content", "Context");
     static final TypeName TYPE_NAME_JSONOBJECT                        = ClassName.get("org.json", "JSONObject");
 
@@ -470,6 +473,32 @@ final class Utils {
                     .addJavadoc("@return {@code true} success, {@code false} fail\n")
                     .build();
             classBuilder.addMethod(setModuleEnvironmentMethod);
+
+            // =
+
+            // 构建 resetModule 实现代码
+            codeBlockBuilder = CodeBlock.builder();
+            codeBlockBuilder.add("if ($N != null && $N($N, $N)) {\n", VAR_CONTEXT, METHOD_DELETE_STORAGE, VAR_CONTEXT,
+                    String.format(JSON_FILE_FORMAT, _getModuleVarName_UpperCase(moduleName)));
+            codeBlockBuilder.add(String.format("    %s = null;\n", VAR_SELECT_ENVIRONMENT + moduleName));
+            codeBlockBuilder.add("    return true;\n");
+            codeBlockBuilder.add("}\n");
+
+            // public static final Boolean resetModule(final Context context) {}
+            String resetModuleMethodName = METHOD_RESET + moduleName;
+            MethodSpec resetModuleMethod = MethodSpec
+                    .methodBuilder(resetModuleMethodName)
+                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                    .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
+                    .returns(Boolean.class)
+                    .addCode(codeBlockBuilder.build())
+                    .addStatement("return false")
+                    .addJavadoc("重置 $N [ Module ] Selected Environment Bean\n", moduleName)
+                    .addJavadoc("<p>Reset $N [ Module ] Selected Environment Bean\n", moduleName)
+                    .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
+                    .addJavadoc("@return {@code true} success, {@code false} fail\n")
+                    .build();
+            classBuilder.addMethod(resetModuleMethod);
         }
     }
 
@@ -659,6 +688,36 @@ final class Utils {
                 .addJavadoc("@return {@code true} success, {@code false} fail\n")
                 .build();
         classBuilder.addMethod(deleteStorageDirMethod);
+
+        // =
+
+        // 构建 deleteStorage 实现代码
+        codeBlockBuilder = CodeBlock.builder();
+        codeBlockBuilder.add("try {\n");
+        codeBlockBuilder.add("    File storage = $N($N);\n", METHOD_GET_STORAGE_DIR, VAR_CONTEXT);
+        codeBlockBuilder.add("    File file = new File(storage, $N);\n", VAR_FILE_NAME);
+        codeBlockBuilder.add("    if (file.exists()) file.delete();\n");
+        codeBlockBuilder.add("    return true;\n");
+        codeBlockBuilder.add("} catch (Exception e) {\n");
+        codeBlockBuilder.add("    $T.printStackTrace(e);\n", LogUtils.class);
+        codeBlockBuilder.add("}\n");
+
+        // private static final Boolean deleteStorage(final Context context, final String fileName) {}
+        MethodSpec deleteStorageMethod = MethodSpec
+                .methodBuilder(METHOD_DELETE_STORAGE)
+                .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+                .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
+                .addParameter(String.class, VAR_FILE_NAME, Modifier.FINAL)
+                .returns(Boolean.class)
+                .addCode(codeBlockBuilder.build())
+                .addStatement("return false")
+                .addJavadoc("删除环境存储配置文件\n")
+                .addJavadoc("<p>Delete Environment Storage Configure File\n")
+                .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
+                .addJavadoc("@param fileName 文件名\n")
+                .addJavadoc("@return {@code true} success, {@code false} fail\n")
+                .build();
+        classBuilder.addMethod(deleteStorageMethod);
 
         // =
 
