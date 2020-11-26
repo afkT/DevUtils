@@ -710,6 +710,7 @@ final class Utils {
         codeBlockBuilder.add("try {\n");
         codeBlockBuilder.add("    File storage = $N($N);\n", METHOD_GET_STORAGE_DIR, VAR_CONTEXT);
         codeBlockBuilder.add("    File file = new File(storage, $N + $N);\n", VAR_MODULE_NAME, JSON_FILE);
+        codeBlockBuilder.add("    if (!file.exists()) return null;\n");
         codeBlockBuilder.add("    $T builder = new StringBuilder();\n", StringBuilder.class);
         codeBlockBuilder.add("    br = new BufferedReader(new $T(new $T(file)));\n", InputStreamReader.class, FileInputStream.class);
         codeBlockBuilder.add("    String line;\n");
