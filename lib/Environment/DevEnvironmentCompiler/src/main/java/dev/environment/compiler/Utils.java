@@ -84,6 +84,7 @@ final class Utils {
     static final String   STR_ENVIRONMENT_VALUE                       = "EnvironmentValue";
     static final String   STR_RELEASE_ENVIRONMENT                     = "ReleaseEnvironment";
     // 其他
+    static final String   JSON_FILE                                   = "\".json\"";
     static final TypeName TYPE_NAME_CONTEXT                           = ClassName.get("android.content", "Context");
     static final TypeName TYPE_NAME_JSONOBJECT                        = ClassName.get("org.json", "JSONObject");
 
@@ -666,7 +667,7 @@ final class Utils {
         codeBlockBuilder.add("$T bw = null;\n", BufferedWriter.class);
         codeBlockBuilder.add("try {\n");
         codeBlockBuilder.add("    File storage = $N($N);\n", METHOD_GET_STORAGE_DIR, VAR_CONTEXT);
-        codeBlockBuilder.add("    File file = new File(storage, $N);\n", VAR_MODULE_NAME);
+        codeBlockBuilder.add("    File file = new File(storage, $N + $N);\n", VAR_MODULE_NAME, JSON_FILE);
         codeBlockBuilder.add("    bw = new BufferedWriter(new $T(file, false));\n", FileWriter.class);
         codeBlockBuilder.add("    bw.write($N.toString());\n", VAR_ENVIRONMENT);
         codeBlockBuilder.add("    return true;\n");
@@ -708,7 +709,7 @@ final class Utils {
         codeBlockBuilder.add("$T br = null;\n", BufferedReader.class);
         codeBlockBuilder.add("try {\n");
         codeBlockBuilder.add("    File storage = $N($N);\n", METHOD_GET_STORAGE_DIR, VAR_CONTEXT);
-        codeBlockBuilder.add("    File file = new File(storage, $N);\n", VAR_MODULE_NAME);
+        codeBlockBuilder.add("    File file = new File(storage, $N + $N);\n", VAR_MODULE_NAME, JSON_FILE);
         codeBlockBuilder.add("    $T builder = new StringBuilder();\n", StringBuilder.class);
         codeBlockBuilder.add("    br = new BufferedReader(new $T(new $T(file)));\n", InputStreamReader.class, FileInputStream.class);
         codeBlockBuilder.add("    String line;\n");
