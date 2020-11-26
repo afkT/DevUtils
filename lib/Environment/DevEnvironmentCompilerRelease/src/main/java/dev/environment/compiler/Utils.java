@@ -61,6 +61,7 @@ final class Utils {
     static final String   VAR_CONTEXT                                 = "context";
     static final String   VAR_NEW_ENVIRONMENT                         = "newEnvironment";
     static final String   VAR_LISTENER                                = "listener";
+    static final String   VAR_FILE_NAME                               = "fileName";
     // 常量字符串
     static final String   STR_MODULE                                  = "Module";
     static final String   STR_ENVIRONMENT                             = "Environment";
@@ -378,6 +379,23 @@ final class Utils {
                     .addJavadoc("@return {@code true} success, {@code false} fail\n")
                     .build();
             classBuilder.addMethod(setModuleEnvironmentMethod);
+
+            // =
+
+            // public static final Boolean resetModule(final Context context) {}
+            String resetModuleMethodName = METHOD_RESET + moduleName;
+            MethodSpec resetModuleMethod = MethodSpec
+                    .methodBuilder(resetModuleMethodName)
+                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                    .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
+                    .returns(Boolean.class)
+                    .addStatement("return false")
+                    .addJavadoc("重置 $N [ Module ] Selected Environment Bean\n", moduleName)
+                    .addJavadoc("<p>Reset $N [ Module ] Selected Environment Bean\n", moduleName)
+                    .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
+                    .addJavadoc("@return {@code true} success, {@code false} fail\n")
+                    .build();
+            classBuilder.addMethod(resetModuleMethod);
         }
     }
 
@@ -446,10 +464,10 @@ final class Utils {
         codeBlockBuilder.add("    $T.printStackTrace(e);\n", LogUtils.class);
         codeBlockBuilder.add("}\n");
 
-        // public static final File getStorageDir(final Context context) {}
+        // private static final File getStorageDir(final Context context) {}
         MethodSpec getStorageDirMethod = MethodSpec
                 .methodBuilder(METHOD_GET_STORAGE_DIR)
-                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
                 .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                 .returns(File.class)
                 .addCode(codeBlockBuilder.build())
@@ -479,10 +497,10 @@ final class Utils {
         codeBlockBuilder.add("    $T.printStackTrace(e);\n", LogUtils.class);
         codeBlockBuilder.add("}\n");
 
-        // public static final Boolean deleteStorageDir(final Context context) {}
+        // private static final Boolean deleteStorageDir(final Context context) {}
         MethodSpec deleteStorageDirMethod = MethodSpec
                 .methodBuilder(METHOD_DELETE_STORAGE_DIR)
-                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
                 .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                 .returns(Boolean.class)
                 .addCode(codeBlockBuilder.build())

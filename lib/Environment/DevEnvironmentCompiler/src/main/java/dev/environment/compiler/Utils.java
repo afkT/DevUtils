@@ -77,10 +77,10 @@ final class Utils {
     static final String   VAR_OLD_ENVIRONMENT                         = "oldEnvironment";
     static final String   VAR_NEW_ENVIRONMENT                         = "newEnvironment";
     static final String   VAR_LISTENER                                = "listener";
+    static final String   VAR_FILE_NAME                               = "fileName";
     static final String   VAR_NAME                                    = "name";
     static final String   VAR_VALUE                                   = "value";
     static final String   VAR_ALIAS                                   = "alias";
-    static final String   VAR_FILE_NAME                               = "fileName";
     // 常量字符串
     static final String   STR_MODULE                                  = "Module";
     static final String   STR_ENVIRONMENT                             = "Environment";
@@ -641,10 +641,10 @@ final class Utils {
         codeBlockBuilder.add("    $T.printStackTrace(e);\n", LogUtils.class);
         codeBlockBuilder.add("}\n");
 
-        // public static final File getStorageDir(final Context context) {}
+        // private static final File getStorageDir(final Context context) {}
         MethodSpec getStorageDirMethod = MethodSpec
                 .methodBuilder(METHOD_GET_STORAGE_DIR)
-                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
                 .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                 .returns(File.class)
                 .addCode(codeBlockBuilder.build())
@@ -674,10 +674,10 @@ final class Utils {
         codeBlockBuilder.add("    $T.printStackTrace(e);\n", LogUtils.class);
         codeBlockBuilder.add("}\n");
 
-        // public static final Boolean deleteStorageDir(final Context context) {}
+        // private static final Boolean deleteStorageDir(final Context context) {}
         MethodSpec deleteStorageDirMethod = MethodSpec
                 .methodBuilder(METHOD_DELETE_STORAGE_DIR)
-                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
                 .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
                 .returns(Boolean.class)
                 .addCode(codeBlockBuilder.build())
