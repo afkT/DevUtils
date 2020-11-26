@@ -63,6 +63,7 @@ final class Utils {
     static final String   METHOD_DELETE_STORAGE                       = "deleteStorage";
     static final String   METHOD_WRITE_STORAGE                        = "writeStorage";
     static final String   METHOD_READ_STORAGE                         = "readStorage";
+    static final String   METHOD_IS_ANNOTATION                        = "is%sAnnotation";
     // 变量相关
     static final String   VAR_MODULE_PREFIX                           = "MODULE_";
     static final String   VAR_ENVIRONMENT_PREFIX                      = "ENVIRONMENT_";
@@ -499,6 +500,32 @@ final class Utils {
                     .addJavadoc("@return {@code true} success, {@code false} fail\n")
                     .build();
             classBuilder.addMethod(resetModuleMethod);
+
+            // =
+
+            // 构建 isModuleAnnotation 实现代码
+            codeBlockBuilder = CodeBlock.builder();
+            codeBlockBuilder.add("if ($N != null && $N($N, $N)) {\n", VAR_CONTEXT, METHOD_DELETE_STORAGE, VAR_CONTEXT,
+                    String.format(JSON_FILE_FORMAT, _getModuleVarName_UpperCase(moduleName)));
+            codeBlockBuilder.add(String.format("    %s = null;\n", VAR_SELECT_ENVIRONMENT + moduleName));
+            codeBlockBuilder.add("    return true;\n");
+            codeBlockBuilder.add("}\n");
+
+            // public static final Boolean isModuleAnnotation(final Context context) {}
+            String isModuleAnnotationMethodName = String.format(METHOD_IS_ANNOTATION, moduleName);
+            MethodSpec isModuleAnnotationMethod = MethodSpec
+                    .methodBuilder(isModuleAnnotationMethodName)
+                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                    .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
+                    .returns(Boolean.class)
+                    .addCode(codeBlockBuilder.build())
+                    .addStatement("return false")
+                    .addJavadoc("是否 $N [ Module ] Annotation Environment Bean\n", moduleName)
+                    .addJavadoc("<p>Whether $N [ Module ] Annotation Environment Bean\n", moduleName)
+                    .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
+                    .addJavadoc("@return {@code true} success, {@code false} fail\n")
+                    .build();
+            classBuilder.addMethod(isModuleAnnotationMethod);
         }
     }
 

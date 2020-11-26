@@ -53,6 +53,7 @@ final class Utils {
     static final String   METHOD_CLEAR_ONENVIRONMENT_CHANGE_LISTENER  = "clearOnEnvironmentChangeListener";
     static final String   METHOD_GET_STORAGE_DIR                      = "getStorageDir";
     static final String   METHOD_DELETE_STORAGE_DIR                   = "deleteStorageDir";
+    static final String   METHOD_IS_ANNOTATION                        = "is%sAnnotation";
     // 变量相关
     static final String   VAR_MODULE_PREFIX                           = "MODULE_";
     static final String   VAR_ENVIRONMENT_PREFIX                      = "ENVIRONMENT_";
@@ -396,6 +397,23 @@ final class Utils {
                     .addJavadoc("@return {@code true} success, {@code false} fail\n")
                     .build();
             classBuilder.addMethod(resetModuleMethod);
+
+            // =
+
+            // public static final Boolean isModuleAnnotation(final Context context) {}
+            String isModuleAnnotationMethodName = String.format(METHOD_IS_ANNOTATION, moduleName);
+            MethodSpec isModuleAnnotationMethod = MethodSpec
+                    .methodBuilder(isModuleAnnotationMethodName)
+                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                    .addParameter(TYPE_NAME_CONTEXT, VAR_CONTEXT, Modifier.FINAL)
+                    .returns(Boolean.class)
+                    .addStatement("return true")
+                    .addJavadoc("是否 $N [ Module ] Annotation Environment Bean\n", moduleName)
+                    .addJavadoc("<p>Whether $N [ Module ] Annotation Environment Bean\n", moduleName)
+                    .addJavadoc("@param $N {@link Context}\n", VAR_CONTEXT)
+                    .addJavadoc("@return {@code true} success, {@code false} fail\n")
+                    .build();
+            classBuilder.addMethod(isModuleAnnotationMethod);
         }
     }
 
