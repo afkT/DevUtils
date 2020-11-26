@@ -8,6 +8,7 @@ import java.util.List;
 
 import dev.environment.bean.EnvironmentBean;
 import dev.environment.bean.ModuleBean;
+import dev.environment.log.LogUtils;
 
 /**
  * detail: 内部工具类
@@ -65,7 +66,7 @@ class Utils {
                 context.startActivity(intent);
                 return true;
             } catch (Exception e) {
-                e.printStackTrace();
+                LogUtils.printStackTrace(e);
             }
         }
         return false;
@@ -84,7 +85,7 @@ class Utils {
             Method isReleaseMethod = devEnvironmentClass.getMethod(METHOD_IS_RELEASE);
             return (boolean) isReleaseMethod.invoke(null);
         } catch (Exception e) {
-            e.printStackTrace();
+            LogUtils.printStackTrace(e);
         }
         return true;
     }
@@ -98,7 +99,7 @@ class Utils {
             Method getModuleListMethod = devEnvironmentClass.getMethod(METHOD_GET_MODULE_LIST);
             return (List<ModuleBean>) getModuleListMethod.invoke(null);
         } catch (Exception e) {
-            e.printStackTrace();
+            LogUtils.printStackTrace(e);
         }
         return null;
     }
@@ -115,7 +116,7 @@ class Utils {
             Method getModuleEnvironmentMethod = devEnvironmentClass.getMethod(getModuleEnvironmentMethodName, Context.class);
             return (EnvironmentBean) getModuleEnvironmentMethod.invoke(null, context);
         } catch (Exception e) {
-            e.printStackTrace();
+            LogUtils.printStackTrace(e);
         }
         return null;
     }
@@ -134,7 +135,7 @@ class Utils {
                     Context.class, EnvironmentBean.class);
             return (boolean) setModuleEnvironmentMethod.invoke(null, context, newEnvironment);
         } catch (Exception e) {
-            e.printStackTrace();
+            LogUtils.printStackTrace(e);
         }
         return false;
     }

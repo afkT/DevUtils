@@ -8,6 +8,7 @@ import java.util.List;
 
 import dev.environment.bean.EnvironmentBean;
 import dev.environment.bean.ModuleBean;
+import dev.environment.log.LogUtils;
 
 /**
  * detail: 适配器 Item
@@ -86,7 +87,7 @@ class AdapterItem {
         try {
             sModuleHashCodeMap.put(newEnvironment.getModule().getName(), newEnvironment.hashCode());
         } catch (Exception e) {
-            e.printStackTrace();
+            LogUtils.printStackTrace(e);
         }
     }
 
