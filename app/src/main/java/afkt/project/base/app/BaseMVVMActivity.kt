@@ -3,13 +3,15 @@ package afkt.project.base.app
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import dev.base.expand.viewdata.DevBaseViewDataBindingActivity
+import androidx.lifecycle.ViewModel
+import dev.base.expand.mvvm.DevBaseMVVMActivity
 
 /**
  * detail: Activity MVVM 基类
  * @author Ttt
  */
-abstract class BaseMVVMActivity<VDB : ViewDataBinding> : DevBaseViewDataBindingActivity<VDB>() {
+abstract class BaseMVVMActivity<VDB : ViewDataBinding, VM : ViewModel> :
+    DevBaseMVVMActivity<VDB, VM>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

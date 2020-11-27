@@ -2,9 +2,9 @@ package afkt.project.util;
 
 import android.content.Intent;
 
-import afkt.project.base.constants.KeyConstants;
 import afkt.project.model.item.ButtonValue;
 import dev.DevUtils;
+import dev.utils.DevFinal;
 import dev.utils.app.AppUtils;
 
 /**
@@ -24,8 +24,8 @@ public final class SkipUtils {
      */
     public static boolean startActivity(Class clazz, ButtonValue buttonValue) {
         Intent intent = new Intent(DevUtils.getContext(), clazz);
-        intent.putExtra(KeyConstants.Common.KEY_TYPE, buttonValue.type);
-        intent.putExtra(KeyConstants.Common.KEY_TITLE, buttonValue.text);
+        intent.putExtra(DevFinal.TYPE, buttonValue.type);
+        intent.putExtra(DevFinal.TITLE, buttonValue.text);
         return AppUtils.startActivity(intent);
     }
 }

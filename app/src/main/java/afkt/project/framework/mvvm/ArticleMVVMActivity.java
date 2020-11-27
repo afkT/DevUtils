@@ -11,10 +11,11 @@ import com.tt.whorlviewlibrary.WhorlView;
 import afkt.project.BR;
 import afkt.project.R;
 import afkt.project.base.app.BaseMVVMActivity;
-import afkt.project.base.constants.KeyConstants;
 import afkt.project.databinding.ActivityArticleMvvmBinding;
 import afkt.project.ui.adapter.ArticleAdapter;
+import dev.utils.DevFinal;
 import dev.utils.app.ViewUtils;
+import dev.utils.common.CollectionUtils;
 import dev.widget.assist.ViewAssist;
 import dev.widget.function.StateLayout;
 
@@ -22,12 +23,10 @@ import dev.widget.function.StateLayout;
  * detail: 文章 MVVM Activity
  * @author Ttt
  */
-public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBinding> {
+public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBinding, ArticleViewModel> {
 
-    // MVVM VM
-    ArticleMVVM.ViewModel viewModel;
     // 加载动画
-    WhorlView             whorlView;
+    WhorlView whorlView;
 
     @Override
     public int baseContentId() {
@@ -35,10 +34,15 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
     }
 
     @Override
+    public void initOrder() {
+        initViewModel();
+        super.initOrder();
+    }
+
+    @Override
     public void initView() {
         super.initView();
 
-        // = 处理 ActionBar =
         setSupportActionBar(binding.vidAamToolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -48,19 +52,13 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
             actionBar.setDisplayShowTitleEnabled(false);
         }
         // 设置点击事件
-        binding.vidAamToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 关闭页面
-                finish();
-            }
-        });
+        binding.vidAamToolbar.setNavigationOnClickListener(v -> finish());
 
         Intent intent = getIntent();
         // 获取标题
-        String title = intent.getStringExtra(KeyConstants.Common.KEY_TITLE);
+        String title = intent.getStringExtra(DevFinal.TITLE);
         // 设置标题
-        binding.setTitle(title);
+        binding.setTitle(title); // 或用下面设置
         binding.setVariable(BR.title, title); // 设置后, 会动态刷新
 
         // 初始化 View
@@ -72,11 +70,8 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
     public void initValue() {
         super.initValue();
         // 初始化布局管理器、适配器
-        ArticleAdapter articleAdapter = new ArticleAdapter();
         binding.vidAamRecy.setLayoutManager(new LinearLayoutManager(this));
-        binding.vidAamRecy.setAdapter(articleAdapter);
-        // 初始化 VM
-        viewModel = new ArticleMVVM.ViewModel(binding, articleAdapter);
+        binding.vidAamRecy.setAdapter(new ArticleAdapter());
     }
 
     @Override
@@ -121,8 +116,27 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
         super.initOther();
         // 表示请求中
         binding.vidAamState.showIng();
-        // 获取文章列表
-        viewModel.getArticleLists();
+        // 开始请求
+        viewModel.requestArticleLists().observe(this, articleBean -> {
+            if (articleBean != null) {
+                if (CollectionUtils.isEmpty(articleBean.data.datas)) { // 无数据
+                    binding.vidAamState.showEmptyData();
+                } else { // 请求成功
+                    binding.vidAamState.showSuccess();
+                    // 设置数据源
+                    ((ArticleAdapter) binding.vidAamRecy.getAdapter())
+                            .setNewInstance(articleBean.data.datas);
+                }
+            } else {
+                binding.vidAamState.showFailed();
+            }
+        });
+    }
+
+    @Override
+    public void initViewModel() {
+        viewModel = getActivityViewModel(ArticleViewModel.class);
+        getLifecycle().addObserver(viewModel);
     }
 
     @Override

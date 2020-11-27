@@ -132,6 +132,7 @@ public final class DevFinal {
     public static final String RESULT = "result";
     public static final String TOKEN  = "token";
     public static final String STATE  = "state";
+    public static final String PARAM  = "param";
     public static final String PARAMS = "params";
     public static final String TYPE   = "type";
 

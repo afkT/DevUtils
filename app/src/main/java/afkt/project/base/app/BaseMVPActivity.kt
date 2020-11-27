@@ -1,7 +1,6 @@
 package afkt.project.base.app
 
 import afkt.project.R
-import afkt.project.base.constants.KeyConstants
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
@@ -14,6 +13,7 @@ import androidx.viewbinding.ViewBinding
 import dev.base.expand.content.DevBaseContentMVPViewBindingActivity
 import dev.base.expand.mvp.MVP
 import dev.other.retrofit.RxJavaManager
+import dev.utils.DevFinal
 import dev.utils.app.ViewUtils
 import dev.utils.app.toast.ToastTintUtils
 import dev.widget.function.StateLayout
@@ -44,7 +44,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
         mActivity = this
         // 是否需要 ToolBar
         if (isToolBar()) {
-            val title = intent.getStringExtra(KeyConstants.Common.KEY_TITLE)
+            val title = intent.getStringExtra(DevFinal.TITLE)
             // 初始化 ToolBar
             initToolBar()
             // 设置标题
@@ -75,7 +75,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
      * @return Module 类型
      */
     fun getModuleType(): Int {
-        return intent.getIntExtra(KeyConstants.Common.KEY_TYPE, 0)
+        return intent.getIntExtra(DevFinal.TYPE, 0)
     }
 
     // ===============
@@ -215,9 +215,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
             it.setDisplayShowTitleEnabled(false)
         }
         // 设置点击事件
-        toolbar?.setNavigationOnClickListener(View.OnClickListener {
-            finish()
-        })
+        toolbar?.setNavigationOnClickListener { finish() }
     }
 
     /**
