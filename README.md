@@ -95,10 +95,10 @@ implementation 'com.afkt:DevJava:1.2.3' // 用于纯 Java 开发，如果依赖�
 implementation 'com.afkt:DevWidgetX:1.0.5'
 
 // DevEnvironment Android 环境配置切换库
-implementation 'com.afkt:DevEnvironment:1.0.0'
-debugAnnotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.0' // kaptDebug
-releaseAnnotationProcessor 'com.afkt:DevEnvironmentCompilerRelease:1.0.0' // kaptRelease
-//annotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.0' // kapt
+implementation 'com.afkt:DevEnvironment:1.0.1'
+debugAnnotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.1' // kaptDebug
+releaseAnnotationProcessor 'com.afkt:DevEnvironmentCompilerRelease:1.0.1' // kaptRelease
+//annotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.1' // kapt
 ```
 
 ## APK Demo

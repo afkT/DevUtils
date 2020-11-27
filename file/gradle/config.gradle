@@ -74,12 +74,12 @@ ext {
             dev_widget_versionName                  : '1.0.5',
 
             // 版本号
-            dev_environment_versionCode             : 100,
+            dev_environment_versionCode             : 101,
             // 版本名
-            dev_environment_version                 : '1.0.0',
-            dev_environment_base_version            : '1.0.0',
-            dev_environment_compiler_version        : '1.0.0',
-            dev_environment_compiler_release_version: '1.0.0',
+            dev_environment_version                 : '1.0.1',
+            dev_environment_base_version            : '1.0.1',
+            dev_environment_compiler_version        : '1.0.1',
+            dev_environment_compiler_release_version: '1.0.1',
     ]
 
     deps = [
