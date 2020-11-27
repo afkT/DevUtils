@@ -26,6 +26,10 @@ android {
         sourceCompatibility versions.javaVersion
         targetCompatibility versions.javaVersion
     }
+
+    kotlinOptions {
+        jvmTarget = versions.javaVersion_str
+    }
 }
 
 // 编码设置

@@ -42,6 +42,10 @@ android {
         targetCompatibility versions.javaVersion
     }
 
+    kotlinOptions {
+        jvmTarget = versions.javaVersion_str
+    }
+
     // 签名配置
     signingConfigs {
         release {

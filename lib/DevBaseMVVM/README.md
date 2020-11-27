@@ -66,3 +66,8 @@ implementation 'com.afkt:DevBaseMVVM:1.0.0'
 
 * [AndroidLibs / 框架](https://github.com/GuoYangGit/AndroidLibs/tree/master/%E6%A1%86%E6%9E%B6)
 
+## Other
+
+* [GitHub MVVMHabit](https://github.com/goldze/MVVMHabit)
+
+* [GitHub Jetpack-MVVM-Best-Practice](https://github.com/KunMinX/Jetpack-MVVM-Best-Practice)

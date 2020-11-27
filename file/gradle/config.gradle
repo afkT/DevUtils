@@ -36,6 +36,7 @@ ext {
             buildToolsVersion                       : '30.0.2',
             // java 版本
             javaVersion                             : JavaVersion.VERSION_1_8,
+            javaVersion_str                         : '1.8',
             // Kotlin 版本
             kotlin_version                          : '1.4.20',
 
