@@ -95,14 +95,14 @@ dependencies {
 | addOnEnvironmentChangeListener | 添加模块环境改变触发事件 |
 | removeOnEnvironmentChangeListener | 移除模块环境改变触发事件 |
 | clearOnEnvironmentChangeListener | 清空模块环境改变触发事件 |
-| getStorageDir | 获取环境配置存储路径 - path /data/data/package/cache/DevEnvironment |
-| deleteStorageDir | 删除环境存储配置文件 |
 | reset | 重置操作 |
 | getIMModule | 获取 IM [ Module ] Bean |
 | getIMReleaseEnvironment | 获取 IM [ Module ] Release Environment Bean |
 | getIMEnvironment | 获取 IM [ Module ] Selected Environment Bean |
 | getIMEnvironmentValue | 获取 IM [ Module ] Selected Environment Value |
 | setIMEnvironment | 设置 IM [ Module ] Selected Environment Bean |
+| resetIM | 重置 IM [ Module ] Selected Environment Bean |
+| isIMAnnotation | 是否 IM [ Module ] Annotation Environment Bean |
 
 ```java
 // 底部五个方法中 IM 属于 Module Name 例:
@@ -201,7 +201,11 @@ public final class Config {
     4. `getXXEnvironmentValue` 获取对应 Module 选中的 Environment Value
     
     5. `setXXEnvironment` 设置对应 Module 选中的 Environment
-    
+
+    6. `resetXX` 用于删除对应 Module 选中的 Environment Config File
+
+    7. `isXXAnnotation` 用于判断对应 Module 选中的 Environment 是否属于注解环境配置
+
 * DevEnvironmentCompilerRelease 属于 Release ( 打包 / 编译 ) 注解处理器，使用该注解处理时生成的 DevEnvironment 每个 Module 只会生成一个常量 Environment，并且无法进行修改设置
 
     1. `getXXModule` 获取对应 Module 映射实体类 ModuleBean
@@ -213,6 +217,10 @@ public final class Config {
     4. `getXXEnvironmentValue` 内部调用 `getXXEnvironment` 获取 Value
     
     5. `setXXEnvironment` 内部不实现代码，直接返回 false ( 表示不支持设置 )
+
+    6. `resetXX` 内部不实现代码，直接返回 false
+
+    7. `isXXAnnotation` 内部不实现代码，直接返回 true
     
 > DevEnvironmentCompilerRelease 编译生成的 DevEnvironment 类，全部属于 final 无法进行修改、设置，且部分方法内部不进行代码实现
 
