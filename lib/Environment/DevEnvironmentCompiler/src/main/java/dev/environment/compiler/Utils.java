@@ -505,7 +505,8 @@ final class Utils {
 
             // 构建 isModuleAnnotation 实现代码
             codeBlockBuilder = CodeBlock.builder();
-            codeBlockBuilder.add("try {;\n");
+            codeBlockBuilder.add("if ($N == null) return false;\n", VAR_CONTEXT);
+            codeBlockBuilder.add("try {\n");
             codeBlockBuilder.add("    $T environmentBean = $N($N);\n", EnvironmentBean.class, getModuleEnvironmentMethodName, VAR_CONTEXT);
             codeBlockBuilder.add("    int hashCode = environmentBean.hashCode();\n");
             codeBlockBuilder.add("    $T<EnvironmentBean> iterator = $N.getEnvironments().iterator();\n",
