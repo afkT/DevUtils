@@ -505,10 +505,19 @@ final class Utils {
 
             // 构建 isModuleAnnotation 实现代码
             codeBlockBuilder = CodeBlock.builder();
-            codeBlockBuilder.add("if ($N != null && $N($N, $N)) {\n", VAR_CONTEXT, METHOD_DELETE_STORAGE, VAR_CONTEXT,
-                    String.format(JSON_FILE_FORMAT, _getModuleVarName_UpperCase(moduleName)));
-            codeBlockBuilder.add(String.format("    %s = null;\n", VAR_SELECT_ENVIRONMENT + moduleName));
-            codeBlockBuilder.add("    return true;\n");
+            codeBlockBuilder.add("try {;\n");
+            codeBlockBuilder.add("    $T environmentBean = $N($N);\n", EnvironmentBean.class, getModuleEnvironmentMethodName, VAR_CONTEXT);
+            codeBlockBuilder.add("    int hashCode = environmentBean.hashCode();\n");
+            codeBlockBuilder.add("    $T<EnvironmentBean> iterator = $N.getEnvironments().iterator();\n",
+                    Iterator.class, _getModuleVarName_UpperCase(moduleName));
+            codeBlockBuilder.add("    while (iterator.hasNext()) {\n");
+            codeBlockBuilder.add("        EnvironmentBean bean = iterator.next();\n");
+            codeBlockBuilder.add("        if (bean != null && bean.hashCode() == hashCode) {\n");
+            codeBlockBuilder.add("            return true;\n");
+            codeBlockBuilder.add("        }\n");
+            codeBlockBuilder.add("    }\n");
+            codeBlockBuilder.add("} catch (Exception e) {\n");
+            codeBlockBuilder.add("    $T.printStackTrace(e);\n", LogUtils.class);
             codeBlockBuilder.add("}\n");
 
             // public static final Boolean isModuleAnnotation(final Context context) {}
