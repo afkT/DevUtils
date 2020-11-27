@@ -47,7 +47,7 @@ public final class AnalysisRecordUtils {
 
     // APP 版本名 ( 主要用于对用户显示版本信息 )
     private static String              APP_VERSION_NAME = "";
-    // APP 版本号 ( 主要用于 APP 内部版本判断 int 类型 )
+    // APP 版本号
     private static String              APP_VERSION_CODE = "";
     // 应用包名
     private static String              PACKAGE_NAME     = "";

@@ -11,6 +11,7 @@ import afkt.project.R;
 import afkt.project.ui.widget.render.LoadingDrawable;
 import afkt.project.ui.widget.render.LoadingRenderer;
 import afkt.project.ui.widget.render.LoadingRendererFactory;
+import dev.utils.app.logger.DevLogger;
 
 /**
  * detail: LoadingView
@@ -39,7 +40,7 @@ public class LoadingView extends AppCompatImageView {
             setLoadingRenderer(loadingRenderer);
             ta.recycle();
         } catch (Exception e) {
-            e.printStackTrace();
+            DevLogger.e(e);
         }
     }
 

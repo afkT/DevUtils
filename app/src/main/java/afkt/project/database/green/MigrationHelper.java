@@ -11,11 +11,12 @@ import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.database.StandardDatabase;
 import org.greenrobot.greendao.internal.DaoConfig;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import dev.utils.app.logger.DevLogger;
 
 /**
  * Createdby PedroOkawa and modified by MBH on 16/08/16.
@@ -78,12 +79,8 @@ public final class MigrationHelper {
                 Method method = cls.getDeclaredMethod(methodName, Database.class, boolean.class);
                 method.invoke(null, db, isExists);
             }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            DevLogger.e(e);
         }
     }
 
@@ -127,7 +124,7 @@ public final class MigrationHelper {
                 columns = Arrays.asList(cursor.getColumnNames());
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            DevLogger.e(e);
         } finally {
             if (cursor != null)
                 cursor.close();

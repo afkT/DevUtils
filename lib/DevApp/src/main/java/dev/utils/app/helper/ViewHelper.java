@@ -1741,6 +1741,17 @@ public final class ViewHelper {
     // =
 
     /**
+     * 设置 View Id
+     * @param view {@link View}
+     * @param id   View Id
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setId(final View view, final int id) {
+        ViewUtils.setId(view, id);
+        return this;
+    }
+
+    /**
      * 设置是否限制子 View 在其边界内绘制
      * @param viewGroup    {@link ViewGroup}
      * @param clipChildren {@code true} yes, {@code false} no
