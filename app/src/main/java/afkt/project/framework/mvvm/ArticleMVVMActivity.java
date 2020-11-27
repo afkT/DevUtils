@@ -54,9 +54,8 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
         // 设置点击事件
         binding.vidAamToolbar.setNavigationOnClickListener(v -> finish());
 
-        Intent intent = getIntent();
         // 获取标题
-        String title = intent.getStringExtra(DevFinal.TITLE);
+        String title = getIntent().getStringExtra(DevFinal.TITLE);
         // 设置标题
         binding.setTitle(title); // 或用下面设置
         binding.setVariable(BR.title, title); // 设置后, 会动态刷新

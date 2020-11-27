@@ -27,6 +27,7 @@ dependencies {
     compileOnly deps.kotlin.room_runtime
     kapt deps.kotlin.room_compiler
     compileOnly deps.kotlin.room_ktx
+    compileOnly deps.kotlin.work_runtime_ktx
     compileOnly deps.androidx.lifecycle_common_java8
     compileOnly deps.androidx.design
     compileOnly deps.androidx.appcompat
@@ -37,6 +38,7 @@ dependencies {
     compileOnly deps.androidx.multidex
     compileOnly deps.androidx.constraint_layout
     compileOnly deps.androidx.viewpager2
+    compileOnly deps.androidx.work_runtime
 
     // ==============
     // = Dev Module =

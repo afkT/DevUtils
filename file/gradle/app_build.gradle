@@ -88,6 +88,7 @@ dependencies {
     implementation deps.kotlin.room_runtime
     kapt deps.kotlin.room_compiler
     implementation deps.kotlin.room_ktx
+    implementation deps.kotlin.work_runtime_ktx
     implementation deps.androidx.lifecycle_common_java8
     implementation deps.androidx.design
     implementation deps.androidx.appcompat
@@ -98,6 +99,7 @@ dependencies {
     implementation deps.androidx.multidex
     implementation deps.androidx.constraint_layout
     implementation deps.androidx.viewpager2
+    implementation deps.androidx.work_runtime
 }
 
 // 编码设置
