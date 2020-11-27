@@ -42,9 +42,9 @@ dependencies {
     // = Dev Module =
     // ==============
 
-    compileOnly project(path: ':DevApp')
-    compileOnly project(path: ':DevAssist')
-    compileOnly project(path: ':DevWidget')
+    compileOnly project(':DevApp')
+    compileOnly project(':DevAssist')
+    compileOnly project(':DevWidget')
 
     // =============
     // = 快捷开发库 =

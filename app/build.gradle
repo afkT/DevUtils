@@ -44,14 +44,14 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':DevApp')
-    implementation project(path: ':DevAssist')
-    implementation project(path: ':DevBase')
-    implementation project(path: ':DevBase2')
-    implementation project(path: ':DevBaseMVVM')
-    implementation project(path: ':DevOther')
-    implementation project(path: ':DevWidget')
-    implementation project(path: ':DevEnvironment')
+    implementation project(':DevApp')
+    implementation project(':DevAssist')
+    implementation project(':DevBase')
+    implementation project(':DevBase2')
+    implementation project(':DevBaseMVVM')
+    implementation project(':DevOther')
+    implementation project(':DevWidget')
+    implementation project(':DevEnvironment')
     kaptDebug project(':DevEnvironmentCompiler') // debugAnnotationProcessor
     kaptRelease project(':DevEnvironmentCompilerRelease') // releaseAnnotationProcessor
 

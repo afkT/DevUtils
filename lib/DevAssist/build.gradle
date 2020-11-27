@@ -12,7 +12,7 @@ android.defaultConfig {
 }
 
 dependencies {
-    compileOnly project(path: ':DevJava')
+    compileOnly project(':DevJava')
 }
 
 // gradlew clean

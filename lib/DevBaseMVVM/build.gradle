@@ -14,7 +14,7 @@ dependencies {
     api deps.kotlin.lifecycle_viewmodel_savedstate
 
     // 编译时使用
-    api project(path: ':DevBase')
+    api project(':DevBase')
 //    // 打包时使用
 //    api deps.dev.dev_base
 }

@@ -17,7 +17,7 @@ dependencies {
     api deps.androidx.appcompat
 
     // 编译时使用
-    api project(path: ':DevApp')
+    api project(':DevApp')
 //    // 打包时使用
 //    api deps.dev.dev_app_x
 }

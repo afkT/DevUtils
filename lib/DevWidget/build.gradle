@@ -11,7 +11,7 @@ dependencies {
     api deps.androidx.support_v4
 
     // 编译时使用
-    api project(path: ':DevApp')
+    api project(':DevApp')
 //    // 打包时使用
 //    api deps.dev.dev_app_x
 }
