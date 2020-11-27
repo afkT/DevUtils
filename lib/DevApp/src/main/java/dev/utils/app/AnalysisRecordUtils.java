@@ -45,9 +45,9 @@ public final class AnalysisRecordUtils {
     // = 配置信息 =
     // ===========
 
-    // APP 版本 ( 如 1.0.01) 显示给用户看的
+    // APP 版本名 ( 主要用于对用户显示版本信息 )
     private static String              APP_VERSION_NAME = "";
-    // android:versionCode 整数值, 代表应用程序代码的相对版本
+    // APP 版本号 ( 主要用于 APP 内部版本判断 int 类型 )
     private static String              APP_VERSION_CODE = "";
     // 应用包名
     private static String              PACKAGE_NAME     = "";
