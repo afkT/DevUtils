@@ -90,7 +90,6 @@ dependencies {
     implementation deps.kotlin.room_ktx
     implementation deps.kotlin.work_runtime_ktx
     implementation deps.kotlin.datastore_preferences
-    implementation deps.kotlin.datastore_preferences_core
     implementation deps.androidx.lifecycle_common_java8
     implementation deps.androidx.design
     implementation deps.androidx.appcompat

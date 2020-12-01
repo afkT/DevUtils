@@ -117,7 +117,6 @@ ext {
                     // WorkManager Kotlin + coroutines
                     work_runtime_ktx              : "androidx.work:work-runtime-ktx:2.4.0",
                     datastore_preferences         : "androidx.datastore:datastore-preferences:1.0.0-alpha03",
-                    datastore_preferences_core    : "androidx.datastore:datastore-preferences-core:1.0.0-alpha03",
             ],
             'androidx': [
                     // https://developer.android.com/jetpack/androidx/migrate/artifact-mappings
