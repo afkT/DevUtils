@@ -4,7 +4,7 @@ import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
-import dev.utils.app.logger.DevLogger;
+import dev.utils.LogPrintUtils;
 import io.reactivex.rxjava3.subscribers.DisposableSubscriber;
 
 /**
@@ -22,7 +22,7 @@ public abstract class BaseBeanSubscriber<T> extends DisposableSubscriber<T> {
 
     @Override
     public void onNext(T response) {
-        DevLogger.dTag(TAG, "请求成功");
+        LogPrintUtils.dTag(TAG, "请求成功");
 
         if (response != null) {
             onSuccessResponse(response);
@@ -33,7 +33,7 @@ public abstract class BaseBeanSubscriber<T> extends DisposableSubscriber<T> {
 
     @Override
     public void onError(Throwable throwable) {
-        DevLogger.eTag(TAG, "请求异常", throwable);
+        LogPrintUtils.eTag(TAG, "请求异常", throwable);
 
         onErrorResponse(throwable, getErrorMessage(throwable));
     }
@@ -41,12 +41,12 @@ public abstract class BaseBeanSubscriber<T> extends DisposableSubscriber<T> {
     @Override
     protected void onStart() {
         super.onStart();
-        DevLogger.dTag(TAG, "请求开始");
+        LogPrintUtils.dTag(TAG, "请求开始");
     }
 
     @Override
     public void onComplete() {
-        DevLogger.dTag(TAG, "请求完成");
+        LogPrintUtils.dTag(TAG, "请求完成");
     }
 
     /**

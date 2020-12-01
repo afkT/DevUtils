@@ -14,8 +14,8 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 
+import dev.utils.LogPrintUtils;
 import dev.utils.app.JSONObjectUtils;
-import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastUtils;
 import dev.utils.common.ClassUtils;
 
@@ -62,7 +62,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
 //        builder.append("请求链接").append(request.getUrl());
 //        builder.append("请求参数").append(request.getParams());
 
-        DevLogger.dTag(TAG, "请求网络开始前: %s", url);
+        LogPrintUtils.dTag(TAG, "请求网络开始前: %s", url);
     }
 
     /**
@@ -72,7 +72,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
     public void onFinish() {
         super.onFinish();
 
-        DevLogger.dTag(TAG, "请求网络结束后: %s", url);
+        LogPrintUtils.dTag(TAG, "请求网络结束后: %s", url);
     }
 
     /**
@@ -82,7 +82,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
     public void uploadProgress(Progress progress) {
         super.uploadProgress(progress);
 
-        DevLogger.dTag(TAG, "上传过程中的进度回调: %s, progress: %s", url, progress);
+        LogPrintUtils.dTag(TAG, "上传过程中的进度回调: %s, progress: %s", url, progress);
     }
 
     /**
@@ -92,7 +92,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
     public void downloadProgress(Progress progress) {
         super.downloadProgress(progress);
 
-        DevLogger.dTag(TAG, "下载过程中的进度回调: %s, progress: %s", url, progress);
+        LogPrintUtils.dTag(TAG, "下载过程中的进度回调: %s, progress: %s", url, progress);
     }
 
     /**
@@ -104,7 +104,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
 
         // response.getRawCall().request().url()
 
-        DevLogger.dTag(TAG, "缓存成功的回调: %s", url);
+        LogPrintUtils.dTag(TAG, "缓存成功的回调: %s", url);
     }
 
     /**
@@ -114,7 +114,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
     public void onError(Response<String> response) {
         super.onError(response);
 
-        DevLogger.dTag(TAG, "请求失败: %s", url);
+        LogPrintUtils.dTag(TAG, "请求失败: %s", url);
 
         if (response != null) {
             onErrorResponse(
@@ -147,7 +147,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
      */
     @Override
     public void onSuccess(Response<String> response) {
-        DevLogger.dTag(TAG, "请求成功: %s", url);
+        LogPrintUtils.dTag(TAG, "请求成功: %s", url);
 
         try {
             _response(response);
@@ -165,10 +165,10 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
     @Override
     public String convertResponse(okhttp3.Response response) throws Throwable {
 //        HttpUrl httpUrl = response.request().url();
-//        DevLogger.e("url: %s", httpUrl);
-        DevLogger.dTag(TAG, "响应成功, 转换数据: %s", url);
+//        LogPrintUtils.e("url: %s", httpUrl);
+        LogPrintUtils.dTag(TAG, "响应成功, 转换数据: %s", url);
         String json = new StringConvert().convertResponse(response);
-        DevLogger.json(json);
+        LogPrintUtils.json(json);
         response.close(); // CloseUtils.closeIO(response);
         return json;
     }
@@ -224,7 +224,7 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
                         new Gson().fromJson(data, type)
                 );
             } catch (Exception e) {
-                DevLogger.eTag(TAG, e, "_response setData");
+                LogPrintUtils.eTag(TAG, e, "_response setData");
                 builder.setResult(false).setException(e);
             }
         }

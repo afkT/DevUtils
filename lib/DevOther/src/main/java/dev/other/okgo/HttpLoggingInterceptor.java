@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import dev.other.GsonUtils;
-import dev.utils.app.logger.DevLogger;
+import dev.utils.LogPrintUtils;
 import okhttp3.Connection;
 import okhttp3.FormBody;
 import okhttp3.Headers;
@@ -168,7 +168,7 @@ public class HttpLoggingInterceptor implements Interceptor {
      */
     private void _finalPrintLog(CaptureEntity captureEntity) {
         if (captureEntity != null) {
-            DevLogger.json(GsonUtils.toJson(captureEntity));
+            LogPrintUtils.json(GsonUtils.toJson(captureEntity));
         }
     }
 

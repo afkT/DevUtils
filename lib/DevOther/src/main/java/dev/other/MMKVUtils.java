@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import dev.utils.app.logger.DevLogger;
+import dev.utils.LogPrintUtils;
 import dev.utils.common.StringUtils;
 
 /**
@@ -51,7 +51,7 @@ public final class MMKVUtils {
     public static void init(final Context context) {
         // 初始化 MMKV 并设置日志级别
         String rootDir = MMKV.initialize(context, MMKVLogLevel.LevelNone);
-        DevLogger.dTag(TAG, "MMKV rootDir: %s", rootDir);
+        LogPrintUtils.dTag(TAG, "MMKV rootDir: %s", rootDir);
 
 //        // 设置打印日志级别
 //        MMKV.setLogLevel(MMKVLogLevel.LevelNone);
