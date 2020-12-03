@@ -21,7 +21,7 @@ final class ConfigMain {
         String dependencies = depsJsonBean.getAllDependencies(DepsJsonBean.IMPLEMENTATION);
         // 保存文件
         FileUtils.saveFile(
-                new File("file/json/deps_dependencies.gradle"),
+                new File("file/json/deps.gradle"),
                 String.format("dependencies {%s%s}", dependencies, DevFinal.NEW_LINE_STR).getBytes()
         );
         System.out.println(dependencies);
