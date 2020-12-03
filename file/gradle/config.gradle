@@ -2,9 +2,9 @@ ext {
 
     files = [
             // Android 项目构建配置
-            app_build_gradle       : 'file/gradle/app_build.gradle',
+            build_app_gradle       : 'file/gradle/build_app.gradle',
             // Android Kotlin 项目构建配置
-            app_kotlin_build_gradle: 'file/gradle/app_kotlin_build.gradle',
+            build_app_kotlin_gradle: 'file/gradle/build_app_kotlin.gradle',
 
             // Android Lib 通用配置
             app_lib_gradle         : 'file/gradle/app_lib_build.gradle',

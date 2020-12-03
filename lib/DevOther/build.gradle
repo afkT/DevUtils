@@ -1,1 +1,1 @@
-apply from: rootProject.file(files.app_kotlin_build_gradle)
+apply from: rootProject.file(files.build_app_kotlin_gradle)
