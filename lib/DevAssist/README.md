@@ -396,7 +396,7 @@ implementation 'com.afkt:DevAssist:1.0.5'
 ## <span id="devcallback">**`dev.callback`**</span>
 
 
-* **抽象回调 ( 基类 ) ->** [AbstractCallBack.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/callback/AbstractCallBack.java)
+* **抽象回调 ( 基类 ) ->** [AbstractCallback.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/callback/AbstractCallback.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -409,7 +409,7 @@ implementation 'com.afkt:DevAssist:1.0.5'
 | setObject | 设置 Object |
 
 
-* **通用抽象回调 ( 基类 ) ->** [AbstractCommonCallBack.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/callback/AbstractCommonCallBack.java)
+* **通用抽象回调 ( 基类 ) ->** [AbstractCommonCallback.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/callback/AbstractCommonCallback.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -421,7 +421,7 @@ implementation 'com.afkt:DevAssist:1.0.5'
 ## <span id="devcallbackclick">**`dev.callback.click`**</span>
 
 
-* **通用 Click 回调 ->** [DevClickCallBack.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/callback/click/DevClickCallBack.java)
+* **通用 Click 回调 ->** [DevClickCallback.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/callback/click/DevClickCallback.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -429,7 +429,7 @@ implementation 'com.afkt:DevAssist:1.0.5'
 | onLongClick | 长按回调 |
 
 
-* **通用 Dialog 回调 ->** [DevDialogCallBack.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/callback/click/DevDialogCallBack.java)
+* **通用 Dialog 回调 ->** [DevDialogCallback.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/callback/click/DevDialogCallback.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -443,7 +443,7 @@ implementation 'com.afkt:DevAssist:1.0.5'
 | onDialogDestroy | destroy 通知 |
 
 
-* **通用 Item Click 回调 ->** [DevItemClickCallBack.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/callback/click/DevItemClickCallBack.java)
+* **通用 Item Click 回调 ->** [DevItemClickCallback.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/callback/click/DevItemClickCallback.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -454,7 +454,7 @@ implementation 'com.afkt:DevAssist:1.0.5'
 ## <span id="devcallbackcommon">**`dev.callback.common`**</span>
 
 
-* **Dev 回调基类 ->** [DevCallBack.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/callback/common/DevCallBack.java)
+* **Dev 回调基类 ->** [DevCallback.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/callback/common/DevCallback.java)
 
 | 方法 | 注释 |
 | :- | :- |

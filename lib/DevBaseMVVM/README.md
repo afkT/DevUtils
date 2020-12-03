@@ -73,3 +73,4 @@ implementation 'com.afkt:DevBaseMVVM:1.0.0'
 * [GitHub MVVMHabit](https://github.com/goldze/MVVMHabit)
 
 * [GitHub Jetpack-MVVM-Best-Practice](https://github.com/KunMinX/Jetpack-MVVM-Best-Practice)
+
