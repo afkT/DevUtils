@@ -27,93 +27,93 @@ android {
 }
 
 dependencies {
-    compileOnly deps.kotlin.stdlib
-    compileOnly deps.kotlin.core
-    compileOnly deps.kotlin.lifecycle_runtime
-    compileOnly deps.kotlin.lifecycle_viewmodel
-    compileOnly deps.kotlin.lifecycle_livedata
-    compileOnly deps.kotlin.lifecycle_viewmodel_savedstate
-    compileOnly deps.kotlin.room_runtime
+    implementation deps.kotlin.stdlib
+    implementation deps.kotlin.core
+    implementation deps.kotlin.lifecycle_runtime
+    implementation deps.kotlin.lifecycle_viewmodel
+    implementation deps.kotlin.lifecycle_livedata
+    implementation deps.kotlin.lifecycle_viewmodel_savedstate
+    implementation deps.kotlin.room_runtime
     kapt deps.kotlin.room_compiler
-    compileOnly deps.kotlin.room_ktx
-    compileOnly deps.kotlin.work_runtime_ktx
-    compileOnly deps.kotlin.datastore_preferences
-    compileOnly deps.androidx.lifecycle_common_java8
-    compileOnly deps.androidx.design
-    compileOnly deps.androidx.appcompat
-    compileOnly deps.androidx.appcompat_resources
-    compileOnly deps.androidx.support_v4
-    compileOnly deps.androidx.cardview
-    compileOnly deps.androidx.recyclerview
-    compileOnly deps.androidx.multidex
-    compileOnly deps.androidx.constraint_layout
-    compileOnly deps.androidx.viewpager2
-    compileOnly deps.androidx.work_runtime
+    implementation deps.kotlin.room_ktx
+    implementation deps.kotlin.work_runtime_ktx
+    implementation deps.kotlin.datastore_preferences
+    implementation deps.androidx.lifecycle_common_java8
+    implementation deps.androidx.design
+    implementation deps.androidx.appcompat
+    implementation deps.androidx.appcompat_resources
+    implementation deps.androidx.support_v4
+    implementation deps.androidx.cardview
+    implementation deps.androidx.recyclerview
+    implementation deps.androidx.multidex
+    implementation deps.androidx.constraint_layout
+    implementation deps.androidx.viewpager2
+    implementation deps.androidx.work_runtime
 
     // ==============
     // = Dev Module =
     // ==============
 
-    compileOnly project(':DevApp')
-    compileOnly project(':DevAssist')
-    compileOnly project(':DevWidget')
+    implementation project(':DevApp')
+    implementation project(':DevAssist')
+    implementation project(':DevWidget')
 
     // =============
     // = 快捷开发库 =
     // =============
 
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
-    compileOnly deps.lib.okhttp3
-    compileOnly deps.lib.okhttp3_logging
+    implementation deps.lib.okhttp3
+    implementation deps.lib.okhttp3_logging
     // Retrofit 网络请求库  https://github.com/square/retrofit
-    compileOnly deps.lib.retrofit
+    implementation deps.lib.retrofit
     // Retrofit Gson Converter  https://github.com/square/retrofit/tree/master/retrofit-converters/gson
-    compileOnly deps.lib.retrofit_gson
+    implementation deps.lib.retrofit_gson
     // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava3
-    compileOnly deps.lib.retrofit_rxjava3
+    implementation deps.lib.retrofit_rxjava3
     // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
-    compileOnly deps.lib.rxjava3
+    implementation deps.lib.rxjava3
     // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
-    compileOnly deps.lib.rxandroid3
+    implementation deps.lib.rxandroid3
     // Okgo https://github.com/jeasonlzy/okhttp-OkGo
-    compileOnly deps.lib.okgo
+    implementation deps.lib.okgo
     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
-    compileOnly deps.lib.okserver
+    implementation deps.lib.okserver
     // Gson https://github.com/google/gson
-    compileOnly deps.lib.gson
+    implementation deps.lib.gson
     // fastjson https://github.com/alibaba/fastjson
-    compileOnly deps.lib.fastjson
+    implementation deps.lib.fastjson
     // Imageloader 图片加载框架 https://github.com/nostra13/Android-Universal-Image-Loader
-    compileOnly deps.lib.imageloader
+    implementation deps.lib.imageloader
     // Glide 加载框架 https://github.com/bumptech/glide
-    compileOnly deps.lib.glide
+    implementation deps.lib.glide
     kapt deps.lib.glide_compiler
     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
-    compileOnly deps.lib.eventbus
+    implementation deps.lib.eventbus
     // LiveEventBus 消息总线 https://github.com/JeremyLiao/LiveEventBus
-    compileOnly deps.lib.live_eventbus
+    implementation deps.lib.live_eventbus
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-    compileOnly deps.lib.pictureSelector
+    implementation deps.lib.pictureSelector
     // 二维码 ZXing https://github.com/zxing/zxing
-    compileOnly deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
-    compileOnly deps.lib.zxing_android_code // android-core
+    implementation deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
+    implementation deps.lib.zxing_android_code // android-core
     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
-    compileOnly deps.lib.luban
+    implementation deps.lib.luban
     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
-    compileOnly deps.lib.mmkv
+    implementation deps.lib.mmkv
     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
-    compileOnly deps.lib.xxPermissions
+    implementation deps.lib.xxPermissions
 
     // =============================
     // = 其他第三方库 - 小功能、简约 =
     // =============================
 
     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
-    compileOnly deps.lib.smartrefreshlayout
-    compileOnly deps.lib.smartrefresh_header_classics
-    compileOnly deps.lib.smartrefresh_footer_classics
+    implementation deps.lib.smartrefreshlayout
+    implementation deps.lib.smartrefresh_header_classics
+    implementation deps.lib.smartrefresh_footer_classics
     // 下拉刷新框架 ( 横向 ) https://github.com/scwang90/SmartRefreshHorizontal
-    compileOnly deps.lib.smartrefreshHorizontal
+    implementation deps.lib.smartrefreshHorizontal
     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-    compileOnly deps.lib.baserecyclerviewadapterhelper
+    implementation deps.lib.baserecyclerviewadapterhelper
 }

@@ -1,21 +1,22 @@
 ext {
 
     files = [
-            // Android App 配置文件地址
-            app_gradle           : 'file/gradle/app_build.gradle',
-            // Android Lib 通用配置文件地址
-            app_lib_gradle       : 'file/gradle/app_lib_build.gradle',
-            // Android Kotlin Lib 通用配置文件地址
-            app_lib_kotlin_gradle: 'file/gradle/app_lib_kotlin_build.gradle',
-            // Android Kotlin 构建项目
-            app_kotlin_gradle    : 'file/gradle/app_kotlin_build.gradle',
+            // Android 项目构建配置
+            app_build_gradle       : 'file/gradle/app_build.gradle',
+            // Android Kotlin 项目构建配置
+            app_kotlin_build_gradle: 'file/gradle/app_kotlin_build.gradle',
+            
+            // Android Lib 通用配置
+            app_lib_gradle         : 'file/gradle/app_lib_build.gradle',
+            // Android Kotlin Lib 通用配置
+            app_lib_kotlin_gradle  : 'file/gradle/app_lib_kotlin_build.gradle',
             // Android Bintray Upload
-            app_bintray_upload   : 'file/bintray/bintrayUploadAndroid.gradle',
+            app_bintray_upload     : 'file/bintray/bintrayUploadAndroid.gradle',
 
-            // Java Lib 通用配置文件地址
-            java_lib_gradle      : 'file/gradle/java_lib_build.gradle',
+            // Java Lib 通用配置
+            java_lib_gradle        : 'file/gradle/java_lib_build.gradle',
             // Java Bintray Upload
-            java_bintray_upload  : 'file/bintray/bintrayUploadJava.gradle',
+            java_bintray_upload    : 'file/bintray/bintrayUploadJava.gradle',
     ]
 
     versions = [
