@@ -66,7 +66,7 @@ public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> 
                     return;
                 }
                 PermissionUtils.permission(Manifest.permission.WRITE_CONTACTS)
-                        .callBack(new PermissionUtils.PermissionCallBack() {
+                        .callback(new PermissionUtils.PermissionCallback() {
                             /**
                              * 授权通过权限回调
                              */

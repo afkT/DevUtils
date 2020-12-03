@@ -155,10 +155,10 @@ public interface IHttpEngine {
     /**
      * 获取 Request Call Object
      * @param request  {@link Request}
-     * @param callBack {@link RequestCallBack}
+     * @param callback {@link RequestCallBack}
      * @return {@link Call}
      */
-    Call newCall(Request request, RequestCallBack callBack);
+    Call newCall(Request request, RequestCallBack callback);
 
     // ===========
     // = 操作方法 =

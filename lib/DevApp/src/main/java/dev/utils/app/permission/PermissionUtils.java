@@ -210,11 +210,11 @@ public final class PermissionUtils {
     // 申请未通过的权限
     private              List<String>       mPermissionsDeniedLists        = new ArrayList<>();
     // 查询不到的权限 ( 包含未注册 )
-    private              List<String>       mPermissionsNotFoundLists      = new ArrayList<>();
+    private List<String>       mPermissionsNotFoundLists      = new ArrayList<>();
     // 操作回调
-    private              PermissionCallBack mCallBack;
+    private PermissionCallback mCallBack;
     // 回调方法 Handler
-    private              Handler            mHandler                       = new Handler(Looper.getMainLooper());
+    private Handler            mHandler                       = new Handler(Looper.getMainLooper());
     // 判断是否请求过
     private              boolean            mIsRequest                     = false;
     // 是否需要在 Activity 的 onRequestPermissionsResult 回调中, 调用 PermissionUtils.onRequestPermissionsResult(this);
@@ -254,12 +254,12 @@ public final class PermissionUtils {
 
     /**
      * 设置回调方法
-     * @param callBack {@link PermissionCallBack}
+     * @param callback {@link PermissionCallback}
      * @return {@link PermissionUtils}
      */
-    public PermissionUtils callBack(final PermissionCallBack callBack) {
+    public PermissionUtils callback(final PermissionCallback callback) {
         if (mIsRequest) return this;
-        this.mCallBack = callBack;
+        this.mCallBack = callback;
         return this;
     }
 
@@ -314,7 +314,7 @@ public final class PermissionUtils {
      * detail: 权限请求回调
      * @author Ttt
      */
-    public interface PermissionCallBack {
+    public interface PermissionCallback {
 
         /**
          * 授权通过权限回调
@@ -420,18 +420,18 @@ public final class PermissionUtils {
      *     否则则再次请求拒绝的权限
      * </pre>
      * @param activity   {@link Activity}
-     * @param callBack   {@link PermissionCallBack}
+     * @param callback   {@link PermissionCallback}
      * @param deniedList 申请未通过的权限集合
      * @return 0 不符合要求无任何操作、1 再次请求操作、2  跳转到应用设置页面
      */
-    public static int againRequest(final Activity activity, final PermissionCallBack callBack,
+    public static int againRequest(final Activity activity, final PermissionCallback callback,
                                    final List<String> deniedList) {
         if (activity == null || CollectionUtils.isEmpty(deniedList)) return 0;
         // 获取拒绝的权限记录
         String[] deniedArys = deniedList.toArray(new String[deniedList.size()]);
         // 获取拒绝权限询问勾选状态 true 表示没有勾选不再询问, 而 false 则表示勾选了不再询问
         if (PermissionUtils.shouldShowRequestPermissionRationale(activity, deniedArys)) { // 再次请求
-            PermissionUtils.permission(deniedArys).callBack(callBack).request(activity);
+            PermissionUtils.permission(deniedArys).callback(callback).request(activity);
             return 1;
         } else { // 拒绝权限且不再询问, 跳转到应用设置页面
             AppUtils.startActivity(IntentUtils.getLaunchAppDetailsSettingsIntent());

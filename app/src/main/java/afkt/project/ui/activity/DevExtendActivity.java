@@ -161,9 +161,9 @@ public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding>
      * 保存文件
      * @param path     保存路径
      * @param fileName 文件名
-     * @param callBack 回调方法
+     * @param callback 回调方法
      */
-    private static void saveFile(String path, String fileName, DevResultCallback<Boolean> callBack) {
+    private static void saveFile(String path, String fileName, DevResultCallback<Boolean> callback) {
         try {
             // 保存路径
             File file = new File(path, fileName);
@@ -172,12 +172,12 @@ public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding>
             fos.write("扩展保存".getBytes());
             fos.close();
             // 触发回调
-            if (callBack != null) {
-                callBack.onResult(path, fileName, file.exists());
+            if (callback != null) {
+                callback.onResult(path, fileName, file.exists());
             }
         } catch (Exception e) {
-            if (callBack != null) {
-                callBack.onError(e);
+            if (callback != null) {
+                callback.onError(e);
             }
         }
     }

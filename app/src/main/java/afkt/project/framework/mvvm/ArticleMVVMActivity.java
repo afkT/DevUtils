@@ -1,6 +1,5 @@
 package afkt.project.framework.mvvm;
 
-import android.content.Intent;
 import android.view.View;
 
 import androidx.appcompat.app.ActionBar;

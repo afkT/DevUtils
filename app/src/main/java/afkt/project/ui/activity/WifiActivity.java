@@ -109,7 +109,7 @@ public class WifiActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
                                 PermissionUtils.permission(
                                         Manifest.permission.ACCESS_FINE_LOCATION,
                                         Manifest.permission.ACCESS_COARSE_LOCATION
-                                ).callBack(new PermissionUtils.PermissionCallBack() {
+                                ).callback(new PermissionUtils.PermissionCallback() {
                                     @Override
                                     public void onGranted() {
                                         isOpenAPING = true;

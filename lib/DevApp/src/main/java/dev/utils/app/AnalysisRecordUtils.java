@@ -94,10 +94,10 @@ public final class AnalysisRecordUtils {
 
     /**
      * 设置文件记录回调
-     * @param callBack {@link CallBack}
+     * @param callback {@link CallBack}
      */
-    public static void setCallBack(final CallBack callBack) {
-        RECORD_CALLBACK = callBack;
+    public static void setCallBack(final CallBack callback) {
+        RECORD_CALLBACK = callback;
     }
 
     // ===========

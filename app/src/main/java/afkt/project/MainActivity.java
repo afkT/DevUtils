@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         // ===========
 
         PermissionUtils.permission(Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE).callBack(new PermissionUtils.PermissionCallBack() {
+                Manifest.permission.WRITE_EXTERNAL_STORAGE).callback(new PermissionUtils.PermissionCallback() {
             /**
              * 授权通过权限回调
              */

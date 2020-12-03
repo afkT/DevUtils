@@ -53,13 +53,13 @@ public final class HttpURLConnectionUtils {
     /**
      * 异步的 Get 请求
      * @param urlStr   请求地址
-     * @param callBack 请求回调接口
+     * @param callback 请求回调接口
      */
-    public static void doGetAsync(final String urlStr, final CallBack callBack) {
+    public static void doGetAsync(final String urlStr, final CallBack callback) {
         new Thread() {
             public void run() {
                 try {
-                    request("GET", urlStr, null, null, callBack);
+                    request("GET", urlStr, null, null, callback);
                 } catch (Exception e) {
                     JCLogUtils.eTag(TAG, e, "doGetAsync");
                 }
@@ -71,13 +71,13 @@ public final class HttpURLConnectionUtils {
      * 异步的 Post 请求
      * @param urlStr   请求地址
      * @param params   请求参数
-     * @param callBack 请求回调接口
+     * @param callback 请求回调接口
      */
-    public static void doPostAsync(final String urlStr, final String params, final CallBack callBack) {
+    public static void doPostAsync(final String urlStr, final String params, final CallBack callback) {
         new Thread() {
             public void run() {
                 try {
-                    request("POST", urlStr, null, params, callBack);
+                    request("POST", urlStr, null, params, callback);
                 } catch (Exception e) {
                     JCLogUtils.eTag(TAG, e, "doPostAsync");
                 }
@@ -91,9 +91,9 @@ public final class HttpURLConnectionUtils {
      * @param urlStr   请求地址字符串
      * @param headers  请求头信息
      * @param params   请求参数
-     * @param callBack 请求回调接口
+     * @param callback 请求回调接口
      */
-    public static void request(final String method, final String urlStr, final Map<String, String> headers, final String params, final CallBack callBack) {
+    public static void request(final String method, final String urlStr, final Map<String, String> headers, final String params, final CallBack callback) {
         // 获取连接对象
         HttpURLConnection connection = null;
         InputStream is = null;
@@ -146,20 +146,20 @@ public final class HttpURLConnectionUtils {
                 // 获取请求结果
                 String result = new String(baos.toByteArray());
                 // 判断是否回调
-                if (callBack != null) {
+                if (callback != null) {
                     // 请求成功, 触发回调
-                    callBack.onResponse(result, connection.getDate());
+                    callback.onResponse(result, connection.getDate());
                 }
             } else {
                 // 响应成功, 非 200 直接返回 null
-                if (callBack != null) {
-                    callBack.onFail(new Exception("responseCode not >= 200 or < 300, code: " + responseCode));
+                if (callback != null) {
+                    callback.onFail(new Exception("responseCode not >= 200 or < 300, code: " + responseCode));
                 }
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "request");
-            if (callBack != null) {
-                callBack.onFail(e);
+            if (callback != null) {
+                callback.onFail(e);
             }
         } finally {
             CloseUtils.closeIOQuietly(baos, is);

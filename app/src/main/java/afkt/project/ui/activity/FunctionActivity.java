@@ -95,7 +95,7 @@ public class FunctionActivity extends BaseActivity<BaseViewRecyclerviewBinding> 
                         showToast(result);
                         break;
                     case ButtonValue.BTN_FUNCTION_FLASHLIGHT_OPEN:
-                        PermissionUtils.permission(Manifest.permission.CAMERA).callBack(new PermissionUtils.PermissionCallBack() {
+                        PermissionUtils.permission(Manifest.permission.CAMERA).callback(new PermissionUtils.PermissionCallback() {
                             @Override
                             public void onGranted() {
                                 // 非传入 Camera 方式需要注册
@@ -119,7 +119,7 @@ public class FunctionActivity extends BaseActivity<BaseViewRecyclerviewBinding> 
                         showToast(result, "存在快捷方式", "不存在快捷方式");
                         break;
                     case ButtonValue.BTN_FUNCTION_SHORTCUT_CREATE:
-                        PermissionUtils.permission(Manifest.permission.INSTALL_SHORTCUT).callBack(new PermissionUtils.PermissionCallBack() {
+                        PermissionUtils.permission(Manifest.permission.INSTALL_SHORTCUT).callback(new PermissionUtils.PermissionCallback() {
                             @Override
                             public void onGranted() {
                                 boolean result = ShortCutUtils.addShortcut(MainActivity.class, "Dev 快捷方式", R.mipmap.icon_launcher_round);

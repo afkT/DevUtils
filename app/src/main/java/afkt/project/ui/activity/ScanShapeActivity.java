@@ -164,7 +164,7 @@ public class ScanShapeActivity extends BaseActivity<ActivityScanShapeBinding> {
         } else {
             ToastTintUtils.warning("需要摄像头权限预览");
             // 申请权限
-            PermissionUtils.permission(cameraPermission).callBack(new PermissionUtils.PermissionCallBack() {
+            PermissionUtils.permission(cameraPermission).callback(new PermissionUtils.PermissionCallback() {
                 @Override
                 public void onGranted() {
                     // 刷新处理
