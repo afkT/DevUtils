@@ -27,7 +27,7 @@ public class LineActivity extends BaseActivity<ActivityLineBinding> {
         super.initValue();
 
         // 设置监听
-        binding.vidAlContentTv.setNewLineCallBack(new LineTextView.OnNewLineCallBack() {
+        binding.vidAlContentTv.setNewLineCallback(new LineTextView.OnNewLineCallback() {
             @Override
             public void onNewLine(boolean isNewLine, int line) {
                 StringBuilder builder = new StringBuilder();

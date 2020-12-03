@@ -253,7 +253,7 @@ boolean result = DevEnvironment.setServiceEnvironment(mContext, custom);
 
 ```java
 // 显示右上角重启按钮
-boolean result = DevEnvironmentActivity.start(mContext, new RestartCallBack() {
+boolean result = DevEnvironmentActivity.start(mContext, new RestartCallback() {
     @Override
     public void onRestart() {
         ActivityUtils.getManager().exitApplication();

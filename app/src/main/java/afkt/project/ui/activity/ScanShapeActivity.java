@@ -46,7 +46,7 @@ public class ScanShapeActivity extends BaseActivity<ActivityScanShapeBinding> {
             // 开始动画
             binding.vidAssScanview.startAnim();
             // 添加回调
-            binding.vidAssSurface.getHolder().addCallback(mHolderCallBack);
+            binding.vidAssSurface.getHolder().addCallback(mHolderCallback);
         } catch (Exception e) {
         }
     }
@@ -109,7 +109,7 @@ public class ScanShapeActivity extends BaseActivity<ActivityScanShapeBinding> {
     // 摄像头辅助类
     CameraAssist cameraAssist = new CameraAssist();
 
-    private SurfaceHolder.Callback mHolderCallBack = new SurfaceHolder.Callback() {
+    private SurfaceHolder.Callback mHolderCallback = new SurfaceHolder.Callback() {
         @Override
         public void surfaceCreated(SurfaceHolder holder) {
             // 检查权限

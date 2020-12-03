@@ -34,7 +34,7 @@ public final class HttpURLConnectionUtils {
      * detail: 请求回调
      * @author Ttt
      */
-    public interface CallBack {
+    public interface Callback {
 
         /**
          * 请求响应回调
@@ -55,7 +55,7 @@ public final class HttpURLConnectionUtils {
      * @param urlStr   请求地址
      * @param callback 请求回调接口
      */
-    public static void doGetAsync(final String urlStr, final CallBack callback) {
+    public static void doGetAsync(final String urlStr, final Callback callback) {
         new Thread() {
             public void run() {
                 try {
@@ -73,7 +73,7 @@ public final class HttpURLConnectionUtils {
      * @param params   请求参数
      * @param callback 请求回调接口
      */
-    public static void doPostAsync(final String urlStr, final String params, final CallBack callback) {
+    public static void doPostAsync(final String urlStr, final String params, final Callback callback) {
         new Thread() {
             public void run() {
                 try {
@@ -93,7 +93,7 @@ public final class HttpURLConnectionUtils {
      * @param params   请求参数
      * @param callback 请求回调接口
      */
-    public static void request(final String method, final String urlStr, final Map<String, String> headers, final String params, final CallBack callback) {
+    public static void request(final String method, final String urlStr, final Map<String, String> headers, final String params, final Callback callback) {
         // 获取连接对象
         HttpURLConnection connection = null;
         InputStream is = null;
@@ -183,7 +183,7 @@ public final class HttpURLConnectionUtils {
      * detail: 时间回调
      * @author Ttt
      */
-    public interface TimeCallBack {
+    public interface TimeCallback {
 
         /**
          * 请求响应回调
@@ -200,22 +200,22 @@ public final class HttpURLConnectionUtils {
 
     /**
      * 获取网络时间 ( 默认使用百度链接 )
-     * @param timeCallBack 请求时间回调接口
+     * @param callback 请求时间回调接口
      */
-    public static void getNetTime(final TimeCallBack timeCallBack) {
-        getNetTime(BAIDU_URL, timeCallBack);
+    public static void getNetTime(final TimeCallback callback) {
+        getNetTime(BAIDU_URL, callback);
     }
 
     /**
      * 获取网络时间
      * @param urlStr       请求地址
-     * @param timeCallBack 请求时间回调接口
+     * @param callback 请求时间回调接口
      */
-    public static void getNetTime(final String urlStr, final TimeCallBack timeCallBack) {
+    public static void getNetTime(final String urlStr, final TimeCallback callback) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                reqNetTime(urlStr, timeCallBack);
+                reqNetTime(urlStr, callback);
             }
         }).start();
     }
@@ -223,9 +223,9 @@ public final class HttpURLConnectionUtils {
     /**
      * 请求网络时间 ( 内部私有 )
      * @param urlStr       请求地址
-     * @param timeCallBack 请求时间回调接口
+     * @param callback 请求时间回调接口
      */
-    private static void reqNetTime(final String urlStr, final TimeCallBack timeCallBack) {
+    private static void reqNetTime(final String urlStr, final TimeCallback callback) {
         // 获取连接对象
         HttpURLConnection connection = null;
         try {
@@ -240,14 +240,14 @@ public final class HttpURLConnectionUtils {
                 date = -1L;
             }
             // 触发回调
-            if (timeCallBack != null) {
-                timeCallBack.onResponse(date);
+            if (callback != null) {
+                callback.onResponse(date);
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getNetTime");
             // 触发回调
-            if (timeCallBack != null) {
-                timeCallBack.onFail(e);
+            if (callback != null) {
+                callback.onFail(e);
             }
         } finally {
             if (connection != null) {

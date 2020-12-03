@@ -4,20 +4,20 @@ package dev.callback;
  * detail: 通用抽象回调 ( 基类 )
  * @author Ttt
  */
-public abstract class AbstractCommonCallBack<T> extends AbstractCallBack<T> {
+public abstract class AbstractCommonCallback<T> extends AbstractCallback<T> {
 
-    public AbstractCommonCallBack() {
+    public AbstractCommonCallback() {
     }
 
-    public AbstractCommonCallBack(T value) {
+    public AbstractCommonCallback(T value) {
         super(value);
     }
 
-    public AbstractCommonCallBack(T value, Object object) {
+    public AbstractCommonCallback(T value, Object object) {
         super(value, object);
     }
 
-    public AbstractCommonCallBack(T value, Object object, String tag) {
+    public AbstractCommonCallback(T value, Object object, String tag) {
         super(value, object, tag);
     }
 

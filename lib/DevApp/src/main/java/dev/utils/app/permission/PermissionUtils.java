@@ -212,7 +212,7 @@ public final class PermissionUtils {
     // 查询不到的权限 ( 包含未注册 )
     private List<String>       mPermissionsNotFoundLists      = new ArrayList<>();
     // 操作回调
-    private PermissionCallback mCallBack;
+    private PermissionCallback mCallback;
     // 回调方法 Handler
     private Handler            mHandler                       = new Handler(Looper.getMainLooper());
     // 判断是否请求过
@@ -259,7 +259,7 @@ public final class PermissionUtils {
      */
     public PermissionUtils callback(final PermissionCallback callback) {
         if (mIsRequest) return this;
-        this.mCallBack = callback;
+        this.mCallback = callback;
         return this;
     }
 
@@ -501,7 +501,7 @@ public final class PermissionUtils {
      * 内部请求回调, 统一处理方法
      */
     private void requestCallback() {
-        if (mCallBack != null) {
+        if (mCallback != null) {
             // 判断是否授权全部权限
             boolean isGrantedAll = (mPermissionSets.size() == mPermissionsGrantedLists.size());
             // 允许则触发回调
@@ -509,14 +509,14 @@ public final class PermissionUtils {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        mCallBack.onGranted();
+                        mCallback.onGranted();
                     }
                 });
             } else {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        mCallBack.onDenied(mPermissionsGrantedLists, mPermissionsDeniedLists, mPermissionsNotFoundLists);
+                        mCallback.onDenied(mPermissionsGrantedLists, mPermissionsDeniedLists, mPermissionsNotFoundLists);
                     }
                 });
             }

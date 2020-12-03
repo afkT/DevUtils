@@ -501,10 +501,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- startActivityForResult CallBack -->
+        <!-- startActivityForResult Callback -->
 
         <activity
-            android:name=".ui.activity.ActivityResultCallBackActivity"
+            android:name=".ui.activity.ActivityResultCallbackActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

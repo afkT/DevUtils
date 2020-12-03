@@ -39,7 +39,7 @@ public final class AnalysisRecordUtils {
     // 判断是否加空格
     private static boolean  sAppendSpace    = true;
     // 文件记录回调
-    private static CallBack RECORD_CALLBACK = null;
+    private static Callback RECORD_CALLBACK = null;
 
     // ===========
     // = 配置信息 =
@@ -94,9 +94,9 @@ public final class AnalysisRecordUtils {
 
     /**
      * 设置文件记录回调
-     * @param callback {@link CallBack}
+     * @param callback {@link Callback}
      */
-    public static void setCallBack(final CallBack callback) {
+    public static void setCallback(final Callback callback) {
         RECORD_CALLBACK = callback;
     }
 
@@ -639,7 +639,7 @@ public final class AnalysisRecordUtils {
      * detail: 文件记录回调
      * @author Ttt
      */
-    public interface CallBack {
+    public interface Callback {
 
         /**
          * 记录结果回调

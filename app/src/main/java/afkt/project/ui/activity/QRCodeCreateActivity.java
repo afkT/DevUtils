@@ -57,7 +57,7 @@ public class QRCodeCreateActivity extends BaseActivity<ActivityQrcodeCreateBindi
                 }
                 int size = SizeUtils.dipConvertPx(200f);
                 // 创建二维码
-                ZXingQRCodeUtils.createQRCodeImage(text, size, selectBitmap, new ZXingQRCodeUtils.QRResultCallBack() {
+                ZXingQRCodeUtils.createQRCodeImage(text, size, selectBitmap, new ZXingQRCodeUtils.QRResultCallback() {
                     @Override
                     public void onResult(boolean success, Bitmap bitmap, Exception e) {
                         if (success) {

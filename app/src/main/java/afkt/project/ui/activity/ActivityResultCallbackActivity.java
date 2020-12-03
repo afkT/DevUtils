@@ -17,10 +17,10 @@ import dev.utils.app.AppUtils;
 import dev.utils.app.toast.ToastTintUtils;
 
 /**
- * detail: 跳转 Activity 回传 CallBack
+ * detail: 跳转 Activity 回传 Callback
  * @author Ttt
  */
-public class ActivityResultCallBackActivity extends BaseActivity<ActivityActivityResultCallbackBinding> {
+public class ActivityResultCallbackActivity extends BaseActivity<ActivityActivityResultCallbackBinding> {
 
     @Override
     public int baseLayoutId() {

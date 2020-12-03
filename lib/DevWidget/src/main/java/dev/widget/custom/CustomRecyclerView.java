@@ -51,7 +51,7 @@ public class CustomRecyclerView extends RecyclerView {
     // 最大显示高度
     private int            mMaxHeight      = WidgetUtils.DEF_VALUE;
     // 滑动监听回调
-    private ScrollCallBack mScrollCallBack = null;
+    private ScrollCallback mScrollCallback = null;
     // 距离左边距离
     private int            mScrollX        = 0;
     // 距离顶部距离
@@ -101,8 +101,8 @@ public class CustomRecyclerView extends RecyclerView {
         mScrollX = Math.abs(mScrollX);
         mScrollY = Math.abs(mScrollY);
         // 触发回调
-        if (mScrollCallBack != null) {
-            mScrollCallBack.onScrollChanged(this, dx, dy, mScrollX, mScrollY);
+        if (mScrollCallback != null) {
+            mScrollCallback.onScrollChanged(this, dx, dy, mScrollX, mScrollY);
         }
     }
 
@@ -110,8 +110,8 @@ public class CustomRecyclerView extends RecyclerView {
     public void onScrollStateChanged(int state) {
         super.onScrollStateChanged(state);
         // 触发回调
-        if (mScrollCallBack != null) {
-            mScrollCallBack.onScrollStateChanged(this, state);
+        if (mScrollCallback != null) {
+            mScrollCallback.onScrollStateChanged(this, state);
         }
     }
 
@@ -192,11 +192,11 @@ public class CustomRecyclerView extends RecyclerView {
 
     /**
      * 设置滑动监听回调
-     * @param scrollCallBack {@link ScrollCallBack}
+     * @param callback {@link ScrollCallback}
      * @return {@link CustomRecyclerView}
      */
-    public CustomRecyclerView setScrollCallBack(ScrollCallBack scrollCallBack) {
-        this.mScrollCallBack = scrollCallBack;
+    public CustomRecyclerView setScrollCallback(ScrollCallback callback) {
+        this.mScrollCallback = callback;
         return this;
     }
 
@@ -204,7 +204,7 @@ public class CustomRecyclerView extends RecyclerView {
      * detail: 滑动监听回调
      * @author Ttt
      */
-    public interface ScrollCallBack {
+    public interface ScrollCallback {
 
         /**
          * 滑动状态通知

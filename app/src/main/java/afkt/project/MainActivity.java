@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         // = 时间校验 =
         // ===========
 
-        HttpURLConnectionUtils.getNetTime(new HttpURLConnectionUtils.TimeCallBack() {
+        HttpURLConnectionUtils.getNetTime(new HttpURLConnectionUtils.TimeCallback() {
             @Override
             public void onResponse(long time) {
                 // 获取当前时间

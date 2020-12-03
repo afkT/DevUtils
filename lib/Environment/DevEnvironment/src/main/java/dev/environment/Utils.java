@@ -27,7 +27,7 @@ class Utils {
     static final String STR_ENVIRONMENT        = "Environment";
 
     // callback
-    protected static RestartCallBack sRestartCallBack;
+    protected static RestartCallback sRestartCallback;
     // DevEnvironment Class
     static           Class<?>        devEnvironmentClass;
 
@@ -54,13 +54,13 @@ class Utils {
     /**
      * 跳转 DevEnvironment Activity
      * @param context         {@link Context}
-     * @param restartCallBack {@link RestartCallBack}
+     * @param callback {@link RestartCallback}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean start(final Context context, final RestartCallBack restartCallBack) {
+    public static boolean start(final Context context, final RestartCallback callback) {
         if (context != null && !isRelease()) {
             try {
-                Utils.sRestartCallBack = restartCallBack;
+                Utils.sRestartCallback = callback;
                 Intent intent = new Intent(context, DevEnvironmentActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);

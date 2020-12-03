@@ -87,7 +87,7 @@ public class QRCodeImageActivity extends BaseActivity<ActivityQrcodeImageBinding
             // 获取图片 Bitmap
             selectBitmap = ImageUtils.decodeFile(imgPath);
             // 解析图片
-            ZXingQRCodeUtils.decodeQRCode(selectBitmap, new ZXingQRCodeUtils.QRScanCallBack() {
+            ZXingQRCodeUtils.decodeQRCode(selectBitmap, new ZXingQRCodeUtils.QRScanCallback() {
                 @Override
                 public void onResult(boolean success, Result result, Exception e) {
                     HandlerUtils.postRunnable(new Runnable() {

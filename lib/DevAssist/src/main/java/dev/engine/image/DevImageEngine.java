@@ -91,7 +91,7 @@ public final class DevImageEngine {
      * @param uri           Image Uri
      * @param imageCallback 图片加载回调
      */
-    public static void loadImage(final String uri, final IImageEngine.ImageCallBack imageCallback) {
+    public static void loadImage(final String uri, final IImageEngine.ImageCallback imageCallback) {
         if (sImageEngine != null) {
             sImageEngine.loadImage(uri, imageCallback);
         }
@@ -103,7 +103,7 @@ public final class DevImageEngine {
      * @param imageCallback 图片加载回调
      * @param config        {@link IImageEngine.ImageConfig} 加载配置
      */
-    public static void loadImage(final String uri, final IImageEngine.ImageCallBack imageCallback, final IImageEngine.ImageConfig config) {
+    public static void loadImage(final String uri, final IImageEngine.ImageCallback imageCallback, final IImageEngine.ImageConfig config) {
         if (sImageEngine != null) {
             sImageEngine.loadImage(uri, imageCallback, config);
         }

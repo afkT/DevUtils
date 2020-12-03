@@ -17,7 +17,7 @@
 | 方法 | 注释 |
 | :- | :- |
 | setInsertInfo | 设置插入信息 |
-| setCallBack | 设置文件记录回调 |
+| setCallback | 设置文件记录回调 |
 | saveErrorLog | 保存异常日志 |
 | saveLog | 保存日志 |
 

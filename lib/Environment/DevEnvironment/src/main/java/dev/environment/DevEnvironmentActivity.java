@@ -41,11 +41,11 @@ public final class DevEnvironmentActivity extends Activity {
     /**
      * 跳转 DevEnvironment Activity
      * @param context         {@link Context}
-     * @param restartCallBack {@link RestartCallBack}
+     * @param callback {@link RestartCallback}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean start(final Context context, final RestartCallBack restartCallBack) {
-        return Utils.start(context, restartCallBack);
+    public static boolean start(final Context context, final RestartCallback callback) {
+        return Utils.start(context, callback);
     }
 
     // =
@@ -79,14 +79,14 @@ public final class DevEnvironmentActivity extends Activity {
         });
         // restart
         TextView vid_dea_restart_tv = findViewById(R.id.vid_dea_restart_tv);
-        if (Utils.sRestartCallBack != null) {
+        if (Utils.sRestartCallback != null) {
             vid_dea_restart_tv.setVisibility(View.VISIBLE);
             vid_dea_restart_tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     finish();
-                    if (Utils.sRestartCallBack != null) {
-                        Utils.sRestartCallBack.onRestart();
+                    if (Utils.sRestartCallback != null) {
+                        Utils.sRestartCallback.onRestart();
                     }
                 }
             });

@@ -42,7 +42,7 @@ public final class ZXingQRCodeUtils {
      * detail: 生成二维码结果回调
      * @author Ttt
      */
-    public interface QRResultCallBack {
+    public interface QRResultCallback {
 
         /**
          * 生成二维码结果回调
@@ -68,10 +68,10 @@ public final class ZXingQRCodeUtils {
      * 生成二维码图片
      * @param content          生成内容
      * @param size             图片宽高大小 ( 正方形 px )
-     * @param qrResultCallBack 生成结果回调
+     * @param callback 生成结果回调
      */
-    public static void createQRCodeImage(final String content, final int size, final QRResultCallBack qrResultCallBack) {
-        createQRCodeImage(content, size, null, qrResultCallBack);
+    public static void createQRCodeImage(final String content, final int size, final QRResultCallback callback) {
+        createQRCodeImage(content, size, null, callback);
     }
 
     /**
@@ -79,9 +79,9 @@ public final class ZXingQRCodeUtils {
      * @param content          生成内容
      * @param size             图片宽高大小 ( 正方形 px )
      * @param logo             中间 Logo
-     * @param qrResultCallBack 生成结果回调
+     * @param callback 生成结果回调
      */
-    public static void createQRCodeImage(final String content, final int size, final Bitmap logo, final QRResultCallBack qrResultCallBack) {
+    public static void createQRCodeImage(final String content, final int size, final Bitmap logo, final QRResultCallback callback) {
         DevThreadManager.getInstance(10).execute(new Runnable() {
             @Override
             public void run() {
@@ -92,14 +92,14 @@ public final class ZXingQRCodeUtils {
                         qrCodeBitmap = addLogoToQRCode(qrCodeBitmap, logo);
                     }
                     // 触发回调
-                    if (qrResultCallBack != null) {
-                        qrResultCallBack.onResult(true, qrCodeBitmap, null);
+                    if (callback != null) {
+                        callback.onResult(true, qrCodeBitmap, null);
                     }
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "createQRCodeImage");
                     // 触发回调
-                    if (qrResultCallBack != null) {
-                        qrResultCallBack.onResult(false, null, e);
+                    if (callback != null) {
+                        callback.onResult(false, null, e);
                     }
                 }
             }
@@ -117,7 +117,7 @@ public final class ZXingQRCodeUtils {
      * detail: 二维码扫描结果回调
      * @author Ttt
      */
-    public interface QRScanCallBack {
+    public interface QRScanCallback {
 
         /**
          * 二维码扫描结果回调
@@ -133,12 +133,12 @@ public final class ZXingQRCodeUtils {
     /**
      * 解析二维码图片
      * @param bitmap         待解析的二维码图片
-     * @param qrScanCallBack 解析结果回调
+     * @param callback 解析结果回调
      */
-    public static void decodeQRCode(final Bitmap bitmap, final QRScanCallBack qrScanCallBack) {
+    public static void decodeQRCode(final Bitmap bitmap, final QRScanCallback callback) {
         if (bitmap == null) {
-            if (qrScanCallBack != null) {
-                qrScanCallBack.onResult(false, null, new Exception("bitmap is null"));
+            if (callback != null) {
+                callback.onResult(false, null, new Exception("bitmap is null"));
             }
             return;
         }
@@ -154,14 +154,14 @@ public final class ZXingQRCodeUtils {
                     RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
                     Result result = new MultiFormatReader().decode(new BinaryBitmap(new HybridBinarizer(source)), DECODE_HINTS);
                     // 触发回调
-                    if (qrScanCallBack != null) {
-                        qrScanCallBack.onResult((result != null), result, null);
+                    if (callback != null) {
+                        callback.onResult((result != null), result, null);
                     }
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "decodeQRCode");
                     // 触发回调
-                    if (qrScanCallBack != null) {
-                        qrScanCallBack.onResult(false, null, e);
+                    if (callback != null) {
+                        callback.onResult(false, null, e);
                     }
                 }
             }

@@ -16,7 +16,7 @@ public final class FileRecordUtils {
     // 插入信息 ( 如设备信息等 )
     private static String   INSERT_INFO     = null;
     // 文件记录回调
-    private static CallBack RECORD_CALLBACK = null;
+    private static Callback RECORD_CALLBACK = null;
 
     // ===============
     // = 对外公开方法 =
@@ -32,9 +32,9 @@ public final class FileRecordUtils {
 
     /**
      * 设置文件记录回调
-     * @param callback {@link CallBack}
+     * @param callback {@link Callback}
      */
-    public static void setCallBack(final CallBack callback) {
+    public static void setCallback(final Callback callback) {
         RECORD_CALLBACK = callback;
     }
 
@@ -205,7 +205,7 @@ public final class FileRecordUtils {
      * detail: 文件记录回调
      * @author Ttt
      */
-    public interface CallBack {
+    public interface Callback {
 
         /**
          * 记录结果回调

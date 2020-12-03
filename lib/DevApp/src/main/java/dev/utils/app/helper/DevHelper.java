@@ -1401,22 +1401,22 @@ public final class DevHelper {
 
     /**
      * 获取网络时间 ( 默认使用百度链接 )
-     * @param timeCallBack 请求时间回调接口
+     * @param callback 请求时间回调接口
      * @return {@link DevHelper}
      */
-    public DevHelper getNetTime(final HttpURLConnectionUtils.TimeCallBack timeCallBack) {
-        HttpURLConnectionUtils.getNetTime(timeCallBack);
+    public DevHelper getNetTime(final HttpURLConnectionUtils.TimeCallback callback) {
+        HttpURLConnectionUtils.getNetTime(callback);
         return this;
     }
 
     /**
      * 获取网络时间
      * @param urlStr       请求地址
-     * @param timeCallBack 请求时间回调接口
+     * @param callback 请求时间回调接口
      * @return {@link DevHelper}
      */
-    public DevHelper getNetTime(final String urlStr, final HttpURLConnectionUtils.TimeCallBack timeCallBack) {
-        HttpURLConnectionUtils.getNetTime(urlStr, timeCallBack);
+    public DevHelper getNetTime(final String urlStr, final HttpURLConnectionUtils.TimeCallback callback) {
+        HttpURLConnectionUtils.getNetTime(urlStr, callback);
         return this;
     }
 

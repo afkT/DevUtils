@@ -1,25 +1,25 @@
 package dev.callback.common;
 
-import dev.callback.AbstractCallBack;
+import dev.callback.AbstractCallback;
 
 /**
  * detail: Dev 回调基类
  * @author Ttt
  */
-public class DevCallBack<T> extends AbstractCallBack<T> {
+public class DevCallback<T> extends AbstractCallback<T> {
 
-    public DevCallBack() {
+    public DevCallback() {
     }
 
-    public DevCallBack(T value) {
+    public DevCallback(T value) {
         super(value);
     }
 
-    public DevCallBack(T value, Object object) {
+    public DevCallback(T value, Object object) {
         super(value, object);
     }
 
-    public DevCallBack(T value, Object object, String tag) {
+    public DevCallback(T value, Object object, String tag) {
         super(value, object, tag);
     }
 

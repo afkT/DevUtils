@@ -13,7 +13,7 @@ import afkt.project.framework.mvvm.ArticleMVVMActivity;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.activity.AccessibilityListenerServiceActivity;
-import afkt.project.ui.activity.ActivityResultCallBackActivity;
+import afkt.project.ui.activity.ActivityResultCallbackActivity;
 import afkt.project.ui.activity.AdapterEditsActivity;
 import afkt.project.ui.activity.AddContactActivity;
 import afkt.project.ui.activity.CacheActivity;
@@ -225,8 +225,8 @@ public class ModuleActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
                     case ButtonValue.BTN_WEBVIEW: // WebView 辅助类
                         SkipUtils.startActivity(WebViewActivity.class, buttonValue);
                         break;
-                    case ButtonValue.BTN_ACTIVITY_RESULT_CALLBACK: // startActivityForResult CallBack
-                        SkipUtils.startActivity(ActivityResultCallBackActivity.class, buttonValue);
+                    case ButtonValue.BTN_ACTIVITY_RESULT_CALLBACK: // startActivityForResult Callback
+                        SkipUtils.startActivity(ActivityResultCallbackActivity.class, buttonValue);
                         break;
                     case ButtonValue.BTN_ADD_CONTACT: // 添加联系人
                         SkipUtils.startActivity(AddContactActivity.class, buttonValue);

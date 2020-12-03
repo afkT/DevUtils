@@ -345,7 +345,7 @@ public class ButtonValue {
     // WebView 辅助类
     public static final int BTN_WEBVIEW = MODULE_OTHER + 1200;
 
-    // startActivityForResult CallBack
+    // startActivityForResult Callback
     public static final int BTN_ACTIVITY_RESULT_CALLBACK = MODULE_OTHER + 1300;
 
     // 添加联系人

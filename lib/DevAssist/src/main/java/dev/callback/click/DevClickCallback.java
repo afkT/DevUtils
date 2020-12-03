@@ -1,25 +1,25 @@
 package dev.callback.click;
 
-import dev.callback.AbstractCommonCallBack;
+import dev.callback.AbstractCommonCallback;
 
 /**
  * detail: 通用 Click 回调
  * @author Ttt
  */
-public class DevClickCallBack<T> extends AbstractCommonCallBack<T> {
+public class DevClickCallback<T> extends AbstractCommonCallback<T> {
 
-    public DevClickCallBack() {
+    public DevClickCallback() {
     }
 
-    public DevClickCallBack(T value) {
+    public DevClickCallback(T value) {
         super(value);
     }
 
-    public DevClickCallBack(T value, Object object) {
+    public DevClickCallback(T value, Object object) {
         super(value, object);
     }
 
-    public DevClickCallBack(T value, Object object, String tag) {
+    public DevClickCallback(T value, Object object, String tag) {
         super(value, object, tag);
     }
 

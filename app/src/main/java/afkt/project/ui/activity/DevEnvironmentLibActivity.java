@@ -13,7 +13,7 @@ import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
 import dev.environment.DevEnvironment;
 import dev.environment.DevEnvironmentActivity;
-import dev.environment.RestartCallBack;
+import dev.environment.RestartCallback;
 import dev.environment.bean.EnvironmentBean;
 import dev.environment.bean.ModuleBean;
 import dev.environment.listener.OnEnvironmentChangeListener;
@@ -46,7 +46,7 @@ public class DevEnvironmentLibActivity extends BaseActivity<BaseViewRecyclerview
                 boolean result = false;
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_DEV_ENVIRONMENT:
-                        result = DevEnvironmentActivity.start(mContext, new RestartCallBack() {
+                        result = DevEnvironmentActivity.start(mContext, new RestartCallback() {
                             @Override
                             public void onRestart() {
                                 ActivityUtils.getManager().exitApplication();

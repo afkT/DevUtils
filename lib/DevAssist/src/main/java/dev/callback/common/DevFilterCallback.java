@@ -1,12 +1,12 @@
 package dev.callback.common;
 
-import dev.callback.AbstractCallBack;
+import dev.callback.AbstractCallback;
 
 /**
  * detail: 过滤处理回调类
  * @author Ttt
  */
-public class DevFilterCallback<T> extends AbstractCallBack<T> {
+public class DevFilterCallback<T> extends AbstractCallback<T> {
 
     public DevFilterCallback() {
     }

@@ -150,7 +150,7 @@ implementation 'com.afkt:DevWidgetX:1.0.5'
 | isSlide | 是否允许滑动 |
 | setSlide | 设置是否允许滑动 |
 | toggleSlide | 切换滑动控制状态 |
-| setScrollCallBack | 设置滑动监听回调 |
+| setScrollCallback | 设置滑动监听回调 |
 
 
 * **自定义 NestedScrollView 滑动监听、滑动控制 ->** [CustomNestedScrollView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/custom/CustomNestedScrollView.java)
@@ -169,7 +169,7 @@ implementation 'com.afkt:DevWidgetX:1.0.5'
 | isSlide | 是否允许滑动 |
 | setSlide | 设置是否允许滑动 |
 | toggleSlide | 切换滑动控制状态 |
-| setScrollCallBack | 设置滑动监听回调 |
+| setScrollCallback | 设置滑动监听回调 |
 
 
 * **自定义 RecyclerView 滑动监听、滑动控制 ->** [CustomRecyclerView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/custom/CustomRecyclerView.java)
@@ -188,7 +188,7 @@ implementation 'com.afkt:DevWidgetX:1.0.5'
 | isSlide | 是否允许滑动 |
 | setSlide | 设置是否允许滑动 |
 | toggleSlide | 切换滑动控制状态 |
-| setScrollCallBack | 设置滑动监听回调 |
+| setScrollCallback | 设置滑动监听回调 |
 | onScrollChanged | 滑动改变通知 |
 
 
@@ -208,7 +208,7 @@ implementation 'com.afkt:DevWidgetX:1.0.5'
 | isSlide | 是否允许滑动 |
 | setSlide | 设置是否允许滑动 |
 | toggleSlide | 切换滑动控制状态 |
-| setScrollCallBack | 设置滑动监听回调 |
+| setScrollCallback | 设置滑动监听回调 |
 
 
 * **自定义 ViewPager 滑动监听、滑动控制 ->** [CustomViewPager.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/custom/CustomViewPager.java)
@@ -245,7 +245,7 @@ implementation 'com.afkt:DevWidgetX:1.0.5'
 | isSlide | 是否允许滑动 |
 | setSlide | 设置是否允许滑动 |
 | toggleSlide | 切换滑动控制状态 |
-| setScrollCallBack | 设置滑动监听回调 |
+| setScrollCallback | 设置滑动监听回调 |
 
 
 ## <span id="devwidgetfunction">**`dev.widget.function`**</span>
@@ -268,7 +268,7 @@ implementation 'com.afkt:DevWidgetX:1.0.5'
 | :- | :- |
 | onDraw | onDraw |
 | isNewLine | 判断是否换行 |
-| setNewLineCallBack | 设置换行监听回调 |
+| setNewLineCallback | 设置换行监听回调 |
 | onNewLine | 换行触发 |
 
 
@@ -300,7 +300,7 @@ implementation 'com.afkt:DevWidgetX:1.0.5'
 | setPath | 设置绘制路径 |
 | getPaint | 获取绘制画笔 |
 | setPaint | 设置绘制画笔 |
-| setDrawCallBack | 设置绘制回调事件 |
+| setDrawCallback | 设置绘制回调事件 |
 
 
 * **状态布局 ->** [StateLayout.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/function/StateLayout.java)

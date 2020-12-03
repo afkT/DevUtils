@@ -114,10 +114,10 @@ public interface IHttpEngine {
     }
 
     /**
-     * detail: Request CallBack
+     * detail: Request Callback
      * @author Ttt
      */
-    abstract class RequestCallBack<T extends Response> {
+    abstract class RequestCallback<T extends Response> {
 
         /**
          * 开始请求
@@ -155,10 +155,10 @@ public interface IHttpEngine {
     /**
      * 获取 Request Call Object
      * @param request  {@link Request}
-     * @param callback {@link RequestCallBack}
+     * @param callback {@link RequestCallback}
      * @return {@link Call}
      */
-    Call newCall(Request request, RequestCallBack callback);
+    Call newCall(Request request, RequestCallback callback);
 
     // ===========
     // = 操作方法 =

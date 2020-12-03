@@ -35,10 +35,10 @@ public final class DevHttpEngine {
     /**
      * 获取 Request Call Object
      * @param request  {@link IHttpEngine.Request}
-     * @param callback {@link IHttpEngine.RequestCallBack}
+     * @param callback {@link IHttpEngine.RequestCallback}
      * @return {@link IHttpEngine.Call}
      */
-    public static IHttpEngine.Call newCall(final IHttpEngine.Request request, final IHttpEngine.RequestCallBack callback) {
+    public static IHttpEngine.Call newCall(final IHttpEngine.Request request, final IHttpEngine.RequestCallback callback) {
         if (sHttpEngine != null) {
             return sHttpEngine.newCall(request, callback);
         }

@@ -4,20 +4,20 @@ package dev.callback.click;
  * detail: 通用 Dialog 回调
  * @author Ttt
  */
-public class DevDialogCallBack<T> extends DevClickCallBack<T> {
+public class DevDialogCallback<T> extends DevClickCallback<T> {
 
-    public DevDialogCallBack() {
+    public DevDialogCallback() {
     }
 
-    public DevDialogCallBack(T value) {
+    public DevDialogCallback(T value) {
         super(value);
     }
 
-    public DevDialogCallBack(T value, Object object) {
+    public DevDialogCallback(T value, Object object) {
         super(value, object);
     }
 
-    public DevDialogCallBack(T value, Object object, String tag) {
+    public DevDialogCallback(T value, Object object, String tag) {
         super(value, object, tag);
     }
 

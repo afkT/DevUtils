@@ -6,7 +6,7 @@ import java.util.UUID;
  * detail: 抽象回调 ( 基类 )
  * @author Ttt
  */
-public abstract class AbstractCallBack<T> {
+public abstract class AbstractCallback<T> {
 
     // uuid 一定程度上唯一
     private final int    mUUID = UUID.randomUUID().hashCode();
@@ -17,19 +17,19 @@ public abstract class AbstractCallBack<T> {
     // Object
     private       Object mObject;
 
-    public AbstractCallBack() {
+    public AbstractCallback() {
     }
 
-    public AbstractCallBack(T value) {
+    public AbstractCallback(T value) {
         this.mValue = value;
     }
 
-    public AbstractCallBack(T value, Object object) {
+    public AbstractCallback(T value, Object object) {
         this.mValue = value;
         this.mObject = object;
     }
 
-    public AbstractCallBack(T value, Object object, String tag) {
+    public AbstractCallback(T value, Object object, String tag) {
         this.mValue = value;
         this.mObject = object;
         this.mTag = tag;
@@ -58,9 +58,9 @@ public abstract class AbstractCallBack<T> {
     /**
      * 设置标记 Tag
      * @param tag Tag
-     * @return {@link AbstractCallBack}
+     * @return {@link AbstractCallback}
      */
-    public AbstractCallBack<T> setTag(String tag) {
+    public AbstractCallback<T> setTag(String tag) {
         this.mTag = tag;
         return this;
     }
@@ -76,9 +76,9 @@ public abstract class AbstractCallBack<T> {
     /**
      * 设置 Value
      * @param value T Class Object
-     * @return {@link AbstractCallBack}
+     * @return {@link AbstractCallback}
      */
-    public AbstractCallBack<T> setValue(T value) {
+    public AbstractCallback<T> setValue(T value) {
         this.mValue = value;
         return this;
     }
@@ -94,9 +94,9 @@ public abstract class AbstractCallBack<T> {
     /**
      * 设置 Object
      * @param object Object
-     * @return {@link AbstractCallBack}
+     * @return {@link AbstractCallback}
      */
-    public AbstractCallBack<T> setObject(Object object) {
+    public AbstractCallback<T> setObject(Object object) {
         this.mObject = object;
         return this;
     }

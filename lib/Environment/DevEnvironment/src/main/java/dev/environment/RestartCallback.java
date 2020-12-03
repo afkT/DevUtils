@@ -1,10 +1,10 @@
 package dev.environment;
 
 /**
- * detail: Restart CallBack
+ * detail: Restart Callback
  * @author Ttt
  */
-public interface RestartCallBack {
+public interface RestartCallback {
 
     void onRestart();
 }

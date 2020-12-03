@@ -32,7 +32,7 @@ public class CustomScrollView extends ScrollView {
     // 最大显示高度
     private int            mMaxHeight      = WidgetUtils.DEF_VALUE;
     // 滑动监听回调
-    private ScrollCallBack mScrollCallBack = null;
+    private ScrollCallback mScrollCallback = null;
 
     public CustomScrollView(Context context) {
         super(context);
@@ -78,8 +78,8 @@ public class CustomScrollView extends ScrollView {
     @Override
     protected void onScrollChanged(int left, int top, int oldLeft, int oldTop) {
         super.onScrollChanged(left, top, oldLeft, oldTop);
-        if (mScrollCallBack != null) {
-            mScrollCallBack.onScrollChanged(left, top, oldLeft, oldTop);
+        if (mScrollCallback != null) {
+            mScrollCallback.onScrollChanged(left, top, oldLeft, oldTop);
         }
     }
 
@@ -165,11 +165,11 @@ public class CustomScrollView extends ScrollView {
 
     /**
      * 设置滑动监听回调
-     * @param scrollCallBack {@link ScrollCallBack}
+     * @param callback {@link ScrollCallback}
      * @return {@link CustomScrollView}
      */
-    public CustomScrollView setScrollCallBack(ScrollCallBack scrollCallBack) {
-        this.mScrollCallBack = scrollCallBack;
+    public CustomScrollView setScrollCallback(ScrollCallback callback) {
+        this.mScrollCallback = callback;
         return this;
     }
 
@@ -177,7 +177,7 @@ public class CustomScrollView extends ScrollView {
      * detail: 滑动监听回调
      * @author Ttt
      */
-    public interface ScrollCallBack {
+    public interface ScrollCallback {
 
         /**
          * 滑动改变通知
