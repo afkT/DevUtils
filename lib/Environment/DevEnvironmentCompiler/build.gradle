@@ -1,4 +1,4 @@
-apply from: rootProject.file(files.java_lib_gradle)
+apply from: rootProject.file(files.lib_java_gradle)
 
 version versions.dev_environment_compiler_version
 
@@ -16,4 +16,4 @@ dependencies {
 // gradlew clean
 // gradlew install
 // gradlew bintrayUpload
-//apply from : rootProject.file(files.java_bintray_upload)
+//apply from : rootProject.file(files.bintray_upload_java)

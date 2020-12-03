@@ -1,4 +1,4 @@
-apply from: rootProject.file(files.app_lib_kotlin_gradle)
+apply from: rootProject.file(files.lib_app_kotlin_gradle)
 
 android.defaultConfig {
     versionCode versions.dev_base_mvvm_versionCode
@@ -22,4 +22,4 @@ dependencies {
 // gradlew clean
 // gradlew install
 // gradlew bintrayUpload
-//apply from : rootProject.file(files.app_bintray_upload)
+//apply from : rootProject.file(files.bintray_upload_android)
