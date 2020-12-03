@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'org.greenrobot.greendao'
-apply from: rootProject.file(files.android_lib_deps)
+apply from: rootProject.file(files.deps_android_lib)
 
 android {
 

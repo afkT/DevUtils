@@ -2,8 +2,8 @@ apply from: rootProject.file(files.app_lib_gradle)
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
-apply from: rootProject.file(files.android_lib_deps)
-apply from: rootProject.file(files.other_lib_deps)
+apply from: rootProject.file(files.deps_android_lib)
+apply from: rootProject.file(files.deps_other_lib)
 
 android {
     buildFeatures {

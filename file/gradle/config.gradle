@@ -19,9 +19,9 @@ ext {
             java_bintray_upload    : 'file/bintray/bintrayUploadJava.gradle',
 
             // Android lib 依赖配置
-            android_lib_deps       : 'file/gradle/deps/android_lib_deps.gradle',
+            deps_android_lib       : 'file/gradle/deps/deps_android_lib.gradle',
             // 第三方 lib 依赖配置
-            other_lib_deps         : 'file/gradle/deps/other_lib_deps.gradle',
+            deps_other_lib         : 'file/gradle/deps/deps_other_lib.gradle',
     ]
 
     versions = [
