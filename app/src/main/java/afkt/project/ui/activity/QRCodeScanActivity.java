@@ -412,11 +412,11 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
          * @param decodeConfig    解析配置
          * @param decodeMode      解析类型
          * @param cameraAssist    Camera 辅助类
-         * @param previewCallback 预览回调
+         * @param callback 预览回调
          * @param decodeResult    解码结果回调
          */
         CaptureHandler(DecodeConfig decodeConfig, @DecodeFormat.DecodeMode int decodeMode,
-                       CameraAssist cameraAssist, PreviewCallback previewCallback, DecodeResult decodeResult) {
+                       CameraAssist cameraAssist, PreviewCallback callback, DecodeResult decodeResult) {
             this.mState = State.SUCCESS;
             // 初始化解码线程
             this.mDecodeThread = new DecodeThread(decodeConfig, decodeMode);
@@ -424,7 +424,7 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
             // 初始化辅助类, 并开始预览
             this.mCameraAssist = cameraAssist;
             this.mCameraAssist.startPreview();
-            this.mPreviewCallback = previewCallback;
+            this.mPreviewCallback = callback;
             this.mDecodeResult = decodeResult;
             // 设置预览解码线程
             restartPreviewAndDecode();

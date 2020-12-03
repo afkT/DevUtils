@@ -1427,22 +1427,22 @@ public final class DevHelper {
     /**
      * 设置等待一段时间后, 通知方法 ( 异步 )
      * @param keepTimeMillis 堵塞时间 ( 毫秒 )
-     * @param endCallback    结束回调通知
+     * @param callback    结束回调通知
      * @return {@link DevHelper}
      */
-    public DevHelper waitForEndAsync(final long keepTimeMillis, final TimeKeeper.OnEndCallback endCallback) {
-        mTimeKeeper.waitForEndAsync(keepTimeMillis, endCallback);
+    public DevHelper waitForEndAsync(final long keepTimeMillis, final TimeKeeper.OnEndCallback callback) {
+        mTimeKeeper.waitForEndAsync(keepTimeMillis, callback);
         return this;
     }
 
     /**
      * 设置等待一段时间后, 通知方法 ( 同步 )
      * @param keepTimeMillis 堵塞时间 ( 毫秒 )
-     * @param endCallback    结束回调通知
+     * @param callback    结束回调通知
      * @return {@link DevHelper}
      */
-    public DevHelper waitForEnd(final long keepTimeMillis, final TimeKeeper.OnEndCallback endCallback) {
-        mTimeKeeper.waitForEnd(keepTimeMillis, endCallback);
+    public DevHelper waitForEnd(final long keepTimeMillis, final TimeKeeper.OnEndCallback callback) {
+        mTimeKeeper.waitForEnd(keepTimeMillis, callback);
         return this;
     }
 

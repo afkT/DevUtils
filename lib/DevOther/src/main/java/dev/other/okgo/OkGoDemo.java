@@ -22,21 +22,21 @@ public class OkGoDemo {
     /**
      * 获取用户信息
      * @param userId
-     * @param okCallback
+     * @param callback
      */
-    public static void getUserInfo(String userId, OkGoCallback<UserBean> okCallback) {
+    public static void getUserInfo(String userId, OkGoCallback<UserBean> callback) {
         OkGo.<String>post("url")
                 .params("userId", userId)
-                .execute(okCallback);
+                .execute(callback);
     }
 
     /**
      * 获取用户列表
-     * @param okCallback
+     * @param callback
      */
-    public static void getUserList(OkGoCallback<List<UserBean>> okCallback) {
+    public static void getUserList(OkGoCallback<List<UserBean>> callback) {
         OkGo.<String>post("url").tag(OkGoDemo.class)
-                .execute(okCallback);
+                .execute(callback);
         // 取消请求
         // OkGo.getInstance().cancelTag(OKDemo.class);
         // 请求管理控制 ( 取消请求 ) 查看 OkGoUtils#execute 方法
@@ -45,23 +45,23 @@ public class OkGoDemo {
     /**
      * 上传文件
      * @param file
-     * @param okCallback
+     * @param callback
      */
-    public static void uploadImage(File file, OkGoCallback<String> okCallback) {
+    public static void uploadImage(File file, OkGoCallback<String> callback) {
         OkGo.<String>post("url")
                 .upFile(file)
-                .execute(okCallback);
+                .execute(callback);
     }
 
     /**
      * 上传多个文件
      * @param files
-     * @param okCallback
+     * @param callback
      */
-    public static void uploadImages(List<File> files, OkGoCallback<List<String>> okCallback) {
+    public static void uploadImages(List<File> files, OkGoCallback<List<String>> callback) {
         OkGo.<String>post("url")
                 .addFileParams("files", files)
-                .execute(okCallback);
+                .execute(callback);
     }
 
     // =

@@ -774,11 +774,11 @@ public final class AppUtils {
 
     /**
      * Activity 跳转回传
-     * @param resultCallback Activity 跳转回传回调
+     * @param callback Activity 跳转回传回调
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean startActivityForResult(final ActivityUtils.ResultCallback resultCallback) {
-        return ActivityUtils.startActivityForResult(resultCallback);
+    public static boolean startActivityForResult(final ActivityUtils.ResultCallback callback) {
+        return ActivityUtils.startActivityForResult(callback);
     }
 
     /**

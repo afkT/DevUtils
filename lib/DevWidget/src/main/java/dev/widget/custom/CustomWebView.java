@@ -157,11 +157,11 @@ public class CustomWebView extends WebView {
 
     /**
      * 设置滑动监听回调
-     * @param scrollCallback {@link ScrollCallback}
+     * @param callback {@link ScrollCallback}
      * @return {@link CustomWebView}
      */
-    public CustomWebView setScrollCallback(ScrollCallback scrollCallback) {
-        this.mScrollCallback = scrollCallback;
+    public CustomWebView setScrollCallback(ScrollCallback callback) {
+        this.mScrollCallback = callback;
         return this;
     }
 

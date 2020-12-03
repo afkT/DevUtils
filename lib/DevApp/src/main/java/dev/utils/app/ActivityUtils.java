@@ -892,11 +892,11 @@ public final class ActivityUtils {
 
     /**
      * Activity 跳转回传
-     * @param resultCallback Activity 跳转回传回调
+     * @param callback Activity 跳转回传回调
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean startActivityForResult(final ResultCallback resultCallback) {
-        return ActivityUtils.ResultActivity.start(resultCallback);
+    public static boolean startActivityForResult(final ResultCallback callback) {
+        return ActivityUtils.ResultActivity.start(callback);
     }
 
     /**
@@ -943,18 +943,18 @@ public final class ActivityUtils {
 
         /**
          * 跳转回传结果处理 Activity 内部方法
-         * @param resultCallback Activity 跳转回传回调
+         * @param callback Activity 跳转回传回调
          * @return {@code true} success, {@code false} fail
          */
-        protected static boolean start(final ResultCallback resultCallback) {
+        protected static boolean start(final ResultCallback callback) {
             int uuid = -1;
             boolean result = false;
-            if (resultCallback != null) {
+            if (callback != null) {
                 uuid = DevCommonUtils.randomUUIDToHashCode();
                 while (sResultCallbackMaps.containsKey(uuid)) {
                     uuid = DevCommonUtils.randomUUIDToHashCode();
                 }
-                sResultCallbackMaps.put(uuid, resultCallback);
+                sResultCallbackMaps.put(uuid, callback);
                 try {
                     Intent intent = new Intent(DevUtils.getContext(), ResultActivity.class);
                     intent.putExtra(EXTRA_UUID, uuid);

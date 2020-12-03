@@ -322,14 +322,14 @@ public class WebViewAssist {
     /**
      * 执行 JS 方法
      * @param script         JS 内容
-     * @param resultCallback 执行回调结果 ( 返回值 )
+     * @param callback 执行回调结果 ( 返回值 )
      * @return {@link WebViewAssist}
      */
-    public WebViewAssist evaluateJavascript(final String script, final ValueCallback<String> resultCallback) {
+    public WebViewAssist evaluateJavascript(final String script, final ValueCallback<String> callback) {
         if (isWebViewNotEmpty()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 try {
-                    mWebView.evaluateJavascript(script, resultCallback);
+                    mWebView.evaluateJavascript(script, callback);
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "evaluateJavascript");
                 }

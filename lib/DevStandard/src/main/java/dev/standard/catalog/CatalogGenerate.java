@@ -44,26 +44,26 @@ final class CatalogGenerate {
     /**
      * 获取文件夹目录列表
      * @param path            文件路径
-     * @param catalogCallback 目录回调通知
+     * @param callback 目录回调通知
      * @param ignoreCatalog   忽略目录
      * @param layer           目录层级
      * @return 文件夹目录列表集合
      */
-    private static List<FileUtils.FileList> getFolderLists(final String path, final CatalogCallback catalogCallback,
+    private static List<FileUtils.FileList> getFolderLists(final String path, final CatalogCallback callback,
                                                            final String[] ignoreCatalog, final int layer) {
-        return getFolderLists(path, catalogCallback, ignoreCatalog, layer, 0);
+        return getFolderLists(path, callback, ignoreCatalog, layer, 0);
     }
 
     /**
      * 获取文件夹目录列表
      * @param path            文件路径
-     * @param catalogCallback 目录回调通知
+     * @param callback 目录回调通知
      * @param ignoreCatalog   忽略目录
      * @param layer           目录层级
      * @param curLayer        当前层级
      * @return 文件夹目录列表集合
      */
-    private static List<FileUtils.FileList> getFolderLists(final String path, final CatalogCallback catalogCallback,
+    private static List<FileUtils.FileList> getFolderLists(final String path, final CatalogCallback callback,
                                                            final String[] ignoreCatalog, final int layer, final int curLayer) {
         // 当前层级大于想要的层级则 return
         if (curLayer > layer) return new ArrayList<>();
@@ -85,12 +85,12 @@ final class CatalogGenerate {
             // 属于文件夹才处理
             if (file.isDirectory()) {
                 FileUtils.FileList catalog = new FileUtils.FileList(file,
-                        getFolderLists(file.getAbsolutePath(), catalogCallback, ignoreCatalog, layer, curLayer + 1));
+                        getFolderLists(file.getAbsolutePath(), callback, ignoreCatalog, layer, curLayer + 1));
                 lists.add(catalog);
                 // 触发回调
-                if (catalogCallback != null) {
+                if (callback != null) {
                     // lineNumber 固定传 1 只是为了增加默认空格间距
-                    catalogCallback.callback(name, curLayer + 1, name + "." + name);
+                    callback.callback(name, curLayer + 1, name + "." + name);
                 }
             }
         }
