@@ -409,11 +409,11 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
 
         /**
          * 构造函数
-         * @param decodeConfig    解析配置
-         * @param decodeMode      解析类型
-         * @param cameraAssist    Camera 辅助类
-         * @param callback 预览回调
-         * @param decodeResult    解码结果回调
+         * @param decodeConfig 解析配置
+         * @param decodeMode   解析类型
+         * @param cameraAssist Camera 辅助类
+         * @param callback     预览回调
+         * @param decodeResult 解码结果回调
          */
         CaptureHandler(DecodeConfig decodeConfig, @DecodeFormat.DecodeMode int decodeMode,
                        CameraAssist cameraAssist, PreviewCallback callback, DecodeResult decodeResult) {

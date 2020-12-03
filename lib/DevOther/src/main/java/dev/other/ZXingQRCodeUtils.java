@@ -66,8 +66,8 @@ public final class ZXingQRCodeUtils {
 
     /**
      * 生成二维码图片
-     * @param content          生成内容
-     * @param size             图片宽高大小 ( 正方形 px )
+     * @param content  生成内容
+     * @param size     图片宽高大小 ( 正方形 px )
      * @param callback 生成结果回调
      */
     public static void createQRCodeImage(final String content, final int size, final QRResultCallback callback) {
@@ -76,9 +76,9 @@ public final class ZXingQRCodeUtils {
 
     /**
      * 生成二维码图片
-     * @param content          生成内容
-     * @param size             图片宽高大小 ( 正方形 px )
-     * @param logo             中间 Logo
+     * @param content  生成内容
+     * @param size     图片宽高大小 ( 正方形 px )
+     * @param logo     中间 Logo
      * @param callback 生成结果回调
      */
     public static void createQRCodeImage(final String content, final int size, final Bitmap logo, final QRResultCallback callback) {
@@ -132,7 +132,7 @@ public final class ZXingQRCodeUtils {
 
     /**
      * 解析二维码图片
-     * @param bitmap         待解析的二维码图片
+     * @param bitmap   待解析的二维码图片
      * @param callback 解析结果回调
      */
     public static void decodeQRCode(final Bitmap bitmap, final QRScanCallback callback) {

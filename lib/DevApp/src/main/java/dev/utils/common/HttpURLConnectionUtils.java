@@ -208,7 +208,7 @@ public final class HttpURLConnectionUtils {
 
     /**
      * 获取网络时间
-     * @param urlStr       请求地址
+     * @param urlStr   请求地址
      * @param callback 请求时间回调接口
      */
     public static void getNetTime(final String urlStr, final TimeCallback callback) {
@@ -222,7 +222,7 @@ public final class HttpURLConnectionUtils {
 
     /**
      * 请求网络时间 ( 内部私有 )
-     * @param urlStr       请求地址
+     * @param urlStr   请求地址
      * @param callback 请求时间回调接口
      */
     private static void reqNetTime(final String urlStr, final TimeCallback callback) {

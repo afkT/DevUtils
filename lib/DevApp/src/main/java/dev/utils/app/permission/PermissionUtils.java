@@ -210,11 +210,11 @@ public final class PermissionUtils {
     // 申请未通过的权限
     private              List<String>       mPermissionsDeniedLists        = new ArrayList<>();
     // 查询不到的权限 ( 包含未注册 )
-    private List<String>       mPermissionsNotFoundLists      = new ArrayList<>();
+    private              List<String>       mPermissionsNotFoundLists      = new ArrayList<>();
     // 操作回调
-    private PermissionCallback mCallback;
+    private              PermissionCallback mCallback;
     // 回调方法 Handler
-    private Handler            mHandler                       = new Handler(Looper.getMainLooper());
+    private              Handler            mHandler                       = new Handler(Looper.getMainLooper());
     // 判断是否请求过
     private              boolean            mIsRequest                     = false;
     // 是否需要在 Activity 的 onRequestPermissionsResult 回调中, 调用 PermissionUtils.onRequestPermissionsResult(this);

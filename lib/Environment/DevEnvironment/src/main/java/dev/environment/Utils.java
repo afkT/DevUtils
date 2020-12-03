@@ -53,7 +53,7 @@ class Utils {
 
     /**
      * 跳转 DevEnvironment Activity
-     * @param context         {@link Context}
+     * @param context  {@link Context}
      * @param callback {@link RestartCallback}
      * @return {@code true} success, {@code false} fail
      */

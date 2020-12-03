@@ -122,16 +122,16 @@ public interface IImageEngine {
 
     /**
      * 图片加载
-     * @param uri           Image Uri
+     * @param uri      Image Uri
      * @param callback 图片加载回调
      */
     void loadImage(String uri, ImageCallback callback);
 
     /**
      * 图片加载
-     * @param uri           Image Uri
+     * @param uri      Image Uri
      * @param callback 图片加载回调
-     * @param config        {@link ImageConfig} 加载配置
+     * @param config   {@link ImageConfig} 加载配置
      */
     void loadImage(String uri, ImageCallback callback, ImageConfig config);
 

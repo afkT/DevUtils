@@ -88,7 +88,7 @@ public final class DevImageEngine {
 
     /**
      * 图片加载
-     * @param uri           Image Uri
+     * @param uri      Image Uri
      * @param callback 图片加载回调
      */
     public static void loadImage(final String uri, final IImageEngine.ImageCallback callback) {
@@ -99,9 +99,9 @@ public final class DevImageEngine {
 
     /**
      * 图片加载
-     * @param uri           Image Uri
+     * @param uri      Image Uri
      * @param callback 图片加载回调
-     * @param config        {@link IImageEngine.ImageConfig} 加载配置
+     * @param config   {@link IImageEngine.ImageConfig} 加载配置
      */
     public static void loadImage(final String uri, final IImageEngine.ImageCallback callback, final IImageEngine.ImageConfig config) {
         if (sImageEngine != null) {

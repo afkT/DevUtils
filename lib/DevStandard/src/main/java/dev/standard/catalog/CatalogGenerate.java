@@ -43,10 +43,10 @@ final class CatalogGenerate {
 
     /**
      * 获取文件夹目录列表
-     * @param path            文件路径
-     * @param callback 目录回调通知
-     * @param ignoreCatalog   忽略目录
-     * @param layer           目录层级
+     * @param path          文件路径
+     * @param callback      目录回调通知
+     * @param ignoreCatalog 忽略目录
+     * @param layer         目录层级
      * @return 文件夹目录列表集合
      */
     private static List<FileUtils.FileList> getFolderLists(final String path, final CatalogCallback callback,
@@ -56,11 +56,11 @@ final class CatalogGenerate {
 
     /**
      * 获取文件夹目录列表
-     * @param path            文件路径
-     * @param callback 目录回调通知
-     * @param ignoreCatalog   忽略目录
-     * @param layer           目录层级
-     * @param curLayer        当前层级
+     * @param path          文件路径
+     * @param callback      目录回调通知
+     * @param ignoreCatalog 忽略目录
+     * @param layer         目录层级
+     * @param curLayer      当前层级
      * @return 文件夹目录列表集合
      */
     private static List<FileUtils.FileList> getFolderLists(final String path, final CatalogCallback callback,

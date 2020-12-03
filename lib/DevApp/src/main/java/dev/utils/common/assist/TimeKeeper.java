@@ -9,7 +9,7 @@ public class TimeKeeper {
     /**
      * 设置等待一段时间后, 通知方法 ( 异步 )
      * @param keepTimeMillis 堵塞时间 ( 毫秒 )
-     * @param callback    结束回调通知
+     * @param callback       结束回调通知
      */
     public void waitForEndAsync(final long keepTimeMillis, final OnEndCallback callback) {
         if (keepTimeMillis > 0L) {
@@ -25,7 +25,7 @@ public class TimeKeeper {
     /**
      * 设置等待一段时间后, 通知方法 ( 同步 )
      * @param keepTimeMillis 堵塞时间 ( 毫秒 )
-     * @param callback    结束回调通知
+     * @param callback       结束回调通知
      */
     public void waitForEnd(final long keepTimeMillis, final OnEndCallback callback) {
         if (keepTimeMillis > 0L) {
