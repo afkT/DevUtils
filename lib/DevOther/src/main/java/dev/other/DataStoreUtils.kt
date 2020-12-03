@@ -8,8 +8,13 @@ import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.Preferences.Key
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
+import java.io.IOException
 
 /**
  * detail: DataStore 工具类
@@ -30,6 +35,14 @@ object DataStoreUtils {
 
     // Map
     private val cacheMap = HashMap<String, InnerDataStore>()
+
+    // 默认值
+    const val INT_VALUE: Int = -1
+    const val STRING_VALUE: String = ""
+    const val BOOLEAN_VALUE: Boolean = false
+    const val FLOAT_VALUE: Float = -1F
+    const val LONG_VALUE: Long = -1L
+    const val DOUBLE_VALUE: Double = -1.0
 
     /**
      * 获取 DataStore 操作类
@@ -105,6 +118,40 @@ object DataStoreUtils {
 
         constructor(dataStore: DataStore<Preferences>?) : this() {
             this.dataStore = dataStore
+        }
+
+        // ===========
+        // = 内部方法 =
+        // ===========
+
+        /**
+         * 保存数据
+         * @param key [Preferences.Key]
+         * @param value Value
+         */
+        private suspend fun <T> _put(key: Key<T>, value: T) {
+            dataStore?.edit { mutablePreferences ->
+                mutablePreferences[key] = value
+            }
+        }
+
+        /**
+         * 获取数据
+         * @param key [Preferences.Key]
+         * @param defaultValue 不存在 key 返回默认 Value
+         * @return [Flow]
+         */
+        private fun <T> _get(key: Key<T>, defaultValue: T): Flow<T>? {
+            return dataStore?.data?.catch {
+                // 当读取数据遇到错误时，如果是 `IOException` 异常，发送一个 emptyPreferences，来重新使用
+                // 但是如果是其他的异常，最好将它抛出去，不要隐藏问题
+                if (it is IOException) {
+                    it.printStackTrace()
+                    emit(emptyPreferences())
+                } else {
+                    throw it
+                }
+            }?.map { preferences -> preferences[key] ?: defaultValue }
         }
 
         // ===============
@@ -231,19 +278,246 @@ object DataStoreUtils {
             _put(key = key, value = value)
         }
 
-        // ===========
-        // = 内部方法 =
-        // ===========
+        // =======
+        // = 读取 =
+        // =======
 
         /**
-         * 保存数据
-         * @param key [Preferences.Key]
-         * @param value Value
+         * 获取数据
+         * @param key Key
+         * @return [Flow]
          */
-        private suspend fun <T> _put(key: Key<T>, value: T) {
-            dataStore?.edit { mutablePreferences ->
-                mutablePreferences[key] = value
-            }
+        fun getInt(key: String): Flow<Int>? {
+            return _get(key = preferencesKey(key), defaultValue = INT_VALUE)
+        }
+
+        /**
+         * 获取数据
+         * @param key [Preferences.Key]
+         * @return [Flow]
+         */
+        fun getInt(key: Key<Int>): Flow<Int>? {
+            return _get(key = key, defaultValue = INT_VALUE)
+        }
+
+        /**
+         * 获取数据
+         * @param key Key
+         * @param defaultValue 默认 Value
+         * @return [Flow]
+         */
+        fun getInt(key: String, defaultValue: Int): Flow<Int>? {
+            return _get(key = preferencesKey(key), defaultValue = defaultValue)
+        }
+
+        /**
+         * 获取数据
+         * @param key [Preferences.Key]
+         * @param defaultValue 默认 Value
+         * @return [Flow]
+         */
+        fun getInt(key: Key<Int>, defaultValue: Int): Flow<Int>? {
+            return _get(key = key, defaultValue = defaultValue)
+        }
+
+        // =
+
+        /**
+         * 获取数据
+         * @param key Key
+         * @return [Flow]
+         */
+        fun getString(key: String): Flow<String>? {
+            return _get(key = preferencesKey(key), defaultValue = STRING_VALUE)
+        }
+
+        /**
+         * 获取数据
+         * @param key [Preferences.Key]
+         * @return [Flow]
+         */
+        fun getString(key: Key<String>): Flow<String>? {
+            return _get(key = key, defaultValue = STRING_VALUE)
+        }
+
+        /**
+         * 获取数据
+         * @param key Key
+         * @param defaultValue 默认 Value
+         * @return [Flow]
+         */
+        fun getString(key: String, defaultValue: String): Flow<String>? {
+            return _get(key = preferencesKey(key), defaultValue = defaultValue)
+        }
+
+        /**
+         * 获取数据
+         * @param key [Preferences.Key]
+         * @param defaultValue 默认 Value
+         * @return [Flow]
+         */
+        fun getString(key: Key<String>, defaultValue: String): Flow<String>? {
+            return _get(key = key, defaultValue = defaultValue)
+        }
+
+        // =
+
+        /**
+         * 获取数据
+         * @param key Key
+         * @return [Flow]
+         */
+        fun getBoolean(key: String): Flow<Boolean>? {
+            return _get(key = preferencesKey(key), defaultValue = BOOLEAN_VALUE)
+        }
+
+        /**
+         * 获取数据
+         * @param key [Preferences.Key]
+         * @return [Flow]
+         */
+        fun getBoolean(key: Key<Boolean>): Flow<Boolean>? {
+            return _get(key = key, defaultValue = BOOLEAN_VALUE)
+        }
+
+        /**
+         * 获取数据
+         * @param key Key
+         * @param defaultValue 默认 Value
+         * @return [Flow]
+         */
+        fun getBoolean(key: String, defaultValue: Boolean): Flow<Boolean>? {
+            return _get(key = preferencesKey(key), defaultValue = defaultValue)
+        }
+
+        /**
+         * 获取数据
+         * @param key [Preferences.Key]
+         * @param defaultValue 默认 Value
+         * @return [Flow]
+         */
+        fun getBoolean(key: Key<Boolean>, defaultValue: Boolean): Flow<Boolean>? {
+            return _get(key = key, defaultValue = defaultValue)
+        }
+
+        // =
+
+        /**
+         * 获取数据
+         * @param key Key
+         * @return [Flow]
+         */
+        fun getFloat(key: String): Flow<Float>? {
+            return _get(key = preferencesKey(key), defaultValue = FLOAT_VALUE)
+        }
+
+        /**
+         * 获取数据
+         * @param key [Preferences.Key]
+         * @return [Flow]
+         */
+        fun getFloat(key: Key<Float>): Flow<Float>? {
+            return _get(key = key, defaultValue = FLOAT_VALUE)
+        }
+
+        /**
+         * 获取数据
+         * @param key Key
+         * @param defaultValue 默认 Value
+         * @return [Flow]
+         */
+        fun getFloat(key: String, defaultValue: Float): Flow<Float>? {
+            return _get(key = preferencesKey(key), defaultValue = defaultValue)
+        }
+
+        /**
+         * 获取数据
+         * @param key [Preferences.Key]
+         * @param defaultValue 默认 Value
+         * @return [Flow]
+         */
+        fun getFloat(key: Key<Float>, defaultValue: Float): Flow<Float>? {
+            return _get(key = key, defaultValue = defaultValue)
+        }
+
+        // =
+
+        /**
+         * 获取数据
+         * @param key Key
+         * @return [Flow]
+         */
+        fun getLong(key: String): Flow<Long>? {
+            return _get(key = preferencesKey(key), defaultValue = LONG_VALUE)
+        }
+
+        /**
+         * 获取数据
+         * @param key [Preferences.Key]
+         * @return [Flow]
+         */
+        fun getLong(key: Key<Long>): Flow<Long>? {
+            return _get(key = key, defaultValue = LONG_VALUE)
+        }
+
+        /**
+         * 获取数据
+         * @param key Key
+         * @param defaultValue 默认 Value
+         * @return [Flow]
+         */
+        fun getLong(key: String, defaultValue: Long): Flow<Long>? {
+            return _get(key = preferencesKey(key), defaultValue = defaultValue)
+        }
+
+        /**
+         * 获取数据
+         * @param key [Preferences.Key]
+         * @param defaultValue 默认 Value
+         * @return [Flow]
+         */
+        fun getLong(key: Key<Long>, defaultValue: Long): Flow<Long>? {
+            return _get(key = key, defaultValue = defaultValue)
+        }
+
+        // =
+
+        /**
+         * 获取数据
+         * @param key Key
+         * @return [Flow]
+         */
+        fun getDouble(key: String): Flow<Double>? {
+            return _get(key = preferencesKey(key), defaultValue = DOUBLE_VALUE)
+        }
+
+        /**
+         * 获取数据
+         * @param key [Preferences.Key]
+         * @return [Flow]
+         */
+        fun getDouble(key: Key<Double>): Flow<Double>? {
+            return _get(key = key, defaultValue = DOUBLE_VALUE)
+        }
+
+        /**
+         * 获取数据
+         * @param key Key
+         * @param defaultValue 默认 Value
+         * @return [Flow]
+         */
+        fun getDouble(key: String, defaultValue: Double): Flow<Double>? {
+            return _get(key = preferencesKey(key), defaultValue = defaultValue)
+        }
+
+        /**
+         * 获取数据
+         * @param key [Preferences.Key]
+         * @param defaultValue 默认 Value
+         * @return [Flow]
+         */
+        fun getDouble(key: Key<Double>, defaultValue: Double): Flow<Double>? {
+            return _get(key = key, defaultValue = defaultValue)
         }
     }
 }
