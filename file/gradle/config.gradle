@@ -122,7 +122,7 @@ ext {
                     room_ktx                      : "androidx.room:room-ktx:2.2.5",
                     // WorkManager Kotlin + coroutines
                     work_runtime_ktx              : "androidx.work:work-runtime-ktx:2.4.0",
-                    datastore_preferences         : "androidx.datastore:datastore-preferences:1.0.0-alpha03",
+                    datastore_preferences         : "androidx.datastore:datastore-preferences:1.0.0-alpha04",
             ],
             'androidx': [
                     // https://developer.android.com/jetpack/androidx/migrate/artifact-mappings
