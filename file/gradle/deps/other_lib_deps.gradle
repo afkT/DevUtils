@@ -1,0 +1,92 @@
+// 第三方 lib 依赖配置
+dependencies {
+
+    // =============
+    // = 快捷开发库 =
+    // =============
+
+    // OkHttp3 网络请求框架 https://github.com/square/okhttp
+    implementation deps.lib.okhttp3
+    implementation deps.lib.okhttp3_logging
+    // Retrofit 网络请求库  https://github.com/square/retrofit
+    implementation deps.lib.retrofit
+    // Retrofit Gson Converter  https://github.com/square/retrofit/tree/master/retrofit-converters/gson
+    implementation deps.lib.retrofit_gson
+    // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava3
+    implementation deps.lib.retrofit_rxjava3
+    // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
+    implementation deps.lib.rxjava3
+    // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
+    implementation deps.lib.rxandroid3
+    // Okgo https://github.com/jeasonlzy/okhttp-OkGo
+    implementation deps.lib.okgo
+    // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
+    implementation deps.lib.okserver
+    // Gson https://github.com/google/gson
+    implementation deps.lib.gson
+    // fastjson https://github.com/alibaba/fastjson
+    implementation deps.lib.fastjson
+    // Imageloader 图片加载框架 https://github.com/nostra13/Android-Universal-Image-Loader
+    implementation deps.lib.imageloader
+    // Glide 加载框架 https://github.com/bumptech/glide
+    implementation deps.lib.glide
+    kapt deps.lib.glide_compiler
+    // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
+    implementation deps.lib.eventbus
+    // LiveEventBus 消息总线 https://github.com/JeremyLiao/LiveEventBus
+    implementation deps.lib.live_eventbus
+    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
+    implementation deps.lib.mmkv
+    // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
+    implementation deps.lib.autosize
+
+    // =============================
+    // = 其他第三方库 - 小功能、简约 =
+    // =============================
+
+    // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 ) https://github.com/google/flexbox-layout
+    implementation deps.lib.flexbox // https://juejin.im/post/58d1035161ff4b00603ca9c4
+    // 评价等级控件 https://github.com/hedge-hog/RatingBar
+    implementation deps.lib.ratingbar
+    // 加载动画效果 https://github.com/Kyson/WhorlView
+    implementation deps.lib.whorlviewlibrary
+    // 圆形 ImageView https://github.com/hdodenhof/CircleImageView
+    implementation deps.lib.circleimageview
+    // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
+    implementation deps.lib.pickerview // https://blog.csdn.net/qq_22393017/article/details/58099486
+    // 图片缩放 https://github.com/chrisbanes/PhotoView
+    implementation deps.lib.photoview
+    // GPU Filters https://github.com/cats-oss/android-gpuimage
+    implementation deps.lib.gpuimage
+    // Glide 图形库 https://github.com/wasabeef/glide-transformations
+    implementation deps.lib.glide_transformations
+    // 动画库 https://github.com/airbnb/lottie-android
+    implementation deps.lib.lottie
+    // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
+    implementation deps.lib.smartrefreshlayout
+    implementation deps.lib.smartrefresh_header_classics
+    implementation deps.lib.smartrefresh_footer_classics
+    // 下拉刷新框架 ( 横向 ) https://github.com/scwang90/SmartRefreshHorizontal
+    implementation deps.lib.smartrefreshHorizontal
+    // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+    implementation deps.lib.baserecyclerviewadapterhelper
+    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
+    implementation deps.lib.pictureSelector
+    // 二维码 ZXing https://github.com/zxing/zxing
+    implementation deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
+    implementation deps.lib.zxing_android_code // android-core
+    // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
+    implementation deps.lib.luban
+    // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
+    implementation deps.lib.greenDAO
+    // SQLCipher for Android https://github.com/sqlcipher/android-database-sqlcipher
+    implementation deps.lib.sqlcipher
+    // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
+    implementation deps.lib.stickyDecoration
+    // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
+    implementation deps.lib.xcrash
+    // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
+    implementation deps.lib.xxPermissions
+    // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
+    implementation deps.lib.panelSwitchHelper
+}

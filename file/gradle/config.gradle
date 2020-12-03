@@ -5,7 +5,7 @@ ext {
             app_build_gradle       : 'file/gradle/app_build.gradle',
             // Android Kotlin 项目构建配置
             app_kotlin_build_gradle: 'file/gradle/app_kotlin_build.gradle',
-            
+
             // Android Lib 通用配置
             app_lib_gradle         : 'file/gradle/app_lib_build.gradle',
             // Android Kotlin Lib 通用配置
@@ -17,6 +17,11 @@ ext {
             java_lib_gradle        : 'file/gradle/java_lib_build.gradle',
             // Java Bintray Upload
             java_bintray_upload    : 'file/bintray/bintrayUploadJava.gradle',
+
+            // Android lib 依赖配置
+            android_lib_deps       : 'file/gradle/deps/android_lib_deps.gradle',
+            // 第三方 lib 依赖配置
+            other_lib_deps         : 'file/gradle/deps/other_lib_deps.gradle',
     ]
 
     versions = [
