@@ -98,6 +98,26 @@ object DataStoreUtils {
         return InnerDataStore(dataStore)
     }
 
+    /**
+     * 移除 InnerDataStore 缓存
+     * @param key storeName
+     * @return {@code true} success, {@code false} fail
+     */
+    fun removeCache(key: String?): Boolean {
+        if (cacheMap.containsKey(key)) {
+            cacheMap.remove(key)
+            return true
+        }
+        return false
+    }
+
+    /**
+     * 清空 InnerDataStore 缓存
+     */
+    fun clearCache() {
+        cacheMap.clear()
+    }
+
     // =========
     // = 内部类 =
     // =========
@@ -143,8 +163,8 @@ object DataStoreUtils {
          */
         private fun <T> _get(key: Key<T>, defaultValue: T): Flow<T>? {
             return dataStore?.data?.catch {
-                // 当读取数据遇到错误时，如果是 `IOException` 异常，发送一个 emptyPreferences，来重新使用
-                // 但是如果是其他的异常，最好将它抛出去，不要隐藏问题
+                // 当读取数据遇到错误时, 如果是 `IOException` 异常, 发送一个 emptyPreferences, 来重新使用
+                // 但是如果是其他的异常, 最好将它抛出去, 不要隐藏问题
                 if (it is IOException) {
                     it.printStackTrace()
                     emit(emptyPreferences())
