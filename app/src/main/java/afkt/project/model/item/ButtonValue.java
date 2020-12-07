@@ -99,6 +99,9 @@ public class ButtonValue {
     // Room
     public static final int BTN_ROOM = MODULE_LIB + 11;
 
+    // DataStore
+    public static final int BTN_DATA_STORE = MODULE_LIB + 12;
+
     // ======
     // = UI =
     // ======

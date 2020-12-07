@@ -11,6 +11,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
+import dev.DevUtils
 import dev.utils.LogPrintUtils
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -47,15 +48,14 @@ object DataStoreUtils {
 
     /**
      * 获取 DataStore 操作类
-     * @param context [Context]
      * @param storeName DataStore Name
      * @return [InnerDataStore]
      */
-    fun get(context: Context, storeName: String?): InnerDataStore {
+    fun get(storeName: String?): InnerDataStore {
         var key = if (TextUtils.isEmpty(storeName)) TAG else storeName!!
         var value = cacheMap[key]
         if (value != null) return value
-        value = InnerDataStore(context, key)
+        value = InnerDataStore(key)
         cacheMap[key] = value
         return value
     }
@@ -71,19 +71,18 @@ object DataStoreUtils {
 
     /**
      * SharedPreferences 迁移到 DataStore
-     * @param context [Context]
      * @param storeName DataStore Name
      * @param spNames SharedPreferences Name Array
      * @return [InnerDataStore]
      */
     @Throws(Exception::class)
     fun migrationSPToDataStore(
-        context: Context,
         storeName: String,
         vararg spNames: String
     ): InnerDataStore {
         if (spNames.isEmpty()) throw Exception("spNames size is zero")
 
+        var context = getContext()
         var lists = ArrayList<DataMigration<Preferences>>()
         for (name in spNames) {
             if (!TextUtils.isEmpty(name)) {
@@ -119,6 +118,18 @@ object DataStoreUtils {
         cacheMap.clear()
     }
 
+    // ===========
+    // = 内部方法 =
+    // ===========
+
+    /**
+     * 获取全局 Context
+     * @return {@link Context}
+     */
+    private fun getContext(): Context {
+        return DevUtils.getContext()
+    }
+
     // =========
     // = 内部类 =
     // =========
@@ -131,8 +142,8 @@ object DataStoreUtils {
 
         private var dataStore: DataStore<Preferences>? = null
 
-        constructor(context: Context, storeName: String) : this() {
-            this.dataStore = context.createDataStore(
+        constructor(storeName: String) : this() {
+            this.dataStore = getContext().createDataStore(
                 name = storeName
             )
         }

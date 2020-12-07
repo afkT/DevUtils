@@ -102,6 +102,7 @@ public class ButtonList {
         lists.add(new ButtonValue(BTN_MMKV, "MMKVUtils"));
         lists.add(new ButtonValue(BTN_GREEN_DAO, "GreenDAO"));
         lists.add(new ButtonValue(BTN_ROOM, "Room"));
+        lists.add(new ButtonValue(BTN_DATA_STORE, "DataStore"));
         return lists;
     }
 
