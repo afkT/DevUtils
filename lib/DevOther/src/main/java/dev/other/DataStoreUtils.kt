@@ -11,6 +11,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
+import dev.utils.LogPrintUtils
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
@@ -31,7 +32,7 @@ import java.io.IOException
 object DataStoreUtils {
 
     // 日志 TAG
-    val TAG = DataStoreUtils::class.java.simpleName
+    val TAG: String = DataStoreUtils::class.java.simpleName
 
     // Map
     private val cacheMap = HashMap<String, InnerDataStore>()
@@ -163,10 +164,10 @@ object DataStoreUtils {
          */
         private fun <T> _get(key: Key<T>, defaultValue: T): Flow<T>? {
             return dataStore?.data?.catch {
+                LogPrintUtils.eTag(TAG, it, key.name)
                 // 当读取数据遇到错误时, 如果是 `IOException` 异常, 发送一个 emptyPreferences, 来重新使用
                 // 但是如果是其他的异常, 最好将它抛出去, 不要隐藏问题
                 if (it is IOException) {
-                    it.printStackTrace()
                     emit(emptyPreferences())
                 } else {
                     throw it
