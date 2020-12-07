@@ -15,6 +15,7 @@ import dev.DevUtils
 import dev.utils.LogPrintUtils
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 
@@ -173,7 +174,7 @@ object DataStoreUtils {
          * @param defaultValue 不存在 key 返回默认 Value
          * @return [Flow]
          */
-        private fun <T> _get(key: Key<T>, defaultValue: T): Flow<T>? {
+        private fun <T> _getFlow(key: Key<T>, defaultValue: T): Flow<T>? {
             return dataStore?.data?.catch {
                 LogPrintUtils.eTag(TAG, it, key.name)
                 // 当读取数据遇到错误时, 如果是 `IOException` 异常, 发送一个 emptyPreferences, 来重新使用
@@ -184,6 +185,21 @@ object DataStoreUtils {
                     throw it
                 }
             }?.map { preferences -> preferences[key] ?: defaultValue }
+        }
+
+        /**
+         * 获取数据
+         * @param key [Preferences.Key]
+         * @param defaultValue 不存在 key 返回默认 Value
+         * @return [Flow]
+         */
+        private suspend fun <T> _getValue(key: Key<T>, defaultValue: T): T {
+            try {
+                return _getFlow(key, defaultValue)?.first()!!
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e)
+            }
+            return defaultValue
         }
 
         // ===============
@@ -310,17 +326,17 @@ object DataStoreUtils {
             _put(key = key, value = value)
         }
 
-        // =======
-        // = 读取 =
-        // =======
+        // ========
+        // = Flow =
+        // ========
 
         /**
          * 获取数据
          * @param key Key
          * @return [Flow]
          */
-        fun getInt(key: String): Flow<Int>? {
-            return _get(key = preferencesKey(key), defaultValue = INT_VALUE)
+        fun getIntFlow(key: String): Flow<Int>? {
+            return _getFlow(key = preferencesKey(key), defaultValue = INT_VALUE)
         }
 
         /**
@@ -328,8 +344,8 @@ object DataStoreUtils {
          * @param key [Preferences.Key]
          * @return [Flow]
          */
-        fun getInt(key: Key<Int>): Flow<Int>? {
-            return _get(key = key, defaultValue = INT_VALUE)
+        fun getIntFlow(key: Key<Int>): Flow<Int>? {
+            return _getFlow(key = key, defaultValue = INT_VALUE)
         }
 
         /**
@@ -338,8 +354,8 @@ object DataStoreUtils {
          * @param defaultValue 默认 Value
          * @return [Flow]
          */
-        fun getInt(key: String, defaultValue: Int): Flow<Int>? {
-            return _get(key = preferencesKey(key), defaultValue = defaultValue)
+        fun getIntFlow(key: String, defaultValue: Int): Flow<Int>? {
+            return _getFlow(key = preferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -348,8 +364,8 @@ object DataStoreUtils {
          * @param defaultValue 默认 Value
          * @return [Flow]
          */
-        fun getInt(key: Key<Int>, defaultValue: Int): Flow<Int>? {
-            return _get(key = key, defaultValue = defaultValue)
+        fun getIntFlow(key: Key<Int>, defaultValue: Int): Flow<Int>? {
+            return _getFlow(key = key, defaultValue = defaultValue)
         }
 
         // =
@@ -359,8 +375,8 @@ object DataStoreUtils {
          * @param key Key
          * @return [Flow]
          */
-        fun getString(key: String): Flow<String>? {
-            return _get(key = preferencesKey(key), defaultValue = STRING_VALUE)
+        fun getStringFlow(key: String): Flow<String>? {
+            return _getFlow(key = preferencesKey(key), defaultValue = STRING_VALUE)
         }
 
         /**
@@ -368,8 +384,8 @@ object DataStoreUtils {
          * @param key [Preferences.Key]
          * @return [Flow]
          */
-        fun getString(key: Key<String>): Flow<String>? {
-            return _get(key = key, defaultValue = STRING_VALUE)
+        fun getStringFlow(key: Key<String>): Flow<String>? {
+            return _getFlow(key = key, defaultValue = STRING_VALUE)
         }
 
         /**
@@ -378,8 +394,8 @@ object DataStoreUtils {
          * @param defaultValue 默认 Value
          * @return [Flow]
          */
-        fun getString(key: String, defaultValue: String): Flow<String>? {
-            return _get(key = preferencesKey(key), defaultValue = defaultValue)
+        fun getStringFlow(key: String, defaultValue: String): Flow<String>? {
+            return _getFlow(key = preferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -388,8 +404,8 @@ object DataStoreUtils {
          * @param defaultValue 默认 Value
          * @return [Flow]
          */
-        fun getString(key: Key<String>, defaultValue: String): Flow<String>? {
-            return _get(key = key, defaultValue = defaultValue)
+        fun getStringFlow(key: Key<String>, defaultValue: String): Flow<String>? {
+            return _getFlow(key = key, defaultValue = defaultValue)
         }
 
         // =
@@ -399,8 +415,8 @@ object DataStoreUtils {
          * @param key Key
          * @return [Flow]
          */
-        fun getBoolean(key: String): Flow<Boolean>? {
-            return _get(key = preferencesKey(key), defaultValue = BOOLEAN_VALUE)
+        fun getBooleanFlow(key: String): Flow<Boolean>? {
+            return _getFlow(key = preferencesKey(key), defaultValue = BOOLEAN_VALUE)
         }
 
         /**
@@ -408,8 +424,8 @@ object DataStoreUtils {
          * @param key [Preferences.Key]
          * @return [Flow]
          */
-        fun getBoolean(key: Key<Boolean>): Flow<Boolean>? {
-            return _get(key = key, defaultValue = BOOLEAN_VALUE)
+        fun getBooleanFlow(key: Key<Boolean>): Flow<Boolean>? {
+            return _getFlow(key = key, defaultValue = BOOLEAN_VALUE)
         }
 
         /**
@@ -418,8 +434,8 @@ object DataStoreUtils {
          * @param defaultValue 默认 Value
          * @return [Flow]
          */
-        fun getBoolean(key: String, defaultValue: Boolean): Flow<Boolean>? {
-            return _get(key = preferencesKey(key), defaultValue = defaultValue)
+        fun getBooleanFlow(key: String, defaultValue: Boolean): Flow<Boolean>? {
+            return _getFlow(key = preferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -428,8 +444,8 @@ object DataStoreUtils {
          * @param defaultValue 默认 Value
          * @return [Flow]
          */
-        fun getBoolean(key: Key<Boolean>, defaultValue: Boolean): Flow<Boolean>? {
-            return _get(key = key, defaultValue = defaultValue)
+        fun getBooleanFlow(key: Key<Boolean>, defaultValue: Boolean): Flow<Boolean>? {
+            return _getFlow(key = key, defaultValue = defaultValue)
         }
 
         // =
@@ -439,8 +455,8 @@ object DataStoreUtils {
          * @param key Key
          * @return [Flow]
          */
-        fun getFloat(key: String): Flow<Float>? {
-            return _get(key = preferencesKey(key), defaultValue = FLOAT_VALUE)
+        fun getFloatFlow(key: String): Flow<Float>? {
+            return _getFlow(key = preferencesKey(key), defaultValue = FLOAT_VALUE)
         }
 
         /**
@@ -448,8 +464,8 @@ object DataStoreUtils {
          * @param key [Preferences.Key]
          * @return [Flow]
          */
-        fun getFloat(key: Key<Float>): Flow<Float>? {
-            return _get(key = key, defaultValue = FLOAT_VALUE)
+        fun getFloatFlow(key: Key<Float>): Flow<Float>? {
+            return _getFlow(key = key, defaultValue = FLOAT_VALUE)
         }
 
         /**
@@ -458,8 +474,8 @@ object DataStoreUtils {
          * @param defaultValue 默认 Value
          * @return [Flow]
          */
-        fun getFloat(key: String, defaultValue: Float): Flow<Float>? {
-            return _get(key = preferencesKey(key), defaultValue = defaultValue)
+        fun getFloatFlow(key: String, defaultValue: Float): Flow<Float>? {
+            return _getFlow(key = preferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -468,8 +484,8 @@ object DataStoreUtils {
          * @param defaultValue 默认 Value
          * @return [Flow]
          */
-        fun getFloat(key: Key<Float>, defaultValue: Float): Flow<Float>? {
-            return _get(key = key, defaultValue = defaultValue)
+        fun getFloatFlow(key: Key<Float>, defaultValue: Float): Flow<Float>? {
+            return _getFlow(key = key, defaultValue = defaultValue)
         }
 
         // =
@@ -479,8 +495,8 @@ object DataStoreUtils {
          * @param key Key
          * @return [Flow]
          */
-        fun getLong(key: String): Flow<Long>? {
-            return _get(key = preferencesKey(key), defaultValue = LONG_VALUE)
+        fun getLongFlow(key: String): Flow<Long>? {
+            return _getFlow(key = preferencesKey(key), defaultValue = LONG_VALUE)
         }
 
         /**
@@ -488,8 +504,8 @@ object DataStoreUtils {
          * @param key [Preferences.Key]
          * @return [Flow]
          */
-        fun getLong(key: Key<Long>): Flow<Long>? {
-            return _get(key = key, defaultValue = LONG_VALUE)
+        fun getLongFlow(key: Key<Long>): Flow<Long>? {
+            return _getFlow(key = key, defaultValue = LONG_VALUE)
         }
 
         /**
@@ -498,8 +514,8 @@ object DataStoreUtils {
          * @param defaultValue 默认 Value
          * @return [Flow]
          */
-        fun getLong(key: String, defaultValue: Long): Flow<Long>? {
-            return _get(key = preferencesKey(key), defaultValue = defaultValue)
+        fun getLongFlow(key: String, defaultValue: Long): Flow<Long>? {
+            return _getFlow(key = preferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -508,8 +524,8 @@ object DataStoreUtils {
          * @param defaultValue 默认 Value
          * @return [Flow]
          */
-        fun getLong(key: Key<Long>, defaultValue: Long): Flow<Long>? {
-            return _get(key = key, defaultValue = defaultValue)
+        fun getLongFlow(key: Key<Long>, defaultValue: Long): Flow<Long>? {
+            return _getFlow(key = key, defaultValue = defaultValue)
         }
 
         // =
@@ -519,8 +535,8 @@ object DataStoreUtils {
          * @param key Key
          * @return [Flow]
          */
-        fun getDouble(key: String): Flow<Double>? {
-            return _get(key = preferencesKey(key), defaultValue = DOUBLE_VALUE)
+        fun getDoubleFlow(key: String): Flow<Double>? {
+            return _getFlow(key = preferencesKey(key), defaultValue = DOUBLE_VALUE)
         }
 
         /**
@@ -528,8 +544,8 @@ object DataStoreUtils {
          * @param key [Preferences.Key]
          * @return [Flow]
          */
-        fun getDouble(key: Key<Double>): Flow<Double>? {
-            return _get(key = key, defaultValue = DOUBLE_VALUE)
+        fun getDoubleFlow(key: Key<Double>): Flow<Double>? {
+            return _getFlow(key = key, defaultValue = DOUBLE_VALUE)
         }
 
         /**
@@ -538,8 +554,8 @@ object DataStoreUtils {
          * @param defaultValue 默认 Value
          * @return [Flow]
          */
-        fun getDouble(key: String, defaultValue: Double): Flow<Double>? {
-            return _get(key = preferencesKey(key), defaultValue = defaultValue)
+        fun getDoubleFlow(key: String, defaultValue: Double): Flow<Double>? {
+            return _getFlow(key = preferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -548,8 +564,8 @@ object DataStoreUtils {
          * @param defaultValue 默认 Value
          * @return [Flow]
          */
-        fun getDouble(key: Key<Double>, defaultValue: Double): Flow<Double>? {
-            return _get(key = key, defaultValue = defaultValue)
+        fun getDoubleFlow(key: Key<Double>, defaultValue: Double): Flow<Double>? {
+            return _getFlow(key = key, defaultValue = defaultValue)
         }
     }
 }
