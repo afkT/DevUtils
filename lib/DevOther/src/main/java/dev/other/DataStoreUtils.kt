@@ -177,7 +177,7 @@ object DataStoreUtils {
         private fun <T> _getFlow(key: Key<T>, defaultValue: T): Flow<T>? {
             return dataStore?.data?.catch {
                 LogPrintUtils.eTag(TAG, it, key.name)
-                // 当读取数据遇到错误时, 如果是 `IOException` 异常, 发送一个 emptyPreferences, 来重新使用
+                // 当读取数据遇到错误时, 如果是 IOException 异常, 发送一个 emptyPreferences, 来重新使用
                 // 但是如果是其他的异常, 最好将它抛出去, 不要隐藏问题
                 if (it is IOException) {
                     emit(emptyPreferences())
@@ -188,10 +188,10 @@ object DataStoreUtils {
         }
 
         /**
-         * 获取数据
+         * 获取值
          * @param key [Preferences.Key]
          * @param defaultValue 不存在 key 返回默认 Value
-         * @return [Flow]
+         * @return Value
          */
         private suspend fun <T> _getValue(key: Key<T>, defaultValue: T): T {
             try {
@@ -566,6 +566,248 @@ object DataStoreUtils {
          */
         fun getDoubleFlow(key: Key<Double>, defaultValue: Double): Flow<Double>? {
             return _getFlow(key = key, defaultValue = defaultValue)
+        }
+
+        // =========
+        // = Value =
+        // =========
+
+        /**
+         * 获取值
+         * @param key Key
+         * @return Value
+         */
+        suspend fun getInt(key: String): Int {
+            return _getValue(key = preferencesKey(key), defaultValue = INT_VALUE)
+        }
+
+        /**
+         * 获取值
+         * @param key [Preferences.Key]
+         * @return Value
+         */
+        suspend fun getInt(key: Key<Int>): Int {
+            return _getValue(key = key, defaultValue = INT_VALUE)
+        }
+
+        /**
+         * 获取值
+         * @param key Key
+         * @param defaultValue 默认 Value
+         * @return Value
+         */
+        suspend fun getInt(key: String, defaultValue: Int): Int {
+            return _getValue(key = preferencesKey(key), defaultValue = defaultValue)
+        }
+
+        /**
+         * 获取值
+         * @param key [Preferences.Key]
+         * @param defaultValue 默认 Value
+         * @return Value
+         */
+        suspend fun getInt(key: Key<Int>, defaultValue: Int): Int {
+            return _getValue(key = key, defaultValue = defaultValue)
+        }
+
+        // =
+
+        /**
+         * 获取值
+         * @param key Key
+         * @return Value
+         */
+        suspend fun getString(key: String): String {
+            return _getValue(key = preferencesKey(key), defaultValue = STRING_VALUE)
+        }
+
+        /**
+         * 获取值
+         * @param key [Preferences.Key]
+         * @return Value
+         */
+        suspend fun getString(key: Key<String>): String {
+            return _getValue(key = key, defaultValue = STRING_VALUE)
+        }
+
+        /**
+         * 获取值
+         * @param key Key
+         * @param defaultValue 默认 Value
+         * @return Value
+         */
+        suspend fun getString(key: String, defaultValue: String): String {
+            return _getValue(key = preferencesKey(key), defaultValue = defaultValue)
+        }
+
+        /**
+         * 获取值
+         * @param key [Preferences.Key]
+         * @param defaultValue 默认 Value
+         * @return Value
+         */
+        suspend fun getString(key: Key<String>, defaultValue: String): String {
+            return _getValue(key = key, defaultValue = defaultValue)
+        }
+
+        // =
+
+        /**
+         * 获取值
+         * @param key Key
+         * @return Value
+         */
+        suspend fun getBoolean(key: String): Boolean {
+            return _getValue(key = preferencesKey(key), defaultValue = BOOLEAN_VALUE)
+        }
+
+        /**
+         * 获取值
+         * @param key [Preferences.Key]
+         * @return Value
+         */
+        suspend fun getBoolean(key: Key<Boolean>): Boolean {
+            return _getValue(key = key, defaultValue = BOOLEAN_VALUE)
+        }
+
+        /**
+         * 获取值
+         * @param key Key
+         * @param defaultValue 默认 Value
+         * @return Value
+         */
+        suspend fun getBoolean(key: String, defaultValue: Boolean): Boolean {
+            return _getValue(key = preferencesKey(key), defaultValue = defaultValue)
+        }
+
+        /**
+         * 获取值
+         * @param key [Preferences.Key]
+         * @param defaultValue 默认 Value
+         * @return Value
+         */
+        suspend fun getBoolean(key: Key<Boolean>, defaultValue: Boolean): Boolean {
+            return _getValue(key = key, defaultValue = defaultValue)
+        }
+
+        // =
+
+        /**
+         * 获取值
+         * @param key Key
+         * @return Value
+         */
+        suspend fun getFloat(key: String): Float {
+            return _getValue(key = preferencesKey(key), defaultValue = FLOAT_VALUE)
+        }
+
+        /**
+         * 获取值
+         * @param key [Preferences.Key]
+         * @return Value
+         */
+        suspend fun getFloat(key: Key<Float>): Float {
+            return _getValue(key = key, defaultValue = FLOAT_VALUE)
+        }
+
+        /**
+         * 获取值
+         * @param key Key
+         * @param defaultValue 默认 Value
+         * @return Value
+         */
+        suspend fun getFloat(key: String, defaultValue: Float): Float {
+            return _getValue(key = preferencesKey(key), defaultValue = defaultValue)
+        }
+
+        /**
+         * 获取值
+         * @param key [Preferences.Key]
+         * @param defaultValue 默认 Value
+         * @return Value
+         */
+        suspend fun getFloat(key: Key<Float>, defaultValue: Float): Float {
+            return _getValue(key = key, defaultValue = defaultValue)
+        }
+
+        // =
+
+        /**
+         * 获取值
+         * @param key Key
+         * @return Value
+         */
+        suspend fun getLong(key: String): Long {
+            return _getValue(key = preferencesKey(key), defaultValue = LONG_VALUE)
+        }
+
+        /**
+         * 获取值
+         * @param key [Preferences.Key]
+         * @return Value
+         */
+        suspend fun getLong(key: Key<Long>): Long {
+            return _getValue(key = key, defaultValue = LONG_VALUE)
+        }
+
+        /**
+         * 获取值
+         * @param key Key
+         * @param defaultValue 默认 Value
+         * @return Value
+         */
+        suspend fun getLong(key: String, defaultValue: Long): Long {
+            return _getValue(key = preferencesKey(key), defaultValue = defaultValue)
+        }
+
+        /**
+         * 获取值
+         * @param key [Preferences.Key]
+         * @param defaultValue 默认 Value
+         * @return Value
+         */
+        suspend fun getLong(key: Key<Long>, defaultValue: Long): Long {
+            return _getValue(key = key, defaultValue = defaultValue)
+        }
+
+        // =
+
+        /**
+         * 获取值
+         * @param key Key
+         * @return Value
+         */
+        suspend fun getDouble(key: String): Double {
+            return _getValue(key = preferencesKey(key), defaultValue = DOUBLE_VALUE)
+        }
+
+        /**
+         * 获取值
+         * @param key [Preferences.Key]
+         * @return Value
+         */
+        suspend fun getDouble(key: Key<Double>): Double {
+            return _getValue(key = key, defaultValue = DOUBLE_VALUE)
+        }
+
+        /**
+         * 获取值
+         * @param key Key
+         * @param defaultValue 默认 Value
+         * @return Value
+         */
+        suspend fun getDouble(key: String, defaultValue: Double): Double {
+            return _getValue(key = preferencesKey(key), defaultValue = defaultValue)
+        }
+
+        /**
+         * 获取值
+         * @param key [Preferences.Key]
+         * @param defaultValue 默认 Value
+         * @return Value
+         */
+        suspend fun getDouble(key: Key<Double>, defaultValue: Double): Double {
+            return _getValue(key = key, defaultValue = defaultValue)
         }
     }
 }
