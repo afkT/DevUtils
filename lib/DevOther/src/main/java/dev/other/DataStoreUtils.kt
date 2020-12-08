@@ -194,12 +194,7 @@ object DataStoreUtils {
          * @return Value
          */
         private suspend fun <T> _getValue(key: Key<T>, defaultValue: T): T {
-            try {
-                return _getFlow(key, defaultValue)?.first()!!
-            } catch (e: Exception) {
-                LogPrintUtils.eTag(TAG, e)
-            }
-            return defaultValue
+            return _getFlow(key, defaultValue)?.first()!!
         }
 
         // ===============
