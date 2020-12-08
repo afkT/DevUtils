@@ -135,8 +135,8 @@ public final class MD5Utils {
         if (file == null) return null;
         DigestInputStream dis = null;
         try {
-            FileInputStream fis = new FileInputStream(file);
-            MessageDigest digest = MessageDigest.getInstance("MD5");
+            FileInputStream fis    = new FileInputStream(file);
+            MessageDigest   digest = MessageDigest.getInstance("MD5");
             dis = new DigestInputStream(fis, digest);
             byte[] buffer = new byte[256 * 1024];
             while (true) {

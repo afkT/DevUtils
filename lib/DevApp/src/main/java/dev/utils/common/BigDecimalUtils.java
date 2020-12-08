@@ -827,8 +827,8 @@ public final class BigDecimalUtils {
         try {
             // 按小数点的位置分割成整数部分和小数部分
             String[] array = value.split("\\.");
-            char[] tempA = new char[numOfIntPart];
-            char[] tempB = new char[numOfDecimalPart];
+            char[]   tempA = new char[numOfIntPart];
+            char[]   tempB = new char[numOfDecimalPart];
             // 整数部分满足精度要求 ( 情况 1 )
             if (array[0].length() == numOfIntPart) {
                 // 直接获取整数部分长度字符

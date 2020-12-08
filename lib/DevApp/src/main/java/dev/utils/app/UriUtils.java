@@ -296,9 +296,9 @@ public final class UriUtils {
         if (ContentResolver.SCHEME_CONTENT.equalsIgnoreCase(uri.getScheme()) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { // isKitKat
             if (DocumentsContract.isDocumentUri(context, uri)) { // DocumentProvider
                 if (isExternalStorageDocument(uri)) { // ExternalStorageProvider
-                    final String docId = DocumentsContract.getDocumentId(uri);
+                    final String   docId = DocumentsContract.getDocumentId(uri);
                     final String[] split = docId.split(":");
-                    final String type = split[0];
+                    final String   type  = split[0];
 
                     if ("primary".equalsIgnoreCase(type)) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -315,9 +315,9 @@ public final class UriUtils {
                     );
                     return ContentResolverUtils.getDataColumn(contentUri, null, null);
                 } else if (isMediaDocument(uri)) { // MediaProvider
-                    final String docId = DocumentsContract.getDocumentId(uri);
+                    final String   docId = DocumentsContract.getDocumentId(uri);
                     final String[] split = docId.split(":");
-                    final String type = split[0];
+                    final String   type  = split[0];
 
                     Uri contentUri = null;
                     if ("image".equals(type)) {
@@ -328,7 +328,7 @@ public final class UriUtils {
                         contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
                     }
 
-                    final String selection = "_id=?";
+                    final String   selection     = "_id=?";
                     final String[] selectionArgs = new String[]{split[1]};
                     return ContentResolverUtils.getDataColumn(contentUri, selection, selectionArgs);
                 }

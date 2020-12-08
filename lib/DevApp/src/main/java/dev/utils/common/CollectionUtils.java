@@ -1219,8 +1219,8 @@ public final class CollectionUtils {
         if (list != null) {
             int len = list.size();
             if (len > 0) {
-                int index = 0;
-                Integer temp = list.get(index);
+                int     index = 0;
+                Integer temp  = list.get(index);
                 for (int i = 1; i < len; i++) {
                     Integer value = list.get(i);
                     if (value != null) {
@@ -1252,8 +1252,8 @@ public final class CollectionUtils {
         if (list != null) {
             int len = list.size();
             if (len > 0) {
-                int index = 0;
-                Long temp = list.get(index);
+                int  index = 0;
+                Long temp  = list.get(index);
                 for (int i = 1; i < len; i++) {
                     Long value = list.get(i);
                     if (value != null) {
@@ -1285,8 +1285,8 @@ public final class CollectionUtils {
         if (list != null) {
             int len = list.size();
             if (len > 0) {
-                int index = 0;
-                Float temp = list.get(index);
+                int   index = 0;
+                Float temp  = list.get(index);
                 for (int i = 1; i < len; i++) {
                     Float value = list.get(i);
                     if (value != null) {
@@ -1318,8 +1318,8 @@ public final class CollectionUtils {
         if (list != null) {
             int len = list.size();
             if (len > 0) {
-                int index = 0;
-                Double temp = list.get(index);
+                int    index = 0;
+                Double temp  = list.get(index);
                 for (int i = 1; i < len; i++) {
                     Double value = list.get(i);
                     if (value != null) {
@@ -1355,8 +1355,8 @@ public final class CollectionUtils {
         if (list != null) {
             int len = list.size();
             if (len > 0) {
-                int index = 0;
-                Integer temp = list.get(index);
+                int     index = 0;
+                Integer temp  = list.get(index);
                 for (int i = 1; i < len; i++) {
                     Integer value = list.get(i);
                     if (value != null) {
@@ -1388,8 +1388,8 @@ public final class CollectionUtils {
         if (list != null) {
             int len = list.size();
             if (len > 0) {
-                int index = 0;
-                Long temp = list.get(index);
+                int  index = 0;
+                Long temp  = list.get(index);
                 for (int i = 1; i < len; i++) {
                     Long value = list.get(i);
                     if (value != null) {
@@ -1421,8 +1421,8 @@ public final class CollectionUtils {
         if (list != null) {
             int len = list.size();
             if (len > 0) {
-                int index = 0;
-                Float temp = list.get(index);
+                int   index = 0;
+                Float temp  = list.get(index);
                 for (int i = 1; i < len; i++) {
                     Float value = list.get(i);
                     if (value != null) {
@@ -1454,8 +1454,8 @@ public final class CollectionUtils {
         if (list != null) {
             int len = list.size();
             if (len > 0) {
-                int index = 0;
-                Double temp = list.get(index);
+                int    index = 0;
+                Double temp  = list.get(index);
                 for (int i = 1; i < len; i++) {
                     Double value = list.get(i);
                     if (value != null) {

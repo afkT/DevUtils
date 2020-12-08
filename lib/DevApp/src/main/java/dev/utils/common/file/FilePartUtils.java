@@ -286,10 +286,10 @@ public final class FilePartUtils {
     public static boolean fileSplitSave(final File file, final long start, final long end,
                                         final String destFolderPath, final String partName) {
         if (file != null && file.exists() && start >= 0 && end > start) {
-            FileInputStream fis = null;
-            FileChannel inputChannel = null;
-            FileOutputStream fos = null;
-            FileChannel outputChannel = null;
+            FileInputStream  fis           = null;
+            FileChannel      inputChannel  = null;
+            FileOutputStream fos           = null;
+            FileChannel      outputChannel = null;
             try {
                 fis = new FileInputStream(file);
                 if (end > file.length()) return false;
@@ -574,14 +574,14 @@ public final class FilePartUtils {
         if (file == null || files == null) return false;
         if (files.isEmpty()) return false;
         FileUtils.deleteFile(file);
-        RandomAccessFile raf = null;
+        RandomAccessFile raf    = null;
         RandomAccessFile reader = null;
         try {
             raf = new RandomAccessFile(file, "rw");
             for (int i = 0, len = files.size(); i < len; i++) {
                 reader = new RandomAccessFile(files.get(i), "r");
-                byte[] buffer = new byte[1024];
-                int readLen = 0; // 读取的字节数
+                byte[] buffer  = new byte[1024];
+                int    readLen = 0; // 读取的字节数
                 while ((readLen = reader.read(buffer)) != -1) {
                     raf.write(buffer, 0, readLen);
                 }
@@ -626,8 +626,8 @@ public final class FilePartUtils {
         List<File> files = new ArrayList<>();
         try {
             for (int i = 0, len = assist.getPartCount(); i < len; i++) {
-                FilePartItem item = assist.getFilePartItems().get(i);
-                File partFile = new File(destFolderPath, item.getPartName(fileName));
+                FilePartItem item     = assist.getFilePartItems().get(i);
+                File         partFile = new File(destFolderPath, item.getPartName(fileName));
                 files.add(partFile);
             }
             return fileSplitMergeFiles(file, files);

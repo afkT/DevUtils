@@ -27,9 +27,9 @@ public final class StreamUtils {
     public static ByteArrayOutputStream inputToOutputStream(final InputStream inputStream) {
         if (inputStream == null) return null;
         try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            int len;
+            ByteArrayOutputStream baos   = new ByteArrayOutputStream();
+            byte[]                buffer = new byte[1024];
+            int                   len;
             while ((len = inputStream.read(buffer, 0, 1024)) != -1) {
                 baos.write(buffer, 0, len);
             }

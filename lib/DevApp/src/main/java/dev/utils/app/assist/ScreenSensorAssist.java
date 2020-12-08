@@ -216,17 +216,17 @@ public final class ScreenSensorAssist {
 
         @Override
         public void onSensorChanged(SensorEvent event) {
-            float[] values = event.values;
-            int orientation = ORIENTATION_UNKNOWN;
-            float X = -values[DATA_X];
-            float Y = -values[DATA_Y];
-            float Z = -values[DATA_Z];
-            float magnitude = X * X + Y * Y;
+            float[] values      = event.values;
+            int     orientation = ORIENTATION_UNKNOWN;
+            float   X           = -values[DATA_X];
+            float   Y           = -values[DATA_Y];
+            float   Z           = -values[DATA_Z];
+            float   magnitude   = X * X + Y * Y;
             // Don't trust the angle if the magnitude is small compared to the y value
             if (magnitude * 4 >= Z * Z) {
                 // 屏幕旋转时
                 float OneEightyOverPi = 57.29577957855f;
-                float angle = (float) Math.atan2(-Y, X) * OneEightyOverPi;
+                float angle           = (float) Math.atan2(-Y, X) * OneEightyOverPi;
                 orientation = 90 - Math.round(angle);
                 // normalize to 0 - 359 range
                 while (orientation >= 360) {
@@ -253,17 +253,17 @@ public final class ScreenSensorAssist {
 
         @Override
         public void onSensorChanged(SensorEvent event) {
-            float[] values = event.values;
-            int orientation = ORIENTATION_UNKNOWN;
-            float X = -values[DATA_X];
-            float Y = -values[DATA_Y];
-            float Z = -values[DATA_Z];
-            float magnitude = X * X + Y * Y;
+            float[] values      = event.values;
+            int     orientation = ORIENTATION_UNKNOWN;
+            float   X           = -values[DATA_X];
+            float   Y           = -values[DATA_Y];
+            float   Z           = -values[DATA_Z];
+            float   magnitude   = X * X + Y * Y;
             // Don't trust the angle if the magnitude is small compared to the y value
             if (magnitude * 4 >= Z * Z) {
                 // 屏幕旋转时
                 float OneEightyOverPi = 57.29577957855f;
-                float angle = (float) Math.atan2(-Y, X) * OneEightyOverPi;
+                float angle           = (float) Math.atan2(-Y, X) * OneEightyOverPi;
                 orientation = 90 - Math.round(angle);
                 // normalize to 0 - 359 range
                 while (orientation >= 360) {

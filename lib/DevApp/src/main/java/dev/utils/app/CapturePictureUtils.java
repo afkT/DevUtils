@@ -244,7 +244,7 @@ public final class CapturePictureUtils {
                         // 存储并传入 newScale
                         newScale = webView.getScale();
                     }
-                    int width = webView.getWidth();
+                    int width  = webView.getWidth();
                     int height = (int) (webView.getContentHeight() * newScale + 0.5);
                     // 重新设置高度
                     height = (height > maxHeight) ? maxHeight : height;
@@ -260,8 +260,8 @@ public final class CapturePictureUtils {
             } else {
                 try {
                     Picture picture = webView.capturePicture();
-                    int width = picture.getWidth();
-                    int height = picture.getHeight();
+                    int     width   = picture.getWidth();
+                    int     height  = picture.getHeight();
                     if (width > 0 && height > 0) {
                         // 重新设置高度
                         height = (height > maxHeight) ? maxHeight : height;
@@ -461,9 +461,9 @@ public final class CapturePictureUtils {
     public static Bitmap snapshotByScrollView(final ScrollView scrollView, final Bitmap.Config config) {
         if (scrollView == null || config == null) return null;
         try {
-            View view = scrollView.getChildAt(0);
-            int width = view.getWidth();
-            int height = view.getHeight();
+            View view   = scrollView.getChildAt(0);
+            int  width  = view.getWidth();
+            int  height = view.getHeight();
 
             Bitmap bitmap = Bitmap.createBitmap(width, height, config);
             Canvas canvas = new Canvas(bitmap);
@@ -500,9 +500,9 @@ public final class CapturePictureUtils {
     public static Bitmap snapshotByHorizontalScrollView(final HorizontalScrollView scrollView, final Bitmap.Config config) {
         if (scrollView == null || config == null) return null;
         try {
-            View view = scrollView.getChildAt(0);
-            int width = view.getWidth();
-            int height = view.getHeight();
+            View view   = scrollView.getChildAt(0);
+            int  width  = view.getWidth();
+            int  height = view.getHeight();
 
             Bitmap bitmap = Bitmap.createBitmap(width, height, config);
             Canvas canvas = new Canvas(bitmap);
@@ -539,9 +539,9 @@ public final class CapturePictureUtils {
     public static Bitmap snapshotByNestedScrollView(final NestedScrollView scrollView, final Bitmap.Config config) {
         if (scrollView == null || config == null) return null;
         try {
-            View view = scrollView.getChildAt(0);
-            int width = view.getWidth();
-            int height = view.getHeight();
+            View view   = scrollView.getChildAt(0);
+            int  width  = view.getWidth();
+            int  height = view.getHeight();
 
             Bitmap bitmap = Bitmap.createBitmap(width, height, config);
             Canvas canvas = new Canvas(bitmap);
@@ -757,7 +757,7 @@ public final class CapturePictureUtils {
                         if (position < itemCount) {
                             Bitmap bmp = bitmaps[position];
                             // 计算边距
-                            int left = j * (horizontalSpacing + childWidth);
+                            int    left   = j * (horizontalSpacing + childWidth);
                             Matrix matrix = new Matrix();
                             matrix.postTranslate(left, appendHeight);
                             // 绘制到 Bitmap
@@ -905,7 +905,7 @@ public final class CapturePictureUtils {
             Bitmap[] bitmaps = new Bitmap[itemCount];
             // 获取布局管理器 ( 判断横竖布局 )
             GridLayoutManager gridLayoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
-            boolean vertical = (gridLayoutManager.getOrientation() == RecyclerView.VERTICAL);
+            boolean           vertical          = (gridLayoutManager.getOrientation() == RecyclerView.VERTICAL);
             // 获取一共多少列
             int spanCount = gridLayoutManager.getSpanCount();
             // 获取倍数 ( 行数 )
@@ -969,7 +969,7 @@ public final class CapturePictureUtils {
                         if (position < itemCount) {
                             Bitmap bmp = bitmaps[position];
                             // 计算边距
-                            int left = j * (horizontalSpacing + childWidth);
+                            int    left   = j * (horizontalSpacing + childWidth);
                             Matrix matrix = new Matrix();
                             matrix.postTranslate(left, appendHeight);
                             // 绘制到 Bitmap
@@ -1051,7 +1051,7 @@ public final class CapturePictureUtils {
                         if (position < itemCount) {
                             Bitmap bmp = bitmaps[position];
                             // 计算边距
-                            int left = appendWidth + (j * horizontalSpacing);
+                            int    left   = appendWidth + (j * horizontalSpacing);
                             Matrix matrix = new Matrix();
                             matrix.postTranslate(left, appendHeight);
                             // 绘制到 Bitmap
@@ -1110,7 +1110,7 @@ public final class CapturePictureUtils {
             Bitmap[] bitmaps = new Bitmap[itemCount];
             // 获取布局管理器 ( 判断横竖布局 )
             LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-            boolean vertical = (linearLayoutManager.getOrientation() == RecyclerView.VERTICAL);
+            boolean             vertical            = (linearLayoutManager.getOrientation() == RecyclerView.VERTICAL);
             if (vertical) {
 
                 // ===========
@@ -1222,7 +1222,7 @@ public final class CapturePictureUtils {
             Bitmap[] bitmaps = new Bitmap[itemCount];
             // 获取布局管理器 ( 判断横竖布局 )
             StaggeredGridLayoutManager staggeredGridLayoutManager = (StaggeredGridLayoutManager) recyclerView.getLayoutManager();
-            boolean vertical = (staggeredGridLayoutManager.getOrientation() == 1);
+            boolean                    vertical                   = (staggeredGridLayoutManager.getOrientation() == 1);
             // 获取一共多少列
             int spanCount = staggeredGridLayoutManager.getSpanCount();
             // 获取倍数 ( 行数 )
@@ -1287,7 +1287,7 @@ public final class CapturePictureUtils {
                     // 获取最小高度索引
                     int minIndex = ArrayUtils.getMinimumIndex(columnsHeightArrays);
                     // 计算边距
-                    int left = minIndex * (horizontalSpacing + childWidth);
+                    int    left   = minIndex * (horizontalSpacing + childWidth);
                     Matrix matrix = new Matrix();
                     matrix.postTranslate(left, columnsHeightArrays[minIndex]);
                     // 绘制到 Bitmap
@@ -1368,8 +1368,8 @@ public final class CapturePictureUtils {
                 // 循环绘制
                 for (int i = 0; i < itemCount; i++) {
                     // 获取最小宽度索引
-                    int minIndex = ArrayUtils.getMinimumIndex(columnsWidthArrays);
-                    Matrix matrix = new Matrix();
+                    int    minIndex = ArrayUtils.getMinimumIndex(columnsWidthArrays);
+                    Matrix matrix   = new Matrix();
                     matrix.postTranslate(columnsWidthArrays[minIndex], columnsTopArrays[minIndex]);
                     // 绘制到 Bitmap
                     Bitmap bmp = bitmaps[i];

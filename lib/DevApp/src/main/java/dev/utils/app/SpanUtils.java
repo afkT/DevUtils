@@ -1135,7 +1135,7 @@ public final class SpanUtils {
                                       final CharSequence text, final int start, final int end,
                                       final boolean first, final Layout layout) {
             Paint.Style style = p.getStyle();
-            int color = p.getColor();
+            int         color = p.getColor();
 
             p.setStyle(Paint.Style.FILL);
             p.setColor(this.color);
@@ -1174,8 +1174,8 @@ public final class SpanUtils {
                                       final CharSequence text, final int start, final int end,
                                       final boolean first, final Layout l) {
             if (((Spanned) text).getSpanStart(this) == start) {
-                Paint.Style style = p.getStyle();
-                int oldColor = 0;
+                Paint.Style style    = p.getStyle();
+                int         oldColor = 0;
                 oldColor = p.getColor();
                 p.setColor(color);
                 p.setStyle(Paint.Style.FILL);
@@ -1223,7 +1223,7 @@ public final class SpanUtils {
         }
 
         private void apply(final Paint paint, final Typeface tf) {
-            int oldStyle;
+            int      oldStyle;
             Typeface old = paint.getTypeface();
             if (old == null) {
                 oldStyle = 0;
@@ -1331,7 +1331,7 @@ public final class SpanUtils {
         public int getSize(@NonNull final Paint paint, final CharSequence text,
                            final int start, final int end, final Paint.FontMetricsInt fm) {
             Drawable drawable = getCachedDrawable();
-            Rect rect = drawable.getBounds();
+            Rect     rect     = drawable.getBounds();
             if (fm != null) {
                 int lineHeight = fm.bottom - fm.top;
                 if (lineHeight < rect.height()) {
@@ -1355,10 +1355,10 @@ public final class SpanUtils {
                          final int start, final int end, final float x,
                          final int top, final int y, final int bottom, @NonNull final Paint paint) {
             Drawable drawable = getCachedDrawable();
-            Rect rect = drawable.getBounds();
+            Rect     rect     = drawable.getBounds();
             canvas.save();
             float transY;
-            int lineHeight = bottom - top;
+            int   lineHeight = bottom - top;
             if (rect.height() < lineHeight) {
                 if (mVerticalAlignment == ALIGN_TOP) {
                     transY = top;
@@ -1378,8 +1378,8 @@ public final class SpanUtils {
         }
 
         private Drawable getCachedDrawable() {
-            WeakReference<Drawable> wr = mDrawableRef;
-            Drawable drawable = null;
+            WeakReference<Drawable> wr       = mDrawableRef;
+            Drawable                drawable = null;
             if (wr != null) {
                 drawable = wr.get();
             }

@@ -374,7 +374,7 @@ public final class AppUtils {
         if (StringUtils.isSpace(packageName)) return null;
         try {
             PackageManager packageManager = getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
+            PackageInfo    packageInfo    = packageManager.getPackageInfo(packageName, 0);
             return packageInfo == null ? null : packageInfo.applicationInfo.loadIcon(packageManager);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppIcon");
@@ -399,7 +399,7 @@ public final class AppUtils {
         if (StringUtils.isSpace(packageName)) return null;
         try {
             PackageManager packageManager = getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
+            PackageInfo    packageInfo    = packageManager.getPackageInfo(packageName, 0);
             return packageInfo == null ? null : packageInfo.applicationInfo.loadLabel(packageManager).toString();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppName");
@@ -1016,9 +1016,9 @@ public final class AppUtils {
      */
     public static boolean installAppSilent(final File file, final String params, final boolean isRooted) {
         if (!FileUtils.isFileExists(file)) return false;
-        String filePath = '"' + file.getAbsolutePath() + '"';
-        String command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm install " + (params == null ? "" : params + " ") + filePath;
-        ShellUtils.CommandResult result = ShellUtils.execCmd(command, isRooted);
+        String                   filePath = '"' + file.getAbsolutePath() + '"';
+        String                   command  = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm install " + (params == null ? "" : params + " ") + filePath;
+        ShellUtils.CommandResult result   = ShellUtils.execCmd(command, isRooted);
         return result.isSuccess4("success");
     }
 
@@ -1085,8 +1085,8 @@ public final class AppUtils {
      */
     public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData, final boolean isRooted) {
         if (StringUtils.isSpace(packageName)) return false;
-        String command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm uninstall " + (isKeepData ? "-k " : "") + packageName;
-        ShellUtils.CommandResult result = ShellUtils.execCmd(command, isRooted);
+        String                   command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm uninstall " + (isKeepData ? "-k " : "") + packageName;
+        ShellUtils.CommandResult result  = ShellUtils.execCmd(command, isRooted);
         return result.isSuccess4("success");
     }
 

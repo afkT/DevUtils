@@ -97,7 +97,7 @@ public final class WidgetUtils {
         widthSize = calculateSize(widthSize, minimumWidth, maximumWidth, defaultValue);
         heightSize = calculateSize(heightSize, minimumHeight, maximumHeight, defaultValue);
 
-        int calcWidthMeasureSpec = View.MeasureSpec.makeMeasureSpec(widthSize, widthMode);
+        int calcWidthMeasureSpec  = View.MeasureSpec.makeMeasureSpec(widthSize, widthMode);
         int calcHeightMeasureSpec = View.MeasureSpec.makeMeasureSpec(heightSize, heightMode);
 
         return new int[]{calcWidthMeasureSpec, calcHeightMeasureSpec};
@@ -177,7 +177,7 @@ public final class WidgetUtils {
                     );
                 }
                 int widthSpec = ViewGroup.getChildMeasureSpec(0, 0, layoutParams.width);
-                int height = layoutParams.height;
+                int height    = layoutParams.height;
                 int heightSpec;
                 if (height > 0) {
                     heightSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
@@ -240,7 +240,7 @@ public final class WidgetUtils {
         try {
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
             // MeasureSpec
-            int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+            int widthMeasureSpec  = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
             int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
             // 如果大于 0
             if (specifiedWidth > 0) {
@@ -252,7 +252,7 @@ public final class WidgetUtils {
             }
             // 判断是否存在自定义宽高
             if (layoutParams != null) {
-                int width = layoutParams.width;
+                int width  = layoutParams.width;
                 int height = layoutParams.height;
                 if (width > 0 && height > 0) {
                     widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);

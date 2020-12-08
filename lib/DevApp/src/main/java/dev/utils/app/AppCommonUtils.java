@@ -46,11 +46,11 @@ public final class AppCommonUtils {
         try {
             StringBuilder builder = new StringBuilder();
             // 获取 APP 版本信息
-            String[] versions = ManifestUtils.getAppVersion();
-            String versionName = versions[0];
-            String versionCode = versions[1];
-            String packageName = AppUtils.getPackageName();
-            String deviceInfo = DeviceUtils.handlerDeviceInfo(DeviceUtils.getDeviceInfo(), null);
+            String[] versions    = ManifestUtils.getAppVersion();
+            String   versionName = versions[0];
+            String   versionCode = versions[1];
+            String   packageName = AppUtils.getPackageName();
+            String   deviceInfo  = DeviceUtils.handlerDeviceInfo(DeviceUtils.getDeviceInfo(), null);
             if (TextUtils.isEmpty(versionName) || TextUtils.isEmpty(versionCode) ||
                     TextUtils.isEmpty(packageName) || TextUtils.isEmpty(deviceInfo)) {
                 return null;

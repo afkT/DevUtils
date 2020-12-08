@@ -254,9 +254,9 @@ final class LoggerPrinter implements IPrinter {
             return;
         }
         try {
-            Source xmlInput = new StreamSource(new StringReader(xml));
-            StreamResult xmlOutput = new StreamResult(new StringWriter());
-            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            Source       xmlInput    = new StreamSource(new StringReader(xml));
+            StreamResult xmlOutput   = new StreamResult(new StringWriter());
+            Transformer  transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
             transformer.transform(xmlInput, xmlOutput);
@@ -461,9 +461,9 @@ final class LoggerPrinter implements IPrinter {
             return;
         }
         try {
-            Source xmlInput = new StreamSource(new StringReader(xml));
-            StreamResult xmlOutput = new StreamResult(new StringWriter());
-            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            Source       xmlInput    = new StreamSource(new StringReader(xml));
+            StreamResult xmlOutput   = new StreamResult(new StringWriter());
+            Transformer  transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
             transformer.transform(xmlInput, xmlOutput);
@@ -817,8 +817,8 @@ final class LoggerPrinter implements IPrinter {
      */
     private int getStackOffset(final StackTraceElement[] trace) {
         for (int i = LogConstants.MIN_STACK_OFFSET, len = trace.length; i < len; i++) {
-            StackTraceElement e = trace[i];
-            String name = e.getClassName();
+            StackTraceElement e    = trace[i];
+            String            name = e.getClassName();
             if (!name.equals(LoggerPrinter.class.getName()) && !name.equals(DevLogger.class.getName())) {
                 return --i;
             }

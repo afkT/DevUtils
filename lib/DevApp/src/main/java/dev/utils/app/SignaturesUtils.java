@@ -179,7 +179,7 @@ public final class SignaturesUtils {
     public static X509Certificate getX509Certificate(final Signature signature) {
         if (signature != null) {
             try {
-                CertificateFactory cf = CertificateFactory.getInstance("X.509");
+                CertificateFactory   cf   = CertificateFactory.getInstance("X.509");
                 ByteArrayInputStream bais = new ByteArrayInputStream(signature.toByteArray());
                 return (X509Certificate) cf.generateCertificate(bais);
             } catch (Exception e) {
@@ -295,9 +295,9 @@ public final class SignaturesUtils {
      */
     public static Certificate[] getCertificateFromApk(final File file) {
         try {
-            JarFile jarFile = new JarFile(file);
-            JarEntry je = jarFile.getJarEntry("AndroidManifest.xml");
-            byte[] readBuffer = new byte[8192];
+            JarFile  jarFile    = new JarFile(file);
+            JarEntry je         = jarFile.getJarEntry("AndroidManifest.xml");
+            byte[]   readBuffer = new byte[8192];
             return loadCertificates(jarFile, je, readBuffer);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getCertificateFromApk");

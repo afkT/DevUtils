@@ -83,8 +83,8 @@ public final class ProcessUtils {
             // 获取自身进程 id
             int pid = android.os.Process.myPid();
             // 判断全部运行中的进程
-            ActivityManager activityManager = AppUtils.getActivityManager();
-            List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
+            ActivityManager                             activityManager = AppUtils.getActivityManager();
+            List<ActivityManager.RunningAppProcessInfo> lists           = activityManager.getRunningAppProcesses();
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 if (appProcess.pid == pid) {
                     return appProcess.processName;
@@ -125,8 +125,8 @@ public final class ProcessUtils {
      */
     public static int getPid(final String packageName) {
         try {
-            ActivityManager activityManager = AppUtils.getActivityManager();
-            List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
+            ActivityManager                             activityManager = AppUtils.getActivityManager();
+            List<ActivityManager.RunningAppProcessInfo> lists           = activityManager.getRunningAppProcesses();
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 if (appProcess.processName.equals(packageName)) {
                     return appProcess.pid;
@@ -145,8 +145,8 @@ public final class ProcessUtils {
      */
     public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(final int pid) {
         try {
-            ActivityManager activityManager = AppUtils.getActivityManager();
-            List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
+            ActivityManager                             activityManager = AppUtils.getActivityManager();
+            List<ActivityManager.RunningAppProcessInfo> lists           = activityManager.getRunningAppProcesses();
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 if (appProcess.pid == pid) {
                     return appProcess;
@@ -165,8 +165,8 @@ public final class ProcessUtils {
      */
     public static ActivityManager.RunningAppProcessInfo getRunningAppProcessInfo(final String packageName) {
         try {
-            ActivityManager activityManager = AppUtils.getActivityManager();
-            List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
+            ActivityManager                             activityManager = AppUtils.getActivityManager();
+            List<ActivityManager.RunningAppProcessInfo> lists           = activityManager.getRunningAppProcesses();
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 if (appProcess.processName.equals(packageName)) {
                     return appProcess;
@@ -187,8 +187,8 @@ public final class ProcessUtils {
     @SuppressLint("MissingPermission")
     public static String getForegroundProcessName() {
         try {
-            ActivityManager activityManager = AppUtils.getActivityManager();
-            List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
+            ActivityManager                             activityManager = AppUtils.getActivityManager();
+            List<ActivityManager.RunningAppProcessInfo> lists           = activityManager.getRunningAppProcesses();
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 if (appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
                     return appProcess.processName;
@@ -200,18 +200,18 @@ public final class ProcessUtils {
         // SDK 大于 21 时
         if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.LOLLIPOP) {
             try {
-                PackageManager packageManager = AppUtils.getPackageManager();
-                Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
-                List<ResolveInfo> lists = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+                PackageManager    packageManager = AppUtils.getPackageManager();
+                Intent            intent         = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+                List<ResolveInfo> lists          = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
                 // 无权限
                 if (lists.size() == 0) {
                     return null;
                 }
 
                 UsageStatsManager usageStatsManager = AppUtils.getUsageStatsManager();
-                List<UsageStats> listUsageStats = null;
+                List<UsageStats>  listUsageStats    = null;
                 if (usageStatsManager != null) {
-                    long endTime = System.currentTimeMillis();
+                    long endTime   = System.currentTimeMillis();
                     long beginTime = endTime - 86400000 * 7;
                     listUsageStats = usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_BEST, beginTime, endTime);
                 }
@@ -237,9 +237,9 @@ public final class ProcessUtils {
     @SuppressLint("MissingPermission")
     public static Set<String> getAllBackgroundProcesses() {
         try {
-            Set<String> set = new HashSet<>();
-            ActivityManager activityManager = AppUtils.getActivityManager();
-            List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
+            Set<String>                                 set             = new HashSet<>();
+            ActivityManager                             activityManager = AppUtils.getActivityManager();
+            List<ActivityManager.RunningAppProcessInfo> lists           = activityManager.getRunningAppProcesses();
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 Collections.addAll(set, appProcess.pkgList);
             }
@@ -257,9 +257,9 @@ public final class ProcessUtils {
     @SuppressLint("MissingPermission")
     public static Set<String> killAllBackgroundProcesses() {
         try {
-            Set<String> set = new HashSet<>();
-            ActivityManager activityManager = AppUtils.getActivityManager();
-            List<ActivityManager.RunningAppProcessInfo> lists = activityManager.getRunningAppProcesses();
+            Set<String>                                 set             = new HashSet<>();
+            ActivityManager                             activityManager = AppUtils.getActivityManager();
+            List<ActivityManager.RunningAppProcessInfo> lists           = activityManager.getRunningAppProcesses();
             for (ActivityManager.RunningAppProcessInfo appProcess : lists) {
                 for (String packageName : appProcess.pkgList) {
                     activityManager.killBackgroundProcesses(packageName);

@@ -151,7 +151,7 @@ public final class IntentUtils {
         if (file == null) return null;
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            Uri data;
+            Uri    data;
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                 data = Uri.fromFile(file);
             } else {
@@ -257,7 +257,7 @@ public final class IntentUtils {
      */
     public static Intent getLaunchAppInstallPermissionSettingsIntent(final String packageName, final boolean isNewTask) {
         try {
-            Uri uri = Uri.parse("package:" + packageName);
+            Uri    uri    = Uri.parse("package:" + packageName);
             Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, uri);
             return getIntent(intent, isNewTask);
         } catch (Exception e) {
@@ -292,7 +292,7 @@ public final class IntentUtils {
     public static Intent getLaunchAppNotificationSettingsIntent(final String packageName, final boolean isNewTask) {
         try {
             ApplicationInfo applicationInfo = AppUtils.getPackageInfo(packageName, 0).applicationInfo;
-            Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+            Intent          intent          = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
             // 这种方案适用于 API 26 即 8.0 ( 含 8.0) 以上可以用
             intent.putExtra(Settings.EXTRA_APP_PACKAGE, packageName);
             intent.putExtra(Settings.EXTRA_CHANNEL_ID, applicationInfo.uid);
@@ -464,7 +464,7 @@ public final class IntentUtils {
         try {
             if (TextUtils.isEmpty(packageName)) return null;
 
-            Uri uri = Uri.parse("market://details?id=" + packageName);
+            Uri    uri    = Uri.parse("market://details?id=" + packageName);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             if (!TextUtils.isEmpty(marketPkg)) {
                 intent.setPackage(marketPkg);
@@ -734,7 +734,7 @@ public final class IntentUtils {
      */
     public static Intent getSendSmsIntent(final String phoneNumber, final String content, final boolean isNewTask) {
         try {
-            Uri uri = Uri.parse("smsto:" + phoneNumber);
+            Uri    uri    = Uri.parse("smsto:" + phoneNumber);
             Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
             intent.putExtra("sms_body", content);
             return getIntent(intent, isNewTask);
@@ -895,7 +895,7 @@ public final class IntentUtils {
             intent.addCategory(Intent.CATEGORY_BROWSABLE);
             if (!TextUtils.isEmpty(packageName)) {
 //                intent.setClassName(packageName, className);
-                List<ResolveInfo> lists = AppUtils.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+                List<ResolveInfo>   lists    = AppUtils.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
                 Map<String, String> browsers = new HashMap<>();
                 for (ResolveInfo resolveInfo : lists) {
                     ActivityInfo activityInfo = resolveInfo.activityInfo;

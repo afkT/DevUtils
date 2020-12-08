@@ -80,7 +80,7 @@ public final class ManifestUtils {
     public static String getMetaDataInActivity(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
-            ActivityInfo activityInfo = AppUtils.getPackageManager().getActivityInfo(componentName, PackageManager.GET_META_DATA);
+            ActivityInfo  activityInfo  = AppUtils.getPackageManager().getActivityInfo(componentName, PackageManager.GET_META_DATA);
             return activityInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInActivity");
@@ -120,7 +120,7 @@ public final class ManifestUtils {
     public static String getMetaDataInService(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
-            ServiceInfo serviceInfo = AppUtils.getPackageManager().getServiceInfo(componentName, PackageManager.GET_META_DATA);
+            ServiceInfo   serviceInfo   = AppUtils.getPackageManager().getServiceInfo(componentName, PackageManager.GET_META_DATA);
             return serviceInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInService");
@@ -160,7 +160,7 @@ public final class ManifestUtils {
     public static String getMetaDataInReceiver(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
-            ActivityInfo receiverInfo = AppUtils.getPackageManager().getReceiverInfo(componentName, PackageManager.GET_META_DATA);
+            ActivityInfo  receiverInfo  = AppUtils.getPackageManager().getReceiverInfo(componentName, PackageManager.GET_META_DATA);
             return receiverInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInReceiver");
@@ -200,7 +200,7 @@ public final class ManifestUtils {
     public static String getMetaDataInProvider(final String packageName, final String name, final String metaKey) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
-            ProviderInfo providerInfo = AppUtils.getPackageManager().getProviderInfo(componentName, PackageManager.GET_META_DATA);
+            ProviderInfo  providerInfo  = AppUtils.getPackageManager().getProviderInfo(componentName, PackageManager.GET_META_DATA);
             return providerInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInProvider");

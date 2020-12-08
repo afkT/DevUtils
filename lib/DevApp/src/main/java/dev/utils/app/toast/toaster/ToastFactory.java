@@ -145,8 +145,8 @@ final class ToastFactory {
                     Field field_tn = Toast.class.getDeclaredField("mTN");
                     field_tn.setAccessible(true);
 
-                    Object mTN = field_tn.get(this);
-                    Field field_handler = field_tn.getType().getDeclaredField("mHandler");
+                    Object mTN           = field_tn.get(this);
+                    Field  field_handler = field_tn.getType().getDeclaredField("mHandler");
                     field_handler.setAccessible(true);
 
                     Handler handler = (Handler) field_handler.get(mTN);

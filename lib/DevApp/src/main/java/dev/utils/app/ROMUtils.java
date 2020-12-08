@@ -418,13 +418,13 @@ public final class ROMUtils {
      * @return {@link RomInfo}
      */
     private static RomInfo _getRomInfo() {
-        RomInfo bean = new RomInfo();
-        final String brand = getBrand();
+        RomInfo      bean         = new RomInfo();
+        final String brand        = getBrand();
         final String manufacturer = getManufacturer();
         if (isRightRom(brand, manufacturer, ROM_HUAWEI)) {
             bean.name = ROM_HUAWEI[0];
-            String version = getRomVersion(VERSION_PROPERTY_HUAWEI);
-            String[] temp = version.split("_");
+            String   version = getRomVersion(VERSION_PROPERTY_HUAWEI);
+            String[] temp    = version.split("_");
             if (temp.length > 1) {
                 bean.version = temp[1];
             } else {

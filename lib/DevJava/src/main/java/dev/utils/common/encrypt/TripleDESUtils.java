@@ -48,7 +48,7 @@ public final class TripleDESUtils {
         if (data == null || key == null) return null;
         try {
             SecretKey secretKey = new SecretKeySpec(key, "DESede");
-            Cipher cipher = Cipher.getInstance("DESede/ECB/PKCS5Padding");
+            Cipher    cipher    = Cipher.getInstance("DESede/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             return cipher.doFinal(data);
         } catch (Exception e) {
@@ -67,7 +67,7 @@ public final class TripleDESUtils {
         if (data == null || key == null) return null;
         try {
             SecretKey secretKey = new SecretKeySpec(key, "DESede");
-            Cipher cipher = Cipher.getInstance("DESede/ECB/PKCS5Padding");
+            Cipher    cipher    = Cipher.getInstance("DESede/ECB/PKCS5Padding");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             return cipher.doFinal(data);
         } catch (Exception e) {

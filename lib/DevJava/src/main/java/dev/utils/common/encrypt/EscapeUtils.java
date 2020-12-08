@@ -53,8 +53,8 @@ public final class EscapeUtils {
     public static String unescape(final String data) {
         if (data == null) return null;
         StringBuilder builder = new StringBuilder();
-        int i = 0;
-        int len = data.length();
+        int           i       = 0;
+        int           len     = data.length();
         while (i < len) {
             int ch = data.charAt(i);
             if ('A' <= ch && ch <= 'Z') {

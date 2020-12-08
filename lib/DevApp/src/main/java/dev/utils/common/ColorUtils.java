@@ -285,9 +285,9 @@ public final class ColorUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isRGB(final int color) {
-        int red = red(color);
+        int red   = red(color);
         int green = green(color);
-        int blue = blue(color);
+        int blue  = blue(color);
         return (red <= 255 && red >= 0) &&
                 (green <= 255 && green >= 0) &&
                 (blue <= 255 && blue >= 0);
@@ -300,9 +300,9 @@ public final class ColorUtils {
      */
     public static boolean isARGB(final int color) {
         int alpha = alpha(color);
-        int red = red(color);
+        int red   = red(color);
         int green = green(color);
-        int blue = blue(color);
+        int blue  = blue(color);
         return (alpha <= 255 && alpha >= 0) &&
                 (red <= 255 && red >= 0) &&
                 (green <= 255 && green >= 0) &&
@@ -539,9 +539,9 @@ public final class ColorUtils {
      * @return 加深后的颜色值
      */
     public static int setDark(final int color, final int darkValue) {
-        int red = red(color);
+        int red   = red(color);
         int green = green(color);
-        int blue = blue(color);
+        int blue  = blue(color);
         // 进行加深 ( 累减 )
         red -= darkValue;
         green -= darkValue;
@@ -574,9 +574,9 @@ public final class ColorUtils {
      * @return 变亮 ( 变浅 ) 后的颜色值
      */
     public static int setLight(final int color, final int lightValue) {
-        int red = red(color);
+        int red   = red(color);
         int green = green(color);
-        int blue = blue(color);
+        int blue  = blue(color);
         // 进行变浅, 变亮 ( 累加 )
         red += lightValue;
         green += lightValue;
@@ -938,9 +938,9 @@ public final class ColorUtils {
             @Override
             public String handleColor(String value) {
                 if (value == null) return null;
-                String color = StringUtils.clearSpace(value);
-                char[] chars = color.toCharArray();
-                int length = chars.length;
+                String color  = StringUtils.clearSpace(value);
+                char[] chars  = color.toCharArray();
+                int    length = chars.length;
                 if (length != 0 && chars[0] == '#') {
                     if (length == 4) {
                         String colorsub = color.substring(1);
@@ -991,9 +991,9 @@ public final class ColorUtils {
             if (saturation == 0)
                 hue = 0;
             else {
-                float redc = ((float) (cmax - r)) / ((float) (cmax - cmin));
+                float redc   = ((float) (cmax - r)) / ((float) (cmax - cmin));
                 float greenc = ((float) (cmax - g)) / ((float) (cmax - cmin));
-                float bluec = ((float) (cmax - b)) / ((float) (cmax - cmin));
+                float bluec  = ((float) (cmax - b)) / ((float) (cmax - cmin));
                 if (r == cmax)
                     hue = bluec - greenc;
                 else if (g == cmax)

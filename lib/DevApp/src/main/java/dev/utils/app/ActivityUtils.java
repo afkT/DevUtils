@@ -159,7 +159,7 @@ public final class ActivityUtils {
         boolean result = true;
         try {
             PackageManager packageManager = AppUtils.getPackageManager();
-            Intent intent = new Intent();
+            Intent         intent         = new Intent();
             intent.setClassName(packageName, className);
             if (packageManager.resolveActivity(intent, 0) == null) {
                 result = false;
@@ -947,7 +947,7 @@ public final class ActivityUtils {
          * @return {@code true} success, {@code false} fail
          */
         protected static boolean start(final ResultCallback callback) {
-            int uuid = -1;
+            int     uuid   = -1;
             boolean result = false;
             if (callback != null) {
                 uuid = DevCommonUtils.randomUUIDToHashCode();

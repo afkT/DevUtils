@@ -185,7 +185,7 @@ public final class DevUtils {
             @SuppressLint("PrivateApi")
             Class<?> activityThread = Class.forName("android.app.ActivityThread");
             Object thread = activityThread.getMethod("currentActivityThread").invoke(null);
-            Object app = activityThread.getMethod("getApplication").invoke(thread);
+            Object app    = activityThread.getMethod("getApplication").invoke(thread);
             if (app == null) {
                 throw new NullPointerException("u should init first");
             }
@@ -506,14 +506,14 @@ public final class DevUtils {
             try {
                 @SuppressLint("PrivateApi")
                 Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
-                Object activityThread = activityThreadClass.getMethod("currentActivityThread").invoke(null);
-                Field activitiesField = activityThreadClass.getDeclaredField("mActivityLists");
+                Object activityThread  = activityThreadClass.getMethod("currentActivityThread").invoke(null);
+                Field  activitiesField = activityThreadClass.getDeclaredField("mActivityLists");
                 activitiesField.setAccessible(true);
                 Map activities = (Map) activitiesField.get(activityThread);
                 if (activities == null) return null;
                 for (Object activityRecord : activities.values()) {
                     Class activityRecordClass = activityRecord.getClass();
-                    Field pausedField = activityRecordClass.getDeclaredField("paused");
+                    Field pausedField         = activityRecordClass.getDeclaredField("paused");
                     pausedField.setAccessible(true);
                     if (!pausedField.getBoolean(activityRecord)) {
                         Field activityField = activityRecordClass.getDeclaredField("activity");

@@ -262,11 +262,11 @@ public final class Base64 {
             // the loop.  (Even alphabet makes a measurable
             // difference, which is somewhat surprising to me since
             // the member variable is final.)
-            int state = this.state;
-            int value = this.value;
-            int op = 0;
-            final byte[] output = this.output;
-            final int[] alphabet = this.alphabet;
+            int          state    = this.state;
+            int          value    = this.value;
+            int          op       = 0;
+            final byte[] output   = this.output;
+            final int[]  alphabet = this.alphabet;
 
             while (p < len) {
                 // Try the fast path:  we're starting a new tuple and the
@@ -595,9 +595,9 @@ public final class Base64 {
         public boolean process(byte[] input, int offset, int len, boolean finish) {
             // Using local variables makes the encoder about 9% faster.
             final byte[] alphabet = this.alphabet;
-            final byte[] output = this.output;
-            int op = 0;
-            int count = this.count;
+            final byte[] output   = this.output;
+            int          op       = 0;
+            int          count    = this.count;
 
             int p = offset;
             len += offset;

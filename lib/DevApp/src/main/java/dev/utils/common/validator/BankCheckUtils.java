@@ -60,9 +60,9 @@ public final class BankCheckUtils {
                 // 如果传的不是数据返回 N
                 return 'N';
             }
-            char[] chs = nonCheckCodeCardId.trim().toCharArray();
-            int luhnSum = 0;
-            int len = chs.length;
+            char[] chs     = nonCheckCodeCardId.trim().toCharArray();
+            int    luhnSum = 0;
+            int    len     = chs.length;
             for (int i = len - 1, j = 0; i >= 0; i--, j++) {
                 int k = chs[i] - '0';
                 if (j % 2 == 0) {
@@ -88,7 +88,7 @@ public final class BankCheckUtils {
         try {
             // 通过银行卡的前六位确定
             String cardBin6 = cardBin.trim().substring(0, 6);
-            int index = -1;
+            int    index    = -1;
             for (int i = 0, len = BANK_BIN.length; i < len; i++) {
                 if (cardBin6.equals(BANK_BIN[i])) {
                     index = i;

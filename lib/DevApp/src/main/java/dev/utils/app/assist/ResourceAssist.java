@@ -1359,7 +1359,7 @@ public final class ResourceAssist {
         InputStream is = null;
         try {
             is = open(fileName);
-            int length = is.available();
+            int    length = is.available();
             byte[] buffer = new byte[length];
             is.read(buffer);
             return buffer;
@@ -1396,7 +1396,7 @@ public final class ResourceAssist {
         InputStream is = null;
         try {
             is = openRawResource(resId);
-            int length = is.available();
+            int    length = is.available();
             byte[] buffer = new byte[length];
             is.read(buffer);
             return buffer;
@@ -1430,14 +1430,14 @@ public final class ResourceAssist {
      * @return {@link List <String>}
      */
     public List<String> geFileToListFromAssets(final String fileName) {
-        InputStream is = null;
+        InputStream    is = null;
         BufferedReader br = null;
         try {
             is = open(fileName);
             br = new BufferedReader(new InputStreamReader(is));
 
             List<String> lists = new ArrayList<>();
-            String line;
+            String       line;
             while ((line = br.readLine()) != null) {
                 lists.add(line);
             }
@@ -1456,14 +1456,14 @@ public final class ResourceAssist {
      * @return {@link List<String>}
      */
     public List<String> geFileToListFromRaw(@RawRes final int resId) {
-        InputStream is = null;
+        InputStream    is = null;
         BufferedReader br = null;
         try {
             is = openRawResource(resId);
             br = new BufferedReader(new InputStreamReader(is));
 
             List<String> lists = new ArrayList<>();
-            String line;
+            String       line;
             while ((line = br.readLine()) != null) {
                 lists.add(line);
             }
@@ -1494,7 +1494,7 @@ public final class ResourceAssist {
             byte[] buffer = new byte[1024];
             // 创建输入输出流
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            int len;
+            int                   len;
             while ((len = is.read(buffer)) != -1) {
                 baos.write(buffer, 0, len);
             }
@@ -1528,7 +1528,7 @@ public final class ResourceAssist {
             byte[] buffer = new byte[1024];
             // 创建输入输出流
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            int len;
+            int                   len;
             while ((len = is.read(buffer)) != -1) {
                 baos.write(buffer, 0, len);
             }

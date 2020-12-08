@@ -297,9 +297,9 @@ public final class AppInfoUtils {
         try {
             StringBuilder builder = new StringBuilder();
             // =
-            PackageManager packageManager = AppUtils.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
-            String[] usesPermissionsArray = packageInfo.requestedPermissions;
+            PackageManager packageManager       = AppUtils.getPackageManager();
+            PackageInfo    packageInfo          = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+            String[]       usesPermissionsArray = packageInfo.requestedPermissions;
             for (int i = 0; i < usesPermissionsArray.length; i++) {
                 // 获取每个权限的名字, 如: android.permission.INTERNET
                 String usesPermissionName = usesPermissionsArray[i];

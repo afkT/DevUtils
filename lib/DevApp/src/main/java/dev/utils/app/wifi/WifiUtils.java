@@ -847,7 +847,7 @@ public final class WifiUtils {
         if (ip != null) {
             try {
                 InetAddress intetAddress = InetAddress.getByName(ip);
-                int intIp = inetAddressToInt(intetAddress);
+                int         intIp        = inetAddressToInt(intetAddress);
                 dns = (intIp & 0xFF) + "." + ((intIp >> 8) & 0xFF) + "." + ((intIp >> 16) & 0xFF) + ".1";
                 gateway = dns;
             } catch (Exception e) {
@@ -944,10 +944,10 @@ public final class WifiUtils {
         if (linkProperties == null)
             throw new NullPointerException();
 
-        Class routeInfoClass = Class.forName("android.net.RouteInfo");
+        Class       routeInfoClass       = Class.forName("android.net.RouteInfo");
         Constructor routeInfoConstructor = routeInfoClass.getConstructor(InetAddress.class);
-        Object routeInfo = routeInfoConstructor.newInstance(gateway);
-        ArrayList mRoutes = (ArrayList) getDeclaredField(linkProperties, "mRoutes");
+        Object      routeInfo            = routeInfoConstructor.newInstance(gateway);
+        ArrayList   mRoutes              = (ArrayList) getDeclaredField(linkProperties, "mRoutes");
         mRoutes.clear();
         mRoutes.add(routeInfo);
     }
@@ -964,10 +964,10 @@ public final class WifiUtils {
         if (linkProperties == null)
             throw new NullPointerException();
 
-        Class laClass = Class.forName("android.net.LinkAddress");
-        Constructor laConstructor = laClass.getConstructor(InetAddress.class, int.class);
-        Object linkAddress = laConstructor.newInstance(address, prefixLength);
-        ArrayList mLinkAddresses = (ArrayList) getDeclaredField(linkProperties, "mLinkAddresses");
+        Class       laClass        = Class.forName("android.net.LinkAddress");
+        Constructor laConstructor  = laClass.getConstructor(InetAddress.class, int.class);
+        Object      linkAddress    = laConstructor.newInstance(address, prefixLength);
+        ArrayList   mLinkAddresses = (ArrayList) getDeclaredField(linkProperties, "mLinkAddresses");
         mLinkAddresses.clear();
         mLinkAddresses.add(linkAddress);
     }
@@ -990,9 +990,9 @@ public final class WifiUtils {
             staticIpConfigClass = Class.forName("android.net.StaticIpConfiguration").newInstance();
         }
         // 初始化 LinkAddress 并设置 IP 地址
-        Class laClass = Class.forName("android.net.LinkAddress");
+        Class       laClass       = Class.forName("android.net.LinkAddress");
         Constructor laConstructor = laClass.getConstructor(InetAddress.class, int.class);
-        Object linkAddress = laConstructor.newInstance(InetAddress.getByName(ip), prefixLength);
+        Object      linkAddress   = laConstructor.newInstance(InetAddress.getByName(ip), prefixLength);
         // 设置地址 IP 地址 ipAddress
         setValueField(staticIpConfigClass, linkAddress, "ipAddress");
         // 设置网关 gateway

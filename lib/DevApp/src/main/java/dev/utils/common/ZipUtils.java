@@ -191,7 +191,7 @@ public final class ZipUtils {
                 entry.setComment(comment);
                 zos.putNextEntry(entry);
                 byte[] buffer = new byte[BUFFER_LEN];
-                int len;
+                int    len;
                 while ((len = is.read(buffer, 0, BUFFER_LEN)) != -1) {
                     zos.write(buffer, 0, len);
                 }
@@ -247,13 +247,13 @@ public final class ZipUtils {
      */
     public static List<File> unzipFileByKeyword(final File zipFile, final File destDir, final String keyword) throws Exception {
         if (zipFile == null || destDir == null) return null;
-        List<File> files = new ArrayList<>();
-        ZipFile zip = new ZipFile(zipFile);
+        List<File>     files   = new ArrayList<>();
+        ZipFile        zip     = new ZipFile(zipFile);
         Enumeration<?> entries = zip.entries();
         if (StringUtils.isSpace(keyword)) {
             while (entries.hasMoreElements()) {
-                ZipEntry entry = ((ZipEntry) entries.nextElement());
-                String entryName = entry.getName();
+                ZipEntry entry     = ((ZipEntry) entries.nextElement());
+                String   entryName = entry.getName();
                 if (entryName.contains("../")) {
                     JCLogUtils.dTag(TAG, "entryName: %s is dangerous!", entryName);
                     continue;
@@ -262,8 +262,8 @@ public final class ZipUtils {
             }
         } else {
             while (entries.hasMoreElements()) {
-                ZipEntry entry = ((ZipEntry) entries.nextElement());
-                String entryName = entry.getName();
+                ZipEntry entry     = ((ZipEntry) entries.nextElement());
+                String   entryName = entry.getName();
                 if (entryName.contains("../")) {
                     JCLogUtils.dTag(TAG, "entryName: %s is dangerous!", entryName);
                     continue;
@@ -294,13 +294,13 @@ public final class ZipUtils {
             return FileUtils.createOrExistsDir(file);
         } else {
             if (!FileUtils.createOrExistsFile(file)) return false;
-            InputStream is = null;
+            InputStream  is = null;
             OutputStream os = null;
             try {
                 is = new BufferedInputStream(zf.getInputStream(entry));
                 os = new BufferedOutputStream(new FileOutputStream(file));
                 byte[] buffer = new byte[BUFFER_LEN];
-                int len;
+                int    len;
                 while ((len = is.read(buffer)) != -1) {
                     os.write(buffer, 0, len);
                 }
@@ -329,7 +329,7 @@ public final class ZipUtils {
      */
     public static List<String> getFilesPath(final File zipFile) throws Exception {
         if (zipFile == null) return null;
-        List<String> paths = new ArrayList<>();
+        List<String>   paths   = new ArrayList<>();
         Enumeration<?> entries = new ZipFile(zipFile).entries();
         while (entries.hasMoreElements()) {
             String entryName = ((ZipEntry) entries.nextElement()).getName();
@@ -361,8 +361,8 @@ public final class ZipUtils {
      */
     public static List<String> getComments(final File zipFile) throws Exception {
         if (zipFile == null) return null;
-        List<String> comments = new ArrayList<>();
-        Enumeration<?> entries = new ZipFile(zipFile).entries();
+        List<String>   comments = new ArrayList<>();
+        Enumeration<?> entries  = new ZipFile(zipFile).entries();
         while (entries.hasMoreElements()) {
             ZipEntry entry = ((ZipEntry) entries.nextElement());
             comments.add(entry.getComment());

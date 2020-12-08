@@ -95,9 +95,9 @@ public final class HttpURLConnectionUtils {
      */
     public static void request(final String method, final String urlStr, final Map<String, String> headers, final String params, final Callback callback) {
         // 获取连接对象
-        HttpURLConnection connection = null;
-        InputStream is = null;
-        ByteArrayOutputStream baos = null;
+        HttpURLConnection     connection = null;
+        InputStream           is         = null;
+        ByteArrayOutputStream baos       = null;
         try {
             // 请求路径
             URL url = new URL(urlStr);
@@ -139,7 +139,7 @@ public final class HttpURLConnectionUtils {
                 baos = new ByteArrayOutputStream();
                 // 设置缓存流大小
                 byte[] buffer = new byte[1024];
-                int len = 0;
+                int    len    = 0;
                 while (((len = is.read(buffer)) != -1)) {
                     baos.write(buffer, 0, len);
                 }

@@ -289,7 +289,7 @@ public final class LanguageUtils {
         Locale locale = getSystemPreferredLanguage();
         if (locale != null) {
             String country = locale.getCountry();
-            String lang = locale.getLanguage();
+            String lang    = locale.getLanguage();
             return (country != null && country.equalsIgnoreCase(region))
                     && (lang != null && lang.equalsIgnoreCase(language));
         }

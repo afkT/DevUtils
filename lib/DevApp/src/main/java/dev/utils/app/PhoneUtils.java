@@ -248,7 +248,7 @@ public final class PhoneUtils {
                 return telephonyManager.getImei(slotIndex);
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 // 反射调用方法
-                Class clazz = telephonyManager.getClass();
+                Class  clazz  = telephonyManager.getClass();
                 Method method = clazz.getDeclaredMethod("getImei");
                 method.setAccessible(true);
                 return (String) method.invoke(telephonyManager);
@@ -465,8 +465,8 @@ public final class PhoneUtils {
      */
     @SuppressLint("MissingPermission")
     public static String getUUID() {
-        String deviceId = StringUtils.getString(getDeviceId());
-        String androidId = StringUtils.getString(getAndroidId());
+        String deviceId     = StringUtils.getString(getDeviceId());
+        String androidId    = StringUtils.getString(getAndroidId());
         String serialNumber = StringUtils.getString(getSerialNumber());
         // 生成唯一关联 uuid
         UUID deviceUUID = new UUID(androidId.hashCode(), ((long) deviceId.hashCode() << 32) | serialNumber.hashCode());
@@ -587,7 +587,7 @@ public final class PhoneUtils {
         if (TextUtils.isEmpty(content)) return false;
         try {
             PendingIntent sentIntent = PendingIntent.getBroadcast(DevUtils.getContext(), 0, new Intent("send"), 0);
-            SmsManager smsManager = SmsManager.getDefault();
+            SmsManager    smsManager = SmsManager.getDefault();
             if (content.length() >= 70) {
                 List<String> ms = smsManager.divideMessage(content);
                 for (String str : ms) {
@@ -657,7 +657,7 @@ public final class PhoneUtils {
             // raw_contacts 表的地址 raw_contacts
             // view_data 表的地址 data
             // 3. 生成查询地址
-            Uri raw_uri = Uri.parse("content://com.android.contacts/raw_contacts");
+            Uri raw_uri  = Uri.parse("content://com.android.contacts/raw_contacts");
             Uri date_uri = Uri.parse("content://com.android.contacts/data");
             // 4. 查询操作, 先查询 raw_contacts, 查询 contact_id
             // projection 查询的字段
@@ -682,7 +682,7 @@ public final class PhoneUtils {
                         if (c != null) {
                             while (c.moveToNext()) {
                                 // 9. 获取数据
-                                String data1 = c.getString(0);
+                                String data1    = c.getString(0);
                                 String mimetype = c.getString(1);
                                 // 10. 根据类型去判断获取的 data1 数据并保存
                                 if (mimetype.equals("vnd.android.cursor.item/phone_v2")) {

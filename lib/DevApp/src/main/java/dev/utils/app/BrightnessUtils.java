@@ -102,7 +102,7 @@ public final class BrightnessUtils {
         }
         try {
             ContentResolver resolver = ResourceUtils.getContentResolver();
-            boolean result = Settings.System.putInt(resolver, Settings.System.SCREEN_BRIGHTNESS, brightness);
+            boolean         result   = Settings.System.putInt(resolver, Settings.System.SCREEN_BRIGHTNESS, brightness);
             resolver.notifyChange(Settings.System.getUriFor("screen_brightness"), null);
             return result;
         } catch (Exception e) {
@@ -139,7 +139,7 @@ public final class BrightnessUtils {
         if (window == null) return -1;
         try {
             WindowManager.LayoutParams layoutParams = window.getAttributes();
-            float brightness = layoutParams.screenBrightness;
+            float                      brightness   = layoutParams.screenBrightness;
             if (brightness < 0) return getBrightness();
             return (int) (brightness * 255);
         } catch (Exception e) {

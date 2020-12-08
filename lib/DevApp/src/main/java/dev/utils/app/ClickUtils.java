@@ -319,7 +319,7 @@ public final class ClickUtils {
          * @return {@code true} yes, {@code false} no
          */
         public boolean isFastDoubleClick(final int tagId, final long intervalTime) {
-            long curTime = System.currentTimeMillis();
+            long curTime  = System.currentTimeMillis();
             long diffTime = curTime - mLastClickTime;
             // 判断时间是否超过
             if (mLastTagId == tagId && mLastClickTime > 0 && diffTime < intervalTime) {
@@ -358,7 +358,7 @@ public final class ClickUtils {
             if (lastTime == null) {
                 lastTime = 0L;
             }
-            long curTime = System.currentTimeMillis();
+            long curTime  = System.currentTimeMillis();
             long diffTime = curTime - lastTime;
             // 判断时间是否超过
             if (lastTime > 0 && diffTime < intervalTime) {

@@ -137,7 +137,7 @@ public final class PermissionUtils {
      */
     public static Set<String> getAllPermissionToSet() {
         Set<String> permissionSets = new HashSet<>();
-        Field[] fields = Manifest.permission.class.getFields();
+        Field[]     fields         = Manifest.permission.class.getFields();
         for (Field field : fields) {
             try {
                 String name = (String) field.get("");

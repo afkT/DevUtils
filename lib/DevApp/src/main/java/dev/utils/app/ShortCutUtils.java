@@ -60,8 +60,8 @@ public final class ShortCutUtils {
     public static boolean hasShortcut(final String name) {
         Cursor cursor = null;
         try {
-            Context context = DevUtils.getContext();
-            Uri uri = Uri.parse("content://" + getAuthority(context) + "/favorites?notify=true");
+            Context         context  = DevUtils.getContext();
+            Uri             uri      = Uri.parse("content://" + getAuthority(context) + "/favorites?notify=true");
             ContentResolver resolver = context.getContentResolver();
             cursor = resolver.query(uri, new String[]{"title", "iconResource"}, "title=?", new String[]{name}, null);
             // 判断是否存在快捷方式

@@ -33,7 +33,7 @@ public final class DESUtils {
     public static Key getDESKey(final byte[] key) {
         if (key == null) return null;
         try {
-            DESKeySpec desKey = new DESKeySpec(key);
+            DESKeySpec       desKey     = new DESKeySpec(key);
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
             return keyFactory.generateSecret(desKey);
         } catch (Exception e) {
@@ -52,7 +52,7 @@ public final class DESUtils {
         if (data == null || key == null) return null;
         try {
             SecretKey secretKey = new SecretKeySpec(key, "DES");
-            Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+            Cipher    cipher    = Cipher.getInstance("DES/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             return cipher.doFinal(data);
         } catch (Exception e) {
@@ -71,7 +71,7 @@ public final class DESUtils {
         if (data == null || key == null) return null;
         try {
             SecretKey secretKey = new SecretKeySpec(key, "DES");
-            Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+            Cipher    cipher    = Cipher.getInstance("DES/ECB/PKCS5Padding");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             return cipher.doFinal(data);
         } catch (Exception e) {

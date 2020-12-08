@@ -185,7 +185,7 @@ public final class FileRecordUtils {
             builder.append(bottom);
             builder.append(DevFinal.NEW_LINE_STR_X2);
         }
-        File file = FileUtils.getFile(filePath, fileName);
+        File   file    = FileUtils.getFile(filePath, fileName);
         String content = builder.toString();
         // 保存日志到文件
         boolean result = FileUtils.saveFile(file, StringUtils.getBytes(content));

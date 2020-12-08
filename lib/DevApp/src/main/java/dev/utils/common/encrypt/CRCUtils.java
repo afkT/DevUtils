@@ -68,8 +68,8 @@ public final class CRCUtils {
         try {
             is = new FileInputStream(filePath);
             byte[] buffer = new byte[1024];
-            CRC32 crc32 = new CRC32();
-            int numRead;
+            CRC32  crc32  = new CRC32();
+            int    numRead;
             while ((numRead = is.read(buffer)) > 0) {
                 crc32.update(buffer, 0, numRead);
             }

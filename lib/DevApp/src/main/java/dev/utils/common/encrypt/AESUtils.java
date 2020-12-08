@@ -49,7 +49,7 @@ public final class AESUtils {
         if (data == null || key == null) return null;
         try {
             SecretKey secretKey = new SecretKeySpec(key, "AES");
-            Cipher cipher = Cipher.getInstance("AES");
+            Cipher    cipher    = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             return cipher.doFinal(data);
         } catch (Exception e) {
@@ -68,7 +68,7 @@ public final class AESUtils {
         if (data == null || key == null) return null;
         try {
             SecretKey secretKey = new SecretKeySpec(key, "AES");
-            Cipher cipher = Cipher.getInstance("AES");
+            Cipher    cipher    = Cipher.getInstance("AES");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             return cipher.doFinal(data);
         } catch (Exception e) {

@@ -207,7 +207,7 @@ public final class MapUtils {
                 Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
                 while (iterator.hasNext()) {
                     Map.Entry<K, V> entry = iterator.next();
-                    V v = entry.getValue();
+                    V               v     = entry.getValue();
                     if (equals(v, value)) {
                         return entry.getKey();
                     }
@@ -235,7 +235,7 @@ public final class MapUtils {
                 Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
                 while (iterator.hasNext()) {
                     Map.Entry<K, V> entry = iterator.next();
-                    V v = entry.getValue();
+                    V               v     = entry.getValue();
                     if (equals(v, value)) {
                         // 保存 key
                         lists.add(entry.getKey());
@@ -378,7 +378,7 @@ public final class MapUtils {
                 try {
                     // 遍历方式
                     Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
-                    Map.Entry<K, V> tail = null;
+                    Map.Entry<K, V>           tail     = null;
                     while (iterator.hasNext()) {
                         tail = iterator.next();
                     }
@@ -408,7 +408,7 @@ public final class MapUtils {
                 Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
                 while (iterator.hasNext()) {
                     Map.Entry<K, V> entry = iterator.next();
-                    K k = entry.getKey();
+                    K               k     = entry.getKey();
                     // 判断 key 是否相同
                     if (equals(k, key)) {
                         return entry;
@@ -439,7 +439,7 @@ public final class MapUtils {
                 // 循环处理
                 while (iterator.hasNext()) {
                     Map.Entry<K, V> entry = iterator.next();
-                    K k = entry.getKey();
+                    K               k     = entry.getKey();
                     // 判断 key 是否相同
                     if (equals(k, key)) {
                         return temp;
@@ -706,7 +706,7 @@ public final class MapUtils {
                     Iterator<Map.Entry<K, V>> iterator = mapData.entrySet().iterator();
                     while (iterator.hasNext()) {
                         Map.Entry<K, V> entry = iterator.next();
-                        K key = entry.getKey();
+                        K               key   = entry.getKey();
                         if (key != null) {
                             // 保存数据
                             map.put(key, entry.getValue());
@@ -825,7 +825,7 @@ public final class MapUtils {
                 Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
                 while (iterator.hasNext()) {
                     Map.Entry<K, V> entry = iterator.next();
-                    V v = entry.getValue();
+                    V               v     = entry.getValue();
                     if (equals(v, value)) {
                         iterator.remove();
                     }

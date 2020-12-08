@@ -405,7 +405,7 @@ public final class StringUtils {
     public static int countMatches(final String str, final String keyword) {
         if (isEmpty(str) || isEmpty(keyword)) return 0;
         try {
-            int count = 0;
+            int     count   = 0;
             Matcher matcher = Pattern.compile(keyword).matcher(str);
             // find() 对字符串进行匹配, 匹配到的字符串可以在任何位置
             while (matcher.find()) {
@@ -790,7 +790,7 @@ public final class StringUtils {
     public static String getAutoFormatString(final Object... args) {
         if (args != null && args.length != 0) {
             try {
-                int length = args.length;
+                int           length  = args.length;
                 StringBuilder builder = new StringBuilder();
                 builder.append("%s");
                 if (length > 1) {
@@ -814,7 +814,7 @@ public final class StringUtils {
     public static String getAutoFormatString2(final Object... args) {
         if (args != null && args.length != 0) {
             try {
-                int length = args.length;
+                int           length  = args.length;
                 StringBuilder builder = new StringBuilder();
                 builder.append("[%s]");
                 if (length > 1) {
@@ -871,7 +871,7 @@ public final class StringUtils {
     public static String concatSpiltWithIgnoreLast(final String split, final Object... args) {
         if (args == null) return null;
         StringBuilder builder = new StringBuilder();
-        int len = args.length;
+        int           len     = args.length;
         if (len > 0) {
             if (isEmpty(split)) {
                 for (int i = 0; i < len; i++) {
@@ -1047,7 +1047,7 @@ public final class StringUtils {
         if (isEmpty(str)) return str;
         try {
             StringBuilder builder = new StringBuilder();
-            byte[] bytes = str.getBytes();
+            byte[]        bytes   = str.getBytes();
             for (int i = 0, len = bytes.length; i < len; i++) {
                 builder.append(Integer.toHexString(bytes[i] & 0xff));
             }
@@ -1067,7 +1067,7 @@ public final class StringUtils {
         if (isEmpty(str)) return str;
         try {
             StringBuilder builder = new StringBuilder();
-            char[] chars = str.toCharArray();
+            char[]        chars   = str.toCharArray();
             for (int i = 0, len = chars.length; i < len; i++) {
                 builder.append("\\u").append(Integer.toHexString(chars[i]));
             }
@@ -1147,7 +1147,7 @@ public final class StringUtils {
     public static boolean checkChineseToString(final String str) {
         if (isEmpty(str)) return false;
         boolean result = true;
-        char[] chars = str.toCharArray();
+        char[]  chars  = str.toCharArray();
         for (int i = 0, len = chars.length; i < len; i++) {
             if (!isChinese(chars[i])) {
                 result = false;
@@ -1214,9 +1214,9 @@ public final class StringUtils {
     public static String reverse(final String str) {
         int len = length(str);
         if (len <= 1) return str;
-        int mid = len >> 1;
+        int    mid   = len >> 1;
         char[] chars = str.toCharArray();
-        char ch;
+        char   ch;
         for (int i = 0; i < mid; ++i) {
             ch = chars[i];
             chars[i] = chars[len - i - 1];
@@ -1233,9 +1233,9 @@ public final class StringUtils {
     public static String underScoreCaseToCamelCase(final String str) {
         if (isEmpty(str)) return str;
         if (!str.contains("_")) return str;
-        StringBuilder builder = new StringBuilder();
-        char[] chars = str.toCharArray();
-        boolean hitUnderScore = false;
+        StringBuilder builder       = new StringBuilder();
+        char[]        chars         = str.toCharArray();
+        boolean       hitUnderScore = false;
         builder.append(chars[0]);
         for (int i = 1, len = chars.length; i < len; i++) {
             char c = chars[i];
@@ -1261,7 +1261,7 @@ public final class StringUtils {
     public static String camelCaseToUnderScoreCase(final String str) {
         if (isEmpty(str)) return str;
         StringBuilder builder = new StringBuilder();
-        char[] chars = str.toCharArray();
+        char[]        chars   = str.toCharArray();
         for (int i = 0, len = chars.length; i < len; i++) {
             char c = chars[i];
             if (Character.isUpperCase(c)) {

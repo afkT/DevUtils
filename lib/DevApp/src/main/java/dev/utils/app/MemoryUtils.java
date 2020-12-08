@@ -41,7 +41,7 @@ public final class MemoryUtils {
         try {
             br = new BufferedReader(new FileReader(MEM_INFO_PATH), 4 * 1024);
             StringBuilder builder = new StringBuilder();
-            String str;
+            String        str;
             while ((str = br.readLine()) != null) {
                 builder.append(str);
             }
@@ -62,7 +62,7 @@ public final class MemoryUtils {
     public static String printMemoryInfo2() {
         try {
             ActivityManager.MemoryInfo memoryInfo = getMemoryInfo();
-            StringBuilder builder = new StringBuilder();
+            StringBuilder              builder    = new StringBuilder();
             builder.append("Memory: ");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 builder.append("\ntotalMem: ").append(memoryInfo.totalMem);
@@ -84,8 +84,8 @@ public final class MemoryUtils {
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     public static ActivityManager.MemoryInfo getMemoryInfo() {
         try {
-            ActivityManager activityManager = AppUtils.getActivityManager();
-            ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+            ActivityManager            activityManager = AppUtils.getActivityManager();
+            ActivityManager.MemoryInfo memoryInfo      = new ActivityManager.MemoryInfo();
             activityManager.getMemoryInfo(memoryInfo);
             return memoryInfo;
         } catch (Exception e) {
@@ -104,8 +104,8 @@ public final class MemoryUtils {
     public static long getAvailMemory() {
         try {
             // 获取 android 当前可用内存大小
-            ActivityManager activityManager = AppUtils.getActivityManager();
-            ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+            ActivityManager            activityManager = AppUtils.getActivityManager();
+            ActivityManager.MemoryInfo memoryInfo      = new ActivityManager.MemoryInfo();
             activityManager.getMemoryInfo(memoryInfo);
             // 当前系统的可用内存
             return memoryInfo.availMem;

@@ -389,7 +389,7 @@ public final class BitmapUtils {
     public static int getRotateDegree(final String filePath) {
         try {
             ExifInterface exifInterface = new ExifInterface(filePath);
-            int orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            int           orientation   = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
             switch (orientation) {
                 case ExifInterface.ORIENTATION_ROTATE_90:
                     return 90;
@@ -581,7 +581,7 @@ public final class BitmapUtils {
     public static Bitmap crop(final Bitmap bitmap, final float widthScale, final float heightScale) {
         if (bitmap == null) return null;
         try {
-            int width = bitmap.getWidth();
+            int width  = bitmap.getWidth();
             int height = bitmap.getHeight();
 
             // 获取需要裁剪的高度
@@ -643,7 +643,7 @@ public final class BitmapUtils {
     public static Bitmap combine(final Bitmap bgd, final Bitmap fg, final PorterDuff.Mode mode, final Point bgdPoint, final Point fgPoint) {
         if (isEmpty(bgd) || isEmpty(fg)) return null;
 
-        int width = bgd.getWidth() > fg.getWidth() ? bgd.getWidth() : fg.getWidth();
+        int width  = bgd.getWidth() > fg.getWidth() ? bgd.getWidth() : fg.getWidth();
         int height = bgd.getHeight() > fg.getHeight() ? bgd.getHeight() : fg.getHeight();
 
         Paint paint = new Paint();
@@ -652,7 +652,7 @@ public final class BitmapUtils {
         }
 
         Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(newBitmap);
+        Canvas canvas    = new Canvas(newBitmap);
         canvas.drawBitmap(bgd, (bgdPoint != null) ? bgdPoint.x : 0, (bgdPoint != null) ? bgdPoint.y : 0, null);
         canvas.drawBitmap(fg, (fgPoint != null) ? fgPoint.x : 0, (fgPoint != null) ? fgPoint.y : 0, paint);
         return newBitmap;
@@ -682,13 +682,13 @@ public final class BitmapUtils {
 
         // 绘制坐标点
         Point bgdPoint = new Point();
-        Point fgPoint = new Point();
+        Point fgPoint  = new Point();
 
         // 宽高信息
-        int bgdWidth = bgd.getWidth();
+        int bgdWidth  = bgd.getWidth();
         int bgdHeight = bgd.getHeight();
 
-        int fgWidth = fg.getWidth();
+        int fgWidth  = fg.getWidth();
         int fgHeight = fg.getHeight();
 
         if (bgdWidth > fgWidth) {
@@ -728,7 +728,7 @@ public final class BitmapUtils {
     public static Bitmap combineToSameSize(Bitmap bgd, Bitmap fg, final PorterDuff.Mode mode) {
         if (isEmpty(bgd) || isEmpty(fg)) return null;
 
-        int width = bgd.getWidth() < fg.getWidth() ? bgd.getWidth() : fg.getWidth();
+        int width  = bgd.getWidth() < fg.getWidth() ? bgd.getWidth() : fg.getWidth();
         int height = bgd.getHeight() < fg.getHeight() ? bgd.getHeight() : fg.getHeight();
 
         if (fg.getWidth() != width && fg.getHeight() != height) {
@@ -745,7 +745,7 @@ public final class BitmapUtils {
         }
 
         Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(newBitmap);
+        Canvas canvas    = new Canvas(newBitmap);
         canvas.drawBitmap(bgd, 0, 0, null);
         canvas.drawBitmap(fg, 0, 0, paint);
         return newBitmap;
@@ -785,7 +785,7 @@ public final class BitmapUtils {
         if (isEmpty(bitmap)) return null;
         if (reflectionHeight <= 0) return null;
         // 获取图片宽高
-        int width = bitmap.getWidth();
+        int width  = bitmap.getWidth();
         int height = bitmap.getHeight();
 
         // 创建画布, 画布分为上中下三部分, 上: 是源图片, 中: 是源图片与倒影的间距, 下: 是倒影
@@ -794,7 +794,7 @@ public final class BitmapUtils {
         Bitmap reflectionImage = reverseByVertical(bitmap); // 垂直翻转图片 ( 上下颠倒 )
         // 创建一张宽度与源图片相同, 但高度等于 源图片的高度 + 间距 + 倒影的高度的图片
         Bitmap bitmapWithReflection = Bitmap.createBitmap(width, height + reflectionSpacing + reflectionHeight, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmapWithReflection);
+        Canvas canvas               = new Canvas(bitmapWithReflection);
 
         // 将源图片画到画布的上半部分, 将倒影画到画布的下半部分, 倒影与画布顶部的间距是源图片的高度加上源图片与倒影之间的间距
         canvas.drawBitmap(bitmap, 0, 0, null);
@@ -839,7 +839,7 @@ public final class BitmapUtils {
     public static Bitmap roundCorner(final Bitmap bitmap, final float pixels) {
         if (isEmpty(bitmap)) return null;
         // 创建一个同源图片一样大小的矩形, 用于把源图片绘制到这个矩形上
-        Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        Rect  rect  = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
         RectF rectF = new RectF(rect); // 创建一个精度更高的矩形, 用于画出圆角效果
 
         Paint paint = new Paint();
@@ -847,7 +847,7 @@ public final class BitmapUtils {
         paint.setColor(0xff424242); // 设置画笔的颜色为不透明的灰色
 
         Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(newBitmap);
+        Canvas canvas    = new Canvas(newBitmap);
         canvas.drawARGB(0, 0, 0, 0);
         canvas.drawRoundRect(rectF, pixels, pixels, paint);
         // 绘制底圆后, 进行合并 ( 交集处理 )
@@ -898,7 +898,7 @@ public final class BitmapUtils {
         if (isEmpty(bitmap)) return null;
         if (directions == null || directions.length != 4) return null;
         // 创建一个同源图片一样大小的矩形, 用于把源图片绘制到这个矩形上
-        Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        Rect  rect  = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
         RectF rectF = new RectF(rect); // 创建一个精度更高的矩形, 用于画出圆角效果
 
         // ===============
@@ -922,7 +922,7 @@ public final class BitmapUtils {
         paint.setColor(0xff424242); // 设置画笔的颜色为不透明的灰色
 
         Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(newBitmap);
+        Canvas canvas    = new Canvas(newBitmap);
         canvas.drawARGB(0, 0, 0, 0);
         canvas.drawRoundRect(rectF, pixels, pixels, paint);
         // 绘制底圆后, 进行合并 ( 交集处理 )
@@ -954,13 +954,13 @@ public final class BitmapUtils {
     public static Bitmap round(final Bitmap bitmap, @IntRange(from = 0) final int borderSize, @ColorInt final int borderColor) {
         if (isEmpty(bitmap)) return null;
 
-        int width = bitmap.getWidth();
+        int width  = bitmap.getWidth();
         int height = bitmap.getHeight();
-        int size = Math.min(width, height);
+        int size   = Math.min(width, height);
 
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        Paint paint  = new Paint(Paint.ANTI_ALIAS_FLAG);
         float center = size / 2f;
-        RectF rectF = new RectF(0, 0, width, height);
+        RectF rectF  = new RectF(0, 0, width, height);
         rectF.inset((width - size) / 2f, (height - size) / 2f);
 
         Matrix matrix = new Matrix();
@@ -973,7 +973,7 @@ public final class BitmapUtils {
         paint.setShader(shader);
 
         Bitmap newBitmap = Bitmap.createBitmap(width, height, bitmap.getConfig());
-        Canvas canvas = new Canvas(newBitmap);
+        Canvas canvas    = new Canvas(newBitmap);
         canvas.drawRoundRect(rectF, center, center, paint);
 
         if (borderSize > 0) {
@@ -1029,11 +1029,11 @@ public final class BitmapUtils {
         if (isEmpty(bitmap)) return null;
 
         Bitmap newBitmap = bitmap.copy(bitmap.getConfig(), true);
-        int width = newBitmap.getWidth();
-        int height = newBitmap.getHeight();
+        int    width     = newBitmap.getWidth();
+        int    height    = newBitmap.getHeight();
 
         Canvas canvas = new Canvas(newBitmap);
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        Paint  paint  = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(color);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(borderSize);
@@ -1041,8 +1041,8 @@ public final class BitmapUtils {
             float radius = Math.min(width, height) / 2f - borderSize / 2f;
             canvas.drawCircle(width / 2f, height / 2f, radius, paint);
         } else {
-            int halfBorderSize = borderSize >> 1;
-            RectF rectF = new RectF(halfBorderSize, halfBorderSize, width - halfBorderSize, height - halfBorderSize);
+            int   halfBorderSize = borderSize >> 1;
+            RectF rectF          = new RectF(halfBorderSize, halfBorderSize, width - halfBorderSize, height - halfBorderSize);
             canvas.drawRoundRect(rectF, cornerRadius, cornerRadius, paint);
         }
         return newBitmap;
@@ -1073,7 +1073,7 @@ public final class BitmapUtils {
         paint.getTextBounds(content, 0, content.length(), bounds);
 
         Bitmap newBitmap = bitmap.copy(bitmap.getConfig(), true);
-        Canvas canvas = new Canvas(newBitmap);
+        Canvas canvas    = new Canvas(newBitmap);
         canvas.drawText(content, x, y + textSize, paint);
         return newBitmap;
     }
@@ -1092,7 +1092,7 @@ public final class BitmapUtils {
         if (isEmpty(bitmap)) return null;
         Bitmap newBitmap = bitmap.copy(bitmap.getConfig(), true);
         if (!isEmpty(watermark)) {
-            Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            Paint  paint  = new Paint(Paint.ANTI_ALIAS_FLAG);
             Canvas canvas = new Canvas(newBitmap);
             paint.setAlpha(alpha);
             canvas.drawBitmap(watermark, x, y, paint);
@@ -1225,8 +1225,8 @@ public final class BitmapUtils {
                     data = baos.toByteArray();
                 } else { // 二分法寻找最佳质量
                     int start = 0;
-                    int end = 100;
-                    int mid = 0;
+                    int end   = 100;
+                    int mid   = 0;
                     while (start < end) {
                         mid = (start + end) / 2;
                         baos.reset();
@@ -1345,8 +1345,8 @@ public final class BitmapUtils {
     public static int calculateInSampleSize(final BitmapFactory.Options options, final int maxWidth, final int maxHeight) {
         if (options == null) return 0;
 
-        int height = options.outHeight;
-        int width = options.outWidth;
+        int height       = options.outHeight;
+        int width        = options.outWidth;
         int inSampleSize = 1;
         while (height > maxHeight || width > maxWidth) {
             height >>= 1;
@@ -1380,8 +1380,8 @@ public final class BitmapUtils {
                     return 0;
                 } else { // 二分法寻找最佳质量
                     int start = 0;
-                    int end = 100;
-                    int mid = 0;
+                    int end   = 100;
+                    int mid   = 0;
                     while (start < end) {
                         mid = (start + end) / 2;
                         baos.reset();

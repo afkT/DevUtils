@@ -1039,8 +1039,8 @@ public final class ToastTintUtils {
                 // 引入 View
                 final View toastLayout = LayoutInflater.from(context).inflate(dev.utils.R.layout.dev_toast_layout, null);
                 // 初始化 View
-                final ImageView toastIcon = toastLayout.findViewById(dev.utils.R.id.vid_dtl_toast_igview);
-                final TextView toastTextView = toastLayout.findViewById(dev.utils.R.id.vid_dtl_toast_tv);
+                final ImageView toastIcon     = toastLayout.findViewById(dev.utils.R.id.vid_dtl_toast_igview);
+                final TextView  toastTextView = toastLayout.findViewById(dev.utils.R.id.vid_dtl_toast_tv);
 
                 // ================
                 // = TextView 相关 =
@@ -1127,8 +1127,8 @@ public final class ToastTintUtils {
                 Field field_tn = Toast.class.getDeclaredField("mTN");
                 field_tn.setAccessible(true);
 
-                Object mTN = field_tn.get(toast);
-                Field field_handler = field_tn.getType().getDeclaredField("mHandler");
+                Object mTN           = field_tn.get(toast);
+                Field  field_handler = field_tn.getType().getDeclaredField("mHandler");
                 field_handler.setAccessible(true);
 
                 Handler handler = (Handler) field_handler.get(mTN);

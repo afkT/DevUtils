@@ -1487,9 +1487,9 @@ public final class ConvertUtils {
     public static byte[] decodeBinary(final String str) {
         if (str == null) return null;
         try {
-            String data = str;
-            int lenMod = data.length() % 8;
-            int byteLen = data.length() / 8;
+            String data    = str;
+            int    lenMod  = data.length() % 8;
+            int    byteLen = data.length() / 8;
             // add "0" until length to 8 times
             if (lenMod != 0) {
                 for (int i = lenMod; i < 8; i++) {
@@ -1562,7 +1562,7 @@ public final class ConvertUtils {
     public static byte[] decodeHex(final char[] data) {
         if (data == null) return null;
         try {
-            int len = data.length;
+            int    len = data.length;
             byte[] out = new byte[len >> 1];
             // 十六进制由两个字符组成
             for (int i = 0, j = 0; j < len; i++) {
@@ -1783,7 +1783,7 @@ public final class ConvertUtils {
     private static String toHexString(final byte[] data, final char[] hexDigits) {
         if (data == null || hexDigits == null) return null;
         try {
-            int len = data.length;
+            int           len     = data.length;
             StringBuilder builder = new StringBuilder(len);
             for (int i = 0; i < len; i++) {
                 builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);

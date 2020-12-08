@@ -88,10 +88,10 @@ public final class ShellUtils {
         if (commands == null || commands.length == 0) {
             return new CommandResult(result, null, null);
         }
-        Process process = null;
-        DataOutputStream dos = null;
-        String successMsg = null;
-        String errorMsg = null;
+        Process          process    = null;
+        DataOutputStream dos        = null;
+        String           successMsg = null;
+        String           errorMsg   = null;
         try {
             process = Runtime.getRuntime().exec(isRoot ? "su" : "sh");
             dos = new DataOutputStream(process.getOutputStream());

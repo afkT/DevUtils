@@ -365,9 +365,9 @@ public final class ADBUtils {
      */
     public static boolean installAppSilent(final File file, final String params, final boolean isRooted) {
         if (!FileUtils.isFileExists(file)) return false;
-        String filePath = '"' + file.getAbsolutePath() + '"';
-        String command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm install " + (params == null ? "" : params + " ") + filePath;
-        ShellUtils.CommandResult result = ShellUtils.execCmd(command, isRooted);
+        String                   filePath = '"' + file.getAbsolutePath() + '"';
+        String                   command  = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm install " + (params == null ? "" : params + " ") + filePath;
+        ShellUtils.CommandResult result   = ShellUtils.execCmd(command, isRooted);
         return result.isSuccess4("success");
     }
 
@@ -431,8 +431,8 @@ public final class ADBUtils {
      */
     public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData, final boolean isRooted) {
         if (StringUtils.isSpace(packageName)) return false;
-        String command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm uninstall " + (isKeepData ? "-k " : "") + packageName;
-        ShellUtils.CommandResult result = ShellUtils.execCmd(command, isRooted);
+        String                   command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm uninstall " + (isKeepData ? "-k " : "") + packageName;
+        ShellUtils.CommandResult result  = ShellUtils.execCmd(command, isRooted);
         return result.isSuccess4("success");
     }
 
@@ -455,7 +455,7 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, packageName), true);
         if (result.isSuccess3()) {
             String mainStr = "android.intent.action.MAIN:";
-            int start = result.successMsg.indexOf(mainStr);
+            int    start   = result.successMsg.indexOf(mainStr);
             // 防止都为 null
             if (start != -1) {
                 try {
@@ -510,8 +510,8 @@ public final class ADBUtils {
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
         if (result.isSuccess3()) {
             try {
-                String nameStr = "name=";
-                String[] arrays = result.successMsg.split(DevFinal.NEW_LINE_STR);
+                String   nameStr = "name=";
+                String[] arrays  = result.successMsg.split(DevFinal.NEW_LINE_STR);
                 for (String str : arrays) {
                     if (!TextUtils.isEmpty(str)) {
                         int start = str.indexOf(nameStr);
@@ -552,7 +552,7 @@ public final class ADBUtils {
                         if (splitArys != null && splitArys.length != 0) {
                             for (String splitStr : splitArys) {
                                 if (!TextUtils.isEmpty(splitStr)) {
-                                    int start = splitStr.indexOf('/');
+                                    int start     = splitStr.indexOf('/');
                                     int lastIndex = splitStr.lastIndexOf('}');
                                     if (start != -1 && lastIndex != -1) {
                                         // 获取裁剪数据
@@ -597,7 +597,7 @@ public final class ADBUtils {
                         if (splitArys != null && splitArys.length != 0) {
                             for (String splitStr : splitArys) {
                                 if (!TextUtils.isEmpty(splitStr)) {
-                                    int start = splitStr.indexOf('/');
+                                    int start     = splitStr.indexOf('/');
                                     int lastIndex = splitStr.lastIndexOf('}');
                                     if (start != -1 && lastIndex != -1 && splitStr.indexOf(packageName) == 0) {
                                         // 获取裁剪数据
@@ -718,8 +718,8 @@ public final class ADBUtils {
         // 防止数据为 null
         if (!TextUtils.isEmpty(result)) {
             try {
-                List<String> lists = new ArrayList<>();
-                String[] dataSplit = result.split(DevFinal.NEW_LINE_STR);
+                List<String> lists     = new ArrayList<>();
+                String[]     dataSplit = result.split(DevFinal.NEW_LINE_STR);
                 // 拆分后, 数据长度
                 int splitLength = dataSplit.length;
                 // 获取 Activity 栈字符串
@@ -957,7 +957,7 @@ public final class ADBUtils {
      * @return 运行中的 Services 信息
      */
     public static String getServices(final String packageName) {
-        String cmd = "dumpsys activity services" + ((StringUtils.isSpace(packageName) ? "" : " " + packageName));
+        String                   cmd    = "dumpsys activity services" + ((StringUtils.isSpace(packageName) ? "" : " " + packageName));
         ShellUtils.CommandResult result = ShellUtils.execCmd(cmd, true);
         if (result.isSuccess3()) {
             return result.successMsg;
@@ -1858,7 +1858,7 @@ public final class ADBUtils {
             if (result.isSuccess3()) {
                 try {
                     StringBuilder builder = new StringBuilder();
-                    String subStr = result.successMsg.replaceAll("\\.", "");
+                    String        subStr  = result.successMsg.replaceAll("\\.", "");
                     subStr = subStr.substring(subStr.indexOf('\'') + 1, subStr.indexOf("')"));
                     // 添加数据
                     builder.append(subStr.substring(0, subStr.indexOf('\'')));
@@ -1908,7 +1908,7 @@ public final class ADBUtils {
      * @return IP 地址
      */
     public static String getIPAddress() {
-        boolean isRoot = false;
+        boolean                  isRoot = false;
         ShellUtils.CommandResult result = ShellUtils.execCmd("ifconfig | grep Mask", isRoot);
         if (result.isSuccess3()) {
             return result.successMsg;

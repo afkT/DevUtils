@@ -86,7 +86,7 @@ public final class JSONObjectUtils {
                     return format ? jsonArray.toString(jsonIndent) : jsonArray.toString();
                 } else {
                     JSONArray jsonArray = new JSONArray();
-                    int length = Array.getLength(object);
+                    int       length    = Array.getLength(object);
                     for (int i = 0; i < length; ++i) {
                         jsonArray.put(wrap(Array.get(object, i)));
                     }
@@ -156,7 +156,7 @@ public final class JSONObjectUtils {
                         return (T) new JSONArray(object);
                     } else {
                         JSONArray jsonArray = new JSONArray();
-                        int length = Array.getLength(object);
+                        int       length    = Array.getLength(object);
                         for (int i = 0; i < length; ++i) {
                             jsonArray.put(wrap(Array.get(object, i)));
                         }
@@ -203,7 +203,7 @@ public final class JSONObjectUtils {
                     return new JSONArray(object);
                 } else {
                     JSONArray jsonArray = new JSONArray();
-                    int length = Array.getLength(object);
+                    int       length    = Array.getLength(object);
                     for (int i = 0; i < length; ++i) {
                         jsonArray.put(wrap(Array.get(object, i)));
                     }
@@ -363,10 +363,10 @@ public final class JSONObjectUtils {
     public static Map<String, Object> jsonToMap(final JSONObject jsonObject) {
         if (JSONObject.NULL.equals(jsonObject)) return null;
         try {
-            Map<String, Object> map = new LinkedHashMap<>();
-            Iterator<String> iterator = jsonObject.keys();
+            Map<String, Object> map      = new LinkedHashMap<>();
+            Iterator<String>    iterator = jsonObject.keys();
             while (iterator.hasNext()) {
-                String key = iterator.next();
+                String key   = iterator.next();
                 Object value = jsonObject.get(key);
                 if (value instanceof JSONArray) {
                     value = jsonToList((JSONArray) value);

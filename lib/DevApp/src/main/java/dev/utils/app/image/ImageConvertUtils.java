@@ -131,7 +131,7 @@ public final class ImageConvertUtils {
             int len = data.length;
             if (len == 0) return null;
             byte[] buffer = new byte[width * height * 4]; // A + R + G + B = 4
-            int offset = 0; // 计算偏移量
+            int    offset = 0; // 计算偏移量
             for (int i = len - 1; i >= 0; i -= width) {
                 // DIB 文件格式最后一行为第一行, 每行按从左到右顺序
                 int end = i, start = i - width + 1;
@@ -154,13 +154,13 @@ public final class ImageConvertUtils {
         public static byte[] convertBMP(final Bitmap bitmap) {
             if (bitmap == null) return null;
             try {
-                int width = bitmap.getWidth(), height = bitmap.getHeight();
+                int   width  = bitmap.getWidth(), height = bitmap.getHeight();
                 int[] pixels = new int[width * height];
                 bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
 
-                byte[] rgb = addBMP_ARGB8888(pixels, width, height);
+                byte[] rgb    = addBMP_ARGB8888(pixels, width, height);
                 byte[] header = addBMPImageHeader(rgb.length);
-                byte[] infos = addBMPImageInfosHeader(width, height);
+                byte[] infos  = addBMPImageInfosHeader(width, height);
                 byte[] buffer = new byte[54 + rgb.length];
 
                 System.arraycopy(header, 0, buffer, 0, header.length);

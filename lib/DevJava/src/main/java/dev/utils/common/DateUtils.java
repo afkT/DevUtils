@@ -871,12 +871,12 @@ public final class DateUtils {
     public static String millisToFitTimeSpan(final long millis, final int precision) {
         if (millis <= 0 || precision <= 0) return null;
 
-        long millisTime = millis;
-        int precisionFormat = precision;
+        long millisTime      = millis;
+        int  precisionFormat = precision;
 
         StringBuilder builder = new StringBuilder();
-        String[] units = {"天", "小时", "分钟", "秒", "毫秒"};
-        int[] unitLen = {86400000, 3600000, 60000, 1000, 1};
+        String[]      units   = {"天", "小时", "分钟", "秒", "毫秒"};
+        int[]         unitLen = {86400000, 3600000, 60000, 1000, 1};
         precisionFormat = Math.min(precisionFormat, 5);
         for (int i = 0; i < precisionFormat; i++) {
             if (millisTime >= unitLen[i]) {
@@ -895,9 +895,9 @@ public final class DateUtils {
      */
     public static int[] millisToTimeArys(final long millis) {
         if (millis <= 0) return null;
-        int[] timeArys = new int[5];
-        int[] unitLen = {86400000, 3600000, 60000, 1000, 1};
-        long millisTime = millis;
+        int[] timeArys   = new int[5];
+        int[] unitLen    = {86400000, 3600000, 60000, 1000, 1};
+        long  millisTime = millis;
         for (int i = 0; i < 5; i++) {
             if (millisTime >= unitLen[i]) {
                 long mode = millisTime / unitLen[i];

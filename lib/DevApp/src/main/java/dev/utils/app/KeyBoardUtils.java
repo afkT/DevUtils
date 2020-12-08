@@ -543,7 +543,7 @@ public final class KeyBoardUtils {
     private static int getContentViewInvisibleHeight(final Activity activity) {
         try {
             final View contentView = activity.findViewById(android.R.id.content);
-            Rect rect = new Rect();
+            Rect       rect        = new Rect();
             contentView.getWindowVisibleDisplayFrame(rect);
             return contentView.getRootView().getHeight() - rect.height();
         } catch (Exception e) {
@@ -643,8 +643,8 @@ public final class KeyBoardUtils {
     public static void fixSoftInputLeaks(final Context context) {
         if (context == null) return;
         try {
-            InputMethodManager imm = AppUtils.getInputMethodManager();
-            String[] strArr = new String[]{"mCurRootView", "mServedView", "mNextServedView", "mLastSrvView"};
+            InputMethodManager imm    = AppUtils.getInputMethodManager();
+            String[]           strArr = new String[]{"mCurRootView", "mServedView", "mNextServedView", "mLastSrvView"};
             for (int i = 0, len = strArr.length; i < len; i++) {
                 try {
                     Field declaredField = imm.getClass().getDeclaredField(strArr[i]);

@@ -652,8 +652,8 @@ public final class FileUtils {
      */
     public static String getFileCharsetSimple(final File file) {
         if (!isFileExists(file)) return null;
-        int pos = 0;
-        InputStream is = null;
+        int         pos = 0;
+        InputStream is  = null;
         try {
             is = new BufferedInputStream(new FileInputStream(file));
             pos = (is.read() << 8) + is.read();
@@ -690,12 +690,12 @@ public final class FileUtils {
      */
     public static int getFileLines(final File file) {
         if (!isFileExists(file)) return 0;
-        int lineCount = 1;
-        InputStream is = null;
+        int         lineCount = 1;
+        InputStream is        = null;
         try {
             is = new BufferedInputStream(new FileInputStream(file));
             byte[] buffer = new byte[1024];
-            int readChars;
+            int    readChars;
             if (DevFinal.NEW_LINE_STR.endsWith("\n")) {
                 while ((readChars = is.read(buffer, 0, 1024)) != -1) {
                     for (int i = 0; i < readChars; ++i) {
@@ -789,7 +789,7 @@ public final class FileUtils {
      */
     public static long getDirLength(final File dir) {
         if (!isDirectory(dir)) return 0;
-        long len = 0;
+        long   len   = 0;
         File[] files = dir.listFiles();
         if (files != null && files.length != 0) {
             for (File file : files) {
@@ -932,7 +932,7 @@ public final class FileUtils {
     public static String formatFileSize(final double fileSize) {
         // 转换文件大小
         DecimalFormat df = new DecimalFormat("#.00");
-        String fileSizeStr;
+        String        fileSizeStr;
         if (fileSize <= 0) {
             fileSizeStr = "0B";
         } else if (fileSize < 1024) {
@@ -1095,7 +1095,7 @@ public final class FileUtils {
      */
     public static boolean saveFile(final File file, final byte[] data) {
         if (file != null && data != null) {
-            FileOutputStream fos = null;
+            FileOutputStream     fos = null;
             BufferedOutputStream bos = null;
             try {
                 // 防止文件夹没创建
@@ -1135,7 +1135,7 @@ public final class FileUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean appendFile(final File file, final byte[] data) {
-        FileOutputStream fos = null;
+        FileOutputStream     fos = null;
         BufferedOutputStream bos = null;
         try {
             // 防止文件夹没创建
@@ -1174,7 +1174,7 @@ public final class FileUtils {
             FileInputStream fis = null;
             try {
                 fis = new FileInputStream(file);
-                int length = fis.available();
+                int    length = fis.available();
                 byte[] buffer = new byte[length];
                 fis.read(buffer);
                 return buffer;
@@ -1195,7 +1195,7 @@ public final class FileUtils {
     public static byte[] readFileBytes(final InputStream inputStream) {
         if (inputStream != null) {
             try {
-                int length = inputStream.available();
+                int    length = inputStream.available();
                 byte[] buffer = new byte[length];
                 inputStream.read(buffer);
                 return buffer;
@@ -1260,7 +1260,7 @@ public final class FileUtils {
                 }
                 br = new BufferedReader(isr);
                 StringBuilder builder = new StringBuilder();
-                String line;
+                String        line;
                 while ((line = br.readLine()) != null) {
                     builder.append(line);
                 }
@@ -1311,9 +1311,9 @@ public final class FileUtils {
             }
         }
         // 复制文件
-        int len = 0; // 读取的字节数
-        InputStream is = inputStream;
-        OutputStream os = null;
+        int          len = 0; // 读取的字节数
+        InputStream  is  = inputStream;
+        OutputStream os  = null;
         try {
             os = new FileOutputStream(destFile);
             byte[] buffer = new byte[1024];
@@ -1372,9 +1372,9 @@ public final class FileUtils {
             }
         }
         // 复制文件
-        int len = 0; // 读取的字节数
-        InputStream is = null;
-        OutputStream os = null;
+        int          len = 0; // 读取的字节数
+        InputStream  is  = null;
+        OutputStream os  = null;
         try {
             is = new FileInputStream(srcFile);
             os = new FileOutputStream(destFile);
@@ -1539,7 +1539,7 @@ public final class FileUtils {
     public static boolean copyOrMoveDir(final File srcDir, final File destDir, final OnReplaceListener listener, final boolean isMove) {
         if (srcDir == null || destDir == null || listener == null) return false;
         // 为防止以上这种情况出现出现误判, 须分别在后面加个路径分隔符
-        String srcPath = srcDir.getPath() + File.separator;
+        String srcPath  = srcDir.getPath() + File.separator;
         String destPath = destDir.getPath() + File.separator;
         if (destPath.contains(srcPath)) return false;
         // 源文件不存在或者不是目录则返回 false
@@ -1903,8 +1903,8 @@ public final class FileUtils {
      */
     public static List<File> listFilesInDirWithFilter(final File dir, final FileFilter filter, final boolean isRecursive) {
         if (!isDirectory(dir) || filter == null) return null;
-        List<File> list = new ArrayList<>();
-        File[] files = dir.listFiles();
+        List<File> list  = new ArrayList<>();
+        File[]     files = dir.listFiles();
         if (files != null && files.length != 0) {
             for (File file : files) {
                 if (filter.accept(file)) {
@@ -2053,8 +2053,8 @@ public final class FileUtils {
      */
     public static List<FileList> listFilesInDirWithFilterBean(final File dir, final FileFilter filter, final boolean isRecursive) {
         if (!isDirectory(dir) || filter == null) return null;
-        List<FileList> list = new ArrayList<>();
-        File[] files = dir.listFiles();
+        List<FileList> list  = new ArrayList<>();
+        File[]         files = dir.listFiles();
         if (files != null && files.length != 0) {
             for (File file : files) {
                 if (filter.accept(file)) {

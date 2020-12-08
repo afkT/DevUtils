@@ -43,10 +43,10 @@ public final class CoordinateUtils {
      * @return GCJ02 坐标 [ 经度, 纬度 ]
      */
     public static double[] bd09ToGcj02(final double lng, final double lat) {
-        double x = lng - 0.0065;
-        double y = lat - 0.006;
-        double z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * X_PI);
-        double theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * X_PI);
+        double x      = lng - 0.0065;
+        double y      = lat - 0.006;
+        double z      = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * X_PI);
+        double theta  = Math.atan2(y, x) - 0.000003 * Math.cos(x * X_PI);
         double gg_lng = z * Math.cos(theta);
         double gg_lat = z * Math.sin(theta);
         return new double[]{gg_lng, gg_lat};
@@ -59,8 +59,8 @@ public final class CoordinateUtils {
      * @return BD09 坐标 [ 经度, 纬度 ]
      */
     public static double[] gcj02ToBd09(final double lng, final double lat) {
-        double z = Math.sqrt(lng * lng + lat * lat) + 0.00002 * Math.sin(lat * X_PI);
-        double theta = Math.atan2(lat, lng) + 0.000003 * Math.cos(lng * X_PI);
+        double z      = Math.sqrt(lng * lng + lat * lat) + 0.00002 * Math.sin(lat * X_PI);
+        double theta  = Math.atan2(lat, lng) + 0.000003 * Math.cos(lng * X_PI);
         double bd_lng = z * Math.cos(theta) + 0.0065;
         double bd_lat = z * Math.sin(theta) + 0.006;
         return new double[]{bd_lng, bd_lat};
@@ -74,10 +74,10 @@ public final class CoordinateUtils {
      */
     public static double[] gcj02ToWGS84(final double lng, final double lat) {
         if (outOfChina(lng, lat)) return new double[]{lng, lat};
-        double dlat = transformLat(lng - 105.0, lat - 35.0);
-        double dlng = transformLng(lng - 105.0, lat - 35.0);
+        double dlat   = transformLat(lng - 105.0, lat - 35.0);
+        double dlng   = transformLng(lng - 105.0, lat - 35.0);
         double radlat = lat / 180.0 * PI;
-        double magic = Math.sin(radlat);
+        double magic  = Math.sin(radlat);
         magic = 1 - EE * magic * magic;
         double sqrtmagic = Math.sqrt(magic);
         dlat = (dlat * 180.0) / ((A * (1 - EE)) / (magic * sqrtmagic) * PI);
@@ -95,10 +95,10 @@ public final class CoordinateUtils {
      */
     public static double[] wgs84ToGcj02(final double lng, final double lat) {
         if (outOfChina(lng, lat)) return new double[]{lng, lat};
-        double dlat = transformLat(lng - 105.0, lat - 35.0);
-        double dlng = transformLng(lng - 105.0, lat - 35.0);
+        double dlat   = transformLat(lng - 105.0, lat - 35.0);
+        double dlng   = transformLng(lng - 105.0, lat - 35.0);
         double radlat = lat / 180.0 * PI;
-        double magic = Math.sin(radlat);
+        double magic  = Math.sin(radlat);
         magic = 1 - EE * magic * magic;
         double sqrtmagic = Math.sqrt(magic);
         dlat = (dlat * 180.0) / ((A * (1 - EE)) / (magic * sqrtmagic) * PI);
@@ -199,8 +199,8 @@ public final class CoordinateUtils {
                                      final double targetLng, final double targetLat) {
         double radLat1 = rad(originLat);
         double radLat2 = rad(targetLat);
-        double a = radLat1 - radLat2;
-        double b = rad(originLng) - rad(targetLng);
+        double a       = radLat1 - radLat2;
+        double b       = rad(originLng) - rad(targetLng);
         double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2)
                 + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
         s = s * EARTH_RADIUS;

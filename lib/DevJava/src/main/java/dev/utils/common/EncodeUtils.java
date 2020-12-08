@@ -204,7 +204,7 @@ public final class EncodeUtils {
     public static String htmlEncode(final CharSequence input) {
         if (input == null) return null;
         StringBuilder builder = new StringBuilder();
-        char ch;
+        char          ch;
         for (int i = 0, len = input.length(); i < len; i++) {
             ch = input.charAt(i);
             switch (ch) {

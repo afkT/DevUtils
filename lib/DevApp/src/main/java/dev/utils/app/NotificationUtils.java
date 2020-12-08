@@ -66,15 +66,15 @@ public final class NotificationUtils {
                 return AppUtils.getNotificationManager().areNotificationsEnabled();
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 try {
-                    AppOpsManager appOps = AppUtils.getAppOpsManager();
+                    AppOpsManager   appOps  = AppUtils.getAppOpsManager();
                     ApplicationInfo appInfo = context.getApplicationInfo();
-                    String pkg = context.getApplicationContext().getPackageName();
-                    int uid = appInfo.uid;
+                    String          pkg     = context.getApplicationContext().getPackageName();
+                    int             uid     = appInfo.uid;
 
-                    Class<?> appOpsClass = Class.forName(AppOpsManager.class.getName());
-                    Method checkOpNoThrowMethod = appOpsClass.getMethod("checkOpNoThrow", Integer.TYPE, Integer.TYPE, String.class);
-                    Field opPostNotificationValue = appOpsClass.getDeclaredField("OP_POST_NOTIFICATION");
-                    int value = (Integer) opPostNotificationValue.get(Integer.class);
+                    Class<?> appOpsClass             = Class.forName(AppOpsManager.class.getName());
+                    Method   checkOpNoThrowMethod    = appOpsClass.getMethod("checkOpNoThrow", Integer.TYPE, Integer.TYPE, String.class);
+                    Field    opPostNotificationValue = appOpsClass.getDeclaredField("OP_POST_NOTIFICATION");
+                    int      value                   = (Integer) opPostNotificationValue.get(Integer.class);
                     return (Integer) checkOpNoThrowMethod.invoke(appOps, value, uid, pkg) == 0;
                 } catch (Throwable ignore) {
                     return true;

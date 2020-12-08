@@ -130,8 +130,8 @@ public final class DeviceUtils {
             while (mapIter.hasNext()) {
                 // 获取对应的 key - value
                 Map.Entry<String, String> rnEntry = mapIter.next();
-                String rnKey = rnEntry.getKey(); // key
-                String rnValue = rnEntry.getValue(); // value
+                String                    rnKey   = rnEntry.getKey(); // key
+                String                    rnValue = rnEntry.getValue(); // value
                 // 保存设备信息
                 builder.append(rnKey);
                 builder.append(" = ");
@@ -401,10 +401,10 @@ public final class DeviceUtils {
     public static String getBaseband_Ver() {
         String basebandVersion = "";
         try {
-            Class clazz = Class.forName("android.os.SystemProperties");
+            Class  clazz   = Class.forName("android.os.SystemProperties");
             Object invoker = clazz.newInstance();
-            Method method = clazz.getMethod("get", String.class, String.class);
-            Object result = method.invoke(invoker, "gsm.version.baseband", "no message");
+            Method method  = clazz.getMethod("get", String.class, String.class);
+            Object result  = method.invoke(invoker, "gsm.version.baseband", "no message");
             basebandVersion = (String) result;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getBaseband_Ver");
@@ -419,12 +419,12 @@ public final class DeviceUtils {
     public static String getLinuxCore_Ver() {
         String kernelVersion = "";
         try {
-            Process process = Runtime.getRuntime().exec("cat /proc/version");
-            InputStream is = process.getInputStream();
-            InputStreamReader isr = new InputStreamReader(is);
-            BufferedReader br = new BufferedReader(isr, 8 * 1024);
+            Process           process = Runtime.getRuntime().exec("cat /proc/version");
+            InputStream       is      = process.getInputStream();
+            InputStreamReader isr     = new InputStreamReader(is);
+            BufferedReader    br      = new BufferedReader(isr, 8 * 1024);
 
-            String line;
+            String        line;
             StringBuilder builder = new StringBuilder();
             while ((line = br.readLine()) != null) {
                 builder.append(line);
@@ -432,7 +432,7 @@ public final class DeviceUtils {
             String result = builder.toString();
             if (!"".equals(result)) {
                 String keyword = "version ";
-                int index = result.indexOf(keyword);
+                int    index   = result.indexOf(keyword);
                 line = result.substring(index + keyword.length());
                 index = line.indexOf(' ');
                 kernelVersion = line.substring(0, index);

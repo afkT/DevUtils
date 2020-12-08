@@ -161,7 +161,7 @@ public final class FileIOUtils {
         try {
             os = new BufferedOutputStream(new FileOutputStream(file, append));
             byte[] data = new byte[sBufferSize];
-            int len;
+            int    len;
             while ((len = inputStream.read(data, 0, sBufferSize)) != EOF) {
                 os.write(data, 0, len);
             }
@@ -487,9 +487,9 @@ public final class FileIOUtils {
         if (start > end) return null;
         BufferedReader br = null;
         try {
-            String line;
-            int curLine = 1;
-            List<String> list = new ArrayList<>();
+            String       line;
+            int          curLine = 1;
+            List<String> list    = new ArrayList<>();
             if (StringUtils.isSpace(charsetName)) {
                 br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             } else {
@@ -587,13 +587,13 @@ public final class FileIOUtils {
      */
     public static byte[] readFileToBytesByStream(final File file) {
         if (!FileUtils.isFileExists(file)) return null;
-        FileInputStream fis = null;
+        FileInputStream       fis  = null;
         ByteArrayOutputStream baos = null;
         try {
             fis = new FileInputStream(file);
             baos = new ByteArrayOutputStream();
             byte[] b = new byte[sBufferSize];
-            int len;
+            int    len;
             while ((len = fis.read(b, 0, sBufferSize)) != EOF) {
                 baos.write(b, 0, len);
             }
@@ -657,9 +657,9 @@ public final class FileIOUtils {
         FileChannel fc = null;
         try {
             fc = new RandomAccessFile(file, "r").getChannel();
-            int size = (int) fc.size();
-            MappedByteBuffer mbb = fc.map(FileChannel.MapMode.READ_ONLY, 0, size).load();
-            byte[] result = new byte[size];
+            int              size   = (int) fc.size();
+            MappedByteBuffer mbb    = fc.map(FileChannel.MapMode.READ_ONLY, 0, size).load();
+            byte[]           result = new byte[size];
             mbb.get(result, 0, size);
             return result;
         } catch (IOException e) {
@@ -680,9 +680,9 @@ public final class FileIOUtils {
      */
     public static long copyLarge(final InputStream inputStream, final OutputStream outputStream) {
         try {
-            byte[] data = new byte[sBufferSize];
-            long count = 0;
-            int n;
+            byte[] data  = new byte[sBufferSize];
+            long   count = 0;
+            int    n;
             while (EOF != (n = inputStream.read(data))) {
                 outputStream.write(data, 0, n);
                 count += n;

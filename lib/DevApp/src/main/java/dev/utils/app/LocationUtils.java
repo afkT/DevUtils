@@ -105,7 +105,7 @@ public final class LocationUtils {
             sLocationManager = AppUtils.getLocationManager();
             if (!isLocationEnabled()) return false;
             sListener = listener;
-            String provider = sLocationManager.getBestProvider(getCriteria(), true);
+            String   provider = sLocationManager.getBestProvider(getCriteria(), true);
             Location location = sLocationManager.getLastKnownLocation(provider);
             if (location != null) listener.getLastKnownLocation(location);
             if (sCustomLocationListener == null)
@@ -211,7 +211,7 @@ public final class LocationUtils {
      */
     public static Address getAddress(final double latitude, final double longitude) {
         try {
-            Geocoder geocoder = new Geocoder(DevUtils.getContext(), Locale.getDefault());
+            Geocoder      geocoder  = new Geocoder(DevUtils.getContext(), Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
             if (addresses.size() > 0) return addresses.get(0);
         } catch (Exception e) {
@@ -267,10 +267,10 @@ public final class LocationUtils {
     public static boolean isBetterLocation(final Location newLocation, final Location currentBestLocation) {
         if (newLocation == null || currentBestLocation == null) return true;
         // 检查位置信息的时间间隔
-        long timeDelta = newLocation.getTime() - currentBestLocation.getTime();
+        long    timeDelta            = newLocation.getTime() - currentBestLocation.getTime();
         boolean isSignificantlyNewer = timeDelta > MINUTES_TWO;
         boolean isSignificantlyOlder = timeDelta < -MINUTES_TWO;
-        boolean isNewer = timeDelta > 0;
+        boolean isNewer              = timeDelta > 0;
 
         // 如果时间超过 2 分钟, 则使用新的位置
         if (isSignificantlyNewer) {
@@ -280,9 +280,9 @@ public final class LocationUtils {
         }
 
         // 检查新的位置时间
-        int accuracyDelta = (int) (newLocation.getAccuracy() - currentBestLocation.getAccuracy());
-        boolean isLessAccurate = accuracyDelta > 0;
-        boolean isMoreAccurate = accuracyDelta < 0;
+        int     accuracyDelta               = (int) (newLocation.getAccuracy() - currentBestLocation.getAccuracy());
+        boolean isLessAccurate              = accuracyDelta > 0;
+        boolean isMoreAccurate              = accuracyDelta < 0;
         boolean isSignificantlyLessAccurate = accuracyDelta > 200;
 
         // 检查旧位置和新位置是否来自同一提供者

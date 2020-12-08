@@ -352,7 +352,7 @@ public final class CameraSizeAssist {
         Collections.sort(listPreviewSizes, new Comparator<Camera.Size>() {
             @Override
             public int compare(Camera.Size lhs, Camera.Size rhs) {
-                int leftPixels = lhs.height * lhs.width;
+                int leftPixels  = lhs.height * lhs.width;
                 int rightPixels = rhs.height * rhs.width;
 
                 if (leftPixels > rightPixels) {
@@ -400,7 +400,7 @@ public final class CameraSizeAssist {
             // 获取预览大小
             Camera.Size previewSize = iterator.next();
             // 获取宽、高
-            int realWidth = previewSize.width;
+            int realWidth  = previewSize.width;
             int realHeight = previewSize.height;
             // 小于最小尺寸, 则不处理
             if (realWidth * realHeight < MIN_PREVIEW_PIXELS) {
@@ -411,11 +411,11 @@ public final class CameraSizeAssist {
             // 判断预选的尺寸是否竖屏
             boolean isCandidatePortrait = realWidth < realHeight;
             // 翻转宽、高
-            int maybeFlippedWidth = isCandidatePortrait ? realHeight : realWidth;
+            int maybeFlippedWidth  = isCandidatePortrait ? realHeight : realWidth;
             int maybeFlippedHeight = isCandidatePortrait ? realWidth : realHeight;
 
             // 计算比例
-            double aspectRatio = (double) maybeFlippedWidth / (double) maybeFlippedHeight;
+            double aspectRatio    = (double) maybeFlippedWidth / (double) maybeFlippedHeight;
             double calcDistortion = Math.abs(aspectRatio - screenAspectRatio);
 
             // 如果大于指定的尺寸比例差, 则跳过
@@ -476,7 +476,7 @@ public final class CameraSizeAssist {
         Collections.sort(listPictureSizes, new Comparator<Camera.Size>() {
             @Override
             public int compare(Camera.Size lhs, Camera.Size rhs) {
-                int leftPixels = lhs.height * lhs.width;
+                int leftPixels  = lhs.height * lhs.width;
                 int rightPixels = rhs.height * rhs.width;
 
                 if (leftPixels > rightPixels) {
@@ -538,7 +538,7 @@ public final class CameraSizeAssist {
             // 获取拍照大小
             Camera.Size pictureSize = iterator.next();
             // 获取宽、高
-            int realWidth = pictureSize.width;
+            int realWidth  = pictureSize.width;
             int realHeight = pictureSize.height;
             // 小于最小尺寸, 则不处理
             if (realWidth * realHeight < MIN_PREVIEW_PIXELS) {
@@ -549,11 +549,11 @@ public final class CameraSizeAssist {
             // 判断预选的尺寸是否竖屏
             boolean isCandidatePortrait = realWidth < realHeight;
             // 翻转宽、高
-            int maybeFlippedWidth = isCandidatePortrait ? realHeight : realWidth;
+            int maybeFlippedWidth  = isCandidatePortrait ? realHeight : realWidth;
             int maybeFlippedHeight = isCandidatePortrait ? realWidth : realHeight;
 
             // 计算比例
-            double aspectRatio = (double) maybeFlippedWidth / (double) maybeFlippedHeight;
+            double aspectRatio    = (double) maybeFlippedWidth / (double) maybeFlippedHeight;
             double calcDistortion = Math.abs(aspectRatio - pictureAspectRatio);
 
             // 如果大于指定的尺寸比例差, 则跳过
@@ -625,7 +625,7 @@ public final class CameraSizeAssist {
         Collections.sort(listVideoSizes, new Comparator<Camera.Size>() {
             @Override
             public int compare(Camera.Size lhs, Camera.Size rhs) {
-                int leftPixels = lhs.height * lhs.width;
+                int leftPixels  = lhs.height * lhs.width;
                 int rightPixels = rhs.height * rhs.width;
 
                 if (leftPixels > rightPixels) {
@@ -689,7 +689,7 @@ public final class CameraSizeAssist {
             // 获取视频大小
             Camera.Size videoSize = iterator.next();
             // 获取宽、高
-            int realWidth = videoSize.width;
+            int realWidth  = videoSize.width;
             int realHeight = videoSize.height;
             // 小于最小尺寸, 则不处理
             if (realWidth * realHeight < MIN_PREVIEW_PIXELS) {
@@ -700,11 +700,11 @@ public final class CameraSizeAssist {
             // 判断预选的尺寸是否竖屏
             boolean isCandidatePortrait = realWidth < realHeight;
             // 翻转宽、高
-            int maybeFlippedWidth = isCandidatePortrait ? realHeight : realWidth;
+            int maybeFlippedWidth  = isCandidatePortrait ? realHeight : realWidth;
             int maybeFlippedHeight = isCandidatePortrait ? realWidth : realHeight;
 
             // 计算比例
-            double aspectRatio = (double) maybeFlippedWidth / (double) maybeFlippedHeight;
+            double aspectRatio    = (double) maybeFlippedWidth / (double) maybeFlippedHeight;
             double calcDistortion = Math.abs(aspectRatio - videoAspectRatio);
 
             // 如果大于指定的尺寸比例差, 则跳过

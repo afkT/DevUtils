@@ -316,8 +316,8 @@ public final class MediaStoreUtils {
     public static Uri createMediaUri(final Uri uri, final String displayName,
                                      final long createTime, final String mimeType,
                                      final String relativePath) {
-        boolean isAndroidQ = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q);
-        ContentValues values = new ContentValues(isAndroidQ ? 4 : 3);
+        boolean       isAndroidQ = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q);
+        ContentValues values     = new ContentValues(isAndroidQ ? 4 : 3);
         values.put(MediaStore.Files.FileColumns.DISPLAY_NAME, displayName); // 文件名
         values.put(MediaStore.Files.FileColumns.DATE_TAKEN, createTime); // 创建时间
         values.put(MediaStore.Files.FileColumns.MIME_TYPE, mimeType); // 资源类型
@@ -351,7 +351,7 @@ public final class MediaStoreUtils {
         if (filePath != null && name != null) {
             try {
                 String uriString = MediaStore.Images.Media.insertImage(ResourceUtils.getContentResolver(), filePath, name, null);
-                Uri uri = Uri.parse(uriString);
+                Uri    uri       = Uri.parse(uriString);
                 if (notify) notifyMediaStore(UriUtils.getFilePathByUri(uri));
                 return uri;
             } catch (Exception e) {
@@ -372,7 +372,7 @@ public final class MediaStoreUtils {
     public static boolean insertImage(final Uri uri, final Uri inputUri, final Bitmap.CompressFormat format,
                                       @IntRange(from = 0, to = 100) final int quality) {
         if (uri == null || inputUri == null || format == null) return false;
-        OutputStream os = null;
+        OutputStream         os             = null;
         ParcelFileDescriptor fileDescriptor = null;
         try {
             os = ResourceUtils.openOutputStream(uri);
@@ -429,7 +429,7 @@ public final class MediaStoreUtils {
     public static boolean insertMedia(final Uri uri, final Uri inputUri) {
         if (uri == null || inputUri == null) return false;
         OutputStream os = null;
-        InputStream is = null;
+        InputStream  is = null;
         try {
             os = ResourceUtils.openOutputStream(uri);
             is = ResourceUtils.openInputStream(inputUri);

@@ -521,8 +521,8 @@ public final class NetWorkUtils {
                 if (!ni.isUp() || ni.isLoopback()) continue;
                 List<InterfaceAddress> ias = ni.getInterfaceAddresses();
                 for (int i = 0; i < ias.size(); i++) {
-                    InterfaceAddress ia = ias.get(i);
-                    InetAddress broadcast = ia.getBroadcast();
+                    InterfaceAddress ia        = ias.get(i);
+                    InetAddress      broadcast = ia.getBroadcast();
                     if (broadcast != null) {
                         return broadcast.getHostAddress();
                     }
@@ -577,8 +577,8 @@ public final class NetWorkUtils {
                 for (Enumeration<InetAddress> addresses = ni.getInetAddresses(); addresses.hasMoreElements(); ) {
                     InetAddress inetAddress = addresses.nextElement();
                     if (!inetAddress.isLoopbackAddress()) {
-                        String hostAddress = inetAddress.getHostAddress();
-                        boolean isIPv4 = hostAddress.indexOf(':') < 0;
+                        String  hostAddress = inetAddress.getHostAddress();
+                        boolean isIPv4      = hostAddress.indexOf(':') < 0;
                         if (useIPv4) {
                             if (isIPv4) return hostAddress;
                         } else {

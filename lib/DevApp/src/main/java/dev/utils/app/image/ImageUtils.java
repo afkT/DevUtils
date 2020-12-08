@@ -877,8 +877,8 @@ public final class ImageUtils {
      */
     public static Bitmap getBitmap(@DrawableRes final int resId, final int maxWidth, final int maxHeight) {
         try {
-            Resources resources = ResourceUtils.getResources();
-            BitmapFactory.Options options = new BitmapFactory.Options();
+            Resources             resources = ResourceUtils.getResources();
+            BitmapFactory.Options options   = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeResource(resources, resId, options);
             options.inSampleSize = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
@@ -1163,7 +1163,7 @@ public final class ImageUtils {
         }
         try {
             // 获取 drawable 的宽高
-            int width = drawable.getIntrinsicWidth();
+            int width  = drawable.getIntrinsicWidth();
             int height = drawable.getIntrinsicHeight();
             // 获取 drawable 的颜色格式
             Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;

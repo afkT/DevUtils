@@ -90,9 +90,9 @@ public final class ResourcePluginUtils {
      */
     public static ResourcePluginUtils invokeByPackageName(final String packageName,
                                                           final Context context) {
-        DisplayMetrics metrics = null;
-        Configuration config = null;
-        Resources resources = ResourceAssist.staticResources(context);
+        DisplayMetrics metrics   = null;
+        Configuration  config    = null;
+        Resources      resources = ResourceAssist.staticResources(context);
         if (resources != null) {
             metrics = resources.getDisplayMetrics();
             config = resources.getConfiguration();
@@ -111,7 +111,7 @@ public final class ResourcePluginUtils {
                                                           final DisplayMetrics metrics,
                                                           final Configuration config) {
         AppInfoBean appInfoBean = AppInfoUtils.getAppInfoBean(packageName);
-        String sourceDir = (appInfoBean != null) ? appInfoBean.getSourceDir() : null;
+        String      sourceDir   = (appInfoBean != null) ? appInfoBean.getSourceDir() : null;
         return invokeByAPKPath(sourceDir, metrics, config);
     }
 
@@ -135,9 +135,9 @@ public final class ResourcePluginUtils {
      * @return {@link ResourcePluginUtils}
      */
     public static ResourcePluginUtils invokeByAPKPath(final String apkPath, final Context context) {
-        DisplayMetrics metrics = null;
-        Configuration config = null;
-        Resources resources = ResourceAssist.staticResources(context);
+        DisplayMetrics metrics   = null;
+        Configuration  config    = null;
+        Resources      resources = ResourceAssist.staticResources(context);
         if (resources != null) {
             metrics = resources.getDisplayMetrics();
             config = resources.getConfiguration();
@@ -158,8 +158,8 @@ public final class ResourcePluginUtils {
         // 文件存在才进行处理
         if (FileUtils.isFileExists(apkPath)) {
             try {
-                AssetManager asset = AssetManager.class.newInstance();
-                Method addAssetPath = asset.getClass().getMethod("addAssetPath", String.class);
+                AssetManager asset        = AssetManager.class.newInstance();
+                Method       addAssetPath = asset.getClass().getMethod("addAssetPath", String.class);
                 addAssetPath.invoke(asset, apkPath);
                 Resources resources = new Resources(
                         asset, metrics, config

@@ -93,7 +93,7 @@ public final class HttpParamsUtils {
         if (mapParams != null) {
             int index = 0;
             // =
-            StringBuilder builder = new StringBuilder();
+            StringBuilder                       builder  = new StringBuilder();
             Iterator<Map.Entry<String, String>> iterator = mapParams.entrySet().iterator();
             while (iterator.hasNext()) {
                 Map.Entry<String, String> entry = iterator.next();
@@ -130,7 +130,7 @@ public final class HttpParamsUtils {
         if (mapParams != null) {
             int index = 0;
             // =
-            StringBuilder builder = new StringBuilder();
+            StringBuilder                       builder  = new StringBuilder();
             Iterator<Map.Entry<String, Object>> iterator = mapParams.entrySet().iterator();
             while (iterator.hasNext()) {
                 Map.Entry<String, Object> entry = iterator.next();

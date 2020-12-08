@@ -35,10 +35,10 @@ public final class ChineseUtils {
      * @return 一个随机汉字
      */
     public static String randomWord() {
-        Random random = new Random();
-        int heightPos = 176 + Math.abs(random.nextInt(39));
-        int lowPos = 161 + Math.abs(random.nextInt(93));
-        byte[] bytes = new byte[2];
+        Random random    = new Random();
+        int    heightPos = 176 + Math.abs(random.nextInt(39));
+        int    lowPos    = 161 + Math.abs(random.nextInt(93));
+        byte[] bytes     = new byte[2];
         bytes[0] = Integer.valueOf(heightPos).byteValue();
         bytes[1] = Integer.valueOf(lowPos).byteValue();
         try {
@@ -168,7 +168,7 @@ public final class ChineseUtils {
 
         StringBuilder builder = new StringBuilder();
         // 索引记录
-        int unitIndex = 0; // 当前数字单位
+        int unitIndex       = 0; // 当前数字单位
         int beforeUnitIndex = 0; // 之前的数字单位
         // 循环处理
         for (int i = NUMBER_UNITS.length - 1; i > 0; i--) {

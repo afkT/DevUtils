@@ -35,7 +35,7 @@ public class TimeCounter {
      * @return 距离上次开始时间的时间差 ( 毫秒 )
      */
     public long durationRestart() {
-        long now = System.currentTimeMillis();
+        long now  = System.currentTimeMillis();
         long diff = now - mStart;
         mStart = now;
         return diff;

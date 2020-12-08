@@ -69,16 +69,16 @@ public final class CalendarUtils {
         if (!isSupportSolar(year)) return null;
 
         int[] lunarInt = new int[4];
-        int index = year - SOLAR[0];
-        int data = (year << 9) | (month << 5) | (day);
-        int solar11;
+        int   index    = year - SOLAR[0];
+        int   data     = (year << 9) | (month << 5) | (day);
+        int   solar11;
         if (SOLAR[index] > data) {
             index--;
         }
         solar11 = SOLAR[index];
-        int y = getBitInt(solar11, 12, 9);
-        int m = getBitInt(solar11, 4, 5);
-        int d = getBitInt(solar11, 5, 0);
+        int  y      = getBitInt(solar11, 12, 9);
+        int  m      = getBitInt(solar11, 4, 5);
+        int  d      = getBitInt(solar11, 5, 0);
         long offset = solarToInt(year, month, day) - solarToInt(y, m, d);
 
         int days = LUNAR_MONTH_DAYS[index];
@@ -126,10 +126,10 @@ public final class CalendarUtils {
         // 不支持的农历年份, 则返回 null
         if (!isSupportLunar(lunarYear)) return null;
 
-        int days = LUNAR_MONTH_DAYS[lunarYear - LUNAR_MONTH_DAYS[0]];
-        int leap = getBitInt(days, 4, 13);
+        int days   = LUNAR_MONTH_DAYS[lunarYear - LUNAR_MONTH_DAYS[0]];
+        int leap   = getBitInt(days, 4, 13);
         int offset = 0;
-        int loop = leap;
+        int loop   = leap;
         if (!isLeap) {
             if (lunarMonth <= leap || leap == 0) {
                 loop = lunarMonth - 1;
@@ -255,9 +255,9 @@ public final class CalendarUtils {
      */
     public static int getSolarTermsIndex(final int month, final int day) {
         if (month > 12 || month < 1) return -1;
-        int start = (month - 2) >= 0 ? month - 2 : 11;
-        int leftIndex = start * 2; // 左边节气索引
-        int[] dates = solarTermsDateSplit(leftIndex);
+        int   start     = (month - 2) >= 0 ? month - 2 : 11;
+        int   leftIndex = start * 2; // 左边节气索引
+        int[] dates     = solarTermsDateSplit(leftIndex);
         if (dates != null && day >= dates[0] && day <= dates[1]) return leftIndex;
         int rightIndex = leftIndex + 1; // 右边节气索引
         dates = solarTermsDateSplit(rightIndex);
@@ -591,7 +591,7 @@ public final class CalendarUtils {
     }
 
     private static int[] solarFromInt(long g) {
-        long y = (10000 * g + 14780) / 3652425;
+        long y   = (10000 * g + 14780) / 3652425;
         long ddd = g - (365 * y + y / 4 - y / 100 + y / 400);
         if (ddd < 0) {
             y--;
@@ -600,7 +600,7 @@ public final class CalendarUtils {
         long mi = (100 * ddd + 52) / 3060;
         long mm = (mi + 2) % 12 + 1;
         y = y + (mi + 2) / 12;
-        long dd = ddd - (mi * 306 + 5) / 10 + 1;
+        long  dd    = ddd - (mi * 306 + 5) / 10 + 1;
         int[] solar = new int[3];
         solar[0] = (int) y;
         solar[1] = (int) mm;
@@ -615,7 +615,7 @@ public final class CalendarUtils {
      */
     private static int[] solarTermsDateSplit(final int index) {
         try {
-            String date = SOLAR_TERMS_DATE[index];
+            String   date   = SOLAR_TERMS_DATE[index];
             String[] splits = date.substring(date.indexOf('.') + 1).split("-");
             return new int[]{
                     ConvertUtils.toInt(splits[0]),
@@ -851,7 +851,7 @@ public final class CalendarUtils {
 
         @Override
         public int compareTo(Festival festival) {
-            int value = compareValue;
+            int value  = compareValue;
             int value1 = festival.compareValue;
             if (value < value1) return 1;
             if (value > value1) return -1;
@@ -876,8 +876,8 @@ public final class CalendarUtils {
             if (festival != null) {
                 if (festival.isSolarFestival) { // 公历节日
                     Calendar calendar;
-                    int monthDay; // 该月存在天数
-                    int sundays = 0; // 星期天累加次数
+                    int      monthDay; // 该月存在天数
+                    int      sundays = 0; // 星期天累加次数
                     // 月份判断
                     switch (month) {
                         case 5:

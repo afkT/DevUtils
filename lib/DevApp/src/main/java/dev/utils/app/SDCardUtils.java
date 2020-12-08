@@ -93,8 +93,8 @@ public final class SDCardUtils {
     @SuppressWarnings("TryWithIdenticalCatches")
     public static List<String> getSDCardPaths() {
         try {
-            StorageManager storageManager = AppUtils.getStorageManager();
-            Method getVolumePathsMethod = StorageManager.class.getMethod("getVolumePaths");
+            StorageManager storageManager       = AppUtils.getStorageManager();
+            Method         getVolumePathsMethod = StorageManager.class.getMethod("getVolumePaths");
             getVolumePathsMethod.setAccessible(true);
             Object invoke = getVolumePathsMethod.invoke(storageManager);
             return new ArrayList<>(Arrays.asList((String[]) invoke));
@@ -113,17 +113,17 @@ public final class SDCardUtils {
     public static List<String> getSDCardPaths(final boolean removable) {
         List<String> listPaths = new ArrayList<>();
         try {
-            StorageManager storageManager = AppUtils.getStorageManager();
-            Class<?> storageVolumeClazz = Class.forName("android.os.storage.StorageVolume");
-            Method getVolumeList = StorageManager.class.getMethod("getVolumeList");
-            Method getPath = storageVolumeClazz.getMethod("getPath");
-            Method isRemovable = storageVolumeClazz.getMethod("isRemovable");
-            Object result = getVolumeList.invoke(storageManager);
-            final int length = Array.getLength(result);
+            StorageManager storageManager     = AppUtils.getStorageManager();
+            Class<?>       storageVolumeClazz = Class.forName("android.os.storage.StorageVolume");
+            Method         getVolumeList      = StorageManager.class.getMethod("getVolumeList");
+            Method         getPath            = storageVolumeClazz.getMethod("getPath");
+            Method         isRemovable        = storageVolumeClazz.getMethod("isRemovable");
+            Object         result             = getVolumeList.invoke(storageManager);
+            final int      length             = Array.getLength(result);
             for (int i = 0; i < length; i++) {
-                Object storageVolumeElement = Array.get(result, i);
-                String path = (String) getPath.invoke(storageVolumeElement);
-                boolean res = (Boolean) isRemovable.invoke(storageVolumeElement);
+                Object  storageVolumeElement = Array.get(result, i);
+                String  path                 = (String) getPath.invoke(storageVolumeElement);
+                boolean res                  = (Boolean) isRemovable.invoke(storageVolumeElement);
                 if (removable == res) {
                     listPaths.add(path);
                 }

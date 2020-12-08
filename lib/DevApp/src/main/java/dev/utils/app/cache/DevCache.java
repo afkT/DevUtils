@@ -220,12 +220,12 @@ public final class DevCache {
         }
         if (!file.exists())
             return null;
-        boolean removeFile = false;
-        BufferedReader br = null;
+        boolean        removeFile = false;
+        BufferedReader br         = null;
         try {
             br = new BufferedReader(new FileReader(file));
             StringBuilder builder = new StringBuilder();
-            String currentLine;
+            String        currentLine;
             while ((currentLine = br.readLine()) != null) {
                 builder.append(currentLine);
             }
@@ -372,8 +372,8 @@ public final class DevCache {
      */
     public boolean put(final String key, final byte[] data) {
         if (key == null || data == null) return false;
-        File file = mCache.newFile(key);
-        FileOutputStream fos = null;
+        File             file = mCache.newFile(key);
+        FileOutputStream fos  = null;
         try {
             fos = new FileOutputStream(file);
             fos.write(data);
@@ -432,8 +432,8 @@ public final class DevCache {
      * @return byte[]
      */
     public byte[] getAsBinary(final String key) {
-        RandomAccessFile raFile = null;
-        boolean removeFile = false;
+        RandomAccessFile raFile     = null;
+        boolean          removeFile = false;
         try {
             File file = mCache.get(key);
             if (!file.exists())

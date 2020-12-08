@@ -2336,8 +2336,8 @@ public final class TextViewUtils {
             if (length == 1) return 1;
             // 二分法寻找最佳位置
             int start = 0;
-            int end = length;
-            int mid = 0;
+            int end   = length;
+            int mid   = 0;
             // 判断是否大于位置
             while (start < end) {
                 mid = (start + end) / 2;

@@ -52,8 +52,8 @@ public final class ContentResolverUtils {
      * @return 对应条件的数据行 data 字段
      */
     public static String getDataColumn(final Uri uri, final String selection, final String[] selectionArgs) {
-        Cursor cursor = null;
-        final String column = "_data";
+        Cursor         cursor     = null;
+        final String   column     = "_data";
         final String[] projection = {column};
         try {
             cursor = ResourceUtils.getContentResolver().query(uri, projection, selection, selectionArgs, null);
@@ -75,8 +75,8 @@ public final class ContentResolverUtils {
      * @return 对应条件的数据行 display_name 字段
      */
     public static String getDisplayNameColumn(final Uri uri) {
-        Cursor cursor = null;
-        final String column = OpenableColumns.DISPLAY_NAME;
+        Cursor         cursor     = null;
+        final String   column     = OpenableColumns.DISPLAY_NAME;
         final String[] projection = {column};
         try {
             cursor = ResourceUtils.getContentResolver().query(uri, projection, null, null, null);
@@ -373,9 +373,9 @@ public final class ContentResolverUtils {
     private static class MediaQueryUri extends MediaQuery {
         @Override
         public String[] getResult(Uri uri, String filePath, Cursor cursor) {
-            String[] result = new String[2];
-            long rowId = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID));
-            String volumeName = VOLUME_EXTERNAL;
+            String[] result     = new String[2];
+            long     rowId      = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID));
+            String   volumeName = VOLUME_EXTERNAL;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 volumeName = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.VOLUME_NAME));
             }
@@ -414,15 +414,15 @@ public final class ContentResolverUtils {
     public static class MediaQueryInfo extends MediaQuery {
         @Override
         public String[] getResult(Uri uri, String filePath, Cursor cursor) {
-            String[] result = new String[8];
-            long rowId = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID));
-            int width = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.WIDTH));
-            int height = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.HEIGHT));
-            String mimeType = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.MIME_TYPE));
-            long mediaType = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.MEDIA_TYPE));
-            String dateAdded = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.DATE_ADDED));
-            String dateModified = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.DATE_MODIFIED));
-            long duration = 0;
+            String[] result       = new String[8];
+            long     rowId        = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID));
+            int      width        = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.WIDTH));
+            int      height       = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.HEIGHT));
+            String   mimeType     = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.MIME_TYPE));
+            long     mediaType    = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.MEDIA_TYPE));
+            String   dateAdded    = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.DATE_ADDED));
+            String   dateModified = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.DATE_MODIFIED));
+            long     duration     = 0;
             if (mediaType == MediaStore.Files.FileColumns.MEDIA_TYPE_AUDIO
                     || mediaType == MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO) {
                 duration = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns.DURATION));

@@ -48,7 +48,7 @@ public final class ScreenUtils {
      */
     public static DisplayMetrics getDisplayMetrics() {
         try {
-            WindowManager windowManager = AppUtils.getWindowManager();
+            WindowManager  windowManager  = AppUtils.getWindowManager();
             DisplayMetrics displayMetrics = new DisplayMetrics();
             windowManager.getDefaultDisplay().getMetrics(displayMetrics);
             return displayMetrics;
@@ -90,7 +90,7 @@ public final class ScreenUtils {
 //            return new int[]{displayMetrics.widthPixels, displayMetrics.heightPixels};
 
             WindowManager windowManager = AppUtils.getWindowManager();
-            Point point = new Point();
+            Point         point         = new Point();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 windowManager.getDefaultDisplay().getRealSize(point);
             } else {
@@ -113,7 +113,7 @@ public final class ScreenUtils {
 //            return new Point(displayMetrics.widthPixels, displayMetrics.heightPixels);
 
             WindowManager windowManager = AppUtils.getWindowManager();
-            Point point = new Point();
+            Point         point         = new Point();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 windowManager.getDefaultDisplay().getRealSize(point);
             } else {
@@ -155,14 +155,14 @@ public final class ScreenUtils {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static String getScreenSizeOfDevice() {
         try {
-            Point point = new Point();
+            Point          point          = new Point();
             DisplayMetrics displayMetrics = new DisplayMetrics();
-            WindowManager windowManager = AppUtils.getWindowManager();
+            WindowManager  windowManager  = AppUtils.getWindowManager();
             windowManager.getDefaultDisplay().getRealSize(point);
             windowManager.getDefaultDisplay().getMetrics(displayMetrics);
             // 计算尺寸
-            double x = Math.pow(point.x / displayMetrics.xdpi, 2);
-            double y = Math.pow(point.y / displayMetrics.ydpi, 2);
+            double x            = Math.pow(point.x / displayMetrics.xdpi, 2);
+            double y            = Math.pow(point.y / displayMetrics.ydpi, 2);
             double screenInches = Math.sqrt(x + y);
             // 转换大小
             return new DecimalFormat("#.0").format(screenInches);
@@ -244,22 +244,22 @@ public final class ScreenUtils {
      * @return 屏幕信息
      */
     public static String getScreenInfo() {
-        StringBuilder builder = new StringBuilder();
+        StringBuilder  builder        = new StringBuilder();
         DisplayMetrics displayMetrics = getDisplayMetrics();
         if (displayMetrics != null) {
             try {
                 int heightPixels = displayMetrics.heightPixels;
-                int widthPixels = displayMetrics.widthPixels;
+                int widthPixels  = displayMetrics.widthPixels;
 
-                float xdpi = displayMetrics.xdpi;
-                float ydpi = displayMetrics.ydpi;
-                int densityDpi = displayMetrics.densityDpi;
+                float xdpi       = displayMetrics.xdpi;
+                float ydpi       = displayMetrics.ydpi;
+                int   densityDpi = displayMetrics.densityDpi;
 
-                float density = displayMetrics.density;
+                float density       = displayMetrics.density;
                 float scaledDensity = displayMetrics.scaledDensity;
 
                 float heightDpi = heightPixels / density;
-                float widthDpi = widthPixels / density;
+                float widthDpi  = widthPixels / density;
 
                 builder.append("heightPixels: ").append(heightPixels).append("px");
                 builder.append("\nwidthPixels: ").append(widthPixels).append("px");
@@ -577,14 +577,14 @@ public final class ScreenUtils {
         boolean hasNavigationBar = false;
         try {
             Resources resources = ResourceUtils.getResources();
-            int id = resources.getIdentifier("config_showNavigationBar", "bool", "android");
+            int       id        = resources.getIdentifier("config_showNavigationBar", "bool", "android");
             if (id > 0) {
                 hasNavigationBar = resources.getBoolean(id);
             }
             try {
-                Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
-                Method method = systemPropertiesClass.getMethod("get", String.class);
-                String navBarOverride = (String) method.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
+                Class  systemPropertiesClass = Class.forName("android.os.SystemProperties");
+                Method method                = systemPropertiesClass.getMethod("get", String.class);
+                String navBarOverride        = (String) method.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
                 if ("1".equals(navBarOverride)) {
                     hasNavigationBar = false;
                 } else if ("0".equals(navBarOverride)) {

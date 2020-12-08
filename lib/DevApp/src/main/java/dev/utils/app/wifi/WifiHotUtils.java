@@ -393,7 +393,7 @@ public final class WifiHotUtils {
     public boolean isConnectHot() {
         try {
             BufferedReader br = new BufferedReader(new FileReader("/proc/net/arp"));
-            String line;
+            String         line;
             while ((line = br.readLine()) != null) {
                 String[] splitted = line.split(" +");
                 if (splitted != null && splitted.length >= 4) {
@@ -434,7 +434,7 @@ public final class WifiHotUtils {
     public String getHotspotAllotIp() {
         try {
             BufferedReader br = new BufferedReader(new FileReader("/proc/net/arp"));
-            String line;
+            String         line;
             while ((line = br.readLine()) != null) {
                 String[] splitted = line.split(" +");
                 if (splitted != null && splitted.length >= 4) {
@@ -460,7 +460,7 @@ public final class WifiHotUtils {
         try {
             br = new BufferedReader(new FileReader("/proc/net/arp"));
             StringBuilder builder = new StringBuilder();
-            String line;
+            String        line;
             while ((line = br.readLine()) != null) {
                 builder.append(line);
             }

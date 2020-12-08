@@ -46,7 +46,7 @@ public final class ClipboardUtils {
     public static CharSequence getText() {
         try {
             ClipboardManager clipManager = AppUtils.getClipboardManager();
-            ClipData clipData = clipManager.getPrimaryClip();
+            ClipData         clipData    = clipManager.getPrimaryClip();
             if (clipData != null && clipData.getItemCount() > 0) {
                 return clipData.getItemAt(0).coerceToText(DevUtils.getContext());
             }
@@ -82,7 +82,7 @@ public final class ClipboardUtils {
     public static Uri getUri() {
         try {
             ClipboardManager clipManager = AppUtils.getClipboardManager();
-            ClipData clipData = clipManager.getPrimaryClip();
+            ClipData         clipData    = clipManager.getPrimaryClip();
             if (clipData != null && clipData.getItemCount() > 0) {
                 return clipData.getItemAt(0).getUri();
             }
@@ -118,7 +118,7 @@ public final class ClipboardUtils {
     public static Intent getIntent() {
         try {
             ClipboardManager clipManager = AppUtils.getClipboardManager();
-            ClipData clipData = clipManager.getPrimaryClip();
+            ClipData         clipData    = clipManager.getPrimaryClip();
             if (clipData != null && clipData.getItemCount() > 0) {
                 return clipData.getItemAt(0).getIntent();
             }

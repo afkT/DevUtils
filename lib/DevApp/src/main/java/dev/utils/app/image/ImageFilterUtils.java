@@ -52,7 +52,7 @@ public final class ImageFilterUtils {
             RenderScript rs = RenderScript.create(DevUtils.getContext());
             // 由于 RenderScript 并没有使用 VM 来分配内存, 所以需要使用 Allocation 类来创建和分配内存空间
             // 创建 Allocation 对象的时候其实内存是空的, 需要使用 copyTo() 将数据填充进去
-            Allocation input = Allocation.createFromBitmap(rs, bitmap, Allocation.MipmapControl.MIPMAP_NONE, Allocation.USAGE_SCRIPT);
+            Allocation input  = Allocation.createFromBitmap(rs, bitmap, Allocation.MipmapControl.MIPMAP_NONE, Allocation.USAGE_SCRIPT);
             Allocation output = Allocation.createTyped(rs, input.getType());
             // 创建一个模糊效果的 RenderScript 的工具对象, 第二个参数 Element 相当于一种像素处理的算法, 高斯模糊的话用这个就好
             ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
@@ -93,21 +93,21 @@ public final class ImageFilterUtils {
         if (!bitmap.isMutable()) return null;
 
         try {
-            int width = bitmap.getWidth();
-            int height = bitmap.getHeight();
-            int[] pix = new int[width * height];
+            int   width  = bitmap.getWidth();
+            int   height = bitmap.getHeight();
+            int[] pix    = new int[width * height];
 
             bitmap.getPixels(pix, 0, width, 0, 0, width, height);
 
-            int wm = width - 1;
-            int hm = height - 1;
-            int wh = width * height;
+            int wm  = width - 1;
+            int hm  = height - 1;
+            int wh  = width * height;
             int div = radius + radius + 1;
 
-            int[] r = new int[wh];
-            int[] g = new int[wh];
-            int[] b = new int[wh];
-            int rsum, gsum, bsum, x, y, i, p, yp, yi, yw;
+            int[] r    = new int[wh];
+            int[] g    = new int[wh];
+            int[] b    = new int[wh];
+            int   rsum, gsum, bsum, x, y, i, p, yp, yi, yw;
             int[] vmin = new int[Math.max(width, height)];
 
             int divsum = (div + 1) >> 1;
@@ -120,13 +120,13 @@ public final class ImageFilterUtils {
             yw = yi = 0;
 
             int[][] stack = new int[div][3];
-            int stackpointer;
-            int stackstart;
-            int[] sir;
-            int rbs;
-            int r1 = radius + 1;
-            int routsum, goutsum, boutsum;
-            int rinsum, ginsum, binsum;
+            int     stackpointer;
+            int     stackstart;
+            int[]   sir;
+            int     rbs;
+            int     r1    = radius + 1;
+            int     routsum, goutsum, boutsum;
+            int     rinsum, ginsum, binsum;
 
             for (y = 0; y < height; y++) {
                 rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0;
@@ -301,17 +301,17 @@ public final class ImageFilterUtils {
     public static Bitmap nostalgic(final Bitmap bitmap) {
         if (bitmap == null) return null;
         try {
-            int width = bitmap.getWidth();
+            int width  = bitmap.getWidth();
             int height = bitmap.getHeight();
 
-            int pixColor = 0;
-            int pixR = 0;
-            int pixG = 0;
-            int pixB = 0;
-            int newR = 0;
-            int newG = 0;
-            int newB = 0;
-            int[] pixels = new int[width * height];
+            int   pixColor = 0;
+            int   pixR     = 0;
+            int   pixG     = 0;
+            int   pixB     = 0;
+            int   newR     = 0;
+            int   newG     = 0;
+            int   newB     = 0;
+            int[] pixels   = new int[width * height];
             bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
             for (int i = 0; i < height; i++) {
                 for (int k = 0; k < width; k++) {
@@ -347,7 +347,7 @@ public final class ImageFilterUtils {
     public static Bitmap sunshine(final Bitmap bitmap, final int centerX, final int centerY) {
         if (bitmap == null) return null;
         try {
-            int width = bitmap.getWidth();
+            int width  = bitmap.getWidth();
             int height = bitmap.getHeight();
 
             int pixR = 0;
@@ -356,13 +356,13 @@ public final class ImageFilterUtils {
 
             int pixColor = 0;
 
-            int newR = 0;
-            int newG = 0;
-            int newB = 0;
+            int newR   = 0;
+            int newG   = 0;
+            int newB   = 0;
             int radius = Math.min(centerX, centerY);
 
             final float strength = 150f; // 光照强度 100 ~ 150
-            int[] pixels = new int[width * height];
+            int[]       pixels   = new int[width * height];
             bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
             int pos = 0;
             for (int i = 1, length = height - 1; i < length; i++) {
@@ -415,8 +415,8 @@ public final class ImageFilterUtils {
         try {
             // ARGB 的最大值
             final int MAX_VALUE = 255;
-            int width = bitmap.getWidth();
-            int height = bitmap.getHeight();
+            int       width     = bitmap.getWidth();
+            int       height    = bitmap.getHeight();
 
             int pixR = 0;
             int pixG = 0;
@@ -477,7 +477,7 @@ public final class ImageFilterUtils {
             // 高斯矩阵
             int[] gauss = new int[]{1, 2, 1, 2, 4, 2, 1, 2, 1};
 
-            int width = bitmap.getWidth();
+            int width  = bitmap.getWidth();
             int height = bitmap.getHeight();
 
             int pixR = 0;
@@ -490,7 +490,7 @@ public final class ImageFilterUtils {
             int newG = 0;
             int newB = 0;
 
-            int idx = 0;
+            int   idx    = 0;
             int[] pixels = new int[width * height];
             bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
             for (int i = 1, length = height - 1; i < length; i++) {
@@ -545,7 +545,7 @@ public final class ImageFilterUtils {
             // 拉普拉斯矩阵
             int[] laplacian = new int[]{-1, -1, -1, -1, 9, -1, -1, -1, -1};
 
-            int width = bitmap.getWidth();
+            int width  = bitmap.getWidth();
             int height = bitmap.getHeight();
 
             int pixR = 0;
@@ -558,8 +558,8 @@ public final class ImageFilterUtils {
             int newG = 0;
             int newB = 0;
 
-            int idx = 0;
-            float alpha = 0.3f;
+            int   idx    = 0;
+            float alpha  = 0.3f;
             int[] pixels = new int[width * height];
             bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
             for (int i = 1, length = height - 1; i < length; i++) {
@@ -607,7 +607,7 @@ public final class ImageFilterUtils {
     public static Bitmap emboss(final Bitmap bitmap) {
         if (bitmap == null) return null;
         try {
-            int width = bitmap.getWidth();
+            int width  = bitmap.getWidth();
             int height = bitmap.getHeight();
 
             int pixR = 0;
@@ -698,9 +698,9 @@ public final class ImageFilterUtils {
     public static Bitmap gray(final Bitmap bitmap) {
         if (bitmap == null) return null;
         try {
-            Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
-            Canvas canvas = new Canvas(newBitmap);
-            Paint paint = new Paint();
+            Bitmap      newBitmap   = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+            Canvas      canvas      = new Canvas(newBitmap);
+            Paint       paint       = new Paint();
             ColorMatrix colorMatrix = new ColorMatrix();
             colorMatrix.setSaturation(0);
             ColorMatrixColorFilter colorMatrixColorFilter = new ColorMatrixColorFilter(colorMatrix);
@@ -737,7 +737,7 @@ public final class ImageFilterUtils {
             paint.setColorFilter(new ColorMatrixColorFilter(saturationColorMatrix));
             // 创建一个新的图片并创建画布
             Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(newBitmap);
+            Canvas canvas    = new Canvas(newBitmap);
             // 将源图片使用给定的画笔画到画布上
             canvas.drawBitmap(bitmap, 0, 0, paint);
             return newBitmap;
@@ -767,7 +767,7 @@ public final class ImageFilterUtils {
             paint.setColorFilter(new ColorMatrixColorFilter(lumColorMatrix));
             // 创建一个新的图片并创建画布
             Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(newBitmap);
+            Canvas canvas    = new Canvas(newBitmap);
             // 将源图片使用给定的画笔画到画布上
             canvas.drawBitmap(bitmap, 0, 0, paint);
             return newBitmap;
@@ -801,7 +801,7 @@ public final class ImageFilterUtils {
             paint.setColorFilter(new ColorMatrixColorFilter(hueColorMatrix));
             // 创建一个新的图片并创建画布
             Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(newBitmap);
+            Canvas canvas    = new Canvas(newBitmap);
             // 将源图片使用给定的画笔画到画布上
             canvas.drawBitmap(bitmap, 0, 0, paint);
             return newBitmap;
@@ -845,7 +845,7 @@ public final class ImageFilterUtils {
             paint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
             // 创建一个新的图片并创建画布
             Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(newBitmap);
+            Canvas canvas    = new Canvas(newBitmap);
             // 将源图片使用给定的画笔画到画布上
             canvas.drawBitmap(bitmap, 0, 0, paint);
             return newBitmap;

@@ -126,7 +126,7 @@ public final class IDCardUtils {
             if (sCityCodeMaps.get(provinceCode) == null) return false;
             // 获取出生日期
             String birthCode = idCard.substring(6, 12);
-            Date birthDate = null;
+            Date   birthDate = null;
             try {
                 birthDate = new SimpleDateFormat("yy").parse(birthCode.substring(0, 2));
             } catch (ParseException e) {
@@ -157,7 +157,7 @@ public final class IDCardUtils {
             if (isNumber(code17)) {
                 try {
                     int[] cardArys = convertCharToInt(code17.toCharArray());
-                    int sum17 = getPowerSum(cardArys);
+                    int   sum17    = getPowerSum(cardArys);
                     // 获取校验位
                     String str = getCheckCode18(sum17);
                     // 判断最后一位是否一样
@@ -181,7 +181,7 @@ public final class IDCardUtils {
         // 属于数字, 并且长度为 15 位数
         if (isNumber(idCard) && idCard.length() == CHINA_ID_MIN_LENGTH) {
             String idCard18;
-            Date birthDate = null;
+            Date   birthDate = null;
             // 获取出生日期
             String birthday = idCard.substring(6, 12);
             try {
@@ -198,7 +198,7 @@ public final class IDCardUtils {
                 idCard18 = idCard.substring(0, 6) + year + idCard.substring(8);
                 // 转换字符数组
                 int[] cardArys = convertCharToInt(idCard18.toCharArray());
-                int sum17 = getPowerSum(cardArys);
+                int   sum17    = getPowerSum(cardArys);
                 // 获取校验位
                 String str = getCheckCode18(sum17);
                 // 判断长度, 拼接校验位
@@ -220,13 +220,13 @@ public final class IDCardUtils {
         if (idCard == null || idCard.length() != 10) return false;
         try {
             // 第一位英文 不同县市
-            String start = idCard.substring(0, 1);
-            String mid = idCard.substring(1, 9);
-            String end = idCard.substring(9, 10);
+            String  start  = idCard.substring(0, 1);
+            String  mid    = idCard.substring(1, 9);
+            String  end    = idCard.substring(9, 10);
             Integer iStart = sTWFirstCodeMaps.get(start);
-            Integer sum = iStart / 10 + (iStart % 10) * 9;
-            char[] chars = mid.toCharArray();
-            Integer iflag = 8;
+            Integer sum    = iStart / 10 + (iStart % 10) * 9;
+            char[]  chars  = mid.toCharArray();
+            Integer iflag  = 8;
             for (char c : chars) {
                 sum = sum + Integer.valueOf(String.valueOf(c)) * iflag;
                 iflag--;
@@ -249,17 +249,17 @@ public final class IDCardUtils {
     public static boolean validateHKCard(final String idCard) {
         if (StringUtils.isEmpty(idCard)) return false;
         try {
-            String card = idCard.replaceAll("[\\(|\\)]", "");
-            Integer sum = 0;
+            String  card = idCard.replaceAll("[\\(|\\)]", "");
+            Integer sum  = 0;
             if (card.length() == 9) {
                 sum = ((int) card.substring(0, 1).toUpperCase().toCharArray()[0] - 55) * 9 + ((int) card.substring(1, 2).toUpperCase().toCharArray()[0] - 55) * 8;
                 card = card.substring(1, 9);
             } else {
                 sum = 522 + ((int) card.substring(0, 1).toUpperCase().toCharArray()[0] - 55) * 8;
             }
-            String mid = card.substring(1, 7);
-            String end = card.substring(7, 8);
-            char[] chars = mid.toCharArray();
+            String  mid   = card.substring(1, 7);
+            String  end   = card.substring(7, 8);
+            char[]  chars = mid.toCharArray();
             Integer iflag = 7;
             for (char c : chars) {
                 sum = sum + Integer.valueOf(String.valueOf(c)) * iflag;
@@ -520,7 +520,7 @@ public final class IDCardUtils {
         int len = data.length;
         if (len == 0) return 0;
         int powerLength = POWER.length;
-        int sum = 0;
+        int sum         = 0;
         if (powerLength == len) {
             for (int i = 0; i < len; i++) {
                 for (int j = 0; j < powerLength; j++) {
@@ -613,7 +613,7 @@ public final class IDCardUtils {
     private static boolean validateDateSmallerThenNow(final int yearData, final int monthData, final int dayData) {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         int datePerMonth;
-        int MIN = 1930;
+        int MIN  = 1930;
         if (yearData < MIN || yearData >= year) {
             return false;
         }

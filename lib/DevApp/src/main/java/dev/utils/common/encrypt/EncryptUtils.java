@@ -166,8 +166,8 @@ public final class EncryptUtils {
         if (file == null) return null;
         DigestInputStream dis = null;
         try {
-            FileInputStream fis = new FileInputStream(file);
-            MessageDigest digest = MessageDigest.getInstance("MD5");
+            FileInputStream fis    = new FileInputStream(file);
+            MessageDigest   digest = MessageDigest.getInstance("MD5");
             dis = new DigestInputStream(fis, digest);
             byte[] buffer = new byte[256 * 1024];
             while (true) {
@@ -560,7 +560,7 @@ public final class EncryptUtils {
         if (data == null || data.length == 0 || key == null || key.length == 0) return null;
         try {
             SecretKeySpec secretKey = new SecretKeySpec(key, algorithm);
-            Mac mac = Mac.getInstance(algorithm);
+            Mac           mac       = Mac.getInstance(algorithm);
             mac.init(secretKey);
             return mac.doFinal(data);
         } catch (Exception e) {
@@ -813,7 +813,7 @@ public final class EncryptUtils {
         try {
             SecretKey secretKey;
             if ("DES".equals(algorithm)) {
-                DESKeySpec desKey = new DESKeySpec(key);
+                DESKeySpec       desKey     = new DESKeySpec(key);
                 SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(algorithm);
                 secretKey = keyFactory.generateSecret(desKey);
             } else {
@@ -922,7 +922,7 @@ public final class EncryptUtils {
         if (data == null || key == null) return null;
         try {
             int dataLength = data.length;
-            int keyLength = key.length;
+            int keyLength  = key.length;
             if (dataLength == 0 || keyLength == 0) return null;
 
             Key rsaKey;
@@ -937,11 +937,11 @@ public final class EncryptUtils {
             Cipher cipher = Cipher.getInstance(transformation);
             cipher.init(isEncrypt ? Cipher.ENCRYPT_MODE : Cipher.DECRYPT_MODE, rsaKey);
             int maxLen = isEncrypt ? 117 : 128;
-            int count = dataLength / maxLen;
+            int count  = dataLength / maxLen;
             if (count > 0) {
-                byte[] ret = new byte[0];
+                byte[] ret    = new byte[0];
                 byte[] buffer = new byte[maxLen];
-                int index = 0;
+                int    index  = 0;
                 for (int i = 0; i < count; i++) {
                     System.arraycopy(data, index, buffer, 0, maxLen);
                     ret = ArrayUtils.arrayCopy(ret, cipher.doFinal(buffer));

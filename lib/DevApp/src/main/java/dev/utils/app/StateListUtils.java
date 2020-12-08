@@ -226,7 +226,7 @@ public final class StateListUtils {
     public static StateListDrawable newSelector(@DrawableRes final int pressed, @DrawableRes final int normal) {
         // 获取 Drawable
         Drawable pressedDraw = ResourceUtils.getDrawable(pressed);
-        Drawable normalDraw = ResourceUtils.getDrawable(normal);
+        Drawable normalDraw  = ResourceUtils.getDrawable(normal);
         // 创建 StateListDrawable
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressedDraw);
@@ -244,8 +244,8 @@ public final class StateListUtils {
     public static StateListDrawable newSelector(@DrawableRes final int selected, @DrawableRes final int pressed, @DrawableRes final int normal) {
         // 获取 Drawable
         Drawable selectedDraw = ResourceUtils.getDrawable(selected);
-        Drawable pressedDraw = ResourceUtils.getDrawable(pressed);
-        Drawable normalDraw = ResourceUtils.getDrawable(normal);
+        Drawable pressedDraw  = ResourceUtils.getDrawable(pressed);
+        Drawable normalDraw   = ResourceUtils.getDrawable(normal);
         // 创建 StateListDrawable
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_selected}, selectedDraw);
@@ -268,10 +268,10 @@ public final class StateListUtils {
                                                 @DrawableRes final int normal) {
         // 获取 Drawable
         Drawable selectedDraw = ResourceUtils.getDrawable(selected);
-        Drawable pressedDraw = ResourceUtils.getDrawable(pressed);
-        Drawable focusedDraw = ResourceUtils.getDrawable(focused);
-        Drawable checkedDraw = ResourceUtils.getDrawable(checked);
-        Drawable normalDraw = ResourceUtils.getDrawable(normal);
+        Drawable pressedDraw  = ResourceUtils.getDrawable(pressed);
+        Drawable focusedDraw  = ResourceUtils.getDrawable(focused);
+        Drawable checkedDraw  = ResourceUtils.getDrawable(checked);
+        Drawable normalDraw   = ResourceUtils.getDrawable(normal);
         // 创建 StateListDrawable
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_selected}, selectedDraw);

@@ -270,7 +270,7 @@ public final class RandomUtils {
     public static String getRandom(final char[] chars, final int length) {
         if (length > 0 && chars != null && chars.length != 0) {
             StringBuilder builder = new StringBuilder(length);
-            Random random = new Random();
+            Random        random  = new Random();
             for (int i = 0; i < length; i++) {
                 builder.append(chars[random.nextInt(chars.length)]);
             }
@@ -288,7 +288,7 @@ public final class RandomUtils {
     public static String getRandom(final String[] strings, final int length) {
         if (length > 0 && strings != null && strings.length != 0) {
             StringBuilder builder = new StringBuilder(length);
-            Random random = new Random();
+            Random        random  = new Random();
             for (int i = 0; i < length; i++) {
                 builder.append(strings[random.nextInt(strings.length)]);
             }
@@ -346,8 +346,8 @@ public final class RandomUtils {
         int length;
         if (shuffleCount > 0 && objects != null && (length = objects.length) >= shuffleCount) {
             for (int i = 1; i <= shuffleCount; i++) {
-                int random = getRandom(0, length - i);
-                Object temp = objects[length - i];
+                int    random = getRandom(0, length - i);
+                Object temp   = objects[length - i];
                 objects[length - i] = objects[random];
                 objects[random] = temp;
             }
@@ -400,7 +400,7 @@ public final class RandomUtils {
         int len = objects.length;
         if (len > 0) {
             for (int i = 0; i < len - 1; i++) {
-                int idx = (int) (Math.random() * (len - i));
+                int    idx  = (int) (Math.random() * (len - i));
                 Object temp = objects[idx];
                 objects[idx] = objects[len - i - 1];
                 objects[len - i - 1] = temp;
@@ -426,7 +426,7 @@ public final class RandomUtils {
             return origin;
         }
         Random random = new Random();
-        int n = bound - origin;
+        int    n      = bound - origin;
         if (n > 0) {
             return random.nextInt(n) + origin;
         } else {
@@ -452,8 +452,8 @@ public final class RandomUtils {
             return origin;
         }
         Random random = new Random();
-        long r = random.nextLong();
-        long n = bound - origin, m = n - 1;
+        long   r      = random.nextLong();
+        long   n      = bound - origin, m = n - 1;
         if ((n & m) == 0L) // power of two
             r = (r & m) + origin;
         else if (n > 0L) {  // reject over-represented candidates

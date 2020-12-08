@@ -56,7 +56,7 @@ public final class BarUtils {
     public static int getStatusBarHeight() {
         try {
             Resources resources = Resources.getSystem();
-            int id = resources.getIdentifier("status_bar_height", "dimen", "android");
+            int       id        = resources.getIdentifier("status_bar_height", "dimen", "android");
             if (id != 0) {
                 return resources.getDimensionPixelSize(id);
             }
@@ -134,7 +134,7 @@ public final class BarUtils {
     public static boolean setStatusBarLightMode(final Window window, final boolean isLightMode) {
         if (window != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             View decorView = window.getDecorView();
-            int vis = decorView.getSystemUiVisibility();
+            int  vis       = decorView.getSystemUiVisibility();
             if (isLightMode) {
                 vis |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
             } else {
@@ -163,7 +163,7 @@ public final class BarUtils {
     public static boolean isStatusBarLightMode(final Window window) {
         if (window != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             View decorView = window.getDecorView();
-            int vis = decorView.getSystemUiVisibility();
+            int  vis       = decorView.getSystemUiVisibility();
             return (vis & View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR) != 0;
         }
         return false;
@@ -397,7 +397,7 @@ public final class BarUtils {
                 window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                 int option = View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
-                int vis = window.getDecorView().getSystemUiVisibility();
+                int vis    = window.getDecorView().getSystemUiVisibility();
                 window.getDecorView().setSystemUiVisibility(option | vis);
                 window.setStatusBarColor(Color.TRANSPARENT);
             } else {
@@ -428,8 +428,8 @@ public final class BarUtils {
      */
     private static View applyStatusBarColor(final Window window, final int color, final boolean isDecor) {
         if (window == null) return null;
-        ViewGroup parent = isDecor ? (ViewGroup) window.getDecorView() : (ViewGroup) window.findViewById(android.R.id.content);
-        View fakeStatusBarView = parent.findViewWithTag(TAG_STATUS_BAR);
+        ViewGroup parent            = isDecor ? (ViewGroup) window.getDecorView() : (ViewGroup) window.findViewById(android.R.id.content);
+        View      fakeStatusBarView = parent.findViewWithTag(TAG_STATUS_BAR);
         if (fakeStatusBarView != null) {
             if (fakeStatusBarView.getVisibility() == View.GONE) {
                 fakeStatusBarView.setVisibility(View.VISIBLE);
@@ -455,8 +455,8 @@ public final class BarUtils {
      * @param window {@link Window}
      */
     private static void hideStatusBarView(final Window window) {
-        ViewGroup decorView = (ViewGroup) window.getDecorView();
-        View fakeStatusBarView = decorView.findViewWithTag(TAG_STATUS_BAR);
+        ViewGroup decorView         = (ViewGroup) window.getDecorView();
+        View      fakeStatusBarView = decorView.findViewWithTag(TAG_STATUS_BAR);
         if (fakeStatusBarView == null) return;
         fakeStatusBarView.setVisibility(View.GONE);
     }
@@ -466,8 +466,8 @@ public final class BarUtils {
      * @param window {@link Window}
      */
     private static void showStatusBarView(final Window window) {
-        ViewGroup decorView = (ViewGroup) window.getDecorView();
-        View fakeStatusBarView = decorView.findViewWithTag(TAG_STATUS_BAR);
+        ViewGroup decorView         = (ViewGroup) window.getDecorView();
+        View      fakeStatusBarView = decorView.findViewWithTag(TAG_STATUS_BAR);
         if (fakeStatusBarView == null) return;
         fakeStatusBarView.setVisibility(View.VISIBLE);
     }
@@ -550,7 +550,7 @@ public final class BarUtils {
     public static int getNavBarHeight() {
         try {
             Resources resources = Resources.getSystem();
-            int id = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+            int       id        = resources.getIdentifier("navigation_bar_height", "dimen", "android");
             if (id != 0) {
                 return resources.getDimensionPixelSize(id);
             }
@@ -581,7 +581,7 @@ public final class BarUtils {
             final ViewGroup decorView = (ViewGroup) window.getDecorView();
             for (int i = 0, count = decorView.getChildCount(); i < count; i++) {
                 final View child = decorView.getChildAt(i);
-                final int id = child.getId();
+                final int  id    = child.getId();
                 if (id != View.NO_ID) {
                     String resourceEntryName = Resources.getSystem().getResourceEntryName(id);
                     if ("navigationBarBackground".equals(resourceEntryName)) {
@@ -618,11 +618,11 @@ public final class BarUtils {
      */
     public static boolean isNavBarVisible(final Window window) {
         if (window != null) {
-            boolean isVisible = false;
+            boolean   isVisible = false;
             ViewGroup decorView = (ViewGroup) window.getDecorView();
             for (int i = 0, count = decorView.getChildCount(); i < count; i++) {
                 final View child = decorView.getChildAt(i);
-                final int id = child.getId();
+                final int  id    = child.getId();
                 if (id != View.NO_ID) {
                     String resourceEntryName = Resources.getSystem().getResourceEntryName(id);
                     if ("navigationBarBackground".equals(resourceEntryName)
@@ -649,9 +649,9 @@ public final class BarUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             WindowManager windowManager = AppUtils.getWindowManager();
             if (windowManager == null) return false;
-            Display display = windowManager.getDefaultDisplay();
-            Point size = new Point();
-            Point realSize = new Point();
+            Display display  = windowManager.getDefaultDisplay();
+            Point   size     = new Point();
+            Point   realSize = new Point();
             display.getSize(size);
             display.getRealSize(realSize);
             return realSize.y != size.y || realSize.x != size.x;
@@ -726,7 +726,7 @@ public final class BarUtils {
     public static boolean setNavBarLightMode(final Window window, final boolean isLightMode) {
         if (window != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             View decorView = window.getDecorView();
-            int vis = decorView.getSystemUiVisibility();
+            int  vis       = decorView.getSystemUiVisibility();
             if (isLightMode) {
                 vis |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
             } else {
@@ -755,7 +755,7 @@ public final class BarUtils {
     public static boolean isNavBarLightMode(final Window window) {
         if (window != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             View decorView = window.getDecorView();
-            int vis = decorView.getSystemUiVisibility();
+            int  vis       = decorView.getSystemUiVisibility();
             return (vis & View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR) != 0;
         }
         return false;

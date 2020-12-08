@@ -771,9 +771,9 @@ public final class NumberUtils {
     public static int[] calculateUnit(final double[] units, final double value) {
         if (units == null) return null;
         if (value <= 0) return null;
-        int len = units.length;
-        int[] arrays = new int[len];
-        double temp = value;
+        int    len    = units.length;
+        int[]  arrays = new int[len];
+        double temp   = value;
         for (int i = 0; i < len; i++) {
             if (temp >= units[i]) {
                 int mode = (int) (temp / units[i]);

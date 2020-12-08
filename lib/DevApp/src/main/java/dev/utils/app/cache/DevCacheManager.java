@@ -165,9 +165,9 @@ final class DevCacheManager {
         if (mLastUsageDateMaps.isEmpty()) {
             return 0;
         }
-        Long oldestUsage = null;
-        File mostLongUsedFile = null;
-        Set<Map.Entry<File, Long>> entries = mLastUsageDateMaps.entrySet();
+        Long                       oldestUsage      = null;
+        File                       mostLongUsedFile = null;
+        Set<Map.Entry<File, Long>> entries          = mLastUsageDateMaps.entrySet();
         synchronized (mLastUsageDateMaps) {
             for (Map.Entry<File, Long> entry : entries) {
                 if (mostLongUsedFile == null) {

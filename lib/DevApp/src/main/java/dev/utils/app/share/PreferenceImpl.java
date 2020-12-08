@@ -149,7 +149,7 @@ final class PreferenceImpl implements IPreference {
     public <T> void putAll(final Map<String, T> map) {
         SharedPreferences.Editor edit = mPreferences.edit();
         for (Map.Entry<String, T> entry : map.entrySet()) {
-            String key = entry.getKey();
+            String key   = entry.getKey();
             Object value = entry.getValue();
             put(edit, key, value);
         }
@@ -210,7 +210,7 @@ final class PreferenceImpl implements IPreference {
     @Override
     public List<String> getAll(final String key) {
         List<String> list = new ArrayList<>();
-        Set<String> set = get(key, DataType.STRING_SET);
+        Set<String>  set  = get(key, DataType.STRING_SET);
         for (String value : set) {
             list.add(value);
         }

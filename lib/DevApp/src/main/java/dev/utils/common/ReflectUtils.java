@@ -186,7 +186,7 @@ public final class ReflectUtils {
             public int compare(Constructor<?> o1, Constructor<?> o2) {
                 Class<?>[] types1 = o1.getParameterTypes();
                 Class<?>[] types2 = o2.getParameterTypes();
-                int len = types1.length;
+                int        len    = types1.length;
                 for (int i = 0; i < len; i++) {
                     if (!types1[i].equals(types2[i])) {
                         if (wrapper(types1[i]).isAssignableFrom(wrapper(types2[i]))) {
@@ -422,7 +422,7 @@ public final class ReflectUtils {
      * @throws ReflectException 反射异常
      */
     private Method similarMethod(final String name, final Class<?>[] types) throws ReflectException {
-        Class<?> type = type();
+        Class<?>     type    = type();
         List<Method> methods = new ArrayList<>();
         for (Method method : type.getMethods()) {
             if (isSimilarSignature(method, name, types)) {
@@ -459,7 +459,7 @@ public final class ReflectUtils {
             public int compare(Method o1, Method o2) {
                 Class<?>[] types1 = o1.getParameterTypes();
                 Class<?>[] types2 = o2.getParameterTypes();
-                int len = types1.length;
+                int        len    = types1.length;
                 for (int i = 0; i < len; i++) {
                     if (!types1[i].equals(types2[i])) {
                         if (wrapper(types1[i]).isAssignableFrom(wrapper(types2[i]))) {
@@ -544,8 +544,8 @@ public final class ReflectUtils {
                     return reflect(mObject).method(name, args).get();
                 } catch (Exception e) {
                     if (isMap) {
-                        Map<String, Object> map = (Map<String, Object>) mObject;
-                        int length = (args == null ? 0 : args.length);
+                        Map<String, Object> map    = (Map<String, Object>) mObject;
+                        int                 length = (args == null ? 0 : args.length);
                         if (length == 0 && name.startsWith("get")) {
                             return map.get(property(name.substring(3)));
                         } else if (length == 0 && name.startsWith("is")) {

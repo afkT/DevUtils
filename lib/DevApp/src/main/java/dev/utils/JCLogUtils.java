@@ -219,9 +219,9 @@ public final class JCLogUtils {
                 return;
             }
             try {
-                Source xmlInput = new StreamSource(new StringReader(xml));
-                StreamResult xmlOutput = new StreamResult(new StringWriter());
-                Transformer transformer = TransformerFactory.newInstance().newTransformer();
+                Source       xmlInput    = new StreamSource(new StringReader(xml));
+                StreamResult xmlOutput   = new StreamResult(new StringWriter());
+                Transformer  transformer = TransformerFactory.newInstance().newTransformer();
                 transformer.setOutputProperty(OutputKeys.INDENT, "yes");
                 transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
                 transformer.transform(xmlInput, xmlOutput);
