@@ -124,12 +124,12 @@ public class StateLayout extends FrameLayout {
         });
         // 添加全局配置
         if (sGlobal != null) {
-            Map<Integer, Integer> mapLayouts = new HashMap<>(sGlobal.mapLayouts);
-            Iterator<Map.Entry<Integer, Integer>> iterator = mapLayouts.entrySet().iterator();
+            Map<Integer, Integer>                 mapLayouts = new HashMap<>(sGlobal.mapLayouts);
+            Iterator<Map.Entry<Integer, Integer>> iterator   = mapLayouts.entrySet().iterator();
             while (iterator.hasNext()) {
-                Map.Entry<Integer, Integer> entry = iterator.next();
-                int type = entry.getKey();
-                Integer layout = entry.getValue();
+                Map.Entry<Integer, Integer> entry  = iterator.next();
+                int                         type   = entry.getKey();
+                Integer                     layout = entry.getValue();
                 mAssist.register(type, new TypeAdapter(layout));
             }
         }

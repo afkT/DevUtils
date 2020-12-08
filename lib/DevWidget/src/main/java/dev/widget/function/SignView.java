@@ -58,7 +58,7 @@ public class SignView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        Path path = getPath();
+        Path  path  = getPath();
         Paint paint = getPaint();
         // 触发回调
         if (mDrawCallback != null) {

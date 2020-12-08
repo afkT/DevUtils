@@ -343,7 +343,7 @@ public class LoadProgressBar extends View {
         float tWidth = mPaint.measureText(progressText);
         // 计算字体内容高度
         float fontTotalHeight = fontMetrics.bottom - fontMetrics.top;
-        float offY = fontTotalHeight / 2 - fontMetrics.bottom;
+        float offY            = fontTotalHeight / 2 - fontMetrics.bottom;
         // 设置左、上边距
         float x = (width - tWidth) / 2;
         float y = height / 2 + offY;

@@ -147,12 +147,12 @@ public final class ZXingQRCodeUtils {
             @Override
             public void run() {
                 try {
-                    int width = bitmap.getWidth();
-                    int height = bitmap.getHeight();
+                    int   width  = bitmap.getWidth();
+                    int   height = bitmap.getHeight();
                     int[] pixels = new int[width * height];
                     bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
                     RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
-                    Result result = new MultiFormatReader().decode(new BinaryBitmap(new HybridBinarizer(source)), DECODE_HINTS);
+                    Result             result = new MultiFormatReader().decode(new BinaryBitmap(new HybridBinarizer(source)), DECODE_HINTS);
                     // 触发回调
                     if (callback != null) {
                         callback.onResult((result != null), result, null);
@@ -221,7 +221,7 @@ public final class ZXingQRCodeUtils {
     public static Bitmap syncEncodeQRCode(final String content, final int size, final int foregroundColor, final int backgroundColor) {
         try {
             BitMatrix matrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, size, size, ENCODE_HINTS);
-            int[] pixels = new int[size * size];
+            int[]     pixels = new int[size * size];
             for (int y = 0; y < size; y++) {
                 for (int x = 0; x < size; x++) {
                     if (matrix.get(x, y)) {
@@ -252,13 +252,13 @@ public final class ZXingQRCodeUtils {
     public static Bitmap addLogoToQRCode(final Bitmap src, final Bitmap logo) {
         if (src == null || logo == null) return src;
         // 获取图片宽度高度
-        int srcWidth = src.getWidth();
-        int srcHeight = src.getHeight();
-        int logoWidth = logo.getWidth();
+        int srcWidth   = src.getWidth();
+        int srcHeight  = src.getHeight();
+        int logoWidth  = logo.getWidth();
         int logoHeight = logo.getHeight();
         // 缩放图片
-        float scaleFactor = srcWidth * 1.0f / 4 / logoWidth; // 这里的 4 决定 Logo 在图片的比例 四分之一
-        Bitmap bitmap = Bitmap.createBitmap(srcWidth, srcHeight, Bitmap.Config.ARGB_8888);
+        float  scaleFactor = srcWidth * 1.0f / 4 / logoWidth; // 这里的 4 决定 Logo 在图片的比例 四分之一
+        Bitmap bitmap      = Bitmap.createBitmap(srcWidth, srcHeight, Bitmap.Config.ARGB_8888);
         try {
             Canvas canvas = new Canvas(bitmap);
             canvas.drawBitmap(src, 0, 0, null);

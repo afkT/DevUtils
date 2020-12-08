@@ -184,7 +184,7 @@ public final class LubanUtils {
                                        CompressionPredicate predicate, OnRenameListener renameListener,
                                        OnCompressListener compressListener) {
         if (lists == null) return false;
-        int number = 0;
+        int           number  = 0;
         Luban.Builder builder = Luban.with(getContext());
         for (T src : lists) {
             if (src instanceof String) {
@@ -202,7 +202,7 @@ public final class LubanUtils {
             }
         }
         if (number == 0) return false;
-        int count = number;
+        int                count    = number;
         Map<Integer, File> fileMaps = new LinkedHashMap<>();
         // 配置信息
         builder.ignoreBy(ignoreSize)
@@ -236,7 +236,7 @@ public final class LubanUtils {
                             onError(new FileNotFoundException(file.getAbsolutePath()));
                             return;
                         }
-                        int size = fileMaps.size();
+                        int size  = fileMaps.size();
                         int index = (size - 1);
                         fileMaps.put(index, file);
                         if (compressListener != null) {
@@ -263,7 +263,7 @@ public final class LubanUtils {
                     }
 
                     private List<File> getLists() {
-                        List<File> files = new ArrayList<>();
+                        List<File>     files    = new ArrayList<>();
                         Iterator<File> iterator = fileMaps.values().iterator();
                         while (iterator.hasNext()) {
                             File file = iterator.next();

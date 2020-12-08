@@ -207,10 +207,10 @@ public abstract class OkGoCallback<T> extends AbsCallback<String> {
             return;
         }
 
-        String data = jsonObject.optString(OkGoResponse.KEY_DATA);
-        String code = jsonObject.optString(OkGoResponse.KEY_CODE);
-        String message = jsonObject.optString(OkGoResponse.KEY_MESSAGE);
-        boolean result = isSuccess(code);
+        String  data    = jsonObject.optString(OkGoResponse.KEY_DATA);
+        String  code    = jsonObject.optString(OkGoResponse.KEY_CODE);
+        String  message = jsonObject.optString(OkGoResponse.KEY_MESSAGE);
+        boolean result  = isSuccess(code);
 
         OkGoResponse.Builder<T> builder = new OkGoResponse.Builder<T>()
                 .setToast(toast)

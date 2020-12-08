@@ -76,8 +76,8 @@ public final class GlideTransformUtils {
             if (source == null) return null;
 
             int size = Math.min(source.getWidth(), source.getHeight());
-            int x = (source.getWidth() - size) / 2;
-            int y = (source.getHeight() - size) / 2;
+            int x    = (source.getWidth() - size) / 2;
+            int y    = (source.getHeight() - size) / 2;
 
             Bitmap squared = Bitmap.createBitmap(source, x, y, size, size);
 
@@ -87,7 +87,7 @@ public final class GlideTransformUtils {
             }
 
             Canvas canvas = new Canvas(result);
-            Paint paint = new Paint();
+            Paint  paint  = new Paint();
             paint.setShader(new BitmapShader(squared, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));
             paint.setAntiAlias(true);
             float r = size / 2f;
@@ -127,7 +127,7 @@ public final class GlideTransformUtils {
             }
 
             Canvas canvas = new Canvas(result);
-            Paint paint = new Paint();
+            Paint  paint  = new Paint();
             paint.setShader(new BitmapShader(source, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));
             paint.setAntiAlias(true);
             RectF rectF = new RectF(0f, 0f, source.getWidth(), source.getHeight());
@@ -183,7 +183,7 @@ public final class GlideTransformUtils {
             ScriptIntrinsicBlur blurScript = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
             // 由于 RenderScript 并没有使用 VM 来分配内存, 所以需要使用 Allocation 类来创建和分配内存空间
             // 创建 Allocation 对象的时候其实内存是空的, 需要使用 copyTo() 将数据填充进去
-            Allocation tmpIn = Allocation.createFromBitmap(rs, inputBitmap);
+            Allocation tmpIn  = Allocation.createFromBitmap(rs, inputBitmap);
             Allocation tmpOut = Allocation.createFromBitmap(rs, outputBitmap);
             // 设置渲染的模糊程度, 25f 是最大模糊度
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {

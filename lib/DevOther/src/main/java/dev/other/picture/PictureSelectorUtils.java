@@ -213,7 +213,7 @@ public final class PictureSelectorUtils {
      * @return {@link List}
      */
     public static List<String> getLocalMediaPaths(final Intent data, final boolean original) {
-        List<String> lists = new ArrayList<>();
+        List<String>     lists  = new ArrayList<>();
         List<LocalMedia> result = getLocalMedias(data);
         if (result != null) {
             for (LocalMedia localMedia : result) {

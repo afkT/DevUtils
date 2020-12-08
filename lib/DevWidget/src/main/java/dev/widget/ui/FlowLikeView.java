@@ -186,7 +186,7 @@ public class FlowLikeView extends FrameLayout {
 
         @Override
         public PointF evaluate(float fraction, PointF startValue, PointF endValue) {
-            float leftTime = 1.0f - fraction;
+            float  leftTime     = 1.0f - fraction;
             PointF resultPointF = new PointF();
             // 二阶贝塞儿曲线
             resultPointF.x = (float) Math.pow(leftTime, 2) * startValue.x + 2 * fraction * leftTime * ctrlPointF.x
@@ -232,10 +232,10 @@ public class FlowLikeView extends FrameLayout {
      * @return 动画集合
      */
     private AnimatorSet generateEnterAnimation(View target) {
-        ObjectAnimator alpha = ObjectAnimator.ofFloat(target, "alpha", 0.2f, 1f);
-        ObjectAnimator scaleX = ObjectAnimator.ofFloat(target, "scaleX", 0.5f, 1f);
-        ObjectAnimator scaleY = ObjectAnimator.ofFloat(target, "scaleY", 0.5f, 1f);
-        AnimatorSet enterAnimation = new AnimatorSet();
+        ObjectAnimator alpha          = ObjectAnimator.ofFloat(target, "alpha", 0.2f, 1f);
+        ObjectAnimator scaleX         = ObjectAnimator.ofFloat(target, "scaleX", 0.5f, 1f);
+        ObjectAnimator scaleY         = ObjectAnimator.ofFloat(target, "scaleY", 0.5f, 1f);
+        AnimatorSet    enterAnimation = new AnimatorSet();
         enterAnimation.playTogether(alpha, scaleX, scaleY);
         enterAnimation.setDuration(10);
         enterAnimation.setTarget(target);

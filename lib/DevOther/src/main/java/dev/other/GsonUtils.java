@@ -207,7 +207,7 @@ public final class GsonUtils {
             try {
                 JsonReader reader = new JsonReader(new StringReader(json));
                 reader.setLenient(true);
-                JsonParser jsonParser = new JsonParser();
+                JsonParser  jsonParser  = new JsonParser();
                 JsonElement jsonElement = jsonParser.parse(reader);
                 return gson.toJson(jsonElement);
             } catch (Exception e) {

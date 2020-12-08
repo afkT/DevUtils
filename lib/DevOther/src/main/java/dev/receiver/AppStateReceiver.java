@@ -30,7 +30,7 @@ public final class AppStateReceiver extends BroadcastReceiver {
             LogPrintUtils.dTag(TAG, "onReceive Action: %s", action);
             // 被操作应用包名
             String packageName = null;
-            Uri uri = intent.getData();
+            Uri    uri         = intent.getData();
             if (uri != null) {
 //                packageName = uri.toString();
                 packageName = uri.getEncodedSchemeSpecificPart();

@@ -80,7 +80,7 @@ public class WrapView extends ViewGroup {
         // 判断高度是否自动处理
         boolean isHeightWrapContent = (MeasureSpec.AT_MOST == heightMode || MeasureSpec.UNSPECIFIED == heightMode);
         // 获取宽度、高度
-        int width = resolveSize(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec), widthMeasureSpec);
+        int width  = resolveSize(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec), widthMeasureSpec);
         int height = resolveSize(getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec), heightMeasureSpec);
         // 设置 View 的宽度高度
         setMeasuredDimension(width, (isHeightWrapContent ? calc(width, mRowTopMargin, mViewLeftMargin) : height));
@@ -88,22 +88,22 @@ public class WrapView extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        boolean newLine = false; // 判断是否换行
-        boolean fillWidth = false; // 判断是否填满宽度 (View 直接超过一行宽度 )
-        int paddingTop = getPaddingTop(); // 上边距
-        int paddingLeft = getPaddingLeft(); // 左边距
-        int drawX = 0; // 已绘制的 X 轴距离
-        int rowLine = 0; // 当前绘制的行数
-        int calcHeight = 0; // 计算累加的高度
-        int width = getWidth() - (paddingLeft + getPaddingRight()); // 宽度减去左右边距
-        int widthSubRight = getWidth() - getPaddingRight(); // 宽度减去右边距
-        int rowTopMargin = mRowTopMargin;
-        int viewLeftMargin = mViewLeftMargin;
+        boolean newLine        = false; // 判断是否换行
+        boolean fillWidth      = false; // 判断是否填满宽度 (View 直接超过一行宽度 )
+        int     paddingTop     = getPaddingTop(); // 上边距
+        int     paddingLeft    = getPaddingLeft(); // 左边距
+        int     drawX          = 0; // 已绘制的 X 轴距离
+        int     rowLine        = 0; // 当前绘制的行数
+        int     calcHeight     = 0; // 计算累加的高度
+        int     width          = getWidth() - (paddingLeft + getPaddingRight()); // 宽度减去左右边距
+        int     widthSubRight  = getWidth() - getPaddingRight(); // 宽度减去右边距
+        int     rowTopMargin   = mRowTopMargin;
+        int     viewLeftMargin = mViewLeftMargin;
         // 循环所有子 View
         for (int i = 0, size = getChildCount(); i < size; i++) {
-            final View child = this.getChildAt(i);
-            int childViewWidth = child.getMeasuredWidth();
-            int childViewHeight = child.getMeasuredHeight();
+            final View child           = this.getChildAt(i);
+            int        childViewWidth  = child.getMeasuredWidth();
+            int        childViewHeight = child.getMeasuredHeight();
             // 左边距
             int leftMargin = (drawX == 0) ? 0 : viewLeftMargin;
             // 赋值处理 ( 防止 View 宽度超出剩余宽度 )
@@ -155,17 +155,17 @@ public class WrapView extends ViewGroup {
      * @return 计算 View 高度
      */
     private int calc(final int rootWidth, final int rowTopMargin, final int viewLeftMargin) {
-        boolean newLine = false; // 判断是否换行
-        boolean fillWidth = false; // 判断是否填满宽度 (View 直接超过一行宽度 )
-        int drawX = 0; // 已绘制的 X 轴距离
-        int rowLine = 0; // 当前绘制的行数
-        int calcHeight = 0; // 计算累加的高度
-        int width = rootWidth - (getPaddingLeft() + getPaddingRight()); // 宽度减去左右边距
+        boolean newLine    = false; // 判断是否换行
+        boolean fillWidth  = false; // 判断是否填满宽度 (View 直接超过一行宽度 )
+        int     drawX      = 0; // 已绘制的 X 轴距离
+        int     rowLine    = 0; // 当前绘制的行数
+        int     calcHeight = 0; // 计算累加的高度
+        int     width      = rootWidth - (getPaddingLeft() + getPaddingRight()); // 宽度减去左右边距
         // 循环所有子 View
         for (int i = 0, size = getChildCount(); i < size; i++) {
-            final View child = this.getChildAt(i);
-            int childViewWidth = child.getMeasuredWidth();
-            int childViewHeight = child.getMeasuredHeight();
+            final View child           = this.getChildAt(i);
+            int        childViewWidth  = child.getMeasuredWidth();
+            int        childViewHeight = child.getMeasuredHeight();
             // 左边距
             int leftMargin = (drawX == 0) ? 0 : viewLeftMargin;
             // 赋值处理 ( 防止 View 宽度超出剩余宽度 )

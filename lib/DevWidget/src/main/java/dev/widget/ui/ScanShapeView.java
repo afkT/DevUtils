@@ -1296,7 +1296,7 @@ public class ScanShapeView extends View {
         Path path = new Path();
 
         // 位置信息
-        float r = (rectF.right - rectF.left) / 2; // 半径
+        float r  = (rectF.right - rectF.left) / 2; // 半径
         float mX = (rectF.right + rectF.left) / 2; // X 轴中心点位置
         float mY = (rectF.top + rectF.bottom) / 2; // Y 轴中心点位置
 
@@ -1506,10 +1506,10 @@ public class ScanShapeView extends View {
             return;
         }
 
-        Path leftPath = new Path(); // 左边路径
+        Path leftPath  = new Path(); // 左边路径
         Path rightPath = new Path(); // 右边路径
         // 位置信息
-        float r = (rectF.right - rectF.left) / 2; // 半径
+        float r  = (rectF.right - rectF.left) / 2; // 半径
         float mX = (rectF.right + rectF.left) / 2; // X 轴中心点位置
         float mY = (rectF.top + rectF.bottom) / 2; // Y 轴中心点位置
 
@@ -1851,7 +1851,7 @@ public class ScanShapeView extends View {
         if (mBitmapToSquare != null && mLineColorToSquare != 0) {
             try {
                 // 转换 Drawable
-                Drawable drawable = new BitmapDrawable(getResources(), mBitmapToSquare);
+                Drawable drawable     = new BitmapDrawable(getResources(), mBitmapToSquare);
                 Drawable tintDrawable = DrawableCompat.wrap(drawable);
                 // 进行着色
                 DrawableCompat.setTint(tintDrawable, mLineColorToSquare);
@@ -1925,7 +1925,7 @@ public class ScanShapeView extends View {
         if (mBitmapToAnnulus != null && mLineColorToAnnulus != 0) {
             try {
                 // 转换 Drawable
-                Drawable drawable = new BitmapDrawable(getResources(), mBitmapToAnnulus);
+                Drawable drawable     = new BitmapDrawable(getResources(), mBitmapToAnnulus);
                 Drawable tintDrawable = DrawableCompat.wrap(drawable);
                 // 进行着色
                 DrawableCompat.setTint(tintDrawable, mLineColorToAnnulus);

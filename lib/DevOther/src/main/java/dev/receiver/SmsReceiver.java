@@ -29,9 +29,9 @@ public final class SmsReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         try {
-            Object[] pdus = (Object[]) intent.getExtras().get("pdus");
-            String originatingAddress = null;
-            String serviceCenterAddress = null;
+            Object[] pdus                 = (Object[]) intent.getExtras().get("pdus");
+            String   originatingAddress   = null;
+            String   serviceCenterAddress = null;
             if (pdus != null) {
                 // 消息内容
                 StringBuilder builder = new StringBuilder();

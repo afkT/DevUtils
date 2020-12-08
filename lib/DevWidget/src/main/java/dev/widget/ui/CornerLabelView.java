@@ -120,7 +120,7 @@ public class CornerLabelView extends View {
             mText2.init();
 
             int fillColor = a.getColor(R.styleable.DevWidget_dev_fillColor, 0x66000000);
-            int flags = a.getInteger(R.styleable.DevWidget_dev_flags, 0);
+            int flags     = a.getInteger(R.styleable.DevWidget_dev_flags, 0);
             a.recycle();
 
             mIsLeft = (flags & 1) == 0;

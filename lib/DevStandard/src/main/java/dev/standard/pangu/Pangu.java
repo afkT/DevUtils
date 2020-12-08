@@ -97,9 +97,9 @@ public class Pangu {
 //        text = fixQuoteMatcher.replaceAll("$1$3$5");
 
         // CJK and brackets
-        String oldText = text;
+        String  oldText    = text;
         Matcher cbcMatcher = CJK_BRACKET_CJK.matcher(text);
-        String newText = cbcMatcher.replaceAll("$1 $2 $4");
+        String  newText    = cbcMatcher.replaceAll("$1 $2 $4");
         text = newText;
 
         if (oldText.equals(newText)) {
@@ -141,11 +141,11 @@ public class Pangu {
     public void spacingFile(File inputFile, File outputFile) throws IOException {
         // TODO: support charset
 
-        FileReader fr = new FileReader(inputFile);
+        FileReader     fr = new FileReader(inputFile);
         BufferedReader br = new BufferedReader(fr);
 
         outputFile.getParentFile().mkdirs();
-        FileWriter fw = new FileWriter(outputFile, false);
+        FileWriter     fw = new FileWriter(outputFile, false);
         BufferedWriter bw = new BufferedWriter(fw);
 
         try {

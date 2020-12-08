@@ -17,10 +17,10 @@ import java.util.Map;
 public class SortMain {
 
     public static void main(String[] args) {
-        String FORMAT = "public static final String %s = \"%s\";";
-        List<String> lists = new ArrayList<>();
-        Map<String, String> maps = new HashMap<>();
-        Field[] fields = SortMain.class.getDeclaredFields(); // DevFinal
+        String              FORMAT = "public static final String %s = \"%s\";";
+        List<String>        lists  = new ArrayList<>();
+        Map<String, String> maps   = new HashMap<>();
+        Field[]             fields = SortMain.class.getDeclaredFields(); // DevFinal
         for (Field field : fields) {
             String descriptor = Modifier.toString(field.getModifiers());
             descriptor = descriptor.equals("") == true ? "" : descriptor + " ";

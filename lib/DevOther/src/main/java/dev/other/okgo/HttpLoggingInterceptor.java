@@ -38,12 +38,12 @@ public class HttpLoggingInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         CaptureEntity captureEntity = new CaptureEntity();
 
-        Request request = chain.request();
-        RequestBody requestBody = request.body();
-        boolean hasRequestBody = requestBody != null;
+        Request     request        = chain.request();
+        RequestBody requestBody    = request.body();
+        boolean     hasRequestBody = requestBody != null;
 
         Connection connection = chain.connection();
-        Protocol protocol = connection != null ? connection.protocol() : Protocol.HTTP_1_1;
+        Protocol   protocol   = connection != null ? connection.protocol() : Protocol.HTTP_1_1;
 
         StringBuilder requestStartMessage = new StringBuilder();
         requestStartMessage.append(request.method()).append(" ").append(protocol);
@@ -109,7 +109,7 @@ public class HttpLoggingInterceptor implements Interceptor {
         // = 响应信息 =
         // ===========
 
-        long startNs = System.nanoTime();
+        long     startNs = System.nanoTime();
         Response response;
         try {
             response = chain.proceed(request);
@@ -120,8 +120,8 @@ public class HttpLoggingInterceptor implements Interceptor {
         }
         long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
 
-        ResponseBody responseBody = response.body();
-        long contentLength = responseBody.contentLength();
+        ResponseBody responseBody  = response.body();
+        long         contentLength = responseBody.contentLength();
 
         captureEntity.responseStatus.put("status", response.code() + " " + response.message());
         captureEntity.responseStatus.put("time", tookMs + "ms");
@@ -136,7 +136,7 @@ public class HttpLoggingInterceptor implements Interceptor {
             source.request(Long.MAX_VALUE); // Buffer the entire body.
             Buffer buffer = source.buffer();
 
-            Charset charset = UTF8;
+            Charset   charset     = UTF8;
             MediaType contentType = responseBody.contentType();
             if (contentType != null) {
                 charset = contentType.charset(UTF8);
@@ -197,8 +197,8 @@ public class HttpLoggingInterceptor implements Interceptor {
 
     private boolean isPlaintext(Buffer buffer) {
         try {
-            Buffer prefix = new Buffer();
-            long byteCount = buffer.size() < 64 ? buffer.size() : 64;
+            Buffer prefix    = new Buffer();
+            long   byteCount = buffer.size() < 64 ? buffer.size() : 64;
             buffer.copyTo(prefix, 0, byteCount);
             for (int i = 0; i < 16; i++) {
                 if (prefix.exhausted()) {

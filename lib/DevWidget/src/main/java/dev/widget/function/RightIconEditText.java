@@ -72,9 +72,9 @@ public class RightIconEditText extends AppCompatEditText {
             mRight.getIntrinsicWidth();
             // 获取触摸坐标
             int eventX = (int) event.getX();
-            int width = mRightBounds.width();
-            int right = getRight();
-            int left = getLeft();
+            int width  = mRightBounds.width();
+            int right  = getRight();
+            int left   = getLeft();
             // icon 点击范围 ( 用于小 Icon 扩大触发范围使用 )
             int iconRange = (int) (width * mRangeMultiple);
             // 判断是否按在 right drawable 上
