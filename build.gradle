@@ -30,7 +30,7 @@ buildscript {
         // greendao
         classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
         // kotlin
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.20"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.21"
     }
 }
 
