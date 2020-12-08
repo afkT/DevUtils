@@ -243,7 +243,7 @@ public class DevBaseVariable<K, V> {
         Iterator<Map.Entry<K, V>> iterator = mLinkedHashMap.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<K, V> entry = iterator.next();
-            V v = entry.getValue();
+            V               v     = entry.getValue();
             // 判断是否符合对应的 value
             if (v == value) {
                 return entry.getKey();

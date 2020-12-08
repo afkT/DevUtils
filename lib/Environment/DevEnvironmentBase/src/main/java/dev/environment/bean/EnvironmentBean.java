@@ -67,7 +67,7 @@ public class EnvironmentBean implements Serializable {
 
     @Override
     public final String toString() {
-        String moduleName = (module != null) ? module.getName() : "";
+        String moduleName  = (module != null) ? module.getName() : "";
         String moduleAlias = (module != null) ? module.getAlias() : "";
         return String.format(JSON_FORMAT, getName(), getValue(), getAlias(), moduleName, moduleAlias);
     }

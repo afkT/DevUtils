@@ -52,7 +52,7 @@ public final class WifiHotUse {
                 @Override
                 public void onStarted(WifiConfiguration wifiConfig) {
                     String ssid = wifiHotUtils.getApWifiSSID();
-                    String pwd = wifiHotUtils.getApWifiPwd();
+                    String pwd  = wifiHotUtils.getApWifiPwd();
                 }
 
                 @Override

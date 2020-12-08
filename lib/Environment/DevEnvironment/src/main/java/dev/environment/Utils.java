@@ -113,7 +113,7 @@ class Utils {
     public static EnvironmentBean getModuleEnvironment(final Context context, final String moduleName) {
         try {
             String getModuleEnvironmentMethodName = "get" + moduleName + STR_ENVIRONMENT;
-            Method getModuleEnvironmentMethod = devEnvironmentClass.getMethod(getModuleEnvironmentMethodName, Context.class);
+            Method getModuleEnvironmentMethod     = devEnvironmentClass.getMethod(getModuleEnvironmentMethodName, Context.class);
             return (EnvironmentBean) getModuleEnvironmentMethod.invoke(null, context);
         } catch (Exception e) {
             LogUtils.printStackTrace(e);
@@ -129,7 +129,7 @@ class Utils {
      */
     public static boolean setModuleEnvironment(final Context context, final EnvironmentBean newEnvironment) {
         try {
-            String moduleName = newEnvironment.getModule().getName();
+            String moduleName                     = newEnvironment.getModule().getName();
             String setModuleEnvironmentMethodName = "set" + moduleName + STR_ENVIRONMENT;
             Method setModuleEnvironmentMethod = devEnvironmentClass.getMethod(setModuleEnvironmentMethodName,
                     Context.class, EnvironmentBean.class);

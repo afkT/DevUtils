@@ -43,7 +43,7 @@ public class DevEnvironmentLibActivity extends BaseActivity<BaseViewRecyclerview
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
-                boolean result = false;
+                boolean     result      = false;
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_DEV_ENVIRONMENT:
                         result = DevEnvironmentActivity.start(mContext, new RestartCallback() {

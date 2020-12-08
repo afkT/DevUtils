@@ -177,7 +177,7 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
 
         //draw progress background
         float progressInset = mCenterRadius - mProgressCenterRadius;
-        RectF progressRect = new RectF(mCurrentProgressBounds);
+        RectF progressRect  = new RectF(mCurrentProgressBounds);
         //sub DEFAULT_STROKE_INTERVAL, otherwise will have a interval between progress background and progress outline
         progressRect.inset(progressInset - DEFAULT_STROKE_INTERVAL, progressInset - DEFAULT_STROKE_INTERVAL);
         mPaint.setColor(mProgressBgColor);
@@ -191,9 +191,9 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
 
         //draw leaves
         for (int i = 0; i < mLeafHolders.size(); i++) {
-            int leafSaveCount = canvas.save();
-            LeafHolder leafHolder = mLeafHolders.get(i);
-            Rect leafBounds = leafHolder.mLeafRect;
+            int        leafSaveCount = canvas.save();
+            LeafHolder leafHolder    = mLeafHolders.get(i);
+            Rect       leafBounds    = leafHolder.mLeafRect;
 
             canvas.rotate(leafHolder.mLeafRotation, leafBounds.centerX(), leafBounds.centerY());
             mLeafDrawable.setBounds(leafBounds);
@@ -205,7 +205,7 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
         //draw progress background outline,
         //after drawing the leaves and then draw the outline of the progress background can
         //prevent the leaves from flying to the outside
-        RectF progressOutlineRect = new RectF(mCurrentProgressBounds);
+        RectF progressOutlineRect        = new RectF(mCurrentProgressBounds);
         float progressOutlineStrokeInset = (mCenterRadius - mProgressCenterRadius) / 2.0f;
         progressOutlineRect.inset(progressOutlineStrokeInset, progressOutlineStrokeInset);
         mPaint.setStyle(Paint.Style.STROKE);
@@ -253,7 +253,7 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
     }
 
     private Path createProgressPath(float progress, float circleRadius, RectF progressRect) {
-        RectF arcProgressRect = new RectF(progressRect.left, progressRect.top, progressRect.left + circleRadius * 2, progressRect.bottom);
+        RectF arcProgressRect  = new RectF(progressRect.left, progressRect.top, progressRect.left + circleRadius * 2, progressRect.bottom);
         RectF rectProgressRect = null;
 
         float progressWidth = progress * progressRect.width();
@@ -326,7 +326,7 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
 
     protected void setInsets(int width, int height) {
         final float minEdge = (float) Math.min(width, height);
-        float insetXs;
+        float       insetXs;
         if (mCenterRadius <= 0 || minEdge < 0) {
             insetXs = (float) Math.ceil(mCenterRadius / 2.0f);
         } else {
@@ -363,10 +363,10 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
         BezierEvaluator evaluator = new BezierEvaluator(getPoint1(leafFlyRect), getPoint2(leafFlyRect));
 
         int leafFlyStartY = (int) (mCurrentProgressBounds.bottom - mLeafDrawable.getIntrinsicHeight());
-        int leafFlyRange = (int) (mCurrentProgressBounds.height() - mLeafDrawable.getIntrinsicHeight());
+        int leafFlyRange  = (int) (mCurrentProgressBounds.height() - mLeafDrawable.getIntrinsicHeight());
 
         int startPointY = leafFlyStartY - mRandom.nextInt(leafFlyRange);
-        int endPointY = leafFlyStartY - mRandom.nextInt(leafFlyRange);
+        int endPointY   = leafFlyStartY - mRandom.nextInt(leafFlyRange);
 
         ValueAnimator animator = ValueAnimator.ofObject(evaluator,
                 new PointF((int) (leafFlyRect.right - mLeafDrawable.getIntrinsicWidth()), startPointY),
@@ -409,7 +409,7 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
         @Override
         public PointF evaluate(float fraction, PointF point0, PointF point3) {
 
-            float t = fraction;
+            float t     = fraction;
             float tLeft = 1.0f - t;
 
             float x = (float) (point0.x * Math.pow(tLeft, 3) + 3 * point1.x * t * Math.pow(tLeft, 2) + 3 * point2.x * Math.pow(t, 2) * tLeft + point3.x * Math.pow(t, 3));

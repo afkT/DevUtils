@@ -46,7 +46,7 @@ public class ArticleAdapter extends BaseQuickAdapter<ArticleBean.DataBean.DatasB
             public void onClick(View v) {
                 String link = item.link;
                 if (!TextUtils.isEmpty(link)) {
-                    Uri uri = Uri.parse(link);
+                    Uri    uri    = Uri.parse(link);
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     AppUtils.startActivity(intent);
                 }

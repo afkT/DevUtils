@@ -68,11 +68,11 @@ public class DecodeHandler extends Handler {
      * @param bundle 存储数据 {@link Bundle}
      */
     private static void bundleThumbnail(PlanarYUVLuminanceSource source, Bundle bundle) {
-        int[] pixels = source.renderThumbnail();
-        int width = source.getThumbnailWidth();
-        int height = source.getThumbnailHeight();
-        Bitmap bitmap = Bitmap.createBitmap(pixels, 0, width, width, height, Bitmap.Config.ARGB_8888);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        int[]                 pixels = source.renderThumbnail();
+        int                   width  = source.getThumbnailWidth();
+        int                   height = source.getThumbnailHeight();
+        Bitmap                bitmap = Bitmap.createBitmap(pixels, 0, width, width, height, Bitmap.Config.ARGB_8888);
+        ByteArrayOutputStream out    = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, out);
         bundle.putByteArray(DecodeConfig.BARCODE_BITMAP, out.toByteArray());
     }
@@ -107,8 +107,8 @@ public class DecodeHandler extends Handler {
         size.height = tmp;
 
         // 处理数据
-        Result rawResult = null;
-        PlanarYUVLuminanceSource source = buildLuminanceSource(rotatedData, size.width, size.height);
+        Result                   rawResult = null;
+        PlanarYUVLuminanceSource source    = buildLuminanceSource(rotatedData, size.width, size.height);
         if (source != null) {
             BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
             try {
@@ -126,7 +126,7 @@ public class DecodeHandler extends Handler {
             // Don't log the barcode contents for security.
             if (handler != null) {
                 Message message = Message.obtain(handler, R.id.decode_succeeded, rawResult);
-                Bundle bundle = new Bundle();
+                Bundle  bundle  = new Bundle();
                 bundleThumbnail(source, bundle);
                 message.setData(bundle);
                 message.sendToTarget();

@@ -38,8 +38,8 @@ public class PathActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                StringBuilder builder = new StringBuilder();
-                ButtonValue buttonValue = buttonAdapter.getItem(position);
+                StringBuilder builder     = new StringBuilder();
+                ButtonValue   buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_PATH_INTERNAL:
                         StringUtils.appendsIgnoreLast(builder, DevFinal.NEW_LINE_STR,

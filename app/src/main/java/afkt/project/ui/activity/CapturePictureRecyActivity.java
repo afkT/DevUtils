@@ -93,8 +93,8 @@ public class CapturePictureRecyActivity extends BaseActivity<ActivityCapturePict
             @Override
             public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
                 AdapterBean adapterBean = lists.get(i);
-                ViewHolder holder = (ViewHolder) viewHolder;
-                View view = holder.itemView;
+                ViewHolder  holder      = (ViewHolder) viewHolder;
+                View        view        = holder.itemView;
                 ViewHelper.get().setText(ViewUtils.findViewById(view, R.id.vid_acp_title_tv), adapterBean.title)
                         .setText(ViewUtils.findViewById(view, R.id.vid_acp_content_tv), adapterBean.content);
             }

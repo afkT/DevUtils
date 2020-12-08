@@ -141,8 +141,8 @@ public class GPUFilterACVActivity extends BaseActivity<ActivityGpuFilterBinding>
             // 获取滤镜文件实体类
             ACVFileBean acvFileBean = gpuFilterACVAdapter.getItem(position);
             // 设置滤镜效果
-            GPUImageToneCurveFilter gpuFilter = GPUFilterUtils.getGPUImageToneCurveFilter(ResourceUtils.open(acvFileBean.acvPath));
-            Bitmap bitmapFilter = GPUFilterUtils.getFilterBitmap(selectBitmap, gpuFilter);
+            GPUImageToneCurveFilter gpuFilter    = GPUFilterUtils.getGPUImageToneCurveFilter(ResourceUtils.open(acvFileBean.acvPath));
+            Bitmap                  bitmapFilter = GPUFilterUtils.getFilterBitmap(selectBitmap, gpuFilter);
             binding.vidAgfIgview.setImageBitmap(bitmapFilter);
         } catch (Exception e) {
             DevLogger.eTag(TAG, e, "setFilter");

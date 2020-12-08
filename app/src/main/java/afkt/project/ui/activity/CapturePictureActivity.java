@@ -63,10 +63,10 @@ public class CapturePictureActivity extends BaseActivity<ActivityCapturePictureB
     public void onClick(View v) {
         super.onClick(v);
 
-        Bitmap bitmap;
+        Bitmap  bitmap;
         boolean result;
-        String filePath = PathConfig.AEP_DOWN_IMAGE_PATH;
-        String fileName;
+        String  filePath = PathConfig.AEP_DOWN_IMAGE_PATH;
+        String  fileName;
 
         switch (v.getId()) {
             case R.id.vid_acp_screen_btn:

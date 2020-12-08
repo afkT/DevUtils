@@ -97,7 +97,7 @@ public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> 
     private void createCheck() {
         // 获取手机号码开头、结尾
         String start = EditTextUtils.getText(binding.vidAacStartEdit);
-        String end = EditTextUtils.getText(binding.vidAacEndEdit);
+        String end   = EditTextUtils.getText(binding.vidAacEndEdit);
         // 判断是否符合条件
         String temp = start + end;
         if (!ValidatorUtils.isNumber(temp)) {
@@ -113,7 +113,7 @@ public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> 
         // 待生成号码总数
         int middle = ConvertUtils.toInt("1" + StringUtils.forString(diff, "0"));
         // 临时号码
-        String tempNumber = start + StringUtils.forString(diff, "0") + end;
+        String tempNumber  = start + StringUtils.forString(diff, "0") + end;
         String tempNumber2 = start + StringUtils.forString(diff, "9") + end;
         // 判断是否手机号
         if (!ValiToPhoneUtils.isPhone(tempNumber)) {
@@ -191,7 +191,7 @@ public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> 
                             String phoneNumber = start + i + end;
                             addContact(phoneNumber, phoneNumber);
                         } else {
-                            String zero = StringUtils.forString(length - length1, "0");
+                            String zero        = StringUtils.forString(length - length1, "0");
                             String phoneNumber = start + zero + i + end;
                             addContact(phoneNumber, phoneNumber);
                         }
@@ -225,8 +225,8 @@ public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> 
 
         // 向 RawContacts.CONTENT_URI 空值插入, 先获取 Android 系统返回的 rawContactId
         // 后面要基于此 id 插入值
-        Uri rawContactUri = getContentResolver().insert(RawContacts.CONTENT_URI, values);
-        long rawContactId = ContentUris.parseId(rawContactUri);
+        Uri  rawContactUri = getContentResolver().insert(RawContacts.CONTENT_URI, values);
+        long rawContactId  = ContentUris.parseId(rawContactUri);
         values.clear();
 
         values.put(Data.RAW_CONTACT_ID, rawContactId);

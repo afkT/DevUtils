@@ -208,8 +208,8 @@ public final class SnackbarUse {
         SnackbarUtils.with(view).setStyle(styleBuilder1).showShort("已收藏该消息!");
 
         // 修改默认样式中的部分展示效果
-        SnackbarUtils snackbarUtils1 = SnackbarUtils.with(view);
-        SnackbarUtils.StyleBuilder styleBuilder2 = snackbarUtils1.getStyle();
+        SnackbarUtils              snackbarUtils1 = SnackbarUtils.with(view);
+        SnackbarUtils.StyleBuilder styleBuilder2  = snackbarUtils1.getStyle();
         styleBuilder2.setActionColor(Color.BLACK);
         snackbarUtils1.setStyle(styleBuilder2);
     }

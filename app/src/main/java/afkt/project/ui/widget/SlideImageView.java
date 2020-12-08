@@ -196,10 +196,10 @@ public class SlideImageView extends AppCompatImageView {
      * @return
      */
     public Bitmap resizeImage(Bitmap bitmap, int w) {
-        int width = bitmap.getWidth();
-        int height = bitmap.getHeight();
-        float scaleWidth = ((float) w) / width;
-        Matrix matrix = new Matrix();
+        int    width      = bitmap.getWidth();
+        int    height     = bitmap.getHeight();
+        float  scaleWidth = ((float) w) / width;
+        Matrix matrix     = new Matrix();
         matrix.postScale(scaleWidth, scaleWidth);
         return Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
     }
@@ -211,10 +211,10 @@ public class SlideImageView extends AppCompatImageView {
      * @return
      */
     public Bitmap resizeImageH(Bitmap bitmap, int h) {
-        int width = bitmap.getWidth();
-        int height = bitmap.getHeight();
-        float scaleWidth = ((float) h) / height;
-        Matrix matrix = new Matrix();
+        int    width      = bitmap.getWidth();
+        int    height     = bitmap.getHeight();
+        float  scaleWidth = ((float) h) / height;
+        Matrix matrix     = new Matrix();
         matrix.postScale(scaleWidth, scaleWidth);
         return Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
     }

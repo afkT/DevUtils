@@ -140,7 +140,7 @@ public class WifiActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
                                         });
                                         // 密码必须大于等于 8 位
                                         WifiConfiguration wifiConfiguration = WifiHotUtils.createWifiConfigToAp(wifiHotSSID, wifiHotPwd);
-                                        boolean success = wifiHotUtils.startWifiAp(wifiConfiguration);
+                                        boolean           success           = wifiHotUtils.startWifiAp(wifiConfiguration);
                                         showToast(success, "打开热点成功", "打开热点失败");
                                     }
 

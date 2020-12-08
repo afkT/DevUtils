@@ -109,7 +109,7 @@ public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
         // 循环添加 Tab
         for (int i = 0, len = listTabs.size(); i < len; i++) {
             final int position = i;
-            TabItem tabItem = listTabs.get(i);
+            TabItem   tabItem  = listTabs.get(i);
 
             View view = QuickHelper.get(new BaseTextView(this))
                     .setText(tabItem.getTitle())

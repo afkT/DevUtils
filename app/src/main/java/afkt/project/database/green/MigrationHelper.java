@@ -49,9 +49,9 @@ public final class MigrationHelper {
 
     private static void generateTempTables(StandardDatabase db, Class<? extends AbstractDao<?, ?>>... daoClasses) {
         for (int i = 0; i < daoClasses.length; i++) {
-            DaoConfig daoConfig = new DaoConfig(db, daoClasses[i]);
-            String tableName = daoConfig.tablename;
-            String tempTableName = daoConfig.tablename.concat("_TEMP");
+            DaoConfig     daoConfig                = new DaoConfig(db, daoClasses[i]);
+            String        tableName                = daoConfig.tablename;
+            String        tempTableName            = daoConfig.tablename.concat("_TEMP");
             StringBuilder insertTableStringBuilder = new StringBuilder();
             insertTableStringBuilder.append("CREATE TEMP TABLE ").append(tempTableName);
             insertTableStringBuilder.append(" AS SELECT * FROM ").append(tableName).append(";");
@@ -86,11 +86,11 @@ public final class MigrationHelper {
 
     private static void restoreData(StandardDatabase db, Class<? extends AbstractDao<?, ?>>... daoClasses) {
         for (int i = 0; i < daoClasses.length; i++) {
-            DaoConfig daoConfig = new DaoConfig(db, daoClasses[i]);
-            String tableName = daoConfig.tablename;
-            String tempTableName = daoConfig.tablename.concat("_TEMP");
+            DaoConfig daoConfig     = new DaoConfig(db, daoClasses[i]);
+            String    tableName     = daoConfig.tablename;
+            String    tempTableName = daoConfig.tablename.concat("_TEMP");
             // get all columns from tempTable, take careful to use the columns list
-            List<String> columns = getColumns(db, tempTableName);
+            List<String>      columns    = getColumns(db, tempTableName);
             ArrayList<String> properties = new ArrayList<>(columns.size());
             for (int j = 0; j < daoConfig.properties.length; j++) {
                 String columnName = daoConfig.properties[j].columnName;
@@ -117,7 +117,7 @@ public final class MigrationHelper {
 
     private static List<String> getColumns(StandardDatabase db, String tableName) {
         List<String> columns = null;
-        Cursor cursor = null;
+        Cursor       cursor  = null;
         try {
             cursor = db.rawQuery("SELECT * FROM " + tableName + " limit 0", null);
             if (null != cursor && cursor.getColumnCount() > 0) {

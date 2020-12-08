@@ -151,7 +151,7 @@ final class Utils {
         Module moduleAnnotation = moduleElement.getAnnotation(Module.class);
         if (moduleAnnotation == null) return;
         // Module 信息
-        String moduleName = moduleElement.getSimpleName().toString();
+        String moduleName  = moduleElement.getSimpleName().toString();
         String moduleAlias = moduleAnnotation.alias();
 
         // 获取 Module Release Environment 数据
@@ -202,9 +202,9 @@ final class Utils {
         String moduleName = moduleElement.getSimpleName().toString();
         // Environment 信息
         Environment environmentAnnotation = environmentElement.getAnnotation(Environment.class);
-        String environmentName = environmentElement.getSimpleName().toString();
-        String environmentValue = environmentAnnotation.value();
-        String environmentAlias = environmentAnnotation.alias();
+        String      environmentName       = environmentElement.getSimpleName().toString();
+        String      environmentValue      = environmentAnnotation.value();
+        String      environmentAlias      = environmentAnnotation.alias();
 
         // 创建私有常量变量
         // private static final EnvironmentBean ENVIRONMENT_MODULENAME_XXX = new EnvironmentBean();
@@ -248,8 +248,8 @@ final class Utils {
      * @param classBuilder DevEnvironment 类构建对象
      */
     public static void builderResetMethod(final TypeSpec.Builder classBuilder) {
-        StringBuilder varBuilder = new StringBuilder();
-        Iterator<Map.Entry<String, List<String>>> iterator = sModuleNameMap.entrySet().iterator();
+        StringBuilder                             varBuilder = new StringBuilder();
+        Iterator<Map.Entry<String, List<String>>> iterator   = sModuleNameMap.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<String, List<String>> entry = iterator.next();
             // Module 名
@@ -862,8 +862,8 @@ final class Utils {
      */
     private static Element _getModuleReleaseEnvironment(final Element moduleElement,
                                                         final ProcessingEnvironment processingEnv) throws Exception {
-        Element environmentElement = null;
-        List<? extends Element> allMembers = processingEnv.getElementUtils().getAllMembers((TypeElement) moduleElement);
+        Element                 environmentElement = null;
+        List<? extends Element> allMembers         = processingEnv.getElementUtils().getAllMembers((TypeElement) moduleElement);
         for (Element member : allMembers) {
             Environment environmentAnnotation = member.getAnnotation(Environment.class);
             if (environmentAnnotation == null) continue;

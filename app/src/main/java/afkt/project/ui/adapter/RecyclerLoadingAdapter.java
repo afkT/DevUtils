@@ -34,8 +34,8 @@ public class RecyclerLoadingAdapter extends BaseQuickAdapter<String, BaseViewHol
     @Override
     protected void convert(BaseViewHolder helper, String url) {
         BaseImageView vid_arl_igview = helper.getView(R.id.vid_arl_igview);
-        FrameLayout vid_arl_frame = helper.getView(R.id.vid_arl_frame);
-        ViewAssist viewAssist = ViewAssist.wrap(vid_arl_frame);
+        FrameLayout   vid_arl_frame  = helper.getView(R.id.vid_arl_frame);
+        ViewAssist    viewAssist     = ViewAssist.wrap(vid_arl_frame);
         ViewAssistUtils.registerRecyclerLoading(viewAssist, new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -90,7 +90,7 @@ public class RecyItemSlideActivity extends BaseActivity<BaseViewRecyclerviewBind
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 int fromPosition = viewHolder.getAdapterPosition();
-                int toPosition = target.getAdapterPosition();
+                int toPosition   = target.getAdapterPosition();
                 Collections.swap(itemSlideAdapter.getData(), fromPosition, toPosition);
                 itemSlideAdapter.notifyItemMoved(fromPosition, toPosition);
                 return true;

@@ -69,7 +69,7 @@ class AdapterItem {
         if (modules != null) {
             for (ModuleBean moduleBean : modules) {
                 if (moduleBean != null) {
-                    String key = moduleBean.getName();
+                    String          key             = moduleBean.getName();
                     EnvironmentBean environmentBean = Utils.getModuleEnvironment(context, key);
                     if (environmentBean != null) {
                         sModuleHashCodeMap.put(moduleBean.getName(), environmentBean.hashCode());
@@ -97,8 +97,8 @@ class AdapterItem {
      * @return AdapterItem List
      */
     public static List<AdapterItem> getAdapterItems(final Context context) {
-        List<AdapterItem> items = new ArrayList<>();
-        List<ModuleBean> modules = Utils.getModuleList();
+        List<AdapterItem> items   = new ArrayList<>();
+        List<ModuleBean>  modules = Utils.getModuleList();
         if (modules != null) {
             for (ModuleBean moduleBean : modules) {
                 if (moduleBean != null) {

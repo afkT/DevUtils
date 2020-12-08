@@ -100,9 +100,9 @@ public class GreenDaoActivity extends BaseActivity<ActivityDatabaseBinding> {
              */
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                GreenDaoAdapter adapter = binding.vidAdbRefresh.getAdapter();
-                int fromPosition = viewHolder.getAdapterPosition();
-                int toPosition = target.getAdapterPosition();
+                GreenDaoAdapter adapter      = binding.vidAdbRefresh.getAdapter();
+                int             fromPosition = viewHolder.getAdapterPosition();
+                int             toPosition   = target.getAdapterPosition();
                 Collections.swap(adapter.getData(), fromPosition, toPosition);
                 adapter.notifyItemMoved(fromPosition, toPosition);
                 return true;
@@ -118,7 +118,7 @@ public class GreenDaoActivity extends BaseActivity<ActivityDatabaseBinding> {
                 int position = viewHolder.getAdapterPosition();
                 if (direction == ItemTouchHelper.LEFT || direction == ItemTouchHelper.RIGHT) {
                     GreenDaoAdapter adapter = binding.vidAdbRefresh.getAdapter();
-                    Note note = adapter.getData().remove(position);
+                    Note            note    = adapter.getData().remove(position);
                     adapter.notifyItemRemoved(position);
                     // 删除文章
 //                    GreenManager.getNoteDatabase().getNoteDao().delete(note);
@@ -196,8 +196,8 @@ public class GreenDaoActivity extends BaseActivity<ActivityDatabaseBinding> {
      * @param refresh 是否刷新
      */
     private void loadData(boolean refresh) {
-        PageAssist pageAssist = binding.vidAdbRefresh.getPageAssist();
-        GreenDaoAdapter adapter = binding.vidAdbRefresh.getAdapter();
+        PageAssist      pageAssist = binding.vidAdbRefresh.getPageAssist();
+        GreenDaoAdapter adapter    = binding.vidAdbRefresh.getAdapter();
         // 刷新则重置页数
         if (refresh) pageAssist.reset();
 
@@ -246,7 +246,7 @@ public class GreenDaoActivity extends BaseActivity<ActivityDatabaseBinding> {
             // 获取当前数据条数
             int size = binding.vidAdbRefresh.getAdapter().getData().size();
             // 计算当前数据实际页数
-            int page = size / pageSize;
+            int page      = size / pageSize;
             int remainder = size % pageSize;
 
             if (remainder == 0) {

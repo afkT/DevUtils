@@ -30,7 +30,7 @@ public class TextCalcActivity extends BaseActivity<ActivityTextCalcBinding> {
 
         for (int i = 0; i < 15; i++) {
             // 随机字符串
-            String text = ChineseUtils.randomWord(RandomUtils.getRandom(100)) + RandomUtils.getRandomLetters(RandomUtils.getRandom(20));
+            String text       = ChineseUtils.randomWord(RandomUtils.getRandom(100)) + RandomUtils.getRandomLetters(RandomUtils.getRandom(20));
             String randomText = RandomUtils.getRandom(text.toCharArray(), text.length());
 
             BaseTextView view = QuickHelper.get(new BaseTextView(this))
@@ -44,7 +44,7 @@ public class TextCalcActivity extends BaseActivity<ActivityTextCalcBinding> {
                         @Override
                         public void onClick(View v) {
                             BaseTextView textView = (BaseTextView) v;
-                            String text = textView.getText().toString();
+                            String       text     = textView.getText().toString();
 
                             StringBuilder builder = new StringBuilder();
                             builder.append("字体总数: ").append(text.length());

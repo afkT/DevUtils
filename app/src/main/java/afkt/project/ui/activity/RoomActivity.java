@@ -99,9 +99,9 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
              */
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                RoomAdapter adapter = binding.vidAdbRefresh.getAdapter();
-                int fromPosition = viewHolder.getAdapterPosition();
-                int toPosition = target.getAdapterPosition();
+                RoomAdapter adapter      = binding.vidAdbRefresh.getAdapter();
+                int         fromPosition = viewHolder.getAdapterPosition();
+                int         toPosition   = target.getAdapterPosition();
                 Collections.swap(adapter.getData(), fromPosition, toPosition);
                 adapter.notifyItemMoved(fromPosition, toPosition);
                 return true;
@@ -116,8 +116,8 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
                 if (direction == ItemTouchHelper.LEFT || direction == ItemTouchHelper.RIGHT) {
-                    RoomAdapter adapter = binding.vidAdbRefresh.getAdapter();
-                    NoteAndPicture nap = adapter.getData().remove(position);
+                    RoomAdapter    adapter = binding.vidAdbRefresh.getAdapter();
+                    NoteAndPicture nap     = adapter.getData().remove(position);
                     adapter.notifyItemRemoved(position);
                     // 删除文章
                     RoomManager.getNoteDatabase().getNoteDao().deleteNote(nap.note);
@@ -196,8 +196,8 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
      * @param refresh 是否刷新
      */
     private void loadData(boolean refresh) {
-        PageAssist pageAssist = binding.vidAdbRefresh.getPageAssist();
-        RoomAdapter adapter = binding.vidAdbRefresh.getAdapter();
+        PageAssist  pageAssist = binding.vidAdbRefresh.getPageAssist();
+        RoomAdapter adapter    = binding.vidAdbRefresh.getAdapter();
         // 刷新则重置页数
         if (refresh) pageAssist.reset();
 
@@ -240,7 +240,7 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
             // 获取当前数据条数
             int size = binding.vidAdbRefresh.getAdapter().getData().size();
             // 计算当前数据实际页数
-            int page = size / pageSize;
+            int page      = size / pageSize;
             int remainder = size % pageSize;
 
             if (remainder == 0) {

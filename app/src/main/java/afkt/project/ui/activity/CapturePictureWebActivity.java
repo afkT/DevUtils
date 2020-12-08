@@ -44,7 +44,7 @@ public class CapturePictureWebActivity extends BaseActivity<ActivityCapturePictu
                         String filePath = PathConfig.AEP_DOWN_IMAGE_PATH;
                         String fileName = "web.jpg";
 
-                        Bitmap bitmap = CapturePictureUtils.snapshotByWebView(binding.vidAcpWebview);
+                        Bitmap  bitmap = CapturePictureUtils.snapshotByWebView(binding.vidAcpWebview);
                         boolean result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName);
                         showToast(result, "保存成功\n" + (filePath + fileName), "保存失败");
                     }

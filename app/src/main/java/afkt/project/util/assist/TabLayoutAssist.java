@@ -77,7 +77,7 @@ public final class TabLayoutAssist {
      * @return Tab {@link View}
      */
     private View getTabView(int position) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.tab_item_view, null);
+        View         view     = LayoutInflater.from(mContext).inflate(R.layout.tab_item_view, null);
         BaseTextView textView = view.findViewById(R.id.vid_tiv_tv);
         textView.setText(listTabs.get(position).getTitle());
         return view;

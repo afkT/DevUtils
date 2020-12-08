@@ -24,7 +24,7 @@ public class EvaluateItem {
 
     public EvaluateItem() {
         // 随机字符串
-        String text = ChineseUtils.randomWord(RandomUtils.getRandom(50)) + RandomUtils.getRandomLetters(RandomUtils.getRandom(10));
+        String text       = ChineseUtils.randomWord(RandomUtils.getRandom(50)) + RandomUtils.getRandomLetters(RandomUtils.getRandom(10));
         String randomText = RandomUtils.getRandom(text.toCharArray(), text.length());
 
         evaluateContent = randomText;

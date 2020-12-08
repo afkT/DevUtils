@@ -53,7 +53,7 @@ public class PagerSnapMAXAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         int size = data.size();
         if (size != 0) {
-            int index = position % size;
+            int      index    = position % size;
             ItemBean itemBean = data.get(index);
 
             ItemViewHolder itemHolder = (ItemViewHolder) holder;

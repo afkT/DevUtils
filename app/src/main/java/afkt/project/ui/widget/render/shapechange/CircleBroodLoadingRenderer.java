@@ -208,7 +208,7 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
     }
 
     private Path createLinkPath() {
-        Path path = new Path();
+        Path  path         = new Path();
         float bezierOffset = mMotherOvalHalfWidth * OVAL_BEZIER_FACTOR;
 
         float distance = (float) Math.sqrt(Math.pow(mMotherPosition[0] - mChildPosition[0], 2.0f) + Math.pow(mMotherPosition[1] - mChildPosition[1], 2.0f));
@@ -357,10 +357,10 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
     }
 
     private float getCurrentMotherMoveLength(float input) {
-        float currentStartDistance = 0.0f;
-        float currentStageDistance = 0.0f;
+        float currentStartDistance      = 0.0f;
+        float currentStageDistance      = 0.0f;
         float currentStateStartProgress = 0.0f;
-        float currentStateEndProgress = 0.0f;
+        float currentStateEndProgress   = 0.0f;
 
         if (input > 0.0f) {
             currentStartDistance += currentStageDistance;
@@ -399,10 +399,10 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
     }
 
     private float getCurrentChildMoveLength(float input) {
-        float currentStartDistance = 0.0f;
-        float currentStageDistance = 0.0f;
+        float currentStartDistance      = 0.0f;
+        float currentStageDistance      = 0.0f;
         float currentStateStartProgress = 0.0f;
-        float currentStateEndProgress = 0.0f;
+        float currentStateEndProgress   = 0.0f;
 
         if (input > 0.0f) {
             currentStartDistance += currentStageDistance;
@@ -457,8 +457,8 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
     private Path createMotherMovePath() {
         Path path = new Path();
 
-        float centerX = mCurrentBounds.centerX();
-        float centerY = mCurrentBounds.centerY();
+        float centerX           = mCurrentBounds.centerX();
+        float centerY           = mCurrentBounds.centerY();
         float currentPathLength = 0.0f;
 
         path.moveTo(centerX, centerY);
@@ -489,8 +489,8 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
     private Path createChildMovePath() {
         Path path = new Path();
 
-        float centerX = mCurrentBounds.centerX();
-        float centerY = mCurrentBounds.centerY();
+        float centerX           = mCurrentBounds.centerX();
+        float centerY           = mCurrentBounds.centerY();
         float currentPathLength = 0.0f;
 
         //start
@@ -584,7 +584,7 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
     }
 
     private float getRestLength(Path path, float startD) {
-        Path tempPath = new Path();
+        Path        tempPath    = new Path();
         PathMeasure pathMeasure = new PathMeasure(path, false);
 
         pathMeasure.getSegment(startD, pathMeasure.getLength(), tempPath, true);

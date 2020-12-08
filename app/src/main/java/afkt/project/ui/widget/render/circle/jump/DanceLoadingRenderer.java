@@ -114,7 +114,7 @@ public class DanceLoadingRenderer extends LoadingRenderer {
 
         float outerCircleRadius = Math.min(mTempBounds.height(), mTempBounds.width()) / 2.0f;
         float interCircleRadius = outerCircleRadius / 2.0f;
-        float centerRingWidth = interCircleRadius - mStrokeWidth / 2;
+        float centerRingWidth   = interCircleRadius - mStrokeWidth / 2;
 
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(mColor);
@@ -196,7 +196,7 @@ public class DanceLoadingRenderer extends LoadingRenderer {
             mShapeChangeHeight = (ballForwardExitProgress - 0.5f) * mDanceBallRadius / 2.0f;
             mShapeChangeWidth = -mShapeChangeHeight;
             for (int i = 0; i < NUM_POINTS; i++) {
-                float k = (float) Math.tan((DANCE_START_ANGLE + DANCE_INTERVAL_ANGLE * i) / 360.0f * (2.0f * Math.PI));
+                float k        = (float) Math.tan((DANCE_START_ANGLE + DANCE_INTERVAL_ANGLE * i) / 360.0f * (2.0f * Math.PI));
                 float progress = (DECELERATE_INTERPOLATOR.getInterpolation(ballForwardExitProgress) / 2.0f) * 2.0f * DIRECTION[i];
                 POINT_X[i] = (float) (radius + progress * (radius / Math.sqrt(Math.pow(k, 2.0f) + 1.0f)));
                 POINT_Y[i] = k * (POINT_X[i] - radius);
@@ -219,7 +219,7 @@ public class DanceLoadingRenderer extends LoadingRenderer {
             mShapeChangeWidth = -mShapeChangeHeight;
 
             for (int i = 0; i < NUM_POINTS; i++) {
-                float k = (float) Math.tan((DANCE_START_ANGLE + DANCE_INTERVAL_ANGLE * i) / 360.0f * (2.0f * Math.PI));
+                float k        = (float) Math.tan((DANCE_START_ANGLE + DANCE_INTERVAL_ANGLE * i) / 360.0f * (2.0f * Math.PI));
                 float progress = (0.5f - ACCELERATE_INTERPOLATOR.getInterpolation(ballReversalEnterProgress) / 2.0f) * 2.0f * DIRECTION[i];
                 POINT_X[i] = (float) (radius + progress * (radius / Math.sqrt(Math.pow(k, 2.0f) + 1.0f)));
                 POINT_Y[i] = k * (POINT_X[i] - radius);
@@ -246,7 +246,7 @@ public class DanceLoadingRenderer extends LoadingRenderer {
             mShapeChangeWidth = -mShapeChangeHeight;
 
             for (int i = 0; i < NUM_POINTS; i++) {
-                float k = (float) Math.tan((DANCE_START_ANGLE + DANCE_INTERVAL_ANGLE * i) / 360.0f * (2.0f * Math.PI));
+                float k        = (float) Math.tan((DANCE_START_ANGLE + DANCE_INTERVAL_ANGLE * i) / 360.0f * (2.0f * Math.PI));
                 float progress = (0.0f - DECELERATE_INTERPOLATOR.getInterpolation(ballReversalExitProgress) / 2.0f) * 2.0f * DIRECTION[i];
                 POINT_X[i] = (float) (radius + progress * (radius / Math.sqrt(Math.pow(k, 2.0f) + 1.0f)));
                 POINT_Y[i] = k * (POINT_X[i] - radius);
@@ -300,7 +300,7 @@ public class DanceLoadingRenderer extends LoadingRenderer {
 
     private void setInsets(int width, int height) {
         final float minEdge = (float) Math.min(width, height);
-        float insets;
+        float       insets;
         if (mCenterRadius <= 0 || minEdge < 0) {
             insets = (float) Math.ceil(mStrokeWidth / 2.0f);
         } else {
