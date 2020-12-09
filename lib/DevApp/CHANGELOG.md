@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+Version 2.1.1 *(2020-12-XX)*
+----------------------------
+
+* `[Style]` 代码格式化处理 ( 间距美化调整等 )
+
+* `[Update]` 修改 CallBack 相关代码为 Callback
+
+* `[Add]` DevFinal 新增部分常量
+
+* `[Delete]` 删除 PermissionConstants 类
+
+* `[Add]` ViewUtils#getChildAtLast、getId、setId
+
 Version 2.1.0 *(2020-11-15)*
 ----------------------------
 
