@@ -39,7 +39,7 @@ ext {
             // 向前兼容 SDK 版本
             targetSdkVersion                        : 30,
             // 构建工具版本
-            buildToolsVersion                       : '30.0.2',
+            buildToolsVersion                       : '30.0.3',
             // java 版本
             javaVersion                             : JavaVersion.VERSION_1_8,
             javaVersion_str                         : '1.8',
