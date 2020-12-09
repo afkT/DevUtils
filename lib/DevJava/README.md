@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevJava:1.2.3'
+implementation 'com.afkt:DevJava:1.2.4'
 ```
 
 ## 目录结构

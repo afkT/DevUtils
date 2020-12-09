@@ -3,7 +3,7 @@
 
 ```java
 // AndroidX
-implementation 'com.afkt:DevWidgetX:1.0.5'
+implementation 'com.afkt:DevWidgetX:1.0.6'
 ```
 
 ## 目录结构

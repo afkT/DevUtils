@@ -58,18 +58,18 @@ version | [![Bintray](https://api.bintray.com/packages/afkt/maven/DevEnvironment
 ```groovy
 dependencies {
     // Java
-    implementation 'com.afkt:DevEnvironment:1.0.1'
-    debugAnnotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.1'
-    releaseAnnotationProcessor 'com.afkt:DevEnvironmentCompilerRelease:1.0.1'
+    implementation 'com.afkt:DevEnvironment:1.0.2'
+    debugAnnotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.2'
+    releaseAnnotationProcessor 'com.afkt:DevEnvironmentCompilerRelease:1.0.2'
     // 如果需要 Release 包，支持通过后台数据动态设置配置信息 则使用 debug compiler lib
-    // annotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.1'
+    // annotationProcessor 'com.afkt:DevEnvironmentCompiler:1.0.2'
 
     // Kotlin
-    implementation 'com.afkt:DevEnvironment:1.0.1'
-    kaptDebug 'com.afkt:DevEnvironmentCompiler:1.0.1'
-    kaptRelease 'com.afkt:DevEnvironmentCompilerRelease:1.0.1'
+    implementation 'com.afkt:DevEnvironment:1.0.2'
+    kaptDebug 'com.afkt:DevEnvironmentCompiler:1.0.2'
+    kaptRelease 'com.afkt:DevEnvironmentCompilerRelease:1.0.2'
     // 如果需要 Release 包，支持通过后台数据动态设置配置信息 则使用 debug compiler lib
-    // kapt 'com.afkt:DevEnvironmentCompiler:1.0.1'
+    // kapt 'com.afkt:DevEnvironmentCompiler:1.0.2'
 }
 ```
 
