@@ -679,6 +679,7 @@ public final class FileIOUtils {
      * @return bytes number
      */
     public static long copyLarge(final InputStream inputStream, final OutputStream outputStream) {
+        if (inputStream == null || outputStream == null) return -1;
         try {
             byte[] data  = new byte[sBufferSize];
             long   count = 0;

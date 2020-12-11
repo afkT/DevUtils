@@ -428,18 +428,59 @@ public final class MediaStoreUtils {
      */
     public static boolean insertMedia(final Uri uri, final Uri inputUri) {
         if (uri == null || inputUri == null) return false;
-        OutputStream os = null;
-        InputStream  is = null;
-        try {
-            os = ResourceUtils.openOutputStream(uri);
-            is = ResourceUtils.openInputStream(inputUri);
-            return FileIOUtils.copyLarge(is, os) != -1;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "insertMedia");
-        } finally {
-            CloseUtils.closeIOQuietly(is, os);
-        }
-        return false;
+        return insertMedia(
+                ResourceUtils.openOutputStream(uri),
+                ResourceUtils.openInputStream(inputUri)
+        );
+    }
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri         {@link #createImageUri} or {@link #createVideoUri} or
+     *                    {@link #createAudioUri()} or {@link #createMediaUri}
+     * @param inputStream {@link InputStream}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final InputStream inputStream) {
+        if (uri == null || inputStream == null) return false;
+        return insertMedia(
+                ResourceUtils.openOutputStream(uri), inputStream
+        );
+    }
+
+    /**
+     * 插入一条多媒体资源
+     * @param outputStream {@link OutputStream}
+     * @param inputStream  {@link InputStream}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final OutputStream outputStream,
+                                      final InputStream inputStream) {
+        return FileIOUtils.copyLarge(inputStream, outputStream) != -1;
+    }
+
+    // =
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri      {@link #createImageUri} or {@link #createVideoUri} or
+     *                 {@link #createAudioUri()} or {@link #createMediaUri}
+     * @param filePath 待存储文件路径
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final String filePath) {
+        return insertMedia(uri, FileUtils.getFile(filePath));
+    }
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri  {@link #createImageUri} or {@link #createVideoUri} or
+     *             {@link #createAudioUri()} or {@link #createMediaUri}
+     * @param file 待存储文件
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final File file) {
+        return insertMedia(uri, UriUtils.getUriForFile(file));
     }
 
     // ===========

@@ -190,7 +190,7 @@ public final class ImageUtils {
 
     /**
      * 获取图片类型
-     * @param inputStream 输入流
+     * @param inputStream {@link InputStream}
      * @return {@link ImageType} 图片类型
      */
     public static ImageType getImageType(final InputStream inputStream) {
