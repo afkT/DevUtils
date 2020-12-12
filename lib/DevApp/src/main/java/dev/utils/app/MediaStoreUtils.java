@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
@@ -481,6 +482,86 @@ public final class MediaStoreUtils {
      */
     public static boolean insertMedia(final Uri uri, final File file) {
         return insertMedia(uri, UriUtils.getUriForFile(file));
+    }
+
+    // =
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri      {@link #createImageUri} or {@link #createVideoUri} or
+     *                 {@link #createAudioUri()} or {@link #createMediaUri}
+     * @param drawable 待保存图片
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final Drawable drawable) {
+        return insertMedia(uri, drawable, Bitmap.CompressFormat.PNG);
+    }
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri      {@link #createImageUri} or {@link #createVideoUri} or
+     *                 {@link #createAudioUri()} or {@link #createMediaUri}
+     * @param drawable 待保存图片
+     * @param format   如 Bitmap.CompressFormat.PNG
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final Drawable drawable, final Bitmap.CompressFormat format) {
+        return insertMedia(uri, drawable, format, 100);
+    }
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri      {@link #createImageUri} or {@link #createVideoUri} or
+     *                 {@link #createAudioUri()} or {@link #createMediaUri}
+     * @param drawable 待保存图片
+     * @param format   如 Bitmap.CompressFormat.PNG
+     * @param quality  质量
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final Drawable drawable, final Bitmap.CompressFormat format,
+                                      @IntRange(from = 0, to = 100) final int quality) {
+        return insertMedia(uri, ImageUtils.drawableToBitmap(drawable), format, quality);
+    }
+
+    // =
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri    {@link #createImageUri} or {@link #createVideoUri} or
+     *               {@link #createAudioUri()} or {@link #createMediaUri}
+     * @param bitmap 待保存图片
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final Bitmap bitmap) {
+        return insertMedia(uri, bitmap, Bitmap.CompressFormat.PNG);
+    }
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri    {@link #createImageUri} or {@link #createVideoUri} or
+     *               {@link #createAudioUri()} or {@link #createMediaUri}
+     * @param bitmap 待保存图片
+     * @param format 如 Bitmap.CompressFormat.PNG
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final Bitmap bitmap, final Bitmap.CompressFormat format) {
+        return insertMedia(uri, bitmap, format, 100);
+    }
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri     {@link #createImageUri} or {@link #createVideoUri} or
+     *                {@link #createAudioUri()} or {@link #createMediaUri}
+     * @param bitmap  待保存图片
+     * @param format  如 Bitmap.CompressFormat.PNG
+     * @param quality 质量
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final Bitmap bitmap, final Bitmap.CompressFormat format,
+                                      @IntRange(from = 0, to = 100) final int quality) {
+        return ImageUtils.saveBitmapToStream(
+                bitmap, ResourceUtils.openOutputStream(uri), format, quality
+        );
     }
 
     // ===========
