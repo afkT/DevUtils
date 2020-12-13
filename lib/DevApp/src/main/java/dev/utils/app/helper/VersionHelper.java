@@ -3,11 +3,14 @@ package dev.utils.app.helper;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
 import androidx.annotation.IntRange;
 
 import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Collection;
 
 import dev.utils.app.AppUtils;
@@ -448,6 +451,121 @@ public final class VersionHelper {
      */
     public static boolean insertMedia(final Uri uri, final Uri inputUri) {
         return MediaStoreUtils.insertMedia(uri, inputUri);
+    }
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri         Media Uri
+     * @param inputStream {@link InputStream}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final InputStream inputStream) {
+        return MediaStoreUtils.insertMedia(uri, inputStream);
+    }
+
+    /**
+     * 插入一条多媒体资源
+     * @param outputStream {@link OutputStream}
+     * @param inputStream  {@link InputStream}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final OutputStream outputStream,
+                                      final InputStream inputStream) {
+        return MediaStoreUtils.insertMedia(outputStream, inputStream);
+    }
+
+    // =
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri      Media Uri
+     * @param filePath 待存储文件路径
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final String filePath) {
+        return MediaStoreUtils.insertMedia(uri, filePath);
+    }
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri  Media Uri
+     * @param file 待存储文件
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final File file) {
+        return MediaStoreUtils.insertMedia(uri, file);
+    }
+
+    // =
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri      Media Uri
+     * @param drawable 待保存图片
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final Drawable drawable) {
+        return MediaStoreUtils.insertMedia(uri, drawable);
+    }
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri      Media Uri
+     * @param drawable 待保存图片
+     * @param format   如 Bitmap.CompressFormat.PNG
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final Drawable drawable, final Bitmap.CompressFormat format) {
+        return MediaStoreUtils.insertMedia(uri, drawable, format);
+    }
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri      Media Uri
+     * @param drawable 待保存图片
+     * @param format   如 Bitmap.CompressFormat.PNG
+     * @param quality  质量
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final Drawable drawable, final Bitmap.CompressFormat format,
+                                      @IntRange(from = 0, to = 100) final int quality) {
+        return MediaStoreUtils.insertMedia(uri, drawable, format, quality);
+    }
+
+    // =
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri    Media Uri
+     * @param bitmap 待保存图片
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final Bitmap bitmap) {
+        return MediaStoreUtils.insertMedia(uri, bitmap);
+    }
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri    Media Uri
+     * @param bitmap 待保存图片
+     * @param format 如 Bitmap.CompressFormat.PNG
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final Bitmap bitmap, final Bitmap.CompressFormat format) {
+        return MediaStoreUtils.insertMedia(uri, bitmap, format);
+    }
+
+    /**
+     * 插入一条多媒体资源
+     * @param uri     Media Uri
+     * @param bitmap  待保存图片
+     * @param format  如 Bitmap.CompressFormat.PNG
+     * @param quality 质量
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertMedia(final Uri uri, final Bitmap bitmap, final Bitmap.CompressFormat format,
+                                      @IntRange(from = 0, to = 100) final int quality) {
+        return MediaStoreUtils.insertMedia(uri, bitmap, format, quality);
     }
 
     // =============
