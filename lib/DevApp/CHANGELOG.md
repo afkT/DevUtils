@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 2.1.2 *(2020-12-2X)*
+Version 2.1.2 *(2020-12-21)*
 ----------------------------
 
 * `[Add]` MediaStoreUtils#insertMedia Bitmap、Drawable、File、Stream 参数方法
