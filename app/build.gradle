@@ -76,4 +76,6 @@ dependencies {
 
     // 内存检测工具 https://github.com/square/leakcanary
     debugImplementation deps.lib.leakcanary
+//    // 应用数据库展示 https://github.com/guolindev/Glance
+//    debugImplementation deps.lib.glance
 }

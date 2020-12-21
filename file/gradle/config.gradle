@@ -267,6 +267,8 @@ ext {
                     ucrop_native                 : "com.github.yalantis:ucrop:2.2.6-native", // 支持本机功能
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
                     xxPermissions                : "com.hjq:xxpermissions:9.2",
+                    // 应用数据库展示 https://github.com/guolindev/Glance
+                    glance                       : "com.glance.guolindev:glance:1.0.0-alpha02",
 
                     // ========
                     // = 其他 =
