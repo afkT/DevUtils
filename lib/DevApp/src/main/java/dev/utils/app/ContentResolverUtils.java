@@ -101,7 +101,7 @@ public final class ContentResolverUtils {
      * @param uri           {@link Uri}
      * @param where         删除条件
      * @param selectionArgs 删除条件参数
-     * @return 删除条数`
+     * @return 删除条数
      */
     public static int delete(
             final Uri uri,
