@@ -43,7 +43,10 @@ public final class EncodeUtils {
      * @param flags Base64 编解码 flags
      * @return Base64 编码后的 byte[]
      */
-    public static byte[] base64Encode(final String input, final int flags) {
+    public static byte[] base64Encode(
+            final String input,
+            final int flags
+    ) {
         return base64Encode(ConvertUtils.toBytes(input), flags);
     }
 
@@ -62,7 +65,10 @@ public final class EncodeUtils {
      * @param flags Base64 编解码 flags
      * @return Base64 编码后的 byte[]
      */
-    public static byte[] base64Encode(final byte[] input, final int flags) {
+    public static byte[] base64Encode(
+            final byte[] input,
+            final int flags
+    ) {
         if (input == null) return null;
         return Base64.encode(input, flags);
     }
@@ -84,7 +90,10 @@ public final class EncodeUtils {
      * @param flags Base64 编解码 flags
      * @return Base64 编码后的 byte[] 转 String
      */
-    public static String base64EncodeToString(final String input, final int flags) {
+    public static String base64EncodeToString(
+            final String input,
+            final int flags
+    ) {
         return base64EncodeToString(ConvertUtils.toBytes(input), flags);
     }
 
@@ -103,7 +112,10 @@ public final class EncodeUtils {
      * @param flags Base64 编解码 flags
      * @return Base64 编码后的 byte[] 转 String
      */
-    public static String base64EncodeToString(final byte[] input, final int flags) {
+    public static String base64EncodeToString(
+            final byte[] input,
+            final int flags
+    ) {
         if (input == null) return null;
         return ConvertUtils.newString(Base64.encode(input, flags));
     }
@@ -127,7 +139,10 @@ public final class EncodeUtils {
      * @param flags Base64 编解码 flags
      * @return Base64 解码后的 byte[]
      */
-    public static byte[] base64Decode(final String input, final int flags) {
+    public static byte[] base64Decode(
+            final String input,
+            final int flags
+    ) {
         return base64Decode(ConvertUtils.toBytes(input), flags);
     }
 
@@ -146,7 +161,10 @@ public final class EncodeUtils {
      * @param flags Base64 编解码 flags
      * @return Base64 解码后的 byte[]
      */
-    public static byte[] base64Decode(final byte[] input, final int flags) {
+    public static byte[] base64Decode(
+            final byte[] input,
+            final int flags
+    ) {
         if (input == null) return null;
         return Base64.decode(input, flags);
     }
@@ -168,7 +186,10 @@ public final class EncodeUtils {
      * @param flags Base64 编解码 flags
      * @return Base64 解码后的 byte[] 转 String
      */
-    public static String base64DecodeToString(final String input, final int flags) {
+    public static String base64DecodeToString(
+            final String input,
+            final int flags
+    ) {
         return base64DecodeToString(ConvertUtils.toBytes(input), flags);
     }
 
@@ -187,7 +208,10 @@ public final class EncodeUtils {
      * @param flags Base64 编解码 flags
      * @return Base64 解码后的 byte[] 转 String
      */
-    public static String base64DecodeToString(final byte[] input, final int flags) {
+    public static String base64DecodeToString(
+            final byte[] input,
+            final int flags
+    ) {
         if (input == null) return null;
         return ConvertUtils.newString(Base64.decode(input, flags));
     }

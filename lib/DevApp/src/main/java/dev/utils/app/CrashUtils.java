@@ -14,13 +14,13 @@ import java.lang.Thread.UncaughtExceptionHandler;
 public final class CrashUtils implements UncaughtExceptionHandler {
 
     // CrashUtils 实例
-    private static volatile CrashUtils               sInstance;
+    private static volatile CrashUtils sInstance;
     // Context
-    private                 Context                  mContext;
+    private                 Context mContext;
     // 系统默认的 UncaughtException 处理器
     private                 UncaughtExceptionHandler mDefaultHandler;
     // 捕获异常事件处理
-    private                 CrashCatchListener       mCrashCatchListener;
+    private                 CrashCatchListener mCrashCatchListener;
 
     private CrashUtils() {
     }
@@ -45,7 +45,10 @@ public final class CrashUtils implements UncaughtExceptionHandler {
      * @param context            {@link Context}
      * @param crashCatchListener {@link CrashCatchListener}
      */
-    public void init(Context context, CrashCatchListener crashCatchListener) {
+    public void init(
+            Context context,
+            CrashCatchListener crashCatchListener
+    ) {
         this.mContext = context;
         this.mCrashCatchListener = crashCatchListener;
         // 获取系统默认的 UncaughtException 处理器
@@ -60,7 +63,10 @@ public final class CrashUtils implements UncaughtExceptionHandler {
      * @param ex     {@link Throwable}
      */
     @Override
-    public void uncaughtException(Thread thread, Throwable ex) {
+    public void uncaughtException(
+            Thread thread,
+            Throwable ex
+    ) {
         if (!handleException(ex) && mDefaultHandler != null) {
             // 如果用户没有处理则让系统默认的异常处理器来处理
             mDefaultHandler.uncaughtException(thread, ex);
@@ -103,6 +109,10 @@ public final class CrashUtils implements UncaughtExceptionHandler {
          * @param thread  {@link Thread}
          * @param ex      {@link Throwable}
          */
-        void uncaughtException(Context context, Thread thread, Throwable ex);
+        void uncaughtException(
+                Context context,
+                Thread thread,
+                Throwable ex
+        );
     }
 }

@@ -32,7 +32,10 @@ public class Base64Cipher implements Cipher {
      * @param cipher 加解密中间层
      * @param flags  Base64 编解码 flags
      */
-    public Base64Cipher(final Cipher cipher, final int flags) {
+    public Base64Cipher(
+            final Cipher cipher,
+            final int flags
+    ) {
         this.mCipher = cipher;
         this.mFlags = flags;
     }

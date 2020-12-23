@@ -13,11 +13,18 @@ public abstract class AbstractCommonCallback<T> extends AbstractCallback<T> {
         super(value);
     }
 
-    public AbstractCommonCallback(T value, Object object) {
+    public AbstractCommonCallback(
+            T value,
+            Object object
+    ) {
         super(value, object);
     }
 
-    public AbstractCommonCallback(T value, Object object, String tag) {
+    public AbstractCommonCallback(
+            T value,
+            Object object,
+            String tag
+    ) {
         super(value, object, tag);
     }
 
@@ -31,7 +38,11 @@ public abstract class AbstractCommonCallback<T> extends AbstractCallback<T> {
      * @param msg   返回信息
      * @param value 返回值
      */
-    public void onResult(String str, String msg, T value) {
+    public void onResult(
+            String str,
+            String msg,
+            T value
+    ) {
     }
 
     /**
@@ -47,6 +58,9 @@ public abstract class AbstractCommonCallback<T> extends AbstractCallback<T> {
      * @param fail      失败信息
      * @param errorCode 错误 code
      */
-    public void onFailure(String fail, String errorCode) {
+    public void onFailure(
+            String fail,
+            String errorCode
+    ) {
     }
 }

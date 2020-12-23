@@ -241,7 +241,11 @@ public final class ROMUtils {
      * @param names        品牌名称集合
      * @return {@code true} yes, {@code false} no
      */
-    private static boolean isRightRom(final String brand, final String manufacturer, final String... names) {
+    private static boolean isRightRom(
+            final String brand,
+            final String manufacturer,
+            final String... names
+    ) {
         for (String name : names) {
             if (brand.contains(name) || manufacturer.contains(name)) {
                 return true;

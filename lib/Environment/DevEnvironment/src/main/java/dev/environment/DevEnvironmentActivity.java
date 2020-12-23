@@ -44,7 +44,10 @@ public final class DevEnvironmentActivity extends Activity {
      * @param callback {@link RestartCallback}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean start(final Context context, final RestartCallback callback) {
+    public static boolean start(
+            final Context context,
+            final RestartCallback callback
+    ) {
         return Utils.start(context, callback);
     }
 
@@ -129,7 +132,11 @@ public final class DevEnvironmentActivity extends Activity {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(
+                int position,
+                View convertView,
+                ViewGroup parent
+        ) {
             final AdapterItem item = getItem(position);
             switch (item.itemType) {
                 case AdapterItem.MODULE_TYPE: // Module Type

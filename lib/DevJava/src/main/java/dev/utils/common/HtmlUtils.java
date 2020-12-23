@@ -27,7 +27,10 @@ public final class HtmlUtils {
      * @param color   颜色值, 如: #000000
      * @return Html 内容字符串
      */
-    public static String addHtmlColor(final String content, final String color) {
+    public static String addHtmlColor(
+            final String content,
+            final String color
+    ) {
         return "<font color=\"" + color + "\">" + content + "</font>";
     }
 
@@ -38,7 +41,11 @@ public final class HtmlUtils {
      * @param color   颜色值, 如: #000000
      * @return Html 内容字符串
      */
-    public static String addHtmlColor(final String format, final String content, final String color) {
+    public static String addHtmlColor(
+            final String format,
+            final String content,
+            final String color
+    ) {
         return StringUtils.getFormatString(format, addHtmlColor(content, color));
     }
 
@@ -57,7 +64,10 @@ public final class HtmlUtils {
      * @param color   颜色值, 如: #000000
      * @return Html 内容字符串
      */
-    public static String addHtmlColorAndBold(final String content, final String color) {
+    public static String addHtmlColorAndBold(
+            final String content,
+            final String color
+    ) {
         return addHtmlBold(addHtmlColor(content, color));
     }
 
@@ -135,7 +145,11 @@ public final class HtmlUtils {
      * @param height 图片高度
      * @return Html 内容字符串
      */
-    public static String addHtmlIMG(final String url, final String width, final String height) {
+    public static String addHtmlIMG(
+            final String url,
+            final String width,
+            final String height
+    ) {
         return "<img src=\"" + url + "\" width=\"" + width + "\" height=\"" + height + "\"/>";
     }
 
@@ -145,7 +159,10 @@ public final class HtmlUtils {
      * @param width 图片宽度
      * @return Html 内容字符串
      */
-    public static String addHtmlIMGByWidth(final String url, final String width) {
+    public static String addHtmlIMGByWidth(
+            final String url,
+            final String width
+    ) {
         return "<img src=\"" + url + "\" width=\"" + width + "\"/>";
     }
 
@@ -155,7 +172,10 @@ public final class HtmlUtils {
      * @param height 图片高度
      * @return Html 内容字符串
      */
-    public static String addHtmlIMGByHeight(final String url, final String height) {
+    public static String addHtmlIMGByHeight(
+            final String url,
+            final String height
+    ) {
         return "<img src=\"" + url + "\" height=\"" + height + "\"/>";
     }
 
@@ -174,7 +194,10 @@ public final class HtmlUtils {
      * @param margin  margin 边距
      * @return Html 内容字符串
      */
-    public static String addHtmlDIVByMargin(final String content, final String margin) {
+    public static String addHtmlDIVByMargin(
+            final String content,
+            final String margin
+    ) {
         return "<div style=\"margin: " + margin + "\">" + content + "</div>";
     }
 
@@ -184,7 +207,10 @@ public final class HtmlUtils {
      * @param padding padding 边距
      * @return Html 内容字符串
      */
-    public static String addHtmlDIVByPadding(final String content, final String padding) {
+    public static String addHtmlDIVByPadding(
+            final String content,
+            final String padding
+    ) {
         return "<div style=\"padding: " + padding + "\">" + content + "</div>";
     }
 
@@ -195,7 +221,11 @@ public final class HtmlUtils {
      * @param padding padding 边距
      * @return Html 内容字符串
      */
-    public static String addHtmlDIVByMarginPadding(final String content, final String margin, final String padding) {
+    public static String addHtmlDIVByMarginPadding(
+            final String content,
+            final String margin,
+            final String padding
+    ) {
         return "<div style=\"margin: " + margin + "; padding: " + padding + ";\">" + content + "</div>";
     }
 
@@ -208,7 +238,11 @@ public final class HtmlUtils {
      * @param color   颜色值, 如: #000000
      * @return Html 内容字符串
      */
-    public static String keywordReplaceHtmlColor(final String content, final String keyword, final String color) {
+    public static String keywordReplaceHtmlColor(
+            final String content,
+            final String keyword,
+            final String color
+    ) {
         return StringUtils.replaceAll(content, keyword, addHtmlColor(keyword, color));
     }
 }

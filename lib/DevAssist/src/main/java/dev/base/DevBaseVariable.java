@@ -124,7 +124,10 @@ public class DevBaseVariable<K, V> {
      * @param value Value
      * @return {@code true} yes, {@code false} no
      */
-    public boolean isVariable(final K key, final V value) {
+    public boolean isVariable(
+            final K key,
+            final V value
+    ) {
         if (!isVariable(key)) {
             mLinkedHashMap.put(key, value);
             return false;
@@ -140,7 +143,10 @@ public class DevBaseVariable<K, V> {
      * @param value Value
      * @return {@link DevBaseVariable}
      */
-    public DevBaseVariable<K, V> putVariable(final K key, final V value) {
+    public DevBaseVariable<K, V> putVariable(
+            final K key,
+            final V value
+    ) {
         mLinkedHashMap.put(key, value);
         return this;
     }
@@ -152,7 +158,11 @@ public class DevBaseVariable<K, V> {
      * @param value Value
      * @return {@link DevBaseVariable}
      */
-    public DevBaseVariable<K, V> putVariable(final boolean put, final K key, final V value) {
+    public DevBaseVariable<K, V> putVariable(
+            final boolean put,
+            final K key,
+            final V value
+    ) {
         return put ? putVariable(key, value) : removeVariable(key);
     }
 
@@ -175,7 +185,10 @@ public class DevBaseVariable<K, V> {
      * @param value Value
      * @return {@link DevBaseVariable}
      */
-    public DevBaseVariable<K, V> toggle(final K key, final V value) {
+    public DevBaseVariable<K, V> toggle(
+            final K key,
+            final V value
+    ) {
         if (isVariable(key)) { // 移除存在的数据
             mLinkedHashMap.remove(key);
         } else { // 保存变量数据

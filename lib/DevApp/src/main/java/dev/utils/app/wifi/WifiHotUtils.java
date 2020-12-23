@@ -69,7 +69,10 @@ public final class WifiHotUtils {
      * @param pwd  密码 ( 需要大于等于 8 位 )
      * @return {@link WifiConfiguration}
      */
-    public static WifiConfiguration createWifiConfigToAp(final String ssid, final String pwd) {
+    public static WifiConfiguration createWifiConfigToAp(
+            final String ssid,
+            final String pwd
+    ) {
         try {
             // 创建一个新的网络配置
             WifiConfiguration wifiConfig = new WifiConfiguration();
@@ -500,7 +503,10 @@ public final class WifiHotUtils {
      * @param ipAddress      IP 地址
      * @return 网关掩码
      */
-    public String getHotspotSplitIpMask(final String defaultGateway, final String ipAddress) {
+    public String getHotspotSplitIpMask(
+            final String defaultGateway,
+            final String ipAddress
+    ) {
         // 网关掩码
         String hsMask = defaultGateway;
         // 获取网关掩码

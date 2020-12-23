@@ -141,7 +141,10 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
      * @return {@code true} yes, {@code false} no
      */
     @Override
-    public boolean isSelect(final K key, final V value) {
+    public boolean isSelect(
+            final K key,
+            final V value
+    ) {
         if (!isSelectKey(key)) {
             mMapSelects.put(key, value);
             return false;
@@ -165,7 +168,10 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
      * @param value Value
      */
     @Override
-    public void select(final K key, final V value) {
+    public void select(
+            final K key,
+            final V value
+    ) {
         mMapSelects.put(key, value);
     }
 
@@ -176,7 +182,11 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
      * @param value    Value
      */
     @Override
-    public void select(final boolean isSelect, final K key, final V value) {
+    public void select(
+            final boolean isSelect,
+            final K key,
+            final V value
+    ) {
         if (isSelect) {
             select(key, value);
         } else {
@@ -202,7 +212,10 @@ public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashM
      * @param value Value
      */
     @Override
-    public void toggle(final K key, final V value) {
+    public void toggle(
+            final K key,
+            final V value
+    ) {
         if (isSelectKey(key)) {
             mMapSelects.remove(key);
         } else {

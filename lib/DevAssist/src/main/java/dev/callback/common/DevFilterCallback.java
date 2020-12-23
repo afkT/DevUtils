@@ -15,11 +15,18 @@ public class DevFilterCallback<T> extends AbstractCallback<T> {
         super(value);
     }
 
-    public DevFilterCallback(T value, Object object) {
+    public DevFilterCallback(
+            T value,
+            Object object
+    ) {
         super(value, object);
     }
 
-    public DevFilterCallback(T value, Object object, String tag) {
+    public DevFilterCallback(
+            T value,
+            Object object,
+            String tag
+    ) {
         super(value, object, tag);
     }
 
@@ -73,7 +80,10 @@ public class DevFilterCallback<T> extends AbstractCallback<T> {
      * @param value1 待对比值
      * @return {@code true} yes, {@code false} no
      */
-    public boolean compare(T value, T value1) {
+    public boolean compare(
+            T value,
+            T value1
+    ) {
         return false;
     }
 
@@ -83,7 +93,10 @@ public class DevFilterCallback<T> extends AbstractCallback<T> {
      * @param values1 待对比值
      * @return {@code true} yes, {@code false} no
      */
-    public boolean compare(T[] values, T[] values1) {
+    public boolean compare(
+            T[] values,
+            T[] values1
+    ) {
         return false;
     }
 }

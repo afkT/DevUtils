@@ -38,7 +38,7 @@ import java.util.concurrent.TimeoutException;
 public final class DevThreadPool {
 
     // 线程池对象
-    private final ExecutorService          mThreadPool;
+    private final ExecutorService mThreadPool;
     // 定时任务线程池
     private       ScheduledExecutorService mScheduleExec;
 
@@ -188,7 +188,10 @@ public final class DevThreadPool {
      * @param method 方法
      * @param object 对象
      */
-    public void execute(final Method method, final Object object) {
+    public void execute(
+            final Method method,
+            final Object object
+    ) {
         if (mThreadPool != null && method != null && object != null) {
             mThreadPool.execute(new Runnable() {
                 @Override
@@ -261,7 +264,10 @@ public final class DevThreadPool {
      * @return {@code true} 请求成功, {@code false} 请求超时
      * @throws InterruptedException 终端异常
      */
-    public boolean awaitTermination(final long timeout, final TimeUnit unit) throws InterruptedException {
+    public boolean awaitTermination(
+            final long timeout,
+            final TimeUnit unit
+    ) throws InterruptedException {
         if (mThreadPool != null && unit != null) {
             return mThreadPool.awaitTermination(timeout, unit);
         }
@@ -289,7 +295,10 @@ public final class DevThreadPool {
      * @param <T>    泛型
      * @return 表示任务等待完成的 Future, 该 Future 的 {@code get} 方法在成功完成时将会返回该任务的结果
      */
-    public <T> Future<T> submit(final Runnable task, final T result) {
+    public <T> Future<T> submit(
+            final Runnable task,
+            final T result
+    ) {
         if (mThreadPool != null && task != null) {
             return mThreadPool.submit(task, result);
         }
@@ -342,8 +351,11 @@ public final class DevThreadPool {
      * 如果操作未超时, 则已完成所有任务, 如果确实超时了, 则某些任务尚未完成
      * @throws InterruptedException 如果等待时发生中断, 在这种情况下取消尚未完成的任务
      */
-    public <T> List<Future<T>> invokeAll(final Collection<? extends Callable<T>> tasks, final long timeout,
-                                         final TimeUnit unit) throws InterruptedException {
+    public <T> List<Future<T>> invokeAll(
+            final Collection<? extends Callable<T>> tasks,
+            final long timeout,
+            final TimeUnit unit
+    ) throws InterruptedException {
         if (mThreadPool != null && tasks != null && unit != null) {
             return mThreadPool.invokeAll(tasks, timeout, unit);
         }
@@ -382,7 +394,11 @@ public final class DevThreadPool {
      * @throws ExecutionException   如果没有任务成功完成
      * @throws TimeoutException     如果在所有任务成功完成之前给定的超时期满
      */
-    public <T> T invokeAny(final Collection<? extends Callable<T>> tasks, final long timeout, final TimeUnit unit)
+    public <T> T invokeAny(
+            final Collection<? extends Callable<T>> tasks,
+            final long timeout,
+            final TimeUnit unit
+    )
             throws InterruptedException, ExecutionException, TimeoutException {
         if (mThreadPool != null && tasks != null && unit != null) {
             return mThreadPool.invokeAny(tasks, timeout, unit);
@@ -400,7 +416,11 @@ public final class DevThreadPool {
      * @param <?>     未知类型
      * @return 表示挂起任务完成的 ScheduledFuture, 并且其 {@code get()} 方法在完成后将返回 {@code null}
      */
-    public ScheduledFuture<?> schedule(final Runnable command, final long delay, final TimeUnit unit) {
+    public ScheduledFuture<?> schedule(
+            final Runnable command,
+            final long delay,
+            final TimeUnit unit
+    ) {
         if (mScheduleExec != null && command != null && unit != null) {
             return mScheduleExec.schedule(command, delay, unit);
         }
@@ -415,7 +435,11 @@ public final class DevThreadPool {
      * @param <V>      泛型
      * @return 可用于提取结果或取消的 ScheduledFuture
      */
-    public <V> ScheduledFuture<V> schedule(final Callable<V> callable, final long delay, final TimeUnit unit) {
+    public <V> ScheduledFuture<V> schedule(
+            final Callable<V> callable,
+            final long delay,
+            final TimeUnit unit
+    ) {
         if (mScheduleExec != null && callable != null && unit != null) {
             return mScheduleExec.schedule(callable, delay, unit);
         }
@@ -431,7 +455,12 @@ public final class DevThreadPool {
      * @param <?>          未知类型
      * @return 表示挂起任务完成的 ScheduledFuture, 并且其 {@code get()} 方法在取消后将抛出异常
      */
-    public ScheduledFuture<?> scheduleWithFixedRate(final Runnable command, final long initialDelay, final long period, final TimeUnit unit) {
+    public ScheduledFuture<?> scheduleWithFixedRate(
+            final Runnable command,
+            final long initialDelay,
+            final long period,
+            final TimeUnit unit
+    ) {
         if (mScheduleExec != null && command != null && unit != null) {
             return mScheduleExec.scheduleAtFixedRate(command, initialDelay, period, unit);
         }
@@ -447,7 +476,12 @@ public final class DevThreadPool {
      * @param <?>          未知类型
      * @return 表示挂起任务完成的 ScheduledFuture, 并且其 {@code get()} 方法在取消后将抛出异常
      */
-    public ScheduledFuture<?> scheduleWithFixedDelay(final Runnable command, final long initialDelay, final long delay, final TimeUnit unit) {
+    public ScheduledFuture<?> scheduleWithFixedDelay(
+            final Runnable command,
+            final long initialDelay,
+            final long delay,
+            final TimeUnit unit
+    ) {
         if (mScheduleExec != null && command != null && unit != null) {
             return mScheduleExec.scheduleWithFixedDelay(command, initialDelay, delay, unit);
         }

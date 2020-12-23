@@ -190,7 +190,10 @@ public final class CapturePictureUtils {
      * @param maxHeight 最大高度
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByWebView(final WebView webView, final int maxHeight) {
+    public static Bitmap snapshotByWebView(
+            final WebView webView,
+            final int maxHeight
+    ) {
         return snapshotByWebView(webView, maxHeight, BITMAP_CONFIG, 0f);
     }
 
@@ -200,7 +203,10 @@ public final class CapturePictureUtils {
      * @param scale   缩放比例
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByWebView(final WebView webView, final float scale) {
+    public static Bitmap snapshotByWebView(
+            final WebView webView,
+            final float scale
+    ) {
         return snapshotByWebView(webView, Integer.MAX_VALUE, BITMAP_CONFIG, scale);
     }
 
@@ -211,7 +217,11 @@ public final class CapturePictureUtils {
      * @param config    {@link Bitmap.Config}
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByWebView(final WebView webView, final int maxHeight, final Bitmap.Config config) {
+    public static Bitmap snapshotByWebView(
+            final WebView webView,
+            final int maxHeight,
+            final Bitmap.Config config
+    ) {
         return snapshotByWebView(webView, maxHeight, config, 0f);
     }
 
@@ -231,8 +241,12 @@ public final class CapturePictureUtils {
      * @param scale     缩放比例
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByWebView(final WebView webView, final int maxHeight,
-                                           final Bitmap.Config config, final float scale) {
+    public static Bitmap snapshotByWebView(
+            final WebView webView,
+            final int maxHeight,
+            final Bitmap.Config config,
+            final float scale
+    ) {
         if (webView != null && config != null) {
             // Android 5.0 以上
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -299,7 +313,10 @@ public final class CapturePictureUtils {
      * @param config {@link Bitmap.Config}
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByView(final View view, final Bitmap.Config config) {
+    public static Bitmap snapshotByView(
+            final View view,
+            final Bitmap.Config config
+    ) {
         if (view == null || config == null) return null;
         try {
             Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), config);
@@ -380,7 +397,10 @@ public final class CapturePictureUtils {
      * @param config       {@link Bitmap.Config}
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByLinearLayout(final LinearLayout linearLayout, final Bitmap.Config config) {
+    public static Bitmap snapshotByLinearLayout(
+            final LinearLayout linearLayout,
+            final Bitmap.Config config
+    ) {
         return snapshotByView(linearLayout, config);
     }
 
@@ -406,7 +426,10 @@ public final class CapturePictureUtils {
      * @param config      {@link Bitmap.Config}
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByFrameLayout(final FrameLayout frameLayout, final Bitmap.Config config) {
+    public static Bitmap snapshotByFrameLayout(
+            final FrameLayout frameLayout,
+            final Bitmap.Config config
+    ) {
         return snapshotByView(frameLayout, config);
     }
 
@@ -432,7 +455,10 @@ public final class CapturePictureUtils {
      * @param config         {@link Bitmap.Config}
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByRelativeLayout(final RelativeLayout relativeLayout, final Bitmap.Config config) {
+    public static Bitmap snapshotByRelativeLayout(
+            final RelativeLayout relativeLayout,
+            final Bitmap.Config config
+    ) {
         return snapshotByView(relativeLayout, config);
     }
 
@@ -458,7 +484,10 @@ public final class CapturePictureUtils {
      * @param config     {@link Bitmap.Config}
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByScrollView(final ScrollView scrollView, final Bitmap.Config config) {
+    public static Bitmap snapshotByScrollView(
+            final ScrollView scrollView,
+            final Bitmap.Config config
+    ) {
         if (scrollView == null || config == null) return null;
         try {
             View view   = scrollView.getChildAt(0);
@@ -497,7 +526,10 @@ public final class CapturePictureUtils {
      * @param config     {@link Bitmap.Config}
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByHorizontalScrollView(final HorizontalScrollView scrollView, final Bitmap.Config config) {
+    public static Bitmap snapshotByHorizontalScrollView(
+            final HorizontalScrollView scrollView,
+            final Bitmap.Config config
+    ) {
         if (scrollView == null || config == null) return null;
         try {
             View view   = scrollView.getChildAt(0);
@@ -536,7 +568,10 @@ public final class CapturePictureUtils {
      * @param config     {@link Bitmap.Config}
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByNestedScrollView(final NestedScrollView scrollView, final Bitmap.Config config) {
+    public static Bitmap snapshotByNestedScrollView(
+            final NestedScrollView scrollView,
+            final Bitmap.Config config
+    ) {
         if (scrollView == null || config == null) return null;
         try {
             View view   = scrollView.getChildAt(0);
@@ -575,7 +610,10 @@ public final class CapturePictureUtils {
      * @param config   {@link Bitmap.Config}
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByListView(final ListView listView, final Bitmap.Config config) {
+    public static Bitmap snapshotByListView(
+            final ListView listView,
+            final Bitmap.Config config
+    ) {
         if (listView == null || config == null) return null;
         try {
             // Adapter
@@ -641,7 +679,10 @@ public final class CapturePictureUtils {
      * @param config   {@link Bitmap.Config}
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByGridView(final GridView gridView, final Bitmap.Config config) {
+    public static Bitmap snapshotByGridView(
+            final GridView gridView,
+            final Bitmap.Config config
+    ) {
         return snapshotByGridView(gridView, config, false);
     }
 
@@ -652,7 +693,11 @@ public final class CapturePictureUtils {
      * @param listViewEffect 是否保存 ListView 效果 ( 每个 Item 铺满 )
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByGridView(final GridView gridView, final Bitmap.Config config, final boolean listViewEffect) {
+    public static Bitmap snapshotByGridView(
+            final GridView gridView,
+            final Bitmap.Config config,
+            final boolean listViewEffect
+    ) {
         if (gridView == null || config == null) return null;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) return null;
         try {
@@ -800,8 +845,10 @@ public final class CapturePictureUtils {
      * @param config       {@link Bitmap.Config}
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByRecyclerView(final RecyclerView recyclerView,
-                                                final Bitmap.Config config) {
+    public static Bitmap snapshotByRecyclerView(
+            final RecyclerView recyclerView,
+            final Bitmap.Config config
+    ) {
         return snapshotByRecyclerView(recyclerView, config, 0, 0);
     }
 
@@ -811,7 +858,10 @@ public final class CapturePictureUtils {
      * @param spacing      每列之间的间隔 |
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByRecyclerView(final RecyclerView recyclerView, final int spacing) {
+    public static Bitmap snapshotByRecyclerView(
+            final RecyclerView recyclerView,
+            final int spacing
+    ) {
         return snapshotByRecyclerView(recyclerView, BITMAP_CONFIG, spacing, spacing);
     }
 
@@ -822,8 +872,11 @@ public final class CapturePictureUtils {
      * @param spacing      每列之间的间隔 |
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByRecyclerView(final RecyclerView recyclerView,
-                                                final Bitmap.Config config, final int spacing) {
+    public static Bitmap snapshotByRecyclerView(
+            final RecyclerView recyclerView,
+            final Bitmap.Config config,
+            final int spacing
+    ) {
         return snapshotByRecyclerView(recyclerView, config, spacing, spacing);
     }
 
@@ -839,8 +892,12 @@ public final class CapturePictureUtils {
      * @param horizontalSpacing 每列之间的间隔 |
      * @return {@link Bitmap}
      */
-    public static Bitmap snapshotByRecyclerView(final RecyclerView recyclerView, final Bitmap.Config config,
-                                                final int verticalSpacing, final int horizontalSpacing) {
+    public static Bitmap snapshotByRecyclerView(
+            final RecyclerView recyclerView,
+            final Bitmap.Config config,
+            final int verticalSpacing,
+            final int horizontalSpacing
+    ) {
         if (recyclerView == null || config == null) return null;
         try {
             // 获取适配器
@@ -881,10 +938,12 @@ public final class CapturePictureUtils {
      * @param horizontalSpacing 每列之间的间隔 |
      * @return {@link Bitmap}
      */
-    private static Bitmap snapshotByRecyclerView_GridLayoutManager(final RecyclerView recyclerView,
-                                                                   final Bitmap.Config config,
-                                                                   final int verticalSpacing,
-                                                                   final int horizontalSpacing) {
+    private static Bitmap snapshotByRecyclerView_GridLayoutManager(
+            final RecyclerView recyclerView,
+            final Bitmap.Config config,
+            final int verticalSpacing,
+            final int horizontalSpacing
+    ) {
         // 计算思路
         // = 竖屏 =
         // 每个 Item 宽度最大值固定为 (RecyclerView 宽度 - ( 列数 - 1) * 每列边距 ) / 列数
@@ -1086,10 +1145,12 @@ public final class CapturePictureUtils {
      * @param horizontalSpacing 每列之间的间隔 |
      * @return {@link Bitmap}
      */
-    private static Bitmap snapshotByRecyclerView_LinearLayoutManager(final RecyclerView recyclerView,
-                                                                     final Bitmap.Config config,
-                                                                     final int verticalSpacing,
-                                                                     final int horizontalSpacing) {
+    private static Bitmap snapshotByRecyclerView_LinearLayoutManager(
+            final RecyclerView recyclerView,
+            final Bitmap.Config config,
+            final int verticalSpacing,
+            final int horizontalSpacing
+    ) {
         // 计算思路
         // = 竖屏 =
         // 循环保存每一个 Item View 高度, 并累加每行之间的间隔,
@@ -1197,10 +1258,12 @@ public final class CapturePictureUtils {
      * @param horizontalSpacing 每列之间的间隔 |
      * @return {@link Bitmap}
      */
-    private static Bitmap snapshotByRecyclerView_StaggeredGridLayoutManager(final RecyclerView recyclerView,
-                                                                            final Bitmap.Config config,
-                                                                            final int verticalSpacing,
-                                                                            final int horizontalSpacing) {
+    private static Bitmap snapshotByRecyclerView_StaggeredGridLayoutManager(
+            final RecyclerView recyclerView,
+            final Bitmap.Config config,
+            final int verticalSpacing,
+            final int horizontalSpacing
+    ) {
         // 计算思路
         // = 竖屏 =
         // 每个 Item 宽度最大值固定为 (RecyclerView 宽度 - ( 列数 - 1) * 每列边距 ) / 列数
@@ -1398,7 +1461,10 @@ public final class CapturePictureUtils {
      * @param config    {@link Bitmap.Config}
      * @return {@link Bitmap}
      */
-    private static Bitmap canvasBitmap(final View childView, final Bitmap.Config config) {
+    private static Bitmap canvasBitmap(
+            final View childView,
+            final Bitmap.Config config
+    ) {
         Bitmap bitmap = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
         Canvas canvas = new Canvas(bitmap);
         canvas.drawColor(BACKGROUND_COLOR);

@@ -22,7 +22,10 @@ public final class SharedUtils {
      * @param value 保存的 value
      * @param <T>   泛型
      */
-    public static <T> void put(final String key, final T value) {
+    public static <T> void put(
+            final String key,
+            final T value
+    ) {
         SPUtils.getPreference(DevUtils.getContext()).put(key, value);
     }
 
@@ -40,7 +43,10 @@ public final class SharedUtils {
      * @param key  保存的 key
      * @param list 保存的 value
      */
-    public static void putAll(final String key, final List<String> list) {
+    public static void putAll(
+            final String key,
+            final List<String> list
+    ) {
         SPUtils.getPreference(DevUtils.getContext()).putAll(key, list);
     }
 
@@ -50,7 +56,11 @@ public final class SharedUtils {
      * @param list       保存的 value
      * @param comparator 排序 {@link Comparator}
      */
-    public static void putAll(final String key, final List<String> list, final Comparator<String> comparator) {
+    public static void putAll(
+            final String key,
+            final List<String> list,
+            final Comparator<String> comparator
+    ) {
         SPUtils.getPreference(DevUtils.getContext()).putAll(key, list, comparator);
     }
 
@@ -61,7 +71,10 @@ public final class SharedUtils {
      * @param <T>  泛型
      * @return 存储的数据
      */
-    public static <T> T get(final String key, final IPreference.DataType type) {
+    public static <T> T get(
+            final String key,
+            final IPreference.DataType type
+    ) {
         return SPUtils.getPreference(DevUtils.getContext()).get(key, type);
     }
 

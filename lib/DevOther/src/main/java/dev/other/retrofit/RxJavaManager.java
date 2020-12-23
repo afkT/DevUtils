@@ -63,7 +63,10 @@ public final class RxJavaManager {
      * @param tag        tag
      * @param disposable Disposable 请求对象
      */
-    public void add(final String tag, final Disposable disposable) {
+    public void add(
+            final String tag,
+            final Disposable disposable
+    ) {
         if (mManagerMap.containsKey(tag)) {
             mManagerMap.get(tag).add(disposable);
         } else {

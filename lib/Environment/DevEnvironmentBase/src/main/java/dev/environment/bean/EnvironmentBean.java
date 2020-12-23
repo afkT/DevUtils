@@ -19,7 +19,12 @@ public class EnvironmentBean implements Serializable {
     // 所属模块
     private final ModuleBean module;
 
-    public EnvironmentBean(String name, String value, String alias, ModuleBean module) {
+    public EnvironmentBean(
+            String name,
+            String value,
+            String alias,
+            ModuleBean module
+    ) {
         this.name = name;
         this.value = value;
         this.alias = alias;

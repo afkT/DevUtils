@@ -103,7 +103,10 @@ public final class VersionHelper {
      * @param file 文件
      * @return 指定文件 {@link Uri}
      */
-    public static Uri getMediaUri(final Uri uri, final File file) {
+    public static Uri getMediaUri(
+            final Uri uri,
+            final File file
+    ) {
         return ContentResolverUtils.getMediaUri(uri, file);
     }
 
@@ -122,7 +125,10 @@ public final class VersionHelper {
      * @param filePath 文件路径
      * @return 指定文件 {@link Uri}
      */
-    public static Uri getMediaUri(final Uri uri, final String filePath) {
+    public static Uri getMediaUri(
+            final Uri uri,
+            final String filePath
+    ) {
         return ContentResolverUtils.getMediaUri(uri, filePath);
     }
 
@@ -141,7 +147,10 @@ public final class VersionHelper {
      * @param fileName 文件名 {@link ContentResolverUtils#getDisplayNameColumn}
      * @return 复制后的文件路径
      */
-    public static String copyByUri(final Uri uri, final String fileName) {
+    public static String copyByUri(
+            final Uri uri,
+            final String fileName
+    ) {
         return UriUtils.copyByUri(uri, fileName);
     }
 
@@ -152,7 +161,11 @@ public final class VersionHelper {
      * @param fileName 文件名 {@link ContentResolverUtils#getDisplayNameColumn}
      * @return 复制后的文件路径
      */
-    public static String copyByUri(final Uri uri, final File file, final String fileName) {
+    public static String copyByUri(
+            final Uri uri,
+            final File file,
+            final String fileName
+    ) {
         return UriUtils.copyByUri(uri, file, fileName);
     }
 
@@ -163,7 +176,11 @@ public final class VersionHelper {
      * @param fileName 文件名 {@link ContentResolverUtils#getDisplayNameColumn}
      * @return 复制后的文件路径
      */
-    public static String copyByUri(final Uri uri, final String filePath, final String fileName) {
+    public static String copyByUri(
+            final Uri uri,
+            final String filePath,
+            final String fileName
+    ) {
         return UriUtils.copyByUri(uri, filePath, fileName);
     }
 
@@ -185,7 +202,10 @@ public final class VersionHelper {
      * @param isQCopy Android Q 及其以上版本是否复制文件
      * @return 文件路径
      */
-    public static String getFilePathByUri(final Uri uri, final boolean isQCopy) {
+    public static String getFilePathByUri(
+            final Uri uri,
+            final boolean isQCopy
+    ) {
         return UriUtils.getFilePathByUri(uri, isQCopy);
     }
 
@@ -213,7 +233,10 @@ public final class VersionHelper {
      * @param fileProvider android:authorities = ${applicationId}.fileProvider
      * @return 指定文件 {@link Uri}
      */
-    public static Uri getUriForFileToName(final File file, final String fileProvider) {
+    public static Uri getUriForFileToName(
+            final File file,
+            final String fileProvider
+    ) {
         return UriUtils.getUriForFileToName(file, fileProvider);
     }
 
@@ -223,7 +246,10 @@ public final class VersionHelper {
      * @param authority android:authorities
      * @return 指定文件 {@link Uri}
      */
-    public static Uri getUriForFile(final File file, final String authority) {
+    public static Uri getUriForFile(
+            final File file,
+            final String authority
+    ) {
         return UriUtils.getUriForFile(file, authority);
     }
 
@@ -258,7 +284,10 @@ public final class VersionHelper {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return 图片 Uri
      */
-    public static Uri createImageUri(final String mimeType, final String relativePath) {
+    public static Uri createImageUri(
+            final String mimeType,
+            final String relativePath
+    ) {
         return MediaStoreUtils.createImageUri(mimeType, relativePath);
     }
 
@@ -270,8 +299,12 @@ public final class VersionHelper {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return 图片 Uri
      */
-    public static Uri createImageUri(final String displayName, final long createTime,
-                                     final String mimeType, final String relativePath) {
+    public static Uri createImageUri(
+            final String displayName,
+            final long createTime,
+            final String mimeType,
+            final String relativePath
+    ) {
         return MediaStoreUtils.createImageUri(displayName, createTime, mimeType, relativePath);
     }
 
@@ -302,7 +335,10 @@ public final class VersionHelper {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return 视频 Uri
      */
-    public static Uri createVideoUri(final String mimeType, final String relativePath) {
+    public static Uri createVideoUri(
+            final String mimeType,
+            final String relativePath
+    ) {
         return MediaStoreUtils.createVideoUri(mimeType, relativePath);
     }
 
@@ -314,8 +350,12 @@ public final class VersionHelper {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return 视频 Uri
      */
-    public static Uri createVideoUri(final String displayName, final long createTime,
-                                     final String mimeType, final String relativePath) {
+    public static Uri createVideoUri(
+            final String displayName,
+            final long createTime,
+            final String mimeType,
+            final String relativePath
+    ) {
         return MediaStoreUtils.createVideoUri(displayName, createTime, mimeType, relativePath);
     }
 
@@ -346,7 +386,10 @@ public final class VersionHelper {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return 音频 Uri
      */
-    public static Uri createAudioUri(final String mimeType, final String relativePath) {
+    public static Uri createAudioUri(
+            final String mimeType,
+            final String relativePath
+    ) {
         return MediaStoreUtils.createAudioUri(mimeType, relativePath);
     }
 
@@ -358,8 +401,12 @@ public final class VersionHelper {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return 音频 Uri
      */
-    public static Uri createAudioUri(final String displayName, final long createTime,
-                                     final String mimeType, final String relativePath) {
+    public static Uri createAudioUri(
+            final String displayName,
+            final long createTime,
+            final String mimeType,
+            final String relativePath
+    ) {
         return MediaStoreUtils.createAudioUri(displayName, createTime, mimeType, relativePath);
     }
 
@@ -375,8 +422,12 @@ public final class VersionHelper {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return Media Uri
      */
-    public static Uri createMediaUri(final Uri uri, final String displayName,
-                                     final String mimeType, final String relativePath) {
+    public static Uri createMediaUri(
+            final Uri uri,
+            final String displayName,
+            final String mimeType,
+            final String relativePath
+    ) {
         return MediaStoreUtils.createMediaUri(uri, displayName, mimeType, relativePath);
     }
 
@@ -392,9 +443,13 @@ public final class VersionHelper {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return Media Uri
      */
-    public static Uri createMediaUri(final Uri uri, final String displayName,
-                                     final long createTime, final String mimeType,
-                                     final String relativePath) {
+    public static Uri createMediaUri(
+            final Uri uri,
+            final String displayName,
+            final long createTime,
+            final String mimeType,
+            final String relativePath
+    ) {
         return MediaStoreUtils.createMediaUri(uri, displayName, createTime, mimeType, relativePath);
     }
 
@@ -408,8 +463,12 @@ public final class VersionHelper {
      * @param quality  质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertImage(final Uri uri, final Uri inputUri, final Bitmap.CompressFormat format,
-                                      @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean insertImage(
+            final Uri uri,
+            final Uri inputUri,
+            final Bitmap.CompressFormat format,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return MediaStoreUtils.insertImage(uri, inputUri, format, quality);
     }
 
@@ -419,7 +478,10 @@ public final class VersionHelper {
      * @param inputUri 输入 Uri ( 待存储文件 Uri )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertImage(final Uri uri, final Uri inputUri) {
+    public static boolean insertImage(
+            final Uri uri,
+            final Uri inputUri
+    ) {
         return MediaStoreUtils.insertImage(uri, inputUri);
     }
 
@@ -429,7 +491,10 @@ public final class VersionHelper {
      * @param inputUri 输入 Uri ( 待存储文件 Uri )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertVideo(final Uri uri, final Uri inputUri) {
+    public static boolean insertVideo(
+            final Uri uri,
+            final Uri inputUri
+    ) {
         return MediaStoreUtils.insertVideo(uri, inputUri);
     }
 
@@ -439,7 +504,10 @@ public final class VersionHelper {
      * @param inputUri 输入 Uri ( 待存储文件 Uri )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertAudio(final Uri uri, final Uri inputUri) {
+    public static boolean insertAudio(
+            final Uri uri,
+            final Uri inputUri
+    ) {
         return MediaStoreUtils.insertAudio(uri, inputUri);
     }
 
@@ -449,7 +517,10 @@ public final class VersionHelper {
      * @param inputUri 输入 Uri ( 待存储文件 Uri )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final Uri inputUri) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final Uri inputUri
+    ) {
         return MediaStoreUtils.insertMedia(uri, inputUri);
     }
 
@@ -459,7 +530,10 @@ public final class VersionHelper {
      * @param inputStream {@link InputStream}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final InputStream inputStream) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final InputStream inputStream
+    ) {
         return MediaStoreUtils.insertMedia(uri, inputStream);
     }
 
@@ -469,8 +543,10 @@ public final class VersionHelper {
      * @param inputStream  {@link InputStream}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final OutputStream outputStream,
-                                      final InputStream inputStream) {
+    public static boolean insertMedia(
+            final OutputStream outputStream,
+            final InputStream inputStream
+    ) {
         return MediaStoreUtils.insertMedia(outputStream, inputStream);
     }
 
@@ -482,7 +558,10 @@ public final class VersionHelper {
      * @param filePath 待存储文件路径
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final String filePath) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final String filePath
+    ) {
         return MediaStoreUtils.insertMedia(uri, filePath);
     }
 
@@ -492,7 +571,10 @@ public final class VersionHelper {
      * @param file 待存储文件
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final File file) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final File file
+    ) {
         return MediaStoreUtils.insertMedia(uri, file);
     }
 
@@ -504,7 +586,10 @@ public final class VersionHelper {
      * @param drawable 待保存图片
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final Drawable drawable) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final Drawable drawable
+    ) {
         return MediaStoreUtils.insertMedia(uri, drawable);
     }
 
@@ -515,7 +600,11 @@ public final class VersionHelper {
      * @param format   如 Bitmap.CompressFormat.PNG
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final Drawable drawable, final Bitmap.CompressFormat format) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final Drawable drawable,
+            final Bitmap.CompressFormat format
+    ) {
         return MediaStoreUtils.insertMedia(uri, drawable, format);
     }
 
@@ -527,8 +616,12 @@ public final class VersionHelper {
      * @param quality  质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final Drawable drawable, final Bitmap.CompressFormat format,
-                                      @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final Drawable drawable,
+            final Bitmap.CompressFormat format,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return MediaStoreUtils.insertMedia(uri, drawable, format, quality);
     }
 
@@ -540,7 +633,10 @@ public final class VersionHelper {
      * @param bitmap 待保存图片
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final Bitmap bitmap) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final Bitmap bitmap
+    ) {
         return MediaStoreUtils.insertMedia(uri, bitmap);
     }
 
@@ -551,7 +647,11 @@ public final class VersionHelper {
      * @param format 如 Bitmap.CompressFormat.PNG
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final Bitmap bitmap, final Bitmap.CompressFormat format) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final Bitmap bitmap,
+            final Bitmap.CompressFormat format
+    ) {
         return MediaStoreUtils.insertMedia(uri, bitmap, format);
     }
 
@@ -563,8 +663,12 @@ public final class VersionHelper {
      * @param quality 质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final Bitmap bitmap, final Bitmap.CompressFormat format,
-                                      @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final Bitmap bitmap,
+            final Bitmap.CompressFormat format,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return MediaStoreUtils.insertMedia(uri, bitmap, format, quality);
     }
 
@@ -612,7 +716,10 @@ public final class VersionHelper {
      * @param favorite 是否喜欢
      * @return {@link PendingIntent}
      */
-    public static PendingIntent createFavoriteRequest(final Collection<Uri> uris, final boolean favorite) {
+    public static PendingIntent createFavoriteRequest(
+            final Collection<Uri> uris,
+            final boolean favorite
+    ) {
         return MediaStoreUtils.createFavoriteRequest(uris, favorite);
     }
 
@@ -625,7 +732,10 @@ public final class VersionHelper {
      * @param trashed 是否遗弃
      * @return {@link PendingIntent}
      */
-    public static PendingIntent createTrashRequest(final Collection<Uri> uris, final boolean trashed) {
+    public static PendingIntent createTrashRequest(
+            final Collection<Uri> uris,
+            final boolean trashed
+    ) {
         return MediaStoreUtils.createTrashRequest(uris, trashed);
     }
 

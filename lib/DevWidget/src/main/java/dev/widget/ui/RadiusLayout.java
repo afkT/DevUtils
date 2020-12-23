@@ -30,18 +30,30 @@ public class RadiusLayout extends FrameLayout {
         initAttrs(context, null);
     }
 
-    public RadiusLayout(Context context, AttributeSet attrs) {
+    public RadiusLayout(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
         initAttrs(context, attrs);
     }
 
-    public RadiusLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RadiusLayout(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
         initAttrs(context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public RadiusLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public RadiusLayout(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
+    ) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initAttrs(context, attrs);
     }
@@ -51,13 +63,21 @@ public class RadiusLayout extends FrameLayout {
      * @param context {@link Context}
      * @param attrs   {@link AttributeSet}
      */
-    private void initAttrs(Context context, AttributeSet attrs) {
+    private void initAttrs(
+            Context context,
+            AttributeSet attrs
+    ) {
         mRadiusAttrs = new RadiusAttrs(context, attrs);
         setWillNotDraw(false);
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    protected void onSizeChanged(
+            int w,
+            int h,
+            int oldw,
+            int oldh
+    ) {
         super.onSizeChanged(w, h, oldw, oldh);
         mRadiusAttrs.onSizeChanged(w, h);
     }

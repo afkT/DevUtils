@@ -40,7 +40,10 @@ public final class DBUtils {
      * @param dbName     数据库名
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean startExportDatabase(final String targetFile, final String dbName) {
+    public static boolean startExportDatabase(
+            final String targetFile,
+            final String dbName
+    ) {
         return startExportDatabase(targetFile, dbName, true);
     }
 
@@ -51,7 +54,11 @@ public final class DBUtils {
      * @param overlay    如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean startExportDatabase(final String targetFile, final String dbName, final boolean overlay) {
+    public static boolean startExportDatabase(
+            final String targetFile,
+            final String dbName,
+            final boolean overlay
+    ) {
         if (!PathUtils.getSDCard().isSDCardEnable()) return false;
         return FileUtils.copyFile(getAppDbPath(dbName), targetFile, overlay);
     }
@@ -66,7 +73,10 @@ public final class DBUtils {
      * @param destFilePath 目标文件地址
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean startImportDatabase(final String srcFilePath, final String destFilePath) {
+    public static boolean startImportDatabase(
+            final String srcFilePath,
+            final String destFilePath
+    ) {
         return startImportDatabase(srcFilePath, destFilePath, true);
     }
 
@@ -77,7 +87,11 @@ public final class DBUtils {
      * @param overlay      如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean startImportDatabase(final String srcFilePath, final String destFilePath, final boolean overlay) {
+    public static boolean startImportDatabase(
+            final String srcFilePath,
+            final String destFilePath,
+            final boolean overlay
+    ) {
         if (!PathUtils.getSDCard().isSDCardEnable()) return false;
         return FileUtils.copyFile(srcFilePath, destFilePath, overlay);
     }
@@ -90,7 +104,10 @@ public final class DBUtils {
      * @param destFilePath 目标文件地址
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean startImportDatabase(final InputStream inputStream, final String destFilePath) {
+    public static boolean startImportDatabase(
+            final InputStream inputStream,
+            final String destFilePath
+    ) {
         return startImportDatabase(inputStream, destFilePath, true);
     }
 
@@ -101,7 +118,11 @@ public final class DBUtils {
      * @param overlay      如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean startImportDatabase(final InputStream inputStream, final String destFilePath, final boolean overlay) {
+    public static boolean startImportDatabase(
+            final InputStream inputStream,
+            final String destFilePath,
+            final boolean overlay
+    ) {
         if (!PathUtils.getSDCard().isSDCardEnable()) return false;
         return FileUtils.copyFile(inputStream, destFilePath, overlay);
     }

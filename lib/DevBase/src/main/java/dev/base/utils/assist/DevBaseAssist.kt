@@ -74,7 +74,10 @@ class DevBaseAssist : IDevBaseUIOperation {
      * @param message   打印内容
      * @return [DevBaseAssist]
      */
-    fun printLog(throwable: Throwable, message: String): DevBaseAssist {
+    fun printLog(
+        throwable: Throwable,
+        message: String
+    ): DevBaseAssist {
         LogPrintUtils.eTag(mTag, throwable, message)
         return this
     }
@@ -87,11 +90,17 @@ class DevBaseAssist : IDevBaseUIOperation {
         return this.mCurrentVisible
     }
 
-    override fun showToast(text: String?, vararg formatArgs: Any) {
+    override fun showToast(
+        text: String?,
+        vararg formatArgs: Any
+    ) {
         ToastUtils.showShort(mContext, text, *formatArgs)
     }
 
-    override fun showToast(resId: Int, vararg formatArgs: Any) {
+    override fun showToast(
+        resId: Int,
+        vararg formatArgs: Any
+    ) {
         ToastUtils.showShort(mContext, resId, *formatArgs)
     }
 
@@ -103,7 +112,10 @@ class DevBaseAssist : IDevBaseUIOperation {
         return setDevPopupWindow(true, popupWindow)
     }
 
-    override fun <T : PopupWindow?> setDevPopupWindow(isClose: Boolean, popupWindow: T): T {
+    override fun <T : PopupWindow?> setDevPopupWindow(
+        isClose: Boolean,
+        popupWindow: T
+    ): T {
         if (isClose) DialogUtils.closePopupWindow(mDevPopupWindow)
         this.mDevPopupWindow = popupWindow
         return popupWindow
@@ -117,7 +129,10 @@ class DevBaseAssist : IDevBaseUIOperation {
         return setDevDialog(true, dialog)
     }
 
-    override fun <T : Dialog?> setDevDialog(isClose: Boolean, dialog: T): T {
+    override fun <T : Dialog?> setDevDialog(
+        isClose: Boolean,
+        dialog: T
+    ): T {
         if (isClose) DialogUtils.closeDialog(mDevDialog)
         this.mDevDialog = dialog
         return dialog
@@ -131,7 +146,10 @@ class DevBaseAssist : IDevBaseUIOperation {
         return setDevDialogFragment(true, dialog)
     }
 
-    override fun <T : DialogFragment?> setDevDialogFragment(isClose: Boolean, dialog: T): T {
+    override fun <T : DialogFragment?> setDevDialogFragment(
+        isClose: Boolean,
+        dialog: T
+    ): T {
         if (isClose) DialogUtils.closeDialog(mDevDialogFragment)
         this.mDevDialogFragment = dialog
         return dialog

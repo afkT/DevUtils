@@ -40,18 +40,30 @@ public class StateLayout extends FrameLayout {
         init();
     }
 
-    public StateLayout(Context context, AttributeSet attrs) {
+    public StateLayout(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
         init();
     }
 
-    public StateLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public StateLayout(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
         init();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public StateLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public StateLayout(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
+    ) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init();
     }
@@ -60,11 +72,23 @@ public class StateLayout extends FrameLayout {
 
     public interface Listener {
 
-        void onRemove(StateLayout layout, int type, boolean removeView);
+        void onRemove(
+                StateLayout layout,
+                int type,
+                boolean removeView
+        );
 
-        void onNotFound(StateLayout layout, int type);
+        void onNotFound(
+                StateLayout layout,
+                int type
+        );
 
-        void onChange(StateLayout layout, int type, int oldType, View view);
+        void onChange(
+                StateLayout layout,
+                int type,
+                int oldType,
+                View view
+        );
     }
 
     // =================
@@ -93,7 +117,11 @@ public class StateLayout extends FrameLayout {
         mAssist = ViewAssist.wrap(this);
         mAssist.setListener(new ViewAssist.Listener() {
             @Override
-            public void onRemove(ViewAssist assist, int type, boolean removeView) {
+            public void onRemove(
+                    ViewAssist assist,
+                    int type,
+                    boolean removeView
+            ) {
                 if (mListener != null) {
                     mListener.onRemove(StateLayout.this, type, removeView);
                 }
@@ -103,7 +131,10 @@ public class StateLayout extends FrameLayout {
             }
 
             @Override
-            public void onNotFound(ViewAssist assist, int type) {
+            public void onNotFound(
+                    ViewAssist assist,
+                    int type
+            ) {
                 if (mListener != null) {
                     mListener.onNotFound(StateLayout.this, type);
                 }
@@ -113,7 +144,11 @@ public class StateLayout extends FrameLayout {
             }
 
             @Override
-            public void onChange(ViewAssist assist, int type, int oldType) {
+            public void onChange(
+                    ViewAssist assist,
+                    int type,
+                    int oldType
+            ) {
                 if (mListener != null) {
                     mListener.onChange(StateLayout.this, type, oldType, assist.getView(type));
                 }
@@ -158,7 +193,10 @@ public class StateLayout extends FrameLayout {
          * @param layout Layout
          * @return {@link Global}
          */
-        public Global register(int type, @LayoutRes int layout) {
+        public Global register(
+                int type,
+                @LayoutRes int layout
+        ) {
             mapLayouts.put(type, layout);
             return this;
         }
@@ -183,7 +221,10 @@ public class StateLayout extends FrameLayout {
         }
 
         @Override
-        public View onCreateView(ViewAssist assist, LayoutInflater inflater) {
+        public View onCreateView(
+                ViewAssist assist,
+                LayoutInflater inflater
+        ) {
             try {
                 return inflater.inflate(resource, null);
             } catch (Exception e) {
@@ -193,7 +234,11 @@ public class StateLayout extends FrameLayout {
         }
 
         @Override
-        public void onBindView(ViewAssist assist, View view, int type) {
+        public void onBindView(
+                ViewAssist assist,
+                View view,
+                int type
+        ) {
         }
     }
 
@@ -251,7 +296,10 @@ public class StateLayout extends FrameLayout {
      * @param layout Layout
      * @return {@link StateLayout}
      */
-    public StateLayout register(int type, @LayoutRes int layout) {
+    public StateLayout register(
+            int type,
+            @LayoutRes int layout
+    ) {
         mAssist.register(type, new TypeAdapter(layout));
         return this;
     }
@@ -271,7 +319,10 @@ public class StateLayout extends FrameLayout {
      * @param remove 判断解绑的 type 正在显示是否删除
      * @return {@link StateLayout}
      */
-    public StateLayout unregister(int type, boolean remove) {
+    public StateLayout unregister(
+            int type,
+            boolean remove
+    ) {
         mAssist.unregister(type, remove);
         return this;
     }
@@ -298,7 +349,10 @@ public class StateLayout extends FrameLayout {
         return mAssist.getData(key);
     }
 
-    public StateLayout setData(String key, Object data) {
+    public StateLayout setData(
+            String key,
+            Object data
+    ) {
         mAssist.setData(key, data);
         return this;
     }

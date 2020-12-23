@@ -49,7 +49,7 @@ public class CapturePictureListActivity extends BaseActivity<ActivityCapturePict
                         String filePath = PathConfig.AEP_DOWN_IMAGE_PATH;
                         String fileName = "list.jpg";
 
-                        Bitmap bitmap  = CapturePictureUtils.snapshotByListView(binding.vidAcpList);
+                        Bitmap  bitmap = CapturePictureUtils.snapshotByListView(binding.vidAcpList);
                         boolean result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName);
                         showToast(result, "保存成功\n" + (filePath + fileName), "保存失败");
                     }

@@ -54,7 +54,10 @@ public final class JSONObjectUtils {
      * @param jsonIndent JSON 缩进间隔
      * @return JSON String
      */
-    public static String toJson(final Object object, final int jsonIndent) {
+    public static String toJson(
+            final Object object,
+            final int jsonIndent
+    ) {
         if (object == null) return null;
         // 判断是否格式化
         boolean format = jsonIndent >= 1;
@@ -129,7 +132,10 @@ public final class JSONObjectUtils {
      * @param <T>    泛型
      * @return 指定 type JSON 对象
      */
-    public static <T> T fromJson(final Object object, final Class<T> type) {
+    public static <T> T fromJson(
+            final Object object,
+            final Class<T> type
+    ) {
         if (object == null || type == null) return null;
         try {
             if (type == JSONObject.class) {
@@ -456,7 +462,10 @@ public final class JSONObjectUtils {
      * @param key        Key
      * @return {@link JSONObject}
      */
-    public static JSONObject getJSONObject(final JSONObject jsonObject, final String key) {
+    public static JSONObject getJSONObject(
+            final JSONObject jsonObject,
+            final String key
+    ) {
         try {
             return jsonObject.getJSONObject(key);
         } catch (Exception e) {
@@ -471,7 +480,10 @@ public final class JSONObjectUtils {
      * @param key        Key
      * @return {@link JSONArray}
      */
-    public static JSONArray getJSONArray(final JSONObject jsonObject, final String key) {
+    public static JSONArray getJSONArray(
+            final JSONObject jsonObject,
+            final String key
+    ) {
         try {
             return jsonObject.getJSONArray(key);
         } catch (Exception e) {
@@ -488,7 +500,10 @@ public final class JSONObjectUtils {
      * @param index     索引
      * @return {@link JSONObject}
      */
-    public static JSONObject getJSONObject(final JSONArray jsonArray, final int index) {
+    public static JSONObject getJSONObject(
+            final JSONArray jsonArray,
+            final int index
+    ) {
         try {
             return jsonArray.getJSONObject(index);
         } catch (Exception e) {
@@ -503,7 +518,10 @@ public final class JSONObjectUtils {
      * @param index     索引
      * @return {@link JSONArray}
      */
-    public static JSONArray getJSONArray(final JSONArray jsonArray, final int index) {
+    public static JSONArray getJSONArray(
+            final JSONArray jsonArray,
+            final int index
+    ) {
         try {
             return jsonArray.getJSONArray(index);
         } catch (Exception e) {
@@ -521,7 +539,10 @@ public final class JSONObjectUtils {
      * @param <T>        泛型
      * @return 指定 key 数据
      */
-    public static <T> T get(final JSONObject jsonObject, final String key) {
+    public static <T> T get(
+            final JSONObject jsonObject,
+            final String key
+    ) {
         if (jsonObject != null && key != null) {
             try {
                 return (T) jsonObject.get(key);
@@ -539,7 +560,10 @@ public final class JSONObjectUtils {
      * @param <T>        泛型
      * @return 指定 key 数据
      */
-    public static <T> T opt(final JSONObject jsonObject, final String key) {
+    public static <T> T opt(
+            final JSONObject jsonObject,
+            final String key
+    ) {
         if (jsonObject != null && key != null) {
             try {
                 return (T) jsonObject.opt(key);
@@ -559,7 +583,10 @@ public final class JSONObjectUtils {
      * @param <T>       泛型
      * @return 指定 key 数据
      */
-    public static <T> T get(final JSONArray jsonArray, final int index) {
+    public static <T> T get(
+            final JSONArray jsonArray,
+            final int index
+    ) {
         if (jsonArray != null && index >= 0) {
             try {
                 return (T) jsonArray.get(index);
@@ -577,7 +604,10 @@ public final class JSONObjectUtils {
      * @param <T>       泛型
      * @return 指定 key 数据
      */
-    public static <T> T opt(final JSONArray jsonArray, final int index) {
+    public static <T> T opt(
+            final JSONArray jsonArray,
+            final int index
+    ) {
         if (jsonArray != null && index >= 0) {
             try {
                 return (T) jsonArray.opt(index);

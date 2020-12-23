@@ -35,14 +35,20 @@ public interface IImageEngine {
          * @param uri   Image Uri
          * @param value Value
          */
-        void onResponse(String uri, TranscodeType value);
+        void onResponse(
+                String uri,
+                TranscodeType value
+        );
 
         /**
          * 失败回调
          * @param uri       Image Uri
          * @param throwable 异常
          */
-        void onFailure(String uri, Throwable throwable);
+        void onFailure(
+                String uri,
+                Throwable throwable
+        );
     }
 
     /**
@@ -57,10 +63,16 @@ public interface IImageEngine {
         }
 
         @Override
-        public abstract void onResponse(String uri, Bitmap value);
+        public abstract void onResponse(
+                String uri,
+                Bitmap value
+        );
 
         @Override
-        public abstract void onFailure(String uri, Throwable throwable);
+        public abstract void onFailure(
+                String uri,
+                Throwable throwable
+        );
     }
 
     /**
@@ -75,10 +87,16 @@ public interface IImageEngine {
         }
 
         @Override
-        public abstract void onResponse(String uri, Drawable value);
+        public abstract void onResponse(
+                String uri,
+                Drawable value
+        );
 
         @Override
-        public abstract void onFailure(String uri, Throwable throwable);
+        public abstract void onFailure(
+                String uri,
+                Throwable throwable
+        );
     }
 
     // ===========
@@ -90,7 +108,10 @@ public interface IImageEngine {
      * @param uri       Image Uri
      * @param imageView ImageView
      */
-    void displayImage(String uri, ImageView imageView);
+    void displayImage(
+            String uri,
+            ImageView imageView
+    );
 
     /**
      * 图片显示
@@ -98,7 +119,11 @@ public interface IImageEngine {
      * @param imageView    ImageView
      * @param defaultImage Default resource image
      */
-    void displayImage(String uri, ImageView imageView, int defaultImage);
+    void displayImage(
+            String uri,
+            ImageView imageView,
+            int defaultImage
+    );
 
     /**
      * 图片显示
@@ -106,7 +131,11 @@ public interface IImageEngine {
      * @param imageView ImageView
      * @param isDefault 是否使用默认配置
      */
-    void displayImage(String uri, ImageView imageView, boolean isDefault);
+    void displayImage(
+            String uri,
+            ImageView imageView,
+            boolean isDefault
+    );
 
     /**
      * 图片显示
@@ -114,7 +143,11 @@ public interface IImageEngine {
      * @param imageView ImageView
      * @param config    {@link ImageConfig} 加载配置
      */
-    void displayImage(String uri, ImageView imageView, ImageConfig config);
+    void displayImage(
+            String uri,
+            ImageView imageView,
+            ImageConfig config
+    );
 
     // ===========
     // = 图片加载 =
@@ -125,7 +158,10 @@ public interface IImageEngine {
      * @param uri      Image Uri
      * @param callback 图片加载回调
      */
-    void loadImage(String uri, ImageCallback callback);
+    void loadImage(
+            String uri,
+            ImageCallback callback
+    );
 
     /**
      * 图片加载
@@ -133,7 +169,11 @@ public interface IImageEngine {
      * @param callback 图片加载回调
      * @param config   {@link ImageConfig} 加载配置
      */
-    void loadImage(String uri, ImageCallback callback, ImageConfig config);
+    void loadImage(
+            String uri,
+            ImageCallback callback,
+            ImageConfig config
+    );
 
     // ===========
     // = 其他方法 =

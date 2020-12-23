@@ -210,7 +210,10 @@ class DevBaseRefreshAssist<T> {
      * @param index  index
      * @return [DevBaseRefreshAssist]
      */
-    fun addHeaderView(header: View, index: Int): DevBaseRefreshAssist<T> {
+    fun addHeaderView(
+        header: View,
+        index: Int
+    ): DevBaseRefreshAssist<T> {
         mAdapter?.addHeaderView(header, index)
         return this
     }
@@ -260,7 +263,10 @@ class DevBaseRefreshAssist<T> {
      * @param index  index
      * @return [DevBaseRefreshAssist]
      */
-    fun addFooterView(footer: View, index: Int): DevBaseRefreshAssist<T> {
+    fun addFooterView(
+        footer: View,
+        index: Int
+    ): DevBaseRefreshAssist<T> {
         mAdapter?.addFooterView(footer, index)
         return this
     }

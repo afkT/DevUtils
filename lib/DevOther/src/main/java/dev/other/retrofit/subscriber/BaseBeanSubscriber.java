@@ -60,7 +60,10 @@ public abstract class BaseBeanSubscriber<T> extends DisposableSubscriber<T> {
      * @param throwable {@link Throwable}
      * @param message   error message
      */
-    abstract public void onErrorResponse(Throwable throwable, String message);
+    abstract public void onErrorResponse(
+            Throwable throwable,
+            String message
+    );
 
     // ===============
     // = 内部判断方法 =

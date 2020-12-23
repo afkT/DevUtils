@@ -49,7 +49,10 @@ public final class CameraAssist {
      * @param camera   {@link android.hardware.Camera}
      * @param interval 自动对焦时间间隔
      */
-    public CameraAssist(final Camera camera, final long interval) {
+    public CameraAssist(
+            final Camera camera,
+            final long interval
+    ) {
         this.mAutoInterval = interval;
         setCamera(camera);
     }

@@ -30,7 +30,10 @@ public final class ShellUtils {
      * @param isRoot  是否以 root 权限执行
      * @return {@link CommandResult}
      */
-    public static CommandResult execCmd(final String command, final boolean isRoot) {
+    public static CommandResult execCmd(
+            final String command,
+            final boolean isRoot
+    ) {
         return execCmd(new String[]{command}, isRoot, true);
     }
 
@@ -40,7 +43,10 @@ public final class ShellUtils {
      * @param isRoot   是否以 root 权限执行
      * @return {@link CommandResult}
      */
-    public static CommandResult execCmd(final List<String> commands, final boolean isRoot) {
+    public static CommandResult execCmd(
+            final List<String> commands,
+            final boolean isRoot
+    ) {
         return execCmd(commands == null ? null : commands.toArray(new String[]{}), isRoot, true);
     }
 
@@ -50,7 +56,10 @@ public final class ShellUtils {
      * @param isRoot   是否以 root 权限执行
      * @return {@link CommandResult}
      */
-    public static CommandResult execCmd(final String[] commands, final boolean isRoot) {
+    public static CommandResult execCmd(
+            final String[] commands,
+            final boolean isRoot
+    ) {
         return execCmd(commands, isRoot, true);
     }
 
@@ -61,7 +70,11 @@ public final class ShellUtils {
      * @param isNeedResultMsg 是否需要返回结果消息 (error、success message)
      * @return {@link CommandResult}
      */
-    public static CommandResult execCmd(final String command, final boolean isRoot, final boolean isNeedResultMsg) {
+    public static CommandResult execCmd(
+            final String command,
+            final boolean isRoot,
+            final boolean isNeedResultMsg
+    ) {
         return execCmd(new String[]{command}, isRoot, isNeedResultMsg);
     }
 
@@ -72,7 +85,11 @@ public final class ShellUtils {
      * @param isNeedResultMsg 是否需要结果消息 (error、success message)
      * @return {@link CommandResult}
      */
-    public static CommandResult execCmd(final List<String> commands, final boolean isRoot, final boolean isNeedResultMsg) {
+    public static CommandResult execCmd(
+            final List<String> commands,
+            final boolean isRoot,
+            final boolean isNeedResultMsg
+    ) {
         return execCmd(commands == null ? null : commands.toArray(new String[]{}), isRoot, isNeedResultMsg);
     }
 
@@ -83,7 +100,11 @@ public final class ShellUtils {
      * @param isNeedResultMsg 是否需要结果消息 (error、success message)
      * @return {@link CommandResult}
      */
-    public static CommandResult execCmd(final String[] commands, final boolean isRoot, final boolean isNeedResultMsg) {
+    public static CommandResult execCmd(
+            final String[] commands,
+            final boolean isRoot,
+            final boolean isNeedResultMsg
+    ) {
         int result = -1;
         if (commands == null || commands.length == 0) {
             return new CommandResult(result, null, null);
@@ -174,7 +195,11 @@ public final class ShellUtils {
          * @param successMsg 成功信息
          * @param errorMsg   错误信息
          */
-        public CommandResult(final int result, final String successMsg, final String errorMsg) {
+        public CommandResult(
+                final int result,
+                final String successMsg,
+                final String errorMsg
+        ) {
             this.result = result;
             this.successMsg = successMsg;
             this.errorMsg = errorMsg;

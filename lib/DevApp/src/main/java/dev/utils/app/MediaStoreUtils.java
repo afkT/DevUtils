@@ -180,7 +180,10 @@ public final class MediaStoreUtils {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return 图片 Uri
      */
-    public static Uri createImageUri(final String mimeType, final String relativePath) {
+    public static Uri createImageUri(
+            final String mimeType,
+            final String relativePath
+    ) {
         return createImageUri(getImageDisplayName(), System.currentTimeMillis(), mimeType, relativePath);
     }
 
@@ -192,8 +195,12 @@ public final class MediaStoreUtils {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return 图片 Uri
      */
-    public static Uri createImageUri(final String displayName, final long createTime,
-                                     final String mimeType, final String relativePath) {
+    public static Uri createImageUri(
+            final String displayName,
+            final long createTime,
+            final String mimeType,
+            final String relativePath
+    ) {
         return createMediaUri(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
     }
 
@@ -224,7 +231,10 @@ public final class MediaStoreUtils {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return 视频 Uri
      */
-    public static Uri createVideoUri(final String mimeType, final String relativePath) {
+    public static Uri createVideoUri(
+            final String mimeType,
+            final String relativePath
+    ) {
         return createVideoUri(getVideoDisplayName(), System.currentTimeMillis(), mimeType, relativePath);
     }
 
@@ -236,8 +246,12 @@ public final class MediaStoreUtils {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return 视频 Uri
      */
-    public static Uri createVideoUri(final String displayName, final long createTime,
-                                     final String mimeType, final String relativePath) {
+    public static Uri createVideoUri(
+            final String displayName,
+            final long createTime,
+            final String mimeType,
+            final String relativePath
+    ) {
         return createMediaUri(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
     }
 
@@ -268,7 +282,10 @@ public final class MediaStoreUtils {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return 音频 Uri
      */
-    public static Uri createAudioUri(final String mimeType, final String relativePath) {
+    public static Uri createAudioUri(
+            final String mimeType,
+            final String relativePath
+    ) {
         return createAudioUri(getAudioDisplayName(), System.currentTimeMillis(), mimeType, relativePath);
     }
 
@@ -280,8 +297,12 @@ public final class MediaStoreUtils {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return 音频 Uri
      */
-    public static Uri createAudioUri(final String displayName, final long createTime,
-                                     final String mimeType, final String relativePath) {
+    public static Uri createAudioUri(
+            final String displayName,
+            final long createTime,
+            final String mimeType,
+            final String relativePath
+    ) {
         return createMediaUri(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
     }
 
@@ -297,8 +318,12 @@ public final class MediaStoreUtils {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return Media Uri
      */
-    public static Uri createMediaUri(final Uri uri, final String displayName,
-                                     final String mimeType, final String relativePath) {
+    public static Uri createMediaUri(
+            final Uri uri,
+            final String displayName,
+            final String mimeType,
+            final String relativePath
+    ) {
         return createMediaUri(uri, displayName, System.currentTimeMillis(), mimeType, relativePath);
     }
 
@@ -314,9 +339,13 @@ public final class MediaStoreUtils {
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
      * @return Media Uri
      */
-    public static Uri createMediaUri(final Uri uri, final String displayName,
-                                     final long createTime, final String mimeType,
-                                     final String relativePath) {
+    public static Uri createMediaUri(
+            final Uri uri,
+            final String displayName,
+            final long createTime,
+            final String mimeType,
+            final String relativePath
+    ) {
         boolean       isAndroidQ = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q);
         ContentValues values     = new ContentValues(isAndroidQ ? 4 : 3);
         values.put(MediaStore.Files.FileColumns.DISPLAY_NAME, displayName); // 文件名
@@ -348,7 +377,11 @@ public final class MediaStoreUtils {
      * @return {@code true} success, {@code false} fail
      */
     @Deprecated
-    public static Uri insertImage(final String filePath, final String name, final boolean notify) {
+    public static Uri insertImage(
+            final String filePath,
+            final String name,
+            final boolean notify
+    ) {
         if (filePath != null && name != null) {
             try {
                 String uriString = MediaStore.Images.Media.insertImage(ResourceUtils.getContentResolver(), filePath, name, null);
@@ -370,8 +403,12 @@ public final class MediaStoreUtils {
      * @param quality  质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertImage(final Uri uri, final Uri inputUri, final Bitmap.CompressFormat format,
-                                      @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean insertImage(
+            final Uri uri,
+            final Uri inputUri,
+            final Bitmap.CompressFormat format,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         if (uri == null || inputUri == null || format == null) return false;
         OutputStream         os             = null;
         ParcelFileDescriptor fileDescriptor = null;
@@ -396,7 +433,10 @@ public final class MediaStoreUtils {
      * @param inputUri 输入 Uri ( 待存储文件 Uri )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertImage(final Uri uri, final Uri inputUri) {
+    public static boolean insertImage(
+            final Uri uri,
+            final Uri inputUri
+    ) {
         return insertMedia(uri, inputUri);
     }
 
@@ -406,7 +446,10 @@ public final class MediaStoreUtils {
      * @param inputUri 输入 Uri ( 待存储文件 Uri )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertVideo(final Uri uri, final Uri inputUri) {
+    public static boolean insertVideo(
+            final Uri uri,
+            final Uri inputUri
+    ) {
         return insertMedia(uri, inputUri);
     }
 
@@ -416,7 +459,10 @@ public final class MediaStoreUtils {
      * @param inputUri 输入 Uri ( 待存储文件 Uri )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertAudio(final Uri uri, final Uri inputUri) {
+    public static boolean insertAudio(
+            final Uri uri,
+            final Uri inputUri
+    ) {
         return insertMedia(uri, inputUri);
     }
 
@@ -427,7 +473,10 @@ public final class MediaStoreUtils {
      * @param inputUri 输入 Uri ( 待存储文件 Uri )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final Uri inputUri) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final Uri inputUri
+    ) {
         if (uri == null || inputUri == null) return false;
         return insertMedia(
                 ResourceUtils.openOutputStream(uri),
@@ -442,7 +491,10 @@ public final class MediaStoreUtils {
      * @param inputStream {@link InputStream}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final InputStream inputStream) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final InputStream inputStream
+    ) {
         if (uri == null || inputStream == null) return false;
         return insertMedia(
                 ResourceUtils.openOutputStream(uri), inputStream
@@ -455,8 +507,10 @@ public final class MediaStoreUtils {
      * @param inputStream  {@link InputStream}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final OutputStream outputStream,
-                                      final InputStream inputStream) {
+    public static boolean insertMedia(
+            final OutputStream outputStream,
+            final InputStream inputStream
+    ) {
         return FileIOUtils.copyLarge(inputStream, outputStream) != -1;
     }
 
@@ -469,7 +523,10 @@ public final class MediaStoreUtils {
      * @param filePath 待存储文件路径
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final String filePath) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final String filePath
+    ) {
         return insertMedia(uri, FileUtils.getFile(filePath));
     }
 
@@ -480,7 +537,10 @@ public final class MediaStoreUtils {
      * @param file 待存储文件
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final File file) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final File file
+    ) {
         return insertMedia(uri, UriUtils.getUriForFile(file));
     }
 
@@ -493,7 +553,10 @@ public final class MediaStoreUtils {
      * @param drawable 待保存图片
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final Drawable drawable) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final Drawable drawable
+    ) {
         return insertMedia(uri, drawable, Bitmap.CompressFormat.PNG);
     }
 
@@ -505,7 +568,11 @@ public final class MediaStoreUtils {
      * @param format   如 Bitmap.CompressFormat.PNG
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final Drawable drawable, final Bitmap.CompressFormat format) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final Drawable drawable,
+            final Bitmap.CompressFormat format
+    ) {
         return insertMedia(uri, drawable, format, 100);
     }
 
@@ -518,8 +585,12 @@ public final class MediaStoreUtils {
      * @param quality  质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final Drawable drawable, final Bitmap.CompressFormat format,
-                                      @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final Drawable drawable,
+            final Bitmap.CompressFormat format,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return insertMedia(uri, ImageUtils.drawableToBitmap(drawable), format, quality);
     }
 
@@ -532,7 +603,10 @@ public final class MediaStoreUtils {
      * @param bitmap 待保存图片
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final Bitmap bitmap) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final Bitmap bitmap
+    ) {
         return insertMedia(uri, bitmap, Bitmap.CompressFormat.PNG);
     }
 
@@ -544,7 +618,11 @@ public final class MediaStoreUtils {
      * @param format 如 Bitmap.CompressFormat.PNG
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final Bitmap bitmap, final Bitmap.CompressFormat format) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final Bitmap bitmap,
+            final Bitmap.CompressFormat format
+    ) {
         return insertMedia(uri, bitmap, format, 100);
     }
 
@@ -557,8 +635,12 @@ public final class MediaStoreUtils {
      * @param quality 质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean insertMedia(final Uri uri, final Bitmap bitmap, final Bitmap.CompressFormat format,
-                                      @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean insertMedia(
+            final Uri uri,
+            final Bitmap bitmap,
+            final Bitmap.CompressFormat format,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return ImageUtils.saveBitmapToStream(
                 bitmap, ResourceUtils.openOutputStream(uri), format, quality
         );
@@ -583,7 +665,10 @@ public final class MediaStoreUtils {
      * @param isAndroidQ 是否兼容 Android Q ( 私有目录传入 false )
      * @return 本地视频时长
      */
-    public static long getVideoDuration(final String filePath, final boolean isAndroidQ) {
+    public static long getVideoDuration(
+            final String filePath,
+            final boolean isAndroidQ
+    ) {
         if (TextUtils.isEmpty(filePath)) return 0;
         try {
             if (isAndroidQ && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -634,7 +719,10 @@ public final class MediaStoreUtils {
      * @param isAndroidQ 是否兼容 Android Q ( 私有目录传入 false )
      * @return 本地视频宽高 0 = 宽, 1 = 高
      */
-    public static int[] getVideoSize(final String filePath, final boolean isAndroidQ) {
+    public static int[] getVideoSize(
+            final String filePath,
+            final boolean isAndroidQ
+    ) {
         int[] size = new int[2];
         try {
             if (isAndroidQ && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -689,7 +777,10 @@ public final class MediaStoreUtils {
      * @param isAndroidQ 是否兼容 Android Q ( 私有目录传入 false )
      * @return 本地图片宽高 0 = 宽, 1 = 高
      */
-    public static int[] getImageWidthHeight(final String filePath, final boolean isAndroidQ) {
+    public static int[] getImageWidthHeight(
+            final String filePath,
+            final boolean isAndroidQ
+    ) {
         try {
             if (isAndroidQ && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 return getImageWidthHeight(ContentResolverUtils.getMediaUri(filePath));
@@ -781,7 +872,10 @@ public final class MediaStoreUtils {
      * @param favorite 是否喜欢
      * @return {@link PendingIntent}
      */
-    public static PendingIntent createFavoriteRequest(final Collection<Uri> uris, final boolean favorite) {
+    public static PendingIntent createFavoriteRequest(
+            final Collection<Uri> uris,
+            final boolean favorite
+    ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             try {
                 return MediaStore.createFavoriteRequest(ResourceUtils.getContentResolver(), uris, favorite);
@@ -801,7 +895,10 @@ public final class MediaStoreUtils {
      * @param trashed 是否遗弃
      * @return {@link PendingIntent}
      */
-    public static PendingIntent createTrashRequest(final Collection<Uri> uris, final boolean trashed) {
+    public static PendingIntent createTrashRequest(
+            final Collection<Uri> uris,
+            final boolean trashed
+    ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             try {
                 return MediaStore.createTrashRequest(ResourceUtils.getContentResolver(), uris, trashed);

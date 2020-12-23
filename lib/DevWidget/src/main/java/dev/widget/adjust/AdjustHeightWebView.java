@@ -18,21 +18,36 @@ public class AdjustHeightWebView extends WebView {
         super(context);
     }
 
-    public AdjustHeightWebView(Context context, AttributeSet attrs) {
+    public AdjustHeightWebView(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
     }
 
-    public AdjustHeightWebView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AdjustHeightWebView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public AdjustHeightWebView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public AdjustHeightWebView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
+    ) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    protected void onMeasure(
+            int widthMeasureSpec,
+            int heightMeasureSpec
+    ) {
         int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
         super.onMeasure(widthMeasureSpec, expandSpec);
     }

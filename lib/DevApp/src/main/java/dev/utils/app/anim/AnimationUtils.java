@@ -70,7 +70,11 @@ public final class AnimationUtils {
      * @param <T>         泛型
      * @return 动画
      */
-    public static <T extends Animation> T setAnimRepeat(final T anim, final int repeatCount, final int repeatMode) {
+    public static <T extends Animation> T setAnimRepeat(
+            final T anim,
+            final int repeatCount,
+            final int repeatMode
+    ) {
         if (anim != null) {
             anim.setRepeatCount(repeatCount);
             anim.setRepeatMode(repeatMode);
@@ -84,7 +88,10 @@ public final class AnimationUtils {
      * @param listener  {@link AnimationListener}
      * @return {@link Animation}
      */
-    public static Animation setAnimationListener(final Animation animation, final AnimationListener listener) {
+    public static Animation setAnimationListener(
+            final Animation animation,
+            final AnimationListener listener
+    ) {
         if (animation != null) animation.setAnimationListener(listener);
         return animation;
     }
@@ -95,7 +102,10 @@ public final class AnimationUtils {
      * @param animation {@link Animation}
      * @return {@link View}
      */
-    public static View setAnimation(final View view, final Animation animation) {
+    public static View setAnimation(
+            final View view,
+            final Animation animation
+    ) {
         if (view != null) view.setAnimation(animation);
         return view;
     }
@@ -131,7 +141,10 @@ public final class AnimationUtils {
      * @param animation {@link Animation}
      * @return {@link View}
      */
-    public static View startAnimation(final View view, final Animation animation) {
+    public static View startAnimation(
+            final View view,
+            final Animation animation
+    ) {
         if (view != null && animation != null) {
             try {
                 view.startAnimation(animation);
@@ -201,9 +214,16 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个旋转动画
      */
-    public static RotateAnimation getRotateAnimation(final float fromDegrees, final float toDegrees, final int pivotXType, final float pivotXValue,
-                                                     final int pivotYType, final float pivotYValue, final long durationMillis,
-                                                     final AnimationListener animationListener) {
+    public static RotateAnimation getRotateAnimation(
+            final float fromDegrees,
+            final float toDegrees,
+            final int pivotXType,
+            final float pivotXValue,
+            final int pivotYType,
+            final float pivotYValue,
+            final long durationMillis,
+            final AnimationListener animationListener
+    ) {
         RotateAnimation rotateAnimation = new RotateAnimation(fromDegrees, toDegrees, pivotXType, pivotXValue, pivotYType, pivotYValue);
         rotateAnimation.setDuration(durationMillis);
         if (animationListener != null) {
@@ -222,8 +242,14 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个旋转动画
      */
-    public static RotateAnimation getRotateAnimation(final float fromDegrees, final float toDegrees, final float pivotX, final float pivotY,
-                                                     final long durationMillis, final AnimationListener animationListener) {
+    public static RotateAnimation getRotateAnimation(
+            final float fromDegrees,
+            final float toDegrees,
+            final float pivotX,
+            final float pivotY,
+            final long durationMillis,
+            final AnimationListener animationListener
+    ) {
         RotateAnimation rotateAnimation = new RotateAnimation(fromDegrees, toDegrees, pivotX, pivotY);
         rotateAnimation.setDuration(durationMillis);
         if (animationListener != null) {
@@ -240,8 +266,12 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个旋转动画
      */
-    public static RotateAnimation getRotateAnimation(final float fromDegrees, final float toDegrees, final long durationMillis,
-                                                     final AnimationListener animationListener) {
+    public static RotateAnimation getRotateAnimation(
+            final float fromDegrees,
+            final float toDegrees,
+            final long durationMillis,
+            final AnimationListener animationListener
+    ) {
         RotateAnimation rotateAnimation = new RotateAnimation(fromDegrees, toDegrees);
         rotateAnimation.setDuration(durationMillis);
         if (animationListener != null) {
@@ -258,7 +288,10 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个根据中心点旋转的动画
      */
-    public static RotateAnimation getRotateAnimationByCenter(final long durationMillis, final AnimationListener animationListener) {
+    public static RotateAnimation getRotateAnimationByCenter(
+            final long durationMillis,
+            final AnimationListener animationListener
+    ) {
         return getRotateAnimation(0f, 359f, Animation.RELATIVE_TO_SELF,
                 0.5f, Animation.RELATIVE_TO_SELF, 0.5f, durationMillis, animationListener);
     }
@@ -301,8 +334,12 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个透明度渐变动画
      */
-    public static AlphaAnimation getAlphaAnimation(final float fromAlpha, final float toAlpha, final long durationMillis,
-                                                   final AnimationListener animationListener) {
+    public static AlphaAnimation getAlphaAnimation(
+            final float fromAlpha,
+            final float toAlpha,
+            final long durationMillis,
+            final AnimationListener animationListener
+    ) {
         AlphaAnimation alphaAnimation = new AlphaAnimation(fromAlpha, toAlpha);
         alphaAnimation.setDuration(durationMillis);
         if (animationListener != null) {
@@ -318,7 +355,11 @@ public final class AnimationUtils {
      * @param durationMillis 动画持续时间
      * @return 一个透明度渐变动画
      */
-    public static AlphaAnimation getAlphaAnimation(final float fromAlpha, final float toAlpha, final long durationMillis) {
+    public static AlphaAnimation getAlphaAnimation(
+            final float fromAlpha,
+            final float toAlpha,
+            final long durationMillis
+    ) {
         return getAlphaAnimation(fromAlpha, toAlpha, durationMillis, null);
     }
 
@@ -329,7 +370,11 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个透明度渐变动画
      */
-    public static AlphaAnimation getAlphaAnimation(final float fromAlpha, final float toAlpha, final AnimationListener animationListener) {
+    public static AlphaAnimation getAlphaAnimation(
+            final float fromAlpha,
+            final float toAlpha,
+            final AnimationListener animationListener
+    ) {
         return getAlphaAnimation(fromAlpha, toAlpha, DEFAULT_ANIMATION_DURATION, animationListener);
     }
 
@@ -339,7 +384,10 @@ public final class AnimationUtils {
      * @param toAlpha   结束时的透明度
      * @return 一个透明度渐变动画
      */
-    public static AlphaAnimation getAlphaAnimation(final float fromAlpha, final float toAlpha) {
+    public static AlphaAnimation getAlphaAnimation(
+            final float fromAlpha,
+            final float toAlpha
+    ) {
         return getAlphaAnimation(fromAlpha, toAlpha, DEFAULT_ANIMATION_DURATION, null);
     }
 
@@ -351,7 +399,10 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个由完全显示变为不可见的透明度渐变动画
      */
-    public static AlphaAnimation getHiddenAlphaAnimation(final long durationMillis, final AnimationListener animationListener) {
+    public static AlphaAnimation getHiddenAlphaAnimation(
+            final long durationMillis,
+            final AnimationListener animationListener
+    ) {
         return getAlphaAnimation(1.0f, 0.0f, durationMillis, animationListener);
     }
 
@@ -389,7 +440,10 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个由不可见变为完全显示的透明度渐变动画
      */
-    public static AlphaAnimation getShowAlphaAnimation(final long durationMillis, final AnimationListener animationListener) {
+    public static AlphaAnimation getShowAlphaAnimation(
+            final long durationMillis,
+            final AnimationListener animationListener
+    ) {
         return getAlphaAnimation(0.0f, 1.0f, durationMillis, animationListener);
     }
 
@@ -438,9 +492,18 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个缩放动画
      */
-    public static ScaleAnimation getScaleAnimation(final float fromX, final float toX, final float fromY, final float toY,
-                                                   final int pivotXType, final float pivotXValue, final int pivotYType, final float pivotYValue,
-                                                   final long durationMillis, final AnimationListener animationListener) {
+    public static ScaleAnimation getScaleAnimation(
+            final float fromX,
+            final float toX,
+            final float fromY,
+            final float toY,
+            final int pivotXType,
+            final float pivotXValue,
+            final int pivotYType,
+            final float pivotYValue,
+            final long durationMillis,
+            final AnimationListener animationListener
+    ) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY, pivotXType, pivotXValue, pivotYType, pivotYValue);
         scaleAnimation.setDuration(durationMillis);
         if (animationListener != null) {
@@ -461,9 +524,16 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个缩放动画
      */
-    public static ScaleAnimation getScaleAnimation(final float fromX, final float toX, final float fromY, final float toY,
-                                                   final float pivotX, final float pivotY, final long durationMillis,
-                                                   final AnimationListener animationListener) {
+    public static ScaleAnimation getScaleAnimation(
+            final float fromX,
+            final float toX,
+            final float fromY,
+            final float toY,
+            final float pivotX,
+            final float pivotY,
+            final long durationMillis,
+            final AnimationListener animationListener
+    ) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY, pivotX, pivotY);
         scaleAnimation.setDuration(durationMillis);
         if (animationListener != null) {
@@ -482,8 +552,14 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个缩放动画
      */
-    public static ScaleAnimation getScaleAnimation(final float fromX, final float toX, final float fromY, final float toY,
-                                                   final long durationMillis, final AnimationListener animationListener) {
+    public static ScaleAnimation getScaleAnimation(
+            final float fromX,
+            final float toX,
+            final float fromY,
+            final float toY,
+            final long durationMillis,
+            final AnimationListener animationListener
+    ) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY);
         scaleAnimation.setDuration(durationMillis);
         if (animationListener != null) {
@@ -504,8 +580,14 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个中心点缩放动画
      */
-    public static ScaleAnimation getScaleAnimationCenter(final float fromX, final float toX, final float fromY, final float toY,
-                                                         final long durationMillis, final AnimationListener animationListener) {
+    public static ScaleAnimation getScaleAnimationCenter(
+            final float fromX,
+            final float toX,
+            final float fromY,
+            final float toY,
+            final long durationMillis,
+            final AnimationListener animationListener
+    ) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY,
                 ScaleAnimation.RELATIVE_TO_SELF, 0.5f,
                 ScaleAnimation.RELATIVE_TO_SELF, 0.5f);
@@ -525,8 +607,13 @@ public final class AnimationUtils {
      * @param durationMillis 动画持续时间
      * @return 一个中心点缩放动画
      */
-    public static ScaleAnimation getScaleAnimationCenter(final float fromX, final float toX, final float fromY, final float toY,
-                                                         final long durationMillis) {
+    public static ScaleAnimation getScaleAnimationCenter(
+            final float fromX,
+            final float toX,
+            final float fromY,
+            final float toY,
+            final long durationMillis
+    ) {
         return getScaleAnimationCenter(fromX, toX, fromY, toY, durationMillis, null);
     }
 
@@ -539,8 +626,13 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个中心点缩放动画
      */
-    public static ScaleAnimation getScaleAnimationCenter(final float fromX, final float toX, final float fromY, final float toY,
-                                                         final AnimationListener animationListener) {
+    public static ScaleAnimation getScaleAnimationCenter(
+            final float fromX,
+            final float toX,
+            final float fromY,
+            final float toY,
+            final AnimationListener animationListener
+    ) {
         return getScaleAnimationCenter(fromX, toX, fromY, toY, DEFAULT_ANIMATION_DURATION, animationListener);
     }
 
@@ -554,8 +646,12 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个中心点缩放动画
      */
-    public static ScaleAnimation getScaleAnimationCenter(final float fromX, final float fromY, final long durationMillis,
-                                                         final AnimationListener animationListener) {
+    public static ScaleAnimation getScaleAnimationCenter(
+            final float fromX,
+            final float fromY,
+            final long durationMillis,
+            final AnimationListener animationListener
+    ) {
         return getScaleAnimationCenter(fromX, 1.0f, fromY, 1.0f, durationMillis, animationListener);
     }
 
@@ -566,7 +662,11 @@ public final class AnimationUtils {
      * @param durationMillis 动画持续时间
      * @return 一个中心点缩放动画
      */
-    public static ScaleAnimation getScaleAnimationCenter(final float fromX, final float fromY, final long durationMillis) {
+    public static ScaleAnimation getScaleAnimationCenter(
+            final float fromX,
+            final float fromY,
+            final long durationMillis
+    ) {
         return getScaleAnimationCenter(fromX, fromY, durationMillis, null);
     }
 
@@ -577,7 +677,11 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个中心点缩放动画
      */
-    public static ScaleAnimation getScaleAnimationCenter(final float fromX, final float fromY, final AnimationListener animationListener) {
+    public static ScaleAnimation getScaleAnimationCenter(
+            final float fromX,
+            final float fromY,
+            final AnimationListener animationListener
+    ) {
         return getScaleAnimationCenter(fromX, fromY, DEFAULT_ANIMATION_DURATION, animationListener);
     }
 
@@ -589,7 +693,10 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个缩小动画
      */
-    public static ScaleAnimation getLessenScaleAnimation(final long durationMillis, final AnimationListener animationListener) {
+    public static ScaleAnimation getLessenScaleAnimation(
+            final long durationMillis,
+            final AnimationListener animationListener
+    ) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 0.0f,
                 ScaleAnimation.RELATIVE_TO_SELF, ScaleAnimation.RELATIVE_TO_SELF);
         scaleAnimation.setDuration(durationMillis);
@@ -625,7 +732,10 @@ public final class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个放大动画
      */
-    public static ScaleAnimation getAmplificationAnimation(final long durationMillis, final AnimationListener animationListener) {
+    public static ScaleAnimation getAmplificationAnimation(
+            final long durationMillis,
+            final AnimationListener animationListener
+    ) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f,
                 ScaleAnimation.RELATIVE_TO_SELF, ScaleAnimation.RELATIVE_TO_SELF);
         scaleAnimation.setDuration(durationMillis);
@@ -673,9 +783,18 @@ public final class AnimationUtils {
      * @param durationMillis 动画持续时间
      * @return 一个视图移动动画
      */
-    public static TranslateAnimation getTranslateAnimation(final int fromXType, final float fromXValue, final int toXType, final float toXValue,
-                                                           final int fromYType, final float fromYValue, final int toYType, final float toYValue,
-                                                           final Interpolator interpolator, final long durationMillis) {
+    public static TranslateAnimation getTranslateAnimation(
+            final int fromXType,
+            final float fromXValue,
+            final int toXType,
+            final float toXValue,
+            final int fromYType,
+            final float fromYValue,
+            final int toYType,
+            final float toYValue,
+            final Interpolator interpolator,
+            final long durationMillis
+    ) {
         TranslateAnimation translateAnimation = new TranslateAnimation(fromXType, fromXValue, toXType, toXValue, fromYType, fromYValue, toYType, toYValue);
         translateAnimation.setDuration(durationMillis);
         if (interpolator != null) {
@@ -694,8 +813,14 @@ public final class AnimationUtils {
      * @param durationMillis 动画持续时间
      * @return 一个视图移动动画
      */
-    public static TranslateAnimation getTranslateAnimation(final float fromXDelta, final float toXDelta, final float fromYDelta, final float toYDelta,
-                                                           final Interpolator interpolator, final long durationMillis) {
+    public static TranslateAnimation getTranslateAnimation(
+            final float fromXDelta,
+            final float toXDelta,
+            final float fromYDelta,
+            final float toYDelta,
+            final Interpolator interpolator,
+            final long durationMillis
+    ) {
         TranslateAnimation translateAnimation = new TranslateAnimation(fromXDelta, toXDelta, fromYDelta, toYDelta);
         translateAnimation.setDuration(durationMillis);
         if (interpolator != null) {
@@ -714,7 +839,12 @@ public final class AnimationUtils {
      * @param durationMillis 动画持续时间
      * @return 一个视图摇晃动画
      */
-    public static TranslateAnimation getShakeAnimation(final float fromXDelta, final float toXDelta, final float cycles, final long durationMillis) {
+    public static TranslateAnimation getShakeAnimation(
+            final float fromXDelta,
+            final float toXDelta,
+            final float cycles,
+            final long durationMillis
+    ) {
         Interpolator interpolator = (cycles > 0.0f) ? new CycleInterpolator(cycles) : null;
         return getTranslateAnimation(fromXDelta, toXDelta, 0.0f, 0.0f, interpolator, durationMillis);
     }
@@ -725,7 +855,10 @@ public final class AnimationUtils {
      * @param durationMillis 动画持续时间
      * @return 一个视图摇晃动画
      */
-    public static TranslateAnimation getShakeAnimation(final float cycles, final long durationMillis) {
+    public static TranslateAnimation getShakeAnimation(
+            final float cycles,
+            final long durationMillis
+    ) {
         Interpolator interpolator = (cycles > 0.0f) ? new CycleInterpolator(cycles) : null;
         return getTranslateAnimation(0.0f, 10.0f, 0.0f, 0.0f, interpolator, durationMillis);
     }

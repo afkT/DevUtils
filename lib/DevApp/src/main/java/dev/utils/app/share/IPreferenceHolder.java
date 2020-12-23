@@ -41,7 +41,10 @@ class IPreferenceHolder {
      * @param fileName 文件名
      * @return {@link IPreference}
      */
-    public static IPreference getPreference(final Context context, final String fileName) {
+    public static IPreference getPreference(
+            final Context context,
+            final String fileName
+    ) {
         // 判断是否存在对应的持有类
         IPreference ipref = sHashMaps.get(fileName);
         // 判断是否存在
@@ -61,7 +64,11 @@ class IPreferenceHolder {
      * @param mode     SharedPreferences 操作模式
      * @return {@link IPreference}
      */
-    public static IPreference getPreference(final Context context, final String fileName, final int mode) {
+    public static IPreference getPreference(
+            final Context context,
+            final String fileName,
+            final int mode
+    ) {
         String key = fileName + "_" + mode;
         // 判断是否存在对应的持有类
         IPreference ipref = sHashMaps.get(key);

@@ -30,14 +30,20 @@ public interface IMultiSelectToList<CollectionG extends List, V> extends IBaseMu
      * @param isSelect 是否选中
      * @param value    Value
      */
-    void select(boolean isSelect, V value);
+    void select(
+            boolean isSelect,
+            V value
+    );
 
     /**
      * 设置选中操作 ( 保存到指定索引 )
      * @param value    Value
      * @param position 索引
      */
-    void select(V value, int position);
+    void select(
+            V value,
+            int position
+    );
 
     // =
 

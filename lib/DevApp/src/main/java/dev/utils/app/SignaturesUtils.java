@@ -312,7 +312,11 @@ public final class SignaturesUtils {
      * @param readBuffer 文件 Buffer
      * @return {@link Certificate}[]
      */
-    private static Certificate[] loadCertificates(final JarFile jarFile, final JarEntry jarEntry, final byte[] readBuffer) {
+    private static Certificate[] loadCertificates(
+            final JarFile jarFile,
+            final JarEntry jarEntry,
+            final byte[] readBuffer
+    ) {
         try {
             InputStream is = jarFile.getInputStream(jarEntry);
             while (is.read(readBuffer, 0, readBuffer.length) != -1) {

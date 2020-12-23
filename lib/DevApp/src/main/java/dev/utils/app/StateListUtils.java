@@ -61,7 +61,10 @@ public final class StateListUtils {
      * @param normal  默认状态
      * @return {@link ColorStateList}
      */
-    public static ColorStateList createColorStateList(final String pressed, final String normal) {
+    public static ColorStateList createColorStateList(
+            final String pressed,
+            final String normal
+    ) {
         try {
             // 颜色值
             int[] colors = new int[]{Color.parseColor(pressed), Color.parseColor(normal)};
@@ -84,7 +87,11 @@ public final class StateListUtils {
      * @param normal   默认状态
      * @return {@link ColorStateList}
      */
-    public static ColorStateList createColorStateList(final String selected, final String pressed, final String normal) {
+    public static ColorStateList createColorStateList(
+            final String selected,
+            final String pressed,
+            final String normal
+    ) {
         try {
             // 颜色值
             int[] colors = new int[]{Color.parseColor(selected), Color.parseColor(pressed), Color.parseColor(normal)};
@@ -110,9 +117,13 @@ public final class StateListUtils {
      * @param normal   默认状态
      * @return {@link ColorStateList}
      */
-    public static ColorStateList createColorStateList(final String selected, final String pressed,
-                                                      final String focused, final String checked,
-                                                      final String normal) {
+    public static ColorStateList createColorStateList(
+            final String selected,
+            final String pressed,
+            final String focused,
+            final String checked,
+            final String normal
+    ) {
         try {
             // 颜色值
             int[] colors = new int[]{Color.parseColor(selected), Color.parseColor(pressed),
@@ -145,7 +156,10 @@ public final class StateListUtils {
      * @param normal  默认状态
      * @return {@link ColorStateList}
      */
-    public static ColorStateList createColorStateList(@ColorRes final int pressed, @ColorRes final int normal) {
+    public static ColorStateList createColorStateList(
+            @ColorRes final int pressed,
+            @ColorRes final int normal
+    ) {
         // 颜色值
         int[] colors = new int[2];
         colors[0] = ResourceUtils.getColor(pressed);
@@ -165,7 +179,11 @@ public final class StateListUtils {
      * @param normal   默认状态
      * @return {@link ColorStateList}
      */
-    public static ColorStateList createColorStateList(@ColorRes final int selected, @ColorRes final int pressed, @ColorRes final int normal) {
+    public static ColorStateList createColorStateList(
+            @ColorRes final int selected,
+            @ColorRes final int pressed,
+            @ColorRes final int normal
+    ) {
         // 颜色值
         int[] colors = new int[3];
         colors[0] = ResourceUtils.getColor(selected);
@@ -189,9 +207,13 @@ public final class StateListUtils {
      * @param normal   默认状态
      * @return {@link ColorStateList}
      */
-    public static ColorStateList createColorStateList(@ColorRes final int selected, @ColorRes final int pressed,
-                                                      @ColorRes final int focused, @ColorRes final int checked,
-                                                      @ColorRes final int normal) {
+    public static ColorStateList createColorStateList(
+            @ColorRes final int selected,
+            @ColorRes final int pressed,
+            @ColorRes final int focused,
+            @ColorRes final int checked,
+            @ColorRes final int normal
+    ) {
         // 颜色值
         int[] colors = new int[5];
         colors[0] = ResourceUtils.getColor(selected);
@@ -223,7 +245,10 @@ public final class StateListUtils {
      * @param normal  默认状态
      * @return {@link StateListDrawable}
      */
-    public static StateListDrawable newSelector(@DrawableRes final int pressed, @DrawableRes final int normal) {
+    public static StateListDrawable newSelector(
+            @DrawableRes final int pressed,
+            @DrawableRes final int normal
+    ) {
         // 获取 Drawable
         Drawable pressedDraw = ResourceUtils.getDrawable(pressed);
         Drawable normalDraw  = ResourceUtils.getDrawable(normal);
@@ -241,7 +266,11 @@ public final class StateListUtils {
      * @param normal   默认状态
      * @return {@link StateListDrawable}
      */
-    public static StateListDrawable newSelector(@DrawableRes final int selected, @DrawableRes final int pressed, @DrawableRes final int normal) {
+    public static StateListDrawable newSelector(
+            @DrawableRes final int selected,
+            @DrawableRes final int pressed,
+            @DrawableRes final int normal
+    ) {
         // 获取 Drawable
         Drawable selectedDraw = ResourceUtils.getDrawable(selected);
         Drawable pressedDraw  = ResourceUtils.getDrawable(pressed);
@@ -263,9 +292,13 @@ public final class StateListUtils {
      * @param normal   默认状态
      * @return {@link StateListDrawable}
      */
-    public static StateListDrawable newSelector(@DrawableRes final int selected, @DrawableRes final int pressed,
-                                                @DrawableRes final int focused, @DrawableRes final int checked,
-                                                @DrawableRes final int normal) {
+    public static StateListDrawable newSelector(
+            @DrawableRes final int selected,
+            @DrawableRes final int pressed,
+            @DrawableRes final int focused,
+            @DrawableRes final int checked,
+            @DrawableRes final int normal
+    ) {
         // 获取 Drawable
         Drawable selectedDraw = ResourceUtils.getDrawable(selected);
         Drawable pressedDraw  = ResourceUtils.getDrawable(pressed);
@@ -295,7 +328,10 @@ public final class StateListUtils {
      * @param normal  默认状态
      * @return {@link StateListDrawable}
      */
-    public static StateListDrawable newSelector(final Drawable pressed, final Drawable normal) {
+    public static StateListDrawable newSelector(
+            final Drawable pressed,
+            final Drawable normal
+    ) {
         // 创建 StateListDrawable
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressed);
@@ -310,7 +346,11 @@ public final class StateListUtils {
      * @param normal   默认状态
      * @return {@link StateListDrawable}
      */
-    public static StateListDrawable newSelector(final Drawable selected, final Drawable pressed, final Drawable normal) {
+    public static StateListDrawable newSelector(
+            final Drawable selected,
+            final Drawable pressed,
+            final Drawable normal
+    ) {
         // 创建 StateListDrawable
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_selected}, selected);
@@ -328,9 +368,13 @@ public final class StateListUtils {
      * @param normal   默认状态
      * @return {@link StateListDrawable}
      */
-    public static StateListDrawable newSelector(final Drawable selected, final Drawable pressed,
-                                                final Drawable focused, final Drawable checked,
-                                                final Drawable normal) {
+    public static StateListDrawable newSelector(
+            final Drawable selected,
+            final Drawable pressed,
+            final Drawable focused,
+            final Drawable checked,
+            final Drawable normal
+    ) {
         // 创建 StateListDrawable
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_selected}, selected);

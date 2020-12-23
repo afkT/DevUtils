@@ -77,8 +77,13 @@ public final class ScreenshotUtils {
          * @param dataPath   数据路径 ( 截图路径 )
          * @param dateTaken  截图时间
          */
-        void onScreenshot(Uri contentUri, boolean selfChange,
-                          long rowId, String dataPath, long dateTaken);
+        void onScreenshot(
+                Uri contentUri,
+                boolean selfChange,
+                long rowId,
+                String dataPath,
+                long dateTaken
+        );
     }
 
     /**
@@ -92,7 +97,10 @@ public final class ScreenshotUtils {
          * @param contentUri 监听 Uri
          * @param selfChange True if this is a self-change notification
          */
-        void onChange(Uri contentUri, boolean selfChange);
+        void onChange(
+                Uri contentUri,
+                boolean selfChange
+        );
 
         /**
          * 检查方法
@@ -102,8 +110,13 @@ public final class ScreenshotUtils {
          * @param dataPath   数据路径 ( 截图路径 )
          * @param dateTaken  截图时间
          */
-        void onChecker(Uri contentUri, boolean selfChange,
-                       long rowId, String dataPath, long dateTaken);
+        void onChecker(
+                Uri contentUri,
+                boolean selfChange,
+                long rowId,
+                String dataPath,
+                long dateTaken
+        );
     }
 
     // ===========
@@ -124,7 +137,10 @@ public final class ScreenshotUtils {
         // 监听 Uri
         private Uri mContentUri;
 
-        public MediaContentObserver(Uri contentUri, Handler handler) {
+        public MediaContentObserver(
+                Uri contentUri,
+                Handler handler
+        ) {
             super(handler);
             mContentUri = contentUri;
         }
@@ -144,8 +160,11 @@ public final class ScreenshotUtils {
      * @param notifyForDescendants 是否精准匹配 Uri
      * @return {@code true} success, {@code false} fail
      */
-    private boolean registerContentObserver(final ContentResolver resolver, final Handler handler,
-                                            final boolean notifyForDescendants) {
+    private boolean registerContentObserver(
+            final ContentResolver resolver,
+            final Handler handler,
+            final boolean notifyForDescendants
+    ) {
         if (resolver == null) return false;
         // 注销内容观察者
         unregisterContentObserver(resolver);
@@ -294,7 +313,10 @@ public final class ScreenshotUtils {
      * @param handler              {@link Handler}
      * @return {@code true} success, {@code false} fail
      */
-    public boolean startListen(final boolean notifyForDescendants, final Handler handler) {
+    public boolean startListen(
+            final boolean notifyForDescendants,
+            final Handler handler
+    ) {
         this.mStartListenTime = System.currentTimeMillis();
         return registerContentObserver(
                 ResourceUtils.getContentResolver(), handler, notifyForDescendants
@@ -329,12 +351,21 @@ public final class ScreenshotUtils {
     // 截图校验接口
     public static final ScreenshotChecker CHECKER = new ScreenshotChecker() {
         @Override
-        public void onChange(Uri contentUri, boolean selfChange) {
+        public void onChange(
+                Uri contentUri,
+                boolean selfChange
+        ) {
             handleMediaContentChange(contentUri, selfChange, SORT_ORDER, this);
         }
 
         @Override
-        public void onChecker(Uri contentUri, boolean selfChange, long rowId, String dataPath, long dateTaken) {
+        public void onChecker(
+                Uri contentUri,
+                boolean selfChange,
+                long rowId,
+                String dataPath,
+                long dateTaken
+        ) {
             handleMediaChecker(
                     contentUri, selfChange, rowId, dataPath, dateTaken,
                     getInstance().mStartListenTime, INTERVAL_TIME,
@@ -351,8 +382,12 @@ public final class ScreenshotUtils {
      * @param sortOrder  排序方式
      * @param checker    搜索成功则会触发 {@link ScreenshotChecker#onChecker} 方法
      */
-    public static void handleMediaContentChange(final Uri contentUri, final boolean selfChange,
-                                                final String sortOrder, final ScreenshotChecker checker) {
+    public static void handleMediaContentChange(
+            final Uri contentUri,
+            final boolean selfChange,
+            final String sortOrder,
+            final ScreenshotChecker checker
+    ) {
         Cursor cursor = ContentResolverUtils.query(contentUri, MEDIA_PROJECTIONS,
                 null, null, sortOrder);
         try {
@@ -402,11 +437,18 @@ public final class ScreenshotUtils {
      * @param listener        校验成功则会触发 {@link OnScreenshotListener#onScreenshot} 方法
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean handleMediaChecker(final Uri contentUri, final boolean selfChange,
-                                             final long rowId, final String dataPath, final long dateTaken,
-                                             final long startListenTime, final long intervalTime,
-                                             final boolean checkPrefix, final String keyWork,
-                                             final OnScreenshotListener listener) {
+    public static boolean handleMediaChecker(
+            final Uri contentUri,
+            final boolean selfChange,
+            final long rowId,
+            final String dataPath,
+            final long dateTaken,
+            final long startListenTime,
+            final long intervalTime,
+            final boolean checkPrefix,
+            final String keyWork,
+            final OnScreenshotListener listener
+    ) {
         // ===========
         // = 时间判断 =
         // ===========

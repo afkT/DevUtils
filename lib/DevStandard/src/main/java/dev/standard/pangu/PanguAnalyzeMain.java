@@ -117,7 +117,10 @@ final class PanguAnalyzeMain {
      * @param lists  文件列表
      * @param filter 过滤处理
      */
-    private static void forReader(final List<File> lists, final Filter filter) {
+    private static void forReader(
+            final List<File> lists,
+            final Filter filter
+    ) {
         for (File file : lists) {
             if (file.isDirectory() && !filter.filter(file)) {
                 forReader(getFileCatalogLists(file.getAbsolutePath() + "/"), filter);
@@ -198,7 +201,10 @@ final class PanguAnalyzeMain {
      * @param includeNulls 是否序列化 null 值
      * @return 格式化 JSON 数据
      */
-    private static String toJsonFormat(final Object data, final boolean includeNulls) {
+    private static String toJsonFormat(
+            final Object data,
+            final boolean includeNulls
+    ) {
         if (data != null) {
             try {
                 // 返回 JSON 格式数据 ( 格式化 )

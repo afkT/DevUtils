@@ -30,7 +30,11 @@ public final class DevCommonUtils {
      * @param endTime   结束时间
      * @return {@link StringBuilder}
      */
-    public static StringBuilder timeRecord(final StringBuilder builder, final long startTime, final long endTime) {
+    public static StringBuilder timeRecord(
+            final StringBuilder builder,
+            final long startTime,
+            final long endTime
+    ) {
         return timeRecord(builder, null, startTime, endTime);
     }
 
@@ -42,7 +46,12 @@ public final class DevCommonUtils {
      * @param endTime   结束时间
      * @return {@link StringBuilder}
      */
-    public static StringBuilder timeRecord(final StringBuilder builder, final String title, final long startTime, final long endTime) {
+    public static StringBuilder timeRecord(
+            final StringBuilder builder,
+            final String title,
+            final long startTime,
+            final long endTime
+    ) {
         if (builder == null) return builder;
         // 使用时间
         long diffTime = endTime - startTime;
@@ -80,7 +89,10 @@ public final class DevCommonUtils {
      * @param randomTime  随机时间范围 ( 毫秒 )
      * @return 操作时间
      */
-    public static long getOperateTime(final long operateTime, final int randomTime) {
+    public static long getOperateTime(
+            final long operateTime,
+            final int randomTime
+    ) {
         int random = 0;
         // 大于 2 才处理
         if (randomTime >= 2) {
@@ -104,7 +116,10 @@ public final class DevCommonUtils {
      * @param sleepTime  堵塞时间 ( 毫秒 )
      * @param randomTime 随机时间范围 ( 毫秒 )
      */
-    public static void sleepOperate(final long sleepTime, final int randomTime) {
+    public static void sleepOperate(
+            final long sleepTime,
+            final int randomTime
+    ) {
         long time = getOperateTime(sleepTime, randomTime);
         if (time > 0) {
             try {
@@ -139,7 +154,12 @@ public final class DevCommonUtils {
      * @param salts       特殊 salt 拼接
      * @return 循环加密后的字符串
      */
-    public static String whileMD5(final String str, final int number, final boolean isUppercase, final String... salts) {
+    public static String whileMD5(
+            final String str,
+            final int number,
+            final boolean isUppercase,
+            final String... salts
+    ) {
         if (str != null && number >= 1) {
             int saltLen = (salts != null) ? salts.length : 0;
             // 临时字符串

@@ -44,18 +44,30 @@ public class RightIconEditText extends AppCompatEditText {
         init(context, null);
     }
 
-    public RightIconEditText(Context context, AttributeSet attrs) {
+    public RightIconEditText(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public RightIconEditText(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RightIconEditText(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
 
     @Override
-    public void setCompoundDrawables(Drawable left, Drawable top, Drawable right, Drawable bottom) {
+    public void setCompoundDrawables(
+            Drawable left,
+            Drawable top,
+            Drawable right,
+            Drawable bottom
+    ) {
         if (mLeft == null) this.mLeft = left;
         if (mTop == null) this.mTop = top;
         if (mRight == null) this.mRight = right;
@@ -170,7 +182,10 @@ public class RightIconEditText extends AppCompatEditText {
      * @param context {@link Context}
      * @param attrs   {@link AttributeSet}
      */
-    private void init(Context context, AttributeSet attrs) {
+    private void init(
+            Context context,
+            AttributeSet attrs
+    ) {
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
             mRangeMultiple = a.getFloat(R.styleable.DevWidget_dev_rangeMultiple, 2.0f);
@@ -200,7 +215,12 @@ public class RightIconEditText extends AppCompatEditText {
          * @param after 被修改的文字修改之后的长度, 如果是删除的话则为 0
          */
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        public void beforeTextChanged(
+                CharSequence s,
+                int start,
+                int count,
+                int after
+        ) {
             if (mTextWatcher != null) {
                 mTextWatcher.beforeTextChanged(s, start, count, after);
             }
@@ -214,7 +234,12 @@ public class RightIconEditText extends AppCompatEditText {
          * @param count  添加的字符串长度, 如果是删除则为 0
          */
         @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        public void onTextChanged(
+                CharSequence s,
+                int start,
+                int before,
+                int count
+        ) {
             if (mTextWatcher != null) {
                 mTextWatcher.onTextChanged(s, start, before, count);
             }

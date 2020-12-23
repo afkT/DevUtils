@@ -49,7 +49,11 @@ public final class FileRecordUtils {
      * @param fileName 文件名 ( 含后缀 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveErrorLog(final Throwable ex, final String filePath, final String fileName) {
+    public static boolean saveErrorLog(
+            final Throwable ex,
+            final String filePath,
+            final String fileName
+    ) {
         return saveErrorLog(ex, filePath, fileName, null, null, true);
     }
 
@@ -62,8 +66,13 @@ public final class FileRecordUtils {
      * @param bottom   底部内容
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveErrorLog(final Throwable ex, final String filePath, final String fileName,
-                                       final String head, final String bottom) {
+    public static boolean saveErrorLog(
+            final Throwable ex,
+            final String filePath,
+            final String fileName,
+            final String head,
+            final String bottom
+    ) {
         return saveErrorLog(ex, filePath, fileName, head, bottom, true);
     }
 
@@ -75,8 +84,12 @@ public final class FileRecordUtils {
      * @param printInsertInfo 是否打印插入信息
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveErrorLog(final Throwable ex, final String filePath, final String fileName,
-                                       final boolean printInsertInfo) {
+    public static boolean saveErrorLog(
+            final Throwable ex,
+            final String filePath,
+            final String fileName,
+            final boolean printInsertInfo
+    ) {
         return saveErrorLog(ex, filePath, fileName, null, null, printInsertInfo);
     }
 
@@ -90,8 +103,14 @@ public final class FileRecordUtils {
      * @param printInsertInfo 是否打印插入信息
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveErrorLog(final Throwable ex, final String filePath, final String fileName,
-                                       final String head, final String bottom, final boolean printInsertInfo) {
+    public static boolean saveErrorLog(
+            final Throwable ex,
+            final String filePath,
+            final String fileName,
+            final String head,
+            final String bottom,
+            final boolean printInsertInfo
+    ) {
         return saveLog(ThrowableUtils.getThrowableStackTrace(ex, "failed to get exception information"),
                 filePath, fileName, head, bottom, printInsertInfo);
     }
@@ -107,7 +126,11 @@ public final class FileRecordUtils {
      * @param fileName 文件名 ( 含后缀 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveLog(final String log, final String filePath, final String fileName) {
+    public static boolean saveLog(
+            final String log,
+            final String filePath,
+            final String fileName
+    ) {
         return saveLog(log, filePath, fileName, null, null, true);
     }
 
@@ -120,8 +143,13 @@ public final class FileRecordUtils {
      * @param bottom   底部内容
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveLog(final String log, final String filePath, final String fileName,
-                                  final String head, final String bottom) {
+    public static boolean saveLog(
+            final String log,
+            final String filePath,
+            final String fileName,
+            final String head,
+            final String bottom
+    ) {
         return saveLog(log, filePath, fileName, head, bottom, true);
     }
 
@@ -135,8 +163,12 @@ public final class FileRecordUtils {
      * @param printInsertInfo 是否打印插入信息
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveLog(final String log, final String filePath, final String fileName,
-                                  final boolean printInsertInfo) {
+    public static boolean saveLog(
+            final String log,
+            final String filePath,
+            final String fileName,
+            final boolean printInsertInfo
+    ) {
         return saveLog(log, filePath, fileName, null, null, printInsertInfo);
     }
 
@@ -150,8 +182,14 @@ public final class FileRecordUtils {
      * @param printInsertInfo 是否打印插入信息
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
-    public static boolean saveLog(final String log, final String filePath, final String fileName,
-                                  final String head, final String bottom, final boolean printInsertInfo) {
+    public static boolean saveLog(
+            final String log,
+            final String filePath,
+            final String fileName,
+            final String head,
+            final String bottom,
+            final boolean printInsertInfo
+    ) {
         // 日志拼接
         StringBuilder builder = new StringBuilder();
         // 保存时间
@@ -218,7 +256,15 @@ public final class FileRecordUtils {
          * @param printInsertInfo 是否打印插入信息
          * @param insertInfo      插入信息
          */
-        void callback(boolean result, String log, String filePath, String fileName,
-                      String head, String bottom, boolean printInsertInfo, String insertInfo);
+        void callback(
+                boolean result,
+                String log,
+                String filePath,
+                String fileName,
+                String head,
+                String bottom,
+                boolean printInsertInfo,
+                String insertInfo
+        );
     }
 }

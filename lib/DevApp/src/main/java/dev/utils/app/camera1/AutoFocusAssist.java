@@ -67,7 +67,10 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
      * @param camera   {@link android.hardware.Camera}
      * @param interval 自动对焦时间间隔
      */
-    public AutoFocusAssist(final Camera camera, final long interval) {
+    public AutoFocusAssist(
+            final Camera camera,
+            final long interval
+    ) {
         this.mCamera = camera;
         this.mInterval = interval;
         // 防止为 null
@@ -124,7 +127,10 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
      * @param theCamera 对焦的 {@link android.hardware.Camera}
      */
     @Override
-    public synchronized void onAutoFocus(boolean success, Camera theCamera) {
+    public synchronized void onAutoFocus(
+            boolean success,
+            Camera theCamera
+    ) {
         // 对焦结束, 设置非对焦中
         mFocusing = false;
         // 再次自动对焦

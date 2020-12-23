@@ -33,7 +33,7 @@ import dev.utils.common.ArrayUtils;
 public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
 
     // 当前选中的索引
-    private int selectTabIndex = -1;
+    private int             selectTabIndex = -1;
     // Tab Layout 辅助类
     private TabLayoutAssist tabLayoutAssist;
 

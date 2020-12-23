@@ -43,7 +43,10 @@ public class DevEnvironmentCompilerRelease extends AbstractProcessor {
     }
 
     @Override
-    public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
+    public boolean process(
+            Set<? extends TypeElement> set,
+            RoundEnvironment roundEnvironment
+    ) {
         // 构建 DevEnvironment 类对象
         TypeSpec.Builder devEnvironmentClassBuilder = Utils.builderDevEnvironment_Class();
         // 获取使用注解修饰的 Module Element

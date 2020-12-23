@@ -64,9 +64,9 @@ import dev.utils.common.assist.TimeKeeper;
 public final class DevHelper {
 
     // TimeKeeper
-    private              TimeKeeper mTimeKeeper = new TimeKeeper();
+    private TimeKeeper             mTimeKeeper = new TimeKeeper();
     // DevHelper
-    private static final DevHelper  HELPER      = new DevHelper();
+    private static final DevHelper HELPER      = new DevHelper();
 
     /**
      * 获取单例 DevHelper
@@ -125,7 +125,10 @@ public final class DevHelper {
      * @param delayMillis 延迟时间
      * @return {@link DevHelper}
      */
-    public DevHelper postRunnable(final Runnable runnable, final long delayMillis) {
+    public DevHelper postRunnable(
+            final Runnable runnable,
+            final long delayMillis
+    ) {
         HandlerUtils.postRunnable(runnable, delayMillis);
         return this;
     }
@@ -138,7 +141,12 @@ public final class DevHelper {
      * @param interval    轮询时间
      * @return {@link DevHelper}
      */
-    public DevHelper postRunnable(final Runnable runnable, final long delayMillis, final int number, final int interval) {
+    public DevHelper postRunnable(
+            final Runnable runnable,
+            final long delayMillis,
+            final int number,
+            final int interval
+    ) {
         HandlerUtils.postRunnable(runnable, delayMillis, number, interval);
         return this;
     }
@@ -152,7 +160,13 @@ public final class DevHelper {
      * @param onEndListener 结束通知
      * @return {@link DevHelper}
      */
-    public DevHelper postRunnable(final Runnable runnable, final long delayMillis, final int number, final int interval, final HandlerUtils.OnEndListener onEndListener) {
+    public DevHelper postRunnable(
+            final Runnable runnable,
+            final long delayMillis,
+            final int number,
+            final int interval,
+            final HandlerUtils.OnEndListener onEndListener
+    ) {
         HandlerUtils.postRunnable(runnable, delayMillis, number, interval, onEndListener);
         return this;
     }
@@ -215,7 +229,10 @@ public final class DevHelper {
      * @param filePath 保存路径
      * @return {@link DevHelper}
      */
-    public DevHelper saveBitmapToSDCardJPEG(final Bitmap bitmap, final String filePath) {
+    public DevHelper saveBitmapToSDCardJPEG(
+            final Bitmap bitmap,
+            final String filePath
+    ) {
         return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.JPEG, 100);
     }
 
@@ -225,7 +242,10 @@ public final class DevHelper {
      * @param file   保存路径
      * @return {@link DevHelper}
      */
-    public DevHelper saveBitmapToSDCardJPEG(final Bitmap bitmap, final File file) {
+    public DevHelper saveBitmapToSDCardJPEG(
+            final Bitmap bitmap,
+            final File file
+    ) {
         return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.JPEG, 100);
     }
 
@@ -238,8 +258,11 @@ public final class DevHelper {
      * @param quality  质量
      * @return {@link DevHelper}
      */
-    public DevHelper saveBitmapToSDCardJPEG(final Bitmap bitmap, final String filePath,
-                                            @IntRange(from = 0, to = 100) final int quality) {
+    public DevHelper saveBitmapToSDCardJPEG(
+            final Bitmap bitmap,
+            final String filePath,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.JPEG, quality);
     }
 
@@ -250,8 +273,11 @@ public final class DevHelper {
      * @param quality 质量
      * @return {@link DevHelper}
      */
-    public DevHelper saveBitmapToSDCardJPEG(final Bitmap bitmap, final File file,
-                                            @IntRange(from = 0, to = 100) final int quality) {
+    public DevHelper saveBitmapToSDCardJPEG(
+            final Bitmap bitmap,
+            final File file,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.JPEG, quality);
     }
 
@@ -263,7 +289,10 @@ public final class DevHelper {
      * @param filePath 保存路径
      * @return {@link DevHelper}
      */
-    public DevHelper saveBitmapToSDCardPNG(final Bitmap bitmap, final String filePath) {
+    public DevHelper saveBitmapToSDCardPNG(
+            final Bitmap bitmap,
+            final String filePath
+    ) {
         return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.PNG, 100);
     }
 
@@ -273,7 +302,10 @@ public final class DevHelper {
      * @param file   保存路径
      * @return {@link DevHelper}
      */
-    public DevHelper saveBitmapToSDCardPNG(final Bitmap bitmap, final File file) {
+    public DevHelper saveBitmapToSDCardPNG(
+            final Bitmap bitmap,
+            final File file
+    ) {
         return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.PNG, 100);
     }
 
@@ -286,8 +318,11 @@ public final class DevHelper {
      * @param quality  质量
      * @return {@link DevHelper}
      */
-    public DevHelper saveBitmapToSDCardPNG(final Bitmap bitmap, final String filePath,
-                                           @IntRange(from = 0, to = 100) final int quality) {
+    public DevHelper saveBitmapToSDCardPNG(
+            final Bitmap bitmap,
+            final String filePath,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.PNG, quality);
     }
 
@@ -298,8 +333,11 @@ public final class DevHelper {
      * @param quality 质量
      * @return {@link DevHelper}
      */
-    public DevHelper saveBitmapToSDCardPNG(final Bitmap bitmap, final File file,
-                                           @IntRange(from = 0, to = 100) final int quality) {
+    public DevHelper saveBitmapToSDCardPNG(
+            final Bitmap bitmap,
+            final File file,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.PNG, quality);
     }
 
@@ -311,7 +349,10 @@ public final class DevHelper {
      * @param filePath 保存路径
      * @return {@link DevHelper}
      */
-    public DevHelper saveBitmapToSDCardWEBP(final Bitmap bitmap, final String filePath) {
+    public DevHelper saveBitmapToSDCardWEBP(
+            final Bitmap bitmap,
+            final String filePath
+    ) {
         return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.WEBP, 100);
     }
 
@@ -321,7 +362,10 @@ public final class DevHelper {
      * @param file   保存路径
      * @return {@link DevHelper}
      */
-    public DevHelper saveBitmapToSDCardWEBP(final Bitmap bitmap, final File file) {
+    public DevHelper saveBitmapToSDCardWEBP(
+            final Bitmap bitmap,
+            final File file
+    ) {
         return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.WEBP, 100);
     }
 
@@ -334,8 +378,11 @@ public final class DevHelper {
      * @param quality  质量
      * @return {@link DevHelper}
      */
-    public DevHelper saveBitmapToSDCardWEBP(final Bitmap bitmap, final String filePath,
-                                            @IntRange(from = 0, to = 100) final int quality) {
+    public DevHelper saveBitmapToSDCardWEBP(
+            final Bitmap bitmap,
+            final String filePath,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.WEBP, quality);
     }
 
@@ -346,8 +393,11 @@ public final class DevHelper {
      * @param quality 质量
      * @return {@link DevHelper}
      */
-    public DevHelper saveBitmapToSDCardWEBP(final Bitmap bitmap, final File file,
-                                            @IntRange(from = 0, to = 100) final int quality) {
+    public DevHelper saveBitmapToSDCardWEBP(
+            final Bitmap bitmap,
+            final File file,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.WEBP, quality);
     }
 
@@ -361,8 +411,12 @@ public final class DevHelper {
      * @param quality  质量
      * @return {@link DevHelper}
      */
-    public DevHelper saveBitmapToSDCard(final Bitmap bitmap, final String filePath, final Bitmap.CompressFormat format,
-                                        @IntRange(from = 0, to = 100) final int quality) {
+    public DevHelper saveBitmapToSDCard(
+            final Bitmap bitmap,
+            final String filePath,
+            final Bitmap.CompressFormat format,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         ImageUtils.saveBitmapToSDCard(bitmap, filePath, format, quality);
         return this;
     }
@@ -375,8 +429,12 @@ public final class DevHelper {
      * @param quality 质量
      * @return {@link DevHelper}
      */
-    public DevHelper saveBitmapToSDCard(final Bitmap bitmap, final File file, final Bitmap.CompressFormat format,
-                                        @IntRange(from = 0, to = 100) final int quality) {
+    public DevHelper saveBitmapToSDCard(
+            final Bitmap bitmap,
+            final File file,
+            final Bitmap.CompressFormat format,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         ImageUtils.saveBitmapToSDCard(bitmap, file, format, quality);
         return this;
     }
@@ -391,7 +449,10 @@ public final class DevHelper {
      * @param watcher  输入监听
      * @return {@link DevHelper}
      */
-    public DevHelper addTextChangedListener(final EditText editText, final TextWatcher watcher) {
+    public DevHelper addTextChangedListener(
+            final EditText editText,
+            final TextWatcher watcher
+    ) {
         EditTextUtils.addTextChangedListener(editText, watcher);
         return this;
     }
@@ -402,7 +463,10 @@ public final class DevHelper {
      * @param watcher  输入监听
      * @return {@link DevHelper}
      */
-    public DevHelper removeTextChangedListener(final EditText editText, final TextWatcher watcher) {
+    public DevHelper removeTextChangedListener(
+            final EditText editText,
+            final TextWatcher watcher
+    ) {
         EditTextUtils.removeTextChangedListener(editText, watcher);
         return this;
     }
@@ -413,7 +477,10 @@ public final class DevHelper {
      * @param keyListener {@link KeyListener}
      * @return {@link DevHelper}
      */
-    public DevHelper setKeyListener(final EditText editText, final KeyListener keyListener) {
+    public DevHelper setKeyListener(
+            final EditText editText,
+            final KeyListener keyListener
+    ) {
         EditTextUtils.setKeyListener(editText, keyListener);
         return this;
     }
@@ -424,7 +491,10 @@ public final class DevHelper {
      * @param accepted 允许输入的内容, 如: 0123456789
      * @return {@link DevHelper}
      */
-    public DevHelper setKeyListener(final EditText editText, final String accepted) {
+    public DevHelper setKeyListener(
+            final EditText editText,
+            final String accepted
+    ) {
         EditTextUtils.setKeyListener(editText, accepted);
         return this;
     }
@@ -435,7 +505,10 @@ public final class DevHelper {
      * @param accepted 允许输入的内容
      * @return {@link DevHelper}
      */
-    public DevHelper setKeyListener(final EditText editText, final char[] accepted) {
+    public DevHelper setKeyListener(
+            final EditText editText,
+            final char[] accepted
+    ) {
         EditTextUtils.setKeyListener(editText, accepted);
         return this;
     }
@@ -450,7 +523,10 @@ public final class DevHelper {
      * @param logs     日志内容数组
      * @return {@link DevHelper}
      */
-    public DevHelper record(final AnalysisRecordUtils.FileInfo fileInfo, final String... logs) {
+    public DevHelper record(
+            final AnalysisRecordUtils.FileInfo fileInfo,
+            final String... logs
+    ) {
         AnalysisRecordUtils.record(fileInfo, logs);
         return this;
     }
@@ -709,7 +785,11 @@ public final class DevHelper {
      * @param <T>         泛型
      * @return {@link DevHelper}
      */
-    public <T extends Dialog> DevHelper autoCloseDialog(final T dialog, final long delayMillis, final Handler handler) {
+    public <T extends Dialog> DevHelper autoCloseDialog(
+            final T dialog,
+            final long delayMillis,
+            final Handler handler
+    ) {
         DialogUtils.autoCloseDialog(dialog, delayMillis, handler);
         return this;
     }
@@ -722,7 +802,11 @@ public final class DevHelper {
      * @param <T>         泛型
      * @return {@link DevHelper}
      */
-    public <T extends DialogFragment> DevHelper autoCloseDialog(final T dialog, final long delayMillis, final Handler handler) {
+    public <T extends DialogFragment> DevHelper autoCloseDialog(
+            final T dialog,
+            final long delayMillis,
+            final Handler handler
+    ) {
         DialogUtils.autoCloseDialog(dialog, delayMillis, handler);
         return this;
     }
@@ -735,7 +819,11 @@ public final class DevHelper {
      * @param <T>         泛型
      * @return {@link DevHelper}
      */
-    public <T extends PopupWindow> DevHelper autoClosePopupWindow(final T popupWindow, final long delayMillis, final Handler handler) {
+    public <T extends PopupWindow> DevHelper autoClosePopupWindow(
+            final T popupWindow,
+            final long delayMillis,
+            final Handler handler
+    ) {
         DialogUtils.autoClosePopupWindow(popupWindow, delayMillis, handler);
         return this;
     }
@@ -764,7 +852,10 @@ public final class DevHelper {
      * @param handler  {@link Handler}
      * @return {@link DevHelper}
      */
-    public DevHelper openKeyboard(final EditText editText, final Handler handler) {
+    public DevHelper openKeyboard(
+            final EditText editText,
+            final Handler handler
+    ) {
         KeyBoardUtils.openKeyboard(editText, handler);
         return this;
     }
@@ -776,7 +867,11 @@ public final class DevHelper {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@link DevHelper}
      */
-    public DevHelper openKeyboard(final EditText editText, final Handler handler, final int delayMillis) {
+    public DevHelper openKeyboard(
+            final EditText editText,
+            final Handler handler,
+            final int delayMillis
+    ) {
         KeyBoardUtils.openKeyboard(editText, handler, delayMillis);
         return this;
     }
@@ -808,7 +903,10 @@ public final class DevHelper {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@link DevHelper}
      */
-    public DevHelper openKeyboard(final Handler handler, final int delayMillis) {
+    public DevHelper openKeyboard(
+            final Handler handler,
+            final int delayMillis
+    ) {
         KeyBoardUtils.openKeyboard(handler, delayMillis);
         return this;
     }
@@ -864,7 +962,10 @@ public final class DevHelper {
      * @param dialog   {@link Dialog}
      * @return {@link DevHelper}
      */
-    public DevHelper closeKeyBoardSpecial(final EditText editText, final Dialog dialog) {
+    public DevHelper closeKeyBoardSpecial(
+            final EditText editText,
+            final Dialog dialog
+    ) {
         KeyBoardUtils.closeKeyBoardSpecial(editText, dialog);
         return this;
     }
@@ -876,7 +977,11 @@ public final class DevHelper {
      * @param handler  {@link Handler}
      * @return {@link DevHelper}
      */
-    public DevHelper closeKeyBoardSpecial(final EditText editText, final Dialog dialog, final Handler handler) {
+    public DevHelper closeKeyBoardSpecial(
+            final EditText editText,
+            final Dialog dialog,
+            final Handler handler
+    ) {
         KeyBoardUtils.closeKeyBoardSpecial(editText, dialog, handler);
         return this;
     }
@@ -889,7 +994,12 @@ public final class DevHelper {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@link DevHelper}
      */
-    public DevHelper closeKeyBoardSpecial(final EditText editText, final Dialog dialog, final Handler handler, final int delayMillis) {
+    public DevHelper closeKeyBoardSpecial(
+            final EditText editText,
+            final Dialog dialog,
+            final Handler handler,
+            final int delayMillis
+    ) {
         KeyBoardUtils.closeKeyBoardSpecial(editText, dialog, handler, delayMillis);
         return this;
     }
@@ -902,7 +1012,10 @@ public final class DevHelper {
      * @param handler  {@link Handler}
      * @return {@link DevHelper}
      */
-    public DevHelper closeKeyboard(final EditText editText, final Handler handler) {
+    public DevHelper closeKeyboard(
+            final EditText editText,
+            final Handler handler
+    ) {
         KeyBoardUtils.closeKeyboard(editText, handler);
         return this;
     }
@@ -914,7 +1027,11 @@ public final class DevHelper {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@link DevHelper}
      */
-    public DevHelper closeKeyboard(final EditText editText, final Handler handler, final int delayMillis) {
+    public DevHelper closeKeyboard(
+            final EditText editText,
+            final Handler handler,
+            final int delayMillis
+    ) {
         KeyBoardUtils.closeKeyboard(editText, handler, delayMillis);
         return this;
     }
@@ -935,7 +1052,10 @@ public final class DevHelper {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@link DevHelper}
      */
-    public DevHelper closeKeyboard(final Handler handler, final int delayMillis) {
+    public DevHelper closeKeyboard(
+            final Handler handler,
+            final int delayMillis
+    ) {
         KeyBoardUtils.closeKeyboard(handler, delayMillis);
         return this;
     }
@@ -946,7 +1066,10 @@ public final class DevHelper {
      * @param handler  {@link Handler}
      * @return {@link DevHelper}
      */
-    public DevHelper closeKeyboard(final Activity activity, final Handler handler) {
+    public DevHelper closeKeyboard(
+            final Activity activity,
+            final Handler handler
+    ) {
         KeyBoardUtils.closeKeyboard(activity, handler);
         return this;
     }
@@ -958,7 +1081,11 @@ public final class DevHelper {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@link DevHelper}
      */
-    public DevHelper closeKeyboard(final Activity activity, final Handler handler, final int delayMillis) {
+    public DevHelper closeKeyboard(
+            final Activity activity,
+            final Handler handler,
+            final int delayMillis
+    ) {
         KeyBoardUtils.closeKeyboard(activity, handler, delayMillis);
         return this;
     }
@@ -969,7 +1096,10 @@ public final class DevHelper {
      * @param handler {@link Handler}
      * @return {@link DevHelper}
      */
-    public DevHelper closeKeyboard(final Dialog dialog, final Handler handler) {
+    public DevHelper closeKeyboard(
+            final Dialog dialog,
+            final Handler handler
+    ) {
         KeyBoardUtils.closeKeyboard(dialog, handler);
         return this;
     }
@@ -981,7 +1111,11 @@ public final class DevHelper {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@link DevHelper}
      */
-    public DevHelper closeKeyboard(final Dialog dialog, final Handler handler, final int delayMillis) {
+    public DevHelper closeKeyboard(
+            final Dialog dialog,
+            final Handler handler,
+            final int delayMillis
+    ) {
         KeyBoardUtils.closeKeyboard(dialog, handler, delayMillis);
         return this;
     }
@@ -996,7 +1130,10 @@ public final class DevHelper {
      * @param activity {@link Activity}
      * @return {@link DevHelper}
      */
-    public DevHelper judgeView(final View view, final Activity activity) {
+    public DevHelper judgeView(
+            final View view,
+            final Activity activity
+    ) {
         KeyBoardUtils.judgeView(view, activity);
         return this;
     }
@@ -1007,7 +1144,10 @@ public final class DevHelper {
      * @param listener {@link KeyBoardUtils.OnSoftInputChangedListener}
      * @return {@link DevHelper}
      */
-    public DevHelper registerSoftInputChangedListener(final Activity activity, final KeyBoardUtils.OnSoftInputChangedListener listener) {
+    public DevHelper registerSoftInputChangedListener(
+            final Activity activity,
+            final KeyBoardUtils.OnSoftInputChangedListener listener
+    ) {
         KeyBoardUtils.registerSoftInputChangedListener(activity, listener);
         return this;
     }
@@ -1018,7 +1158,10 @@ public final class DevHelper {
      * @param listener {@link KeyBoardUtils.OnSoftInputChangedListener}
      * @return {@link DevHelper}
      */
-    public DevHelper registerSoftInputChangedListener2(final Activity activity, final KeyBoardUtils.OnSoftInputChangedListener listener) {
+    public DevHelper registerSoftInputChangedListener2(
+            final Activity activity,
+            final KeyBoardUtils.OnSoftInputChangedListener listener
+    ) {
         KeyBoardUtils.registerSoftInputChangedListener2(activity, listener);
         return this;
     }
@@ -1033,7 +1176,10 @@ public final class DevHelper {
      * @param locale  {@link Locale}
      * @return {@link DevHelper}
      */
-    public DevHelper applyLanguage(final Context context, final Locale locale) {
+    public DevHelper applyLanguage(
+            final Context context,
+            final Locale locale
+    ) {
         LanguageUtils.applyLanguage(context, locale);
         return this;
     }
@@ -1044,7 +1190,10 @@ public final class DevHelper {
      * @param language 语言
      * @return {@link DevHelper}
      */
-    public DevHelper applyLanguage(final Context context, final String language) {
+    public DevHelper applyLanguage(
+            final Context context,
+            final String language
+    ) {
         LanguageUtils.applyLanguage(context, language);
         return this;
     }
@@ -1059,7 +1208,10 @@ public final class DevHelper {
      * @param views           View 数组
      * @return {@link DevHelper}
      */
-    public DevHelper setOnClicks(final View.OnClickListener onClickListener, final View... views) {
+    public DevHelper setOnClicks(
+            final View.OnClickListener onClickListener,
+            final View... views
+    ) {
         ListenerUtils.setOnClicks(onClickListener, views);
         return this;
     }
@@ -1070,7 +1222,10 @@ public final class DevHelper {
      * @param views               View 数组
      * @return {@link DevHelper}
      */
-    public DevHelper setOnLongClicks(final View.OnLongClickListener onLongClickListener, final View... views) {
+    public DevHelper setOnLongClicks(
+            final View.OnLongClickListener onLongClickListener,
+            final View... views
+    ) {
         ListenerUtils.setOnLongClicks(onLongClickListener, views);
         return this;
     }
@@ -1081,7 +1236,10 @@ public final class DevHelper {
      * @param views           View 数组
      * @return {@link DevHelper}
      */
-    public DevHelper setOnTouchs(final View.OnTouchListener onTouchListener, final View... views) {
+    public DevHelper setOnTouchs(
+            final View.OnTouchListener onTouchListener,
+            final View... views
+    ) {
         ListenerUtils.setOnTouchs(onTouchListener, views);
         return this;
     }
@@ -1092,7 +1250,10 @@ public final class DevHelper {
      * @param range 点击范围
      * @return {@link DevHelper}
      */
-    public DevHelper addTouchArea(final View view, final int range) {
+    public DevHelper addTouchArea(
+            final View view,
+            final int range
+    ) {
         ClickUtils.addTouchArea(view, range);
         return this;
     }
@@ -1106,7 +1267,13 @@ public final class DevHelper {
      * @param right  right range
      * @return {@link DevHelper}
      */
-    public DevHelper addTouchArea(final View view, final int top, final int bottom, final int left, final int right) {
+    public DevHelper addTouchArea(
+            final View view,
+            final int top,
+            final int bottom,
+            final int left,
+            final int right
+    ) {
         ClickUtils.addTouchArea(view, top, bottom, left, right);
         return this;
     }
@@ -1140,7 +1307,10 @@ public final class DevHelper {
      * @param id  消息 id
      * @return {@link DevHelper}
      */
-    public DevHelper cancelNotification(final String tag, final int id) {
+    public DevHelper cancelNotification(
+            final String tag,
+            final int id
+    ) {
         NotificationUtils.cancel(tag, id);
         return this;
     }
@@ -1151,7 +1321,10 @@ public final class DevHelper {
      * @param notification {@link Notification}
      * @return {@link DevHelper}
      */
-    public DevHelper notifyNotification(final int id, final Notification notification) {
+    public DevHelper notifyNotification(
+            final int id,
+            final Notification notification
+    ) {
         NotificationUtils.notify(id, notification);
         return this;
     }
@@ -1163,7 +1336,11 @@ public final class DevHelper {
      * @param notification {@link Notification}
      * @return {@link DevHelper}
      */
-    public DevHelper notifyNotification(final String tag, final int id, final Notification notification) {
+    public DevHelper notifyNotification(
+            final String tag,
+            final int id,
+            final Notification notification
+    ) {
         NotificationUtils.notify(tag, id, notification);
         return this;
     }
@@ -1178,7 +1355,10 @@ public final class DevHelper {
      * @param file     文件保存地址
      * @return {@link DevHelper}
      */
-    public DevHelper saveAssetsFormFile(final String fileName, final File file) {
+    public DevHelper saveAssetsFormFile(
+            final String fileName,
+            final File file
+    ) {
         ResourceUtils.saveAssetsFormFile(fileName, file);
         return this;
     }
@@ -1189,7 +1369,10 @@ public final class DevHelper {
      * @param file  文件保存地址
      * @return {@link DevHelper}
      */
-    public DevHelper saveRawFormFile(@RawRes final int resId, final File file) {
+    public DevHelper saveRawFormFile(
+            @RawRes final int resId,
+            final File file
+    ) {
         ResourceUtils.saveRawFormFile(resId, file);
         return this;
     }
@@ -1268,7 +1451,10 @@ public final class DevHelper {
      * @param listener {@link SizeUtils.onGetSizeListener}
      * @return {@link DevHelper}
      */
-    public DevHelper forceGetViewSize(final View view, final SizeUtils.onGetSizeListener listener) {
+    public DevHelper forceGetViewSize(
+            final View view,
+            final SizeUtils.onGetSizeListener listener
+    ) {
         SizeUtils.forceGetViewSize(view, listener);
         return this;
     }
@@ -1296,7 +1482,10 @@ public final class DevHelper {
      * @return {@link DevHelper}
      */
     @SuppressLint("MissingPermission")
-    public DevHelper vibrate(final long[] pattern, final int repeat) {
+    public DevHelper vibrate(
+            final long[] pattern,
+            final int repeat
+    ) {
         VibrationUtils.vibrate(pattern, repeat);
         return this;
     }
@@ -1415,7 +1604,10 @@ public final class DevHelper {
      * @param callback 请求时间回调接口
      * @return {@link DevHelper}
      */
-    public DevHelper getNetTime(final String urlStr, final HttpURLConnectionUtils.TimeCallback callback) {
+    public DevHelper getNetTime(
+            final String urlStr,
+            final HttpURLConnectionUtils.TimeCallback callback
+    ) {
         HttpURLConnectionUtils.getNetTime(urlStr, callback);
         return this;
     }
@@ -1430,7 +1622,10 @@ public final class DevHelper {
      * @param callback       结束回调通知
      * @return {@link DevHelper}
      */
-    public DevHelper waitForEndAsync(final long keepTimeMillis, final TimeKeeper.OnEndCallback callback) {
+    public DevHelper waitForEndAsync(
+            final long keepTimeMillis,
+            final TimeKeeper.OnEndCallback callback
+    ) {
         mTimeKeeper.waitForEndAsync(keepTimeMillis, callback);
         return this;
     }
@@ -1441,7 +1636,10 @@ public final class DevHelper {
      * @param callback       结束回调通知
      * @return {@link DevHelper}
      */
-    public DevHelper waitForEnd(final long keepTimeMillis, final TimeKeeper.OnEndCallback callback) {
+    public DevHelper waitForEnd(
+            final long keepTimeMillis,
+            final TimeKeeper.OnEndCallback callback
+    ) {
         mTimeKeeper.waitForEnd(keepTimeMillis, callback);
         return this;
     }
@@ -1456,7 +1654,10 @@ public final class DevHelper {
      * @param listener  {@link Animation.AnimationListener}
      * @return {@link DevHelper}
      */
-    public DevHelper setAnimationListener(final Animation animation, final Animation.AnimationListener listener) {
+    public DevHelper setAnimationListener(
+            final Animation animation,
+            final Animation.AnimationListener listener
+    ) {
         AnimationUtils.setAnimationListener(animation, listener);
         return this;
     }

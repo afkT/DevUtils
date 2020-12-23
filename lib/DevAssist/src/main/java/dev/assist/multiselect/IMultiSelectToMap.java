@@ -18,7 +18,10 @@ public interface IMultiSelectToMap<CollectionG extends Map, K, V> extends IBaseM
      * @param value Value
      * @return {@code true} yes, {@code false} no
      */
-    boolean isSelect(K key, V value);
+    boolean isSelect(
+            K key,
+            V value
+    );
 
     /**
      * 判断是否选中 ( 通过 key 判断 )
@@ -34,7 +37,10 @@ public interface IMultiSelectToMap<CollectionG extends Map, K, V> extends IBaseM
      * @param key   Key
      * @param value Value
      */
-    void select(K key, V value);
+    void select(
+            K key,
+            V value
+    );
 
     /**
      * 设置选中操作
@@ -42,7 +48,11 @@ public interface IMultiSelectToMap<CollectionG extends Map, K, V> extends IBaseM
      * @param key      Key
      * @param value    Value
      */
-    void select(boolean isSelect, K key, V value);
+    void select(
+            boolean isSelect,
+            K key,
+            V value
+    );
 
     // =
 
@@ -62,7 +72,10 @@ public interface IMultiSelectToMap<CollectionG extends Map, K, V> extends IBaseM
      * @param key   Key
      * @param value Value
      */
-    void toggle(K key, V value);
+    void toggle(
+            K key,
+            V value
+    );
 
     // =================
     // = 获取选中的数据 =

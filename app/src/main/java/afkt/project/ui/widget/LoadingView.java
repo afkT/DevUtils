@@ -40,9 +40,9 @@ public class LoadingView extends AppCompatImageView {
             AttributeSet attrs
     ) {
         try {
-            TypedArray      a = context.obtainStyledAttributes(attrs, R.styleable.LoadingView);
+            TypedArray      a                 = context.obtainStyledAttributes(attrs, R.styleable.LoadingView);
             int             loadingRendererId = a.getInt(R.styleable.LoadingView_loading_renderer, 0);
-            LoadingRenderer loadingRenderer = LoadingRendererFactory.createLoadingRenderer(context, loadingRendererId);
+            LoadingRenderer loadingRenderer   = LoadingRendererFactory.createLoadingRenderer(context, loadingRendererId);
             setLoadingRenderer(loadingRenderer);
             a.recycle();
         } catch (Exception e) {

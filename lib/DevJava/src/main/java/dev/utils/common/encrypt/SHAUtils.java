@@ -115,7 +115,10 @@ public final class SHAUtils {
      * @param algorithm 算法
      * @return SHA 算法加密后的字符串
      */
-    public static String shaHex(final String data, final String algorithm) {
+    public static String shaHex(
+            final String data,
+            final String algorithm
+    ) {
         if (data == null || algorithm == null) return null;
         try {
             byte[] bytes = data.getBytes();
@@ -137,7 +140,10 @@ public final class SHAUtils {
      * @param algorithm 算法
      * @return 文件指定 SHA 字符串信息
      */
-    public static String getFileSHA(final File file, final String algorithm) {
+    public static String getFileSHA(
+            final File file,
+            final String algorithm
+    ) {
         if (file == null || algorithm == null) return null;
         InputStream is = null;
         try {

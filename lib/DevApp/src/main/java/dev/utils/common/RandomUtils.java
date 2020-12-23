@@ -64,7 +64,10 @@ public final class RandomUtils {
      * @param data   随机数据源
      * @return 随机 byte[]
      */
-    public static byte[] nextBytes(final Random random, final byte[] data) {
+    public static byte[] nextBytes(
+            final Random random,
+            final byte[] data
+    ) {
         if (random == null || data == null) return data;
         try {
             random.nextBytes(data);
@@ -115,7 +118,10 @@ public final class RandomUtils {
      * @param number 最大随机值
      * @return 随机介于 [0, n) 的区间值
      */
-    public static int nextInt(final Random random, final int number) {
+    public static int nextInt(
+            final Random random,
+            final int number
+    ) {
         if (number <= 0) return 0;
         return random != null ? random.nextInt(number) : new Random().nextInt(number);
     }
@@ -256,7 +262,10 @@ public final class RandomUtils {
      * @param length 长度
      * @return 随机字符串
      */
-    public static String getRandom(final String source, final int length) {
+    public static String getRandom(
+            final String source,
+            final int length
+    ) {
         if (source == null) return null;
         return getRandom(source.toCharArray(), length);
     }
@@ -267,7 +276,10 @@ public final class RandomUtils {
      * @param length 需要最终长度
      * @return 随机字符串
      */
-    public static String getRandom(final char[] chars, final int length) {
+    public static String getRandom(
+            final char[] chars,
+            final int length
+    ) {
         if (length > 0 && chars != null && chars.length != 0) {
             StringBuilder builder = new StringBuilder(length);
             Random        random  = new Random();
@@ -285,7 +297,10 @@ public final class RandomUtils {
      * @param length  需要最终长度
      * @return 随机字符串
      */
-    public static String getRandom(final String[] strings, final int length) {
+    public static String getRandom(
+            final String[] strings,
+            final int length
+    ) {
         if (length > 0 && strings != null && strings.length != 0) {
             StringBuilder builder = new StringBuilder(length);
             Random        random  = new Random();
@@ -312,7 +327,10 @@ public final class RandomUtils {
      * @param max 最大随机数
      * @return 随机介于 [min, max) 的区间值
      */
-    public static int getRandom(final int min, final int max) {
+    public static int getRandom(
+            final int min,
+            final int max
+    ) {
         if (min > max) {
             return 0;
         } else if (min == max) {
@@ -342,7 +360,10 @@ public final class RandomUtils {
      * @param shuffleCount 洗牌次数
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean shuffle(final Object[] objects, final int shuffleCount) {
+    public static boolean shuffle(
+            final Object[] objects,
+            final int shuffleCount
+    ) {
         int length;
         if (shuffleCount > 0 && objects != null && (length = objects.length) >= shuffleCount) {
             for (int i = 1; i <= shuffleCount; i++) {
@@ -372,7 +393,10 @@ public final class RandomUtils {
      * @param shuffleCount 洗牌次数
      * @return 随机 int[]
      */
-    public static int[] shuffle(final int[] ints, final int shuffleCount) {
+    public static int[] shuffle(
+            final int[] ints,
+            final int shuffleCount
+    ) {
         int length;
         if (shuffleCount > 0 && ints != null && (length = ints.length) >= shuffleCount) {
             int[] out = new int[shuffleCount];
@@ -419,7 +443,10 @@ public final class RandomUtils {
      * @return 属于指定范围随机 int 值
      * @throws IllegalArgumentException 参数错误
      */
-    public static int nextIntRange(final int origin, final int bound) throws IllegalArgumentException {
+    public static int nextIntRange(
+            final int origin,
+            final int bound
+    ) throws IllegalArgumentException {
         if (origin > bound) {
             throw new IllegalArgumentException("bound must be greater than origin");
         } else if (origin == bound) {
@@ -445,7 +472,10 @@ public final class RandomUtils {
      * @return 属于指定范围随机 long 值
      * @throws IllegalArgumentException 参数错误
      */
-    public static long nextLongRange(final long origin, final long bound) throws IllegalArgumentException {
+    public static long nextLongRange(
+            final long origin,
+            final long bound
+    ) throws IllegalArgumentException {
         if (origin > bound) {
             throw new IllegalArgumentException("bound must be greater than origin");
         } else if (origin == bound) {
@@ -476,7 +506,10 @@ public final class RandomUtils {
      * @return 属于指定范围随机 double 值
      * @throws IllegalArgumentException 参数错误
      */
-    public static double nextDoubleRange(final double origin, final double bound) throws IllegalArgumentException {
+    public static double nextDoubleRange(
+            final double origin,
+            final double bound
+    ) throws IllegalArgumentException {
         if (origin > bound) {
             throw new IllegalArgumentException("bound must be greater than origin");
         } else if (origin == bound) {
@@ -496,7 +529,11 @@ public final class RandomUtils {
      * @param randomNumberBound  结束值 ( 最大值范围 )
      * @return 指定范围随机 int[]
      */
-    public static int[] ints(final int streamSize, final int randomNumberOrigin, final int randomNumberBound) {
+    public static int[] ints(
+            final int streamSize,
+            final int randomNumberOrigin,
+            final int randomNumberBound
+    ) {
         if (randomNumberOrigin >= randomNumberBound) {
             return null;
         } else if (streamSize < 0) {
@@ -523,7 +560,11 @@ public final class RandomUtils {
      * @param randomNumberBound  结束值 ( 最大值范围 )
      * @return 指定范围随机 long[]
      */
-    public static long[] longs(final int streamSize, final long randomNumberOrigin, final long randomNumberBound) {
+    public static long[] longs(
+            final int streamSize,
+            final long randomNumberOrigin,
+            final long randomNumberBound
+    ) {
         if (randomNumberOrigin >= randomNumberBound) {
             return null;
         } else if (streamSize < 0) {
@@ -550,7 +591,11 @@ public final class RandomUtils {
      * @param randomNumberBound  结束值 ( 最大值范围 )
      * @return 指定范围随机 double[]
      */
-    public static double[] doubles(final int streamSize, final double randomNumberOrigin, final double randomNumberBound) {
+    public static double[] doubles(
+            final int streamSize,
+            final double randomNumberOrigin,
+            final double randomNumberBound
+    ) {
         if (randomNumberOrigin >= randomNumberBound) {
             return null;
         } else if (streamSize < 0) {

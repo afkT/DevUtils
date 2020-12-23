@@ -17,11 +17,18 @@ public abstract class DevExResultCallback<T> extends DevResultCallback<T> {
         super(value);
     }
 
-    public DevExResultCallback(T value, Object object) {
+    public DevExResultCallback(
+            T value,
+            Object object
+    ) {
         super(value, object);
     }
 
-    public DevExResultCallback(T value, Object object, String tag) {
+    public DevExResultCallback(
+            T value,
+            Object object,
+            String tag
+    ) {
         super(value, object, tag);
     }
 
@@ -36,7 +43,11 @@ public abstract class DevExResultCallback<T> extends DevResultCallback<T> {
      * @param value 返回值
      */
     @Override
-    public void onResult(String str, String msg, T value) {
+    public void onResult(
+            String str,
+            String msg,
+            T value
+    ) {
     }
 
     // ===========
@@ -50,7 +61,12 @@ public abstract class DevExResultCallback<T> extends DevResultCallback<T> {
      * @param msg   返回信息
      * @param value 返回值
      */
-    public void onResult(int type, String str, String msg, T value) {
+    public void onResult(
+            int type,
+            String str,
+            String msg,
+            T value
+    ) {
     }
 
     /**
@@ -59,7 +75,10 @@ public abstract class DevExResultCallback<T> extends DevResultCallback<T> {
      * @param e    异常信息
      * @param <E>  泛型
      */
-    public <E extends Throwable> void onError(int type, E e) {
+    public <E extends Throwable> void onError(
+            int type,
+            E e
+    ) {
     }
 
     /**
@@ -68,7 +87,11 @@ public abstract class DevExResultCallback<T> extends DevResultCallback<T> {
      * @param fail      失败信息
      * @param errorCode 错误 code
      */
-    public void onFailure(int type, String fail, String errorCode) {
+    public void onFailure(
+            int type,
+            String fail,
+            String errorCode
+    ) {
     }
 
     // ===========

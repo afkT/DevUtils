@@ -74,7 +74,10 @@ public final class ImageViewUtils {
      * @param adjustViewBounds 是否调整此视图的边界以保持可绘制的原始纵横比
      * @return {@link ImageView}
      */
-    public static ImageView setAdjustViewBounds(final ImageView imageView, final boolean adjustViewBounds) {
+    public static ImageView setAdjustViewBounds(
+            final ImageView imageView,
+            final boolean adjustViewBounds
+    ) {
         if (imageView != null) {
             imageView.setAdjustViewBounds(adjustViewBounds);
         }
@@ -100,7 +103,10 @@ public final class ImageViewUtils {
      * @param maxHeight 最大高度
      * @return {@link ImageView}
      */
-    public static ImageView setMaxHeight(final ImageView imageView, final int maxHeight) {
+    public static ImageView setMaxHeight(
+            final ImageView imageView,
+            final int maxHeight
+    ) {
         if (imageView != null) {
             imageView.setMaxHeight(maxHeight);
         }
@@ -126,7 +132,10 @@ public final class ImageViewUtils {
      * @param maxWidth  最大宽度
      * @return {@link ImageView}
      */
-    public static ImageView setMaxWidth(final ImageView imageView, final int maxWidth) {
+    public static ImageView setMaxWidth(
+            final ImageView imageView,
+            final int maxWidth
+    ) {
         if (imageView != null) {
             imageView.setMaxWidth(maxWidth);
         }
@@ -143,7 +152,10 @@ public final class ImageViewUtils {
      * @param bitmap {@link Bitmap}
      * @return {@link View}
      */
-    public static View setImageBitmap(final View view, final Bitmap bitmap) {
+    public static View setImageBitmap(
+            final View view,
+            final Bitmap bitmap
+    ) {
         setImageBitmap(getImageView(view), bitmap);
         return view;
     }
@@ -155,7 +167,10 @@ public final class ImageViewUtils {
      * @param <T>       泛型
      * @return {@link ImageView}
      */
-    public static <T extends ImageView> T setImageBitmap(final T imageView, final Bitmap bitmap) {
+    public static <T extends ImageView> T setImageBitmap(
+            final T imageView,
+            final Bitmap bitmap
+    ) {
         if (imageView != null) {
             try {
                 imageView.setImageBitmap(bitmap);
@@ -174,7 +189,10 @@ public final class ImageViewUtils {
      * @param drawable {@link Bitmap}
      * @return {@link View}
      */
-    public static View setImageDrawable(final View view, final Drawable drawable) {
+    public static View setImageDrawable(
+            final View view,
+            final Drawable drawable
+    ) {
         setImageDrawable(getImageView(view), drawable);
         return view;
     }
@@ -186,7 +204,10 @@ public final class ImageViewUtils {
      * @param <T>       泛型
      * @return {@link ImageView}
      */
-    public static <T extends ImageView> T setImageDrawable(final T imageView, final Drawable drawable) {
+    public static <T extends ImageView> T setImageDrawable(
+            final T imageView,
+            final Drawable drawable
+    ) {
         if (imageView != null) {
             try {
                 imageView.setImageDrawable(drawable);
@@ -205,7 +226,10 @@ public final class ImageViewUtils {
      * @param resId resource identifier
      * @return {@link View}
      */
-    public static View setImageResource(final View view, @DrawableRes final int resId) {
+    public static View setImageResource(
+            final View view,
+            @DrawableRes final int resId
+    ) {
         setImageResource(getImageView(view), resId);
         return view;
     }
@@ -217,7 +241,10 @@ public final class ImageViewUtils {
      * @param <T>       泛型
      * @return {@link ImageView}
      */
-    public static <T extends ImageView> T setImageResource(final T imageView, @DrawableRes final int resId) {
+    public static <T extends ImageView> T setImageResource(
+            final T imageView,
+            @DrawableRes final int resId
+    ) {
         if (imageView != null) {
             try {
                 imageView.setImageResource(resId);
@@ -236,7 +263,10 @@ public final class ImageViewUtils {
      * @param matrix {@link Matrix}
      * @return {@link View}
      */
-    public static View setImageMatrix(final View view, final Matrix matrix) {
+    public static View setImageMatrix(
+            final View view,
+            final Matrix matrix
+    ) {
         setImageMatrix(getImageView(view), matrix);
         return view;
     }
@@ -248,7 +278,10 @@ public final class ImageViewUtils {
      * @param <T>       泛型
      * @return {@link ImageView}
      */
-    public static <T extends ImageView> T setImageMatrix(final T imageView, final Matrix matrix) {
+    public static <T extends ImageView> T setImageMatrix(
+            final T imageView,
+            final Matrix matrix
+    ) {
         if (imageView != null) {
             try {
                 imageView.setImageMatrix(matrix);
@@ -268,7 +301,10 @@ public final class ImageViewUtils {
      * @return {@link View}
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static View setImageTintList(final View view, final ColorStateList tint) {
+    public static View setImageTintList(
+            final View view,
+            final ColorStateList tint
+    ) {
         setImageTintList(getImageView(view), tint);
         return view;
     }
@@ -281,7 +317,10 @@ public final class ImageViewUtils {
      * @return {@link ImageView}
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static <T extends ImageView> T setImageTintList(final T imageView, final ColorStateList tint) {
+    public static <T extends ImageView> T setImageTintList(
+            final T imageView,
+            final ColorStateList tint
+    ) {
         if (imageView != null) {
             try {
                 imageView.setImageTintList(tint);
@@ -301,7 +340,10 @@ public final class ImageViewUtils {
      * @return {@link View}
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static View setImageTintMode(final View view, final PorterDuff.Mode tintMode) {
+    public static View setImageTintMode(
+            final View view,
+            final PorterDuff.Mode tintMode
+    ) {
         setImageTintMode(getImageView(view), tintMode);
         return view;
     }
@@ -314,7 +356,10 @@ public final class ImageViewUtils {
      * @return {@link ImageView}
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static <T extends ImageView> T setImageTintMode(final T imageView, final PorterDuff.Mode tintMode) {
+    public static <T extends ImageView> T setImageTintMode(
+            final T imageView,
+            final PorterDuff.Mode tintMode
+    ) {
         if (imageView != null) {
             try {
                 imageView.setImageTintMode(tintMode);
@@ -333,7 +378,10 @@ public final class ImageViewUtils {
      * @param scaleType 缩放类型 {@link ImageView.ScaleType}
      * @return {@link View}
      */
-    public static View setScaleType(final View view, final ImageView.ScaleType scaleType) {
+    public static View setScaleType(
+            final View view,
+            final ImageView.ScaleType scaleType
+    ) {
         setScaleType(getImageView(view), scaleType);
         return view;
     }
@@ -345,7 +393,10 @@ public final class ImageViewUtils {
      * @param <T>       泛型
      * @return {@link ImageView}
      */
-    public static <T extends ImageView> T setScaleType(final T imageView, final ImageView.ScaleType scaleType) {
+    public static <T extends ImageView> T setScaleType(
+            final T imageView,
+            final ImageView.ScaleType scaleType
+    ) {
         if (imageView != null) {
             try {
                 imageView.setScaleType(scaleType);
@@ -482,7 +533,10 @@ public final class ImageViewUtils {
      * @param views View[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setBackgroundResources(@DrawableRes final int resId, final View... views) {
+    public static boolean setBackgroundResources(
+            @DrawableRes final int resId,
+            final View... views
+    ) {
         return setBackgroundResources(resId, View.VISIBLE, views);
     }
 
@@ -493,7 +547,11 @@ public final class ImageViewUtils {
      * @param views        View[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setBackgroundResources(@DrawableRes final int resId, final int isVisibility, final View... views) {
+    public static boolean setBackgroundResources(
+            @DrawableRes final int resId,
+            final int isVisibility,
+            final View... views
+    ) {
         if (views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 View view = views[i];
@@ -521,7 +579,10 @@ public final class ImageViewUtils {
      * @param views View[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setImageResources(@DrawableRes final int resId, final View... views) {
+    public static boolean setImageResources(
+            @DrawableRes final int resId,
+            final View... views
+    ) {
         return setImageResources(resId, View.VISIBLE, views);
     }
 
@@ -532,7 +593,11 @@ public final class ImageViewUtils {
      * @param views        View[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setImageResources(@DrawableRes final int resId, final int isVisibility, final View... views) {
+    public static boolean setImageResources(
+            @DrawableRes final int resId,
+            final int isVisibility,
+            final View... views
+    ) {
         if (views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 ImageView imageView = getImageView(views[i]);
@@ -560,7 +625,10 @@ public final class ImageViewUtils {
      * @param views  View[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setImageBitmaps(final Bitmap bitmap, final View... views) {
+    public static boolean setImageBitmaps(
+            final Bitmap bitmap,
+            final View... views
+    ) {
         return setImageBitmaps(bitmap, View.VISIBLE, views);
     }
 
@@ -571,7 +639,11 @@ public final class ImageViewUtils {
      * @param views        View[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setImageBitmaps(final Bitmap bitmap, final int isVisibility, final View... views) {
+    public static boolean setImageBitmaps(
+            final Bitmap bitmap,
+            final int isVisibility,
+            final View... views
+    ) {
         if (views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 ImageView imageView = getImageView(views[i]);
@@ -599,7 +671,10 @@ public final class ImageViewUtils {
      * @param views    View[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setImageDrawables(final Drawable drawable, final View... views) {
+    public static boolean setImageDrawables(
+            final Drawable drawable,
+            final View... views
+    ) {
         return setImageDrawables(drawable, View.VISIBLE, views);
     }
 
@@ -610,7 +685,11 @@ public final class ImageViewUtils {
      * @param views        View[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setImageDrawables(final Drawable drawable, final int isVisibility, final View... views) {
+    public static boolean setImageDrawables(
+            final Drawable drawable,
+            final int isVisibility,
+            final View... views
+    ) {
         if (views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 ImageView imageView = getImageView(views[i]);
@@ -638,7 +717,10 @@ public final class ImageViewUtils {
      * @param views     View[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setScaleTypes(final ImageView.ScaleType scaleType, final View... views) {
+    public static boolean setScaleTypes(
+            final ImageView.ScaleType scaleType,
+            final View... views
+    ) {
         return setScaleTypes(scaleType, View.VISIBLE, views);
     }
 
@@ -649,7 +731,11 @@ public final class ImageViewUtils {
      * @param views        View[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setScaleTypes(final ImageView.ScaleType scaleType, final int isVisibility, final View... views) {
+    public static boolean setScaleTypes(
+            final ImageView.ScaleType scaleType,
+            final int isVisibility,
+            final View... views
+    ) {
         if (views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 ImageView imageView = getImageView(views[i]);
@@ -683,8 +769,8 @@ public final class ImageViewUtils {
         try {
             if (imageView == null) return imageSize;
 
-            DisplayMetrics         displayMetrics = ResourceUtils.getDisplayMetrics(imageView.getContext());
-            ViewGroup.LayoutParams layoutParams   = imageView.getLayoutParams();
+            DisplayMetrics displayMetrics       = ResourceUtils.getDisplayMetrics(imageView.getContext());
+            ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
 
             // 获取 ImageView 的实际宽度
             int width = imageView.getWidth();
@@ -727,7 +813,10 @@ public final class ImageViewUtils {
      * @param fieldName 属性名
      * @return 指定属性的值
      */
-    private static int getImageViewFieldValue(final Object object, final String fieldName) {
+    private static int getImageViewFieldValue(
+            final Object object,
+            final String fieldName
+    ) {
         int value = 0;
         try {
             Field field = ImageView.class.getDeclaredField(fieldName);

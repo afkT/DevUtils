@@ -15,11 +15,18 @@ public abstract class DevResultCallback<T> extends AbstractCommonCallback<T> {
         super(value);
     }
 
-    public DevResultCallback(T value, Object object) {
+    public DevResultCallback(
+            T value,
+            Object object
+    ) {
         super(value, object);
     }
 
-    public DevResultCallback(T value, Object object, String tag) {
+    public DevResultCallback(
+            T value,
+            Object object,
+            String tag
+    ) {
         super(value, object, tag);
     }
 
@@ -34,5 +41,9 @@ public abstract class DevResultCallback<T> extends AbstractCommonCallback<T> {
      * @param value 返回值
      */
     @Override
-    public abstract void onResult(String str, String msg, T value);
+    public abstract void onResult(
+            String str,
+            String msg,
+            T value
+    );
 }

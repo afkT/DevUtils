@@ -33,7 +33,7 @@ public final class AliasMethod {
     private final Random random;
 
     /* The probability and alias tables. */
-    private final int[]    alias;
+    private final int[] alias;
     private final double[] probability;
 
     /**
@@ -60,7 +60,10 @@ public final class AliasMethod {
      * @param probabilities The list of probabilities.
      * @param random        The random number generator
      */
-    public AliasMethod(List<Double> probabilities, Random random) {
+    public AliasMethod(
+            List<Double> probabilities,
+            Random random
+    ) {
         /* Begin by doing basic structural checks on the inputs. */
         if (probabilities == null || random == null)
             throw new NullPointerException();

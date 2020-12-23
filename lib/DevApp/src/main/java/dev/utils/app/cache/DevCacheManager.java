@@ -34,7 +34,11 @@ final class DevCacheManager {
      * @param sizeLimit  文件大小限制
      * @param countLimit 文件总数限制
      */
-    protected DevCacheManager(final File cacheDir, final long sizeLimit, final int countLimit) {
+    protected DevCacheManager(
+            final File cacheDir,
+            final long sizeLimit,
+            final int countLimit
+    ) {
         this.mCacheDir = cacheDir;
         this.mSizeLimit = sizeLimit;
         this.mCountLimit = countLimit;

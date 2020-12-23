@@ -49,7 +49,10 @@ public final class FileUtils {
      * @param fileName 文件名
      * @return 文件 {@link File}
      */
-    public static File getFile(final String filePath, final String fileName) {
+    public static File getFile(
+            final String filePath,
+            final String fileName
+    ) {
         return (filePath != null && fileName != null) ? new File(filePath, fileName) : null;
     }
 
@@ -68,7 +71,10 @@ public final class FileUtils {
      * @param fileName 文件名
      * @return 文件 {@link File}
      */
-    public static File getFileCreateFolder(final String filePath, final String fileName) {
+    public static File getFileCreateFolder(
+            final String filePath,
+            final String fileName
+    ) {
         // 防止不存在目录文件, 自动创建
         createFolder(filePath);
         // 返回处理过后的 File
@@ -81,7 +87,10 @@ public final class FileUtils {
      * @param fileName 文件名
      * @return 文件 {@link File}
      */
-    public static String getFilePathCreateFolder(final String filePath, final String fileName) {
+    public static String getFilePathCreateFolder(
+            final String filePath,
+            final String fileName
+    ) {
         // 防止不存在目录文件, 自动创建
         createFolder(filePath);
         // 返回处理过后的 File
@@ -269,7 +278,10 @@ public final class FileUtils {
      * @param ignore 是否忽略 null
      * @return File List
      */
-    public static List<File> convertFiles(final List<String> paths, final boolean ignore) {
+    public static List<File> convertFiles(
+            final List<String> paths,
+            final boolean ignore
+    ) {
         List<File> files = new ArrayList<>();
         if (paths != null && !paths.isEmpty()) {
             for (int i = 0, len = paths.size(); i < len; i++) {
@@ -299,7 +311,10 @@ public final class FileUtils {
      * @param ignore 是否忽略 null
      * @return Path List
      */
-    public static List<String> convertPaths(final List<File> files, final boolean ignore) {
+    public static List<String> convertPaths(
+            final List<File> files,
+            final boolean ignore
+    ) {
         List<String> paths = new ArrayList<>();
         if (files != null && !files.isEmpty()) {
             for (int i = 0, len = files.size(); i < len; i++) {
@@ -360,7 +375,10 @@ public final class FileUtils {
      * @param defaultStr 默认字符串
      * @return 文件名, 如果文件路径为 null 时, 返回默认字符串
      */
-    public static String getName(final String filePath, final String defaultStr) {
+    public static String getName(
+            final String filePath,
+            final String defaultStr
+    ) {
         return StringUtils.isSpace(filePath) ? defaultStr : new File(filePath).getName();
     }
 
@@ -503,7 +521,10 @@ public final class FileUtils {
      * @param fileName 文件名
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isFileExists(final String filePath, final String fileName) {
+    public static boolean isFileExists(
+            final String filePath,
+            final String fileName
+    ) {
         return filePath != null && fileName != null && new File(filePath, fileName).exists();
     }
 
@@ -878,7 +899,10 @@ public final class FileUtils {
      * @param newFileName 文件新名称
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean rename(final String filePath, final String newFileName) {
+    public static boolean rename(
+            final String filePath,
+            final String newFileName
+    ) {
         return rename(getFileByPath(filePath), newFileName);
     }
 
@@ -888,7 +912,10 @@ public final class FileUtils {
      * @param newFileName 文件新名称
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean rename(final File file, final String newFileName) {
+    public static boolean rename(
+            final File file,
+            final String newFileName
+    ) {
         // 文件为空返回 false
         if (file == null) return false;
         // 文件不存在返回 false
@@ -964,7 +991,10 @@ public final class FileUtils {
      * @param byteSize 字节数
      * @return 合适内存大小字符串
      */
-    public static String formatByteMemorySize(final int number, final double byteSize) {
+    public static String formatByteMemorySize(
+            final int number,
+            final double byteSize
+    ) {
         if (byteSize < 0d) {
             return "0B";
         } else if (byteSize < 1024d) {
@@ -1083,7 +1113,10 @@ public final class FileUtils {
      * @param data     待存储数据
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveFile(final String filePath, final byte[] data) {
+    public static boolean saveFile(
+            final String filePath,
+            final byte[] data
+    ) {
         return saveFile(FileUtils.getFile(filePath), data);
     }
 
@@ -1093,7 +1126,10 @@ public final class FileUtils {
      * @param data 待存储数据
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveFile(final File file, final byte[] data) {
+    public static boolean saveFile(
+            final File file,
+            final byte[] data
+    ) {
         if (file != null && data != null) {
             FileOutputStream     fos = null;
             BufferedOutputStream bos = null;
@@ -1120,7 +1156,10 @@ public final class FileUtils {
      * @param data     待追加数据
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean appendFile(final String filePath, final byte[] data) {
+    public static boolean appendFile(
+            final String filePath,
+            final byte[] data
+    ) {
         return appendFile(FileUtils.getFile(filePath), data);
     }
 
@@ -1134,7 +1173,10 @@ public final class FileUtils {
      * @param data 待追加数据
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean appendFile(final File file, final byte[] data) {
+    public static boolean appendFile(
+            final File file,
+            final byte[] data
+    ) {
         FileOutputStream     fos = null;
         BufferedOutputStream bos = null;
         try {
@@ -1248,7 +1290,10 @@ public final class FileUtils {
      * @param encode      编码格式
      * @return 文件内容字符串
      */
-    public static String readFile(final InputStream inputStream, final String encode) {
+    public static String readFile(
+            final InputStream inputStream,
+            final String encode
+    ) {
         if (inputStream != null) {
             BufferedReader br = null;
             try {
@@ -1283,7 +1328,11 @@ public final class FileUtils {
      * @param overlay      如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean copyFile(final InputStream inputStream, final String destFilePath, final boolean overlay) {
+    public static boolean copyFile(
+            final InputStream inputStream,
+            final String destFilePath,
+            final boolean overlay
+    ) {
         if (inputStream == null || destFilePath == null) {
             return false;
         }
@@ -1336,7 +1385,11 @@ public final class FileUtils {
      * @param overlay      如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean copyFile(final String srcFilePath, final String destFilePath, final boolean overlay) {
+    public static boolean copyFile(
+            final String srcFilePath,
+            final String destFilePath,
+            final boolean overlay
+    ) {
         if (srcFilePath == null || destFilePath == null) {
             return false;
         }
@@ -1398,7 +1451,11 @@ public final class FileUtils {
      * @param overlay        如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean copyFolder(final String srcFolderPath, final String destFolderPath, final boolean overlay) {
+    public static boolean copyFolder(
+            final String srcFolderPath,
+            final String destFolderPath,
+            final boolean overlay
+    ) {
         return copyFolder(srcFolderPath, destFolderPath, srcFolderPath, overlay);
     }
 
@@ -1410,7 +1467,12 @@ public final class FileUtils {
      * @param overlay        如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
-    private static boolean copyFolder(final String srcFolderPath, final String destFolderPath, final String sourcePath, final boolean overlay) {
+    private static boolean copyFolder(
+            final String srcFolderPath,
+            final String destFolderPath,
+            final String sourcePath,
+            final boolean overlay
+    ) {
         if (srcFolderPath == null || destFolderPath == null || sourcePath == null) {
             return false;
         }
@@ -1476,7 +1538,11 @@ public final class FileUtils {
      * @param overlay      如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean moveFile(final String srcFilePath, final String destFilePath, final boolean overlay) {
+    public static boolean moveFile(
+            final String srcFilePath,
+            final String destFilePath,
+            final boolean overlay
+    ) {
         // 复制文件
         if (copyFile(srcFilePath, destFilePath, overlay)) {
             // 删除文件
@@ -1492,7 +1558,11 @@ public final class FileUtils {
      * @param overlay      如果目标文件存在, 是否覆盖
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean moveFolder(final String srcFilePath, final String destFilePath, final boolean overlay) {
+    public static boolean moveFolder(
+            final String srcFilePath,
+            final String destFilePath,
+            final boolean overlay
+    ) {
         // 复制文件夹
         if (copyFolder(srcFilePath, destFilePath, overlay)) {
             // 删除文件夹
@@ -1524,7 +1594,12 @@ public final class FileUtils {
      * @param isMove      是否移动
      * @return {@code true} 复制或移动成功, {@code false} 复制或移动失败
      */
-    public static boolean copyOrMoveDir(final String srcDirPath, final String destDirPath, final OnReplaceListener listener, final boolean isMove) {
+    public static boolean copyOrMoveDir(
+            final String srcDirPath,
+            final String destDirPath,
+            final OnReplaceListener listener,
+            final boolean isMove
+    ) {
         return copyOrMoveDir(getFileByPath(srcDirPath), getFileByPath(destDirPath), listener, isMove);
     }
 
@@ -1536,7 +1611,12 @@ public final class FileUtils {
      * @param isMove   是否移动
      * @return {@code true} 复制或移动成功, {@code false} 复制或移动失败
      */
-    public static boolean copyOrMoveDir(final File srcDir, final File destDir, final OnReplaceListener listener, final boolean isMove) {
+    public static boolean copyOrMoveDir(
+            final File srcDir,
+            final File destDir,
+            final OnReplaceListener listener,
+            final boolean isMove
+    ) {
         if (srcDir == null || destDir == null || listener == null) return false;
         // 为防止以上这种情况出现出现误判, 须分别在后面加个路径分隔符
         String srcPath  = srcDir.getPath() + File.separator;
@@ -1577,7 +1657,12 @@ public final class FileUtils {
      * @param isMove       是否移动
      * @return {@code true} 复制或移动成功, {@code false} 复制或移动失败
      */
-    public static boolean copyOrMoveFile(final String srcFilePath, final String destFilePath, final OnReplaceListener listener, final boolean isMove) {
+    public static boolean copyOrMoveFile(
+            final String srcFilePath,
+            final String destFilePath,
+            final OnReplaceListener listener,
+            final boolean isMove
+    ) {
         return copyOrMoveFile(getFileByPath(srcFilePath), getFileByPath(destFilePath), listener, isMove);
     }
 
@@ -1589,7 +1674,12 @@ public final class FileUtils {
      * @param isMove   是否移动
      * @return {@code true} 复制或移动成功, {@code false} 复制或移动失败
      */
-    public static boolean copyOrMoveFile(final File srcFile, final File destFile, final OnReplaceListener listener, final boolean isMove) {
+    public static boolean copyOrMoveFile(
+            final File srcFile,
+            final File destFile,
+            final OnReplaceListener listener,
+            final boolean isMove
+    ) {
         if (srcFile == null || destFile == null || listener == null) return false;
         // 如果源文件和目标文件相同则返回 false
         if (srcFile.equals(destFile)) return false;
@@ -1621,7 +1711,11 @@ public final class FileUtils {
      * @param listener    是否覆盖监听器
      * @return {@code true} 复制成功, {@code false} 复制失败
      */
-    public static boolean copyDir(final String srcDirPath, final String destDirPath, final OnReplaceListener listener) {
+    public static boolean copyDir(
+            final String srcDirPath,
+            final String destDirPath,
+            final OnReplaceListener listener
+    ) {
         return copyDir(getFileByPath(srcDirPath), getFileByPath(destDirPath), listener);
     }
 
@@ -1632,7 +1726,11 @@ public final class FileUtils {
      * @param listener 是否覆盖监听器
      * @return {@code true} 复制成功, {@code false} 复制失败
      */
-    public static boolean copyDir(final File srcDir, final File destDir, final OnReplaceListener listener) {
+    public static boolean copyDir(
+            final File srcDir,
+            final File destDir,
+            final OnReplaceListener listener
+    ) {
         return copyOrMoveDir(srcDir, destDir, listener, false);
     }
 
@@ -1643,7 +1741,11 @@ public final class FileUtils {
      * @param listener     是否覆盖监听器
      * @return {@code true} 复制成功, {@code false} 复制失败
      */
-    public static boolean copyFile(final String srcFilePath, final String destFilePath, final OnReplaceListener listener) {
+    public static boolean copyFile(
+            final String srcFilePath,
+            final String destFilePath,
+            final OnReplaceListener listener
+    ) {
         return copyFile(getFileByPath(srcFilePath), getFileByPath(destFilePath), listener);
     }
 
@@ -1654,7 +1756,11 @@ public final class FileUtils {
      * @param listener 是否覆盖监听器
      * @return {@code true} 复制成功, {@code false} 复制失败
      */
-    public static boolean copyFile(final File srcFile, final File destFile, final OnReplaceListener listener) {
+    public static boolean copyFile(
+            final File srcFile,
+            final File destFile,
+            final OnReplaceListener listener
+    ) {
         return copyOrMoveFile(srcFile, destFile, listener, false);
     }
 
@@ -1665,7 +1771,11 @@ public final class FileUtils {
      * @param listener    是否覆盖监听器
      * @return {@code true} 移动成功, {@code false} 移动失败
      */
-    public static boolean moveDir(final String srcDirPath, final String destDirPath, final OnReplaceListener listener) {
+    public static boolean moveDir(
+            final String srcDirPath,
+            final String destDirPath,
+            final OnReplaceListener listener
+    ) {
         return moveDir(getFileByPath(srcDirPath), getFileByPath(destDirPath), listener);
     }
 
@@ -1676,7 +1786,11 @@ public final class FileUtils {
      * @param listener 是否覆盖监听器
      * @return {@code true} 移动成功, {@code false} 移动失败
      */
-    public static boolean moveDir(final File srcDir, final File destDir, final OnReplaceListener listener) {
+    public static boolean moveDir(
+            final File srcDir,
+            final File destDir,
+            final OnReplaceListener listener
+    ) {
         return copyOrMoveDir(srcDir, destDir, listener, true);
     }
 
@@ -1687,7 +1801,11 @@ public final class FileUtils {
      * @param listener     是否覆盖监听器
      * @return {@code true} 移动成功, {@code false} 移动失败
      */
-    public static boolean moveFile(final String srcFilePath, final String destFilePath, final OnReplaceListener listener) {
+    public static boolean moveFile(
+            final String srcFilePath,
+            final String destFilePath,
+            final OnReplaceListener listener
+    ) {
         return moveFile(getFileByPath(srcFilePath), getFileByPath(destFilePath), listener);
     }
 
@@ -1698,7 +1816,11 @@ public final class FileUtils {
      * @param listener 是否覆盖监听器
      * @return {@code true} 移动成功, {@code false} 移动失败
      */
-    public static boolean moveFile(final File srcFile, final File destFile, final OnReplaceListener listener) {
+    public static boolean moveFile(
+            final File srcFile,
+            final File destFile,
+            final OnReplaceListener listener
+    ) {
         return copyOrMoveFile(srcFile, destFile, listener, true);
     }
 
@@ -1787,7 +1909,10 @@ public final class FileUtils {
      * @param filter  过滤器
      * @return {@code true} 删除成功, {@code false} 删除失败
      */
-    public static boolean deleteFilesInDirWithFilter(final String dirPath, final FileFilter filter) {
+    public static boolean deleteFilesInDirWithFilter(
+            final String dirPath,
+            final FileFilter filter
+    ) {
         return deleteFilesInDirWithFilter(getFileByPath(dirPath), filter);
     }
 
@@ -1797,7 +1922,10 @@ public final class FileUtils {
      * @param filter 过滤器
      * @return {@code true} 删除成功, {@code false} 删除失败
      */
-    public static boolean deleteFilesInDirWithFilter(final File dir, final FileFilter filter) {
+    public static boolean deleteFilesInDirWithFilter(
+            final File dir,
+            final FileFilter filter
+    ) {
         if (filter == null) return false;
         // dir is null then return false
         if (dir == null) return false;
@@ -1844,7 +1972,10 @@ public final class FileUtils {
      * @param isRecursive 是否递归进子目录
      * @return 文件链表
      */
-    public static List<File> listFilesInDir(final String dirPath, final boolean isRecursive) {
+    public static List<File> listFilesInDir(
+            final String dirPath,
+            final boolean isRecursive
+    ) {
         return listFilesInDir(getFileByPath(dirPath), isRecursive);
     }
 
@@ -1854,7 +1985,10 @@ public final class FileUtils {
      * @param isRecursive 是否递归进子目录
      * @return 文件链表
      */
-    public static List<File> listFilesInDir(final File dir, final boolean isRecursive) {
+    public static List<File> listFilesInDir(
+            final File dir,
+            final boolean isRecursive
+    ) {
         return listFilesInDirWithFilter(dir, new FileFilter() {
             @Override
             public boolean accept(File pathname) {
@@ -1869,7 +2003,10 @@ public final class FileUtils {
      * @param filter  过滤器
      * @return 文件链表
      */
-    public static List<File> listFilesInDirWithFilter(final String dirPath, final FileFilter filter) {
+    public static List<File> listFilesInDirWithFilter(
+            final String dirPath,
+            final FileFilter filter
+    ) {
         return listFilesInDirWithFilter(getFileByPath(dirPath), filter, false);
     }
 
@@ -1879,7 +2016,10 @@ public final class FileUtils {
      * @param filter 过滤器
      * @return 文件链表
      */
-    public static List<File> listFilesInDirWithFilter(final File dir, final FileFilter filter) {
+    public static List<File> listFilesInDirWithFilter(
+            final File dir,
+            final FileFilter filter
+    ) {
         return listFilesInDirWithFilter(dir, filter, false);
     }
 
@@ -1890,7 +2030,11 @@ public final class FileUtils {
      * @param isRecursive 是否递归进子目录
      * @return 文件链表
      */
-    public static List<File> listFilesInDirWithFilter(final String dirPath, final FileFilter filter, final boolean isRecursive) {
+    public static List<File> listFilesInDirWithFilter(
+            final String dirPath,
+            final FileFilter filter,
+            final boolean isRecursive
+    ) {
         return listFilesInDirWithFilter(getFileByPath(dirPath), filter, isRecursive);
     }
 
@@ -1901,7 +2045,11 @@ public final class FileUtils {
      * @param isRecursive 是否递归进子目录
      * @return 文件链表
      */
-    public static List<File> listFilesInDirWithFilter(final File dir, final FileFilter filter, final boolean isRecursive) {
+    public static List<File> listFilesInDirWithFilter(
+            final File dir,
+            final FileFilter filter,
+            final boolean isRecursive
+    ) {
         if (!isDirectory(dir) || filter == null) return null;
         List<File> list  = new ArrayList<>();
         File[]     files = dir.listFiles();
@@ -1944,7 +2092,10 @@ public final class FileUtils {
          * @param file  当前文件夹
          * @param lists 文件夹内子文件列表
          */
-        public FileList(File file, List<FileList> lists) {
+        public FileList(
+                File file,
+                List<FileList> lists
+        ) {
             this.mFile = file;
             this.mSubFiles = lists;
         }
@@ -1994,7 +2145,10 @@ public final class FileUtils {
      * @param isRecursive 是否递归进子目录
      * @return 文件链表
      */
-    public static List<FileList> listFilesInDirBean(final String dirPath, final boolean isRecursive) {
+    public static List<FileList> listFilesInDirBean(
+            final String dirPath,
+            final boolean isRecursive
+    ) {
         return listFilesInDirBean(getFileByPath(dirPath), isRecursive);
     }
 
@@ -2004,7 +2158,10 @@ public final class FileUtils {
      * @param isRecursive 是否递归进子目录
      * @return 文件链表
      */
-    public static List<FileList> listFilesInDirBean(final File dir, final boolean isRecursive) {
+    public static List<FileList> listFilesInDirBean(
+            final File dir,
+            final boolean isRecursive
+    ) {
         return listFilesInDirWithFilterBean(dir, new FileFilter() {
             @Override
             public boolean accept(File pathname) {
@@ -2019,7 +2176,10 @@ public final class FileUtils {
      * @param filter  过滤器
      * @return 文件链表
      */
-    public static List<FileList> listFilesInDirWithFilterBean(final String dirPath, final FileFilter filter) {
+    public static List<FileList> listFilesInDirWithFilterBean(
+            final String dirPath,
+            final FileFilter filter
+    ) {
         return listFilesInDirWithFilterBean(getFileByPath(dirPath), filter, false);
     }
 
@@ -2029,7 +2189,10 @@ public final class FileUtils {
      * @param filter 过滤器
      * @return 文件链表
      */
-    public static List<FileList> listFilesInDirWithFilterBean(final File dir, final FileFilter filter) {
+    public static List<FileList> listFilesInDirWithFilterBean(
+            final File dir,
+            final FileFilter filter
+    ) {
         return listFilesInDirWithFilterBean(dir, filter, false);
     }
 
@@ -2040,7 +2203,11 @@ public final class FileUtils {
      * @param isRecursive 是否递归进子目录
      * @return 文件链表
      */
-    public static List<FileList> listFilesInDirWithFilterBean(final String dirPath, final FileFilter filter, final boolean isRecursive) {
+    public static List<FileList> listFilesInDirWithFilterBean(
+            final String dirPath,
+            final FileFilter filter,
+            final boolean isRecursive
+    ) {
         return listFilesInDirWithFilterBean(getFileByPath(dirPath), filter, isRecursive);
     }
 
@@ -2051,7 +2218,11 @@ public final class FileUtils {
      * @param isRecursive 是否递归进子目录
      * @return 文件链表
      */
-    public static List<FileList> listFilesInDirWithFilterBean(final File dir, final FileFilter filter, final boolean isRecursive) {
+    public static List<FileList> listFilesInDirWithFilterBean(
+            final File dir,
+            final FileFilter filter,
+            final boolean isRecursive
+    ) {
         if (!isDirectory(dir) || filter == null) return null;
         List<FileList> list  = new ArrayList<>();
         File[]         files = dir.listFiles();
@@ -2105,7 +2276,10 @@ public final class FileUtils {
      * @param fileFormats 文件格式
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isImageFormats(final String filePath, final String[] fileFormats) {
+    public static boolean isImageFormats(
+            final String filePath,
+            final String[] fileFormats
+    ) {
         return isFileFormats(filePath, fileFormats);
     }
 
@@ -2142,7 +2316,10 @@ public final class FileUtils {
      * @param fileFormats 文件格式
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isAudioFormats(final String filePath, final String[] fileFormats) {
+    public static boolean isAudioFormats(
+            final String filePath,
+            final String[] fileFormats
+    ) {
         return isFileFormats(filePath, fileFormats);
     }
 
@@ -2179,7 +2356,10 @@ public final class FileUtils {
      * @param fileFormats 文件格式
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isVideoFormats(final String filePath, final String[] fileFormats) {
+    public static boolean isVideoFormats(
+            final String filePath,
+            final String[] fileFormats
+    ) {
         return isFileFormats(filePath, fileFormats);
     }
 
@@ -2191,7 +2371,10 @@ public final class FileUtils {
      * @param fileFormats 文件格式
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isFileFormats(final File file, final String[] fileFormats) {
+    public static boolean isFileFormats(
+            final File file,
+            final String[] fileFormats
+    ) {
         return file != null && isFileFormats(file.getPath(), fileFormats);
     }
 
@@ -2201,7 +2384,10 @@ public final class FileUtils {
      * @param fileFormats 文件格式
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isFileFormats(final String filePath, final String[] fileFormats) {
+    public static boolean isFileFormats(
+            final String filePath,
+            final String[] fileFormats
+    ) {
         if (filePath == null || fileFormats == null || fileFormats.length == 0) return false;
         String path = filePath.toUpperCase();
         for (String format : fileFormats) {

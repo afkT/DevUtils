@@ -30,7 +30,10 @@ public final class FieldUtils {
      * @param name   变量名
      * @return {@link Field}
      */
-    public static Field getField(final Object object, final String name) {
+    public static Field getField(
+            final Object object,
+            final String name
+    ) {
         return getField(ClassUtils.getClass(object), name);
     }
 
@@ -43,7 +46,10 @@ public final class FieldUtils {
      * @param name  变量名
      * @return {@link Field}
      */
-    public static Field getField(final Class clazz, final String name) {
+    public static Field getField(
+            final Class clazz,
+            final String name
+    ) {
         if (clazz != null && name != null) {
             try {
                 return clazz.getField(name);
@@ -62,7 +68,10 @@ public final class FieldUtils {
      * @param name   变量名
      * @return {@link Field}
      */
-    public static Field getDeclaredField(final Object object, final String name) {
+    public static Field getDeclaredField(
+            final Object object,
+            final String name
+    ) {
         return getDeclaredField(ClassUtils.getClass(object), name);
     }
 
@@ -75,7 +84,10 @@ public final class FieldUtils {
      * @param name  变量名
      * @return {@link Field}
      */
-    public static Field getDeclaredField(final Class clazz, final String name) {
+    public static Field getDeclaredField(
+            final Class clazz,
+            final String name
+    ) {
         if (clazz != null && name != null) {
             try {
                 return clazz.getDeclaredField(name);
@@ -155,7 +167,11 @@ public final class FieldUtils {
      * @param value  Object-Value
      * @return 对应的 Object
      */
-    public static Object set(final Field field, final Object object, final Object value) {
+    public static Object set(
+            final Field field,
+            final Object object,
+            final Object value
+    ) {
         if (field == null || object == null) return null;
         try {
             field.setAccessible(true);
@@ -173,7 +189,10 @@ public final class FieldUtils {
      * @param object Object
      * @return 对应的 Object
      */
-    public static Object get(final Field field, final Object object) {
+    public static Object get(
+            final Field field,
+            final Object object
+    ) {
         if (field == null || object == null) return null;
         try {
             field.setAccessible(true);

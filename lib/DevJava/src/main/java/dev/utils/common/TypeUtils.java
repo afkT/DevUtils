@@ -85,7 +85,10 @@ public final class TypeUtils {
      * @param valueType Value.class
      * @return Map<Key, Value> Type
      */
-    public static Type getMapType(final Type keyType, final Type valueType) {
+    public static Type getMapType(
+            final Type keyType,
+            final Type valueType
+    ) {
         if (keyType == null || valueType == null) return null;
         try {
             return new ParameterizedTypeImpl(new Type[]{keyType, valueType}, null, Map.class);
@@ -101,7 +104,10 @@ public final class TypeUtils {
      * @param typeArguments type arguments
      * @return Type
      */
-    public static Type getType(final Type rawType, final Type... typeArguments) {
+    public static Type getType(
+            final Type rawType,
+            final Type... typeArguments
+    ) {
         try {
             return new ParameterizedTypeImpl(typeArguments, null, rawType);
         } catch (Exception e) {
@@ -124,7 +130,11 @@ public final class TypeUtils {
         private final Type   ownerType;
         private final Type   rawType;
 
-        public ParameterizedTypeImpl(Type[] actualTypeArguments, Type ownerType, Type rawType) {
+        public ParameterizedTypeImpl(
+                Type[] actualTypeArguments,
+                Type ownerType,
+                Type rawType
+        ) {
             this.actualTypeArguments = actualTypeArguments;
             this.ownerType = ownerType;
             this.rawType = rawType;

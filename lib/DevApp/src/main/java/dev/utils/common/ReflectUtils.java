@@ -34,7 +34,10 @@ public final class ReflectUtils {
         this(type, type);
     }
 
-    private ReflectUtils(final Class<?> type, final Object object) {
+    private ReflectUtils(
+            final Class<?> type,
+            final Object object
+    ) {
         this.mType = type;
         this.mObject = object;
     }
@@ -60,7 +63,10 @@ public final class ReflectUtils {
      * @return {@link ReflectUtils}
      * @throws ReflectException 反射异常
      */
-    public static ReflectUtils reflect(final String className, final ClassLoader classLoader) throws ReflectException {
+    public static ReflectUtils reflect(
+            final String className,
+            final ClassLoader classLoader
+    ) throws ReflectException {
         return reflect(forName(className, classLoader));
     }
 
@@ -108,7 +114,10 @@ public final class ReflectUtils {
      * @return 指定类
      * @throws ReflectException 反射异常
      */
-    private static Class<?> forName(final String name, final ClassLoader classLoader) throws ReflectException {
+    private static Class<?> forName(
+            final String name,
+            final ClassLoader classLoader
+    ) throws ReflectException {
         try {
             return Class.forName(name, true, classLoader);
         } catch (Exception e) {
@@ -183,7 +192,10 @@ public final class ReflectUtils {
         if (list == null) return;
         Collections.sort(list, new Comparator<Constructor<?>>() {
             @Override
-            public int compare(Constructor<?> o1, Constructor<?> o2) {
+            public int compare(
+                    Constructor<?> o1,
+                    Constructor<?> o2
+            ) {
                 Class<?>[] types1 = o1.getParameterTypes();
                 Class<?>[] types2 = o2.getParameterTypes();
                 int        len    = types1.length;
@@ -208,7 +220,10 @@ public final class ReflectUtils {
      * @return {@link ReflectUtils}
      * @throws ReflectException 反射异常
      */
-    private ReflectUtils newInstance(final Constructor<?> constructor, final Object... args) throws ReflectException {
+    private ReflectUtils newInstance(
+            final Constructor<?> constructor,
+            final Object... args
+    ) throws ReflectException {
         try {
             return new ReflectUtils(constructor.getDeclaringClass(), accessible(constructor).newInstance(args));
         } catch (Exception e) {
@@ -243,7 +258,10 @@ public final class ReflectUtils {
      * @return {@link ReflectUtils}
      * @throws ReflectException 反射异常
      */
-    public ReflectUtils field(final String name, final Object value) throws ReflectException {
+    public ReflectUtils field(
+            final String name,
+            final Object value
+    ) throws ReflectException {
         try {
             Field field = getField(name);
             field.set(mObject, unwrap(value));
@@ -323,7 +341,11 @@ public final class ReflectUtils {
      * @return {@link ReflectUtils}
      * @throws ReflectException 反射异常
      */
-    public ReflectUtils setEnumVal(final Class<?> clazz, final String name, final String value) throws ReflectException {
+    public ReflectUtils setEnumVal(
+            final Class<?> clazz,
+            final String name,
+            final String value
+    ) throws ReflectException {
         try {
             return field(name, Enum.valueOf((Class<Enum>) clazz, value));
         } catch (Exception e) {
@@ -352,7 +374,10 @@ public final class ReflectUtils {
      * @return {@link ReflectUtils}
      * @throws ReflectException 反射异常
      */
-    public ReflectUtils method(final String name, final Object... args) throws ReflectException {
+    public ReflectUtils method(
+            final String name,
+            final Object... args
+    ) throws ReflectException {
         Class<?>[] types = getArgsType(args);
         try {
             Method method = exactMethod(name, types);
@@ -375,7 +400,11 @@ public final class ReflectUtils {
      * @return {@link ReflectUtils}
      * @throws ReflectException 反射异常
      */
-    private ReflectUtils method(final Method method, final Object object, final Object... args) throws ReflectException {
+    private ReflectUtils method(
+            final Method method,
+            final Object object,
+            final Object... args
+    ) throws ReflectException {
         try {
             accessible(method);
             if (method.getReturnType() == void.class) {
@@ -397,7 +426,10 @@ public final class ReflectUtils {
      * @return {@link Method}
      * @throws ReflectException 反射异常
      */
-    private Method exactMethod(final String name, final Class<?>[] types) throws ReflectException {
+    private Method exactMethod(
+            final String name,
+            final Class<?>[] types
+    ) throws ReflectException {
         Class<?> type = type();
         try {
             return type.getMethod(name, types);
@@ -421,7 +453,10 @@ public final class ReflectUtils {
      * @return {@link Method}
      * @throws ReflectException 反射异常
      */
-    private Method similarMethod(final String name, final Class<?>[] types) throws ReflectException {
+    private Method similarMethod(
+            final String name,
+            final Class<?>[] types
+    ) throws ReflectException {
         Class<?>     type    = type();
         List<Method> methods = new ArrayList<>();
         for (Method method : type.getMethods()) {
@@ -456,7 +491,10 @@ public final class ReflectUtils {
         if (methods == null) return;
         Collections.sort(methods, new Comparator<Method>() {
             @Override
-            public int compare(Method o1, Method o2) {
+            public int compare(
+                    Method o1,
+                    Method o2
+            ) {
                 Class<?>[] types1 = o1.getParameterTypes();
                 Class<?>[] types2 = o2.getParameterTypes();
                 int        len    = types1.length;
@@ -481,7 +519,11 @@ public final class ReflectUtils {
      * @param desiredParamTypes      所需参数类型
      * @return {@code true} yes, {@code false} no
      */
-    private boolean isSimilarSignature(final Method possiblyMatchingMethod, final String desiredMethodName, final Class<?>[] desiredParamTypes) {
+    private boolean isSimilarSignature(
+            final Method possiblyMatchingMethod,
+            final String desiredMethodName,
+            final Class<?>[] desiredParamTypes
+    ) {
         return possiblyMatchingMethod.getName().equals(desiredMethodName) && match(possiblyMatchingMethod.getParameterTypes(), desiredParamTypes);
     }
 
@@ -491,7 +533,10 @@ public final class ReflectUtils {
      * @param actualTypes   实际类型
      * @return {@code true} yes, {@code false} no
      */
-    private boolean match(final Class<?>[] declaredTypes, final Class<?>[] actualTypes) {
+    private boolean match(
+            final Class<?>[] declaredTypes,
+            final Class<?>[] actualTypes
+    ) {
         if (declaredTypes != null && actualTypes != null && declaredTypes.length == actualTypes.length) {
             for (int i = 0; i < actualTypes.length; i++) {
                 if (actualTypes[i] == NULL.class || wrapper(declaredTypes[i]).isAssignableFrom(wrapper(actualTypes[i]))) {
@@ -538,7 +583,11 @@ public final class ReflectUtils {
         final boolean isMap = (mObject instanceof Map);
         final InvocationHandler handler = new InvocationHandler() {
             @Override
-            public Object invoke(Object proxy, Method method, Object[] args) {
+            public Object invoke(
+                    Object proxy,
+                    Method method,
+                    Object[] args
+            ) {
                 String name = method.getName();
                 try {
                     return reflect(mObject).method(name, args).get();
@@ -691,7 +740,10 @@ public final class ReflectUtils {
             super(message);
         }
 
-        public ReflectException(String message, Throwable cause) {
+        public ReflectException(
+                String message,
+                Throwable cause
+        ) {
             super(message, cause);
         }
 

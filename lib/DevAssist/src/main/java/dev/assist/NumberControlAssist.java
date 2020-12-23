@@ -29,7 +29,10 @@ public class NumberControlAssist {
         this.mMinNumber = minNumber;
     }
 
-    public NumberControlAssist(final int minNumber, final int maxNumber) {
+    public NumberControlAssist(
+            final int minNumber,
+            final int maxNumber
+    ) {
         this.mMinNumber = minNumber;
         this.mMaxNumber = maxNumber;
     }
@@ -198,7 +201,10 @@ public class NumberControlAssist {
      * @param maxNumber 最大值
      * @return {@link NumberControlAssist}
      */
-    public NumberControlAssist setMinMaxNumber(final int minNumber, final int maxNumber) {
+    public NumberControlAssist setMinMaxNumber(
+            final int minNumber,
+            final int maxNumber
+    ) {
         return setMinNumber(minNumber).setMaxNumber(maxNumber);
     }
 
@@ -227,7 +233,10 @@ public class NumberControlAssist {
      * @param isTriggerListener 是否触发事件
      * @return {@link NumberControlAssist}
      */
-    public NumberControlAssist setCurrentNumber(final int currentNumber, final boolean isTriggerListener) {
+    public NumberControlAssist setCurrentNumber(
+            final int currentNumber,
+            final boolean isTriggerListener
+    ) {
         int number = currentNumber;
         if (number < mMinNumber) {
             number = mMinNumber;
@@ -482,7 +491,10 @@ public class NumberControlAssist {
          * @param maxNumber 最大值
          * @return R 泛型返回对象
          */
-        R setMinMaxNumber(int minNumber, int maxNumber);
+        R setMinMaxNumber(
+                int minNumber,
+                int maxNumber
+        );
 
         // =
 
@@ -505,7 +517,10 @@ public class NumberControlAssist {
          * @param isTriggerListener 是否触发事件
          * @return R 泛型返回对象
          */
-        R setCurrentNumber(int currentNumber, boolean isTriggerListener);
+        R setCurrentNumber(
+                int currentNumber,
+                boolean isTriggerListener
+        );
 
         // =
 
@@ -587,14 +602,21 @@ public class NumberControlAssist {
          * @param afterNumber 处理之后的数量
          * @return {@code true} allow, {@code false} prohibit
          */
-        boolean onPrepareChanged(boolean isAdd, int curNumber, int afterNumber);
+        boolean onPrepareChanged(
+                boolean isAdd,
+                int curNumber,
+                int afterNumber
+        );
 
         /**
          * 数量变化通知
          * @param isAdd     是否增加
          * @param curNumber 当前数量
          */
-        void onNumberChanged(boolean isAdd, int curNumber);
+        void onNumberChanged(
+                boolean isAdd,
+                int curNumber
+        );
     }
 
     // 数量监听事件接口

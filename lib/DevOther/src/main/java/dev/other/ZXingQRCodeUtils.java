@@ -50,7 +50,11 @@ public final class ZXingQRCodeUtils {
          * @param bitmap  成功图片
          * @param e       异常信息
          */
-        void onResult(boolean success, Bitmap bitmap, Exception e);
+        void onResult(
+                boolean success,
+                Bitmap bitmap,
+                Exception e
+        );
     }
 
     // =
@@ -60,7 +64,10 @@ public final class ZXingQRCodeUtils {
      * @param content 生成内容
      * @param size    图片宽高大小 ( 正方形 px )
      */
-    public static void createQRCodeImage(final String content, final int size) {
+    public static void createQRCodeImage(
+            final String content,
+            final int size
+    ) {
         createQRCodeImage(content, size, null, null);
     }
 
@@ -70,7 +77,11 @@ public final class ZXingQRCodeUtils {
      * @param size     图片宽高大小 ( 正方形 px )
      * @param callback 生成结果回调
      */
-    public static void createQRCodeImage(final String content, final int size, final QRResultCallback callback) {
+    public static void createQRCodeImage(
+            final String content,
+            final int size,
+            final QRResultCallback callback
+    ) {
         createQRCodeImage(content, size, null, callback);
     }
 
@@ -81,7 +92,12 @@ public final class ZXingQRCodeUtils {
      * @param logo     中间 Logo
      * @param callback 生成结果回调
      */
-    public static void createQRCodeImage(final String content, final int size, final Bitmap logo, final QRResultCallback callback) {
+    public static void createQRCodeImage(
+            final String content,
+            final int size,
+            final Bitmap logo,
+            final QRResultCallback callback
+    ) {
         DevThreadManager.getInstance(10).execute(new Runnable() {
             @Override
             public void run() {
@@ -125,7 +141,11 @@ public final class ZXingQRCodeUtils {
          * @param result  识别数据 {@link Result}
          * @param e       异常信息
          */
-        void onResult(boolean success, Result result, Exception e);
+        void onResult(
+                boolean success,
+                Result result,
+                Exception e
+        );
     }
 
     // =
@@ -135,7 +155,10 @@ public final class ZXingQRCodeUtils {
      * @param bitmap   待解析的二维码图片
      * @param callback 解析结果回调
      */
-    public static void decodeQRCode(final Bitmap bitmap, final QRScanCallback callback) {
+    public static void decodeQRCode(
+            final Bitmap bitmap,
+            final QRScanCallback callback
+    ) {
         if (bitmap == null) {
             if (callback != null) {
                 callback.onResult(false, null, new Exception("bitmap is null"));
@@ -203,7 +226,10 @@ public final class ZXingQRCodeUtils {
      * @param size    图片宽高大小 ( 正方形 px )
      * @return 二维码图片
      */
-    public static Bitmap syncEncodeQRCode(final String content, final int size) {
+    public static Bitmap syncEncodeQRCode(
+            final String content,
+            final int size
+    ) {
         return syncEncodeQRCode(content, size, Color.BLACK, Color.WHITE);
     }
 
@@ -218,7 +244,12 @@ public final class ZXingQRCodeUtils {
      * @param backgroundColor 二维码图片的背景色
      * @return 二维码图片
      */
-    public static Bitmap syncEncodeQRCode(final String content, final int size, final int foregroundColor, final int backgroundColor) {
+    public static Bitmap syncEncodeQRCode(
+            final String content,
+            final int size,
+            final int foregroundColor,
+            final int backgroundColor
+    ) {
         try {
             BitMatrix matrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, size, size, ENCODE_HINTS);
             int[]     pixels = new int[size * size];
@@ -249,7 +280,10 @@ public final class ZXingQRCodeUtils {
      * @param logo Logo
      * @return 含 Logo 二维码图片
      */
-    public static Bitmap addLogoToQRCode(final Bitmap src, final Bitmap logo) {
+    public static Bitmap addLogoToQRCode(
+            final Bitmap src,
+            final Bitmap logo
+    ) {
         if (src == null || logo == null) return src;
         // 获取图片宽度高度
         int srcWidth   = src.getWidth();

@@ -113,14 +113,20 @@ public final class IToast {
          * @param text       Toast 提示文本
          * @param formatArgs 格式化参数
          */
-        void show(String text, Object... formatArgs);
+        void show(
+                String text,
+                Object... formatArgs
+        );
 
         /**
          * 显示 R.string.id Toast
          * @param resId      R.string.id
          * @param formatArgs 格式化参数
          */
-        void show(@StringRes int resId, Object... formatArgs);
+        void show(
+                @StringRes int resId,
+                Object... formatArgs
+        );
 
         // =
 
@@ -135,7 +141,10 @@ public final class IToast {
          * @param view     Toast 显示的 View
          * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
          */
-        void show(View view, int duration);
+        void show(
+                View view,
+                int duration
+        );
 
         // =
 

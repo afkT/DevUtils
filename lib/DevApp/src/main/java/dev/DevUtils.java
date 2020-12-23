@@ -99,7 +99,11 @@ public final class DevUtils {
         // 设置 Java 模块日志信息在 logcat 输出
         JCLogUtils.setPrint(new JCLogUtils.Print() {
             @Override
-            public void printLog(int logType, String tag, String message) {
+            public void printLog(
+                    int logType,
+                    String tag,
+                    String message
+            ) {
                 switch (logType) {
                     case JCLogUtils.INFO:
                         LogPrintUtils.iTag(tag, message);
@@ -219,7 +223,10 @@ public final class DevUtils {
      * @param runnable    线程任务
      * @param delayMillis 延时执行时间 ( 毫秒 )
      */
-    public static void runOnUiThread(final Runnable runnable, final long delayMillis) {
+    public static void runOnUiThread(
+            final Runnable runnable,
+            final long delayMillis
+    ) {
         HandlerUtils.postRunnable(runnable, delayMillis);
     }
 
@@ -393,7 +400,10 @@ public final class DevUtils {
         // ==============================
 
         @Override
-        public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+        public void onActivityCreated(
+                Activity activity,
+                Bundle savedInstanceState
+        ) {
             setTopActivity(activity);
 
             if (DevUtils.sAbstractActivityLifecycle != null) {
@@ -457,7 +467,10 @@ public final class DevUtils {
         }
 
         @Override
-        public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+        public void onActivitySaveInstanceState(
+                Activity activity,
+                Bundle outState
+        ) {
             if (DevUtils.sAbstractActivityLifecycle != null) {
                 DevUtils.sAbstractActivityLifecycle.onActivitySaveInstanceState(activity, outState);
             }
@@ -608,7 +621,10 @@ public final class DevUtils {
          * @param listener APP 状态改变监听事件
          */
         @Override
-        public void addOnAppStatusChangedListener(final Object object, final OnAppStatusChangedListener listener) {
+        public void addOnAppStatusChangedListener(
+                final Object object,
+                final OnAppStatusChangedListener listener
+        ) {
             mStatusListenerMaps.put(object, listener);
         }
 
@@ -637,7 +653,10 @@ public final class DevUtils {
          * @param listener Activity 销毁通知事件
          */
         @Override
-        public void addOnActivityDestroyedListener(final Activity activity, final OnActivityDestroyedListener listener) {
+        public void addOnActivityDestroyedListener(
+                final Activity activity,
+                final OnActivityDestroyedListener listener
+        ) {
             if (activity == null || listener == null) return;
             Set<OnActivityDestroyedListener> listeners;
             if (!mDestroyedListenerMaps.containsKey(activity)) {
@@ -777,7 +796,10 @@ public final class DevUtils {
          * @param object   key
          * @param listener APP 状态改变监听事件
          */
-        void addOnAppStatusChangedListener(Object object, OnAppStatusChangedListener listener);
+        void addOnAppStatusChangedListener(
+                Object object,
+                OnAppStatusChangedListener listener
+        );
 
         /**
          * 移除 APP 状态改变事件监听
@@ -797,7 +819,10 @@ public final class DevUtils {
          * @param activity {@link Activity}
          * @param listener Activity 销毁通知事件
          */
-        void addOnActivityDestroyedListener(Activity activity, OnActivityDestroyedListener listener);
+        void addOnActivityDestroyedListener(
+                Activity activity,
+                OnActivityDestroyedListener listener
+        );
 
         /**
          * 移除 Activity 销毁通知事件
@@ -883,7 +908,10 @@ public final class DevUtils {
     public static abstract class AbstractActivityLifecycle implements Application.ActivityLifecycleCallbacks {
 
         @Override
-        public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+        public void onActivityCreated(
+                Activity activity,
+                Bundle savedInstanceState
+        ) {
         }
 
         @Override
@@ -903,7 +931,10 @@ public final class DevUtils {
         }
 
         @Override
-        public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+        public void onActivitySaveInstanceState(
+                Activity activity,
+                Bundle outState
+        ) {
         }
 
         @Override

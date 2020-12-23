@@ -68,7 +68,10 @@ abstract class DevBaseContentActivity : DevBaseActivity(), IDevBaseLayout {
      * @param inflater  [LayoutInflater]
      * @param container [ViewGroup]
      */
-    private fun layoutInit(inflater: LayoutInflater, container: ViewGroup?) {
+    private fun layoutInit(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) {
         if (layoutView != null) return
         // 使用 baseLayoutId()
         if (baseLayoutId() != 0) {

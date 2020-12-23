@@ -34,7 +34,10 @@ public final class HttpParamsUtils {
      * @param urlEncode 是否需要 URL 编码
      * @return 拆分后的参数 Map
      */
-    public static Map<String, String> splitParams(final String params, final boolean urlEncode) {
+    public static Map<String, String> splitParams(
+            final String params,
+            final boolean urlEncode
+    ) {
         Map<String, String> mapParams = new HashMap<>();
         if (params != null) {
             // 拆分数据
@@ -89,7 +92,10 @@ public final class HttpParamsUtils {
      * @param urlEncode 是否需要 URL 编码
      * @return 拼接后的参数
      */
-    public static String joinParams(final Map<String, String> mapParams, final boolean urlEncode) {
+    public static String joinParams(
+            final Map<String, String> mapParams,
+            final boolean urlEncode
+    ) {
         if (mapParams != null) {
             int index = 0;
             // =
@@ -126,7 +132,10 @@ public final class HttpParamsUtils {
      * @param urlEncode 是否需要 URL 编码
      * @return 拼接后的参数
      */
-    public static String joinParamsObj(final Map<String, Object> mapParams, final boolean urlEncode) {
+    public static String joinParamsObj(
+            final Map<String, Object> mapParams,
+            final boolean urlEncode
+    ) {
         if (mapParams != null) {
             int index = 0;
             // =
@@ -164,7 +173,12 @@ public final class HttpParamsUtils {
      * @param value     数组 [key] 保存值
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean convertObjToMS(final Map<String, String> mapParams, final String objStr, final String key, final String value) {
+    public static boolean convertObjToMS(
+            final Map<String, String> mapParams,
+            final String objStr,
+            final String key,
+            final String value
+    ) {
         if (mapParams != null) {
             String data = null;
             try {
@@ -186,7 +200,12 @@ public final class HttpParamsUtils {
      * @param value     数组 [key] 保存值
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean convertObjToMO(final Map<String, Object> mapParams, final String objStr, final String key, final Object value) {
+    public static boolean convertObjToMO(
+            final Map<String, Object> mapParams,
+            final String objStr,
+            final String key,
+            final Object value
+    ) {
         if (mapParams != null) {
             Object data = null;
             try {
@@ -219,7 +238,10 @@ public final class HttpParamsUtils {
      * @param enc 编码格式
      * @return 指定编码格式 URL 编码后的字符串
      */
-    public static String urlEncode(final String str, final String enc) {
+    public static String urlEncode(
+            final String str,
+            final String enc
+    ) {
         return StringUtils.urlEncode(str, enc);
     }
 }

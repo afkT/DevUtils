@@ -48,7 +48,10 @@ public final class DESUtils {
      * @param key  密钥
      * @return 加密后的 byte[]
      */
-    public static byte[] encrypt(final byte[] data, final byte[] key) {
+    public static byte[] encrypt(
+            final byte[] data,
+            final byte[] key
+    ) {
         if (data == null || key == null) return null;
         try {
             SecretKey secretKey = new SecretKeySpec(key, "DES");
@@ -67,7 +70,10 @@ public final class DESUtils {
      * @param key  密钥
      * @return 解密后的 byte[]
      */
-    public static byte[] decrypt(final byte[] data, final byte[] key) {
+    public static byte[] decrypt(
+            final byte[] data,
+            final byte[] key
+    ) {
         if (data == null || key == null) return null;
         try {
             SecretKey secretKey = new SecretKeySpec(key, "DES");

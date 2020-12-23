@@ -185,7 +185,10 @@ public final class AccessibilityListenerService extends AccessibilityService {
          * @param event   {@link AccessibilityEvent}
          * @param service {@link AccessibilityListenerService}
          */
-        public abstract void onAccessibilityEvent(AccessibilityEvent event, AccessibilityListenerService service);
+        public abstract void onAccessibilityEvent(
+                AccessibilityEvent event,
+                AccessibilityListenerService service
+        );
 
         /**
          * 系统想要中断 AccessibilityService 返给的响应时会调用

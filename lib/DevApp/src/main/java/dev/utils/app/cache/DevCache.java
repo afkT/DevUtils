@@ -94,7 +94,10 @@ public final class DevCache {
      * @param maxCount 最大存储数量
      * @return {@link DevCache}
      */
-    public static DevCache newCache(final long maxSize, final int maxCount) {
+    public static DevCache newCache(
+            final long maxSize,
+            final int maxCount
+    ) {
         return newCache(FileUtils.getFile(getCachePath(), DEF_FILE_NAME), maxSize, maxCount);
     }
 
@@ -105,7 +108,11 @@ public final class DevCache {
      * @param maxCount 最大存储数量
      * @return {@link DevCache}
      */
-    public static DevCache newCache(final File cacheDir, final long maxSize, final int maxCount) {
+    public static DevCache newCache(
+            final File cacheDir,
+            final long maxSize,
+            final int maxCount
+    ) {
         if (cacheDir == null) return null;
         // 判断是否存在缓存信息
         DevCache manager = sInstanceMaps.get(cacheDir.getAbsoluteFile() + myPid());
@@ -134,7 +141,11 @@ public final class DevCache {
      * @param maxCount 最大存储数量
      * @return {@link DevCache} 缓存工具类对象
      */
-    private DevCache(final File cacheDir, final long maxSize, final int maxCount) {
+    private DevCache(
+            final File cacheDir,
+            final long maxSize,
+            final int maxCount
+    ) {
         Exception e = null;
         if (cacheDir == null) {
             e = new Exception("cacheDir is null");
@@ -177,7 +188,10 @@ public final class DevCache {
      * @param value 保存的 String 数据
      * @return {@code true} success, {@code false} fail
      */
-    public boolean put(final String key, final String value) {
+    public boolean put(
+            final String key,
+            final String value
+    ) {
         File file = mCache.newFile(key);
         if (file == null || value == null) return false;
         BufferedWriter bw = null;
@@ -201,7 +215,11 @@ public final class DevCache {
      * @param saveTime 保存的时间, 单位: 秒
      * @return {@code true} success, {@code false} fail
      */
-    public boolean put(final String key, final String value, final int saveTime) {
+    public boolean put(
+            final String key,
+            final String value,
+            final int saveTime
+    ) {
         if (key != null && value != null) {
             return put(key, DevCacheUtils.newStringWithDateInfo(saveTime, value));
         }
@@ -258,7 +276,10 @@ public final class DevCache {
      * @param value 保存的 JSONObject 数据
      * @return {@code true} success, {@code false} fail
      */
-    public boolean put(final String key, final JSONObject value) {
+    public boolean put(
+            final String key,
+            final JSONObject value
+    ) {
         if (value != null) {
             try {
                 return put(key, value.toString());
@@ -276,7 +297,11 @@ public final class DevCache {
      * @param saveTime 保存的时间, 单位: 秒
      * @return {@code true} success, {@code false} fail
      */
-    public boolean put(final String key, final JSONObject value, final int saveTime) {
+    public boolean put(
+            final String key,
+            final JSONObject value,
+            final int saveTime
+    ) {
         if (value != null) {
             try {
                 return put(key, value.toString(), saveTime);
@@ -314,7 +339,10 @@ public final class DevCache {
      * @param value 保存的 JSONArray 数据
      * @return {@code true} success, {@code false} fail
      */
-    public boolean put(final String key, final JSONArray value) {
+    public boolean put(
+            final String key,
+            final JSONArray value
+    ) {
         if (value != null) {
             try {
                 return put(key, value.toString());
@@ -332,7 +360,11 @@ public final class DevCache {
      * @param saveTime 保存的时间, 单位: 秒
      * @return {@code true} success, {@code false} fail
      */
-    public boolean put(final String key, final JSONArray value, final int saveTime) {
+    public boolean put(
+            final String key,
+            final JSONArray value,
+            final int saveTime
+    ) {
         if (value != null) {
             try {
                 return put(key, value.toString(), saveTime);
@@ -370,7 +402,10 @@ public final class DevCache {
      * @param data 保存的数据
      * @return {@code true} success, {@code false} fail
      */
-    public boolean put(final String key, final byte[] data) {
+    public boolean put(
+            final String key,
+            final byte[] data
+    ) {
         if (key == null || data == null) return false;
         File             file = mCache.newFile(key);
         FileOutputStream fos  = null;
@@ -422,7 +457,11 @@ public final class DevCache {
      * @param saveTime 保存的时间, 单位: 秒
      * @return {@code true} success, {@code false} fail
      */
-    public boolean put(final String key, final byte[] data, final int saveTime) {
+    public boolean put(
+            final String key,
+            final byte[] data,
+            final int saveTime
+    ) {
         return put(key, DevCacheUtils.newByteArrayWithDateInfo(saveTime, data));
     }
 
@@ -468,7 +507,10 @@ public final class DevCache {
      * @param value 保存的 value
      * @return {@code true} success, {@code false} fail
      */
-    public boolean put(final String key, final Serializable value) {
+    public boolean put(
+            final String key,
+            final Serializable value
+    ) {
         return put(key, value, -1);
     }
 
@@ -479,7 +521,11 @@ public final class DevCache {
      * @param saveTime 保存的时间, 单位: 秒
      * @return {@code true} success, {@code false} fail
      */
-    public boolean put(final String key, final Serializable value, final int saveTime) {
+    public boolean put(
+            final String key,
+            final Serializable value,
+            final int saveTime
+    ) {
         ObjectOutputStream oos = null;
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -532,7 +578,10 @@ public final class DevCache {
      * @param value 保存的 bitmap 数据
      * @return {@code true} success, {@code false} fail
      */
-    public boolean put(final String key, final Bitmap value) {
+    public boolean put(
+            final String key,
+            final Bitmap value
+    ) {
         return put(key, DevCacheUtils.bitmapToByte(value));
     }
 
@@ -543,7 +592,11 @@ public final class DevCache {
      * @param saveTime 保存的时间, 单位: 秒
      * @return {@code true} success, {@code false} fail
      */
-    public boolean put(final String key, final Bitmap value, final int saveTime) {
+    public boolean put(
+            final String key,
+            final Bitmap value,
+            final int saveTime
+    ) {
         return put(key, DevCacheUtils.bitmapToByte(value), saveTime);
     }
 
@@ -568,7 +621,10 @@ public final class DevCache {
      * @param value 保存的 drawable 数据
      * @return {@code true} success, {@code false} fail
      */
-    public boolean put(final String key, final Drawable value) {
+    public boolean put(
+            final String key,
+            final Drawable value
+    ) {
         return put(key, DevCacheUtils.drawableToBitmap(value));
     }
 
@@ -579,7 +635,11 @@ public final class DevCache {
      * @param saveTime 保存的时间, 单位: 秒
      * @return {@code true} success, {@code false} fail
      */
-    public boolean put(final String key, final Drawable value, final int saveTime) {
+    public boolean put(
+            final String key,
+            final Drawable value,
+            final int saveTime
+    ) {
         return put(key, DevCacheUtils.drawableToBitmap(value), saveTime);
     }
 

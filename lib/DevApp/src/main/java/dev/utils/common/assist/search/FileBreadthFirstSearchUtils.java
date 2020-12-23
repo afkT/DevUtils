@@ -73,7 +73,10 @@ public final class FileBreadthFirstSearchUtils {
      */
     private class FileQueue {
 
-        FileQueue(File file, FileItem fileItem) {
+        FileQueue(
+                File file,
+                FileItem fileItem
+        ) {
             this.file = file;
             this.fileItem = fileItem;
         }
@@ -111,7 +114,11 @@ public final class FileBreadthFirstSearchUtils {
          * @param startTime    开始扫描时间
          * @param endTime      扫描结束时间
          */
-        void onEndListener(FileItem rootFileItem, long startTime, long endTime);
+        void onEndListener(
+                FileItem rootFileItem,
+                long startTime,
+                long endTime
+        );
     }
 
     // 搜索处理接口
@@ -136,7 +143,11 @@ public final class FileBreadthFirstSearchUtils {
         }
 
         @Override
-        public void onEndListener(FileItem rootFileItem, long startTime, long endTime) {
+        public void onEndListener(
+                FileItem rootFileItem,
+                long startTime,
+                long endTime
+        ) {
             // 表示非搜索中
             mIsRunning = false;
             // 触发回调
@@ -239,21 +250,21 @@ public final class FileBreadthFirstSearchUtils {
     // 根目录对象
     private FileItem                       mRootFileItem;
     // 判断是否运行中
-    private boolean                        mIsRunning           = false;
+    private boolean                        mIsRunning = false;
     // 是否停止搜索
-    private boolean                        mIsStop              = false;
+    private boolean                        mIsStop = false;
     // 开始搜索时间
-    private long                           mStartTime           = 0L;
+    private long                           mStartTime = 0L;
     // 结束搜索时间
-    private long                           mEndTime             = 0L;
+    private long                           mEndTime = 0L;
     // 延迟时间
-    private long                           mDelayTime           = 50L;
+    private long                           mDelayTime = 50L;
     // 任务队列同时进行数量
     private int                            mQueueSameTimeNumber = 5;
     // 线程池
-    private ExecutorService                mExecutor            = Executors.newCachedThreadPool();
+    private ExecutorService                mExecutor = Executors.newCachedThreadPool();
     // 任务队列
-    private LinkedBlockingQueue<FileQueue> mTaskQueue           = new LinkedBlockingQueue<>();
+    private LinkedBlockingQueue<FileQueue> mTaskQueue = new LinkedBlockingQueue<>();
 
     /**
      * 搜索目录
@@ -315,7 +326,10 @@ public final class FileBreadthFirstSearchUtils {
      * @param file     文件
      * @param fileItem 所在文件夹信息对象 ( 上一级目录 )
      */
-    private void queryFile(final File file, final FileItem fileItem) {
+    private void queryFile(
+            final File file,
+            final FileItem fileItem
+    ) {
         try {
             if (mIsStop) {
                 return;

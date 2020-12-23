@@ -25,14 +25,20 @@ public interface ILogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    void d(String message, Object... args);
+    void d(
+            String message,
+            Object... args
+    );
 
     /**
      * 打印 Log.ERROR
      * @param message 日志信息
      * @param args    格式化参数
      */
-    void e(String message, Object... args);
+    void e(
+            String message,
+            Object... args
+    );
 
     /**
      * 打印 Log.ERROR
@@ -46,35 +52,51 @@ public interface ILogEngine {
      * @param message   日志信息
      * @param args      格式化参数
      */
-    void e(Throwable throwable, String message, Object... args);
+    void e(
+            Throwable throwable,
+            String message,
+            Object... args
+    );
 
     /**
      * 打印 Log.WARN
      * @param message 日志信息
      * @param args    格式化参数
      */
-    void w(String message, Object... args);
+    void w(
+            String message,
+            Object... args
+    );
 
     /**
      * 打印 Log.INFO
      * @param message 日志信息
      * @param args    格式化参数
      */
-    void i(String message, Object... args);
+    void i(
+            String message,
+            Object... args
+    );
 
     /**
      * 打印 Log.VERBOSE
      * @param message 日志信息
      * @param args    格式化参数
      */
-    void v(String message, Object... args);
+    void v(
+            String message,
+            Object... args
+    );
 
     /**
      * 打印 Log.ASSERT
      * @param message 日志信息
      * @param args    格式化参数
      */
-    void wtf(String message, Object... args);
+    void wtf(
+            String message,
+            Object... args
+    );
 
     // =
 
@@ -100,7 +122,11 @@ public interface ILogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    void dTag(String tag, String message, Object... args);
+    void dTag(
+            String tag,
+            String message,
+            Object... args
+    );
 
     /**
      * 打印 Log.ERROR
@@ -108,14 +134,21 @@ public interface ILogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    void eTag(String tag, String message, Object... args);
+    void eTag(
+            String tag,
+            String message,
+            Object... args
+    );
 
     /**
      * 打印 Log.ERROR
      * @param tag       日志 TAG
      * @param throwable 异常
      */
-    void eTag(String tag, Throwable throwable);
+    void eTag(
+            String tag,
+            Throwable throwable
+    );
 
     /**
      * 打印 Log.ERROR
@@ -124,7 +157,12 @@ public interface ILogEngine {
      * @param message   日志信息
      * @param args      格式化参数
      */
-    void eTag(String tag, Throwable throwable, String message, Object... args);
+    void eTag(
+            String tag,
+            Throwable throwable,
+            String message,
+            Object... args
+    );
 
     /**
      * 打印 Log.WARN
@@ -132,7 +170,11 @@ public interface ILogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    void wTag(String tag, String message, Object... args);
+    void wTag(
+            String tag,
+            String message,
+            Object... args
+    );
 
     /**
      * 打印 Log.INFO
@@ -140,7 +182,11 @@ public interface ILogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    void iTag(String tag, String message, Object... args);
+    void iTag(
+            String tag,
+            String message,
+            Object... args
+    );
 
     /**
      * 打印 Log.VERBOSE
@@ -148,7 +194,11 @@ public interface ILogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    void vTag(String tag, String message, Object... args);
+    void vTag(
+            String tag,
+            String message,
+            Object... args
+    );
 
     /**
      * 打印 Log.ASSERT
@@ -156,7 +206,11 @@ public interface ILogEngine {
      * @param message 日志信息
      * @param args    格式化参数
      */
-    void wtfTag(String tag, String message, Object... args);
+    void wtfTag(
+            String tag,
+            String message,
+            Object... args
+    );
 
     // =
 
@@ -165,12 +219,18 @@ public interface ILogEngine {
      * @param tag  日志 TAG
      * @param json JSON 格式字符串
      */
-    void jsonTag(String tag, String json);
+    void jsonTag(
+            String tag,
+            String json
+    );
 
     /**
      * 格式化 XML 格式数据, 并打印
      * @param tag 日志 TAG
      * @param xml XML 格式字符串
      */
-    void xmlTag(String tag, String xml);
+    void xmlTag(
+            String tag,
+            String xml
+    );
 }

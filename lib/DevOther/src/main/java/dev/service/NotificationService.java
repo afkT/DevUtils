@@ -82,7 +82,11 @@ public final class NotificationService extends NotificationListenerService {
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public int onStartCommand(
+            Intent intent,
+            int flags,
+            int startId
+    ) {
         LogPrintUtils.dTag(TAG, "onStartCommand");
 
         return sListener == null ? START_STICKY : sListener.onStartCommand(this, intent, flags, startId);
@@ -209,7 +213,12 @@ public final class NotificationService extends NotificationListenerService {
          * use for the service's current started state.  It may be one of the
          * constants associated with the {@link #START_CONTINUATION_MASK} bits.
          */
-        int onStartCommand(NotificationService service, Intent intent, int flags, int startId);
+        int onStartCommand(
+                NotificationService service,
+                Intent intent,
+                int flags,
+                int startId
+        );
 
         /**
          * 当系统收到新的通知后触发回调

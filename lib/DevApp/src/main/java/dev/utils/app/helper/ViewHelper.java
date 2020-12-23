@@ -106,7 +106,10 @@ public final class ViewHelper {
      * @param delayMillis 延迟时间
      * @return {@link ViewHelper}
      */
-    public ViewHelper postRunnable(final Runnable runnable, final long delayMillis) {
+    public ViewHelper postRunnable(
+            final Runnable runnable,
+            final long delayMillis
+    ) {
         HandlerUtils.postRunnable(runnable, delayMillis);
         return this;
     }
@@ -119,7 +122,12 @@ public final class ViewHelper {
      * @param interval    轮询时间
      * @return {@link ViewHelper}
      */
-    public ViewHelper postRunnable(final Runnable runnable, final long delayMillis, final int number, final int interval) {
+    public ViewHelper postRunnable(
+            final Runnable runnable,
+            final long delayMillis,
+            final int number,
+            final int interval
+    ) {
         HandlerUtils.postRunnable(runnable, delayMillis, number, interval);
         return this;
     }
@@ -133,7 +141,13 @@ public final class ViewHelper {
      * @param onEndListener 结束通知
      * @return {@link ViewHelper}
      */
-    public ViewHelper postRunnable(final Runnable runnable, final long delayMillis, final int number, final int interval, final HandlerUtils.OnEndListener onEndListener) {
+    public ViewHelper postRunnable(
+            final Runnable runnable,
+            final long delayMillis,
+            final int number,
+            final int interval,
+            final HandlerUtils.OnEndListener onEndListener
+    ) {
         HandlerUtils.postRunnable(runnable, delayMillis, number, interval, onEndListener);
         return this;
     }
@@ -158,7 +172,10 @@ public final class ViewHelper {
      * @param text Hint text
      * @return {@link ViewHelper}
      */
-    public ViewHelper setHint(final View view, final CharSequence text) {
+    public ViewHelper setHint(
+            final View view,
+            final CharSequence text
+    ) {
         TextViewUtils.setHint(view, text);
         return this;
     }
@@ -169,7 +186,10 @@ public final class ViewHelper {
      * @param text TextView text
      * @return {@link ViewHelper}
      */
-    public ViewHelper setText(final View view, final CharSequence text) {
+    public ViewHelper setText(
+            final View view,
+            final CharSequence text
+    ) {
         if (view instanceof EditText) {
             EditTextUtils.setText(EditTextUtils.getEditText(view), text);
         } else {
@@ -184,7 +204,10 @@ public final class ViewHelper {
      * @param views View(TextView)[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTexts(final CharSequence text, final View... views) {
+    public ViewHelper setTexts(
+            final CharSequence text,
+            final View... views
+    ) {
         TextViewUtils.setTexts(text, views);
         return this;
     }
@@ -195,7 +218,10 @@ public final class ViewHelper {
      * @param content Html content
      * @return {@link ViewHelper}
      */
-    public ViewHelper setHtmlText(final View view, final String content) {
+    public ViewHelper setHtmlText(
+            final View view,
+            final String content
+    ) {
         TextViewUtils.setHtmlText(view, content);
         return this;
     }
@@ -206,7 +232,10 @@ public final class ViewHelper {
      * @param views   View(TextView)[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setHtmlTexts(final String content, final View... views) {
+    public ViewHelper setHtmlTexts(
+            final String content,
+            final View... views
+    ) {
         TextViewUtils.setHtmlTexts(content, views);
         return this;
     }
@@ -217,7 +246,10 @@ public final class ViewHelper {
      * @param color R.color.id
      * @return {@link ViewHelper}
      */
-    public ViewHelper setHintTextColor(final View view, @ColorInt final int color) {
+    public ViewHelper setHintTextColor(
+            final View view,
+            @ColorInt final int color
+    ) {
         TextViewUtils.setHintTextColor(view, color);
         return this;
     }
@@ -228,7 +260,10 @@ public final class ViewHelper {
      * @param colors {@link ColorStateList}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setHintTextColor(final View view, final ColorStateList colors) {
+    public ViewHelper setHintTextColor(
+            final View view,
+            final ColorStateList colors
+    ) {
         TextViewUtils.setHintTextColor(view, colors);
         return this;
     }
@@ -239,7 +274,10 @@ public final class ViewHelper {
      * @param views View(TextView)[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setHintTextColors(@ColorInt final int color, final View... views) {
+    public ViewHelper setHintTextColors(
+            @ColorInt final int color,
+            final View... views
+    ) {
         TextViewUtils.setHintTextColors(color, views);
         return this;
     }
@@ -250,7 +288,10 @@ public final class ViewHelper {
      * @param views  View(TextView)[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setHintTextColors(final ColorStateList colors, final View... views) {
+    public ViewHelper setHintTextColors(
+            final ColorStateList colors,
+            final View... views
+    ) {
         TextViewUtils.setHintTextColors(colors, views);
         return this;
     }
@@ -261,7 +302,10 @@ public final class ViewHelper {
      * @param color R.color.id
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTextColor(final View view, @ColorInt final int color) {
+    public ViewHelper setTextColor(
+            final View view,
+            @ColorInt final int color
+    ) {
         TextViewUtils.setTextColor(view, color);
         return this;
     }
@@ -272,7 +316,10 @@ public final class ViewHelper {
      * @param colors {@link ColorStateList}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTextColor(final View view, final ColorStateList colors) {
+    public ViewHelper setTextColor(
+            final View view,
+            final ColorStateList colors
+    ) {
         TextViewUtils.setTextColor(view, colors);
         return this;
     }
@@ -283,7 +330,10 @@ public final class ViewHelper {
      * @param views View(TextView)[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTextColors(@ColorInt final int color, final View... views) {
+    public ViewHelper setTextColors(
+            @ColorInt final int color,
+            final View... views
+    ) {
         TextViewUtils.setTextColors(color, views);
         return this;
     }
@@ -294,7 +344,10 @@ public final class ViewHelper {
      * @param views  View(TextView)[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTextColors(final ColorStateList colors, final View... views) {
+    public ViewHelper setTextColors(
+            final ColorStateList colors,
+            final View... views
+    ) {
         TextViewUtils.setTextColors(colors, views);
         return this;
     }
@@ -305,7 +358,10 @@ public final class ViewHelper {
      * @param typeface {@link Typeface} 字体样式
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTypeface(final View view, final Typeface typeface) {
+    public ViewHelper setTypeface(
+            final View view,
+            final Typeface typeface
+    ) {
         TextViewUtils.setTypeface(view, typeface);
         return this;
     }
@@ -316,7 +372,10 @@ public final class ViewHelper {
      * @param size 字体大小
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTextSizeByPx(final View view, final float size) {
+    public ViewHelper setTextSizeByPx(
+            final View view,
+            final float size
+    ) {
         TextViewUtils.setTextSizeByPx(view, size);
         return this;
     }
@@ -327,7 +386,10 @@ public final class ViewHelper {
      * @param size 字体大小
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTextSizeBySp(final View view, final float size) {
+    public ViewHelper setTextSizeBySp(
+            final View view,
+            final float size
+    ) {
         TextViewUtils.setTextSizeBySp(view, size);
         return this;
     }
@@ -338,7 +400,10 @@ public final class ViewHelper {
      * @param size 字体大小
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTextSizeByDp(final View view, final float size) {
+    public ViewHelper setTextSizeByDp(
+            final View view,
+            final float size
+    ) {
         TextViewUtils.setTextSizeByDp(view, size);
         return this;
     }
@@ -349,7 +414,10 @@ public final class ViewHelper {
      * @param size 字体大小
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTextSizeByIn(final View view, final float size) {
+    public ViewHelper setTextSizeByIn(
+            final View view,
+            final float size
+    ) {
         TextViewUtils.setTextSizeByIn(view, size);
         return this;
     }
@@ -361,7 +429,11 @@ public final class ViewHelper {
      * @param size 字体大小
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTextSize(final View view, final int unit, final float size) {
+    public ViewHelper setTextSize(
+            final View view,
+            final int unit,
+            final float size
+    ) {
         TextViewUtils.setTextSize(view, unit, size);
         return this;
     }
@@ -373,7 +445,11 @@ public final class ViewHelper {
      * @param size  字体大小
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTextSizes(final View[] views, final int unit, final float size) {
+    public ViewHelper setTextSizes(
+            final View[] views,
+            final int unit,
+            final float size
+    ) {
         TextViewUtils.setTextSizes(views, unit, size);
         return this;
     }
@@ -394,7 +470,10 @@ public final class ViewHelper {
      * @param flags flags
      * @return {@link ViewHelper}
      */
-    public ViewHelper setPaintFlags(final View view, final int flags) {
+    public ViewHelper setPaintFlags(
+            final View view,
+            final int flags
+    ) {
         TextViewUtils.setPaintFlags(view, flags);
         return this;
     }
@@ -425,7 +504,10 @@ public final class ViewHelper {
      * @param isBold {@code true} yes, {@code false} no
      * @return {@link ViewHelper}
      */
-    public ViewHelper setBold(final View view, final boolean isBold) {
+    public ViewHelper setBold(
+            final View view,
+            final boolean isBold
+    ) {
         TextViewUtils.setBold(view, isBold);
         return this;
     }
@@ -437,7 +519,11 @@ public final class ViewHelper {
      * @param isBold   {@code true} yes, {@code false} no
      * @return {@link ViewHelper}
      */
-    public ViewHelper setBold(final View view, final Typeface typeface, final boolean isBold) {
+    public ViewHelper setBold(
+            final View view,
+            final Typeface typeface,
+            final boolean isBold
+    ) {
         TextViewUtils.setBold(view, typeface, isBold);
         return this;
     }
@@ -458,7 +544,10 @@ public final class ViewHelper {
      * @param isAntiAlias 是否消除锯齿
      * @return {@link ViewHelper}
      */
-    public ViewHelper setUnderlineText(final View view, final boolean isAntiAlias) {
+    public ViewHelper setUnderlineText(
+            final View view,
+            final boolean isAntiAlias
+    ) {
         TextViewUtils.setUnderlineText(view, isAntiAlias);
         return this;
     }
@@ -479,7 +568,10 @@ public final class ViewHelper {
      * @param isAntiAlias 是否消除锯齿
      * @return {@link ViewHelper}
      */
-    public ViewHelper setStrikeThruText(final View view, final boolean isAntiAlias) {
+    public ViewHelper setStrikeThruText(
+            final View view,
+            final boolean isAntiAlias
+    ) {
         TextViewUtils.setStrikeThruText(view, isAntiAlias);
         return this;
     }
@@ -490,7 +582,10 @@ public final class ViewHelper {
      * @param letterSpacing 文字水平间距值
      * @return {@link ViewHelper}
      */
-    public ViewHelper setLetterSpacing(final View view, final float letterSpacing) {
+    public ViewHelper setLetterSpacing(
+            final View view,
+            final float letterSpacing
+    ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             TextViewUtils.setLetterSpacing(view, letterSpacing);
         }
@@ -503,7 +598,10 @@ public final class ViewHelper {
      * @param lineSpacing 文字行间距 ( 行高 ), android:lineSpacingExtra
      * @return {@link ViewHelper}
      */
-    public ViewHelper setLineSpacing(final View view, final float lineSpacing) {
+    public ViewHelper setLineSpacing(
+            final View view,
+            final float lineSpacing
+    ) {
         TextViewUtils.setLineSpacing(view, lineSpacing);
         return this;
     }
@@ -515,7 +613,11 @@ public final class ViewHelper {
      * @param multiplier  行间距倍数, android:lineSpacingMultiplier
      * @return {@link ViewHelper}
      */
-    public ViewHelper setLineSpacingAndMultiplier(final View view, final float lineSpacing, final float multiplier) {
+    public ViewHelper setLineSpacingAndMultiplier(
+            final View view,
+            final float lineSpacing,
+            final float multiplier
+    ) {
         TextViewUtils.setLineSpacingAndMultiplier(view, lineSpacing, multiplier);
         return this;
     }
@@ -526,7 +628,10 @@ public final class ViewHelper {
      * @param size 缩放比例
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTextScaleX(final View view, final float size) {
+    public ViewHelper setTextScaleX(
+            final View view,
+            final float size
+    ) {
         TextViewUtils.setTextScaleX(view, size);
         return this;
     }
@@ -537,7 +642,10 @@ public final class ViewHelper {
      * @param includePadding 是否保留字体留白间隙区域
      * @return {@link ViewHelper}
      */
-    public ViewHelper setIncludeFontPadding(final View view, final boolean includePadding) {
+    public ViewHelper setIncludeFontPadding(
+            final View view,
+            final boolean includePadding
+    ) {
         TextViewUtils.setIncludeFontPadding(view, includePadding);
         return this;
     }
@@ -548,7 +656,10 @@ public final class ViewHelper {
      * @param type 类型
      * @return {@link ViewHelper}
      */
-    public ViewHelper setInputType(final View view, final int type) {
+    public ViewHelper setInputType(
+            final View view,
+            final int type
+    ) {
         TextViewUtils.setInputType(view, type);
         return this;
     }
@@ -559,7 +670,10 @@ public final class ViewHelper {
      * @param imeOptions 软键盘按钮类型
      * @return {@link ViewHelper}
      */
-    public ViewHelper setImeOptions(final View view, final int imeOptions) {
+    public ViewHelper setImeOptions(
+            final View view,
+            final int imeOptions
+    ) {
         TextViewUtils.setImeOptions(view, imeOptions);
         return this;
     }
@@ -570,7 +684,10 @@ public final class ViewHelper {
      * @param lines 行数
      * @return {@link ViewHelper}
      */
-    public ViewHelper setLines(final View view, final int lines) {
+    public ViewHelper setLines(
+            final View view,
+            final int lines
+    ) {
         TextViewUtils.setLines(view, lines);
         return this;
     }
@@ -581,7 +698,10 @@ public final class ViewHelper {
      * @param maxLines 最大行数
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMaxLines(final View view, final int maxLines) {
+    public ViewHelper setMaxLines(
+            final View view,
+            final int maxLines
+    ) {
         TextViewUtils.setMaxLines(view, maxLines);
         return this;
     }
@@ -592,7 +712,10 @@ public final class ViewHelper {
      * @param minLines 最小行数
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMinLines(final View view, final int minLines) {
+    public ViewHelper setMinLines(
+            final View view,
+            final int minLines
+    ) {
         TextViewUtils.setMinLines(view, minLines);
         return this;
     }
@@ -603,7 +726,10 @@ public final class ViewHelper {
      * @param maxEms 最大字符
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMaxEms(final View view, final int maxEms) {
+    public ViewHelper setMaxEms(
+            final View view,
+            final int maxEms
+    ) {
         TextViewUtils.setMaxEms(view, maxEms);
         return this;
     }
@@ -614,7 +740,10 @@ public final class ViewHelper {
      * @param minEms 最小字符
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMinEms(final View view, final int minEms) {
+    public ViewHelper setMinEms(
+            final View view,
+            final int minEms
+    ) {
         TextViewUtils.setMinEms(view, minEms);
         return this;
     }
@@ -625,7 +754,10 @@ public final class ViewHelper {
      * @param ems  字符
      * @return {@link ViewHelper}
      */
-    public ViewHelper setEms(final View view, final int ems) {
+    public ViewHelper setEms(
+            final View view,
+            final int ems
+    ) {
         TextViewUtils.setEms(view, ems);
         return this;
     }
@@ -636,7 +768,10 @@ public final class ViewHelper {
      * @param where {@link TextUtils.TruncateAt}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setEllipsize(final View view, final TextUtils.TruncateAt where) {
+    public ViewHelper setEllipsize(
+            final View view,
+            final TextUtils.TruncateAt where
+    ) {
         TextViewUtils.setEllipsize(view, where);
         return this;
     }
@@ -647,7 +782,10 @@ public final class ViewHelper {
      * @param mask {@link android.text.util.Linkify}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setAutoLinkMask(final View view, final int mask) {
+    public ViewHelper setAutoLinkMask(
+            final View view,
+            final int mask
+    ) {
         TextViewUtils.setAutoLinkMask(view, mask);
         return this;
     }
@@ -658,7 +796,10 @@ public final class ViewHelper {
      * @param allCaps 是否全部大写
      * @return {@link ViewHelper}
      */
-    public ViewHelper setAllCaps(final View view, final boolean allCaps) {
+    public ViewHelper setAllCaps(
+            final View view,
+            final boolean allCaps
+    ) {
         TextViewUtils.setAllCaps(view, allCaps);
         return this;
     }
@@ -669,7 +810,10 @@ public final class ViewHelper {
      * @param gravity {@link android.view.Gravity}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTextGravity(final View view, final int gravity) {
+    public ViewHelper setTextGravity(
+            final View view,
+            final int gravity
+    ) {
         TextViewUtils.setGravity(view, gravity);
         return this;
     }
@@ -685,7 +829,11 @@ public final class ViewHelper {
      * @param isSelect 是否设置光标
      * @return {@link ViewHelper}
      */
-    public ViewHelper setText(final EditText editText, final CharSequence content, final boolean isSelect) {
+    public ViewHelper setText(
+            final EditText editText,
+            final CharSequence content,
+            final boolean isSelect
+    ) {
         EditTextUtils.setText(editText, content, isSelect);
         return this;
     }
@@ -697,7 +845,11 @@ public final class ViewHelper {
      * @param isSelect 是否设置光标
      * @return {@link ViewHelper}
      */
-    public ViewHelper insert(final EditText editText, final CharSequence content, final boolean isSelect) {
+    public ViewHelper insert(
+            final EditText editText,
+            final CharSequence content,
+            final boolean isSelect
+    ) {
         EditTextUtils.insert(editText, content, isSelect);
         return this;
     }
@@ -710,7 +862,12 @@ public final class ViewHelper {
      * @param isSelect 是否设置光标
      * @return {@link ViewHelper}
      */
-    public ViewHelper insert(final EditText editText, final CharSequence content, final int start, final boolean isSelect) {
+    public ViewHelper insert(
+            final EditText editText,
+            final CharSequence content,
+            final int start,
+            final boolean isSelect
+    ) {
         EditTextUtils.insert(editText, content, start, isSelect);
         return this;
     }
@@ -721,7 +878,10 @@ public final class ViewHelper {
      * @param maxLength 长度限制
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMaxLength(final View view, final int maxLength) {
+    public ViewHelper setMaxLength(
+            final View view,
+            final int maxLength
+    ) {
         if (view instanceof EditText) {
             EditTextUtils.setMaxLength(EditTextUtils.getEditText(view), maxLength);
         } else {
@@ -737,7 +897,11 @@ public final class ViewHelper {
      * @param maxLength 长度限制
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMaxLengthAndText(final View view, final CharSequence content, final int maxLength) {
+    public ViewHelper setMaxLengthAndText(
+            final View view,
+            final CharSequence content,
+            final int maxLength
+    ) {
         if (view instanceof EditText) {
             EditTextUtils.setMaxLengthAndText(EditTextUtils.getEditText(view), content, maxLength);
         } else {
@@ -752,7 +916,10 @@ public final class ViewHelper {
      * @param visible  是否显示光标
      * @return {@link ViewHelper}
      */
-    public ViewHelper setCursorVisible(final EditText editText, final boolean visible) {
+    public ViewHelper setCursorVisible(
+            final EditText editText,
+            final boolean visible
+    ) {
         EditTextUtils.setCursorVisible(editText, visible);
         return this;
     }
@@ -783,7 +950,10 @@ public final class ViewHelper {
      * @param index    光标位置
      * @return {@link ViewHelper}
      */
-    public ViewHelper setSelection(final EditText editText, final int index) {
+    public ViewHelper setSelection(
+            final EditText editText,
+            final int index
+    ) {
         EditTextUtils.setSelection(editText, index);
         return this;
     }
@@ -796,7 +966,10 @@ public final class ViewHelper {
      * @param method {@link TransformationMethod}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTransformationMethod(final View view, final TransformationMethod method) {
+    public ViewHelper setTransformationMethod(
+            final View view,
+            final TransformationMethod method
+    ) {
         if (view instanceof EditText) {
             EditTextUtils.setTransformationMethod(EditTextUtils.getEditText(view), method);
         } else {
@@ -811,7 +984,10 @@ public final class ViewHelper {
      * @param isDisplayPassword 是否显示密码
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTransformationMethod(final View view, final boolean isDisplayPassword) {
+    public ViewHelper setTransformationMethod(
+            final View view,
+            final boolean isDisplayPassword
+    ) {
         if (view instanceof EditText) {
             EditTextUtils.setTransformationMethod(EditTextUtils.getEditText(view), isDisplayPassword);
         } else {
@@ -827,7 +1003,11 @@ public final class ViewHelper {
      * @param isSelectBottom    是否设置光标到最后
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTransformationMethod(final EditText editText, final boolean isDisplayPassword, final boolean isSelectBottom) {
+    public ViewHelper setTransformationMethod(
+            final EditText editText,
+            final boolean isDisplayPassword,
+            final boolean isSelectBottom
+    ) {
         EditTextUtils.setTransformationMethod(editText, isDisplayPassword, isSelectBottom);
         return this;
     }
@@ -840,7 +1020,10 @@ public final class ViewHelper {
      * @param watcher  输入监听
      * @return {@link ViewHelper}
      */
-    public ViewHelper addTextChangedListener(final EditText editText, final TextWatcher watcher) {
+    public ViewHelper addTextChangedListener(
+            final EditText editText,
+            final TextWatcher watcher
+    ) {
         EditTextUtils.addTextChangedListener(editText, watcher);
         return this;
     }
@@ -851,7 +1034,10 @@ public final class ViewHelper {
      * @param watcher  输入监听
      * @return {@link ViewHelper}
      */
-    public ViewHelper removeTextChangedListener(final EditText editText, final TextWatcher watcher) {
+    public ViewHelper removeTextChangedListener(
+            final EditText editText,
+            final TextWatcher watcher
+    ) {
         EditTextUtils.removeTextChangedListener(editText, watcher);
         return this;
     }
@@ -862,7 +1048,10 @@ public final class ViewHelper {
      * @param keyListener {@link KeyListener}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setKeyListener(final EditText editText, final KeyListener keyListener) {
+    public ViewHelper setKeyListener(
+            final EditText editText,
+            final KeyListener keyListener
+    ) {
         EditTextUtils.setKeyListener(editText, keyListener);
         return this;
     }
@@ -873,7 +1062,10 @@ public final class ViewHelper {
      * @param accepted 允许输入的内容, 如: 0123456789
      * @return {@link ViewHelper}
      */
-    public ViewHelper setKeyListener(final EditText editText, final String accepted) {
+    public ViewHelper setKeyListener(
+            final EditText editText,
+            final String accepted
+    ) {
         EditTextUtils.setKeyListener(editText, accepted);
         return this;
     }
@@ -884,7 +1076,10 @@ public final class ViewHelper {
      * @param accepted 允许输入的内容
      * @return {@link ViewHelper}
      */
-    public ViewHelper setKeyListener(final EditText editText, final char[] accepted) {
+    public ViewHelper setKeyListener(
+            final EditText editText,
+            final char[] accepted
+    ) {
         EditTextUtils.setKeyListener(editText, accepted);
         return this;
     }
@@ -899,7 +1094,10 @@ public final class ViewHelper {
      * @param adjustViewBounds 是否调整此视图的边界以保持可绘制的原始纵横比
      * @return {@link ViewHelper}
      */
-    public ViewHelper setAdjustViewBounds(final ImageView imageView, final boolean adjustViewBounds) {
+    public ViewHelper setAdjustViewBounds(
+            final ImageView imageView,
+            final boolean adjustViewBounds
+    ) {
         ImageViewUtils.setAdjustViewBounds(imageView, adjustViewBounds);
         return this;
     }
@@ -910,7 +1108,10 @@ public final class ViewHelper {
      * @param maxHeight 最大高度
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMaxHeight(final ImageView imageView, final int maxHeight) {
+    public ViewHelper setMaxHeight(
+            final ImageView imageView,
+            final int maxHeight
+    ) {
         ImageViewUtils.setMaxHeight(imageView, maxHeight);
         return this;
     }
@@ -921,7 +1122,10 @@ public final class ViewHelper {
      * @param maxWidth  最大宽度
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMaxWidth(final ImageView imageView, final int maxWidth) {
+    public ViewHelper setMaxWidth(
+            final ImageView imageView,
+            final int maxWidth
+    ) {
         ImageViewUtils.setMaxWidth(imageView, maxWidth);
         return this;
     }
@@ -934,7 +1138,10 @@ public final class ViewHelper {
      * @param background 背景图片
      * @return {@link ViewHelper}
      */
-    public ViewHelper setBackground(final View view, final Drawable background) {
+    public ViewHelper setBackground(
+            final View view,
+            final Drawable background
+    ) {
         ViewUtils.setBackground(view, background);
         return this;
     }
@@ -945,7 +1152,10 @@ public final class ViewHelper {
      * @param color 背景颜色
      * @return {@link ViewHelper}
      */
-    public ViewHelper setBackgroundColor(final View view, @ColorInt final int color) {
+    public ViewHelper setBackgroundColor(
+            final View view,
+            @ColorInt final int color
+    ) {
         ViewUtils.setBackgroundColor(view, color);
         return this;
     }
@@ -956,7 +1166,10 @@ public final class ViewHelper {
      * @param resId resource identifier
      * @return {@link ViewHelper}
      */
-    public ViewHelper setBackgroundResource(final View view, @DrawableRes final int resId) {
+    public ViewHelper setBackgroundResource(
+            final View view,
+            @DrawableRes final int resId
+    ) {
         ViewUtils.setBackgroundResource(view, resId);
         return this;
     }
@@ -967,7 +1180,10 @@ public final class ViewHelper {
      * @param tint 着色颜色
      * @return {@link ViewHelper}
      */
-    public ViewHelper setBackgroundTintList(final View view, final ColorStateList tint) {
+    public ViewHelper setBackgroundTintList(
+            final View view,
+            final ColorStateList tint
+    ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ViewUtils.setBackgroundTintList(view, tint);
         }
@@ -980,7 +1196,10 @@ public final class ViewHelper {
      * @param tintMode 着色模式 {@link PorterDuff.Mode}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setBackgroundTintMode(final View view, final PorterDuff.Mode tintMode) {
+    public ViewHelper setBackgroundTintMode(
+            final View view,
+            final PorterDuff.Mode tintMode
+    ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ViewUtils.setBackgroundTintMode(view, tintMode);
         }
@@ -993,7 +1212,10 @@ public final class ViewHelper {
      * @param foreground 前景图片
      * @return {@link ViewHelper}
      */
-    public ViewHelper setForeground(final View view, final Drawable foreground) {
+    public ViewHelper setForeground(
+            final View view,
+            final Drawable foreground
+    ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             ViewUtils.setForeground(view, foreground);
         }
@@ -1006,7 +1228,10 @@ public final class ViewHelper {
      * @param gravity 重心
      * @return {@link ViewHelper}
      */
-    public ViewHelper setForegroundGravity(final View view, final int gravity) {
+    public ViewHelper setForegroundGravity(
+            final View view,
+            final int gravity
+    ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             ViewUtils.setForegroundGravity(view, gravity);
         }
@@ -1019,7 +1244,10 @@ public final class ViewHelper {
      * @param tint 着色颜色
      * @return {@link ViewHelper}
      */
-    public ViewHelper setForegroundTintList(final View view, final ColorStateList tint) {
+    public ViewHelper setForegroundTintList(
+            final View view,
+            final ColorStateList tint
+    ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             ViewUtils.setForegroundTintList(view, tint);
         }
@@ -1032,7 +1260,10 @@ public final class ViewHelper {
      * @param tintMode 着色模式 {@link PorterDuff.Mode}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setForegroundTintMode(final View view, final PorterDuff.Mode tintMode) {
+    public ViewHelper setForegroundTintMode(
+            final View view,
+            final PorterDuff.Mode tintMode
+    ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             ViewUtils.setForegroundTintMode(view, tintMode);
         }
@@ -1045,7 +1276,10 @@ public final class ViewHelper {
      * @param bitmap {@link Bitmap}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setImageBitmap(final View view, final Bitmap bitmap) {
+    public ViewHelper setImageBitmap(
+            final View view,
+            final Bitmap bitmap
+    ) {
         ImageViewUtils.setImageBitmap(view, bitmap);
         return this;
     }
@@ -1056,7 +1290,10 @@ public final class ViewHelper {
      * @param drawable {@link Bitmap}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setImageDrawable(final View view, final Drawable drawable) {
+    public ViewHelper setImageDrawable(
+            final View view,
+            final Drawable drawable
+    ) {
         ImageViewUtils.setImageDrawable(view, drawable);
         return this;
     }
@@ -1067,7 +1304,10 @@ public final class ViewHelper {
      * @param resId resource identifier
      * @return {@link ViewHelper}
      */
-    public ViewHelper setImageResource(final View view, @DrawableRes final int resId) {
+    public ViewHelper setImageResource(
+            final View view,
+            @DrawableRes final int resId
+    ) {
         ImageViewUtils.setImageResource(view, resId);
         return this;
     }
@@ -1078,7 +1318,10 @@ public final class ViewHelper {
      * @param matrix {@link Matrix}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setImageMatrix(final View view, final Matrix matrix) {
+    public ViewHelper setImageMatrix(
+            final View view,
+            final Matrix matrix
+    ) {
         ImageViewUtils.setImageMatrix(view, matrix);
         return this;
     }
@@ -1089,7 +1332,10 @@ public final class ViewHelper {
      * @param tint 着色颜色
      * @return {@link ViewHelper}
      */
-    public ViewHelper setImageTintList(final View view, final ColorStateList tint) {
+    public ViewHelper setImageTintList(
+            final View view,
+            final ColorStateList tint
+    ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ImageViewUtils.setImageTintList(view, tint);
         }
@@ -1102,7 +1348,10 @@ public final class ViewHelper {
      * @param tintMode 着色模式 {@link PorterDuff.Mode}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setImageTintMode(final View view, final PorterDuff.Mode tintMode) {
+    public ViewHelper setImageTintMode(
+            final View view,
+            final PorterDuff.Mode tintMode
+    ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ImageViewUtils.setImageTintMode(view, tintMode);
         }
@@ -1115,7 +1364,10 @@ public final class ViewHelper {
      * @param scaleType 缩放类型 {@link ImageView.ScaleType}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setScaleType(final View view, final ImageView.ScaleType scaleType) {
+    public ViewHelper setScaleType(
+            final View view,
+            final ImageView.ScaleType scaleType
+    ) {
         ImageViewUtils.setScaleType(view, scaleType);
         return this;
     }
@@ -1126,7 +1378,10 @@ public final class ViewHelper {
      * @param color 颜色值
      * @return {@link ViewHelper}
      */
-    public ViewHelper setColorFilter(final View view, @ColorInt final int color) {
+    public ViewHelper setColorFilter(
+            final View view,
+            @ColorInt final int color
+    ) {
         ViewUtils.setColorFilter(view, color);
         return this;
     }
@@ -1138,7 +1393,11 @@ public final class ViewHelper {
      * @param color    颜色值
      * @return {@link ViewHelper}
      */
-    public ViewHelper setColorFilter(final View view, final Drawable drawable, @ColorInt final int color) {
+    public ViewHelper setColorFilter(
+            final View view,
+            final Drawable drawable,
+            @ColorInt final int color
+    ) {
         ViewUtils.setColorFilter(view, drawable, color);
         return this;
     }
@@ -1149,7 +1408,10 @@ public final class ViewHelper {
      * @param colorFilter 颜色过滤 ( 效果 )
      * @return {@link ViewHelper}
      */
-    public ViewHelper setColorFilter(final View view, final ColorFilter colorFilter) {
+    public ViewHelper setColorFilter(
+            final View view,
+            final ColorFilter colorFilter
+    ) {
         ViewUtils.setColorFilter(view, colorFilter);
         return this;
     }
@@ -1161,7 +1423,11 @@ public final class ViewHelper {
      * @param colorFilter 颜色过滤 ( 效果 )
      * @return {@link ViewHelper}
      */
-    public ViewHelper setColorFilter(final View view, final Drawable drawable, final ColorFilter colorFilter) {
+    public ViewHelper setColorFilter(
+            final View view,
+            final Drawable drawable,
+            final ColorFilter colorFilter
+    ) {
         ViewUtils.setColorFilter(view, drawable, colorFilter);
         return this;
     }
@@ -1172,7 +1438,10 @@ public final class ViewHelper {
      * @param views View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setBackgroundResources(@DrawableRes final int resId, final View... views) {
+    public ViewHelper setBackgroundResources(
+            @DrawableRes final int resId,
+            final View... views
+    ) {
         ImageViewUtils.setBackgroundResources(resId, views);
         return this;
     }
@@ -1184,7 +1453,11 @@ public final class ViewHelper {
      * @param views        View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setBackgroundResources(@DrawableRes final int resId, final int isVisibility, final View... views) {
+    public ViewHelper setBackgroundResources(
+            @DrawableRes final int resId,
+            final int isVisibility,
+            final View... views
+    ) {
         ImageViewUtils.setBackgroundResources(resId, isVisibility, views);
         return this;
     }
@@ -1195,7 +1468,10 @@ public final class ViewHelper {
      * @param views View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setImageResources(@DrawableRes final int resId, final View... views) {
+    public ViewHelper setImageResources(
+            @DrawableRes final int resId,
+            final View... views
+    ) {
         ImageViewUtils.setImageResources(resId, views);
         return this;
     }
@@ -1207,7 +1483,11 @@ public final class ViewHelper {
      * @param views        View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setImageResources(@DrawableRes final int resId, final int isVisibility, final View... views) {
+    public ViewHelper setImageResources(
+            @DrawableRes final int resId,
+            final int isVisibility,
+            final View... views
+    ) {
         ImageViewUtils.setImageResources(resId, isVisibility, views);
         return this;
     }
@@ -1218,7 +1498,10 @@ public final class ViewHelper {
      * @param views  View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setImageBitmaps(final Bitmap bitmap, final View... views) {
+    public ViewHelper setImageBitmaps(
+            final Bitmap bitmap,
+            final View... views
+    ) {
         ImageViewUtils.setImageBitmaps(bitmap, views);
         return this;
     }
@@ -1230,7 +1513,11 @@ public final class ViewHelper {
      * @param views        View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setImageBitmaps(final Bitmap bitmap, final int isVisibility, final View... views) {
+    public ViewHelper setImageBitmaps(
+            final Bitmap bitmap,
+            final int isVisibility,
+            final View... views
+    ) {
         ImageViewUtils.setImageBitmaps(bitmap, isVisibility, views);
         return this;
     }
@@ -1241,7 +1528,10 @@ public final class ViewHelper {
      * @param views    View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setImageDrawables(final Drawable drawable, final View... views) {
+    public ViewHelper setImageDrawables(
+            final Drawable drawable,
+            final View... views
+    ) {
         ImageViewUtils.setImageDrawables(drawable, views);
         return this;
     }
@@ -1253,7 +1543,11 @@ public final class ViewHelper {
      * @param views        View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setImageDrawables(final Drawable drawable, final int isVisibility, final View... views) {
+    public ViewHelper setImageDrawables(
+            final Drawable drawable,
+            final int isVisibility,
+            final View... views
+    ) {
         ImageViewUtils.setImageDrawables(drawable, isVisibility, views);
         return this;
     }
@@ -1264,7 +1558,10 @@ public final class ViewHelper {
      * @param views     View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setScaleTypes(final ImageView.ScaleType scaleType, final View... views) {
+    public ViewHelper setScaleTypes(
+            final ImageView.ScaleType scaleType,
+            final View... views
+    ) {
         ImageViewUtils.setScaleTypes(scaleType, views);
         return this;
     }
@@ -1276,7 +1573,11 @@ public final class ViewHelper {
      * @param views        View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setScaleTypes(final ImageView.ScaleType scaleType, final int isVisibility, final View... views) {
+    public ViewHelper setScaleTypes(
+            final ImageView.ScaleType scaleType,
+            final int isVisibility,
+            final View... views
+    ) {
         ImageViewUtils.setScaleTypes(scaleType, isVisibility, views);
         return this;
     }
@@ -1292,7 +1593,11 @@ public final class ViewHelper {
      * @param height View 高度
      * @return {@link ViewHelper}
      */
-    public ViewHelper setWidthHeight(final View view, final int width, final int height) {
+    public ViewHelper setWidthHeight(
+            final View view,
+            final int width,
+            final int height
+    ) {
         ViewUtils.setWidthHeight(view, width, height);
         return this;
     }
@@ -1305,7 +1610,12 @@ public final class ViewHelper {
      * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
      * @return {@link ViewHelper}
      */
-    public ViewHelper setWidthHeight(final View view, final int width, final int height, final boolean nullNewLP) {
+    public ViewHelper setWidthHeight(
+            final View view,
+            final int width,
+            final int height,
+            final boolean nullNewLP
+    ) {
         ViewUtils.setWidthHeight(view, width, height, nullNewLP);
         return this;
     }
@@ -1316,7 +1626,10 @@ public final class ViewHelper {
      * @param width View 宽度
      * @return {@link ViewHelper}
      */
-    public ViewHelper setWidth(final View view, final int width) {
+    public ViewHelper setWidth(
+            final View view,
+            final int width
+    ) {
         ViewUtils.setWidth(view, width);
         return this;
     }
@@ -1328,7 +1641,11 @@ public final class ViewHelper {
      * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
      * @return {@link ViewHelper}
      */
-    public ViewHelper setWidth(final View view, final int width, final boolean nullNewLP) {
+    public ViewHelper setWidth(
+            final View view,
+            final int width,
+            final boolean nullNewLP
+    ) {
         ViewUtils.setWidth(view, width, nullNewLP);
         return this;
     }
@@ -1339,7 +1656,10 @@ public final class ViewHelper {
      * @param height View 高度
      * @return {@link ViewHelper}
      */
-    public ViewHelper setHeight(final View view, final int height) {
+    public ViewHelper setHeight(
+            final View view,
+            final int height
+    ) {
         ViewUtils.setHeight(view, height);
         return this;
     }
@@ -1351,7 +1671,11 @@ public final class ViewHelper {
      * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
      * @return {@link ViewHelper}
      */
-    public ViewHelper setHeight(final View view, final int height, final boolean nullNewLP) {
+    public ViewHelper setHeight(
+            final View view,
+            final int height,
+            final boolean nullNewLP
+    ) {
         ViewUtils.setHeight(view, height, nullNewLP);
         return this;
     }
@@ -1362,7 +1686,10 @@ public final class ViewHelper {
      * @param minHeight 最小高度
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMinimumHeight(final View view, final int minHeight) {
+    public ViewHelper setMinimumHeight(
+            final View view,
+            final int minHeight
+    ) {
         ViewUtils.setMinimumHeight(view, minHeight);
         return this;
     }
@@ -1373,7 +1700,10 @@ public final class ViewHelper {
      * @param minWidth 最小宽度
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMinimumWidth(final View view, final int minWidth) {
+    public ViewHelper setMinimumWidth(
+            final View view,
+            final int minWidth
+    ) {
         ViewUtils.setMinimumWidth(view, minWidth);
         return this;
     }
@@ -1384,7 +1714,10 @@ public final class ViewHelper {
      * @param alpha 透明度
      * @return {@link ViewHelper}
      */
-    public ViewHelper setAlpha(final View view, @FloatRange(from = 0.0, to = 1.0) final float alpha) {
+    public ViewHelper setAlpha(
+            final View view,
+            @FloatRange(from = 0.0, to = 1.0) final float alpha
+    ) {
         ViewUtils.setAlpha(view, alpha);
         return this;
     }
@@ -1395,7 +1728,10 @@ public final class ViewHelper {
      * @param object Tag
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTag(final View view, final Object object) {
+    public ViewHelper setTag(
+            final View view,
+            final Object object
+    ) {
         ViewUtils.setTag(view, object);
         return this;
     }
@@ -1412,7 +1748,11 @@ public final class ViewHelper {
      * @param y    Y 轴开始坐标
      * @return {@link ViewHelper}
      */
-    public ViewHelper scrollTo(final View view, final int x, final int y) {
+    public ViewHelper scrollTo(
+            final View view,
+            final int x,
+            final int y
+    ) {
         ViewUtils.scrollTo(view, x, y);
         return this;
     }
@@ -1427,7 +1767,11 @@ public final class ViewHelper {
      * @param y    Y 轴开始坐标
      * @return {@link ViewHelper}
      */
-    public ViewHelper scrollBy(final View view, final int x, final int y) {
+    public ViewHelper scrollBy(
+            final View view,
+            final int x,
+            final int y
+    ) {
         ViewUtils.scrollBy(view, x, y);
         return this;
     }
@@ -1446,7 +1790,10 @@ public final class ViewHelper {
      * @param focusability {@link ViewGroup#FOCUS_BEFORE_DESCENDANTS}、{@link ViewGroup#FOCUS_AFTER_DESCENDANTS}、{@link ViewGroup#FOCUS_BLOCK_DESCENDANTS}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setDescendantFocusability(final ViewGroup viewGroup, final int focusability) {
+    public ViewHelper setDescendantFocusability(
+            final ViewGroup viewGroup,
+            final int focusability
+    ) {
         ViewUtils.setDescendantFocusability(viewGroup, focusability);
         return this;
     }
@@ -1461,7 +1808,10 @@ public final class ViewHelper {
      * @param overScrollMode {@link View#OVER_SCROLL_ALWAYS}、{@link View#OVER_SCROLL_IF_CONTENT_SCROLLS}、{@link View#OVER_SCROLL_NEVER}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setOverScrollMode(final View view, final int overScrollMode) {
+    public ViewHelper setOverScrollMode(
+            final View view,
+            final int overScrollMode
+    ) {
         ViewUtils.setOverScrollMode(view, overScrollMode);
         return this;
     }
@@ -1474,7 +1824,10 @@ public final class ViewHelper {
      * @param horizontalScrollBarEnabled {@code true} yes, {@code false} no
      * @return {@link ViewHelper}
      */
-    public ViewHelper setHorizontalScrollBarEnabled(final View view, final boolean horizontalScrollBarEnabled) {
+    public ViewHelper setHorizontalScrollBarEnabled(
+            final View view,
+            final boolean horizontalScrollBarEnabled
+    ) {
         ViewUtils.setHorizontalScrollBarEnabled(view, horizontalScrollBarEnabled);
         return this;
     }
@@ -1485,7 +1838,10 @@ public final class ViewHelper {
      * @param verticalScrollBarEnabled {@code true} yes, {@code false} no
      * @return {@link ViewHelper}
      */
-    public ViewHelper setVerticalScrollBarEnabled(final View view, final boolean verticalScrollBarEnabled) {
+    public ViewHelper setVerticalScrollBarEnabled(
+            final View view,
+            final boolean verticalScrollBarEnabled
+    ) {
         ViewUtils.setVerticalScrollBarEnabled(view, verticalScrollBarEnabled);
         return this;
     }
@@ -1498,7 +1854,10 @@ public final class ViewHelper {
      * @param isScrollContainer 是否需要滚动效应
      * @return {@link ViewHelper}
      */
-    public ViewHelper setScrollContainer(final View view, final boolean isScrollContainer) {
+    public ViewHelper setScrollContainer(
+            final View view,
+            final boolean isScrollContainer
+    ) {
         ViewUtils.setScrollContainer(view, isScrollContainer);
         return this;
     }
@@ -1509,7 +1868,10 @@ public final class ViewHelper {
      * @param nextFocusForwardId 下一个获取焦点的 View id
      * @return {@link ViewHelper}
      */
-    public ViewHelper setNextFocusForwardId(final View view, @IdRes final int nextFocusForwardId) {
+    public ViewHelper setNextFocusForwardId(
+            final View view,
+            @IdRes final int nextFocusForwardId
+    ) {
         ViewUtils.setNextFocusForwardId(view, nextFocusForwardId);
         return this;
     }
@@ -1520,7 +1882,10 @@ public final class ViewHelper {
      * @param nextFocusDownId 下一个获取焦点的 View id
      * @return {@link ViewHelper}
      */
-    public ViewHelper setNextFocusDownId(final View view, @IdRes final int nextFocusDownId) {
+    public ViewHelper setNextFocusDownId(
+            final View view,
+            @IdRes final int nextFocusDownId
+    ) {
         ViewUtils.setNextFocusDownId(view, nextFocusDownId);
         return this;
     }
@@ -1531,7 +1896,10 @@ public final class ViewHelper {
      * @param nextFocusLeftId 下一个获取焦点的 View id
      * @return {@link ViewHelper}
      */
-    public ViewHelper setNextFocusLeftId(final View view, @IdRes final int nextFocusLeftId) {
+    public ViewHelper setNextFocusLeftId(
+            final View view,
+            @IdRes final int nextFocusLeftId
+    ) {
         ViewUtils.setNextFocusLeftId(view, nextFocusLeftId);
         return this;
     }
@@ -1542,7 +1910,10 @@ public final class ViewHelper {
      * @param nextFocusRightId 下一个获取焦点的 View id
      * @return {@link ViewHelper}
      */
-    public ViewHelper setNextFocusRightId(final View view, @IdRes final int nextFocusRightId) {
+    public ViewHelper setNextFocusRightId(
+            final View view,
+            @IdRes final int nextFocusRightId
+    ) {
         ViewUtils.setNextFocusRightId(view, nextFocusRightId);
         return this;
     }
@@ -1553,7 +1924,10 @@ public final class ViewHelper {
      * @param nextFocusUpId 下一个获取焦点的 View id
      * @return {@link ViewHelper}
      */
-    public ViewHelper setNextFocusUpId(final View view, @IdRes final int nextFocusUpId) {
+    public ViewHelper setNextFocusUpId(
+            final View view,
+            @IdRes final int nextFocusUpId
+    ) {
         ViewUtils.setNextFocusUpId(view, nextFocusUpId);
         return this;
     }
@@ -1564,7 +1938,10 @@ public final class ViewHelper {
      * @param rotation 旋转度数
      * @return {@link ViewHelper}
      */
-    public ViewHelper setRotation(final View view, final float rotation) {
+    public ViewHelper setRotation(
+            final View view,
+            final float rotation
+    ) {
         ViewUtils.setRotation(view, rotation);
         return this;
     }
@@ -1575,7 +1952,10 @@ public final class ViewHelper {
      * @param rotationX 水平旋转度数
      * @return {@link ViewHelper}
      */
-    public ViewHelper setRotationX(final View view, final float rotationX) {
+    public ViewHelper setRotationX(
+            final View view,
+            final float rotationX
+    ) {
         ViewUtils.setRotationX(view, rotationX);
         return this;
     }
@@ -1586,7 +1966,10 @@ public final class ViewHelper {
      * @param rotationY 竖直旋转度数
      * @return {@link ViewHelper}
      */
-    public ViewHelper setRotationY(final View view, final float rotationY) {
+    public ViewHelper setRotationY(
+            final View view,
+            final float rotationY
+    ) {
         ViewUtils.setRotationY(view, rotationY);
         return this;
     }
@@ -1597,7 +1980,10 @@ public final class ViewHelper {
      * @param scaleX 水平方向缩放比例
      * @return {@link ViewHelper}
      */
-    public ViewHelper setScaleX(final View view, final float scaleX) {
+    public ViewHelper setScaleX(
+            final View view,
+            final float scaleX
+    ) {
         ViewUtils.setScaleX(view, scaleX);
         return this;
     }
@@ -1608,7 +1994,10 @@ public final class ViewHelper {
      * @param scaleY 竖直方向缩放比例
      * @return {@link ViewHelper}
      */
-    public ViewHelper setScaleY(final View view, final float scaleY) {
+    public ViewHelper setScaleY(
+            final View view,
+            final float scaleY
+    ) {
         ViewUtils.setScaleY(view, scaleY);
         return this;
     }
@@ -1619,7 +2008,10 @@ public final class ViewHelper {
      * @param textAlignment 文本的显示方式
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTextAlignment(final View view, final int textAlignment) {
+    public ViewHelper setTextAlignment(
+            final View view,
+            final int textAlignment
+    ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             ViewUtils.setTextAlignment(view, textAlignment);
         }
@@ -1632,7 +2024,10 @@ public final class ViewHelper {
      * @param textDirection 文本的显示方向
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTextDirection(final View view, final int textDirection) {
+    public ViewHelper setTextDirection(
+            final View view,
+            final int textDirection
+    ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             ViewUtils.setTextDirection(view, textDirection);
         }
@@ -1645,7 +2040,10 @@ public final class ViewHelper {
      * @param pivotX 水平方向偏转量
      * @return {@link ViewHelper}
      */
-    public ViewHelper setPivotX(final View view, final float pivotX) {
+    public ViewHelper setPivotX(
+            final View view,
+            final float pivotX
+    ) {
         ViewUtils.setPivotX(view, pivotX);
         return this;
     }
@@ -1656,7 +2054,10 @@ public final class ViewHelper {
      * @param pivotY 竖直方向偏转量
      * @return {@link ViewHelper}
      */
-    public ViewHelper setPivotY(final View view, final float pivotY) {
+    public ViewHelper setPivotY(
+            final View view,
+            final float pivotY
+    ) {
         ViewUtils.setPivotY(view, pivotY);
         return this;
     }
@@ -1667,7 +2068,10 @@ public final class ViewHelper {
      * @param translationX 水平方向的移动距离
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTranslationX(final View view, final float translationX) {
+    public ViewHelper setTranslationX(
+            final View view,
+            final float translationX
+    ) {
         ViewUtils.setTranslationX(view, translationX);
         return this;
     }
@@ -1678,7 +2082,10 @@ public final class ViewHelper {
      * @param translationY 竖直方向的移动距离
      * @return {@link ViewHelper}
      */
-    public ViewHelper setTranslationY(final View view, final float translationY) {
+    public ViewHelper setTranslationY(
+            final View view,
+            final float translationY
+    ) {
         ViewUtils.setTranslationY(view, translationY);
         return this;
     }
@@ -1690,7 +2097,11 @@ public final class ViewHelper {
      * @param paint     {@link Paint}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setLayerType(final View view, final int layerType, final Paint paint) {
+    public ViewHelper setLayerType(
+            final View view,
+            final int layerType,
+            final Paint paint
+    ) {
         ViewUtils.setLayerType(view, layerType, paint);
         return this;
     }
@@ -1733,7 +2144,10 @@ public final class ViewHelper {
      * @param allParent 是否全部父布局 View 都请求
      * @return {@link ViewHelper}
      */
-    public ViewHelper requestLayoutParent(final View view, final boolean allParent) {
+    public ViewHelper requestLayoutParent(
+            final View view,
+            final boolean allParent
+    ) {
         ViewUtils.requestLayoutParent(view, allParent);
         return this;
     }
@@ -1746,7 +2160,10 @@ public final class ViewHelper {
      * @param id   View Id
      * @return {@link ViewHelper}
      */
-    public ViewHelper setId(final View view, final int id) {
+    public ViewHelper setId(
+            final View view,
+            final int id
+    ) {
         ViewUtils.setId(view, id);
         return this;
     }
@@ -1757,7 +2174,10 @@ public final class ViewHelper {
      * @param clipChildren {@code true} yes, {@code false} no
      * @return {@link ViewHelper}
      */
-    public ViewHelper setClipChildren(final ViewGroup viewGroup, final boolean clipChildren) {
+    public ViewHelper setClipChildren(
+            final ViewGroup viewGroup,
+            final boolean clipChildren
+    ) {
         ViewUtils.setClipChildren(viewGroup, clipChildren);
         return this;
     }
@@ -1768,7 +2188,10 @@ public final class ViewHelper {
      * @param params LayoutParams
      * @return {@link ViewHelper}
      */
-    public ViewHelper setLayoutParams(final View view, final ViewGroup.LayoutParams params) {
+    public ViewHelper setLayoutParams(
+            final View view,
+            final ViewGroup.LayoutParams params
+    ) {
         ViewUtils.setLayoutParams(view, params);
         return this;
     }
@@ -1779,7 +2202,10 @@ public final class ViewHelper {
      * @param views                View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setFocusableInTouchMode(final boolean focusableInTouchMode, final View... views) {
+    public ViewHelper setFocusableInTouchMode(
+            final boolean focusableInTouchMode,
+            final View... views
+    ) {
         ViewUtils.setFocusableInTouchMode(focusableInTouchMode, views);
         return this;
     }
@@ -1790,7 +2216,10 @@ public final class ViewHelper {
      * @param views     View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setFocusable(final boolean focusable, final View... views) {
+    public ViewHelper setFocusable(
+            final boolean focusable,
+            final View... views
+    ) {
         ViewUtils.setFocusable(focusable, views);
         return this;
     }
@@ -1811,7 +2240,10 @@ public final class ViewHelper {
      * @param views    View[]
      * @return {@code true} 选中, {@code false} 非选中
      */
-    public ViewHelper setSelected(final boolean selected, final View... views) {
+    public ViewHelper setSelected(
+            final boolean selected,
+            final View... views
+    ) {
         ViewUtils.setSelected(selected, views);
         return this;
     }
@@ -1832,7 +2264,10 @@ public final class ViewHelper {
      * @param views   View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setEnabled(final boolean enabled, final View... views) {
+    public ViewHelper setEnabled(
+            final boolean enabled,
+            final View... views
+    ) {
         ViewUtils.setEnabled(enabled, views);
         return this;
     }
@@ -1853,7 +2288,10 @@ public final class ViewHelper {
      * @param views     View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setClickable(final boolean clickable, final View... views) {
+    public ViewHelper setClickable(
+            final boolean clickable,
+            final View... views
+    ) {
         ViewUtils.setClickable(clickable, views);
         return this;
     }
@@ -1874,7 +2312,10 @@ public final class ViewHelper {
      * @param views         View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setLongClickable(final boolean longClickable, final View... views) {
+    public ViewHelper setLongClickable(
+            final boolean longClickable,
+            final View... views
+    ) {
         ViewUtils.setLongClickable(longClickable, views);
         return this;
     }
@@ -1895,7 +2336,10 @@ public final class ViewHelper {
      * @param view         {@link View}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setVisibility(final boolean isVisibility, final View view) {
+    public ViewHelper setVisibility(
+            final boolean isVisibility,
+            final View view
+    ) {
         ViewUtils.setVisibility(isVisibility, view);
         return this;
     }
@@ -1906,7 +2350,10 @@ public final class ViewHelper {
      * @param view         {@link View}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setVisibility(final int isVisibility, final View view) {
+    public ViewHelper setVisibility(
+            final int isVisibility,
+            final View view
+    ) {
         ViewUtils.setVisibility(isVisibility, view);
         return this;
     }
@@ -1917,7 +2364,10 @@ public final class ViewHelper {
      * @param views        View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setVisibilitys(final boolean isVisibility, final View... views) {
+    public ViewHelper setVisibilitys(
+            final boolean isVisibility,
+            final View... views
+    ) {
         ViewUtils.setVisibilitys(isVisibility, views);
         return this;
     }
@@ -1928,7 +2378,10 @@ public final class ViewHelper {
      * @param views        View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper setVisibilitys(final int isVisibility, final View... views) {
+    public ViewHelper setVisibilitys(
+            final int isVisibility,
+            final View... views
+    ) {
         ViewUtils.setVisibilitys(isVisibility, views);
         return this;
     }
@@ -1939,7 +2392,10 @@ public final class ViewHelper {
      * @param views View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper toggleVisibilitys(final View view, final View... views) {
+    public ViewHelper toggleVisibilitys(
+            final View view,
+            final View... views
+    ) {
         ViewUtils.toggleVisibilitys(view, views);
         return this;
     }
@@ -1950,7 +2406,10 @@ public final class ViewHelper {
      * @param views    View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper toggleVisibilitys(final View[] viewArys, final View... views) {
+    public ViewHelper toggleVisibilitys(
+            final View[] viewArys,
+            final View... views
+    ) {
         ViewUtils.toggleVisibilitys(viewArys, views);
         return this;
     }
@@ -1962,7 +2421,11 @@ public final class ViewHelper {
      * @param views    View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper toggleVisibilitys(final int state, final View[] viewArys, final View... views) {
+    public ViewHelper toggleVisibilitys(
+            final int state,
+            final View[] viewArys,
+            final View... views
+    ) {
         ViewUtils.toggleVisibilitys(state, viewArys, views);
         return this;
     }
@@ -1974,7 +2437,11 @@ public final class ViewHelper {
      * @param views    View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper reverseVisibilitys(final int state, final View[] viewArys, final View... views) {
+    public ViewHelper reverseVisibilitys(
+            final int state,
+            final View[] viewArys,
+            final View... views
+    ) {
         ViewUtils.reverseVisibilitys(state, viewArys, views);
         return this;
     }
@@ -1986,7 +2453,11 @@ public final class ViewHelper {
      * @param views        View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper reverseVisibilitys(final boolean isVisibility, final View[] viewArys, final View... views) {
+    public ViewHelper reverseVisibilitys(
+            final boolean isVisibility,
+            final View[] viewArys,
+            final View... views
+    ) {
         ViewUtils.reverseVisibilitys(isVisibility, viewArys, views);
         return this;
     }
@@ -1998,7 +2469,11 @@ public final class ViewHelper {
      * @param views View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper reverseVisibilitys(final int state, final View view, final View... views) {
+    public ViewHelper reverseVisibilitys(
+            final int state,
+            final View view,
+            final View... views
+    ) {
         ViewUtils.reverseVisibilitys(state, view, views);
         return this;
     }
@@ -2010,7 +2485,11 @@ public final class ViewHelper {
      * @param views        View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper reverseVisibilitys(final boolean isVisibility, final View view, final View... views) {
+    public ViewHelper reverseVisibilitys(
+            final boolean isVisibility,
+            final View view,
+            final View... views
+    ) {
         ViewUtils.reverseVisibilitys(isVisibility, view, views);
         return this;
     }
@@ -2031,7 +2510,10 @@ public final class ViewHelper {
      * @param gravity Gravity
      * @return {@link ViewHelper}
      */
-    public ViewHelper setLayoutGravity(final View view, final int gravity) {
+    public ViewHelper setLayoutGravity(
+            final View view,
+            final int gravity
+    ) {
         ViewUtils.setLayoutGravity(view, gravity);
         return this;
     }
@@ -2043,7 +2525,11 @@ public final class ViewHelper {
      * @param isReflection 是否使用反射
      * @return {@link QuickHelper}
      */
-    public ViewHelper setLayoutGravity(final View view, final int gravity, final boolean isReflection) {
+    public ViewHelper setLayoutGravity(
+            final View view,
+            final int gravity,
+            final boolean isReflection
+    ) {
         ViewUtils.setLayoutGravity(view, gravity, isReflection);
         return this;
     }
@@ -2054,7 +2540,10 @@ public final class ViewHelper {
      * @param leftMargin Left Margin
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMarginLeft(final View view, final int leftMargin) {
+    public ViewHelper setMarginLeft(
+            final View view,
+            final int leftMargin
+    ) {
         ViewUtils.setMarginLeft(view, leftMargin);
         return this;
     }
@@ -2066,7 +2555,11 @@ public final class ViewHelper {
      * @param reset      是否重置清空其他 margin
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMarginLeft(final View view, final int leftMargin, final boolean reset) {
+    public ViewHelper setMarginLeft(
+            final View view,
+            final int leftMargin,
+            final boolean reset
+    ) {
         ViewUtils.setMarginLeft(view, leftMargin, reset);
         return this;
     }
@@ -2077,7 +2570,10 @@ public final class ViewHelper {
      * @param topMargin Top Margin
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMarginTop(final View view, final int topMargin) {
+    public ViewHelper setMarginTop(
+            final View view,
+            final int topMargin
+    ) {
         ViewUtils.setMarginTop(view, topMargin);
         return this;
     }
@@ -2089,7 +2585,11 @@ public final class ViewHelper {
      * @param reset     是否重置清空其他 margin
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMarginTop(final View view, final int topMargin, final boolean reset) {
+    public ViewHelper setMarginTop(
+            final View view,
+            final int topMargin,
+            final boolean reset
+    ) {
         ViewUtils.setMarginTop(view, topMargin, reset);
         return this;
     }
@@ -2100,7 +2600,10 @@ public final class ViewHelper {
      * @param rightMargin Right Margin
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMarginRight(final View view, final int rightMargin) {
+    public ViewHelper setMarginRight(
+            final View view,
+            final int rightMargin
+    ) {
         ViewUtils.setMarginRight(view, rightMargin);
         return this;
     }
@@ -2112,7 +2615,11 @@ public final class ViewHelper {
      * @param reset       是否重置清空其他 margin
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMarginRight(final View view, final int rightMargin, final boolean reset) {
+    public ViewHelper setMarginRight(
+            final View view,
+            final int rightMargin,
+            final boolean reset
+    ) {
         ViewUtils.setMarginRight(view, rightMargin, reset);
         return this;
     }
@@ -2123,7 +2630,10 @@ public final class ViewHelper {
      * @param bottomMargin Bottom Margin
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMarginBottom(final View view, final int bottomMargin) {
+    public ViewHelper setMarginBottom(
+            final View view,
+            final int bottomMargin
+    ) {
         ViewUtils.setMarginBottom(view, bottomMargin);
         return this;
     }
@@ -2135,7 +2645,11 @@ public final class ViewHelper {
      * @param reset        是否重置清空其他 margin
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMarginBottom(final View view, final int bottomMargin, final boolean reset) {
+    public ViewHelper setMarginBottom(
+            final View view,
+            final int bottomMargin,
+            final boolean reset
+    ) {
         ViewUtils.setMarginBottom(view, bottomMargin, reset);
         return this;
     }
@@ -2147,7 +2661,11 @@ public final class ViewHelper {
      * @param topBottom Top and bottom Margin
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMargin(final View view, final int leftRight, final int topBottom) {
+    public ViewHelper setMargin(
+            final View view,
+            final int leftRight,
+            final int topBottom
+    ) {
         ViewUtils.setMargin(view, leftRight, topBottom);
         return this;
     }
@@ -2158,7 +2676,10 @@ public final class ViewHelper {
      * @param margin Margin
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMargin(final View view, final int margin) {
+    public ViewHelper setMargin(
+            final View view,
+            final int margin
+    ) {
         ViewUtils.setMargin(view, margin);
         return this;
     }
@@ -2172,7 +2693,13 @@ public final class ViewHelper {
      * @param bottom Bottom Margin
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMargin(final View view, final int left, final int top, final int right, final int bottom) {
+    public ViewHelper setMargin(
+            final View view,
+            final int left,
+            final int top,
+            final int right,
+            final int bottom
+    ) {
         ViewUtils.setMargin(view, left, top, right, bottom);
         return this;
     }
@@ -2184,7 +2711,11 @@ public final class ViewHelper {
      * @param topBottom Top and bottom Margin
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMargin(final View[] views, final int leftRight, final int topBottom) {
+    public ViewHelper setMargin(
+            final View[] views,
+            final int leftRight,
+            final int topBottom
+    ) {
         ViewUtils.setMargin(views, leftRight, topBottom);
         return this;
     }
@@ -2195,7 +2726,10 @@ public final class ViewHelper {
      * @param margin Margin
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMargin(final View[] views, final int margin) {
+    public ViewHelper setMargin(
+            final View[] views,
+            final int margin
+    ) {
         ViewUtils.setMargin(views, margin);
         return this;
     }
@@ -2209,7 +2743,13 @@ public final class ViewHelper {
      * @param bottom Bottom Margin
      * @return {@link ViewHelper}
      */
-    public ViewHelper setMargin(final View[] views, final int left, final int top, final int right, final int bottom) {
+    public ViewHelper setMargin(
+            final View[] views,
+            final int left,
+            final int top,
+            final int right,
+            final int bottom
+    ) {
         ViewUtils.setMargin(views, left, top, right, bottom);
         return this;
     }
@@ -2220,7 +2760,10 @@ public final class ViewHelper {
      * @param leftPadding Left Padding
      * @return {@link ViewHelper}
      */
-    public ViewHelper setPaddingLeft(final View view, final int leftPadding) {
+    public ViewHelper setPaddingLeft(
+            final View view,
+            final int leftPadding
+    ) {
         ViewUtils.setPaddingLeft(view, leftPadding);
         return this;
     }
@@ -2232,7 +2775,11 @@ public final class ViewHelper {
      * @param reset       是否重置清空其他 Padding
      * @return {@link ViewHelper}
      */
-    public ViewHelper setPaddingLeft(final View view, final int leftPadding, final boolean reset) {
+    public ViewHelper setPaddingLeft(
+            final View view,
+            final int leftPadding,
+            final boolean reset
+    ) {
         ViewUtils.setPaddingLeft(view, leftPadding, reset);
         return this;
     }
@@ -2243,7 +2790,10 @@ public final class ViewHelper {
      * @param topPadding Top Padding
      * @return {@link ViewHelper}
      */
-    public ViewHelper setPaddingTop(final View view, final int topPadding) {
+    public ViewHelper setPaddingTop(
+            final View view,
+            final int topPadding
+    ) {
         ViewUtils.setPaddingTop(view, topPadding);
         return this;
     }
@@ -2255,7 +2805,11 @@ public final class ViewHelper {
      * @param reset      是否重置清空其他 Padding
      * @return {@link ViewHelper}
      */
-    public ViewHelper setPaddingTop(final View view, final int topPadding, final boolean reset) {
+    public ViewHelper setPaddingTop(
+            final View view,
+            final int topPadding,
+            final boolean reset
+    ) {
         ViewUtils.setPaddingTop(view, topPadding, reset);
         return this;
     }
@@ -2266,7 +2820,10 @@ public final class ViewHelper {
      * @param rightPadding Right Padding
      * @return {@link ViewHelper}
      */
-    public ViewHelper setPaddingRight(final View view, final int rightPadding) {
+    public ViewHelper setPaddingRight(
+            final View view,
+            final int rightPadding
+    ) {
         ViewUtils.setPaddingRight(view, rightPadding);
         return this;
     }
@@ -2278,7 +2835,11 @@ public final class ViewHelper {
      * @param reset        是否重置清空其他 Padding
      * @return {@link ViewHelper}
      */
-    public ViewHelper setPaddingRight(final View view, final int rightPadding, final boolean reset) {
+    public ViewHelper setPaddingRight(
+            final View view,
+            final int rightPadding,
+            final boolean reset
+    ) {
         ViewUtils.setPaddingRight(view, rightPadding, reset);
         return this;
     }
@@ -2289,7 +2850,10 @@ public final class ViewHelper {
      * @param bottomPadding Bottom Padding
      * @return {@link ViewHelper}
      */
-    public ViewHelper setPaddingBottom(final View view, final int bottomPadding) {
+    public ViewHelper setPaddingBottom(
+            final View view,
+            final int bottomPadding
+    ) {
         ViewUtils.setPaddingBottom(view, bottomPadding);
         return this;
     }
@@ -2301,7 +2865,11 @@ public final class ViewHelper {
      * @param reset         是否重置清空其他 Padding
      * @return {@link ViewHelper}
      */
-    public ViewHelper setPaddingBottom(final View view, final int bottomPadding, final boolean reset) {
+    public ViewHelper setPaddingBottom(
+            final View view,
+            final int bottomPadding,
+            final boolean reset
+    ) {
         ViewUtils.setPaddingBottom(view, bottomPadding, reset);
         return this;
     }
@@ -2313,7 +2881,11 @@ public final class ViewHelper {
      * @param topBottom Top and bottom Padding
      * @return {@link ViewHelper}
      */
-    public ViewHelper setPadding(final View view, final int leftRight, final int topBottom) {
+    public ViewHelper setPadding(
+            final View view,
+            final int leftRight,
+            final int topBottom
+    ) {
         ViewUtils.setPadding(view, leftRight, topBottom);
         return this;
     }
@@ -2324,7 +2896,10 @@ public final class ViewHelper {
      * @param padding Padding
      * @return {@link ViewHelper}
      */
-    public ViewHelper setPadding(final View view, final int padding) {
+    public ViewHelper setPadding(
+            final View view,
+            final int padding
+    ) {
         ViewUtils.setPadding(view, padding);
         return this;
     }
@@ -2338,7 +2913,13 @@ public final class ViewHelper {
      * @param bottom Bottom Padding
      * @return {@link ViewHelper}
      */
-    public ViewHelper setPadding(final View view, final int left, final int top, final int right, final int bottom) {
+    public ViewHelper setPadding(
+            final View view,
+            final int left,
+            final int top,
+            final int right,
+            final int bottom
+    ) {
         ViewUtils.setPadding(view, left, top, right, bottom);
         return this;
     }
@@ -2350,7 +2931,11 @@ public final class ViewHelper {
      * @param topBottom Top and bottom Padding
      * @return {@link ViewHelper}
      */
-    public ViewHelper setPadding(final View[] views, final int leftRight, final int topBottom) {
+    public ViewHelper setPadding(
+            final View[] views,
+            final int leftRight,
+            final int topBottom
+    ) {
         ViewUtils.setPadding(views, leftRight, topBottom);
         return this;
     }
@@ -2361,7 +2946,10 @@ public final class ViewHelper {
      * @param padding Padding
      * @return {@link ViewHelper}
      */
-    public ViewHelper setPadding(final View[] views, final int padding) {
+    public ViewHelper setPadding(
+            final View[] views,
+            final int padding
+    ) {
         ViewUtils.setPadding(views, padding);
         return this;
     }
@@ -2375,7 +2963,13 @@ public final class ViewHelper {
      * @param bottom Bottom Padding
      * @return {@link ViewHelper}
      */
-    public ViewHelper setPadding(final View[] views, final int left, final int top, final int right, final int bottom) {
+    public ViewHelper setPadding(
+            final View[] views,
+            final int left,
+            final int top,
+            final int right,
+            final int bottom
+    ) {
         ViewUtils.setPadding(views, left, top, right, bottom);
         return this;
     }
@@ -2386,7 +2980,10 @@ public final class ViewHelper {
      * @param padding  CompoundDrawables Padding
      * @return {@link ViewHelper}
      */
-    public ViewHelper setCompoundDrawablePadding(final TextView textView, final int padding) {
+    public ViewHelper setCompoundDrawablePadding(
+            final TextView textView,
+            final int padding
+    ) {
         TextViewUtils.setCompoundDrawablePadding(textView, padding);
         return this;
     }
@@ -2397,7 +2994,10 @@ public final class ViewHelper {
      * @param left     left Drawable
      * @return {@link ViewHelper}
      */
-    public ViewHelper setCompoundDrawablesByLeft(final TextView textView, final Drawable left) {
+    public ViewHelper setCompoundDrawablesByLeft(
+            final TextView textView,
+            final Drawable left
+    ) {
         TextViewUtils.setCompoundDrawablesByLeft(textView, left);
         return this;
     }
@@ -2408,7 +3008,10 @@ public final class ViewHelper {
      * @param top      top Drawable
      * @return {@link ViewHelper}
      */
-    public ViewHelper setCompoundDrawablesByTop(final TextView textView, final Drawable top) {
+    public ViewHelper setCompoundDrawablesByTop(
+            final TextView textView,
+            final Drawable top
+    ) {
         TextViewUtils.setCompoundDrawablesByTop(textView, top);
         return this;
     }
@@ -2419,7 +3022,10 @@ public final class ViewHelper {
      * @param right    right Drawable
      * @return {@link ViewHelper}
      */
-    public ViewHelper setCompoundDrawablesByRight(final TextView textView, final Drawable right) {
+    public ViewHelper setCompoundDrawablesByRight(
+            final TextView textView,
+            final Drawable right
+    ) {
         TextViewUtils.setCompoundDrawablesByRight(textView, right);
         return this;
     }
@@ -2430,7 +3036,10 @@ public final class ViewHelper {
      * @param bottom   bottom Drawable
      * @return {@link ViewHelper}
      */
-    public ViewHelper setCompoundDrawablesByBottom(final TextView textView, final Drawable bottom) {
+    public ViewHelper setCompoundDrawablesByBottom(
+            final TextView textView,
+            final Drawable bottom
+    ) {
         TextViewUtils.setCompoundDrawablesByBottom(textView, bottom);
         return this;
     }
@@ -2449,9 +3058,13 @@ public final class ViewHelper {
      * @param bottom   bottom Drawable
      * @return {@link ViewHelper}
      */
-    public ViewHelper setCompoundDrawables(final TextView textView,
-                                           final Drawable left, final Drawable top,
-                                           final Drawable right, final Drawable bottom) {
+    public ViewHelper setCompoundDrawables(
+            final TextView textView,
+            final Drawable left,
+            final Drawable top,
+            final Drawable right,
+            final Drawable bottom
+    ) {
         TextViewUtils.setCompoundDrawables(textView, left, top, right, bottom);
         return this;
     }
@@ -2462,7 +3075,10 @@ public final class ViewHelper {
      * @param left     left Drawable
      * @return {@link ViewHelper}
      */
-    public ViewHelper setCompoundDrawablesWithIntrinsicBoundsByLeft(final TextView textView, final Drawable left) {
+    public ViewHelper setCompoundDrawablesWithIntrinsicBoundsByLeft(
+            final TextView textView,
+            final Drawable left
+    ) {
         TextViewUtils.setCompoundDrawablesWithIntrinsicBoundsByLeft(textView, left);
         return this;
     }
@@ -2473,7 +3089,10 @@ public final class ViewHelper {
      * @param top      top Drawable
      * @return {@link ViewHelper}
      */
-    public ViewHelper setCompoundDrawablesWithIntrinsicBoundsByTop(final TextView textView, final Drawable top) {
+    public ViewHelper setCompoundDrawablesWithIntrinsicBoundsByTop(
+            final TextView textView,
+            final Drawable top
+    ) {
         TextViewUtils.setCompoundDrawablesWithIntrinsicBoundsByTop(textView, top);
         return this;
     }
@@ -2484,7 +3103,10 @@ public final class ViewHelper {
      * @param right    right Drawable
      * @return {@link ViewHelper}
      */
-    public ViewHelper setCompoundDrawablesWithIntrinsicBoundsByRight(final TextView textView, final Drawable right) {
+    public ViewHelper setCompoundDrawablesWithIntrinsicBoundsByRight(
+            final TextView textView,
+            final Drawable right
+    ) {
         TextViewUtils.setCompoundDrawablesWithIntrinsicBoundsByRight(textView, right);
         return this;
     }
@@ -2495,7 +3117,10 @@ public final class ViewHelper {
      * @param bottom   bottom Drawable
      * @return {@link ViewHelper}
      */
-    public ViewHelper setCompoundDrawablesWithIntrinsicBoundsByBottom(final TextView textView, final Drawable bottom) {
+    public ViewHelper setCompoundDrawablesWithIntrinsicBoundsByBottom(
+            final TextView textView,
+            final Drawable bottom
+    ) {
         TextViewUtils.setCompoundDrawablesWithIntrinsicBoundsByBottom(textView, bottom);
         return this;
     }
@@ -2509,9 +3134,13 @@ public final class ViewHelper {
      * @param bottom   bottom Drawable
      * @return {@link ViewHelper}
      */
-    public ViewHelper setCompoundDrawablesWithIntrinsicBounds(final TextView textView,
-                                                              final Drawable left, final Drawable top,
-                                                              final Drawable right, final Drawable bottom) {
+    public ViewHelper setCompoundDrawablesWithIntrinsicBounds(
+            final TextView textView,
+            final Drawable left,
+            final Drawable top,
+            final Drawable right,
+            final Drawable bottom
+    ) {
         TextViewUtils.setCompoundDrawablesWithIntrinsicBounds(textView, left, top, right, bottom);
         return this;
     }
@@ -2526,7 +3155,10 @@ public final class ViewHelper {
      * @param verb 布局位置
      * @return {@link ViewHelper}
      */
-    public ViewHelper addRule(final View view, final int verb) {
+    public ViewHelper addRule(
+            final View view,
+            final int verb
+    ) {
         ViewUtils.addRule(view, verb);
         return this;
     }
@@ -2538,7 +3170,11 @@ public final class ViewHelper {
      * @param subject 关联 View id
      * @return {@link ViewHelper}
      */
-    public ViewHelper addRule(final View view, final int verb, final int subject) {
+    public ViewHelper addRule(
+            final View view,
+            final int verb,
+            final int subject
+    ) {
         ViewUtils.addRule(view, verb, subject);
         return this;
     }
@@ -2549,7 +3185,10 @@ public final class ViewHelper {
      * @param verb 布局位置
      * @return {@link ViewHelper}
      */
-    public ViewHelper removeRule(final View view, final int verb) {
+    public ViewHelper removeRule(
+            final View view,
+            final int verb
+    ) {
         ViewUtils.removeRule(view, verb);
         return this;
     }
@@ -2562,7 +3201,10 @@ public final class ViewHelper {
      * @param views View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper addRules(final int verb, final View... views) {
+    public ViewHelper addRules(
+            final int verb,
+            final View... views
+    ) {
         ViewUtils.addRules(verb, views);
         return this;
     }
@@ -2574,7 +3216,11 @@ public final class ViewHelper {
      * @param views   View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper addRules(final int verb, final int subject, final View... views) {
+    public ViewHelper addRules(
+            final int verb,
+            final int subject,
+            final View... views
+    ) {
         ViewUtils.addRules(verb, subject, views);
         return this;
     }
@@ -2585,7 +3231,10 @@ public final class ViewHelper {
      * @param views View[]
      * @return {@link ViewHelper}
      */
-    public ViewHelper removeRules(final int verb, final View... views) {
+    public ViewHelper removeRules(
+            final int verb,
+            final View... views
+    ) {
         ViewUtils.removeRules(verb, views);
         return this;
     }
@@ -2600,7 +3249,10 @@ public final class ViewHelper {
      * @param animation {@link Animation}
      * @return {@link ViewHelper}
      */
-    public ViewHelper setAnimation(final View view, final Animation animation) {
+    public ViewHelper setAnimation(
+            final View view,
+            final Animation animation
+    ) {
         ViewUtils.setAnimation(view, animation);
         return this;
     }
@@ -2621,7 +3273,10 @@ public final class ViewHelper {
      * @param animation {@link Animation}
      * @return {@link ViewHelper}
      */
-    public ViewHelper startAnimation(final View view, final Animation animation) {
+    public ViewHelper startAnimation(
+            final View view,
+            final Animation animation
+    ) {
         ViewUtils.startAnimation(view, animation);
         return this;
     }
@@ -2646,7 +3301,10 @@ public final class ViewHelper {
      * @param views           View 数组
      * @return {@link ViewHelper}
      */
-    public ViewHelper setOnClicks(final View.OnClickListener onClickListener, final View... views) {
+    public ViewHelper setOnClicks(
+            final View.OnClickListener onClickListener,
+            final View... views
+    ) {
         ListenerUtils.setOnClicks(onClickListener, views);
         return this;
     }
@@ -2657,7 +3315,10 @@ public final class ViewHelper {
      * @param views               View 数组
      * @return {@link ViewHelper}
      */
-    public ViewHelper setOnLongClicks(final View.OnLongClickListener onLongClickListener, final View... views) {
+    public ViewHelper setOnLongClicks(
+            final View.OnLongClickListener onLongClickListener,
+            final View... views
+    ) {
         ListenerUtils.setOnLongClicks(onLongClickListener, views);
         return this;
     }
@@ -2668,7 +3329,10 @@ public final class ViewHelper {
      * @param views           View 数组
      * @return {@link ViewHelper}
      */
-    public ViewHelper setOnTouchs(final View.OnTouchListener onTouchListener, final View... views) {
+    public ViewHelper setOnTouchs(
+            final View.OnTouchListener onTouchListener,
+            final View... views
+    ) {
         ListenerUtils.setOnTouchs(onTouchListener, views);
         return this;
     }
@@ -2679,7 +3343,10 @@ public final class ViewHelper {
      * @param range 点击范围
      * @return {@link ViewHelper}
      */
-    public ViewHelper addTouchArea(final View view, final int range) {
+    public ViewHelper addTouchArea(
+            final View view,
+            final int range
+    ) {
         ClickUtils.addTouchArea(view, range);
         return this;
     }
@@ -2693,7 +3360,13 @@ public final class ViewHelper {
      * @param right  right range
      * @return {@link ViewHelper}
      */
-    public ViewHelper addTouchArea(final View view, final int top, final int bottom, final int left, final int right) {
+    public ViewHelper addTouchArea(
+            final View view,
+            final int top,
+            final int bottom,
+            final int left,
+            final int right
+    ) {
         ClickUtils.addTouchArea(view, top, bottom, left, right);
         return this;
     }
@@ -2708,7 +3381,10 @@ public final class ViewHelper {
      * @param position 索引
      * @return {@link ViewHelper}
      */
-    public ViewHelper smoothScrollToPosition(final View view, final int position) {
+    public ViewHelper smoothScrollToPosition(
+            final View view,
+            final int position
+    ) {
         ListViewUtils.smoothScrollToPosition(view, position);
         return this;
     }
@@ -2719,7 +3395,10 @@ public final class ViewHelper {
      * @param position 索引
      * @return {@link ViewHelper}
      */
-    public ViewHelper scrollToPosition(final View view, final int position) {
+    public ViewHelper scrollToPosition(
+            final View view,
+            final int position
+    ) {
         ListViewUtils.scrollToPosition(view, position);
         return this;
     }
@@ -2793,7 +3472,11 @@ public final class ViewHelper {
      * @param y    Y 轴开始坐标
      * @return {@link ViewHelper}
      */
-    public ViewHelper smoothScrollTo(final View view, final int x, final int y) {
+    public ViewHelper smoothScrollTo(
+            final View view,
+            final int x,
+            final int y
+    ) {
         ListViewUtils.smoothScrollTo(view, x, y);
         return this;
     }
@@ -2805,7 +3488,11 @@ public final class ViewHelper {
      * @param y    Y 轴开始坐标
      * @return {@link ViewHelper}
      */
-    public ViewHelper smoothScrollBy(final View view, final int x, final int y) {
+    public ViewHelper smoothScrollBy(
+            final View view,
+            final int x,
+            final int y
+    ) {
         ListViewUtils.smoothScrollBy(view, x, y);
         return this;
     }
@@ -2816,7 +3503,10 @@ public final class ViewHelper {
      * @param direction 滚动方向 如: View.FOCUS_UP、View.FOCUS_DOWN
      * @return {@link ViewHelper}
      */
-    public ViewHelper fullScroll(final View view, final int direction) {
+    public ViewHelper fullScroll(
+            final View view,
+            final int direction
+    ) {
         ListViewUtils.fullScroll(view, direction);
         return this;
     }

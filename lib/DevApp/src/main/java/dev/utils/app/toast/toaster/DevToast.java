@@ -137,7 +137,10 @@ public final class DevToast {
      * @param text       Toast 提示文本
      * @param formatArgs 格式化参数
      */
-    public static void show(final String text, final Object... formatArgs) {
+    public static void show(
+            final String text,
+            final Object... formatArgs
+    ) {
         sToast.show(text, formatArgs);
     }
 
@@ -146,7 +149,10 @@ public final class DevToast {
      * @param resId      R.string.id
      * @param formatArgs 格式化参数
      */
-    public static void show(@StringRes final int resId, final Object... formatArgs) {
+    public static void show(
+            @StringRes final int resId,
+            final Object... formatArgs
+    ) {
         sToast.show(resId, formatArgs);
     }
 
@@ -163,7 +169,10 @@ public final class DevToast {
      * @param view     Toast 显示的 View
      * @param duration Toast 显示时长 {@link Toast#LENGTH_SHORT}、{@link Toast#LENGTH_LONG}
      */
-    public static void show(final View view, final int duration) {
+    public static void show(
+            final View view,
+            final int duration
+    ) {
         sToast.show(view, duration);
     }
 

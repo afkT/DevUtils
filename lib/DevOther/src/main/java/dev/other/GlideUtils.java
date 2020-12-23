@@ -215,7 +215,10 @@ public final class GlideUtils {
      * @param loadingRes 设置加载中显示的图片
      * @return {@link RequestOptions}
      */
-    public static RequestOptions getLoadResOptions(final RequestOptions options, @DrawableRes final int loadingRes) {
+    public static RequestOptions getLoadResOptions(
+            final RequestOptions options,
+            @DrawableRes final int loadingRes
+    ) {
         if (options != null && loadingRes != 0) {
             options.placeholder(loadingRes) // 设置图片在下载期间显示的图片
                     .fallback(loadingRes) // 设置图片 Uri 为空或是错误的时候显示的图片
@@ -239,7 +242,10 @@ public final class GlideUtils {
      * @param transformation {@link Transformation} 图形效果
      * @return {@link RequestOptions}
      */
-    public static RequestOptions transformationOptions(final RequestOptions options, final Transformation transformation) {
+    public static RequestOptions transformationOptions(
+            final RequestOptions options,
+            final Transformation transformation
+    ) {
         if (options != null) {
             try {
                 options.transform(transformation);
@@ -293,7 +299,10 @@ public final class GlideUtils {
          * @param uri     Image Uri
          * @param options {@link RequestOptions}
          */
-        public void preload(final String uri, final RequestOptions options) {
+        public void preload(
+                final String uri,
+                final RequestOptions options
+        ) {
             if (mRequestManager != null) {
                 if (options != null) {
                     mRequestManager.asBitmap().load(uri).apply(options).preload();
@@ -312,7 +321,10 @@ public final class GlideUtils {
          * @param uri       Image Uri
          * @param imageView ImageView
          */
-        public void displayImage(final String uri, final ImageView imageView) {
+        public void displayImage(
+                final String uri,
+                final ImageView imageView
+        ) {
             displayImage(uri, imageView, null, null);
         }
 
@@ -325,7 +337,11 @@ public final class GlideUtils {
          * @param imageView ImageView
          * @param options   {@link RequestOptions}
          */
-        public void displayImage(final String uri, final ImageView imageView, final RequestOptions options) {
+        public void displayImage(
+                final String uri,
+                final ImageView imageView,
+                final RequestOptions options
+        ) {
             displayImage(uri, imageView, options, null);
         }
 
@@ -338,7 +354,11 @@ public final class GlideUtils {
          * @param imageView ImageView
          * @param listener  加载监听事件
          */
-        public void displayImage(final String uri, final ImageView imageView, final RequestListener<Bitmap> listener) {
+        public void displayImage(
+                final String uri,
+                final ImageView imageView,
+                final RequestListener<Bitmap> listener
+        ) {
             displayImage(uri, imageView, null, listener);
         }
 
@@ -352,8 +372,12 @@ public final class GlideUtils {
          * @param options   {@link RequestOptions}
          * @param listener  加载监听事件
          */
-        public void displayImage(final String uri, final ImageView imageView, final RequestOptions options,
-                                 final RequestListener<Bitmap> listener) {
+        public void displayImage(
+                final String uri,
+                final ImageView imageView,
+                final RequestOptions options,
+                final RequestListener<Bitmap> listener
+        ) {
             if (mRequestManager != null && imageView != null) {
                 if (options != null) {
                     mRequestManager.asBitmap().load(uri).apply(options).listener(listener).into(imageView);
@@ -370,7 +394,10 @@ public final class GlideUtils {
          * @param uri       Image Uri
          * @param imageView ImageView
          */
-        public void displayImageToGif(final String uri, final ImageView imageView) {
+        public void displayImageToGif(
+                final String uri,
+                final ImageView imageView
+        ) {
             displayImageToGif(uri, imageView, null, null);
         }
 
@@ -380,7 +407,11 @@ public final class GlideUtils {
          * @param imageView ImageView
          * @param options   {@link RequestOptions}
          */
-        public void displayImageToGif(final String uri, final ImageView imageView, final RequestOptions options) {
+        public void displayImageToGif(
+                final String uri,
+                final ImageView imageView,
+                final RequestOptions options
+        ) {
             displayImageToGif(uri, imageView, options, null);
         }
 
@@ -390,7 +421,11 @@ public final class GlideUtils {
          * @param imageView ImageView
          * @param listener  加载监听事件
          */
-        public void displayImageToGif(final String uri, final ImageView imageView, final RequestListener<GifDrawable> listener) {
+        public void displayImageToGif(
+                final String uri,
+                final ImageView imageView,
+                final RequestListener<GifDrawable> listener
+        ) {
             displayImageToGif(uri, imageView, null, listener);
         }
 
@@ -401,8 +436,12 @@ public final class GlideUtils {
          * @param options   {@link RequestOptions}
          * @param listener  加载监听事件
          */
-        public void displayImageToGif(final String uri, final ImageView imageView, final RequestOptions options,
-                                      final RequestListener<GifDrawable> listener) {
+        public void displayImageToGif(
+                final String uri,
+                final ImageView imageView,
+                final RequestOptions options,
+                final RequestListener<GifDrawable> listener
+        ) {
             if (mRequestManager != null && imageView != null) {
                 if (options != null) {
                     mRequestManager.asGif().load(uri).apply(options).listener(listener).into(imageView);
@@ -419,7 +458,10 @@ public final class GlideUtils {
          * @param uri       Image Uri
          * @param imageView ImageView
          */
-        public void displayImageToDrawable(final String uri, final ImageView imageView) {
+        public void displayImageToDrawable(
+                final String uri,
+                final ImageView imageView
+        ) {
             displayImageToDrawable(uri, imageView, null, null);
         }
 
@@ -429,7 +471,11 @@ public final class GlideUtils {
          * @param imageView ImageView
          * @param options   {@link RequestOptions}
          */
-        public void displayImageToDrawable(final String uri, final ImageView imageView, final RequestOptions options) {
+        public void displayImageToDrawable(
+                final String uri,
+                final ImageView imageView,
+                final RequestOptions options
+        ) {
             displayImageToDrawable(uri, imageView, options, null);
         }
 
@@ -439,7 +485,11 @@ public final class GlideUtils {
          * @param imageView ImageView
          * @param listener  加载监听事件
          */
-        public void displayImageToDrawable(final String uri, final ImageView imageView, final RequestListener<Drawable> listener) {
+        public void displayImageToDrawable(
+                final String uri,
+                final ImageView imageView,
+                final RequestListener<Drawable> listener
+        ) {
             displayImageToDrawable(uri, imageView, null, listener);
         }
 
@@ -450,8 +500,12 @@ public final class GlideUtils {
          * @param options   {@link RequestOptions}
          * @param listener  加载监听事件
          */
-        public void displayImageToDrawable(final String uri, final ImageView imageView, final RequestOptions options,
-                                           final RequestListener<Drawable> listener) {
+        public void displayImageToDrawable(
+                final String uri,
+                final ImageView imageView,
+                final RequestOptions options,
+                final RequestListener<Drawable> listener
+        ) {
             if (mRequestManager != null && imageView != null) {
                 if (options != null) {
                     mRequestManager.asDrawable().load(uri).apply(options).listener(listener).into(imageView);
@@ -468,7 +522,10 @@ public final class GlideUtils {
          * @param uri       Image Uri
          * @param imageView ImageView
          */
-        public void displayImageToFile(final String uri, final ImageView imageView) {
+        public void displayImageToFile(
+                final String uri,
+                final ImageView imageView
+        ) {
             displayImageToFile(uri, imageView, null, null);
         }
 
@@ -478,7 +535,11 @@ public final class GlideUtils {
          * @param imageView ImageView
          * @param options   {@link RequestOptions}
          */
-        public void displayImageToFile(final String uri, final ImageView imageView, final RequestOptions options) {
+        public void displayImageToFile(
+                final String uri,
+                final ImageView imageView,
+                final RequestOptions options
+        ) {
             displayImageToFile(uri, imageView, options, null);
         }
 
@@ -488,7 +549,11 @@ public final class GlideUtils {
          * @param imageView ImageView
          * @param listener  加载监听事件
          */
-        public void displayImageToFile(final String uri, final ImageView imageView, final RequestListener<File> listener) {
+        public void displayImageToFile(
+                final String uri,
+                final ImageView imageView,
+                final RequestListener<File> listener
+        ) {
             displayImageToFile(uri, imageView, null, listener);
         }
 
@@ -499,8 +564,12 @@ public final class GlideUtils {
          * @param options   {@link RequestOptions}
          * @param listener  加载监听事件
          */
-        public void displayImageToFile(final String uri, final ImageView imageView, final RequestOptions options,
-                                       final RequestListener<File> listener) {
+        public void displayImageToFile(
+                final String uri,
+                final ImageView imageView,
+                final RequestOptions options,
+                final RequestListener<File> listener
+        ) {
             if (mRequestManager != null && imageView != null) {
                 if (options != null) {
                     mRequestManager.asFile().load(uri).apply(options).listener(listener).into(imageView);
@@ -519,7 +588,10 @@ public final class GlideUtils {
          * @param uri    Image Uri
          * @param target {@link Target}
          */
-        public void loadImageBitmap(final String uri, final Target<Bitmap> target) {
+        public void loadImageBitmap(
+                final String uri,
+                final Target<Bitmap> target
+        ) {
             loadImageBitmap(uri, target, null);
         }
 
@@ -529,7 +601,11 @@ public final class GlideUtils {
          * @param target  {@link Target}
          * @param options {@link RequestOptions}
          */
-        public void loadImageBitmap(final String uri, final Target<Bitmap> target, final RequestOptions options) {
+        public void loadImageBitmap(
+                final String uri,
+                final Target<Bitmap> target,
+                final RequestOptions options
+        ) {
             if (mRequestManager != null) {
                 if (options != null) {
                     mRequestManager.asBitmap().load(uri).apply(options).into(target);
@@ -546,7 +622,10 @@ public final class GlideUtils {
          * @param uri    Image Uri
          * @param target {@link Target}
          */
-        public void loadImageDrawable(final String uri, final Target<Drawable> target) {
+        public void loadImageDrawable(
+                final String uri,
+                final Target<Drawable> target
+        ) {
             loadImageDrawable(uri, target, null);
         }
 
@@ -556,7 +635,11 @@ public final class GlideUtils {
          * @param target  {@link Target}
          * @param options {@link RequestOptions}
          */
-        public void loadImageDrawable(final String uri, final Target<Drawable> target, final RequestOptions options) {
+        public void loadImageDrawable(
+                final String uri,
+                final Target<Drawable> target,
+                final RequestOptions options
+        ) {
             if (mRequestManager != null) {
                 if (options != null) {
                     mRequestManager.asDrawable().load(uri).apply(options).into(target);
@@ -573,7 +656,10 @@ public final class GlideUtils {
          * @param uri    Image Uri
          * @param target {@link Target}
          */
-        public void loadImageFile(final String uri, final Target<File> target) {
+        public void loadImageFile(
+                final String uri,
+                final Target<File> target
+        ) {
             loadImageFile(uri, target, null);
         }
 
@@ -583,7 +669,11 @@ public final class GlideUtils {
          * @param target  {@link Target}
          * @param options {@link RequestOptions}
          */
-        public void loadImageFile(final String uri, final Target<File> target, final RequestOptions options) {
+        public void loadImageFile(
+                final String uri,
+                final Target<File> target,
+                final RequestOptions options
+        ) {
             if (mRequestManager != null) {
                 if (options != null) {
                     mRequestManager.asFile().load(uri).apply(options).into(target);
@@ -598,7 +688,10 @@ public final class GlideUtils {
          * @param uri    Image Uri
          * @param target {@link Target}
          */
-        public void loadImageGif(final String uri, final Target<GifDrawable> target) {
+        public void loadImageGif(
+                final String uri,
+                final Target<GifDrawable> target
+        ) {
             loadImageGif(uri, target, null);
         }
 
@@ -608,7 +701,11 @@ public final class GlideUtils {
          * @param target  {@link Target}
          * @param options {@link RequestOptions}
          */
-        public void loadImageGif(final String uri, final Target<GifDrawable> target, final RequestOptions options) {
+        public void loadImageGif(
+                final String uri,
+                final Target<GifDrawable> target,
+                final RequestOptions options
+        ) {
             if (mRequestManager != null) {
                 if (options != null) {
                     mRequestManager.asGif().load(uri).apply(options).into(target);

@@ -32,7 +32,10 @@ public class CustomViewPager extends ViewPager {
         super(context);
     }
 
-    public CustomViewPager(Context context, AttributeSet attrs) {
+    public CustomViewPager(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
         initAttrs(context, attrs);
     }
@@ -42,7 +45,10 @@ public class CustomViewPager extends ViewPager {
      * @param context {@link Context}
      * @param attrs   {@link AttributeSet}
      */
-    private void initAttrs(Context context, AttributeSet attrs) {
+    private void initAttrs(
+            Context context,
+            AttributeSet attrs
+    ) {
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
             mIsSlide = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
@@ -53,7 +59,10 @@ public class CustomViewPager extends ViewPager {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    protected void onMeasure(
+            int widthMeasureSpec,
+            int heightMeasureSpec
+    ) {
         int[] measureSpecs = WidgetUtils.viewMeasure(this, widthMeasureSpec, heightMeasureSpec, mMaxWidth, mMaxHeight);
         super.onMeasure(measureSpecs[0], measureSpecs[1]);
     }
@@ -163,7 +172,11 @@ public class CustomViewPager extends ViewPager {
         protected boolean mLeftScroll = false;
 
         @Override
-        public void onPageScrolled(int pos, float arg1, int arg2) {
+        public void onPageScrolled(
+                int pos,
+                float arg1,
+                int arg2
+        ) {
             // pos  当前页面及你点击滑动的页面
             // arg1 当前页面偏移的百分比
             // arg2 当前页面偏移的像素位置
@@ -209,6 +222,9 @@ public class CustomViewPager extends ViewPager {
          * @param left  是否向左滑动
          * @param right 是否向右滑动
          */
-        public abstract void onSlideDirection(boolean left, boolean right);
+        public abstract void onSlideDirection(
+                boolean left,
+                boolean right
+        );
     }
 }

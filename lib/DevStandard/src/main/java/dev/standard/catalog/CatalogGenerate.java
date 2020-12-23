@@ -34,7 +34,11 @@ final class CatalogGenerate {
          * @param lineNumber 行数
          * @param classTag   Class TAG 标记
          */
-        void callback(String name, int lineNumber, String classTag);
+        void callback(
+                String name,
+                int lineNumber,
+                String classTag
+        );
     }
 
     // ====================
@@ -49,8 +53,12 @@ final class CatalogGenerate {
      * @param layer         目录层级
      * @return 文件夹目录列表集合
      */
-    private static List<FileUtils.FileList> getFolderLists(final String path, final CatalogCallback callback,
-                                                           final String[] ignoreCatalog, final int layer) {
+    private static List<FileUtils.FileList> getFolderLists(
+            final String path,
+            final CatalogCallback callback,
+            final String[] ignoreCatalog,
+            final int layer
+    ) {
         return getFolderLists(path, callback, ignoreCatalog, layer, 0);
     }
 
@@ -63,8 +71,13 @@ final class CatalogGenerate {
      * @param curLayer      当前层级
      * @return 文件夹目录列表集合
      */
-    private static List<FileUtils.FileList> getFolderLists(final String path, final CatalogCallback callback,
-                                                           final String[] ignoreCatalog, final int layer, final int curLayer) {
+    private static List<FileUtils.FileList> getFolderLists(
+            final String path,
+            final CatalogCallback callback,
+            final String[] ignoreCatalog,
+            final int layer,
+            final int curLayer
+    ) {
         // 当前层级大于想要的层级则 return
         if (curLayer > layer) return new ArrayList<>();
         List<FileUtils.FileList> lists = new ArrayList<>();
@@ -109,7 +122,10 @@ final class CatalogGenerate {
      * @param name       目录名
      * @param lineNumber 行数
      */
-    private static void calculateMaxLength(final String name, final int lineNumber) {
+    private static void calculateMaxLength(
+            final String name,
+            final int lineNumber
+    ) {
         StringBuilder builder = new StringBuilder(); // 添加目录
         builder.append(createCatalog(name, lineNumber));
         int length = builder.length();
@@ -125,7 +141,10 @@ final class CatalogGenerate {
      * @param lineNumber 行数
      * @return 目录信息
      */
-    private static String createCatalog(final String name, final int lineNumber) {
+    private static String createCatalog(
+            final String name,
+            final int lineNumber
+    ) {
         StringBuilder builder = new StringBuilder(); // 添加空格
         builder.append(StringUtils.appendSpace(lineNumber * 3));
         builder.append("- ").append(name); // 打印目录
@@ -140,8 +159,12 @@ final class CatalogGenerate {
      * @param mapCatalog 对应目录注释
      * @return 目录行信息
      */
-    private static String createCatalogLine(final String name, final int lineNumber, final String classTag,
-                                            final Map<String, String> mapCatalog) {
+    private static String createCatalogLine(
+            final String name,
+            final int lineNumber,
+            final String classTag,
+            final Map<String, String> mapCatalog
+    ) {
         StringBuilder builder = new StringBuilder(); // 添加目录
         builder.append(createCatalog(name, lineNumber));
         // 设置间隔长度
@@ -159,9 +182,13 @@ final class CatalogGenerate {
      * @param classTag   Class TAG 标记
      * @param mapCatalog 对应目录注释
      */
-    private static void forCatalog(final StringBuilder builder, final List<FileUtils.FileList> lists,
-                                   final int lineNumber, final String classTag,
-                                   final Map<String, String> mapCatalog) {
+    private static void forCatalog(
+            final StringBuilder builder,
+            final List<FileUtils.FileList> lists,
+            final int lineNumber,
+            final String classTag,
+            final Map<String, String> mapCatalog
+    ) {
         for (int i = 0, len = lists.size(); i < len; i++) {
             // 获取目录
             FileUtils.FileList catalog = lists.get(i);
@@ -191,13 +218,22 @@ final class CatalogGenerate {
      * @param layer             目录层级
      * @return 目录信息
      */
-    public static String generate(final String path, final String dirName, final Map<String, String> mapCatalog,
-                                  final List<String> listIgnoreCatalog, final int layer) {
+    public static String generate(
+            final String path,
+            final String dirName,
+            final Map<String, String> mapCatalog,
+            final List<String> listIgnoreCatalog,
+            final int layer
+    ) {
         StringBuilder builder = new StringBuilder();
         // 获取文件夹列表
         List<FileUtils.FileList> lists = getFolderLists(path, new CatalogCallback() {
             @Override
-            public void callback(String name, int lineNumber, String classTag) {
+            public void callback(
+                    String name,
+                    int lineNumber,
+                    String classTag
+            ) {
                 // 计算目录最大长度
                 calculateMaxLength(name, lineNumber);
             }

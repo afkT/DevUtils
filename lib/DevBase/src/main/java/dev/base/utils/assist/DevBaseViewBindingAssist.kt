@@ -23,7 +23,10 @@ class DevBaseViewBindingAssist<VB : ViewBinding> {
      * @param clazz     VB Class
      */
     fun viewBinding(
-        inflater: LayoutInflater, container: ViewGroup?, view: View?, clazz: Class<VB>
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        view: View?,
+        clazz: Class<VB>
     ): DevBaseViewBindingAssist<VB> {
         _binding = ViewBindingUtils.viewBinding(
             inflater, container, view, clazz

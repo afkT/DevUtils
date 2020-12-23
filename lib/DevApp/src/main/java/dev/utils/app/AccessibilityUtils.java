@@ -131,7 +131,10 @@ public final class AccessibilityUtils {
      * @param event {@link AccessibilityEvent}
      * @param tag   日志 TAG
      */
-    public static void printAccessibilityEvent(final AccessibilityEvent event, final String tag) {
+    public static void printAccessibilityEvent(
+            final AccessibilityEvent event,
+            final String tag
+    ) {
         if (event == null || !LogPrintUtils.isPrintLog()) return;
 
         StringBuilder builder = new StringBuilder();
@@ -217,7 +220,10 @@ public final class AccessibilityUtils {
      * @return 拥有特定焦点类型的节点
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static AccessibilityNodeInfo findFocus(final AccessibilityService service, final int focus) {
+    public static AccessibilityNodeInfo findFocus(
+            final AccessibilityService service,
+            final int focus
+    ) {
         if (service == null) return null;
         // 获取根节点
         AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
@@ -236,7 +242,10 @@ public final class AccessibilityUtils {
      * @return 拥有特定焦点类型的节点
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static AccessibilityNodeInfo findFocus(final int focus, final String className) {
+    public static AccessibilityNodeInfo findFocus(
+            final int focus,
+            final String className
+    ) {
         return findFocus(sService, focus, className);
     }
 
@@ -248,7 +257,11 @@ public final class AccessibilityUtils {
      * @return 拥有特定焦点类型的节点
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static AccessibilityNodeInfo findFocus(final AccessibilityService service, final int focus, final String className) {
+    public static AccessibilityNodeInfo findFocus(
+            final AccessibilityService service,
+            final int focus,
+            final String className
+    ) {
         if (service == null || className == null) return null;
         // 获取根节点
         AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
@@ -285,7 +298,10 @@ public final class AccessibilityUtils {
      * @return 包含该文本内容的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(final AccessibilityService service, final String text) {
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(
+            final AccessibilityService service,
+            final String text
+    ) {
         if (service == null || text == null) return null;
         // 获取根节点
         AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
@@ -304,7 +320,10 @@ public final class AccessibilityUtils {
      * @return 包含该文本内容, 且属于指定类的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(final String text, final String className) {
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(
+            final String text,
+            final String className
+    ) {
         return findAccessibilityNodeInfosByText(sService, text, className);
     }
 
@@ -316,7 +335,11 @@ public final class AccessibilityUtils {
      * @return 包含该文本内容, 且属于指定类的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(final AccessibilityService service, final String text, final String className) {
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(
+            final AccessibilityService service,
+            final String text,
+            final String className
+    ) {
         if (service == null || text == null || className == null) return null;
         List<AccessibilityNodeInfo> lists = new ArrayList<>();
         // 获取根节点
@@ -355,7 +378,10 @@ public final class AccessibilityUtils {
      * @return 等于 viewId 的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(final AccessibilityService service, final String id) {
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(
+            final AccessibilityService service,
+            final String id
+    ) {
         if (service == null || id == null) return null;
         // 获取根节点
         AccessibilityNodeInfo nodeInfo = service.getRootInActiveWindow();
@@ -374,7 +400,10 @@ public final class AccessibilityUtils {
      * @return 等于 viewId, 且属于指定类的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(final String id, final String className) {
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(
+            final String id,
+            final String className
+    ) {
         return findAccessibilityNodeInfosByViewId(sService, id, className);
     }
 
@@ -386,7 +415,11 @@ public final class AccessibilityUtils {
      * @return 等于 viewId, 且属于指定类的节点集合
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
-    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(final AccessibilityService service, final String id, final String className) {
+    public static List<AccessibilityNodeInfo> findAccessibilityNodeInfosByViewId(
+            final AccessibilityService service,
+            final String id,
+            final String className
+    ) {
         if (service == null || id == null || className == null) return null;
         List<AccessibilityNodeInfo> lists = new ArrayList<>();
         // 获取根节点
@@ -428,7 +461,10 @@ public final class AccessibilityUtils {
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean performClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent) {
+    public static boolean performClick(
+            final AccessibilityNodeInfo nodeInfo,
+            final boolean clickParent
+    ) {
         return performClick(nodeInfo, clickParent, false);
     }
 
@@ -439,7 +475,11 @@ public final class AccessibilityUtils {
      * @param clickAll    判断是否点击全部节点
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean performClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent, final boolean clickAll) {
+    public static boolean performClick(
+            final AccessibilityNodeInfo nodeInfo,
+            final boolean clickParent,
+            final boolean clickAll
+    ) {
         if (nodeInfo == null) return false;
         if (clickParent) {
             if (nodeInfo.isClickable()) {
@@ -481,7 +521,10 @@ public final class AccessibilityUtils {
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean performLongClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent) {
+    public static boolean performLongClick(
+            final AccessibilityNodeInfo nodeInfo,
+            final boolean clickParent
+    ) {
         return performLongClick(nodeInfo, clickParent, false);
     }
 
@@ -492,7 +535,11 @@ public final class AccessibilityUtils {
      * @param clickAll    判断是否点击全部节点
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean performLongClick(final AccessibilityNodeInfo nodeInfo, final boolean clickParent, final boolean clickAll) {
+    public static boolean performLongClick(
+            final AccessibilityNodeInfo nodeInfo,
+            final boolean clickParent,
+            final boolean clickAll
+    ) {
         if (nodeInfo == null) return false;
         if (clickParent) {
             if (nodeInfo.isClickable()) {
@@ -697,7 +744,10 @@ public final class AccessibilityUtils {
      * @param action   操作意图
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean preformAction(final AccessibilityNodeInfo nodeInfo, final int action) {
+    public static boolean preformAction(
+            final AccessibilityNodeInfo nodeInfo,
+            final int action
+    ) {
         if (nodeInfo != null) {
             return nodeInfo.performAction(action);
         }
@@ -711,7 +761,10 @@ public final class AccessibilityUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean performGlobalAction(final AccessibilityService service, final int action) {
+    public static boolean performGlobalAction(
+            final AccessibilityService service,
+            final int action
+    ) {
         if (service != null) {
             return service.performGlobalAction(action);
         }

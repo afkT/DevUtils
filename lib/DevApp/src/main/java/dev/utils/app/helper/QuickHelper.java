@@ -196,7 +196,10 @@ public final class QuickHelper {
      * @param delayMillis 延迟时间
      * @return {@link QuickHelper}
      */
-    public QuickHelper postRunnable(final Runnable runnable, final long delayMillis) {
+    public QuickHelper postRunnable(
+            final Runnable runnable,
+            final long delayMillis
+    ) {
         HandlerUtils.postRunnable(runnable, delayMillis);
         return this;
     }
@@ -209,7 +212,12 @@ public final class QuickHelper {
      * @param interval    轮询时间
      * @return {@link QuickHelper}
      */
-    public QuickHelper postRunnable(final Runnable runnable, final long delayMillis, final int number, final int interval) {
+    public QuickHelper postRunnable(
+            final Runnable runnable,
+            final long delayMillis,
+            final int number,
+            final int interval
+    ) {
         HandlerUtils.postRunnable(runnable, delayMillis, number, interval);
         return this;
     }
@@ -223,7 +231,13 @@ public final class QuickHelper {
      * @param onEndListener 结束通知
      * @return {@link QuickHelper}
      */
-    public QuickHelper postRunnable(final Runnable runnable, final long delayMillis, final int number, final int interval, final HandlerUtils.OnEndListener onEndListener) {
+    public QuickHelper postRunnable(
+            final Runnable runnable,
+            final long delayMillis,
+            final int number,
+            final int interval,
+            final HandlerUtils.OnEndListener onEndListener
+    ) {
         HandlerUtils.postRunnable(runnable, delayMillis, number, interval, onEndListener);
         return this;
     }
@@ -373,7 +387,10 @@ public final class QuickHelper {
      * @param size 字体大小
      * @return {@link QuickHelper}
      */
-    public QuickHelper setTextSize(final int unit, final float size) {
+    public QuickHelper setTextSize(
+            final int unit,
+            final float size
+    ) {
         TextViewUtils.setTextSize(targetTextView(), unit, size);
         return this;
     }
@@ -431,7 +448,10 @@ public final class QuickHelper {
      * @param isBold   {@code true} yes, {@code false} no
      * @return {@link QuickHelper}
      */
-    public QuickHelper setBold(final Typeface typeface, final boolean isBold) {
+    public QuickHelper setBold(
+            final Typeface typeface,
+            final boolean isBold
+    ) {
         TextViewUtils.setBold(targetTextView(), typeface, isBold);
         return this;
     }
@@ -502,7 +522,10 @@ public final class QuickHelper {
      * @param multiplier  行间距倍数, android:lineSpacingMultiplier
      * @return {@link QuickHelper}
      */
-    public QuickHelper setLineSpacingAndMultiplier(final float lineSpacing, final float multiplier) {
+    public QuickHelper setLineSpacingAndMultiplier(
+            final float lineSpacing,
+            final float multiplier
+    ) {
         TextViewUtils.setLineSpacingAndMultiplier(targetTextView(), lineSpacing, multiplier);
         return this;
     }
@@ -657,7 +680,10 @@ public final class QuickHelper {
      * @param isSelect 是否设置光标
      * @return {@link QuickHelper}
      */
-    public QuickHelper setText(final CharSequence content, final boolean isSelect) {
+    public QuickHelper setText(
+            final CharSequence content,
+            final boolean isSelect
+    ) {
         EditTextUtils.setText(targetEditText(), content, isSelect);
         return this;
     }
@@ -668,7 +694,10 @@ public final class QuickHelper {
      * @param isSelect 是否设置光标
      * @return {@link QuickHelper}
      */
-    public QuickHelper insert(final CharSequence content, final boolean isSelect) {
+    public QuickHelper insert(
+            final CharSequence content,
+            final boolean isSelect
+    ) {
         EditTextUtils.insert(targetEditText(), content, isSelect);
         return this;
     }
@@ -680,7 +709,11 @@ public final class QuickHelper {
      * @param isSelect 是否设置光标
      * @return {@link QuickHelper}
      */
-    public QuickHelper insert(final CharSequence content, final int start, final boolean isSelect) {
+    public QuickHelper insert(
+            final CharSequence content,
+            final int start,
+            final boolean isSelect
+    ) {
         EditTextUtils.insert(targetEditText(), content, start, isSelect);
         return this;
     }
@@ -706,7 +739,10 @@ public final class QuickHelper {
      * @param maxLength 长度限制
      * @return {@link QuickHelper}
      */
-    public QuickHelper setMaxLengthAndText(final CharSequence content, final int maxLength) {
+    public QuickHelper setMaxLengthAndText(
+            final CharSequence content,
+            final int maxLength
+    ) {
         View view = targetView();
         if (view instanceof EditText) {
             EditTextUtils.setMaxLengthAndText(EditTextUtils.getEditText(view), content, maxLength);
@@ -792,7 +828,10 @@ public final class QuickHelper {
      * @param isSelectBottom    是否设置光标到最后
      * @return {@link QuickHelper}
      */
-    public QuickHelper setTransformationMethod(final boolean isDisplayPassword, final boolean isSelectBottom) {
+    public QuickHelper setTransformationMethod(
+            final boolean isDisplayPassword,
+            final boolean isSelectBottom
+    ) {
         EditTextUtils.setTransformationMethod(targetEditText(), isDisplayPassword, isSelectBottom);
         return this;
     }
@@ -1077,7 +1116,10 @@ public final class QuickHelper {
      * @param color    颜色值
      * @return {@link QuickHelper}
      */
-    public QuickHelper setColorFilter(final Drawable drawable, @ColorInt final int color) {
+    public QuickHelper setColorFilter(
+            final Drawable drawable,
+            @ColorInt final int color
+    ) {
         ViewUtils.setColorFilter(targetView(), drawable, color);
         return this;
     }
@@ -1098,7 +1140,10 @@ public final class QuickHelper {
      * @param colorFilter 颜色过滤 ( 效果 )
      * @return {@link QuickHelper}
      */
-    public QuickHelper setColorFilter(final Drawable drawable, final ColorFilter colorFilter) {
+    public QuickHelper setColorFilter(
+            final Drawable drawable,
+            final ColorFilter colorFilter
+    ) {
         ViewUtils.setColorFilter(targetView(), drawable, colorFilter);
         return this;
     }
@@ -1119,7 +1164,10 @@ public final class QuickHelper {
      * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @return {@link QuickHelper}
      */
-    public QuickHelper setBackgroundResources(@DrawableRes final int resId, final int isVisibility) {
+    public QuickHelper setBackgroundResources(
+            @DrawableRes final int resId,
+            final int isVisibility
+    ) {
         ImageViewUtils.setBackgroundResources(resId, isVisibility, targetView());
         return this;
     }
@@ -1140,7 +1188,10 @@ public final class QuickHelper {
      * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @return {@link QuickHelper}
      */
-    public QuickHelper setImageResources(@DrawableRes final int resId, final int isVisibility) {
+    public QuickHelper setImageResources(
+            @DrawableRes final int resId,
+            final int isVisibility
+    ) {
         ImageViewUtils.setImageResources(resId, isVisibility, targetView());
         return this;
     }
@@ -1161,7 +1212,10 @@ public final class QuickHelper {
      * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @return {@link QuickHelper}
      */
-    public QuickHelper setImageBitmaps(final Bitmap bitmap, final int isVisibility) {
+    public QuickHelper setImageBitmaps(
+            final Bitmap bitmap,
+            final int isVisibility
+    ) {
         ImageViewUtils.setImageBitmaps(bitmap, isVisibility, targetView());
         return this;
     }
@@ -1182,7 +1236,10 @@ public final class QuickHelper {
      * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @return {@link QuickHelper}
      */
-    public QuickHelper setImageDrawables(final Drawable drawable, final int isVisibility) {
+    public QuickHelper setImageDrawables(
+            final Drawable drawable,
+            final int isVisibility
+    ) {
         ImageViewUtils.setImageDrawables(drawable, isVisibility, targetView());
         return this;
     }
@@ -1203,7 +1260,10 @@ public final class QuickHelper {
      * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @return {@link QuickHelper}
      */
-    public QuickHelper setScaleTypes(final ImageView.ScaleType scaleType, final int isVisibility) {
+    public QuickHelper setScaleTypes(
+            final ImageView.ScaleType scaleType,
+            final int isVisibility
+    ) {
         ImageViewUtils.setScaleTypes(scaleType, isVisibility, targetView());
         return this;
     }
@@ -1218,7 +1278,10 @@ public final class QuickHelper {
      * @param height View 高度
      * @return {@link QuickHelper}
      */
-    public QuickHelper setWidthHeight(final int width, final int height) {
+    public QuickHelper setWidthHeight(
+            final int width,
+            final int height
+    ) {
         ViewUtils.setWidthHeight(targetView(), width, height);
         return this;
     }
@@ -1230,7 +1293,11 @@ public final class QuickHelper {
      * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
      * @return {@link QuickHelper}
      */
-    public QuickHelper setWidthHeight(final int width, final int height, final boolean nullNewLP) {
+    public QuickHelper setWidthHeight(
+            final int width,
+            final int height,
+            final boolean nullNewLP
+    ) {
         ViewUtils.setWidthHeight(targetView(), width, height, nullNewLP);
         return this;
     }
@@ -1251,7 +1318,10 @@ public final class QuickHelper {
      * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
      * @return {@link QuickHelper}
      */
-    public QuickHelper setWidth(final int width, final boolean nullNewLP) {
+    public QuickHelper setWidth(
+            final int width,
+            final boolean nullNewLP
+    ) {
         ViewUtils.setWidth(targetView(), width, nullNewLP);
         return this;
     }
@@ -1272,7 +1342,10 @@ public final class QuickHelper {
      * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
      * @return {@link QuickHelper}
      */
-    public QuickHelper setHeight(final int height, final boolean nullNewLP) {
+    public QuickHelper setHeight(
+            final int height,
+            final boolean nullNewLP
+    ) {
         ViewUtils.setHeight(targetView(), height, nullNewLP);
         return this;
     }
@@ -1328,7 +1401,10 @@ public final class QuickHelper {
      * @param y Y 轴开始坐标
      * @return {@link QuickHelper}
      */
-    public QuickHelper scrollTo(final int x, final int y) {
+    public QuickHelper scrollTo(
+            final int x,
+            final int y
+    ) {
         ViewUtils.scrollTo(targetView(), x, y);
         return this;
     }
@@ -1342,7 +1418,10 @@ public final class QuickHelper {
      * @param y Y 轴开始坐标
      * @return {@link QuickHelper}
      */
-    public QuickHelper scrollBy(final int x, final int y) {
+    public QuickHelper scrollBy(
+            final int x,
+            final int y
+    ) {
         ViewUtils.scrollBy(targetView(), x, y);
         return this;
     }
@@ -1583,7 +1662,10 @@ public final class QuickHelper {
      * @param paint     {@link Paint}
      * @return {@link QuickHelper}
      */
-    public QuickHelper setLayerType(final int layerType, final Paint paint) {
+    public QuickHelper setLayerType(
+            final int layerType,
+            final Paint paint
+    ) {
         ViewUtils.setLayerType(targetView(), layerType, paint);
         return this;
     }
@@ -1790,7 +1872,10 @@ public final class QuickHelper {
      * @param views View[]
      * @return {@link QuickHelper}
      */
-    public QuickHelper reverseVisibilitys(final int state, final View... views) {
+    public QuickHelper reverseVisibilitys(
+            final int state,
+            final View... views
+    ) {
         ViewUtils.reverseVisibilitys(state, targetView(), views);
         return this;
     }
@@ -1801,7 +1886,10 @@ public final class QuickHelper {
      * @param views        View[]
      * @return {@link QuickHelper}
      */
-    public QuickHelper reverseVisibilitys(final boolean isVisibility, final View... views) {
+    public QuickHelper reverseVisibilitys(
+            final boolean isVisibility,
+            final View... views
+    ) {
         ViewUtils.reverseVisibilitys(isVisibility, targetView(), views);
         return this;
     }
@@ -1831,7 +1919,10 @@ public final class QuickHelper {
      * @param isReflection 是否使用反射
      * @return {@link QuickHelper}
      */
-    public QuickHelper setLayoutGravity(final int gravity, final boolean isReflection) {
+    public QuickHelper setLayoutGravity(
+            final int gravity,
+            final boolean isReflection
+    ) {
         ViewUtils.setLayoutGravity(targetView(), gravity, isReflection);
         return this;
     }
@@ -1852,7 +1943,10 @@ public final class QuickHelper {
      * @param reset      是否重置清空其他 margin
      * @return {@link QuickHelper}
      */
-    public QuickHelper setMarginLeft(final int leftMargin, final boolean reset) {
+    public QuickHelper setMarginLeft(
+            final int leftMargin,
+            final boolean reset
+    ) {
         ViewUtils.setMarginLeft(targetView(), leftMargin, reset);
         return this;
     }
@@ -1873,7 +1967,10 @@ public final class QuickHelper {
      * @param reset     是否重置清空其他 margin
      * @return {@link QuickHelper}
      */
-    public QuickHelper setMarginTop(final int topMargin, final boolean reset) {
+    public QuickHelper setMarginTop(
+            final int topMargin,
+            final boolean reset
+    ) {
         ViewUtils.setMarginTop(targetView(), topMargin, reset);
         return this;
     }
@@ -1894,7 +1991,10 @@ public final class QuickHelper {
      * @param reset       是否重置清空其他 margin
      * @return {@link QuickHelper}
      */
-    public QuickHelper setMarginRight(final int rightMargin, final boolean reset) {
+    public QuickHelper setMarginRight(
+            final int rightMargin,
+            final boolean reset
+    ) {
         ViewUtils.setMarginRight(targetView(), rightMargin, reset);
         return this;
     }
@@ -1915,7 +2015,10 @@ public final class QuickHelper {
      * @param reset        是否重置清空其他 margin
      * @return {@link QuickHelper}
      */
-    public QuickHelper setMarginBottom(final int bottomMargin, final boolean reset) {
+    public QuickHelper setMarginBottom(
+            final int bottomMargin,
+            final boolean reset
+    ) {
         ViewUtils.setMarginBottom(targetView(), bottomMargin, reset);
         return this;
     }
@@ -1926,7 +2029,10 @@ public final class QuickHelper {
      * @param topBottom Top and bottom Margin
      * @return {@link QuickHelper}
      */
-    public QuickHelper setMargin(final int leftRight, final int topBottom) {
+    public QuickHelper setMargin(
+            final int leftRight,
+            final int topBottom
+    ) {
         ViewUtils.setMargin(targetView(), leftRight, topBottom);
         return this;
     }
@@ -1949,7 +2055,12 @@ public final class QuickHelper {
      * @param bottom Bottom Margin
      * @return {@link QuickHelper}
      */
-    public QuickHelper setMargin(final int left, final int top, final int right, final int bottom) {
+    public QuickHelper setMargin(
+            final int left,
+            final int top,
+            final int right,
+            final int bottom
+    ) {
         ViewUtils.setMargin(targetView(), left, top, right, bottom);
         return this;
     }
@@ -1970,7 +2081,10 @@ public final class QuickHelper {
      * @param reset       是否重置清空其他 Padding
      * @return {@link QuickHelper}
      */
-    public QuickHelper setPaddingLeft(final int leftPadding, final boolean reset) {
+    public QuickHelper setPaddingLeft(
+            final int leftPadding,
+            final boolean reset
+    ) {
         ViewUtils.setPaddingLeft(targetView(), leftPadding, reset);
         return this;
     }
@@ -1991,7 +2105,10 @@ public final class QuickHelper {
      * @param reset      是否重置清空其他 Padding
      * @return {@link QuickHelper}
      */
-    public QuickHelper setPaddingTop(final int topPadding, final boolean reset) {
+    public QuickHelper setPaddingTop(
+            final int topPadding,
+            final boolean reset
+    ) {
         ViewUtils.setPaddingTop(targetView(), topPadding, reset);
         return this;
     }
@@ -2012,7 +2129,10 @@ public final class QuickHelper {
      * @param reset        是否重置清空其他 Padding
      * @return {@link QuickHelper}
      */
-    public QuickHelper setPaddingRight(final int rightPadding, final boolean reset) {
+    public QuickHelper setPaddingRight(
+            final int rightPadding,
+            final boolean reset
+    ) {
         ViewUtils.setPaddingRight(targetView(), rightPadding, reset);
         return this;
     }
@@ -2033,7 +2153,10 @@ public final class QuickHelper {
      * @param reset         是否重置清空其他 Padding
      * @return {@link QuickHelper}
      */
-    public QuickHelper setPaddingBottom(final int bottomPadding, final boolean reset) {
+    public QuickHelper setPaddingBottom(
+            final int bottomPadding,
+            final boolean reset
+    ) {
         ViewUtils.setPaddingBottom(targetView(), bottomPadding, reset);
         return this;
     }
@@ -2044,7 +2167,10 @@ public final class QuickHelper {
      * @param topBottom Top and bottom Padding
      * @return {@link QuickHelper}
      */
-    public QuickHelper setPadding(final int leftRight, final int topBottom) {
+    public QuickHelper setPadding(
+            final int leftRight,
+            final int topBottom
+    ) {
         ViewUtils.setPadding(targetView(), leftRight, topBottom);
         return this;
     }
@@ -2067,7 +2193,12 @@ public final class QuickHelper {
      * @param bottom Bottom Padding
      * @return {@link QuickHelper}
      */
-    public QuickHelper setPadding(final int left, final int top, final int right, final int bottom) {
+    public QuickHelper setPadding(
+            final int left,
+            final int top,
+            final int right,
+            final int bottom
+    ) {
         ViewUtils.setPadding(targetView(), left, top, right, bottom);
         return this;
     }
@@ -2135,8 +2266,12 @@ public final class QuickHelper {
      * @param bottom bottom Drawable
      * @return {@link QuickHelper}
      */
-    public QuickHelper setCompoundDrawables(final Drawable left, final Drawable top,
-                                            final Drawable right, final Drawable bottom) {
+    public QuickHelper setCompoundDrawables(
+            final Drawable left,
+            final Drawable top,
+            final Drawable right,
+            final Drawable bottom
+    ) {
         TextViewUtils.setCompoundDrawables(targetTextView(), left, top, right, bottom);
         return this;
     }
@@ -2189,8 +2324,12 @@ public final class QuickHelper {
      * @param bottom bottom Drawable
      * @return {@link QuickHelper}
      */
-    public QuickHelper setCompoundDrawablesWithIntrinsicBounds(final Drawable left, final Drawable top,
-                                                               final Drawable right, final Drawable bottom) {
+    public QuickHelper setCompoundDrawablesWithIntrinsicBounds(
+            final Drawable left,
+            final Drawable top,
+            final Drawable right,
+            final Drawable bottom
+    ) {
         TextViewUtils.setCompoundDrawablesWithIntrinsicBounds(targetTextView(), left, top, right, bottom);
         return this;
     }
@@ -2215,7 +2354,10 @@ public final class QuickHelper {
      * @param subject 关联 View id
      * @return {@link QuickHelper}
      */
-    public QuickHelper addRule(final int verb, final int subject) {
+    public QuickHelper addRule(
+            final int verb,
+            final int subject
+    ) {
         ViewUtils.addRule(targetView(), verb, subject);
         return this;
     }
@@ -2324,7 +2466,12 @@ public final class QuickHelper {
      * @param right  right range
      * @return {@link QuickHelper}
      */
-    public QuickHelper addTouchArea(final int top, final int bottom, final int left, final int right) {
+    public QuickHelper addTouchArea(
+            final int top,
+            final int bottom,
+            final int left,
+            final int right
+    ) {
         ClickUtils.addTouchArea(targetView(), top, bottom, left, right);
         return this;
     }
@@ -2417,7 +2564,10 @@ public final class QuickHelper {
      * @param y Y 轴开始坐标
      * @return {@link QuickHelper}
      */
-    public QuickHelper smoothScrollTo(final int x, final int y) {
+    public QuickHelper smoothScrollTo(
+            final int x,
+            final int y
+    ) {
         ListViewUtils.smoothScrollTo(targetView(), x, y);
         return this;
     }
@@ -2428,7 +2578,10 @@ public final class QuickHelper {
      * @param y Y 轴开始坐标
      * @return {@link QuickHelper}
      */
-    public QuickHelper smoothScrollBy(final int x, final int y) {
+    public QuickHelper smoothScrollBy(
+            final int x,
+            final int y
+    ) {
         ListViewUtils.smoothScrollBy(targetView(), x, y);
         return this;
     }
@@ -2480,7 +2633,10 @@ public final class QuickHelper {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@link QuickHelper}
      */
-    public QuickHelper openKeyboard(final Handler handler, final int delayMillis) {
+    public QuickHelper openKeyboard(
+            final Handler handler,
+            final int delayMillis
+    ) {
         KeyBoardUtils.openKeyboard(targetEditText(), handler, delayMillis);
         return this;
     }
@@ -2514,7 +2670,10 @@ public final class QuickHelper {
      * @param handler {@link Handler}
      * @return {@link QuickHelper}
      */
-    public QuickHelper closeKeyBoardSpecial(final Dialog dialog, final Handler handler) {
+    public QuickHelper closeKeyBoardSpecial(
+            final Dialog dialog,
+            final Handler handler
+    ) {
         KeyBoardUtils.closeKeyBoardSpecial(targetEditText(), dialog, handler);
         return this;
     }
@@ -2526,7 +2685,11 @@ public final class QuickHelper {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@link QuickHelper}
      */
-    public QuickHelper closeKeyBoardSpecial(final Dialog dialog, final Handler handler, final int delayMillis) {
+    public QuickHelper closeKeyBoardSpecial(
+            final Dialog dialog,
+            final Handler handler,
+            final int delayMillis
+    ) {
         KeyBoardUtils.closeKeyBoardSpecial(targetEditText(), dialog, handler, delayMillis);
         return this;
     }

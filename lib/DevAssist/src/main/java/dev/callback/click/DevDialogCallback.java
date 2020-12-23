@@ -13,11 +13,18 @@ public class DevDialogCallback<T> extends DevClickCallback<T> {
         super(value);
     }
 
-    public DevDialogCallback(T value, Object object) {
+    public DevDialogCallback(
+            T value,
+            Object object
+    ) {
         super(value, object);
     }
 
-    public DevDialogCallback(T value, Object object, String tag) {
+    public DevDialogCallback(
+            T value,
+            Object object,
+            String tag
+    ) {
         super(value, object, tag);
     }
 

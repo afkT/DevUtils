@@ -33,7 +33,10 @@ public final class ThrowableUtils {
      * @param errorInfo 获取失败返回字符串
      * @return 异常信息字符串
      */
-    public static String getThrowable(final Throwable throwable, final String errorInfo) {
+    public static String getThrowable(
+            final Throwable throwable,
+            final String errorInfo
+    ) {
         if (throwable != null) {
             Throwable cause = throwable.getCause();
             if (cause != null) {
@@ -63,7 +66,10 @@ public final class ThrowableUtils {
      * @param errorInfo 获取失败返回字符串
      * @return 异常栈信息字符串
      */
-    public static String getThrowableStackTrace(final Throwable throwable, final String errorInfo) {
+    public static String getThrowableStackTrace(
+            final Throwable throwable,
+            final String errorInfo
+    ) {
         if (throwable != null) {
             PrintWriter printWriter = null;
             try {

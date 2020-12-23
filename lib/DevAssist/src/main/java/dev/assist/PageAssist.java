@@ -32,7 +32,10 @@ public class PageAssist<T> extends RequestStateAssist<T> {
         this.mPageNum = config_page_num;
     }
 
-    public PageAssist(int config_page_num, int config_page_size) {
+    public PageAssist(
+            int config_page_num,
+            int config_page_size
+    ) {
         this.config_page_num = config_page_num;
         this.config_page_size = config_page_size;
 
@@ -49,7 +52,10 @@ public class PageAssist<T> extends RequestStateAssist<T> {
      * @param pageNum  初始化页数
      * @param pageSize 初始化条数
      */
-    public static void initPageConfig(final int pageNum, final int pageSize) {
+    public static void initPageConfig(
+            final int pageNum,
+            final int pageSize
+    ) {
         PageAssist.DF_PAGE_NUM = pageNum;
         PageAssist.DF_PAGE_SIZE = pageSize;
     }

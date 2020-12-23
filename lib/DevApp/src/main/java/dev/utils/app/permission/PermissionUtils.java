@@ -64,7 +64,10 @@ public final class PermissionUtils {
      * @param permission 待判断权限
      * @return {@code true} yes, {@code false} no
      */
-    private static boolean isGranted(final Context context, final String permission) {
+    private static boolean isGranted(
+            final Context context,
+            final String permission
+    ) {
         if (context == null || permission == null) return false;
         // SDK 版本小于 23 则表示直接通过 || 检查是否通过权限
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
@@ -81,7 +84,10 @@ public final class PermissionUtils {
      * @param permissions 待判断权限
      * @return {@code true} 没有勾选不再询问, {@code false} 勾选了不再询问
      */
-    public static boolean shouldShowRequestPermissionRationale(final Activity activity, final String... permissions) {
+    public static boolean shouldShowRequestPermissionRationale(
+            final Activity activity,
+            final String... permissions
+    ) {
         if (activity == null || permissions == null) return false;
         boolean shouldShowRequestPermissionRationale = false; // 表示勾选了不再询问
         for (String permission : permissions) {
@@ -100,8 +106,11 @@ public final class PermissionUtils {
      * @param permissions 待判断权限
      * @return 拒绝权限询问状态集合
      */
-    public static List<String> getDeniedPermissionStatus(final Activity activity, final boolean shouldShow,
-                                                         final String... permissions) {
+    public static List<String> getDeniedPermissionStatus(
+            final Activity activity,
+            final boolean shouldShow,
+            final String... permissions
+    ) {
         if (activity == null || permissions == null) return Collections.EMPTY_LIST;
         Set<String> sets = new HashSet<>();
         for (String permission : permissions) {
@@ -287,7 +296,10 @@ public final class PermissionUtils {
      * @param activity    {@link Activity}
      * @param requestCode 请求 code
      */
-    public void request(final Activity activity, final int requestCode) {
+    public void request(
+            final Activity activity,
+            final int requestCode
+    ) {
         if (checkPermissions(activity) == 1) {
             // 如果 SDK 版本大于 23 才请求
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
@@ -333,7 +345,11 @@ public final class PermissionUtils {
          * @param deniedList   申请未通过的权限
          * @param notFoundList 查询不到的权限 ( 包含未注册 )
          */
-        void onDenied(List<String> grantedList, List<String> deniedList, List<String> notFoundList);
+        void onDenied(
+                List<String> grantedList,
+                List<String> deniedList,
+                List<String> notFoundList
+        );
     }
 
     // ================
@@ -379,7 +395,11 @@ public final class PermissionUtils {
          * @param grantResults 权限授权结果
          */
         @Override
-        public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        public void onRequestPermissionsResult(
+                int requestCode,
+                @NonNull String[] permissions,
+                @NonNull int[] grantResults
+        ) {
             sInstance.onRequestPermissionsResultCommon(this); // 处理回调
             finish(); // 关闭当前页面
         }
@@ -424,8 +444,11 @@ public final class PermissionUtils {
      * @param deniedList 申请未通过的权限集合
      * @return 0 不符合要求无任何操作、1 再次请求操作、2  跳转到应用设置页面
      */
-    public static int againRequest(final Activity activity, final PermissionCallback callback,
-                                   final List<String> deniedList) {
+    public static int againRequest(
+            final Activity activity,
+            final PermissionCallback callback,
+            final List<String> deniedList
+    ) {
         if (activity == null || CollectionUtils.isEmpty(deniedList)) return 0;
         // 获取拒绝的权限记录
         String[] deniedArys = deniedList.toArray(new String[deniedList.size()]);

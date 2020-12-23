@@ -72,7 +72,11 @@ public final class FileDepthFirstSearchUtils {
          * @param startTime 开始扫描时间
          * @param endTime   扫描结束时间
          */
-        void onEndListener(List<FileItem> lists, long startTime, long endTime);
+        void onEndListener(
+                List<FileItem> lists,
+                long startTime,
+                long endTime
+        );
     }
 
     // 搜索处理接口
@@ -97,7 +101,11 @@ public final class FileDepthFirstSearchUtils {
         }
 
         @Override
-        public void onEndListener(List<FileItem> lists, long startTime, long endTime) {
+        public void onEndListener(
+                List<FileItem> lists,
+                long startTime,
+                long endTime
+        ) {
             // 表示非搜索中
             mIsRunning = false;
             // 触发回调
@@ -172,7 +180,10 @@ public final class FileDepthFirstSearchUtils {
      * @param path       根目录路径
      * @param isRelation 是否关联到 Child List
      */
-    public synchronized void query(final String path, final boolean isRelation) {
+    public synchronized void query(
+            final String path,
+            final boolean isRelation
+    ) {
         if (mIsRunning) {
             return;
         } else if (path == null || path.trim().length() == 0) {
@@ -231,7 +242,11 @@ public final class FileDepthFirstSearchUtils {
      * @param lists      保存数据源
      * @param isRelation 是否关联到 Child List
      */
-    private void queryFile(final File file, final List<FileItem> lists, final boolean isRelation) {
+    private void queryFile(
+            final File file,
+            final List<FileItem> lists,
+            final boolean isRelation
+    ) {
         try {
             if (mIsStop) {
                 return;

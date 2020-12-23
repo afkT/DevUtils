@@ -60,7 +60,10 @@ class MVP private constructor() {
 
         constructor(view: V) : this(view, true)
 
-        constructor(view: V, detach: Boolean) {
+        constructor(
+            view: V,
+            detach: Boolean
+        ) {
             attachView(view)
             this.detach = detach
         }

@@ -73,18 +73,30 @@ public class CornerLabelView extends View {
         initAttrs(context, null);
     }
 
-    public CornerLabelView(Context context, AttributeSet attrs) {
+    public CornerLabelView(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
         initAttrs(context, attrs);
     }
 
-    public CornerLabelView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CornerLabelView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
         initAttrs(context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public CornerLabelView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public CornerLabelView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
+    ) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initAttrs(context, attrs);
     }
@@ -94,7 +106,10 @@ public class CornerLabelView extends View {
      * @param context {@link Context}
      * @param attrs   {@link AttributeSet}
      */
-    private void initAttrs(Context context, AttributeSet attrs) {
+    private void initAttrs(
+            Context context,
+            AttributeSet attrs
+    ) {
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OVER));
@@ -131,7 +146,10 @@ public class CornerLabelView extends View {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    protected void onMeasure(
+            int widthMeasureSpec,
+            int heightMeasureSpec
+    ) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         this.mHeight = (int) (mPaddingTop + mPaddingCenter + mPaddingBottom
@@ -477,7 +495,11 @@ public class CornerLabelView extends View {
          * @param y      绘制 Y 轴坐标
          * @param isTop  是否顶部绘制
          */
-        void draw(Canvas canvas, float y, boolean isTop) {
+        void draw(
+                Canvas canvas,
+                float y,
+                boolean isTop
+        ) {
             canvas.drawText(text, 0, (isTop ? -1 : 1) * (y + textHeight / 2) + offset, paint);
         }
 

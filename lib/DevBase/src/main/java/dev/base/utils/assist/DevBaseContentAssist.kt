@@ -232,7 +232,10 @@ class DevBaseContentAssist {
      * rootLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addRootView(view: View?, index: Int): DevBaseContentAssist {
+    fun addRootView(
+        view: View?,
+        index: Int
+    ): DevBaseContentAssist {
         return addView(rootLinear, view, index)
     }
 
@@ -240,7 +243,10 @@ class DevBaseContentAssist {
      * rootLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addRootView(view: View?, params: ViewGroup.LayoutParams?): DevBaseContentAssist {
+    fun addRootView(
+        view: View?,
+        params: ViewGroup.LayoutParams?
+    ): DevBaseContentAssist {
         return addView(rootLinear, view, -1, params)
     }
 
@@ -268,7 +274,10 @@ class DevBaseContentAssist {
      * statusBarLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addStatusBarView(view: View?, index: Int): DevBaseContentAssist {
+    fun addStatusBarView(
+        view: View?,
+        index: Int
+    ): DevBaseContentAssist {
         return addView(statusBarLinear, view, index)
     }
 
@@ -276,7 +285,10 @@ class DevBaseContentAssist {
      * statusBarLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addStatusBarView(view: View?, params: ViewGroup.LayoutParams?): DevBaseContentAssist {
+    fun addStatusBarView(
+        view: View?,
+        params: ViewGroup.LayoutParams?
+    ): DevBaseContentAssist {
         return addView(statusBarLinear, view, -1, params)
     }
 
@@ -304,7 +316,10 @@ class DevBaseContentAssist {
      * titleLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addTitleView(view: View?, index: Int): DevBaseContentAssist {
+    fun addTitleView(
+        view: View?,
+        index: Int
+    ): DevBaseContentAssist {
         return addView(titleLinear, view, index)
     }
 
@@ -312,7 +327,10 @@ class DevBaseContentAssist {
      * titleLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addTitleView(view: View?, params: ViewGroup.LayoutParams?): DevBaseContentAssist {
+    fun addTitleView(
+        view: View?,
+        params: ViewGroup.LayoutParams?
+    ): DevBaseContentAssist {
         return addView(titleLinear, view, -1, params)
     }
 
@@ -340,7 +358,10 @@ class DevBaseContentAssist {
      * bodyFrame 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addBodyView(view: View?, index: Int): DevBaseContentAssist {
+    fun addBodyView(
+        view: View?,
+        index: Int
+    ): DevBaseContentAssist {
         return addView(bodyFrame, view, index)
     }
 
@@ -348,7 +369,10 @@ class DevBaseContentAssist {
      * bodyFrame 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addBodyView(view: View?, params: ViewGroup.LayoutParams?): DevBaseContentAssist {
+    fun addBodyView(
+        view: View?,
+        params: ViewGroup.LayoutParams?
+    ): DevBaseContentAssist {
         return addView(bodyFrame, view, -1, params)
     }
 
@@ -376,7 +400,10 @@ class DevBaseContentAssist {
      * contentLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addContentView(view: View?, index: Int): DevBaseContentAssist {
+    fun addContentView(
+        view: View?,
+        index: Int
+    ): DevBaseContentAssist {
         return addView(contentLinear, view, index)
     }
 
@@ -384,7 +411,10 @@ class DevBaseContentAssist {
      * contentLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addContentView(view: View?, params: ViewGroup.LayoutParams?): DevBaseContentAssist {
+    fun addContentView(
+        view: View?,
+        params: ViewGroup.LayoutParams?
+    ): DevBaseContentAssist {
         return addView(contentLinear, view, -1, params)
     }
 
@@ -412,7 +442,10 @@ class DevBaseContentAssist {
      * stateLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addStateView(view: View?, index: Int): DevBaseContentAssist {
+    fun addStateView(
+        view: View?,
+        index: Int
+    ): DevBaseContentAssist {
         return addView(stateLinear, view, index)
     }
 
@@ -420,7 +453,10 @@ class DevBaseContentAssist {
      * stateLinear 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addStateView(view: View?, params: ViewGroup.LayoutParams?): DevBaseContentAssist {
+    fun addStateView(
+        view: View?,
+        params: ViewGroup.LayoutParams?
+    ): DevBaseContentAssist {
         return addView(stateLinear, view, -1, params)
     }
 
@@ -448,7 +484,10 @@ class DevBaseContentAssist {
      * floatFrame 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addFloatView(view: View?, index: Int): DevBaseContentAssist {
+    fun addFloatView(
+        view: View?,
+        index: Int
+    ): DevBaseContentAssist {
         return addView(floatFrame, view, index)
     }
 
@@ -456,7 +495,10 @@ class DevBaseContentAssist {
      * floatFrame 添加 View
      * @return [DevBaseContentAssist]
      */
-    fun addFloatView(view: View?, params: ViewGroup.LayoutParams?): DevBaseContentAssist {
+    fun addFloatView(
+        view: View?,
+        params: ViewGroup.LayoutParams?
+    ): DevBaseContentAssist {
         return addView(floatFrame, view, -1, params)
     }
 
@@ -483,7 +525,11 @@ class DevBaseContentAssist {
      * @param index     添加索引
      * @return [DevBaseContentAssist]
      */
-    private fun addView(viewGroup: ViewGroup?, view: View?, index: Int): DevBaseContentAssist {
+    private fun addView(
+        viewGroup: ViewGroup?,
+        view: View?,
+        index: Int
+    ): DevBaseContentAssist {
         if (isSafe) {
             view?.let { viewGroup?.addView(it, index) }
         } else {
@@ -520,7 +566,10 @@ class DevBaseContentAssist {
      * @param view         [View]
      * @return [DevBaseContentAssist]
      */
-    private fun setVisibility(isVisibility: Boolean, view: View?): DevBaseContentAssist {
+    private fun setVisibility(
+        isVisibility: Boolean,
+        view: View?
+    ): DevBaseContentAssist {
         view?.visibility = if (isVisibility) View.VISIBLE else View.GONE
         return this
     }

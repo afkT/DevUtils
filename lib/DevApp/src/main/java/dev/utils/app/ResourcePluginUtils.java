@@ -88,8 +88,10 @@ public final class ResourcePluginUtils {
      * @param context     {@link Context}
      * @return {@link ResourcePluginUtils}
      */
-    public static ResourcePluginUtils invokeByPackageName(final String packageName,
-                                                          final Context context) {
+    public static ResourcePluginUtils invokeByPackageName(
+            final String packageName,
+            final Context context
+    ) {
         DisplayMetrics metrics   = null;
         Configuration  config    = null;
         Resources      resources = ResourceAssist.staticResources(context);
@@ -107,9 +109,11 @@ public final class ResourcePluginUtils {
      * @param config      {@link Configuration}
      * @return {@link ResourcePluginUtils}
      */
-    public static ResourcePluginUtils invokeByPackageName(final String packageName,
-                                                          final DisplayMetrics metrics,
-                                                          final Configuration config) {
+    public static ResourcePluginUtils invokeByPackageName(
+            final String packageName,
+            final DisplayMetrics metrics,
+            final Configuration config
+    ) {
         AppInfoBean appInfoBean = AppInfoUtils.getAppInfoBean(packageName);
         String      sourceDir   = (appInfoBean != null) ? appInfoBean.getSourceDir() : null;
         return invokeByAPKPath(sourceDir, metrics, config);
@@ -134,7 +138,10 @@ public final class ResourcePluginUtils {
      * @param context {@link Context}
      * @return {@link ResourcePluginUtils}
      */
-    public static ResourcePluginUtils invokeByAPKPath(final String apkPath, final Context context) {
+    public static ResourcePluginUtils invokeByAPKPath(
+            final String apkPath,
+            final Context context
+    ) {
         DisplayMetrics metrics   = null;
         Configuration  config    = null;
         Resources      resources = ResourceAssist.staticResources(context);
@@ -152,7 +159,11 @@ public final class ResourcePluginUtils {
      * @param config  {@link Configuration}
      * @return {@link ResourcePluginUtils}
      */
-    public static ResourcePluginUtils invokeByAPKPath(final String apkPath, final DisplayMetrics metrics, final Configuration config) {
+    public static ResourcePluginUtils invokeByAPKPath(
+            final String apkPath,
+            final DisplayMetrics metrics,
+            final Configuration config
+    ) {
         ResourcePluginUtils utils = new ResourcePluginUtils();
         utils.mAPKPath = apkPath;
         // 文件存在才进行处理
@@ -256,7 +267,10 @@ public final class ResourcePluginUtils {
      * @param defType 资源类型
      * @return 资源 id
      */
-    public int getIdentifier(final String resName, final String defType) {
+    public int getIdentifier(
+            final String resName,
+            final String defType
+    ) {
         return mResourceAssist.getIdentifier(resName, defType);
     }
 
@@ -297,7 +311,10 @@ public final class ResourcePluginUtils {
      * @param formatArgs 格式化参数
      * @return String
      */
-    public String getString(final String resName, final Object... formatArgs) {
+    public String getString(
+            final String resName,
+            final Object... formatArgs
+    ) {
         return mResourceAssist.getString(resName, formatArgs);
     }
 
@@ -316,7 +333,10 @@ public final class ResourcePluginUtils {
      * @param formatArgs 格式化参数
      * @return String
      */
-    public String getString(@StringRes final int id, final Object... formatArgs) {
+    public String getString(
+            @StringRes final int id,
+            final Object... formatArgs
+    ) {
         return mResourceAssist.getString(id, formatArgs);
     }
 
@@ -466,7 +486,10 @@ public final class ResourcePluginUtils {
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
-    public Bitmap getBitmap(final String resName, final BitmapFactory.Options options) {
+    public Bitmap getBitmap(
+            final String resName,
+            final BitmapFactory.Options options
+    ) {
         return mResourceAssist.getBitmap(resName, options);
     }
 
@@ -485,7 +508,10 @@ public final class ResourcePluginUtils {
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
-    public Bitmap getBitmap(final int resId, final BitmapFactory.Options options) {
+    public Bitmap getBitmap(
+            final int resId,
+            final BitmapFactory.Options options
+    ) {
         return mResourceAssist.getBitmap(resId, options);
     }
 
@@ -533,7 +559,10 @@ public final class ResourcePluginUtils {
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
-    public Bitmap getBitmapMipmap(final String resName, final BitmapFactory.Options options) {
+    public Bitmap getBitmapMipmap(
+            final String resName,
+            final BitmapFactory.Options options
+    ) {
         return mResourceAssist.getBitmapMipmap(resName, options);
     }
 
@@ -581,7 +610,10 @@ public final class ResourcePluginUtils {
      * @param context {@link Context}
      * @return {@link XmlResourceParser}
      */
-    public Animation getAnimation(final String resName, final Context context) {
+    public Animation getAnimation(
+            final String resName,
+            final Context context
+    ) {
         return mResourceAssist.getAnimation(resName, context);
     }
 
@@ -600,7 +632,10 @@ public final class ResourcePluginUtils {
      * @param context {@link Context}
      * @return {@link XmlResourceParser}
      */
-    public Animation getAnimation(@AnimatorRes @AnimRes final int id, final Context context) {
+    public Animation getAnimation(
+            @AnimatorRes @AnimRes final int id,
+            final Context context
+    ) {
         return mResourceAssist.getAnimation(id, context);
     }
 
@@ -999,7 +1034,10 @@ public final class ResourcePluginUtils {
      * @param file     文件保存地址
      * @return {@code true} success, {@code false} fail
      */
-    public boolean saveAssetsFormFile(final String fileName, final File file) {
+    public boolean saveAssetsFormFile(
+            final String fileName,
+            final File file
+    ) {
         return mResourceAssist.saveAssetsFormFile(fileName, file);
     }
 
@@ -1009,7 +1047,10 @@ public final class ResourcePluginUtils {
      * @param file  文件保存地址
      * @return {@code true} success, {@code false} fail
      */
-    public boolean saveRawFormFile(@RawRes final int resId, final File file) {
+    public boolean saveRawFormFile(
+            @RawRes final int resId,
+            final File file
+    ) {
         return mResourceAssist.saveRawFormFile(resId, file);
     }
 }

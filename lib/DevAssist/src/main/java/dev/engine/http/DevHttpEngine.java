@@ -38,7 +38,10 @@ public final class DevHttpEngine {
      * @param callback {@link IHttpEngine.RequestCallback}
      * @return {@link IHttpEngine.Call}
      */
-    public static IHttpEngine.Call newCall(final IHttpEngine.Request request, final IHttpEngine.RequestCallback callback) {
+    public static IHttpEngine.Call newCall(
+            final IHttpEngine.Request request,
+            final IHttpEngine.RequestCallback callback
+    ) {
         if (sHttpEngine != null) {
             return sHttpEngine.newCall(request, callback);
         }

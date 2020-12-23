@@ -39,18 +39,30 @@ public class WrapView extends ViewGroup {
         super(context);
     }
 
-    public WrapView(Context context, AttributeSet attrs) {
+    public WrapView(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
         initAttrs(context, attrs);
     }
 
-    public WrapView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public WrapView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
         initAttrs(context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public WrapView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public WrapView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
+    ) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initAttrs(context, attrs);
     }
@@ -60,7 +72,10 @@ public class WrapView extends ViewGroup {
      * @param context {@link Context}
      * @param attrs   {@link AttributeSet}
      */
-    private void initAttrs(Context context, AttributeSet attrs) {
+    private void initAttrs(
+            Context context,
+            AttributeSet attrs
+    ) {
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
             mMaxLine = a.getInt(R.styleable.DevWidget_dev_maxLine, Integer.MAX_VALUE);
@@ -71,7 +86,10 @@ public class WrapView extends ViewGroup {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    protected void onMeasure(
+            int widthMeasureSpec,
+            int heightMeasureSpec
+    ) {
         for (int i = 0, size = getChildCount(); i < size; i++) {
             getChildAt(i).measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
         }
@@ -87,7 +105,13 @@ public class WrapView extends ViewGroup {
     }
 
     @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+    protected void onLayout(
+            boolean changed,
+            int l,
+            int t,
+            int r,
+            int b
+    ) {
         boolean newLine        = false; // 判断是否换行
         boolean fillWidth      = false; // 判断是否填满宽度 (View 直接超过一行宽度 )
         int     paddingTop     = getPaddingTop(); // 上边距
@@ -154,7 +178,11 @@ public class WrapView extends ViewGroup {
      * @param viewLeftMargin 每个 View 之间的 Left 边距
      * @return 计算 View 高度
      */
-    private int calc(final int rootWidth, final int rowTopMargin, final int viewLeftMargin) {
+    private int calc(
+            final int rootWidth,
+            final int rowTopMargin,
+            final int viewLeftMargin
+    ) {
         boolean newLine    = false; // 判断是否换行
         boolean fillWidth  = false; // 判断是否填满宽度 (View 直接超过一行宽度 )
         int     drawX      = 0; // 已绘制的 X 轴距离
@@ -296,7 +324,10 @@ public class WrapView extends ViewGroup {
      * @param viewLeftMargin 每个 View 之间的 Left 边距
      * @return {@link WrapView}
      */
-    public WrapView setRowViewMargin(int rowTopMargin, int viewLeftMargin) {
+    public WrapView setRowViewMargin(
+            int rowTopMargin,
+            int viewLeftMargin
+    ) {
         this.mRowTopMargin = rowTopMargin;
         this.mViewLeftMargin = viewLeftMargin;
         return this;

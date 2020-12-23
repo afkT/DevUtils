@@ -27,7 +27,10 @@ public final class SmsReceiver extends BroadcastReceiver {
     private static final String TAG = SmsReceiver.class.getSimpleName();
 
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(
+            Context context,
+            Intent intent
+    ) {
         try {
             Object[] pdus                 = (Object[]) intent.getExtras().get("pdus");
             String   originatingAddress   = null;
@@ -142,7 +145,11 @@ public final class SmsReceiver extends BroadcastReceiver {
          * @param originatingAddress   短信的原始地址 ( 发件人 )
          * @param serviceCenterAddress 短信服务中心地址
          */
-        public abstract void onMessage(String message, String originatingAddress, String serviceCenterAddress);
+        public abstract void onMessage(
+                String message,
+                String originatingAddress,
+                String serviceCenterAddress
+        );
 
         /**
          * 收到消息提醒 ( 超过长度的消息变成两条会触发多次 )

@@ -55,7 +55,10 @@ public final class FastjsonUtils {
      * @param <T>      泛型
      * @return instance of type
      */
-    public static <T> T fromJson(final String json, final Class<T> classOfT) {
+    public static <T> T fromJson(
+            final String json,
+            final Class<T> classOfT
+    ) {
         if (json != null) {
             try {
                 return JSON.parseObject(json, classOfT);
@@ -75,7 +78,10 @@ public final class FastjsonUtils {
      * @param <T>     泛型
      * @return instance of type
      */
-    public static <T> T fromJson(final String json, final Type typeOfT) {
+    public static <T> T fromJson(
+            final String json,
+            final Type typeOfT
+    ) {
         if (json != null) {
             try {
                 return JSON.parseObject(json, typeOfT);
@@ -214,7 +220,10 @@ public final class FastjsonUtils {
      * @param valueType Value.class
      * @return Map<Key, Value> Type
      */
-    public static Type getMapType(final Type keyType, final Type valueType) {
+    public static Type getMapType(
+            final Type keyType,
+            final Type valueType
+    ) {
         return new ParameterizedTypeImpl(new Type[]{keyType, valueType}, null, Map.class);
     }
 
@@ -224,7 +233,10 @@ public final class FastjsonUtils {
      * @param typeArguments type arguments
      * @return Type
      */
-    public static Type getType(final Type rawType, final Type... typeArguments) {
+    public static Type getType(
+            final Type rawType,
+            final Type... typeArguments
+    ) {
         return new ParameterizedTypeImpl(typeArguments, null, rawType);
     }
 }

@@ -57,7 +57,10 @@ class Utils {
      * @param callback {@link RestartCallback}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean start(final Context context, final RestartCallback callback) {
+    public static boolean start(
+            final Context context,
+            final RestartCallback callback
+    ) {
         if (context != null && !isRelease()) {
             try {
                 Utils.sRestartCallback = callback;
@@ -110,7 +113,10 @@ class Utils {
      * @param moduleName module Name
      * @return {@link EnvironmentBean}
      */
-    public static EnvironmentBean getModuleEnvironment(final Context context, final String moduleName) {
+    public static EnvironmentBean getModuleEnvironment(
+            final Context context,
+            final String moduleName
+    ) {
         try {
             String getModuleEnvironmentMethodName = "get" + moduleName + STR_ENVIRONMENT;
             Method getModuleEnvironmentMethod     = devEnvironmentClass.getMethod(getModuleEnvironmentMethodName, Context.class);
@@ -127,7 +133,10 @@ class Utils {
      * @param newEnvironment environment bean
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setModuleEnvironment(final Context context, final EnvironmentBean newEnvironment) {
+    public static boolean setModuleEnvironment(
+            final Context context,
+            final EnvironmentBean newEnvironment
+    ) {
         try {
             String moduleName                     = newEnvironment.getModule().getName();
             String setModuleEnvironmentMethodName = "set" + moduleName + STR_ENVIRONMENT;

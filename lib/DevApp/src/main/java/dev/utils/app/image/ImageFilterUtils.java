@@ -45,7 +45,10 @@ public final class ImageFilterUtils {
      * @return 模糊后的图片
      */
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static Bitmap blur(final Bitmap bitmap, @IntRange(from = 0, to = 25) final int radius) {
+    public static Bitmap blur(
+            final Bitmap bitmap,
+            @IntRange(from = 0, to = 25) final int radius
+    ) {
         if (bitmap == null) return null;
         try {
             // 创建 RenderScript 内核对象
@@ -87,7 +90,10 @@ public final class ImageFilterUtils {
      * @param radius 模糊度
      * @return 模糊后的图片
      */
-    public static Bitmap fastBlur(final Bitmap bitmap, final int radius) {
+    public static Bitmap fastBlur(
+            final Bitmap bitmap,
+            final int radius
+    ) {
         if (bitmap == null) return null;
         // 如果 Bitmap 不允许编辑, 则返回 null
         if (!bitmap.isMutable()) return null;
@@ -344,7 +350,11 @@ public final class ImageFilterUtils {
      * @param centerY 光源在 Y 轴的位置
      * @return 光照效果处理后的图片
      */
-    public static Bitmap sunshine(final Bitmap bitmap, final int centerX, final int centerY) {
+    public static Bitmap sunshine(
+            final Bitmap bitmap,
+            final int centerX,
+            final int centerY
+    ) {
         if (bitmap == null) return null;
         try {
             int width  = bitmap.getWidth();
@@ -470,7 +480,10 @@ public final class ImageFilterUtils {
      * @param delta  图片的亮暗程度值, 越小图片会越亮
      * @return 柔化效果处理后的图片
      */
-    public static Bitmap soften(final Bitmap bitmap, @IntRange(from = 1, to = 24) final int delta) {
+    public static Bitmap soften(
+            final Bitmap bitmap,
+            @IntRange(from = 1, to = 24) final int delta
+    ) {
         if (bitmap == null) return null;
         if (delta > 24 || delta <= 0) return null;
         try {
@@ -723,7 +736,10 @@ public final class ImageFilterUtils {
      * @param saturationValue 新的饱和度值
      * @return 改变了饱和度值之后的图片
      */
-    public static Bitmap saturation(final Bitmap bitmap, final int saturationValue) {
+    public static Bitmap saturation(
+            final Bitmap bitmap,
+            final int saturationValue
+    ) {
         if (bitmap == null) return null;
         try {
             // 计算出符合要求的饱和度值
@@ -753,7 +769,10 @@ public final class ImageFilterUtils {
      * @param lumValue 新的亮度值
      * @return 改变了亮度值之后的图片
      */
-    public static Bitmap lum(final Bitmap bitmap, final int lumValue) {
+    public static Bitmap lum(
+            final Bitmap bitmap,
+            final int lumValue
+    ) {
         if (bitmap == null) return null;
         try {
             // 计算出符合要求的亮度值
@@ -783,7 +802,10 @@ public final class ImageFilterUtils {
      * @param hueValue 新的色相值
      * @return 改变了色相值之后的图片
      */
-    public static Bitmap hue(final Bitmap bitmap, final int hueValue) {
+    public static Bitmap hue(
+            final Bitmap bitmap,
+            final int hueValue
+    ) {
         if (bitmap == null) return null;
         try {
             // 计算出符合要求的色相值
@@ -819,7 +841,12 @@ public final class ImageFilterUtils {
      * @param saturationValue 饱和度值
      * @return 亮度、色相、饱和度处理后的图片
      */
-    public static Bitmap lumHueSaturation(final Bitmap bitmap, final int lumValue, final int hueValue, final int saturationValue) {
+    public static Bitmap lumHueSaturation(
+            final Bitmap bitmap,
+            final int lumValue,
+            final int hueValue,
+            final int saturationValue
+    ) {
         if (bitmap == null) return null;
         try {
             // 计算出符合要求的饱和度值
@@ -867,7 +894,11 @@ public final class ImageFilterUtils {
      * @param height     高
      * @return byte[]
      */
-    public static byte[] yuvLandscapeToPortrait(final byte[] sourceData, final int width, final int height) {
+    public static byte[] yuvLandscapeToPortrait(
+            final byte[] sourceData,
+            final int width,
+            final int height
+    ) {
         if (sourceData == null || sourceData.length == 0) return null;
         byte[] rotatedData = new byte[sourceData.length];
         for (int y = 0; y < height; y++) {

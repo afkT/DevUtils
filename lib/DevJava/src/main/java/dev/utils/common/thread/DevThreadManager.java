@@ -14,11 +14,11 @@ public final class DevThreadManager {
     }
 
     // 默认通用线程池 ( 通过 CPU 自动处理 )
-    private static final DevThreadPool              sDevThreadPool = new DevThreadPool(DevThreadPool.DevThreadPoolType.CALC_CPU);
+    private static final DevThreadPool sDevThreadPool           = new DevThreadPool(DevThreadPool.DevThreadPoolType.CALC_CPU);
     // 线程池数据
-    private static final Map<String, DevThreadPool> sThreadMaps    = new LinkedHashMap<>();
+    private static final Map<String, DevThreadPool> sThreadMaps = new LinkedHashMap<>();
     // 配置数据
-    private static final Map<String, Object>        sConfigMaps    = new HashMap<>();
+    private static final Map<String, Object> sConfigMaps        = new HashMap<>();
 
     /**
      * 获取 DevThreadManager 实例
@@ -88,7 +88,10 @@ public final class DevThreadManager {
      * @param key   线程配置 key
      * @param value 线程配置 value
      */
-    public static void putConfig(final String key, final Object value) {
+    public static void putConfig(
+            final String key,
+            final Object value
+    ) {
         sConfigMaps.put(key, value);
     }
 

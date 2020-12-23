@@ -151,7 +151,10 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      * @param isLooping 是否循环播放
      * @return {@code true} 执行成功, {@code false} 执行失败
      */
-    public boolean playPrepareRaw(@RawRes final int rawId, final boolean isLooping) {
+    public boolean playPrepareRaw(
+            @RawRes final int rawId,
+            final boolean isLooping
+    ) {
         try {
             mPlayRawId = rawId;
             mPlayUri = null;
@@ -199,7 +202,10 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      * @param isLooping 是否循环播放
      * @return {@code true} 执行成功, {@code false} 执行失败
      */
-    public boolean playPrepareAssets(final String playUri, final boolean isLooping) {
+    public boolean playPrepareAssets(
+            final String playUri,
+            final boolean isLooping
+    ) {
         try {
             mPlayRawId = -1;
             if (playUri.startsWith("/")) {
@@ -255,7 +261,10 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      * @param isLooping 是否循环播放
      * @return {@code true} 执行成功, {@code false} 执行失败
      */
-    public boolean playPrepare(final String playUri, final boolean isLooping) {
+    public boolean playPrepare(
+            final String playUri,
+            final boolean isLooping
+    ) {
         try {
             mPlayRawId = -1;
             mPlayUri = playUri;
@@ -388,7 +397,11 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      * @return {@code true} 处理异常, {@code false} 调用 OnCompletionListener
      */
     @Override
-    public boolean onError(MediaPlayer mp, int what, int extra) {
+    public boolean onError(
+            MediaPlayer mp,
+            int what,
+            int extra
+    ) {
         LogPrintUtils.dTag(TAG, "onError what: %s, extra: %s", what, extra);
         // 触发回调
         if (mMediaListener != null) {
@@ -404,7 +417,11 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      * @param height 高度
      */
     @Override
-    public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
+    public void onVideoSizeChanged(
+            MediaPlayer mp,
+            int width,
+            int height
+    ) {
         LogPrintUtils.dTag(TAG, "onVideoSizeChanged - width: %s, height: %s", width, height);
         mVideoWidth = width;
         mVideoHeight = height;
@@ -446,7 +463,10 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
      * @param percent 缓冲百分比进度
      */
     @Override
-    public void onBufferingUpdate(MediaPlayer mp, int percent) {
+    public void onBufferingUpdate(
+            MediaPlayer mp,
+            int percent
+    ) {
         LogPrintUtils.dTag(TAG, "onBufferingUpdate - percent: %s", percent);
         // 触发回调
         if (mMediaListener != null) {
@@ -507,14 +527,20 @@ public final class DevMediaManager implements OnBufferingUpdateListener,
          * @param extra 异常 extra
          * @return {@code true} 处理异常, {@code false} 调用 OnCompletionListener
          */
-        boolean onError(int what, int extra);
+        boolean onError(
+                int what,
+                int extra
+        );
 
         /**
          * 视频大小改变通知
          * @param width  宽度
          * @param height 高度
          */
-        void onVideoSizeChanged(int width, int height);
+        void onVideoSizeChanged(
+                int width,
+                int height
+        );
     }
 
     /**

@@ -23,11 +23,11 @@ import dev.utils.app.helper.QuickHelper;
 public class GPUFilterACVAdapter extends BaseAdapter {
 
     // Context
-    Context context;
+    Context           context;
     // ACV 文件集合
     List<ACVFileBean> listACVFiles;
     // 当前选中索引
-    int selectPosition = -1;
+    int               selectPosition = -1;
 
     public GPUFilterACVAdapter(
             Context context,

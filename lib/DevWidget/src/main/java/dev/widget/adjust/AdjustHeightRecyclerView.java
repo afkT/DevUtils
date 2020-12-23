@@ -18,16 +18,26 @@ public class AdjustHeightRecyclerView extends RecyclerView {
         super(context);
     }
 
-    public AdjustHeightRecyclerView(Context context, AttributeSet attrs) {
+    public AdjustHeightRecyclerView(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
     }
 
-    public AdjustHeightRecyclerView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AdjustHeightRecyclerView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    protected void onMeasure(
+            int widthMeasureSpec,
+            int heightMeasureSpec
+    ) {
         int expandSpec = View.MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, View.MeasureSpec.AT_MOST);
         super.onMeasure(widthMeasureSpec, expandSpec);
     }

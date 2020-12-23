@@ -64,7 +64,11 @@ public final class CalendarUtils {
      * @param day   公历日
      * @return [0] 农历年 [1] 农历月 [2] 农历日 [3] 是否闰月 0 false、1 true
      */
-    public static int[] solarToLunar(final int year, final int month, final int day) {
+    public static int[] solarToLunar(
+            final int year,
+            final int month,
+            final int day
+    ) {
         // 不支持的公历年份, 则返回 null
         if (!isSupportSolar(year)) return null;
 
@@ -121,8 +125,12 @@ public final class CalendarUtils {
      * @param isLeap     是否闰月
      * @return [0] 公历年 [1] 公历月 [2] 公历日
      */
-    public static int[] lunarToSolar(final int lunarYear, final int lunarMonth, final int lunarDay,
-                                     final boolean isLeap) {
+    public static int[] lunarToSolar(
+            final int lunarYear,
+            final int lunarMonth,
+            final int lunarDay,
+            final boolean isLeap
+    ) {
         // 不支持的农历年份, 则返回 null
         if (!isSupportLunar(lunarYear)) return null;
 
@@ -205,7 +213,10 @@ public final class CalendarUtils {
      * @param month 农历月
      * @return 农历年份与月份总天数
      */
-    public static int getLunarMonthDays(final int year, final int month) {
+    public static int getLunarMonthDays(
+            final int year,
+            final int month
+    ) {
         if (!isSupportLunar(year)) return 0;
         if ((LUNAR_INFO[year - 1900] & (0x10000 >> month)) == 0)
             return 29;
@@ -229,7 +240,10 @@ public final class CalendarUtils {
      * @param isLeap 是否闰月
      * @return 农历中文月份
      */
-    public static String getLunarMonthChinese(final int month, final boolean isLeap) {
+    public static String getLunarMonthChinese(
+            final int month,
+            final boolean isLeap
+    ) {
         if (month > 12 || month < 1) return null;
         return isLeap ? "闰" + CHINESE_NUMBER[month - 1] + "月" : CHINESE_NUMBER[month - 1] + "月";
     }
@@ -253,7 +267,10 @@ public final class CalendarUtils {
      * @param day   公历天
      * @return 二十四节气 ( 公历 ) 索引
      */
-    public static int getSolarTermsIndex(final int month, final int day) {
+    public static int getSolarTermsIndex(
+            final int month,
+            final int day
+    ) {
         if (month > 12 || month < 1) return -1;
         int   start     = (month - 2) >= 0 ? month - 2 : 11;
         int   leftIndex = start * 2; // 左边节气索引
@@ -271,7 +288,10 @@ public final class CalendarUtils {
      * @param day   公历天
      * @return 二十四节气 ( 公历 )
      */
-    public static String getSolarTerms(final int month, final int day) {
+    public static String getSolarTerms(
+            final int month,
+            final int day
+    ) {
         int index = getSolarTermsIndex(month, day);
         return index != -1 ? SOLAR_TERMS[index] : null;
     }
@@ -282,7 +302,10 @@ public final class CalendarUtils {
      * @param day   公历天
      * @return 二十四节气 ( 公历 ) 时间
      */
-    public static String getSolarTermsDate(final int month, final int day) {
+    public static String getSolarTermsDate(
+            final int month,
+            final int day
+    ) {
         int index = getSolarTermsIndex(month, day);
         return index != -1 ? SOLAR_TERMS_DATE[index] : null;
     }
@@ -295,8 +318,12 @@ public final class CalendarUtils {
      * @param day      天数
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isFestival(final Festival festival, final int year, final int month,
-                                     final int day) {
+    public static boolean isFestival(
+            final Festival festival,
+            final int year,
+            final int month,
+            final int day
+    ) {
         return isFestival(festival, year, month, day, sFestivalHook);
     }
 
@@ -309,8 +336,13 @@ public final class CalendarUtils {
      * @param festivalHook 节日 Hook 接口
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isFestival(final Festival festival, final int year, final int month,
-                                     final int day, final FestivalHook festivalHook) {
+    public static boolean isFestival(
+            final Festival festival,
+            final int year,
+            final int month,
+            final int day,
+            final FestivalHook festivalHook
+    ) {
         if (festival == null) return false;
         List<Festival> list = new ArrayList<>();
         list.add(festival);
@@ -325,8 +357,12 @@ public final class CalendarUtils {
      * @param day   天数
      * @return {@link Festival}
      */
-    public static Festival getFestival(final List<Festival> list, final int year, final int month,
-                                       final int day) {
+    public static Festival getFestival(
+            final List<Festival> list,
+            final int year,
+            final int month,
+            final int day
+    ) {
         return getFestival(list, year, month, day, sFestivalHook);
     }
 
@@ -342,8 +378,13 @@ public final class CalendarUtils {
      * @param festivalHook 节日 Hook 接口
      * @return {@link Festival}
      */
-    public static Festival getFestival(final List<Festival> list, final int year, final int month,
-                                       final int day, final FestivalHook festivalHook) {
+    public static Festival getFestival(
+            final List<Festival> list,
+            final int year,
+            final int month,
+            final int day,
+            final FestivalHook festivalHook
+    ) {
         if (list == null) return null;
         for (Festival festival : list) {
             if (festival != null) {
@@ -364,7 +405,11 @@ public final class CalendarUtils {
      * @param day   天数
      * @return {@link Festival}
      */
-    public static Festival getSolarFestival(final int year, final int month, final int day) {
+    public static Festival getSolarFestival(
+            final int year,
+            final int month,
+            final int day
+    ) {
         return getFestival(SOLAR_FESTIVAL_LIST, year, month, day);
     }
 
@@ -375,7 +420,11 @@ public final class CalendarUtils {
      * @param day   农历日
      * @return {@link Festival}
      */
-    public static Festival getLunarFestival(final int year, final int month, final int day) {
+    public static Festival getLunarFestival(
+            final int year,
+            final int month,
+            final int day
+    ) {
         return getFestival(LUNAR_FESTIVAL_LIST, year, month, day);
     }
 
@@ -580,11 +629,19 @@ public final class CalendarUtils {
     // = 内部方法 =
     // ===========
 
-    private static int getBitInt(int data, int length, int shift) {
+    private static int getBitInt(
+            int data,
+            int length,
+            int shift
+    ) {
         return (data & (((1 << length) - 1) << shift)) >> shift;
     }
 
-    private static long solarToInt(int y, int m, int d) {
+    private static long solarToInt(
+            int y,
+            int m,
+            int d
+    ) {
         m = (m + 9) % 12;
         y = y - m / 10;
         return 365 * y + y / 4 - y / 100 + y / 400 + (m * 306 + 5) / 10 + (d - 1);
@@ -660,7 +717,11 @@ public final class CalendarUtils {
          * @param month 公历月
          * @param day   公历日
          */
-        public SolarLunar(int year, int month, int day) {
+        public SolarLunar(
+                int year,
+                int month,
+                int day
+        ) {
             this.year = year;
             this.month = month;
             this.day = day;
@@ -687,7 +748,12 @@ public final class CalendarUtils {
          * @param lunarDay    农历日
          * @param isLunarLeap 是否闰月
          */
-        public SolarLunar(int lunarYear, int lunarMonth, int lunarDay, boolean isLunarLeap) {
+        public SolarLunar(
+                int lunarYear,
+                int lunarMonth,
+                int lunarDay,
+                boolean isLunarLeap
+        ) {
             this.lunarYear = lunarYear;
             this.lunarMonth = lunarMonth;
             this.lunarDay = lunarDay;
@@ -806,11 +872,20 @@ public final class CalendarUtils {
         // 内部排序值
         private final int     compareValue;
 
-        public Festival(String name, int month, int day) {
+        public Festival(
+                String name,
+                int month,
+                int day
+        ) {
             this(name, month, day, true);
         }
 
-        public Festival(String name, int month, int day, boolean isSolarFestival) {
+        public Festival(
+                String name,
+                int month,
+                int day,
+                boolean isSolarFestival
+        ) {
             this.name = name;
             this.month = month;
             this.day = day;
@@ -834,7 +909,10 @@ public final class CalendarUtils {
          * @param day   天数
          * @return {@code true} yes, {@code false} no
          */
-        public boolean isFestival(final int month, final int day) {
+        public boolean isFestival(
+                final int month,
+                final int day
+        ) {
             return this.month == month && this.day == day;
         }
 
@@ -845,7 +923,11 @@ public final class CalendarUtils {
          * @param solarFestival 是否公历节日
          * @return {@code true} yes, {@code false} no
          */
-        public boolean isFestival(final int month, final int day, final boolean solarFestival) {
+        public boolean isFestival(
+                final int month,
+                final int day,
+                final boolean solarFestival
+        ) {
             return this.month == month && this.day == day && this.isSolarFestival == solarFestival;
         }
 
@@ -872,7 +954,12 @@ public final class CalendarUtils {
     // 节日 Hook 接口
     private static FestivalHook sFestivalHook = new FestivalHook() {
         @Override
-        public Festival hook(Festival festival, int year, int month, int day) {
+        public Festival hook(
+                Festival festival,
+                int year,
+                int month,
+                int day
+        ) {
             if (festival != null) {
                 if (festival.isSolarFestival) { // 公历节日
                     Calendar calendar;
@@ -948,7 +1035,12 @@ public final class CalendarUtils {
          * @param day      天数
          * @return 如果特殊判断成功则返回节日
          */
-        Festival hook(Festival festival, int year, int month, int day);
+        Festival hook(
+                Festival festival,
+                int year,
+                int month,
+                int day
+        );
     }
 
     /**

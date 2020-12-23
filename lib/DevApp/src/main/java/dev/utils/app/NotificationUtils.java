@@ -176,7 +176,10 @@ public final class NotificationUtils {
      * @param id  消息 id
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean cancel(final String tag, final int id) {
+    public static boolean cancel(
+            final String tag,
+            final int id
+    ) {
         if (getNotificationManager() != null && tag != null) {
             try {
                 sNotificationManager.cancel(tag, id);
@@ -194,7 +197,10 @@ public final class NotificationUtils {
      * @param notification {@link Notification}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean notify(final int id, final Notification notification) {
+    public static boolean notify(
+            final int id,
+            final Notification notification
+    ) {
         if (getNotificationManager() != null && notification != null) {
             try {
                 sNotificationManager.notify(id, notification);
@@ -213,7 +219,11 @@ public final class NotificationUtils {
      * @param notification {@link Notification}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean notify(final String tag, final int id, final Notification notification) {
+    public static boolean notify(
+            final String tag,
+            final int id,
+            final Notification notification
+    ) {
         if (getNotificationManager() != null && tag != null && notification != null) {
             try {
                 sNotificationManager.notify(tag, id, notification);
@@ -240,7 +250,10 @@ public final class NotificationUtils {
      * @param requestCode 请求 code
      * @return {@link PendingIntent}
      */
-    public static PendingIntent createPendingIntent(final Intent intent, final int requestCode) {
+    public static PendingIntent createPendingIntent(
+            final Intent intent,
+            final int requestCode
+    ) {
         try {
             return PendingIntent.getActivity(DevUtils.getContext(), requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         } catch (Exception e) {
@@ -256,7 +269,11 @@ public final class NotificationUtils {
      * @param msg   通知栏内容
      * @return {@link Notification}
      */
-    public static Notification createNotification(@DrawableRes final int icon, final String title, final String msg) {
+    public static Notification createNotification(
+            @DrawableRes final int icon,
+            final String title,
+            final String msg
+    ) {
         return createNotification(null, icon, title, title, msg, true, VibratePattern.get(0, 100, 300),
                 LightPattern.get(Color.WHITE, 1000, 1000));
     }
@@ -270,8 +287,13 @@ public final class NotificationUtils {
      * @param lightPattern   Led 闪灯参数
      * @return {@link Notification}
      */
-    public static Notification createNotification(@DrawableRes final int icon, final String title, final String msg,
-                                                  final VibratePattern vibratePattern, final LightPattern lightPattern) {
+    public static Notification createNotification(
+            @DrawableRes final int icon,
+            final String title,
+            final String msg,
+            final VibratePattern vibratePattern,
+            final LightPattern lightPattern
+    ) {
         return createNotification(null, icon, title, title, msg, true, vibratePattern, lightPattern);
     }
 
@@ -285,8 +307,14 @@ public final class NotificationUtils {
      * @param isAutoCancel  点击是否自动关闭
      * @return {@link Notification}
      */
-    public static Notification createNotification(final PendingIntent pendingIntent, @DrawableRes final int icon, final String ticker,
-                                                  final String title, final String msg, final boolean isAutoCancel) {
+    public static Notification createNotification(
+            final PendingIntent pendingIntent,
+            @DrawableRes final int icon,
+            final String ticker,
+            final String title,
+            final String msg,
+            final boolean isAutoCancel
+    ) {
         return createNotification(pendingIntent, icon, ticker, title, msg, isAutoCancel, null, null);
     }
 
@@ -302,9 +330,16 @@ public final class NotificationUtils {
      * @param lightPattern   Led 闪灯参数
      * @return {@link Notification}
      */
-    public static Notification createNotification(final PendingIntent pendingIntent, @DrawableRes final int icon, final String ticker,
-                                                  final String title, final String msg, final boolean isAutoCancel,
-                                                  final VibratePattern vibratePattern, final LightPattern lightPattern) {
+    public static Notification createNotification(
+            final PendingIntent pendingIntent,
+            @DrawableRes final int icon,
+            final String ticker,
+            final String title,
+            final String msg,
+            final boolean isAutoCancel,
+            final VibratePattern vibratePattern,
+            final LightPattern lightPattern
+    ) {
         // 适配处理
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
@@ -376,7 +411,11 @@ public final class NotificationUtils {
          * @param startOffMS 开始时间
          * @param durationMS 持续时间
          */
-        private LightPattern(int argb, int startOffMS, int durationMS) {
+        private LightPattern(
+                int argb,
+                int startOffMS,
+                int durationMS
+        ) {
             this.argb = argb;
             this.startOffMS = startOffMS;
             this.durationMS = durationMS;
@@ -389,7 +428,11 @@ public final class NotificationUtils {
          * @param durationMS 持续时间
          * @return {@link LightPattern}
          */
-        public static LightPattern get(final int argb, final int startOffMS, final int durationMS) {
+        public static LightPattern get(
+                final int argb,
+                final int startOffMS,
+                final int durationMS
+        ) {
             return new LightPattern(argb, startOffMS, durationMS);
         }
     }

@@ -41,7 +41,10 @@ public final class HttpURLConnectionUtils {
          * @param result   请求结果
          * @param response 请求响应时间
          */
-        void onResponse(String result, long response);
+        void onResponse(
+                String result,
+                long response
+        );
 
         /**
          * 请求失败
@@ -55,7 +58,10 @@ public final class HttpURLConnectionUtils {
      * @param urlStr   请求地址
      * @param callback 请求回调接口
      */
-    public static void doGetAsync(final String urlStr, final Callback callback) {
+    public static void doGetAsync(
+            final String urlStr,
+            final Callback callback
+    ) {
         new Thread() {
             public void run() {
                 try {
@@ -73,7 +79,11 @@ public final class HttpURLConnectionUtils {
      * @param params   请求参数
      * @param callback 请求回调接口
      */
-    public static void doPostAsync(final String urlStr, final String params, final Callback callback) {
+    public static void doPostAsync(
+            final String urlStr,
+            final String params,
+            final Callback callback
+    ) {
         new Thread() {
             public void run() {
                 try {
@@ -93,11 +103,17 @@ public final class HttpURLConnectionUtils {
      * @param params   请求参数
      * @param callback 请求回调接口
      */
-    public static void request(final String method, final String urlStr, final Map<String, String> headers, final String params, final Callback callback) {
+    public static void request(
+            final String method,
+            final String urlStr,
+            final Map<String, String> headers,
+            final String params,
+            final Callback callback
+    ) {
         // 获取连接对象
-        HttpURLConnection     connection = null;
-        InputStream           is         = null;
-        ByteArrayOutputStream baos       = null;
+        HttpURLConnection connection = null;
+        InputStream is               = null;
+        ByteArrayOutputStream baos   = null;
         try {
             // 请求路径
             URL url = new URL(urlStr);
@@ -211,7 +227,10 @@ public final class HttpURLConnectionUtils {
      * @param urlStr   请求地址
      * @param callback 请求时间回调接口
      */
-    public static void getNetTime(final String urlStr, final TimeCallback callback) {
+    public static void getNetTime(
+            final String urlStr,
+            final TimeCallback callback
+    ) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -225,7 +244,10 @@ public final class HttpURLConnectionUtils {
      * @param urlStr   请求地址
      * @param callback 请求时间回调接口
      */
-    private static void reqNetTime(final String urlStr, final TimeCallback callback) {
+    private static void reqNetTime(
+            final String urlStr,
+            final TimeCallback callback
+    ) {
         // 获取连接对象
         HttpURLConnection connection = null;
         try {

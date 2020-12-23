@@ -32,8 +32,12 @@ public final class ViewAnimationUtils {
      * @param animationListener 动画监听器
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean invisibleViewByAlpha(final View view, final long durationMillis, final boolean isBanClick,
-                                               final AnimationListener animationListener) {
+    public static boolean invisibleViewByAlpha(
+            final View view,
+            final long durationMillis,
+            final boolean isBanClick,
+            final AnimationListener animationListener
+    ) {
         if (view != null && view.getVisibility() != View.INVISIBLE) {
             view.setVisibility(View.INVISIBLE);
             // 获取动画
@@ -79,7 +83,11 @@ public final class ViewAnimationUtils {
      * @param animationListener 动画监听器
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean invisibleViewByAlpha(final View view, final long durationMillis, final AnimationListener animationListener) {
+    public static boolean invisibleViewByAlpha(
+            final View view,
+            final long durationMillis,
+            final AnimationListener animationListener
+    ) {
         return invisibleViewByAlpha(view, durationMillis, false, animationListener);
     }
 
@@ -90,7 +98,11 @@ public final class ViewAnimationUtils {
      * @param isBanClick     在执行动画的过程中是否禁止点击
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean invisibleViewByAlpha(final View view, final long durationMillis, final boolean isBanClick) {
+    public static boolean invisibleViewByAlpha(
+            final View view,
+            final long durationMillis,
+            final boolean isBanClick
+    ) {
         return invisibleViewByAlpha(view, durationMillis, isBanClick, null);
     }
 
@@ -100,7 +112,10 @@ public final class ViewAnimationUtils {
      * @param durationMillis 动画持续时间
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean invisibleViewByAlpha(final View view, final long durationMillis) {
+    public static boolean invisibleViewByAlpha(
+            final View view,
+            final long durationMillis
+    ) {
         return invisibleViewByAlpha(view, durationMillis, false, null);
     }
 
@@ -111,7 +126,11 @@ public final class ViewAnimationUtils {
      * @param animationListener 动画监听器
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean invisibleViewByAlpha(final View view, final boolean isBanClick, final AnimationListener animationListener) {
+    public static boolean invisibleViewByAlpha(
+            final View view,
+            final boolean isBanClick,
+            final AnimationListener animationListener
+    ) {
         return invisibleViewByAlpha(view, AnimationUtils.DEFAULT_ANIMATION_DURATION, isBanClick, animationListener);
     }
 
@@ -121,7 +140,10 @@ public final class ViewAnimationUtils {
      * @param animationListener 动画监听器
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean invisibleViewByAlpha(final View view, final AnimationListener animationListener) {
+    public static boolean invisibleViewByAlpha(
+            final View view,
+            final AnimationListener animationListener
+    ) {
         return invisibleViewByAlpha(view, AnimationUtils.DEFAULT_ANIMATION_DURATION, false, animationListener);
     }
 
@@ -131,7 +153,10 @@ public final class ViewAnimationUtils {
      * @param isBanClick 在执行动画的过程中是否禁止点击
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean invisibleViewByAlpha(final View view, final boolean isBanClick) {
+    public static boolean invisibleViewByAlpha(
+            final View view,
+            final boolean isBanClick
+    ) {
         return invisibleViewByAlpha(view, AnimationUtils.DEFAULT_ANIMATION_DURATION, isBanClick, null);
     }
 
@@ -154,8 +179,12 @@ public final class ViewAnimationUtils {
      * @param animationListener 动画监听器
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean goneViewByAlpha(final View view, final long durationMillis, final boolean isBanClick,
-                                          final AnimationListener animationListener) {
+    public static boolean goneViewByAlpha(
+            final View view,
+            final long durationMillis,
+            final boolean isBanClick,
+            final AnimationListener animationListener
+    ) {
         if (view != null && view.getVisibility() != View.GONE) {
             view.setVisibility(View.GONE);
             // 获取动画
@@ -201,7 +230,11 @@ public final class ViewAnimationUtils {
      * @param animationListener 动画监听器
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean goneViewByAlpha(final View view, final long durationMillis, final AnimationListener animationListener) {
+    public static boolean goneViewByAlpha(
+            final View view,
+            final long durationMillis,
+            final AnimationListener animationListener
+    ) {
         return goneViewByAlpha(view, durationMillis, false, animationListener);
     }
 
@@ -212,7 +245,11 @@ public final class ViewAnimationUtils {
      * @param isBanClick     在执行动画的过程中是否禁止点击
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean goneViewByAlpha(final View view, final long durationMillis, final boolean isBanClick) {
+    public static boolean goneViewByAlpha(
+            final View view,
+            final long durationMillis,
+            final boolean isBanClick
+    ) {
         return goneViewByAlpha(view, durationMillis, isBanClick, null);
     }
 
@@ -222,7 +259,10 @@ public final class ViewAnimationUtils {
      * @param durationMillis 动画持续时间
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean goneViewByAlpha(final View view, final long durationMillis) {
+    public static boolean goneViewByAlpha(
+            final View view,
+            final long durationMillis
+    ) {
         return goneViewByAlpha(view, durationMillis, false, null);
     }
 
@@ -233,7 +273,11 @@ public final class ViewAnimationUtils {
      * @param animationListener 动画监听器
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean goneViewByAlpha(final View view, final boolean isBanClick, final AnimationListener animationListener) {
+    public static boolean goneViewByAlpha(
+            final View view,
+            final boolean isBanClick,
+            final AnimationListener animationListener
+    ) {
         return goneViewByAlpha(view, AnimationUtils.DEFAULT_ANIMATION_DURATION, isBanClick, animationListener);
     }
 
@@ -243,7 +287,10 @@ public final class ViewAnimationUtils {
      * @param animationListener 动画监听器
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean goneViewByAlpha(final View view, final AnimationListener animationListener) {
+    public static boolean goneViewByAlpha(
+            final View view,
+            final AnimationListener animationListener
+    ) {
         return goneViewByAlpha(view, AnimationUtils.DEFAULT_ANIMATION_DURATION, false, animationListener);
     }
 
@@ -253,7 +300,10 @@ public final class ViewAnimationUtils {
      * @param isBanClick 在执行动画的过程中是否禁止点击
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean goneViewByAlpha(final View view, final boolean isBanClick) {
+    public static boolean goneViewByAlpha(
+            final View view,
+            final boolean isBanClick
+    ) {
         return goneViewByAlpha(view, AnimationUtils.DEFAULT_ANIMATION_DURATION, isBanClick, null);
     }
 
@@ -276,8 +326,12 @@ public final class ViewAnimationUtils {
      * @param animationListener 动画监听器
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean visibleViewByAlpha(final View view, final long durationMillis, final boolean isBanClick,
-                                             final AnimationListener animationListener) {
+    public static boolean visibleViewByAlpha(
+            final View view,
+            final long durationMillis,
+            final boolean isBanClick,
+            final AnimationListener animationListener
+    ) {
         if (view != null && view.getVisibility() != View.VISIBLE) {
             view.setVisibility(View.VISIBLE);
             // 获取动画
@@ -323,7 +377,11 @@ public final class ViewAnimationUtils {
      * @param animationListener 动画监听器
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean visibleViewByAlpha(final View view, final long durationMillis, final AnimationListener animationListener) {
+    public static boolean visibleViewByAlpha(
+            final View view,
+            final long durationMillis,
+            final AnimationListener animationListener
+    ) {
         return visibleViewByAlpha(view, durationMillis, false, animationListener);
     }
 
@@ -334,7 +392,11 @@ public final class ViewAnimationUtils {
      * @param isBanClick     在执行动画的过程中是否禁止点击
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean visibleViewByAlpha(final View view, final long durationMillis, final boolean isBanClick) {
+    public static boolean visibleViewByAlpha(
+            final View view,
+            final long durationMillis,
+            final boolean isBanClick
+    ) {
         return visibleViewByAlpha(view, durationMillis, isBanClick, null);
     }
 
@@ -344,7 +406,10 @@ public final class ViewAnimationUtils {
      * @param durationMillis 动画持续时间
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean visibleViewByAlpha(final View view, final long durationMillis) {
+    public static boolean visibleViewByAlpha(
+            final View view,
+            final long durationMillis
+    ) {
         return visibleViewByAlpha(view, durationMillis, false, null);
     }
 
@@ -355,7 +420,11 @@ public final class ViewAnimationUtils {
      * @param animationListener 动画监听器
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean visibleViewByAlpha(final View view, final boolean isBanClick, final AnimationListener animationListener) {
+    public static boolean visibleViewByAlpha(
+            final View view,
+            final boolean isBanClick,
+            final AnimationListener animationListener
+    ) {
         return visibleViewByAlpha(view, AnimationUtils.DEFAULT_ANIMATION_DURATION, isBanClick, animationListener);
     }
 
@@ -365,7 +434,10 @@ public final class ViewAnimationUtils {
      * @param animationListener 动画监听器
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean visibleViewByAlpha(final View view, final AnimationListener animationListener) {
+    public static boolean visibleViewByAlpha(
+            final View view,
+            final AnimationListener animationListener
+    ) {
         return visibleViewByAlpha(view, AnimationUtils.DEFAULT_ANIMATION_DURATION, false, animationListener);
     }
 
@@ -375,7 +447,10 @@ public final class ViewAnimationUtils {
      * @param isBanClick 在执行动画的过程中是否禁止点击
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean visibleViewByAlpha(final View view, final boolean isBanClick) {
+    public static boolean visibleViewByAlpha(
+            final View view,
+            final boolean isBanClick
+    ) {
         return visibleViewByAlpha(view, AnimationUtils.DEFAULT_ANIMATION_DURATION, isBanClick, null);
     }
 
@@ -404,9 +479,16 @@ public final class ViewAnimationUtils {
      * @param isBanClick     在执行动画的过程中是否禁止点击
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean translate(final View view, final float fromXDelta, final float toXDelta,
-                                    final float fromYDelta, final float toYDelta, final Interpolator interpolator,
-                                    final long durationMillis, final boolean isBanClick) {
+    public static boolean translate(
+            final View view,
+            final float fromXDelta,
+            final float toXDelta,
+            final float fromYDelta,
+            final float toYDelta,
+            final Interpolator interpolator,
+            final long durationMillis,
+            final boolean isBanClick
+    ) {
         if (view != null) {
             TranslateAnimation animation = AnimationUtils.getTranslateAnimation(fromXDelta, toXDelta, fromYDelta, toYDelta, interpolator, durationMillis);
             animation.setAnimationListener(new AnimationListener() {
@@ -447,8 +529,16 @@ public final class ViewAnimationUtils {
      * @param isBanClick     在执行动画的过程中是否禁止点击
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean translate(final View view, final float fromXDelta, final float toXDelta,
-                                    final float fromYDelta, final float toYDelta, final float cycles, final long durationMillis, final boolean isBanClick) {
+    public static boolean translate(
+            final View view,
+            final float fromXDelta,
+            final float toXDelta,
+            final float fromYDelta,
+            final float toYDelta,
+            final float cycles,
+            final long durationMillis,
+            final boolean isBanClick
+    ) {
         if (view != null) {
             Interpolator interpolator = (cycles > 0.0f) ? new CycleInterpolator(cycles) : null;
             return translate(view, fromXDelta, toXDelta, fromYDelta, toYDelta, interpolator, durationMillis, isBanClick);
@@ -467,8 +557,15 @@ public final class ViewAnimationUtils {
      * @param durationMillis 动画持续时间
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean translate(final View view, final float fromXDelta, final float toXDelta,
-                                    final float fromYDelta, final float toYDelta, final float cycles, final long durationMillis) {
+    public static boolean translate(
+            final View view,
+            final float fromXDelta,
+            final float toXDelta,
+            final float fromYDelta,
+            final float toYDelta,
+            final float cycles,
+            final long durationMillis
+    ) {
         return translate(view, fromXDelta, toXDelta, fromYDelta, toYDelta, cycles, durationMillis, false);
     }
 
@@ -484,8 +581,14 @@ public final class ViewAnimationUtils {
      * @param isBanClick     在执行动画的过程中是否禁止点击
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean shake(final View view, final float fromXDelta, final float toXDelta,
-                                final float cycles, final long durationMillis, final boolean isBanClick) {
+    public static boolean shake(
+            final View view,
+            final float fromXDelta,
+            final float toXDelta,
+            final float cycles,
+            final long durationMillis,
+            final boolean isBanClick
+    ) {
         return translate(view, fromXDelta, toXDelta, 0.0f, 0.0f, cycles, durationMillis, isBanClick);
     }
 
@@ -498,7 +601,13 @@ public final class ViewAnimationUtils {
      * @param durationMillis 动画持续时间
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean shake(final View view, final float fromXDelta, final float toXDelta, final float cycles, final long durationMillis) {
+    public static boolean shake(
+            final View view,
+            final float fromXDelta,
+            final float toXDelta,
+            final float cycles,
+            final long durationMillis
+    ) {
         return translate(view, fromXDelta, toXDelta, 0.0f, 0.0f, cycles, durationMillis, false);
     }
 
@@ -510,7 +619,12 @@ public final class ViewAnimationUtils {
      * @param isBanClick     在执行动画的过程中是否禁止点击
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean shake(final View view, final float cycles, final long durationMillis, final boolean isBanClick) {
+    public static boolean shake(
+            final View view,
+            final float cycles,
+            final long durationMillis,
+            final boolean isBanClick
+    ) {
         return translate(view, 0.0f, 10.0f, 0.0f, 0.0f, cycles, durationMillis, isBanClick);
     }
 
@@ -521,7 +635,11 @@ public final class ViewAnimationUtils {
      * @param isBanClick 在执行动画的过程中是否禁止点击
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean shake(final View view, final float cycles, final boolean isBanClick) {
+    public static boolean shake(
+            final View view,
+            final float cycles,
+            final boolean isBanClick
+    ) {
         return translate(view, 0.0f, 10.0f, 0.0f, 0.0f, cycles, 700, isBanClick);
     }
 
@@ -532,7 +650,11 @@ public final class ViewAnimationUtils {
      * @param durationMillis 动画持续时间
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean shake(final View view, final float cycles, final long durationMillis) {
+    public static boolean shake(
+            final View view,
+            final float cycles,
+            final long durationMillis
+    ) {
         return translate(view, 0.0f, 10.0f, 0.0f, 0.0f, cycles, durationMillis, false);
     }
 
@@ -543,7 +665,11 @@ public final class ViewAnimationUtils {
      * @param isBanClick     在执行动画的过程中是否禁止点击
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean shake(final View view, final long durationMillis, final boolean isBanClick) {
+    public static boolean shake(
+            final View view,
+            final long durationMillis,
+            final boolean isBanClick
+    ) {
         return translate(view, 0.0f, 10.0f, 0.0f, 0.0f, 7, durationMillis, isBanClick);
     }
 
@@ -553,7 +679,10 @@ public final class ViewAnimationUtils {
      * @param cycles 动画周期 {@link CycleInterpolator}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean shake(final View view, final float cycles) {
+    public static boolean shake(
+            final View view,
+            final float cycles
+    ) {
         return translate(view, 0.0f, 10.0f, 0.0f, 0.0f, cycles, 700, false);
     }
 
@@ -563,7 +692,10 @@ public final class ViewAnimationUtils {
      * @param durationMillis 动画持续时间
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean shake(final View view, final long durationMillis) {
+    public static boolean shake(
+            final View view,
+            final long durationMillis
+    ) {
         return translate(view, 0.0f, 10.0f, 0.0f, 0.0f, 7, durationMillis, false);
     }
 
@@ -575,7 +707,10 @@ public final class ViewAnimationUtils {
      * @param isBanClick 在执行动画的过程中是否禁止点击
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean shake(final View view, final boolean isBanClick) {
+    public static boolean shake(
+            final View view,
+            final boolean isBanClick
+    ) {
         return translate(view, 0.0f, 10.0f, 0.0f, 0.0f, 7, 700, isBanClick);
     }
 

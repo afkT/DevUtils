@@ -60,7 +60,10 @@ public class LogConfig {
      * @param logLevel 日志级别
      * @return {@link LogConfig} 日志配置
      */
-    public static LogConfig getReleaseLogConfig(final String tag, final LogLevel logLevel) {
+    public static LogConfig getReleaseLogConfig(
+            final String tag,
+            final LogLevel logLevel
+    ) {
         return getLogConfig(tag, 3, 0, false, true, false, logLevel);
     }
 
@@ -81,7 +84,10 @@ public class LogConfig {
      * @param logLevel 日志级别
      * @return {@link LogConfig} 日志配置
      */
-    public static LogConfig getDebugLogConfig(final String tag, final LogLevel logLevel) {
+    public static LogConfig getDebugLogConfig(
+            final String tag,
+            final LogLevel logLevel
+    ) {
         return getLogConfig(tag, 3, 0, false, true, false, logLevel);
     }
 
@@ -102,7 +108,10 @@ public class LogConfig {
      * @param logLevel 日志级别
      * @return {@link LogConfig} 日志配置
      */
-    public static LogConfig getSortLogConfig(final String tag, final LogLevel logLevel) {
+    public static LogConfig getSortLogConfig(
+            final String tag,
+            final LogLevel logLevel
+    ) {
         return getLogConfig(tag, 3, 0, false, true, true, logLevel);
     }
 
@@ -119,7 +128,15 @@ public class LogConfig {
      * @param logLevel   日志级别
      * @return {@link LogConfig} 日志配置
      */
-    public static LogConfig getLogConfig(final String tag, final int count, final int offset, final boolean allMethod, final boolean threadInfo, final boolean sortLog, final LogLevel logLevel) {
+    public static LogConfig getLogConfig(
+            final String tag,
+            final int count,
+            final int offset,
+            final boolean allMethod,
+            final boolean threadInfo,
+            final boolean sortLog,
+            final LogLevel logLevel
+    ) {
         // 生成默认配置信息
         LogConfig logConfig = new LogConfig();
         // 堆栈方法总数 ( 显示经过的方法 )

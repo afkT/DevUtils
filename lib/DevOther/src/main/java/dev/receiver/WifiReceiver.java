@@ -66,7 +66,10 @@ public final class WifiReceiver extends BroadcastReceiver {
     public static final  int UNKNOWN                   = BASE + 14;
 
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(
+            Context context,
+            Intent intent
+    ) {
         try {
             // 触发回调通知 ( 每次进入都通知 )
             if (sListener != null) sListener.onIntoTrigger();
@@ -264,7 +267,10 @@ public final class WifiReceiver extends BroadcastReceiver {
          * @param what 触发类型
          * @param msg  触发信息
          */
-        public abstract void onTrigger(int what, Message msg);
+        public abstract void onTrigger(
+                int what,
+                Message msg
+        );
 
         /**
          * Wifi 开关状态

@@ -116,7 +116,10 @@ public final class SizeUtils {
      * @param value 值
      * @return 转换后的值
      */
-    public static float applyDimension(final int unit, final float value) {
+    public static float applyDimension(
+            final int unit,
+            final float value
+    ) {
         return applyDimension(unit, value, ResourceUtils.getDisplayMetrics());
     }
 
@@ -127,7 +130,11 @@ public final class SizeUtils {
      * @param metrics {@link DisplayMetrics}
      * @return 转换后的值
      */
-    public static float applyDimension(final int unit, final float value, final DisplayMetrics metrics) {
+    public static float applyDimension(
+            final int unit,
+            final float value,
+            final DisplayMetrics metrics
+    ) {
         if (metrics != null) {
             return TypedValue.applyDimension(unit, value, metrics);
         }
@@ -152,7 +159,10 @@ public final class SizeUtils {
      * @param listener {@link onGetSizeListener}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean forceGetViewSize(final View view, final onGetSizeListener listener) {
+    public static boolean forceGetViewSize(
+            final View view,
+            final onGetSizeListener listener
+    ) {
         if (view != null) {
             view.post(new Runnable() {
                 @Override

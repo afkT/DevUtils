@@ -159,7 +159,11 @@ public final class ServiceUtils {
      *                  {@link Context#BIND_WAIVE_PRIORITY}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean bindService(final String className, final ServiceConnection conn, final int flags) {
+    public static boolean bindService(
+            final String className,
+            final ServiceConnection conn,
+            final int flags
+    ) {
         try {
             return bindService(Class.forName(className), conn, flags);
         } catch (Exception e) {
@@ -181,7 +185,11 @@ public final class ServiceUtils {
      *              {@link Context#BIND_WAIVE_PRIORITY}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean bindService(final Class<?> clazz, final ServiceConnection conn, final int flags) {
+    public static boolean bindService(
+            final Class<?> clazz,
+            final ServiceConnection conn,
+            final int flags
+    ) {
         try {
             Intent intent = new Intent(DevUtils.getContext(), clazz);
             DevUtils.getContext().bindService(intent, conn, flags);

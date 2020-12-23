@@ -14,7 +14,7 @@ import dev.utils.app.ResourceUtils;
 public class KeyValueBean implements Serializable {
 
     @Keep
-    protected String key   = "";
+    protected String key = "";
     @Keep
     protected String value = "";
 
@@ -23,7 +23,10 @@ public class KeyValueBean implements Serializable {
      * @param key   key
      * @param value value
      */
-    public KeyValueBean(final String key, final String value) {
+    public KeyValueBean(
+            final String key,
+            final String value
+    ) {
         this.key = key;
         this.value = value;
     }
@@ -55,7 +58,10 @@ public class KeyValueBean implements Serializable {
      * @param value value
      * @return {@link KeyValueBean}
      */
-    public static KeyValueBean get(@StringRes final int resId, final String value) {
+    public static KeyValueBean get(
+            @StringRes final int resId,
+            final String value
+    ) {
         return new KeyValueBean(ResourceUtils.getString(resId), value);
     }
 }

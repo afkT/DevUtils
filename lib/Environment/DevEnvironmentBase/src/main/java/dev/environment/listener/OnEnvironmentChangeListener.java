@@ -15,5 +15,9 @@ public interface OnEnvironmentChangeListener {
      * @param oldEnvironment 该模块的旧环境
      * @param newEnvironment 该模块的最新环境
      */
-    void onEnvironmentChanged(ModuleBean module, EnvironmentBean oldEnvironment, EnvironmentBean newEnvironment);
+    void onEnvironmentChanged(
+            ModuleBean module,
+            EnvironmentBean oldEnvironment,
+            EnvironmentBean newEnvironment
+    );
 }

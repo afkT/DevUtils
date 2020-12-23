@@ -84,7 +84,10 @@ public final class PictureSelectorUtils {
      * @param cameraSavePath   拍照保存地址
      * @param compressSavePath 压缩图片保存地址
      */
-    public static void setSavePath(final String cameraSavePath, final String compressSavePath) {
+    public static void setSavePath(
+            final String cameraSavePath,
+            final String compressSavePath
+    ) {
         CAMERA_SAVE_PATH = cameraSavePath;
         COMPRESS_SAVE_PATH = compressSavePath;
     }
@@ -177,7 +180,10 @@ public final class PictureSelectorUtils {
      * @param original   是否使用原图地址
      * @return 本地资源路径
      */
-    public static String getLocalMediaPath(final LocalMedia localMedia, final boolean original) {
+    public static String getLocalMediaPath(
+            final LocalMedia localMedia,
+            final boolean original
+    ) {
         if (localMedia != null) {
             if (original) return localMedia.getPath();
             // 判断资源类型
@@ -212,7 +218,10 @@ public final class PictureSelectorUtils {
      * @param original 是否使用原图地址
      * @return {@link List}
      */
-    public static List<String> getLocalMediaPaths(final Intent data, final boolean original) {
+    public static List<String> getLocalMediaPaths(
+            final Intent data,
+            final boolean original
+    ) {
         List<String>     lists  = new ArrayList<>();
         List<LocalMedia> result = getLocalMedias(data);
         if (result != null) {
@@ -237,8 +246,11 @@ public final class PictureSelectorUtils {
      * @param isCamera        是否拍照
      * @return {@link PictureSelectionModel}
      */
-    public static PictureSelectionModel getPictureSelectionModel(final PictureSelector pictureSelector,
-                                                                 final PicConfig picConfig, final boolean isCamera) {
+    public static PictureSelectionModel getPictureSelectionModel(
+            final PictureSelector pictureSelector,
+            final PicConfig picConfig,
+            final boolean isCamera
+    ) {
         if (pictureSelector != null && picConfig != null) {
             // 图片选择配置模型
             PictureSelectionModel pictureSelectionModel;
@@ -333,7 +345,10 @@ public final class PictureSelectorUtils {
      * @param picConfig       {@link PicConfig}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean openCamera(final PictureSelector pictureSelector, final PicConfig picConfig) {
+    public static boolean openCamera(
+            final PictureSelector pictureSelector,
+            final PicConfig picConfig
+    ) {
         PictureSelectionModel pictureSelectionModel = getPictureSelectionModel(pictureSelector, picConfig, true);
         if (pictureSelectionModel != null) {
             pictureSelectionModel.forResult(PIC_REQUEST_CODE);
@@ -357,7 +372,10 @@ public final class PictureSelectorUtils {
      * @param picConfig       {@link PicConfig}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean openGallery(final PictureSelector pictureSelector, final PicConfig picConfig) {
+    public static boolean openGallery(
+            final PictureSelector pictureSelector,
+            final PicConfig picConfig
+    ) {
         PictureSelectionModel pictureSelectionModel = getPictureSelectionModel(pictureSelector, picConfig, false);
         if (pictureSelectionModel != null) {
             pictureSelectionModel.forResult(PIC_REQUEST_CODE);
@@ -575,7 +593,10 @@ public final class PictureSelectorUtils {
          * @param y 高比例
          * @return {@link PicConfig}
          */
-        public PicConfig setWithAspectRatio(final int x, final int y) {
+        public PicConfig setWithAspectRatio(
+                final int x,
+                final int y
+        ) {
             this.withAspectRatio[0] = x;
             this.withAspectRatio[1] = y;
             return this;

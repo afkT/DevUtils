@@ -106,7 +106,10 @@ public final class EditTextUtils {
      * @param <T>      泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T setText(final T editText, final CharSequence content) {
+    public static <T extends EditText> T setText(
+            final T editText,
+            final CharSequence content
+    ) {
         return setText(editText, content, true);
     }
 
@@ -118,7 +121,11 @@ public final class EditTextUtils {
      * @param <T>      泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T setText(final T editText, final CharSequence content, final boolean isSelect) {
+    public static <T extends EditText> T setText(
+            final T editText,
+            final CharSequence content,
+            final boolean isSelect
+    ) {
         if (editText != null && content != null) {
             editText.setText(content);
             // 设置光标
@@ -135,7 +142,10 @@ public final class EditTextUtils {
      * @param views   View(EditText)[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setTexts(final CharSequence content, final View... views) {
+    public static boolean setTexts(
+            final CharSequence content,
+            final View... views
+    ) {
         if (views != null) {
             for (View view : views) {
                 setText(getEditText(view), content);
@@ -152,7 +162,10 @@ public final class EditTextUtils {
      * @param <T>     泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T extends EditText> boolean setTexts(final CharSequence content, final T... views) {
+    public static <T extends EditText> boolean setTexts(
+            final CharSequence content,
+            final T... views
+    ) {
         if (views != null) {
             for (T view : views) {
                 setText(view, content);
@@ -172,7 +185,11 @@ public final class EditTextUtils {
      * @param <T>      泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T insert(final T editText, final CharSequence content, final boolean isSelect) {
+    public static <T extends EditText> T insert(
+            final T editText,
+            final CharSequence content,
+            final boolean isSelect
+    ) {
         if (editText != null) {
             return insert(editText, content, editText.getSelectionStart(), isSelect);
         }
@@ -188,7 +205,12 @@ public final class EditTextUtils {
      * @param <T>      泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T insert(final T editText, final CharSequence content, final int start, final boolean isSelect) {
+    public static <T extends EditText> T insert(
+            final T editText,
+            final CharSequence content,
+            final int start,
+            final boolean isSelect
+    ) {
         if (editText != null && !TextUtils.isEmpty(content)) {
             try {
                 Editable editable = editText.getText();
@@ -214,7 +236,10 @@ public final class EditTextUtils {
      * @param <T>       泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T setMaxLength(final T editText, final int maxLength) {
+    public static <T extends EditText> T setMaxLength(
+            final T editText,
+            final int maxLength
+    ) {
         if (editText != null && maxLength > 0) {
             // 设置最大长度限制
             InputFilter[] filters = {new InputFilter.LengthFilter(maxLength)};
@@ -231,7 +256,11 @@ public final class EditTextUtils {
      * @param <T>       泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T setMaxLengthAndText(final T editText, final CharSequence content, final int maxLength) {
+    public static <T extends EditText> T setMaxLengthAndText(
+            final T editText,
+            final CharSequence content,
+            final int maxLength
+    ) {
         return setText(setMaxLength(editText, maxLength), content);
     }
 
@@ -260,7 +289,10 @@ public final class EditTextUtils {
      * @param <T>      泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T setCursorVisible(final T editText, final boolean visible) {
+    public static <T extends EditText> T setCursorVisible(
+            final T editText,
+            final boolean visible
+    ) {
         if (editText != null) {
             editText.setCursorVisible(visible);
         }
@@ -307,7 +339,10 @@ public final class EditTextUtils {
      * @param <T>      泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T setSelection(final T editText, final int index) {
+    public static <T extends EditText> T setSelection(
+            final T editText,
+            final int index
+    ) {
         if (editText != null && index >= 0) {
             // 获取数据长度
             int length = editText.getText().toString().length();
@@ -339,7 +374,10 @@ public final class EditTextUtils {
      * @param <T>      泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T setInputType(final T editText, final int type) {
+    public static <T extends EditText> T setInputType(
+            final T editText,
+            final int type
+    ) {
         if (editText != null) {
             editText.setInputType(type);
         }
@@ -368,7 +406,10 @@ public final class EditTextUtils {
      * @param <T>        泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T setImeOptions(final T editText, final int imeOptions) {
+    public static <T extends EditText> T setImeOptions(
+            final T editText,
+            final int imeOptions
+    ) {
         if (editText != null) {
             editText.setImeOptions(imeOptions);
         }
@@ -397,7 +438,10 @@ public final class EditTextUtils {
      * @param <T>      泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T setTransformationMethod(final T editText, final TransformationMethod method) {
+    public static <T extends EditText> T setTransformationMethod(
+            final T editText,
+            final TransformationMethod method
+    ) {
         if (editText != null) {
             editText.setTransformationMethod(method);
         }
@@ -413,7 +457,10 @@ public final class EditTextUtils {
      * @param <T>               泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T setTransformationMethod(final T editText, final boolean isDisplayPassword) {
+    public static <T extends EditText> T setTransformationMethod(
+            final T editText,
+            final boolean isDisplayPassword
+    ) {
         return setTransformationMethod(editText, isDisplayPassword, true);
     }
 
@@ -425,7 +472,11 @@ public final class EditTextUtils {
      * @param <T>               泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T setTransformationMethod(final T editText, final boolean isDisplayPassword, final boolean isSelectBottom) {
+    public static <T extends EditText> T setTransformationMethod(
+            final T editText,
+            final boolean isDisplayPassword,
+            final boolean isSelectBottom
+    ) {
         if (editText != null) {
             // 获取光标位置
             int curSelect = 0;
@@ -452,7 +503,10 @@ public final class EditTextUtils {
      * @param <T>      泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T addTextChangedListener(final T editText, final TextWatcher watcher) {
+    public static <T extends EditText> T addTextChangedListener(
+            final T editText,
+            final TextWatcher watcher
+    ) {
         if (editText != null && watcher != null) {
             editText.addTextChangedListener(watcher);
         }
@@ -466,7 +520,10 @@ public final class EditTextUtils {
      * @param <T>      泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T removeTextChangedListener(final T editText, final TextWatcher watcher) {
+    public static <T extends EditText> T removeTextChangedListener(
+            final T editText,
+            final TextWatcher watcher
+    ) {
         if (editText != null && watcher != null) {
             editText.removeTextChangedListener(watcher);
         }
@@ -505,7 +562,10 @@ public final class EditTextUtils {
      * @param <T>         泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T setKeyListener(final T editText, final KeyListener keyListener) {
+    public static <T extends EditText> T setKeyListener(
+            final T editText,
+            final KeyListener keyListener
+    ) {
         if (editText != null) {
             editText.setKeyListener(keyListener);
         }
@@ -519,7 +579,10 @@ public final class EditTextUtils {
      * @param <T>      泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T setKeyListener(final T editText, final String accepted) {
+    public static <T extends EditText> T setKeyListener(
+            final T editText,
+            final String accepted
+    ) {
         if (editText != null) {
             // editText.setKeyListener(DigitsKeyListener.getInstance(accepted));
             editText.setKeyListener(createDigitsKeyListener(-1, accepted));
@@ -534,7 +597,10 @@ public final class EditTextUtils {
      * @param <T>      泛型
      * @return {@link EditText}
      */
-    public static <T extends EditText> T setKeyListener(final T editText, final char[] accepted) {
+    public static <T extends EditText> T setKeyListener(
+            final T editText,
+            final char[] accepted
+    ) {
         if (editText != null) {
             editText.setKeyListener(createDigitsKeyListener(-1, accepted));
         }
@@ -584,7 +650,10 @@ public final class EditTextUtils {
      * @param accepted  允许输入的内容 ( 可以传入 "", 这样无法输入内容 )
      * @return {@link DigitsKeyListener}
      */
-    public static DigitsKeyListener createDigitsKeyListener(final int inputType, final String accepted) {
+    public static DigitsKeyListener createDigitsKeyListener(
+            final int inputType,
+            final String accepted
+    ) {
         return createDigitsKeyListener(inputType, (accepted == null) ? null : accepted.toCharArray());
     }
 
@@ -605,7 +674,10 @@ public final class EditTextUtils {
      * @param accepted  允许输入的内容
      * @return {@link DigitsKeyListener}
      */
-    public static DigitsKeyListener createDigitsKeyListener(final int inputType, final char[] accepted) {
+    public static DigitsKeyListener createDigitsKeyListener(
+            final int inputType,
+            final char[] accepted
+    ) {
         return new DigitsKeyListener() {
             @Override
             protected char[] getAcceptedChars() {
@@ -736,7 +808,12 @@ public final class EditTextUtils {
          * @param after 被修改的文字修改之后的长度, 如果是删除的话则为 0
          */
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        public void beforeTextChanged(
+                CharSequence s,
+                int start,
+                int count,
+                int after
+        ) {
         }
 
         /**
@@ -747,7 +824,12 @@ public final class EditTextUtils {
          * @param count  添加的字符串长度, 如果是删除则为 0
          */
         @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        public void onTextChanged(
+                CharSequence s,
+                int start,
+                int before,
+                int count
+        ) {
         }
 
         /**

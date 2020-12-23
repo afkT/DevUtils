@@ -563,7 +563,10 @@ public final class PhoneUtils {
      * @param content     短信内容
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean sendSms(final String phoneNumber, final String content) {
+    public static boolean sendSms(
+            final String phoneNumber,
+            final String content
+    ) {
         try {
             Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + phoneNumber));
             if (IntentUtils.isIntentAvailable(intent)) {
@@ -583,7 +586,10 @@ public final class PhoneUtils {
      * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("MissingPermission")
-    public static boolean sendSmsSilent(final String phoneNumber, final String content) {
+    public static boolean sendSmsSilent(
+            final String phoneNumber,
+            final String content
+    ) {
         if (TextUtils.isEmpty(content)) return false;
         try {
             PendingIntent sentIntent = PendingIntent.getBroadcast(DevUtils.getContext(), 0, new Intent("send"), 0);

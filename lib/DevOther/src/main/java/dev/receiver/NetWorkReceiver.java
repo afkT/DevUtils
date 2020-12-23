@@ -44,7 +44,10 @@ public final class NetWorkReceiver extends BroadcastReceiver {
 
     @SuppressLint("MissingPermission")
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(
+            Context context,
+            Intent intent
+    ) {
         try {
             String action = intent.getAction();
             // 打印当前触发的广播

@@ -14,7 +14,7 @@ import dev.utils.common.FileUtils;
 public final class FilePartAssist {
 
     // 文件路径
-    private final File               file;
+    private final File file;
     // 文件分片信息集合
     private final List<FilePartItem> filePartItems = new ArrayList<>();
 
@@ -23,7 +23,10 @@ public final class FilePartAssist {
      * @param file          文件
      * @param filePartItems 文件分片信息集合
      */
-    public FilePartAssist(final File file, final List<FilePartItem> filePartItems) {
+    public FilePartAssist(
+            final File file,
+            final List<FilePartItem> filePartItems
+    ) {
         this.file = file;
         if (filePartItems != null) {
             this.filePartItems.addAll(filePartItems);
@@ -35,7 +38,10 @@ public final class FilePartAssist {
      * @param filePath  文件路径
      * @param partCount 分片总数
      */
-    public FilePartAssist(final String filePath, final int partCount) {
+    public FilePartAssist(
+            final String filePath,
+            final int partCount
+    ) {
         this(FileUtils.getFile(filePath), partCount);
     }
 
@@ -44,7 +50,10 @@ public final class FilePartAssist {
      * @param file      文件
      * @param partCount 分片总数
      */
-    public FilePartAssist(final File file, final int partCount) {
+    public FilePartAssist(
+            final File file,
+            final int partCount
+    ) {
         this.file = file;
         if (file != null && file.exists() && partCount > 0) {
             // 原始文件总字节

@@ -159,7 +159,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setHint(final T textView, final CharSequence text) {
+    public static <T extends TextView> T setHint(
+            final T textView,
+            final CharSequence text
+    ) {
         if (textView != null) {
             textView.setHint(text);
         }
@@ -172,7 +175,10 @@ public final class TextViewUtils {
      * @param text Hint text
      * @return {@link View}
      */
-    public static View setHint(final View view, final CharSequence text) {
+    public static View setHint(
+            final View view,
+            final CharSequence text
+    ) {
         setHint(getTextView(view), text);
         return view;
     }
@@ -206,7 +212,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setHintTextColor(final T textView, @ColorInt final int color) {
+    public static <T extends TextView> T setHintTextColor(
+            final T textView,
+            @ColorInt final int color
+    ) {
         if (textView != null) {
             textView.setHintTextColor(color);
         }
@@ -219,7 +228,10 @@ public final class TextViewUtils {
      * @param color R.color.id
      * @return {@link View}
      */
-    public static View setHintTextColor(final View view, @ColorInt final int color) {
+    public static View setHintTextColor(
+            final View view,
+            @ColorInt final int color
+    ) {
         setHintTextColor(getTextView(view), color);
         return view;
     }
@@ -231,7 +243,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setHintTextColor(final T textView, final ColorStateList colors) {
+    public static <T extends TextView> T setHintTextColor(
+            final T textView,
+            final ColorStateList colors
+    ) {
         if (textView != null) {
             textView.setHintTextColor(colors);
         }
@@ -244,7 +259,10 @@ public final class TextViewUtils {
      * @param colors {@link ColorStateList}
      * @return {@link View}
      */
-    public static View setHintTextColor(final View view, final ColorStateList colors) {
+    public static View setHintTextColor(
+            final View view,
+            final ColorStateList colors
+    ) {
         setHintTextColor(getTextView(view), colors);
         return view;
     }
@@ -255,7 +273,10 @@ public final class TextViewUtils {
      * @param views View(TextView)[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setHintTextColors(@ColorInt final int color, final View... views) {
+    public static boolean setHintTextColors(
+            @ColorInt final int color,
+            final View... views
+    ) {
         if (views != null) {
             for (View view : views) {
                 setHintTextColor(view, color);
@@ -272,7 +293,10 @@ public final class TextViewUtils {
      * @param <T>   泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T extends TextView> boolean setHintTextColors(@ColorInt final int color, final T... views) {
+    public static <T extends TextView> boolean setHintTextColors(
+            @ColorInt final int color,
+            final T... views
+    ) {
         if (views != null) {
             for (T view : views) {
                 setHintTextColor(view, color);
@@ -288,7 +312,10 @@ public final class TextViewUtils {
      * @param views  View(TextView)[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setHintTextColors(final ColorStateList colors, final View... views) {
+    public static boolean setHintTextColors(
+            final ColorStateList colors,
+            final View... views
+    ) {
         if (views != null) {
             for (View view : views) {
                 setHintTextColor(view, colors);
@@ -305,7 +332,10 @@ public final class TextViewUtils {
      * @param <T>    泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T extends TextView> boolean setHintTextColors(final ColorStateList colors, final T... views) {
+    public static <T extends TextView> boolean setHintTextColors(
+            final ColorStateList colors,
+            final T... views
+    ) {
         if (views != null) {
             for (T view : views) {
                 setHintTextColor(view, colors);
@@ -385,7 +415,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setText(final T textView, final CharSequence text) {
+    public static <T extends TextView> T setText(
+            final T textView,
+            final CharSequence text
+    ) {
         if (textView != null) {
             textView.setText(text);
         }
@@ -398,7 +431,10 @@ public final class TextViewUtils {
      * @param text TextView text
      * @return {@link View}
      */
-    public static View setText(final View view, final CharSequence text) {
+    public static View setText(
+            final View view,
+            final CharSequence text
+    ) {
         setText(getTextView(view), text);
         return view;
     }
@@ -409,7 +445,10 @@ public final class TextViewUtils {
      * @param views View(TextView)[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setTexts(final CharSequence text, final View... views) {
+    public static boolean setTexts(
+            final CharSequence text,
+            final View... views
+    ) {
         if (views != null) {
             for (View view : views) {
                 setText(view, text);
@@ -426,7 +465,10 @@ public final class TextViewUtils {
      * @param <T>   泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T extends TextView> boolean setTexts(final CharSequence text, final T... views) {
+    public static <T extends TextView> boolean setTexts(
+            final CharSequence text,
+            final T... views
+    ) {
         if (views != null) {
             for (T view : views) {
                 setText(view, text);
@@ -465,7 +507,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setTextColor(final T textView, @ColorInt final int color) {
+    public static <T extends TextView> T setTextColor(
+            final T textView,
+            @ColorInt final int color
+    ) {
         if (textView != null) {
             textView.setTextColor(color);
         }
@@ -478,7 +523,10 @@ public final class TextViewUtils {
      * @param color R.color.id
      * @return {@link View}
      */
-    public static View setTextColor(final View view, @ColorInt final int color) {
+    public static View setTextColor(
+            final View view,
+            @ColorInt final int color
+    ) {
         setTextColor(getTextView(view), color);
         return view;
     }
@@ -490,7 +538,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setTextColor(final T textView, final ColorStateList colors) {
+    public static <T extends TextView> T setTextColor(
+            final T textView,
+            final ColorStateList colors
+    ) {
         if (textView != null) {
             textView.setTextColor(colors);
         }
@@ -503,7 +554,10 @@ public final class TextViewUtils {
      * @param colors {@link ColorStateList}
      * @return {@link View}
      */
-    public static View setTextColor(final View view, final ColorStateList colors) {
+    public static View setTextColor(
+            final View view,
+            final ColorStateList colors
+    ) {
         setTextColor(getTextView(view), colors);
         return view;
     }
@@ -514,7 +568,10 @@ public final class TextViewUtils {
      * @param views View(TextView)[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setTextColors(@ColorInt final int color, final View... views) {
+    public static boolean setTextColors(
+            @ColorInt final int color,
+            final View... views
+    ) {
         if (views != null) {
             for (View view : views) {
                 setTextColor(view, color);
@@ -531,7 +588,10 @@ public final class TextViewUtils {
      * @param <T>   泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T extends TextView> boolean setTextColors(@ColorInt final int color, final T... views) {
+    public static <T extends TextView> boolean setTextColors(
+            @ColorInt final int color,
+            final T... views
+    ) {
         if (views != null) {
             for (T view : views) {
                 setTextColor(view, color);
@@ -547,7 +607,10 @@ public final class TextViewUtils {
      * @param views  View(TextView)[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setTextColors(final ColorStateList colors, final View... views) {
+    public static boolean setTextColors(
+            final ColorStateList colors,
+            final View... views
+    ) {
         if (views != null) {
             for (View view : views) {
                 setTextColor(view, colors);
@@ -564,7 +627,10 @@ public final class TextViewUtils {
      * @param <T>    泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T extends TextView> boolean setTextColors(final ColorStateList colors, final T... views) {
+    public static <T extends TextView> boolean setTextColors(
+            final ColorStateList colors,
+            final T... views
+    ) {
         if (views != null) {
             for (T view : views) {
                 setTextColor(view, colors);
@@ -585,7 +651,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setHtmlText(final T textView, final String content) {
+    public static <T extends TextView> T setHtmlText(
+            final T textView,
+            final String content
+    ) {
         if (textView != null && content != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 textView.setText(Html.fromHtml(content, Html.FROM_HTML_MODE_LEGACY));
@@ -602,7 +671,10 @@ public final class TextViewUtils {
      * @param content Html content
      * @return {@link View}
      */
-    public static View setHtmlText(final View view, final String content) {
+    public static View setHtmlText(
+            final View view,
+            final String content
+    ) {
         setHtmlText(getTextView(view), content);
         return view;
     }
@@ -613,7 +685,10 @@ public final class TextViewUtils {
      * @param views   View(TextView)[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setHtmlTexts(final String content, final View... views) {
+    public static boolean setHtmlTexts(
+            final String content,
+            final View... views
+    ) {
         if (content != null && views != null) {
             for (View view : views) {
                 setHtmlText(view, content);
@@ -630,7 +705,10 @@ public final class TextViewUtils {
      * @param <T>     泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T extends TextView> boolean setHtmlTexts(final String content, final T... views) {
+    public static <T extends TextView> boolean setHtmlTexts(
+            final String content,
+            final T... views
+    ) {
         if (content != null && views != null) {
             for (T view : views) {
                 setHtmlText(view, content);
@@ -664,7 +742,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setTypeface(final T textView, final Typeface typeface) {
+    public static <T extends TextView> T setTypeface(
+            final T textView,
+            final Typeface typeface
+    ) {
         if (textView != null && typeface != null) {
             textView.setTypeface(typeface);
         }
@@ -679,7 +760,11 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setTypeface(final T textView, final Typeface typeface, final int style) {
+    public static <T extends TextView> T setTypeface(
+            final T textView,
+            final Typeface typeface,
+            final int style
+    ) {
         if (textView != null && typeface != null) {
             textView.setTypeface(typeface, style);
         }
@@ -692,7 +777,10 @@ public final class TextViewUtils {
      * @param typeface {@link Typeface} 字体样式
      * @return {@link View}
      */
-    public static View setTypeface(final View view, final Typeface typeface) {
+    public static View setTypeface(
+            final View view,
+            final Typeface typeface
+    ) {
         setTypeface(getTextView(view), typeface);
         return view;
     }
@@ -704,7 +792,11 @@ public final class TextViewUtils {
      * @param style    样式
      * @return {@link View}
      */
-    public static View setTypeface(final View view, final Typeface typeface, final int style) {
+    public static View setTypeface(
+            final View view,
+            final Typeface typeface,
+            final int style
+    ) {
         setTypeface(getTextView(view), typeface, style);
         return view;
     }
@@ -718,7 +810,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setTextSizeByPx(final T textView, final float size) {
+    public static <T extends TextView> T setTextSizeByPx(
+            final T textView,
+            final float size
+    ) {
         return setTextSize(textView, TypedValue.COMPLEX_UNIT_PX, size);
     }
 
@@ -729,7 +824,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setTextSizeBySp(final T textView, final float size) {
+    public static <T extends TextView> T setTextSizeBySp(
+            final T textView,
+            final float size
+    ) {
         return setTextSize(textView, TypedValue.COMPLEX_UNIT_SP, size);
     }
 
@@ -740,7 +838,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setTextSizeByDp(final T textView, final float size) {
+    public static <T extends TextView> T setTextSizeByDp(
+            final T textView,
+            final float size
+    ) {
         return setTextSize(textView, TypedValue.COMPLEX_UNIT_DIP, size);
     }
 
@@ -751,7 +852,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setTextSizeByIn(final T textView, final float size) {
+    public static <T extends TextView> T setTextSizeByIn(
+            final T textView,
+            final float size
+    ) {
         return setTextSize(textView, TypedValue.COMPLEX_UNIT_IN, size);
     }
 
@@ -763,7 +867,10 @@ public final class TextViewUtils {
      * @param size 字体大小
      * @return {@link View}
      */
-    public static View setTextSizeByPx(final View view, final float size) {
+    public static View setTextSizeByPx(
+            final View view,
+            final float size
+    ) {
         setTextSize(getTextView(view), TypedValue.COMPLEX_UNIT_PX, size);
         return view;
     }
@@ -774,7 +881,10 @@ public final class TextViewUtils {
      * @param size 字体大小
      * @return {@link View}
      */
-    public static View setTextSizeBySp(final View view, final float size) {
+    public static View setTextSizeBySp(
+            final View view,
+            final float size
+    ) {
         setTextSize(getTextView(view), TypedValue.COMPLEX_UNIT_SP, size);
         return view;
     }
@@ -785,7 +895,10 @@ public final class TextViewUtils {
      * @param size 字体大小
      * @return {@link View}
      */
-    public static View setTextSizeByDp(final View view, final float size) {
+    public static View setTextSizeByDp(
+            final View view,
+            final float size
+    ) {
         setTextSize(getTextView(view), TypedValue.COMPLEX_UNIT_DIP, size);
         return view;
     }
@@ -796,7 +909,10 @@ public final class TextViewUtils {
      * @param size 字体大小
      * @return {@link View}
      */
-    public static View setTextSizeByIn(final View view, final float size) {
+    public static View setTextSizeByIn(
+            final View view,
+            final float size
+    ) {
         setTextSize(getTextView(view), TypedValue.COMPLEX_UNIT_IN, size);
         return view;
     }
@@ -811,7 +927,11 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setTextSize(final T textView, final int unit, final float size) {
+    public static <T extends TextView> T setTextSize(
+            final T textView,
+            final int unit,
+            final float size
+    ) {
         if (textView != null) {
             textView.setTextSize(unit, size);
         }
@@ -825,7 +945,11 @@ public final class TextViewUtils {
      * @param size 字体大小
      * @return {@link View}
      */
-    public static View setTextSize(final View view, final int unit, final float size) {
+    public static View setTextSize(
+            final View view,
+            final int unit,
+            final float size
+    ) {
         setTextSize(getTextView(view), unit, size);
         return view;
     }
@@ -839,7 +963,11 @@ public final class TextViewUtils {
      * @param size  字体大小
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setTextSizes(final View[] views, final int unit, final float size) {
+    public static boolean setTextSizes(
+            final View[] views,
+            final int unit,
+            final float size
+    ) {
         if (views != null) {
             for (View view : views) {
                 setTextSize(view, unit, size);
@@ -857,7 +985,11 @@ public final class TextViewUtils {
      * @param <T>   泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T extends TextView> boolean setTextSizes(final T[] views, final int unit, final float size) {
+    public static <T extends TextView> boolean setTextSizes(
+            final T[] views,
+            final int unit,
+            final float size
+    ) {
         if (views != null) {
             for (T view : views) {
                 setTextSize(view, unit, size);
@@ -925,7 +1057,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setPaintFlags(final T textView, final int flags) {
+    public static <T extends TextView> T setPaintFlags(
+            final T textView,
+            final int flags
+    ) {
         if (textView != null) {
             textView.setPaintFlags(flags);
         }
@@ -938,7 +1073,10 @@ public final class TextViewUtils {
      * @param flags flags
      * @return {@link View}
      */
-    public static View setPaintFlags(final View view, final int flags) {
+    public static View setPaintFlags(
+            final View view,
+            final int flags
+    ) {
         setPaintFlags(getTextView(view), flags);
         return view;
     }
@@ -983,7 +1121,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setBold(final T textView, final boolean isBold) {
+    public static <T extends TextView> T setBold(
+            final T textView,
+            final boolean isBold
+    ) {
         if (textView != null) {
             textView.setTypeface(Typeface.defaultFromStyle(isBold ? Typeface.BOLD : Typeface.NORMAL));
         }
@@ -998,7 +1139,11 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setBold(final T textView, final Typeface typeface, final boolean isBold) {
+    public static <T extends TextView> T setBold(
+            final T textView,
+            final Typeface typeface,
+            final boolean isBold
+    ) {
         if (textView != null && typeface != null) {
             textView.setTypeface(typeface, isBold ? Typeface.BOLD : Typeface.NORMAL);
         }
@@ -1021,7 +1166,10 @@ public final class TextViewUtils {
      * @param isBold {@code true} yes, {@code false} no
      * @return {@link View}
      */
-    public static View setBold(final View view, final boolean isBold) {
+    public static View setBold(
+            final View view,
+            final boolean isBold
+    ) {
         setBold(getTextView(view), isBold);
         return view;
     }
@@ -1033,7 +1181,11 @@ public final class TextViewUtils {
      * @param isBold   {@code true} yes, {@code false} no
      * @return {@link View}
      */
-    public static View setBold(final View view, final Typeface typeface, final boolean isBold) {
+    public static View setBold(
+            final View view,
+            final Typeface typeface,
+            final boolean isBold
+    ) {
         setBold(getTextView(view), typeface, isBold);
         return view;
     }
@@ -1057,7 +1209,10 @@ public final class TextViewUtils {
      * @param <T>         泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setUnderlineText(final T textView, final boolean isAntiAlias) {
+    public static <T extends TextView> T setUnderlineText(
+            final T textView,
+            final boolean isAntiAlias
+    ) {
         if (textView != null) {
             textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             if (isAntiAlias) {
@@ -1085,7 +1240,10 @@ public final class TextViewUtils {
      * @param isAntiAlias 是否消除锯齿
      * @return {@link View}
      */
-    public static View setUnderlineText(final View view, final boolean isAntiAlias) {
+    public static View setUnderlineText(
+            final View view,
+            final boolean isAntiAlias
+    ) {
         setUnderlineText(getTextView(view), isAntiAlias);
         return view;
     }
@@ -1109,7 +1267,10 @@ public final class TextViewUtils {
      * @param <T>         泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setStrikeThruText(final T textView, final boolean isAntiAlias) {
+    public static <T extends TextView> T setStrikeThruText(
+            final T textView,
+            final boolean isAntiAlias
+    ) {
         if (textView != null) {
             textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             if (isAntiAlias) {
@@ -1137,7 +1298,10 @@ public final class TextViewUtils {
      * @param isAntiAlias 是否消除锯齿
      * @return {@link View}
      */
-    public static View setStrikeThruText(final View view, final boolean isAntiAlias) {
+    public static View setStrikeThruText(
+            final View view,
+            final boolean isAntiAlias
+    ) {
         setStrikeThruText(getTextView(view), isAntiAlias);
         return view;
     }
@@ -1169,7 +1333,10 @@ public final class TextViewUtils {
      * @return {@link TextView}
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static <T extends TextView> T setLetterSpacing(final T textView, final float letterSpacing) {
+    public static <T extends TextView> T setLetterSpacing(
+            final T textView,
+            final float letterSpacing
+    ) {
         if (textView != null) {
             textView.setLetterSpacing(letterSpacing);
         }
@@ -1183,7 +1350,10 @@ public final class TextViewUtils {
      * @return {@link View}
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static View setLetterSpacing(final View view, final float letterSpacing) {
+    public static View setLetterSpacing(
+            final View view,
+            final float letterSpacing
+    ) {
         setLetterSpacing(getTextView(view), letterSpacing);
         return view;
     }
@@ -1225,7 +1395,10 @@ public final class TextViewUtils {
      * @param <T>         泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setLineSpacing(final T textView, final float lineSpacing) {
+    public static <T extends TextView> T setLineSpacing(
+            final T textView,
+            final float lineSpacing
+    ) {
         return setLineSpacingAndMultiplier(textView, lineSpacing, 1.0f);
     }
 
@@ -1237,7 +1410,11 @@ public final class TextViewUtils {
      * @param <T>         泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setLineSpacingAndMultiplier(final T textView, final float lineSpacing, final float multiplier) {
+    public static <T extends TextView> T setLineSpacingAndMultiplier(
+            final T textView,
+            final float lineSpacing,
+            final float multiplier
+    ) {
         if (textView != null) {
             textView.setLineSpacing(lineSpacing, multiplier);
         }
@@ -1252,7 +1429,10 @@ public final class TextViewUtils {
      * @param lineSpacing 文字行间距 ( 行高 ), android:lineSpacingExtra
      * @return {@link View}
      */
-    public static View setLineSpacing(final View view, final float lineSpacing) {
+    public static View setLineSpacing(
+            final View view,
+            final float lineSpacing
+    ) {
         setLineSpacingAndMultiplier(getTextView(view), lineSpacing, 1.0f);
         return view;
     }
@@ -1264,7 +1444,11 @@ public final class TextViewUtils {
      * @param multiplier  行间距倍数, android:lineSpacingMultiplier
      * @return {@link View}
      */
-    public static View setLineSpacingAndMultiplier(final View view, final float lineSpacing, final float multiplier) {
+    public static View setLineSpacingAndMultiplier(
+            final View view,
+            final float lineSpacing,
+            final float multiplier
+    ) {
         setLineSpacingAndMultiplier(getTextView(view), lineSpacing, multiplier);
         return view;
     }
@@ -1294,7 +1478,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setTextScaleX(final T textView, final float size) {
+    public static <T extends TextView> T setTextScaleX(
+            final T textView,
+            final float size
+    ) {
         if (textView != null) {
             textView.setTextScaleX(size);
         }
@@ -1307,7 +1494,10 @@ public final class TextViewUtils {
      * @param size 缩放比例
      * @return {@link View}
      */
-    public static View setTextScaleX(final View view, final float size) {
+    public static View setTextScaleX(
+            final View view,
+            final float size
+    ) {
         setTextScaleX(getTextView(view), size);
         return view;
     }
@@ -1338,7 +1528,10 @@ public final class TextViewUtils {
      * @param <T>            泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setIncludeFontPadding(final T textView, final boolean includePadding) {
+    public static <T extends TextView> T setIncludeFontPadding(
+            final T textView,
+            final boolean includePadding
+    ) {
         if (textView != null) {
             textView.setIncludeFontPadding(includePadding);
         }
@@ -1351,7 +1544,10 @@ public final class TextViewUtils {
      * @param includePadding 是否保留字体留白间隙区域
      * @return {@link View}
      */
-    public static View setIncludeFontPadding(final View view, final boolean includePadding) {
+    public static View setIncludeFontPadding(
+            final View view,
+            final boolean includePadding
+    ) {
         setIncludeFontPadding(getTextView(view), includePadding);
         return view;
     }
@@ -1378,7 +1574,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setInputType(final T textView, final int type) {
+    public static <T extends TextView> T setInputType(
+            final T textView,
+            final int type
+    ) {
         if (textView != null) {
             textView.setInputType(type);
         }
@@ -1391,7 +1590,10 @@ public final class TextViewUtils {
      * @param type 类型
      * @return {@link View}
      */
-    public static View setInputType(final View view, final int type) {
+    public static View setInputType(
+            final View view,
+            final int type
+    ) {
         setInputType(getTextView(view), type);
         return view;
     }
@@ -1418,7 +1620,10 @@ public final class TextViewUtils {
      * @param <T>        泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setImeOptions(final T textView, final int imeOptions) {
+    public static <T extends TextView> T setImeOptions(
+            final T textView,
+            final int imeOptions
+    ) {
         if (textView != null) {
             textView.setImeOptions(imeOptions);
         }
@@ -1431,7 +1636,10 @@ public final class TextViewUtils {
      * @param imeOptions 软键盘按钮类型
      * @return {@link View}
      */
-    public static View setImeOptions(final View view, final int imeOptions) {
+    public static View setImeOptions(
+            final View view,
+            final int imeOptions
+    ) {
         setImeOptions(getTextView(view), imeOptions);
         return view;
     }
@@ -1445,7 +1653,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setLines(final T textView, final int lines) {
+    public static <T extends TextView> T setLines(
+            final T textView,
+            final int lines
+    ) {
         if (textView != null) {
             textView.setLines(lines);
         }
@@ -1458,7 +1669,10 @@ public final class TextViewUtils {
      * @param lines 行数
      * @return {@link View}
      */
-    public static View setLines(final View view, final int lines) {
+    public static View setLines(
+            final View view,
+            final int lines
+    ) {
         setLines(getTextView(view), lines);
         return view;
     }
@@ -1486,7 +1700,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setMaxLines(final T textView, final int maxLines) {
+    public static <T extends TextView> T setMaxLines(
+            final T textView,
+            final int maxLines
+    ) {
         if (textView != null) {
             textView.setMaxLines(maxLines);
         }
@@ -1499,7 +1716,10 @@ public final class TextViewUtils {
      * @param maxLines 最大行数
      * @return {@link View}
      */
-    public static View setMaxLines(final View view, final int maxLines) {
+    public static View setMaxLines(
+            final View view,
+            final int maxLines
+    ) {
         setMaxLines(getTextView(view), maxLines);
         return view;
     }
@@ -1527,7 +1747,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setMinLines(final T textView, final int minLines) {
+    public static <T extends TextView> T setMinLines(
+            final T textView,
+            final int minLines
+    ) {
         if (textView != null && minLines > 0) {
             textView.setMinLines(minLines);
         }
@@ -1540,7 +1763,10 @@ public final class TextViewUtils {
      * @param minLines 最小行数
      * @return {@link View}
      */
-    public static View setMinLines(final View view, final int minLines) {
+    public static View setMinLines(
+            final View view,
+            final int minLines
+    ) {
         setMinLines(getTextView(view), minLines);
         return view;
     }
@@ -1568,7 +1794,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setMaxEms(final T textView, final int maxEms) {
+    public static <T extends TextView> T setMaxEms(
+            final T textView,
+            final int maxEms
+    ) {
         if (textView != null && maxEms > 0) {
             textView.setMaxEms(maxEms);
         }
@@ -1581,7 +1810,10 @@ public final class TextViewUtils {
      * @param maxEms 最大字符
      * @return {@link View}
      */
-    public static View setMaxEms(final View view, final int maxEms) {
+    public static View setMaxEms(
+            final View view,
+            final int maxEms
+    ) {
         setMaxEms(getTextView(view), maxEms);
         return view;
     }
@@ -1609,7 +1841,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setMinEms(final T textView, final int minEms) {
+    public static <T extends TextView> T setMinEms(
+            final T textView,
+            final int minEms
+    ) {
         if (textView != null && minEms > 0) {
             textView.setMinEms(minEms);
         }
@@ -1622,7 +1857,10 @@ public final class TextViewUtils {
      * @param minEms 最小字符
      * @return {@link View}
      */
-    public static View setMinEms(final View view, final int minEms) {
+    public static View setMinEms(
+            final View view,
+            final int minEms
+    ) {
         setMinEms(getTextView(view), minEms);
         return view;
     }
@@ -1636,7 +1874,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setEms(final T textView, final int ems) {
+    public static <T extends TextView> T setEms(
+            final T textView,
+            final int ems
+    ) {
         if (textView != null && ems > 0) {
             textView.setEms(ems);
         }
@@ -1649,7 +1890,10 @@ public final class TextViewUtils {
      * @param ems  字符
      * @return {@link View}
      */
-    public static View setEms(final View view, final int ems) {
+    public static View setEms(
+            final View view,
+            final int ems
+    ) {
         setEms(getTextView(view), ems);
         return view;
     }
@@ -1663,7 +1907,10 @@ public final class TextViewUtils {
      * @param <T>       泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setMaxLength(final T textView, final int maxLength) {
+    public static <T extends TextView> T setMaxLength(
+            final T textView,
+            final int maxLength
+    ) {
         if (textView != null && maxLength > 0) {
             // 设置最大长度限制
             InputFilter[] filters = {new InputFilter.LengthFilter(maxLength)};
@@ -1678,7 +1925,10 @@ public final class TextViewUtils {
      * @param maxLength 长度限制
      * @return {@link View}
      */
-    public static View setMaxLength(final View view, final int maxLength) {
+    public static View setMaxLength(
+            final View view,
+            final int maxLength
+    ) {
         setMaxLength(getTextView(view), maxLength);
         return view;
     }
@@ -1693,7 +1943,11 @@ public final class TextViewUtils {
      * @param <T>       泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setMaxLengthAndText(final T textView, final CharSequence content, final int maxLength) {
+    public static <T extends TextView> T setMaxLengthAndText(
+            final T textView,
+            final CharSequence content,
+            final int maxLength
+    ) {
         setText(setMaxLength(textView, maxLength), content);
         return textView;
     }
@@ -1705,7 +1959,11 @@ public final class TextViewUtils {
      * @param maxLength 长度限制
      * @return {@link View}
      */
-    public static View setMaxLengthAndText(final View view, final CharSequence content, final int maxLength) {
+    public static View setMaxLengthAndText(
+            final View view,
+            final CharSequence content,
+            final int maxLength
+    ) {
         return setText(setMaxLength(view, maxLength), content);
     }
 
@@ -1731,7 +1989,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setEllipsize(final T textView, final TextUtils.TruncateAt where) {
+    public static <T extends TextView> T setEllipsize(
+            final T textView,
+            final TextUtils.TruncateAt where
+    ) {
         if (textView != null) {
             textView.setEllipsize(where);
         }
@@ -1744,7 +2005,10 @@ public final class TextViewUtils {
      * @param where {@link TextUtils.TruncateAt}
      * @return {@link View}
      */
-    public static View setEllipsize(final View view, final TextUtils.TruncateAt where) {
+    public static View setEllipsize(
+            final View view,
+            final TextUtils.TruncateAt where
+    ) {
         setEllipsize(getTextView(view), where);
         return view;
     }
@@ -1771,7 +2035,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setAutoLinkMask(final T textView, final int mask) {
+    public static <T extends TextView> T setAutoLinkMask(
+            final T textView,
+            final int mask
+    ) {
         if (textView != null) {
             textView.setAutoLinkMask(mask);
         }
@@ -1784,7 +2051,10 @@ public final class TextViewUtils {
      * @param mask {@link android.text.util.Linkify}
      * @return {@link View}
      */
-    public static View setAutoLinkMask(final View view, final int mask) {
+    public static View setAutoLinkMask(
+            final View view,
+            final int mask
+    ) {
         setAutoLinkMask(getTextView(view), mask);
         return view;
     }
@@ -1798,7 +2068,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setAllCaps(final T textView, final boolean allCaps) {
+    public static <T extends TextView> T setAllCaps(
+            final T textView,
+            final boolean allCaps
+    ) {
         if (textView != null) {
             textView.setAllCaps(allCaps);
         }
@@ -1811,7 +2084,10 @@ public final class TextViewUtils {
      * @param allCaps 是否全部大写
      * @return {@link View}
      */
-    public static View setAllCaps(final View view, final boolean allCaps) {
+    public static View setAllCaps(
+            final View view,
+            final boolean allCaps
+    ) {
         setAllCaps(getTextView(view), allCaps);
         return view;
     }
@@ -1838,7 +2114,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setGravity(final T textView, final int gravity) {
+    public static <T extends TextView> T setGravity(
+            final T textView,
+            final int gravity
+    ) {
         if (textView != null) {
             textView.setGravity(gravity);
         }
@@ -1851,7 +2130,10 @@ public final class TextViewUtils {
      * @param gravity {@link android.view.Gravity}
      * @return {@link View}
      */
-    public static View setGravity(final View view, final int gravity) {
+    public static View setGravity(
+            final View view,
+            final int gravity
+    ) {
         setGravity(getTextView(view), gravity);
         return view;
     }
@@ -1878,7 +2160,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setTransformationMethod(final T textView, final TransformationMethod method) {
+    public static <T extends TextView> T setTransformationMethod(
+            final T textView,
+            final TransformationMethod method
+    ) {
         if (textView != null) {
             textView.setTransformationMethod(method);
         }
@@ -1891,7 +2176,10 @@ public final class TextViewUtils {
      * @param method {@link TransformationMethod}
      * @return {@link View}
      */
-    public static View setTransformationMethod(final View view, final TransformationMethod method) {
+    public static View setTransformationMethod(
+            final View view,
+            final TransformationMethod method
+    ) {
         setTransformationMethod(getTextView(view), method);
         return view;
     }
@@ -1905,7 +2193,10 @@ public final class TextViewUtils {
      * @param <T>               泛型
      * @return {@link TextView}
      */
-    public static <T extends TextView> T setTransformationMethod(final T textView, final boolean isDisplayPassword) {
+    public static <T extends TextView> T setTransformationMethod(
+            final T textView,
+            final boolean isDisplayPassword
+    ) {
         if (textView != null) {
             textView.setTransformationMethod(isDisplayPassword ?
                     HideReturnsTransformationMethod.getInstance() : PasswordTransformationMethod.getInstance());
@@ -1919,7 +2210,10 @@ public final class TextViewUtils {
      * @param isDisplayPassword 是否显示密码
      * @return {@link View}
      */
-    public static View setTransformationMethod(final View view, final boolean isDisplayPassword) {
+    public static View setTransformationMethod(
+            final View view,
+            final boolean isDisplayPassword
+    ) {
         setTransformationMethod(getTextView(view), isDisplayPassword);
         return view;
     }
@@ -2010,7 +2304,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return 字体宽度
      */
-    public static <T extends TextView> float getTextWidth(final T textView, final String text) {
+    public static <T extends TextView> float getTextWidth(
+            final T textView,
+            final String text
+    ) {
         return getTextWidth(getPaint(textView), text);
     }
 
@@ -2030,7 +2327,10 @@ public final class TextViewUtils {
      * @param text  待测量文本
      * @return 字体宽度
      */
-    public static float getTextWidth(final Paint paint, final String text) {
+    public static float getTextWidth(
+            final Paint paint,
+            final String text
+    ) {
         if (paint != null && text != null) {
             return paint.measureText(text);
         }
@@ -2047,7 +2347,12 @@ public final class TextViewUtils {
      * @param end   结束位置
      * @return 字体宽度
      */
-    public static float getTextWidth(final View view, final String text, final int start, final int end) {
+    public static float getTextWidth(
+            final View view,
+            final String text,
+            final int start,
+            final int end
+    ) {
         return getTextWidth(getPaint(view), text, start, end);
     }
 
@@ -2059,7 +2364,12 @@ public final class TextViewUtils {
      * @param end   结束位置
      * @return 字体宽度
      */
-    public static float getTextWidth(final View view, final CharSequence text, final int start, final int end) {
+    public static float getTextWidth(
+            final View view,
+            final CharSequence text,
+            final int start,
+            final int end
+    ) {
         return getTextWidth(getPaint(view), text, start, end);
     }
 
@@ -2071,7 +2381,12 @@ public final class TextViewUtils {
      * @param end   结束位置
      * @return 字体宽度
      */
-    public static float getTextWidth(final View view, final char[] text, final int start, final int end) {
+    public static float getTextWidth(
+            final View view,
+            final char[] text,
+            final int start,
+            final int end
+    ) {
         return getTextWidth(getPaint(view), text, start, end);
     }
 
@@ -2085,7 +2400,12 @@ public final class TextViewUtils {
      * @param end   结束位置
      * @return 字体宽度
      */
-    public static float getTextWidth(final Paint paint, final String text, final int start, final int end) {
+    public static float getTextWidth(
+            final Paint paint,
+            final String text,
+            final int start,
+            final int end
+    ) {
         if (paint != null && text != null) {
             try {
                 return paint.measureText(text, start, end);
@@ -2104,7 +2424,12 @@ public final class TextViewUtils {
      * @param end   结束位置
      * @return 字体宽度
      */
-    public static float getTextWidth(final Paint paint, final CharSequence text, final int start, final int end) {
+    public static float getTextWidth(
+            final Paint paint,
+            final CharSequence text,
+            final int start,
+            final int end
+    ) {
         if (paint != null && text != null) {
             try {
                 return paint.measureText(text, start, end);
@@ -2123,7 +2448,12 @@ public final class TextViewUtils {
      * @param end   结束位置
      * @return 字体宽度
      */
-    public static float getTextWidth(final Paint paint, final char[] text, final int start, final int end) {
+    public static float getTextWidth(
+            final Paint paint,
+            final char[] text,
+            final int start,
+            final int end
+    ) {
         if (paint != null && text != null) {
             try {
                 return paint.measureText(text, start, end);
@@ -2142,7 +2472,10 @@ public final class TextViewUtils {
      * @param paint      {@link TextView#getPaint()}
      * @return 画布 Y 轴居中位置
      */
-    public static int getCenterRectY(final Rect targetRect, final Paint paint) {
+    public static int getCenterRectY(
+            final Rect targetRect,
+            final Paint paint
+    ) {
         if (targetRect != null && paint != null) {
             // 获取字体高度
             Paint.FontMetricsInt fontMetrics = paint.getFontMetricsInt();
@@ -2168,7 +2501,10 @@ public final class TextViewUtils {
      * @param startSize 字体开始预估大小
      * @return 字体大小
      */
-    public static float reckonTextSizeByHeight(final int height, final float startSize) {
+    public static float reckonTextSizeByHeight(
+            final int height,
+            final float startSize
+    ) {
         if (height <= 0 || startSize <= 0) return 0f;
         Paint paint = new Paint();
         // 默认字体大小
@@ -2214,7 +2550,10 @@ public final class TextViewUtils {
      * @param textView {@link TextView}
      * @return 字体大小
      */
-    public static float reckonTextSizeByWidth(final int width, final TextView textView) {
+    public static float reckonTextSizeByWidth(
+            final int width,
+            final TextView textView
+    ) {
         return reckonTextSizeByWidth(width, textView, TextViewUtils.getText(textView));
     }
 
@@ -2225,7 +2564,11 @@ public final class TextViewUtils {
      * @param content  待计算内容
      * @return 字体大小
      */
-    public static float reckonTextSizeByWidth(final int width, final TextView textView, final String content) {
+    public static float reckonTextSizeByWidth(
+            final int width,
+            final TextView textView,
+            final String content
+    ) {
         if (textView == null || content == null) return 0f;
         return reckonTextSizeByWidth(width, TextViewUtils.getPaint(textView),
                 TextViewUtils.getTextSize(textView), content);
@@ -2238,7 +2581,11 @@ public final class TextViewUtils {
      * @param content     待计算内容
      * @return 字体大小
      */
-    public static float reckonTextSizeByWidth(final int width, final float curTextSize, final String content) {
+    public static float reckonTextSizeByWidth(
+            final int width,
+            final float curTextSize,
+            final String content
+    ) {
         if (width <= 0 || curTextSize <= 0 || content == null) return 0f;
         return reckonTextSizeByWidth(width, new Paint(), curTextSize, content);
     }
@@ -2251,8 +2598,12 @@ public final class TextViewUtils {
      * @param content     待计算内容
      * @return 字体大小
      */
-    public static float reckonTextSizeByWidth(final int width, final Paint paint,
-                                              final float curTextSize, final String content) {
+    public static float reckonTextSizeByWidth(
+            final int width,
+            final Paint paint,
+            final float curTextSize,
+            final String content
+    ) {
         if (paint == null || width <= 0 || curTextSize <= 0 || content == null) return 0f;
         if (StringUtils.isEmpty(content)) return curTextSize;
         // 初始化内容画笔, 计算宽高
@@ -2302,7 +2653,11 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return -1 表示没超过, 其他值表示对应的索引位置
      */
-    public static <T extends TextView> int calcTextWidth(final T textView, final String text, final float width) {
+    public static <T extends TextView> int calcTextWidth(
+            final T textView,
+            final String text,
+            final float width
+    ) {
         return calcTextWidth(getPaint(textView), text, width);
     }
 
@@ -2313,7 +2668,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return -1 表示没超过, 其他值表示对应的索引位置
      */
-    public static <T extends TextView> int calcTextWidth(final T textView, final float width) {
+    public static <T extends TextView> int calcTextWidth(
+            final T textView,
+            final float width
+    ) {
         return calcTextWidth(getPaint(textView), getText(textView), width);
     }
 
@@ -2324,7 +2682,11 @@ public final class TextViewUtils {
      * @param width 指定的宽度
      * @return -1 表示没超过, 其他值表示对应的索引位置
      */
-    public static int calcTextWidth(final Paint paint, final String text, final float width) {
+    public static int calcTextWidth(
+            final Paint paint,
+            final String text,
+            final float width
+    ) {
         if (paint != null && text != null && width > 0) {
             // 全部文本宽度
             float allTextWidth = getTextWidth(paint, text);
@@ -2370,7 +2732,11 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return 行数
      */
-    public static <T extends TextView> int calcTextLine(final T textView, final String text, final float width) {
+    public static <T extends TextView> int calcTextLine(
+            final T textView,
+            final String text,
+            final float width
+    ) {
         return calcTextLine(getPaint(textView), text, width);
     }
 
@@ -2381,7 +2747,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return 行数
      */
-    public static <T extends TextView> int calcTextLine(final T textView, final float width) {
+    public static <T extends TextView> int calcTextLine(
+            final T textView,
+            final float width
+    ) {
         return calcTextLine(getPaint(textView), getText(textView), width);
     }
 
@@ -2392,7 +2761,11 @@ public final class TextViewUtils {
      * @param width 指定的宽度
      * @return 行数
      */
-    public static int calcTextLine(final Paint paint, final String text, final float width) {
+    public static int calcTextLine(
+            final Paint paint,
+            final String text,
+            final float width
+    ) {
         if (paint != null && text != null && width > 0) {
             // 全部文本宽度
             float allTextWidth = getTextWidth(paint, text);
@@ -2441,7 +2814,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link View}
      */
-    public static <T extends TextView> T setCompoundDrawablePadding(final T textView, final int padding) {
+    public static <T extends TextView> T setCompoundDrawablePadding(
+            final T textView,
+            final int padding
+    ) {
         if (textView != null) textView.setCompoundDrawablePadding(padding);
         return textView;
     }
@@ -2457,7 +2833,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link View}
      */
-    public static <T extends TextView> T setCompoundDrawablesByLeft(final T textView, final Drawable left) {
+    public static <T extends TextView> T setCompoundDrawablesByLeft(
+            final T textView,
+            final Drawable left
+    ) {
         return setCompoundDrawables(textView, left, null, null, null);
     }
 
@@ -2468,7 +2847,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link View}
      */
-    public static <T extends TextView> T setCompoundDrawablesByTop(final T textView, final Drawable top) {
+    public static <T extends TextView> T setCompoundDrawablesByTop(
+            final T textView,
+            final Drawable top
+    ) {
         return setCompoundDrawables(textView, null, top, null, null);
     }
 
@@ -2479,7 +2861,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link View}
      */
-    public static <T extends TextView> T setCompoundDrawablesByRight(final T textView, final Drawable right) {
+    public static <T extends TextView> T setCompoundDrawablesByRight(
+            final T textView,
+            final Drawable right
+    ) {
         return setCompoundDrawables(textView, null, null, right, null);
     }
 
@@ -2490,7 +2875,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link View}
      */
-    public static <T extends TextView> T setCompoundDrawablesByBottom(final T textView, final Drawable bottom) {
+    public static <T extends TextView> T setCompoundDrawablesByBottom(
+            final T textView,
+            final Drawable bottom
+    ) {
         return setCompoundDrawables(textView, null, null, null, bottom);
     }
 
@@ -2509,9 +2897,13 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link View}
      */
-    public static <T extends TextView> T setCompoundDrawables(final T textView,
-                                                              final Drawable left, final Drawable top,
-                                                              final Drawable right, final Drawable bottom) {
+    public static <T extends TextView> T setCompoundDrawables(
+            final T textView,
+            final Drawable left,
+            final Drawable top,
+            final Drawable right,
+            final Drawable bottom
+    ) {
         if (textView != null) {
             try {
                 textView.setCompoundDrawables(left, top, right, bottom);
@@ -2533,7 +2925,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link View}
      */
-    public static <T extends TextView> T setCompoundDrawablesWithIntrinsicBoundsByLeft(final T textView, final Drawable left) {
+    public static <T extends TextView> T setCompoundDrawablesWithIntrinsicBoundsByLeft(
+            final T textView,
+            final Drawable left
+    ) {
         return setCompoundDrawablesWithIntrinsicBounds(textView, left, null, null, null);
     }
 
@@ -2544,7 +2939,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link View}
      */
-    public static <T extends TextView> T setCompoundDrawablesWithIntrinsicBoundsByTop(final T textView, final Drawable top) {
+    public static <T extends TextView> T setCompoundDrawablesWithIntrinsicBoundsByTop(
+            final T textView,
+            final Drawable top
+    ) {
         return setCompoundDrawablesWithIntrinsicBounds(textView, null, top, null, null);
     }
 
@@ -2555,7 +2953,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link View}
      */
-    public static <T extends TextView> T setCompoundDrawablesWithIntrinsicBoundsByRight(final T textView, final Drawable right) {
+    public static <T extends TextView> T setCompoundDrawablesWithIntrinsicBoundsByRight(
+            final T textView,
+            final Drawable right
+    ) {
         return setCompoundDrawablesWithIntrinsicBounds(textView, null, null, right, null);
     }
 
@@ -2566,7 +2967,10 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link View}
      */
-    public static <T extends TextView> T setCompoundDrawablesWithIntrinsicBoundsByBottom(final T textView, final Drawable bottom) {
+    public static <T extends TextView> T setCompoundDrawablesWithIntrinsicBoundsByBottom(
+            final T textView,
+            final Drawable bottom
+    ) {
         return setCompoundDrawablesWithIntrinsicBounds(textView, null, null, null, bottom);
     }
 
@@ -2580,9 +2984,13 @@ public final class TextViewUtils {
      * @param <T>      泛型
      * @return {@link View}
      */
-    public static <T extends TextView> T setCompoundDrawablesWithIntrinsicBounds(final T textView,
-                                                                                 final Drawable left, final Drawable top,
-                                                                                 final Drawable right, final Drawable bottom) {
+    public static <T extends TextView> T setCompoundDrawablesWithIntrinsicBounds(
+            final T textView,
+            final Drawable left,
+            final Drawable top,
+            final Drawable right,
+            final Drawable bottom
+    ) {
         if (textView != null) {
             try {
                 textView.setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom);

@@ -26,7 +26,10 @@ public final class CipherUtils {
      * @param cipher 加解密中间层
      * @return 加密后的十六进制字符串
      */
-    public static String encrypt(final Object object, final Cipher cipher) {
+    public static String encrypt(
+            final Object object,
+            final Cipher cipher
+    ) {
         if (object == null) return null;
         byte[] bytes = ConvertUtils.objectToBytes(object);
         if (cipher != null) bytes = cipher.encrypt(bytes);
@@ -50,7 +53,10 @@ public final class CipherUtils {
      * @param cipher 加解密中间层
      * @return 解密后的对象
      */
-    public static Object decrypt(final String hex, final Cipher cipher) {
+    public static Object decrypt(
+            final String hex,
+            final Cipher cipher
+    ) {
         if (hex == null) return null;
         byte[] bytes = ConvertUtils.decodeHex(hex.toCharArray());
         if (cipher != null) bytes = cipher.decrypt(bytes);

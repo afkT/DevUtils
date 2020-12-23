@@ -44,7 +44,11 @@ public final class LubanUtils {
      * @param focusAlpha 是否保留透明通道
      * @param targetDir  压缩图片存储路径
      */
-    public static void setConfig(final int ignoreSize, final boolean focusAlpha, final String targetDir) {
+    public static void setConfig(
+            final int ignoreSize,
+            final boolean focusAlpha,
+            final String targetDir
+    ) {
         sIgnoreSize = ignoreSize;
         sFocusAlpha = focusAlpha;
         sTargetDir = targetDir;
@@ -77,14 +81,20 @@ public final class LubanUtils {
          * @param file  压缩成功文件
          * @param index 图片集合压缩索引
          */
-        void onSuccess(File file, int index);
+        void onSuccess(
+                File file,
+                int index
+        );
 
         /**
          * 当压缩过程出现问题时调用
          * @param e     异常信息
          * @param index 图片集合压缩索引
          */
-        void onError(Throwable e, int index);
+        void onError(
+                Throwable e,
+                int index
+        );
 
         /**
          * 压缩完成
@@ -103,7 +113,10 @@ public final class LubanUtils {
      * @param compressListener 压缩回调接口
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean compress(T data, OnCompressListener compressListener) {
+    public static <T> boolean compress(
+            T data,
+            OnCompressListener compressListener
+    ) {
         return compress(data, sIgnoreSize, sFocusAlpha, compressListener);
     }
 
@@ -114,7 +127,11 @@ public final class LubanUtils {
      * @param compressListener 压缩回调接口
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean compress(T data, int ignoreSize, OnCompressListener compressListener) {
+    public static <T> boolean compress(
+            T data,
+            int ignoreSize,
+            OnCompressListener compressListener
+    ) {
         return compress(data, ignoreSize, sFocusAlpha, compressListener);
     }
 
@@ -126,8 +143,12 @@ public final class LubanUtils {
      * @param compressListener 压缩回调接口
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean compress(T data, int ignoreSize, boolean focusAlpha,
-                                       OnCompressListener compressListener) {
+    public static <T> boolean compress(
+            T data,
+            int ignoreSize,
+            boolean focusAlpha,
+            OnCompressListener compressListener
+    ) {
         List<T> lists = new ArrayList<>();
         lists.add(data);
         return compress(lists, ignoreSize, focusAlpha, sTargetDir, null, null, compressListener);
@@ -141,7 +162,10 @@ public final class LubanUtils {
      * @param compressListener 压缩回调接口
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean compress(List<T> lists, OnCompressListener compressListener) {
+    public static <T> boolean compress(
+            List<T> lists,
+            OnCompressListener compressListener
+    ) {
         return compress(lists, sIgnoreSize, sFocusAlpha, sTargetDir, null, null, compressListener);
     }
 
@@ -152,7 +176,11 @@ public final class LubanUtils {
      * @param compressListener 压缩回调接口
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean compress(List<T> lists, int ignoreSize, OnCompressListener compressListener) {
+    public static <T> boolean compress(
+            List<T> lists,
+            int ignoreSize,
+            OnCompressListener compressListener
+    ) {
         return compress(lists, ignoreSize, sFocusAlpha, sTargetDir, null, null, compressListener);
     }
 
@@ -164,8 +192,12 @@ public final class LubanUtils {
      * @param compressListener 压缩回调接口
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean compress(List<T> lists, int ignoreSize, boolean focusAlpha,
-                                       OnCompressListener compressListener) {
+    public static <T> boolean compress(
+            List<T> lists,
+            int ignoreSize,
+            boolean focusAlpha,
+            OnCompressListener compressListener
+    ) {
         return compress(lists, ignoreSize, focusAlpha, sTargetDir, null, null, compressListener);
     }
 
@@ -180,9 +212,15 @@ public final class LubanUtils {
      * @param compressListener 压缩回调接口
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean compress(List<T> lists, int ignoreSize, boolean focusAlpha, String targetDir,
-                                       CompressionPredicate predicate, OnRenameListener renameListener,
-                                       OnCompressListener compressListener) {
+    public static <T> boolean compress(
+            List<T> lists,
+            int ignoreSize,
+            boolean focusAlpha,
+            String targetDir,
+            CompressionPredicate predicate,
+            OnRenameListener renameListener,
+            OnCompressListener compressListener
+    ) {
         if (lists == null) return false;
         int           number  = 0;
         Luban.Builder builder = Luban.with(getContext());

@@ -18,7 +18,10 @@ public class DevBaseEntry<K, V> extends DevBaseModel {
         this.mEntryKey = entryKey;
     }
 
-    public DevBaseEntry(K entryKey, V entryValue) {
+    public DevBaseEntry(
+            K entryKey,
+            V entryValue
+    ) {
         this.mEntryKey = entryKey;
         this.mEntryValue = entryValue;
     }

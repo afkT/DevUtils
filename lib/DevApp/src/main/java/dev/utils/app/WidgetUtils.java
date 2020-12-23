@@ -30,8 +30,13 @@ public final class WidgetUtils {
      * @param maximumHeight     maximum Height
      * @return measure space Array
      */
-    public static int[] viewMeasure(final View view, final int widthMeasureSpec, final int heightMeasureSpec,
-                                    final int maximumWidth, final int maximumHeight) {
+    public static int[] viewMeasure(
+            final View view,
+            final int widthMeasureSpec,
+            final int heightMeasureSpec,
+            final int maximumWidth,
+            final int maximumHeight
+    ) {
         return viewMeasure(view, widthMeasureSpec, heightMeasureSpec, maximumWidth, maximumHeight, DEF_VALUE);
     }
 
@@ -45,8 +50,14 @@ public final class WidgetUtils {
      * @param defaultValue      默认值
      * @return measure space Array
      */
-    public static int[] viewMeasure(final View view, final int widthMeasureSpec, final int heightMeasureSpec,
-                                    final int maximumWidth, final int maximumHeight, final int defaultValue) {
+    public static int[] viewMeasure(
+            final View view,
+            final int widthMeasureSpec,
+            final int heightMeasureSpec,
+            final int maximumWidth,
+            final int maximumHeight,
+            final int defaultValue
+    ) {
         int minimumWidth = 0, minimumHeight = 0;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             minimumWidth = view.getMinimumWidth();
@@ -66,9 +77,14 @@ public final class WidgetUtils {
      * @param maximumHeight     maximum Height
      * @return measure space Array
      */
-    public static int[] viewMeasure(final int widthMeasureSpec, final int heightMeasureSpec,
-                                    final int minimumWidth, final int maximumWidth,
-                                    final int minimumHeight, final int maximumHeight) {
+    public static int[] viewMeasure(
+            final int widthMeasureSpec,
+            final int heightMeasureSpec,
+            final int minimumWidth,
+            final int maximumWidth,
+            final int minimumHeight,
+            final int maximumHeight
+    ) {
         return viewMeasure(widthMeasureSpec, heightMeasureSpec,
                 minimumWidth, maximumWidth, minimumHeight, maximumHeight, DEF_VALUE);
     }
@@ -84,9 +100,15 @@ public final class WidgetUtils {
      * @param defaultValue      默认值
      * @return measure space Array
      */
-    public static int[] viewMeasure(final int widthMeasureSpec, final int heightMeasureSpec,
-                                    final int minimumWidth, final int maximumWidth,
-                                    final int minimumHeight, final int maximumHeight, final int defaultValue) {
+    public static int[] viewMeasure(
+            final int widthMeasureSpec,
+            final int heightMeasureSpec,
+            final int minimumWidth,
+            final int maximumWidth,
+            final int minimumHeight,
+            final int maximumHeight,
+            final int defaultValue
+    ) {
         // 获取原来宽、高 size
         int widthSize = View.MeasureSpec.getSize(widthMeasureSpec);
         int widthMode = View.MeasureSpec.getMode(widthMeasureSpec);
@@ -110,7 +132,11 @@ public final class WidgetUtils {
      * @param maximum 最大值
      * @return 计算后的大小
      */
-    public static int calculateSize(final int size, final int minimum, final int maximum) {
+    public static int calculateSize(
+            final int size,
+            final int minimum,
+            final int maximum
+    ) {
         return calculateSize(size, minimum, maximum, DEF_VALUE);
     }
 
@@ -122,8 +148,12 @@ public final class WidgetUtils {
      * @param defaultValue 默认值
      * @return 计算后的大小
      */
-    public static int calculateSize(final int size, final int minimum,
-                                    final int maximum, final int defaultValue) {
+    public static int calculateSize(
+            final int size,
+            final int minimum,
+            final int maximum,
+            final int defaultValue
+    ) {
         if (maximum == defaultValue) {
             if (minimum >= size) {
                 return minimum;
@@ -225,7 +255,10 @@ public final class WidgetUtils {
      * @param specifiedWidth 指定宽度
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean measureView(final View view, final int specifiedWidth) {
+    public static boolean measureView(
+            final View view,
+            final int specifiedWidth
+    ) {
         return measureView(view, specifiedWidth, 0);
     }
 
@@ -236,7 +269,11 @@ public final class WidgetUtils {
      * @param specifiedHeight 指定高度
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean measureView(final View view, final int specifiedWidth, final int specifiedHeight) {
+    public static boolean measureView(
+            final View view,
+            final int specifiedWidth,
+            final int specifiedHeight
+    ) {
         try {
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
             // MeasureSpec

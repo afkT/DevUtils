@@ -24,7 +24,10 @@ public final class ScaleUtils {
      * @param divisor  除数
      * @return 商
      */
-    public static double calcScale(final double dividend, final double divisor) {
+    public static double calcScale(
+            final double dividend,
+            final double divisor
+    ) {
         try {
             return dividend / divisor;
         } catch (Exception e) {
@@ -39,7 +42,10 @@ public final class ScaleUtils {
      * @param value2 第二个值
      * @return 被除数 ( 最大值 ) / 除数 ( 最小值 ) = 商
      */
-    public static double calcScaleToMath(final double value1, final double value2) {
+    public static double calcScaleToMath(
+            final double value1,
+            final double value2
+    ) {
         try {
             return Math.max(value1, value2) / Math.min(value1, value2);
         } catch (Exception e) {
@@ -59,7 +65,11 @@ public final class ScaleUtils {
      * @param currentHeight 当前高度
      * @return int[] { 宽度, 高度 }
      */
-    public static int[] calcScaleToWidth(final int targetWidth, final int currentWidth, final int currentHeight) {
+    public static int[] calcScaleToWidth(
+            final int targetWidth,
+            final int currentWidth,
+            final int currentHeight
+    ) {
         try {
             if (currentWidth == 0) {
                 return new int[]{0, 0};
@@ -83,7 +93,11 @@ public final class ScaleUtils {
      * @param currentHeight 当前高度
      * @return int[] { 宽度, 高度 }
      */
-    public static int[] calcScaleToHeight(final int targetHeight, final int currentWidth, final int currentHeight) {
+    public static int[] calcScaleToHeight(
+            final int targetHeight,
+            final int currentWidth,
+            final int currentHeight
+    ) {
         try {
             if (currentHeight == 0) {
                 return new int[]{0, 0};
@@ -108,7 +122,12 @@ public final class ScaleUtils {
      * @param heightScale 高度比例
      * @return int[] { 宽度, 高度 }
      */
-    public static int[] calcWidthHeightToScale(final int width, final int height, final float widthScale, final float heightScale) {
+    public static int[] calcWidthHeightToScale(
+            final int width,
+            final int height,
+            final float widthScale,
+            final float heightScale
+    ) {
         try {
             // 如果宽度的比例, 大于等于高度比例
             if (widthScale >= heightScale) { // 以宽度为基准
@@ -139,7 +158,11 @@ public final class ScaleUtils {
      * @param heightScale 高度比例
      * @return int[] { 宽度, 高度 }
      */
-    public static int[] calcWidthToScale(final int width, final float widthScale, final float heightScale) {
+    public static int[] calcWidthToScale(
+            final int width,
+            final float widthScale,
+            final float heightScale
+    ) {
         try {
             // 设置宽度
             int scaleWidth = width;
@@ -160,7 +183,11 @@ public final class ScaleUtils {
      * @param heightScale 高度比例
      * @return int[] { 宽度, 高度 }
      */
-    public static int[] calcHeightToScale(final int height, final float widthScale, final float heightScale) {
+    public static int[] calcHeightToScale(
+            final int height,
+            final float widthScale,
+            final float heightScale
+    ) {
         try {
             // 设置高度
             int scaleHeight = height;
@@ -185,7 +212,11 @@ public final class ScaleUtils {
      * @param currentHeight 当前高度
      * @return double[] { 宽度, 高度 }
      */
-    public static double[] calcScaleToWidth(final double targetWidth, final double currentWidth, final double currentHeight) {
+    public static double[] calcScaleToWidth(
+            final double targetWidth,
+            final double currentWidth,
+            final double currentHeight
+    ) {
         try {
             if (currentWidth == 0d) {
                 return new double[]{0d, 0d};
@@ -209,7 +240,11 @@ public final class ScaleUtils {
      * @param currentHeight 当前高度
      * @return double[] { 宽度, 高度 }
      */
-    public static double[] calcScaleToHeight(final double targetHeight, final double currentWidth, final double currentHeight) {
+    public static double[] calcScaleToHeight(
+            final double targetHeight,
+            final double currentWidth,
+            final double currentHeight
+    ) {
         try {
             if (currentHeight == 0d) {
                 return new double[]{0d, 0d};
@@ -234,7 +269,12 @@ public final class ScaleUtils {
      * @param heightScale 高度比例
      * @return double[] { 宽度, 高度 }
      */
-    public static double[] calcWidthHeightToScale(final double width, final double height, final double widthScale, final double heightScale) {
+    public static double[] calcWidthHeightToScale(
+            final double width,
+            final double height,
+            final double widthScale,
+            final double heightScale
+    ) {
         try {
             // 如果宽度的比例, 大于等于高度比例
             if (widthScale >= heightScale) { // 以宽度为基准
@@ -265,7 +305,11 @@ public final class ScaleUtils {
      * @param heightScale 高度比例
      * @return double[] { 宽度, 高度 }
      */
-    public static double[] calcWidthToScale(final double width, final double widthScale, final double heightScale) {
+    public static double[] calcWidthToScale(
+            final double width,
+            final double widthScale,
+            final double heightScale
+    ) {
         try {
             // 设置宽度
             double scaleWidth = width;
@@ -286,7 +330,11 @@ public final class ScaleUtils {
      * @param heightScale 高度比例
      * @return double[] { 宽度, 高度 }
      */
-    public static double[] calcHeightToScale(final double height, final double widthScale, final double heightScale) {
+    public static double[] calcHeightToScale(
+            final double height,
+            final double widthScale,
+            final double heightScale
+    ) {
         try {
             // 设置高度
             double scaleHeight = height;
@@ -311,7 +359,11 @@ public final class ScaleUtils {
      * @param currentHeight 当前高度
      * @return long[] { 宽度, 高度 }
      */
-    public static long[] calcScaleToWidth(final long targetWidth, final long currentWidth, final long currentHeight) {
+    public static long[] calcScaleToWidth(
+            final long targetWidth,
+            final long currentWidth,
+            final long currentHeight
+    ) {
         try {
             if (currentWidth == 0L) {
                 return new long[]{0L, 0L};
@@ -335,7 +387,11 @@ public final class ScaleUtils {
      * @param currentHeight 当前高度
      * @return long[] { 宽度, 高度 }
      */
-    public static long[] calcScaleToHeight(final long targetHeight, final long currentWidth, final long currentHeight) {
+    public static long[] calcScaleToHeight(
+            final long targetHeight,
+            final long currentWidth,
+            final long currentHeight
+    ) {
         try {
             if (currentHeight == 0L) {
                 return new long[]{0L, 0L};
@@ -360,7 +416,12 @@ public final class ScaleUtils {
      * @param heightScale 高度比例
      * @return long[] { 宽度, 高度 }
      */
-    public static long[] calcWidthHeightToScale(final long width, final long height, final long widthScale, final long heightScale) {
+    public static long[] calcWidthHeightToScale(
+            final long width,
+            final long height,
+            final long widthScale,
+            final long heightScale
+    ) {
         try {
             // 如果宽度的比例, 大于等于高度比例
             if (widthScale >= heightScale) { // 以宽度为基准
@@ -391,7 +452,11 @@ public final class ScaleUtils {
      * @param heightScale 高度比例
      * @return long[] { 宽度, 高度 }
      */
-    public static long[] calcWidthToScale(final long width, final long widthScale, final long heightScale) {
+    public static long[] calcWidthToScale(
+            final long width,
+            final long widthScale,
+            final long heightScale
+    ) {
         try {
             // 设置宽度
             long scaleWidth = width;
@@ -412,7 +477,11 @@ public final class ScaleUtils {
      * @param heightScale 高度比例
      * @return long[] { 宽度, 高度 }
      */
-    public static long[] calcHeightToScale(final long height, final long widthScale, final long heightScale) {
+    public static long[] calcHeightToScale(
+            final long height,
+            final long widthScale,
+            final long heightScale
+    ) {
         try {
             // 设置高度
             long scaleHeight = height;
@@ -437,7 +506,11 @@ public final class ScaleUtils {
      * @param currentHeight 当前高度
      * @return float[] { 宽度, 高度 }
      */
-    public static float[] calcScaleToWidth(final float targetWidth, final float currentWidth, final float currentHeight) {
+    public static float[] calcScaleToWidth(
+            final float targetWidth,
+            final float currentWidth,
+            final float currentHeight
+    ) {
         try {
             if (currentWidth == 0f) {
                 return new float[]{0f, 0f};
@@ -461,7 +534,11 @@ public final class ScaleUtils {
      * @param currentHeight 当前高度
      * @return float[] { 宽度, 高度 }
      */
-    public static float[] calcScaleToHeight(final float targetHeight, final float currentWidth, final float currentHeight) {
+    public static float[] calcScaleToHeight(
+            final float targetHeight,
+            final float currentWidth,
+            final float currentHeight
+    ) {
         try {
             if (currentHeight == 0f) {
                 return new float[]{0f, 0f};
@@ -486,7 +563,12 @@ public final class ScaleUtils {
      * @param heightScale 高度比例
      * @return float[] { 宽度, 高度 }
      */
-    public static float[] calcWidthHeightToScale(final float width, final float height, final float widthScale, final float heightScale) {
+    public static float[] calcWidthHeightToScale(
+            final float width,
+            final float height,
+            final float widthScale,
+            final float heightScale
+    ) {
         try {
             // 如果宽度的比例, 大于等于高度比例
             if (widthScale >= heightScale) { // 以宽度为基准
@@ -517,7 +599,11 @@ public final class ScaleUtils {
      * @param heightScale 高度比例
      * @return float[] { 宽度, 高度 }
      */
-    public static float[] calcWidthToScale(final float width, final float widthScale, final float heightScale) {
+    public static float[] calcWidthToScale(
+            final float width,
+            final float widthScale,
+            final float heightScale
+    ) {
         try {
             // 设置宽度
             float scaleWidth = width;
@@ -538,7 +624,11 @@ public final class ScaleUtils {
      * @param heightScale 高度比例
      * @return float[] { 宽度, 高度 }
      */
-    public static float[] calcHeightToScale(final float height, final float widthScale, final float heightScale) {
+    public static float[] calcHeightToScale(
+            final float height,
+            final float widthScale,
+            final float heightScale
+    ) {
         try {
             // 设置高度
             float scaleHeight = height;
@@ -562,7 +652,10 @@ public final class ScaleUtils {
      * @param y Y 值
      * @return XY 比实体类
      */
-    public static XY calcXY(final int x, final int y) {
+    public static XY calcXY(
+            final int x,
+            final int y
+    ) {
         return calcXY(XY_LIST, x, y);
     }
 
@@ -573,7 +666,11 @@ public final class ScaleUtils {
      * @param y       Y 值
      * @return XY 比实体类
      */
-    public static XY calcXY(final List<XY> xyLists, final int x, final int y) {
+    public static XY calcXY(
+            final List<XY> xyLists,
+            final int x,
+            final int y
+    ) {
         if (xyLists != null && xyLists.size() != 0) {
             List<XY> lists = new ArrayList<>(xyLists);
             Collections.sort(lists);
@@ -611,21 +708,28 @@ public final class ScaleUtils {
      */
     public static class XY implements Comparable<XY> {
 
-        public XY(final int x, final int y) {
+        public XY(
+                final int x,
+                final int y
+        ) {
             this(x, y, 0);
         }
 
-        public XY(final int x, final int y, final int type) {
+        public XY(
+                final int x,
+                final int y,
+                final int type
+        ) {
             this.x = x;
             this.y = y;
             this.scale = calcScale(x, y);
             this.type = type;
         }
 
-        public final int    x;
-        public final int    y;
+        public final int x;
+        public final int y;
         public final double scale;
-        public final int    type;
+        public final int type;
 
         public String getXYx() {
             return getXY("x");

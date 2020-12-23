@@ -81,7 +81,11 @@ public final class JCLogUtils {
      * @param tag     打印 Tag
      * @param message 日志信息
      */
-    private static void printLog(final int logType, final String tag, final String message) {
+    private static void printLog(
+            final int logType,
+            final String tag,
+            final String message
+    ) {
         if (JCLogUtils.sPrint != null) {
             JCLogUtils.sPrint.printLog(logType, tag, message);
         }
@@ -102,7 +106,10 @@ public final class JCLogUtils {
      * @param args    占位符替换
      * @return 处理 ( 格式化 ) 后准备打印的日志信息
      */
-    private static String createMessage(final String message, final Object... args) {
+    private static String createMessage(
+            final String message,
+            final Object... args
+    ) {
         String result;
         try {
             if (message != null) {
@@ -131,7 +138,11 @@ public final class JCLogUtils {
      * @param args      动态参数
      * @return 处理 ( 格式化 ) 后准备打印的日志信息
      */
-    private static String splitErrorMessage(final Throwable throwable, final String message, final Object... args) {
+    private static String splitErrorMessage(
+            final Throwable throwable,
+            final String message,
+            final Object... args
+    ) {
         String result;
         try {
             if (throwable != null) {
@@ -153,7 +164,10 @@ public final class JCLogUtils {
     // = 对外公开方法 ( 使用默认 TAG ) =
     // ===============================
 
-    public static void d(final String message, final Object... args) {
+    public static void d(
+            final String message,
+            final Object... args
+    ) {
         dTag(DEFAULT_TAG, message, args);
     }
 
@@ -161,15 +175,25 @@ public final class JCLogUtils {
         eTag(DEFAULT_TAG, throwable);
     }
 
-    public static void e(final String message, final Object... args) {
+    public static void e(
+            final String message,
+            final Object... args
+    ) {
         e(null, message, args);
     }
 
-    public static void e(final Throwable throwable, final String message, final Object... args) {
+    public static void e(
+            final Throwable throwable,
+            final String message,
+            final Object... args
+    ) {
         eTag(DEFAULT_TAG, throwable, message, args);
     }
 
-    public static void i(final String message, final Object... args) {
+    public static void i(
+            final String message,
+            final Object... args
+    ) {
         iTag(DEFAULT_TAG, message, args);
     }
 
@@ -181,37 +205,60 @@ public final class JCLogUtils {
     // = 对外公开方法 ( 日志打印方法 ) =
     // ===============================
 
-    public static void dTag(final String tag, final String message, final Object... args) {
+    public static void dTag(
+            final String tag,
+            final String message,
+            final Object... args
+    ) {
         if (JUDGE_PRINT_LOG) {
             printLog(DEBUG, tag, createMessage(message, args));
         }
     }
 
-    public static void eTag(final String tag, final String message, final Object... args) {
+    public static void eTag(
+            final String tag,
+            final String message,
+            final Object... args
+    ) {
         if (JUDGE_PRINT_LOG) {
             printLog(ERROR, tag, createMessage(message, args));
         }
     }
 
-    public static void eTag(final String tag, final Throwable throwable) {
+    public static void eTag(
+            final String tag,
+            final Throwable throwable
+    ) {
         if (JUDGE_PRINT_LOG) {
             printLog(ERROR, tag, splitErrorMessage(throwable, null));
         }
     }
 
-    public static void eTag(final String tag, final Throwable throwable, final String message, final Object... args) {
+    public static void eTag(
+            final String tag,
+            final Throwable throwable,
+            final String message,
+            final Object... args
+    ) {
         if (JUDGE_PRINT_LOG) {
             printLog(ERROR, tag, splitErrorMessage(throwable, message, args));
         }
     }
 
-    public static void iTag(final String tag, final String message, final Object... args) {
+    public static void iTag(
+            final String tag,
+            final String message,
+            final Object... args
+    ) {
         if (JUDGE_PRINT_LOG) {
             printLog(INFO, tag, createMessage(message, args));
         }
     }
 
-    public static void xmlTag(final String tag, final String xml) {
+    public static void xmlTag(
+            final String tag,
+            final String xml
+    ) {
         if (JUDGE_PRINT_LOG) {
             // 判断传入 XML 格式信息是否为 null
             if (isEmpty(xml)) {
@@ -274,6 +321,10 @@ public final class JCLogUtils {
          * @param tag     打印 Tag
          * @param message 日志信息
          */
-        void printLog(int logType, String tag, String message);
+        void printLog(
+                int logType,
+                String tag,
+                String message
+        );
     }
 }

@@ -89,7 +89,10 @@ public final class BarUtils {
      * @param isVisible 是否显示 StatusBar
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setStatusBarVisibility(final Activity activity, final boolean isVisible) {
+    public static boolean setStatusBarVisibility(
+            final Activity activity,
+            final boolean isVisible
+    ) {
         return setStatusBarVisibility(ActivityUtils.getWindow(activity), isVisible);
     }
 
@@ -99,7 +102,10 @@ public final class BarUtils {
      * @param isVisible 是否显示 StatusBar
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setStatusBarVisibility(final Window window, final boolean isVisible) {
+    public static boolean setStatusBarVisibility(
+            final Window window,
+            final boolean isVisible
+    ) {
         if (window != null) {
             if (isVisible) {
                 window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -121,7 +127,10 @@ public final class BarUtils {
      * @param isLightMode 是否高亮模式
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setStatusBarLightMode(final Activity activity, final boolean isLightMode) {
+    public static boolean setStatusBarLightMode(
+            final Activity activity,
+            final boolean isLightMode
+    ) {
         return setStatusBarLightMode(ActivityUtils.getWindow(activity), isLightMode);
     }
 
@@ -131,7 +140,10 @@ public final class BarUtils {
      * @param isLightMode 是否高亮模式
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setStatusBarLightMode(final Window window, final boolean isLightMode) {
+    public static boolean setStatusBarLightMode(
+            final Window window,
+            final boolean isLightMode
+    ) {
         if (window != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             View decorView = window.getDecorView();
             int  vis       = decorView.getSystemUiVisibility();
@@ -241,7 +253,10 @@ public final class BarUtils {
      * @param activity {@link Activity}
      * @param color    背景颜色
      */
-    public static View setStatusBarColor(final Activity activity, final int color) {
+    public static View setStatusBarColor(
+            final Activity activity,
+            final int color
+    ) {
         return setStatusBarColor(activity, color, false);
     }
 
@@ -251,7 +266,11 @@ public final class BarUtils {
      * @param color    背景颜色
      * @param isDecor  {@code true} add DecorView, {@code false} add ContentView
      */
-    public static View setStatusBarColor(final Activity activity, final int color, final boolean isDecor) {
+    public static View setStatusBarColor(
+            final Activity activity,
+            final int color,
+            final boolean isDecor
+    ) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return null;
         transparentStatusBar(activity);
         return applyStatusBarColor(activity, color, isDecor);
@@ -262,7 +281,10 @@ public final class BarUtils {
      * @param window {@link Window}
      * @param color  背景颜色
      */
-    public static View setStatusBarColor(final Window window, final int color) {
+    public static View setStatusBarColor(
+            final Window window,
+            final int color
+    ) {
         return setStatusBarColor(window, color, false);
     }
 
@@ -272,7 +294,11 @@ public final class BarUtils {
      * @param color   背景颜色
      * @param isDecor {@code true} add DecorView, {@code false} add ContentView
      */
-    public static View setStatusBarColor(final Window window, final int color, final boolean isDecor) {
+    public static View setStatusBarColor(
+            final Window window,
+            final int color,
+            final boolean isDecor
+    ) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return null;
         transparentStatusBar(window);
         return applyStatusBarColor(window, color, isDecor);
@@ -284,7 +310,10 @@ public final class BarUtils {
      * @param color         背景颜色
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setStatusBarColor(final View fakeStatusBar, final int color) {
+    public static boolean setStatusBarColor(
+            final View fakeStatusBar,
+            final int color
+    ) {
         if (fakeStatusBar != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Activity activity = ActivityUtils.getActivity(fakeStatusBar.getContext());
             if (activity == null) return false;
@@ -335,9 +364,11 @@ public final class BarUtils {
      * @param color         背景颜色
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setStatusBarColorDrawer(final DrawerLayout drawer,
-                                                  final View fakeStatusBar,
-                                                  final int color) {
+    public static boolean setStatusBarColorDrawer(
+            final DrawerLayout drawer,
+            final View fakeStatusBar,
+            final int color
+    ) {
         return setStatusBarColorDrawer(drawer, fakeStatusBar, color, false);
     }
 
@@ -353,8 +384,12 @@ public final class BarUtils {
      * @param isTop         是否设置 DrawerLayout 为顶层
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setStatusBarColorDrawer(final DrawerLayout drawer, final View fakeStatusBar,
-                                                  final int color, final boolean isTop) {
+    public static boolean setStatusBarColorDrawer(
+            final DrawerLayout drawer,
+            final View fakeStatusBar,
+            final int color,
+            final boolean isTop
+    ) {
         if (drawer != null && fakeStatusBar != null &&
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Activity activity = ActivityUtils.getActivity(fakeStatusBar.getContext());
@@ -415,7 +450,11 @@ public final class BarUtils {
      * @param isDecor  是否添加在 DecorView 上
      * @return StatusBar View
      */
-    private static View applyStatusBarColor(final Activity activity, final int color, final boolean isDecor) {
+    private static View applyStatusBarColor(
+            final Activity activity,
+            final int color,
+            final boolean isDecor
+    ) {
         return applyStatusBarColor(ActivityUtils.getWindow(activity), color, isDecor);
     }
 
@@ -426,7 +465,11 @@ public final class BarUtils {
      * @param isDecor 是否添加在 DecorView 上
      * @return StatusBar View
      */
-    private static View applyStatusBarColor(final Window window, final int color, final boolean isDecor) {
+    private static View applyStatusBarColor(
+            final Window window,
+            final int color,
+            final boolean isDecor
+    ) {
         if (window == null) return null;
         ViewGroup parent            = isDecor ? (ViewGroup) window.getDecorView() : (ViewGroup) window.findViewById(android.R.id.content);
         View      fakeStatusBarView = parent.findViewWithTag(TAG_STATUS_BAR);
@@ -478,7 +521,10 @@ public final class BarUtils {
      * @param color   背景颜色
      * @return StatusBar View
      */
-    private static View createStatusBarView(final Context context, final int color) {
+    private static View createStatusBarView(
+            final Context context,
+            final int color
+    ) {
         View statusBarView = new View(context);
         statusBarView.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight()
@@ -566,7 +612,10 @@ public final class BarUtils {
      * @param isVisible 是否显示 Navigation Bar
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setNavBarVisibility(final Activity activity, final boolean isVisible) {
+    public static boolean setNavBarVisibility(
+            final Activity activity,
+            final boolean isVisible
+    ) {
         return setNavBarVisibility(ActivityUtils.getWindow(activity), isVisible);
     }
 
@@ -576,7 +625,10 @@ public final class BarUtils {
      * @param isVisible 是否显示 Navigation Bar
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setNavBarVisibility(final Window window, final boolean isVisible) {
+    public static boolean setNavBarVisibility(
+            final Window window,
+            final boolean isVisible
+    ) {
         if (window != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             final ViewGroup decorView = (ViewGroup) window.getDecorView();
             for (int i = 0, count = decorView.getChildCount(); i < count; i++) {
@@ -667,7 +719,10 @@ public final class BarUtils {
      * @param color    Navigation Bar 颜色
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setNavBarColor(final Activity activity, final int color) {
+    public static boolean setNavBarColor(
+            final Activity activity,
+            final int color
+    ) {
         return setNavBarColor(ActivityUtils.getWindow(activity), color);
     }
 
@@ -677,7 +732,10 @@ public final class BarUtils {
      * @param color  Navigation Bar 颜色
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setNavBarColor(final Window window, final int color) {
+    public static boolean setNavBarColor(
+            final Window window,
+            final int color
+    ) {
         if (window != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setNavigationBarColor(color);
@@ -713,7 +771,10 @@ public final class BarUtils {
      * @param isLightMode 是否高亮模式
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setNavBarLightMode(final Activity activity, final boolean isLightMode) {
+    public static boolean setNavBarLightMode(
+            final Activity activity,
+            final boolean isLightMode
+    ) {
         return setNavBarLightMode(ActivityUtils.getWindow(activity), isLightMode);
     }
 
@@ -723,7 +784,10 @@ public final class BarUtils {
      * @param isLightMode 是否高亮模式
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setNavBarLightMode(final Window window, final boolean isLightMode) {
+    public static boolean setNavBarLightMode(
+            final Window window,
+            final boolean isLightMode
+    ) {
         if (window != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             View decorView = window.getDecorView();
             int  vis       = decorView.getSystemUiVisibility();

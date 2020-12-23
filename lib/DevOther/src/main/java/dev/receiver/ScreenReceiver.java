@@ -22,7 +22,10 @@ public final class ScreenReceiver extends BroadcastReceiver {
     private static final String TAG = ScreenReceiver.class.getSimpleName();
 
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(
+            Context context,
+            Intent intent
+    ) {
         try {
             String action = intent.getAction();
             // 打印当前触发的广播

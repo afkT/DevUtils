@@ -33,8 +33,8 @@ public final class LoadingRendererFactory {
             Context context,
             int loadingRendererId
     ) throws Exception {
-        Class<?> loadingRendererClazz = LOADING_RENDERERS.get(loadingRendererId);
-        Constructor<?>[] constructors = loadingRendererClazz.getDeclaredConstructors();
+        Class<?>         loadingRendererClazz = LOADING_RENDERERS.get(loadingRendererId);
+        Constructor<?>[] constructors         = loadingRendererClazz.getDeclaredConstructors();
         for (Constructor<?> constructor : constructors) {
             Class<?>[] parameterTypes = constructor.getParameterTypes();
             if (parameterTypes != null

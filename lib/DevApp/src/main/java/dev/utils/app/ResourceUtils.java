@@ -186,7 +186,10 @@ public final class ResourceUtils {
      * @param defType 资源类型
      * @return 资源 id
      */
-    public static int getIdentifier(final String resName, final String defType) {
+    public static int getIdentifier(
+            final String resName,
+            final String defType
+    ) {
         return ResourceAssist.getInstance().getIdentifier(resName, defType);
     }
 
@@ -227,7 +230,10 @@ public final class ResourceUtils {
      * @param formatArgs 格式化参数
      * @return String
      */
-    public static String getString(final String resName, final Object... formatArgs) {
+    public static String getString(
+            final String resName,
+            final Object... formatArgs
+    ) {
         return ResourceAssist.getInstance().getString(resName, formatArgs);
     }
 
@@ -246,7 +252,10 @@ public final class ResourceUtils {
      * @param formatArgs 格式化参数
      * @return String
      */
-    public static String getString(@StringRes final int id, final Object... formatArgs) {
+    public static String getString(
+            @StringRes final int id,
+            final Object... formatArgs
+    ) {
         return ResourceAssist.getInstance().getString(id, formatArgs);
     }
 
@@ -396,7 +405,10 @@ public final class ResourceUtils {
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
-    public static Bitmap getBitmap(final String resName, final BitmapFactory.Options options) {
+    public static Bitmap getBitmap(
+            final String resName,
+            final BitmapFactory.Options options
+    ) {
         return ResourceAssist.getInstance().getBitmap(resName, options);
     }
 
@@ -415,7 +427,10 @@ public final class ResourceUtils {
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
-    public static Bitmap getBitmap(final int resId, final BitmapFactory.Options options) {
+    public static Bitmap getBitmap(
+            final int resId,
+            final BitmapFactory.Options options
+    ) {
         return ResourceAssist.getInstance().getBitmap(resId, options);
     }
 
@@ -463,7 +478,10 @@ public final class ResourceUtils {
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
-    public static Bitmap getBitmapMipmap(final String resName, final BitmapFactory.Options options) {
+    public static Bitmap getBitmapMipmap(
+            final String resName,
+            final BitmapFactory.Options options
+    ) {
         return ResourceAssist.getInstance().getBitmapMipmap(resName, options);
     }
 
@@ -511,7 +529,10 @@ public final class ResourceUtils {
      * @param context {@link Context}
      * @return {@link XmlResourceParser}
      */
-    public static Animation getAnimation(final String resName, final Context context) {
+    public static Animation getAnimation(
+            final String resName,
+            final Context context
+    ) {
         return ResourceAssist.getInstance().getAnimation(resName, context);
     }
 
@@ -530,7 +551,10 @@ public final class ResourceUtils {
      * @param context {@link Context}
      * @return {@link XmlResourceParser}
      */
-    public static Animation getAnimation(@AnimatorRes @AnimRes final int id, final Context context) {
+    public static Animation getAnimation(
+            @AnimatorRes @AnimRes final int id,
+            final Context context
+    ) {
         return ResourceAssist.getInstance().getAnimation(id, context);
     }
 
@@ -827,7 +851,10 @@ public final class ResourceUtils {
      * @param resolver {@link ContentResolver}
      * @return Uri InputStream
      */
-    public static InputStream openInputStream(final Uri uri, final ContentResolver resolver) {
+    public static InputStream openInputStream(
+            final Uri uri,
+            final ContentResolver resolver
+    ) {
         return ResourceAssist.getInstance().openInputStream(uri, resolver);
     }
 
@@ -846,7 +873,10 @@ public final class ResourceUtils {
      * @param resolver {@link ContentResolver}
      * @return Uri OutputStream
      */
-    public static OutputStream openOutputStream(final Uri uri, final ContentResolver resolver) {
+    public static OutputStream openOutputStream(
+            final Uri uri,
+            final ContentResolver resolver
+    ) {
         return ResourceAssist.getInstance().openOutputStream(uri, resolver);
     }
 
@@ -856,7 +886,10 @@ public final class ResourceUtils {
      * @param mode 读写模式
      * @return Uri OutputStream
      */
-    public static OutputStream openOutputStream(final Uri uri, final String mode) {
+    public static OutputStream openOutputStream(
+            final Uri uri,
+            final String mode
+    ) {
         return ResourceAssist.getInstance().openOutputStream(uri, mode);
     }
 
@@ -867,8 +900,11 @@ public final class ResourceUtils {
      * @param resolver {@link ContentResolver}
      * @return Uri OutputStream
      */
-    public static OutputStream openOutputStream(final Uri uri, final String mode,
-                                                final ContentResolver resolver) {
+    public static OutputStream openOutputStream(
+            final Uri uri,
+            final String mode,
+            final ContentResolver resolver
+    ) {
         return ResourceAssist.getInstance().openOutputStream(uri, mode, resolver);
     }
 
@@ -878,7 +914,10 @@ public final class ResourceUtils {
      * @param mode 读写模式
      * @return Uri ParcelFileDescriptor
      */
-    public static ParcelFileDescriptor openFileDescriptor(final Uri uri, final String mode) {
+    public static ParcelFileDescriptor openFileDescriptor(
+            final Uri uri,
+            final String mode
+    ) {
         return ResourceAssist.getInstance().openFileDescriptor(uri, mode);
     }
 
@@ -892,8 +931,11 @@ public final class ResourceUtils {
      * @param resolver {@link ContentResolver}
      * @return Uri ParcelFileDescriptor
      */
-    public static ParcelFileDescriptor openFileDescriptor(final Uri uri, final String mode,
-                                                          final ContentResolver resolver) {
+    public static ParcelFileDescriptor openFileDescriptor(
+            final Uri uri,
+            final String mode,
+            final ContentResolver resolver
+    ) {
         return ResourceAssist.getInstance().openFileDescriptor(uri, mode, resolver);
     }
 
@@ -903,7 +945,10 @@ public final class ResourceUtils {
      * @param mode 读写模式
      * @return Uri AssetFileDescriptor
      */
-    public static AssetFileDescriptor openAssetFileDescriptor(final Uri uri, final String mode) {
+    public static AssetFileDescriptor openAssetFileDescriptor(
+            final Uri uri,
+            final String mode
+    ) {
         return ResourceAssist.getInstance().openAssetFileDescriptor(uri, mode);
     }
 
@@ -917,8 +962,11 @@ public final class ResourceUtils {
      * @param resolver {@link ContentResolver}
      * @return Uri AssetFileDescriptor
      */
-    public static AssetFileDescriptor openAssetFileDescriptor(final Uri uri, final String mode,
-                                                              final ContentResolver resolver) {
+    public static AssetFileDescriptor openAssetFileDescriptor(
+            final Uri uri,
+            final String mode,
+            final ContentResolver resolver
+    ) {
         return ResourceAssist.getInstance().openAssetFileDescriptor(uri, mode, resolver);
     }
 
@@ -1046,7 +1094,10 @@ public final class ResourceUtils {
      * @param file     文件保存地址
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveAssetsFormFile(final String fileName, final File file) {
+    public static boolean saveAssetsFormFile(
+            final String fileName,
+            final File file
+    ) {
         return ResourceAssist.getInstance().saveAssetsFormFile(fileName, file);
     }
 
@@ -1056,7 +1107,10 @@ public final class ResourceUtils {
      * @param file  文件保存地址
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveRawFormFile(@RawRes final int resId, final File file) {
+    public static boolean saveRawFormFile(
+            @RawRes final int resId,
+            final File file
+    ) {
         return ResourceAssist.getInstance().saveRawFormFile(resId, file);
     }
 }

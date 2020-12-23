@@ -7,11 +7,11 @@ package afkt.project.model.item;
 public class TabItem<T> {
 
     // 类型
-    private int type;
+    private int    type;
     // 标题
     private String title;
     // 对象参数
-    private T object;
+    private T      object;
 
     public TabItem(
             String title,

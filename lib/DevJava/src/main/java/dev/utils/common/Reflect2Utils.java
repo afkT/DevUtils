@@ -38,7 +38,11 @@ public final class Reflect2Utils {
      * @param value     字段值
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setProperty(final Object object, final String fieldName, final Object value) {
+    public static boolean setProperty(
+            final Object object,
+            final String fieldName,
+            final Object value
+    ) {
         if (object == null || fieldName == null) return false;
         try {
             Field field = object.getClass().getDeclaredField(fieldName);
@@ -58,7 +62,10 @@ public final class Reflect2Utils {
      * @param <T>       泛型
      * @return 该变量对象
      */
-    public static <T> T getProperty(final Object object, final String fieldName) {
+    public static <T> T getProperty(
+            final Object object,
+            final String fieldName
+    ) {
         if (object == null || fieldName == null) return null;
         try {
             Field field = object.getClass().getDeclaredField(fieldName);
@@ -81,7 +88,10 @@ public final class Reflect2Utils {
      * @param <T>       泛型
      * @return 该变量对象
      */
-    public static <T> T getStaticProperty(final Object object, final String fieldName) {
+    public static <T> T getStaticProperty(
+            final Object object,
+            final String fieldName
+    ) {
         if (object == null) return null;
         return getStaticProperty(object.getClass().getName(), fieldName);
     }
@@ -93,7 +103,10 @@ public final class Reflect2Utils {
      * @param <T>       泛型
      * @return 该变量对象
      */
-    public static <T> T getStaticProperty(final Class clazz, final String fieldName) {
+    public static <T> T getStaticProperty(
+            final Class clazz,
+            final String fieldName
+    ) {
         if (clazz == null) return null;
         return getStaticProperty(clazz.getName(), fieldName);
     }
@@ -105,7 +118,10 @@ public final class Reflect2Utils {
      * @param <T>       泛型
      * @return 该变量对象
      */
-    public static <T> T getStaticProperty(final String className, final String fieldName) {
+    public static <T> T getStaticProperty(
+            final String className,
+            final String fieldName
+    ) {
         if (className == null || fieldName == null) return null;
         try {
             Class clazz = Class.forName(className);
@@ -129,7 +145,10 @@ public final class Reflect2Utils {
      * @param <T>        泛型
      * @return 执行方法返回的结果
      */
-    public static <T> T invokeMethod(final Object object, final String methodName) {
+    public static <T> T invokeMethod(
+            final Object object,
+            final String methodName
+    ) {
         return invokeMethod(object, methodName, null, null);
     }
 
@@ -141,7 +160,11 @@ public final class Reflect2Utils {
      * @param <T>        泛型
      * @return 执行方法返回的结果
      */
-    public static <T> T invokeMethod(final Object object, final String methodName, final Object[] args) {
+    public static <T> T invokeMethod(
+            final Object object,
+            final String methodName,
+            final Object[] args
+    ) {
         return invokeMethod(object, methodName, args, getArgsClass(args));
     }
 
@@ -154,7 +177,12 @@ public final class Reflect2Utils {
      * @param <T>        泛型
      * @return 执行方法返回的结果
      */
-    public static <T> T invokeMethod(final Object object, final String methodName, final Object[] args, final Class[] argsClass) {
+    public static <T> T invokeMethod(
+            final Object object,
+            final String methodName,
+            final Object[] args,
+            final Class[] argsClass
+    ) {
         if (object == null || methodName == null) return null;
         try {
             Class clazz = object.getClass();
@@ -189,7 +217,10 @@ public final class Reflect2Utils {
      * @param <T>        泛型
      * @return 执行方法返回的结果
      */
-    public static <T> T invokeStaticMethod(final Object object, final String methodName) {
+    public static <T> T invokeStaticMethod(
+            final Object object,
+            final String methodName
+    ) {
         if (object == null) return null;
         return invokeStaticMethod(object.getClass().getName(), methodName, null, null);
     }
@@ -202,7 +233,11 @@ public final class Reflect2Utils {
      * @param <T>        泛型
      * @return 执行方法返回的结果
      */
-    public static <T> T invokeStaticMethod(final Object object, final String methodName, final Object[] args) {
+    public static <T> T invokeStaticMethod(
+            final Object object,
+            final String methodName,
+            final Object[] args
+    ) {
         if (object == null) return null;
         return invokeStaticMethod(object.getClass().getName(), methodName, args, getArgsClass(args));
     }
@@ -216,7 +251,12 @@ public final class Reflect2Utils {
      * @param <T>        泛型
      * @return 执行方法返回的结果
      */
-    public static <T> T invokeStaticMethod(final Object object, final String methodName, final Object[] args, final Class[] argsClass) {
+    public static <T> T invokeStaticMethod(
+            final Object object,
+            final String methodName,
+            final Object[] args,
+            final Class[] argsClass
+    ) {
         if (object == null) return null;
         return invokeStaticMethod(object.getClass().getName(), methodName, args, argsClass);
     }
@@ -230,7 +270,10 @@ public final class Reflect2Utils {
      * @param <T>        泛型
      * @return 执行方法返回的结果
      */
-    public static <T> T invokeStaticMethod(final Class clazz, final String methodName) {
+    public static <T> T invokeStaticMethod(
+            final Class clazz,
+            final String methodName
+    ) {
         if (clazz == null) return null;
         return invokeStaticMethod(clazz.getName(), methodName, null, null);
     }
@@ -243,7 +286,11 @@ public final class Reflect2Utils {
      * @param <T>        泛型
      * @return 执行方法返回的结果
      */
-    public static <T> T invokeStaticMethod(final Class clazz, final String methodName, final Object[] args) {
+    public static <T> T invokeStaticMethod(
+            final Class clazz,
+            final String methodName,
+            final Object[] args
+    ) {
         if (clazz == null) return null;
         return invokeStaticMethod(clazz.getName(), methodName, args, getArgsClass(args));
     }
@@ -257,7 +304,12 @@ public final class Reflect2Utils {
      * @param <T>        泛型
      * @return 执行方法返回的结果
      */
-    public static <T> T invokeStaticMethod(final Class clazz, final String methodName, final Object[] args, final Class[] argsClass) {
+    public static <T> T invokeStaticMethod(
+            final Class clazz,
+            final String methodName,
+            final Object[] args,
+            final Class[] argsClass
+    ) {
         if (clazz == null) return null;
         return invokeStaticMethod(clazz.getName(), methodName, args, argsClass);
     }
@@ -271,7 +323,10 @@ public final class Reflect2Utils {
      * @param <T>        泛型
      * @return 执行方法返回的结果
      */
-    public static <T> T invokeStaticMethod(final String className, final String methodName) {
+    public static <T> T invokeStaticMethod(
+            final String className,
+            final String methodName
+    ) {
         if (className == null) return null;
         return invokeStaticMethod(className, methodName, null, null);
     }
@@ -284,7 +339,11 @@ public final class Reflect2Utils {
      * @param <T>        泛型
      * @return 执行方法返回的结果
      */
-    public static <T> T invokeStaticMethod(final String className, final String methodName, final Object[] args) {
+    public static <T> T invokeStaticMethod(
+            final String className,
+            final String methodName,
+            final Object[] args
+    ) {
         if (className == null) return null;
         return invokeStaticMethod(className, methodName, args, getArgsClass(args));
     }
@@ -298,7 +357,12 @@ public final class Reflect2Utils {
      * @param <T>        泛型
      * @return 执行方法返回的结果
      */
-    public static <T> T invokeStaticMethod(final String className, final String methodName, final Object[] args, final Class[] argsClass) {
+    public static <T> T invokeStaticMethod(
+            final String className,
+            final String methodName,
+            final Object[] args,
+            final Class[] argsClass
+    ) {
         if (className == null || methodName == null) return null;
         try {
             Class clazz = Class.forName(className);
@@ -344,7 +408,10 @@ public final class Reflect2Utils {
      * @param <T>    泛型
      * @return 新建的实例
      */
-    public static <T> T newInstance(final Object object, final Object[] args) {
+    public static <T> T newInstance(
+            final Object object,
+            final Object[] args
+    ) {
         if (object == null) return null;
         return newInstance(object.getClass().getName(), args, getArgsClass(args));
     }
@@ -357,7 +424,11 @@ public final class Reflect2Utils {
      * @param <T>       泛型
      * @return 新建的实例
      */
-    public static <T> T newInstance(final Object object, final Object[] args, final Class[] argsClass) {
+    public static <T> T newInstance(
+            final Object object,
+            final Object[] args,
+            final Class[] argsClass
+    ) {
         if (object == null) return null;
         return newInstance(object.getClass().getName(), args, argsClass);
     }
@@ -382,7 +453,10 @@ public final class Reflect2Utils {
      * @param <T>   泛型
      * @return 新建的实例
      */
-    public static <T> T newInstance(final Class clazz, final Object[] args) {
+    public static <T> T newInstance(
+            final Class clazz,
+            final Object[] args
+    ) {
         if (clazz == null) return null;
         return newInstance(clazz.getName(), args, getArgsClass(args));
     }
@@ -395,7 +469,11 @@ public final class Reflect2Utils {
      * @param <T>       泛型
      * @return 新建的实例
      */
-    public static <T> T newInstance(final Class clazz, final Object[] args, final Class[] argsClass) {
+    public static <T> T newInstance(
+            final Class clazz,
+            final Object[] args,
+            final Class[] argsClass
+    ) {
         if (clazz == null) return null;
         return newInstance(clazz.getName(), args, argsClass);
     }
@@ -420,7 +498,10 @@ public final class Reflect2Utils {
      * @param <T>       泛型
      * @return 新建的实例
      */
-    public static <T> T newInstance(final String className, final Object[] args) {
+    public static <T> T newInstance(
+            final String className,
+            final Object[] args
+    ) {
         if (className == null) return null;
         return newInstance(className, args, getArgsClass(args));
     }
@@ -433,7 +514,11 @@ public final class Reflect2Utils {
      * @param <T>       泛型
      * @return 新建的实例
      */
-    public static <T> T newInstance(final String className, final Object[] args, final Class[] argsClass) {
+    public static <T> T newInstance(
+            final String className,
+            final Object[] args,
+            final Class[] argsClass
+    ) {
         if (className == null) return null;
         try {
             Class newClass = Class.forName(className);
@@ -457,7 +542,10 @@ public final class Reflect2Utils {
      * @param clazz  待判断类
      * @return 如果 obj 是此类的实例, 则返回 true
      */
-    public static boolean isInstance(final Object object, final Class clazz) {
+    public static boolean isInstance(
+            final Object object,
+            final Class clazz
+    ) {
         if (object == null || clazz == null) return false;
         try {
             return clazz.isInstance(object);
@@ -501,7 +589,10 @@ public final class Reflect2Utils {
      * @param <T>    泛型
      * @return 该变量对象
      */
-    public static <T> T getProperty(final Object object, final Field field) {
+    public static <T> T getProperty(
+            final Object object,
+            final Field field
+    ) {
         if (object == null || field == null) return null;
         try {
             field.setAccessible(true);
@@ -519,7 +610,10 @@ public final class Reflect2Utils {
      * @param <T>       泛型
      * @return 父类中的变量对象
      */
-    public static <T> T getPropertyByParent(final Object object, final String fieldName) {
+    public static <T> T getPropertyByParent(
+            final Object object,
+            final String fieldName
+    ) {
         return getPropertyByParent(object, fieldName, 1);
     }
 
@@ -531,7 +625,11 @@ public final class Reflect2Utils {
      * @param <T>         泛型
      * @return 父类中的变量对象
      */
-    public static <T> T getPropertyByParent(final Object object, final String fieldName, final int fieldNumber) {
+    public static <T> T getPropertyByParent(
+            final Object object,
+            final String fieldName,
+            final int fieldNumber
+    ) {
         if (object == null || fieldName == null) return null;
         try {
             Field field = getDeclaredFieldParent(object, fieldName, fieldNumber);
@@ -548,7 +646,10 @@ public final class Reflect2Utils {
      * @param fieldName 属性名
      * @return {@link Field}
      */
-    public static Field getDeclaredFieldParent(final Object object, final String fieldName) {
+    public static Field getDeclaredFieldParent(
+            final Object object,
+            final String fieldName
+    ) {
         return getDeclaredFieldParent(object, fieldName, 1);
     }
 
@@ -559,7 +660,11 @@ public final class Reflect2Utils {
      * @param fieldNumber 字段出现次数, 如果父类还有父类, 并且有相同变量名, 设置负数 一直会跟到最后的变量
      * @return {@link Field} 父类中的属性对象
      */
-    public static Field getDeclaredFieldParent(final Object object, final String fieldName, final int fieldNumber) {
+    public static Field getDeclaredFieldParent(
+            final Object object,
+            final String fieldName,
+            final int fieldNumber
+    ) {
         if (object == null || fieldName == null) return null;
         try {
             if (fieldNumber == 0) return null;
@@ -568,7 +673,7 @@ public final class Reflect2Utils {
             // 限制值
             int limitNumber = (fieldNumber >= 0) ? fieldNumber : Integer.MAX_VALUE;
             // =
-            Field    field = null;
+            Field field    = null;
             Class<?> clazz = object.getClass();
             for (; clazz != Object.class; clazz = clazz.getSuperclass()) {
                 try {

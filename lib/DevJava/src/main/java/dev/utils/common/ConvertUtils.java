@@ -80,7 +80,10 @@ public final class ConvertUtils {
      * @deprecated {@link #newString}
      */
     @Deprecated
-    public static String toString(final byte[] data, final String defaultStr) throws Exception {
+    public static String toString(
+            final byte[] data,
+            final String defaultStr
+    ) throws Exception {
         return newString(data, defaultStr);
     }
 
@@ -103,7 +106,10 @@ public final class ConvertUtils {
      * @deprecated {@link #newString}
      */
     @Deprecated
-    public static String toString(final char[] data, final String defaultStr) throws Exception {
+    public static String toString(
+            final char[] data,
+            final String defaultStr
+    ) throws Exception {
         return newString(data, defaultStr);
     }
 
@@ -122,7 +128,10 @@ public final class ConvertUtils {
      * @param defaultStr 默认字符串
      * @return {@link String} 如果转换失败则返回 defaultStr
      */
-    public static String newString(final Object value, final String defaultStr) {
+    public static String newString(
+            final Object value,
+            final String defaultStr
+    ) {
         if (value != null) {
             try {
                 if (value instanceof byte[]) {
@@ -163,7 +172,10 @@ public final class ConvertUtils {
      * @param defaultStr 默认字符串
      * @return {@link String} 如果转换失败则返回 defaultStr
      */
-    public static String toString(final Object object, final String defaultStr) {
+    public static String toString(
+            final Object object,
+            final String defaultStr
+    ) {
         if (object != null) {
             try {
                 if (object instanceof String) {
@@ -239,7 +251,10 @@ public final class ConvertUtils {
      * @param defaultValue 默认值
      * @return Integer, 如果转换失败则返回 defaultValue
      */
-    public static Integer toInt(final Object value, final Integer defaultValue) {
+    public static Integer toInt(
+            final Object value,
+            final Integer defaultValue
+    ) {
         if (value == null) return defaultValue;
         try {
             if (value instanceof Integer) {
@@ -280,7 +295,10 @@ public final class ConvertUtils {
      * @param defaultValue 默认值
      * @return Boolean, 如果转换失败则返回 defaultValue
      */
-    public static Boolean toBoolean(final Object value, final Boolean defaultValue) {
+    public static Boolean toBoolean(
+            final Object value,
+            final Boolean defaultValue
+    ) {
         if (value == null) return defaultValue;
         try {
             if (value instanceof Boolean) {
@@ -328,7 +346,10 @@ public final class ConvertUtils {
      * @param defaultValue 默认值
      * @return Float, 如果转换失败则返回 defaultValue
      */
-    public static Float toFloat(final Object value, final Float defaultValue) {
+    public static Float toFloat(
+            final Object value,
+            final Float defaultValue
+    ) {
         if (value == null) return defaultValue;
         try {
             if (value instanceof Float) {
@@ -366,7 +387,10 @@ public final class ConvertUtils {
      * @param defaultValue 默认值
      * @return Double, 如果转换失败则返回 defaultValue
      */
-    public static Double toDouble(final Object value, final Double defaultValue) {
+    public static Double toDouble(
+            final Object value,
+            final Double defaultValue
+    ) {
         if (value == null) return defaultValue;
         try {
             if (value instanceof Double) {
@@ -404,7 +428,10 @@ public final class ConvertUtils {
      * @param defaultValue 默认值
      * @return Long, 如果转换失败则返回 defaultValue
      */
-    public static Long toLong(final Object value, final Long defaultValue) {
+    public static Long toLong(
+            final Object value,
+            final Long defaultValue
+    ) {
         if (value == null) return defaultValue;
         try {
             if (value instanceof Long) {
@@ -442,7 +469,10 @@ public final class ConvertUtils {
      * @param defaultValue 默认值
      * @return Short, 如果转换失败则返回 defaultValue
      */
-    public static Short toShort(final Object value, final Short defaultValue) {
+    public static Short toShort(
+            final Object value,
+            final Short defaultValue
+    ) {
         if (value == null) return defaultValue;
         try {
             if (value instanceof Short) {
@@ -477,7 +507,10 @@ public final class ConvertUtils {
      * @param defaultValue 默认值
      * @return Character, 如果转换失败则返回 defaultValue
      */
-    public static Character toChar(final Object value, final Character defaultValue) {
+    public static Character toChar(
+            final Object value,
+            final Character defaultValue
+    ) {
         if (value == null) return defaultValue;
         try {
             if (value instanceof Character) {
@@ -511,7 +544,10 @@ public final class ConvertUtils {
      * @param defaultValue 默认值
      * @return Byte, 如果转换失败则返回 defaultValue
      */
-    public static byte toByte(final Object value, final Byte defaultValue) {
+    public static byte toByte(
+            final Object value,
+            final Byte defaultValue
+    ) {
         if (value == null) return defaultValue;
         try {
             if (value instanceof Byte) {
@@ -546,7 +582,10 @@ public final class ConvertUtils {
      * @param defaultValue 默认值
      * @return BigDecimal, 如果转换失败则返回 defaultValue
      */
-    public static BigDecimal toBigDecimal(final Object value, final BigDecimal defaultValue) {
+    public static BigDecimal toBigDecimal(
+            final Object value,
+            final BigDecimal defaultValue
+    ) {
         if (value == null) return defaultValue;
         try {
             if (value instanceof BigDecimal) {
@@ -581,7 +620,10 @@ public final class ConvertUtils {
      * @param defaultValue 默认值
      * @return BigInteger, 如果转换失败则返回 defaultValue
      */
-    public static BigInteger toBigInteger(final Object value, final BigInteger defaultValue) {
+    public static BigInteger toBigInteger(
+            final Object value,
+            final BigInteger defaultValue
+    ) {
         if (value == null) return defaultValue;
         try {
             if (value instanceof BigInteger) {
@@ -654,7 +696,10 @@ public final class ConvertUtils {
      * @param defaultValue 默认值
      * @return 第一位值, 如果获取失败则返回 defaultValue
      */
-    public static char charAt(final Object value, final char defaultValue) {
+    public static char charAt(
+            final Object value,
+            final char defaultValue
+    ) {
         return charAt(value, 0, defaultValue);
     }
 
@@ -665,7 +710,11 @@ public final class ConvertUtils {
      * @param defaultValue 默认值
      * @return 指定索引的值, 如果获取失败则返回 defaultValue
      */
-    public static char charAt(final Object value, final int pos, final char defaultValue) {
+    public static char charAt(
+            final Object value,
+            final int pos,
+            final char defaultValue
+    ) {
         if (value == null || pos < 0) return defaultValue;
         try {
             return toChars(value)[pos];
@@ -686,7 +735,10 @@ public final class ConvertUtils {
      * @param radix 进制
      * @return 对应进制的值
      */
-    public static int parseInt(final String str, final int radix) {
+    public static int parseInt(
+            final String str,
+            final int radix
+    ) {
         if (str == null) return -1;
         try {
             return Integer.parseInt(str, radix);
@@ -702,7 +754,10 @@ public final class ConvertUtils {
      * @param radix 进制
      * @return 对应进制的值
      */
-    public static long parseLong(final String str, final int radix) {
+    public static long parseLong(
+            final String str,
+            final int radix
+    ) {
         if (str == null) return -1;
         try {
             return Long.parseLong(str, radix);
@@ -857,7 +912,10 @@ public final class ConvertUtils {
      * @param datas int[]
      * @return String[]
      */
-    public static String[] intsToStrings(final int off, final int[] datas) {
+    public static String[] intsToStrings(
+            final int off,
+            final int[] datas
+    ) {
         return intsToStrings(off, (datas != null) ? datas.length : 0, datas);
     }
 
@@ -868,7 +926,11 @@ public final class ConvertUtils {
      * @param datas  int[]
      * @return String[]
      */
-    public static String[] intsToStrings(final int off, final int length, final int[] datas) {
+    public static String[] intsToStrings(
+            final int off,
+            final int length,
+            final int[] datas
+    ) {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         String[] strings = new String[length - off];
@@ -895,7 +957,10 @@ public final class ConvertUtils {
      * @param datas double[]
      * @return String[]
      */
-    public static String[] doublesToStrings(final int off, final double[] datas) {
+    public static String[] doublesToStrings(
+            final int off,
+            final double[] datas
+    ) {
         return doublesToStrings(off, (datas != null) ? datas.length : 0, datas);
     }
 
@@ -906,7 +971,11 @@ public final class ConvertUtils {
      * @param datas  double[]
      * @return String[]
      */
-    public static String[] doublesToStrings(final int off, final int length, final double[] datas) {
+    public static String[] doublesToStrings(
+            final int off,
+            final int length,
+            final double[] datas
+    ) {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         String[] strings = new String[length - off];
@@ -933,7 +1002,10 @@ public final class ConvertUtils {
      * @param datas long[]
      * @return String[]
      */
-    public static String[] longsToStrings(final int off, final long[] datas) {
+    public static String[] longsToStrings(
+            final int off,
+            final long[] datas
+    ) {
         return longsToStrings(off, (datas != null) ? datas.length : 0, datas);
     }
 
@@ -944,7 +1016,11 @@ public final class ConvertUtils {
      * @param datas  long[]
      * @return String[]
      */
-    public static String[] longsToStrings(final int off, final int length, final long[] datas) {
+    public static String[] longsToStrings(
+            final int off,
+            final int length,
+            final long[] datas
+    ) {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         String[] strings = new String[length - off];
@@ -971,7 +1047,10 @@ public final class ConvertUtils {
      * @param datas float[]
      * @return String[]
      */
-    public static String[] floatsToStrings(final int off, final float[] datas) {
+    public static String[] floatsToStrings(
+            final int off,
+            final float[] datas
+    ) {
         return floatsToStrings(off, (datas != null) ? datas.length : 0, datas);
     }
 
@@ -982,7 +1061,11 @@ public final class ConvertUtils {
      * @param datas  float[]
      * @return String[]
      */
-    public static String[] floatsToStrings(final int off, final int length, final float[] datas) {
+    public static String[] floatsToStrings(
+            final int off,
+            final int length,
+            final float[] datas
+    ) {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         String[] strings = new String[length - off];
@@ -1011,7 +1094,10 @@ public final class ConvertUtils {
      * @param datas int[]
      * @return double[]
      */
-    public static double[] intsToDoubles(final int off, final int[] datas) {
+    public static double[] intsToDoubles(
+            final int off,
+            final int[] datas
+    ) {
         return intsToDoubles(off, (datas != null) ? datas.length : 0, datas);
     }
 
@@ -1022,7 +1108,11 @@ public final class ConvertUtils {
      * @param datas  int[]
      * @return double[]
      */
-    public static double[] intsToDoubles(final int off, final int length, final int[] datas) {
+    public static double[] intsToDoubles(
+            final int off,
+            final int length,
+            final int[] datas
+    ) {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         double[] doubles = new double[length - off];
@@ -1049,7 +1139,10 @@ public final class ConvertUtils {
      * @param datas int[]
      * @return long[]
      */
-    public static long[] intsToLongs(final int off, final int[] datas) {
+    public static long[] intsToLongs(
+            final int off,
+            final int[] datas
+    ) {
         return intsToLongs(off, (datas != null) ? datas.length : 0, datas);
     }
 
@@ -1060,7 +1153,11 @@ public final class ConvertUtils {
      * @param datas  int[]
      * @return long[]
      */
-    public static long[] intsToLongs(final int off, final int length, final int[] datas) {
+    public static long[] intsToLongs(
+            final int off,
+            final int length,
+            final int[] datas
+    ) {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         long[] longs = new long[length - off];
@@ -1087,7 +1184,10 @@ public final class ConvertUtils {
      * @param datas int[]
      * @return float[]
      */
-    public static float[] intsToFloats(final int off, final int[] datas) {
+    public static float[] intsToFloats(
+            final int off,
+            final int[] datas
+    ) {
         return intsToFloats(off, (datas != null) ? datas.length : 0, datas);
     }
 
@@ -1098,7 +1198,11 @@ public final class ConvertUtils {
      * @param datas  int[]
      * @return float[]
      */
-    public static float[] intsToFloats(final int off, final int length, final int[] datas) {
+    public static float[] intsToFloats(
+            final int off,
+            final int length,
+            final int[] datas
+    ) {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         float[] floats = new float[length - off];
@@ -1127,7 +1231,10 @@ public final class ConvertUtils {
      * @param datas String[]
      * @return int[]
      */
-    public static int[] stringsToInts(final int off, final String... datas) {
+    public static int[] stringsToInts(
+            final int off,
+            final String... datas
+    ) {
         return stringsToInts(off, (datas != null) ? datas.length : 0, -1, datas);
     }
 
@@ -1138,7 +1245,11 @@ public final class ConvertUtils {
      * @param datas  String[]
      * @return int[]
      */
-    public static int[] stringsToInts(final int off, final int length, final String... datas) {
+    public static int[] stringsToInts(
+            final int off,
+            final int length,
+            final String... datas
+    ) {
         return stringsToInts(off, length, -1, datas);
     }
 
@@ -1150,7 +1261,12 @@ public final class ConvertUtils {
      * @param datas      String[]
      * @return int[]
      */
-    public static int[] stringsToInts(final int off, final int length, final int errorValue, final String... datas) {
+    public static int[] stringsToInts(
+            final int off,
+            final int length,
+            final int errorValue,
+            final String... datas
+    ) {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         int[] ints = new int[length - off];
@@ -1181,7 +1297,10 @@ public final class ConvertUtils {
      * @param datas String[]
      * @return double[]
      */
-    public static double[] stringsToDoubles(final int off, final String... datas) {
+    public static double[] stringsToDoubles(
+            final int off,
+            final String... datas
+    ) {
         return stringsToDoubles(off, (datas != null) ? datas.length : 0, -1d, datas);
     }
 
@@ -1192,7 +1311,11 @@ public final class ConvertUtils {
      * @param datas  String[]
      * @return double[]
      */
-    public static double[] stringsToDoubles(final int off, final int length, final String... datas) {
+    public static double[] stringsToDoubles(
+            final int off,
+            final int length,
+            final String... datas
+    ) {
         return stringsToDoubles(off, length, -1d, datas);
     }
 
@@ -1204,7 +1327,12 @@ public final class ConvertUtils {
      * @param datas      String[]
      * @return double[]
      */
-    public static double[] stringsToDoubles(final int off, final int length, final double errorValue, final String... datas) {
+    public static double[] stringsToDoubles(
+            final int off,
+            final int length,
+            final double errorValue,
+            final String... datas
+    ) {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         double[] doubles = new double[length - off];
@@ -1235,7 +1363,10 @@ public final class ConvertUtils {
      * @param datas String[]
      * @return long[]
      */
-    public static long[] stringsToLongs(final int off, final String... datas) {
+    public static long[] stringsToLongs(
+            final int off,
+            final String... datas
+    ) {
         return stringsToLongs(off, (datas != null) ? datas.length : 0, -1L, datas);
     }
 
@@ -1246,7 +1377,11 @@ public final class ConvertUtils {
      * @param datas  String[]
      * @return long[]
      */
-    public static long[] stringsToLongs(final int off, final int length, final String... datas) {
+    public static long[] stringsToLongs(
+            final int off,
+            final int length,
+            final String... datas
+    ) {
         return stringsToLongs(off, length, -1L, datas);
     }
 
@@ -1258,7 +1393,12 @@ public final class ConvertUtils {
      * @param datas      String[]
      * @return long[]
      */
-    public static long[] stringsToLongs(final int off, final int length, final long errorValue, final String... datas) {
+    public static long[] stringsToLongs(
+            final int off,
+            final int length,
+            final long errorValue,
+            final String... datas
+    ) {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         long[] longs = new long[length - off];
@@ -1289,7 +1429,10 @@ public final class ConvertUtils {
      * @param datas String[]
      * @return float[]
      */
-    public static float[] stringsToFloats(final int off, final String... datas) {
+    public static float[] stringsToFloats(
+            final int off,
+            final String... datas
+    ) {
         return stringsToFloats(off, (datas != null) ? datas.length : 0, -1f, datas);
     }
 
@@ -1300,7 +1443,11 @@ public final class ConvertUtils {
      * @param datas  String[]
      * @return float[]
      */
-    public static float[] stringsToFloats(final int off, final int length, final String... datas) {
+    public static float[] stringsToFloats(
+            final int off,
+            final int length,
+            final String... datas
+    ) {
         return stringsToFloats(off, length, -1f, datas);
     }
 
@@ -1312,7 +1459,12 @@ public final class ConvertUtils {
      * @param datas      String[]
      * @return float[]
      */
-    public static float[] stringsToFloats(final int off, final int length, final float errorValue, final String... datas) {
+    public static float[] stringsToFloats(
+            final int off,
+            final int length,
+            final float errorValue,
+            final String... datas
+    ) {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         float[] floats = new float[length - off];
@@ -1345,7 +1497,10 @@ public final class ConvertUtils {
      * @param datas double[]
      * @return int[]
      */
-    public static int[] doublesToInts(final int off, final double[] datas) {
+    public static int[] doublesToInts(
+            final int off,
+            final double[] datas
+    ) {
         return doublesToInts(off, (datas != null) ? datas.length : 0, datas);
     }
 
@@ -1356,7 +1511,11 @@ public final class ConvertUtils {
      * @param datas  double[]
      * @return int[]
      */
-    public static int[] doublesToInts(final int off, final int length, final double[] datas) {
+    public static int[] doublesToInts(
+            final int off,
+            final int length,
+            final double[] datas
+    ) {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         int[] ints = new int[length - off];
@@ -1386,7 +1545,10 @@ public final class ConvertUtils {
      * @param datas long[]
      * @return int[]
      */
-    public static int[] longsToInts(final int off, final long[] datas) {
+    public static int[] longsToInts(
+            final int off,
+            final long[] datas
+    ) {
         return longsToInts(off, (datas != null) ? datas.length : 0, datas);
     }
 
@@ -1397,7 +1559,11 @@ public final class ConvertUtils {
      * @param datas  long[]
      * @return int[]
      */
-    public static int[] longsToInts(final int off, final int length, final long[] datas) {
+    public static int[] longsToInts(
+            final int off,
+            final int length,
+            final long[] datas
+    ) {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         int[] ints = new int[length - off];
@@ -1427,7 +1593,10 @@ public final class ConvertUtils {
      * @param datas float[]
      * @return int[]
      */
-    public static int[] floatsToInts(final int off, final float[] datas) {
+    public static int[] floatsToInts(
+            final int off,
+            final float[] datas
+    ) {
         return floatsToInts(off, (datas != null) ? datas.length : 0, datas);
     }
 
@@ -1438,7 +1607,11 @@ public final class ConvertUtils {
      * @param datas  float[]
      * @return int[]
      */
-    public static int[] floatsToInts(final int off, final int length, final float[] datas) {
+    public static int[] floatsToInts(
+            final int off,
+            final int length,
+            final float[] datas
+    ) {
         if (off < 0 || length < 1 || off >= length || datas == null || length > datas.length)
             return null;
         int[] ints = new int[length - off];
@@ -1601,7 +1774,10 @@ public final class ConvertUtils {
      * @return 一个整数
      * @throws Exception 当 ch 不是一个合法的十六进制字符时, 抛出运行时异常
      */
-    private static int toDigit(final char ch, final int index) throws Exception {
+    private static int toDigit(
+            final char ch,
+            final int index
+    ) throws Exception {
         int digit = Character.digit(ch, 16);
         if (digit == -1) {
             throw new Exception(String.format("Illegal hexadecimal character %s at index %s", ch, index));
@@ -1691,7 +1867,10 @@ public final class ConvertUtils {
      * @param toLowerCase {@code true} 小写格式, {@code false} 大写格式
      * @return 十六进制 char[]
      */
-    public static char[] toHexChars(final String str, final boolean toLowerCase) {
+    public static char[] toHexChars(
+            final String str,
+            final boolean toLowerCase
+    ) {
         return toHexChars(StringUtils.isEmpty(str) ? null : str.getBytes(), toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER);
     }
 
@@ -1712,7 +1891,10 @@ public final class ConvertUtils {
      * @param toLowerCase {@code true} 小写格式, {@code false} 大写格式
      * @return 十六进制 char[]
      */
-    public static char[] toHexChars(final byte[] data, final boolean toLowerCase) {
+    public static char[] toHexChars(
+            final byte[] data,
+            final boolean toLowerCase
+    ) {
         return toHexChars(data, toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER);
     }
 
@@ -1722,7 +1904,10 @@ public final class ConvertUtils {
      * @param hexDigits {@link #HEX_DIGITS}、{@link #HEX_DIGITS_UPPER}
      * @return 十六进制 char[]
      */
-    private static char[] toHexChars(final byte[] data, final char[] hexDigits) {
+    private static char[] toHexChars(
+            final byte[] data,
+            final char[] hexDigits
+    ) {
         if (data == null || hexDigits == null) return null;
         try {
             return toHexString(data, hexDigits).toCharArray();
@@ -1749,7 +1934,10 @@ public final class ConvertUtils {
      * @param toLowerCase {@code true} 小写格式, {@code false} 大写格式
      * @return 十六进制字符串
      */
-    public static String toHexString(final String str, final boolean toLowerCase) {
+    public static String toHexString(
+            final String str,
+            final boolean toLowerCase
+    ) {
         return toHexString(StringUtils.isEmpty(str) ? null : str.getBytes(), toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER);
     }
 
@@ -1770,7 +1958,10 @@ public final class ConvertUtils {
      * @param toLowerCase {@code true} 小写格式, {@code false} 大写格式
      * @return 十六进制字符串
      */
-    public static String toHexString(final byte[] data, final boolean toLowerCase) {
+    public static String toHexString(
+            final byte[] data,
+            final boolean toLowerCase
+    ) {
         return toHexString(data, toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER);
     }
 
@@ -1780,7 +1971,10 @@ public final class ConvertUtils {
      * @param hexDigits {@link #HEX_DIGITS}、{@link #HEX_DIGITS_UPPER}
      * @return 十六进制字符串
      */
-    private static String toHexString(final byte[] data, final char[] hexDigits) {
+    private static String toHexString(
+            final byte[] data,
+            final char[] hexDigits
+    ) {
         if (data == null || hexDigits == null) return null;
         try {
             int           len     = data.length;

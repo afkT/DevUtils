@@ -307,7 +307,10 @@ public final class ADBUtils {
      * @param params   安装选项
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean installApp(final String filePath, final String params) {
+    public static boolean installApp(
+            final String filePath,
+            final String params
+    ) {
         if (StringUtils.isSpace(params)) return false;
         boolean isRoot = isDeviceRooted();
         // adb install [-lrtsdg] <path_to_apk>
@@ -342,7 +345,10 @@ public final class ADBUtils {
      * @param params   安装选项
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean installAppSilent(final String filePath, final String params) {
+    public static boolean installAppSilent(
+            final String filePath,
+            final String params
+    ) {
         return installAppSilent(FileUtils.getFileByPath(filePath), params, isDeviceRooted());
     }
 
@@ -352,7 +358,10 @@ public final class ADBUtils {
      * @param params 安装选项
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean installAppSilent(final File file, final String params) {
+    public static boolean installAppSilent(
+            final File file,
+            final String params
+    ) {
         return installAppSilent(file, params, isDeviceRooted());
     }
 
@@ -363,7 +372,11 @@ public final class ADBUtils {
      * @param isRooted 是否 root
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean installAppSilent(final File file, final String params, final boolean isRooted) {
+    public static boolean installAppSilent(
+            final File file,
+            final String params,
+            final boolean isRooted
+    ) {
         if (!FileUtils.isFileExists(file)) return false;
         String                   filePath = '"' + file.getAbsolutePath() + '"';
         String                   command  = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm install " + (params == null ? "" : params + " ") + filePath;
@@ -388,7 +401,10 @@ public final class ADBUtils {
      * @param isKeepData  -k 参数可选, 表示卸载应用但保留数据和缓存目录
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean uninstallApp(final String packageName, final boolean isKeepData) {
+    public static boolean uninstallApp(
+            final String packageName,
+            final boolean isKeepData
+    ) {
         if (StringUtils.isSpace(packageName)) return false;
         boolean isRoot = isDeviceRooted();
         // adb uninstall [-k] <packageName>
@@ -418,7 +434,10 @@ public final class ADBUtils {
      * @param isKeepData  -k 参数可选, 表示卸载应用但保留数据和缓存目录
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData) {
+    public static boolean uninstallAppSilent(
+            final String packageName,
+            final boolean isKeepData
+    ) {
         return uninstallAppSilent(packageName, isKeepData, isDeviceRooted());
     }
 
@@ -429,7 +448,11 @@ public final class ADBUtils {
      * @param isRooted    是否 root
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData, final boolean isRooted) {
+    public static boolean uninstallAppSilent(
+            final String packageName,
+            final boolean isKeepData,
+            final boolean isRooted
+    ) {
         if (StringUtils.isSpace(packageName)) return false;
         String                   command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm uninstall " + (isKeepData ? "-k " : "") + packageName;
         ShellUtils.CommandResult result  = ShellUtils.execCmd(command, isRooted);
@@ -779,7 +802,10 @@ public final class ADBUtils {
      * @param activity    Activity Name
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isActivityTopRepeat(final String packageName, final String activity) {
+    public static boolean isActivityTopRepeat(
+            final String packageName,
+            final String activity
+    ) {
         if (TextUtils.isEmpty(packageName)) {
             return false;
         } else if (TextUtils.isEmpty(activity)) {
@@ -815,7 +841,10 @@ public final class ADBUtils {
      * @param activitys   Activity Name 集合
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isActivityTopRepeat(final String packageName, final List<String> activitys) {
+    public static boolean isActivityTopRepeat(
+            final String packageName,
+            final List<String> activitys
+    ) {
         if (TextUtils.isEmpty(packageName)) {
             return false;
         } else if (activitys == null || activitys.size() == 0) {
@@ -856,7 +885,10 @@ public final class ADBUtils {
      * @param activity    Activity Name
      * @return 指定 Activity 在栈顶重复总数
      */
-    public static int getActivityTopRepeatCount(final String packageName, final String activity) {
+    public static int getActivityTopRepeatCount(
+            final String packageName,
+            final String activity
+    ) {
         if (TextUtils.isEmpty(packageName)) {
             return 0;
         } else if (TextUtils.isEmpty(activity)) {
@@ -896,7 +928,10 @@ public final class ADBUtils {
      * @param activitys   Activity Name 集合
      * @return 指定 Activity 在栈顶重复总数
      */
-    public static int getActivityTopRepeatCount(final String packageName, final List<String> activitys) {
+    public static int getActivityTopRepeatCount(
+            final String packageName,
+            final List<String> activitys
+    ) {
         if (TextUtils.isEmpty(packageName)) {
             return 0;
         } else if (activitys == null || activitys.size() == 0) {
@@ -1002,7 +1037,10 @@ public final class ADBUtils {
      * @param closeActivity      是否关闭 Activity 所属的 APP 进程后再启动 Activity
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean startActivity(final String packageAndLauncher, final boolean closeActivity) {
+    public static boolean startActivity(
+            final String packageAndLauncher,
+            final boolean closeActivity
+    ) {
         return startActivity(packageAndLauncher, null, closeActivity);
     }
 
@@ -1013,7 +1051,11 @@ public final class ADBUtils {
      * @param closeActivity      是否关闭 Activity 所属的 APP 进程后再启动 Activity
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean startActivity(final String packageAndLauncher, final String append, final boolean closeActivity) {
+    public static boolean startActivity(
+            final String packageAndLauncher,
+            final String append,
+            final boolean closeActivity
+    ) {
         if (StringUtils.isSpace(packageAndLauncher)) return false;
         try {
             // am start [options] <INTENT>
@@ -1051,7 +1093,10 @@ public final class ADBUtils {
      * @param append            追加的信息, 例如传递参数等
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean startService(final String packageAndService, final String append) {
+    public static boolean startService(
+            final String packageAndService,
+            final String append
+    ) {
         if (StringUtils.isSpace(packageAndService)) return false;
         try {
             // am startservice [options] <INTENT>
@@ -1086,7 +1131,10 @@ public final class ADBUtils {
      * @param append            追加的信息, 例如传递参数等
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean stopService(final String packageAndService, final String append) {
+    public static boolean stopService(
+            final String packageAndService,
+            final String append
+    ) {
         if (StringUtils.isSpace(packageAndService)) return false;
         try {
             // am stopservice [options] <INTENT>
@@ -1139,7 +1187,10 @@ public final class ADBUtils {
      * @param broadcast           广播 INTENT
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean sendBroadcast(final String packageAndBroadcast, final String broadcast) {
+    public static boolean sendBroadcast(
+            final String packageAndBroadcast,
+            final String broadcast
+    ) {
         if (StringUtils.isSpace(packageAndBroadcast)) return false;
         if (StringUtils.isSpace(broadcast)) return false;
         try {
@@ -1180,7 +1231,10 @@ public final class ADBUtils {
      * @param level HIDDEN、RUNNING_MODERATE、BACKGROUND、RUNNING_LOW、MODERATE、RUNNING_CRITICAL、COMPLETE
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean sendTrimMemory(final int pid, final String level) {
+    public static boolean sendTrimMemory(
+            final int pid,
+            final String level
+    ) {
         if (StringUtils.isSpace(level)) return false;
         try {
             String cmd = "am send-trim-memory %s %s";
@@ -1256,7 +1310,10 @@ public final class ADBUtils {
      * @param y Y 轴坐标
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean tap(final float x, final float y) {
+    public static boolean tap(
+            final float x,
+            final float y
+    ) {
         try {
             // input [touchscreen|touchpad|touchnavigation] tap <x> <y>
             // input [ 屏幕、触摸板、导航键 ] tap
@@ -1280,7 +1337,10 @@ public final class ADBUtils {
      * @param y Y 轴坐标
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean swipeClick(final float x, final float y) {
+    public static boolean swipeClick(
+            final float x,
+            final float y
+    ) {
         return swipe(x, y, x, y, 100L);
     }
 
@@ -1291,7 +1351,11 @@ public final class ADBUtils {
      * @param time 按压时间
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean swipeClick(final float x, final float y, final long time) {
+    public static boolean swipeClick(
+            final float x,
+            final float y,
+            final long time
+    ) {
         return swipe(x, y, x, y, time);
     }
 
@@ -1304,7 +1368,13 @@ public final class ADBUtils {
      * @param time 滑动时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean swipe(final float x, final float y, final float toX, final float toY, final long time) {
+    public static boolean swipe(
+            final float x,
+            final float y,
+            final float toX,
+            final float toY,
+            final long time
+    ) {
         try {
             // input [touchscreen|touchpad|touchnavigation] swipe <x1> <y1> <x2> <y2> [duration(ms)]
             String cmd = "input touchscreen swipe %s %s %s %s %s";
@@ -1381,7 +1451,10 @@ public final class ADBUtils {
      * @param displayId -d display-id 指定截图的显示屏编号 ( 有多显示屏的情况下 ) 默认 0
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean screencap(final String path, final int displayId) {
+    public static boolean screencap(
+            final String path,
+            final int displayId
+    ) {
         if (StringUtils.isSpace(path)) return false;
         try {
             String cmd = "screencap -p -d %s %s";
@@ -1409,7 +1482,10 @@ public final class ADBUtils {
      * @param time 录制时长, 单位秒 ( 默认 / 最长 180 秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean screenrecord(final String path, final int time) {
+    public static boolean screenrecord(
+            final String path,
+            final int time
+    ) {
         return screenrecord(path, null, -1, time);
     }
 
@@ -1420,7 +1496,11 @@ public final class ADBUtils {
      * @param time 录制时长, 单位秒 ( 默认 / 最长 180 秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean screenrecord(final String path, final String size, final int time) {
+    public static boolean screenrecord(
+            final String path,
+            final String size,
+            final int time
+    ) {
         return screenrecord(path, size, -1, time);
     }
 
@@ -1432,7 +1512,12 @@ public final class ADBUtils {
      * @param time    录制时长, 单位秒 ( 默认 / 最长 180 秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean screenrecord(final String path, final String size, final int bitRate, final int time) {
+    public static boolean screenrecord(
+            final String path,
+            final String size,
+            final int bitRate,
+            final int time
+    ) {
         if (StringUtils.isSpace(path)) return false;
         try {
             StringBuilder builder = new StringBuilder();
@@ -1628,7 +1713,13 @@ public final class ADBUtils {
      * @param toY    滑动到 Y 轴坐标
      * @param number 循环次数
      */
-    public static void sendEventSlide(final float x, final float y, final float toX, final float toY, final int number) {
+    public static void sendEventSlide(
+            final float x,
+            final float y,
+            final float toX,
+            final float toY,
+            final int number
+    ) {
         List<String> lists = new ArrayList<>();
         // = 开头 =
         lists.add("sendevent /dev/input/event1 3 57 109");
@@ -1973,7 +2064,10 @@ public final class ADBUtils {
      * @param height 屏幕高度
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setScreenSize(final int width, final int height) {
+    public static boolean setScreenSize(
+            final int width,
+            final int height
+    ) {
         String cmd = "wm size %sx%s";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, width, height), true);
@@ -2019,7 +2113,12 @@ public final class ADBUtils {
      * @param bottom bottom padding
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setOverscan(final int left, final int top, final int right, final int bottom) {
+    public static boolean setOverscan(
+            final int left,
+            final int top,
+            final int right,
+            final int bottom
+    ) {
         String cmd = "wm overscan %s,%s,%s,%s";
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, left, top, right, bottom), true);
@@ -2202,7 +2301,10 @@ public final class ADBUtils {
      * @param accessibilityServiceName 无障碍服务名
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean openAccessibility(final String packageName, final String accessibilityServiceName) {
+    public static boolean openAccessibility(
+            final String packageName,
+            final String accessibilityServiceName
+    ) {
         if (StringUtils.isSpace(packageName)) return false;
         if (StringUtils.isSpace(accessibilityServiceName)) return false;
 
@@ -2222,7 +2324,10 @@ public final class ADBUtils {
      * @param accessibilityServiceName 无障碍服务名
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean closeAccessibility(final String packageName, final String accessibilityServiceName) {
+    public static boolean closeAccessibility(
+            final String packageName,
+            final String accessibilityServiceName
+    ) {
         if (StringUtils.isSpace(packageName)) return false;
         if (StringUtils.isSpace(accessibilityServiceName)) return false;
 

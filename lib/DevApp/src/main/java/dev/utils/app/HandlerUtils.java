@@ -57,7 +57,10 @@ public final class HandlerUtils {
      * @param runnable    可执行的任务
      * @param delayMillis 延迟时间
      */
-    public static void postRunnable(final Runnable runnable, final long delayMillis) {
+    public static void postRunnable(
+            final Runnable runnable,
+            final long delayMillis
+    ) {
         if (runnable != null) {
             getMainHandler().postDelayed(runnable, delayMillis);
         }
@@ -70,7 +73,12 @@ public final class HandlerUtils {
      * @param number      轮询次数
      * @param interval    轮询时间
      */
-    public static void postRunnable(final Runnable runnable, final long delayMillis, final int number, final long interval) {
+    public static void postRunnable(
+            final Runnable runnable,
+            final long delayMillis,
+            final int number,
+            final long interval
+    ) {
         postRunnable(runnable, delayMillis, number, interval, null);
     }
 
@@ -82,7 +90,13 @@ public final class HandlerUtils {
      * @param interval      轮询时间
      * @param onEndListener 结束通知
      */
-    public static void postRunnable(final Runnable runnable, final long delayMillis, final int number, final long interval, final OnEndListener onEndListener) {
+    public static void postRunnable(
+            final Runnable runnable,
+            final long delayMillis,
+            final int number,
+            final long interval,
+            final OnEndListener onEndListener
+    ) {
         if (runnable != null) {
             Runnable loop = new Runnable() {
                 private int mNumber;
@@ -143,7 +157,11 @@ public final class HandlerUtils {
          * @param number      轮询次数
          * @param interval    轮询时间
          */
-        void onEnd(long delayMillis, int number, long interval);
+        void onEnd(
+                long delayMillis,
+                int number,
+                long interval
+        );
     }
 
     // ================
@@ -183,7 +201,10 @@ public final class HandlerUtils {
      * @param runnable 线程任务
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean put(final String key, final Runnable runnable) {
+    public static boolean put(
+            final String key,
+            final Runnable runnable
+    ) {
         if (key != null && runnable != null) {
             try {
                 sRunnableMaps.put(key, runnable);
@@ -217,7 +238,10 @@ public final class HandlerUtils {
      * @param key         key
      * @param delayMillis 延迟时间
      */
-    public static void postRunnable(final String key, final long delayMillis) {
+    public static void postRunnable(
+            final String key,
+            final long delayMillis
+    ) {
         Runnable runnable = sRunnableMaps.get(key);
         if (runnable != null) {
             removeRunnable(runnable);

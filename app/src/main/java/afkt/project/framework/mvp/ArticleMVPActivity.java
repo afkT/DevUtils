@@ -23,7 +23,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 public class ArticleMVPActivity extends BaseMVPActivity<ArticleMVP.Presenter, BaseViewRecyclerviewBinding> implements ArticleMVP.View {
 
     // 加载动画
-    WhorlView vid_sli_load_view;
+    WhorlView      vid_sli_load_view;
     // 适配器
     ArticleAdapter articleAdapter;
 

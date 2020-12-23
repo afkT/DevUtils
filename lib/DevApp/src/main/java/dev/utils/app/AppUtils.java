@@ -269,7 +269,10 @@ public final class AppUtils {
      * @param flags       application flags
      * @return {@link ApplicationInfo}
      */
-    public static ApplicationInfo getApplicationInfo(final String packageName, final int flags) {
+    public static ApplicationInfo getApplicationInfo(
+            final String packageName,
+            final int flags
+    ) {
         try {
             return DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, flags);
         } catch (Exception e) {
@@ -293,7 +296,10 @@ public final class AppUtils {
      * @param flags       package flags
      * @return {@link ApplicationInfo}
      */
-    public static PackageInfo getPackageInfo(final String packageName, final int flags) {
+    public static PackageInfo getPackageInfo(
+            final String packageName,
+            final int flags
+    ) {
         try {
             return DevUtils.getContext().getPackageManager().getPackageInfo(packageName, flags);
         } catch (Exception e) {
@@ -317,7 +323,10 @@ public final class AppUtils {
      * @param mode     SharedPreferences 操作模式
      * @return {@link SharedPreferences}
      */
-    public static SharedPreferences getSharedPreferences(final String fileName, final int mode) {
+    public static SharedPreferences getSharedPreferences(
+            final String fileName,
+            final int mode
+    ) {
         try {
             return DevUtils.getContext().getSharedPreferences(fileName, mode);
         } catch (Exception e) {
@@ -568,7 +577,10 @@ public final class AppUtils {
      * @param algorithm   算法
      * @return 对应算法处理后的签名信息
      */
-    public static String getAppSignatureHash(final String packageName, final String algorithm) {
+    public static String getAppSignatureHash(
+            final String packageName,
+            final String algorithm
+    ) {
         if (StringUtils.isSpace(packageName)) return null;
         try {
             Signature[] signature = getAppSignature(packageName);
@@ -696,7 +708,10 @@ public final class AppUtils {
      * @param category Category
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isInstalledApp(final String action, final String category) {
+    public static boolean isInstalledApp(
+            final String action,
+            final String category
+    ) {
         try {
             Intent intent = new Intent(action);
             intent.addCategory(category);
@@ -761,7 +776,11 @@ public final class AppUtils {
      * @param requestCode 请求 code
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean startActivityForResult(final Activity activity, final Intent intent, final int requestCode) {
+    public static boolean startActivityForResult(
+            final Activity activity,
+            final Intent intent,
+            final int requestCode
+    ) {
         if (activity == null || intent == null) return false;
         try {
             activity.startActivityForResult(intent, requestCode);
@@ -788,7 +807,11 @@ public final class AppUtils {
      * @param requestCode   请求 code
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean startIntentSenderForResult(final Activity activity, final PendingIntent pendingIntent, final int requestCode) {
+    public static boolean startIntentSenderForResult(
+            final Activity activity,
+            final PendingIntent pendingIntent,
+            final int requestCode
+    ) {
         if (activity == null || pendingIntent == null) return false;
         try {
             activity.startIntentSenderForResult(pendingIntent.getIntentSender(), requestCode,
@@ -810,7 +833,10 @@ public final class AppUtils {
      * @param filter   {@link IntentFilter}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean registerReceiver(final BroadcastReceiver receiver, final IntentFilter filter) {
+    public static boolean registerReceiver(
+            final BroadcastReceiver receiver,
+            final IntentFilter filter
+    ) {
         if (receiver == null || filter == null) return false;
         try {
             DevUtils.getContext().registerReceiver(receiver, filter);
@@ -863,7 +889,10 @@ public final class AppUtils {
      * @param receiverPermission 广播权限
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean sendBroadcast(final Intent intent, final String receiverPermission) {
+    public static boolean sendBroadcast(
+            final Intent intent,
+            final String receiverPermission
+    ) {
         if (intent == null || receiverPermission == null) return false;
         try {
             DevUtils.getContext().sendBroadcast(intent, receiverPermission);
@@ -945,7 +974,11 @@ public final class AppUtils {
      * @param requestCode 请求 code
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean installApp(final Activity activity, final String filePath, final int requestCode) {
+    public static boolean installApp(
+            final Activity activity,
+            final String filePath,
+            final int requestCode
+    ) {
         return installApp(activity, FileUtils.getFileByPath(filePath), requestCode);
     }
 
@@ -956,7 +989,11 @@ public final class AppUtils {
      * @param requestCode 请求 code
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean installApp(final Activity activity, final File file, final int requestCode) {
+    public static boolean installApp(
+            final Activity activity,
+            final File file,
+            final int requestCode
+    ) {
         if (!FileUtils.isFileExists(file)) return false;
         try {
             activity.startActivityForResult(IntentUtils.getInstallAppIntent(file), requestCode);
@@ -993,7 +1030,10 @@ public final class AppUtils {
      * @param params   安装参数
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean installAppSilent(final String filePath, final String params) {
+    public static boolean installAppSilent(
+            final String filePath,
+            final String params
+    ) {
         return installAppSilent(FileUtils.getFileByPath(filePath), params, ADBUtils.isDeviceRooted());
     }
 
@@ -1003,7 +1043,10 @@ public final class AppUtils {
      * @param params 安装参数
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean installAppSilent(final File file, final String params) {
+    public static boolean installAppSilent(
+            final File file,
+            final String params
+    ) {
         return installAppSilent(file, params, ADBUtils.isDeviceRooted());
     }
 
@@ -1014,7 +1057,11 @@ public final class AppUtils {
      * @param isRooted 是否 root
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean installAppSilent(final File file, final String params, final boolean isRooted) {
+    public static boolean installAppSilent(
+            final File file,
+            final String params,
+            final boolean isRooted
+    ) {
         if (!FileUtils.isFileExists(file)) return false;
         String                   filePath = '"' + file.getAbsolutePath() + '"';
         String                   command  = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm install " + (params == null ? "" : params + " ") + filePath;
@@ -1046,7 +1093,11 @@ public final class AppUtils {
      * @param requestCode 请求 code
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean uninstallApp(final Activity activity, final String packageName, final int requestCode) {
+    public static boolean uninstallApp(
+            final Activity activity,
+            final String packageName,
+            final int requestCode
+    ) {
         if (StringUtils.isSpace(packageName)) return false;
         try {
             activity.startActivityForResult(IntentUtils.getUninstallAppIntent(packageName), requestCode);
@@ -1072,7 +1123,10 @@ public final class AppUtils {
      * @param isKeepData  true 表示卸载应用但保留数据和缓存目录
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData) {
+    public static boolean uninstallAppSilent(
+            final String packageName,
+            final boolean isKeepData
+    ) {
         return uninstallAppSilent(packageName, isKeepData, ADBUtils.isDeviceRooted());
     }
 
@@ -1083,7 +1137,11 @@ public final class AppUtils {
      * @param isRooted    是否 root
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean uninstallAppSilent(final String packageName, final boolean isKeepData, final boolean isRooted) {
+    public static boolean uninstallAppSilent(
+            final String packageName,
+            final boolean isKeepData,
+            final boolean isRooted
+    ) {
         if (StringUtils.isSpace(packageName)) return false;
         String                   command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm uninstall " + (isKeepData ? "-k " : "") + packageName;
         ShellUtils.CommandResult result  = ShellUtils.execCmd(command, isRooted);
@@ -1116,7 +1174,11 @@ public final class AppUtils {
      * @param requestCode 请求 code
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean launchApp(final Activity activity, final String packageName, final int requestCode) {
+    public static boolean launchApp(
+            final Activity activity,
+            final String packageName,
+            final int requestCode
+    ) {
         if (StringUtils.isSpace(packageName)) return false;
         try {
             activity.startActivityForResult(IntentUtils.getLaunchAppIntent(packageName), requestCode);
@@ -1167,7 +1229,10 @@ public final class AppUtils {
      * @param marketPkg   应用商店包名, 如果为 ""  则由系统弹出应用商店列表供用户选择, 否则调转到目标市场的应用详情界面, 某些应用商店可能会失败
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean launchAppDetails(final String packageName, final String marketPkg) {
+    public static boolean launchAppDetails(
+            final String packageName,
+            final String marketPkg
+    ) {
         if (StringUtils.isSpace(packageName)) return false;
         try {
             return startActivity(IntentUtils.getLaunchAppDetailIntent(packageName, marketPkg, true));
@@ -1187,7 +1252,10 @@ public final class AppUtils {
      * @param dataType 数据类型
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean openFile(final String filePath, final String dataType) {
+    public static boolean openFile(
+            final String filePath,
+            final String dataType
+    ) {
         return openFile(FileUtils.getFileByPath(filePath), dataType);
     }
 
@@ -1197,7 +1265,10 @@ public final class AppUtils {
      * @param dataType 数据类型
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean openFile(final File file, final String dataType) {
+    public static boolean openFile(
+            final File file,
+            final String dataType
+    ) {
         if (!FileUtils.isFileExists(file)) return false;
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -1220,7 +1291,11 @@ public final class AppUtils {
      * @param className   Activity.class.getCanonicalName()
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean openFileByApp(final String filePath, final String packageName, final String className) {
+    public static boolean openFileByApp(
+            final String filePath,
+            final String packageName,
+            final String className
+    ) {
         return openFileByApp(FileUtils.getFileByPath(filePath), packageName, className);
     }
 
@@ -1231,7 +1306,11 @@ public final class AppUtils {
      * @param className   Activity.class.getCanonicalName()
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean openFileByApp(final File file, final String packageName, final String className) {
+    public static boolean openFileByApp(
+            final File file,
+            final String packageName,
+            final String className
+    ) {
         if (!FileUtils.isFileExists(file)) return false;
         try {
             Intent intent = new Intent();
@@ -1332,7 +1411,10 @@ public final class AppUtils {
      * @param requestCode 请求 code
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean startSysSetting(final Activity activity, final int requestCode) {
+    public static boolean startSysSetting(
+            final Activity activity,
+            final int requestCode
+    ) {
         try {
             activity.startActivityForResult(new Intent(Settings.ACTION_SETTINGS), requestCode);
             return true;
@@ -1361,7 +1443,10 @@ public final class AppUtils {
      * @param requestCode 请求 code
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean openWirelessSettings(final Activity activity, final int requestCode) {
+    public static boolean openWirelessSettings(
+            final Activity activity,
+            final int requestCode
+    ) {
         try {
             activity.startActivityForResult(new Intent(Settings.ACTION_WIRELESS_SETTINGS), requestCode);
             return true;

@@ -138,14 +138,20 @@ public interface IHttpEngine {
          * @param call     {@link Call}
          * @param response {@link Response}
          */
-        public abstract void onResponse(Call call, T response);
+        public abstract void onResponse(
+                Call call,
+                T response
+        );
 
         /**
          * 请求失败
          * @param call      {@link Call}
          * @param throwable {@link Throwable}
          */
-        public abstract void onFailure(Call call, Throwable throwable);
+        public abstract void onFailure(
+                Call call,
+                Throwable throwable
+        );
     }
 
     // =============
@@ -158,7 +164,10 @@ public interface IHttpEngine {
      * @param callback {@link RequestCallback}
      * @return {@link Call}
      */
-    Call newCall(Request request, RequestCallback callback);
+    Call newCall(
+            Request request,
+            RequestCallback callback
+    );
 
     // ===========
     // = 操作方法 =

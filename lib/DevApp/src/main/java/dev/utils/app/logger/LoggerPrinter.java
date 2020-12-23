@@ -91,7 +91,10 @@ final class LoggerPrinter implements IPrinter {
      * @param args    格式化参数
      */
     @Override
-    public void d(final String message, final Object... args) {
+    public void d(
+            final String message,
+            final Object... args
+    ) {
         logHandle(Log.DEBUG, message, args);
     }
 
@@ -101,7 +104,10 @@ final class LoggerPrinter implements IPrinter {
      * @param args    格式化参数
      */
     @Override
-    public void e(final String message, final Object... args) {
+    public void e(
+            final String message,
+            final Object... args
+    ) {
         e(null, message, args);
     }
 
@@ -121,7 +127,11 @@ final class LoggerPrinter implements IPrinter {
      * @param args      格式化参数
      */
     @Override
-    public void e(final Throwable throwable, final String message, final Object... args) {
+    public void e(
+            final Throwable throwable,
+            final String message,
+            final Object... args
+    ) {
         // 日志消息
         String logMsg = message;
         // 判断消息
@@ -142,7 +152,10 @@ final class LoggerPrinter implements IPrinter {
      * @param args    格式化参数
      */
     @Override
-    public void w(final String message, final Object... args) {
+    public void w(
+            final String message,
+            final Object... args
+    ) {
         logHandle(Log.WARN, message, args);
     }
 
@@ -152,7 +165,10 @@ final class LoggerPrinter implements IPrinter {
      * @param args    格式化参数
      */
     @Override
-    public void i(final String message, final Object... args) {
+    public void i(
+            final String message,
+            final Object... args
+    ) {
         logHandle(Log.INFO, message, args);
     }
 
@@ -162,7 +178,10 @@ final class LoggerPrinter implements IPrinter {
      * @param args    格式化参数
      */
     @Override
-    public void v(final String message, final Object... args) {
+    public void v(
+            final String message,
+            final Object... args
+    ) {
         logHandle(Log.VERBOSE, message, args);
     }
 
@@ -172,7 +191,10 @@ final class LoggerPrinter implements IPrinter {
      * @param args    格式化参数
      */
     @Override
-    public void wtf(final String message, final Object... args) {
+    public void wtf(
+            final String message,
+            final Object... args
+    ) {
         logHandle(Log.ASSERT, message, args);
     }
 
@@ -293,7 +315,11 @@ final class LoggerPrinter implements IPrinter {
      * @param args    格式化参数
      */
     @Override
-    public void dTag(final String tag, final String message, final Object... args) {
+    public void dTag(
+            final String tag,
+            final String message,
+            final Object... args
+    ) {
         logHandle(tag, Log.DEBUG, message, args);
     }
 
@@ -304,7 +330,11 @@ final class LoggerPrinter implements IPrinter {
      * @param args    格式化参数
      */
     @Override
-    public void eTag(final String tag, final String message, final Object... args) {
+    public void eTag(
+            final String tag,
+            final String message,
+            final Object... args
+    ) {
         eTag(tag, null, message, args);
     }
 
@@ -314,7 +344,10 @@ final class LoggerPrinter implements IPrinter {
      * @param throwable 异常
      */
     @Override
-    public void eTag(final String tag, final Throwable throwable) {
+    public void eTag(
+            final String tag,
+            final Throwable throwable
+    ) {
         eTag(tag, throwable, null);
     }
 
@@ -326,7 +359,12 @@ final class LoggerPrinter implements IPrinter {
      * @param args      格式化参数
      */
     @Override
-    public void eTag(final String tag, final Throwable throwable, final String message, final Object... args) {
+    public void eTag(
+            final String tag,
+            final Throwable throwable,
+            final String message,
+            final Object... args
+    ) {
         // 日志消息
         String logMsg = message;
         // 判断消息
@@ -348,7 +386,11 @@ final class LoggerPrinter implements IPrinter {
      * @param args    格式化参数
      */
     @Override
-    public void wTag(final String tag, final String message, final Object... args) {
+    public void wTag(
+            final String tag,
+            final String message,
+            final Object... args
+    ) {
         logHandle(tag, Log.WARN, message, args);
     }
 
@@ -359,7 +401,11 @@ final class LoggerPrinter implements IPrinter {
      * @param args    格式化参数
      */
     @Override
-    public void iTag(final String tag, final String message, final Object... args) {
+    public void iTag(
+            final String tag,
+            final String message,
+            final Object... args
+    ) {
         logHandle(tag, Log.INFO, message, args);
     }
 
@@ -370,7 +416,11 @@ final class LoggerPrinter implements IPrinter {
      * @param args    格式化参数
      */
     @Override
-    public void vTag(final String tag, final String message, final Object... args) {
+    public void vTag(
+            final String tag,
+            final String message,
+            final Object... args
+    ) {
         logHandle(tag, Log.VERBOSE, message, args);
     }
 
@@ -381,7 +431,11 @@ final class LoggerPrinter implements IPrinter {
      * @param args    格式化参数
      */
     @Override
-    public void wtfTag(final String tag, final String message, final Object... args) {
+    public void wtfTag(
+            final String tag,
+            final String message,
+            final Object... args
+    ) {
         logHandle(tag, Log.ASSERT, message, args);
     }
 
@@ -393,7 +447,10 @@ final class LoggerPrinter implements IPrinter {
      * @param json JSON 格式字符串
      */
     @Override
-    public void jsonTag(final String tag, final String json) {
+    public void jsonTag(
+            final String tag,
+            final String json
+    ) {
         // 获取当前线程日志配置信息
         LogConfig logConfig = getThreadLogConfig();
         // 判断是否打印日志 ( 日志级别 )
@@ -448,7 +505,10 @@ final class LoggerPrinter implements IPrinter {
      * @param xml XML 格式字符串
      */
     @Override
-    public void xmlTag(final String tag, final String xml) {
+    public void xmlTag(
+            final String tag,
+            final String xml
+    ) {
         // 获取当前线程日志配置信息
         LogConfig logConfig = getThreadLogConfig();
         // 判断是否打印日志 ( 日志级别 )
@@ -499,7 +559,10 @@ final class LoggerPrinter implements IPrinter {
      * @param logType   日志类型
      * @return {@code true} yes, {@code false} no
      */
-    private boolean isPrintLog(final LogConfig logConfig, final int logType) {
+    private boolean isPrintLog(
+            final LogConfig logConfig,
+            final int logType
+    ) {
         // 是否打印日志 ( 默认不打印 )
         boolean isPrint = false;
         // 日志级别
@@ -528,7 +591,10 @@ final class LoggerPrinter implements IPrinter {
      * @param logType  日志类型
      * @return {@code true} yes, {@code false} no
      */
-    private boolean checkLogLevel(final LogLevel logLevel, final int logType) {
+    private boolean checkLogLevel(
+            final LogLevel logLevel,
+            final int logType
+    ) {
         switch (logLevel) {
             case INFO: // 正常级别 i
                 if (logType != Log.VERBOSE && logType != Log.DEBUG) {
@@ -561,7 +627,11 @@ final class LoggerPrinter implements IPrinter {
      * @param tag     日志 TAG
      * @param message 日志信息
      */
-    private void finalLogPrinter(final int logType, final String tag, final String message) {
+    private void finalLogPrinter(
+            final int logType,
+            final String tag,
+            final String message
+    ) {
         if (DevLogger.sPrint != null) {
             DevLogger.sPrint.printLog(logType, tag, message);
         }
@@ -573,7 +643,11 @@ final class LoggerPrinter implements IPrinter {
      * @param message 日志信息
      * @param args    占位符替换
      */
-    private void logHandle(final int logType, final String message, final Object... args) {
+    private void logHandle(
+            final int logType,
+            final String message,
+            final Object... args
+    ) {
         logHandle(null, null, logType, message, args);
     }
 
@@ -584,7 +658,12 @@ final class LoggerPrinter implements IPrinter {
      * @param message 日志信息
      * @param args    占位符替换
      */
-    private void logHandle(final String tag, final int logType, final String message, final Object... args) {
+    private void logHandle(
+            final String tag,
+            final int logType,
+            final String message,
+            final Object... args
+    ) {
         logHandle(null, tag, logType, message, args);
     }
 
@@ -596,7 +675,13 @@ final class LoggerPrinter implements IPrinter {
      * @param msg     日志信息
      * @param args    占位符替换
      */
-    private synchronized void logHandle(final LogConfig config, final String tag, final int logType, final String msg, final Object... args) {
+    private synchronized void logHandle(
+            final LogConfig config,
+            final String tag,
+            final int logType,
+            final String msg,
+            final Object... args
+    ) {
         LogConfig logConfig = config;
         // 如果配置为 null, 才进行获取
         if (logConfig == null) {
@@ -686,7 +771,13 @@ final class LoggerPrinter implements IPrinter {
      * @param methodCount  方法总数
      * @param methodOffset 方法偏移索引
      */
-    private void logHeaderContent(final LogConfig logConfig, final int logType, final String tag, int methodCount, int methodOffset) {
+    private void logHeaderContent(
+            final LogConfig logConfig,
+            final int logType,
+            final String tag,
+            int methodCount,
+            int methodOffset
+    ) {
         StackTraceElement[] trace = Thread.currentThread().getStackTrace();
         // 判断是否显示日志线程信息
         if (!logConfig.displayThreadInfo) return;
@@ -745,7 +836,10 @@ final class LoggerPrinter implements IPrinter {
      * @param logType 日志类型
      * @param tag     日志 TAG
      */
-    private void logTopBorder(final int logType, final String tag) {
+    private void logTopBorder(
+            final int logType,
+            final String tag
+    ) {
         finalLogPrinter(logType, tag, LogConstants.TOP_BORDER);
     }
 
@@ -754,7 +848,10 @@ final class LoggerPrinter implements IPrinter {
      * @param logType 日志类型
      * @param tag     日志 TAG
      */
-    private void logBottomBorder(final int logType, final String tag) {
+    private void logBottomBorder(
+            final int logType,
+            final String tag
+    ) {
         finalLogPrinter(logType, tag, LogConstants.BOTTOM_BORDER);
     }
 
@@ -763,7 +860,10 @@ final class LoggerPrinter implements IPrinter {
      * @param logType 日志类型
      * @param tag     日志 TAG
      */
-    private void logDivider(final int logType, final String tag) {
+    private void logDivider(
+            final int logType,
+            final String tag
+    ) {
         finalLogPrinter(logType, tag, LogConstants.MIDDLE_BORDER);
     }
 
@@ -773,7 +873,11 @@ final class LoggerPrinter implements IPrinter {
      * @param tag     日志 TAG
      * @param msg     日志信息
      */
-    private void logContent(final int logType, final String tag, final String msg) {
+    private void logContent(
+            final int logType,
+            final String tag,
+            final String msg
+    ) {
         String[] lines = msg.split(DevFinal.NEW_LINE_STR);
         for (String line : lines) {
             finalLogPrinter(logType, tag, LogConstants.HORIZONTAL_DOUBLE_LINE + " " + line);
@@ -786,7 +890,10 @@ final class LoggerPrinter implements IPrinter {
      * @param args    占位符替换
      * @return 处理 ( 格式化 ) 后准备打印的日志信息
      */
-    private String createMessage(final String message, final Object... args) {
+    private String createMessage(
+            final String message,
+            final Object... args
+    ) {
         if (message != null) {
             try {
                 return args.length == 0 ? message : String.format(message, args);

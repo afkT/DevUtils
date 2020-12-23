@@ -37,11 +37,11 @@ import dev.utils.app.wifi.WifiUtils;
 public class WifiActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     // Wifi 工具类
-    WifiUtils wifiUtils;
+    WifiUtils    wifiUtils;
     // Wifi 热点工具类
     WifiHotUtils wifiHotUtils;
     // 热点名、密码
-    String wifiHotSSID = "DevWifiAp", wifiHotPwd = "123456789";
+    String       wifiHotSSID = "DevWifiAp", wifiHotPwd = "123456789";
     // Android 8.0 开启热点不能多次点击
     boolean isOpenAPING = false;
 

@@ -93,7 +93,10 @@ public final class DateUtils {
      * @param format 日期格式
      * @return 按照指定格式的日期字符串
      */
-    public static String formatTime(final long time, final String format) {
+    public static String formatTime(
+            final long time,
+            final String format
+    ) {
         if (format == null) return null;
         try {
             return new SimpleDateFormat(format).format(time);
@@ -109,7 +112,10 @@ public final class DateUtils {
      * @param format 日期格式
      * @return 按照指定格式的日期字符串
      */
-    public static String formatDate(final Date date, final String format) {
+    public static String formatDate(
+            final Date date,
+            final String format
+    ) {
         if (date == null || format == null) return null;
         try {
             return new SimpleDateFormat(format).format(date);
@@ -150,7 +156,10 @@ public final class DateUtils {
      * @param format 日期格式
      * @return {@link Date}
      */
-    public static Date parseDate(final String time, final String format) {
+    public static Date parseDate(
+            final String time,
+            final String format
+    ) {
         if (time == null || format == null) return null;
         try {
             return new SimpleDateFormat(format).parse(time);
@@ -177,7 +186,10 @@ public final class DateUtils {
      * @param format 时间的格式
      * @return 毫秒时间
      */
-    public static long parseLong(final String time, final String format) {
+    public static long parseLong(
+            final String time,
+            final String format
+    ) {
         if (time == null || format == null) return 0L;
         try {
             // 按规定的时间格式, 进行格式化时间, 并且获取 long 时间毫秒, 返回毫秒时间
@@ -195,7 +207,11 @@ public final class DateUtils {
      * @param format     把 time 转换成需要的格式
      * @return 转换指定格式的时间字符串
      */
-    public static String parseToString(final String time, final String timeFormat, final String format) {
+    public static String parseToString(
+            final String time,
+            final String timeFormat,
+            final String format
+    ) {
         if (time != null && timeFormat != null && format != null) {
             try {
                 Date date = parseDate(time, timeFormat);
@@ -252,7 +268,10 @@ public final class DateUtils {
      * @param time2 对比时间 yyyy-MM-dd HH:mm:ss 格式
      * @return 时间差 ( 毫秒 )
      */
-    public static long getTimeDiff(final String time1, final String time2) {
+    public static long getTimeDiff(
+            final String time1,
+            final String time2
+    ) {
         long timeLong1 = parseLong(time1);
         long timeLong2 = parseLong(time2);
         if (timeLong1 > 1L && timeLong2 > 1L) {
@@ -269,7 +288,12 @@ public final class DateUtils {
      * @param timeFormat2 对比时间格式
      * @return 时间差 ( 毫秒 )
      */
-    public static long getTimeDiff(final String time1, final String timeFormat1, final String time2, final String timeFormat2) {
+    public static long getTimeDiff(
+            final String time1,
+            final String timeFormat1,
+            final String time2,
+            final String timeFormat2
+    ) {
         long timeLong1 = parseLong(time1, timeFormat1);
         long timeLong2 = parseLong(time2, timeFormat2);
         if (timeLong1 > 1L && timeLong2 > 1L) {
@@ -433,7 +457,10 @@ public final class DateUtils {
      * @param append 判断是否需要自动补 0
      * @return 自动补 0 时间字符串
      */
-    public static String timeAddZero(final int time, final boolean append) {
+    public static String timeAddZero(
+            final int time,
+            final boolean append
+    ) {
         return NumberUtils.addZero(time, append);
     }
 
@@ -520,7 +547,10 @@ public final class DateUtils {
      * @param month 月份
      * @return 指定年份所属的月份的天数
      */
-    public static int getMonthDayNumberAll(final int year, final int month) {
+    public static int getMonthDayNumberAll(
+            final int year,
+            final int month
+    ) {
         int number = 31;
         // 判断返回的标识数字
         switch (month) {
@@ -570,7 +600,10 @@ public final class DateUtils {
      * @param month 月份
      * @return 内部判断是否相同一年、月份, 不能超过限制未来的天数
      */
-    public static int getMonthDayNumber(final int year, final int month) {
+    public static int getMonthDayNumber(
+            final int year,
+            final int month
+    ) {
         // 判断年份, 相同则判断月份
         if (year == getYear()) {
             // 判断月份, 相同则返回天数
@@ -695,7 +728,10 @@ public final class DateUtils {
      *             2 = 00:00 - 23:30 = 每 30 分钟间隔
      * @return 指定数据, 在对应格式类型内的索引
      */
-    public static int getListToHHMMPosition(final String time, final int type) {
+    public static int getListToHHMMPosition(
+            final String time,
+            final int type
+    ) {
         if (time != null && time.length() != 0) {
             // 进行拆分
             String[] timeSplit = time.split(":");
@@ -766,7 +802,10 @@ public final class DateUtils {
      * @param isHandlerMDay 是否处理大于一天的时间
      * @return 转换 (00:00:00 格式 ) 时间字符串
      */
-    public static String secToTimeRetain(final int time, final boolean isHandlerMDay) {
+    public static String secToTimeRetain(
+            final int time,
+            final boolean isHandlerMDay
+    ) {
         try {
             if (time <= 0) {
                 return "00:00:00";
@@ -868,7 +907,10 @@ public final class DateUtils {
      *                  precision = 5, return 天, 小时, 分钟, 秒, 毫秒
      * @return 转换指定格式的时间字符串
      */
-    public static String millisToFitTimeSpan(final long millis, final int precision) {
+    public static String millisToFitTimeSpan(
+            final long millis,
+            final int precision
+    ) {
         if (millis <= 0 || precision <= 0) return null;
 
         long millisTime      = millis;
@@ -918,7 +960,10 @@ public final class DateUtils {
      * @param endTime   结束时间
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isInTimeHHmm(final String startTime, final String endTime) {
+    public static boolean isInTimeHHmm(
+            final String startTime,
+            final String endTime
+    ) {
         return isInTime(formatTime(System.currentTimeMillis(), HHmm), startTime, endTime, HHmm);
     }
 
@@ -929,7 +974,11 @@ public final class DateUtils {
      * @param endTime   结束时间
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isInTimeHHmm(final String nowTime, final String startTime, final String endTime) {
+    public static boolean isInTimeHHmm(
+            final String nowTime,
+            final String startTime,
+            final String endTime
+    ) {
         return isInTime(nowTime, startTime, endTime, HHmm);
     }
 
@@ -939,7 +988,10 @@ public final class DateUtils {
      * @param endTime   结束时间
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isInTimeHHmmss(final String startTime, final String endTime) {
+    public static boolean isInTimeHHmmss(
+            final String startTime,
+            final String endTime
+    ) {
         return isInTime(formatTime(System.currentTimeMillis(), HHmmss), startTime, endTime, HHmmss);
     }
 
@@ -950,7 +1002,11 @@ public final class DateUtils {
      * @param endTime   结束时间
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isInTimeHHmmss(final String nowTime, final String startTime, final String endTime) {
+    public static boolean isInTimeHHmmss(
+            final String nowTime,
+            final String startTime,
+            final String endTime
+    ) {
         return isInTime(nowTime, startTime, endTime, HHmmss);
     }
 
@@ -962,7 +1018,12 @@ public final class DateUtils {
      * @param format    时间格式
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isInTime(final String nowTime, final String startTime, final String endTime, final String format) {
+    public static boolean isInTime(
+            final String nowTime,
+            final String startTime,
+            final String endTime,
+            final String format
+    ) {
         if (nowTime == null || startTime == null || endTime == null || format == null) return false;
         try {
             // 格式化日期
@@ -996,7 +1057,11 @@ public final class DateUtils {
      * @param endTime   结束时间
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isInTime(final long nowTime, final long startTime, final long endTime) {
+    public static boolean isInTime(
+            final long nowTime,
+            final long startTime,
+            final long endTime
+    ) {
         return isInDate(new Date(nowTime), new Date(startTime), new Date(endTime));
     }
 
@@ -1007,7 +1072,11 @@ public final class DateUtils {
      * @param endTime   结束时间
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isInDate(final Date nowTime, final Date startTime, final Date endTime) {
+    public static boolean isInDate(
+            final Date nowTime,
+            final Date startTime,
+            final Date endTime
+    ) {
         if (nowTime == null || startTime == null || endTime == null) {
             return false;
         } else if (nowTime.getTime() == startTime.getTime() || nowTime.getTime() == endTime.getTime()) {
@@ -1043,7 +1112,10 @@ public final class DateUtils {
      * @param endTime   结束时间 HH:mm
      * @return 距离指定结束时间还有多少毫秒
      */
-    public static long getEndTimeDiffHHmm(final long startTime, final String endTime) {
+    public static long getEndTimeDiffHHmm(
+            final long startTime,
+            final String endTime
+    ) {
         return getEndTimeDiff(startTime, endTime, HHmm);
     }
 
@@ -1053,7 +1125,10 @@ public final class DateUtils {
      * @param format  格式 如: HH:mm
      * @return 距离指定结束时间还有多少毫秒
      */
-    public static long getEndTimeDiff(final String endTime, final String format) {
+    public static long getEndTimeDiff(
+            final String endTime,
+            final String format
+    ) {
         return getEndTimeDiff(System.currentTimeMillis(), endTime, format);
     }
 
@@ -1069,7 +1144,11 @@ public final class DateUtils {
      * @param format    格式 如: HH:mm
      * @return 距离指定结束时间还有多少毫秒
      */
-    public static long getEndTimeDiff(final long startTime, final String endTime, final String format) {
+    public static long getEndTimeDiff(
+            final long startTime,
+            final String endTime,
+            final String format
+    ) {
         if (startTime < 1 || endTime == null || format == null) return -1;
         try {
             // 判断格式是否加了秒
@@ -1141,7 +1220,10 @@ public final class DateUtils {
      * @param day   天数
      * @return 星座
      */
-    public static String getConstellation(final int month, final int day) {
+    public static String getConstellation(
+            final int month,
+            final int day
+    ) {
         if (month > 12 || month < 1) return null;
         return CONSTELLATION[day >= CONSTELLATION_DAY[month - 1] ? month - 1 : (month + 10) % 12];
     }
@@ -1152,7 +1234,10 @@ public final class DateUtils {
      * @param day   天数
      * @return 星座日期
      */
-    public static String getConstellationDate(final int month, final int day) {
+    public static String getConstellationDate(
+            final int month,
+            final int day
+    ) {
         if (month > 12 || month < 1) return null;
         return CONSTELLATION_DATE[day >= CONSTELLATION_DAY[month - 1] ? month - 1 : (month + 10) % 12];
     }

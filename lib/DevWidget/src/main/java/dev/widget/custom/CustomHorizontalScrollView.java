@@ -36,18 +36,30 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
         super(context);
     }
 
-    public CustomHorizontalScrollView(Context context, AttributeSet attrs) {
+    public CustomHorizontalScrollView(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
         initAttrs(context, attrs);
     }
 
-    public CustomHorizontalScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CustomHorizontalScrollView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
         initAttrs(context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public CustomHorizontalScrollView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public CustomHorizontalScrollView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
+    ) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initAttrs(context, attrs);
     }
@@ -57,7 +69,10 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
      * @param context {@link Context}
      * @param attrs   {@link AttributeSet}
      */
-    private void initAttrs(Context context, AttributeSet attrs) {
+    private void initAttrs(
+            Context context,
+            AttributeSet attrs
+    ) {
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
             mIsSlide = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
@@ -68,13 +83,21 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    protected void onMeasure(
+            int widthMeasureSpec,
+            int heightMeasureSpec
+    ) {
         int[] measureSpecs = WidgetUtils.viewMeasure(this, widthMeasureSpec, heightMeasureSpec, mMaxWidth, mMaxHeight);
         super.onMeasure(measureSpecs[0], measureSpecs[1]);
     }
 
     @Override
-    protected void onScrollChanged(int left, int top, int oldLeft, int oldTop) {
+    protected void onScrollChanged(
+            int left,
+            int top,
+            int oldLeft,
+            int oldTop
+    ) {
         super.onScrollChanged(left, top, oldLeft, oldTop);
         if (mScrollCallback != null) {
             mScrollCallback.onScrollChanged(left, top, oldLeft, oldTop);
@@ -184,6 +207,11 @@ public class CustomHorizontalScrollView extends HorizontalScrollView {
          * @param oldLeft 旧的 ( 之前 ) 距离左边距离
          * @param oldTop  旧的 ( 之前 ) 距离顶部距离
          */
-        void onScrollChanged(int left, int top, int oldLeft, int oldTop);
+        void onScrollChanged(
+                int left,
+                int top,
+                int oldLeft,
+                int oldTop
+        );
     }
 }

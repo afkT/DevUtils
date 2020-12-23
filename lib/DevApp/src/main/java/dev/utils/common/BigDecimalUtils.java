@@ -22,7 +22,7 @@ public final class BigDecimalUtils {
     private static final String TAG = BigDecimalUtils.class.getSimpleName();
 
     // 小数点位数
-    private static int NEW_SCALE     = 10;
+    private static int NEW_SCALE = 10;
     // 舍入模式
     private static int ROUNDING_MODE = BigDecimal.ROUND_UNNECESSARY;
 
@@ -133,7 +133,10 @@ public final class BigDecimalUtils {
      * @param v2 加数
      * @return 两个参数的和
      */
-    public static double add(final double v1, final double v2) {
+    public static double add(
+            final double v1,
+            final double v2
+    ) {
         return add(v1, v2, NEW_SCALE, ROUNDING_MODE);
     }
 
@@ -144,7 +147,11 @@ public final class BigDecimalUtils {
      * @param scale 保留 scale 位小数
      * @return 两个参数的和
      */
-    public static double add(final double v1, final double v2, final int scale) {
+    public static double add(
+            final double v1,
+            final double v2,
+            final int scale
+    ) {
         return add(v1, v2, scale, ROUNDING_MODE);
     }
 
@@ -156,7 +163,12 @@ public final class BigDecimalUtils {
      * @param roundingMode 舍入模式
      * @return 两个参数的和
      */
-    public static double add(final double v1, final double v2, final int scale, final int roundingMode) {
+    public static double add(
+            final double v1,
+            final double v2,
+            final int scale,
+            final int roundingMode
+    ) {
         try {
             BigDecimal b1 = new BigDecimal(Double.toString(v1));
             BigDecimal b2 = new BigDecimal(Double.toString(v2));
@@ -179,7 +191,10 @@ public final class BigDecimalUtils {
      * @param v2 加数
      * @return 两个参数的和
      */
-    public static BigDecimal add(final String v1, final String v2) {
+    public static BigDecimal add(
+            final String v1,
+            final String v2
+    ) {
         return add(v1, v2, NEW_SCALE, ROUNDING_MODE);
     }
 
@@ -190,7 +205,11 @@ public final class BigDecimalUtils {
      * @param scale 保留 scale 位小数
      * @return 两个参数的和
      */
-    public static BigDecimal add(final String v1, final String v2, final int scale) {
+    public static BigDecimal add(
+            final String v1,
+            final String v2,
+            final int scale
+    ) {
         return add(v1, v2, scale, ROUNDING_MODE);
     }
 
@@ -202,7 +221,12 @@ public final class BigDecimalUtils {
      * @param roundingMode 舍入模式
      * @return 两个参数的和
      */
-    public static BigDecimal add(final String v1, final String v2, final int scale, final int roundingMode) {
+    public static BigDecimal add(
+            final String v1,
+            final String v2,
+            final int scale,
+            final int roundingMode
+    ) {
         try {
             BigDecimal b1 = new BigDecimal(v1);
             BigDecimal b2 = new BigDecimal(v2);
@@ -227,7 +251,10 @@ public final class BigDecimalUtils {
      * @param v2 减数
      * @return 两个参数的差
      */
-    public static double subtract(final double v1, final double v2) {
+    public static double subtract(
+            final double v1,
+            final double v2
+    ) {
         return subtract(v1, v2, NEW_SCALE, ROUNDING_MODE);
     }
 
@@ -238,7 +265,11 @@ public final class BigDecimalUtils {
      * @param scale 保留 scale 位小数
      * @return 两个参数的差
      */
-    public static double subtract(final double v1, final double v2, final int scale) {
+    public static double subtract(
+            final double v1,
+            final double v2,
+            final int scale
+    ) {
         return subtract(v1, v2, scale, ROUNDING_MODE);
     }
 
@@ -250,7 +281,12 @@ public final class BigDecimalUtils {
      * @param roundingMode 舍入模式
      * @return 两个参数的差
      */
-    public static double subtract(final double v1, final double v2, final int scale, final int roundingMode) {
+    public static double subtract(
+            final double v1,
+            final double v2,
+            final int scale,
+            final int roundingMode
+    ) {
         try {
             BigDecimal b1 = new BigDecimal(Double.toString(v1));
             BigDecimal b2 = new BigDecimal(Double.toString(v2));
@@ -273,7 +309,10 @@ public final class BigDecimalUtils {
      * @param v2 减数
      * @return 两个参数的差
      */
-    public static BigDecimal subtract(final String v1, final String v2) {
+    public static BigDecimal subtract(
+            final String v1,
+            final String v2
+    ) {
         return subtract(v1, v2, NEW_SCALE, ROUNDING_MODE);
     }
 
@@ -284,7 +323,11 @@ public final class BigDecimalUtils {
      * @param scale 保留 scale 位小数
      * @return 两个参数的差
      */
-    public static BigDecimal subtract(final String v1, final String v2, final int scale) {
+    public static BigDecimal subtract(
+            final String v1,
+            final String v2,
+            final int scale
+    ) {
         return subtract(v1, v2, scale, ROUNDING_MODE);
     }
 
@@ -296,7 +339,12 @@ public final class BigDecimalUtils {
      * @param roundingMode 舍入模式
      * @return 两个参数的差
      */
-    public static BigDecimal subtract(final String v1, final String v2, final int scale, final int roundingMode) {
+    public static BigDecimal subtract(
+            final String v1,
+            final String v2,
+            final int scale,
+            final int roundingMode
+    ) {
         try {
             BigDecimal b1 = new BigDecimal(v1);
             BigDecimal b2 = new BigDecimal(v2);
@@ -321,7 +369,10 @@ public final class BigDecimalUtils {
      * @param v2 乘数
      * @return 两个参数的积
      */
-    public static double multiply(final double v1, final double v2) {
+    public static double multiply(
+            final double v1,
+            final double v2
+    ) {
         return multiply(v1, v2, NEW_SCALE, ROUNDING_MODE);
     }
 
@@ -332,7 +383,11 @@ public final class BigDecimalUtils {
      * @param scale 保留 scale 位小数
      * @return 两个参数的积
      */
-    public static double multiply(final double v1, final double v2, final int scale) {
+    public static double multiply(
+            final double v1,
+            final double v2,
+            final int scale
+    ) {
         return multiply(v1, v2, scale, ROUNDING_MODE);
     }
 
@@ -344,7 +399,12 @@ public final class BigDecimalUtils {
      * @param roundingMode 舍入模式
      * @return 两个参数的积
      */
-    public static double multiply(final double v1, final double v2, final int scale, final int roundingMode) {
+    public static double multiply(
+            final double v1,
+            final double v2,
+            final int scale,
+            final int roundingMode
+    ) {
         try {
             BigDecimal b1 = new BigDecimal(Double.toString(v1));
             BigDecimal b2 = new BigDecimal(Double.toString(v2));
@@ -367,7 +427,10 @@ public final class BigDecimalUtils {
      * @param v2 乘数
      * @return 两个参数的积
      */
-    public static BigDecimal multiply(final String v1, final String v2) {
+    public static BigDecimal multiply(
+            final String v1,
+            final String v2
+    ) {
         return multiply(v1, v2, NEW_SCALE, ROUNDING_MODE);
     }
 
@@ -378,7 +441,11 @@ public final class BigDecimalUtils {
      * @param scale 保留 scale 位小数
      * @return 两个参数的积
      */
-    public static BigDecimal multiply(final String v1, final String v2, final int scale) {
+    public static BigDecimal multiply(
+            final String v1,
+            final String v2,
+            final int scale
+    ) {
         return multiply(v1, v2, scale, ROUNDING_MODE);
     }
 
@@ -390,7 +457,12 @@ public final class BigDecimalUtils {
      * @param roundingMode 舍入模式
      * @return 两个参数的积
      */
-    public static BigDecimal multiply(final String v1, final String v2, final int scale, final int roundingMode) {
+    public static BigDecimal multiply(
+            final String v1,
+            final String v2,
+            final int scale,
+            final int roundingMode
+    ) {
         try {
             BigDecimal b1 = new BigDecimal(v1);
             BigDecimal b2 = new BigDecimal(v2);
@@ -415,7 +487,10 @@ public final class BigDecimalUtils {
      * @param v2 除数
      * @return 两个参数的商
      */
-    public static double divide(final double v1, final double v2) {
+    public static double divide(
+            final double v1,
+            final double v2
+    ) {
         return divide(v1, v2, NEW_SCALE, ROUNDING_MODE);
     }
 
@@ -426,7 +501,11 @@ public final class BigDecimalUtils {
      * @param scale 保留 scale 位小数
      * @return 两个参数的商
      */
-    public static double divide(final double v1, final double v2, final int scale) {
+    public static double divide(
+            final double v1,
+            final double v2,
+            final int scale
+    ) {
         return divide(v1, v2, scale, ROUNDING_MODE);
     }
 
@@ -438,7 +517,12 @@ public final class BigDecimalUtils {
      * @param roundingMode 舍入模式
      * @return 两个参数的商
      */
-    public static double divide(final double v1, final double v2, final int scale, final int roundingMode) {
+    public static double divide(
+            final double v1,
+            final double v2,
+            final int scale,
+            final int roundingMode
+    ) {
         try {
             BigDecimal b1 = new BigDecimal(Double.toString(v1));
             BigDecimal b2 = new BigDecimal(Double.toString(v2));
@@ -461,7 +545,10 @@ public final class BigDecimalUtils {
      * @param v2 除数
      * @return 两个参数的商
      */
-    public static BigDecimal divide(final String v1, final String v2) {
+    public static BigDecimal divide(
+            final String v1,
+            final String v2
+    ) {
         return divide(v1, v2, NEW_SCALE, ROUNDING_MODE);
     }
 
@@ -472,7 +559,11 @@ public final class BigDecimalUtils {
      * @param scale 保留 scale 位小数
      * @return 两个参数的商
      */
-    public static BigDecimal divide(final String v1, final String v2, final int scale) {
+    public static BigDecimal divide(
+            final String v1,
+            final String v2,
+            final int scale
+    ) {
         return divide(v1, v2, scale, ROUNDING_MODE);
     }
 
@@ -484,7 +575,12 @@ public final class BigDecimalUtils {
      * @param roundingMode 舍入模式
      * @return 两个参数的商
      */
-    public static BigDecimal divide(final String v1, final String v2, final int scale, final int roundingMode) {
+    public static BigDecimal divide(
+            final String v1,
+            final String v2,
+            final int scale,
+            final int roundingMode
+    ) {
         try {
             BigDecimal b1 = new BigDecimal(v1);
             BigDecimal b2 = new BigDecimal(v2);
@@ -509,7 +605,10 @@ public final class BigDecimalUtils {
      * @param v2 除数
      * @return 两个参数的余数
      */
-    public static double remainder(final double v1, final double v2) {
+    public static double remainder(
+            final double v1,
+            final double v2
+    ) {
         return remainder(v1, v2, NEW_SCALE, ROUNDING_MODE);
     }
 
@@ -520,7 +619,11 @@ public final class BigDecimalUtils {
      * @param scale 保留 scale 位小数
      * @return 两个参数的余数
      */
-    public static double remainder(final double v1, final double v2, final int scale) {
+    public static double remainder(
+            final double v1,
+            final double v2,
+            final int scale
+    ) {
         return remainder(v1, v2, scale, ROUNDING_MODE);
     }
 
@@ -532,7 +635,12 @@ public final class BigDecimalUtils {
      * @param roundingMode 舍入模式
      * @return 两个参数的余数
      */
-    public static double remainder(final double v1, final double v2, final int scale, final int roundingMode) {
+    public static double remainder(
+            final double v1,
+            final double v2,
+            final int scale,
+            final int roundingMode
+    ) {
         try {
             BigDecimal b1 = new BigDecimal(Double.toString(v1));
             BigDecimal b2 = new BigDecimal(Double.toString(v2));
@@ -555,7 +663,10 @@ public final class BigDecimalUtils {
      * @param v2 除数
      * @return 两个参数的余数
      */
-    public static BigDecimal remainder(final String v1, final String v2) {
+    public static BigDecimal remainder(
+            final String v1,
+            final String v2
+    ) {
         return remainder(v1, v2, NEW_SCALE, ROUNDING_MODE);
     }
 
@@ -566,7 +677,11 @@ public final class BigDecimalUtils {
      * @param scale 保留 scale 位小数
      * @return 两个参数的余数
      */
-    public static BigDecimal remainder(final String v1, final String v2, final int scale) {
+    public static BigDecimal remainder(
+            final String v1,
+            final String v2,
+            final int scale
+    ) {
         return remainder(v1, v2, scale, ROUNDING_MODE);
     }
 
@@ -578,7 +693,12 @@ public final class BigDecimalUtils {
      * @param roundingMode 舍入模式
      * @return 两个参数的余数
      */
-    public static BigDecimal remainder(final String v1, final String v2, final int scale, final int roundingMode) {
+    public static BigDecimal remainder(
+            final String v1,
+            final String v2,
+            final int scale,
+            final int roundingMode
+    ) {
         try {
             BigDecimal b1 = new BigDecimal(v1);
             BigDecimal b2 = new BigDecimal(v2);
@@ -612,7 +732,10 @@ public final class BigDecimalUtils {
      * @param scale 保留 scale 位小数
      * @return 四舍五入后的结果
      */
-    public static double round(final double v1, final int scale) {
+    public static double round(
+            final double v1,
+            final int scale
+    ) {
         return round(v1, scale, BigDecimal.ROUND_HALF_UP);
     }
 
@@ -623,7 +746,11 @@ public final class BigDecimalUtils {
      * @param roundingMode 舍入模式
      * @return 四舍五入后的结果
      */
-    public static double round(final double v1, final int scale, final int roundingMode) {
+    public static double round(
+            final double v1,
+            final int scale,
+            final int roundingMode
+    ) {
         return divide(v1, 1d, scale, roundingMode);
     }
 
@@ -644,7 +771,10 @@ public final class BigDecimalUtils {
      * @param scale 保留 scale 位小数
      * @return 四舍五入后的结果
      */
-    public static BigDecimal round(final String v1, final int scale) {
+    public static BigDecimal round(
+            final String v1,
+            final int scale
+    ) {
         return round(v1, scale, BigDecimal.ROUND_HALF_UP);
     }
 
@@ -655,7 +785,11 @@ public final class BigDecimalUtils {
      * @param roundingMode 舍入模式
      * @return 四舍五入后的结果
      */
-    public static BigDecimal round(final String v1, final int scale, final int roundingMode) {
+    public static BigDecimal round(
+            final String v1,
+            final int scale,
+            final int roundingMode
+    ) {
         return divide(v1, "1", scale, roundingMode);
     }
 
@@ -669,7 +803,10 @@ public final class BigDecimalUtils {
      * @param v2 被比较的数字
      * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
      */
-    public static int compareTo(final double v1, final double v2) {
+    public static int compareTo(
+            final double v1,
+            final double v2
+    ) {
         try {
             return new BigDecimal(Double.valueOf(v1)).compareTo(new BigDecimal(Double.valueOf(v2)));
         } catch (Exception e) {
@@ -684,7 +821,10 @@ public final class BigDecimalUtils {
      * @param v2 被比较的数字
      * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
      */
-    public static int compareTo(final String v1, final String v2) {
+    public static int compareTo(
+            final String v1,
+            final String v2
+    ) {
         try {
             return new BigDecimal(v1).compareTo(new BigDecimal(v2));
         } catch (Exception e) {
@@ -699,7 +839,10 @@ public final class BigDecimalUtils {
      * @param v2 被比较的数字
      * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
      */
-    public static int compareTo(final BigDecimal v1, final BigDecimal v2) {
+    public static int compareTo(
+            final BigDecimal v1,
+            final BigDecimal v2
+    ) {
         try {
             return v1.compareTo(v2);
         } catch (Exception e) {
@@ -727,7 +870,10 @@ public final class BigDecimalUtils {
      * @param scale 小数点后保留几位
      * @return 指定格式处理的字符串
      */
-    public static String formatMoney(final BigDecimal value, final int scale) {
+    public static String formatMoney(
+            final BigDecimal value,
+            final int scale
+    ) {
         return formatMoney(value, scale, BigDecimal.ROUND_HALF_UP, 3, ",");
     }
 
@@ -738,7 +884,11 @@ public final class BigDecimalUtils {
      * @param mode  处理模式
      * @return 指定格式处理的字符串
      */
-    public static String formatMoney(final BigDecimal value, final int scale, final int mode) {
+    public static String formatMoney(
+            final BigDecimal value,
+            final int scale,
+            final int mode
+    ) {
         return formatMoney(value, scale, mode, 3, ",");
     }
 
@@ -750,7 +900,12 @@ public final class BigDecimalUtils {
      * @param splitNumber 拆分位数
      * @return 指定格式处理的字符串
      */
-    public static String formatMoney(final BigDecimal value, final int scale, final int mode, final int splitNumber) {
+    public static String formatMoney(
+            final BigDecimal value,
+            final int scale,
+            final int mode,
+            final int splitNumber
+    ) {
         return formatMoney(value, scale, mode, splitNumber, ",");
     }
 
@@ -763,7 +918,13 @@ public final class BigDecimalUtils {
      * @param splitSymbol 拆分符号
      * @return 指定格式处理的字符串
      */
-    public static String formatMoney(final BigDecimal value, final int scale, final int mode, final int splitNumber, final String splitSymbol) {
+    public static String formatMoney(
+            final BigDecimal value,
+            final int scale,
+            final int mode,
+            final int splitNumber,
+            final String splitSymbol
+    ) {
         if (value == null) return null;
         try {
             // 如果等于 0, 直接返回
@@ -822,7 +983,11 @@ public final class BigDecimalUtils {
      * @param numOfDecimalPart 小数位数
      * @return 处理过的数据
      */
-    public static String adjustDouble(final String value, final int numOfIntPart, final int numOfDecimalPart) {
+    public static String adjustDouble(
+            final String value,
+            final int numOfIntPart,
+            final int numOfDecimalPart
+    ) {
         if (value == null) return null;
         try {
             // 按小数点的位置分割成整数部分和小数部分

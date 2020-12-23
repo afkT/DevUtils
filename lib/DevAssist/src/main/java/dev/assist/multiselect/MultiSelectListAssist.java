@@ -149,7 +149,10 @@ public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> 
      * @param value    Value
      */
     @Override
-    public void select(final boolean isSelect, final V value) {
+    public void select(
+            final boolean isSelect,
+            final V value
+    ) {
         if (isSelect) {
             select(value);
         } else {
@@ -163,7 +166,10 @@ public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> 
      * @param position 索引
      */
     @Override
-    public void select(final V value, final int position) {
+    public void select(
+            final V value,
+            final int position
+    ) {
         if (position >= 0) mListSelects.add(position, value);
     }
 

@@ -38,7 +38,10 @@ public final class ManifestUtils {
      * @param metaKey     meta Key
      * @return Application meta Data
      */
-    public static String getMetaData(final String packageName, final String metaKey) {
+    public static String getMetaData(
+            final String packageName,
+            final String metaKey
+    ) {
         try {
             ApplicationInfo appInfo = AppUtils.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
             return appInfo.metaData.getString(metaKey);
@@ -56,7 +59,10 @@ public final class ManifestUtils {
      * @param metaKey meta Key
      * @return Activity meta Data
      */
-    public static String getMetaDataInActivity(final Class<?> clazz, final String metaKey) {
+    public static String getMetaDataInActivity(
+            final Class<?> clazz,
+            final String metaKey
+    ) {
         return (clazz != null) ? getMetaDataInActivity(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey) : null;
     }
 
@@ -66,7 +72,10 @@ public final class ManifestUtils {
      * @param metaKey meta Key
      * @return Activity meta Data
      */
-    public static String getMetaDataInActivity(final String name, final String metaKey) {
+    public static String getMetaDataInActivity(
+            final String name,
+            final String metaKey
+    ) {
         return getMetaDataInActivity(AppUtils.getPackageName(), name, metaKey);
     }
 
@@ -77,7 +86,11 @@ public final class ManifestUtils {
      * @param metaKey     meta Key
      * @return Activity meta Data
      */
-    public static String getMetaDataInActivity(final String packageName, final String name, final String metaKey) {
+    public static String getMetaDataInActivity(
+            final String packageName,
+            final String name,
+            final String metaKey
+    ) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
             ActivityInfo  activityInfo  = AppUtils.getPackageManager().getActivityInfo(componentName, PackageManager.GET_META_DATA);
@@ -96,7 +109,10 @@ public final class ManifestUtils {
      * @param metaKey meta Key
      * @return Service meta Data
      */
-    public static String getMetaDataInService(final Class<?> clazz, final String metaKey) {
+    public static String getMetaDataInService(
+            final Class<?> clazz,
+            final String metaKey
+    ) {
         return (clazz != null) ? getMetaDataInService(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey) : null;
     }
 
@@ -106,7 +122,10 @@ public final class ManifestUtils {
      * @param metaKey meta Key
      * @return Service meta Data
      */
-    public static String getMetaDataInService(final String name, final String metaKey) {
+    public static String getMetaDataInService(
+            final String name,
+            final String metaKey
+    ) {
         return getMetaDataInService(AppUtils.getPackageName(), name, metaKey);
     }
 
@@ -117,7 +136,11 @@ public final class ManifestUtils {
      * @param metaKey     meta Key
      * @return Service meta Data
      */
-    public static String getMetaDataInService(final String packageName, final String name, final String metaKey) {
+    public static String getMetaDataInService(
+            final String packageName,
+            final String name,
+            final String metaKey
+    ) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
             ServiceInfo   serviceInfo   = AppUtils.getPackageManager().getServiceInfo(componentName, PackageManager.GET_META_DATA);
@@ -136,7 +159,10 @@ public final class ManifestUtils {
      * @param metaKey meta Key
      * @return Receiver meta Data
      */
-    public static String getMetaDataInReceiver(final Class<?> clazz, final String metaKey) {
+    public static String getMetaDataInReceiver(
+            final Class<?> clazz,
+            final String metaKey
+    ) {
         return (clazz != null) ? getMetaDataInReceiver(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey) : null;
     }
 
@@ -146,7 +172,10 @@ public final class ManifestUtils {
      * @param metaKey meta Key
      * @return Receiver meta Data
      */
-    public static String getMetaDataInReceiver(final String name, final String metaKey) {
+    public static String getMetaDataInReceiver(
+            final String name,
+            final String metaKey
+    ) {
         return getMetaDataInReceiver(AppUtils.getPackageName(), name, metaKey);
     }
 
@@ -157,7 +186,11 @@ public final class ManifestUtils {
      * @param metaKey     meta Key
      * @return Receiver meta Data
      */
-    public static String getMetaDataInReceiver(final String packageName, final String name, final String metaKey) {
+    public static String getMetaDataInReceiver(
+            final String packageName,
+            final String name,
+            final String metaKey
+    ) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
             ActivityInfo  receiverInfo  = AppUtils.getPackageManager().getReceiverInfo(componentName, PackageManager.GET_META_DATA);
@@ -176,7 +209,10 @@ public final class ManifestUtils {
      * @param metaKey meta Key
      * @return ContentProvider meta Data
      */
-    public static String getMetaDataInProvider(final Class<?> clazz, final String metaKey) {
+    public static String getMetaDataInProvider(
+            final Class<?> clazz,
+            final String metaKey
+    ) {
         return (clazz != null) ? getMetaDataInProvider(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey) : null;
     }
 
@@ -186,7 +222,10 @@ public final class ManifestUtils {
      * @param metaKey meta Key
      * @return ContentProvider meta Data
      */
-    public static String getMetaDataInProvider(final String name, final String metaKey) {
+    public static String getMetaDataInProvider(
+            final String name,
+            final String metaKey
+    ) {
         return getMetaDataInProvider(AppUtils.getPackageName(), name, metaKey);
     }
 
@@ -197,7 +236,11 @@ public final class ManifestUtils {
      * @param metaKey     meta Key
      * @return ContentProvider meta Data
      */
-    public static String getMetaDataInProvider(final String packageName, final String name, final String metaKey) {
+    public static String getMetaDataInProvider(
+            final String packageName,
+            final String name,
+            final String metaKey
+    ) {
         try {
             ComponentName componentName = new ComponentName(packageName, name);
             ProviderInfo  providerInfo  = AppUtils.getPackageManager().getProviderInfo(componentName, PackageManager.GET_META_DATA);

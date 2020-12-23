@@ -303,7 +303,10 @@ public final class WifiUtils {
      * @param isAppend {@code true} 添加引号, {@code false} 删除引号
      * @return 处理后的 SSID
      */
-    public static String formatSSID(final String ssid, final boolean isAppend) {
+    public static String formatSSID(
+            final String ssid,
+            final boolean isAppend
+    ) {
         if (ssid == null) return null;
         if (isAppend) {
             return "\"" + ssid + "\"";
@@ -318,7 +321,10 @@ public final class WifiUtils {
      * @param isJudge 是否需要判断
      * @return 处理后的密码
      */
-    public static String getPassword(final String pwd, final boolean isJudge) {
+    public static String getPassword(
+            final String pwd,
+            final boolean isJudge
+    ) {
         if (pwd == null) return null;
         if (isJudge && isHexWepKey(pwd)) {
             return pwd;
@@ -588,7 +594,11 @@ public final class WifiUtils {
      * @param type Wifi 加密类型
      * @return {@link WifiConfiguration}
      */
-    public WifiConfiguration quickConnWifi(final String ssid, final String pwd, final int type) {
+    public WifiConfiguration quickConnWifi(
+            final String ssid,
+            final String pwd,
+            final int type
+    ) {
         return quickConnWifi(ssid, pwd, type, false, null);
     }
 
@@ -602,7 +612,13 @@ public final class WifiUtils {
      * @return {@link WifiConfiguration}
      */
     @SuppressLint("MissingPermission")
-    public WifiConfiguration quickConnWifi(final String ssid, final String pwd, final int type, final boolean isStatic, final String ip) {
+    public WifiConfiguration quickConnWifi(
+            final String ssid,
+            final String pwd,
+            final int type,
+            final boolean isStatic,
+            final String ip
+    ) {
         // 步骤:
         // 1. 创建 Wifi 静态 IP 连接配置
         // 2. 创建正常 Wifi 连接配置
@@ -724,7 +740,12 @@ public final class WifiUtils {
      * @param isHandler 是否处理双引号
      * @return {@link WifiConfiguration}
      */
-    public static WifiConfiguration createWifiConfig(final String ssid, final String pwd, final int type, final boolean isHandler) {
+    public static WifiConfiguration createWifiConfig(
+            final String ssid,
+            final String pwd,
+            final int type,
+            final boolean isHandler
+    ) {
         try {
             // 创建一个新的网络配置
             WifiConfiguration wifiConfig = new WifiConfiguration();
@@ -841,7 +862,10 @@ public final class WifiUtils {
      * @param ip         静态 IP
      * @return {@link WifiConfiguration}
      */
-    private WifiConfiguration setStaticWifiConfig(final WifiConfiguration wifiConfig, final String ip) {
+    private WifiConfiguration setStaticWifiConfig(
+            final WifiConfiguration wifiConfig,
+            final String ip
+    ) {
         String gateway = null;
         String dns;
         if (ip != null) {
@@ -868,8 +892,13 @@ public final class WifiUtils {
      * @param networkPrefixLength 网络前缀长度
      * @return {@link WifiConfiguration}
      */
-    private WifiConfiguration setStaticWifiConfig(final WifiConfiguration wifiConfig, final String ip,
-                                                  final String gateway, final String dns, final int networkPrefixLength) {
+    private WifiConfiguration setStaticWifiConfig(
+            final WifiConfiguration wifiConfig,
+            final String ip,
+            final String gateway,
+            final String dns,
+            final int networkPrefixLength
+    ) {
         try {
             if (ip == null || gateway == null) return null;
             // 设置 InetAddress
@@ -923,7 +952,10 @@ public final class WifiUtils {
      * @param wifiConfig Wifi 配置信息
      * @throws Exception 设置失败, 抛出异常
      */
-    private void setDNS(final InetAddress dns, final WifiConfiguration wifiConfig) throws Exception {
+    private void setDNS(
+            final InetAddress dns,
+            final WifiConfiguration wifiConfig
+    ) throws Exception {
         Object linkProperties = getField(wifiConfig, "linkProperties");
         if (linkProperties == null)
             throw new NullPointerException();
@@ -939,7 +971,10 @@ public final class WifiUtils {
      * @param wifiConfig Wifi 配置信息
      * @throws Exception 设置失败, 抛出异常
      */
-    private void setGateway(final InetAddress gateway, final WifiConfiguration wifiConfig) throws Exception {
+    private void setGateway(
+            final InetAddress gateway,
+            final WifiConfiguration wifiConfig
+    ) throws Exception {
         Object linkProperties = getField(wifiConfig, "linkProperties");
         if (linkProperties == null)
             throw new NullPointerException();
@@ -959,7 +994,11 @@ public final class WifiUtils {
      * @param wifiConfig   Wifi 配置信息
      * @throws Exception 设置失败, 抛出异常
      */
-    private void setIpAddress(final InetAddress address, final int prefixLength, final WifiConfiguration wifiConfig) throws Exception {
+    private void setIpAddress(
+            final InetAddress address,
+            final int prefixLength,
+            final WifiConfiguration wifiConfig
+    ) throws Exception {
         Object linkProperties = getField(wifiConfig, "linkProperties");
         if (linkProperties == null)
             throw new NullPointerException();
@@ -981,7 +1020,13 @@ public final class WifiUtils {
      * @param object       Wifi 配置信息
      * @throws Exception 设置失败, 抛出异常
      */
-    private void setStaticIpConfig(final String ip, final String gateway, final String dns, final int prefixLength, final Object object) throws Exception {
+    private void setStaticIpConfig(
+            final String ip,
+            final String gateway,
+            final String dns,
+            final int prefixLength,
+            final Object object
+    ) throws Exception {
         // 从 WifiConfig 成员变量 mIpConfiguration 获取 staticIpConfiguration
         // 获取 staticIpConfiguration 变量
         Object staticIpConfigClass = getField(object, "staticIpConfiguration");
@@ -1014,7 +1059,10 @@ public final class WifiUtils {
      * @return 对应的字段
      * @throws Exception 获取失败, 抛出异常
      */
-    private Object getField(final Object object, final String name) throws Exception {
+    private Object getField(
+            final Object object,
+            final String name
+    ) throws Exception {
         Field field = object.getClass().getField(name);
         return field.get(object);
     }
@@ -1026,7 +1074,10 @@ public final class WifiUtils {
      * @return 对应的字段
      * @throws Exception 获取失败, 抛出异常
      */
-    private Object getDeclaredField(final Object object, final String name) throws Exception {
+    private Object getDeclaredField(
+            final Object object,
+            final String name
+    ) throws Exception {
         Field field = object.getClass().getDeclaredField(name);
         field.setAccessible(true);
         return field.get(object);
@@ -1039,7 +1090,11 @@ public final class WifiUtils {
      * @param name   字段名
      * @throws Exception 设置失败, 抛出异常
      */
-    private void setEnumField(final Object object, final String value, final String name) throws Exception {
+    private void setEnumField(
+            final Object object,
+            final String value,
+            final String name
+    ) throws Exception {
         Field field = object.getClass().getField(name);
         field.set(object, Enum.valueOf((Class<Enum>) field.getType(), value));
     }
@@ -1051,7 +1106,11 @@ public final class WifiUtils {
      * @param name   字段名
      * @throws Exception 设置失败, 抛出异常
      */
-    private void setValueField(final Object object, final Object val, final String name) throws Exception {
+    private void setValueField(
+            final Object object,
+            final Object val,
+            final String name
+    ) throws Exception {
         Field field = object.getClass().getField(name);
         field.set(object, val);
     }

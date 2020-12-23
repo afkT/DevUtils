@@ -286,7 +286,10 @@ public final class TimerManager {
      * @param period  循环时间 ( 每隔多少秒执行一次 )
      * @return 定时器抽象对象 {@link AbsTimer}
      */
-    public static AbsTimer createTimer(final Handler handler, final long period) {
+    public static AbsTimer createTimer(
+            final Handler handler,
+            final long period
+    ) {
         return createTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, 0L, period, -1);
     }
 
@@ -297,7 +300,11 @@ public final class TimerManager {
      * @param period  循环时间 ( 每隔多少秒执行一次 )
      * @return 定时器抽象对象 {@link AbsTimer}
      */
-    public static AbsTimer createTimer(final Handler handler, final long delay, final long period) {
+    public static AbsTimer createTimer(
+            final Handler handler,
+            final long delay,
+            final long period
+    ) {
         return createTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, delay, period, -1);
     }
 
@@ -308,7 +315,11 @@ public final class TimerManager {
      * @param triggerLimit 触发次数上限 ( -1 表示无限循环 )
      * @return 定时器抽象对象 {@link AbsTimer}
      */
-    public static AbsTimer createTimer(final Handler handler, final long period, final int triggerLimit) {
+    public static AbsTimer createTimer(
+            final Handler handler,
+            final long period,
+            final int triggerLimit
+    ) {
         return createTimer(handler, AbsTimer.TIMER_NOTIFY_WHAT, 0L, period, triggerLimit);
     }
 
@@ -319,7 +330,11 @@ public final class TimerManager {
      * @param period  循环时间 ( 每隔多少秒执行一次 )
      * @return 定时器抽象对象 {@link AbsTimer}
      */
-    public static AbsTimer createTimer(final Handler handler, final int what, final long period) {
+    public static AbsTimer createTimer(
+            final Handler handler,
+            final int what,
+            final long period
+    ) {
         return createTimer(handler, what, 0L, period, -1);
     }
 
@@ -331,7 +346,12 @@ public final class TimerManager {
      * @param period  循环时间 ( 每隔多少秒执行一次 )
      * @return 定时器抽象对象 {@link AbsTimer}
      */
-    public static AbsTimer createTimer(final Handler handler, final int what, final long delay, final long period) {
+    public static AbsTimer createTimer(
+            final Handler handler,
+            final int what,
+            final long delay,
+            final long period
+    ) {
         return createTimer(handler, what, delay, period, -1);
     }
 
@@ -343,7 +363,12 @@ public final class TimerManager {
      * @param triggerLimit 触发次数上限 ( -1 表示无限循环 )
      * @return 定时器抽象对象 {@link AbsTimer}
      */
-    public static AbsTimer createTimer(final Handler handler, final int what, final long period, final int triggerLimit) {
+    public static AbsTimer createTimer(
+            final Handler handler,
+            final int what,
+            final long period,
+            final int triggerLimit
+    ) {
         return createTimer(handler, what, 0L, period, triggerLimit);
     }
 
@@ -356,7 +381,13 @@ public final class TimerManager {
      * @param triggerLimit 触发次数上限 ( -1 表示无限循环 )
      * @return 定时器抽象对象 {@link AbsTimer}
      */
-    public static AbsTimer createTimer(final Handler handler, final int what, final long delay, final long period, final int triggerLimit) {
+    public static AbsTimer createTimer(
+            final Handler handler,
+            final int what,
+            final long delay,
+            final long period,
+            final int triggerLimit
+    ) {
         return new TimerTask(handler, what, delay, period, triggerLimit);
     }
 
@@ -510,7 +541,10 @@ public final class TimerManager {
          * @param period 循环时间 ( 每隔多少秒执行一次 )
          * @return 定时器抽象对象 {@link AbsTimer}
          */
-        public abstract AbsTimer setTime(long delay, long period);
+        public abstract AbsTimer setTime(
+                long delay,
+                long period
+        );
 
         /**
          * 设置触发次数上限
@@ -554,7 +588,13 @@ public final class TimerManager {
         // 定时器是否运行中
         private boolean             running       = false;
 
-        public TimerTask(final Handler handler, final int what, final long delay, final long period, final int triggerLimit) {
+        public TimerTask(
+                final Handler handler,
+                final int what,
+                final long delay,
+                final long period,
+                final int triggerLimit
+        ) {
             this.handler = handler;
             this.notifyWhat = what;
             this.delay = delay;
@@ -739,7 +779,10 @@ public final class TimerManager {
          * @return 定时器抽象对象 {@link AbsTimer}
          */
         @Override
-        public AbsTimer setTime(final long delay, final long period) {
+        public AbsTimer setTime(
+                final long delay,
+                final long period
+        ) {
             this.delay = delay;
             this.period = period;
             return this;

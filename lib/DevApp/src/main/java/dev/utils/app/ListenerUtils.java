@@ -68,7 +68,10 @@ public final class ListenerUtils {
      * @param listener 事件名
      * @return 指定事件名事件对象
      */
-    public static Object getListenerInfoListener(final View view, final String listener) {
+    public static Object getListenerInfoListener(
+            final View view,
+            final String listener
+    ) {
         try {
             // 获取 ListenerInfo 对象
             Object listenerInfo = getListenerInfo(view);
@@ -95,7 +98,11 @@ public final class ListenerUtils {
      * @param viewIds         View id 数组
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setOnClicks(final View view, final View.OnClickListener onClickListener, @IdRes final int... viewIds) {
+    public static boolean setOnClicks(
+            final View view,
+            final View.OnClickListener onClickListener,
+            @IdRes final int... viewIds
+    ) {
         if (view != null && onClickListener != null && viewIds != null) {
             for (int i = 0, len = viewIds.length; i < len; i++) {
                 View findView = ViewUtils.findViewById(view, viewIds[i]);
@@ -115,7 +122,11 @@ public final class ListenerUtils {
      * @param viewIds         View id 数组
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setOnClicks(final Activity activity, final View.OnClickListener onClickListener, @IdRes final int... viewIds) {
+    public static boolean setOnClicks(
+            final Activity activity,
+            final View.OnClickListener onClickListener,
+            @IdRes final int... viewIds
+    ) {
         if (activity != null && onClickListener != null && viewIds != null) {
             for (int i = 0, len = viewIds.length; i < len; i++) {
                 View findView = ViewUtils.findViewById(activity, viewIds[i]);
@@ -134,7 +145,10 @@ public final class ListenerUtils {
      * @param views           View 数组
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setOnClicks(final View.OnClickListener onClickListener, final View... views) {
+    public static boolean setOnClicks(
+            final View.OnClickListener onClickListener,
+            final View... views
+    ) {
         if (onClickListener != null && views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 if (views[i] != null) {
@@ -157,7 +171,11 @@ public final class ListenerUtils {
      * @param viewIds             View id 数组
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setOnLongClicks(final View view, final View.OnLongClickListener onLongClickListener, @IdRes final int... viewIds) {
+    public static boolean setOnLongClicks(
+            final View view,
+            final View.OnLongClickListener onLongClickListener,
+            @IdRes final int... viewIds
+    ) {
         if (view != null && onLongClickListener != null && viewIds != null) {
             for (int i = 0, len = viewIds.length; i < len; i++) {
                 View findView = ViewUtils.findViewById(view, viewIds[i]);
@@ -177,7 +195,11 @@ public final class ListenerUtils {
      * @param viewIds             View id 数组
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setOnLongClicks(final Activity activity, final View.OnLongClickListener onLongClickListener, @IdRes final int... viewIds) {
+    public static boolean setOnLongClicks(
+            final Activity activity,
+            final View.OnLongClickListener onLongClickListener,
+            @IdRes final int... viewIds
+    ) {
         if (activity != null && onLongClickListener != null && viewIds != null) {
             for (int i = 0, len = viewIds.length; i < len; i++) {
                 View findView = ViewUtils.findViewById(activity, viewIds[i]);
@@ -196,7 +218,10 @@ public final class ListenerUtils {
      * @param views               View 数组
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setOnLongClicks(final View.OnLongClickListener onLongClickListener, final View... views) {
+    public static boolean setOnLongClicks(
+            final View.OnLongClickListener onLongClickListener,
+            final View... views
+    ) {
         if (onLongClickListener != null && views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 if (views[i] != null) {
@@ -219,7 +244,11 @@ public final class ListenerUtils {
      * @param viewIds         View id 数组
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setOnTouchs(final View view, final View.OnTouchListener onTouchListener, @IdRes final int... viewIds) {
+    public static boolean setOnTouchs(
+            final View view,
+            final View.OnTouchListener onTouchListener,
+            @IdRes final int... viewIds
+    ) {
         if (view != null && onTouchListener != null && viewIds != null) {
             for (int i = 0, len = viewIds.length; i < len; i++) {
                 View findView = ViewUtils.findViewById(view, viewIds[i]);
@@ -239,7 +268,11 @@ public final class ListenerUtils {
      * @param viewIds         View id 数组
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setOnTouchs(final Activity activity, final View.OnTouchListener onTouchListener, @IdRes final int... viewIds) {
+    public static boolean setOnTouchs(
+            final Activity activity,
+            final View.OnTouchListener onTouchListener,
+            @IdRes final int... viewIds
+    ) {
         if (activity != null && onTouchListener != null && viewIds != null) {
             for (int i = 0, len = viewIds.length; i < len; i++) {
                 View findView = ViewUtils.findViewById(activity, viewIds[i]);
@@ -258,7 +291,10 @@ public final class ListenerUtils {
      * @param views           View 数组
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setOnTouchs(final View.OnTouchListener onTouchListener, final View... views) {
+    public static boolean setOnTouchs(
+            final View.OnTouchListener onTouchListener,
+            final View... views
+    ) {
         if (onTouchListener != null && views != null) {
             for (int i = 0, len = views.length; i < len; i++) {
                 if (views[i] != null) {

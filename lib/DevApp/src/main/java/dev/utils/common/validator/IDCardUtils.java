@@ -610,7 +610,11 @@ public final class IDCardUtils {
      * @param dayData   待校验的日期 ( 日 )
      * @return {@code true} yes, {@code false} no
      */
-    private static boolean validateDateSmallerThenNow(final int yearData, final int monthData, final int dayData) {
+    private static boolean validateDateSmallerThenNow(
+            final int yearData,
+            final int monthData,
+            final int dayData
+    ) {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         int datePerMonth;
         int MIN  = 1930;

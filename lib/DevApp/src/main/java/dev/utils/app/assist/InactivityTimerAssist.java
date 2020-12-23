@@ -44,7 +44,10 @@ public final class InactivityTimerAssist {
      * @param activity       {@link Activity}
      * @param inactivityTime 无操作时间间隔 ( 毫秒 )
      */
-    public InactivityTimerAssist(final Activity activity, final long inactivityTime) {
+    public InactivityTimerAssist(
+            final Activity activity,
+            final long inactivityTime
+    ) {
         this.mActivity = activity;
         this.mInactivityTime = inactivityTime;
         // 电池广播监听
@@ -139,7 +142,10 @@ public final class InactivityTimerAssist {
      */
     private class PowerStateReceiver extends BroadcastReceiver {
         @Override
-        public void onReceive(Context context, Intent intent) {
+        public void onReceive(
+                Context context,
+                Intent intent
+        ) {
             if (intent != null && Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction())) {
                 // 0 indicates that we're on battery
                 boolean isBatteryNow = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1) <= 0;

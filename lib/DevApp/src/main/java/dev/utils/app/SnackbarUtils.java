@@ -206,7 +206,10 @@ public final class SnackbarUtils {
      * @param index    添加索引
      * @return {@link SnackbarUtils}
      */
-    public SnackbarUtils addView(@LayoutRes final int layoutId, final int index) {
+    public SnackbarUtils addView(
+            @LayoutRes final int layoutId,
+            final int index
+    ) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
             try {
@@ -226,7 +229,10 @@ public final class SnackbarUtils {
      * @param index 添加索引
      * @return {@link SnackbarUtils}
      */
-    public SnackbarUtils addView(final View view, final int index) {
+    public SnackbarUtils addView(
+            final View view,
+            final int index
+    ) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null && view != null) {
             try {
@@ -259,7 +265,10 @@ public final class SnackbarUtils {
      * @param formatArgs 格式化参数
      * @return {@link SnackbarUtils}
      */
-    public SnackbarUtils setAction(@StringRes final int resId, final Object... formatArgs) {
+    public SnackbarUtils setAction(
+            @StringRes final int resId,
+            final Object... formatArgs
+    ) {
         return setAction(ClickUtils.EMPTY_CLICK, resId, formatArgs);
     }
 
@@ -270,7 +279,11 @@ public final class SnackbarUtils {
      * @param formatArgs 格式化参数
      * @return {@link SnackbarUtils}
      */
-    public SnackbarUtils setAction(final View.OnClickListener listener, @StringRes final int resId, final Object... formatArgs) {
+    public SnackbarUtils setAction(
+            final View.OnClickListener listener,
+            @StringRes final int resId,
+            final Object... formatArgs
+    ) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
             String content = AppCommonUtils.getFormatRes(resId, formatArgs);
@@ -287,7 +300,10 @@ public final class SnackbarUtils {
      * @param formatArgs 格式化参数
      * @return {@link SnackbarUtils}
      */
-    public SnackbarUtils setAction(final String text, final Object... formatArgs) {
+    public SnackbarUtils setAction(
+            final String text,
+            final Object... formatArgs
+    ) {
         return setAction(ClickUtils.EMPTY_CLICK, text, formatArgs);
     }
 
@@ -298,7 +314,11 @@ public final class SnackbarUtils {
      * @param formatArgs 格式化参数
      * @return {@link SnackbarUtils}
      */
-    public SnackbarUtils setAction(final View.OnClickListener listener, final String text, final Object... formatArgs) {
+    public SnackbarUtils setAction(
+            final View.OnClickListener listener,
+            final String text,
+            final Object... formatArgs
+    ) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
             String content = StringUtils.getFormatString(text, formatArgs);
@@ -340,7 +360,10 @@ public final class SnackbarUtils {
      * @param resId      R.string.id
      * @param formatArgs 格式化参数
      */
-    public void showShort(@StringRes final int resId, final Object... formatArgs) {
+    public void showShort(
+            @StringRes final int resId,
+            final Object... formatArgs
+    ) {
         priShow(AppCommonUtils.getFormatRes(resId, formatArgs), Snackbar.LENGTH_SHORT);
     }
 
@@ -349,7 +372,10 @@ public final class SnackbarUtils {
      * @param resId      R.string.id
      * @param formatArgs 格式化参数
      */
-    public void showLong(@StringRes final int resId, final Object... formatArgs) {
+    public void showLong(
+            @StringRes final int resId,
+            final Object... formatArgs
+    ) {
         priShow(AppCommonUtils.getFormatRes(resId, formatArgs), Snackbar.LENGTH_LONG);
     }
 
@@ -358,7 +384,10 @@ public final class SnackbarUtils {
      * @param resId      R.string.id
      * @param formatArgs 格式化参数
      */
-    public void showIndefinite(@StringRes final int resId, final Object... formatArgs) {
+    public void showIndefinite(
+            @StringRes final int resId,
+            final Object... formatArgs
+    ) {
         priShow(AppCommonUtils.getFormatRes(resId, formatArgs), Snackbar.LENGTH_INDEFINITE);
     }
 
@@ -369,7 +398,10 @@ public final class SnackbarUtils {
      * @param text       显示文本
      * @param formatArgs 格式化参数
      */
-    public void showShort(final String text, final Object... formatArgs) {
+    public void showShort(
+            final String text,
+            final Object... formatArgs
+    ) {
         priShow(StringUtils.getFormatString(text, formatArgs), Snackbar.LENGTH_SHORT);
     }
 
@@ -378,7 +410,10 @@ public final class SnackbarUtils {
      * @param text       显示文本
      * @param formatArgs 格式化参数
      */
-    public void showLong(final String text, final Object... formatArgs) {
+    public void showLong(
+            final String text,
+            final Object... formatArgs
+    ) {
         priShow(StringUtils.getFormatString(text, formatArgs), Snackbar.LENGTH_LONG);
     }
 
@@ -387,7 +422,10 @@ public final class SnackbarUtils {
      * @param text       显示文本
      * @param formatArgs 格式化参数
      */
-    public void showIndefinite(final String text, final Object... formatArgs) {
+    public void showIndefinite(
+            final String text,
+            final Object... formatArgs
+    ) {
         priShow(StringUtils.getFormatString(text, formatArgs), Snackbar.LENGTH_INDEFINITE);
     }
 
@@ -400,7 +438,10 @@ public final class SnackbarUtils {
      * @param text     显示文本
      * @param duration 显示时长 {@link Snackbar#LENGTH_SHORT}、{@link Snackbar#LENGTH_LONG}、{@link Snackbar#LENGTH_INDEFINITE}
      */
-    private void priShow(final String text, final int duration) {
+    private void priShow(
+            final String text,
+            final int duration
+    ) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null && !snackbar.isShownOrQueued()) {
             // 防止内容为 null
@@ -1161,7 +1202,10 @@ public final class SnackbarUtils {
      * @param style    {@link SnackbarUtils.Style}
      * @return {@link Snackbar}
      */
-    public Snackbar setSnackbarStyle(final Snackbar snackbar, final SnackbarUtils.Style style) {
+    public Snackbar setSnackbarStyle(
+            final Snackbar snackbar,
+            final SnackbarUtils.Style style
+    ) {
         if (snackbar == null || style == null) {
             return snackbar;
         }
@@ -1381,7 +1425,10 @@ public final class SnackbarUtils {
      * @param appendTopMargin 追加边距 ( 如: 状态栏高度 ) {@link BarUtils#getStatusBarHeight}
      * @return {@link SnackbarUtils}
      */
-    public SnackbarUtils above(final View targetView, final int appendTopMargin) {
+    public SnackbarUtils above(
+            final View targetView,
+            final int appendTopMargin
+    ) {
         // 清空重置处理
         clearLocations();
         // 防止为 null
@@ -1401,7 +1448,10 @@ public final class SnackbarUtils {
      * @param appendTopMargin 追加边距 ( 如: 状态栏高度 ) {@link BarUtils#getStatusBarHeight}
      * @return {@link SnackbarUtils}
      */
-    public SnackbarUtils bellow(final View targetView, final int appendTopMargin) {
+    public SnackbarUtils bellow(
+            final View targetView,
+            final int appendTopMargin
+    ) {
         // 清空重置处理
         clearLocations();
         // 防止为 null
@@ -1501,7 +1551,10 @@ public final class SnackbarUtils {
      * @param gravity Gravity
      * @return {@link SnackbarUtils}
      */
-    private SnackbarUtils setLayoutGravity(final View view, final int gravity) {
+    private SnackbarUtils setLayoutGravity(
+            final View view,
+            final int gravity
+    ) {
         try {
             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(
                     view.getLayoutParams().width, view.getLayoutParams().height
@@ -1522,8 +1575,12 @@ public final class SnackbarUtils {
      * @param bottomMargin bottom margin
      * @return {@link SnackbarUtils}
      */
-    private SnackbarUtils setMargin(final View view, final int[] margin,
-                                    final int topMargin, final int bottomMargin) {
+    private SnackbarUtils setMargin(
+            final View view,
+            final int[] margin,
+            final int topMargin,
+            final int bottomMargin
+    ) {
         try {
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
             ((ViewGroup.MarginLayoutParams) layoutParams).setMargins(

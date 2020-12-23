@@ -154,7 +154,10 @@ public final class ActivityUtils {
      * @param className   Activity.class.getCanonicalName()
      * @return {@code true} 存在, {@code false} 不存在
      */
-    public static boolean isActivityExists(final String packageName, final String className) {
+    public static boolean isActivityExists(
+            final String packageName,
+            final String className
+    ) {
         if (packageName == null || className == null) return false;
         boolean result = true;
         try {
@@ -422,7 +425,11 @@ public final class ActivityUtils {
      * @param exitAnim  退出动画
      * @return {@link Bundle}
      */
-    public static Bundle getOptionsBundle(final Context context, final int enterAnim, final int exitAnim) {
+    public static Bundle getOptionsBundle(
+            final Context context,
+            final int enterAnim,
+            final int exitAnim
+    ) {
         try {
             return ActivityOptionsCompat.makeCustomAnimation(context, enterAnim, exitAnim).toBundle();
         } catch (Exception e) {
@@ -437,7 +444,10 @@ public final class ActivityUtils {
      * @param sharedElements 转场动画 View
      * @return {@link Bundle}
      */
-    public static Bundle getOptionsBundle(final Activity activity, final View[] sharedElements) {
+    public static Bundle getOptionsBundle(
+            final Activity activity,
+            final View[] sharedElements
+    ) {
         if (activity == null) return null;
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -922,7 +932,11 @@ public final class ActivityUtils {
          * @param resultCode resultCode
          * @param data       回传数据
          */
-        void onActivityResult(boolean result, int resultCode, Intent data);
+        void onActivityResult(
+                boolean result,
+                int resultCode,
+                Intent data
+        );
     }
 
     /**
@@ -989,7 +1003,11 @@ public final class ActivityUtils {
         }
 
         @Override
-        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        protected void onActivityResult(
+                int requestCode,
+                int resultCode,
+                Intent data
+        ) {
             super.onActivityResult(requestCode, resultCode, data);
             if (mResultCallback != null) {
                 mResultCallback.onActivityResult(resultCode == Activity.RESULT_OK, resultCode, data);

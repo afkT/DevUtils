@@ -126,8 +126,10 @@ final class Utils {
      * @param processingEnv {@link ProcessingEnvironment}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean createDevEnvironmentJavaFile(final TypeSpec.Builder classBuilder,
-                                                       final ProcessingEnvironment processingEnv) {
+    public static boolean createDevEnvironmentJavaFile(
+            final TypeSpec.Builder classBuilder,
+            final ProcessingEnvironment processingEnv
+    ) {
         JavaFile javaFile = JavaFile.builder(PACKAGE_NAME, classBuilder.build()).build();
         try {
             javaFile.writeTo(processingEnv.getFiler());
@@ -146,8 +148,11 @@ final class Utils {
      * @param moduleElement 使用注解修饰的 Module Element
      * @param processingEnv {@link ProcessingEnvironment}
      */
-    public static void builderModule_DATA(final TypeSpec.Builder classBuilder, final Element moduleElement,
-                                          final ProcessingEnvironment processingEnv) throws Exception {
+    public static void builderModule_DATA(
+            final TypeSpec.Builder classBuilder,
+            final Element moduleElement,
+            final ProcessingEnvironment processingEnv
+    ) throws Exception {
         Module moduleAnnotation = moduleElement.getAnnotation(Module.class);
         if (moduleAnnotation == null) return;
         // Module 信息
@@ -196,8 +201,11 @@ final class Utils {
      * @param moduleElement      使用注解修饰的 Module Element
      * @param environmentElement 使用注解修饰的 Environment Element
      */
-    public static void builderModuleEnvironment_DATA(final TypeSpec.Builder classBuilder, final Element moduleElement,
-                                                     final Element environmentElement) {
+    public static void builderModuleEnvironment_DATA(
+            final TypeSpec.Builder classBuilder,
+            final Element moduleElement,
+            final Element environmentElement
+    ) {
         // Module 信息
         String moduleName = moduleElement.getSimpleName().toString();
         // Environment 信息
@@ -228,8 +236,11 @@ final class Utils {
      * @param moduleElement 使用注解修饰的 Module Element
      * @param processingEnv {@link ProcessingEnvironment}
      */
-    public static void builderModuleEnvironment_DATA_NON_RELEASE(final TypeSpec.Builder classBuilder, final Element moduleElement,
-                                                                 final ProcessingEnvironment processingEnv) {
+    public static void builderModuleEnvironment_DATA_NON_RELEASE(
+            final TypeSpec.Builder classBuilder,
+            final Element moduleElement,
+            final ProcessingEnvironment processingEnv
+    ) {
 
         List<? extends Element> allMembers = processingEnv.getElementUtils().getAllMembers((TypeElement) moduleElement);
         for (Element member : allMembers) {
@@ -860,8 +871,10 @@ final class Utils {
      * @param processingEnv {@link ProcessingEnvironment}
      * @return Module Release Environment 数据
      */
-    private static Element _getModuleReleaseEnvironment(final Element moduleElement,
-                                                        final ProcessingEnvironment processingEnv) throws Exception {
+    private static Element _getModuleReleaseEnvironment(
+            final Element moduleElement,
+            final ProcessingEnvironment processingEnv
+    ) throws Exception {
         Element                 environmentElement = null;
         List<? extends Element> allMembers         = processingEnv.getElementUtils().getAllMembers((TypeElement) moduleElement);
         for (Element member : allMembers) {
@@ -907,7 +920,10 @@ final class Utils {
      * @param environmentName Environment Name
      * @return Environment 拼接变量名
      */
-    private static String _getEnvironmentVarName_UpperCase(final String moduleName, final String environmentName) {
+    private static String _getEnvironmentVarName_UpperCase(
+            final String moduleName,
+            final String environmentName
+    ) {
         return VAR_ENVIRONMENT_PREFIX + moduleName.toUpperCase() + "_" + environmentName.toUpperCase();
     }
 }

@@ -32,7 +32,10 @@ public interface IJSONEngine {
      * @param jsonConfig {@link JSONConfig}
      * @return JSON String
      */
-    String toJson(Object object, JSONConfig jsonConfig);
+    String toJson(
+            Object object,
+            JSONConfig jsonConfig
+    );
 
     // =
 
@@ -43,7 +46,10 @@ public interface IJSONEngine {
      * @param <T>      泛型
      * @return instance of type
      */
-    <T> T fromJson(String json, Class<T> classOfT);
+    <T> T fromJson(
+            String json,
+            Class<T> classOfT
+    );
 
     /**
      * 将 JSON String 映射为指定类型对象
@@ -53,7 +59,11 @@ public interface IJSONEngine {
      * @param <T>        泛型
      * @return instance of type
      */
-    <T> T fromJson(String json, Class<T> classOfT, JSONConfig jsonConfig);
+    <T> T fromJson(
+            String json,
+            Class<T> classOfT,
+            JSONConfig jsonConfig
+    );
 
     // =
 
@@ -64,7 +74,10 @@ public interface IJSONEngine {
      * @param <T>     泛型
      * @return instance of type
      */
-    <T> T fromJson(String json, Type typeOfT);
+    <T> T fromJson(
+            String json,
+            Type typeOfT
+    );
 
     /**
      * 将 JSON String 映射为指定类型对象
@@ -74,7 +87,11 @@ public interface IJSONEngine {
      * @param <T>        泛型
      * @return instance of type
      */
-    <T> T fromJson(String json, Type typeOfT, JSONConfig jsonConfig);
+    <T> T fromJson(
+            String json,
+            Type typeOfT,
+            JSONConfig jsonConfig
+    );
 
     // ===========
     // = 其他方法 =
@@ -114,7 +131,10 @@ public interface IJSONEngine {
      * @param jsonConfig {@link JSONConfig}
      * @return JSON String
      */
-    String toJsonIndent(String json, JSONConfig jsonConfig);
+    String toJsonIndent(
+            String json,
+            JSONConfig jsonConfig
+    );
 
     // =
 
@@ -131,5 +151,8 @@ public interface IJSONEngine {
      * @param jsonConfig {@link JSONConfig}
      * @return JSON String
      */
-    String toJsonIndent(Object object, JSONConfig jsonConfig);
+    String toJsonIndent(
+            Object object,
+            JSONConfig jsonConfig
+    );
 }

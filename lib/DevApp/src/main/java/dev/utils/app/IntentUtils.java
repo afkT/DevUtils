@@ -49,7 +49,10 @@ public final class IntentUtils {
      * @param isNewTask 是否开启新的任务栈 (Context 非 Activity 则需要设置 FLAG_ACTIVITY_NEW_TASK)
      * @return {@link Intent}
      */
-    public static Intent getIntent(final Intent intent, final boolean isNewTask) {
+    public static Intent getIntent(
+            final Intent intent,
+            final boolean isNewTask
+    ) {
         if (intent != null) {
             return isNewTask ? intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) : intent;
         }
@@ -87,7 +90,10 @@ public final class IntentUtils {
      * @param isNewTask 是否开启新的任务栈
      * @return {@link Intent}
      */
-    public static Intent getCategoryLauncherIntent(final String className, final boolean isNewTask) {
+    public static Intent getCategoryLauncherIntent(
+            final String className,
+            final boolean isNewTask
+    ) {
         return getCategoryLauncherIntent(AppUtils.getPackageName(), className, isNewTask);
     }
 
@@ -97,7 +103,10 @@ public final class IntentUtils {
      * @param className   class.getCanonicalName()
      * @return {@link Intent}
      */
-    public static Intent getCategoryLauncherIntent(final String packageName, final String className) {
+    public static Intent getCategoryLauncherIntent(
+            final String packageName,
+            final String className
+    ) {
         return getCategoryLauncherIntent(packageName, className, true);
     }
 
@@ -108,7 +117,11 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return {@link Intent}
      */
-    public static Intent getCategoryLauncherIntent(final String packageName, final String className, final boolean isNewTask) {
+    public static Intent getCategoryLauncherIntent(
+            final String packageName,
+            final String className,
+            final boolean isNewTask
+    ) {
         try {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -147,7 +160,10 @@ public final class IntentUtils {
      * @param isNewTask 是否开启新的任务栈
      * @return 安装 APP( 支持 8.0) 的意图
      */
-    public static Intent getInstallAppIntent(final File file, final boolean isNewTask) {
+    public static Intent getInstallAppIntent(
+            final File file,
+            final boolean isNewTask
+    ) {
         if (file == null) return null;
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -181,7 +197,10 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return 卸载 APP 的意图
      */
-    public static Intent getUninstallAppIntent(final String packageName, final boolean isNewTask) {
+    public static Intent getUninstallAppIntent(
+            final String packageName,
+            final boolean isNewTask
+    ) {
         try {
             Intent intent = new Intent(Intent.ACTION_DELETE);
             intent.setData(Uri.parse("package:" + packageName));
@@ -207,7 +226,10 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return 打开 APP 的意图
      */
-    public static Intent getLaunchAppIntent(final String packageName, final boolean isNewTask) {
+    public static Intent getLaunchAppIntent(
+            final String packageName,
+            final boolean isNewTask
+    ) {
         try {
             Intent intent = AppUtils.getPackageManager().getLaunchIntentForPackage(packageName);
             return getIntent(intent, isNewTask);
@@ -255,7 +277,10 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return APP 安装权限设置的意图
      */
-    public static Intent getLaunchAppInstallPermissionSettingsIntent(final String packageName, final boolean isNewTask) {
+    public static Intent getLaunchAppInstallPermissionSettingsIntent(
+            final String packageName,
+            final boolean isNewTask
+    ) {
         try {
             Uri    uri    = Uri.parse("package:" + packageName);
             Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, uri);
@@ -289,7 +314,10 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return APP 通知权限设置的意图
      */
-    public static Intent getLaunchAppNotificationSettingsIntent(final String packageName, final boolean isNewTask) {
+    public static Intent getLaunchAppNotificationSettingsIntent(
+            final String packageName,
+            final boolean isNewTask
+    ) {
         try {
             ApplicationInfo applicationInfo = AppUtils.getPackageInfo(packageName, 0).applicationInfo;
             Intent          intent          = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
@@ -375,7 +403,10 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return APP 授予所有文件管理权限的意图
      */
-    public static Intent getManageAppAllFilesAccessPermissionIntent(final String packageName, final boolean isNewTask) {
+    public static Intent getManageAppAllFilesAccessPermissionIntent(
+            final String packageName,
+            final boolean isNewTask
+    ) {
         try {
             Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
             intent.setData(Uri.parse("package:" + packageName));
@@ -432,7 +463,10 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return APP 具体设置的意图
      */
-    public static Intent getLaunchAppDetailsSettingsIntent(final String packageName, final boolean isNewTask) {
+    public static Intent getLaunchAppDetailsSettingsIntent(
+            final String packageName,
+            final boolean isNewTask
+    ) {
         try {
             Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
             intent.setData(Uri.parse("package:" + packageName));
@@ -449,7 +483,10 @@ public final class IntentUtils {
      * @param marketPkg   应用商店包名, 如果为 ""  则由系统弹出应用商店列表供用户选择, 否则调转到目标市场的应用详情界面, 某些应用商店可能会失败
      * @return 到应用商店 APP 详情界面的意图
      */
-    public static Intent getLaunchAppDetailIntent(final String packageName, final String marketPkg) {
+    public static Intent getLaunchAppDetailIntent(
+            final String packageName,
+            final String marketPkg
+    ) {
         return getLaunchAppDetailIntent(packageName, marketPkg, false);
     }
 
@@ -460,7 +497,11 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return 到应用商店 APP 详情界面的意图
      */
-    public static Intent getLaunchAppDetailIntent(final String packageName, final String marketPkg, final boolean isNewTask) {
+    public static Intent getLaunchAppDetailIntent(
+            final String packageName,
+            final String marketPkg,
+            final boolean isNewTask
+    ) {
         try {
             if (TextUtils.isEmpty(packageName)) return null;
 
@@ -493,7 +534,10 @@ public final class IntentUtils {
      * @param isNewTask 是否开启新的任务栈
      * @return 分享文本的意图
      */
-    public static Intent getShareTextIntent(final String content, final boolean isNewTask) {
+    public static Intent getShareTextIntent(
+            final String content,
+            final boolean isNewTask
+    ) {
         try {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
@@ -511,7 +555,10 @@ public final class IntentUtils {
      * @param imagePath 图片文件路径
      * @return 分享图片的意图
      */
-    public static Intent getShareImageIntent(final String content, final String imagePath) {
+    public static Intent getShareImageIntent(
+            final String content,
+            final String imagePath
+    ) {
         return getShareImageIntent(content, imagePath, false);
     }
 
@@ -522,7 +569,11 @@ public final class IntentUtils {
      * @param isNewTask 是否开启新的任务栈
      * @return 分享图片的意图
      */
-    public static Intent getShareImageIntent(final String content, final String imagePath, final boolean isNewTask) {
+    public static Intent getShareImageIntent(
+            final String content,
+            final String imagePath,
+            final boolean isNewTask
+    ) {
         try {
             return getShareImageIntent(content, FileUtils.getFileByPath(imagePath), isNewTask);
         } catch (Exception e) {
@@ -537,7 +588,10 @@ public final class IntentUtils {
      * @param image   图片文件
      * @return 分享图片的意图
      */
-    public static Intent getShareImageIntent(final String content, final File image) {
+    public static Intent getShareImageIntent(
+            final String content,
+            final File image
+    ) {
         return getShareImageIntent(content, image, false);
     }
 
@@ -548,7 +602,11 @@ public final class IntentUtils {
      * @param isNewTask 是否开启新的任务栈
      * @return 分享图片的意图
      */
-    public static Intent getShareImageIntent(final String content, final File image, final boolean isNewTask) {
+    public static Intent getShareImageIntent(
+            final String content,
+            final File image,
+            final boolean isNewTask
+    ) {
         try {
             return getShareImageIntent(content, Uri.fromFile(image), isNewTask);
         } catch (Exception e) {
@@ -563,7 +621,10 @@ public final class IntentUtils {
      * @param uri     图片 uri
      * @return 分享图片的意图
      */
-    public static Intent getShareImageIntent(final String content, final Uri uri) {
+    public static Intent getShareImageIntent(
+            final String content,
+            final Uri uri
+    ) {
         return getShareImageIntent(content, uri, false);
     }
 
@@ -574,7 +635,11 @@ public final class IntentUtils {
      * @param isNewTask 是否开启新的任务栈
      * @return 分享图片的意图
      */
-    public static Intent getShareImageIntent(final String content, final Uri uri, final boolean isNewTask) {
+    public static Intent getShareImageIntent(
+            final String content,
+            final Uri uri,
+            final boolean isNewTask
+    ) {
         try {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.putExtra(Intent.EXTRA_TEXT, content);
@@ -593,7 +658,10 @@ public final class IntentUtils {
      * @param className   class.getCanonicalName()
      * @return 其他应用组件的意图
      */
-    public static Intent getComponentIntent(final String packageName, final String className) {
+    public static Intent getComponentIntent(
+            final String packageName,
+            final String className
+    ) {
         return getComponentIntent(packageName, className, null, false);
     }
 
@@ -604,7 +672,11 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return 其他应用组件的意图
      */
-    public static Intent getComponentIntent(final String packageName, final String className, final boolean isNewTask) {
+    public static Intent getComponentIntent(
+            final String packageName,
+            final String className,
+            final boolean isNewTask
+    ) {
         return getComponentIntent(packageName, className, null, isNewTask);
     }
 
@@ -615,7 +687,11 @@ public final class IntentUtils {
      * @param bundle      {@link Bundle}
      * @return 其他应用组件的意图
      */
-    public static Intent getComponentIntent(final String packageName, final String className, final Bundle bundle) {
+    public static Intent getComponentIntent(
+            final String packageName,
+            final String className,
+            final Bundle bundle
+    ) {
         return getComponentIntent(packageName, className, bundle, false);
     }
 
@@ -627,7 +703,12 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return 其他应用组件的意图
      */
-    public static Intent getComponentIntent(final String packageName, final String className, final Bundle bundle, final boolean isNewTask) {
+    public static Intent getComponentIntent(
+            final String packageName,
+            final String className,
+            final Bundle bundle,
+            final boolean isNewTask
+    ) {
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             if (bundle != null) intent.putExtras(bundle);
@@ -678,7 +759,10 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return 跳至拨号界面意图
      */
-    public static Intent getDialIntent(final String phoneNumber, final boolean isNewTask) {
+    public static Intent getDialIntent(
+            final String phoneNumber,
+            final boolean isNewTask
+    ) {
         try {
             Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
             return getIntent(intent, isNewTask);
@@ -705,7 +789,10 @@ public final class IntentUtils {
      * @return 拨打电话意图
      */
     @SuppressLint("MissingPermission")
-    public static Intent getCallIntent(final String phoneNumber, final boolean isNewTask) {
+    public static Intent getCallIntent(
+            final String phoneNumber,
+            final boolean isNewTask
+    ) {
         try {
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
             return getIntent(intent, isNewTask);
@@ -721,7 +808,10 @@ public final class IntentUtils {
      * @param content     短信内容
      * @return 发送短信界面的意图
      */
-    public static Intent getSendSmsIntent(final String phoneNumber, final String content) {
+    public static Intent getSendSmsIntent(
+            final String phoneNumber,
+            final String content
+    ) {
         return getSendSmsIntent(phoneNumber, content, false);
     }
 
@@ -732,7 +822,11 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return 发送短信界面的意图
      */
-    public static Intent getSendSmsIntent(final String phoneNumber, final String content, final boolean isNewTask) {
+    public static Intent getSendSmsIntent(
+            final String phoneNumber,
+            final String content,
+            final boolean isNewTask
+    ) {
         try {
             Uri    uri    = Uri.parse("smsto:" + phoneNumber);
             Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
@@ -759,7 +853,10 @@ public final class IntentUtils {
      * @param isNewTask 是否开启新的任务栈
      * @return 图片拍摄的意图
      */
-    public static Intent getImageCaptureIntent(final Uri outUri, final boolean isNewTask) {
+    public static Intent getImageCaptureIntent(
+            final Uri outUri,
+            final boolean isNewTask
+    ) {
         try {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, outUri);
@@ -786,7 +883,10 @@ public final class IntentUtils {
      * @param isNewTask 是否开启新的任务栈
      * @return 视频拍摄的意图
      */
-    public static Intent getVideoCaptureIntent(final Uri outUri, final boolean isNewTask) {
+    public static Intent getVideoCaptureIntent(
+            final Uri outUri,
+            final boolean isNewTask
+    ) {
         try {
             Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, outUri);
@@ -838,7 +938,10 @@ public final class IntentUtils {
      * @param fileName 文件名
      * @return 创建文件的意图
      */
-    public static Intent getCreateDocumentIntent(final String mimeType, final String fileName) {
+    public static Intent getCreateDocumentIntent(
+            final String mimeType,
+            final String fileName
+    ) {
         try {
             Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -861,7 +964,10 @@ public final class IntentUtils {
      * @param isNewTask 是否开启新的任务栈
      * @return 打开浏览器的意图
      */
-    public static Intent getOpenBrowserIntent(final Uri uri, final boolean isNewTask) {
+    public static Intent getOpenBrowserIntent(
+            final Uri uri,
+            final boolean isNewTask
+    ) {
         return getOpenBrowserIntent(uri, null, null, isNewTask);
     }
 
@@ -871,7 +977,10 @@ public final class IntentUtils {
      * @param isNewTask 是否开启新的任务栈
      * @return 打开 Android 浏览器的意图
      */
-    public static Intent getOpenAndroidBrowserIntent(final Uri uri, final boolean isNewTask) {
+    public static Intent getOpenAndroidBrowserIntent(
+            final Uri uri,
+            final boolean isNewTask
+    ) {
         return getOpenBrowserIntent(uri, "com.android.browser", "com.android.browser.BrowserActivity", isNewTask);
     }
 
@@ -889,7 +998,12 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return 打开指定浏览器的意图
      */
-    public static Intent getOpenBrowserIntent(final Uri uri, final String packageName, final String className, final boolean isNewTask) {
+    public static Intent getOpenBrowserIntent(
+            final Uri uri,
+            final String packageName,
+            final String className,
+            final boolean isNewTask
+    ) {
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             intent.addCategory(Intent.CATEGORY_BROWSABLE);

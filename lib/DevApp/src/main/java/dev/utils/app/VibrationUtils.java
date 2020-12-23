@@ -46,7 +46,10 @@ public final class VibrationUtils {
      * @return {@code true} success, {@code false} fail
      */
     @SuppressLint("MissingPermission")
-    public static boolean vibrate(final long[] pattern, final int repeat) {
+    public static boolean vibrate(
+            final long[] pattern,
+            final int repeat
+    ) {
         if (pattern == null) return false;
         try {
             Vibrator vibrator = AppUtils.getVibrator();

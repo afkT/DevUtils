@@ -211,7 +211,10 @@ public final class ScreenSensorAssist {
      */
     class OrientationSensorListener implements SensorEventListener {
         @Override
-        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        public void onAccuracyChanged(
+                Sensor sensor,
+                int accuracy
+        ) {
         }
 
         @Override
@@ -248,7 +251,10 @@ public final class ScreenSensorAssist {
      */
     class OrientationSensorChangeListener implements SensorEventListener {
         @Override
-        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        public void onAccuracyChanged(
+                Sensor sensor,
+                int accuracy
+        ) {
         }
 
         @Override

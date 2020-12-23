@@ -55,7 +55,10 @@ public final class ChineseUtils {
      * @param names    名字数组
      * @return 随机名字
      */
-    public static String randomName(final String[] surnames, final String[] names) {
+    public static String randomName(
+            final String[] surnames,
+            final String[] names
+    ) {
         return randomName(surnames, names, 1);
     }
 
@@ -66,7 +69,11 @@ public final class ChineseUtils {
      * @param nameLength 名字长度
      * @return 随机名字
      */
-    public static String randomName(final String[] surnames, final String[] names, final int nameLength) {
+    public static String randomName(
+            final String[] surnames,
+            final String[] names,
+            final int nameLength
+    ) {
         if (surnames != null && surnames.length != 0 && names != null && names.length != 0) {
             return RandomUtils.getRandom(surnames, 1) + RandomUtils.getRandom(names, nameLength);
         }
@@ -108,7 +115,10 @@ public final class ChineseUtils {
      * @param isUpper 是否大写金额
      * @return 数字中文化字符串
      */
-    public static String numberToCHN(final double number, final boolean isUpper) {
+    public static String numberToCHN(
+            final double number,
+            final boolean isUpper
+    ) {
         try {
             return numberToCHNNumber(BigDecimal.valueOf(number), isUpper ? CHN_NUMBER_UPPER_UNITS : CHN_NUMBER_UNITS);
         } catch (Exception e) {
@@ -123,7 +133,10 @@ public final class ChineseUtils {
      * @param isUpper 是否大写金额
      * @return 数字中文化字符串
      */
-    public static String numberToCHN(final String number, final boolean isUpper) {
+    public static String numberToCHN(
+            final String number,
+            final boolean isUpper
+    ) {
         if (number != null) {
             try {
                 return numberToCHNNumber(new BigDecimal(number), isUpper ? CHN_NUMBER_UPPER_UNITS : CHN_NUMBER_UNITS);
@@ -140,7 +153,10 @@ public final class ChineseUtils {
      * @param isUpper 是否大写金额
      * @return 数字中文化字符串
      */
-    public static String numberToCHN(final BigDecimal number, final boolean isUpper) {
+    public static String numberToCHN(
+            final BigDecimal number,
+            final boolean isUpper
+    ) {
         return numberToCHNNumber(number, isUpper ? CHN_NUMBER_UPPER_UNITS : CHN_NUMBER_UNITS);
     }
 
@@ -158,7 +174,10 @@ public final class ChineseUtils {
      * @param chnUnits   中文数字单位数组
      * @return 数字中文化字符串
      */
-    private static String numberToCHNNumber(final BigDecimal bigDecimal, final String[] chnUnits) {
+    private static String numberToCHNNumber(
+            final BigDecimal bigDecimal,
+            final String[] chnUnits
+    ) {
         // 防止为 null
         if (bigDecimal == null) return null;
         // 去除小数点
@@ -238,7 +257,10 @@ public final class ChineseUtils {
      * @param chnUnits 中文数字单位数组
      * @return 数字中文化字符串
      */
-    private static String thousandConvertCHN(final int value, final String[] chnUnits) {
+    private static String thousandConvertCHN(
+            final int value,
+            final String[] chnUnits
+    ) {
         StringBuilder builder = new StringBuilder();
         // 转换数字
         int number = value;

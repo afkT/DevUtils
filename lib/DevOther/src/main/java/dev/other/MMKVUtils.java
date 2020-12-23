@@ -40,7 +40,7 @@ public final class MMKVUtils {
     private static final String TAG = MMKVUtils.class.getSimpleName();
 
     // 持有类存储 Key-Holder
-    private static final Map<String, Holder> HOLDER_MAP     = new HashMap<>();
+    private static final Map<String, Holder> HOLDER_MAP = new HashMap<>();
     // Default MMKV Holder
     private static       Holder              DEFAULT_HOLDER = null;
 
@@ -99,7 +99,10 @@ public final class MMKVUtils {
      * @param mmkv {@link MMKV}
      * @return {@link Holder}
      */
-    public static Holder putHolder(final String key, final MMKV mmkv) {
+    public static Holder putHolder(
+            final String key,
+            final MMKV mmkv
+    ) {
         Holder holder = new Holder(mmkv);
         HOLDER_MAP.put(key, holder);
         return holder;
@@ -235,57 +238,84 @@ public final class MMKVUtils {
         // = 存储 =
         // =======
 
-        public boolean encode(String key, boolean value) {
+        public boolean encode(
+                String key,
+                boolean value
+        ) {
             if (isMMKVEmpty()) return false;
             if (StringUtils.isEmpty(key)) return false;
             return mmkv.encode(key, value);
         }
 
-        public boolean encode(String key, int value) {
+        public boolean encode(
+                String key,
+                int value
+        ) {
             if (isMMKVEmpty()) return false;
             if (StringUtils.isEmpty(key)) return false;
             return mmkv.encode(key, value);
         }
 
-        public boolean encode(String key, long value) {
+        public boolean encode(
+                String key,
+                long value
+        ) {
             if (isMMKVEmpty()) return false;
             if (StringUtils.isEmpty(key)) return false;
             return mmkv.encode(key, value);
         }
 
-        public boolean encode(String key, float value) {
+        public boolean encode(
+                String key,
+                float value
+        ) {
             if (isMMKVEmpty()) return false;
             if (StringUtils.isEmpty(key)) return false;
             return mmkv.encode(key, value);
         }
 
-        public boolean encode(String key, double value) {
+        public boolean encode(
+                String key,
+                double value
+        ) {
             if (isMMKVEmpty()) return false;
             if (StringUtils.isEmpty(key)) return false;
             return mmkv.encode(key, value);
         }
 
-        public boolean encode(String key, String value) {
+        public boolean encode(
+                String key,
+                String value
+        ) {
             if (isMMKVEmpty()) return false;
             if (StringUtils.isEmpty(key)) return false;
             return mmkv.encode(key, value);
         }
 
-        public boolean encode(String key, Set<String> value) {
+        public boolean encode(
+                String key,
+                Set<String> value
+        ) {
             if (isMMKVEmpty()) return false;
             if (StringUtils.isEmpty(key)) return false;
             if (value == null) return false;
             return mmkv.encode(key, value);
         }
 
-        public boolean encode(String key, byte[] value) {
+        public boolean encode(
+                String key,
+                byte[] value
+        ) {
             if (isMMKVEmpty()) return false;
             if (StringUtils.isEmpty(key)) return false;
             if (value == null) return false;
             return mmkv.encode(key, value);
         }
 
-        public boolean encode(String key, Parcelable value) {
+        public boolean encode(
+                String key,
+                Parcelable value
+        ) {
             if (isMMKVEmpty()) return false;
             if (StringUtils.isEmpty(key)) return false;
             if (value == null) return false;
@@ -300,7 +330,10 @@ public final class MMKVUtils {
             return decodeBool(key, false);
         }
 
-        public boolean decodeBool(String key, boolean defaultValue) {
+        public boolean decodeBool(
+                String key,
+                boolean defaultValue
+        ) {
             if (isMMKVEmpty()) return defaultValue;
             if (StringUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeBool(key, defaultValue);
@@ -310,7 +343,10 @@ public final class MMKVUtils {
             return decodeInt(key, 0);
         }
 
-        public int decodeInt(String key, int defaultValue) {
+        public int decodeInt(
+                String key,
+                int defaultValue
+        ) {
             if (isMMKVEmpty()) return defaultValue;
             if (StringUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeInt(key, defaultValue);
@@ -320,7 +356,10 @@ public final class MMKVUtils {
             return decodeLong(key, 0L);
         }
 
-        public long decodeLong(String key, long defaultValue) {
+        public long decodeLong(
+                String key,
+                long defaultValue
+        ) {
             if (isMMKVEmpty()) return defaultValue;
             if (StringUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeLong(key, defaultValue);
@@ -330,7 +369,10 @@ public final class MMKVUtils {
             return decodeFloat(key, 0.0F);
         }
 
-        public float decodeFloat(String key, float defaultValue) {
+        public float decodeFloat(
+                String key,
+                float defaultValue
+        ) {
             if (isMMKVEmpty()) return defaultValue;
             if (StringUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeFloat(key, defaultValue);
@@ -340,7 +382,10 @@ public final class MMKVUtils {
             return decodeDouble(key, 0.0D);
         }
 
-        public double decodeDouble(String key, double defaultValue) {
+        public double decodeDouble(
+                String key,
+                double defaultValue
+        ) {
             if (isMMKVEmpty()) return defaultValue;
             if (StringUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeDouble(key, defaultValue);
@@ -350,7 +395,10 @@ public final class MMKVUtils {
             return decodeString(key, null);
         }
 
-        public String decodeString(String key, String defaultValue) {
+        public String decodeString(
+                String key,
+                String defaultValue
+        ) {
             if (isMMKVEmpty()) return defaultValue;
             if (StringUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeString(key, defaultValue);
@@ -360,11 +408,18 @@ public final class MMKVUtils {
             return decodeStringSet(key, null);
         }
 
-        public Set<String> decodeStringSet(String key, Set<String> defaultValue) {
+        public Set<String> decodeStringSet(
+                String key,
+                Set<String> defaultValue
+        ) {
             return decodeStringSet(key, defaultValue, HashSet.class);
         }
 
-        public Set<String> decodeStringSet(String key, Set<String> defaultValue, Class<? extends Set> cls) {
+        public Set<String> decodeStringSet(
+                String key,
+                Set<String> defaultValue,
+                Class<? extends Set> cls
+        ) {
             if (isMMKVEmpty()) return defaultValue;
             if (StringUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeStringSet(key, defaultValue, cls);
@@ -374,17 +429,27 @@ public final class MMKVUtils {
             return decodeBytes(key, null);
         }
 
-        public byte[] decodeBytes(String key, byte[] defaultValue) {
+        public byte[] decodeBytes(
+                String key,
+                byte[] defaultValue
+        ) {
             if (isMMKVEmpty()) return defaultValue;
             if (StringUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeBytes(key, defaultValue);
         }
 
-        public <T extends Parcelable> T decodeParcelable(String key, Class<T> tClass) {
+        public <T extends Parcelable> T decodeParcelable(
+                String key,
+                Class<T> tClass
+        ) {
             return decodeParcelable(key, tClass, null);
         }
 
-        public <T extends Parcelable> T decodeParcelable(String key, Class<T> tClass, T defaultValue) {
+        public <T extends Parcelable> T decodeParcelable(
+                String key,
+                Class<T> tClass,
+                T defaultValue
+        ) {
             if (isMMKVEmpty()) return defaultValue;
             if (StringUtils.isEmpty(key)) return defaultValue;
             return mmkv.decodeParcelable(key, tClass, defaultValue);

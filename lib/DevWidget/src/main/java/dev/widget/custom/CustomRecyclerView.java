@@ -61,12 +61,19 @@ public class CustomRecyclerView extends RecyclerView {
         super(context);
     }
 
-    public CustomRecyclerView(Context context, AttributeSet attrs) {
+    public CustomRecyclerView(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
         initAttrs(context, attrs);
     }
 
-    public CustomRecyclerView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CustomRecyclerView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
         initAttrs(context, attrs);
     }
@@ -76,7 +83,10 @@ public class CustomRecyclerView extends RecyclerView {
      * @param context {@link Context}
      * @param attrs   {@link AttributeSet}
      */
-    private void initAttrs(Context context, AttributeSet attrs) {
+    private void initAttrs(
+            Context context,
+            AttributeSet attrs
+    ) {
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
             mIsSlide = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
@@ -87,13 +97,19 @@ public class CustomRecyclerView extends RecyclerView {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    protected void onMeasure(
+            int widthMeasureSpec,
+            int heightMeasureSpec
+    ) {
         int[] measureSpecs = WidgetUtils.viewMeasure(this, widthMeasureSpec, heightMeasureSpec, mMaxWidth, mMaxHeight);
         super.onMeasure(measureSpecs[0], measureSpecs[1]);
     }
 
     @Override
-    public void onScrolled(int dx, int dy) {
+    public void onScrolled(
+            int dx,
+            int dy
+    ) {
         super.onScrolled(dx, dy);
         mScrollX += dx;
         mScrollY += dy;
@@ -211,7 +227,10 @@ public class CustomRecyclerView extends RecyclerView {
          * @param recyclerView {@link RecyclerView}
          * @param state        滑动状态
          */
-        void onScrollStateChanged(RecyclerView recyclerView, int state);
+        void onScrollStateChanged(
+                RecyclerView recyclerView,
+                int state
+        );
 
         /**
          * 滑动改变通知
@@ -221,6 +240,12 @@ public class CustomRecyclerView extends RecyclerView {
          * @param scrollX      距离左边距离
          * @param scrollY      距离顶部距离
          */
-        void onScrollChanged(RecyclerView recyclerView, int dx, int dy, int scrollX, int scrollY);
+        void onScrollChanged(
+                RecyclerView recyclerView,
+                int dx,
+                int dy,
+                int scrollX,
+                int scrollY
+        );
     }
 }

@@ -21,7 +21,7 @@ import dev.widget.R;
 public class LimitLayout extends FrameLayout {
 
     // 最大显示宽度
-    private int mMaxWidth  = WidgetUtils.DEF_VALUE;
+    private int mMaxWidth = WidgetUtils.DEF_VALUE;
     // 最大显示高度
     private int mMaxHeight = WidgetUtils.DEF_VALUE;
 
@@ -29,18 +29,30 @@ public class LimitLayout extends FrameLayout {
         super(context);
     }
 
-    public LimitLayout(Context context, AttributeSet attrs) {
+    public LimitLayout(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
         initAttrs(context, attrs);
     }
 
-    public LimitLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LimitLayout(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
         initAttrs(context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public LimitLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public LimitLayout(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
+    ) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initAttrs(context, attrs);
     }
@@ -50,7 +62,10 @@ public class LimitLayout extends FrameLayout {
      * @param context {@link Context}
      * @param attrs   {@link AttributeSet}
      */
-    private void initAttrs(Context context, AttributeSet attrs) {
+    private void initAttrs(
+            Context context,
+            AttributeSet attrs
+    ) {
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
             mMaxWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_maxWidth, WidgetUtils.DEF_VALUE);
@@ -60,7 +75,10 @@ public class LimitLayout extends FrameLayout {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    protected void onMeasure(
+            int widthMeasureSpec,
+            int heightMeasureSpec
+    ) {
         int[] measureSpecs = WidgetUtils.viewMeasure(this, widthMeasureSpec, heightMeasureSpec, mMaxWidth, mMaxHeight);
         super.onMeasure(measureSpecs[0], measureSpecs[1]);
     }

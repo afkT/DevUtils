@@ -51,7 +51,10 @@ public final class FilePartUtils {
      * @param fileName 原始文件名
      * @return 分片文件名
      */
-    public static String getPartName(final FilePartItem item, final String fileName) {
+    public static String getPartName(
+            final FilePartItem item,
+            final String fileName
+    ) {
         return item != null ? item.getPartName(fileName) : null;
     }
 
@@ -61,7 +64,10 @@ public final class FilePartUtils {
      * @param partIndex 分片索引
      * @return 分片文件名
      */
-    public static String getPartName(final FilePartAssist assist, final int partIndex) {
+    public static String getPartName(
+            final FilePartAssist assist,
+            final int partIndex
+    ) {
         return assist != null ? assist.getPartName(partIndex) : null;
     }
 
@@ -71,7 +77,10 @@ public final class FilePartUtils {
      * @param partIndex 分片索引
      * @return 分片文件名
      */
-    public static String getPartName(final String fileName, final int partIndex) {
+    public static String getPartName(
+            final String fileName,
+            final int partIndex
+    ) {
         return String.format("%s%s%s", fileName, PART_SUFFIX, partIndex);
     }
 
@@ -93,8 +102,11 @@ public final class FilePartUtils {
      * @param minLength 分片片段允许最小值 byte
      * @return {@link FilePartAssist}
      */
-    public static FilePartAssist getFilePartAssist(final String filePath,
-                                                   final int partCount, final long minLength) {
+    public static FilePartAssist getFilePartAssist(
+            final String filePath,
+            final int partCount,
+            final long minLength
+    ) {
         return getFilePartAssist(FileUtils.getFile(filePath), partCount, minLength);
     }
 
@@ -114,8 +126,11 @@ public final class FilePartUtils {
      * @param minLength 分片片段允许最小值 byte
      * @return {@link FilePartAssist}
      */
-    public static FilePartAssist getFilePartAssist(final File file,
-                                                   final int partCount, final long minLength) {
+    public static FilePartAssist getFilePartAssist(
+            final File file,
+            final int partCount,
+            final long minLength
+    ) {
         boolean filePart = isFilePart(file, partCount, minLength);
         return new FilePartAssist(file, filePart ? partCount : 1);
     }
@@ -138,8 +153,11 @@ public final class FilePartUtils {
      * @param minLength 分片片段允许最小值 byte
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isFilePart(final String filePath,
-                                     final int partCount, final long minLength) {
+    public static boolean isFilePart(
+            final String filePath,
+            final int partCount,
+            final long minLength
+    ) {
         return isFilePart(FileUtils.getFile(filePath), partCount, minLength);
     }
 
@@ -159,8 +177,11 @@ public final class FilePartUtils {
      * @param minLength 分片片段允许最小值 byte
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isFilePart(final File file,
-                                     final int partCount, final long minLength) {
+    public static boolean isFilePart(
+            final File file,
+            final int partCount,
+            final long minLength
+    ) {
         // 原始文件总字节
         long fileByteLength = FileUtils.getFileLength(file);
         // 分片总字节
@@ -179,7 +200,11 @@ public final class FilePartUtils {
      * @param end      分片字节结束索引
      * @return 指定位置数据
      */
-    public static byte[] fileSplit(final String filePath, final long start, final long end) {
+    public static byte[] fileSplit(
+            final String filePath,
+            final long start,
+            final long end
+    ) {
         return fileSplit(FileUtils.getFile(filePath), start, end);
     }
 
@@ -193,7 +218,11 @@ public final class FilePartUtils {
      * @param end   分片字节结束索引
      * @return 指定位置数据
      */
-    public static byte[] fileSplit(final File file, final long start, final long end) {
+    public static byte[] fileSplit(
+            final File file,
+            final long start,
+            final long end
+    ) {
         if (file != null && file.exists() && start >= 0 && end > start) {
             RandomAccessFile raf = null;
             try {
@@ -218,7 +247,10 @@ public final class FilePartUtils {
      * @param item     {@link FilePartItem}
      * @return 指定位置数据
      */
-    public static byte[] fileSplit(final String filePath, final FilePartItem item) {
+    public static byte[] fileSplit(
+            final String filePath,
+            final FilePartItem item
+    ) {
         return fileSplit(FileUtils.getFile(filePath), item);
     }
 
@@ -228,7 +260,10 @@ public final class FilePartUtils {
      * @param item {@link FilePartItem}
      * @return 指定位置数据
      */
-    public static byte[] fileSplit(final File file, final FilePartItem item) {
+    public static byte[] fileSplit(
+            final File file,
+            final FilePartItem item
+    ) {
         if (file == null || item == null) return null;
         return fileSplit(file, item.start, item.end);
     }
@@ -240,8 +275,11 @@ public final class FilePartUtils {
      * @param partIndex 分片索引
      * @return 指定位置数据
      */
-    public static byte[] fileSplit(final String filePath,
-                                   final FilePartAssist assist, final int partIndex) {
+    public static byte[] fileSplit(
+            final String filePath,
+            final FilePartAssist assist,
+            final int partIndex
+    ) {
         return fileSplit(FileUtils.getFile(filePath), assist, partIndex);
     }
 
@@ -252,8 +290,11 @@ public final class FilePartUtils {
      * @param partIndex 分片索引
      * @return 指定位置数据
      */
-    public static byte[] fileSplit(final File file,
-                                   final FilePartAssist assist, final int partIndex) {
+    public static byte[] fileSplit(
+            final File file,
+            final FilePartAssist assist,
+            final int partIndex
+    ) {
         if (file == null || assist == null) return null;
         return fileSplit(file, assist.getFilePartItem(partIndex));
     }
@@ -269,8 +310,13 @@ public final class FilePartUtils {
      * @param partName       分片文件名
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitSave(final String filePath, final long start, final long end,
-                                        final String destFolderPath, final String partName) {
+    public static boolean fileSplitSave(
+            final String filePath,
+            final long start,
+            final long end,
+            final String destFolderPath,
+            final String partName
+    ) {
         return fileSplitSave(FileUtils.getFile(filePath), start, end, destFolderPath, partName);
     }
 
@@ -283,8 +329,13 @@ public final class FilePartUtils {
      * @param partName       分片文件名
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitSave(final File file, final long start, final long end,
-                                        final String destFolderPath, final String partName) {
+    public static boolean fileSplitSave(
+            final File file,
+            final long start,
+            final long end,
+            final String destFolderPath,
+            final String partName
+    ) {
         if (file != null && file.exists() && start >= 0 && end > start) {
             FileInputStream  fis           = null;
             FileChannel      inputChannel  = null;
@@ -314,8 +365,11 @@ public final class FilePartUtils {
      * @param destFolderPath 存储目标文件夹地址
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitSave(final String filePath, final FilePartItem item,
-                                        final String destFolderPath) {
+    public static boolean fileSplitSave(
+            final String filePath,
+            final FilePartItem item,
+            final String destFolderPath
+    ) {
         return fileSplitSave(FileUtils.getFile(filePath), item, destFolderPath);
     }
 
@@ -326,8 +380,11 @@ public final class FilePartUtils {
      * @param destFolderPath 存储目标文件夹地址
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitSave(final File file, final FilePartItem item,
-                                        final String destFolderPath) {
+    public static boolean fileSplitSave(
+            final File file,
+            final FilePartItem item,
+            final String destFolderPath
+    ) {
         if (file == null || item == null) return false;
         return fileSplitSave(file, item.start, item.end, destFolderPath,
                 item.getPartName(FileUtils.getFileName(file)));
@@ -341,8 +398,12 @@ public final class FilePartUtils {
      * @param partIndex      分片索引
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitSave(final String filePath, final FilePartAssist assist,
-                                        final String destFolderPath, final int partIndex) {
+    public static boolean fileSplitSave(
+            final String filePath,
+            final FilePartAssist assist,
+            final String destFolderPath,
+            final int partIndex
+    ) {
         return fileSplitSave(FileUtils.getFile(filePath), assist, destFolderPath, partIndex);
     }
 
@@ -354,8 +415,12 @@ public final class FilePartUtils {
      * @param partIndex      分片索引
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitSave(final File file, final FilePartAssist assist,
-                                        final String destFolderPath, final int partIndex) {
+    public static boolean fileSplitSave(
+            final File file,
+            final FilePartAssist assist,
+            final String destFolderPath,
+            final int partIndex
+    ) {
         if (file == null || assist == null) return false;
         return fileSplitSave(file, assist.getFilePartItem(partIndex), destFolderPath);
     }
@@ -368,7 +433,10 @@ public final class FilePartUtils {
      * @param destFolderPath 存储目标文件夹地址
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitSaves(final String filePath, final String destFolderPath) {
+    public static boolean fileSplitSaves(
+            final String filePath,
+            final String destFolderPath
+    ) {
         return fileSplitSaves(FileUtils.getFile(filePath), destFolderPath);
     }
 
@@ -378,7 +446,10 @@ public final class FilePartUtils {
      * @param destFolderPath 存储目标文件夹地址
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitSaves(final File file, final String destFolderPath) {
+    public static boolean fileSplitSaves(
+            final File file,
+            final String destFolderPath
+    ) {
         return fileSplitSaves(file, getFilePartAssist(file), destFolderPath);
     }
 
@@ -389,8 +460,11 @@ public final class FilePartUtils {
      * @param destFolderPath 存储目标文件夹地址
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitSaves(final String filePath, final FilePartAssist assist,
-                                         final String destFolderPath) {
+    public static boolean fileSplitSaves(
+            final String filePath,
+            final FilePartAssist assist,
+            final String destFolderPath
+    ) {
         return fileSplitSaves(FileUtils.getFile(filePath), assist, destFolderPath);
     }
 
@@ -401,8 +475,11 @@ public final class FilePartUtils {
      * @param destFolderPath 存储目标文件夹地址
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitSaves(final File file, final FilePartAssist assist,
-                                         final String destFolderPath) {
+    public static boolean fileSplitSaves(
+            final File file,
+            final FilePartAssist assist,
+            final String destFolderPath
+    ) {
         if (file == null || assist == null) return false;
         if (!assist.existsPart()) return false;
         String fileName = FileUtils.getFileName(file);
@@ -431,8 +508,11 @@ public final class FilePartUtils {
      * @param destFolderPath 待删除目标文件夹地址
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitDelete(final String filePath, final FilePartItem item,
-                                          final String destFolderPath) {
+    public static boolean fileSplitDelete(
+            final String filePath,
+            final FilePartItem item,
+            final String destFolderPath
+    ) {
         return fileSplitDelete(FileUtils.getFile(filePath), item, destFolderPath);
     }
 
@@ -443,8 +523,11 @@ public final class FilePartUtils {
      * @param destFolderPath 待删除目标文件夹地址
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitDelete(final File file, final FilePartItem item,
-                                          final String destFolderPath) {
+    public static boolean fileSplitDelete(
+            final File file,
+            final FilePartItem item,
+            final String destFolderPath
+    ) {
         if (file == null || item == null) return false;
         return FileUtils.deleteFile(
                 FileUtils.getFile(destFolderPath, item.getPartName(FileUtils.getFileName(file)))
@@ -459,8 +542,12 @@ public final class FilePartUtils {
      * @param partIndex      分片索引
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitDelete(final String filePath, final FilePartAssist assist,
-                                          final String destFolderPath, final int partIndex) {
+    public static boolean fileSplitDelete(
+            final String filePath,
+            final FilePartAssist assist,
+            final String destFolderPath,
+            final int partIndex
+    ) {
         return fileSplitDelete(FileUtils.getFile(filePath), assist, destFolderPath, partIndex);
     }
 
@@ -472,8 +559,12 @@ public final class FilePartUtils {
      * @param partIndex      分片索引
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitDelete(final File file, final FilePartAssist assist,
-                                          final String destFolderPath, final int partIndex) {
+    public static boolean fileSplitDelete(
+            final File file,
+            final FilePartAssist assist,
+            final String destFolderPath,
+            final int partIndex
+    ) {
         if (file == null || assist == null) return false;
         return fileSplitDelete(file, assist.getFilePartItem(partIndex), destFolderPath);
     }
@@ -486,7 +577,10 @@ public final class FilePartUtils {
      * @param destFolderPath 待删除目标文件夹地址
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitDeletes(final String filePath, final String destFolderPath) {
+    public static boolean fileSplitDeletes(
+            final String filePath,
+            final String destFolderPath
+    ) {
         return fileSplitDeletes(FileUtils.getFile(filePath), destFolderPath);
     }
 
@@ -496,7 +590,10 @@ public final class FilePartUtils {
      * @param destFolderPath 待删除目标文件夹地址
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitDeletes(final File file, final String destFolderPath) {
+    public static boolean fileSplitDeletes(
+            final File file,
+            final String destFolderPath
+    ) {
         return fileSplitDeletes(file, getFilePartAssist(file), destFolderPath);
     }
 
@@ -507,8 +604,11 @@ public final class FilePartUtils {
      * @param destFolderPath 待删除目标文件夹地址
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitDeletes(final String filePath, final FilePartAssist assist,
-                                           final String destFolderPath) {
+    public static boolean fileSplitDeletes(
+            final String filePath,
+            final FilePartAssist assist,
+            final String destFolderPath
+    ) {
         return fileSplitDeletes(FileUtils.getFile(filePath), assist, destFolderPath);
     }
 
@@ -519,8 +619,11 @@ public final class FilePartUtils {
      * @param destFolderPath 待删除目标文件夹地址
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitDeletes(final File file, final FilePartAssist assist,
-                                           final String destFolderPath) {
+    public static boolean fileSplitDeletes(
+            final File file,
+            final FilePartAssist assist,
+            final String destFolderPath
+    ) {
         if (file == null || assist == null) return false;
         if (!assist.existsPart()) return false;
         for (int i = 0, len = assist.getPartCount(); i < len; i++) {
@@ -539,7 +642,10 @@ public final class FilePartUtils {
      * @param paths    待合并文件 ( 按顺序 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitMergePaths(final String filePath, final List<String> paths) {
+    public static boolean fileSplitMergePaths(
+            final String filePath,
+            final List<String> paths
+    ) {
         return fileSplitMergePaths(FileUtils.getFile(filePath), paths);
     }
 
@@ -549,7 +655,10 @@ public final class FilePartUtils {
      * @param paths 待合并文件 ( 按顺序 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitMergePaths(final File file, final List<String> paths) {
+    public static boolean fileSplitMergePaths(
+            final File file,
+            final List<String> paths
+    ) {
         if (file == null || paths == null) return false;
         return fileSplitMergeFiles(file, FileUtils.convertFiles(paths));
     }
@@ -560,7 +669,10 @@ public final class FilePartUtils {
      * @param files    待合并文件 ( 按顺序 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitMergeFiles(final String filePath, final List<File> files) {
+    public static boolean fileSplitMergeFiles(
+            final String filePath,
+            final List<File> files
+    ) {
         return fileSplitMergeFiles(FileUtils.getFile(filePath), files);
     }
 
@@ -570,7 +682,10 @@ public final class FilePartUtils {
      * @param files 待合并文件 ( 按顺序 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitMergeFiles(final File file, final List<File> files) {
+    public static boolean fileSplitMergeFiles(
+            final File file,
+            final List<File> files
+    ) {
         if (file == null || files == null) return false;
         if (files.isEmpty()) return false;
         FileUtils.deleteFile(file);
@@ -605,8 +720,12 @@ public final class FilePartUtils {
      * @param fileName       原文件名
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitMerge(final String filePath, final FilePartAssist assist,
-                                         final String destFolderPath, final String fileName) {
+    public static boolean fileSplitMerge(
+            final String filePath,
+            final FilePartAssist assist,
+            final String destFolderPath,
+            final String fileName
+    ) {
         return fileSplitMerge(FileUtils.getFile(filePath), assist, destFolderPath, fileName);
     }
 
@@ -618,8 +737,12 @@ public final class FilePartUtils {
      * @param fileName       原文件名
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean fileSplitMerge(final File file, final FilePartAssist assist,
-                                         final String destFolderPath, final String fileName) {
+    public static boolean fileSplitMerge(
+            final File file,
+            final FilePartAssist assist,
+            final String destFolderPath,
+            final String fileName
+    ) {
         if (file == null || assist == null || destFolderPath == null || fileName == null)
             return false;
         if (!assist.existsPart()) return false;

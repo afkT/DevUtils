@@ -22,9 +22,9 @@ public final class DepsJsonBean {
     private LinkedHashMap<String, Map<String, String>> mDepsMaps = new LinkedHashMap<>();
 
     // 格式化字符串
-    public static final String FORMAT_ANNOTATION   = "\t// %s";
+    public static final String FORMAT_ANNOTATION = "\t// %s";
     public static final String FORMAT_DEPENDENCIES = "\t%s '%s'";
-    public static final String IMPLEMENTATION      = "implementation";
+    public static final String IMPLEMENTATION = "implementation";
 
     /**
      * 快捷映射获取方法
@@ -57,7 +57,10 @@ public final class DepsJsonBean {
      * @param maps 第三方库列表
      * @return Gradle Dependencies 依赖信息
      */
-    public String getDependencies(final String mark, final Map<String, String> maps) {
+    public String getDependencies(
+            final String mark,
+            final Map<String, String> maps
+    ) {
         if (maps != null && !maps.isEmpty()) {
             StringBuilder builder = new StringBuilder();
             for (Map.Entry<String, String> entry : maps.entrySet()) {
@@ -86,7 +89,10 @@ public final class DepsJsonBean {
      * @param divider 是否进行分割
      * @return Gradle Dependencies 全部依赖信息
      */
-    public String getAllDependencies(final String mark, final boolean divider) {
+    public String getAllDependencies(
+            final String mark,
+            final boolean divider
+    ) {
         StringBuilder builder = new StringBuilder();
         for (Map.Entry<String, Map<String, String>> entry : mDepsMaps.entrySet()) {
             if (divider) {

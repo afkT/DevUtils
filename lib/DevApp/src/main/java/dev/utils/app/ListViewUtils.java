@@ -69,7 +69,10 @@ public final class ListViewUtils {
      * @param position 索引
      * @return {@link View}
      */
-    public static View getItemView(final View view, final int position) {
+    public static View getItemView(
+            final View view,
+            final int position
+    ) {
         if (view != null && position >= 0) {
             if (view instanceof RecyclerView) {
                 RecyclerView         recyclerView = (RecyclerView) view;
@@ -119,7 +122,10 @@ public final class ListViewUtils {
      * @param <T>      泛型
      * @return {@link View}
      */
-    public static <T extends View> T smoothScrollToPosition(final T view, final int position) {
+    public static <T extends View> T smoothScrollToPosition(
+            final T view,
+            final int position
+    ) {
         if (view != null && position >= 0) {
             if (view instanceof RecyclerView) {
                 ((RecyclerView) view).smoothScrollToPosition(position);
@@ -139,7 +145,10 @@ public final class ListViewUtils {
      * @param <T>      泛型
      * @return {@link View}
      */
-    public static <T extends View> T scrollToPosition(final T view, final int position) {
+    public static <T extends View> T scrollToPosition(
+            final T view,
+            final int position
+    ) {
         if (view != null && position >= 0) {
             if (view instanceof RecyclerView) {
                 ((RecyclerView) view).scrollToPosition(position);
@@ -282,7 +291,11 @@ public final class ListViewUtils {
      * @param <T>  泛型
      * @return {@link View}
      */
-    public static <T extends View> T smoothScrollTo(final T view, final int x, final int y) {
+    public static <T extends View> T smoothScrollTo(
+            final T view,
+            final int x,
+            final int y
+    ) {
         if (view != null) {
             if (view instanceof NestedScrollView) {
                 ((NestedScrollView) view).smoothScrollTo(x, y);
@@ -303,7 +316,11 @@ public final class ListViewUtils {
      * @param <T>  泛型
      * @return {@link View}
      */
-    public static <T extends View> T smoothScrollBy(final T view, final int x, final int y) {
+    public static <T extends View> T smoothScrollBy(
+            final T view,
+            final int x,
+            final int y
+    ) {
         if (view != null) {
             if (view instanceof NestedScrollView) {
                 ((NestedScrollView) view).smoothScrollBy(x, y);
@@ -329,7 +346,10 @@ public final class ListViewUtils {
      * @param <T>       泛型
      * @return {@link View}
      */
-    public static <T extends View> T fullScroll(final T view, final int direction) {
+    public static <T extends View> T fullScroll(
+            final T view,
+            final int direction
+    ) {
         if (view != null) {
             if (view instanceof NestedScrollView) {
                 ((NestedScrollView) view).fullScroll(direction);
@@ -356,7 +376,11 @@ public final class ListViewUtils {
      * @param y    Y 轴开始坐标
      * @return {@link View}
      */
-    public static View scrollTo(final View view, final int x, final int y) {
+    public static View scrollTo(
+            final View view,
+            final int x,
+            final int y
+    ) {
         return ViewUtils.scrollTo(view, x, y);
     }
 
@@ -370,7 +394,11 @@ public final class ListViewUtils {
      * @param y    Y 轴开始坐标
      * @return {@link View}
      */
-    public static View scrollBy(final View view, final int x, final int y) {
+    public static View scrollBy(
+            final View view,
+            final int x,
+            final int y
+    ) {
         return ViewUtils.scrollBy(view, x, y);
     }
 
@@ -380,7 +408,10 @@ public final class ListViewUtils {
      * @param value X 轴坐标
      * @return {@link View}
      */
-    public static View setScrollX(final View view, final int value) {
+    public static View setScrollX(
+            final View view,
+            final int value
+    ) {
         return ViewUtils.setScrollX(view, value);
     }
 
@@ -390,7 +421,10 @@ public final class ListViewUtils {
      * @param value Y 轴坐标
      * @return {@link View}
      */
-    public static View setScrollY(final View view, final int value) {
+    public static View setScrollY(
+            final View view,
+            final int value
+    ) {
         return ViewUtils.setScrollY(view, value);
     }
 
@@ -427,7 +461,10 @@ public final class ListViewUtils {
      * @param <T>          泛型
      * @return {@link ViewGroup}
      */
-    public static <T extends ViewGroup> T setDescendantFocusability(final T view, final int focusability) {
+    public static <T extends ViewGroup> T setDescendantFocusability(
+            final T view,
+            final int focusability
+    ) {
         return ViewUtils.setDescendantFocusability(view, focusability);
     }
 
@@ -442,7 +479,10 @@ public final class ListViewUtils {
      * @param <T>            泛型
      * @return {@link View}
      */
-    public static <T extends View> T setOverScrollMode(final T view, final int overScrollMode) {
+    public static <T extends View> T setOverScrollMode(
+            final T view,
+            final int overScrollMode
+    ) {
         return ViewUtils.setOverScrollMode(view, overScrollMode);
     }
 
@@ -469,7 +509,10 @@ public final class ListViewUtils {
      * @param setParams 是否 setLayoutParams
      * @return ListView 高度
      */
-    public static int calcListViewHeight(final ListView listView, final boolean setParams) {
+    public static int calcListViewHeight(
+            final ListView listView,
+            final boolean setParams
+    ) {
         if (listView == null) return 0;
         try {
             // Adapter
@@ -524,7 +567,10 @@ public final class ListViewUtils {
      * @param setParams 是否 setLayoutParams
      * @return GridView 高度
      */
-    public static int calcGridViewHeight(final GridView gridView, final boolean setParams) {
+    public static int calcGridViewHeight(
+            final GridView gridView,
+            final boolean setParams
+    ) {
         if (gridView == null) return 0;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) return 0;
         try {

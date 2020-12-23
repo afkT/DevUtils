@@ -40,7 +40,11 @@ public class GlideEngine implements ImageEngine {
      * @param imageView
      */
     @Override
-    public void loadImage(@NonNull Context context, @NonNull String url, @NonNull ImageView imageView) {
+    public void loadImage(
+            @NonNull Context context,
+            @NonNull String url,
+            @NonNull ImageView imageView
+    ) {
         Glide.with(context)
                 .load(url)
                 .into(imageView);
@@ -56,9 +60,13 @@ public class GlideEngine implements ImageEngine {
      * @param callback      网络图片加载回调监听 {link after version 2.5.1 Please use the #OnImageCompleteCallback#}
      */
     @Override
-    public void loadImage(@NonNull Context context, @NonNull String url,
-                          @NonNull ImageView imageView,
-                          SubsamplingScaleImageView longImageView, OnImageCompleteCallback callback) {
+    public void loadImage(
+            @NonNull Context context,
+            @NonNull String url,
+            @NonNull ImageView imageView,
+            SubsamplingScaleImageView longImageView,
+            OnImageCompleteCallback callback
+    ) {
         Glide.with(context)
                 .asBitmap()
                 .load(url)
@@ -118,9 +126,12 @@ public class GlideEngine implements ImageEngine {
      * @ 已废弃
      */
     @Override
-    public void loadImage(@NonNull Context context, @NonNull String url,
-                          @NonNull ImageView imageView,
-                          SubsamplingScaleImageView longImageView) {
+    public void loadImage(
+            @NonNull Context context,
+            @NonNull String url,
+            @NonNull ImageView imageView,
+            SubsamplingScaleImageView longImageView
+    ) {
         Glide.with(context)
                 .asBitmap()
                 .load(url)
@@ -158,7 +169,11 @@ public class GlideEngine implements ImageEngine {
      * @param imageView 承载图片 ImageView
      */
     @Override
-    public void loadFolderImage(@NonNull Context context, @NonNull String url, @NonNull ImageView imageView) {
+    public void loadFolderImage(
+            @NonNull Context context,
+            @NonNull String url,
+            @NonNull ImageView imageView
+    ) {
         Glide.with(context)
                 .asBitmap()
                 .load(url)
@@ -185,8 +200,11 @@ public class GlideEngine implements ImageEngine {
      * @param imageView 承载图片 ImageView
      */
     @Override
-    public void loadAsGifImage(@NonNull Context context, @NonNull String url,
-                               @NonNull ImageView imageView) {
+    public void loadAsGifImage(
+            @NonNull Context context,
+            @NonNull String url,
+            @NonNull ImageView imageView
+    ) {
         Glide.with(context)
                 .asGif()
                 .load(url)
@@ -200,7 +218,11 @@ public class GlideEngine implements ImageEngine {
      * @param imageView 承载图片 ImageView
      */
     @Override
-    public void loadGridImage(@NonNull Context context, @NonNull String url, @NonNull ImageView imageView) {
+    public void loadGridImage(
+            @NonNull Context context,
+            @NonNull String url,
+            @NonNull ImageView imageView
+    ) {
         Glide.with(context)
                 .load(url)
                 .override(200, 200)

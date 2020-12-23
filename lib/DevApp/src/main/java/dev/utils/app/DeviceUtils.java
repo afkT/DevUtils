@@ -120,7 +120,10 @@ public final class DeviceUtils {
      * @param errorInfo     错误提示信息, 如获取设备信息失败
      * @return 拼接后的设备信息字符串
      */
-    public static String handlerDeviceInfo(final Map<String, String> deviceInfoMap, final String errorInfo) {
+    public static String handlerDeviceInfo(
+            final Map<String, String> deviceInfoMap,
+            final String errorInfo
+    ) {
         try {
             // 初始化 Builder, 拼接字符串
             StringBuilder builder = new StringBuilder();

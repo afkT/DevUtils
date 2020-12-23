@@ -15,11 +15,18 @@ public class DevClickCallback<T> extends AbstractCommonCallback<T> {
         super(value);
     }
 
-    public DevClickCallback(T value, Object object) {
+    public DevClickCallback(
+            T value,
+            Object object
+    ) {
         super(value, object);
     }
 
-    public DevClickCallback(T value, Object object, String tag) {
+    public DevClickCallback(
+            T value,
+            Object object,
+            String tag
+    ) {
         super(value, object, tag);
     }
 
@@ -62,7 +69,10 @@ public class DevClickCallback<T> extends AbstractCommonCallback<T> {
      * @param param 回调参数
      * @param value 回调值
      */
-    public void onClick(int param, T value) {
+    public void onClick(
+            int param,
+            T value
+    ) {
     }
 
     /**
@@ -70,7 +80,10 @@ public class DevClickCallback<T> extends AbstractCommonCallback<T> {
      * @param param 回调参数
      * @param value 回调值
      */
-    public void onLongClick(int param, T value) {
+    public void onLongClick(
+            int param,
+            T value
+    ) {
     }
 
     // =
@@ -81,7 +94,11 @@ public class DevClickCallback<T> extends AbstractCommonCallback<T> {
      * @param value   回调值
      * @param objects 回调对象数组
      */
-    public void onClick(int param, T value, Object[] objects) {
+    public void onClick(
+            int param,
+            T value,
+            Object[] objects
+    ) {
     }
 
     /**
@@ -90,6 +107,10 @@ public class DevClickCallback<T> extends AbstractCommonCallback<T> {
      * @param value   回调值
      * @param objects 回调对象数组
      */
-    public void onLongClick(int param, T value, Object[] objects) {
+    public void onLongClick(
+            int param,
+            T value,
+            Object[] objects
+    ) {
     }
 }

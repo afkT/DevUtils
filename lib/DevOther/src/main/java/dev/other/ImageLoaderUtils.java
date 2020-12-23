@@ -36,13 +36,13 @@ public final class ImageLoaderUtils {
     }
 
     // 图片加载中
-    private static       int                 sImageLoadingRes  = 0;
+    private static       int                 sImageLoadingRes = 0;
     // 图片地址异常
     private static       int                 sImageUriErrorRes = 0;
     // 图片 ( 加载 / 解码 ) 失败
-    private static       int                 sImageFailRes     = 0;
+    private static       int                 sImageFailRes = 0;
     // 图片默认加载配置
-    private static final DisplayImageOptions DF_OPTIONS        = defaultOptions();
+    private static final DisplayImageOptions DF_OPTIONS = defaultOptions();
 
     // ========
     // = init =
@@ -130,7 +130,10 @@ public final class ImageLoaderUtils {
      * @param isCacheDisk 是否保存在 SDCard
      * @return {@link DisplayImageOptions}
      */
-    public static DisplayImageOptions getCacheImageOptions(final boolean isCache, final boolean isCacheDisk) {
+    public static DisplayImageOptions getCacheImageOptions(
+            final boolean isCache,
+            final boolean isCacheDisk
+    ) {
         return getCacheImageOptions(isCache, isCacheDisk, -1);
     }
 
@@ -141,9 +144,11 @@ public final class ImageLoaderUtils {
      * @param loadingRes  设置加载中显示的图片
      * @return {@link DisplayImageOptions}
      */
-    public static DisplayImageOptions getCacheImageOptions(final boolean isCache,
-                                                           final boolean isCacheDisk,
-                                                           @DrawableRes final int loadingRes) {
+    public static DisplayImageOptions getCacheImageOptions(
+            final boolean isCache,
+            final boolean isCacheDisk,
+            @DrawableRes final int loadingRes
+    ) {
         DisplayImageOptions.Builder builder = new DisplayImageOptions.Builder()
                 .imageScaleType(ImageScaleType.EXACTLY) // 设置图片缩放
                 .bitmapConfig(Bitmap.Config.RGB_565) // 图片解码类型
@@ -187,7 +192,10 @@ public final class ImageLoaderUtils {
      * @param durationMillis 动画持续时间
      * @return {@link DisplayImageOptions}
      */
-    public static DisplayImageOptions getFadeInBitmapDisplayer(final DisplayImageOptions options, final int durationMillis) {
+    public static DisplayImageOptions getFadeInBitmapDisplayer(
+            final DisplayImageOptions options,
+            final int durationMillis
+    ) {
         if (options != null) {
             return getBitmapDisplayerOptions(options, new FadeInBitmapDisplayer(durationMillis));
         }
@@ -211,7 +219,10 @@ public final class ImageLoaderUtils {
      * @param cornerRadiusPixels 圆角大小
      * @return {@link DisplayImageOptions}
      */
-    public static DisplayImageOptions getRoundedBitmapDisplayer(final DisplayImageOptions options, final int cornerRadiusPixels) {
+    public static DisplayImageOptions getRoundedBitmapDisplayer(
+            final DisplayImageOptions options,
+            final int cornerRadiusPixels
+    ) {
         if (options != null) {
             return getBitmapDisplayerOptions(options, new RoundedBitmapDisplayer(cornerRadiusPixels));
         }
@@ -224,7 +235,10 @@ public final class ImageLoaderUtils {
      * @param displayer {@link BitmapDisplayer}
      * @return {@link DisplayImageOptions}
      */
-    public static DisplayImageOptions getBitmapDisplayerOptions(final DisplayImageOptions options, final BitmapDisplayer displayer) {
+    public static DisplayImageOptions getBitmapDisplayerOptions(
+            final DisplayImageOptions options,
+            final BitmapDisplayer displayer
+    ) {
         if (options != null && displayer != null) {
             return cloneImageOptions(options).displayer(displayer).build();
         }
@@ -240,7 +254,10 @@ public final class ImageLoaderUtils {
      * @param uri       Image Uri
      * @param imageView ImageView
      */
-    public static void displayImage(final String uri, final ImageView imageView) {
+    public static void displayImage(
+            final String uri,
+            final ImageView imageView
+    ) {
         if (imageView != null) ImageLoader.getInstance().displayImage(uri, imageView);
     }
 
@@ -250,7 +267,11 @@ public final class ImageLoaderUtils {
      * @param imageView ImageView
      * @param options   {@link DisplayImageOptions}
      */
-    public static void displayImage(final String uri, final ImageView imageView, final DisplayImageOptions options) {
+    public static void displayImage(
+            final String uri,
+            final ImageView imageView,
+            final DisplayImageOptions options
+    ) {
         if (imageView != null) {
             // 判断是否使用自定义图片加载配置
             if (options != null) {
@@ -267,7 +288,11 @@ public final class ImageLoaderUtils {
      * @param imageView ImageView
      * @param imageSize {@link ImageSize}
      */
-    public static void displayImage(final String uri, final ImageView imageView, final ImageSize imageSize) {
+    public static void displayImage(
+            final String uri,
+            final ImageView imageView,
+            final ImageSize imageSize
+    ) {
         if (imageView != null && imageSize != null) {
             ImageLoader.getInstance().displayImage(uri, imageView, imageSize);
         }
@@ -279,7 +304,11 @@ public final class ImageLoaderUtils {
      * @param imageAware new ImageViewAware(imageView);
      * @param options    {@link DisplayImageOptions}
      */
-    public static void displayImage(final String uri, final ImageAware imageAware, final DisplayImageOptions options) {
+    public static void displayImage(
+            final String uri,
+            final ImageAware imageAware,
+            final DisplayImageOptions options
+    ) {
         if (imageAware != null) {
             if (options != null) {
                 ImageLoader.getInstance().displayImage(uri, imageAware, options);
@@ -295,7 +324,11 @@ public final class ImageLoaderUtils {
      * @param imageView ImageView
      * @param listener  加载监听事件
      */
-    public static void displayImage(final String uri, final ImageView imageView, final ImageLoadingListener listener) {
+    public static void displayImage(
+            final String uri,
+            final ImageView imageView,
+            final ImageLoadingListener listener
+    ) {
         displayImage(uri, imageView, null, listener);
     }
 
@@ -306,8 +339,12 @@ public final class ImageLoaderUtils {
      * @param options   {@link DisplayImageOptions}
      * @param listener  加载监听事件
      */
-    public static void displayImage(final String uri, final ImageView imageView,
-                                    final DisplayImageOptions options, final ImageLoadingListener listener) {
+    public static void displayImage(
+            final String uri,
+            final ImageView imageView,
+            final DisplayImageOptions options,
+            final ImageLoadingListener listener
+    ) {
         if (imageView != null) {
             if (options != null) {
                 ImageLoader.getInstance().displayImage(uri, imageView, options, listener);
@@ -324,9 +361,12 @@ public final class ImageLoaderUtils {
      * @param listener         加载监听事件
      * @param progressListener 图片下载监听事件
      */
-    public static void displayImage(final String uri, final ImageView imageView,
-                                    final ImageLoadingListener listener,
-                                    final ImageLoadingProgressListener progressListener) {
+    public static void displayImage(
+            final String uri,
+            final ImageView imageView,
+            final ImageLoadingListener listener,
+            final ImageLoadingProgressListener progressListener
+    ) {
         displayImage(uri, imageView, null, listener, progressListener);
     }
 
@@ -338,9 +378,13 @@ public final class ImageLoaderUtils {
      * @param listener         加载监听事件
      * @param progressListener 图片下载监听事件
      */
-    public static void displayImage(final String uri, final ImageView imageView,
-                                    final DisplayImageOptions options, final ImageLoadingListener listener,
-                                    final ImageLoadingProgressListener progressListener) {
+    public static void displayImage(
+            final String uri,
+            final ImageView imageView,
+            final DisplayImageOptions options,
+            final ImageLoadingListener listener,
+            final ImageLoadingProgressListener progressListener
+    ) {
         if (imageView != null) {
             ImageLoader.getInstance().displayImage(uri, imageView, options, listener, progressListener);
         }
@@ -355,7 +399,10 @@ public final class ImageLoaderUtils {
      * @param uri      Image Uri
      * @param listener 加载监听事件
      */
-    public static void loadImage(final String uri, final ImageLoadingListener listener) {
+    public static void loadImage(
+            final String uri,
+            final ImageLoadingListener listener
+    ) {
         loadImage(uri, null, null, listener, null);
     }
 
@@ -365,7 +412,11 @@ public final class ImageLoaderUtils {
      * @param imageSize {@link ImageSize}
      * @param listener  加载监听事件
      */
-    public static void loadImage(final String uri, final ImageSize imageSize, final ImageLoadingListener listener) {
+    public static void loadImage(
+            final String uri,
+            final ImageSize imageSize,
+            final ImageLoadingListener listener
+    ) {
         loadImage(uri, imageSize, null, listener, null);
     }
 
@@ -376,9 +427,12 @@ public final class ImageLoaderUtils {
      * @param listener         加载监听事件
      * @param progressListener 图片下载监听事件
      */
-    public static void loadImage(final String uri, final ImageSize imageSize,
-                                 final ImageLoadingListener listener,
-                                 final ImageLoadingProgressListener progressListener) {
+    public static void loadImage(
+            final String uri,
+            final ImageSize imageSize,
+            final ImageLoadingListener listener,
+            final ImageLoadingProgressListener progressListener
+    ) {
         loadImage(uri, imageSize, null, listener, progressListener);
     }
 
@@ -388,8 +442,11 @@ public final class ImageLoaderUtils {
      * @param listener         加载监听事件
      * @param progressListener 图片下载监听事件
      */
-    public static void loadImage(final String uri, final ImageLoadingListener listener,
-                                 final ImageLoadingProgressListener progressListener) {
+    public static void loadImage(
+            final String uri,
+            final ImageLoadingListener listener,
+            final ImageLoadingProgressListener progressListener
+    ) {
         loadImage(uri, null, null, listener, progressListener);
     }
 
@@ -400,8 +457,12 @@ public final class ImageLoaderUtils {
      * @param listener         加载监听事件
      * @param progressListener 图片下载监听事件
      */
-    public static void loadImage(final String uri, final DisplayImageOptions options,
-                                 final ImageLoadingListener listener, final ImageLoadingProgressListener progressListener) {
+    public static void loadImage(
+            final String uri,
+            final DisplayImageOptions options,
+            final ImageLoadingListener listener,
+            final ImageLoadingProgressListener progressListener
+    ) {
         loadImage(uri, null, options, listener, progressListener);
     }
 
@@ -413,8 +474,13 @@ public final class ImageLoaderUtils {
      * @param listener         加载监听事件
      * @param progressListener 图片下载监听事件
      */
-    public static void loadImage(final String uri, final ImageSize imageSize, final DisplayImageOptions options,
-                                 final ImageLoadingListener listener, final ImageLoadingProgressListener progressListener) {
+    public static void loadImage(
+            final String uri,
+            final ImageSize imageSize,
+            final DisplayImageOptions options,
+            final ImageLoadingListener listener,
+            final ImageLoadingProgressListener progressListener
+    ) {
         ImageLoader.getInstance().loadImage(uri, imageSize, options, listener, progressListener);
     }
 
@@ -437,7 +503,10 @@ public final class ImageLoaderUtils {
      * @param imageSize {@link ImageSize}
      * @return {@link Bitmap}
      */
-    public static Bitmap loadImageSync(final String uri, final ImageSize imageSize) {
+    public static Bitmap loadImageSync(
+            final String uri,
+            final ImageSize imageSize
+    ) {
         return loadImageSync(uri, imageSize, null);
     }
 
@@ -447,7 +516,10 @@ public final class ImageLoaderUtils {
      * @param options {@link DisplayImageOptions}
      * @return {@link Bitmap}
      */
-    public static Bitmap loadImageSync(final String uri, final DisplayImageOptions options) {
+    public static Bitmap loadImageSync(
+            final String uri,
+            final DisplayImageOptions options
+    ) {
         return loadImageSync(uri, null, options);
     }
 
@@ -458,7 +530,11 @@ public final class ImageLoaderUtils {
      * @param options   {@link DisplayImageOptions}
      * @return {@link Bitmap}
      */
-    public static Bitmap loadImageSync(final String uri, final ImageSize imageSize, final DisplayImageOptions options) {
+    public static Bitmap loadImageSync(
+            final String uri,
+            final ImageSize imageSize,
+            final DisplayImageOptions options
+    ) {
         return ImageLoader.getInstance().loadImageSync(uri, imageSize, options);
     }
 

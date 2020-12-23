@@ -64,18 +64,30 @@ public class FlowLikeView extends FrameLayout {
         initAttrs(context, null);
     }
 
-    public FlowLikeView(Context context, AttributeSet attrs) {
+    public FlowLikeView(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
         initAttrs(context, attrs);
     }
 
-    public FlowLikeView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public FlowLikeView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
         initAttrs(context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public FlowLikeView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public FlowLikeView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
+    ) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initAttrs(context, attrs);
     }
@@ -85,7 +97,10 @@ public class FlowLikeView extends FrameLayout {
      * @param context {@link Context}
      * @param attrs   {@link AttributeSet}
      */
-    private void initAttrs(Context context, AttributeSet attrs) {
+    private void initAttrs(
+            Context context,
+            AttributeSet attrs
+    ) {
         // 初始化操作
         mRandom = new Random();
         mDrawables = new ArrayList<>();
@@ -103,7 +118,10 @@ public class FlowLikeView extends FrameLayout {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    protected void onMeasure(
+            int widthMeasureSpec,
+            int heightMeasureSpec
+    ) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (mChildViewHeight <= 0) {
             for (int i = 0, size = getChildCount(); i < size; i++) {
@@ -119,7 +137,12 @@ public class FlowLikeView extends FrameLayout {
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    protected void onSizeChanged(
+            int w,
+            int h,
+            int oldw,
+            int oldh
+    ) {
         super.onSizeChanged(w, h, oldw, oldh);
         mViewWidth = getWidth();
         mViewHeight = getHeight();
@@ -185,7 +208,11 @@ public class FlowLikeView extends FrameLayout {
         }
 
         @Override
-        public PointF evaluate(float fraction, PointF startValue, PointF endValue) {
+        public PointF evaluate(
+                float fraction,
+                PointF startValue,
+                PointF endValue
+        ) {
             float  leftTime     = 1.0f - fraction;
             PointF resultPointF = new PointF();
             // 二阶贝塞儿曲线

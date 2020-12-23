@@ -87,7 +87,10 @@ public final class AudioManagerUtils {
      * @param index      音量大小
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setStreamVolume(final int streamType, final int index) {
+    public static boolean setStreamVolume(
+            final int streamType,
+            final int index
+    ) {
         AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
@@ -170,7 +173,10 @@ public final class AudioManagerUtils {
      * @param direction  音量方向 ( 调大、调小 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean adjustStreamVolume(final int streamType, final int direction) {
+    public static boolean adjustStreamVolume(
+            final int streamType,
+            final int direction
+    ) {
         AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
@@ -247,7 +253,10 @@ public final class AudioManagerUtils {
      * @param state      {@code true} 静音, {@code false} 非静音
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setStreamMute(final int streamType, final boolean state) {
+    public static boolean setStreamMute(
+            final int streamType,
+            final boolean state
+    ) {
         AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
@@ -359,7 +368,10 @@ public final class AudioManagerUtils {
      * @param setting    如果没授权, 是否跳转到设置页面
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setRingerMode(final int ringerMode, final boolean setting) {
+    public static boolean setRingerMode(
+            final int ringerMode,
+            final boolean setting
+    ) {
         AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
@@ -681,7 +693,10 @@ public final class AudioManagerUtils {
      * @param volume     音量大小
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean playSoundEffect(final int effectType, final float volume) {
+    public static boolean playSoundEffect(
+            final int effectType,
+            final float volume
+    ) {
         AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {

@@ -37,7 +37,10 @@ public final class ClickUtils {
      * @param range 点击范围
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean addTouchArea(final View view, final int range) {
+    public static boolean addTouchArea(
+            final View view,
+            final int range
+    ) {
         return addTouchArea(view, range, range, range, range);
     }
 
@@ -50,7 +53,13 @@ public final class ClickUtils {
      * @param right  right range
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean addTouchArea(final View view, final int top, final int bottom, final int left, final int right) {
+    public static boolean addTouchArea(
+            final View view,
+            final int top,
+            final int bottom,
+            final int left,
+            final int right
+    ) {
         if (view != null) {
             try {
                 final View parent = (View) view.getParent();
@@ -154,7 +163,10 @@ public final class ClickUtils {
      * @param intervalTime 双击时间间隔
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isFastDoubleClick(final int tagId, final long intervalTime) {
+    public static boolean isFastDoubleClick(
+            final int tagId,
+            final long intervalTime
+    ) {
         return sGlobalClickAssist.isFastDoubleClick(tagId, intervalTime);
     }
 
@@ -166,7 +178,10 @@ public final class ClickUtils {
      * @param configKey 时间间隔配置 Key
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isFastDoubleClick(final Object object, final String configKey) {
+    public static boolean isFastDoubleClick(
+            final Object object,
+            final String configKey
+    ) {
         return sGlobalClickAssist.isFastDoubleClick(object, configKey);
     }
 
@@ -176,7 +191,10 @@ public final class ClickUtils {
      * @param intervalTime 双击时间间隔
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isFastDoubleClick(final Object object, final long intervalTime) {
+    public static boolean isFastDoubleClick(
+            final Object object,
+            final long intervalTime
+    ) {
         return sGlobalClickAssist.isFastDoubleClick(object, intervalTime);
     }
 
@@ -197,7 +215,10 @@ public final class ClickUtils {
      * @param value config Value
      * @return {@link ClickAssist}
      */
-    public static ClickAssist putConfig(final String key, final Long value) {
+    public static ClickAssist putConfig(
+            final String key,
+            final Long value
+    ) {
         return sGlobalClickAssist.putConfig(key, value);
     }
 
@@ -318,7 +339,10 @@ public final class ClickUtils {
          * @param intervalTime 双击间隔时间
          * @return {@code true} yes, {@code false} no
          */
-        public boolean isFastDoubleClick(final int tagId, final long intervalTime) {
+        public boolean isFastDoubleClick(
+                final int tagId,
+                final long intervalTime
+        ) {
             long curTime  = System.currentTimeMillis();
             long diffTime = curTime - mLastClickTime;
             // 判断时间是否超过
@@ -340,7 +364,10 @@ public final class ClickUtils {
          * @param configKey 时间间隔配置 Key
          * @return {@code true} yes, {@code false} no
          */
-        public boolean isFastDoubleClick(final Object object, final String configKey) {
+        public boolean isFastDoubleClick(
+                final Object object,
+                final String configKey
+        ) {
             return isFastDoubleClick(object, getConfigTime(configKey));
         }
 
@@ -350,7 +377,10 @@ public final class ClickUtils {
          * @param intervalTime 双击时间间隔
          * @return {@code true} yes, {@code false} no
          */
-        public boolean isFastDoubleClick(final Object object, final long intervalTime) {
+        public boolean isFastDoubleClick(
+                final Object object,
+                final long intervalTime
+        ) {
             // 获取 TAG
             String tag = ((object != null) ? ("obj_" + object.hashCode()) : "obj_null");
             // 获取上次点击的时间
@@ -391,7 +421,10 @@ public final class ClickUtils {
          * @param value config Value
          * @return {@link ClickAssist}
          */
-        public ClickAssist putConfig(final String key, final Long value) {
+        public ClickAssist putConfig(
+                final String key,
+                final Long value
+        ) {
             mConfigMaps.put(key, value);
             return this;
         }
@@ -509,7 +542,10 @@ public final class ClickUtils {
             this(clickAssist, ClickUtils.sCheckViewId);
         }
 
-        public OnDebouncingClickListener(ClickAssist clickAssist, boolean checkViewId) {
+        public OnDebouncingClickListener(
+                ClickAssist clickAssist,
+                boolean checkViewId
+        ) {
             this.mClickAssist = clickAssist;
             this.mCheckViewId = checkViewId;
         }
@@ -605,7 +641,10 @@ public final class ClickUtils {
          * @param view     {@link View}
          * @param listener {@link OnCountClickListener}
          */
-        public abstract void doClick(View view, OnCountClickListener listener);
+        public abstract void doClick(
+                View view,
+                OnCountClickListener listener
+        );
 
         /**
          * 无效点击 ( 双击 )
@@ -613,7 +652,11 @@ public final class ClickUtils {
          * @param listener           {@link OnCountClickListener}
          * @param invalidCycleNumber 每个周期无效点击次数 ( 周期 ( 有效 - 无效 - 有效 ) )
          */
-        public void doInvalidClick(View view, OnCountClickListener listener, int invalidCycleNumber) {
+        public void doInvalidClick(
+                View view,
+                OnCountClickListener listener,
+                int invalidCycleNumber
+        ) {
         }
 
         // =

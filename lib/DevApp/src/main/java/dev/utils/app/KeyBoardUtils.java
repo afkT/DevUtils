@@ -58,7 +58,10 @@ public final class KeyBoardUtils {
      * @param inputVisible 是否显示软键盘
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setSoftInputMode(final Activity activity, final boolean inputVisible) {
+    public static boolean setSoftInputMode(
+            final Activity activity,
+            final boolean inputVisible
+    ) {
         return setSoftInputMode(activity != null ? activity.getWindow() : null, inputVisible, true);
     }
 
@@ -68,7 +71,10 @@ public final class KeyBoardUtils {
      * @param inputVisible 是否显示软键盘
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setSoftInputMode(final Window window, final boolean inputVisible) {
+    public static boolean setSoftInputMode(
+            final Window window,
+            final boolean inputVisible
+    ) {
         return setSoftInputMode(window, inputVisible, true);
     }
 
@@ -79,7 +85,11 @@ public final class KeyBoardUtils {
      * @param clearFlag    是否清空 Flag ( FLAG_ALT_FOCUSABLE_IM | FLAG_NOT_FOCUSABLE )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setSoftInputMode(final Activity activity, final boolean inputVisible, final boolean clearFlag) {
+    public static boolean setSoftInputMode(
+            final Activity activity,
+            final boolean inputVisible,
+            final boolean clearFlag
+    ) {
         return setSoftInputMode(activity != null ? activity.getWindow() : null, inputVisible, clearFlag);
     }
 
@@ -90,7 +100,11 @@ public final class KeyBoardUtils {
      * @param clearFlag    是否清空 Flag ( FLAG_ALT_FOCUSABLE_IM | FLAG_NOT_FOCUSABLE )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setSoftInputMode(final Window window, final boolean inputVisible, final boolean clearFlag) {
+    public static boolean setSoftInputMode(
+            final Window window,
+            final boolean inputVisible,
+            final boolean clearFlag
+    ) {
         if (window != null) {
             try {
                 if (inputVisible) {
@@ -141,7 +155,10 @@ public final class KeyBoardUtils {
      * @param handler  {@link Handler}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean openKeyboard(final EditText editText, final Handler handler) {
+    public static boolean openKeyboard(
+            final EditText editText,
+            final Handler handler
+    ) {
         return openKeyboard(editText, handler, DELAY_MILLIS);
     }
 
@@ -152,7 +169,11 @@ public final class KeyBoardUtils {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean openKeyboard(final EditText editText, final Handler handler, final long delayMillis) {
+    public static boolean openKeyboard(
+            final EditText editText,
+            final Handler handler,
+            final long delayMillis
+    ) {
         if (editText != null && handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
@@ -202,7 +223,10 @@ public final class KeyBoardUtils {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean openKeyboard(final Handler handler, final long delayMillis) {
+    public static boolean openKeyboard(
+            final Handler handler,
+            final long delayMillis
+    ) {
         if (handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
@@ -296,7 +320,10 @@ public final class KeyBoardUtils {
      * @param dialog   {@link Dialog}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean closeKeyBoardSpecial(final EditText editText, final Dialog dialog) {
+    public static boolean closeKeyBoardSpecial(
+            final EditText editText,
+            final Dialog dialog
+    ) {
         try {
             closeKeyboard();
             closeKeyboard(editText);
@@ -315,7 +342,11 @@ public final class KeyBoardUtils {
      * @param handler  {@link Handler}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean closeKeyBoardSpecial(final EditText editText, final Dialog dialog, final Handler handler) {
+    public static boolean closeKeyBoardSpecial(
+            final EditText editText,
+            final Dialog dialog,
+            final Handler handler
+    ) {
         return closeKeyBoardSpecial(editText, dialog, handler, DELAY_MILLIS);
     }
 
@@ -327,7 +358,12 @@ public final class KeyBoardUtils {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean closeKeyBoardSpecial(final EditText editText, final Dialog dialog, final Handler handler, final long delayMillis) {
+    public static boolean closeKeyBoardSpecial(
+            final EditText editText,
+            final Dialog dialog,
+            final Handler handler,
+            final long delayMillis
+    ) {
         if (handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
@@ -348,7 +384,10 @@ public final class KeyBoardUtils {
      * @param handler  {@link Handler}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean closeKeyboard(final EditText editText, final Handler handler) {
+    public static boolean closeKeyboard(
+            final EditText editText,
+            final Handler handler
+    ) {
         return closeKeyboard(editText, handler, DELAY_MILLIS);
     }
 
@@ -359,7 +398,11 @@ public final class KeyBoardUtils {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean closeKeyboard(final EditText editText, final Handler handler, final long delayMillis) {
+    public static boolean closeKeyboard(
+            final EditText editText,
+            final Handler handler,
+            final long delayMillis
+    ) {
         if (editText != null && handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
@@ -387,7 +430,10 @@ public final class KeyBoardUtils {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean closeKeyboard(final Handler handler, final long delayMillis) {
+    public static boolean closeKeyboard(
+            final Handler handler,
+            final long delayMillis
+    ) {
         if (handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
@@ -406,7 +452,10 @@ public final class KeyBoardUtils {
      * @param handler  {@link Handler}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean closeKeyboard(final Activity activity, final Handler handler) {
+    public static boolean closeKeyboard(
+            final Activity activity,
+            final Handler handler
+    ) {
         return closeKeyboard(activity, handler, DELAY_MILLIS);
     }
 
@@ -417,7 +466,11 @@ public final class KeyBoardUtils {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean closeKeyboard(final Activity activity, final Handler handler, final long delayMillis) {
+    public static boolean closeKeyboard(
+            final Activity activity,
+            final Handler handler,
+            final long delayMillis
+    ) {
         if (activity != null && handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
@@ -436,7 +489,10 @@ public final class KeyBoardUtils {
      * @param handler {@link Handler}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean closeKeyboard(final Dialog dialog, final Handler handler) {
+    public static boolean closeKeyboard(
+            final Dialog dialog,
+            final Handler handler
+    ) {
         return closeKeyboard(dialog, handler, DELAY_MILLIS);
     }
 
@@ -447,7 +503,11 @@ public final class KeyBoardUtils {
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean closeKeyboard(final Dialog dialog, final Handler handler, final long delayMillis) {
+    public static boolean closeKeyboard(
+            final Dialog dialog,
+            final Handler handler,
+            final long delayMillis
+    ) {
         if (dialog != null && handler != null) {
             handler.postDelayed(new Runnable() {
                 @Override
@@ -490,11 +550,17 @@ public final class KeyBoardUtils {
      * @param view     {@link View}
      * @param activity {@link Activity}
      */
-    public static void judgeView(final View view, final Activity activity) {
+    public static void judgeView(
+            final View view,
+            final Activity activity
+    ) {
         if (view == null || activity == null) return;
         if (!(view instanceof EditText)) {
             view.setOnTouchListener(new View.OnTouchListener() {
-                public boolean onTouch(View v, MotionEvent event) {
+                public boolean onTouch(
+                        View v,
+                        MotionEvent event
+                ) {
                     closeKeyboard(activity);
                     return false;
                 }
@@ -531,7 +597,10 @@ public final class KeyBoardUtils {
      * @param minHeightOfSoftInput 软键盘最小高度
      * @return {@code true} 可见, {@code false} 不可见
      */
-    public static boolean isSoftInputVisible(final Activity activity, final int minHeightOfSoftInput) {
+    public static boolean isSoftInputVisible(
+            final Activity activity,
+            final int minHeightOfSoftInput
+    ) {
         return getContentViewInvisibleHeight(activity) >= minHeightOfSoftInput;
     }
 
@@ -558,7 +627,10 @@ public final class KeyBoardUtils {
      * @param listener {@link OnSoftInputChangedListener}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean registerSoftInputChangedListener(final Activity activity, final OnSoftInputChangedListener listener) {
+    public static boolean registerSoftInputChangedListener(
+            final Activity activity,
+            final OnSoftInputChangedListener listener
+    ) {
         try {
             // 获取根 View
             final View contentView = activity.findViewById(android.R.id.content);
@@ -587,7 +659,10 @@ public final class KeyBoardUtils {
      * @param listener {@link OnSoftInputChangedListener}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean registerSoftInputChangedListener2(final Activity activity, final OnSoftInputChangedListener listener) {
+    public static boolean registerSoftInputChangedListener2(
+            final Activity activity,
+            final OnSoftInputChangedListener listener
+    ) {
         try {
             final View decorView = activity.getWindow().getDecorView();
             decorView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -631,7 +706,10 @@ public final class KeyBoardUtils {
          * @param visible 是否显示了软键盘
          * @param height  软键盘高度
          */
-        void onSoftInputChanged(boolean visible, int height);
+        void onSoftInputChanged(
+                boolean visible,
+                int height
+        );
     }
 
     // =

@@ -64,7 +64,10 @@ public final class ObjectUtils {
      * @param <T>    泛型
      * @return {@code true} yes, {@code false} no
      */
-    public static <T> boolean equals(final T value1, final T value2) {
+    public static <T> boolean equals(
+            final T value1,
+            final T value2
+    ) {
         // 两个值都不为 null
         if (value1 != null && value2 != null) {
             try {
@@ -105,7 +108,10 @@ public final class ObjectUtils {
      * @return 非空对象
      * @throws NullPointerException null 异常
      */
-    public static <T> T requireNonNull(final T object, final String message) throws NullPointerException {
+    public static <T> T requireNonNull(
+            final T object,
+            final String message
+    ) throws NullPointerException {
         if (object == null) throw new NullPointerException(message);
         return object;
     }
@@ -117,7 +123,10 @@ public final class ObjectUtils {
      * @param <T>           泛型
      * @return 非空或默认对象
      */
-    public static <T> T getOrDefault(final T object, final T defaultObject) {
+    public static <T> T getOrDefault(
+            final T object,
+            final T defaultObject
+    ) {
         return (object != null) ? object : defaultObject;
     }
 

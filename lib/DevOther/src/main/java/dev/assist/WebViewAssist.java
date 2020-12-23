@@ -108,7 +108,10 @@ public class WebViewAssist {
      * @param apply   是否应用配置
      * @return {@link WebViewAssist}
      */
-    public WebViewAssist setBuilder(final Builder builder, final boolean apply) {
+    public WebViewAssist setBuilder(
+            final Builder builder,
+            final boolean apply
+    ) {
         this.mBuilder = builder;
         if (this.mBuilder != null) {
             this.mBuilder.setWebViewAssist(this);
@@ -181,7 +184,10 @@ public class WebViewAssist {
      * @param additionalHttpHeaders Http 请求头信息
      * @return {@link WebViewAssist}
      */
-    public WebViewAssist loadUrl(final String url, final Map<String, String> additionalHttpHeaders) {
+    public WebViewAssist loadUrl(
+            final String url,
+            final Map<String, String> additionalHttpHeaders
+    ) {
         if (isWebViewNotEmpty()) {
             mWebView.loadUrl(url, additionalHttpHeaders);
         }
@@ -197,7 +203,11 @@ public class WebViewAssist {
      * @deprecated 推荐使用 loadDataWithBaseURL
      */
     @Deprecated
-    public WebViewAssist loadData(final String data, final String mimeType, final String encoding) {
+    public WebViewAssist loadData(
+            final String data,
+            final String mimeType,
+            final String encoding
+    ) {
         if (isWebViewNotEmpty()) {
             mWebView.loadData(data, mimeType, encoding);
         }
@@ -213,7 +223,13 @@ public class WebViewAssist {
      * @param historyUrl 可用历史记录
      * @return {@link WebViewAssist}
      */
-    public WebViewAssist loadDataWithBaseURL(final String baseUrl, final String data, final String mimeType, final String encoding, final String historyUrl) {
+    public WebViewAssist loadDataWithBaseURL(
+            final String baseUrl,
+            final String data,
+            final String mimeType,
+            final String encoding,
+            final String historyUrl
+    ) {
         if (isWebViewNotEmpty()) {
             mWebView.loadDataWithBaseURL(baseUrl, data, mimeType, encoding, historyUrl);
         }
@@ -229,7 +245,10 @@ public class WebViewAssist {
      * @param postData post 数据 ( 注意 UrlEncode )
      * @return {@link WebViewAssist}
      */
-    public WebViewAssist postUrl(final String url, final byte[] postData) {
+    public WebViewAssist postUrl(
+            final String url,
+            final byte[] postData
+    ) {
         if (isWebViewNotEmpty()) {
             mWebView.postUrl(url, postData);
         }
@@ -254,7 +273,11 @@ public class WebViewAssist {
      * @param historyUrl 可用历史记录
      * @return {@link WebViewAssist}
      */
-    public WebViewAssist loadDataWithBaseURL(final String baseUrl, final String data, final String historyUrl) {
+    public WebViewAssist loadDataWithBaseURL(
+            final String baseUrl,
+            final String data,
+            final String historyUrl
+    ) {
         return loadDataWithBaseURL(baseUrl, data, "text/html", "utf-8", historyUrl);
     }
 
@@ -300,7 +323,10 @@ public class WebViewAssist {
      * @param interfaceName 在 JavaScript 中公开对象的名称
      * @return {@link WebViewAssist}
      */
-    public WebViewAssist addJavascriptInterface(final Object obj, final String interfaceName) {
+    public WebViewAssist addJavascriptInterface(
+            final Object obj,
+            final String interfaceName
+    ) {
         if (isWebViewNotEmpty()) {
             mWebView.addJavascriptInterface(obj, interfaceName);
         }
@@ -325,7 +351,10 @@ public class WebViewAssist {
      * @param callback 执行回调结果 ( 返回值 )
      * @return {@link WebViewAssist}
      */
-    public WebViewAssist evaluateJavascript(final String script, final ValueCallback<String> callback) {
+    public WebViewAssist evaluateJavascript(
+            final String script,
+            final ValueCallback<String> callback
+    ) {
         if (isWebViewNotEmpty()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 try {
@@ -674,7 +703,10 @@ public class WebViewAssist {
      * @param event   按键事件
      * @return {@code true} 拦截事件, {@code false} 不拦截接着处理
      */
-    public boolean handlerKeyDown(final int keyCode, final KeyEvent event) {
+    public boolean handlerKeyDown(
+            final int keyCode,
+            final KeyEvent event
+    ) {
         if (keyCode == KeyEvent.KEYCODE_BACK && canGoBack()) {
             goBack();
             return true;
@@ -699,7 +731,10 @@ public class WebViewAssist {
      * @param paint     {@link Paint}
      * @return {@link WebViewAssist}
      */
-    public WebViewAssist setLayerType(final int layerType, final Paint paint) {
+    public WebViewAssist setLayerType(
+            final int layerType,
+            final Paint paint
+    ) {
         if (isWebViewNotEmpty()) {
             mWebView.setLayerType(layerType, paint);
         }
@@ -773,7 +808,10 @@ public class WebViewAssist {
      * @param cookie 同步的 cookie
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setCookie(final String url, final String cookie) {
+    public static boolean setCookie(
+            final String url,
+            final String cookie
+    ) {
         try {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 CookieSyncManager.createInstance(DevUtils.getContext());
@@ -932,7 +970,10 @@ public class WebViewAssist {
              * @param webViewAssist WebView 辅助类
              * @param builder       WebView 常用配置构建类
              */
-            void onApply(WebViewAssist webViewAssist, Builder builder);
+            void onApply(
+                    WebViewAssist webViewAssist,
+                    Builder builder
+            );
         }
 
         // ===========

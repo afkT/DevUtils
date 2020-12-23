@@ -117,7 +117,10 @@ public final class ImageUtils {
      * @param imageFormats 图片格式
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isImageFormats(final String filePath, final String[] imageFormats) {
+    public static boolean isImageFormats(
+            final String filePath,
+            final String[] imageFormats
+    ) {
         return FileUtils.isImageFormats(filePath, imageFormats);
     }
 
@@ -321,7 +324,10 @@ public final class ImageUtils {
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
-    public static Bitmap decodeFile(final File file, final BitmapFactory.Options options) {
+    public static Bitmap decodeFile(
+            final File file,
+            final BitmapFactory.Options options
+    ) {
         return decodeFile(FileUtils.getAbsolutePath(file), options);
     }
 
@@ -340,7 +346,10 @@ public final class ImageUtils {
      * @param options  {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
-    public static Bitmap decodeFile(final String filePath, final BitmapFactory.Options options) {
+    public static Bitmap decodeFile(
+            final String filePath,
+            final BitmapFactory.Options options
+    ) {
         if (filePath == null) return null;
         try {
             return BitmapFactory.decodeFile(filePath, options);
@@ -367,7 +376,10 @@ public final class ImageUtils {
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
-    public static Bitmap decodeResource(@DrawableRes final int resId, final BitmapFactory.Options options) {
+    public static Bitmap decodeResource(
+            @DrawableRes final int resId,
+            final BitmapFactory.Options options
+    ) {
         try {
             return BitmapFactory.decodeResource(ResourceUtils.getResources(), resId, options);
         } catch (Exception e) {
@@ -393,7 +405,10 @@ public final class ImageUtils {
      * @param options     {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
-    public static Bitmap decodeStream(final InputStream inputStream, final BitmapFactory.Options options) {
+    public static Bitmap decodeStream(
+            final InputStream inputStream,
+            final BitmapFactory.Options options
+    ) {
         if (inputStream == null) return null;
         try {
             return BitmapFactory.decodeStream(inputStream, null, options);
@@ -420,7 +435,10 @@ public final class ImageUtils {
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
-    public static Bitmap decodeFileDescriptor(final FileDescriptor fd, final BitmapFactory.Options options) {
+    public static Bitmap decodeFileDescriptor(
+            final FileDescriptor fd,
+            final BitmapFactory.Options options
+    ) {
         if (fd == null) return null;
         try {
             return BitmapFactory.decodeFileDescriptor(fd, null, options);
@@ -447,7 +465,10 @@ public final class ImageUtils {
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
-    public static Bitmap decodeByteArray(final byte[] data, final BitmapFactory.Options options) {
+    public static Bitmap decodeByteArray(
+            final byte[] data,
+            final BitmapFactory.Options options
+    ) {
         return decodeByteArray(data, 0, (data == null) ? 0 : data.length, options);
     }
 
@@ -458,7 +479,11 @@ public final class ImageUtils {
      * @param length 所需长度
      * @return {@link Bitmap}
      */
-    public static Bitmap decodeByteArray(final byte[] data, final int offset, final int length) {
+    public static Bitmap decodeByteArray(
+            final byte[] data,
+            final int offset,
+            final int length
+    ) {
         return decodeByteArray(data, offset, length, null);
     }
 
@@ -470,7 +495,12 @@ public final class ImageUtils {
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
-    public static Bitmap decodeByteArray(final byte[] data, final int offset, final int length, final BitmapFactory.Options options) {
+    public static Bitmap decodeByteArray(
+            final byte[] data,
+            final int offset,
+            final int length,
+            final BitmapFactory.Options options
+    ) {
         if (data == null) return null;
         if ((offset | length) < 0 || data.length < offset + length) return null;
         try {
@@ -491,7 +521,10 @@ public final class ImageUtils {
      * @param filePath 保存路径
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardJPEG(final Bitmap bitmap, final String filePath) {
+    public static boolean saveBitmapToSDCardJPEG(
+            final Bitmap bitmap,
+            final String filePath
+    ) {
         return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.JPEG, 100);
     }
 
@@ -501,7 +534,10 @@ public final class ImageUtils {
      * @param file   保存路径
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardJPEG(final Bitmap bitmap, final File file) {
+    public static boolean saveBitmapToSDCardJPEG(
+            final Bitmap bitmap,
+            final File file
+    ) {
         return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.JPEG, 100);
     }
 
@@ -514,8 +550,11 @@ public final class ImageUtils {
      * @param quality  质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardJPEG(final Bitmap bitmap, final String filePath,
-                                                 @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean saveBitmapToSDCardJPEG(
+            final Bitmap bitmap,
+            final String filePath,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.JPEG, quality);
     }
 
@@ -526,8 +565,11 @@ public final class ImageUtils {
      * @param quality 质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardJPEG(final Bitmap bitmap, final File file,
-                                                 @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean saveBitmapToSDCardJPEG(
+            final Bitmap bitmap,
+            final File file,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.JPEG, quality);
     }
 
@@ -539,7 +581,10 @@ public final class ImageUtils {
      * @param filePath 保存路径
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final String filePath) {
+    public static boolean saveBitmapToSDCardPNG(
+            final Bitmap bitmap,
+            final String filePath
+    ) {
         return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.PNG, 100);
     }
 
@@ -549,7 +594,10 @@ public final class ImageUtils {
      * @param file   保存路径
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final File file) {
+    public static boolean saveBitmapToSDCardPNG(
+            final Bitmap bitmap,
+            final File file
+    ) {
         return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.PNG, 100);
     }
 
@@ -562,8 +610,11 @@ public final class ImageUtils {
      * @param quality  质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final String filePath,
-                                                @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean saveBitmapToSDCardPNG(
+            final Bitmap bitmap,
+            final String filePath,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.PNG, quality);
     }
 
@@ -574,8 +625,11 @@ public final class ImageUtils {
      * @param quality 质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardPNG(final Bitmap bitmap, final File file,
-                                                @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean saveBitmapToSDCardPNG(
+            final Bitmap bitmap,
+            final File file,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.PNG, quality);
     }
 
@@ -587,7 +641,10 @@ public final class ImageUtils {
      * @param filePath 保存路径
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardWEBP(final Bitmap bitmap, final String filePath) {
+    public static boolean saveBitmapToSDCardWEBP(
+            final Bitmap bitmap,
+            final String filePath
+    ) {
         return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.WEBP, 100);
     }
 
@@ -597,7 +654,10 @@ public final class ImageUtils {
      * @param file   保存路径
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardWEBP(final Bitmap bitmap, final File file) {
+    public static boolean saveBitmapToSDCardWEBP(
+            final Bitmap bitmap,
+            final File file
+    ) {
         return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.WEBP, 100);
     }
 
@@ -610,8 +670,11 @@ public final class ImageUtils {
      * @param quality  质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardWEBP(final Bitmap bitmap, final String filePath,
-                                                 @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean saveBitmapToSDCardWEBP(
+            final Bitmap bitmap,
+            final String filePath,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return saveBitmapToSDCard(bitmap, filePath, Bitmap.CompressFormat.WEBP, quality);
     }
 
@@ -622,8 +685,11 @@ public final class ImageUtils {
      * @param quality 质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCardWEBP(final Bitmap bitmap, final File file,
-                                                 @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean saveBitmapToSDCardWEBP(
+            final Bitmap bitmap,
+            final File file,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return saveBitmapToSDCard(bitmap, file, Bitmap.CompressFormat.WEBP, quality);
     }
 
@@ -637,8 +703,12 @@ public final class ImageUtils {
      * @param quality  质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCard(final Bitmap bitmap, final String filePath, final Bitmap.CompressFormat format,
-                                             @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean saveBitmapToSDCard(
+            final Bitmap bitmap,
+            final String filePath,
+            final Bitmap.CompressFormat format,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return saveBitmapToSDCard(bitmap, FileUtils.getFileByPath(filePath), format, quality);
     }
 
@@ -650,8 +720,12 @@ public final class ImageUtils {
      * @param quality 质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToSDCard(final Bitmap bitmap, final File file, final Bitmap.CompressFormat format,
-                                             @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean saveBitmapToSDCard(
+            final Bitmap bitmap,
+            final File file,
+            final Bitmap.CompressFormat format,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         if (bitmap == null || file == null || format == null) return false;
         // 防止 Bitmap 为 null, 或者创建文件夹失败 ( 文件存在则删除 )
         if (isEmpty(bitmap) || !FileUtils.createFileByDeleteOldFile(file)) return false;
@@ -680,7 +754,10 @@ public final class ImageUtils {
      * @param stream {@link OutputStream}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToStreamJPEG(final Bitmap bitmap, final OutputStream stream) {
+    public static boolean saveBitmapToStreamJPEG(
+            final Bitmap bitmap,
+            final OutputStream stream
+    ) {
         return saveBitmapToStream(bitmap, stream, Bitmap.CompressFormat.JPEG, 100);
     }
 
@@ -691,8 +768,11 @@ public final class ImageUtils {
      * @param quality 质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToStreamJPEG(final Bitmap bitmap, final OutputStream stream,
-                                                 @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean saveBitmapToStreamJPEG(
+            final Bitmap bitmap,
+            final OutputStream stream,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return saveBitmapToStream(bitmap, stream, Bitmap.CompressFormat.JPEG, quality);
     }
 
@@ -702,7 +782,10 @@ public final class ImageUtils {
      * @param stream {@link OutputStream}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToStreamPNG(final Bitmap bitmap, final OutputStream stream) {
+    public static boolean saveBitmapToStreamPNG(
+            final Bitmap bitmap,
+            final OutputStream stream
+    ) {
         return saveBitmapToStream(bitmap, stream, Bitmap.CompressFormat.PNG, 100);
     }
 
@@ -713,8 +796,11 @@ public final class ImageUtils {
      * @param quality 质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToStreamPNG(final Bitmap bitmap, final OutputStream stream,
-                                                @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean saveBitmapToStreamPNG(
+            final Bitmap bitmap,
+            final OutputStream stream,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return saveBitmapToStream(bitmap, stream, Bitmap.CompressFormat.PNG, quality);
     }
 
@@ -724,7 +810,10 @@ public final class ImageUtils {
      * @param stream {@link OutputStream}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToStreamWEBP(final Bitmap bitmap, final OutputStream stream) {
+    public static boolean saveBitmapToStreamWEBP(
+            final Bitmap bitmap,
+            final OutputStream stream
+    ) {
         return saveBitmapToStream(bitmap, stream, Bitmap.CompressFormat.WEBP, 100);
     }
 
@@ -735,8 +824,11 @@ public final class ImageUtils {
      * @param quality 质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToStreamWEBP(final Bitmap bitmap, final OutputStream stream,
-                                                 @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean saveBitmapToStreamWEBP(
+            final Bitmap bitmap,
+            final OutputStream stream,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return saveBitmapToStream(bitmap, stream, Bitmap.CompressFormat.WEBP, quality);
     }
 
@@ -748,8 +840,12 @@ public final class ImageUtils {
      * @param quality 质量
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean saveBitmapToStream(final Bitmap bitmap, final OutputStream stream, final Bitmap.CompressFormat format,
-                                             @IntRange(from = 0, to = 100) final int quality) {
+    public static boolean saveBitmapToStream(
+            final Bitmap bitmap,
+            final OutputStream stream,
+            final Bitmap.CompressFormat format,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         if (bitmap == null || stream == null || format == null) return false;
         try {
             bitmap.compress(format, quality, stream);
@@ -790,7 +886,10 @@ public final class ImageUtils {
      * @param color    颜色值
      * @return 着色后的 {@link Drawable}
      */
-    public static Drawable setColorFilter(final Drawable drawable, @ColorInt final int color) {
+    public static Drawable setColorFilter(
+            final Drawable drawable,
+            @ColorInt final int color
+    ) {
         return setColorFilter(drawable, color, PorterDuff.Mode.SRC_IN);
     }
 
@@ -801,7 +900,11 @@ public final class ImageUtils {
      * @param mode     着色模式 {@link PorterDuff.Mode}
      * @return 着色后的 {@link Drawable}
      */
-    public static Drawable setColorFilter(final Drawable drawable, @ColorInt final int color, final PorterDuff.Mode mode) {
+    public static Drawable setColorFilter(
+            final Drawable drawable,
+            @ColorInt final int color,
+            final PorterDuff.Mode mode
+    ) {
         if (drawable != null && mode != null) {
             try {
                 drawable.setColorFilter(color, mode);
@@ -820,7 +923,10 @@ public final class ImageUtils {
      * @param colorFilter 颜色过滤 ( 效果 )
      * @return 着色后的 {@link Drawable}
      */
-    public static Drawable setColorFilter(final Drawable drawable, final ColorFilter colorFilter) {
+    public static Drawable setColorFilter(
+            final Drawable drawable,
+            final ColorFilter colorFilter
+    ) {
         if (drawable != null && colorFilter != null) {
             try {
                 drawable.setColorFilter(colorFilter);
@@ -842,7 +948,11 @@ public final class ImageUtils {
      * @param maxHeight 最大高度
      * @return {@link Bitmap}
      */
-    public static Bitmap getBitmap(final File file, final int maxWidth, final int maxHeight) {
+    public static Bitmap getBitmap(
+            final File file,
+            final int maxWidth,
+            final int maxHeight
+    ) {
         return getBitmap(FileUtils.getAbsolutePath(file), maxWidth, maxHeight);
     }
 
@@ -853,7 +963,11 @@ public final class ImageUtils {
      * @param maxHeight 最大高度
      * @return {@link Bitmap}
      */
-    public static Bitmap getBitmap(final String filePath, final int maxWidth, final int maxHeight) {
+    public static Bitmap getBitmap(
+            final String filePath,
+            final int maxWidth,
+            final int maxHeight
+    ) {
         if (filePath == null) return null;
         try {
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -875,7 +989,11 @@ public final class ImageUtils {
      * @param maxHeight 最大高度
      * @return {@link Bitmap}
      */
-    public static Bitmap getBitmap(@DrawableRes final int resId, final int maxWidth, final int maxHeight) {
+    public static Bitmap getBitmap(
+            @DrawableRes final int resId,
+            final int maxWidth,
+            final int maxHeight
+    ) {
         try {
             Resources             resources = ResourceUtils.getResources();
             BitmapFactory.Options options   = new BitmapFactory.Options();
@@ -897,7 +1015,11 @@ public final class ImageUtils {
      * @param maxHeight   最大高度
      * @return {@link Bitmap}
      */
-    public static Bitmap getBitmap(final InputStream inputStream, final int maxWidth, final int maxHeight) {
+    public static Bitmap getBitmap(
+            final InputStream inputStream,
+            final int maxWidth,
+            final int maxHeight
+    ) {
         if (inputStream == null) return null;
         try {
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -919,7 +1041,11 @@ public final class ImageUtils {
      * @param maxHeight 最大高度
      * @return {@link Bitmap}
      */
-    public static Bitmap getBitmap(final FileDescriptor fd, final int maxWidth, final int maxHeight) {
+    public static Bitmap getBitmap(
+            final FileDescriptor fd,
+            final int maxWidth,
+            final int maxHeight
+    ) {
         if (fd == null) return null;
         try {
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -941,7 +1067,11 @@ public final class ImageUtils {
      * @param maxHeight 最大高度
      * @return {@link Bitmap}
      */
-    public static Bitmap getBitmap(final byte[] data, final int maxWidth, final int maxHeight) {
+    public static Bitmap getBitmap(
+            final byte[] data,
+            final int maxWidth,
+            final int maxHeight
+    ) {
         if (data == null) return null;
         try {
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -1044,7 +1174,10 @@ public final class ImageUtils {
      * @param format 如 Bitmap.CompressFormat.PNG
      * @return byte[]
      */
-    public static byte[] bitmapToByte(final Bitmap bitmap, final Bitmap.CompressFormat format) {
+    public static byte[] bitmapToByte(
+            final Bitmap bitmap,
+            final Bitmap.CompressFormat format
+    ) {
         return bitmapToByte(bitmap, 100, format);
     }
 
@@ -1055,8 +1188,11 @@ public final class ImageUtils {
      * @param format  如 Bitmap.CompressFormat.PNG
      * @return byte[]
      */
-    public static byte[] bitmapToByte(final Bitmap bitmap, @IntRange(from = 0, to = 100) final int quality,
-                                      final Bitmap.CompressFormat format) {
+    public static byte[] bitmapToByte(
+            final Bitmap bitmap,
+            @IntRange(from = 0, to = 100) final int quality,
+            final Bitmap.CompressFormat format
+    ) {
         if (bitmap == null || format == null) return null;
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -1085,7 +1221,10 @@ public final class ImageUtils {
      * @param format   如 Bitmap.CompressFormat.PNG
      * @return byte[]
      */
-    public static byte[] drawableToByte(final Drawable drawable, final Bitmap.CompressFormat format) {
+    public static byte[] drawableToByte(
+            final Drawable drawable,
+            final Bitmap.CompressFormat format
+    ) {
         return drawableToByte(drawable, 100, format);
     }
 
@@ -1096,8 +1235,11 @@ public final class ImageUtils {
      * @param format   如 Bitmap.CompressFormat.PNG
      * @return byte[]
      */
-    public static byte[] drawableToByte(final Drawable drawable, @IntRange(from = 0, to = 100) final int quality,
-                                        final Bitmap.CompressFormat format) {
+    public static byte[] drawableToByte(
+            final Drawable drawable,
+            @IntRange(from = 0, to = 100) final int quality,
+            final Bitmap.CompressFormat format
+    ) {
         if (drawable == null || format == null) return null;
         return bitmapToByte(drawableToBitmap(drawable), quality, format);
     }
@@ -1204,7 +1346,11 @@ public final class ImageUtils {
      * @param bottom   bottom 坐标
      * @return {@link Drawable}
      */
-    public static Drawable setBounds(final Drawable drawable, final int right, final int bottom) {
+    public static Drawable setBounds(
+            final Drawable drawable,
+            final int right,
+            final int bottom
+    ) {
         return setBounds(drawable, 0, 0, right, bottom);
     }
 
@@ -1217,7 +1363,13 @@ public final class ImageUtils {
      * @param bottom   bottom 坐标
      * @return {@link Drawable}
      */
-    public static Drawable setBounds(final Drawable drawable, final int left, final int top, final int right, final int bottom) {
+    public static Drawable setBounds(
+            final Drawable drawable,
+            final int left,
+            final int top,
+            final int right,
+            final int bottom
+    ) {
         try {
             drawable.setBounds(left, top, right, bottom);
         } catch (Exception e) {

@@ -27,7 +27,10 @@ public interface IPreference {
      * @param value 保存的 value
      * @param <T>   泛型
      */
-    <T> void put(String key, T value);
+    <T> void put(
+            String key,
+            T value
+    );
 
     /**
      * 保存 Map 集合 ( 只能是 Integer、Long、Boolean、Float、String、Set)
@@ -41,7 +44,10 @@ public interface IPreference {
      * @param key  保存的 key
      * @param list 保存的 value
      */
-    void putAll(String key, List<String> list);
+    void putAll(
+            String key,
+            List<String> list
+    );
 
     /**
      * 保存 List 集合, 并且自定义保存顺序
@@ -49,7 +55,11 @@ public interface IPreference {
      * @param list       保存的 value
      * @param comparator 排序 {@link Comparator}
      */
-    void putAll(String key, List<String> list, Comparator<String> comparator);
+    void putAll(
+            String key,
+            List<String> list,
+            Comparator<String> comparator
+    );
 
     /**
      * 根据 key 获取数据
@@ -58,7 +68,10 @@ public interface IPreference {
      * @param <T>  泛型
      * @return 存储的数据
      */
-    <T> T get(String key, DataType type);
+    <T> T get(
+            String key,
+            DataType type
+    );
 
     /**
      * 获取全部数据

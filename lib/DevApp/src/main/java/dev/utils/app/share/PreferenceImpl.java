@@ -44,7 +44,10 @@ final class PreferenceImpl implements IPreference {
      * @param context  {@link Context}
      * @param fileName 文件名
      */
-    public PreferenceImpl(final Context context, final String fileName) {
+    public PreferenceImpl(
+            final Context context,
+            final String fileName
+    ) {
         mPreferences = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
     }
 
@@ -54,7 +57,11 @@ final class PreferenceImpl implements IPreference {
      * @param fileName 文件名
      * @param mode     SharedPreferences 操作模式
      */
-    public PreferenceImpl(final Context context, final String fileName, final int mode) {
+    public PreferenceImpl(
+            final Context context,
+            final String fileName,
+            final int mode
+    ) {
         mPreferences = context.getSharedPreferences(fileName, mode);
     }
 
@@ -68,7 +75,11 @@ final class PreferenceImpl implements IPreference {
      * @param key    保存的 key
      * @param object 保存的 value
      */
-    private void put(final SharedPreferences.Editor editor, final String key, final Object object) {
+    private void put(
+            final SharedPreferences.Editor editor,
+            final String key,
+            final Object object
+    ) {
         // key 不为 null 时再存入, 否则不存储
         if (key != null && object != null) {
             if (object instanceof Integer) {
@@ -93,7 +104,10 @@ final class PreferenceImpl implements IPreference {
      * @param type 数据类型 {@link DataType}
      * @return 指定 key 存储的数据 ( 传入的 type 类型 )
      */
-    private Object getValue(final String key, final DataType type) {
+    private Object getValue(
+            final String key,
+            final DataType type
+    ) {
         switch (type) {
             case INTEGER:
                 return mPreferences.getInt(key, -1);
@@ -118,7 +132,10 @@ final class PreferenceImpl implements IPreference {
      */
     class ComparatorImpl implements Comparator<String> {
         @Override
-        public int compare(String lhs, String rhs) {
+        public int compare(
+                String lhs,
+                String rhs
+        ) {
             return lhs.compareTo(rhs);
         }
     }
@@ -134,7 +151,10 @@ final class PreferenceImpl implements IPreference {
      * @param <T>   泛型
      */
     @Override
-    public <T> void put(final String key, final T value) {
+    public <T> void put(
+            final String key,
+            final T value
+    ) {
         SharedPreferences.Editor edit = mPreferences.edit();
         put(edit, key, value);
         edit.apply();
@@ -162,7 +182,10 @@ final class PreferenceImpl implements IPreference {
      * @param list 保存的 value
      */
     @Override
-    public void putAll(final String key, final List<String> list) {
+    public void putAll(
+            final String key,
+            final List<String> list
+    ) {
         putAll(key, list, new ComparatorImpl());
     }
 
@@ -173,7 +196,11 @@ final class PreferenceImpl implements IPreference {
      * @param comparator 排序 {@link Comparator}
      */
     @Override
-    public void putAll(final String key, final List<String> list, final Comparator<String> comparator) {
+    public void putAll(
+            final String key,
+            final List<String> list,
+            final Comparator<String> comparator
+    ) {
         Set<String> set = new TreeSet<>(comparator);
         for (String value : list) {
             set.add(value);
@@ -189,7 +216,10 @@ final class PreferenceImpl implements IPreference {
      * @return 存储的数据
      */
     @Override
-    public <T> T get(final String key, final DataType type) {
+    public <T> T get(
+            final String key,
+            final DataType type
+    ) {
         return (T) getValue(key, type);
     }
 

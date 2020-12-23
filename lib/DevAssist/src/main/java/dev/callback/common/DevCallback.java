@@ -15,11 +15,18 @@ public class DevCallback<T> extends AbstractCallback<T> {
         super(value);
     }
 
-    public DevCallback(T value, Object object) {
+    public DevCallback(
+            T value,
+            Object object
+    ) {
         super(value, object);
     }
 
-    public DevCallback(T value, Object object, String tag) {
+    public DevCallback(
+            T value,
+            Object object,
+            String tag
+    ) {
         super(value, object, tag);
     }
 
@@ -45,7 +52,10 @@ public class DevCallback<T> extends AbstractCallback<T> {
      * @param param 回调参数
      * @param value 回调值
      */
-    public void callback(int param, T value) {
+    public void callback(
+            int param,
+            T value
+    ) {
     }
 
     /**
@@ -54,6 +64,10 @@ public class DevCallback<T> extends AbstractCallback<T> {
      * @param value   回调值
      * @param objects 回调对象数组
      */
-    public void callback(int param, T value, Object[] objects) {
+    public void callback(
+            int param,
+            T value,
+            Object[] objects
+    ) {
     }
 }

@@ -176,7 +176,10 @@ public final class ShapeUtils {
      * @param color  背景色
      * @return {@link ShapeUtils}
      */
-    public static ShapeUtils newShape(final float radius, @ColorInt final int color) {
+    public static ShapeUtils newShape(
+            final float radius,
+            @ColorInt final int color
+    ) {
         return new ShapeUtils().setCornerRadius(radius).setColor(color);
     }
 
@@ -186,7 +189,10 @@ public final class ShapeUtils {
      * @param colors 渐变颜色
      * @return {@link ShapeUtils}
      */
-    public static ShapeUtils newShape(final int angle, @ColorInt final int[] colors) {
+    public static ShapeUtils newShape(
+            final int angle,
+            @ColorInt final int[] colors
+    ) {
         return new ShapeUtils(new GradientDrawable(getOrientation(angle), colors));
     }
 
@@ -196,7 +202,10 @@ public final class ShapeUtils {
      * @param colors      渐变颜色
      * @return {@link ShapeUtils}
      */
-    public static ShapeUtils newShape(final GradientDrawable.Orientation orientation, @ColorInt final int[] colors) {
+    public static ShapeUtils newShape(
+            final GradientDrawable.Orientation orientation,
+            @ColorInt final int[] colors
+    ) {
         return new ShapeUtils(new GradientDrawable(orientation, colors));
     }
 
@@ -307,7 +316,10 @@ public final class ShapeUtils {
      * @param color 描边颜色
      * @return {@link ShapeUtils}
      */
-    public ShapeUtils setStroke(final int width, @ColorInt final int color) {
+    public ShapeUtils setStroke(
+            final int width,
+            @ColorInt final int color
+    ) {
         if (mDrawable != null) mDrawable.setStroke(width, color);
         return this;
     }
@@ -319,7 +331,10 @@ public final class ShapeUtils {
      * @return {@link ShapeUtils}
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public ShapeUtils setStroke(final int width, final ColorStateList colors) {
+    public ShapeUtils setStroke(
+            final int width,
+            final ColorStateList colors
+    ) {
         if (mDrawable != null) mDrawable.setStroke(width, colors);
         return this;
     }
@@ -332,8 +347,12 @@ public final class ShapeUtils {
      * @param dashGap   描边为虚线时, 虚线之间的间隔 即「 - - - - 」
      * @return {@link ShapeUtils}
      */
-    public ShapeUtils setStroke(final int width, @ColorInt final int color,
-                                final float dashWidth, final float dashGap) {
+    public ShapeUtils setStroke(
+            final int width,
+            @ColorInt final int color,
+            final float dashWidth,
+            final float dashGap
+    ) {
         if (mDrawable != null) mDrawable.setStroke(width, color, dashWidth, dashGap);
         return this;
     }
@@ -347,8 +366,12 @@ public final class ShapeUtils {
      * @return {@link ShapeUtils}
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public ShapeUtils setStroke(final int width, final ColorStateList colors,
-                                final float dashWidth, final float dashGap) {
+    public ShapeUtils setStroke(
+            final int width,
+            final ColorStateList colors,
+            final float dashWidth,
+            final float dashGap
+    ) {
         if (mDrawable != null) mDrawable.setStroke(width, colors, dashWidth, dashGap);
         return this;
     }
@@ -375,7 +398,12 @@ public final class ShapeUtils {
      * @param leftBottom  左下圆角值
      * @return {@link ShapeUtils}
      */
-    public ShapeUtils setCornerRadius(final float leftTop, final float rightTop, final float rightBottom, final float leftBottom) {
+    public ShapeUtils setCornerRadius(
+            final float leftTop,
+            final float rightTop,
+            final float rightBottom,
+            final float leftBottom
+    ) {
         if (mDrawable != null) {
             // radii 数组分别指定四个圆角的半径, 每个角可以指定 [X_Radius, Y_Radius]
             // 四个圆角的顺序为左上、右上、右下、左下, 如果 X_Radius, Y_Radius 为 0 表示还是直角
@@ -476,7 +504,10 @@ public final class ShapeUtils {
      * @param y 渐变中心 Y 点坐标的相对位置, 范围: 0 ~ 1
      * @return {@link ShapeUtils}
      */
-    public ShapeUtils setGradientCenter(final float x, final float y) {
+    public ShapeUtils setGradientCenter(
+            final float x,
+            final float y
+    ) {
         if (mDrawable != null) mDrawable.setGradientCenter(x, y);
         return this;
     }
@@ -524,7 +555,12 @@ public final class ShapeUtils {
      * @return {@link ShapeUtils}
      */
     @RequiresApi(api = Build.VERSION_CODES.Q)
-    public ShapeUtils setPadding(final int left, final int top, final int right, final int bottom) {
+    public ShapeUtils setPadding(
+            final int left,
+            final int top,
+            final int right,
+            final int bottom
+    ) {
         if (mDrawable != null) mDrawable.setPadding(left, top, right, bottom);
         return this;
 
@@ -540,7 +576,10 @@ public final class ShapeUtils {
      * @param height shape drawable 高
      * @return {@link ShapeUtils}
      */
-    public ShapeUtils setSize(final int width, final int height) {
+    public ShapeUtils setSize(
+            final int width,
+            final int height
+    ) {
         if (mDrawable != null) mDrawable.setSize(width, height);
         return this;
     }

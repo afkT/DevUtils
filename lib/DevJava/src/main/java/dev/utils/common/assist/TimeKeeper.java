@@ -11,7 +11,10 @@ public class TimeKeeper {
      * @param keepTimeMillis 堵塞时间 ( 毫秒 )
      * @param callback       结束回调通知
      */
-    public void waitForEndAsync(final long keepTimeMillis, final OnEndCallback callback) {
+    public void waitForEndAsync(
+            final long keepTimeMillis,
+            final OnEndCallback callback
+    ) {
         if (keepTimeMillis > 0L) {
             new Thread(new Runnable() {
                 @Override
@@ -27,7 +30,10 @@ public class TimeKeeper {
      * @param keepTimeMillis 堵塞时间 ( 毫秒 )
      * @param callback       结束回调通知
      */
-    public void waitForEnd(final long keepTimeMillis, final OnEndCallback callback) {
+    public void waitForEnd(
+            final long keepTimeMillis,
+            final OnEndCallback callback
+    ) {
         if (keepTimeMillis > 0L) {
             // 开始堵塞时间
             long startTime = System.currentTimeMillis();
@@ -60,6 +66,11 @@ public class TimeKeeper {
          * @param endTimeMillis   结束时间 ( 毫秒 )
          * @param isError         是否发生异常
          */
-        void onEnd(long keepTimeMillis, long startTimeMillis, long endTimeMillis, boolean isError);
+        void onEnd(
+                long keepTimeMillis,
+                long startTimeMillis,
+                long endTimeMillis,
+                boolean isError
+        );
     }
 }

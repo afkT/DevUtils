@@ -230,7 +230,11 @@ public final class ColorUtils {
      * @param blue  蓝色值 [0-255]
      * @return rgb 颜色值
      */
-    public static int rgb(final int red, final int green, final int blue) {
+    public static int rgb(
+            final int red,
+            final int green,
+            final int blue
+    ) {
         return 0xff000000 | (red << 16) | (green << 8) | blue;
     }
 
@@ -241,7 +245,11 @@ public final class ColorUtils {
      * @param blue  蓝色值 [0-255]
      * @return rgb 颜色值
      */
-    public static int rgb(final float red, final float green, final float blue) {
+    public static int rgb(
+            final float red,
+            final float green,
+            final float blue
+    ) {
         return 0xff000000 |
                 ((int) (red * 255.0f + 0.5f) << 16) |
                 ((int) (green * 255.0f + 0.5f) << 8) |
@@ -258,7 +266,12 @@ public final class ColorUtils {
      * @param blue  蓝色值 [0-255]
      * @return argb 颜色值
      */
-    public static int argb(final int alpha, final int red, final int green, final int blue) {
+    public static int argb(
+            final int alpha,
+            final int red,
+            final int green,
+            final int blue
+    ) {
         return (alpha << 24) | (red << 16) | (green << 8) | blue;
     }
 
@@ -270,7 +283,12 @@ public final class ColorUtils {
      * @param blue  蓝色值 [0-255]
      * @return argb 颜色值
      */
-    public static int argb(final float alpha, final float red, final float green, final float blue) {
+    public static int argb(
+            final float alpha,
+            final float red,
+            final float green,
+            final float blue
+    ) {
         return ((int) (alpha * 255.0f + 0.5f) << 24) |
                 ((int) (red * 255.0f + 0.5f) << 16) |
                 ((int) (green * 255.0f + 0.5f) << 8) |
@@ -317,7 +335,10 @@ public final class ColorUtils {
      * @param alpha 透明度 [0-255]
      * @return argb 颜色值
      */
-    public static int setAlpha(final int color, final int alpha) {
+    public static int setAlpha(
+            final int color,
+            final int alpha
+    ) {
         return (color & 0x00ffffff) | (alpha << 24);
     }
 
@@ -327,7 +348,10 @@ public final class ColorUtils {
      * @param alpha 透明度 [0-255]
      * @return argb 颜色值
      */
-    public static int setAlpha(final int color, final float alpha) {
+    public static int setAlpha(
+            final int color,
+            final float alpha
+    ) {
         return (color & 0x00ffffff) | ((int) (alpha * 255.0f + 0.5f) << 24);
     }
 
@@ -337,7 +361,10 @@ public final class ColorUtils {
      * @param red   红色值 [0-255]
      * @return argb/rgb 颜色值
      */
-    public static int setRed(final int color, final int red) {
+    public static int setRed(
+            final int color,
+            final int red
+    ) {
         return (color & 0xff00ffff) | (red << 16);
     }
 
@@ -347,7 +374,10 @@ public final class ColorUtils {
      * @param red   红色值 [0-255]
      * @return argb/rgb 颜色值
      */
-    public static int setRed(final int color, final float red) {
+    public static int setRed(
+            final int color,
+            final float red
+    ) {
         return (color & 0xff00ffff) | ((int) (red * 255.0f + 0.5f) << 16);
     }
 
@@ -357,7 +387,10 @@ public final class ColorUtils {
      * @param green 绿色值 [0-255]
      * @return argb/rgb 颜色值
      */
-    public static int setGreen(final int color, final int green) {
+    public static int setGreen(
+            final int color,
+            final int green
+    ) {
         return (color & 0xffff00ff) | (green << 8);
     }
 
@@ -367,7 +400,10 @@ public final class ColorUtils {
      * @param green 绿色值 [0-255]
      * @return argb/rgb 颜色值
      */
-    public static int setGreen(final int color, final float green) {
+    public static int setGreen(
+            final int color,
+            final float green
+    ) {
         return (color & 0xffff00ff) | ((int) (green * 255.0f + 0.5f) << 8);
     }
 
@@ -377,7 +413,10 @@ public final class ColorUtils {
      * @param blue  蓝色值 [0-255]
      * @return argb/rgb 颜色值
      */
-    public static int setBlue(final int color, final int blue) {
+    public static int setBlue(
+            final int color,
+            final int blue
+    ) {
         return (color & 0xffffff00) | blue;
     }
 
@@ -387,7 +426,10 @@ public final class ColorUtils {
      * @param blue  蓝色值 [0-255]
      * @return argb/rgb 颜色值
      */
-    public static int setBlue(final int color, final float blue) {
+    public static int setBlue(
+            final int color,
+            final float blue
+    ) {
         return (color & 0xffffff00) | (int) (blue * 255.0f + 0.5f);
     }
 
@@ -526,7 +568,10 @@ public final class ColorUtils {
      * @param darkValue 加深值
      * @return 加深后的颜色值
      */
-    public static int setDark(final String colorStr, final int darkValue) {
+    public static int setDark(
+            final String colorStr,
+            final int darkValue
+    ) {
         int color = parseColor(colorStr);
         if (color == -1) return -1;
         return setDark(color, darkValue);
@@ -538,7 +583,10 @@ public final class ColorUtils {
      * @param darkValue 加深值
      * @return 加深后的颜色值
      */
-    public static int setDark(final int color, final int darkValue) {
+    public static int setDark(
+            final int color,
+            final int darkValue
+    ) {
         int red   = red(color);
         int green = green(color);
         int blue  = blue(color);
@@ -561,7 +609,10 @@ public final class ColorUtils {
      * @param lightValue 变亮 ( 变浅 ) 值
      * @return 变亮 ( 变浅 ) 后的颜色值
      */
-    public static int setLight(final String colorStr, final int lightValue) {
+    public static int setLight(
+            final String colorStr,
+            final int lightValue
+    ) {
         int color = parseColor(colorStr);
         if (color == -1) return -1;
         return setLight(color, lightValue);
@@ -573,7 +624,10 @@ public final class ColorUtils {
      * @param lightValue 变亮 ( 变浅 ) 值
      * @return 变亮 ( 变浅 ) 后的颜色值
      */
-    public static int setLight(final int color, final int lightValue) {
+    public static int setLight(
+            final int color,
+            final int lightValue
+    ) {
         int red   = red(color);
         int green = green(color);
         int blue  = blue(color);
@@ -596,7 +650,10 @@ public final class ColorUtils {
      * @param darkValue 加深值
      * @return 透明度加深后的颜色值
      */
-    public static int setAlphaDark(final String colorStr, final int darkValue) {
+    public static int setAlphaDark(
+            final String colorStr,
+            final int darkValue
+    ) {
         int color = parseColor(colorStr);
         if (color == -1) return -1;
         return setAlphaDark(color, darkValue);
@@ -608,7 +665,10 @@ public final class ColorUtils {
      * @param darkValue 加深值
      * @return 透明度加深后的颜色值
      */
-    public static int setAlphaDark(final int color, final int darkValue) {
+    public static int setAlphaDark(
+            final int color,
+            final int darkValue
+    ) {
         int alpha = alpha(color);
         // 透明度加深
         alpha += darkValue;
@@ -622,7 +682,10 @@ public final class ColorUtils {
      * @param lightValue 变浅值
      * @return 透明度变浅后的颜色值
      */
-    public static int setAlphaLight(final String colorStr, final int lightValue) {
+    public static int setAlphaLight(
+            final String colorStr,
+            final int lightValue
+    ) {
         int color = parseColor(colorStr);
         if (color == -1) return -1;
         return setAlphaLight(color, lightValue);
@@ -634,7 +697,10 @@ public final class ColorUtils {
      * @param lightValue 变浅值
      * @return 透明度变浅后的颜色值
      */
-    public static int setAlphaLight(final int color, final int lightValue) {
+    public static int setAlphaLight(
+            final int color,
+            final int lightValue
+    ) {
         int alpha = alpha(color);
         // 透明度变浅
         alpha -= lightValue;
@@ -750,7 +816,10 @@ public final class ColorUtils {
          * @param key   Key
          * @param value Value ( 如: #000000 )
          */
-        public ColorInfo(final String key, final String value) {
+        public ColorInfo(
+                final String key,
+                final String value
+        ) {
             this.key = key;
             this.value = value;
             priConvert();
@@ -761,7 +830,10 @@ public final class ColorUtils {
          * @param key        Key
          * @param valueColor ARGB/RGB color
          */
-        public ColorInfo(final String key, final int valueColor) {
+        public ColorInfo(
+                final String key,
+                final int valueColor
+        ) {
             this(key, ColorUtils.intToArgbString(valueColor));
         }
 
@@ -973,7 +1045,12 @@ public final class ColorUtils {
          * @param hsbvals HSB 数组
          * @return [] { hue, saturation, brightness }
          */
-        private static float[] RGBtoHSB(int r, int g, int b, float[] hsbvals) {
+        private static float[] RGBtoHSB(
+                int r,
+                int g,
+                int b,
+                float[] hsbvals
+        ) {
             float hue, saturation, brightness;
             if (hsbvals == null) {
                 hsbvals = new float[3];
@@ -1022,7 +1099,10 @@ public final class ColorUtils {
     public static void sortGray(final List<ColorInfo> lists) {
         Collections.sort(lists, new Comparator<ColorInfo>() {
             @Override
-            public int compare(ColorUtils.ColorInfo c1, ColorUtils.ColorInfo c2) {
+            public int compare(
+                    ColorUtils.ColorInfo c1,
+                    ColorUtils.ColorInfo c2
+            ) {
                 long diff = c1.getGrayLevel() - c2.getGrayLevel();
                 if (diff < 0) {
                     return 1;
@@ -1041,7 +1121,10 @@ public final class ColorUtils {
     public static void sortHSB(final List<ColorInfo> lists) {
         Collections.sort(lists, new Comparator<ColorUtils.ColorInfo>() {
             @Override
-            public int compare(ColorUtils.ColorInfo c1, ColorUtils.ColorInfo c2) {
+            public int compare(
+                    ColorUtils.ColorInfo c1,
+                    ColorUtils.ColorInfo c2
+            ) {
                 float diff = c1.getHue() - c2.getHue();
                 if (c1.getHue() == 0) {
                     diff = c1.getSaturation() - c2.getSaturation();

@@ -57,7 +57,10 @@ public final class GsonUtils {
      * @param gson   {@link Gson}
      * @return JSON String
      */
-    public static String toJson(final Object object, final Gson gson) {
+    public static String toJson(
+            final Object object,
+            final Gson gson
+    ) {
         if (gson != null) {
             try {
                 return gson.toJson(object);
@@ -77,7 +80,10 @@ public final class GsonUtils {
      * @param <T>      泛型
      * @return instance of type
      */
-    public static <T> T fromJson(final String json, final Class<T> classOfT) {
+    public static <T> T fromJson(
+            final String json,
+            final Class<T> classOfT
+    ) {
         return fromJson(json, classOfT, FROM_GSON);
     }
 
@@ -89,7 +95,11 @@ public final class GsonUtils {
      * @param <T>      泛型
      * @return instance of type
      */
-    public static <T> T fromJson(final String json, final Class<T> classOfT, final Gson gson) {
+    public static <T> T fromJson(
+            final String json,
+            final Class<T> classOfT,
+            final Gson gson
+    ) {
         if (gson != null) {
             try {
                 return gson.fromJson(json, classOfT);
@@ -109,7 +119,10 @@ public final class GsonUtils {
      * @param <T>     泛型
      * @return instance of type
      */
-    public static <T> T fromJson(final String json, final Type typeOfT) {
+    public static <T> T fromJson(
+            final String json,
+            final Type typeOfT
+    ) {
         return fromJson(json, typeOfT, FROM_GSON);
     }
 
@@ -121,7 +134,11 @@ public final class GsonUtils {
      * @param <T>     泛型
      * @return instance of type
      */
-    public static <T> T fromJson(final String json, final Type typeOfT, final Gson gson) {
+    public static <T> T fromJson(
+            final String json,
+            final Type typeOfT,
+            final Gson gson
+    ) {
         if (gson != null) {
             try {
                 return gson.fromJson(json, typeOfT);
@@ -202,7 +219,10 @@ public final class GsonUtils {
      * @param gson {@link Gson}
      * @return JSON String
      */
-    public static String toJsonIndent(final String json, final Gson gson) {
+    public static String toJsonIndent(
+            final String json,
+            final Gson gson
+    ) {
         if (gson != null) {
             try {
                 JsonReader reader = new JsonReader(new StringReader(json));
@@ -234,7 +254,10 @@ public final class GsonUtils {
      * @param gson   {@link Gson}
      * @return JSON String
      */
-    public static String toJsonIndent(final Object object, final Gson gson) {
+    public static String toJsonIndent(
+            final Object object,
+            final Gson gson
+    ) {
         if (gson != null) {
             try {
                 return gson.toJson(object);
@@ -266,7 +289,10 @@ public final class GsonUtils {
      * @param modifiers 需过滤不处理的字段修饰符 {@link Modifier}
      * @return {@link GsonBuilder}
      */
-    public static GsonBuilder createGsonExcludeFields(final GsonBuilder builder, final int... modifiers) {
+    public static GsonBuilder createGsonExcludeFields(
+            final GsonBuilder builder,
+            final int... modifiers
+    ) {
         if (builder != null) {
             return builder.excludeFieldsWithModifiers(modifiers);
         }
@@ -310,7 +336,10 @@ public final class GsonUtils {
      * @param valueType Value.class
      * @return Map<Key, Value> Type
      */
-    public static Type getMapType(final Type keyType, final Type valueType) {
+    public static Type getMapType(
+            final Type keyType,
+            final Type valueType
+    ) {
         return TypeToken.getParameterized(Map.class, keyType, valueType).getType();
     }
 
@@ -320,7 +349,10 @@ public final class GsonUtils {
      * @param typeArguments type arguments
      * @return Type
      */
-    public static Type getType(final Type rawType, final Type... typeArguments) {
+    public static Type getType(
+            final Type rawType,
+            final Type... typeArguments
+    ) {
         return TypeToken.getParameterized(rawType, typeArguments).getType();
     }
 }

@@ -73,7 +73,10 @@ public final class UriUtils {
      * @param fileProvider android:authorities = ${applicationId}.fileProvider
      * @return 指定文件 {@link Uri}
      */
-    public static Uri getUriForFileToName(final File file, final String fileProvider) {
+    public static Uri getUriForFileToName(
+            final File file,
+            final String fileProvider
+    ) {
         if (file == null || fileProvider == null) return null;
         try {
             String authority = AppUtils.getPackageName() + "." + fileProvider;
@@ -90,7 +93,10 @@ public final class UriUtils {
      * @param authority android:authorities
      * @return 指定文件 {@link Uri}
      */
-    public static Uri getUriForFile(final File file, final String authority) {
+    public static Uri getUriForFile(
+            final File file,
+            final String authority
+    ) {
         if (file == null || authority == null) return null;
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -154,7 +160,10 @@ public final class UriUtils {
      * @param file 文件
      * @return 指定文件 {@link Uri}
      */
-    public static Uri getMediaUri(final Uri uri, final File file) {
+    public static Uri getMediaUri(
+            final Uri uri,
+            final File file
+    ) {
         return ContentResolverUtils.getMediaUri(uri, file);
     }
 
@@ -173,7 +182,10 @@ public final class UriUtils {
      * @param filePath 文件路径
      * @return 指定文件 {@link Uri}
      */
-    public static Uri getMediaUri(final Uri uri, final String filePath) {
+    public static Uri getMediaUri(
+            final Uri uri,
+            final String filePath
+    ) {
         return ContentResolverUtils.getMediaUri(uri, filePath);
     }
 
@@ -196,7 +208,10 @@ public final class UriUtils {
      * @param fileName 文件名 {@link ContentResolverUtils#getDisplayNameColumn}
      * @return 复制后的文件路径
      */
-    public static String copyByUri(final Uri uri, final String fileName) {
+    public static String copyByUri(
+            final Uri uri,
+            final String fileName
+    ) {
         return copyByUri(uri, PathUtils.getAppExternal().getAppCachePath(), fileName);
     }
 
@@ -207,7 +222,11 @@ public final class UriUtils {
      * @param fileName 文件名 {@link ContentResolverUtils#getDisplayNameColumn}
      * @return 复制后的文件路径
      */
-    public static String copyByUri(final Uri uri, final File file, final String fileName) {
+    public static String copyByUri(
+            final Uri uri,
+            final File file,
+            final String fileName
+    ) {
         return copyByUri(uri, FileUtils.getAbsolutePath(file), fileName);
     }
 
@@ -218,7 +237,11 @@ public final class UriUtils {
      * @param fileName 文件名 {@link ContentResolverUtils#getDisplayNameColumn}
      * @return 复制后的文件路径
      */
-    public static String copyByUri(final Uri uri, final String filePath, final String fileName) {
+    public static String copyByUri(
+            final Uri uri,
+            final String filePath,
+            final String fileName
+    ) {
         if (uri == null || TextUtils.isEmpty(filePath)) return null;
         FileUtils.createFolder(filePath);
         InputStream is = null;
@@ -258,7 +281,10 @@ public final class UriUtils {
      * @param isQCopy Android Q 及其以上版本是否复制文件
      * @return 文件路径
      */
-    public static String getFilePathByUri(final Uri uri, final boolean isQCopy) {
+    public static String getFilePathByUri(
+            final Uri uri,
+            final boolean isQCopy
+    ) {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && isQCopy) {
                 return copyByUri(uri);
@@ -276,7 +302,10 @@ public final class UriUtils {
      * @param uri     {@link Uri}
      * @return 文件路径
      */
-    private static String getFilePathByUri(final Context context, final Uri uri) {
+    private static String getFilePathByUri(
+            final Context context,
+            final Uri uri
+    ) {
         if (context == null || uri == null) return null;
 
         // 以 file:// 开头

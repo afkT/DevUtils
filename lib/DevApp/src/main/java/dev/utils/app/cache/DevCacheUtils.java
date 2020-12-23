@@ -72,7 +72,10 @@ final class DevCacheUtils {
      * @param strInfo 字符串信息
      * @return 字符串, 包含创建时间、存储数据等
      */
-    protected static String newStringWithDateInfo(final int second, final String strInfo) {
+    protected static String newStringWithDateInfo(
+            final int second,
+            final String strInfo
+    ) {
         return createDateInfo(second) + strInfo;
     }
 
@@ -82,7 +85,10 @@ final class DevCacheUtils {
      * @param data   待存储数据
      * @return byte[], 包含创建时间、存储数据等
      */
-    protected static byte[] newByteArrayWithDateInfo(final int second, final byte[] data) {
+    protected static byte[] newByteArrayWithDateInfo(
+            final int second,
+            final byte[] data
+    ) {
         if (data != null) {
             try {
                 byte[] dateArys = createDateInfo(second).getBytes();
@@ -173,7 +179,10 @@ final class DevCacheUtils {
      * @param ch   字符
      * @return 对应的索引
      */
-    private static int indexOf(final byte[] data, final char ch) {
+    private static int indexOf(
+            final byte[] data,
+            final char ch
+    ) {
         if (data != null) {
             for (int i = 0; i < data.length; i++) {
                 if (data[i] == ch) {
@@ -192,7 +201,11 @@ final class DevCacheUtils {
      * @return byte[]
      * @throws Exception 索引异常
      */
-    private static byte[] copyOfRange(final byte[] original, final int from, final int to) throws Exception {
+    private static byte[] copyOfRange(
+            final byte[] original,
+            final int from,
+            final int to
+    ) throws Exception {
         int newLength = to - from;
         if (newLength < 0)
             throw new IllegalArgumentException(from + " > " + to);

@@ -86,7 +86,10 @@ public final class FileIOUtils {
      * @param append   是否追加到结尾
      * @return {@link FileOutputStream}
      */
-    public static FileOutputStream getFileOutputStream(final String filePath, final boolean append) {
+    public static FileOutputStream getFileOutputStream(
+            final String filePath,
+            final boolean append
+    ) {
         return getFileOutputStream(FileUtils.getFile(filePath), append);
     }
 
@@ -105,7 +108,10 @@ public final class FileIOUtils {
      * @param append 是否追加到结尾
      * @return {@link FileOutputStream}
      */
-    public static FileOutputStream getFileOutputStream(final File file, final boolean append) {
+    public static FileOutputStream getFileOutputStream(
+            final File file,
+            final boolean append
+    ) {
         if (file == null) return null;
         try {
             return new FileOutputStream(file, append);
@@ -123,7 +129,10 @@ public final class FileIOUtils {
      * @param inputStream {@link InputStream}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromIS(final String filePath, final InputStream inputStream) {
+    public static boolean writeFileFromIS(
+            final String filePath,
+            final InputStream inputStream
+    ) {
         return writeFileFromIS(FileUtils.getFileByPath(filePath), inputStream, false);
     }
 
@@ -134,7 +143,11 @@ public final class FileIOUtils {
      * @param append      是否追加到结尾
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromIS(final String filePath, final InputStream inputStream, final boolean append) {
+    public static boolean writeFileFromIS(
+            final String filePath,
+            final InputStream inputStream,
+            final boolean append
+    ) {
         return writeFileFromIS(FileUtils.getFileByPath(filePath), inputStream, append);
     }
 
@@ -144,7 +157,10 @@ public final class FileIOUtils {
      * @param inputStream {@link InputStream}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromIS(final File file, final InputStream inputStream) {
+    public static boolean writeFileFromIS(
+            final File file,
+            final InputStream inputStream
+    ) {
         return writeFileFromIS(file, inputStream, false);
     }
 
@@ -155,7 +171,11 @@ public final class FileIOUtils {
      * @param append      是否追加到结尾
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromIS(final File file, final InputStream inputStream, final boolean append) {
+    public static boolean writeFileFromIS(
+            final File file,
+            final InputStream inputStream,
+            final boolean append
+    ) {
         if (inputStream == null || !FileUtils.createOrExistsFile(file)) return false;
         OutputStream os = null;
         try {
@@ -180,7 +200,10 @@ public final class FileIOUtils {
      * @param bytes    byte[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromBytesByStream(final String filePath, final byte[] bytes) {
+    public static boolean writeFileFromBytesByStream(
+            final String filePath,
+            final byte[] bytes
+    ) {
         return writeFileFromBytesByStream(FileUtils.getFileByPath(filePath), bytes, false);
     }
 
@@ -191,7 +214,11 @@ public final class FileIOUtils {
      * @param append   是否追加到结尾
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromBytesByStream(final String filePath, final byte[] bytes, final boolean append) {
+    public static boolean writeFileFromBytesByStream(
+            final String filePath,
+            final byte[] bytes,
+            final boolean append
+    ) {
         return writeFileFromBytesByStream(FileUtils.getFileByPath(filePath), bytes, append);
     }
 
@@ -201,7 +228,10 @@ public final class FileIOUtils {
      * @param bytes byte[]
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromBytesByStream(final File file, final byte[] bytes) {
+    public static boolean writeFileFromBytesByStream(
+            final File file,
+            final byte[] bytes
+    ) {
         return writeFileFromBytesByStream(file, bytes, false);
     }
 
@@ -212,7 +242,11 @@ public final class FileIOUtils {
      * @param append 是否追加到结尾
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromBytesByStream(final File file, final byte[] bytes, final boolean append) {
+    public static boolean writeFileFromBytesByStream(
+            final File file,
+            final byte[] bytes,
+            final boolean append
+    ) {
         if (bytes == null || !FileUtils.createOrExistsFile(file)) return false;
         BufferedOutputStream bos = null;
         try {
@@ -234,7 +268,11 @@ public final class FileIOUtils {
      * @param isForce  是否强制写入
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromBytesByChannel(final String filePath, final byte[] bytes, final boolean isForce) {
+    public static boolean writeFileFromBytesByChannel(
+            final String filePath,
+            final byte[] bytes,
+            final boolean isForce
+    ) {
         return writeFileFromBytesByChannel(FileUtils.getFileByPath(filePath), bytes, false, isForce);
     }
 
@@ -246,7 +284,12 @@ public final class FileIOUtils {
      * @param isForce  是否强制写入
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromBytesByChannel(final String filePath, final byte[] bytes, final boolean append, final boolean isForce) {
+    public static boolean writeFileFromBytesByChannel(
+            final String filePath,
+            final byte[] bytes,
+            final boolean append,
+            final boolean isForce
+    ) {
         return writeFileFromBytesByChannel(FileUtils.getFileByPath(filePath), bytes, append, isForce);
     }
 
@@ -257,7 +300,11 @@ public final class FileIOUtils {
      * @param isForce 是否强制写入
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromBytesByChannel(final File file, final byte[] bytes, final boolean isForce) {
+    public static boolean writeFileFromBytesByChannel(
+            final File file,
+            final byte[] bytes,
+            final boolean isForce
+    ) {
         return writeFileFromBytesByChannel(file, bytes, false, isForce);
     }
 
@@ -269,7 +316,12 @@ public final class FileIOUtils {
      * @param isForce 是否强制写入
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromBytesByChannel(final File file, final byte[] bytes, final boolean append, final boolean isForce) {
+    public static boolean writeFileFromBytesByChannel(
+            final File file,
+            final byte[] bytes,
+            final boolean append,
+            final boolean isForce
+    ) {
         if (bytes == null || !FileUtils.createOrExistsFile(file)) return false;
         FileChannel fc = null;
         try {
@@ -293,7 +345,11 @@ public final class FileIOUtils {
      * @param isForce  是否强制写入
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromBytesByMap(final String filePath, final byte[] bytes, final boolean isForce) {
+    public static boolean writeFileFromBytesByMap(
+            final String filePath,
+            final byte[] bytes,
+            final boolean isForce
+    ) {
         return writeFileFromBytesByMap(filePath, bytes, false, isForce);
     }
 
@@ -305,7 +361,12 @@ public final class FileIOUtils {
      * @param isForce  是否强制写入
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromBytesByMap(final String filePath, final byte[] bytes, final boolean append, final boolean isForce) {
+    public static boolean writeFileFromBytesByMap(
+            final String filePath,
+            final byte[] bytes,
+            final boolean append,
+            final boolean isForce
+    ) {
         return writeFileFromBytesByMap(FileUtils.getFileByPath(filePath), bytes, append, isForce);
     }
 
@@ -316,7 +377,11 @@ public final class FileIOUtils {
      * @param isForce 是否强制写入
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromBytesByMap(final File file, final byte[] bytes, final boolean isForce) {
+    public static boolean writeFileFromBytesByMap(
+            final File file,
+            final byte[] bytes,
+            final boolean isForce
+    ) {
         return writeFileFromBytesByMap(file, bytes, false, isForce);
     }
 
@@ -328,7 +393,12 @@ public final class FileIOUtils {
      * @param isForce 是否强制写入
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromBytesByMap(final File file, final byte[] bytes, final boolean append, final boolean isForce) {
+    public static boolean writeFileFromBytesByMap(
+            final File file,
+            final byte[] bytes,
+            final boolean append,
+            final boolean isForce
+    ) {
         if (bytes == null || !FileUtils.createOrExistsFile(file)) return false;
         FileChannel fc = null;
         try {
@@ -351,7 +421,10 @@ public final class FileIOUtils {
      * @param content  写入内容
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromString(final String filePath, final String content) {
+    public static boolean writeFileFromString(
+            final String filePath,
+            final String content
+    ) {
         return writeFileFromString(FileUtils.getFileByPath(filePath), content, false);
     }
 
@@ -362,7 +435,11 @@ public final class FileIOUtils {
      * @param append   是否追加到结尾
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromString(final String filePath, final String content, final boolean append) {
+    public static boolean writeFileFromString(
+            final String filePath,
+            final String content,
+            final boolean append
+    ) {
         return writeFileFromString(FileUtils.getFileByPath(filePath), content, append);
     }
 
@@ -372,7 +449,10 @@ public final class FileIOUtils {
      * @param content 写入内容
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromString(final File file, final String content) {
+    public static boolean writeFileFromString(
+            final File file,
+            final String content
+    ) {
         return writeFileFromString(file, content, false);
     }
 
@@ -383,7 +463,11 @@ public final class FileIOUtils {
      * @param append  是否追加到结尾
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean writeFileFromString(final File file, final String content, final boolean append) {
+    public static boolean writeFileFromString(
+            final File file,
+            final String content,
+            final boolean append
+    ) {
         if (content == null || !FileUtils.createOrExistsFile(file)) return false;
         BufferedWriter bw = null;
         try {
@@ -417,7 +501,10 @@ public final class FileIOUtils {
      * @param charsetName 字符编码
      * @return 换行 {@link List<String>}
      */
-    public static List<String> readFileToList(final String filePath, final String charsetName) {
+    public static List<String> readFileToList(
+            final String filePath,
+            final String charsetName
+    ) {
         return readFileToList(FileUtils.getFileByPath(filePath), charsetName);
     }
 
@@ -436,7 +523,10 @@ public final class FileIOUtils {
      * @param charsetName 字符编码
      * @return 换行 {@link List<String>}
      */
-    public static List<String> readFileToList(final File file, final String charsetName) {
+    public static List<String> readFileToList(
+            final File file,
+            final String charsetName
+    ) {
         return readFileToList(file, 0, Integer.MAX_VALUE, charsetName);
     }
 
@@ -447,7 +537,11 @@ public final class FileIOUtils {
      * @param end      结束位置
      * @return 换行 {@link List<String>}
      */
-    public static List<String> readFileToList(final String filePath, final int start, final int end) {
+    public static List<String> readFileToList(
+            final String filePath,
+            final int start,
+            final int end
+    ) {
         return readFileToList(FileUtils.getFileByPath(filePath), start, end, null);
     }
 
@@ -459,7 +553,12 @@ public final class FileIOUtils {
      * @param charsetName 字符编码
      * @return 换行 {@link List<String>}
      */
-    public static List<String> readFileToList(final String filePath, final int start, final int end, final String charsetName) {
+    public static List<String> readFileToList(
+            final String filePath,
+            final int start,
+            final int end,
+            final String charsetName
+    ) {
         return readFileToList(FileUtils.getFileByPath(filePath), start, end, charsetName);
     }
 
@@ -470,7 +569,11 @@ public final class FileIOUtils {
      * @param end   结束位置
      * @return 换行 {@link List<String>}
      */
-    public static List<String> readFileToList(final File file, final int start, final int end) {
+    public static List<String> readFileToList(
+            final File file,
+            final int start,
+            final int end
+    ) {
         return readFileToList(file, start, end, null);
     }
 
@@ -482,7 +585,12 @@ public final class FileIOUtils {
      * @param charsetName 字符编码
      * @return 换行 {@link List<String>}
      */
-    public static List<String> readFileToList(final File file, final int start, final int end, final String charsetName) {
+    public static List<String> readFileToList(
+            final File file,
+            final int start,
+            final int end,
+            final String charsetName
+    ) {
         if (!FileUtils.isFileExists(file)) return null;
         if (start > end) return null;
         BufferedReader br = null;
@@ -526,7 +634,10 @@ public final class FileIOUtils {
      * @param charsetName 字符编码
      * @return 文件内容字符串
      */
-    public static String readFileToString(final String filePath, final String charsetName) {
+    public static String readFileToString(
+            final String filePath,
+            final String charsetName
+    ) {
         return readFileToString(FileUtils.getFileByPath(filePath), charsetName);
     }
 
@@ -545,7 +656,10 @@ public final class FileIOUtils {
      * @param charsetName 字符编码
      * @return 文件内容字符串
      */
-    public static String readFileToString(final File file, final String charsetName) {
+    public static String readFileToString(
+            final File file,
+            final String charsetName
+    ) {
         if (!FileUtils.isFileExists(file)) return null;
         BufferedReader br = null;
         try {
@@ -678,7 +792,10 @@ public final class FileIOUtils {
      * @param outputStream {@link OutputStream} 写入流
      * @return bytes number
      */
-    public static long copyLarge(final InputStream inputStream, final OutputStream outputStream) {
+    public static long copyLarge(
+            final InputStream inputStream,
+            final OutputStream outputStream
+    ) {
         if (inputStream == null || outputStream == null) return -1;
         try {
             byte[] data  = new byte[sBufferSize];

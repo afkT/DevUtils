@@ -57,7 +57,9 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         assist.printLog("onCreateView")
 
@@ -72,7 +74,10 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
         return mContentView
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
         assist.printLog("onViewCreated")
     }
@@ -142,7 +147,10 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
      * @param inflater  [LayoutInflater]
      * @param container [ViewGroup]
      */
-    private fun contentInit(inflater: LayoutInflater, container: ViewGroup?) {
+    private fun contentInit(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) {
         if (mContentView != null) return
         // 使用 baseContentId()
         if (baseContentId() != 0) {
@@ -188,11 +196,17 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
         return assist.isCurrentVisible()
     }
 
-    override fun showToast(text: String?, vararg formatArgs: Any) {
+    override fun showToast(
+        text: String?,
+        vararg formatArgs: Any
+    ) {
         assist.showToast(text, formatArgs)
     }
 
-    override fun showToast(resId: Int, vararg formatArgs: Any) {
+    override fun showToast(
+        resId: Int,
+        vararg formatArgs: Any
+    ) {
         assist.showToast(resId, formatArgs)
     }
 
@@ -204,7 +218,10 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
         return assist.setDevPopupWindow(popupWindow)
     }
 
-    override fun <T : PopupWindow?> setDevPopupWindow(isClose: Boolean, popupWindow: T): T {
+    override fun <T : PopupWindow?> setDevPopupWindow(
+        isClose: Boolean,
+        popupWindow: T
+    ): T {
         return assist.setDevPopupWindow(isClose, popupWindow)
     }
 
@@ -216,7 +233,10 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
         return assist.setDevDialog(dialog)
     }
 
-    override fun <T : Dialog?> setDevDialog(isClose: Boolean, dialog: T): T {
+    override fun <T : Dialog?> setDevDialog(
+        isClose: Boolean,
+        dialog: T
+    ): T {
         return assist.setDevDialog(isClose, dialog)
     }
 
@@ -228,7 +248,10 @@ abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
         return assist.setDevDialogFragment(dialog)
     }
 
-    override fun <T : DialogFragment?> setDevDialogFragment(isClose: Boolean, dialog: T): T {
+    override fun <T : DialogFragment?> setDevDialogFragment(
+        isClose: Boolean,
+        dialog: T
+    ): T {
         return assist.setDevDialogFragment(isClose, dialog)
     }
 }

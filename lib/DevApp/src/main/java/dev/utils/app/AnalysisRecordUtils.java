@@ -110,7 +110,10 @@ public final class AnalysisRecordUtils {
      * @param logs     日志内容数组
      * @return 日志内容
      */
-    public static String record(final FileInfo fileInfo, final String... logs) {
+    public static String record(
+            final FileInfo fileInfo,
+            final String... logs
+    ) {
         // 如果不处理, 则直接跳过
         if (!sIsHandler) {
             return "do not process records";
@@ -207,7 +210,10 @@ public final class AnalysisRecordUtils {
      * @param logs     日志内容数组
      * @return 拼接后的日志内容
      */
-    private static String saveLogRecord(final FileInfo fileInfo, final String... logs) {
+    private static String saveLogRecord(
+            final FileInfo fileInfo,
+            final String... logs
+    ) {
         // 如果不处理, 则直接跳过
         if (!sIsHandler) return "do not process records";
         // 文件信息为 null, 则不处理
@@ -379,8 +385,14 @@ public final class AnalysisRecordUtils {
          * @param fileIntervalTime 文件记录间隔时间
          * @param handler          是否处理日志记录
          */
-        private FileInfo(final String storagePath, final String folderName, final String fileName,
-                         final String fileFunction, @TIME final int fileIntervalTime, final boolean handler) {
+        private FileInfo(
+                final String storagePath,
+                final String folderName,
+                final String fileName,
+                final String fileFunction,
+                @TIME final int fileIntervalTime,
+                final boolean handler
+        ) {
             this.storagePath = storagePath;
             this.folderName = folderName;
             this.fileName = fileName;
@@ -397,7 +409,10 @@ public final class AnalysisRecordUtils {
          * @param fileFunction 日志文件记录功能
          * @return {@link FileInfo}
          */
-        public static FileInfo get(final String fileName, final String fileFunction) {
+        public static FileInfo get(
+                final String fileName,
+                final String fileFunction
+        ) {
             return new FileInfo(null, null, fileName, fileFunction, DEFAULT, true);
         }
 
@@ -408,7 +423,11 @@ public final class AnalysisRecordUtils {
          * @param fileFunction 日志文件记录功能
          * @return {@link FileInfo}
          */
-        public static FileInfo get(final String folderName, final String fileName, final String fileFunction) {
+        public static FileInfo get(
+                final String folderName,
+                final String fileName,
+                final String fileFunction
+        ) {
             return new FileInfo(null, folderName, fileName, fileFunction, DEFAULT, true);
         }
 
@@ -420,7 +439,12 @@ public final class AnalysisRecordUtils {
          * @param fileFunction 日志文件记录功能
          * @return {@link FileInfo}
          */
-        public static FileInfo get(final String storagePath, final String folderName, final String fileName, final String fileFunction) {
+        public static FileInfo get(
+                final String storagePath,
+                final String folderName,
+                final String fileName,
+                final String fileFunction
+        ) {
             return new FileInfo(storagePath, folderName, fileName, fileFunction, DEFAULT, true);
         }
 
@@ -433,7 +457,11 @@ public final class AnalysisRecordUtils {
          * @param fileIntervalTime 日志文件记录间隔时间
          * @return {@link FileInfo}
          */
-        public static FileInfo get(final String fileName, final String fileFunction, @TIME final int fileIntervalTime) {
+        public static FileInfo get(
+                final String fileName,
+                final String fileFunction,
+                @TIME final int fileIntervalTime
+        ) {
             return new FileInfo(null, null, fileName, fileFunction, fileIntervalTime, true);
         }
 
@@ -445,7 +473,12 @@ public final class AnalysisRecordUtils {
          * @param fileIntervalTime 日志文件记录间隔时间
          * @return {@link FileInfo}
          */
-        public static FileInfo get(final String folderName, final String fileName, final String fileFunction, @TIME final int fileIntervalTime) {
+        public static FileInfo get(
+                final String folderName,
+                final String fileName,
+                final String fileFunction,
+                @TIME final int fileIntervalTime
+        ) {
             return new FileInfo(null, folderName, fileName, fileFunction, fileIntervalTime, true);
         }
 
@@ -458,8 +491,13 @@ public final class AnalysisRecordUtils {
          * @param fileIntervalTime 日志文件记录间隔时间
          * @return {@link FileInfo}
          */
-        public static FileInfo get(final String storagePath, final String folderName, final String fileName, final String fileFunction,
-                                   @TIME final int fileIntervalTime) {
+        public static FileInfo get(
+                final String storagePath,
+                final String folderName,
+                final String fileName,
+                final String fileFunction,
+                @TIME final int fileIntervalTime
+        ) {
             return new FileInfo(storagePath, folderName, fileName, fileFunction, fileIntervalTime, true);
         }
 
@@ -473,8 +511,14 @@ public final class AnalysisRecordUtils {
          * @param isHandler        是否处理日志记录
          * @return {@link FileInfo}
          */
-        public static FileInfo get(final String storagePath, final String folderName, final String fileName, final String fileFunction,
-                                   @TIME final int fileIntervalTime, final boolean isHandler) {
+        public static FileInfo get(
+                final String storagePath,
+                final String folderName,
+                final String fileName,
+                final String fileFunction,
+                @TIME final int fileIntervalTime,
+                final boolean isHandler
+        ) {
             return new FileInfo(storagePath, folderName, fileName, fileFunction, fileIntervalTime, isHandler);
         }
 
@@ -650,7 +694,13 @@ public final class AnalysisRecordUtils {
          * @param fileName   文件名 ( 含后缀 )
          * @param logs       原始日志内容数组
          */
-        void callback(boolean result, FileInfo fileInfo, String logContent,
-                      String filePath, String fileName, String... logs);
+        void callback(
+                boolean result,
+                FileInfo fileInfo,
+                String logContent,
+                String filePath,
+                String fileName,
+                String... logs
+        );
     }
 }

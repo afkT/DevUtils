@@ -18,21 +18,36 @@ public class AdjustHeightGridView extends GridView {
         super(context);
     }
 
-    public AdjustHeightGridView(Context context, AttributeSet attrs) {
+    public AdjustHeightGridView(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
     }
 
-    public AdjustHeightGridView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AdjustHeightGridView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public AdjustHeightGridView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public AdjustHeightGridView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
+    ) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    protected void onMeasure(
+            int widthMeasureSpec,
+            int heightMeasureSpec
+    ) {
         int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
         super.onMeasure(widthMeasureSpec, expandSpec);
     }

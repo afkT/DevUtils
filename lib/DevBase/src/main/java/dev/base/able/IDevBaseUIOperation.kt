@@ -24,14 +24,20 @@ interface IDevBaseUIOperation {
      * @param text       Toast 提示文本
      * @param formatArgs 格式化参数
      */
-    fun showToast(text: String?, vararg formatArgs: Any)
+    fun showToast(
+        text: String?,
+        vararg formatArgs: Any
+    )
 
     /**
      * 显示 Toast
      * @param resId       R.string.id
      * @param formatArgs  格式化参数
      */
-    fun showToast(resId: Int, vararg formatArgs: Any)
+    fun showToast(
+        resId: Int,
+        vararg formatArgs: Any
+    )
 
     // ===============
     // = PopupWindow =
@@ -56,7 +62,10 @@ interface IDevBaseUIOperation {
      * @param popupWindow [PopupWindow]
      * @return [PopupWindow]
      */
-    fun <T : PopupWindow?> setDevPopupWindow(isClose: Boolean, popupWindow: T): T
+    fun <T : PopupWindow?> setDevPopupWindow(
+        isClose: Boolean,
+        popupWindow: T
+    ): T
 
     // ==========
     // = Dialog =
@@ -81,7 +90,10 @@ interface IDevBaseUIOperation {
      * @param dialog  [Dialog]
      * @return [Dialog]
      */
-    fun <T : Dialog?> setDevDialog(isClose: Boolean, dialog: T): T
+    fun <T : Dialog?> setDevDialog(
+        isClose: Boolean,
+        dialog: T
+    ): T
 
     // ==================
     // = DialogFragment =
@@ -106,5 +118,8 @@ interface IDevBaseUIOperation {
      * @param dialog  [DialogFragment]
      * @return [DialogFragment]
      */
-    fun <T : DialogFragment?> setDevDialogFragment(isClose: Boolean, dialog: T): T
+    fun <T : DialogFragment?> setDevDialogFragment(
+        isClose: Boolean,
+        dialog: T
+    ): T
 }

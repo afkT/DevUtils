@@ -36,18 +36,30 @@ public class CustomGallery extends Gallery {
         super(context);
     }
 
-    public CustomGallery(Context context, AttributeSet attrs) {
+    public CustomGallery(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
         initAttrs(context, attrs);
     }
 
-    public CustomGallery(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CustomGallery(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
         initAttrs(context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public CustomGallery(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public CustomGallery(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
+    ) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initAttrs(context, attrs);
     }
@@ -57,7 +69,10 @@ public class CustomGallery extends Gallery {
      * @param context {@link Context}
      * @param attrs   {@link AttributeSet}
      */
-    private void initAttrs(Context context, AttributeSet attrs) {
+    private void initAttrs(
+            Context context,
+            AttributeSet attrs
+    ) {
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
             mIsSlide = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
@@ -68,13 +83,21 @@ public class CustomGallery extends Gallery {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    protected void onMeasure(
+            int widthMeasureSpec,
+            int heightMeasureSpec
+    ) {
         int[] measureSpecs = WidgetUtils.viewMeasure(this, widthMeasureSpec, heightMeasureSpec, mMaxWidth, mMaxHeight);
         super.onMeasure(measureSpecs[0], measureSpecs[1]);
     }
 
     @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+    public boolean onFling(
+            MotionEvent e1,
+            MotionEvent e2,
+            float velocityX,
+            float velocityY
+    ) {
         int keyCode;
         if (isScrollingLeft(e1, e2)) {
             keyCode = KeyEvent.KEYCODE_DPAD_LEFT;
@@ -103,7 +126,10 @@ public class CustomGallery extends Gallery {
      * @param e2 {@link MotionEvent}
      * @return {@code true} yes, {@code false} no
      */
-    private boolean isScrollingLeft(MotionEvent e1, MotionEvent e2) {
+    private boolean isScrollingLeft(
+            MotionEvent e1,
+            MotionEvent e2
+    ) {
         return e2.getX() > e1.getX();
     }
 

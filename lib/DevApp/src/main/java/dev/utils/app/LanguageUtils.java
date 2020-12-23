@@ -69,7 +69,10 @@ public final class LanguageUtils {
      * @param locale  {@link Locale}
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean applyLanguage(final Context context, final Locale locale) {
+    public static boolean applyLanguage(
+            final Context context,
+            final Locale locale
+    ) {
         if (context != null && locale != null) {
             try {
                 // 获取 res 资源对象
@@ -102,7 +105,10 @@ public final class LanguageUtils {
      * @param language 语言
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean applyLanguage(final Context context, final String language) {
+    public static boolean applyLanguage(
+            final Context context,
+            final String language
+    ) {
         Locale locale = getSupportLanguage(language);
         if (locale != null) {
             return applyLanguage(context, locale);
@@ -176,7 +182,10 @@ public final class LanguageUtils {
      * @param language 语言
      * @param locale   {@link Locale}
      */
-    public static void putSupportLanguage(final String language, final Locale locale) {
+    public static void putSupportLanguage(
+            final String language,
+            final Locale locale
+    ) {
         sSupportLanguageMaps.put(language, locale);
     }
 
@@ -283,7 +292,10 @@ public final class LanguageUtils {
      * @param language 语言
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isRegion(final String region, final String language) {
+    public static boolean isRegion(
+            final String region,
+            final String language
+    ) {
         if (StringUtils.isEmpty(region)) return false;
         if (StringUtils.isEmpty(language)) return false;
         Locale locale = getSystemPreferredLanguage();

@@ -61,7 +61,10 @@ public final class RetrofitManager {
      * @param retrofit {@link Retrofit}
      * @return {@link Retrofit}
      */
-    public Retrofit put(final String tag, final Retrofit retrofit) {
+    public Retrofit put(
+            final String tag,
+            final Retrofit retrofit
+    ) {
         if (tag != null && retrofit != null) {
             mRetrofitMap.put(tag, retrofit);
         }
@@ -105,7 +108,10 @@ public final class RetrofitManager {
      * @param <T>     ApiServiceT.class
      * @return API Service Instance
      */
-    public <T> T create(final String tag, final Class<T> service) {
+    public <T> T create(
+            final String tag,
+            final Class<T> service
+    ) {
         Retrofit retrofit = mRetrofitMap.get(tag);
         if (retrofit != null) {
             try {

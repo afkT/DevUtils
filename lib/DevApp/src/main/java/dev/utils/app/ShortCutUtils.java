@@ -116,7 +116,11 @@ public final class ShortCutUtils {
      * @param icon  快捷方式图标
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean addShortcut(final Class clazz, final String name, @AnyRes final int icon) {
+    public static boolean addShortcut(
+            final Class clazz,
+            final String name,
+            @AnyRes final int icon
+    ) {
         return (clazz != null) ? addShortcut(clazz.getName(), name, icon) : false;
     }
 
@@ -127,7 +131,11 @@ public final class ShortCutUtils {
      * @param icon      快捷方式图标
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean addShortcut(final String className, final String name, @AnyRes final int icon) {
+    public static boolean addShortcut(
+            final String className,
+            final String name,
+            @AnyRes final int icon
+    ) {
         if (className != null && name != null) {
             try {
                 // 快捷方式点击 Intent 跳转
@@ -149,7 +157,11 @@ public final class ShortCutUtils {
      * @param icon           快捷方式图标
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean addShortcut(final Intent shortcutIntent, final String name, @AnyRes final int icon) {
+    public static boolean addShortcut(
+            final Intent shortcutIntent,
+            final String name,
+            @AnyRes final int icon
+    ) {
         return addShortcut(shortcutIntent, name, icon, null);
     }
 
@@ -161,7 +173,12 @@ public final class ShortCutUtils {
      * @param pendingIntent  创建结果通知 (Android 8.0)
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean addShortcut(final Intent shortcutIntent, final String name, @AnyRes final int icon, final PendingIntent pendingIntent) {
+    public static boolean addShortcut(
+            final Intent shortcutIntent,
+            final String name,
+            @AnyRes final int icon,
+            final PendingIntent pendingIntent
+    ) {
         if (shortcutIntent != null && name != null) {
             // Android 8.0 之前
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
@@ -220,7 +237,10 @@ public final class ShortCutUtils {
      * @param name  快捷方式名称
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean deleteShortcut(final Class clazz, final String name) {
+    public static boolean deleteShortcut(
+            final Class clazz,
+            final String name
+    ) {
         return (clazz != null) ? deleteShortcut(clazz.getName(), name) : false;
     }
 
@@ -233,7 +253,10 @@ public final class ShortCutUtils {
      * @param name      快捷方式名称
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean deleteShortcut(final String className, final String name) {
+    public static boolean deleteShortcut(
+            final String className,
+            final String name
+    ) {
         if (className != null && name != null) {
             try {
                 Context context = DevUtils.getContext();
@@ -313,7 +336,10 @@ public final class ShortCutUtils {
      * @param permission 权限
      * @return Authority
      */
-    private static String getAuthorityFromPermission(final Context context, final String permission) {
+    private static String getAuthorityFromPermission(
+            final Context context,
+            final String permission
+    ) {
         if (permission != null) {
             List<PackageInfo> lists = context.getPackageManager().getInstalledPackages(PackageManager.GET_PROVIDERS);
             if (lists != null) {

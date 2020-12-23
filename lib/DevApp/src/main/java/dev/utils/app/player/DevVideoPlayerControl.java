@@ -30,11 +30,11 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
     // ========
 
     // 播放预览载体 SurfaceView
-    private SurfaceView   mSurfaceView;
+    private SurfaceView mSurfaceView;
     // 画面预览回调
     private SurfaceHolder mSurfaceHolder;
     // 判断是否自动播放
-    private boolean       mAutoPlay;
+    private boolean mAutoPlay;
 
     /**
      * 构造函数
@@ -49,7 +49,10 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      * @param surfaceView {@link SurfaceView}
      * @param autoPlay    是否自动播放
      */
-    public DevVideoPlayerControl(final SurfaceView surfaceView, final boolean autoPlay) {
+    public DevVideoPlayerControl(
+            final SurfaceView surfaceView,
+            final boolean autoPlay
+    ) {
         this.mSurfaceView = surfaceView;
         this.mAutoPlay = autoPlay;
 
@@ -91,7 +94,12 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      * @param height 高度
      */
     @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+    public void surfaceChanged(
+            SurfaceHolder holder,
+            int format,
+            int width,
+            int height
+    ) {
         LogPrintUtils.dTag(TAG, "surfaceChanged - format: %s, width: %s, height: %s", format, width, height);
     }
 
@@ -202,7 +210,10 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      * @return {@code true} 处理异常, {@code false} 调用 OnCompletionListener
      */
     @Override
-    public boolean onError(int what, int extra) {
+    public boolean onError(
+            int what,
+            int extra
+    ) {
         LogPrintUtils.dTag(TAG, "onError what: %s, extra: %s", what, extra);
         // 触发回调
         if (mMediaListener != null) {
@@ -217,7 +228,10 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      * @param height 高度
      */
     @Override
-    public void onVideoSizeChanged(int width, int height) {
+    public void onVideoSizeChanged(
+            int width,
+            int height
+    ) {
         LogPrintUtils.dTag(TAG, "onVideoSizeChanged - width: %s, height: %s", width, height);
         // 触发回调
         if (mMediaListener != null) {
@@ -271,7 +285,10 @@ public class DevVideoPlayerControl implements SurfaceHolder.Callback,
      * @param playUri   播放地址
      * @param isLooping 是否循环播放
      */
-    public void startPlayer(final String playUri, final boolean isLooping) {
+    public void startPlayer(
+            final String playUri,
+            final boolean isLooping
+    ) {
         // 设置播放信息
         this.mMediaSet = new DevMediaManager.MediaSet() {
             @Override

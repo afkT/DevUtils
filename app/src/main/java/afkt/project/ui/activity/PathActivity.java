@@ -42,7 +42,7 @@ public class PathActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
                     View view,
                     int position
             ) {
-                StringBuilder builder = new StringBuilder();
+                StringBuilder builder     = new StringBuilder();
                 ButtonValue   buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_PATH_INTERNAL:

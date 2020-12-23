@@ -39,7 +39,10 @@ public final class AlarmUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static boolean startAlarmIntent(final long triggerAtMillis, final PendingIntent pendingIntent) {
+    public static boolean startAlarmIntent(
+            final long triggerAtMillis,
+            final PendingIntent pendingIntent
+    ) {
         return startAlarmIntent(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
     }
 
@@ -56,7 +59,11 @@ public final class AlarmUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static boolean startAlarmIntent(final int type, final long triggerAtMillis, final PendingIntent pendingIntent) {
+    public static boolean startAlarmIntent(
+            final int type,
+            final long triggerAtMillis,
+            final PendingIntent pendingIntent
+    ) {
         try {
             AlarmManager manager = AppUtils.getAlarmManager();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -106,7 +113,12 @@ public final class AlarmUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static boolean startAlarmService(final Context context, final long triggerAtMillis, final Class<?> clazz, final String action) {
+    public static boolean startAlarmService(
+            final Context context,
+            final long triggerAtMillis,
+            final Class<?> clazz,
+            final String action
+    ) {
         try {
             Intent intent = new Intent(context, clazz);
             intent.setAction(action);
@@ -125,7 +137,11 @@ public final class AlarmUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static boolean startAlarmService(final Context context, final long triggerAtMillis, final Intent intent) {
+    public static boolean startAlarmService(
+            final Context context,
+            final long triggerAtMillis,
+            final Intent intent
+    ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             return startAlarmIntent(triggerAtMillis, pendingIntent);
@@ -145,7 +161,11 @@ public final class AlarmUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static boolean stopAlarmService(final Context context, final Class<?> clazz, final String action) {
+    public static boolean stopAlarmService(
+            final Context context,
+            final Class<?> clazz,
+            final String action
+    ) {
         try {
             Intent intent = new Intent(context, clazz);
             intent.setAction(action);
@@ -163,7 +183,10 @@ public final class AlarmUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static boolean stopAlarmService(final Context context, final Intent intent) {
+    public static boolean stopAlarmService(
+            final Context context,
+            final Intent intent
+    ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             return stopAlarmIntent(pendingIntent);
@@ -186,7 +209,12 @@ public final class AlarmUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.O)
-    public static boolean startAlarmForegroundService(final Context context, final long triggerAtMillis, final Class<?> clazz, final String action) {
+    public static boolean startAlarmForegroundService(
+            final Context context,
+            final long triggerAtMillis,
+            final Class<?> clazz,
+            final String action
+    ) {
         try {
             Intent intent = new Intent(context, clazz);
             intent.setAction(action);
@@ -205,7 +233,11 @@ public final class AlarmUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.O)
-    public static boolean startAlarmForegroundService(final Context context, final long triggerAtMillis, final Intent intent) {
+    public static boolean startAlarmForegroundService(
+            final Context context,
+            final long triggerAtMillis,
+            final Intent intent
+    ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getForegroundService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             return startAlarmIntent(triggerAtMillis, pendingIntent);
@@ -225,7 +257,11 @@ public final class AlarmUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.O)
-    public static boolean stopAlarmForegroundService(final Context context, final Class<?> clazz, final String action) {
+    public static boolean stopAlarmForegroundService(
+            final Context context,
+            final Class<?> clazz,
+            final String action
+    ) {
         try {
             Intent intent = new Intent(context, clazz);
             intent.setAction(action);
@@ -243,7 +279,10 @@ public final class AlarmUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.O)
-    public static boolean stopAlarmForegroundService(final Context context, final Intent intent) {
+    public static boolean stopAlarmForegroundService(
+            final Context context,
+            final Intent intent
+    ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getForegroundService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             return stopAlarmIntent(pendingIntent);
@@ -265,7 +304,11 @@ public final class AlarmUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static boolean startAlarmBroadcast(final Context context, final long triggerAtMillis, final Intent intent) {
+    public static boolean startAlarmBroadcast(
+            final Context context,
+            final long triggerAtMillis,
+            final Intent intent
+    ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             return startAlarmIntent(triggerAtMillis, pendingIntent);
@@ -284,7 +327,10 @@ public final class AlarmUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static boolean stopAlarmBroadcast(final Context context, final Intent intent) {
+    public static boolean stopAlarmBroadcast(
+            final Context context,
+            final Intent intent
+    ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             return stopAlarmIntent(pendingIntent);
@@ -306,7 +352,11 @@ public final class AlarmUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static boolean startAlarmActivity(final Context context, final long triggerAtMillis, final Intent intent) {
+    public static boolean startAlarmActivity(
+            final Context context,
+            final long triggerAtMillis,
+            final Intent intent
+    ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             return startAlarmIntent(triggerAtMillis, pendingIntent);
@@ -323,7 +373,10 @@ public final class AlarmUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
-    public static boolean stopAlarmActivity(final Context context, final Intent intent) {
+    public static boolean stopAlarmActivity(
+            final Context context,
+            final Intent intent
+    ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             return stopAlarmIntent(pendingIntent);

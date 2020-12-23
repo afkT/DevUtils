@@ -108,7 +108,10 @@ public final class ResourceAssist {
         this(resource, AppUtils.getPackageName());
     }
 
-    private ResourceAssist(final Resources resource, final String packageName) {
+    private ResourceAssist(
+            final Resources resource,
+            final String packageName
+    ) {
         this.mResource = resource;
         this.mPackageName = packageName;
     }
@@ -150,7 +153,10 @@ public final class ResourceAssist {
      * @param packageName 应用包名
      * @return {@link ResourceAssist}
      */
-    public static ResourceAssist get(final Resources resource, final String packageName) {
+    public static ResourceAssist get(
+            final Resources resource,
+            final String packageName
+    ) {
         return new ResourceAssist(resource, packageName);
     }
 
@@ -333,7 +339,10 @@ public final class ResourceAssist {
      * @param packageName 应用包名
      * @return {@link ResourceAssist}
      */
-    public ResourceAssist reset(final Resources resource, final String packageName) {
+    public ResourceAssist reset(
+            final Resources resource,
+            final String packageName
+    ) {
         if (this == EMPTY_IMPL) return this;
         this.mResource = resource;
         this.mPackageName = packageName;
@@ -401,7 +410,10 @@ public final class ResourceAssist {
      * @param defType 资源类型
      * @return 资源 id
      */
-    public int getIdentifier(final String resName, final String defType) {
+    public int getIdentifier(
+            final String resName,
+            final String defType
+    ) {
         try {
             return mResource.getIdentifier(resName, defType, mPackageName);
         } catch (Exception e) {
@@ -452,7 +464,10 @@ public final class ResourceAssist {
      * @param formatArgs 格式化参数
      * @return String
      */
-    public String getString(final String resName, final Object... formatArgs) {
+    public String getString(
+            final String resName,
+            final Object... formatArgs
+    ) {
         return getString(getStringId(resName), formatArgs);
     }
 
@@ -476,7 +491,10 @@ public final class ResourceAssist {
      * @param formatArgs 格式化参数
      * @return String
      */
-    public String getString(@StringRes final int id, final Object... formatArgs) {
+    public String getString(
+            @StringRes final int id,
+            final Object... formatArgs
+    ) {
         try {
             return mResource.getString(id, formatArgs);
         } catch (Exception e) {
@@ -651,7 +669,10 @@ public final class ResourceAssist {
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
-    public Bitmap getBitmap(final String resName, final BitmapFactory.Options options) {
+    public Bitmap getBitmap(
+            final String resName,
+            final BitmapFactory.Options options
+    ) {
         return getBitmap(getDrawableId(resName), options);
     }
 
@@ -675,7 +696,10 @@ public final class ResourceAssist {
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
-    public Bitmap getBitmap(final int resId, final BitmapFactory.Options options) {
+    public Bitmap getBitmap(
+            final int resId,
+            final BitmapFactory.Options options
+    ) {
         try {
             return BitmapFactory.decodeResource(mResource, resId, options);
         } catch (Exception e) {
@@ -728,7 +752,10 @@ public final class ResourceAssist {
      * @param options {@link BitmapFactory.Options}
      * @return {@link Bitmap}
      */
-    public Bitmap getBitmapMipmap(final String resName, final BitmapFactory.Options options) {
+    public Bitmap getBitmapMipmap(
+            final String resName,
+            final BitmapFactory.Options options
+    ) {
         return getBitmap(getMipmapId(resName), options);
     }
 
@@ -781,7 +808,10 @@ public final class ResourceAssist {
      * @param context {@link Context}
      * @return {@link XmlResourceParser}
      */
-    public Animation getAnimation(final String resName, final Context context) {
+    public Animation getAnimation(
+            final String resName,
+            final Context context
+    ) {
         return getAnimation(getAnimId(resName), context);
     }
 
@@ -800,7 +830,10 @@ public final class ResourceAssist {
      * @param context {@link Context}
      * @return {@link XmlResourceParser}
      */
-    public Animation getAnimation(@AnimatorRes @AnimRes final int id, final Context context) {
+    public Animation getAnimation(
+            @AnimatorRes @AnimRes final int id,
+            final Context context
+    ) {
         try {
             return AnimationUtils.loadAnimation(context, id);
         } catch (Exception e) {
@@ -1142,7 +1175,10 @@ public final class ResourceAssist {
      * @param resolver {@link ContentResolver}
      * @return Uri InputStream
      */
-    public InputStream openInputStream(final Uri uri, final ContentResolver resolver) {
+    public InputStream openInputStream(
+            final Uri uri,
+            final ContentResolver resolver
+    ) {
         if (uri == null) return null;
         try {
             return resolver.openInputStream(uri);
@@ -1167,7 +1203,10 @@ public final class ResourceAssist {
      * @param resolver {@link ContentResolver}
      * @return Uri OutputStream
      */
-    public OutputStream openOutputStream(final Uri uri, final ContentResolver resolver) {
+    public OutputStream openOutputStream(
+            final Uri uri,
+            final ContentResolver resolver
+    ) {
         if (uri == null) return null;
         try {
             return resolver.openOutputStream(uri);
@@ -1183,7 +1222,10 @@ public final class ResourceAssist {
      * @param mode 读写模式
      * @return Uri OutputStream
      */
-    public OutputStream openOutputStream(final Uri uri, final String mode) {
+    public OutputStream openOutputStream(
+            final Uri uri,
+            final String mode
+    ) {
         return openOutputStream(uri, mode, staticContentResolver());
     }
 
@@ -1194,8 +1236,11 @@ public final class ResourceAssist {
      * @param resolver {@link ContentResolver}
      * @return Uri OutputStream
      */
-    public OutputStream openOutputStream(final Uri uri, final String mode,
-                                         final ContentResolver resolver) {
+    public OutputStream openOutputStream(
+            final Uri uri,
+            final String mode,
+            final ContentResolver resolver
+    ) {
         if (uri == null) return null;
         try {
             return resolver.openOutputStream(uri, mode);
@@ -1211,7 +1256,10 @@ public final class ResourceAssist {
      * @param mode 读写模式
      * @return Uri ParcelFileDescriptor
      */
-    public ParcelFileDescriptor openFileDescriptor(final Uri uri, final String mode) {
+    public ParcelFileDescriptor openFileDescriptor(
+            final Uri uri,
+            final String mode
+    ) {
         return openFileDescriptor(uri, mode, staticContentResolver());
     }
 
@@ -1225,8 +1273,11 @@ public final class ResourceAssist {
      * @param resolver {@link ContentResolver}
      * @return Uri ParcelFileDescriptor
      */
-    public ParcelFileDescriptor openFileDescriptor(final Uri uri, final String mode,
-                                                   final ContentResolver resolver) {
+    public ParcelFileDescriptor openFileDescriptor(
+            final Uri uri,
+            final String mode,
+            final ContentResolver resolver
+    ) {
         if (uri == null || TextUtils.isEmpty(mode)) return null;
         try {
             return resolver.openFileDescriptor(uri, mode);
@@ -1242,7 +1293,10 @@ public final class ResourceAssist {
      * @param mode 读写模式
      * @return Uri AssetFileDescriptor
      */
-    public AssetFileDescriptor openAssetFileDescriptor(final Uri uri, final String mode) {
+    public AssetFileDescriptor openAssetFileDescriptor(
+            final Uri uri,
+            final String mode
+    ) {
         return openAssetFileDescriptor(uri, mode, staticContentResolver());
     }
 
@@ -1256,8 +1310,11 @@ public final class ResourceAssist {
      * @param resolver {@link ContentResolver}
      * @return Uri AssetFileDescriptor
      */
-    public AssetFileDescriptor openAssetFileDescriptor(final Uri uri, final String mode,
-                                                       final ContentResolver resolver) {
+    public AssetFileDescriptor openAssetFileDescriptor(
+            final Uri uri,
+            final String mode,
+            final ContentResolver resolver
+    ) {
         if (uri == null || TextUtils.isEmpty(mode)) return null;
         try {
             return resolver.openAssetFileDescriptor(uri, mode);
@@ -1484,7 +1541,10 @@ public final class ResourceAssist {
      * @param file     文件保存地址
      * @return {@code true} success, {@code false} fail
      */
-    public boolean saveAssetsFormFile(final String fileName, final File file) {
+    public boolean saveAssetsFormFile(
+            final String fileName,
+            final File file
+    ) {
         try {
             // 获取 Assets 文件
             InputStream is = open(fileName);
@@ -1518,7 +1578,10 @@ public final class ResourceAssist {
      * @param file  文件保存地址
      * @return {@code true} success, {@code false} fail
      */
-    public boolean saveRawFormFile(@RawRes final int resId, final File file) {
+    public boolean saveRawFormFile(
+            @RawRes final int resId,
+            final File file
+    ) {
         try {
             // 获取 raw 文件
             InputStream is = openRawResource(resId);

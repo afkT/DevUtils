@@ -228,18 +228,30 @@ public class ScanShapeView extends View {
         init();
     }
 
-    public ScanShapeView(Context context, AttributeSet attrs) {
+    public ScanShapeView(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
         init();
     }
 
-    public ScanShapeView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ScanShapeView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
         init();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public ScanShapeView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public ScanShapeView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
+    ) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init();
     }
@@ -479,7 +491,10 @@ public class ScanShapeView extends View {
      * @param height 扫描区域高
      * @return {@link ScanShapeView}
      */
-    public ScanShapeView setRegion(float width, float height) {
+    public ScanShapeView setRegion(
+            float width,
+            float height
+    ) {
         if (width > 0 && height > 0) {
             // 设置宽
             mPointF.x = width;
@@ -550,7 +565,10 @@ public class ScanShapeView extends View {
      * @param top  向上偏差距离 ( 实际屏幕中位置 )
      * @return 扫描区域信息
      */
-    public RectF getRegion(float left, float top) {
+    public RectF getRegion(
+            float left,
+            float top
+    ) {
         RectF rectF = calcShapeRegion();
         rectF.left += left;
         rectF.right += left;
@@ -1291,7 +1309,12 @@ public class ScanShapeView extends View {
      * @param isDraw 是否进行绘制
      * @return 绘制路径信息 {@link Path}
      */
-    private Path makeShape(RectF rectF, Canvas canvas, Paint paint, boolean isDraw) {
+    private Path makeShape(
+            RectF rectF,
+            Canvas canvas,
+            Paint paint,
+            boolean isDraw
+    ) {
         // 绘制路径
         Path path = new Path();
 
@@ -1500,7 +1523,10 @@ public class ScanShapeView extends View {
      * @param rectF  绘制区域块
      * @param canvas 画布
      */
-    private void makeBackground(RectF rectF, Canvas canvas) {
+    private void makeBackground(
+            RectF rectF,
+            Canvas canvas
+    ) {
         // 都小于 0 则不处理
         if (rectF.left <= 0 && rectF.top <= 0) {
             return;

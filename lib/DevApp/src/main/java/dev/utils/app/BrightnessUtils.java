@@ -117,7 +117,10 @@ public final class BrightnessUtils {
      * @param brightness 亮度值
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setWindowBrightness(final Window window, @IntRange(from = 0, to = 255) final int brightness) {
+    public static boolean setWindowBrightness(
+            final Window window,
+            @IntRange(from = 0, to = 255) final int brightness
+    ) {
         if (window == null) return false;
         try {
             WindowManager.LayoutParams layoutParams = window.getAttributes();

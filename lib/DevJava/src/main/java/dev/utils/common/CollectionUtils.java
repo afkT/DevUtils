@@ -75,7 +75,10 @@ public final class CollectionUtils {
      * @param defaultLength 集合为 null 默认长度
      * @return 如果 Collection 为 null, 则返回 defaultLength, 如果不为 null, 则返回 collection.size()
      */
-    public static int length(final Collection collection, final int defaultLength) {
+    public static int length(
+            final Collection collection,
+            final int defaultLength
+    ) {
         return collection != null ? collection.size() : defaultLength;
     }
 
@@ -87,7 +90,10 @@ public final class CollectionUtils {
      * @param length     期望长度
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isLength(final Collection collection, final int length) {
+    public static boolean isLength(
+            final Collection collection,
+            final int length
+    ) {
         return collection != null && collection.size() == length;
     }
 
@@ -99,7 +105,10 @@ public final class CollectionUtils {
      * @param length     指定长度
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean greaterThan(final Collection collection, final int length) {
+    public static boolean greaterThan(
+            final Collection collection,
+            final int length
+    ) {
         return collection != null && collection.size() > length;
     }
 
@@ -109,7 +118,10 @@ public final class CollectionUtils {
      * @param length     指定长度
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean greaterThanOrEqual(final Collection collection, final int length) {
+    public static boolean greaterThanOrEqual(
+            final Collection collection,
+            final int length
+    ) {
         return collection != null && collection.size() >= length;
     }
 
@@ -121,7 +133,10 @@ public final class CollectionUtils {
      * @param length     指定长度
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean lessThan(final Collection collection, final int length) {
+    public static boolean lessThan(
+            final Collection collection,
+            final int length
+    ) {
         return collection != null && collection.size() < length;
     }
 
@@ -131,7 +146,10 @@ public final class CollectionUtils {
      * @param length     指定长度
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean lessThanOrEqual(final Collection collection, final int length) {
+    public static boolean lessThanOrEqual(
+            final Collection collection,
+            final int length
+    ) {
         return collection != null && collection.size() <= length;
     }
 
@@ -164,7 +182,10 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应索引的值
      */
-    public static <T> T get(final Collection<T> collection, final int pos) {
+    public static <T> T get(
+            final Collection<T> collection,
+            final int pos
+    ) {
         if (collection != null) {
             // 防止索引为负数
             if (pos < 0) {
@@ -219,7 +240,13 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应索引的值
      */
-    public static <T> T get(final Collection<T> collection, final T value, final int number, final boolean notNull, final int offset) {
+    public static <T> T get(
+            final Collection<T> collection,
+            final T value,
+            final int number,
+            final boolean notNull,
+            final int offset
+    ) {
         if (collection != null) {
             if (notNull && value == null) {
                 return null;
@@ -257,7 +284,13 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应的索引
      */
-    public static <T> int getPosition(final Collection<T> collection, final T value, final int number, final boolean notNull, final int offset) {
+    public static <T> int getPosition(
+            final Collection<T> collection,
+            final T value,
+            final int number,
+            final boolean notNull,
+            final int offset
+    ) {
         if (collection != null) {
             if (notNull && value == null) {
                 return -1;
@@ -294,7 +327,10 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应的索引
      */
-    public static <T> int getPosition(final Collection<T> collection, final T value) {
+    public static <T> int getPosition(
+            final Collection<T> collection,
+            final T value
+    ) {
         return getPosition(collection, value, 0, false, 0);
     }
 
@@ -306,7 +342,11 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应的索引
      */
-    public static <T> int getPosition(final Collection<T> collection, final T value, final int number) {
+    public static <T> int getPosition(
+            final Collection<T> collection,
+            final T value,
+            final int number
+    ) {
         return getPosition(collection, value, number, false, 0);
     }
 
@@ -318,7 +358,11 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应的索引
      */
-    public static <T> int getPosition(final Collection<T> collection, final T value, final boolean notNull) {
+    public static <T> int getPosition(
+            final Collection<T> collection,
+            final T value,
+            final boolean notNull
+    ) {
         return getPosition(collection, value, 0, notNull, 0);
     }
 
@@ -331,7 +375,12 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应的索引
      */
-    public static <T> int getPosition(final Collection<T> collection, final T value, final int number, final boolean notNull) {
+    public static <T> int getPosition(
+            final Collection<T> collection,
+            final T value,
+            final int number,
+            final boolean notNull
+    ) {
         return getPosition(collection, value, number, notNull, 0);
     }
 
@@ -344,7 +393,10 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应的索引
      */
-    public static <T> int getPositionNotNull(final Collection<T> collection, final T value) {
+    public static <T> int getPositionNotNull(
+            final Collection<T> collection,
+            final T value
+    ) {
         return getPosition(collection, value, 0, true, 0);
     }
 
@@ -356,7 +408,11 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应的索引
      */
-    public static <T> int getPositionNotNull(final Collection<T> collection, final T value, final int number) {
+    public static <T> int getPositionNotNull(
+            final Collection<T> collection,
+            final T value,
+            final int number
+    ) {
         return getPosition(collection, value, number, true, 0);
     }
 
@@ -369,7 +425,10 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应索引的值
      */
-    public static <T> T getNext(final Collection<T> collection, final T value) {
+    public static <T> T getNext(
+            final Collection<T> collection,
+            final T value
+    ) {
         return get(collection, value, 0, false, 1);
     }
 
@@ -381,7 +440,11 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应索引的值
      */
-    public static <T> T getNext(final Collection<T> collection, final T value, final int number) {
+    public static <T> T getNext(
+            final Collection<T> collection,
+            final T value,
+            final int number
+    ) {
         return get(collection, value, number, false, 1);
     }
 
@@ -393,7 +456,11 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应索引的值
      */
-    public static <T> T getNext(final Collection<T> collection, final T value, final boolean notNull) {
+    public static <T> T getNext(
+            final Collection<T> collection,
+            final T value,
+            final boolean notNull
+    ) {
         return get(collection, value, 0, notNull, 1);
     }
 
@@ -406,7 +473,12 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应索引的值
      */
-    public static <T> T getNext(final Collection<T> collection, final T value, final int number, final boolean notNull) {
+    public static <T> T getNext(
+            final Collection<T> collection,
+            final T value,
+            final int number,
+            final boolean notNull
+    ) {
         return get(collection, value, number, notNull, 1);
     }
 
@@ -419,7 +491,10 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应索引的值
      */
-    public static <T> T getNextNotNull(final Collection<T> collection, final T value) {
+    public static <T> T getNextNotNull(
+            final Collection<T> collection,
+            final T value
+    ) {
         return get(collection, value, 0, true, 1);
     }
 
@@ -431,7 +506,11 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应索引的值
      */
-    public static <T> T getNextNotNull(final Collection<T> collection, final T value, final int number) {
+    public static <T> T getNextNotNull(
+            final Collection<T> collection,
+            final T value,
+            final int number
+    ) {
         return get(collection, value, number, true, 1);
     }
 
@@ -444,7 +523,10 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应索引的值
      */
-    public static <T> T getPrevious(final Collection<T> collection, final T value) {
+    public static <T> T getPrevious(
+            final Collection<T> collection,
+            final T value
+    ) {
         return get(collection, value, 0, false, -1);
     }
 
@@ -456,7 +538,11 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应索引的值
      */
-    public static <T> T getPrevious(final Collection<T> collection, final T value, final int number) {
+    public static <T> T getPrevious(
+            final Collection<T> collection,
+            final T value,
+            final int number
+    ) {
         return get(collection, value, number, false, -1);
     }
 
@@ -468,7 +554,11 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应索引的值
      */
-    public static <T> T getPrevious(final Collection<T> collection, final T value, final boolean notNull) {
+    public static <T> T getPrevious(
+            final Collection<T> collection,
+            final T value,
+            final boolean notNull
+    ) {
         return get(collection, value, 0, notNull, -1);
     }
 
@@ -481,7 +571,12 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应索引的值
      */
-    public static <T> T getPrevious(final Collection<T> collection, final T value, final int number, final boolean notNull) {
+    public static <T> T getPrevious(
+            final Collection<T> collection,
+            final T value,
+            final int number,
+            final boolean notNull
+    ) {
         return get(collection, value, number, notNull, -1);
     }
 
@@ -494,7 +589,10 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应索引的值
      */
-    public static <T> T getPreviousNotNull(final Collection<T> collection, final T value) {
+    public static <T> T getPreviousNotNull(
+            final Collection<T> collection,
+            final T value
+    ) {
         return get(collection, value, 0, true, -1);
     }
 
@@ -506,7 +604,11 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return 对应索引的值
      */
-    public static <T> T getPreviousNotNull(final Collection<T> collection, final T value, final int number) {
+    public static <T> T getPreviousNotNull(
+            final Collection<T> collection,
+            final T value,
+            final int number
+    ) {
         return get(collection, value, number, true, -1);
     }
 
@@ -521,7 +623,10 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean add(final Collection<T> collection, final T value) {
+    public static <T> boolean add(
+            final Collection<T> collection,
+            final T value
+    ) {
         return add(collection, value, false);
     }
 
@@ -533,7 +638,11 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean add(final Collection<T> collection, final T value, final boolean notNull) {
+    public static <T> boolean add(
+            final Collection<T> collection,
+            final T value,
+            final boolean notNull
+    ) {
         if (collection != null) {
             if (notNull) {
                 if (value != null) {
@@ -561,7 +670,10 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean addNotNull(final Collection<T> collection, final T value) {
+    public static <T> boolean addNotNull(
+            final Collection<T> collection,
+            final T value
+    ) {
         return add(collection, value, true);
     }
 
@@ -574,7 +686,10 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean addAll(final Collection<T> collection, final Collection<T> values) {
+    public static <T> boolean addAll(
+            final Collection<T> collection,
+            final Collection<T> values
+    ) {
         return addAll(collection, values, false);
     }
 
@@ -586,7 +701,11 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean addAll(final Collection<T> collection, final Collection<T> values, final boolean notNull) {
+    public static <T> boolean addAll(
+            final Collection<T> collection,
+            final Collection<T> values,
+            final boolean notNull
+    ) {
         if (collection != null && values != null) {
             if (notNull) {
                 try {
@@ -617,7 +736,10 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean addAllNotNull(final Collection<T> collection, final Collection<T> values) {
+    public static <T> boolean addAllNotNull(
+            final Collection<T> collection,
+            final Collection<T> values
+    ) {
         return addAll(collection, values, true);
     }
 
@@ -633,7 +755,11 @@ public final class CollectionUtils {
      * @param <T>   泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean add(final int index, final List<T> list, final T value) {
+    public static <T> boolean add(
+            final int index,
+            final List<T> list,
+            final T value
+    ) {
         return add(index, list, value, false);
     }
 
@@ -646,7 +772,12 @@ public final class CollectionUtils {
      * @param <T>     泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean add(final int index, final List<T> list, final T value, final boolean notNull) {
+    public static <T> boolean add(
+            final int index,
+            final List<T> list,
+            final T value,
+            final boolean notNull
+    ) {
         if (list != null) {
             if (notNull) {
                 if (value != null) {
@@ -677,7 +808,11 @@ public final class CollectionUtils {
      * @param <T>   泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean addNotNull(final int index, final List<T> list, final T value) {
+    public static <T> boolean addNotNull(
+            final int index,
+            final List<T> list,
+            final T value
+    ) {
         return add(index, list, value, true);
     }
 
@@ -691,7 +826,11 @@ public final class CollectionUtils {
      * @param <T>    泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean addAll(final int index, final List<T> list, final List<T> values) {
+    public static <T> boolean addAll(
+            final int index,
+            final List<T> list,
+            final List<T> values
+    ) {
         return addAll(index, list, values, false);
     }
 
@@ -704,7 +843,12 @@ public final class CollectionUtils {
      * @param <T>     泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean addAll(final int index, final List<T> list, final List<T> values, final boolean notNull) {
+    public static <T> boolean addAll(
+            final int index,
+            final List<T> list,
+            final List<T> values,
+            final boolean notNull
+    ) {
         if (list != null && values != null) {
             if (notNull) {
                 try {
@@ -740,7 +884,11 @@ public final class CollectionUtils {
      * @param <T>    泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean addAllNotNull(final int index, final List<T> list, final List<T> values) {
+    public static <T> boolean addAllNotNull(
+            final int index,
+            final List<T> list,
+            final List<T> values
+    ) {
         return addAll(index, list, values, true);
     }
 
@@ -755,7 +903,10 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean remove(final Collection<T> collection, final T value) {
+    public static <T> boolean remove(
+            final Collection<T> collection,
+            final T value
+    ) {
         if (collection != null) {
             try {
                 return collection.remove(value);
@@ -773,7 +924,10 @@ public final class CollectionUtils {
      * @param <T>  泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> T remove(final List<T> list, final int pos) {
+    public static <T> T remove(
+            final List<T> list,
+            final int pos
+    ) {
         if (list != null) {
             // 防止索引为负数
             if (pos < 0) {
@@ -795,7 +949,10 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean removeAll(final Collection<T> collection, final Collection<T> values) {
+    public static <T> boolean removeAll(
+            final Collection<T> collection,
+            final Collection<T> values
+    ) {
         if (collection != null && values != null) {
             try {
                 return collection.removeAll(values);
@@ -815,7 +972,10 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean clear(final Collection<T> collection, final T value) {
+    public static <T> boolean clear(
+            final Collection<T> collection,
+            final T value
+    ) {
         if (collection != null) {
             try {
                 Iterator<T> iterator = collection.iterator();
@@ -841,7 +1001,10 @@ public final class CollectionUtils {
      * @param <T>        泛型
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean clearNotBelong(final Collection<T> collection, final T value) {
+    public static <T> boolean clearNotBelong(
+            final Collection<T> collection,
+            final T value
+    ) {
         if (collection != null) {
             try {
                 Iterator<T> iterator = collection.iterator();
@@ -899,7 +1062,10 @@ public final class CollectionUtils {
      * @param <T>         泛型
      * @return {@code true} yes, {@code false} no
      */
-    public static <T> boolean isEqualCollection(final Collection<T> collection1, final Collection<T> collection2) {
+    public static <T> boolean isEqualCollection(
+            final Collection<T> collection1,
+            final Collection<T> collection2
+    ) {
         // 数据长度
         int len = 0;
         // 判断数据是否相同
@@ -983,7 +1149,10 @@ public final class CollectionUtils {
      * @param <T>         泛型
      * @return 并集集合
      */
-    public static <T> Collection<T> union(final Collection<T> collection1, final Collection<T> collection2) {
+    public static <T> Collection<T> union(
+            final Collection<T> collection1,
+            final Collection<T> collection2
+    ) {
         if (collection1 != null && collection2 != null) {
             try {
                 // 初始化新的集合, 默认保存第一个集合的数据
@@ -1048,7 +1217,10 @@ public final class CollectionUtils {
      * @param <T>         泛型
      * @return 交集集合
      */
-    public static <T> Collection<T> intersection(final Collection<T> collection1, final Collection<T> collection2) {
+    public static <T> Collection<T> intersection(
+            final Collection<T> collection1,
+            final Collection<T> collection2
+    ) {
         if (collection1 != null && collection2 != null) {
             try {
                 // 专门用于返回中转的集合
@@ -1084,7 +1256,10 @@ public final class CollectionUtils {
      * @param <T>         泛型
      * @return 交集集合
      */
-    public static <T> Collection<T> disjunction(final Collection<T> collection1, final Collection<T> collection2) {
+    public static <T> Collection<T> disjunction(
+            final Collection<T> collection1,
+            final Collection<T> collection2
+    ) {
         try {
             // 先进行并集处理
             Collection<T> unionC = union(collection1, collection2);
@@ -1113,7 +1288,10 @@ public final class CollectionUtils {
      * @param <T>         泛型
      * @return 差集 ( 扣除 ) 集合
      */
-    public static <T> Collection<T> subtract(final Collection<T> collection1, final Collection<T> collection2) {
+    public static <T> Collection<T> subtract(
+            final Collection<T> collection1,
+            final Collection<T> collection2
+    ) {
         try {
             // 先进行交集处理
             Collection<T> intersectionC = intersection(collection1, collection2);
@@ -1140,7 +1318,10 @@ public final class CollectionUtils {
      * @param <T>    泛型
      * @return {@code true} yes, {@code false} no
      */
-    public static <T> boolean equals(final T value1, final T value2) {
+    public static <T> boolean equals(
+            final T value1,
+            final T value2
+    ) {
         return ObjectUtils.equals(value1, value2);
     }
 
@@ -1617,7 +1798,10 @@ public final class CollectionUtils {
      * @param end   结束位置
      * @return 集合总和
      */
-    public static int sumlistI(final List<Integer> lists, final int end) {
+    public static int sumlistI(
+            final List<Integer> lists,
+            final int end
+    ) {
         return sumlistI(lists, 0, end, 0);
     }
 
@@ -1628,7 +1812,11 @@ public final class CollectionUtils {
      * @param extra 额外值
      * @return 集合总和
      */
-    public static int sumlistI(final List<Integer> lists, final int end, final int extra) {
+    public static int sumlistI(
+            final List<Integer> lists,
+            final int end,
+            final int extra
+    ) {
         return sumlistI(lists, 0, end, extra);
     }
 
@@ -1640,7 +1828,12 @@ public final class CollectionUtils {
      * @param extra 额外值
      * @return 集合总和
      */
-    public static int sumlistI(final List<Integer> lists, final int start, final int end, final int extra) {
+    public static int sumlistI(
+            final List<Integer> lists,
+            final int start,
+            final int end,
+            final int extra
+    ) {
         int total = 0;
         if (lists != null) {
             for (int i = start; i < end; i++) {
@@ -1671,7 +1864,10 @@ public final class CollectionUtils {
      * @param end   结束位置
      * @return 集合总和
      */
-    public static long sumlistL(final List<Long> lists, final int end) {
+    public static long sumlistL(
+            final List<Long> lists,
+            final int end
+    ) {
         return sumlistL(lists, 0, end, 0);
     }
 
@@ -1682,7 +1878,11 @@ public final class CollectionUtils {
      * @param extra 额外值
      * @return 集合总和
      */
-    public static long sumlistL(final List<Long> lists, final int end, final long extra) {
+    public static long sumlistL(
+            final List<Long> lists,
+            final int end,
+            final long extra
+    ) {
         return sumlistL(lists, 0, end, extra);
     }
 
@@ -1694,7 +1894,12 @@ public final class CollectionUtils {
      * @param extra 额外值
      * @return 集合总和
      */
-    public static long sumlistL(final List<Long> lists, final int start, final int end, final long extra) {
+    public static long sumlistL(
+            final List<Long> lists,
+            final int start,
+            final int end,
+            final long extra
+    ) {
         long total = 0;
         if (lists != null) {
             for (int i = start; i < end; i++) {
@@ -1725,7 +1930,10 @@ public final class CollectionUtils {
      * @param end   结束位置
      * @return 集合总和
      */
-    public static float sumlistF(final List<Float> lists, final int end) {
+    public static float sumlistF(
+            final List<Float> lists,
+            final int end
+    ) {
         return sumlistF(lists, 0, end, 0);
     }
 
@@ -1736,7 +1944,11 @@ public final class CollectionUtils {
      * @param extra 额外值
      * @return 集合总和
      */
-    public static float sumlistF(final List<Float> lists, final int end, final float extra) {
+    public static float sumlistF(
+            final List<Float> lists,
+            final int end,
+            final float extra
+    ) {
         return sumlistF(lists, 0, end, extra);
     }
 
@@ -1748,7 +1960,12 @@ public final class CollectionUtils {
      * @param extra 额外值
      * @return 集合总和
      */
-    public static float sumlistF(final List<Float> lists, final int start, final int end, final float extra) {
+    public static float sumlistF(
+            final List<Float> lists,
+            final int start,
+            final int end,
+            final float extra
+    ) {
         float total = 0;
         if (lists != null) {
             for (int i = start; i < end; i++) {
@@ -1779,7 +1996,10 @@ public final class CollectionUtils {
      * @param end   结束位置
      * @return 集合总和
      */
-    public static double sumlistD(final List<Double> lists, final int end) {
+    public static double sumlistD(
+            final List<Double> lists,
+            final int end
+    ) {
         return sumlistD(lists, 0, end, 0);
     }
 
@@ -1790,7 +2010,11 @@ public final class CollectionUtils {
      * @param extra 额外值
      * @return 集合总和
      */
-    public static double sumlistD(final List<Double> lists, final int end, final double extra) {
+    public static double sumlistD(
+            final List<Double> lists,
+            final int end,
+            final double extra
+    ) {
         return sumlistD(lists, 0, end, extra);
     }
 
@@ -1802,7 +2026,12 @@ public final class CollectionUtils {
      * @param extra 额外值
      * @return 集合总和
      */
-    public static double sumlistD(final List<Double> lists, final int start, final int end, final double extra) {
+    public static double sumlistD(
+            final List<Double> lists,
+            final int start,
+            final int end,
+            final double extra
+    ) {
         double total = 0;
         if (lists != null) {
             for (int i = start; i < end; i++) {
@@ -1833,7 +2062,10 @@ public final class CollectionUtils {
             newInstance(collection);
         }
 
-        public ArrayWithTypeToken(Class<T> type, int size) {
+        public ArrayWithTypeToken(
+                Class<T> type,
+                int size
+        ) {
             newInstance(type, size);
         }
 
@@ -1842,7 +2074,10 @@ public final class CollectionUtils {
          * @param index 索引
          * @param item  数据
          */
-        public void put(final int index, final T item) {
+        public void put(
+                final int index,
+                final T item
+        ) {
             array[index] = item;
         }
 
@@ -1872,7 +2107,10 @@ public final class CollectionUtils {
          * @param type 数组类型
          * @param size 数组长度
          */
-        private void newInstance(final Class<T> type, final int size) {
+        private void newInstance(
+                final Class<T> type,
+                final int size
+        ) {
             array = (T[]) Array.newInstance(type, size);
         }
 

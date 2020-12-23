@@ -74,7 +74,10 @@ public final class CameraSizeAssist {
      * @param previewSize 预览 {@link Camera.Size}
      * @return {@link Camera.Parameters}
      */
-    public Camera.Parameters setPreviewSize(Camera.Parameters parameters, final Camera.Size previewSize) {
+    public Camera.Parameters setPreviewSize(
+            Camera.Parameters parameters,
+            final Camera.Size previewSize
+    ) {
         if (mCamera != null && previewSize != null) {
             try {
                 if (parameters == null) {
@@ -124,7 +127,10 @@ public final class CameraSizeAssist {
      * @param distortion 偏差比例值
      * @return {@link Camera.Size} 预览分辨率
      */
-    public Camera.Size getPreviewSize(final Point point, final double distortion) {
+    public Camera.Size getPreviewSize(
+            final Point point,
+            final double distortion
+    ) {
         if (mCamera == null) {
             LogPrintUtils.dTag(TAG, "camera is null");
             return null;
@@ -157,7 +163,10 @@ public final class CameraSizeAssist {
      * @param pictureSize 拍照图片 {@link Camera.Size}
      * @return {@link Camera.Parameters}
      */
-    public Camera.Parameters setPictureSize(Camera.Parameters parameters, final Camera.Size pictureSize) {
+    public Camera.Parameters setPictureSize(
+            Camera.Parameters parameters,
+            final Camera.Size pictureSize
+    ) {
         if (mCamera != null && pictureSize != null) {
             try {
                 if (parameters == null) {
@@ -220,7 +229,10 @@ public final class CameraSizeAssist {
      * @param distortion 偏差比例值
      * @return {@link Camera.Size} 拍照分辨率
      */
-    public Camera.Size getPictureSize(final Point point, final double distortion) {
+    public Camera.Size getPictureSize(
+            final Point point,
+            final double distortion
+    ) {
         return getPictureSize(false, point, distortion);
     }
 
@@ -232,7 +244,11 @@ public final class CameraSizeAssist {
      * @param distortion 偏差比例值
      * @return {@link Camera.Size} 拍照分辨率
      */
-    public Camera.Size getPictureSize(final boolean max, final Point point, final double distortion) {
+    public Camera.Size getPictureSize(
+            final boolean max,
+            final Point point,
+            final double distortion
+    ) {
         if (mCamera == null) {
             LogPrintUtils.dTag(TAG, "camera is null");
             return null;
@@ -291,7 +307,10 @@ public final class CameraSizeAssist {
      * @param distortion 偏差比例值
      * @return {@link Camera.Size} 视频分辨率
      */
-    public Camera.Size getVideoSize(final Point point, final double distortion) {
+    public Camera.Size getVideoSize(
+            final Point point,
+            final double distortion
+    ) {
         return getVideoSize(false, point, distortion, false);
     }
 
@@ -304,7 +323,12 @@ public final class CameraSizeAssist {
      * @param minAccord  是否存在最小使用最小
      * @return {@link Camera.Size} 视频分辨率
      */
-    public Camera.Size getVideoSize(final boolean max, final Point point, final double distortion, final boolean minAccord) {
+    public Camera.Size getVideoSize(
+            final boolean max,
+            final Point point,
+            final double distortion,
+            final boolean minAccord
+    ) {
         if (mCamera == null) {
             LogPrintUtils.dTag(TAG, "camera is null");
             return null;
@@ -329,7 +353,10 @@ public final class CameraSizeAssist {
      * @param distortion 偏差比例值
      * @return {@link Camera.Size} 预览分辨率
      */
-    private Camera.Size calcPreviewSize(Point point, double distortion) {
+    private Camera.Size calcPreviewSize(
+            Point point,
+            double distortion
+    ) {
         // 判断是否为 null
         if (point == null) {
             point = ScreenUtils.getScreenWidthHeightToPoint();
@@ -351,7 +378,10 @@ public final class CameraSizeAssist {
         // 进行排序处理, 并以宽度 * 高度 为基准降序排序
         Collections.sort(listPreviewSizes, new Comparator<Camera.Size>() {
             @Override
-            public int compare(Camera.Size lhs, Camera.Size rhs) {
+            public int compare(
+                    Camera.Size lhs,
+                    Camera.Size rhs
+            ) {
                 int leftPixels  = lhs.height * lhs.width;
                 int rightPixels = rhs.height * rhs.width;
 
@@ -453,7 +483,11 @@ public final class CameraSizeAssist {
      * @param distortion 偏差比例值
      * @return {@link Camera.Size} 拍照分辨率
      */
-    private Camera.Size calcPictureSize(final boolean max, Point point, double distortion) {
+    private Camera.Size calcPictureSize(
+            final boolean max,
+            Point point,
+            double distortion
+    ) {
         // 判断是否为 null
         if (point == null) {
             point = ScreenUtils.getScreenWidthHeightToPoint();
@@ -475,7 +509,10 @@ public final class CameraSizeAssist {
         // 进行排序处理, 并以宽度 * 高度 为基准降序排序
         Collections.sort(listPictureSizes, new Comparator<Camera.Size>() {
             @Override
-            public int compare(Camera.Size lhs, Camera.Size rhs) {
+            public int compare(
+                    Camera.Size lhs,
+                    Camera.Size rhs
+            ) {
                 int leftPixels  = lhs.height * lhs.width;
                 int rightPixels = rhs.height * rhs.width;
 
@@ -602,7 +639,12 @@ public final class CameraSizeAssist {
      * @param minAccord  是否判断存在最小使用最小
      * @return {@link Camera.Size} 视频分辨率
      */
-    private Camera.Size calcVideoSize(final boolean max, Point point, double distortion, final boolean minAccord) {
+    private Camera.Size calcVideoSize(
+            final boolean max,
+            Point point,
+            double distortion,
+            final boolean minAccord
+    ) {
         // 判断是否为 null
         if (point == null) {
             point = ScreenUtils.getScreenWidthHeightToPoint();
@@ -624,7 +666,10 @@ public final class CameraSizeAssist {
         // 进行排序处理, 并以宽度 * 高度 为基准降序排序
         Collections.sort(listVideoSizes, new Comparator<Camera.Size>() {
             @Override
-            public int compare(Camera.Size lhs, Camera.Size rhs) {
+            public int compare(
+                    Camera.Size lhs,
+                    Camera.Size rhs
+            ) {
                 int leftPixels  = lhs.height * lhs.width;
                 int rightPixels = rhs.height * rhs.width;
 

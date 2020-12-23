@@ -34,7 +34,10 @@ public class RadiusAttrs {
      * @param context {@link Context}
      * @param attrs   {@link AttributeSet}
      */
-    public RadiusAttrs(Context context, AttributeSet attrs) {
+    public RadiusAttrs(
+            Context context,
+            AttributeSet attrs
+    ) {
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
             mRadius = a.getLayoutDimension(R.styleable.DevWidget_dev_radius, 0);
@@ -69,7 +72,10 @@ public class RadiusAttrs {
      * @param w 宽度
      * @param h 高度
      */
-    public void onSizeChanged(int w, int h) {
+    public void onSizeChanged(
+            int w,
+            int h
+    ) {
         mRectF = new RectF(0, 0, w, h);
     }
 

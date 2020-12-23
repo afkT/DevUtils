@@ -41,16 +41,28 @@ public class SignView extends View {
         super(context);
     }
 
-    public SignView(Context context, AttributeSet attrs) {
+    public SignView(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
     }
 
-    public SignView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SignView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public SignView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public SignView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
+    ) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
@@ -200,7 +212,12 @@ public class SignView extends View {
          * @param clearCanvas 是否清空画布
          * @return 是否接着进行绘制 drawPath
          */
-        public boolean onDraw(Canvas canvas, Path path, Paint paint, boolean clearCanvas) {
+        public boolean onDraw(
+                Canvas canvas,
+                Path path,
+                Paint paint,
+                boolean clearCanvas
+        ) {
             if (clearCanvas && canvas != null) {
                 canvas.drawColor(Color.WHITE, PorterDuff.Mode.CLEAR);
             }

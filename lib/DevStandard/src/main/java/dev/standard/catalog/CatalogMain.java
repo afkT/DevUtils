@@ -35,8 +35,13 @@ final class CatalogMain {
      * @param listIgnoreCatalog 忽略目录
      * @param layer             目录层级
      */
-    private static void print(final String path, final String dirName, final Map<String, String> mapCatalog,
-                              final List<String> listIgnoreCatalog, final int layer) {
+    private static void print(
+            final String path,
+            final String dirName,
+            final Map<String, String> mapCatalog,
+            final List<String> listIgnoreCatalog,
+            final int layer
+    ) {
         System.out.println(DevFinal.NEW_LINE_STR_X2);
         if (FileUtils.isFileExists(path)) {
             System.out.println(CatalogGenerate.generate(path, dirName, mapCatalog, listIgnoreCatalog, layer));

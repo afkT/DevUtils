@@ -24,7 +24,10 @@ public class OkGoDemo {
      * @param userId
      * @param callback
      */
-    public static void getUserInfo(String userId, OkGoCallback<UserBean> callback) {
+    public static void getUserInfo(
+            String userId,
+            OkGoCallback<UserBean> callback
+    ) {
         OkGo.<String>post("url")
                 .params("userId", userId)
                 .execute(callback);
@@ -47,7 +50,10 @@ public class OkGoDemo {
      * @param file
      * @param callback
      */
-    public static void uploadImage(File file, OkGoCallback<String> callback) {
+    public static void uploadImage(
+            File file,
+            OkGoCallback<String> callback
+    ) {
         OkGo.<String>post("url")
                 .upFile(file)
                 .execute(callback);
@@ -58,7 +64,10 @@ public class OkGoDemo {
      * @param files
      * @param callback
      */
-    public static void uploadImages(List<File> files, OkGoCallback<List<String>> callback) {
+    public static void uploadImages(
+            List<File> files,
+            OkGoCallback<List<String>> callback
+    ) {
         OkGo.<String>post("url")
                 .addFileParams("files", files)
                 .execute(callback);

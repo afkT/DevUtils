@@ -155,7 +155,11 @@ public final class OkGoUtils {
      * @param callback {@link OkGoCallback}
      * @param <T>      泛型
      */
-    public static <T> void execute(Class clazz, Request request, OkGoCallback<T> callback) {
+    public static <T> void execute(
+            Class clazz,
+            Request request,
+            OkGoCallback<T> callback
+    ) {
         if (clazz != null) execute(clazz.getSimpleName(), request, callback);
     }
 
@@ -173,7 +177,11 @@ public final class OkGoUtils {
      * @param callback {@link OkGoCallback}
      * @param <T>      泛型
      */
-    public static <T> void execute(String tag, Request request, OkGoCallback<T> callback) {
+    public static <T> void execute(
+            String tag,
+            Request request,
+            OkGoCallback<T> callback
+    ) {
         if (!TextUtils.isEmpty(tag) && request != null && callback != null) {
             Object object = request.getTag();
             if (object == null) request.tag(tag);

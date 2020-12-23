@@ -201,7 +201,10 @@ public final class ClassUtils {
      * @param pos    泛型参数索引
      * @return 泛型类型
      */
-    public static Type getGenericSuperclass(final Object object, final int pos) {
+    public static Type getGenericSuperclass(
+            final Object object,
+            final int pos
+    ) {
         return getGenericSuperclass(getClass(object), pos);
     }
 
@@ -222,7 +225,10 @@ public final class ClassUtils {
      * @param pos   泛型参数索引
      * @return 泛型类型
      */
-    public static Type getGenericSuperclass(final Class clazz, final int pos) {
+    public static Type getGenericSuperclass(
+            final Class clazz,
+            final int pos
+    ) {
         if (clazz != null && pos >= 0) {
             try {
                 return ((ParameterizedType) clazz.getGenericSuperclass()).getActualTypeArguments()[pos];
@@ -241,7 +247,10 @@ public final class ClassUtils {
      * @param interfaceClazz 接口 Class
      * @return 泛型类型
      */
-    public static Type getGenericInterfaces(final Object object, final Class interfaceClazz) {
+    public static Type getGenericInterfaces(
+            final Object object,
+            final Class interfaceClazz
+    ) {
         return getGenericInterfaces(object, interfaceClazz, 0);
     }
 
@@ -252,7 +261,11 @@ public final class ClassUtils {
      * @param pos            泛型参数索引
      * @return 泛型类型
      */
-    public static Type getGenericInterfaces(final Object object, final Class interfaceClazz, final int pos) {
+    public static Type getGenericInterfaces(
+            final Object object,
+            final Class interfaceClazz,
+            final int pos
+    ) {
         return getGenericInterfaces(getClass(object), interfaceClazz, pos);
     }
 
@@ -264,7 +277,10 @@ public final class ClassUtils {
      * @param interfaceClazz 接口 Class
      * @return 泛型类型
      */
-    public static Type getGenericInterfaces(final Class clazz, final Class interfaceClazz) {
+    public static Type getGenericInterfaces(
+            final Class clazz,
+            final Class interfaceClazz
+    ) {
         return getGenericInterfaces(clazz, interfaceClazz, 0);
     }
 
@@ -275,7 +291,11 @@ public final class ClassUtils {
      * @param pos            泛型参数索引
      * @return 泛型类型
      */
-    public static Type getGenericInterfaces(final Class clazz, final Class interfaceClazz, final int pos) {
+    public static Type getGenericInterfaces(
+            final Class clazz,
+            final Class interfaceClazz,
+            final int pos
+    ) {
         if (clazz != null && interfaceClazz != null && pos >= 0) {
             try {
                 // 获取接口类名

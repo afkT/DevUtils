@@ -19,7 +19,7 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
     private static final String TAG = AdapterDataAssist.class.getSimpleName();
 
     // List Data
-    private List<V>        mList = new ArrayList<>();
+    private List<V> mList = new ArrayList<>();
     // IAdapterNotify
     private IAdapterNotify mAdapterNotify;
 
@@ -167,7 +167,10 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @return {@code true} yes, {@code false} no
      */
     @Override
-    public boolean isLastItem(final int position, final int count) {
+    public boolean isLastItem(
+            final int position,
+            final int count
+    ) {
         return count - position == 1;
     }
 
@@ -214,7 +217,10 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @param value    Value
      */
     @Override
-    public void addData(final int position, final V value) {
+    public void addData(
+            final int position,
+            final V value
+    ) {
         try {
             mList.add(position, value);
         } catch (Exception e) {
@@ -243,7 +249,10 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @param collection {@link Collection}
      */
     @Override
-    public void addAllData(final int position, final Collection<V> collection) {
+    public void addAllData(
+            final int position,
+            final Collection<V> collection
+    ) {
         if (collection != null) {
             try {
                 mList.addAll(position, collection);
@@ -316,7 +325,10 @@ public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
      * @param notify 是否通知适配器
      */
     @Override
-    public void setDataList(final List<V> lists, final boolean notify) {
+    public void setDataList(
+            final List<V> lists,
+            final boolean notify
+    ) {
         if (mList != null) mList.clear();
         // 添加数据
         addAllData(lists);

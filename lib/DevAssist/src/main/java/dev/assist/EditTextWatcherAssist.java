@@ -23,8 +23,12 @@ public class EditTextWatcherAssist<T> {
      * @param editText EditText
      * @param listener 输入监听回调事件
      */
-    public void bindListener(final CharSequence text, final int position,
-                             final EditText editText, final InputListener<T> listener) {
+    public void bindListener(
+            final CharSequence text,
+            final int position,
+            final EditText editText,
+            final InputListener<T> listener
+    ) {
         bindListener(text, position, editText, null, listener);
     }
 
@@ -36,8 +40,13 @@ public class EditTextWatcherAssist<T> {
      * @param object   Object
      * @param listener 输入监听回调事件
      */
-    public void bindListener(final CharSequence text, final int position,
-                             final EditText editText, final T object, final InputListener<T> listener) {
+    public void bindListener(
+            final CharSequence text,
+            final int position,
+            final EditText editText,
+            final T object,
+            final InputListener<T> listener
+    ) {
         if (editText != null) {
             // 设置内容
             editText.setText(TextUtils.isEmpty(text) ? "" : text);
@@ -66,7 +75,12 @@ public class EditTextWatcherAssist<T> {
          * @param position     索引
          * @param object       Object
          */
-        void onTextChanged(CharSequence charSequence, EditText editText, int position, T object);
+        void onTextChanged(
+                CharSequence charSequence,
+                EditText editText,
+                int position,
+                T object
+        );
     }
 
     // =================================
@@ -85,7 +99,10 @@ public class EditTextWatcherAssist<T> {
      * @param editText EditText
      * @param position 索引
      */
-    private void focusChange(final EditText editText, final int position) {
+    private void focusChange(
+            final EditText editText,
+            final int position
+    ) {
         if (mTextWatcher != null) {
             if (mFocusEdit != null) {
                 mFocusEdit.removeTextChangedListener(mTextWatcher);
@@ -122,7 +139,12 @@ public class EditTextWatcherAssist<T> {
          * @param object   Object
          * @param listener 输入监听回调事件
          */
-        public FocusListener(int position, EditText editText, T object, InputListener<T> listener) {
+        public FocusListener(
+                int position,
+                EditText editText,
+                T object,
+                InputListener<T> listener
+        ) {
             this.position = position;
             this.editText = editText;
             this.object = object;
@@ -130,7 +152,10 @@ public class EditTextWatcherAssist<T> {
         }
 
         @Override
-        public void onFocusChange(View v, boolean hasFocus) {
+        public void onFocusChange(
+                View v,
+                boolean hasFocus
+        ) {
             if (hasFocus) {
                 // 获得焦点设置 View 操作
                 focusChange(editText, position);
@@ -138,7 +163,12 @@ public class EditTextWatcherAssist<T> {
                 if (mTextWatcher == null) {
                     mTextWatcher = new TextWatcher() {
                         @Override
-                        public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                        public void onTextChanged(
+                                CharSequence charSequence,
+                                int start,
+                                int before,
+                                int count
+                        ) {
                             if (mFocusPos == position) {
                                 if (listener != null) { // 触发回调
                                     listener.onTextChanged(charSequence, editText, position, object);
@@ -147,7 +177,12 @@ public class EditTextWatcherAssist<T> {
                         }
 
                         @Override
-                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                        public void beforeTextChanged(
+                                CharSequence s,
+                                int start,
+                                int count,
+                                int after
+                        ) {
                         }
 
                         @Override

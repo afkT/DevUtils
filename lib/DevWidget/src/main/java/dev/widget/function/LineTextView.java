@@ -16,7 +16,7 @@ import dev.utils.app.TextViewUtils;
 public class LineTextView extends AppCompatTextView {
 
     // 是否换行
-    private boolean           mIsNewLine = false;
+    private boolean mIsNewLine = false;
     // 换行监听回调
     private OnNewLineCallback mNewLineCallback;
 
@@ -24,11 +24,18 @@ public class LineTextView extends AppCompatTextView {
         super(context);
     }
 
-    public LineTextView(Context context, AttributeSet attrs) {
+    public LineTextView(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
     }
 
-    public LineTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LineTextView(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -80,6 +87,9 @@ public class LineTextView extends AppCompatTextView {
          * @param isNewLine 是否换行
          * @param line      行数
          */
-        void onNewLine(boolean isNewLine, int line);
+        void onNewLine(
+                boolean isNewLine,
+                int line
+        );
     }
 }

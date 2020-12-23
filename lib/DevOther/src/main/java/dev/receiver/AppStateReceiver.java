@@ -23,7 +23,10 @@ public final class AppStateReceiver extends BroadcastReceiver {
     private static final String TAG = AppStateReceiver.class.getSimpleName();
 
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(
+            Context context,
+            Intent intent
+    ) {
         try {
             String action = intent.getAction();
             // 打印当前触发的广播

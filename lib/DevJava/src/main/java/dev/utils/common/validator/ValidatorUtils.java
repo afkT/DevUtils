@@ -68,7 +68,10 @@ public final class ValidatorUtils {
      * @param input 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean match(final String regex, final String input) {
+    public static boolean match(
+            final String regex,
+            final String input
+    ) {
         if (!StringUtils.isEmpty(input)) {
             try {
                 return Pattern.matches(regex, input);

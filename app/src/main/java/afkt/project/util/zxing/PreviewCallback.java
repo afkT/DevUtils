@@ -13,13 +13,13 @@ import dev.utils.app.logger.DevLogger;
 public class PreviewCallback implements Camera.PreviewCallback {
 
     // 日志 TAG
-    private final String TAG = PreviewCallback.class.getSimpleName();
+    private final String      TAG = PreviewCallback.class.getSimpleName();
     // 显示的大小
     private       Camera.Size mSize;
     // 处理 Handler
-    private       Handler mPreviewHandler;
+    private       Handler     mPreviewHandler;
     // 处理 what
-    private       int mWhat;
+    private       int         mWhat;
 
     /**
      * 初始化构造函数

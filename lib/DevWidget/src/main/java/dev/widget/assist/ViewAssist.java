@@ -48,7 +48,10 @@ public final class ViewAssist {
      * @param tag     Tag
      * @return {@link ViewAssist}
      */
-    public static ViewAssist wrap(ViewGroup wrapper, String tag) {
+    public static ViewAssist wrap(
+            ViewGroup wrapper,
+            String tag
+    ) {
         if (wrapper == null) return null;
         ViewAssist assist = new ViewAssist();
         assist.mWrapper = wrapper;
@@ -68,18 +71,36 @@ public final class ViewAssist {
 
     public interface Adapter {
 
-        View onCreateView(ViewAssist assist, LayoutInflater inflater);
+        View onCreateView(
+                ViewAssist assist,
+                LayoutInflater inflater
+        );
 
-        void onBindView(ViewAssist assist, View view, int type);
+        void onBindView(
+                ViewAssist assist,
+                View view,
+                int type
+        );
     }
 
     public interface Listener {
 
-        void onRemove(ViewAssist assist, int type, boolean removeView);
+        void onRemove(
+                ViewAssist assist,
+                int type,
+                boolean removeView
+        );
 
-        void onNotFound(ViewAssist assist, int type);
+        void onNotFound(
+                ViewAssist assist,
+                int type
+        );
 
-        void onChange(ViewAssist assist, int type, int oldType);
+        void onChange(
+                ViewAssist assist,
+                int type,
+                int oldType
+        );
     }
 
     // ===============
@@ -170,7 +191,10 @@ public final class ViewAssist {
      * @param adapter {@link Adapter}
      * @return {@link ViewAssist}
      */
-    public ViewAssist register(int type, Adapter adapter) {
+    public ViewAssist register(
+            int type,
+            Adapter adapter
+    ) {
         if (adapter == null) return this;
         mMapAdapters.put(type, adapter);
         return this;
@@ -191,7 +215,10 @@ public final class ViewAssist {
      * @param remove 判断解绑的 type 正在显示是否删除
      * @return {@link ViewAssist}
      */
-    public ViewAssist unregister(int type, boolean remove) {
+    public ViewAssist unregister(
+            int type,
+            boolean remove
+    ) {
         mTypeViews.remove(type);
         mMapAdapters.remove(type);
         boolean removeView = false;
@@ -264,7 +291,10 @@ public final class ViewAssist {
         return null;
     }
 
-    public ViewAssist setData(String key, Object data) {
+    public ViewAssist setData(
+            String key,
+            Object data
+    ) {
         mMapDatas.put(key, data);
         return this;
     }

@@ -52,7 +52,10 @@ public final class DevJSONEngine {
      * @param jsonConfig {@link IJSONEngine.JSONConfig}
      * @return JSON String
      */
-    public static String toJson(final Object object, final IJSONEngine.JSONConfig jsonConfig) {
+    public static String toJson(
+            final Object object,
+            final IJSONEngine.JSONConfig jsonConfig
+    ) {
         if (sJSONEngine != null) {
             return sJSONEngine.toJson(object, jsonConfig);
         }
@@ -68,7 +71,10 @@ public final class DevJSONEngine {
      * @param <T>      泛型
      * @return instance of type
      */
-    public static <T> T fromJson(final String json, final Class<T> classOfT) {
+    public static <T> T fromJson(
+            final String json,
+            final Class<T> classOfT
+    ) {
         if (sJSONEngine != null) {
             return sJSONEngine.fromJson(json, classOfT);
         }
@@ -83,7 +89,11 @@ public final class DevJSONEngine {
      * @param <T>        泛型
      * @return instance of type
      */
-    public static <T> T fromJson(final String json, final Class<T> classOfT, final IJSONEngine.JSONConfig jsonConfig) {
+    public static <T> T fromJson(
+            final String json,
+            final Class<T> classOfT,
+            final IJSONEngine.JSONConfig jsonConfig
+    ) {
         if (sJSONEngine != null) {
             return sJSONEngine.fromJson(json, classOfT, jsonConfig);
         }
@@ -99,7 +109,10 @@ public final class DevJSONEngine {
      * @param <T>     泛型
      * @return instance of type
      */
-    public static <T> T fromJson(final String json, final Type typeOfT) {
+    public static <T> T fromJson(
+            final String json,
+            final Type typeOfT
+    ) {
         if (sJSONEngine != null) {
             return sJSONEngine.fromJson(json, typeOfT);
         }
@@ -114,7 +127,11 @@ public final class DevJSONEngine {
      * @param <T>        泛型
      * @return instance of type
      */
-    public static <T> T fromJson(final String json, final Type typeOfT, final IJSONEngine.JSONConfig jsonConfig) {
+    public static <T> T fromJson(
+            final String json,
+            final Type typeOfT,
+            final IJSONEngine.JSONConfig jsonConfig
+    ) {
         if (sJSONEngine != null) {
             return sJSONEngine.fromJson(json, typeOfT, jsonConfig);
         }
@@ -179,7 +196,10 @@ public final class DevJSONEngine {
      * @param jsonConfig {@link IJSONEngine.JSONConfig}
      * @return JSON String
      */
-    public static String toJsonIndent(final String json, final IJSONEngine.JSONConfig jsonConfig) {
+    public static String toJsonIndent(
+            final String json,
+            final IJSONEngine.JSONConfig jsonConfig
+    ) {
         if (sJSONEngine != null) {
             return sJSONEngine.toJsonIndent(json, jsonConfig);
         }
@@ -206,7 +226,10 @@ public final class DevJSONEngine {
      * @param jsonConfig {@link IJSONEngine.JSONConfig}
      * @return JSON String
      */
-    public static String toJsonIndent(final Object object, final IJSONEngine.JSONConfig jsonConfig) {
+    public static String toJsonIndent(
+            final Object object,
+            final IJSONEngine.JSONConfig jsonConfig
+    ) {
         if (sJSONEngine != null) {
             return sJSONEngine.toJsonIndent(object, jsonConfig);
         }

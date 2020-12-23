@@ -99,7 +99,11 @@ public final class LocationUtils {
      * @return {@code true} 初始化成功, {@code false} 初始化失败
      */
     @SuppressLint("MissingPermission")
-    public static boolean register(final long minTime, final long minDistance, final OnLocationChangeListener listener) {
+    public static boolean register(
+            final long minTime,
+            final long minDistance,
+            final OnLocationChangeListener listener
+    ) {
         if (listener == null) return false;
         try {
             sLocationManager = AppUtils.getLocationManager();
@@ -150,7 +154,11 @@ public final class LocationUtils {
      * @return {@link Location}
      */
     @SuppressLint("MissingPermission")
-    public static Location getLocation(final LocationListener listener, final long time, final float distance) {
+    public static Location getLocation(
+            final LocationListener listener,
+            final long time,
+            final float distance
+    ) {
         Location location = null;
         try {
             sLocationManager = AppUtils.getLocationManager();
@@ -209,7 +217,10 @@ public final class LocationUtils {
      * @param longitude 经度
      * @return {@link Address}
      */
-    public static Address getAddress(final double latitude, final double longitude) {
+    public static Address getAddress(
+            final double latitude,
+            final double longitude
+    ) {
         try {
             Geocoder      geocoder  = new Geocoder(DevUtils.getContext(), Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
@@ -226,7 +237,10 @@ public final class LocationUtils {
      * @param longitude 经度
      * @return 所在国家
      */
-    public static String getCountryName(final double latitude, final double longitude) {
+    public static String getCountryName(
+            final double latitude,
+            final double longitude
+    ) {
         Address address = getAddress(latitude, longitude);
         return address == null ? "unknown" : address.getCountryName();
     }
@@ -237,7 +251,10 @@ public final class LocationUtils {
      * @param longitude 经度
      * @return 所在地
      */
-    public static String getLocality(final double latitude, final double longitude) {
+    public static String getLocality(
+            final double latitude,
+            final double longitude
+    ) {
         Address address = getAddress(latitude, longitude);
         return address == null ? "unknown" : address.getLocality();
     }
@@ -248,7 +265,10 @@ public final class LocationUtils {
      * @param longitude 经度
      * @return 所在街道
      */
-    public static String getStreet(final double latitude, final double longitude) {
+    public static String getStreet(
+            final double latitude,
+            final double longitude
+    ) {
         Address address = getAddress(latitude, longitude);
         try {
             return address == null ? "unknown" : address.getAddressLine(0);
@@ -264,7 +284,10 @@ public final class LocationUtils {
      * @param currentBestLocation 当前最佳位置
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isBetterLocation(final Location newLocation, final Location currentBestLocation) {
+    public static boolean isBetterLocation(
+            final Location newLocation,
+            final Location currentBestLocation
+    ) {
         if (newLocation == null || currentBestLocation == null) return true;
         // 检查位置信息的时间间隔
         long    timeDelta            = newLocation.getTime() - currentBestLocation.getTime();
@@ -302,7 +325,10 @@ public final class LocationUtils {
      * @param provider1 提供者 2
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isSameProvider(final String provider0, final String provider1) {
+    public static boolean isSameProvider(
+            final String provider0,
+            final String provider1
+    ) {
         if (provider0 == null) {
             return provider1 == null;
         }
@@ -333,7 +359,11 @@ public final class LocationUtils {
          * @param extras   provider 可选包
          */
         @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
+        public void onStatusChanged(
+                String provider,
+                int status,
+                Bundle extras
+        ) {
             if (sListener != null) {
                 sListener.onStatusChanged(provider, status, extras);
             }
@@ -391,6 +421,10 @@ public final class LocationUtils {
          * @param status   状态
          * @param extras   provider 可选包
          */
-        void onStatusChanged(String provider, int status, Bundle extras); // 位置状态发生改变
+        void onStatusChanged(
+                String provider,
+                int status,
+                Bundle extras
+        ); // 位置状态发生改变
     }
 }

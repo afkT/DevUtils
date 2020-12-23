@@ -275,7 +275,10 @@ public final class BitmapUtils {
      * @param isMutable 是否允许编辑
      * @return {@link Bitmap}
      */
-    public static Bitmap copy(final Bitmap bitmap, final boolean isMutable) {
+    public static Bitmap copy(
+            final Bitmap bitmap,
+            final boolean isMutable
+    ) {
         if (isEmpty(bitmap)) return null;
         return bitmap.copy(bitmap.getConfig(), isMutable);
     }
@@ -299,8 +302,11 @@ public final class BitmapUtils {
      * @param quality 质量
      * @return 重新编码后的图片
      */
-    public static Bitmap recode(final Bitmap bitmap, final Bitmap.CompressFormat format,
-                                @IntRange(from = 0, to = 100) final int quality) {
+    public static Bitmap recode(
+            final Bitmap bitmap,
+            final Bitmap.CompressFormat format,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return recode(bitmap, format, quality, null);
     }
 
@@ -312,9 +318,12 @@ public final class BitmapUtils {
      * @param options {@link BitmapFactory.Options}
      * @return 重新编码后的图片
      */
-    public static Bitmap recode(final Bitmap bitmap, final Bitmap.CompressFormat format,
-                                @IntRange(from = 0, to = 100) final int quality,
-                                final BitmapFactory.Options options) {
+    public static Bitmap recode(
+            final Bitmap bitmap,
+            final Bitmap.CompressFormat format,
+            @IntRange(from = 0, to = 100) final int quality,
+            final BitmapFactory.Options options
+    ) {
         if (isEmpty(bitmap) || format == null) return null;
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -359,7 +368,10 @@ public final class BitmapUtils {
      * @param degrees 旋转角度
      * @return 旋转后的图片
      */
-    public static Bitmap rotate(final Bitmap bitmap, final float degrees) {
+    public static Bitmap rotate(
+            final Bitmap bitmap,
+            final float degrees
+    ) {
         if (isEmpty(bitmap)) return null;
         Matrix matrix = new Matrix();
         matrix.postRotate(degrees);
@@ -374,7 +386,12 @@ public final class BitmapUtils {
      * @param py      旋转中心点在 Y 轴的坐标
      * @return 旋转后的图片
      */
-    public static Bitmap rotate(final Bitmap bitmap, final float degrees, final float px, final float py) {
+    public static Bitmap rotate(
+            final Bitmap bitmap,
+            final float degrees,
+            final float px,
+            final float py
+    ) {
         if (isEmpty(bitmap)) return null;
         Matrix matrix = new Matrix();
         matrix.postRotate(degrees, px, py);
@@ -434,7 +451,10 @@ public final class BitmapUtils {
      * @param horizontal 是否水平翻转
      * @return 翻转后的图片
      */
-    public static Bitmap reverse(final Bitmap bitmap, final boolean horizontal) {
+    public static Bitmap reverse(
+            final Bitmap bitmap,
+            final boolean horizontal
+    ) {
         if (isEmpty(bitmap)) return null;
         Matrix matrix = new Matrix();
         if (horizontal) {
@@ -455,7 +475,10 @@ public final class BitmapUtils {
      * @param newSize 新尺寸 ( 宽高 )
      * @return 缩放后的图片
      */
-    public static Bitmap zoom(final Bitmap bitmap, final int newSize) {
+    public static Bitmap zoom(
+            final Bitmap bitmap,
+            final int newSize
+    ) {
         return zoom(bitmap, newSize, newSize);
     }
 
@@ -466,7 +489,11 @@ public final class BitmapUtils {
      * @param newHeight 新高度
      * @return 缩放后的图片
      */
-    public static Bitmap zoom(final Bitmap bitmap, final int newWidth, final int newHeight) {
+    public static Bitmap zoom(
+            final Bitmap bitmap,
+            final int newWidth,
+            final int newHeight
+    ) {
         if (isEmpty(bitmap)) return null;
         return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
     }
@@ -479,7 +506,10 @@ public final class BitmapUtils {
      * @param scale  缩放倍数
      * @return 缩放后的图片
      */
-    public static Bitmap scale(final Bitmap bitmap, final float scale) {
+    public static Bitmap scale(
+            final Bitmap bitmap,
+            final float scale
+    ) {
         return scale(bitmap, scale, scale);
     }
 
@@ -490,7 +520,11 @@ public final class BitmapUtils {
      * @param scaleY 纵向缩放比例 ( 缩放高度倍数 )
      * @return 缩放后的图片
      */
-    public static Bitmap scale(final Bitmap bitmap, final float scaleX, final float scaleY) {
+    public static Bitmap scale(
+            final Bitmap bitmap,
+            final float scaleX,
+            final float scaleY
+    ) {
         if (isEmpty(bitmap)) return null;
         Matrix matrix = new Matrix();
         matrix.postScale(scaleX, scaleY);
@@ -508,7 +542,11 @@ public final class BitmapUtils {
      * @param ky     Y 轴倾斜因子
      * @return 倾斜后的图片
      */
-    public static Bitmap skew(final Bitmap bitmap, final float kx, final float ky) {
+    public static Bitmap skew(
+            final Bitmap bitmap,
+            final float kx,
+            final float ky
+    ) {
         return skew(bitmap, kx, ky, 0, 0);
     }
 
@@ -524,7 +562,13 @@ public final class BitmapUtils {
      * @param py     Y 轴轴心点
      * @return 倾斜后的图片
      */
-    public static Bitmap skew(final Bitmap bitmap, final float kx, final float ky, final float px, final float py) {
+    public static Bitmap skew(
+            final Bitmap bitmap,
+            final float kx,
+            final float ky,
+            final float px,
+            final float py
+    ) {
         if (isEmpty(bitmap)) return null;
         Matrix matrix = new Matrix();
         matrix.setSkew(kx, ky, px, py);
@@ -542,7 +586,11 @@ public final class BitmapUtils {
      * @param height 裁剪高度
      * @return 裁剪后的图片
      */
-    public static Bitmap clip(final Bitmap bitmap, final int width, final int height) {
+    public static Bitmap clip(
+            final Bitmap bitmap,
+            final int width,
+            final int height
+    ) {
         return clip(bitmap, 0, 0, width, height);
     }
 
@@ -555,7 +603,13 @@ public final class BitmapUtils {
      * @param height 裁剪高度
      * @return 裁剪后的图片
      */
-    public static Bitmap clip(final Bitmap bitmap, final int x, final int y, final int width, final int height) {
+    public static Bitmap clip(
+            final Bitmap bitmap,
+            final int x,
+            final int y,
+            final int width,
+            final int height
+    ) {
         if (isEmpty(bitmap)) return null;
         return Bitmap.createBitmap(bitmap, x, y, width, height);
     }
@@ -578,7 +632,11 @@ public final class BitmapUtils {
      * @param heightScale 高度比例
      * @return 裁剪指定比例的图片
      */
-    public static Bitmap crop(final Bitmap bitmap, final float widthScale, final float heightScale) {
+    public static Bitmap crop(
+            final Bitmap bitmap,
+            final float widthScale,
+            final float heightScale
+    ) {
         if (bitmap == null) return null;
         try {
             int width  = bitmap.getWidth();
@@ -616,7 +674,10 @@ public final class BitmapUtils {
      * @param fg  前景 Bitmap
      * @return 合并后的图片
      */
-    public static Bitmap combine(final Bitmap bgd, final Bitmap fg) {
+    public static Bitmap combine(
+            final Bitmap bgd,
+            final Bitmap fg
+    ) {
         return combine(bgd, fg, PorterDuff.Mode.SRC_ATOP, null, null);
     }
 
@@ -627,7 +688,11 @@ public final class BitmapUtils {
      * @param mode 合并模式 {@link PorterDuff.Mode}
      * @return 合并后的图片
      */
-    public static Bitmap combine(final Bitmap bgd, final Bitmap fg, final PorterDuff.Mode mode) {
+    public static Bitmap combine(
+            final Bitmap bgd,
+            final Bitmap fg,
+            final PorterDuff.Mode mode
+    ) {
         return combine(bgd, fg, mode, null, null);
     }
 
@@ -640,7 +705,13 @@ public final class BitmapUtils {
      * @param fgPoint  前景绘制 left、top 坐标
      * @return 合并后的图片
      */
-    public static Bitmap combine(final Bitmap bgd, final Bitmap fg, final PorterDuff.Mode mode, final Point bgdPoint, final Point fgPoint) {
+    public static Bitmap combine(
+            final Bitmap bgd,
+            final Bitmap fg,
+            final PorterDuff.Mode mode,
+            final Point bgdPoint,
+            final Point fgPoint
+    ) {
         if (isEmpty(bgd) || isEmpty(fg)) return null;
 
         int width  = bgd.getWidth() > fg.getWidth() ? bgd.getWidth() : fg.getWidth();
@@ -666,7 +737,10 @@ public final class BitmapUtils {
      * @param fg  前景 Bitmap
      * @return 合并后的图片
      */
-    public static Bitmap combineToCenter(final Bitmap bgd, final Bitmap fg) {
+    public static Bitmap combineToCenter(
+            final Bitmap bgd,
+            final Bitmap fg
+    ) {
         return combineToCenter(bgd, fg, null);
     }
 
@@ -677,7 +751,11 @@ public final class BitmapUtils {
      * @param mode 合并模式 {@link PorterDuff.Mode}
      * @return 合并后的图片
      */
-    public static Bitmap combineToCenter(Bitmap bgd, Bitmap fg, final PorterDuff.Mode mode) {
+    public static Bitmap combineToCenter(
+            Bitmap bgd,
+            Bitmap fg,
+            final PorterDuff.Mode mode
+    ) {
         if (isEmpty(bgd) || isEmpty(fg)) return null;
 
         // 绘制坐标点
@@ -714,7 +792,10 @@ public final class BitmapUtils {
      * @param fg  前景 Bitmap
      * @return 合并后的图片
      */
-    public static Bitmap combineToSameSize(Bitmap bgd, Bitmap fg) {
+    public static Bitmap combineToSameSize(
+            Bitmap bgd,
+            Bitmap fg
+    ) {
         return combineToSameSize(bgd, fg, PorterDuff.Mode.SRC_ATOP);
     }
 
@@ -725,7 +806,11 @@ public final class BitmapUtils {
      * @param mode 合并模式 {@link PorterDuff.Mode}
      * @return 合并后的图片
      */
-    public static Bitmap combineToSameSize(Bitmap bgd, Bitmap fg, final PorterDuff.Mode mode) {
+    public static Bitmap combineToSameSize(
+            Bitmap bgd,
+            Bitmap fg,
+            final PorterDuff.Mode mode
+    ) {
         if (isEmpty(bgd) || isEmpty(fg)) return null;
 
         int width  = bgd.getWidth() < fg.getWidth() ? bgd.getWidth() : fg.getWidth();
@@ -770,7 +855,10 @@ public final class BitmapUtils {
      * @param reflectionHeight 倒影高度
      * @return 倒影处理后的图片
      */
-    public static Bitmap reflection(final Bitmap bitmap, final int reflectionHeight) {
+    public static Bitmap reflection(
+            final Bitmap bitmap,
+            final int reflectionHeight
+    ) {
         return reflection(bitmap, 0, reflectionHeight);
     }
 
@@ -781,7 +869,11 @@ public final class BitmapUtils {
      * @param reflectionHeight  倒影高度
      * @return 倒影处理后的图片
      */
-    public static Bitmap reflection(final Bitmap bitmap, final int reflectionSpacing, final int reflectionHeight) {
+    public static Bitmap reflection(
+            final Bitmap bitmap,
+            final int reflectionSpacing,
+            final int reflectionHeight
+    ) {
         if (isEmpty(bitmap)) return null;
         if (reflectionHeight <= 0) return null;
         // 获取图片宽高
@@ -836,7 +928,10 @@ public final class BitmapUtils {
      * @param pixels 圆角大小
      * @return 圆角处理后的图片
      */
-    public static Bitmap roundCorner(final Bitmap bitmap, final float pixels) {
+    public static Bitmap roundCorner(
+            final Bitmap bitmap,
+            final float pixels
+    ) {
         if (isEmpty(bitmap)) return null;
         // 创建一个同源图片一样大小的矩形, 用于把源图片绘制到这个矩形上
         Rect  rect  = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
@@ -864,7 +959,10 @@ public final class BitmapUtils {
      * @param pixels 圆角大小
      * @return 圆角处理后的图片
      */
-    public static Bitmap roundCornerTop(final Bitmap bitmap, final float pixels) {
+    public static Bitmap roundCornerTop(
+            final Bitmap bitmap,
+            final float pixels
+    ) {
         return roundCorner(bitmap, pixels, new boolean[]{true, true, true, false});
     }
 
@@ -874,7 +972,10 @@ public final class BitmapUtils {
      * @param pixels 圆角大小
      * @return 圆角处理后的图片
      */
-    public static Bitmap roundCornerBottom(final Bitmap bitmap, final float pixels) {
+    public static Bitmap roundCornerBottom(
+            final Bitmap bitmap,
+            final float pixels
+    ) {
         return roundCorner(bitmap, pixels, new boolean[]{true, false, true, true});
     }
 
@@ -894,7 +995,11 @@ public final class BitmapUtils {
      * @param directions 需要圆角的方向 [left, top, right, bottom]
      * @return 圆角处理后的图片
      */
-    public static Bitmap roundCorner(final Bitmap bitmap, final float pixels, final boolean[] directions) {
+    public static Bitmap roundCorner(
+            final Bitmap bitmap,
+            final float pixels,
+            final boolean[] directions
+    ) {
         if (isEmpty(bitmap)) return null;
         if (directions == null || directions.length != 4) return null;
         // 创建一个同源图片一样大小的矩形, 用于把源图片绘制到这个矩形上
@@ -951,7 +1056,11 @@ public final class BitmapUtils {
      * @param borderColor 边框颜色
      * @return 圆形处理后的图片
      */
-    public static Bitmap round(final Bitmap bitmap, @IntRange(from = 0) final int borderSize, @ColorInt final int borderColor) {
+    public static Bitmap round(
+            final Bitmap bitmap,
+            @IntRange(from = 0) final int borderSize,
+            @ColorInt final int borderColor
+    ) {
         if (isEmpty(bitmap)) return null;
 
         int width  = bitmap.getWidth();
@@ -999,8 +1108,12 @@ public final class BitmapUtils {
      * @param cornerRadius 圆角半径
      * @return 圆角边框图
      */
-    public static Bitmap addCornerBorder(final Bitmap bitmap, @IntRange(from = 1) final int borderSize, @ColorInt final int color,
-                                         @FloatRange(from = 0) final float cornerRadius) {
+    public static Bitmap addCornerBorder(
+            final Bitmap bitmap,
+            @IntRange(from = 1) final int borderSize,
+            @ColorInt final int color,
+            @FloatRange(from = 0) final float cornerRadius
+    ) {
         return addBorder(bitmap, borderSize, color, false, cornerRadius);
     }
 
@@ -1011,7 +1124,11 @@ public final class BitmapUtils {
      * @param color      边框颜色
      * @return 圆形边框图
      */
-    public static Bitmap addCircleBorder(final Bitmap bitmap, @IntRange(from = 1) final int borderSize, @ColorInt final int color) {
+    public static Bitmap addCircleBorder(
+            final Bitmap bitmap,
+            @IntRange(from = 1) final int borderSize,
+            @ColorInt final int color
+    ) {
         return addBorder(bitmap, borderSize, color, true, 0);
     }
 
@@ -1024,8 +1141,13 @@ public final class BitmapUtils {
      * @param cornerRadius 圆角半径
      * @return 添加边框后的图片
      */
-    public static Bitmap addBorder(final Bitmap bitmap, @IntRange(from = 1) final int borderSize,
-                                   @ColorInt final int color, final boolean isCircle, final float cornerRadius) {
+    public static Bitmap addBorder(
+            final Bitmap bitmap,
+            @IntRange(from = 1) final int borderSize,
+            @ColorInt final int color,
+            final boolean isCircle,
+            final float cornerRadius
+    ) {
         if (isEmpty(bitmap)) return null;
 
         Bitmap newBitmap = bitmap.copy(bitmap.getConfig(), true);
@@ -1062,8 +1184,14 @@ public final class BitmapUtils {
      * @param y        起始坐标 y
      * @return 添加文字水印后的图片
      */
-    public static Bitmap addTextWatermark(final Bitmap bitmap, final String content, final float textSize,
-                                          @ColorInt final int color, final float x, final float y) {
+    public static Bitmap addTextWatermark(
+            final Bitmap bitmap,
+            final String content,
+            final float textSize,
+            @ColorInt final int color,
+            final float x,
+            final float y
+    ) {
         if (isEmpty(bitmap) || content == null) return null;
 
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -1087,8 +1215,13 @@ public final class BitmapUtils {
      * @param alpha     透明度
      * @return 添加图片水印后的图片
      */
-    public static Bitmap addImageWatermark(final Bitmap bitmap, final Bitmap watermark, final int x, final int y,
-                                           @IntRange(from = 0, to = 255) final int alpha) {
+    public static Bitmap addImageWatermark(
+            final Bitmap bitmap,
+            final Bitmap watermark,
+            final int x,
+            final int y,
+            @IntRange(from = 0, to = 255) final int alpha
+    ) {
         if (isEmpty(bitmap)) return null;
         Bitmap newBitmap = bitmap.copy(bitmap.getConfig(), true);
         if (!isEmpty(watermark)) {
@@ -1114,7 +1247,11 @@ public final class BitmapUtils {
      * @param newHeight 新高度
      * @return 缩放宽高压缩后的图片
      */
-    public static Bitmap compressByZoom(final Bitmap bitmap, final int newWidth, final int newHeight) {
+    public static Bitmap compressByZoom(
+            final Bitmap bitmap,
+            final int newWidth,
+            final int newHeight
+    ) {
         return zoom(bitmap, newWidth, newHeight);
     }
 
@@ -1128,7 +1265,11 @@ public final class BitmapUtils {
      * @param scaleY 纵向缩放比例 ( 缩放高度倍数 )
      * @return 缩放比例压缩后的图片
      */
-    public static Bitmap compressByScale(final Bitmap bitmap, final float scaleX, final float scaleY) {
+    public static Bitmap compressByScale(
+            final Bitmap bitmap,
+            final float scaleX,
+            final float scaleY
+    ) {
         return scale(bitmap, scaleX, scaleY);
     }
 
@@ -1140,7 +1281,10 @@ public final class BitmapUtils {
      * @param quality 质量
      * @return 质量压缩过的图片
      */
-    public static Bitmap compressByQuality(final Bitmap bitmap, @IntRange(from = 0, to = 100) final int quality) {
+    public static Bitmap compressByQuality(
+            final Bitmap bitmap,
+            @IntRange(from = 0, to = 100) final int quality
+    ) {
         return compressByQuality(bitmap, Bitmap.CompressFormat.JPEG, quality, null);
     }
 
@@ -1151,8 +1295,11 @@ public final class BitmapUtils {
      * @param options {@link BitmapFactory.Options}
      * @return 质量压缩过的图片
      */
-    public static Bitmap compressByQuality(final Bitmap bitmap, @IntRange(from = 0, to = 100) final int quality,
-                                           final BitmapFactory.Options options) {
+    public static Bitmap compressByQuality(
+            final Bitmap bitmap,
+            @IntRange(from = 0, to = 100) final int quality,
+            final BitmapFactory.Options options
+    ) {
         return compressByQuality(bitmap, Bitmap.CompressFormat.JPEG, quality, options);
     }
 
@@ -1164,9 +1311,12 @@ public final class BitmapUtils {
      * @param options {@link BitmapFactory.Options}
      * @return 质量压缩过的图片
      */
-    public static Bitmap compressByQuality(final Bitmap bitmap, final Bitmap.CompressFormat format,
-                                           @IntRange(from = 0, to = 100) final int quality,
-                                           final BitmapFactory.Options options) {
+    public static Bitmap compressByQuality(
+            final Bitmap bitmap,
+            final Bitmap.CompressFormat format,
+            @IntRange(from = 0, to = 100) final int quality,
+            final BitmapFactory.Options options
+    ) {
         if (isEmpty(bitmap) || format == null) return null;
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -1187,7 +1337,10 @@ public final class BitmapUtils {
      * @param maxByteSize 允许最大值字节数
      * @return 质量压缩过的图片
      */
-    public static Bitmap compressByByteSize(final Bitmap bitmap, final long maxByteSize) {
+    public static Bitmap compressByByteSize(
+            final Bitmap bitmap,
+            final long maxByteSize
+    ) {
         return compressByByteSize(bitmap, Bitmap.CompressFormat.JPEG, maxByteSize, null);
     }
 
@@ -1198,7 +1351,11 @@ public final class BitmapUtils {
      * @param maxByteSize 允许最大值字节数
      * @return 质量压缩过的图片
      */
-    public static Bitmap compressByByteSize(final Bitmap bitmap, final Bitmap.CompressFormat format, final long maxByteSize) {
+    public static Bitmap compressByByteSize(
+            final Bitmap bitmap,
+            final Bitmap.CompressFormat format,
+            final long maxByteSize
+    ) {
         return compressByByteSize(bitmap, format, maxByteSize, null);
     }
 
@@ -1210,7 +1367,12 @@ public final class BitmapUtils {
      * @param options     {@link BitmapFactory.Options}
      * @return 质量压缩过的图片
      */
-    public static Bitmap compressByByteSize(final Bitmap bitmap, final Bitmap.CompressFormat format, final long maxByteSize, final BitmapFactory.Options options) {
+    public static Bitmap compressByByteSize(
+            final Bitmap bitmap,
+            final Bitmap.CompressFormat format,
+            final long maxByteSize,
+            final BitmapFactory.Options options
+    ) {
         if (isEmpty(bitmap) || maxByteSize <= 0) return null;
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -1262,7 +1424,10 @@ public final class BitmapUtils {
      * @param sampleSize 采样率大小
      * @return 按采样率压缩后的图片
      */
-    public static Bitmap compressBySampleSize(final Bitmap bitmap, final int sampleSize) {
+    public static Bitmap compressBySampleSize(
+            final Bitmap bitmap,
+            final int sampleSize
+    ) {
         return compressBySampleSize(bitmap, Bitmap.CompressFormat.JPEG, sampleSize);
     }
 
@@ -1273,7 +1438,11 @@ public final class BitmapUtils {
      * @param sampleSize 采样率大小
      * @return 按采样率压缩后的图片
      */
-    public static Bitmap compressBySampleSize(final Bitmap bitmap, final Bitmap.CompressFormat format, final int sampleSize) {
+    public static Bitmap compressBySampleSize(
+            final Bitmap bitmap,
+            final Bitmap.CompressFormat format,
+            final int sampleSize
+    ) {
         if (isEmpty(bitmap) || format == null) return null;
         try {
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -1297,7 +1466,11 @@ public final class BitmapUtils {
      * @param maxHeight 最大高度
      * @return 按采样率压缩后的图片
      */
-    public static Bitmap compressBySampleSize(final Bitmap bitmap, final int maxWidth, final int maxHeight) {
+    public static Bitmap compressBySampleSize(
+            final Bitmap bitmap,
+            final int maxWidth,
+            final int maxHeight
+    ) {
         return compressBySampleSize(bitmap, Bitmap.CompressFormat.JPEG, maxWidth, maxHeight);
     }
 
@@ -1309,7 +1482,12 @@ public final class BitmapUtils {
      * @param maxHeight 最大高度
      * @return 按采样率压缩后的图片
      */
-    public static Bitmap compressBySampleSize(final Bitmap bitmap, final Bitmap.CompressFormat format, final int maxWidth, final int maxHeight) {
+    public static Bitmap compressBySampleSize(
+            final Bitmap bitmap,
+            final Bitmap.CompressFormat format,
+            final int maxWidth,
+            final int maxHeight
+    ) {
         if (isEmpty(bitmap)) return null;
         try {
             // 获取宽高信息
@@ -1342,7 +1520,11 @@ public final class BitmapUtils {
      * @param maxHeight 最大高度
      * @return 采样大小
      */
-    public static int calculateInSampleSize(final BitmapFactory.Options options, final int maxWidth, final int maxHeight) {
+    public static int calculateInSampleSize(
+            final BitmapFactory.Options options,
+            final int maxWidth,
+            final int maxHeight
+    ) {
         if (options == null) return 0;
 
         int height       = options.outHeight;
@@ -1366,7 +1548,11 @@ public final class BitmapUtils {
      * @param maxByteSize 允许最大值字节数
      * @return 最佳压缩质量值
      */
-    public static int calculateQuality(final Bitmap bitmap, final Bitmap.CompressFormat format, final long maxByteSize) {
+    public static int calculateQuality(
+            final Bitmap bitmap,
+            final Bitmap.CompressFormat format,
+            final long maxByteSize
+    ) {
         if (isEmpty(bitmap) || maxByteSize <= 0) return -1;
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -1434,7 +1620,10 @@ public final class BitmapUtils {
      * @param timeUs 对应毫秒视频帧
      * @return {@link Bitmap}
      */
-    public static Bitmap getVideoThumbnail(final String path, final long timeUs) {
+    public static Bitmap getVideoThumbnail(
+            final String path,
+            final long timeUs
+    ) {
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         try {
             // 设置视频路径

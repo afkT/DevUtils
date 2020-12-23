@@ -109,18 +109,30 @@ public class LoadProgressBar extends View {
         initAttrs(context, null);
     }
 
-    public LoadProgressBar(Context context, AttributeSet attrs) {
+    public LoadProgressBar(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
         initAttrs(context, attrs);
     }
 
-    public LoadProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LoadProgressBar(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
         initAttrs(context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public LoadProgressBar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public LoadProgressBar(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
+    ) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initAttrs(context, attrs);
     }
@@ -130,7 +142,10 @@ public class LoadProgressBar extends View {
      * @param context {@link Context}
      * @param attrs   {@link AttributeSet}
      */
-    private void initAttrs(Context context, AttributeSet attrs) {
+    private void initAttrs(
+            Context context,
+            AttributeSet attrs
+    ) {
         init(); // 默认初始化配置
 
         if (context != null && attrs != null) {
@@ -321,7 +336,12 @@ public class LoadProgressBar extends View {
      * @param textColor    字体颜色
      * @param progressText 绘制文本
      */
-    private void drawProgressText(Canvas canvas, float textSize, @ColorInt int textColor, String progressText) {
+    private void drawProgressText(
+            Canvas canvas,
+            float textSize,
+            @ColorInt int textColor,
+            String progressText
+    ) {
         drawProgressText(canvas, getWidth(), getHeight(), textSize, textColor, progressText);
     }
 
@@ -334,7 +354,14 @@ public class LoadProgressBar extends View {
      * @param textColor    字体颜色
      * @param progressText 绘制文本
      */
-    private void drawProgressText(Canvas canvas, int width, int height, float textSize, @ColorInt int textColor, String progressText) {
+    private void drawProgressText(
+            Canvas canvas,
+            int width,
+            int height,
+            float textSize,
+            @ColorInt int textColor,
+            String progressText
+    ) {
         mPaint.setColor(textColor);  // 设置进度的颜色
         mPaint.setTextSize(textSize); // 设置字体大小
         // 获取字体高度

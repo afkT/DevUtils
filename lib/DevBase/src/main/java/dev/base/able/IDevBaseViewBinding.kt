@@ -16,7 +16,10 @@ interface IDevBaseViewBinding<VB : ViewBinding> {
      * @param inflater  [LayoutInflater]
      * @param container [ViewGroup]
      */
-    fun viewBinding(inflater: LayoutInflater, container: ViewGroup?): VB
+    fun viewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): VB
 
     /**
      * 获取待 Bind View

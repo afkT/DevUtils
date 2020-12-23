@@ -22,7 +22,10 @@ public final class BatteryReceiver extends BroadcastReceiver {
     private static final String TAG = BatteryReceiver.class.getSimpleName();
 
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(
+            Context context,
+            Intent intent
+    ) {
         try {
             String action = intent.getAction();
             // 打印当前触发的广播
@@ -154,7 +157,10 @@ public final class BatteryReceiver extends BroadcastReceiver {
          * @param level       电量百分比
          * @param isConnected 是否充电连接中
          */
-        void onPowerConnected(int level, boolean isConnected);
+        void onPowerConnected(
+                int level,
+                boolean isConnected
+        );
 
         /**
          * 电力使用情况总结

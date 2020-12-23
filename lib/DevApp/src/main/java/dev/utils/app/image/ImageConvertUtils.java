@@ -63,7 +63,10 @@ public final class ImageConvertUtils {
          * @param height 高度
          * @return BMP 头信息 byte[]
          */
-        private static byte[] addBMPImageInfosHeader(final int width, final int height) {
+        private static byte[] addBMPImageInfosHeader(
+                final int width,
+                final int height
+        ) {
             byte[] buffer = new byte[40];
             // =
             buffer[0] = 0x28;
@@ -126,7 +129,11 @@ public final class ImageConvertUtils {
          * @param height 高度
          * @return BMP ARGB byte[]
          */
-        private static byte[] addBMP_ARGB8888(final int[] data, final int width, final int height) {
+        private static byte[] addBMP_ARGB8888(
+                final int[] data,
+                final int width,
+                final int height
+        ) {
             if (data == null) return null;
             int len = data.length;
             if (len == 0) return null;

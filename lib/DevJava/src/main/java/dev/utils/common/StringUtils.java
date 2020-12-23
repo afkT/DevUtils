@@ -49,7 +49,10 @@ public final class StringUtils {
      * @param isTrim 是否调用 trim()
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isEmpty(final String str, final boolean isTrim) {
+    public static boolean isEmpty(
+            final String str,
+            final boolean isTrim
+    ) {
         if (str != null) {
             return isEmpty(isTrim ? str.trim() : str);
         }
@@ -91,7 +94,10 @@ public final class StringUtils {
      * @param isTrim 是否调用 trim()
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isNotEmpty(final String str, final boolean isTrim) {
+    public static boolean isNotEmpty(
+            final String str,
+            final boolean isTrim
+    ) {
         return isNotEmpty(isTrim ? str.trim() : str);
     }
 
@@ -114,7 +120,10 @@ public final class StringUtils {
      * @param defaultLength 字符串为 null 时, 返回的长度
      * @return 字符串长度, 如果字符串为 null, 则返回 defaultLength
      */
-    public static int length(final String str, final int defaultLength) {
+    public static int length(
+            final String str,
+            final int defaultLength
+    ) {
         return str != null ? str.length() : defaultLength;
     }
 
@@ -126,7 +135,10 @@ public final class StringUtils {
      * @param length 期望长度
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isLength(final String str, final int length) {
+    public static boolean isLength(
+            final String str,
+            final int length
+    ) {
         return str != null && str.length() == length;
     }
 
@@ -141,7 +153,10 @@ public final class StringUtils {
      * @param <T>    泛型
      * @return {@code true} yes, {@code false} no
      */
-    public static <T> boolean equals(final T value1, final T value2) {
+    public static <T> boolean equals(
+            final T value1,
+            final T value2
+    ) {
         return ObjectUtils.equals(value1, value2);
     }
 
@@ -160,7 +175,10 @@ public final class StringUtils {
      * @param strs     待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isEquals(final boolean isIgnore, final String... strs) {
+    public static boolean isEquals(
+            final boolean isIgnore,
+            final String... strs
+    ) {
         if (strs != null) {
             String last = null;
             // 获取数据长度
@@ -201,7 +219,10 @@ public final class StringUtils {
      * @param strs 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isOrEquals(final String str, final String... strs) {
+    public static boolean isOrEquals(
+            final String str,
+            final String... strs
+    ) {
         return isOrEquals(false, str, strs);
     }
 
@@ -212,7 +233,11 @@ public final class StringUtils {
      * @param strs     待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isOrEquals(final boolean isIgnore, final String str, final String... strs) {
+    public static boolean isOrEquals(
+            final boolean isIgnore,
+            final String str,
+            final String... strs
+    ) {
         if (str != null && strs != null && strs.length != 0) {
             // 获取数据长度
             int len = strs.length;
@@ -245,7 +270,10 @@ public final class StringUtils {
      * @param strs 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isContains(final String str, final String... strs) {
+    public static boolean isContains(
+            final String str,
+            final String... strs
+    ) {
         return isContains(false, str, strs);
     }
 
@@ -256,7 +284,11 @@ public final class StringUtils {
      * @param strs     待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isContains(final boolean isIgnore, final String str, final String... strs) {
+    public static boolean isContains(
+            final boolean isIgnore,
+            final String str,
+            final String... strs
+    ) {
         if (str != null && strs != null && strs.length != 0) {
             String tempString = str;
             // 判断是否需要忽略大小写
@@ -300,7 +332,10 @@ public final class StringUtils {
      * @param strs 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isStartsWith(final String str, final String... strs) {
+    public static boolean isStartsWith(
+            final String str,
+            final String... strs
+    ) {
         return isStartsWith(false, str, strs);
     }
 
@@ -311,7 +346,11 @@ public final class StringUtils {
      * @param strs     待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isStartsWith(final boolean isIgnore, final String str, final String... strs) {
+    public static boolean isStartsWith(
+            final boolean isIgnore,
+            final String str,
+            final String... strs
+    ) {
         if (!isEmpty(str) && strs != null && strs.length != 0) {
             String tempString = str;
             // 判断是否需要忽略大小写
@@ -351,7 +390,10 @@ public final class StringUtils {
      * @param strs 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isEndsWith(final String str, final String... strs) {
+    public static boolean isEndsWith(
+            final String str,
+            final String... strs
+    ) {
         return isEndsWith(false, str, strs);
     }
 
@@ -362,7 +404,11 @@ public final class StringUtils {
      * @param strs     待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isEndsWith(final boolean isIgnore, final String str, final String... strs) {
+    public static boolean isEndsWith(
+            final boolean isIgnore,
+            final String str,
+            final String... strs
+    ) {
         if (!isEmpty(str) && strs != null && strs.length != 0) {
             String tempString = str;
             // 判断是否需要忽略大小写
@@ -402,7 +448,10 @@ public final class StringUtils {
      * @param keyword 匹配 key
      * @return 字符串 key 匹配个数
      */
-    public static int countMatches(final String str, final String keyword) {
+    public static int countMatches(
+            final String str,
+            final String keyword
+    ) {
         if (isEmpty(str) || isEmpty(keyword)) return 0;
         try {
             int     count   = 0;
@@ -424,7 +473,10 @@ public final class StringUtils {
      * @param keyword 匹配 key
      * @return 字符串 key 匹配个数
      */
-    public static int countMatches2(final String str, final String keyword) {
+    public static int countMatches2(
+            final String str,
+            final String keyword
+    ) {
         if (isEmpty(str) || isEmpty(keyword)) return 0;
         try {
             // 获取匹配 key 长度
@@ -598,7 +650,10 @@ public final class StringUtils {
      * @param str    待追加字符串
      * @return 指定数量字符串
      */
-    public static String forString(final int number, final String str) {
+    public static String forString(
+            final int number,
+            final String str
+    ) {
         StringBuilder builder = new StringBuilder();
         if (number > 0) {
             for (int i = 0; i < number; i++) {
@@ -614,7 +669,10 @@ public final class StringUtils {
      * @param values 待追加值
      * @return 追加后的值
      */
-    public static String forJoint(final Object joint, final Object... values) {
+    public static String forJoint(
+            final Object joint,
+            final Object... values
+    ) {
         if (values != null) {
             int length = values.length;
             if (length != 0) {
@@ -658,7 +716,10 @@ public final class StringUtils {
      * @param defaultStr 默认字符串
      * @return 校验后的字符串
      */
-    public static String getString(final String str, final String defaultStr) {
+    public static String getString(
+            final String str,
+            final String defaultStr
+    ) {
         return str != null ? str : defaultStr;
     }
 
@@ -677,7 +738,10 @@ public final class StringUtils {
      * @param defaultStr 默认字符串
      * @return 校验后的字符串
      */
-    public static String getString(final Object object, final String defaultStr) {
+    public static String getString(
+            final Object object,
+            final String defaultStr
+    ) {
         return object != null ? object.toString() : defaultStr;
     }
 
@@ -696,7 +760,10 @@ public final class StringUtils {
      * @param str        待校验字符串
      * @return 如果待校验字符串为 null, 则返回 defaultStr, 如果不为 null, 则返回该字符串
      */
-    public static String checkValue(final String defaultStr, final String str) {
+    public static String checkValue(
+            final String defaultStr,
+            final String str
+    ) {
         return isEmpty(str) ? defaultStr : str;
     }
 
@@ -707,7 +774,11 @@ public final class StringUtils {
      * @param value2     第二个待校验字符串
      * @return 两个待校验字符串中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
-    public static String checkValue(final String defaultStr, final String value1, final String value2) {
+    public static String checkValue(
+            final String defaultStr,
+            final String value1,
+            final String value2
+    ) {
         if (isEmpty(value1)) {
             if (isEmpty(value2)) {
                 return defaultStr;
@@ -725,7 +796,10 @@ public final class StringUtils {
      * @param strs       待校验字符串数组
      * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
-    public static String checkValues(final String defaultStr, final String... strs) {
+    public static String checkValues(
+            final String defaultStr,
+            final String... strs
+    ) {
         if (strs != null && strs.length != 0) {
             for (int i = 0, len = strs.length; i < len; i++) {
                 String val = strs[i];
@@ -743,7 +817,10 @@ public final class StringUtils {
      * @param strs       待校验字符串数组
      * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
-    public static String checkValuesSpace(final String defaultStr, final String... strs) {
+    public static String checkValuesSpace(
+            final String defaultStr,
+            final String... strs
+    ) {
         if (strs != null && strs.length != 0) {
             for (int i = 0, len = strs.length; i < len; i++) {
                 // 删除前后空格处理后, 进行返回
@@ -766,7 +843,10 @@ public final class StringUtils {
      * @param args   格式化参数
      * @return 格式化后的字符串
      */
-    public static String getFormatString(final String format, final Object... args) {
+    public static String getFormatString(
+            final String format,
+            final Object... args
+    ) {
         if (format == null) return null;
         try {
             if (args != null && args.length != 0) {
@@ -847,7 +927,10 @@ public final class StringUtils {
      * @param args  追加数据
      * @return 拼接后的字符串
      */
-    public static String concatSpiltWith(final String split, final Object... args) {
+    public static String concatSpiltWith(
+            final String split,
+            final Object... args
+    ) {
         if (args == null) return null;
         StringBuilder builder = new StringBuilder();
         if (isEmpty(split)) {
@@ -868,7 +951,10 @@ public final class StringUtils {
      * @param args  追加数据
      * @return 拼接后的字符串
      */
-    public static String concatSpiltWithIgnoreLast(final String split, final Object... args) {
+    public static String concatSpiltWithIgnoreLast(
+            final String split,
+            final Object... args
+    ) {
         if (args == null) return null;
         StringBuilder builder = new StringBuilder();
         int           len     = args.length;
@@ -894,7 +980,11 @@ public final class StringUtils {
      * @param args    拼接数据源
      * @return {@link StringBuilder}
      */
-    public static StringBuilder appends(final StringBuilder builder, final String split, final Object... args) {
+    public static StringBuilder appends(
+            final StringBuilder builder,
+            final String split,
+            final Object... args
+    ) {
         if (builder != null && args != null) {
             if (isEmpty(split)) {
                 for (int i = 0, len = args.length; i < len; i++) {
@@ -916,7 +1006,11 @@ public final class StringUtils {
      * @param args    拼接数据源
      * @return {@link StringBuilder}
      */
-    public static StringBuilder appendsIgnoreLast(final StringBuilder builder, final String split, final Object... args) {
+    public static StringBuilder appendsIgnoreLast(
+            final StringBuilder builder,
+            final String split,
+            final Object... args
+    ) {
         if (builder != null && args != null) {
             int len = args.length;
             if (len > 0) {
@@ -972,7 +1066,10 @@ public final class StringUtils {
      * @param enc 编码格式
      * @return 指定编码格式编码后的字符串
      */
-    public static String strEncode(final String str, final String enc) {
+    public static String strEncode(
+            final String str,
+            final String enc
+    ) {
         if (str == null || enc == null) return null;
         try {
             return new String(str.getBytes(), enc);
@@ -999,7 +1096,10 @@ public final class StringUtils {
      * @param enc 编码格式
      * @return 指定编码格式 URL 编码后的字符串
      */
-    public static String urlEncode(final String str, final String enc) {
+    public static String urlEncode(
+            final String str,
+            final String enc
+    ) {
         if (str == null || enc == null) return null;
         try {
             return URLEncoder.encode(str, enc);
@@ -1026,7 +1126,10 @@ public final class StringUtils {
      * @param enc 解码格式
      * @return 指定编码格式 URL 解码后的字符串
      */
-    public static String urlDecode(final String str, final String enc) {
+    public static String urlDecode(
+            final String str,
+            final String enc
+    ) {
         if (str == null || enc == null) return null;
         try {
             return URLDecoder.decode(str, enc);
@@ -1313,7 +1416,10 @@ public final class StringUtils {
      * @param symbol 转换符号
      * @return 处理后的字符串
      */
-    public static String convertHideMobile(final String phone, final String symbol) {
+    public static String convertHideMobile(
+            final String phone,
+            final String symbol
+    ) {
         return convertSymbolHide(3, phone, symbol);
     }
 
@@ -1324,7 +1430,11 @@ public final class StringUtils {
      * @param symbol 转换符号
      * @return 处理后的字符串
      */
-    public static String convertSymbolHide(final int start, final String str, final String symbol) {
+    public static String convertSymbolHide(
+            final int start,
+            final String str,
+            final String symbol
+    ) {
         if (!isEmpty(str)) {
             if (start <= 0) {
                 return str;
@@ -1360,7 +1470,11 @@ public final class StringUtils {
      * @param symbol    转换符号
      * @return 处理后的字符串
      */
-    public static String subEllipsize(final int maxLength, final String str, final String symbol) {
+    public static String subEllipsize(
+            final int maxLength,
+            final String str,
+            final String symbol
+    ) {
         if (maxLength >= 1) {
             // 获取内容长度
             int strLength = length(str);
@@ -1383,7 +1497,12 @@ public final class StringUtils {
      * @param symbol       转换符号
      * @return 处理后的字符串
      */
-    public static String subSymbolHide(final int start, final int symbolNumber, final String str, final String symbol) {
+    public static String subSymbolHide(
+            final int start,
+            final int symbolNumber,
+            final String str,
+            final String symbol
+    ) {
         if (!isEmpty(str)) {
             if (start <= 0 || symbolNumber <= 0) {
                 return str;
@@ -1422,7 +1541,12 @@ public final class StringUtils {
      * @param symbol            转换符号
      * @return 处理后的字符串
      */
-    public static String subSetSymbol(final String str, final int frontRetainLength, final int rearRetainLength, final String symbol) {
+    public static String subSetSymbol(
+            final String str,
+            final int frontRetainLength,
+            final int rearRetainLength,
+            final String symbol
+    ) {
         if (str != null) {
             try {
                 // 截取前面需保留的内容
@@ -1456,7 +1580,10 @@ public final class StringUtils {
      * @param endIndex 结束裁剪的位置
      * @return 裁剪后的字符串
      */
-    public static String substring(final String str, final int endIndex) {
+    public static String substring(
+            final String str,
+            final int endIndex
+    ) {
         return substring(str, 0, endIndex, true);
     }
 
@@ -1467,7 +1594,11 @@ public final class StringUtils {
      * @param isReturn 开始位置超过限制是否返回内容
      * @return 裁剪后的字符串
      */
-    public static String substring(final String str, final int endIndex, final boolean isReturn) {
+    public static String substring(
+            final String str,
+            final int endIndex,
+            final boolean isReturn
+    ) {
         return substring(str, 0, endIndex, isReturn);
     }
 
@@ -1479,7 +1610,12 @@ public final class StringUtils {
      * @param isReturn   开始位置超过限制是否返回内容
      * @return 裁剪后的字符串
      */
-    public static String substring(final String str, final int beginIndex, final int endIndex, final boolean isReturn) {
+    public static String substring(
+            final String str,
+            final int beginIndex,
+            final int endIndex,
+            final boolean isReturn
+    ) {
         if (!isEmpty(str) && beginIndex >= 0 && endIndex >= 0 && endIndex >= beginIndex) {
             // 获取数据长度
             int len = length(str);
@@ -1502,7 +1638,10 @@ public final class StringUtils {
      * @param suffix 替换符号字符串
      * @return 处理后的字符串
      */
-    public static String replaceSEWith(final String str, final String suffix) {
+    public static String replaceSEWith(
+            final String str,
+            final String suffix
+    ) {
         return replaceSEWith(str, suffix, "");
     }
 
@@ -1514,7 +1653,11 @@ public final class StringUtils {
      * @param replace 替换的内容
      * @return 处理后的字符串
      */
-    public static String replaceSEWith(final String str, final String suffix, final String replace) {
+    public static String replaceSEWith(
+            final String str,
+            final String suffix,
+            final String replace
+    ) {
         try {
             if (isEmpty(str) || isEmpty(suffix) || replace == null || suffix.equals(replace))
                 return str;
@@ -1553,7 +1696,10 @@ public final class StringUtils {
      * @param prefix 开头匹配字符串
      * @return 处理后的字符串
      */
-    public static String replaceStartsWith(final String str, final String prefix) {
+    public static String replaceStartsWith(
+            final String str,
+            final String prefix
+    ) {
         return replaceStartsWith(str, prefix, "");
     }
 
@@ -1564,7 +1710,11 @@ public final class StringUtils {
      * @param startAppend 开头追加的内容
      * @return 处理后的字符串
      */
-    public static String replaceStartsWith(final String str, final String prefix, final String startAppend) {
+    public static String replaceStartsWith(
+            final String str,
+            final String prefix,
+            final String startAppend
+    ) {
         if (!isEmpty(str) && !isEmpty(prefix)) {
             try {
                 if (str.startsWith(prefix)) {
@@ -1583,7 +1733,10 @@ public final class StringUtils {
      * @param suffix 结尾匹配字符串
      * @return 处理后的字符串
      */
-    public static String replaceEndsWith(final String str, final String suffix) {
+    public static String replaceEndsWith(
+            final String str,
+            final String suffix
+    ) {
         return replaceEndsWith(str, suffix, "");
     }
 
@@ -1594,7 +1747,11 @@ public final class StringUtils {
      * @param replace 替换的内容
      * @return 处理后的字符串
      */
-    public static String replaceEndsWith(final String str, final String suffix, final String replace) {
+    public static String replaceEndsWith(
+            final String str,
+            final String suffix,
+            final String replace
+    ) {
         if (!isEmpty(str) && !isEmpty(suffix)) {
             try {
                 if (str.endsWith(suffix)) {
@@ -1616,7 +1773,10 @@ public final class StringUtils {
      * @param suffix 匹配判断字符串
      * @return 处理后的字符串
      */
-    public static String clearSEWiths(final String str, final String suffix) {
+    public static String clearSEWiths(
+            final String str,
+            final String suffix
+    ) {
         if (isEmpty(str) || isEmpty(suffix)) return str;
         try {
             // 获取编辑内容长度
@@ -1652,7 +1812,10 @@ public final class StringUtils {
      * @param suffix 匹配判断字符串
      * @return 处理后的字符串
      */
-    public static String clearStartsWith(final String str, final String suffix) {
+    public static String clearStartsWith(
+            final String str,
+            final String suffix
+    ) {
         if (isEmpty(str) || isEmpty(suffix)) return str;
         try {
             // 获取编辑内容长度
@@ -1677,7 +1840,10 @@ public final class StringUtils {
      * @param suffix 匹配判断字符串
      * @return 处理后的字符串
      */
-    public static String clearEndsWith(final String str, final String suffix) {
+    public static String clearEndsWith(
+            final String str,
+            final String suffix
+    ) {
         if (isEmpty(str) || isEmpty(suffix)) return str;
         try {
             // 获取编辑内容长度
@@ -1711,7 +1877,11 @@ public final class StringUtils {
      * @param replace 替换的内容
      * @return 处理后的字符串
      */
-    public static String replaceAll(final String str, final String suffix, final String replace) {
+    public static String replaceAll(
+            final String str,
+            final String suffix,
+            final String replace
+    ) {
         // 如果替换的内容或者判断的字符串为 null, 则直接跳过
         if (!isEmpty(str) && !isEmpty(suffix) && replace != null && !suffix.equals(replace)) {
             try {
@@ -1730,7 +1900,11 @@ public final class StringUtils {
      * @param replace 替换的内容
      * @return 处理后的字符串, 替换失败则返回 null
      */
-    public static String replaceAllToNull(final String str, final String suffix, final String replace) {
+    public static String replaceAllToNull(
+            final String str,
+            final String suffix,
+            final String replace
+    ) {
         // 如果替换的内容或者判断的字符串为 null, 则直接跳过
         if (!isEmpty(str) && !isEmpty(suffix) && replace != null && !suffix.equals(replace)) {
             try {
@@ -1749,7 +1923,11 @@ public final class StringUtils {
      * @param replaceArys 准备替换的字符串数组
      * @return 处理后的字符串
      */
-    public static String replaceAlls(final String str, final String[] suffixArys, final String[] replaceArys) {
+    public static String replaceAlls(
+            final String str,
+            final String[] suffixArys,
+            final String[] replaceArys
+    ) {
         // 防止数据为 null
         if (str != null && suffixArys != null && replaceArys != null) {
             String tempString = str;
@@ -1776,7 +1954,10 @@ public final class StringUtils {
      * @param regex 正则表达式
      * @return 拆分后的数组
      */
-    public static String[] split(final String str, final String regex) {
+    public static String[] split(
+            final String str,
+            final String regex
+    ) {
         if (!StringUtils.isEmpty(str) && !StringUtils.isEmpty(regex)) {
             return str.split(regex);
         }
@@ -1790,7 +1971,11 @@ public final class StringUtils {
      * @param index 索引
      * @return 拆分后的数组
      */
-    public static String split(final String str, final String regex, final int index) {
+    public static String split(
+            final String str,
+            final String regex,
+            final int index
+    ) {
         return split(str, regex, index, null);
     }
 
@@ -1802,8 +1987,12 @@ public final class StringUtils {
      * @param defaultStr 默认字符串
      * @return 拆分后的数组
      */
-    public static String split(final String str, final String regex,
-                               final int index, final String defaultStr) {
+    public static String split(
+            final String str,
+            final String regex,
+            final int index,
+            final String defaultStr
+    ) {
         if (index >= 0) {
             String[] arrays = split(str, regex);
             if (arrays != null && arrays.length > index) {

@@ -84,7 +84,10 @@ public interface IAdapterData<V> {
      * @param count    总数
      * @return {@code true} yes, {@code false} no
      */
-    boolean isLastItem(int position, int count);
+    boolean isLastItem(
+            int position,
+            int count
+    );
 
     // =
 
@@ -114,7 +117,10 @@ public interface IAdapterData<V> {
      * @param position 索引
      * @param value    Value
      */
-    void addData(int position, V value);
+    void addData(
+            int position,
+            V value
+    );
 
     /**
      * 添加数据
@@ -127,7 +133,10 @@ public interface IAdapterData<V> {
      * @param position   索引
      * @param collection {@link Collection}
      */
-    void addAllData(int position, Collection<V> collection);
+    void addAllData(
+            int position,
+            Collection<V> collection
+    );
 
     // =
 
@@ -164,5 +173,8 @@ public interface IAdapterData<V> {
      * @param lists  {@link List}
      * @param notify 是否通知适配器
      */
-    void setDataList(List<V> lists, boolean notify);
+    void setDataList(
+            List<V> lists,
+            boolean notify
+    );
 }

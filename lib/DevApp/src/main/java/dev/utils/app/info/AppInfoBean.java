@@ -69,7 +69,10 @@ public class AppInfoBean {
      * @param packageInfo    {@link PackageInfo}
      * @param packageManager {@link PackageManager}
      */
-    protected AppInfoBean(final PackageInfo packageInfo, final PackageManager packageManager) {
+    protected AppInfoBean(
+            final PackageInfo packageInfo,
+            final PackageManager packageManager
+    ) {
         // APP 包名
         appPackName = packageInfo.applicationInfo.packageName;
         // APP 应用名

@@ -34,7 +34,10 @@ class BaseRefreshView : LinearLayout {
         init()
     }
 
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+    constructor(
+        context: Context,
+        attrs: AttributeSet?
+    ) : super(context, attrs) {
         init()
     }
 
@@ -285,7 +288,10 @@ class BaseRefreshView : LinearLayout {
      * @param index  index
      * @return [DevBaseRefreshAssist]
      */
-    fun addHeaderView(header: View, index: Int): BaseRefreshView {
+    fun addHeaderView(
+        header: View,
+        index: Int
+    ): BaseRefreshView {
         mAssist.addHeaderView(header, index)
         return this
     }
@@ -335,7 +341,10 @@ class BaseRefreshView : LinearLayout {
      * @param index  index
      * @return [DevBaseRefreshAssist]
      */
-    fun addFooterView(footer: View, index: Int): BaseRefreshView {
+    fun addFooterView(
+        footer: View,
+        index: Int
+    ): BaseRefreshView {
         mAssist.addFooterView(footer, index)
         return this
     }
