@@ -16,7 +16,12 @@ public interface IPreference {
      * @author Ttt
      */
     enum DataType {
-        INTEGER, LONG, BOOLEAN, FLOAT, STRING, STRING_SET
+        INTEGER,
+        LONG,
+        BOOLEAN,
+        FLOAT,
+        STRING,
+        STRING_SET
     }
 
     // =

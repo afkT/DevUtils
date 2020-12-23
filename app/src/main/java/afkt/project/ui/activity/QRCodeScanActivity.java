@@ -473,7 +473,9 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
          * @author Ttt
          */
         private enum State {
-            PREVIEW, SUCCESS, DONE
+            PREVIEW,
+            SUCCESS,
+            DONE
         }
 
         /**
