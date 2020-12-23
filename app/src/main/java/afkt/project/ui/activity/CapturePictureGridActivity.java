@@ -83,7 +83,11 @@ public class CapturePictureGridActivity extends BaseActivity<ActivityCapturePict
             }
 
             @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
+            public View getView(
+                    int position,
+                    View convertView,
+                    ViewGroup parent
+            ) {
                 AdapterBean adapterBean = getItem(position);
                 // 初始化 View 设置 TextView
                 View view = ViewUtils.inflate(CapturePictureGridActivity.this, R.layout.adapter_capture_picture);

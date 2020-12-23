@@ -134,7 +134,10 @@ public final class SnackbarUse {
             }
 
             @Override
-            public void onDismissed(Snackbar transientBottomBar, int event) {
+            public void onDismissed(
+                    Snackbar transientBottomBar,
+                    int event
+            ) {
                 super.onDismissed(transientBottomBar, event);
                 // Snackbar 关闭
             }
@@ -195,7 +198,10 @@ public final class SnackbarUse {
                 .bellow(targetView, 0)
                 .setCallback(new Snackbar.Callback() {
                     @Override
-                    public void onDismissed(Snackbar transientBottomBar, int event) {
+                    public void onDismissed(
+                            Snackbar transientBottomBar,
+                            int event
+                    ) {
                     }
                 }).setAutoCalc(true)
                 .showShort("已收藏该消息!");

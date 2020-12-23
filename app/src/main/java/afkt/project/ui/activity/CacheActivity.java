@@ -41,7 +41,11 @@ public class CacheActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
         binding.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemChildClick(
+                    BaseQuickAdapter adapter,
+                    View view,
+                    int position
+            ) {
                 // 获取字符串
                 String str;
 
@@ -109,7 +113,10 @@ public class CacheActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
             this.time = System.currentTimeMillis();
         }
 
-        public CacheVo(String name, long time) {
+        public CacheVo(
+                String name,
+                long time
+        ) {
             this.name = name;
             this.time = time;
         }

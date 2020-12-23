@@ -96,11 +96,14 @@ public class FilterItem {
     public static List<FilterItem> FILTER_LISTS = new ArrayList<>();
 
     // 滤镜名
-    public final String     filterName;
+    public final String filterName;
     // 滤镜类型
     public final FilterType filterType;
 
-    public FilterItem(String filterName, FilterType filterType) {
+    public FilterItem(
+            String filterName,
+            FilterType filterType
+    ) {
         this.filterName = filterName;
         this.filterType = filterType;
     }

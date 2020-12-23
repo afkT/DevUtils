@@ -45,7 +45,11 @@ public class GPUFilterAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(
+            int position,
+            View convertView,
+            ViewGroup parent
+    ) {
         return createTextView(position);
     }
 

@@ -35,7 +35,10 @@ public class ViewPagerActivity extends BaseActivity<ActivityViewPagerBinding> {
         binding.vidAvpViewpager.setCurrentItem(lists.size() * 100, false);
         binding.vidAvpViewpager.setOnPageChangeListener(new CustomViewPager.OnDirectionListener() {
             @Override
-            public void onSlideDirection(boolean left, boolean right) {
+            public void onSlideDirection(
+                    boolean left,
+                    boolean right
+            ) {
                 if (left && !right) {
                     DevLogger.dTag(TAG, "往左滑 - 从右往左");
                 } else {

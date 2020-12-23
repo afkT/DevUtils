@@ -21,7 +21,10 @@ public class ItemStickyAdapter extends BaseQuickAdapter<ItemStickyBean, BaseView
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, ItemStickyBean item) {
+    protected void convert(
+            BaseViewHolder helper,
+            ItemStickyBean item
+    ) {
         helper.setText(R.id.vid_ais_title_tv, item.title)
                 .setText(R.id.vid_ais_time_tv, item.timeFormat);
     }

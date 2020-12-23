@@ -17,7 +17,10 @@ public class ItemStickyBean extends AdapterBean {
     // 吸附标题
     public String timeTile;
 
-    public ItemStickyBean(String title, long time) {
+    public ItemStickyBean(
+            String title,
+            long time
+    ) {
         super.title = title;
         this.time = time;
 

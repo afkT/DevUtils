@@ -37,11 +37,11 @@ import dev.utils.app.wifi.WifiUtils;
 public class WifiActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     // Wifi 工具类
-    WifiUtils    wifiUtils;
+    WifiUtils wifiUtils;
     // Wifi 热点工具类
     WifiHotUtils wifiHotUtils;
     // 热点名、密码
-    String       wifiHotSSID = "DevWifiAp", wifiHotPwd = "123456789";
+    String wifiHotSSID = "DevWifiAp", wifiHotPwd = "123456789";
     // Android 8.0 开启热点不能多次点击
     boolean isOpenAPING = false;
 
@@ -74,7 +74,11 @@ public class WifiActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
         binding.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemChildClick(
+                    BaseQuickAdapter adapter,
+                    View view,
+                    int position
+            ) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_WIFI_OPEN:
@@ -145,7 +149,11 @@ public class WifiActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
                                     }
 
                                     @Override
-                                    public void onDenied(List<String> grantedList, List<String> deniedList, List<String> notFoundList) {
+                                    public void onDenied(
+                                            List<String> grantedList,
+                                            List<String> deniedList,
+                                            List<String> notFoundList
+                                    ) {
                                         ToastTintUtils.warning("开启热点需要定位权限");
                                     }
                                 }).request(mActivity);
@@ -260,7 +268,10 @@ public class WifiActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
             }
 
             @Override
-            public void onTrigger(int what, Message message) { // Wifi 在连接过程的状态返回
+            public void onTrigger(
+                    int what,
+                    Message message
+            ) { // Wifi 在连接过程的状态返回
                 String ssid = (String) message.obj;
                 // 判断连接状态
                 switch (what) {

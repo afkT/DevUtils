@@ -28,7 +28,10 @@ public final class ArticleMVP {
          * @param succeed     请求是否成功
          * @param articleBean 文章列表
          */
-        void onArticleListResponse(boolean succeed, ArticleBean articleBean);
+        void onArticleListResponse(
+                boolean succeed,
+                ArticleBean articleBean
+        );
 
         /**
          * Retrofit 请求管理
@@ -78,7 +81,10 @@ public final class ArticleMVP {
                                 }
 
                                 @Override
-                                public void onErrorResponse(Throwable throwable, String message) {
+                                public void onErrorResponse(
+                                        Throwable throwable,
+                                        String message
+                                ) {
                                     if (mvpView != null) {
                                         mvpView.onArticleListResponse(false, null);
                                     }

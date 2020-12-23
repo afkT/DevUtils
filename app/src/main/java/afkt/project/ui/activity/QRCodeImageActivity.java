@@ -76,7 +76,11 @@ public class QRCodeImageActivity extends BaseActivity<ActivityQrcodeImageBinding
     // ===========
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(
+            int requestCode,
+            int resultCode,
+            Intent data
+    ) {
         super.onActivityResult(requestCode, resultCode, data);
 
         // 判断是否属于图片选择
@@ -89,7 +93,11 @@ public class QRCodeImageActivity extends BaseActivity<ActivityQrcodeImageBinding
             // 解析图片
             ZXingQRCodeUtils.decodeQRCode(selectBitmap, new ZXingQRCodeUtils.QRScanCallback() {
                 @Override
-                public void onResult(boolean success, Result result, Exception e) {
+                public void onResult(
+                        boolean success,
+                        Result result,
+                        Exception e
+                ) {
                     HandlerUtils.postRunnable(new Runnable() {
                         @Override
                         public void run() {

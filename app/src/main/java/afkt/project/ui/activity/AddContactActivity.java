@@ -83,7 +83,11 @@ public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> 
                              * @param notFoundList 查询不到的权限 ( 包含未注册 )
                              */
                             @Override
-                            public void onDenied(List<String> grantedList, List<String> deniedList, List<String> notFoundList) {
+                            public void onDenied(
+                                    List<String> grantedList,
+                                    List<String> deniedList,
+                                    List<String> notFoundList
+                            ) {
                                 ToastUtils.showShort("请开启联系人写入权限.");
                             }
                         }).request(mActivity);
@@ -146,7 +150,11 @@ public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> 
      * @param end   结尾
      * @param count 创建总数
      */
-    private void createContact(String start, String end, int count) {
+    private void createContact(
+            String start,
+            String end,
+            int count
+    ) {
         ToastTintUtils.normal("创建中...");
         ViewUtils.setVisibility(true, binding.vidAacTipsTv);
         KeyBoardUtils.closeKeyboard();
@@ -179,7 +187,13 @@ public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> 
      * @param interval    间隔值 ( size )
      * @param threadCount 线程数量
      */
-    private void createThread(String start, String end, int first, int interval, int threadCount) {
+    private void createThread(
+            String start,
+            String end,
+            int first,
+            int interval,
+            int threadCount
+    ) {
         DevThreadManager.getInstance(threadCount).execute(new Runnable() {
             @Override
             public void run() {
@@ -219,7 +233,10 @@ public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> 
      * @param name        姓名
      * @param phoneNumber 手机号
      */
-    public void addContact(String name, String phoneNumber) {
+    public void addContact(
+            String name,
+            String phoneNumber
+    ) {
         // 创建一个空的 ContentValues
         ContentValues values = new ContentValues();
 

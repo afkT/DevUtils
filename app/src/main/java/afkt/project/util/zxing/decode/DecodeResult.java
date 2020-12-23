@@ -15,5 +15,8 @@ public interface DecodeResult {
      * @param result 识别数据 {@link Result}
      * @param bundle {@link Bundle}
      */
-    void handleDecode(Result result, Bundle bundle);
+    void handleDecode(
+            Result result,
+            Bundle bundle
+    );
 }

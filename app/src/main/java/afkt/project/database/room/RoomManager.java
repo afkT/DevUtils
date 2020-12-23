@@ -45,7 +45,10 @@ public final class RoomManager {
      * @param clazz  {@link AbsRoomDatabase} 实现类
      * @return {@link AbsRoomDatabase}
      */
-    public static <T extends AbsRoomDatabase> T database(final String dbName, final Class clazz) {
+    public static <T extends AbsRoomDatabase> T database(
+            final String dbName,
+            final Class clazz
+    ) {
         return database(dbName, null, clazz);
     }
 
@@ -56,8 +59,11 @@ public final class RoomManager {
      * @param clazz    {@link AbsRoomDatabase} 实现类
      * @return {@link AbsRoomDatabase}
      */
-    public static <T extends AbsRoomDatabase> T database(final String dbName, final String password,
-                                                         final Class clazz) {
+    public static <T extends AbsRoomDatabase> T database(
+            final String dbName,
+            final String password,
+            final Class clazz
+    ) {
         if (TextUtils.isEmpty(dbName)) return null;
 
         // 获取数据库名
@@ -91,12 +97,20 @@ public final class RoomManager {
     private static final AbsRoomDatabase.Create CREATE = new AbsRoomDatabase.Create() {
 
         @Override
-        public String getDatabaseName(String dbName, String password, Class clazz) {
+        public String getDatabaseName(
+                String dbName,
+                String password,
+                Class clazz
+        ) {
             return AbsRoomDatabase.createDatabaseName(dbName, StringUtils.isNotEmpty(password));
         }
 
         @Override
-        public AbsRoomDatabase create(String dbName, String password, Class clazz) {
+        public AbsRoomDatabase create(
+                String dbName,
+                String password,
+                Class clazz
+        ) {
             if (clazz == NoteDatabase.class) {
                 return NoteDatabase.database(dbName, password);
             }

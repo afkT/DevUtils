@@ -53,7 +53,11 @@ public class NotificationServiceActivity extends BaseActivity<BaseViewRecyclervi
         binding.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemChildClick(
+                    BaseQuickAdapter adapter,
+                    View view,
+                    int position
+            ) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_NOTIFICATION_SERVICE_CHECK:
@@ -99,7 +103,12 @@ public class NotificationServiceActivity extends BaseActivity<BaseViewRecyclervi
             }
 
             @Override
-            public int onStartCommand(NotificationService service, Intent intent, int flags, int startId) { // 触发服务指令
+            public int onStartCommand(
+                    NotificationService service,
+                    Intent intent,
+                    int flags,
+                    int startId
+            ) { // 触发服务指令
                 StringBuilder builder = new StringBuilder();
                 builder.append("onServiceStartCommand");
                 builder.append("\nintent: ").append(intent);

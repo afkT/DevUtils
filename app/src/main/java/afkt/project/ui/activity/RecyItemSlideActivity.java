@@ -72,7 +72,10 @@ public class RecyItemSlideActivity extends BaseActivity<BaseViewRecyclerviewBind
              * wipeFlags : 与列表滚动方向垂直的动作标识 ( 如竖直列表就是左和右, 水平列表就是上和下 )
              */
             @Override
-            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+            public int getMovementFlags(
+                    @NonNull RecyclerView recyclerView,
+                    @NonNull RecyclerView.ViewHolder viewHolder
+            ) {
                 // 如果你不想上下拖动, 可以将 dragFlags = 0
                 int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
 
@@ -88,7 +91,11 @@ public class RecyItemSlideActivity extends BaseActivity<BaseViewRecyclerviewBind
              * 是否开启 item 长按拖拽功能
              */
             @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            public boolean onMove(
+                    @NonNull RecyclerView recyclerView,
+                    @NonNull RecyclerView.ViewHolder viewHolder,
+                    @NonNull RecyclerView.ViewHolder target
+            ) {
                 int fromPosition = viewHolder.getAdapterPosition();
                 int toPosition   = target.getAdapterPosition();
                 Collections.swap(itemSlideAdapter.getData(), fromPosition, toPosition);
@@ -102,7 +109,10 @@ public class RecyItemSlideActivity extends BaseActivity<BaseViewRecyclerviewBind
              * @param direction 滑动的方向
              */
             @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            public void onSwiped(
+                    @NonNull RecyclerView.ViewHolder viewHolder,
+                    int direction
+            ) {
                 int position = viewHolder.getAdapterPosition();
                 if (direction == ItemTouchHelper.LEFT || direction == ItemTouchHelper.RIGHT) {
                     itemSlideAdapter.getData().remove(position);

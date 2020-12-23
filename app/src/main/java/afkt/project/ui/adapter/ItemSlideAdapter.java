@@ -25,7 +25,10 @@ public class ItemSlideAdapter extends BaseQuickAdapter<CommodityEvaluateBean, Ba
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, CommodityEvaluateBean item) {
+    protected void convert(
+            BaseViewHolder helper,
+            CommodityEvaluateBean item
+    ) {
         // 当前索引
         int position = helper.getLayoutPosition();
         // 判断是否显示边距

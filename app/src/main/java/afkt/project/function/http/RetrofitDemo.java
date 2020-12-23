@@ -30,7 +30,10 @@ public class RetrofitDemo {
                     }
 
                     @Override
-                    public void onErrorResponse(Throwable throwable, String message) {
+                    public void onErrorResponse(
+                            Throwable throwable,
+                            String message
+                    ) {
                     }
                 });
         RxJavaManager.getInstance().add(TAG, articleList);

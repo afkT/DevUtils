@@ -19,7 +19,10 @@ public class ArticleRepository {
                     }
 
                     @Override
-                    public void onErrorResponse(Throwable throwable, String message) {
+                    public void onErrorResponse(
+                            Throwable throwable,
+                            String message
+                    ) {
                         article.postValue(null);
                     }
                 });

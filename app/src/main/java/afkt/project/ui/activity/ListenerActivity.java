@@ -75,7 +75,11 @@ public class ListenerActivity extends BaseActivity<ActivityCommonTipsBinding> {
         binding.vidBaseRecy.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemChildClick(
+                    BaseQuickAdapter adapter,
+                    View view,
+                    int position
+            ) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_WIFI_LISTENER:
@@ -116,7 +120,11 @@ public class ListenerActivity extends BaseActivity<ActivityCommonTipsBinding> {
         });
         buttonAdapter.setOnItemChildLongClickListener(new OnItemChildLongClickListener() {
             @Override
-            public boolean onItemChildLongClick(BaseQuickAdapter adapter, View view, int position) {
+            public boolean onItemChildLongClick(
+                    BaseQuickAdapter adapter,
+                    View view,
+                    int position
+            ) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_WIFI_LISTENER:
@@ -237,7 +245,10 @@ public class ListenerActivity extends BaseActivity<ActivityCommonTipsBinding> {
                 }
 
                 @Override
-                public void onTrigger(int what, Message message) { // Wifi 在连接过程的状态返回
+                public void onTrigger(
+                        int what,
+                        Message message
+                ) { // Wifi 在连接过程的状态返回
                     String ssid = (String) message.obj;
                     // 判断连接状态
                     switch (what) {
@@ -317,7 +328,10 @@ public class ListenerActivity extends BaseActivity<ActivityCommonTipsBinding> {
             // 设置监听事件
             PhoneReceiver.setPhoneListener(new PhoneReceiver.PhoneListener() {
                 @Override
-                public void onPhoneStateChanged(PhoneReceiver.CallState callState, String number) {
+                public void onPhoneStateChanged(
+                        PhoneReceiver.CallState callState,
+                        String number
+                ) {
                     /**
                      * 分别是:
                      * 播出电话
@@ -366,7 +380,11 @@ public class ListenerActivity extends BaseActivity<ActivityCommonTipsBinding> {
             // 设置监听事件
             SmsReceiver.setSmsListener(new SmsReceiver.SmsListener() {
                 @Override
-                public void onMessage(String msg, String fromAddress, String serviceCenterAddress) {
+                public void onMessage(
+                        String msg,
+                        String fromAddress,
+                        String serviceCenterAddress
+                ) {
                     DevLogger.dTag(TAG, "onMessage\nmsg: %s\nfromAddress: %s\nserviceCenterAddress: %s", msg, fromAddress, serviceCenterAddress);
                 }
 
@@ -615,7 +633,10 @@ public class ListenerActivity extends BaseActivity<ActivityCommonTipsBinding> {
                 }
 
                 @Override
-                public void onPowerConnected(int level, boolean isConnected) {
+                public void onPowerConnected(
+                        int level,
+                        boolean isConnected
+                ) {
                     DevLogger.dTag(TAG, "充电状态改变通知 level: %s, 是否充电中: %s", level, isConnected);
                 }
 

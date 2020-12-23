@@ -55,7 +55,10 @@ public class WebViewActivity extends BaseActivity<ActivityWebviewBinding> {
         // 设置辅助 WebView 处理 Javascript 对话框、标题等对象
         mWebViewAssist.setWebChromeClient(new WebChromeClient() {
             @Override
-            public void onProgressChanged(WebView view, int position) {
+            public void onProgressChanged(
+                    WebView view,
+                    int position
+            ) {
                 // 加载进度监听
                 if (position == 100) { // 加载完成
                     DevLogger.dTag(TAG, "加载完成");
@@ -66,14 +69,21 @@ public class WebViewActivity extends BaseActivity<ActivityWebviewBinding> {
         // 设置处理各种通知和请求事件对象
         mWebViewAssist.setWebViewClient(new WebViewClient() {
             @Override
-            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+            public void onReceivedSslError(
+                    WebView view,
+                    SslErrorHandler handler,
+                    SslError error
+            ) {
                 handler.proceed(); // 接受所有网站的证书
                 //handler.cancel(); // Android 默认的处理方式
                 //handleMessage(Message msg); // 进行其他处理
             }
 
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            public boolean shouldOverrideUrlLoading(
+                    WebView view,
+                    String url
+            ) {
                 // 重定向 URL 请求, 返回 true 表示拦截此 url, 返回 false 表示不拦截此 url
                 if (url.startsWith("weixin://")) {
                     url = url.replace("weixin://", "http://");
@@ -101,7 +111,10 @@ public class WebViewActivity extends BaseActivity<ActivityWebviewBinding> {
         WebViewAssist.Builder.OnApplyListener applyListener = builder.getApplyListener();
         builder.setOnApplyListener(new WebViewAssist.Builder.OnApplyListener() {
             @Override
-            public void onApply(WebViewAssist webViewAssist, WebViewAssist.Builder builder) {
+            public void onApply(
+                    WebViewAssist webViewAssist,
+                    WebViewAssist.Builder builder
+            ) {
                 if (applyListener != null) {
                     applyListener.onApply(webViewAssist, builder);
                 }
@@ -118,7 +131,10 @@ public class WebViewActivity extends BaseActivity<ActivityWebviewBinding> {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown(
+            int keyCode,
+            KeyEvent event
+    ) {
         if (mWebViewAssist.handlerKeyDown(keyCode, event)) return true;
         return super.onKeyDown(keyCode, event);
     }

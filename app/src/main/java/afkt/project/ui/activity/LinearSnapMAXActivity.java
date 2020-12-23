@@ -76,12 +76,19 @@ public class LinearSnapMAXActivity extends BaseActivity<BaseViewRecyclerviewBind
 
         binding.vidBvrRecy.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+            public void onScrolled(
+                    @NonNull RecyclerView recyclerView,
+                    int dx,
+                    int dy
+            ) {
                 super.onScrolled(recyclerView, dx, dy);
             }
 
             @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+            public void onScrollStateChanged(
+                    @NonNull RecyclerView recyclerView,
+                    int newState
+            ) {
                 super.onScrollStateChanged(recyclerView, newState);
 
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {

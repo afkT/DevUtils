@@ -30,7 +30,10 @@ public class LinearSnapMAXAdapter extends RecyclerView.Adapter {
     List<ItemBean> data;
     RequestOptions roundOptions;
 
-    public LinearSnapMAXAdapter(Context context, @Nullable List<ItemBean> data) {
+    public LinearSnapMAXAdapter(
+            Context context,
+            @Nullable List<ItemBean> data
+    ) {
         this.context = context;
         this.data = data;
         this.roundOptions = ProjectUtils.getRoundOptions10();
@@ -43,14 +46,20 @@ public class LinearSnapMAXAdapter extends RecyclerView.Adapter {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(
+            @NonNull ViewGroup parent,
+            int viewType
+    ) {
         return new ItemViewHolder(
                 ViewUtils.inflate(context, R.layout.adapter_linear_snap, parent, false)
         );
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(
+            @NonNull RecyclerView.ViewHolder holder,
+            int position
+    ) {
         int size = data.size();
         if (size != 0) {
             int      index    = position % size;

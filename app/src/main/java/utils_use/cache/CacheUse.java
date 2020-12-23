@@ -71,7 +71,10 @@ public final class CacheUse {
             this.time = System.currentTimeMillis();
         }
 
-        public CacheVo(String name, long time) {
+        public CacheVo(
+                String name,
+                long time
+        ) {
             this.name = name;
             this.time = time;
         }

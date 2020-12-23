@@ -117,7 +117,12 @@ public class ScanShapeActivity extends BaseActivity<ActivityScanShapeBinding> {
         }
 
         @Override
-        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+        public void surfaceChanged(
+                SurfaceHolder holder,
+                int format,
+                int width,
+                int height
+        ) {
         }
 
         @Override
@@ -172,7 +177,11 @@ public class ScanShapeActivity extends BaseActivity<ActivityScanShapeBinding> {
                 }
 
                 @Override
-                public void onDenied(List<String> grantedList, List<String> deniedList, List<String> notFoundList) {
+                public void onDenied(
+                        List<String> grantedList,
+                        List<String> deniedList,
+                        List<String> notFoundList
+                ) {
                     // 再次申请权限
                     checkPermission();
                 }

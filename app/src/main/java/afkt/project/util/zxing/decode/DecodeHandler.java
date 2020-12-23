@@ -42,7 +42,10 @@ public class DecodeHandler extends Handler {
      * @param decodeConfig 解码配置
      * @param hints        解码参数
      */
-    public DecodeHandler(DecodeConfig decodeConfig, Map<DecodeHintType, Object> hints) {
+    public DecodeHandler(
+            DecodeConfig decodeConfig,
+            Map<DecodeHintType, Object> hints
+    ) {
         this.mDecodeConfig = decodeConfig;
         this.mMultiFormatReader = new MultiFormatReader();
         this.mMultiFormatReader.setHints(hints);
@@ -67,7 +70,10 @@ public class DecodeHandler extends Handler {
      * @param source {@link PlanarYUVLuminanceSource}
      * @param bundle 存储数据 {@link Bundle}
      */
-    private static void bundleThumbnail(PlanarYUVLuminanceSource source, Bundle bundle) {
+    private static void bundleThumbnail(
+            PlanarYUVLuminanceSource source,
+            Bundle bundle
+    ) {
         int[]                 pixels = source.renderThumbnail();
         int                   width  = source.getThumbnailWidth();
         int                   height = source.getThumbnailHeight();
@@ -87,7 +93,11 @@ public class DecodeHandler extends Handler {
      * @param width  The width of the preview frame.
      * @param height The height of the preview frame.
      */
-    private void decode(byte[] data, int width, int height) {
+    private void decode(
+            byte[] data,
+            int width,
+            int height
+    ) {
         if (mDecodeConfig == null || mDecodeConfig.getHandler() == null) {
             return;
         }
@@ -148,7 +158,11 @@ public class DecodeHandler extends Handler {
      * @param height The height of the image.
      * @return A PlanarYUVLuminanceSource instance.
      */
-    public PlanarYUVLuminanceSource buildLuminanceSource(byte[] data, int width, int height) {
+    public PlanarYUVLuminanceSource buildLuminanceSource(
+            byte[] data,
+            int width,
+            int height
+    ) {
         if (mDecodeConfig == null) {
             return null;
         }

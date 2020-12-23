@@ -30,7 +30,10 @@ public class GreenDaoAdapter extends BaseQuickAdapter<Note, BaseViewHolder> {
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, Note item) {
+    protected void convert(
+            BaseViewHolder helper,
+            Note item
+    ) {
         ViewHelper.get()
                 .setText(helper.getView(R.id.vid_adb_title_tv), item.getText())
                 .setText(helper.getView(R.id.vid_adb_content_tv), item.getComment())
@@ -51,7 +54,10 @@ public class GreenDaoAdapter extends BaseQuickAdapter<Note, BaseViewHolder> {
         }
 
         @Override
-        protected void convert(@NotNull BaseViewHolder helper, NotePicture item) {
+        protected void convert(
+                @NotNull BaseViewHolder helper,
+                NotePicture item
+        ) {
             GlideUtils.with().displayImage(item.getPicture(),
                     helper.getView(R.id.vid_adbi_igview));
         }

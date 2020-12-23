@@ -41,7 +41,11 @@ public class DevEnvironmentLibActivity extends BaseActivity<BaseViewRecyclerview
         binding.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemChildClick(
+                    BaseQuickAdapter adapter,
+                    View view,
+                    int position
+            ) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 boolean     result      = false;
                 switch (buttonValue.type) {
@@ -71,7 +75,11 @@ public class DevEnvironmentLibActivity extends BaseActivity<BaseViewRecyclerview
         // 环境改变通知
         DevEnvironment.addOnEnvironmentChangeListener(new OnEnvironmentChangeListener() {
             @Override
-            public void onEnvironmentChanged(ModuleBean module, EnvironmentBean oldEnvironment, EnvironmentBean newEnvironment) {
+            public void onEnvironmentChanged(
+                    ModuleBean module,
+                    EnvironmentBean oldEnvironment,
+                    EnvironmentBean newEnvironment
+            ) {
                 // 可以进行重新请求等操作
 
                 StringBuilder builder = new StringBuilder();

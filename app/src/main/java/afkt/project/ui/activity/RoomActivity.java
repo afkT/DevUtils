@@ -82,7 +82,10 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
              * wipeFlags : 与列表滚动方向垂直的动作标识 ( 如竖直列表就是左和右, 水平列表就是上和下 )
              */
             @Override
-            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+            public int getMovementFlags(
+                    @NonNull RecyclerView recyclerView,
+                    @NonNull RecyclerView.ViewHolder viewHolder
+            ) {
                 // 如果你不想上下拖动, 可以将 dragFlags = 0
                 int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
 
@@ -98,7 +101,11 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
              * 是否开启 item 长按拖拽功能
              */
             @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            public boolean onMove(
+                    @NonNull RecyclerView recyclerView,
+                    @NonNull RecyclerView.ViewHolder viewHolder,
+                    @NonNull RecyclerView.ViewHolder target
+            ) {
                 RoomAdapter adapter      = binding.vidAdbRefresh.getAdapter();
                 int         fromPosition = viewHolder.getAdapterPosition();
                 int         toPosition   = target.getAdapterPosition();
@@ -113,7 +120,10 @@ public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
              * @param direction 滑动的方向
              */
             @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            public void onSwiped(
+                    @NonNull RecyclerView.ViewHolder viewHolder,
+                    int direction
+            ) {
                 int position = viewHolder.getAdapterPosition();
                 if (direction == ItemTouchHelper.LEFT || direction == ItemTouchHelper.RIGHT) {
                     RoomAdapter    adapter = binding.vidAdbRefresh.getAdapter();

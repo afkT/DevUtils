@@ -48,7 +48,11 @@ public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding>
         binding.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemChildClick(
+                    BaseQuickAdapter adapter,
+                    View view,
+                    int position
+            ) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_EXTEND_SAVE:
@@ -63,7 +67,11 @@ public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding>
                             }
 
                             @Override
-                            public void onResult(String str, String msg, Boolean value) {
+                            public void onResult(
+                                    String str,
+                                    String msg,
+                                    Boolean value
+                            ) {
                                 showToast(value, "文件保存成功", "文件保存失败");
                             }
                         });
@@ -96,7 +104,11 @@ public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding>
         // 扩展后的回调
         dealResultCallback = new DevExResultCallback<String>() {
             @Override
-            public void onResult(String str, String msg, String value) {
+            public void onResult(
+                    String str,
+                    String msg,
+                    String value
+            ) {
                 super.onResult(str, msg, value);
                 // 因为内部继承扩展可以改变
                 CallParams callParams = (CallParams) getExpandResult();
@@ -109,7 +121,12 @@ public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding>
             }
 
             @Override
-            public void onResult(int type, String str, String msg, String value) {
+            public void onResult(
+                    int type,
+                    String str,
+                    String msg,
+                    String value
+            ) {
                 super.onResult(type, str, msg, value);
                 // 因为内部继承扩展可以改变
                 CallParams callParams = (CallParams) getExpandResult();
@@ -146,11 +163,11 @@ public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding>
      */
     public static class CallParams extends DevExResultCallback.ExpandResult {
         // 用户信息
-        public UserInfo             userInfo;
+        public UserInfo userInfo;
         // 参数
         public Map<Integer, String> hashMap = new HashMap<>();
         // 类型
-        public String               type;
+        public String type;
     }
 
     // ===========
@@ -163,7 +180,11 @@ public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding>
      * @param fileName 文件名
      * @param callback 回调方法
      */
-    private static void saveFile(String path, String fileName, DevResultCallback<Boolean> callback) {
+    private static void saveFile(
+            String path,
+            String fileName,
+            DevResultCallback<Boolean> callback
+    ) {
         try {
             // 保存路径
             File file = new File(path, fileName);

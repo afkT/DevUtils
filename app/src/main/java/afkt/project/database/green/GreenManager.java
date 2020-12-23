@@ -46,7 +46,10 @@ public final class GreenManager {
      * @param clazz  {@link AbsGreenDatabase} 实现类
      * @return {@link AbsGreenDatabase}
      */
-    public static <T extends AbsGreenDatabase> T database(final String dbName, final Class clazz) {
+    public static <T extends AbsGreenDatabase> T database(
+            final String dbName,
+            final Class clazz
+    ) {
         return database(dbName, null, clazz);
     }
 
@@ -57,8 +60,11 @@ public final class GreenManager {
      * @param clazz    {@link AbsGreenDatabase} 实现类
      * @return {@link AbsGreenDatabase}
      */
-    public static <T extends AbsGreenDatabase> T database(final String dbName, final String password,
-                                                          final Class clazz) {
+    public static <T extends AbsGreenDatabase> T database(
+            final String dbName,
+            final String password,
+            final Class clazz
+    ) {
         if (TextUtils.isEmpty(dbName)) return null;
 
         // 获取数据库名
@@ -92,12 +98,20 @@ public final class GreenManager {
     private static final AbsGreenDatabase.Create CREATE = new AbsGreenDatabase.Create() {
 
         @Override
-        public String getDatabaseName(String dbName, String password, Class clazz) {
+        public String getDatabaseName(
+                String dbName,
+                String password,
+                Class clazz
+        ) {
             return AbsGreenDatabase.createDatabaseName(dbName, StringUtils.isNotEmpty(password));
         }
 
         @Override
-        public AbsGreenDatabase create(String dbName, String password, Class clazz) {
+        public AbsGreenDatabase create(
+                String dbName,
+                String password,
+                Class clazz
+        ) {
             if (clazz == NoteDatabase.class) {
                 return NoteDatabase.database(dbName, password);
             } else if (clazz == ImageDatabase.class) {

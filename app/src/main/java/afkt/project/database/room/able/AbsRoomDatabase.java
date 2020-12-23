@@ -20,7 +20,10 @@ public abstract class AbsRoomDatabase extends RoomDatabase {
      * @param encrypted 数据库是否加密
      * @return 数据库名
      */
-    public static final String createDatabaseName(final String dbName, final boolean encrypted) {
+    public static final String createDatabaseName(
+            final String dbName,
+            final boolean encrypted
+    ) {
         if (encrypted) return dbName + "-" + DATABASE_NAME + "-encrypted";
         return dbName + "-" + DATABASE_NAME;
     }
@@ -42,7 +45,11 @@ public abstract class AbsRoomDatabase extends RoomDatabase {
          * @param clazz    {@link AbsRoomDatabase} 实现类
          * @return 数据库名
          */
-        String getDatabaseName(String dbName, String password, Class clazz);
+        String getDatabaseName(
+                String dbName,
+                String password,
+                Class clazz
+        );
 
         /**
          * 创建数据库方法
@@ -51,6 +58,10 @@ public abstract class AbsRoomDatabase extends RoomDatabase {
          * @param clazz    {@link AbsRoomDatabase} 实现类
          * @return {@link AbsRoomDatabase}
          */
-        AbsRoomDatabase create(String dbName, String password, Class clazz);
+        AbsRoomDatabase create(
+                String dbName,
+                String password,
+                Class clazz
+        );
     }
 }

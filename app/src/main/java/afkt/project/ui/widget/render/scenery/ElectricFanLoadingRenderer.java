@@ -158,7 +158,10 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
     }
 
     @Override
-    protected void draw(Canvas canvas, Rect bounds) {
+    protected void draw(
+            Canvas canvas,
+            Rect bounds
+    ) {
         int saveCount = canvas.save();
 
         RectF arcBounds = mTempBounds;
@@ -252,7 +255,11 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
         canvas.restoreToCount(saveCount);
     }
 
-    private Path createProgressPath(float progress, float circleRadius, RectF progressRect) {
+    private Path createProgressPath(
+            float progress,
+            float circleRadius,
+            RectF progressRect
+    ) {
         RectF arcProgressRect  = new RectF(progressRect.left, progressRect.top, progressRect.left + circleRadius * 2, progressRect.bottom);
         RectF rectProgressRect = null;
 
@@ -324,7 +331,10 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
         mLeafHolders.clear();
     }
 
-    protected void setInsets(int width, int height) {
+    protected void setInsets(
+            int width,
+            int height
+    ) {
         final float minEdge = (float) Math.min(width, height);
         float       insetXs;
         if (mCenterRadius <= 0 || minEdge < 0) {
@@ -336,7 +346,10 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
         mStrokeXInset = insetXs;
     }
 
-    private void addLeaf(float progress, RectF leafFlyRect) {
+    private void addLeaf(
+            float progress,
+            RectF leafFlyRect
+    ) {
         if (progress < mNextLeafCreateThreshold) {
             return;
         }
@@ -349,7 +362,11 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
         leafAnimator.start();
     }
 
-    private Animator getAnimator(LeafHolder target, RectF leafFlyRect, float progress) {
+    private Animator getAnimator(
+            LeafHolder target,
+            RectF leafFlyRect,
+            float progress
+    ) {
         ValueAnimator bezierValueAnimator = getBezierValueAnimator(target, leafFlyRect, progress);
 
         AnimatorSet finalSet = new AnimatorSet();
@@ -359,7 +376,11 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
         return finalSet;
     }
 
-    private ValueAnimator getBezierValueAnimator(LeafHolder target, RectF leafFlyRect, float progress) {
+    private ValueAnimator getBezierValueAnimator(
+            LeafHolder target,
+            RectF leafFlyRect,
+            float progress
+    ) {
         BezierEvaluator evaluator = new BezierEvaluator(getPoint1(leafFlyRect), getPoint2(leafFlyRect));
 
         int leafFlyStartY = (int) (mCurrentProgressBounds.bottom - mLeafDrawable.getIntrinsicHeight());
@@ -400,14 +421,21 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
         private PointF point1;
         private PointF point2;
 
-        public BezierEvaluator(PointF point1, PointF point2) {
+        public BezierEvaluator(
+                PointF point1,
+                PointF point2
+        ) {
             this.point1 = point1;
             this.point2 = point2;
         }
 
         //Third-order Bezier curve formula: B(t) = point0 * (1-t)^3 + 3 * point1 * t * (1-t)^2 + 3 * point2 * t^2 * (1-t) + point3 * t^3
         @Override
-        public PointF evaluate(float fraction, PointF point0, PointF point3) {
+        public PointF evaluate(
+                float fraction,
+                PointF point0,
+                PointF point3
+        ) {
 
             float t     = fraction;
             float tLeft = 1.0f - t;

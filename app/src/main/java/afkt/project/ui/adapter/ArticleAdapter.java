@@ -30,7 +30,10 @@ public class ArticleAdapter extends BaseQuickAdapter<ArticleBean.DataBean.DatasB
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, ArticleBean.DataBean.DatasBean item) {
+    protected void convert(
+            BaseViewHolder helper,
+            ArticleBean.DataBean.DatasBean item
+    ) {
         // 当前索引
         int position = helper.getLayoutPosition();
         // 标题

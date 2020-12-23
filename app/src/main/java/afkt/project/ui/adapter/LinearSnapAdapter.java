@@ -29,7 +29,10 @@ public class LinearSnapAdapter extends BaseQuickAdapter<ItemBean, BaseViewHolder
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, ItemBean item) {
+    protected void convert(
+            BaseViewHolder helper,
+            ItemBean item
+    ) {
         ViewHelper.get()
                 .setText(helper.getView(R.id.vid_als_title_tv), item.title)
                 .setText(helper.getView(R.id.vid_als_subtitle_tv), item.subtitle)

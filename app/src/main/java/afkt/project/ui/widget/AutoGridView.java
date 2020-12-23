@@ -10,17 +10,24 @@ import android.widget.ListAdapter;
 
 public class AutoGridView extends GridView {
 
-    private static final String TAG        = AutoGridView.class.getSimpleName();
+    private static final String TAG = AutoGridView.class.getSimpleName();
     private              int    numColumnsID;
     private              int    previousFirstVisible;
     private              int    numColumns = 1;
 
-    public AutoGridView(Context context, AttributeSet attrs, int defStyle) {
+    public AutoGridView(
+            Context context,
+            AttributeSet attrs,
+            int defStyle
+    ) {
         super(context, attrs, defStyle);
         init(attrs);
     }
 
-    public AutoGridView(Context context, AttributeSet attrs) {
+    public AutoGridView(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
         init(attrs);
     }
@@ -67,7 +74,13 @@ public class AutoGridView extends GridView {
     }
 
     @Override
-    protected void onLayout(boolean changed, int leftPos, int topPos, int rightPos, int bottomPos) {
+    protected void onLayout(
+            boolean changed,
+            int leftPos,
+            int topPos,
+            int rightPos,
+            int bottomPos
+    ) {
         super.onLayout(changed, leftPos, topPos, rightPos, bottomPos);
         setHeights();
     }
@@ -79,7 +92,12 @@ public class AutoGridView extends GridView {
     }
 
     @Override
-    protected void onScrollChanged(int newHorizontal, int newVertical, int oldHorizontal, int oldVertical) {
+    protected void onScrollChanged(
+            int newHorizontal,
+            int newVertical,
+            int oldHorizontal,
+            int oldVertical
+    ) {
         // Check if the first visible position has changed due to this scroll
         int firstVisible = getFirstVisiblePosition();
         if (previousFirstVisible != firstVisible) {

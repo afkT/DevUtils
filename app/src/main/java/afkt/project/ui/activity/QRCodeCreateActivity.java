@@ -59,7 +59,11 @@ public class QRCodeCreateActivity extends BaseActivity<ActivityQrcodeCreateBindi
                 // 创建二维码
                 ZXingQRCodeUtils.createQRCodeImage(text, size, selectBitmap, new ZXingQRCodeUtils.QRResultCallback() {
                     @Override
-                    public void onResult(boolean success, Bitmap bitmap, Exception e) {
+                    public void onResult(
+                            boolean success,
+                            Bitmap bitmap,
+                            Exception e
+                    ) {
                         if (success) {
                             HandlerUtils.postRunnable(new Runnable() {
                                 @Override
@@ -90,7 +94,11 @@ public class QRCodeCreateActivity extends BaseActivity<ActivityQrcodeCreateBindi
     // ===========
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(
+            int requestCode,
+            int resultCode,
+            Intent data
+    ) {
         super.onActivityResult(requestCode, resultCode, data);
 
         // 判断是否属于图片选择

@@ -50,7 +50,10 @@ public final class GPUFilterUtils {
      * @param gpuImageFilter {@link GPUImageFilter}
      * @return 滤镜后的 Bitmap
      */
-    public static Bitmap getFilterBitmap(GPUImage gpuImage, GPUImageFilter gpuImageFilter) {
+    public static Bitmap getFilterBitmap(
+            GPUImage gpuImage,
+            GPUImageFilter gpuImageFilter
+    ) {
         if (gpuImage != null && gpuImageFilter != null) {
             gpuImage.setFilter(gpuImageFilter);
             return gpuImage.getBitmapWithFilterApplied();
@@ -64,7 +67,10 @@ public final class GPUFilterUtils {
      * @param gpuImageFilter {@link GPUImageFilter}
      * @return 滤镜后的 Bitmap
      */
-    public static Bitmap getFilterBitmap(Bitmap bitmap, GPUImageFilter gpuImageFilter) {
+    public static Bitmap getFilterBitmap(
+            Bitmap bitmap,
+            GPUImageFilter gpuImageFilter
+    ) {
         if (bitmap != null && gpuImageFilter != null) {
             GPUImage gpuImage = new GPUImage(DevUtils.getContext());
             gpuImage.setImage(bitmap);
@@ -81,7 +87,11 @@ public final class GPUFilterUtils {
      * @param gpuImageFilter {@link GPUImageFilter}
      * @return 滤镜后的 Bitmap
      */
-    public static Bitmap getFilterBitmap(GPUImage gpuImage, Bitmap bitmap, GPUImageFilter gpuImageFilter) {
+    public static Bitmap getFilterBitmap(
+            GPUImage gpuImage,
+            Bitmap bitmap,
+            GPUImageFilter gpuImageFilter
+    ) {
         if (gpuImage != null && bitmap != null && gpuImageFilter != null) {
             gpuImage.setImage(bitmap);
             gpuImage.setFilter(gpuImageFilter);

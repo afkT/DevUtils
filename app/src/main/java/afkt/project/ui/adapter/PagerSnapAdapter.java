@@ -29,7 +29,10 @@ public class PagerSnapAdapter extends BaseQuickAdapter<ItemBean, BaseViewHolder>
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, ItemBean item) {
+    protected void convert(
+            BaseViewHolder helper,
+            ItemBean item
+    ) {
         ViewHelper.get()
                 .setText(helper.getView(R.id.vid_ags_title_tv), item.title)
                 .setText(helper.getView(R.id.vid_ags_subtitle_tv), item.subtitle)

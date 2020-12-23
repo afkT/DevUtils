@@ -14,8 +14,8 @@ import android.view.animation.LinearInterpolator;
 import dev.utils.app.SizeUtils;
 
 public abstract class LoadingRenderer {
-    private static final long  ANIMATION_DURATION = 1333;
-    private static final float DEFAULT_SIZE       = 56.0f;
+    private static final long ANIMATION_DURATION = 1333;
+    private static final float DEFAULT_SIZE      = 56.0f;
 
     private final ValueAnimator.AnimatorUpdateListener mAnimatorUpdateListener
             = new ValueAnimator.AnimatorUpdateListener() {
@@ -46,7 +46,10 @@ public abstract class LoadingRenderer {
     }
 
     @Deprecated
-    protected void draw(Canvas canvas, Rect bounds) {
+    protected void draw(
+            Canvas canvas,
+            Rect bounds
+    ) {
     }
 
     protected void draw(Canvas canvas) {

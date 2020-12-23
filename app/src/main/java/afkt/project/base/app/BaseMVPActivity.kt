@@ -115,7 +115,11 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
      * @param successText 成功 Toast 文本
      * @param errorText   错误 Toast 文本
      */
-    fun showToast(success: Boolean, successText: String?, errorText: String?) {
+    fun showToast(
+        success: Boolean,
+        successText: String?,
+        errorText: String?
+    ) {
         showToast(success, if (success) successText else errorText)
     }
 
@@ -124,7 +128,10 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
      * @param success 是否成功样式
      * @param text    Toast 文本
      */
-    fun showToast(success: Boolean, text: String?) {
+    fun showToast(
+        success: Boolean,
+        text: String?
+    ) {
         if (success) {
             ToastTintUtils.success(text)
         } else {
@@ -149,7 +156,10 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
      * @param recyclerView [RecyclerView]
      * @param isRefAdapter 是否刷新适配器
      */
-    fun registerAdapterDataObserver(recyclerView: RecyclerView?, isRefAdapter: Boolean) {
+    fun registerAdapterDataObserver(
+        recyclerView: RecyclerView?,
+        isRefAdapter: Boolean
+    ) {
         registerAdapterDataObserver(recyclerView, null, isRefAdapter)
     }
 

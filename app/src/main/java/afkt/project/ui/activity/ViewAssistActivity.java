@@ -51,12 +51,19 @@ public class ViewAssistActivity extends BaseActivity<ActivityViewAssistBinding> 
 
         viewAssist.register(ViewAssist.TYPE_ING, new ViewAssist.Adapter() {
             @Override
-            public View onCreateView(ViewAssist assist, LayoutInflater inflater) {
+            public View onCreateView(
+                    ViewAssist assist,
+                    LayoutInflater inflater
+            ) {
                 return inflater.inflate(R.layout.view_assist_loading, null);
             }
 
             @Override
-            public void onBindView(ViewAssist assist, View view, int type) {
+            public void onBindView(
+                    ViewAssist assist,
+                    View view,
+                    int type
+            ) {
                 boolean isContent = (assist.getTag() == null);
                 HandlerUtils.postRunnable(new Runnable() {
                     @Override
@@ -71,12 +78,19 @@ public class ViewAssistActivity extends BaseActivity<ActivityViewAssistBinding> 
             }
         }).register(100, new ViewAssist.Adapter() {
             @Override
-            public View onCreateView(ViewAssist assist, LayoutInflater inflater) {
+            public View onCreateView(
+                    ViewAssist assist,
+                    LayoutInflater inflater
+            ) {
                 return inflater.inflate(R.layout.view_assist_error, null);
             }
 
             @Override
-            public void onBindView(ViewAssist assist, View view, int type) {
+            public void onBindView(
+                    ViewAssist assist,
+                    View view,
+                    int type
+            ) {
                 ListenerUtils.setOnClicks(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -87,12 +101,19 @@ public class ViewAssistActivity extends BaseActivity<ActivityViewAssistBinding> 
             }
         }).register(200, new ViewAssist.Adapter() {
             @Override
-            public View onCreateView(ViewAssist assist, LayoutInflater inflater) {
+            public View onCreateView(
+                    ViewAssist assist,
+                    LayoutInflater inflater
+            ) {
                 return inflater.inflate(R.layout.view_assist_content, null);
             }
 
             @Override
-            public void onBindView(ViewAssist assist, View view, int type) {
+            public void onBindView(
+                    ViewAssist assist,
+                    View view,
+                    int type
+            ) {
             }
         }).showIng();
     }
@@ -100,12 +121,19 @@ public class ViewAssistActivity extends BaseActivity<ActivityViewAssistBinding> 
     private void emptyType() {
         viewAssist.register(ViewAssist.TYPE_ING, new ViewAssist.Adapter() {
             @Override
-            public View onCreateView(ViewAssist assist, LayoutInflater inflater) {
+            public View onCreateView(
+                    ViewAssist assist,
+                    LayoutInflater inflater
+            ) {
                 return inflater.inflate(R.layout.view_assist_loading2, null);
             }
 
             @Override
-            public void onBindView(ViewAssist assist, View view, int type) {
+            public void onBindView(
+                    ViewAssist assist,
+                    View view,
+                    int type
+            ) {
                 HandlerUtils.postRunnable(new Runnable() {
                     @Override
                     public void run() {
@@ -115,12 +143,19 @@ public class ViewAssistActivity extends BaseActivity<ActivityViewAssistBinding> 
             }
         }).register(Integer.MAX_VALUE, new ViewAssist.Adapter() {
             @Override
-            public View onCreateView(ViewAssist assist, LayoutInflater inflater) {
+            public View onCreateView(
+                    ViewAssist assist,
+                    LayoutInflater inflater
+            ) {
                 return inflater.inflate(R.layout.view_assist_empty, null);
             }
 
             @Override
-            public void onBindView(ViewAssist assist, View view, int type) {
+            public void onBindView(
+                    ViewAssist assist,
+                    View view,
+                    int type
+            ) {
             }
         }).showIng();
     }
@@ -128,12 +163,19 @@ public class ViewAssistActivity extends BaseActivity<ActivityViewAssistBinding> 
     private void customType() {
         viewAssist.register(ViewAssist.TYPE_ING, new ViewAssist.Adapter() {
             @Override
-            public View onCreateView(ViewAssist assist, LayoutInflater inflater) {
+            public View onCreateView(
+                    ViewAssist assist,
+                    LayoutInflater inflater
+            ) {
                 return inflater.inflate(R.layout.view_assist_loading3, null);
             }
 
             @Override
-            public void onBindView(ViewAssist assist, View view, int type) {
+            public void onBindView(
+                    ViewAssist assist,
+                    View view,
+                    int type
+            ) {
                 HandlerUtils.postRunnable(new Runnable() {
                     @Override
                     public void run() {
@@ -143,12 +185,19 @@ public class ViewAssistActivity extends BaseActivity<ActivityViewAssistBinding> 
             }
         }).register(159, new ViewAssist.Adapter() {
             @Override
-            public View onCreateView(ViewAssist assist, LayoutInflater inflater) {
+            public View onCreateView(
+                    ViewAssist assist,
+                    LayoutInflater inflater
+            ) {
                 return inflater.inflate(R.layout.view_assist_custom, null);
             }
 
             @Override
-            public void onBindView(ViewAssist assist, View view, int type) {
+            public void onBindView(
+                    ViewAssist assist,
+                    View view,
+                    int type
+            ) {
                 ListenerUtils.setOnClicks(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

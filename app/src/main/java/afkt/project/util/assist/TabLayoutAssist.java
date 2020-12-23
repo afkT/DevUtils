@@ -88,7 +88,10 @@ public final class TabLayoutAssist {
      * @param tab      Tab
      * @param isSelect 是否选中
      */
-    private void updateTabTextView(TabLayout.Tab tab, boolean isSelect) {
+    private void updateTabTextView(
+            TabLayout.Tab tab,
+            boolean isSelect
+    ) {
         View view = tab.getCustomView();
         ViewHelper.get().setBold(view.findViewById(R.id.vid_tiv_tv), isSelect)
                 .setVisibility(isSelect, view.findViewById(R.id.vid_tiv_line));
@@ -171,7 +174,10 @@ public final class TabLayoutAssist {
      * @param isScroll 是否滑动
      * @return {@link TabLayoutAssist}
      */
-    public TabLayoutAssist setSelect(int position, boolean isScroll) {
+    public TabLayoutAssist setSelect(
+            int position,
+            boolean isScroll
+    ) {
         try {
             TabLayout.Tab tab = tabLayout.getTabAt(position);
             tab.select();
@@ -210,7 +216,10 @@ public final class TabLayoutAssist {
      */
     public interface TabChangeListener {
 
-        void onTabChange(TabItem tabItem, int pos);
+        void onTabChange(
+                TabItem tabItem,
+                int pos
+        );
     }
 
     // Tab 切换事件

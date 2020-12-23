@@ -78,11 +78,18 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
         // 设置监听
         binding.vidAamState.setListener(new StateLayout.Listener() {
             @Override
-            public void onRemove(StateLayout layout, int type, boolean removeView) {
+            public void onRemove(
+                    StateLayout layout,
+                    int type,
+                    boolean removeView
+            ) {
             }
 
             @Override
-            public void onNotFound(StateLayout layout, int type) {
+            public void onNotFound(
+                    StateLayout layout,
+                    int type
+            ) {
                 // 切换 View 操作
                 if (type == ViewAssist.TYPE_SUCCESS) {
                     ViewUtils.reverseVisibilitys(true, binding.vidAamRecy, binding.vidAamState);
@@ -90,7 +97,12 @@ public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBin
             }
 
             @Override
-            public void onChange(StateLayout layout, int type, int oldType, View view) {
+            public void onChange(
+                    StateLayout layout,
+                    int type,
+                    int oldType,
+                    View view
+            ) {
                 // 判断是否操作成功
                 boolean success = (type == ViewAssist.TYPE_SUCCESS);
                 // 切换 View 操作

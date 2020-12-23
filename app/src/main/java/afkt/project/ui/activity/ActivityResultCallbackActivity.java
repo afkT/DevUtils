@@ -46,7 +46,11 @@ public class ActivityResultCallbackActivity extends BaseActivity<ActivityActivit
                     }
 
                     @Override
-                    public void onActivityResult(boolean result, int resultCode, Intent data) {
+                    public void onActivityResult(
+                            boolean result,
+                            int resultCode,
+                            Intent data
+                    ) {
                         if (result && data != null) {
                             LocalMedia localMedia = PictureSelectorUtils.getSingleMedia(data);
                             // 获取图片地址

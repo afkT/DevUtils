@@ -62,11 +62,18 @@ public class SlideImageView extends AppCompatImageView {
         super(context);
     }
 
-    public SlideImageView(Context context, @Nullable AttributeSet attrs) {
+    public SlideImageView(
+            Context context,
+            @Nullable AttributeSet attrs
+    ) {
         super(context, attrs);
     }
 
-    public SlideImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public SlideImageView(
+            Context context,
+            @Nullable AttributeSet attrs,
+            int defStyleAttr
+    ) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -77,7 +84,10 @@ public class SlideImageView extends AppCompatImageView {
     private int measureCount  = -1;
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    protected void onMeasure(
+            int widthMeasureSpec,
+            int heightMeasureSpec
+    ) {
         int specSize = MeasureSpec.getSize(widthMeasureSpec);
         viewWidth = getPaddingLeft() + getPaddingRight() + specSize;
         specSize = MeasureSpec.getSize(heightMeasureSpec);
@@ -195,7 +205,10 @@ public class SlideImageView extends AppCompatImageView {
      * @param w
      * @return
      */
-    public Bitmap resizeImage(Bitmap bitmap, int w) {
+    public Bitmap resizeImage(
+            Bitmap bitmap,
+            int w
+    ) {
         int    width      = bitmap.getWidth();
         int    height     = bitmap.getHeight();
         float  scaleWidth = ((float) w) / width;
@@ -210,7 +223,10 @@ public class SlideImageView extends AppCompatImageView {
      * @param h
      * @return
      */
-    public Bitmap resizeImageH(Bitmap bitmap, int h) {
+    public Bitmap resizeImageH(
+            Bitmap bitmap,
+            int h
+    ) {
         int    width      = bitmap.getWidth();
         int    height     = bitmap.getHeight();
         float  scaleWidth = ((float) h) / height;

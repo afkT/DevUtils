@@ -26,7 +26,10 @@ import dev.utils.app.logger.DevLogger;
  */
 public final class MigrationHelper {
 
-    public static void migrate(SQLiteDatabase sqliteDatabase, Class<? extends AbstractDao<?, ?>>... daoClasses) {
+    public static void migrate(
+            SQLiteDatabase sqliteDatabase,
+            Class<? extends AbstractDao<?, ?>>... daoClasses
+    ) {
         StandardDatabase db = new StandardDatabase(sqliteDatabase);
         generateNewTablesIfNotExists(db, daoClasses);
         generateTempTables(db, daoClasses);
@@ -35,7 +38,10 @@ public final class MigrationHelper {
         restoreData(db, daoClasses);
     }
 
-    public static void migrate(StandardDatabase db, Class<? extends AbstractDao<?, ?>>... daoClasses) {
+    public static void migrate(
+            StandardDatabase db,
+            Class<? extends AbstractDao<?, ?>>... daoClasses
+    ) {
         generateNewTablesIfNotExists(db, daoClasses);
         generateTempTables(db, daoClasses);
         dropAllTables(db, true, daoClasses);
@@ -43,11 +49,17 @@ public final class MigrationHelper {
         restoreData(db, daoClasses);
     }
 
-    private static void generateNewTablesIfNotExists(StandardDatabase db, Class<? extends AbstractDao<?, ?>>... daoClasses) {
+    private static void generateNewTablesIfNotExists(
+            StandardDatabase db,
+            Class<? extends AbstractDao<?, ?>>... daoClasses
+    ) {
         reflectMethod(db, "createTable", true, daoClasses);
     }
 
-    private static void generateTempTables(StandardDatabase db, Class<? extends AbstractDao<?, ?>>... daoClasses) {
+    private static void generateTempTables(
+            StandardDatabase db,
+            Class<? extends AbstractDao<?, ?>>... daoClasses
+    ) {
         for (int i = 0; i < daoClasses.length; i++) {
             DaoConfig     daoConfig                = new DaoConfig(db, daoClasses[i]);
             String        tableName                = daoConfig.tablename;
@@ -59,18 +71,31 @@ public final class MigrationHelper {
         }
     }
 
-    private static void dropAllTables(StandardDatabase db, boolean ifExists, @NonNull Class<? extends AbstractDao<?, ?>>... daoClasses) {
+    private static void dropAllTables(
+            StandardDatabase db,
+            boolean ifExists,
+            @NonNull Class<? extends AbstractDao<?, ?>>... daoClasses
+    ) {
         reflectMethod(db, "dropTable", ifExists, daoClasses);
     }
 
-    private static void createAllTables(StandardDatabase db, boolean ifNotExists, @NonNull Class<? extends AbstractDao<?, ?>>... daoClasses) {
+    private static void createAllTables(
+            StandardDatabase db,
+            boolean ifNotExists,
+            @NonNull Class<? extends AbstractDao<?, ?>>... daoClasses
+    ) {
         reflectMethod(db, "createTable", ifNotExists, daoClasses);
     }
 
     /**
      * dao class already define the sql exec method, so just invoke it
      */
-    private static void reflectMethod(StandardDatabase db, String methodName, boolean isExists, @NonNull Class<? extends AbstractDao<?, ?>>... daoClasses) {
+    private static void reflectMethod(
+            StandardDatabase db,
+            String methodName,
+            boolean isExists,
+            @NonNull Class<? extends AbstractDao<?, ?>>... daoClasses
+    ) {
         if (daoClasses.length < 1) {
             return;
         }
@@ -84,7 +109,10 @@ public final class MigrationHelper {
         }
     }
 
-    private static void restoreData(StandardDatabase db, Class<? extends AbstractDao<?, ?>>... daoClasses) {
+    private static void restoreData(
+            StandardDatabase db,
+            Class<? extends AbstractDao<?, ?>>... daoClasses
+    ) {
         for (int i = 0; i < daoClasses.length; i++) {
             DaoConfig daoConfig     = new DaoConfig(db, daoClasses[i]);
             String    tableName     = daoConfig.tablename;
@@ -115,7 +143,10 @@ public final class MigrationHelper {
         }
     }
 
-    private static List<String> getColumns(StandardDatabase db, String tableName) {
+    private static List<String> getColumns(
+            StandardDatabase db,
+            String tableName
+    ) {
         List<String> columns = null;
         Cursor       cursor  = null;
         try {

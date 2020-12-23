@@ -23,13 +23,16 @@ import dev.utils.app.helper.QuickHelper;
 public class GPUFilterACVAdapter extends BaseAdapter {
 
     // Context
-    Context           context;
+    Context context;
     // ACV 文件集合
     List<ACVFileBean> listACVFiles;
     // 当前选中索引
-    int               selectPosition = -1;
+    int selectPosition = -1;
 
-    public GPUFilterACVAdapter(Context context, List<ACVFileBean> listACVFiles) {
+    public GPUFilterACVAdapter(
+            Context context,
+            List<ACVFileBean> listACVFiles
+    ) {
         this.context = context;
         this.listACVFiles = listACVFiles;
     }
@@ -50,7 +53,11 @@ public class GPUFilterACVAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(
+            int position,
+            View convertView,
+            ViewGroup parent
+    ) {
         return createTextView(position);
     }
 

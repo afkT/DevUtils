@@ -27,16 +27,22 @@ public class LoadingView extends AppCompatImageView {
         super(context);
     }
 
-    public LoadingView(Context context, AttributeSet attrs) {
+    public LoadingView(
+            Context context,
+            AttributeSet attrs
+    ) {
         super(context, attrs);
         initAttrs(context, attrs);
     }
 
-    private void initAttrs(Context context, AttributeSet attrs) {
+    private void initAttrs(
+            Context context,
+            AttributeSet attrs
+    ) {
         try {
-            TypedArray      a                 = context.obtainStyledAttributes(attrs, R.styleable.LoadingView);
+            TypedArray      a = context.obtainStyledAttributes(attrs, R.styleable.LoadingView);
             int             loadingRendererId = a.getInt(R.styleable.LoadingView_loading_renderer, 0);
-            LoadingRenderer loadingRenderer   = LoadingRendererFactory.createLoadingRenderer(context, loadingRendererId);
+            LoadingRenderer loadingRenderer = LoadingRendererFactory.createLoadingRenderer(context, loadingRendererId);
             setLoadingRenderer(loadingRenderer);
             a.recycle();
         } catch (Exception e) {
@@ -62,7 +68,10 @@ public class LoadingView extends AppCompatImageView {
     }
 
     @Override
-    protected void onVisibilityChanged(View changedView, int visibility) {
+    protected void onVisibilityChanged(
+            View changedView,
+            int visibility
+    ) {
         super.onVisibilityChanged(changedView, visibility);
 
         final boolean visible = visibility == VISIBLE && getVisibility() == VISIBLE;

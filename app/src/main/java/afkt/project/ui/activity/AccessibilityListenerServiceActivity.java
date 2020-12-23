@@ -50,7 +50,11 @@ public class AccessibilityListenerServiceActivity extends BaseActivity<BaseViewR
         binding.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemChildClick(
+                    BaseQuickAdapter adapter,
+                    View view,
+                    int position
+            ) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_ACCESSIBILITY_SERVICE_CHECK:
@@ -86,7 +90,10 @@ public class AccessibilityListenerServiceActivity extends BaseActivity<BaseViewR
         // 设置监听事件
         AccessibilityListenerService.setAccessibilityListener(new AccessibilityListenerService.AccessibilityListener() {
             @Override
-            public void onAccessibilityEvent(AccessibilityEvent accessibilityEvent, AccessibilityListenerService accessibilityListenerService) {
+            public void onAccessibilityEvent(
+                    AccessibilityEvent accessibilityEvent,
+                    AccessibilityListenerService accessibilityListenerService
+            ) {
                 StringBuilder builder = new StringBuilder();
                 builder.append("onAccessibilityEvent");
                 builder.append("\naccessibilityEvent: ").append(accessibilityEvent);

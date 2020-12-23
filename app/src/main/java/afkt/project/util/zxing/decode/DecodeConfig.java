@@ -33,5 +33,8 @@ public interface DecodeConfig {
      * @param isError 是否异常
      * @param e       异常信息
      */
-    void setError(boolean isError, Exception e);
+    void setError(
+            boolean isError,
+            Exception e
+    );
 }

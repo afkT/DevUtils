@@ -78,7 +78,11 @@ public class BaseApplication extends MultiDexApplication {
         // JCLogUtils.setPrint(new JCLogUtils.Print());
         LogPrintUtils.setPrint(new LogPrintUtils.Print() {
             @Override
-            public void printLog(int logType, String tag, String message) {
+            public void printLog(
+                    int logType,
+                    String tag,
+                    String message
+            ) {
                 // 防止 null 处理
                 if (message == null) return;
                 // 进行编码处理
@@ -181,17 +185,29 @@ public class BaseApplication extends MultiDexApplication {
     private void initStateLayout() {
         StateLayout.Global global = new StateLayout.Global(new StateLayout.Listener() {
             @Override
-            public void onRemove(StateLayout layout, int type, boolean removeView) {
+            public void onRemove(
+                    StateLayout layout,
+                    int type,
+                    boolean removeView
+            ) {
                 if (removeView) layout.gone();
             }
 
             @Override
-            public void onNotFound(StateLayout layout, int type) {
+            public void onNotFound(
+                    StateLayout layout,
+                    int type
+            ) {
                 layout.gone();
             }
 
             @Override
-            public void onChange(StateLayout layout, int type, int oldType, View view) {
+            public void onChange(
+                    StateLayout layout,
+                    int type,
+                    int oldType,
+                    View view
+            ) {
                 if (type == ViewAssist.TYPE_EMPTY_DATA) { // NO_DATA
                     View vid_slnd_tips_tv = ViewUtils.findViewById(view, R.id.vid_slnd_tips_tv);
                     TextViewUtils.setText(vid_slnd_tips_tv, "暂无数据");
@@ -221,7 +237,11 @@ public class BaseApplication extends MultiDexApplication {
             }
 
             @Override
-            public void uncaughtException(Context context, Thread thread, Throwable ex) {
+            public void uncaughtException(
+                    Context context,
+                    Thread thread,
+                    Throwable ex
+            ) {
 //                // 退出 JVM (Java 虚拟机 ) 释放所占内存资源, 0 表示正常退出、非 0 的都为异常退出
 //                System.exit(-1);
 //                // 从操作系统中结束掉当前程序的进程
@@ -246,7 +266,10 @@ public class BaseApplication extends MultiDexApplication {
                 .setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING) // 基础布局算法
                 .setOnApplyListener(new WebViewAssist.Builder.OnApplyListener() {
                     @Override
-                    public void onApply(WebViewAssist webViewAssist, WebViewAssist.Builder builder) {
+                    public void onApply(
+                            WebViewAssist webViewAssist,
+                            WebViewAssist.Builder builder
+                    ) {
                         DevLogger.d("WebViewAssist Builder onApply");
                         if (webViewAssist != null) {
 //                            // 自己控制配置
@@ -281,7 +304,11 @@ public class BaseApplication extends MultiDexApplication {
         // 环境 ( 服务器地址 ) 改变通知
         DevEnvironment.addOnEnvironmentChangeListener(new OnEnvironmentChangeListener() {
             @Override
-            public void onEnvironmentChanged(ModuleBean module, EnvironmentBean oldEnvironment, EnvironmentBean newEnvironment) {
+            public void onEnvironmentChanged(
+                    ModuleBean module,
+                    EnvironmentBean oldEnvironment,
+                    EnvironmentBean newEnvironment
+            ) {
                 // 改变地址重新初始化
                 RetrofitUtils.getInstance().initRetrofit().resetAPIService();
             }
@@ -290,7 +317,13 @@ public class BaseApplication extends MultiDexApplication {
         // 截图监听
         ScreenshotUtils.getInstance().setListener(new ScreenshotUtils.OnScreenshotListener() {
             @Override
-            public void onScreenshot(Uri contentUri, boolean selfChange, long rowId, String dataPath, long dateTaken) {
+            public void onScreenshot(
+                    Uri contentUri,
+                    boolean selfChange,
+                    long rowId,
+                    String dataPath,
+                    long dateTaken
+            ) {
                 StringBuilder builder = new StringBuilder();
                 builder.append("截图监听回调");
                 builder.append(DevFinal.NEW_LINE_STR);

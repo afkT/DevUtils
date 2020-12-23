@@ -20,5 +20,8 @@ public interface WanAndroidService {
 
     // 演示 BaseBeanSubscriber、BaseResponseSubscriber 区别
     @POST("/xxx/login")
-    Flowable<BaseResponse<UserBean>> login(@Query("userName") String userName, @Query("password") String password);
+    Flowable<BaseResponse<UserBean>> login(
+            @Query("userName") String userName,
+            @Query("password") String password
+    );
 }

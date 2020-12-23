@@ -75,7 +75,12 @@ public class GPUFilterACVActivity extends BaseActivity<ActivityGpuFilterBinding>
         binding.vidAgfGallery.setAdapter(gpuFilterACVAdapter = new GPUFilterACVAdapter(this, listACVFiles));
         binding.vidAgfGallery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(
+                    AdapterView<?> parent,
+                    View view,
+                    int position,
+                    long id
+            ) {
                 gpuFilterACVAdapter.setSelectPosition(position);
                 // 延迟一会进行滤镜
                 HandlerUtils.removeRunnable(filterThread);
@@ -111,7 +116,11 @@ public class GPUFilterACVActivity extends BaseActivity<ActivityGpuFilterBinding>
     // ===========
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(
+            int requestCode,
+            int resultCode,
+            Intent data
+    ) {
         super.onActivityResult(requestCode, resultCode, data);
 
         // 判断是否属于图片选择

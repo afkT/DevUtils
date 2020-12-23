@@ -46,7 +46,11 @@ public class TimerActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
         binding.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemChildClick(
+                    BaseQuickAdapter adapter,
+                    View view,
+                    int position
+            ) {
                 // 获取操作结果
                 boolean result;
 

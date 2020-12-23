@@ -36,7 +36,10 @@ public class EditsAdapter extends BaseQuickAdapter<EvaluateItem, BaseViewHolder>
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, EvaluateItem item) {
+    protected void convert(
+            BaseViewHolder helper,
+            EvaluateItem item
+    ) {
         // 当前索引
         int position = helper.getLayoutPosition();
         // 判断是否显示边距
@@ -81,7 +84,12 @@ public class EditsAdapter extends BaseQuickAdapter<EvaluateItem, BaseViewHolder>
         // 绑定监听事件
         editTextWatcherAssist.bindListener(item.evaluateContent, position, vid_aie_content_edit, new EditTextWatcherAssist.InputListener<EvaluateItem>() {
             @Override
-            public void onTextChanged(CharSequence charSequence, EditText editText, int pos, EvaluateItem evaluateItem) {
+            public void onTextChanged(
+                    CharSequence charSequence,
+                    EditText editText,
+                    int pos,
+                    EvaluateItem evaluateItem
+            ) {
                 try {
                     // 保存评价内容
                     getData().get(pos).evaluateContent = charSequence.toString();

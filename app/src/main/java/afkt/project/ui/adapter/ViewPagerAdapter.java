@@ -30,7 +30,10 @@ public class ViewPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(
+            ViewGroup container,
+            int position
+    ) {
         // 加载 View
         View view = ViewUtils.inflate(R.layout.view_pager_item_view);
         // 设置文本
@@ -46,12 +49,19 @@ public class ViewPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
+    public boolean isViewFromObject(
+            View view,
+            Object object
+    ) {
         return view == object;
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(
+            ViewGroup container,
+            int position,
+            Object object
+    ) {
         try {
             container.removeView((View) object);
         } catch (Exception e) {

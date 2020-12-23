@@ -17,12 +17,19 @@ public class LoadingDrawable extends Drawable implements Animatable {
         }
 
         @Override
-        public void scheduleDrawable(Drawable d, Runnable what, long when) {
+        public void scheduleDrawable(
+                Drawable d,
+                Runnable what,
+                long when
+        ) {
             scheduleSelf(what, when);
         }
 
         @Override
-        public void unscheduleDrawable(Drawable d, Runnable what) {
+        public void unscheduleDrawable(
+                Drawable d,
+                Runnable what
+        ) {
             unscheduleSelf(what);
         }
     };

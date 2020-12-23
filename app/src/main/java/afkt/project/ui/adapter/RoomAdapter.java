@@ -31,7 +31,10 @@ public class RoomAdapter extends BaseQuickAdapter<NoteAndPicture, BaseViewHolder
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, NoteAndPicture item) {
+    protected void convert(
+            BaseViewHolder helper,
+            NoteAndPicture item
+    ) {
         Note note = item.note;
 
         ViewHelper.get()
@@ -54,7 +57,10 @@ public class RoomAdapter extends BaseQuickAdapter<NoteAndPicture, BaseViewHolder
         }
 
         @Override
-        protected void convert(@NotNull BaseViewHolder helper, NotePicture item) {
+        protected void convert(
+                @NotNull BaseViewHolder helper,
+                NotePicture item
+        ) {
             GlideUtils.with().displayImage(item.picture,
                     helper.getView(R.id.vid_adbi_igview));
         }

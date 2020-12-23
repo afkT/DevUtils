@@ -88,7 +88,10 @@ public class CoolWaitLoadingRenderer extends LoadingRenderer {
     }
 
     @Override
-    protected void draw(Canvas canvas, Rect bounds) {
+    protected void draw(
+            Canvas canvas,
+            Rect bounds
+    ) {
         int   saveCount = canvas.save();
         RectF arcBounds = mCurrentBounds;
         arcBounds.set(bounds);

@@ -86,12 +86,18 @@ public class CapturePictureRecyActivity extends BaseActivity<ActivityCapturePict
 
             @NonNull
             @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            public RecyclerView.ViewHolder onCreateViewHolder(
+                    @NonNull ViewGroup viewGroup,
+                    int i
+            ) {
                 return new ViewHolder(ViewUtils.inflate(R.layout.adapter_capture_picture));
             }
 
             @Override
-            public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+            public void onBindViewHolder(
+                    @NonNull RecyclerView.ViewHolder viewHolder,
+                    int i
+            ) {
                 AdapterBean adapterBean = lists.get(i);
                 ViewHolder  holder      = (ViewHolder) viewHolder;
                 View        view        = holder.itemView;

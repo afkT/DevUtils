@@ -33,7 +33,7 @@ import dev.utils.common.ArrayUtils;
 public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
 
     // 当前选中的索引
-    private int             selectTabIndex = -1;
+    private int selectTabIndex = -1;
     // Tab Layout 辅助类
     private TabLayoutAssist tabLayoutAssist;
 
@@ -142,7 +142,10 @@ public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
         tabLayoutAssist.setListTabs(listTabs).setSelect(tabLayoutAssist.getTabCount() - 1)
                 .setTabChangeListener(new TabLayoutAssist.TabChangeListener() {
                     @Override
-                    public void onTabChange(TabItem tabItem, int pos) {
+                    public void onTabChange(
+                            TabItem tabItem,
+                            int pos
+                    ) {
                         DevLogger.dTag(TAG, "TabItem: %s, pos: %s", tabItem.getTitle(), pos);
                         // 设置选中
                         tabLayoutAssist.setSelect(pos);
@@ -153,7 +156,10 @@ public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
                 .setListTabs(ArrayUtils.asList(ArrayUtils.subArray(listTabs.toArray(new TabItem[0]), 0, 3)))
                 .setSelect(0).setTabChangeListener(new TabLayoutAssist.TabChangeListener() {
             @Override
-            public void onTabChange(TabItem tabItem, int pos) {
+            public void onTabChange(
+                    TabItem tabItem,
+                    int pos
+            ) {
                 DevLogger.dTag(TAG, "TabItem: %s, pos: %s", tabItem.getTitle(), pos);
             }
         });
@@ -206,7 +212,10 @@ public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
      * @param clickTab   点击 Tab
      * @param unClickTab 未点击 Tab
      */
-    private void changeTab1(BaseTextView clickTab, BaseTextView unClickTab) {
+    private void changeTab1(
+            BaseTextView clickTab,
+            BaseTextView unClickTab
+    ) {
         // 判断点击的是左边还是右边
         if (clickTab.getId() == R.id.vid_aue_2_0_tv) { // 点击左边
             clickTab.setBackgroundResource(R.drawable.shape_tab_left_pressed);
@@ -227,7 +236,10 @@ public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
      * @param clickTab   点击 Tab
      * @param unClickTab 未点击 Tab
      */
-    private void changeTab2(BaseTextView clickTab, BaseTextView unClickTab) {
+    private void changeTab2(
+            BaseTextView clickTab,
+            BaseTextView unClickTab
+    ) {
         // 判断点击的是左边还是右边
         if (clickTab.getId() == R.id.vid_aue_3_0_tv) { // 点击左边
             // 设置选中颜色

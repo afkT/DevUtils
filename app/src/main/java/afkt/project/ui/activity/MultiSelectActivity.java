@@ -60,7 +60,10 @@ public class MultiSelectActivity extends BaseActivity<BaseViewRecyclerviewBindin
         multiSelectAdapter = new MultiSelectAdapter(lists)
                 .setSelectListener(new MultiSelectAdapter.OnSelectListener() {
                     @Override
-                    public void onClickSelect(int pos, boolean now) {
+                    public void onClickSelect(
+                            int pos,
+                            boolean now
+                    ) {
                         CommodityEvaluateBean commodityEvaluateBean = multiSelectAdapter.getData().get(pos);
                         DevLogger.eTag(TAG, "新状态: %s, 商品名: %s", now, commodityEvaluateBean.commodityName);
                     }
@@ -145,7 +148,10 @@ public class MultiSelectActivity extends BaseActivity<BaseViewRecyclerviewBindin
      * @param onClickListener 点击事件
      * @return {@link BaseTextView}
      */
-    private BaseTextView createTextView(String text, View.OnClickListener onClickListener) {
+    private BaseTextView createTextView(
+            String text,
+            View.OnClickListener onClickListener
+    ) {
         return QuickHelper.get(new BaseTextView(this))
                 .setVisibility(false) // 默认隐藏
                 .setText(text)

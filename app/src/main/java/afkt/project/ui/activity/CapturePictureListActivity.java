@@ -49,7 +49,7 @@ public class CapturePictureListActivity extends BaseActivity<ActivityCapturePict
                         String filePath = PathConfig.AEP_DOWN_IMAGE_PATH;
                         String fileName = "list.jpg";
 
-                        Bitmap  bitmap = CapturePictureUtils.snapshotByListView(binding.vidAcpList);
+                        Bitmap bitmap  = CapturePictureUtils.snapshotByListView(binding.vidAcpList);
                         boolean result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName);
                         showToast(result, "保存成功\n" + (filePath + fileName), "保存失败");
                     }
@@ -80,7 +80,11 @@ public class CapturePictureListActivity extends BaseActivity<ActivityCapturePict
             }
 
             @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
+            public View getView(
+                    int position,
+                    View convertView,
+                    ViewGroup parent
+            ) {
                 AdapterBean adapterBean = getItem(position);
                 // 初始化 View 设置 TextView
                 View view = ViewUtils.inflate(CapturePictureListActivity.this, R.layout.adapter_capture_picture);

@@ -13,13 +13,13 @@ import dev.utils.app.logger.DevLogger;
 public class PreviewCallback implements Camera.PreviewCallback {
 
     // 日志 TAG
-    private final String      TAG = PreviewCallback.class.getSimpleName();
+    private final String TAG = PreviewCallback.class.getSimpleName();
     // 显示的大小
     private       Camera.Size mSize;
     // 处理 Handler
-    private       Handler     mPreviewHandler;
+    private       Handler mPreviewHandler;
     // 处理 what
-    private       int         mWhat;
+    private       int mWhat;
 
     /**
      * 初始化构造函数
@@ -35,14 +35,20 @@ public class PreviewCallback implements Camera.PreviewCallback {
      * @param what           通知 What
      * @return {@link PreviewCallback}
      */
-    public PreviewCallback setHandler(Handler previewHandler, int what) {
+    public PreviewCallback setHandler(
+            Handler previewHandler,
+            int what
+    ) {
         this.mPreviewHandler = previewHandler;
         this.mWhat = what;
         return this;
     }
 
     @Override
-    public void onPreviewFrame(byte[] data, Camera camera) {
+    public void onPreviewFrame(
+            byte[] data,
+            Camera camera
+    ) {
         Handler thePreviewHandler = mPreviewHandler;
         if (mSize != null && thePreviewHandler != null) {
             Message message = thePreviewHandler.obtainMessage(mWhat, mSize.width, mSize.height, data);

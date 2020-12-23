@@ -36,7 +36,10 @@ public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, 
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, CommodityEvaluateBean item) {
+    protected void convert(
+            BaseViewHolder helper,
+            CommodityEvaluateBean item
+    ) {
         // 当前索引
         int position = helper.getLayoutPosition();
         // 判断是否显示边距
@@ -212,7 +215,10 @@ public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, 
          * @param position 对应的索引
          * @param now      新的状态
          */
-        void onClickSelect(int position, boolean now);
+        void onClickSelect(
+                int position,
+                boolean now
+        );
 
     }
 }

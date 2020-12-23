@@ -60,7 +60,11 @@ public class LogTools {
      * @param uAge   用户年龄
      * @return
      */
-    public static String getScatteredData(String uName, String sTitle, int uAge) {
+    public static String getScatteredData(
+            String uName,
+            String sTitle,
+            int uAge
+    ) {
         StringBuilder builder = new StringBuilder();
         try {
             builder.append("打印零散参数数据");

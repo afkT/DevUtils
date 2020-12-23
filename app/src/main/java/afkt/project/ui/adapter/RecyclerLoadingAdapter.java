@@ -32,7 +32,10 @@ public class RecyclerLoadingAdapter extends BaseQuickAdapter<String, BaseViewHol
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, String url) {
+    protected void convert(
+            BaseViewHolder helper,
+            String url
+    ) {
         BaseImageView vid_arl_igview = helper.getView(R.id.vid_arl_igview);
         FrameLayout   vid_arl_frame  = helper.getView(R.id.vid_arl_frame);
         ViewAssist    viewAssist     = ViewAssist.wrap(vid_arl_frame);
@@ -45,17 +48,32 @@ public class RecyclerLoadingAdapter extends BaseQuickAdapter<String, BaseViewHol
         loadImage(vid_arl_igview, viewAssist, url);
     }
 
-    private void loadImage(BaseImageView imageView, ViewAssist viewAssist, String url) {
+    private void loadImage(
+            BaseImageView imageView,
+            ViewAssist viewAssist,
+            String url
+    ) {
         viewAssist.showIng();
         GlideUtils.with().displayImageToDrawable(url, imageView, new RequestListener<Drawable>() {
             @Override
-            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+            public boolean onLoadFailed(
+                    @Nullable GlideException e,
+                    Object model,
+                    Target<Drawable> target,
+                    boolean isFirstResource
+            ) {
                 viewAssist.showFailed();
                 return false;
             }
 
             @Override
-            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+            public boolean onResourceReady(
+                    Drawable resource,
+                    Object model,
+                    Target<Drawable> target,
+                    DataSource dataSource,
+                    boolean isFirstResource
+            ) {
                 viewAssist.showSuccess();
                 return false;
             }

@@ -46,7 +46,10 @@ public class QuickWifiHotUtils {
      * @param wifiUtils    Wifi 工具类
      * @param wifiHotUtils Wifi 热点工具类
      */
-    public QuickWifiHotUtils(WifiUtils wifiUtils, WifiHotUtils wifiHotUtils) {
+    public QuickWifiHotUtils(
+            WifiUtils wifiUtils,
+            WifiHotUtils wifiHotUtils
+    ) {
         this.wifiUtils = wifiUtils;
         this.wifiHotUtils = wifiHotUtils;
     }
@@ -263,7 +266,10 @@ public class QuickWifiHotUtils {
      * @param ssid Wifi 名
      * @param pwd  Wifi 密码
      */
-    public void openHotspot(String ssid, String pwd) {
+    public void openHotspot(
+            String ssid,
+            String pwd
+    ) {
         // 打印日志
         DevLogger.dTag(TAG, "openHotspot 开启热点 ssid: %s, pwd: %s", ssid, pwd);
         hotSSID = ssid;

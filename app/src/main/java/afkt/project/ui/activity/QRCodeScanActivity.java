@@ -180,7 +180,12 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
         }
 
         @Override
-        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+        public void surfaceChanged(
+                SurfaceHolder holder,
+                int format,
+                int width,
+                int height
+        ) {
         }
 
         @Override
@@ -285,7 +290,10 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
                         }
 
                         @Override
-                        public void setError(boolean isError, Exception e) {
+                        public void setError(
+                                boolean isError,
+                                Exception e
+                        ) {
                             this.isError = isError;
                             // 打印日志
                             DevLogger.eTag(TAG, e, "setError");
@@ -306,7 +314,11 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
                 }
 
                 @Override
-                public void onDenied(List<String> grantedList, List<String> deniedList, List<String> notFoundList) {
+                public void onDenied(
+                        List<String> grantedList,
+                        List<String> deniedList,
+                        List<String> notFoundList
+                ) {
                     // 再次申请权限
                     checkPermission();
                 }
@@ -336,7 +348,10 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
     // ================
 
     @Override
-    public void handleDecode(Result result, Bundle bundle) {
+    public void handleDecode(
+            Result result,
+            Bundle bundle
+    ) {
         // Camera 解码结果
 
         // 提示解析成功声音
@@ -415,8 +430,13 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
          * @param callback     预览回调
          * @param decodeResult 解码结果回调
          */
-        CaptureHandler(DecodeConfig decodeConfig, @DecodeFormat.DecodeMode int decodeMode,
-                       CameraAssist cameraAssist, PreviewCallback callback, DecodeResult decodeResult) {
+        CaptureHandler(
+                DecodeConfig decodeConfig,
+                @DecodeFormat.DecodeMode int decodeMode,
+                CameraAssist cameraAssist,
+                PreviewCallback callback,
+                DecodeResult decodeResult
+        ) {
             this.mState = State.SUCCESS;
             // 初始化解码线程
             this.mDecodeThread = new DecodeThread(decodeConfig, decodeMode);
@@ -473,7 +493,10 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
          * @param handler 解码 Handler ( DecodeHandler )
          * @param message 解码消息
          */
-        private synchronized void requestPreviewFrame(Handler handler, int message) {
+        private synchronized void requestPreviewFrame(
+                Handler handler,
+                int message
+        ) {
             DevLogger.dTag(TAG, "requestPreviewFrame");
             Camera theCamera = mCameraAssist.getCamera();
             // 不为 null 并且预览中才处理
@@ -514,7 +537,11 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
     // ===========
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(
+            int requestCode,
+            int resultCode,
+            Intent data
+    ) {
         super.onActivityResult(requestCode, resultCode, data);
 
         // 判断是否属于图片选择
@@ -527,7 +554,11 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
             // 解析图片
             ZXingQRCodeUtils.decodeQRCode(selectBitmap, new ZXingQRCodeUtils.QRScanCallback() {
                 @Override
-                public void onResult(boolean success, Result result, Exception e) {
+                public void onResult(
+                        boolean success,
+                        Result result,
+                        Exception e
+                ) {
                     HandlerUtils.postRunnable(new Runnable() {
                         @Override
                         public void run() {

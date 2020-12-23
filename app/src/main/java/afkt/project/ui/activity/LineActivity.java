@@ -29,7 +29,10 @@ public class LineActivity extends BaseActivity<ActivityLineBinding> {
         // 设置监听
         binding.vidAlContentTv.setNewLineCallback(new LineTextView.OnNewLineCallback() {
             @Override
-            public void onNewLine(boolean isNewLine, int line) {
+            public void onNewLine(
+                    boolean isNewLine,
+                    int line
+            ) {
                 StringBuilder builder = new StringBuilder();
                 builder.append("是否换行: ").append(isNewLine);
                 builder.append("\n换行数量: ").append(line);
@@ -40,7 +43,7 @@ public class LineActivity extends BaseActivity<ActivityLineBinding> {
             @Override
             public void onClick(View view) {
                 // 随机字符串
-                String text       = ChineseUtils.randomWord(RandomUtils.getRandom(300)) + RandomUtils.getRandomLetters(RandomUtils.getRandom(50));
+                String text = ChineseUtils.randomWord(RandomUtils.getRandom(300)) + RandomUtils.getRandomLetters(RandomUtils.getRandom(50));
                 String randomText = RandomUtils.getRandom(text.toCharArray(), text.length());
                 // 设置内容
                 QuickHelper.get(binding.vidAlContentTv)

@@ -13,11 +13,17 @@ public class ButtonValue {
     // 文案
     public String text;
 
-    public ButtonValue(int type, int id) {
+    public ButtonValue(
+            int type,
+            int id
+    ) {
         this(type, ResourceUtils.getString(id));
     }
 
-    public ButtonValue(int type, String text) {
+    public ButtonValue(
+            int type,
+            String text
+    ) {
         this.type = type;
         this.text = text;
     }

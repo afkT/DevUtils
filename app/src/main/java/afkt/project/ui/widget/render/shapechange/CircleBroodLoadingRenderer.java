@@ -138,7 +138,10 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
     }
 
     @Override
-    protected void draw(Canvas canvas, Rect bounds) {
+    protected void draw(
+            Canvas canvas,
+            Rect bounds
+    ) {
         int saveCount = canvas.save();
 
         RectF arcBounds = mCurrentBounds;
@@ -566,7 +569,11 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
         return result;
     }
 
-    private int evaluateColorChange(float fraction, int startValue, int endValue) {
+    private int evaluateColorChange(
+            float fraction,
+            int startValue,
+            int endValue
+    ) {
         int startA = (startValue >> 24) & 0xff;
         int startR = (startValue >> 16) & 0xff;
         int startG = (startValue >> 8) & 0xff;
@@ -583,7 +590,10 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
                 ((startB + (int) (fraction * (endB - startB))));
     }
 
-    private float getRestLength(Path path, float startD) {
+    private float getRestLength(
+            Path path,
+            float startD
+    ) {
         Path        tempPath    = new Path();
         PathMeasure pathMeasure = new PathMeasure(path, false);
 

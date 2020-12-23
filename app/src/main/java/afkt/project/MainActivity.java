@@ -86,7 +86,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
              * @param notFoundList 查询不到的权限 ( 包含未注册 )
              */
             @Override
-            public void onDenied(List<String> grantedList, List<String> deniedList, List<String> notFoundList) {
+            public void onDenied(
+                    List<String> grantedList,
+                    List<String> deniedList,
+                    List<String> notFoundList
+            ) {
                 StringBuilder builder = new StringBuilder();
                 builder.append("permission");
                 builder.append("\ngrantedList: ").append(Arrays.toString(grantedList.toArray()));
@@ -111,7 +115,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         binding.vidBaseRecy.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemChildClick(
+                    BaseQuickAdapter adapter,
+                    View view,
+                    int position
+            ) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.MODULE_FRAMEWORK:

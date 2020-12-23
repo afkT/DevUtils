@@ -105,7 +105,10 @@ public class DanceLoadingRenderer extends LoadingRenderer {
     }
 
     @Override
-    protected void draw(Canvas canvas, Rect bounds) {
+    protected void draw(
+            Canvas canvas,
+            Rect bounds
+    ) {
         int saveCount = canvas.save();
 
         mTempBounds.set(bounds);
@@ -298,7 +301,10 @@ public class DanceLoadingRenderer extends LoadingRenderer {
         return mRotation;
     }
 
-    private void setInsets(int width, int height) {
+    private void setInsets(
+            int width,
+            int height
+    ) {
         final float minEdge = (float) Math.min(width, height);
         float       insets;
         if (mCenterRadius <= 0 || minEdge < 0) {

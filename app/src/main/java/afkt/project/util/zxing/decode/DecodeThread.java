@@ -32,7 +32,10 @@ public class DecodeThread extends Thread {
      * @param decodeConfig 解码配置
      * @param decodeMode   解码类型
      */
-    public DecodeThread(DecodeConfig decodeConfig, @DecodeFormat.DecodeMode int decodeMode) {
+    public DecodeThread(
+            DecodeConfig decodeConfig,
+            @DecodeFormat.DecodeMode int decodeMode
+    ) {
         this.mDecodeConfig = decodeConfig;
         this.mHandlerInitLatch = new CountDownLatch(1);
         this.mHints = new EnumMap<>(DecodeHintType.class);

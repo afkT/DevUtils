@@ -58,7 +58,11 @@ public class FunctionActivity extends BaseActivity<BaseViewRecyclerviewBinding> 
         binding.vidBvrRecy.setAdapter(buttonAdapter);
         buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemChildClick(
+                    BaseQuickAdapter adapter,
+                    View view,
+                    int position
+            ) {
                 // 获取操作结果
                 boolean result;
 
@@ -105,7 +109,11 @@ public class FunctionActivity extends BaseActivity<BaseViewRecyclerviewBinding> 
                             }
 
                             @Override
-                            public void onDenied(List<String> grantedList, List<String> deniedList, List<String> notFoundList) {
+                            public void onDenied(
+                                    List<String> grantedList,
+                                    List<String> deniedList,
+                                    List<String> notFoundList
+                            ) {
                                 ToastTintUtils.warning("打开手电筒需摄像头权限");
                             }
                         }).request(mActivity);
@@ -127,7 +135,11 @@ public class FunctionActivity extends BaseActivity<BaseViewRecyclerviewBinding> 
                             }
 
                             @Override
-                            public void onDenied(List<String> grantedList, List<String> deniedList, List<String> notFoundList) {
+                            public void onDenied(
+                                    List<String> grantedList,
+                                    List<String> deniedList,
+                                    List<String> notFoundList
+                            ) {
                                 ToastTintUtils.warning("创建快捷方式需要该权限");
                             }
                         }).request(mActivity);

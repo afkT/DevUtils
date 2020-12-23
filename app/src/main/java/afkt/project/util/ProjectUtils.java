@@ -54,7 +54,10 @@ public final class ProjectUtils {
      * @param scanView  扫描 View
      * @param scanShape 扫描类型
      */
-    public static void refShape(ScanShapeView scanView, ScanShapeView.Shape scanShape) {
+    public static void refShape(
+            ScanShapeView scanView,
+            ScanShapeView.Shape scanShape
+    ) {
         // 设置扫描 View 类型
         scanView.setShapeType(scanShape);
 

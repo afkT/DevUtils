@@ -11,7 +11,10 @@ public class ACVFileBean {
     // 文件地址
     public String acvPath;
 
-    public ACVFileBean(String acvName, String acvPath) {
+    public ACVFileBean(
+            String acvName,
+            String acvPath
+    ) {
         this.acvName = acvName;
         this.acvPath = acvPath;
     }
