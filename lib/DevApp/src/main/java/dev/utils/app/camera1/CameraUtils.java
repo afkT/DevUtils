@@ -56,8 +56,8 @@ public final class CameraUtils {
      */
     public static boolean checkCameraFacing(final int facing) {
         try {
-            int cameraCount        = Camera.getNumberOfCameras();
-            Camera.CameraInfo info = new Camera.CameraInfo();
+            int               cameraCount = Camera.getNumberOfCameras();
+            Camera.CameraInfo info        = new Camera.CameraInfo();
             for (int i = 0; i < cameraCount; i++) {
                 Camera.getCameraInfo(i, info);
                 if (facing == info.facing) {

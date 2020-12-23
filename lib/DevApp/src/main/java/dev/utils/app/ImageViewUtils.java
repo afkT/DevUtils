@@ -769,8 +769,8 @@ public final class ImageViewUtils {
         try {
             if (imageView == null) return imageSize;
 
-            DisplayMetrics displayMetrics       = ResourceUtils.getDisplayMetrics(imageView.getContext());
-            ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
+            DisplayMetrics         displayMetrics = ResourceUtils.getDisplayMetrics(imageView.getContext());
+            ViewGroup.LayoutParams layoutParams   = imageView.getLayoutParams();
 
             // 获取 ImageView 的实际宽度
             int width = imageView.getWidth();

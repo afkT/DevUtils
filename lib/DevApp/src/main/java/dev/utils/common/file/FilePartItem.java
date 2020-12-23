@@ -7,9 +7,9 @@ package dev.utils.common.file;
 public class FilePartItem {
 
     // 分片索引
-    public final int partIndex;
+    public final int  partIndex;
     // 分片总数
-    public final int partCount;
+    public final int  partCount;
     // 分片总字节
     public final long partByteLength;
     // 原始文件总字节

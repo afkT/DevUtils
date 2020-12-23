@@ -16,7 +16,7 @@ import dev.utils.app.TextViewUtils;
 public class LineTextView extends AppCompatTextView {
 
     // 是否换行
-    private boolean mIsNewLine = false;
+    private boolean           mIsNewLine = false;
     // 换行监听回调
     private OnNewLineCallback mNewLineCallback;
 

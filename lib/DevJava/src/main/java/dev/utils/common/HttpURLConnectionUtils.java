@@ -111,9 +111,9 @@ public final class HttpURLConnectionUtils {
             final Callback callback
     ) {
         // 获取连接对象
-        HttpURLConnection connection = null;
-        InputStream is               = null;
-        ByteArrayOutputStream baos   = null;
+        HttpURLConnection     connection = null;
+        InputStream           is         = null;
+        ByteArrayOutputStream baos       = null;
         try {
             // 请求路径
             URL url = new URL(urlStr);

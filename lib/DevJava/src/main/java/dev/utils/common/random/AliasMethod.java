@@ -33,7 +33,7 @@ public final class AliasMethod {
     private final Random random;
 
     /* The probability and alias tables. */
-    private final int[] alias;
+    private final int[]    alias;
     private final double[] probability;
 
     /**

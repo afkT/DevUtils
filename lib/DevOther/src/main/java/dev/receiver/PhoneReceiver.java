@@ -27,7 +27,7 @@ public final class PhoneReceiver extends BroadcastReceiver {
     private static final String TAG = PhoneReceiver.class.getSimpleName();
 
     // 电话状态监听意图
-    private static final String  PHONE_STATE = "android.intent.action.PHONE_STATE";
+    private static final String  PHONE_STATE       = "android.intent.action.PHONE_STATE";
     // 拨出电话意图
     private static final String  NEW_OUTGOING_CALL = "android.intent.action.NEW_OUTGOING_CALL";
     // 通话号码

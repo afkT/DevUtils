@@ -22,7 +22,7 @@ public final class BigDecimalUtils {
     private static final String TAG = BigDecimalUtils.class.getSimpleName();
 
     // 小数点位数
-    private static int NEW_SCALE = 10;
+    private static int NEW_SCALE     = 10;
     // 舍入模式
     private static int ROUNDING_MODE = BigDecimal.ROUND_UNNECESSARY;
 

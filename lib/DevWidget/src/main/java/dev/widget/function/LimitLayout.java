@@ -21,7 +21,7 @@ import dev.widget.R;
 public class LimitLayout extends FrameLayout {
 
     // 最大显示宽度
-    private int mMaxWidth = WidgetUtils.DEF_VALUE;
+    private int mMaxWidth  = WidgetUtils.DEF_VALUE;
     // 最大显示高度
     private int mMaxHeight = WidgetUtils.DEF_VALUE;
 

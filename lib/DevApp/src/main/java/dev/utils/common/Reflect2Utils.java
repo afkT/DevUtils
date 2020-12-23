@@ -673,7 +673,7 @@ public final class Reflect2Utils {
             // 限制值
             int limitNumber = (fieldNumber >= 0) ? fieldNumber : Integer.MAX_VALUE;
             // =
-            Field field    = null;
+            Field    field = null;
             Class<?> clazz = object.getClass();
             for (; clazz != Object.class; clazz = clazz.getSuperclass()) {
                 try {

@@ -726,10 +726,10 @@ public final class ScaleUtils {
             this.type = type;
         }
 
-        public final int x;
-        public final int y;
+        public final int    x;
+        public final int    y;
         public final double scale;
-        public final int type;
+        public final int    type;
 
         public String getXYx() {
             return getXY("x");
