@@ -849,30 +849,24 @@ public final class DevHelper {
     /**
      * 打开软键盘
      * @param editText {@link EditText}
-     * @param handler  {@link Handler}
      * @return {@link DevHelper}
      */
-    public DevHelper openKeyboard(
-            final EditText editText,
-            final Handler handler
-    ) {
-        KeyBoardUtils.openKeyboard(editText, handler);
+    public DevHelper openKeyboardDelay(final EditText editText) {
+        KeyBoardUtils.openKeyboardDelay(editText);
         return this;
     }
 
     /**
      * 打开软键盘
      * @param editText    {@link EditText}
-     * @param handler     {@link Handler}
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@link DevHelper}
      */
-    public DevHelper openKeyboard(
+    public DevHelper openKeyboardDelay(
             final EditText editText,
-            final Handler handler,
             final int delayMillis
     ) {
-        KeyBoardUtils.openKeyboard(editText, handler, delayMillis);
+        KeyBoardUtils.openKeyboardDelay(editText, delayMillis);
         return this;
     }
 
@@ -889,25 +883,20 @@ public final class DevHelper {
 
     /**
      * 打开软键盘
-     * @param handler {@link Handler}
      * @return {@link DevHelper}
      */
-    public DevHelper openKeyboard(final Handler handler) {
-        KeyBoardUtils.openKeyboard(handler);
+    public DevHelper openKeyboardDelay() {
+        KeyBoardUtils.openKeyboardDelay();
         return this;
     }
 
     /**
      * 打开软键盘
-     * @param handler     {@link Handler}
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@link DevHelper}
      */
-    public DevHelper openKeyboard(
-            final Handler handler,
-            final int delayMillis
-    ) {
-        KeyBoardUtils.openKeyboard(handler, delayMillis);
+    public DevHelper openKeyboardDelay(final int delayMillis) {
+        KeyBoardUtils.openKeyboardDelay(delayMillis);
         return this;
     }
 

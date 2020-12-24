@@ -2619,25 +2619,20 @@ public final class QuickHelper {
 
     /**
      * 打开软键盘
-     * @param handler {@link Handler}
      * @return {@link QuickHelper}
      */
-    public QuickHelper openKeyboard(final Handler handler) {
-        KeyBoardUtils.openKeyboard(targetEditText(), handler);
+    public QuickHelper openKeyboardDelay() {
+        KeyBoardUtils.openKeyboardDelay(targetEditText());
         return this;
     }
 
     /**
      * 打开软键盘
-     * @param handler     {@link Handler}
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@link QuickHelper}
      */
-    public QuickHelper openKeyboard(
-            final Handler handler,
-            final int delayMillis
-    ) {
-        KeyBoardUtils.openKeyboard(targetEditText(), handler, delayMillis);
+    public QuickHelper openKeyboardDelay(final int delayMillis) {
+        KeyBoardUtils.openKeyboardDelay(targetEditText(), delayMillis);
         return this;
     }
 
