@@ -2617,7 +2617,7 @@ public final class QuickHelper {
     }
 
     /**
-     * 打开软键盘
+     * 延时打开软键盘
      * @return {@link QuickHelper}
      */
     public QuickHelper openKeyboardDelay() {
@@ -2626,7 +2626,7 @@ public final class QuickHelper {
     }
 
     /**
-     * 打开软键盘
+     * 延时打开软键盘
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@link QuickHelper}
      */
@@ -2659,7 +2659,7 @@ public final class QuickHelper {
     }
 
     /**
-     * 关闭软键盘
+     * 延时关闭软键盘
      * @param dialog {@link Dialog}
      * @return {@link QuickHelper}
      */
@@ -2669,7 +2669,7 @@ public final class QuickHelper {
     }
 
     /**
-     * 关闭软键盘
+     * 延时关闭软键盘
      * @param dialog      {@link Dialog}
      * @param delayMillis 延迟时间 ( 毫秒 )
      * @return {@link QuickHelper}

@@ -592,6 +592,29 @@ public final class KeyBoardUtils {
 
     /**
      * 延时关闭软键盘
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean closeKeyboardDelay() {
+        return closeKeyboardDelay(DELAY_MILLIS);
+    }
+
+    /**
+     * 延时关闭软键盘
+     * @param delayMillis 延迟时间 ( 毫秒 )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean closeKeyboardDelay(final long delayMillis) {
+        sMainHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                closeKeyboard();
+            }
+        }, delayMillis);
+        return true;
+    }
+
+    /**
+     * 延时关闭软键盘
      * @param editText {@link EditText}
      * @return {@code true} success, {@code false} fail
      */
@@ -619,29 +642,6 @@ public final class KeyBoardUtils {
             return true;
         }
         return false;
-    }
-
-    /**
-     * 延时关闭软键盘
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean closeKeyboardDelay() {
-        return closeKeyboardDelay(DELAY_MILLIS);
-    }
-
-    /**
-     * 延时关闭软键盘
-     * @param delayMillis 延迟时间 ( 毫秒 )
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean closeKeyboardDelay(final long delayMillis) {
-        sMainHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                closeKeyboard();
-            }
-        }, delayMillis);
-        return true;
     }
 
     /**

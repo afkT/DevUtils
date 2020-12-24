@@ -832,260 +832,6 @@ public final class DevHelper {
     // = KeyBoardUtils =
     // =================
 
-    // =============
-    // = 打开软键盘 =
-    // =============
-
-    /**
-     * 打开软键盘
-     * @return {@link DevHelper}
-     */
-    public DevHelper openKeyboard() {
-        KeyBoardUtils.openKeyboard();
-        return this;
-    }
-
-    /**
-     * 打开软键盘
-     * @return {@link DevHelper}
-     */
-    public DevHelper openKeyboardDelay() {
-        KeyBoardUtils.openKeyboardDelay();
-        return this;
-    }
-
-    /**
-     * 打开软键盘
-     * @param delayMillis 延迟时间 ( 毫秒 )
-     * @return {@link DevHelper}
-     */
-    public DevHelper openKeyboardDelay(final int delayMillis) {
-        KeyBoardUtils.openKeyboardDelay(delayMillis);
-        return this;
-    }
-
-    // =
-
-    /**
-     * 打开软键盘
-     * @param editText {@link EditText}
-     * @return {@link DevHelper}
-     */
-    public DevHelper openKeyboard(final EditText editText) {
-        KeyBoardUtils.openKeyboard(editText);
-        return this;
-    }
-
-    /**
-     * 打开软键盘
-     * @param editText {@link EditText}
-     * @return {@link DevHelper}
-     */
-    public DevHelper openKeyboardDelay(final EditText editText) {
-        KeyBoardUtils.openKeyboardDelay(editText);
-        return this;
-    }
-
-    /**
-     * 打开软键盘
-     * @param editText    {@link EditText}
-     * @param delayMillis 延迟时间 ( 毫秒 )
-     * @return {@link DevHelper}
-     */
-    public DevHelper openKeyboardDelay(
-            final EditText editText,
-            final int delayMillis
-    ) {
-        KeyBoardUtils.openKeyboardDelay(editText, delayMillis);
-        return this;
-    }
-
-    // =============
-    // = 关闭软键盘 =
-    // =============
-
-    /**
-     * 关闭软键盘
-     * @param editText {@link EditText}
-     * @return {@link DevHelper}
-     */
-    public DevHelper closeKeyboard(final EditText editText) {
-        KeyBoardUtils.closeKeyboard(editText);
-        return this;
-    }
-
-    /**
-     * 关闭软键盘
-     * @return {@link DevHelper}
-     */
-    public DevHelper closeKeyboard() {
-        KeyBoardUtils.closeKeyboard();
-        return this;
-    }
-
-    /**
-     * 关闭软键盘
-     * @param activity {@link Activity}
-     * @return {@link DevHelper}
-     */
-    public DevHelper closeKeyboard(final Activity activity) {
-        KeyBoardUtils.closeKeyboard(activity);
-        return this;
-    }
-
-    /**
-     * 关闭 dialog 中打开的键盘
-     * @param dialog {@link Dialog}
-     * @return {@link DevHelper}
-     */
-    public DevHelper closeKeyboard(final Dialog dialog) {
-        KeyBoardUtils.closeKeyboard(dialog);
-        return this;
-    }
-
-    // =
-
-    /**
-     * 关闭软键盘
-     * @param editText {@link EditText}
-     * @param dialog   {@link Dialog}
-     * @return {@link DevHelper}
-     */
-    public DevHelper closeKeyBoardSpecial(
-            final EditText editText,
-            final Dialog dialog
-    ) {
-        KeyBoardUtils.closeKeyBoardSpecial(editText, dialog);
-        return this;
-    }
-
-    // ===========
-    // = 延时关闭 =
-    // ===========
-
-    /**
-     * 关闭软键盘
-     * @param editText {@link EditText}
-     * @param dialog   {@link Dialog}
-     * @return {@link DevHelper}
-     */
-    public DevHelper closeKeyBoardSpecialDelay(
-            final EditText editText,
-            final Dialog dialog
-    ) {
-        KeyBoardUtils.closeKeyBoardSpecialDelay(editText, dialog);
-        return this;
-    }
-
-    /**
-     * 关闭软键盘
-     * @param editText    {@link EditText}
-     * @param dialog      {@link Dialog}
-     * @param delayMillis 延迟时间 ( 毫秒 )
-     * @return {@link DevHelper}
-     */
-    public DevHelper closeKeyBoardSpecialDelay(
-            final EditText editText,
-            final Dialog dialog,
-            final int delayMillis
-    ) {
-        KeyBoardUtils.closeKeyBoardSpecialDelay(editText, dialog, delayMillis);
-        return this;
-    }
-
-    // =
-
-    /**
-     * 关闭软键盘
-     * @param editText {@link EditText}
-     * @return {@link DevHelper}
-     */
-    public DevHelper closeKeyboardDelay(final EditText editText) {
-        KeyBoardUtils.closeKeyboardDelay(editText);
-        return this;
-    }
-
-    /**
-     * 关闭软键盘
-     * @param editText    {@link EditText}
-     * @param delayMillis 延迟时间 ( 毫秒 )
-     * @return {@link DevHelper}
-     */
-    public DevHelper closeKeyboardDelay(
-            final EditText editText,
-            final int delayMillis
-    ) {
-        KeyBoardUtils.closeKeyboardDelay(editText, delayMillis);
-        return this;
-    }
-
-    /**
-     * 关闭软键盘{@link Handler}
-     * @return {@link DevHelper}
-     */
-    public DevHelper closeKeyboardDelay() {
-        KeyBoardUtils.closeKeyboardDelay();
-        return this;
-    }
-
-    /**
-     * 关闭软键盘
-     * @param delayMillis 延迟时间 ( 毫秒 )
-     * @return {@link DevHelper}
-     */
-    public DevHelper closeKeyboardDelay(final int delayMillis) {
-        KeyBoardUtils.closeKeyboardDelay(delayMillis);
-        return this;
-    }
-
-    /**
-     * 关闭软键盘
-     * @param activity {@link Activity}
-     * @return {@link DevHelper}
-     */
-    public DevHelper closeKeyboardDelay(final Activity activity) {
-        KeyBoardUtils.closeKeyboardDelay(activity);
-        return this;
-    }
-
-    /**
-     * 关闭软键盘
-     * @param activity    {@link Activity}
-     * @param delayMillis 延迟时间 ( 毫秒 )
-     * @return {@link DevHelper}
-     */
-    public DevHelper closeKeyboardDelay(
-            final Activity activity,
-            final int delayMillis
-    ) {
-        KeyBoardUtils.closeKeyboardDelay(activity, delayMillis);
-        return this;
-    }
-
-    /**
-     * 关闭软键盘
-     * @param dialog {@link Dialog}
-     * @return {@link DevHelper}
-     */
-    public DevHelper closeKeyboardDelay(final Dialog dialog) {
-        KeyBoardUtils.closeKeyboardDelay(dialog);
-        return this;
-    }
-
-    /**
-     * 关闭软键盘
-     * @param dialog      {@link Dialog}
-     * @param delayMillis 延迟时间 ( 毫秒 )
-     * @return {@link DevHelper}
-     */
-    public DevHelper closeKeyboardDelay(
-            final Dialog dialog,
-            final int delayMillis
-    ) {
-        KeyBoardUtils.closeKeyboardDelay(dialog, delayMillis);
-        return this;
-    }
-
     // ==============================
     // = 点击非 EditText 则隐藏软键盘 =
     // ==============================
@@ -1129,6 +875,258 @@ public final class DevHelper {
             final KeyBoardUtils.OnSoftInputChangedListener listener
     ) {
         KeyBoardUtils.registerSoftInputChangedListener2(activity, listener);
+        return this;
+    }
+
+    // =============
+    // = 打开软键盘 =
+    // =============
+
+    /**
+     * 打开软键盘
+     * @return {@link DevHelper}
+     */
+    public DevHelper openKeyboard() {
+        KeyBoardUtils.openKeyboard();
+        return this;
+    }
+
+    /**
+     * 延时打开软键盘
+     * @return {@link DevHelper}
+     */
+    public DevHelper openKeyboardDelay() {
+        KeyBoardUtils.openKeyboardDelay();
+        return this;
+    }
+
+    /**
+     * 延时打开软键盘
+     * @param delayMillis 延迟时间 ( 毫秒 )
+     * @return {@link DevHelper}
+     */
+    public DevHelper openKeyboardDelay(final int delayMillis) {
+        KeyBoardUtils.openKeyboardDelay(delayMillis);
+        return this;
+    }
+
+    // =
+
+    /**
+     * 打开软键盘
+     * @param editText {@link EditText}
+     * @return {@link DevHelper}
+     */
+    public DevHelper openKeyboard(final EditText editText) {
+        KeyBoardUtils.openKeyboard(editText);
+        return this;
+    }
+
+    /**
+     * 延时打开软键盘
+     * @param editText {@link EditText}
+     * @return {@link DevHelper}
+     */
+    public DevHelper openKeyboardDelay(final EditText editText) {
+        KeyBoardUtils.openKeyboardDelay(editText);
+        return this;
+    }
+
+    /**
+     * 延时打开软键盘
+     * @param editText    {@link EditText}
+     * @param delayMillis 延迟时间 ( 毫秒 )
+     * @return {@link DevHelper}
+     */
+    public DevHelper openKeyboardDelay(
+            final EditText editText,
+            final int delayMillis
+    ) {
+        KeyBoardUtils.openKeyboardDelay(editText, delayMillis);
+        return this;
+    }
+
+    // =============
+    // = 关闭软键盘 =
+    // =============
+
+    /**
+     * 关闭软键盘
+     * @return {@link DevHelper}
+     */
+    public DevHelper closeKeyboard() {
+        KeyBoardUtils.closeKeyboard();
+        return this;
+    }
+
+    /**
+     * 关闭软键盘
+     * @param editText {@link EditText}
+     * @return {@link DevHelper}
+     */
+    public DevHelper closeKeyboard(final EditText editText) {
+        KeyBoardUtils.closeKeyboard(editText);
+        return this;
+    }
+
+    /**
+     * 关闭软键盘
+     * @param activity {@link Activity}
+     * @return {@link DevHelper}
+     */
+    public DevHelper closeKeyboard(final Activity activity) {
+        KeyBoardUtils.closeKeyboard(activity);
+        return this;
+    }
+
+    /**
+     * 关闭 dialog 中打开的键盘
+     * @param dialog {@link Dialog}
+     * @return {@link DevHelper}
+     */
+    public DevHelper closeKeyboard(final Dialog dialog) {
+        KeyBoardUtils.closeKeyboard(dialog);
+        return this;
+    }
+
+    /**
+     * 关闭软键盘
+     * @param editText {@link EditText}
+     * @param dialog   {@link Dialog}
+     * @return {@link DevHelper}
+     */
+    public DevHelper closeKeyBoardSpecial(
+            final EditText editText,
+            final Dialog dialog
+    ) {
+        KeyBoardUtils.closeKeyBoardSpecial(editText, dialog);
+        return this;
+    }
+
+    // ===========
+    // = 延时关闭 =
+    // ===========
+
+    /**
+     * 延时关闭软键盘
+     * @param editText {@link EditText}
+     * @param dialog   {@link Dialog}
+     * @return {@link DevHelper}
+     */
+    public DevHelper closeKeyBoardSpecialDelay(
+            final EditText editText,
+            final Dialog dialog
+    ) {
+        KeyBoardUtils.closeKeyBoardSpecialDelay(editText, dialog);
+        return this;
+    }
+
+    /**
+     * 延时关闭软键盘
+     * @param editText    {@link EditText}
+     * @param dialog      {@link Dialog}
+     * @param delayMillis 延迟时间 ( 毫秒 )
+     * @return {@link DevHelper}
+     */
+    public DevHelper closeKeyBoardSpecialDelay(
+            final EditText editText,
+            final Dialog dialog,
+            final int delayMillis
+    ) {
+        KeyBoardUtils.closeKeyBoardSpecialDelay(editText, dialog, delayMillis);
+        return this;
+    }
+
+    // =
+
+    /**
+     * 延时关闭软键盘
+     * @return {@link DevHelper}
+     */
+    public DevHelper closeKeyboardDelay() {
+        KeyBoardUtils.closeKeyboardDelay();
+        return this;
+    }
+
+    /**
+     * 延时关闭软键盘
+     * @param delayMillis 延迟时间 ( 毫秒 )
+     * @return {@link DevHelper}
+     */
+    public DevHelper closeKeyboardDelay(final int delayMillis) {
+        KeyBoardUtils.closeKeyboardDelay(delayMillis);
+        return this;
+    }
+
+    /**
+     * 延时关闭软键盘
+     * @param editText {@link EditText}
+     * @return {@link DevHelper}
+     */
+    public DevHelper closeKeyboardDelay(final EditText editText) {
+        KeyBoardUtils.closeKeyboardDelay(editText);
+        return this;
+    }
+
+    /**
+     * 延时关闭软键盘
+     * @param editText    {@link EditText}
+     * @param delayMillis 延迟时间 ( 毫秒 )
+     * @return {@link DevHelper}
+     */
+    public DevHelper closeKeyboardDelay(
+            final EditText editText,
+            final int delayMillis
+    ) {
+        KeyBoardUtils.closeKeyboardDelay(editText, delayMillis);
+        return this;
+    }
+
+    /**
+     * 延时关闭软键盘
+     * @param activity {@link Activity}
+     * @return {@link DevHelper}
+     */
+    public DevHelper closeKeyboardDelay(final Activity activity) {
+        KeyBoardUtils.closeKeyboardDelay(activity);
+        return this;
+    }
+
+    /**
+     * 延时关闭软键盘
+     * @param activity    {@link Activity}
+     * @param delayMillis 延迟时间 ( 毫秒 )
+     * @return {@link DevHelper}
+     */
+    public DevHelper closeKeyboardDelay(
+            final Activity activity,
+            final int delayMillis
+    ) {
+        KeyBoardUtils.closeKeyboardDelay(activity, delayMillis);
+        return this;
+    }
+
+    /**
+     * 延时关闭软键盘
+     * @param dialog {@link Dialog}
+     * @return {@link DevHelper}
+     */
+    public DevHelper closeKeyboardDelay(final Dialog dialog) {
+        KeyBoardUtils.closeKeyboardDelay(dialog);
+        return this;
+    }
+
+    /**
+     * 延时关闭软键盘
+     * @param dialog      {@link Dialog}
+     * @param delayMillis 延迟时间 ( 毫秒 )
+     * @return {@link DevHelper}
+     */
+    public DevHelper closeKeyboardDelay(
+            final Dialog dialog,
+            final int delayMillis
+    ) {
+        KeyBoardUtils.closeKeyboardDelay(dialog, delayMillis);
         return this;
     }
 
