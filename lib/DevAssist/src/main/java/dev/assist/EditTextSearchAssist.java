@@ -1,11 +1,10 @@
 package dev.assist;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+
+import dev.utils.app.assist.DelayAssist;
 
 /**
  * detail: EditText 搜索辅助类
@@ -16,7 +15,7 @@ import android.widget.EditText;
  *     <p></p>
  *     使用:
  *     第一种
- *     在 {@link TextWatcher#onTextChanged} 中调用 {@link #postSearch(CharSequence)}
+ *     在 {@link TextWatcher#onTextChanged} 中调用 {@link #post(CharSequence)}
  *     第二种
  *     调用 {@link #setCallback(SearchCallback, EditText)} 传入需要监听的 EditText
  *     或使用 {@link #bindEditText(EditText)} 绑定 EditText 输入事件
@@ -24,21 +23,21 @@ import android.widget.EditText;
  */
 public class EditTextSearchAssist {
 
-    // 主线程 Handler
-    private              Handler        mMainHandler;
-    // 默认延迟时间
-    private static final long           DELAY_MILLIS = 270L;
-    // 延迟时间
-    private              long           mDelayMillis = DELAY_MILLIS;
     // 搜索回调
-    private              SearchCallback mSearchCallback;
+    private SearchCallback mCallback;
+    // 延迟触发回调类
+    private DelayAssist    mDelayAssist = new DelayAssist(object -> {
+        if (mCallback != null && object instanceof CharSequence) {
+            mCallback.callback((CharSequence) object);
+        }
+    });
 
     // ===========
     // = 构造函数 =
     // ===========
 
     public EditTextSearchAssist() {
-        this(DELAY_MILLIS, null);
+        this(DelayAssist.DELAY_MILLIS, null);
     }
 
     public EditTextSearchAssist(long delayMillis) {
@@ -46,24 +45,15 @@ public class EditTextSearchAssist {
     }
 
     public EditTextSearchAssist(SearchCallback callback) {
-        this(DELAY_MILLIS, callback);
+        this(DelayAssist.DELAY_MILLIS, callback);
     }
 
     public EditTextSearchAssist(
             long delayMillis,
             SearchCallback callback
     ) {
-        setDelayMillis(delayMillis);
-        this.mSearchCallback = callback;
-        this.mMainHandler = new Handler(Looper.getMainLooper()) {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                if (mSearchCallback != null && msg.obj instanceof CharSequence) {
-                    mSearchCallback.callback((CharSequence) msg.obj);
-                }
-            }
-        };
+        mCallback = callback;
+        mDelayAssist.setDelayMillis(delayMillis);
     }
 
     /**
@@ -84,14 +74,18 @@ public class EditTextSearchAssist {
     // ===============
 
     /**
-     * 开始搜索 ( 功能由该方法实现 )
+     * 移除消息
+     */
+    public void remove() {
+        mDelayAssist.remove();
+    }
+
+    /**
+     * 发送消息 ( 功能由该方法实现 )
      * @param charSequence 输入内容
      */
-    public void postSearch(final CharSequence charSequence) {
-        mMainHandler.removeCallbacksAndMessages(null);
-        Message message = mMainHandler.obtainMessage();
-        message.obj = charSequence;
-        mMainHandler.sendMessageDelayed(message, mDelayMillis);
+    public void post(final CharSequence charSequence) {
+        mDelayAssist.post(charSequence);
     }
 
     // =
@@ -102,7 +96,7 @@ public class EditTextSearchAssist {
      * @return {@link EditTextSearchAssist}
      */
     public EditTextSearchAssist setDelayMillis(final long delayMillis) {
-        this.mDelayMillis = (delayMillis > 0) ? delayMillis : DELAY_MILLIS;
+        mDelayAssist.setDelayMillis(delayMillis);
         return this;
     }
 
@@ -112,7 +106,7 @@ public class EditTextSearchAssist {
      * @return {@link EditTextSearchAssist}
      */
     public EditTextSearchAssist setCallback(final SearchCallback callback) {
-        this.mSearchCallback = callback;
+        mCallback = callback;
         return this;
     }
 
@@ -160,7 +154,7 @@ public class EditTextSearchAssist {
                     int before,
                     int count
             ) {
-                postSearch(charSequence);
+                post(charSequence);
             }
 
             @Override

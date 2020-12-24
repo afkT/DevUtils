@@ -12,7 +12,10 @@ android.defaultConfig {
 }
 
 dependencies {
-    compileOnly project(':DevJava')
+    // 编译时使用
+    api project(':DevApp')
+//    // 打包时使用
+//    api deps.dev.dev_app_x
 }
 
 // gradlew clean
