@@ -5,7 +5,7 @@ package dev.engine.log;
  * @author Ttt
  * <pre>
  *     Application: DevLogEngine.initEngine()
- *     use: DevLogEngine.xxx
+ *     使用: DevLogEngine.xxx
  * </pre>
  */
 public final class DevLogEngine {

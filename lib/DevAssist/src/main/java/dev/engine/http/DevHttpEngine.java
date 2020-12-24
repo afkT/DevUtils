@@ -5,7 +5,7 @@ package dev.engine.http;
  * @author Ttt
  * <pre>
  *     Application: DevHttpEngine.initEngine()
- *     use: DevHttpEngine.xxx
+ *     使用: DevHttpEngine.xxx
  * </pre>
  */
 public final class DevHttpEngine {

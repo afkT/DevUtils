@@ -7,7 +7,7 @@ import android.widget.ImageView;
  * @author Ttt
  * <pre>
  *     Application: DevImageEngine.initEngine()
- *     use: DevImageEngine.xxx
+ *     使用: DevImageEngine.xxx
  *     test if: getTranscodeType() == Bitmap.class
  * </pre>
  */

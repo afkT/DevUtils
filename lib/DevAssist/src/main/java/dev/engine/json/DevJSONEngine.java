@@ -7,7 +7,7 @@ import java.lang.reflect.Type;
  * @author Ttt
  * <pre>
  *     Application: DevJSONEngine.initEngine()
- *     use: DevJSONEngine.xxx
+ *     使用: DevJSONEngine.xxx
  * </pre>
  */
 public final class DevJSONEngine {
