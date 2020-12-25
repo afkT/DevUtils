@@ -121,7 +121,7 @@ ext {
                     room_compiler                 : "androidx.room:room-compiler:2.2.5",
                     room_ktx                      : "androidx.room:room-ktx:2.2.5",
                     // WorkManager Kotlin + coroutines
-                    work_runtime_ktx              : "androidx.work:work-runtime-ktx:2.4.0",
+                    work_runtime_ktx              : "androidx.work:work-runtime-ktx:2.5.0-beta02",
                     // DataStore
                     datastore_preferences         : "androidx.datastore:datastore-preferences:1.0.0-alpha05",
             ],
@@ -141,8 +141,8 @@ ext {
                     sqlite                : "androidx.sqlite:sqlite:2.1.0", // 推荐使用 Room Jetpack 组件
                     // DefaultLifecycleObserver Java8
                     lifecycle_common_java8: "androidx.lifecycle:lifecycle-common-java8:2.2.0",
-                    // WorkManager Java only
-                    work_runtime          : "androidx.work:work-runtime:2.4.0",
+                    // WorkManager Java only https://mvnrepository.com/artifact/androidx.work/work-runtime
+                    work_runtime          : "androidx.work:work-runtime:2.5.0-beta02",
                     // Android Material 组件使用详解 https://blog.csdn.net/magic0908/article/details/101029876
                     design                : "com.google.android.material:material:1.2.1",
             ],
