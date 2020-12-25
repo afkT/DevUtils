@@ -45,17 +45,17 @@ import dev.widget.R;
 public class CustomRecyclerView extends RecyclerView {
 
     // 是否允许滑动
-    private boolean        mIsSlide        = true;
+    private boolean        mIsSlide   = true;
     // 最大显示宽度
-    private int            mMaxWidth       = WidgetUtils.DEF_VALUE;
+    private int            mMaxWidth  = WidgetUtils.DEF_VALUE;
     // 最大显示高度
-    private int            mMaxHeight      = WidgetUtils.DEF_VALUE;
+    private int            mMaxHeight = WidgetUtils.DEF_VALUE;
     // 滑动监听回调
-    private ScrollCallback mScrollCallback = null;
+    private ScrollCallback mCallback  = null;
     // 距离左边距离
-    private int            mScrollX        = 0;
+    private int            mScrollX   = 0;
     // 距离顶部距离
-    private int            mScrollY        = 0;
+    private int            mScrollY   = 0;
 
     public CustomRecyclerView(Context context) {
         super(context);
@@ -117,8 +117,8 @@ public class CustomRecyclerView extends RecyclerView {
         mScrollX = Math.abs(mScrollX);
         mScrollY = Math.abs(mScrollY);
         // 触发回调
-        if (mScrollCallback != null) {
-            mScrollCallback.onScrollChanged(this, dx, dy, mScrollX, mScrollY);
+        if (mCallback != null) {
+            mCallback.onScrollChanged(this, dx, dy, mScrollX, mScrollY);
         }
     }
 
@@ -126,8 +126,8 @@ public class CustomRecyclerView extends RecyclerView {
     public void onScrollStateChanged(int state) {
         super.onScrollStateChanged(state);
         // 触发回调
-        if (mScrollCallback != null) {
-            mScrollCallback.onScrollStateChanged(this, state);
+        if (mCallback != null) {
+            mCallback.onScrollStateChanged(this, state);
         }
     }
 
@@ -212,7 +212,7 @@ public class CustomRecyclerView extends RecyclerView {
      * @return {@link CustomRecyclerView}
      */
     public CustomRecyclerView setScrollCallback(ScrollCallback callback) {
-        this.mScrollCallback = callback;
+        this.mCallback = callback;
         return this;
     }
 

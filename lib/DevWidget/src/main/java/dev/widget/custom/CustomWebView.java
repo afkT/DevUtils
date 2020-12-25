@@ -23,13 +23,13 @@ import dev.widget.R;
 public class CustomWebView extends WebView {
 
     // 是否允许滑动
-    private boolean        mIsSlide        = true;
+    private boolean        mIsSlide   = true;
     // 最大显示宽度
-    private int            mMaxWidth       = WidgetUtils.DEF_VALUE;
+    private int            mMaxWidth  = WidgetUtils.DEF_VALUE;
     // 最大显示高度
-    private int            mMaxHeight      = WidgetUtils.DEF_VALUE;
+    private int            mMaxHeight = WidgetUtils.DEF_VALUE;
     // 滑动监听回调
-    private ScrollCallback mScrollCallback = null;
+    private ScrollCallback mCallback  = null;
 
     public CustomWebView(Context context) {
         super(context);
@@ -98,8 +98,8 @@ public class CustomWebView extends WebView {
             int oldTop
     ) {
         super.onScrollChanged(left, top, oldLeft, oldTop);
-        if (mScrollCallback != null) {
-            mScrollCallback.onScrollChanged(left, top, oldLeft, oldTop);
+        if (mCallback != null) {
+            mCallback.onScrollChanged(left, top, oldLeft, oldTop);
         }
     }
 
@@ -184,7 +184,7 @@ public class CustomWebView extends WebView {
      * @return {@link CustomWebView}
      */
     public CustomWebView setScrollCallback(ScrollCallback callback) {
-        this.mScrollCallback = callback;
+        this.mCallback = callback;
         return this;
     }
 

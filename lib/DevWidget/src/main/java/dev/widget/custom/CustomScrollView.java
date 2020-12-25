@@ -26,13 +26,13 @@ import dev.widget.R;
 public class CustomScrollView extends ScrollView {
 
     // 是否允许滑动
-    private boolean        mIsSlide        = true;
+    private boolean        mIsSlide   = true;
     // 最大显示宽度
-    private int            mMaxWidth       = WidgetUtils.DEF_VALUE;
+    private int            mMaxWidth  = WidgetUtils.DEF_VALUE;
     // 最大显示高度
-    private int            mMaxHeight      = WidgetUtils.DEF_VALUE;
+    private int            mMaxHeight = WidgetUtils.DEF_VALUE;
     // 滑动监听回调
-    private ScrollCallback mScrollCallback = null;
+    private ScrollCallback mCallback  = null;
 
     public CustomScrollView(Context context) {
         super(context);
@@ -101,8 +101,8 @@ public class CustomScrollView extends ScrollView {
             int oldTop
     ) {
         super.onScrollChanged(left, top, oldLeft, oldTop);
-        if (mScrollCallback != null) {
-            mScrollCallback.onScrollChanged(left, top, oldLeft, oldTop);
+        if (mCallback != null) {
+            mCallback.onScrollChanged(left, top, oldLeft, oldTop);
         }
     }
 
@@ -192,7 +192,7 @@ public class CustomScrollView extends ScrollView {
      * @return {@link CustomScrollView}
      */
     public CustomScrollView setScrollCallback(ScrollCallback callback) {
-        this.mScrollCallback = callback;
+        this.mCallback = callback;
         return this;
     }
 
