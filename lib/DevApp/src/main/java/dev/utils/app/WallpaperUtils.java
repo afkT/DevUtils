@@ -5,11 +5,14 @@ import android.app.WallpaperColors;
 import android.app.WallpaperInfo;
 import android.app.WallpaperManager;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 
 import androidx.annotation.RawRes;
 import androidx.annotation.RequiresApi;
+
+import java.io.InputStream;
 
 import dev.utils.LogPrintUtils;
 
@@ -103,8 +106,8 @@ public final class WallpaperUtils {
      * @param which {@link WallpaperManager#FLAG_SYSTEM} or {@link WallpaperManager#FLAG_LOCK}
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("MissingPermission")
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static boolean clear(final int which) {
         try {
             AppUtils.getWallpaperManager().clear(which);
@@ -119,8 +122,8 @@ public final class WallpaperUtils {
      * 删除壁纸 ( 恢复为系统内置壁纸 )
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.P)
     @SuppressLint("MissingPermission")
+    @RequiresApi(api = Build.VERSION_CODES.P)
     public static boolean clearWallpaper() {
         try {
             AppUtils.getWallpaperManager().clearWallpaper();
@@ -306,5 +309,114 @@ public final class WallpaperUtils {
     // = 设置操作 =
     // ===========
 
+    /**
+     * 通过 Bitmap 设置壁纸 ( 桌面壁纸 )
+     * @param bitmap {@link Bitmap}
+     * @return {@code true} success, {@code false} fail
+     */
+    @SuppressLint("MissingPermission")
+    public static boolean setBitmap(final Bitmap bitmap) {
+        try {
+            AppUtils.getWallpaperManager().setBitmap(bitmap);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setBitmap");
+        }
+        return false;
+    }
 
+    /**
+     * 通过 Bitmap 设置壁纸
+     * @param bitmap {@link Bitmap}
+     * @param which  {@link WallpaperManager#FLAG_SYSTEM} or {@link WallpaperManager#FLAG_LOCK}
+     * @return {@code true} success, {@code false} fail
+     */
+    @SuppressLint("MissingPermission")
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static boolean setBitmap(
+            final Bitmap bitmap,
+            final int which
+    ) {
+        try {
+            AppUtils.getWallpaperManager().setBitmap(bitmap, null, true, which);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setBitmap which: %s", which);
+        }
+        return false;
+    }
+
+    /**
+     * 通过 res 设置壁纸
+     * @param resId resource identifier
+     * @return {@code true} success, {@code false} fail
+     */
+    @SuppressLint("MissingPermission")
+    public static boolean setResource(@RawRes final int resId) {
+        try {
+            AppUtils.getWallpaperManager().setResource(resId);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setResource");
+        }
+        return false;
+    }
+
+    /**
+     * 通过 res 设置壁纸
+     * @param resId resource identifier
+     * @param which {@link WallpaperManager#FLAG_SYSTEM} or {@link WallpaperManager#FLAG_LOCK}
+     * @return {@code true} success, {@code false} fail
+     */
+    @SuppressLint("MissingPermission")
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static boolean setResource(
+            @RawRes final int resId,
+            final int which
+    ) {
+        try {
+            AppUtils.getWallpaperManager().setResource(resId, which);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setResource which: %s", which);
+        }
+        return false;
+    }
+
+    /**
+     * 通过 InputStream 设置壁纸
+     * @param inputStream bitmapData InputStream
+     * @return {@code true} success, {@code false} fail
+     */
+    @SuppressLint("MissingPermission")
+    public static boolean setStream(final InputStream inputStream) {
+        try {
+            AppUtils.getWallpaperManager().setStream(inputStream);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setStream");
+        }
+        return false;
+    }
+
+    /**
+     * 通过 InputStream 设置壁纸
+     * @param inputStream bitmapData InputStream
+     * @param which       {@link WallpaperManager#FLAG_SYSTEM} or {@link WallpaperManager#FLAG_LOCK}
+     * @return {@code true} success, {@code false} fail
+     */
+    @SuppressLint("MissingPermission")
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static boolean setStream(
+            final InputStream inputStream,
+            final int which
+    ) {
+        try {
+            AppUtils.getWallpaperManager().setStream(inputStream, null, true, which);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setStream which: %s", which);
+        }
+        return false;
+    }
 }
