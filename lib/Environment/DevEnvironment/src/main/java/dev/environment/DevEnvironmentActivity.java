@@ -82,14 +82,14 @@ public final class DevEnvironmentActivity extends Activity {
         });
         // restart
         TextView vid_dea_restart_tv = findViewById(R.id.vid_dea_restart_tv);
-        if (Utils.sRestartCallback != null) {
+        if (Utils.sCallback != null) {
             vid_dea_restart_tv.setVisibility(View.VISIBLE);
             vid_dea_restart_tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     finish();
-                    if (Utils.sRestartCallback != null) {
-                        Utils.sRestartCallback.onRestart();
+                    if (Utils.sCallback != null) {
+                        Utils.sCallback.onRestart();
                     }
                 }
             });

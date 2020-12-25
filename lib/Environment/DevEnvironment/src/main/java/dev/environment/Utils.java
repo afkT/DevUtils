@@ -27,7 +27,7 @@ class Utils {
     static final String STR_ENVIRONMENT        = "Environment";
 
     // callback
-    protected static RestartCallback sRestartCallback;
+    protected static RestartCallback sCallback;
     // DevEnvironment Class
     static           Class<?>        devEnvironmentClass;
 
@@ -63,7 +63,7 @@ class Utils {
     ) {
         if (context != null && !isRelease()) {
             try {
-                Utils.sRestartCallback = callback;
+                Utils.sCallback = callback;
                 Intent intent = new Intent(context, DevEnvironmentActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);

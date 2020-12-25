@@ -951,7 +951,7 @@ public final class ActivityUtils {
         // 传参 UUID Key
         private static final String         EXTRA_UUID = "uuid";
         // 跳转回传回调
-        private              ResultCallback mResultCallback;
+        private              ResultCallback mCallback;
         // 跳转回传回调
         private              Integer        mUUIDHash;
 
@@ -989,14 +989,14 @@ public final class ActivityUtils {
             boolean result = false; // 跳转结果
             try {
                 mUUIDHash = getIntent().getIntExtra(EXTRA_UUID, -1);
-                mResultCallback = sResultCallbackMaps.get(mUUIDHash);
-                result = mResultCallback.onStartActivityForResult(this);
+                mCallback = sResultCallbackMaps.get(mUUIDHash);
+                result = mCallback.onStartActivityForResult(this);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "onCreate");
             }
             if (!result) {
-                if (mResultCallback != null) {
-                    mResultCallback.onActivityResult(false, Activity.RESULT_CANCELED, null);
+                if (mCallback != null) {
+                    mCallback.onActivityResult(false, Activity.RESULT_CANCELED, null);
                 }
                 finish();
             }
@@ -1009,8 +1009,8 @@ public final class ActivityUtils {
                 Intent data
         ) {
             super.onActivityResult(requestCode, resultCode, data);
-            if (mResultCallback != null) {
-                mResultCallback.onActivityResult(resultCode == Activity.RESULT_OK, resultCode, data);
+            if (mCallback != null) {
+                mCallback.onActivityResult(resultCode == Activity.RESULT_OK, resultCode, data);
             }
             finish();
         }

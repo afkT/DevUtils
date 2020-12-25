@@ -18,7 +18,7 @@ public class LineTextView extends AppCompatTextView {
     // 是否换行
     private boolean           mIsNewLine = false;
     // 换行监听回调
-    private OnNewLineCallback mNewLineCallback;
+    private OnNewLineCallback mCallback;
 
     public LineTextView(Context context) {
         super(context);
@@ -53,8 +53,8 @@ public class LineTextView extends AppCompatTextView {
         mIsNewLine = line > 1;
 
         // 触发回调
-        if (mNewLineCallback != null) {
-            mNewLineCallback.onNewLine(mIsNewLine, line);
+        if (mCallback != null) {
+            mCallback.onNewLine(mIsNewLine, line);
         }
     }
 
@@ -72,7 +72,7 @@ public class LineTextView extends AppCompatTextView {
      * @return {@link LineTextView}
      */
     public LineTextView setNewLineCallback(OnNewLineCallback callback) {
-        this.mNewLineCallback = callback;
+        this.mCallback = callback;
         return this;
     }
 

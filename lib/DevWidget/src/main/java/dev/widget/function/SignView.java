@@ -35,7 +35,7 @@ public class SignView extends View {
     // 是否清空画布
     private boolean        mIsClearCanvas = false;
     // 绘制回调事件
-    private OnDrawCallback mDrawCallback;
+    private OnDrawCallback mCallback;
 
     public SignView(Context context) {
         super(context);
@@ -73,8 +73,8 @@ public class SignView extends View {
         Path  path  = getPath();
         Paint paint = getPaint();
         // 触发回调
-        if (mDrawCallback != null) {
-            if (mDrawCallback.onDraw(canvas, path, paint, mIsClearCanvas)) {
+        if (mCallback != null) {
+            if (mCallback.onDraw(canvas, path, paint, mIsClearCanvas)) {
                 // 绘制路径
                 canvas.drawPath(path, paint);
             }
@@ -194,7 +194,7 @@ public class SignView extends View {
      * @return {@link SignView}
      */
     public SignView setDrawCallback(OnDrawCallback callback) {
-        this.mDrawCallback = callback;
+        this.mCallback = callback;
         return this;
     }
 
