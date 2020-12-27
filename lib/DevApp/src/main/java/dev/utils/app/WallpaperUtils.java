@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.app.WallpaperColors;
 import android.app.WallpaperInfo;
 import android.app.WallpaperManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 
 import androidx.annotation.RawRes;
@@ -416,6 +418,104 @@ public final class WallpaperUtils {
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setStream which: %s", which);
+        }
+        return false;
+    }
+
+    // ===========
+    // = 适配设置 =
+    // ===========
+
+    /**
+     * detail: 其他回调
+     * @author Ttt
+     */
+    public interface OnOtherCallback {
+
+        /**
+         * 非适配 ROM 则触发回调
+         * @return {@code true} success, {@code false} fail
+         */
+        boolean callback();
+    }
+
+    /**
+     * 通过 Uri 设置壁纸 ( 跳转到设置页 )
+     * @param uri {@link Uri}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setUri(final Uri uri) {
+        return setUri(uri, null);
+    }
+
+    /**
+     * 通过 Uri 设置壁纸 ( 跳转到设置页 )
+     * @param uri      {@link Uri}
+     * @param callback {@link OnOtherCallback}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setUri(
+            final Uri uri,
+            final OnOtherCallback callback
+    ) {
+        if (uri == null) return false;
+        Intent intent;
+        try {
+            if (ROMUtils.isXiaomi()) {
+                ComponentName componentName = new ComponentName(
+                        "com.android.thememanager",
+                        "com.android.thememanager.activity.WallpaperDetailActivity"
+                );
+                intent = new Intent("miui.intent.action.START_WALLPAPER_DETAIL");
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                intent.setDataAndType(uri, "image/*");
+                intent.putExtra("mimeType", "image/*");
+                intent.setComponent(componentName);
+                return AppUtils.startActivity(intent);
+            }
+
+            if (ROMUtils.isHuawei()) {
+                ComponentName componentName = new ComponentName(
+                        "com.android.gallery3d", "com.android.gallery3d.app.Wallpaper"
+                );
+                intent = new Intent(Intent.ACTION_VIEW);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                intent.setDataAndType(uri, "image/*");
+                intent.putExtra("mimeType", "image/*");
+                intent.setComponent(componentName);
+                return AppUtils.startActivity(intent);
+            }
+
+            if (ROMUtils.isOppo()) {
+                ComponentName componentName = new ComponentName(
+                        "com.vivo.gallery", "com.android.gallery3d.app.Wallpaper"
+                );
+                intent = new Intent(Intent.ACTION_VIEW);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                intent.setDataAndType(uri, "image/*");
+                intent.putExtra("mimeType", "image/*");
+                intent.setComponent(componentName);
+                return AppUtils.startActivity(intent);
+            }
+
+            if (ROMUtils.isVivo()) {
+                ComponentName componentName = new ComponentName(
+                        "com.coloros.gallery3d", "com.oppo.gallery3d.app.Wallpaper"
+                );
+                intent = new Intent(Intent.ACTION_VIEW);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                intent.setDataAndType(uri, "image/*");
+                intent.putExtra("mimeType", "image/*");
+                intent.setComponent(componentName);
+                return AppUtils.startActivity(intent);
+            }
+
+            if (callback != null) {
+                return callback.callback();
+            }
+            return setStream(ResourceUtils.openInputStream(uri));
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setUri");
         }
         return false;
     }
