@@ -2688,10 +2688,10 @@ public final class QuickHelper {
 
     /**
      * 在 onCreate 中获取视图的尺寸 ( 需回调 onGetSizeListener 接口, 在 onGetSize 中获取 View 宽高 )
-     * @param listener {@link SizeUtils.onGetSizeListener}
+     * @param listener {@link SizeUtils.OnGetSizeListener}
      * @return {@link QuickHelper}
      */
-    public QuickHelper forceGetViewSize(final SizeUtils.onGetSizeListener listener) {
+    public QuickHelper forceGetViewSize(final SizeUtils.OnGetSizeListener listener) {
         SizeUtils.forceGetViewSize(targetView(), listener);
         return this;
     }

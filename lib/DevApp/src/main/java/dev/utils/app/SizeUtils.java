@@ -156,12 +156,12 @@ public final class SizeUtils {
      *     });
      * </pre>
      * @param view     {@link View}
-     * @param listener {@link onGetSizeListener}
+     * @param listener {@link OnGetSizeListener}
      * @return {@code true} success, {@code false} fail
      */
     public static boolean forceGetViewSize(
             final View view,
-            final onGetSizeListener listener
+            final OnGetSizeListener listener
     ) {
         if (view != null) {
             view.post(new Runnable() {
@@ -181,7 +181,7 @@ public final class SizeUtils {
      * detail: 获取 View 宽高监听
      * @author Ttt
      */
-    public interface onGetSizeListener {
+    public interface OnGetSizeListener {
 
         /**
          * 获取到 View 宽高监听通知

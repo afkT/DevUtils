@@ -1412,12 +1412,12 @@ public final class DevHelper {
     /**
      * 在 onCreate 中获取视图的尺寸 ( 需回调 onGetSizeListener 接口, 在 onGetSize 中获取 View 宽高 )
      * @param view     {@link View}
-     * @param listener {@link SizeUtils.onGetSizeListener}
+     * @param listener {@link SizeUtils.OnGetSizeListener}
      * @return {@link DevHelper}
      */
     public DevHelper forceGetViewSize(
             final View view,
-            final SizeUtils.onGetSizeListener listener
+            final SizeUtils.OnGetSizeListener listener
     ) {
         SizeUtils.forceGetViewSize(view, listener);
         return this;
