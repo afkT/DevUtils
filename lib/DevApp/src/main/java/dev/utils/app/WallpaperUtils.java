@@ -488,7 +488,7 @@ public final class WallpaperUtils {
 
             if (ROMUtils.isOppo()) {
                 ComponentName componentName = new ComponentName(
-                        "com.vivo.gallery", "com.android.gallery3d.app.Wallpaper"
+                        "com.coloros.gallery3d", "com.oppo.gallery3d.app.Wallpaper"
                 );
                 intent = new Intent(Intent.ACTION_VIEW);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -500,7 +500,7 @@ public final class WallpaperUtils {
 
             if (ROMUtils.isVivo()) {
                 ComponentName componentName = new ComponentName(
-                        "com.coloros.gallery3d", "com.oppo.gallery3d.app.Wallpaper"
+                        "com.vivo.gallery", "com.android.gallery3d.app.Wallpaper"
                 );
                 intent = new Intent(Intent.ACTION_VIEW);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
