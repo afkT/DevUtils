@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevAssist:1.0.6'
+implementation 'com.afkt:DevAssist:1.0.7'
 ```
 
 ## 目录结构
@@ -68,6 +68,18 @@ implementation 'com.afkt:DevAssist:1.0.6'
 
 
 ## <span id="devassist">**`dev.assist`**</span>
+
+
+* **EditText 搜索辅助类 ->** [EditTextSearchAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/EditTextSearchAssist.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| remove | 移除消息 |
+| post | 发送消息 ( 功能由该方法实现 ) |
+| setDelayMillis | 设置搜索延迟时间 |
+| setCallback | 设置搜索回调接口 |
+| bindEditText | 绑定 EditText 输入事件 |
+| callback | 搜索回调 |
 
 
 * **解决 Adapter 多个 Item 存在 EditText 监听输入问题 ->** [EditTextWatcherAssist.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/assist/EditTextWatcherAssist.java)

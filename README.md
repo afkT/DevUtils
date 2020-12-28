@@ -1,7 +1,7 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-afkT-blue.svg)](https://github.com/afkT)
 [![GitHub license](https://img.shields.io/github/license/afkT/DevUtils.svg)](https://github.com/afkT/DevUtils/blob/master/LICENSE)
-[![Bintray](https://img.shields.io/badge/DevUtils-2.1.2-brightgreen.svg)](https://bintray.com/afkt/maven/DevAppX)
+[![Bintray](https://img.shields.io/badge/DevUtils-2.1.3-brightgreen.svg)](https://bintray.com/afkt/maven/DevAppX)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Utils](https://img.shields.io/badge/utils-160+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
@@ -77,10 +77,10 @@
 ```java
 
 // DevApp Android 工具类库
-implementation 'com.afkt:DevAppX:2.1.2'
+implementation 'com.afkt:DevAppX:2.1.3'
 
 // DevAssist 快捷功能辅助类库
-implementation 'com.afkt:DevAssist:1.0.6'
+implementation 'com.afkt:DevAssist:1.0.7'
 
 // DevBase Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
 implementation 'com.afkt:DevBase:1.0.2'
