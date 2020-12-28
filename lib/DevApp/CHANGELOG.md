@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 2.1.3 *(2020-12-28)*
+----------------------------
+
+* `[Add]` DelayAssist 延迟触发辅助类
+
+* `[Add]` WallpaperUtils 壁纸工具类
+
+* `[Update]` KeyBoardUtils 移除 close/openKeyboard Handler 参数方法修改为 close/openKeyboardDelay
+
 Version 2.1.2 *(2020-12-21)*
 ----------------------------
 
