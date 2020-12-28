@@ -163,11 +163,11 @@ public final class DevCache {
      * Since writing about the file is complete, and its close method is called,
      * its contents will be registered in the cache
      */
-    class xFileOutputStream extends FileOutputStream {
+    class XFileOutputStream extends FileOutputStream {
 
         private File file;
 
-        public xFileOutputStream(File file) throws FileNotFoundException {
+        public XFileOutputStream(File file) throws FileNotFoundException {
             super(file);
             this.file = file;
         }
@@ -431,7 +431,7 @@ public final class DevCache {
     public OutputStream put(final String key) throws FileNotFoundException {
         File file = mCache.newFile(key);
         if (file != null) {
-            return new xFileOutputStream(file);
+            return new XFileOutputStream(file);
         }
         return null;
     }
