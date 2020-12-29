@@ -347,10 +347,12 @@ public final class ShortCutUtils {
                     ProviderInfo[] providers = packageInfo.providers;
                     if (providers != null) {
                         for (ProviderInfo provider : providers) {
-                            if (permission.equals(provider.readPermission))
+                            if (permission.equals(provider.readPermission)) {
                                 return provider.authority;
-                            if (permission.equals(provider.writePermission))
+                            }
+                            if (permission.equals(provider.writePermission)) {
                                 return provider.authority;
+                            }
                         }
                     }
                 }

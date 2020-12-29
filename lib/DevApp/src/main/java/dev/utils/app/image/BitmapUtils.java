@@ -1010,17 +1010,21 @@ public final class BitmapUtils {
         // = 圆角方向控制 =
         // ===============
 
-        if (!directions[0])
+        if (!directions[0]) {
             rectF.left -= pixels;
+        }
 
-        if (!directions[1])
+        if (!directions[1]) {
             rectF.top -= pixels;
+        }
 
-        if (!directions[2])
+        if (!directions[2]) {
             rectF.right += pixels;
+        }
 
-        if (!directions[3])
+        if (!directions[3]) {
             rectF.bottom += pixels;
+        }
 
         Paint paint = new Paint();
         paint.setAntiAlias(true);

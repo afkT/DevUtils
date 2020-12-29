@@ -264,12 +264,13 @@ public final class CoordinateUtils {
         double radLng2 = rad(targetLng);
         double ret;
         if (radLng1 == radLng2) {
-            if (radLat1 > radLat2)
+            if (radLat1 > radLat2) {
                 return 270; // 北半球的情况, 南半球忽略
-            else if (radLat1 < radLat2)
+            } else if (radLat1 < radLat2) {
                 return 90;
-            else
+            } else {
                 return Integer.MAX_VALUE; // 位置完全相同
+            }
         }
         ret = 4 * Math.pow(Math.sin((radLat1 - radLat2) / 2), 2)
                 - Math.pow(Math.sin((radLng1 - radLng2) / 2) * (Math.cos(radLat1) - Math.cos(radLat2)), 2);
@@ -277,12 +278,14 @@ public final class CoordinateUtils {
         ret = ret / Math.sin(Math.abs(radLng1 - radLng2) / 2) * (Math.cos(radLat1) + Math.cos(radLat2));
         ret = Math.atan(ret) / Math.PI * 180;
         if (radLng1 > radLng2) { // 以 origin 为参考点坐标
-            if (radLat1 > radLat2)
+            if (radLat1 > radLat2) {
                 ret += 180;
-            else
+            } else {
                 ret = 180 - ret;
-        } else if (radLat1 > radLat2)
+            }
+        } else if (radLat1 > radLat2) {
             ret = 360 - ret;
+        }
         return ret;
     }
 
@@ -311,22 +314,30 @@ public final class CoordinateUtils {
      */
     public static Direction getDirection(final double angle) {
         if (angle == Integer.MAX_VALUE) return Direction.SAME;
-        if ((angle <= 10) || (angle > 350))
+        if ((angle <= 10) || (angle > 350)) {
             return Direction.RIGHT;
-        if ((angle > 10) && (angle <= 80))
+        }
+        if ((angle > 10) && (angle <= 80)) {
             return Direction.RIGHT_TOP;
-        if ((angle > 80) && (angle <= 100))
+        }
+        if ((angle > 80) && (angle <= 100)) {
             return Direction.TOP;
-        if ((angle > 100) && (angle <= 170))
+        }
+        if ((angle > 100) && (angle <= 170)) {
             return Direction.LEFT_TOP;
-        if ((angle > 170) && (angle <= 190))
+        }
+        if ((angle > 170) && (angle <= 190)) {
             return Direction.LEFT;
-        if ((angle > 190) && (angle <= 260))
+        }
+        if ((angle > 190) && (angle <= 260)) {
             return Direction.LEFT_BOTTOM;
-        if ((angle > 260) && (angle <= 280))
+        }
+        if ((angle > 260) && (angle <= 280)) {
             return Direction.BOTTOM;
-        if ((angle > 280) && (angle <= 350))
+        }
+        if ((angle > 280) && (angle <= 350)) {
             return Direction.RIGHT_BOTTOM;
+        }
         return Direction.SAME;
     }
 

@@ -1659,8 +1659,9 @@ public final class StringUtils {
             final String replace
     ) {
         try {
-            if (isEmpty(str) || isEmpty(suffix) || replace == null || suffix.equals(replace))
+            if (isEmpty(str) || isEmpty(suffix) || replace == null || suffix.equals(replace)) {
                 return str;
+            }
             // 获取编辑内容长度
             int suffixLength = suffix.length();
             // 保存新的 Builder 中, 减少内存开销

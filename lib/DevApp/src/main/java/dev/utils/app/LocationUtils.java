@@ -112,8 +112,9 @@ public final class LocationUtils {
             String   provider = sLocationManager.getBestProvider(getCriteria(), true);
             Location location = sLocationManager.getLastKnownLocation(provider);
             if (location != null) listener.getLastKnownLocation(location);
-            if (sCustomLocationListener == null)
+            if (sCustomLocationListener == null) {
                 sCustomLocationListener = new CustomLocationListener();
+            }
             sLocationManager.requestLocationUpdates(provider, minTime, minDistance, sCustomLocationListener);
             return true;
         } catch (Exception e) {
@@ -316,7 +317,9 @@ public final class LocationUtils {
             return true;
         } else if (isNewer && !isLessAccurate) {
             return true;
-        } else return isNewer && !isSignificantlyLessAccurate && isFromSameProvider;
+        } else {
+            return isNewer && !isSignificantlyLessAccurate && isFromSameProvider;
+        }
     }
 
     /**

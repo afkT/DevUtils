@@ -157,10 +157,12 @@ public final class MigrationHelper {
         } catch (Exception e) {
             DevLogger.e(e);
         } finally {
-            if (cursor != null)
+            if (cursor != null) {
                 cursor.close();
-            if (null == columns)
+            }
+            if (null == columns) {
                 columns = new ArrayList<>();
+            }
         }
         return columns;
     }

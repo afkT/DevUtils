@@ -170,8 +170,9 @@ public final class CalendarUtils {
         if (!isSupportLunar(year)) return 0;
         int i, sum = 348;
         for (i = 0x8000; i > 0x8; i >>= 1) {
-            if ((LUNAR_INFO[year - 1900] & i) != 0)
+            if ((LUNAR_INFO[year - 1900] & i) != 0) {
                 sum += 1;
+            }
         }
         return (sum + getLunarLeapDays(year));
     }
@@ -184,10 +185,11 @@ public final class CalendarUtils {
     public static int getLunarLeapDays(final int year) {
         if (!isSupportLunar(year)) return 0;
         if (getLunarLeapMonth(year) != 0) {
-            if ((LUNAR_INFO[year - 1899] & 0xf) != 0)
+            if ((LUNAR_INFO[year - 1899] & 0xf) != 0) {
                 return 30;
-            else
+            } else {
                 return 29;
+            }
         } else {
             return 0;
         }
@@ -218,10 +220,11 @@ public final class CalendarUtils {
             final int month
     ) {
         if (!isSupportLunar(year)) return 0;
-        if ((LUNAR_INFO[year - 1900] & (0x10000 >> month)) == 0)
+        if ((LUNAR_INFO[year - 1900] & (0x10000 >> month)) == 0) {
             return 29;
-        else
+        } else {
             return 30;
+        }
     }
 
     /**

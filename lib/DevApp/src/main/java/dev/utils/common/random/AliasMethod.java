@@ -65,10 +65,12 @@ public final class AliasMethod {
             Random random
     ) {
         /* Begin by doing basic structural checks on the inputs. */
-        if (probabilities == null || random == null)
+        if (probabilities == null || random == null) {
             throw new NullPointerException();
-        if (probabilities.size() == 0)
+        }
+        if (probabilities.size() == 0) {
             throw new IllegalArgumentException("Probability vector must be nonempty.");
+        }
 
         /* Allocate space for the probability and alias tables. */
         probability = new double[probabilities.size()];
@@ -94,10 +96,11 @@ public final class AliasMethod {
             /* If the probability is below the average probability, then we add
              * it to the small list; otherwise we add it to the large list.
              */
-            if (probabilities.get(i) >= average)
+            if (probabilities.get(i) >= average) {
                 large.add(i);
-            else
+            } else {
                 small.add(i);
+            }
         }
 
         /* As a note: in the mathematical specification of the algorithm, we
@@ -126,10 +129,11 @@ public final class AliasMethod {
             /* If the new probability is less than the average, add it into the
              * small list; otherwise add it to the large list.
              */
-            if (probabilities.get(more) >= 1.0 / probabilities.size())
+            if (probabilities.get(more) >= 1.0 / probabilities.size()) {
                 large.add(more);
-            else
+            } else {
                 small.add(more);
+            }
         }
 
         /* At this point, everything is in one list, which means that the

@@ -389,8 +389,9 @@ public final class PathUtils {
          */
         @Deprecated
         public String getDocumentsPath() {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
                 return getExternalStoragePublicPath("Documents");
+            }
             return getExternalStoragePublicPath(Environment.DIRECTORY_DOCUMENTS);
         }
 
@@ -400,8 +401,9 @@ public final class PathUtils {
          */
         @Deprecated
         public File getDocumentsDir() {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
                 return getExternalStoragePublicDir("Documents");
+            }
             return getExternalStoragePublicDir(Environment.DIRECTORY_DOCUMENTS);
         }
 
@@ -413,8 +415,9 @@ public final class PathUtils {
          */
         @Deprecated
         public String getAudiobooksPath() {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
                 return getExternalStoragePublicPath("Audiobooks");
+            }
             return getExternalStoragePublicPath(Environment.DIRECTORY_AUDIOBOOKS);
         }
 
@@ -424,8 +427,9 @@ public final class PathUtils {
          */
         @Deprecated
         public File getAudiobooksDir() {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
                 return getExternalStoragePublicDir("Audiobooks");
+            }
             return getExternalStoragePublicDir(Environment.DIRECTORY_AUDIOBOOKS);
         }
     }
@@ -769,8 +773,9 @@ public final class PathUtils {
          * @return /storage/emulated/0/Android/data/package/files/Documents
          */
         public String getAppDocumentsPath() {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
                 return getExternalFilesPath("Documents");
+            }
             return getExternalFilesPath(Environment.DIRECTORY_DOCUMENTS);
         }
 
@@ -779,8 +784,9 @@ public final class PathUtils {
          * @return /storage/emulated/0/Android/data/package/files/Documents
          */
         public File getAppDocumentsDir() {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
                 return getExternalFilesDir("Documents");
+            }
             return getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
         }
 
@@ -791,8 +797,9 @@ public final class PathUtils {
          * @return /storage/emulated/0/Android/data/package/files/Audiobooks
          */
         public String getAppAudiobooksPath() {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
                 return getExternalFilesPath("Audiobooks");
+            }
             return getExternalFilesPath(Environment.DIRECTORY_AUDIOBOOKS);
         }
 
@@ -801,8 +808,9 @@ public final class PathUtils {
          * @return /storage/emulated/0/Android/data/package/files/Audiobooks
          */
         public File getAppAudiobooksDir() {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
                 return getExternalFilesDir("Audiobooks");
+            }
             return getExternalFilesDir(Environment.DIRECTORY_AUDIOBOOKS);
         }
 
@@ -1331,8 +1339,9 @@ public final class PathUtils {
          * @return /data/data/package/files/Documents
          */
         public String getAppDocumentsPath() {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
                 return getAppFilesPath("Documents");
+            }
             return getAppFilesPath(Environment.DIRECTORY_DOCUMENTS);
         }
 
@@ -1341,8 +1350,9 @@ public final class PathUtils {
          * @return /data/data/package/files/Documents
          */
         public File getAppDocumentsDir() {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
                 return getAppFilesDir("Documents");
+            }
             return getAppFilesDir(Environment.DIRECTORY_DOCUMENTS);
         }
 
@@ -1353,8 +1363,9 @@ public final class PathUtils {
          * @return /data/data/package/files/Audiobooks
          */
         public String getAppAudiobooksPath() {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
                 return getAppFilesPath("Audiobooks");
+            }
             return getAppFilesPath(Environment.DIRECTORY_AUDIOBOOKS);
         }
 
@@ -1363,8 +1374,9 @@ public final class PathUtils {
          * @return /data/data/package/files/Audiobooks
          */
         public File getAppAudiobooksDir() {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
                 return getAppFilesDir("Audiobooks");
+            }
             return getAppFilesDir(Environment.DIRECTORY_AUDIOBOOKS);
         }
     }

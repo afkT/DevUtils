@@ -743,8 +743,9 @@ public final class FilePartUtils {
             final String destFolderPath,
             final String fileName
     ) {
-        if (file == null || assist == null || destFolderPath == null || fileName == null)
+        if (file == null || assist == null || destFolderPath == null || fileName == null) {
             return false;
+        }
         if (!assist.existsPart()) return false;
         List<File> files = new ArrayList<>();
         try {

@@ -207,8 +207,9 @@ final class DevCacheUtils {
             final int to
     ) throws Exception {
         int newLength = to - from;
-        if (newLength < 0)
+        if (newLength < 0) {
             throw new IllegalArgumentException(from + " > " + to);
+        }
 
         byte[] copy = new byte[newLength];
         System.arraycopy(original, from, copy, 0, Math.min(original.length - from, newLength));

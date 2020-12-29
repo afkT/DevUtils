@@ -346,8 +346,9 @@ public final class SnackbarUtils {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
             snackbar.dismiss();
-            if (setNull)
+            if (setNull) {
                 sSnackbarReference = null;
+            }
         }
     }
 

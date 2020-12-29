@@ -160,8 +160,9 @@ public final class TypeUtils {
 
             ParameterizedTypeImpl that = (ParameterizedTypeImpl) object;
             if (!Arrays.equals(actualTypeArguments, that.actualTypeArguments)) return false;
-            if (ownerType != null ? !ownerType.equals(that.ownerType) : that.ownerType != null)
+            if (ownerType != null ? !ownerType.equals(that.ownerType) : that.ownerType != null) {
                 return false;
+            }
             return rawType != null ? rawType.equals(that.rawType) : that.rawType == null;
         }
 

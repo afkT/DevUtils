@@ -237,8 +237,9 @@ public final class DevCache {
         if (file == null) {
             return null;
         }
-        if (!file.exists())
+        if (!file.exists()) {
             return null;
+        }
         boolean        removeFile = false;
         BufferedReader br         = null;
         try {
@@ -262,8 +263,9 @@ public final class DevCache {
             return null;
         } finally {
             CloseUtils.closeIOQuietly(br);
-            if (removeFile)
+            if (removeFile) {
                 remove(key);
+            }
         }
     }
 
@@ -476,8 +478,9 @@ public final class DevCache {
         boolean          removeFile = false;
         try {
             File file = mCache.get(key);
-            if (!file.exists())
+            if (!file.exists()) {
                 return null;
+            }
             raFile = new RandomAccessFile(file, "r");
             byte[] byteArray = new byte[(int) raFile.length()];
             raFile.read(byteArray);
@@ -493,8 +496,9 @@ public final class DevCache {
             return null;
         } finally {
             CloseUtils.closeIOQuietly(raFile);
-            if (removeFile)
+            if (removeFile) {
                 remove(key);
+            }
         }
     }
 

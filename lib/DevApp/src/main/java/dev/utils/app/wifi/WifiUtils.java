@@ -957,8 +957,9 @@ public final class WifiUtils {
             final WifiConfiguration wifiConfig
     ) throws Exception {
         Object linkProperties = getField(wifiConfig, "linkProperties");
-        if (linkProperties == null)
+        if (linkProperties == null) {
             throw new NullPointerException();
+        }
 
         List<InetAddress> mDnses = (ArrayList<InetAddress>) getDeclaredField(linkProperties, "mDnses");
         mDnses.clear(); // or add a new dns address, here I just want to replace DNS1
@@ -976,8 +977,9 @@ public final class WifiUtils {
             final WifiConfiguration wifiConfig
     ) throws Exception {
         Object linkProperties = getField(wifiConfig, "linkProperties");
-        if (linkProperties == null)
+        if (linkProperties == null) {
             throw new NullPointerException();
+        }
 
         Class       routeInfoClass       = Class.forName("android.net.RouteInfo");
         Constructor routeInfoConstructor = routeInfoClass.getConstructor(InetAddress.class);
@@ -1000,8 +1002,9 @@ public final class WifiUtils {
             final WifiConfiguration wifiConfig
     ) throws Exception {
         Object linkProperties = getField(wifiConfig, "linkProperties");
-        if (linkProperties == null)
+        if (linkProperties == null) {
             throw new NullPointerException();
+        }
 
         Class       laClass        = Class.forName("android.net.LinkAddress");
         Constructor laConstructor  = laClass.getConstructor(InetAddress.class, int.class);
