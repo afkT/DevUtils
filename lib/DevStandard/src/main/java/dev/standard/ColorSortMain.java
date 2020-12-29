@@ -25,7 +25,8 @@ import dev.utils.common.StringUtils;
  */
 public class ColorSortMain {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args)
+            throws Exception {
         // colors.xml 文件地址
         String xmlPath = "app/src/main/res/values/colors.xml";
 
@@ -96,7 +97,8 @@ public class ColorSortMain {
          * @param listener 监听事件
          * @throws Exception
          */
-        public void analysisColorsXml(final DocumentListener listener) throws Exception {
+        public void analysisColorsXml(final DocumentListener listener)
+                throws Exception {
             // 获取 SAXParserFactory 实例
             SAXParserFactory factory = SAXParserFactory.newInstance();
             // 获取 SAXParser 实例
@@ -124,12 +126,14 @@ public class ColorSortMain {
             }
 
             @Override
-            public void startDocument() throws SAXException {
+            public void startDocument()
+                    throws SAXException {
                 super.startDocument(); // SAX 解析开始
             }
 
             @Override
-            public void endDocument() throws SAXException {
+            public void endDocument()
+                    throws SAXException {
                 super.endDocument(); // SAX 解析结束
                 // 触发回调
                 if (listener != null) {
@@ -143,7 +147,8 @@ public class ColorSortMain {
                     String localName,
                     String qName,
                     Attributes attributes
-            ) throws SAXException {
+            )
+                    throws SAXException {
                 super.startElement(uri, localName, qName, attributes);
                 if (qName.equals("color")) {
                     this.colorKey = attributes.getValue("name");
@@ -155,7 +160,8 @@ public class ColorSortMain {
                     String uri,
                     String localName,
                     String qName
-            ) throws SAXException {
+            )
+                    throws SAXException {
                 super.endElement(uri, localName, qName);
                 if (qName.equals("color")) {
                     lists.add(new ColorUtils.ColorInfo(colorKey, colorValue));
@@ -167,7 +173,8 @@ public class ColorSortMain {
                     char[] ch,
                     int start,
                     int length
-            ) throws SAXException {
+            )
+                    throws SAXException {
                 super.characters(ch, start, length);
                 String value = new String(ch, start, length).trim();
                 if (!value.equals("")) {

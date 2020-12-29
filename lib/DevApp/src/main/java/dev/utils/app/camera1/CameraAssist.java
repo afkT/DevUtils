@@ -67,7 +67,8 @@ public final class CameraAssist {
      * @return {@link CameraAssist}
      * @throws Exception 设置预览画面, 异常时抛出
      */
-    public synchronized CameraAssist openDriver(final SurfaceHolder holder) throws Exception {
+    public synchronized CameraAssist openDriver(final SurfaceHolder holder)
+            throws Exception {
         Camera theCamera = mCamera;
         // 设置预览 Holder
         theCamera.setPreviewDisplay(holder);

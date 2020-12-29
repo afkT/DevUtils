@@ -111,7 +111,8 @@ public final class ObjectUtils {
     public static <T> T requireNonNull(
             final T object,
             final String message
-    ) throws NullPointerException {
+    )
+            throws NullPointerException {
         if (object == null) throw new NullPointerException(message);
         return object;
     }

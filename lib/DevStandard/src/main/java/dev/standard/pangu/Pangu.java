@@ -141,7 +141,8 @@ public class Pangu {
     public void spacingFile(
             File inputFile,
             File outputFile
-    ) throws IOException {
+    )
+            throws IOException {
         // TODO: support charset
 
         FileReader     fr = new FileReader(inputFile);

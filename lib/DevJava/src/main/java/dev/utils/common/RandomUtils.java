@@ -446,7 +446,8 @@ public final class RandomUtils {
     public static int nextIntRange(
             final int origin,
             final int bound
-    ) throws IllegalArgumentException {
+    )
+            throws IllegalArgumentException {
         if (origin > bound) {
             throw new IllegalArgumentException("bound must be greater than origin");
         } else if (origin == bound) {
@@ -475,7 +476,8 @@ public final class RandomUtils {
     public static long nextLongRange(
             final long origin,
             final long bound
-    ) throws IllegalArgumentException {
+    )
+            throws IllegalArgumentException {
         if (origin > bound) {
             throw new IllegalArgumentException("bound must be greater than origin");
         } else if (origin == bound) {
@@ -513,7 +515,8 @@ public final class RandomUtils {
     public static double nextDoubleRange(
             final double origin,
             final double bound
-    ) throws IllegalArgumentException {
+    )
+            throws IllegalArgumentException {
         if (origin > bound) {
             throw new IllegalArgumentException("bound must be greater than origin");
         } else if (origin == bound) {

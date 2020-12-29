@@ -165,7 +165,8 @@ public final class DevMediaManager
             // 预播放
             return playPrepare(new MediaSet() {
                 @Override
-                public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
+                public void setMediaConfig(MediaPlayer mediaPlayer)
+                        throws Exception {
                     // 获取资源文件
                     AssetFileDescriptor afd = ResourceUtils.openRawResourceFd(rawId);
                     try {
@@ -222,7 +223,8 @@ public final class DevMediaManager
             // 预播放
             return playPrepare(new MediaSet() {
                 @Override
-                public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
+                public void setMediaConfig(MediaPlayer mediaPlayer)
+                        throws Exception {
                     // 获取资源文件
                     AssetFileDescriptor afd = ResourceUtils.openNonAssetFd("assets" + tempPlayUri);
                     try {
@@ -275,7 +277,8 @@ public final class DevMediaManager
             // 预播放
             return playPrepare(new MediaSet() {
                 @Override
-                public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
+                public void setMediaConfig(MediaPlayer mediaPlayer)
+                        throws Exception {
                     mediaPlayer.setDataSource(playUri);
                 }
 
@@ -584,7 +587,8 @@ public final class DevMediaManager
          * @param mediaPlayer {@link MediaPlayer}
          * @throws Exception 设置异常
          */
-        public abstract void setMediaConfig(MediaPlayer mediaPlayer) throws Exception;
+        public abstract void setMediaConfig(MediaPlayer mediaPlayer)
+                throws Exception;
     }
 
     // ===========

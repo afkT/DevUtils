@@ -52,7 +52,8 @@ public final class ReflectUtils {
      * @return {@link ReflectUtils}
      * @throws ReflectException 反射异常
      */
-    public static ReflectUtils reflect(final String className) throws ReflectException {
+    public static ReflectUtils reflect(final String className)
+            throws ReflectException {
         return reflect(forName(className));
     }
 
@@ -66,7 +67,8 @@ public final class ReflectUtils {
     public static ReflectUtils reflect(
             final String className,
             final ClassLoader classLoader
-    ) throws ReflectException {
+    )
+            throws ReflectException {
         return reflect(forName(className, classLoader));
     }
 
@@ -97,7 +99,8 @@ public final class ReflectUtils {
      * @return 指定类
      * @throws ReflectException 反射异常
      */
-    private static Class<?> forName(final String className) throws ReflectException {
+    private static Class<?> forName(final String className)
+            throws ReflectException {
         try {
             return Class.forName(className);
         } catch (Exception e) {
@@ -117,7 +120,8 @@ public final class ReflectUtils {
     private static Class<?> forName(
             final String name,
             final ClassLoader classLoader
-    ) throws ReflectException {
+    )
+            throws ReflectException {
         try {
             return Class.forName(name, true, classLoader);
         } catch (Exception e) {
@@ -135,7 +139,8 @@ public final class ReflectUtils {
      * @return {@link ReflectUtils}
      * @throws ReflectException 反射异常
      */
-    public ReflectUtils newInstance() throws ReflectException {
+    public ReflectUtils newInstance()
+            throws ReflectException {
         return newInstance(new Object[0]);
     }
 
@@ -145,7 +150,8 @@ public final class ReflectUtils {
      * @return {@link ReflectUtils}
      * @throws ReflectException 反射异常
      */
-    public ReflectUtils newInstance(final Object... args) throws ReflectException {
+    public ReflectUtils newInstance(final Object... args)
+            throws ReflectException {
         Class<?>[] types = getArgsType(args);
         try {
             Constructor<?> constructor = type().getDeclaredConstructor(types);
@@ -223,7 +229,8 @@ public final class ReflectUtils {
     private ReflectUtils newInstance(
             final Constructor<?> constructor,
             final Object... args
-    ) throws ReflectException {
+    )
+            throws ReflectException {
         try {
             return new ReflectUtils(constructor.getDeclaringClass(), accessible(constructor).newInstance(args));
         } catch (Exception e) {
@@ -242,7 +249,8 @@ public final class ReflectUtils {
      * @return {@link ReflectUtils}
      * @throws ReflectException 反射异常
      */
-    public ReflectUtils field(final String name) throws ReflectException {
+    public ReflectUtils field(final String name)
+            throws ReflectException {
         try {
             Field field = getField(name);
             return new ReflectUtils(field.getType(), field.get(mObject));
@@ -261,7 +269,8 @@ public final class ReflectUtils {
     public ReflectUtils field(
             final String name,
             final Object value
-    ) throws ReflectException {
+    )
+            throws ReflectException {
         try {
             Field field = getField(name);
             field.set(mObject, unwrap(value));
@@ -277,7 +286,8 @@ public final class ReflectUtils {
      * @return {@link Field}
      * @throws ReflectException 反射异常
      */
-    private Field getField(final String name) throws ReflectException {
+    private Field getField(final String name)
+            throws ReflectException {
         Field field = getAccessibleField(name);
         if ((field.getModifiers() & Modifier.FINAL) == Modifier.FINAL) {
             try {
@@ -299,7 +309,8 @@ public final class ReflectUtils {
      * @return {@link Field}
      * @throws ReflectException 反射异常
      */
-    private Field getAccessibleField(final String name) throws ReflectException {
+    private Field getAccessibleField(final String name)
+            throws ReflectException {
         Class<?> type = type();
         try {
             return accessible(type.getField(name));
@@ -345,7 +356,8 @@ public final class ReflectUtils {
             final Class<?> clazz,
             final String name,
             final String value
-    ) throws ReflectException {
+    )
+            throws ReflectException {
         try {
             return field(name, Enum.valueOf((Class<Enum>) clazz, value));
         } catch (Exception e) {
@@ -363,7 +375,8 @@ public final class ReflectUtils {
      * @return {@link ReflectUtils}
      * @throws ReflectException 反射异常
      */
-    public ReflectUtils method(final String name) throws ReflectException {
+    public ReflectUtils method(final String name)
+            throws ReflectException {
         return method(name, new Object[0]);
     }
 
@@ -377,7 +390,8 @@ public final class ReflectUtils {
     public ReflectUtils method(
             final String name,
             final Object... args
-    ) throws ReflectException {
+    )
+            throws ReflectException {
         Class<?>[] types = getArgsType(args);
         try {
             Method method = exactMethod(name, types);
@@ -404,7 +418,8 @@ public final class ReflectUtils {
             final Method method,
             final Object object,
             final Object... args
-    ) throws ReflectException {
+    )
+            throws ReflectException {
         try {
             accessible(method);
             if (method.getReturnType() == void.class) {
@@ -429,7 +444,8 @@ public final class ReflectUtils {
     private Method exactMethod(
             final String name,
             final Class<?>[] types
-    ) throws ReflectException {
+    )
+            throws ReflectException {
         Class<?> type = type();
         try {
             return type.getMethod(name, types);
@@ -456,7 +472,8 @@ public final class ReflectUtils {
     private Method similarMethod(
             final String name,
             final Class<?>[] types
-    ) throws ReflectException {
+    )
+            throws ReflectException {
         Class<?>     type    = type();
         List<Method> methods = new ArrayList<>();
         for (Method method : type.getMethods()) {

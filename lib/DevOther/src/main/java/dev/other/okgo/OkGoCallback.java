@@ -164,7 +164,8 @@ public abstract class OkGoCallback<T>
      * 拿到响应后, 将数据转换成需要的格式 ( 子线程中执行, 可以是耗时操作 )
      */
     @Override
-    public String convertResponse(okhttp3.Response response) throws Throwable {
+    public String convertResponse(okhttp3.Response response)
+            throws Throwable {
 //        HttpUrl httpUrl = response.request().url();
 //        LogPrintUtils.e("url: %s", httpUrl);
         LogPrintUtils.dTag(TAG, "响应成功, 转换数据: %s", url);

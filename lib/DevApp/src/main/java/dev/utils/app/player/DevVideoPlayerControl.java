@@ -299,7 +299,8 @@ public class DevVideoPlayerControl
             }
 
             @Override
-            public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
+            public void setMediaConfig(MediaPlayer mediaPlayer)
+                    throws Exception {
                 mediaPlayer.setDataSource(playUri);
             }
         };

@@ -36,7 +36,8 @@ public class HttpLoggingInterceptor
     private final Charset UTF8 = Charset.forName("UTF-8");
 
     @Override
-    public Response intercept(Chain chain) throws IOException {
+    public Response intercept(Chain chain)
+            throws IOException {
         CaptureEntity captureEntity = new CaptureEntity();
 
         Request     request        = chain.request();

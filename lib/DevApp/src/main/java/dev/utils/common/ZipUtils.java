@@ -42,7 +42,8 @@ public final class ZipUtils {
     public static boolean zipFiles(
             final Collection<String> resFiles,
             final String zipFilePath
-    ) throws Exception {
+    )
+            throws Exception {
         return zipFiles(resFiles, zipFilePath, null);
     }
 
@@ -58,7 +59,8 @@ public final class ZipUtils {
             final Collection<String> resFilePaths,
             final String zipFilePath,
             final String comment
-    ) throws Exception {
+    )
+            throws Exception {
         if (resFilePaths == null || zipFilePath == null) return false;
         ZipOutputStream zos = null;
         try {
@@ -85,7 +87,8 @@ public final class ZipUtils {
     public static boolean zipFiles(
             final Collection<File> resFiles,
             final File zipFile
-    ) throws Exception {
+    )
+            throws Exception {
         return zipFiles(resFiles, zipFile, null);
     }
 
@@ -101,7 +104,8 @@ public final class ZipUtils {
             final Collection<File> resFiles,
             final File zipFile,
             final String comment
-    ) throws Exception {
+    )
+            throws Exception {
         if (resFiles == null || zipFile == null) return false;
         ZipOutputStream zos = null;
         try {
@@ -128,7 +132,8 @@ public final class ZipUtils {
     public static boolean zipFile(
             final String resFilePath,
             final String zipFilePath
-    ) throws Exception {
+    )
+            throws Exception {
         return zipFile(FileUtils.getFileByPath(resFilePath), FileUtils.getFileByPath(zipFilePath), null);
     }
 
@@ -144,7 +149,8 @@ public final class ZipUtils {
             final String resFilePath,
             final String zipFilePath,
             final String comment
-    ) throws Exception {
+    )
+            throws Exception {
         return zipFile(FileUtils.getFileByPath(resFilePath), FileUtils.getFileByPath(zipFilePath), comment);
     }
 
@@ -158,7 +164,8 @@ public final class ZipUtils {
     public static boolean zipFile(
             final File resFile,
             final File zipFile
-    ) throws Exception {
+    )
+            throws Exception {
         return zipFile(resFile, zipFile, null);
     }
 
@@ -174,7 +181,8 @@ public final class ZipUtils {
             final File resFile,
             final File zipFile,
             final String comment
-    ) throws Exception {
+    )
+            throws Exception {
         if (resFile == null || zipFile == null) return false;
         ZipOutputStream zos = null;
         try {
@@ -199,7 +207,8 @@ public final class ZipUtils {
             final String rootPath,
             final ZipOutputStream zos,
             final String comment
-    ) throws Exception {
+    )
+            throws Exception {
         // 处理后的文件路径
         String filePath = rootPath + (StringUtils.isSpace(rootPath) ? "" : File.separator) + resFile.getName();
         if (resFile.isDirectory()) {
@@ -246,7 +255,8 @@ public final class ZipUtils {
     public static List<File> unzipFile(
             final String zipFilePath,
             final String destDirPath
-    ) throws Exception {
+    )
+            throws Exception {
         return unzipFileByKeyword(zipFilePath, destDirPath, null);
     }
 
@@ -260,7 +270,8 @@ public final class ZipUtils {
     public static List<File> unzipFile(
             final File zipFile,
             final File destDir
-    ) throws Exception {
+    )
+            throws Exception {
         return unzipFileByKeyword(zipFile, destDir, null);
     }
 
@@ -276,7 +287,8 @@ public final class ZipUtils {
             final String zipFilePath,
             final String destDirPath,
             final String keyword
-    ) throws Exception {
+    )
+            throws Exception {
         return unzipFileByKeyword(FileUtils.getFileByPath(zipFilePath), FileUtils.getFileByPath(destDirPath), keyword);
     }
 
@@ -292,7 +304,8 @@ public final class ZipUtils {
             final File zipFile,
             final File destDir,
             final String keyword
-    ) throws Exception {
+    )
+            throws Exception {
         if (zipFile == null || destDir == null) return null;
         List<File>     files   = new ArrayList<>();
         ZipFile        zip     = new ZipFile(zipFile);
@@ -339,7 +352,8 @@ public final class ZipUtils {
             final ZipFile zf,
             final ZipEntry entry,
             final String entryName
-    ) throws Exception {
+    )
+            throws Exception {
         File file = new File(destDir, entryName);
         files.add(file);
         if (entry.isDirectory()) {
@@ -369,7 +383,8 @@ public final class ZipUtils {
      * @return 压缩文件中的文件路径链表
      * @throws Exception 异常时抛出
      */
-    public static List<String> getFilesPath(final String zipFilePath) throws Exception {
+    public static List<String> getFilesPath(final String zipFilePath)
+            throws Exception {
         return getFilesPath(FileUtils.getFileByPath(zipFilePath));
     }
 
@@ -379,7 +394,8 @@ public final class ZipUtils {
      * @return 压缩文件中的文件路径链表
      * @throws Exception 异常时抛出
      */
-    public static List<String> getFilesPath(final File zipFile) throws Exception {
+    public static List<String> getFilesPath(final File zipFile)
+            throws Exception {
         if (zipFile == null) return null;
         List<String>   paths   = new ArrayList<>();
         Enumeration<?> entries = new ZipFile(zipFile).entries();
@@ -401,7 +417,8 @@ public final class ZipUtils {
      * @return 压缩文件中的注释链表
      * @throws Exception 异常时抛出
      */
-    public static List<String> getComments(final String zipFilePath) throws Exception {
+    public static List<String> getComments(final String zipFilePath)
+            throws Exception {
         return getComments(FileUtils.getFileByPath(zipFilePath));
     }
 
@@ -411,7 +428,8 @@ public final class ZipUtils {
      * @return 压缩文件中的注释链表
      * @throws Exception 异常时抛出
      */
-    public static List<String> getComments(final File zipFile) throws Exception {
+    public static List<String> getComments(final File zipFile)
+            throws Exception {
         if (zipFile == null) return null;
         List<String>   comments = new ArrayList<>();
         Enumeration<?> entries  = new ZipFile(zipFile).entries();

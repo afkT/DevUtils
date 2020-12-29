@@ -100,7 +100,8 @@ public class RightIconEditText
     }
 
     @Override
-    protected void finalize() throws Throwable {
+    protected void finalize()
+            throws Throwable {
         super.finalize();
         // GC Finalize Daemon 回收资源
         this.mLeft = null;

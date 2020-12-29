@@ -130,7 +130,8 @@ final class Utils {
             final TypeSpec.Builder classBuilder,
             final Element moduleElement,
             final ProcessingEnvironment processingEnv
-    ) throws Exception {
+    )
+            throws Exception {
         Module moduleAnnotation = moduleElement.getAnnotation(Module.class);
         if (moduleAnnotation == null) return;
         // Module 信息
@@ -552,7 +553,8 @@ final class Utils {
     private static Element _getModuleReleaseEnvironment(
             final Element moduleElement,
             final ProcessingEnvironment processingEnv
-    ) throws Exception {
+    )
+            throws Exception {
         Element                 environmentElement = null;
         List<? extends Element> allMembers         = processingEnv.getElementUtils().getAllMembers((TypeElement) moduleElement);
         for (Element member : allMembers) {

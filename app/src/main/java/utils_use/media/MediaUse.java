@@ -106,7 +106,8 @@ public final class MediaUse {
         DevMediaManager.getInstance().playPrepare("http://xxx.mp3");
         DevMediaManager.getInstance().playPrepare(new DevMediaManager.MediaSet() {
             @Override
-            public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
+            public void setMediaConfig(MediaPlayer mediaPlayer)
+                    throws Exception {
                 mediaPlayer.setDataSource("xxx");
             }
         }); // 自由设置信息
@@ -120,7 +121,8 @@ public final class MediaUse {
         control.startPlayer("http://xxx.mp4");
         control.startPlayer(new DevMediaManager.MediaSet() {
             @Override
-            public void setMediaConfig(MediaPlayer mediaPlayer) throws Exception {
+            public void setMediaConfig(MediaPlayer mediaPlayer)
+                    throws Exception {
                 mediaPlayer.setDataSource("xxx");
             }
         }); // 自由设置信息

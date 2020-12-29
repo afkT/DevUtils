@@ -544,7 +544,8 @@ public final class NetWorkUtils {
             ExecutorService exec = Executors.newCachedThreadPool();
             Future<String> fs = exec.submit(new Callable<String>() {
                 @Override
-                public String call() throws Exception {
+                public String call()
+                        throws Exception {
                     InetAddress inetAddress;
                     try {
                         inetAddress = InetAddress.getByName(domain);

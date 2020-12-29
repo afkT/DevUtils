@@ -168,12 +168,14 @@ public final class DevCache {
 
         private File file;
 
-        public XFileOutputStream(File file) throws FileNotFoundException {
+        public XFileOutputStream(File file)
+                throws FileNotFoundException {
             super(file);
             this.file = file;
         }
 
-        public void close() throws IOException {
+        public void close()
+                throws IOException {
             super.close();
             mCache.put(file);
         }
@@ -431,7 +433,8 @@ public final class DevCache {
      * @return {@link OutputStream}
      * @throws FileNotFoundException 文件不存在
      */
-    public OutputStream put(final String key) throws FileNotFoundException {
+    public OutputStream put(final String key)
+            throws FileNotFoundException {
         File file = mCache.newFile(key);
         if (file != null) {
             return new XFileOutputStream(file);
@@ -445,7 +448,8 @@ public final class DevCache {
      * @return {@link InputStream}
      * @throws FileNotFoundException 文件不存在
      */
-    public InputStream get(final String key) throws FileNotFoundException {
+    public InputStream get(final String key)
+            throws FileNotFoundException {
         File file = mCache.get(key);
         if (file != null && file.exists()) {
             return new FileInputStream(file);

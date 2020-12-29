@@ -938,7 +938,8 @@ public final class WifiUtils {
      * @return IPv4 地址
      * @throws Exception 不属于 IPv4 地址
      */
-    private int inetAddressToInt(final InetAddress inetAddress) throws Exception {
+    private int inetAddressToInt(final InetAddress inetAddress)
+            throws Exception {
         byte[] data = inetAddress.getAddress();
         if (data.length != 4) {
             throw new IllegalArgumentException("Not an IPv4 address");
@@ -955,7 +956,8 @@ public final class WifiUtils {
     private void setDNS(
             final InetAddress dns,
             final WifiConfiguration wifiConfig
-    ) throws Exception {
+    )
+            throws Exception {
         Object linkProperties = getField(wifiConfig, "linkProperties");
         if (linkProperties == null) {
             throw new NullPointerException();
@@ -975,7 +977,8 @@ public final class WifiUtils {
     private void setGateway(
             final InetAddress gateway,
             final WifiConfiguration wifiConfig
-    ) throws Exception {
+    )
+            throws Exception {
         Object linkProperties = getField(wifiConfig, "linkProperties");
         if (linkProperties == null) {
             throw new NullPointerException();
@@ -1000,7 +1003,8 @@ public final class WifiUtils {
             final InetAddress address,
             final int prefixLength,
             final WifiConfiguration wifiConfig
-    ) throws Exception {
+    )
+            throws Exception {
         Object linkProperties = getField(wifiConfig, "linkProperties");
         if (linkProperties == null) {
             throw new NullPointerException();
@@ -1029,7 +1033,8 @@ public final class WifiUtils {
             final String dns,
             final int prefixLength,
             final Object object
-    ) throws Exception {
+    )
+            throws Exception {
         // 从 WifiConfig 成员变量 mIpConfiguration 获取 staticIpConfiguration
         // 获取 staticIpConfiguration 变量
         Object staticIpConfigClass = getField(object, "staticIpConfiguration");
@@ -1065,7 +1070,8 @@ public final class WifiUtils {
     private Object getField(
             final Object object,
             final String name
-    ) throws Exception {
+    )
+            throws Exception {
         Field field = object.getClass().getField(name);
         return field.get(object);
     }
@@ -1080,7 +1086,8 @@ public final class WifiUtils {
     private Object getDeclaredField(
             final Object object,
             final String name
-    ) throws Exception {
+    )
+            throws Exception {
         Field field = object.getClass().getDeclaredField(name);
         field.setAccessible(true);
         return field.get(object);
@@ -1097,7 +1104,8 @@ public final class WifiUtils {
             final Object object,
             final String value,
             final String name
-    ) throws Exception {
+    )
+            throws Exception {
         Field field = object.getClass().getField(name);
         field.set(object, Enum.valueOf((Class<Enum>) field.getType(), value));
     }
@@ -1113,7 +1121,8 @@ public final class WifiUtils {
             final Object object,
             final Object val,
             final String name
-    ) throws Exception {
+    )
+            throws Exception {
         Field field = object.getClass().getField(name);
         field.set(object, val);
     }

@@ -68,7 +68,8 @@ public final class ConvertUtils {
      * @deprecated {@link #newString}
      */
     @Deprecated
-    public static String toString(final byte[] data) throws Exception {
+    public static String toString(final byte[] data)
+            throws Exception {
         return newString(data, null);
     }
 
@@ -83,7 +84,8 @@ public final class ConvertUtils {
     public static String toString(
             final byte[] data,
             final String defaultStr
-    ) throws Exception {
+    )
+            throws Exception {
         return newString(data, defaultStr);
     }
 
@@ -94,7 +96,8 @@ public final class ConvertUtils {
      * @deprecated {@link #newString}
      */
     @Deprecated
-    public static String toString(final char[] data) throws Exception {
+    public static String toString(final char[] data)
+            throws Exception {
         return newString(data, null);
     }
 
@@ -109,7 +112,8 @@ public final class ConvertUtils {
     public static String toString(
             final char[] data,
             final String defaultStr
-    ) throws Exception {
+    )
+            throws Exception {
         return newString(data, defaultStr);
     }
 
@@ -1791,7 +1795,8 @@ public final class ConvertUtils {
     private static int toDigit(
             final char ch,
             final int index
-    ) throws Exception {
+    )
+            throws Exception {
         int digit = Character.digit(ch, 16);
         if (digit == -1) {
             throw new Exception(String.format("Illegal hexadecimal character %s at index %s", ch, index));

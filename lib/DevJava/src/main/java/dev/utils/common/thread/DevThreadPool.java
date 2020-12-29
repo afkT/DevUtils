@@ -267,7 +267,8 @@ public final class DevThreadPool {
     public boolean awaitTermination(
             final long timeout,
             final TimeUnit unit
-    ) throws InterruptedException {
+    )
+            throws InterruptedException {
         if (mThreadPool != null && unit != null) {
             return mThreadPool.awaitTermination(timeout, unit);
         }
@@ -329,7 +330,8 @@ public final class DevThreadPool {
      * @return 表示任务的 Future 列表, 列表顺序与给定任务列表的迭代器所生成的顺序相同, 每个任务都已完成
      * @throws InterruptedException 如果等待时发生中断, 在这种情况下取消尚未完成的任务
      */
-    public <T> List<Future<T>> invokeAll(final Collection<? extends Callable<T>> tasks) throws InterruptedException {
+    public <T> List<Future<T>> invokeAll(final Collection<? extends Callable<T>> tasks)
+            throws InterruptedException {
         if (mThreadPool != null && tasks != null) {
             return mThreadPool.invokeAll(tasks);
         }
@@ -355,7 +357,8 @@ public final class DevThreadPool {
             final Collection<? extends Callable<T>> tasks,
             final long timeout,
             final TimeUnit unit
-    ) throws InterruptedException {
+    )
+            throws InterruptedException {
         if (mThreadPool != null && tasks != null && unit != null) {
             return mThreadPool.invokeAll(tasks, timeout, unit);
         }
@@ -373,7 +376,8 @@ public final class DevThreadPool {
      * @throws InterruptedException 如果等待时发生中断
      * @throws ExecutionException   如果没有任务成功完成
      */
-    public <T> T invokeAny(final Collection<? extends Callable<T>> tasks) throws InterruptedException, ExecutionException {
+    public <T> T invokeAny(final Collection<? extends Callable<T>> tasks)
+            throws InterruptedException, ExecutionException {
         if (mThreadPool != null && tasks != null) {
             return mThreadPool.invokeAny(tasks);
         }

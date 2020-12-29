@@ -205,7 +205,8 @@ final class DevCacheUtils {
             final byte[] original,
             final int from,
             final int to
-    ) throws Exception {
+    )
+            throws Exception {
         int newLength = to - from;
         if (newLength < 0) {
             throw new IllegalArgumentException(from + " > " + to);
