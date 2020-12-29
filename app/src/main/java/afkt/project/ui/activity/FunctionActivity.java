@@ -34,7 +34,8 @@ import dev.utils.app.toast.ToastUtils;
  * detail: 铃声、震动、通知栏等功能
  * @author Ttt
  */
-public class FunctionActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class FunctionActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
     public int baseLayoutId() {

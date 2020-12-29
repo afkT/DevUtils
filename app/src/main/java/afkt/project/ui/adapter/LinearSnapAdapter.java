@@ -18,7 +18,8 @@ import dev.utils.app.helper.ViewHelper;
  * detail: RecyclerView Gallery 效果 Adapter
  * @author Ttt
  */
-public class LinearSnapAdapter extends BaseQuickAdapter<ItemBean, BaseViewHolder> {
+public class LinearSnapAdapter
+        extends BaseQuickAdapter<ItemBean, BaseViewHolder> {
 
     RequestOptions roundOptions;
 

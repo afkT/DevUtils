@@ -24,7 +24,8 @@ import dev.utils.app.helper.ViewHelper;
  *     LinearSnapHelper : 滑动多页居中显示, 类似 Gallery
  * </pre>
  */
-public class LinearSnapActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class LinearSnapActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     LinearSnapAdapter linearSnapAdapter;
 

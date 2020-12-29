@@ -12,7 +12,8 @@ import android.webkit.WebView;
  * @Deprecated 推荐使用 NestedScrollView + WebView 实现
  */
 @Deprecated
-public class AdjustHeightWebView extends WebView {
+public class AdjustHeightWebView
+        extends WebView {
 
     public AdjustHeightWebView(Context context) {
         super(context);

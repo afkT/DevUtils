@@ -42,7 +42,8 @@ import dev.widget.R;
  *     int firstPosition = ((LinearLayoutManager) manager).findFirstVisibleItemPosition();
  * </pre>
  */
-public class CustomRecyclerView extends RecyclerView {
+public class CustomRecyclerView
+        extends RecyclerView {
 
     // 是否允许滑动
     private boolean        mIsSlide   = true;

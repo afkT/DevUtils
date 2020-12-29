@@ -18,7 +18,8 @@ import dev.widget.R;
  *     app:dev_maxHeight=""
  * </pre>
  */
-public class LimitLayout extends FrameLayout {
+public class LimitLayout
+        extends FrameLayout {
 
     // 最大显示宽度
     private int mMaxWidth  = WidgetUtils.DEF_VALUE;

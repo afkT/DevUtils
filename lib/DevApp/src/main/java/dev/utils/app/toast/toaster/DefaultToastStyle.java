@@ -11,7 +11,8 @@ import androidx.annotation.ColorInt;
  * detail: Toast 默认样式
  * @author Ttt
  */
-public class DefaultToastStyle implements IToast.Style {
+public class DefaultToastStyle
+        implements IToast.Style {
 
     /**
      * 获取 Toast 的重心

@@ -21,7 +21,8 @@ import dev.utils.common.StringUtils;
  * detail: 路径信息
  * @author Ttt
  */
-public class PathActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class PathActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
     public int baseLayoutId() {

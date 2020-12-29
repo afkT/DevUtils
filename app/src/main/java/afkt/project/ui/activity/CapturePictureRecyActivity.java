@@ -28,7 +28,8 @@ import dev.utils.app.image.ImageUtils;
  * detail: CapturePictureUtils RecyclerView 截图
  * @author Ttt
  */
-public class CapturePictureRecyActivity extends BaseActivity<ActivityCapturePictureRecyBinding> {
+public class CapturePictureRecyActivity
+        extends BaseActivity<ActivityCapturePictureRecyBinding> {
 
     @Override
     public int baseLayoutId() {
@@ -110,7 +111,8 @@ public class CapturePictureRecyActivity extends BaseActivity<ActivityCapturePict
                 return lists.size();
             }
 
-            class ViewHolder extends RecyclerView.ViewHolder {
+            class ViewHolder
+                    extends RecyclerView.ViewHolder {
 
                 public ViewHolder(@NonNull View itemView) {
                     super(itemView);

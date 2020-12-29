@@ -12,7 +12,8 @@ import dev.utils.app.AppUtils;
  * detail: 电量监听广播
  * @author Ttt
  */
-public final class BatteryReceiver extends BroadcastReceiver {
+public final class BatteryReceiver
+        extends BroadcastReceiver {
 
     private BatteryReceiver() {
         super();

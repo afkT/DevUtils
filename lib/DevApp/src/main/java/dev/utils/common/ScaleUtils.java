@@ -706,7 +706,8 @@ public final class ScaleUtils {
      * detail: XY 比实体类
      * @author Ttt
      */
-    public static class XY implements Comparable<XY> {
+    public static class XY
+            implements Comparable<XY> {
 
         public XY(
                 final int x,

@@ -943,7 +943,8 @@ public final class ActivityUtils {
      * detail: 回传结果处理 Activity
      * @author Ttt
      */
-    public static class ResultActivity extends FragmentActivity {
+    public static class ResultActivity
+            extends FragmentActivity {
 
         // 日志 TAG
         private static final String TAG = ResultActivity.class.getSimpleName();

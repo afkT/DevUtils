@@ -29,7 +29,8 @@ import dev.utils.app.helper.ViewHelper;
  *     @see <a href="https://www.jianshu.com/p/c769f4ed298f"/>
  * </pre>
  */
-public class RecyItemSlideActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class RecyItemSlideActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     // 适配器
     private ItemSlideAdapter itemSlideAdapter;

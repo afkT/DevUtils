@@ -23,7 +23,8 @@ import dev.widget.R;
  * </pre>
  */
 @Deprecated
-public class CustomGallery extends Gallery {
+public class CustomGallery
+        extends Gallery {
 
     // 是否允许滑动
     private boolean mIsSlide   = true;

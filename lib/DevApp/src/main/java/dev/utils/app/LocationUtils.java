@@ -339,7 +339,8 @@ public final class LocationUtils {
      * detail: 自定义定位监听事件
      * @author Ttt
      */
-    private static class CustomLocationListener implements LocationListener {
+    private static class CustomLocationListener
+            implements LocationListener {
 
         /**
          * 当坐标改变时触发此函数, 如果 Provider 传进相同的坐标, 它就不会被触发

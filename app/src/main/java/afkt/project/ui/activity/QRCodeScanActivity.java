@@ -49,7 +49,9 @@ import dev.widget.ui.ScanShapeView;
  * detail: 二维码扫描解析
  * @author Ttt
  */
-public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> implements DecodeResult {
+public class QRCodeScanActivity
+        extends BaseActivity<ActivityScanShapeBinding>
+        implements DecodeResult {
 
     // 无操作计时辅助类
     private InactivityTimerAssist mInactivityTimerAssist;
@@ -407,7 +409,8 @@ public class QRCodeScanActivity extends BaseActivity<ActivityScanShapeBinding> i
      * detail: 捕获预览画面处理 Handler
      * @author Ttt
      */
-    private static class CaptureHandler extends Handler {
+    private static class CaptureHandler
+            extends Handler {
 
         // 日志 TAG
         private static final String          TAG = CaptureHandler.class.getSimpleName();

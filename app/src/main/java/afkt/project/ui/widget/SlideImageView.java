@@ -29,7 +29,8 @@ import androidx.appcompat.widget.AppCompatImageView;
  * https://blog.csdn.net/u010335298/article/details/52278609
  * https://github.com/LuckyJayce/LargeImage
  */
-public class SlideImageView extends AppCompatImageView {
+public class SlideImageView
+        extends AppCompatImageView {
 
     // 判断是否允许滑动 => 如果可以滑动 isNeedSlide = true, 该参数限制才有效
     private boolean isAllowSlide = true;

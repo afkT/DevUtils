@@ -37,7 +37,8 @@ import dev.widget.R;
  * detail: 自定义扫描 ( 二维码 / AR ) 效果形状 View
  * @author Ttt
  */
-public class ScanShapeView extends View {
+public class ScanShapeView
+        extends View {
 
     // 日志 TAG
     private final String TAG = ScanShapeView.class.getSimpleName();
@@ -65,7 +66,8 @@ public class ScanShapeView extends View {
      *     便于获取拐角圆角大小
      * </pre>
      */
-    public static final class CornerEffect extends CornerPathEffect {
+    public static final class CornerEffect
+            extends CornerPathEffect {
 
         // 拐角圆角大小
         private float radius;

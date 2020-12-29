@@ -20,7 +20,9 @@ import io.reactivex.rxjava3.disposables.Disposable;
  * detail: 文章 MVP Activity
  * @author Ttt
  */
-public class ArticleMVPActivity extends BaseMVPActivity<ArticleMVP.Presenter, BaseViewRecyclerviewBinding> implements ArticleMVP.View {
+public class ArticleMVPActivity
+        extends BaseMVPActivity<ArticleMVP.Presenter, BaseViewRecyclerviewBinding>
+        implements ArticleMVP.View {
 
     // 加载动画
     WhorlView      vid_sli_load_view;

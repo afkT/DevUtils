@@ -25,7 +25,8 @@ import dev.widget.assist.ViewAssist;
  * detail: ViewAssist RecyclerView 适配器
  * @author Ttt
  */
-public class RecyclerLoadingAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
+public class RecyclerLoadingAdapter
+        extends BaseQuickAdapter<String, BaseViewHolder> {
 
     public RecyclerLoadingAdapter(@Nullable List<String> data) {
         super(R.layout.adapter_recycler_loading, data);

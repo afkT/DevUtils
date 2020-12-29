@@ -175,7 +175,8 @@ public final class CPUUtils {
      */
     public static int getCoresNumbers() {
         // Private Class to display only CPU devices in the directory listing
-        class CpuFilter implements FileFilter {
+        class CpuFilter
+                implements FileFilter {
             @Override
             public boolean accept(File pathname) {
                 // Check if filename is "cpu", followed by a single digit number

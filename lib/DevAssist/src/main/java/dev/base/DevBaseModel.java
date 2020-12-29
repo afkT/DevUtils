@@ -10,7 +10,8 @@ import java.util.UUID;
  *     isCorrect 可以用于 BaseModel 子类的数据校验
  * </pre>
  */
-public abstract class DevBaseModel implements Serializable {
+public abstract class DevBaseModel
+        implements Serializable {
 
     private static final long serialVersionUID = 2514563577168445802L;
 

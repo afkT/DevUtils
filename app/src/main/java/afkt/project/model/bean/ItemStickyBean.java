@@ -6,7 +6,8 @@ import dev.utils.common.DateUtils;
  * detail: Item 实体类
  * @author Ttt
  */
-public class ItemStickyBean extends AdapterBean {
+public class ItemStickyBean
+        extends AdapterBean {
 
     // 图片路径
     public String imageUrl;

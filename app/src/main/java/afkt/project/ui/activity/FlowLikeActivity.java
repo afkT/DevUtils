@@ -10,7 +10,8 @@ import afkt.project.databinding.ActivityFlowLikeBinding;
  * detail: 自定义点赞效果 View
  * @author Ttt
  */
-public class FlowLikeActivity extends BaseActivity<ActivityFlowLikeBinding> {
+public class FlowLikeActivity
+        extends BaseActivity<ActivityFlowLikeBinding> {
 
     @Override
     public int baseLayoutId() {

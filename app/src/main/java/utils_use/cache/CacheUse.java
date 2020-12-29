@@ -60,7 +60,8 @@ public final class CacheUse {
      * detail: 缓存实体类
      * @author Ttt
      */
-    static class CacheVo implements Serializable {
+    static class CacheVo
+            implements Serializable {
 
         String name;
 

@@ -12,7 +12,8 @@ import dev.utils.LogPrintUtils;
  * detail: 视频播放控制器
  * @author Ttt
  */
-public class DevVideoPlayerControl implements SurfaceHolder.Callback,
+public class DevVideoPlayerControl
+        implements SurfaceHolder.Callback,
         DevMediaManager.MediaListener {
 
     // ===========

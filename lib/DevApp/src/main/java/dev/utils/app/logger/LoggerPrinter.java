@@ -22,7 +22,8 @@ import dev.utils.DevFinal;
  * detail: 日志输出类 ( 处理方法 )
  * @author Ttt
  */
-final class LoggerPrinter implements IPrinter {
+final class LoggerPrinter
+        implements IPrinter {
 
     // 日志配置
     private static       LogConfig              LOG_CONFIG        = null;

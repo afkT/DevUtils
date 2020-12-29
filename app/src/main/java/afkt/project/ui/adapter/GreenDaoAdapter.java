@@ -23,7 +23,8 @@ import dev.utils.common.DateUtils;
  * detail: GreenDao 适配器
  * @author Ttt
  */
-public class GreenDaoAdapter extends BaseQuickAdapter<Note, BaseViewHolder> {
+public class GreenDaoAdapter
+        extends BaseQuickAdapter<Note, BaseViewHolder> {
 
     public GreenDaoAdapter() {
         super(R.layout.adapter_database);
@@ -47,7 +48,8 @@ public class GreenDaoAdapter extends BaseQuickAdapter<Note, BaseViewHolder> {
         }
     }
 
-    class ImageAdapter extends BaseQuickAdapter<NotePicture, BaseViewHolder> {
+    class ImageAdapter
+            extends BaseQuickAdapter<NotePicture, BaseViewHolder> {
 
         public ImageAdapter(@Nullable List<NotePicture> data) {
             super(R.layout.adapter_database_image, data);

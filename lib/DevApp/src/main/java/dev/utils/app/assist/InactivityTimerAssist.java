@@ -140,7 +140,8 @@ public final class InactivityTimerAssist {
      * detail: 电池监听广播
      * @author Ttt
      */
-    private class PowerStateReceiver extends BroadcastReceiver {
+    private class PowerStateReceiver
+            extends BroadcastReceiver {
         @Override
         public void onReceive(
                 Context context,
@@ -162,7 +163,8 @@ public final class InactivityTimerAssist {
      * detail: 定时检测任务 ( 无操作检测 )
      * @author Ttt
      */
-    private class InactivityAsyncTask extends AsyncTask<Object, Object, Object> {
+    private class InactivityAsyncTask
+            extends AsyncTask<Object, Object, Object> {
         @Override
         protected Object doInBackground(Object... objects) {
             try {

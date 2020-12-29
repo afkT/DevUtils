@@ -379,7 +379,10 @@ public final class DevUtils {
      * detail: 对 Activity 的生命周期事件进行集中处理, ActivityLifecycleCallbacks 实现方法
      * @author Ttt
      */
-    private static class ActivityLifecycleImpl implements Application.ActivityLifecycleCallbacks, ActivityLifecycleGet, ActivityLifecycleNotify {
+    private static class ActivityLifecycleImpl
+            implements Application.ActivityLifecycleCallbacks,
+            ActivityLifecycleGet,
+            ActivityLifecycleNotify {
 
         // 保存未销毁的 Activity
         private final LinkedList<Activity>                            mActivityLists         = new LinkedList<>();
@@ -905,7 +908,8 @@ public final class DevUtils {
      * detail: ActivityLifecycleCallbacks 抽象类
      * @author Ttt
      */
-    public static abstract class AbstractActivityLifecycle implements Application.ActivityLifecycleCallbacks {
+    public static abstract class AbstractActivityLifecycle
+            implements Application.ActivityLifecycleCallbacks {
 
         @Override
         public void onActivityCreated(
@@ -984,7 +988,8 @@ public final class DevUtils {
      * detail: FileProvider
      * @author Ttt
      */
-    public static final class FileProviderDevApp extends FileProvider {
+    public static final class FileProviderDevApp
+            extends FileProvider {
         @Override
         public boolean onCreate() {
             init(getContext());

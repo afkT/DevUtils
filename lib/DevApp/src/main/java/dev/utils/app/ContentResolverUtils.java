@@ -424,7 +424,8 @@ public final class ContentResolverUtils {
      * detail: 多媒体查询获取 Uri 处理
      * @author Ttt
      */
-    private static class MediaQueryUri extends MediaQuery {
+    private static class MediaQueryUri
+            extends MediaQuery {
         @Override
         public String[] getResult(
                 Uri uri,
@@ -478,7 +479,8 @@ public final class ContentResolverUtils {
      * detail: 多媒体查询信息处理
      * @author Ttt
      */
-    public static class MediaQueryInfo extends MediaQuery {
+    public static class MediaQueryInfo
+            extends MediaQuery {
         @Override
         public String[] getResult(
                 Uri uri,
@@ -548,7 +550,8 @@ public final class ContentResolverUtils {
      * detail: 多媒体查询信息处理 Uri
      * @author Ttt
      */
-    public static class MediaQueryInfoUri extends MediaQueryInfo {
+    public static class MediaQueryInfoUri
+            extends MediaQueryInfo {
 
         @Override
         public String getSelection(

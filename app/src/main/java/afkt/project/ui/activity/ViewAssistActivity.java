@@ -18,7 +18,8 @@ import dev.widget.assist.ViewAssist;
  * detail: ViewAssist Activity
  * @author Ttt
  */
-public class ViewAssistActivity extends BaseActivity<ActivityViewAssistBinding> {
+public class ViewAssistActivity
+        extends BaseActivity<ActivityViewAssistBinding> {
 
     ViewAssist viewAssist;
 

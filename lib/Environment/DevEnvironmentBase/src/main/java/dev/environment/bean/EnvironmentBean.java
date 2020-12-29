@@ -8,7 +8,8 @@ import dev.environment.annotation.Environment;
  * detail: {@link Environment} 实体类
  * @author Ttt
  */
-public class EnvironmentBean implements Serializable {
+public class EnvironmentBean
+        implements Serializable {
 
     // 环境名
     private final String     name;

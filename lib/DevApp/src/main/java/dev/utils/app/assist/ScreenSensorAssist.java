@@ -209,7 +209,8 @@ public final class ScreenSensorAssist {
      * detail: 重力传感器监听事件
      * @author Ttt
      */
-    class OrientationSensorListener implements SensorEventListener {
+    class OrientationSensorListener
+            implements SensorEventListener {
         @Override
         public void onAccuracyChanged(
                 Sensor sensor,
@@ -249,7 +250,8 @@ public final class ScreenSensorAssist {
      * detail: 重力传感器监听事件 ( 切屏后 )
      * @author Ttt
      */
-    class OrientationSensorChangeListener implements SensorEventListener {
+    class OrientationSensorChangeListener
+            implements SensorEventListener {
         @Override
         public void onAccuracyChanged(
                 Sensor sensor,

@@ -30,7 +30,8 @@ import okio.BufferedSource;
  *     @see <a href="https://github.com/DingProg/NetworkCaptureSelf"/>
  * </pre>
  */
-public class HttpLoggingInterceptor implements Interceptor {
+public class HttpLoggingInterceptor
+        implements Interceptor {
 
     private final Charset UTF8 = Charset.forName("UTF-8");
 

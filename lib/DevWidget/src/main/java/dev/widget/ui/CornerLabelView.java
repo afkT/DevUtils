@@ -43,7 +43,8 @@ import dev.widget.R;
  *     app:dev_textBold2=""
  * </pre>
  */
-public class CornerLabelView extends View {
+public class CornerLabelView
+        extends View {
 
     // 三角形斜边长
     private static final float   SQRT2          = (float) Math.sqrt(2);

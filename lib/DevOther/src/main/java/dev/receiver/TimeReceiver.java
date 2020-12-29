@@ -12,7 +12,8 @@ import dev.utils.app.AppUtils;
  * detail: 时间监听广播
  * @author Ttt
  */
-public final class TimeReceiver extends BroadcastReceiver {
+public final class TimeReceiver
+        extends BroadcastReceiver {
 
     private TimeReceiver() {
         super();

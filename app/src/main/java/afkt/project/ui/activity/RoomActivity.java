@@ -34,7 +34,8 @@ import dev.utils.common.RandomUtils;
  * detail: Room 使用
  * @author Ttt
  */
-public class RoomActivity extends BaseActivity<ActivityDatabaseBinding> {
+public class RoomActivity
+        extends BaseActivity<ActivityDatabaseBinding> {
 
     @Override
     public int baseLayoutId() {

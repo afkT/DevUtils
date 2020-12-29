@@ -25,7 +25,8 @@ import dev.widget.ui.ScanShapeView;
  * detail: 自定义扫描 View ( QRCode、AR )
  * @author Ttt
  */
-public class ScanShapeActivity extends BaseActivity<ActivityScanShapeBinding> {
+public class ScanShapeActivity
+        extends BaseActivity<ActivityScanShapeBinding> {
 
     @Override
     public int baseLayoutId() {

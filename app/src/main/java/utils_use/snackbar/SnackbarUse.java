@@ -224,7 +224,8 @@ public final class SnackbarUse {
      * detail: 自定义样式 - 可参照下方实现方法, 进行配置
      * @author Ttt
      */
-    class NightStyle extends SnackbarUtils.Style {
+    class NightStyle
+            extends SnackbarUtils.Style {
         @Override
         public int getTextColor() {
             return Color.WHITE;

@@ -11,7 +11,8 @@ import dev.utils.app.ResourceUtils;
  * detail: 键对值实体类
  * @author Ttt
  */
-public class KeyValueBean implements Serializable {
+public class KeyValueBean
+        implements Serializable {
 
     @Keep
     protected String key   = "";

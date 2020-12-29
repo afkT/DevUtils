@@ -13,7 +13,9 @@ import dev.utils.JCLogUtils;
  *     使用: 只需要实现 IAdapterData, 每个接口方法直接通过调用 AdapterDataAssist 已实现同名方法即可
  * </pre>
  */
-public class AdapterDataAssist<V> implements IAdapterData<V>, IAdapterNotify {
+public class AdapterDataAssist<V>
+        implements IAdapterData<V>,
+        IAdapterNotify {
 
     // 日志 TAG
     private static final String TAG = AdapterDataAssist.class.getSimpleName();

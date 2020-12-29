@@ -15,7 +15,8 @@ import dev.widget.function.LineTextView;
  * detail: 自动换行 View
  * @author Ttt
  */
-public class LineActivity extends BaseActivity<ActivityLineBinding> {
+public class LineActivity
+        extends BaseActivity<ActivityLineBinding> {
 
     @Override
     public int baseLayoutId() {

@@ -14,7 +14,8 @@ import dev.widget.function.SignView;
  * detail: 签名 View
  * @author Ttt
  */
-public class SignActivity extends BaseActivity<ViewBinding> {
+public class SignActivity
+        extends BaseActivity<ViewBinding> {
 
     @Override
     public boolean isViewBinding() {

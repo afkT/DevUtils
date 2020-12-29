@@ -123,7 +123,8 @@ public final class ToastTintUse {
      * {@link ToastTintUtils.NormalStyle}
      * {@link ToastTintUtils.DefaultStyle}
      */
-    private static class TempStyle implements ToastTintUtils.Style {
+    private static class TempStyle
+            implements ToastTintUtils.Style {
 
         /**
          * 文本颜色

@@ -8,7 +8,8 @@ import java.util.List;
  * @param <V>           Value
  * @author Ttt
  */
-public interface IMultiSelectToList<CollectionG extends List, V> extends IBaseMultiSelect<CollectionG, V> {
+public interface IMultiSelectToList<CollectionG extends List, V>
+        extends IBaseMultiSelect<CollectionG, V> {
 
     /**
      * 判断是否选中 ( 通过 value 判断 )

@@ -24,7 +24,8 @@ import dev.utils.app.CapturePictureUtils;
  *     则能够实现类似画图功能 ( SVG 绘制也是该思路 )
  * </pre>
  */
-public class SignView extends View {
+public class SignView
+        extends View {
 
     // 绘制路径
     private Path  mPath;

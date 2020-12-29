@@ -7,7 +7,8 @@ package dev.callback.result;
  *     针对 DevResultCallback 进行扩展, 实现多个地方共用一个回调, 并且区分各个结果回调等
  * </pre>
  */
-public abstract class DevExResultCallback<T> extends DevResultCallback<T> {
+public abstract class DevExResultCallback<T>
+        extends DevResultCallback<T> {
 
     public DevExResultCallback() {
         super();

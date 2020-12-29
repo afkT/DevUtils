@@ -19,7 +19,8 @@ import dev.utils.app.logger.DevLogger;
  * detail: WebView 辅助类
  * @author Ttt
  */
-public class WebViewActivity extends BaseActivity<ActivityWebviewBinding> {
+public class WebViewActivity
+        extends BaseActivity<ActivityWebviewBinding> {
 
     // WebView 辅助类
     private WebViewAssist mWebViewAssist = new WebViewAssist();

@@ -26,7 +26,9 @@ import dev.utils.common.StringUtils;
  * detail: Toast 接口实现方法 ( 处理方法 )
  * @author Ttt
  */
-final class IToastImpl implements IToast.Operate, IToast.Filter {
+final class IToastImpl
+        implements IToast.Operate,
+        IToast.Filter {
 
     // 日志 TAG
     private final String TAG = IToastImpl.class.getSimpleName();

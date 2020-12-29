@@ -23,7 +23,8 @@ import dev.environment.bean.ModuleBean;
  * detail: DevEnvironment Activity
  * @author Ttt
  */
-public final class DevEnvironmentActivity extends Activity {
+public final class DevEnvironmentActivity
+        extends Activity {
 
     // ===========
     // = 跳转方法 =
@@ -108,7 +109,8 @@ public final class DevEnvironmentActivity extends Activity {
      * detail: Item Adapter
      * @author Ttt
      */
-    class Adapter extends BaseAdapter {
+    class Adapter
+            extends BaseAdapter {
 
         List<AdapterItem> lists;
 

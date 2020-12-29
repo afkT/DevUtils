@@ -19,7 +19,8 @@ import io.reactivex.rxjava3.subscribers.DisposableSubscriber;
  *     Retrofit 会自动映射泛型实体类
  * </pre>
  */
-public abstract class BaseResponseSubscriber<T> extends DisposableSubscriber<BaseResponse<T>> {
+public abstract class BaseResponseSubscriber<T>
+        extends DisposableSubscriber<BaseResponse<T>> {
 
     // 日志 TAG
     protected final String TAG = BaseResponseSubscriber.class.getSimpleName();

@@ -20,7 +20,8 @@ import dev.utils.app.logger.DevLogger;
  *     @see <a href="https://github.com/dinuscxj/LoadingDrawable"/>
  * </pre>
  */
-public class LoadingView extends AppCompatImageView {
+public class LoadingView
+        extends AppCompatImageView {
     private LoadingDrawable mLoadingDrawable;
 
     public LoadingView(Context context) {

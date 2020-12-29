@@ -12,7 +12,8 @@ import android.widget.ListView;
  * @Deprecated 推荐使用 NestedScrollView + RecyclerView 实现
  */
 @Deprecated
-public class AdjustHeightListView extends ListView {
+public class AdjustHeightListView
+        extends ListView {
 
     public AdjustHeightListView(Context context) {
         super(context);

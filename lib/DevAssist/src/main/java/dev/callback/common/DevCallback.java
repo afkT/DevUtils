@@ -6,7 +6,8 @@ import dev.callback.AbstractCallback;
  * detail: Dev 回调基类
  * @author Ttt
  */
-public class DevCallback<T> extends AbstractCallback<T> {
+public class DevCallback<T>
+        extends AbstractCallback<T> {
 
     public DevCallback() {
     }

@@ -565,7 +565,8 @@ public final class TimerManager {
      *     便于快捷使用, 并且防止外部 new 从而达到对整个项目定时器的控制
      * </pre>
      */
-    private static final class TimerTask extends AbsTimer {
+    private static final class TimerTask
+            extends AbsTimer {
 
         // 定时器
         private Timer               timer;

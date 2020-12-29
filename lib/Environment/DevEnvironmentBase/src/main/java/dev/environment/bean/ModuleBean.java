@@ -10,7 +10,8 @@ import dev.environment.annotation.Module;
  * detail: {@link Module} 实体类
  * @author Ttt
  */
-public class ModuleBean implements Serializable {
+public class ModuleBean
+        implements Serializable {
 
     // 模块名
     private final String                name;

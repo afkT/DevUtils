@@ -24,7 +24,8 @@ import dev.widget.R;
  *     app:dev_viewLeftMargin=""
  * </pre>
  */
-public class WrapView extends ViewGroup {
+public class WrapView
+        extends ViewGroup {
 
     // View 换行行数
     private int mRowLine;

@@ -88,7 +88,8 @@ public final class DevToastUse {
     /**
      * 自定义实现样式
      */
-    private static class TempStyle implements IToast.Style {
+    private static class TempStyle
+            implements IToast.Style {
 
         /**
          * Toast 的重心

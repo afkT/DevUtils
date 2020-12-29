@@ -14,7 +14,8 @@ import afkt.project.model.item.ButtonValue;
  * detail: Button 适配器
  * @author Ttt
  */
-public class ButtonAdapter extends BaseQuickAdapter<ButtonValue, BaseViewHolder> {
+public class ButtonAdapter
+        extends BaseQuickAdapter<ButtonValue, BaseViewHolder> {
 
     public ButtonAdapter(@Nullable List<ButtonValue> data) {
         super(R.layout.base_view_button, data);

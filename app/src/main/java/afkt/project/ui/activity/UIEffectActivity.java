@@ -30,7 +30,8 @@ import dev.utils.common.ArrayUtils;
  * detail: 常见 UI、GradientDrawable 效果等
  * @author Ttt
  */
-public class UIEffectActivity extends BaseActivity<ActivityUiEffectBinding> {
+public class UIEffectActivity
+        extends BaseActivity<ActivityUiEffectBinding> {
 
     // 当前选中的索引
     private int             selectTabIndex = -1;

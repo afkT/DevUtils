@@ -24,7 +24,8 @@ import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.app.toast.ToastUtils;
 import dev.utils.common.HttpURLConnectionUtils;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding> {
+public class MainActivity
+        extends BaseActivity<ActivityMainBinding> {
 
     @Override
     public boolean isToolBar() {

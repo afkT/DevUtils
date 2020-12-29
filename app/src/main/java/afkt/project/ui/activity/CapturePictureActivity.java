@@ -17,7 +17,8 @@ import dev.utils.app.image.ImageUtils;
  * detail: CapturePictureUtils 截图工具类
  * @author Ttt
  */
-public class CapturePictureActivity extends BaseActivity<ActivityCapturePictureBinding> {
+public class CapturePictureActivity
+        extends BaseActivity<ActivityCapturePictureBinding> {
 
     @Override
     public int baseLayoutId() {

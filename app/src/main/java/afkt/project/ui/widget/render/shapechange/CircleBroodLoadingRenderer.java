@@ -16,7 +16,8 @@ import android.view.animation.Interpolator;
 import afkt.project.ui.widget.render.LoadingRenderer;
 import dev.utils.app.SizeUtils;
 
-public class CircleBroodLoadingRenderer extends LoadingRenderer {
+public class CircleBroodLoadingRenderer
+        extends LoadingRenderer {
 
     private final Interpolator MOTHER_MOVE_INTERPOLATOR = new MotherMoveInterpolator();
     private final Interpolator CHILD_MOVE_INTERPOLATOR  = new ChildMoveInterpolator();
@@ -620,7 +621,8 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
     protected void reset() {
     }
 
-    private class MotherMoveInterpolator implements Interpolator {
+    private class MotherMoveInterpolator
+            implements Interpolator {
         @Override
         public float getInterpolation(float input) {
             float result;
@@ -641,7 +643,8 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
         }
     }
 
-    private class ChildMoveInterpolator implements Interpolator {
+    private class ChildMoveInterpolator
+            implements Interpolator {
 
         @Override
         public float getInterpolation(float input) {

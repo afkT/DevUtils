@@ -14,7 +14,8 @@ import dev.utils.app.ResourceUtils;
  * detail: 点击 显示 / 隐藏 ( 状态栏 )
  * @author Ttt
  */
-public class StatusBarActivity extends BaseActivity<ActivityStatusBarBinding> {
+public class StatusBarActivity
+        extends BaseActivity<ActivityStatusBarBinding> {
 
     // 判断是否显示
     boolean isVisible = true;

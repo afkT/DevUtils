@@ -732,7 +732,8 @@ public final class ReflectUtils {
      * detail: 定义 ReflectUtils 工具异常类
      * @author Ttt
      */
-    public static class ReflectException extends Exception {
+    public static class ReflectException
+            extends Exception {
 
         private static final long serialVersionUID = 858774075258496016L;
 

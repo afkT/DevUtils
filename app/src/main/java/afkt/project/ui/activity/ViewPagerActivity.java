@@ -16,7 +16,8 @@ import dev.widget.custom.CustomViewPager;
  * detail: ViewPager 滑动监听、控制滑动
  * @author Ttt
  */
-public class ViewPagerActivity extends BaseActivity<ActivityViewPagerBinding> {
+public class ViewPagerActivity
+        extends BaseActivity<ActivityViewPagerBinding> {
 
     @Override
     public int baseLayoutId() {

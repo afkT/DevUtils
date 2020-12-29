@@ -37,7 +37,8 @@ final class ToastFactory {
      * detail: Toast 基类
      * @author Ttt
      */
-    static class BaseToast extends Toast {
+    static class BaseToast
+            extends Toast {
 
         // Toast 消息 View
         private TextView mMessageView;
@@ -131,7 +132,8 @@ final class ToastFactory {
      * detail: 解决 Android 7.1 Toast 崩溃问题
      * @author Ttt
      */
-    static final class SafeToast extends BaseToast {
+    static final class SafeToast
+            extends BaseToast {
 
         /**
          * 构造函数
@@ -160,7 +162,8 @@ final class ToastFactory {
          * detail: Toast 安全显示 Handler
          * @author Ttt
          */
-        static final class SafeHandler extends Handler {
+        static final class SafeHandler
+                extends Handler {
 
             private Handler mHandler;
 
@@ -187,7 +190,8 @@ final class ToastFactory {
      * detail: 通知栏显示 Toast
      * @author Ttt
      */
-    static final class NotificationToast extends BaseToast {
+    static final class NotificationToast
+            extends BaseToast {
 
         // Toast Window 显示辅助类
         private final ToastHelper mToastHelper;
@@ -238,7 +242,8 @@ final class ToastFactory {
      *     参考 Toast.TN 实现方式
      * </pre>
      */
-    static final class ToastHelper extends Handler {
+    static final class ToastHelper
+            extends Handler {
 
         // 当前 Toast 对象
         private final Toast   mToast;

@@ -31,7 +31,8 @@ import dev.utils.common.ThrowableUtils;
  * detail: 二维码图片解析
  * @author Ttt
  */
-public class QRCodeImageActivity extends BaseActivity<ActivityQrcodeImageBinding> {
+public class QRCodeImageActivity
+        extends BaseActivity<ActivityQrcodeImageBinding> {
 
     // 图片 Bitmap
     private Bitmap selectBitmap;

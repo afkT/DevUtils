@@ -16,7 +16,8 @@ import dev.widget.ui.CornerLabelView;
  * detail: 自定义角标 View
  * @author Ttt
  */
-public class CornerLabelActivity extends BaseActivity<ActivityCornerLabelBinding> {
+public class CornerLabelActivity
+        extends BaseActivity<ActivityCornerLabelBinding> {
 
     @Override
     public int baseLayoutId() {

@@ -23,7 +23,8 @@ import dev.utils.common.StringUtils;
  * detail: 文章 Adapter
  * @author Ttt
  */
-public class ArticleAdapter extends BaseQuickAdapter<ArticleBean.DataBean.DatasBean, BaseViewHolder> {
+public class ArticleAdapter
+        extends BaseQuickAdapter<ArticleBean.DataBean.DatasBean, BaseViewHolder> {
 
     public ArticleAdapter() {
         super(R.layout.adapter_article, new ArrayList<>());

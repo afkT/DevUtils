@@ -124,7 +124,8 @@ public final class TypeUtils {
      * detail: ParameterizedType 实现类
      * @author Ttt
      */
-    public static class ParameterizedTypeImpl implements ParameterizedType {
+    public static class ParameterizedTypeImpl
+            implements ParameterizedType {
 
         private final Type[] actualTypeArguments;
         private final Type   ownerType;

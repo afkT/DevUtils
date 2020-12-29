@@ -20,7 +20,8 @@ import dev.widget.R;
  *     app:dev_maxHeight=""
  * </pre>
  */
-public class CustomWebView extends WebView {
+public class CustomWebView
+        extends WebView {
 
     // 是否允许滑动
     private boolean        mIsSlide   = true;

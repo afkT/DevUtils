@@ -6,7 +6,8 @@ import dev.callback.AbstractCommonCallback;
  * detail: 通用 Click 回调
  * @author Ttt
  */
-public class DevClickCallback<T> extends AbstractCommonCallback<T> {
+public class DevClickCallback<T>
+        extends AbstractCommonCallback<T> {
 
     public DevClickCallback() {
     }

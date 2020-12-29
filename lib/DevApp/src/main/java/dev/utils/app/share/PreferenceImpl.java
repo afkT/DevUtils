@@ -20,7 +20,8 @@ import java.util.TreeSet;
  *     3.apply 方法不会提示任何失败的提示 apply 的效率高一些, 如果没有必要确认是否提交成功建议使用 apply
  * </pre>
  */
-final class PreferenceImpl implements IPreference {
+final class PreferenceImpl
+        implements IPreference {
 
     // 文件名
     private static final String            NAME = "SPConfig";
@@ -130,7 +131,8 @@ final class PreferenceImpl implements IPreference {
      * detail: 默认比较器, 当存储 List 集合中的 String 类型数据时, 没有指定比较器, 就使用默认比较器
      * @author Ttt
      */
-    class ComparatorImpl implements Comparator<String> {
+    class ComparatorImpl
+            implements Comparator<String> {
         @Override
         public int compare(
                 String lhs,

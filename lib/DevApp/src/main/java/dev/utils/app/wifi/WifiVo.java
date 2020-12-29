@@ -15,7 +15,8 @@ import dev.utils.LogPrintUtils;
  * detail: Wifi 信息实体类
  * @author Ttt
  */
-public class WifiVo implements Parcelable {
+public class WifiVo
+        implements Parcelable {
 
     // 日志 TAG
     private static final String TAG = WifiVo.class.getSimpleName();

@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel;
 
 import afkt.project.model.bean.ArticleBean;
 
-public class ArticleViewModel extends ViewModel implements DefaultLifecycleObserver {
+public class ArticleViewModel
+        extends ViewModel
+        implements DefaultLifecycleObserver {
 
     MutableLiveData<ArticleBean> article = new MutableLiveData<>();
 

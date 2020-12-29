@@ -30,7 +30,8 @@ import jp.co.cyberagent.android.gpuimage.filter.GPUImageToneCurveFilter;
  * detail: GPU ACV 文件滤镜效果
  * @author Ttt
  */
-public class GPUFilterACVActivity extends BaseActivity<ActivityGpuFilterBinding> {
+public class GPUFilterACVActivity
+        extends BaseActivity<ActivityGpuFilterBinding> {
 
     // 适配器
     private        GPUFilterACVAdapter gpuFilterACVAdapter;

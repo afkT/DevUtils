@@ -65,7 +65,8 @@ import dev.utils.app.toast.ToastTintUtils;
  * detail: Module 列表 Activity
  * @author Ttt
  */
-public class ModuleActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class ModuleActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
     public int baseLayoutId() {

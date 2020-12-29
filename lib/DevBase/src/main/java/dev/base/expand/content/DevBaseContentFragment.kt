@@ -14,7 +14,8 @@ import dev.base.utils.assist.DevBaseContentAssist
  * detail: Content Fragment 基类
  * @author Ttt
  */
-abstract class DevBaseContentFragment : DevBaseFragment(), IDevBaseLayout {
+abstract class DevBaseContentFragment : DevBaseFragment(),
+    IDevBaseLayout {
 
     @JvmField // Layout View
     protected var layoutView: View? = null

@@ -20,7 +20,8 @@ import dev.utils.app.toast.ToastTintUtils;
  * detail: 跳转 Activity 回传 Callback
  * @author Ttt
  */
-public class ActivityResultCallbackActivity extends BaseActivity<ActivityActivityResultCallbackBinding> {
+public class ActivityResultCallbackActivity
+        extends BaseActivity<ActivityActivityResultCallbackBinding> {
 
     @Override
     public int baseLayoutId() {

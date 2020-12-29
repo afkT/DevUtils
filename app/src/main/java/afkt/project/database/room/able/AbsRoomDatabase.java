@@ -9,7 +9,8 @@ import androidx.room.RoomDatabase;
  *     dbName 最好为 功能模块名, 如果涉及需要区分用户则为 功能模块名 + 用户 id
  * </pre>
  */
-public abstract class AbsRoomDatabase extends RoomDatabase {
+public abstract class AbsRoomDatabase
+        extends RoomDatabase {
 
     // 数据库名
     private static final String DATABASE_NAME = "room-db";

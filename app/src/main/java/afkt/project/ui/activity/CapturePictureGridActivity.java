@@ -25,7 +25,8 @@ import dev.utils.app.image.ImageUtils;
  * detail: CapturePictureUtils GridView 截图
  * @author Ttt
  */
-public class CapturePictureGridActivity extends BaseActivity<ActivityCapturePictureGridBinding> {
+public class CapturePictureGridActivity
+        extends BaseActivity<ActivityCapturePictureGridBinding> {
 
     @Override
     public int baseLayoutId() {

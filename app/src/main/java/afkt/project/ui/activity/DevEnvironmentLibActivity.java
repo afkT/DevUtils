@@ -25,7 +25,8 @@ import dev.utils.app.toast.ToastTintUtils;
  * detail: DevEnvironment 环境配置切换库
  * @author Ttt
  */
-public class DevEnvironmentLibActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class DevEnvironmentLibActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
     public int baseLayoutId() {

@@ -20,7 +20,8 @@ import dev.utils.app.helper.QuickHelper;
  * detail: GPU ACV 文件滤镜效果适配器
  * @author Ttt
  */
-public class GPUFilterACVAdapter extends BaseAdapter {
+public class GPUFilterACVAdapter
+        extends BaseAdapter {
 
     // Context
     Context           context;

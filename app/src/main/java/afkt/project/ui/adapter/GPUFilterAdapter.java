@@ -18,7 +18,8 @@ import dev.utils.app.helper.QuickHelper;
  * detail: GPU 滤镜效果适配器
  * @author Ttt
  */
-public class GPUFilterAdapter extends BaseAdapter {
+public class GPUFilterAdapter
+        extends BaseAdapter {
 
     // Context
     private Context context;

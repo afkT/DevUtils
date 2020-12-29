@@ -1373,7 +1373,8 @@ public final class ToastTintUtils {
      * detail: Toast 安全显示 Handler
      * @author Ttt
      */
-    private static final class SafeHandler extends Handler {
+    private static final class SafeHandler
+            extends Handler {
 
         private Handler mHandler;
 
@@ -1466,7 +1467,8 @@ public final class ToastTintUtils {
      * detail: 默认样式
      * @author Ttt
      */
-    public static class DefaultStyle implements Style {
+    public static class DefaultStyle
+            implements Style {
 
         /**
          * 获取获取文本颜色
@@ -1555,7 +1557,8 @@ public final class ToastTintUtils {
      * detail: Normal 样式 ( 灰色 )
      * @author Ttt
      */
-    public static class NormalStyle extends DefaultStyle {
+    public static class NormalStyle
+            extends DefaultStyle {
 
         /**
          * 获取背景着色颜色
@@ -1580,7 +1583,8 @@ public final class ToastTintUtils {
      * detail: Info 样式 ( 海洋蓝 )
      * @author Ttt
      */
-    public static class InfoStyle extends DefaultStyle {
+    public static class InfoStyle
+            extends DefaultStyle {
 
         /**
          * 获取背景着色颜色
@@ -1605,7 +1609,8 @@ public final class ToastTintUtils {
      * detail: Warning 样式 ( 橙色 )
      * @author Ttt
      */
-    public static class WarningStyle extends DefaultStyle {
+    public static class WarningStyle
+            extends DefaultStyle {
 
         /**
          * 获取背景着色颜色
@@ -1630,7 +1635,8 @@ public final class ToastTintUtils {
      * detail: Error 样式 ( 红色 )
      * @author Ttt
      */
-    public static class ErrorStyle extends DefaultStyle {
+    public static class ErrorStyle
+            extends DefaultStyle {
 
         /**
          * 获取背景着色颜色
@@ -1655,7 +1661,8 @@ public final class ToastTintUtils {
      * detail: Success 样式 ( 绿色 )
      * @author Ttt
      */
-    public static class SuccessStyle extends DefaultStyle {
+    public static class SuccessStyle
+            extends DefaultStyle {
 
         /**
          * 获取背景着色颜色

@@ -4,7 +4,8 @@ package dev.callback.click;
  * detail: 通用 Dialog 回调
  * @author Ttt
  */
-public class DevDialogCallback<T> extends DevClickCallback<T> {
+public class DevDialogCallback<T>
+        extends DevClickCallback<T> {
 
     public DevDialogCallback() {
     }

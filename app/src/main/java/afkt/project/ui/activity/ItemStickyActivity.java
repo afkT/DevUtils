@@ -28,7 +28,8 @@ import dev.utils.common.RandomUtils;
  *     @see <a href="https://github.com/Gavin-ZYX/StickyDecoration"/>
  * </pre>
  */
-public class ItemStickyActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class ItemStickyActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     // 适配器
     ItemStickyAdapter itemStickyAdapter;

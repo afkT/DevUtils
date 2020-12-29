@@ -34,7 +34,8 @@ import afkt.project.R;
 import afkt.project.ui.widget.render.LoadingRenderer;
 import dev.utils.app.SizeUtils;
 
-public class ElectricFanLoadingRenderer extends LoadingRenderer {
+public class ElectricFanLoadingRenderer
+        extends LoadingRenderer {
     private static final Interpolator LINEAR_INTERPOLATOR          = new LinearInterpolator();
     private static final Interpolator MATERIAL_INTERPOLATOR        = new FastOutSlowInInterpolator();
     private static final Interpolator DECELERATE_INTERPOLATOR      = new DecelerateInterpolator();
@@ -416,7 +417,8 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
         return point;
     }
 
-    private class BezierEvaluator implements TypeEvaluator<PointF> {
+    private class BezierEvaluator
+            implements TypeEvaluator<PointF> {
 
         private PointF point1;
         private PointF point2;
@@ -447,7 +449,8 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
         }
     }
 
-    private class BezierListener implements ValueAnimator.AnimatorUpdateListener {
+    private class BezierListener
+            implements ValueAnimator.AnimatorUpdateListener {
 
         private LeafHolder target;
 
@@ -464,7 +467,8 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
         }
     }
 
-    private class AnimEndListener extends AnimatorListenerAdapter {
+    private class AnimEndListener
+            extends AnimatorListenerAdapter {
         private LeafHolder target;
 
         public AnimEndListener(LeafHolder target) {

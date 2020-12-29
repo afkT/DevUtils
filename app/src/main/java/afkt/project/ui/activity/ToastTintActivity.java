@@ -26,7 +26,8 @@ import utils_use.toast.ToastTintUse;
  *     {@link ToastTintUse}
  * </pre>
  */
-public class ToastTintActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class ToastTintActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
     public int baseLayoutId() {
@@ -84,7 +85,8 @@ public class ToastTintActivity extends BaseActivity<BaseViewRecyclerviewBinding>
      * {@link ToastTintUtils.NormalStyle}
      * {@link ToastTintUtils.DefaultStyle}
      */
-    private static class TempStyle implements ToastTintUtils.Style {
+    private static class TempStyle
+            implements ToastTintUtils.Style {
 
         /**
          * 文本颜色

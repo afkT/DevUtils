@@ -26,7 +26,8 @@ import dev.utils.app.ServiceUtils;
  *     setServiceInfo(serviceInfo);
  * </pre>
  */
-public final class AccessibilityListenerService extends AccessibilityService {
+public final class AccessibilityListenerService
+        extends AccessibilityService {
 
     // 日志 TAG
     private static final String TAG = AccessibilityService.class.getSimpleName();

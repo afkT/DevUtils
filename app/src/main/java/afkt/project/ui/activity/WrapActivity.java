@@ -21,7 +21,8 @@ import dev.utils.common.RandomUtils;
  * detail: 自动换行 View
  * @author Ttt
  */
-public class WrapActivity extends BaseActivity<ActivityWrapBinding> {
+public class WrapActivity
+        extends BaseActivity<ActivityWrapBinding> {
 
     @Override
     public int baseLayoutId() {

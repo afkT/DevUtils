@@ -20,7 +20,8 @@ import dev.utils.app.toast.ToastTintUtils;
  * detail: Button 列表 Activity
  * @author Ttt
  */
-public class ButtonItemActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class ButtonItemActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
     public int baseLayoutId() {

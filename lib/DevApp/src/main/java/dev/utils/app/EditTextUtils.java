@@ -709,7 +709,8 @@ public final class EditTextUtils {
      *     editText.addTextChangedListener(DevTextWatcher);
      * </pre>
      */
-    public static abstract class DevTextWatcher implements TextWatcher {
+    public static abstract class DevTextWatcher
+            implements TextWatcher {
 
         // 标记 id ( 一定程度上唯一 )
         private final int     markId       = UUID.randomUUID().hashCode();

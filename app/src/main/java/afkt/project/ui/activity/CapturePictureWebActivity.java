@@ -18,7 +18,8 @@ import dev.utils.app.image.ImageUtils;
  * detail: CapturePictureUtils WebView 截图
  * @author Ttt
  */
-public class CapturePictureWebActivity extends BaseActivity<ActivityCapturePictureWebBinding> {
+public class CapturePictureWebActivity
+        extends BaseActivity<ActivityCapturePictureWebBinding> {
 
     @Override
     public int baseLayoutId() {

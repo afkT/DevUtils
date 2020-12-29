@@ -12,7 +12,8 @@ import android.widget.GridView;
  * @Deprecated 推荐使用 NestedScrollView + RecyclerView 实现
  */
 @Deprecated
-public class AdjustHeightGridView extends GridView {
+public class AdjustHeightGridView
+        extends GridView {
 
     public AdjustHeightGridView(Context context) {
         super(context);

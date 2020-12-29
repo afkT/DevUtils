@@ -24,7 +24,8 @@ import dev.utils.app.helper.ViewHelper;
  * detail: RecyclerView Gallery 效果 Adapter
  * @author Ttt
  */
-public class PagerSnapMAXAdapter extends RecyclerView.Adapter {
+public class PagerSnapMAXAdapter
+        extends RecyclerView.Adapter {
 
     private Context        context;
     private List<ItemBean> data;
@@ -79,7 +80,8 @@ public class PagerSnapMAXAdapter extends RecyclerView.Adapter {
         }
     }
 
-    class ItemViewHolder extends RecyclerView.ViewHolder {
+    class ItemViewHolder
+            extends RecyclerView.ViewHolder {
 
         private AdapterPagerSnapBinding binding;
 

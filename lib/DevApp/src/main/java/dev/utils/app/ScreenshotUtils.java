@@ -132,7 +132,8 @@ public final class ScreenshotUtils {
      * detail: 媒体内容观察者 ( 监听媒体数据库改变 )
      * @author Ttt
      */
-    private class MediaContentObserver extends ContentObserver {
+    private class MediaContentObserver
+            extends ContentObserver {
 
         // 监听 Uri
         private Uri mContentUri;

@@ -21,7 +21,8 @@ import dev.widget.utils.RadiusAttrs;
  *     app:dev_radius_right_bottom=""
  * </pre>
  */
-public class RadiusLayout extends FrameLayout {
+public class RadiusLayout
+        extends FrameLayout {
 
     private RadiusAttrs mRadiusAttrs;
 

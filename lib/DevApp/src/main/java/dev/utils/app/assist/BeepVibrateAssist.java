@@ -24,7 +24,8 @@ import dev.utils.common.CloseUtils;
  *     <uses-permission android:name="android.permission.VIBRATE" />
  * </pre>
  */
-public final class BeepVibrateAssist implements Closeable {
+public final class BeepVibrateAssist
+        implements Closeable {
 
     // 日志 TAG
     private static final String TAG = BeepVibrateAssist.class.getSimpleName();

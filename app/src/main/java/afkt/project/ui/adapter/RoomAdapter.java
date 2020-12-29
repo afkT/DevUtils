@@ -24,7 +24,8 @@ import dev.utils.common.DateUtils;
  * detail: Room 适配器
  * @author Ttt
  */
-public class RoomAdapter extends BaseQuickAdapter<NoteAndPicture, BaseViewHolder> {
+public class RoomAdapter
+        extends BaseQuickAdapter<NoteAndPicture, BaseViewHolder> {
 
     public RoomAdapter() {
         super(R.layout.adapter_database);
@@ -50,7 +51,8 @@ public class RoomAdapter extends BaseQuickAdapter<NoteAndPicture, BaseViewHolder
         }
     }
 
-    class ImageAdapter extends BaseQuickAdapter<NotePicture, BaseViewHolder> {
+    class ImageAdapter
+            extends BaseQuickAdapter<NotePicture, BaseViewHolder> {
 
         public ImageAdapter(@Nullable List<NotePicture> data) {
             super(R.layout.adapter_database_image, data);

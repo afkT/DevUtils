@@ -22,7 +22,8 @@ import dev.environment.annotation.Module;
 @AutoService(Processor.class)
 //@SupportedSourceVersion(SourceVersion.RELEASE_8)
 //@SupportedAnnotationTypes("dev.environment.annotation.Module")
-public class DevEnvironmentCompilerRelease extends AbstractProcessor {
+public class DevEnvironmentCompilerRelease
+        extends AbstractProcessor {
 
     /**
      * Processor 支持的最新的源版本

@@ -16,7 +16,8 @@ import dev.utils.app.ActivityUtils
  * detail: Activity 抽象基类
  * @author Ttt
  */
-abstract class AbstractDevBaseActivity : AppCompatActivity(), IDevBase {
+abstract class AbstractDevBaseActivity : AppCompatActivity(),
+    IDevBase {
 
     // ==========
     // = Object =

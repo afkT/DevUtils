@@ -35,7 +35,8 @@ import gen.greendao.NotePictureDao;
  * detail: GreenDao 使用
  * @author Ttt
  */
-public class GreenDaoActivity extends BaseActivity<ActivityDatabaseBinding> {
+public class GreenDaoActivity
+        extends BaseActivity<ActivityDatabaseBinding> {
 
     @Override
     public int baseLayoutId() {

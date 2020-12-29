@@ -27,7 +27,8 @@ import dev.utils.common.ThrowableUtils;
  * detail: 创建二维码
  * @author Ttt
  */
-public class QRCodeCreateActivity extends BaseActivity<ActivityQrcodeCreateBinding> {
+public class QRCodeCreateActivity
+        extends BaseActivity<ActivityQrcodeCreateBinding> {
 
     // 图片 Bitmap
     Bitmap selectBitmap;

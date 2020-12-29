@@ -41,7 +41,8 @@ import dev.utils.common.validator.ValidatorUtils;
  * detail: 添加联系人
  * @author Ttt
  */
-public class AddContactActivity extends BaseActivity<ActivityAddContactBinding> {
+public class AddContactActivity
+        extends BaseActivity<ActivityAddContactBinding> {
 
     // 待创建总数
     int           count;

@@ -16,7 +16,8 @@ import dev.base.DevBaseEntry;
  *     使用: 只需要实现 IMultiSelectToList, 每个接口方法直接通过调用 MultiSelectListAssist 已实现同名方法即可
  * </pre>
  */
-public class MultiSelectListAssist<V> implements IMultiSelectToList<List<V>, V> {
+public class MultiSelectListAssist<V>
+        implements IMultiSelectToList<List<V>, V> {
 
     // 选中数据集
     private final List<V> mListSelects = new ArrayList<>();

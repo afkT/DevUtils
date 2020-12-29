@@ -22,7 +22,8 @@ import dev.widget.function.StateLayout;
  * detail: 文章 MVVM Activity
  * @author Ttt
  */
-public class ArticleMVVMActivity extends BaseMVVMActivity<ActivityArticleMvvmBinding, ArticleViewModel> {
+public class ArticleMVVMActivity
+        extends BaseMVVMActivity<ActivityArticleMvvmBinding, ArticleViewModel> {
 
     // 加载动画
     WhorlView whorlView;

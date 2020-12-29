@@ -466,7 +466,8 @@ public final class SnackbarUtils {
      * detail: Snackbar 样式配置构造类
      * @author Ttt
      */
-    public static final class StyleBuilder extends Style {
+    public static final class StyleBuilder
+            extends Style {
 
         // ============
         // = RootView =

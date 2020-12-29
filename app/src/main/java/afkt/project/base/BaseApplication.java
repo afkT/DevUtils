@@ -47,7 +47,8 @@ import me.jessyan.autosize.AutoSizeConfig;
  * detail: Base Application
  * @author Ttt
  */
-public class BaseApplication extends MultiDexApplication {
+public class BaseApplication
+        extends MultiDexApplication {
 
     @Override
     public void onCreate() {

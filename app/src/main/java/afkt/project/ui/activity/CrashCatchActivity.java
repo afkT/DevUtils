@@ -18,7 +18,8 @@ import dev.utils.app.toast.ToastTintUtils;
  * detail: 奔溃日志捕获
  * @author Ttt
  */
-public class CrashCatchActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class CrashCatchActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
     public int baseLayoutId() {

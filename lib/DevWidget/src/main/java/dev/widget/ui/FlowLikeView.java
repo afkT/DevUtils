@@ -42,7 +42,8 @@ import dev.widget.R;
  *     app:dev_iconWidth=""
  * </pre>
  */
-public class FlowLikeView extends FrameLayout {
+public class FlowLikeView
+        extends FrameLayout {
 
     // 在 XML 布局文件中添加的子 View 的总高度
     private int mChildViewHeight;
@@ -156,7 +157,8 @@ public class FlowLikeView extends FrameLayout {
      * detail: 动画结束监听器, 用于释放无用的资源
      * @author Ttt
      */
-    private class AnimationEndListener extends AnimatorListenerAdapter {
+    private class AnimationEndListener
+            extends AnimatorListenerAdapter {
 
         private View target;
 
@@ -175,7 +177,8 @@ public class FlowLikeView extends FrameLayout {
      * detail: 动画曲线路径更新监听器, 用于动态更新动画作用对象的位置
      * @author Ttt
      */
-    private class CurveUpdateLister implements ValueAnimator.AnimatorUpdateListener {
+    private class CurveUpdateLister
+            implements ValueAnimator.AnimatorUpdateListener {
 
         private View target;
 
@@ -199,7 +202,8 @@ public class FlowLikeView extends FrameLayout {
      * detail: 自定义估值算法, 计算对象当前运动的具体位置 Point
      * @author Ttt
      */
-    private class CurveEvaluator implements TypeEvaluator<PointF> {
+    private class CurveEvaluator
+            implements TypeEvaluator<PointF> {
 
         private PointF ctrlPointF;
 

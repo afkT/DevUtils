@@ -4,7 +4,8 @@ package dev.assist;
  * detail: Page 页数辅助类
  * @author Ttt
  */
-public class PageAssist<T> extends RequestStateAssist<T> {
+public class PageAssist<T>
+        extends RequestStateAssist<T> {
 
     // 全局默认初始化页数配置
     public static int DF_PAGE_NUM      = 1;

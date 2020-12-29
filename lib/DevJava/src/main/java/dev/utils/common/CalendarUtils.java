@@ -859,7 +859,8 @@ public final class CalendarUtils {
      * detail: 节日实体类
      * @author Ttt
      */
-    public static class Festival implements Comparable<Festival> {
+    public static class Festival
+            implements Comparable<Festival> {
 
         // 节日名
         public final  String  name;

@@ -18,7 +18,8 @@ import dev.utils.app.helper.ViewHelper;
  * detail: RecyclerView ViewPager 效果 Adapter
  * @author Ttt
  */
-public class PagerSnapAdapter extends BaseQuickAdapter<ItemBean, BaseViewHolder> {
+public class PagerSnapAdapter
+        extends BaseQuickAdapter<ItemBean, BaseViewHolder> {
 
     RequestOptions roundOptions;
 

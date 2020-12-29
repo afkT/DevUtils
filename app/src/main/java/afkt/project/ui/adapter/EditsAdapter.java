@@ -26,7 +26,8 @@ import dev.utils.common.StringUtils;
  * detail: Item EditText 输入监听 Adapter
  * @author Ttt
  */
-public class EditsAdapter extends BaseQuickAdapter<EvaluateItem, BaseViewHolder> {
+public class EditsAdapter
+        extends BaseQuickAdapter<EvaluateItem, BaseViewHolder> {
 
     // EditText 输入监听辅助类
     private EditTextWatcherAssist<EvaluateItem> editTextWatcherAssist = new EditTextWatcherAssist();

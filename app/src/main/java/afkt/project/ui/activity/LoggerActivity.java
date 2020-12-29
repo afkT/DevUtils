@@ -21,7 +21,8 @@ import utils_use.logger.LoggerUse;
  *     {@link LoggerUse}
  * </pre>
  */
-public class LoggerActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class LoggerActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
     public int baseLayoutId() {

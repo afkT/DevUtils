@@ -24,7 +24,8 @@ import dev.utils.app.toast.ToastTintUtils;
  * detail: 多选辅助类 MultiSelectAssist
  * @author Ttt
  */
-public class MultiSelectActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class MultiSelectActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     // 适配器
     MultiSelectAdapter multiSelectAdapter;

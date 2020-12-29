@@ -19,7 +19,8 @@ import dev.base.DevBaseEntry;
  *     使用: 只需要实现 IMultiSelectToMap, 每个接口方法直接通过调用 MultiSelectMapAssist 已实现同名方法即可
  * </pre>
  */
-public class MultiSelectMapAssist<K, V> implements IMultiSelectToMap<LinkedHashMap<K, V>, K, V> {
+public class MultiSelectMapAssist<K, V>
+        implements IMultiSelectToMap<LinkedHashMap<K, V>, K, V> {
 
     // 选中数据集
     private final LinkedHashMap<K, V> mMapSelects = new LinkedHashMap<>();

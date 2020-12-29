@@ -17,7 +17,8 @@ import dev.utils.common.RandomUtils;
  * detail: 计算字体宽度、高度
  * @author Ttt
  */
-public class TextCalcActivity extends BaseActivity<ActivityTextCalcBinding> {
+public class TextCalcActivity
+        extends BaseActivity<ActivityTextCalcBinding> {
 
     @Override
     public int baseLayoutId() {

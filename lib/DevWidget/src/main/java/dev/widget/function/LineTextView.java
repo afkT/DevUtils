@@ -13,7 +13,8 @@ import dev.utils.app.TextViewUtils;
  * detail: TextView 换行监听
  * @author Ttt
  */
-public class LineTextView extends AppCompatTextView {
+public class LineTextView
+        extends AppCompatTextView {
 
     // 是否换行
     private boolean           mIsNewLine = false;

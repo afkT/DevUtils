@@ -4,7 +4,8 @@ package dev.base;
  * detail: Key-Value Entry
  * @author Ttt
  */
-public class DevBaseEntry<K, V> extends DevBaseModel {
+public class DevBaseEntry<K, V>
+        extends DevBaseModel {
 
     // key
     public K mEntryKey;

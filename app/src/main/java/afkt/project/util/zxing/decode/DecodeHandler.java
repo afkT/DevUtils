@@ -26,7 +26,8 @@ import dev.utils.app.logger.DevLogger;
  * detail: 解码处理
  * @author Ttt
  */
-public class DecodeHandler extends Handler {
+public class DecodeHandler
+        extends Handler {
 
     // 日志 TAG
     private final String            TAG      = DecodeHandler.class.getSimpleName();

@@ -6,7 +6,8 @@ import dev.callback.AbstractCallback;
  * detail: 过滤处理回调类
  * @author Ttt
  */
-public class DevFilterCallback<T> extends AbstractCallback<T> {
+public class DevFilterCallback<T>
+        extends AbstractCallback<T> {
 
     public DevFilterCallback() {
     }

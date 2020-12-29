@@ -40,7 +40,8 @@ public final class GlideTransformUtils {
      * detail: 旋转处理
      * @author Ttt
      */
-    public static class RotateTransformation extends BitmapTransformation {
+    public static class RotateTransformation
+            extends BitmapTransformation {
         // 旋转角度
         private float rotateRotationAngle = 0f;
 
@@ -70,7 +71,8 @@ public final class GlideTransformUtils {
      * detail: 转换圆形处理
      * @author Ttt
      */
-    public static class GlideCircleTransform extends BitmapTransformation {
+    public static class GlideCircleTransform
+            extends BitmapTransformation {
 
         @Override
         protected Bitmap transform(
@@ -117,7 +119,8 @@ public final class GlideTransformUtils {
      * detail: 圆角处理
      * @author Ttt
      */
-    public static class GlideRoundTransform extends BitmapTransformation {
+    public static class GlideRoundTransform
+            extends BitmapTransformation {
 
         // 圆角大小
         private float radius = 0f;
@@ -165,7 +168,8 @@ public final class GlideTransformUtils {
      * detail: 图片模糊处理
      * @author Ttt
      */
-    public static class GlideBlurformation extends BitmapTransformation {
+    public static class GlideBlurformation
+            extends BitmapTransformation {
 
         // Context
         private Context mContext;

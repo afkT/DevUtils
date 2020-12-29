@@ -4,7 +4,8 @@ package dev.utils.common.cipher;
  * detail: Base64 编解码 ( 并进行 ) 加解密
  * @author Ttt
  */
-public class Base64Cipher implements Cipher {
+public class Base64Cipher
+        implements Cipher {
 
     // 中间加密层
     private Cipher mCipher;

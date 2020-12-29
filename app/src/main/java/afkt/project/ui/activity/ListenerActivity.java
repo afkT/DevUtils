@@ -35,7 +35,8 @@ import dev.utils.app.toast.ToastTintUtils;
  * detail: 事件 / 广播监听 ( 网络状态、屏幕旋转等 )
  * @author Ttt
  */
-public class ListenerActivity extends BaseActivity<ActivityCommonTipsBinding> {
+public class ListenerActivity
+        extends BaseActivity<ActivityCommonTipsBinding> {
 
     @Override
     public int baseLayoutId() {

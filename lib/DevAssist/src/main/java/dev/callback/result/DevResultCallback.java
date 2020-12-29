@@ -6,7 +6,8 @@ import dev.callback.AbstractCommonCallback;
  * detail: 通用结果回调类
  * @author Ttt
  */
-public abstract class DevResultCallback<T> extends AbstractCommonCallback<T> {
+public abstract class DevResultCallback<T>
+        extends AbstractCommonCallback<T> {
 
     public DevResultCallback() {
     }

@@ -179,7 +179,8 @@ public final class Base64 {
         return temp;
     }
 
-    /* package */ static class Decoder extends Coder {
+    /* package */ static class Decoder
+            extends Coder {
         /**
          * Lookup table for turning bytes into their position in the
          * Base64 alphabet.
@@ -571,7 +572,8 @@ public final class Base64 {
         return encoder.output;
     }
 
-    /* package */ static class Encoder extends Coder {
+    /* package */ static class Encoder
+            extends Coder {
         /**
          * Emit a new line every this many output tuples.  Corresponds to
          * a 76-character line length (the maximum allowable according to

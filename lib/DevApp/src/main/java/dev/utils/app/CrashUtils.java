@@ -11,7 +11,8 @@ import java.lang.Thread.UncaughtExceptionHandler;
  *     当程序发生 Uncaught 异常的时候, 由该类来接管程序, 并记录发送错误报告
  * </pre>
  */
-public final class CrashUtils implements UncaughtExceptionHandler {
+public final class CrashUtils
+        implements UncaughtExceptionHandler {
 
     // CrashUtils 实例
     private static volatile CrashUtils               sInstance;

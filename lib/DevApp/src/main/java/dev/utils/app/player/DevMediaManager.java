@@ -20,9 +20,13 @@ import dev.utils.common.CloseUtils;
  * detail: MediaPlayer 统一管理类
  * @author Ttt
  */
-public final class DevMediaManager implements OnBufferingUpdateListener,
-        OnCompletionListener, OnPreparedListener, OnVideoSizeChangedListener,
-        OnErrorListener, OnSeekCompleteListener {
+public final class DevMediaManager
+        implements OnBufferingUpdateListener,
+        OnCompletionListener,
+        OnPreparedListener,
+        OnVideoSizeChangedListener,
+        OnErrorListener,
+        OnSeekCompleteListener {
 
     // 日志 TAG
     private static String TAG = DevMediaManager.class.getSimpleName();

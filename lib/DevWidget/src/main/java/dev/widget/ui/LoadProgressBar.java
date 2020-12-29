@@ -77,7 +77,8 @@ import dev.widget.R;
  *     app:dev_progressStyle=""
  * </pre>
  */
-public class LoadProgressBar extends View {
+public class LoadProgressBar
+        extends View {
 
     // 画笔
     private Paint         mPaint;

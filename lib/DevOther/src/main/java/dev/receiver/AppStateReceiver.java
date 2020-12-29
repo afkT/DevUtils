@@ -13,7 +13,8 @@ import dev.utils.app.AppUtils;
  * detail: 应用状态监听广播 ( 安装、更新、卸载 )
  * @author Ttt
  */
-public final class AppStateReceiver extends BroadcastReceiver {
+public final class AppStateReceiver
+        extends BroadcastReceiver {
 
     private AppStateReceiver() {
         super();

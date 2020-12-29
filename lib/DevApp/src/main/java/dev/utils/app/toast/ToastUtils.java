@@ -876,7 +876,8 @@ public final class ToastUtils {
      * detail: Toast 安全显示 Handler
      * @author Ttt
      */
-    private static final class SafeHandler extends Handler {
+    private static final class SafeHandler
+            extends Handler {
 
         private Handler mHandler;
 

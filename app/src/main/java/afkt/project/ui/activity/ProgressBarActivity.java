@@ -12,7 +12,8 @@ import dev.utils.app.ActivityUtils;
  * detail: 自定义 ProgressBar 样式 View
  * @author Ttt
  */
-public class ProgressBarActivity extends BaseActivity<ActivityProgressbarBinding> {
+public class ProgressBarActivity
+        extends BaseActivity<ActivityProgressbarBinding> {
 
     @Override
     public int baseLayoutId() {

@@ -13,7 +13,8 @@ import io.reactivex.rxjava3.disposables.Disposable;
  */
 public final class ArticleMVP {
 
-    public interface Model extends MVP.IModel {
+    public interface Model
+            extends MVP.IModel {
 
         /**
          * 请求文章列表
@@ -21,7 +22,8 @@ public final class ArticleMVP {
         void requestArticleLists();
     }
 
-    public interface View extends MVP.IView {
+    public interface View
+            extends MVP.IView {
 
         /**
          * 获取文章列表响应回调
@@ -50,7 +52,8 @@ public final class ArticleMVP {
         void addDisposable(Disposable disposable);
     }
 
-    public interface IPresenter extends MVP.IPresenter<View> {
+    public interface IPresenter
+            extends MVP.IPresenter<View> {
 
         /**
          * 获取文章列表
@@ -62,7 +65,9 @@ public final class ArticleMVP {
      * detail: 文章 Presenter
      * @author Ttt
      */
-    public static class Presenter extends MVP.Presenter<View, Model> implements IPresenter {
+    public static class Presenter
+            extends MVP.Presenter<View, Model>
+            implements IPresenter {
 
         public Presenter(ArticleMVP.View view) {
             super(view);

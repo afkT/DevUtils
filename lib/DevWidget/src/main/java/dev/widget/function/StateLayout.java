@@ -24,7 +24,8 @@ import dev.widget.assist.ViewAssist;
  *     使用 type-layoutId 进行注册, 封装 {@link dev.widget.assist.ViewAssist} ( type-Adapter )
  * </pre>
  */
-public class StateLayout extends FrameLayout {
+public class StateLayout
+        extends FrameLayout {
 
     // 日志 TAG
     private final  String     TAG = StateLayout.class.getSimpleName();
@@ -212,7 +213,8 @@ public class StateLayout extends FrameLayout {
         }
     }
 
-    private class TypeAdapter implements ViewAssist.Adapter {
+    private class TypeAdapter
+            implements ViewAssist.Adapter {
 
         private int resource;
 

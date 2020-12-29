@@ -7,7 +7,9 @@ import android.graphics.Rect;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 
-public class LoadingDrawable extends Drawable implements Animatable {
+public class LoadingDrawable
+        extends Drawable
+        implements Animatable {
     private final LoadingRenderer mLoadingRender;
 
     private final Callback mCallback = new Callback() {

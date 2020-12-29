@@ -23,7 +23,8 @@ import dev.widget.R;
  *     app:dev_maxHeight=""
  * </pre>
  */
-public class CustomNestedScrollView extends NestedScrollView {
+public class CustomNestedScrollView
+        extends NestedScrollView {
 
     // 是否允许滑动
     private boolean        mIsSlide   = true;

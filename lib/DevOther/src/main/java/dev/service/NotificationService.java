@@ -20,7 +20,8 @@ import dev.utils.app.ServiceUtils;
  * </pre>
  */
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-public final class NotificationService extends NotificationListenerService {
+public final class NotificationService
+        extends NotificationListenerService {
 
     // 日志 TAG
     private static final String TAG = NotificationService.class.getSimpleName();

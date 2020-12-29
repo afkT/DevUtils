@@ -121,7 +121,8 @@ public class EditTextWatcherAssist<T> {
      * detail: 焦点事件监听
      * @author Ttt
      */
-    private class FocusListener implements View.OnFocusChangeListener {
+    private class FocusListener
+            implements View.OnFocusChangeListener {
 
         // 当前索引
         private int              position;

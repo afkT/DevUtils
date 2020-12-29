@@ -163,7 +163,8 @@ public final class DevCache {
      * Since writing about the file is complete, and its close method is called,
      * its contents will be registered in the cache
      */
-    class XFileOutputStream extends FileOutputStream {
+    class XFileOutputStream
+            extends FileOutputStream {
 
         private File file;
 

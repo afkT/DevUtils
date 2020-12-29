@@ -17,7 +17,8 @@ import dev.utils.app.AppUtils;
  *     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
  * </pre>
  */
-public final class SmsReceiver extends BroadcastReceiver {
+public final class SmsReceiver
+        extends BroadcastReceiver {
 
     private SmsReceiver() {
         super();

@@ -16,7 +16,8 @@ import dev.base.utils.assist.DevBaseAssist
  * detail: Fragment 抽象基类
  * @author Ttt
  */
-abstract class AbstractDevBaseFragment : Fragment(), IDevBase {
+abstract class AbstractDevBaseFragment : Fragment(),
+    IDevBase {
 
     // ==========
     // = Object =

@@ -19,7 +19,8 @@ import dev.widget.R;
  *     app:dev_maxHeight=""
  * </pre>
  */
-public class CustomViewPager extends ViewPager {
+public class CustomViewPager
+        extends ViewPager {
 
     // 是否允许滑动
     private boolean mIsSlide   = true;
@@ -160,7 +161,8 @@ public class CustomViewPager extends ViewPager {
      *         });
      * </pre>
      */
-    public static abstract class OnDirectionListener implements OnPageChangeListener {
+    public static abstract class OnDirectionListener
+            implements OnPageChangeListener {
 
         // 最后滑动的位置
         private int     mLastValue = -1;

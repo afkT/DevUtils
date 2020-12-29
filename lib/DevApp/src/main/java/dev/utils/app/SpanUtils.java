@@ -1014,7 +1014,8 @@ public final class SpanUtils {
      * detail: 垂直对齐 Span
      * @author Ttt
      */
-    static class VerticalAlignSpan extends ReplacementSpan {
+    static class VerticalAlignSpan
+            extends ReplacementSpan {
 
         static final int ALIGN_CENTER = 2;
         static final int ALIGN_TOP    = 3;
@@ -1059,7 +1060,8 @@ public final class SpanUtils {
      * detail: 行高 Span
      * @author Ttt
      */
-    static class CustomLineHeightSpan implements LineHeightSpan {
+    static class CustomLineHeightSpan
+            implements LineHeightSpan {
 
         private final int height;
 
@@ -1132,7 +1134,8 @@ public final class SpanUtils {
      * detail: 空格 Span
      * @author Ttt
      */
-    static class SpaceSpan extends ReplacementSpan {
+    static class SpaceSpan
+            extends ReplacementSpan {
 
         private final int   width;
         private final Paint paint = new Paint();
@@ -1182,7 +1185,8 @@ public final class SpanUtils {
      * detail: 自定义引用样式 Span
      * @author Ttt
      */
-    static class CustomQuoteSpan implements LeadingMarginSpan {
+    static class CustomQuoteSpan
+            implements LeadingMarginSpan {
 
         private final int color;
         private final int stripeWidth;
@@ -1234,7 +1238,8 @@ public final class SpanUtils {
      * detail: 自定义列表项样式 Span
      * @author Ttt
      */
-    static class CustomBulletSpan implements LeadingMarginSpan {
+    static class CustomBulletSpan
+            implements LeadingMarginSpan {
 
         private final int color;
         private final int radius;
@@ -1300,7 +1305,8 @@ public final class SpanUtils {
      * @author Ttt
      */
     @SuppressLint("ParcelCreator")
-    static class CustomTypefaceSpan extends TypefaceSpan {
+    static class CustomTypefaceSpan
+            extends TypefaceSpan {
 
         private final Typeface newType;
 
@@ -1349,7 +1355,8 @@ public final class SpanUtils {
      * detail: 自定义图片绘制效果 Span
      * @author Ttt
      */
-    static class CustomImageSpan extends CustomDynamicDrawableSpan {
+    static class CustomImageSpan
+            extends CustomDynamicDrawableSpan {
 
         private Drawable mDrawable;
         private Uri      mContentUri;
@@ -1421,7 +1428,8 @@ public final class SpanUtils {
      * detail: 自定义 Drawable 绘制效果 Span
      * @author Ttt
      */
-    static abstract class CustomDynamicDrawableSpan extends ReplacementSpan {
+    static abstract class CustomDynamicDrawableSpan
+            extends ReplacementSpan {
 
         static final int ALIGN_BOTTOM   = 0;
         static final int ALIGN_BASELINE = 1;
@@ -1522,7 +1530,9 @@ public final class SpanUtils {
      * detail: 着色效果 Span
      * @author Ttt
      */
-    static class ShaderSpan extends CharacterStyle implements UpdateAppearance {
+    static class ShaderSpan
+            extends CharacterStyle
+            implements UpdateAppearance {
         private Shader mShader;
 
         private ShaderSpan(final Shader shader) {
@@ -1539,7 +1549,9 @@ public final class SpanUtils {
      * detail: 阴影效果 Span
      * @author Ttt
      */
-    static class ShadowSpan extends CharacterStyle implements UpdateAppearance {
+    static class ShadowSpan
+            extends CharacterStyle
+            implements UpdateAppearance {
         private float radius;
         private float dx, dy;
         private int shadowColor;
@@ -1570,7 +1582,8 @@ public final class SpanUtils {
      * detail: SpannableStringBuilder 内部类, 实现序列化方便传值
      * @author Ttt
      */
-    private static class SerializableSpannableStringBuilder extends SpannableStringBuilder
+    private static class SerializableSpannableStringBuilder
+            extends SpannableStringBuilder
             implements Serializable {
 
         private static final long serialVersionUID = 2514562037168478805L;

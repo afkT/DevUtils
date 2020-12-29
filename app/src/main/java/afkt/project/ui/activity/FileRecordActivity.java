@@ -21,7 +21,8 @@ import utils_use.record.FileRecordUse;
  *     {@link FileRecordUse}
  * </pre>
  */
-public class FileRecordActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class FileRecordActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
     public int baseLayoutId() {

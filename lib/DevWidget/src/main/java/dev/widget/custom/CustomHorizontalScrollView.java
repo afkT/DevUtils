@@ -21,7 +21,8 @@ import dev.widget.R;
  *     app:dev_maxHeight=""
  * </pre>
  */
-public class CustomHorizontalScrollView extends HorizontalScrollView {
+public class CustomHorizontalScrollView
+        extends HorizontalScrollView {
 
     // 是否允许滑动
     private boolean        mIsSlide   = true;

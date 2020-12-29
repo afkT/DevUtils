@@ -29,7 +29,8 @@ import dev.utils.common.ThrowableUtils;
  * detail: 通用结果回调类 ( 针对 DevResultCallback 进行扩展 )
  * @author Ttt
  */
-public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class DevExtendActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     // 拓展回调
     DevExResultCallback<String> dealResultCallback;
@@ -161,7 +162,8 @@ public class DevExtendActivity extends BaseActivity<BaseViewRecyclerviewBinding>
      * detail: 回调参数扩展 ( 继承 DevExResultCallback.ExpandResult 进行扩展 )
      * @author Ttt
      */
-    public static class CallParams extends DevExResultCallback.ExpandResult {
+    public static class CallParams
+            extends DevExResultCallback.ExpandResult {
         // 用户信息
         public UserInfo             userInfo;
         // 参数

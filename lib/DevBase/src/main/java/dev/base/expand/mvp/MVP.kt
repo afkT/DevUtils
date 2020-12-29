@@ -53,7 +53,8 @@ class MVP private constructor() {
      * detail: MVP 模式的指挥者 ( 连接 View 和 Model)
      * @author Ttt
      */
-    open class Presenter<V : IView, M : IModel> : IPresenter<V>, DefaultLifecycleObserver {
+    open class Presenter<V : IView, M : IModel> : IPresenter<V>,
+        DefaultLifecycleObserver {
 
         // 是否分离 MVP View
         private var detach = true

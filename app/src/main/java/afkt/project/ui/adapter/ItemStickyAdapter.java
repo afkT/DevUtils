@@ -14,7 +14,8 @@ import afkt.project.model.bean.ItemStickyBean;
  * detail: 吸附 Item 预览 View Adapter
  * @author Ttt
  */
-public class ItemStickyAdapter extends BaseQuickAdapter<ItemStickyBean, BaseViewHolder> {
+public class ItemStickyAdapter
+        extends BaseQuickAdapter<ItemStickyBean, BaseViewHolder> {
 
     public ItemStickyAdapter(@Nullable List<ItemStickyBean> data) {
         super(R.layout.adapter_item_sticky, data);

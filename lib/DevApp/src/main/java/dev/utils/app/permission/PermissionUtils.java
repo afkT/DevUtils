@@ -364,7 +364,8 @@ public final class PermissionUtils {
      * @author Ttt
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public static class PermissionActivity extends Activity {
+    public static class PermissionActivity
+            extends Activity {
 
         /**
          * 跳转 PermissionActivity 请求权限 内部方法

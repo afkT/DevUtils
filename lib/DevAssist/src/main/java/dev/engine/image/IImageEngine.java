@@ -55,7 +55,8 @@ public interface IImageEngine {
      * detail: Bitmap Callback
      * @author Ttt
      */
-    abstract class BitmapCallback implements ImageCallback<Bitmap> {
+    abstract class BitmapCallback
+            implements ImageCallback<Bitmap> {
 
         @Override
         public final Class getTranscodeType() {
@@ -79,7 +80,8 @@ public interface IImageEngine {
      * detail: Drawable Callback
      * @author Ttt
      */
-    abstract class DrawableCallback implements ImageCallback<Drawable> {
+    abstract class DrawableCallback
+            implements ImageCallback<Drawable> {
 
         @Override
         public final Class getTranscodeType() {

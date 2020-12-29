@@ -17,7 +17,8 @@ import android.view.animation.Interpolator;
 import afkt.project.ui.widget.render.LoadingRenderer;
 import dev.utils.app.SizeUtils;
 
-public class CoolWaitLoadingRenderer extends LoadingRenderer {
+public class CoolWaitLoadingRenderer
+        extends LoadingRenderer {
     private final Interpolator ACCELERATE_INTERPOLATOR08 = new AccelerateInterpolator(0.8f);
     private final Interpolator ACCELERATE_INTERPOLATOR10 = new AccelerateInterpolator(1.0f);
     private final Interpolator ACCELERATE_INTERPOLATOR15 = new AccelerateInterpolator(1.5f);

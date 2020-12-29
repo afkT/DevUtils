@@ -34,7 +34,8 @@ import dev.utils.app.wifi.WifiUtils;
  *     Wifi 热点状态监听等可参考 {@link QuickWifiHotUtils}
  * </pre>
  */
-public class WifiActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class WifiActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     // Wifi 工具类
     WifiUtils    wifiUtils;

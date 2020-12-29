@@ -25,7 +25,8 @@ import utils_use.timer.TimerUse;
  *     {@link TimerUse}
  * </pre>
  */
-public class TimerActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class TimerActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     // 创建定时器
     TimerManager.AbsTimer absTimer;

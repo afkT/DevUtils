@@ -18,7 +18,8 @@ import dev.utils.app.AppUtils;
  * detail: 网络监听广播
  * @author Ttt
  */
-public final class NetWorkReceiver extends BroadcastReceiver {
+public final class NetWorkReceiver
+        extends BroadcastReceiver {
 
     private NetWorkReceiver() {
         super();

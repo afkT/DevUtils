@@ -26,7 +26,8 @@ import dev.widget.R;
  *     输入监听可调用 {@link #addTextChangedListener} 或 {@link #setTextWatcher}
  * </pre>
  */
-public class RightIconEditText extends AppCompatEditText {
+public class RightIconEditText
+        extends AppCompatEditText {
 
     // drawable ( left、top、right、bottom 四个方向图片 )
     private Drawable mLeft, mTop, mRight, mBottom;

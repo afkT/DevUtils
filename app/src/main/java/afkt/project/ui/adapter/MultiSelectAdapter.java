@@ -26,7 +26,9 @@ import dev.utils.common.CollectionUtils;
  * detail: 多选 Adapter
  * @author Ttt
  */
-public class MultiSelectAdapter extends BaseQuickAdapter<CommodityEvaluateBean, BaseViewHolder> implements IMultiSelectEdit {
+public class MultiSelectAdapter
+        extends BaseQuickAdapter<CommodityEvaluateBean, BaseViewHolder>
+        implements IMultiSelectEdit {
 
     // 多选辅助类
     private MultiSelectMapAssist<Integer, CommodityEvaluateBean> multiSelectMapAssist = new MultiSelectMapAssist();

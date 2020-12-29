@@ -24,7 +24,8 @@ import dev.utils.app.helper.ViewHelper;
  *     PagerSnapHelper : 每次滑动一页居中显示, 类似 ViewPager
  * </pre>
  */
-public class PagerSnapActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class PagerSnapActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     private PagerSnapAdapter pagerSnapAdapter;
 

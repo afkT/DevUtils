@@ -1006,7 +1006,8 @@ public final class ColorUtils {
          * detail: Color 解析器
          * @author Ttt
          */
-        public static class ColorParser implements Parser {
+        public static class ColorParser
+                implements Parser {
             @Override
             public String handleColor(String value) {
                 if (value == null) return null;

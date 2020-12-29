@@ -27,7 +27,8 @@ import dev.utils.app.logger.DevLogger;
  *     LinearSnapHelper : 滑动多页居中显示, 类似 Gallery
  * </pre>
  */
-public class LinearSnapMAXActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class LinearSnapMAXActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     LinearSnapMAXAdapter linearSnapAdapter;
 

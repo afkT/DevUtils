@@ -23,7 +23,8 @@ import dev.utils.app.toast.ToastTintUtils;
  * detail: Adapter Item EditText 输入监听
  * @author Ttt
  */
-public class AdapterEditsActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class AdapterEditsActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     // 适配器
     EditsAdapter editsAdapter;

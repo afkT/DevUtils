@@ -18,7 +18,8 @@ import dev.utils.common.BigDecimalUtils;
  * detail: Item Slide Adapter
  * @author Ttt
  */
-public class ItemSlideAdapter extends BaseQuickAdapter<CommodityEvaluateBean, BaseViewHolder> {
+public class ItemSlideAdapter
+        extends BaseQuickAdapter<CommodityEvaluateBean, BaseViewHolder> {
 
     public ItemSlideAdapter(@Nullable List<CommodityEvaluateBean> data) {
         super(R.layout.adapter_multi_select, data);

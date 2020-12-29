@@ -26,7 +26,8 @@ import dev.utils.app.toast.ToastTintUtils;
  *     <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" />
  * </pre>
  */
-public class AccessibilityListenerServiceActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class AccessibilityListenerServiceActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
     public int baseLayoutId() {

@@ -17,7 +17,8 @@ import dev.utils.LogPrintUtils;
  *     @see <a href="https://blog.csdn.net/fulinwsuafcie/article/details/49558001"/>
  * </pre>
  */
-public final class AutoFocusAssist implements Camera.AutoFocusCallback {
+public final class AutoFocusAssist
+        implements Camera.AutoFocusCallback {
 
     // 日志 TAG
     private final String TAG = AutoFocusAssist.class.getSimpleName();
@@ -224,7 +225,8 @@ public final class AutoFocusAssist implements Camera.AutoFocusCallback {
      * detail: 自动对焦任务
      * @author Ttt
      */
-    private final class AutoFocusTask extends AsyncTask<Object, Object, Object> {
+    private final class AutoFocusTask
+            extends AsyncTask<Object, Object, Object> {
         @Override
         protected Object doInBackground(Object... voids) {
             try {

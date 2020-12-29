@@ -16,7 +16,8 @@ import dev.utils.app.ViewUtils;
  * detail: ViewPager 适配器
  * @author Ttt
  */
-public class ViewPagerAdapter extends PagerAdapter {
+public class ViewPagerAdapter
+        extends PagerAdapter {
 
     // 数据源
     private List<String> lists = new ArrayList<>();

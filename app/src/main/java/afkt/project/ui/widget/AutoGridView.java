@@ -8,7 +8,8 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 
-public class AutoGridView extends GridView {
+public class AutoGridView
+        extends GridView {
 
     private static final String TAG        = AutoGridView.class.getSimpleName();
     private              int    numColumnsID;

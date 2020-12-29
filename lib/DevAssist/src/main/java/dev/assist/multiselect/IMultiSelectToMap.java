@@ -10,7 +10,8 @@ import java.util.Map;
  * @param <V>           Value
  * @author Ttt
  */
-public interface IMultiSelectToMap<CollectionG extends Map, K, V> extends IBaseMultiSelect<CollectionG, V> {
+public interface IMultiSelectToMap<CollectionG extends Map, K, V>
+        extends IBaseMultiSelect<CollectionG, V> {
 
     /**
      * 判断是否选中 ( 如果未选中, 则设置为选中 )

@@ -31,7 +31,8 @@ import dev.other.R;
  * @date: 2019-11-13 17:02
  * @describe: Glide 加载引擎
  */
-public class GlideEngine implements ImageEngine {
+public class GlideEngine
+        implements ImageEngine {
 
     /**
      * 加载图片

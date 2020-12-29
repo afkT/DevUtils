@@ -519,7 +519,8 @@ public final class ClickUtils {
      * detail: 双击点击事件
      * @author Ttt
      */
-    public static abstract class OnDebouncingClickListener implements View.OnClickListener {
+    public static abstract class OnDebouncingClickListener
+            implements View.OnClickListener {
 
         // 是否校验 viewId
         private boolean     mCheckViewId;
@@ -585,7 +586,8 @@ public final class ClickUtils {
      * detail: 计数点击事件
      * @author Ttt
      */
-    public static abstract class OnCountClickListener implements View.OnClickListener {
+    public static abstract class OnCountClickListener
+            implements View.OnClickListener {
 
         // 点击辅助类
         private ClickAssist   mClickAssist;

@@ -17,7 +17,8 @@ import dev.utils.app.AppUtils;
  *     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
  * </pre>
  */
-public final class PhoneReceiver extends BroadcastReceiver {
+public final class PhoneReceiver
+        extends BroadcastReceiver {
 
     private PhoneReceiver() {
         super();

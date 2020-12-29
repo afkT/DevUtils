@@ -25,7 +25,8 @@ import dev.utils.app.logger.DevLogger;
  * detail: GPU 滤镜效果
  * @author Ttt
  */
-public class GPUFilterActivity extends BaseActivity<ActivityGpuFilterBinding> {
+public class GPUFilterActivity
+        extends BaseActivity<ActivityGpuFilterBinding> {
 
     // 适配器
     GPUFilterAdapter gpuFilterAdapter;

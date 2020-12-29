@@ -27,7 +27,8 @@ import utils_use.toast.ToastTintUse;
  *     {@link ToastTintUse}
  * </pre>
  */
-public class EventBusActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class EventBusActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
     public int baseLayoutId() {

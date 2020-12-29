@@ -16,7 +16,8 @@ import java.util.concurrent.CountDownLatch;
  * detail: 解码线程
  * @author Ttt
  */
-public class DecodeThread extends Thread {
+public class DecodeThread
+        extends Thread {
 
     // 解码参数
     private final Map<DecodeHintType, Object> mHints;

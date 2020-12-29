@@ -10,7 +10,8 @@ import dev.utils.app.logger.DevLogger;
  * detail: 预览回调
  * @author Ttt
  */
-public class PreviewCallback implements Camera.PreviewCallback {
+public class PreviewCallback
+        implements Camera.PreviewCallback {
 
     // 日志 TAG
     private final String      TAG = PreviewCallback.class.getSimpleName();

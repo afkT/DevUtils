@@ -22,7 +22,8 @@ import dev.utils.app.wifi.WifiUtils;
  *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
  * </pre>
  */
-public final class WifiReceiver extends BroadcastReceiver {
+public final class WifiReceiver
+        extends BroadcastReceiver {
 
     private WifiReceiver() {
         super();

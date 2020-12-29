@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
  * @Deprecated 推荐使用 NestedScrollView + RecyclerView 实现
  */
 @Deprecated
-public class AdjustHeightRecyclerView extends RecyclerView {
+public class AdjustHeightRecyclerView
+        extends RecyclerView {
 
     public AdjustHeightRecyclerView(Context context) {
         super(context);

@@ -25,7 +25,8 @@ import utils_use.cache.CacheUse;
  *     {@link CacheUse}
  * </pre>
  */
-public class CacheActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class CacheActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
     public int baseLayoutId() {
@@ -102,7 +103,8 @@ public class CacheActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
      * detail: 缓存实体类
      * @author Ttt
      */
-    static class CacheVo implements Serializable {
+    static class CacheVo
+            implements Serializable {
 
         String name;
 

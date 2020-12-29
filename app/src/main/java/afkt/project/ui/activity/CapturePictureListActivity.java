@@ -25,7 +25,8 @@ import dev.utils.app.image.ImageUtils;
  * detail: CapturePictureUtils ListView 截图
  * @author Ttt
  */
-public class CapturePictureListActivity extends BaseActivity<ActivityCapturePictureListBinding> {
+public class CapturePictureListActivity
+        extends BaseActivity<ActivityCapturePictureListBinding> {
 
     @Override
     public int baseLayoutId() {

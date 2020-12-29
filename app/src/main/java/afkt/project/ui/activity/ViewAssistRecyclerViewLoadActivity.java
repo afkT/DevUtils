@@ -18,7 +18,8 @@ import dev.utils.common.RandomUtils;
  * detail: ViewAssist RecyclerView Loading
  * @author Ttt
  */
-public class ViewAssistRecyclerViewLoadActivity extends BaseActivity<BaseViewRecyclerviewBinding> {
+public class ViewAssistRecyclerViewLoadActivity
+        extends BaseActivity<BaseViewRecyclerviewBinding> {
 
     @Override
     public int baseLayoutId() {
