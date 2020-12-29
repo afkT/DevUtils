@@ -141,10 +141,12 @@ public final class AliasMethod {
          * appropriately.  Due to numerical issues, we can't be sure which
          * stack will hold the entries, so we empty both.
          */
-        while (!small.isEmpty())
+        while (!small.isEmpty()) {
             probability[small.removeLast()] = 1.0;
-        while (!large.isEmpty())
+        }
+        while (!large.isEmpty()) {
             probability[large.removeLast()] = 1.0;
+        }
     }
 
     /**

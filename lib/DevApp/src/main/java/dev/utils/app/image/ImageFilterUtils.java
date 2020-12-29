@@ -902,8 +902,9 @@ public final class ImageFilterUtils {
         if (sourceData == null || sourceData.length == 0) return null;
         byte[] rotatedData = new byte[sourceData.length];
         for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++)
+            for (int x = 0; x < width; x++) {
                 rotatedData[x * height + height - y - 1] = sourceData[x + y * width];
+            }
         }
         return rotatedData;
     }

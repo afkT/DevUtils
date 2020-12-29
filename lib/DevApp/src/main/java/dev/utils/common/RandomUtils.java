@@ -491,11 +491,14 @@ public final class RandomUtils {
             for (long u = r >>> 1;            // ensure nonnegative
                  u + m - (r = u % n) < 0L;    // rejection check
                  u = random.nextLong() >>> 1) // retry
+            {
                 ;
+            }
             r += origin;
         } else {              // range not representable as long
-            while (r < origin || r >= bound)
+            while (r < origin || r >= bound) {
                 r = random.nextLong();
+            }
         }
         return r;
     }
