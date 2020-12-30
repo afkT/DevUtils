@@ -68,8 +68,7 @@ public final class ConvertUtils {
      * @deprecated {@link #newString}
      */
     @Deprecated
-    public static String toString(final byte[] data)
-            throws Exception {
+    public static String toString(final byte[] data) {
         return newString(data, null);
     }
 
@@ -84,8 +83,7 @@ public final class ConvertUtils {
     public static String toString(
             final byte[] data,
             final String defaultStr
-    )
-            throws Exception {
+    ) {
         return newString(data, defaultStr);
     }
 
@@ -96,8 +94,7 @@ public final class ConvertUtils {
      * @deprecated {@link #newString}
      */
     @Deprecated
-    public static String toString(final char[] data)
-            throws Exception {
+    public static String toString(final char[] data) {
         return newString(data, null);
     }
 
@@ -112,8 +109,7 @@ public final class ConvertUtils {
     public static String toString(
             final char[] data,
             final String defaultStr
-    )
-            throws Exception {
+    ) {
         return newString(data, defaultStr);
     }
 

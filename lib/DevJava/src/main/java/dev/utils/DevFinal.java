@@ -75,6 +75,7 @@ public final class DevFinal {
     public static final String HEIGHT = "height";
     public static final String WEIGHT = "weight";
     public static final String SCREEN = "screen";
+    public static final String MEDIA  = "media";
 
     public static final String ACTIVITY = "activity";
     public static final String INTENT   = "intent";
@@ -100,6 +101,7 @@ public final class DevFinal {
     public static final String POSITION = "position";
     public static final String INDEX    = "index";
     public static final String COUNT    = "count";
+    public static final String SCALE    = "scale";
 
     public static final String ARRAY  = "array";
     public static final String LIST   = "list";
@@ -124,17 +126,18 @@ public final class DevFinal {
     public static final String FAIL    = "fail";
     public static final String ERROR   = "error";
 
-    public static final String URL    = "url";
-    public static final String CODE   = "code";
-    public static final String DATA   = "data";
-    public static final String DATE   = "date";
-    public static final String TIME   = "time";
-    public static final String RESULT = "result";
-    public static final String TOKEN  = "token";
-    public static final String STATE  = "state";
-    public static final String PARAM  = "param";
-    public static final String PARAMS = "params";
-    public static final String TYPE   = "type";
+    public static final String URL      = "url";
+    public static final String CODE     = "code";
+    public static final String DATA     = "data";
+    public static final String DATE     = "date";
+    public static final String TIME     = "time";
+    public static final String DURATION = "duration";
+    public static final String RESULT   = "result";
+    public static final String TOKEN    = "token";
+    public static final String STATE    = "state";
+    public static final String PARAM    = "param";
+    public static final String PARAMS   = "params";
+    public static final String TYPE     = "type";
 
     public static final String XML     = "xml";
     public static final String JSON    = "json";
@@ -142,26 +145,31 @@ public final class DevFinal {
     public static final String TITLE   = "title";
     public static final String CONTENT = "content";
 
-    public static final String TASK     = "task";
-    public static final String START    = "start";
-    public static final String END      = "end";
-    public static final String STOP     = "stop";
-    public static final String PAUSE    = "pause";
-    public static final String RESTART  = "restart";
-    public static final String DOWNLOAD = "download";
-    public static final String LOADING  = "loading";
-    public static final String WAITING  = "waiting";
-    public static final String CONFIG   = "config";
+    public static final String TASK      = "task";
+    public static final String PLAY      = "play";
+    public static final String PLAY_TIME = "play_time";
+    public static final String START     = "start";
+    public static final String END       = "end";
+    public static final String STOP      = "stop";
+    public static final String PAUSE     = "pause";
+    public static final String RESTART   = "restart";
+    public static final String DOWNLOAD  = "download";
+    public static final String LOADING   = "loading";
+    public static final String WAITING   = "waiting";
+    public static final String CONFIG    = "config";
 
-    public static final String SUB     = "sub";
-    public static final String CHILD   = "child";
-    public static final String ITEM    = "item";
-    public static final String METHOD  = "method";
-    public static final String REMARK  = "remark";
-    public static final String CHANNEL = "channel";
-    public static final String CLIENT  = "client";
-    public static final String PARENT  = "parent";
-    public static final String UNKNOWN = "unknown";
+    public static final String SUB       = "sub";
+    public static final String CHILD     = "child";
+    public static final String ITEM      = "item";
+    public static final String METHOD    = "method";
+    public static final String REMARK    = "remark";
+    public static final String CHANNEL   = "channel";
+    public static final String CLIENT    = "client";
+    public static final String PARENT    = "parent";
+    public static final String UNKNOWN   = "unknown";
+    public static final String EVENT     = "event";
+    public static final String THROWABLE = "throwable";
+    public static final String INFO      = "info";
 
     public static final String MODEL  = "model";
     public static final String MODULE = "module";
@@ -287,4 +295,17 @@ public final class DevFinal {
 
     // 正则表达式: 验证汉字 ( 含双角符号 )
     public static final String REGEX_CHINESE_ALL2 = "[\u0391-\uFFE5]";
+
+    // ==========
+    // = Format =
+    // ==========
+
+    public static final String FORMAT_2S             = "%s %s";
+    public static final String FORMAT_2S_LINE        = "%s_%s";
+    public static final String FORMAT_2S_SPACE       = " %s %s ";
+    public static final String FORMAT_3S             = "%s %s %s";
+    public static final String FORMAT_3S_LINE        = "%s_%s_%s";
+    public static final String FORMAT_3S_SPACE       = " %s %s %s ";
+    public static final String FORMAT_BRACKETS       = "( %s )";
+    public static final String FORMAT_BRACKETS_SPACE = " ( %s ) ";
 }
