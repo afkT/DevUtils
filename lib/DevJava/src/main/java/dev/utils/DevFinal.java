@@ -300,12 +300,33 @@ public final class DevFinal {
     // = Format =
     // ==========
 
-    public static final String FORMAT_2S             = "%s %s";
-    public static final String FORMAT_2S_LINE        = "%s_%s";
-    public static final String FORMAT_2S_SPACE       = " %s %s ";
-    public static final String FORMAT_3S             = "%s %s %s";
-    public static final String FORMAT_3S_LINE        = "%s_%s_%s";
-    public static final String FORMAT_3S_SPACE       = " %s %s %s ";
-    public static final String FORMAT_BRACKETS       = "( %s )";
-    public static final String FORMAT_BRACKETS_SPACE = " ( %s ) ";
+    public static final String FORMAT_2S         = "%s %s";
+    public static final String FORMAT_2S_LINE    = "%s_%s";
+    public static final String FORMAT_2S_THROUGH = "%s-%s";
+    public static final String FORMAT_2S_COMMA   = "%s, %s";
+    public static final String FORMAT_2S_STOP    = "%s、%s";
+    public static final String FORMAT_2S_SPACE   = " %s %s ";
+
+    public static final String FORMAT_3S         = "%s %s %s";
+    public static final String FORMAT_3S_LINE    = "%s_%s_%s";
+    public static final String FORMAT_3S_THROUGH = "%s-%s-%s";
+    public static final String FORMAT_3S_COMMA   = "%s, %s, %s";
+    public static final String FORMAT_3S_STOP    = "%s、%s、%s";
+    public static final String FORMAT_3S_SPACE   = " %s %s %s ";
+
+    public static final String FORMAT_4S         = "%s %s %s %s";
+    public static final String FORMAT_4S_LINE    = "%s_%s_%s_%s";
+    public static final String FORMAT_4S_THROUGH = "%s-%s-%s-%s";
+    public static final String FORMAT_4S_COMMA   = "%s, %s, %s, %s";
+    public static final String FORMAT_4S_STOP    = "%s、%s、%s、%s";
+    public static final String FORMAT_4S_SPACE   = " %s %s %s %s ";
+
+    public static final String FORMAT_BRACE       = "{ %s }";
+    public static final String FORMAT_BRACE_SPACE = " { %s } ";
+
+    public static final String FORMAT_BRACKET       = "[ %s ]";
+    public static final String FORMAT_BRACKET_SPACE = " [ %s ] ";
+
+    public static final String FORMAT_PARENTHESES       = "( %s )";
+    public static final String FORMAT_PARENTHESES_SPACE = " ( %s ) ";
 }
