@@ -3,6 +3,8 @@ package utils_use.wifi;
 import android.net.wifi.WifiConfiguration;
 import android.os.Build;
 
+import androidx.annotation.RequiresPermission;
+
 import dev.utils.app.wifi.WifiHotUtils;
 
 /**
@@ -17,6 +19,10 @@ public final class WifiHotUse {
     /**
      * Wifi 热点使用方法
      */
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.CHANGE_WIFI_STATE,
+            android.Manifest.permission.ACCESS_FINE_LOCATION
+    })
     private void wifiHotUse() {
 
         // 所需权限

@@ -1,6 +1,7 @@
 package afkt.project.ui.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.net.wifi.WifiConfiguration;
 import android.os.Build;
 import android.os.Handler;
@@ -145,7 +146,8 @@ public class WifiActivity
                                         });
                                         // 密码必须大于等于 8 位
                                         WifiConfiguration wifiConfiguration = WifiHotUtils.createWifiConfigToAp(wifiHotSSID, wifiHotPwd);
-                                        boolean           success           = wifiHotUtils.startWifiAp(wifiConfiguration);
+                                        @SuppressLint("MissingPermission")
+                                        boolean success = wifiHotUtils.startWifiAp(wifiConfiguration);
                                         showToast(success, "打开热点成功", "打开热点失败");
                                     }
 
@@ -174,6 +176,7 @@ public class WifiActivity
                             // 如果不需要密码, 则设置为非密码
                             //wifiConfiguration = WifiHotUtils.createWifiConfigToAp("TttWifiAp1", null);
                             // 开启热点
+                            @SuppressLint("MissingPermission")
                             boolean success = wifiHotUtils.startWifiAp(wifiConfiguration); // Android 7.1 以上特殊处理
                             showToast(success, "打开热点成功", "打开热点失败");
                         }

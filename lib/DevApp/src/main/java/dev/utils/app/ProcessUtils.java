@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.Manifest;
 import android.app.ActivityManager;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
@@ -8,6 +9,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.provider.Settings;
 import android.text.TextUtils;
+
+import androidx.annotation.RequiresPermission;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -251,6 +254,7 @@ public final class ProcessUtils {
      * 杀死所有的后台服务进程
      * @return 被暂时杀死的服务集合
      */
+    @RequiresPermission(Manifest.permission.KILL_BACKGROUND_PROCESSES)
     public static Set<String> killAllBackgroundProcesses() {
         try {
             Set<String>                                 set             = new HashSet<>();
@@ -280,6 +284,7 @@ public final class ProcessUtils {
      * @param packageName 应用包名
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(Manifest.permission.KILL_BACKGROUND_PROCESSES)
     public static boolean killBackgroundProcesses(final String packageName) {
         try {
             ActivityManager activityManager = AppUtils.getActivityManager();

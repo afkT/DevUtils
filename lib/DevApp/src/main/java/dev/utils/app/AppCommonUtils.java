@@ -3,6 +3,7 @@ package dev.utils.app;
 import android.os.Build;
 import android.text.TextUtils;
 
+import androidx.annotation.RequiresPermission;
 import androidx.annotation.StringRes;
 
 import java.util.UUID;
@@ -76,6 +77,7 @@ public final class AppCommonUtils {
      * 获取设备唯一 UUID
      * @return 设备唯一 UUID
      */
+    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public static String getUUID() {
         return PhoneUtils.getUUID();
     }

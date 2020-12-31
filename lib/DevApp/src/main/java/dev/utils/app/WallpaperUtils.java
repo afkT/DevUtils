@@ -12,6 +12,7 @@ import android.os.Build;
 
 import androidx.annotation.RawRes;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.RequiresPermission;
 
 import java.io.InputStream;
 
@@ -104,6 +105,7 @@ public final class WallpaperUtils {
      * 删除壁纸 ( 恢复为系统内置桌面壁纸 )
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(android.Manifest.permission.SET_WALLPAPER)
     public static boolean clear() {
         try {
             AppUtils.getWallpaperManager().clear();
@@ -120,6 +122,7 @@ public final class WallpaperUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
+    @RequiresPermission(android.Manifest.permission.SET_WALLPAPER)
     public static boolean clear(final int which) {
         try {
             AppUtils.getWallpaperManager().clear(which);
@@ -135,6 +138,7 @@ public final class WallpaperUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.P)
+    @RequiresPermission(android.Manifest.permission.SET_WALLPAPER)
     public static boolean clearWallpaper() {
         try {
             AppUtils.getWallpaperManager().clearWallpaper();
@@ -273,6 +277,7 @@ public final class WallpaperUtils {
      * </pre>
      * @return {@link Drawable}
      */
+    @RequiresPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE)
     public static Drawable getFastDrawable() {
         try {
             return AppUtils.getWallpaperManager().getFastDrawable();
@@ -305,6 +310,7 @@ public final class WallpaperUtils {
      * </pre>
      * @return {@link Drawable}
      */
+    @RequiresPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE)
     public static Drawable peekFastDrawable() {
         try {
             return AppUtils.getWallpaperManager().peekFastDrawable();
@@ -323,6 +329,7 @@ public final class WallpaperUtils {
      * @param bitmap {@link Bitmap}
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(android.Manifest.permission.SET_WALLPAPER)
     public static boolean setBitmap(final Bitmap bitmap) {
         try {
             AppUtils.getWallpaperManager().setBitmap(bitmap);
@@ -340,6 +347,7 @@ public final class WallpaperUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
+    @RequiresPermission(android.Manifest.permission.SET_WALLPAPER)
     public static boolean setBitmap(
             final Bitmap bitmap,
             final int which
@@ -358,6 +366,7 @@ public final class WallpaperUtils {
      * @param resId resource identifier
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(android.Manifest.permission.SET_WALLPAPER)
     public static boolean setResource(@RawRes final int resId) {
         try {
             AppUtils.getWallpaperManager().setResource(resId);
@@ -375,6 +384,7 @@ public final class WallpaperUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
+    @RequiresPermission(android.Manifest.permission.SET_WALLPAPER)
     public static boolean setResource(
             @RawRes final int resId,
             final int which
@@ -393,6 +403,7 @@ public final class WallpaperUtils {
      * @param inputStream bitmapData InputStream
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(android.Manifest.permission.SET_WALLPAPER)
     public static boolean setStream(final InputStream inputStream) {
         try {
             AppUtils.getWallpaperManager().setStream(inputStream);
@@ -410,6 +421,7 @@ public final class WallpaperUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
+    @RequiresPermission(android.Manifest.permission.SET_WALLPAPER)
     public static boolean setStream(
             final InputStream inputStream,
             final int which
@@ -445,6 +457,7 @@ public final class WallpaperUtils {
      * @param uri {@link Uri}
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(android.Manifest.permission.SET_WALLPAPER)
     public static boolean setUri(final Uri uri) {
         return setUri(uri, null);
     }
@@ -455,6 +468,7 @@ public final class WallpaperUtils {
      * @param callback {@link OnOtherCallback}
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(android.Manifest.permission.SET_WALLPAPER)
     public static boolean setUri(
             final Uri uri,
             final OnOtherCallback callback

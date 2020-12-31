@@ -12,6 +12,8 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.text.TextUtils;
 
+import androidx.annotation.RequiresPermission;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.net.InetAddress;
@@ -159,6 +161,10 @@ public final class WifiUtils {
      * 获取已配置 ( 连接过 ) 的 Wifi 配置
      * @return {@link List<WifiConfiguration>} 已配置 ( 连接过 ) 的 Wifi 配置
      */
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.ACCESS_FINE_LOCATION,
+            android.Manifest.permission.ACCESS_WIFI_STATE
+    })
     public List<WifiConfiguration> getConfiguration() {
         try {
             return mWifiManager.getConfiguredNetworks();
@@ -496,6 +502,10 @@ public final class WifiUtils {
      * @param ssid Wifi ssid
      * @return {@link WifiConfiguration}
      */
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.ACCESS_FINE_LOCATION,
+            android.Manifest.permission.ACCESS_WIFI_STATE
+    })
     public WifiConfiguration isExists(final String ssid) {
         if (ssid == null) return null;
         // 获取 Wifi 连接过的配置信息
@@ -519,6 +529,10 @@ public final class WifiUtils {
      * @param networkId network id
      * @return {@link WifiConfiguration}
      */
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.ACCESS_FINE_LOCATION,
+            android.Manifest.permission.ACCESS_WIFI_STATE
+    })
     public WifiConfiguration isExists(final int networkId) {
         // 获取 Wifi 连接过的配置信息
         List<WifiConfiguration> listWifiConfigs = getConfiguration();
@@ -545,6 +559,10 @@ public final class WifiUtils {
      * @param ssid Wifi ssid
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.ACCESS_FINE_LOCATION,
+            android.Manifest.permission.ACCESS_WIFI_STATE
+    })
     public static boolean delWifiConfig(final String ssid) {
         if (ssid == null) return false;
         try {
@@ -582,6 +600,10 @@ public final class WifiUtils {
      * @param type Wifi 加密类型
      * @return {@link WifiConfiguration}
      */
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.ACCESS_FINE_LOCATION,
+            android.Manifest.permission.ACCESS_WIFI_STATE
+    })
     public WifiConfiguration quickConnWifi(
             final String ssid,
             final String pwd,
@@ -599,6 +621,10 @@ public final class WifiUtils {
      * @param ip       静态 IP 地址
      * @return {@link WifiConfiguration}
      */
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.ACCESS_FINE_LOCATION,
+            android.Manifest.permission.ACCESS_WIFI_STATE
+    })
     public WifiConfiguration quickConnWifi(
             final String ssid,
             final String pwd,

@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.net.wifi.WifiInfo;
@@ -9,6 +10,7 @@ import android.provider.Settings;
 import android.text.TextUtils;
 
 import androidx.annotation.RequiresApi;
+import androidx.annotation.RequiresPermission;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -650,6 +652,7 @@ public final class DeviceUtils {
      *               重启到 Fastboot 模式 bootloader
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(Manifest.permission.REBOOT)
     public static boolean reboot(final String reason) {
         return ADBUtils.reboot(reason);
     }

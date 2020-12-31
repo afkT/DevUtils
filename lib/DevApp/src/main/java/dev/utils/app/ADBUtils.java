@@ -1,10 +1,12 @@
 package dev.utils.app;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
 import android.text.TextUtils;
 
 import androidx.annotation.IntRange;
+import androidx.annotation.RequiresPermission;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -1670,6 +1672,7 @@ public final class ADBUtils {
      *               重启到 Fastboot 模式 bootloader
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(Manifest.permission.REBOOT)
     public static boolean reboot(final String reason) {
         if (StringUtils.isSpace(reason)) return false;
         try {

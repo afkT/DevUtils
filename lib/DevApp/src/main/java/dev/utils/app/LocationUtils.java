@@ -11,6 +11,8 @@ import android.location.LocationProvider;
 import android.os.Bundle;
 import android.provider.Settings;
 
+import androidx.annotation.RequiresPermission;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -97,6 +99,10 @@ public final class LocationUtils {
      * @param listener    位置刷新的回调接口
      * @return {@code true} 初始化成功, {@code false} 初始化失败
      */
+    @RequiresPermission(anyOf = {
+            android.Manifest.permission.ACCESS_COARSE_LOCATION,
+            android.Manifest.permission.ACCESS_FINE_LOCATION
+    })
     public static boolean register(
             final long minTime,
             final long minDistance,
@@ -125,6 +131,10 @@ public final class LocationUtils {
      * 注销监听
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(anyOf = {
+            android.Manifest.permission.ACCESS_COARSE_LOCATION,
+            android.Manifest.permission.ACCESS_FINE_LOCATION
+    })
     public static boolean unregister() {
         try {
             if (sLocationManager != null) {
@@ -151,6 +161,10 @@ public final class LocationUtils {
      * @param distance 间隔距离
      * @return {@link Location}
      */
+    @RequiresPermission(anyOf = {
+            android.Manifest.permission.ACCESS_COARSE_LOCATION,
+            android.Manifest.permission.ACCESS_FINE_LOCATION
+    })
     public static Location getLocation(
             final LocationListener listener,
             final long time,

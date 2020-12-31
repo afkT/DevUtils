@@ -9,6 +9,7 @@ import android.os.Build;
 import android.text.TextUtils;
 
 import androidx.annotation.RequiresApi;
+import androidx.annotation.RequiresPermission;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -115,6 +116,10 @@ public final class WifiHotUtils {
      * @param wifiConfig Wifi 配置
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.CHANGE_WIFI_STATE,
+            android.Manifest.permission.ACCESS_FINE_LOCATION
+    })
     public boolean startWifiAp(final WifiConfiguration wifiConfig) {
         this.mAPWifiConfig = wifiConfig;
         // 大于 8.0

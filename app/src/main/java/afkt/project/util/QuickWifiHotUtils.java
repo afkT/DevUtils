@@ -1,5 +1,6 @@
 package afkt.project.util;
 
+import android.annotation.SuppressLint;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
@@ -187,6 +188,7 @@ public class QuickWifiHotUtils {
      * 开启 Wifi 热点线程
      */
     private Thread startWifiSpotThread = new Thread() {
+        @SuppressLint("MissingPermission")
         @Override
         public void run() {
             if (isCheck) return;
