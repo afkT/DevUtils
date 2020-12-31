@@ -1,6 +1,5 @@
 package dev.utils.app;
 
-import android.annotation.SuppressLint;
 import android.app.KeyguardManager;
 import android.os.Build;
 

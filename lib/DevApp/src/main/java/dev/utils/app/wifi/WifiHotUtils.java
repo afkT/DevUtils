@@ -1,6 +1,5 @@
 package dev.utils.app.wifi;
 
-import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.DhcpInfo;

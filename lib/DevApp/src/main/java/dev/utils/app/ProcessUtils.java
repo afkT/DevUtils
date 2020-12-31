@@ -1,6 +1,5 @@
 package dev.utils.app;
 
-import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;

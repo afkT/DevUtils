@@ -11,6 +11,8 @@ import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.text.format.Formatter;
 
+import androidx.annotation.RequiresPermission;
+
 import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.InterfaceAddress;
@@ -112,6 +114,7 @@ public final class NetWorkUtils {
      * 判断是否连接了网络
      * @return {@code true} yes, {@code false} no
      */
+    @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static boolean isConnect() {
         try {
             // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
@@ -145,6 +148,7 @@ public final class NetWorkUtils {
      * 获取连接的网络类型
      * @return -1 = 等于未知, 1 = Wifi, 2 = 移动网络
      */
+    @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static int getConnectType() {
         try {
             // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
@@ -188,6 +192,7 @@ public final class NetWorkUtils {
      * 判断是否连接 Wifi( 连接上、连接中 )
      * @return {@code true} yes, {@code false} no
      */
+    @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static boolean isConnWifi() {
         return (getConnectType() == 1);
     }
@@ -196,6 +201,7 @@ public final class NetWorkUtils {
      * 判断是否连接移动网络 ( 连接上、连接中 )
      * @return {@code true} yes, {@code false} no
      */
+    @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static boolean isConnMobileData() {
         return (getConnectType() == 2);
     }
@@ -221,6 +227,7 @@ public final class NetWorkUtils {
      * @return {@code true} 可用, {@code false} 不可用
      */
     @Deprecated
+    @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static boolean isAvailable() {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
             NetworkInfo info = getActiveNetworkInfo();
@@ -265,6 +272,7 @@ public final class NetWorkUtils {
      * @return {@link NetworkInfo}
      */
     @Deprecated
+    @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static NetworkInfo getActiveNetworkInfo() {
         try {
             return AppUtils.getConnectivityManager().getActiveNetworkInfo();
@@ -278,6 +286,7 @@ public final class NetWorkUtils {
      * 获取活动网络
      * @return {@link Network}
      */
+    @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static Network getActiveNetwork() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             try {
@@ -295,6 +304,10 @@ public final class NetWorkUtils {
      * 判断是否 4G 网络
      * @return {@code true} yes, {@code false} no
      */
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.ACCESS_NETWORK_STATE,
+            android.Manifest.permission.READ_PHONE_STATE
+    })
     public static boolean is4G() {
         return getNetworkType() == NetworkType.NETWORK_4G;
     }
@@ -318,6 +331,7 @@ public final class NetWorkUtils {
      * 判断 Wifi 数据是否可用
      * @return {@code true} yes, {@code false} no
      */
+    @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     public static boolean isWifiAvailable() {
         return getWifiEnabled() && isAvailable();
     }
@@ -342,6 +356,10 @@ public final class NetWorkUtils {
      * 获取当前网络类型
      * @return {@link NetworkType}
      */
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.ACCESS_NETWORK_STATE,
+            android.Manifest.permission.READ_PHONE_STATE
+    })
     public static NetworkType getNetworkType() {
         // 默认网络类型
         NetworkType netType = NetworkType.NETWORK_NO;
@@ -459,9 +477,6 @@ public final class NetWorkUtils {
 
     /**
      * 获取移动网络连接类型
-     * <pre>
-     *     {@link TelephonyManager#getNetworkClass} hide 方法
-     * </pre>
      * @param networkType {@link TelephonyManager#getNetworkType}
      * @return 0 = 未知, 1 = 2G, 2 = 3G, 3 = 4G, 4 = 5G
      */

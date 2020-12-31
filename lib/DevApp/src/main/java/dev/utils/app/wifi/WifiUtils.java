@@ -1,6 +1,5 @@
 package dev.utils.app.wifi;
 
-import android.annotation.SuppressLint;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;

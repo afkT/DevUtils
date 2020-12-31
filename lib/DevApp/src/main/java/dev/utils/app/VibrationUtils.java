@@ -1,7 +1,8 @@
 package dev.utils.app;
 
-import android.annotation.SuppressLint;
 import android.os.Vibrator;
+
+import androidx.annotation.RequiresPermission;
 
 import dev.utils.LogPrintUtils;
 
@@ -26,6 +27,7 @@ public final class VibrationUtils {
      * @param milliseconds 震动时长 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(android.Manifest.permission.VIBRATE)
     public static boolean vibrate(final long milliseconds) {
         try {
             Vibrator vibrator = AppUtils.getVibrator();
@@ -44,6 +46,7 @@ public final class VibrationUtils {
      *                -1 表示只震动一次, 非 -1 表示从 pattern 数组指定下标开始重复震动
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(android.Manifest.permission.VIBRATE)
     public static boolean vibrate(
             final long[] pattern,
             final int repeat
@@ -63,6 +66,7 @@ public final class VibrationUtils {
      * 取消震动
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(android.Manifest.permission.VIBRATE)
     public static boolean cancel() {
         try {
             AppUtils.getVibrator().cancel();

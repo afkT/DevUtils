@@ -1,6 +1,5 @@
 package dev.utils.app;
 
-import android.annotation.SuppressLint;
 import android.os.Build;
 import android.text.TextUtils;
 

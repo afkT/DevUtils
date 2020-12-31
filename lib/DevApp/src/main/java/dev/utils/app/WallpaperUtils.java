@@ -1,6 +1,5 @@
 package dev.utils.app;
 
-import android.annotation.SuppressLint;
 import android.app.WallpaperColors;
 import android.app.WallpaperInfo;
 import android.app.WallpaperManager;
