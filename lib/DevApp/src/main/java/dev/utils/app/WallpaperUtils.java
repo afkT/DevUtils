@@ -50,7 +50,12 @@ public final class WallpaperUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static boolean isWallpaperSupported() {
-        return AppUtils.getWallpaperManager().isWallpaperSupported();
+        try {
+            return AppUtils.getWallpaperManager().isWallpaperSupported();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isWallpaperSupported");
+        }
+        return false;
     }
 
     /**
@@ -59,7 +64,12 @@ public final class WallpaperUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static boolean isSetWallpaperAllowed() {
-        return AppUtils.getWallpaperManager().isSetWallpaperAllowed();
+        try {
+            return AppUtils.getWallpaperManager().isSetWallpaperAllowed();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isSetWallpaperAllowed");
+        }
+        return false;
     }
 
     /**
