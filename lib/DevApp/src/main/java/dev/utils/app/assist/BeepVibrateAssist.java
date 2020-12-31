@@ -165,7 +165,6 @@ public final class BeepVibrateAssist
      * 进行播放声音, 并且震动
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public synchronized boolean playBeepSoundAndVibrate() {
         // 判断是否允许播放
         if (shouldBeep() && mMediaPlayer != null) {

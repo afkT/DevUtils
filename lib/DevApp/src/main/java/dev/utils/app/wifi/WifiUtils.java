@@ -76,7 +76,6 @@ public final class WifiUtils {
      * 打开 Wifi
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public boolean openWifi() {
         // 如果没有打开 Wifi, 才进行打开
         if (!isOpenWifi()) {
@@ -93,7 +92,6 @@ public final class WifiUtils {
      * 关闭 Wifi
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public boolean closeWifi() {
         // 如果已经打开了 Wifi, 才进行关闭
         if (isOpenWifi()) {
@@ -114,7 +112,6 @@ public final class WifiUtils {
      * </pre>
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public boolean toggleWifiEnabled() {
         try {
             return mWifiManager.setWifiEnabled(!isOpenWifi());
@@ -128,7 +125,6 @@ public final class WifiUtils {
      * 获取当前 Wifi 连接状态
      * @return Wifi 连接状态
      */
-    @SuppressLint("MissingPermission")
     public int getWifiState() {
         // WifiManager.WIFI_STATE_ENABLED: // 已打开
         // WifiManager.WIFI_STATE_ENABLING: // 正在打开
@@ -151,7 +147,6 @@ public final class WifiUtils {
      * 开始扫描 Wifi
      * @return {@code true} 操作成功, {@code false} 操作失败
      */
-    @SuppressLint("MissingPermission")
     public boolean startScan() {
         try {
             return mWifiManager.startScan();
@@ -165,7 +160,6 @@ public final class WifiUtils {
      * 获取已配置 ( 连接过 ) 的 Wifi 配置
      * @return {@link List<WifiConfiguration>} 已配置 ( 连接过 ) 的 Wifi 配置
      */
-    @SuppressLint("MissingPermission")
     public List<WifiConfiguration> getConfiguration() {
         try {
             return mWifiManager.getConfiguredNetworks();
@@ -179,7 +173,6 @@ public final class WifiUtils {
      * 获取附近的 Wifi 列表
      * @return {@link List<ScanResult>} 附近的 Wifi 列表
      */
-    @SuppressLint("MissingPermission")
     public List<ScanResult> getWifiList() {
         try {
             return mWifiManager.getScanResults();
@@ -193,7 +186,6 @@ public final class WifiUtils {
      * 获取连接的 WifiInfo
      * @return {@link WifiInfo}
      */
-    @SuppressLint("MissingPermission")
     public WifiInfo getWifiInfo() {
         try {
             return mWifiManager.getConnectionInfo();
@@ -263,7 +255,6 @@ public final class WifiUtils {
      * 获取当前连接的 Wifi SSID
      * @return Wifi SSID
      */
-    @SuppressLint("MissingPermission")
     public static String getSSID() {
         try {
             // 获取当前连接的 Wifi
@@ -429,24 +420,23 @@ public final class WifiUtils {
      * 获取连接的 Wifi 热点 SSID
      * @return Wifi 热点 SSID
      */
-    @SuppressLint("MissingPermission")
     public static String isConnectAPHot() {
         try {
             // 连接管理
-            ConnectivityManager cManager = AppUtils.getConnectivityManager();
+            ConnectivityManager manager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 连接状态
-                NetworkInfo.State nState = cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
-                if ((nState == NetworkInfo.State.CONNECTED)) {
+                NetworkInfo.State state = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
+                if ((state == NetworkInfo.State.CONNECTED)) {
                     // 获取连接的 ssid
                     return getSSID();
                 }
             } else {
                 // 获取当前活跃的网络 ( 连接的网络信息 )
-                Network network = cManager.getActiveNetwork();
+                Network network = manager.getActiveNetwork();
                 if (network != null) {
-                    NetworkCapabilities networkCapabilities = cManager.getNetworkCapabilities(network);
+                    NetworkCapabilities networkCapabilities = manager.getNetworkCapabilities(network);
                     // 判断是否连接 Wifi
                     if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                         // 获取连接的 ssid
@@ -556,7 +546,6 @@ public final class WifiUtils {
      * @param ssid Wifi ssid
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public static boolean delWifiConfig(final String ssid) {
         if (ssid == null) return false;
         try {
@@ -611,7 +600,6 @@ public final class WifiUtils {
      * @param ip       静态 IP 地址
      * @return {@link WifiConfiguration}
      */
-    @SuppressLint("MissingPermission")
     public WifiConfiguration quickConnWifi(
             final String ssid,
             final String pwd,
@@ -819,7 +807,6 @@ public final class WifiUtils {
      * @param wifiConfig Wifi 配置信息
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public boolean removeWifiConfig(final WifiConfiguration wifiConfig) {
         // 如果等于 null 则直接返回
         if (wifiConfig == null) return false;
@@ -841,7 +828,6 @@ public final class WifiUtils {
      * @param networkId network id
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public boolean disconnectWifi(final int networkId) {
         try {
             mWifiManager.disableNetwork(networkId);

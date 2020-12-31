@@ -563,7 +563,6 @@ public final class BarUtils {
      * @param isVisible 是否显示 Notification Bar
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public static boolean setNotificationBarVisibility(final boolean isVisible) {
         String methodName;
         if (isVisible) {

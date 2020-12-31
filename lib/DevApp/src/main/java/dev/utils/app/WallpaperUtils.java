@@ -105,7 +105,6 @@ public final class WallpaperUtils {
      * 删除壁纸 ( 恢复为系统内置桌面壁纸 )
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public static boolean clear() {
         try {
             AppUtils.getWallpaperManager().clear();
@@ -121,7 +120,6 @@ public final class WallpaperUtils {
      * @param which {@link WallpaperManager#FLAG_SYSTEM} or {@link WallpaperManager#FLAG_LOCK}
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static boolean clear(final int which) {
         try {
@@ -137,7 +135,6 @@ public final class WallpaperUtils {
      * 删除壁纸 ( 恢复为系统内置壁纸 )
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     @RequiresApi(api = Build.VERSION_CODES.P)
     public static boolean clearWallpaper() {
         try {
@@ -277,7 +274,6 @@ public final class WallpaperUtils {
      * </pre>
      * @return {@link Drawable}
      */
-    @SuppressLint("MissingPermission")
     public static Drawable getFastDrawable() {
         try {
             return AppUtils.getWallpaperManager().getFastDrawable();
@@ -310,7 +306,6 @@ public final class WallpaperUtils {
      * </pre>
      * @return {@link Drawable}
      */
-    @SuppressLint("MissingPermission")
     public static Drawable peekFastDrawable() {
         try {
             return AppUtils.getWallpaperManager().peekFastDrawable();
@@ -329,7 +324,6 @@ public final class WallpaperUtils {
      * @param bitmap {@link Bitmap}
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public static boolean setBitmap(final Bitmap bitmap) {
         try {
             AppUtils.getWallpaperManager().setBitmap(bitmap);
@@ -346,7 +340,6 @@ public final class WallpaperUtils {
      * @param which  {@link WallpaperManager#FLAG_SYSTEM} or {@link WallpaperManager#FLAG_LOCK}
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static boolean setBitmap(
             final Bitmap bitmap,
@@ -366,7 +359,6 @@ public final class WallpaperUtils {
      * @param resId resource identifier
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public static boolean setResource(@RawRes final int resId) {
         try {
             AppUtils.getWallpaperManager().setResource(resId);
@@ -383,7 +375,6 @@ public final class WallpaperUtils {
      * @param which {@link WallpaperManager#FLAG_SYSTEM} or {@link WallpaperManager#FLAG_LOCK}
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static boolean setResource(
             @RawRes final int resId,
@@ -403,7 +394,6 @@ public final class WallpaperUtils {
      * @param inputStream bitmapData InputStream
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public static boolean setStream(final InputStream inputStream) {
         try {
             AppUtils.getWallpaperManager().setStream(inputStream);
@@ -420,7 +410,6 @@ public final class WallpaperUtils {
      * @param which       {@link WallpaperManager#FLAG_SYSTEM} or {@link WallpaperManager#FLAG_LOCK}
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static boolean setStream(
             final InputStream inputStream,

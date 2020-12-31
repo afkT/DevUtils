@@ -77,7 +77,6 @@ public final class AppCommonUtils {
      * 获取设备唯一 UUID
      * @return 设备唯一 UUID
      */
-    @SuppressLint("MissingPermission")
     public static String getUUID() {
         return PhoneUtils.getUUID();
     }

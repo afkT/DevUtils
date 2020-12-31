@@ -116,7 +116,6 @@ public final class WifiHotUtils {
      * @param wifiConfig Wifi 配置
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public boolean startWifiAp(final WifiConfiguration wifiConfig) {
         this.mAPWifiConfig = wifiConfig;
         // 大于 8.0
@@ -417,7 +416,6 @@ public final class WifiHotUtils {
      * 获取热点主机 IP 地址
      * @return 热点主机 IP 地址
      */
-    @SuppressLint("MissingPermission")
     public String getHotspotServiceIp() {
         try {
             // 获取网关信息

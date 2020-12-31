@@ -490,7 +490,6 @@ public final class DeviceUtils {
      * </pre>
      * @return 设备 MAC 地址
      */
-    @SuppressLint("MissingPermission")
     public static String getMacAddress() {
         String macAddress = getMacAddressByWifiInfo();
         if (!DEFAULT_MAC_ADDRESS.equals(macAddress)) {
@@ -515,7 +514,6 @@ public final class DeviceUtils {
      * 获取 MAC 地址
      * @return MAC 地址
      */
-    @SuppressLint("MissingPermission")
     private static String getMacAddressByWifiInfo() {
         try {
             @SuppressLint("WifiManagerLeak")
@@ -534,7 +532,6 @@ public final class DeviceUtils {
      * 获取 MAC 地址
      * @return MAC 地址
      */
-    @SuppressLint("MissingPermission")
     private static String getMacAddressByNetworkInterface() {
         try {
             Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();

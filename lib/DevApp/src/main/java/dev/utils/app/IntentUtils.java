@@ -777,7 +777,6 @@ public final class IntentUtils {
      * @param phoneNumber 电话号码
      * @return 拨打电话意图
      */
-    @SuppressLint("MissingPermission")
     public static Intent getCallIntent(final String phoneNumber) {
         return getCallIntent(phoneNumber, false);
     }
@@ -788,7 +787,6 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return 拨打电话意图
      */
-    @SuppressLint("MissingPermission")
     public static Intent getCallIntent(
             final String phoneNumber,
             final boolean isNewTask

@@ -98,7 +98,6 @@ public final class LocationUtils {
      * @param listener    位置刷新的回调接口
      * @return {@code true} 初始化成功, {@code false} 初始化失败
      */
-    @SuppressLint("MissingPermission")
     public static boolean register(
             final long minTime,
             final long minDistance,
@@ -127,7 +126,6 @@ public final class LocationUtils {
      * 注销监听
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public static boolean unregister() {
         try {
             if (sLocationManager != null) {
@@ -154,7 +152,6 @@ public final class LocationUtils {
      * @param distance 间隔距离
      * @return {@link Location}
      */
-    @SuppressLint("MissingPermission")
     public static Location getLocation(
             final LocationListener listener,
             final long time,

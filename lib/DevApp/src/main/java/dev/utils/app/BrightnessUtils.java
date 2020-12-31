@@ -49,7 +49,6 @@ public final class BrightnessUtils {
      * @param enabled {@code true} 打开, {@code false} 关闭
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public static boolean setAutoBrightnessEnabled(final boolean enabled) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.System.canWrite(DevUtils.getContext())) {
             try {
@@ -88,7 +87,6 @@ public final class BrightnessUtils {
      * @param brightness 亮度值
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public static boolean setBrightness(@IntRange(from = 0, to = 255) final int brightness) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.System.canWrite(DevUtils.getContext())) {
             try {

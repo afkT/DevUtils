@@ -520,7 +520,6 @@ public final class ScreenUtils {
      * @param duration 时长
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public static boolean setSleepDuration(final int duration) {
         try {
             Settings.System.putInt(ResourceUtils.getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, duration);

@@ -1432,7 +1432,6 @@ public final class DevHelper {
      * @param milliseconds 震动时长 ( 毫秒 )
      * @return {@link DevHelper}
      */
-    @SuppressLint("MissingPermission")
     public DevHelper vibrate(final long milliseconds) {
         VibrationUtils.vibrate(milliseconds);
         return this;
@@ -1445,7 +1444,6 @@ public final class DevHelper {
      *                -1 表示只震动一次, 非 -1 表示从 pattern 数组指定下标开始重复震动
      * @return {@link DevHelper}
      */
-    @SuppressLint("MissingPermission")
     public DevHelper vibrate(
             final long[] pattern,
             final int repeat
@@ -1458,7 +1456,6 @@ public final class DevHelper {
      * 取消震动
      * @return {@link DevHelper}
      */
-    @SuppressLint("MissingPermission")
     public DevHelper cancel() {
         VibrationUtils.cancel();
         return this;

@@ -42,8 +42,6 @@ public final class NetWorkReceiver
     public static final  int NET_MOBILE = BASE + 2;
     // ( 无网络 / 未知 ) 状态
     public static final  int NO_NETWORK = BASE + 3;
-
-    @SuppressLint("MissingPermission")
     @Override
     public void onReceive(
             Context context,
@@ -83,22 +81,21 @@ public final class NetWorkReceiver
      * 获取连接的网络类型
      * @return 连接的网络类型
      */
-    @SuppressLint("MissingPermission")
     public static int getConnectType() {
         // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
         try {
             // 获取网络连接状态
-            ConnectivityManager cManager = AppUtils.getConnectivityManager();
+            ConnectivityManager manager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 判断连接的是否 Wifi
-                NetworkInfo.State wifiState = cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
+                NetworkInfo.State wifiState = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
                 // 判断是否连接上
                 if (wifiState == NetworkInfo.State.CONNECTED || wifiState == NetworkInfo.State.CONNECTING) {
                     return NET_WIFI;
                 } else {
                     // 判断连接的是否移动网络
-                    NetworkInfo.State mobileState = cManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
+                    NetworkInfo.State mobileState = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
                     // 判断移动网络是否连接上
                     if (mobileState == NetworkInfo.State.CONNECTED || mobileState == NetworkInfo.State.CONNECTING) {
                         return NET_MOBILE;
@@ -106,9 +103,9 @@ public final class NetWorkReceiver
                 }
             } else {
                 // 获取当前活跃的网络 ( 连接的网络信息 )
-                Network network = cManager.getActiveNetwork();
+                Network network = manager.getActiveNetwork();
                 if (network != null) {
-                    NetworkCapabilities networkCapabilities = cManager.getNetworkCapabilities(network);
+                    NetworkCapabilities networkCapabilities = manager.getNetworkCapabilities(network);
                     // 判断连接的是否 Wifi
                     if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                         return NET_WIFI;

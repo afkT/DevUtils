@@ -57,11 +57,11 @@ public final class NetWorkUtils {
             // 属于 5.0 以下的使用
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 // 获取网络连接状态
-                ConnectivityManager cManager = AppUtils.getConnectivityManager();
+                ConnectivityManager manager = AppUtils.getConnectivityManager();
                 // 反射获取方法
-                Method method = cManager.getClass().getMethod("getMobileDataEnabled");
+                Method method = manager.getClass().getMethod("getMobileDataEnabled");
                 // 调用方法, 获取状态
-                state = (Boolean) method.invoke(cManager);
+                state = (Boolean) method.invoke(manager);
             } else {
                 TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
                 // 反射获取方法
@@ -84,23 +84,22 @@ public final class NetWorkUtils {
      * @param isOpen 是否打开移动网络
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public static boolean setMobileDataEnabled(final boolean isOpen) {
         try {
             // 属于 5.0 以下的使用
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 // 获取网络连接状态
-                ConnectivityManager cManager = AppUtils.getConnectivityManager();
+                ConnectivityManager manager = AppUtils.getConnectivityManager();
                 // 通过反射设置移动网络
-                Method mMethod = cManager.getClass().getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
+                Method method = manager.getClass().getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
                 // 设置移动网络
-                mMethod.invoke(cManager, isOpen);
+                method.invoke(manager, isOpen);
             } else { // 需要 android.Manifest.permission.MODIFY_PHONE_STATE 权限, 普通 APP 无法获取
                 TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
                 // 通过反射设置移动网络
-                Method mMethod = telephonyManager.getClass().getDeclaredMethod("setDataEnabled", boolean.class);
+                Method method = telephonyManager.getClass().getDeclaredMethod("setDataEnabled", boolean.class);
                 // 设置移动网络
-                mMethod.invoke(telephonyManager, isOpen);
+                method.invoke(telephonyManager, isOpen);
             }
             return true;
         } catch (Exception e) { // 开启移动网络失败
@@ -113,25 +112,24 @@ public final class NetWorkUtils {
      * 判断是否连接了网络
      * @return {@code true} yes, {@code false} no
      */
-    @SuppressLint("MissingPermission")
     public static boolean isConnect() {
         try {
             // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
-            ConnectivityManager cManager = AppUtils.getConnectivityManager();
+            ConnectivityManager manager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 获取网络连接管理的对象
-                NetworkInfo nInfo = cManager.getActiveNetworkInfo();
+                NetworkInfo info = manager.getActiveNetworkInfo();
                 // 判断是否为 null
-                if (nInfo != null) {
+                if (info != null) {
                     // 判断当前网络是否已经连接
-                    if (nInfo.getState() == State.CONNECTED) {
+                    if (info.getState() == State.CONNECTED) {
                         return true;
                     }
                 }
             } else {
                 // 获取当前活跃的网络 ( 连接的网络信息 )
-                Network network = cManager.getActiveNetwork();
+                Network network = manager.getActiveNetwork();
                 // 判断是否为 null
                 if (network != null) {
                     return true;
@@ -147,21 +145,20 @@ public final class NetWorkUtils {
      * 获取连接的网络类型
      * @return -1 = 等于未知, 1 = Wifi, 2 = 移动网络
      */
-    @SuppressLint("MissingPermission")
     public static int getConnectType() {
         try {
             // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
-            ConnectivityManager cManager = AppUtils.getConnectivityManager();
+            ConnectivityManager manager = AppUtils.getConnectivityManager();
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 判断连接的是否 Wifi
-                State wifiState = cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
+                State wifiState = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
                 // 判断是否连接上
                 if (wifiState == State.CONNECTED || wifiState == State.CONNECTING) {
                     return 1;
                 } else {
                     // 判断连接的是否移动网络
-                    State mobileState = cManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
+                    State mobileState = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
                     // 判断移动网络是否连接上
                     if (mobileState == State.CONNECTED || mobileState == State.CONNECTING) {
                         return 2;
@@ -169,9 +166,9 @@ public final class NetWorkUtils {
                 }
             } else {
                 // 获取当前活跃的网络 ( 连接的网络信息 )
-                Network network = cManager.getActiveNetwork();
+                Network network = manager.getActiveNetwork();
                 if (network != null) {
-                    NetworkCapabilities networkCapabilities = cManager.getNetworkCapabilities(network);
+                    NetworkCapabilities networkCapabilities = manager.getNetworkCapabilities(network);
                     // 判断连接的是否 Wifi
                     if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                         return 1;
@@ -191,7 +188,6 @@ public final class NetWorkUtils {
      * 判断是否连接 Wifi( 连接上、连接中 )
      * @return {@code true} yes, {@code false} no
      */
-    @SuppressLint("MissingPermission")
     public static boolean isConnWifi() {
         return (getConnectType() == 1);
     }
@@ -200,7 +196,6 @@ public final class NetWorkUtils {
      * 判断是否连接移动网络 ( 连接上、连接中 )
      * @return {@code true} yes, {@code false} no
      */
-    @SuppressLint("MissingPermission")
     public static boolean isConnMobileData() {
         return (getConnectType() == 2);
     }
@@ -226,7 +221,6 @@ public final class NetWorkUtils {
      * @return {@code true} 可用, {@code false} 不可用
      */
     @Deprecated
-    @SuppressLint("MissingPermission")
     public static boolean isAvailable() {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
             NetworkInfo info = getActiveNetworkInfo();
@@ -240,7 +234,6 @@ public final class NetWorkUtils {
      * 使用 ping ip 方式判断网络是否可用
      * @return {@code true} yes, {@code false} no
      */
-    @SuppressLint("MissingPermission")
     public static boolean isAvailableByPing() {
         return isAvailableByPing(null);
     }
@@ -250,7 +243,6 @@ public final class NetWorkUtils {
      * @param ip IP 地址
      * @return {@code true} yes, {@code false} no
      */
-    @SuppressLint("MissingPermission")
     public static boolean isAvailableByPing(String ip) {
         if (ip == null || ip.length() <= 0) {
             ip = "223.5.5.5"; // 默认阿里巴巴 DNS
@@ -273,7 +265,6 @@ public final class NetWorkUtils {
      * @return {@link NetworkInfo}
      */
     @Deprecated
-    @SuppressLint("MissingPermission")
     public static NetworkInfo getActiveNetworkInfo() {
         try {
             return AppUtils.getConnectivityManager().getActiveNetworkInfo();
@@ -287,7 +278,6 @@ public final class NetWorkUtils {
      * 获取活动网络
      * @return {@link Network}
      */
-    @SuppressLint("MissingPermission")
     public static Network getActiveNetwork() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             try {
@@ -305,7 +295,6 @@ public final class NetWorkUtils {
      * 判断是否 4G 网络
      * @return {@code true} yes, {@code false} no
      */
-    @SuppressLint("MissingPermission")
     public static boolean is4G() {
         return getNetworkType() == NetworkType.NETWORK_4G;
     }
@@ -329,7 +318,6 @@ public final class NetWorkUtils {
      * 判断 Wifi 数据是否可用
      * @return {@code true} yes, {@code false} no
      */
-    @SuppressLint("MissingPermission")
     public static boolean isWifiAvailable() {
         return getWifiEnabled() && isAvailable();
     }
@@ -354,7 +342,6 @@ public final class NetWorkUtils {
      * 获取当前网络类型
      * @return {@link NetworkType}
      */
-    @SuppressLint("MissingPermission")
     public static NetworkType getNetworkType() {
         // 默认网络类型
         NetworkType netType = NetworkType.NETWORK_NO;
@@ -430,15 +417,15 @@ public final class NetWorkUtils {
         } else {
             try {
                 // 获取网络连接状态
-                ConnectivityManager cManager = AppUtils.getConnectivityManager();
+                ConnectivityManager manager = AppUtils.getConnectivityManager();
                 // 获取当前活跃的网络 ( 连接的网络信息 )
-                Network network = cManager.getActiveNetwork();
+                Network network = manager.getActiveNetwork();
                 // 防止为 null
                 if (network != null) {
                     // 属于可用则修改为未知
                     netType = NetworkType.NETWORK_UNKNOWN;
                     // 获取网络连接信息
-                    NetworkCapabilities networkCapabilities = cManager.getNetworkCapabilities(network);
+                    NetworkCapabilities networkCapabilities = manager.getNetworkCapabilities(network);
                     // 判断连接类型
                     if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) { // 判断是否连接 Wifi
                         netType = NetworkType.NETWORK_WIFI;
@@ -601,7 +588,6 @@ public final class NetWorkUtils {
      * 根据 Wifi 获取网络 IP 地址
      * @return 网络 IP 地址
      */
-    @SuppressLint("MissingPermission")
     public static String getIpAddressByWifi() {
         try {
             @SuppressLint("WifiManagerLeak")
@@ -617,7 +603,6 @@ public final class NetWorkUtils {
      * 根据 Wifi 获取网关 IP 地址
      * @return 网关 IP 地址
      */
-    @SuppressLint("MissingPermission")
     public static String getGatewayByWifi() {
         try {
             @SuppressLint("WifiManagerLeak")
@@ -633,7 +618,6 @@ public final class NetWorkUtils {
      * 根据 Wifi 获取子网掩码 IP 地址
      * @return 子网掩码 IP 地址
      */
-    @SuppressLint("MissingPermission")
     public static String getNetMaskByWifi() {
         try {
             @SuppressLint("WifiManagerLeak")
@@ -649,7 +633,6 @@ public final class NetWorkUtils {
      * 根据 Wifi 获取服务端 IP 地址
      * @return 服务端 IP 地址
      */
-    @SuppressLint("MissingPermission")
     public static String getServerAddressByWifi() {
         try {
             @SuppressLint("WifiManagerLeak")

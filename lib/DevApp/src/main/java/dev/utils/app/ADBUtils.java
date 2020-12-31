@@ -1671,7 +1671,6 @@ public final class ADBUtils {
      *               重启到 Fastboot 模式 bootloader
      * @return {@code true} success, {@code false} fail
      */
-    @SuppressLint("MissingPermission")
     public static boolean reboot(final String reason) {
         if (StringUtils.isSpace(reason)) return false;
         try {
