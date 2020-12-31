@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.Manifest;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Criteria;
@@ -100,8 +101,8 @@ public final class LocationUtils {
      * @return {@code true} 初始化成功, {@code false} 初始化失败
      */
     @RequiresPermission(anyOf = {
-            android.Manifest.permission.ACCESS_COARSE_LOCATION,
-            android.Manifest.permission.ACCESS_FINE_LOCATION
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION
     })
     public static boolean register(
             final long minTime,
@@ -132,8 +133,8 @@ public final class LocationUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(anyOf = {
-            android.Manifest.permission.ACCESS_COARSE_LOCATION,
-            android.Manifest.permission.ACCESS_FINE_LOCATION
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION
     })
     public static boolean unregister() {
         try {
@@ -162,8 +163,8 @@ public final class LocationUtils {
      * @return {@link Location}
      */
     @RequiresPermission(anyOf = {
-            android.Manifest.permission.ACCESS_COARSE_LOCATION,
-            android.Manifest.permission.ACCESS_FINE_LOCATION
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION
     })
     public static Location getLocation(
             final LocationListener listener,

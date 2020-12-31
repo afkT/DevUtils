@@ -1,5 +1,6 @@
 package dev.utils.app.wifi;
 
+import android.Manifest;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -77,6 +78,7 @@ public final class WifiUtils {
      * 打开 Wifi
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(Manifest.permission.CHANGE_WIFI_STATE)
     public boolean openWifi() {
         // 如果没有打开 Wifi, 才进行打开
         if (!isOpenWifi()) {
@@ -93,6 +95,7 @@ public final class WifiUtils {
      * 关闭 Wifi
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(Manifest.permission.CHANGE_WIFI_STATE)
     public boolean closeWifi() {
         // 如果已经打开了 Wifi, 才进行关闭
         if (isOpenWifi()) {
@@ -113,6 +116,7 @@ public final class WifiUtils {
      * </pre>
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(Manifest.permission.CHANGE_WIFI_STATE)
     public boolean toggleWifiEnabled() {
         try {
             return mWifiManager.setWifiEnabled(!isOpenWifi());
@@ -126,6 +130,7 @@ public final class WifiUtils {
      * 获取当前 Wifi 连接状态
      * @return Wifi 连接状态
      */
+    @RequiresPermission(Manifest.permission.ACCESS_WIFI_STATE)
     public int getWifiState() {
         // WifiManager.WIFI_STATE_ENABLED: // 已打开
         // WifiManager.WIFI_STATE_ENABLING: // 正在打开
@@ -148,6 +153,7 @@ public final class WifiUtils {
      * 开始扫描 Wifi
      * @return {@code true} 操作成功, {@code false} 操作失败
      */
+    @RequiresPermission(Manifest.permission.CHANGE_WIFI_STATE)
     public boolean startScan() {
         try {
             return mWifiManager.startScan();
@@ -162,8 +168,8 @@ public final class WifiUtils {
      * @return {@link List<WifiConfiguration>} 已配置 ( 连接过 ) 的 Wifi 配置
      */
     @RequiresPermission(allOf = {
-            android.Manifest.permission.ACCESS_FINE_LOCATION,
-            android.Manifest.permission.ACCESS_WIFI_STATE
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_WIFI_STATE
     })
     public List<WifiConfiguration> getConfiguration() {
         try {
@@ -178,6 +184,7 @@ public final class WifiUtils {
      * 获取附近的 Wifi 列表
      * @return {@link List<ScanResult>} 附近的 Wifi 列表
      */
+    @RequiresPermission(Manifest.permission.ACCESS_WIFI_STATE)
     public List<ScanResult> getWifiList() {
         try {
             return mWifiManager.getScanResults();
@@ -191,6 +198,7 @@ public final class WifiUtils {
      * 获取连接的 WifiInfo
      * @return {@link WifiInfo}
      */
+    @RequiresPermission(Manifest.permission.ACCESS_WIFI_STATE)
     public WifiInfo getWifiInfo() {
         try {
             return mWifiManager.getConnectionInfo();
@@ -260,6 +268,7 @@ public final class WifiUtils {
      * 获取当前连接的 Wifi SSID
      * @return Wifi SSID
      */
+    @RequiresPermission(Manifest.permission.ACCESS_WIFI_STATE)
     public static String getSSID() {
         try {
             // 获取当前连接的 Wifi
@@ -425,6 +434,10 @@ public final class WifiUtils {
      * 获取连接的 Wifi 热点 SSID
      * @return Wifi 热点 SSID
      */
+    @RequiresPermission(allOf = {
+            Manifest.permission.ACCESS_NETWORK_STATE,
+            Manifest.permission.ACCESS_WIFI_STATE
+    })
     public static String isConnectAPHot() {
         try {
             // 连接管理
@@ -503,8 +516,8 @@ public final class WifiUtils {
      * @return {@link WifiConfiguration}
      */
     @RequiresPermission(allOf = {
-            android.Manifest.permission.ACCESS_FINE_LOCATION,
-            android.Manifest.permission.ACCESS_WIFI_STATE
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_WIFI_STATE
     })
     public WifiConfiguration isExists(final String ssid) {
         if (ssid == null) return null;
@@ -530,8 +543,8 @@ public final class WifiUtils {
      * @return {@link WifiConfiguration}
      */
     @RequiresPermission(allOf = {
-            android.Manifest.permission.ACCESS_FINE_LOCATION,
-            android.Manifest.permission.ACCESS_WIFI_STATE
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_WIFI_STATE
     })
     public WifiConfiguration isExists(final int networkId) {
         // 获取 Wifi 连接过的配置信息
@@ -560,8 +573,9 @@ public final class WifiUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(allOf = {
-            android.Manifest.permission.ACCESS_FINE_LOCATION,
-            android.Manifest.permission.ACCESS_WIFI_STATE
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_WIFI_STATE,
+            Manifest.permission.CHANGE_WIFI_STATE
     })
     public static boolean delWifiConfig(final String ssid) {
         if (ssid == null) return false;
@@ -601,8 +615,9 @@ public final class WifiUtils {
      * @return {@link WifiConfiguration}
      */
     @RequiresPermission(allOf = {
-            android.Manifest.permission.ACCESS_FINE_LOCATION,
-            android.Manifest.permission.ACCESS_WIFI_STATE
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_WIFI_STATE,
+            Manifest.permission.CHANGE_WIFI_STATE
     })
     public WifiConfiguration quickConnWifi(
             final String ssid,
@@ -622,8 +637,9 @@ public final class WifiUtils {
      * @return {@link WifiConfiguration}
      */
     @RequiresPermission(allOf = {
-            android.Manifest.permission.ACCESS_FINE_LOCATION,
-            android.Manifest.permission.ACCESS_WIFI_STATE
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_WIFI_STATE,
+            Manifest.permission.CHANGE_WIFI_STATE
     })
     public WifiConfiguration quickConnWifi(
             final String ssid,
@@ -832,6 +848,7 @@ public final class WifiUtils {
      * @param wifiConfig Wifi 配置信息
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(Manifest.permission.CHANGE_WIFI_STATE)
     public boolean removeWifiConfig(final WifiConfiguration wifiConfig) {
         // 如果等于 null 则直接返回
         if (wifiConfig == null) return false;
@@ -853,6 +870,7 @@ public final class WifiUtils {
      * @param networkId network id
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresPermission(Manifest.permission.CHANGE_WIFI_STATE)
     public boolean disconnectWifi(final int networkId) {
         try {
             mWifiManager.disableNetwork(networkId);

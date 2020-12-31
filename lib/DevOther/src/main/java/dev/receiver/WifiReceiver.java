@@ -1,5 +1,6 @@
 package dev.receiver;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -66,6 +67,7 @@ public final class WifiReceiver
     // Wifi 未知
     public static final  int UNKNOWN                   = BASE + 14;
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onReceive(
             Context context,

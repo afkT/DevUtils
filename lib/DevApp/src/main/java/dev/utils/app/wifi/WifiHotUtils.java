@@ -1,5 +1,6 @@
 package dev.utils.app.wifi;
 
+import android.Manifest;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.DhcpInfo;
@@ -117,8 +118,8 @@ public final class WifiHotUtils {
      * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(allOf = {
-            android.Manifest.permission.CHANGE_WIFI_STATE,
-            android.Manifest.permission.ACCESS_FINE_LOCATION
+            Manifest.permission.CHANGE_WIFI_STATE,
+            Manifest.permission.ACCESS_FINE_LOCATION
     })
     public boolean startWifiAp(final WifiConfiguration wifiConfig) {
         this.mAPWifiConfig = wifiConfig;
@@ -420,6 +421,7 @@ public final class WifiHotUtils {
      * 获取热点主机 IP 地址
      * @return 热点主机 IP 地址
      */
+    @RequiresPermission(Manifest.permission.ACCESS_WIFI_STATE)
     public String getHotspotServiceIp() {
         try {
             // 获取网关信息

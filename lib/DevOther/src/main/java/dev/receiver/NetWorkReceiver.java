@@ -1,5 +1,6 @@
 package dev.receiver;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -85,7 +86,7 @@ public final class NetWorkReceiver
      * 获取连接的网络类型
      * @return 连接的网络类型
      */
-    @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
+    @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
     public static int getConnectType() {
         // 获取手机所有连接管理对象 ( 包括对 wi-fi,net 等连接的管理 )
         try {
