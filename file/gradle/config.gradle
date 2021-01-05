@@ -124,6 +124,7 @@ ext {
                     work_runtime_ktx              : "androidx.work:work-runtime-ktx:2.5.0-beta02",
                     // DataStore
                     datastore_preferences         : "androidx.datastore:datastore-preferences:1.0.0-alpha05",
+                    fragment_ktx                  : "androidx.fragment:fragment-ktx:1.2.5",
             ],
             'androidx': [
                     // https://developer.android.com/jetpack/androidx/migrate/artifact-mappings
@@ -145,6 +146,7 @@ ext {
                     work_runtime          : "androidx.work:work-runtime:2.5.0-beta02",
                     // Android Material 组件使用详解 https://blog.csdn.net/magic0908/article/details/101029876
                     design                : "com.google.android.material:material:1.2.1",
+                    fragment              : "androidx.fragment:fragment:1.2.5",
             ],
             'lib'     : [
                     // Gson https://github.com/google/gson

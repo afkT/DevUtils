@@ -11,6 +11,7 @@ dependencies {
     implementation deps.kotlin.room_ktx
     implementation deps.kotlin.work_runtime_ktx
     implementation deps.kotlin.datastore_preferences
+    implementation deps.kotlin.fragment_ktx
     implementation deps.androidx.lifecycle_common_java8
     implementation deps.androidx.design
     implementation deps.androidx.appcompat
@@ -22,4 +23,5 @@ dependencies {
     implementation deps.androidx.constraint_layout
     implementation deps.androidx.viewpager2
     implementation deps.androidx.work_runtime
+    implementation deps.androidx.fragment
 }
