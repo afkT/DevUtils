@@ -161,7 +161,7 @@ public final class GsonUtils {
     public static boolean isJSON(final String json) {
         JsonElement jsonElement;
         try {
-            jsonElement = new JsonParser().parse(json);
+            jsonElement = JsonParser.parseString(json);
         } catch (Exception e) {
             return false;
         }
@@ -180,7 +180,7 @@ public final class GsonUtils {
     public static boolean isJSONObject(final String json) {
         JsonElement jsonElement;
         try {
-            jsonElement = new JsonParser().parse(json);
+            jsonElement = JsonParser.parseString(json);
         } catch (Exception e) {
             return false;
         }
@@ -196,7 +196,7 @@ public final class GsonUtils {
     public static boolean isJSONArray(final String json) {
         JsonElement jsonElement;
         try {
-            jsonElement = new JsonParser().parse(json);
+            jsonElement = JsonParser.parseString(json);
         } catch (Exception e) {
             return false;
         }
@@ -227,8 +227,7 @@ public final class GsonUtils {
             try {
                 JsonReader reader = new JsonReader(new StringReader(json));
                 reader.setLenient(true);
-                JsonParser  jsonParser  = new JsonParser();
-                JsonElement jsonElement = jsonParser.parse(reader);
+                JsonElement jsonElement = JsonParser.parseReader(reader);
                 return gson.toJson(jsonElement);
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "toJsonIndent");

@@ -108,6 +108,9 @@ public class ButtonValue {
     // DataStore
     public static final int BTN_DATA_STORE = MODULE_LIB + 12;
 
+    // WorkManagerUtils
+    public static final int BTN_WORK_MANAGER = MODULE_LIB + 13;
+
     // ======
     // = UI =
     // ======

@@ -117,6 +117,7 @@ public class ModuleActivity
                     case ButtonValue.BTN_LUBAN: // LubanUtils
                     case ButtonValue.BTN_MMKV: // MMKVUtils
                     case ButtonValue.BTN_DATA_STORE: // DataStore
+                    case ButtonValue.BTN_WORK_MANAGER: // WorkManagerUtils
                         ToastTintUtils.info("具体请查看: lib\\DevOther\\other\\" + buttonValue.text);
                         break;
                     case ButtonValue.BTN_GREEN_DAO: // GreenDAO
