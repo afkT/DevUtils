@@ -43,31 +43,42 @@ public class DevCallback<T>
 
     /**
      * 回调方法
-     * @param param 回调参数
+     * @param value 回调值
      */
-    public void callback(int param) {
+    public void callback(T value) {
     }
 
     /**
      * 回调方法
-     * @param param 回调参数
      * @param value 回调值
+     * @param param 回调参数
      */
     public void callback(
-            int param,
-            T value
+            T value,
+            int param
     ) {
     }
 
     /**
      * 回调方法
-     * @param param   回调参数
      * @param value   回调值
      * @param objects 回调对象数组
      */
     public void callback(
-            int param,
             T value,
+            Object[] objects
+    ) {
+    }
+
+    /**
+     * 回调方法
+     * @param value   回调值
+     * @param param   回调参数
+     * @param objects 回调对象数组
+     */
+    public void callback(
+            T value,
+            int param,
             Object[] objects
     ) {
     }
