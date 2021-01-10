@@ -185,6 +185,10 @@ abstract class AbstractDevBaseFragment : Fragment(),
         assist.printLog("initListener")
     }
 
+    override fun initObserve() {
+        assist.printLog("initObserve")
+    }
+
     override fun initOther() {
         assist.printLog("initOther")
     }

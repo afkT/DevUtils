@@ -13,6 +13,7 @@ interface IDevBaseMethod {
         initView()
         initValue()
         initListener()
+        initObserve()
         initOther()
     }
 
@@ -42,6 +43,11 @@ interface IDevBaseMethod {
      * 初始化事件
      */
     fun initListener()
+
+    /**
+     * 初始化观察事件
+     */
+    fun initObserve()
 
     /**
      * 初始化其他操作

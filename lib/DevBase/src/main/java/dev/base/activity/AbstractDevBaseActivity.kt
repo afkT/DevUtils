@@ -153,6 +153,10 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(),
         assist.printLog("initListener")
     }
 
+    override fun initObserve() {
+        assist.printLog("initObserve")
+    }
+
     override fun initOther() {
         assist.printLog("initOther")
     }
