@@ -79,8 +79,10 @@ public final class DevFinal {
 
     public static final String ACTIVITY = "activity";
     public static final String INTENT   = "intent";
+    public static final String URI      = "uri";
     public static final String ASSETS   = "assets";
     public static final String VIEW     = "view";
+    public static final String PACKNAME = "packName";
 
     public static final String ACCOUNT  = "account";
     public static final String PASSWORD = "password";
@@ -170,6 +172,7 @@ public final class DevFinal {
     public static final String EVENT     = "event";
     public static final String THROWABLE = "throwable";
     public static final String INFO      = "info";
+    public static final String SUFFIX    = "suffix";
 
     public static final String MODEL  = "model";
     public static final String MODULE = "module";
