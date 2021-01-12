@@ -6,7 +6,7 @@ import java.lang.reflect.Type;
  * detail: JSON Engine 接口
  * @author Ttt
  */
-public interface IJSONEngine {
+public interface IJSONEngine<Config extends IJSONEngine.JSONConfig> {
 
     /**
      * detail: JSON Config
@@ -28,13 +28,13 @@ public interface IJSONEngine {
 
     /**
      * 将对象转换为 JSON String
-     * @param object     {@link Object}
-     * @param jsonConfig {@link JSONConfig}
+     * @param object {@link Object}
+     * @param config {@link JSONConfig}
      * @return JSON String
      */
     String toJson(
             Object object,
-            JSONConfig jsonConfig
+            Config config
     );
 
     // =
@@ -53,16 +53,16 @@ public interface IJSONEngine {
 
     /**
      * 将 JSON String 映射为指定类型对象
-     * @param json       JSON String
-     * @param classOfT   {@link Class} T
-     * @param jsonConfig {@link JSONConfig}
-     * @param <T>        泛型
+     * @param json     JSON String
+     * @param classOfT {@link Class} T
+     * @param config   {@link JSONConfig}
+     * @param <T>      泛型
      * @return instance of type
      */
     <T> T fromJson(
             String json,
             Class<T> classOfT,
-            JSONConfig jsonConfig
+            Config config
     );
 
     // =
@@ -81,16 +81,16 @@ public interface IJSONEngine {
 
     /**
      * 将 JSON String 映射为指定类型对象
-     * @param json       JSON String
-     * @param typeOfT    {@link Type} T
-     * @param jsonConfig {@link JSONConfig}
-     * @param <T>        泛型
+     * @param json    JSON String
+     * @param typeOfT {@link Type} T
+     * @param config  {@link JSONConfig}
+     * @param <T>     泛型
      * @return instance of type
      */
     <T> T fromJson(
             String json,
             Type typeOfT,
-            JSONConfig jsonConfig
+            Config config
     );
 
     // ===========
@@ -127,13 +127,13 @@ public interface IJSONEngine {
 
     /**
      * JSON String 缩进处理
-     * @param json       JSON String
-     * @param jsonConfig {@link JSONConfig}
+     * @param json   JSON String
+     * @param config {@link JSONConfig}
      * @return JSON String
      */
     String toJsonIndent(
             String json,
-            JSONConfig jsonConfig
+            Config config
     );
 
     // =
@@ -147,12 +147,12 @@ public interface IJSONEngine {
 
     /**
      * Object 转 JSON String 并进行缩进处理
-     * @param object     {@link Object}
-     * @param jsonConfig {@link JSONConfig}
+     * @param object {@link Object}
+     * @param config {@link JSONConfig}
      * @return JSON String
      */
     String toJsonIndent(
             Object object,
-            JSONConfig jsonConfig
+            Config config
     );
 }

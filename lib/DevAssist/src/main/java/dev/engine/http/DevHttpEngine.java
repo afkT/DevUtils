@@ -3,91 +3,27 @@ package dev.engine.http;
 /**
  * detail: Http Engine
  * @author Ttt
- * <pre>
- *     Application: DevHttpEngine.initEngine()
- *     使用: DevHttpEngine.xxx
- * </pre>
  */
 public final class DevHttpEngine {
 
     private DevHttpEngine() {
     }
 
-    // IHttpEngine
-    private static IHttpEngine sHttpEngine;
+    private static IHttpEngine sEngine;
 
     /**
-     * 初始化 Engine
-     * @param httpEngine {@link IHttpEngine}
+     * 获取 HttpEngine
+     * @return {@link IHttpEngine}
      */
-    public static void initEngine(final IHttpEngine httpEngine) {
-        DevHttpEngine.sHttpEngine = httpEngine;
-    }
-
-    // ===============
-    // = IHttpEngine =
-    // ===============
-
-    // =============
-    // = 获取 Call =
-    // =============
-
-    /**
-     * 获取 Request Call Object
-     * @param request  {@link IHttpEngine.Request}
-     * @param callback {@link IHttpEngine.RequestCallback}
-     * @return {@link IHttpEngine.Call}
-     */
-    public static IHttpEngine.Call newCall(
-            final IHttpEngine.Request request,
-            final IHttpEngine.RequestCallback callback
-    ) {
-        if (sHttpEngine != null) {
-            return sHttpEngine.newCall(request, callback);
-        }
-        return null;
-    }
-
-    // ===========
-    // = 操作方法 =
-    // ===========
-
-    /**
-     * 取消请求 ( 全部 )
-     */
-    public static void cancelAll() {
-        if (sHttpEngine != null) {
-            sHttpEngine.cancelAll();
-        }
+    public static IHttpEngine getEngine() {
+        return sEngine;
     }
 
     /**
-     * 取消请求
-     * @param call {@link IHttpEngine.Call}
+     * 设置 HttpEngine
+     * @param engine {@link IHttpEngine}
      */
-    public static void cancelCall(final IHttpEngine.Call call) {
-        if (sHttpEngine != null) {
-            sHttpEngine.cancelCall(call);
-        }
-    }
-
-    /**
-     * 取消请求
-     * @param url Request Url
-     */
-    public static void cancelUrl(final String url) {
-        if (sHttpEngine != null) {
-            sHttpEngine.cancelUrl(url);
-        }
-    }
-
-    /**
-     * 取消请求
-     * @param object Object Tag
-     */
-    public static void cancelTag(final Object object) {
-        if (sHttpEngine != null) {
-            sHttpEngine.cancelTag(object);
-        }
+    public static void setEngine(final IHttpEngine engine) {
+        DevHttpEngine.sEngine = engine;
     }
 }

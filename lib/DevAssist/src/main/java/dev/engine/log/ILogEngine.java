@@ -6,10 +6,6 @@ package dev.engine.log;
  */
 public interface ILogEngine {
 
-    // ===========
-    // = 配置方法 =
-    // ===========
-
     /**
      * 判断是否打印日志
      * @return {@code true} yes, {@code false} no

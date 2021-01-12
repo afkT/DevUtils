@@ -8,7 +8,7 @@ import android.widget.ImageView;
  * detail: Image Engine 接口
  * @author Ttt
  */
-public interface IImageEngine {
+public interface IImageEngine<Config extends IImageEngine.ImageConfig> {
 
     /**
      * detail: Image Config
