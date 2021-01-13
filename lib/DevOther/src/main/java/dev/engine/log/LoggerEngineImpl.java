@@ -6,7 +6,7 @@ import dev.utils.app.logger.DevLogger;
  * detail: DevLogger Log Engine 实现
  * @author Ttt
  */
-public abstract class DevLoggerEngineImpl
+public abstract class LoggerEngineImpl
         implements ILogEngine {
 
     // ===============================

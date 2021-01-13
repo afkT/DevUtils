@@ -15,6 +15,12 @@ import afkt.project.base.config.PathConfig;
 import afkt.project.function.http.RetrofitUtils;
 import dev.DevUtils;
 import dev.assist.WebViewAssist;
+import dev.engine.image.DevImageEngine;
+import dev.engine.image.GlideEngineImpl;
+import dev.engine.json.DevJSONEngine;
+import dev.engine.json.GsonEngineImpl;
+import dev.engine.log.DevLogEngine;
+import dev.engine.log.LoggerEngineImpl;
 import dev.environment.DevEnvironment;
 import dev.environment.bean.EnvironmentBean;
 import dev.environment.bean.ModuleBean;
@@ -151,7 +157,7 @@ public class BaseApplication
         builder.append("\nDevJava 版本: ").append(DevUtils.getDevJavaVersion());
         builder.append("\n时间: ").append(DateUtils.getDateNow());
         builder.append("\n初始化耗时(毫秒): ").append(timeCounter.duration());
-        DevLogger.i(builder.toString());
+        DevLogEngine.getEngine().i(builder.toString());
     }
 
     // =============
@@ -176,6 +182,8 @@ public class BaseApplication
         initCrash();
         // 初始化 WebView 辅助类全局配置
         initWebViewBuilder();
+        // 初始化引擎
+        initEngine();
         // 初始化其他 lib
         initOther();
     }
@@ -271,7 +279,7 @@ public class BaseApplication
                             WebViewAssist webViewAssist,
                             WebViewAssist.Builder builder
                     ) {
-                        DevLogger.d("WebViewAssist Builder onApply");
+                        DevLogEngine.getEngine().d("WebViewAssist Builder onApply");
                         if (webViewAssist != null) {
 //                            // 自己控制配置
 //                            WebSettings webSettings = webViewAssist.getSettings();
@@ -282,6 +290,20 @@ public class BaseApplication
                     }
                 });
         WebViewAssist.setGlobalBuilder(builder);
+    }
+
+    /**
+     * 初始化引擎
+     */
+    private void initEngine() {
+        DevLogEngine.setEngine(new LoggerEngineImpl() {
+            @Override
+            public boolean isPrintLog() {
+                return DevUtils.isDebug();
+            }
+        });
+        DevJSONEngine.setEngine(new GsonEngineImpl());
+        DevImageEngine.setEngine(new GlideEngineImpl());
     }
 
     /**
@@ -337,7 +359,7 @@ public class BaseApplication
                 builder.append("dataPath: ").append(dataPath);
                 builder.append(DevFinal.NEW_LINE_STR);
                 builder.append("dateTaken: ").append(dateTaken).append(" ( ").append(DateUtils.formatTime(dateTaken, DateUtils.yyyyMMddHHmmss)).append(" )");
-                DevLogger.d(builder.toString());
+                DevLogEngine.getEngine().d(builder.toString());
             }
         }).startListen();
     }
