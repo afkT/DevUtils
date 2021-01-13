@@ -1,8 +1,14 @@
 package dev.engine.image;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 import android.widget.ImageView;
+
+import androidx.fragment.app.Fragment;
+
+import dev.base.Source;
 
 /**
  * detail: Image Engine 接口
@@ -17,177 +23,103 @@ public interface IImageEngine<Config extends IImageEngine.ImageConfig> {
     class ImageConfig {
     }
 
-    /**
-     * detail: 图片加载回调
-     * @param <TranscodeType> 泛型
-     * @author Ttt
-     */
-    interface ImageCallback<TranscodeType> {
+    // ====================
+    // = pause and resume =
+    // ====================
 
-        /**
-         * 获取转码类型
-         * @return TranscodeType Class
-         */
-        Class getTranscodeType();
+    void pause(Fragment fragment);
 
-        /**
-         * 响应回调
-         * @param uri   Image Uri
-         * @param value Value
-         */
-        void onResponse(
-                String uri,
-                TranscodeType value
-        );
+    void resume(Fragment fragment);
 
-        /**
-         * 失败回调
-         * @param uri       Image Uri
-         * @param throwable 异常
-         */
-        void onFailure(
-                String uri,
-                Throwable throwable
-        );
-    }
+    void pause(Context context);
 
-    /**
-     * detail: Bitmap Callback
-     * @author Ttt
-     */
-    abstract class BitmapCallback
-            implements ImageCallback<Bitmap> {
-
-        @Override
-        public final Class getTranscodeType() {
-            return Bitmap.class;
-        }
-
-        @Override
-        public abstract void onResponse(
-                String uri,
-                Bitmap value
-        );
-
-        @Override
-        public abstract void onFailure(
-                String uri,
-                Throwable throwable
-        );
-    }
-
-    /**
-     * detail: Drawable Callback
-     * @author Ttt
-     */
-    abstract class DrawableCallback
-            implements ImageCallback<Drawable> {
-
-        @Override
-        public final Class getTranscodeType() {
-            return Drawable.class;
-        }
-
-        @Override
-        public abstract void onResponse(
-                String uri,
-                Drawable value
-        );
-
-        @Override
-        public abstract void onFailure(
-                String uri,
-                Throwable throwable
-        );
-    }
+    void resume(Context context);
 
     // ===========
-    // = 图片显示 =
+    // = preload =
     // ===========
 
-    /**
-     * 图片显示
-     * @param uri       Image Uri
-     * @param imageView ImageView
-     */
-    void displayImage(
-            String uri,
-            ImageView imageView
-    );
+    void preload(Context context, Source source);
 
-    /**
-     * 图片显示
-     * @param uri          Image Uri
-     * @param imageView    ImageView
-     * @param defaultImage Default resource image
-     */
-    void displayImage(
-            String uri,
-            ImageView imageView,
-            int defaultImage
-    );
+    void preload(Context context, Source source, Config config);
 
-    /**
-     * 图片显示
-     * @param uri       Image Uri
-     * @param imageView ImageView
-     * @param isDefault 是否使用默认配置
-     */
-    void displayImage(
-            String uri,
-            ImageView imageView,
-            boolean isDefault
-    );
+    // =========
+    // = clear =
+    // =========
 
-    /**
-     * 图片显示
-     * @param uri       Image Uri
-     * @param imageView ImageView
-     * @param config    {@link ImageConfig} 加载配置
-     */
-    void displayImage(
-            String uri,
-            ImageView imageView,
-            ImageConfig config
-    );
+    void clear(Context context);
+
+    void clear(View view);
+
+    void clear(Fragment fragment, View view);
+
+    void clearDiskCache(Context context);
+
+    void clearMemoryCache(Context context);
+
+    void clearAllCache(Context context);
 
     // ===========
-    // = 图片加载 =
+    // = display =
     // ===========
 
-    /**
-     * 图片加载
-     * @param uri      Image Uri
-     * @param callback 图片加载回调
-     */
-    void loadImage(
-            String uri,
-            ImageCallback callback
-    );
+    void display(ImageView imageView, String url);
 
-    /**
-     * 图片加载
-     * @param uri      Image Uri
-     * @param callback 图片加载回调
-     * @param config   {@link ImageConfig} 加载配置
-     */
-    void loadImage(
-            String uri,
-            ImageCallback callback,
-            ImageConfig config
-    );
+    void display(ImageView imageView, Source source);
 
-    // ===========
-    // = 其他方法 =
-    // ===========
+    void display(ImageView imageView, String url, Config config);
 
-    /**
-     * 清除磁盘缓存
-     */
-    void clearDiskCache();
+    void display(ImageView imageView, Source source, Config config);
 
-    /**
-     * 清除内存缓存
-     */
-    void clearMemoryCache();
+    <T> void display(ImageView imageView, String url, LoadListener<T> listener);
+
+    <T> void display(ImageView imageView, String url, Config config, LoadListener<T> listener);
+
+    <T> void display(ImageView imageView, Source source, LoadListener<T> listener);
+
+    <T> void display(ImageView imageView, Source source, Config config, LoadListener<T> listener);
+
+    // =
+
+    void display(Fragment fragment, ImageView imageView, String url);
+
+    void display(Fragment fragment, ImageView imageView, Source source);
+
+    void display(Fragment fragment, ImageView imageView, String url, Config Config);
+
+    void display(Fragment fragment, ImageView imageView, Source source, Config Config);
+
+    <T> void display(Fragment fragment, ImageView imageView, String url, LoadListener<T> listener);
+
+    <T> void display(Fragment fragment, ImageView imageView, Source source, LoadListener<T> listener);
+
+    <T> void display(Fragment fragment, ImageView imageView, String url, Config Config, LoadListener<T> listener);
+
+    <T> void display(Fragment fragment, ImageView imageView, Source source, Config Config, LoadListener<T> listener);
+
+    // ========
+    // = load =
+    // ========
+
+    <T> void loadImage(Context context, Source source, Config Config, LoadListener<T> listener);
+
+    <T> void loadImage(Fragment fragment, Source source, Config Config, LoadListener<T> listener);
+
+    <T> T loadImage(Context context, Source source, Config Config);
+
+    // =
+
+    void loadBitmap(Context context, Source source, Config Config, LoadListener<Bitmap> listener);
+
+    void loadBitmap(Fragment fragment, Source source, Config Config, LoadListener<Bitmap> listener);
+
+    Bitmap loadBitmap(Context context, Source source, Config Config);
+
+    // =
+
+    void loadDrawable(Context context, Source source, Config Config, LoadListener<Drawable> listener);
+
+    void loadDrawable(Fragment fragment, Source source, Config Config, LoadListener<Drawable> listener);
+
+    Drawable loadDrawable(Context context, Source source, Config Config);
 }
