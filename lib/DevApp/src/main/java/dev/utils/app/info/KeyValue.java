@@ -11,7 +11,7 @@ import dev.utils.app.ResourceUtils;
  * detail: 键对值实体类
  * @author Ttt
  */
-public class KeyValueBean
+public class KeyValue
         implements Serializable {
 
     @Keep
@@ -24,7 +24,7 @@ public class KeyValueBean
      * @param key   key
      * @param value value
      */
-    public KeyValueBean(
+    public KeyValue(
             final String key,
             final String value
     ) {
@@ -57,12 +57,12 @@ public class KeyValueBean
      * 通过 resId 设置 key, 并且初始化 KeyValueBean
      * @param resId R.string.id
      * @param value value
-     * @return {@link KeyValueBean}
+     * @return {@link KeyValue}
      */
-    public static KeyValueBean get(
+    public static KeyValue get(
             @StringRes final int resId,
             final String value
     ) {
-        return new KeyValueBean(ResourceUtils.getString(resId), value);
+        return new KeyValue(ResourceUtils.getString(resId), value);
     }
 }
