@@ -4,7 +4,7 @@ import android.hardware.Camera;
 import android.os.Handler;
 import android.os.Message;
 
-import dev.utils.app.logger.DevLogger;
+import dev.engine.log.DevLogEngine;
 
 /**
  * detail: 预览回调
@@ -56,7 +56,7 @@ public class PreviewCallback
             message.sendToTarget();
             mPreviewHandler = null;
         } else {
-            DevLogger.dTag(TAG, "Got preview callback, but no handler or resolution available");
+            DevLogEngine.getEngine().dTag(TAG, "Got preview callback, but no handler or resolution available");
         }
     }
 }

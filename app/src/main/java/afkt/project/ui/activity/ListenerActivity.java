@@ -16,6 +16,7 @@ import afkt.project.databinding.ActivityCommonTipsBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
+import dev.engine.log.DevLogEngine;
 import dev.receiver.AppStateReceiver;
 import dev.receiver.BatteryReceiver;
 import dev.receiver.NetWorkReceiver;
@@ -28,7 +29,6 @@ import dev.utils.app.ResourceUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.assist.ScreenSensorAssist;
 import dev.utils.app.helper.ViewHelper;
-import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
 
 /**
@@ -188,59 +188,59 @@ public class ListenerActivity
             WifiReceiver.setWifiListener(new WifiReceiver.WifiListener() {
                 @Override
                 public void onWifiSwitch(boolean isOpenWifi) { // Wifi 开关状态
-                    DevLogger.dTag(TAG, "Wifi 是否打开: %s", isOpenWifi);
+                    DevLogEngine.getEngine().dTag(TAG, "Wifi 是否打开: %s", isOpenWifi);
                 }
 
                 @Override
                 public void onIntoTrigger() {
                     super.onIntoTrigger();
-                    DevLogger.dTag(TAG, "触发回调通知 ( 每次进入都通知 )");
+                    DevLogEngine.getEngine().dTag(TAG, "触发回调通知 ( 每次进入都通知 )");
                 }
 
                 @Override
                 public void onTrigger(int what) {
                     switch (what) {
                         case WifiReceiver.WIFI_SCAN_FINISH: // startScan() 扫描附近 Wifi 结束触发
-                            DevLogger.dTag(TAG, "startScan() 扫描附近 Wifi 结束触发");
+                            DevLogEngine.getEngine().dTag(TAG, "startScan() 扫描附近 Wifi 结束触发");
                             break;
                         case WifiReceiver.WIFI_RSSI_CHANGED: // 已连接的 Wifi 强度发生变化
-                            DevLogger.dTag(TAG, "已连接的 Wifi 强度发生变化");
+                            DevLogEngine.getEngine().dTag(TAG, "已连接的 Wifi 强度发生变化");
                             break;
                         case WifiReceiver.WIFI_ERROR_AUTHENTICATING: // Wifi 认证错误 ( 密码错误等 )
-                            DevLogger.dTag(TAG, "Wifi 认证错误 ( 密码错误等 )");
+                            DevLogEngine.getEngine().dTag(TAG, "Wifi 认证错误 ( 密码错误等 )");
                             break;
                         case WifiReceiver.WIFI_ERROR_UNKNOWN: // 连接错误 ( 其他错误 )
-                            DevLogger.dTag(TAG, "连接错误 ( 其他错误 )");
+                            DevLogEngine.getEngine().dTag(TAG, "连接错误 ( 其他错误 )");
                             break;
                         case WifiReceiver.WIFI_STATE_ENABLED: // Wifi 已打开
-                            DevLogger.dTag(TAG, "Wifi 已打开");
+                            DevLogEngine.getEngine().dTag(TAG, "Wifi 已打开");
                             break;
                         case WifiReceiver.WIFI_STATE_ENABLING: // Wifi 正在打开
-                            DevLogger.dTag(TAG, "Wifi 正在打开");
+                            DevLogEngine.getEngine().dTag(TAG, "Wifi 正在打开");
                             break;
                         case WifiReceiver.WIFI_STATE_DISABLED: // Wifi  已关闭
-                            DevLogger.dTag(TAG, "Wifi 已关闭");
+                            DevLogEngine.getEngine().dTag(TAG, "Wifi 已关闭");
                             break;
                         case WifiReceiver.WIFI_STATE_DISABLING: // Wifi  正在关闭
-                            DevLogger.dTag(TAG, "Wifi 正在关闭");
+                            DevLogEngine.getEngine().dTag(TAG, "Wifi 正在关闭");
                             break;
                         case WifiReceiver.WIFI_STATE_UNKNOWN: // Wifi  状态未知
-                            DevLogger.dTag(TAG, "Wifi 状态未知");
+                            DevLogEngine.getEngine().dTag(TAG, "Wifi 状态未知");
                             break;
                         case WifiReceiver.CONNECTED: // Wifi  连接成功
-                            DevLogger.dTag(TAG, "Wifi 连接成功");
+                            DevLogEngine.getEngine().dTag(TAG, "Wifi 连接成功");
                             break;
                         case WifiReceiver.CONNECTING: // Wifi  连接中
-                            DevLogger.dTag(TAG, "Wifi 连接中");
+                            DevLogEngine.getEngine().dTag(TAG, "Wifi 连接中");
                             break;
                         case WifiReceiver.DISCONNECTED: // Wifi  连接失败、断开
-                            DevLogger.dTag(TAG, "Wifi 连接失败、断开");
+                            DevLogEngine.getEngine().dTag(TAG, "Wifi 连接失败、断开");
                             break;
                         case WifiReceiver.SUSPENDED: // Wifi  暂停、延迟
-                            DevLogger.dTag(TAG, "Wifi 暂停、延迟");
+                            DevLogEngine.getEngine().dTag(TAG, "Wifi 暂停、延迟");
                             break;
                         case WifiReceiver.UNKNOWN: // Wifi  未知
-                            DevLogger.dTag(TAG, "Wifi 未知");
+                            DevLogEngine.getEngine().dTag(TAG, "Wifi 未知");
                             break;
                     }
                 }
@@ -254,19 +254,19 @@ public class ListenerActivity
                     // 判断连接状态
                     switch (what) {
                         case WifiReceiver.CONNECTED: // Wifi 连接成功
-                            DevLogger.dTag(TAG, "连接 Wifi 成功: %s", message.obj);
+                            DevLogEngine.getEngine().dTag(TAG, "连接 Wifi 成功: %s", message.obj);
                             break;
                         case WifiReceiver.CONNECTING: // Wifi 连接中
-                            DevLogger.dTag(TAG, "连接 Wifi 中: %s", message.obj);
+                            DevLogEngine.getEngine().dTag(TAG, "连接 Wifi 中: %s", message.obj);
                             break;
                         case WifiReceiver.DISCONNECTED: // Wifi 连接失败、断开
-                            DevLogger.dTag(TAG, "连接 Wifi 断开");
+                            DevLogEngine.getEngine().dTag(TAG, "连接 Wifi 断开");
                             break;
                         case WifiReceiver.SUSPENDED: // Wifi 暂停、延迟
-                            DevLogger.dTag(TAG, "连接 Wifi 暂停、延迟");
+                            DevLogEngine.getEngine().dTag(TAG, "连接 Wifi 暂停、延迟");
                             break;
                         case WifiReceiver.UNKNOWN: // Wifi 未知
-                            DevLogger.dTag(TAG, "连接 Wifi 状态未知");
+                            DevLogEngine.getEngine().dTag(TAG, "连接 Wifi 状态未知");
                             break;
                     }
                 }
@@ -305,7 +305,7 @@ public class ListenerActivity
                             state = "( 无网络 / 未知 ) 状态";
                             break;
                     }
-                    DevLogger.dTag(TAG, "网络连接状态 %s", state);
+                    DevLogEngine.getEngine().dTag(TAG, "网络连接状态 %s", state);
                 }
             });
             // 注册监听
@@ -343,19 +343,19 @@ public class ListenerActivity
                      */
                     switch (callState) {
                         case Outgoing:
-                            DevLogger.dTag(TAG, "播出电话: %s", number);
+                            DevLogEngine.getEngine().dTag(TAG, "播出电话: %s", number);
                             break;
                         case OutgoingEnd:
-                            DevLogger.dTag(TAG, "播出电话结束: %s", number);
+                            DevLogEngine.getEngine().dTag(TAG, "播出电话结束: %s", number);
                             break;
                         case IncomingRing:
-                            DevLogger.dTag(TAG, "接入电话铃响: %s", number);
+                            DevLogEngine.getEngine().dTag(TAG, "接入电话铃响: %s", number);
                             break;
                         case Incoming:
-                            DevLogger.dTag(TAG, "接入通话中: %s", number);
+                            DevLogEngine.getEngine().dTag(TAG, "接入通话中: %s", number);
                             break;
                         case IncomingEnd:
-                            DevLogger.dTag(TAG, "接入通话完毕: %s", number);
+                            DevLogEngine.getEngine().dTag(TAG, "接入通话完毕: %s", number);
                             break;
                     }
                 }
@@ -386,13 +386,13 @@ public class ListenerActivity
                         String fromAddress,
                         String serviceCenterAddress
                 ) {
-                    DevLogger.dTag(TAG, "onMessage\nmsg: %s\nfromAddress: %s\nserviceCenterAddress: %s", msg, fromAddress, serviceCenterAddress);
+                    DevLogEngine.getEngine().dTag(TAG, "onMessage\nmsg: %s\nfromAddress: %s\nserviceCenterAddress: %s", msg, fromAddress, serviceCenterAddress);
                 }
 
                 @Override
                 public void onMessage(SmsMessage msg) {
                     super.onMessage(msg);
-                    DevLogger.dTag(TAG, "onMessage\nSmsMessage: %s", msg.toString());
+                    DevLogEngine.getEngine().dTag(TAG, "onMessage\nSmsMessage: %s", msg.toString());
                 }
             });
             // 注册监听
@@ -417,17 +417,17 @@ public class ListenerActivity
             TimeReceiver.setTimeListener(new TimeReceiver.TimeListener() {
                 @Override
                 public void onTimeZoneChanged() {
-                    DevLogger.dTag(TAG, "onTimeZoneChanged: 时区改变");
+                    DevLogEngine.getEngine().dTag(TAG, "onTimeZoneChanged: 时区改变");
                 }
 
                 @Override
                 public void onTimeChanged() {
-                    DevLogger.dTag(TAG, "onTimeChanged: 时间改变");
+                    DevLogEngine.getEngine().dTag(TAG, "onTimeChanged: 时间改变");
                 }
 
                 @Override
                 public void onTimeTick() {
-                    DevLogger.dTag(TAG, "onTimeTick: 分钟改变");
+                    DevLogEngine.getEngine().dTag(TAG, "onTimeTick: 分钟改变");
                 }
             });
             // 注册监听
@@ -452,17 +452,17 @@ public class ListenerActivity
             ScreenReceiver.setScreenListener(new ScreenReceiver.ScreenListener() {
                 @Override
                 public void screenOn() {
-                    DevLogger.dTag(TAG, "screenOn: 用户打开屏幕 - 屏幕变亮");
+                    DevLogEngine.getEngine().dTag(TAG, "screenOn: 用户打开屏幕 - 屏幕变亮");
                 }
 
                 @Override
                 public void screenOff() {
-                    DevLogger.dTag(TAG, "screenOff: 锁屏触发");
+                    DevLogEngine.getEngine().dTag(TAG, "screenOff: 锁屏触发");
                 }
 
                 @Override
                 public void userPresent() {
-                    DevLogger.dTag(TAG, "userPresent: 用户解锁触发");
+                    DevLogEngine.getEngine().dTag(TAG, "userPresent: 用户解锁触发");
                 }
             });
             // 注册监听
@@ -506,7 +506,7 @@ public class ListenerActivity
                             if (orientation == 1) { // 横屏
                                 // 当前时间 - 切屏的时间大于 1.5 秒间隔才进行处理
                                 if (System.currentTimeMillis() - cOrientationTime >= 1500) {
-                                    DevLogger.dTag(TAG, "横屏");
+                                    DevLogEngine.getEngine().dTag(TAG, "横屏");
                                     // 重置时间,防止多次触发
                                     cOrientationTime = System.currentTimeMillis();
                                     // 跳转到横屏, 并且关闭监听
@@ -514,7 +514,7 @@ public class ListenerActivity
                                     //mContext.startActivity(intent);
                                 }
                             } else if (orientation == 2) { // 竖屏
-                                DevLogger.dTag(TAG, "竖屏");
+                                DevLogEngine.getEngine().dTag(TAG, "竖屏");
                             }
                             break;
                     }
@@ -544,7 +544,7 @@ public class ListenerActivity
                 @Override
                 public void onOrientationChanged(int rotation) {
                     if (((rotation >= 0) && (rotation <= 30)) || (rotation >= 330)) {
-                        DevLogger.dTag(TAG, "竖屏拍摄");
+                        DevLogEngine.getEngine().dTag(TAG, "竖屏拍摄");
                         isPortrait = true;
                         // 竖屏拍摄
                         if (mRotationFlag != 0) {
@@ -554,7 +554,7 @@ public class ListenerActivity
                             mRotationFlag = 0;
                         }
                     } else if (((rotation >= 230) && (rotation <= 310))) {
-                        DevLogger.dTag(TAG, "横屏拍摄");
+                        DevLogEngine.getEngine().dTag(TAG, "横屏拍摄");
                         isPortrait = false;
                         // 横屏拍摄
                         if (mRotationFlag != 90) {
@@ -564,7 +564,7 @@ public class ListenerActivity
                             mRotationFlag = 90;
                         }
                     } else if (rotation > 30 && rotation < 135) {
-                        DevLogger.dTag(TAG, "反横屏拍摄");
+                        DevLogEngine.getEngine().dTag(TAG, "反横屏拍摄");
                         isPortrait = false;
                         // 反横屏拍摄
                         if (mRotationFlag != 270) {
@@ -574,7 +574,7 @@ public class ListenerActivity
                             mRotationFlag = 270;
                         }
                     } else if (rotation > 135 && rotation < 230) {
-                        DevLogger.dTag(TAG, "反竖屏拍摄");
+                        DevLogEngine.getEngine().dTag(TAG, "反竖屏拍摄");
                         isPortrait = true;
                         // 竖屏拍摄
                         if (mRotationFlag != 360) {
@@ -599,7 +599,7 @@ public class ListenerActivity
                 mOrientationEventListener.enable();
             }
         } catch (Exception e) {
-            DevLogger.eTag(TAG, "rotaListener2");
+            DevLogEngine.getEngine().eTag(TAG, "rotaListener2");
         }
     }
 
@@ -620,17 +620,17 @@ public class ListenerActivity
             BatteryReceiver.setBatteryListener(new BatteryReceiver.BatteryListener() {
                 @Override
                 public void onBatteryChanged(int level) {
-                    DevLogger.dTag(TAG, "电量改变通知 level: %s", level);
+                    DevLogEngine.getEngine().dTag(TAG, "电量改变通知 level: %s", level);
                 }
 
                 @Override
                 public void onBatteryLow(int level) {
-                    DevLogger.dTag(TAG, "电量低通知 level: %s", level);
+                    DevLogEngine.getEngine().dTag(TAG, "电量低通知 level: %s", level);
                 }
 
                 @Override
                 public void onBatteryOkay(int level) {
-                    DevLogger.dTag(TAG, "电量从低变回高通知 level: %s", level);
+                    DevLogEngine.getEngine().dTag(TAG, "电量从低变回高通知 level: %s", level);
                 }
 
                 @Override
@@ -638,12 +638,12 @@ public class ListenerActivity
                         int level,
                         boolean isConnected
                 ) {
-                    DevLogger.dTag(TAG, "充电状态改变通知 level: %s, 是否充电中: %s", level, isConnected);
+                    DevLogEngine.getEngine().dTag(TAG, "充电状态改变通知 level: %s, 是否充电中: %s", level, isConnected);
                 }
 
                 @Override
                 public void onPowerUsageSummary(int level) {
-                    DevLogger.dTag(TAG, "电力使用情况总结 level: %s", level);
+                    DevLogEngine.getEngine().dTag(TAG, "电力使用情况总结 level: %s", level);
                 }
             });
             // 注册监听
@@ -668,17 +668,17 @@ public class ListenerActivity
             AppStateReceiver.setAppStateListener(new AppStateReceiver.AppStateListener() {
                 @Override
                 public void onAdded(String packageName) {
-                    DevLogger.dTag(TAG, "应用安装 packageName: %s", packageName);
+                    DevLogEngine.getEngine().dTag(TAG, "应用安装 packageName: %s", packageName);
                 }
 
                 @Override
                 public void onReplaced(String packageName) {
-                    DevLogger.dTag(TAG, "应用更新 packageName: %s", packageName);
+                    DevLogEngine.getEngine().dTag(TAG, "应用更新 packageName: %s", packageName);
                 }
 
                 @Override
                 public void onRemoved(String packageName) {
-                    DevLogger.dTag(TAG, "应用卸载 packageName: %s", packageName);
+                    DevLogEngine.getEngine().dTag(TAG, "应用卸载 packageName: %s", packageName);
                 }
             });
             // 注册监听

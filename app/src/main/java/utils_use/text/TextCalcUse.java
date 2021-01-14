@@ -5,8 +5,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import dev.DevUtils;
+import dev.engine.log.DevLogEngine;
 import dev.utils.app.TextViewUtils;
-import dev.utils.app.logger.DevLogger;
 
 /**
  * detail: 计算字体宽度、高度
@@ -60,6 +60,6 @@ public final class TextCalcUse {
         builder.append("\n计算字体大小: ").append(TextViewUtils.reckonTextSizeByHeight(TextViewUtils.getTextHeight(textView)));
         builder.append("\n计算行数: ").append(TextViewUtils.calcTextLine(textView, textView.getMeasuredWidth()));
         // 打印日志
-        DevLogger.dTag(TAG, builder.toString());
+        DevLogEngine.getEngine().dTag(TAG, builder.toString());
     }
 }

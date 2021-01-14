@@ -16,9 +16,9 @@ import afkt.project.base.app.BaseActivity;
 import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.bean.ItemBean;
 import afkt.project.ui.adapter.PagerSnapMAXAdapter;
+import dev.engine.log.DevLogEngine;
 import dev.utils.app.ListViewUtils;
 import dev.utils.app.helper.ViewHelper;
-import dev.utils.app.logger.DevLogger;
 
 /**
  * detail: PagerSnapHelper - 无限滑动
@@ -106,7 +106,7 @@ public class PagerSnapMAXActivity
                         // 真实索引
                         int index = pagerSnapAdapter.getRealIndex(currentPosition);
 
-                        DevLogger.dTag(TAG, "%s - %s 当前显示索引: %s - %s", lastItemPosition, firstItemPosition, currentPosition, index);
+                        DevLogEngine.getEngine().dTag(TAG, "%s - %s 当前显示索引: %s - %s", lastItemPosition, firstItemPosition, currentPosition, index);
                     }
                 }
             }

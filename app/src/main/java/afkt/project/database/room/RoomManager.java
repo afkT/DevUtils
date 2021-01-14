@@ -7,7 +7,7 @@ import java.util.Map;
 
 import afkt.project.database.room.able.AbsRoomDatabase;
 import afkt.project.database.room.module.note.NoteDatabase;
-import dev.utils.app.logger.DevLogger;
+import dev.engine.log.DevLogEngine;
 import dev.utils.common.StringUtils;
 
 /**
@@ -73,7 +73,7 @@ public final class RoomManager {
             try {
                 sDatabaseMaps.put(databaseName, CREATE.create(dbName, password, clazz));
             } catch (Exception e) {
-                DevLogger.eTag(TAG, e, "database");
+                DevLogEngine.getEngine().eTag(TAG, e, "database");
             }
         }
         AbsRoomDatabase roomDatabase = sDatabaseMaps.get(databaseName);
@@ -82,7 +82,7 @@ public final class RoomManager {
             try {
                 db = (T) roomDatabase;
             } catch (Exception e) {
-                DevLogger.eTag(TAG, e, "database convert T");
+                DevLogEngine.getEngine().eTag(TAG, e, "database convert T");
             }
             return db;
         }

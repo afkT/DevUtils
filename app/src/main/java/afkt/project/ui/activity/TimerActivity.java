@@ -13,8 +13,8 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
+import dev.engine.log.DevLogEngine;
 import dev.utils.app.assist.manager.TimerManager;
-import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
 import utils_use.timer.TimerUse;
 
@@ -69,9 +69,9 @@ public class TimerActivity
                                     int number = absTimer.getTriggerNumber();
                                     // 触发次数
                                     if (number == 1) {
-                                        DevLogger.dTag(TAG, "第一次触发, 0.5 秒延迟");
+                                        DevLogEngine.getEngine().dTag(TAG, "第一次触发, 0.5 秒延迟");
                                     } else {
-                                        DevLogger.dTag(TAG, "每隔 2 秒触发一次, 触发次数: %s", number);
+                                        DevLogEngine.getEngine().dTag(TAG, "每隔 2 秒触发一次, 触发次数: %s", number);
                                     }
                                 }
                             }, NOTIFY, 500L, 2000L, -1);
@@ -177,11 +177,11 @@ public class TimerActivity
 //                switch (msg.what) {
 //                    case NOTIFY:
 //                        // 获取触发次数
-//                        DevLogger.dTag(TAG, "已经触发次数: %s", absTimer.getTriggerNumber());
-//                        DevLogger.dTag(TAG, "触发上限次数: %s", absTimer.getTriggerLimit());
+//                        DevLogEngine.getEngine().dTag(TAG, "已经触发次数: %s", absTimer.getTriggerNumber());
+//                        DevLogEngine.getEngine().dTag(TAG, "触发上限次数: %s", absTimer.getTriggerLimit());
 //                        // 判断是否触发结束
 //                        if (absTimer.isTriggerEnd()) {
-//                            DevLogger.dTag(TAG, "触发结束");
+//                            DevLogEngine.getEngine().dTag(TAG, "触发结束");
 //                        }
 //                        break;
 //                }

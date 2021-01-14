@@ -11,9 +11,9 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
+import dev.engine.log.DevLogEngine;
 import dev.utils.DevFinal;
 import dev.utils.app.PathUtils;
-import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.common.StringUtils;
 
@@ -103,7 +103,7 @@ public class PathActivity
                                 PathUtils.getInternal().getAppAudiobooksDir(),
                                 ""
                         );
-                        DevLogger.dTag(TAG, builder.toString());
+                        DevLogEngine.getEngine().dTag(TAG, builder.toString());
                         showToast(true, "信息已打印, 请查看 Logcat");
                         break;
                     case ButtonValue.BTN_PATH_APP_EXTERNAL:
@@ -149,7 +149,7 @@ public class PathActivity
                                 PathUtils.getAppExternal().getAppObbDir(),
                                 ""
                         );
-                        DevLogger.dTag(TAG, builder.toString());
+                        DevLogEngine.getEngine().dTag(TAG, builder.toString());
                         showToast(true, "信息已打印, 请查看 Logcat");
                         break;
                     case ButtonValue.BTN_PATH_SDCARD:
@@ -186,7 +186,7 @@ public class PathActivity
                                 PathUtils.getSDCard().getAudiobooksDir(),
                                 ""
                         );
-                        DevLogger.dTag(TAG, builder.toString());
+                        DevLogEngine.getEngine().dTag(TAG, builder.toString());
                         showToast(true, "信息已打印, 请查看 Logcat");
                         break;
                     default:

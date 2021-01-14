@@ -19,8 +19,8 @@ import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
 import dev.callback.result.DevExResultCallback;
 import dev.callback.result.DevResultCallback;
+import dev.engine.log.DevLogEngine;
 import dev.other.GsonUtils;
-import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.common.DateUtils;
 import dev.utils.common.ThrowableUtils;
@@ -63,7 +63,7 @@ public class DevExtendActivity
                             @Override
                             public <E extends Throwable> void onError(E e) {
                                 super.onError(e);
-                                DevLogger.eTag(TAG, e);
+                                DevLogEngine.getEngine().eTag(TAG, e);
                                 ToastTintUtils.error("保存报错: " + ThrowableUtils.getThrowable(e));
                             }
 
@@ -118,7 +118,7 @@ public class DevExtendActivity
                 builder.append("\ntype: ").append(callParams.type);
                 builder.append("\nuserInfo: ").append(GsonUtils.toJson(callParams.userInfo));
                 builder.append("\nhashMap: ").append(callParams.hashMap.toString());
-                DevLogger.dTag(TAG, "value: %s%s", value, builder.toString());
+                DevLogEngine.getEngine().dTag(TAG, "value: %s%s", value, builder.toString());
             }
 
             @Override
@@ -136,7 +136,7 @@ public class DevExtendActivity
                 builder.append("\ntype: ").append(callParams.type);
                 builder.append("\nuserInfo: ").append(GsonUtils.toJson(callParams.userInfo));
                 builder.append("\nhashMap: ").append(callParams.hashMap.toString());
-                DevLogger.dTag(TAG, "value: %s, type: %s%s", value, type, builder.toString());
+                DevLogEngine.getEngine().dTag(TAG, "value: %s, type: %s%s", value, type, builder.toString());
             }
         };
     }

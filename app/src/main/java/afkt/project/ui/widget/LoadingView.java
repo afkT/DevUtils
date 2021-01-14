@@ -11,7 +11,7 @@ import afkt.project.R;
 import afkt.project.ui.widget.render.LoadingDrawable;
 import afkt.project.ui.widget.render.LoadingRenderer;
 import afkt.project.ui.widget.render.LoadingRendererFactory;
-import dev.utils.app.logger.DevLogger;
+import dev.engine.log.DevLogEngine;
 
 /**
  * detail: LoadingView
@@ -47,7 +47,7 @@ public class LoadingView
             setLoadingRenderer(loadingRenderer);
             a.recycle();
         } catch (Exception e) {
-            DevLogger.e(e);
+            DevLogEngine.getEngine().e(e);
         }
     }
 

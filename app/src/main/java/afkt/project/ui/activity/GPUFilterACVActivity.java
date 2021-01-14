@@ -19,11 +19,11 @@ import afkt.project.databinding.ActivityGpuFilterBinding;
 import afkt.project.model.bean.ACVFileBean;
 import afkt.project.ui.adapter.GPUFilterACVAdapter;
 import afkt.project.util.GPUFilterUtils;
+import dev.engine.log.DevLogEngine;
 import dev.other.picture.PictureSelectorUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.image.ImageUtils;
-import dev.utils.app.logger.DevLogger;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageToneCurveFilter;
 
 /**
@@ -155,7 +155,7 @@ public class GPUFilterACVActivity
             Bitmap                  bitmapFilter = GPUFilterUtils.getFilterBitmap(selectBitmap, gpuFilter);
             binding.vidAgfIgview.setImageBitmap(bitmapFilter);
         } catch (Exception e) {
-            DevLogger.eTag(TAG, e, "setFilter");
+            DevLogEngine.getEngine().eTag(TAG, e, "setFilter");
         }
     }
 }

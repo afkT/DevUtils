@@ -16,8 +16,8 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
+import dev.engine.log.DevLogEngine;
 import dev.service.NotificationService;
-import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
 
 /**
@@ -95,12 +95,12 @@ public class NotificationServiceActivity
         NotificationService.setNotificationListener(new NotificationService.NotificationListener() {
             @Override
             public void onServiceCreated(NotificationService service) {
-                DevLogger.dTag(TAG, "服务创建通知");
+                DevLogEngine.getEngine().dTag(TAG, "服务创建通知");
             }
 
             @Override
             public void onServiceDestroy() {
-                DevLogger.dTag(TAG, "服务销毁通知");
+                DevLogEngine.getEngine().dTag(TAG, "服务销毁通知");
             }
 
             @Override
@@ -115,7 +115,7 @@ public class NotificationServiceActivity
                 builder.append("\nintent: ").append(intent);
                 builder.append("\nflags: ").append(flags);
                 builder.append("\nstartId: ").append(startId);
-                DevLogger.dTag(TAG, builder.toString());
+                DevLogEngine.getEngine().dTag(TAG, builder.toString());
                 return 0;
             }
 
@@ -134,7 +134,7 @@ public class NotificationServiceActivity
                     }
                 }
                 // 打印日志
-                DevLogger.dTag(TAG, builder.toString());
+                DevLogEngine.getEngine().dTag(TAG, builder.toString());
             }
 
             @Override
@@ -143,7 +143,7 @@ public class NotificationServiceActivity
                 builder.append("onNotificationRemoved");
                 builder.append("\nstatusBarNotification: ").append(sbn);
                 // 打印日志
-                DevLogger.dTag(TAG, builder.toString());
+                DevLogEngine.getEngine().dTag(TAG, builder.toString());
             }
         });
     }

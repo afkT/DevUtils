@@ -20,7 +20,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.Map;
 
 import afkt.project.R;
-import dev.utils.app.logger.DevLogger;
+import dev.engine.log.DevLogEngine;
 
 /**
  * detail: 解码处理
@@ -134,7 +134,7 @@ public class DecodeHandler
 
         Handler handler = mDecodeConfig.getHandler();
         if (rawResult != null) {
-            DevLogger.dTag(TAG, "解析成功, 发送数据");
+            DevLogEngine.getEngine().dTag(TAG, "解析成功, 发送数据");
             // Don't log the barcode contents for security.
             if (handler != null) {
                 Message message = Message.obtain(handler, R.id.decode_succeeded, rawResult);
@@ -144,7 +144,7 @@ public class DecodeHandler
                 message.sendToTarget();
             }
         } else {
-            DevLogger.dTag(TAG, "解析失败");
+            DevLogEngine.getEngine().dTag(TAG, "解析失败");
             if (handler != null) {
                 Message message = Message.obtain(handler, R.id.decode_failed);
                 message.sendToTarget();
@@ -168,7 +168,7 @@ public class DecodeHandler
         if (mDecodeConfig == null) {
             return null;
         }
-        DevLogger.dTag(TAG, "buildLuminanceSource 解析摄像头数据");
+        DevLogEngine.getEngine().dTag(TAG, "buildLuminanceSource 解析摄像头数据");
         // 判断是否裁减
         if (mDecodeConfig.isCropRect() && mDecodeConfig.getCropRect() != null) {
             // 判断是否出现异常

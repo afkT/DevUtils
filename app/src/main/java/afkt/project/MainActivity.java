@@ -17,8 +17,8 @@ import afkt.project.ui.ModuleActivity;
 import afkt.project.ui.activity.DevEnvironmentLibActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.util.SkipUtils;
+import dev.engine.log.DevLogEngine;
 import dev.utils.app.AppCommonUtils;
-import dev.utils.app.logger.DevLogger;
 import dev.utils.app.permission.PermissionUtils;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.app.toast.ToastUtils;
@@ -62,7 +62,7 @@ public class MainActivity
 
             @Override
             public void onFail(Exception e) {
-                DevLogger.eTag(TAG, e, "getNetTime");
+                DevLogEngine.getEngine().eTag(TAG, e, "getNetTime");
             }
         });
 
@@ -77,7 +77,7 @@ public class MainActivity
              */
             @Override
             public void onGranted() {
-                DevLogger.d("permission granted");
+                DevLogEngine.getEngine().d("permission granted");
             }
 
             /**
@@ -97,7 +97,7 @@ public class MainActivity
                 builder.append("\ngrantedList: ").append(Arrays.toString(grantedList.toArray()));
                 builder.append("\ndeniedList: ").append(Arrays.toString(deniedList.toArray()));
                 builder.append("\nnotFoundList: ").append(Arrays.toString(notFoundList.toArray()));
-                DevLogger.d(builder.toString());
+                DevLogEngine.getEngine().d(builder.toString());
                 // 拒绝了则再次请求处理
                 PermissionUtils.againRequest(MainActivity.this, this, deniedList);
                 // Toast

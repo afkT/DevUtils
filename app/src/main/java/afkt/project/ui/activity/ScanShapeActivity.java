@@ -11,12 +11,12 @@ import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.databinding.ActivityScanShapeBinding;
 import afkt.project.util.ProjectUtils;
+import dev.engine.log.DevLogEngine;
 import dev.utils.app.FlashlightUtils;
 import dev.utils.app.ListenerUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.camera1.CameraAssist;
 import dev.utils.app.camera1.CameraUtils;
-import dev.utils.app.logger.DevLogger;
 import dev.utils.app.permission.PermissionUtils;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.widget.ui.ScanShapeView;
@@ -136,7 +136,7 @@ public class ScanShapeActivity
                     cameraAssist.stopPreview();
                 }
             } catch (Exception e) {
-                DevLogger.eTag(TAG, e, "surfaceDestroyed");
+                DevLogEngine.getEngine().eTag(TAG, e, "surfaceDestroyed");
             }
         }
     };
@@ -165,7 +165,7 @@ public class ScanShapeActivity
 //                // 默认开启自动对焦, 设置不需要自动对焦
 //                cameraAssist.setAutoFocus(false);
             } catch (Exception e) {
-                DevLogger.eTag(TAG, e, "checkPermission startPreview");
+                DevLogEngine.getEngine().eTag(TAG, e, "checkPermission startPreview");
             }
         } else {
             ToastTintUtils.warning("需要摄像头权限预览");

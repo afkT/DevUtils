@@ -29,6 +29,7 @@ import afkt.project.util.zxing.decode.DecodeConfig;
 import afkt.project.util.zxing.decode.DecodeFormat;
 import afkt.project.util.zxing.decode.DecodeResult;
 import afkt.project.util.zxing.decode.DecodeThread;
+import dev.engine.log.DevLogEngine;
 import dev.other.ZXingQRCodeUtils;
 import dev.other.picture.PictureSelectorUtils;
 import dev.utils.app.FlashlightUtils;
@@ -40,7 +41,6 @@ import dev.utils.app.assist.InactivityTimerAssist;
 import dev.utils.app.camera1.CameraAssist;
 import dev.utils.app.camera1.CameraUtils;
 import dev.utils.app.image.ImageUtils;
-import dev.utils.app.logger.DevLogger;
 import dev.utils.app.permission.PermissionUtils;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.widget.ui.ScanShapeView;
@@ -200,7 +200,7 @@ public class QRCodeScanActivity
                     cameraAssist.stopPreview();
                 }
             } catch (Exception e) {
-                DevLogger.eTag(TAG, e, "surfaceDestroyed");
+                DevLogEngine.getEngine().eTag(TAG, e, "surfaceDestroyed");
             }
         }
     };
@@ -222,7 +222,7 @@ public class QRCodeScanActivity
                 cameraAssist.setPreviewNotify(new CameraAssist.PreviewNotify() {
                     @Override
                     public void stopPreviewNotify() {
-                        DevLogger.dTag(TAG, "停止预览通知");
+                        DevLogEngine.getEngine().dTag(TAG, "停止预览通知");
                         // 通知处理
                         if (mPreviewCallback != null) {
                             mPreviewCallback.setHandler(null, 0);
@@ -231,7 +231,7 @@ public class QRCodeScanActivity
 
                     @Override
                     public void startPreviewNotify() {
-                        DevLogger.dTag(TAG, "开始预览通知");
+                        DevLogEngine.getEngine().dTag(TAG, "开始预览通知");
                     }
                 });
                 // 获取预览大小
@@ -298,12 +298,12 @@ public class QRCodeScanActivity
                         ) {
                             this.isError = isError;
                             // 打印日志
-                            DevLogger.eTag(TAG, e, "setError");
+                            DevLogEngine.getEngine().eTag(TAG, e, "setError");
                         }
                     }, mDecodeMode, cameraAssist, mPreviewCallback, this);
                 }
             } catch (Exception e) {
-                DevLogger.eTag(TAG, e, "checkPermission startPreview");
+                DevLogEngine.getEngine().eTag(TAG, e, "checkPermission startPreview");
             }
         } else {
             ToastTintUtils.warning("需要摄像头权限预览");
@@ -359,7 +359,7 @@ public class QRCodeScanActivity
         // 提示解析成功声音
         mBeepVibrateAssist.playBeepSoundAndVibrate();
         // 打印结果
-        DevLogger.dTag(TAG, "handleDecode result: %s", ZXingQRCodeUtils.getResultData(result));
+        DevLogEngine.getEngine().dTag(TAG, "handleDecode result: %s", ZXingQRCodeUtils.getResultData(result));
 
 //        // 回传
 //        Intent resultIntent = new Intent();
@@ -458,12 +458,12 @@ public class QRCodeScanActivity
             if (message.what == R.id.restart_preview) {
                 restartPreviewAndDecode();
             } else if (message.what == R.id.decode_succeeded) { // 解析成功
-                DevLogger.dTag(TAG, "解析成功");
+                DevLogEngine.getEngine().dTag(TAG, "解析成功");
                 mState = State.SUCCESS;
                 Bundle bundle = message.getData();
                 mDecodeResult.handleDecode((Result) message.obj, bundle);
             } else if (message.what == R.id.decode_failed) { // 解析失败 ( 解析不出来触发 )
-                DevLogger.dTag(TAG, "解析失败");
+                DevLogEngine.getEngine().dTag(TAG, "解析失败");
                 // 表示预览中
                 mState = State.PREVIEW;
                 // 设置预览解码线程
@@ -485,7 +485,7 @@ public class QRCodeScanActivity
          * 重新设置预览以及解码处理
          */
         private void restartPreviewAndDecode() {
-            DevLogger.dTag(TAG, "restartPreviewAndDecode");
+            DevLogEngine.getEngine().dTag(TAG, "restartPreviewAndDecode");
             if (mState == State.SUCCESS) {
                 mState = State.PREVIEW;
                 // 设置请求预览页面
@@ -502,7 +502,7 @@ public class QRCodeScanActivity
                 Handler handler,
                 int message
         ) {
-            DevLogger.dTag(TAG, "requestPreviewFrame");
+            DevLogEngine.getEngine().dTag(TAG, "requestPreviewFrame");
             Camera theCamera = mCameraAssist.getCamera();
             // 不为 null 并且预览中才处理
             if (theCamera != null && mCameraAssist.isPreviewing()) {
@@ -519,7 +519,7 @@ public class QRCodeScanActivity
          * 同步退出解析处理
          */
         public void quitSynchronously() {
-            DevLogger.dTag(TAG, "退出扫描");
+            DevLogEngine.getEngine().dTag(TAG, "退出扫描");
             // 表示状态为默认
             mState = State.DONE;
             // 停止预览

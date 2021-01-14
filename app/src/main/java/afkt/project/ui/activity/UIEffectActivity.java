@@ -15,6 +15,7 @@ import afkt.project.databinding.ActivityUiEffectBinding;
 import afkt.project.model.item.TabItem;
 import afkt.project.util.assist.TabLayoutAssist;
 import dev.base.widget.BaseTextView;
+import dev.engine.log.DevLogEngine;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.ListenerUtils;
 import dev.utils.app.ResourceUtils;
@@ -23,7 +24,6 @@ import dev.utils.app.StateListUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.QuickHelper;
 import dev.utils.app.helper.ViewHelper;
-import dev.utils.app.logger.DevLogger;
 import dev.utils.common.ArrayUtils;
 
 /**
@@ -147,7 +147,7 @@ public class UIEffectActivity
                             TabItem tabItem,
                             int pos
                     ) {
-                        DevLogger.dTag(TAG, "TabItem: %s, pos: %s", tabItem.getTitle(), pos);
+                        DevLogEngine.getEngine().dTag(TAG, "TabItem: %s, pos: %s", tabItem.getTitle(), pos);
                         // 设置选中
                         tabLayoutAssist.setSelect(pos);
                     }
@@ -161,7 +161,7 @@ public class UIEffectActivity
                     TabItem tabItem,
                     int pos
             ) {
-                DevLogger.dTag(TAG, "TabItem: %s, pos: %s", tabItem.getTitle(), pos);
+                DevLogEngine.getEngine().dTag(TAG, "TabItem: %s, pos: %s", tabItem.getTitle(), pos);
             }
         });
     }
@@ -299,13 +299,13 @@ public class UIEffectActivity
                             // 累加宽度
                             x += binding.vidAue70Linear.getChildAt(i).getWidth();
                         } catch (Exception e) {
-                            DevLogger.eTag(TAG, e, "scrollTab");
+                            DevLogEngine.getEngine().eTag(TAG, e, "scrollTab");
                         }
                     }
                     // 开始移动位置
                     binding.vidAue70Scroll.scrollTo(x, 0);
                 } catch (Exception e) {
-                    DevLogger.eTag(TAG, e, "scrollTab");
+                    DevLogEngine.getEngine().eTag(TAG, e, "scrollTab");
                 }
             }
         }, 50);

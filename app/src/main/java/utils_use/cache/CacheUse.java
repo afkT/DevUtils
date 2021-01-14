@@ -3,9 +3,9 @@ package utils_use.cache;
 import java.io.File;
 import java.io.Serializable;
 
+import dev.engine.log.DevLogEngine;
 import dev.utils.app.PathUtils;
 import dev.utils.app.cache.DevCache;
-import dev.utils.app.logger.DevLogger;
 
 /**
  * detail: 缓存使用方法
@@ -26,13 +26,13 @@ public final class CacheUse {
         // 初始化
         CacheVo cacheVo = new CacheVo("测试持久化");
         // 打印信息
-        DevLogger.dTag(TAG, "保存前: %s", cacheVo.toString());
+        DevLogEngine.getEngine().dTag(TAG, "保存前: %s", cacheVo.toString());
         // 保存数据
         DevCache.newCache().put("ctv", cacheVo);
         // 重新获取
         CacheVo ctv = (CacheVo) DevCache.newCache().getAsObject("ctv");
         // 打印获取后的数据
-        DevLogger.dTag(TAG, "保存后: %s", ctv.toString());
+        DevLogEngine.getEngine().dTag(TAG, "保存后: %s", ctv.toString());
         // 设置保存有效时间 5秒
         DevCache.newCache().put("ctva", new CacheVo("测试有效时间"), 1);
 
@@ -49,7 +49,7 @@ public final class CacheUse {
                     // 获取数据
                     CacheVo ctva = (CacheVo) DevCache.newCache().getAsObject("ctva");
                     // 判断是否过期
-                    DevLogger.dTag(TAG, "是否过期: %s", (ctva == null));
+                    DevLogEngine.getEngine().dTag(TAG, "是否过期: %s", (ctva == null));
                 } catch (Exception e) {
                 }
             }

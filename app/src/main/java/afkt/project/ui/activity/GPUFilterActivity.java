@@ -16,10 +16,10 @@ import afkt.project.databinding.ActivityGpuFilterBinding;
 import afkt.project.model.item.FilterItem;
 import afkt.project.ui.adapter.GPUFilterAdapter;
 import afkt.project.util.GPUFilterUtils;
+import dev.engine.log.DevLogEngine;
 import dev.other.picture.PictureSelectorUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.image.ImageUtils;
-import dev.utils.app.logger.DevLogger;
 
 /**
  * detail: GPU 滤镜效果
@@ -140,7 +140,7 @@ public class GPUFilterActivity
             Bitmap bitmapFilter = GPUFilterUtils.getFilterBitmap(selectBitmap, FilterItem.createFilterForType(filterItem.filterType));
             binding.vidAgfIgview.setImageBitmap(bitmapFilter);
         } catch (Exception e) {
-            DevLogger.eTag(TAG, e, "setFilter");
+            DevLogEngine.getEngine().eTag(TAG, e, "setFilter");
         }
     }
 }

@@ -6,7 +6,7 @@ import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.Message;
 
-import dev.utils.app.logger.DevLogger;
+import dev.engine.log.DevLogEngine;
 import dev.utils.app.wifi.WifiHotUtils;
 import dev.utils.app.wifi.WifiUtils;
 
@@ -70,7 +70,7 @@ public class QuickWifiHotUtils {
             switch (msg.what) {
                 case CLOSE_WIFI_SUCCESS: // 成功关闭 Wifi 准备开启热点
                     // 打印日志
-                    DevLogger.dTag(TAG, "hotHandler 关闭 Wifi 成功, 开启热点中");
+                    DevLogEngine.getEngine().dTag(TAG, "hotHandler 关闭 Wifi 成功, 开启热点中");
                     // 停止线程检查
                     setWifiCheck(false);
                     // 开始进行线程检查
@@ -80,7 +80,7 @@ public class QuickWifiHotUtils {
                     break;
                 case START_WIFISPOT_SUCCESS: // 开启热点成功
                     // 打印日志
-                    DevLogger.dTag(TAG, "hotHandler 开启热点成功");
+                    DevLogEngine.getEngine().dTag(TAG, "hotHandler 开启热点成功");
                     // 停止线程检查
                     setWifiApCheck(false);
                     // 需要检查连接状态
@@ -90,7 +90,7 @@ public class QuickWifiHotUtils {
                     break;
                 case CHECK_HOT_CONN: // 检查是否连接热点
                     // 打印日志
-                    DevLogger.dTag(TAG, "hotHandler 检查是否连接热点");
+                    DevLogEngine.getEngine().dTag(TAG, "hotHandler 检查是否连接热点");
                     // 判断是否存在设备连接热点
                     boolean isConnectHot = wifiHotUtils.isConnectHot();
                     // 如果存在, 则尝试连接
@@ -99,7 +99,7 @@ public class QuickWifiHotUtils {
                         isThreadCheckHot = false;
                         // 通过获取是否存在其他设备 - 手机连接上该热点
                         // 打印日志
-                        DevLogger.dTag(TAG, "存在设备连接热点");
+                        DevLogEngine.getEngine().dTag(TAG, "存在设备连接热点");
                     }
                     break;
             }
@@ -161,16 +161,16 @@ public class QuickWifiHotUtils {
                 case WifiManager.WIFI_STATE_ENABLING: // 正在打开
                     // case WifiManager.WIFI_STATE_UNKNOWN: // 未知
                     isPostDelayed = true;
-                    DevLogger.dTag(TAG, "Wifi 已打开、正在打开");
+                    DevLogEngine.getEngine().dTag(TAG, "Wifi 已打开、正在打开");
                     wifiUtils.closeWifi(); // 关闭 Wifi
                     break;
                 case WifiManager.WIFI_STATE_DISABLED: // 已关闭
                     isPostDelayed = false;
-                    DevLogger.dTag(TAG, "Wifi 已关闭");
+                    DevLogEngine.getEngine().dTag(TAG, "Wifi 已关闭");
                     break;
                 case WifiManager.WIFI_STATE_DISABLING: // 正在关闭
                     isPostDelayed = true;
-                    DevLogger.dTag(TAG, "Wifi 正在关闭");
+                    DevLogEngine.getEngine().dTag(TAG, "Wifi 正在关闭");
                     break;
             }
             // 判断是否延时 0.4 秒进行开启热点
@@ -204,24 +204,24 @@ public class QuickWifiHotUtils {
             // 获取 Wifi 热点状态
             switch (wifiHotUtils.getWifiApState()) {
                 case WifiHotUtils.WIFI_AP_STATE_DISABLING: // Wifi 热点正在关闭
-                    DevLogger.dTag(TAG, "Wifi 热点正在关闭");
+                    DevLogEngine.getEngine().dTag(TAG, "Wifi 热点正在关闭");
                     break;
                 case WifiHotUtils.WIFI_AP_STATE_DISABLED: // Wifi 热点已关闭
-                    DevLogger.dTag(TAG, "Wifi 热点已关闭");
+                    DevLogEngine.getEngine().dTag(TAG, "Wifi 热点已关闭");
                     // 开启热点
                     WifiConfiguration wifiConfiguration = WifiHotUtils.createWifiConfigToAp(hotSSID, hotPwd);
                     wifiHotUtils.startWifiAp(wifiConfiguration);
                     break;
                 case WifiHotUtils.WIFI_AP_STATE_ENABLING: // Wifi 热点正在打开
-                    DevLogger.dTag(TAG, "Wifi 热点正在打开");
+                    DevLogEngine.getEngine().dTag(TAG, "Wifi 热点正在打开");
                     break;
                 case WifiHotUtils.WIFI_AP_STATE_ENABLED: // Wifi 热点已打开
-                    DevLogger.dTag(TAG, "Wifi 热点已打开");
+                    DevLogEngine.getEngine().dTag(TAG, "Wifi 热点已打开");
                     String wifiap = "ssid: " + wifiHotUtils.getApWifiSSID() + "\npwd: " + wifiHotUtils.getApWifiSSID();
-                    DevLogger.dTag(TAG, wifiap);
+                    DevLogEngine.getEngine().dTag(TAG, wifiap);
                     break;
                 case WifiHotUtils.WIFI_AP_STATE_FAILED: // Wifi 热点状态未知
-                    DevLogger.dTag(TAG, "Wifi热点状态未知");
+                    DevLogEngine.getEngine().dTag(TAG, "Wifi热点状态未知");
                     break;
             }
             // 判断是否延时 0.4 秒进行开启热点
@@ -273,7 +273,7 @@ public class QuickWifiHotUtils {
             String pwd
     ) {
         // 打印日志
-        DevLogger.dTag(TAG, "openHotspot 开启热点 ssid: %s, pwd: %s", ssid, pwd);
+        DevLogEngine.getEngine().dTag(TAG, "openHotspot 开启热点 ssid: %s, pwd: %s", ssid, pwd);
         hotSSID = ssid;
         hotPwd = pwd;
         // 如果开启了 Wifi 则进行关闭 Wifi

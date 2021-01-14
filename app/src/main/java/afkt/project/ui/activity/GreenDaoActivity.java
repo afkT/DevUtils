@@ -25,7 +25,7 @@ import afkt.project.database.green.module.note.bean.NoteType;
 import afkt.project.databinding.ActivityDatabaseBinding;
 import afkt.project.ui.adapter.GreenDaoAdapter;
 import dev.assist.PageAssist;
-import dev.utils.app.logger.DevLogger;
+import dev.engine.log.DevLogEngine;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.common.ChineseUtils;
 import dev.utils.common.RandomUtils;
@@ -269,7 +269,7 @@ public class GreenDaoActivity
                 limit = pageSize * 2 - diff;
             }
         }
-        DevLogger.dTag(TAG, "offset: %s, limit: %s", offset, limit);
+        DevLogEngine.getEngine().dTag(TAG, "offset: %s, limit: %s", offset, limit);
         // 请求数据
         return GreenManager.getNoteDatabase().getNoteDao()
                 .queryBuilder()

@@ -12,9 +12,9 @@ import java.util.List;
 import afkt.project.R;
 import afkt.project.model.item.TabItem;
 import dev.base.widget.BaseTextView;
+import dev.engine.log.DevLogEngine;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.helper.ViewHelper;
-import dev.utils.app.logger.DevLogger;
 
 /**
  * detail: TabLayout 辅助类
@@ -114,13 +114,13 @@ public final class TabLayoutAssist {
                             // 累加宽度
                             x += tabLayout.getTabAt(i).getCustomView().getWidth();
                         } catch (Exception e) {
-                            DevLogger.eTag(TAG, e, "scrollTab");
+                            DevLogEngine.getEngine().eTag(TAG, e, "scrollTab");
                         }
                     }
                     // 开始移动位置
                     tabLayout.scrollTo(x, 0);
                 } catch (Exception e) {
-                    DevLogger.eTag(TAG, e, "scrollTab");
+                    DevLogEngine.getEngine().eTag(TAG, e, "scrollTab");
                 }
             }
         }, 100);

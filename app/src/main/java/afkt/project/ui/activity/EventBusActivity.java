@@ -15,8 +15,8 @@ import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
 import dev.base.DevBaseEvent;
+import dev.engine.log.DevLogEngine;
 import dev.other.EventBusUtils;
-import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
 import utils_use.toast.ToastTintUse;
 
@@ -87,7 +87,7 @@ public class EventBusActivity
     @Subscribe(threadMode = ThreadMode.MAIN)
     public final void onEventBus(DevBaseEvent<String> event) {
         // 打印数据
-        DevLogger.dTag(TAG, "value %s", event.getValue());
+        DevLogEngine.getEngine().dTag(TAG, "value %s", event.getValue());
         // 进行提示
         ToastTintUtils.normal(event.getCode() + "." + event.getValue());
     }
@@ -95,7 +95,7 @@ public class EventBusActivity
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public final void onEventBusSticky(DevBaseEvent<String> event) {
         // 打印数据
-        DevLogger.dTag(TAG, "value %s", event.getValue());
+        DevLogEngine.getEngine().dTag(TAG, "value %s", event.getValue());
         // 进行提示
         ToastTintUtils.warning(event.getCode() + "." + event.getValue());
 

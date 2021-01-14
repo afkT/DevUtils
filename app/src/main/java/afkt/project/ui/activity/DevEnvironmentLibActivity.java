@@ -11,6 +11,7 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
+import dev.engine.log.DevLogEngine;
 import dev.environment.DevEnvironment;
 import dev.environment.DevEnvironmentActivity;
 import dev.environment.RestartCallback;
@@ -18,7 +19,6 @@ import dev.environment.bean.EnvironmentBean;
 import dev.environment.bean.ModuleBean;
 import dev.environment.listener.OnEnvironmentChangeListener;
 import dev.utils.app.ActivityUtils;
-import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
 
 /**
@@ -99,7 +99,7 @@ public class DevEnvironmentLibActivity
                 builder.append("\nalias: ").append(newEnvironment.getAlias());
                 ToastTintUtils.normal(builder.toString());
 
-                DevLogger.dTag(TAG, builder.toString());
+                DevLogEngine.getEngine().dTag(TAG, builder.toString());
             }
         });
     }

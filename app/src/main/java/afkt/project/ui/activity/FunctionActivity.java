@@ -15,6 +15,7 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
+import dev.engine.log.DevLogEngine;
 import dev.utils.app.ActivityUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.app.DeviceUtils;
@@ -25,7 +26,6 @@ import dev.utils.app.NotificationUtils;
 import dev.utils.app.ShortCutUtils;
 import dev.utils.app.VibrationUtils;
 import dev.utils.app.assist.BeepVibrateAssist;
-import dev.utils.app.logger.DevLogger;
 import dev.utils.app.permission.PermissionUtils;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.app.toast.ToastUtils;
@@ -152,12 +152,12 @@ public class FunctionActivity
                     case ButtonValue.BTN_FUNCTION_MEMORY_PRINT:
                         String memoryInfo = MemoryUtils.printMemoryInfo();
                         ToastUtils.showShort(memoryInfo);
-                        DevLogger.dTag(TAG, memoryInfo);
+                        DevLogEngine.getEngine().dTag(TAG, memoryInfo);
                         break;
                     case ButtonValue.BTN_FUNCTION_DEVICE_PRINT:
                         String deviceInfo = DeviceUtils.handlerDeviceInfo(DeviceUtils.getDeviceInfo(), "");
                         ToastUtils.showShort(deviceInfo);
-                        DevLogger.dTag(TAG, deviceInfo);
+                        DevLogEngine.getEngine().dTag(TAG, deviceInfo);
                         break;
                     case ButtonValue.BTN_FUNCTION_APP_DETAILS_SETTINGS:
                         result = AppUtils.launchAppDetailsSettings();

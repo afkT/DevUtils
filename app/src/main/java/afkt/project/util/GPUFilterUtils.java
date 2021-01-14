@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import java.io.InputStream;
 
 import dev.DevUtils;
-import dev.utils.app.logger.DevLogger;
+import dev.engine.log.DevLogEngine;
 import dev.utils.common.CloseUtils;
 import jp.co.cyberagent.android.gpuimage.GPUImage;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilter;
@@ -36,7 +36,7 @@ public final class GPUFilterUtils {
                 filter.setFromCurveFileInputStream(inputStream);
                 return filter;
             } catch (Exception e) {
-                DevLogger.eTag(TAG, e, "getGPUImageToneCurveFilter");
+                DevLogEngine.getEngine().eTag(TAG, e, "getGPUImageToneCurveFilter");
             } finally {
                 CloseUtils.closeIOQuietly(inputStream);
             }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import dev.utils.app.logger.DevLogger;
+import dev.engine.log.DevLogEngine;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImage3x3ConvolutionFilter;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageAddBlendFilter;
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageAlphaBlendFilter;
@@ -444,7 +444,7 @@ public class FilterItem {
             GPUImageTwoInputFilter filter = filterClass.newInstance();
             return filter;
         } catch (Exception e) {
-            DevLogger.eTag(TAG, e, "createBlendFilter");
+            DevLogEngine.getEngine().eTag(TAG, e, "createBlendFilter");
         }
         return null;
     }

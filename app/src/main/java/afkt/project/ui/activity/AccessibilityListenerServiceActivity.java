@@ -12,9 +12,9 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
+import dev.engine.log.DevLogEngine;
 import dev.service.AccessibilityListenerService;
 import dev.utils.app.AppUtils;
-import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
 
 /**
@@ -98,25 +98,25 @@ public class AccessibilityListenerServiceActivity
                 StringBuilder builder = new StringBuilder();
                 builder.append("onAccessibilityEvent");
                 builder.append("\naccessibilityEvent: ").append(accessibilityEvent);
-                DevLogger.dTag(TAG, builder.toString());
+                DevLogEngine.getEngine().dTag(TAG, builder.toString());
             }
 
             @Override
             public void onInterrupt() {
                 super.onInterrupt();
-                DevLogger.dTag(TAG, "onInterrupt");
+                DevLogEngine.getEngine().dTag(TAG, "onInterrupt");
             }
 
             @Override
             public void onServiceCreated(AccessibilityListenerService service) {
                 super.onServiceCreated(service);
-                DevLogger.dTag(TAG, "onServiceCreated");
+                DevLogEngine.getEngine().dTag(TAG, "onServiceCreated");
             }
 
             @Override
             public void onServiceDestroy() {
                 super.onServiceDestroy();
-                DevLogger.dTag(TAG, "onServiceDestroy");
+                DevLogEngine.getEngine().dTag(TAG, "onServiceDestroy");
             }
         });
     }

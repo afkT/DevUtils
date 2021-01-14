@@ -13,11 +13,11 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.bean.CommodityEvaluateBean;
 import afkt.project.ui.adapter.MultiSelectAdapter;
 import dev.base.widget.BaseTextView;
+import dev.engine.log.DevLogEngine;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.QuickHelper;
 import dev.utils.app.helper.ViewHelper;
-import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
 
 /**
@@ -66,7 +66,7 @@ public class MultiSelectActivity
                             boolean now
                     ) {
                         CommodityEvaluateBean commodityEvaluateBean = multiSelectAdapter.getData().get(pos);
-                        DevLogger.eTag(TAG, "新状态: %s, 商品名: %s", now, commodityEvaluateBean.commodityName);
+                        DevLogEngine.getEngine().eTag(TAG, "新状态: %s, 商品名: %s", now, commodityEvaluateBean.commodityName);
                     }
                 });
         binding.vidBvrRecy.setAdapter(multiSelectAdapter);

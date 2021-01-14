@@ -24,7 +24,7 @@ import afkt.project.database.room.module.note.bean.NoteType;
 import afkt.project.databinding.ActivityDatabaseBinding;
 import afkt.project.ui.adapter.RoomAdapter;
 import dev.assist.PageAssist;
-import dev.utils.app.logger.DevLogger;
+import dev.engine.log.DevLogEngine;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.common.ChineseUtils;
 import dev.utils.common.CollectionUtils;
@@ -138,7 +138,7 @@ public class RoomActivity
                                 .deleteNotePictures(
                                         CollectionUtils.toArrayT(nap.pictures)
                                 );
-                        DevLogger.dTag(TAG, "删除图片数量: %s", deleteCount);
+                        DevLogEngine.getEngine().dTag(TAG, "删除图片数量: %s", deleteCount);
                     }
                 }
             }
@@ -263,7 +263,7 @@ public class RoomActivity
                 limit = pageSize * 2 - diff;
             }
         }
-        DevLogger.dTag(TAG, "offset: %s, limit: %s", offset, limit);
+        DevLogEngine.getEngine().dTag(TAG, "offset: %s, limit: %s", offset, limit);
         // 请求数据
         return RoomManager.getNoteDatabase().getNoteDao()
                 .getNoteAndPictureLists(limit, offset);

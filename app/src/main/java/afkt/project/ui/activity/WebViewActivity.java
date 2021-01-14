@@ -13,7 +13,7 @@ import afkt.project.base.BaseApplication;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.databinding.ActivityWebviewBinding;
 import dev.assist.WebViewAssist;
-import dev.utils.app.logger.DevLogger;
+import dev.engine.log.DevLogEngine;
 
 /**
  * detail: WebView 辅助类
@@ -42,7 +42,7 @@ public class WebViewActivity
                     switch (result.getType()) {
                         case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE:
                             String imgUrl = result.getExtra();
-                            DevLogger.dTag(TAG, "SRC_IMAGE_ANCHOR_TYPE %s", imgUrl);
+                            DevLogEngine.getEngine().dTag(TAG, "SRC_IMAGE_ANCHOR_TYPE %s", imgUrl);
                             return true;
                     }
                 }
@@ -62,7 +62,7 @@ public class WebViewActivity
             ) {
                 // 加载进度监听
                 if (position == 100) { // 加载完成
-                    DevLogger.dTag(TAG, "加载完成");
+                    DevLogEngine.getEngine().dTag(TAG, "加载完成");
                 }
                 super.onProgressChanged(view, position);
             }
@@ -120,7 +120,7 @@ public class WebViewActivity
                     applyListener.onApply(webViewAssist, builder);
                 }
                 // BaseApplication 也会打印 WebViewAssist Builder onApply
-                DevLogger.dTag(TAG, "自定义监听");
+                DevLogEngine.getEngine().dTag(TAG, "自定义监听");
                 // 全局配置或者自定义配置以外, 再次配置操作
                 // 加载网页
                 mWebViewAssist.loadUrl("https://www.csdn.net/");

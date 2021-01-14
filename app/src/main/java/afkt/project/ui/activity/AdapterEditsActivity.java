@@ -13,10 +13,10 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.EvaluateItem;
 import afkt.project.ui.adapter.EditsAdapter;
 import dev.base.widget.BaseTextView;
+import dev.engine.log.DevLogEngine;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.helper.QuickHelper;
 import dev.utils.app.helper.ViewHelper;
-import dev.utils.app.logger.DevLogger;
 import dev.utils.app.toast.ToastTintUtils;
 
 /**
@@ -54,7 +54,7 @@ public class AdapterEditsActivity
                             builder.append("\nevaluateLevel: ").append(item.evaluateLevel);
                             builder.append("\n");
                         }
-                        DevLogger.dTag(TAG, builder.toString());
+                        DevLogEngine.getEngine().dTag(TAG, builder.toString());
                         ToastTintUtils.success("数据已打印, 请查看 Logcat");
                     }
                 }).getView();

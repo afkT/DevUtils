@@ -9,7 +9,7 @@ import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.databinding.ActivityViewPagerBinding;
 import afkt.project.ui.adapter.ViewPagerAdapter;
-import dev.utils.app.logger.DevLogger;
+import dev.engine.log.DevLogEngine;
 import dev.widget.custom.CustomViewPager;
 
 /**
@@ -41,15 +41,15 @@ public class ViewPagerActivity
                     boolean right
             ) {
                 if (left && !right) {
-                    DevLogger.dTag(TAG, "往左滑 - 从右往左");
+                    DevLogEngine.getEngine().dTag(TAG, "往左滑 - 从右往左");
                 } else {
-                    DevLogger.dTag(TAG, "往右滑 - 从左往右");
+                    DevLogEngine.getEngine().dTag(TAG, "往右滑 - 从左往右");
                 }
             }
 
             @Override
             public void onPageSelected(int index) {
-                DevLogger.dTag(TAG, "索引变动: %s", index);
+                DevLogEngine.getEngine().dTag(TAG, "索引变动: %s", index);
 
                 if (mLeftScroll) {
                     showToast("往左滑 - 从右往左");
