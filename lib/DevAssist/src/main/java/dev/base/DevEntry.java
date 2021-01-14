@@ -4,22 +4,22 @@ package dev.base;
  * detail: Key-Value Entry
  * @author Ttt
  */
-public class DevBaseEntry<K, V>
-        extends DevBaseModel {
+public class DevEntry<K, V>
+        extends DevModel {
 
     // key
     public K mEntryKey;
     // value
     public V mEntryValue;
 
-    public DevBaseEntry() {
+    public DevEntry() {
     }
 
-    public DevBaseEntry(K entryKey) {
+    public DevEntry(K entryKey) {
         this.mEntryKey = entryKey;
     }
 
-    public DevBaseEntry(
+    public DevEntry(
             K entryKey,
             V entryValue
     ) {
@@ -42,9 +42,9 @@ public class DevBaseEntry<K, V>
     /**
      * 设置 Entry Key
      * @param entryKey Entry Key
-     * @return {@link DevBaseEntry}
+     * @return {@link DevEntry}
      */
-    public DevBaseEntry<K, V> setEntryKey(final K entryKey) {
+    public DevEntry<K, V> setEntryKey(final K entryKey) {
         this.mEntryKey = entryKey;
         return this;
     }
@@ -62,9 +62,9 @@ public class DevBaseEntry<K, V>
     /**
      * 设置 Entry Value
      * @param entryValue Entry Value
-     * @return {@link DevBaseEntry}
+     * @return {@link DevEntry}
      */
-    public DevBaseEntry<K, V> setEntryValue(final V entryValue) {
+    public DevEntry<K, V> setEntryValue(final V entryValue) {
         this.mEntryValue = entryValue;
         return this;
     }

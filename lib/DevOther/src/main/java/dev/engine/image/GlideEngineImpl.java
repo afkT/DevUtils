@@ -78,18 +78,6 @@ public class GlideEngineImpl
     // =========
 
     @Override
-    public void clear(Context context) {
-        new Thread(() -> {
-            try {
-                // This method must be called on a background thread.
-                Glide.get(context).clearDiskCache();
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "clearDiskCache");
-            }
-        }).start();
-    }
-
-    @Override
     public void clear(View view) {
         Context context = view.getContext();
         if (context != null) {
@@ -107,7 +95,14 @@ public class GlideEngineImpl
 
     @Override
     public void clearDiskCache(Context context) {
-        clear(context);
+        new Thread(() -> {
+            try {
+                // This method must be called on a background thread.
+                Glide.get(context).clearDiskCache();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "clearDiskCache");
+            }
+        }).start();
     }
 
     @Override

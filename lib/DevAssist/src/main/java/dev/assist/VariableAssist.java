@@ -1,6 +1,6 @@
 package dev.assist;
 
-import dev.base.DevBaseVariable;
+import dev.base.DevVariable;
 
 /**
  * detail: 变量辅助类
@@ -9,23 +9,23 @@ import dev.base.DevBaseVariable;
 public class VariableAssist {
 
     // Boolean 变量存储对象
-    private DevBaseVariable<Object, Boolean> mBooleanVariable = new DevBaseVariable<>();
+    private DevVariable<Object, Boolean> mBooleanVariable = new DevVariable<>();
     // Object 变量存储对象
-    private DevBaseVariable<Object, Object>  mObjectVariable  = new DevBaseVariable<>();
+    private DevVariable<Object, Object>  mObjectVariable  = new DevVariable<>();
 
     /**
      * 获取 Boolean 变量存储对象
-     * @return {@link DevBaseVariable}
+     * @return {@link DevVariable}
      */
-    public DevBaseVariable<Object, Boolean> getBooleanVariable() {
+    public DevVariable<Object, Boolean> getBooleanVariable() {
         return mBooleanVariable;
     }
 
     /**
      * 获取 Object 变量存储对象
-     * @return {@link DevBaseVariable}
+     * @return {@link DevVariable}
      */
-    public DevBaseVariable<Object, Object> getObjectVariable() {
+    public DevVariable<Object, Object> getObjectVariable() {
         return mObjectVariable;
     }
 }

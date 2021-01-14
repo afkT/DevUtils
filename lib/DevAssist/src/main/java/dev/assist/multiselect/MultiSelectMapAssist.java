@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import dev.base.DevBaseEntry;
+import dev.base.DevEntry;
 
 /**
  * detail: Map 多选辅助类
@@ -71,9 +71,9 @@ public class MultiSelectMapAssist<K, V>
      * @param collections 集合
      */
     @Override
-    public void putSelects(final Collection<? extends DevBaseEntry<?, V>> collections) {
+    public void putSelects(final Collection<? extends DevEntry<?, V>> collections) {
         if (collections != null) {
-            for (DevBaseEntry<?, V> entry : collections) {
+            for (DevEntry<?, V> entry : collections) {
                 if (entry != null) {
                     mMapSelects.put((K) entry.getEntryKey(), entry.getEntryValue());
                 }

@@ -1,6 +1,6 @@
 package dev.assist.multiselect;
 
-import dev.base.DevBaseEntry;
+import dev.base.DevEntry;
 
 /**
  * detail: 多选操作接口 ( 基类 )
@@ -37,7 +37,7 @@ public interface IBaseMultiSelect<CollectionG, V> {
      * 通过集合添加选中数据
      * @param collections 集合
      */
-    void putSelects(java.util.Collection<? extends DevBaseEntry<?, V>> collections);
+    void putSelects(java.util.Collection<? extends DevEntry<?, V>> collections);
 
     /**
      * 判断是否存在选中的数据

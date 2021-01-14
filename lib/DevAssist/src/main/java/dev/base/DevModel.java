@@ -10,7 +10,7 @@ import java.util.UUID;
  *     isCorrect 可以用于 BaseModel 子类的数据校验
  * </pre>
  */
-public abstract class DevBaseModel
+public abstract class DevModel
         implements Serializable {
 
     private static final long serialVersionUID = 2514563577168445802L;
@@ -43,9 +43,9 @@ public abstract class DevBaseModel
     /**
      * 设置 Model id
      * @param modelId model id
-     * @return {@link DevBaseModel}
+     * @return {@link DevModel}
      */
-    public DevBaseModel setModelId(final int modelId) {
+    public DevModel setModelId(final int modelId) {
         this.mModelId = modelId;
         return this;
     }
@@ -54,10 +54,10 @@ public abstract class DevBaseModel
 
     /**
      * 校验数据正确性
-     * @param data {@link DevBaseModel}
+     * @param data {@link DevModel}
      * @return {@code true} correct, {@code false} error
      */
-    public static final boolean isCorrect(final DevBaseModel data) {
+    public static final boolean isCorrect(final DevModel data) {
         return data != null && data.isCorrect();
     }
 

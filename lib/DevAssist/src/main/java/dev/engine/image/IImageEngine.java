@@ -47,8 +47,6 @@ public interface IImageEngine<Config extends IImageEngine.ImageConfig> {
     // = clear =
     // =========
 
-    void clear(Context context);
-
     void clear(View view);
 
     void clear(Fragment fragment, View view);

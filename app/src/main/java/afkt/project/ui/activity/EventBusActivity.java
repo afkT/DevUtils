@@ -14,7 +14,7 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
-import dev.base.DevBaseEvent;
+import dev.base.DevEvent;
 import dev.engine.log.DevLogEngine;
 import dev.other.EventBusUtils;
 import dev.utils.app.toast.ToastTintUtils;
@@ -65,13 +65,13 @@ public class EventBusActivity
                         break;
                     case ButtonValue.BTN_EVENT_SEND:
                         showToast(true, "发送事件成功");
-                        DevBaseEvent<String> event = new DevBaseEvent<>();
+                        DevEvent<String> event = new DevEvent<>();
                         event.setCode(1).setValue("正常消息");
                         EventBusUtils.post(event);
                         break;
                     case ButtonValue.BTN_EVENT_SEND_STICKY:
                         showToast(true, "发送粘性事件成功");
-                        DevBaseEvent<String> eventSticky = new DevBaseEvent<>();
+                        DevEvent<String> eventSticky = new DevEvent<>();
                         eventSticky.setCode(2).setValue("粘性消息");
                         EventBusUtils.postSticky(eventSticky);
                         // 如何测试粘性消息, 先注册并发送粘性事件, 然后解绑, 再次注册(则会再次接收到粘性事件消息)
@@ -85,7 +85,7 @@ public class EventBusActivity
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public final void onEventBus(DevBaseEvent<String> event) {
+    public final void onEventBus(DevEvent<String> event) {
         // 打印数据
         DevLogEngine.getEngine().dTag(TAG, "value %s", event.getValue());
         // 进行提示
@@ -93,7 +93,7 @@ public class EventBusActivity
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
-    public final void onEventBusSticky(DevBaseEvent<String> event) {
+    public final void onEventBusSticky(DevEvent<String> event) {
         // 打印数据
         DevLogEngine.getEngine().dTag(TAG, "value %s", event.getValue());
         // 进行提示

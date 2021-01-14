@@ -6,7 +6,7 @@ import dev.utils.common.ObjectUtils;
  * detail: Event 基类
  * @author Ttt
  */
-public class DevBaseEvent<T> {
+public class DevEvent<T> {
 
     // code
     private int    mCode;
@@ -32,9 +32,9 @@ public class DevBaseEvent<T> {
     /**
      * 设置 Code
      * @param code Code
-     * @return {@link DevBaseEvent}
+     * @return {@link DevEvent}
      */
-    public DevBaseEvent<T> setCode(final int code) {
+    public DevEvent<T> setCode(final int code) {
         this.mCode = code;
         return this;
     }
@@ -52,9 +52,9 @@ public class DevBaseEvent<T> {
     /**
      * 设置 Code String
      * @param codeStr Code String
-     * @return {@link DevBaseEvent}
+     * @return {@link DevEvent}
      */
-    public DevBaseEvent<T> setCodeStr(final String codeStr) {
+    public DevEvent<T> setCodeStr(final String codeStr) {
         this.mCodeStr = codeStr;
         return this;
     }
@@ -72,9 +72,9 @@ public class DevBaseEvent<T> {
     /**
      * 设置 Value
      * @param value Value
-     * @return {@link DevBaseEvent}
+     * @return {@link DevEvent}
      */
-    public DevBaseEvent<T> setValue(final T value) {
+    public DevEvent<T> setValue(final T value) {
         this.mValue = value;
         return this;
     }
@@ -92,9 +92,9 @@ public class DevBaseEvent<T> {
     /**
      * 设置 Object
      * @param object Object
-     * @return {@link DevBaseEvent}
+     * @return {@link DevEvent}
      */
-    public DevBaseEvent<T> setObject(final Object object) {
+    public DevEvent<T> setObject(final Object object) {
         this.mObject = object;
         return this;
     }

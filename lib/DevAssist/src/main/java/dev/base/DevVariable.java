@@ -11,7 +11,7 @@ import java.util.Map;
  * detail: 变量基类 ( 方便判断处理 )
  * @author Ttt
  */
-public class DevBaseVariable<K, V> {
+public class DevVariable<K, V> {
 
     // 存储数据 Map
     private LinkedHashMap<K, V> mLinkedHashMap = new LinkedHashMap<>();
@@ -30,9 +30,9 @@ public class DevBaseVariable<K, V> {
 
     /**
      * 清空全部变量数据
-     * @return {@link DevBaseVariable}
+     * @return {@link DevVariable}
      */
-    public DevBaseVariable<K, V> clearVariables() {
+    public DevVariable<K, V> clearVariables() {
         mLinkedHashMap.clear();
         return this;
     }
@@ -40,9 +40,9 @@ public class DevBaseVariable<K, V> {
     /**
      * 保存变量数据集合
      * @param collection {@link LinkedHashMap}
-     * @return {@link DevBaseVariable}
+     * @return {@link DevVariable}
      */
-    public DevBaseVariable<K, V> putVariables(final Map<K, V> collection) {
+    public DevVariable<K, V> putVariables(final Map<K, V> collection) {
         if (collection != null) mLinkedHashMap.putAll(collection);
         return this;
     }
@@ -77,9 +77,9 @@ public class DevBaseVariable<K, V> {
     /**
      * 删除指定变量数据
      * @param value Value
-     * @return {@link DevBaseVariable}
+     * @return {@link DevVariable}
      */
-    public DevBaseVariable<K, V> removeVariableValue(final V value) {
+    public DevVariable<K, V> removeVariableValue(final V value) {
         Iterator<V> iterator = mLinkedHashMap.values().iterator();
         while (iterator.hasNext()) {
             V v = iterator.next();
@@ -94,9 +94,9 @@ public class DevBaseVariable<K, V> {
     /**
      * 删除指定变量数据 ( 符合条件的全部 value )
      * @param value Value
-     * @return {@link DevBaseVariable}
+     * @return {@link DevVariable}
      */
-    public DevBaseVariable<K, V> removeVariableValueAll(final V value) {
+    public DevVariable<K, V> removeVariableValueAll(final V value) {
         Iterator<V> iterator = mLinkedHashMap.values().iterator();
         while (iterator.hasNext()) {
             V v = iterator.next();
@@ -141,9 +141,9 @@ public class DevBaseVariable<K, V> {
      * 保存变量数据
      * @param key   Key
      * @param value Value
-     * @return {@link DevBaseVariable}
+     * @return {@link DevVariable}
      */
-    public DevBaseVariable<K, V> putVariable(
+    public DevVariable<K, V> putVariable(
             final K key,
             final V value
     ) {
@@ -156,9 +156,9 @@ public class DevBaseVariable<K, V> {
      * @param put   {@code true} put, {@code false} remove
      * @param key   Key
      * @param value Value
-     * @return {@link DevBaseVariable}
+     * @return {@link DevVariable}
      */
-    public DevBaseVariable<K, V> putVariable(
+    public DevVariable<K, V> putVariable(
             final boolean put,
             final K key,
             final V value
@@ -169,9 +169,9 @@ public class DevBaseVariable<K, V> {
     /**
      * 移除指定变量数据 ( 通过 key 判断 )
      * @param key Key
-     * @return {@link DevBaseVariable}
+     * @return {@link DevVariable}
      */
-    public DevBaseVariable<K, V> removeVariable(final K key) {
+    public DevVariable<K, V> removeVariable(final K key) {
         mLinkedHashMap.remove(key);
         return this;
     }
@@ -183,9 +183,9 @@ public class DevBaseVariable<K, V> {
      * </pre>
      * @param key   Key
      * @param value Value
-     * @return {@link DevBaseVariable}
+     * @return {@link DevVariable}
      */
-    public DevBaseVariable<K, V> toggle(
+    public DevVariable<K, V> toggle(
             final K key,
             final V value
     ) {
