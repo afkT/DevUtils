@@ -33,41 +33,41 @@ public final class AppInfoItem {
     private static final String TAG = AppInfoItem.class.getSimpleName();
 
     @Keep // APP 基本信息实体类
-    private AppInfoBean        appInfoBean;
+    private AppInfoBean     appInfoBean;
     @Keep // APP MD5 签名
-    private String             appMD5;
+    private String          appMD5;
     @Keep // APP SHA1 签名
-    private String             appSHA1;
+    private String          appSHA1;
     @Keep // APP SHA256 签名
-    private String             appSHA256;
+    private String          appSHA256;
     @Keep // APP 最低支持 Android SDK 版本
-    private int                minSdkVersion    = -1;
+    private int             minSdkVersion    = -1;
     @Keep // APP 兼容 SDK 版本
-    private int                targetSdkVersion = -1;
+    private int             targetSdkVersion = -1;
     @Keep // APP 安装包大小
-    private String             apkLength;
+    private String          apkLength;
     @Keep // 证书对象
-    private X509Certificate    cert;
+    private X509Certificate cert;
     @Keep // 证书生成日期
-    private Date               notBefore;
+    private Date            notBefore;
     @Keep // 证书有效期
-    private Date               notAfter;
+    private Date            notAfter;
     @Keep // 证书是否过期
-    private boolean            effective;
+    private boolean         effective;
     @Keep // 证书发布方
-    private String             certPrincipal;
+    private String          certPrincipal;
     @Keep // 证书版本号
-    private String             certVersion;
+    private String          certVersion;
     @Keep // 证书算法名称
-    private String             certSigAlgName;
+    private String          certSigAlgName;
     @Keep // 证书算法 OID
-    private String             certSigAlgOID;
+    private String          certSigAlgOID;
     @Keep // 证书机器码
-    private String             certSerialnumber;
+    private String          certSerialnumber;
     @Keep // 证书 DER 编码
-    private String         certDERCode;
+    private String          certDERCode;
     @Keep // APP 参数集
-    private List<KeyValue> listKeyValues = new ArrayList<>();
+    private List<KeyValue>  listKeyValues    = new ArrayList<>();
 
     /**
      * 获取 AppInfoItem
