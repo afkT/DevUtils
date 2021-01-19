@@ -44,9 +44,6 @@ project(':DevBase2').projectDir = new File('lib/DevBase2')
 include ':DevOther'
 project(':DevOther').projectDir = new File('lib/DevOther')
 
-include ':DevStandard'
-project(':DevStandard').projectDir = new File('lib/DevStandard')
-
 // ===========
 // = Project =
 // ===========
@@ -59,3 +56,10 @@ project(':AccessibilityKtx').projectDir = new File(rootDir, 'project/Accessibili
 
 include ':AppInfoKtx'
 project(':AppInfoKtx').projectDir = new File(rootDir, 'project/AppInfoKtx')
+
+// ===============
+// = Interesting =
+// ===============
+
+include ':DevStandard'
+project(':DevStandard').projectDir = new File('interesting/DevStandard')
