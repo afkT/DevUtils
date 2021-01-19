@@ -21,9 +21,10 @@ final class CatalogMain {
 
         // 生成 DevUtils Lib 汇总项目目录结构 - https://github.com/afkT/DevUtils/blob/master/lib
         print(Config.DEV_UTILS_LOCAL_PATH, Config.DEV_UTILS_DIR_NAME, Config.sDevUtilsCatalogMap, Config.sDevUtilsIgnoreCatalogs, 1);
-    }
 
-    // =
+        // 生成 DevUtils Project 汇总项目目录结构 - https://github.com/afkT/DevUtils/blob/master/project
+        print(Config.PROJECT_LOCAL_PATH, Config.PROJECT_DIR_NAME, Config.sProjectCatalogMap, null, 0);
+    }
 
     private static final String FORMAT = "\"%s\" not found";
 

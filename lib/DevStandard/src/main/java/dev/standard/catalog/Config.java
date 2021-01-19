@@ -49,6 +49,15 @@ final class Config {
     // DevUtils Lib 项目本地路径
     public static final String DEV_UTILS_LOCAL_PATH = USER_DIR + File.separator + DEV_UTILS_DIR_NAME;
 
+    // ====================
+    // = DevUtils Project =
+    // ====================
+
+    // DevUtils Project 文件名
+    public static final String PROJECT_DIR_NAME   = "project";
+    // DevUtils Project 项目本地路径
+    public static final String PROJECT_LOCAL_PATH = USER_DIR + File.separator + PROJECT_DIR_NAME;
+
     // =======
     // = Map =
     // =======
@@ -61,6 +70,8 @@ final class Config {
     public static final Map<String, String> sDevUtilsCatalogMap     = new HashMap<>();
     // DevUtils Lib 忽略目录
     public static final List<String>        sDevUtilsIgnoreCatalogs = new ArrayList<>();
+    // DevUtils Project 文件目录注释
+    public static final Map<String, String> sProjectCatalogMap     = new HashMap<>();
 
     static {
 
@@ -72,7 +83,6 @@ final class Config {
         sAndroidCatalogMap.put(".360RePlugin", "Android 插件化开发 - 360 RePlugin 框架");
         sAndroidCatalogMap.put(".AndroidScreenMatch", "Android 屏幕适配生成对应的尺寸文件");
         sAndroidCatalogMap.put(".AndroidVideoClip", "Android 视频裁剪 (含裁剪 View)");
-        sAndroidCatalogMap.put(".AppInfoPro", "AppInfoPro (APP 信息提取器)");
         sAndroidCatalogMap.put(".AutoLockScreenPro", "AutoLockScreenPro - 推送自动锁屏");
         sAndroidCatalogMap.put(".BuglyHotfix", "Android 热修复 - Bugly");
         sAndroidCatalogMap.put(".PlaySeekbar", "视频裁剪自定义 View");
@@ -121,5 +131,14 @@ final class Config {
         sDevUtilsIgnoreCatalogs.add("DevOther");
         sDevUtilsIgnoreCatalogs.add("DevStandard");
         sDevUtilsIgnoreCatalogs.add("DevWidget");
+
+        // ====================
+        // = DevUtils Project =
+        // ====================
+
+        sProjectCatalogMap.put("project", "根目录");
+        sProjectCatalogMap.put(".AccessibilityKtx", "Android 无障碍使用 ( Activity 栈 )");
+        sProjectCatalogMap.put(".AppInfoKtx", "APP 信息提取器");
+        sProjectCatalogMap.put(".DemoKtx", "临时测试代码、库调用调试 Demo");
     }
 }
