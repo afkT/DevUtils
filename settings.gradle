@@ -61,5 +61,8 @@ project(':AppInfoKtx').projectDir = new File(rootDir, 'project/AppInfoKtx')
 // = Interesting =
 // ===============
 
+include ':DevScreenMatch'
+project(':DevScreenMatch').projectDir = new File('interesting/DevScreenMatch')
+
 include ':DevStandard'
 project(':DevStandard').projectDir = new File('interesting/DevStandard')
