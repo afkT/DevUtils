@@ -54,7 +54,7 @@ public class KeyValue
     }
 
     /**
-     * 通过 resId 设置 key, 并且初始化 KeyValueBean
+     * 通过 resId 设置 key
      * @param resId R.string.id
      * @param value value
      * @return {@link KeyValue}

@@ -190,23 +190,23 @@ public final class StringUtils {
             // 遍历判断
             for (int i = 0; i < len; i++) {
                 // 获取临时变量
-                String val = strs[i];
+                String value = strs[i];
                 // 如果等于 null, 则跳过
-                if (val == null) {
+                if (value == null) {
                     return false;
                 }
                 if (last != null) {
                     if (isIgnore) {
-                        if (!val.equalsIgnoreCase(last)) {
+                        if (!value.equalsIgnoreCase(last)) {
                             return false;
                         }
                     } else {
-                        if (!val.equals(last)) {
+                        if (!value.equals(last)) {
                             return false;
                         }
                     }
                 }
-                last = val;
+                last = value;
             }
             return true;
         }
@@ -244,17 +244,17 @@ public final class StringUtils {
             // 遍历判断
             for (int i = 0; i < len; i++) {
                 // 获取临时变量
-                String val = strs[i];
+                String value = strs[i];
                 // 如果等于 null, 则跳过
-                if (val == null) {
+                if (value == null) {
                     continue;
                 } else {
                     if (isIgnore) {
-                        if (val.equalsIgnoreCase(str)) {
+                        if (value.equalsIgnoreCase(str)) {
                             return true;
                         }
                     } else {
-                        if (val.equals(str)) {
+                        if (value.equals(str)) {
                             return true;
                         }
                     }
@@ -300,24 +300,24 @@ public final class StringUtils {
             // 遍历判断
             for (int i = 0, len = strs.length; i < len; i++) {
                 // 获取参数
-                String val = strs[i];
+                String value = strs[i];
                 // 判断是否为 null, 或者长度为 0
-                if (!isEmpty(val) && strLength != 0) {
+                if (!isEmpty(value) && strLength != 0) {
                     if (isIgnore) {
                         // 转换小写
-                        String valIgnore = val.toLowerCase();
+                        String valIgnore = value.toLowerCase();
                         // 判断是否包含
                         if (valIgnore.indexOf(tempString) != -1) {
                             return true;
                         }
                     } else {
                         // 判断是否包含
-                        if (val.indexOf(tempString) != -1) {
+                        if (value.indexOf(tempString) != -1) {
                             return true;
                         }
                     }
                 } else {
-                    if (tempString.equals(val)) {
+                    if (tempString.equals(value)) {
                         return true;
                     }
                 }
@@ -362,19 +362,19 @@ public final class StringUtils {
             // 遍历判断
             for (int i = 0; i < len; i++) {
                 // 获取临时变量
-                String val = strs[i];
+                String value = strs[i];
                 // 判断是否为 null, 或者长度为 0
-                if (!isEmpty(val)) {
+                if (!isEmpty(value)) {
                     if (isIgnore) {
                         // 转换小写
-                        String valIgnore = val.toLowerCase();
+                        String valIgnore = value.toLowerCase();
                         // 判断是否属于 val 开头
                         if (tempString.startsWith(valIgnore)) {
                             return true;
                         }
                     } else {
                         // 判断是否属于 val 开头
-                        if (tempString.startsWith(val)) {
+                        if (tempString.startsWith(value)) {
                             return true;
                         }
                     }
@@ -420,19 +420,19 @@ public final class StringUtils {
             // 遍历判断
             for (int i = 0; i < len; i++) {
                 // 获取临时变量
-                String val = strs[i];
+                String value = strs[i];
                 // 判断是否为 null, 或者长度为 0
-                if (!isEmpty(val)) {
+                if (!isEmpty(value)) {
                     if (isIgnore) {
                         // 转换小写
-                        String valIgnore = val.toLowerCase();
+                        String valIgnore = value.toLowerCase();
                         // 判断是否属于 val 结尾
                         if (tempString.endsWith(valIgnore)) {
                             return true;
                         }
                     } else {
                         // 判断是否属于 val 结尾
-                        if (tempString.endsWith(val)) {
+                        if (tempString.endsWith(value)) {
                             return true;
                         }
                     }
@@ -802,9 +802,9 @@ public final class StringUtils {
     ) {
         if (strs != null && strs.length != 0) {
             for (int i = 0, len = strs.length; i < len; i++) {
-                String val = strs[i];
-                if (!isEmpty(val)) {
-                    return val;
+                String value = strs[i];
+                if (!isEmpty(value)) {
+                    return value;
                 }
             }
         }
@@ -824,9 +824,9 @@ public final class StringUtils {
         if (strs != null && strs.length != 0) {
             for (int i = 0, len = strs.length; i < len; i++) {
                 // 删除前后空格处理后, 进行返回
-                String val = clearSpaceTrim(strs[i]);
-                if (!isEmpty(val)) {
-                    return val;
+                String value = clearSpaceTrim(strs[i]);
+                if (!isEmpty(value)) {
+                    return value;
                 }
             }
         }
