@@ -1,6 +1,19 @@
 Change Log
 ==========
 
+Version 2.1.5 *(2021-01-24)*
+----------------------------
+
+* `[Perf]` 进行代码检测优化
+
+* `[Add]` DevFinal 新增部分常量
+
+* `[Add]` VersionUtils
+
+* `[Add]` DeviceUtils#getAppDeviceInfo、refreshAppDeviceInfo、getUUID、getUUIDDevice 方法
+
+* `[Delete]` AppCommonUtils#getAppDeviceInfo、refreshAppDeviceInfo、getUUID、getUUIDDevice、getFormatRes 方法
+
 Version 2.1.4 *(2021-01-01)*
 ----------------------------
 
