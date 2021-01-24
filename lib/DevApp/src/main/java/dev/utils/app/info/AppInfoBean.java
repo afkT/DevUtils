@@ -22,25 +22,25 @@ public class AppInfoBean {
     private static final String TAG = AppInfoBean.class.getSimpleName();
 
     @Keep // APP 包名
-    private           String   appPackName;
+    private final           String   appPackName;
     @Keep // APP 应用名
-    private           String   appName;
+    private final           String   appName;
     @Keep // APP 图标
-    private transient Drawable appIcon;
+    private final transient Drawable appIcon;
     @Keep // APP 类型
-    private           AppType  appType;
+    private final           AppType  appType;
     @Keep // APP 版本号
-    private           long     versionCode;
+    private final           long     versionCode;
     @Keep // APP 版本名
-    private           String   versionName;
+    private final           String   versionName;
     @Keep // APP 首次安装时间
-    private           long     firstInstallTime;
+    private final           long     firstInstallTime;
     @Keep // APP 最后一次更新时间
-    private           long     lastUpdateTime;
+    private final           long     lastUpdateTime;
     @Keep // APP 地址
-    private           String   sourceDir;
+    private final           String   sourceDir;
     @Keep // APK 大小
-    private           long     apkSize;
+    private final           long     apkSize;
 
     /**
      * 获取 AppInfoBean

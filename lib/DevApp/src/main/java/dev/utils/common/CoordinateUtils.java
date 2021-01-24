@@ -200,7 +200,7 @@ public final class CoordinateUtils {
     // ===========
 
     // 赤道半径
-    private static double EARTH_RADIUS = 6378.137;
+    private static final double EARTH_RADIUS = 6378.137;
 
     /**
      * 计算弧度角
@@ -357,7 +357,7 @@ public final class CoordinateUtils {
         RIGHT_TOP("东北"), // 右上 ( 东北 )
         RIGHT_BOTTOM("东南"); // 右下 ( 东南 )
 
-        private String value;
+        private final String value;
 
         Direction(String value) {
             this.value = value;

@@ -32,11 +32,11 @@ public final class IDCardUtils {
     // 身份证最大位数
     public static final  int                  CHINA_ID_MAX_LENGTH = 18;
     // 省份编码
-    private static       Map<String, String>  sCityCodeMaps       = new HashMap<>();
+    private static final Map<String, String>  sCityCodeMaps       = new HashMap<>();
     // 台湾身份首字母对应数字
-    private static       Map<String, Integer> sTWFirstCodeMaps    = new HashMap<>();
+    private static final Map<String, Integer> sTWFirstCodeMaps    = new HashMap<>();
     // 香港身份首字母对应数字
-    private static       Map<String, Integer> sHKFirstCodeMaps    = new HashMap<>();
+    private static final Map<String, Integer> sHKFirstCodeMaps    = new HashMap<>();
 
     static {
         sCityCodeMaps.put("11", "北京");

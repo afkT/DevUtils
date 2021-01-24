@@ -83,7 +83,7 @@ public final class FileDepthFirstSearchUtils {
     private SearchHandler mSearchHandler;
 
     // 内部实现接口
-    private SearchHandler mInsideHandler = new SearchHandler() {
+    private final SearchHandler mInsideHandler = new SearchHandler() {
         @Override
         public boolean isHandlerFile(File file) {
             if (mSearchHandler != null) {
