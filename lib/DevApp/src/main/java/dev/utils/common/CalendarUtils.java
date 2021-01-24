@@ -39,8 +39,7 @@ public final class CalendarUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isSupportLunar(final int year) {
-        if (year > MAX_YEAR || year < MIN_LUNAR_YEAR) return false;
-        return true;
+        return year <= MAX_YEAR && year >= MIN_LUNAR_YEAR;
     }
 
     /**
@@ -49,8 +48,7 @@ public final class CalendarUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isSupportSolar(final int year) {
-        if (year > MAX_YEAR || year < MIN_SOLAR_YEAR) return false;
-        return true;
+        return year <= MAX_YEAR && year >= MIN_SOLAR_YEAR;
     }
 
     // ===========
