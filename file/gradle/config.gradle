@@ -61,14 +61,14 @@ ext {
             dev_assist_versionName                  : '1.0.7',
 
             // 版本号
-            dev_base_versionCode                    : 102,
+            dev_base_versionCode                    : 103,
             // 版本名
-            dev_base_versionName                    : '1.0.2',
+            dev_base_versionName                    : '1.0.3',
 
             // 版本号
-            dev_base_mvvm_versionCode               : 100,
+            dev_base_mvvm_versionCode               : 101,
             // 版本名
-            dev_base_mvvm_versionName               : '1.0.0',
+            dev_base_mvvm_versionName               : '1.0.1',
 
             // 版本号
             dev_java_versionCode                    : 126,

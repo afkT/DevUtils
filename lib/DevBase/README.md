@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevBase:1.0.2'
+implementation 'com.afkt:DevBase:1.0.3'
 ```
 
 ## 目录结构

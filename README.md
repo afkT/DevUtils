@@ -81,10 +81,10 @@ implementation 'com.afkt:DevAppX:2.1.5'
 implementation 'com.afkt:DevAssist:1.0.7'
 
 // DevBase Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
-implementation 'com.afkt:DevBase:1.0.2'
+implementation 'com.afkt:DevBase:1.0.3'
 
 // DevBaseMVVM MVVM ( ViewDataBinding + ViewModel ) 基类库
-implementation 'com.afkt:DevBaseMVVM:1.0.0'
+implementation 'com.afkt:DevBaseMVVM:1.0.1'
 
 // DevJava Java 工具类库 ( 不依赖 android api )
 implementation 'com.afkt:DevJava:1.2.6' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
