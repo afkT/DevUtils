@@ -403,7 +403,7 @@ public class QRCodeScanActivity
     private Rect            mCropRect;
     // 解码类型
     private @DecodeFormat.DecodeMode
-    final int mDecodeMode = DecodeFormat.ALL;
+    final   int             mDecodeMode = DecodeFormat.ALL;
 
     /**
      * detail: 捕获预览画面处理 Handler
