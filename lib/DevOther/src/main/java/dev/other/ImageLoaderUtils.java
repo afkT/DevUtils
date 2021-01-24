@@ -36,11 +36,11 @@ public final class ImageLoaderUtils {
     }
 
     // 图片加载中
-    private static       int                 sImageLoadingRes  = 0;
+    private static final int                 sImageLoadingRes  = 0;
     // 图片地址异常
-    private static       int                 sImageUriErrorRes = 0;
+    private static final int                 sImageUriErrorRes = 0;
     // 图片 ( 加载 / 解码 ) 失败
-    private static       int                 sImageFailRes     = 0;
+    private static final int                 sImageFailRes     = 0;
     // 图片默认加载配置
     private static final DisplayImageOptions DF_OPTIONS        = defaultOptions();
 

@@ -172,7 +172,7 @@ public final class GlideTransformUtils {
             extends BitmapTransformation {
 
         // Context
-        private Context mContext;
+        private final Context mContext;
 
         public GlideBlurformation(Context context) {
             this.mContext = context;

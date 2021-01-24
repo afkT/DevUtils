@@ -475,7 +475,7 @@ public class WebViewAssist {
      * @return {@code true} yes, {@code false} no
      */
     public boolean canGoBack() {
-        return isWebViewNotEmpty() ? mWebView.canGoBack() : false;
+        return isWebViewNotEmpty() && mWebView.canGoBack();
     }
 
     /**
@@ -496,7 +496,7 @@ public class WebViewAssist {
      * @return {@code true} yes, {@code false} no
      */
     public boolean canGoForward() {
-        return isWebViewNotEmpty() ? mWebView.canGoForward() : false;
+        return isWebViewNotEmpty() && mWebView.canGoForward();
     }
 
     /**
@@ -518,7 +518,7 @@ public class WebViewAssist {
      * @return {@code true} yes, {@code false} no
      */
     public boolean canGoBackOrForward(final int steps) {
-        return isWebViewNotEmpty() ? mWebView.canGoBackOrForward(steps) : false;
+        return isWebViewNotEmpty() && mWebView.canGoBackOrForward(steps);
     }
 
     /**

@@ -54,17 +54,17 @@ public final class GlideUtils {
     private static final String TAG = GlideUtils.class.getSimpleName();
 
     // GlideLoader
-    private static GlideLoader    sGlideLoader;
+    private static       GlideLoader    sGlideLoader;
     // 图片默认加载配置
-    private static RequestOptions DF_OPTIONS        = defaultOptions();
+    private static final RequestOptions DF_OPTIONS        = defaultOptions();
     // 全局 Context
-    private static Context        sContext;
+    private static       Context        sContext;
     // 图片加载中
-    private static int            sImageLoadingRes  = 0;
+    private static final int            sImageLoadingRes  = 0;
     // 图片地址异常
-    private static int            sImageUriErrorRes = 0;
+    private static final int            sImageUriErrorRes = 0;
     // 图片 ( 加载 / 解码 ) 失败
-    private static int            sImageFailRes     = 0;
+    private static final int            sImageFailRes     = 0;
 
     // ===============================
     // = GlideLoader(RequestManager) =
@@ -267,7 +267,7 @@ public final class GlideUtils {
     public static final class GlideLoader {
 
         // RequestManager
-        private RequestManager mRequestManager;
+        private final RequestManager mRequestManager;
 
         /**
          * 构造函数

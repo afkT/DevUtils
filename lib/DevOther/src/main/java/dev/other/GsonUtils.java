@@ -166,10 +166,7 @@ public final class GsonUtils {
             return false;
         }
         if (jsonElement == null) return false;
-        if (jsonElement.isJsonObject() || jsonElement.isJsonArray()) {
-            return true;
-        }
-        return false;
+        return jsonElement.isJsonObject() || jsonElement.isJsonArray();
     }
 
     /**

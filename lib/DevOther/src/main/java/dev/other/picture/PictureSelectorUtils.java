@@ -289,8 +289,8 @@ public final class PictureSelectorUtils {
                     // = 裁减配置 =
                     .isEnableCrop(isCrop) // 是否裁剪 true or false
                     .freeStyleCropEnabled(isCrop) // 裁剪框是否可拖拽 true or false
-                    .showCropFrame(isCircleCrop ? false : isCrop) // 是否显示裁剪矩形边框 圆形裁剪时建议设为 false
-                    .showCropGrid(isCircleCrop ? false : isCrop) // 是否显示裁剪矩形网格 圆形裁剪时建议设为 false
+                    .showCropFrame(!isCircleCrop && isCrop) // 是否显示裁剪矩形边框 圆形裁剪时建议设为 false
+                    .showCropGrid(!isCircleCrop && isCrop) // 是否显示裁剪矩形网格 圆形裁剪时建议设为 false
                     .rotateEnabled(isCrop) // 裁剪是否可旋转图片 true or false
                     .scaleEnabled(isCrop); // 裁剪是否可放大缩小图片 true or false
 
