@@ -21,17 +21,8 @@ abstract class DevBaseViewBindingActivity<VB : ViewBinding> : DevBaseActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (isViewBinding()) {
-            if (isTryViewBindingCatch()) {
-                try {
-                    // ViewBinding 初始化处理
-                    binding = viewBinding(layoutInflater, null)
-                } catch (e: Exception) {
-                    assist.printLog(e, "onCreate - viewBinding")
-                }
-            } else {
-                // ViewBinding 初始化处理
-                binding = viewBinding(layoutInflater, null)
-            }
+            // ViewBinding 初始化处理
+            binding = viewBinding(layoutInflater, null)
         }
     }
 

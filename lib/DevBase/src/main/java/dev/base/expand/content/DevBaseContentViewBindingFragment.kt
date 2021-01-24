@@ -25,17 +25,8 @@ abstract class DevBaseContentViewBindingFragment<VB : ViewBinding> : DevBaseCont
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         if (isViewBinding()) {
-            if (isTryViewBindingCatch()) {
-                try {
-                    // ViewBinding 初始化处理
-                    _binding = viewBinding(inflater, container)
-                } catch (e: Exception) {
-                    assist.printLog(e, "onCreateView - viewBinding")
-                }
-            } else {
-                // ViewBinding 初始化处理
-                _binding = viewBinding(inflater, container)
-            }
+            // ViewBinding 初始化处理
+            _binding = viewBinding(inflater, container)
         }
         return mContentView
     }

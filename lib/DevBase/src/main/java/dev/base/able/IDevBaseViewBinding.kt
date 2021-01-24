@@ -27,13 +27,6 @@ interface IDevBaseViewBinding<VB : ViewBinding> {
     fun getBindingView(): View?
 
     /**
-     * 是否分离 ( 销毁 ) Binding
-     */
-    fun isDetachBinding(): Boolean {
-        return true
-    }
-
-    /**
      * 是否 Bind View
      */
     fun isViewBinding(): Boolean {
@@ -41,10 +34,9 @@ interface IDevBaseViewBinding<VB : ViewBinding> {
     }
 
     /**
-     * 是否捕获 ViewBinding 异常
-     * 设计时考虑为了开发中保证准确绑定, 当 [ViewBindingUtils] 解析失败会抛出异常
+     * 是否分离 ( 销毁 ) Binding
      */
-    fun isTryViewBindingCatch(): Boolean {
-        return false
+    fun isDetachBinding(): Boolean {
+        return isViewBinding()
     }
 }
