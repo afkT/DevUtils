@@ -180,9 +180,9 @@ public class StateLayout
     public static class Global {
 
         // type-layout
-        private Map<Integer, Integer> mapLayouts = new HashMap<>();
+        private final Map<Integer, Integer> mapLayouts = new HashMap<>();
         // 类型改变接口
-        private Listener              listener;
+        private final Listener              listener;
 
         public Global(Listener listener) {
             this.listener = listener;
@@ -216,7 +216,7 @@ public class StateLayout
     private class TypeAdapter
             implements ViewAssist.Adapter {
 
-        private int resource;
+        private final int resource;
 
         public TypeAdapter(int layout) {
             this.resource = layout;

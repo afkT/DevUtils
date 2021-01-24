@@ -160,7 +160,7 @@ public class FlowLikeView
     private class AnimationEndListener
             extends AnimatorListenerAdapter {
 
-        private View target;
+        private final View target;
 
         public AnimationEndListener(View target) {
             this.target = target;
@@ -180,7 +180,7 @@ public class FlowLikeView
     private class CurveUpdateLister
             implements ValueAnimator.AnimatorUpdateListener {
 
-        private View target;
+        private final View target;
 
         public CurveUpdateLister(View target) {
             this.target = target;
@@ -205,7 +205,7 @@ public class FlowLikeView
     private class CurveEvaluator
             implements TypeEvaluator<PointF> {
 
-        private PointF ctrlPointF;
+        private final PointF ctrlPointF;
 
         public CurveEvaluator(PointF ctrlPointF) {
             this.ctrlPointF = ctrlPointF;

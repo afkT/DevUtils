@@ -61,13 +61,13 @@ public final class ViewAssist {
 
     // =
 
-    private Object                mData;
-    private Map<String, Object>   mMapDatas    = new HashMap<>();
-    private Map<Integer, Adapter> mMapAdapters = new HashMap<>();
-    private SparseArray<View>     mTypeViews   = new SparseArray<>(3);
-    private int                   mCurrentType = -1;
-    private View                  mCurrentView;
-    private Listener              mListener;
+    private       Object                mData;
+    private final Map<String, Object>   mMapDatas    = new HashMap<>();
+    private final Map<Integer, Adapter> mMapAdapters = new HashMap<>();
+    private final SparseArray<View>     mTypeViews   = new SparseArray<>(3);
+    private       int                   mCurrentType = -1;
+    private       View                  mCurrentView;
+    private       Listener              mListener;
 
     public interface Adapter {
 

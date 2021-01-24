@@ -81,29 +81,29 @@ public class LoadProgressBar
         extends View {
 
     // 画笔
-    private Paint         mPaint;
+    private       Paint         mPaint;
     // 字体画笔
-    private Paint         mTextPaint      = new Paint();
+    private final Paint         mTextPaint      = new Paint();
     // 最大进度
-    private int           mMax            = 100;
+    private       int           mMax            = 100;
     // 当前进度
-    private int           mProgress       = 0;
+    private       int           mProgress       = 0;
     // 进度条样式
-    private ProgressStyle mProgressStyle  = ProgressStyle.RINGS;
+    private       ProgressStyle mProgressStyle  = ProgressStyle.RINGS;
     // 进度条颜色
-    private int           mProgressColor;
+    private       int           mProgressColor;
     // 外环进度条颜色
-    private int           mOuterRingColor;
+    private       int           mOuterRingColor;
     // 内环进度条宽度
-    private float         mInsideCircleWidth;
+    private       float         mInsideCircleWidth;
     // 外环进度条宽度
-    private float         mOuterRingWidth;
+    private       float         mOuterRingWidth;
     // 是否绘制数字
-    private boolean       mIsCanvasNumber = false;
+    private       boolean       mIsCanvasNumber = false;
     // 绘制的字体大小
-    private float         mNumberTextSize;
+    private       float         mNumberTextSize;
     // 绘制的数字颜色
-    private int           mNumberTextColor;
+    private       int           mNumberTextColor;
 
     public LoadProgressBar(Context context) {
         super(context);

@@ -208,7 +208,7 @@ public class RightIconEditText
     /**
      * 内部 TextWatcher
      */
-    private TextWatcher _listener = new TextWatcher() {
+    private final TextWatcher _listener = new TextWatcher() {
         /**
          * 在文本变化前调用
          * @param s     修改之前的文字

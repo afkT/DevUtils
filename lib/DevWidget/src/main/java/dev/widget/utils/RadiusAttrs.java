@@ -17,17 +17,17 @@ import dev.widget.R;
 public class RadiusAttrs {
 
     // 绘制区域
-    private RectF   mRectF;
+    private       RectF   mRectF;
     // 绘制路径
-    private Path    mPath  = new Path();
+    private final Path    mPath  = new Path();
     // 圆角范围
-    private float[] mRadii = new float[8];
+    private       float[] mRadii = new float[8];
     // 圆角值
-    private float   mRadius;
-    private float   mRadiusLeftTop;
-    private float   mRadiusLeftBottom;
-    private float   mRadiusRightTop;
-    private float   mRadiusRightBottom;
+    private       float   mRadius;
+    private       float   mRadiusLeftTop;
+    private       float   mRadiusLeftBottom;
+    private       float   mRadiusRightTop;
+    private       float   mRadiusRightBottom;
 
     /**
      * 初始化
