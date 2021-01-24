@@ -5,6 +5,7 @@
     <dimen name="un_dp_0">0.0dp</dimen>
     <dimen name="un_dp_0_5">0.5dp</dimen>
     <dimen name="un_dp_1">1.0dp</dimen>
+    <dimen name="un_dp_2">2.0dp</dimen>
     <dimen name="un_dp_3">3.0dp</dimen>
     <dimen name="un_dp_4">4.0dp</dimen>
     <dimen name="un_dp_5">5.0dp</dimen>

@@ -505,6 +505,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- Material ShapeableImageView -->
+
+        <activity
+            android:name=".ui.activity.ShapeableImageViewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- startActivityForResult Callback -->
 
         <activity

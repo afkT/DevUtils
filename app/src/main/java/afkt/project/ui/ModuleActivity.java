@@ -46,6 +46,7 @@ import afkt.project.ui.activity.QRCodeScanActivity;
 import afkt.project.ui.activity.RecyItemSlideActivity;
 import afkt.project.ui.activity.RoomActivity;
 import afkt.project.ui.activity.ScanShapeActivity;
+import afkt.project.ui.activity.ShapeableImageViewActivity;
 import afkt.project.ui.activity.SignActivity;
 import afkt.project.ui.activity.StatusBarActivity;
 import afkt.project.ui.activity.TextCalcActivity;
@@ -187,6 +188,9 @@ public class ModuleActivity
                         break;
                     case ButtonValue.BTN_RECY_PAGER_SNAP_MAX: // PagerSnapHelper - 无限滑动
                         SkipUtils.startActivity(PagerSnapMAXActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_SHAPEABLE_IMAGE_VIEW: // Material ShapeableImageView
+                        SkipUtils.startActivity(ShapeableImageViewActivity.class, buttonValue);
                         break;
 
                     // ===========

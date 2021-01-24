@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dev.widget.custom.CustomNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:id="@+id/vid_asiv_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="@dimen/un_dp_200"
+            android:layout_height="@dimen/un_dp_200"
+            android:background="@drawable/bg_wallpaper"
+            app:shapeAppearanceOverlay="@style/circleStyle" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="@dimen/un_dp_200"
+            android:layout_height="@dimen/un_dp_200"
+            android:background="@drawable/bg_wallpaper"
+            android:padding="@dimen/un_dp_2"
+            app:shapeAppearanceOverlay="@style/roundedCornerStyle"
+            app:strokeColor="@color/sky_blue"
+            app:strokeWidth="@dimen/un_dp_4" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="@dimen/un_dp_200"
+            android:layout_height="@dimen/un_dp_200"
+            android:background="@drawable/bg_wallpaper"
+            app:shapeAppearanceOverlay="@style/cutCornerStyle" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="@dimen/un_dp_200"
+            android:layout_height="@dimen/un_dp_200"
+            android:background="@drawable/bg_wallpaper"
+            android:padding="@dimen/un_dp_2"
+            app:shapeAppearanceOverlay="@style/diamondStyle"
+            app:strokeColor="@color/black"
+            app:strokeWidth="@dimen/un_dp_4" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="@dimen/un_dp_200"
+            android:layout_height="@dimen/un_dp_200"
+            android:background="@drawable/bg_wallpaper"
+            app:shapeAppearanceOverlay="@style/topRightCornerStyle" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="@dimen/un_dp_200"
+            android:layout_height="@dimen/un_dp_200"
+            android:background="@drawable/bg_wallpaper"
+            app:shapeAppearanceOverlay="@style/eggStyle" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="@dimen/un_dp_200"
+            android:layout_height="@dimen/un_dp_200"
+            android:background="@drawable/bg_wallpaper"
+            app:shapeAppearanceOverlay="@style/comCornerStyle" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="@dimen/un_dp_240"
+            android:layout_height="@dimen/un_dp_120"
+            android:background="@drawable/bg_wallpaper2"
+            app:shapeAppearanceOverlay="@style/tipsCornerStyle" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="@dimen/un_dp_200"
+            android:layout_height="@dimen/un_dp_200"
+            android:background="@drawable/bg_wallpaper"
+            app:shapeAppearanceOverlay="@style/waterImageStyle" />
+
+    </LinearLayout>
+</dev.widget.custom.CustomNestedScrollView>

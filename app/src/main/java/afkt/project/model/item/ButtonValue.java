@@ -184,6 +184,9 @@ public class ButtonValue {
     // PagerSnapHelper - 无限滑动
     public static final int BTN_RECY_PAGER_SNAP_MAX = MODULE_UI + 1800;
 
+    // Material ShapeableImageView
+    public static final int BTN_SHAPEABLE_IMAGE_VIEW = MODULE_UI + 1900;
+
     // ===========
     // = 其他功能 =
     // ===========
