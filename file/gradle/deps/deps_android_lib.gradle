@@ -3,6 +3,7 @@ dependencies {
     implementation deps.kotlin.stdlib
     implementation deps.kotlin.core
     implementation deps.kotlin.lifecycle_runtime
+    implementation deps.kotlin.lifecycle_extensions
     implementation deps.kotlin.lifecycle_viewmodel
     implementation deps.kotlin.lifecycle_livedata
     implementation deps.kotlin.lifecycle_viewmodel_savedstate

@@ -12,6 +12,7 @@ dependencies {
     api deps.kotlin.stdlib
     api deps.kotlin.core
     api deps.kotlin.lifecycle_runtime
+    api deps.kotlin.lifecycle_extensions
     api deps.androidx.lifecycle_common_java8
     api deps.androidx.design
     api deps.androidx.appcompat
