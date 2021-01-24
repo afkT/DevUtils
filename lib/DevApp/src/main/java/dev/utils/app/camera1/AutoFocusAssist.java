@@ -37,7 +37,7 @@ public final class AutoFocusAssist
     // ========
 
     // 自动对焦时间间隔
-    private       long               mInterval;
+    private final long               mInterval;
     // 摄像头对象
     private final Camera             mCamera;
     // 判断摄像头是否使用对焦

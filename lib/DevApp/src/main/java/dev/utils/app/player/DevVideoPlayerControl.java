@@ -31,11 +31,11 @@ public class DevVideoPlayerControl
     // ========
 
     // 播放预览载体 SurfaceView
-    private SurfaceView   mSurfaceView;
+    private final SurfaceView   mSurfaceView;
     // 画面预览回调
-    private SurfaceHolder mSurfaceHolder;
+    private       SurfaceHolder mSurfaceHolder;
     // 判断是否自动播放
-    private boolean       mAutoPlay;
+    private       boolean       mAutoPlay;
 
     /**
      * 构造函数

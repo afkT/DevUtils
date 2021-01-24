@@ -48,19 +48,19 @@ public final class DevCache {
     private static final String DEF_FILE_NAME = DevCache.class.getSimpleName();
 
     // 过期小时 ( 单位秒 ) = 1 小时
-    public static final int                   TIME_HOUR     = 60 * 60;
+    public static final  int                   TIME_HOUR     = 60 * 60;
     // 一天 24 小时
-    public static final int                   TIME_DAY      = TIME_HOUR * 24;
+    public static final  int                   TIME_DAY      = TIME_HOUR * 24;
     // 缓存最大值 50 MB
-    public static final int                   MAX_SIZE      = 1000 * 1000 * 50;
+    public static final  int                   MAX_SIZE      = 1000 * 1000 * 50;
     // 不限制存放数据的数量
-    public static final int                   MAX_COUNT     = Integer.MAX_VALUE;
+    public static final  int                   MAX_COUNT     = Integer.MAX_VALUE;
     // 不同地址配置缓存对象
-    private static      Map<String, DevCache> sInstanceMaps = new HashMap<>();
+    private static final Map<String, DevCache> sInstanceMaps = new HashMap<>();
     // 缓存管理类
-    private             DevCacheManager       mCache;
+    private              DevCacheManager       mCache;
     // 缓存地址
-    private static      String                sCachePath    = null;
+    private static       String                sCachePath    = null;
 
     /**
      * 获取 DevCache ( 默认缓存文件名 )
@@ -166,7 +166,7 @@ public final class DevCache {
     class XFileOutputStream
             extends FileOutputStream {
 
-        private File file;
+        private final File file;
 
         public XFileOutputStream(File file)
                 throws FileNotFoundException {

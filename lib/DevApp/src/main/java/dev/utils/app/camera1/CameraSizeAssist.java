@@ -29,7 +29,7 @@ public final class CameraSizeAssist {
     private static final String TAG = CameraSizeAssist.class.getSimpleName();
 
     // 摄像头对象
-    private              Camera mCamera;
+    private final        Camera mCamera;
     // 默认最大的偏差
     private static final double MAX_ASPECT_DISTORTION = 0.15d;
     // 最小尺寸, 小于该尺寸则不处理

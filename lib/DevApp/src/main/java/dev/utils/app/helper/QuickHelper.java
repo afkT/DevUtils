@@ -54,7 +54,7 @@ public final class QuickHelper {
     private static final String TAG = QuickHelper.class.getSimpleName();
 
     // 持有 View
-    private WeakReference<View> mViewRef;
+    private final WeakReference<View> mViewRef;
 
     /**
      * 构造函数

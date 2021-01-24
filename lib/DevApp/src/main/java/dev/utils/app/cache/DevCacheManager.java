@@ -26,7 +26,7 @@ final class DevCacheManager {
     // 保存文件时间信息 ( 文件地址, 文件最后使用时间 )
     private final Map<File, Long> mLastUsageDateMaps = Collections.synchronizedMap(new HashMap<>());
     // 文件目录
-    private       File            mCacheDir;
+    private final File            mCacheDir;
 
     /**
      * 构造函数

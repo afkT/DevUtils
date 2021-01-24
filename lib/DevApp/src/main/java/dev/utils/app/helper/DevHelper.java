@@ -65,7 +65,7 @@ import dev.utils.common.assist.TimeKeeper;
 public final class DevHelper {
 
     // TimeKeeper
-    private              TimeKeeper mTimeKeeper = new TimeKeeper();
+    private final        TimeKeeper mTimeKeeper = new TimeKeeper();
     // DevHelper
     private static final DevHelper  HELPER      = new DevHelper();
 

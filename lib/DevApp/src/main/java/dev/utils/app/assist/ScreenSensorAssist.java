@@ -66,7 +66,7 @@ public final class ScreenSensorAssist {
     /**
      * 角度处理 Handler
      */
-    private Handler mRotateHandler = new Handler() {
+    private final Handler mRotateHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case CHANGE_ORIENTATION_WHAT:

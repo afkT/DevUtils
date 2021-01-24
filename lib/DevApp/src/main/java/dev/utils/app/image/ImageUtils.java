@@ -148,7 +148,7 @@ public final class ImageUtils {
 
         TYPE_UNKNOWN("unknown");
 
-        private String value;
+        private final String value;
 
         ImageType(String value) {
             this.value = value;
@@ -298,8 +298,8 @@ public final class ImageUtils {
                 return true; // 4d 4d 00 2a
             } else if (data[0] == (byte) 0x4d && data[1] == (byte) 0x4d && data[2] == 0 && data[3] == (byte) 0x2b) {
                 return true; // 4d 4d 00 2b
-            } else if (data[0] == (byte) 73 && data[1] == (byte) 32 && data[2] == (byte) 73) {
-                return true; // 49 20 49
+            } else {
+                return data[0] == (byte) 73 && data[1] == (byte) 32 && data[2] == (byte) 73; // 49 20 49
             }
         }
         return false;

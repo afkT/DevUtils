@@ -26,7 +26,7 @@ final class PreferenceImpl
     // 文件名
     private static final String            NAME = "SPConfig";
     // SharedPreferences 对象
-    private              SharedPreferences mPreferences;
+    private final        SharedPreferences mPreferences;
 
     // ===========
     // = 构造函数 =

@@ -14,11 +14,11 @@ public class DelayAssist {
     public static final long DELAY_MILLIS = 300L;
 
     // 主线程 Handler
-    private Handler  mMainHandler;
+    private final Handler  mMainHandler;
     // 延迟时间
-    private long     mDelayMillis = DELAY_MILLIS;
+    private       long     mDelayMillis = DELAY_MILLIS;
     // 搜索回调
-    private Callback mCallback;
+    private       Callback mCallback;
 
     // ===========
     // = 构造函数 =
