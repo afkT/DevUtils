@@ -65,7 +65,7 @@ abstract class AbstractDevBaseFragment : Fragment(),
         assist.printLog("onCreateView")
 
         if (mContentView != null) {
-            val parent = mContentView!!.parent as ViewGroup
+            val parent = mContentView!!.parent as? ViewGroup
             // 删除已经在显示的 View 防止切回来不加载一片空白
             parent?.removeView(mContentView)
             mContentView = null

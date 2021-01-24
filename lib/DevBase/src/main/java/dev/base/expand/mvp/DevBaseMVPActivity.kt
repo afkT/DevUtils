@@ -18,7 +18,7 @@ abstract class DevBaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IMode
         // 创建 MVP 模式的 Presenter
         presenter = createPresenter()
         // lifecycle
-        presenter?.let { lifecycle.addObserver(it) }
+        lifecycle.addObserver(presenter)
         // 初始化操作
         super.onCreate(savedInstanceState)
     }
