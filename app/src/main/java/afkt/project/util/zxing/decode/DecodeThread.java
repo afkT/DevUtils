@@ -26,7 +26,7 @@ public class DecodeThread
     // 解码处理 Handler ( DecodeHandler )
     private       DecodeHandler               mHandler;
     // 解码配置对象
-    private       DecodeConfig                mDecodeConfig;
+    private final DecodeConfig                mDecodeConfig;
 
     /**
      * 构造函数

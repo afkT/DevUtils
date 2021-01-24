@@ -27,9 +27,9 @@ import dev.utils.app.helper.ViewHelper;
 public class PagerSnapMAXAdapter
         extends RecyclerView.Adapter {
 
-    private Context        context;
-    private List<ItemBean> data;
-    private RequestOptions roundOptions;
+    private final Context        context;
+    private final List<ItemBean> data;
+    private final RequestOptions roundOptions;
 
     public PagerSnapMAXAdapter(
             Context context,
@@ -83,7 +83,7 @@ public class PagerSnapMAXAdapter
     class ItemViewHolder
             extends RecyclerView.ViewHolder {
 
-        private AdapterPagerSnapBinding binding;
+        private final AdapterPagerSnapBinding binding;
 
         ItemViewHolder(@NonNull View itemView) {
             super(itemView);

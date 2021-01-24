@@ -53,7 +53,7 @@ public class ProgressBarActivity
         handler.sendEmptyMessageDelayed(0, 100);
     }
 
-    private Handler handler = new Handler() {
+    private final Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);

@@ -420,8 +420,8 @@ public class ElectricFanLoadingRenderer
     private class BezierEvaluator
             implements TypeEvaluator<PointF> {
 
-        private PointF point1;
-        private PointF point2;
+        private final PointF point1;
+        private final PointF point2;
 
         public BezierEvaluator(
                 PointF point1,
@@ -452,7 +452,7 @@ public class ElectricFanLoadingRenderer
     private class BezierListener
             implements ValueAnimator.AnimatorUpdateListener {
 
-        private LeafHolder target;
+        private final LeafHolder target;
 
         public BezierListener(LeafHolder target) {
             this.target = target;
@@ -469,7 +469,7 @@ public class ElectricFanLoadingRenderer
 
     private class AnimEndListener
             extends AnimatorListenerAdapter {
-        private LeafHolder target;
+        private final LeafHolder target;
 
         public AnimEndListener(LeafHolder target) {
             this.target = target;
@@ -491,7 +491,7 @@ public class ElectricFanLoadingRenderer
     }
 
     public static class Builder {
-        private Context mContext;
+        private final Context mContext;
 
         public Builder(Context mContext) {
             this.mContext = mContext;

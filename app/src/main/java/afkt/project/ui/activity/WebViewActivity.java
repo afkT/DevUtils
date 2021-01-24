@@ -23,7 +23,7 @@ public class WebViewActivity
         extends BaseActivity<ActivityWebviewBinding> {
 
     // WebView 辅助类
-    private WebViewAssist mWebViewAssist = new WebViewAssist();
+    private final WebViewAssist mWebViewAssist = new WebViewAssist();
 
     @Override
     public int baseLayoutId() {

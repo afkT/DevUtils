@@ -26,11 +26,11 @@ public final class TabLayoutAssist {
     private final String TAG = TabLayoutAssist.class.getSimpleName();
 
     // Context
-    private Context       mContext;
+    private       Context       mContext;
     // TabLayout
-    private TabLayout     tabLayout;
+    private       TabLayout     tabLayout;
     // 数据源
-    private List<TabItem> listTabs = new ArrayList<>();
+    private final List<TabItem> listTabs = new ArrayList<>();
 
     private TabLayoutAssist() {
     }

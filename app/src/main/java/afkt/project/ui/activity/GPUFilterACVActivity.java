@@ -36,7 +36,7 @@ public class GPUFilterACVActivity
     // 适配器
     private        GPUFilterACVAdapter gpuFilterACVAdapter;
     // ACV 文件集合
-    private        List<ACVFileBean>   listACVFiles = new ArrayList<>();
+    private final  List<ACVFileBean>   listACVFiles = new ArrayList<>();
     // 图片 Bitmap
     private        Bitmap              selectBitmap;
     // 滤镜线程

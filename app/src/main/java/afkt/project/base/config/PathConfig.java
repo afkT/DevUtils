@@ -110,7 +110,7 @@ public final class PathConfig {
 //        FileUtils.createFolderByPaths(paths);
 
         // 默认创建的文件夹路径
-        FileUtils.createFolderByPaths(new String[]{
+        FileUtils.createFolderByPaths(
                 // 临时存储
                 PathConfig.AEP_TEMP_PATH,
                 // 本地 SDCard 资源缓存地址
@@ -123,6 +123,6 @@ public final class PathConfig {
                 PathConfig.AEP_TEXT_PATH,
                 // 错误日志路径
                 PathConfig.AEP_ERROR_PATH
-        });
+        );
     }
 }

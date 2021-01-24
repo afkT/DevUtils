@@ -30,7 +30,7 @@ public class EditsAdapter
         extends BaseQuickAdapter<EvaluateItem, BaseViewHolder> {
 
     // EditText 输入监听辅助类
-    private EditTextWatcherAssist<EvaluateItem> editTextWatcherAssist = new EditTextWatcherAssist();
+    private final EditTextWatcherAssist<EvaluateItem> editTextWatcherAssist = new EditTextWatcherAssist();
 
     public EditsAdapter(@Nullable List<EvaluateItem> data) {
         super(R.layout.adapter_item_edits, data);

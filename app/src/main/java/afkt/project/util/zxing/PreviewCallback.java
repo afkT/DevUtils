@@ -16,7 +16,7 @@ public class PreviewCallback
     // 日志 TAG
     private final String      TAG = PreviewCallback.class.getSimpleName();
     // 显示的大小
-    private       Camera.Size mSize;
+    private final Camera.Size mSize;
     // 处理 Handler
     private       Handler     mPreviewHandler;
     // 处理 what

@@ -233,6 +233,6 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
      * @param title 标题
      */
     fun setTitle(title: String?) {
-        toolbar?.setTitle(title)
+        toolbar?.title = title
     }
 }

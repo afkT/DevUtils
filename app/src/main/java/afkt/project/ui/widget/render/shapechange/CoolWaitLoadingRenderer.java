@@ -260,7 +260,7 @@ public class CoolWaitLoadingRenderer
     }
 
     public static class Builder {
-        private Context mContext;
+        private final Context mContext;
 
         public Builder(Context mContext) {
             this.mContext = mContext;

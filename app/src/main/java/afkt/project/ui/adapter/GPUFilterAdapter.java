@@ -22,9 +22,9 @@ public class GPUFilterAdapter
         extends BaseAdapter {
 
     // Context
-    private Context context;
+    private final Context context;
     // 当前选中索引
-    private int     selectPosition = -1;
+    private       int     selectPosition = -1;
 
     public GPUFilterAdapter(Context context) {
         this.context = context;

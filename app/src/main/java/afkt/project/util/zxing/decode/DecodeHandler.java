@@ -36,7 +36,7 @@ public class DecodeHandler
     // 读取图像数据对象
     private final MultiFormatReader mMultiFormatReader;
     // 解码配置对象
-    private       DecodeConfig      mDecodeConfig;
+    private final DecodeConfig      mDecodeConfig;
 
     /**
      * 构造函数

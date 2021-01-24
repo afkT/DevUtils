@@ -39,17 +39,17 @@ public class SlideImageView
     // View 宽度, 高度
     private int     viewWidth, viewHeight;
     // 需要绘制的图片的区域
-    private Rect   srcRect  = new Rect();
+    private final Rect   srcRect  = new Rect();
     // 绘制的区域
-    private RectF  dstRectF = new RectF();
+    private final RectF  dstRectF = new RectF();
     // 画笔
-    private Paint  paint    = new Paint();
+    private final Paint  paint    = new Paint();
     // 已经滑动过的高度
-    private float  slideHeight;
+    private       float  slideHeight;
     // 绘制的 Bitmap
-    private Bitmap drawBitmap;
+    private       Bitmap drawBitmap;
     // 设置计算倍数
-    private float  scale    = 1.0f;
+    private       float  scale    = 1.0f;
 
     {
         // 初始化画笔
@@ -325,22 +325,22 @@ public class SlideImageView
 
     // = 动画相关 =
 
-    private Handler handler        = new Handler();
+    private final Handler handler        = new Handler();
     // 动画滑动距离
-    private float   slideLenth     = 10f;
+    private       float   slideLenth     = 10f;
     // 滑动速度 -> 时间
-    private long    slideSpeed     = 100L;
+    private       long    slideSpeed     = 100L;
     // 检测时间
-    private long    checkTime      = 20L;
+    private       long    checkTime      = 20L;
     // 是否滑动到底部
-    private boolean isScrollBottom = true;
+    private       boolean isScrollBottom = true;
     // 是否开启动画
-    private boolean isStartAnim    = false;
+    private       boolean isStartAnim    = false;
     // 是否关闭动画
-    private boolean isStopAnim     = false;
+    private       boolean isStopAnim     = false;
 
     // 动画线程
-    private Runnable animRunnable = new Runnable() {
+    private final Runnable animRunnable = new Runnable() {
         @Override
         public void run() {
             // 如果关闭了动画, 则不处理

@@ -172,9 +172,9 @@ public class QRCodeScanActivity
     // =============
 
     // 摄像头辅助类
-    private CameraAssist cameraAssist = new CameraAssist();
+    private final CameraAssist cameraAssist = new CameraAssist();
 
-    private SurfaceHolder.Callback mHolderCallback = new SurfaceHolder.Callback() {
+    private final SurfaceHolder.Callback mHolderCallback = new SurfaceHolder.Callback() {
         @Override
         public void surfaceCreated(SurfaceHolder holder) {
             // 检查权限
@@ -403,7 +403,7 @@ public class QRCodeScanActivity
     private Rect            mCropRect;
     // 解码类型
     private @DecodeFormat.DecodeMode
-    int mDecodeMode = DecodeFormat.ALL;
+    final int mDecodeMode = DecodeFormat.ALL;
 
     /**
      * detail: 捕获预览画面处理 Handler
@@ -419,11 +419,11 @@ public class QRCodeScanActivity
         // 默认表示成功
         private              State           mState;
         // Camera 辅助类
-        private              CameraAssist    mCameraAssist;
+        private final        CameraAssist    mCameraAssist;
         // 数据回调
-        private              PreviewCallback mPreviewCallback;
+        private final        PreviewCallback mPreviewCallback;
         // 解码结果回调
-        private              DecodeResult    mDecodeResult;
+        private final        DecodeResult    mDecodeResult;
 
         /**
          * 构造函数

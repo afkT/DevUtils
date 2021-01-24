@@ -31,7 +31,7 @@ public class MultiSelectAdapter
         implements IMultiSelectEdit {
 
     // 多选辅助类
-    private MultiSelectMapAssist<Integer, CommodityEvaluateBean> multiSelectMapAssist = new MultiSelectMapAssist();
+    private final MultiSelectMapAssist<Integer, CommodityEvaluateBean> multiSelectMapAssist = new MultiSelectMapAssist();
 
     public MultiSelectAdapter(@Nullable List<CommodityEvaluateBean> data) {
         super(R.layout.adapter_multi_select, data);

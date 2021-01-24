@@ -110,7 +110,7 @@ public class ScanShapeActivity
     // 摄像头辅助类
     CameraAssist cameraAssist = new CameraAssist();
 
-    private SurfaceHolder.Callback mHolderCallback = new SurfaceHolder.Callback() {
+    private final SurfaceHolder.Callback mHolderCallback = new SurfaceHolder.Callback() {
         @Override
         public void surfaceCreated(SurfaceHolder holder) {
             // 检查权限

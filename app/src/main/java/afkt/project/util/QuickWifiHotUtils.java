@@ -22,9 +22,9 @@ public class QuickWifiHotUtils {
     // 日志 TAG
     private final        String       TAG                    = QuickWifiHotUtils.class.getSimpleName();
     // Wifi 工具类
-    private              WifiUtils    wifiUtils;
+    private final        WifiUtils    wifiUtils;
     // Wifi 热点工具类
-    private              WifiHotUtils wifiHotUtils;
+    private final        WifiHotUtils wifiHotUtils;
     // 是否停止线程检查
     private              boolean      isStop                 = false;
     // 是否停止开启检查
@@ -55,7 +55,7 @@ public class QuickWifiHotUtils {
         this.wifiHotUtils = wifiHotUtils;
     }
 
-    private Handler hotHandler = new Handler() {
+    private final Handler hotHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -141,7 +141,7 @@ public class QuickWifiHotUtils {
     /**
      * 关闭 Wifi 检查线程
      */
-    private Thread closeWifiThread = new Thread() {
+    private final Thread closeWifiThread = new Thread() {
         @Override
         public void run() {
             if (isStop) return;
@@ -187,7 +187,7 @@ public class QuickWifiHotUtils {
     /**
      * 开启 Wifi 热点线程
      */
-    private Thread startWifiSpotThread = new Thread() {
+    private final Thread startWifiSpotThread = new Thread() {
         @SuppressLint("MissingPermission")
         @Override
         public void run() {
@@ -238,7 +238,7 @@ public class QuickWifiHotUtils {
     /**
      * 检查热点连接线程
      */
-    private Thread hotCheckThread = new Thread() {
+    private final Thread hotCheckThread = new Thread() {
         @Override
         public void run() {
             while (isThreadCheckHot) {

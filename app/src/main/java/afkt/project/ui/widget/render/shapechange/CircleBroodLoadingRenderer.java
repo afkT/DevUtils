@@ -32,18 +32,18 @@ public class CircleBroodLoadingRenderer
     private final Interpolator DECELERATE_INTERPOLATOR08 = new DecelerateInterpolator(0.8f);
     private final Interpolator DECELERATE_INTERPOLATOR10 = new DecelerateInterpolator(1.0f);
 
-    private float STAGE_MOTHER_FORWARD_TOP_LEFT     = 0.34f;
-    private float STAGE_MOTHER_BACKWARD_TOP_LEFT    = 0.5f;
-    private float STAGE_MOTHER_FORWARD_BOTTOM_LEFT  = 0.65f;
-    private float STAGE_MOTHER_BACKWARD_BOTTOM_LEFT = 0.833f;
+    private final float STAGE_MOTHER_FORWARD_TOP_LEFT     = 0.34f;
+    private final float STAGE_MOTHER_BACKWARD_TOP_LEFT    = 0.5f;
+    private final float STAGE_MOTHER_FORWARD_BOTTOM_LEFT  = 0.65f;
+    private final float STAGE_MOTHER_BACKWARD_BOTTOM_LEFT = 0.833f;
 
-    private float STAGE_CHILD_DELAY                 = 0.1f;
-    private float STAGE_CHILD_PRE_FORWARD_TOP_LEFT  = 0.26f;
-    private float STAGE_CHILD_FORWARD_TOP_LEFT      = 0.34f;
-    private float STAGE_CHILD_PRE_BACKWARD_TOP_LEFT = 0.42f;
-    private float STAGE_CHILD_BACKWARD_TOP_LEFT     = 0.5f;
-    private float STAGE_CHILD_FORWARD_BOTTOM_LEFT   = 0.7f;
-    private float STAGE_CHILD_BACKWARD_BOTTOM_LEFT  = 0.9f;
+    private final float STAGE_CHILD_DELAY                 = 0.1f;
+    private final float STAGE_CHILD_PRE_FORWARD_TOP_LEFT  = 0.26f;
+    private final float STAGE_CHILD_FORWARD_TOP_LEFT      = 0.34f;
+    private final float STAGE_CHILD_PRE_BACKWARD_TOP_LEFT = 0.42f;
+    private final float STAGE_CHILD_BACKWARD_TOP_LEFT     = 0.5f;
+    private final float STAGE_CHILD_FORWARD_BOTTOM_LEFT   = 0.7f;
+    private final float STAGE_CHILD_BACKWARD_BOTTOM_LEFT  = 0.9f;
 
     private final float OVAL_BEZIER_FACTOR = 0.55152f;
 
@@ -673,7 +673,7 @@ public class CircleBroodLoadingRenderer
     }
 
     public static class Builder {
-        private Context mContext;
+        private final Context mContext;
 
         public Builder(Context mContext) {
             this.mContext = mContext;
