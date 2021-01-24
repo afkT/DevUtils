@@ -29,6 +29,7 @@ import dev.utils.app.ActivityUtils;
 import dev.utils.app.AppCommonUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.app.CrashUtils;
+import dev.utils.app.DeviceUtils;
 import dev.utils.app.PathUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.ScreenshotUtils;
@@ -167,7 +168,7 @@ public class BaseApplication
         // 初始化项目文件夹
         PathConfig.createFolder();
         // 插入设备信息
-        FileRecordUtils.setInsertInfo(AppCommonUtils.getAppDeviceInfo());
+        FileRecordUtils.setInsertInfo(DeviceUtils.getAppDeviceInfo());
         // 初始化 MMKV
         MMKVUtils.init(this);
         // 初始化 Glide

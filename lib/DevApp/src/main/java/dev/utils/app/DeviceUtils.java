@@ -25,6 +25,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.UUID;
 
 import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
@@ -61,6 +62,7 @@ import dev.utils.LogPrintUtils;
  *     所需权限
  *     <uses-permission android:name="android.permission.INTERNET" />
  *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+ *     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
  * </pre>
  */
 public final class DeviceUtils {
@@ -70,6 +72,87 @@ public final class DeviceUtils {
 
     // 日志 TAG
     private static final String TAG = DeviceUtils.class.getSimpleName();
+
+    // 应用、设备信息 ( 可用于 FileRecordUtils 插入信息使用 )
+    private static String APP_DEVICE_INFO = null;
+
+    /**
+     * 获取应用、设备信息
+     * @return 应用、设备信息
+     */
+    public static String getAppDeviceInfo() {
+        if (TextUtils.isEmpty(APP_DEVICE_INFO)) {
+            refreshAppDeviceInfo();
+        }
+        return APP_DEVICE_INFO;
+    }
+
+    /**
+     * 刷新应用、设备信息
+     * @return 应用、设备信息
+     */
+    public static String refreshAppDeviceInfo() {
+        try {
+            StringBuilder builder = new StringBuilder();
+            // 获取 APP 版本信息
+            String[] versions    = ManifestUtils.getAppVersion();
+            String   versionName = versions[0];
+            String   versionCode = versions[1];
+            String   packageName = AppUtils.getPackageName();
+            String   deviceInfo  = DeviceUtils.handlerDeviceInfo(DeviceUtils.getDeviceInfo(), null);
+            if (TextUtils.isEmpty(versionName) || TextUtils.isEmpty(versionCode) ||
+                    TextUtils.isEmpty(packageName) || TextUtils.isEmpty(deviceInfo)) {
+                return null;
+            }
+            // 保存 APP 版本信息
+            builder.append("versionName: ").append(versionName);
+            builder.append(DevFinal.NEW_LINE_STR);
+            builder.append("versionCode: ").append(versionCode);
+            builder.append(DevFinal.NEW_LINE_STR);
+            builder.append("package: ").append(packageName);
+            builder.append(DevFinal.NEW_LINE_STR);
+            builder.append(deviceInfo);
+            // 设置应用、设备信息
+            APP_DEVICE_INFO = builder.toString();
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "refreshAppDeviceInfo");
+        }
+        return APP_DEVICE_INFO;
+    }
+
+    // =
+
+    /**
+     * 获取设备唯一 UUID
+     * @return 设备唯一 UUID
+     */
+    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
+    public static String getUUID() {
+        return PhoneUtils.getUUID();
+    }
+
+    /**
+     * 获取设备唯一 UUID ( 使用硬件信息拼凑出来的 )
+     * @return 设备唯一 UUID
+     * <pre>
+     *     https://developer.android.com/training/articles/user-data-ids
+     * </pre>
+     */
+    public static String getUUIDDevice() {
+        String serial = "serial";
+        String m_szDevIDShort = "35" +
+                Build.BOARD.length() % 10 + Build.BRAND.length() % 10 +
+                Build.CPU_ABI.length() % 10 + Build.DEVICE.length() % 10 +
+                Build.DISPLAY.length() % 10 + Build.HOST.length() % 10 +
+                Build.ID.length() % 10 + Build.MANUFACTURER.length() % 10 +
+                Build.MODEL.length() % 10 + Build.PRODUCT.length() % 10 +
+                Build.TAGS.length() % 10 + Build.TYPE.length() % 10 +
+                Build.USER.length() % 10; // 13 位
+        // 使用硬件信息拼凑出来的 15 位号码
+        return new UUID(m_szDevIDShort.hashCode(), serial.hashCode()).toString();
+    }
+
+    // =
 
     /**
      * 获取设备信息

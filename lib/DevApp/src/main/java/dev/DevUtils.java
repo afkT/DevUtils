@@ -25,7 +25,6 @@ import dev.utils.BuildConfig;
 import dev.utils.JCLogUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AnalysisRecordUtils;
-import dev.utils.app.AppCommonUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.KeyBoardUtils;
 import dev.utils.app.UriUtils;
@@ -85,8 +84,6 @@ public final class DevUtils {
         // = 初始化工具类相关 =
         // ===================
 
-        // 初始化 应用、设备信息
-        AppCommonUtils.refreshAppDeviceInfo();
         // 初始化 Record
         AnalysisRecordUtils.init();
         // 初始化 Toast

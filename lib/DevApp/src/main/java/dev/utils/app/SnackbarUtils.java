@@ -286,7 +286,7 @@ public final class SnackbarUtils {
     ) {
         Snackbar snackbar = getSnackbar();
         if (snackbar != null) {
-            String content = AppCommonUtils.getFormatRes(resId, formatArgs);
+            String content = ResourceUtils.getString(resId, formatArgs);
             if (!TextUtils.isEmpty(content)) {
                 snackbar.setAction(content, listener);
             }
@@ -365,7 +365,7 @@ public final class SnackbarUtils {
             @StringRes final int resId,
             final Object... formatArgs
     ) {
-        priShow(AppCommonUtils.getFormatRes(resId, formatArgs), Snackbar.LENGTH_SHORT);
+        priShow(ResourceUtils.getString(resId, formatArgs), Snackbar.LENGTH_SHORT);
     }
 
     /**
@@ -377,7 +377,7 @@ public final class SnackbarUtils {
             @StringRes final int resId,
             final Object... formatArgs
     ) {
-        priShow(AppCommonUtils.getFormatRes(resId, formatArgs), Snackbar.LENGTH_LONG);
+        priShow(ResourceUtils.getString(resId, formatArgs), Snackbar.LENGTH_LONG);
     }
 
     /**
@@ -389,7 +389,7 @@ public final class SnackbarUtils {
             @StringRes final int resId,
             final Object... formatArgs
     ) {
-        priShow(AppCommonUtils.getFormatRes(resId, formatArgs), Snackbar.LENGTH_INDEFINITE);
+        priShow(ResourceUtils.getString(resId, formatArgs), Snackbar.LENGTH_INDEFINITE);
     }
 
     // =

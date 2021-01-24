@@ -4,8 +4,8 @@ import java.io.File;
 
 import afkt.project.base.config.PathConfig;
 import dev.utils.app.AnalysisRecordUtils;
-import dev.utils.app.AppCommonUtils;
 import dev.utils.app.AppUtils;
+import dev.utils.app.DeviceUtils;
 import dev.utils.app.PathUtils;
 import dev.utils.common.FileRecordUtils;
 import dev.utils.common.ThrowableUtils;
@@ -108,7 +108,7 @@ public final class FileRecordUse {
         } catch (NullPointerException e) {
 
             // 设置插入信息
-            FileRecordUtils.setInsertInfo(AppCommonUtils.getAppDeviceInfo());
+            FileRecordUtils.setInsertInfo(DeviceUtils.getAppDeviceInfo());
 
             FileRecordUtils.saveErrorLog(e, LOG_SD_PATH, System.currentTimeMillis() + ".log");
 

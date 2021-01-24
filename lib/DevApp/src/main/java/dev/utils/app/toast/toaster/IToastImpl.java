@@ -18,7 +18,7 @@ import androidx.annotation.StringRes;
 
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
-import dev.utils.app.AppCommonUtils;
+import dev.utils.app.ResourceUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.common.StringUtils;
 
@@ -238,7 +238,7 @@ final class IToastImpl
             @StringRes final int resId,
             final Object... formatArgs
     ) {
-        String context = AppCommonUtils.getFormatRes(resId, formatArgs);
+        String context = ResourceUtils.getString(resId, formatArgs);
         if (filter(context)) {
             // 获取处理的内容
             priShowToastText(handlerContent(context));

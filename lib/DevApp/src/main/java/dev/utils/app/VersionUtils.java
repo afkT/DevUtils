@@ -3,16 +3,16 @@ package dev.utils.app;
 import android.os.Build;
 
 /**
- * detail: APP 通用工具类
+ * detail: 版本工具类
  * @author Ttt
  */
-public final class AppCommonUtils {
+public final class VersionUtils {
 
-    private AppCommonUtils() {
+    private VersionUtils() {
     }
 
     // ===============
-    // = 版本判断处理 =
+    // = Android SDK =
     // ===============
 
     /**
