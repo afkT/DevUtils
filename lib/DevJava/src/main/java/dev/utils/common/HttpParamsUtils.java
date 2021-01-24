@@ -43,7 +43,7 @@ public final class HttpParamsUtils {
             // 拆分数据
             String[] keyValues = params.split("&");
             // 数据长度
-            int valLength = 0;
+            int valLength;
             // 进行循环遍历
             for (String val : keyValues) {
                 // 数据不为 null
@@ -55,7 +55,7 @@ public final class HttpParamsUtils {
                         // 获取 key
                         String key = val.substring(0, indexOf);
                         // 获取 value
-                        String value = null;
+                        String value;
                         // 防止资源浪费
                         if (indexOf + 1 == valLength) {
                             value = "";

@@ -2075,9 +2075,9 @@ public final class FileUtils {
     public static class FileList {
 
         // 当前文件夹
-        private File           mFile;
+        private final File           mFile;
         // 文件夹内子文件列表
-        private List<FileList> mSubFiles;
+        private final List<FileList> mSubFiles;
 
         /**
          * 构造函数

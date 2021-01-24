@@ -41,9 +41,9 @@ public final class AppInfoItem {
     @Keep // APP SHA256 签名
     private final String          appSHA256;
     @Keep // APP 最低支持 Android SDK 版本
-    private       int             minSdkVersion    = -1;
+    private       int             minSdkVersion = -1;
     @Keep // APP 兼容 SDK 版本
-    private       int             targetSdkVersion;
+    private final int             targetSdkVersion;
     @Keep // APP 安装包大小
     private final String          apkLength;
     @Keep // 证书对象
@@ -67,7 +67,7 @@ public final class AppInfoItem {
     @Keep // 证书 DER 编码
     private       String          certDERCode;
     @Keep // APP 参数集
-    private final List<KeyValue>  listKeyValues    = new ArrayList<>();
+    private final List<KeyValue>  listKeyValues = new ArrayList<>();
 
     /**
      * 获取 AppInfoItem
