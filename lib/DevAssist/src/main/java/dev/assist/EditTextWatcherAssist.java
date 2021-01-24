@@ -125,13 +125,13 @@ public class EditTextWatcherAssist<T> {
             implements View.OnFocusChangeListener {
 
         // 当前索引
-        private int              position;
+        private final int              position;
         // EditText
-        private EditText         editText;
+        private final EditText         editText;
         // Object
-        private T                object;
+        private final T                object;
         // 输入监听事件
-        private InputListener<T> listener;
+        private final InputListener<T> listener;
 
         /**
          * 构造函数

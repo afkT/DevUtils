@@ -14,7 +14,7 @@ import java.util.Map;
 public class DevVariable<K, V> {
 
     // 存储数据 Map
-    private LinkedHashMap<K, V> mLinkedHashMap = new LinkedHashMap<>();
+    private final LinkedHashMap<K, V> mLinkedHashMap = new LinkedHashMap<>();
 
     // ===============
     // = 对外公开方法 =

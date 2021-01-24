@@ -871,7 +871,7 @@ public final class DevUtils {
     // ===========
 
     // 内部 Activity 生命周期过滤处理
-    private static ActivityLifecycleFilter ACTIVITY_LIFECYCLE_FILTER = new ActivityLifecycleFilter() {
+    private static final ActivityLifecycleFilter ACTIVITY_LIFECYCLE_FILTER = new ActivityLifecycleFilter() {
         @Override
         public boolean filter(Activity activity) {
             if (activity != null) {

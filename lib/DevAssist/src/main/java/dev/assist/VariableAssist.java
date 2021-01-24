@@ -9,9 +9,9 @@ import dev.base.DevVariable;
 public class VariableAssist {
 
     // Boolean 变量存储对象
-    private DevVariable<Object, Boolean> mBooleanVariable = new DevVariable<>();
+    private final DevVariable<Object, Boolean> mBooleanVariable = new DevVariable<>();
     // Object 变量存储对象
-    private DevVariable<Object, Object>  mObjectVariable  = new DevVariable<>();
+    private final DevVariable<Object, Object>  mObjectVariable  = new DevVariable<>();
 
     /**
      * 获取 Boolean 变量存储对象

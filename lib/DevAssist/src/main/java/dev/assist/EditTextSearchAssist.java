@@ -24,9 +24,9 @@ import dev.utils.app.assist.DelayAssist;
 public class EditTextSearchAssist {
 
     // 搜索回调
-    private SearchCallback mCallback;
+    private       SearchCallback mCallback;
     // 延迟触发回调类
-    private DelayAssist    mDelayAssist = new DelayAssist(object -> {
+    private final DelayAssist    mDelayAssist = new DelayAssist(object -> {
         if (mCallback != null && object instanceof CharSequence) {
             mCallback.callback((CharSequence) object);
         }

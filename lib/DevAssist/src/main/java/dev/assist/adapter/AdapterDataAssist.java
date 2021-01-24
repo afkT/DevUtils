@@ -21,9 +21,9 @@ public class AdapterDataAssist<V>
     private static final String TAG = AdapterDataAssist.class.getSimpleName();
 
     // List Data
-    private List<V>        mList = new ArrayList<>();
+    private final List<V>        mList = new ArrayList<>();
     // IAdapterNotify
-    private IAdapterNotify mAdapterNotify;
+    private       IAdapterNotify mAdapterNotify;
 
     /**
      * 构造函数
