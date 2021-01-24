@@ -7,7 +7,7 @@
 
 ```java
 // AndroidX
-implementation 'com.afkt:DevWidgetX:1.0.6'
+implementation 'com.afkt:DevWidgetX:1.0.7'
 ```
 
 ## README
