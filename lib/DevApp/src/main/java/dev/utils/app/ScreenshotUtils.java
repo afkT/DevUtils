@@ -136,7 +136,7 @@ public final class ScreenshotUtils {
             extends ContentObserver {
 
         // 监听 Uri
-        private Uri mContentUri;
+        private final Uri mContentUri;
 
         public MediaContentObserver(
                 Uri contentUri,

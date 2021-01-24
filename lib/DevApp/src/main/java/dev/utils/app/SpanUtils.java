@@ -112,11 +112,11 @@ public final class SpanUtils {
     }
 
     // 内部 SpannableString 实现类
-    private SerializableSpannableStringBuilder mBuilder;
+    private final SerializableSpannableStringBuilder mBuilder;
     // TextView create setText
-    private TextView                           mTextView;
+    private       TextView                           mTextView;
     // 中转文本
-    private CharSequence                       mText;
+    private       CharSequence                       mText;
 
     // 内部标记应用类型
     private              int mType;
@@ -1533,7 +1533,7 @@ public final class SpanUtils {
     static class ShaderSpan
             extends CharacterStyle
             implements UpdateAppearance {
-        private Shader mShader;
+        private final Shader mShader;
 
         private ShaderSpan(final Shader shader) {
             this.mShader = shader;
@@ -1552,9 +1552,10 @@ public final class SpanUtils {
     static class ShadowSpan
             extends CharacterStyle
             implements UpdateAppearance {
-        private float radius;
-        private float dx, dy;
-        private int shadowColor;
+        private final float radius;
+        private final float dx;
+        private final float dy;
+        private final int   shadowColor;
 
         private ShadowSpan(
                 final float radius,

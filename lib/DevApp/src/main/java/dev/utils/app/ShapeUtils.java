@@ -76,7 +76,7 @@ import androidx.annotation.RequiresApi;
 public final class ShapeUtils {
 
     // Shape Drawable
-    private GradientDrawable mDrawable;
+    private final GradientDrawable mDrawable;
 
     /**
      * 构造函数

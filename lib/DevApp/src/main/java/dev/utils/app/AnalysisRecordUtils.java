@@ -46,15 +46,15 @@ public final class AnalysisRecordUtils {
     // ===========
 
     // APP 版本名 ( 主要用于对用户显示版本信息 )
-    private static String              APP_VERSION_NAME = "";
+    private static       String              APP_VERSION_NAME = "";
     // APP 版本号
-    private static String              APP_VERSION_CODE = "";
+    private static       String              APP_VERSION_CODE = "";
     // 应用包名
-    private static String              PACKAGE_NAME     = "";
+    private static       String              PACKAGE_NAME     = "";
     // 设备信息
-    private static String              DEVICE_INFO_STR  = null;
+    private static       String              DEVICE_INFO_STR  = null;
     // 设备信息存储 Map
-    private static Map<String, String> DEVICE_INFO_MAPS = new HashMap<>();
+    private static final Map<String, String> DEVICE_INFO_MAPS = new HashMap<>();
 
     /**
      * 初始化操作 ( 内部已调用 )
@@ -361,13 +361,13 @@ public final class AnalysisRecordUtils {
         private String folderName;
 
         // 文件名 如: xxx.txt
-        private String fileName;
+        private final String fileName;
 
         // 文件记录的功能
-        private String fileFunction;
+        private final String fileFunction;
 
         // 文件记录间隔时间 如: HH
-        private int fileIntervalTime;
+        private final int fileIntervalTime;
 
         // 是否处理日志记录
         private boolean handler;

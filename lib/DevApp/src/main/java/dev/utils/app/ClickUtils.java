@@ -523,9 +523,9 @@ public final class ClickUtils {
             implements View.OnClickListener {
 
         // 是否校验 viewId
-        private boolean     mCheckViewId;
+        private final boolean     mCheckViewId;
         // 点击辅助类
-        private ClickAssist mClickAssist;
+        private final ClickAssist mClickAssist;
 
         // ===========
         // = 构造函数 =
@@ -590,13 +590,13 @@ public final class ClickUtils {
             implements View.OnClickListener {
 
         // 点击辅助类
-        private ClickAssist   mClickAssist;
+        private final ClickAssist   mClickAssist;
         // 总点击数
-        private AtomicInteger mCount              = new AtomicInteger();
+        private final AtomicInteger mCount              = new AtomicInteger();
         // 无效点击总次数
-        private AtomicInteger mInvalidCount       = new AtomicInteger();
+        private final AtomicInteger mInvalidCount       = new AtomicInteger();
         // 每个周期无效点击次数 ( 周期 ( 有效 - 无效 - 有效 ) )
-        private AtomicInteger mInvalidCycleNumber = new AtomicInteger();
+        private final AtomicInteger mInvalidCycleNumber = new AtomicInteger();
 
         // ===========
         // = 构造函数 =

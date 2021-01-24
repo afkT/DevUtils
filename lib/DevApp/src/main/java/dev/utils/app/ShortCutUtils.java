@@ -121,7 +121,7 @@ public final class ShortCutUtils {
             final String name,
             @AnyRes final int icon
     ) {
-        return (clazz != null) ? addShortcut(clazz.getName(), name, icon) : false;
+        return (clazz != null) && addShortcut(clazz.getName(), name, icon);
     }
 
     /**
@@ -241,7 +241,7 @@ public final class ShortCutUtils {
             final Class clazz,
             final String name
     ) {
-        return (clazz != null) ? deleteShortcut(clazz.getName(), name) : false;
+        return (clazz != null) && deleteShortcut(clazz.getName(), name);
     }
 
     /**

@@ -39,9 +39,9 @@ public final class WifiHotUtils {
     private static final String TAG = WifiHotUtils.class.getSimpleName();
 
     // WifiManager 对象
-    private WifiManager       mWifiManager;
+    private final WifiManager       mWifiManager;
     // Wifi 热点配置
-    private WifiConfiguration mAPWifiConfig;
+    private       WifiConfiguration mAPWifiConfig;
 
     /**
      * 构造函数

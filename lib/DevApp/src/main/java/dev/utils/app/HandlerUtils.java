@@ -169,7 +169,7 @@ public final class HandlerUtils {
     // ================
 
     // 通过 Key 快捷控制 Runnable, 进行 postDelayed、removeCallbacks
-    private static Map<String, Runnable> sRunnableMaps = new HashMap<>();
+    private static final Map<String, Runnable> sRunnableMaps = new HashMap<>();
 
     /**
      * 获取 Key Runnable Map

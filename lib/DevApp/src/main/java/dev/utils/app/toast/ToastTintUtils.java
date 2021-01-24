@@ -69,26 +69,26 @@ public final class ToastTintUtils {
     // ===========
 
     // 默认样式
-    private static ToastTintUtils.Style sDefaultStyle    = new DefaultStyle();
+    private static final ToastTintUtils.Style sDefaultStyle    = new DefaultStyle();
     // Normal 样式
-    private static ToastTintUtils.Style sNormalStyle     = new NormalStyle();
+    private static       ToastTintUtils.Style sNormalStyle     = new NormalStyle();
     // Info 样式
-    private static ToastTintUtils.Style sInfoStyle       = new InfoStyle();
+    private static       ToastTintUtils.Style sInfoStyle       = new InfoStyle();
     // Warning 样式
-    private static ToastTintUtils.Style sWarningStyle    = new WarningStyle();
+    private static       ToastTintUtils.Style sWarningStyle    = new WarningStyle();
     // Error 样式
-    private static ToastTintUtils.Style sErrorStyle      = new ErrorStyle();
+    private static       ToastTintUtils.Style sErrorStyle      = new ErrorStyle();
     // Success 样式
-    private static ToastTintUtils.Style sSuccessStyle    = new SuccessStyle();
+    private static       ToastTintUtils.Style sSuccessStyle    = new SuccessStyle();
     // =
     // info icon
-    private static Drawable             sInfoDrawable    = null;
+    private static       Drawable             sInfoDrawable    = null;
     // warning icon
-    private static Drawable             sWarningDrawable = null;
+    private static       Drawable             sWarningDrawable = null;
     // error icon
-    private static Drawable             sErrorDrawable   = null;
+    private static       Drawable             sErrorDrawable   = null;
     // Success icon
-    private static Drawable             sSuccessDrawable = null;
+    private static       Drawable             sSuccessDrawable = null;
 
     /**
      * 重置默认参数
@@ -1376,7 +1376,7 @@ public final class ToastTintUtils {
     private static final class SafeHandler
             extends Handler {
 
-        private Handler mHandler;
+        private final Handler mHandler;
 
         SafeHandler(Handler handler) {
             mHandler = handler;

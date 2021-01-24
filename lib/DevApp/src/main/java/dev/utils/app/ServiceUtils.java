@@ -36,7 +36,7 @@ public final class ServiceUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isServiceRunning(final Class<?> clazz) {
-        return (clazz != null) ? isServiceRunning(clazz.getName()) : false;
+        return (clazz != null) && isServiceRunning(clazz.getName());
     }
 
     /**

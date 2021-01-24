@@ -41,7 +41,7 @@ public final class WifiUtils {
     private static final String TAG = WifiUtils.class.getSimpleName();
 
     // WifiManager 对象
-    private WifiManager mWifiManager;
+    private final WifiManager mWifiManager;
 
     // =======
     // = 常量 =

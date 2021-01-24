@@ -165,7 +165,7 @@ final class ToastFactory {
         static final class SafeHandler
                 extends Handler {
 
-            private Handler mHandler;
+            private final Handler mHandler;
 
             SafeHandler(Handler handler) {
                 mHandler = handler;
