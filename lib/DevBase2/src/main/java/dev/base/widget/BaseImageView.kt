@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatImageView
  */
 class BaseImageView : AppCompatImageView {
 
-    constructor(context: Context) : super(context) {}
+    constructor(context: Context) : super(context)
 
     constructor(
         context: Context,

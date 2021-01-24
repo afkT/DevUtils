@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatButton
  */
 class BaseButton : AppCompatButton {
 
-    constructor(context: Context) : super(context) {}
+    constructor(context: Context) : super(context)
 
     constructor(
         context: Context,

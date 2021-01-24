@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatTextView
  */
 class BaseTextView : AppCompatTextView {
 
-    constructor(context: Context) : super(context) {}
+    constructor(context: Context) : super(context)
 
     constructor(
         context: Context,

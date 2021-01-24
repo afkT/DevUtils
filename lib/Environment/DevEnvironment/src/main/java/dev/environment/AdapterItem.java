@@ -58,7 +58,7 @@ class AdapterItem {
     // =
 
     // 各个 Module 选中的 Environment HashCode
-    private static HashMap<String, Integer> sModuleHashCodeMap = new HashMap<>();
+    private static final HashMap<String, Integer> sModuleHashCodeMap = new HashMap<>();
 
     /**
      * 刷新 HashCode

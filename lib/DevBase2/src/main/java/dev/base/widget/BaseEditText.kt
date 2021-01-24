@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatEditText
  */
 class BaseEditText : AppCompatEditText {
 
-    constructor(context: Context) : super(context) {}
+    constructor(context: Context) : super(context)
 
     constructor(
         context: Context,
