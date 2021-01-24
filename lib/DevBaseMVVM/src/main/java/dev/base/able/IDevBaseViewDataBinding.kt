@@ -15,13 +15,6 @@ interface IDevBaseViewDataBinding<VDB : ViewDataBinding> {
     fun getBindingView(): View?
 
     /**
-     * 是否分离 ( 销毁 ) Binding
-     */
-    fun isDetachBinding(): Boolean {
-        return true
-    }
-
-    /**
      * 是否 Bind View
      */
     fun isViewBinding(): Boolean {
@@ -29,9 +22,9 @@ interface IDevBaseViewDataBinding<VDB : ViewDataBinding> {
     }
 
     /**
-     * 是否捕获 ViewBinding 异常
+     * 是否分离 ( 销毁 ) Binding
      */
-    fun isTryViewBindingCatch(): Boolean {
-        return false
+    fun isDetachBinding(): Boolean {
+        return isViewBinding()
     }
 }

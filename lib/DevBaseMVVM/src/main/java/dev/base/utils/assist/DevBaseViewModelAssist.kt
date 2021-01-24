@@ -35,7 +35,7 @@ class DevBaseViewModelAssist {
         modelClass: Class<T>
     ): T? {
         if (activity == null) return null
-        return ViewModelProvider(activity)!!.get(modelClass)
+        return ViewModelProvider(activity).get(modelClass)
     }
 
     /**
@@ -70,7 +70,7 @@ class DevBaseViewModelAssist {
         modelClass: Class<T>
     ): T? {
         if (fragment == null) return null
-        return ViewModelProvider(fragment)!!.get(modelClass)
+        return ViewModelProvider(fragment).get(modelClass)
     }
 
     /**

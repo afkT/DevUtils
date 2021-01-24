@@ -34,7 +34,7 @@ object ViewModelUtils {
     ): T? {
         if (activity == null) return null
         try {
-            return ViewModelProvider(activity)!!.get(modelClass)
+            return ViewModelProvider(activity).get(modelClass)
         } catch (e: Exception) {
             LogPrintUtils.eTag(TAG, e, "getActivityViewModel")
         }
@@ -57,7 +57,7 @@ object ViewModelUtils {
     ): T? {
         if (fragment == null) return null
         try {
-            return ViewModelProvider(fragment)!!.get(modelClass)
+            return ViewModelProvider(fragment).get(modelClass)
         } catch (e: Exception) {
             LogPrintUtils.eTag(TAG, e, "getFragmentViewModel")
         }

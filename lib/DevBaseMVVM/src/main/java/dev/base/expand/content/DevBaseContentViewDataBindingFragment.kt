@@ -26,19 +26,10 @@ abstract class DevBaseContentViewDataBindingFragment<VDB : ViewDataBinding> :
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         if (isViewBinding()) {
-            if (isTryViewBindingCatch()) {
-                try {
-                    // ViewDataBinding 初始化处理
-                    _binding = DataBindingUtil.bind<VDB>(getBindingView()!!)!!
-                } catch (e: Exception) {
-                    assist.printLog(e, "onCreateView - viewDataBinding")
-                }
-            } else {
-                // ViewDataBinding 初始化处理
-                _binding = DataBindingUtil.bind<VDB>(getBindingView()!!)!!
-            }
+            // ViewDataBinding 初始化处理
+            _binding = DataBindingUtil.bind<VDB>(getBindingView()!!)!!
             // 支持 LiveData 绑定 xml 数据改变 UI 自动会更新
-            _binding?.setLifecycleOwner(this)
+            _binding?.lifecycleOwner = this
         }
         return mContentView
     }

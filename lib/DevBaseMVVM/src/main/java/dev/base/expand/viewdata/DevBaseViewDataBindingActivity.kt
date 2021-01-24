@@ -19,25 +19,16 @@ abstract class DevBaseViewDataBindingActivity<VDB : ViewDataBinding> : DevBaseAc
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (isViewBinding()) {
-            if (isTryViewBindingCatch()) {
-                try {
-                    // ViewDataBinding 初始化处理
-                    binding = DataBindingUtil.bind<VDB>(getBindingView()!!)!!
-                } catch (e: Exception) {
-                    assist.printLog(e, "onCreate - viewDataBinding")
-                }
-            } else {
-                // ViewDataBinding 初始化处理
-                binding = DataBindingUtil.bind<VDB>(getBindingView()!!)!!
-            }
+            // ViewDataBinding 初始化处理
+            binding = DataBindingUtil.bind<VDB>(getBindingView()!!)!!
             // 支持 LiveData 绑定 xml 数据改变 UI 自动会更新
-            binding.setLifecycleOwner(this)
+            binding.lifecycleOwner = this
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        if (isDetachBinding()) binding?.unbind()
+        if (isDetachBinding()) binding.unbind()
     }
 
     // ===========================
