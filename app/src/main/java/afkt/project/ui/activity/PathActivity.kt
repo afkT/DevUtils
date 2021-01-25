@@ -1,199 +1,192 @@
-package afkt.project.ui.activity;
+package afkt.project.ui.activity
 
-import android.view.View;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
-
-import afkt.project.R;
-import afkt.project.base.app.BaseActivity;
-import afkt.project.databinding.BaseViewRecyclerviewBinding;
-import afkt.project.model.item.ButtonList;
-import afkt.project.model.item.ButtonValue;
-import afkt.project.ui.adapter.ButtonAdapter;
-import dev.engine.log.DevLogEngine;
-import dev.utils.DevFinal;
-import dev.utils.app.PathUtils;
-import dev.utils.app.toast.ToastTintUtils;
-import dev.utils.common.StringUtils;
+import afkt.project.R
+import afkt.project.base.app.BaseActivity
+import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.model.item.ButtonList
+import afkt.project.model.item.ButtonValue
+import afkt.project.ui.adapter.ButtonAdapter
+import android.view.View
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.listener.OnItemChildClickListener
+import dev.engine.log.DevLogEngine
+import dev.utils.DevFinal
+import dev.utils.app.PathUtils
+import dev.utils.app.toast.ToastTintUtils
+import dev.utils.common.StringUtils
 
 /**
  * detail: 路径信息
  * @author Ttt
  */
-public class PathActivity
-        extends BaseActivity<BaseViewRecyclerviewBinding> {
+class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
-    @Override
-    public int baseLayoutId() {
-        return R.layout.base_view_recyclerview;
-    }
+    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
 
-    @Override
-    public void initValue() {
-        super.initValue();
+    override fun initValue() {
+        super.initValue()
 
         // 初始化布局管理器、适配器
-        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getPathButtonValues());
-        binding.vidBvrRecy.setAdapter(buttonAdapter);
-        buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(
-                    BaseQuickAdapter adapter,
-                    View view,
-                    int position
+        val buttonAdapter = ButtonAdapter(ButtonList.getPathButtonValues())
+        binding.vidBvrRecy.adapter = buttonAdapter
+        buttonAdapter.setOnItemChildClickListener(object : OnItemChildClickListener {
+            override fun onItemChildClick(
+                adapter: BaseQuickAdapter<*, *>,
+                view: View,
+                position: Int
             ) {
-                StringBuilder builder     = new StringBuilder();
-                ButtonValue   buttonValue = buttonAdapter.getItem(position);
-                switch (buttonValue.type) {
-                    case ButtonValue.BTN_PATH_INTERNAL:
-                        StringUtils.appendsIgnoreLast(builder, DevFinal.NEW_LINE_STR,
-                                "内部存储路径",
-                                PathUtils.getInternal().getRootPath(),
-                                PathUtils.getInternal().getRootDirectory(),
-                                PathUtils.getInternal().getDataPath(),
-                                PathUtils.getInternal().getDataDirectory(),
-                                PathUtils.getInternal().getDownloadCachePath(),
-                                PathUtils.getInternal().getDownloadCacheDirectory(),
-                                PathUtils.getInternal().getAppDataPath(),
-                                PathUtils.getInternal().getAppDataDir(),
-                                PathUtils.getInternal().getAppDataPath("app_webview"),
-                                PathUtils.getInternal().getAppDataDir("app_webview"),
-                                PathUtils.getInternal().getAppCachePath(),
-                                PathUtils.getInternal().getAppCacheDir(),
-                                PathUtils.getInternal().getAppCachePath("ttt"),
-                                PathUtils.getInternal().getAppCacheDir("ttt"),
-                                PathUtils.getInternal().getAppCodeCachePath(),
-                                PathUtils.getInternal().getAppCodeCacheDir(),
-                                PathUtils.getInternal().getAppDbsPath(),
-                                PathUtils.getInternal().getAppDbsDir(),
-                                PathUtils.getInternal().getAppDbPath("dbName"),
-                                PathUtils.getInternal().getAppDbFile("dbName"),
-                                PathUtils.getInternal().getAppFilesPath(),
-                                PathUtils.getInternal().getAppFilesDir(),
-                                PathUtils.getInternal().getAppFilesPath("Temp"),
-                                PathUtils.getInternal().getAppFilesDir("Temp"),
-                                PathUtils.getInternal().getAppSpPath(),
-                                PathUtils.getInternal().getAppSpDir(),
-                                PathUtils.getInternal().getAppSpPath("SPConfig.xml"),
-                                PathUtils.getInternal().getAppSpFile("SPConfig.xml"),
-                                PathUtils.getInternal().getAppNoBackupFilesPath(),
-                                PathUtils.getInternal().getAppNoBackupFilesDir(),
-                                PathUtils.getInternal().getAppMusicPath(),
-                                PathUtils.getInternal().getAppMusicDir(),
-                                PathUtils.getInternal().getAppPodcastsPath(),
-                                PathUtils.getInternal().getAppPodcastsDir(),
-                                PathUtils.getInternal().getAppRingtonesPath(),
-                                PathUtils.getInternal().getAppRingtonesDir(),
-                                PathUtils.getInternal().getAppAlarmsPath(),
-                                PathUtils.getInternal().getAppAlarmsDir(),
-                                PathUtils.getInternal().getAppNotificationsPath(),
-                                PathUtils.getInternal().getAppNotificationsDir(),
-                                PathUtils.getInternal().getAppPicturesPath(),
-                                PathUtils.getInternal().getAppPicturesDir(),
-                                PathUtils.getInternal().getAppMoviesPath(),
-                                PathUtils.getInternal().getAppMoviesDir(),
-                                PathUtils.getInternal().getAppDownloadPath(),
-                                PathUtils.getInternal().getAppDownloadDir(),
-                                PathUtils.getInternal().getAppDCIMPath(),
-                                PathUtils.getInternal().getAppDCIMDir(),
-                                PathUtils.getInternal().getAppDocumentsPath(),
-                                PathUtils.getInternal().getAppDocumentsDir(),
-                                PathUtils.getInternal().getAppAudiobooksPath(),
-                                PathUtils.getInternal().getAppAudiobooksDir(),
-                                ""
-                        );
-                        DevLogEngine.getEngine().dTag(TAG, builder.toString());
-                        showToast(true, "信息已打印, 请查看 Logcat");
-                        break;
-                    case ButtonValue.BTN_PATH_APP_EXTERNAL:
-                        StringUtils.appendsIgnoreLast(builder, DevFinal.NEW_LINE_STR,
-                                "应用外部存储路径类",
-                                PathUtils.getAppExternal().getAppDataPath(),
-                                PathUtils.getAppExternal().getAppDataDir(),
-                                PathUtils.getAppExternal().getAppDataPath("temp"),
-                                PathUtils.getAppExternal().getAppDataDir("temp"),
-                                PathUtils.getAppExternal().getAppCachePath(),
-                                PathUtils.getAppExternal().getAppCacheDir(),
-                                PathUtils.getAppExternal().getAppCachePath("devutils"),
-                                PathUtils.getAppExternal().getAppCacheDir("devutils"),
-                                PathUtils.getAppExternal().getExternalFilesPath(null),
-                                PathUtils.getAppExternal().getExternalFilesDir(null),
-                                PathUtils.getAppExternal().getAppFilesPath(),
-                                PathUtils.getAppExternal().getAppFilesDir(),
-                                PathUtils.getAppExternal().getAppFilesPath("project"),
-                                PathUtils.getAppExternal().getAppFilesDir("project"),
-                                PathUtils.getAppExternal().getAppMusicPath(),
-                                PathUtils.getAppExternal().getAppMusicDir(),
-                                PathUtils.getAppExternal().getAppPodcastsPath(),
-                                PathUtils.getAppExternal().getAppPodcastsDir(),
-                                PathUtils.getAppExternal().getAppRingtonesPath(),
-                                PathUtils.getAppExternal().getAppRingtonesDir(),
-                                PathUtils.getAppExternal().getAppAlarmsPath(),
-                                PathUtils.getAppExternal().getAppAlarmsDir(),
-                                PathUtils.getAppExternal().getAppNotificationsPath(),
-                                PathUtils.getAppExternal().getAppNotificationsDir(),
-                                PathUtils.getAppExternal().getAppPicturesPath(),
-                                PathUtils.getAppExternal().getAppPicturesDir(),
-                                PathUtils.getAppExternal().getAppMoviesPath(),
-                                PathUtils.getAppExternal().getAppMoviesDir(),
-                                PathUtils.getAppExternal().getAppDownloadPath(),
-                                PathUtils.getAppExternal().getAppDownloadDir(),
-                                PathUtils.getAppExternal().getAppDCIMPath(),
-                                PathUtils.getAppExternal().getAppDCIMDir(),
-                                PathUtils.getAppExternal().getAppDocumentsPath(),
-                                PathUtils.getAppExternal().getAppDocumentsDir(),
-                                PathUtils.getAppExternal().getAppAudiobooksPath(),
-                                PathUtils.getAppExternal().getAppAudiobooksDir(),
-                                PathUtils.getAppExternal().getAppObbPath(),
-                                PathUtils.getAppExternal().getAppObbDir(),
-                                ""
-                        );
-                        DevLogEngine.getEngine().dTag(TAG, builder.toString());
-                        showToast(true, "信息已打印, 请查看 Logcat");
-                        break;
-                    case ButtonValue.BTN_PATH_SDCARD:
-                        StringUtils.appendsIgnoreLast(builder, DevFinal.NEW_LINE_STR,
-                                "外部存储路径 ( SDCard )",
-                                PathUtils.getSDCard().isSDCardEnable(),
-                                PathUtils.getSDCard().getSDCardFile(),
-                                PathUtils.getSDCard().getSDCardPath(),
-                                PathUtils.getSDCard().getSDCardFile("DevUtils"),
-                                PathUtils.getSDCard().getSDCardPath("DevUtils"),
-                                PathUtils.getSDCard().getExternalStoragePublicPath("project"),
-                                PathUtils.getSDCard().getExternalStoragePublicDir("project"),
-                                PathUtils.getSDCard().getMusicPath(),
-                                PathUtils.getSDCard().getMusicDir(),
-                                PathUtils.getSDCard().getPodcastsPath(),
-                                PathUtils.getSDCard().getPodcastsDir(),
-                                PathUtils.getSDCard().getRingtonesPath(),
-                                PathUtils.getSDCard().getRingtonesDir(),
-                                PathUtils.getSDCard().getAlarmsPath(),
-                                PathUtils.getSDCard().getAlarmsDir(),
-                                PathUtils.getSDCard().getNotificationsPath(),
-                                PathUtils.getSDCard().getNotificationsDir(),
-                                PathUtils.getSDCard().getPicturesPath(),
-                                PathUtils.getSDCard().getPicturesDir(),
-                                PathUtils.getSDCard().getMoviesPath(),
-                                PathUtils.getSDCard().getMoviesDir(),
-                                PathUtils.getSDCard().getDownloadPath(),
-                                PathUtils.getSDCard().getDownloadDir(),
-                                PathUtils.getSDCard().getDCIMPath(),
-                                PathUtils.getSDCard().getDCIMDir(),
-                                PathUtils.getSDCard().getDocumentsPath(),
-                                PathUtils.getSDCard().getDocumentsDir(),
-                                PathUtils.getSDCard().getAudiobooksPath(),
-                                PathUtils.getSDCard().getAudiobooksDir(),
-                                ""
-                        );
-                        DevLogEngine.getEngine().dTag(TAG, builder.toString());
-                        showToast(true, "信息已打印, 请查看 Logcat");
-                        break;
-                    default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
-                        break;
+                val builder = StringBuilder()
+                val buttonValue = buttonAdapter.getItem(position)
+                when (buttonValue.type) {
+                    ButtonValue.BTN_PATH_INTERNAL -> {
+                        StringUtils.appendsIgnoreLast(
+                            builder, DevFinal.NEW_LINE_STR,
+                            "内部存储路径",
+                            PathUtils.getInternal().rootPath,
+                            PathUtils.getInternal().rootDirectory,
+                            PathUtils.getInternal().dataPath,
+                            PathUtils.getInternal().dataDirectory,
+                            PathUtils.getInternal().downloadCachePath,
+                            PathUtils.getInternal().downloadCacheDirectory,
+                            PathUtils.getInternal().appDataPath,
+                            PathUtils.getInternal().appDataDir,
+                            PathUtils.getInternal().getAppDataPath("app_webview"),
+                            PathUtils.getInternal().getAppDataDir("app_webview"),
+                            PathUtils.getInternal().appCachePath,
+                            PathUtils.getInternal().appCacheDir,
+                            PathUtils.getInternal().getAppCachePath("ttt"),
+                            PathUtils.getInternal().getAppCacheDir("ttt"),
+                            PathUtils.getInternal().appCodeCachePath,
+                            PathUtils.getInternal().appCodeCacheDir,
+                            PathUtils.getInternal().appDbsPath,
+                            PathUtils.getInternal().appDbsDir,
+                            PathUtils.getInternal().getAppDbPath("dbName"),
+                            PathUtils.getInternal().getAppDbFile("dbName"),
+                            PathUtils.getInternal().appFilesPath,
+                            PathUtils.getInternal().appFilesDir,
+                            PathUtils.getInternal().getAppFilesPath("Temp"),
+                            PathUtils.getInternal().getAppFilesDir("Temp"),
+                            PathUtils.getInternal().appSpPath,
+                            PathUtils.getInternal().appSpDir,
+                            PathUtils.getInternal().getAppSpPath("SPConfig.xml"),
+                            PathUtils.getInternal().getAppSpFile("SPConfig.xml"),
+                            PathUtils.getInternal().appNoBackupFilesPath,
+                            PathUtils.getInternal().appNoBackupFilesDir,
+                            PathUtils.getInternal().appMusicPath,
+                            PathUtils.getInternal().appMusicDir,
+                            PathUtils.getInternal().appPodcastsPath,
+                            PathUtils.getInternal().appPodcastsDir,
+                            PathUtils.getInternal().appRingtonesPath,
+                            PathUtils.getInternal().appRingtonesDir,
+                            PathUtils.getInternal().appAlarmsPath,
+                            PathUtils.getInternal().appAlarmsDir,
+                            PathUtils.getInternal().appNotificationsPath,
+                            PathUtils.getInternal().appNotificationsDir,
+                            PathUtils.getInternal().appPicturesPath,
+                            PathUtils.getInternal().appPicturesDir,
+                            PathUtils.getInternal().appMoviesPath,
+                            PathUtils.getInternal().appMoviesDir,
+                            PathUtils.getInternal().appDownloadPath,
+                            PathUtils.getInternal().appDownloadDir,
+                            PathUtils.getInternal().appDCIMPath,
+                            PathUtils.getInternal().appDCIMDir,
+                            PathUtils.getInternal().appDocumentsPath,
+                            PathUtils.getInternal().appDocumentsDir,
+                            PathUtils.getInternal().appAudiobooksPath,
+                            PathUtils.getInternal().appAudiobooksDir,
+                            ""
+                        )
+                        DevLogEngine.getEngine().dTag(TAG, builder.toString())
+                        showToast(true, "信息已打印, 请查看 Logcat")
+                    }
+                    ButtonValue.BTN_PATH_APP_EXTERNAL -> {
+                        StringUtils.appendsIgnoreLast(
+                            builder, DevFinal.NEW_LINE_STR,
+                            "应用外部存储路径类",
+                            PathUtils.getAppExternal().appDataPath,
+                            PathUtils.getAppExternal().appDataDir,
+                            PathUtils.getAppExternal().getAppDataPath("temp"),
+                            PathUtils.getAppExternal().getAppDataDir("temp"),
+                            PathUtils.getAppExternal().appCachePath,
+                            PathUtils.getAppExternal().appCacheDir,
+                            PathUtils.getAppExternal().getAppCachePath("devutils"),
+                            PathUtils.getAppExternal().getAppCacheDir("devutils"),
+                            PathUtils.getAppExternal().getExternalFilesPath(null),
+                            PathUtils.getAppExternal().getExternalFilesDir(null),
+                            PathUtils.getAppExternal().appFilesPath,
+                            PathUtils.getAppExternal().appFilesDir,
+                            PathUtils.getAppExternal().getAppFilesPath("project"),
+                            PathUtils.getAppExternal().getAppFilesDir("project"),
+                            PathUtils.getAppExternal().appMusicPath,
+                            PathUtils.getAppExternal().appMusicDir,
+                            PathUtils.getAppExternal().appPodcastsPath,
+                            PathUtils.getAppExternal().appPodcastsDir,
+                            PathUtils.getAppExternal().appRingtonesPath,
+                            PathUtils.getAppExternal().appRingtonesDir,
+                            PathUtils.getAppExternal().appAlarmsPath,
+                            PathUtils.getAppExternal().appAlarmsDir,
+                            PathUtils.getAppExternal().appNotificationsPath,
+                            PathUtils.getAppExternal().appNotificationsDir,
+                            PathUtils.getAppExternal().appPicturesPath,
+                            PathUtils.getAppExternal().appPicturesDir,
+                            PathUtils.getAppExternal().appMoviesPath,
+                            PathUtils.getAppExternal().appMoviesDir,
+                            PathUtils.getAppExternal().appDownloadPath,
+                            PathUtils.getAppExternal().appDownloadDir,
+                            PathUtils.getAppExternal().appDCIMPath,
+                            PathUtils.getAppExternal().appDCIMDir,
+                            PathUtils.getAppExternal().appDocumentsPath,
+                            PathUtils.getAppExternal().appDocumentsDir,
+                            PathUtils.getAppExternal().appAudiobooksPath,
+                            PathUtils.getAppExternal().appAudiobooksDir,
+                            PathUtils.getAppExternal().appObbPath,
+                            PathUtils.getAppExternal().appObbDir,
+                            ""
+                        )
+                        DevLogEngine.getEngine().dTag(TAG, builder.toString())
+                        showToast(true, "信息已打印, 请查看 Logcat")
+                    }
+                    ButtonValue.BTN_PATH_SDCARD -> {
+                        StringUtils.appendsIgnoreLast(
+                            builder, DevFinal.NEW_LINE_STR,
+                            "外部存储路径 ( SDCard )",
+                            PathUtils.getSDCard().isSDCardEnable,
+                            PathUtils.getSDCard().sdCardFile,
+                            PathUtils.getSDCard().sdCardPath,
+                            PathUtils.getSDCard().getSDCardFile("DevUtils"),
+                            PathUtils.getSDCard().getSDCardPath("DevUtils"),
+                            PathUtils.getSDCard().getExternalStoragePublicPath("project"),
+                            PathUtils.getSDCard().getExternalStoragePublicDir("project"),
+                            PathUtils.getSDCard().musicPath,
+                            PathUtils.getSDCard().musicDir,
+                            PathUtils.getSDCard().podcastsPath,
+                            PathUtils.getSDCard().podcastsDir,
+                            PathUtils.getSDCard().ringtonesPath,
+                            PathUtils.getSDCard().ringtonesDir,
+                            PathUtils.getSDCard().alarmsPath,
+                            PathUtils.getSDCard().alarmsDir,
+                            PathUtils.getSDCard().notificationsPath,
+                            PathUtils.getSDCard().notificationsDir,
+                            PathUtils.getSDCard().picturesPath,
+                            PathUtils.getSDCard().picturesDir,
+                            PathUtils.getSDCard().moviesPath,
+                            PathUtils.getSDCard().moviesDir,
+                            PathUtils.getSDCard().downloadPath,
+                            PathUtils.getSDCard().downloadDir,
+                            PathUtils.getSDCard().dcimPath,
+                            PathUtils.getSDCard().dcimDir,
+                            PathUtils.getSDCard().documentsPath,
+                            PathUtils.getSDCard().documentsDir,
+                            PathUtils.getSDCard().audiobooksPath,
+                            PathUtils.getSDCard().audiobooksDir,
+                            ""
+                        )
+                        DevLogEngine.getEngine().dTag(TAG, builder.toString())
+                        showToast(true, "信息已打印, 请查看 Logcat")
+                    }
+                    else -> ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件")
                 }
             }
-        });
+        })
     }
 }
