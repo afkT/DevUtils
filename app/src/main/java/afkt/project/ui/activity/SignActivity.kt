@@ -19,12 +19,11 @@ class SignActivity : BaseActivity<ViewBinding>() {
     override fun baseLayoutId(): Int = 0
 
     override fun baseLayoutView(): View {
-        val layoutParams = LinearLayout.LayoutParams(
+        val signView = SignView(this)
+        signView.layoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.MATCH_PARENT
         )
-        val signView = SignView(this)
-        signView.layoutParams = layoutParams
 
         // 设置画笔
         val paint = Paint(Paint.ANTI_ALIAS_FLAG)

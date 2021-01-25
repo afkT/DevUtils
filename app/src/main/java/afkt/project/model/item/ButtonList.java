@@ -151,6 +151,8 @@ public class ButtonList {
         lists.add(new ButtonValue(BTN_RECY_PAGER_SNAP, "PagerSnapHelper - RecyclerView"));
         lists.add(new ButtonValue(BTN_RECY_PAGER_SNAP_MAX, "PagerSnapHelper - 无限滑动"));
         lists.add(new ButtonValue(BTN_SHAPEABLE_IMAGE_VIEW, "Material ShapeableImageView"));
+        lists.add(new ButtonValue(BTN_BOTTOM_SHEET, "Material BottomSheet"));
+        lists.add(new ButtonValue(BTN_BOTTOM_SHEET_DIALOG, "Material BottomSheetDialog"));
         return lists;
     }
 

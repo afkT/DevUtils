@@ -187,6 +187,12 @@ public class ButtonValue {
     // Material ShapeableImageView
     public static final int BTN_SHAPEABLE_IMAGE_VIEW = MODULE_UI + 1900;
 
+    // Material BottomSheet
+    public static final int BTN_BOTTOM_SHEET = MODULE_UI + 2000;
+
+    // Material BottomSheetDialog
+    public static final int BTN_BOTTOM_SHEET_DIALOG = MODULE_UI + 2100;
+
     // ===========
     // = 其他功能 =
     // ===========

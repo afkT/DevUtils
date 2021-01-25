@@ -192,6 +192,11 @@ public class ModuleActivity
                     case ButtonValue.BTN_SHAPEABLE_IMAGE_VIEW: // Material ShapeableImageView
                         SkipUtils.startActivity(ShapeableImageViewActivity.class, buttonValue);
                         break;
+                    case ButtonValue.BTN_BOTTOM_SHEET: // Material BottomSheet
+                        break;
+                    case ButtonValue.BTN_BOTTOM_SHEET_DIALOG: // Material BottomSheetDialog
+                        SkipUtils.startActivity(ShapeableImageViewActivity.class, buttonValue);
+                        break;
 
                     // ===========
                     // = 其他功能 =
