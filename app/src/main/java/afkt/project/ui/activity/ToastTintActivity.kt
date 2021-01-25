@@ -20,7 +20,7 @@ import utils_use.toast.ToastTintUse
  * [ToastTintUse]
  */
 class ToastTintActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
-    
+
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
 
     override fun initValue() {

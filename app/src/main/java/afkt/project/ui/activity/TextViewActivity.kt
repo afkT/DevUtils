@@ -9,7 +9,7 @@ import androidx.viewbinding.ViewBinding
  * @author Ttt
  */
 class TextViewActivity : BaseActivity<ViewBinding>() {
-    
+
     override fun isViewBinding(): Boolean = false
 
     override fun baseLayoutId(): Int = R.layout.activity_textview
