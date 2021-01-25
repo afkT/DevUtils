@@ -1,173 +1,107 @@
-package afkt.project.ui.activity;
+package afkt.project.ui.activity
 
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
-
-import afkt.project.R;
-import afkt.project.base.app.BaseActivity;
-import afkt.project.databinding.BaseViewRecyclerviewBinding;
-import afkt.project.model.item.ButtonList;
-import afkt.project.model.item.ButtonValue;
-import afkt.project.ui.adapter.ButtonAdapter;
-import dev.utils.app.ResourceUtils;
-import dev.utils.app.toast.ToastTintUtils;
-import utils_use.toast.ToastTintUse;
+import afkt.project.R
+import afkt.project.base.app.BaseActivity
+import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.model.item.ButtonList
+import afkt.project.model.item.ButtonValue
+import afkt.project.ui.adapter.ButtonAdapter
+import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.Drawable
+import android.text.TextUtils.TruncateAt
+import dev.utils.app.ResourceUtils
+import dev.utils.app.toast.ToastTintUtils
+import utils_use.toast.ToastTintUse
 
 /**
  * detail: ToastTint ( 着色美化 Toast )
  * @author Ttt
- * <pre>
- *     {@link ToastTintUse}
- * </pre>
+ * [ToastTintUse]
  */
-public class ToastTintActivity
-        extends BaseActivity<BaseViewRecyclerviewBinding> {
+class ToastTintActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
+    
+    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
 
-    @Override
-    public int baseLayoutId() {
-        return R.layout.base_view_recyclerview;
-    }
-
-    @Override
-    public void initValue() {
-        super.initValue();
+    override fun initValue() {
+        super.initValue()
 
         // 初始化布局管理器、适配器
-        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getToastButtonValues());
-        binding.vidBvrRecy.setAdapter(buttonAdapter);
-        buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(
-                    BaseQuickAdapter adapter,
-                    View view,
-                    int position
-            ) {
-                ButtonValue buttonValue = buttonAdapter.getItem(position);
-                switch (buttonValue.type) {
-                    case ButtonValue.BTN_TOAST_TINT_SUCCESS:
-                        ToastTintUtils.success("Success Style Toast");
-                        break;
-                    case ButtonValue.BTN_TOAST_TINT_ERROR:
-                        ToastTintUtils.error("Error Style Toast");
-                        break;
-                    case ButtonValue.BTN_TOAST_TINT_INFO:
-                        ToastTintUtils.info("Info Style Toast");
-                        break;
-                    case ButtonValue.BTN_TOAST_TINT_NORMAL:
-                        ToastTintUtils.normal("Normal Style Toast");
-                        break;
-                    case ButtonValue.BTN_TOAST_TINT_WARNING:
-                        ToastTintUtils.warning("Warning Style Toast");
-                        break;
-                    case ButtonValue.BTN_TOAST_TINT_CUSTOM_STYLE:
-                        ToastTintUtils.custom(new TempStyle(), "Custom Style Toast", ResourceUtils.getDrawable(R.mipmap.icon_launcher_round));
-                        break;
-                    default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
-                        break;
-                }
+        val buttonAdapter = ButtonAdapter(ButtonList.getToastButtonValues())
+        binding.vidBvrRecy.adapter = buttonAdapter
+        buttonAdapter.setOnItemChildClickListener { adapter, view, position ->
+            val buttonValue = buttonAdapter.getItem(position)
+            when (buttonValue.type) {
+                ButtonValue.BTN_TOAST_TINT_SUCCESS -> ToastTintUtils.success("Success Style Toast")
+                ButtonValue.BTN_TOAST_TINT_ERROR -> ToastTintUtils.error("Error Style Toast")
+                ButtonValue.BTN_TOAST_TINT_INFO -> ToastTintUtils.info("Info Style Toast")
+                ButtonValue.BTN_TOAST_TINT_NORMAL -> ToastTintUtils.normal("Normal Style Toast")
+                ButtonValue.BTN_TOAST_TINT_WARNING -> ToastTintUtils.warning("Warning Style Toast")
+                ButtonValue.BTN_TOAST_TINT_CUSTOM_STYLE -> ToastTintUtils.custom(
+                    TempStyle(), "Custom Style Toast",
+                    ResourceUtils.getDrawable(R.mipmap.icon_launcher_round)
+                )
+                else -> ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件")
             }
-        });
+        }
     }
 
     /**
      * 自定义实现样式
-     * {@link ToastTintUtils.SuccessStyle}
-     * {@link ToastTintUtils.ErrorStyle}
-     * {@link ToastTintUtils.InfoStyle}
-     * {@link ToastTintUtils.WarningStyle}
-     * {@link ToastTintUtils.NormalStyle}
-     * {@link ToastTintUtils.DefaultStyle}
+     * [ToastTintUtils.SuccessStyle]
+     * [ToastTintUtils.ErrorStyle]
+     * [ToastTintUtils.InfoStyle]
+     * [ToastTintUtils.WarningStyle]
+     * [ToastTintUtils.NormalStyle]
+     * [ToastTintUtils.DefaultStyle]
      */
-    private static class TempStyle
-            implements ToastTintUtils.Style {
+    private class TempStyle : ToastTintUtils.Style {
 
         /**
          * 文本颜色
-         * @return
          */
-        @Override
-        public int getTextColor() {
-            return Color.WHITE;
-        }
+        override fun getTextColor(): Int = Color.WHITE
 
         /**
          * 字体大小
-         * @return
          */
-        @Override
-        public float getTextSize() {
-            return 16f;
-        }
+        override fun getTextSize(): Float = 16f
 
         /**
          * 背景着色颜色
-         * @return
          */
-        @Override
-        public int getBackgroundTintColor() {
-            return 0;
-        }
+        override fun getBackgroundTintColor(): Int = 0
 
         /**
          * 背景图片
-         * @return
          */
-        @Override
-        public Drawable getBackground() {
-            return null;
-        }
+        override fun getBackground(): Drawable? = null
 
         /**
          * 最大行数
-         * @return
          */
-        @Override
-        public int getMaxLines() {
-            return 0;
-        }
+        override fun getMaxLines(): Int = 0
 
         /**
          * Ellipsize 效果
-         * @return
          */
-        @Override
-        public TextUtils.TruncateAt getEllipsize() {
-            return null;
-        }
+        override fun getEllipsize(): TruncateAt? = null
 
         /**
          * 字体样式
-         * @return
+         * return Typeface.create("sans-serif-condensed", Typeface.NORMAL);
          */
-        @Override
-        public Typeface getTypeface() {
-            // return Typeface.create("sans-serif-condensed", Typeface.NORMAL);
-            return null;
-        }
+        override fun getTypeface(): Typeface? = null
 
         /**
          * 获取图标着色颜色
-         * @return
          */
-        @Override
-        public int getTintIconColor() {
-            return Color.WHITE;
-        }
+        override fun getTintIconColor(): Int = Color.WHITE
 
         /**
          * 是否渲染图标 ( getTintIconColor() 着色渲染 )
-         * @return {@code true} yes, {@code false} no
+         * @return `true` yes, `false` no
          */
-        @Override
-        public boolean isTintIcon() {
-            return false;
-        }
+        override fun isTintIcon(): Boolean = false
     }
 }
