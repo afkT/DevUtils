@@ -48,7 +48,7 @@ public class DevEnvironmentLibActivity
                     int position
             ) {
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
-                boolean     result      = false;
+                boolean     result;
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_DEV_ENVIRONMENT:
                         result = DevEnvironmentActivity.start(mContext, new RestartCallback() {

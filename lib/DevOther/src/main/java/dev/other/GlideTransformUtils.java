@@ -43,7 +43,7 @@ public final class GlideTransformUtils {
     public static class RotateTransformation
             extends BitmapTransformation {
         // 旋转角度
-        private float rotateRotationAngle = 0f;
+        private float rotateRotationAngle;
 
         public RotateTransformation(float rotateRotationAngle) {
             this.rotateRotationAngle = rotateRotationAngle;
@@ -123,7 +123,7 @@ public final class GlideTransformUtils {
             extends BitmapTransformation {
 
         // 圆角大小
-        private float radius = 0f;
+        private float radius;
 
         public GlideRoundTransform(float radius) {
             this.radius = radius;

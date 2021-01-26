@@ -6,7 +6,6 @@ import android.widget.TextView;
 
 import androidx.viewpager.widget.PagerAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import afkt.project.R;
@@ -20,7 +19,7 @@ public class ViewPagerAdapter
         extends PagerAdapter {
 
     // 数据源
-    private List<String> lists = new ArrayList<>();
+    private List<String> lists;
 
     /**
      * 构造函数
