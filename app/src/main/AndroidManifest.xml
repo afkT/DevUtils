@@ -513,6 +513,22 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- Material BottomSheet -->
+
+        <activity
+            android:name=".ui.activity.BottomSheetActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Material BottomSheetDialog -->
+
+        <activity
+            android:name=".ui.activity.BottomSheetDialogActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- startActivityForResult Callback -->
 
         <activity

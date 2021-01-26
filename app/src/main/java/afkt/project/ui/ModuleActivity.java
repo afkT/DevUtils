@@ -16,6 +16,8 @@ import afkt.project.ui.activity.AccessibilityListenerServiceActivity;
 import afkt.project.ui.activity.ActivityResultCallbackActivity;
 import afkt.project.ui.activity.AdapterEditsActivity;
 import afkt.project.ui.activity.AddContactActivity;
+import afkt.project.ui.activity.BottomSheetActivity;
+import afkt.project.ui.activity.BottomSheetDialogActivity;
 import afkt.project.ui.activity.CacheActivity;
 import afkt.project.ui.activity.CapturePictureActivity;
 import afkt.project.ui.activity.CornerLabelActivity;
@@ -193,9 +195,10 @@ public class ModuleActivity
                         SkipUtils.startActivity(ShapeableImageViewActivity.class, buttonValue);
                         break;
                     case ButtonValue.BTN_BOTTOM_SHEET: // Material BottomSheet
+                        SkipUtils.startActivity(BottomSheetActivity.class, buttonValue);
                         break;
                     case ButtonValue.BTN_BOTTOM_SHEET_DIALOG: // Material BottomSheetDialog
-                        SkipUtils.startActivity(ShapeableImageViewActivity.class, buttonValue);
+                        SkipUtils.startActivity(BottomSheetDialogActivity.class, buttonValue);
                         break;
 
                     // ===========
