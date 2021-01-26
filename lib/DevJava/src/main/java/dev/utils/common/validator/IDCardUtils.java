@@ -250,7 +250,7 @@ public final class IDCardUtils {
         if (StringUtils.isEmpty(idCard)) return false;
         try {
             String  card = idCard.replaceAll("[\\(|\\)]", "");
-            Integer sum  = 0;
+            Integer sum;
             if (card.length() == 9) {
                 sum = ((int) card.substring(0, 1).toUpperCase().toCharArray()[0] - 55) * 9 + ((int) card.substring(1, 2).toUpperCase().toCharArray()[0] - 55) * 8;
                 card = card.substring(1, 9);

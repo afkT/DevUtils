@@ -1276,7 +1276,7 @@ public final class SpanUtils {
                 final Layout l
         ) {
             if (((Spanned) text).getSpanStart(this) == start) {
-                Paint.Style style    = p.getStyle();
+                Paint.Style style = p.getStyle();
                 int         oldColor;
                 oldColor = p.getColor();
                 p.setColor(color);

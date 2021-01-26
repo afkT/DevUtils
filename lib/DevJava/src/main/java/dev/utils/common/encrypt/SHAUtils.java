@@ -148,9 +148,9 @@ public final class SHAUtils {
         InputStream is = null;
         try {
             is = new FileInputStream(file);
-            byte[]        buffer  = new byte[1024];
-            MessageDigest digest  = MessageDigest.getInstance(algorithm);
-            int           numRead = 0;
+            byte[]        buffer = new byte[1024];
+            MessageDigest digest = MessageDigest.getInstance(algorithm);
+            int           numRead;
             while ((numRead = is.read(buffer)) > 0) {
                 digest.update(buffer, 0, numRead);
             }

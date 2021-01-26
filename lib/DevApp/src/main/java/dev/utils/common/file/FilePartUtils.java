@@ -695,7 +695,7 @@ public final class FilePartUtils {
             raf = new RandomAccessFile(file, "rw");
             for (int i = 0, len = files.size(); i < len; i++) {
                 reader = new RandomAccessFile(files.get(i), "r");
-                byte[] buffer  = new byte[1024];
+                byte[] buffer = new byte[1024];
                 int    readLen; // 读取的字节数
                 while ((readLen = reader.read(buffer)) != -1) {
                     raf.write(buffer, 0, readLen);
