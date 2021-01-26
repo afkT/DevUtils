@@ -826,7 +826,9 @@ public final class ADBUtils {
                     for (int i = length - 2; i >= 0; i--) {
                         String data = lists.get(i);
                         // 判断是否该页面结尾
-                        return data.endsWith(activity);
+                        if (data.endsWith(activity)) {
+                            return true;
+                        }
                     }
                 }
             } catch (Exception e) {
@@ -867,7 +869,9 @@ public final class ADBUtils {
                         for (int i = length - 2; i >= 0; i--) {
                             String data = lists.get(i);
                             // 判断是否该页面结尾
-                            return data.endsWith(activity);
+                            if (data.endsWith(activity)) {
+                                return true;
+                            }
                         }
                     }
                 } catch (Exception e) {

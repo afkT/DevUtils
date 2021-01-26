@@ -1360,7 +1360,7 @@ public final class FileUtils {
             }
         }
         // 复制文件
-        int          len = 0; // 读取的字节数
+        int          len; // 读取的字节数
         InputStream  is  = inputStream;
         OutputStream os  = null;
         try {
@@ -1425,7 +1425,7 @@ public final class FileUtils {
             }
         }
         // 复制文件
-        int          len = 0; // 读取的字节数
+        int          len; // 读取的字节数
         InputStream  is  = null;
         OutputStream os  = null;
         try {

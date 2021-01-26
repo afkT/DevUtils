@@ -155,7 +155,7 @@ public final class HttpURLConnectionUtils {
                 baos = new ByteArrayOutputStream();
                 // 设置缓存流大小
                 byte[] buffer = new byte[1024];
-                int    len    = 0;
+                int    len;
                 while (((len = is.read(buffer)) != -1)) {
                     baos.write(buffer, 0, len);
                 }

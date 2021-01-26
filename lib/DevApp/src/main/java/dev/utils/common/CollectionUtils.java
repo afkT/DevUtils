@@ -1067,7 +1067,7 @@ public final class CollectionUtils {
             final Collection<T> collection2
     ) {
         // 数据长度
-        int len = 0;
+        int len;
         // 判断数据是否相同
         if (collection1 != null && collection2 != null && (len = collection1.size()) == collection2.size()) {
             if (len == 0) return true;
