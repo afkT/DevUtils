@@ -756,7 +756,7 @@ public final class PhoneUtils {
      */
     public static boolean getAllSMS(final String filePath) {
         // 游标
-        Cursor cursor = null;
+        Cursor cursor;
         try {
             // 1. 获取短信
             // 1.1 获取内容解析者

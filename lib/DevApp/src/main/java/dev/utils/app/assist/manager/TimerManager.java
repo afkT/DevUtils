@@ -64,7 +64,6 @@ public final class TimerManager {
                 mTimerLists.addAll(lists);
                 // 移除旧的
                 lists.clear();
-                lists = null;
                 return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "gc");

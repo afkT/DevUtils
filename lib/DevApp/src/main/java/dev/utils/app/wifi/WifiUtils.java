@@ -659,7 +659,7 @@ public final class WifiUtils {
         // =
         try {
             // 正常的 Wifi 连接配置
-            WifiConfiguration connWifiConfig = null;
+            WifiConfiguration connWifiConfig;
             // 如果需要通过静态 IP 方式连接, 则进行设置
             if (isStatic && !TextUtils.isEmpty(ip)) {
                 // 创建 Wifi 静态 IP 连接配置

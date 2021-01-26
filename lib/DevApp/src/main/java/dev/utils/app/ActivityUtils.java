@@ -599,7 +599,6 @@ public final class ActivityUtils {
                 } finally {
                     // 移除数据, 并且清空内存
                     stack.clear();
-                    stack = null;
                 }
             }
         }
@@ -671,7 +670,6 @@ public final class ActivityUtils {
                 mActivityStacks.addAll(stack);
                 // 移除数据, 并且清空内存
                 stack.clear();
-                stack = null;
             }
         }
         return this;
@@ -726,7 +724,6 @@ public final class ActivityUtils {
                 mActivityStacks.addAll(stack);
                 // 移除数据, 并且清空内存
                 stack.clear();
-                stack = null;
             }
         }
         return this;
@@ -768,7 +765,6 @@ public final class ActivityUtils {
                 mActivityStacks.addAll(stack);
                 // 移除数据, 并且清空内存
                 stack.clear();
-                stack = null;
             }
         }
         return this;
@@ -823,7 +819,6 @@ public final class ActivityUtils {
                 mActivityStacks.addAll(stack);
                 // 移除数据, 并且清空内存
                 stack.clear();
-                stack = null;
             }
         }
         return this;
@@ -852,7 +847,6 @@ public final class ActivityUtils {
             }
             // 移除数据, 并且清空内存
             stack.clear();
-            stack = null;
         }
         return this;
     }

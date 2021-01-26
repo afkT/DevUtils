@@ -1280,7 +1280,7 @@ public final class CapturePictureUtils {
             // 没数据则直接跳过
             if (itemCount == 0) return null;
             // 宽高
-            int width = 0, height = 0;
+            int width, height = 0;
             // View Bitmaps
             Bitmap[] bitmaps = new Bitmap[itemCount];
             // 获取布局管理器 ( 判断横竖布局 )

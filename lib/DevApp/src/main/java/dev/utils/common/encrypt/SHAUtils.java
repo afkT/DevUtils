@@ -150,7 +150,7 @@ public final class SHAUtils {
             is = new FileInputStream(file);
             byte[]        buffer  = new byte[1024];
             MessageDigest digest  = MessageDigest.getInstance(algorithm);
-            int           numRead = 0;
+            int           numRead;
             while ((numRead = is.read(buffer)) > 0) {
                 digest.update(buffer, 0, numRead);
             }
