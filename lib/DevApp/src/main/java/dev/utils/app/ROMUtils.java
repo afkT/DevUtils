@@ -42,7 +42,7 @@ public final class ROMUtils {
     private static final String[] ROM_SAMSUNG   = {"samsung"};
     private static final String[] ROM_MEIZU     = {"meizu"};
     private static final String[] ROM_LENOVO    = {"lenovo"};
-    private static final String[] ROM_SMARTISAN = {"smartisan"};
+    private static final String[] ROM_SMARTISAN = {"smartisan", "deltainno"};
     private static final String[] ROM_HTC       = {"htc"};
     private static final String[] ROM_SONY      = {"sony"};
     private static final String[] ROM_GIONEE    = {"gionee", "amigo"};
