@@ -17,17 +17,17 @@ class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_bottom_sheet
 
-    lateinit var behavior: BottomSheetBehavior<LinearLayout>
+    lateinit var mBehavior: BottomSheetBehavior<LinearLayout>
 
     override fun initValue() {
         super.initValue()
-        behavior = BottomSheetBehavior.from(binding.vidAbsSheetLinear)
+        mBehavior = BottomSheetBehavior.from(binding.vidAbsSheetLinear)
     }
 
     override fun initListener() {
         super.initListener()
 
-        behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+        mBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(
                 bottomSheet: View,
                 newState: Int
@@ -74,16 +74,16 @@ class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
 
 //        // 手动设置状态
 //        // 展开
-//        behavior.state = BottomSheetBehavior.STATE_EXPANDED
+//        mBehavior.state = BottomSheetBehavior.STATE_EXPANDED
 //        // 折叠
-//        behavior.state = BottomSheetBehavior.STATE_COLLAPSED
+//        mBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 //        // 隐藏
-//        behavior.state = BottomSheetBehavior.STATE_HIDDEN
+//        mBehavior.state = BottomSheetBehavior.STATE_HIDDEN
 
 //        // Bottom Sheet 是否允许隐藏
 //        // xml 设置
 //        app:behavior_hideable="false"
 //        // 代码设置
-//        behavior.isHideable = false
+//        mBehavior.isHideable = false
     }
 }
