@@ -149,7 +149,7 @@ ext {
                     // Android Material 组件使用详解 https://blog.csdn.net/magic0908/article/details/101029876
                     design                : "com.google.android.material:material:1.2.1",
                     fragment              : "androidx.fragment:fragment:1.2.5",
-                    // Palette 调色板 ( 从图片中获取颜色 ) https://www.jianshu.com/p/d3c13eb700a4
+                    // Palette 调色板 ( 从图片中获取颜色 )
                     palette               : "androidx.palette:palette:1.0.0",
             ],
             'lib'     : [
