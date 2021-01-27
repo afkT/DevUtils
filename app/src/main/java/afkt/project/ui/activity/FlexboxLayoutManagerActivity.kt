@@ -56,7 +56,7 @@ class FlexboxLayoutManagerActivity : BaseActivity<BaseViewRecyclerviewBinding>()
         super.initValue()
 
         var lists = mutableListOf<String>()
-        for (i in 1..30) {
+        for (i in 1..20) {
             val text = ChineseUtils.randomWord(RandomUtils.getRandom(8)) +
                     RandomUtils.getRandomLetters(RandomUtils.getRandom(8))
             val randomText =

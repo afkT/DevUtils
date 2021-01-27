@@ -1,14 +1,13 @@
 package dev.widget.custom;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import dev.utils.app.WidgetUtils;
-import dev.widget.R;
+import dev.widget.utils.WidgetAttrs;
 
 /**
  * detail: 自定义 RecyclerView 滑动监听、滑动控制
@@ -45,18 +44,13 @@ import dev.widget.R;
 public class CustomRecyclerView
         extends RecyclerView {
 
-    // 是否允许滑动
-    private boolean        mIsSlide   = true;
-    // 最大显示宽度
-    private int            mMaxWidth  = WidgetUtils.DEF_VALUE;
-    // 最大显示高度
-    private int            mMaxHeight = WidgetUtils.DEF_VALUE;
+    private WidgetAttrs    mWidgetAttrs;
     // 滑动监听回调
-    private ScrollCallback mCallback  = null;
+    private ScrollCallback mCallback = null;
     // 距离左边距离
-    private int            mScrollX   = 0;
+    private int            mScrollX  = 0;
     // 距离顶部距离
-    private int            mScrollY   = 0;
+    private int            mScrollY  = 0;
 
     public CustomRecyclerView(Context context) {
         super(context);
@@ -88,13 +82,7 @@ public class CustomRecyclerView
             Context context,
             AttributeSet attrs
     ) {
-        if (context != null && attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
-            mIsSlide = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
-            mMaxWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_maxWidth, WidgetUtils.DEF_VALUE);
-            mMaxHeight = a.getLayoutDimension(R.styleable.DevWidget_dev_maxHeight, WidgetUtils.DEF_VALUE);
-            a.recycle();
-        }
+        mWidgetAttrs = new WidgetAttrs(context, attrs);
     }
 
     @Override
@@ -102,7 +90,10 @@ public class CustomRecyclerView
             int widthMeasureSpec,
             int heightMeasureSpec
     ) {
-        int[] measureSpecs = WidgetUtils.viewMeasure(this, widthMeasureSpec, heightMeasureSpec, mMaxWidth, mMaxHeight);
+        int[] measureSpecs = WidgetUtils.viewMeasure(
+                this, widthMeasureSpec, heightMeasureSpec,
+                mWidgetAttrs.getMaxWidth(), mWidgetAttrs.getMaxHeight()
+        );
         super.onMeasure(measureSpecs[0], measureSpecs[1]);
     }
 
@@ -134,13 +125,13 @@ public class CustomRecyclerView
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if (!this.mIsSlide) return false;
+        if (!mWidgetAttrs.isSlide()) return false;
         return super.onTouchEvent(ev);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent arg0) {
-        if (!this.mIsSlide) return false;
+        if (!mWidgetAttrs.isSlide()) return false;
         return super.onInterceptTouchEvent(arg0);
     }
 
@@ -149,7 +140,7 @@ public class CustomRecyclerView
      * @return View 最大显示宽度
      */
     public int getMaxWidth() {
-        return mMaxWidth;
+        return mWidgetAttrs.getMaxWidth();
     }
 
     /**
@@ -158,7 +149,7 @@ public class CustomRecyclerView
      * @return {@link CustomRecyclerView}
      */
     public CustomRecyclerView setMaxWidth(int maxWidth) {
-        this.mMaxWidth = maxWidth;
+        mWidgetAttrs.setMaxWidth(maxWidth);
         return this;
     }
 
@@ -167,7 +158,7 @@ public class CustomRecyclerView
      * @return View 最大显示高度
      */
     public int getMaxHeight() {
-        return mMaxHeight;
+        return mWidgetAttrs.getMaxHeight();
     }
 
     /**
@@ -176,7 +167,7 @@ public class CustomRecyclerView
      * @return {@link CustomRecyclerView}
      */
     public CustomRecyclerView setMaxHeight(int maxHeight) {
-        this.mMaxHeight = maxHeight;
+        mWidgetAttrs.setMaxHeight(maxHeight);
         return this;
     }
 
@@ -185,7 +176,7 @@ public class CustomRecyclerView
      * @return {@code true} yes, {@code false} no
      */
     public boolean isSlide() {
-        return mIsSlide;
+        return mWidgetAttrs.isSlide();
     }
 
     /**
@@ -194,7 +185,7 @@ public class CustomRecyclerView
      * @return {@link CustomRecyclerView}
      */
     public CustomRecyclerView setSlide(boolean isSlide) {
-        this.mIsSlide = isSlide;
+        mWidgetAttrs.setSlide(isSlide);
         return this;
     }
 
@@ -203,7 +194,7 @@ public class CustomRecyclerView
      * @return {@link CustomRecyclerView}
      */
     public CustomRecyclerView toggleSlide() {
-        this.mIsSlide = !this.mIsSlide;
+        mWidgetAttrs.toggleSlide();
         return this;
     }
 

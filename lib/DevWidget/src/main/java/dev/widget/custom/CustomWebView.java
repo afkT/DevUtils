@@ -2,14 +2,13 @@ package dev.widget.custom;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.webkit.WebView;
 
 import dev.utils.app.WidgetUtils;
-import dev.widget.R;
+import dev.widget.utils.WidgetAttrs;
 
 /**
  * detail: 自定义 WebView 滑动监听、滑动控制
@@ -23,14 +22,9 @@ import dev.widget.R;
 public class CustomWebView
         extends WebView {
 
-    // 是否允许滑动
-    private boolean        mIsSlide   = true;
-    // 最大显示宽度
-    private int            mMaxWidth  = WidgetUtils.DEF_VALUE;
-    // 最大显示高度
-    private int            mMaxHeight = WidgetUtils.DEF_VALUE;
+    private WidgetAttrs    mWidgetAttrs;
     // 滑动监听回调
-    private ScrollCallback mCallback  = null;
+    private ScrollCallback mCallback = null;
 
     public CustomWebView(Context context) {
         super(context);
@@ -73,13 +67,7 @@ public class CustomWebView
             Context context,
             AttributeSet attrs
     ) {
-        if (context != null && attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
-            mIsSlide = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
-            mMaxWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_maxWidth, WidgetUtils.DEF_VALUE);
-            mMaxHeight = a.getLayoutDimension(R.styleable.DevWidget_dev_maxHeight, WidgetUtils.DEF_VALUE);
-            a.recycle();
-        }
+        mWidgetAttrs = new WidgetAttrs(context, attrs);
     }
 
     @Override
@@ -87,7 +75,10 @@ public class CustomWebView
             int widthMeasureSpec,
             int heightMeasureSpec
     ) {
-        int[] measureSpecs = WidgetUtils.viewMeasure(this, widthMeasureSpec, heightMeasureSpec, mMaxWidth, mMaxHeight);
+        int[] measureSpecs = WidgetUtils.viewMeasure(
+                this, widthMeasureSpec, heightMeasureSpec,
+                mWidgetAttrs.getMaxWidth(), mWidgetAttrs.getMaxHeight()
+        );
         super.onMeasure(measureSpecs[0], measureSpecs[1]);
     }
 
@@ -106,13 +97,13 @@ public class CustomWebView
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if (!this.mIsSlide) return false;
+        if (!mWidgetAttrs.isSlide()) return false;
         return super.onTouchEvent(ev);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent arg0) {
-        if (!this.mIsSlide) return false;
+        if (!mWidgetAttrs.isSlide()) return false;
         return super.onInterceptTouchEvent(arg0);
     }
 
@@ -121,7 +112,7 @@ public class CustomWebView
      * @return View 最大显示宽度
      */
     public int getMaxWidth() {
-        return mMaxWidth;
+        return mWidgetAttrs.getMaxWidth();
     }
 
     /**
@@ -130,7 +121,7 @@ public class CustomWebView
      * @return {@link CustomWebView}
      */
     public CustomWebView setMaxWidth(int maxWidth) {
-        this.mMaxWidth = maxWidth;
+        mWidgetAttrs.setMaxWidth(maxWidth);
         return this;
     }
 
@@ -139,7 +130,7 @@ public class CustomWebView
      * @return View 最大显示高度
      */
     public int getMaxHeight() {
-        return mMaxHeight;
+        return mWidgetAttrs.getMaxHeight();
     }
 
     /**
@@ -148,7 +139,7 @@ public class CustomWebView
      * @return {@link CustomWebView}
      */
     public CustomWebView setMaxHeight(int maxHeight) {
-        this.mMaxHeight = maxHeight;
+        mWidgetAttrs.setMaxHeight(maxHeight);
         return this;
     }
 
@@ -157,7 +148,7 @@ public class CustomWebView
      * @return {@code true} yes, {@code false} no
      */
     public boolean isSlide() {
-        return mIsSlide;
+        return mWidgetAttrs.isSlide();
     }
 
     /**
@@ -166,7 +157,7 @@ public class CustomWebView
      * @return {@link CustomWebView}
      */
     public CustomWebView setSlide(boolean isSlide) {
-        this.mIsSlide = isSlide;
+        mWidgetAttrs.setSlide(isSlide);
         return this;
     }
 
@@ -175,7 +166,7 @@ public class CustomWebView
      * @return {@link CustomWebView}
      */
     public CustomWebView toggleSlide() {
-        this.mIsSlide = !this.mIsSlide;
+        mWidgetAttrs.toggleSlide();
         return this;
     }
 

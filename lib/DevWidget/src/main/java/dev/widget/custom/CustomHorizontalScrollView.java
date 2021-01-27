@@ -2,7 +2,6 @@ package dev.widget.custom;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.os.Build;
 import android.util.AttributeSet;
@@ -10,7 +9,7 @@ import android.view.MotionEvent;
 import android.widget.HorizontalScrollView;
 
 import dev.utils.app.WidgetUtils;
-import dev.widget.R;
+import dev.widget.utils.WidgetAttrs;
 
 /**
  * detail: 自定义 HorizontalScrollView 滑动监听、滑动控制
@@ -24,14 +23,9 @@ import dev.widget.R;
 public class CustomHorizontalScrollView
         extends HorizontalScrollView {
 
-    // 是否允许滑动
-    private boolean        mIsSlide   = true;
-    // 最大显示宽度
-    private int            mMaxWidth  = WidgetUtils.DEF_VALUE;
-    // 最大显示高度
-    private int            mMaxHeight = WidgetUtils.DEF_VALUE;
+    private WidgetAttrs    mWidgetAttrs;
     // 滑动监听回调
-    private ScrollCallback mCallback  = null;
+    private ScrollCallback mCallback = null;
 
     public CustomHorizontalScrollView(Context context) {
         super(context);
@@ -74,13 +68,7 @@ public class CustomHorizontalScrollView
             Context context,
             AttributeSet attrs
     ) {
-        if (context != null && attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
-            mIsSlide = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
-            mMaxWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_maxWidth, WidgetUtils.DEF_VALUE);
-            mMaxHeight = a.getLayoutDimension(R.styleable.DevWidget_dev_maxHeight, WidgetUtils.DEF_VALUE);
-            a.recycle();
-        }
+        mWidgetAttrs = new WidgetAttrs(context, attrs);
     }
 
     @Override
@@ -88,7 +76,10 @@ public class CustomHorizontalScrollView
             int widthMeasureSpec,
             int heightMeasureSpec
     ) {
-        int[] measureSpecs = WidgetUtils.viewMeasure(this, widthMeasureSpec, heightMeasureSpec, mMaxWidth, mMaxHeight);
+        int[] measureSpecs = WidgetUtils.viewMeasure(
+                this, widthMeasureSpec, heightMeasureSpec,
+                mWidgetAttrs.getMaxWidth(), mWidgetAttrs.getMaxHeight()
+        );
         super.onMeasure(measureSpecs[0], measureSpecs[1]);
     }
 
@@ -112,13 +103,13 @@ public class CustomHorizontalScrollView
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if (!this.mIsSlide) return false;
+        if (!mWidgetAttrs.isSlide()) return false;
         return super.onTouchEvent(ev);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent arg0) {
-        if (!this.mIsSlide) return false;
+        if (!mWidgetAttrs.isSlide()) return false;
         return super.onInterceptTouchEvent(arg0);
     }
 
@@ -127,7 +118,7 @@ public class CustomHorizontalScrollView
      * @return View 最大显示宽度
      */
     public int getMaxWidth() {
-        return mMaxWidth;
+        return mWidgetAttrs.getMaxWidth();
     }
 
     /**
@@ -136,7 +127,7 @@ public class CustomHorizontalScrollView
      * @return {@link CustomHorizontalScrollView}
      */
     public CustomHorizontalScrollView setMaxWidth(int maxWidth) {
-        this.mMaxWidth = maxWidth;
+        mWidgetAttrs.setMaxWidth(maxWidth);
         return this;
     }
 
@@ -145,7 +136,7 @@ public class CustomHorizontalScrollView
      * @return View 最大显示高度
      */
     public int getMaxHeight() {
-        return mMaxHeight;
+        return mWidgetAttrs.getMaxHeight();
     }
 
     /**
@@ -154,7 +145,7 @@ public class CustomHorizontalScrollView
      * @return {@link CustomHorizontalScrollView}
      */
     public CustomHorizontalScrollView setMaxHeight(int maxHeight) {
-        this.mMaxHeight = maxHeight;
+        mWidgetAttrs.setMaxHeight(maxHeight);
         return this;
     }
 
@@ -163,7 +154,7 @@ public class CustomHorizontalScrollView
      * @return {@code true} yes, {@code false} no
      */
     public boolean isSlide() {
-        return mIsSlide;
+        return mWidgetAttrs.isSlide();
     }
 
     /**
@@ -172,7 +163,7 @@ public class CustomHorizontalScrollView
      * @return {@link CustomHorizontalScrollView}
      */
     public CustomHorizontalScrollView setSlide(boolean isSlide) {
-        this.mIsSlide = isSlide;
+        mWidgetAttrs.setSlide(isSlide);
         return this;
     }
 
@@ -181,7 +172,7 @@ public class CustomHorizontalScrollView
      * @return {@link CustomHorizontalScrollView}
      */
     public CustomHorizontalScrollView toggleSlide() {
-        this.mIsSlide = !this.mIsSlide;
+        mWidgetAttrs.toggleSlide();
         return this;
     }
 
