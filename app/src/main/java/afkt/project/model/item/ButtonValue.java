@@ -193,6 +193,9 @@ public class ButtonValue {
     // Material BottomSheetDialog
     public static final int BTN_BOTTOM_SHEET_DIALOG = MODULE_UI + 2100;
 
+    // Palette 调色板
+    public static final int BTN_PALETTE = MODULE_UI + 2200;
+
     // ===========
     // = 其他功能 =
     // ===========

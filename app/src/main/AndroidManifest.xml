@@ -529,6 +529,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- Palette 调色板 -->
+
+        <activity
+            android:name=".ui.activity.PaletteActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- startActivityForResult Callback -->
 
         <activity

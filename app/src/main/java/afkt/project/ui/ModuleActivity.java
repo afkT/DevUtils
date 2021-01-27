@@ -40,6 +40,7 @@ import afkt.project.ui.activity.MultiSelectActivity;
 import afkt.project.ui.activity.NotificationServiceActivity;
 import afkt.project.ui.activity.PagerSnapActivity;
 import afkt.project.ui.activity.PagerSnapMAXActivity;
+import afkt.project.ui.activity.PaletteActivity;
 import afkt.project.ui.activity.PathActivity;
 import afkt.project.ui.activity.ProgressBarActivity;
 import afkt.project.ui.activity.QRCodeCreateActivity;
@@ -199,6 +200,9 @@ public class ModuleActivity
                         break;
                     case ButtonValue.BTN_BOTTOM_SHEET_DIALOG: // Material BottomSheetDialog
                         SkipUtils.startActivity(BottomSheetDialogActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_PALETTE: // Palette 调色板
+                        SkipUtils.startActivity(PaletteActivity.class, buttonValue);
                         break;
 
                     // ===========
