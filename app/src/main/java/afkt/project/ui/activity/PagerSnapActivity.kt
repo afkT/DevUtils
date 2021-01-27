@@ -24,7 +24,7 @@ class PagerSnapActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val parent = binding.vidBvrRecy.parent as ViewGroup
+        val parent = binding.vidBvrRecy.parent as? ViewGroup
         ViewHelper.get().setPadding(parent, 0)
     }
 

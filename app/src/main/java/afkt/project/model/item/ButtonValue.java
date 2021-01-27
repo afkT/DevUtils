@@ -196,6 +196,9 @@ public class ButtonValue {
     // Palette 调色板
     public static final int BTN_PALETTE = MODULE_UI + 2200;
 
+    // Flexbox LayoutManager
+    public static final int BTN_FLEXBOX_LAYOUTMANAGER = MODULE_UI + 2300;
+
     // ===========
     // = 其他功能 =
     // ===========

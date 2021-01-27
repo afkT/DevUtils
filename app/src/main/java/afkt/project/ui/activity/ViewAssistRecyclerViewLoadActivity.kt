@@ -20,7 +20,7 @@ class ViewAssistRecyclerViewLoadActivity : BaseActivity<BaseViewRecyclerviewBind
 
     override fun initValue() {
         super.initValue()
-        val parent = binding.vidBvrRecy.parent as ViewGroup
+        val parent = binding.vidBvrRecy.parent as? ViewGroup
         // 根布局处理
         ViewHelper.get().setPadding(parent, 0)
         val url = "https://picsum.photos/id/%s/1080/1920"

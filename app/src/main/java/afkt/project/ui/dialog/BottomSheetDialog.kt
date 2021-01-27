@@ -31,7 +31,7 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
     override fun onStart() {
         super.onStart()
 
-        val mDialog = dialog as BottomSheetDialog?
+        val mDialog = dialog as? BottomSheetDialog?
         val bottomSheet =
             mDialog?.delegate?.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
         bottomSheet?.apply {

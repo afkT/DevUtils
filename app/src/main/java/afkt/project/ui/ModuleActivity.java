@@ -25,6 +25,7 @@ import afkt.project.ui.activity.CrashCatchActivity;
 import afkt.project.ui.activity.DevExtendActivity;
 import afkt.project.ui.activity.EventBusActivity;
 import afkt.project.ui.activity.FileRecordActivity;
+import afkt.project.ui.activity.FlexboxLayoutManagerActivity;
 import afkt.project.ui.activity.FlowLikeActivity;
 import afkt.project.ui.activity.FunctionActivity;
 import afkt.project.ui.activity.GPUFilterACVActivity;
@@ -203,6 +204,9 @@ public class ModuleActivity
                         break;
                     case ButtonValue.BTN_PALETTE: // Palette 调色板
                         SkipUtils.startActivity(PaletteActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_FLEXBOX_LAYOUTMANAGER: // Flexbox LayoutManager
+                        SkipUtils.startActivity(FlexboxLayoutManagerActivity.class, buttonValue);
                         break;
 
                     // ===========
