@@ -150,7 +150,7 @@ ext {
                     design                : "com.google.android.material:material:1.2.1",
                     fragment              : "androidx.fragment:fragment:1.2.5",
                     // Palette 调色板 ( 从图片中获取颜色 )
-                    palette               : "androidx.palette:palette:1.0.0",
+                    palette               : "androidx.palette:palette:1.0.0", // androidx.palette:palette-ktx:1.0.0
             ],
             'lib'     : [
                     // Gson https://github.com/google/gson

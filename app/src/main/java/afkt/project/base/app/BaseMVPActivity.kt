@@ -37,6 +37,8 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
     // ToolBar
     var toolbar: Toolbar? = null
 
+    override fun baseLayoutView(): View? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // 获取 Context、Activity
@@ -60,10 +62,6 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
         super.onDestroy()
         // 取消 TAG ( Activity ) 关联的请求
         RxJavaManager.getInstance().remove(TAG)
-    }
-
-    override fun baseLayoutView(): View? {
-        return null
     }
 
     // ===========
