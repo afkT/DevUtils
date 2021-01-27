@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
  * <p></p>
  * 也可以使用内置 [DividerItemDecoration]
  * 自定义分割线使用方法
- * DividerItemDecoration decoration = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL);
- * decoration.setDrawable(Drawable);
+ * DividerItemDecoration decoration = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+ * decoration.setDrawable(Drawable)
  * recyclerView.addItemDecoration(decoration)
  * <p></p>
  * 如果不想要最后一条数据添加分割线可以复制 [DividerItemDecoration] 代码修改

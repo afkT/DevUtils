@@ -89,7 +89,7 @@ class ToastTintActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
         /**
          * 字体样式
-         * return Typeface.create("sans-serif-condensed", Typeface.NORMAL);
+         * return Typeface.create("sans-serif-condensed", Typeface.NORMAL)
          */
         override fun getTypeface(): Typeface? = null
 

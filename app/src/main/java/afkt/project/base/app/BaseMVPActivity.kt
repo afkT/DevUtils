@@ -83,7 +83,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
     /**
      * 插入 State Layout
      */
-    fun insertStateLayout() {
+    private fun insertStateLayout() {
         stateLayout = StateLayout(this)
         // 添加 View
         contentAssist.addStateView(
@@ -210,7 +210,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
     /**
      * 初始化 ToolBar
      */
-    fun initToolBar() {
+    private fun initToolBar() {
         val titleView = ViewUtils.inflate(this, R.layout.base_toolbar, null)
         toolbar = titleView.findViewById(R.id.vid_bt_toolbar)
         contentAssist.addTitleView(titleView)

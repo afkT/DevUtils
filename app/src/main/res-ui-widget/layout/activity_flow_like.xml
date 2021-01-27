@@ -15,7 +15,7 @@
         app:dev_iconHeight="@dimen/un_dp_30"
         app:dev_iconWidth="@dimen/un_dp_30">
 
-        <ImageView
+        <dev.base.widget.BaseImageView
             android:layout_width="@dimen/un_dp_60"
             android:layout_height="@dimen/un_dp_60"
             android:layout_gravity="bottom|center"

@@ -95,7 +95,7 @@ class RecyItemSlideActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
 //                    // 例如有特殊需求, 需弹窗确认
 //                    // 可以先触发调用
-//                    itemSlideAdapter.notifyItemChanged(position);
+//                    itemSlideAdapter.notifyItemChanged(position)
 //                    // 接着弹窗, 确认要删除才移除对应 position
                 }
             }

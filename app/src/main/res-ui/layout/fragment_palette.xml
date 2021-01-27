@@ -1,16 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/vid_ap_tab"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <dev.base.widget.BaseImageView
+        android:id="@+id/vid_fp_bg_igview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.5" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vid_ap_viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@id/vid_fp_bg_igview"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.5">
+
+        <dev.base.widget.BaseTextView
+            android:id="@+id/vid_fp_tv1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="@dimen/un_sp_50"
+            android:autoSizeMinTextSize="@dimen/un_sp_20"
+            android:autoSizeTextType="uniform"
+            android:gravity="center" />
+
+        <dev.base.widget.BaseTextView
+            android:id="@+id/vid_fp_tv2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="@dimen/un_sp_50"
+            android:autoSizeMinTextSize="@dimen/un_sp_20"
+            android:autoSizeTextType="uniform"
+            android:gravity="center" />
+
+        <dev.base.widget.BaseTextView
+            android:id="@+id/vid_fp_tv3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="@dimen/un_sp_50"
+            android:autoSizeMinTextSize="@dimen/un_sp_20"
+            android:autoSizeTextType="uniform"
+            android:gravity="center" />
+
+        <dev.base.widget.BaseTextView
+            android:id="@+id/vid_fp_tv4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="@dimen/un_sp_50"
+            android:autoSizeMinTextSize="@dimen/un_sp_20"
+            android:autoSizeTextType="uniform"
+            android:gravity="center" />
+
+        <dev.base.widget.BaseTextView
+            android:id="@+id/vid_fp_tv5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="@dimen/un_sp_50"
+            android:autoSizeMinTextSize="@dimen/un_sp_20"
+            android:autoSizeTextType="uniform"
+            android:gravity="center" />
+
+        <dev.base.widget.BaseTextView
+            android:id="@+id/vid_fp_tv6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="@dimen/un_sp_50"
+            android:autoSizeMinTextSize="@dimen/un_sp_20"
+            android:autoSizeTextType="uniform"
+            android:gravity="center" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,8 +4,15 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityPaletteBinding
 import afkt.project.model.vm.PaletteViewModel
-import android.os.Bundle
+import afkt.project.ui.fragment.newPaletteFragment
 import androidx.activity.viewModels
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import com.google.android.material.tabs.TabLayoutMediator
+import dev.engine.log.DevLogEngine
+
 
 /**
  * detail: Palette 调色板
@@ -17,19 +24,58 @@ import androidx.activity.viewModels
  */
 class PaletteActivity : BaseActivity<ActivityPaletteBinding>() {
 
-    val viewModel by viewModels<PaletteViewModel>()
+    private val viewModel by viewModels<PaletteViewModel>()
 
     override fun baseLayoutId(): Int = R.layout.activity_palette
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun initObserve() {
-        super.initObserve()
+    override fun initValue() {
+        super.initValue()
 
         viewModel.paletteColor.observe(this) {
-
+            it.vibrantSwatch?.run {
+                binding.vidApTab.setBackgroundColor(rgb)
+                toolbar?.let { bar ->
+                    bar.setBackgroundColor(rgb)
+                }
+            }
         }
+
+        val list = mutableListOf<Fragment>()
+        list.add(newPaletteFragment(1))
+        list.add(newPaletteFragment(2))
+        list.add(newPaletteFragment(3))
+        list.add(newPaletteFragment(4))
+        list.add(newPaletteFragment(5))
+
+        binding.vidApViewPager.adapter = MyPagerAdapter(this, list)
+    }
+
+    override fun initListener() {
+        super.initListener()
+
+        binding.vidApViewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                DevLogEngine.getEngine().dTag("AAA", "onPageSelected - ${position + 1}")
+                viewModel.postItemPosition(position + 1)
+            }
+        })
+
+        // TabLayout 与 ViewPager2 联动
+        TabLayoutMediator(
+            binding.vidApTab, binding.vidApViewPager
+        ) { tab, position ->
+            tab.text = "Wallpaper-${position}"
+        }.attach()
+    }
+
+    class MyPagerAdapter(
+        val activity: FragmentActivity,
+        val list: MutableList<Fragment>
+    ) : FragmentStateAdapter(activity) {
+
+        override fun getItemCount(): Int = list.size
+
+        override fun createFragment(position: Int): Fragment = list[position]
     }
 }
