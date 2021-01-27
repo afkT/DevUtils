@@ -12,7 +12,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.tabs.TabLayoutMediator
 import dev.engine.log.DevLogEngine
-
+import dev.utils.app.BarUtils
 
 /**
  * detail: Palette 调色板
@@ -36,7 +36,9 @@ class PaletteActivity : BaseActivity<ActivityPaletteBinding>() {
                 binding.vidApTab.setBackgroundColor(rgb)
                 toolbar?.let { bar ->
                     bar.setBackgroundColor(rgb)
+                    BarUtils.addMarginTopEqualStatusBarHeight(bar)
                 }
+                BarUtils.setStatusBarColor(mActivity, rgb)
             }
         }
 
