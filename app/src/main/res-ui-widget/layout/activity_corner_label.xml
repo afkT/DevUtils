@@ -167,7 +167,7 @@
             android:layout_marginBottom="@dimen/un_dp_10"
             android:orientation="horizontal">
 
-            <TextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/btn_color"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
@@ -178,7 +178,7 @@
                 android:gravity="center"
                 android:text="color" />
 
-            <TextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/btn_left"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
@@ -189,7 +189,7 @@
                 android:gravity="center"
                 android:text="left" />
 
-            <TextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/btn_top"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
@@ -200,7 +200,7 @@
                 android:gravity="center"
                 android:text="top" />
 
-            <TextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/btn_triangle"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
@@ -219,7 +219,7 @@
             android:layout_marginBottom="@dimen/un_dp_10"
             android:orientation="horizontal">
 
-            <TextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/btn_text1_minus"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
@@ -230,7 +230,7 @@
                 android:gravity="center"
                 android:text="text1-" />
 
-            <TextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/btn_text1_plus"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
@@ -241,7 +241,7 @@
                 android:gravity="center"
                 android:text="text1+" />
 
-            <TextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/btn_height1_minus"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
@@ -252,7 +252,7 @@
                 android:gravity="center"
                 android:text="height1-" />
 
-            <TextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/btn_height1_plus"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
@@ -271,7 +271,7 @@
             android:layout_marginBottom="@dimen/un_dp_10"
             android:orientation="horizontal">
 
-            <TextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/btn_text2_minus"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
@@ -282,7 +282,7 @@
                 android:gravity="center"
                 android:text="text2-" />
 
-            <TextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/btn_text2_plus"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
@@ -293,7 +293,7 @@
                 android:gravity="center"
                 android:text="text2+" />
 
-            <TextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/btn_height2_minus"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
@@ -304,7 +304,7 @@
                 android:gravity="center"
                 android:text="height2-" />
 
-            <TextView
+            <dev.base.widget.BaseTextView
                 android:id="@+id/btn_height2_plus"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/un_dp_25"
