@@ -557,7 +557,11 @@ public final class ColorUtils {
      * @return 随机颜色值
      */
     public static String getRandomColorString(final boolean supportAlpha) {
-        return intToArgbString(getRandomColor(supportAlpha));
+        if (supportAlpha) {
+            return intToArgbString(getRandomColor(supportAlpha));
+        } else {
+            return intToRgbString(getRandomColor(supportAlpha));
+        }
     }
 
     // =
