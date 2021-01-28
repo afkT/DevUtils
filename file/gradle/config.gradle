@@ -22,6 +22,8 @@ ext {
             deps_android_lib       : 'file/gradle/deps/deps_android_lib.gradle',
             // 第三方 lib 依赖配置
             deps_other_lib         : 'file/gradle/deps/deps_other_lib.gradle',
+            // 性能检测相关 lib 依赖配置
+            deps_qa_lib            : 'file/gradle/deps/deps_qa_lib.gradle',
     ]
 
     versions = [
@@ -273,8 +275,8 @@ ext {
                     ucrop_native                 : "com.github.yalantis:ucrop:2.2.6-native", // 支持本机功能
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
                     xxPermissions                : "com.hjq:xxpermissions:9.2",
-                    // 应用数据库展示 https://github.com/guolindev/Glance
-                    glance                       : "com.glance.guolindev:glance:1.0.0-alpha02",
+                    // ProgressManager 监听 App 中所有网络链接的上传以及下载进度 https://github.com/JessYanCoding/ProgressManager
+                    progressmanager              : "me.jessyan:progressmanager:1.5.0",
 
                     // ========
                     // = 其他 =
@@ -283,15 +285,29 @@ ext {
                     // ARouter 路由 https://github.com/alibaba/ARouter
                     arouter_api                  : "com.alibaba:arouter-api:1.5.0", // https://github.com/alibaba/ARouter/blob/master/README_CN.md
                     arouter_compiler             : "com.alibaba:arouter-compiler:1.2.2",
-                    // 内存检测工具 https://github.com/square/leakcanary
-                    leakcanary                   : "com.squareup.leakcanary:leakcanary-android:2.4",
-                    // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
-                    blockcanary_android          : "com.github.markzhai:blockcanary-android:1.5.0",
-                    blockcanary_no_op            : "com.github.markzhai:blockcanary-no-op:1.5.0",
                     // JavaPoet 编译时代码生成 https://github.com/square/javapoet
                     javapoet                     : "com.squareup:javapoet:1.13.0",
                     // APT 编译时注解简化服务 https://github.com/google/auto/tree/master/service
-                    auto_service                 : "com.google.auto.service:auto-service:1.0-rc7"
+                    auto_service                 : "com.google.auto.service:auto-service:1.0-rc7",
+
+                    // ======================
+                    // = 性能检测、排查相关库 =
+                    // ======================
+
+                    // 内存检测工具 https://github.com/square/leakcanary
+                    leakcanary                   : "com.squareup.leakcanary:leakcanary-android:2.6",
+                    // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
+                    blockcanary_android          : "com.github.markzhai:blockcanary-android:1.5.0",
+                    blockcanary_no_op            : "com.github.markzhai:blockcanary-no-op:1.5.0",
+                    // 应用数据库展示 https://github.com/guolindev/Glance
+                    glance                       : "com.glance.guolindev:glance:1.0.0-alpha02",
+                    // 饿了么 UETool https://github.com/eleme/UETool/blob/master/README_zh.md
+                    uetool                       : "me.ele:uetool:1.2.9",
+                    uetool_no_op                 : "me.ele:uetool-no-op:1.2.9",
+                    // 滴滴出行 DoraemonKit http://www.dokit.cn
+                    dokitx                       : "com.didichuxing.doraemonkit:dokitx:3.3.5",
+                    dokitx_no_op                 : "com.didichuxing.doraemonkit:dokitx-no-op:3.3.5",
+
             ]
     ]
 }

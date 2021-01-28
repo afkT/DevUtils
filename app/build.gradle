@@ -1,5 +1,6 @@
 apply from: rootProject.file(files.build_app_gradle)
 apply from: rootProject.file(files.deps_other_lib)
+apply from: rootProject.file(files.deps_qa_lib)
 
 android {
     defaultConfig {
@@ -69,13 +70,4 @@ dependencies {
 //    kaptRelease 'com.afkt:DevEnvironmentCompilerRelease:1.0.2'
 //    // 如果需要 Release 包, 支持通过后台数据动态设置配置信息 则使用 debug compiler lib
 //    // kapt 'com.afkt:DevEnvironmentCompiler:1.0.2'
-
-    // ===============
-    // = 其他第三方库 =
-    // ===============
-
-    // 内存检测工具 https://github.com/square/leakcanary
-    debugImplementation deps.lib.leakcanary
-//    // 应用数据库展示 https://github.com/guolindev/Glance
-//    debugImplementation deps.lib.glance
 }
