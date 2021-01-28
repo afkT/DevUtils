@@ -544,6 +544,25 @@ public final class ColorUtils {
     }
 
     /**
+     * 获取随机颜色值字符串
+     * @return 随机颜色值
+     */
+    public static String getRandomColorString() {
+        return getRandomColorString(true);
+    }
+
+    /**
+     * 获取随机颜色值字符串
+     * @param supportAlpha 是否支持透明度
+     * @return 随机颜色值
+     */
+    public static String getRandomColorString(final boolean supportAlpha) {
+        return intToArgbString(getRandomColor(supportAlpha));
+    }
+
+    // =
+
+    /**
      * 判断是否为 ARGB 格式的十六进制颜色, 例如: FF990587
      * @param colorStr color String
      * @return {@code true} yes, {@code false} no

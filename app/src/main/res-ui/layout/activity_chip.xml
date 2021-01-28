@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dev.widget.custom.CustomNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none">
@@ -10,5 +11,104 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_15"
+            android:text="这是图标"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/white"
+            app:chipBackgroundColor="@color/black"
+            app:chipCornerRadius="@dimen/un_dp_15"
+            app:chipIcon="@mipmap/icon_launcher_round"
+            app:chipIconVisible="true" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Entry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_15"
+            android:text="前图标后删除"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/white"
+            app:chipBackgroundColor="@color/sky_blue"
+            app:chipCornerRadius="@dimen/un_dp_15"
+            app:chipIcon="@mipmap/icon_launcher_round"
+            app:chipIconVisible="true"
+            app:closeIconTint="@color/white" />
+
+        <dev.base.widget.BaseTextView
+            style="@style/AppTheme.Base_TextView"
+            android:layout_marginTop="@dimen/un_dp_15"
+            android:text="ChipGroup 单行效果"
+            android:textColor="@color/grey"
+            android:textStyle="bold" />
+
+        <dev.widget.custom.CustomHorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_15"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:chipSpacing="@dimen/un_dp_20"
+                    app:singleLine="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="chipInGroup1"
+                        android:textAppearance="?android:textAppearanceMedium" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="chipInGroup2"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        app:checkedIcon="@mipmap/icon_launcher_round" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="chipInGroup3"
+                        android:textAppearance="?android:textAppearanceMedium" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="chipInGroup4"
+                        android:textAppearance="?android:textAppearanceMedium" />
+                </com.google.android.material.chip.ChipGroup>
+            </LinearLayout>
+        </dev.widget.custom.CustomHorizontalScrollView>
+
+        <dev.base.widget.BaseTextView
+            style="@style/AppTheme.Base_TextView"
+            android:layout_marginTop="@dimen/un_dp_15"
+            android:text="ChipGroup 多行效果"
+            android:textColor="@color/grey"
+            android:textStyle="bold" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/vid_ac_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:chipSpacingHorizontal="@dimen/un_dp_5"
+            app:chipSpacingVertical="@dimen/un_dp_0"
+            app:singleLine="false"
+            app:singleSelection="true" />
     </LinearLayout>
 </dev.widget.custom.CustomNestedScrollView>

@@ -551,7 +551,7 @@
             android:name=".ui.activity.ChipActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar.Material" />
 
         <!-- startActivityForResult Callback -->
 
