@@ -199,6 +199,9 @@ public class ButtonValue {
     // Flexbox LayoutManager
     public static final int BTN_FLEXBOX_LAYOUTMANAGER = MODULE_UI + 2300;
 
+    // Material Chip、ChipGroups、ChipDrawable
+    public static final int BTN_CHIP = MODULE_UI + 2400;
+
     // ===========
     // = 其他功能 =
     // ===========

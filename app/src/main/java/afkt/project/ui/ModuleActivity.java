@@ -20,6 +20,7 @@ import afkt.project.ui.activity.BottomSheetActivity;
 import afkt.project.ui.activity.BottomSheetDialogActivity;
 import afkt.project.ui.activity.CacheActivity;
 import afkt.project.ui.activity.CapturePictureActivity;
+import afkt.project.ui.activity.ChipActivity;
 import afkt.project.ui.activity.CornerLabelActivity;
 import afkt.project.ui.activity.CrashCatchActivity;
 import afkt.project.ui.activity.DevExtendActivity;
@@ -207,6 +208,9 @@ public class ModuleActivity
                         break;
                     case ButtonValue.BTN_FLEXBOX_LAYOUTMANAGER: // Flexbox LayoutManager
                         SkipUtils.startActivity(FlexboxLayoutManagerActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_CHIP: // Material Chip、ChipGroups、ChipDrawable
+                        SkipUtils.startActivity(ChipActivity.class, buttonValue);
                         break;
 
                     // ===========

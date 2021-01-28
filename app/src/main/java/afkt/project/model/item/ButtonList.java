@@ -155,6 +155,7 @@ public class ButtonList {
         lists.add(new ButtonValue(BTN_BOTTOM_SHEET_DIALOG, "Material BottomSheetDialog"));
         lists.add(new ButtonValue(BTN_PALETTE, "Palette 调色板"));
         lists.add(new ButtonValue(BTN_FLEXBOX_LAYOUTMANAGER, "Flexbox LayoutManager"));
+        lists.add(new ButtonValue(BTN_CHIP, "Material Chip、ChipGroups、ChipDrawable"));
         return lists;
     }
 
