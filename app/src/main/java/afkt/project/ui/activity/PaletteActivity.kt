@@ -11,7 +11,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.tabs.TabLayoutMediator
-import dev.engine.log.DevLogEngine
 import dev.utils.app.BarUtils
 
 /**
@@ -58,7 +57,6 @@ class PaletteActivity : BaseActivity<ActivityPaletteBinding>() {
         binding.vidApViewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                DevLogEngine.getEngine().dTag("AAA", "onPageSelected - ${position + 1}")
                 viewModel.postItemPosition(position + 1)
             }
         })

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dev.widget.custom.CustomNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:scrollbars="none">
+
+    <LinearLayout
+        style="@style/AppTheme.padding_lr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <dev.base.widget.BaseTextView
+            android:id="@+id/vid_fp_preface_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_15"
+            android:textSize="@dimen/un_sp_17"
+            tools:text="前言" />
+
+        <dev.base.widget.BaseTextView
+            android:id="@+id/vid_fp_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_15"
+            android:gravity="center"
+            android:textSize="@dimen/un_sp_28"
+            tools:text="标题" />
+
+        <dev.base.widget.BaseImageView
+            android:id="@+id/vid_fp_igview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_15"
+            android:scaleType="fitXY"
+            tools:background="@drawable/bg_wallpaper" />
+
+        <dev.base.widget.BaseTextView
+            android:id="@+id/vid_fp_content_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_15"
+            android:textSize="@dimen/un_sp_20"
+            tools:text="内容" />
+    </LinearLayout>
+</dev.widget.custom.CustomNestedScrollView>
