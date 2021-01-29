@@ -607,7 +607,7 @@ public final class IntentUtils {
             final boolean isNewTask
     ) {
         try {
-            return getShareImageIntent(content, Uri.fromFile(image), isNewTask);
+            return getShareImageIntent(content, DevUtils.getUriForFile(image), isNewTask);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getShareImageIntent");
         }

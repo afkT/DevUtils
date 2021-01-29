@@ -90,7 +90,7 @@ public final class MediaStoreUtils {
         if (file != null) {
             try {
                 // 通知图库扫描更新
-                return AppUtils.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
+                return AppUtils.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, DevUtils.getUriForFile(file)));
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "notifyMediaStore");
             }

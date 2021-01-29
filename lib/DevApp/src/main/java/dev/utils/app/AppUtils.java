@@ -1322,7 +1322,7 @@ public final class AppUtils {
         try {
             Intent intent = new Intent();
             intent.addCategory(Intent.CATEGORY_DEFAULT);
-            intent.setData(Uri.fromFile(file));
+            intent.setData(DevUtils.getUriForFile(file));
             intent.setClassName(packageName, className);
             return startActivity(intent);
         } catch (Exception e) {
