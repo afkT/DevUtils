@@ -1,1 +1,15 @@
 apply from: rootProject.file(files.build_app_kotlin_gradle)
+
+dependencies {
+
+    // =============================
+    // = 其他第三方库 - 小功能、简约 =
+    // =============================
+
+    // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
+    implementation deps.lib.smartrefreshlayout
+    implementation deps.lib.smartrefresh_header_classics
+    implementation deps.lib.smartrefresh_footer_classics
+    // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+    implementation deps.lib.baserecyclerviewadapterhelper
+}
