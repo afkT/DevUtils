@@ -59,6 +59,7 @@ import afkt.project.ui.activity.TextViewActivity;
 import afkt.project.ui.activity.TimerActivity;
 import afkt.project.ui.activity.ToastTintActivity;
 import afkt.project.ui.activity.UIEffectActivity;
+import afkt.project.ui.activity.ViewPager2Activity;
 import afkt.project.ui.activity.ViewPagerActivity;
 import afkt.project.ui.activity.WallpaperActivity;
 import afkt.project.ui.activity.WebViewActivity;
@@ -212,6 +213,9 @@ public class ModuleActivity
                         break;
                     case ButtonValue.BTN_CHIP: // Material Chip、ChipGroups、ChipDrawable
                         SkipUtils.startActivity(ChipActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_VIEWPAGER2: // ViewPager2
+                        SkipUtils.startActivity(ViewPager2Activity.class, buttonValue);
                         break;
 
                     // ===========

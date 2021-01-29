@@ -27,7 +27,6 @@ import android.hardware.SensorManager;
 import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
-import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.PowerManager;

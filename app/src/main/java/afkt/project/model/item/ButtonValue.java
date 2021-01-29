@@ -202,6 +202,9 @@ public class ButtonValue {
     // Material Chip、ChipGroups、ChipDrawable
     public static final int BTN_CHIP = MODULE_UI + 2400;
 
+    // ViewPager2
+    public static final int BTN_VIEWPAGER2 = MODULE_UI + 2500;
+
     // ===========
     // = 其他功能 =
     // ===========

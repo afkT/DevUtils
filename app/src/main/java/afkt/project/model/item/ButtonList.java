@@ -156,6 +156,7 @@ public class ButtonList {
         lists.add(new ButtonValue(BTN_PALETTE, "Palette 调色板"));
         lists.add(new ButtonValue(BTN_FLEXBOX_LAYOUTMANAGER, "Flexbox LayoutManager"));
         lists.add(new ButtonValue(BTN_CHIP, "Material Chip、ChipGroups、ChipDrawable"));
+        lists.add(new ButtonValue(BTN_VIEWPAGER2, "ViewPager2"));
         return lists;
     }
 

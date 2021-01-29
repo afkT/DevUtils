@@ -553,6 +553,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.Material" />
 
+        <!-- ViewPager2 -->
+
+        <activity
+            android:name=".ui.activity.ViewPager2Activity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- startActivityForResult Callback -->
 
         <activity
