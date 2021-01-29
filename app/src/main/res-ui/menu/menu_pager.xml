@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/vid_menu_ltr"
+        android:title="LTR 布局" />
+
+    <item
+        android:id="@+id/vid_menu_rtl"
+        android:title="RTL 布局" />
+
+    <item
+        android:id="@+id/vid_menu_horizontal"
+        android:title="水平滑动" />
+
+    <item
+        android:id="@+id/vid_menu_vertical"
+        android:title="垂直滑动" />
+
+    <item
+        android:id="@+id/vid_menu_reset"
+        android:title="重置" />
+</menu>

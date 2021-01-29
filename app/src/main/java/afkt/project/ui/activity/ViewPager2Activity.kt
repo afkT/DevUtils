@@ -4,10 +4,13 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityViewpager2Binding
 import afkt.project.ui.fragment.newPagerFragment
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import dev.utils.app.ResourceUtils
 
@@ -33,13 +36,6 @@ class ViewPager2Activity : BaseActivity<ActivityViewpager2Binding>() {
 
     override fun initListener() {
         super.initListener()
-
-        binding.vidAvpViewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-            }
-        })
-
         binding.vidAvpTab.setTabTextColors(
             ResourceUtils.getColor(R.color.black),
             ResourceUtils.getColor(R.color.white)
@@ -49,7 +45,7 @@ class ViewPager2Activity : BaseActivity<ActivityViewpager2Binding>() {
         TabLayoutMediator(
             binding.vidAvpTab, binding.vidAvpViewPager
         ) { tab, position ->
-            tab.text = "Pager-${position}"
+            tab.text = "Pager-${position + 1}"
         }.attach()
     }
 
@@ -61,5 +57,39 @@ class ViewPager2Activity : BaseActivity<ActivityViewpager2Binding>() {
         override fun getItemCount(): Int = list.size
 
         override fun createFragment(position: Int): Fragment = list[position]
+    }
+
+    // ========
+    // = Menu =
+    // ========
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_pager, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.vid_menu_ltr -> {
+                binding.vidAvpTab.layoutDirection = View.LAYOUT_DIRECTION_LTR
+                binding.vidAvpViewPager.layoutDirection = View.LAYOUT_DIRECTION_LTR
+            }
+            R.id.vid_menu_rtl -> {
+                binding.vidAvpTab.layoutDirection = View.LAYOUT_DIRECTION_RTL
+                binding.vidAvpViewPager.layoutDirection = View.LAYOUT_DIRECTION_RTL
+            }
+            R.id.vid_menu_horizontal -> {
+                binding.vidAvpViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+            }
+            R.id.vid_menu_vertical -> {
+                binding.vidAvpViewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
+            }
+            R.id.vid_menu_reset -> {
+                binding.vidAvpTab.layoutDirection = View.LAYOUT_DIRECTION_LTR
+                binding.vidAvpViewPager.layoutDirection = View.LAYOUT_DIRECTION_LTR
+                binding.vidAvpViewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
+            }
+        }
+        return true
     }
 }
