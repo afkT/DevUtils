@@ -381,6 +381,9 @@ public class ButtonValue {
     // 添加联系人
     public static final int BTN_ADD_CONTACT = MODULE_OTHER + 1400;
 
+    // 手机壁纸
+    public static final int BTN_WALLPAPER = MODULE_OTHER + 1500;
+
     // ===================
     // = DevWidget UI 库 =
     // ===================

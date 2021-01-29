@@ -60,6 +60,7 @@ import afkt.project.ui.activity.TimerActivity;
 import afkt.project.ui.activity.ToastTintActivity;
 import afkt.project.ui.activity.UIEffectActivity;
 import afkt.project.ui.activity.ViewPagerActivity;
+import afkt.project.ui.activity.WallpaperActivity;
 import afkt.project.ui.activity.WebViewActivity;
 import afkt.project.ui.activity.WifiActivity;
 import afkt.project.ui.activity.WrapActivity;
@@ -261,6 +262,9 @@ public class ModuleActivity
                         break;
                     case ButtonValue.BTN_ADD_CONTACT: // 添加联系人
                         SkipUtils.startActivity(AddContactActivity.class, buttonValue);
+                        break;
+                    case ButtonValue.BTN_WALLPAPER: // 手机壁纸
+                        SkipUtils.startActivity(WallpaperActivity.class, buttonValue);
                         break;
 
                     // =============

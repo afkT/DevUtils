@@ -199,6 +199,7 @@ public class ButtonList {
         lists.add(new ButtonValue(BTN_WEBVIEW, "WebView 辅助类"));
         lists.add(new ButtonValue(BTN_ACTIVITY_RESULT_CALLBACK, "startActivityForResult Callback"));
         lists.add(new ButtonValue(BTN_ADD_CONTACT, "添加联系人"));
+        lists.add(new ButtonValue(BTN_WALLPAPER, "手机壁纸"));
         return lists;
     }
 
