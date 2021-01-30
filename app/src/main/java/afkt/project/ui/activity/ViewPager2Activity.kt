@@ -87,9 +87,10 @@ class ViewPager2Activity : BaseActivity<ActivityViewpager2Binding>() {
             R.id.vid_menu_reset -> {
                 binding.vidAvpTab.layoutDirection = View.LAYOUT_DIRECTION_LTR
                 binding.vidAvpViewPager.layoutDirection = View.LAYOUT_DIRECTION_LTR
-                binding.vidAvpViewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
+                binding.vidAvpViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
             }
         }
+        binding.vidAvpViewPager.adapter?.notifyDataSetChanged()
         return true
     }
 }
