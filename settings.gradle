@@ -48,14 +48,17 @@ project(':DevOther').projectDir = new File('lib/DevOther')
 // = Project =
 // ===========
 
-include ':DemoKtx'
-project(':DemoKtx').projectDir = new File(rootDir, 'project/DemoKtx')
-
 include ':AccessibilityKtx'
 project(':AccessibilityKtx').projectDir = new File(rootDir, 'project/AccessibilityKtx')
 
 include ':AppInfoKtx'
 project(':AppInfoKtx').projectDir = new File(rootDir, 'project/AppInfoKtx')
+
+include ':DemoKtx'
+project(':DemoKtx').projectDir = new File(rootDir, 'project/DemoKtx')
+
+include ':PushKtx'
+project(':PushKtx').projectDir = new File(rootDir, 'project/PushKtx')
 
 // ===============
 // = Interesting =
