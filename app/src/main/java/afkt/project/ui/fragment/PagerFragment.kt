@@ -3,6 +3,7 @@ package afkt.project.ui.fragment
 import afkt.project.R
 import afkt.project.base.app.BaseFragment
 import afkt.project.databinding.FragmentPagerBinding
+import afkt.project.ui.widget.VerticalScrollView
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
@@ -29,6 +30,10 @@ class PagerFragment : BaseFragment<FragmentPagerBinding>() {
     ) {
         super.onViewCreated(view, savedInstanceState)
         position = arguments?.getInt(DevFinal.POSITION) ?: 1
+
+        /**
+         * 竖屏需要使用 [VerticalScrollView]
+         */
 
         binding.vidFpPrefaceTv.text = ChineseUtils.randomWord(RandomUtils.getRandom(30, 100))
         binding.vidFpTitleTv.text = "${position}.${ChineseUtils.randomWord(5)}"
