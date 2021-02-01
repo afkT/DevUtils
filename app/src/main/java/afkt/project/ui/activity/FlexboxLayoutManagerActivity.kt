@@ -19,7 +19,6 @@ import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
 import java.util.*
 
-
 /**
  * detail: Flexbox LayoutManager
  * @author Ttt
