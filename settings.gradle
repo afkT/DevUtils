@@ -60,6 +60,9 @@ project(':DemoKtx').projectDir = new File(rootDir, 'project/DemoKtx')
 include ':PushKtx'
 project(':PushKtx').projectDir = new File(rootDir, 'project/PushKtx')
 
+include ':PushLockScreenKtx'
+project(':PushLockScreenKtx').projectDir = new File(rootDir, 'project/PushLockScreenKtx')
+
 // ===============
 // = Interesting =
 // ===============
