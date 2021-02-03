@@ -152,9 +152,14 @@ public final class DevicePolicyUtils {
             final int passwordType
     ) {
         if (!isAdminActive(admin)) return false;
-        Intent intent = new Intent(DevicePolicyManager.ACTION_SET_NEW_PASSWORD);
-        getDevicePolicyManager().setPasswordQuality(admin, passwordType);
-        return AppUtils.startActivity(intent);
+        try {
+            Intent intent = new Intent(DevicePolicyManager.ACTION_SET_NEW_PASSWORD);
+            getDevicePolicyManager().setPasswordQuality(admin, passwordType);
+            return AppUtils.startActivity(intent);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setLockPassword");
+        }
+        return false;
     }
 
     /**

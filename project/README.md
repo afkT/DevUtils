@@ -11,4 +11,5 @@
    - AppInfoKtx                            | APP 信息提取器
    - DemoKtx                               | 临时测试代码、库调用调试 Demo
    - PushKtx                               | Android 点击推送通知 ( 逻辑 ) 处理
+   - PushLockScreenKtx                     | 推送锁屏 ( 设备管理 )
 ```
