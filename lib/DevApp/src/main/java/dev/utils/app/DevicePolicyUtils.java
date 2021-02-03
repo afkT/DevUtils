@@ -234,6 +234,46 @@ public final class DevicePolicyUtils {
         return false;
     }
 
+    /**
+     * 设置存储设备加密
+     * @param admin   {@link ComponentName}
+     * @param encrypt 是否加密
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setStorageEncryption(
+            final ComponentName admin,
+            final boolean encrypt
+    ) {
+        if (!isAdminActive(admin)) return false;
+        try {
+            getDevicePolicyManager().setStorageEncryption(admin, encrypt);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setStorageEncryption");
+        }
+        return false;
+    }
+
+    /**
+     * 设置停用相机
+     * @param admin    {@link ComponentName}
+     * @param disabled 是否禁用相机
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setCameraDisabled(
+            final ComponentName admin,
+            final boolean disabled
+    ) {
+        if (!isAdminActive(admin)) return false;
+        try {
+            getDevicePolicyManager().setCameraDisabled(admin, disabled);
+            return true;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "setCameraDisabled");
+        }
+        return false;
+    }
+
     // =========================
     // = Default ComponentName =
     // =========================
@@ -350,5 +390,23 @@ public final class DevicePolicyUtils {
      */
     public boolean resetPassword(final String password) {
         return resetPassword(mComponentName, password);
+    }
+
+    /**
+     * 设置存储设备加密
+     * @param encrypt 是否加密
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setStorageEncryption(final boolean encrypt) {
+        return setStorageEncryption(mComponentName, encrypt);
+    }
+
+    /**
+     * 设置停用相机
+     * @param disabled 是否禁用相机
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean setCameraDisabled(final boolean disabled) {
+        return setCameraDisabled(mComponentName, disabled);
     }
 }
