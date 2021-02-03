@@ -9,6 +9,7 @@ import android.app.KeyguardManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.WallpaperManager;
+import android.app.admin.DevicePolicyManager;
 import android.app.usage.UsageStatsManager;
 import android.content.BroadcastReceiver;
 import android.content.ClipboardManager;
@@ -219,6 +220,14 @@ public final class AppUtils {
      */
     public static Vibrator getVibrator() {
         return getSystemService(Context.VIBRATOR_SERVICE);
+    }
+
+    /**
+     * 获取 DevicePolicyManager
+     * @return {@link DevicePolicyManager}
+     */
+    public static DevicePolicyManager getDevicePolicyManager() {
+        return getSystemService(Context.DEVICE_POLICY_SERVICE);
     }
 
     /**
