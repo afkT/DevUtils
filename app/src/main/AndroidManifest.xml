@@ -177,14 +177,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- 通用结果回调类 ( 针对 DevResultCallback 进行扩展 ) -->
-
-        <activity
-            android:name=".ui.activity.DevExtendActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
         <!-- 路径信息 -->
 
         <activity

@@ -359,15 +359,8 @@ public class ButtonValue {
     // 点击崩溃捕获信息
     public static final int BTN_CRASH_CLICK_CATCH = BTN_CRASH + 1;
 
-    // 通用结果回调类 ( 针对 DevResultCallback 进行扩展 )
-    public static final int BTN_EXTEND         = MODULE_OTHER + 1000;
-    // 保存文件获取结果
-    public static final int BTN_EXTEND_SAVE    = BTN_EXTEND + 1;
-    // 触发拓展回调
-    public static final int BTN_EXTEND_TRIGGER = BTN_EXTEND + 2;
-
     // 路径信息
-    public static final int BTN_PATH              = MODULE_OTHER + 1100;
+    public static final int BTN_PATH              = MODULE_OTHER + 1000;
     // 内部存储路径
     public static final int BTN_PATH_INTERNAL     = BTN_PATH + 1;
     // 应用外部存储路径
@@ -376,16 +369,16 @@ public class ButtonValue {
     public static final int BTN_PATH_SDCARD       = BTN_PATH + 3;
 
     // WebView 辅助类
-    public static final int BTN_WEBVIEW = MODULE_OTHER + 1200;
+    public static final int BTN_WEBVIEW = MODULE_OTHER + 1100;
 
     // startActivityForResult Callback
-    public static final int BTN_ACTIVITY_RESULT_CALLBACK = MODULE_OTHER + 1300;
+    public static final int BTN_ACTIVITY_RESULT_CALLBACK = MODULE_OTHER + 1200;
 
     // 添加联系人
-    public static final int BTN_ADD_CONTACT = MODULE_OTHER + 1400;
+    public static final int BTN_ADD_CONTACT = MODULE_OTHER + 1300;
 
     // 手机壁纸
-    public static final int BTN_WALLPAPER = MODULE_OTHER + 1500;
+    public static final int BTN_WALLPAPER = MODULE_OTHER + 1400;
 
     // ===================
     // = DevWidget UI 库 =

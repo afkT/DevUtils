@@ -23,7 +23,6 @@ import afkt.project.ui.activity.CapturePictureActivity;
 import afkt.project.ui.activity.ChipActivity;
 import afkt.project.ui.activity.CornerLabelActivity;
 import afkt.project.ui.activity.CrashCatchActivity;
-import afkt.project.ui.activity.DevExtendActivity;
 import afkt.project.ui.activity.EventBusActivity;
 import afkt.project.ui.activity.FileRecordActivity;
 import afkt.project.ui.activity.FlexboxLayoutManagerActivity;
@@ -251,9 +250,6 @@ public class ModuleActivity
                         break;
                     case ButtonValue.BTN_CRASH: // 奔溃日志捕获
                         SkipUtils.startActivity(CrashCatchActivity.class, buttonValue);
-                        break;
-                    case ButtonValue.BTN_EXTEND: // 通用结果回调类 ( 针对 DevResultCallback 进行扩展 )
-                        SkipUtils.startActivity(DevExtendActivity.class, buttonValue);
                         break;
                     case ButtonValue.BTN_PATH: // 路径信息
                         SkipUtils.startActivity(PathActivity.class, buttonValue);

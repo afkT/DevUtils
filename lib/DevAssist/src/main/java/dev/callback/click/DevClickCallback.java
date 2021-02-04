@@ -8,7 +8,7 @@ import dev.callback.AbstractCommonCallback;
  */
 public class DevClickCallback<T>
         extends AbstractCommonCallback<T> {
-    
+
     public DevClickCallback() {
     }
 

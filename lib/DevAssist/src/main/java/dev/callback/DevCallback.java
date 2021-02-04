@@ -1,31 +1,81 @@
-package dev.callback.common;
-
-import dev.callback.AbstractCallback;
+package dev.callback;
 
 /**
- * detail: 过滤处理回调类
+ * detail: Dev 通用回调
  * @author Ttt
  */
-public class DevFilterCallback<T>
+public class DevCallback<T>
         extends AbstractCallback<T> {
 
-    public DevFilterCallback() {
+    public DevCallback() {
     }
 
-    public DevFilterCallback(T value) {
+    public DevCallback(final T value) {
         super(value);
     }
 
-    public DevFilterCallback(
-            T value,
-            Object object
+    public DevCallback(
+            final T value,
+            final Object object
     ) {
         super(value, object);
     }
 
-    // ===============
-    // = 对外公开方法 =
-    // ===============
+    // ===========
+    // = 通用方法 =
+    // ===========
+
+    /**
+     * 回调方法
+     */
+    public void callback() {
+    }
+
+    /**
+     * 回调方法
+     * @param value 回调值
+     */
+    public void callback(T value) {
+    }
+
+    /**
+     * 回调方法
+     * @param value 回调值
+     * @param param 回调参数
+     */
+    public void callback(
+            T value,
+            int param
+    ) {
+    }
+
+    /**
+     * 回调方法
+     * @param value   回调值
+     * @param objects 回调对象数组
+     */
+    public void callback(
+            T value,
+            Object[] objects
+    ) {
+    }
+
+    /**
+     * 回调方法
+     * @param value   回调值
+     * @param param   回调参数
+     * @param objects 回调对象数组
+     */
+    public void callback(
+            T value,
+            int param,
+            Object[] objects
+    ) {
+    }
+
+    // ===========
+    // = 过滤方法 =
+    // ===========
 
     /**
      * 过滤处理
@@ -44,8 +94,6 @@ public class DevFilterCallback<T>
     public T[] filter(T[] values) {
         return values;
     }
-
-    // =
 
     /**
      * 判断是否过滤
@@ -68,7 +116,7 @@ public class DevFilterCallback<T>
     // =
 
     /**
-     * 对比过滤处理
+     * 对比判断
      * @param value  待对比值
      * @param value1 待对比值
      * @return {@code true} yes, {@code false} no
@@ -81,7 +129,7 @@ public class DevFilterCallback<T>
     }
 
     /**
-     * 对比过滤处理
+     * 对比判断
      * @param values  待对比值
      * @param values1 待对比值
      * @return {@code true} yes, {@code false} no

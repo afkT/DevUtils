@@ -4,7 +4,6 @@ import dev.base.DevObject;
 
 /**
  * detail: 抽象回调 ( 基类 )
- *
  * @author Ttt
  */
 public abstract class AbstractCallback<T>
@@ -13,13 +12,13 @@ public abstract class AbstractCallback<T>
     public AbstractCallback() {
     }
 
-    public AbstractCallback(T value) {
+    public AbstractCallback(final T value) {
         super(value);
     }
 
     public AbstractCallback(
-            T value,
-            Object tag
+            final T value,
+            final Object tag
     ) {
         super(value, tag);
     }

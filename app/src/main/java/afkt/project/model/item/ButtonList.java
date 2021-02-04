@@ -195,7 +195,6 @@ public class ButtonList {
         lists.add(new ButtonValue(BTN_LOGGER, "DevLogger 日志工具类"));
         lists.add(new ButtonValue(BTN_FILE_RECORD, "日志、异常文件记录保存"));
         lists.add(new ButtonValue(BTN_CRASH, "奔溃日志捕获"));
-        lists.add(new ButtonValue(BTN_EXTEND, "通用结果回调类 ( 针对 DevResultCallback 进行扩展 )"));
         lists.add(new ButtonValue(BTN_PATH, "路径信息"));
         lists.add(new ButtonValue(BTN_WEBVIEW, "WebView 辅助类"));
         lists.add(new ButtonValue(BTN_ACTIVITY_RESULT_CALLBACK, "startActivityForResult Callback"));
@@ -351,17 +350,6 @@ public class ButtonList {
     public static List<ButtonValue> getCrashButtonValues() {
         List<ButtonValue> lists = new ArrayList<>();
         lists.add(new ButtonValue(BTN_CRASH_CLICK_CATCH, "点击崩溃捕获信息"));
-        return lists;
-    }
-
-    /**
-     * 获取 Extend Record Button Value 集合
-     * @return {@link List < ButtonValue >}
-     */
-    public static List<ButtonValue> getExtendButtonValues() {
-        List<ButtonValue> lists = new ArrayList<>();
-        lists.add(new ButtonValue(BTN_EXTEND_SAVE, "保存文件获取结果"));
-        lists.add(new ButtonValue(BTN_EXTEND_TRIGGER, "触发拓展回调"));
         return lists;
     }
 
