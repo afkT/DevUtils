@@ -29,7 +29,7 @@ public final class ViewAssist {
     }
 
     // 标记 Tag
-    private String    mTag;
+    private Object    mTag;
     // 包裹 View
     private ViewGroup mWrapper;
 
@@ -50,7 +50,7 @@ public final class ViewAssist {
      */
     public static ViewAssist wrap(
             ViewGroup wrapper,
-            String tag
+            Object tag
     ) {
         if (wrapper == null) return null;
         ViewAssist assist = new ViewAssist();
@@ -259,11 +259,11 @@ public final class ViewAssist {
         return mWrapper;
     }
 
-    public String getTag() {
+    public Object getTag() {
         return mTag;
     }
 
-    public ViewAssist setTag(String tag) {
+    public ViewAssist setTag(Object tag) {
         this.mTag = tag;
         return this;
     }

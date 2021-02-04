@@ -329,11 +329,11 @@ public class StateLayout
         return this;
     }
 
-    public String getTag() {
+    public Object getAssistTag() {
         return mAssist.getTag();
     }
 
-    public StateLayout setTag(String tag) {
+    public StateLayout setAssistTag(Object tag) {
         mAssist.setTag(tag);
         return this;
     }
