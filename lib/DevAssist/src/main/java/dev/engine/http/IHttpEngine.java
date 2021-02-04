@@ -32,11 +32,12 @@ public interface IHttpEngine {
          * @return Request Object
          */
         public final <T extends Request> T getRequest() {
+            T value = null;
             try {
-                return (T) request;
+                value = (T) request;
             } catch (Exception e) {
             }
-            return null;
+            return value;
         }
 
         /**
@@ -57,7 +58,7 @@ public interface IHttpEngine {
     }
 
     /**
-     * detail: Request Call Operate
+     * detail: Request Call
      * @author Ttt
      */
     interface Call {
@@ -164,9 +165,9 @@ public interface IHttpEngine {
      * @param callback {@link RequestCallback}
      * @return {@link Call}
      */
-    Call newCall(
-            Request request,
-            RequestCallback callback
+    <Req extends Request, Resp extends Response> Call newCall(
+            Req request,
+            RequestCallback<Resp> callback
     );
 
     // ===========
