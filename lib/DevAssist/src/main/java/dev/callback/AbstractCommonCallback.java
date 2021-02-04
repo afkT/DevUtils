@@ -21,14 +21,6 @@ public abstract class AbstractCommonCallback<T>
         super(value, object);
     }
 
-    public AbstractCommonCallback(
-            T value,
-            Object object,
-            String tag
-    ) {
-        super(value, object, tag);
-    }
-
     // ===========
     // = 回调方法 =
     // ===========

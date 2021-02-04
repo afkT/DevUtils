@@ -23,14 +23,6 @@ public abstract class DevResultCallback<T>
         super(value, object);
     }
 
-    public DevResultCallback(
-            T value,
-            Object object,
-            String tag
-    ) {
-        super(value, object, tag);
-    }
-
     // ===========
     // = 回调方法 =
     // ===========

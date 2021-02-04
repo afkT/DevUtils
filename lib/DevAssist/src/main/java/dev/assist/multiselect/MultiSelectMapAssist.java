@@ -75,7 +75,7 @@ public class MultiSelectMapAssist<K, V>
         if (collections != null) {
             for (DevEntry<?, V> entry : collections) {
                 if (entry != null) {
-                    mMapSelects.put((K) entry.getEntryKey(), entry.getEntryValue());
+                    mMapSelects.put((K) entry.getKey(), entry.getValue());
                 }
             }
         }

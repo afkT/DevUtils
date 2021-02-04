@@ -23,14 +23,6 @@ public class DevCallback<T>
         super(value, object);
     }
 
-    public DevCallback(
-            T value,
-            Object object,
-            String tag
-    ) {
-        super(value, object, tag);
-    }
-
     // ===========
     // = 通用方法 =
     // ===========

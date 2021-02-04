@@ -23,14 +23,6 @@ public class DevFilterCallback<T>
         super(value, object);
     }
 
-    public DevFilterCallback(
-            T value,
-            Object object,
-            String tag
-    ) {
-        super(value, object, tag);
-    }
-
     // ===============
     // = 对外公开方法 =
     // ===============

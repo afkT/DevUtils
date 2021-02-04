@@ -21,14 +21,6 @@ public class DevDialogCallback<T>
         super(value, object);
     }
 
-    public DevDialogCallback(
-            T value,
-            Object object,
-            String tag
-    ) {
-        super(value, object, tag);
-    }
-
     // ===========
     // = 通知方法 =
     // ===========

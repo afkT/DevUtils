@@ -712,7 +712,7 @@ public final class EditTextUtils {
     public static abstract class DevTextWatcher
             implements TextWatcher {
 
-        // 标记 id ( 一定程度上唯一 )
+        // uuid ( 一定程度上唯一 )
         private final int     markId       = UUID.randomUUID().hashCode();
         // 判断是否操作中
         private       boolean operate      = false;

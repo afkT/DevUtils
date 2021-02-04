@@ -72,7 +72,7 @@ public class MultiSelectListAssist<V>
         if (collections != null) {
             for (DevEntry<?, V> entry : collections) {
                 if (entry != null) {
-                    mListSelects.add(entry.getEntryValue());
+                    mListSelects.add(entry.getValue());
                 }
             }
         }

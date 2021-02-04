@@ -4,27 +4,26 @@ package dev.base;
  * detail: Key-Value Entry
  * @author Ttt
  */
-public class DevEntry<K, V>
-        extends DevModel {
+public class DevEntry<K, V> {
 
     // key
-    public K mEntryKey;
+    public K mKey;
     // value
-    public V mEntryValue;
+    public V mValue;
 
     public DevEntry() {
     }
 
-    public DevEntry(K entryKey) {
-        this.mEntryKey = entryKey;
+    public DevEntry(final K key) {
+        this.mKey = key;
     }
 
     public DevEntry(
-            K entryKey,
-            V entryValue
+            final K key,
+            final V value
     ) {
-        this.mEntryKey = entryKey;
-        this.mEntryValue = entryValue;
+        this.mKey = key;
+        this.mValue = value;
     }
 
     // ===============
@@ -32,51 +31,38 @@ public class DevEntry<K, V>
     // ===============
 
     /**
-     * 获取 Entry Key
-     * @return Entry Key
+     * 获取 Key
+     * @return Key
      */
-    public K getEntryKey() {
-        return mEntryKey;
+    public K getKey() {
+        return mKey;
     }
 
     /**
-     * 设置 Entry Key
-     * @param entryKey Entry Key
+     * 设置 Key
+     * @param key Key
      * @return {@link DevEntry}
      */
-    public DevEntry<K, V> setEntryKey(final K entryKey) {
-        this.mEntryKey = entryKey;
+    public DevEntry<K, V> setKey(final K key) {
+        this.mKey = key;
         return this;
     }
 
-    // =
-
     /**
-     * 获取 Entry Value
-     * @return Entry Value
+     * 获取 Value
+     * @return Value
      */
-    public V getEntryValue() {
-        return mEntryValue;
+    public V getValue() {
+        return mValue;
     }
 
     /**
-     * 设置 Entry Value
-     * @param entryValue Entry Value
+     * 设置 Value
+     * @param value Value
      * @return {@link DevEntry}
      */
-    public DevEntry<K, V> setEntryValue(final V entryValue) {
-        this.mEntryValue = entryValue;
+    public DevEntry<K, V> setValue(final V value) {
+        this.mValue = value;
         return this;
-    }
-
-    // =
-
-    /**
-     * 校验数据正确性
-     * @return {@code true} correct, {@code false} error
-     */
-    @Override
-    public boolean isCorrect() {
-        return mEntryKey != null;
     }
 }

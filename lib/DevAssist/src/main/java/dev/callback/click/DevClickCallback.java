@@ -8,7 +8,7 @@ import dev.callback.AbstractCommonCallback;
  */
 public class DevClickCallback<T>
         extends AbstractCommonCallback<T> {
-
+    
     public DevClickCallback() {
     }
 
@@ -21,14 +21,6 @@ public class DevClickCallback<T>
             Object object
     ) {
         super(value, object);
-    }
-
-    public DevClickCallback(
-            T value,
-            Object object,
-            String tag
-    ) {
-        super(value, object, tag);
     }
 
     // ===========

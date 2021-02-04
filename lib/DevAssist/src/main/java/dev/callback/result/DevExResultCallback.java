@@ -25,14 +25,6 @@ public abstract class DevExResultCallback<T>
         super(value, object);
     }
 
-    public DevExResultCallback(
-            T value,
-            Object object,
-            String tag
-    ) {
-        super(value, object, tag);
-    }
-
     // =====================
     // = DevResultCallback =
     // =====================

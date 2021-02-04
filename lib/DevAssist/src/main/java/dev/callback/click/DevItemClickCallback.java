@@ -23,14 +23,6 @@ public class DevItemClickCallback<T>
         super(value, object);
     }
 
-    public DevItemClickCallback(
-            T value,
-            Object object,
-            String tag
-    ) {
-        super(value, object, tag);
-    }
-
     // ===========
     // = 通用方法 =
     // ===========
