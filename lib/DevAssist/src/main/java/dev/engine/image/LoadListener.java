@@ -1,6 +1,6 @@
 package dev.engine.image;
 
-import dev.base.Source;
+import dev.base.DevSource;
 
 /**
  * detail: 图片加载事件
@@ -17,27 +17,27 @@ public interface LoadListener<TranscodeType> {
 
     /**
      * 开始加载
-     * @param source {@link Source}
+     * @param source {@link DevSource}
      */
-    void onStart(Source source);
+    void onStart(DevSource source);
 
     /**
      * 响应回调
-     * @param source {@link Source}
+     * @param source {@link DevSource}
      * @param value  {@link TranscodeType}
      */
     void onResponse(
-            Source source,
+            DevSource source,
             TranscodeType value
     );
 
     /**
      * 失败回调
-     * @param source    {@link Source}
+     * @param source    {@link DevSource}
      * @param throwable {@link Throwable}
      */
     void onFailure(
-            Source source,
+            DevSource source,
             Throwable throwable
     );
 }

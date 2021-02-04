@@ -1,5 +1,7 @@
 package dev.base;
 
+import dev.utils.common.ObjectUtils;
+
 /**
  * detail: Key-Value Entry
  * @author Ttt
@@ -64,5 +66,27 @@ public class DevEntry<K, V> {
     public DevEntry<K, V> setValue(final V value) {
         this.mValue = value;
         return this;
+    }
+
+    // ===========
+    // = 判断方法 =
+    // ===========
+
+    /**
+     * 判断 Key 是否一致
+     * @param key 待校验 Key
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean equalsKey(final K key) {
+        return key != null && ObjectUtils.equals(this.mKey, key);
+    }
+
+    /**
+     * 判断 Value 是否一致
+     * @param value 待校验 Value
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean equalsValue(final V value) {
+        return value != null && ObjectUtils.equals(this.mValue, value);
     }
 }

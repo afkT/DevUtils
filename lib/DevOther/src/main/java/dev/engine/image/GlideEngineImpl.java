@@ -13,7 +13,7 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 
-import dev.base.Source;
+import dev.base.DevSource;
 import dev.utils.LogPrintUtils;
 
 /**
@@ -57,7 +57,7 @@ public class GlideEngineImpl
     @Override
     public void preload(
             Context context,
-            Source source
+            DevSource source
     ) {
         RequestManager requestManager = Glide.with(context);
         setToRequest(requestManager, source).preload();
@@ -66,7 +66,7 @@ public class GlideEngineImpl
     @Override
     public void preload(
             Context context,
-            Source source,
+            DevSource source,
             GlideConfig config
     ) {
         RequestManager requestManager = Glide.with(context);
@@ -135,7 +135,7 @@ public class GlideEngineImpl
     @Override
     public void display(
             ImageView imageView,
-            Source source
+            DevSource source
     ) {
 
     }
@@ -152,7 +152,7 @@ public class GlideEngineImpl
     @Override
     public void display(
             ImageView imageView,
-            Source source,
+            DevSource source,
             GlideConfig config
     ) {
 
@@ -180,7 +180,7 @@ public class GlideEngineImpl
     @Override
     public <T> void display(
             ImageView imageView,
-            Source source,
+            DevSource source,
             LoadListener<T> listener
     ) {
 
@@ -189,7 +189,7 @@ public class GlideEngineImpl
     @Override
     public <T> void display(
             ImageView imageView,
-            Source source,
+            DevSource source,
             GlideConfig config,
             LoadListener<T> listener
     ) {
@@ -209,7 +209,7 @@ public class GlideEngineImpl
     public void display(
             Fragment fragment,
             ImageView imageView,
-            Source source
+            DevSource source
     ) {
 
     }
@@ -228,7 +228,7 @@ public class GlideEngineImpl
     public void display(
             Fragment fragment,
             ImageView imageView,
-            Source source,
+            DevSource source,
             GlideConfig Config
     ) {
 
@@ -248,7 +248,7 @@ public class GlideEngineImpl
     public <T> void display(
             Fragment fragment,
             ImageView imageView,
-            Source source,
+            DevSource source,
             LoadListener<T> listener
     ) {
 
@@ -269,7 +269,7 @@ public class GlideEngineImpl
     public <T> void display(
             Fragment fragment,
             ImageView imageView,
-            Source source,
+            DevSource source,
             GlideConfig Config,
             LoadListener<T> listener
     ) {
@@ -279,7 +279,7 @@ public class GlideEngineImpl
     @Override
     public <T> void loadImage(
             Context context,
-            Source source,
+            DevSource source,
             GlideConfig Config,
             LoadListener<T> listener
     ) {
@@ -289,7 +289,7 @@ public class GlideEngineImpl
     @Override
     public <T> void loadImage(
             Fragment fragment,
-            Source source,
+            DevSource source,
             GlideConfig Config,
             LoadListener<T> listener
     ) {
@@ -299,7 +299,7 @@ public class GlideEngineImpl
     @Override
     public <T> T loadImage(
             Context context,
-            Source source,
+            DevSource source,
             GlideConfig Config
     ) {
         return null;
@@ -308,7 +308,7 @@ public class GlideEngineImpl
     @Override
     public void loadBitmap(
             Context context,
-            Source source,
+            DevSource source,
             GlideConfig Config,
             LoadListener<Bitmap> listener
     ) {
@@ -318,7 +318,7 @@ public class GlideEngineImpl
     @Override
     public void loadBitmap(
             Fragment fragment,
-            Source source,
+            DevSource source,
             GlideConfig Config,
             LoadListener<Bitmap> listener
     ) {
@@ -328,7 +328,7 @@ public class GlideEngineImpl
     @Override
     public Bitmap loadBitmap(
             Context context,
-            Source source,
+            DevSource source,
             GlideConfig Config
     ) {
         return null;
@@ -337,7 +337,7 @@ public class GlideEngineImpl
     @Override
     public void loadDrawable(
             Context context,
-            Source source,
+            DevSource source,
             GlideConfig Config,
             LoadListener<Drawable> listener
     ) {
@@ -347,7 +347,7 @@ public class GlideEngineImpl
     @Override
     public void loadDrawable(
             Fragment fragment,
-            Source source,
+            DevSource source,
             GlideConfig Config,
             LoadListener<Drawable> listener
     ) {
@@ -357,7 +357,7 @@ public class GlideEngineImpl
     @Override
     public Drawable loadDrawable(
             Context context,
-            Source source,
+            DevSource source,
             GlideConfig Config
     ) {
         return null;
@@ -373,7 +373,7 @@ public class GlideEngineImpl
 
     private RequestBuilder<?> setToRequest(
             RequestManager requestManager,
-            Source source
+            DevSource source
     ) {
         if (source.mFile != null) {
             return requestManager.load(source.mFile);
@@ -392,7 +392,7 @@ public class GlideEngineImpl
 
     private <T> RequestBuilder<T> setToRequest(
             RequestBuilder<T> requestBuilder,
-            Source source
+            DevSource source
     ) {
         if (source.mFile != null) {
             return requestBuilder.load(source.mFile);
