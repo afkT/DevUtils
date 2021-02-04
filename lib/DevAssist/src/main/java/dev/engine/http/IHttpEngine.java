@@ -32,12 +32,11 @@ public interface IHttpEngine {
          * @return Request Object
          */
         public final <T extends Request> T getRequest() {
-            T value = null;
             try {
-                value = (T) request;
+                return (T) request;
             } catch (Exception e) {
             }
-            return value;
+            return null;
         }
 
         /**
