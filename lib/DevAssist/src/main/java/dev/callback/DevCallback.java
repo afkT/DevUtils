@@ -5,7 +5,7 @@ package dev.callback;
  * @author Ttt
  */
 public class DevCallback<T>
-        extends AbstractCallback<T> {
+        extends BaseCallback<T> {
 
     public DevCallback() {
     }
@@ -49,30 +49,6 @@ public class DevCallback<T>
     ) {
     }
 
-    /**
-     * 回调方法
-     * @param value   回调值
-     * @param objects 回调对象数组
-     */
-    public void callback(
-            T value,
-            Object[] objects
-    ) {
-    }
-
-    /**
-     * 回调方法
-     * @param value   回调值
-     * @param param   回调参数
-     * @param objects 回调对象数组
-     */
-    public void callback(
-            T value,
-            int param,
-            Object[] objects
-    ) {
-    }
-
     // ===========
     // = 过滤方法 =
     // ===========
@@ -87,15 +63,6 @@ public class DevCallback<T>
     }
 
     /**
-     * 过滤处理
-     * @param values 待处理数组值
-     * @return 过滤处理的数组值
-     */
-    public T[] filter(T[] values) {
-        return values;
-    }
-
-    /**
      * 判断是否过滤
      * @param value 待判断值
      * @return {@code true} yes, {@code false} no
@@ -103,17 +70,6 @@ public class DevCallback<T>
     public boolean isFilter(T value) {
         return false;
     }
-
-    /**
-     * 判断是否过滤
-     * @param values 待判断值
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean isFilter(T[] values) {
-        return false;
-    }
-
-    // =
 
     /**
      * 对比判断
@@ -124,19 +80,6 @@ public class DevCallback<T>
     public boolean compare(
             T value,
             T value1
-    ) {
-        return false;
-    }
-
-    /**
-     * 对比判断
-     * @param values  待对比值
-     * @param values1 待对比值
-     * @return {@code true} yes, {@code false} no
-     */
-    public boolean compare(
-            T[] values,
-            T[] values1
     ) {
         return false;
     }

@@ -5,7 +5,7 @@ package dev.callback;
  * @author Ttt
  */
 public abstract class DevResultCallback<T>
-        extends DevCallback<T> {
+        extends BaseCallback<T> {
 
     public DevResultCallback() {
     }

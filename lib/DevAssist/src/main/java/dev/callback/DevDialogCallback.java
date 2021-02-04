@@ -1,4 +1,4 @@
-package dev.callback.click;
+package dev.callback;
 
 /**
  * detail: 通用 Dialog 回调
@@ -10,15 +10,15 @@ public class DevDialogCallback<T>
     public DevDialogCallback() {
     }
 
-    public DevDialogCallback(T value) {
+    public DevDialogCallback(final T value) {
         super(value);
     }
 
     public DevDialogCallback(
-            T value,
-            Object object
+            final T value,
+            final Object tag
     ) {
-        super(value, object);
+        super(value, tag);
     }
 
     // ===========
