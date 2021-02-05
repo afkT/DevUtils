@@ -12,17 +12,17 @@ import dev.base.number.INumberListener;
 public class NumberControlAssist {
 
     // Object
-    private Object  mObject          = null;
+    private Object  mObject        = null;
     // 最小值
-    private int     mMinNumber       = 1;
+    private int     mMinNumber     = 1;
     // 最大值
-    private int     mMaxNumber       = Integer.MAX_VALUE;
+    private int     mMaxNumber     = Integer.MAX_VALUE;
     // 当前数量
-    private int     mCurrentNumber   = 1;
+    private int     mCurrentNumber = 1;
     // 重置数量 ( 出现异常情况, 则使用该变量赋值 )
-    private int     mResetNumber     = 1;
+    private int     mResetNumber   = 1;
     // 是否允许设置为负数
-    private boolean mIsAllowNegative = false;
+    private boolean mAllowNegative = false;
 
     public NumberControlAssist() {
     }
@@ -163,7 +163,7 @@ public class NumberControlAssist {
     public NumberControlAssist setMinNumber(final int minNumber) {
         int number = minNumber;
         // 如果不允许为负数, 并且设置最小值为负数, 则设置为重置数量
-        if (!mIsAllowNegative && number < 0) {
+        if (!mAllowNegative && number < 0) {
             number = mResetNumber;
         }
         if (number > mMaxNumber) {
@@ -275,7 +275,7 @@ public class NumberControlAssist {
      */
     public NumberControlAssist setResetNumber(final int resetNumber) {
         // 防止出现负数
-        this.mResetNumber = (!mIsAllowNegative && mResetNumber < 0) ? 1 : resetNumber;
+        this.mResetNumber = (!mAllowNegative && mResetNumber < 0) ? 1 : resetNumber;
         return this;
     }
 
@@ -286,7 +286,7 @@ public class NumberControlAssist {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isAllowNegative() {
-        return mIsAllowNegative;
+        return mAllowNegative;
     }
 
     /**
@@ -295,7 +295,7 @@ public class NumberControlAssist {
      * @return {@link NumberControlAssist}
      */
     public NumberControlAssist setAllowNegative(final boolean allowNegative) {
-        this.mIsAllowNegative = allowNegative;
+        this.mAllowNegative = allowNegative;
         // 进行检查更新
         checkUpdate();
         return this;
@@ -349,13 +349,13 @@ public class NumberControlAssist {
      * 检查更新处理
      */
     private void checkUpdate() {
-        if (!mIsAllowNegative && mResetNumber < 0) {
+        if (!mAllowNegative && mResetNumber < 0) {
             mResetNumber = 1;
         }
-        if (!mIsAllowNegative && mMinNumber < 0) {
+        if (!mAllowNegative && mMinNumber < 0) {
             mMinNumber = mResetNumber;
         }
-        if (!mIsAllowNegative && mMaxNumber < 0) {
+        if (!mAllowNegative && mMaxNumber < 0) {
             mMaxNumber = mResetNumber;
         }
         // 重置最大值

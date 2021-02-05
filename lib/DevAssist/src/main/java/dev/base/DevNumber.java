@@ -11,18 +11,30 @@ public class DevNumber<T>
         extends DevObject<T>
         implements INumberOperate<DevNumber<T>> {
 
+    // 最小值
+    private int     mMinNumber     = 1;
+    // 最大值
+    private int     mMaxNumber     = Integer.MAX_VALUE;
+    // 当前数量
+    private int     mCurrentNumber = 1;
+    // 重置数量 ( 出现异常情况, 则使用该变量赋值 )
+    private int     mResetNumber   = 1;
+    // 是否允许设置为负数
+    private boolean mAllowNegative = false;
+
     public DevNumber() {
     }
 
-    public DevNumber(final T value) {
-        super(value);
+    public DevNumber(final int minNumber) {
+        this.mMinNumber = minNumber;
     }
 
     public DevNumber(
-            final T value,
-            final Object tag
+            final int minNumber,
+            final int maxNumber
     ) {
-        super(value, tag);
+        this.mMinNumber = minNumber;
+        this.mMaxNumber = maxNumber;
     }
 
     // ==================
@@ -67,16 +79,6 @@ public class DevNumber<T>
     @Override
     public boolean isGreaterThanMaxNumber(int number) {
         return false;
-    }
-
-    @Override
-    public <CTO> CTO getObject() {
-        return null;
-    }
-
-    @Override
-    public DevNumber<T> setObject(Object object) {
-        return null;
     }
 
     @Override

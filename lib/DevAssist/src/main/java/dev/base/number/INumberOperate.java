@@ -68,22 +68,6 @@ public interface INumberOperate<R> {
     // ===========
 
     /**
-     * 获取 Object
-     * @param <CTO> 泛型
-     * @return Object convert T object
-     */
-    <CTO> CTO getObject();
-
-    /**
-     * 设置 Object
-     * @param object Object
-     * @return R 泛型返回对象
-     */
-    R setObject(Object object);
-
-    // =
-
-    /**
      * 获取最小值
      * @return 最小值
      */

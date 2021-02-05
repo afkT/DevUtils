@@ -83,6 +83,19 @@ public class DevObject<T>
     }
 
     /**
+     * 转换标记 Tag
+     * @param <CTO> 泛型
+     * @return Object convert T object
+     */
+    public <CTO> CTO convertTag() {
+        try {
+            return (CTO) mTag;
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    /**
      * 设置标记 Tag
      * @param tag Tag
      * @return {@link DevObject}
