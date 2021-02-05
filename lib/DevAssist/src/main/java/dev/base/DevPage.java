@@ -11,8 +11,6 @@ public class DevPage<T>
     private final PageConfig config;
     // 当前页数 ( 已成功 )
     private       int        mPage;
-    // 每页请求条数
-    private       int        mPageSize;
     // 是否最后一页
     private       boolean    mLastPage;
 
@@ -21,8 +19,8 @@ public class DevPage<T>
             int pageSize
     ) {
         config = new PageConfig(page, pageSize);
-        // 重置页数信息
-        setPage(config.page).setPageSize(config.pageSize);
+        // 设置页数信息
+        mPage = config.page;
     }
 
     /**
@@ -32,9 +30,9 @@ public class DevPage<T>
     private class PageConfig {
 
         // 页数配置
-        public int page;
+        public final int page;
         // 每页请求条数配置
-        public int pageSize;
+        public final int pageSize;
 
         public PageConfig(
                 int page,
@@ -43,6 +41,14 @@ public class DevPage<T>
             this.page = page;
             this.pageSize = pageSize;
         }
+    }
+
+    /**
+     * 重置操作
+     * @return {@link DevPage}
+     */
+    public DevPage<T> reset() {
+        return setPage(config.page).setLastPage(false);
     }
 
     // ===============
@@ -63,7 +69,7 @@ public class DevPage<T>
      * @return {@link DevPage}
      */
     public DevPage<T> setPage(final int page) {
-        this.mPage = page;
+        mPage = page;
         return this;
     }
 
@@ -73,7 +79,7 @@ public class DevPage<T>
      * @return {@code true} yes, {@code false} no
      */
     public boolean equalsPage(final int page) {
-        return this.mPage == page;
+        return mPage == page;
     }
 
     // =
@@ -83,17 +89,7 @@ public class DevPage<T>
      * @return 每页请求条数
      */
     public int getPageSize() {
-        return mPageSize;
-    }
-
-    /**
-     * 设置每页请求条数
-     * @param pageSize 每页请求条数
-     * @return {@link DevPage}
-     */
-    public DevPage<T> setPageSize(final int pageSize) {
-        this.mPageSize = pageSize;
-        return this;
+        return config.pageSize;
     }
 
     /**
@@ -102,7 +98,7 @@ public class DevPage<T>
      * @return {@code true} yes, {@code false} no
      */
     public boolean equalsPageSize(final int pageSize) {
-        return this.mPageSize == pageSize;
+        return config.pageSize == pageSize;
     }
 
     // =
@@ -121,7 +117,7 @@ public class DevPage<T>
      * @return {@link DevPage}
      */
     public DevPage<T> setLastPage(final boolean lastPage) {
-        this.mLastPage = lastPage;
+        mLastPage = lastPage;
         return this;
     }
 
@@ -131,6 +127,54 @@ public class DevPage<T>
      * @return {@link DevPage}
      */
     public DevPage<T> calculateLastPage(final int size) {
-        return setLastPage(size < config.pageSize);
+        return setLastPage(isLessThanPageSize(size));
+    }
+
+    // ===========
+    // = 快捷方法 =
+    // ===========
+
+    /**
+     * 判断是否第一页
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isFirstPage() {
+        return mPage == config.page;
+    }
+
+    /**
+     * 判断是否允许请求下一页
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean canNextPage() {
+        return !mLastPage; // 非最后一页则可以请求
+    }
+
+    /**
+     * 获取下一页页数
+     * @return 下一页页数
+     */
+    public int getNextPage() {
+        return mPage + 1;
+    }
+
+    /**
+     * 累加当前页数 ( 下一页 )
+     * @return {@link DevPage}
+     */
+    public DevPage<T> nextPage() {
+        return setPage(mPage + 1);
+    }
+
+    /**
+     * 判断是否小于每页请求条数
+     * <pre>
+     *     如果小于每页请求条数, 也表明已经没有下一页
+     * </pre>
+     * @param size 数据条数
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isLessThanPageSize(final int size) {
+        return size < config.pageSize;
     }
 }
