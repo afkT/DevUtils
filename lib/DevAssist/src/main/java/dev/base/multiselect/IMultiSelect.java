@@ -1,14 +1,16 @@
-package dev.assist.multiselect;
+package dev.base.multiselect;
+
+import java.util.Collection;
 
 import dev.base.DevEntry;
 
 /**
  * detail: 多选操作接口 ( 基类 )
- * @param <CollectionG> 集合泛型
+ * @param <CollectionT> 集合泛型
  * @param <V>           Value
  * @author Ttt
  */
-public interface IBaseMultiSelect<CollectionG, V> {
+public interface IMultiSelect<CollectionT, V> {
 
     /**
      * 清空全部选中数据
@@ -25,19 +27,19 @@ public interface IBaseMultiSelect<CollectionG, V> {
      * 获取选中的数据集合
      * @return 选中的数据集合
      */
-    CollectionG getSelects();
+    CollectionT getSelects();
 
     /**
      * 通过集合添加选中数据
      * @param collection 集合泛型
      */
-    void putSelects(CollectionG collection);
+    void putSelects(CollectionT collection);
 
     /**
      * 通过集合添加选中数据
      * @param collections 集合
      */
-    void putSelects(java.util.Collection<? extends DevEntry<?, V>> collections);
+    void putSelects(Collection<? extends DevEntry<?, V>> collections);
 
     /**
      * 判断是否存在选中的数据

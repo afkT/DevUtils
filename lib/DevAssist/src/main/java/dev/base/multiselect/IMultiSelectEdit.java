@@ -1,10 +1,10 @@
-package dev.assist.multiselect.edit;
+package dev.base.multiselect;
 
 /**
  * detail: 多选编辑接口
  * @author Ttt
  * <pre>
- *     主要用于 Adapter 实现该接口, 对外支持快捷操作方法
+ *     实现该接口, 对外支持快捷操作方法
  *     内部通过 MultiSelectListAssist、MultiSelectMapAssist 实现多选操作功能
  * </pre>
  */

@@ -1,15 +1,15 @@
-package dev.assist.multiselect;
+package dev.base.multiselect;
 
 import java.util.List;
 
 /**
  * detail: 多选操作接口 ( List )
- * @param <CollectionG> 集合泛型
+ * @param <CollectionT> 集合泛型
  * @param <V>           Value
  * @author Ttt
  */
-public interface IMultiSelectToList<CollectionG extends List, V>
-        extends IBaseMultiSelect<CollectionG, V> {
+public interface IMultiSelectToList<CollectionT extends List, V>
+        extends IMultiSelect<CollectionT, V> {
 
     /**
      * 判断是否选中 ( 通过 value 判断 )

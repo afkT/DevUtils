@@ -1,4 +1,4 @@
-package dev.assist.multiselect;
+package dev.base.multiselect;
 
 import java.util.ArrayList;
 import java.util.Collection;

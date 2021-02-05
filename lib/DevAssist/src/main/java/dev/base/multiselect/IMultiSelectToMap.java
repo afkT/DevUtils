@@ -1,17 +1,17 @@
-package dev.assist.multiselect;
+package dev.base.multiselect;
 
 import java.util.List;
 import java.util.Map;
 
 /**
  * detail: 多选操作接口 ( Map )
- * @param <CollectionG> 集合泛型
+ * @param <CollectionT> 集合泛型
  * @param <K>           Key
  * @param <V>           Value
  * @author Ttt
  */
-public interface IMultiSelectToMap<CollectionG extends Map, K, V>
-        extends IBaseMultiSelect<CollectionG, V> {
+public interface IMultiSelectToMap<CollectionT extends Map, K, V>
+        extends IMultiSelect<CollectionT, V> {
 
     /**
      * 判断是否选中 ( 如果未选中, 则设置为选中 )

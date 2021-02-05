@@ -1,6 +1,5 @@
 package dev.callback;
 
-
 /**
  * detail: 通用 Click 回调
  * @author Ttt
