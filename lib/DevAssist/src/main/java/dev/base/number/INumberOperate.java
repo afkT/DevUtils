@@ -8,27 +8,27 @@ package dev.base.number;
 public interface INumberOperate<R> {
 
     /**
-     * 判断当前数量, 是否等于最小值
+     * 判断当前数量是否等于最小值
      * @return {@code true} yes, {@code false} no
      */
     boolean isMinNumber();
 
     /**
-     * 判断数量, 是否等于最小值
+     * 判断数量是否等于最小值
      * @param number Number
      * @return {@code true} yes, {@code false} no
      */
     boolean isMinNumber(int number);
 
     /**
-     * 判断数量, 是否小于最小值
+     * 判断数量是否小于最小值
      * @param number Number
      * @return {@code true} yes, {@code false} no
      */
     boolean isLessThanMinNumber(int number);
 
     /**
-     * 判断数量, 是否大于最小值
+     * 判断数量是否大于最小值
      * @param number Number
      * @return {@code true} yes, {@code false} no
      */
@@ -37,27 +37,27 @@ public interface INumberOperate<R> {
     // =
 
     /**
-     * 判断当前数量, 是否等于最大值
+     * 判断当前数量是否等于最大值
      * @return {@code true} yes, {@code false} no
      */
     boolean isMaxNumber();
 
     /**
-     * 判断数量, 是否等于最大值
+     * 判断数量是否等于最大值
      * @param number Number
      * @return {@code true} yes, {@code false} no
      */
     boolean isMaxNumber(int number);
 
     /**
-     * 判断数量, 是否小于最大值
+     * 判断数量是否小于最大值
      * @param number Number
      * @return {@code true} yes, {@code false} no
      */
     boolean isLessThanMaxNumber(int number);
 
     /**
-     * 判断数量, 是否大于最大值
+     * 判断数量是否大于最大值
      * @param number Number
      * @return {@code true} yes, {@code false} no
      */
@@ -69,10 +69,10 @@ public interface INumberOperate<R> {
 
     /**
      * 获取 Object
-     * @param <T> 泛型
+     * @param <CTO> 泛型
      * @return Object convert T object
      */
-    <T> T getObject();
+    <CTO> CTO getObject();
 
     /**
      * 设置 Object
