@@ -24,6 +24,8 @@ public class DevObject<T>
     private       String mCode;
     // Type
     private       int    mType;
+    // State
+    private       int    mState;
     // Operate id
     private       long   mOperateUUID = UUID.randomUUID().hashCode();
 
@@ -154,6 +156,24 @@ public class DevObject<T>
     }
 
     /**
+     * 获取 State
+     * @return State
+     */
+    public int getState() {
+        return mState;
+    }
+
+    /**
+     * 设置 State
+     * @param state State
+     * @return {@link DevObject}
+     */
+    public DevObject<T> setState(final int state) {
+        this.mState = state;
+        return this;
+    }
+
+    /**
      * 获取 Operate UUID
      * @return Operate UUID
      */
@@ -236,6 +256,15 @@ public class DevObject<T>
      */
     public boolean equalsType(final int type) {
         return this.mType == type;
+    }
+
+    /**
+     * 判断 State 是否一致
+     * @param state 待校验 State
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean equalsState(final int state) {
+        return this.mState == state;
     }
 
     /**
