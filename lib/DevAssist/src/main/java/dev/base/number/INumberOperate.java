@@ -75,9 +75,6 @@ public interface INumberOperate<R> {
 
     /**
      * 设置最小值
-     * <pre>
-     *     内部判断了, 是否大于 mMaxNumber, 属于的话则自动赋值 mMaxNumber
-     * </pre>
      * @param minNumber 最小值
      * @return R 泛型返回对象
      */
@@ -93,10 +90,6 @@ public interface INumberOperate<R> {
 
     /**
      * 设置最大值
-     * <pre>
-     *     内部判断了, 是否小于 mMinNumber, 属于的话则自动赋值 mMinNumber
-     *     特殊情况 ( 修改为负数 ), 最好先调用 setMinNumber, 在调用 setMaxNumber
-     * </pre>
      * @param maxNumber 最大值
      * @return R 泛型返回对象
      */
@@ -190,7 +183,9 @@ public interface INumberOperate<R> {
      */
     R subtractionNumber();
 
-    // =
+    // ========
+    // = 事件 =
+    // ========
 
     /**
      * 获取数量监听事件接口

@@ -1,6 +1,8 @@
 package dev.assist;
 
+import dev.base.DevNumber;
 import dev.base.number.INumberListener;
+import dev.base.number.INumberOperate;
 
 /**
  * detail: 数量控制辅助类
@@ -9,46 +11,46 @@ import dev.base.number.INumberListener;
  *     主要用于数量加减限制, 如: 购物车数量加减
  * </pre>
  */
-public class NumberControlAssist {
+public class NumberControlAssist
+        implements INumberOperate<NumberControlAssist> {
 
-    // Object
-    private Object  mObject        = null;
-    // 最小值
-    private int     mMinNumber     = 1;
-    // 最大值
-    private int     mMaxNumber     = Integer.MAX_VALUE;
-    // 当前数量
-    private int     mCurrentNumber = 1;
-    // 重置数量 ( 出现异常情况, 则使用该变量赋值 )
-    private int     mResetNumber   = 1;
-    // 是否允许设置为负数
-    private boolean mAllowNegative = false;
+    // Number Object
+    private final DevNumber mNumber;
 
     public NumberControlAssist() {
+        mNumber = new DevNumber();
     }
 
     public NumberControlAssist(final int minNumber) {
-        this.mMinNumber = minNumber;
+        mNumber = new DevNumber(minNumber);
     }
 
     public NumberControlAssist(
             final int minNumber,
             final int maxNumber
     ) {
-        this.mMinNumber = minNumber;
-        this.mMaxNumber = maxNumber;
+        mNumber = new DevNumber(minNumber, maxNumber);
     }
 
-    // ===============
-    // = 对外提供方法 =
-    // ===============
+    /**
+     * 获取 DevNumber Object
+     * @return {@link DevNumber}
+     */
+    public DevNumber getNumber() {
+        return mNumber;
+    }
+
+    // ==================
+    // = INumberOperate =
+    // ==================
 
     /**
      * 判断当前数量, 是否等于最小值
      * @return {@code true} yes, {@code false} no
      */
+    @Override
     public boolean isMinNumber() {
-        return isMinNumber(mCurrentNumber);
+        return mNumber.isMinNumber();
     }
 
     /**
@@ -56,8 +58,9 @@ public class NumberControlAssist {
      * @param number Number
      * @return {@code true} yes, {@code false} no
      */
+    @Override
     public boolean isMinNumber(final int number) {
-        return number == mMinNumber;
+        return mNumber.isMinNumber(number);
     }
 
     /**
@@ -65,8 +68,9 @@ public class NumberControlAssist {
      * @param number Number
      * @return {@code true} yes, {@code false} no
      */
+    @Override
     public boolean isLessThanMinNumber(final int number) {
-        return number < mMinNumber;
+        return mNumber.isLessThanMinNumber(number);
     }
 
     /**
@@ -74,8 +78,9 @@ public class NumberControlAssist {
      * @param number Number
      * @return {@code true} yes, {@code false} no
      */
+    @Override
     public boolean isGreaterThanMinNumber(final int number) {
-        return number > mMinNumber;
+        return mNumber.isGreaterThanMinNumber(number);
     }
 
     // =
@@ -84,8 +89,9 @@ public class NumberControlAssist {
      * 判断当前数量, 是否等于最大值
      * @return {@code true} yes, {@code false} no
      */
+    @Override
     public boolean isMaxNumber() {
-        return isMaxNumber(mCurrentNumber);
+        return mNumber.isMaxNumber();
     }
 
     /**
@@ -93,8 +99,9 @@ public class NumberControlAssist {
      * @param number Number
      * @return {@code true} yes, {@code false} no
      */
+    @Override
     public boolean isMaxNumber(final int number) {
-        return number == mMaxNumber;
+        return mNumber.isMaxNumber(number);
     }
 
     /**
@@ -102,8 +109,9 @@ public class NumberControlAssist {
      * @param number Number
      * @return {@code true} yes, {@code false} no
      */
+    @Override
     public boolean isLessThanMaxNumber(final int number) {
-        return number < mMaxNumber;
+        return mNumber.isLessThanMaxNumber(number);
     }
 
     /**
@@ -111,8 +119,9 @@ public class NumberControlAssist {
      * @param number Number
      * @return {@code true} yes, {@code false} no
      */
+    @Override
     public boolean isGreaterThanMaxNumber(final int number) {
-        return number > mMaxNumber;
+        return mNumber.isGreaterThanMaxNumber(number);
     }
 
     // ===========
@@ -120,56 +129,22 @@ public class NumberControlAssist {
     // ===========
 
     /**
-     * 获取 Object
-     * @param <T> 泛型
-     * @return Object convert T object
-     */
-    public <T> T getObject() {
-        try {
-            return (T) mObject;
-        } catch (Exception e) {
-        }
-        return null;
-    }
-
-    /**
-     * 设置 Object
-     * @param object Object
-     * @return {@link NumberControlAssist}
-     */
-    public NumberControlAssist setObject(final Object object) {
-        this.mObject = object;
-        return this;
-    }
-
-    // =
-
-    /**
      * 获取最小值
      * @return 最小值
      */
+    @Override
     public int getMinNumber() {
-        return mMinNumber;
+        return mNumber.getMinNumber();
     }
 
     /**
      * 设置最小值
-     * <pre>
-     *     内部判断了, 是否大于 mMaxNumber, 属于的话则自动赋值 mMaxNumber
-     * </pre>
      * @param minNumber 最小值
      * @return {@link NumberControlAssist}
      */
+    @Override
     public NumberControlAssist setMinNumber(final int minNumber) {
-        int number = minNumber;
-        // 如果不允许为负数, 并且设置最小值为负数, 则设置为重置数量
-        if (!mAllowNegative && number < 0) {
-            number = mResetNumber;
-        }
-        if (number > mMaxNumber) {
-            number = mMaxNumber;
-        }
-        this.mMinNumber = number;
+        mNumber.setMinNumber(minNumber);
         return this;
     }
 
@@ -179,21 +154,19 @@ public class NumberControlAssist {
      * 获取最大值
      * @return 最大值
      */
+    @Override
     public int getMaxNumber() {
-        return mMaxNumber;
+        return mNumber.getMaxNumber();
     }
 
     /**
      * 设置最大值
-     * <pre>
-     *     内部判断了, 是否小于 mMinNumber, 属于的话则自动赋值 mMinNumber
-     *     特殊情况 ( 修改为负数 ), 最好先调用 setMinNumber, 在调用 setMaxNumber
-     * </pre>
      * @param maxNumber 最大值
      * @return {@link NumberControlAssist}
      */
+    @Override
     public NumberControlAssist setMaxNumber(final int maxNumber) {
-        this.mMaxNumber = (maxNumber < mMinNumber) ? mMinNumber : maxNumber;
+        mNumber.setMaxNumber(maxNumber);
         return this;
     }
 
@@ -203,11 +176,13 @@ public class NumberControlAssist {
      * @param maxNumber 最大值
      * @return {@link NumberControlAssist}
      */
+    @Override
     public NumberControlAssist setMinMaxNumber(
             final int minNumber,
             final int maxNumber
     ) {
-        return setMinNumber(minNumber).setMaxNumber(maxNumber);
+        mNumber.setMinMaxNumber(minNumber, maxNumber);
+        return this;
     }
 
     // =
@@ -216,8 +191,9 @@ public class NumberControlAssist {
      * 获取当前数量
      * @return 当前数量
      */
+    @Override
     public int getCurrentNumber() {
-        return mCurrentNumber;
+        return mNumber.getCurrentNumber();
     }
 
     /**
@@ -225,8 +201,10 @@ public class NumberControlAssist {
      * @param currentNumber 当前数量
      * @return {@link NumberControlAssist}
      */
+    @Override
     public NumberControlAssist setCurrentNumber(final int currentNumber) {
-        return setCurrentNumber(currentNumber, true);
+        mNumber.setCurrentNumber(currentNumber);
+        return this;
     }
 
     /**
@@ -235,26 +213,12 @@ public class NumberControlAssist {
      * @param isTriggerListener 是否触发事件
      * @return {@link NumberControlAssist}
      */
+    @Override
     public NumberControlAssist setCurrentNumber(
             final int currentNumber,
             final boolean isTriggerListener
     ) {
-        int number = currentNumber;
-        if (number < mMinNumber) {
-            number = mMinNumber;
-        } else if (number > mMaxNumber) {
-            number = mMaxNumber;
-        }
-        // 判断是否添加
-        boolean isAdd = (number > mCurrentNumber);
-        // 重新赋值
-        this.mCurrentNumber = number;
-        // 判断是否触发事件
-        if (isTriggerListener) {
-            if (mINumberListener != null) {
-                mINumberListener.onNumberChanged(isAdd, number);
-            }
-        }
+        mNumber.setCurrentNumber(currentNumber, isTriggerListener);
         return this;
     }
 
@@ -264,8 +228,9 @@ public class NumberControlAssist {
      * 获取重置数量
      * @return 重置数量
      */
+    @Override
     public int getResetNumber() {
-        return mResetNumber;
+        return mNumber.getResetNumber();
     }
 
     /**
@@ -273,9 +238,9 @@ public class NumberControlAssist {
      * @param resetNumber 重置数量
      * @return {@link NumberControlAssist}
      */
+    @Override
     public NumberControlAssist setResetNumber(final int resetNumber) {
-        // 防止出现负数
-        this.mResetNumber = (!mAllowNegative && mResetNumber < 0) ? 1 : resetNumber;
+        mNumber.setResetNumber(resetNumber);
         return this;
     }
 
@@ -285,8 +250,9 @@ public class NumberControlAssist {
      * 获取是否允许设置为负数
      * @return {@code true} yes, {@code false} no
      */
+    @Override
     public boolean isAllowNegative() {
-        return mAllowNegative;
+        return mNumber.isAllowNegative();
     }
 
     /**
@@ -294,10 +260,9 @@ public class NumberControlAssist {
      * @param allowNegative {@code true} yes, {@code false} no
      * @return {@link NumberControlAssist}
      */
+    @Override
     public NumberControlAssist setAllowNegative(final boolean allowNegative) {
-        this.mAllowNegative = allowNegative;
-        // 进行检查更新
-        checkUpdate();
+        mNumber.setAllowNegative(allowNegative);
         return this;
     }
 
@@ -310,18 +275,9 @@ public class NumberControlAssist {
      * @param number 变化基数数量
      * @return {@link NumberControlAssist}
      */
+    @Override
     public NumberControlAssist numberChange(final int number) {
-        if (mINumberListener != null) {
-            // 计算之后的数量
-            int afterNumber = (mCurrentNumber + number);
-            // 判断是否添加, 大于等于当前数量, 表示添加
-            boolean isAdd = afterNumber >= mCurrentNumber;
-            // 进行判断
-            if (mINumberListener.onPrepareChanged(isAdd, mCurrentNumber, afterNumber)) {
-                // 进行设置当前数量
-                setCurrentNumber(afterNumber, true);
-            }
-        }
+        mNumber.numberChange(number);
         return this;
     }
 
@@ -329,57 +285,43 @@ public class NumberControlAssist {
      * 添加数量 ( 默认累加 1 )
      * @return {@link NumberControlAssist}
      */
+    @Override
     public NumberControlAssist addNumber() {
-        return numberChange(1);
+        mNumber.addNumber();
+        return this;
     }
 
     /**
      * 减少数量 ( 默认累减 1 )
      * @return {@link NumberControlAssist}
      */
+    @Override
     public NumberControlAssist subtractionNumber() {
-        return numberChange(-1);
+        mNumber.subtractionNumber();
+        return this;
     }
 
-    // ===============
-    // = 内部判断方法 =
-    // ===============
-
-    /**
-     * 检查更新处理
-     */
-    private void checkUpdate() {
-        if (!mAllowNegative && mResetNumber < 0) {
-            mResetNumber = 1;
-        }
-        if (!mAllowNegative && mMinNumber < 0) {
-            mMinNumber = mResetNumber;
-        }
-        if (!mAllowNegative && mMaxNumber < 0) {
-            mMaxNumber = mResetNumber;
-        }
-        // 重置最大值
-        setMaxNumber(mMaxNumber);
-    }
-
-    // 数量监听事件接口
-    private INumberListener mINumberListener;
+    // ========
+    // = 事件 =
+    // ========
 
     /**
      * 获取数量监听事件接口
      * @return {@link INumberListener}
      */
+    @Override
     public INumberListener getNumberListener() {
-        return mINumberListener;
+        return mNumber.getNumberListener();
     }
 
     /**
      * 设置数量监听事件接口
-     * @param iNumberListener {@link INumberListener}
+     * @param listener {@link INumberListener}
      * @return {@link NumberControlAssist}
      */
-    public NumberControlAssist setNumberListener(final INumberListener iNumberListener) {
-        this.mINumberListener = iNumberListener;
+    @Override
+    public NumberControlAssist setNumberListener(final INumberListener listener) {
+        mNumber.setNumberListener(listener);
         return this;
     }
 }
