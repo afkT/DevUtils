@@ -2,13 +2,14 @@ package dev.base.multiselect;
 
 /**
  * detail: 多选编辑接口
+ * @param <R> 泛型
  * @author Ttt
  * <pre>
  *     实现该接口, 对外支持快捷操作方法
  *     内部通过 MultiSelectListAssist、MultiSelectMapAssist 实现多选操作功能
  * </pre>
  */
-public interface IMultiSelectEdit {
+public interface IMultiSelectEdit<R> {
 
     // ===========
     // = 编辑状态 =
@@ -23,15 +24,15 @@ public interface IMultiSelectEdit {
     /**
      * 设置编辑状态
      * @param isEdit {@code true} yes, {@code false} no
-     * @return {@link IMultiSelectEdit}
+     * @return {@link R}
      */
-    IMultiSelectEdit setEditState(boolean isEdit);
+    R setEditState(boolean isEdit);
 
     /**
      * 切换编辑状态
-     * @return {@link IMultiSelectEdit}
+     * @return {@link R}
      */
-    IMultiSelectEdit toggleEditState();
+    R toggleEditState();
 
     // ===========
     // = 选择操作 =
@@ -39,21 +40,21 @@ public interface IMultiSelectEdit {
 
     /**
      * 全选
-     * @return {@link IMultiSelectEdit}
+     * @return {@link R}
      */
-    IMultiSelectEdit selectAll();
+    R selectAll();
 
     /**
      * 清空全选 ( 非全选 )
-     * @return {@link IMultiSelectEdit}
+     * @return {@link R}
      */
-    IMultiSelectEdit clearSelectAll();
+    R clearSelectAll();
 
     /**
      * 反选
-     * @return {@link IMultiSelectEdit}
+     * @return {@link R}
      */
-    IMultiSelectEdit inverseSelect();
+    R inverseSelect();
 
     // ===========
     // = 判断处理 =

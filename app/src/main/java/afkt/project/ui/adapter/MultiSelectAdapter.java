@@ -28,7 +28,7 @@ import dev.utils.common.CollectionUtils;
  */
 public class MultiSelectAdapter
         extends BaseQuickAdapter<CommodityEvaluateBean, BaseViewHolder>
-        implements IMultiSelectEdit {
+        implements IMultiSelectEdit<MultiSelectAdapter> {
 
     // 多选辅助类
     private final MultiSelectMapAssist<Integer, CommodityEvaluateBean> multiSelectMapAssist = new MultiSelectMapAssist();
@@ -104,7 +104,7 @@ public class MultiSelectAdapter
     }
 
     @Override
-    public IMultiSelectEdit setEditState(boolean isEdit) {
+    public MultiSelectAdapter setEditState(boolean isEdit) {
         this.isEdit = isEdit;
         // 刷新适配器
         notifyDataSetChanged();
@@ -112,13 +112,13 @@ public class MultiSelectAdapter
     }
 
     @Override
-    public IMultiSelectEdit toggleEditState() {
+    public MultiSelectAdapter toggleEditState() {
         // 切换选择状态
         return setEditState(!isEdit);
     }
 
     @Override
-    public IMultiSelectEdit selectAll() {
+    public MultiSelectAdapter selectAll() {
         LinkedHashMap<Integer, CommodityEvaluateBean> linkedHashMap = new LinkedHashMap<>();
         for (int i = 0, len = getData().size(); i < len; i++) {
             linkedHashMap.put(i, getData().get(i));
@@ -130,7 +130,7 @@ public class MultiSelectAdapter
     }
 
     @Override
-    public IMultiSelectEdit clearSelectAll() {
+    public MultiSelectAdapter clearSelectAll() {
         // 清空选中
         multiSelectMapAssist.clearSelects();
         // 刷新适配器
@@ -139,7 +139,7 @@ public class MultiSelectAdapter
     }
 
     @Override
-    public IMultiSelectEdit inverseSelect() {
+    public MultiSelectAdapter inverseSelect() {
         // 获取目前选中的数据
         List<Integer> listKeys = multiSelectMapAssist.getSelectKeys();
 
