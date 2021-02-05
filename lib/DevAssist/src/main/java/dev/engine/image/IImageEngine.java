@@ -71,9 +71,9 @@ public interface IImageEngine<Config extends IImageEngine.ImageConfig> {
 
     <T> void display(ImageView imageView, String url, LoadListener<T> listener);
 
-    <T> void display(ImageView imageView, String url, Config config, LoadListener<T> listener);
-
     <T> void display(ImageView imageView, DevSource source, LoadListener<T> listener);
+
+    <T> void display(ImageView imageView, String url, Config config, LoadListener<T> listener);
 
     <T> void display(ImageView imageView, DevSource source, Config config, LoadListener<T> listener);
 
