@@ -26,7 +26,7 @@ public class RequestState<T> {
     private DevState<T> mState = new DevState<>();
 
     public RequestState() {
-        mState.setState(REQUEST_NORMAL);
+        setRequestNormal();
     }
 
     // ===============
