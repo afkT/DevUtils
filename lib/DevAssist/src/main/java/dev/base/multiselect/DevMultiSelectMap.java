@@ -9,17 +9,19 @@ import java.util.List;
 import java.util.Map;
 
 import dev.base.DevEntry;
+import dev.base.DevObject;
 
 /**
- * detail: Map 多选辅助类
+ * detail: Map 多选实体类
  * @param <K> Key
  * @param <V> Value
  * @author Ttt
  * <pre>
- *     使用: 只需要实现 IMultiSelectToMap, 每个接口方法直接通过调用 MultiSelectMapAssist 已实现同名方法即可
+ *     实现 {@link IMultiSelectToMap}, 每个接口方法直接通过调用 {@link DevMultiSelectMap} 已实现同名方法即可
  * </pre>
  */
-public class MultiSelectMapAssist<K, V>
+public class DevMultiSelectMap<K, V>
+        extends DevObject
         implements IMultiSelectToMap<LinkedHashMap<K, V>, K, V> {
 
     // 选中数据集

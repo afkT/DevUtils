@@ -7,16 +7,18 @@ import java.util.Iterator;
 import java.util.List;
 
 import dev.base.DevEntry;
+import dev.base.DevObject;
 
 /**
- * detail: List 多选辅助类
+ * detail: List 多选实体类
  * @param <V> Value
  * @author Ttt
  * <pre>
- *     使用: 只需要实现 IMultiSelectToList, 每个接口方法直接通过调用 MultiSelectListAssist 已实现同名方法即可
+ *     实现 {@link IMultiSelectToList}, 每个接口方法直接通过调用 {@link DevMultiSelectList} 已实现同名方法即可
  * </pre>
  */
-public class MultiSelectListAssist<V>
+public class DevMultiSelectList<V>
+        extends DevObject
         implements IMultiSelectToList<List<V>, V> {
 
     // 选中数据集

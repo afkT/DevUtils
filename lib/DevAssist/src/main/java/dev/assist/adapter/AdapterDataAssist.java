@@ -10,7 +10,7 @@ import dev.utils.JCLogUtils;
  * detail: Adapter 数据辅助类
  * @author Ttt
  * <pre>
- *     使用: 只需要实现 IAdapterData, 每个接口方法直接通过调用 AdapterDataAssist 已实现同名方法即可
+ *     实现 IAdapterData, 每个接口方法直接通过调用 AdapterDataAssist 已实现同名方法即可
  * </pre>
  */
 public class AdapterDataAssist<V>

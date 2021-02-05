@@ -13,7 +13,7 @@ import java.util.List;
 import afkt.project.R;
 import afkt.project.model.bean.CommodityEvaluateBean;
 import afkt.project.util.ProjectUtils;
-import dev.base.multiselect.MultiSelectMapAssist;
+import dev.base.multiselect.DevMultiSelectMap;
 import dev.base.multiselect.IMultiSelectEdit;
 import dev.base.widget.BaseImageView;
 import dev.other.GlideUtils;
@@ -31,7 +31,7 @@ public class MultiSelectAdapter
         implements IMultiSelectEdit<MultiSelectAdapter> {
 
     // 多选辅助类
-    private final MultiSelectMapAssist<Integer, CommodityEvaluateBean> multiSelectMapAssist = new MultiSelectMapAssist();
+    private final DevMultiSelectMap<Integer, CommodityEvaluateBean> multiSelectMap = new DevMultiSelectMap();
 
     public MultiSelectAdapter(@Nullable List<CommodityEvaluateBean> data) {
         super(R.layout.adapter_multi_select, data);
@@ -66,18 +66,18 @@ public class MultiSelectAdapter
         BaseImageView vid_ams_igview = helper.getView(R.id.vid_ams_igview);
         // 是否显示编辑按钮、以及是否选中
         ViewHelper.get().setVisibility(isEditState(), vid_ams_igview)
-                .setSelected(multiSelectMapAssist.isSelectKey(position), vid_ams_igview)
+                .setSelected(multiSelectMap.isSelectKey(position), vid_ams_igview)
                 .setOnClicks(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (!isEditState()) return;
                         // 反选处理
-                        multiSelectMapAssist.toggle(position, item);
+                        multiSelectMap.toggle(position, item);
                         // 设置是否选中
-                        ViewUtils.setSelected(multiSelectMapAssist.isSelectKey(position), vid_ams_igview);
+                        ViewUtils.setSelected(multiSelectMap.isSelectKey(position), vid_ams_igview);
                         // 触发回调
                         if (selectListener != null) {
-                            selectListener.onClickSelect(position, multiSelectMapAssist.isSelectKey(position));
+                            selectListener.onClickSelect(position, multiSelectMap.isSelectKey(position));
                         }
                     }
                 }, helper.getView(R.id.vid_ams_linear));
@@ -85,10 +85,10 @@ public class MultiSelectAdapter
 
     /**
      * 获取全选辅助类
-     * @return {@link MultiSelectMapAssist}
+     * @return {@link DevMultiSelectMap}
      */
-    public MultiSelectMapAssist getmultiSelectMapAssist() {
-        return multiSelectMapAssist;
+    public DevMultiSelectMap getMultiSelectMap() {
+        return multiSelectMap;
     }
 
     // ====================
@@ -123,7 +123,7 @@ public class MultiSelectAdapter
         for (int i = 0, len = getData().size(); i < len; i++) {
             linkedHashMap.put(i, getData().get(i));
         }
-        multiSelectMapAssist.putSelects(linkedHashMap);
+        multiSelectMap.putSelects(linkedHashMap);
         // 刷新适配器
         notifyDataSetChanged();
         return this;
@@ -132,7 +132,7 @@ public class MultiSelectAdapter
     @Override
     public MultiSelectAdapter clearSelectAll() {
         // 清空选中
-        multiSelectMapAssist.clearSelects();
+        multiSelectMap.clearSelects();
         // 刷新适配器
         notifyDataSetChanged();
         return this;
@@ -141,19 +141,19 @@ public class MultiSelectAdapter
     @Override
     public MultiSelectAdapter inverseSelect() {
         // 获取目前选中的数据
-        List<Integer> listKeys = multiSelectMapAssist.getSelectKeys();
+        List<Integer> listKeys = multiSelectMap.getSelectKeys();
 
         // 全选数据
         LinkedHashMap<Integer, CommodityEvaluateBean> linkedHashMap = new LinkedHashMap<>();
         for (int i = 0, len = getData().size(); i < len; i++) {
             linkedHashMap.put(i, getData().get(i));
         }
-        multiSelectMapAssist.putSelects(linkedHashMap);
+        multiSelectMap.putSelects(linkedHashMap);
 
         // 反选处理
         if (!listKeys.isEmpty()) {
             for (Integer key : listKeys) {
-                multiSelectMapAssist.unselect(key);
+                multiSelectMap.unselect(key);
             }
         }
         // 刷新适配器
@@ -163,25 +163,25 @@ public class MultiSelectAdapter
 
     @Override
     public boolean isSelectAll() {
-        int size = multiSelectMapAssist.getSelectSize();
+        int size = multiSelectMap.getSelectSize();
         if (size == 0) return false;
         // 判断数量是否一致
-        return (CollectionUtils.length(getData()) == multiSelectMapAssist.getSelectSize());
+        return (CollectionUtils.length(getData()) == multiSelectMap.getSelectSize());
     }
 
     @Override
     public boolean isSelect() {
-        return multiSelectMapAssist.isSelect();
+        return multiSelectMap.isSelect();
     }
 
     @Override
     public boolean isNotSelect() {
-        return !multiSelectMapAssist.isSelect();
+        return !multiSelectMap.isSelect();
     }
 
     @Override
     public int getSelectSize() {
-        return multiSelectMapAssist.getSelectSize();
+        return multiSelectMap.getSelectSize();
     }
 
     @Override

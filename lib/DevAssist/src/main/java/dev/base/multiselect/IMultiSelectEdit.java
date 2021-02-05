@@ -6,7 +6,7 @@ package dev.base.multiselect;
  * @author Ttt
  * <pre>
  *     实现该接口, 对外支持快捷操作方法
- *     内部通过 MultiSelectListAssist、MultiSelectMapAssist 实现多选操作功能
+ *     内部通过 {@link IMultiSelectToList}、{@link IMultiSelectToMap} 实现多选操作功能
  * </pre>
  */
 public interface IMultiSelectEdit<R> {
