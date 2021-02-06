@@ -10,15 +10,15 @@ public class DevDialogCallback<T>
     public DevDialogCallback() {
     }
 
-    public DevDialogCallback(final T value) {
-        super(value);
+    public DevDialogCallback(final T object) {
+        super(object);
     }
 
     public DevDialogCallback(
-            final T value,
+            final T object,
             final Object tag
     ) {
-        super(value, tag);
+        super(object, tag);
     }
 
     // ===========

@@ -10,15 +10,15 @@ public class DevItemClickCallback<T>
     public DevItemClickCallback() {
     }
 
-    public DevItemClickCallback(final T value) {
-        super(value);
+    public DevItemClickCallback(final T object) {
+        super(object);
     }
 
     public DevItemClickCallback(
-            final T value,
+            final T object,
             final Object tag
     ) {
-        super(value, tag);
+        super(object, tag);
     }
 
     // ===========

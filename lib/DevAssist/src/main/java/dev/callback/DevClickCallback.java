@@ -10,15 +10,15 @@ public class DevClickCallback<T>
     public DevClickCallback() {
     }
 
-    public DevClickCallback(final T value) {
-        super(value);
+    public DevClickCallback(final T object) {
+        super(object);
     }
 
     public DevClickCallback(
-            final T value,
+            final T object,
             final Object tag
     ) {
-        super(value, tag);
+        super(object, tag);
     }
 
     // ===========

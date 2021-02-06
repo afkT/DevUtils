@@ -12,14 +12,14 @@ public class BaseCallback<T>
     public BaseCallback() {
     }
 
-    public BaseCallback(final T value) {
-        super(value);
+    public BaseCallback(final T object) {
+        super(object);
     }
 
     public BaseCallback(
-            final T value,
+            final T object,
             final Object tag
     ) {
-        super(value, tag);
+        super(object, tag);
     }
 }

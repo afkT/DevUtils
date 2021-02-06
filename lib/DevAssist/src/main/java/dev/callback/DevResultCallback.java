@@ -10,15 +10,15 @@ public abstract class DevResultCallback<T>
     public DevResultCallback() {
     }
 
-    public DevResultCallback(final T value) {
-        super(value);
+    public DevResultCallback(final T object) {
+        super(object);
     }
 
     public DevResultCallback(
-            final T value,
-            final Object object
+            final T object,
+            final Object tag
     ) {
-        super(value, object);
+        super(object, tag);
     }
 
     // ===========
