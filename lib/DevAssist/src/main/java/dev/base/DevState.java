@@ -10,14 +10,14 @@ public class DevState<T>
     public DevState() {
     }
 
-    public DevState(final T value) {
-        super(value);
+    public DevState(final T object) {
+        super(object);
     }
 
     public DevState(
-            final T value,
+            final T object,
             final Object tag
     ) {
-        super(value, tag);
+        super(object, tag);
     }
 }

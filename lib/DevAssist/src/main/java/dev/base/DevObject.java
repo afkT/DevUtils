@@ -14,8 +14,8 @@ public class DevObject<T>
 
     // uuid ( 一定程度上唯一 )
     private final int    mUUID        = UUID.randomUUID().hashCode();
-    // Value
-    private       T      mValue;
+    // Object
+    private       T      mObject;
     // 标记 Tag
     private       Object mTag;
     // model id
@@ -32,15 +32,15 @@ public class DevObject<T>
     public DevObject() {
     }
 
-    public DevObject(final T value) {
-        this.mValue = value;
+    public DevObject(final T object) {
+        this.mObject = object;
     }
 
     public DevObject(
-            final T value,
+            final T object,
             final Object tag
     ) {
-        this.mValue = value;
+        this.mObject = object;
         this.mTag = tag;
     }
 
@@ -57,20 +57,20 @@ public class DevObject<T>
     }
 
     /**
-     * 获取 Value
-     * @return Value
+     * 获取 Object
+     * @return Object
      */
-    public T getValue() {
-        return mValue;
+    public T getObject() {
+        return mObject;
     }
 
     /**
-     * 设置 Value
-     * @param value T Class Object
+     * 设置 Object
+     * @param object T Class Object
      * @return {@link DevObject}
      */
-    public DevObject<T> setValue(final T value) {
-        this.mValue = value;
+    public DevObject<T> setObject(final T object) {
+        this.mObject = object;
         return this;
     }
 
@@ -218,12 +218,12 @@ public class DevObject<T>
     // ===========
 
     /**
-     * 判断 Value 是否一致
-     * @param value 待校验 Value
+     * 判断 Object 是否一致
+     * @param object 待校验 Object
      * @return {@code true} yes, {@code false} no
      */
-    public boolean equalsValue(final T value) {
-        return value != null && ObjectUtils.equals(this.mValue, value);
+    public boolean equalsObject(final T object) {
+        return object != null && ObjectUtils.equals(this.mObject, object);
     }
 
     /**

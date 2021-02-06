@@ -10,14 +10,14 @@ public class DevDataSource<T>
     public DevDataSource() {
     }
 
-    public DevDataSource(final T value) {
-        super(value);
+    public DevDataSource(final T object) {
+        super(object);
     }
 
     public DevDataSource(
-            final T value,
+            final T object,
             final Object tag
     ) {
-        super(value, tag);
+        super(object, tag);
     }
 }

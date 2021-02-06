@@ -66,13 +66,13 @@ public class EventBusActivity
                     case ButtonValue.BTN_EVENT_SEND:
                         showToast(true, "发送事件成功");
                         DevObject<String> event = new DevObject<>();
-                        event.setCode(1).setValue("正常消息");
+                        event.setCode(1).setObject("正常消息");
                         EventBusUtils.post(event);
                         break;
                     case ButtonValue.BTN_EVENT_SEND_STICKY:
                         showToast(true, "发送粘性事件成功");
                         DevObject<String> eventSticky = new DevObject<>();
-                        eventSticky.setCode(2).setValue("粘性消息");
+                        eventSticky.setCode(2).setObject("粘性消息");
                         EventBusUtils.postSticky(eventSticky);
                         // 如何测试粘性消息, 先注册并发送粘性事件, 然后解绑, 再次注册(则会再次接收到粘性事件消息)
                         break;
@@ -87,17 +87,17 @@ public class EventBusActivity
     @Subscribe(threadMode = ThreadMode.MAIN)
     public final void onEventBus(DevObject<String> event) {
         // 打印数据
-        DevLogEngine.getEngine().dTag(TAG, "value %s", event.getValue());
+        DevLogEngine.getEngine().dTag(TAG, "value %s", event.getObject());
         // 进行提示
-        ToastTintUtils.normal(event.getCode() + "." + event.getValue());
+        ToastTintUtils.normal(event.getCode() + "." + event.getObject());
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public final void onEventBusSticky(DevObject<String> event) {
         // 打印数据
-        DevLogEngine.getEngine().dTag(TAG, "value %s", event.getValue());
+        DevLogEngine.getEngine().dTag(TAG, "value %s", event.getObject());
         // 进行提示
-        ToastTintUtils.warning(event.getCode() + "." + event.getValue());
+        ToastTintUtils.warning(event.getCode() + "." + event.getObject());
 
 //        // 接收到后, 需要把旧的粘性事件删除 - 否则每次注册都会触发发送的粘性消息
 //        EventBusUtils.removeStickyEvent(event.getClass());

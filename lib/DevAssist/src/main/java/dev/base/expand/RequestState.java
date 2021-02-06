@@ -38,7 +38,7 @@ public class RequestState<T> {
      * @return 请求类型
      */
     public T getType() {
-        return mState.getValue();
+        return mState.getObject();
     }
 
     /**
@@ -47,7 +47,7 @@ public class RequestState<T> {
      * @return {@link RequestState}
      */
     public RequestState<T> setType(final T type) {
-        mState.setValue(type);
+        mState.setObject(type);
         return this;
     }
 
@@ -57,7 +57,7 @@ public class RequestState<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean equalsType(final T type) {
-        return mState.equalsValue(type);
+        return mState.equalsObject(type);
     }
 
     // =
