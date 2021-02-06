@@ -1,57 +1,27 @@
-package dev.assist.adapter;
+package dev.assist;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import dev.base.data.DataManager;
 import dev.utils.JCLogUtils;
 
 /**
  * detail: Adapter 数据辅助类
  * @author Ttt
  * <pre>
- *     实现 IAdapterData, 每个接口方法直接通过调用 AdapterDataAssist 已实现同名方法即可
+ *     实现 DataManager, 每个接口方法直接通过调用 AdapterDataAssist 已实现同名方法即可
  * </pre>
  */
 public class AdapterDataAssist<V>
-        implements IAdapterData<V>,
-        IAdapterNotify {
+        implements DataManager<V> {
 
     // 日志 TAG
     private static final String TAG = AdapterDataAssist.class.getSimpleName();
 
     // List Data
-    private final List<V>        mList = new ArrayList<>();
-    // IAdapterNotify
-    private       IAdapterNotify mAdapterNotify;
-
-    /**
-     * 构造函数
-     */
-    public AdapterDataAssist() {
-    }
-
-    /**
-     * 构造函数
-     * @param adapterNotify {@link IAdapterNotify}
-     */
-    public AdapterDataAssist(final IAdapterNotify adapterNotify) {
-        this.mAdapterNotify = adapterNotify;
-    }
-
-    // =======
-    // = set =
-    // =======
-
-    /**
-     * 设置 Adapter Notify
-     * @param adapterNotify {@link IAdapterNotify}
-     * @return {@link AdapterDataAssist}
-     */
-    public AdapterDataAssist<V> setAdapterNotify(final IAdapterNotify adapterNotify) {
-        this.mAdapterNotify = adapterNotify;
-        return this;
-    }
+    private final List<V> mList = new ArrayList<>();
 
     // ================
     // = IAdapterData =
@@ -193,7 +163,7 @@ public class AdapterDataAssist<V>
     @Override
     public void clearDataList(final boolean notify) {
         if (mList != null) mList.clear();
-        if (notify) adapterNotifyDataSetChanged();
+        if (notify) notifyDataChanged();
     }
 
     // ===============
@@ -335,21 +305,16 @@ public class AdapterDataAssist<V>
         // 添加数据
         addAllData(lists);
         // 通知适配器
-        if (notify) adapterNotifyDataSetChanged();
+        if (notify) notifyDataChanged();
     }
 
-    // ==================
-    // = IAdapterNotify =
-    // ==================
-
-    /**
-     * 通知 Adapter 数据改变
-     */
     @Override
-    public void adapterNotifyDataSetChanged() {
-        // 通知适配器
-        if (mAdapterNotify != null) {
-            mAdapterNotify.adapterNotifyDataSetChanged();
-        }
+    public void notifyDataChanged() {
+
+    }
+
+    @Override
+    public void notifyElementChanged(V element) {
+
     }
 }

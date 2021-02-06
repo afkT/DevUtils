@@ -1,14 +1,16 @@
-package dev.assist.adapter;
+package dev.base.data;
+
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 /**
- * detail: Adapter 数据操作接口
+ * detail: 数据管理接口
+ * @param <V> 泛型
  * @author Ttt
  */
-public interface IAdapterData<V> {
+public interface DataManager<V> {
 
     // ===========
     // = 获取相关 =
@@ -37,26 +39,26 @@ public interface IAdapterData<V> {
     /**
      * 获取 List Position Item
      * @param position 索引
-     * @return V Object
+     * @return {@link V}
      */
     V getDataItem(int position);
 
     /**
      * 获取 Value Position
-     * @param value V Object
+     * @param value {@link V}
      * @return position
      */
     int getDataItemPosition(V value);
 
     /**
      * 获取 First Item Data
-     * @return V Object
+     * @return {@link V}
      */
     V getDataFirstItem();
 
     /**
      * 获取 Last Item Data
-     * @return V Object
+     * @return {@link V}
      */
     V getDataLastItem();
 
@@ -177,4 +179,19 @@ public interface IAdapterData<V> {
             List<V> lists,
             boolean notify
     );
+
+    // ===========
+    // = 刷新方法 =
+    // ===========
+
+    /**
+     * 通知数据改变
+     */
+    void notifyDataChanged();
+
+    /**
+     * 通知某个元素改变
+     * @param element {@link V}
+     */
+    void notifyElementChanged(V element);
 }
