@@ -38,14 +38,14 @@ public interface DataManager<V> {
      * @param position 索引
      * @return {@link V}
      */
-    V getData(int position);
+    V getDataItem(int position);
 
     /**
      * 获取 Value Position
      * @param value {@link V}
      * @return position
      */
-    int getDataPosition(V value);
+    int getDataItemPosition(V value);
 
     /**
      * 获取 First Data
@@ -92,12 +92,12 @@ public interface DataManager<V> {
     /**
      * 判断是否 Last Position
      * @param position 索引
-     * @param count    总数
+     * @param size     总数
      * @return {@code true} yes, {@code false} no
      */
     boolean isLastPosition(
             int position,
-            int count
+            int size
     );
 
     /**
@@ -125,22 +125,24 @@ public interface DataManager<V> {
             V value
     );
 
-    // ===============
-    // = 数据处理方法 =
-    // ===============
+    // ======
+    // = 增 =
+    // ======
 
     /**
      * 添加数据
      * @param value Value
+     * @return {@code true} success, {@code false} fail
      */
-    void addData(V value);
+    boolean addData(V value);
 
     /**
      * 添加数据
      * @param position 索引
      * @param value    Value
+     * @return {@code true} success, {@code false} fail
      */
-    void addDataAt(
+    boolean addDataAt(
             int position,
             V value
     );
@@ -148,36 +150,42 @@ public interface DataManager<V> {
     /**
      * 添加数据集
      * @param collection {@link Collection}
+     * @return {@code true} success, {@code false} fail
      */
-    void addDatas(Collection<V> collection);
+    boolean addDatas(Collection<V> collection);
 
     /**
      * 添加数据集
      * @param position   索引
      * @param collection {@link Collection}
+     * @return {@code true} success, {@code false} fail
      */
-    void addDatasAt(
+    boolean addDatasAt(
             int position,
             Collection<V> collection
     );
 
     /**
-     * 添加数据集 ( 存在校验 )
+     * 添加数据集 ( 进行校验 )
      * @param collection {@link Collection}
+     * @return {@code true} success, {@code false} fail
      */
-    void addDatasChecked(Collection<V> collection);
+    boolean addDatasChecked(Collection<V> collection);
 
     /**
-     * 添加数据集 ( 存在校验 )
+     * 添加数据集 ( 进行校验 )
      * @param position   索引
      * @param collection {@link Collection}
+     * @return {@code true} success, {@code false} fail
      */
-    void addDatasAtChecked(
+    boolean addDatasCheckedAt(
             int position,
             Collection<V> collection
     );
 
-    // =
+    // ======
+    // = 删 =
+    // ======
 
     /**
      * 移除数据
@@ -196,10 +204,13 @@ public interface DataManager<V> {
     /**
      * 移除数据集
      * @param collection {@link Collection}
+     * @return {@code true} success, {@code false} fail
      */
-    void removeDatas(Collection<V> collection);
+    boolean removeDatas(Collection<V> collection);
 
-    // =
+    // ======
+    // = 改 =
+    // ======
 
     /**
      * 替换数据
@@ -216,9 +227,9 @@ public interface DataManager<V> {
      * 替换数据
      * @param position 索引
      * @param value    Value
-     * @return remove position value
+     * @return {@code true} success, {@code false} fail
      */
-    V replaceDataAt(
+    boolean replaceDataAt(
             int position,
             V value
     );
