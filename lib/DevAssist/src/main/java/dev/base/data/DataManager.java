@@ -1,6 +1,5 @@
 package dev.base.data;
 
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -28,81 +27,103 @@ public interface DataManager<V> {
      */
     ArrayList<V> getDataArrayList();
 
-    // =
-
     /**
-     * 获取 List Count
+     * 获取 List Size
      * @return List.size()
      */
-    int getDataCount();
+    int getDataSize();
 
     /**
-     * 获取 List Position Item
+     * 获取 List Position Data
      * @param position 索引
      * @return {@link V}
      */
-    V getDataItem(int position);
+    V getData(int position);
 
     /**
      * 获取 Value Position
      * @param value {@link V}
      * @return position
      */
-    int getDataItemPosition(V value);
+    int getDataPosition(V value);
 
     /**
-     * 获取 First Item Data
+     * 获取 First Data
      * @return {@link V}
      */
-    V getDataFirstItem();
+    V getFirstData();
 
     /**
-     * 获取 Last Item Data
+     * 获取 Last Data
      * @return {@link V}
      */
-    V getDataLastItem();
+    V getLastData();
 
     // ===========
-    // = 其他方法 =
+    // = 快速判断 =
     // ===========
 
     /**
-     * 判断是否 First Item Data
+     * 判断 List Size 是否为 0
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isDataEmpty();
+
+    /**
+     * 判断 List Size 是否大于 0
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isDataNotEmpty();
+
+    /**
+     * 判断是否 First Position
      * @param position 索引
      * @return {@code true} yes, {@code false} no
      */
-    boolean isFirstItem(int position);
+    boolean isFirstPosition(int position);
 
     /**
-     * 判断是否 Last Item Data
+     * 判断是否 Last Position
      * @param position 索引
      * @return {@code true} yes, {@code false} no
      */
-    boolean isLastItem(int position);
+    boolean isLastPosition(int position);
 
     /**
-     * 判断是否 Last Item Data
+     * 判断是否 Last Position
      * @param position 索引
      * @param count    总数
      * @return {@code true} yes, {@code false} no
      */
-    boolean isLastItem(
+    boolean isLastPosition(
             int position,
             int count
     );
 
-    // =
+    /**
+     * 判断 First Value 是否一致
+     * @param value 待校验 Value
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean equalsFirstData(V value);
 
     /**
-     * 清空全部数据
+     * 判断 Last Value 是否一致
+     * @param value 待校验 Value
+     * @return {@code true} yes, {@code false} no
      */
-    void clearDataList();
+    boolean equalsLastData(V value);
 
     /**
-     * 清空全部数据
-     * @param notify 是否通知适配器
+     * 判断 Position Value 是否一致
+     * @param position 索引
+     * @param value    待校验 Value
+     * @return {@code true} yes, {@code false} no
      */
-    void clearDataList(boolean notify);
+    boolean equalsPositionData(
+            int position,
+            V value
+    );
 
     // ===============
     // = 数据处理方法 =
@@ -119,23 +140,39 @@ public interface DataManager<V> {
      * @param position 索引
      * @param value    Value
      */
-    void addData(
+    void addDataAt(
             int position,
             V value
     );
 
     /**
-     * 添加数据
+     * 添加数据集
      * @param collection {@link Collection}
      */
-    void addAllData(Collection<V> collection);
+    void addDatas(Collection<V> collection);
 
     /**
-     * 添加数据
+     * 添加数据集
      * @param position   索引
      * @param collection {@link Collection}
      */
-    void addAllData(
+    void addDatasAt(
+            int position,
+            Collection<V> collection
+    );
+
+    /**
+     * 添加数据集 ( 存在校验 )
+     * @param collection {@link Collection}
+     */
+    void addDatasChecked(Collection<V> collection);
+
+    /**
+     * 添加数据集 ( 存在校验 )
+     * @param position   索引
+     * @param collection {@link Collection}
+     */
+    void addDatasAtChecked(
             int position,
             Collection<V> collection
     );
@@ -154,15 +191,68 @@ public interface DataManager<V> {
      * @param position 索引
      * @return remove position value
      */
-    V removeData(int position);
+    V removeDataAt(int position);
 
     /**
-     * 移除数据
+     * 移除数据集
      * @param collection {@link Collection}
      */
-    void removeData(Collection<V> collection);
+    void removeDatas(Collection<V> collection);
 
     // =
+
+    /**
+     * 替换数据
+     * @param oldValue 旧的 Value
+     * @param newValue 新的 Value
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean replaceData(
+            V oldValue,
+            V newValue
+    );
+
+    /**
+     * 替换数据
+     * @param position 索引
+     * @param value    Value
+     * @return remove position value
+     */
+    V replaceDataAt(
+            int position,
+            V value
+    );
+
+    // =
+
+    /**
+     * 数据中两个索引 Data 互换位置
+     * @param fromPosition 待换位置索引
+     * @param toPosition   替换后位置索引
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean swipePosition(
+            int fromPosition,
+            int toPosition
+    );
+
+    /**
+     * 是否存在 Data
+     * @param value Value
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean contains(V value);
+
+    /**
+     * 清空全部数据
+     */
+    void clearDataList();
+
+    /**
+     * 清空全部数据
+     * @param notify 是否进行通知
+     */
+    void clearDataList(boolean notify);
 
     /**
      * 设置 List Data
@@ -173,7 +263,7 @@ public interface DataManager<V> {
     /**
      * 设置 List Data
      * @param lists  {@link List}
-     * @param notify 是否通知适配器
+     * @param notify 是否进行通知
      */
     void setDataList(
             List<V> lists,
@@ -181,7 +271,7 @@ public interface DataManager<V> {
     );
 
     // ===========
-    // = 刷新方法 =
+    // = 通知方法 =
     // ===========
 
     /**
@@ -190,8 +280,8 @@ public interface DataManager<V> {
     void notifyDataChanged();
 
     /**
-     * 通知某个元素改变
-     * @param element {@link V}
+     * 通知某个数据改变
+     * @param value {@link V}
      */
-    void notifyElementChanged(V element);
+    void notifyDataChanged(V value);
 }
