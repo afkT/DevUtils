@@ -13,7 +13,7 @@ public class DevObject<T>
         implements Serializable {
 
     // uuid ( 一定程度上唯一 )
-    private final int    mUUID        = UUID.randomUUID().hashCode();
+    private final int    mUUID      = UUID.randomUUID().hashCode();
     // Object
     private       T      mObject;
     // 标记 Tag
@@ -26,8 +26,8 @@ public class DevObject<T>
     private       int    mType;
     // State
     private       int    mState;
-    // Operate id
-    private       long   mOperateUUID = UUID.randomUUID().hashCode();
+    // Token uuid
+    private       long   mTokenUUID = UUID.randomUUID().hashCode();
 
     public DevObject() {
     }
@@ -187,30 +187,30 @@ public class DevObject<T>
     }
 
     /**
-     * 获取 Operate UUID
-     * @return Operate UUID
+     * 获取 Token UUID
+     * @return Token UUID
      */
-    public long getOperateUUID() {
-        return mOperateUUID;
+    public long getTokenUUID() {
+        return mTokenUUID;
     }
 
     /**
-     * 设置 Operate UUID
-     * @param operateUUID operate UUID
+     * 设置 Token UUID
+     * @param uuid token UUID
      * @return {@link DevObject}
      */
-    public DevObject<T> setOperateUUID(final long operateUUID) {
-        this.mOperateUUID = operateUUID;
+    public DevObject<T> setTokenUUID(final long uuid) {
+        this.mTokenUUID = uuid;
         return this;
     }
 
     /**
-     * 重置随机 Operate UUID
-     * @return Operate UUID
+     * 重置随机 Token UUID
+     * @return Token UUID
      */
-    public long randomOperateUUID() {
-        mOperateUUID = UUID.randomUUID().hashCode();
-        return mOperateUUID;
+    public long randomTokenUUID() {
+        mTokenUUID = UUID.randomUUID().hashCode();
+        return mTokenUUID;
     }
 
     // ===========
@@ -281,12 +281,12 @@ public class DevObject<T>
     }
 
     /**
-     * 判断 Operate UUID 是否一致
-     * @param operateUUID 待校验 Operate UUID
+     * 判断 Token UUID 是否一致
+     * @param uuid 待校验 Token UUID
      * @return {@code true} yes, {@code false} no
      */
-    public boolean equalsOperateUUID(final long operateUUID) {
-        return this.mOperateUUID == operateUUID;
+    public boolean equalsTokenUUID(final long uuid) {
+        return this.mTokenUUID == uuid;
     }
 
     // ===========
