@@ -229,7 +229,11 @@ public class DataAssist<T>
      */
     @Override
     public boolean addData(T value) {
-        return mData.addData(value);
+        if (mData.addData(value)) {
+            notifyDataChanged();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -243,7 +247,11 @@ public class DataAssist<T>
             int position,
             T value
     ) {
-        return mData.addDataAt(position, value);
+        if (mData.addDataAt(position, value)) {
+            notifyDataChanged();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -253,7 +261,11 @@ public class DataAssist<T>
      */
     @Override
     public boolean addDatas(Collection<T> collection) {
-        return mData.addDatas(collection);
+        if (mData.addDatas(collection)) {
+            notifyDataChanged();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -267,7 +279,11 @@ public class DataAssist<T>
             int position,
             Collection<T> collection
     ) {
-        return mData.addDatasAt(position, collection);
+        if (mData.addDatasAt(position, collection)) {
+            notifyDataChanged();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -277,7 +293,11 @@ public class DataAssist<T>
      */
     @Override
     public boolean addDatasChecked(Collection<T> collection) {
-        return mData.addDatasChecked(collection);
+        if (mData.addDatasChecked(collection)) {
+            notifyDataChanged();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -291,7 +311,11 @@ public class DataAssist<T>
             int position,
             Collection<T> collection
     ) {
-        return mData.addDatasCheckedAt(position, collection);
+        if (mData.addDatasCheckedAt(position, collection)) {
+            notifyDataChanged();
+            return true;
+        }
+        return false;
     }
 
     // ======
@@ -305,7 +329,11 @@ public class DataAssist<T>
      */
     @Override
     public boolean removeData(T value) {
-        return mData.removeData(value);
+        if (mData.removeData(value)) {
+            notifyDataChanged();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -315,7 +343,9 @@ public class DataAssist<T>
      */
     @Override
     public T removeDataAt(int position) {
-        return mData.removeDataAt(position);
+        T value = mData.removeDataAt(position);
+        notifyDataChanged();
+        return value;
     }
 
     /**
@@ -325,7 +355,11 @@ public class DataAssist<T>
      */
     @Override
     public boolean removeDatas(Collection<T> collection) {
-        return mData.removeDatas(collection);
+        if (mData.removeDatas(collection)) {
+            notifyDataChanged();
+            return true;
+        }
+        return false;
     }
 
     // ======
@@ -343,7 +377,11 @@ public class DataAssist<T>
             T oldValue,
             T newValue
     ) {
-        return mData.replaceData(oldValue, newValue);
+        if (mData.replaceData(oldValue, newValue)) {
+            notifyDataChanged();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -357,7 +395,11 @@ public class DataAssist<T>
             int position,
             T value
     ) {
-        return mData.replaceDataAt(position, value);
+        if (mData.replaceDataAt(position, value)) {
+            notifyDataChanged();
+            return true;
+        }
+        return false;
     }
 
     // =
@@ -373,7 +415,11 @@ public class DataAssist<T>
             int fromPosition,
             int toPosition
     ) {
-        return mData.swipePosition(fromPosition, toPosition);
+        if (mData.swipePosition(fromPosition, toPosition)) {
+            notifyDataChanged();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -392,6 +438,7 @@ public class DataAssist<T>
     @Override
     public void clearDataList() {
         mData.clearDataList();
+        notifyDataChanged();
     }
 
     /**
@@ -401,6 +448,7 @@ public class DataAssist<T>
     @Override
     public void clearDataList(boolean notify) {
         mData.clearDataList(notify);
+        if (notify) notifyDataChanged();
     }
 
     /**
@@ -410,6 +458,7 @@ public class DataAssist<T>
     @Override
     public void setDataList(List<T> lists) {
         mData.setDataList(lists);
+        notifyDataChanged();
     }
 
     /**
@@ -423,6 +472,7 @@ public class DataAssist<T>
             boolean notify
     ) {
         mData.setDataList(lists, notify);
+        if (notify) notifyDataChanged();
     }
 
     // ===========
@@ -444,9 +494,9 @@ public class DataAssist<T>
      * @param value {@link T}
      */
     @Override
-    public void notifyDataChanged(T value) {
+    public void notifyElementChanged(T value) {
         if (mDataChanged != null) {
-            mDataChanged.notifyDataChanged(value);
+            mDataChanged.notifyElementChanged(value);
         }
     }
 }

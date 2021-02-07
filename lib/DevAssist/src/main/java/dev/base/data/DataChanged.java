@@ -20,5 +20,5 @@ public interface DataChanged<T> {
      * 通知某个数据改变
      * @param value {@link T}
      */
-    void notifyDataChanged(T value);
+    void notifyElementChanged(T value);
 }
