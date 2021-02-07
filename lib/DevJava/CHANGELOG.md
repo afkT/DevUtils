@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.2.7 *(2021-02-08)*
+----------------------------
+
+* `[Add]` ColorUtils#getRandomColorString 方法
+
+* `[Add]` DevFinal 新增部分常量
+
 Version 1.2.6 *(2021-01-24)*
 ----------------------------
 

@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 2.1.6 *(2021-02-08)*
+----------------------------
+
+* `[Add]` ColorUtils#getRandomColorString 方法
+
+* `[Add]` DevFinal 新增部分常量
+
+* `[Add]` 新增 DevicePolicyUtils 设备管理工具类
+
 Version 2.1.5 *(2021-01-24)*
 ----------------------------
 

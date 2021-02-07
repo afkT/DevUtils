@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevJava:1.2.6'
+implementation 'com.afkt:DevJava:1.2.7'
 ```
 
 ## 目录结构
@@ -290,6 +290,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | intToRgbString | 颜色值 转换 RGB 颜色字符串 |
 | intToArgbString | 颜色值 转换 ARGB 颜色字符串 |
 | getRandomColor | 获取随机颜色值 |
+| getRandomColorString | 获取随机颜色值字符串 |
 | judgeColorString | 判断是否为 ARGB 格式的十六进制颜色, 例如: FF990587 |
 | setDark | 颜色加深 ( 单独修改 RGB 值, 不变动透明度 ) |
 | setLight | 颜色变浅, 变亮 ( 单独修改 RGB 值, 不变动透明度 ) |
