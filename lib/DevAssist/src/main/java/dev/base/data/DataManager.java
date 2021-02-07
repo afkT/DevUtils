@@ -6,10 +6,10 @@ import java.util.List;
 
 /**
  * detail: 数据管理接口
- * @param <V> 泛型
+ * @param <T> 泛型
  * @author Ttt
  */
-public interface DataManager<V> {
+public interface DataManager<T> {
 
     // ===========
     // = 获取相关 =
@@ -19,13 +19,13 @@ public interface DataManager<V> {
      * 获取 List Data
      * @return {@link List}
      */
-    List<V> getDataList();
+    List<T> getDataList();
 
     /**
      * 获取 ArrayList Data
      * @return {@link ArrayList}
      */
-    ArrayList<V> getDataArrayList();
+    ArrayList<T> getDataArrayList();
 
     /**
      * 获取 List Size
@@ -36,28 +36,34 @@ public interface DataManager<V> {
     /**
      * 获取 List Position Data
      * @param position 索引
-     * @return {@link V}
+     * @return {@link T}
      */
-    V getDataItem(int position);
+    T getDataItem(int position);
 
     /**
      * 获取 Value Position
-     * @param value {@link V}
+     * @param value {@link T}
      * @return position
      */
-    int getDataItemPosition(V value);
+    int getDataItemPosition(T value);
 
     /**
      * 获取 First Data
-     * @return {@link V}
+     * @return {@link T}
      */
-    V getFirstData();
+    T getFirstData();
 
     /**
      * 获取 Last Data
-     * @return {@link V}
+     * @return {@link T}
      */
-    V getLastData();
+    T getLastData();
+
+    /**
+     * 获取 Last Position
+     * @return Last Position
+     */
+    int getLastPosition();
 
     // ===========
     // = 快速判断 =
@@ -105,14 +111,14 @@ public interface DataManager<V> {
      * @param value 待校验 Value
      * @return {@code true} yes, {@code false} no
      */
-    boolean equalsFirstData(V value);
+    boolean equalsFirstData(T value);
 
     /**
      * 判断 Last Value 是否一致
      * @param value 待校验 Value
      * @return {@code true} yes, {@code false} no
      */
-    boolean equalsLastData(V value);
+    boolean equalsLastData(T value);
 
     /**
      * 判断 Position Value 是否一致
@@ -122,7 +128,7 @@ public interface DataManager<V> {
      */
     boolean equalsPositionData(
             int position,
-            V value
+            T value
     );
 
     // ======
@@ -134,7 +140,7 @@ public interface DataManager<V> {
      * @param value Value
      * @return {@code true} success, {@code false} fail
      */
-    boolean addData(V value);
+    boolean addData(T value);
 
     /**
      * 添加数据
@@ -144,7 +150,7 @@ public interface DataManager<V> {
      */
     boolean addDataAt(
             int position,
-            V value
+            T value
     );
 
     /**
@@ -152,7 +158,7 @@ public interface DataManager<V> {
      * @param collection {@link Collection}
      * @return {@code true} success, {@code false} fail
      */
-    boolean addDatas(Collection<V> collection);
+    boolean addDatas(Collection<T> collection);
 
     /**
      * 添加数据集
@@ -162,7 +168,7 @@ public interface DataManager<V> {
      */
     boolean addDatasAt(
             int position,
-            Collection<V> collection
+            Collection<T> collection
     );
 
     /**
@@ -170,7 +176,7 @@ public interface DataManager<V> {
      * @param collection {@link Collection}
      * @return {@code true} success, {@code false} fail
      */
-    boolean addDatasChecked(Collection<V> collection);
+    boolean addDatasChecked(Collection<T> collection);
 
     /**
      * 添加数据集 ( 进行校验 )
@@ -180,7 +186,7 @@ public interface DataManager<V> {
      */
     boolean addDatasCheckedAt(
             int position,
-            Collection<V> collection
+            Collection<T> collection
     );
 
     // ======
@@ -192,21 +198,21 @@ public interface DataManager<V> {
      * @param value Value
      * @return {@code true} success, {@code false} fail
      */
-    boolean removeData(V value);
+    boolean removeData(T value);
 
     /**
      * 移除数据
      * @param position 索引
      * @return remove position value
      */
-    V removeDataAt(int position);
+    T removeDataAt(int position);
 
     /**
      * 移除数据集
      * @param collection {@link Collection}
      * @return {@code true} success, {@code false} fail
      */
-    boolean removeDatas(Collection<V> collection);
+    boolean removeDatas(Collection<T> collection);
 
     // ======
     // = 改 =
@@ -219,8 +225,8 @@ public interface DataManager<V> {
      * @return {@code true} success, {@code false} fail
      */
     boolean replaceData(
-            V oldValue,
-            V newValue
+            T oldValue,
+            T newValue
     );
 
     /**
@@ -231,7 +237,7 @@ public interface DataManager<V> {
      */
     boolean replaceDataAt(
             int position,
-            V value
+            T value
     );
 
     // =
@@ -252,7 +258,7 @@ public interface DataManager<V> {
      * @param value Value
      * @return {@code true} yes, {@code false} no
      */
-    boolean contains(V value);
+    boolean contains(T value);
 
     /**
      * 清空全部数据
@@ -269,7 +275,7 @@ public interface DataManager<V> {
      * 设置 List Data
      * @param lists {@link List}
      */
-    void setDataList(List<V> lists);
+    void setDataList(List<T> lists);
 
     /**
      * 设置 List Data
@@ -277,7 +283,7 @@ public interface DataManager<V> {
      * @param notify 是否进行通知
      */
     void setDataList(
-            List<V> lists,
+            List<T> lists,
             boolean notify
     );
 
@@ -292,7 +298,7 @@ public interface DataManager<V> {
 
     /**
      * 通知某个数据改变
-     * @param value {@link V}
+     * @param value {@link T}
      */
-    void notifyDataChanged(V value);
+    void notifyDataChanged(T value);
 }
