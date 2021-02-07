@@ -67,7 +67,7 @@ public class RequestState<T> {
      * @return 请求 UUID
      */
     public long getRequestUUID() {
-        return mState.getOperateUUID();
+        return mState.getTokenUUID();
     }
 
     /**
@@ -75,7 +75,7 @@ public class RequestState<T> {
      * @return 请求 UUID
      */
     public long randomRequestUUID() {
-        return mState.randomOperateUUID();
+        return mState.randomTokenUUID();
     }
 
     /**
@@ -84,7 +84,7 @@ public class RequestState<T> {
      * @return {@code true} yes, {@code false} no
      */
     public boolean equalsRequestUUID(final long uuid) {
-        return mState.equalsOperateUUID(uuid);
+        return mState.equalsTokenUUID(uuid);
     }
 
     // =
