@@ -114,7 +114,7 @@ public class DevDataSource<T>
      */
     @Override
     public T getLastData() {
-        return getDataItem(getDataSize() - 1);
+        return getDataItem(getLastPosition());
     }
 
     /**
@@ -248,6 +248,7 @@ public class DevDataSource<T>
             int position,
             T value
     ) {
+        if (position < 0) return false;
         try {
             mList.add(position, value);
             return true;
@@ -285,6 +286,7 @@ public class DevDataSource<T>
             int position,
             Collection<T> collection
     ) {
+        if (position < 0) return false;
         if (collection == null) return false;
         try {
             mList.addAll(position, collection);
@@ -359,6 +361,7 @@ public class DevDataSource<T>
      */
     @Override
     public T removeDataAt(int position) {
+        if (position < 0) return null;
         try {
             return mList.remove(position);
         } catch (Exception e) {
