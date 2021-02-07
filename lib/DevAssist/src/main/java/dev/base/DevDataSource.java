@@ -304,7 +304,20 @@ public class DevDataSource<T>
      */
     @Override
     public boolean addDatasChecked(Collection<T> collection) {
-        return addDatasCheckedAt(getLastPosition(), collection);
+        if (collection == null) return false;
+        try {
+            List<T> lists = new ArrayList<>();
+            for (T value : collection) {
+                if (value != null) {
+                    lists.add(value);
+                }
+            }
+            mList.addAll(lists);
+            return true;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "addDatasChecked");
+        }
+        return false;
     }
 
     /**
@@ -512,24 +525,5 @@ public class DevDataSource<T>
         if (lists != null) {
             mList.addAll(lists);
         }
-    }
-
-    // ===========
-    // = 通知方法 =
-    // ===========
-
-    /**
-     * 通知数据改变
-     */
-    @Override
-    public void notifyDataChanged() {
-    }
-
-    /**
-     * 通知某个数据改变
-     * @param value {@link T}
-     */
-    @Override
-    public void notifyDataChanged(T value) {
     }
 }

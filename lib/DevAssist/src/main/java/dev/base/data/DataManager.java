@@ -286,19 +286,4 @@ public interface DataManager<T> {
             List<T> lists,
             boolean notify
     );
-
-    // ===========
-    // = 通知方法 =
-    // ===========
-
-    /**
-     * 通知数据改变
-     */
-    void notifyDataChanged();
-
-    /**
-     * 通知某个数据改变
-     * @param value {@link T}
-     */
-    void notifyDataChanged(T value);
 }

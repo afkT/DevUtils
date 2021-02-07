@@ -5,19 +5,49 @@ import java.util.Collection;
 import java.util.List;
 
 import dev.base.DevDataSource;
+import dev.base.data.DataChanged;
 import dev.base.data.DataManager;
 
 /**
  * detail: 数据辅助类
  * @author Ttt
+ * <pre>
+ *     实现 {@link DataManager}, 每个接口方法直接通过调用 {@link DataAssist} 已实现同名方法即可
+ * </pre>
  */
 public class DataAssist<T>
-        implements DataManager<T> {
+        implements DataManager<T>,
+        DataChanged<T> {
 
     // DataSource Object
     private final DevDataSource<T> mData = new DevDataSource<>();
 
+    // 数据改变通知
+    private DataChanged<T> mDataChanged;
+
     public DataAssist() {
+    }
+
+    public DataAssist(final DataChanged<T> dataChanged) {
+        this.mDataChanged = dataChanged;
+    }
+
+    /**
+     * 设置数据改变通知
+     * @param dataChanged {@link DataChanged}
+     * @return {@link DataAssist}
+     */
+    public DataAssist<T> setDataChanged(final DataChanged<T> dataChanged) {
+        this.mDataChanged = dataChanged;
+        return this;
+    }
+
+    /**
+     * 获取 DataSource Object
+     * @return {@link DevDataSource}
+     */
+    public DevDataSource<T> getDataSource() {
+        return mData;
     }
 
     // ===========
@@ -404,6 +434,9 @@ public class DataAssist<T>
      */
     @Override
     public void notifyDataChanged() {
+        if (mDataChanged != null) {
+            mDataChanged.notifyDataChanged();
+        }
     }
 
     /**
@@ -412,5 +445,8 @@ public class DataAssist<T>
      */
     @Override
     public void notifyDataChanged(T value) {
+        if (mDataChanged != null) {
+            mDataChanged.notifyDataChanged(value);
+        }
     }
 }
