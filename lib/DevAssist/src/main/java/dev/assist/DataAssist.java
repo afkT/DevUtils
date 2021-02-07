@@ -1,40 +1,23 @@
-package dev.base;
+package dev.assist;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
+import dev.base.DevDataSource;
 import dev.base.data.DataManager;
-import dev.utils.JCLogUtils;
-import dev.utils.common.ObjectUtils;
 
 /**
- * detail: 数据源操作实体类
+ * detail: 数据辅助类
  * @author Ttt
  */
-public class DevDataSource<T>
-        extends DevObject<T>
+public class DataAssist<T>
         implements DataManager<T> {
 
-    // 日志 TAG
-    private static final String TAG = DevDataSource.class.getSimpleName();
+    // DataSource Object
+    private final DevDataSource<T> mData = new DevDataSource<>();
 
-    // List Data
-    private final List<T> mList = new ArrayList<>();
-
-    public DevDataSource() {
-    }
-
-    public DevDataSource(final T object) {
-        super(object);
-    }
-
-    public DevDataSource(
-            final T object,
-            final Object tag
-    ) {
-        super(object, tag);
+    public DataAssist() {
     }
 
     // ===========
@@ -47,7 +30,7 @@ public class DevDataSource<T>
      */
     @Override
     public List<T> getDataList() {
-        return mList;
+        return mData.getDataList();
     }
 
     /**
@@ -56,7 +39,7 @@ public class DevDataSource<T>
      */
     @Override
     public ArrayList<T> getDataArrayList() {
-        return new ArrayList<>(mList);
+        return mData.getDataArrayList();
     }
 
     /**
@@ -65,7 +48,7 @@ public class DevDataSource<T>
      */
     @Override
     public int getDataSize() {
-        return mList.size();
+        return mData.getDataSize();
     }
 
     /**
@@ -75,13 +58,7 @@ public class DevDataSource<T>
      */
     @Override
     public T getDataItem(int position) {
-        if (position < 0) return null;
-        try {
-            return mList.get(position);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getDataItem");
-        }
-        return null;
+        return mData.getDataItem(position);
     }
 
     /**
@@ -91,12 +68,7 @@ public class DevDataSource<T>
      */
     @Override
     public int getDataItemPosition(T value) {
-        try {
-            return mList.indexOf(value);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getDataItemPosition");
-        }
-        return -1;
+        return mData.getDataItemPosition(value);
     }
 
     /**
@@ -105,7 +77,7 @@ public class DevDataSource<T>
      */
     @Override
     public T getFirstData() {
-        return getDataItem(0);
+        return mData.getFirstData();
     }
 
     /**
@@ -114,7 +86,7 @@ public class DevDataSource<T>
      */
     @Override
     public T getLastData() {
-        return getDataItem(getLastPosition());
+        return mData.getLastData();
     }
 
     /**
@@ -123,8 +95,7 @@ public class DevDataSource<T>
      */
     @Override
     public int getLastPosition() {
-        int size = getDataSize();
-        return (size == 0) ? 0 : size - 1;
+        return mData.getLastPosition();
     }
 
     // ===========
@@ -137,7 +108,7 @@ public class DevDataSource<T>
      */
     @Override
     public boolean isDataEmpty() {
-        return getDataSize() == 0;
+        return mData.isDataEmpty();
     }
 
     /**
@@ -146,7 +117,7 @@ public class DevDataSource<T>
      */
     @Override
     public boolean isDataNotEmpty() {
-        return !isDataEmpty();
+        return mData.isDataNotEmpty();
     }
 
     /**
@@ -156,7 +127,7 @@ public class DevDataSource<T>
      */
     @Override
     public boolean isFirstPosition(int position) {
-        return position == 0;
+        return mData.isFirstPosition(position);
     }
 
     /**
@@ -166,7 +137,7 @@ public class DevDataSource<T>
      */
     @Override
     public boolean isLastPosition(int position) {
-        return isLastPosition(position, getDataSize());
+        return mData.isLastPosition(position);
     }
 
     /**
@@ -180,7 +151,7 @@ public class DevDataSource<T>
             int position,
             int size
     ) {
-        return position >= 0 && size >= 1 && size - position == 1;
+        return mData.isLastPosition(position, size);
     }
 
     /**
@@ -190,7 +161,7 @@ public class DevDataSource<T>
      */
     @Override
     public boolean equalsFirstData(T value) {
-        return value != null && ObjectUtils.equals(getFirstData(), value);
+        return mData.equalsFirstData(value);
     }
 
     /**
@@ -200,7 +171,7 @@ public class DevDataSource<T>
      */
     @Override
     public boolean equalsLastData(T value) {
-        return value != null && ObjectUtils.equals(getLastData(), value);
+        return mData.equalsLastData(value);
     }
 
     /**
@@ -214,7 +185,7 @@ public class DevDataSource<T>
             int position,
             T value
     ) {
-        return value != null && ObjectUtils.equals(getDataItem(position), value);
+        return mData.equalsPositionData(position, value);
     }
 
     // ======
@@ -228,13 +199,7 @@ public class DevDataSource<T>
      */
     @Override
     public boolean addData(T value) {
-        try {
-            mList.add(value);
-            return true;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "addData");
-        }
-        return false;
+        return mData.addData(value);
     }
 
     /**
@@ -248,14 +213,7 @@ public class DevDataSource<T>
             int position,
             T value
     ) {
-        if (position < 0) return false;
-        try {
-            mList.add(position, value);
-            return true;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "addDataAt");
-        }
-        return false;
+        return mData.addDataAt(position, value);
     }
 
     /**
@@ -265,14 +223,7 @@ public class DevDataSource<T>
      */
     @Override
     public boolean addDatas(Collection<T> collection) {
-        if (collection == null) return false;
-        try {
-            mList.addAll(collection);
-            return true;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "addDatas");
-        }
-        return false;
+        return mData.addDatas(collection);
     }
 
     /**
@@ -286,15 +237,7 @@ public class DevDataSource<T>
             int position,
             Collection<T> collection
     ) {
-        if (position < 0) return false;
-        if (collection == null) return false;
-        try {
-            mList.addAll(position, collection);
-            return true;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "addDatasAt");
-        }
-        return false;
+        return mData.addDatasAt(position, collection);
     }
 
     /**
@@ -304,7 +247,7 @@ public class DevDataSource<T>
      */
     @Override
     public boolean addDatasChecked(Collection<T> collection) {
-        return addDatasCheckedAt(getLastPosition(), collection);
+        return mData.addDatasChecked(collection);
     }
 
     /**
@@ -318,21 +261,7 @@ public class DevDataSource<T>
             int position,
             Collection<T> collection
     ) {
-        if (position < 0) return false;
-        if (collection == null) return false;
-        try {
-            List<T> lists = new ArrayList<>();
-            for (T value : collection) {
-                if (value != null) {
-                    lists.add(value);
-                }
-            }
-            mList.addAll(position, lists);
-            return true;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "addDatasCheckedAt");
-        }
-        return false;
+        return mData.addDatasCheckedAt(position, collection);
     }
 
     // ======
@@ -346,12 +275,7 @@ public class DevDataSource<T>
      */
     @Override
     public boolean removeData(T value) {
-        try {
-            return mList.remove(value);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "removeData");
-        }
-        return false;
+        return mData.removeData(value);
     }
 
     /**
@@ -361,13 +285,7 @@ public class DevDataSource<T>
      */
     @Override
     public T removeDataAt(int position) {
-        if (position < 0) return null;
-        try {
-            return mList.remove(position);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "removeDataAt");
-        }
-        return null;
+        return mData.removeDataAt(position);
     }
 
     /**
@@ -377,14 +295,7 @@ public class DevDataSource<T>
      */
     @Override
     public boolean removeDatas(Collection<T> collection) {
-        if (collection == null) return false;
-        try {
-            mList.removeAll(collection);
-            return true;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "removeDatas");
-        }
-        return false;
+        return mData.removeDatas(collection);
     }
 
     // ======
@@ -402,10 +313,7 @@ public class DevDataSource<T>
             T oldValue,
             T newValue
     ) {
-        if (contains(oldValue)) {
-            return replaceDataAt(getDataItemPosition(oldValue), newValue);
-        }
-        return false;
+        return mData.replaceData(oldValue, newValue);
     }
 
     /**
@@ -419,14 +327,7 @@ public class DevDataSource<T>
             int position,
             T value
     ) {
-        if (position < 0) return false;
-        try {
-            mList.set(position, value);
-            return true;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "replaceDataAt");
-        }
-        return false;
+        return mData.replaceDataAt(position, value);
     }
 
     // =
@@ -442,15 +343,7 @@ public class DevDataSource<T>
             int fromPosition,
             int toPosition
     ) {
-        if (fromPosition != toPosition && fromPosition >= 0 && toPosition >= 0) {
-            try {
-                Collections.swap(mList, fromPosition, toPosition);
-                return true;
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "swipePosition");
-            }
-        }
-        return false;
+        return mData.swipePosition(fromPosition, toPosition);
     }
 
     /**
@@ -460,13 +353,7 @@ public class DevDataSource<T>
      */
     @Override
     public boolean contains(T value) {
-        if (value == null) return false;
-        try {
-            return mList.contains(value);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "contains");
-        }
-        return false;
+        return mData.contains(value);
     }
 
     /**
@@ -474,7 +361,7 @@ public class DevDataSource<T>
      */
     @Override
     public void clearDataList() {
-        mList.clear();
+        mData.clearDataList();
     }
 
     /**
@@ -483,7 +370,7 @@ public class DevDataSource<T>
      */
     @Override
     public void clearDataList(boolean notify) {
-        mList.clear();
+        mData.clearDataList(notify);
     }
 
     /**
@@ -492,10 +379,7 @@ public class DevDataSource<T>
      */
     @Override
     public void setDataList(List<T> lists) {
-        mList.clear();
-        if (lists != null) {
-            mList.addAll(lists);
-        }
+        mData.setDataList(lists);
     }
 
     /**
@@ -508,10 +392,7 @@ public class DevDataSource<T>
             List<T> lists,
             boolean notify
     ) {
-        mList.clear();
-        if (lists != null) {
-            mList.addAll(lists);
-        }
+        mData.setDataList(lists, notify);
     }
 
     // ===========
