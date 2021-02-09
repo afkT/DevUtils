@@ -22,6 +22,8 @@ public final class ClickUtils {
     // 日志 TAG
     private static final String TAG = ClickUtils.class.getSimpleName();
 
+    // 通用间隔时间
+    public static final  long                     INTERVAL_TIME       = 1000L;
     // 是否校验 viewId
     private static       boolean                  sCheckViewId        = true;
     // 双击间隔时间
@@ -686,5 +688,72 @@ public final class ClickUtils {
         public final int getInvalidCycleNumber() {
             return mInvalidCycleNumber.get();
         }
+    }
+
+    /**
+     * detail: 多次点击触发事件
+     * @author Ttt
+     * <pre>
+     *     因为双击后才进入计数, 所以 {@link #getInvalidCycleNumber()} 得 + 1 才是准确的点击数
+     * </pre>
+     */
+    public static abstract class OnMultiClickListener
+            extends OnCountClickListener {
+
+        // 多次点击次数
+        private final int multiClickNumber;
+
+        /**
+         * 构造函数
+         * @param number 多次点击次数
+         */
+        public OnMultiClickListener(final int number) {
+            this(number, INTERVAL_TIME);
+        }
+
+        /**
+         * 构造函数
+         * @param number       多次点击次数
+         * @param intervalTime 双击间隔时间
+         */
+        public OnMultiClickListener(
+                final int number,
+                final long intervalTime
+        ) {
+            super(new ClickAssist(intervalTime));
+            this.multiClickNumber = number;
+        }
+
+        @Override
+        public final void doClick(
+                View view,
+                OnCountClickListener listener
+        ) {
+        }
+
+        @Override
+        public void doInvalidClick(
+                View view,
+                OnCountClickListener listener,
+                int invalidCycleNumber
+        ) {
+            if (invalidCycleNumber + 1 >= multiClickNumber) {
+                doMultiClick(view, invalidCycleNumber + 1);
+            }
+        }
+
+        // ===============
+        // = 对外公开方法 =
+        // ===============
+
+        /**
+         * 多次点击触发
+         * @param view        {@link View}
+         * @param clickNumber 多次点击次数
+         */
+        public abstract void doMultiClick(
+                View view,
+                int clickNumber
+        );
     }
 }
