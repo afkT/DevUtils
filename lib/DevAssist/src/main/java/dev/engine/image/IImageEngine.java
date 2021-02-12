@@ -89,41 +89,41 @@ public interface IImageEngine<Config extends IImageEngine.ImageConfig> {
 
     void display(Fragment fragment, ImageView imageView, DevSource source);
 
-    void display(Fragment fragment, ImageView imageView, String url, Config Config);
+    void display(Fragment fragment, ImageView imageView, String url, Config config);
 
-    void display(Fragment fragment, ImageView imageView, DevSource source, Config Config);
+    void display(Fragment fragment, ImageView imageView, DevSource source, Config config);
 
     <T> void display(Fragment fragment, ImageView imageView, String url, LoadListener<T> listener);
 
     <T> void display(Fragment fragment, ImageView imageView, DevSource source, LoadListener<T> listener);
 
-    <T> void display(Fragment fragment, ImageView imageView, String url, Config Config, LoadListener<T> listener);
+    <T> void display(Fragment fragment, ImageView imageView, String url, Config config, LoadListener<T> listener);
 
-    <T> void display(Fragment fragment, ImageView imageView, DevSource source, Config Config, LoadListener<T> listener);
+    <T> void display(Fragment fragment, ImageView imageView, DevSource source, Config config, LoadListener<T> listener);
 
     // ========
     // = load =
     // ========
 
-    <T> void loadImage(Context context, DevSource source, Config Config, LoadListener<T> listener);
+    <T> void loadImage(Context context, DevSource source, Config config, LoadListener<T> listener);
 
-    <T> void loadImage(Fragment fragment, DevSource source, Config Config, LoadListener<T> listener);
+    <T> void loadImage(Fragment fragment, DevSource source, Config config, LoadListener<T> listener);
 
-    <T> T loadImage(Context context, DevSource source, Config Config);
-
-    // =
-
-    void loadBitmap(Context context, DevSource source, Config Config, LoadListener<Bitmap> listener);
-
-    void loadBitmap(Fragment fragment, DevSource source, Config Config, LoadListener<Bitmap> listener);
-
-    Bitmap loadBitmap(Context context, DevSource source, Config Config);
+    <T> T loadImage(Context context, DevSource source, Config config);
 
     // =
 
-    void loadDrawable(Context context, DevSource source, Config Config, LoadListener<Drawable> listener);
+    void loadBitmap(Context context, DevSource source, Config config, LoadListener<Bitmap> listener);
 
-    void loadDrawable(Fragment fragment, DevSource source, Config Config, LoadListener<Drawable> listener);
+    void loadBitmap(Fragment fragment, DevSource source, Config config, LoadListener<Bitmap> listener);
 
-    Drawable loadDrawable(Context context, DevSource source, Config Config);
+    Bitmap loadBitmap(Context context, DevSource source, Config config);
+
+    // =
+
+    void loadDrawable(Context context, DevSource source, Config config, LoadListener<Drawable> listener);
+
+    void loadDrawable(Fragment fragment, DevSource source, Config config, LoadListener<Drawable> listener);
+
+    Drawable loadDrawable(Context context, DevSource source, Config config);
 }
