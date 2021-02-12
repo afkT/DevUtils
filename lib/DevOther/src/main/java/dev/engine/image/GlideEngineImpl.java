@@ -32,22 +32,30 @@ public class GlideEngineImpl
 
     @Override
     public void pause(Fragment fragment) {
-        Glide.with(fragment).pauseRequests();
+        if (fragment != null) {
+            Glide.with(fragment).pauseRequests();
+        }
     }
 
     @Override
     public void resume(Fragment fragment) {
-        Glide.with(fragment).resumeRequests();
+        if (fragment != null) {
+            Glide.with(fragment).resumeRequests();
+        }
     }
 
     @Override
     public void pause(Context context) {
-        Glide.with(context).pauseRequests();
+        if (context != null) {
+            Glide.with(context).pauseRequests();
+        }
     }
 
     @Override
     public void resume(Context context) {
-        Glide.with(context).resumeRequests();
+        if (context != null) {
+            Glide.with(context).resumeRequests();
+        }
     }
 
     // ===========
@@ -59,8 +67,10 @@ public class GlideEngineImpl
             Context context,
             DevSource source
     ) {
-        RequestManager requestManager = Glide.with(context);
-        setToRequest(requestManager, source).preload();
+        if (context != null && source != null) {
+            RequestManager requestManager = Glide.with(context);
+            setToRequest(requestManager, source).preload();
+        }
     }
 
     @Override
@@ -69,8 +79,10 @@ public class GlideEngineImpl
             DevSource source,
             GlideConfig config
     ) {
-        RequestManager requestManager = Glide.with(context);
-        setToRequest(requestManager, source).preload(config.width, config.height);
+        if (context != null && source != null && config != null) {
+            RequestManager requestManager = Glide.with(context);
+            setToRequest(requestManager, source).preload(config.width, config.height);
+        }
     }
 
     // =========
@@ -79,8 +91,8 @@ public class GlideEngineImpl
 
     @Override
     public void clear(View view) {
-        Context context = view.getContext();
-        if (context != null) {
+        if (view != null && view.getContext() != null) {
+            Context context = view.getContext();
             Glide.with(context).clear(view);
         }
     }
@@ -90,28 +102,34 @@ public class GlideEngineImpl
             Fragment fragment,
             View view
     ) {
-        Glide.with(fragment).clear(view);
+        if (fragment != null && view != null) {
+            Glide.with(fragment).clear(view);
+        }
     }
 
     @Override
     public void clearDiskCache(Context context) {
-        new Thread(() -> {
-            try {
-                // This method must be called on a background thread.
-                Glide.get(context).clearDiskCache();
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "clearDiskCache");
-            }
-        }).start();
+        if (context != null) {
+            new Thread(() -> {
+                try {
+                    // This method must be called on a background thread.
+                    Glide.get(context).clearDiskCache();
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "clearDiskCache");
+                }
+            }).start();
+        }
     }
 
     @Override
     public void clearMemoryCache(Context context) {
-        try {
-            // This method must be called on the main thread.
-            Glide.get(context).clearMemory(); // 必须在主线程上调用该方法
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "clearMemoryCache");
+        if (context != null) {
+            try {
+                // This method must be called on the main thread.
+                Glide.get(context).clearMemory(); // 必须在主线程上调用该方法
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "clearMemoryCache");
+            }
         }
     }
 
@@ -119,6 +137,21 @@ public class GlideEngineImpl
     public void clearAllCache(Context context) {
         clearDiskCache(context);
         clearMemoryCache(context);
+    }
+
+    // =========
+    // = other =
+    // =========
+
+    @Override
+    public void lowMemory(Context context) {
+        if (context != null) {
+            try {
+                Glide.get(context).onLowMemory();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "lowMemory");
+            }
+        }
     }
 
     // ===========
@@ -130,6 +163,7 @@ public class GlideEngineImpl
             ImageView imageView,
             String url
     ) {
+
     }
 
     @Override
@@ -158,10 +192,21 @@ public class GlideEngineImpl
 
     }
 
+    // =
+
     @Override
     public <T> void display(
             ImageView imageView,
             String url,
+            LoadListener<T> listener
+    ) {
+
+    }
+
+    @Override
+    public <T> void display(
+            ImageView imageView,
+            DevSource source,
             LoadListener<T> listener
     ) {
 
@@ -181,20 +226,13 @@ public class GlideEngineImpl
     public <T> void display(
             ImageView imageView,
             DevSource source,
-            LoadListener<T> listener
-    ) {
-
-    }
-
-    @Override
-    public <T> void display(
-            ImageView imageView,
-            DevSource source,
             GlideConfig config,
             LoadListener<T> listener
     ) {
 
     }
+
+    // =
 
     @Override
     public void display(
@@ -234,6 +272,8 @@ public class GlideEngineImpl
 
     }
 
+    // =
+
     @Override
     public <T> void display(
             Fragment fragment,
@@ -275,6 +315,10 @@ public class GlideEngineImpl
     ) {
 
     }
+
+    // ========
+    // = load =
+    // ========
 
     @Override
     public <T> void loadImage(
@@ -305,6 +349,8 @@ public class GlideEngineImpl
         return null;
     }
 
+    // =
+
     @Override
     public void loadBitmap(
             Context context,
@@ -333,6 +379,8 @@ public class GlideEngineImpl
     ) {
         return null;
     }
+
+    // =
 
     @Override
     public void loadDrawable(
@@ -368,49 +416,58 @@ public class GlideEngineImpl
     // ===========
 
     private boolean canFragmentLoadImage(Fragment fragment) {
+        if (fragment == null) return false;
         return fragment.isResumed() || fragment.isAdded() || fragment.isVisible();
     }
 
     private RequestBuilder<?> setToRequest(
-            RequestManager requestManager,
+            RequestManager manager,
             DevSource source
     ) {
-        if (source.mFile != null) {
-            return requestManager.load(source.mFile);
-        } else if (source.mUrl != null) {
-            return requestManager.load(source.mUrl);
-        } else if (source.mResource != 0) {
-            return requestManager.load(source.mResource);
-        } else if (source.mUri != null) {
-            return requestManager.load(source.mUri);
-        } else if (source.mBytes != null) {
-            return requestManager.load(source.mBytes);
-        } else {
-            throw new IllegalArgumentException("UnSupport source");
+        if (manager != null && source != null) {
+            if (source.mFile != null) {
+                return manager.load(source.mFile);
+            } else if (source.mUrl != null) {
+                return manager.load(source.mUrl);
+            } else if (source.mResource != 0) {
+                return manager.load(source.mResource);
+            } else if (source.mUri != null) {
+                return manager.load(source.mUri);
+            } else if (source.mBytes != null) {
+                return manager.load(source.mBytes);
+            } else {
+                throw new IllegalArgumentException("UnSupport source");
+            }
         }
+        return null;
     }
 
     private <T> RequestBuilder<T> setToRequest(
-            RequestBuilder<T> requestBuilder,
+            RequestBuilder<T> builder,
             DevSource source
     ) {
-        if (source.mFile != null) {
-            return requestBuilder.load(source.mFile);
-        } else if (source.mUrl != null) {
-            return requestBuilder.load(source.mUrl);
-        } else if (source.mResource != 0) {
-            return requestBuilder.load(source.mResource);
-        } else if (source.mUri != null) {
-            return requestBuilder.load(source.mUri);
-        } else if (source.mBytes != null) {
-            return requestBuilder.load(source.mBytes);
-        } else {
-            throw new IllegalArgumentException("UnSupport source");
+        if (builder != null && source != null) {
+            if (source.mFile != null) {
+                return builder.load(source.mFile);
+            } else if (source.mUrl != null) {
+                return builder.load(source.mUrl);
+            } else if (source.mResource != 0) {
+                return builder.load(source.mResource);
+            } else if (source.mUri != null) {
+                return builder.load(source.mUri);
+            } else if (source.mBytes != null) {
+                return builder.load(source.mBytes);
+            } else {
+                throw new IllegalArgumentException("UnSupport source");
+            }
         }
+        return null;
     }
 
     private RequestOptions buildRequestOptions(GlideConfig config) {
-        RequestOptions requestOptions = new RequestOptions();
-        return requestOptions;
+        RequestOptions options = new RequestOptions();
+        if (config != null) {
+        }
+        return options;
     }
 }

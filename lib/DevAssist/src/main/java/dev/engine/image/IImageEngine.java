@@ -57,6 +57,12 @@ public interface IImageEngine<Config extends IImageEngine.ImageConfig> {
 
     void clearAllCache(Context context);
 
+    // =========
+    // = other =
+    // =========
+
+    void lowMemory(Context context);
+
     // ===========
     // = display =
     // ===========
