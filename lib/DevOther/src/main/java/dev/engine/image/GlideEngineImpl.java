@@ -94,8 +94,7 @@ public class GlideEngineImpl
     @Override
     public void clear(View view) {
         if (view != null && view.getContext() != null) {
-            Context context = view.getContext();
-            Glide.with(context).clear(view);
+            Glide.with(view.getContext()).clear(view);
         }
     }
 
@@ -165,7 +164,7 @@ public class GlideEngineImpl
             ImageView imageView,
             String url
     ) {
-        display(imageView, DevSource.create(url));
+        display(imageView, DevSource.create(url), (GlideConfig) null);
     }
 
     @Override
@@ -173,6 +172,7 @@ public class GlideEngineImpl
             ImageView imageView,
             DevSource source
     ) {
+        display(imageView, source, (GlideConfig) null);
     }
 
     @Override
@@ -190,7 +190,14 @@ public class GlideEngineImpl
             DevSource source,
             GlideConfig config
     ) {
-
+        if (imageView != null && imageView.getContext() != null) {
+            RequestManager requestManager = Glide.with(imageView.getContext());
+            priDisplayToRequestBuilder(
+                    imageView,
+                    setToRequest(requestManager, source),
+                    config
+            );
+        }
     }
 
     // =
@@ -201,7 +208,7 @@ public class GlideEngineImpl
             String url,
             LoadListener<T> listener
     ) {
-        display(imageView, DevSource.create(url), listener);
+        display(imageView, DevSource.create(url), null, listener);
     }
 
     @Override
@@ -210,7 +217,7 @@ public class GlideEngineImpl
             DevSource source,
             LoadListener<T> listener
     ) {
-
+        display(imageView, source, null, listener);
     }
 
     @Override
@@ -241,7 +248,7 @@ public class GlideEngineImpl
             ImageView imageView,
             String url
     ) {
-        display(fragment, imageView, DevSource.create(url));
+        display(fragment, imageView, DevSource.create(url), (GlideConfig) null);
     }
 
     @Override
@@ -250,7 +257,7 @@ public class GlideEngineImpl
             ImageView imageView,
             DevSource source
     ) {
-
+        display(fragment, imageView, source, (GlideConfig) null);
     }
 
     @Override
@@ -282,7 +289,7 @@ public class GlideEngineImpl
             String url,
             LoadListener<T> listener
     ) {
-        display(fragment, imageView, DevSource.create(url), listener);
+        display(fragment, imageView, DevSource.create(url), null, listener);
     }
 
     @Override
@@ -292,7 +299,7 @@ public class GlideEngineImpl
             DevSource source,
             LoadListener<T> listener
     ) {
-
+        display(fragment, imageView, source, null, listener);
     }
 
     @Override
@@ -314,7 +321,7 @@ public class GlideEngineImpl
             GlideConfig config,
             LoadListener<T> listener
     ) {
-        
+
     }
 
     // ========
@@ -483,21 +490,23 @@ public class GlideEngineImpl
     }
 
     /**
-     * 通用显示方法
+     * 通过 {@link RequestBuilder} 与 {@link GlideConfig} 快捷显示方法
      * @param imageView {@link ImageView}
      * @param request   {@link RequestBuilder}
      * @param config    {@link GlideConfig}
      */
-    private void display(
+    private void priDisplayToRequestBuilder(
             ImageView imageView,
             RequestBuilder request,
             GlideConfig config
     ) {
-        if (imageView != null && request != null && config != null) {
+        if (imageView != null && request != null) {
             RequestOptions options = buildRequestOptions(config);
             request = request.apply(options);
-            if (config.getThumbnail() > 0F) {
-                request = request.thumbnail(config.getThumbnail());
+            if (config != null) {
+                if (config.getThumbnail() > 0F) {
+                    request = request.thumbnail(config.getThumbnail());
+                }
             }
             request.into(imageView);
         }
