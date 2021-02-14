@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 1.0.9 *(2021-02-15)*
+----------------------------
+
+* `[Add]` DevDataAdapter ( DataManager RecyclerView Adapter )
+
+* `[Add]` BitmapListener、DrawableListener
+
+* `[Update]` DevSource、IImageEngine
+
 Version 1.0.8 *(2021-02-08)*
 ----------------------------
 
