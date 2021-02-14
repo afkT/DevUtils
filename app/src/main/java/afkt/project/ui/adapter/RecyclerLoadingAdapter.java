@@ -6,10 +6,6 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.Nullable;
 
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 
@@ -17,8 +13,10 @@ import java.util.List;
 
 import afkt.project.R;
 import afkt.project.util.ViewAssistUtils;
+import dev.base.DevSource;
 import dev.base.widget.BaseImageView;
-import dev.other.GlideUtils;
+import dev.engine.image.DevImageEngine;
+import dev.engine.image.listener.DrawableListener;
 import dev.widget.assist.ViewAssist;
 
 /**
@@ -55,29 +53,32 @@ public class RecyclerLoadingAdapter
             String url
     ) {
         viewAssist.showIng();
-        GlideUtils.with().displayImageToDrawable(url, imageView, new RequestListener<Drawable>() {
-            @Override
-            public boolean onLoadFailed(
-                    @Nullable GlideException e,
-                    Object model,
-                    Target<Drawable> target,
-                    boolean isFirstResource
-            ) {
-                viewAssist.showFailed();
-                return false;
-            }
 
-            @Override
-            public boolean onResourceReady(
-                    Drawable resource,
-                    Object model,
-                    Target<Drawable> target,
-                    DataSource dataSource,
-                    boolean isFirstResource
-            ) {
-                viewAssist.showSuccess();
-                return false;
-            }
-        });
+        DevImageEngine.getEngine().display(
+                imageView,
+                url,
+                new DrawableListener() {
+                    @Override
+                    public void onStart(DevSource source) {
+
+                    }
+
+                    @Override
+                    public void onResponse(
+                            DevSource source,
+                            Drawable value
+                    ) {
+                        viewAssist.showSuccess();
+                    }
+
+                    @Override
+                    public void onFailure(
+                            DevSource source,
+                            Throwable throwable
+                    ) {
+                        viewAssist.showFailed();
+                    }
+                }
+        );
     }
 }

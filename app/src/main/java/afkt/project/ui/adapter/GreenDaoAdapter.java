@@ -14,6 +14,7 @@ import afkt.project.R;
 import afkt.project.database.green.module.note.bean.Note;
 import afkt.project.database.green.module.note.bean.NotePicture;
 import afkt.project.database.green.module.note.bean.NoteType;
+import dev.engine.image.DevImageEngine;
 import dev.other.GlideUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.ViewHelper;
@@ -60,8 +61,10 @@ public class GreenDaoAdapter
                 @NotNull BaseViewHolder helper,
                 NotePicture item
         ) {
-            GlideUtils.with().displayImage(item.getPicture(),
-                    helper.getView(R.id.vid_adbi_igview));
+            DevImageEngine.getEngine().display(
+                    helper.getView(R.id.vid_adbi_igview),
+                    item.getPicture()
+            );
         }
     }
 }

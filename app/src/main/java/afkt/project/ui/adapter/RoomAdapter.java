@@ -15,7 +15,7 @@ import afkt.project.database.room.module.note.bean.Note;
 import afkt.project.database.room.module.note.bean.NoteAndPicture;
 import afkt.project.database.room.module.note.bean.NotePicture;
 import afkt.project.database.room.module.note.bean.NoteType;
-import dev.other.GlideUtils;
+import dev.engine.image.DevImageEngine;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.ViewHelper;
 import dev.utils.common.DateUtils;
@@ -63,8 +63,10 @@ public class RoomAdapter
                 @NotNull BaseViewHolder helper,
                 NotePicture item
         ) {
-            GlideUtils.with().displayImage(item.picture,
-                    helper.getView(R.id.vid_adbi_igview));
+            DevImageEngine.getEngine().display(
+                    helper.getView(R.id.vid_adbi_igview),
+                    item.picture
+            );
         }
     }
 }

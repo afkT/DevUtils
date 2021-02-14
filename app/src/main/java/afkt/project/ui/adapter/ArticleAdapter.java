@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import afkt.project.R;
 import afkt.project.model.bean.ArticleBean;
 import afkt.project.util.ProjectUtils;
-import dev.other.GlideUtils;
+import dev.engine.image.DevImageEngine;
 import dev.utils.app.AppUtils;
 import dev.utils.app.ListenerUtils;
 import dev.utils.common.NumberUtils;
@@ -42,8 +42,11 @@ public class ArticleAdapter
         // 时间
         helper.setText(R.id.vid_aa_time_tv, StringUtils.checkValue(item.niceShareDate, item.niceDate));
         // 随机图片
-        GlideUtils.with().displayImage("https://picsum.photos/2" + NumberUtils.addZero(position),
-                helper.getView(R.id.vid_aa_pic_igview), ProjectUtils.getRoundOptions());
+        DevImageEngine.getEngine().display(
+                helper.getView(R.id.vid_aa_pic_igview),
+                "https://picsum.photos/2" + NumberUtils.addZero(position),
+                ProjectUtils.getRoundConfig3()
+        );
         // 绑定点击事件
         ListenerUtils.setOnClicks(new View.OnClickListener() {
             @Override

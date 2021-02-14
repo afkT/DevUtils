@@ -16,7 +16,7 @@ import afkt.project.util.ProjectUtils;
 import dev.base.multiselect.DevMultiSelectMap;
 import dev.base.multiselect.IMultiSelectEdit;
 import dev.base.widget.BaseImageView;
-import dev.other.GlideUtils;
+import dev.engine.image.DevImageEngine;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.ViewHelper;
 import dev.utils.common.BigDecimalUtils;
@@ -57,7 +57,11 @@ public class MultiSelectAdapter
         helper.setText(R.id.vid_ams_price_tv,
                 "￥" + BigDecimalUtils.round(item.commodityPrice, 2));
         // 商品图片
-        GlideUtils.with().displayImage(item.commodityPicture, helper.getView(R.id.vid_ams_pic_igview), ProjectUtils.getRoundOptions());
+        DevImageEngine.getEngine().display(
+                helper.getView(R.id.vid_ams_pic_igview),
+                item.commodityPicture,
+                ProjectUtils.getRoundConfig3()
+        );
 
         // ===========
         // = 多选处理 =

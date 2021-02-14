@@ -17,7 +17,7 @@ import afkt.project.model.item.EvaluateItem;
 import afkt.project.util.ProjectUtils;
 import dev.assist.EditTextWatcherAssist;
 import dev.base.widget.BaseEditText;
-import dev.other.GlideUtils;
+import dev.engine.image.DevImageEngine;
 import dev.utils.app.ViewUtils;
 import dev.utils.common.BigDecimalUtils;
 import dev.utils.common.StringUtils;
@@ -58,8 +58,11 @@ public class EditsAdapter
         helper.setText(R.id.vid_aie_price_tv,
                 "￥" + BigDecimalUtils.round(commodityEvaluateBean.commodityPrice, 2));
         // 商品图片
-        GlideUtils.with().displayImage(commodityEvaluateBean.commodityPicture,
-                helper.getView(R.id.vid_aie_pic_igview), ProjectUtils.getRoundOptions());
+        DevImageEngine.getEngine().display(
+                helper.getView(R.id.vid_aie_pic_igview),
+                commodityEvaluateBean.commodityPicture,
+                ProjectUtils.getRoundConfig3()
+        );
 
         // 评星等级
         RatingBar vid_aie_ratingbar = helper.getView(R.id.vid_aie_ratingbar);

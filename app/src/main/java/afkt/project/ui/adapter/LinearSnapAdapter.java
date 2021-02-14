@@ -11,7 +11,7 @@ import java.util.List;
 import afkt.project.R;
 import afkt.project.model.bean.ItemBean;
 import afkt.project.util.ProjectUtils;
-import dev.other.GlideUtils;
+import dev.engine.image.DevImageEngine;
 import dev.utils.app.helper.ViewHelper;
 
 /**
@@ -25,8 +25,6 @@ public class LinearSnapAdapter
 
     public LinearSnapAdapter(@Nullable List<ItemBean> data) {
         super(R.layout.adapter_linear_snap, data);
-
-        roundOptions = ProjectUtils.getRoundOptions10();
     }
 
     @Override
@@ -38,7 +36,10 @@ public class LinearSnapAdapter
                 .setText(helper.getView(R.id.vid_als_title_tv), item.title)
                 .setText(helper.getView(R.id.vid_als_subtitle_tv), item.subtitle)
                 .setText(helper.getView(R.id.vid_als_time_tv), item.timeFormat);
-        GlideUtils.with().displayImage(item.imageUrl, helper.getView(R.id.vid_als_igview),
-                roundOptions);
+        DevImageEngine.getEngine().display(
+                helper.getView(R.id.vid_als_igview),
+                item.imageUrl,
+                ProjectUtils.getRoundConfig10()
+        );
     }
 }

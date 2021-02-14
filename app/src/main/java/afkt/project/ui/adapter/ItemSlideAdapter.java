@@ -10,7 +10,7 @@ import java.util.List;
 import afkt.project.R;
 import afkt.project.model.bean.CommodityEvaluateBean;
 import afkt.project.util.ProjectUtils;
-import dev.other.GlideUtils;
+import dev.engine.image.DevImageEngine;
 import dev.utils.app.ViewUtils;
 import dev.utils.common.BigDecimalUtils;
 
@@ -45,6 +45,10 @@ public class ItemSlideAdapter
         helper.setText(R.id.vid_ams_price_tv,
                 "￥" + BigDecimalUtils.round(item.commodityPrice, 2));
         // 商品图片
-        GlideUtils.with().displayImage(item.commodityPicture, helper.getView(R.id.vid_ams_pic_igview), ProjectUtils.getRoundOptions());
+        DevImageEngine.getEngine().display(
+                helper.getView(R.id.vid_ams_pic_igview),
+                item.commodityPicture,
+                ProjectUtils.getRoundConfig3()
+        );
     }
 }

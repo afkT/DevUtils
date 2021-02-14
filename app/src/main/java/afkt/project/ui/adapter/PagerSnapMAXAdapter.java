@@ -8,15 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.request.RequestOptions;
-
 import java.util.List;
 
 import afkt.project.R;
 import afkt.project.databinding.AdapterPagerSnapBinding;
 import afkt.project.model.bean.ItemBean;
 import afkt.project.util.ProjectUtils;
-import dev.other.GlideUtils;
+import dev.engine.image.DevImageEngine;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.ViewHelper;
 
@@ -29,7 +27,6 @@ public class PagerSnapMAXAdapter
 
     private final Context        context;
     private final List<ItemBean> data;
-    private final RequestOptions roundOptions;
 
     public PagerSnapMAXAdapter(
             Context context,
@@ -37,7 +34,6 @@ public class PagerSnapMAXAdapter
     ) {
         this.context = context;
         this.data = data;
-        this.roundOptions = ProjectUtils.getRoundOptions10();
     }
 
     @Override
@@ -75,8 +71,11 @@ public class PagerSnapMAXAdapter
                     .setText(itemHolder.binding.vidAgsSubtitleTv, itemBean.subtitle)
                     .setText(itemHolder.binding.vidAgsTimeTv, itemBean.timeFormat)
                     .setText(itemHolder.binding.vidAgsIndexTv, posIndex);
-            GlideUtils.with().displayImage(itemBean.imageUrl, itemHolder.binding.vidAgsIgview,
-                    roundOptions);
+            DevImageEngine.getEngine().display(
+                    itemHolder.binding.vidAgsIgview,
+                    itemBean.imageUrl,
+                    ProjectUtils.getRoundConfig10()
+            );
         }
     }
 

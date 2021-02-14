@@ -8,15 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.request.RequestOptions;
-
 import java.util.List;
 
 import afkt.project.R;
 import afkt.project.databinding.AdapterLinearSnapBinding;
 import afkt.project.model.bean.ItemBean;
 import afkt.project.util.ProjectUtils;
-import dev.other.GlideUtils;
+import dev.engine.image.DevImageEngine;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.ViewHelper;
 
@@ -29,7 +27,6 @@ public class LinearSnapMAXAdapter
 
     Context        context;
     List<ItemBean> data;
-    RequestOptions roundOptions;
 
     public LinearSnapMAXAdapter(
             Context context,
@@ -37,7 +34,6 @@ public class LinearSnapMAXAdapter
     ) {
         this.context = context;
         this.data = data;
-        this.roundOptions = ProjectUtils.getRoundOptions10();
     }
 
     @Override
@@ -75,8 +71,11 @@ public class LinearSnapMAXAdapter
                     .setText(itemHolder.binding.vidAlsSubtitleTv, itemBean.subtitle)
                     .setText(itemHolder.binding.vidAlsTimeTv, itemBean.timeFormat)
                     .setText(itemHolder.binding.vidAlsIndexTv, posIndex);
-            GlideUtils.with().displayImage(itemBean.imageUrl, itemHolder.binding.vidAlsIgview,
-                    roundOptions);
+            DevImageEngine.getEngine().display(
+                    itemHolder.binding.vidAlsIgview,
+                    itemBean.imageUrl,
+                    ProjectUtils.getRoundConfig10()
+            );
         }
     }
 

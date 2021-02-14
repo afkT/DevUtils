@@ -3,11 +3,9 @@ package afkt.project.util;
 import android.graphics.Color;
 import android.graphics.Rect;
 
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
-
 import afkt.project.R;
-import dev.other.GlideUtils;
+import dev.base.DevVariable;
+import dev.engine.image.GlideConfig;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.SizeUtils;
 import dev.widget.ui.ScanShapeView;
@@ -21,33 +19,79 @@ public final class ProjectUtils {
     private ProjectUtils() {
     }
 
-    // 圆角 RequestOptions
-    private static RequestOptions sRoundOptions;
+    // ==============
+    // = GlideUtils =
+    // ==============
+
+//    // 圆角 RequestOptions
+//    private static RequestOptions sRoundOptions;
+//
+//    /**
+//     * 获取圆角 RequestOptions
+//     * @return 圆角 {@link RequestOptions}
+//     */
+//    public static RequestOptions getRoundConfig3() {
+//        if (sRoundOptions == null) {
+//            // 获取默认 RequestOptions
+//            sRoundOptions = GlideUtils.defaultOptions();
+//            // 设置圆角, 使用 RoundedCorners 图片不会闪烁
+//            sRoundOptions.transform(new RoundedCorners(ResourceUtils.getDimensionInt(R.dimen.un_dp_3)));
+//        }
+//        return sRoundOptions;
+//    }
+//
+//    /**
+//     * 获取圆角 RequestOptions
+//     * @return 圆角 {@link RequestOptions}
+//     */
+//    public static RequestOptions getRoundConfig10() {
+//        // 获取默认 RequestOptions
+//        RequestOptions roundOptions = GlideUtils.defaultOptions();
+//        // 设置圆角, 使用 RoundedCorners 图片不会闪烁
+//        return roundOptions.transform(new RoundedCorners(ResourceUtils.getDimensionInt(R.dimen.un_dp_10)));
+//    }
+
+    // ==================
+    // = DevImageEngine =
+    // ==================
+
+    // GlideConfig 配置变量
+    private static DevVariable<Integer, GlideConfig> sConfigVariable = new DevVariable<>();
 
     /**
-     * 获取圆角 RequestOptions
-     * @return 圆角 {@link RequestOptions}
+     * 获取圆角 GlideConfig
+     * @return 圆角 {@link GlideConfig}
      */
-    public static RequestOptions getRoundOptions() {
-        if (sRoundOptions == null) {
-            // 获取默认 RequestOptions
-            sRoundOptions = GlideUtils.defaultOptions();
-            // 设置圆角, 使用 RoundedCorners 图片不会闪烁
-            sRoundOptions.transform(new RoundedCorners(ResourceUtils.getDimensionInt(R.dimen.un_dp_3)));
-        }
-        return sRoundOptions;
+    public static GlideConfig getRoundConfig3() {
+        return priGetRoundConfig(3);
     }
 
     /**
-     * 获取圆角 RequestOptions
-     * @return 圆角 {@link RequestOptions}
+     * 获取圆角 GlideConfig
+     * @return 圆角 {@link GlideConfig}
      */
-    public static RequestOptions getRoundOptions10() {
-        // 获取默认 RequestOptions
-        RequestOptions roundOptions = GlideUtils.defaultOptions();
-        // 设置圆角, 使用 RoundedCorners 图片不会闪烁
-        return roundOptions.transform(new RoundedCorners(ResourceUtils.getDimensionInt(R.dimen.un_dp_10)));
+    public static GlideConfig getRoundConfig10() {
+        return priGetRoundConfig(10);
     }
+
+    /**
+     * 获取圆角 GlideConfig
+     * @param roundDP 圆角 dp 值
+     * @return {@link GlideConfig}
+     */
+    public static GlideConfig priGetRoundConfig(int roundDP) {
+        GlideConfig config = sConfigVariable.getVariableValue(roundDP);
+        if (config != null) return config;
+        config = GlideConfig.create();
+        config.setRoundedCornersRadius(SizeUtils.dipConvertPx(roundDP));
+        config.setTransform(GlideConfig.TRANSFORM_ROUNDED_CORNERS);
+        sConfigVariable.putVariable(roundDP, config);
+        return config;
+    }
+
+    // =================
+    // = ScanShapeView =
+    // =================
 
     /**
      * 刷新类型处理
