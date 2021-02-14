@@ -5,6 +5,10 @@
 ```
 - dev                                                 | 根目录
    - assist                                           | 常用辅助类封装
+   - engine                                           | 兼容 Engine
+      - image                                         | Image Engine
+      - json                                          | JSON Engine
+      - log                                           | Log Engine
    - other                                            | 第三方库封装工具类
       - okgo                                          | OkGo 网络请求
       - picture                                       | PictureSelector 图片选择库
@@ -26,6 +30,10 @@
 
 - dev                                                 | 根目录
    - [assist](#devassist)                             | 常用辅助类封装
+   - [engine](#devengine)                             | 兼容 Engine
+      - [image](#devengineimage)                      | Image Engine
+      - [json](#devenginejson)                        | JSON Engine
+      - [log](#devenginelog)                          | Log Engine
    - [other](#devother)                               | 第三方库封装工具类
       - [okgo](#devotherokgo)                         | OkGo 网络请求
       - [picture](#devotherpicture)                   | PictureSelector 图片选择库
@@ -160,6 +168,101 @@
 | getDatabasePath | 获取数据库缓存路径 |
 | setDatabasePath | 设置数据库缓存路径 |
 | onApply | 应用配置通知方法 |
+
+
+## <span id="devengine">**`dev.engine`**</span>
+
+
+## <span id="devengineimage">**`dev.engine.image`**</span>
+
+
+* **Glide Image Config ->** [GlideConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/image/GlideConfig.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| create | create |
+| clone | 克隆配置信息 |
+| isCacheDisk | isCacheDisk |
+| setCacheDisk | setCacheDisk |
+| isCacheMemory | isCacheMemory |
+| setCacheMemory | setCacheMemory |
+| getScaleType | getScaleType |
+| setScaleType | setScaleType |
+| getTransform | getTransform |
+| setTransform | setTransform |
+| getRoundedCornersRadius | getRoundedCornersRadius |
+| setRoundedCornersRadius | setRoundedCornersRadius |
+| getErrorPlaceholder | getErrorPlaceholder |
+| setErrorPlaceholder | setErrorPlaceholder |
+| getLoadingPlaceholder | getLoadingPlaceholder |
+| setLoadingPlaceholder | setLoadingPlaceholder |
+| getErrorDrawable | getErrorDrawable |
+| setErrorDrawable | setErrorDrawable |
+| getLoadingDrawable | getLoadingDrawable |
+| setLoadingDrawable | setLoadingDrawable |
+| getWidth | getWidth |
+| getHeight | getHeight |
+| setSize | setSize |
+| getThumbnail | getThumbnail |
+| setThumbnail | setThumbnail |
+
+
+* **Glide Image Engine 实现 ->** [GlideEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/image/GlideEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| pause | pause |
+| resume | resume |
+| preload | preload |
+| clear | clear |
+| clearDiskCache | clearDiskCache |
+| clearMemoryCache | clearMemoryCache |
+| clearAllCache | clearAllCache |
+| lowMemory | lowMemory |
+| display | display |
+| loadImage | loadImage |
+| loadBitmap | loadBitmap |
+| loadDrawable | loadDrawable |
+
+
+## <span id="devenginejson">**`dev.engine.json`**</span>
+
+
+* **Gson JSON Engine 实现 ->** [GsonEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/json/GsonEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| toJson | toJson |
+| fromJson | fromJson |
+| isJSON | isJSON |
+| isJSONObject | isJSONObject |
+| isJSONArray | isJSONArray |
+| toJsonIndent | toJsonIndent |
+
+
+## <span id="devenginelog">**`dev.engine.log`**</span>
+
+
+* **DevLogger Log Engine 实现 ->** [LoggerEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/log/LoggerEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| d | d |
+| e | e |
+| w | w |
+| i | i |
+| v | v |
+| wtf | wtf |
+| json | json |
+| xml | xml |
+| dTag | dTag |
+| eTag | eTag |
+| wTag | wTag |
+| iTag | iTag |
+| vTag | vTag |
+| wtfTag | wtfTag |
+| jsonTag | jsonTag |
+| xmlTag | xmlTag |
 
 
 ## <span id="devother">**`dev.other`**</span>

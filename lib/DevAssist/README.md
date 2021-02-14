@@ -2,13 +2,14 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevAssist:1.0.8'
+implementation 'com.afkt:DevAssist:1.0.9'
 ```
 
 ## 目录结构
 
 ```
 - dev                                                 | 根目录
+   - adapter                                          | 适配器相关
    - assist                                           | 快捷功能辅助类
    - base                                             | 实体类基类相关
       - data                                          | 数据操作
@@ -20,6 +21,7 @@ implementation 'com.afkt:DevAssist:1.0.8'
    - engine                                           | 兼容 Engine
       - http                                          | Http Engine
       - image                                         | Image Engine
+         - listener                                   | 图片加载监听事件
       - json                                          | JSON Engine
       - log                                           | Log Engine
 ```
@@ -35,6 +37,7 @@ implementation 'com.afkt:DevAssist:1.0.8'
 
 
 - dev                                                 | 根目录
+   - [adapter](#devadapter)                           | 适配器相关
    - [assist](#devassist)                             | 快捷功能辅助类
    - [base](#devbase)                                 | 实体类基类相关
       - [data](#devbasedata)                          | 数据操作
@@ -46,6 +49,7 @@ implementation 'com.afkt:DevAssist:1.0.8'
    - [engine](#devengine)                             | 兼容 Engine
       - [http](#devenginehttp)                        | Http Engine
       - [image](#devengineimage)                      | Image Engine
+         - [listener](#devengineimagelistener)        | 图片加载监听事件
       - [json](#devenginejson)                        | JSON Engine
       - [log](#devenginelog)                          | Log Engine
 
@@ -63,6 +67,48 @@ implementation 'com.afkt:DevAssist:1.0.8'
 | getDevAssistVersion | 获取 DevAssist 版本 |
 | getDevJavaVersionCode | 获取 DevJava 版本号 |
 | getDevJavaVersion | 获取 DevJava 版本 |
+
+
+## <span id="devadapter">**`dev.adapter`**</span>
+
+
+* **DataManager RecyclerView Adapter ->** [DevDataAdapter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/adapter/DevDataAdapter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getItemCount | getItemCount |
+| getDataList | getDataList |
+| getDataArrayList | getDataArrayList |
+| getDataSize | getDataSize |
+| getDataItem | getDataItem |
+| getDataItemPosition | getDataItemPosition |
+| getFirstData | getFirstData |
+| getLastData | getLastData |
+| getLastPosition | getLastPosition |
+| isDataEmpty | isDataEmpty |
+| isDataNotEmpty | isDataNotEmpty |
+| isFirstPosition | isFirstPosition |
+| isLastPosition | isLastPosition |
+| equalsFirstData | equalsFirstData |
+| equalsLastData | equalsLastData |
+| equalsPositionData | equalsPositionData |
+| addData | addData |
+| addDataAt | addDataAt |
+| addDatas | addDatas |
+| addDatasAt | addDatasAt |
+| addDatasChecked | addDatasChecked |
+| addDatasCheckedAt | addDatasCheckedAt |
+| removeData | removeData |
+| removeDataAt | removeDataAt |
+| removeDatas | removeDatas |
+| replaceData | replaceData |
+| replaceDataAt | replaceDataAt |
+| swipePosition | swipePosition |
+| contains | contains |
+| clearDataList | clearDataList |
+| setDataList | setDataList |
+| notifyDataChanged | notifyDataChanged |
+| notifyElementChanged | notifyElementChanged |
 
 
 ## <span id="devassist">**`dev.assist`**</span>
@@ -313,6 +359,12 @@ implementation 'com.afkt:DevAssist:1.0.8'
 | :- | :- |
 | create | create |
 | createWithPath | createWithPath |
+| isUrl | isUrl |
+| isUri | isUri |
+| isBytes | isBytes |
+| isResource | isResource |
+| isFile | isFile |
+| isSource | isSource |
 
 
 * **变量基类 ( 方便判断处理 ) ->** [DevVariable.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/base/DevVariable.java)
@@ -681,6 +733,7 @@ implementation 'com.afkt:DevAssist:1.0.8'
 | clearDiskCache | clearDiskCache |
 | clearMemoryCache | clearMemoryCache |
 | clearAllCache | clearAllCache |
+| lowMemory | lowMemory |
 | display | display |
 | loadImage | loadImage |
 | loadBitmap | loadBitmap |
@@ -695,6 +748,23 @@ implementation 'com.afkt:DevAssist:1.0.8'
 | onStart | 开始加载 |
 | onResponse | 响应回调 |
 | onFailure | 失败回调 |
+
+
+## <span id="devengineimagelistener">**`dev.engine.image.listener`**</span>
+
+
+* **Bitmap 加载事件 ->** [BitmapListener.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/image/listener/BitmapListener.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getTranscodeType | getTranscodeType |
+
+
+* **Drawable 加载事件 ->** [DrawableListener.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/image/listener/DrawableListener.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getTranscodeType | getTranscodeType |
 
 
 ## <span id="devenginejson">**`dev.engine.json`**</span>

@@ -320,8 +320,8 @@ implementation 'com.afkt:DevWidgetX:1.0.7'
 | visible | visible |
 | register | 注册 type |
 | unregister | 取消注册 type |
-| getTag | getTag |
-| setTag | setTag |
+| getAssistTag | getAssistTag |
+| setAssistTag | setAssistTag |
 | getData | getData |
 | setData | setData |
 | getView | getView |
@@ -559,3 +559,16 @@ implementation 'com.afkt:DevWidgetX:1.0.7'
 | getRadiusRightBottom | 获取右下圆角值 |
 | onSaveInstanceState | onSaveInstanceState |
 | onRestoreInstanceState | onRestoreInstanceState |
+
+
+* **DevWidget 属性封装处理类 ->** [WidgetAttrs.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/utils/WidgetAttrs.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getMaxWidth | 获取 View 最大显示宽度 |
+| setMaxWidth | 设置 View 最大显示宽度 |
+| getMaxHeight | 获取 View 最大显示高度 |
+| setMaxHeight | 设置 View 最大显示高度 |
+| isSlide | 是否允许滑动 |
+| setSlide | 设置是否允许滑动 |
+| toggleSlide | 切换滑动控制状态 |
