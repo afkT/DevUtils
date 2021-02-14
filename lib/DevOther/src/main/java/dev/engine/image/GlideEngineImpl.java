@@ -11,6 +11,11 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.ImageViewTarget;
@@ -613,6 +618,78 @@ public class GlideEngineImpl
     private RequestOptions buildRequestOptions(GlideConfig config) {
         RequestOptions options = new RequestOptions();
         if (config != null) {
+
+            // =============
+            // = 初始化配置 =
+            // =============
+
+            // DiskCache
+            if (config.isCacheDisk()) {
+                options = options.diskCacheStrategy(DiskCacheStrategy.ALL);
+            } else {
+                options = options.diskCacheStrategy(DiskCacheStrategy.NONE);
+            }
+
+            // MemoryCache
+            if (config.isCacheMemory()) {
+                options = options.skipMemoryCache(false);
+            } else {
+                options = options.skipMemoryCache(true);
+            }
+
+            // scale type
+            if (config.getScaleType() == GlideConfig.SCALE_CENTER_CROP) {
+                options = options.centerCrop();
+            } else if (config.getScaleType() == GlideConfig.SCALE_FIT_CENTER) {
+                options = options.fitCenter();
+            }
+
+            // transform
+            if (config.getTransform() == GlideConfig.TRANSFORM_CIRCLE) {
+                options = options.circleCrop();
+            } else if (config.getTransform() == GlideConfig.TRANSFORM_ROUNDED_CORNERS) {
+                if (config.getScaleType() == GlideConfig.SCALE_NONE) {
+                    options = options.transform(new RoundedCorners(config.getRoundedCornersRadius()));
+                } else if (config.getScaleType() == GlideConfig.SCALE_CENTER_CROP) {
+                    options = options.transform(
+                            new MultiTransformation(
+                                    new CenterCrop(),
+                                    new RoundedCorners(config.getRoundedCornersRadius())
+                            )
+                    );
+                } else if (config.getScaleType() == GlideConfig.SCALE_FIT_CENTER) {
+                    options = options.transform(
+                            new MultiTransformation(
+                                    new FitCenter(),
+                                    new RoundedCorners(config.getRoundedCornersRadius())
+                            )
+                    );
+                }
+            } else if (config.getTransform() == GlideConfig.TRANSFORM_NONE) {
+                options = options.dontTransform(); // 不做渐入渐出转换
+            }
+
+            // placeholder
+            if (config.getErrorPlaceholder() != GlideConfig.NO_PLACE_HOLDER) {
+                options = options.error(config.getErrorPlaceholder());
+            }
+
+            if (config.getErrorDrawable() != null) {
+                options = options.error(config.getErrorDrawable());
+            }
+
+            if (config.getLoadingPlaceholder() != GlideConfig.NO_PLACE_HOLDER) {
+                options = options.placeholder(config.getLoadingPlaceholder());
+            }
+
+            if (config.getLoadingDrawable() != null) {
+                options = options.placeholder(config.getLoadingDrawable());
+            }
+
+            // width、height
+            if (config.getWidth() > 0 && config.getHeight() > 0) {
+                options = options.override(config.getWidth(), config.getHeight());
+            }
         }
         return options;
     }
