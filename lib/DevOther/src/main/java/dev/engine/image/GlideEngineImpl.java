@@ -12,9 +12,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.ImageViewTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import dev.base.DevSource;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.image.ImageUtils;
 
 /**
  * detail: Glide Image Engine 实现
@@ -237,7 +240,16 @@ public class GlideEngineImpl
             GlideConfig config,
             LoadListener<T> listener
     ) {
-
+        if (imageView != null && imageView.getContext() != null) {
+            RequestManager requestManager = Glide.with(imageView.getContext());
+            priDisplayToRequestBuilder(
+                    imageView,
+                    setToRequest(requestManager, source),
+                    config,
+                    source,
+                    listener
+            );
+        }
     }
 
     // =
@@ -277,7 +289,16 @@ public class GlideEngineImpl
             DevSource source,
             GlideConfig config
     ) {
-
+        if (fragment != null && imageView != null) {
+            if (canFragmentLoadImage(fragment)) {
+                RequestManager requestManager = Glide.with(fragment);
+                priDisplayToRequestBuilder(
+                        imageView,
+                        setToRequest(requestManager, source),
+                        config
+                );
+            }
+        }
     }
 
     // =
@@ -321,7 +342,18 @@ public class GlideEngineImpl
             GlideConfig config,
             LoadListener<T> listener
     ) {
-
+        if (fragment != null && imageView != null) {
+            if (canFragmentLoadImage(fragment)) {
+                RequestManager requestManager = Glide.with(fragment);
+                priDisplayToRequestBuilder(
+                        imageView,
+                        setToRequest(requestManager, source),
+                        config,
+                        source,
+                        listener
+                );
+            }
+        }
     }
 
     // ========
@@ -513,6 +545,43 @@ public class GlideEngineImpl
     }
 
     /**
+     * 通过 {@link RequestBuilder} 与 {@link GlideConfig} 快捷显示方法
+     * @param imageView {@link ImageView}
+     * @param request   {@link RequestBuilder}
+     * @param config    {@link GlideConfig}
+     * @param source    {@link DevSource}
+     * @param listener  {@link LoadListener}
+     */
+    private <T> void priDisplayToRequestBuilder(
+            ImageView imageView,
+            RequestBuilder request,
+            GlideConfig config,
+            DevSource source,
+            LoadListener<T> listener
+    ) {
+        if (imageView != null && request != null
+                && listener != null && listener.getTranscodeType() != null) {
+            RequestOptions options = buildRequestOptions(config);
+            request = request.apply(options);
+            if (config != null) {
+                if (config.getThumbnail() > 0F) {
+                    request = request.thumbnail(config.getThumbnail());
+                }
+            }
+            Class type = listener.getTranscodeType();
+            if (type == Drawable.class) {
+                request.into(new InnerDrawableViewTarget(
+                        imageView, source, (LoadListener<Drawable>) listener
+                ));
+            } else if (type == Bitmap.class) {
+                request.into(new InnerBitmapViewTarget(
+                        imageView, source, (LoadListener<Bitmap>) listener
+                ));
+            }
+        }
+    }
+
+    /**
      * 通过 {@link GlideConfig} 构建 {@link RequestOptions}
      * @param config {@link GlideConfig}
      * @return {@link RequestOptions}
@@ -522,5 +591,95 @@ public class GlideEngineImpl
         if (config != null) {
         }
         return options;
+    }
+
+    // ===============
+    // = 内部加载事件 =
+    // ===============
+
+    private static class InnerDrawableViewTarget
+            extends ImageViewTarget<Drawable> {
+
+        private final DevSource              mSource;
+        private final LoadListener<Drawable> mListener;
+
+        InnerDrawableViewTarget(
+                final ImageView view,
+                final DevSource source,
+                final LoadListener<Drawable> listener
+        ) {
+            super(view);
+            mSource = source;
+            mListener = listener;
+        }
+
+        @Override
+        protected void setResource(Drawable resource) {
+            getView().setImageDrawable(resource);
+        }
+
+        @Override
+        public void onResourceReady(
+                Drawable resource,
+                Transition<? super Drawable> transition
+        ) {
+            super.onResourceReady(resource, transition);
+            mListener.onResponse(mSource, resource);
+        }
+
+        @Override
+        public void onLoadStarted(Drawable placeholder) {
+            mListener.onStart(mSource);
+            super.onLoadStarted(placeholder);
+        }
+
+        @Override
+        public void onLoadFailed(Drawable errorDrawable) {
+            super.onLoadFailed(errorDrawable);
+            mListener.onFailure(mSource, new Exception("Load Failed"));
+        }
+    }
+
+    private static class InnerBitmapViewTarget
+            extends ImageViewTarget<Drawable> {
+
+        private final DevSource            mSource;
+        private final LoadListener<Bitmap> mListener;
+
+        InnerBitmapViewTarget(
+                final ImageView view,
+                final DevSource source,
+                final LoadListener<Bitmap> listener
+        ) {
+            super(view);
+            mSource = source;
+            mListener = listener;
+        }
+
+        @Override
+        protected void setResource(Drawable resource) {
+            getView().setImageDrawable(resource);
+        }
+
+        @Override
+        public void onResourceReady(
+                Drawable resource,
+                Transition<? super Drawable> transition
+        ) {
+            super.onResourceReady(resource, transition);
+            mListener.onResponse(mSource, ImageUtils.drawableToBitmap(resource));
+        }
+
+        @Override
+        public void onLoadStarted(Drawable placeholder) {
+            mListener.onStart(mSource);
+            super.onLoadStarted(placeholder);
+        }
+
+        @Override
+        public void onLoadFailed(Drawable errorDrawable) {
+            super.onLoadFailed(errorDrawable);
+            mListener.onFailure(mSource, new Exception("Load Failed"));
+        }
     }
 }
