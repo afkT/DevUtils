@@ -15,7 +15,6 @@ import afkt.project.database.green.module.note.bean.Note;
 import afkt.project.database.green.module.note.bean.NotePicture;
 import afkt.project.database.green.module.note.bean.NoteType;
 import dev.engine.image.DevImageEngine;
-import dev.other.GlideUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.ViewHelper;
 import dev.utils.common.DateUtils;

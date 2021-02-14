@@ -21,7 +21,6 @@ import dev.engine.json.GsonEngineImpl;
 import dev.engine.log.DevLogEngine;
 import dev.engine.log.LoggerEngineImpl;
 import dev.environment.DevEnvironment;
-import dev.other.GlideUtils;
 import dev.other.MMKVUtils;
 import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
@@ -171,8 +170,6 @@ public class BaseApplication
         FileRecordUtils.setInsertInfo(DeviceUtils.getAppDeviceInfo());
         // 初始化 MMKV
         MMKVUtils.init(this);
-        // 初始化 Glide
-        GlideUtils.init(this);
         // 初始化状态布局配置
         initStateLayout();
         // 初始化异常捕获处理
