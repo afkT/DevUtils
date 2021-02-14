@@ -109,7 +109,7 @@ public interface IImageEngine<Config extends IImageEngine.ImageConfig> {
 
     <T> void loadImage(Fragment fragment, DevSource source, Config config, LoadListener<T> listener);
 
-    <T> T loadImage(Context context, DevSource source, Config config);
+    <T> T loadImage(Context context, DevSource source, Config config, Class type);
 
     // =
 

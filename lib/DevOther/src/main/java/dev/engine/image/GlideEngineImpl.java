@@ -384,8 +384,53 @@ public class GlideEngineImpl
     public <T> T loadImage(
             Context context,
             DevSource source,
-            GlideConfig config
+            GlideConfig config,
+            Class type
     ) {
+        if (context != null && source != null && type != null) {
+            RequestManager requestManager = Glide.with(context);
+            if (type == Drawable.class) {
+                RequestBuilder<Drawable> request = setToRequest(
+                        requestManager.asDrawable(), source
+                );
+                buildRequest(request, config);
+                if (config != null && config.getWidth() > 0 && config.getHeight() > 0) {
+                    try {
+                        return (T) request.submit(
+                                config.getWidth(), config.getHeight()
+                        ).get();
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "loadImage Drawable");
+                    }
+                } else {
+                    try {
+                        return (T) request.submit().get();
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "loadImage Drawable");
+                    }
+                }
+            } else if (type == Bitmap.class) {
+                RequestBuilder<Bitmap> request = setToRequest(
+                        requestManager.asBitmap(), source
+                );
+                buildRequest(request, config);
+                if (config != null && config.getWidth() > 0 && config.getHeight() > 0) {
+                    try {
+                        return (T) request.submit(
+                                config.getWidth(), config.getHeight()
+                        ).get();
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "loadImage Bitmap");
+                    }
+                } else {
+                    try {
+                        return (T) request.submit().get();
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "loadImage Bitmap");
+                    }
+                }
+            }
+        }
         return null;
     }
 
@@ -417,7 +462,7 @@ public class GlideEngineImpl
             DevSource source,
             GlideConfig config
     ) {
-        return loadImage(context, source, config);
+        return loadImage(context, source, config, Bitmap.class);
     }
 
     // =
@@ -448,7 +493,7 @@ public class GlideEngineImpl
             DevSource source,
             GlideConfig config
     ) {
-        return loadImage(context, source, config);
+        return loadImage(context, source, config, Drawable.class);
     }
 
     // ===========
@@ -522,6 +567,42 @@ public class GlideEngineImpl
     }
 
     /**
+     * 通过 {@link GlideConfig} 构建 {@link RequestOptions}
+     * @param config {@link GlideConfig}
+     * @return {@link RequestOptions}
+     */
+    private RequestOptions buildRequestOptions(GlideConfig config) {
+        RequestOptions options = new RequestOptions();
+        if (config != null) {
+        }
+        return options;
+    }
+
+    /**
+     * 通过 {@link GlideConfig} 构建 {@link RequestBuilder}
+     * @param request {@link RequestBuilder}
+     * @param config  {@link GlideConfig}
+     * @return {@link RequestBuilder}
+     */
+    private <T> RequestBuilder buildRequest(
+            RequestBuilder<T> request,
+            GlideConfig config
+    ) {
+        RequestOptions options = buildRequestOptions(config);
+        request = request.apply(options);
+        if (config != null) {
+            if (config.getThumbnail() > 0F) {
+                request = request.thumbnail(config.getThumbnail());
+            }
+        }
+        return request;
+    }
+
+    // ====================
+    // = 内部 Display 方法 =
+    // ====================
+
+    /**
      * 通过 {@link RequestBuilder} 与 {@link GlideConfig} 快捷显示方法
      * @param imageView {@link ImageView}
      * @param request   {@link RequestBuilder}
@@ -533,14 +614,7 @@ public class GlideEngineImpl
             GlideConfig config
     ) {
         if (imageView != null && request != null) {
-            RequestOptions options = buildRequestOptions(config);
-            request = request.apply(options);
-            if (config != null) {
-                if (config.getThumbnail() > 0F) {
-                    request = request.thumbnail(config.getThumbnail());
-                }
-            }
-            request.into(imageView);
+            buildRequest(request, config).into(imageView);
         }
     }
 
@@ -561,36 +635,17 @@ public class GlideEngineImpl
     ) {
         if (imageView != null && request != null
                 && listener != null && listener.getTranscodeType() != null) {
-            RequestOptions options = buildRequestOptions(config);
-            request = request.apply(options);
-            if (config != null) {
-                if (config.getThumbnail() > 0F) {
-                    request = request.thumbnail(config.getThumbnail());
-                }
-            }
             Class type = listener.getTranscodeType();
             if (type == Drawable.class) {
-                request.into(new InnerDrawableViewTarget(
+                buildRequest(request, config).into(new InnerDrawableViewTarget(
                         imageView, source, (LoadListener<Drawable>) listener
                 ));
             } else if (type == Bitmap.class) {
-                request.into(new InnerBitmapViewTarget(
+                buildRequest(request, config).into(new InnerBitmapViewTarget(
                         imageView, source, (LoadListener<Bitmap>) listener
                 ));
             }
         }
-    }
-
-    /**
-     * 通过 {@link GlideConfig} 构建 {@link RequestOptions}
-     * @param config {@link GlideConfig}
-     * @return {@link RequestOptions}
-     */
-    private RequestOptions buildRequestOptions(GlideConfig config) {
-        RequestOptions options = new RequestOptions();
-        if (config != null) {
-        }
-        return options;
     }
 
     // ===============
