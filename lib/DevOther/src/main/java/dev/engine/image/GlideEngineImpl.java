@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 
@@ -367,7 +368,26 @@ public class GlideEngineImpl
             GlideConfig config,
             LoadListener<T> listener
     ) {
-
+        if (context != null && source != null && listener != null
+                && listener.getTranscodeType() != null) {
+            RequestManager requestManager = Glide.with(context);
+            Class          type           = listener.getTranscodeType();
+            if (type == Drawable.class) {
+                RequestBuilder<Drawable> request = setToRequest(
+                        requestManager.asDrawable(), source
+                );
+                buildRequest(request, config).into(new InnerDrawableTarget(
+                        source, (LoadListener<Drawable>) listener
+                ));
+            } else if (type == Bitmap.class) {
+                RequestBuilder<Bitmap> request = setToRequest(
+                        requestManager.asBitmap(), source
+                );
+                buildRequest(request, config).into(new InnerBitmapTarget(
+                        source, (LoadListener<Bitmap>) listener
+                ));
+            }
+        }
     }
 
     @Override
@@ -377,7 +397,26 @@ public class GlideEngineImpl
             GlideConfig config,
             LoadListener<T> listener
     ) {
-
+        if (fragment != null && source != null && listener != null
+                && listener.getTranscodeType() != null) {
+            RequestManager requestManager = Glide.with(fragment);
+            Class          type           = listener.getTranscodeType();
+            if (type == Drawable.class) {
+                RequestBuilder<Drawable> request = setToRequest(
+                        requestManager.asDrawable(), source
+                );
+                buildRequest(request, config).into(new InnerDrawableTarget(
+                        source, (LoadListener<Drawable>) listener
+                ));
+            } else if (type == Bitmap.class) {
+                RequestBuilder<Bitmap> request = setToRequest(
+                        requestManager.asBitmap(), source
+                );
+                buildRequest(request, config).into(new InnerBitmapTarget(
+                        source, (LoadListener<Bitmap>) listener
+                ));
+            }
+        }
     }
 
     @Override
@@ -735,6 +774,86 @@ public class GlideEngineImpl
         public void onLoadFailed(Drawable errorDrawable) {
             super.onLoadFailed(errorDrawable);
             mListener.onFailure(mSource, new Exception("Load Failed"));
+        }
+    }
+
+    // =
+
+    private static class InnerDrawableTarget
+            extends CustomTarget<Drawable> {
+
+        private final DevSource              mSource;
+        private final LoadListener<Drawable> mListener;
+
+        public InnerDrawableTarget(
+                DevSource source,
+                LoadListener<Drawable> listener
+        ) {
+            mSource = source;
+            mListener = listener;
+        }
+
+        @Override
+        public void onResourceReady(
+                Drawable resource,
+                Transition<? super Drawable> transition
+        ) {
+            mListener.onResponse(mSource, resource);
+        }
+
+        @Override
+        public void onLoadStarted(Drawable placeholder) {
+            mListener.onStart(mSource);
+            super.onLoadStarted(placeholder);
+        }
+
+        @Override
+        public void onLoadFailed(Drawable errorDrawable) {
+            super.onLoadFailed(errorDrawable);
+            mListener.onFailure(mSource, new Exception("Load Failed"));
+        }
+
+        @Override
+        public void onLoadCleared(Drawable placeholder) {
+        }
+    }
+
+    private static class InnerBitmapTarget
+            extends CustomTarget<Bitmap> {
+
+        private final DevSource            mSource;
+        private final LoadListener<Bitmap> mListener;
+
+        public InnerBitmapTarget(
+                DevSource source,
+                LoadListener<Bitmap> listener
+        ) {
+            mSource = source;
+            mListener = listener;
+        }
+
+        @Override
+        public void onResourceReady(
+                Bitmap resource,
+                Transition<? super Bitmap> transition
+        ) {
+            mListener.onResponse(mSource, resource);
+        }
+
+        @Override
+        public void onLoadStarted(Drawable placeholder) {
+            mListener.onStart(mSource);
+            super.onLoadStarted(placeholder);
+        }
+
+        @Override
+        public void onLoadFailed(Drawable errorDrawable) {
+            super.onLoadFailed(errorDrawable);
+            mListener.onFailure(mSource, new Exception("Load Failed"));
+        }
+
+        @Override
+        public void onLoadCleared(Drawable placeholder) {
         }
     }
 }
