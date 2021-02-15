@@ -93,6 +93,7 @@ public final class DevFinal {
     public static final String ASSETS   = "assets";
     public static final String VIEW     = "view";
     public static final String PACKNAME = "packName";
+    public static final String VERSION  = "version";
 
     public static final String ACCOUNT  = "account";
     public static final String PASSWORD = "password";
@@ -132,7 +133,13 @@ public final class DevFinal {
     public static final String MESSAGE = "message";
     public static final String CHECK   = "check";
     public static final String OBJECT  = "object";
-    public static final String VERSION = "version";
+    public static final String BEAN    = "bean";
+    public static final String VO      = "vo";
+    public static final String INT     = "int";
+    public static final String STRING  = "string";
+    public static final String DOUBLE  = "double";
+    public static final String LONG    = "long";
+    public static final String FLOAT   = "float";
 
     public static final String SUCCESS = "success";
     public static final String FAIL    = "fail";
