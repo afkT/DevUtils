@@ -269,16 +269,78 @@ public final class WorkManagerUtils {
     // = 执行 Request =
     // ===============
 
-    public Operation enqueue(final WorkRequest workRequest) {
-        return enqueue(Collections.singletonList(workRequest));
+    public Operation enqueue(final WorkRequest work) {
+        return enqueue(Collections.singletonList(work));
     }
 
-    public Operation enqueue(final List<? extends WorkRequest> requests) {
-        if (CollectionUtils.isEmpty(requests)) return null;
-        return getWorkManager().enqueue(requests);
+    /**
+     * 加入 Worker 执行队列
+     * @param work {@link WorkRequest} 集合
+     * @return {@link Operation}
+     */
+    public Operation enqueue(final List<? extends WorkRequest> work) {
+        if (CollectionUtils.isEmpty(work)) return null;
+        return getWorkManager().enqueue(work);
     }
 
     // =
+
+    public Operation enqueueUniqueWork(
+            final String uniqueWorkName,
+            final ExistingWorkPolicy existingWorkPolicy,
+            final OneTimeWorkRequest work
+    ) {
+        return enqueueUniqueWork(
+                uniqueWorkName,
+                existingWorkPolicy,
+                Collections.singletonList(work));
+    }
+
+    /**
+     * 加入唯一一次性 Worker 执行队列
+     * @param uniqueWorkName     Worker 唯一名称
+     * @param existingWorkPolicy uniqueWorkName 发生冲突 ( 重复 ) 时的策略
+     * @param work               一次性 Worker 集合
+     * @return {@link Operation}
+     */
+    public Operation enqueueUniqueWork(
+            final String uniqueWorkName,
+            final ExistingWorkPolicy existingWorkPolicy,
+            final List<OneTimeWorkRequest> work
+    ) {
+        if (TextUtils.isEmpty(uniqueWorkName)) return null;
+        if (existingWorkPolicy == null) return null;
+        if (CollectionUtils.isEmpty(work)) return null;
+        return getWorkManager().enqueueUniqueWork(
+                uniqueWorkName, existingWorkPolicy, work
+        );
+    }
+
+    // =
+
+    /**
+     * 加入唯一定期 Worker 执行队列
+     * @param uniqueWorkName             Worker 唯一名称
+     * @param existingPeriodicWorkPolicy uniqueWorkName 发生冲突 ( 重复 ) 时的策略
+     * @param periodicWork               定期 Worker Request
+     * @return {@link Operation}
+     */
+    public Operation enqueueUniquePeriodicWork(
+            final String uniqueWorkName,
+            final ExistingPeriodicWorkPolicy existingPeriodicWorkPolicy,
+            final PeriodicWorkRequest periodicWork
+    ) {
+        if (TextUtils.isEmpty(uniqueWorkName)) return null;
+        if (existingPeriodicWorkPolicy == null) return null;
+        if (periodicWork == null) return null;
+        return getWorkManager().enqueueUniquePeriodicWork(
+                uniqueWorkName, existingPeriodicWorkPolicy, periodicWork
+        );
+    }
+
+    // =================
+    // = 多 Worker 执行 =
+    // =================
 
     public WorkContinuation beginWith(final OneTimeWorkRequest work) {
         return beginWith(Collections.singletonList(work));
@@ -309,47 +371,6 @@ public final class WorkManagerUtils {
         if (CollectionUtils.isEmpty(work)) return null;
         return getWorkManager().beginUniqueWork(
                 uniqueWorkName, existingWorkPolicy, work
-        );
-    }
-
-    // =
-
-    public Operation enqueueUniqueWork(
-            final String uniqueWorkName,
-            final ExistingWorkPolicy existingWorkPolicy,
-            final OneTimeWorkRequest work
-    ) {
-        return enqueueUniqueWork(
-                uniqueWorkName,
-                existingWorkPolicy,
-                Collections.singletonList(work));
-    }
-
-    public Operation enqueueUniqueWork(
-            final String uniqueWorkName,
-            final ExistingWorkPolicy existingWorkPolicy,
-            final List<OneTimeWorkRequest> work
-    ) {
-        if (TextUtils.isEmpty(uniqueWorkName)) return null;
-        if (existingWorkPolicy == null) return null;
-        if (CollectionUtils.isEmpty(work)) return null;
-        return getWorkManager().enqueueUniqueWork(
-                uniqueWorkName, existingWorkPolicy, work
-        );
-    }
-
-    // =
-
-    public Operation enqueueUniquePeriodicWork(
-            final String uniqueWorkName,
-            final ExistingPeriodicWorkPolicy existingPeriodicWorkPolicy,
-            final PeriodicWorkRequest periodicWork
-    ) {
-        if (TextUtils.isEmpty(uniqueWorkName)) return null;
-        if (existingPeriodicWorkPolicy == null) return null;
-        if (periodicWork == null) return null;
-        return getWorkManager().enqueueUniquePeriodicWork(
-                uniqueWorkName, existingPeriodicWorkPolicy, periodicWork
         );
     }
 }

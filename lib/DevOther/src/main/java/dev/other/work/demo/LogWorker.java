@@ -10,6 +10,8 @@ import androidx.work.WorkRequest;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
+import java.util.concurrent.TimeUnit;
+
 import dev.engine.log.DevLogEngine;
 import dev.other.work.WorkManagerUtils;
 import dev.utils.DevFinal;
@@ -117,6 +119,7 @@ public class LogWorker
     public static OneTimeWorkRequest.Builder builder(final String log) {
         return new OneTimeWorkRequest.Builder(LogWorker.class)
                 .setInputData(createData(log))
+                .keepResultsForAtLeast(10, TimeUnit.SECONDS) // 结果延迟保存时间
                 .addTag(TAG);
     }
 
