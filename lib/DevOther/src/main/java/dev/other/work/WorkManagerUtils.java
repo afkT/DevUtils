@@ -18,10 +18,12 @@ import androidx.work.Worker;
 
 import com.google.common.util.concurrent.ListenableFuture;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
 import dev.DevUtils;
+import dev.utils.common.CollectionUtils;
 
 /**
  * detail: WorkManager 工具类
@@ -267,35 +269,87 @@ public final class WorkManagerUtils {
     // = 执行 Request =
     // ===============
 
-    public Operation enqueue(List<? extends WorkRequest> requests) {
-        return null;
+    public Operation enqueue(final WorkRequest workRequest) {
+        return enqueue(Collections.singletonList(workRequest));
     }
 
-    public WorkContinuation beginWith(List<OneTimeWorkRequest> work) {
-        return null;
+    public Operation enqueue(final List<? extends WorkRequest> requests) {
+        if (CollectionUtils.isEmpty(requests)) return null;
+        return getWorkManager().enqueue(requests);
+    }
+
+    // =
+
+    public WorkContinuation beginWith(final OneTimeWorkRequest work) {
+        return beginWith(Collections.singletonList(work));
+    }
+
+    public WorkContinuation beginWith(final List<OneTimeWorkRequest> work) {
+        if (CollectionUtils.isEmpty(work)) return null;
+        return getWorkManager().beginWith(work);
+    }
+
+    // =
+
+    public final WorkContinuation beginUniqueWork(
+            final String uniqueWorkName,
+            final ExistingWorkPolicy existingWorkPolicy,
+            final OneTimeWorkRequest work
+    ) {
+        return beginUniqueWork(uniqueWorkName, existingWorkPolicy, Collections.singletonList(work));
     }
 
     public WorkContinuation beginUniqueWork(
-            String uniqueWorkName,
-            ExistingWorkPolicy existingWorkPolicy,
-            List<OneTimeWorkRequest> work
+            final String uniqueWorkName,
+            final ExistingWorkPolicy existingWorkPolicy,
+            final List<OneTimeWorkRequest> work
     ) {
-        return null;
+        if (TextUtils.isEmpty(uniqueWorkName)) return null;
+        if (existingWorkPolicy == null) return null;
+        if (CollectionUtils.isEmpty(work)) return null;
+        return getWorkManager().beginUniqueWork(
+                uniqueWorkName, existingWorkPolicy, work
+        );
+    }
+
+    // =
+
+    public Operation enqueueUniqueWork(
+            final String uniqueWorkName,
+            final ExistingWorkPolicy existingWorkPolicy,
+            final OneTimeWorkRequest work
+    ) {
+        return enqueueUniqueWork(
+                uniqueWorkName,
+                existingWorkPolicy,
+                Collections.singletonList(work));
     }
 
     public Operation enqueueUniqueWork(
-            String uniqueWorkName,
-            ExistingWorkPolicy existingWorkPolicy,
-            List<OneTimeWorkRequest> work
+            final String uniqueWorkName,
+            final ExistingWorkPolicy existingWorkPolicy,
+            final List<OneTimeWorkRequest> work
     ) {
-        return null;
+        if (TextUtils.isEmpty(uniqueWorkName)) return null;
+        if (existingWorkPolicy == null) return null;
+        if (CollectionUtils.isEmpty(work)) return null;
+        return getWorkManager().enqueueUniqueWork(
+                uniqueWorkName, existingWorkPolicy, work
+        );
     }
 
+    // =
+
     public Operation enqueueUniquePeriodicWork(
-            String uniqueWorkName,
-            ExistingPeriodicWorkPolicy existingPeriodicWorkPolicy,
-            PeriodicWorkRequest periodicWork
+            final String uniqueWorkName,
+            final ExistingPeriodicWorkPolicy existingPeriodicWorkPolicy,
+            final PeriodicWorkRequest periodicWork
     ) {
-        return null;
+        if (TextUtils.isEmpty(uniqueWorkName)) return null;
+        if (existingPeriodicWorkPolicy == null) return null;
+        if (periodicWork == null) return null;
+        return getWorkManager().enqueueUniquePeriodicWork(
+                uniqueWorkName, existingPeriodicWorkPolicy, periodicWork
+        );
     }
 }
