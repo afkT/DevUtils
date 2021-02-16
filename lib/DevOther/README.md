@@ -11,10 +11,13 @@
       - log                                           | Log Engine
    - other                                            | 第三方库封装工具类
       - okgo                                          | OkGo 网络请求
+         - demo                                       | OkGo 使用 Demo
       - picture                                       | PictureSelector 图片选择库
       - retrofit                                      | Retrofit 网络请求
          - response                                   | 请求响应解析
          - subscriber                                 | 请求响应处理
+      - work                                          | WorkManager Utils
+         - demo                                       | WorkManager 使用 Demo
    - receiver                                         | BroadcastReceiver 监听相关
    - service                                          | Service 相关
 ```
@@ -36,10 +39,13 @@
       - [log](#devenginelog)                          | Log Engine
    - [other](#devother)                               | 第三方库封装工具类
       - [okgo](#devotherokgo)                         | OkGo 网络请求
+         - [demo](#devotherokgodemo)                  | OkGo 使用 Demo
       - [picture](#devotherpicture)                   | PictureSelector 图片选择库
       - [retrofit](#devotherretrofit)                 | Retrofit 网络请求
          - [response](#devotherretrofitresponse)      | 请求响应解析
          - [subscriber](#devotherretrofitsubscriber)  | 请求响应处理
+      - [work](#devotherwork)                         | WorkManager Utils
+         - [demo](#devotherworkdemo)                  | WorkManager 使用 Demo
    - [receiver](#devreceiver)                         | BroadcastReceiver 监听相关
    - [service](#devservice)                           | Service 相关
 
@@ -470,16 +476,6 @@
 | onErrorResponse | 请求失败、响应错误、数据解析错误等, 都会回调该方法 ( UI 线程 ) |
 
 
-* **OkGo 使用 Demo ->** [OkGoDemo.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoDemo.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getUserInfo | 获取用户信息 |
-| getUserList | 获取用户列表 |
-| uploadImage | 上传文件 |
-| uploadImages | 上传多个文件 |
-
-
 * **请求响应统一解析类 ->** [OkGoResponse.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoResponse.java)
 
 | 方法 | 注释 |
@@ -501,6 +497,19 @@
 | :- | :- |
 | initOkGo | 初始化 OkGo 配置 |
 | execute | 执行请求处理 |
+
+
+## <span id="devotherokgodemo">**`dev.other.okgo.demo`**</span>
+
+
+* **OkGo 使用 Demo ->** [OkGoDemo.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/demo/OkGoDemo.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getUserInfo | 获取用户信息 |
+| getUserList | 获取用户列表 |
+| uploadImage | 上传文件 |
+| uploadImages | 上传多个文件 |
 
 
 ## <span id="devotherpicture">**`dev.other.picture`**</span>
@@ -632,6 +641,68 @@
 | onErrorResponse | 请求失败、响应错误、数据解析错误等, 都会回调该方法 ( UI 线程 ) |
 | getErrorMessage | 获取异常信息 |
 | isSuccess | 通过 code 判断请求是否正确 |
+
+
+## <span id="devotherwork">**`dev.other.work`**</span>
+
+
+* **WorkManager 工具类 ->** [WorkManagerUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/work/WorkManagerUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getInstance | 获取 WorkManagerUtils 实例 |
+| getWorkManager | 获取 WorkManager |
+| setWorkManager | 设置 WorkManager |
+| cancelAllWork | 取消所有未完成的 Worker |
+| cancelWorkById | 通过 UUID 取消未完成 Worker |
+| cancelAllWorkByTag | 通过 TAG 取消未完成 Worker |
+| cancelUniqueWork | 通过 Worker 唯一名称取消未完成 Worker |
+| pruneWork | 清除已执行 Worker |
+| getLastCancelAllTimeMillisLiveData | 获取上次调用 cancelAllWork() 时间戳 |
+| getLastCancelAllTimeMillis | 获取上次调用 cancelAllWork() 时间戳 |
+| getWorkInfoByIdLiveData | 通过 UUID 获取 WorkInfo |
+| getWorkInfoById | 通过 UUID 获取 WorkInfo |
+| getWorkInfosByTagLiveData | 通过 TAG 获取 WorkInfo |
+| getWorkInfosByTag | 通过 TAG 获取 WorkInfo |
+| getWorkInfosForUniqueWorkLiveData | 通过 Worker 唯一名称获取 WorkInfo |
+| getWorkInfosForUniqueWork | 通过 Worker 唯一名称获取 WorkInfo |
+| getWorkInfosLiveData | 自定义搜索条件获取 WorkInfo |
+| getWorkInfos | 自定义搜索条件获取 WorkInfo |
+| enqueue | enqueue |
+| enqueueUniqueWork | enqueueUniqueWork |
+| enqueueUniquePeriodicWork | 加入唯一定期 Worker 执行队列 |
+| beginWith | beginWith |
+| beginUniqueWork | beginUniqueWork |
+
+
+## <span id="devotherworkdemo">**`dev.other.work.demo`**</span>
+
+
+* ** ->** [ChainWorker.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/work/demo/ChainWorker.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| start | 模拟工作链 |
+| builder | builder |
+| doWork | doWork |
+
+
+* **模拟后台间隔性进行定位 ->** [LocationWorker.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/work/demo/LocationWorker.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| doWork | doWork |
+| builder | 快捷创建循环 Worker Request |
+
+
+* **打印日志 Worker ( 用于演示 ) ->** [LogWorker.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/work/demo/LogWorker.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onStopped | 只会 worker 在运行时执行 onStopped |
+| doWork | doWork |
+| builder | 快捷创建 {@link OneTimeWorkRequest.Builder} |
+| observe | 监听 WorkRequest 状态 |
 
 
 ## <span id="devreceiver">**`dev.receiver`**</span>
