@@ -125,7 +125,7 @@ ext {
                     room_compiler                 : "androidx.room:room-compiler:2.2.5",
                     room_ktx                      : "androidx.room:room-ktx:2.2.5",
                     // WorkManager Kotlin + coroutines
-                    work_runtime_ktx              : "androidx.work:work-runtime-ktx:2.5.0-beta02",
+                    work_runtime_ktx              : "androidx.work:work-runtime-ktx:2.5.0-rc01",
                     // DataStore
                     datastore_preferences         : "androidx.datastore:datastore-preferences:1.0.0-alpha05",
                     fragment_ktx                  : "androidx.fragment:fragment-ktx:1.2.5",
@@ -255,7 +255,7 @@ ext {
                     // Banner 库 https://github.com/youth5201314/banner
                     banner                       : "com.youth.banner:banner:2.1.0",
                     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
-                    mmkv                         : "com.tencent:mmkv-static:1.2.4",
+                    mmkv                         : "com.tencent:mmkv-static:1.2.7",
                     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
                     autosize                     : "me.jessyan:autosize:1.2.1",
                     // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
@@ -294,13 +294,13 @@ ext {
                     // = 性能检测、排查相关库 =
                     // ======================
 
+                    // 应用数据库展示 https://github.com/guolindev/Glance
+                    glance                       : "com.glance.guolindev:glance:1.0.0",
                     // 内存检测工具 https://github.com/square/leakcanary
                     leakcanary                   : "com.squareup.leakcanary:leakcanary-android:2.6",
                     // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
                     blockcanary_android          : "com.github.markzhai:blockcanary-android:1.5.0",
                     blockcanary_no_op            : "com.github.markzhai:blockcanary-no-op:1.5.0",
-                    // 应用数据库展示 https://github.com/guolindev/Glance
-                    glance                       : "com.glance.guolindev:glance:1.0.0-alpha02",
                     // 饿了么 UETool https://github.com/eleme/UETool/blob/master/README_zh.md
                     uetool                       : "me.ele:uetool:1.2.9",
                     uetool_no_op                 : "me.ele:uetool-no-op:1.2.9",
