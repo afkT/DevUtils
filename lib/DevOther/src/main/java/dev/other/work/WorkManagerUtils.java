@@ -32,6 +32,8 @@ import dev.DevUtils;
  *     @see <a href="https://developer.android.google.cn/topic/libraries/architecture/workmanager/basics"/>
  *     WorkManager
  *     @see <a href="https://developer.android.google.cn/jetpack/androidx/releases/work"/>
+ *     Android 开发 WorkManager 详解
+ *     @see <a href="https://www.cnblogs.com/guanxinjing/p/13278814.html"/>
  *     <p></p>
  *     WorkManager 相关类:
  *     {@link Worker}: 继承此类并重写 doWork() 方法, 在此处将要执行的实际工作的代码放在后台
@@ -45,6 +47,8 @@ import dev.DevUtils;
  *     tips:
  *     WorkManager 适用于可延期工作, 即不需要立即运行但需要可靠运行的工作, 即使退出应用或重启设备也不影响工作的执行
  *     可以配合 {@link AlarmManager} ( {@link dev.utils.app.AlarmUtils} ) 触发进行精确时间执行 Worker
+ *     <p></p>
+ *     获取 {@link WorkInfo} 可通过 {@link WorkInfo#getState()} 调用 isFinished() 判断 Worker 是否已完成
  * </pre>
  */
 public final class WorkManagerUtils {
@@ -145,15 +149,15 @@ public final class WorkManagerUtils {
     }
 
     public Operation pruneWork() {
-        return null;
+        return getWorkManager().pruneWork();
     }
 
     public LiveData<Long> getLastCancelAllTimeMillisLiveData() {
-        return null;
+        return getWorkManager().getLastCancelAllTimeMillisLiveData();
     }
 
     public ListenableFuture<Long> getLastCancelAllTimeMillis() {
-        return null;
+        return getWorkManager().getLastCancelAllTimeMillis();
     }
 
     // ============

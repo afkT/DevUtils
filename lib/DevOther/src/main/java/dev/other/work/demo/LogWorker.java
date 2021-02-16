@@ -3,12 +3,15 @@ package dev.other.work.demo;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkRequest;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
 import dev.engine.log.DevLogEngine;
+import dev.other.work.WorkManagerUtils;
 import dev.utils.DevFinal;
 
 /**
@@ -18,7 +21,7 @@ import dev.utils.DevFinal;
  *     从 doWork() 返回的 Result 会通知 WorkManager 服务工作是否成功, 以及工作失败时是否应重试工作
  *     Result.success(): 工作成功完成
  *     Result.failure(): 工作失败
- *     Result.retry(): 工作失败, 应根据其重试政策在其他时间尝试
+ *     Result.retry(): 工作失败, 根据其重试政策在其他时间尝试
  * </pre>
  */
 public class LogWorker
@@ -40,13 +43,13 @@ public class LogWorker
         // 执行的代码
         code();
 
-        // 表示执行成功
-        return Result.success();
+//        // 表示执行成功
+//        return Result.success();
 
-//        // 也可以输出数据
-//        return Result.success(
-//                createInputData("xx")
-//        );
+        // 也可以输出数据
+        return Result.success(
+                createData("xx")
+        );
     }
 
     /**
@@ -65,7 +68,7 @@ public class LogWorker
      * @param log 打印日志内容
      * @return {@link Data}
      */
-    private static Data createInputData(final String log) {
+    private static Data createData(final String log) {
         Data.Builder builder = new Data.Builder();
         builder.putString(DevFinal.CONTENT, log);
         return builder.build();
@@ -90,7 +93,54 @@ public class LogWorker
      */
     public static OneTimeWorkRequest.Builder builder(final String log) {
         return new OneTimeWorkRequest.Builder(LogWorker.class)
-                .setInputData(createInputData(log))
+                .setInputData(createData(log))
                 .addTag(TAG);
+    }
+
+    // ===========
+    // = 监听相关 =
+    // ===========
+
+    /**
+     * 监听 WorkRequest 状态
+     */
+    public static void observe(
+            LifecycleOwner owner,
+            WorkRequest workRequest
+    ) {
+        if (owner == null || workRequest == null) return;
+        if (workRequest.getId() == null) return;
+        WorkManagerUtils.getInstance().getWorkInfoByIdLiveData(
+                workRequest.getId()
+        ).observe(owner, workInfo -> {
+            if (workInfo != null) {
+
+                DevLogEngine.getEngine().dTag(TAG, "Worker 是否完成: " + workInfo.getState().isFinished());
+
+                switch (workInfo.getState()) {
+                    case BLOCKED:
+                        DevLogEngine.getEngine().dTag(TAG, "堵塞");
+                        break;
+                    case RUNNING:
+                        DevLogEngine.getEngine().dTag(TAG, "正在运行");
+                        break;
+                    case ENQUEUED:
+                        DevLogEngine.getEngine().dTag(TAG, "任务入队");
+                        break;
+                    case CANCELLED:
+                        DevLogEngine.getEngine().dTag(TAG, "取消");
+                        break;
+                    case FAILED:
+                        DevLogEngine.getEngine().dTag(TAG, "失败");
+                        break;
+                    case SUCCEEDED:
+                        DevLogEngine.getEngine().dTag(TAG, "成功");
+                        // doWork return Result 传入了 Data 则会存在数据
+                        String content = workInfo.getOutputData().getString(DevFinal.CONTENT);
+                        DevLogEngine.getEngine().dTag(TAG, "content: " + content);
+                        break;
+                }
+            }
+        });
     }
 }
