@@ -28,6 +28,9 @@ public final class DevMediaManager
         OnErrorListener,
         OnSeekCompleteListener {
 
+    private DevMediaManager() {
+    }
+
     // 日志 TAG
     private static String TAG = DevMediaManager.class.getSimpleName();
 
@@ -35,9 +38,6 @@ public final class DevMediaManager
     private                 MediaPlayer     mMediaPlayer;
     // DevMediaManager 实例
     private static volatile DevMediaManager sInstance;
-
-    private DevMediaManager() {
-    }
 
     /**
      * 获取 DevMediaManager 实例
