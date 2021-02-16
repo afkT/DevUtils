@@ -338,14 +338,27 @@ public final class WorkManagerUtils {
         );
     }
 
-    // =================
-    // = 多 Worker 执行 =
-    // =================
+    // ================
+    // = Worker 工作链 =
+    // ================
 
     public WorkContinuation beginWith(final OneTimeWorkRequest work) {
         return beginWith(Collections.singletonList(work));
     }
 
+    /**
+     * 创建 Worker 工作链
+     * <pre>
+     *     工作链用于指定多个依存任务并定义这些任务的运行顺序
+     *     可通过返回的 {@link WorkContinuation} 调用 {@link WorkContinuation#then(OneTimeWorkRequest)} 加入队列
+     *     最终调用 {@link WorkContinuation#enqueue()} 对工作链执行操作
+     *     <p></p>
+     *     每次调用 WorkContinuation.then(...) 都会返回一个新的 WorkContinuation 实例
+     *     如果添加了 OneTimeWorkRequest 实例的 List, 这些请求可能会并行运行
+     * </pre>
+     * @param work {@link OneTimeWorkRequest} 集合
+     * @return {@link WorkContinuation}
+     */
     public WorkContinuation beginWith(final List<OneTimeWorkRequest> work) {
         if (CollectionUtils.isEmpty(work)) return null;
         return getWorkManager().beginWith(work);
@@ -361,6 +374,13 @@ public final class WorkManagerUtils {
         return beginUniqueWork(uniqueWorkName, existingWorkPolicy, Collections.singletonList(work));
     }
 
+    /**
+     * 创建唯一性 Worker 工作链
+     * @param uniqueWorkName     Worker 唯一名称
+     * @param existingWorkPolicy uniqueWorkName 发生冲突 ( 重复 ) 时的策略
+     * @param work               {@link OneTimeWorkRequest} 集合
+     * @return {@link Operation}
+     */
     public WorkContinuation beginUniqueWork(
             final String uniqueWorkName,
             final ExistingWorkPolicy existingWorkPolicy,
