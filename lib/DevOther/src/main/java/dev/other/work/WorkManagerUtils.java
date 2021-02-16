@@ -103,9 +103,9 @@ public final class WorkManagerUtils {
         return this;
     }
 
-    // ===============
-    // = 取消 Request =
-    // ===============
+    // ====================
+    // = 取消 Request 相关 =
+    // ====================
 
     /**
      * 取消所有未完成的 Worker
@@ -148,14 +148,33 @@ public final class WorkManagerUtils {
         return getWorkManager().cancelUniqueWork(uniqueWorkName);
     }
 
+    /**
+     * 清除已执行 Worker
+     * <pre>
+     *     可通过 {@link #getWorkInfosByTagLiveData(String)} 校验
+     *     执行多次相同 TAG 监听 List<WorkInfo> 数量, 接着调用该方法则能看到返回 List 长度为 0
+     * </pre>
+     * @return {@link Operation}
+     */
     public Operation pruneWork() {
         return getWorkManager().pruneWork();
     }
 
+    /**
+     * 获取上次调用 cancelAllWork() 时间戳
+     * <pre>
+     *     如果没调用过则返回 0L
+     * </pre>
+     * @return {@link LiveData<Long>}
+     */
     public LiveData<Long> getLastCancelAllTimeMillisLiveData() {
         return getWorkManager().getLastCancelAllTimeMillisLiveData();
     }
 
+    /**
+     * 获取上次调用 cancelAllWork() 时间戳
+     * @return {@link ListenableFuture<Long>}
+     */
     public ListenableFuture<Long> getLastCancelAllTimeMillis() {
         return getWorkManager().getLastCancelAllTimeMillis();
     }

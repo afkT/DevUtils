@@ -37,6 +37,17 @@ public class LogWorker
         super(context, workerParams);
     }
 
+    /**
+     * 只会 worker 在运行时执行 onStopped
+     * 已经执行完成去取消任务是不会触发 onStopped 方法的
+     */
+    @Override
+    public void onStopped() {
+        super.onStopped();
+
+        DevLogEngine.getEngine().dTag(TAG, "LogWorker - onStopped()");
+    }
+
     @NonNull
     @Override
     public Result doWork() {
@@ -57,6 +68,18 @@ public class LogWorker
      */
     private void code() {
         DevLogEngine.getEngine().dTag(TAG, "LogWorker - code() => " + getLog());
+
+        // 模拟操作进度, 并进行通知
+        for (int i = 0; i <= 100; i++) {
+            Data data = new Data.Builder().putInt(
+                    DevFinal.PROGRESS, i
+            ).build();
+            setProgressAsync(data);
+            try {
+                Thread.sleep(10);
+            } catch (Exception e) {
+            }
+        }
     }
 
     // =============
@@ -115,14 +138,18 @@ public class LogWorker
         ).observe(owner, workInfo -> {
             if (workInfo != null) {
 
-                DevLogEngine.getEngine().dTag(TAG, "Worker 是否完成: " + workInfo.getState().isFinished());
+//                DevLogEngine.getEngine().dTag(TAG, "Worker 是否完成: " + workInfo.getState().isFinished());
 
                 switch (workInfo.getState()) {
                     case BLOCKED:
                         DevLogEngine.getEngine().dTag(TAG, "堵塞");
                         break;
                     case RUNNING:
-                        DevLogEngine.getEngine().dTag(TAG, "正在运行");
+                        int progress = workInfo.getProgress().getInt(DevFinal.PROGRESS, 0);
+//                        DevLogEngine.getEngine().dTag(TAG, "正在运行");
+                        DevLogEngine.getEngine().dTag(TAG, String.format(
+                                "正在运行, 进度: %d%%", progress
+                        ));
                         break;
                     case ENQUEUED:
                         DevLogEngine.getEngine().dTag(TAG, "任务入队");

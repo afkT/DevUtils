@@ -115,6 +115,7 @@ public final class DevFinal {
     public static final String INDEX    = "index";
     public static final String COUNT    = "count";
     public static final String SCALE    = "scale";
+    public static final String PROGRESS = "progress";
 
     public static final String ARRAY  = "array";
     public static final String LIST   = "list";
