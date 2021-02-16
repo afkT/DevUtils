@@ -3,13 +3,22 @@ package dev.other.work;
 import android.app.AlarmManager;
 import android.text.TextUtils;
 
+import androidx.lifecycle.LiveData;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.ExistingWorkPolicy;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.Operation;
 import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkContinuation;
+import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
+import androidx.work.WorkQuery;
 import androidx.work.WorkRequest;
 import androidx.work.Worker;
 
+import com.google.common.util.concurrent.ListenableFuture;
+
+import java.util.List;
 import java.util.UUID;
 
 import dev.DevUtils;
@@ -66,7 +75,9 @@ public final class WorkManagerUtils {
         return sInstance;
     }
 
-    // =
+    // ===========
+    // = get/set =
+    // ===========
 
     /**
      * 获取 WorkManager
@@ -88,9 +99,9 @@ public final class WorkManagerUtils {
         return this;
     }
 
-    // ===========
-    // = 取消任务 =
-    // ===========
+    // ===============
+    // = 取消 Request =
+    // ===============
 
     /**
      * 取消所有未完成的 Worker
@@ -131,5 +142,137 @@ public final class WorkManagerUtils {
     public Operation cancelUniqueWork(final String uniqueWorkName) {
         if (TextUtils.isEmpty(uniqueWorkName)) return null;
         return getWorkManager().cancelUniqueWork(uniqueWorkName);
+    }
+
+    public Operation pruneWork() {
+        return null;
+    }
+
+    public LiveData<Long> getLastCancelAllTimeMillisLiveData() {
+        return null;
+    }
+
+    public ListenableFuture<Long> getLastCancelAllTimeMillis() {
+        return null;
+    }
+
+    // ============
+    // = WorkInfo =
+    // ============
+
+    /**
+     * 通过 UUID 获取 WorkInfo
+     * @param id {@link UUID}
+     * @return {@link LiveData<WorkInfo>}
+     */
+    public LiveData<WorkInfo> getWorkInfoByIdLiveData(final UUID id) {
+        if (id == null) return null;
+        return getWorkManager().getWorkInfoByIdLiveData(id);
+    }
+
+    /**
+     * 通过 UUID 获取 WorkInfo
+     * @param id {@link UUID}
+     * @return {@link ListenableFuture<WorkInfo>}
+     */
+    public ListenableFuture<WorkInfo> getWorkInfoById(final UUID id) {
+        if (id == null) return null;
+        return getWorkManager().getWorkInfoById(id);
+    }
+
+    /**
+     * 通过 TAG 获取 WorkInfo
+     * @param tag TAG
+     * @return {@link LiveData<List<WorkInfo>>}
+     */
+    public LiveData<List<WorkInfo>> getWorkInfosByTagLiveData(final String tag) {
+        if (TextUtils.isEmpty(tag)) return null;
+        return getWorkManager().getWorkInfosByTagLiveData(tag);
+    }
+
+    /**
+     * 通过 TAG 获取 WorkInfo
+     * @param tag TAG
+     * @return {@link ListenableFuture<List<WorkInfo>>}
+     */
+    public ListenableFuture<List<WorkInfo>> getWorkInfosByTag(final String tag) {
+        if (TextUtils.isEmpty(tag)) return null;
+        return getWorkManager().getWorkInfosByTag(tag);
+    }
+
+    /**
+     * 通过 Worker 唯一名称获取 WorkInfo
+     * @param uniqueWorkName Worker 唯一名称
+     * @return {@link LiveData<List<WorkInfo>>}
+     */
+    public LiveData<List<WorkInfo>> getWorkInfosForUniqueWorkLiveData(final String uniqueWorkName) {
+        if (TextUtils.isEmpty(uniqueWorkName)) return null;
+        return getWorkManager().getWorkInfosForUniqueWorkLiveData(uniqueWorkName);
+    }
+
+    /**
+     * 通过 Worker 唯一名称获取 WorkInfo
+     * @param uniqueWorkName Worker 唯一名称
+     * @return {@link ListenableFuture<List<WorkInfo>>}
+     */
+    public ListenableFuture<List<WorkInfo>> getWorkInfosForUniqueWork(final String uniqueWorkName) {
+        if (TextUtils.isEmpty(uniqueWorkName)) return null;
+        return getWorkManager().getWorkInfosForUniqueWork(uniqueWorkName);
+    }
+
+    /**
+     * 自定义搜索条件获取 WorkInfo
+     * @param workQuery {@link WorkQuery}
+     * @return {@link LiveData<List<WorkInfo>>}
+     */
+    public LiveData<List<WorkInfo>> getWorkInfosLiveData(final WorkQuery workQuery) {
+        if (workQuery == null) return null;
+        return getWorkManager().getWorkInfosLiveData(workQuery);
+    }
+
+    /**
+     * 自定义搜索条件获取 WorkInfo
+     * @param workQuery {@link WorkQuery}
+     * @return {@link ListenableFuture<List<WorkInfo>>}
+     */
+    public ListenableFuture<List<WorkInfo>> getWorkInfos(final WorkQuery workQuery) {
+        if (workQuery == null) return null;
+        return getWorkManager().getWorkInfos(workQuery);
+    }
+
+    // ===============
+    // = 执行 Request =
+    // ===============
+
+    public Operation enqueue(List<? extends WorkRequest> requests) {
+        return null;
+    }
+
+    public WorkContinuation beginWith(List<OneTimeWorkRequest> work) {
+        return null;
+    }
+
+    public WorkContinuation beginUniqueWork(
+            String uniqueWorkName,
+            ExistingWorkPolicy existingWorkPolicy,
+            List<OneTimeWorkRequest> work
+    ) {
+        return null;
+    }
+
+    public Operation enqueueUniqueWork(
+            String uniqueWorkName,
+            ExistingWorkPolicy existingWorkPolicy,
+            List<OneTimeWorkRequest> work
+    ) {
+        return null;
+    }
+
+    public Operation enqueueUniquePeriodicWork(
+            String uniqueWorkName,
+            ExistingPeriodicWorkPolicy existingPeriodicWorkPolicy,
+            PeriodicWorkRequest periodicWork
+    ) {
+        return null;
     }
 }
