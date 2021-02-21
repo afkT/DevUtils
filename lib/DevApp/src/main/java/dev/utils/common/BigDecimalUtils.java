@@ -1165,4 +1165,159 @@ public final class BigDecimalUtils {
         }
         return null;
     }
+
+    // =========
+    // = 包装类 =
+    // =========
+
+    /**
+     * detail: BigDecimal 操作包装类
+     * @author Ttt
+     */
+    public static final class Operation {
+
+        // 计算数值
+        private BigDecimal mValue;
+        // 配置信息
+        private Config     mConfig;
+
+        public Operation(final BigDecimal value) {
+            this.mValue = value;
+        }
+
+        public Operation(final int value) {
+            this.mValue = new BigDecimal(value);
+        }
+
+        public Operation(final long value) {
+            this.mValue = new BigDecimal(value);
+        }
+
+        public Operation(final float value) {
+            this.mValue = new BigDecimal(value);
+        }
+
+        public Operation(final double value) {
+            this.mValue = new BigDecimal(value);
+        }
+
+        public Operation(final String value) {
+            try {
+                this.mValue = new BigDecimal(value);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "Operation");
+            }
+        }
+
+        // ===========
+        // = get/set =
+        // ===========
+
+        /**
+         * 获取 Value
+         * @return {@link BigDecimal}
+         */
+        public BigDecimal getBigDecimal() {
+            return mValue;
+        }
+
+        /**
+         * 设置 Value
+         * @param value {@link BigDecimal}
+         * @return {@link Operation}
+         */
+        public Operation setBigDecimal(final BigDecimal value) {
+            this.mValue = value;
+            return this;
+        }
+
+        /**
+         * 获取配置信息
+         * @return {@link Config}
+         */
+        public Config getConfig() {
+            return mConfig;
+        }
+
+        /**
+         * @param mConfig
+         * @return
+         */
+        public Operation setConfig(final Config mConfig) {
+            this.mConfig = mConfig;
+            return this;
+        }
+
+        // ===========
+        // = 获取方法 =
+        // ===========
+
+        // ===========
+        // = 内部方法 =
+        // ===========
+
+        /**
+         * 设置小数点保留位数、舍入模式
+         * @return {@link Operation}
+         */
+        private Operation set() {
+            if (mConfig != null && mValue != null) {
+                try {
+                    mValue = mValue.setScale(
+                            mConfig.getScale(),
+                            mConfig.getRoundingMode()
+                    );
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "set");
+                }
+            }
+            return this;
+        }
+    }
+
+    /**
+     * detail: 配置信息
+     * @author Ttt
+     */
+    public static final class Config {
+
+        // 小数点位数
+        private final int mScale;
+        // 舍入模式
+        private final int mRoundingMode;
+
+        public Config() {
+            this(10, BigDecimal.ROUND_DOWN);
+        }
+
+        /**
+         * 初始化小数点保留位数、舍入模式
+         * @param scale        小数点保留位数
+         * @param roundingMode 舍入模式
+         * @return {@link Operation}
+         */
+        public Config(
+                final int scale,
+                final int roundingMode
+        ) {
+            this.mScale = scale;
+            this.mRoundingMode = roundingMode;
+        }
+
+        /**
+         * 获取小数点保留位数
+         * @return 小数点保留位数
+         */
+        public int getScale() {
+            return mScale;
+        }
+
+        /**
+         * 获取舍入模式
+         * @return 舍入模式
+         */
+        public int getRoundingMode() {
+            return mRoundingMode;
+        }
+    }
 }
