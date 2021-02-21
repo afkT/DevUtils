@@ -37,6 +37,43 @@ public final class NumberUtils {
         return temp >= 10 ? String.valueOf(temp) : "0" + temp;
     }
 
+    /**
+     * 去掉结尾多余的 . 与 0
+     * @param value 待处理数值
+     * @return 处理后的数值字符串
+     */
+    public static String subZeroAndDot(final double value) {
+        return subZeroAndDot(String.valueOf(value));
+    }
+
+    /**
+     * 去掉结尾多余的 . 与 0
+     * @param value 待处理数值
+     * @return 处理后的数值字符串
+     */
+    public static String subZeroAndDot(final float value) {
+        return subZeroAndDot(String.valueOf(value));
+    }
+
+    /**
+     * 去掉结尾多余的 . 与 0
+     * @param value 待处理数值
+     * @return 处理后的数值字符串
+     */
+    public static String subZeroAndDot(final String value) {
+        if (StringUtils.isNotEmpty(value)) {
+            String str = value;
+            if (str.indexOf(".") >= 0) {
+                // 去掉多余的 0
+                str = str.replaceAll("0+?$", "");
+                // 最后一位是 . 则去掉
+                str = str.replaceAll("[.]$", "");
+            }
+            return str;
+        }
+        return value;
+    }
+
     // =======
     // = int =
     // =======
