@@ -75,3 +75,9 @@ implementation 'com.afkt:DevBase:1.0.3'
 
 其目的是要解决编程过程中，模块内部高内聚、模块与模块之间低耦合、可维护性、易测试等问题
 
+* 混淆
+
+> -keep class 包名.databinding.** {*;}
+
+因为 [ViewBindingUtils](https://github.com/afkT/DevUtils/blob/master/lib/DevBase/src/main/java/dev/base/utils/ViewBindingUtils.kt) 是通过反射进行初始化，防止方法 `bind`、`inflate` 被混淆，所以需要忽略自动生成的 ViewBinding 类
+
