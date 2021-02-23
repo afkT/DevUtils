@@ -36,5 +36,6 @@ dependencies {
 
     implementation project(':DevApp')
     implementation project(':DevAssist')
+    implementation project(':DevBaseMVVM')
     implementation project(':DevWidget')
 }

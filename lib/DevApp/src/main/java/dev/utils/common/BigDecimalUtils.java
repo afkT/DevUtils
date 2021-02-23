@@ -1260,7 +1260,7 @@ public final class BigDecimalUtils {
          * 设置小数点保留位数、舍入模式
          * @return {@link Operation}
          */
-        private Operation set() {
+        public Operation set() {
             if (mConfig != null && mValue != null) {
                 try {
                     mValue = mValue.setScale(

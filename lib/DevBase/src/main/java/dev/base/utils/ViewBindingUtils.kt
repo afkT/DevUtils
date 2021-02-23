@@ -39,7 +39,7 @@ object ViewBindingUtils {
      * @param clazz     javaClass
      */
     fun <VB : ViewBinding, T : Any> viewBindingJavaClass(
-        inflater: LayoutInflater,
+        inflater: LayoutInflater?,
         container: ViewGroup?,
         view: View?,
         clazz: Class<T>
@@ -62,7 +62,7 @@ object ViewBindingUtils {
      * @param clazz     VB Class
      */
     fun <VB : ViewBinding> viewBinding(
-        inflater: LayoutInflater,
+        inflater: LayoutInflater?,
         container: ViewGroup?,
         view: View?,
         clazz: Class<VB>
