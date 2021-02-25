@@ -5,25 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
-import dev.base.utils.ViewBindingUtils
 
 /**
- * detail: RecyclerView ViewBinding ViewHolder
+ * detail: RecyclerView ViewDataBinding ViewHolder
  * @author Ttt
  */
-class DevBaseViewBindingVH<VB : ViewBinding> : RecyclerView.ViewHolder {
+class DevBaseViewDataBindingVH<VDB : ViewDataBinding> : RecyclerView.ViewHolder {
 
     @JvmField
-    val binding: VB
+    val binding: VDB
 
     constructor(itemView: View) : super(itemView) {
-        binding = ViewBindingUtils.viewBindingJavaClass(null, null, itemView, javaClass)
+        binding = DataBindingUtil.bind<VDB>(itemView)!!;
     }
 
-    constructor(vb: VB) : super(vb.root) {
-        binding = vb
+    constructor(vdb: VDB) : super(vdb.root) {
+        binding = vdb
     }
 
     constructor(
