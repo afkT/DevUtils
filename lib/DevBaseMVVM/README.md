@@ -10,6 +10,7 @@ implementation 'com.afkt:DevBaseMVVM:1.0.1'
 ```
 - dev.base                                            | 根目录
    - able                                             | 基类库接口相关
+   - adapter                                          | RecyclerView ViewDataBinding ViewHolder
    - expand                                           | 基于 Base Activity、Fragment 扩展包
       - content                                       | Content Layout MVVM 基类
       - mvvm                                          | MVVM 架构基类
