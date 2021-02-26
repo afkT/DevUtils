@@ -56,7 +56,7 @@ public class LinearSnapMAXActivity
         }
 
         // 初始化布局管理器、适配器
-        linearSnapAdapter = new LinearSnapMAXAdapter(this, lists);
+        linearSnapAdapter = new LinearSnapMAXAdapter(lists);
         binding.vidBvrRecy.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
 //        binding.vidBvrRecy.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         binding.vidBvrRecy.setAdapter(linearSnapAdapter);
