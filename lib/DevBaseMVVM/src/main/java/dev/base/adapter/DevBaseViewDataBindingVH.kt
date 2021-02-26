@@ -13,26 +13,59 @@ import androidx.recyclerview.widget.RecyclerView
  * detail: RecyclerView ViewDataBinding ViewHolder
  * @author Ttt
  */
-class DevBaseViewDataBindingVH<VDB : ViewDataBinding> : RecyclerView.ViewHolder {
+class DevBaseViewDataBindingVH<VDB : ViewDataBinding>(@JvmField val binding: VDB) : RecyclerView.ViewHolder(
+    binding.root
+) {
+    companion object {
+        @JvmStatic
+        fun <VDB : ViewDataBinding> create(
+            parent: ViewGroup,
+            @LayoutRes resource: Int
+        ) =
+            DevBaseViewDataBindingVH(
+                DataBindingUtil.bind<VDB>(
+                    LayoutInflater.from(parent.context).inflate(resource, null)
+                )!!
+            )
 
-    @JvmField
-    val binding: VDB
+        @JvmStatic
+        fun <VDB : ViewDataBinding> create(
+            context: Context,
+            @LayoutRes resource: Int
+        ) =
+            DevBaseViewDataBindingVH(
+                DataBindingUtil.bind<VDB>(
+                    LayoutInflater.from(context).inflate(resource, null)
+                )!!
+            )
 
-    constructor(itemView: View) : super(itemView) {
-        binding = DataBindingUtil.bind<VDB>(itemView)!!
+        @JvmStatic
+        fun <VDB : ViewDataBinding> create(
+            view: View
+        ) =
+            DevBaseViewDataBindingVH(
+                DataBindingUtil.bind<VDB>(view)!!
+            )
     }
-
-    constructor(vdb: VDB) : super(vdb.root) {
-        binding = vdb
-    }
-
-    constructor(
-        parent: ViewGroup,
-        @LayoutRes resource: Int
-    ) : this(LayoutInflater.from(parent.context).inflate(resource, null))
-
-    constructor(
-        context: Context,
-        @LayoutRes resource: Int
-    ) : this(LayoutInflater.from(context).inflate(resource, null))
 }
+
+fun <VDB : ViewDataBinding> newDataBindingViewHolder(
+    parent: ViewGroup,
+    @LayoutRes resource: Int
+): DevBaseViewDataBindingVH<VDB> =
+    DevBaseViewDataBindingVH.create(parent, resource)
+
+fun <VDB : ViewDataBinding> newDataBindingViewHolder(
+    context: Context,
+    @LayoutRes resource: Int
+): DevBaseViewDataBindingVH<VDB> =
+    DevBaseViewDataBindingVH.create(context, resource)
+
+fun <VDB : ViewDataBinding> newDataBindingViewHolder(
+    view: View,
+): DevBaseViewDataBindingVH<VDB> =
+    DevBaseViewDataBindingVH.create(view)
+
+fun <VDB : ViewDataBinding> newDataBindingViewHolder(
+    binding: VDB
+): DevBaseViewDataBindingVH<VDB> = DevBaseViewDataBindingVH(binding)

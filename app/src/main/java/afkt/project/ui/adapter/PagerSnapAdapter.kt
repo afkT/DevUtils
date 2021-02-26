@@ -1,42 +1,53 @@
-package afkt.project.ui.adapter;
+package afkt.project.ui.adapter
 
-import androidx.annotation.Nullable;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.viewholder.BaseViewHolder;
-
-import java.util.List;
-
-import afkt.project.R;
-import afkt.project.model.bean.ItemBean;
-import afkt.project.util.ProjectUtils;
-import dev.engine.image.DevImageEngine;
-import dev.utils.app.helper.ViewHelper;
+import afkt.project.R
+import afkt.project.databinding.AdapterPagerSnapBinding
+import afkt.project.model.bean.ItemBean
+import afkt.project.util.ProjectUtils
+import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import dev.adapter.DevDataAdapter
+import dev.base.adapter.DevBaseViewDataBindingVH
+import dev.base.adapter.newDataBindingViewHolder
+import dev.engine.image.DevImageEngine
 
 /**
  * detail: RecyclerView ViewPager 效果 Adapter
  * @author Ttt
  */
-public class PagerSnapAdapter
-        extends BaseQuickAdapter<ItemBean, BaseViewHolder> {
+class PagerSnapAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, DevBaseViewDataBindingVH<AdapterPagerSnapBinding>>() {
 
-    public PagerSnapAdapter(@Nullable List<ItemBean> data) {
-        super(R.layout.adapter_pager_snap, data);
+    init {
+        dataList = data
     }
 
-    @Override
-    protected void convert(
-            BaseViewHolder helper,
-            ItemBean item
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): DevBaseViewDataBindingVH<AdapterPagerSnapBinding> {
+        return newDataBindingViewHolder(parent, R.layout.adapter_pager_snap)
+    }
+
+    override fun onBindViewHolder(
+        holder: DevBaseViewDataBindingVH<AdapterPagerSnapBinding>,
+        position: Int
     ) {
-        ViewHelper.get()
-                .setText(helper.getView(R.id.vid_ags_title_tv), item.title)
-                .setText(helper.getView(R.id.vid_ags_subtitle_tv), item.subtitle)
-                .setText(helper.getView(R.id.vid_ags_time_tv), item.timeFormat);
-        DevImageEngine.getEngine().display(
-                helper.getView(R.id.vid_ags_igview),
-                item.imageUrl,
+//        holder.binding.setVariable(afkt.project.BR.item, getDataItem(position))
+        holder.binding.item = getDataItem(position)
+    }
+
+    companion object {
+        @JvmStatic
+        @BindingAdapter("imageUrl")
+        fun bindImageUrl(
+            view: ImageView?,
+            imageUrl: String?
+        ) {
+            DevImageEngine.getEngine().display(
+                view, imageUrl,
                 ProjectUtils.getRoundConfig10()
-        );
+            )
+        }
     }
 }

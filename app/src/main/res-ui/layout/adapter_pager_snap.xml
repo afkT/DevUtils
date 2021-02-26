@@ -1,78 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:background="@color/color_f5">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+    <data>
+
+        <variable
+            name="item"
+            type="afkt.project.model.bean.ItemBean" />
+
+        <variable
+            name="page"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/un_dp_12"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:stateListAnimator="@drawable/touch"
-        app:cardCornerRadius="@dimen/un_dp_15"
-        app:cardElevation="@dimen/un_dp_5"
-        tools:targetApi="lollipop">
+        android:orientation="vertical"
+        tools:background="@color/color_f5">
 
-        <LinearLayout
-            android:layout_width="@dimen/un_dp_220"
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/un_dp_15"
-            android:orientation="vertical">
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/un_dp_12"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:stateListAnimator="@drawable/touch"
+            app:cardCornerRadius="@dimen/un_dp_15"
+            app:cardElevation="@dimen/un_dp_5"
+            tools:targetApi="lollipop">
 
-            <dev.base.widget.BaseImageView
-                android:id="@+id/vid_ags_igview"
+            <LinearLayout
                 android:layout_width="@dimen/un_dp_220"
-                android:layout_height="@dimen/un_dp_391" />
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/un_dp_15"
+                android:orientation="vertical">
+
+                <dev.base.widget.BaseImageView
+                    android:id="@+id/vid_ags_igview"
+                    android:layout_width="@dimen/un_dp_220"
+                    android:layout_height="@dimen/un_dp_391"
+                    app:imageUrl="@{item.imageUrl}" />
+
+                <dev.base.widget.BaseTextView
+                    android:id="@+id/vid_ags_title_tv"
+                    style="@style/AppTheme.Base_TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/un_dp_10"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{item.title}"
+                    android:textSize="@dimen/un_sp_25"
+                    tools:text="这是标题" />
+
+                <dev.base.widget.BaseTextView
+                    android:id="@+id/vid_ags_subtitle_tv"
+                    style="@style/AppTheme.Base_TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/un_dp_5"
+                    android:text="@{item.subtitle}"
+                    android:textColor="@color/color_55"
+                    android:textSize="@dimen/un_sp_16"
+                    tools:text="这是副标题" />
+
+                <dev.base.widget.BaseTextView
+                    android:id="@+id/vid_ags_time_tv"
+                    style="@style/AppTheme.Base_TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/un_dp_5"
+                    android:text="@{item.timeFormat}"
+                    android:textColor="@color/color_99"
+                    android:textSize="@dimen/un_sp_13"
+                    tools:text="2020.06.17" />
+            </LinearLayout>
 
             <dev.base.widget.BaseTextView
-                android:id="@+id/vid_ags_title_tv"
+                android:id="@+id/vid_ags_index_tv"
                 style="@style/AppTheme.Base_TextView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/un_dp_10"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textSize="@dimen/un_sp_25"
-                tools:text="这是标题" />
-
-            <dev.base.widget.BaseTextView
-                android:id="@+id/vid_ags_subtitle_tv"
-                style="@style/AppTheme.Base_TextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/un_dp_5"
+                android:layout_gravity="bottom|right"
+                android:layout_margin="@dimen/un_dp_10"
+                android:text="@{page}"
                 android:textColor="@color/color_55"
                 android:textSize="@dimen/un_sp_16"
-                tools:text="这是副标题" />
-
-            <dev.base.widget.BaseTextView
-                android:id="@+id/vid_ags_time_tv"
-                style="@style/AppTheme.Base_TextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/un_dp_5"
-                android:textColor="@color/color_99"
-                android:textSize="@dimen/un_sp_13"
-                tools:text="2020.06.17" />
-        </LinearLayout>
-
-        <dev.base.widget.BaseTextView
-            android:id="@+id/vid_ags_index_tv"
-            style="@style/AppTheme.Base_TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="@dimen/un_dp_10"
-            android:textColor="@color/color_55"
-            android:textSize="@dimen/un_sp_16"
-            android:textStyle="bold"
-            tools:text="0 - 0" />
-    </androidx.cardview.widget.CardView>
-
-</LinearLayout>
+                android:textStyle="bold"
+                tools:text="0 - 0" />
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</layout>
