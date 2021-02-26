@@ -687,6 +687,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | 方法 | 注释 |
 | :- | :- |
 | addZero | 补 0 处理 ( 小于 10, 则自动补充 0x ) |
+| subZeroAndDot | 去掉结尾多余的 . 与 0 |
 | percentI | 计算百分比值 ( 最大 100%) |
 | percentD | 计算百分比值 ( 最大 100%) |
 | percentL | 计算百分比值 ( 最大 100%) |

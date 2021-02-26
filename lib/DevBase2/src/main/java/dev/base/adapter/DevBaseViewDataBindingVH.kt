@@ -19,7 +19,7 @@ class DevBaseViewDataBindingVH<VDB : ViewDataBinding> : RecyclerView.ViewHolder 
     val binding: VDB
 
     constructor(itemView: View) : super(itemView) {
-        binding = DataBindingUtil.bind<VDB>(itemView)!!;
+        binding = DataBindingUtil.bind<VDB>(itemView)!!
     }
 
     constructor(vdb: VDB) : super(vdb.root) {

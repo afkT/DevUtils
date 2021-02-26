@@ -11,6 +11,7 @@ implementation 'com.afkt:DevBase:1.0.3'
 - dev.base                                            | 根目录
    - able                                             | 基类库接口相关
    - activity                                         | 核心 Base Activity 代码
+   - adapter                                          | RecyclerView ViewBinding ViewHolder
    - expand                                           | 基于 Base Activity、Fragment 扩展包
       - content                                       | Content Layout 基类
       - mvp                                           | MVP 架构基类
