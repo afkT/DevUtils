@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.hedgehog.ratingbar.RatingBar;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import afkt.project.R;
@@ -56,7 +57,9 @@ public class EditsAdapter
         helper.setText(R.id.vid_aie_name_tv, commodityEvaluateBean.commodityName);
         // 商品价格
         helper.setText(R.id.vid_aie_price_tv,
-                "￥" + BigDecimalUtils.round(commodityEvaluateBean.commodityPrice, 2));
+                "￥" + BigDecimalUtils.getOperation(commodityEvaluateBean.commodityPrice)
+                        .round(2, BigDecimal.ROUND_HALF_UP)
+        );
         // 商品图片
         DevImageEngine.getEngine().display(
                 helper.getView(R.id.vid_aie_pic_igview),

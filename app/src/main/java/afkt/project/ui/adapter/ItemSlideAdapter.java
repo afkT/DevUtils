@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import afkt.project.R;
@@ -43,7 +44,9 @@ public class ItemSlideAdapter
         helper.setText(R.id.vid_ams_name_tv, item.commodityName);
         // 商品价格
         helper.setText(R.id.vid_ams_price_tv,
-                "￥" + BigDecimalUtils.round(item.commodityPrice, 2));
+                "￥" + BigDecimalUtils.getOperation(item.commodityPrice)
+                        .round(2, BigDecimal.ROUND_HALF_UP)
+        );
         // 商品图片
         DevImageEngine.getEngine().display(
                 helper.getView(R.id.vid_ams_pic_igview),
