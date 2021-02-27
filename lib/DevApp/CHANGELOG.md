@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 2.1.7 *(2021-02-28)*
+Version 2.1.7 *(2021-02-27)*
 ----------------------------
 
 * `[Add]` NumberUtils#subZeroAndDot

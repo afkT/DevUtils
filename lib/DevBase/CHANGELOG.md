@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-Version 1.0.4 *(2021-02-28)*
+Version 1.0.4 *(2021-02-27)*
 ----------------------------
 
 * `[Add]` DevBaseViewBindingVH ( RecyclerView ViewBinding ViewHolder )
