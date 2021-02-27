@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.0.2 *(2021-02-28)*
+----------------------------
+
+* `[Add]` DevBaseViewDataBindingVH ( RecyclerView ViewDataBinding ViewHolder )
+
 Version 1.0.1 *(2021-01-24)*
 ----------------------------
 

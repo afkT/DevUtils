@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 2.1.7 *(2021-02-28)*
+----------------------------
+
+* `[Add]` NumberUtils#subZeroAndDot
+
+* `[Refactor]` BigDecimalUtils
+
+* `[Add]` DevFinal 新增部分常量
+
+* `[Add]` ClickUtils#OnMultiClickListener
+
 Version 2.1.6 *(2021-02-08)*
 ----------------------------
 

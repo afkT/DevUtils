@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 1.2.8 *(2021-02-28)*
+----------------------------
+
+* `[Add]` NumberUtils#subZeroAndDot
+
+* `[Refactor]` BigDecimalUtils
+
+* `[Add]` DevFinal 新增部分常量
+
 Version 1.2.7 *(2021-02-08)*
 ----------------------------
 
