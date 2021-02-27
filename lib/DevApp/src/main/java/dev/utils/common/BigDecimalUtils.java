@@ -437,6 +437,7 @@ public final class BigDecimalUtils {
          * 设置小数点保留位数、舍入模式
          * @param scale        小数点保留位数
          * @param roundingMode 舍入模式
+         * @return {@link Operation}
          */
         public Operation setScale(
                 final int scale,
