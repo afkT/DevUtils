@@ -38,7 +38,7 @@ class PagerSnapMAXActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         for (i in 0..9) lists.add(ItemBean.newItemBeanPager())
 
         // 初始化布局管理器、适配器
-        pagerSnapAdapter = PagerSnapMAXAdapter(this, lists)
+        pagerSnapAdapter = PagerSnapMAXAdapter(lists)
         binding.vidBvrRecy.layoutManager =
             LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
 //            LinearLayoutManager(this, RecyclerView.VERTICAL, false)

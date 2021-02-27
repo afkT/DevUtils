@@ -1,93 +1,25 @@
-package afkt.project.ui.adapter;
+package afkt.project.ui.adapter
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.List;
-
-import afkt.project.R;
-import afkt.project.databinding.AdapterPagerSnapBinding;
-import afkt.project.model.bean.ItemBean;
-import afkt.project.util.ProjectUtils;
-import dev.engine.image.DevImageEngine;
-import dev.utils.app.ViewUtils;
-import dev.utils.app.helper.ViewHelper;
+import afkt.project.R
+import afkt.project.databinding.AdapterPagerSnapBinding
+import afkt.project.model.bean.ItemBean
+import afkt.project.util.ProjectUtils
+import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
+import dev.adapter.DevDataAdapter
+import dev.base.adapter.DevBaseViewDataBindingVH
+import dev.engine.image.DevImageEngine
 
 /**
  * detail: RecyclerView Gallery 效果 Adapter
  * @author Ttt
  */
-public class PagerSnapMAXAdapter
-        extends RecyclerView.Adapter {
+class PagerSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, RecyclerView.ViewHolder>() {
 
-    private final Context        context;
-    private final List<ItemBean> data;
-
-    public PagerSnapMAXAdapter(
-            Context context,
-            @Nullable List<ItemBean> data
-    ) {
-        this.context = context;
-        this.data = data;
-    }
-
-    @Override
-    public int getItemCount() {
-        return Integer.MAX_VALUE;
-    }
-
-    @NonNull
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(
-            @NonNull ViewGroup parent,
-            int viewType
-    ) {
-        return new ItemViewHolder(
-                ViewUtils.inflate(context, R.layout.adapter_pager_snap, parent, false)
-        );
-    }
-
-    @Override
-    public void onBindViewHolder(
-            @NonNull RecyclerView.ViewHolder holder,
-            int position
-    ) {
-        int size = data.size();
-        if (size != 0) {
-            int      index    = position % size;
-            ItemBean itemBean = data.get(index);
-
-            ItemViewHolder itemHolder = (ItemViewHolder) holder;
-
-            String posIndex = position + " - " + index;
-
-            ViewHelper.get()
-                    .setText(itemHolder.binding.vidAgsTitleTv, itemBean.title)
-                    .setText(itemHolder.binding.vidAgsSubtitleTv, itemBean.subtitle)
-                    .setText(itemHolder.binding.vidAgsTimeTv, itemBean.timeFormat)
-                    .setText(itemHolder.binding.vidAgsIndexTv, posIndex);
-            DevImageEngine.getEngine().display(
-                    itemHolder.binding.vidAgsIgview,
-                    itemBean.imageUrl,
-                    ProjectUtils.getRoundConfig10()
-            );
-        }
-    }
-
-    class ItemViewHolder
-            extends RecyclerView.ViewHolder {
-
-        private final AdapterPagerSnapBinding binding;
-
-        ItemViewHolder(@NonNull View itemView) {
-            super(itemView);
-            binding = AdapterPagerSnapBinding.bind(itemView);
-        }
+    init {
+        dataList = data
     }
 
     /**
@@ -95,8 +27,54 @@ public class PagerSnapMAXAdapter
      * @param position 当前索引
      * @return Data 真实索引
      */
-    public int getRealIndex(int position) {
-        int size = data.size();
-        return (size != 0) ? position % size : 0;
+    fun getRealIndex(position: Int): Int {
+        val size = dataSize
+        return if (size != 0) position % size else 0
+    }
+
+    override fun getItemCount(): Int {
+        return Int.MAX_VALUE
+    }
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): RecyclerView.ViewHolder {
+//        var holder: DevBaseViewDataBindingVH<AdapterPagerSnapBinding> =
+//            newDataBindingViewHolder(parent, R.layout.adapter_pager_snap)
+//        return holder
+        var holder: DevBaseViewDataBindingVH<AdapterPagerSnapBinding> =
+            DevBaseViewDataBindingVH.create(
+                parent, R.layout.adapter_pager_snap
+            )
+        return holder
+    }
+
+    override fun onBindViewHolder(
+        viewHolder: RecyclerView.ViewHolder,
+        position: Int
+    ) {
+        val size = dataSize
+        if (size != 0) {
+            var holder = viewHolder as DevBaseViewDataBindingVH<AdapterPagerSnapBinding>
+            val index = position % size
+
+            holder.binding.page = "$position - $index"
+            holder.binding.item = getDataItem(index)
+        }
+    }
+
+    companion object {
+        @JvmStatic
+        @BindingAdapter("imageUrl")
+        fun bindImageUrl(
+            view: ImageView?,
+            imageUrl: String?
+        ) {
+            DevImageEngine.getEngine().display(
+                view, imageUrl,
+                ProjectUtils.getRoundConfig10()
+            )
+        }
     }
 }
