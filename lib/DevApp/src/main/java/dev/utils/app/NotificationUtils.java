@@ -8,8 +8,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
-import android.graphics.Color;
 import android.os.Build;
+import android.text.TextUtils;
 
 import androidx.annotation.DrawableRes;
 import androidx.core.app.NotificationManagerCompat;
@@ -245,6 +245,34 @@ public final class NotificationUtils {
 //    Notification.builder.setContent(remoteViews);
 
     /**
+     * 获取 NotificationChannel
+     * @return {@link NotificationChannel}
+     */
+    public static NotificationChannel getNotificationChannel() {
+        return getNotificationChannel(true);
+    }
+
+    /**
+     * 获取 NotificationChannel
+     * @param create 是否创建 Channel
+     * @return {@link NotificationChannel}
+     */
+    public static NotificationChannel getNotificationChannel(boolean create) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    DevUtils.TAG + "." + AppUtils.getPackageName(),
+                    DevUtils.TAG + "_" + TAG,
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+            if (create) {
+                getNotificationManager().createNotificationChannel(channel);
+            }
+            return channel;
+        }
+        return null;
+    }
+
+    /**
      * 获取 PendingIntent
      * @param intent      {@link Intent}
      * @param requestCode 请求 code
@@ -264,123 +292,69 @@ public final class NotificationUtils {
 
     /**
      * 创建通知栏对象
-     * @param icon  图标
-     * @param title 通知栏标题
-     * @param msg   通知栏内容
+     * @param params Notification 参数
      * @return {@link Notification}
      */
-    public static Notification createNotification(
-            @DrawableRes final int icon,
-            final String title,
-            final String msg
-    ) {
-        return createNotification(null, icon, title, title, msg, true, VibratePattern.get(0, 100, 300),
-                LightPattern.get(Color.WHITE, 1000, 1000));
+    public static Notification createNotification(final Params params) {
+        return createNotification(params, null);
     }
 
     /**
      * 创建通知栏对象
-     * @param icon           图标
-     * @param title          通知栏标题
-     * @param msg            通知栏内容
-     * @param vibratePattern 震动频率
-     * @param lightPattern   Led 闪灯参数
+     * @param params   Notification 参数
+     * @param callback {@link Callback}
      * @return {@link Notification}
      */
     public static Notification createNotification(
-            @DrawableRes final int icon,
-            final String title,
-            final String msg,
-            final VibratePattern vibratePattern,
-            final LightPattern lightPattern
+            final Params params,
+            final Callback callback
     ) {
-        return createNotification(null, icon, title, title, msg, true, vibratePattern, lightPattern);
-    }
-
-    /**
-     * 创建通知栏对象
-     * @param pendingIntent {@link PendingIntent}
-     * @param icon          图标
-     * @param ticker        状态栏通知文案
-     * @param title         通知栏标题
-     * @param msg           通知栏内容
-     * @param isAutoCancel  点击是否自动关闭
-     * @return {@link Notification}
-     */
-    public static Notification createNotification(
-            final PendingIntent pendingIntent,
-            @DrawableRes final int icon,
-            final String ticker,
-            final String title,
-            final String msg,
-            final boolean isAutoCancel
-    ) {
-        return createNotification(pendingIntent, icon, ticker, title, msg, isAutoCancel, null, null);
-    }
-
-    /**
-     * 创建通知栏对象
-     * @param pendingIntent  {@link PendingIntent}
-     * @param icon           图标
-     * @param ticker         状态栏通知文案
-     * @param title          通知栏标题
-     * @param msg            通知栏内容
-     * @param isAutoCancel   点击是否自动关闭
-     * @param vibratePattern 震动频率
-     * @param lightPattern   Led 闪灯参数
-     * @return {@link Notification}
-     */
-    public static Notification createNotification(
-            final PendingIntent pendingIntent,
-            @DrawableRes final int icon,
-            final String ticker,
-            final String title,
-            final String msg,
-            final boolean isAutoCancel,
-            final VibratePattern vibratePattern,
-            final LightPattern lightPattern
-    ) {
-        // 适配处理
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(
-                    DevUtils.TAG + AppUtils.getPackageName(),
-                    DevUtils.TAG + "_" + TAG,
-                    NotificationManager.IMPORTANCE_HIGH
-            );
-            getNotificationManager().createNotificationChannel(channel);
-        }
+        if (params == null) return null;
         Notification.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            builder = new Notification.Builder(DevUtils.getContext(),
-                    DevUtils.TAG + AppUtils.getPackageName());
+            String channelId = null;
+            if (params.getChannel() != null) {
+                channelId = params.getChannel().getId();
+                getNotificationManager().createNotificationChannel(params.getChannel());
+            }
+            if (TextUtils.isEmpty(channelId)) {
+                channelId = getNotificationChannel().getId();
+            }
+            builder = new Notification.Builder(DevUtils.getContext(), channelId);
         } else {
             builder = new Notification.Builder(DevUtils.getContext());
         }
         // 点击通知执行 intent
-        builder.setContentIntent(pendingIntent);
+        builder.setContentIntent(params.getPendingIntent());
         // 设置图标
-        builder.setSmallIcon(icon);
+        builder.setSmallIcon(params.getIcon());
         // 设置图标
-        builder.setLargeIcon(ResourceUtils.getBitmap(icon));
+        builder.setLargeIcon(ResourceUtils.getBitmap(params.getIcon()));
         // 指定通知的 ticker 内容, 通知被创建的时候, 在状态栏一闪而过, 属于瞬时提示信息
-        builder.setTicker(ticker);
+        builder.setTicker(params.getTicker());
         // 设置标题
-        builder.setContentTitle(title);
+        builder.setContentTitle(params.getTitle());
         // 设置内容
-        builder.setContentText(msg);
+        builder.setContentText(params.getContent());
         // 设置消息提醒, 震动 | 声音
         builder.setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND);
         // 将 AutoCancel 设为 true 后, 当你点击通知栏的 notification 后, 它会自动被取消消失
-        builder.setAutoCancel(isAutoCancel);
+        builder.setAutoCancel(params.isAutoCancel());
         // 设置时间
         builder.setWhen(System.currentTimeMillis());
         // 设置震动参数
+        VibratePattern vibratePattern = params.getVibratePattern();
         if (vibratePattern != null && !vibratePattern.isEmpty()) {
             builder.setVibrate(vibratePattern.vibrates);
         }
         // 设置 led 灯参数
+        LightPattern lightPattern = params.getLightPattern();
         if (lightPattern != null) {
             builder.setLights(lightPattern.argb, lightPattern.durationMS, lightPattern.startOffMS);
+        }
+        // 额外操作触发
+        if (callback != null) {
+            callback.callback(params, builder);
         }
         // 初始化 Notification 对象
         Notification baseNF;
@@ -477,5 +451,138 @@ public final class NotificationUtils {
         public static VibratePattern get(final long... times) {
             return new VibratePattern(times);
         }
+    }
+
+    /**
+     * detail: Notification 参数
+     * @author Ttt
+     */
+    public static class Params {
+
+        // 点击跳转 Intent
+        private PendingIntent       mPendingIntent;
+        // 图标
+        private int                 mIcon;
+        // 状态栏通知文案
+        private String              mTicker;
+        // 通知栏标题
+        private String              mTitle;
+        // 通知栏内容
+        private String              mContent;
+        // 点击是否自动关闭
+        private boolean             mAutoCancel;
+        // 震动频率
+        private VibratePattern      mVibratePattern;
+        // Led 闪灯参数
+        private LightPattern        mLightPattern;
+        // NotificationChannel channel
+        private NotificationChannel mChannel;
+
+        public Params() {
+        }
+
+        public Params(
+                @DrawableRes int icon,
+                String title,
+                String content
+        ) {
+            this.mIcon = icon;
+            this.mTicker = title;
+            this.mTitle = title;
+            this.mContent = content;
+        }
+
+        public PendingIntent getPendingIntent() {
+            return mPendingIntent;
+        }
+
+        public Params setPendingIntent(final PendingIntent pendingIntent) {
+            this.mPendingIntent = pendingIntent;
+            return this;
+        }
+
+        public int getIcon() {
+            return mIcon;
+        }
+
+        public Params setIcon(@DrawableRes final int icon) {
+            this.mIcon = icon;
+            return this;
+        }
+
+        public String getTicker() {
+            return mTicker;
+        }
+
+        public Params setTicker(final String ticker) {
+            this.mTicker = ticker;
+            return this;
+        }
+
+        public String getTitle() {
+            return mTitle;
+        }
+
+        public Params setTitle(final String title) {
+            this.mTitle = title;
+            return this;
+        }
+
+        public String getContent() {
+            return mContent;
+        }
+
+        public Params setContent(final String content) {
+            this.mContent = content;
+            return this;
+        }
+
+        public boolean isAutoCancel() {
+            return mAutoCancel;
+        }
+
+        public Params setAutoCancel(final boolean autoCancel) {
+            mAutoCancel = autoCancel;
+            return this;
+        }
+
+        public VibratePattern getVibratePattern() {
+            return mVibratePattern;
+        }
+
+        public Params setVibratePattern(final VibratePattern vibratePattern) {
+            this.mVibratePattern = vibratePattern;
+            return this;
+        }
+
+        public LightPattern getLightPattern() {
+            return mLightPattern;
+        }
+
+        public Params setLightPattern(final LightPattern lightPattern) {
+            this.mLightPattern = lightPattern;
+            return this;
+        }
+
+        public NotificationChannel getChannel() {
+            return mChannel;
+        }
+
+        public Params setChannel(final NotificationChannel channel) {
+            this.mChannel = channel;
+            return this;
+        }
+    }
+
+    /**
+     * detail: 额外操作回调
+     * @author Ttt
+     */
+    public interface Callback {
+
+        void callback(
+                Params params,
+                Notification.Builder builder
+        );
     }
 }

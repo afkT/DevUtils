@@ -88,7 +88,9 @@ public class FunctionActivity
                         showToast(result);
                         break;
                     case ButtonValue.BTN_FUNCTION_NOTIFICATION:
-                        result = NotificationUtils.notify(12, NotificationUtils.createNotification(R.mipmap.icon_launcher, "标题", "内容"));
+                        result = NotificationUtils.notify(12, NotificationUtils.createNotification(
+                                new NotificationUtils.Params(R.mipmap.icon_launcher, "标题", "内容"))
+                        );
                         showToast(result);
                         break;
                     case ButtonValue.BTN_FUNCTION_NOTIFICATION_REMOVE:
