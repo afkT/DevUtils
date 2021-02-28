@@ -63,6 +63,11 @@ import dev.utils.LogPrintUtils;
  *     <uses-permission android:name="android.permission.INTERNET" />
  *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
  *     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+ *     <p></p>
+ *     Android Settings 系统属性, 共分三种:
+ *     {@link Settings.Global}: 所有的偏好设置对系统的所有用户公开, 第三方 APP 有读没有写的权限
+ *     {@link Settings.System}: 包含各种各样的用户偏好系统设置
+ *     {@link Settings.Secure}: 安全性的用户偏好系统设置, 第三方 APP 有读没有写的权限
  * </pre>
  */
 public final class DeviceUtils {
@@ -556,9 +561,29 @@ public final class DeviceUtils {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static boolean isAdbEnabled() {
         try {
-            return Settings.Secure.getInt(ResourceUtils.getContentResolver(), Settings.Global.ADB_ENABLED, 0) > 0;
+            return Settings.Secure.getInt(
+                    ResourceUtils.getContentResolver(),
+                    Settings.Global.ADB_ENABLED, 0
+            ) > 0;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isAdbEnabled");
+        }
+        return false;
+    }
+
+    /**
+     * 是否打开开发者选项
+     * @return {@code true} yes, {@code false} no
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static boolean isDevelopmentSettingsEnabled() {
+        try {
+            return Settings.Global.getInt(
+                    ResourceUtils.getContentResolver(),
+                    Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0
+            ) > 0;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isDevelopmentSettingsEnabled");
         }
         return false;
     }
@@ -769,23 +794,6 @@ public final class DeviceUtils {
             return (ResourceUtils.getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isTablet");
-        }
-        return false;
-    }
-
-    /**
-     * 是否打开开发者选项
-     * @return {@code true} yes, {@code false} no
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static boolean isDevelopmentSettingsEnabled() {
-        try {
-            return Settings.Global.getInt(
-                    ResourceUtils.getContentResolver(),
-                    Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0
-            ) > 0;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "isDevelopmentSettingsEnabled");
         }
         return false;
     }
