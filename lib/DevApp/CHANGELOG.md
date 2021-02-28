@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 2.1.8 *(2021-03-01)*
+----------------------------
+
+* `[Refactor]` NotificationUtils 新增 Params、Callback
+
+* `[Add]` DeviceUtils#isDevelopmentSettingsEnabled
+
 Version 2.1.7 *(2021-02-27)*
 ----------------------------
 

@@ -257,7 +257,7 @@ public final class NotificationUtils {
      * @param create 是否创建 Channel
      * @return {@link NotificationChannel}
      */
-    public static NotificationChannel getNotificationChannel(boolean create) {
+    public static NotificationChannel getNotificationChannel(final boolean create) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
                     DevUtils.TAG + "." + AppUtils.getPackageName(),
