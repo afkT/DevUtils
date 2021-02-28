@@ -772,4 +772,21 @@ public final class DeviceUtils {
         }
         return false;
     }
+
+    /**
+     * 是否打开开发者选项
+     * @return {@code true} yes, {@code false} no
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static boolean isDevelopmentSettingsEnabled() {
+        try {
+            return Settings.Global.getInt(
+                    ResourceUtils.getContentResolver(),
+                    Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0
+            ) > 0;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "isDevelopmentSettingsEnabled");
+        }
+        return false;
+    }
 }

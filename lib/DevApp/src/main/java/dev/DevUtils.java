@@ -989,7 +989,7 @@ public final class DevUtils {
             extends FileProvider {
         @Override
         public boolean onCreate() {
-            init(getContext());
+            init(getContext().getApplicationContext());
             return true;
         }
     }

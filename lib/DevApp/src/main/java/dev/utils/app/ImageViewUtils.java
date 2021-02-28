@@ -60,7 +60,7 @@ public final class ImageViewUtils {
      * @param imageView ImageView
      * @return {@code true} yes, {@code false} no
      */
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean getAdjustViewBounds(final ImageView imageView) {
         if (imageView != null) {
             return imageView.getAdjustViewBounds();
@@ -89,7 +89,7 @@ public final class ImageViewUtils {
      * @param imageView ImageView
      * @return view 最大高度
      */
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static int getMaxHeight(final ImageView imageView) {
         if (imageView != null) {
             return imageView.getMaxHeight();
@@ -118,7 +118,7 @@ public final class ImageViewUtils {
      * @param imageView ImageView
      * @return view 最大宽度
      */
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static int getMaxWidth(final ImageView imageView) {
         if (imageView != null) {
             return imageView.getMaxWidth();

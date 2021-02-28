@@ -58,7 +58,7 @@ public final class MemoryUtils {
      * 获取内存信息
      * @return 内存信息
      */
-    @RequiresApi(Build.VERSION_CODES.CUPCAKE)
+    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     public static String printMemoryInfo2() {
         try {
             ActivityManager.MemoryInfo memoryInfo = getMemoryInfo();
@@ -81,7 +81,7 @@ public final class MemoryUtils {
      * 获取内存信息
      * @return 内存信息
      */
-    @RequiresApi(Build.VERSION_CODES.CUPCAKE)
+    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     public static ActivityManager.MemoryInfo getMemoryInfo() {
         try {
             ActivityManager            activityManager = AppUtils.getActivityManager();
@@ -100,7 +100,7 @@ public final class MemoryUtils {
      * 获取可用内存信息
      * @return 可用内存信息
      */
-    @RequiresApi(Build.VERSION_CODES.CUPCAKE)
+    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     public static long getAvailMemory() {
         try {
             // 获取 android 当前可用内存大小
@@ -119,7 +119,7 @@ public final class MemoryUtils {
      * 获取可用内存信息 ( 格式化 )
      * @return 可用内存信息
      */
-    @RequiresApi(Build.VERSION_CODES.CUPCAKE)
+    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     public static String getAvailMemoryFormat() {
         return Formatter.formatFileSize(DevUtils.getContext(), getAvailMemory());
     }

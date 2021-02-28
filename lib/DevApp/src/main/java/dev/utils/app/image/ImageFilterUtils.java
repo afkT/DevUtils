@@ -44,7 +44,7 @@ public final class ImageFilterUtils {
      * @param radius 模糊度 (0-25)
      * @return 模糊后的图片
      */
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static Bitmap blur(
             final Bitmap bitmap,
             @IntRange(from = 0, to = 25) final int radius
