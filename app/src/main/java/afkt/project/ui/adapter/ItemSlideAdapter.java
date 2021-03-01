@@ -44,7 +44,7 @@ public class ItemSlideAdapter
         helper.setText(R.id.vid_ams_name_tv, item.commodityName);
         // 商品价格
         helper.setText(R.id.vid_ams_price_tv,
-                "￥" + BigDecimalUtils.getOperation(item.commodityPrice)
+                "￥" + BigDecimalUtils.operation(item.commodityPrice)
                         .round(2, BigDecimal.ROUND_HALF_UP)
         );
         // 商品图片

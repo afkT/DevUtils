@@ -57,7 +57,7 @@ public class EditsAdapter
         helper.setText(R.id.vid_aie_name_tv, commodityEvaluateBean.commodityName);
         // 商品价格
         helper.setText(R.id.vid_aie_price_tv,
-                "￥" + BigDecimalUtils.getOperation(commodityEvaluateBean.commodityPrice)
+                "￥" + BigDecimalUtils.operation(commodityEvaluateBean.commodityPrice)
                         .round(2, BigDecimal.ROUND_HALF_UP)
         );
         // 商品图片

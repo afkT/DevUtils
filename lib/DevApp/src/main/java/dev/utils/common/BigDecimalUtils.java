@@ -70,7 +70,7 @@ public final class BigDecimalUtils {
      * @param value Value
      * @return {@link Operation}
      */
-    public static Operation getOperation(final double value) {
+    public static Operation operation(final double value) {
         return new Operation(value);
     }
 
@@ -79,7 +79,7 @@ public final class BigDecimalUtils {
      * @param value Value
      * @return {@link Operation}
      */
-    public static Operation getOperation(final String value) {
+    public static Operation operation(final String value) {
         return new Operation(value);
     }
 
@@ -88,200 +88,8 @@ public final class BigDecimalUtils {
      * @param value Value
      * @return {@link Operation}
      */
-    public static Operation getOperation(final BigDecimal value) {
+    public static Operation operation(final BigDecimal value) {
         return new Operation(value);
-    }
-
-    // =
-
-    /**
-     * 获取自己想要的数据格式
-     * @param value            需处理的数据
-     * @param numOfIntPart     整数位数
-     * @param numOfDecimalPart 小数位数
-     * @return 处理过的数据
-     */
-    public static String adjustDouble(
-            final String value,
-            final int numOfIntPart,
-            final int numOfDecimalPart
-    ) {
-        if (value == null) return null;
-        try {
-            // 按小数点的位置分割成整数部分和小数部分
-            String[] array = value.split("\\.");
-            char[]   tempA = new char[numOfIntPart];
-            char[]   tempB = new char[numOfDecimalPart];
-            // 整数部分满足精度要求 ( 情况 1 )
-            if (array[0].length() == numOfIntPart) {
-                // 直接获取整数部分长度字符
-                for (int i = 0; i < array[0].length(); i++) {
-                    tempA[i] = array[0].charAt(i);
-                }
-                // 小数部分精度大于或等于指定的精度
-                if (numOfDecimalPart <= array[1].length()) {
-                    for (int i = 0; i < numOfDecimalPart; i++) {
-                        tempB[i] = array[1].charAt(i);
-                    }
-                }
-                // 小数部分精度小于指定的精度
-                if (numOfDecimalPart > array[1].length()) {
-                    for (int i = 0; i < numOfDecimalPart; i++) {
-                        if (i < array[1].length()) {
-                            tempB[i] = array[1].charAt(i);
-                        } else {
-                            tempB[i] = '0';
-                        }
-                    }
-                }
-                if (numOfDecimalPart == 0) {
-                    return String.valueOf(tempA) + String.valueOf(tempB);
-                }
-                return String.valueOf(tempA) + "." + String.valueOf(tempB);
-            }
-            // 整数部分位数大于精度要求 ( 情况 2 )
-            if (array[0].length() > numOfIntPart) {
-                // 先倒序获取指定位数的整数
-                for (int i = array[0].length() - 1, j = 0; (i >= array[0].length() - numOfIntPart) && (j < numOfIntPart); i--, j++) {
-                    tempA[j] = array[0].charAt(i);
-                }
-                char[] tempA1 = new char[numOfIntPart];
-                // 调整顺序
-                for (int j = 0, k = tempA.length - 1; j < numOfIntPart && (k >= 0); j++, k--) {
-                    tempA1[j] = tempA[k];
-                }
-                // 小数部分精度大于或等于指定的精度
-                if (numOfDecimalPart <= array[1].length()) {
-                    for (int i = 0; i < numOfDecimalPart; i++) {
-                        tempB[i] = array[1].charAt(i);
-                    }
-                }
-                // 小数部分精度小于指定的精度
-                if (numOfDecimalPart > array[1].length()) {
-                    for (int i = 0; i < numOfDecimalPart; i++) {
-                        if (i < array[1].length()) {
-                            tempB[i] = array[1].charAt(i);
-                        } else {
-                            tempB[i] = '0';
-                        }
-                    }
-                }
-                return String.valueOf(tempA1) + "." + String.valueOf(tempB);
-            }
-            // 整数部分满足精度要求 ( 情况 3 )
-            if (array[0].length() == numOfIntPart) {
-                // 直接获取整数部分长度字符
-                for (int i = 0; i < array[0].length(); i++) {
-                    tempA[i] = array[0].charAt(i);
-                }
-                // 小数部分精度小于指定的精度
-                if (numOfDecimalPart > array[1].length()) {
-                    for (int i = 0; i < numOfDecimalPart; i++) {
-                        if (i < array[1].length()) {
-                            tempB[i] = array[1].charAt(i);
-                        } else {
-                            tempB[i] = '0';
-                        }
-                    }
-                }
-                // 小数部分精度大于或等于指定的精度
-                if (numOfDecimalPart <= array[1].length()) {
-                    for (int i = 0; i < numOfDecimalPart; i++) {
-                        tempB[i] = array[1].charAt(i);
-                    }
-                }
-                if (numOfDecimalPart == 0) {
-                    return String.valueOf(tempA) + String.valueOf(tempB);
-                }
-                return String.valueOf(tempA) + "." + String.valueOf(tempB);
-            }
-            // 整数部分大于精度要求 ( 情况 4 )
-            if (array[0].length() > numOfIntPart) {
-                // 先倒序获取指定位数的整数
-                for (int i = array[0].length() - 1, j = 0; (i >= array[0].length() - numOfIntPart + 1) && (j < numOfIntPart); i--, j++) {
-                    tempA[j] = array[0].charAt(i);
-                }
-                char[] tempA1 = new char[numOfIntPart];
-                // 调整顺序
-                for (int j = 0, k = tempA.length - 1; j < numOfIntPart && (k >= 0); j++) {
-                    tempA1[j] = tempA[k];
-                    k--;
-                }
-                // 小数部分精度小于指定的精度
-                if (numOfDecimalPart > array[1].length()) {
-                    for (int i = 0; i < numOfDecimalPart; i++) {
-                        if (i >= array[1].length()) {
-                            tempB[i] = '0';
-                        } else {
-                            tempB[i] = array[1].charAt(i);
-                        }
-                    }
-                }
-                // 小数部分精度大于或等于指定的精度
-                if (numOfDecimalPart <= array[1].length()) {
-                    for (int i = 0; i < numOfDecimalPart; i++) {
-                        tempB[i] = array[1].charAt(i);
-                    }
-                }
-                if (numOfDecimalPart == 0) {
-                    return String.valueOf(tempA1) + String.valueOf(tempB);
-                }
-                return String.valueOf(tempA1) + "." + String.valueOf(tempB);
-            }
-            // 整数部分小于精度要求 ( 情况 5 )
-            if (array[0].length() < numOfIntPart) {
-                // 先倒序获取指定位数的整数
-                char[] tempA1 = new char[numOfIntPart];
-                for (int i = array[0].length() - 1, j = 0; (i >= numOfIntPart - array[0].length() - (numOfIntPart - array[0].length())) && (j < numOfIntPart); i--, j++) {
-                    tempA1[j] = array[0].charAt(i);
-                }
-                // 补 0
-                for (int i = array[0].length(); i < array[0].length() + numOfIntPart - array[0].length(); i++) {
-                    tempA1[i] = '0';
-                }
-
-                char[] tempA2 = new char[numOfIntPart];
-                // 调整顺序
-                for (int j = 0, k = tempA1.length - 1; j < numOfIntPart && (k >= 0); j++) {
-                    tempA2[j] = tempA1[k];
-                    k--;
-                }
-                // 小数部分精度小于指定的精度
-                if (numOfDecimalPart > array[1].length()) {
-                    for (int i = 0; i < numOfDecimalPart; i++) {
-                        if (i < array[1].length()) {
-                            tempB[i] = array[1].charAt(i);
-                        } else {
-                            tempB[i] = '0';
-                        }
-                    }
-                }
-                // 小数部分精度大于或等于指定的精度
-                if (numOfDecimalPart <= array[1].length()) {
-                    for (int i = 0; i < numOfDecimalPart; i++) {
-                        tempB[i] = array[1].charAt(i);
-                    }
-                }
-                if (numOfDecimalPart == 0) {
-                    return String.valueOf(tempA2) + String.valueOf(tempB);
-                }
-                return String.valueOf(tempA2) + "." + String.valueOf(tempB);
-            }
-            // ( 情况 6 )
-            if ((array[0].length() < numOfIntPart) && (array[1].length() < numOfDecimalPart)) {
-                StringBuilder builder = new StringBuilder(value);
-                for (int i = 0; i < numOfIntPart - array[0].length(); i++) {
-                    builder.insert(0, "0");
-                }
-                for (int i = 0; i < numOfDecimalPart - array[1].length(); i++) {
-                    builder.append("0");
-                }
-                return builder.toString();
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "adjustDouble");
-        }
-        return null;
     }
 
     // =========
@@ -1000,5 +808,199 @@ public final class BigDecimalUtils {
             }
             return null;
         }
+    }
+
+    // ====================
+    // = 获取指定格式字符串 =
+    // ====================
+
+    /**
+     * 获取自己想要的数据格式
+     * @param value            需处理的数据
+     * @param numOfIntPart     整数位数
+     * @param numOfDecimalPart 小数位数
+     * @return 处理过的数据
+     */
+    public static String adjustDouble(
+            final String value,
+            final int numOfIntPart,
+            final int numOfDecimalPart
+    ) {
+        if (value == null) return null;
+        try {
+            // 按小数点的位置分割成整数部分和小数部分
+            String[] array = value.split("\\.");
+            char[]   tempA = new char[numOfIntPart];
+            char[]   tempB = new char[numOfDecimalPart];
+            // 整数部分满足精度要求 ( 情况 1 )
+            if (array[0].length() == numOfIntPart) {
+                // 直接获取整数部分长度字符
+                for (int i = 0; i < array[0].length(); i++) {
+                    tempA[i] = array[0].charAt(i);
+                }
+                // 小数部分精度大于或等于指定的精度
+                if (numOfDecimalPart <= array[1].length()) {
+                    for (int i = 0; i < numOfDecimalPart; i++) {
+                        tempB[i] = array[1].charAt(i);
+                    }
+                }
+                // 小数部分精度小于指定的精度
+                if (numOfDecimalPart > array[1].length()) {
+                    for (int i = 0; i < numOfDecimalPart; i++) {
+                        if (i < array[1].length()) {
+                            tempB[i] = array[1].charAt(i);
+                        } else {
+                            tempB[i] = '0';
+                        }
+                    }
+                }
+                if (numOfDecimalPart == 0) {
+                    return String.valueOf(tempA) + String.valueOf(tempB);
+                }
+                return String.valueOf(tempA) + "." + String.valueOf(tempB);
+            }
+            // 整数部分位数大于精度要求 ( 情况 2 )
+            if (array[0].length() > numOfIntPart) {
+                // 先倒序获取指定位数的整数
+                for (int i = array[0].length() - 1, j = 0; (i >= array[0].length() - numOfIntPart) && (j < numOfIntPart); i--, j++) {
+                    tempA[j] = array[0].charAt(i);
+                }
+                char[] tempA1 = new char[numOfIntPart];
+                // 调整顺序
+                for (int j = 0, k = tempA.length - 1; j < numOfIntPart && (k >= 0); j++, k--) {
+                    tempA1[j] = tempA[k];
+                }
+                // 小数部分精度大于或等于指定的精度
+                if (numOfDecimalPart <= array[1].length()) {
+                    for (int i = 0; i < numOfDecimalPart; i++) {
+                        tempB[i] = array[1].charAt(i);
+                    }
+                }
+                // 小数部分精度小于指定的精度
+                if (numOfDecimalPart > array[1].length()) {
+                    for (int i = 0; i < numOfDecimalPart; i++) {
+                        if (i < array[1].length()) {
+                            tempB[i] = array[1].charAt(i);
+                        } else {
+                            tempB[i] = '0';
+                        }
+                    }
+                }
+                return String.valueOf(tempA1) + "." + String.valueOf(tempB);
+            }
+            // 整数部分满足精度要求 ( 情况 3 )
+            if (array[0].length() == numOfIntPart) {
+                // 直接获取整数部分长度字符
+                for (int i = 0; i < array[0].length(); i++) {
+                    tempA[i] = array[0].charAt(i);
+                }
+                // 小数部分精度小于指定的精度
+                if (numOfDecimalPart > array[1].length()) {
+                    for (int i = 0; i < numOfDecimalPart; i++) {
+                        if (i < array[1].length()) {
+                            tempB[i] = array[1].charAt(i);
+                        } else {
+                            tempB[i] = '0';
+                        }
+                    }
+                }
+                // 小数部分精度大于或等于指定的精度
+                if (numOfDecimalPart <= array[1].length()) {
+                    for (int i = 0; i < numOfDecimalPart; i++) {
+                        tempB[i] = array[1].charAt(i);
+                    }
+                }
+                if (numOfDecimalPart == 0) {
+                    return String.valueOf(tempA) + String.valueOf(tempB);
+                }
+                return String.valueOf(tempA) + "." + String.valueOf(tempB);
+            }
+            // 整数部分大于精度要求 ( 情况 4 )
+            if (array[0].length() > numOfIntPart) {
+                // 先倒序获取指定位数的整数
+                for (int i = array[0].length() - 1, j = 0; (i >= array[0].length() - numOfIntPart + 1) && (j < numOfIntPart); i--, j++) {
+                    tempA[j] = array[0].charAt(i);
+                }
+                char[] tempA1 = new char[numOfIntPart];
+                // 调整顺序
+                for (int j = 0, k = tempA.length - 1; j < numOfIntPart && (k >= 0); j++) {
+                    tempA1[j] = tempA[k];
+                    k--;
+                }
+                // 小数部分精度小于指定的精度
+                if (numOfDecimalPart > array[1].length()) {
+                    for (int i = 0; i < numOfDecimalPart; i++) {
+                        if (i >= array[1].length()) {
+                            tempB[i] = '0';
+                        } else {
+                            tempB[i] = array[1].charAt(i);
+                        }
+                    }
+                }
+                // 小数部分精度大于或等于指定的精度
+                if (numOfDecimalPart <= array[1].length()) {
+                    for (int i = 0; i < numOfDecimalPart; i++) {
+                        tempB[i] = array[1].charAt(i);
+                    }
+                }
+                if (numOfDecimalPart == 0) {
+                    return String.valueOf(tempA1) + String.valueOf(tempB);
+                }
+                return String.valueOf(tempA1) + "." + String.valueOf(tempB);
+            }
+            // 整数部分小于精度要求 ( 情况 5 )
+            if (array[0].length() < numOfIntPart) {
+                // 先倒序获取指定位数的整数
+                char[] tempA1 = new char[numOfIntPart];
+                for (int i = array[0].length() - 1, j = 0; (i >= numOfIntPart - array[0].length() - (numOfIntPart - array[0].length())) && (j < numOfIntPart); i--, j++) {
+                    tempA1[j] = array[0].charAt(i);
+                }
+                // 补 0
+                for (int i = array[0].length(); i < array[0].length() + numOfIntPart - array[0].length(); i++) {
+                    tempA1[i] = '0';
+                }
+
+                char[] tempA2 = new char[numOfIntPart];
+                // 调整顺序
+                for (int j = 0, k = tempA1.length - 1; j < numOfIntPart && (k >= 0); j++) {
+                    tempA2[j] = tempA1[k];
+                    k--;
+                }
+                // 小数部分精度小于指定的精度
+                if (numOfDecimalPart > array[1].length()) {
+                    for (int i = 0; i < numOfDecimalPart; i++) {
+                        if (i < array[1].length()) {
+                            tempB[i] = array[1].charAt(i);
+                        } else {
+                            tempB[i] = '0';
+                        }
+                    }
+                }
+                // 小数部分精度大于或等于指定的精度
+                if (numOfDecimalPart <= array[1].length()) {
+                    for (int i = 0; i < numOfDecimalPart; i++) {
+                        tempB[i] = array[1].charAt(i);
+                    }
+                }
+                if (numOfDecimalPart == 0) {
+                    return String.valueOf(tempA2) + String.valueOf(tempB);
+                }
+                return String.valueOf(tempA2) + "." + String.valueOf(tempB);
+            }
+            // ( 情况 6 )
+            if ((array[0].length() < numOfIntPart) && (array[1].length() < numOfDecimalPart)) {
+                StringBuilder builder = new StringBuilder(value);
+                for (int i = 0; i < numOfIntPart - array[0].length(); i++) {
+                    builder.insert(0, "0");
+                }
+                for (int i = 0; i < numOfDecimalPart - array[1].length(); i++) {
+                    builder.append("0");
+                }
+                return builder.toString();
+            }
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "adjustDouble");
+        }
+        return null;
     }
 }
