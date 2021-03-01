@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevJava:1.2.8'
+implementation 'com.afkt:DevJava:1.2.9'
 ```
 
 ## 目录结构
@@ -112,15 +112,25 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | :- | :- |
 | setScale | 设置全局小数点保留位数、舍入模式 |
 | getBigDecimal | 获取 BigDecimal |
-| getOperation | 获取 Operation |
+| operation | 获取 Operation |
 | adjustDouble | 获取自己想要的数据格式 |
+| add | 提供精确的加法运算 |
+| subtract | 提供精确的减法运算 |
+| multiply | 提供精确的乘法运算 |
+| divide | 提供精确的除法运算 |
+| remainder | 提供精确的取余运算 |
+| round | 提供精确的小数位四舍五入处理 |
+| compareTo | 比较大小 |
 | getScale | 获取小数点保留位数 |
 | getRoundingMode | 获取舍入模式 |
+| requireNonNull | 检查 Value 是否为 null, 为 null 则抛出异常 |
 | setBigDecimal | 设置 Value |
 | getConfig | 获取配置信息 |
 | setConfig | 设置配置信息 |
 | removeConfig | 移除配置信息 |
 | setScaleByConfig | 设置小数点保留位数、舍入模式 |
+| isThrowError | 是否抛出异常 |
+| setThrowError | 设置是否抛出异常 |
 | clone | 克隆对象 |
 | toString | 获取此 BigDecimal 的字符串表示形式科学记数法 |
 | toPlainString | 获取此 BigDecimal 的字符串表示形式不带指数字段 |
@@ -129,13 +139,6 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | floatValue | 获取指定类型值 |
 | longValue | 获取指定类型值 |
 | doubleValue | 获取指定类型值 |
-| add | 提供精确的加法运算 |
-| subtract | 提供精确的减法运算 |
-| multiply | 提供精确的乘法运算 |
-| divide | 提供精确的除法运算 |
-| remainder | 提供精确的取余运算 |
-| round | 提供精确的小数位四舍五入处理 |
-| compareTo | 比较大小 |
 | formatMoney | 金额分割, 四舍五入金额 |
 
 
