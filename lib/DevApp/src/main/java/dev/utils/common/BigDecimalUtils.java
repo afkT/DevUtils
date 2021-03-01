@@ -936,7 +936,7 @@ public final class BigDecimalUtils {
      * @param v1     被加数
      * @param v2     加数
      * @param config {@link Config}
-     * @return {@link Operation}
+     * @return 两个参数的和
      */
     public static double add(
             final Object v1,
@@ -970,6 +970,81 @@ public final class BigDecimalUtils {
                     .requireNonNull().doubleValue();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "add");
+        }
+        return ERROR_VALUE;
+    }
+
+    // ======
+    // = 减 =
+    // ======
+
+    /**
+     * 提供精确的减法运算
+     * @param v1 被减数
+     * @param v2 减数
+     * @return 两个参数的差
+     */
+    public static double subtract(
+            final Object v1,
+            final Object v2
+    ) {
+        return subtract(v1, v2, NEW_SCALE, ROUNDING_MODE);
+    }
+
+    /**
+     * 提供精确的减法运算
+     * @param v1    被减数
+     * @param v2    减数
+     * @param scale 保留 scale 位小数
+     * @return 两个参数的差
+     */
+    public static double subtract(
+            final Object v1,
+            final Object v2,
+            final int scale
+    ) {
+        return subtract(v1, v2, scale, ROUNDING_MODE);
+    }
+
+    /**
+     * 提供精确的减法运算
+     * @param v1     被减数
+     * @param v2     减数
+     * @param config {@link Config}
+     * @return 两个参数的差
+     */
+    public static double subtract(
+            final Object v1,
+            final Object v2,
+            final Config config
+    ) {
+        if (config != null) {
+            return subtract(v1, v2, config.getScale(), config.getRoundingMode());
+        } else {
+            return subtract(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        }
+    }
+
+    /**
+     * 提供精确的减法运算
+     * @param v1           被减数
+     * @param v2           减数
+     * @param scale        保留 scale 位小数
+     * @param roundingMode 舍入模式
+     * @return 两个参数的差
+     */
+    public static double subtract(
+            final Object v1,
+            final Object v2,
+            final int scale,
+            final int roundingMode
+    ) {
+        try {
+            return operation(v1).setThrowError(true)
+                    .subtract(v2).setScale(scale, roundingMode)
+                    .requireNonNull().doubleValue();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "subtract");
         }
         return ERROR_VALUE;
     }
