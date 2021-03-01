@@ -1123,4 +1123,79 @@ public final class BigDecimalUtils {
         }
         return ERROR_VALUE;
     }
+
+    // ======
+    // = 除 =
+    // ======
+
+    /**
+     * 提供精确的除法运算
+     * @param v1 被除数
+     * @param v2 除数
+     * @return 两个参数的商
+     */
+    public static double divide(
+            final Object v1,
+            final Object v2
+    ) {
+        return divide(v1, v2, NEW_SCALE, ROUNDING_MODE);
+    }
+
+    /**
+     * 提供精确的除法运算
+     * @param v1    被除数
+     * @param v2    除数
+     * @param scale 保留 scale 位小数
+     * @return 两个参数的商
+     */
+    public static double divide(
+            final Object v1,
+            final Object v2,
+            final int scale
+    ) {
+        return divide(v1, v2, scale, ROUNDING_MODE);
+    }
+
+    /**
+     * 提供精确的除法运算
+     * @param v1     被除数
+     * @param v2     除数
+     * @param config {@link Config}
+     * @return 两个参数的商
+     */
+    public static double divide(
+            final Object v1,
+            final Object v2,
+            final Config config
+    ) {
+        if (config != null) {
+            return divide(v1, v2, config.getScale(), config.getRoundingMode());
+        } else {
+            return divide(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        }
+    }
+
+    /**
+     * 提供精确的除法运算
+     * @param v1           被除数
+     * @param v2           除数
+     * @param scale        保留 scale 位小数
+     * @param roundingMode 舍入模式
+     * @return 两个参数的商
+     */
+    public static double divide(
+            final Object v1,
+            final Object v2,
+            final int scale,
+            final int roundingMode
+    ) {
+        try {
+            return operation(v1).setThrowError(true)
+                    .divide(v2, scale, roundingMode)
+                    .requireNonNull().doubleValue();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "divide");
+        }
+        return ERROR_VALUE;
+    }
 }
