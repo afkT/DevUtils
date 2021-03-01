@@ -1339,5 +1339,25 @@ public final class BigDecimalUtils {
         return ERROR_VALUE;
     }
 
+    // ===========
+    // = 比较大小 =
+    // ===========
 
+    /**
+     * 比较大小
+     * @param v1 输入的数值
+     * @param v2 被比较的数字
+     * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
+     */
+    public static int compareTo(
+            final Object v1,
+            final Object v2
+    ) {
+        try {
+            return operation(v1).setThrowError(true).compareTo(v2);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "compareTo");
+        }
+        return -2;
+    }
 }
