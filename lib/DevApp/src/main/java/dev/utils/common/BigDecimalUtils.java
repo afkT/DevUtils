@@ -1273,4 +1273,71 @@ public final class BigDecimalUtils {
         }
         return ERROR_VALUE;
     }
+
+    // ===========
+    // = 四舍五入 =
+    // ===========
+
+    /**
+     * 提供精确的小数位四舍五入处理
+     * @param v1 需要四舍五入的数值
+     * @return 四舍五入后的结果
+     */
+    public static double round(final Object v1) {
+        return round(v1, NEW_SCALE, ROUNDING_MODE);
+    }
+
+    /**
+     * 提供精确的小数位四舍五入处理
+     * @param v1    需要四舍五入的数值
+     * @param scale 保留 scale 位小数
+     * @return 四舍五入后的结果
+     */
+    public static double round(
+            final Object v1,
+            final int scale
+    ) {
+        return round(v1, scale, ROUNDING_MODE);
+    }
+
+    /**
+     * 提供精确的小数位四舍五入处理
+     * @param v1     需要四舍五入的数值
+     * @param config {@link Config}
+     * @return 四舍五入后的结果
+     */
+    public static double round(
+            final Object v1,
+            final Config config
+    ) {
+        if (config != null) {
+            return round(v1, config.getScale(), config.getRoundingMode());
+        } else {
+            return round(v1, NEW_SCALE, ROUNDING_MODE);
+        }
+    }
+
+    /**
+     * 提供精确的小数位四舍五入处理
+     * @param v1           需要四舍五入的数值
+     * @param scale        保留 scale 位小数
+     * @param roundingMode 舍入模式
+     * @return 四舍五入后的结果
+     */
+    public static double round(
+            final Object v1,
+            final int scale,
+            final int roundingMode
+    ) {
+        try {
+            return operation(v1).setThrowError(true)
+                    .round(scale, roundingMode)
+                    .requireNonNull().doubleValue();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "round");
+        }
+        return ERROR_VALUE;
+    }
+
+
 }
