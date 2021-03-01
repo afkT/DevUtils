@@ -3,6 +3,7 @@ package dev.function;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import dev.base.DevObject;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.thread.DevThreadPool;
 
@@ -54,7 +55,9 @@ public final class Function {
     public static final class Operation {
 
         // 日志 TAG
-        private final String TAG;
+        private final String    TAG;
+        // 存储数据
+        private       DevObject mObject;
 
         public Operation() {
             this(Operation.class.getSimpleName());
@@ -62,6 +65,47 @@ public final class Function {
 
         public Operation(final String tag) {
             this.TAG = tag;
+        }
+
+        // ===============
+        // = 对外公开方法 =
+        // ===============
+
+        /**
+         * 获取 Object
+         * @return {@link DevObject}
+         */
+        public DevObject getObject() {
+            return mObject;
+        }
+
+        /**
+         * 设置 Object
+         * @param object {@link DevObject}
+         * @return {@link Operation}
+         */
+        public Operation setObject(final DevObject object) {
+            this.mObject = object;
+            return this;
+        }
+
+        // =
+
+        /**
+         * 获取 Operation
+         * @return {@link Operation}
+         */
+        public Operation operation() {
+            return new Operation();
+        }
+
+        /**
+         * 获取 Operation
+         * @param tag 日志 TAG
+         * @return {@link Operation}
+         */
+        public Operation operation(final String tag) {
+            return new Operation(tag);
         }
 
         // ===========
@@ -155,5 +199,108 @@ public final class Function {
         // ==================
         // = 线程捕获异常方法 =
         // ==================
+
+        /**
+         * 后台线程执行
+         * @param method 执行方法
+         * @return {@link Operation}
+         */
+        public Operation threadCatch(final Method method) {
+            return threadCatch(TAG, method);
+        }
+
+        /**
+         * 后台线程执行
+         * @param tag    日志 TAG
+         * @param method 执行方法
+         * @return {@link Operation}
+         */
+        public Operation threadCatch(
+                final String tag,
+                final Method method
+        ) {
+            if (method != null) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            method.method(Operation.this);
+                        } catch (Throwable e) {
+                            LogPrintUtils.eTag(tag, e, "threadCatch");
+                            if (method instanceof Method2) {
+                                ((Method2) method).error(Operation.this, e);
+                            }
+                        }
+                    }
+                }).start();
+            }
+            return this;
+        }
+
+        // =
+
+        /**
+         * 后台线程池执行
+         * @param method 执行方法
+         * @return {@link Operation}
+         */
+        public Operation threadPoolCatch(final Method method) {
+            return threadPoolCatch(TAG, sThreadPool, method);
+        }
+
+        /**
+         * 后台线程池执行
+         * @param tag    日志 TAG
+         * @param method 执行方法
+         * @return {@link Operation}
+         */
+        public Operation threadPoolCatch(
+                final String tag,
+                final Method method
+        ) {
+            return threadPoolCatch(tag, sThreadPool, method);
+        }
+
+        /**
+         * 后台线程池执行
+         * @param pool   线程池
+         * @param method 执行方法
+         * @return {@link Operation}
+         */
+        public Operation threadPoolCatch(
+                final ExecutorService pool,
+                final Method method
+        ) {
+            return threadPoolCatch(TAG, pool, method);
+        }
+
+        /**
+         * 后台线程池执行
+         * @param pool   线程池
+         * @param method 执行方法
+         * @return {@link Operation}
+         */
+        public Operation threadPoolCatch(
+                final String tag,
+                final ExecutorService pool,
+                final Method method
+        ) {
+            if (pool != null && method != null) {
+                pool.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            method.method(Operation.this);
+                        } catch (Throwable e) {
+                            LogPrintUtils.eTag(tag, e, "threadPoolCatch");
+                            if (method instanceof Method2) {
+                                ((Method2) method).error(Operation.this, e);
+                            }
+                        }
+                    }
+                });
+            }
+            return this;
+        }
     }
 }
