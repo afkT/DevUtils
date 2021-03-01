@@ -1,6 +1,7 @@
 package dev.utils.common;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import dev.utils.JCLogUtils;
 
@@ -38,58 +39,54 @@ public final class BigDecimalUtils {
         ROUNDING_MODE = roundingMode;
     }
 
-    // =
-
     /**
      * 获取 BigDecimal
      * @param value Value
      * @return {@link BigDecimal}
      */
-    public static BigDecimal getBigDecimal(final double value) {
-        return new BigDecimal(value);
-    }
-
-    /**
-     * 获取 BigDecimal
-     * @param value Value
-     * @return {@link BigDecimal}
-     */
-    public static BigDecimal getBigDecimal(final String value) {
+    public static BigDecimal getBigDecimal(final Object value) {
         try {
-            return new BigDecimal(value);
+            if (value instanceof String) {
+                return new BigDecimal((String) value);
+            } else if (value instanceof Double) {
+                return new BigDecimal((Double) value);
+            } else if (value instanceof Long) {
+                return new BigDecimal((Long) value);
+            } else if (value instanceof Float) {
+                return new BigDecimal((Float) value);
+            } else if (value instanceof Integer) {
+                return new BigDecimal((Integer) value);
+            } else if (value instanceof BigInteger) {
+                return new BigDecimal((BigInteger) value);
+            } else if (value instanceof BigDecimal) {
+                return (BigDecimal) value;
+            }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getBigDecimal");
         }
         return null;
     }
 
-    // =
-
     /**
      * 获取 Operation
      * @param value Value
      * @return {@link Operation}
      */
-    public static Operation operation(final double value) {
+    public static Operation operation(final Object value) {
         return new Operation(value);
     }
 
     /**
      * 获取 Operation
-     * @param value Value
+     * @param value  Value
+     * @param config {@link Config}
      * @return {@link Operation}
      */
-    public static Operation operation(final String value) {
-        return new Operation(value);
-    }
-
-    /**
-     * 获取 Operation
-     * @param value Value
-     * @return {@link Operation}
-     */
-    public static Operation operation(final BigDecimal value) {
-        return new Operation(value);
+    public static Operation operation(
+            final Object value,
+            final Config config
+    ) {
+        return new Operation(value, config);
     }
 
     // =========
@@ -153,27 +150,15 @@ public final class BigDecimalUtils {
         // 配置信息
         private Config     mConfig;
 
-        public Operation(final BigDecimal value) {
-            this.mValue = value;
-        }
-
-        public Operation(final double value) {
-            this.mValue = new BigDecimal(value);
-        }
-
-        public Operation(final String value) {
-            try {
-                this.mValue = new BigDecimal(value);
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "Operation");
-            }
+        public Operation(final Object value) {
+            this(value, null);
         }
 
         public Operation(
-                final BigDecimal value,
+                final Object value,
                 final Config config
         ) {
-            this.mValue = value;
+            this.mValue = BigDecimalUtils.getBigDecimal(value);
             this.mConfig = config;
         }
 
@@ -573,11 +558,7 @@ public final class BigDecimalUtils {
         ) {
             if (mValue != null && value != null) {
                 try {
-                    if (scale <= 0) {
-                        mValue = mValue.divide(value);
-                    } else {
-                        mValue = mValue.divide(value, scale, roundingMode);
-                    }
+                    mValue = mValue.divide(value, scale, roundingMode);
                 } catch (Exception e) {
                     JCLogUtils.eTag(TAG, e, "divide");
                 }
@@ -1002,5 +983,86 @@ public final class BigDecimalUtils {
             JCLogUtils.eTag(TAG, e, "adjustDouble");
         }
         return null;
+    }
+
+    // ===========
+    // = 快捷方法 =
+    // ===========
+
+    // 异常值
+    public static final double ERROR_VALUE = -123456.0D;
+
+    // ======
+    // = 加 =
+    // ======
+
+    /**
+     * 提供精确的加法运算
+     * @param v1 被加数
+     * @param v2 加数
+     * @return 两个参数的和
+     */
+    public static double add(
+            final Object v1,
+            final Object v2
+    ) {
+        return add(v1, v2, NEW_SCALE, ROUNDING_MODE);
+    }
+
+    /**
+     * 提供精确的加法运算
+     * @param v1    被加数
+     * @param v2    加数
+     * @param scale 保留 scale 位小数
+     * @return 两个参数的和
+     */
+    public static double add(
+            final Object v1,
+            final Object v2,
+            final int scale
+    ) {
+        return add(v1, v2, scale, ROUNDING_MODE);
+    }
+
+    /**
+     * 提供精确的加法运算
+     * @param v1     被加数
+     * @param v2     加数
+     * @param config {@link Config}
+     * @return {@link Operation}
+     */
+    public static double add(
+            final Object v1,
+            final Object v2,
+            final Config config
+    ) {
+        if (config != null) {
+            return add(v1, v2, config.getScale(), config.getRoundingMode());
+        } else {
+            return add(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        }
+    }
+
+    /**
+     * 提供精确的加法运算
+     * @param v1           被加数
+     * @param v2           加数
+     * @param scale        保留 scale 位小数
+     * @param roundingMode 舍入模式
+     * @return 两个参数的和
+     */
+    public static double add(
+            final Object v1,
+            final Object v2,
+            final int scale,
+            final int roundingMode
+    ) {
+        try {
+            return operation(v1).add(BigDecimalUtils.getBigDecimal(v2))
+                    .setScale(scale, roundingMode).doubleValue();
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "add");
+        }
+        return ERROR_VALUE;
     }
 }
