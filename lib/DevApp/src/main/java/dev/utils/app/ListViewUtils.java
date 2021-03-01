@@ -25,6 +25,9 @@ import dev.utils.common.NumberUtils;
  *     android:descendantFocusability="blocksDescendants"
  *     android:overScrollMode="never"
  *     android:scrollbars="none"
+ *     <p></p>
+ *     如果滑动到指定位置不准确可使用, 进行偏移滑动
+ *     LayoutManager.scrollToPositionWithOffset(position, 0);
  * </pre>
  */
 public final class ListViewUtils {
