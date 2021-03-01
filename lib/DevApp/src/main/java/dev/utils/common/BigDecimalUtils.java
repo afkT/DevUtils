@@ -285,7 +285,10 @@ public final class BigDecimalUtils {
                     );
                 } catch (Exception e) {
                     JCLogUtils.eTag(TAG, e, "setScale");
+                    throwException();
                 }
+            } else {
+                throwException();
             }
             return this;
         }
@@ -399,6 +402,8 @@ public final class BigDecimalUtils {
             BigDecimal bigDecimal = BigDecimalUtils.getBigDecimal(value);
             if (mValue != null && bigDecimal != null) {
                 mValue = mValue.add(bigDecimal);
+            } else {
+                throwException();
             }
             return this;
         }
@@ -416,6 +421,8 @@ public final class BigDecimalUtils {
             BigDecimal bigDecimal = BigDecimalUtils.getBigDecimal(value);
             if (mValue != null && bigDecimal != null) {
                 mValue = mValue.subtract(bigDecimal);
+            } else {
+                throwException();
             }
             return this;
         }
@@ -433,6 +440,8 @@ public final class BigDecimalUtils {
             BigDecimal bigDecimal = BigDecimalUtils.getBigDecimal(value);
             if (mValue != null && bigDecimal != null) {
                 mValue = mValue.multiply(bigDecimal);
+            } else {
+                throwException();
             }
             return this;
         }
@@ -485,7 +494,10 @@ public final class BigDecimalUtils {
                     mValue = mValue.divide(bigDecimal, scale, roundingMode);
                 } catch (Exception e) {
                     JCLogUtils.eTag(TAG, e, "divide");
+                    throwException();
                 }
+            } else {
+                throwException();
             }
             return this;
         }
@@ -503,6 +515,8 @@ public final class BigDecimalUtils {
             BigDecimal bigDecimal = BigDecimalUtils.getBigDecimal(value);
             if (mValue != null && bigDecimal != null) {
                 mValue = mValue.remainder(bigDecimal);
+            } else {
+                throwException();
             }
             return this;
         }
@@ -557,7 +571,10 @@ public final class BigDecimalUtils {
                     return mValue.compareTo(bigDecimal);
                 } catch (Exception e) {
                     JCLogUtils.eTag(TAG, e, "compareTo");
+                    throwException();
                 }
+            } else {
+                throwException();
             }
             return -2;
         }
