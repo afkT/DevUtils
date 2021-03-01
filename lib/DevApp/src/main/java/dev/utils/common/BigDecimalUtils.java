@@ -95,6 +95,16 @@ public final class BigDecimalUtils {
     // =========
 
     /**
+     * detail: 计算异常
+     * @author Ttt
+     */
+    public static class CalculateException
+            extends RuntimeException {
+        public CalculateException() {
+        }
+    }
+
+    /**
      * detail: 配置信息
      * @author Ttt
      */
@@ -150,6 +160,8 @@ public final class BigDecimalUtils {
         private BigDecimal mValue;
         // 配置信息
         private Config     mConfig;
+        // 是否抛出异常
+        private boolean    mThrowError = false;
 
         public Operation(final Object value) {
             this(value, null);
@@ -161,6 +173,25 @@ public final class BigDecimalUtils {
         ) {
             this.mValue = BigDecimalUtils.getBigDecimal(value);
             this.mConfig = config;
+        }
+
+        // =
+
+        /**
+         * 检查 Value 是否为 null, 为 null 则抛出异常
+         * @return {@link Operation}
+         * @throws NullPointerException null 异常
+         */
+        public Operation requireNonNull() {
+            if (mValue != null) return this;
+            throw new NullPointerException("mValue is null");
+        }
+
+        /**
+         * 内部抛出异常方法
+         */
+        private void throwException() {
+            if (mThrowError) throw new CalculateException();
         }
 
         // ===========
@@ -265,6 +296,26 @@ public final class BigDecimalUtils {
          */
         public Operation setScaleByConfig() {
             return setScale(mConfig);
+        }
+
+        // =
+
+        /**
+         * 是否抛出异常
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isThrowError() {
+            return mThrowError;
+        }
+
+        /**
+         * 设置是否抛出异常
+         * @param throwError 是否抛出异常
+         * @return {@link Operation}
+         */
+        public Operation setThrowError(final boolean throwError) {
+            this.mThrowError = throwError;
+            return this;
         }
 
         // ===========
@@ -897,8 +948,9 @@ public final class BigDecimalUtils {
             final int roundingMode
     ) {
         try {
-            return operation(v1).add(BigDecimalUtils.getBigDecimal(v2))
-                    .setScale(scale, roundingMode).doubleValue();
+            return operation(v1).setThrowError(true)
+                    .add(v2).setScale(scale, roundingMode)
+                    .requireNonNull().doubleValue();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "add");
         }
