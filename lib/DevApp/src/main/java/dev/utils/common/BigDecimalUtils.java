@@ -45,6 +45,7 @@ public final class BigDecimalUtils {
      * @return {@link BigDecimal}
      */
     public static BigDecimal getBigDecimal(final Object value) {
+        if (value == null) return null;
         try {
             if (value instanceof String) {
                 return new BigDecimal((String) value);
@@ -179,8 +180,8 @@ public final class BigDecimalUtils {
          * @param value {@link BigDecimal}
          * @return {@link Operation}
          */
-        public Operation setBigDecimal(final BigDecimal value) {
-            this.mValue = value;
+        public Operation setBigDecimal(final Object value) {
+            this.mValue = BigDecimalUtils.getBigDecimal(value);
             return this;
         }
 
@@ -343,27 +344,10 @@ public final class BigDecimalUtils {
          * @param value 加数
          * @return {@link Operation}
          */
-        public Operation add(final double value) {
-            return add(new BigDecimal(value));
-        }
-
-        /**
-         * 提供精确的加法运算
-         * @param value 加数
-         * @return {@link Operation}
-         */
-        public Operation add(final String value) {
-            return add(BigDecimalUtils.getBigDecimal(value));
-        }
-
-        /**
-         * 提供精确的加法运算
-         * @param value 加数
-         * @return {@link Operation}
-         */
-        public Operation add(final BigDecimal value) {
-            if (mValue != null && value != null) {
-                mValue = mValue.add(value);
+        public Operation add(final Object value) {
+            BigDecimal bigDecimal = BigDecimalUtils.getBigDecimal(value);
+            if (mValue != null && bigDecimal != null) {
+                mValue = mValue.add(bigDecimal);
             }
             return this;
         }
@@ -377,27 +361,10 @@ public final class BigDecimalUtils {
          * @param value 减数
          * @return {@link Operation}
          */
-        public Operation subtract(final double value) {
-            return subtract(new BigDecimal(value));
-        }
-
-        /**
-         * 提供精确的减法运算
-         * @param value 减数
-         * @return {@link Operation}
-         */
-        public Operation subtract(final String value) {
-            return subtract(BigDecimalUtils.getBigDecimal(value));
-        }
-
-        /**
-         * 提供精确的减法运算
-         * @param value 减数
-         * @return {@link Operation}
-         */
-        public Operation subtract(final BigDecimal value) {
-            if (mValue != null && value != null) {
-                mValue = mValue.subtract(value);
+        public Operation subtract(final Object value) {
+            BigDecimal bigDecimal = BigDecimalUtils.getBigDecimal(value);
+            if (mValue != null && bigDecimal != null) {
+                mValue = mValue.subtract(bigDecimal);
             }
             return this;
         }
@@ -411,27 +378,10 @@ public final class BigDecimalUtils {
          * @param value 乘数
          * @return {@link Operation}
          */
-        public Operation multiply(final double value) {
-            return multiply(new BigDecimal(value));
-        }
-
-        /**
-         * 提供精确的乘法运算
-         * @param value 乘数
-         * @return {@link Operation}
-         */
-        public Operation multiply(final String value) {
-            return multiply(BigDecimalUtils.getBigDecimal(value));
-        }
-
-        /**
-         * 提供精确的乘法运算
-         * @param value 乘数
-         * @return {@link Operation}
-         */
-        public Operation multiply(final BigDecimal value) {
-            if (mValue != null && value != null) {
-                mValue = mValue.multiply(value);
+        public Operation multiply(final Object value) {
+            BigDecimal bigDecimal = BigDecimalUtils.getBigDecimal(value);
+            if (mValue != null && bigDecimal != null) {
+                mValue = mValue.multiply(bigDecimal);
             }
             return this;
         }
@@ -445,85 +395,7 @@ public final class BigDecimalUtils {
          * @param value 除数
          * @return {@link Operation}
          */
-        public Operation divide(final double value) {
-            return divide(new BigDecimal(value), mConfig);
-        }
-
-        /**
-         * 提供精确的除法运算
-         * @param value  除数
-         * @param config {@link Config}
-         * @return {@link Operation}
-         */
-        public Operation divide(
-                final double value,
-                final Config config
-        ) {
-            return divide(new BigDecimal(value), config);
-        }
-
-        /**
-         * 提供精确的除法运算
-         * @param value        除数
-         * @param scale        保留 scale 位小数
-         * @param roundingMode 舍入模式
-         * @return {@link Operation}
-         */
-        public Operation divide(
-                final double value,
-                final int scale,
-                final int roundingMode
-        ) {
-            return divide(new BigDecimal(value), scale, roundingMode);
-        }
-
-        // =
-
-        /**
-         * 提供精确的除法运算
-         * @param value 除数
-         * @return {@link Operation}
-         */
-        public Operation divide(final String value) {
-            return divide(new BigDecimal(value), mConfig);
-        }
-
-        /**
-         * 提供精确的除法运算
-         * @param value  除数
-         * @param config {@link Config}
-         * @return {@link Operation}
-         */
-        public Operation divide(
-                final String value,
-                final Config config
-        ) {
-            return divide(new BigDecimal(value), config);
-        }
-
-        /**
-         * 提供精确的除法运算
-         * @param value        除数
-         * @param scale        保留 scale 位小数
-         * @param roundingMode 舍入模式
-         * @return {@link Operation}
-         */
-        public Operation divide(
-                final String value,
-                final int scale,
-                final int roundingMode
-        ) {
-            return divide(new BigDecimal(value), scale, roundingMode);
-        }
-
-        // =
-
-        /**
-         * 提供精确的除法运算
-         * @param value 除数
-         * @return {@link Operation}
-         */
-        public Operation divide(final BigDecimal value) {
+        public Operation divide(final Object value) {
             return divide(value, mConfig);
         }
 
@@ -534,7 +406,7 @@ public final class BigDecimalUtils {
          * @return {@link Operation}
          */
         public Operation divide(
-                final BigDecimal value,
+                final Object value,
                 final Config config
         ) {
             if (config != null) {
@@ -552,13 +424,14 @@ public final class BigDecimalUtils {
          * @return {@link Operation}
          */
         public Operation divide(
-                final BigDecimal value,
+                final Object value,
                 final int scale,
                 final int roundingMode
         ) {
-            if (mValue != null && value != null) {
+            BigDecimal bigDecimal = BigDecimalUtils.getBigDecimal(value);
+            if (mValue != null && bigDecimal != null) {
                 try {
-                    mValue = mValue.divide(value, scale, roundingMode);
+                    mValue = mValue.divide(bigDecimal, scale, roundingMode);
                 } catch (Exception e) {
                     JCLogUtils.eTag(TAG, e, "divide");
                 }
@@ -575,27 +448,10 @@ public final class BigDecimalUtils {
          * @param value 除数
          * @return {@link Operation}
          */
-        public Operation remainder(final double value) {
-            return remainder(new BigDecimal(value));
-        }
-
-        /**
-         * 提供精确的取余运算
-         * @param value 除数
-         * @return {@link Operation}
-         */
-        public Operation remainder(final String value) {
-            return remainder(BigDecimalUtils.getBigDecimal(value));
-        }
-
-        /**
-         * 提供精确的取余运算
-         * @param value 除数
-         * @return {@link Operation}
-         */
-        public Operation remainder(final BigDecimal value) {
-            if (mValue != null && value != null) {
-                mValue = mValue.remainder(value);
+        public Operation remainder(final Object value) {
+            BigDecimal bigDecimal = BigDecimalUtils.getBigDecimal(value);
+            if (mValue != null && bigDecimal != null) {
+                mValue = mValue.remainder(bigDecimal);
             }
             return this;
         }
@@ -643,28 +499,11 @@ public final class BigDecimalUtils {
          * @param value 被比较的数字
          * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
          */
-        public int compareTo(final double value) {
-            return compareTo(new BigDecimal(value));
-        }
-
-        /**
-         * 比较大小
-         * @param value 被比较的数字
-         * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
-         */
-        public int compareTo(final String value) {
-            return compareTo(BigDecimalUtils.getBigDecimal(value));
-        }
-
-        /**
-         * 比较大小
-         * @param value 被比较的数字
-         * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
-         */
-        public int compareTo(final BigDecimal value) {
-            if (mValue != null && value != null) {
+        public int compareTo(final Object value) {
+            BigDecimal bigDecimal = BigDecimalUtils.getBigDecimal(value);
+            if (mValue != null && bigDecimal != null) {
                 try {
-                    return mValue.compareTo(value);
+                    return mValue.compareTo(bigDecimal);
                 } catch (Exception e) {
                     JCLogUtils.eTag(TAG, e, "compareTo");
                 }
