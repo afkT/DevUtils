@@ -1,4 +1,4 @@
-package dev.utils.common.function;
+package dev.function;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -24,7 +24,23 @@ public final class Function {
      */
     public interface Method {
 
-        void method();
+        void method(Operation operation);
+    }
+
+    /**
+     * detail: 方法体 ( 存在异常触发 )
+     * @author Ttt
+     * <pre>
+     *     前提属于调用 try-catch 方法
+     * </pre>
+     */
+    public interface Method2
+            extends Method {
+
+        void error(
+                Operation operation,
+                Throwable error
+        );
     }
 
     // =========
@@ -48,6 +64,10 @@ public final class Function {
             this.TAG = tag;
         }
 
+        // ===========
+        // = 捕获异常 =
+        // ===========
+
         /**
          * 捕获异常处理
          * @param method 执行方法
@@ -70,13 +90,20 @@ public final class Function {
         ) {
             if (method != null) {
                 try {
-                    method.method();
-                } catch (Exception e) {
+                    method.method(Operation.this);
+                } catch (Throwable e) {
                     LogPrintUtils.eTag(tag, e, "tryCatch");
+                    if (method instanceof Method2) {
+                        ((Method2) method).error(Operation.this, e);
+                    }
                 }
             }
             return this;
         }
+
+        // ===========
+        // = 线程方法 =
+        // ===========
 
         /**
          * 后台线程执行
@@ -88,7 +115,7 @@ public final class Function {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        method.method();
+                        method.method(Operation.this);
                     }
                 }).start();
             }
@@ -118,11 +145,15 @@ public final class Function {
                 pool.execute(new Runnable() {
                     @Override
                     public void run() {
-                        method.method();
+                        method.method(Operation.this);
                     }
                 });
             }
             return this;
         }
+
+        // ==================
+        // = 线程捕获异常方法 =
+        // ==================
     }
 }
