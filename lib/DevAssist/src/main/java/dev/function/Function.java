@@ -5,6 +5,7 @@ import java.util.concurrent.Executors;
 
 import dev.base.DevObject;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.StringUtils;
 import dev.utils.common.thread.DevThreadPool;
 
 /**
@@ -64,7 +65,11 @@ public final class Function {
         }
 
         public Operation(final String tag) {
-            this.TAG = tag;
+            if (StringUtils.isNotEmpty(tag)) {
+                this.TAG = tag;
+            } else {
+                this.TAG = Operation.class.getSimpleName();
+            }
         }
 
         // ===============

@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevAssist:1.0.9'
+implementation 'com.afkt:DevAssist:1.1.0'
 ```
 
 ## 目录结构
@@ -24,6 +24,7 @@ implementation 'com.afkt:DevAssist:1.0.9'
          - listener                                   | 图片加载监听事件
       - json                                          | JSON Engine
       - log                                           | Log Engine
+   - function                                         | 快捷方法执行相关
 ```
 
 
@@ -52,6 +53,7 @@ implementation 'com.afkt:DevAssist:1.0.9'
          - [listener](#devengineimagelistener)        | 图片加载监听事件
       - [json](#devenginejson)                        | JSON Engine
       - [log](#devenginelog)                          | Log Engine
+   - [function](#devfunction)                         | 快捷方法执行相关
 
 
 
@@ -822,3 +824,23 @@ implementation 'com.afkt:DevAssist:1.0.9'
 | wtfTag | 打印 Log.ASSERT |
 | jsonTag | 格式化 JSON 格式数据, 并打印 |
 | xmlTag | 格式化 XML 格式数据, 并打印 |
+
+
+## <span id="devfunction">**`dev.function`**</span>
+
+
+* **执行方法类 ->** [Function.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/function/Function.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| operation | 获取 Operation |
+| object | 设置 Object |
+| tryCatch | 捕获异常处理 |
+| thread | 后台线程执行 |
+| threadPool | 后台线程池执行 |
+| threadCatch | 后台线程执行 |
+| threadPoolCatch | 后台线程池执行 |
+| method | method |
+| error | error |
+| getObject | 获取 Object |
+| setObject | 设置 Object |
