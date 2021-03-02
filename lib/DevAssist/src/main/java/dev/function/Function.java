@@ -308,6 +308,32 @@ public final class Function {
     // = 快捷方法 =
     // ===========
 
+    /**
+     * 获取 Operation
+     * @return {@link Operation}
+     */
+    public static Operation operation() {
+        return new Operation();
+    }
+
+    /**
+     * 获取 Operation
+     * @param tag 日志 TAG
+     * @return {@link Operation}
+     */
+    public static Operation operation(final String tag) {
+        return new Operation(tag);
+    }
+
+    /**
+     * 设置 Object
+     * @param object {@link DevObject}
+     * @return {@link Operation}
+     */
+    public static Operation object(final DevObject object) {
+        return new Operation().setObject(object);
+    }
+
     // ===========
     // = 捕获异常 =
     // ===========
