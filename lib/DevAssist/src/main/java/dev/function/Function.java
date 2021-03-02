@@ -121,7 +121,6 @@ public final class Function {
             return tryCatch(TAG, method);
         }
 
-
         /**
          * 捕获异常处理
          * @param tag    输出日志
@@ -276,6 +275,7 @@ public final class Function {
 
         /**
          * 后台线程池执行
+         * @param tag    日志 TAG
          * @param pool   线程池
          * @param method 执行方法
          * @return {@link Operation}
@@ -302,5 +302,148 @@ public final class Function {
             }
             return this;
         }
+    }
+
+    // ===========
+    // = 快捷方法 =
+    // ===========
+
+    // ===========
+    // = 捕获异常 =
+    // ===========
+
+    /**
+     * 捕获异常处理
+     * @param method 执行方法
+     * @return {@link Operation}
+     */
+    public static Operation tryCatch(final Method method) {
+        return new Operation().tryCatch(method);
+    }
+
+    /**
+     * 捕获异常处理
+     * @param tag    输出日志
+     * @param method 执行方法
+     * @return {@link Operation}
+     */
+    public static Operation tryCatch(
+            final String tag,
+            final Method method
+    ) {
+        return new Operation().tryCatch(tag, method);
+    }
+
+    // ===========
+    // = 线程方法 =
+    // ===========
+
+    /**
+     * 后台线程执行
+     * @param method 执行方法
+     * @return {@link Operation}
+     */
+    public static Operation thread(final Method method) {
+        return new Operation().thread(method);
+    }
+
+    /**
+     * 后台线程池执行
+     * @param method 执行方法
+     * @return {@link Operation}
+     */
+    public static Operation threadPool(final Method method) {
+        return new Operation().threadPool(method);
+    }
+
+    /**
+     * 后台线程池执行
+     * @param pool   线程池
+     * @param method 执行方法
+     * @return {@link Operation}
+     */
+    public static Operation threadPool(
+            final ExecutorService pool,
+            final Method method
+    ) {
+        return new Operation().threadPool(pool, method);
+    }
+
+    // ==================
+    // = 线程捕获异常方法 =
+    // ==================
+
+    /**
+     * 后台线程执行
+     * @param method 执行方法
+     * @return {@link Operation}
+     */
+    public static Operation threadCatch(final Method method) {
+        return new Operation().threadCatch(method);
+    }
+
+    /**
+     * 后台线程执行
+     * @param tag    日志 TAG
+     * @param method 执行方法
+     * @return {@link Operation}
+     */
+    public static Operation threadCatch(
+            final String tag,
+            final Method method
+    ) {
+        return new Operation().threadCatch(tag, method);
+    }
+
+    // =
+
+    /**
+     * 后台线程池执行
+     * @param method 执行方法
+     * @return {@link Operation}
+     */
+    public static Operation threadPoolCatch(final Method method) {
+        return new Operation().threadPoolCatch(method);
+    }
+
+    /**
+     * 后台线程池执行
+     * @param tag    日志 TAG
+     * @param method 执行方法
+     * @return {@link Operation}
+     */
+    public static Operation threadPoolCatch(
+            final String tag,
+            final Method method
+    ) {
+        return new Operation().threadPoolCatch(tag, method);
+    }
+
+    /**
+     * 后台线程池执行
+     * @param pool   线程池
+     * @param method 执行方法
+     * @return {@link Operation}
+     */
+    public static Operation threadPoolCatch(
+            final ExecutorService pool,
+            final Method method
+    ) {
+        return new Operation().threadPoolCatch(pool, method);
+    }
+
+    /**
+     * 后台线程池执行
+     * @param tag    日志 TAG
+     * @param pool   线程池
+     * @param method 执行方法
+     * @return {@link Operation}
+     */
+    public static Operation threadPoolCatch(
+            final String tag,
+            final ExecutorService pool,
+            final Method method
+    ) {
+        return new Operation().threadPoolCatch(tag, pool, method);
     }
 }
