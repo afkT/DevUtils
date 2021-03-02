@@ -154,10 +154,29 @@ public final class Function {
          * @return {@link Operation}
          */
         public Operation thread(final Method method) {
+            return thread(method, 0L);
+        }
+
+        /**
+         * 后台线程执行
+         * @param method      执行方法
+         * @param delayMillis 延迟执行时间 ( 毫秒 )
+         * @return {@link Operation}
+         */
+        public Operation thread(
+                final Method method,
+                final long delayMillis
+        ) {
             if (method != null) {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        if (delayMillis > 0L) {
+                            try {
+                                Thread.sleep(delayMillis);
+                            } catch (Exception e) {
+                            }
+                        }
                         method.method(Operation.this);
                     }
                 }).start();
@@ -165,13 +184,27 @@ public final class Function {
             return this;
         }
 
+        // =
+
         /**
          * 后台线程池执行
          * @param method 执行方法
          * @return {@link Operation}
          */
         public Operation threadPool(final Method method) {
-            return threadPool(sThreadPool, method);
+            return threadPool(sThreadPool, method, 0L);
+        }
+
+        /**
+         * 后台线程池执行
+         * @param method 执行方法
+         * @return {@link Operation}
+         */
+        public Operation threadPool(
+                final Method method,
+                final long delayMillis
+        ) {
+            return threadPool(sThreadPool, method, delayMillis);
         }
 
         /**
@@ -184,10 +217,31 @@ public final class Function {
                 final ExecutorService pool,
                 final Method method
         ) {
+            return threadPool(pool, method, 0L);
+        }
+
+        /**
+         * 后台线程池执行
+         * @param pool        线程池
+         * @param method      执行方法
+         * @param delayMillis 延迟执行时间 ( 毫秒 )
+         * @return {@link Operation}
+         */
+        public Operation threadPool(
+                final ExecutorService pool,
+                final Method method,
+                final long delayMillis
+        ) {
             if (pool != null && method != null) {
                 pool.execute(new Runnable() {
                     @Override
                     public void run() {
+                        if (delayMillis > 0L) {
+                            try {
+                                Thread.sleep(delayMillis);
+                            } catch (Exception e) {
+                            }
+                        }
                         method.method(Operation.this);
                     }
                 });
@@ -374,12 +428,39 @@ public final class Function {
     }
 
     /**
+     * 后台线程执行
+     * @param method      执行方法
+     * @param delayMillis 延迟执行时间 ( 毫秒 )
+     * @return {@link Operation}
+     */
+    public static Operation thread(
+            final Method method,
+            final long delayMillis
+    ) {
+        return new Operation().thread(method, delayMillis);
+    }
+
+    // =
+
+    /**
      * 后台线程池执行
      * @param method 执行方法
      * @return {@link Operation}
      */
     public static Operation threadPool(final Method method) {
         return new Operation().threadPool(method);
+    }
+
+    /**
+     * 后台线程池执行
+     * @param method 执行方法
+     * @return {@link Operation}
+     */
+    public static Operation threadPool(
+            final Method method,
+            final long delayMillis
+    ) {
+        return new Operation().threadPool(method, delayMillis);
     }
 
     /**
@@ -393,6 +474,21 @@ public final class Function {
             final Method method
     ) {
         return new Operation().threadPool(pool, method);
+    }
+
+    /**
+     * 后台线程池执行
+     * @param pool        线程池
+     * @param method      执行方法
+     * @param delayMillis 延迟执行时间 ( 毫秒 )
+     * @return {@link Operation}
+     */
+    public static Operation threadPool(
+            final ExecutorService pool,
+            final Method method,
+            final long delayMillis
+    ) {
+        return new Operation().threadPool(pool, method, delayMillis);
     }
 
     // ==================
