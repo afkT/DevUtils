@@ -18,16 +18,10 @@ dependencies {
     implementation deps.lib.rxjava3
     // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
     implementation deps.lib.rxandroid3
-    // Okgo https://github.com/jeasonlzy/okhttp-OkGo
-    implementation deps.lib.okgo
-    // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
-    implementation deps.lib.okserver
     // Gson https://github.com/google/gson
     implementation deps.lib.gson
     // fastjson https://github.com/alibaba/fastjson
     implementation deps.lib.fastjson
-    // Imageloader 图片加载框架 https://github.com/nostra13/Android-Universal-Image-Loader
-    implementation deps.lib.imageloader
     // Glide 加载框架 https://github.com/bumptech/glide
     implementation deps.lib.glide
     kapt deps.lib.glide_compiler
@@ -89,4 +83,15 @@ dependencies {
     implementation deps.lib.xxPermissions
     // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
     implementation deps.lib.panelSwitchHelper
+
+    // ==============
+    // = Deprecated =
+    // ==============
+
+    // Imageloader 图片加载框架 https://github.com/nostra13/Android-Universal-Image-Loader
+    implementation deps.deprecated.imageloader
+    // Okgo https://github.com/jeasonlzy/okhttp-OkGo
+    implementation deps.deprecated.okgo
+    // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
+    implementation deps.deprecated.okserver
 }
