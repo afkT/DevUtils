@@ -154,6 +154,8 @@ ext {
                     fragment           : "androidx.fragment:fragment:1.3.0",
                     // Palette 调色板 ( 从图片中获取颜色 )
                     palette            : "androidx.palette:palette:1.0.0", // androidx.palette:palette-ktx:1.0.0
+                    // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 ) https://github.com/google/flexbox-layout
+                    flexbox            : "com.google.android:flexbox:2.0.1", // // https://juejin.im/post/58d1035161ff4b00603ca9c4
             ],
             'lib'       : [
                     // Gson https://github.com/google/gson
@@ -192,19 +194,12 @@ ext {
                     fastjson                     : "com.alibaba:fastjson:1.2.73",
                     fastjson_android             : "com.alibaba:fastjson:1.1.72.android",
                     // Anchors 启动框架 https://github.com/YummyLau/Anchors/blob/master/README-zh.md
-                    anchors                      : "com.effective.android:anchors:1.1.2",
+                    anchors                      : "com.effective.android:anchors:1.1.3",
                     // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
-                    panelSwitchHelper            : "com.effective.android:panelSwitchHelper-androidx:1.3.10",
+                    panelSwitchHelper            : "com.effective.android:panelSwitchHelper-androidx:1.3.13",
                     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-                    pictureSelector              : "com.github.LuckSiege.PictureSelector:picture_library:v2.5.9",
-                    // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 ) https://github.com/google/flexbox-layout
-                    flexbox                      : "com.google.android:flexbox:2.0.1", // // https://juejin.im/post/58d1035161ff4b00603ca9c4
-                    // 评价等级控件 https://github.com/hedge-hog/RatingBar
-                    ratingbar                    : "com.hedgehog.ratingbar:app:1.1.2",
-                    // 加载动画效果 https://github.com/Kyson/WhorlView
-                    whorlviewlibrary             : "com.tt:whorlviewlibrary:1.0.3",
-                    // 圆形 ImageView https://github.com/hdodenhof/CircleImageView
-                    circleimageview              : "de.hdodenhof:circleimageview:3.1.0",
+                    pictureSelector              : "com.github.LuckSiege.PictureSelector:picture_library:v2.6.0",
+
                     // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
                     pickerview                   : "com.contrarywind:Android-PickerView:4.1.9", // https://blog.csdn.net/qq_22393017/article/details/58099486
                     // 图片缩放 https://github.com/chrisbanes/PhotoView
@@ -312,6 +307,21 @@ ext {
                     okgo                : "com.lzy.net:okgo:3.0.4",
                     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
                     okserver            : "com.lzy.net:okserver:2.0.5",
+            ],
+            'widget'    : [
+                    // 第三方简约小功能、UI 小组件等
+
+                    // 加载动画效果 https://github.com/Kyson/WhorlView
+                    whorlviewlibrary: "com.tt:whorlviewlibrary:1.0.3",
+                    // 圆形 ImageView https://github.com/hdodenhof/CircleImageView
+                    circleimageview : "de.hdodenhof:circleimageview:3.1.0",
+
+                    // ==============
+                    // = deprecated =
+                    // ==============
+
+                    // 评价等级控件 https://github.com/hedge-hog/RatingBar
+                    ratingbar       : "com.hedgehog.ratingbar:app:1.1.2",
             ]
     ]
 }

@@ -38,14 +38,6 @@ dependencies {
     // = 其他第三方库 - 小功能、简约 =
     // =============================
 
-    // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 ) https://github.com/google/flexbox-layout
-    implementation deps.lib.flexbox // https://juejin.im/post/58d1035161ff4b00603ca9c4
-    // 评价等级控件 https://github.com/hedge-hog/RatingBar
-    implementation deps.lib.ratingbar
-    // 加载动画效果 https://github.com/Kyson/WhorlView
-    implementation deps.lib.whorlviewlibrary
-    // 圆形 ImageView https://github.com/hdodenhof/CircleImageView
-    implementation deps.lib.circleimageview
     // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
     implementation deps.lib.pickerview // https://blog.csdn.net/qq_22393017/article/details/58099486
     // 图片缩放 https://github.com/chrisbanes/PhotoView
@@ -94,4 +86,15 @@ dependencies {
     implementation deps.deprecated.okgo
     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
     implementation deps.deprecated.okserver
+
+    // ==========
+    // = Widget =
+    // ==========
+
+    // 评价等级控件 https://github.com/hedge-hog/RatingBar
+    implementation deps.widget.ratingbar
+    // 加载动画效果 https://github.com/Kyson/WhorlView
+    implementation deps.widget.whorlviewlibrary
+    // 圆形 ImageView https://github.com/hdodenhof/CircleImageView
+    implementation deps.widget.circleimageview
 }

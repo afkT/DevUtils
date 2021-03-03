@@ -24,4 +24,5 @@ dependencies {
     implementation deps.androidx.viewpager2
     implementation deps.androidx.fragment
     implementation deps.androidx.palette
+    implementation deps.androidx.flexbox
 }
