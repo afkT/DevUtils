@@ -232,10 +232,14 @@ ext {
                     // ARouter 路由 https://github.com/alibaba/ARouter
                     arouter_api          : "com.alibaba:arouter-api:1.5.0", // https://github.com/alibaba/ARouter/blob/master/README_CN.md
                     arouter_compiler     : "com.alibaba:arouter-compiler:1.2.2",
+            ],
+            'aop'       : [
+                    // 安卓 AOP 三剑客: APT、AspectJ、Javassist https://www.jianshu.com/p/dca3e2c8608a
+
                     // JavaPoet 编译时代码生成 https://github.com/square/javapoet
-                    javapoet             : "com.squareup:javapoet:1.13.0",
+                    javapoet    : "com.squareup:javapoet:1.13.0",
                     // APT 编译时注解简化服务 https://github.com/google/auto/tree/master/service
-                    auto_service         : "com.google.auto.service:auto-service:1.0-rc7",
+                    auto_service: "com.google.auto.service:auto-service:1.0-rc7",
             ],
             'property'  : [
 
@@ -258,6 +262,10 @@ ext {
                     // 滴滴出行 DoraemonKit http://www.dokit.cn
                     dokitx             : "com.didichuxing.doraemonkit:dokitx:3.3.5",
                     dokitx_no_op       : "com.didichuxing.doraemonkit:dokitx-no-op:3.3.5",
+
+                    // 微信开源的资源混淆库 AndResGuard https://github.com/shwenzhang/AndResGuard/blob/master/README.zh-cn.md
+
+                    // 滴滴 Booster 质量优化框架 https://github.com/didi/booster
             ],
             'widget'    : [
                     // 第三方简约小功能、UI 小组件等

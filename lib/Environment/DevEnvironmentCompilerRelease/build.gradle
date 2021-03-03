@@ -3,9 +3,9 @@ apply from: rootProject.file(files.lib_java_gradle)
 version versions.dev_environment_compiler_release_version
 
 dependencies {
-    api deps.lib.javapoet
-    compileOnly deps.lib.auto_service
-    annotationProcessor deps.lib.auto_service
+    api deps.aop.javapoet
+    compileOnly deps.aop.auto_service
+    annotationProcessor deps.aop.auto_service
 
     // 编译时使用
     api project(':DevEnvironmentBase')
