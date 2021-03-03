@@ -38,26 +38,12 @@ dependencies {
     // = 其他第三方库 - 小功能、简约 =
     // =============================
 
-    // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
-    implementation deps.lib.pickerview // https://blog.csdn.net/qq_22393017/article/details/58099486
-    // 图片缩放 https://github.com/chrisbanes/PhotoView
-    implementation deps.lib.photoview
-    // GPU Filters https://github.com/cats-oss/android-gpuimage
-    implementation deps.lib.gpuimage
     // Glide 图形库 https://github.com/wasabeef/glide-transformations
     implementation deps.lib.glide_transformations
-    // 动画库 https://github.com/airbnb/lottie-android
-    implementation deps.lib.lottie
-    // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
-    implementation deps.lib.smartrefreshlayout
-    implementation deps.lib.smartrefresh_header_classics
-    implementation deps.lib.smartrefresh_footer_classics
-    // 下拉刷新框架 ( 横向 ) https://github.com/scwang90/SmartRefreshHorizontal
-    implementation deps.lib.smartrefreshHorizontal
-    // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-    implementation deps.lib.baserecyclerviewadapterhelper
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
     implementation deps.lib.pictureSelector
+    // 动画库 https://github.com/airbnb/lottie-android
+    implementation deps.lib.lottie
     // 二维码 ZXing https://github.com/zxing/zxing
     implementation deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
     implementation deps.lib.zxing_android_code // android-core
@@ -67,14 +53,45 @@ dependencies {
     implementation deps.lib.greenDAO
     // SQLCipher for Android https://github.com/sqlcipher/android-database-sqlcipher
     implementation deps.lib.sqlcipher
-    // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
-    implementation deps.lib.stickyDecoration
-    // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
-    implementation deps.lib.xcrash
     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
     implementation deps.lib.xxPermissions
     // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
     implementation deps.lib.panelSwitchHelper
+
+    // ============
+    // = Property =
+    // ============
+
+    // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
+    implementation deps.property.xcrash
+
+    // ==========
+    // = Widget =
+    // ==========
+
+    // GPU Filters https://github.com/cats-oss/android-gpuimage
+    implementation deps.widget.gpuimage
+    // 评价等级控件 https://github.com/hedge-hog/RatingBar
+    implementation deps.widget.ratingbar
+    // 加载动画效果 https://github.com/Kyson/WhorlView
+    implementation deps.widget.whorlviewlibrary
+    // 圆形 ImageView https://github.com/hdodenhof/CircleImageView
+    implementation deps.widget.circleimageview
+    // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
+    implementation deps.widget.pickerview
+    // https://blog.csdn.net/qq_22393017/article/details/58099486
+    // 图片缩放 https://github.com/chrisbanes/PhotoView
+    implementation deps.widget.photoview
+    // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
+    implementation deps.widget.stickyDecoration
+    // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
+    implementation deps.widget.smartrefreshlayout
+    implementation deps.widget.smartrefresh_header_classics
+    implementation deps.widget.smartrefresh_footer_classics
+    // 下拉刷新框架 ( 横向 ) https://github.com/scwang90/SmartRefreshHorizontal
+    implementation deps.widget.smartrefreshHorizontal
+    // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+    implementation deps.widget.baserecyclerviewadapterhelper
 
     // ==============
     // = Deprecated =
@@ -86,15 +103,4 @@ dependencies {
     implementation deps.deprecated.okgo
     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
     implementation deps.deprecated.okserver
-
-    // ==========
-    // = Widget =
-    // ==========
-
-    // 评价等级控件 https://github.com/hedge-hog/RatingBar
-    implementation deps.widget.ratingbar
-    // 加载动画效果 https://github.com/Kyson/WhorlView
-    implementation deps.widget.whorlviewlibrary
-    // 圆形 ImageView https://github.com/hdodenhof/CircleImageView
-    implementation deps.widget.circleimageview
 }

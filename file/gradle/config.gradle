@@ -159,55 +159,135 @@ ext {
             ],
             'lib'       : [
                     // Gson https://github.com/google/gson
-                    gson                         : "com.google.code.gson:gson:2.8.6",
+                    gson                 : "com.google.code.gson:gson:2.8.6",
                     // Glide 加载框架 https://github.com/bumptech/glide
-                    glide                        : "com.github.bumptech.glide:glide:4.12.0",
-                    glide_compiler               : "com.github.bumptech.glide:compiler:4.12.0",
+                    glide                : "com.github.bumptech.glide:glide:4.12.0",
+                    glide_compiler       : "com.github.bumptech.glide:compiler:4.12.0",
                     // Glide 图形库 https://github.com/wasabeef/glide-transformations
-                    glide_transformations        : "jp.wasabeef:glide-transformations:4.3.0",
+                    glide_transformations: "jp.wasabeef:glide-transformations:4.3.0",
+                    // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
+                    eventbus             : "org.greenrobot:eventbus:3.2.0",
+                    // LiveEventBus 消息总线 https://github.com/JeremyLiao/LiveEventBus
+                    live_eventbus        : "com.jeremyliao:live-event-bus-x:1.7.3",
+                    // okip https://github.com/square/okio
+                    okio                 : "com.squareup.okio:okio:2.9.0",
+                    // okhttp3 网络请求框架 https://github.com/square/okhttp
+                    okhttp3              : "com.squareup.okhttp3:okhttp:4.9.0",
+                    // okhttp 日志拦截器 https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor
+                    okhttp3_logging      : "com.squareup.okhttp3:logging-interceptor:4.9.0",
+                    // Retrofit 网络请求库  https://github.com/square/retrofit
+                    retrofit             : "com.squareup.retrofit2:retrofit:2.9.0",
+                    // Retrofit Gson Converter  https://github.com/square/retrofit/tree/master/retrofit-converters/gson
+                    retrofit_gson        : "com.squareup.retrofit2:converter-gson:2.9.0",
+                    // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava3
+                    retrofit_rxjava3     : "com.squareup.retrofit2:adapter-rxjava3:2.9.0",
+                    // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
+                    rxjava3              : "io.reactivex.rxjava3:rxjava:3.0.7",
+                    // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
+                    rxandroid3           : "io.reactivex.rxjava3:rxandroid:3.0.0",
+                    // OkHttp 拦截器抓包 https://github.com/DingProg/NetworkCaptureSelf
+                    networkCaptureSelf   : "com.github.DingProg.NetworkCaptureSelf:library:v1.0.1",
+                    networkCaptureSelf_op: "com.github.DingProg.NetworkCaptureSelf:library_no_op:v1.0.1",
+                    // fastjson https://github.com/alibaba/fastjson
+                    fastjson             : "com.alibaba:fastjson:1.2.73",
+                    fastjson_android     : "com.alibaba:fastjson:1.1.72.android",
+                    // Anchors 启动框架 https://github.com/YummyLau/Anchors/blob/master/README-zh.md
+                    anchors              : "com.effective.android:anchors:1.1.3",
+                    // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
+                    panelSwitchHelper    : "com.effective.android:panelSwitchHelper-androidx:1.3.13",
+                    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
+                    pictureSelector      : "com.github.LuckSiege.PictureSelector:picture_library:v2.6.0",
+                    // 动画库 https://github.com/airbnb/lottie-android
+                    lottie               : "com.airbnb.android:lottie:3.6.1", // https://www.jianshu.com/p/9a2136ecbc7b
+                    // Aria 下载可以很简单 https://github.com/AriaLyy/Aria
+                    aria_core            : "com.arialyy.aria:core:3.8.15",
+                    aria_compiler        : "com.arialyy.aria:compiler:3.8.15",
+                    aria_ftp             : "com.arialyy.aria:ftpComponent:3.8.15", // 如果需要使用 ftp, 请增加该组件
+                    aria_sftp            : "com.arialyy.aria:sftpComponent:3.8.15", // 如果需要使用 ftp, 请增加该组件
+                    aria_m3u8            : "com.arialyy.aria:m3u8Component:3.8.15", // 如果需要使用 m3u8 下载功能, 请增加该组件
+                    // 二维码 ZXing https://github.com/zxing/zxing
+                    zxing_code           : "com.google.zxing:core:3.4.1", // http://mvnrepository.com/artifact/com.google.zxing/core
+                    zxing_android_code   : "com.google.zxing:android-core:3.3.0", // http://mvnrepository.com/artifact/com.google.zxing/android-core
+                    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
+                    mmkv                 : "com.tencent:mmkv-static:1.2.7",
+                    // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
+                    autosize             : "me.jessyan:autosize:1.2.1",
+                    // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
+                    greenDAO             : "org.greenrobot:greendao:3.3.0",
+                    // SQLCipher for Android https://github.com/sqlcipher/android-database-sqlcipher
+                    sqlcipher            : "net.zetetic:android-database-sqlcipher:4.4.2",
+                    // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
+                    luban                : "top.zibin:Luban:1.1.8",
+                    // Kotlin Luban 图片压缩 https://github.com/forJrking/KLuban
+                    kluban               : "com.github.forJrking:KLuban:1.0.5",
+                    // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
+                    xxPermissions        : "com.hjq:xxpermissions:9.8",
+                    // ProgressManager 监听 App 中所有网络链接的上传以及下载进度 https://github.com/JessYanCoding/ProgressManager
+                    progressmanager      : "me.jessyan:progressmanager:1.5.0",
+
+                    // ========
+                    // = 其他 =
+                    // ========
+
+                    // ARouter 路由 https://github.com/alibaba/ARouter
+                    arouter_api          : "com.alibaba:arouter-api:1.5.0", // https://github.com/alibaba/ARouter/blob/master/README_CN.md
+                    arouter_compiler     : "com.alibaba:arouter-compiler:1.2.2",
+                    // JavaPoet 编译时代码生成 https://github.com/square/javapoet
+                    javapoet             : "com.squareup:javapoet:1.13.0",
+                    // APT 编译时注解简化服务 https://github.com/google/auto/tree/master/service
+                    auto_service         : "com.google.auto.service:auto-service:1.0-rc7",
+            ],
+            'property'  : [
+
+                    // ======================
+                    // = 性能检测、排查相关库 =
+                    // ======================
+
+                    // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
+                    xcrash             : "com.iqiyi.xcrash:xcrash-android-lib:3.0.0",
+                    // 应用数据库展示 https://github.com/guolindev/Glance
+                    glance             : "com.glance.guolindev:glance:1.0.0",
+                    // 内存检测工具 https://github.com/square/leakcanary
+                    leakcanary         : "com.squareup.leakcanary:leakcanary-android:2.6",
+                    // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
+                    blockcanary_android: "com.github.markzhai:blockcanary-android:1.5.0",
+                    blockcanary_no_op  : "com.github.markzhai:blockcanary-no-op:1.5.0",
+                    // 饿了么 UETool https://github.com/eleme/UETool/blob/master/README_zh.md
+                    uetool             : "me.ele:uetool:1.2.9",
+                    uetool_no_op       : "me.ele:uetool-no-op:1.2.9",
+                    // 滴滴出行 DoraemonKit http://www.dokit.cn
+                    dokitx             : "com.didichuxing.doraemonkit:dokitx:3.3.5",
+                    dokitx_no_op       : "com.didichuxing.doraemonkit:dokitx-no-op:3.3.5",
+            ],
+            'widget'    : [
+                    // 第三方简约小功能、UI 小组件等
+
                     // GPU Filters https://github.com/cats-oss/android-gpuimage
                     gpuimage                     : "jp.co.cyberagent.android:gpuimage:2.1.0",
-                    // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
-                    eventbus                     : "org.greenrobot:eventbus:3.2.0",
-                    // LiveEventBus 消息总线 https://github.com/JeremyLiao/LiveEventBus
-                    live_eventbus                : "com.jeremyliao:live-event-bus-x:1.7.3",
-                    // okip https://github.com/square/okio
-                    okio                         : "com.squareup.okio:okio:2.9.0",
-                    // okhttp3 网络请求框架 https://github.com/square/okhttp
-                    okhttp3                      : "com.squareup.okhttp3:okhttp:4.9.0",
-                    // okhttp 日志拦截器 https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor
-                    okhttp3_logging              : "com.squareup.okhttp3:logging-interceptor:4.9.0",
-                    // Retrofit 网络请求库  https://github.com/square/retrofit
-                    retrofit                     : "com.squareup.retrofit2:retrofit:2.9.0",
-                    // Retrofit Gson Converter  https://github.com/square/retrofit/tree/master/retrofit-converters/gson
-                    retrofit_gson                : "com.squareup.retrofit2:converter-gson:2.9.0",
-                    // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava3
-                    retrofit_rxjava3             : "com.squareup.retrofit2:adapter-rxjava3:2.9.0",
-                    // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
-                    rxjava3                      : "io.reactivex.rxjava3:rxjava:3.0.7",
-                    // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
-                    rxandroid3                   : "io.reactivex.rxjava3:rxandroid:3.0.0",
-                    // OkHttp 拦截器抓包 https://github.com/DingProg/NetworkCaptureSelf
-                    networkCaptureSelf           : "com.github.DingProg.NetworkCaptureSelf:library:v1.0.1",
-                    networkCaptureSelf_op        : "com.github.DingProg.NetworkCaptureSelf:library_no_op:v1.0.1",
-                    // fastjson https://github.com/alibaba/fastjson
-                    fastjson                     : "com.alibaba:fastjson:1.2.73",
-                    fastjson_android             : "com.alibaba:fastjson:1.1.72.android",
-                    // Anchors 启动框架 https://github.com/YummyLau/Anchors/blob/master/README-zh.md
-                    anchors                      : "com.effective.android:anchors:1.1.3",
-                    // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
-                    panelSwitchHelper            : "com.effective.android:panelSwitchHelper-androidx:1.3.13",
-                    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-                    pictureSelector              : "com.github.LuckSiege.PictureSelector:picture_library:v2.6.0",
-
+                    // 加载动画效果 https://github.com/Kyson/WhorlView
+                    whorlviewlibrary             : "com.tt:whorlviewlibrary:1.0.3",
+                    // 圆形 ImageView https://github.com/hdodenhof/CircleImageView
+                    circleimageview              : "de.hdodenhof:circleimageview:3.1.0",
                     // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
                     pickerview                   : "com.contrarywind:Android-PickerView:4.1.9", // https://blog.csdn.net/qq_22393017/article/details/58099486
                     // 图片缩放 https://github.com/chrisbanes/PhotoView
                     photoview                    : "com.github.chrisbanes:PhotoView:2.3.0",
+                    // 多子 view 嵌套滚动通用解决方案 https://github.com/MFC-TEC/ELinkageScroll
+                    // WebView、RecyclerView 多布局连贯滑动 https://github.com/donkingliang/ConsecutiveScroller
+                    consecutiveScroller          : "com.github.donkingliang:ConsecutiveScroller:4.3.0", // AndroidX
+                    // 图表 https://github.com/PhilJay/MPAndroidChart
+                    mpAndroidChart               : "com.github.PhilJay:MPAndroidChart:v3.1.0",
+                    // 波浪效果 https://github.com/gelitenight/WaveView
+                    waveview                     : "com.gelitenight.waveview:waveview:1.0.0",
+                    // Banner 库 https://github.com/youth5201314/banner
+                    banner                       : "com.youth.banner:banner:2.1.0",
+                    // CalendarView 日历控件 https://github.com/huanghaibin-dev/CalendarView
+                    calendarview                 : "com.haibin:calendarview:3.6.9",
+                    // 图片裁剪库 https://github.com/Yalantis/uCrop
+                    ucrop                        : "com.github.yalantis:ucrop:2.2.6", // 轻量级通用解决方案
+                    ucrop_native                 : "com.github.yalantis:ucrop:2.2.6-native", // 支持本机功能
                     // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
-                    stickyDecoration             : "com.gavin.com.library:stickyDecoration:1.5.2",
-                    // 动画库 https://github.com/airbnb/lottie-android
-                    lottie                       : "com.airbnb.android:lottie:3.4.4", // https://www.jianshu.com/p/9a2136ecbc7b
+                    stickyDecoration             : "com.gavin.com.library:stickyDecoration:1.5.3",
                     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
                     smartrefreshlayout           : "com.scwang.smart:refresh-layout-kernel:2.0.1",
                     smartrefresh_header_classics : "com.scwang.smart:refresh-header-classics:2.0.1", // 经典刷新头
@@ -221,77 +301,13 @@ ext {
                     smartrefreshHorizontal       : "com.scwang.smart:refresh-layout-horizontal:2.0.0",
                     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
                     baserecyclerviewadapterhelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6",
-                    // Aria 下载可以很简单 https://github.com/AriaLyy/Aria
-                    aria_core                    : "com.arialyy.aria:core:3.8.14",
-                    aria_compiler                : "com.arialyy.aria:compiler:3.8.14",
-                    aria_ftp                     : "com.arialyy.aria:ftpComponent:3.8.14", // 如果需要使用 ftp, 请增加该组件
-                    aria_sftp                    : "com.arialyy.aria:sftpComponent:3.8.14", // 如果需要使用 ftp, 请增加该组件
-                    aria_m3u8                    : "com.arialyy.aria:m3u8Component:3.8.14", // 如果需要使用 m3u8 下载功能, 请增加该组件
-                    // 二维码 ZXing https://github.com/zxing/zxing
-                    zxing_code                   : "com.google.zxing:core:3.4.1", // http://mvnrepository.com/artifact/com.google.zxing/core
-                    zxing_android_code           : "com.google.zxing:android-core:3.3.0", // http://mvnrepository.com/artifact/com.google.zxing/android-core
-                    // 多子 view 嵌套滚动通用解决方案 https://github.com/MFC-TEC/ELinkageScroll
-                    // WebView、RecyclerView 多布局连贯滑动 https://github.com/donkingliang/ConsecutiveScroller
-                    consecutiveScroller          : "com.github.donkingliang:ConsecutiveScroller:4.3.0", // AndroidX
-                    // 图表 https://github.com/PhilJay/MPAndroidChart
-                    mpAndroidChart               : "com.github.PhilJay:MPAndroidChart:v3.1.0",
-                    // 波浪效果 https://github.com/gelitenight/WaveView
-                    waveview                     : "com.gelitenight.waveview:waveview:1.0.0",
-                    // Banner 库 https://github.com/youth5201314/banner
-                    banner                       : "com.youth.banner:banner:2.1.0",
-                    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
-                    mmkv                         : "com.tencent:mmkv-static:1.2.7",
-                    // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
-                    autosize                     : "me.jessyan:autosize:1.2.1",
-                    // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
-                    greenDAO                     : "org.greenrobot:greendao:3.3.0",
-                    // SQLCipher for Android https://github.com/sqlcipher/android-database-sqlcipher
-                    sqlcipher                    : "net.zetetic:android-database-sqlcipher:4.4.0",
-                    // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
-                    luban                        : "top.zibin:Luban:1.1.8",
-                    // Kotlin Luban 图片压缩 https://github.com/forJrking/KLuban
-                    kluban                       : "com.github.forJrking:KLuban:1.0.2",
-                    // CalendarView 日历控件 https://github.com/huanghaibin-dev/CalendarView
-                    calendarview                 : "com.haibin:calendarview:3.6.9",
-                    // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
-                    xcrash                       : "com.iqiyi.xcrash:xcrash-android-lib:2.4.9",
-                    // 图片裁剪库 https://github.com/Yalantis/uCrop
-                    ucrop                        : "com.github.yalantis:ucrop:2.2.6", // 轻量级通用解决方案
-                    ucrop_native                 : "com.github.yalantis:ucrop:2.2.6-native", // 支持本机功能
-                    // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
-                    xxPermissions                : "com.hjq:xxpermissions:9.2",
-                    // ProgressManager 监听 App 中所有网络链接的上传以及下载进度 https://github.com/JessYanCoding/ProgressManager
-                    progressmanager              : "me.jessyan:progressmanager:1.5.0",
 
-                    // ========
-                    // = 其他 =
-                    // ========
+                    // ==============
+                    // = deprecated =
+                    // ==============
 
-                    // ARouter 路由 https://github.com/alibaba/ARouter
-                    arouter_api                  : "com.alibaba:arouter-api:1.5.0", // https://github.com/alibaba/ARouter/blob/master/README_CN.md
-                    arouter_compiler             : "com.alibaba:arouter-compiler:1.2.2",
-                    // JavaPoet 编译时代码生成 https://github.com/square/javapoet
-                    javapoet                     : "com.squareup:javapoet:1.13.0",
-                    // APT 编译时注解简化服务 https://github.com/google/auto/tree/master/service
-                    auto_service                 : "com.google.auto.service:auto-service:1.0-rc7",
-
-                    // ======================
-                    // = 性能检测、排查相关库 =
-                    // ======================
-
-                    // 应用数据库展示 https://github.com/guolindev/Glance
-                    glance                       : "com.glance.guolindev:glance:1.0.0",
-                    // 内存检测工具 https://github.com/square/leakcanary
-                    leakcanary                   : "com.squareup.leakcanary:leakcanary-android:2.6",
-                    // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
-                    blockcanary_android          : "com.github.markzhai:blockcanary-android:1.5.0",
-                    blockcanary_no_op            : "com.github.markzhai:blockcanary-no-op:1.5.0",
-                    // 饿了么 UETool https://github.com/eleme/UETool/blob/master/README_zh.md
-                    uetool                       : "me.ele:uetool:1.2.9",
-                    uetool_no_op                 : "me.ele:uetool-no-op:1.2.9",
-                    // 滴滴出行 DoraemonKit http://www.dokit.cn
-                    dokitx                       : "com.didichuxing.doraemonkit:dokitx:3.3.5",
-                    dokitx_no_op                 : "com.didichuxing.doraemonkit:dokitx-no-op:3.3.5",
+                    // 评价等级控件 https://github.com/hedge-hog/RatingBar
+                    ratingbar                    : "com.hedgehog.ratingbar:app:1.1.2",
             ],
             'deprecated': [
                     // 已经抛弃不再更新或者被其他库、技术取代
@@ -307,21 +323,6 @@ ext {
                     okgo                : "com.lzy.net:okgo:3.0.4",
                     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
                     okserver            : "com.lzy.net:okserver:2.0.5",
-            ],
-            'widget'    : [
-                    // 第三方简约小功能、UI 小组件等
-
-                    // 加载动画效果 https://github.com/Kyson/WhorlView
-                    whorlviewlibrary: "com.tt:whorlviewlibrary:1.0.3",
-                    // 圆形 ImageView https://github.com/hdodenhof/CircleImageView
-                    circleimageview : "de.hdodenhof:circleimageview:3.1.0",
-
-                    // ==============
-                    // = deprecated =
-                    // ==============
-
-                    // 评价等级控件 https://github.com/hedge-hog/RatingBar
-                    ratingbar       : "com.hedgehog.ratingbar:app:1.1.2",
             ]
     ]
 }

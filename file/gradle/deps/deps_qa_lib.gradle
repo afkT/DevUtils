@@ -6,17 +6,17 @@ dependencies {
     // ======================
 
     // 内存检测工具 https://github.com/square/leakcanary
-    debugImplementation deps.lib.leakcanary
+    debugImplementation deps.property.leakcanary
 //    // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
-//    debugImplementation deps.lib.blockcanary_android
-//    releaseImplementation deps.lib.blockcanary_no_op
+//    debugImplementation deps.property.blockcanary_android
+//    releaseImplementation deps.property.blockcanary_no_op
 //    // 应用数据库展示 https://github.com/guolindev/Glance
-//    debugImplementation deps.lib.glance
+//    debugImplementation deps.property.glance
 //    // 饿了么 UETool https://github.com/eleme/UETool/blob/master/README_zh.md
-//    debugImplementation deps.lib.uetool
-//    releaseImplementation deps.lib.uetool_no_op
+//    debugImplementation deps.property.uetool
+//    releaseImplementation deps.property.uetool_no_op
 //    // 滴滴出行 DoraemonKit http://www.dokit.cn
-//    debugImplementation deps.lib.dokitx
-//    releaseImplementation deps.lib.dokitx_no_op
+//    debugImplementation deps.property.dokitx
+//    releaseImplementation deps.property.dokitx_no_op
 
 }

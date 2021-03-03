@@ -7,9 +7,9 @@ dependencies {
     // =============================
 
     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
-    implementation deps.lib.smartrefreshlayout
-    implementation deps.lib.smartrefresh_header_classics
-    implementation deps.lib.smartrefresh_footer_classics
+    implementation deps.widget.smartrefreshlayout
+    implementation deps.widget.smartrefresh_header_classics
+    implementation deps.widget.smartrefresh_footer_classics
     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-    implementation deps.lib.baserecyclerviewadapterhelper
+    implementation deps.widget.baserecyclerviewadapterhelper
 }
