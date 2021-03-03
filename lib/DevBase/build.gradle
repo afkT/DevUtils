@@ -15,6 +15,8 @@ dependencies {
     api deps.kotlin.lifecycle_common_java8
     api deps.androidx.design
     api deps.androidx.appcompat
+    api deps.kotlin.fragment_ktx
+    api deps.kotlin.activity_ktx
 
     // 编译时使用
     api project(':DevApp')

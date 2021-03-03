@@ -14,6 +14,7 @@ dependencies {
     implementation deps.kotlin.work_runtime
     implementation deps.kotlin.datastore_preferences
     implementation deps.kotlin.fragment_ktx
+    implementation deps.kotlin.activity_ktx
     implementation deps.androidx.design
     implementation deps.androidx.appcompat
     implementation deps.androidx.appcompat_resources
