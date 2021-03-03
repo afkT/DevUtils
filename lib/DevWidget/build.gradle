@@ -8,7 +8,6 @@ android.defaultConfig {
 dependencies {
     api deps.androidx.design
     api deps.androidx.appcompat
-    api deps.androidx.support_v4
 
     // 编译时使用
     api project(':DevApp')

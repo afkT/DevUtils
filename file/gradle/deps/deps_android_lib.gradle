@@ -17,7 +17,6 @@ dependencies {
     implementation deps.androidx.design
     implementation deps.androidx.appcompat
     implementation deps.androidx.appcompat_resources
-    implementation deps.androidx.support_v4
     implementation deps.androidx.cardview
     implementation deps.androidx.recyclerview
     implementation deps.androidx.multidex
