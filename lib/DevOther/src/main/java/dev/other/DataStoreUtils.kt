@@ -5,11 +5,8 @@ import android.text.TextUtils
 import androidx.datastore.core.DataMigration
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.SharedPreferencesMigration
-import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.core.Preferences.Key
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.emptyPreferences
-import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
 import dev.DevUtils
 import dev.utils.LogPrintUtils
@@ -29,7 +26,7 @@ import java.io.IOException
  * <p></p>
  * DataStore 文件存放目录: /data/data/<包名>/files/datastore
  * 仅支持 Int、String、Boolean、Float、Long、Double
- * 具体查看 [androidx.datastore.preferences.core.preferencesKey]
+ * 具体查看 [androidx.datastore.preferences.core.PreferencesKeys]
  */
 object DataStoreUtils {
 
@@ -231,7 +228,7 @@ object DataStoreUtils {
             key: String,
             value: Int
         ) {
-            _put(key = preferencesKey(key), value = value)
+            _put(key = intPreferencesKey(key), value = value)
         }
 
         /**
@@ -255,7 +252,7 @@ object DataStoreUtils {
             key: String,
             value: String
         ) {
-            _put(key = preferencesKey(key), value = value)
+            _put(key = stringPreferencesKey(key), value = value)
         }
 
         /**
@@ -279,7 +276,7 @@ object DataStoreUtils {
             key: String,
             value: Boolean
         ) {
-            _put(key = preferencesKey(key), value = value)
+            _put(key = booleanPreferencesKey(key), value = value)
         }
 
         /**
@@ -303,7 +300,7 @@ object DataStoreUtils {
             key: String,
             value: Float
         ) {
-            _put(key = preferencesKey(key), value = value)
+            _put(key = floatPreferencesKey(key), value = value)
         }
 
         /**
@@ -327,7 +324,7 @@ object DataStoreUtils {
             key: String,
             value: Long
         ) {
-            _put(key = preferencesKey(key), value = value)
+            _put(key = longPreferencesKey(key), value = value)
         }
 
         /**
@@ -351,7 +348,7 @@ object DataStoreUtils {
             key: String,
             value: Double
         ) {
-            _put(key = preferencesKey(key), value = value)
+            _put(key = doublePreferencesKey(key), value = value)
         }
 
         /**
@@ -380,7 +377,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Int = INT_VALUE
         ): Flow<Int>? {
-            return _getFlow(key = preferencesKey(key), defaultValue = defaultValue)
+            return _getFlow(key = intPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -406,7 +403,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: String = STRING_VALUE
         ): Flow<String>? {
-            return _getFlow(key = preferencesKey(key), defaultValue = defaultValue)
+            return _getFlow(key = stringPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -432,7 +429,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Boolean = BOOLEAN_VALUE
         ): Flow<Boolean>? {
-            return _getFlow(key = preferencesKey(key), defaultValue = defaultValue)
+            return _getFlow(key = booleanPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -458,7 +455,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Float = FLOAT_VALUE
         ): Flow<Float>? {
-            return _getFlow(key = preferencesKey(key), defaultValue = defaultValue)
+            return _getFlow(key = floatPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -484,7 +481,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Long = LONG_VALUE
         ): Flow<Long>? {
-            return _getFlow(key = preferencesKey(key), defaultValue = defaultValue)
+            return _getFlow(key = longPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -510,7 +507,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Double = DOUBLE_VALUE
         ): Flow<Double>? {
-            return _getFlow(key = preferencesKey(key), defaultValue = defaultValue)
+            return _getFlow(key = doublePreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -540,7 +537,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Int = INT_VALUE
         ): Int {
-            return _getValue(key = preferencesKey(key), defaultValue = defaultValue)
+            return _getValue(key = intPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -566,7 +563,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: String = STRING_VALUE
         ): String {
-            return _getValue(key = preferencesKey(key), defaultValue = defaultValue)
+            return _getValue(key = stringPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -592,7 +589,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Boolean = BOOLEAN_VALUE
         ): Boolean {
-            return _getValue(key = preferencesKey(key), defaultValue = defaultValue)
+            return _getValue(key = booleanPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -618,7 +615,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Float = FLOAT_VALUE
         ): Float {
-            return _getValue(key = preferencesKey(key), defaultValue = defaultValue)
+            return _getValue(key = floatPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -644,7 +641,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Long = LONG_VALUE
         ): Long {
-            return _getValue(key = preferencesKey(key), defaultValue = defaultValue)
+            return _getValue(key = longPreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**
@@ -670,7 +667,7 @@ object DataStoreUtils {
             key: String,
             defaultValue: Double = DOUBLE_VALUE
         ): Double {
-            return _getValue(key = preferencesKey(key), defaultValue = defaultValue)
+            return _getValue(key = doublePreferencesKey(key), defaultValue = defaultValue)
         }
 
         /**

@@ -119,38 +119,40 @@ ext {
                     // Saved state module for ViewModel
                     lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0",
                     // DefaultLifecycleObserver Java8
-                    lifecycle_common_java8: "androidx.lifecycle:lifecycle-common-java8:2.3.0",
+                    lifecycle_common_java8        : "androidx.lifecycle:lifecycle-common-java8:2.3.0",
                     // Room 持久性库 https://developer.android.com/training/data-storage/room
-                    room_runtime                  : "androidx.room:room-runtime:2.2.5",
-                    room_compiler                 : "androidx.room:room-compiler:2.2.5",
-                    room_ktx                      : "androidx.room:room-ktx:2.2.5",
+                    room_runtime                  : "androidx.room:room-runtime:2.2.6",
+                    room_compiler                 : "androidx.room:room-compiler:2.2.6",
+                    room_ktx                      : "androidx.room:room-ktx:2.2.6",
                     // WorkManager Kotlin + coroutines
-                    work_runtime_ktx              : "androidx.work:work-runtime-ktx:2.5.0-rc01",
+                    work_runtime_ktx              : "androidx.work:work-runtime-ktx:2.5.0",
+                    // WorkManager Java only https://mvnrepository.com/artifact/androidx.work/work-runtime
+                    work_runtime                  : "androidx.work:work-runtime:2.5.0",
                     // DataStore
-                    datastore_preferences         : "androidx.datastore:datastore-preferences:1.0.0-alpha05",
-                    fragment_ktx                  : "androidx.fragment:fragment-ktx:1.2.5",
+                    datastore_preferences         : "androidx.datastore:datastore-preferences:1.0.0-alpha06",
+                    fragment_ktx                  : "androidx.fragment:fragment-ktx:1.3.0",
+
+                    // https://developer.android.google.cn/jetpack/androidx/releases/datastore
             ],
             'androidx': [
                     // https://developer.android.com/jetpack/androidx/migrate/artifact-mappings
                     // https://developer.android.com/jetpack/androidx/versions
                     // https://developer.android.com/jetpack/androidx/explorer
 
-                    appcompat             : "androidx.appcompat:appcompat:1.2.0",
-                    appcompat_resources   : "androidx.appcompat:appcompat-resources:1.2.0",
+                    appcompat          : "androidx.appcompat:appcompat:1.2.0",
+                    appcompat_resources: "androidx.appcompat:appcompat-resources:1.2.0",
                     //support_v4            : "androidx.legacy:legacy-support-v4:1.0.0",
-                    cardview              : "androidx.cardview:cardview:1.0.0",
-                    recyclerview          : "androidx.recyclerview:recyclerview:1.1.0",
-                    multidex              : "androidx.multidex:multidex:2.0.1",
-                    constraint_layout     : "androidx.constraintlayout:constraintlayout:2.0.4",
-                    viewpager2            : "androidx.viewpager2:viewpager2:1.0.0",
-                    sqlite                : "androidx.sqlite:sqlite:2.1.0", // 推荐使用 Room Jetpack 组件
-                    // WorkManager Java only https://mvnrepository.com/artifact/androidx.work/work-runtime
-                    work_runtime          : "androidx.work:work-runtime:2.5.0-beta02",
+                    cardview           : "androidx.cardview:cardview:1.0.0",
+                    recyclerview       : "androidx.recyclerview:recyclerview:1.1.0",
+                    multidex           : "androidx.multidex:multidex:2.0.1",
+                    constraint_layout  : "androidx.constraintlayout:constraintlayout:2.0.4",
+                    viewpager2         : "androidx.viewpager2:viewpager2:1.0.0",
+                    sqlite             : "androidx.sqlite:sqlite:2.1.0", // 推荐使用 Room Jetpack 组件
                     // Android Material 组件使用详解 https://blog.csdn.net/magic0908/article/details/101029876
-                    design                : "com.google.android.material:material:1.2.1",
-                    fragment              : "androidx.fragment:fragment:1.2.5",
+                    design             : "com.google.android.material:material:1.2.1",
+                    fragment           : "androidx.fragment:fragment:1.3.0",
                     // Palette 调色板 ( 从图片中获取颜色 )
-                    palette               : "androidx.palette:palette:1.0.0", // androidx.palette:palette-ktx:1.0.0
+                    palette            : "androidx.palette:palette:1.0.0", // androidx.palette:palette-ktx:1.0.0
             ],
             'lib'     : [
                     // Gson https://github.com/google/gson

@@ -11,6 +11,7 @@ dependencies {
     kapt deps.kotlin.room_compiler
     implementation deps.kotlin.room_ktx
     implementation deps.kotlin.work_runtime_ktx
+    implementation deps.kotlin.work_runtime
     implementation deps.kotlin.datastore_preferences
     implementation deps.kotlin.fragment_ktx
     implementation deps.androidx.design
@@ -21,7 +22,6 @@ dependencies {
     implementation deps.androidx.multidex
     implementation deps.androidx.constraint_layout
     implementation deps.androidx.viewpager2
-    implementation deps.androidx.work_runtime
     implementation deps.androidx.fragment
     implementation deps.androidx.palette
 }
