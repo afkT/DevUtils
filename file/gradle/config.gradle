@@ -315,6 +315,8 @@ ext {
                     smartrefreshHorizontal       : "com.scwang.smart:refresh-layout-horizontal:2.0.0",
                     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
                     baserecyclerviewadapterhelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6",
+                    // QMUI Android https://qmuiteam.com/android
+                    qmui                         : "com.qmuiteam:qmui:2.0.0-alpha10",
 
                     // ==============
                     // = deprecated =
