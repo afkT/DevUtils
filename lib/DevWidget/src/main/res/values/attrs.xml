@@ -66,12 +66,16 @@
             <flag name="triangle" value="4" />
         </attr>
 
-        <!-- RadiusLayout -->
+        <!-- RadiusLayout、RoundLayout -->
 
         <attr name="dev_radius" format="dimension" />
         <attr name="dev_radiusLeftTop" format="dimension" />
         <attr name="dev_radiusLeftBottom" format="dimension" />
         <attr name="dev_radiusRightTop" format="dimension" />
         <attr name="dev_radiusRightBottom" format="dimension" />
+        <attr name="dev_backgroundColor" format="color" />
+        <attr name="dev_borderColor" format="color" />
+        <attr name="dev_borderWidth" format="dimension" />
+        <attr name="dev_isRadiusAdjustBounds" format="boolean" />
     </declare-styleable>
 </resources>

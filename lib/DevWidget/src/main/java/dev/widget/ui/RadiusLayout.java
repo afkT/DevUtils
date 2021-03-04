@@ -16,7 +16,7 @@ import dev.widget.utils.RadiusAttrs;
  * <pre>
  *     注意事项:
  *     该 View 会有锯齿情况
- *     如果需要裁剪 View 且四个角落都统一圆角
+ *     如果需要裁剪 View 且四个角落都统一圆角可以使用 CardView 不增加阴影
  *     <p></p>
  *     app:dev_radius=""
  *     app:dev_radiusLeftTop=""
