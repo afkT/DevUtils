@@ -5,9 +5,11 @@ import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 
@@ -201,5 +203,19 @@ public class RoundDrawable
         }
         bg.setRadiusAdjustBounds(isRadiusAdjustBounds);
         return bg;
+    }
+
+    /**
+     * 设置背景
+     * @param view     {@link View}
+     * @param drawable {@link Drawable}
+     */
+    public static void setBackgroundKeepingPadding(
+            final View view,
+            final Drawable drawable
+    ) {
+        int[] padding = new int[]{view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), view.getPaddingBottom()};
+        view.setBackgroundDrawable(drawable);
+        view.setPadding(padding[0], padding[1], padding[2], padding[3]);
     }
 }
