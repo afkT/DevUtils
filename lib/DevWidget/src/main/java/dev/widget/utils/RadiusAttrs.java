@@ -41,10 +41,10 @@ public class RadiusAttrs {
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
             mRadius = a.getLayoutDimension(R.styleable.DevWidget_dev_radius, 0);
-            mRadiusLeftTop = a.getLayoutDimension(R.styleable.DevWidget_dev_radius_left_top, 0);
-            mRadiusLeftBottom = a.getLayoutDimension(R.styleable.DevWidget_dev_radius_left_bottom, 0);
-            mRadiusRightTop = a.getLayoutDimension(R.styleable.DevWidget_dev_radius_right_top, 0);
-            mRadiusRightBottom = a.getLayoutDimension(R.styleable.DevWidget_dev_radius_right_bottom, 0);
+            mRadiusLeftTop = a.getLayoutDimension(R.styleable.DevWidget_dev_radiusLeftTop, 0);
+            mRadiusLeftBottom = a.getLayoutDimension(R.styleable.DevWidget_dev_radiusLeftBottom, 0);
+            mRadiusRightTop = a.getLayoutDimension(R.styleable.DevWidget_dev_radiusRightTop, 0);
+            mRadiusRightBottom = a.getLayoutDimension(R.styleable.DevWidget_dev_radiusRightBottom, 0);
             a.recycle();
 
             if (mRadius != 0) {

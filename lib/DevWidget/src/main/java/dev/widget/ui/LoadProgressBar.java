@@ -41,7 +41,7 @@ import dev.widget.R;
  *     <dev.widget.ui.LoadProgressBar
  *        app:dev_canvasNumber="true"
  *        app:dev_progressColor="@color/sky_blue"
- *        app:dev_progressStyle="fan_shaped" />
+ *        app:dev_progressStyle="fanShaped" />
  *     <p></p>
  *     扇形 + 数字 + 外圆环
  *     view.setProgressStyle(LoadProgressBar.ProgressStyle.ARC_FAN_SHAPED)
@@ -56,7 +56,7 @@ import dev.widget.R;
  *        app:dev_outerRingColor="@color/red"
  *        app:dev_outerRingWidth="1.0dp"
  *        app:dev_progressColor="@color/mediumturquoise"
- *        app:dev_progressStyle="arc_fan_shaped" />
+ *        app:dev_progressStyle="arcFanShaped" />
  *     <p></p>
  *     单独字体
  *     view.setProgressStyle(CustomProgressBar.ProgressStyle.NUMBER)

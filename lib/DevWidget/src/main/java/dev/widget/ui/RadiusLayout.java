@@ -14,11 +14,15 @@ import dev.widget.utils.RadiusAttrs;
  * detail: 自定义圆角 View
  * @author Ttt
  * <pre>
+ *     注意事项:
+ *     该 View 会有锯齿情况
+ *     如果需要裁剪 View 且四个角落都统一圆角
+ *     <p></p>
  *     app:dev_radius=""
- *     app:dev_radius_left_top=""
- *     app:dev_radius_left_bottom=""
- *     app:dev_radius_right_top=""
- *     app:dev_radius_right_bottom=""
+ *     app:dev_radiusLeftTop=""
+ *     app:dev_radiusLeftBottom=""
+ *     app:dev_radiusRightTop=""
+ *     app:dev_radiusRightBottom=""
  * </pre>
  */
 public class RadiusLayout

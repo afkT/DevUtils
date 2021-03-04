@@ -73,7 +73,7 @@ view.setProgressStyle(CustomProgressBar.ProgressStyle.FAN_SHAPED)
 <dev.widget.ui.LoadProgressBar
    app:dev_canvasNumber="true"
    app:dev_progressColor="@color/sky_blue"
-   app:dev_progressStyle="fan_shaped" />
+   app:dev_progressStyle="fanShaped" />
 
 
 // 扇形 + 数字 + 外圆环
@@ -90,7 +90,7 @@ view.setProgressStyle(LoadProgressBar.ProgressStyle.ARC_FAN_SHAPED)
    app:dev_outerRingColor="@color/red"
    app:dev_outerRingWidth="1.0dp"
    app:dev_progressColor="@color/mediumturquoise"
-   app:dev_progressStyle="arc_fan_shaped" />
+   app:dev_progressStyle="arcFanShaped" />
 
 
 // 单独字体

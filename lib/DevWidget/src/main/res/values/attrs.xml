@@ -31,8 +31,8 @@
         <attr name="dev_numberTextColor" format="color" />
         <attr name="dev_progressStyle" format="enum">
             <enum name="rings" value="0" />
-            <enum name="fan_shaped" value="1" />
-            <enum name="arc_fan_shaped" value="2" />
+            <enum name="fanShaped" value="1" />
+            <enum name="arcFanShaped" value="2" />
             <enum name="number" value="3" />
         </attr>
 
@@ -69,9 +69,9 @@
         <!-- RadiusLayout -->
 
         <attr name="dev_radius" format="dimension" />
-        <attr name="dev_radius_left_top" format="dimension" />
-        <attr name="dev_radius_left_bottom" format="dimension" />
-        <attr name="dev_radius_right_top" format="dimension" />
-        <attr name="dev_radius_right_bottom" format="dimension" />
+        <attr name="dev_radiusLeftTop" format="dimension" />
+        <attr name="dev_radiusLeftBottom" format="dimension" />
+        <attr name="dev_radiusRightTop" format="dimension" />
+        <attr name="dev_radiusRightBottom" format="dimension" />
     </declare-styleable>
 </resources>
