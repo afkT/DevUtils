@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.0.8 *(2021-03-05)*
+----------------------------
+
+* `[Add]` RoundDrawable、RoundLayout、RoundView
+
 Version 1.0.7 *(2021-01-24)*
 ----------------------------
 
