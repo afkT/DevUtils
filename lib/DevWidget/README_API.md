@@ -3,7 +3,7 @@
 
 ```java
 // AndroidX
-implementation 'com.afkt:DevWidgetX:1.0.7'
+implementation 'com.afkt:DevWidgetX:1.0.8'
 ```
 
 ## 目录结构
@@ -16,6 +16,7 @@ implementation 'com.afkt:DevWidgetX:1.0.7'
       - custom                                        | 自定义 View
       - function                                      | 需求功能 View
       - ui                                            | UI View
+         - round                                      | 圆角相关 View
       - utils                                         | 工具类目录
 ```
 
@@ -41,6 +42,7 @@ implementation 'com.afkt:DevWidgetX:1.0.7'
       - [custom](#devwidgetcustom)                    | 自定义 View
       - [function](#devwidgetfunction)                | 需求功能 View
       - [ui](#devwidgetui)                            | UI View
+         - [round](#devwidgetuiround)                 | 圆角相关 View
       - [utils](#devwidgetutils)                      | 工具类目录
 
 
@@ -532,6 +534,25 @@ implementation 'com.afkt:DevWidgetX:1.0.7'
 | getViewLeftMargin | 获取每个 View 之间的 Left 边距 |
 | setViewLeftMargin | 设置每个 View 之间的 Left 边距 |
 | setRowViewMargin | 设置 Row View 边距 |
+
+
+## <span id="devwidgetuiround">**`dev.widget.ui.round`**</span>
+
+
+* **圆角 Drawable ->** [RoundDrawable.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/round/RoundDrawable.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onStateChange | onStateChange |
+| isStateful | isStateful |
+| onBoundsChange | onBoundsChange |
+| getStrokeWidth | 获取描边粗细 |
+| setStrokeColors | 设置描边粗细和颜色 |
+| setStrokeData | 设置描边粗细和颜色 |
+| setBgData | 设置按钮的背景色 ( 只支持纯色, 不支持 Bitmap 或 Drawable ) |
+| setRadiusAdjustBounds | 设置圆角大小是否自适应为 View 的高度的一半 |
+| fromAttributeSet | 通过 AttributeSet 构建 RoundDrawable |
+| setBackgroundKeepingPadding | 设置背景 |
 
 
 ## <span id="devwidgetutils">**`dev.widget.utils`**</span>

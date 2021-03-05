@@ -28,6 +28,16 @@ import dev.widget.R;
  *     如果在 xml 中用 android:background 指定 background, 该 background 不会生效
  *     <p></p>
  *     该类使用 QMUI QMUIRoundButtonDrawable 代码, 减少非必要代码依赖
+ *     <p></p>
+ *     app:dev_backgroundColor=""
+ *     app:dev_borderColor=""
+ *     app:dev_borderWidth=""
+ *     app:dev_isRadiusAdjustBounds=""
+ *     app:dev_radius=""
+ *     app:dev_radiusLeftBottom=""
+ *     app:dev_radiusLeftTop=""
+ *     app:dev_radiusRightBottom=""
+ *     app:dev_radiusRightTop=""
  * </pre>
  */
 public class RoundDrawable
