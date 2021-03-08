@@ -268,6 +268,10 @@ ext {
                     // 滴滴出行 DoraemonKit http://www.dokit.cn
                     dokitx             : "com.didichuxing.doraemonkit:dokitx:3.3.5",
                     dokitx_no_op       : "com.didichuxing.doraemonkit:dokitx-no-op:3.3.5",
+                    // Bugly https://bugly.qq.com/docs/
+                    bugly              : "com.tencent.bugly:crashreport:3.3.7",
+                    bugly_ndk          : "com.tencent.bugly:nativecrashreport:3.8.0",
+
 
                     // 微信开源的资源混淆库 AndResGuard https://github.com/shwenzhang/AndResGuard/blob/master/README.zh-cn.md
 
