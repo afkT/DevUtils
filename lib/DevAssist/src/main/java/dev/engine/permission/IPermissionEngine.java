@@ -88,6 +88,23 @@ public interface IPermissionEngine {
             String... permissions
     );
 
+    /**
+     * 再次请求处理操作
+     * <pre>
+     *     如果存在拒绝了且不再询问则跳转到应用设置页面
+     *     否则则再次请求拒绝的权限
+     * </pre>
+     * @param activity   {@link Activity}
+     * @param callback   权限请求回调
+     * @param deniedList 申请未通过的权限集合
+     * @return 0 不符合要求无任何操作、1 再次请求操作、2  跳转到应用设置页面
+     */
+    int againRequest(
+            final Activity activity,
+            final Callback callback,
+            final List<String> deniedList
+    );
+
     // ===============
     // = 权限请求方法 =
     // ===============

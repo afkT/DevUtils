@@ -47,6 +47,33 @@ public class DevPermissionEngineImpl
         );
     }
 
+    @Override
+    public int againRequest(
+            Activity activity,
+            Callback callback,
+            List<String> deniedList
+    ) {
+        return PermissionUtils.againRequest(activity, new PermissionUtils.PermissionCallback() {
+            @Override
+            public void onGranted() {
+                if (callback != null) {
+                    callback.onGranted();
+                }
+            }
+
+            @Override
+            public void onDenied(
+                    List<String> grantedList,
+                    List<String> deniedList,
+                    List<String> notFoundList
+            ) {
+                if (callback != null) {
+                    callback.onDenied(grantedList, deniedList, notFoundList);
+                }
+            }
+        }, deniedList);
+    }
+
     // ===============
     // = 权限请求方法 =
     // ===============

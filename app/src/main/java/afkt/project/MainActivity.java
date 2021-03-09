@@ -18,8 +18,9 @@ import afkt.project.ui.activity.DevEnvironmentLibActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.util.SkipUtils;
 import dev.engine.log.DevLogEngine;
+import dev.engine.permission.DevPermissionEngine;
+import dev.engine.permission.IPermissionEngine;
 import dev.utils.app.AppCommonUtils;
-import dev.utils.app.permission.PermissionUtils;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.app.toast.ToastUtils;
 import dev.utils.common.HttpURLConnectionUtils;
@@ -70,40 +71,36 @@ public class MainActivity
         // = 申请权限 =
         // ===========
 
-        PermissionUtils.permission(Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE).callback(new PermissionUtils.PermissionCallback() {
-            /**
-             * 授权通过权限回调
-             */
-            @Override
-            public void onGranted() {
-                DevLogEngine.getEngine().d("permission granted");
-            }
+        DevPermissionEngine.getEngine().request(
+                this, new String[]{
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                },
+                new IPermissionEngine.Callback() {
+                    @Override
+                    public void onGranted() {
+                        DevLogEngine.getEngine().d("permission granted");
+                    }
 
-            /**
-             * 授权未通过权限回调
-             * @param grantedList  申请通过的权限
-             * @param deniedList   申请未通过的权限
-             * @param notFoundList 查询不到的权限 ( 包含未注册 )
-             */
-            @Override
-            public void onDenied(
-                    List<String> grantedList,
-                    List<String> deniedList,
-                    List<String> notFoundList
-            ) {
-                StringBuilder builder = new StringBuilder();
-                builder.append("permission");
-                builder.append("\ngrantedList: ").append(Arrays.toString(grantedList.toArray()));
-                builder.append("\ndeniedList: ").append(Arrays.toString(deniedList.toArray()));
-                builder.append("\nnotFoundList: ").append(Arrays.toString(notFoundList.toArray()));
-                DevLogEngine.getEngine().d(builder.toString());
-                // 拒绝了则再次请求处理
-                PermissionUtils.againRequest(MainActivity.this, this, deniedList);
-                // Toast
-                ToastUtils.showShort("请开启读写手机存储权限.");
-            }
-        }).request(this);
+                    @Override
+                    public void onDenied(
+                            List<String> grantedList,
+                            List<String> deniedList,
+                            List<String> notFoundList
+                    ) {
+                        StringBuilder builder = new StringBuilder();
+                        builder.append("permission");
+                        builder.append("\ngrantedList: ").append(Arrays.toString(grantedList.toArray()));
+                        builder.append("\ndeniedList: ").append(Arrays.toString(deniedList.toArray()));
+                        builder.append("\nnotFoundList: ").append(Arrays.toString(notFoundList.toArray()));
+                        DevLogEngine.getEngine().d(builder.toString());
+                        // 拒绝了则再次请求处理
+                        DevPermissionEngine.getEngine().againRequest(MainActivity.this, this, deniedList);
+                        // Toast
+                        ToastUtils.showShort("请开启读写手机存储权限.");
+                    }
+                }
+        );
     }
 
     @Override
