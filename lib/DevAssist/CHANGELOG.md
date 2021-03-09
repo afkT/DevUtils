@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.1.1 *(2021-03-10)*
+----------------------------
+
+* `[Add]` DevPermissionEngine
+
+* `[Update]` 修改 Engine Config 接口名
+
 Version 1.1.0 *(2021-03-02)*
 ----------------------------
 
