@@ -23,7 +23,7 @@ public class GsonEngineImpl
     @Override
     public String toJson(
             Object object,
-            dev.engine.json.JSONConfig config
+            JSONConfig config
     ) {
         return GsonUtils.toJson(object, config.gson);
     }
@@ -40,7 +40,7 @@ public class GsonEngineImpl
     public <T> T fromJson(
             String json,
             Class<T> classOfT,
-            dev.engine.json.JSONConfig config
+            JSONConfig config
     ) {
         return GsonUtils.fromJson(json, classOfT, config.gson);
     }
@@ -57,7 +57,7 @@ public class GsonEngineImpl
     public <T> T fromJson(
             String json,
             Type typeOfT,
-            dev.engine.json.JSONConfig config
+            JSONConfig config
     ) {
         return GsonUtils.fromJson(json, typeOfT, config.gson);
     }
@@ -89,7 +89,7 @@ public class GsonEngineImpl
     @Override
     public String toJsonIndent(
             String json,
-            dev.engine.json.JSONConfig config
+            JSONConfig config
     ) {
         return GsonUtils.toJsonIndent(json, config.gson);
     }
@@ -102,7 +102,7 @@ public class GsonEngineImpl
     @Override
     public String toJsonIndent(
             Object object,
-            dev.engine.json.JSONConfig config
+            JSONConfig config
     ) {
         return GsonUtils.toJsonIndent(object, config.gson);
     }

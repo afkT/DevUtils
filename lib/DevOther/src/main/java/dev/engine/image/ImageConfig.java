@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
  * @author Ttt
  */
 public class ImageConfig
-        extends IImageEngine.ImageConfig {
+        extends IImageEngine.Config {
 
     // 是否缓存到 SDCard
     private boolean mCacheDisk   = true;

@@ -23,7 +23,7 @@ public class FastjsonEngineImpl
     @Override
     public String toJson(
             Object object,
-            dev.engine.json.JSONConfig config
+            JSONConfig config
     ) {
         return FastjsonUtils.toJson(object);
     }
@@ -40,7 +40,7 @@ public class FastjsonEngineImpl
     public <T> T fromJson(
             String json,
             Class<T> classOfT,
-            dev.engine.json.JSONConfig config
+            JSONConfig config
     ) {
         return FastjsonUtils.fromJson(json, classOfT);
     }
@@ -57,7 +57,7 @@ public class FastjsonEngineImpl
     public <T> T fromJson(
             String json,
             Type typeOfT,
-            dev.engine.json.JSONConfig config
+            JSONConfig config
     ) {
         return FastjsonUtils.fromJson(json, typeOfT);
     }
@@ -89,7 +89,7 @@ public class FastjsonEngineImpl
     @Override
     public String toJsonIndent(
             String json,
-            dev.engine.json.JSONConfig config
+            JSONConfig config
     ) {
         return FastjsonUtils.toJsonIndent(json);
     }
@@ -102,7 +102,7 @@ public class FastjsonEngineImpl
     @Override
     public String toJsonIndent(
             Object object,
-            dev.engine.json.JSONConfig config
+            JSONConfig config
     ) {
         return FastjsonUtils.toJsonIndent(object);
     }

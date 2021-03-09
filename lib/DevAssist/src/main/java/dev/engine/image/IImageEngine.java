@@ -14,13 +14,13 @@ import dev.base.DevSource;
  * detail: Image Engine 接口
  * @author Ttt
  */
-public interface IImageEngine<Config extends IImageEngine.ImageConfig> {
+public interface IImageEngine<Config extends IImageEngine.Config> {
 
     /**
      * detail: Image Config
      * @author Ttt
      */
-    class ImageConfig {
+    class Config { // ImageConfig
     }
 
     // ====================

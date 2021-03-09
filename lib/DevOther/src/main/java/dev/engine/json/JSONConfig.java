@@ -7,7 +7,7 @@ import com.google.gson.Gson;
  * @author Ttt
  */
 public class JSONConfig
-        extends IJSONEngine.JSONConfig {
+        extends IJSONEngine.Config {
 
     public Gson gson;
 }
