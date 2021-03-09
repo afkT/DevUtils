@@ -3,10 +3,10 @@ package dev.engine.json;
 import com.google.gson.Gson;
 
 /**
- * detail: Gson JSON Config
+ * detail: JSON Config
  * @author Ttt
  */
-public class GsonConfig
+public class JSONConfig
         extends IJSONEngine.JSONConfig {
 
     public Gson gson;

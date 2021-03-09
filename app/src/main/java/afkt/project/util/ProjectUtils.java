@@ -5,7 +5,7 @@ import android.graphics.Rect;
 
 import afkt.project.R;
 import dev.base.DevVariable;
-import dev.engine.image.GlideConfig;
+import dev.engine.image.ImageConfig;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.SizeUtils;
 import dev.widget.ui.ScanShapeView;
@@ -56,35 +56,35 @@ public final class ProjectUtils {
     // ==================
 
     // GlideConfig 配置变量
-    private static DevVariable<Integer, GlideConfig> sConfigVariable = new DevVariable<>();
+    private static DevVariable<Integer, ImageConfig> sConfigVariable = new DevVariable<>();
 
     /**
      * 获取圆角 GlideConfig
-     * @return 圆角 {@link GlideConfig}
+     * @return 圆角 {@link ImageConfig}
      */
-    public static GlideConfig getRoundConfig3() {
+    public static ImageConfig getRoundConfig3() {
         return priGetRoundConfig(3);
     }
 
     /**
      * 获取圆角 GlideConfig
-     * @return 圆角 {@link GlideConfig}
+     * @return 圆角 {@link ImageConfig}
      */
-    public static GlideConfig getRoundConfig10() {
+    public static ImageConfig getRoundConfig10() {
         return priGetRoundConfig(10);
     }
 
     /**
      * 获取圆角 GlideConfig
      * @param roundDP 圆角 dp 值
-     * @return {@link GlideConfig}
+     * @return {@link ImageConfig}
      */
-    public static GlideConfig priGetRoundConfig(int roundDP) {
-        GlideConfig config = sConfigVariable.getVariableValue(roundDP);
+    public static ImageConfig priGetRoundConfig(int roundDP) {
+        ImageConfig config = sConfigVariable.getVariableValue(roundDP);
         if (config != null) return config;
-        config = GlideConfig.create();
+        config = ImageConfig.create();
         config.setRoundedCornersRadius(SizeUtils.dipConvertPx(roundDP));
-        config.setTransform(GlideConfig.TRANSFORM_ROUNDED_CORNERS);
+        config.setTransform(ImageConfig.TRANSFORM_ROUNDED_CORNERS);
         sConfigVariable.putVariable(roundDP, config);
         return config;
     }

@@ -2,13 +2,13 @@ package dev.engine.json;
 
 import java.lang.reflect.Type;
 
-import dev.other.GsonUtils;
+import dev.other.FastjsonUtils;
 
 /**
- * detail: Gson JSON Engine 实现
+ * detail: Fastjson JSON Engine 实现
  * @author Ttt
  */
-public class GsonEngineImpl
+public class FastjsonEngineImpl
         implements IJSONEngine<JSONConfig> {
 
     // ===========
@@ -17,7 +17,7 @@ public class GsonEngineImpl
 
     @Override
     public String toJson(Object object) {
-        return GsonUtils.toJson(object);
+        return FastjsonUtils.toJson(object);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class GsonEngineImpl
             Object object,
             dev.engine.json.JSONConfig config
     ) {
-        return GsonUtils.toJson(object, config.gson);
+        return FastjsonUtils.toJson(object);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class GsonEngineImpl
             String json,
             Class<T> classOfT
     ) {
-        return GsonUtils.fromJson(json, classOfT);
+        return FastjsonUtils.fromJson(json, classOfT);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class GsonEngineImpl
             Class<T> classOfT,
             dev.engine.json.JSONConfig config
     ) {
-        return GsonUtils.fromJson(json, classOfT, config.gson);
+        return FastjsonUtils.fromJson(json, classOfT);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class GsonEngineImpl
             String json,
             Type typeOfT
     ) {
-        return GsonUtils.fromJson(json, typeOfT);
+        return FastjsonUtils.fromJson(json, typeOfT);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class GsonEngineImpl
             Type typeOfT,
             dev.engine.json.JSONConfig config
     ) {
-        return GsonUtils.fromJson(json, typeOfT, config.gson);
+        return FastjsonUtils.fromJson(json, typeOfT);
     }
 
     // ===========
@@ -68,22 +68,22 @@ public class GsonEngineImpl
 
     @Override
     public boolean isJSON(String json) {
-        return GsonUtils.isJSON(json);
+        return FastjsonUtils.isJSON(json);
     }
 
     @Override
     public boolean isJSONObject(String json) {
-        return GsonUtils.isJSONObject(json);
+        return FastjsonUtils.isJSONObject(json);
     }
 
     @Override
     public boolean isJSONArray(String json) {
-        return GsonUtils.isJSONArray(json);
+        return FastjsonUtils.isJSONArray(json);
     }
 
     @Override
     public String toJsonIndent(String json) {
-        return GsonUtils.toJsonIndent(json);
+        return FastjsonUtils.toJsonIndent(json);
     }
 
     @Override
@@ -91,12 +91,12 @@ public class GsonEngineImpl
             String json,
             dev.engine.json.JSONConfig config
     ) {
-        return GsonUtils.toJsonIndent(json, config.gson);
+        return FastjsonUtils.toJsonIndent(json);
     }
 
     @Override
     public String toJsonIndent(Object object) {
-        return GsonUtils.toJsonIndent(object);
+        return FastjsonUtils.toJsonIndent(object);
     }
 
     @Override
@@ -104,6 +104,6 @@ public class GsonEngineImpl
             Object object,
             dev.engine.json.JSONConfig config
     ) {
-        return GsonUtils.toJsonIndent(object, config.gson);
+        return FastjsonUtils.toJsonIndent(object);
     }
 }

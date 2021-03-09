@@ -3,10 +3,10 @@ package dev.engine.image;
 import android.graphics.drawable.Drawable;
 
 /**
- * detail: Glide Image Config
+ * detail: Image Config
  * @author Ttt
  */
-public class GlideConfig
+public class ImageConfig
         extends IImageEngine.ImageConfig {
 
     // 是否缓存到 SDCard
@@ -46,7 +46,7 @@ public class GlideConfig
     // = 构造函数 =
     // ===========
 
-    private GlideConfig(final GlideConfig config) {
+    private ImageConfig(final ImageConfig config) {
         if (config != null) {
 
         }
@@ -56,21 +56,21 @@ public class GlideConfig
     // = 其他方法 =
     // ===========
 
-    public static GlideConfig create() {
-        return new GlideConfig(null);
+    public static ImageConfig create() {
+        return new ImageConfig(null);
     }
 
-    public static GlideConfig create(final GlideConfig config) {
-        return new GlideConfig(config);
+    public static ImageConfig create(final ImageConfig config) {
+        return new ImageConfig(config);
     }
 
     /**
      * 克隆配置信息
-     * @param config {@link GlideConfig}
-     * @return {@link GlideConfig}
+     * @param config {@link ImageConfig}
+     * @return {@link ImageConfig}
      */
-    public GlideConfig clone(final GlideConfig config) {
-        return new GlideConfig(config);
+    public ImageConfig clone(final ImageConfig config) {
+        return new ImageConfig(config);
     }
 
     // ===========
@@ -81,7 +81,7 @@ public class GlideConfig
         return mCacheDisk;
     }
 
-    public GlideConfig setCacheDisk(boolean cacheDisk) {
+    public ImageConfig setCacheDisk(boolean cacheDisk) {
         mCacheDisk = cacheDisk;
         return this;
     }
@@ -90,7 +90,7 @@ public class GlideConfig
         return mCacheMemory;
     }
 
-    public GlideConfig setCacheMemory(boolean cacheMemory) {
+    public ImageConfig setCacheMemory(boolean cacheMemory) {
         mCacheMemory = cacheMemory;
         return this;
     }
@@ -102,7 +102,7 @@ public class GlideConfig
     /**
      * @param scaleType {@link #SCALE_CENTER_CROP} or{@link #SCALE_FIT_CENTER}
      */
-    public GlideConfig setScaleType(int scaleType) {
+    public ImageConfig setScaleType(int scaleType) {
         mScaleType = scaleType;
         return this;
     }
@@ -114,7 +114,7 @@ public class GlideConfig
     /**
      * @param transform {@link #TRANSFORM_ROUNDED_CORNERS} or{@link #TRANSFORM_CIRCLE}
      */
-    public GlideConfig setTransform(int transform) {
+    public ImageConfig setTransform(int transform) {
         mTransform = transform;
         return this;
     }
@@ -123,7 +123,7 @@ public class GlideConfig
         return mRoundedCornersRadius;
     }
 
-    public GlideConfig setRoundedCornersRadius(int roundedCornersRadius) {
+    public ImageConfig setRoundedCornersRadius(int roundedCornersRadius) {
         mRoundedCornersRadius = roundedCornersRadius;
         return this;
     }
@@ -132,7 +132,7 @@ public class GlideConfig
         return mErrorPlaceholder;
     }
 
-    public GlideConfig setErrorPlaceholder(int errorPlaceholder) {
+    public ImageConfig setErrorPlaceholder(int errorPlaceholder) {
         mErrorPlaceholder = errorPlaceholder;
         mErrorDrawable = null;
         return this;
@@ -142,7 +142,7 @@ public class GlideConfig
         return mLoadingPlaceholder;
     }
 
-    public GlideConfig setLoadingPlaceholder(int loadingPlaceholder) {
+    public ImageConfig setLoadingPlaceholder(int loadingPlaceholder) {
         mLoadingPlaceholder = loadingPlaceholder;
         mErrorDrawable = null;
         return this;
@@ -152,7 +152,7 @@ public class GlideConfig
         return mErrorDrawable;
     }
 
-    public GlideConfig setErrorDrawable(Drawable errorDrawable) {
+    public ImageConfig setErrorDrawable(Drawable errorDrawable) {
         mErrorPlaceholder = NO_PLACE_HOLDER;
         mErrorDrawable = errorDrawable;
         return this;
@@ -162,7 +162,7 @@ public class GlideConfig
         return mLoadingDrawable;
     }
 
-    public GlideConfig setLoadingDrawable(Drawable loadingDrawable) {
+    public ImageConfig setLoadingDrawable(Drawable loadingDrawable) {
         mLoadingPlaceholder = NO_PLACE_HOLDER;
         mLoadingDrawable = loadingDrawable;
         return this;
@@ -176,7 +176,7 @@ public class GlideConfig
         return mHeight;
     }
 
-    public GlideConfig setSize(
+    public ImageConfig setSize(
             int width,
             int height
     ) {
@@ -189,7 +189,7 @@ public class GlideConfig
         return mThumbnail;
     }
 
-    public GlideConfig setThumbnail(float thumbnail) {
+    public ImageConfig setThumbnail(float thumbnail) {
         mThumbnail = thumbnail;
         return this;
     }
