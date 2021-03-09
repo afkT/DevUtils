@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevAssist:1.1.0'
+implementation 'com.afkt:DevAssist:1.1.1'
 ```
 
 ## 目录结构
@@ -24,6 +24,7 @@ implementation 'com.afkt:DevAssist:1.1.0'
          - listener                                   | 图片加载监听事件
       - json                                          | JSON Engine
       - log                                           | Log Engine
+      - permission                                    | Permission Engine
    - function                                         | 快捷方法执行相关
 ```
 
@@ -53,6 +54,7 @@ implementation 'com.afkt:DevAssist:1.1.0'
          - [listener](#devengineimagelistener)        | 图片加载监听事件
       - [json](#devenginejson)                        | JSON Engine
       - [log](#devenginelog)                          | Log Engine
+      - [permission](#devenginepermission)            | Permission Engine
    - [function](#devfunction)                         | 快捷方法执行相关
 
 
@@ -824,6 +826,30 @@ implementation 'com.afkt:DevAssist:1.1.0'
 | wtfTag | 打印 Log.ASSERT |
 | jsonTag | 格式化 JSON 格式数据, 并打印 |
 | xmlTag | 格式化 XML 格式数据, 并打印 |
+
+
+## <span id="devenginepermission">**`dev.engine.permission`**</span>
+
+
+* **Permission Engine ->** [DevPermissionEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/permission/DevPermissionEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 PermissionEngine |
+| setEngine | 设置 PermissionEngine |
+
+
+* **Permission Engine 接口 ->** [IPermissionEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/permission/IPermissionEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isGranted | 判断是否授予了权限 |
+| shouldShowRequestPermissionRationale | 获取拒绝权限询问勾选状态 |
+| getDeniedPermissionStatus | 获取拒绝权限询问状态集合 |
+| againRequest | 再次请求处理操作 |
+| request | 请求权限 |
+| onGranted | 授权通过权限回调 |
+| onDenied | 授权未通过权限回调 |
 
 
 ## <span id="devfunction">**`dev.function`**</span>

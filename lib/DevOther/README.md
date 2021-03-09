@@ -9,6 +9,7 @@
       - image                                         | Image Engine
       - json                                          | JSON Engine
       - log                                           | Log Engine
+      - permission                                    | Permission Engine
    - other                                            | 第三方库封装工具类
       - okgo                                          | OkGo 网络请求
          - demo                                       | OkGo 使用 Demo
@@ -37,6 +38,7 @@
       - [image](#devengineimage)                      | Image Engine
       - [json](#devenginejson)                        | JSON Engine
       - [log](#devenginelog)                          | Log Engine
+      - [permission](#devenginepermission)            | Permission Engine
    - [other](#devother)                               | 第三方库封装工具类
       - [okgo](#devotherokgo)                         | OkGo 网络请求
          - [demo](#devotherokgodemo)                  | OkGo 使用 Demo
@@ -182,7 +184,25 @@
 ## <span id="devengineimage">**`dev.engine.image`**</span>
 
 
-* **Glide Image Config ->** [GlideConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/image/GlideConfig.java)
+* **Glide Image Engine 实现 ->** [GlideEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/image/GlideEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| pause | pause |
+| resume | resume |
+| preload | preload |
+| clear | clear |
+| clearDiskCache | clearDiskCache |
+| clearMemoryCache | clearMemoryCache |
+| clearAllCache | clearAllCache |
+| lowMemory | lowMemory |
+| display | display |
+| loadImage | loadImage |
+| loadBitmap | loadBitmap |
+| loadDrawable | loadDrawable |
+
+
+* **Image Config ->** [ImageConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/image/ImageConfig.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -213,25 +233,19 @@
 | setThumbnail | setThumbnail |
 
 
-* **Glide Image Engine 实现 ->** [GlideEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/image/GlideEngineImpl.java)
+## <span id="devenginejson">**`dev.engine.json`**</span>
+
+
+* **Fastjson JSON Engine 实现 ->** [FastjsonEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/json/FastjsonEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
-| pause | pause |
-| resume | resume |
-| preload | preload |
-| clear | clear |
-| clearDiskCache | clearDiskCache |
-| clearMemoryCache | clearMemoryCache |
-| clearAllCache | clearAllCache |
-| lowMemory | lowMemory |
-| display | display |
-| loadImage | loadImage |
-| loadBitmap | loadBitmap |
-| loadDrawable | loadDrawable |
-
-
-## <span id="devenginejson">**`dev.engine.json`**</span>
+| toJson | toJson |
+| fromJson | fromJson |
+| isJSON | isJSON |
+| isJSONObject | isJSONObject |
+| isJSONArray | isJSONArray |
+| toJsonIndent | toJsonIndent |
 
 
 * **Gson JSON Engine 实现 ->** [GsonEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/json/GsonEngineImpl.java)
@@ -249,7 +263,7 @@
 ## <span id="devenginelog">**`dev.engine.log`**</span>
 
 
-* **DevLogger Log Engine 实现 ->** [LoggerEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/log/LoggerEngineImpl.java)
+* **DevLogger Log Engine 实现 ->** [DevLoggerEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/log/DevLoggerEngineImpl.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -269,6 +283,20 @@
 | wtfTag | wtfTag |
 | jsonTag | jsonTag |
 | xmlTag | xmlTag |
+
+
+## <span id="devenginepermission">**`dev.engine.permission`**</span>
+
+
+* **DevUtils Permission Engine 实现 ->** [DevPermissionEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/permission/DevPermissionEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isGranted | isGranted |
+| shouldShowRequestPermissionRationale | shouldShowRequestPermissionRationale |
+| getDeniedPermissionStatus | getDeniedPermissionStatus |
+| againRequest | againRequest |
+| request | request |
 
 
 ## <span id="devother">**`dev.other`**</span>
