@@ -1,3 +1,5 @@
+apply from: rootProject.file('file/gradle/versions.gradle')
+
 ext {
 
     files = [
@@ -24,71 +26,6 @@ ext {
             deps_other_lib         : 'file/gradle/deps/deps_other_lib.gradle',
             // 性能检测相关 lib 依赖配置
             deps_qa_lib            : 'file/gradle/deps/deps_qa_lib.gradle',
-    ]
-
-    versions = [
-
-            // 版本号
-            versionCode                             : 103,
-            // 版本名
-            versionName                             : '1.0.3',
-            // 支持最小的 SDK
-            lib_minSdkVersion                       : 14,
-            // 支持最小的 SDK
-            app_minSdkVersion                       : 21,
-            // 编译 SDK 版本
-            compileSdkVersion                       : 30,
-            // 向前兼容 SDK 版本
-            targetSdkVersion                        : 30,
-            // 构建工具版本
-            buildToolsVersion                       : '30.0.3',
-            // java 版本
-            javaVersion                             : JavaVersion.VERSION_1_8,
-            javaVersion_str                         : '1.8',
-            // Kotlin 版本
-            kotlin_version                          : '1.4.21',
-
-            // ===========
-            // = Dev Lib =
-            // ===========
-
-            // 版本号
-            dev_app_versionCode                     : 219,
-            // 版本名
-            dev_app_versionName                     : '2.1.9',
-
-            // 版本号
-            dev_assist_versionCode                  : 110,
-            // 版本名
-            dev_assist_versionName                  : '1.1.0',
-
-            // 版本号
-            dev_base_versionCode                    : 104,
-            // 版本名
-            dev_base_versionName                    : '1.0.4',
-
-            // 版本号
-            dev_base_mvvm_versionCode               : 102,
-            // 版本名
-            dev_base_mvvm_versionName               : '1.0.2',
-
-            // 版本号
-            dev_java_versionCode                    : 129,
-            // 版本名
-            dev_java_version                        : '1.2.9',
-
-            // 版本号
-            dev_widget_versionCode                  : 108,
-            // 版本名
-            dev_widget_versionName                  : '1.0.8',
-
-            // 版本号
-            dev_environment_versionCode             : 102,
-            // 版本名
-            dev_environment_version                 : '1.0.2',
-            dev_environment_base_version            : '1.0.2',
-            dev_environment_compiler_version        : '1.0.2',
-            dev_environment_compiler_release_version: '1.0.2',
     ]
 
     deps = [
