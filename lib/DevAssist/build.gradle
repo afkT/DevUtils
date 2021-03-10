@@ -6,9 +6,9 @@ android.defaultConfig {
     // DevAssist Module Version
     buildConfigField "int", "DevAssist_VersionCode", "${versions.dev_assist_versionCode}"
     buildConfigField "String", "DevAssist_Version", "\"${versions.dev_assist_versionName}\""
-    // DevJava Module Version
-    buildConfigField "int", "DevJava_VersionCode", "${versions.dev_java_versionCode}"
-    buildConfigField "String", "DevJava_Version", "\"${versions.dev_java_version}\""
+    // DevApp Module Version
+    buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
+    buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
 }
 
 dependencies {

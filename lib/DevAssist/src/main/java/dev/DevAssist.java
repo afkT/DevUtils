@@ -32,18 +32,18 @@ public final class DevAssist {
     }
 
     /**
-     * 获取 DevJava 版本号
-     * @return DevJava version
+     * 获取 DevApp 版本号
+     * @return DevApp versionCode
      */
-    public static int getDevJavaVersionCode() {
-        return BuildConfig.DevJava_VersionCode;
+    public static int getDevAppVersionCode() {
+        return BuildConfig.DevApp_VersionCode;
     }
 
     /**
-     * 获取 DevJava 版本
-     * @return DevJava version
+     * 获取 DevApp 版本
+     * @return DevApp versionName
      */
-    public static String getDevJavaVersion() {
-        return BuildConfig.DevJava_Version;
+    public static String getDevAppVersion() {
+        return BuildConfig.DevApp_Version;
     }
 }
