@@ -78,7 +78,7 @@
 implementation 'com.afkt:DevAppX:2.1.9'
 
 // DevAssist 快捷功能辅助类库
-implementation 'com.afkt:DevAssist:1.1.1'
+implementation 'com.afkt:DevAssist:1.1.2'
 
 // DevBase Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
 implementation 'com.afkt:DevBase:1.0.4'

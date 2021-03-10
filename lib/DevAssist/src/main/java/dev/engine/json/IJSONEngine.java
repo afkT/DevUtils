@@ -6,13 +6,13 @@ import java.lang.reflect.Type;
  * detail: JSON Engine 接口
  * @author Ttt
  */
-public interface IJSONEngine<Config extends IJSONEngine.Config> {
+public interface IJSONEngine<Config extends IJSONEngine.EngineConfig> {
 
     /**
      * detail: JSON Config
      * @author Ttt
      */
-    class Config { // JSONConfig
+    class EngineConfig { // JSONConfig
     }
 
     // ===========
@@ -29,7 +29,7 @@ public interface IJSONEngine<Config extends IJSONEngine.Config> {
     /**
      * 将对象转换为 JSON String
      * @param object {@link Object}
-     * @param config {@link IJSONEngine.Config}
+     * @param config 配置信息
      * @return JSON String
      */
     String toJson(
@@ -55,7 +55,7 @@ public interface IJSONEngine<Config extends IJSONEngine.Config> {
      * 将 JSON String 映射为指定类型对象
      * @param json     JSON String
      * @param classOfT {@link Class} T
-     * @param config   {@link IJSONEngine.Config}
+     * @param config   配置信息
      * @param <T>      泛型
      * @return instance of type
      */
@@ -83,7 +83,7 @@ public interface IJSONEngine<Config extends IJSONEngine.Config> {
      * 将 JSON String 映射为指定类型对象
      * @param json    JSON String
      * @param typeOfT {@link Type} T
-     * @param config  {@link IJSONEngine.Config}
+     * @param config  配置信息
      * @param <T>     泛型
      * @return instance of type
      */
@@ -128,7 +128,7 @@ public interface IJSONEngine<Config extends IJSONEngine.Config> {
     /**
      * JSON String 缩进处理
      * @param json   JSON String
-     * @param config {@link IJSONEngine.Config}
+     * @param config 配置信息
      * @return JSON String
      */
     String toJsonIndent(
@@ -148,7 +148,7 @@ public interface IJSONEngine<Config extends IJSONEngine.Config> {
     /**
      * Object 转 JSON String 并进行缩进处理
      * @param object {@link Object}
-     * @param config {@link IJSONEngine.Config}
+     * @param config 配置信息
      * @return JSON String
      */
     String toJsonIndent(
