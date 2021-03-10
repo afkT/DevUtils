@@ -213,6 +213,14 @@ ext {
 
                     // 滴滴 Booster 质量优化框架 https://github.com/didi/booster
             ],
+            'build_apk' : [
+                    // APK 构建、打包相关 ( 多渠道、压缩等 )
+
+                    // 瓦力多渠道打包 https://github.com/Meituan-Dianping/walle
+                    walle    : "com.meituan.android.walle:library:1.1.7",
+                    // VasDolly 多渠道打包 https://github.com/Tencent/VasDolly
+                    vas_dolly: "com.leon.channel:helper:2.0.3",
+            ],
             'widget'    : [
                     // 第三方简约小功能、UI 小组件等
 
