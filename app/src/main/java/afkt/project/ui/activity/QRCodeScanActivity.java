@@ -31,7 +31,7 @@ import afkt.project.util.zxing.decode.DecodeResult;
 import afkt.project.util.zxing.decode.DecodeThread;
 import dev.engine.log.DevLogEngine;
 import dev.other.ZXingQRCodeUtils;
-import dev.other.picture.PictureSelectorUtils;
+import dev.other.PictureSelectorUtils;
 import dev.utils.app.FlashlightUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.ListenerUtils;

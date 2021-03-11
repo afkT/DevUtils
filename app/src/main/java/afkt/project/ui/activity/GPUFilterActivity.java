@@ -17,7 +17,7 @@ import afkt.project.model.item.FilterItem;
 import afkt.project.ui.adapter.GPUFilterAdapter;
 import afkt.project.util.GPUFilterUtils;
 import dev.engine.log.DevLogEngine;
-import dev.other.picture.PictureSelectorUtils;
+import dev.other.PictureSelectorUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.image.ImageUtils;
 

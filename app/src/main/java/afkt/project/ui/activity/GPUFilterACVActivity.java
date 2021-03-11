@@ -20,7 +20,7 @@ import afkt.project.model.bean.ACVFileBean;
 import afkt.project.ui.adapter.GPUFilterACVAdapter;
 import afkt.project.util.GPUFilterUtils;
 import dev.engine.log.DevLogEngine;
-import dev.other.picture.PictureSelectorUtils;
+import dev.other.PictureSelectorUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.image.ImageUtils;

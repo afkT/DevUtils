@@ -14,7 +14,7 @@ import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.databinding.ActivityQrcodeCreateBinding;
 import dev.other.ZXingQRCodeUtils;
-import dev.other.picture.PictureSelectorUtils;
+import dev.other.PictureSelectorUtils;
 import dev.utils.app.EditTextUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.ImageViewUtils;

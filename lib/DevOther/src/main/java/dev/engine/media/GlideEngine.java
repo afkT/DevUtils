@@ -1,4 +1,4 @@
-package dev.other.picture;
+package dev.engine.media;
 
 import android.content.Context;
 import android.graphics.Bitmap;

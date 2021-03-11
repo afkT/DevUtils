@@ -11,7 +11,7 @@ import com.luck.picture.lib.entity.LocalMedia;
 import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.databinding.ActivityActivityResultCallbackBinding;
-import dev.other.picture.PictureSelectorUtils;
+import dev.other.PictureSelectorUtils;
 import dev.utils.app.ActivityUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.app.toast.ToastTintUtils;
