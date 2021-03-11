@@ -128,6 +128,17 @@ public final class PictureSelectorUtils {
     }
 
     /**
+     * 清空全部缓存
+     */
+    public static void deleteAllCacheDirFile() {
+        try {
+            PictureFileUtils.deleteAllCacheDirFile(DevUtils.getContext());
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "deleteAllCacheDirFile");
+        }
+    }
+
+    /**
      * 获取选中的资源集合
      * <pre>
      *     图片、视频、音频选择结果回调
@@ -304,7 +315,7 @@ public final class PictureSelectorUtils {
             }
             // 判断是否存在选中资源
             if (picConfig.localMedia != null && picConfig.localMedia.size() != 0) {
-                pictureSelectionModel.selectionMedia(picConfig.localMedia);
+                pictureSelectionModel.selectionData(picConfig.localMedia);
             }
             return pictureSelectionModel;
         }

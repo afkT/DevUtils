@@ -172,8 +172,8 @@ public interface IMediaEngine<Config extends IMediaEngine.EngineConfig, Data ext
 
     /**
      * 是否图片选择 ( onActivityResult )
-     * @param requestCode
-     * @param resultCode
+     * @param requestCode 请求 code
+     * @param resultCode  resultCode
      * @return {@code true} success, {@code false} fail
      */
     boolean isMediaSelectorResult(
@@ -181,31 +181,41 @@ public interface IMediaEngine<Config extends IMediaEngine.EngineConfig, Data ext
             int resultCode
     );
 
+    // =
+
     /**
      * 获取 Media Selector Data List
      * @param data onActivityResult Intent data
      * @return Media Selector Data List
      */
-    List<MediaData> getSelectors(Intent data);
+    List<Data> getSelectors(Intent data);
 
     /**
      * 获取 Media Selector Path List
-     * @param data onActivityResult Intent data
+     * @param data     onActivityResult Intent data
+     * @param original 是否使用原图地址
      * @return Media Selector Path List
      */
-    List<String> getSelectorPaths(Intent data);
+    List<String> getSelectorPaths(
+            Intent data,
+            boolean original
+    );
 
     /**
      * 获取 Single Media Selector Data
      * @param data onActivityResult Intent data
      * @return Single Media Selector Data
      */
-    List<MediaData> getSingleSelector(Intent data);
+    Data getSingleSelector(Intent data);
 
     /**
      * 获取 Single Media Selector Path
-     * @param data onActivityResult Intent data
+     * @param data     onActivityResult Intent data
+     * @param original 是否使用原图地址
      * @return Single Media Selector Path
      */
-    List<String> getSingleSelectorPath(Intent data);
+    String getSingleSelectorPath(
+            Intent data,
+            boolean original
+    );
 }
