@@ -1,6 +1,7 @@
 package dev.engine.media;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
 import androidx.fragment.app.Fragment;
@@ -161,14 +162,19 @@ public interface IMediaEngine<Config extends IMediaEngine.EngineConfig, Data ext
 
     /**
      * 删除缓存文件
-     * @param type 类型 ( 图片、视频 )
+     * @param context {@link Context}
+     * @param type    类型 ( 图片、视频 )
      */
-    void deleteCacheDirFile(int type);
+    void deleteCacheDirFile(
+            Context context,
+            int type
+    );
 
     /**
      * 删除全部缓存文件
+     * @param context {@link Context}
      */
-    void deleteAllCacheDirFile();
+    void deleteAllCacheDirFile(Context context);
 
     /**
      * 是否图片选择 ( onActivityResult )

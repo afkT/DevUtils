@@ -22,7 +22,7 @@ public class MediaConfig
     // 是否压缩
     private boolean              isCompress          = true;
     // 图片大于多少才进行压缩 (kb)
-    private int                  minimumCompressSize = 0;
+    private int                  minimumCompressSize = 2048;
     // 裁减比例
     private int[]                withAspectRatio     = new int[]{0, 0};
     // 是否显示 Gif

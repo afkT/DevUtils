@@ -1,6 +1,7 @@
 package dev.engine.media;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
@@ -14,7 +15,6 @@ import com.luck.picture.lib.tools.PictureFileUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.DevUtils;
 import dev.other.picture.GlideEngine;
 import dev.utils.LogPrintUtils;
 
@@ -177,18 +177,21 @@ public class PictureSelectorEngineImpl
     // ===========
 
     @Override
-    public void deleteCacheDirFile(int type) {
+    public void deleteCacheDirFile(
+            Context context,
+            int type
+    ) {
         try {
-            PictureFileUtils.deleteCacheDirFile(DevUtils.getContext(), type);
+            PictureFileUtils.deleteCacheDirFile(context, type);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "deleteCacheDirFile");
         }
     }
 
     @Override
-    public void deleteAllCacheDirFile() {
+    public void deleteAllCacheDirFile(Context context) {
         try {
-            PictureFileUtils.deleteAllCacheDirFile(DevUtils.getContext());
+            PictureFileUtils.deleteAllCacheDirFile(context);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "deleteAllCacheDirFile");
         }
@@ -207,7 +210,7 @@ public class PictureSelectorEngineImpl
     @Override
     public List<LocalMediaData> getSelectors(Intent data) {
         List<LocalMedia>     result = PictureSelector.obtainMultipleResult(data);
-        List<LocalMediaData> lists  = getSelectors(data);
+        List<LocalMediaData> lists  = new ArrayList<>();
         if (result != null) {
             for (LocalMedia localMedia : result) {
                 if (localMedia != null) {
@@ -248,8 +251,8 @@ public class PictureSelectorEngineImpl
             Intent data,
             boolean original
     ) {
-        List<String> paths = getSelectorPaths(data, original);
-        if (paths != null && paths.size() > 0) return paths.get(0);
+        List<String> lists = getSelectorPaths(data, original);
+        if (lists != null && lists.size() > 0) return lists.get(0);
         return null;
     }
 
