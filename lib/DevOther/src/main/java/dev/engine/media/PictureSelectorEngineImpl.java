@@ -54,11 +54,7 @@ public class PictureSelectorEngineImpl
         PictureSelectionModel pictureSelectionModel = getPictureSelectionModel(
                 getPictureSelector(activity, null), config, true
         );
-        if (pictureSelectionModel != null) {
-            pictureSelectionModel.forResult(PIC_REQUEST_CODE);
-            return true;
-        }
-        return false;
+        return forResult(pictureSelectionModel);
     }
 
     @Override
@@ -74,11 +70,7 @@ public class PictureSelectorEngineImpl
         PictureSelectionModel pictureSelectionModel = getPictureSelectionModel(
                 getPictureSelector(null, fragment), config, true
         );
-        if (pictureSelectionModel != null) {
-            pictureSelectionModel.forResult(PIC_REQUEST_CODE);
-            return true;
-        }
-        return false;
+        return forResult(pictureSelectionModel);
     }
 
     // =
@@ -96,11 +88,7 @@ public class PictureSelectorEngineImpl
         PictureSelectionModel pictureSelectionModel = getPictureSelectionModel(
                 getPictureSelector(activity, null), config, false
         );
-        if (pictureSelectionModel != null) {
-            pictureSelectionModel.forResult(PIC_REQUEST_CODE);
-            return true;
-        }
-        return false;
+        return forResult(pictureSelectionModel);
     }
 
     @Override
@@ -116,11 +104,7 @@ public class PictureSelectorEngineImpl
         PictureSelectionModel pictureSelectionModel = getPictureSelectionModel(
                 getPictureSelector(null, fragment), config, false
         );
-        if (pictureSelectionModel != null) {
-            pictureSelectionModel.forResult(PIC_REQUEST_CODE);
-            return true;
-        }
-        return false;
+        return forResult(pictureSelectionModel);
     }
 
     // ===========
@@ -278,6 +262,19 @@ public class PictureSelectorEngineImpl
     }
 
     /**
+     * 是否跳转成功
+     * @param pictureSelectionModel 图片选择配置模型
+     * @return {@code true} success, {@code false} fail
+     */
+    private boolean forResult(final PictureSelectionModel pictureSelectionModel) {
+        if (pictureSelectionModel != null) {
+            pictureSelectionModel.forResult(PIC_REQUEST_CODE);
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * 获取图片选择配置模型
      * <pre>
      *     // 结果回调 onActivityResult requestCode
@@ -308,7 +305,7 @@ public class PictureSelectorEngineImpl
             // 是否圆形裁减
             boolean isCircleCrop = config.isCircleCrop();
 
-            // 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
+            // 多选 or 单选 MediaConfig.MULTIPLE or MediaConfig.SINGLE
             pictureSelectionModel.selectionMode(config.getSelectionMode())
                     .imageEngine(GlideEngine.createGlideEngine())
                     .isPreviewImage(true) // 是否可预览图片 true or false
