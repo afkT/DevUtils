@@ -12,7 +12,7 @@ public interface IJSONEngine<Config extends IJSONEngine.EngineConfig> {
      * detail: JSON Config
      * @author Ttt
      */
-    class EngineConfig { // JSONConfig
+    class EngineConfig {
     }
 
     // ===========
