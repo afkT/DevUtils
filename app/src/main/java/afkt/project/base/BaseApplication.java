@@ -14,12 +14,16 @@ import afkt.project.base.config.PathConfig;
 import afkt.project.function.http.RetrofitUtils;
 import dev.DevUtils;
 import dev.assist.WebViewAssist;
+import dev.engine.compress.DevCompressEngine;
+import dev.engine.compress.LubanEngineImpl;
 import dev.engine.image.DevImageEngine;
 import dev.engine.image.GlideEngineImpl;
 import dev.engine.json.DevJSONEngine;
 import dev.engine.json.GsonEngineImpl;
 import dev.engine.log.DevLogEngine;
 import dev.engine.log.DevLoggerEngineImpl;
+import dev.engine.media.DevMediaEngine;
+import dev.engine.media.PictureSelectorEngineImpl;
 import dev.engine.permission.DevPermissionEngine;
 import dev.engine.permission.DevPermissionEngineImpl;
 import dev.environment.DevEnvironment;
@@ -295,6 +299,8 @@ public class BaseApplication
         DevJSONEngine.setEngine(new GsonEngineImpl());
         DevImageEngine.setEngine(new GlideEngineImpl());
         DevPermissionEngine.setEngine(new DevPermissionEngineImpl());
+        DevCompressEngine.setEngine(new LubanEngineImpl());
+        DevMediaEngine.setEngine(new PictureSelectorEngineImpl());
     }
 
     /**
