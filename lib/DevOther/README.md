@@ -430,9 +430,9 @@
 | :- | :- |
 | setConfig | 设置全局默认配置 |
 | compress | 压缩方法 |
-| onStart | 压缩开始前调用 |
+| onStart | 开始压缩前调用 |
 | onSuccess | 压缩成功后调用 |
-| onError | 当压缩过程出现问题时调用 |
+| onError | 当压缩过程出现问题时触发 |
 | onComplete | 压缩完成 |
 
 
