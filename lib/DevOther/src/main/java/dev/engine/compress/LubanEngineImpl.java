@@ -68,42 +68,50 @@ public class LubanEngineImpl
             rename = filePath -> renameListener.rename(filePath);
         }
         return LubanUtils.compress(
-                lists, config.ignoreSize, config.focusAlpha, config.targetDir,
+                lists, new LubanUtils.Config(
+                        config.ignoreSize, config.focusAlpha, config.targetDir
+                ).setFailFinish(config.isFailFinish()),
                 predicate, rename, new LubanUtils.OnCompressListener() {
                     @Override
-                    public void onStart(int index) {
+                    public void onStart(
+                            int index,
+                            int count
+                    ) {
                         if (compressListener != null) {
-                            compressListener.onStart(index);
+                            compressListener.onStart(index, count);
                         }
                     }
 
                     @Override
                     public void onSuccess(
                             File file,
-                            int index
+                            int index,
+                            int count
                     ) {
                         if (compressListener != null) {
-                            compressListener.onSuccess(file, index);
+                            compressListener.onSuccess(file, index, count);
                         }
                     }
 
                     @Override
                     public void onError(
                             Throwable error,
-                            int index
+                            int index,
+                            int count
                     ) {
                         if (compressListener != null) {
-                            compressListener.onError(error, index);
+                            compressListener.onError(error, index, count);
                         }
                     }
 
                     @Override
                     public void onComplete(
                             List<File> lists,
-                            Map<Integer, File> maps
+                            Map<Integer, File> maps,
+                            int count
                     ) {
                         if (compressListener != null) {
-                            compressListener.onComplete(lists, maps);
+                            compressListener.onComplete(lists, maps, count);
                         }
                     }
                 }

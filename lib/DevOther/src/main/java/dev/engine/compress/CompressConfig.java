@@ -13,6 +13,8 @@ public class CompressConfig
     public final boolean focusAlpha;
     // 压缩图片存储路径
     public final String  targetDir;
+    // 压缩失败、异常是否结束压缩
+    private      boolean mFailFinish;
 
     public CompressConfig(int ignoreSize) {
         this(ignoreSize, true, null);
@@ -37,5 +39,16 @@ public class CompressConfig
         this.ignoreSize = ignoreSize;
         this.focusAlpha = focusAlpha;
         this.targetDir = targetDir;
+    }
+
+    // =
+
+    public boolean isFailFinish() {
+        return mFailFinish;
+    }
+
+    public CompressConfig setFailFinish(boolean failFinish) {
+        this.mFailFinish = failFinish;
+        return this;
     }
 }
