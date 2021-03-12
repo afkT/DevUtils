@@ -170,8 +170,8 @@ ext {
                     // ========
 
                     // ARouter 路由 https://github.com/alibaba/ARouter
-                    arouter_api          : "com.alibaba:arouter-api:1.5.0", // https://github.com/alibaba/ARouter/blob/master/README_CN.md
-                    arouter_compiler     : "com.alibaba:arouter-compiler:1.2.2",
+                    arouter_api          : "com.alibaba:arouter-api:1.5.1", // https://github.com/alibaba/ARouter/blob/master/README_CN.md
+                    arouter_compiler     : "com.alibaba:arouter-compiler:1.5.1",
             ],
             'aop'       : [
                     // 安卓 AOP 三剑客: APT、AspectJ、Javassist https://www.jianshu.com/p/dca3e2c8608a
