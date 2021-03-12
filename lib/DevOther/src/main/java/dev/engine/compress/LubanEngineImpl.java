@@ -18,8 +18,8 @@ public class LubanEngineImpl
         implements ICompressEngine<CompressConfig> {
 
     @Override
-    public <T> boolean compress(
-            T data,
+    public boolean compress(
+            Object data,
             CompressConfig config,
             OnCompressListener compressListener
     ) {
@@ -27,22 +27,22 @@ public class LubanEngineImpl
     }
 
     @Override
-    public <T> boolean compress(
-            T data,
+    public boolean compress(
+            Object data,
             CompressConfig config,
             CompressFilter filter,
             OnRenameListener renameListener,
             OnCompressListener compressListener
     ) {
         if (data == null || config == null || compressListener == null) return false;
-        List<T> lists = new ArrayList<>();
+        List lists = new ArrayList<>();
         lists.add(data);
         return compress(lists, config, filter, renameListener, compressListener);
     }
 
     @Override
-    public <T> boolean compress(
-            List<T> lists,
+    public boolean compress(
+            List lists,
             CompressConfig config,
             OnCompressListener compressListener
     ) {
@@ -50,8 +50,8 @@ public class LubanEngineImpl
     }
 
     @Override
-    public <T> boolean compress(
-            List<T> lists,
+    public boolean compress(
+            List lists,
             CompressConfig config,
             CompressFilter filter,
             OnRenameListener renameListener,

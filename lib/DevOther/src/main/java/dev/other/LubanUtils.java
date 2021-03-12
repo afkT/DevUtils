@@ -41,8 +41,8 @@ public final class LubanUtils {
      * @param compressListener 压缩回调接口
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean compress(
-            T data,
+    public static boolean compress(
+            Object data,
             Config config,
             OnCompressListener compressListener
     ) {
@@ -58,15 +58,15 @@ public final class LubanUtils {
      * @param compressListener 压缩回调接口
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean compress(
-            T data,
+    public static boolean compress(
+            Object data,
             Config config,
             CompressionPredicate predicate,
             OnRenameListener renameListener,
             OnCompressListener compressListener
     ) {
         if (data == null || config == null || compressListener == null) return false;
-        List<T> lists = new ArrayList<>();
+        List lists = new ArrayList<>();
         lists.add(data);
         return compress(lists, config, predicate, renameListener, compressListener);
     }
@@ -80,8 +80,8 @@ public final class LubanUtils {
      * @param compressListener 压缩回调接口
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean compress(
-            List<T> lists,
+    public static boolean compress(
+            List lists,
             Config config,
             OnCompressListener compressListener
     ) {
@@ -97,8 +97,8 @@ public final class LubanUtils {
      * @param compressListener 压缩回调接口
      * @return {@code true} success, {@code false} fail
      */
-    public static <T> boolean compress(
-            List<T> lists,
+    public static boolean compress(
+            List lists,
             Config config,
             CompressionPredicate predicate,
             OnRenameListener renameListener,
@@ -107,7 +107,7 @@ public final class LubanUtils {
         if (lists == null || config == null || compressListener == null) return false;
         int           number  = 0;
         Luban.Builder builder = Luban.with(DevUtils.getContext());
-        for (T src : lists) {
+        for (Object src : lists) {
             if (src instanceof String) {
                 builder.load((String) src);
                 number++;

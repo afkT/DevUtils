@@ -30,8 +30,8 @@ public interface ICompressEngine<Config extends ICompressEngine.EngineConfig> {
      * @param compressListener 压缩回调接口
      * @return {@code true} success, {@code false} fail
      */
-    <T> boolean compress(
-            T data,
+    boolean compress(
+            Object data,
             Config config,
             OnCompressListener compressListener
     );
@@ -45,8 +45,8 @@ public interface ICompressEngine<Config extends ICompressEngine.EngineConfig> {
      * @param compressListener 压缩回调接口
      * @return {@code true} success, {@code false} fail
      */
-    <T> boolean compress(
-            T data,
+    boolean compress(
+            Object data,
             Config config,
             CompressFilter filter,
             OnRenameListener renameListener,
@@ -62,8 +62,8 @@ public interface ICompressEngine<Config extends ICompressEngine.EngineConfig> {
      * @param compressListener 压缩回调接口
      * @return {@code true} success, {@code false} fail
      */
-    <T> boolean compress(
-            List<T> lists,
+    boolean compress(
+            List lists,
             Config config,
             OnCompressListener compressListener
     );
@@ -77,8 +77,8 @@ public interface ICompressEngine<Config extends ICompressEngine.EngineConfig> {
      * @param compressListener 压缩回调接口
      * @return {@code true} success, {@code false} fail
      */
-    <T> boolean compress(
-            List<T> lists,
+    boolean compress(
+            List lists,
             Config config,
             CompressFilter filter,
             OnRenameListener renameListener,
