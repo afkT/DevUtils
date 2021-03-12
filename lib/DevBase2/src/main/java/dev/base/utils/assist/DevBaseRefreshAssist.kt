@@ -61,7 +61,7 @@ class DevBaseRefreshAssist<T> {
     }
 
     fun <T : BaseQuickAdapter<*, *>?> getAdapter(): T? {
-        mAdapter?.let { return mAdapter as T? }
+        mAdapter?.let { return mAdapter as? T? }
         return null
     }
 
