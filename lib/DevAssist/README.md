@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevAssist:1.1.2'
+implementation 'com.afkt:DevAssist:1.1.3'
 ```
 
 ## 目录结构
@@ -19,11 +19,14 @@ implementation 'com.afkt:DevAssist:1.1.2'
       - number                                        | 数值操作
    - callback                                         | 接口回调相关
    - engine                                           | 兼容 Engine
+      - compress                                      | Image Compress Engine
+         - listener                                   | 图片压缩回调事件
       - http                                          | Http Engine
       - image                                         | Image Engine
          - listener                                   | 图片加载监听事件
       - json                                          | JSON Engine
       - log                                           | Log Engine
+      - media                                         | Media Selector Engine
       - permission                                    | Permission Engine
    - function                                         | 快捷方法执行相关
 ```
@@ -49,11 +52,14 @@ implementation 'com.afkt:DevAssist:1.1.2'
       - [number](#devbasenumber)                      | 数值操作
    - [callback](#devcallback)                         | 接口回调相关
    - [engine](#devengine)                             | 兼容 Engine
+      - [compress](#devenginecompress)                | Image Compress Engine
+         - [listener](#devenginecompresslistener)     | 图片压缩回调事件
       - [http](#devenginehttp)                        | Http Engine
       - [image](#devengineimage)                      | Image Engine
          - [listener](#devengineimagelistener)        | 图片加载监听事件
       - [json](#devenginejson)                        | JSON Engine
       - [log](#devenginelog)                          | Log Engine
+      - [media](#devenginemedia)                      | Media Selector Engine
       - [permission](#devenginepermission)            | Permission Engine
    - [function](#devfunction)                         | 快捷方法执行相关
 
@@ -69,8 +75,8 @@ implementation 'com.afkt:DevAssist:1.1.2'
 | :- | :- |
 | getDevAssistVersionCode | 获取 DevAssist 版本号 |
 | getDevAssistVersion | 获取 DevAssist 版本 |
-| getDevJavaVersionCode | 获取 DevJava 版本号 |
-| getDevJavaVersion | 获取 DevJava 版本 |
+| getDevAppVersionCode | 获取 DevApp 版本号 |
+| getDevAppVersion | 获取 DevApp 版本 |
 
 
 ## <span id="devadapter">**`dev.adapter`**</span>
@@ -680,6 +686,51 @@ implementation 'com.afkt:DevAssist:1.1.2'
 ## <span id="devengine">**`dev.engine`**</span>
 
 
+## <span id="devenginecompress">**`dev.engine.compress`**</span>
+
+
+* **Image Compress Engine ->** [DevCompressEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/compress/DevCompressEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 CompressEngine |
+| setEngine | 设置 CompressEngine |
+
+
+* **Image Compress Engine 接口 ->** [ICompressEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/compress/ICompressEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compress | 压缩方法 |
+
+
+## <span id="devenginecompresslistener">**`dev.engine.compress.listener`**</span>
+
+
+* **压缩过滤接口 ->** [CompressFilter.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/compress/listener/CompressFilter.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| apply | 根据路径判断是否进行压缩 |
+
+
+* **压缩回调接口 ->** [OnCompressListener.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/compress/listener/OnCompressListener.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onStart | 开始压缩前调用 |
+| onSuccess | 压缩成功后调用 |
+| onError | 当压缩过程出现问题时触发 |
+| onComplete | 压缩完成 ( 压缩结束 ) |
+
+
+* **修改压缩图片文件名接口 ->** [OnRenameListener.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/compress/listener/OnRenameListener.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| rename | 压缩前调用该方法用于修改压缩后文件名 |
+
+
 ## <span id="devenginehttp">**`dev.engine.http`**</span>
 
 
@@ -826,6 +877,39 @@ implementation 'com.afkt:DevAssist:1.1.2'
 | wtfTag | 打印 Log.ASSERT |
 | jsonTag | 格式化 JSON 格式数据, 并打印 |
 | xmlTag | 格式化 XML 格式数据, 并打印 |
+
+
+## <span id="devenginemedia">**`dev.engine.media`**</span>
+
+
+* **Media Selector Engine ->** [DevMediaEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/media/DevMediaEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 MediaEngine |
+| setEngine | 设置 MediaEngine |
+
+
+* **Media Selector Engine 接口 ->** [IMediaEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/media/IMediaEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| openCamera | 打开相册拍照 |
+| openGallery | 打开相册选择 |
+| getConfig | 获取全局配置 |
+| setConfig | 设置全局配置 |
+| getCameraSavePath | 获取拍照保存地址 |
+| getCompressSavePath | 获取压缩图片保存地址 |
+| setSavePath | 设置保存地址 |
+| getMinimumCompressSize | 获取图片大于多少才进行压缩 (kb) |
+| setMinimumCompressSize | 设置图片大于多少才进行压缩 (kb) |
+| deleteCacheDirFile | 删除缓存文件 |
+| deleteAllCacheDirFile | 删除全部缓存文件 |
+| isMediaSelectorResult | 是否图片选择 ( onActivityResult ) |
+| getSelectors | 获取 Media Selector Data List |
+| getSelectorPaths | 获取 Media Selector Path List |
+| getSingleSelector | 获取 Single Media Selector Data |
+| getSingleSelectorPath | 获取 Single Media Selector Path |
 
 
 ## <span id="devenginepermission">**`dev.engine.permission`**</span>

@@ -104,7 +104,7 @@ public final class LubanUtils {
             OnRenameListener renameListener,
             OnCompressListener compressListener
     ) {
-        if (lists == null) return false;
+        if (lists == null || config == null || compressListener == null) return false;
         int           number  = 0;
         Luban.Builder builder = Luban.with(DevUtils.getContext());
         for (T src : lists) {

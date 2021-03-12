@@ -6,14 +6,15 @@
 - dev                                                 | 根目录
    - assist                                           | 常用辅助类封装
    - engine                                           | 兼容 Engine
+      - compress                                      | Image Compress Engine
       - image                                         | Image Engine
       - json                                          | JSON Engine
       - log                                           | Log Engine
+      - media                                         | Media Selector Engine
       - permission                                    | Permission Engine
    - other                                            | 第三方库封装工具类
       - okgo                                          | OkGo 网络请求
          - demo                                       | OkGo 使用 Demo
-      - picture                                       | PictureSelector 图片选择库
       - retrofit                                      | Retrofit 网络请求
          - response                                   | 请求响应解析
          - subscriber                                 | 请求响应处理
@@ -35,14 +36,15 @@
 - dev                                                 | 根目录
    - [assist](#devassist)                             | 常用辅助类封装
    - [engine](#devengine)                             | 兼容 Engine
+      - [compress](#devenginecompress)                | Image Compress Engine
       - [image](#devengineimage)                      | Image Engine
       - [json](#devenginejson)                        | JSON Engine
       - [log](#devenginelog)                          | Log Engine
+      - [media](#devenginemedia)                      | Media Selector Engine
       - [permission](#devenginepermission)            | Permission Engine
    - [other](#devother)                               | 第三方库封装工具类
       - [okgo](#devotherokgo)                         | OkGo 网络请求
          - [demo](#devotherokgodemo)                  | OkGo 使用 Demo
-      - [picture](#devotherpicture)                   | PictureSelector 图片选择库
       - [retrofit](#devotherretrofit)                 | Retrofit 网络请求
          - [response](#devotherretrofitresponse)      | 请求响应解析
          - [subscriber](#devotherretrofitsubscriber)  | 请求响应处理
@@ -181,6 +183,24 @@
 ## <span id="devengine">**`dev.engine`**</span>
 
 
+## <span id="devenginecompress">**`dev.engine.compress`**</span>
+
+
+* **Image Compress Config ->** [CompressConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/compress/CompressConfig.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isFailFinish | isFailFinish |
+| setFailFinish | setFailFinish |
+
+
+* **Luban Image Compress Engine 实现 ->** [LubanEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/compress/LubanEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| compress | compress |
+
+
 ## <span id="devengineimage">**`dev.engine.image`**</span>
 
 
@@ -283,6 +303,93 @@
 | wtfTag | wtfTag |
 | jsonTag | jsonTag |
 | xmlTag | xmlTag |
+
+
+## <span id="devenginemedia">**`dev.engine.media`**</span>
+
+
+* **Glide 加载引擎 ->** [GlideEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/media/GlideEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| loadImage | 加载图片 |
+| loadFolderImage | 加载相册目录 |
+| loadAsGifImage | 加载 gif |
+| loadGridImage | 加载图片列表图片 |
+| createGlideEngine | createGlideEngine |
+
+
+* **Local Media Selector Data ->** [LocalMediaData.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/media/LocalMediaData.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getLocalMedia | getLocalMedia |
+| setLocalMedia | setLocalMedia |
+| getLocalMediaPath | 获取本地资源路径 |
+
+
+* **Media Selector Config ->** [MediaConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/media/MediaConfig.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getMimeType | 获取相册选择类型 |
+| setMimeType | 设置相册选择类型 |
+| getSelectionMode | 获取相册选择模式 |
+| setSelectionMode | 设置相册选择模式 |
+| isCamera | 是否显示拍照 |
+| setCamera | 设置是否显示拍照 |
+| isCrop | 是否裁减 |
+| setCrop | 设置是否裁减 |
+| isCircleCrop | 是否圆形裁减 |
+| setCircleCrop | 设置是否圆形裁减 |
+| isCompress | 是否压缩 |
+| setCompress | 设置是否压缩 |
+| getMinimumCompressSize | 获取图片大于多少才进行压缩 |
+| setMinimumCompressSize | 设置图片大于多少才进行压缩 |
+| getWithAspectRatio | 获取裁减比例 |
+| setWithAspectRatio | 设置裁减比例 |
+| isGif | 是否显示 Gif |
+| setGif | 设置是否显示 Gif |
+| getImageSpanCount | 获取每行显示个数 |
+| setImageSpanCount | 设置每行显示个数 |
+| getMinSelectNum | 获取最小选择数量 |
+| setMinSelectNum | 设置最小选择数量 |
+| getMaxSelectNum | 获取最大选择数量 |
+| setMaxSelectNum | 设置最大选择数量 |
+| getLocalMedia | 获取已选择的本地资源 |
+| setLocalMedia | 设置已选择的本地资源 |
+| getCameraSavePath | 获取拍照保存地址 |
+| setCameraSavePath | 设置拍照保存地址 |
+| getCompressSavePath | 获取压缩图片保存地址 |
+| setCompressSavePath | 设置压缩图片保存地址 |
+| clone | 克隆新的配置信息 |
+| set | 设置新的配置信息 |
+| ofAll | ofAll |
+| ofImage | ofImage |
+| ofVideo | ofVideo |
+| ofAudio | ofAudio |
+
+
+* **PictureSelector Media Selector Engine 实现 ->** [PictureSelectorEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/media/PictureSelectorEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| openCamera | openCamera |
+| openGallery | openGallery |
+| getConfig | getConfig |
+| setConfig | setConfig |
+| getCameraSavePath | getCameraSavePath |
+| getCompressSavePath | getCompressSavePath |
+| setSavePath | setSavePath |
+| getMinimumCompressSize | getMinimumCompressSize |
+| setMinimumCompressSize | setMinimumCompressSize |
+| deleteCacheDirFile | deleteCacheDirFile |
+| deleteAllCacheDirFile | deleteAllCacheDirFile |
+| isMediaSelectorResult | isMediaSelectorResult |
+| getSelectors | getSelectors |
+| getSelectorPaths | getSelectorPaths |
+| getSingleSelector | getSingleSelector |
+| getSingleSelectorPath | getSingleSelectorPath |
 
 
 ## <span id="devenginepermission">**`dev.engine.permission`**</span>
@@ -428,12 +535,13 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| setConfig | 设置全局默认配置 |
 | compress | 压缩方法 |
+| isFailFinish | isFailFinish |
+| setFailFinish | setFailFinish |
 | onStart | 开始压缩前调用 |
 | onSuccess | 压缩成功后调用 |
 | onError | 当压缩过程出现问题时触发 |
-| onComplete | 压缩完成 |
+| onComplete | 压缩完成 ( 压缩结束 ) |
 
 
 * **MMKV 工具类 ->** [MMKVUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/MMKVUtils.java)
@@ -464,6 +572,56 @@
 | decodeStringSet | decodeStringSet |
 | decodeBytes | decodeBytes |
 | decodeParcelable | decodeParcelable |
+
+
+* **Android 平台下的图片选择器 ->** [PictureSelectorUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/PictureSelectorUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getPicConfig | 获取全局相册配置 |
+| setPicConfig | 设置全局相册配置 |
+| getCameraSavePath | 获取拍照保存地址 |
+| getCompressSavePath | 获取压缩图片保存地址 |
+| setSavePath | 设置保存地址 |
+| getMinimumCompressSize | 获取图片大于多少才进行压缩 (kb) |
+| setMinimumCompressSize | 设置图片大于多少才进行压缩 (kb) |
+| deleteCacheDirFile | 清空缓存 |
+| deleteAllCacheDirFile | 清空全部缓存 |
+| getLocalMedias | 获取选中的资源集合 |
+| getSingleMedia | 获取单独选中的资源 |
+| getLocalMediaPath | 获取本地资源路径 |
+| getLocalMediaPaths | 获取本地资源地址集合 |
+| getPictureSelectionModel | 获取图片选择配置模型 |
+| openCamera | 打开相册拍照 |
+| openGallery | 打开相册选择 |
+| getMimeType | 获取相册选择类型 |
+| setMimeType | 设置相册选择类型 |
+| getSelectionMode | 获取相册选择模式 |
+| setSelectionMode | 设置相册选择模式 |
+| isCamera | 是否显示拍照 |
+| setCamera | 设置是否显示拍照 |
+| isCrop | 是否裁减 |
+| setCrop | 设置是否裁减 |
+| isCircleCrop | 是否圆形裁减 |
+| setCircleCrop | 设置是否圆形裁减 |
+| isCompress | 是否压缩 |
+| setCompress | 设置是否压缩 |
+| getWithAspectRatio | 获取裁减比例 |
+| setWithAspectRatio | 设置裁减比例 |
+| isGif | 是否显示 Gif |
+| setGif | 设置是否显示 Gif |
+| getImageSpanCount | 获取每行显示个数 |
+| setImageSpanCount | 设置每行显示个数 |
+| getMinSelectNum | 获取最小选择数量 |
+| setMinSelectNum | 设置最小选择数量 |
+| getMaxSelectNum | 获取最大选择数量 |
+| setMaxSelectNum | 设置最大选择数量 |
+| getLocalMedia | 获取已选择的本地资源 |
+| setLocalMedia | 设置已选择的本地资源 |
+| setCameraSavePath | 设置拍照保存地址 |
+| setCompressSavePath | 设置压缩图片保存地址 |
+| clone | 克隆新的相册配置 |
+| set | 设置新的相册配置 |
 
 
 * **ZXing 二维码工具类 ->** [ZXingQRCodeUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/ZXingQRCodeUtils.java)
@@ -538,69 +696,6 @@
 | getUserList | 获取用户列表 |
 | uploadImage | 上传文件 |
 | uploadImages | 上传多个文件 |
-
-
-## <span id="devotherpicture">**`dev.other.picture`**</span>
-
-
-* **Glide 加载引擎 ->** [GlideEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/picture/GlideEngine.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| loadImage | 加载图片 |
-| loadFolderImage | 加载相册目录 |
-| loadAsGifImage | 加载 gif |
-| loadGridImage | 加载图片列表图片 |
-| createGlideEngine | createGlideEngine |
-
-
-* **Android 平台下的图片选择器 ->** [PictureSelectorUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/picture/PictureSelectorUtils.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getPicConfig | 获取全局相册配置 |
-| setPicConfig | 设置全局相册配置 |
-| getCameraSavePath | 获取拍照保存地址 |
-| getCompressSavePath | 获取压缩图片保存地址 |
-| setSavePath | 设置保存地址 |
-| getMinimumCompressSize | 获取图片大于多少才进行压缩 (kb) |
-| setMinimumCompressSize | 设置图片大于多少才进行压缩 (kb) |
-| deleteCacheDirFile | 清空缓存 |
-| getLocalMedias | 获取选中的资源集合 |
-| getSingleMedia | 获取单独选中的资源 |
-| getLocalMediaPath | 获取本地资源路径 |
-| getLocalMediaPaths | 获取本地资源地址集合 |
-| getPictureSelectionModel | 获取图片选择配置模型 |
-| openCamera | 打开相册拍照 |
-| openGallery | 打开相册选择 |
-| getMimeType | 获取相册选择类型 |
-| setMimeType | 设置相册选择类型 |
-| getSelectionMode | 获取相册选择模式 |
-| setSelectionMode | 设置相册选择模式 |
-| isCamera | 是否显示拍照 |
-| setCamera | 设置是否显示拍照 |
-| isCrop | 是否裁减 |
-| setCrop | 设置是否裁减 |
-| isCircleCrop | 是否圆形裁减 |
-| setCircleCrop | 设置是否圆形裁减 |
-| isCompress | 是否压缩 |
-| setCompress | 设置是否压缩 |
-| getWithAspectRatio | 获取裁减比例 |
-| setWithAspectRatio | 设置裁减比例 |
-| isGif | 是否显示 Gif |
-| setGif | 设置是否显示 Gif |
-| getImageSpanCount | 获取每行显示个数 |
-| setImageSpanCount | 设置每行显示个数 |
-| getMinSelectNum | 获取最小选择数量 |
-| setMinSelectNum | 设置最小选择数量 |
-| getMaxSelectNum | 获取最大选择数量 |
-| setMaxSelectNum | 设置最大选择数量 |
-| getLocalMedia | 获取已选择的本地资源 |
-| setLocalMedia | 设置已选择的本地资源 |
-| setCameraSavePath | 设置拍照保存地址 |
-| setCompressSavePath | 设置压缩图片保存地址 |
-| clone | 克隆新的相册配置 |
-| set | 设置新的相册配置 |
 
 
 ## <span id="devotherretrofit">**`dev.other.retrofit`**</span>
