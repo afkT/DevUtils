@@ -234,6 +234,16 @@ public final class MMKVUtils {
             return true;
         }
 
+        /**
+         * 清除全部数据
+         * @return {@code true} success, {@code false} fail
+         */
+        public boolean clear() {
+            if (isMMKVEmpty()) return false;
+            mmkv.clear();
+            return true;
+        }
+
         // =======
         // = 存储 =
         // =======
