@@ -18,8 +18,9 @@ public interface IPreference {
     enum DataType {
         INTEGER,
         LONG,
-        BOOLEAN,
         FLOAT,
+        DOUBLE,
+        BOOLEAN,
         STRING,
         STRING_SET
     }
@@ -131,6 +132,13 @@ public interface IPreference {
     int getInt(String key);
 
     /**
+     * 获取 long 类型的数据
+     * @param key 保存的 key
+     * @return 存储的数据
+     */
+    long getLong(String key);
+
+    /**
      * 获取 float 类型的数据
      * @param key 保存的 key
      * @return 存储的数据
@@ -138,11 +146,11 @@ public interface IPreference {
     float getFloat(String key);
 
     /**
-     * 获取 long 类型的数据
+     * 获取 double 类型的数据
      * @param key 保存的 key
      * @return 存储的数据
      */
-    long getLong(String key);
+    double getDouble(String key);
 
     /**
      * 获取 boolean 类型的数据

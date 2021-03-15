@@ -87,10 +87,12 @@ final class PreferenceImpl
                 editor.putInt(key, (Integer) object);
             } else if (object instanceof Long) {
                 editor.putLong(key, (Long) object);
-            } else if (object instanceof Boolean) {
-                editor.putBoolean(key, (Boolean) object);
             } else if (object instanceof Float) {
                 editor.putFloat(key, (Float) object);
+            } else if (object instanceof Double) {
+                editor.putLong(key, Double.doubleToRawLongBits((double) object));
+            } else if (object instanceof Boolean) {
+                editor.putBoolean(key, (Boolean) object);
             } else if (object instanceof Set) {
                 editor.putStringSet(key, (Set<String>) object);
             } else if (object instanceof String) {
@@ -112,12 +114,15 @@ final class PreferenceImpl
         switch (type) {
             case INTEGER:
                 return mPreferences.getInt(key, -1);
-            case FLOAT:
-                return mPreferences.getFloat(key, -1f);
-            case BOOLEAN:
-                return mPreferences.getBoolean(key, false);
             case LONG:
                 return mPreferences.getLong(key, -1L);
+            case FLOAT:
+                return mPreferences.getFloat(key, -1F);
+            case DOUBLE:
+                long value = mPreferences.getLong(key, -1L);
+                return Double.longBitsToDouble(value);
+            case BOOLEAN:
+                return mPreferences.getBoolean(key, false);
             case STRING:
                 return mPreferences.getString(key, null);
             case STRING_SET:
@@ -311,6 +316,16 @@ final class PreferenceImpl
     }
 
     /**
+     * 获取 long 类型的数据
+     * @param key 保存的 key
+     * @return 存储的数据
+     */
+    @Override
+    public long getLong(final String key) {
+        return get(key, DataType.LONG);
+    }
+
+    /**
      * 获取 float 类型的数据
      * @param key 保存的 key
      * @return 存储的数据
@@ -321,13 +336,13 @@ final class PreferenceImpl
     }
 
     /**
-     * 获取 long 类型的数据
+     * 获取 double 类型的数据
      * @param key 保存的 key
      * @return 存储的数据
      */
     @Override
-    public long getLong(final String key) {
-        return get(key, DataType.LONG);
+    public double getDouble(final String key) {
+        return get(key, DataType.DOUBLE);
     }
 
     /**
