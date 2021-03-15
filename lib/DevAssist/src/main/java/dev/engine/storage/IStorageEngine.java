@@ -1,7 +1,6 @@
 package dev.engine.storage;
 
 import java.lang.reflect.Type;
-import java.util.Set;
 
 import dev.utils.common.cipher.Cipher;
 
@@ -53,7 +52,7 @@ public interface IStorageEngine<Config extends IStorageEngine.EngineConfig> {
      * 移除数组的数据
      * @param keys 保存的 key 数组
      */
-    void removeAll(String[] keys);
+    void removeForKeys(String[] keys);
 
     /**
      * 是否存在 key
@@ -67,7 +66,9 @@ public interface IStorageEngine<Config extends IStorageEngine.EngineConfig> {
      */
     void clear();
 
-    // =
+    // =======
+    // = 存储 =
+    // =======
 
     /**
      * 保存 int 类型的数据
@@ -125,17 +126,6 @@ public interface IStorageEngine<Config extends IStorageEngine.EngineConfig> {
     );
 
     /**
-     * 保存 Set 类型的数据
-     * @param key   保存的 key
-     * @param value 存储的数据
-     * @return {@code true} success, {@code false} fail
-     */
-    boolean putSet(
-            String key,
-            Set<String> value
-    );
-
-    /**
      * 保存指定类型对象
      * @param key   保存的 key
      * @param value 存储的数据
@@ -187,13 +177,6 @@ public interface IStorageEngine<Config extends IStorageEngine.EngineConfig> {
     String getString(String key);
 
     /**
-     * 获取 Set 类型的数据
-     * @param key 保存的 key
-     * @return 存储的数据
-     */
-    Set<String> getSet(String key);
-
-    /**
      * 获取指定类型对象
      * @param key     保存的 key
      * @param typeOfT {@link Type} T
@@ -203,5 +186,76 @@ public interface IStorageEngine<Config extends IStorageEngine.EngineConfig> {
     <T> T getEntity(
             final String key,
             final Type typeOfT
+    );
+
+    // =
+
+    /**
+     * 获取 int 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    int getInt(
+            String key,
+            int defaultValue
+    );
+
+    /**
+     * 获取 float 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    float getFloat(
+            String key,
+            float defaultValue
+    );
+
+    /**
+     * 获取 long 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    long getLong(
+            String key,
+            long defaultValue
+    );
+
+    /**
+     * 获取 boolean 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    boolean getBoolean(
+            String key,
+            boolean defaultValue
+    );
+
+    /**
+     * 获取 String 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    String getString(
+            String key,
+            String defaultValue
+    );
+
+    /**
+     * 获取指定类型对象
+     * @param key          保存的 key
+     * @param typeOfT      {@link Type} T
+     * @param defaultValue 默认值
+     * @param <T>          泛型
+     * @return instance of type
+     */
+    <T> T getEntity(
+            final String key,
+            final Type typeOfT,
+            T defaultValue
     );
 }
