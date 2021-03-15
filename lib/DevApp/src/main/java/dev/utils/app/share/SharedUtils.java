@@ -66,16 +66,18 @@ public final class SharedUtils {
 
     /**
      * 根据 key 获取数据
-     * @param key  保存的 key
-     * @param type 数据类型
-     * @param <T>  泛型
+     * @param key          保存的 key
+     * @param type         数据类型
+     * @param defaultValue 默认值
+     * @param <T>          泛型
      * @return 存储的数据
      */
     public static <T> T get(
             final String key,
-            final IPreference.DataType type
+            final IPreference.DataType type,
+            final Object defaultValue
     ) {
-        return SPUtils.getPreference(DevUtils.getContext()).get(key, type);
+        return SPUtils.getPreference(DevUtils.getContext()).get(key, type, defaultValue);
     }
 
     /**
@@ -147,6 +149,15 @@ public final class SharedUtils {
     }
 
     /**
+     * 获取 long 类型的数据
+     * @param key 保存的 key
+     * @return 存储的数据
+     */
+    public static long getLong(final String key) {
+        return SPUtils.getPreference(DevUtils.getContext()).getLong(key);
+    }
+
+    /**
      * 获取 float 类型的数据
      * @param key 保存的 key
      * @return 存储的数据
@@ -156,12 +167,12 @@ public final class SharedUtils {
     }
 
     /**
-     * 获取 long 类型的数据
+     * 获取 double 类型的数据
      * @param key 保存的 key
      * @return 存储的数据
      */
-    public static long getLong(final String key) {
-        return SPUtils.getPreference(DevUtils.getContext()).getLong(key);
+    public static double getDouble(final String key) {
+        return SPUtils.getPreference(DevUtils.getContext()).getDouble(key);
     }
 
     /**
@@ -189,5 +200,98 @@ public final class SharedUtils {
      */
     public static Set<String> getSet(final String key) {
         return SPUtils.getPreference(DevUtils.getContext()).getSet(key);
+    }
+
+    // =
+
+    /**
+     * 获取 int 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    public static int getInt(
+            final String key,
+            final int defaultValue
+    ) {
+        return SPUtils.getPreference(DevUtils.getContext()).getInt(key, defaultValue);
+    }
+
+    /**
+     * 获取 long 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    public static long getLong(
+            final String key,
+            final long defaultValue
+    ) {
+        return SPUtils.getPreference(DevUtils.getContext()).getLong(key, defaultValue);
+    }
+
+    /**
+     * 获取 float 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    public static float getFloat(
+            final String key,
+            final float defaultValue
+    ) {
+        return SPUtils.getPreference(DevUtils.getContext()).getFloat(key, defaultValue);
+    }
+
+    /**
+     * 获取 double 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    public static double getDouble(
+            final String key,
+            final double defaultValue
+    ) {
+        return SPUtils.getPreference(DevUtils.getContext()).getDouble(key, defaultValue);
+    }
+
+    /**
+     * 获取 boolean 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    public static boolean getBoolean(
+            final String key,
+            final boolean defaultValue
+    ) {
+        return SPUtils.getPreference(DevUtils.getContext()).getBoolean(key, defaultValue);
+    }
+
+    /**
+     * 获取 String 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    public static String getString(
+            final String key,
+            final String defaultValue
+    ) {
+        return SPUtils.getPreference(DevUtils.getContext()).getString(key, defaultValue);
+    }
+
+    /**
+     * 获取 Set 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    public static Set<String> getSet(
+            final String key,
+            final Set<String> defaultValue
+    ) {
+        return SPUtils.getPreference(DevUtils.getContext()).getSet(key, defaultValue);
     }
 }

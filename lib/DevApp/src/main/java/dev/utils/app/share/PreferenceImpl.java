@@ -24,9 +24,17 @@ final class PreferenceImpl
         implements IPreference {
 
     // 文件名
-    private static final String            NAME = "SPConfig";
+    private static final String            NAME               = "SPConfig";
     // SharedPreferences 对象
     private final        SharedPreferences mPreferences;
+    // 默认值
+    private final        int               INTEGER_DEFAULT    = -1;
+    private final        long              LONG_DEFAULT       = -1L;
+    private final        float             FLOAT_DEFAULT      = -1F;
+    private final        double            DOUBLE_DEFAULT     = -1D;
+    private final        boolean           BOOLEAN_DEFAULT    = false;
+    private final        String            STRING_DEFAULT     = null;
+    private final        Set<String>       STRING_SET_DEFAULT = null;
 
     // ===========
     // = 构造函数 =
@@ -90,43 +98,62 @@ final class PreferenceImpl
             } else if (object instanceof Float) {
                 editor.putFloat(key, (Float) object);
             } else if (object instanceof Double) {
-                editor.putLong(key, Double.doubleToRawLongBits((double) object));
+                editor.putLong(key, Double.doubleToRawLongBits((Double) object));
             } else if (object instanceof Boolean) {
                 editor.putBoolean(key, (Boolean) object);
-            } else if (object instanceof Set) {
-                editor.putStringSet(key, (Set<String>) object);
             } else if (object instanceof String) {
                 editor.putString(key, String.valueOf(object));
+            } else if (object instanceof Set) {
+                editor.putStringSet(key, (Set<String>) object);
             }
         }
     }
 
     /**
      * 根据 key 和 数据类型 取出数据
-     * @param key  保存的 key
-     * @param type 数据类型 {@link DataType}
+     * @param key          保存的 key
+     * @param type         数据类型 {@link DataType}
+     * @param defaultValue 默认值
      * @return 指定 key 存储的数据 ( 传入的 type 类型 )
      */
     private Object getValue(
             final String key,
-            final DataType type
+            final DataType type,
+            final Object defaultValue
     ) {
         switch (type) {
             case INTEGER:
-                return mPreferences.getInt(key, -1);
+                int intValue = INTEGER_DEFAULT;
+                if (defaultValue instanceof Integer) intValue = (Integer) defaultValue;
+                return mPreferences.getInt(key, intValue);
             case LONG:
-                return mPreferences.getLong(key, -1L);
+                long longValue = LONG_DEFAULT;
+                if (defaultValue instanceof Long) longValue = (Long) defaultValue;
+                return mPreferences.getLong(key, longValue);
             case FLOAT:
-                return mPreferences.getFloat(key, -1F);
+                float floatValue = FLOAT_DEFAULT;
+                if (defaultValue instanceof Float) floatValue = (Float) defaultValue;
+                return mPreferences.getFloat(key, floatValue);
             case DOUBLE:
-                long value = mPreferences.getLong(key, -1L);
+                double doubleValue = DOUBLE_DEFAULT;
+                if (defaultValue instanceof Double) doubleValue = (Double) defaultValue;
+                long value = mPreferences.getLong(key, Double.doubleToLongBits(doubleValue));
                 return Double.longBitsToDouble(value);
             case BOOLEAN:
-                return mPreferences.getBoolean(key, false);
+                boolean booleanValue = BOOLEAN_DEFAULT;
+                if (defaultValue instanceof Boolean) booleanValue = (Boolean) defaultValue;
+                return mPreferences.getBoolean(key, booleanValue);
             case STRING:
-                return mPreferences.getString(key, null);
+                String stringValue = STRING_DEFAULT;
+                if (defaultValue instanceof String) stringValue = (String) defaultValue;
+                return mPreferences.getString(key, stringValue);
             case STRING_SET:
-                return mPreferences.getStringSet(key, null);
+                Set<String> stringSetValue = STRING_SET_DEFAULT;
+                try {
+                    if (defaultValue instanceof Set) stringSetValue = (Set<String>) defaultValue;
+                } catch (Exception e) {
+                }
+                return mPreferences.getStringSet(key, stringSetValue);
             default:
                 return null;
         }
@@ -217,17 +244,19 @@ final class PreferenceImpl
 
     /**
      * 根据 key 获取数据
-     * @param key  保存的 key
-     * @param type 数据类型
-     * @param <T>  泛型
+     * @param key          保存的 key
+     * @param type         数据类型
+     * @param defaultValue 默认值
+     * @param <T>          泛型
      * @return 存储的数据
      */
     @Override
     public <T> T get(
             final String key,
-            final DataType type
+            final DataType type,
+            final Object defaultValue
     ) {
-        return (T) getValue(key, type);
+        return (T) getValue(key, type, defaultValue);
     }
 
     /**
@@ -247,9 +276,11 @@ final class PreferenceImpl
     @Override
     public List<String> getAll(final String key) {
         List<String> list = new ArrayList<>();
-        Set<String>  set  = get(key, DataType.STRING_SET);
-        for (String value : set) {
-            list.add(value);
+        Set<String>  set  = getSet(key);
+        if (set != null) {
+            for (String value : set) {
+                list.add(value);
+            }
         }
         return list;
     }
@@ -312,7 +343,7 @@ final class PreferenceImpl
      */
     @Override
     public int getInt(final String key) {
-        return get(key, DataType.INTEGER);
+        return getInt(key, INTEGER_DEFAULT);
     }
 
     /**
@@ -322,7 +353,7 @@ final class PreferenceImpl
      */
     @Override
     public long getLong(final String key) {
-        return get(key, DataType.LONG);
+        return getLong(key, LONG_DEFAULT);
     }
 
     /**
@@ -332,7 +363,7 @@ final class PreferenceImpl
      */
     @Override
     public float getFloat(final String key) {
-        return get(key, DataType.FLOAT);
+        return getFloat(key, FLOAT_DEFAULT);
     }
 
     /**
@@ -342,7 +373,7 @@ final class PreferenceImpl
      */
     @Override
     public double getDouble(final String key) {
-        return get(key, DataType.DOUBLE);
+        return getDouble(key, DOUBLE_DEFAULT);
     }
 
     /**
@@ -352,7 +383,7 @@ final class PreferenceImpl
      */
     @Override
     public boolean getBoolean(final String key) {
-        return get(key, DataType.BOOLEAN);
+        return getBoolean(key, BOOLEAN_DEFAULT);
     }
 
     /**
@@ -362,7 +393,7 @@ final class PreferenceImpl
      */
     @Override
     public String getString(final String key) {
-        return get(key, DataType.STRING);
+        return getString(key, STRING_DEFAULT);
     }
 
     /**
@@ -372,6 +403,106 @@ final class PreferenceImpl
      */
     @Override
     public Set<String> getSet(final String key) {
-        return get(key, DataType.STRING_SET);
+        return getSet(key, STRING_SET_DEFAULT);
+    }
+
+    // =
+
+    /**
+     * 获取 int 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    @Override
+    public int getInt(
+            final String key,
+            final int defaultValue
+    ) {
+        return get(key, DataType.INTEGER, defaultValue);
+    }
+
+    /**
+     * 获取 long 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    @Override
+    public long getLong(
+            final String key,
+            final long defaultValue
+    ) {
+        return get(key, DataType.LONG, defaultValue);
+    }
+
+    /**
+     * 获取 float 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    @Override
+    public float getFloat(
+            final String key,
+            final float defaultValue
+    ) {
+        return get(key, DataType.FLOAT, defaultValue);
+    }
+
+    /**
+     * 获取 double 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    @Override
+    public double getDouble(
+            final String key,
+            final double defaultValue
+    ) {
+        return get(key, DataType.DOUBLE, defaultValue);
+    }
+
+    /**
+     * 获取 boolean 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    @Override
+    public boolean getBoolean(
+            final String key,
+            final boolean defaultValue
+    ) {
+        return get(key, DataType.BOOLEAN, defaultValue);
+    }
+
+    /**
+     * 获取 String 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    @Override
+    public String getString(
+            final String key,
+            final String defaultValue
+    ) {
+        return get(key, DataType.STRING, defaultValue);
+    }
+
+    /**
+     * 获取 Set 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    @Override
+    public Set<String> getSet(
+            final String key,
+            final Set<String> defaultValue
+    ) {
+        return get(key, DataType.STRING_SET, defaultValue);
     }
 }
