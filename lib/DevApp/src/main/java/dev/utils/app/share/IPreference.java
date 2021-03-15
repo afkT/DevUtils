@@ -29,6 +29,11 @@ public interface IPreference {
 
     /**
      * 保存数据
+     * <pre>
+     *     注意事项, 进行存储 int、long、float、double 需要明确类型
+     *     例 1、1L、1F、1D 不能存储 long 传入 1 会导致获取数据转换异常
+     *     必须传入 1L 或者定义变量 long value = xxx, 然后传入 value
+     * </pre>
      * @param key   保存的 key
      * @param value 保存的 value
      * @param <T>   泛型

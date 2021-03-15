@@ -82,6 +82,17 @@ public interface IStorageEngine<Config extends IStorageEngine.EngineConfig> {
     );
 
     /**
+     * 保存 long 类型的数据
+     * @param key   保存的 key
+     * @param value 存储的数据
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean putLong(
+            String key,
+            long value
+    );
+
+    /**
      * 保存 float 类型的数据
      * @param key   保存的 key
      * @param value 存储的数据
@@ -93,14 +104,14 @@ public interface IStorageEngine<Config extends IStorageEngine.EngineConfig> {
     );
 
     /**
-     * 保存 long 类型的数据
+     * 保存 double 类型的数据
      * @param key   保存的 key
      * @param value 存储的数据
      * @return {@code true} success, {@code false} fail
      */
-    boolean putLong(
+    boolean putDouble(
             String key,
-            long value
+            double value
     );
 
     /**
@@ -149,6 +160,13 @@ public interface IStorageEngine<Config extends IStorageEngine.EngineConfig> {
     int getInt(String key);
 
     /**
+     * 获取 long 类型的数据
+     * @param key 保存的 key
+     * @return 存储的数据
+     */
+    long getLong(String key);
+
+    /**
      * 获取 float 类型的数据
      * @param key 保存的 key
      * @return 存储的数据
@@ -156,11 +174,11 @@ public interface IStorageEngine<Config extends IStorageEngine.EngineConfig> {
     float getFloat(String key);
 
     /**
-     * 获取 long 类型的数据
+     * 获取 double 类型的数据
      * @param key 保存的 key
      * @return 存储的数据
      */
-    long getLong(String key);
+    double getDouble(String key);
 
     /**
      * 获取 boolean 类型的数据
@@ -202,6 +220,17 @@ public interface IStorageEngine<Config extends IStorageEngine.EngineConfig> {
     );
 
     /**
+     * 获取 long 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    long getLong(
+            String key,
+            long defaultValue
+    );
+
+    /**
      * 获取 float 类型的数据
      * @param key          保存的 key
      * @param defaultValue 默认值
@@ -213,14 +242,14 @@ public interface IStorageEngine<Config extends IStorageEngine.EngineConfig> {
     );
 
     /**
-     * 获取 long 类型的数据
+     * 获取 double 类型的数据
      * @param key          保存的 key
      * @param defaultValue 默认值
      * @return 存储的数据
      */
-    long getLong(
+    double getDouble(
             String key,
-            long defaultValue
+            double defaultValue
     );
 
     /**

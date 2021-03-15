@@ -11,16 +11,16 @@ import dev.utils.common.ConvertUtils;
  * @author Ttt
  */
 public class MMKVStorageEngineImpl
-        implements IStorageEngine<StorageConfig> {
+        implements IStorageEngine<MMKVConfig> {
 
-    private final StorageConfig    mStorage;
+    private final MMKVConfig       mConfig;
     // MMKV
     private final MMKVUtils.Holder mHolder;
 
-    public MMKVStorageEngineImpl(StorageConfig storage) {
-        this.mStorage = storage;
+    public MMKVStorageEngineImpl(MMKVConfig config) {
+        this.mConfig = config;
         // MMKV Holder
-        mHolder = MMKVUtils.putHolder(storage.storageID, storage.getMMKV());
+        mHolder = MMKVUtils.putHolder(config.storageID, config.getMMKV());
     }
 
     // ===============
@@ -28,8 +28,8 @@ public class MMKVStorageEngineImpl
     // ===============
 
     @Override
-    public StorageConfig getConfig() {
-        return mStorage;
+    public MMKVConfig getConfig() {
+        return mConfig;
     }
 
     @Override
@@ -65,6 +65,14 @@ public class MMKVStorageEngineImpl
     }
 
     @Override
+    public boolean putLong(
+            String key,
+            long value
+    ) {
+        return mHolder.encode(key, value);
+    }
+
+    @Override
     public boolean putFloat(
             String key,
             float value
@@ -73,9 +81,9 @@ public class MMKVStorageEngineImpl
     }
 
     @Override
-    public boolean putLong(
+    public boolean putDouble(
             String key,
-            long value
+            double value
     ) {
         return mHolder.encode(key, value);
     }
@@ -94,8 +102,8 @@ public class MMKVStorageEngineImpl
             String value
     ) {
         String content = value;
-        if (value != null && mStorage.cipher != null) {
-            byte[] bytes = mStorage.cipher.encrypt(ConvertUtils.toBytes(value));
+        if (value != null && mConfig.cipher != null) {
+            byte[] bytes = mConfig.cipher.encrypt(ConvertUtils.toBytes(value));
             content = ConvertUtils.newString(bytes);
         }
         return mHolder.encode(key, content);
@@ -115,27 +123,32 @@ public class MMKVStorageEngineImpl
 
     @Override
     public int getInt(String key) {
-        return mHolder.decodeInt(key);
-    }
-
-    @Override
-    public float getFloat(String key) {
-        return 0;
+        return getInt(key, 0);
     }
 
     @Override
     public long getLong(String key) {
-        return 0;
+        return getLong(key, 0L);
+    }
+
+    @Override
+    public float getFloat(String key) {
+        return getFloat(key, 0F);
+    }
+
+    @Override
+    public double getDouble(String key) {
+        return getDouble(key, 0D);
     }
 
     @Override
     public boolean getBoolean(String key) {
-        return false;
+        return getBoolean(key, false);
     }
 
     @Override
     public String getString(String key) {
-        return null;
+        return getString(key, null);
     }
 
     @Override
@@ -143,6 +156,74 @@ public class MMKVStorageEngineImpl
             String key,
             Type typeOfT
     ) {
-        return null;
+        return getEntity(key, typeOfT, null);
+    }
+
+    // =
+
+    @Override
+    public int getInt(
+            String key,
+            int defaultValue
+    ) {
+        return mHolder.decodeInt(key, defaultValue);
+    }
+
+    @Override
+    public long getLong(
+            String key,
+            long defaultValue
+    ) {
+        return mHolder.decodeLong(key, defaultValue);
+    }
+
+    @Override
+    public float getFloat(
+            String key,
+            float defaultValue
+    ) {
+        return mHolder.decodeFloat(key, defaultValue);
+    }
+
+    @Override
+    public double getDouble(
+            String key,
+            double defaultValue
+    ) {
+        return mHolder.decodeDouble(key, defaultValue);
+    }
+
+    @Override
+    public boolean getBoolean(
+            String key,
+            boolean defaultValue
+    ) {
+        return mHolder.decodeBool(key, defaultValue);
+    }
+
+    @Override
+    public String getString(
+            String key,
+            String defaultValue
+    ) {
+        String content = mHolder.decodeString(key, null);
+        if (content == null) return defaultValue;
+        if (content != null && mConfig.cipher != null) {
+            byte[] bytes = mConfig.cipher.decrypt(ConvertUtils.toBytes(content));
+            content = ConvertUtils.newString(bytes);
+        }
+        return content;
+    }
+
+    @Override
+    public <T> T getEntity(
+            String key,
+            Type typeOfT,
+            T defaultValue
+    ) {
+        String json   = getString(key, null);
+        T      object = (T) DevJSONEngine.getEngine().fromJson(json, typeOfT);
+        if (object == null) return defaultValue;
+        return object;
     }
 }
