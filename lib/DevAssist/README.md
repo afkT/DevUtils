@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevAssist:1.1.3'
+implementation 'com.afkt:DevAssist:1.1.4'
 ```
 
 ## 目录结构
@@ -28,6 +28,7 @@ implementation 'com.afkt:DevAssist:1.1.3'
       - log                                           | Log Engine
       - media                                         | Media Selector Engine
       - permission                                    | Permission Engine
+      - storage                                       | Storage Engine
    - function                                         | 快捷方法执行相关
 ```
 
@@ -61,6 +62,7 @@ implementation 'com.afkt:DevAssist:1.1.3'
       - [log](#devenginelog)                          | Log Engine
       - [media](#devenginemedia)                      | Media Selector Engine
       - [permission](#devenginepermission)            | Permission Engine
+      - [storage](#devenginestorage)                  | Storage Engine
    - [function](#devfunction)                         | 快捷方法执行相关
 
 
@@ -934,6 +936,42 @@ implementation 'com.afkt:DevAssist:1.1.3'
 | request | 请求权限 |
 | onGranted | 授权通过权限回调 |
 | onDenied | 授权未通过权限回调 |
+
+
+## <span id="devenginestorage">**`dev.engine.storage`**</span>
+
+
+* **Storage Engine ->** [DevStorageEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/storage/DevStorageEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 StorageEngine |
+| setEngine | 设置 StorageEngine |
+
+
+* **Storage Engine 接口 ->** [IStorageEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/storage/IStorageEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getConfig | 获取 Storage Engine Config |
+| remove | 移除数据 |
+| removeForKeys | 移除数组的数据 |
+| contains | 是否存在 key |
+| clear | 清除全部数据 |
+| putInt | 保存 int 类型的数据 |
+| putLong | 保存 long 类型的数据 |
+| putFloat | 保存 float 类型的数据 |
+| putDouble | 保存 double 类型的数据 |
+| putBoolean | 保存 boolean 类型的数据 |
+| putString | 保存 String 类型的数据 |
+| putEntity | 保存指定类型对象 |
+| getInt | 获取 int 类型的数据 |
+| getLong | 获取 long 类型的数据 |
+| getFloat | 获取 float 类型的数据 |
+| getDouble | 获取 double 类型的数据 |
+| getBoolean | 获取 boolean 类型的数据 |
+| getString | 获取 String 类型的数据 |
+| getEntity | 获取指定类型对象 |
 
 
 ## <span id="devfunction">**`dev.function`**</span>

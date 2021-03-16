@@ -12,6 +12,7 @@
       - log                                           | Log Engine
       - media                                         | Media Selector Engine
       - permission                                    | Permission Engine
+      - storage                                       | Storage Engine
    - other                                            | 第三方库封装工具类
       - okgo                                          | OkGo 网络请求
          - demo                                       | OkGo 使用 Demo
@@ -42,6 +43,7 @@
       - [log](#devenginelog)                          | Log Engine
       - [media](#devenginemedia)                      | Media Selector Engine
       - [permission](#devenginepermission)            | Permission Engine
+      - [storage](#devenginestorage)                  | Storage Engine
    - [other](#devother)                               | 第三方库封装工具类
       - [okgo](#devotherokgo)                         | OkGo 网络请求
          - [demo](#devotherokgodemo)                  | OkGo 使用 Demo
@@ -406,6 +408,73 @@
 | request | request |
 
 
+## <span id="devenginestorage">**`dev.engine.storage`**</span>
+
+
+* **MMKV Storage Config ->** [MMKVConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/storage/MMKVConfig.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getMMKV | getMMKV |
+
+
+* **MMKV Storage Engine 实现 ->** [MMKVStorageEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/storage/MMKVStorageEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getConfig | getConfig |
+| remove | remove |
+| removeForKeys | removeForKeys |
+| contains | contains |
+| clear | clear |
+| putInt | putInt |
+| putLong | putLong |
+| putFloat | putFloat |
+| putDouble | putDouble |
+| putBoolean | putBoolean |
+| putString | putString |
+| putEntity | putEntity |
+| getInt | getInt |
+| getLong | getLong |
+| getFloat | getFloat |
+| getDouble | getDouble |
+| getBoolean | getBoolean |
+| getString | getString |
+| getEntity | getEntity |
+
+
+* **SharedPreferences Storage Config ->** [SPConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/storage/SPConfig.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getPreference | getPreference |
+
+
+* **SharedPreferences Storage Engine 实现 ->** [SPStorageEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/storage/SPStorageEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getConfig | getConfig |
+| remove | remove |
+| removeForKeys | removeForKeys |
+| contains | contains |
+| clear | clear |
+| putInt | putInt |
+| putLong | putLong |
+| putFloat | putFloat |
+| putDouble | putDouble |
+| putBoolean | putBoolean |
+| putString | putString |
+| putEntity | putEntity |
+| getInt | getInt |
+| getLong | getLong |
+| getFloat | getFloat |
+| getDouble | getDouble |
+| getBoolean | getBoolean |
+| getString | getString |
+| getEntity | getEntity |
+
+
 ## <span id="devother">**`dev.other`**</span>
 
 
@@ -562,6 +631,7 @@
 | removeValuesForKeys | 通过 key 数组移除 value |
 | sync | 同步操作 |
 | async | 异步操作 |
+| clear | 清除全部数据 |
 | encode | encode |
 | decodeBool | decodeBool |
 | decodeInt | decodeInt |

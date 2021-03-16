@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 2.2.0 *(2021-03-16)*
+----------------------------
+
+* `[Add]` IPreference、PreferenceImpl 新增 Double 类型存储、默认值传参 ( 配合 DevAssis#StorageEngine )
+
 Version 2.1.9 *(2021-03-02)*
 ----------------------------
 
