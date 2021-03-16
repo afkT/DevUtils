@@ -16,14 +16,10 @@ import afkt.project.ui.adapter.ButtonAdapter;
 import dev.engine.log.DevLogEngine;
 import dev.utils.app.assist.manager.TimerManager;
 import dev.utils.app.toast.ToastTintUtils;
-import utils_use.timer.TimerUse;
 
 /**
  * detail: TimerManager 定时器工具类
  * @author Ttt
- * <pre>
- *     {@link TimerUse}
- * </pre>
  */
 public class TimerActivity
         extends BaseActivity<BaseViewRecyclerviewBinding> {
