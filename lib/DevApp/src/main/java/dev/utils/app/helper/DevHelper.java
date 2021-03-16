@@ -45,7 +45,7 @@ import dev.utils.app.ScreenUtils;
 import dev.utils.app.SizeUtils;
 import dev.utils.app.VibrationUtils;
 import dev.utils.app.anim.AnimationUtils;
-import dev.utils.app.assist.manager.TimerManager;
+import dev.utils.app.assist.timer.DevTimer;
 import dev.utils.app.image.BitmapUtils;
 import dev.utils.app.image.ImageUtils;
 import dev.utils.common.CloseUtils;
@@ -188,21 +188,21 @@ public final class DevHelper {
 
     /**
      * 运行定时器
-     * @param timer {@link TimerManager.AbsTimer}
+     * @param timer {@link DevTimer}
      * @return {@link DevHelper}
      */
-    public DevHelper startTimer(final TimerManager.AbsTimer timer) {
-        if (timer != null) timer.startTimer();
+    public DevHelper startTimer(final DevTimer timer) {
+        if (timer != null) timer.start();
         return this;
     }
 
     /**
      * 关闭定时器
-     * @param timer {@link TimerManager.AbsTimer}
+     * @param timer {@link DevTimer}
      * @return {@link DevHelper}
      */
-    public DevHelper closeTimer(final TimerManager.AbsTimer timer) {
-        if (timer != null) timer.closeTimer();
+    public DevHelper closeTimer(final DevTimer timer) {
+        if (timer != null) timer.stop();
         return this;
     }
 
