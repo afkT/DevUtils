@@ -19,7 +19,7 @@ public class DevTimer {
     private final long   mDelay;
     // 循环时间 ( 每隔多少毫秒执行一次 )
     private final long   mPeriod;
-    // 触发次数上限
+    // 触发次数上限 ( 负数为无限循环 )
     private final int    mTriggerLimit;
 
     private DevTimer(final Builder builder) {
@@ -41,7 +41,7 @@ public class DevTimer {
         private long   delay;
         // 循环时间 ( 每隔多少毫秒执行一次 )
         private long   period;
-        // 触发次数上限 ( 默认无限循环 )
+        // 触发次数上限 ( 负数为无限循环 )
         private int    limit = -1;
 
         public Builder(long period) {
@@ -54,6 +54,18 @@ public class DevTimer {
         ) {
             this.delay = delay;
             this.period = period;
+        }
+
+        public Builder(
+                long delay,
+                long period,
+                int limit,
+                String tag
+        ) {
+            this.delay = delay;
+            this.period = period;
+            this.limit = limit;
+            this.tag = tag;
         }
 
         public Builder(Builder builder) {
@@ -216,6 +228,9 @@ public class DevTimer {
 
     /**
      * 是否触发结束 ( 到达最大次数 )
+     * <pre>
+     *     如果属于无限循环, 该方法永远返回 false, 可用 {@link #isRunning()} 组合判断
+     * </pre>
      * @return {@code true} yes, {@code false} no
      */
     public boolean isTriggerEnd() {
@@ -307,6 +322,8 @@ public class DevTimer {
                 boolean _end = isTriggerEnd();
                 // 是否无限循环
                 boolean _infinite = isInfinite();
+                // 关闭定时器, 进行标记需要回收
+                if (_end) stop();
 
                 if (mCallback != null) {
                     // 判断是否 UI 线程通知
@@ -317,8 +334,6 @@ public class DevTimer {
                         mCallback.callback(DevTimer.this, _number, _end, _infinite);
                     }
                 }
-                // 关闭定时器, 进行标记需要回收
-                if (_end) cancelTimer();
             }
         };
         try {
@@ -328,7 +343,7 @@ public class DevTimer {
             // 表示非运行定时器中
             mRunning = false;
             // 关闭定时器, 进行标记需要回收
-            cancelTimer(); // 启动失败, 则进行标记需要回收
+            stop(); // 启动失败, 则进行标记需要回收
         }
         return this;
     }
