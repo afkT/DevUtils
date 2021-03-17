@@ -59,6 +59,16 @@ public class DevTimer {
         public Builder(
                 long delay,
                 long period,
+                int limit
+        ) {
+            this.delay = delay;
+            this.period = period;
+            this.limit = limit;
+        }
+
+        public Builder(
+                long delay,
+                long period,
                 int limit,
                 String tag
         ) {

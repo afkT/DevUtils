@@ -1,7 +1,6 @@
 package afkt.project;
 
 import android.Manifest;
-import android.os.Handler;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -22,9 +21,6 @@ import dev.engine.log.DevLogEngine;
 import dev.engine.permission.DevPermissionEngine;
 import dev.engine.permission.IPermissionEngine;
 import dev.utils.app.AppCommonUtils;
-import dev.utils.app.HandlerUtils;
-import dev.utils.app.logger.DevLogger;
-import dev.utils.app.timer.DevTimer;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.utils.app.toast.ToastUtils;
 import dev.utils.common.HttpURLConnectionUtils;
@@ -45,8 +41,6 @@ public class MainActivity
     @Override
     public void initOther() {
         super.initOther();
-
-        timer();
 
         // ===========
         // = 时间校验 =
@@ -142,45 +136,5 @@ public class MainActivity
                 }
             }
         });
-    }
-
-    private void timer() {
-        new DevTimer.Builder(15000L, 1500L)
-                .setDelay(0L).setPeriod(100L).setTag("在吗").setLimit(0)
-                .build().setHandler(new Handler())
-                .setCallback((timer, number, end, infinite) -> {
-                    StringBuilder builder = new StringBuilder()
-                            .append("触发次数: " + number)
-                            .append("\n是否结束: " + end)
-                            .append("\n是否无限循环: " + infinite)
-                            .append("\n是否主线程: " + HandlerUtils.isMainThread());
-                    append(builder, timer);
-                    DevLogger.dTag("QPQPAKSADL", builder.toString());
-
-                    if (number >= 5) {
-                        timer.stop();
-                        builder = new StringBuilder();
-                        append(builder, timer);
-                        DevLogger.dTag("QPQPAKSADL", builder.toString());
-                    }
-                }).start();
-    }
-
-    private void append(
-            StringBuilder builder,
-            DevTimer timer
-    ) {
-        builder.append("\n")
-                .append("\nTAG: " + timer.getTag())
-                .append("\nDelay: " + timer.getDelay())
-                .append("\nPeriod: " + timer.getPeriod())
-                .append("\nLimit: " + timer.getTriggerLimit())
-                .append("\nNumber: " + timer.getTriggerNumber())
-                .append("\nUUID: " + timer.getUUID())
-                .append("\nisInfinite: " + timer.isInfinite())
-                .append("\nisMarkSweep: " + timer.isMarkSweep())
-                .append("\nisRunning: " + timer.isRunning())
-                .append("\nisTriggerEnd: " + timer.isTriggerEnd());
-
     }
 }

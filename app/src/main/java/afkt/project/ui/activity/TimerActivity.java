@@ -61,7 +61,7 @@ public class TimerActivity
                         if (mTimer == null) {
                             // 初始化定时器
                             mTimer = new DevTimer.Builder(500L, 2000L,
-                                    -1, "GET").build();
+                                    -1, TAG).build();
                             mTimer.setHandler(mUiHandler) // 设置回调通过 Handler 触发
                                     .setCallback((timer, number, end, infinite) -> {
                                         // 触发次数
@@ -101,8 +101,8 @@ public class TimerActivity
                         showToast(result, "定时器已启动", "定时器未启动");
                         break;
                     case ButtonValue.BTN_TIMER_GET:
-                        DevTimer timerGet = TimerManager.getTimer("GET");
-                        showToast(timerGet != null, "获取定时器成功", "暂无该定时器");
+                        DevTimer timerTAG = TimerManager.getTimer(TAG);
+                        showToast(timerTAG != null, "获取定时器成功", "暂无该定时器");
                         break;
                     case ButtonValue.BTN_TIMER_GET_NUMBER:
                         result = (mTimer != null && mTimer.isRunning());
@@ -123,7 +123,7 @@ public class TimerActivity
         DevTimer timer = new DevTimer.Builder(1500L)
                 .setDelay(100L) // 延迟时间 ( 多少毫秒后开始执行 )
                 .setPeriod(1500L) // 循环时间 ( 每隔多少毫秒执行一次 )
-                .setTag("TAG") // 定时器 Tag
+                .setTag(TAG) // 定时器 Tag
                 .setLimit(19) // 触发次数上限 ( 负数为无限循环 )
                 .build(); // 构建定时器
         timer.setCallback(new DevTimer.Callback() {
@@ -148,7 +148,7 @@ public class TimerActivity
         // 关闭所有对应 UUID 定时器
         TimerManager.closeAllUUID(uuid);
         // 关闭所有对应 TAG 定时器
-        TimerManager.closeAllTag("TAG");
+        TimerManager.closeAllTag(TAG);
         // 关闭所有无限循环的定时器
         TimerManager.closeAllInfinite();
         // 关闭所有未运行的定时器
@@ -162,10 +162,17 @@ public class TimerActivity
         // 获取对应 UUID 定时器 ( 优先获取符合的 )
         TimerManager.getTimer(uuid);
         // 获取对应 TAG 定时器 ( 优先获取符合的 )
-        TimerManager.getTimer("TAG");
+        TimerManager.getTimer(TAG);
         // 获取对应 UUID 定时器集合
         TimerManager.getTimers(uuid);
         // 获取对应 TAG 定时器集合
-        TimerManager.getTimers("TAG");
+        TimerManager.getTimers(TAG);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // 关闭所有对应 TAG 定时器
+        TimerManager.closeAllTag(TAG);
     }
 }
