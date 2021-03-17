@@ -21,11 +21,12 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 
+import java.io.File;
 import java.util.List;
 
 import dev.base.DevSource;
+import dev.engine.image.listener.ConvertStorage;
 import dev.engine.image.listener.OnConvertListener;
-import dev.engine.image.listener.OnConvertStorage;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.image.ImageUtils;
 
@@ -552,8 +553,27 @@ public class GlideEngineImpl
     public boolean convertImageFormat(
             Context context,
             List<DevSource> sources,
+            OnConvertListener listener
+    ) {
+        return convertImageFormat(context, sources, null, listener, new InnerConvertStorage());
+    }
+
+    @Override
+    public boolean convertImageFormat(
+            Context context,
+            List<DevSource> sources,
+            ImageConfig config,
+            OnConvertListener listener
+    ) {
+        return convertImageFormat(context, sources, config, listener, new InnerConvertStorage());
+    }
+
+    @Override
+    public boolean convertImageFormat(
+            Context context,
+            List<DevSource> sources,
             OnConvertListener listener,
-            OnConvertStorage<ImageConfig> convertStorage
+            ConvertStorage<ImageConfig> convertStorage
     ) {
         return convertImageFormat(context, sources, null, listener, convertStorage);
     }
@@ -564,7 +584,7 @@ public class GlideEngineImpl
             List<DevSource> sources,
             ImageConfig config,
             OnConvertListener listener,
-            OnConvertStorage<ImageConfig> convertStorage
+            ConvertStorage<ImageConfig> convertStorage
     ) {
         return false;
     }
@@ -960,6 +980,24 @@ public class GlideEngineImpl
 
         @Override
         public void onLoadCleared(Drawable placeholder) {
+        }
+    }
+
+    // =====================
+    // = 转换图片格式并存储 =
+    // =====================
+
+    private static class InnerConvertStorage
+            implements ConvertStorage<ImageConfig> {
+        @Override
+        public File convert(
+                Context context,
+                DevSource source,
+                ImageConfig config,
+                int index,
+                int count
+        ) {
+            return null;
         }
     }
 }

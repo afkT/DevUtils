@@ -11,7 +11,7 @@ import dev.engine.image.IImageEngine;
  * detail: 转换图片格式存储接口
  * @author Ttt
  */
-public interface OnConvertStorage<Config extends IImageEngine.EngineConfig> {
+public interface ConvertStorage<Config extends IImageEngine.EngineConfig> {
 
     /**
      * 转换图片格式并存储
@@ -22,7 +22,7 @@ public interface OnConvertStorage<Config extends IImageEngine.EngineConfig> {
      * @param count   转换总数
      * @return 存储路径
      */
-    File onConvertStorage(
+    File convert(
             Context context,
             DevSource source,
             Config config,
