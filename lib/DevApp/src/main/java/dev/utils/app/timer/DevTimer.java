@@ -1,4 +1,4 @@
-package dev.utils.app.assist.timer;
+package dev.utils.app.timer;
 
 import android.os.Handler;
 

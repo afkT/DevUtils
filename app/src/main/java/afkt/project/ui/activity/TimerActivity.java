@@ -1,22 +1,9 @@
 package afkt.project.ui.activity;
 
-import android.os.Handler;
-import android.os.Message;
-import android.view.View;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
-
 import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.databinding.BaseViewRecyclerviewBinding;
-import afkt.project.model.item.ButtonList;
-import afkt.project.model.item.ButtonValue;
-import afkt.project.ui.adapter.ButtonAdapter;
-import dev.engine.log.DevLogEngine;
-import dev.utils.app.assist.timer.DevTimer;
-import dev.utils.app.assist.timer.TimerManager;
-import dev.utils.app.toast.ToastTintUtils;
+import dev.utils.app.timer.DevTimer;
 
 /**
  * detail: TimerManager 定时器工具类

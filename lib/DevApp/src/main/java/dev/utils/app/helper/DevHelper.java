@@ -45,7 +45,7 @@ import dev.utils.app.ScreenUtils;
 import dev.utils.app.SizeUtils;
 import dev.utils.app.VibrationUtils;
 import dev.utils.app.anim.AnimationUtils;
-import dev.utils.app.assist.timer.DevTimer;
+import dev.utils.app.timer.DevTimer;
 import dev.utils.app.image.BitmapUtils;
 import dev.utils.app.image.ImageUtils;
 import dev.utils.common.CloseUtils;
