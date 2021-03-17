@@ -555,7 +555,7 @@ public class GlideEngineImpl
             List<DevSource> sources,
             OnConvertListener listener
     ) {
-        return convertImageFormat(context, sources, null, listener, new InnerConvertStorage());
+        return convertImageFormat(context, sources, null, listener);
     }
 
     @Override
@@ -565,28 +565,7 @@ public class GlideEngineImpl
             ImageConfig config,
             OnConvertListener listener
     ) {
-        return convertImageFormat(context, sources, config, listener, new InnerConvertStorage());
-    }
-
-    @Override
-    public boolean convertImageFormat(
-            Context context,
-            List<DevSource> sources,
-            OnConvertListener listener,
-            ConvertStorage<ImageConfig> convertStorage
-    ) {
-        return convertImageFormat(context, sources, null, listener, convertStorage);
-    }
-
-    @Override
-    public boolean convertImageFormat(
-            Context context,
-            List<DevSource> sources,
-            ImageConfig config,
-            OnConvertListener listener,
-            ConvertStorage<ImageConfig> convertStorage
-    ) {
-        return false;
+        return priConvertImageFormat(context, sources, config, listener);
     }
 
     // ===========
@@ -999,5 +978,22 @@ public class GlideEngineImpl
         ) {
             return null;
         }
+    }
+
+    /**
+     * 私有转换图片格式处理方法
+     * @param context
+     * @param sources
+     * @param config
+     * @param listener
+     * @return
+     */
+    private boolean priConvertImageFormat(
+            Context context,
+            List<DevSource> sources,
+            ImageConfig config,
+            OnConvertListener listener
+    ) {
+        return false;
     }
 }
