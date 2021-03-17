@@ -25,6 +25,7 @@ import java.util.List;
 
 import dev.base.DevSource;
 import dev.engine.image.listener.OnConvertListener;
+import dev.engine.image.listener.OnConvertStorage;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.image.ImageUtils;
 
@@ -548,22 +549,24 @@ public class GlideEngineImpl
     // ===========
 
     @Override
-    public void convertImageFormat(
+    public boolean convertImageFormat(
             Context context,
             List<DevSource> sources,
-            OnConvertListener listener
+            OnConvertListener listener,
+            OnConvertStorage<ImageConfig> convertStorage
     ) {
-        convertImageFormat(context, sources, null, listener);
+        return convertImageFormat(context, sources, null, listener, convertStorage);
     }
 
     @Override
-    public void convertImageFormat(
+    public boolean convertImageFormat(
             Context context,
             List<DevSource> sources,
             ImageConfig config,
-            OnConvertListener listener
+            OnConvertListener listener,
+            OnConvertStorage<ImageConfig> convertStorage
     ) {
-
+        return false;
     }
 
     // ===========

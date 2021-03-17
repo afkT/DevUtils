@@ -12,6 +12,7 @@ import java.util.List;
 
 import dev.base.DevSource;
 import dev.engine.image.listener.OnConvertListener;
+import dev.engine.image.listener.OnConvertStorage;
 
 /**
  * detail: Image Engine 接口
@@ -134,7 +135,9 @@ public interface IImageEngine<Config extends IImageEngine.EngineConfig> {
     // = convert =
     // ===========
 
-    void convertImageFormat(Context context, List<DevSource> sources, OnConvertListener listener);
+    boolean convertImageFormat(Context context, List<DevSource> sources,
+                               OnConvertListener listener, OnConvertStorage<Config> convertStorage);
 
-    void convertImageFormat(Context context, List<DevSource> sources, Config config, OnConvertListener listener);
+    boolean convertImageFormat(Context context, List<DevSource> sources, Config config,
+                               OnConvertListener listener, OnConvertStorage<Config> convertStorage);
 }
