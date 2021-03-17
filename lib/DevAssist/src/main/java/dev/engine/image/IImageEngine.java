@@ -8,7 +8,10 @@ import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.List;
+
 import dev.base.DevSource;
+import dev.engine.image.listener.OnConvertListener;
 
 /**
  * detail: Image Engine 接口
@@ -126,4 +129,12 @@ public interface IImageEngine<Config extends IImageEngine.EngineConfig> {
     void loadDrawable(Fragment fragment, DevSource source, Config config, LoadListener<Drawable> listener);
 
     Drawable loadDrawable(Context context, DevSource source, Config config);
+
+    // ===========
+    // = convert =
+    // ===========
+
+    void convertImageFormat(Context context, List<DevSource> sources, OnConvertListener listener);
+
+    void convertImageFormat(Context context, List<DevSource> sources, Config config, OnConvertListener listener);
 }

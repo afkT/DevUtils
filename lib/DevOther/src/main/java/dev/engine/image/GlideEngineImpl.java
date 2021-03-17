@@ -21,7 +21,10 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 
+import java.util.List;
+
 import dev.base.DevSource;
+import dev.engine.image.listener.OnConvertListener;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.image.ImageUtils;
 
@@ -538,6 +541,29 @@ public class GlideEngineImpl
             ImageConfig config
     ) {
         return loadImage(context, source, config, Drawable.class);
+    }
+
+    // ===========
+    // = convert =
+    // ===========
+
+    @Override
+    public void convertImageFormat(
+            Context context,
+            List<DevSource> sources,
+            OnConvertListener listener
+    ) {
+        convertImageFormat(context, sources, null, listener);
+    }
+
+    @Override
+    public void convertImageFormat(
+            Context context,
+            List<DevSource> sources,
+            ImageConfig config,
+            OnConvertListener listener
+    ) {
+
     }
 
     // ===========
