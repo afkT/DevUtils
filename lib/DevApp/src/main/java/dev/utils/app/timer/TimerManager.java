@@ -204,7 +204,7 @@ public final class TimerManager {
                     }
                 }
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "closeNotRunning");
+                LogPrintUtils.eTag(TAG, e, "closeAllNotRunning");
             }
         }
     }
@@ -224,7 +224,7 @@ public final class TimerManager {
                     }
                 }
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "closeInfinite");
+                LogPrintUtils.eTag(TAG, e, "closeAllInfinite");
             }
         }
     }
