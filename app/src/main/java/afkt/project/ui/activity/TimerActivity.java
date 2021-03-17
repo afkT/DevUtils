@@ -21,9 +21,6 @@ import dev.utils.app.toast.ToastTintUtils;
 /**
  * detail: TimerManager 定时器工具类
  * @author Ttt
- * <pre>
- *     {@link TimerUse}
- * </pre>
  */
 public class TimerActivity
         extends BaseActivity<BaseViewRecyclerviewBinding> {
