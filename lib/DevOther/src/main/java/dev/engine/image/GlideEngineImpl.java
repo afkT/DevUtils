@@ -1078,21 +1078,31 @@ public class GlideEngineImpl
                         source.mFile.getAbsolutePath(),
                         new String[]{".PNG", ".JPG", ".JPEG"}
                 )) {
-                    return source.mFile;
+                    // 配置为 null 或要求原路径返回
+                    if (config == null || config.isOriginalPathReturn()) {
+                        return source.mFile;
+                    }
                 }
             }
             readBitmap = engineImpl.loadBitmapThrows(context, source, config);
-            // 创建随机名
+            // 创建随机名 ( 一定程度上唯一, 防止出现重复情况 )
             String randomName  = String.format("%s_%s_%s_%s", UUID.randomUUID().hashCode(), System.currentTimeMillis(), index, count);
             String md5FileName = MD5Utils.md5(randomName) + ".png";
             // 存储到外部存储私有目录 ( /storage/emulated/0/Android/data/package/ )
             String dirPath = PathUtils.getAppExternal().getAppCachePath("convertStorage");
+            // 图片保存质量
+            int quality = ImageConfig.QUALITY;
+            if (config != null) {
+                if (config.getQuality() > 0 && config.getQuality() <= 100) {
+                    quality = config.getQuality();
+                }
+            }
             // 创建文件夹
             FileUtils.createFolder(dirPath);
             File resultFile = new File(dirPath, md5FileName);
             // 保存图片
             boolean result = ImageUtils.saveBitmapToSDCard(
-                    readBitmap, resultFile, Bitmap.CompressFormat.PNG, 90
+                    readBitmap, resultFile, Bitmap.CompressFormat.PNG, quality
             );
             return result ? resultFile : null;
         }

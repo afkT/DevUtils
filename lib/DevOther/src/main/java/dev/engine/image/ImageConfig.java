@@ -2,6 +2,8 @@ package dev.engine.image;
 
 import android.graphics.drawable.Drawable;
 
+import androidx.annotation.IntRange;
+
 /**
  * detail: Image Config
  * @author Ttt
@@ -41,6 +43,13 @@ public class ImageConfig
     private int   mHeight;
     // 加载缩略图时应用尺寸的乘数
     private float mThumbnail;
+
+    // 默认图片保存质量值
+    public static final int     QUALITY            = 80;
+    // 图片保存质量
+    private             int     quality            = QUALITY;
+    // 转换符合格式文件是否原图返回
+    private             boolean originalPathReturn = false;
 
     // ===========
     // = 构造函数 =
@@ -192,5 +201,21 @@ public class ImageConfig
     public ImageConfig setThumbnail(float thumbnail) {
         mThumbnail = thumbnail;
         return this;
+    }
+
+    public int getQuality() {
+        return quality;
+    }
+
+    public void setQuality(@IntRange(from = 0, to = 100) int quality) {
+        this.quality = quality;
+    }
+
+    public boolean isOriginalPathReturn() {
+        return originalPathReturn;
+    }
+
+    public void setOriginalPathReturn(boolean originalPathReturn) {
+        this.originalPathReturn = originalPathReturn;
     }
 }
