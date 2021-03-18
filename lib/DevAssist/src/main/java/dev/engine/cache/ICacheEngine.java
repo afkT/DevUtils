@@ -1,5 +1,13 @@
 package dev.engine.cache;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.os.Parcelable;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.Serializable;
 import java.lang.reflect.Type;
 
 import dev.utils.common.cipher.Cipher;
@@ -76,6 +84,17 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig> {
      */
     void clear();
 
+    /**
+     * 清除过期数据
+     */
+    void clearDue();
+
+    /**
+     * 清除某个类型的全部数据
+     * @param type 类型
+     */
+    void clearType(int type);
+
     // =======
     // = 存储 =
     // =======
@@ -87,7 +106,7 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig> {
      * @param validTime 有效时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    boolean putInt(
+    boolean put(
             String key,
             int value,
             long validTime
@@ -100,7 +119,7 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig> {
      * @param validTime 有效时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    boolean putLong(
+    boolean put(
             String key,
             long value,
             long validTime
@@ -113,7 +132,7 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig> {
      * @param validTime 有效时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    boolean putFloat(
+    boolean put(
             String key,
             float value,
             long validTime
@@ -126,7 +145,7 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig> {
      * @param validTime 有效时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    boolean putDouble(
+    boolean put(
             String key,
             double value,
             long validTime
@@ -139,7 +158,7 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig> {
      * @param validTime 有效时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    boolean putBoolean(
+    boolean put(
             String key,
             boolean value,
             long validTime
@@ -152,22 +171,100 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig> {
      * @param validTime 有效时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    boolean putString(
+    boolean put(
             String key,
             String value,
             long validTime
     );
 
     /**
-     * 保存 Byte[] 类型的数据
+     * 保存 byte[] 类型的数据
      * @param key       保存的 key
      * @param value     存储的数据
      * @param validTime 有效时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    boolean putByte(
+    boolean put(
             final String key,
             final byte[] value,
+            long validTime
+    );
+
+    /**
+     * 保存 Bitmap 类型的数据
+     * @param key       保存的 key
+     * @param value     存储的数据
+     * @param validTime 有效时间 ( 毫秒 )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean put(
+            final String key,
+            final Bitmap value,
+            long validTime
+    );
+
+    /**
+     * 保存 Drawable 类型的数据
+     * @param key       保存的 key
+     * @param value     存储的数据
+     * @param validTime 有效时间 ( 毫秒 )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean put(
+            final String key,
+            final Drawable value,
+            long validTime
+    );
+
+    /**
+     * 保存 Serializable 类型的数据
+     * @param key       保存的 key
+     * @param value     存储的数据
+     * @param validTime 有效时间 ( 毫秒 )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean put(
+            final String key,
+            final Serializable value,
+            long validTime
+    );
+
+    /**
+     * 保存 Parcelable 类型的数据
+     * @param key       保存的 key
+     * @param value     存储的数据
+     * @param validTime 有效时间 ( 毫秒 )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean put(
+            final String key,
+            final Parcelable value,
+            long validTime
+    );
+
+    /**
+     * 保存 JSONObject 类型的数据
+     * @param key       保存的 key
+     * @param value     存储的数据
+     * @param validTime 有效时间 ( 毫秒 )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean put(
+            final String key,
+            final JSONObject value,
+            long validTime
+    );
+
+    /**
+     * 保存 JSONArray 类型的数据
+     * @param key       保存的 key
+     * @param value     存储的数据
+     * @param validTime 有效时间 ( 毫秒 )
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean put(
+            final String key,
+            final JSONArray value,
             long validTime
     );
 
@@ -179,7 +276,7 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig> {
      * @param <T>       泛型
      * @return {@code true} success, {@code false} fail
      */
-    <T> boolean putEntity(
+    <T> boolean put(
             final String key,
             final T value,
             long validTime
