@@ -1076,8 +1076,8 @@ public class GlideEngineImpl
                 // 符合条件直接返回
                 if (FileUtils.isImageFormats(
                         source.mFile.getAbsolutePath(),
-                        new String[]{".PNG", ".JPG", ".JPEG"})
-                ) {
+                        new String[]{".PNG", ".JPG", ".JPEG"}
+                )) {
                     return source.mFile;
                 }
             }
