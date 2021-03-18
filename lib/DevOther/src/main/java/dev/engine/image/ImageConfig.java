@@ -45,11 +45,11 @@ public class ImageConfig
     private float mThumbnail;
 
     // 默认图片保存质量值
-    public static final int     QUALITY            = 80;
+    public static final int     QUALITY             = 80;
     // 图片保存质量
-    private             int     quality            = QUALITY;
+    private             int     mQuality            = QUALITY;
     // 转换符合格式文件是否原图返回
-    private             boolean originalPathReturn = false;
+    private             boolean mQriginalPathReturn = false;
 
     // ===========
     // = 构造函数 =
@@ -57,7 +57,29 @@ public class ImageConfig
 
     private ImageConfig(final ImageConfig config) {
         if (config != null) {
+            // 是否缓存到 SDCard
+            this.mCacheDisk = config.mCacheDisk;
+            // 是否缓存到内存
+            this.mCacheMemory = config.mCacheMemory;
 
+            this.mScaleType = config.mScaleType;
+            this.mTransform = config.mTransform;
+            this.mRoundedCornersRadius = config.mRoundedCornersRadius;
+            // placeholder
+            this.mErrorPlaceholder = config.mErrorPlaceholder;
+            this.mLoadingPlaceholder = config.mLoadingPlaceholder;
+            this.mErrorDrawable = config.mErrorDrawable;
+            this.mLoadingDrawable = config.mLoadingDrawable;
+            // 加载图片宽
+            this.mWidth = config.mWidth;
+            // 加载图片高
+            this.mHeight = config.mHeight;
+            // 加载缩略图时应用尺寸的乘数
+            this.mThumbnail = config.mThumbnail;
+            // 图片保存质量
+            this.mQuality = config.mQuality;
+            // 转换符合格式文件是否原图返回
+            this.mQriginalPathReturn = config.mQriginalPathReturn;
         }
     }
 
@@ -153,7 +175,7 @@ public class ImageConfig
 
     public ImageConfig setLoadingPlaceholder(int loadingPlaceholder) {
         mLoadingPlaceholder = loadingPlaceholder;
-        mErrorDrawable = null;
+        mLoadingDrawable = null;
         return this;
     }
 
@@ -204,18 +226,18 @@ public class ImageConfig
     }
 
     public int getQuality() {
-        return quality;
+        return mQuality;
     }
 
     public void setQuality(@IntRange(from = 0, to = 100) int quality) {
-        this.quality = quality;
+        this.mQuality = quality;
     }
 
     public boolean isOriginalPathReturn() {
-        return originalPathReturn;
+        return mQriginalPathReturn;
     }
 
     public void setOriginalPathReturn(boolean originalPathReturn) {
-        this.originalPathReturn = originalPathReturn;
+        this.mQriginalPathReturn = originalPathReturn;
     }
 }
