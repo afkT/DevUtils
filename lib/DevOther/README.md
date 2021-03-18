@@ -220,8 +220,12 @@
 | lowMemory | lowMemory |
 | display | display |
 | loadImage | loadImage |
+| loadImageThrows | loadImageThrows |
 | loadBitmap | loadBitmap |
+| loadBitmapThrows | loadBitmapThrows |
 | loadDrawable | loadDrawable |
+| loadDrawableThrows | loadDrawableThrows |
+| convertImageFormat | convertImageFormat |
 
 
 * **Image Config ->** [ImageConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/image/ImageConfig.java)
@@ -253,6 +257,10 @@
 | setSize | setSize |
 | getThumbnail | getThumbnail |
 | setThumbnail | setThumbnail |
+| getQuality | getQuality |
+| setQuality | setQuality |
+| isOriginalPathReturn | isOriginalPathReturn |
+| setOriginalPathReturn | setOriginalPathReturn |
 
 
 ## <span id="devenginejson">**`dev.engine.json`**</span>

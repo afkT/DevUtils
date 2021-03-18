@@ -19,6 +19,7 @@ implementation 'com.afkt:DevAssist:1.1.5'
       - number                                        | 数值操作
    - callback                                         | 接口回调相关
    - engine                                           | 兼容 Engine
+      - cache                                         | Cache Engine
       - compress                                      | Image Compress Engine
          - listener                                   | 图片压缩回调事件
       - http                                          | Http Engine
@@ -53,6 +54,7 @@ implementation 'com.afkt:DevAssist:1.1.5'
       - [number](#devbasenumber)                      | 数值操作
    - [callback](#devcallback)                         | 接口回调相关
    - [engine](#devengine)                             | 兼容 Engine
+      - [cache](#devenginecache)                      | Cache Engine
       - [compress](#devenginecompress)                | Image Compress Engine
          - [listener](#devenginecompresslistener)     | 图片压缩回调事件
       - [http](#devenginehttp)                        | Http Engine
@@ -688,6 +690,51 @@ implementation 'com.afkt:DevAssist:1.1.5'
 ## <span id="devengine">**`dev.engine`**</span>
 
 
+## <span id="devenginecache">**`dev.engine.cache`**</span>
+
+
+* **Cache Engine ->** [DevCacheEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/cache/DevCacheEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 CacheEngine |
+| setEngine | 设置 CacheEngine |
+| contains | 判断是否存在 CacheEngine |
+
+
+* **Cache Engine 接口 ->** [ICacheEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/cache/ICacheEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getConfig | 获取 Cache Engine Config |
+| remove | 移除数据 |
+| removeForKeys | 移除数组的数据 |
+| contains | 是否存在 key |
+| isDue | 判断某个 key 是否过期 |
+| clear | 清除全部数据 |
+| clearDue | 清除过期数据 |
+| clearType | 清除某个类型的全部数据 |
+| getKeys | 获取有效 Key 集合 |
+| getPermanentKeys | 获取永久有效 Key 集合 |
+| getCount | 获取有效 Key 数量 |
+| getSize | 获取有效 Key 占用总大小 |
+| put | 保存 int 类型的数据 |
+| getInt | 获取 int 类型的数据 |
+| getLong | 获取 long 类型的数据 |
+| getFloat | 获取 float 类型的数据 |
+| getDouble | 获取 double 类型的数据 |
+| getBoolean | 获取 boolean 类型的数据 |
+| getString | 获取 String 类型的数据 |
+| getBytes | 获取 byte[] 类型的数据 |
+| getBitmap | 获取 Bitmap 类型的数据 |
+| getDrawable | 获取 Drawable 类型的数据 |
+| getSerializable | 获取 Serializable 类型的数据 |
+| getParcelable | 获取 Parcelable 类型的数据 |
+| getJSONObject | 获取 JSONObject 类型的数据 |
+| getJSONArray | 获取 JSONArray 类型的数据 |
+| getEntity | 获取指定类型对象 |
+
+
 ## <span id="devenginecompress">**`dev.engine.compress`**</span>
 
 
@@ -793,8 +840,12 @@ implementation 'com.afkt:DevAssist:1.1.5'
 | lowMemory | lowMemory |
 | display | display |
 | loadImage | loadImage |
+| loadImageThrows | loadImageThrows |
 | loadBitmap | loadBitmap |
+| loadBitmapThrows | loadBitmapThrows |
 | loadDrawable | loadDrawable |
+| loadDrawableThrows | loadDrawableThrows |
+| convertImageFormat | convertImageFormat |
 
 
 * **图片加载事件 ->** [LoadListener.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/image/LoadListener.java)
@@ -817,11 +868,28 @@ implementation 'com.afkt:DevAssist:1.1.5'
 | getTranscodeType | getTranscodeType |
 
 
+* **转换图片格式存储接口 ->** [ConvertStorage.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/image/listener/ConvertStorage.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| convert | 转换图片格式并存储 |
+
+
 * **Drawable 加载事件 ->** [DrawableListener.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/image/listener/DrawableListener.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | getTranscodeType | getTranscodeType |
+
+
+* **转换图片格式回调接口 ->** [OnConvertListener.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/image/listener/OnConvertListener.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onStart | 开始转换前调用 |
+| onSuccess | 转换成功后调用 |
+| onError | 当转换过程出现问题时触发 |
+| onComplete | 转换完成 ( 转换结束 ) |
 
 
 ## <span id="devenginejson">**`dev.engine.json`**</span>
@@ -947,6 +1015,7 @@ implementation 'com.afkt:DevAssist:1.1.5'
 | :- | :- |
 | getEngine | 获取 StorageEngine |
 | setEngine | 设置 StorageEngine |
+| contains | 判断是否存在 StorageEngine |
 
 
 * **Storage Engine 接口 ->** [IStorageEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/storage/IStorageEngine.java)
