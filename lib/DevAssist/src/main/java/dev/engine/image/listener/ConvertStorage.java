@@ -20,6 +20,7 @@ public interface ConvertStorage<Config extends IImageEngine.EngineConfig> {
      * @param config  配置信息
      * @param index   当前转换索引
      * @param count   转换总数
+     * @param task    转存任务标记
      * @return 存储路径
      */
     File convert(
@@ -27,7 +28,8 @@ public interface ConvertStorage<Config extends IImageEngine.EngineConfig> {
             DevSource source,
             Config config,
             int index,
-            int count
+            int count,
+            String task
     )
             throws Exception;
 }

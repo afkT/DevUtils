@@ -35,6 +35,7 @@ import dev.utils.LogPrintUtils;
 import dev.utils.app.PathUtils;
 import dev.utils.app.image.ImageUtils;
 import dev.utils.common.FileUtils;
+import dev.utils.common.RandomUtils;
 import dev.utils.common.encrypt.MD5Utils;
 
 /**
@@ -1028,12 +1029,15 @@ public class GlideEngineImpl
             Map<Integer, File> fileMaps  = new LinkedHashMap<>();
             // 转换器
             InnerConvertStorage convertStorage = new InnerConvertStorage(this);
+            // 随机创建任务 id
+            int    randomTask = RandomUtils.getRandom(1000000, 10000000);
+            String task       = String.valueOf(randomTask);
             // 循环转存
             for (int i = 0, len = sources.size(); i < len; i++) {
                 File result = null;
                 try {
                     listener.onStart(i, len);
-                    result = convertStorage.convert(context, sources.get(i), config, i, len);
+                    result = convertStorage.convert(context, sources.get(i), config, i, len, task);
                     if (result == null || !result.exists()) {
                         throw new Exception("result file is null or not exists");
                     }
@@ -1066,7 +1070,8 @@ public class GlideEngineImpl
                 DevSource source,
                 ImageConfig config,
                 int index,
-                int count
+                int count,
+                String task
         )
                 throws Exception {
             if (source == null) throw new Exception("source is null");
@@ -1086,8 +1091,10 @@ public class GlideEngineImpl
             }
             readBitmap = engineImpl.loadBitmapThrows(context, source, config);
             // 创建随机名 ( 一定程度上唯一, 防止出现重复情况 )
-            String randomName  = String.format("%s_%s_%s_%s", UUID.randomUUID().hashCode(), System.currentTimeMillis(), index, count);
-            String md5FileName = MD5Utils.md5(randomName) + ".png";
+            String randomName = String.format("%s_%s_%s_%s_%s", task, UUID.randomUUID().hashCode(),
+                    System.currentTimeMillis(), index, count);
+            // convert_task_index_md5.png
+            String md5FileName = String.format("c_%s_%s_%s.png", task, index, MD5Utils.md5(randomName));
             // 存储到外部存储私有目录 ( /storage/emulated/0/Android/data/package/ )
             String dirPath = PathUtils.getAppExternal().getAppCachePath("convertStorage");
             // 图片保存质量
