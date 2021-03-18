@@ -115,6 +115,8 @@ public interface IImageEngine<Config extends IImageEngine.EngineConfig> {
 
     <T> T loadImage(Context context, DevSource source, Config config, Class type);
 
+    <T> T loadImageThrows(Context context, DevSource source, Config config, Class type) throws Exception;
+
     // =
 
     void loadBitmap(Context context, DevSource source, Config config, LoadListener<Bitmap> listener);
@@ -123,6 +125,8 @@ public interface IImageEngine<Config extends IImageEngine.EngineConfig> {
 
     Bitmap loadBitmap(Context context, DevSource source, Config config);
 
+    Bitmap loadBitmapThrows(Context context, DevSource source, Config config) throws Exception;
+
     // =
 
     void loadDrawable(Context context, DevSource source, Config config, LoadListener<Drawable> listener);
@@ -130,6 +134,8 @@ public interface IImageEngine<Config extends IImageEngine.EngineConfig> {
     void loadDrawable(Fragment fragment, DevSource source, Config config, LoadListener<Drawable> listener);
 
     Drawable loadDrawable(Context context, DevSource source, Config config);
+
+    Drawable loadDrawableThrows(Context context, DevSource source, Config config) throws Exception;
 
     // ===========
     // = convert =

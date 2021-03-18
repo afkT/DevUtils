@@ -28,5 +28,6 @@ public interface ConvertStorage<Config extends IImageEngine.EngineConfig> {
             Config config,
             int index,
             int count
-    );
+    )
+            throws Exception;
 }

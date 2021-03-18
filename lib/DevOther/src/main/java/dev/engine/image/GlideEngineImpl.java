@@ -22,13 +22,20 @@ import com.bumptech.glide.request.target.ImageViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import dev.base.DevSource;
 import dev.engine.image.listener.ConvertStorage;
 import dev.engine.image.listener.OnConvertListener;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.PathUtils;
 import dev.utils.app.image.ImageUtils;
+import dev.utils.common.FileUtils;
+import dev.utils.common.encrypt.MD5Utils;
 
 /**
  * detail: Glide Image Engine 实现
@@ -436,6 +443,22 @@ public class GlideEngineImpl
             ImageConfig config,
             Class type
     ) {
+        try {
+            return loadImageThrows(context, source, config, type);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, "loadImage", e);
+        }
+        return null;
+    }
+
+    @Override
+    public <T> T loadImageThrows(
+            Context context,
+            DevSource source,
+            ImageConfig config,
+            Class type
+    )
+            throws Exception {
         if (context != null && source != null && type != null) {
             RequestManager requestManager = Glide.with(context);
             if (type == Drawable.class) {
@@ -449,13 +472,13 @@ public class GlideEngineImpl
                                 config.getWidth(), config.getHeight()
                         ).get();
                     } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "loadImage Drawable");
+                        throw e;
                     }
                 } else {
                     try {
                         return (T) request.submit().get();
                     } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "loadImage Drawable");
+                        throw e;
                     }
                 }
             } else if (type == Bitmap.class) {
@@ -469,13 +492,13 @@ public class GlideEngineImpl
                                 config.getWidth(), config.getHeight()
                         ).get();
                     } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "loadImage Bitmap");
+                        throw e;
                     }
                 } else {
                     try {
                         return (T) request.submit().get();
                     } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "loadImage Bitmap");
+                        throw e;
                     }
                 }
             }
@@ -514,6 +537,16 @@ public class GlideEngineImpl
         return loadImage(context, source, config, Bitmap.class);
     }
 
+    @Override
+    public Bitmap loadBitmapThrows(
+            Context context,
+            DevSource source,
+            ImageConfig config
+    )
+            throws Exception {
+        return loadImageThrows(context, source, config, Bitmap.class);
+    }
+
     // =
 
     @Override
@@ -543,6 +576,16 @@ public class GlideEngineImpl
             ImageConfig config
     ) {
         return loadImage(context, source, config, Drawable.class);
+    }
+
+    @Override
+    public Drawable loadDrawableThrows(
+            Context context,
+            DevSource source,
+            ImageConfig config
+    )
+            throws Exception {
+        return loadImageThrows(context, source, config, Drawable.class);
     }
 
     // ===========
@@ -962,31 +1005,17 @@ public class GlideEngineImpl
         }
     }
 
-    // =====================
+    // ====================
     // = 转换图片格式并存储 =
-    // =====================
-
-    private static class InnerConvertStorage
-            implements ConvertStorage<ImageConfig> {
-        @Override
-        public File convert(
-                Context context,
-                DevSource source,
-                ImageConfig config,
-                int index,
-                int count
-        ) {
-            return null;
-        }
-    }
+    // ====================
 
     /**
      * 私有转换图片格式处理方法
-     * @param context
-     * @param sources
-     * @param config
-     * @param listener
-     * @return
+     * @param context  {@link Context}
+     * @param sources  待转换资源集合
+     * @param config   配置信息
+     * @param listener 回调事件
+     * @return {@code true} success, {@code false} fail
      */
     private boolean priConvertImageFormat(
             Context context,
@@ -994,6 +1023,78 @@ public class GlideEngineImpl
             ImageConfig config,
             OnConvertListener listener
     ) {
+        if (context != null && sources != null && listener != null && sources.size() > 0) {
+            List<File>         fileLists = new ArrayList<>();
+            Map<Integer, File> fileMaps  = new LinkedHashMap<>();
+            // 转换器
+            InnerConvertStorage convertStorage = new InnerConvertStorage(this);
+            // 循环转存
+            for (int i = 0, len = sources.size(); i < len; i++) {
+                File result = null;
+                try {
+                    listener.onStart(i, len);
+                    result = convertStorage.convert(context, sources.get(i), config, i, len);
+                    if (result == null || !result.exists()) {
+                        throw new Exception("result file is null or not exists");
+                    }
+                } catch (Exception e) {
+                    listener.onError(e, i, len);
+                }
+                if (result != null && result.exists()) {
+                    listener.onSuccess(result, i, len);
+                    fileLists.add(result);
+                }
+                fileMaps.put(i, result);
+            }
+            listener.onComplete(fileLists, fileMaps, sources.size());
+        }
         return false;
+    }
+
+    private static class InnerConvertStorage
+            implements ConvertStorage<ImageConfig> {
+
+        private GlideEngineImpl engineImpl;
+
+        public InnerConvertStorage(GlideEngineImpl engineImpl) {
+            this.engineImpl = engineImpl;
+        }
+
+        @Override
+        public File convert(
+                Context context,
+                DevSource source,
+                ImageConfig config,
+                int index,
+                int count
+        )
+                throws Exception {
+            if (source == null) throw new Exception("source is null");
+            Bitmap readBitmap = null;
+            // 属于文件, 判断是否符合指定格式
+            if (source.isFile()) {
+                // 符合条件直接返回
+                if (FileUtils.isImageFormats(
+                        source.mFile.getAbsolutePath(),
+                        new String[]{".PNG", ".JPG", ".JPEG"})
+                ) {
+                    return source.mFile;
+                }
+            }
+            readBitmap = engineImpl.loadBitmapThrows(context, source, config);
+            // 创建随机名
+            String randomName  = String.format("%s_%s_%s_%s", UUID.randomUUID().hashCode(), System.currentTimeMillis(), index, count);
+            String md5FileName = MD5Utils.md5(randomName) + ".png";
+            // 存储到外部存储私有目录 ( /storage/emulated/0/Android/data/package/ )
+            String dirPath = PathUtils.getAppExternal().getAppCachePath("convertStorage");
+            // 创建文件夹
+            FileUtils.createFolder(dirPath);
+            File resultFile = new File(dirPath, md5FileName);
+            // 保存图片
+            boolean result = ImageUtils.saveBitmapToSDCard(
+                    readBitmap, resultFile, Bitmap.CompressFormat.PNG, 90
+            );
+            return result ? resultFile : null;
+        }
     }
 }
