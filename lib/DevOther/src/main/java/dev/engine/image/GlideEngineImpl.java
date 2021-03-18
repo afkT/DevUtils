@@ -1075,7 +1075,6 @@ public class GlideEngineImpl
         )
                 throws Exception {
             if (source == null) throw new Exception("source is null");
-            Bitmap readBitmap = null;
             // 属于文件, 判断是否符合指定格式
             if (source.isFile()) {
                 // 符合条件直接返回
@@ -1089,7 +1088,7 @@ public class GlideEngineImpl
                     }
                 }
             }
-            readBitmap = engineImpl.loadBitmapThrows(context, source, config);
+            Bitmap readBitmap = engineImpl.loadBitmapThrows(context, source, config);
             // 创建随机名 ( 一定程度上唯一, 防止出现重复情况 )
             String randomName = String.format("%s_%s_%s_%s_%s", task, UUID.randomUUID().hashCode(),
                     System.currentTimeMillis(), index, count);

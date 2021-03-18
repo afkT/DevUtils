@@ -15,7 +15,7 @@ public final class DevStorageEngine {
 
     /**
      * 获取 StorageEngine
-     * @param storageID 存储 id
+     * @param storageID 存储 Engine id
      * @return {@link IStorageEngine}
      */
     public static IStorageEngine getEngine(final String storageID) {
@@ -25,9 +25,17 @@ public final class DevStorageEngine {
     /**
      * 设置 StorageEngine
      * @param engine {@link IStorageEngine}
-     * @return {@link IStorageEngine}
      */
-    public static IStorageEngine setEngine(final IStorageEngine engine) {
-        return sEngineMaps.get(engine.getConfig().storageID);
+    public static void setEngine(final IStorageEngine engine) {
+        sEngineMaps.put(engine.getConfig().storageID, engine);
+    }
+
+    /**
+     * 判断是否存在 StorageEngine
+     * @param storageID 存储 Engine id
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean contains(final String storageID) {
+        return sEngineMaps.containsKey(storageID);
     }
 }
