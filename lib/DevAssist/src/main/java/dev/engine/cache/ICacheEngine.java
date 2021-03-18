@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.lang.reflect.Type;
+import java.util.List;
 
 import dev.utils.common.cipher.Cipher;
 
@@ -16,7 +17,7 @@ import dev.utils.common.cipher.Cipher;
  * detail: Cache Engine 接口
  * @author Ttt
  */
-public interface ICacheEngine<Config extends ICacheEngine.EngineConfig> {
+public interface ICacheEngine<Config extends ICacheEngine.EngineConfig, Item extends ICacheEngine.EngineItem> {
 
     /**
      * detail: Cache Config
@@ -25,9 +26,11 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig> {
     class EngineConfig {
 
         // 缓存存储 id
-        public final String cacheID;
+        public final String  cacheID;
         // 通用加解密中间层
-        public final Cipher cipher;
+        public final Cipher  cipher;
+        // 获取操作是否会移除失效资源
+        public       boolean removeDue;
 
         public EngineConfig(
                 String cacheID,
@@ -35,6 +38,56 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig> {
         ) {
             this.cacheID = cacheID;
             this.cipher = cipher;
+        }
+
+        public EngineConfig(
+                String cacheID,
+                Cipher cipher,
+                boolean removeDue
+        ) {
+            this.cacheID = cacheID;
+            this.cipher = cipher;
+            this.removeDue = removeDue;
+        }
+    }
+
+    /**
+     * detail: Cache Item
+     * @author Ttt
+     */
+    class EngineItem {
+
+        // 存储 Key
+        public final String  key;
+        // 存储类型
+        public final int     type;
+        // 文件大小
+        public final long    size;
+        // 保存时间 ( 毫秒 )
+        public final long    saveTime;
+        // 有效期 ( 毫秒 )
+        public final long    validTime;
+        // 最后操作时间
+        public final long    lastModified;
+        // 是否永久有效
+        public final boolean isPermanent;
+
+        public EngineItem(
+                String key,
+                int type,
+                long size,
+                long saveTime,
+                long validTime,
+                long lastModified,
+                boolean isPermanent
+        ) {
+            this.key = key;
+            this.type = type;
+            this.size = size;
+            this.saveTime = saveTime;
+            this.validTime = validTime;
+            this.lastModified = lastModified;
+            this.isPermanent = isPermanent;
         }
     }
 
@@ -94,6 +147,42 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig> {
      * @param type 类型
      */
     void clearType(int type);
+
+    /**
+     * 获取有效 Key 集合
+     * <pre>
+     *     {@link EngineConfig#removeDue} 控制移除失效资源
+     * </pre>
+     * @return 有效 Key 集合
+     */
+    List<Item> getKeys();
+
+    /**
+     * 获取永久有效 Key 集合
+     * <pre>
+     *     {@link EngineConfig#removeDue} 控制移除失效资源
+     * </pre>
+     * @return 永久有效 Key 集合
+     */
+    List<Item> getPermanentKeys();
+
+    /**
+     * 获取有效 Key 数量
+     * <pre>
+     *     {@link EngineConfig#removeDue} 控制移除失效资源
+     * </pre>
+     * @return 有效 Key 数量
+     */
+    int getCount();
+
+    /**
+     * 获取有效 Key 占用总大小
+     * <pre>
+     *     {@link EngineConfig#removeDue} 控制移除失效资源
+     * </pre>
+     * @return 有效 Key 占用总大小
+     */
+    long getSize();
 
     // =======
     // = 存储 =
@@ -329,6 +418,55 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig> {
     String getString(String key);
 
     /**
+     * 获取 byte[] 类型的数据
+     * @param key 保存的 key
+     * @return 存储的数据
+     */
+    byte[] getBytes(String key);
+
+    /**
+     * 获取 Bitmap 类型的数据
+     * @param key 保存的 key
+     * @return 存储的数据
+     */
+    Bitmap getBitmap(String key);
+
+    /**
+     * 获取 Drawable 类型的数据
+     * @param key 保存的 key
+     * @return 存储的数据
+     */
+    Drawable getDrawable(String key);
+
+    /**
+     * 获取 Serializable 类型的数据
+     * @param key 保存的 key
+     * @return 存储的数据
+     */
+    Serializable getSerializable(String key);
+
+    /**
+     * 获取 Parcelable 类型的数据
+     * @param key 保存的 key
+     * @return 存储的数据
+     */
+    Parcelable getParcelable(String key);
+
+    /**
+     * 获取 JSONObject 类型的数据
+     * @param key 保存的 key
+     * @return 存储的数据
+     */
+    JSONObject getJSONObject(String key);
+
+    /**
+     * 获取 JSONArray 类型的数据
+     * @param key 保存的 key
+     * @return 存储的数据
+     */
+    JSONArray getJSONArray(String key);
+
+    /**
      * 获取指定类型对象
      * @param key     保存的 key
      * @param typeOfT {@link Type} T
@@ -406,6 +544,83 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig> {
     String getString(
             String key,
             String defaultValue
+    );
+
+    /**
+     * 获取 byte[] 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    byte[] getBytes(
+            String key,
+            byte[] defaultValue
+    );
+
+    /**
+     * 获取 Bitmap 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    Bitmap getBitmap(
+            String key,
+            Bitmap defaultValue
+    );
+
+    /**
+     * 获取 Drawable 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    Drawable getDrawable(
+            String key,
+            Drawable defaultValue
+    );
+
+    /**
+     * 获取 Serializable 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    Serializable getSerializable(
+            String key,
+            Serializable defaultValue
+    );
+
+    /**
+     * 获取 Parcelable 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    Parcelable getParcelable(
+            String key,
+            Parcelable defaultValue
+    );
+
+    /**
+     * 获取 JSONObject 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    JSONObject getJSONObject(
+            String key,
+            JSONObject defaultValue
+    );
+
+    /**
+     * 获取 JSONArray 类型的数据
+     * @param key          保存的 key
+     * @param defaultValue 默认值
+     * @return 存储的数据
+     */
+    JSONArray getJSONArray(
+            String key,
+            JSONArray defaultValue
     );
 
     /**
