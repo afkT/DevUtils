@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.3.0 *(2021-03-21)*
+----------------------------
+
+* `[Add]` ColorUtils#blendColor、transitionColor
+
 Version 1.2.9 *(2021-03-02)*
 ----------------------------
 
