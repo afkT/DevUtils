@@ -1165,4 +1165,106 @@ public final class ColorUtils {
             }
         });
     }
+
+    // ===========
+    // = 混合颜色 =
+    // ===========
+
+    /**
+     * 使用给定的比例在两种 ARGB 颜色之间进行混合
+     * @param color1 第一种 ARGB 颜色
+     * @param color2 第二种 ARGB 颜色
+     * @param ratio  两种颜色混合比例
+     * @return 混合后的颜色
+     */
+    public static int blendColor(
+            final String color1,
+            final String color2,
+            final float ratio
+    ) {
+        return blendColor(parseColor(color1), parseColor(color2), ratio);
+    }
+
+    /**
+     * 使用给定的比例在两种 ARGB 颜色之间进行混合
+     * <pre>
+     *     android.support.v4.graphics.ColorUtils#blendARGB
+     *     混合比:
+     *     0.0 将产生 color1
+     *     0.5 将产生均匀的混合
+     *     1.0 将产生 color2
+     * </pre>
+     * @param color1 第一种 ARGB 颜色
+     * @param color2 第二种 ARGB 颜色
+     * @param ratio  两种颜色混合比例
+     * @return 混合后的颜色
+     */
+    public static int blendColor(
+            final int color1,
+            final int color2,
+            final float ratio
+    ) {
+        if (color1 == -1 || color2 == -1) return -1;
+        int[] color1Argb = getARGB(color1);
+        int[] color2Argb = getARGB(color2);
+
+        final float inverseRatio = 1 - ratio;
+        float       a            = color1Argb[0] * inverseRatio + color2Argb[0] * ratio;
+        float       r            = color1Argb[1] * inverseRatio + color2Argb[1] * ratio;
+        float       g            = color1Argb[2] * inverseRatio + color2Argb[2] * ratio;
+        float       b            = color1Argb[3] * inverseRatio + color2Argb[3] * ratio;
+        return argb((int) a, (int) r, (int) g, (int) b);
+    }
+
+    // ===========
+    // = 颜色过渡 =
+    // ===========
+
+    /**
+     * 计算从 startColor 过渡到 endColor 过程中百分比为 ratio 时的颜色值
+     * @param startColor 开始颜色值
+     * @param endColor   结束颜色值
+     * @param ratio      过渡百分比
+     * @return 计算后颜色值
+     */
+    public static int transitionColor(
+            final String startColor,
+            final String endColor,
+            final float ratio
+    ) {
+        return transitionColor(parseColor(startColor), parseColor(endColor), ratio);
+    }
+
+    /**
+     * 计算从 startColor 过渡到 endColor 过程中百分比为 ratio 时的颜色值
+     * @param startColor 开始颜色值
+     * @param endColor   结束颜色值
+     * @param ratio      过渡百分比
+     * @return 计算后颜色值
+     */
+    public static int transitionColor(
+            final int startColor,
+            final int endColor,
+            final float ratio
+    ) {
+        if (startColor == -1 || endColor == -1) return -1;
+        int[] startArgb = getARGB(startColor);
+        int[] endArgb   = getARGB(endColor);
+
+        int startAlpha = startArgb[0];
+        int startRed   = startArgb[1];
+        int startGreen = startArgb[2];
+        int startBlue  = startArgb[3];
+
+        int endAlpha = endArgb[0];
+        int endRed   = endArgb[1];
+        int endGreen = endArgb[2];
+        int endBlue  = endArgb[3];
+
+        float a = (endAlpha - startAlpha) * ratio + startAlpha;
+        float r = (endRed - startRed) * ratio + startRed;
+        float g = (endGreen - startGreen) * ratio + startGreen;
+        float b = (endBlue - startBlue) * ratio + startBlue;
+        return argb((int) a, (int) r, (int) g, (int) b);
+    }
 }

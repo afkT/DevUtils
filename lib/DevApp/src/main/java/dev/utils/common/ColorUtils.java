@@ -1178,9 +1178,9 @@ public final class ColorUtils {
      * @return 混合后的颜色
      */
     public static int blendColor(
-            String color1,
-            String color2,
-            float ratio
+            final String color1,
+            final String color2,
+            final float ratio
     ) {
         return blendColor(parseColor(color1), parseColor(color2), ratio);
     }
@@ -1200,9 +1200,9 @@ public final class ColorUtils {
      * @return 混合后的颜色
      */
     public static int blendColor(
-            int color1,
-            int color2,
-            float ratio
+            final int color1,
+            final int color2,
+            final float ratio
     ) {
         if (color1 == -1 || color2 == -1) return -1;
         int[] color1Argb = getARGB(color1);
@@ -1228,9 +1228,9 @@ public final class ColorUtils {
      * @return 计算后颜色值
      */
     public static int transitionColor(
-            String startColor,
-            String endColor,
-            float ratio
+            final String startColor,
+            final String endColor,
+            final float ratio
     ) {
         return transitionColor(parseColor(startColor), parseColor(endColor), ratio);
     }
@@ -1243,9 +1243,9 @@ public final class ColorUtils {
      * @return 计算后颜色值
      */
     public static int transitionColor(
-            int startColor,
-            int endColor,
-            float ratio
+            final int startColor,
+            final int endColor,
+            final float ratio
     ) {
         if (startColor == -1 || endColor == -1) return -1;
         int[] startArgb = getARGB(startColor);
