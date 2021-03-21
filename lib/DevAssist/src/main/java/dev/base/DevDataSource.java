@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import dev.base.data.DataManager;
-import dev.utils.JCLogUtils;
+import dev.utils.LogPrintUtils;
 import dev.utils.common.ObjectUtils;
 
 /**
@@ -79,7 +79,7 @@ public class DevDataSource<T>
         try {
             return mList.get(position);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getDataItem");
+            LogPrintUtils.eTag(TAG, e, "getDataItem");
         }
         return null;
     }
@@ -94,7 +94,7 @@ public class DevDataSource<T>
         try {
             return mList.indexOf(value);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getDataItemPosition");
+            LogPrintUtils.eTag(TAG, e, "getDataItemPosition");
         }
         return -1;
     }
@@ -232,7 +232,7 @@ public class DevDataSource<T>
             mList.add(value);
             return true;
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "addData");
+            LogPrintUtils.eTag(TAG, e, "addData");
         }
         return false;
     }
@@ -253,7 +253,7 @@ public class DevDataSource<T>
             mList.add(position, value);
             return true;
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "addDataAt");
+            LogPrintUtils.eTag(TAG, e, "addDataAt");
         }
         return false;
     }
@@ -270,7 +270,7 @@ public class DevDataSource<T>
             mList.addAll(collection);
             return true;
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "addDatas");
+            LogPrintUtils.eTag(TAG, e, "addDatas");
         }
         return false;
     }
@@ -292,7 +292,7 @@ public class DevDataSource<T>
             mList.addAll(position, collection);
             return true;
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "addDatasAt");
+            LogPrintUtils.eTag(TAG, e, "addDatasAt");
         }
         return false;
     }
@@ -315,7 +315,7 @@ public class DevDataSource<T>
             mList.addAll(lists);
             return true;
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "addDatasChecked");
+            LogPrintUtils.eTag(TAG, e, "addDatasChecked");
         }
         return false;
     }
@@ -343,7 +343,7 @@ public class DevDataSource<T>
             mList.addAll(position, lists);
             return true;
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "addDatasCheckedAt");
+            LogPrintUtils.eTag(TAG, e, "addDatasCheckedAt");
         }
         return false;
     }
@@ -362,7 +362,7 @@ public class DevDataSource<T>
         try {
             return mList.remove(value);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "removeData");
+            LogPrintUtils.eTag(TAG, e, "removeData");
         }
         return false;
     }
@@ -378,7 +378,7 @@ public class DevDataSource<T>
         try {
             return mList.remove(position);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "removeDataAt");
+            LogPrintUtils.eTag(TAG, e, "removeDataAt");
         }
         return null;
     }
@@ -395,7 +395,7 @@ public class DevDataSource<T>
             mList.removeAll(collection);
             return true;
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "removeDatas");
+            LogPrintUtils.eTag(TAG, e, "removeDatas");
         }
         return false;
     }
@@ -437,7 +437,7 @@ public class DevDataSource<T>
             mList.set(position, value);
             return true;
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "replaceDataAt");
+            LogPrintUtils.eTag(TAG, e, "replaceDataAt");
         }
         return false;
     }
@@ -460,7 +460,7 @@ public class DevDataSource<T>
                 Collections.swap(mList, fromPosition, toPosition);
                 return true;
             } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "swipePosition");
+                LogPrintUtils.eTag(TAG, e, "swipePosition");
             }
         }
         return false;
@@ -477,7 +477,7 @@ public class DevDataSource<T>
         try {
             return mList.contains(value);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "contains");
+            LogPrintUtils.eTag(TAG, e, "contains");
         }
         return false;
     }
