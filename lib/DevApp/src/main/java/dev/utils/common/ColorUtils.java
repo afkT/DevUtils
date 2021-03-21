@@ -479,7 +479,7 @@ public final class ColorUtils {
                 JCLogUtils.eTag(TAG, e, "parseColor");
             }
         }
-        return -1;
+        return Integer.MAX_VALUE;
     }
 
     /**
@@ -596,7 +596,6 @@ public final class ColorUtils {
             final int darkValue
     ) {
         int color = parseColor(colorStr);
-        if (color == -1) return -1;
         return setDark(color, darkValue);
     }
 
@@ -637,7 +636,6 @@ public final class ColorUtils {
             final int lightValue
     ) {
         int color = parseColor(colorStr);
-        if (color == -1) return -1;
         return setLight(color, lightValue);
     }
 
@@ -678,7 +676,6 @@ public final class ColorUtils {
             final int darkValue
     ) {
         int color = parseColor(colorStr);
-        if (color == -1) return -1;
         return setAlphaDark(color, darkValue);
     }
 
@@ -710,7 +707,6 @@ public final class ColorUtils {
             final int lightValue
     ) {
         int color = parseColor(colorStr);
-        if (color == -1) return -1;
         return setAlphaLight(color, lightValue);
     }
 
@@ -739,9 +735,8 @@ public final class ColorUtils {
      * @return 灰度值
      */
     public static int grayLevel(final String colorStr) {
-        int color = parseColor(colorStr);
-        if (color == -1) return -1;
-        int[] argb = getARGB(color);
+        int   color = parseColor(colorStr);
+        int[] argb  = getARGB(color);
         return (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114f);
     }
 
@@ -989,8 +984,6 @@ public final class ColorUtils {
             if (temp == null) return;
             // 转换 long 颜色值
             valueColor = ColorUtils.parseColor(temp);
-            // 解析失败则不处理
-            if (valueColor == -1) return;
 
             int[] argb = ColorUtils.getARGB((int) valueColor);
             // 获取 ARGB
@@ -1204,7 +1197,6 @@ public final class ColorUtils {
             final int color2,
             final float ratio
     ) {
-        if (color1 == -1 || color2 == -1) return -1;
         int[] color1Argb = getARGB(color1);
         int[] color2Argb = getARGB(color2);
 
@@ -1247,7 +1239,6 @@ public final class ColorUtils {
             final int endColor,
             final float ratio
     ) {
-        if (startColor == -1 || endColor == -1) return -1;
         int[] startArgb = getARGB(startColor);
         int[] endArgb   = getARGB(endColor);
 
