@@ -1,4 +1,4 @@
-package dev.utils.app.cache;
+package dev.other.cache;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,13 +18,14 @@ import dev.utils.common.CloseUtils;
  * @author 杨福海 (michael) www.yangfuhai.com
  * @author Ttt
  */
-final class DevCacheUtils {
+@Deprecated
+final class ACacheUtils {
 
-    private DevCacheUtils() {
+    private ACacheUtils() {
     }
 
     // 日志 TAG
-    private static final String TAG = DevCacheUtils.class.getSimpleName();
+    private static final String TAG = ACacheUtils.class.getSimpleName();
 
     // 空格
     private static final char mSeparator = ' ';

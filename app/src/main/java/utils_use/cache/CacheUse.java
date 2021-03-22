@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 import dev.engine.log.DevLogEngine;
 import dev.utils.app.PathUtils;
-import dev.utils.app.cache.DevCache;
+import dev.other.cache.ACache;
 
 /**
  * detail: 缓存使用方法
@@ -28,16 +28,16 @@ public final class CacheUse {
         // 打印信息
         DevLogEngine.getEngine().dTag(TAG, "保存前: %s", cacheVo.toString());
         // 保存数据
-        DevCache.newCache().put("ctv", cacheVo);
+        ACache.newCache().put("ctv", cacheVo);
         // 重新获取
-        CacheVo ctv = (CacheVo) DevCache.newCache().getAsObject("ctv");
+        CacheVo ctv = (CacheVo) ACache.newCache().getAsObject("ctv");
         // 打印获取后的数据
         DevLogEngine.getEngine().dTag(TAG, "保存后: %s", ctv.toString());
         // 设置保存有效时间 5秒
-        DevCache.newCache().put("ctva", new CacheVo("测试有效时间"), 1);
+        ACache.newCache().put("ctva", new CacheVo("测试有效时间"), 1);
 
         // 保存到指定文件夹下
-        DevCache.newCache(new File(PathUtils.getSDCard().getSDCardPath(), "Cache")).put("key", "保存数据");
+        ACache.newCache(new File(PathUtils.getSDCard().getSDCardPath(), "Cache")).put("key", "保存数据");
 
         // 延迟后
         new Thread(new Runnable() {
@@ -47,7 +47,7 @@ public final class CacheUse {
                     // 延迟 1.5 已经过期再去获取
                     Thread.sleep(1500);
                     // 获取数据
-                    CacheVo ctva = (CacheVo) DevCache.newCache().getAsObject("ctva");
+                    CacheVo ctva = (CacheVo) ACache.newCache().getAsObject("ctva");
                     // 判断是否过期
                     DevLogEngine.getEngine().dTag(TAG, "是否过期: %s", (ctva == null));
                 } catch (Exception e) {

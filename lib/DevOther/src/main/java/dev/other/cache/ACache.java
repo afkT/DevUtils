@@ -1,4 +1,4 @@
-package dev.utils.app.cache;
+package dev.other.cache;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -35,56 +35,62 @@ import dev.utils.common.FileUtils;
  * detail: 缓存工具类
  * @author 杨福海 (michael) www.yangfuhai.com
  * @author Ttt
+ * <pre>
+ *     该缓存工具类基于 ASimpleCache 修改, 属于原 DevApp DevCache 模块,
+ *     为符合 {@link dev.engine.cache.DevCacheEngine} 扩展, 现已重写
+ *     如需使用旧的缓存代码, copy 该包代码, 全局替换 DevCache 为 ACache
+ * </pre>
  */
-public final class DevCache {
+@Deprecated
+public final class ACache {
 
-    private DevCache() {
+    private ACache() {
     }
 
     // 日志 TAG
-    private static final String TAG = DevCache.class.getSimpleName();
+    private static final String TAG = ACache.class.getSimpleName();
 
     // 缓存文件名
-    private static final String DEF_FILE_NAME = DevCache.class.getSimpleName();
+    private static final String DEF_FILE_NAME = ACache.class.getSimpleName();
 
     // 过期小时 ( 单位秒 ) = 1 小时
-    public static final  int                   TIME_HOUR     = 60 * 60;
+    public static final  int                 TIME_HOUR     = 60 * 60;
     // 一天 24 小时
-    public static final  int                   TIME_DAY      = TIME_HOUR * 24;
+    public static final  int                 TIME_DAY      = TIME_HOUR * 24;
     // 缓存最大值 50 MB
-    public static final  int                   MAX_SIZE      = 1000 * 1000 * 50;
+    public static final  int                 MAX_SIZE      = 1000 * 1000 * 50;
     // 不限制存放数据的数量
-    public static final  int                   MAX_COUNT     = Integer.MAX_VALUE;
+    public static final  int                 MAX_COUNT     = Integer.MAX_VALUE;
     // 不同地址配置缓存对象
-    private static final Map<String, DevCache> sInstanceMaps = new HashMap<>();
+    private static final Map<String, ACache> sInstanceMaps = new HashMap<>();
     // 缓存管理类
-    private              DevCacheManager       mCache;
+    private              ACacheManager       mCache;
     // 缓存地址
-    private static       String                sCachePath    = null;
+    private static       String              sCachePath    = null;
 
     /**
      * 获取 DevCache ( 默认缓存文件名 )
-     * @return {@link DevCache}
+     * @return {@link ACache}
      */
-    public static DevCache newCache() {
+    public static ACache newCache() {
         return newCache(DEF_FILE_NAME);
     }
 
     /**
      * 获取 DevCache ( 自定义缓存文件名 )
      * @param cacheName 缓存文件名
-     * @return {@link DevCache}
+     * @return {@link ACache}
      */
-    public static DevCache newCache(final String cacheName) {
+    public static ACache newCache(final String cacheName) {
         return newCache(FileUtils.getFile(getCachePath(), cacheName), MAX_SIZE, MAX_COUNT);
     }
 
     /**
      * 获取 DevCache ( 自定义缓存文件地址 )
      * @param cacheDir 缓存文件地址
-     * @return {@link DevCache}
+     * @return {@link ACache}
      */
-    public static DevCache newCache(final File cacheDir) {
+    public static ACache newCache(final File cacheDir) {
         return newCache(cacheDir, MAX_SIZE, MAX_COUNT);
     }
 
@@ -92,9 +98,9 @@ public final class DevCache {
      * 获取 DevCache ( 自定义缓存大小 )
      * @param maxSize  文件最大大小
      * @param maxCount 最大存储数量
-     * @return {@link DevCache}
+     * @return {@link ACache}
      */
-    public static DevCache newCache(
+    public static ACache newCache(
             final long maxSize,
             final int maxCount
     ) {
@@ -106,19 +112,19 @@ public final class DevCache {
      * @param cacheDir 缓存文件地址
      * @param maxSize  文件最大大小
      * @param maxCount 最大存储数量
-     * @return {@link DevCache}
+     * @return {@link ACache}
      */
-    public static DevCache newCache(
+    public static ACache newCache(
             final File cacheDir,
             final long maxSize,
             final int maxCount
     ) {
         if (cacheDir == null) return null;
         // 判断是否存在缓存信息
-        DevCache manager = sInstanceMaps.get(cacheDir.getAbsoluteFile() + myPid());
+        ACache manager = sInstanceMaps.get(cacheDir.getAbsoluteFile() + myPid());
         if (manager == null) {
             // 初始化新的缓存信息, 并且保存
-            manager = new DevCache(cacheDir, maxSize, maxCount);
+            manager = new ACache(cacheDir, maxSize, maxCount);
             sInstanceMaps.put(cacheDir.getAbsolutePath() + myPid(), manager);
         }
         return manager;
@@ -139,9 +145,9 @@ public final class DevCache {
      * @param cacheDir 缓存文件地址
      * @param maxSize  文件最大大小
      * @param maxCount 最大存储数量
-     * @return {@link DevCache} 缓存工具类对象
+     * @return {@link ACache} 缓存工具类对象
      */
-    private DevCache(
+    private ACache(
             final File cacheDir,
             final long maxSize,
             final int maxCount
@@ -155,7 +161,7 @@ public final class DevCache {
         if (e != null) {
             LogPrintUtils.eTag(TAG, e, "private DevCache()");
         }
-        mCache = new DevCacheManager(cacheDir, maxSize, maxCount);
+        mCache = new ACacheManager(cacheDir, maxSize, maxCount);
     }
 
     /**
@@ -224,7 +230,7 @@ public final class DevCache {
             final int saveTime
     ) {
         if (key != null && value != null) {
-            return put(key, DevCacheUtils.newStringWithDateInfo(saveTime, value));
+            return put(key, ACacheUtils.newStringWithDateInfo(saveTime, value));
         }
         return false;
     }
@@ -253,8 +259,8 @@ public final class DevCache {
             }
             // 读取内容
             String readString = builder.toString();
-            if (!DevCacheUtils.isDue(readString)) {
-                return DevCacheUtils.clearDateInfo(readString);
+            if (!ACacheUtils.isDue(readString)) {
+                return ACacheUtils.clearDateInfo(readString);
             } else {
                 LogPrintUtils.dTag(TAG, "getAsString key: %s file has expired", key);
                 removeFile = true;
@@ -469,7 +475,7 @@ public final class DevCache {
             final byte[] data,
             final int saveTime
     ) {
-        return put(key, DevCacheUtils.newByteArrayWithDateInfo(saveTime, data));
+        return put(key, ACacheUtils.newByteArrayWithDateInfo(saveTime, data));
     }
 
     /**
@@ -488,8 +494,8 @@ public final class DevCache {
             raFile = new RandomAccessFile(file, "r");
             byte[] byteArray = new byte[(int) raFile.length()];
             raFile.read(byteArray);
-            if (!DevCacheUtils.isDue(byteArray)) {
-                return DevCacheUtils.clearDateInfo(byteArray);
+            if (!ACacheUtils.isDue(byteArray)) {
+                return ACacheUtils.clearDateInfo(byteArray);
             } else {
                 LogPrintUtils.dTag(TAG, "getAsBinary - key: %s file has expired", key);
                 removeFile = true;
@@ -591,7 +597,7 @@ public final class DevCache {
             final String key,
             final Bitmap value
     ) {
-        return put(key, DevCacheUtils.bitmapToByte(value));
+        return put(key, ACacheUtils.bitmapToByte(value));
     }
 
     /**
@@ -606,7 +612,7 @@ public final class DevCache {
             final Bitmap value,
             final int saveTime
     ) {
-        return put(key, DevCacheUtils.bitmapToByte(value), saveTime);
+        return put(key, ACacheUtils.bitmapToByte(value), saveTime);
     }
 
     /**
@@ -617,7 +623,7 @@ public final class DevCache {
     public Bitmap getAsBitmap(final String key) {
         byte[] data = getAsBinary(key);
         if (data == null) return null;
-        return DevCacheUtils.byteToBitmap(data);
+        return ACacheUtils.byteToBitmap(data);
     }
 
     // =====================
@@ -634,7 +640,7 @@ public final class DevCache {
             final String key,
             final Drawable value
     ) {
-        return put(key, DevCacheUtils.drawableToBitmap(value));
+        return put(key, ACacheUtils.drawableToBitmap(value));
     }
 
     /**
@@ -649,7 +655,7 @@ public final class DevCache {
             final Drawable value,
             final int saveTime
     ) {
-        return put(key, DevCacheUtils.drawableToBitmap(value), saveTime);
+        return put(key, ACacheUtils.drawableToBitmap(value), saveTime);
     }
 
     /**
@@ -660,7 +666,7 @@ public final class DevCache {
     public Drawable getAsDrawable(final String key) {
         byte[] data = getAsBinary(key);
         if (data == null) return null;
-        return DevCacheUtils.bitmapToDrawable(DevCacheUtils.byteToBitmap(data));
+        return ACacheUtils.bitmapToDrawable(ACacheUtils.byteToBitmap(data));
     }
 
     /**

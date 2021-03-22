@@ -1,4 +1,4 @@
-package dev.utils.app.cache;
+package dev.other.cache;
 
 import java.io.File;
 import java.util.Collections;
@@ -13,7 +13,8 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author 杨福海 (michael) www.yangfuhai.com
  * @author Ttt
  */
-final class DevCacheManager {
+@Deprecated
+final class ACacheManager {
 
     // 总缓存大小
     private final AtomicLong      mCacheSize;
@@ -34,7 +35,7 @@ final class DevCacheManager {
      * @param sizeLimit  文件大小限制
      * @param countLimit 文件总数限制
      */
-    protected DevCacheManager(
+    protected ACacheManager(
             final File cacheDir,
             final long sizeLimit,
             final int countLimit
