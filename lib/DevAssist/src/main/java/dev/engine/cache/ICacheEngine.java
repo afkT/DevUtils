@@ -67,7 +67,7 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig, Item ext
         public final long    saveTime;
         // 有效期 ( 毫秒 )
         public final long    validTime;
-        // 最后操作时间
+        // 最后操作时间 ( 毫秒 )
         public final long    lastModified;
         // 是否永久有效
         public final boolean isPermanent;
