@@ -1,5 +1,15 @@
 package dev.utils.app.cache;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.os.Parcelable;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.Serializable;
+import java.lang.reflect.Type;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -71,6 +81,22 @@ public final class DevCache {
         ) {
             this.mPath = path;
             this.mKey = key;
+        }
+
+        protected Data(
+                String path,
+                String key,
+                int type,
+                long saveTime,
+                long validTime,
+                long lastModified
+        ) {
+            this.mPath = path;
+            this.mKey = key;
+            this.mType = type;
+            this.mSaveTime = saveTime;
+            this.mValidTime = validTime;
+            this.mLastModified = lastModified;
         }
 
         /**
@@ -167,4 +193,322 @@ public final class DevCache {
     // ===========
     // = 内部方法 =
     // ===========
+
+    public void remove(String key) {
+
+    }
+
+    public void removeForKeys(String[] keys) {
+
+    }
+
+    public boolean contains(String key) {
+        return false;
+    }
+
+    public boolean isDue(String key) {
+        return false;
+    }
+
+    public void clear() {
+
+    }
+
+    public void clearDue() {
+
+    }
+
+    public void clearInvalid() {
+
+    }
+
+    public void clearType(int type) {
+
+    }
+
+    public List<Data> getKeys() {
+        return null;
+    }
+
+    public List<Data> getPermanentKeys() {
+        return null;
+    }
+
+    public int getCount() {
+        return 0;
+    }
+
+    public long getSize() {
+        return 0;
+    }
+
+    public boolean put(
+            String key,
+            int value,
+            long validTime
+    ) {
+        return false;
+    }
+
+    public boolean put(
+            String key,
+            long value,
+            long validTime
+    ) {
+        return false;
+    }
+
+    public boolean put(
+            String key,
+            float value,
+            long validTime
+    ) {
+        return false;
+    }
+
+    public boolean put(
+            String key,
+            double value,
+            long validTime
+    ) {
+        return false;
+    }
+
+    public boolean put(
+            String key,
+            boolean value,
+            long validTime
+    ) {
+        return false;
+    }
+
+    public boolean put(
+            String key,
+            String value,
+            long validTime
+    ) {
+        return false;
+    }
+
+    public boolean put(
+            String key,
+            byte[] value,
+            long validTime
+    ) {
+        return false;
+    }
+
+    public boolean put(
+            String key,
+            Bitmap value,
+            long validTime
+    ) {
+        return false;
+    }
+
+    public boolean put(
+            String key,
+            Drawable value,
+            long validTime
+    ) {
+        return false;
+    }
+
+    public boolean put(
+            String key,
+            Serializable value,
+            long validTime
+    ) {
+        return false;
+    }
+
+    public boolean put(
+            String key,
+            Parcelable value,
+            long validTime
+    ) {
+        return false;
+    }
+
+    public boolean put(
+            String key,
+            JSONObject value,
+            long validTime
+    ) {
+        return false;
+    }
+
+    public boolean put(
+            String key,
+            JSONArray value,
+            long validTime
+    ) {
+        return false;
+    }
+
+    public <T> boolean put(
+            String key,
+            T value,
+            long validTime
+    ) {
+        return false;
+    }
+
+    public int getInt(String key) {
+        return 0;
+    }
+
+    public long getLong(String key) {
+        return 0;
+    }
+
+    public float getFloat(String key) {
+        return 0;
+    }
+
+    public double getDouble(String key) {
+        return 0;
+    }
+
+    public boolean getBoolean(String key) {
+        return false;
+    }
+
+    public String getString(String key) {
+        return null;
+    }
+
+    public byte[] getBytes(String key) {
+        return new byte[0];
+    }
+
+    public Bitmap getBitmap(String key) {
+        return null;
+    }
+
+    public Drawable getDrawable(String key) {
+        return null;
+    }
+
+    public Serializable getSerializable(String key) {
+        return null;
+    }
+
+    public Parcelable getParcelable(String key) {
+        return null;
+    }
+
+    public JSONObject getJSONObject(String key) {
+        return null;
+    }
+
+    public JSONArray getJSONArray(String key) {
+        return null;
+    }
+
+    public <T> T getEntity(
+            String key,
+            Type typeOfT
+    ) {
+        return null;
+    }
+
+    public int getInt(
+            String key,
+            int defaultValue
+    ) {
+        return 0;
+    }
+
+    public long getLong(
+            String key,
+            long defaultValue
+    ) {
+        return 0;
+    }
+
+    public float getFloat(
+            String key,
+            float defaultValue
+    ) {
+        return 0;
+    }
+
+    public double getDouble(
+            String key,
+            double defaultValue
+    ) {
+        return 0;
+    }
+
+    public boolean getBoolean(
+            String key,
+            boolean defaultValue
+    ) {
+        return false;
+    }
+
+    public String getString(
+            String key,
+            String defaultValue
+    ) {
+        return null;
+    }
+
+    public byte[] getBytes(
+            String key,
+            byte[] defaultValue
+    ) {
+        return new byte[0];
+    }
+
+    public Bitmap getBitmap(
+            String key,
+            Bitmap defaultValue
+    ) {
+        return null;
+    }
+
+    public Drawable getDrawable(
+            String key,
+            Drawable defaultValue
+    ) {
+        return null;
+    }
+
+    public Serializable getSerializable(
+            String key,
+            Serializable defaultValue
+    ) {
+        return null;
+    }
+
+    public Parcelable getParcelable(
+            String key,
+            Parcelable defaultValue
+    ) {
+        return null;
+    }
+
+    public JSONObject getJSONObject(
+            String key,
+            JSONObject defaultValue
+    ) {
+        return null;
+    }
+
+    public JSONArray getJSONArray(
+            String key,
+            JSONArray defaultValue
+    ) {
+        return null;
+    }
+
+    public <T> T getEntity(
+            String key,
+            Type typeOfT,
+            T defaultValue
+    ) {
+        return null;
+    }
 }

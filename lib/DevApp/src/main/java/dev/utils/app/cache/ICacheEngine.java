@@ -1,4 +1,4 @@
-package dev.engine.cache;
+package dev.utils.app.cache;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -11,97 +11,15 @@ import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import dev.utils.common.cipher.Cipher;
-
 /**
  * detail: Cache Engine 接口
  * @author Ttt
  */
-public interface ICacheEngine<Config extends ICacheEngine.EngineConfig, Item extends ICacheEngine.EngineItem> {
-
-    /**
-     * detail: Cache Config
-     * @author Ttt
-     */
-    class EngineConfig {
-
-        // 缓存存储 id
-        public final String  cacheID;
-        // 通用加解密中间层
-        public final Cipher  cipher;
-        // 获取操作是否会移除失效资源
-        public       boolean removeDue;
-
-        public EngineConfig(
-                String cacheID,
-                Cipher cipher
-        ) {
-            this.cacheID = cacheID;
-            this.cipher = cipher;
-        }
-
-        public EngineConfig(
-                String cacheID,
-                Cipher cipher,
-                boolean removeDue
-        ) {
-            this.cacheID = cacheID;
-            this.cipher = cipher;
-            this.removeDue = removeDue;
-        }
-    }
-
-    /**
-     * detail: Cache Item
-     * @author Ttt
-     */
-    class EngineItem {
-
-        // 存储 Key
-        public final String  key;
-        // 存储类型
-        public final int     type;
-        // 文件大小
-        public final long    size;
-        // 保存时间 ( 毫秒 )
-        public final long    saveTime;
-        // 有效期 ( 毫秒 )
-        public final long    validTime;
-        // 最后操作时间 ( 毫秒 )
-        public final long    lastModified;
-        // 是否永久有效
-        public final boolean isPermanent;
-
-        public EngineItem(
-                String key,
-                int type,
-                long size,
-                long saveTime,
-                long validTime,
-                long lastModified,
-                boolean isPermanent
-        ) {
-            this.key = key;
-            this.type = type;
-            this.size = size;
-            this.saveTime = saveTime;
-            this.validTime = validTime;
-            this.lastModified = lastModified;
-            this.isPermanent = isPermanent;
-        }
-    }
+public interface ICacheEngine {
 
     // ===============
     // = 对外公开方法 =
     // ===============
-
-    /**
-     * 获取 Cache Engine Config
-     * @return {@link Config}
-     */
-    Config getConfig();
-
-    // =
 
     /**
      * 移除数据
@@ -155,36 +73,24 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig, Item ext
 
     /**
      * 获取有效 Key 集合
-     * <pre>
-     *     {@link EngineConfig#removeDue} 控制移除失效资源
-     * </pre>
      * @return 有效 Key 集合
      */
-    List<Item> getKeys();
+    List<DevCache.Data> getKeys();
 
     /**
      * 获取永久有效 Key 集合
-     * <pre>
-     *     {@link EngineConfig#removeDue} 控制移除失效资源
-     * </pre>
      * @return 永久有效 Key 集合
      */
-    List<Item> getPermanentKeys();
+    List<DevCache.Data> getPermanentKeys();
 
     /**
      * 获取有效 Key 数量
-     * <pre>
-     *     {@link EngineConfig#removeDue} 控制移除失效资源
-     * </pre>
      * @return 有效 Key 数量
      */
     int getCount();
 
     /**
      * 获取有效 Key 占用总大小
-     * <pre>
-     *     {@link EngineConfig#removeDue} 控制移除失效资源
-     * </pre>
      * @return 有效 Key 占用总大小
      */
     long getSize();
