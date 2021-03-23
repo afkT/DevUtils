@@ -185,6 +185,36 @@ public class DataAssist<T>
     }
 
     /**
+     * 判断是否 Last Position 且大于等于指定 size
+     * @param position 索引
+     * @param value    待判断 size
+     * @return {@code true} yes, {@code false} no
+     */
+    @Override
+    public boolean isLastPositionAndGreaterThanOrEqual(
+            int position,
+            int value
+    ) {
+        return mData.isLastPositionAndGreaterThanOrEqual(position, value);
+    }
+
+    /**
+     * 判断是否 Last Position 且大于等于指定 size
+     * @param position 索引
+     * @param value    待判断 size
+     * @param size     总数
+     * @return {@code true} yes, {@code false} no
+     */
+    @Override
+    public boolean isLastPositionAndGreaterThanOrEqual(
+            int position,
+            int value,
+            int size
+    ) {
+        return mData.isLastPositionAndGreaterThanOrEqual(position, value, size);
+    }
+
+    /**
      * 判断 First Value 是否一致
      * @param value 待校验 Value
      * @return {@code true} yes, {@code false} no
@@ -312,6 +342,24 @@ public class DataAssist<T>
             Collection<T> collection
     ) {
         if (mData.addDatasCheckedAt(position, collection)) {
+            notifyDataChanged();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 添加数据集 ( 判断是追加还是重置 )
+     * @param append     {@code true} {@link #addDatas} {@code false} {@link #setDataList}
+     * @param collection {@link Collection}
+     * @return {@code true} success, {@code false} fail
+     */
+    @Override
+    public boolean addLists(
+            boolean append,
+            Collection<T> collection
+    ) {
+        if (mData.addLists(append, collection)) {
             notifyDataChanged();
             return true;
         }
@@ -453,26 +501,28 @@ public class DataAssist<T>
 
     /**
      * 设置 List Data
-     * @param lists {@link List}
+     * @param collection {@link Collection}
      */
     @Override
-    public void setDataList(List<T> lists) {
-        mData.setDataList(lists);
+    public boolean setDataList(Collection<T> collection) {
+        boolean result = mData.setDataList(collection);
         notifyDataChanged();
+        return result;
     }
 
     /**
      * 设置 List Data
-     * @param lists  {@link List}
-     * @param notify 是否进行通知
+     * @param collection {@link Collection}
+     * @param notify     是否进行通知
      */
     @Override
-    public void setDataList(
-            List<T> lists,
+    public boolean setDataList(
+            Collection<T> collection,
             boolean notify
     ) {
-        mData.setDataList(lists, notify);
+        boolean result = mData.setDataList(collection, notify);
         if (notify) notifyDataChanged();
+        return result;
     }
 
     // ===========

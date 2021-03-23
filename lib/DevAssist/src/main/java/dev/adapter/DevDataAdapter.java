@@ -1,5 +1,7 @@
 package dev.adapter;
 
+import android.content.Context;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -19,7 +21,21 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
         implements DataManager<T>,
         DataChanged<T> {
 
-    private DataAssist<T> mAssist = new DataAssist<>(this);
+    // 数据辅助类
+    private   DataAssist<T> mAssist = new DataAssist<>(this);
+    // Context
+    protected Context       mContext;
+
+    public DevDataAdapter() {
+    }
+
+    public DevDataAdapter(Context context) {
+        this.mContext = context;
+    }
+
+    public Context getContext() {
+        return mContext;
+    }
 
     // ========================
     // = RecyclerView.Adapter =
@@ -111,6 +127,23 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
     }
 
     @Override
+    public boolean isLastPositionAndGreaterThanOrEqual(
+            int position,
+            int value
+    ) {
+        return mAssist.isLastPositionAndGreaterThanOrEqual(position, value);
+    }
+
+    @Override
+    public boolean isLastPositionAndGreaterThanOrEqual(
+            int position,
+            int value,
+            int size
+    ) {
+        return mAssist.isLastPositionAndGreaterThanOrEqual(position, value, size);
+    }
+
+    @Override
     public boolean equalsFirstData(T value) {
         return mAssist.equalsFirstData(value);
     }
@@ -169,6 +202,14 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
             Collection<T> collection
     ) {
         return mAssist.addDatasCheckedAt(position, collection);
+    }
+
+    @Override
+    public boolean addLists(
+            boolean append,
+            Collection<T> collection
+    ) {
+        return mAssist.addLists(append, collection);
     }
 
     // ======
@@ -234,16 +275,16 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
     }
 
     @Override
-    public void setDataList(List<T> lists) {
-        mAssist.setDataList(lists);
+    public boolean setDataList(Collection<T> collection) {
+        return mAssist.setDataList(collection);
     }
 
     @Override
-    public void setDataList(
-            List<T> lists,
+    public boolean setDataList(
+            Collection<T> collection,
             boolean notify
     ) {
-        mAssist.setDataList(lists, notify);
+        return mAssist.setDataList(collection, notify);
     }
 
     // ===========

@@ -19,7 +19,7 @@ import dev.engine.image.DevImageEngine
 class PagerSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, RecyclerView.ViewHolder>() {
 
     init {
-        dataList = data
+        setDataList(data)
     }
 
     /**

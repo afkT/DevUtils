@@ -18,7 +18,7 @@ import dev.utils.app.helper.ViewHelper
 class LinearSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, RecyclerView.ViewHolder>() {
 
     init {
-        dataList = data
+        setDataList(data)
     }
 
     /**

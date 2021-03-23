@@ -107,6 +107,30 @@ public interface DataManager<T> {
     );
 
     /**
+     * 判断是否 Last Position 且大于等于指定 size
+     * @param position 索引
+     * @param value    待判断 size
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isLastPositionAndGreaterThanOrEqual(
+            int position,
+            int value
+    );
+
+    /**
+     * 判断是否 Last Position 且大于等于指定 size
+     * @param position 索引
+     * @param value    待判断 size
+     * @param size     总数
+     * @return {@code true} yes, {@code false} no
+     */
+    boolean isLastPositionAndGreaterThanOrEqual(
+            int position,
+            int value,
+            int size
+    );
+
+    /**
      * 判断 First Value 是否一致
      * @param value 待校验 Value
      * @return {@code true} yes, {@code false} no
@@ -186,6 +210,17 @@ public interface DataManager<T> {
      */
     boolean addDatasCheckedAt(
             int position,
+            Collection<T> collection
+    );
+
+    /**
+     * 添加数据集 ( 判断是追加还是重置 )
+     * @param append     {@code true} {@link #addDatas} {@code false} {@link #setDataList}
+     * @param collection {@link Collection}
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean addLists(
+            boolean append,
             Collection<T> collection
     );
 
@@ -273,17 +308,19 @@ public interface DataManager<T> {
 
     /**
      * 设置 List Data
-     * @param lists {@link List}
+     * @param collection {@link Collection}
+     * @return {@code true} success, {@code false} fail
      */
-    void setDataList(List<T> lists);
+    boolean setDataList(Collection<T> collection);
 
     /**
      * 设置 List Data
-     * @param lists  {@link List}
-     * @param notify 是否进行通知
+     * @param collection {@link Collection}
+     * @param notify     是否进行通知
+     * @return {@code true} success, {@code false} fail
      */
-    void setDataList(
-            List<T> lists,
+    boolean setDataList(
+            Collection<T> collection,
             boolean notify
     );
 }
