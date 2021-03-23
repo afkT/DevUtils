@@ -33,8 +33,26 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
         this.mContext = context;
     }
 
+    // ===========
+    // = get/set =
+    // ===========
+
+    /**
+     * 获取 Context
+     * @return {@link Context}
+     */
     public Context getContext() {
         return mContext;
+    }
+
+    /**
+     * 设置 Context
+     * @param context {@link Context}
+     * @return {@link DevDataAdapter}
+     */
+    public DevDataAdapter<T, VH> setContext(final Context context) {
+        this.mContext = context;
+        return this;
     }
 
     // ========================
