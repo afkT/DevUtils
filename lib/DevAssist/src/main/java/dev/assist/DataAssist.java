@@ -502,6 +502,7 @@ public class DataAssist<T>
     /**
      * 设置 List Data
      * @param collection {@link Collection}
+     * @return {@code true} success, {@code false} fail
      */
     @Override
     public boolean setDataList(Collection<T> collection) {
@@ -514,6 +515,7 @@ public class DataAssist<T>
      * 设置 List Data
      * @param collection {@link Collection}
      * @param notify     是否进行通知
+     * @return {@code true} success, {@code false} fail
      */
     @Override
     public boolean setDataList(

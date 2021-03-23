@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 1.1.6 *(2021-03-23)*
+----------------------------
+
+* `[Add]` DataManager#isLastPositionAndGreaterThanOrEqual、addLists 方法
+
+* `[Add]` DevDataAdapter Context 构造函数
+
+* `[Add]` DevDataAdapterExt
+
 Version 1.1.5 *(2021-03-19)*
 ----------------------------
 

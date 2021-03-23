@@ -14,6 +14,7 @@
       - permission                                    | Permission Engine
       - storage                                       | Storage Engine
    - other                                            | 第三方库封装工具类
+      - cache                                         | 缓存工具类
       - okgo                                          | OkGo 网络请求
          - demo                                       | OkGo 使用 Demo
       - retrofit                                      | Retrofit 网络请求
@@ -45,6 +46,7 @@
       - [permission](#devenginepermission)            | Permission Engine
       - [storage](#devenginestorage)                  | Storage Engine
    - [other](#devother)                               | 第三方库封装工具类
+      - [cache](#devothercache)                       | 缓存工具类
       - [okgo](#devotherokgo)                         | OkGo 网络请求
          - [demo](#devotherokgodemo)                  | OkGo 使用 Demo
       - [retrofit](#devotherretrofit)                 | Retrofit 网络请求
@@ -712,6 +714,28 @@
 | syncEncodeQRCode | 同步创建黑色前景色、白色背景色的二维码图片 |
 | addLogoToQRCode | 添加 Logo 到二维码图片上 |
 | onResult | 生成二维码结果回调 |
+
+
+## <span id="devothercache">**`dev.other.cache`**</span>
+
+
+* **缓存工具类 ->** [ACache.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/cache/ACache.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| newCache | 获取 DevCache ( 默认缓存文件名 ) |
+| put | 保存 String 数据到缓存中 |
+| getAsString | 读取 String 数据 |
+| getAsJSONObject | 读取 JSONObject 数据 |
+| getAsJSONArray | 读取 JSONArray 数据 |
+| get | 获取对应 key 的 File 输入流 |
+| getAsBinary | 获取 byte[] 数据 |
+| getAsObject | 读取 Serializable 数据 |
+| getAsBitmap | 读取 Bitmap 数据 |
+| getAsDrawable | 读取 Drawable 数据 |
+| file | 获取缓存文件 |
+| remove | 移除某个 key 的数据 |
+| clear | 清除所有数据 |
 
 
 ## <span id="devotherokgo">**`dev.other.okgo`**</span>

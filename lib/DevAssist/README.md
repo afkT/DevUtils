@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevAssist:1.1.5'
+implementation 'com.afkt:DevAssist:1.1.6'
 ```
 
 ## 目录结构
@@ -90,6 +90,7 @@ implementation 'com.afkt:DevAssist:1.1.5'
 
 | 方法 | 注释 |
 | :- | :- |
+| getContext | getContext |
 | getItemCount | getItemCount |
 | getDataList | getDataList |
 | getDataArrayList | getDataArrayList |
@@ -103,6 +104,7 @@ implementation 'com.afkt:DevAssist:1.1.5'
 | isDataNotEmpty | isDataNotEmpty |
 | isFirstPosition | isFirstPosition |
 | isLastPosition | isLastPosition |
+| isLastPositionAndGreaterThanOrEqual | isLastPositionAndGreaterThanOrEqual |
 | equalsFirstData | equalsFirstData |
 | equalsLastData | equalsLastData |
 | equalsPositionData | equalsPositionData |
@@ -112,6 +114,7 @@ implementation 'com.afkt:DevAssist:1.1.5'
 | addDatasAt | addDatasAt |
 | addDatasChecked | addDatasChecked |
 | addDatasCheckedAt | addDatasCheckedAt |
+| addLists | addLists |
 | removeData | removeData |
 | removeDataAt | removeDataAt |
 | removeDatas | removeDatas |
@@ -123,6 +126,15 @@ implementation 'com.afkt:DevAssist:1.1.5'
 | setDataList | setDataList |
 | notifyDataChanged | notifyDataChanged |
 | notifyElementChanged | notifyElementChanged |
+
+
+* **DataManager RecyclerView Adapter Extend ->** [DevDataAdapterExt.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/adapter/DevDataAdapterExt.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getObject | getObject |
+| getPage | getPage |
+| setPage | setPage |
 
 
 ## <span id="devassist">**`dev.assist`**</span>
@@ -146,6 +158,7 @@ implementation 'com.afkt:DevAssist:1.1.5'
 | isDataNotEmpty | 判断 List Size 是否大于 0 |
 | isFirstPosition | 判断是否 First Position |
 | isLastPosition | 判断是否 Last Position |
+| isLastPositionAndGreaterThanOrEqual | 判断是否 Last Position 且大于等于指定 size |
 | equalsFirstData | 判断 First Value 是否一致 |
 | equalsLastData | 判断 Last Value 是否一致 |
 | equalsPositionData | 判断 Position Value 是否一致 |
@@ -155,6 +168,7 @@ implementation 'com.afkt:DevAssist:1.1.5'
 | addDatasAt | 添加数据集 |
 | addDatasChecked | 添加数据集 ( 进行校验 ) |
 | addDatasCheckedAt | 添加数据集 ( 进行校验 ) |
+| addLists | 添加数据集 ( 判断是追加还是重置 ) |
 | removeData | 移除数据 |
 | removeDataAt | 移除数据 |
 | removeDatas | 移除数据集 |
@@ -256,6 +270,7 @@ implementation 'com.afkt:DevAssist:1.1.5'
 | isDataNotEmpty | 判断 List Size 是否大于 0 |
 | isFirstPosition | 判断是否 First Position |
 | isLastPosition | 判断是否 Last Position |
+| isLastPositionAndGreaterThanOrEqual | 判断是否 Last Position 且大于等于指定 size |
 | equalsFirstData | 判断 First Value 是否一致 |
 | equalsLastData | 判断 Last Value 是否一致 |
 | equalsPositionData | 判断 Position Value 是否一致 |
@@ -265,6 +280,7 @@ implementation 'com.afkt:DevAssist:1.1.5'
 | addDatasAt | 添加数据集 |
 | addDatasChecked | 添加数据集 ( 进行校验 ) |
 | addDatasCheckedAt | 添加数据集 ( 进行校验 ) |
+| addLists | 添加数据集 ( 判断是追加还是重置 ) |
 | removeData | 移除数据 |
 | removeDataAt | 移除数据 |
 | removeDatas | 移除数据集 |
@@ -433,6 +449,7 @@ implementation 'com.afkt:DevAssist:1.1.5'
 | isDataNotEmpty | 判断 List Size 是否大于 0 |
 | isFirstPosition | 判断是否 First Position |
 | isLastPosition | 判断是否 Last Position |
+| isLastPositionAndGreaterThanOrEqual | 判断是否 Last Position 且大于等于指定 size |
 | equalsFirstData | 判断 First Value 是否一致 |
 | equalsLastData | 判断 Last Value 是否一致 |
 | equalsPositionData | 判断 Position Value 是否一致 |
@@ -442,6 +459,7 @@ implementation 'com.afkt:DevAssist:1.1.5'
 | addDatasAt | 添加数据集 |
 | addDatasChecked | 添加数据集 ( 进行校验 ) |
 | addDatasCheckedAt | 添加数据集 ( 进行校验 ) |
+| addLists | 添加数据集 ( 判断是追加还是重置 ) |
 | removeData | 移除数据 |
 | removeDataAt | 移除数据 |
 | removeDatas | 移除数据集 |

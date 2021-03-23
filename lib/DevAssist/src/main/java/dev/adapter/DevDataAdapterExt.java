@@ -38,7 +38,7 @@ public abstract class DevDataAdapterExt<T, VH extends RecyclerView.ViewHolder>
         return mPage;
     }
 
-    public DevDataAdapterExt<T, VH> setPage(DevPage page) {
+    public DevDataAdapterExt<T, VH> setPage(final DevPage page) {
         this.mPage = page;
         return this;
     }
