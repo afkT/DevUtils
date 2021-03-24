@@ -14,6 +14,10 @@ public class DevPage<T>
     // 是否最后一页
     private       boolean    mLastPage;
 
+    public DevPage(PageConfig pageConfig) {
+        this(pageConfig.page, pageConfig.pageSize);
+    }
+
     public DevPage(
             int page,
             int pageSize

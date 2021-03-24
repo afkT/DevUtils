@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import dev.base.DevObject;
 import dev.base.DevPage;
+import dev.base.expand.RequestState;
 import dev.callback.DevCallback;
 import dev.callback.DevItemClickCallback;
 
@@ -28,13 +29,15 @@ public abstract class DevDataAdapterExt<T, VH extends RecyclerView.ViewHolder>
     // ===============
 
     // 通用 Object
-    protected final DevObject<T>            mObject = new DevObject<>();
+    protected DevObject<T>            mObject = new DevObject<>();
     // Page 实体类
-    protected       DevPage<?>              mPage;
+    protected DevPage<?>              mPage;
     // 通用回调
-    protected       DevCallback<T>          mCallback;
+    protected DevCallback<T>          mCallback;
     // 通用 Item Click 回调
-    protected       DevItemClickCallback<T> mItemCallback;
+    protected DevItemClickCallback<T> mItemCallback;
+    // 请求状态
+    protected RequestState<T>         mState;
 
     /**
      * 获取通用 Object
@@ -42,6 +45,16 @@ public abstract class DevDataAdapterExt<T, VH extends RecyclerView.ViewHolder>
      */
     public DevObject<T> getObject() {
         return mObject;
+    }
+
+    /**
+     * 设置通用 Object
+     * @param object {@link DevObject}
+     * @return {@link DevDataAdapterExt}
+     */
+    public DevDataAdapterExt<T, VH> setObject(final DevObject<T> object) {
+        this.mObject = object;
+        return this;
     }
 
     /**
@@ -95,6 +108,24 @@ public abstract class DevDataAdapterExt<T, VH extends RecyclerView.ViewHolder>
      */
     public DevDataAdapterExt<T, VH> setItemCallback(final DevItemClickCallback<T> itemCallback) {
         this.mItemCallback = itemCallback;
+        return this;
+    }
+
+    /**
+     * 请求状态实体类
+     * @return {@link RequestState}
+     */
+    public RequestState<T> getState() {
+        return mState;
+    }
+
+    /**
+     * 设置请求状态实体类
+     * @param state {@link RequestState}
+     * @return {@link DevDataAdapterExt}
+     */
+    public DevDataAdapterExt<T, VH> setState(RequestState<T> state) {
+        this.mState = state;
         return this;
     }
 }
