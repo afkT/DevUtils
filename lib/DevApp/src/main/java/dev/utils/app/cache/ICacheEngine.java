@@ -17,10 +17,6 @@ import java.util.List;
  */
 public interface ICacheEngine {
 
-    // ===============
-    // = 对外公开方法 =
-    // ===============
-
     /**
      * 移除数据
      * @param key 保存的 key
@@ -70,6 +66,13 @@ public interface ICacheEngine {
      * @param type 类型
      */
     void clearType(int type);
+
+    /**
+     * 通过 Key 获取 Item
+     * @param key 保存的 key
+     * @return Item
+     */
+    DevCache.Data getItemByKey(String key);
 
     /**
      * 获取有效 Key 集合

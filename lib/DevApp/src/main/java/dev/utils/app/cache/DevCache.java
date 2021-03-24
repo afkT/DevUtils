@@ -10,8 +10,6 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * detail: 缓存类
@@ -20,15 +18,9 @@ import java.util.concurrent.atomic.AtomicLong;
 public final class DevCache {
 
     // 日志 TAG
-    private static final String        TAG                   = DevCache.class.getSimpleName();
-    // 缓存配置文件名
-    private final        String        DEV_CACHE_CONFIG_NAME = "dev_cache_config.json";
-    // 总缓存大小
-    private final        AtomicLong    mCacheSize            = new AtomicLong();
-    // 总缓存的文件总数
-    private final        AtomicInteger mCacheCount           = new AtomicInteger();
+    private static final String TAG = DevCache.class.getSimpleName();
     // 缓存地址
-    private final        String        mCachePath;
+    private final        String mCachePath;
 
     /**
      * 获取 DevCache
@@ -40,21 +32,20 @@ public final class DevCache {
     }
 
     // 数据类型
-    private static final int TYPE         = 9500;
-    public static final  int INT          = TYPE + 1;
-    public static final  int LONG         = TYPE + 2;
-    public static final  int FLOAT        = TYPE + 3;
-    public static final  int DOUBLE       = TYPE + 4;
-    public static final  int BOOLEAN      = TYPE + 5;
-    public static final  int STRING       = TYPE + 6;
-    public static final  int BYTES        = TYPE + 7;
-    public static final  int BITMAP       = TYPE + 8;
-    public static final  int DRAWABLE     = TYPE + 9;
-    public static final  int SERIALIZABLE = TYPE + 10;
-    public static final  int PARCELABLE   = TYPE + 11;
-    public static final  int JSON_OBJECT  = TYPE + 12;
-    public static final  int JSON_ARRAY   = TYPE + 13;
-    public static final  int ENTITY       = TYPE + 14;
+    public static final int INT          = 1;
+    public static final int LONG         = 2;
+    public static final int FLOAT        = 3;
+    public static final int DOUBLE       = 4;
+    public static final int BOOLEAN      = 5;
+    public static final int STRING       = 6;
+    public static final int BYTES        = 7;
+    public static final int BITMAP       = 8;
+    public static final int DRAWABLE     = 9;
+    public static final int SERIALIZABLE = 10;
+    public static final int PARCELABLE   = 11;
+    public static final int JSON_OBJECT  = 12;
+    public static final int JSON_ARRAY   = 13;
+    public static final int ENTITY       = 14;
 
     /**
      * detail: 数据源
@@ -190,20 +181,31 @@ public final class DevCache {
         return mCachePath;
     }
 
-    // ===========
-    // = 内部方法 =
-    // ===========
+    // =
 
+    /**
+     * 移除数据
+     * @param key 保存的 key
+     */
     public void remove(String key) {
-
+        DevCacheUtils.deleteFile(this, key);
     }
 
+    /**
+     * 删除 Key[] 配置、数据文件
+     * @param keys 存储 key[]
+     */
     public void removeForKeys(String[] keys) {
-
+        DevCacheUtils.deleteFiles(this, keys);
     }
 
+    /**
+     * 是否存在 key
+     * @param key 保存的 key
+     * @return {@code true} yes, {@code false} no
+     */
     public boolean contains(String key) {
-        return false;
+        return DevCacheUtils.isExistKeyFile(this, key);
     }
 
     public boolean isDue(String key) {
