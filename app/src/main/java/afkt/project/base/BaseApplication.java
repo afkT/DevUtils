@@ -342,6 +342,6 @@ public class BaseApplication
             builder.append(DevFinal.NEW_LINE_STR);
             builder.append("dateTaken: ").append(dateTaken).append(" ( ").append(DateUtils.formatTime(dateTaken, DateUtils.yyyyMMddHHmmss)).append(" )");
             DevLogEngine.getEngine().d(builder.toString());
-        }).startListen();
+        }).startListener();
     }
 }

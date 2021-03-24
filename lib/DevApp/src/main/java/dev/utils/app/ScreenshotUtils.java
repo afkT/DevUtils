@@ -24,7 +24,7 @@ import dev.utils.common.FileUtils;
  *             @Override
  *             public void onScreenshot(Uri contentUri, boolean selfChange, long rowId, String dataPath, long dateTaken) {
  *             }
- *         }).startListen();
+ *         }).startListener();
  *     <p></p>
  *     注意事项
  *     1.部分机型会多次触发 onChange 需自行处理
@@ -295,8 +295,8 @@ public final class ScreenshotUtils {
      * 启动截图监听
      * @return {@code true} success, {@code false} fail
      */
-    public boolean startListen() {
-        return startListen(true, HandlerUtils.getMainHandler());
+    public boolean startListener() {
+        return startListener(true, HandlerUtils.getMainHandler());
     }
 
     /**
@@ -304,8 +304,8 @@ public final class ScreenshotUtils {
      * @param notifyForDescendants 是否精准匹配 Uri
      * @return {@code true} success, {@code false} fail
      */
-    public boolean startListen(final boolean notifyForDescendants) {
-        return startListen(notifyForDescendants, HandlerUtils.getMainHandler());
+    public boolean startListener(final boolean notifyForDescendants) {
+        return startListener(notifyForDescendants, HandlerUtils.getMainHandler());
     }
 
     /**
@@ -314,7 +314,7 @@ public final class ScreenshotUtils {
      * @param handler              {@link Handler}
      * @return {@code true} success, {@code false} fail
      */
-    public boolean startListen(
+    public boolean startListener(
             final boolean notifyForDescendants,
             final Handler handler
     ) {
@@ -328,7 +328,7 @@ public final class ScreenshotUtils {
      * 停止截图监听
      * @return {@code true} success, {@code false} fail
      */
-    public boolean stopListen() {
+    public boolean stopListener() {
         return unregisterContentObserver(ResourceUtils.getContentResolver());
     }
 
