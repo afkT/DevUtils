@@ -226,6 +226,10 @@ public final class DevCache {
 
     }
 
+    public Data getItemByKey(String key) {
+        return null;
+    }
+
     public List<Data> getKeys() {
         return null;
     }

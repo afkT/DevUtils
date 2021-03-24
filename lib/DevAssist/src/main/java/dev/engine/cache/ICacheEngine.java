@@ -154,6 +154,13 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig, Item ext
     void clearType(int type);
 
     /**
+     * 通过 Key 获取 Item
+     * @param key 保存的 key
+     * @return Item
+     */
+    Item getItemByKey(String key);
+
+    /**
      * 获取有效 Key 集合
      * <pre>
      *     {@link EngineConfig#removeDue} 控制移除失效资源
