@@ -55,6 +55,16 @@ public class DevPage<T>
         return setPage(config.page).setLastPage(false);
     }
 
+    /**
+     * 重置操作
+     * @param reset 是否进行重置 ( 方便判断是否刷新进行调用 )
+     * @return {@link DevPage}
+     */
+    public DevPage<T> reset(boolean reset) {
+        if (reset) reset();
+        return this;
+    }
+
     // ===============
     // = 对外公开方法 =
     // ===============
