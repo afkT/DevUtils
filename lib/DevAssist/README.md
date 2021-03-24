@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevAssist:1.1.6'
+implementation 'com.afkt:DevAssist:1.1.7'
 ```
 
 ## 目录结构
@@ -90,7 +90,8 @@ implementation 'com.afkt:DevAssist:1.1.6'
 
 | 方法 | 注释 |
 | :- | :- |
-| getContext | getContext |
+| getContext | 获取 Context |
+| setContext | 设置 Context |
 | getItemCount | getItemCount |
 | getDataList | getDataList |
 | getDataArrayList | getDataArrayList |
@@ -132,9 +133,16 @@ implementation 'com.afkt:DevAssist:1.1.6'
 
 | 方法 | 注释 |
 | :- | :- |
-| getObject | getObject |
-| getPage | getPage |
-| setPage | setPage |
+| getObject | 获取通用 Object |
+| setObject | 设置通用 Object |
+| getPage | 获取 Page 实体类 |
+| setPage | 设置 Page 实体类 |
+| getCallback | 获取通用回调 |
+| setCallback | 设置通用回调 |
+| getItemCallback | 获取通用 Item Click 回调 |
+| setItemCallback | 设置通用 Item Click 回调 |
+| getState | 请求状态实体类 |
+| setState | 设置请求状态实体类 |
 
 
 ## <span id="devassist">**`dev.assist`**</span>
@@ -731,6 +739,7 @@ implementation 'com.afkt:DevAssist:1.1.6'
 | isDue | 判断某个 key 是否过期 |
 | clear | 清除全部数据 |
 | clearDue | 清除过期数据 |
+| clearInvalid | 清除无效数据 |
 | clearType | 清除某个类型的全部数据 |
 | getKeys | 获取有效 Key 集合 |
 | getPermanentKeys | 获取永久有效 Key 集合 |
