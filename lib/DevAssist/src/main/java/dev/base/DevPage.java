@@ -28,10 +28,10 @@ public class DevPage<T>
     }
 
     /**
-     * detail: 内部页数配置
+     * detail: 页数配置信息
      * @author Ttt
      */
-    private class PageConfig {
+    public static class PageConfig {
 
         // 页数配置
         public final int page;
@@ -87,6 +87,14 @@ public class DevPage<T>
     }
 
     // =
+
+    /**
+     * 获取页数配置信息
+     * @return {@link PageConfig}
+     */
+    public PageConfig getConfig() {
+        return config;
+    }
 
     /**
      * 获取每页请求条数
