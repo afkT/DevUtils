@@ -97,6 +97,24 @@ public class DevPage<T>
     }
 
     /**
+     * 获取配置初始页页数
+     * @return 初始页页数
+     */
+    public int getConfigPage() {
+        return config.page;
+    }
+
+    /**
+     * 获取配置每页请求条数
+     * @return 每页请求条数
+     */
+    public int getConfigPageSize() {
+        return config.pageSize;
+    }
+
+    // =
+
+    /**
      * 获取每页请求条数
      * @return 每页请求条数
      */
