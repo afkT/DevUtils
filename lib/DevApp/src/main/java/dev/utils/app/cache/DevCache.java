@@ -102,14 +102,7 @@ public final class DevCache {
     }
 
     /**
-     * 清除过期数据
-     */
-    public void clearDue() {
-        mManager.clearDue();
-    }
-
-    /**
-     * 清除无效数据
+     * 清除无效数据 ( 含过期数据 )
      */
     public void clearInvalid() {
         mManager.clearInvalid();

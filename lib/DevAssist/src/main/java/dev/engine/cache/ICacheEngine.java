@@ -138,12 +138,7 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig, Item ext
     void clear();
 
     /**
-     * 清除过期数据
-     */
-    void clearDue();
-
-    /**
-     * 清除无效数据
+     * 清除无效数据 ( 含过期数据 )
      */
     void clearInvalid();
 

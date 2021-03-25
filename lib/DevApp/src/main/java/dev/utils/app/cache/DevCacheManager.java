@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.Serializable;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
 
 import dev.utils.LogPrintUtils;
@@ -55,27 +56,51 @@ final class DevCacheManager {
     }
 
     public boolean contains(String key) {
-        return false;
+        return isExistKeyFile(key);
     }
 
     public boolean isDue(String key) {
-        return false;
+        DevCache.Data data = mapGetData(key);
+        if (data != null) {
+            if (data.isPermanent()) return false;
+            long time = data.getSaveTime() + data.getValidTime();
+            return System.currentTimeMillis() - time >= 0;
+        }
+        return true;
     }
 
     public void clear() {
-
-    }
-
-    public void clearDue() {
-
+        forListFiles(file -> {
+            if (file.isFile()) file.delete();
+        });
     }
 
     public void clearInvalid() {
-
+        forListFiles(file -> {
+            String fileName = file.getName();
+            if (fileName.endsWith(DATA_EXTENSION)
+                    || fileName.endsWith(CONFIG_EXTENSION)) {
+                String key = FileUtils.getFileNotSuffix(fileName);
+                // 过期了则删除
+                if (isDue(key)) remove(key);
+            } else { // 不属于指定格式
+                file.delete();
+            }
+        });
     }
 
     public void clearType(int type) {
-
+        forListFiles(file -> {
+            String fileName = file.getName();
+            if (fileName.endsWith(DATA_EXTENSION)
+                    || fileName.endsWith(CONFIG_EXTENSION)) {
+                String        key  = FileUtils.getFileNotSuffix(fileName);
+                DevCache.Data data = mapGetData(key);
+                if (data != null && data.getType() == type) {
+                    file.delete();
+                }
+            }
+        });
     }
 
     public DevCache.Data getItemByKey(String key) {
@@ -421,6 +446,7 @@ final class DevCacheManager {
      */
     private void deleteFile(final String key) {
         if (TextUtils.isEmpty(key)) return;
+        mDataMaps.remove(key); // 移除缓存
         File dataFile   = getKeyDataFile(key);
         File configFile = getKeyConfigFile(key);
         FileUtils.deleteFiles(dataFile, configFile);
@@ -437,19 +463,79 @@ final class DevCacheManager {
                 && FileUtils.isFileExists(getKeyConfigFile(key));
     }
 
-    // ========
-    // = 配置 =
-    // ========
+    /**
+     * 将 byte[] 写入文件
+     * @param file  待写入文件
+     * @param bytes 待写入数据
+     * @return {@code true} success, {@code false} fail
+     */
+    private boolean saveFileBytes(
+            final File file,
+            final byte[] bytes
+    ) {
+        return FileUtils.saveFile(file, bytes);
+    }
+
+    /**
+     * 读取文件 byte[]
+     * @param file 待读取文件
+     * @return 文件 byte[]
+     */
+    private byte[] readFileBytes(final File file) {
+        return FileUtils.readFileBytes(file);
+    }
+
+    /**
+     * 循环文件集合
+     * @param fileFor {@link FileFor}
+     */
+    private void forListFiles(FileFor fileFor) {
+        File dir = FileUtils.getFile(mCachePath);
+        if (dir != null) {
+            File[] files = dir.listFiles();
+            if (files != null && files.length != 0) {
+                for (File file : files) {
+                    fileFor.file(file);
+                }
+            }
+        }
+    }
+
+    public interface FileFor {
+
+        void file(File file);
+    }
+
+    // ===========
+    // = 内部缓存 =
+    // ===========
 
     // Data JSON Format
     private final String DATA_FORMAT = "{\"key\":\"%s\",\"type\":%d,\"saveTime\":%d,\"validTime\":%d,\"lastModified\":%d}";
+
+    // 缓存 Data
+    private final HashMap<String, DevCache.Data> mDataMaps = new HashMap<>();
+
+    private DevCache.Data mapGetData(final String key) {
+        if (TextUtils.isEmpty(key)) return null;
+        DevCache.Data data = mDataMaps.get(key);
+        if (data == null) {
+            data = _getData(key);
+            if (data != null) {
+                mDataMaps.put(key, data);
+            }
+        }
+        return data;
+    }
+
+    // =
 
     /**
      * Data Format JSON String
      * @param data 数据源
      * @return JSON String
      */
-    private String toString(final DevCache.Data data) {
+    private String _toDataString(final DevCache.Data data) {
         return String.format(DATA_FORMAT, data.getKey(),
                 data.getType(), data.getSaveTime(),
                 data.getValidTime(), data.getLastModified()
@@ -461,7 +547,7 @@ final class DevCacheManager {
      * @param key 存储 key
      * @return {@link DevCache.Data}
      */
-    private DevCache.Data getData(final String key) {
+    private DevCache.Data _getData(final String key) {
         if (!isExistKeyFile(key)) return null;
         try {
             File       configFile = getKeyConfigFile(key);
@@ -485,27 +571,5 @@ final class DevCacheManager {
             LogPrintUtils.eTag(TAG, e, "getData");
         }
         return null;
-    }
-
-    /**
-     * 将 byte[] 写入文件
-     * @param file  待写入文件
-     * @param bytes 待写入数据
-     * @return {@code true} success, {@code false} fail
-     */
-    private boolean saveFileBytes(
-            final File file,
-            final byte[] bytes
-    ) {
-        return FileUtils.saveFile(file, bytes);
-    }
-
-    /**
-     * 读取文件 byte[]
-     * @param file 待读取文件
-     * @return 文件 byte[]
-     */
-    private byte[] readFileBytes(final File file) {
-        return FileUtils.readFileBytes(file);
     }
 }
