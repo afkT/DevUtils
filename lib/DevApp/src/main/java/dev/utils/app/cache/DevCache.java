@@ -42,7 +42,6 @@ public final class DevCache {
     public static final int PARCELABLE   = 11;
     public static final int JSON_OBJECT  = 12;
     public static final int JSON_ARRAY   = 13;
-    public static final int ENTITY       = 14;
 
     // ===============
     // = 对外公开方法 =
@@ -678,14 +677,6 @@ public final class DevCache {
         private       long   mValidTime;
         // 最后操作时间 ( 毫秒 )
         private       long   mLastModified;
-
-        protected Data(
-                String path,
-                String key
-        ) {
-            this.mPath = path;
-            this.mKey = key;
-        }
 
         protected Data(
                 String path,
