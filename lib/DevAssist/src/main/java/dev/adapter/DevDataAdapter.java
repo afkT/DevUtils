@@ -1,6 +1,8 @@
 package dev.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,12 +27,18 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
     private   DataAssist<T> mAssist = new DataAssist<>(this);
     // Context
     protected Context       mContext;
+    // Activity
+    protected Activity      mActivity;
 
     public DevDataAdapter() {
     }
 
     public DevDataAdapter(Context context) {
         this.mContext = context;
+    }
+
+    public DevDataAdapter(Activity activity) {
+        this.mActivity = activity;
     }
 
     // ===========
@@ -52,6 +60,39 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
      */
     public DevDataAdapter<T, VH> setContext(final Context context) {
         this.mContext = context;
+        return this;
+    }
+
+    /**
+     * 获取 Activity
+     * @return {@link Activity}
+     */
+    public Activity getActivity() {
+        return mActivity;
+    }
+
+    /**
+     * 设置 Activity
+     * @param activity {@link Activity}
+     * @return {@link DevDataAdapter}
+     */
+    public DevDataAdapter<T, VH> setActivity(Activity activity) {
+        this.mActivity = activity;
+        return this;
+    }
+
+    /**
+     * 通过 ViewGroup 设置 Context
+     * <pre>
+     *     在 {@link #onCreateViewHolder(ViewGroup, int)} 中调用, 传入 ViewGroup
+     * </pre>
+     * @param parent {@link ViewGroup}
+     * @return {@link DevDataAdapter}
+     */
+    public DevDataAdapter<T, VH> parentContext(ViewGroup parent) {
+        if (parent != null && mContext == null) {
+            this.mContext = parent.getContext();
+        }
         return this;
     }
 
