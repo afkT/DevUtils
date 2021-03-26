@@ -62,6 +62,7 @@ public final class DevCache {
             String cachePath = PathUtils.getAppExternal().getAppCachePath(DEFAULT_NAME);
             cache = new DevCache(cachePath);
             DevCacheManager.sInstanceMaps.put("", cache);
+            DevCacheManager.sInstanceMaps.put(cachePath, cache);
         }
         return cache;
     }
