@@ -3,6 +3,7 @@ package dev.utils.app.cache;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -10,18 +11,22 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.List;
 
+import dev.utils.app.PathUtils;
+
 /**
  * detail: 缓存类
  * @author Ttt
  */
 public final class DevCache {
 
+    // 默认缓存文件名
+    private static final String          DEFAULT_NAME = DevCache.class.getSimpleName();
     // 缓存管理类
-    private final DevCacheManager mManager;
+    private final        DevCacheManager mManager;
 
     /**
      * 获取 DevCache
-     * @param cachePath 缓存文件夹
+     * @param cachePath 缓存文件夹路径
      * @return {@link DevCache}
      */
     private DevCache(final String cachePath) {
@@ -46,6 +51,37 @@ public final class DevCache {
     // ===============
     // = 对外公开方法 =
     // ===============
+
+    /**
+     * 获取 DevCache
+     * @return {@link DevCache}
+     */
+    public static DevCache newCache() {
+        DevCache cache = DevCacheManager.sInstanceMaps.get("");
+        if (cache == null) {
+            String cachePath = PathUtils.getAppExternal().getAppCachePath(DEFAULT_NAME);
+            cache = new DevCache(cachePath);
+            DevCacheManager.sInstanceMaps.put("", cache);
+        }
+        return cache;
+    }
+
+    /**
+     * 获取 DevCache
+     * @param cachePath 缓存文件夹路径
+     * @return {@link DevCache}
+     */
+    public static DevCache newCache(final String cachePath) {
+        if (TextUtils.isEmpty(cachePath)) {
+            return newCache();
+        }
+        DevCache cache = DevCacheManager.sInstanceMaps.get(cachePath);
+        if (cache == null) {
+            cache = new DevCache(cachePath);
+            DevCacheManager.sInstanceMaps.put(cachePath, cache);
+        }
+        return cache;
+    }
 
     /**
      * 获取缓存地址
@@ -765,6 +801,62 @@ public final class DevCache {
         protected Data setLastModified(long lastModified) {
             this.mLastModified = lastModified;
             return this;
+        }
+
+        // ===========
+        // = 判断方法 =
+        // ===========
+
+        public boolean isInt() {
+            return mType == INT;
+        }
+
+        public boolean isLong() {
+            return mType == LONG;
+        }
+
+        public boolean isFloat() {
+            return mType == FLOAT;
+        }
+
+        public boolean isDouble() {
+            return mType == DOUBLE;
+        }
+
+        public boolean isBoolean() {
+            return mType == BOOLEAN;
+        }
+
+        public boolean isString() {
+            return mType == STRING;
+        }
+
+        public boolean isBytes() {
+            return mType == BYTES;
+        }
+
+        public boolean isBitmap() {
+            return mType == BITMAP;
+        }
+
+        public boolean isDrawable() {
+            return mType == DRAWABLE;
+        }
+
+        public boolean isSerializable() {
+            return mType == SERIALIZABLE;
+        }
+
+        public boolean isParcelable() {
+            return mType == PARCELABLE;
+        }
+
+        public boolean isJSONObject() {
+            return mType == JSON_OBJECT;
+        }
+
+        public boolean isJSONArray() {
+            return mType == JSON_ARRAY;
         }
     }
 }

@@ -11,20 +11,26 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.Serializable;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.common.FileUtils;
 
 /**
  * detail: 缓存管理类
+ *
  * @author Ttt
  */
 final class DevCacheManager {
 
+    // 不同地址配置缓存对象
+    protected static final Map<String, DevCache> sInstanceMaps = new HashMap<>();
     // 缓存地址
-    private final String mCachePath;
+    private final          String                mCachePath;
 
     public DevCacheManager(String cachePath) {
         this.mCachePath = cachePath;
@@ -34,10 +40,6 @@ final class DevCacheManager {
     // = 对外公开方法 =
     // ===============
 
-    /**
-     * 获取缓存地址
-     * @return 缓存地址
-     */
     public String getCachePath() {
         return mCachePath;
     }
@@ -45,22 +47,22 @@ final class DevCacheManager {
     // =
 
     public void remove(String key) {
-        deleteFile(key);
+        _deleteFile(key);
     }
 
     public void removeForKeys(String[] keys) {
         if (keys == null) return;
         for (String key : keys) {
-            deleteFile(key);
+            _deleteFile(key);
         }
     }
 
     public boolean contains(String key) {
-        return isExistKeyFile(key);
+        return _isExistKeyFile(key);
     }
 
     public boolean isDue(String key) {
-        DevCache.Data data = mapGetData(key);
+        DevCache.Data data = _mapGetData(key);
         if (data != null) {
             if (data.isPermanent()) return false;
             long time = data.getSaveTime() + data.getValidTime();
@@ -70,53 +72,83 @@ final class DevCacheManager {
     }
 
     public void clear() {
-        forListFiles(file -> {
-            if (file.isFile()) file.delete();
-        });
+        _forListFiles(file -> file.delete());
     }
 
     public void clearInvalid() {
-        forListFiles(file -> {
-            String fileName = file.getName();
-            if (fileName.endsWith(DATA_EXTENSION)
-                    || fileName.endsWith(CONFIG_EXTENSION)) {
-                String key = FileUtils.getFileNotSuffix(fileName);
-                // 过期了则删除
-                if (isDue(key)) remove(key);
-            } else { // 不属于指定格式
-                file.delete();
-            }
-        });
-    }
-
-    public void clearType(int type) {
-        forListFiles(file -> {
-            String fileName = file.getName();
-            if (fileName.endsWith(DATA_EXTENSION)
-                    || fileName.endsWith(CONFIG_EXTENSION)) {
-                String        key  = FileUtils.getFileNotSuffix(fileName);
-                DevCache.Data data = mapGetData(key);
-                if (data != null && data.getType() == type) {
+        _forListFiles(file -> {
+            if (file.exists()) {
+                String fileName = file.getName();
+                if (fileName.endsWith(DATA_EXTENSION)
+                        || fileName.endsWith(CONFIG_EXTENSION)) {
+                    String key = FileUtils.getFileNotSuffix(fileName);
+                    // 过期了则删除
+                    if (isDue(key)) _deleteFile(key);
+                } else { // 不属于指定格式
                     file.delete();
                 }
             }
         });
     }
 
+    public void clearType(int type) {
+        _forListFiles(file -> {
+            if (file.exists()) {
+                String fileName = file.getName();
+                if (fileName.endsWith(DATA_EXTENSION)
+                        || fileName.endsWith(CONFIG_EXTENSION)) {
+                    String        key  = FileUtils.getFileNotSuffix(fileName);
+                    DevCache.Data data = _mapGetData(key);
+                    if (data != null && data.getType() == type) {
+                        _deleteFile(key);
+                    }
+                }
+            }
+        });
+    }
+
     public DevCache.Data getItemByKey(String key) {
-        return null;
+        return _mapGetData(key);
     }
 
     public List<DevCache.Data> getKeys() {
-        return null;
+        LinkedHashMap<String, DevCache.Data> maps = new LinkedHashMap<>();
+        _forListFiles(file -> {
+            if (file.exists()) {
+                String fileName = file.getName();
+                if (fileName.endsWith(DATA_EXTENSION)
+                        || fileName.endsWith(CONFIG_EXTENSION)) {
+                    String        key  = FileUtils.getFileNotSuffix(fileName);
+                    DevCache.Data data = _mapGetData(key);
+                    if (data != null) {
+                        maps.put(key, data);
+                    }
+                }
+            }
+        });
+        return new ArrayList<>(maps.values());
     }
 
     public List<DevCache.Data> getPermanentKeys() {
-        return null;
+        LinkedHashMap<String, DevCache.Data> maps = new LinkedHashMap<>();
+        _forListFiles(file -> {
+            if (file.exists()) {
+                String fileName = file.getName();
+                if (fileName.endsWith(DATA_EXTENSION)
+                        || fileName.endsWith(CONFIG_EXTENSION)) {
+                    String        key  = FileUtils.getFileNotSuffix(fileName);
+                    DevCache.Data data = _mapGetData(key);
+                    if (data != null && data.isPermanent()) {
+                        maps.put(key, data);
+                    }
+                }
+            }
+        });
+        return new ArrayList<>(maps.values());
     }
 
     public int getCount() {
-        return 0;
+        return getKeys().size();
     }
 
     public long getSize() {
@@ -406,26 +438,29 @@ final class DevCacheManager {
 
     /**
      * 获取 Key 数据文件
+     *
      * @param key 存储 key
      * @return Key 数据文件
      */
-    private File getKeyDataFile(final String key) {
+    private File _getKeyDataFile(final String key) {
         if (TextUtils.isEmpty(key)) return null;
         return FileUtils.getFile(mCachePath, key + DATA_EXTENSION);
     }
 
     /**
      * 获取 Key 配置文件
+     *
      * @param key 存储 key
      * @return Key 配置文件
      */
-    private File getKeyConfigFile(final String key) {
+    private File _getKeyConfigFile(final String key) {
         if (TextUtils.isEmpty(key)) return null;
         return FileUtils.getFile(mCachePath, key + CONFIG_EXTENSION);
     }
 
     /**
      * 获取存储数据大小
+     *
      * @param path 文件地址
      * @param key  存储 key
      * @return 存储数据大小
@@ -442,34 +477,37 @@ final class DevCacheManager {
 
     /**
      * 删除 Key 配置、数据文件
+     *
      * @param key 存储 key
      */
-    private void deleteFile(final String key) {
+    private void _deleteFile(final String key) {
         if (TextUtils.isEmpty(key)) return;
         mDataMaps.remove(key); // 移除缓存
-        File dataFile   = getKeyDataFile(key);
-        File configFile = getKeyConfigFile(key);
+        File dataFile   = _getKeyDataFile(key);
+        File configFile = _getKeyConfigFile(key);
         FileUtils.deleteFiles(dataFile, configFile);
     }
 
     /**
      * 判断是否存在 Key 配置、数据文件
+     *
      * @param key 存储 key
      * @return {@code true} yes, {@code false} no
      */
-    private boolean isExistKeyFile(final String key) {
+    private boolean _isExistKeyFile(final String key) {
         if (TextUtils.isEmpty(key)) return false;
-        return FileUtils.isFileExists(getKeyDataFile(key))
-                && FileUtils.isFileExists(getKeyConfigFile(key));
+        return FileUtils.isFileExists(_getKeyDataFile(key))
+                && FileUtils.isFileExists(_getKeyConfigFile(key));
     }
 
     /**
      * 将 byte[] 写入文件
+     *
      * @param file  待写入文件
      * @param bytes 待写入数据
      * @return {@code true} success, {@code false} fail
      */
-    private boolean saveFileBytes(
+    private boolean _saveFileBytes(
             final File file,
             final byte[] bytes
     ) {
@@ -478,24 +516,28 @@ final class DevCacheManager {
 
     /**
      * 读取文件 byte[]
+     *
      * @param file 待读取文件
      * @return 文件 byte[]
      */
-    private byte[] readFileBytes(final File file) {
+    private byte[] _readFileBytes(final File file) {
         return FileUtils.readFileBytes(file);
     }
 
     /**
      * 循环文件集合
+     *
      * @param fileFor {@link FileFor}
      */
-    private void forListFiles(FileFor fileFor) {
+    private void _forListFiles(FileFor fileFor) {
         File dir = FileUtils.getFile(mCachePath);
         if (dir != null) {
             File[] files = dir.listFiles();
             if (files != null && files.length != 0) {
                 for (File file : files) {
-                    fileFor.file(file);
+                    if (file.isFile()) {
+                        fileFor.file(file);
+                    }
                 }
             }
         }
@@ -516,7 +558,7 @@ final class DevCacheManager {
     // 缓存 Data
     private final HashMap<String, DevCache.Data> mDataMaps = new HashMap<>();
 
-    private DevCache.Data mapGetData(final String key) {
+    private DevCache.Data _mapGetData(final String key) {
         if (TextUtils.isEmpty(key)) return null;
         DevCache.Data data = mDataMaps.get(key);
         if (data == null) {
@@ -532,6 +574,7 @@ final class DevCacheManager {
 
     /**
      * Data Format JSON String
+     *
      * @param data 数据源
      * @return JSON String
      */
@@ -544,14 +587,15 @@ final class DevCacheManager {
 
     /**
      * 读取配置初始化 Data
+     *
      * @param key 存储 key
      * @return {@link DevCache.Data}
      */
     private DevCache.Data _getData(final String key) {
-        if (!isExistKeyFile(key)) return null;
+        if (!_isExistKeyFile(key)) return null;
         try {
-            File       configFile = getKeyConfigFile(key);
-            String     config     = new String(readFileBytes(configFile));
+            File       configFile = _getKeyConfigFile(key);
+            String     config     = new String(_readFileBytes(configFile));
             JSONObject jsonObject = new JSONObject(config);
             if (jsonObject.has("key")
                     && jsonObject.has("type")
