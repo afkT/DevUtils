@@ -72,9 +72,9 @@ final class DevCacheManager {
                                 }
                             }
                         }
-                        mCacheSize.set(size);
-                        mCacheCount.set((int) count);
                     }
+                    mCacheSize.set(size);
+                    mCacheCount.set((int) count);
                 }
             }
         }).start();
@@ -316,7 +316,7 @@ final class DevCacheManager {
             long validTime
     ) {
         if (value == null) return false;
-        return _put(key, DevCache.JSON_OBJECT, value.toString().getBytes(), validTime);
+        return _put(key, DevCache.JSON_ARRAY, value.toString().getBytes(), validTime);
     }
 
     // =======
@@ -603,15 +603,26 @@ final class DevCacheManager {
             long validTime
     ) {
         if (bytes == null) return false;
-        DevCache.Data data = _mapGetData(key);
-        if (data == null) return false;
-        File dataFile = _getKeyDataFile(key);
-        if (!FileUtils.isFileExists(dataFile)) return false;
-        boolean result      = FileUtils.saveFile(dataFile, bytes);
-        long    currentTime = System.currentTimeMillis();
-        data.setSaveTime(currentTime).setType(type)
-                .setLastModified(currentTime).setValidTime(validTime);
-        FileUtils.saveFile(_getKeyConfigFile(key), _toDataString(data).getBytes());
+        if (TextUtils.isEmpty(key)) return false;
+        DevCache.Data data   = _mapGetData(key);
+        long          size   = getDataFileSize(mCachePath, key);
+        boolean       result = FileUtils.saveFile(_getKeyDataFile(key), bytes);
+        if (result) {
+            long currentTime = System.currentTimeMillis();
+            if (data != null) {
+                data.setSaveTime(currentTime).setType(type)
+                        .setLastModified(currentTime).setValidTime(validTime);
+                mCacheSize.addAndGet(-size);
+                mCacheSize.addAndGet(getDataFileSize(mCachePath, key));
+            } else {
+                data = new DevCache.Data(mCachePath, key, type,
+                        currentTime, validTime, currentTime);
+                mCacheSize.addAndGet(getDataFileSize(mCachePath, key));
+                mCacheCount.incrementAndGet();
+                mDataMaps.put(key, data);
+            }
+            FileUtils.saveFile(_getKeyConfigFile(key), _toDataString(data).getBytes());
+        }
         return result;
     }
 }
