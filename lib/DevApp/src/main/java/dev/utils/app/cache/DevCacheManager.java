@@ -8,9 +8,10 @@ import android.text.TextUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -20,6 +21,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.app.image.ImageUtils;
+import dev.utils.common.CloseUtils;
 import dev.utils.common.FileUtils;
 
 /**
@@ -188,7 +191,7 @@ final class DevCacheManager {
             int value,
             long validTime
     ) {
-        return false;
+        return _put(key, DevCache.INT, String.valueOf(value).getBytes(), validTime);
     }
 
     public boolean put(
@@ -196,7 +199,7 @@ final class DevCacheManager {
             long value,
             long validTime
     ) {
-        return false;
+        return _put(key, DevCache.LONG, String.valueOf(value).getBytes(), validTime);
     }
 
     public boolean put(
@@ -204,7 +207,7 @@ final class DevCacheManager {
             float value,
             long validTime
     ) {
-        return false;
+        return _put(key, DevCache.FLOAT, String.valueOf(value).getBytes(), validTime);
     }
 
     public boolean put(
@@ -212,7 +215,7 @@ final class DevCacheManager {
             double value,
             long validTime
     ) {
-        return false;
+        return _put(key, DevCache.DOUBLE, String.valueOf(value).getBytes(), validTime);
     }
 
     public boolean put(
@@ -220,7 +223,7 @@ final class DevCacheManager {
             boolean value,
             long validTime
     ) {
-        return false;
+        return _put(key, DevCache.BOOLEAN, String.valueOf(value).getBytes(), validTime);
     }
 
     public boolean put(
@@ -228,7 +231,8 @@ final class DevCacheManager {
             String value,
             long validTime
     ) {
-        return false;
+        if (value == null) return false;
+        return _put(key, DevCache.STRING, value.getBytes(), validTime);
     }
 
     public boolean put(
@@ -236,7 +240,7 @@ final class DevCacheManager {
             byte[] value,
             long validTime
     ) {
-        return false;
+        return _put(key, DevCache.BYTES, value, validTime);
     }
 
     public boolean put(
@@ -244,7 +248,7 @@ final class DevCacheManager {
             Bitmap value,
             long validTime
     ) {
-        return false;
+        return _put(key, DevCache.BITMAP, ImageUtils.bitmapToByte(value), validTime);
     }
 
     public boolean put(
@@ -252,7 +256,9 @@ final class DevCacheManager {
             Drawable value,
             long validTime
     ) {
-        return false;
+        return _put(key, DevCache.DRAWABLE, ImageUtils.bitmapToByte(
+                ImageUtils.drawableToBitmap(value)
+        ), validTime);
     }
 
     public boolean put(
@@ -260,6 +266,18 @@ final class DevCacheManager {
             Serializable value,
             long validTime
     ) {
+        ObjectOutputStream oos = null;
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            oos = new ObjectOutputStream(baos);
+            oos.writeObject(value);
+            byte[] data = baos.toByteArray();
+            return _put(key, DevCache.SERIALIZABLE, data, validTime);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "put");
+        } finally {
+            CloseUtils.closeIOQuietly(oos);
+        }
         return false;
     }
 
@@ -268,6 +286,18 @@ final class DevCacheManager {
             Parcelable value,
             long validTime
     ) {
+        ObjectOutputStream oos = null;
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            oos = new ObjectOutputStream(baos);
+            oos.writeObject(value);
+            byte[] data = baos.toByteArray();
+            return _put(key, DevCache.PARCELABLE, data, validTime);
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "put");
+        } finally {
+            CloseUtils.closeIOQuietly(oos);
+        }
         return false;
     }
 
@@ -276,7 +306,8 @@ final class DevCacheManager {
             JSONObject value,
             long validTime
     ) {
-        return false;
+        if (value == null) return false;
+        return _put(key, DevCache.JSON_OBJECT, value.toString().getBytes(), validTime);
     }
 
     public boolean put(
@@ -284,15 +315,8 @@ final class DevCacheManager {
             JSONArray value,
             long validTime
     ) {
-        return false;
-    }
-
-    public <T> boolean put(
-            String key,
-            T value,
-            long validTime
-    ) {
-        return false;
+        if (value == null) return false;
+        return _put(key, DevCache.JSON_OBJECT, value.toString().getBytes(), validTime);
     }
 
     // =======
@@ -351,12 +375,7 @@ final class DevCacheManager {
         return null;
     }
 
-    public <T> T getEntity(
-            String key,
-            Type typeOfT
-    ) {
-        return null;
-    }
+    // =
 
     public int getInt(
             String key,
@@ -449,17 +468,9 @@ final class DevCacheManager {
         return null;
     }
 
-    public <T> T getEntity(
-            String key,
-            Type typeOfT,
-            T defaultValue
-    ) {
-        return null;
-    }
-
-    // ===============
-    // = 内部处理方法 =
-    // ===============
+    // ===========
+    // = 内部方法 =
+    // ===========
 
     /**
      * 获取 Key 数据文件
@@ -508,31 +519,9 @@ final class DevCacheManager {
                 && FileUtils.isFileExists(_getKeyConfigFile(key));
     }
 
-    /**
-     * 将 byte[] 写入文件
-     * @param file  待写入文件
-     * @param bytes 待写入数据
-     * @return {@code true} success, {@code false} fail
-     */
-    private boolean _saveFileBytes(
-            final File file,
-            final byte[] bytes
-    ) {
-        return FileUtils.saveFile(file, bytes);
-    }
-
-    /**
-     * 读取文件 byte[]
-     * @param file 待读取文件
-     * @return 文件 byte[]
-     */
-    private byte[] _readFileBytes(final File file) {
-        return FileUtils.readFileBytes(file);
-    }
-
-    // ===========
-    // = 内部缓存 =
-    // ===========
+    // ========
+    // = Data =
+    // ========
 
     // Data JSON Format
     private final String DATA_FORMAT = "{\"key\":\"%s\",\"type\":%d,\"saveTime\":%d,\"validTime\":%d,\"lastModified\":%d}";
@@ -575,7 +564,7 @@ final class DevCacheManager {
         if (!_isExistKeyFile(key)) return null;
         try {
             File       configFile = _getKeyConfigFile(key);
-            String     config     = new String(_readFileBytes(configFile));
+            String     config     = new String(FileUtils.readFileBytes(configFile));
             JSONObject jsonObject = new JSONObject(config);
             if (jsonObject.has("key")
                     && jsonObject.has("type")
@@ -595,5 +584,34 @@ final class DevCacheManager {
             LogPrintUtils.eTag(TAG, e, "getData");
         }
         return null;
+    }
+
+    // =
+
+    /**
+     * 统一保存方法
+     * @param key       保存的 key
+     * @param type      保存类型
+     * @param bytes     保存数据
+     * @param validTime 有效期
+     * @return {@code true} success, {@code false} fail
+     */
+    private boolean _put(
+            String key,
+            int type,
+            byte[] bytes,
+            long validTime
+    ) {
+        if (bytes == null) return false;
+        DevCache.Data data = _mapGetData(key);
+        if (data == null) return false;
+        File dataFile = _getKeyDataFile(key);
+        if (!FileUtils.isFileExists(dataFile)) return false;
+        boolean result      = FileUtils.saveFile(dataFile, bytes);
+        long    currentTime = System.currentTimeMillis();
+        data.setSaveTime(currentTime).setType(type)
+                .setLastModified(currentTime).setValidTime(validTime);
+        FileUtils.saveFile(_getKeyConfigFile(key), _toDataString(data).getBytes());
+        return result;
     }
 }
