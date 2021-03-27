@@ -27,6 +27,7 @@ import dev.utils.LogPrintUtils;
 import dev.utils.app.image.ImageUtils;
 import dev.utils.common.CloseUtils;
 import dev.utils.common.FileUtils;
+import dev.utils.common.cipher.Cipher;
 
 /**
  * detail: 缓存管理类
@@ -43,13 +44,19 @@ final class DevCacheManager {
     private static final   String                CONFIG_EXTENSION = ".config";
     // 缓存地址
     private final          String                mCachePath;
+    // 通用加解密中间层
+    private final          Cipher                mCipher;
     // 总缓存大小
     private final          AtomicLong            mCacheSize       = new AtomicLong();
     // 总缓存的文件总数
     private final          AtomicInteger         mCacheCount      = new AtomicInteger();
 
-    public DevCacheManager(String cachePath) {
+    public DevCacheManager(
+            String cachePath,
+            Cipher cipher
+    ) {
         this.mCachePath = cachePath;
+        this.mCipher = cipher;
         // 计算文件信息
         calculateCacheSizeAndCacheCount();
     }

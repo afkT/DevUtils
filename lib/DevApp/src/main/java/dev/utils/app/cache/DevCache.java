@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import dev.utils.app.PathUtils;
+import dev.utils.common.cipher.Cipher;
 
 /**
  * detail: 缓存类
@@ -27,10 +28,14 @@ public final class DevCache {
     /**
      * 获取 DevCache
      * @param cachePath 缓存文件夹路径
+     * @param cipher    通用加解密中间层
      * @return {@link DevCache}
      */
-    private DevCache(final String cachePath) {
-        mManager = new DevCacheManager(cachePath);
+    private DevCache(
+            final String cachePath,
+            final Cipher cipher
+    ) {
+        mManager = new DevCacheManager(cachePath, cipher);
     }
 
     // 数据类型
@@ -66,7 +71,7 @@ public final class DevCache {
         DevCache cache = DevCacheManager.sInstanceMaps.get("");
         if (cache == null) {
             String cachePath = PathUtils.getAppExternal().getAppCachePath(DEFAULT_NAME);
-            cache = new DevCache(cachePath);
+            cache = new DevCache(cachePath, null);
             DevCacheManager.sInstanceMaps.put("", cache);
             DevCacheManager.sInstanceMaps.put(cachePath, cache);
         }
@@ -79,12 +84,25 @@ public final class DevCache {
      * @return {@link DevCache}
      */
     public static DevCache newCache(final String cachePath) {
+        return newCache(cachePath, null);
+    }
+
+    /**
+     * 获取 DevCache
+     * @param cachePath 缓存文件夹路径
+     * @param cipher    通用加解密中间层
+     * @return {@link DevCache}
+     */
+    public static DevCache newCache(
+            final String cachePath,
+            final Cipher cipher
+    ) {
         if (TextUtils.isEmpty(cachePath)) {
             return newCache();
         }
         DevCache cache = DevCacheManager.sInstanceMaps.get(cachePath);
         if (cache == null) {
-            cache = new DevCache(cachePath);
+            cache = new DevCache(cachePath, cipher);
             DevCacheManager.sInstanceMaps.put(cachePath, cache);
         }
         return cache;
