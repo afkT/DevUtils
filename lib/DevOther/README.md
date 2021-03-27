@@ -6,6 +6,7 @@
 - dev                                                 | 根目录
    - assist                                           | 常用辅助类封装
    - engine                                           | 兼容 Engine
+      - cache                                         | Cache Engine
       - compress                                      | Image Compress Engine
       - image                                         | Image Engine
       - json                                          | JSON Engine
@@ -38,6 +39,7 @@
 - dev                                                 | 根目录
    - [assist](#devassist)                             | 常用辅助类封装
    - [engine](#devengine)                             | 兼容 Engine
+      - [cache](#devenginecache)                      | Cache Engine
       - [compress](#devenginecompress)                | Image Compress Engine
       - [image](#devengineimage)                      | Image Engine
       - [json](#devenginejson)                        | JSON Engine
@@ -185,6 +187,43 @@
 
 
 ## <span id="devengine">**`dev.engine`**</span>
+
+
+## <span id="devenginecache">**`dev.engine.cache`**</span>
+
+
+* **DevCache Engine 实现 ->** [DevCacheEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/cache/DevCacheEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getConfig | getConfig |
+| remove | remove |
+| removeForKeys | removeForKeys |
+| contains | contains |
+| isDue | isDue |
+| clear | clear |
+| clearDue | clearDue |
+| clearType | clearType |
+| getItemByKey | getItemByKey |
+| getKeys | getKeys |
+| getPermanentKeys | getPermanentKeys |
+| getCount | getCount |
+| getSize | getSize |
+| put | put |
+| getInt | getInt |
+| getLong | getLong |
+| getFloat | getFloat |
+| getDouble | getDouble |
+| getBoolean | getBoolean |
+| getString | getString |
+| getBytes | getBytes |
+| getBitmap | getBitmap |
+| getDrawable | getDrawable |
+| getSerializable | getSerializable |
+| getParcelable | getParcelable |
+| getJSONObject | getJSONObject |
+| getJSONArray | getJSONArray |
+| getEntity | getEntity |
 
 
 ## <span id="devenginecompress">**`dev.engine.compress`**</span>

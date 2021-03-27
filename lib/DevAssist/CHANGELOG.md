@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.1.8 *(2021-03-27)*
+----------------------------
+
+* `[Add]` DevDataAdapter#getActivity、setActivity、parentContext
+
+* `[Add]` DevPage#getConfig、getConfigPage、getConfigPageSize
+
 Version 1.1.7 *(2021-03-24)*
 ----------------------------
 

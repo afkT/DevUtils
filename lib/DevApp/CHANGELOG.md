@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 2.2.3 *(2021-03-27)*
+----------------------------
+
+* `[Refactor]` DevCache
+
+* `[Add]` ViewUtils#getWidthHeightExact、getWidthHeightExact2
+
 Version 2.2.2 *(2021-03-21)*
 ----------------------------
 

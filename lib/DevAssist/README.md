@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevAssist:1.1.7'
+implementation 'com.afkt:DevAssist:1.1.8'
 ```
 
 ## 目录结构
@@ -92,6 +92,9 @@ implementation 'com.afkt:DevAssist:1.1.7'
 | :- | :- |
 | getContext | 获取 Context |
 | setContext | 设置 Context |
+| getActivity | 获取 Activity |
+| setActivity | 设置 Activity |
+| parentContext | 通过 ViewGroup 设置 Context |
 | getItemCount | getItemCount |
 | getDataList | getDataList |
 | getDataArrayList | getDataArrayList |
@@ -379,6 +382,9 @@ implementation 'com.afkt:DevAssist:1.1.7'
 | getPage | 获取当前页数 |
 | setPage | 设置当前页数 |
 | equalsPage | 判断当前页数是否一致 |
+| getConfig | 获取页数配置信息 |
+| getConfigPage | 获取配置初始页页数 |
+| getConfigPageSize | 获取配置每页请求条数 |
 | getPageSize | 获取每页请求条数 |
 | equalsPageSize | 判断每页请求条数是否一致 |
 | isLastPage | 判断是否最后一页 |
@@ -739,8 +745,8 @@ implementation 'com.afkt:DevAssist:1.1.7'
 | isDue | 判断某个 key 是否过期 |
 | clear | 清除全部数据 |
 | clearDue | 清除过期数据 |
-| clearInvalid | 清除无效数据 |
 | clearType | 清除某个类型的全部数据 |
+| getItemByKey | 通过 Key 获取 Item |
 | getKeys | 获取有效 Key 集合 |
 | getPermanentKeys | 获取永久有效 Key 集合 |
 | getCount | 获取有效 Key 数量 |

@@ -26,14 +26,14 @@ ext {
             // ===========
 
             // 版本号
-            dev_app_versionCode                     : 222,
+            dev_app_versionCode                     : 223,
             // 版本名
-            dev_app_versionName                     : '2.2.2',
+            dev_app_versionName                     : '2.2.3',
 
             // 版本号
-            dev_assist_versionCode                  : 117,
+            dev_assist_versionCode                  : 118,
             // 版本名
-            dev_assist_versionName                  : '1.1.7',
+            dev_assist_versionName                  : '1.1.8',
 
             // 版本号
             dev_base_versionCode                    : 104,
