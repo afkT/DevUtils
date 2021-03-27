@@ -196,7 +196,7 @@ public class DevDataSource<T>
     ) {
         return isLastPositionAndGreaterThanOrEqual(position, value, getDataSize());
     }
-    
+
     /**
      * 判断是否 Last Position 且大于等于指定 size
      * @param position 索引
