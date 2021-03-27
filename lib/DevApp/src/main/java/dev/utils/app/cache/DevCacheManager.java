@@ -2,6 +2,7 @@ package dev.utils.app.cache;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 
@@ -271,8 +272,8 @@ final class DevCacheManager {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             oos = new ObjectOutputStream(baos);
             oos.writeObject(value);
-            byte[] data = baos.toByteArray();
-            return _put(key, DevCache.SERIALIZABLE, data, validTime);
+            byte[] bytes = baos.toByteArray();
+            return _put(key, DevCache.SERIALIZABLE, bytes, validTime);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "put");
         } finally {
@@ -286,17 +287,14 @@ final class DevCacheManager {
             Parcelable value,
             long validTime
     ) {
-        ObjectOutputStream oos = null;
         try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            oos = new ObjectOutputStream(baos);
-            oos.writeObject(value);
-            byte[] data = baos.toByteArray();
-            return _put(key, DevCache.PARCELABLE, data, validTime);
+            Parcel parcel = Parcel.obtain();
+            value.writeToParcel(parcel, 0);
+            byte[] bytes = parcel.marshall();
+            parcel.recycle();
+            return _put(key, DevCache.PARCELABLE, bytes, validTime);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "put");
-        } finally {
-            CloseUtils.closeIOQuietly(oos);
         }
         return false;
     }
@@ -324,55 +322,55 @@ final class DevCacheManager {
     // =======
 
     public int getInt(String key) {
-        return 0;
+        return getInt(key, DevCache.INT_DEFAULT);
     }
 
     public long getLong(String key) {
-        return 0;
+        return getLong(key, DevCache.LONG_DEFAULT);
     }
 
     public float getFloat(String key) {
-        return 0;
+        return getFloat(key, DevCache.FLOAT_DEFAULT);
     }
 
     public double getDouble(String key) {
-        return 0;
+        return getDouble(key, DevCache.DOUBLE_DEFAULT);
     }
 
     public boolean getBoolean(String key) {
-        return false;
+        return getBoolean(key, DevCache.BOOLEAN_DEFAULT);
     }
 
     public String getString(String key) {
-        return null;
+        return getString(key, null);
     }
 
     public byte[] getBytes(String key) {
-        return new byte[0];
+        return getBytes(key, null);
     }
 
     public Bitmap getBitmap(String key) {
-        return null;
+        return getBitmap(key, null);
     }
 
     public Drawable getDrawable(String key) {
-        return null;
+        return getDrawable(key, null);
     }
 
     public Serializable getSerializable(String key) {
-        return null;
+        return getSerializable(key, null);
     }
 
     public Parcelable getParcelable(String key) {
-        return null;
+        return getParcelable(key, null);
     }
 
     public JSONObject getJSONObject(String key) {
-        return null;
+        return getJSONObject(key, null);
     }
 
     public JSONArray getJSONArray(String key) {
-        return null;
+        return getJSONArray(key, null);
     }
 
     // =
@@ -381,91 +379,91 @@ final class DevCacheManager {
             String key,
             int defaultValue
     ) {
-        return 0;
+        return defaultValue;
     }
 
     public long getLong(
             String key,
             long defaultValue
     ) {
-        return 0;
+        return defaultValue;
     }
 
     public float getFloat(
             String key,
             float defaultValue
     ) {
-        return 0;
+        return defaultValue;
     }
 
     public double getDouble(
             String key,
             double defaultValue
     ) {
-        return 0;
+        return defaultValue;
     }
 
     public boolean getBoolean(
             String key,
             boolean defaultValue
     ) {
-        return false;
+        return defaultValue;
     }
 
     public String getString(
             String key,
             String defaultValue
     ) {
-        return null;
+        return defaultValue;
     }
 
     public byte[] getBytes(
             String key,
             byte[] defaultValue
     ) {
-        return new byte[0];
+        return defaultValue;
     }
 
     public Bitmap getBitmap(
             String key,
             Bitmap defaultValue
     ) {
-        return null;
+        return defaultValue;
     }
 
     public Drawable getDrawable(
             String key,
             Drawable defaultValue
     ) {
-        return null;
+        return defaultValue;
     }
 
     public Serializable getSerializable(
             String key,
             Serializable defaultValue
     ) {
-        return null;
+        return defaultValue;
     }
 
     public Parcelable getParcelable(
             String key,
             Parcelable defaultValue
     ) {
-        return null;
+        return defaultValue;
     }
 
     public JSONObject getJSONObject(
             String key,
             JSONObject defaultValue
     ) {
-        return null;
+        return defaultValue;
     }
 
     public JSONArray getJSONArray(
             String key,
             JSONArray defaultValue
     ) {
-        return null;
+        return defaultValue;
     }
 
     // ===========
@@ -524,7 +522,7 @@ final class DevCacheManager {
     // ========
 
     // Data JSON Format
-    private final String DATA_FORMAT = "{\"key\":\"%s\",\"type\":%d,\"saveTime\":%d,\"validTime\":%d,\"lastModified\":%d}";
+    private final String DATA_FORMAT = "{\"key\":\"%s\",\"type\":%d,\"saveTime\":%d,\"validTime\":%d}";
 
     // 缓存 Data
     private final HashMap<String, DevCache.Data> mDataMaps = new HashMap<>();
@@ -551,7 +549,7 @@ final class DevCacheManager {
     private String _toDataString(final DevCache.Data data) {
         return String.format(DATA_FORMAT, data.getKey(),
                 data.getType(), data.getSaveTime(),
-                data.getValidTime(), data.getLastModified()
+                data.getValidTime()
         );
     }
 
@@ -570,15 +568,13 @@ final class DevCacheManager {
                     && jsonObject.has("type")
                     && jsonObject.has("saveTime")
                     && jsonObject.has("validTime")
-                    && jsonObject.has("lastModified")
             ) {
-                String _key         = jsonObject.getString("key");
-                int    type         = jsonObject.getInt("type");
-                long   saveTime     = jsonObject.getLong("saveTime");
-                long   validTime    = jsonObject.getLong("validTime");
-                long   lastModified = jsonObject.getLong("lastModified");
+                String _key      = jsonObject.getString("key");
+                int    type      = jsonObject.getInt("type");
+                long   saveTime  = jsonObject.getLong("saveTime");
+                long   validTime = jsonObject.getLong("validTime");
                 return new DevCache.Data(mCachePath, _key,
-                        type, saveTime, validTime, lastModified);
+                        type, saveTime, validTime);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getData");
@@ -608,15 +604,14 @@ final class DevCacheManager {
         long          size   = getDataFileSize(mCachePath, key);
         boolean       result = FileUtils.saveFile(_getKeyDataFile(key), bytes);
         if (result) {
-            long currentTime = System.currentTimeMillis();
             if (data != null) {
-                data.setSaveTime(currentTime).setType(type)
-                        .setLastModified(currentTime).setValidTime(validTime);
+                data.setSaveTime(System.currentTimeMillis())
+                        .setType(type).setValidTime(validTime);
                 mCacheSize.addAndGet(-size);
                 mCacheSize.addAndGet(getDataFileSize(mCachePath, key));
             } else {
                 data = new DevCache.Data(mCachePath, key, type,
-                        currentTime, validTime, currentTime);
+                        System.currentTimeMillis(), validTime);
                 mCacheSize.addAndGet(getDataFileSize(mCachePath, key));
                 mCacheCount.incrementAndGet();
                 mDataMaps.put(key, data);
