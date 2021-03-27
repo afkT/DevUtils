@@ -13,8 +13,8 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
-import dev.other.cache.ACache;
 import dev.utils.app.PathUtils;
+import dev.utils.app.cache.DevCache;
 import dev.utils.app.toast.ToastTintUtils;
 import utils_use.cache.CacheUse;
 
@@ -53,42 +53,46 @@ public class CacheActivity
                 ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_CACHE_STRING:
-                        ACache.newCache().put("str", "这是字符串");
+                        DevCache.newCache().put("str", "这是字符串", -1);
                         showToast(true, "存储字符串成功");
                         break;
                     case ButtonValue.BTN_CACHE_STRING_TIME:
-                        ACache.newCache().put("str", "这是有效期 3 秒字符串", 3);
+                        DevCache.newCache().put("str", "这是有效期 3 秒字符串", 3);
                         showToast(true, "存储有效期字符串成功");
                         break;
                     case ButtonValue.BTN_CACHE_STRING_GET:
-                        str = ACache.newCache().getAsString("str");
+                        str = DevCache.newCache().getString("str");
                         showToast(str != null, str, "未存储 key 为 str 的字符串");
                         break;
                     case ButtonValue.BTN_CACHE_BEAN:
-                        ACache.newCache().put("bean", new CacheActivity.CacheVo("这是实体类"));
+                        DevCache.newCache().put("bean", new CacheActivity.CacheVo("这是实体类"), -1);
                         showToast(true, "存储实体类成功");
                         break;
                     case ButtonValue.BTN_CACHE_BEAN_TIME:
-                        ACache.newCache().put("bean", new CacheActivity.CacheVo("这是有效期 3 秒实体类"), 3);
+                        DevCache.newCache().put("bean", new CacheActivity.CacheVo("这是有效期 3 秒实体类"), 3);
                         showToast(true, "存储有效期实体类成功");
                         break;
                     case ButtonValue.BTN_CACHE_BEAN_GET:
-                        Object object = ACache.newCache().getAsObject("bean");
+                        Object object = DevCache.newCache().getSerializable("bean");
                         str = (object != null) ? ((CacheVo) object).toString() : null;
                         showToast(object != null, str, "未存储 key 为 bean 的实体类");
                         break;
                     case ButtonValue.BTN_CACHE_FILE:
                         // 保存到指定文件夹下
-                        ACache.newCache(PathUtils.getSDCard().getSDCardFile("DevCache")).put("fileStr", "这是指定位置字符串");
+                        DevCache.newCache(
+                                PathUtils.getSDCard().getSDCardFile("DevCache").getAbsolutePath()
+                        ).put("fileStr", "这是指定位置字符串", -1);
                         showToast(true, "存储到指定位置成功");
                         break;
                     case ButtonValue.BTN_CACHE_FILE_GET:
-                        str = ACache.newCache(PathUtils.getSDCard().getSDCardFile("DevCache")).getAsString("fileStr");
+                        str = DevCache.newCache(
+                                PathUtils.getSDCard().getSDCardFile("DevCache").getAbsolutePath()
+                        ).getString("fileStr");
                         showToast(str != null, str, "未存储 key 为 fileStr 的字符串");
                         break;
                     case ButtonValue.BTN_CACHE_CLEAR:
-                        ACache.newCache().clear();
-                        ACache.newCache(PathUtils.getSDCard().getSDCardPath("DevCache")).clear();
+                        DevCache.newCache().clear();
+                        DevCache.newCache(PathUtils.getSDCard().getSDCardPath("DevCache")).clear();
                         showToast(true, "清除全部数据成功");
                         break;
                     default:
