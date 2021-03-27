@@ -558,7 +558,7 @@ final class DevCacheManager {
 
     public Object getSerializable(
             String key,
-            Serializable defaultValue
+            Object defaultValue
     ) {
         DevCache.Data data = _mapGetData(key);
         if (data != null) {

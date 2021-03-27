@@ -26,11 +26,9 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig, Item ext
     class EngineConfig {
 
         // 缓存存储 id
-        public final String  cacheID;
+        public final String cacheID;
         // 通用加解密中间层
-        public final Cipher  cipher;
-        // 获取操作是否会移除失效资源
-        public       boolean removeDue;
+        public final Cipher cipher;
 
         public EngineConfig(
                 String cacheID,
@@ -38,16 +36,6 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig, Item ext
         ) {
             this.cacheID = cacheID;
             this.cipher = cipher;
-        }
-
-        public EngineConfig(
-                String cacheID,
-                Cipher cipher,
-                boolean removeDue
-        ) {
-            this.cacheID = cacheID;
-            this.cipher = cipher;
-            this.removeDue = removeDue;
         }
     }
 
@@ -67,10 +55,10 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig, Item ext
         public final long    saveTime;
         // 有效期 ( 毫秒 )
         public final long    validTime;
-        // 最后操作时间 ( 毫秒 )
-        public final long    lastModified;
         // 是否永久有效
         public final boolean isPermanent;
+        // 是否过期
+        public final boolean isDue;
 
         public EngineItem(
                 String key,
@@ -78,16 +66,16 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig, Item ext
                 long size,
                 long saveTime,
                 long validTime,
-                long lastModified,
-                boolean isPermanent
+                boolean isPermanent,
+                boolean isDue
         ) {
             this.key = key;
             this.type = type;
             this.size = size;
             this.saveTime = saveTime;
             this.validTime = validTime;
-            this.lastModified = lastModified;
             this.isPermanent = isPermanent;
+            this.isDue = isDue;
         }
     }
 
@@ -138,9 +126,9 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig, Item ext
     void clear();
 
     /**
-     * 清除无效数据 ( 含过期数据 )
+     * 清除过期数据
      */
-    void clearInvalid();
+    void clearDue();
 
     /**
      * 清除某个类型的全部数据
@@ -157,36 +145,24 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig, Item ext
 
     /**
      * 获取有效 Key 集合
-     * <pre>
-     *     {@link EngineConfig#removeDue} 控制移除失效资源
-     * </pre>
      * @return 有效 Key 集合
      */
     List<Item> getKeys();
 
     /**
      * 获取永久有效 Key 集合
-     * <pre>
-     *     {@link EngineConfig#removeDue} 控制移除失效资源
-     * </pre>
      * @return 永久有效 Key 集合
      */
     List<Item> getPermanentKeys();
 
     /**
      * 获取有效 Key 数量
-     * <pre>
-     *     {@link EngineConfig#removeDue} 控制移除失效资源
-     * </pre>
      * @return 有效 Key 数量
      */
     int getCount();
 
     /**
      * 获取有效 Key 占用总大小
-     * <pre>
-     *     {@link EngineConfig#removeDue} 控制移除失效资源
-     * </pre>
      * @return 有效 Key 占用总大小
      */
     long getSize();
@@ -450,14 +426,18 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig, Item ext
      * @param key 保存的 key
      * @return 存储的数据
      */
-    Serializable getSerializable(String key);
+    Object getSerializable(String key);
 
     /**
      * 获取 Parcelable 类型的数据
-     * @param key 保存的 key
+     * @param key     保存的 key
+     * @param creator {@link Parcelable.Creator}
      * @return 存储的数据
      */
-    Parcelable getParcelable(String key);
+    <T> T getParcelable(
+            String key,
+            Parcelable.Creator<T> creator
+    );
 
     /**
      * 获取 JSONObject 类型的数据
@@ -592,20 +572,22 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig, Item ext
      * @param defaultValue 默认值
      * @return 存储的数据
      */
-    Serializable getSerializable(
+    Object getSerializable(
             String key,
-            Serializable defaultValue
+            Object defaultValue
     );
 
     /**
      * 获取 Parcelable 类型的数据
      * @param key          保存的 key
+     * @param creator      {@link Parcelable.Creator}
      * @param defaultValue 默认值
      * @return 存储的数据
      */
-    Parcelable getParcelable(
+    <T> T getParcelable(
             String key,
-            Parcelable defaultValue
+            Parcelable.Creator<T> creator,
+            T defaultValue
     );
 
     /**

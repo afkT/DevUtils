@@ -651,7 +651,7 @@ public final class DevCache {
      */
     public Object getSerializable(
             String key,
-            Serializable defaultValue
+            Object defaultValue
     ) {
         return mManager.getSerializable(key, defaultValue);
     }
