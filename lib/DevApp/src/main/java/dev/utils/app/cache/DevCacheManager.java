@@ -132,11 +132,11 @@ final class DevCacheManager {
         }).start();
     }
 
-    public void clearInvalid() {
+    public void clearDue() {
         new Thread(() -> {
             HashSet<String> keys = new HashSet<>(mDataMaps.keySet());
             for (String key : keys) {
-                if (!isDue(key)) remove(key);
+                if (isDue(key)) remove(key);
             }
         }).start();
     }

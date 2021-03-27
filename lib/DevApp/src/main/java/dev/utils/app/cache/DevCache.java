@@ -145,10 +145,10 @@ public final class DevCache {
     }
 
     /**
-     * 清除无效数据 ( 含过期数据 )
+     * 清除过期数据
      */
-    public void clearInvalid() {
-        mManager.clearInvalid();
+    public void clearDue() {
+        mManager.clearDue();
     }
 
     /**
