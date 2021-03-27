@@ -9,8 +9,10 @@ import android.text.TextUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -117,11 +119,7 @@ final class DevCacheManager {
 
     public boolean isDue(String key) {
         DevCache.Data data = _mapGetData(key);
-        if (data != null) {
-            if (data.isPermanent()) return false;
-            long time = data.getSaveTime() + data.getValidTime();
-            return System.currentTimeMillis() - time >= 0;
-        }
+        if (data != null) return data.isDue();
         return true;
     }
 
@@ -275,7 +273,7 @@ final class DevCacheManager {
             byte[] bytes = baos.toByteArray();
             return _put(key, DevCache.SERIALIZABLE, bytes, validTime);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "put");
+            LogPrintUtils.eTag(TAG, e, "put - Serializable");
         } finally {
             CloseUtils.closeIOQuietly(oos);
         }
@@ -294,7 +292,7 @@ final class DevCacheManager {
             parcel.recycle();
             return _put(key, DevCache.PARCELABLE, bytes, validTime);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "put");
+            LogPrintUtils.eTag(TAG, e, "put - Parcelable");
         }
         return false;
     }
@@ -357,12 +355,15 @@ final class DevCacheManager {
         return getDrawable(key, null);
     }
 
-    public Serializable getSerializable(String key) {
+    public Object getSerializable(String key) {
         return getSerializable(key, null);
     }
 
-    public Parcelable getParcelable(String key) {
-        return getParcelable(key, null);
+    public <T> T getParcelable(
+            String key,
+            Parcelable.Creator<T> creator
+    ) {
+        return getParcelable(key, creator, null);
     }
 
     public JSONObject getJSONObject(String key) {
@@ -379,6 +380,19 @@ final class DevCacheManager {
             String key,
             int defaultValue
     ) {
+        DevCache.Data data = _mapGetData(key);
+        if (data != null) {
+            if (data.isDue()) {
+                remove(key);
+            } else {
+                try {
+                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    return Integer.parseInt(new String(bytes));
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, "getInt");
+                }
+            }
+        }
         return defaultValue;
     }
 
@@ -386,6 +400,19 @@ final class DevCacheManager {
             String key,
             long defaultValue
     ) {
+        DevCache.Data data = _mapGetData(key);
+        if (data != null) {
+            if (data.isDue()) {
+                remove(key);
+            } else {
+                try {
+                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    return Long.parseLong(new String(bytes));
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, "getLong");
+                }
+            }
+        }
         return defaultValue;
     }
 
@@ -393,6 +420,19 @@ final class DevCacheManager {
             String key,
             float defaultValue
     ) {
+        DevCache.Data data = _mapGetData(key);
+        if (data != null) {
+            if (data.isDue()) {
+                remove(key);
+            } else {
+                try {
+                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    return Float.parseFloat(new String(bytes));
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, "getFloat");
+                }
+            }
+        }
         return defaultValue;
     }
 
@@ -400,6 +440,19 @@ final class DevCacheManager {
             String key,
             double defaultValue
     ) {
+        DevCache.Data data = _mapGetData(key);
+        if (data != null) {
+            if (data.isDue()) {
+                remove(key);
+            } else {
+                try {
+                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    return Double.parseDouble(new String(bytes));
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, "getDouble");
+                }
+            }
+        }
         return defaultValue;
     }
 
@@ -407,6 +460,19 @@ final class DevCacheManager {
             String key,
             boolean defaultValue
     ) {
+        DevCache.Data data = _mapGetData(key);
+        if (data != null) {
+            if (data.isDue()) {
+                remove(key);
+            } else {
+                try {
+                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    return Boolean.parseBoolean(new String(bytes));
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, "getBoolean");
+                }
+            }
+        }
         return defaultValue;
     }
 
@@ -414,6 +480,19 @@ final class DevCacheManager {
             String key,
             String defaultValue
     ) {
+        DevCache.Data data = _mapGetData(key);
+        if (data != null) {
+            if (data.isDue()) {
+                remove(key);
+            } else {
+                try {
+                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    return new String(bytes);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, "getString");
+                }
+            }
+        }
         return defaultValue;
     }
 
@@ -421,6 +500,18 @@ final class DevCacheManager {
             String key,
             byte[] defaultValue
     ) {
+        DevCache.Data data = _mapGetData(key);
+        if (data != null) {
+            if (data.isDue()) {
+                remove(key);
+            } else {
+                try {
+                    return FileUtils.readFileBytes(_getKeyDataFile(key));
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, "getBytes");
+                }
+            }
+        }
         return defaultValue;
     }
 
@@ -428,6 +519,19 @@ final class DevCacheManager {
             String key,
             Bitmap defaultValue
     ) {
+        DevCache.Data data = _mapGetData(key);
+        if (data != null) {
+            if (data.isDue()) {
+                remove(key);
+            } else {
+                try {
+                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    return ImageUtils.decodeByteArray(bytes);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, "getBitmap");
+                }
+            }
+        }
         return defaultValue;
     }
 
@@ -435,20 +539,68 @@ final class DevCacheManager {
             String key,
             Drawable defaultValue
     ) {
+        DevCache.Data data = _mapGetData(key);
+        if (data != null) {
+            if (data.isDue()) {
+                remove(key);
+            } else {
+                try {
+                    byte[] bytes  = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    Bitmap bitmap = ImageUtils.decodeByteArray(bytes);
+                    return ImageUtils.bitmapToDrawable(bitmap);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, "getDrawable");
+                }
+            }
+        }
         return defaultValue;
     }
 
-    public Serializable getSerializable(
+    public Object getSerializable(
             String key,
             Serializable defaultValue
     ) {
+        DevCache.Data data = _mapGetData(key);
+        if (data != null) {
+            if (data.isDue()) {
+                remove(key);
+            } else {
+                ObjectInputStream ois = null;
+                try {
+                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    ois = new ObjectInputStream(new ByteArrayInputStream(bytes));
+                    return ois.readObject();
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, "getSerializable");
+                } finally {
+                    CloseUtils.closeIOQuietly(ois);
+                }
+            }
+        }
         return defaultValue;
     }
 
-    public Parcelable getParcelable(
+    public <T> T getParcelable(
             String key,
-            Parcelable defaultValue
+            Parcelable.Creator<T> creator,
+            T defaultValue
     ) {
+        DevCache.Data data = _mapGetData(key);
+        if (data != null) {
+            if (data.isDue()) {
+                remove(key);
+            } else {
+                try {
+                    byte[] bytes  = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    Parcel parcel = Parcel.obtain();
+                    parcel.unmarshall(bytes, 0, bytes.length);
+                    parcel.setDataPosition(0);
+                    return creator.createFromParcel(parcel);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, "getParcelable");
+                }
+            }
+        }
         return defaultValue;
     }
 
@@ -456,6 +608,19 @@ final class DevCacheManager {
             String key,
             JSONObject defaultValue
     ) {
+        DevCache.Data data = _mapGetData(key);
+        if (data != null) {
+            if (data.isDue()) {
+                remove(key);
+            } else {
+                try {
+                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    return new JSONObject(new String(bytes));
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, "getJSONObject");
+                }
+            }
+        }
         return defaultValue;
     }
 
@@ -463,6 +628,19 @@ final class DevCacheManager {
             String key,
             JSONArray defaultValue
     ) {
+        DevCache.Data data = _mapGetData(key);
+        if (data != null) {
+            if (data.isDue()) {
+                remove(key);
+            } else {
+                try {
+                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    return new JSONArray(new String(bytes));
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, "getJSONArray");
+                }
+            }
+        }
         return defaultValue;
     }
 
@@ -577,7 +755,7 @@ final class DevCacheManager {
                         type, saveTime, validTime);
             }
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getData");
+            LogPrintUtils.eTag(TAG, e, "_getData");
         }
         return null;
     }

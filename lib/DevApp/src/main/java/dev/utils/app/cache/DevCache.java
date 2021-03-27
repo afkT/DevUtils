@@ -489,17 +489,21 @@ public final class DevCache {
      * @param key 保存的 key
      * @return 存储的数据
      */
-    public Serializable getSerializable(String key) {
+    public Object getSerializable(String key) {
         return mManager.getSerializable(key);
     }
 
     /**
      * 获取 Parcelable 类型的数据
-     * @param key 保存的 key
+     * @param key     保存的 key
+     * @param creator {@link Parcelable.Creator}
      * @return 存储的数据
      */
-    public Parcelable getParcelable(String key) {
-        return mManager.getParcelable(key);
+    public <T> T getParcelable(
+            String key,
+            Parcelable.Creator<T> creator
+    ) {
+        return mManager.getParcelable(key, creator);
     }
 
     /**
@@ -645,7 +649,7 @@ public final class DevCache {
      * @param defaultValue 默认值
      * @return 存储的数据
      */
-    public Serializable getSerializable(
+    public Object getSerializable(
             String key,
             Serializable defaultValue
     ) {
@@ -655,14 +659,16 @@ public final class DevCache {
     /**
      * 获取 Parcelable 类型的数据
      * @param key          保存的 key
+     * @param creator      {@link Parcelable.Creator}
      * @param defaultValue 默认值
      * @return 存储的数据
      */
-    public Parcelable getParcelable(
+    public <T> T getParcelable(
             String key,
-            Parcelable defaultValue
+            Parcelable.Creator<T> creator,
+            T defaultValue
     ) {
-        return mManager.getParcelable(key, defaultValue);
+        return mManager.getParcelable(key, creator, defaultValue);
     }
 
     /**
@@ -740,6 +746,16 @@ public final class DevCache {
          */
         public boolean isPermanent() {
             return mValidTime <= 0;
+        }
+
+        /**
+         * 是否过期
+         * @return {@code true} yes, {@code false} no
+         */
+        public boolean isDue() {
+            if (mValidTime <= 0) return false;
+            long time = mSaveTime + mValidTime;
+            return System.currentTimeMillis() - time >= 0;
         }
 
         /**
