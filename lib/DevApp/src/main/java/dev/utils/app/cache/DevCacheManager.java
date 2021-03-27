@@ -393,7 +393,7 @@ final class DevCacheManager {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    byte[] bytes = _get(key);
                     return Integer.parseInt(new String(bytes));
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getInt");
@@ -413,7 +413,7 @@ final class DevCacheManager {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    byte[] bytes = _get(key);
                     return Long.parseLong(new String(bytes));
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getLong");
@@ -433,7 +433,7 @@ final class DevCacheManager {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    byte[] bytes = _get(key);
                     return Float.parseFloat(new String(bytes));
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getFloat");
@@ -453,7 +453,7 @@ final class DevCacheManager {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    byte[] bytes = _get(key);
                     return Double.parseDouble(new String(bytes));
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getDouble");
@@ -473,7 +473,7 @@ final class DevCacheManager {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    byte[] bytes = _get(key);
                     return Boolean.parseBoolean(new String(bytes));
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getBoolean");
@@ -493,7 +493,7 @@ final class DevCacheManager {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    byte[] bytes = _get(key);
                     return new String(bytes);
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getString");
@@ -513,7 +513,7 @@ final class DevCacheManager {
                 remove(key);
             } else {
                 try {
-                    return FileUtils.readFileBytes(_getKeyDataFile(key));
+                    return _get(key);
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getBytes");
                 }
@@ -532,7 +532,7 @@ final class DevCacheManager {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    byte[] bytes = _get(key);
                     return ImageUtils.decodeByteArray(bytes);
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getBitmap");
@@ -552,7 +552,7 @@ final class DevCacheManager {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes  = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    byte[] bytes  = _get(key);
                     Bitmap bitmap = ImageUtils.decodeByteArray(bytes);
                     return ImageUtils.bitmapToDrawable(bitmap);
                 } catch (Exception e) {
@@ -574,7 +574,7 @@ final class DevCacheManager {
             } else {
                 ObjectInputStream ois = null;
                 try {
-                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    byte[] bytes = _get(key);
                     ois = new ObjectInputStream(new ByteArrayInputStream(bytes));
                     return ois.readObject();
                 } catch (Exception e) {
@@ -598,7 +598,7 @@ final class DevCacheManager {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes  = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    byte[] bytes  = _get(key);
                     Parcel parcel = Parcel.obtain();
                     parcel.unmarshall(bytes, 0, bytes.length);
                     parcel.setDataPosition(0);
@@ -621,7 +621,7 @@ final class DevCacheManager {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    byte[] bytes = _get(key);
                     return new JSONObject(new String(bytes));
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getJSONObject");
@@ -641,7 +641,7 @@ final class DevCacheManager {
                 remove(key);
             } else {
                 try {
-                    byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+                    byte[] bytes = _get(key);
                     return new JSONArray(new String(bytes));
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, "getJSONArray");
@@ -770,7 +770,7 @@ final class DevCacheManager {
     // =
 
     /**
-     * 统一保存方法
+     * 保存方法 ( 最终调用 )
      * @param key       保存的 key
      * @param type      保存类型
      * @param bytes     保存数据
@@ -783,8 +783,16 @@ final class DevCacheManager {
             byte[] bytes,
             long validTime
     ) {
-        if (bytes == null) return false;
         if (TextUtils.isEmpty(key)) return false;
+        if (bytes != null && mCipher != null) {
+            try {
+                bytes = mCipher.encrypt(bytes);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "_put - encrypt");
+                bytes = null;
+            }
+        }
+        if (bytes == null) return false;
         DevCache.Data data   = _mapGetData(key);
         long          size   = getDataFileSize(mCachePath, key);
         boolean       result = FileUtils.saveFile(_getKeyDataFile(key), bytes);
@@ -804,5 +812,23 @@ final class DevCacheManager {
             FileUtils.saveFile(_getKeyConfigFile(key), _toDataString(data).getBytes());
         }
         return result;
+    }
+
+    /**
+     * 获取方法 ( 最终调用 )
+     * @param key 保存的 key
+     * @return 保存的数据
+     */
+    private byte[] _get(String key) {
+        byte[] bytes = FileUtils.readFileBytes(_getKeyDataFile(key));
+        if (bytes != null && mCipher != null) {
+            try {
+                bytes = mCipher.decrypt(bytes);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "_get - decrypt");
+                bytes = null;
+            }
+        }
+        return bytes;
     }
 }
