@@ -1,5 +1,6 @@
 package dev.widget.ui;
 
+import android.animation.Animator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
@@ -19,6 +20,9 @@ public class SpinCardView
     private FrameLayout mBackLayout;
     // 当前是否显示正面 Layout
     private boolean     isFront = true;
+    // 翻转出入动画
+    private Animator    mOutAnim;
+    private Animator    mInAnim;
 
     public SpinCardView(Context context) {
         super(context);

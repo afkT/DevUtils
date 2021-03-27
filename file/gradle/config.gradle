@@ -172,6 +172,9 @@ ext {
                     // ARouter 路由 https://github.com/alibaba/ARouter
                     arouter_api          : "com.alibaba:arouter-api:1.5.1", // https://github.com/alibaba/ARouter/blob/master/README_CN.md
                     arouter_compiler     : "com.alibaba:arouter-compiler:1.5.1",
+
+                    // PaintedSkin 一款解决 Android App 换肤功能的框架 https://juejin.cn/post/6941657381281464333
+                    // https://github.com/CoderAlee/PaintedSkin
             ],
             'aop'       : [
                     // 安卓 AOP 三剑客: APT、AspectJ、Javassist https://www.jianshu.com/p/dca3e2c8608a
@@ -265,6 +268,9 @@ ext {
                     baserecyclerviewadapterhelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6",
                     // QMUI Android https://qmuiteam.com/android
                     qmui                         : "com.qmuiteam:qmui:2.0.0-alpha10",
+
+                    // 骨架屏 https://github.com/ethanhua/Skeleton
+                    // https://juejin.cn/post/6844903785215574023
 
                     // ==============
                     // = deprecated =
