@@ -12,7 +12,7 @@ import dev.utils.app.ViewUtils;
  * detail: 自动同比放大 ImageView
  * <pre>
  *     铺满宽度, 高度根据比例自动缩放
- *     如需要圆角, 推荐使用 CardView 进行裁剪 View, 减少因全图展示对 Bitmap 操作出现 OOM
+ *     如需要圆角, 推荐使用 CardView 包装进行裁剪 View, 减少因全图展示对 Bitmap 操作出现 OOM
  * </pre>
  * @author Ttt
  */
@@ -88,8 +88,10 @@ public class ResizableImageView
     /**
      * 设置宽高监听事件
      * @param whListener {@link dev.utils.app.ViewUtils.OnWHListener}
+     * @return {@link ResizableImageView}
      */
-    public void setWHListener(ViewUtils.OnWHListener whListener) {
+    public ResizableImageView setWHListener(final ViewUtils.OnWHListener whListener) {
         this.mWHListener = whListener;
+        return this;
     }
 }
