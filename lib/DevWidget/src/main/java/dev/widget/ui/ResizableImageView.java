@@ -90,7 +90,7 @@ public class ResizableImageView
      * @param whListener {@link dev.utils.app.ViewUtils.OnWHListener}
      * @return {@link ResizableImageView}
      */
-    public ResizableImageView setWHListener(final ViewUtils.OnWHListener whListener) {
+    public ResizableImageView setWHListener(ViewUtils.OnWHListener whListener) {
         this.mWHListener = whListener;
         return this;
     }
