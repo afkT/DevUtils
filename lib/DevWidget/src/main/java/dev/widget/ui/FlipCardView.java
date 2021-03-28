@@ -89,9 +89,8 @@ public class FlipCardView
         mBackLayout.setCameraDistance(scale);
 
         // 初始化动画
-        mOutAnim = AnimatorInflater.loadAnimator(getContext(), R.animator.card_flip_anim_out);
-        mInAnim = AnimatorInflater.loadAnimator(getContext(), R.animator.card_flip_anim_in);
-        mInAnim.addListener(mInnerInAnimListener);
+        mOutAnim = AnimatorInflater.loadAnimator(getContext(), R.animator.dev_flip_card_out);
+        mInAnim = AnimatorInflater.loadAnimator(getContext(), R.animator.dev_flip_card_in);
     }
 
     // ===============
@@ -104,6 +103,22 @@ public class FlipCardView
      */
     public boolean isFront() {
         return isFront;
+    }
+
+    /**
+     * 获取当前显示的索引
+     * @return 当前显示的索引
+     */
+    public int getCurrentPosition() {
+        if (mAdapter != null) {
+            int index = mPosition - 2;
+            int size  = mAdapter.getItemCount();
+            if (index >= 0) return index;
+            index = index + size;
+            if (index < 0) return 0;
+            return index;
+        }
+        return 0;
     }
 
     /**
@@ -155,24 +170,31 @@ public class FlipCardView
             mOutAnim.setTarget(mBackLayout);
             mInAnim.setTarget(mFrontLayout);
         }
+        // 设置动画结束监听
+        mInAnim.removeListener(mInnerInAnimListener);
+        mInAnim.addListener(mInnerInAnimListener);
+        // 启动动画
         mOutAnim.start();
         mInAnim.start();
     }
 
     /**
-     * 获取当前显示的索引
-     * @return 当前显示的索引
+     * 设置进出动画
+     * <pre>
+     *     内部不判空, 传入自行控制
+     *     可参考 R.animator.dev_flip_card_in、dev_flip_card_out 复制修改
+     *     需要注意的是 startOffset 需要是 duration 的一半
+     *     背面布局出现时间 ( 也是正面布局消失时间, 正好是总共旋转时间的一半 )
+     * </pre>
+     * @param inAnim  翻牌淡入动画
+     * @param outAnim 翻牌淡出动画
      */
-    public int getCurrentPosition() {
-        if (mAdapter != null) {
-            int index = mPosition - 2;
-            int size  = mAdapter.getItemCount();
-            if (index >= 0) return index;
-            index = index + size;
-            if (index < 0) return 0;
-            return index;
-        }
-        return 0;
+    public void setInOutAnimator(
+            Animator inAnim,
+            Animator outAnim
+    ) {
+        this.mInAnim = inAnim;
+        this.mOutAnim = outAnim;
     }
 
     /**
