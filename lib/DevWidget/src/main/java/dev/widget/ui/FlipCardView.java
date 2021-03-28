@@ -16,7 +16,7 @@ import dev.widget.R;
  * detail: 翻转卡片 View
  * @author Ttt
  */
-public class SpinCardView
+public class FlipCardView
         extends FrameLayout {
 
     // 正面 Layout
@@ -33,12 +33,12 @@ public class SpinCardView
     // 当前显示索引
     private int         mPosition = 0;
 
-    public SpinCardView(Context context) {
+    public FlipCardView(Context context) {
         super(context);
         init();
     }
 
-    public SpinCardView(
+    public FlipCardView(
             Context context,
             AttributeSet attrs
     ) {
@@ -46,7 +46,7 @@ public class SpinCardView
         init();
     }
 
-    public SpinCardView(
+    public FlipCardView(
             Context context,
             AttributeSet attrs,
             int defStyleAttr
@@ -56,7 +56,7 @@ public class SpinCardView
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public SpinCardView(
+    public FlipCardView(
             Context context,
             AttributeSet attrs,
             int defStyleAttr,
@@ -117,11 +117,44 @@ public class SpinCardView
     /**
      * 设置数据源适配器
      * @param adapter {@link Adapter}
-     * @return {@link SpinCardView}
+     * @return {@link FlipCardView}
      */
-    public SpinCardView setAdapter(Adapter adapter) {
+    public FlipCardView setAdapter(Adapter adapter) {
+        // 取消动画
+        mOutAnim.cancel();
+        mInAnim.cancel();
+        // 重置处理
+        isFront = true;
+        mPosition = 0;
+        // 设置适配器
         this.mAdapter = adapter;
+        // 开始加载 View ( 连续加载两次 正面、背面 )
+        loadView(true).loadView(false);
         return this;
+    }
+
+    /**
+     * 翻转操作
+     * <pre>
+     *     需先调用 {@link #setAdapter(Adapter)}
+     *     且在定时器每隔一段时间调用该方法
+     * </pre>
+     */
+    public void flip() {
+        // 开始翻转时都显示 View
+        ViewUtils.setVisibilitys(true, mFrontLayout, mBackLayout);
+
+        if (isFront) { // 正面朝上
+            isFront = false;
+            mOutAnim.setTarget(mFrontLayout);
+            mInAnim.setTarget(mBackLayout);
+        } else { // 背面朝上
+            isFront = true;
+            mOutAnim.setTarget(mBackLayout);
+            mInAnim.setTarget(mFrontLayout);
+        }
+        mOutAnim.start();
+        mInAnim.start();
     }
 
     /**
@@ -154,9 +187,9 @@ public class SpinCardView
         public void onAnimationEnd(Animator animation) {
             postDelayed(() -> {
                 // 进行翻转 View 显示状态
-                ViewUtils.reverseVisibilitys(!isFront, mFrontLayout, mBackLayout);
+                ViewUtils.reverseVisibilitys(isFront, mFrontLayout, mBackLayout);
                 // 加载下一索引 View
-                loadView();
+                loadView(!isFront);
             }, 100);
         }
 
@@ -173,9 +206,11 @@ public class SpinCardView
 
     /**
      * 加载翻牌 View
+     * @param front 是否显示正面 View
+     * @return {@link FlipCardView}
      */
-    private void loadView() {
-        if (isFront) {
+    private FlipCardView loadView(boolean front) {
+        if (front) {
             mFrontLayout.removeAllViews();
             // 初始化 View 并添加
             View itemView = mAdapter.getItemView(getContext(), calculatePosition(), true);
@@ -186,6 +221,7 @@ public class SpinCardView
             View itemView = mAdapter.getItemView(getContext(), calculatePosition(), false);
             mBackLayout.addView(itemView);
         }
+        return this;
     }
 
     /**
@@ -195,6 +231,6 @@ public class SpinCardView
     private int calculatePosition() {
         int size = mAdapter.getItemCount();
         mPosition = (mPosition >= size) ? 0 : (mPosition + 1);
-        return mPosition;
+        return (mPosition == 0) ? 0 : (mPosition - 1);
     }
 }
