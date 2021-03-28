@@ -91,7 +91,7 @@ public class FlipCardView
         // 初始化动画
         mOutAnim = AnimatorInflater.loadAnimator(getContext(), R.animator.card_flip_anim_out);
         mInAnim = AnimatorInflater.loadAnimator(getContext(), R.animator.card_flip_anim_in);
-        mInAnim.addListener(mInAnimListener);
+        mInAnim.addListener(mInnerInAnimListener);
     }
 
     // ===============
@@ -123,6 +123,8 @@ public class FlipCardView
         // 取消动画
         mOutAnim.cancel();
         mInAnim.cancel();
+        // 判断是否存在数据
+        ViewUtils.setVisibilitys(true, mFrontLayout, mBackLayout);
         // 重置处理
         isFront = true;
         mPosition = 0;
@@ -158,6 +160,22 @@ public class FlipCardView
     }
 
     /**
+     * 获取当前显示的索引
+     * @return 当前显示的索引
+     */
+    public int getCurrentPosition() {
+        if (mAdapter != null) {
+            int index = mPosition - 2;
+            int size  = mAdapter.getItemCount();
+            if (index >= 0) return index;
+            index = index + size;
+            if (index < 0) return 0;
+            return index;
+        }
+        return 0;
+    }
+
+    /**
      * detail: 翻牌适配器
      * @author Ttt
      */
@@ -176,8 +194,8 @@ public class FlipCardView
     // = 内部方法 =
     // ===========
 
-    // 进入动画监听
-    private Animator.AnimatorListener mInAnimListener = new Animator.AnimatorListener() {
+    // 内部进入动画监听
+    private Animator.AnimatorListener mInnerInAnimListener = new Animator.AnimatorListener() {
         @Override
         public void onAnimationStart(Animator animation) {
 
@@ -210,27 +228,38 @@ public class FlipCardView
      * @return {@link FlipCardView}
      */
     private FlipCardView loadView(boolean front) {
-        if (front) {
-            mFrontLayout.removeAllViews();
-            // 初始化 View 并添加
-            View itemView = mAdapter.getItemView(getContext(), calculatePosition(), true);
-            mFrontLayout.addView(itemView);
-        } else {
-            mBackLayout.removeAllViews();
-            // 初始化 View 并添加
-            View itemView = mAdapter.getItemView(getContext(), calculatePosition(), false);
-            mBackLayout.addView(itemView);
+        if (mAdapter != null) {
+            int size = mAdapter.getItemCount();
+            if (size == 0) return this;
+            int position = calculatePosition(size);
+            if (front) {
+                mFrontLayout.removeAllViews();
+                // 初始化 View 并添加
+                View itemView = mAdapter.getItemView(getContext(), position, true);
+                mFrontLayout.addView(itemView);
+            } else {
+                mBackLayout.removeAllViews();
+                // 初始化 View 并添加
+                View itemView = mAdapter.getItemView(getContext(), position, false);
+                mBackLayout.addView(itemView);
+            }
         }
         return this;
     }
 
     /**
      * 计算待显示索引
+     * @param size {@link Adapter#getItemCount()}
      * @return 计算后的索引
      */
-    private int calculatePosition() {
-        int size = mAdapter.getItemCount();
-        mPosition = (mPosition >= size) ? 0 : (mPosition + 1);
-        return (mPosition == 0) ? 0 : (mPosition - 1);
+    private int calculatePosition(int size) {
+        if (mPosition >= size) {
+            mPosition = 1;
+            return 0;
+        } else {
+            int position = mPosition;
+            mPosition++;
+            return position;
+        }
     }
 }
