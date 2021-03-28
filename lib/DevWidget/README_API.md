@@ -3,7 +3,7 @@
 
 ```java
 // AndroidX
-implementation 'com.afkt:DevWidgetX:1.0.8'
+implementation 'com.afkt:DevWidgetX:1.0.9'
 ```
 
 ## 目录结构
@@ -368,6 +368,21 @@ implementation 'com.afkt:DevWidgetX:1.0.8'
 | isTextBold | 获取字体是否加粗 |
 
 
+* **翻转卡片 View ->** [FlipCardView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/FlipCardView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isFront | 当前是否显示正面 Layout |
+| getCurrentPosition | 获取当前显示的索引 |
+| getAdapter | 获取数据源适配器 |
+| setAdapter | 设置数据源适配器 |
+| flip | 翻转操作 |
+| setInOutAnimator | 设置进出动画 |
+| setFlipDistance | 设置翻牌角度 |
+| getItemCount | getItemCount |
+| getItemView | getItemView |
+
+
 * **自定义点赞效果 View ->** [FlowLikeView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/FlowLikeView.java)
 
 | 方法 | 注释 |
@@ -436,6 +451,16 @@ implementation 'com.afkt:DevWidgetX:1.0.8'
 | getRadiusLeftBottom | 获取左下圆角值 |
 | getRadiusRightTop | 获取右上圆角值 |
 | getRadiusRightBottom | 获取右下圆角值 |
+
+
+* **自动同比放大 ImageView ->** [ResizableImageView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/ResizableImageView.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onMeasure | onMeasure |
+| getZoomHeight | 获取缩放后的高度 |
+| getWHListener | 获取宽高监听事件 |
+| setWHListener | 设置宽高监听事件 |
 
 
 * **自定义扫描 ( 二维码 / AR ) 效果形状 View ->** [ScanShapeView.java](https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/src/main/java/dev/widget/ui/ScanShapeView.java)

@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.0.9 *(2021-03-28)*
+----------------------------
+
+* `[Add]` FlipCardView 翻转卡片 View
+
+* `[Add]` ResizableImageView 自动同比放大 ImageView
+
 Version 1.0.8 *(2021-03-05)*
 ----------------------------
 
