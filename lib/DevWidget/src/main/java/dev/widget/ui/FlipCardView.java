@@ -82,12 +82,8 @@ public class FlipCardView
         );
         addView(mBackLayout);
         addView(mFrontLayout);
-
-        int   distance = 16000;
-        float scale    = getResources().getDisplayMetrics().density * distance;
-        mFrontLayout.setCameraDistance(scale);
-        mBackLayout.setCameraDistance(scale);
-
+        // 设置翻牌角度
+        setFlipDistance(16000);
         // 初始化动画
         mOutAnim = AnimatorInflater.loadAnimator(getContext(), R.animator.dev_flip_card_out);
         mInAnim = AnimatorInflater.loadAnimator(getContext(), R.animator.dev_flip_card_in);
@@ -188,13 +184,27 @@ public class FlipCardView
      * </pre>
      * @param inAnim  翻牌淡入动画
      * @param outAnim 翻牌淡出动画
+     * @return {@link FlipCardView}
      */
-    public void setInOutAnimator(
+    public FlipCardView setInOutAnimator(
             Animator inAnim,
             Animator outAnim
     ) {
         this.mInAnim = inAnim;
         this.mOutAnim = outAnim;
+        return this;
+    }
+
+    /**
+     * 设置翻牌角度
+     * @param distance 翻转角度
+     * @return {@link FlipCardView}
+     */
+    public FlipCardView setFlipDistance(int distance) {
+        float scale = getResources().getDisplayMetrics().density * distance;
+        mFrontLayout.setCameraDistance(scale);
+        mBackLayout.setCameraDistance(scale);
+        return this;
     }
 
     /**
