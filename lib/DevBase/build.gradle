@@ -11,6 +11,7 @@ android.defaultConfig {
 dependencies {
     api deps.kotlin.stdlib
     api deps.kotlin.core
+    api deps.kotlin.coroutines
     api deps.kotlin.lifecycle_runtime
     api deps.kotlin.lifecycle_common_java8
     api deps.androidx.design
