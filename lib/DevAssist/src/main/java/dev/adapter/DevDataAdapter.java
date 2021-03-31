@@ -24,7 +24,7 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
         DataChanged<T> {
 
     // 数据辅助类
-    private   DataAssist<T> mAssist = new DataAssist<>(this);
+    protected DataAssist<T> mAssist = new DataAssist<>(this);
     // Context
     protected Context       mContext;
     // Activity
