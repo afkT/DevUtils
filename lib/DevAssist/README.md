@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'com.afkt:DevAssist:1.1.8'
+implementation 'com.afkt:DevAssist:1.1.9'
 ```
 
 ## 目录结构
@@ -146,6 +146,30 @@ implementation 'com.afkt:DevAssist:1.1.8'
 | setItemCallback | 设置通用 Item Click 回调 |
 | getState | 请求状态实体类 |
 | setState | 设置请求状态实体类 |
+| getTextWatcherAssist | 获取 EditText 输入监听辅助类 |
+| setTextWatcherAssist | 设置 EditText 输入监听辅助类 |
+| getMultiSelectMap | 获取多选辅助类 |
+| setMultiSelectMap | 设置多选辅助类 |
+
+
+* **DataManager RecyclerView Adapter Extend ->** [DevDataAdapterExt2.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/adapter/DevDataAdapterExt2.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isNotifyAdapter | 是否通知适配器 ( 通用: 如多选操作后是否通知适配器 ) |
+| setNotifyAdapter | 设置是否通知适配器 ( 通用: 如多选操作后是否通知适配器 ) |
+| isEditState | isEditState |
+| setEditState | setEditState |
+| toggleEditState | toggleEditState |
+| clearSelectAll | clearSelectAll |
+| isSelectAll | isSelectAll |
+| isSelect | isSelect |
+| isNotSelect | isNotSelect |
+| getSelectSize | getSelectSize |
+| getDataCount | getDataCount |
+| selectAll | selectAll |
+| inverseSelect | inverseSelect |
+| getMultiSelectKey | 获取多选标记 Key |
 
 
 ## <span id="devassist">**`dev.assist`**</span>
