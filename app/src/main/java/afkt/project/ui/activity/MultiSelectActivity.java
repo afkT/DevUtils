@@ -65,7 +65,7 @@ public class MultiSelectActivity
                             int pos,
                             boolean now
                     ) {
-                        CommodityEvaluateBean commodityEvaluateBean = multiSelectAdapter.getData().get(pos);
+                        CommodityEvaluateBean commodityEvaluateBean = multiSelectAdapter.getDataItem(pos);
                         DevLogEngine.getEngine().eTag(TAG, "新状态: %s, 商品名: %s", now, commodityEvaluateBean.commodityName);
                     }
                 });
