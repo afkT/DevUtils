@@ -75,8 +75,6 @@ dependencies {
     implementation deps.widget.ratingbar
     // 加载动画效果 https://github.com/Kyson/WhorlView
     implementation deps.widget.whorlviewlibrary
-    // 圆形 ImageView https://github.com/hdodenhof/CircleImageView
-    implementation deps.widget.circleimageview
     // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
     implementation deps.widget.pickerview
     // https://blog.csdn.net/qq_22393017/article/details/58099486
