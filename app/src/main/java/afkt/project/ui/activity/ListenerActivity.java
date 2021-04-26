@@ -22,7 +22,7 @@ import dev.receiver.BatteryReceiver;
 import dev.receiver.NetWorkReceiver;
 import dev.receiver.PhoneReceiver;
 import dev.receiver.ScreenReceiver;
-import dev.receiver.SmsReceiver;
+import dev.receiver.SMSReceiver;
 import dev.receiver.TimeReceiver;
 import dev.receiver.WifiReceiver;
 import dev.utils.app.ResourceUtils;
@@ -50,7 +50,7 @@ public class ListenerActivity
         WifiReceiver.unregister();
         NetWorkReceiver.unregister();
         PhoneReceiver.unregister();
-        SmsReceiver.unregister();
+        SMSReceiver.Companion.unregister();
         TimeReceiver.Companion.unregister();
         ScreenReceiver.Companion.unregister();
         BatteryReceiver.Companion.unregister();
@@ -373,13 +373,13 @@ public class ListenerActivity
         if (!isBind) { // 取反判断, 方便代码顺序查看
             ToastTintUtils.success("注销短信监听成功");
             // 清空回调
-            SmsReceiver.setListener(null);
+            SMSReceiver.Companion.setListener(null);
             // 注销监听
-            SmsReceiver.unregister();
+            SMSReceiver.Companion.unregister();
         } else {
             ToastTintUtils.success("绑定短信监听成功, 请查看 Logcat");
             // 设置监听事件
-            SmsReceiver.setListener(new SmsReceiver.Listener() {
+            SMSReceiver.Companion.setListener(new SMSReceiver.Listener() {
                 @Override
                 public void onMessage(
                         String msg,
@@ -391,12 +391,11 @@ public class ListenerActivity
 
                 @Override
                 public void onMessage(SmsMessage msg) {
-                    super.onMessage(msg);
                     DevLogEngine.getEngine().dTag(TAG, "onMessage\nSmsMessage: %s", msg.toString());
                 }
             });
             // 注册监听
-            SmsReceiver.register();
+            SMSReceiver.Companion.register();
         }
     }
 
