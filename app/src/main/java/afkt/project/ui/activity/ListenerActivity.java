@@ -53,7 +53,7 @@ public class ListenerActivity
         SmsReceiver.unregisterReceiver();
         TimeReceiver.unregisterReceiver();
         ScreenReceiver.unregisterReceiver();
-        BatteryReceiver.unregisterReceiver();
+        BatteryReceiver.Companion.unregister();
         AppStateReceiver.Companion.unregister();
         screenSensorAssist.stop();
         try {
@@ -611,13 +611,13 @@ public class ListenerActivity
         if (!isBind) { // 取反判断, 方便代码顺序查看
             ToastTintUtils.success("注销电量监听成功");
             // 清空回调
-            BatteryReceiver.setBatteryListener(null);
+            BatteryReceiver.Companion.setListener(null);
             // 注销监听
-            BatteryReceiver.unregisterReceiver();
+            BatteryReceiver.Companion.unregister();
         } else {
             ToastTintUtils.success("绑定电量监听成功, 请查看 Logcat");
             // 设置监听事件
-            BatteryReceiver.setBatteryListener(new BatteryReceiver.BatteryListener() {
+            BatteryReceiver.Companion.setListener(new BatteryReceiver.Listener() {
                 @Override
                 public void onBatteryChanged(int level) {
                     DevLogEngine.getEngine().dTag(TAG, "电量改变通知 level: %s", level);
@@ -647,7 +647,7 @@ public class ListenerActivity
                 }
             });
             // 注册监听
-            BatteryReceiver.registerReceiver();
+            BatteryReceiver.Companion.register();
         }
     }
 

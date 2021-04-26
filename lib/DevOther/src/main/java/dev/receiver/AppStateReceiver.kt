@@ -36,16 +36,18 @@ class AppStateReceiver private constructor() : BroadcastReceiver() {
         }
     }
 
+    // ===============
+    // = 对外公开方法 =
+    // ===============
+
     companion object {
 
-        // 应用状态监听广播
         private val sReceiver = AppStateReceiver()
 
-        // 应用状态监听事件
         private var sListener: Listener? = null
 
         /**
-         * 注册应用状态监听广播
+         * 注册广播监听
          */
         fun register() {
             IntentFilter().apply {
@@ -59,12 +61,12 @@ class AppStateReceiver private constructor() : BroadcastReceiver() {
         }
 
         /**
-         * 取消注册应用状态监听广播
+         * 取消广播监听
          */
         fun unregister() = AppUtils.unregisterReceiver(sReceiver)
 
         /**
-         * 设置应用状态监听事件
+         * 设置监听回调事件
          * @param listener [Listener]
          */
         fun setListener(listener: Listener?) {
@@ -72,12 +74,12 @@ class AppStateReceiver private constructor() : BroadcastReceiver() {
         }
     }
 
-    // ===============
-    // = 对外公开方法 =
-    // ===============
+    // =======
+    // = 接口 =
+    // =======
 
     /**
-     * detail: 应用状态监听事件
+     * detail: 监听回调事件
      * @author Ttt
      */
     interface Listener {
