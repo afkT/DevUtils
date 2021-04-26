@@ -13,6 +13,7 @@ import dev.utils.LogPrintUtils;
  *     主要用于统一解析后台返回 data、message、code 等
  * </pre>
  */
+@Deprecated
 public class OkGoResponse<T> {
 
     // 日志 TAG

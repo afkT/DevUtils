@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import dev.DevUtils;
 import dev.environment.DevEnvironment;
-import dev.other.okgo.HttpLoggingInterceptor;
+import dev.other.http.HttpLoggingInterceptor;
 import dev.other.retrofit.RetrofitManager;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

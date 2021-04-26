@@ -1,4 +1,4 @@
-package dev.other.okgo;
+package dev.other.http;
 
 import java.io.EOFException;
 import java.io.IOException;

@@ -27,6 +27,7 @@ import dev.utils.common.ClassUtils;
  *     @see <a href="https://github.com/jeasonlzy/okhttp-OkGo/wiki/Callback#%e9%ab%98%e7%ba%a7%e8%87%aa%e5%ae%9a%e4%b9%89callback"/>
  * </pre>
  */
+@Deprecated
 public abstract class OkGoCallback<T>
         extends AbsCallback<String> {
 

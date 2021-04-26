@@ -30,6 +30,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListe
  *     use modify: 修改 defaultOptions() 配置、以及加载默认图片资源
  * </pre>
  */
+@Deprecated
 public final class ImageLoaderUtils {
 
     private ImageLoaderUtils() {

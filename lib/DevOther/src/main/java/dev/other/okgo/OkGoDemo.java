@@ -1,4 +1,4 @@
-package dev.other.okgo.demo;
+package dev.other.okgo;
 
 import com.lzy.okgo.OkGo;
 
@@ -6,13 +6,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.other.okgo.OkGoCallback;
-import dev.other.okgo.OkGoResponse;
-
 /**
  * detail: OkGo 使用 Demo
  * @author Ttt
  */
+@Deprecated
 public class OkGoDemo {
 
     public class UserBean {

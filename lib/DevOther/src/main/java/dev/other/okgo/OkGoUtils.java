@@ -33,10 +33,11 @@ import okhttp3.OkHttpClient;
  *     {@link OkGoResponse}: 请求响应统一解析类
  *     {@link OkGoCallback}: 请求回调统一处理类
  *     请求拦截 ( 非必须 ) :
- *     {@link dev.other.okgo.HttpLoggingInterceptor}: 自定义 OkHttp 打印日志拦截器
+ *     {@link dev.other.http.HttpLoggingInterceptor}: 自定义 OkHttp 打印日志拦截器
  *     {@link com.lzy.okgo.interceptor.HttpLoggingInterceptor}: OkGo 实现 OkHttp 打印日志拦截器
  * </pre>
  */
+@Deprecated
 public final class OkGoUtils {
 
     private OkGoUtils() {
@@ -55,7 +56,7 @@ public final class OkGoUtils {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
         // 自定义日志拦截 JSON 打印
-        builder.addInterceptor(new dev.other.okgo.HttpLoggingInterceptor());
+        builder.addInterceptor(new dev.other.http.HttpLoggingInterceptor());
 
         // =======================
         // = OkGo 内置 log 拦截器 =
