@@ -64,7 +64,7 @@ public final class TimeReceiver
     /**
      * 注册时间监听广播
      */
-    public static void registerReceiver() {
+    public static void register() {
         try {
             IntentFilter filter = new IntentFilter();
             // 监听时间、时区改变通知
@@ -82,7 +82,7 @@ public final class TimeReceiver
     /**
      * 取消注册时间监听广播
      */
-    public static void unregisterReceiver() {
+    public static void unregister() {
         try {
             AppUtils.unregisterReceiver(sReceiver);
         } catch (Exception e) {
@@ -93,14 +93,14 @@ public final class TimeReceiver
     // =
 
     // 时间监听事件
-    private static TimeListener sListener;
+    private static Listener sListener;
 
     /**
      * 设置时间监听事件
-     * @param listener {@link TimeListener}
+     * @param listener {@link Listener}
      * @return {@link TimeReceiver}
      */
-    public static TimeReceiver setTimeListener(final TimeListener listener) {
+    public static TimeReceiver setListener(final Listener listener) {
         TimeReceiver.sListener = listener;
         return sReceiver;
     }
@@ -109,7 +109,7 @@ public final class TimeReceiver
      * detail: 时间监听事件
      * @author Ttt
      */
-    public interface TimeListener {
+    public interface Listener {
 
         /**
          * 时区改变

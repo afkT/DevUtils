@@ -199,7 +199,7 @@ public final class WifiReceiver
     /**
      * 注册 Wifi 监听广播
      */
-    public static void registerReceiver() {
+    public static void register() {
         try {
             IntentFilter filter = new IntentFilter();
             // 当调用 WifiManager 的 startScan() 方法, 扫描结束后, 系统会发出改 Action 广播
@@ -224,7 +224,7 @@ public final class WifiReceiver
     /**
      * 取消注册 Wifi 监听广播
      */
-    public static void unregisterReceiver() {
+    public static void unregister() {
         try {
             AppUtils.unregisterReceiver(sReceiver);
         } catch (Exception e) {
@@ -235,14 +235,14 @@ public final class WifiReceiver
     // =
 
     // Wifi 监听事件
-    private static WifiListener sListener;
+    private static Listener sListener;
 
     /**
      * 设置 Wifi 监听事件
-     * @param listener {@link WifiListener}
+     * @param listener {@link Listener}
      * @return {@link WifiReceiver}
      */
-    public static WifiReceiver setWifiListener(final WifiListener listener) {
+    public static WifiReceiver setListener(final Listener listener) {
         WifiReceiver.sListener = listener;
         return sReceiver;
     }
@@ -251,7 +251,7 @@ public final class WifiReceiver
      * detail: Wifi 监听事件
      * @author Ttt
      */
-    public static abstract class WifiListener {
+    public static abstract class Listener {
 
         /**
          * 触发回调通知 ( 每次进入都通知 )

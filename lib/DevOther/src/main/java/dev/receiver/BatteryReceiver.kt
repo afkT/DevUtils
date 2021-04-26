@@ -42,6 +42,51 @@ class BatteryReceiver private constructor() : BroadcastReceiver() {
         }
     }
 
+    // =======
+    // = 接口 =
+    // =======
+
+    /**
+     * detail: 监听回调事件
+     * @author Ttt
+     */
+    interface Listener {
+
+        /**
+         * 电量改变通知
+         * @param level 电量百分比
+         */
+        fun onBatteryChanged(level: Int)
+
+        /**
+         * 电量低通知
+         * @param level 电量百分比
+         */
+        fun onBatteryLow(level: Int)
+
+        /**
+         * 电量从低变回高通知
+         * @param level 电量百分比
+         */
+        fun onBatteryOkay(level: Int)
+
+        /**
+         * 充电状态改变通知
+         * @param level       电量百分比
+         * @param isConnected 是否充电连接中
+         */
+        fun onPowerConnected(
+            level: Int,
+            isConnected: Boolean
+        )
+
+        /**
+         * 电力使用情况总结
+         * @param level 电量百分比
+         */
+        fun onPowerUsageSummary(level: Int)
+    }
+
     // ===============
     // = 对外公开方法 =
     // ===============
@@ -86,50 +131,5 @@ class BatteryReceiver private constructor() : BroadcastReceiver() {
         fun setListener(listener: Listener?) {
             sListener = listener
         }
-    }
-
-    // =======
-    // = 接口 =
-    // =======
-
-    /**
-     * detail: 监听回调事件
-     * @author Ttt
-     */
-    interface Listener {
-
-        /**
-         * 电量改变通知
-         * @param level 电量百分比
-         */
-        fun onBatteryChanged(level: Int)
-
-        /**
-         * 电量低通知
-         * @param level 电量百分比
-         */
-        fun onBatteryLow(level: Int)
-
-        /**
-         * 电量从低变回高通知
-         * @param level 电量百分比
-         */
-        fun onBatteryOkay(level: Int)
-
-        /**
-         * 充电状态改变通知
-         * @param level       电量百分比
-         * @param isConnected 是否充电连接中
-         */
-        fun onPowerConnected(
-            level: Int,
-            isConnected: Boolean
-        )
-
-        /**
-         * 电力使用情况总结
-         * @param level 电量百分比
-         */
-        fun onPowerUsageSummary(level: Int)
     }
 }

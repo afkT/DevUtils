@@ -112,7 +112,7 @@ public final class PhoneReceiver
     /**
      * 注册电话监听广播
      */
-    public static void registerReceiver() {
+    public static void register() {
         try {
             IntentFilter filter = new IntentFilter();
             // 电话状态监听
@@ -129,7 +129,7 @@ public final class PhoneReceiver
     /**
      * 取消注册电话监听广播
      */
-    public static void unregisterReceiver() {
+    public static void unregister() {
         try {
             AppUtils.unregisterReceiver(sReceiver);
         } catch (Exception e) {
@@ -140,14 +140,14 @@ public final class PhoneReceiver
     // =
 
     // 电话状态监听事件
-    private static PhoneListener sListener;
+    private static Listener sListener;
 
     /**
      * 设置电话状态监听事件
-     * @param listener {@link PhoneListener}
+     * @param listener {@link Listener}
      * @return {@link PhoneReceiver}
      */
-    public static PhoneReceiver setPhoneListener(final PhoneListener listener) {
+    public static PhoneReceiver setListener(final Listener listener) {
         PhoneReceiver.sListener = listener;
         return sReceiver;
     }
@@ -156,7 +156,7 @@ public final class PhoneReceiver
      * detail: 电话状态监听事件
      * @author Ttt
      */
-    public interface PhoneListener {
+    public interface Listener {
 
         /**
          * 电话状态改变通知

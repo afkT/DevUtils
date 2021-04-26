@@ -47,11 +47,11 @@ public class ListenerActivity
     protected void onDestroy() {
         super.onDestroy();
         // 注销监听
-        WifiReceiver.unregisterReceiver();
-        NetWorkReceiver.unregisterReceiver();
-        PhoneReceiver.unregisterReceiver();
-        SmsReceiver.unregisterReceiver();
-        TimeReceiver.unregisterReceiver();
+        WifiReceiver.unregister();
+        NetWorkReceiver.unregister();
+        PhoneReceiver.unregister();
+        SmsReceiver.unregister();
+        TimeReceiver.unregister();
         ScreenReceiver.Companion.unregister();
         BatteryReceiver.Companion.unregister();
         AppStateReceiver.Companion.unregister();
@@ -179,13 +179,13 @@ public class ListenerActivity
         if (!isBind) { // 取反判断, 方便代码顺序查看
             ToastTintUtils.success("注销 Wifi 监听成功");
             // 清空回调
-            WifiReceiver.setWifiListener(null);
+            WifiReceiver.setListener(null);
             // 注销监听
-            WifiReceiver.unregisterReceiver();
+            WifiReceiver.unregister();
         } else {
             ToastTintUtils.success("绑定 Wifi 监听成功, 请查看 Logcat");
             // 设置监听事件
-            WifiReceiver.setWifiListener(new WifiReceiver.WifiListener() {
+            WifiReceiver.setListener(new WifiReceiver.Listener() {
                 @Override
                 public void onWifiSwitch(boolean isOpenWifi) { // Wifi 开关状态
                     DevLogEngine.getEngine().dTag(TAG, "Wifi 是否打开: %s", isOpenWifi);
@@ -272,7 +272,7 @@ public class ListenerActivity
                 }
             });
             // 注册监听
-            WifiReceiver.registerReceiver();
+            WifiReceiver.register();
         }
     }
 
@@ -284,13 +284,13 @@ public class ListenerActivity
         if (!isBind) { // 取反判断, 方便代码顺序查看
             ToastTintUtils.success("注销网络监听成功");
             // 清空回调
-            NetWorkReceiver.setNetListener(null);
+            NetWorkReceiver.setListener(null);
             // 注销监听
-            NetWorkReceiver.unregisterReceiver();
+            NetWorkReceiver.unregister();
         } else {
             ToastTintUtils.success("绑定网络监听成功, 请查看 Logcat");
             // 设置监听事件
-            NetWorkReceiver.setNetListener(new NetWorkReceiver.NetWorkStateListener() {
+            NetWorkReceiver.setListener(new NetWorkReceiver.Listener() {
                 @Override
                 public void onNetworkState(int nType) {
                     String state = "";
@@ -309,7 +309,7 @@ public class ListenerActivity
                 }
             });
             // 注册监听
-            NetWorkReceiver.registerReceiver();
+            NetWorkReceiver.register();
         }
     }
 
@@ -321,13 +321,13 @@ public class ListenerActivity
         if (!isBind) { // 取反判断, 方便代码顺序查看
             ToastTintUtils.success("注销电话监听成功");
             // 清空回调
-            PhoneReceiver.setPhoneListener(null);
+            PhoneReceiver.setListener(null);
             // 注销监听
-            PhoneReceiver.unregisterReceiver();
+            PhoneReceiver.unregister();
         } else {
             ToastTintUtils.success("绑定电话监听成功, 请查看 Logcat");
             // 设置监听事件
-            PhoneReceiver.setPhoneListener(new PhoneReceiver.PhoneListener() {
+            PhoneReceiver.setListener(new PhoneReceiver.Listener() {
                 @Override
                 public void onPhoneStateChanged(
                         PhoneReceiver.CallState callState,
@@ -361,7 +361,7 @@ public class ListenerActivity
                 }
             });
             // 注册监听
-            PhoneReceiver.registerReceiver();
+            PhoneReceiver.register();
         }
     }
 
@@ -373,13 +373,13 @@ public class ListenerActivity
         if (!isBind) { // 取反判断, 方便代码顺序查看
             ToastTintUtils.success("注销短信监听成功");
             // 清空回调
-            SmsReceiver.setSmsListener(null);
+            SmsReceiver.setListener(null);
             // 注销监听
-            SmsReceiver.unregisterReceiver();
+            SmsReceiver.unregister();
         } else {
             ToastTintUtils.success("绑定短信监听成功, 请查看 Logcat");
             // 设置监听事件
-            SmsReceiver.setSmsListener(new SmsReceiver.SmsListener() {
+            SmsReceiver.setListener(new SmsReceiver.Listener() {
                 @Override
                 public void onMessage(
                         String msg,
@@ -396,7 +396,7 @@ public class ListenerActivity
                 }
             });
             // 注册监听
-            SmsReceiver.registerReceiver();
+            SmsReceiver.register();
         }
     }
 
@@ -408,13 +408,13 @@ public class ListenerActivity
         if (!isBind) { // 取反判断, 方便代码顺序查看
             ToastTintUtils.success("注销时区、时间监听成功");
             // 清空回调
-            TimeReceiver.setTimeListener(null);
+            TimeReceiver.setListener(null);
             // 注销监听
-            TimeReceiver.unregisterReceiver();
+            TimeReceiver.unregister();
         } else {
             ToastTintUtils.success("绑定时区、时间监听成功, 请查看 Logcat");
             // 设置监听事件
-            TimeReceiver.setTimeListener(new TimeReceiver.TimeListener() {
+            TimeReceiver.setListener(new TimeReceiver.Listener() {
                 @Override
                 public void onTimeZoneChanged() {
                     DevLogEngine.getEngine().dTag(TAG, "onTimeZoneChanged: 时区改变");
@@ -431,7 +431,7 @@ public class ListenerActivity
                 }
             });
             // 注册监听
-            TimeReceiver.registerReceiver();
+            TimeReceiver.register();
         }
     }
 

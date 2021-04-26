@@ -134,7 +134,7 @@ public final class NetWorkReceiver
     /**
      * 注册网络广播监听
      */
-    public static void registerReceiver() {
+    public static void register() {
         try {
             IntentFilter filter = new IntentFilter();
             // 网络连接状态改变时通知
@@ -150,7 +150,7 @@ public final class NetWorkReceiver
     /**
      * 取消注册网络广播监听
      */
-    public static void unregisterReceiver() {
+    public static void unregister() {
         try {
             AppUtils.unregisterReceiver(sReceiver);
         } catch (Exception e) {
@@ -161,14 +161,14 @@ public final class NetWorkReceiver
     // =
 
     // 监听通知事件
-    private static NetWorkStateListener sListener;
+    private static Listener sListener;
 
     /**
      * 设置监听通知事件
-     * @param listener {@link NetWorkStateListener}
+     * @param listener {@link Listener}
      * @return {@link NetWorkReceiver}
      */
-    public static NetWorkReceiver setNetListener(final NetWorkStateListener listener) {
+    public static NetWorkReceiver setListener(final Listener listener) {
         NetWorkReceiver.sListener = listener;
         return sReceiver;
     }
@@ -177,7 +177,7 @@ public final class NetWorkReceiver
      * detail: 监听通知事件
      * @author Ttt
      */
-    public interface NetWorkStateListener {
+    public interface Listener {
 
         /**
          * 网络连接状态改变时通知

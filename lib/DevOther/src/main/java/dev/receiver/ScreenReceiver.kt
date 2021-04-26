@@ -34,6 +34,32 @@ class ScreenReceiver private constructor() : BroadcastReceiver() {
         }
     }
 
+    // =======
+    // = 接口 =
+    // =======
+
+    /**
+     * detail: 监听回调事件
+     * @author Ttt
+     */
+    interface Listener {
+
+        /**
+         * 用户打开屏幕 ( 屏幕变亮 )
+         */
+        fun screenOn()
+
+        /**
+         * 锁屏触发
+         */
+        fun screenOff()
+
+        /**
+         * 用户解锁触发
+         */
+        fun userPresent()
+    }
+
     // ===============
     // = 对外公开方法 =
     // ===============
@@ -72,31 +98,5 @@ class ScreenReceiver private constructor() : BroadcastReceiver() {
         fun setListener(listener: Listener?) {
             sListener = listener
         }
-    }
-
-    // =======
-    // = 接口 =
-    // =======
-
-    /**
-     * detail: 监听回调事件
-     * @author Ttt
-     */
-    interface Listener {
-
-        /**
-         * 用户打开屏幕 ( 屏幕变亮 )
-         */
-        fun screenOn()
-
-        /**
-         * 锁屏触发
-         */
-        fun screenOff()
-
-        /**
-         * 用户解锁触发
-         */
-        fun userPresent()
     }
 }

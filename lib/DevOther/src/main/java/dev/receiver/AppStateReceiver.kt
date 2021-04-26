@@ -36,6 +36,34 @@ class AppStateReceiver private constructor() : BroadcastReceiver() {
         }
     }
 
+    // =======
+    // = 接口 =
+    // =======
+
+    /**
+     * detail: 监听回调事件
+     * @author Ttt
+     */
+    interface Listener {
+        /**
+         * 应用安装
+         * @param packageName 应用包名
+         */
+        fun onAdded(packageName: String?)
+
+        /**
+         * 应用更新
+         * @param packageName 应用包名
+         */
+        fun onReplaced(packageName: String?)
+
+        /**
+         * 应用卸载
+         * @param packageName 应用包名
+         */
+        fun onRemoved(packageName: String?)
+    }
+
     // ===============
     // = 对外公开方法 =
     // ===============
@@ -72,33 +100,5 @@ class AppStateReceiver private constructor() : BroadcastReceiver() {
         fun setListener(listener: Listener?) {
             sListener = listener
         }
-    }
-
-    // =======
-    // = 接口 =
-    // =======
-
-    /**
-     * detail: 监听回调事件
-     * @author Ttt
-     */
-    interface Listener {
-        /**
-         * 应用安装
-         * @param packageName 应用包名
-         */
-        fun onAdded(packageName: String?)
-
-        /**
-         * 应用更新
-         * @param packageName 应用包名
-         */
-        fun onReplaced(packageName: String?)
-
-        /**
-         * 应用卸载
-         * @param packageName 应用包名
-         */
-        fun onRemoved(packageName: String?)
     }
 }

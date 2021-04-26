@@ -95,7 +95,7 @@ public final class SmsReceiver
     /**
      * 注册短信监听广播
      */
-    public static void registerReceiver() {
+    public static void register() {
         try {
             IntentFilter filter = new IntentFilter();
             // 短信获取监听
@@ -111,7 +111,7 @@ public final class SmsReceiver
     /**
      * 取消注册短信监听广播
      */
-    public static void unregisterReceiver() {
+    public static void unregister() {
         try {
             AppUtils.unregisterReceiver(sReceiver);
         } catch (Exception e) {
@@ -122,14 +122,14 @@ public final class SmsReceiver
     // =
 
     // 短信监听事件
-    private static SmsListener sListener;
+    private static Listener sListener;
 
     /**
      * 设置短信监听事件
-     * @param listener {@link SmsListener}
+     * @param listener {@link Listener}
      * @return {@link SmsReceiver}
      */
-    public static SmsReceiver setSmsListener(final SmsListener listener) {
+    public static SmsReceiver setListener(final Listener listener) {
         SmsReceiver.sListener = listener;
         return sReceiver;
     }
@@ -138,7 +138,7 @@ public final class SmsReceiver
      * detail: 短信监听事件
      * @author Ttt
      */
-    public static abstract class SmsListener {
+    public static abstract class Listener {
 
         /**
          * 最终触发通知 ( 超过长度的短信消息, 最终合并成一条内容体 )

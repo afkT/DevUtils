@@ -56,7 +56,7 @@ public class WifiActivity
     protected void onDestroy() {
         super.onDestroy();
         // 注销监听
-        WifiReceiver.unregisterReceiver();
+        WifiReceiver.unregister();
     }
 
     @Override
@@ -191,11 +191,11 @@ public class WifiActivity
                         }
                         break;
                     case ButtonValue.BTN_WIFI_LISTENER_REGISTER:
-                        WifiReceiver.registerReceiver();
+                        WifiReceiver.register();
                         showToast(true, "注册监听成功, 请查看 Logcat");
                         break;
                     case ButtonValue.BTN_WIFI_LISTENER_UNREGISTER:
-                        WifiReceiver.unregisterReceiver();
+                        WifiReceiver.unregister();
                         showToast(true, "注销监听成功");
                         break;
                     default:
@@ -211,7 +211,7 @@ public class WifiActivity
         super.initListener();
 
         // 设置监听事件
-        WifiReceiver.setWifiListener(new WifiReceiver.WifiListener() {
+        WifiReceiver.setListener(new WifiReceiver.Listener() {
             @Override
             public void onWifiSwitch(boolean isOpenWifi) { // Wifi 开关状态
                 DevLogEngine.getEngine().dTag(TAG, "Wifi 是否打开: %s", isOpenWifi);
