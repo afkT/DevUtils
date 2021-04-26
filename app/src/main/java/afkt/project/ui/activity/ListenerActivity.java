@@ -49,7 +49,7 @@ public class ListenerActivity
         // 注销监听
         WifiReceiver.unregister();
         NetWorkReceiver.unregister();
-        PhoneReceiver.unregister();
+        PhoneReceiver.Companion.unregister();
         SMSReceiver.Companion.unregister();
         TimeReceiver.Companion.unregister();
         ScreenReceiver.Companion.unregister();
@@ -321,13 +321,13 @@ public class ListenerActivity
         if (!isBind) { // 取反判断, 方便代码顺序查看
             ToastTintUtils.success("注销电话监听成功");
             // 清空回调
-            PhoneReceiver.setListener(null);
+            PhoneReceiver.Companion.setListener(null);
             // 注销监听
-            PhoneReceiver.unregister();
+            PhoneReceiver.Companion.unregister();
         } else {
             ToastTintUtils.success("绑定电话监听成功, 请查看 Logcat");
             // 设置监听事件
-            PhoneReceiver.setListener(new PhoneReceiver.Listener() {
+            PhoneReceiver.Companion.setListener(new PhoneReceiver.Listener() {
                 @Override
                 public void onPhoneStateChanged(
                         PhoneReceiver.CallState callState,
@@ -342,26 +342,26 @@ public class ListenerActivity
                      * 接入通话完毕
                      */
                     switch (callState) {
-                        case Outgoing:
+                        case OUTGOING:
                             DevLogEngine.getEngine().dTag(TAG, "播出电话: %s", number);
                             break;
-                        case OutgoingEnd:
+                        case OUTGOING_END:
                             DevLogEngine.getEngine().dTag(TAG, "播出电话结束: %s", number);
                             break;
-                        case IncomingRing:
+                        case INCOMING_RING:
                             DevLogEngine.getEngine().dTag(TAG, "接入电话铃响: %s", number);
                             break;
-                        case Incoming:
+                        case INCOMING:
                             DevLogEngine.getEngine().dTag(TAG, "接入通话中: %s", number);
                             break;
-                        case IncomingEnd:
+                        case INCOMING_END:
                             DevLogEngine.getEngine().dTag(TAG, "接入通话完毕: %s", number);
                             break;
                     }
                 }
             });
             // 注册监听
-            PhoneReceiver.register();
+            PhoneReceiver.Companion.register();
         }
     }
 
