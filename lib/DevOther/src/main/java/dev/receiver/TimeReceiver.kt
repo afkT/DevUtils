@@ -8,7 +8,7 @@ import dev.utils.LogPrintUtils
 import dev.utils.app.AppUtils
 
 /**
- * detail: 应用状态监听广播 ( 安装、更新、卸载 )
+ * detail: 时间监听广播
  * @author Ttt
  */
 class TimeReceiver private constructor() : BroadcastReceiver() {

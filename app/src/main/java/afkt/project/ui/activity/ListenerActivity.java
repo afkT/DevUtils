@@ -48,7 +48,7 @@ public class ListenerActivity
         super.onDestroy();
         // 注销监听
         WifiReceiver.unregister();
-        NetWorkReceiver.unregister();
+        NetWorkReceiver.Companion.unregister();
         PhoneReceiver.Companion.unregister();
         SMSReceiver.Companion.unregister();
         TimeReceiver.Companion.unregister();
@@ -284,13 +284,13 @@ public class ListenerActivity
         if (!isBind) { // 取反判断, 方便代码顺序查看
             ToastTintUtils.success("注销网络监听成功");
             // 清空回调
-            NetWorkReceiver.setListener(null);
+            NetWorkReceiver.Companion.setListener(null);
             // 注销监听
-            NetWorkReceiver.unregister();
+            NetWorkReceiver.Companion.unregister();
         } else {
             ToastTintUtils.success("绑定网络监听成功, 请查看 Logcat");
             // 设置监听事件
-            NetWorkReceiver.setListener(new NetWorkReceiver.Listener() {
+            NetWorkReceiver.Companion.setListener(new NetWorkReceiver.Listener() {
                 @Override
                 public void onNetworkState(int nType) {
                     String state = "";
@@ -309,7 +309,7 @@ public class ListenerActivity
                 }
             });
             // 注册监听
-            NetWorkReceiver.register();
+            NetWorkReceiver.Companion.register();
         }
     }
 

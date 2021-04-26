@@ -11,8 +11,9 @@ import dev.utils.app.AppUtils
  * detail: 手机监听广播
  * @author Ttt
  * 所需权限
+ * <uses-permission android:name="android.permission.READ_CALL_LOG"/>
  * <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
- * <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+ * <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
  */
 class PhoneReceiver private constructor() : BroadcastReceiver() {
 
@@ -30,7 +31,7 @@ class PhoneReceiver private constructor() : BroadcastReceiver() {
         // 打印触发的广播
         LogPrintUtils.dTag(TAG, "onReceive Action: %s", action)
         // 通话号码
-        var number: String? = null
+        var number: String?
         // 判断类型
         when (action) {
             // 拨出电话意图
@@ -106,6 +107,10 @@ class PhoneReceiver private constructor() : BroadcastReceiver() {
 
     companion object {
 
+        private val sReceiver = PhoneReceiver()
+
+        private var sListener: Listener? = null
+
         // 电话状态监听意图
         private const val PHONE_STATE = "android.intent.action.PHONE_STATE"
 
@@ -120,10 +125,6 @@ class PhoneReceiver private constructor() : BroadcastReceiver() {
 
         // 挂断
         private const val IDLE = "IDLE"
-
-        private val sReceiver = PhoneReceiver()
-
-        private var sListener: Listener? = null
 
         /**
          * 注册广播监听
