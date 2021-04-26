@@ -51,7 +51,7 @@ public class ListenerActivity
         NetWorkReceiver.unregister();
         PhoneReceiver.unregister();
         SmsReceiver.unregister();
-        TimeReceiver.unregister();
+        TimeReceiver.Companion.unregister();
         ScreenReceiver.Companion.unregister();
         BatteryReceiver.Companion.unregister();
         AppStateReceiver.Companion.unregister();
@@ -408,13 +408,13 @@ public class ListenerActivity
         if (!isBind) { // 取反判断, 方便代码顺序查看
             ToastTintUtils.success("注销时区、时间监听成功");
             // 清空回调
-            TimeReceiver.setListener(null);
+            TimeReceiver.Companion.setListener(null);
             // 注销监听
-            TimeReceiver.unregister();
+            TimeReceiver.Companion.unregister();
         } else {
             ToastTintUtils.success("绑定时区、时间监听成功, 请查看 Logcat");
             // 设置监听事件
-            TimeReceiver.setListener(new TimeReceiver.Listener() {
+            TimeReceiver.Companion.setListener(new TimeReceiver.Listener() {
                 @Override
                 public void onTimeZoneChanged() {
                     DevLogEngine.getEngine().dTag(TAG, "onTimeZoneChanged: 时区改变");
@@ -431,7 +431,7 @@ public class ListenerActivity
                 }
             });
             // 注册监听
-            TimeReceiver.register();
+            TimeReceiver.Companion.register();
         }
     }
 
