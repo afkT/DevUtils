@@ -8,13 +8,13 @@ import dev.utils.LogPrintUtils
 import dev.utils.app.AppUtils
 
 /**
- * detail: 应用状态监听广播 ( 安装、更新、卸载 )
+ * detail: 屏幕监听广播 ( 锁屏 / 解锁 / 亮屏 )
  * @author Ttt
  */
-class AppStateReceiver private constructor() : BroadcastReceiver() {
+class ScreenReceiver private constructor() : BroadcastReceiver() {
 
     // 日志 TAG
-    private val TAG = AppStateReceiver::class.java.simpleName
+    private val TAG = ScreenReceiver::class.java.simpleName
 
     override fun onReceive(
         context: Context,
@@ -23,16 +23,14 @@ class AppStateReceiver private constructor() : BroadcastReceiver() {
         val action = intent.action
         // 打印触发的广播
         LogPrintUtils.dTag(TAG, "onReceive Action: %s", action)
-        // 被操作应用包名
-        var packageName: String? = intent.data?.encodedSchemeSpecificPart
         // 判断类型
         when (action) {
-            // 应用安装
-            Intent.ACTION_PACKAGE_ADDED -> sListener?.onAdded(packageName)
-            // 应用更新
-            Intent.ACTION_PACKAGE_REPLACED -> sListener?.onReplaced(packageName)
-            // 应用卸载
-            Intent.ACTION_PACKAGE_REMOVED -> sListener?.onRemoved(packageName)
+            // 用户打开屏幕 ( 屏幕变亮 )
+            Intent.ACTION_SCREEN_ON -> sListener?.screenOn()
+            // 锁屏触发
+            Intent.ACTION_SCREEN_OFF -> sListener?.screenOff()
+            // 用户解锁触发
+            Intent.ACTION_USER_PRESENT -> sListener?.userPresent()
         }
     }
 
@@ -42,7 +40,7 @@ class AppStateReceiver private constructor() : BroadcastReceiver() {
 
     companion object {
 
-        private val sReceiver = AppStateReceiver()
+        private val sReceiver = ScreenReceiver()
 
         private var sListener: Listener? = null
 
@@ -51,10 +49,12 @@ class AppStateReceiver private constructor() : BroadcastReceiver() {
          */
         fun register() {
             IntentFilter().apply {
-                addAction(Intent.ACTION_PACKAGE_ADDED) // 安装
-                addAction(Intent.ACTION_PACKAGE_REPLACED) // 更新
-                addAction(Intent.ACTION_PACKAGE_REMOVED) // 卸载
-                addDataScheme("package")
+                // 用户打开屏幕 ( 屏幕变亮 )
+                addAction(Intent.ACTION_SCREEN_ON)
+                // 锁屏触发
+                addAction(Intent.ACTION_SCREEN_OFF)
+                // 用户解锁触发
+                addAction(Intent.ACTION_USER_PRESENT)
                 // 注册广播
                 AppUtils.registerReceiver(sReceiver, this)
             }
@@ -83,22 +83,20 @@ class AppStateReceiver private constructor() : BroadcastReceiver() {
      * @author Ttt
      */
     interface Listener {
-        /**
-         * 应用安装
-         * @param packageName 应用包名
-         */
-        fun onAdded(packageName: String?)
 
         /**
-         * 应用更新
-         * @param packageName 应用包名
+         * 用户打开屏幕 ( 屏幕变亮 )
          */
-        fun onReplaced(packageName: String?)
+        fun screenOn()
 
         /**
-         * 应用卸载
-         * @param packageName 应用包名
+         * 锁屏触发
          */
-        fun onRemoved(packageName: String?)
+        fun screenOff()
+
+        /**
+         * 用户解锁触发
+         */
+        fun userPresent()
     }
 }

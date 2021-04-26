@@ -78,7 +78,7 @@ public final class WifiReceiver
             if (sListener != null) sListener.onIntoTrigger();
             // 触发意图
             String action = intent.getAction();
-            // 打印当前触发的广播
+            // 打印触发的广播
             LogPrintUtils.dTag(TAG, "onReceive Action: %s", action);
             // 判断类型
             switch (action) {

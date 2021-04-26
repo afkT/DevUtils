@@ -21,7 +21,7 @@ class BatteryReceiver private constructor() : BroadcastReceiver() {
         intent: Intent
     ) {
         val action = intent.action
-        // 打印当前触发的广播
+        // 打印触发的广播
         LogPrintUtils.dTag(TAG, "onReceive Action: %s", action)
         // 获取当前电量, 范围是 0-100
         val level = intent.getIntExtra("level", 0)

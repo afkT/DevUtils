@@ -54,7 +54,7 @@ public final class NetWorkReceiver
     ) {
         try {
             String action = intent.getAction();
-            // 打印当前触发的广播
+            // 打印触发的广播
             LogPrintUtils.dTag(TAG, "onReceive Action: %s", action);
             // 网络连接状态改变时通知
             if (ConnectivityManager.CONNECTIVITY_ACTION.equals(action)) {
