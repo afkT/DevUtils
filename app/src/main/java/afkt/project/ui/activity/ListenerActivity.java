@@ -54,7 +54,7 @@ public class ListenerActivity
         TimeReceiver.unregisterReceiver();
         ScreenReceiver.unregisterReceiver();
         BatteryReceiver.unregisterReceiver();
-        AppStateReceiver.unregisterReceiver();
+        AppStateReceiver.Companion.unregister();
         screenSensorAssist.stop();
         try {
             mOrientationEventListener.disable();
@@ -659,13 +659,13 @@ public class ListenerActivity
         if (!isBind) { // 取反判断, 方便代码顺序查看
             ToastTintUtils.success("注销应用状态监听成功");
             // 清空回调
-            AppStateReceiver.setAppStateListener(null);
+            AppStateReceiver.Companion.setListener(null);
             // 注销监听
-            AppStateReceiver.unregisterReceiver();
+            AppStateReceiver.Companion.unregister();
         } else {
             ToastTintUtils.success("绑定应用状态监听成功, 请查看 Logcat");
             // 设置监听事件
-            AppStateReceiver.setAppStateListener(new AppStateReceiver.AppStateListener() {
+            AppStateReceiver.Companion.setListener(new AppStateReceiver.Listener() {
                 @Override
                 public void onAdded(String packageName) {
                     DevLogEngine.getEngine().dTag(TAG, "应用安装 packageName: %s", packageName);
@@ -682,7 +682,7 @@ public class ListenerActivity
                 }
             });
             // 注册监听
-            AppStateReceiver.registerReceiver();
+            AppStateReceiver.Companion.register();
         }
     }
 }
