@@ -16,7 +16,6 @@ object ViewAssistUtils {
      * @param viewAssist [ViewAssist]
      * @param listener   点击事件
      */
-    @JvmStatic
     fun registerRecyclerLoading(
         viewAssist: ViewAssist?,
         listener: View.OnClickListener?
@@ -28,7 +27,7 @@ object ViewAssistUtils {
                     assist: ViewAssist,
                     inflater: LayoutInflater
                 ): View? {
-                    return inflater.inflate(R.layout.view_assist_recy_loading, null);
+                    return inflater.inflate(R.layout.view_assist_recy_loading, null)
                 }
 
                 override fun onBindView(
@@ -52,7 +51,8 @@ object ViewAssistUtils {
                     view: View,
                     type: Int
                 ) {
-                    assist.gone(); // 可以设置渐变动画, 并在结束时隐藏根布局 -> assist.gone()
+                    // 可以设置渐变动画, 并在结束时隐藏根布局 -> assist.gone()
+                    assist.gone()
                 }
             })
             // 设置加载失败样式

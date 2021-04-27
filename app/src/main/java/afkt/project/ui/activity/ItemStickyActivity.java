@@ -80,7 +80,7 @@ public class ItemStickyActivity
             public String getGroupName(int position) {
                 if (itemStickyAdapter != null) {
                     try {
-                        return itemStickyAdapter.getData().get(position).timeTile;
+                        return itemStickyAdapter.getDataItem(position).timeTile;
                     } catch (Exception e) {
                     }
                 }

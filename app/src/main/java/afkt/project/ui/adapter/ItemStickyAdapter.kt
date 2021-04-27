@@ -1,32 +1,36 @@
-package afkt.project.ui.adapter;
+package afkt.project.ui.adapter
 
-import androidx.annotation.Nullable;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.viewholder.BaseViewHolder;
-
-import java.util.List;
-
-import afkt.project.R;
-import afkt.project.model.bean.ItemStickyBean;
+import afkt.project.R
+import afkt.project.databinding.AdapterItemStickyBinding
+import afkt.project.model.bean.ItemStickyBean
+import android.view.ViewGroup
+import dev.adapter.DevDataAdapter
+import dev.base.adapter.DevBaseViewBindingVH
+import dev.base.adapter.newBindingViewHolder
 
 /**
  * detail: 吸附 Item 预览 View Adapter
  * @author Ttt
  */
-public class ItemStickyAdapter
-        extends BaseQuickAdapter<ItemStickyBean, BaseViewHolder> {
+class ItemStickyAdapter(data: List<ItemStickyBean>) : DevDataAdapter<ItemStickyBean, DevBaseViewBindingVH<AdapterItemStickyBinding>>() {
 
-    public ItemStickyAdapter(@Nullable List<ItemStickyBean> data) {
-        super(R.layout.adapter_item_sticky, data);
+    init {
+        setDataList(data, false)
     }
 
-    @Override
-    protected void convert(
-            BaseViewHolder helper,
-            ItemStickyBean item
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): DevBaseViewBindingVH<AdapterItemStickyBinding> {
+        return newBindingViewHolder(parent, R.layout.adapter_item_sticky)
+    }
+
+    override fun onBindViewHolder(
+        holder: DevBaseViewBindingVH<AdapterItemStickyBinding>,
+        position: Int
     ) {
-        helper.setText(R.id.vid_ais_title_tv, item.title)
-                .setText(R.id.vid_ais_time_tv, item.timeFormat);
+        val item = getDataItem(position)
+        holder.binding.vidAisTitleTv.text = item.title
+        holder.binding.vidAisTimeTv.text = item.timeFormat
     }
 }

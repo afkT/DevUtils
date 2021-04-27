@@ -1,57 +1,52 @@
-package afkt.project.ui.adapter;
+package afkt.project.ui.adapter
 
-import androidx.annotation.Nullable;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.viewholder.BaseViewHolder;
-
-import java.math.BigDecimal;
-import java.util.List;
-
-import afkt.project.R;
-import afkt.project.model.bean.CommodityEvaluateBean;
-import afkt.project.util.ProjectUtils;
-import dev.engine.image.DevImageEngine;
-import dev.utils.app.ViewUtils;
-import dev.utils.common.BigDecimalUtils;
+import afkt.project.R
+import afkt.project.databinding.AdapterMultiSelectBinding
+import afkt.project.model.bean.CommodityEvaluateBean
+import afkt.project.util.ProjectUtils
+import android.view.ViewGroup
+import dev.adapter.DevDataAdapter
+import dev.base.adapter.DevBaseViewBindingVH
+import dev.base.adapter.newBindingViewHolder
+import dev.engine.image.DevImageEngine
+import dev.utils.app.helper.ViewHelper
+import dev.utils.common.BigDecimalUtils
+import java.math.BigDecimal
 
 /**
  * detail: Item Slide Adapter
  * @author Ttt
  */
-public class ItemSlideAdapter
-        extends BaseQuickAdapter<CommodityEvaluateBean, BaseViewHolder> {
+class ItemSlideAdapter(data: List<CommodityEvaluateBean>) : DevDataAdapter<CommodityEvaluateBean, DevBaseViewBindingVH<AdapterMultiSelectBinding>>() {
 
-    public ItemSlideAdapter(@Nullable List<CommodityEvaluateBean> data) {
-        super(R.layout.adapter_multi_select, data);
+    init {
+        setDataList(data, false)
     }
 
-    @Override
-    protected void convert(
-            BaseViewHolder helper,
-            CommodityEvaluateBean item
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): DevBaseViewBindingVH<AdapterMultiSelectBinding> {
+        return newBindingViewHolder(parent, R.layout.adapter_multi_select)
+    }
+
+    override fun onBindViewHolder(
+        holder: DevBaseViewBindingVH<AdapterMultiSelectBinding>,
+        position: Int
     ) {
-        // 当前索引
-        int position = helper.getLayoutPosition();
-        // 判断是否显示边距
-        ViewUtils.setVisibility(position == 0, helper.getView(R.id.vid_ams_line));
-
-        // ===========
-        // = 商品信息 =
-        // ===========
-
-        // 商品名
-        helper.setText(R.id.vid_ams_name_tv, item.commodityName);
-        // 商品价格
-        helper.setText(R.id.vid_ams_price_tv,
-                "￥" + BigDecimalUtils.operation(item.commodityPrice)
-                        .round(2, BigDecimal.ROUND_HALF_UP)
-        );
+        val item = getDataItem(position)
+        ViewHelper.get()
+            .setVisibility(position == 0, holder.binding.vidAmsLine)
+            .setText(holder.binding.vidAmsNameTv, item.commodityName)
+            .setText(
+                holder.binding.vidAmsPriceTv,
+                "￥${BigDecimalUtils.round(item.commodityPrice, 2, BigDecimal.ROUND_HALF_UP)}"
+            )
         // 商品图片
         DevImageEngine.getEngine().display(
-                helper.getView(R.id.vid_ams_pic_igview),
-                item.commodityPicture,
-                ProjectUtils.getRoundConfig3()
-        );
+            holder.binding.vidAmsIgview,
+            item.commodityPicture,
+            ProjectUtils.roundConfig3
+        )
     }
 }

@@ -74,7 +74,7 @@ class RecyItemSlideActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             ): Boolean {
                 val fromPosition = viewHolder.adapterPosition
                 val toPosition = target.adapterPosition
-                Collections.swap(itemSlideAdapter.data, fromPosition, toPosition)
+                Collections.swap(itemSlideAdapter.dataList, fromPosition, toPosition)
                 itemSlideAdapter.notifyItemMoved(fromPosition, toPosition)
                 return true
             }
@@ -90,7 +90,7 @@ class RecyItemSlideActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             ) {
                 val position = viewHolder.adapterPosition
                 if (direction == ItemTouchHelper.LEFT || direction == ItemTouchHelper.RIGHT) {
-                    itemSlideAdapter.data.removeAt(position)
+                    itemSlideAdapter.removeDataAt(position)
                     itemSlideAdapter.notifyItemRemoved(position)
 
 //                    // 例如有特殊需求, 需弹窗确认
