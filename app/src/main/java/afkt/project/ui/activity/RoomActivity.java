@@ -110,7 +110,7 @@ public class RoomActivity
                 RoomAdapter adapter      = binding.vidAdbRefresh.getAdapter();
                 int         fromPosition = viewHolder.getAdapterPosition();
                 int         toPosition   = target.getAdapterPosition();
-                Collections.swap(adapter.getData(), fromPosition, toPosition);
+                Collections.swap(adapter.getDataList(), fromPosition, toPosition);
                 adapter.notifyItemMoved(fromPosition, toPosition);
                 return true;
             }
@@ -128,7 +128,7 @@ public class RoomActivity
                 int position = viewHolder.getAdapterPosition();
                 if (direction == ItemTouchHelper.LEFT || direction == ItemTouchHelper.RIGHT) {
                     RoomAdapter    adapter = binding.vidAdbRefresh.getAdapter();
-                    NoteAndPicture nap     = adapter.getData().remove(position);
+                    NoteAndPicture nap     = adapter.getDataList().remove(position);
                     adapter.notifyItemRemoved(position);
                     // 删除文章
                     RoomManager.getNoteDatabase().getNoteDao().deleteNote(nap.note);
@@ -149,7 +149,8 @@ public class RoomActivity
             @Override
             public void onClick(View view) {
                 int addNumber; // 添加数据量
-                if (binding.vidAdbRefresh.getAdapter().getData().isEmpty()) { // 不存在数据
+                RoomAdapter adapter = binding.vidAdbRefresh.getAdapter();
+                if (adapter.isDataEmpty()) { // 不存在数据
                     randomData(addNumber = 13);
                     // 加载数据
                     loadData(true);
@@ -217,14 +218,8 @@ public class RoomActivity
         // 存在数据则累加页数
         if (!notes.isEmpty()) pageAssist.nextPage();
         if (!refresh && notes.isEmpty()) ToastTintUtils.normal("已加载至最后一页啦");
-
-        if (refresh) {
-            adapter.setNewInstance(notes);
-        } else {
-            adapter.addData(notes);
-            adapter.notifyDataSetChanged();
-        }
-
+        // 设置数据源
+        adapter.addLists(!refresh, notes);
         // 结束刷新、加载
         binding.vidAdbRefresh.finishRefreshOrLoad(refresh);
     }
@@ -248,8 +243,9 @@ public class RoomActivity
             offset = 0;
             limit = pageSize;
         } else {
+            RoomAdapter adapter = binding.vidAdbRefresh.getAdapter();
             // 获取当前数据条数
-            int size = binding.vidAdbRefresh.getAdapter().getData().size();
+            int size = adapter.getDataSize();
             // 计算当前数据实际页数
             int page      = size / pageSize;
             int remainder = size % pageSize;

@@ -1,70 +1,47 @@
-package afkt.project.ui.adapter;
+package afkt.project.ui.adapter
 
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import androidx.viewpager.widget.PagerAdapter;
-
-import java.util.List;
-
-import afkt.project.R;
-import dev.utils.app.ViewUtils;
+import afkt.project.databinding.ViewPagerItemViewBinding
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.viewpager.widget.PagerAdapter
 
 /**
  * detail: ViewPager 适配器
  * @author Ttt
  */
-public class ViewPagerAdapter
-        extends PagerAdapter {
+class ViewPagerAdapter(
+    private val lists: List<String>
+) : PagerAdapter() {
 
-    // 数据源
-    private List<String> lists;
-
-    /**
-     * 构造函数
-     * @param lists 数据源
-     */
-    public ViewPagerAdapter(List<String> lists) {
-        this.lists = lists;
-    }
-
-    @Override
-    public Object instantiateItem(
-            ViewGroup container,
-            int position
-    ) {
-        // 加载 View
-        View view = ViewUtils.inflate(R.layout.view_pager_item_view);
+    override fun instantiateItem(
+        container: ViewGroup,
+        position: Int
+    ): Any {
+        val binding = ViewPagerItemViewBinding.inflate(LayoutInflater.from(container.context))
         // 设置文本
-        ((TextView) view.findViewById(R.id.vid_vpiv_content_tv)).setText(lists.get(position % lists.size()));
+        binding.vidVpivContentTv.text = lists[position % lists.size]
         // 保存 View
-        container.addView(view);
-        return view;
+        container.addView(binding.root)
+        return binding.root
     }
 
-    @Override
-    public int getCount() {
-        return Integer.MAX_VALUE;
+    override fun getCount(): Int {
+        return Int.MAX_VALUE
     }
 
-    @Override
-    public boolean isViewFromObject(
-            View view,
-            Object object
+    override fun isViewFromObject(
+        view: View,
+        obj: Any
+    ): Boolean {
+        return view === obj
+    }
+
+    override fun destroyItem(
+        container: ViewGroup,
+        position: Int,
+        obj: Any
     ) {
-        return view == object;
-    }
-
-    @Override
-    public void destroyItem(
-            ViewGroup container,
-            int position,
-            Object object
-    ) {
-        try {
-            container.removeView((View) object);
-        } catch (Exception e) {
-        }
+        container.removeView(obj as? View)
     }
 }
