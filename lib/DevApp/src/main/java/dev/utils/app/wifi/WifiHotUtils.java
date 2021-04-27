@@ -25,12 +25,12 @@ import dev.utils.common.CloseUtils;
  * @author Ttt
  * <pre>
  *     所需权限
- *     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
- *     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
- *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
- *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
- *     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
- *     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+ *     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+ *     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+ *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+ *     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+ *     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+ *     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
  * </pre>
  */
 public final class WifiHotUtils {

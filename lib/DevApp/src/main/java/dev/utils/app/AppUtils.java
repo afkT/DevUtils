@@ -58,7 +58,7 @@ import dev.utils.common.encrypt.EncryptUtils;
  *     @see <a href="https://www.androidos.net.cn/android/9.0.0_r8/xref/libcore/luni/src/main/java/libcore/net/MimeUtils.java"/>
  *     <p></p>
  *     所需权限
- *     <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
+ *     <uses-permission android:name="android.permission.INSTALL_PACKAGES"/>
  * </pre>
  */
 public final class AppUtils {

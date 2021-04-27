@@ -15,7 +15,7 @@ import dev.utils.app.ServiceUtils;
  *     AccessibilityService 在 API < 18 的时候使用 AccessibilityService
  *     <p></p>
  *     所需权限
- *     <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
+ *     <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"/>
  *     <p></p>
  *     动态配置方式, 只能用来配置动态属性: eventTypes、feedbackType、flags、notificaionTimeout、packageNames
  *     AccessibilityServiceInfo serviceInfo = new AccessibilityServiceInfo();

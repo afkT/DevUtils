@@ -28,7 +28,7 @@ import dev.utils.common.FileUtils;
  *     Android 11 需要加该权限 ( 无需申请 ) 才能够获取安装列表
  *     <uses-permission
  *         android:name="android.permission.QUERY_ALL_PACKAGES"
- *         tools:ignore="QueryAllPackagesPermission" />
+ *         tools:ignore="QueryAllPackagesPermission"/>
  * </pre>
  */
 public final class AppInfoUtils {

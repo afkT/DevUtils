@@ -60,9 +60,9 @@ import dev.utils.LogPrintUtils;
  *     android.os.Build.VERSION.SDK_INT: 系统的 API 级别 数字表示
  *     <p></p>
  *     所需权限
- *     <uses-permission android:name="android.permission.INTERNET" />
- *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
- *     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+ *     <uses-permission android:name="android.permission.INTERNET"/>
+ *     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+ *     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
  *     <p></p>
  *     Android Settings 系统属性, 共分三种:
  *     {@link Settings.Global}: 所有的偏好设置对系统的所有用户公开, 第三方 APP 有读没有写的权限

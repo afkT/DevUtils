@@ -30,7 +30,7 @@ import dev.utils.LogPrintUtils;
  * @author Ttt
  * <pre>
  *     所需权限
- *     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+ *     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>
  * </pre>
  */
 public final class BarUtils {

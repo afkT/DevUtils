@@ -30,7 +30,7 @@ import dev.utils.LogPrintUtils;
  *     @see <a href="https://blog.csdn.net/lincyang/article/details/42679589"/>
  *     <p></p>
  *     所需权限
- *     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+ *     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
  * </pre>
  */
 public final class ScreenUtils {

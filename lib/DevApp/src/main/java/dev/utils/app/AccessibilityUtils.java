@@ -25,7 +25,7 @@ import dev.utils.LogPrintUtils;
  *     <p></p>
  *     AccessibilityService 在 API < 18 的时候使用 AccessibilityService
  *     所需权限
- *     <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
+ *     <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"/>
  * </pre>
  */
 public final class AccessibilityUtils {

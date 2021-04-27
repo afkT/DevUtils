@@ -28,11 +28,11 @@ import dev.utils.common.CloseUtils;
  * @author Ttt
  * <pre>
  *     所需权限
- *     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
- *     <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
- *     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
- *     <uses-permission android:name="com.android.launcher2.permission.READ_SETTINGS" />
- *     <uses-permission android:name="com.android.launcher3.permission.READ_SETTINGS" />
+ *     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+ *     <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT"/>
+ *     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
+ *     <uses-permission android:name="com.android.launcher2.permission.READ_SETTINGS"/>
+ *     <uses-permission android:name="com.android.launcher3.permission.READ_SETTINGS"/>
  *     <p></p>
  *     READ_SETTINGS 用于判断是否存在快捷图标
  *     <p></p>

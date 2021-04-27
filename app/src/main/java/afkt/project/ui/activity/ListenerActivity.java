@@ -47,7 +47,7 @@ public class ListenerActivity
     protected void onDestroy() {
         super.onDestroy();
         // 注销监听
-        WifiReceiver.unregister();
+        WifiReceiver.Companion.unregister();
         NetWorkReceiver.Companion.unregister();
         PhoneReceiver.Companion.unregister();
         SMSReceiver.Companion.unregister();
@@ -179,13 +179,13 @@ public class ListenerActivity
         if (!isBind) { // 取反判断, 方便代码顺序查看
             ToastTintUtils.success("注销 Wifi 监听成功");
             // 清空回调
-            WifiReceiver.setListener(null);
+            WifiReceiver.Companion.setListener(null);
             // 注销监听
-            WifiReceiver.unregister();
+            WifiReceiver.Companion.unregister();
         } else {
             ToastTintUtils.success("绑定 Wifi 监听成功, 请查看 Logcat");
             // 设置监听事件
-            WifiReceiver.setListener(new WifiReceiver.Listener() {
+            WifiReceiver.Companion.setListener(new WifiReceiver.Listener() {
                 @Override
                 public void onWifiSwitch(boolean isOpenWifi) { // Wifi 开关状态
                     DevLogEngine.getEngine().dTag(TAG, "Wifi 是否打开: %s", isOpenWifi);
@@ -193,7 +193,6 @@ public class ListenerActivity
 
                 @Override
                 public void onIntoTrigger() {
-                    super.onIntoTrigger();
                     DevLogEngine.getEngine().dTag(TAG, "触发回调通知 ( 每次进入都通知 )");
                 }
 
@@ -272,7 +271,7 @@ public class ListenerActivity
                 }
             });
             // 注册监听
-            WifiReceiver.register();
+            WifiReceiver.Companion.register();
         }
     }
 

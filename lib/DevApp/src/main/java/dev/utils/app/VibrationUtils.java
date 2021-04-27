@@ -12,7 +12,7 @@ import dev.utils.LogPrintUtils;
  * @author Ttt
  * <pre>
  *     所需权限
- *     <uses-permission android:name="android.permission.VIBRATE" />
+ *     <uses-permission android:name="android.permission.VIBRATE"/>
  * </pre>
  */
 public final class VibrationUtils {

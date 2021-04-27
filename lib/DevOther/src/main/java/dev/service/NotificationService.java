@@ -16,7 +16,7 @@ import dev.utils.app.ServiceUtils;
  * <pre>
  *     @see <a href="https://www.jianshu.com/p/981e7de2c7be"/>
  *     所需权限
- *     <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" />
+ *     <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"/>
  * </pre>
  */
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)

@@ -40,7 +40,7 @@ import dev.utils.common.StringUtils;
  * @author Ttt
  * <pre>
  *     所需权限
- *     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+ *     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
  * </pre>
  */
 public final class PhoneUtils {

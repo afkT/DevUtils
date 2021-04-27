@@ -28,8 +28,8 @@ import dev.utils.common.CloseUtils;
  * @author Ttt
  * <pre>
  *     所需权限
- *     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
- *     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+ *     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"/>
+ *     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
  * </pre>
  */
 public final class ProcessUtils {

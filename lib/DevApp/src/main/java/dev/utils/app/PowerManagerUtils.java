@@ -13,7 +13,7 @@ import dev.utils.LogPrintUtils;
  * @author Ttt
  * <pre>
  *     所需权限
- *     <uses-permission android:name="android.permission.WAKE_LOCK" />
+ *     <uses-permission android:name="android.permission.WAKE_LOCK"/>
  * </pre>
  */
 public final class PowerManagerUtils {

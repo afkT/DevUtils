@@ -32,7 +32,7 @@ import dev.utils.LogPrintUtils;
  *     该模式下, 来电、通知保持震动没有声音, 但是媒体、闹钟依然有声音, 不过小米手机只有正常模式和静音模式, 没有震动模式
  *     <p></p>
  *     所需权限
- *     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+ *     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
  * </pre>
  */
 public final class AudioManagerUtils {

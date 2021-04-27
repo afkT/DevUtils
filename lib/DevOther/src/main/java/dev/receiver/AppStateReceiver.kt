@@ -24,7 +24,7 @@ class AppStateReceiver private constructor() : BroadcastReceiver() {
         // 打印触发的广播
         LogPrintUtils.dTag(TAG, "onReceive Action: %s", action)
         // 被操作应用包名
-        var packageName: String? = intent.data?.encodedSchemeSpecificPart
+        val packageName: String? = intent.data?.encodedSchemeSpecificPart
         // 判断类型
         when (action) {
             // 应用安装

@@ -29,11 +29,11 @@ import dev.utils.common.FileUtils;
  * @author Ttt
  * <pre>
  *     所需权限
- *     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
- *     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
- *     <uses-permission android:name="android.permission.SHUTDOWN" />
- *     <uses-permission android:name="android.permission.CALL_PHONE" />
- *     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+ *     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+ *     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES"/>
+ *     <uses-permission android:name="android.permission.SHUTDOWN"/>
+ *     <uses-permission android:name="android.permission.CALL_PHONE"/>
+ *     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
  * </pre>
  */
 public final class IntentUtils {
