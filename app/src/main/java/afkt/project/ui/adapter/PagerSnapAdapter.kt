@@ -19,7 +19,7 @@ import dev.engine.image.DevImageEngine
 class PagerSnapAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, DevBaseViewDataBindingVH<AdapterPagerSnapBinding>>() {
 
     init {
-        setDataList(data)
+        setDataList(data, false)
     }
 
     override fun onCreateViewHolder(

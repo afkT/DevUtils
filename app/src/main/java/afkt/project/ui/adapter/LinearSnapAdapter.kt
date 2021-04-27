@@ -18,7 +18,7 @@ import dev.utils.app.helper.ViewHelper
 class LinearSnapAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, DevBaseViewBindingVH<AdapterLinearSnapBinding>>() {
 
     init {
-        setDataList(data)
+        setDataList(data, false)
     }
 
     override fun onCreateViewHolder(

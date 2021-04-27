@@ -49,7 +49,7 @@ public class AdapterEditsActivity
                     @Override
                     public void onClick(View v) {
                         StringBuilder builder = new StringBuilder();
-                        for (EvaluateItem item : editsAdapter.getData()) {
+                        for (EvaluateItem item : editsAdapter.getDataList()) {
                             builder.append("\nevaluateContent: ").append(item.evaluateContent);
                             builder.append("\nevaluateLevel: ").append(item.evaluateLevel);
                             builder.append("\n");
