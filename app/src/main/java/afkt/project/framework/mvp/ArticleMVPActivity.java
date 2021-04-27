@@ -135,7 +135,7 @@ public class ArticleMVPActivity
             } else { // 请求成功
                 stateLayout.showSuccess();
                 // 设置数据源
-                articleAdapter.setNewInstance(articleBean.data.datas);
+                articleAdapter.setDataList(articleBean.data.datas);
             }
         } else { // 请求失败
             stateLayout.showFailed();

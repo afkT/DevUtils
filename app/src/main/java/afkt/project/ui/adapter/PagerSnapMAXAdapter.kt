@@ -40,10 +40,10 @@ class PagerSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, Recyc
         parent: ViewGroup,
         viewType: Int
     ): RecyclerView.ViewHolder {
-//        var holder: DevBaseViewDataBindingVH<AdapterPagerSnapBinding> =
+//        val holder: DevBaseViewDataBindingVH<AdapterPagerSnapBinding> =
 //            newDataBindingViewHolder(parent, R.layout.adapter_pager_snap)
 //        return holder
-        var holder: DevBaseViewDataBindingVH<AdapterPagerSnapBinding> =
+        val holder: DevBaseViewDataBindingVH<AdapterPagerSnapBinding> =
             DevBaseViewDataBindingVH.create(
                 parent, R.layout.adapter_pager_snap
             )
@@ -56,7 +56,7 @@ class PagerSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, Recyc
     ) {
         val size = dataSize
         if (size != 0) {
-            var holder = viewHolder as DevBaseViewDataBindingVH<AdapterPagerSnapBinding>
+            val holder = viewHolder as DevBaseViewDataBindingVH<AdapterPagerSnapBinding>
             val index = position % size
 
             holder.binding.page = "$position - $index"

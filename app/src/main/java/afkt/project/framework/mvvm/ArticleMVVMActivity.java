@@ -136,7 +136,7 @@ public class ArticleMVVMActivity
                     binding.vidAamState.showSuccess();
                     // 设置数据源
                     ((ArticleAdapter) binding.vidAamRecy.getAdapter())
-                            .setNewInstance(articleBean.data.datas);
+                            .setDataList(articleBean.data.datas);
                 }
             } else {
                 binding.vidAamState.showFailed();

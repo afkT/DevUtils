@@ -39,7 +39,7 @@ class LinearSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, Recy
         parent: ViewGroup,
         viewType: Int
     ): RecyclerView.ViewHolder {
-//        var holder: DevBaseViewBindingVH<AdapterLinearSnapBinding> =
+//        val holder: DevBaseViewBindingVH<AdapterLinearSnapBinding> =
 //            newBindingViewHolder(parent, R.layout.adapter_linear_snap)
 //        return holder
         return DevBaseViewBindingVH.create(
@@ -54,7 +54,7 @@ class LinearSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, Recy
     ) {
         val size = dataSize
         if (size != 0) {
-            var holder = viewHolder as DevBaseViewBindingVH<AdapterLinearSnapBinding>
+            val holder = viewHolder as DevBaseViewBindingVH<AdapterLinearSnapBinding>
             val index = position % size
             val itemBean = getDataItem(index)
             ViewHelper.get()

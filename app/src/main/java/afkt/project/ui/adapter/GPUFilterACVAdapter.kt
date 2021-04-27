@@ -19,9 +19,9 @@ import dev.utils.app.helper.QuickHelper
  */
 class GPUFilterACVAdapter(
     // Context
-    var context: Context,
+    private val context: Context,
     // ACV 文件集合
-    var listACVFiles: List<ACVFileBean>
+    private val listACVFiles: List<ACVFileBean>
 ) : BaseAdapter() {
 
     // 当前选中索引
