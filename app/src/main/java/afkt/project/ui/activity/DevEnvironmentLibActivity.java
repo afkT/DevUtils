@@ -1,16 +1,12 @@
 package afkt.project.ui.activity;
 
-import android.view.View;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
-
 import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
+import dev.callback.DevItemClickCallback;
 import dev.engine.log.DevLogEngine;
 import dev.environment.DevEnvironment;
 import dev.environment.DevEnvironmentActivity;
@@ -40,14 +36,12 @@ public class DevEnvironmentLibActivity
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getModuleDevEnvironmentButtonValues());
         binding.vidBvrRecy.setAdapter(buttonAdapter);
-        buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+        buttonAdapter.setItemCallback(new DevItemClickCallback<ButtonValue>() {
             @Override
-            public void onItemChildClick(
-                    BaseQuickAdapter adapter,
-                    View view,
-                    int position
+            public void onItemClick(
+                    ButtonValue buttonValue,
+                    int param
             ) {
-                ButtonValue buttonValue = buttonAdapter.getItem(position);
                 boolean     result;
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_DEV_ENVIRONMENT:

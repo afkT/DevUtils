@@ -25,7 +25,7 @@ class DevBaseViewBindingVH<VB : ViewBinding>(@JvmField val binding: VB) : Recycl
         ) =
             DevBaseViewBindingVH(
                 ViewBindingUtils.viewBinding(
-                    view = LayoutInflater.from(parent.context).inflate(resource, null),
+                    view = LayoutInflater.from(parent.context).inflate(resource, parent, false),
                     clazz = clazz
                 )
             )

@@ -1,10 +1,5 @@
 package afkt.project.ui.activity;
 
-import android.view.View;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
-
 import java.io.Serializable;
 
 import afkt.project.R;
@@ -13,6 +8,7 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
+import dev.callback.DevItemClickCallback;
 import dev.utils.app.PathUtils;
 import dev.utils.app.cache.DevCache;
 import dev.utils.app.toast.ToastTintUtils;
@@ -40,17 +36,14 @@ public class CacheActivity
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getCacheButtonValues());
         binding.vidBvrRecy.setAdapter(buttonAdapter);
-        buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+        buttonAdapter.setItemCallback(new DevItemClickCallback<ButtonValue>() {
             @Override
-            public void onItemChildClick(
-                    BaseQuickAdapter adapter,
-                    View view,
-                    int position
+            public void onItemClick(
+                    ButtonValue buttonValue,
+                    int param
             ) {
                 // 获取字符串
                 String str;
-
-                ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_CACHE_STRING:
                         DevCache.newCache().put("str", "这是字符串", -1);

@@ -1,10 +1,6 @@
 package afkt.project.ui.activity;
 
 import android.Manifest;
-import android.view.View;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 
 import java.util.List;
 
@@ -15,6 +11,7 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
+import dev.callback.DevItemClickCallback;
 import dev.engine.log.DevLogEngine;
 import dev.utils.app.ActivityUtils;
 import dev.utils.app.AppUtils;
@@ -57,17 +54,14 @@ public class FunctionActivity
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getFunctionButtonValues());
         binding.vidBvrRecy.setAdapter(buttonAdapter);
-        buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+        buttonAdapter.setItemCallback(new DevItemClickCallback<ButtonValue>() {
             @Override
-            public void onItemChildClick(
-                    BaseQuickAdapter adapter,
-                    View view,
-                    int position
+            public void onItemClick(
+                    ButtonValue buttonValue,
+                    int param
             ) {
                 // 获取操作结果
                 boolean result;
-
-                ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_FUNCTION_VIBRATE:
                         result = VibrationUtils.vibrate(200);

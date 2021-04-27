@@ -5,10 +5,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.service.notification.StatusBarNotification;
-import android.view.View;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 
 import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
@@ -16,6 +12,7 @@ import afkt.project.databinding.BaseViewRecyclerviewBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
+import dev.callback.DevItemClickCallback;
 import dev.engine.log.DevLogEngine;
 import dev.service.NotificationService;
 import dev.utils.app.toast.ToastTintUtils;
@@ -52,14 +49,12 @@ public class NotificationServiceActivity
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getNotificationServiceButtonValues());
         binding.vidBvrRecy.setAdapter(buttonAdapter);
-        buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+        buttonAdapter.setItemCallback(new DevItemClickCallback<ButtonValue>() {
             @Override
-            public void onItemChildClick(
-                    BaseQuickAdapter adapter,
-                    View view,
-                    int position
+            public void onItemClick(
+                    ButtonValue buttonValue,
+                    int param
             ) {
-                ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_NOTIFICATION_SERVICE_CHECK:
                         boolean check = NotificationService.isNotificationListenerEnabled();

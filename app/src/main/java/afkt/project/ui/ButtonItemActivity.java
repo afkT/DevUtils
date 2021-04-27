@@ -1,10 +1,5 @@
 package afkt.project.ui;
 
-import android.view.View;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
-
 import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.databinding.BaseViewRecyclerviewBinding;
@@ -14,6 +9,7 @@ import afkt.project.ui.activity.ViewAssistActivity;
 import afkt.project.ui.activity.ViewAssistRecyclerViewLoadActivity;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.util.SkipUtils;
+import dev.callback.DevItemClickCallback;
 import dev.utils.app.toast.ToastTintUtils;
 
 /**
@@ -34,14 +30,12 @@ public class ButtonItemActivity
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getButtonValues(getModuleType()));
         binding.vidBvrRecy.setAdapter(buttonAdapter);
-        buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+        buttonAdapter.setItemCallback(new DevItemClickCallback<ButtonValue>() {
             @Override
-            public void onItemChildClick(
-                    BaseQuickAdapter adapter,
-                    View view,
-                    int position
+            public void onItemClick(
+                    ButtonValue buttonValue,
+                    int param
             ) {
-                ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
 
                     // =============

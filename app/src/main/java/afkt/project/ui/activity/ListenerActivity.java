@@ -6,23 +6,20 @@ import android.telephony.SmsMessage;
 import android.view.OrientationEventListener;
 import android.view.View;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
-import com.chad.library.adapter.base.listener.OnItemChildLongClickListener;
-
 import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.databinding.ActivityCommonTipsBinding;
 import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
+import dev.callback.DevItemClickCallback;
 import dev.engine.log.DevLogEngine;
 import dev.receiver.AppStateReceiver;
 import dev.receiver.BatteryReceiver;
 import dev.receiver.NetWorkReceiver;
 import dev.receiver.PhoneReceiver;
-import dev.receiver.ScreenReceiver;
 import dev.receiver.SMSReceiver;
+import dev.receiver.ScreenReceiver;
 import dev.receiver.TimeReceiver;
 import dev.receiver.WifiReceiver;
 import dev.utils.app.ResourceUtils;
@@ -74,14 +71,12 @@ public class ListenerActivity
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getListenerButtonValues());
         binding.vidBaseRecy.vidBvrRecy.setAdapter(buttonAdapter);
-        buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+        buttonAdapter.setItemCallback(new DevItemClickCallback<ButtonValue>() {
             @Override
-            public void onItemChildClick(
-                    BaseQuickAdapter adapter,
-                    View view,
-                    int position
+            public void onItemClick(
+                    ButtonValue buttonValue,
+                    int param
             ) {
-                ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_WIFI_LISTENER:
                         wifiListener(true);
@@ -118,15 +113,12 @@ public class ListenerActivity
                         break;
                 }
             }
-        });
-        buttonAdapter.setOnItemChildLongClickListener(new OnItemChildLongClickListener() {
+
             @Override
-            public boolean onItemChildLongClick(
-                    BaseQuickAdapter adapter,
-                    View view,
-                    int position
+            public void onItemLongClick(
+                    ButtonValue buttonValue,
+                    int param
             ) {
-                ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_WIFI_LISTENER:
                         wifiListener(false);
@@ -162,7 +154,6 @@ public class ListenerActivity
                         ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
                         break;
                 }
-                return true;
             }
         });
     }

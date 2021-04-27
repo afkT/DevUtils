@@ -6,10 +6,6 @@ import android.net.wifi.WifiConfiguration;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
-import android.view.View;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 
 import java.util.List;
 
@@ -20,6 +16,7 @@ import afkt.project.model.item.ButtonList;
 import afkt.project.model.item.ButtonValue;
 import afkt.project.ui.adapter.ButtonAdapter;
 import afkt.project.util.QuickWifiHotUtils;
+import dev.callback.DevItemClickCallback;
 import dev.engine.log.DevLogEngine;
 import dev.receiver.WifiReceiver;
 import dev.utils.app.permission.PermissionUtils;
@@ -74,14 +71,12 @@ public class WifiActivity
         // 初始化布局管理器、适配器
         final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getWifiButtonValues());
         binding.vidBvrRecy.setAdapter(buttonAdapter);
-        buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+        buttonAdapter.setItemCallback(new DevItemClickCallback<ButtonValue>() {
             @Override
-            public void onItemChildClick(
-                    BaseQuickAdapter adapter,
-                    View view,
-                    int position
+            public void onItemClick(
+                    ButtonValue buttonValue,
+                    int param
             ) {
-                ButtonValue buttonValue = buttonAdapter.getItem(position);
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_WIFI_OPEN:
                         if (wifiUtils.isOpenWifi()) {

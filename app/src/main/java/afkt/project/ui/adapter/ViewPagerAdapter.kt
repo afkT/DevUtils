@@ -34,7 +34,7 @@ class ViewPagerAdapter(
         view: View,
         obj: Any
     ): Boolean {
-        return view === obj
+        return view == obj
     }
 
     override fun destroyItem(
