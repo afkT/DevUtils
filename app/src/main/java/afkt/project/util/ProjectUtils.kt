@@ -1,92 +1,58 @@
-package afkt.project.util;
+package afkt.project.util
 
-import android.graphics.Color;
-import android.graphics.Rect;
-
-import afkt.project.R;
-import dev.base.DevVariable;
-import dev.engine.image.ImageConfig;
-import dev.utils.app.ResourceUtils;
-import dev.utils.app.SizeUtils;
-import dev.widget.ui.ScanShapeView;
+import afkt.project.R
+import android.graphics.Color
+import android.graphics.Rect
+import dev.base.DevVariable
+import dev.engine.image.ImageConfig
+import dev.utils.app.ResourceUtils
+import dev.utils.app.SizeUtils
+import dev.widget.ui.ScanShapeView
+import dev.widget.ui.ScanShapeView.CornerEffect
 
 /**
  * detail: 项目工具类
  * @author Ttt
  */
-public final class ProjectUtils {
-
-    private ProjectUtils() {
-    }
-
-    // ==============
-    // = GlideUtils =
-    // ==============
-
-//    // 圆角 RequestOptions
-//    private static RequestOptions sRoundOptions;
-//
-//    /**
-//     * 获取圆角 RequestOptions
-//     * @return 圆角 {@link RequestOptions}
-//     */
-//    public static RequestOptions getRoundConfig3() {
-//        if (sRoundOptions == null) {
-//            // 获取默认 RequestOptions
-//            sRoundOptions = GlideUtils.defaultOptions();
-//            // 设置圆角, 使用 RoundedCorners 图片不会闪烁
-//            sRoundOptions.transform(new RoundedCorners(ResourceUtils.getDimensionInt(R.dimen.un_dp_3)));
-//        }
-//        return sRoundOptions;
-//    }
-//
-//    /**
-//     * 获取圆角 RequestOptions
-//     * @return 圆角 {@link RequestOptions}
-//     */
-//    public static RequestOptions getRoundConfig10() {
-//        // 获取默认 RequestOptions
-//        RequestOptions roundOptions = GlideUtils.defaultOptions();
-//        // 设置圆角, 使用 RoundedCorners 图片不会闪烁
-//        return roundOptions.transform(new RoundedCorners(ResourceUtils.getDimensionInt(R.dimen.un_dp_10)));
-//    }
+object ProjectUtils {
 
     // ==================
     // = DevImageEngine =
     // ==================
 
     // GlideConfig 配置变量
-    private static DevVariable<Integer, ImageConfig> sConfigVariable = new DevVariable<>();
+    private val sConfigVariable = DevVariable<Int, ImageConfig?>()
 
     /**
      * 获取圆角 GlideConfig
-     * @return 圆角 {@link ImageConfig}
+     * @return 圆角 [ImageConfig]
      */
-    public static ImageConfig getRoundConfig3() {
-        return priGetRoundConfig(3);
-    }
+    @JvmStatic
+    val roundConfig3: ImageConfig?
+        get() = roundConfig(3)
 
     /**
      * 获取圆角 GlideConfig
-     * @return 圆角 {@link ImageConfig}
+     * @return 圆角 [ImageConfig]
      */
-    public static ImageConfig getRoundConfig10() {
-        return priGetRoundConfig(10);
-    }
+    @JvmStatic
+    val roundConfig10: ImageConfig?
+        get() = roundConfig(10)
 
     /**
      * 获取圆角 GlideConfig
      * @param roundDP 圆角 dp 值
-     * @return {@link ImageConfig}
+     * @return [ImageConfig]
      */
-    public static ImageConfig priGetRoundConfig(int roundDP) {
-        ImageConfig config = sConfigVariable.getVariableValue(roundDP);
-        if (config != null) return config;
-        config = ImageConfig.create();
-        config.setRoundedCornersRadius(SizeUtils.dipConvertPx(roundDP));
-        config.setTransform(ImageConfig.TRANSFORM_ROUNDED_CORNERS);
-        sConfigVariable.putVariable(roundDP, config);
-        return config;
+    @JvmStatic
+    fun roundConfig(roundDP: Int): ImageConfig? {
+        var config = sConfigVariable.getVariableValue(roundDP)
+        if (config != null) return config
+        config = ImageConfig.create()
+        config.roundedCornersRadius = SizeUtils.dipConvertPx(roundDP.toFloat())
+        config.transform = ImageConfig.TRANSFORM_ROUNDED_CORNERS
+        sConfigVariable.putVariable(roundDP, config)
+        return config
     }
 
     // =================
@@ -98,14 +64,15 @@ public final class ProjectUtils {
      * @param scanView  扫描 View
      * @param scanShape 扫描类型
      */
-    public static void refShape(
-            ScanShapeView scanView,
-            ScanShapeView.Shape scanShape
+    @JvmStatic
+    fun refShape(
+        scanView: ScanShapeView,
+        scanShape: ScanShapeView.Shape
     ) {
         // 设置扫描 View 类型
-        scanView.setShapeType(scanShape);
+        scanView.shapeType = scanShape
 
-        boolean isExecute = false;
+        val isExecute = false
         if (isExecute) {
 
             // ===========
@@ -113,154 +80,165 @@ public final class ProjectUtils {
             // ===========
 
             // 销毁方法
-            scanView.destroy();
+            scanView.destroy()
             // 启动动画
-            scanView.startAnim();
+            scanView.startAnim()
             // 停止动画
-            scanView.stopAnim();
+            scanView.stopAnim()
             // 动画是否运行中
-            scanView.isAnimRunning();
+            scanView.isAnimRunning
 
             // =======
             // = 共用 =
             // =======
 
             // 设置扫描 View 类型
-            scanView.setShapeType(scanShape);
+            scanView.shapeType = scanShape
             // 获取扫描 View 类型
-            scanView.getShapeType();
+            scanView.shapeType
             // 设置是否绘制背景
-            scanView.setDrawBackground(true);
+            scanView.isDrawBackground = true
             // 设置背景颜色 - ( 黑色 百分之 40 透明度 ) #66000000
-            scanView.setBGColor(Color.argb(102, 0, 0, 0));
+            scanView.bgColor = Color.argb(102, 0, 0, 0)
             // 设置是否自动启动动画
-            scanView.setAutoAnim(false);
+            scanView.isAutoAnim = false
             // 是否需要绘制动画 ( 效果 )
-            scanView.setDrawAnim(false);
+            scanView.isDrawAnim = false
             // 设置拐角效果
-            scanView.setCornerEffect(new ScanShapeView.CornerEffect(10));
+            scanView.setCornerEffect(CornerEffect(10.0F))
             // 设置扫描区域大小 ( 扫描 View) 无关阴影背景以及整个 View 宽高
-            scanView.setRegion(700);
-            scanView.setRegion(700, 700);
-            scanView.setRegion(new Rect(0, 0, 700, 700));
+            scanView.setRegion(700f)
+            scanView.setRegion(700f, 700f)
+            scanView.setRegion(Rect(0, 0, 700, 700))
             // 获取扫描区域 距离 整个 View 的左 / 右边距 距离
-            scanView.getRegionLeft();
+            scanView.regionLeft
             // 获取扫描区域 距离 整个 View 的上 / 下边距 距离
-            scanView.getRegionTop();
+            scanView.regionTop
             // 获取扫描区域位置信息
-            scanView.getRegion(); // 获取扫描区域位置信息
-            scanView.getRegion(100f, 200f); // 获取纠偏 ( 偏差 ) 位置后的扫描区域
-            scanView.getRegionParent(); // 获取扫描区域在 View 中的位置
-            scanView.getRegionWidth();
-            scanView.getRegionHeight();
+            scanView.region // 获取扫描区域位置信息
+            scanView.getRegion(100f, 200f) // 获取纠偏 ( 偏差 ) 位置后的扫描区域
+            scanView.regionParent // 获取扫描区域在 View 中的位置
+            scanView.regionWidth
+            scanView.regionHeight
             // 获取边框边距
-            scanView.getBorderMargin();
+            scanView.borderMargin
             // 设置扫描区域绘制边框边距
-            scanView.setBorderMargin(0);
+            scanView.borderMargin = 0f
             // 设置扫描区域边框颜色
-            scanView.setBorderColor(Color.WHITE);
+            scanView.borderColor = Color.WHITE
             // 设置扫描区域边框宽度
-            scanView.setBorderWidth(SizeUtils.dipConvertPxf(2));
+            scanView.borderWidth = SizeUtils.dipConvertPxf(2f)
             // 是否绘制边框
-            scanView.setDrawBorder(true);
+            scanView.isDrawBorder = true
 
             // =================
             // = 正方形特殊配置 =
             // =================
 
             // 设置 正方形描边 ( 边框 ), 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部
-            scanView.setBorderToSquare(0);
+            scanView.borderToSquare = 0
             // 设置四个角落与边框共存时, 对应边框宽度
-            scanView.setBorderWidthToSquare(SizeUtils.dipConvertPxf(1));
+            scanView.borderWidthToSquare = SizeUtils.dipConvertPxf(1f)
             // 设置每个角的点距离 ( 长度 )
-            scanView.setTriAngleLength(SizeUtils.dipConvertPxf(20));
+            scanView.triAngleLength = SizeUtils.dipConvertPxf(20f)
             // 设置特殊处理 ( 正方形边框 ) - 当 描边类型为 2 , 并且存在圆角时, 设置距离尺寸过大会出现边框圆角 + 四个角落圆角有部分透出背景情况
-            scanView.setSpecialToSquare(false); // 出现的时候则设置 true, 小尺寸 (setBorderWidthToSquare, setBorderWidth) 则不会出现
+            scanView.isSpecialToSquare =
+                false // 出现的时候则设置 true, 小尺寸 (setBorderWidthToSquare, setBorderWidth) 则不会出现
             // 设置正方形扫描动画速度 ( 毫秒 )
-            scanView.setLineDurationToSquare(10L);
+            scanView.lineDurationToSquare = 10L
             // 设置正方形扫描线条 Bitmap
-            scanView.setBitmapToSquare(ResourceUtils.getBitmap(R.drawable.dev_scan_line));
+            scanView.bitmapToSquare = ResourceUtils.getBitmap(R.drawable.dev_scan_line)
             // 设置正方形线条动画 ( 着色 ) -> 如果不使用自己的 Bitmap(setBitmapToSquare), 则可以使用默认内置的图片, 进行着色达到想要的颜色
-            scanView.setLineColorToSquare(Color.WHITE);
+            scanView.lineColorToSquare = Color.WHITE
             // 设置正方形扫描线条向上 ( 下 ) 边距
-            scanView.setLineMarginTopToSquare(0);
+            scanView.lineMarginTopToSquare = 0f
             // 设置正方形扫描线条向左 ( 右 ) 边距
-            scanView.setLineMarginLeftToSquare(0);
+            scanView.lineMarginLeftToSquare = 0f
 
             // =================
             // = 六边形特殊配置 =
             // =================
 
             // 设置六边形线条动画 - 线条宽度
-            scanView.setLineWidthToHexagon(4f);
+            scanView.lineWidthToHexagon = 4f
             // 置六边形线条动画 - 线条边距
-            scanView.setLineMarginToHexagon(20f);
+            scanView.lineMarginToHexagon = 20f
             // 设置六边形线条动画方向 true = 从左到右, false = 从右到左
-            scanView.setLineAnimDirection(true);
+            scanView.isLineAnimDirection = true
             // 设置六边形线条动画颜色
-            scanView.setLineColorToHexagon(Color.WHITE);
+            scanView.lineColorToHexagon = Color.WHITE
 
             // ===============
             // = 环形特殊配置 =
             // ===============
 
             // 设置环形扫描线条 Bitmap
-            scanView.setBitmapToAnnulus(ResourceUtils.getBitmap(R.drawable.dev_scan_line));
+            scanView.bitmapToAnnulus = ResourceUtils.getBitmap(R.drawable.dev_scan_line)
             // 设置环形线条动画 ( 着色 )
-            scanView.setLineColorToAnnulus(Color.WHITE);
+            scanView.lineColorToAnnulus = Color.WHITE
             // 设置环形扫描线条速度
-            scanView.setLineOffsetSpeedToAnnulus(4);
+            scanView.lineOffsetSpeedToAnnulus = 4f
             // 设置环形对应的环是否绘制 0 - 外环, 1 - 中间环, 2 - 外环
-            scanView.setAnnulusDraws(false, true, true);
+            scanView.setAnnulusDraws(false, true, true)
             // 设置环形对应的环绘制颜色 0 - 外环, 1 - 中间环, 2 - 外环
-            scanView.setAnnulusColors(Color.BLUE, Color.RED, Color.WHITE);
+            scanView.setAnnulusColors(Color.BLUE, Color.RED, Color.WHITE)
             // 设置环形对应的环绘制长度 0 - 外环, 1 - 中间环, 2 - 外环
-            scanView.setAnnulusLengths(20, 30, 85);
+            scanView.setAnnulusLengths(20, 30, 85)
             // 设置环形对应的环绘制宽度 0 - 外环, 1 - 中间环, 2 - 外环
-            scanView.setAnnulusWidths(SizeUtils.dipConvertPx(3), SizeUtils.dipConvertPx(7), SizeUtils.dipConvertPx(7));
+            scanView.setAnnulusWidths(
+                SizeUtils.dipConvertPx(3f).toFloat(),
+                SizeUtils.dipConvertPx(7f).toFloat(),
+                SizeUtils.dipConvertPx(7f).toFloat()
+            )
             // 设置环形对应的环绘制边距 0 - 外环, 1 - 中间环, 2 - 外环
-            scanView.setAnnulusMargins(SizeUtils.dipConvertPx(7), SizeUtils.dipConvertPx(7), SizeUtils.dipConvertPx(7));
+            scanView.setAnnulusMargins(
+                SizeUtils.dipConvertPx(7f).toFloat(),
+                SizeUtils.dipConvertPx(7f).toFloat(),
+                SizeUtils.dipConvertPx(7f).toFloat()
+            )
         }
 
         // 设置是否需要阴影背景
-        scanView.setDrawBackground(true);
-
+        scanView.isDrawBackground = true
         // 判断类型
-        switch (scanShape) {
-            case Square: // 正方形
+        when (scanShape) {
+            // 正方形
+            ScanShapeView.Shape.Square -> {
                 // 天蓝色
-                int squareColor = Color.argb(255, 0, 128, 255);
+                val squareColor = Color.argb(255, 0, 128, 255)
                 // 设置扫描线条颜色
-                scanView.setLineColorToSquare(squareColor);
+                scanView.lineColorToSquare = squareColor
                 // 边框颜色
-                scanView.setBorderColor(squareColor);
+                scanView.borderColor = squareColor
                 // 设置圆角
-                scanView.setCornerEffect(new ScanShapeView.CornerEffect(10));
+                scanView.setCornerEffect(CornerEffect(10.0F))
 //                // 不需要圆角
-//                scanView.setCornerEffect(null);
+//                scanView.setCornerEffect(null)
 //                // 设置 正方形描边 ( 边框 ), 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部
-//                scanView.setBorderToSquare(2);
-                break;
-            case Hexagon: // 六边形
+//                scanView.borderToSquare = 2
+            }
+            // 六边形
+            ScanShapeView.Shape.Hexagon -> {
                 // 白色
-                int hexagonColor = Color.WHITE;
+                val hexagonColor = Color.WHITE
                 // 边框颜色
-                scanView.setBorderColor(hexagonColor);
+                scanView.borderColor = hexagonColor
                 // 设置六边形线条动画颜色
-                scanView.setLineColorToHexagon(hexagonColor);
+                scanView.lineColorToHexagon = hexagonColor
 //                // 设置六边形线条动画方向 true = 从左到右, false = 从右到左
-//                scanView.setLineAnimDirection(false);
-                break;
-            case Annulus: // 环形
+//                scanView.isLineAnimDirection = false
+            }
+            // 环形
+            ScanShapeView.Shape.Annulus -> {
                 // 设置环形线条动画 ( 着色 )
-                scanView.setLineColorToAnnulus(Color.RED);
+                scanView.lineColorToAnnulus = Color.RED
                 // 设置是否需要阴影背景
-                scanView.setDrawBackground(false);
+                scanView.isDrawBackground = false
 //                // 设置环形扫描线条速度
-//                scanView.setLineOffsetSpeedToAnnulus(6f);
-                break;
+//                scanView.lineOffsetSpeedToAnnulus = 6f
+            }
         }
         // 重新绘制
-        scanView.postInvalidate();
+        scanView.postInvalidate()
     }
 }

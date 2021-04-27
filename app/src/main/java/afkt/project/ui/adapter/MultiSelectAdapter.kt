@@ -54,7 +54,7 @@ class MultiSelectAdapter(data: List<CommodityEvaluateBean?>) :
         DevImageEngine.getEngine().display(
             holder.binding.vidAmsPicIgview,
             item?.commodityPicture,
-            ProjectUtils.getRoundConfig3()
+            ProjectUtils.roundConfig3
         )
 
         // ===========
@@ -73,9 +73,7 @@ class MultiSelectAdapter(data: List<CommodityEvaluateBean?>) :
                 // 设置是否选中
                 ViewUtils.setSelected(mMultiSelectMap.isSelectKey(key), selectIGView)
                 // 触发回调
-                if (selectListener != null) {
-                    selectListener!!.onClickSelect(position, mMultiSelectMap.isSelectKey(key))
-                }
+                selectListener?.onClickSelect(position, mMultiSelectMap.isSelectKey(key))
             }, holder.itemView.findViewById(R.id.vid_ams_linear))
     }
 

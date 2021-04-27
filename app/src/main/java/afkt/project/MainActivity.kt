@@ -1,140 +1,113 @@
-package afkt.project;
+package afkt.project
 
-import android.Manifest;
-import android.view.View;
+import afkt.project.base.app.BaseActivity
+import afkt.project.databinding.ActivityMainBinding
+import afkt.project.model.item.ButtonList
+import afkt.project.model.item.ButtonValue
+import afkt.project.ui.ModuleActivity
+import afkt.project.ui.activity.DevEnvironmentLibActivity
+import afkt.project.ui.adapter.ButtonAdapter
+import afkt.project.util.SkipUtils
+import android.Manifest
+import dev.engine.log.DevLogEngine
+import dev.engine.permission.DevPermissionEngine
+import dev.engine.permission.IPermissionEngine
+import dev.utils.app.AppCommonUtils
+import dev.utils.app.toast.ToastTintUtils
+import dev.utils.app.toast.ToastUtils
+import dev.utils.common.HttpURLConnectionUtils
+import java.util.*
+import kotlin.math.abs
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-import java.util.Arrays;
-import java.util.List;
+    override fun isToolBar(): Boolean = false
 
-import afkt.project.base.app.BaseActivity;
-import afkt.project.databinding.ActivityMainBinding;
-import afkt.project.model.item.ButtonList;
-import afkt.project.model.item.ButtonValue;
-import afkt.project.ui.ModuleActivity;
-import afkt.project.ui.activity.DevEnvironmentLibActivity;
-import afkt.project.ui.adapter.ButtonAdapter;
-import afkt.project.util.SkipUtils;
-import dev.engine.log.DevLogEngine;
-import dev.engine.permission.DevPermissionEngine;
-import dev.engine.permission.IPermissionEngine;
-import dev.utils.app.AppCommonUtils;
-import dev.utils.app.toast.ToastTintUtils;
-import dev.utils.app.toast.ToastUtils;
-import dev.utils.common.HttpURLConnectionUtils;
+    override fun baseLayoutId(): Int = R.layout.activity_main
 
-public class MainActivity
-        extends BaseActivity<ActivityMainBinding> {
-
-    @Override
-    public boolean isToolBar() {
-        return false;
-    }
-
-    @Override
-    public int baseLayoutId() {
-        return R.layout.activity_main;
-    }
-
-    @Override
-    public void initOther() {
-        super.initOther();
+    override fun initOther() {
+        super.initOther()
 
         // ===========
         // = 时间校验 =
         // ===========
 
-        HttpURLConnectionUtils.getNetTime(new HttpURLConnectionUtils.TimeCallback() {
-            @Override
-            public void onResponse(long time) {
-                // 获取当前时间
-                long curTime = System.currentTimeMillis();
+        HttpURLConnectionUtils.getNetTime(object : HttpURLConnectionUtils.TimeCallback {
+            override fun onResponse(time: Long) {
+                val curTime = System.currentTimeMillis()
                 if (time >= 1) {
-                    // 获取误差时间
-                    final long diffTime = Math.abs(curTime - time);
+                    val diffTime = abs(curTime - time)
                     // 判断是否误差超过 10 秒
                     if (diffTime >= 10000L) {
-                        ToastUtils.showShort("当前时间与网络时间不一致, 误差: " + (diffTime / 1000) + "秒");
+                        ToastUtils.showShort("当前时间与网络时间不一致, 误差: ${diffTime / 1000} 秒")
                     }
                 }
             }
 
-            @Override
-            public void onFail(Exception e) {
-                DevLogEngine.getEngine().eTag(TAG, e, "getNetTime");
+            override fun onFail(e: Exception) {
+                DevLogEngine.getEngine().eTag(TAG, e, "getNetTime")
             }
-        });
+        })
 
         // ===========
         // = 申请权限 =
         // ===========
 
         DevPermissionEngine.getEngine().request(
-                this, new String[]{
-                        Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE
-                },
-                new IPermissionEngine.Callback() {
-                    @Override
-                    public void onGranted() {
-                        DevLogEngine.getEngine().d("permission granted");
-                    }
-
-                    @Override
-                    public void onDenied(
-                            List<String> grantedList,
-                            List<String> deniedList,
-                            List<String> notFoundList
-                    ) {
-                        StringBuilder builder = new StringBuilder();
-                        builder.append("permission");
-                        builder.append("\ngrantedList: ").append(Arrays.toString(grantedList.toArray()));
-                        builder.append("\ndeniedList: ").append(Arrays.toString(deniedList.toArray()));
-                        builder.append("\nnotFoundList: ").append(Arrays.toString(notFoundList.toArray()));
-                        DevLogEngine.getEngine().d(builder.toString());
-                        // 拒绝了则再次请求处理
-                        DevPermissionEngine.getEngine().againRequest(MainActivity.this, this, deniedList);
-                        // Toast
-                        ToastUtils.showShort("请开启读写手机存储权限.");
-                    }
+            this, arrayOf(
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ),
+            object : IPermissionEngine.Callback {
+                override fun onGranted() {
+                    DevLogEngine.getEngine().d("permission granted")
                 }
-        );
-    }
 
-    @Override
-    public void initValue() {
-        super.initValue();
-        // 设置 Android 版本信息
-        binding.vidAmAndroidTv.setText(AppCommonUtils.convertSDKVersion());
-        // 初始化布局管理器、适配器
-        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getMainButtonValues());
-        binding.vidBaseRecy.vidBvrRecy.setAdapter(buttonAdapter);
-        buttonAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(
-                    BaseQuickAdapter adapter,
-                    View view,
-                    int position
-            ) {
-                ButtonValue buttonValue = buttonAdapter.getItem(position);
-                switch (buttonValue.type) {
-                    case ButtonValue.MODULE_FRAMEWORK:
-                    case ButtonValue.MODULE_LIB:
-                    case ButtonValue.MODULE_UI:
-                    case ButtonValue.MODULE_OTHER:
-                    case ButtonValue.MODULE_DEV_WIDGET:
-                        SkipUtils.startActivity(ModuleActivity.class, buttonValue);
-                        break;
-                    case ButtonValue.MODULE_DEV_ENVIRONMENT:
-                        SkipUtils.startActivity(DevEnvironmentLibActivity.class, buttonValue);
-                        break;
-                    default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
-                        break;
+                override fun onDenied(
+                    grantedList: List<String>,
+                    deniedList: List<String>,
+                    notFoundList: List<String>
+                ) {
+                    val builder = StringBuilder()
+                        .append("permission")
+                        .append("\ngrantedList: ")
+                        .append(grantedList.toTypedArray().contentToString())
+                        .append("\ndeniedList: ")
+                        .append(deniedList.toTypedArray().contentToString())
+                        .append("\nnotFoundList: ")
+                        .append(notFoundList.toTypedArray().contentToString())
+                    DevLogEngine.getEngine().d(builder.toString())
+                    // 拒绝了则再次请求处理
+                    DevPermissionEngine.getEngine()
+                        .againRequest(this@MainActivity, this, deniedList)
+                    ToastUtils.showShort("请开启读写手机存储权限.")
                 }
             }
-        });
+        )
+    }
+
+    override fun initValue() {
+        super.initValue()
+        // 设置 Android 版本信息
+        binding.vidAmAndroidTv.text = AppCommonUtils.convertSDKVersion()
+        // 初始化布局管理器、适配器
+        val buttonAdapter = ButtonAdapter(ButtonList.getMainButtonValues())
+        binding.vidBaseRecy.vidBvrRecy.adapter = buttonAdapter
+        buttonAdapter.setOnItemChildClickListener { _, _, position ->
+            val buttonValue = buttonAdapter.getItem(position)
+            when (buttonValue.type) {
+                ButtonValue.MODULE_FRAMEWORK,
+                ButtonValue.MODULE_LIB,
+                ButtonValue.MODULE_UI,
+                ButtonValue.MODULE_OTHER,
+                ButtonValue.MODULE_DEV_WIDGET -> {
+                    SkipUtils.startActivity(ModuleActivity::class.java, buttonValue)
+                }
+                ButtonValue.MODULE_DEV_ENVIRONMENT -> {
+                    SkipUtils.startActivity(DevEnvironmentLibActivity::class.java, buttonValue)
+                }
+                else -> ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件")
+            }
+        }
     }
 }

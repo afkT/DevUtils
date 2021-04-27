@@ -40,7 +40,7 @@ class LinearSnapAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, DevBase
         DevImageEngine.getEngine().display(
             holder.binding.vidAlsIgview,
             item.imageUrl,
-            ProjectUtils.getRoundConfig10()
+            ProjectUtils.roundConfig10
         )
     }
 }

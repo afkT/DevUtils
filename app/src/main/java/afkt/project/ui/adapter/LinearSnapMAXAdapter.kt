@@ -65,7 +65,7 @@ class LinearSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, Recy
             DevImageEngine.getEngine().display(
                 holder.binding.vidAlsIgview,
                 itemBean.imageUrl,
-                ProjectUtils.getRoundConfig10()
+                ProjectUtils.roundConfig10
             )
         }
     }
