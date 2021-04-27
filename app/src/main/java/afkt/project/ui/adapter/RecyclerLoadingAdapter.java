@@ -38,12 +38,7 @@ public class RecyclerLoadingAdapter
         BaseImageView vid_arl_igview = helper.getView(R.id.vid_arl_igview);
         FrameLayout   vid_arl_frame  = helper.getView(R.id.vid_arl_frame);
         ViewAssist    viewAssist     = ViewAssist.wrap(vid_arl_frame);
-        ViewAssistUtils.registerRecyclerLoading(viewAssist, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadImage(vid_arl_igview, viewAssist, url);
-            }
-        });
+        ViewAssistUtils.registerRecyclerLoading(viewAssist, v -> loadImage(vid_arl_igview, viewAssist, url));
         loadImage(vid_arl_igview, viewAssist, url);
     }
 

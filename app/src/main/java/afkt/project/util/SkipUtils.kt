@@ -18,6 +18,7 @@ object SkipUtils {
      * @param buttonValue 按钮参数
      * @return `true` success, `false` fail
      */
+    @JvmStatic
     fun startActivity(
         clazz: Class<*>?,
         buttonValue: ButtonValue

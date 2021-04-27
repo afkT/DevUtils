@@ -1,86 +1,77 @@
-package afkt.project.util;
+package afkt.project.util
 
-import android.view.LayoutInflater;
-import android.view.View;
-
-import afkt.project.R;
-import dev.utils.app.ListenerUtils;
-import dev.widget.assist.ViewAssist;
+import afkt.project.R
+import android.view.LayoutInflater
+import android.view.View
+import dev.widget.assist.ViewAssist
 
 /**
  * detail: ViewAssist Adapter 工具类
  * @author Ttt
  */
-public final class ViewAssistUtils {
-
-    private ViewAssistUtils() {
-    }
+object ViewAssistUtils {
 
     /**
      * 注册 Recycler Loading type
-     * @param viewAssist {@link ViewAssist}
+     * @param viewAssist [ViewAssist]
      * @param listener   点击事件
      */
-    public static void registerRecyclerLoading(
-            ViewAssist viewAssist,
-            View.OnClickListener listener
+    @JvmStatic
+    fun registerRecyclerLoading(
+        viewAssist: ViewAssist?,
+        listener: View.OnClickListener?
     ) {
-        if (viewAssist != null) {
-            viewAssist.register(ViewAssist.TYPE_ING, new ViewAssist.Adapter() {
-                @Override
-                public View onCreateView(
-                        ViewAssist assist,
-                        LayoutInflater inflater
-                ) {
+        viewAssist?.let {
+            // 设置加载中样式
+            it.register(ViewAssist.TYPE_ING, object : ViewAssist.Adapter {
+                override fun onCreateView(
+                    assist: ViewAssist,
+                    inflater: LayoutInflater
+                ): View? {
                     return inflater.inflate(R.layout.view_assist_recy_loading, null);
                 }
 
-                @Override
-                public void onBindView(
-                        ViewAssist assist,
-                        View view,
-                        int type
+                override fun onBindView(
+                    assist: ViewAssist,
+                    view: View,
+                    type: Int
                 ) {
                 }
-            });
-
-            viewAssist.register(ViewAssist.TYPE_SUCCESS, new ViewAssist.Adapter() {
-                @Override
-                public View onCreateView(
-                        ViewAssist assist,
-                        LayoutInflater inflater
-                ) {
-                    return null;
+            })
+            // 设置加载成功样式
+            it.register(ViewAssist.TYPE_SUCCESS, object : ViewAssist.Adapter {
+                override fun onCreateView(
+                    assist: ViewAssist,
+                    inflater: LayoutInflater
+                ): View? {
+                    return null
                 }
 
-                @Override
-                public void onBindView(
-                        ViewAssist assist,
-                        View view,
-                        int type
+                override fun onBindView(
+                    assist: ViewAssist,
+                    view: View,
+                    type: Int
                 ) {
                     assist.gone(); // 可以设置渐变动画, 并在结束时隐藏根布局 -> assist.gone()
                 }
-            });
-
-            viewAssist.register(ViewAssist.TYPE_FAILED, new ViewAssist.Adapter() {
-                @Override
-                public View onCreateView(
-                        ViewAssist assist,
-                        LayoutInflater inflater
-                ) {
-                    return inflater.inflate(R.layout.view_assist_recy_failed, null);
+            })
+            // 设置加载失败样式
+            it.register(ViewAssist.TYPE_FAILED, object : ViewAssist.Adapter {
+                override fun onCreateView(
+                    assist: ViewAssist,
+                    inflater: LayoutInflater
+                ): View? {
+                    return inflater.inflate(R.layout.view_assist_recy_failed, null)
                 }
 
-                @Override
-                public void onBindView(
-                        ViewAssist assist,
-                        View view,
-                        int type
+                override fun onBindView(
+                    assist: ViewAssist,
+                    view: View,
+                    type: Int
                 ) {
-                    ListenerUtils.setOnClicks(listener, view);
+                    listener?.apply { view.setOnClickListener(this) }
                 }
-            });
+            })
         }
     }
 }
