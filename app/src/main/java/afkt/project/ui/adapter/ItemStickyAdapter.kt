@@ -2,7 +2,7 @@ package afkt.project.ui.adapter
 
 import afkt.project.R
 import afkt.project.databinding.AdapterItemStickyBinding
-import afkt.project.model.bean.ItemStickyBean
+import afkt.project.model.ItemStickyBean
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH

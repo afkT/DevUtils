@@ -13,7 +13,7 @@ import java.util.List;
 import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.databinding.BaseViewRecyclerviewBinding;
-import afkt.project.model.bean.ItemBean;
+import afkt.project.model.ItemBean;
 import afkt.project.ui.adapter.LinearSnapAdapter;
 import dev.utils.app.helper.ViewHelper;
 
@@ -49,7 +49,7 @@ public class LinearSnapActivity
 
         List<ItemBean> lists = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            lists.add(ItemBean.newItemBean());
+            lists.add(ItemBean.Companion.newItemBean());
         }
 
         // 初始化布局管理器、适配器

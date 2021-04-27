@@ -3,7 +3,7 @@ package afkt.project.ui.activity
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.bean.ItemBean
+import afkt.project.model.ItemBean
 import afkt.project.ui.adapter.PagerSnapMAXAdapter
 import android.os.Bundle
 import android.view.ViewGroup

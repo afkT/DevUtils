@@ -15,7 +15,7 @@ import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.base.config.PathConfig;
 import afkt.project.databinding.ActivityCapturePictureRecyBinding;
-import afkt.project.model.bean.AdapterBean;
+import afkt.project.model.AdapterBean;
 import dev.base.widget.BaseTextView;
 import dev.utils.app.CapturePictureUtils;
 import dev.utils.app.ResourceUtils;
@@ -77,7 +77,7 @@ public class CapturePictureRecyActivity
         binding.vidAcpRecy.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
 //        binding.vidAcpRecy.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL));
 
-        final List<AdapterBean> lists = AdapterBean.newAdapterBeanList(15);
+        final List<AdapterBean> lists = AdapterBean.Companion.newAdapterBeanList(15);
         binding.vidAcpRecy.setAdapter(new RecyclerView.Adapter() {
 
             @Override
@@ -102,8 +102,8 @@ public class CapturePictureRecyActivity
                 AdapterBean adapterBean = lists.get(i);
                 ViewHolder  holder      = (ViewHolder) viewHolder;
                 View        view        = holder.itemView;
-                ViewHelper.get().setText(ViewUtils.findViewById(view, R.id.vid_acp_title_tv), adapterBean.title)
-                        .setText(ViewUtils.findViewById(view, R.id.vid_acp_content_tv), adapterBean.content);
+                ViewHelper.get().setText(ViewUtils.findViewById(view, R.id.vid_acp_title_tv), adapterBean.getTitle())
+                        .setText(ViewUtils.findViewById(view, R.id.vid_acp_content_tv), adapterBean.getContent());
             }
 
             @Override

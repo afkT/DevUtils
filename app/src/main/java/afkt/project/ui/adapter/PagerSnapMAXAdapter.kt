@@ -2,7 +2,7 @@ package afkt.project.ui.adapter
 
 import afkt.project.R
 import afkt.project.databinding.AdapterPagerSnapBinding
-import afkt.project.model.bean.ItemBean
+import afkt.project.model.ItemBean
 import afkt.project.util.ProjectUtils
 import android.view.ViewGroup
 import android.widget.ImageView

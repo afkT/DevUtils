@@ -11,7 +11,7 @@ import java.util.List;
 import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.databinding.BaseViewRecyclerviewBinding;
-import afkt.project.model.bean.ItemStickyBean;
+import afkt.project.model.ItemStickyBean;
 import afkt.project.ui.adapter.ItemStickyAdapter;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.SizeUtils;
@@ -80,7 +80,7 @@ public class ItemStickyActivity
             public String getGroupName(int position) {
                 if (itemStickyAdapter != null) {
                     try {
-                        return itemStickyAdapter.getDataItem(position).timeTile;
+                        return itemStickyAdapter.getDataItem(position).getTimeTile();
                     } catch (Exception e) {
                     }
                 }

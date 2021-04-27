@@ -12,7 +12,7 @@ import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.base.config.PathConfig;
 import afkt.project.databinding.ActivityCapturePictureGridBinding;
-import afkt.project.model.bean.AdapterBean;
+import afkt.project.model.AdapterBean;
 import dev.base.widget.BaseTextView;
 import dev.utils.app.CapturePictureUtils;
 import dev.utils.app.ResourceUtils;
@@ -65,7 +65,7 @@ public class CapturePictureGridActivity
     public void initValue() {
         super.initValue();
 
-        List<AdapterBean> lists = AdapterBean.newAdapterBeanList(15);
+        List<AdapterBean> lists = AdapterBean.Companion.newAdapterBeanList(15);
         // 设置适配器
         binding.vidAcpGrid.setAdapter(new BaseAdapter() {
             @Override
@@ -92,8 +92,8 @@ public class CapturePictureGridActivity
                 AdapterBean adapterBean = getItem(position);
                 // 初始化 View 设置 TextView
                 View view = ViewUtils.inflate(CapturePictureGridActivity.this, R.layout.adapter_capture_picture);
-                ViewHelper.get().setText(ViewUtils.findViewById(view, R.id.vid_acp_title_tv), adapterBean.title)
-                        .setText(ViewUtils.findViewById(view, R.id.vid_acp_content_tv), adapterBean.content);
+                ViewHelper.get().setText(ViewUtils.findViewById(view, R.id.vid_acp_title_tv), adapterBean.getTitle())
+                        .setText(ViewUtils.findViewById(view, R.id.vid_acp_content_tv), adapterBean.getTitle());
                 return view;
             }
         });
