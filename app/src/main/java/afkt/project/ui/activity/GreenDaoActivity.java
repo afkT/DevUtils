@@ -148,7 +148,7 @@ public class GreenDaoActivity
         binding.vidAdbAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int addNumber; // 添加数据量
+                int             addNumber; // 添加数据量
                 GreenDaoAdapter adapter = binding.vidAdbRefresh.getAdapter();
                 if (adapter.isDataEmpty()) { // 不存在数据
                     randomData(addNumber = 13);

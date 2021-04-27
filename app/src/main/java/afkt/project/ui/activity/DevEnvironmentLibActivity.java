@@ -42,7 +42,7 @@ public class DevEnvironmentLibActivity
                     ButtonValue buttonValue,
                     int param
             ) {
-                boolean     result;
+                boolean result;
                 switch (buttonValue.type) {
                     case ButtonValue.BTN_DEV_ENVIRONMENT:
                         result = DevEnvironmentActivity.start(mContext, new RestartCallback() {
