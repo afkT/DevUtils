@@ -1,69 +1,74 @@
-package afkt.project.ui.adapter;
+package afkt.project.ui.adapter
 
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.viewholder.BaseViewHolder;
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
-
-import afkt.project.R;
-import afkt.project.database.green.module.note.bean.Note;
-import afkt.project.database.green.module.note.bean.NotePicture;
-import afkt.project.database.green.module.note.bean.NoteType;
-import dev.engine.image.DevImageEngine;
-import dev.utils.app.ViewUtils;
-import dev.utils.app.helper.ViewHelper;
-import dev.utils.common.DateUtils;
+import afkt.project.R
+import afkt.project.database.green.module.note.bean.Note
+import afkt.project.database.green.module.note.bean.NotePicture
+import afkt.project.database.green.module.note.bean.NoteType
+import afkt.project.databinding.AdapterDatabaseBinding
+import afkt.project.databinding.AdapterDatabaseImageBinding
+import android.view.ViewGroup
+import dev.adapter.DevDataAdapter
+import dev.base.adapter.DevBaseViewBindingVH
+import dev.base.adapter.newBindingViewHolder
+import dev.engine.image.DevImageEngine
+import dev.utils.app.ViewUtils
+import dev.utils.app.helper.ViewHelper
+import dev.utils.common.DateUtils
 
 /**
  * detail: GreenDao 适配器
  * @author Ttt
  */
-public class GreenDaoAdapter
-        extends BaseQuickAdapter<Note, BaseViewHolder> {
+class GreenDaoAdapter : DevDataAdapter<Note, DevBaseViewBindingVH<AdapterDatabaseBinding>>() {
 
-    public GreenDaoAdapter() {
-        super(R.layout.adapter_database);
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): DevBaseViewBindingVH<AdapterDatabaseBinding> {
+        return newBindingViewHolder(parent, R.layout.adapter_database)
     }
 
-    @Override
-    protected void convert(
-            BaseViewHolder helper,
-            Note item
+    override fun onBindViewHolder(
+        holder: DevBaseViewBindingVH<AdapterDatabaseBinding>,
+        position: Int
     ) {
+        val note = getDataItem(position)
         ViewHelper.get()
-                .setText(helper.getView(R.id.vid_adb_title_tv), item.getText())
-                .setText(helper.getView(R.id.vid_adb_content_tv), item.getComment())
-                .setText(helper.getView(R.id.vid_adb_time_tv), DateUtils.formatDate(item.getDate(), "yyyy.MM.dd"))
-                .setVisibility(item.getType() != NoteType.PICTURE, helper.getView(R.id.vid_adb_content_tv))
-                .setVisibility(item.getType() != NoteType.TEXT, helper.getView(R.id.vid_adb_recy))
-        ;
-        RecyclerView vid_adb_recy = helper.getView(R.id.vid_adb_recy);
-        if (ViewUtils.isVisibility(vid_adb_recy)) {
-            vid_adb_recy.setAdapter(new ImageAdapter(item.getPictures()));
+            .setText(holder.binding.vidAdbTitleTv, note.text)
+            .setText(holder.binding.vidAdbContentTv, note.comment)
+            .setText(
+                holder.binding.vidAdbTimeTv,
+                DateUtils.formatDate(note.date, "yyyy.MM.dd")
+            )
+            .setVisibility(note.type != NoteType.PICTURE, holder.binding.vidAdbContentTv)
+            .setVisibility(note.type != NoteType.TEXT, holder.binding.vidAdbRecy)
+        val imgRecy = holder.binding.vidAdbRecy
+        if (ViewUtils.isVisibility(imgRecy)) {
+            imgRecy.adapter = ImageAdapter(note.pictures)
         }
     }
 
-    class ImageAdapter
-            extends BaseQuickAdapter<NotePicture, BaseViewHolder> {
+    internal inner class ImageAdapter(data: List<NotePicture>) : DevDataAdapter<NotePicture, DevBaseViewBindingVH<AdapterDatabaseImageBinding>>() {
 
-        public ImageAdapter(@Nullable List<NotePicture> data) {
-            super(R.layout.adapter_database_image, data);
+        init {
+            setDataList(data, false)
         }
 
-        @Override
-        protected void convert(
-                @NotNull BaseViewHolder helper,
-                NotePicture item
+        override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+        ): DevBaseViewBindingVH<AdapterDatabaseImageBinding> {
+            return newBindingViewHolder(parent, R.layout.adapter_database_image)
+        }
+
+        override fun onBindViewHolder(
+            holder: DevBaseViewBindingVH<AdapterDatabaseImageBinding>,
+            position: Int
         ) {
             DevImageEngine.getEngine().display(
-                    helper.getView(R.id.vid_adbi_igview),
-                    item.getPicture()
-            );
+                holder.binding.vidAdbiIgview,
+                getDataItem(position).picture
+            )
         }
     }
 }
