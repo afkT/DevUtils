@@ -1,57 +1,47 @@
-package afkt.project.ui.activity;
+package afkt.project.ui.activity
 
-import afkt.project.R;
-import afkt.project.base.app.BaseActivity;
-import afkt.project.databinding.BaseViewRecyclerviewBinding;
-import afkt.project.model.item.ButtonList;
-import afkt.project.model.item.ButtonValue;
-import afkt.project.ui.adapter.ButtonAdapter;
-import dev.callback.DevItemClickCallback;
-import dev.utils.app.toast.ToastTintUtils;
-import utils_use.record.FileRecordUse;
+import afkt.project.R
+import afkt.project.base.app.BaseActivity
+import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.model.item.ButtonList.fileRecordButtonValues
+import afkt.project.model.item.ButtonValue
+import afkt.project.ui.adapter.ButtonAdapter
+import dev.callback.DevItemClickCallback
+import dev.utils.app.toast.ToastTintUtils
+import utils_use.record.FileRecordUse
 
 /**
  * detail: 日志、异常文件记录保存
  * @author Ttt
- * <pre>
- *     {@link FileRecordUse}
- * </pre>
+ * [FileRecordUse]
  */
-public class FileRecordActivity
-        extends BaseActivity<BaseViewRecyclerviewBinding> {
+class FileRecordActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
-    @Override
-    public int baseLayoutId() {
-        return R.layout.base_view_recyclerview;
-    }
+    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
 
-    @Override
-    public void initValue() {
-        super.initValue();
+    override fun initValue() {
+        super.initValue()
 
         // 初始化布局管理器、适配器
-        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getFileRecordButtonValues());
-        binding.vidBvrRecy.setAdapter(buttonAdapter);
-        buttonAdapter.setItemCallback(new DevItemClickCallback<ButtonValue>() {
-            @Override
-            public void onItemClick(
-                    ButtonValue buttonValue,
-                    int param
+        val buttonAdapter = ButtonAdapter(fileRecordButtonValues)
+        binding.vidBvrRecy.adapter = buttonAdapter
+        buttonAdapter.itemCallback = object : DevItemClickCallback<ButtonValue>() {
+            override fun onItemClick(
+                buttonValue: ButtonValue,
+                param: Int
             ) {
-                switch (buttonValue.getType()) {
-                    case ButtonValue.BTN_FILE_RECORD_ANALYSIS:
-                        showToast(true, "保存成功");
-                        FileRecordUse.analysisRecord();
-                        break;
-                    case ButtonValue.BTN_FILE_RECORD_UTILS:
-                        showToast(true, "保存成功");
-                        FileRecordUse.fileRecord();
-                        break;
-                    default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.getText() + " 事件");
-                        break;
+                when (buttonValue.type) {
+                    ButtonValue.BTN_FILE_RECORD_ANALYSIS -> {
+                        showToast(true, "保存成功")
+                        FileRecordUse.analysisRecord()
+                    }
+                    ButtonValue.BTN_FILE_RECORD_UTILS -> {
+                        showToast(true, "保存成功")
+                        FileRecordUse.fileRecord()
+                    }
+                    else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                 }
             }
-        });
+        }
     }
 }

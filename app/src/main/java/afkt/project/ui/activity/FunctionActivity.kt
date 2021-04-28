@@ -1,181 +1,172 @@
-package afkt.project.ui.activity;
+package afkt.project.ui.activity
 
-import android.Manifest;
-
-import java.util.List;
-
-import afkt.project.MainActivity;
-import afkt.project.R;
-import afkt.project.base.app.BaseActivity;
-import afkt.project.databinding.BaseViewRecyclerviewBinding;
-import afkt.project.model.item.ButtonList;
-import afkt.project.model.item.ButtonValue;
-import afkt.project.ui.adapter.ButtonAdapter;
-import dev.callback.DevItemClickCallback;
-import dev.engine.log.DevLogEngine;
-import dev.utils.app.ActivityUtils;
-import dev.utils.app.AppUtils;
-import dev.utils.app.DeviceUtils;
-import dev.utils.app.FlashlightUtils;
-import dev.utils.app.IntentUtils;
-import dev.utils.app.MemoryUtils;
-import dev.utils.app.NotificationUtils;
-import dev.utils.app.ShortCutUtils;
-import dev.utils.app.VibrationUtils;
-import dev.utils.app.assist.BeepVibrateAssist;
-import dev.utils.app.permission.PermissionUtils;
-import dev.utils.app.toast.ToastTintUtils;
-import dev.utils.app.toast.ToastUtils;
+import afkt.project.MainActivity
+import afkt.project.R
+import afkt.project.base.app.BaseActivity
+import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.model.item.ButtonList.functionButtonValues
+import afkt.project.model.item.ButtonValue
+import afkt.project.ui.adapter.ButtonAdapter
+import android.Manifest
+import dev.callback.DevItemClickCallback
+import dev.engine.log.DevLogEngine
+import dev.utils.app.*
+import dev.utils.app.assist.BeepVibrateAssist
+import dev.utils.app.permission.PermissionUtils
+import dev.utils.app.permission.PermissionUtils.PermissionCallback
+import dev.utils.app.toast.ToastTintUtils
+import dev.utils.app.toast.ToastUtils
 
 /**
  * detail: 铃声、震动、通知栏等功能
  * @author Ttt
  */
-public class FunctionActivity
-        extends BaseActivity<BaseViewRecyclerviewBinding> {
+class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
-    @Override
-    public int baseLayoutId() {
-        return R.layout.base_view_recyclerview;
-    }
+    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    override fun onDestroy() {
+        super.onDestroy()
         // 关闭手电筒
-        FlashlightUtils.getInstance().setFlashlightOff();
-        FlashlightUtils.getInstance().unregister();
+        FlashlightUtils.getInstance().setFlashlightOff()
+        FlashlightUtils.getInstance().unregister()
     }
 
-    @Override
-    public void initValue() {
-        super.initValue();
+    override fun initValue() {
+        super.initValue()
 
         // 初始化布局管理器、适配器
-        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getFunctionButtonValues());
-        binding.vidBvrRecy.setAdapter(buttonAdapter);
-        buttonAdapter.setItemCallback(new DevItemClickCallback<ButtonValue>() {
-            @Override
-            public void onItemClick(
-                    ButtonValue buttonValue,
-                    int param
+        val buttonAdapter = ButtonAdapter(functionButtonValues)
+        binding.vidBvrRecy.adapter = buttonAdapter
+        buttonAdapter.itemCallback = object : DevItemClickCallback<ButtonValue>() {
+            override fun onItemClick(
+                buttonValue: ButtonValue,
+                param: Int
             ) {
                 // 获取操作结果
-                boolean result;
-                switch (buttonValue.getType()) {
-                    case ButtonValue.BTN_FUNCTION_VIBRATE:
-                        result = VibrationUtils.vibrate(200);
-                        showToast(result);
-                        break;
-                    case ButtonValue.BTN_FUNCTION_BEEP:
+                var result: Boolean
+                when (buttonValue.type) {
+                    ButtonValue.BTN_FUNCTION_VIBRATE -> {
+                        result = VibrationUtils.vibrate(200)
+                        showToast(result)
+                    }
+                    ButtonValue.BTN_FUNCTION_BEEP -> {
                         // 表示不要震动、使用本地或者 raw 文件
-                        result = new BeepVibrateAssist(mActivity, R.raw.dev_beep).setVibrate(false).playBeepSoundAndVibrate();
-//                        result = new BeepVibrateAssist(mActivity, "xxx/a.mp3").setVibrate(false).playBeepSoundAndVibrate();
-                        showToast(result);
-                        break;
-                    case ButtonValue.BTN_FUNCTION_NOTIFICATION_CHECK:
-                        result = NotificationUtils.isNotificationEnabled();
-                        showToast(result, "通知权限已开启", "通知权限未开启");
-                        break;
-                    case ButtonValue.BTN_FUNCTION_NOTIFICATION_OPEN:
-                        result = AppUtils.startActivity(IntentUtils.getLaunchAppNotificationSettingsIntent(AppUtils.getPackageName()));
-                        showToast(result);
-                        break;
-                    case ButtonValue.BTN_FUNCTION_NOTIFICATION:
-                        result = NotificationUtils.notify(12, NotificationUtils.createNotification(
-                                new NotificationUtils.Params(R.mipmap.icon_launcher, "标题", "内容"))
-                        );
-                        showToast(result);
-                        break;
-                    case ButtonValue.BTN_FUNCTION_NOTIFICATION_REMOVE:
-                        result = NotificationUtils.cancel(12);
-                        showToast(result);
-                        break;
-                    case ButtonValue.BTN_FUNCTION_HOME:
-                        result = ActivityUtils.startHomeActivity();
-                        showToast(result);
-                        break;
-                    case ButtonValue.BTN_FUNCTION_FLASHLIGHT_OPEN:
-                        PermissionUtils.permission(Manifest.permission.CAMERA).callback(new PermissionUtils.PermissionCallback() {
-                            @Override
-                            public void onGranted() {
-                                // 非传入 Camera 方式需要注册
-                                FlashlightUtils.getInstance().register();
-                                boolean result = FlashlightUtils.getInstance().setFlashlightOn();
-                                showToast(result);
-                            }
+                        result = BeepVibrateAssist(mActivity, R.raw.dev_beep).setVibrate(false)
+                            .playBeepSoundAndVibrate()
+                        result = BeepVibrateAssist(mActivity, "xxx/a.mp3").setVibrate(false)
+                            .playBeepSoundAndVibrate()
+                        showToast(result)
+                    }
+                    ButtonValue.BTN_FUNCTION_NOTIFICATION_CHECK -> {
+                        result = NotificationUtils.isNotificationEnabled()
+                        showToast(result, "通知权限已开启", "通知权限未开启")
+                    }
+                    ButtonValue.BTN_FUNCTION_NOTIFICATION_OPEN -> {
+                        result = AppUtils.startActivity(
+                            IntentUtils.getLaunchAppNotificationSettingsIntent(AppUtils.getPackageName())
+                        )
+                        showToast(result)
+                    }
+                    ButtonValue.BTN_FUNCTION_NOTIFICATION -> {
+                        result = NotificationUtils.notify(
+                            12, NotificationUtils.createNotification(
+                                NotificationUtils.Params(R.mipmap.icon_launcher, "标题", "内容")
+                            )
+                        )
+                        showToast(result)
+                    }
+                    ButtonValue.BTN_FUNCTION_NOTIFICATION_REMOVE -> {
+                        result = NotificationUtils.cancel(12)
+                        showToast(result)
+                    }
+                    ButtonValue.BTN_FUNCTION_HOME -> {
+                        result = ActivityUtils.startHomeActivity()
+                        showToast(result)
+                    }
+                    ButtonValue.BTN_FUNCTION_FLASHLIGHT_OPEN -> PermissionUtils.permission(
+                        Manifest.permission.CAMERA
+                    ).callback(object : PermissionCallback {
+                        override fun onGranted() {
+                            // 非传入 Camera 方式需要注册
+                            FlashlightUtils.getInstance().register()
+                            val result = FlashlightUtils.getInstance().setFlashlightOn()
+                            showToast(result)
+                        }
 
-                            @Override
-                            public void onDenied(
-                                    List<String> grantedList,
-                                    List<String> deniedList,
-                                    List<String> notFoundList
-                            ) {
-                                ToastTintUtils.warning("打开手电筒需摄像头权限");
-                            }
-                        }).request(mActivity);
-                        break;
-                    case ButtonValue.BTN_FUNCTION_FLASHLIGHT_CLOSE:
-                        result = FlashlightUtils.getInstance().setFlashlightOff();
-                        showToast(result);
-                        break;
-                    case ButtonValue.BTN_FUNCTION_SHORTCUT_CHECK:
-                        result = ShortCutUtils.hasShortcut("Dev 快捷方式");
-                        showToast(result, "存在快捷方式", "不存在快捷方式");
-                        break;
-                    case ButtonValue.BTN_FUNCTION_SHORTCUT_CREATE:
-                        PermissionUtils.permission(Manifest.permission.INSTALL_SHORTCUT).callback(new PermissionUtils.PermissionCallback() {
-                            @Override
-                            public void onGranted() {
-                                boolean result = ShortCutUtils.addShortcut(MainActivity.class, "Dev 快捷方式", R.mipmap.icon_launcher_round);
-                                showToast(result);
-                            }
+                        override fun onDenied(
+                            grantedList: List<String>,
+                            deniedList: List<String>,
+                            notFoundList: List<String>
+                        ) {
+                            ToastTintUtils.warning("打开手电筒需摄像头权限")
+                        }
+                    }).request(mActivity)
+                    ButtonValue.BTN_FUNCTION_FLASHLIGHT_CLOSE -> {
+                        result = FlashlightUtils.getInstance().setFlashlightOff()
+                        showToast(result)
+                    }
+                    ButtonValue.BTN_FUNCTION_SHORTCUT_CHECK -> {
+                        result = ShortCutUtils.hasShortcut("Dev 快捷方式")
+                        showToast(result, "存在快捷方式", "不存在快捷方式")
+                    }
+                    ButtonValue.BTN_FUNCTION_SHORTCUT_CREATE -> PermissionUtils.permission(
+                        Manifest.permission.INSTALL_SHORTCUT
+                    ).callback(object : PermissionCallback {
+                        override fun onGranted() {
+                            val result = ShortCutUtils.addShortcut(
+                                MainActivity::class.java,
+                                "Dev 快捷方式",
+                                R.mipmap.icon_launcher_round
+                            )
+                            showToast(result)
+                        }
 
-                            @Override
-                            public void onDenied(
-                                    List<String> grantedList,
-                                    List<String> deniedList,
-                                    List<String> notFoundList
-                            ) {
-                                ToastTintUtils.warning("创建快捷方式需要该权限");
-                            }
-                        }).request(mActivity);
-                        break;
-                    case ButtonValue.BTN_FUNCTION_SHORTCUT_DELETE:
-                        result = ShortCutUtils.deleteShortcut(MainActivity.class, "Dev 快捷方式");
-                        showToast(result);
-                        break;
-                    case ButtonValue.BTN_FUNCTION_MEMORY_PRINT:
-                        String memoryInfo = MemoryUtils.printMemoryInfo();
-                        ToastUtils.showShort(memoryInfo);
-                        DevLogEngine.getEngine().dTag(TAG, memoryInfo);
-                        break;
-                    case ButtonValue.BTN_FUNCTION_DEVICE_PRINT:
-                        String deviceInfo = DeviceUtils.handlerDeviceInfo(DeviceUtils.getDeviceInfo(), "");
-                        ToastUtils.showShort(deviceInfo);
-                        DevLogEngine.getEngine().dTag(TAG, deviceInfo);
-                        break;
-                    case ButtonValue.BTN_FUNCTION_APP_DETAILS_SETTINGS:
-                        result = AppUtils.launchAppDetailsSettings();
-                        showToast(result);
-                        break;
-                    case ButtonValue.BTN_FUNCTION_GPS_SETTINGS:
-                        result = AppUtils.openGpsSettings();
-                        showToast(result);
-                        break;
-                    case ButtonValue.BTN_FUNCTION_WIRELESS_SETTINGS:
-                        result = AppUtils.openWirelessSettings();
-                        showToast(result);
-                        break;
-                    case ButtonValue.BTN_FUNCTION_SYS_SETTINGS:
-                        result = AppUtils.startSysSetting();
-                        showToast(result);
-                        break;
-                    default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.getText() + " 事件");
-                        break;
+                        override fun onDenied(
+                            grantedList: List<String>,
+                            deniedList: List<String>,
+                            notFoundList: List<String>
+                        ) {
+                            ToastTintUtils.warning("创建快捷方式需要该权限")
+                        }
+                    }).request(mActivity)
+                    ButtonValue.BTN_FUNCTION_SHORTCUT_DELETE -> {
+                        result = ShortCutUtils.deleteShortcut(
+                            MainActivity::class.java,
+                            "Dev 快捷方式"
+                        )
+                        showToast(result)
+                    }
+                    ButtonValue.BTN_FUNCTION_MEMORY_PRINT -> {
+                        val memoryInfo = MemoryUtils.printMemoryInfo()
+                        ToastUtils.showShort(memoryInfo)
+                        DevLogEngine.getEngine().dTag(TAG, memoryInfo)
+                    }
+                    ButtonValue.BTN_FUNCTION_DEVICE_PRINT -> {
+                        val deviceInfo =
+                            DeviceUtils.handlerDeviceInfo(DeviceUtils.getDeviceInfo(), "")
+                        ToastUtils.showShort(deviceInfo)
+                        DevLogEngine.getEngine().dTag(TAG, deviceInfo)
+                    }
+                    ButtonValue.BTN_FUNCTION_APP_DETAILS_SETTINGS -> {
+                        result = AppUtils.launchAppDetailsSettings()
+                        showToast(result)
+                    }
+                    ButtonValue.BTN_FUNCTION_GPS_SETTINGS -> {
+                        result = AppUtils.openGpsSettings()
+                        showToast(result)
+                    }
+                    ButtonValue.BTN_FUNCTION_WIRELESS_SETTINGS -> {
+                        result = AppUtils.openWirelessSettings()
+                        showToast(result)
+                    }
+                    ButtonValue.BTN_FUNCTION_SYS_SETTINGS -> {
+                        result = AppUtils.startSysSetting()
+                        showToast(result)
+                    }
+                    else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                 }
             }
-        });
+        }
     }
 }

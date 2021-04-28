@@ -1,99 +1,86 @@
-package afkt.project.ui.activity;
+package afkt.project.ui.activity
 
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import afkt.project.R;
-import afkt.project.base.app.BaseActivity;
-import afkt.project.databinding.BaseViewRecyclerviewBinding;
-import afkt.project.model.item.ButtonList;
-import afkt.project.model.item.ButtonValue;
-import afkt.project.ui.adapter.ButtonAdapter;
-import dev.base.DevObject;
-import dev.callback.DevItemClickCallback;
-import dev.engine.log.DevLogEngine;
-import dev.other.EventBusUtils;
-import dev.utils.app.toast.ToastTintUtils;
-import utils_use.toast.ToastTintUse;
+import afkt.project.R
+import afkt.project.base.app.BaseActivity
+import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.model.item.ButtonList.eventButtonValues
+import afkt.project.model.item.ButtonValue
+import afkt.project.ui.adapter.ButtonAdapter
+import dev.base.DevObject
+import dev.callback.DevItemClickCallback
+import dev.engine.log.DevLogEngine
+import dev.other.EventBusUtils
+import dev.utils.app.toast.ToastTintUtils
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  * detail: EventBusUtils
  * @author Ttt
- * <pre>
- *     {@link ToastTintUse}
- * </pre>
+ * [ToastTintUse]
  */
-public class EventBusActivity
-        extends BaseActivity<BaseViewRecyclerviewBinding> {
+class EventBusActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
-    @Override
-    public int baseLayoutId() {
-        return R.layout.base_view_recyclerview;
-    }
+    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
 
-    @Override
-    public void initValue() {
-        super.initValue();
+    override fun initValue() {
+        super.initValue()
 
         // 初始化布局管理器、适配器
-        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getEventButtonValues());
-        binding.vidBvrRecy.setAdapter(buttonAdapter);
-        buttonAdapter.setItemCallback(new DevItemClickCallback<ButtonValue>() {
-            @Override
-            public void onItemClick(
-                    ButtonValue buttonValue,
-                    int param
+        val buttonAdapter = ButtonAdapter(eventButtonValues)
+        binding.vidBvrRecy.adapter = buttonAdapter
+        buttonAdapter.itemCallback = object : DevItemClickCallback<ButtonValue>() {
+            override fun onItemClick(
+                buttonValue: ButtonValue,
+                param: Int
             ) {
-                switch (buttonValue.getType()) {
-                    case ButtonValue.BTN_EVENT_REGISTER:
-                        showToast(true, "注册成功");
-                        EventBusUtils.register(EventBusActivity.this);
-                        break;
-                    case ButtonValue.BTN_EVENT_UNREGISTER:
-                        showToast(true, "解绑成功");
-                        EventBusUtils.unregister(EventBusActivity.this);
-                        break;
-                    case ButtonValue.BTN_EVENT_CLEAN_STICKY:
-                        showToast(true, "清空全部粘性事件成功");
-                        EventBusUtils.removeAllStickyEvents();
-                        break;
-                    case ButtonValue.BTN_EVENT_SEND:
-                        showToast(true, "发送事件成功");
-                        DevObject<String> event = new DevObject<>();
-                        event.setCode(1).setObject("正常消息");
-                        EventBusUtils.post(event);
-                        break;
-                    case ButtonValue.BTN_EVENT_SEND_STICKY:
-                        showToast(true, "发送粘性事件成功");
-                        DevObject<String> eventSticky = new DevObject<>();
-                        eventSticky.setCode(2).setObject("粘性消息");
-                        EventBusUtils.postSticky(eventSticky);
-                        // 如何测试粘性消息, 先注册并发送粘性事件, 然后解绑, 再次注册(则会再次接收到粘性事件消息)
-                        break;
-                    default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.getText() + " 事件");
-                        break;
+                when (buttonValue.type) {
+                    ButtonValue.BTN_EVENT_REGISTER -> {
+                        showToast(true, "注册成功")
+                        EventBusUtils.register(this@EventBusActivity)
+                    }
+                    ButtonValue.BTN_EVENT_UNREGISTER -> {
+                        showToast(true, "解绑成功")
+                        EventBusUtils.unregister(this@EventBusActivity)
+                    }
+                    ButtonValue.BTN_EVENT_CLEAN_STICKY -> {
+                        showToast(true, "清空全部粘性事件成功")
+                        EventBusUtils.removeAllStickyEvents()
+                    }
+                    ButtonValue.BTN_EVENT_SEND -> {
+                        showToast(true, "发送事件成功")
+                        val event = DevObject<String>()
+                        event.setCode(1).setObject("正常消息")
+                        EventBusUtils.post(event)
+                    }
+                    ButtonValue.BTN_EVENT_SEND_STICKY -> {
+                        showToast(true, "发送粘性事件成功")
+                        val eventSticky = DevObject<String>()
+                        eventSticky.setCode(2).setObject("粘性消息")
+                        EventBusUtils.postSticky(eventSticky)
+                    }
+                    else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                 }
             }
-        });
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public final void onEventBus(DevObject<String> event) {
+    fun onEventBus(event: DevObject<String>) {
         // 打印数据
-        DevLogEngine.getEngine().dTag(TAG, "value %s", event.getObject());
+        DevLogEngine.getEngine().dTag(TAG, "value %s", event.getObject())
         // 进行提示
-        ToastTintUtils.normal(event.getCode() + "." + event.getObject());
+        ToastTintUtils.normal(event.code + "." + event.getObject())
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
-    public final void onEventBusSticky(DevObject<String> event) {
+    fun onEventBusSticky(event: DevObject<String>) {
         // 打印数据
-        DevLogEngine.getEngine().dTag(TAG, "value %s", event.getObject());
+        DevLogEngine.getEngine().dTag(TAG, "value %s", event.getObject())
         // 进行提示
-        ToastTintUtils.warning(event.getCode() + "." + event.getObject());
+        ToastTintUtils.warning(event.code + "." + event.getObject())
 
 //        // 接收到后, 需要把旧的粘性事件删除 - 否则每次注册都会触发发送的粘性消息
-//        EventBusUtils.removeStickyEvent(event.getClass());
+//        EventBusUtils.removeStickyEvent(event.javaClass)
     }
 }

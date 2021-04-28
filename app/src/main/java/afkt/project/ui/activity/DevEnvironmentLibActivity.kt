@@ -1,100 +1,82 @@
-package afkt.project.ui.activity;
+package afkt.project.ui.activity
 
-import afkt.project.R;
-import afkt.project.base.app.BaseActivity;
-import afkt.project.databinding.BaseViewRecyclerviewBinding;
-import afkt.project.model.item.ButtonList;
-import afkt.project.model.item.ButtonValue;
-import afkt.project.ui.adapter.ButtonAdapter;
-import dev.callback.DevItemClickCallback;
-import dev.engine.log.DevLogEngine;
-import dev.environment.DevEnvironment;
-import dev.environment.DevEnvironmentActivity;
-import dev.environment.RestartCallback;
-import dev.environment.bean.EnvironmentBean;
-import dev.environment.bean.ModuleBean;
-import dev.environment.listener.OnEnvironmentChangeListener;
-import dev.utils.app.ActivityUtils;
-import dev.utils.app.toast.ToastTintUtils;
+import afkt.project.R
+import afkt.project.base.app.BaseActivity
+import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.model.item.ButtonList.moduleDevEnvironmentButtonValues
+import afkt.project.model.item.ButtonValue
+import afkt.project.ui.adapter.ButtonAdapter
+import dev.callback.DevItemClickCallback
+import dev.engine.log.DevLogEngine
+import dev.environment.DevEnvironment
+import dev.environment.DevEnvironmentActivity
+import dev.environment.bean.EnvironmentBean
+import dev.utils.app.ActivityUtils
+import dev.utils.app.toast.ToastTintUtils
 
 /**
  * detail: DevEnvironment 环境配置切换库
  * @author Ttt
  */
-public class DevEnvironmentLibActivity
-        extends BaseActivity<BaseViewRecyclerviewBinding> {
+class DevEnvironmentLibActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
-    @Override
-    public int baseLayoutId() {
-        return R.layout.base_view_recyclerview;
-    }
+    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
 
-    @Override
-    public void initValue() {
-        super.initValue();
+    override fun initValue() {
+        super.initValue()
 
         // 初始化布局管理器、适配器
-        final ButtonAdapter buttonAdapter = new ButtonAdapter(ButtonList.getModuleDevEnvironmentButtonValues());
-        binding.vidBvrRecy.setAdapter(buttonAdapter);
-        buttonAdapter.setItemCallback(new DevItemClickCallback<ButtonValue>() {
-            @Override
-            public void onItemClick(
-                    ButtonValue buttonValue,
-                    int param
+        val buttonAdapter = ButtonAdapter(moduleDevEnvironmentButtonValues)
+        binding.vidBvrRecy.adapter = buttonAdapter
+        buttonAdapter.itemCallback = object : DevItemClickCallback<ButtonValue>() {
+            override fun onItemClick(
+                buttonValue: ButtonValue,
+                param: Int
             ) {
-                boolean result;
-                switch (buttonValue.getType()) {
-                    case ButtonValue.BTN_DEV_ENVIRONMENT:
-                        result = DevEnvironmentActivity.start(mContext, new RestartCallback() {
-                            @Override
-                            public void onRestart() {
-                                ActivityUtils.getManager().exitApplication();
-                            }
-                        });
-                        showToast(result, "跳转成功", "跳转失败");
-                        break;
-                    case ButtonValue.BTN_USE_CUSTOM:
+                val result: Boolean
+                when (buttonValue.type) {
+                    ButtonValue.BTN_DEV_ENVIRONMENT -> {
+                        result = DevEnvironmentActivity.start(mContext) {
+                            ActivityUtils.getManager().exitApplication()
+                        }
+                        showToast(result, "跳转成功", "跳转失败")
+                    }
+                    ButtonValue.BTN_USE_CUSTOM -> {
                         // 如果准备设置环境等于当前选中的环境, 则会返回 false
-                        EnvironmentBean custom = new EnvironmentBean("自定义配置",
-                                "https://custom.com", "动态自定义", DevEnvironment.getServiceModule());
-                        result = DevEnvironment.setServiceEnvironment(mContext, custom);
-                        showToast(result, "设置成功", "设置失败");
-                        break;
-                    default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.getText() + " 事件");
-                        break;
+                        val custom =
+                            EnvironmentBean(
+                                "自定义配置",
+                                "https://custom.com", "动态自定义", DevEnvironment.getServiceModule()
+                            )
+                        result = DevEnvironment.setServiceEnvironment(mContext, custom)
+                        showToast(result, "设置成功", "设置失败")
+                    }
+                    else -> ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件")
                 }
             }
-        });
+        }
 
         // 环境改变通知
-        DevEnvironment.addOnEnvironmentChangeListener(new OnEnvironmentChangeListener() {
-            @Override
-            public void onEnvironmentChanged(
-                    ModuleBean module,
-                    EnvironmentBean oldEnvironment,
-                    EnvironmentBean newEnvironment
-            ) {
-                // 可以进行重新请求等操作
+        DevEnvironment.addOnEnvironmentChangeListener { module, oldEnvironment, newEnvironment -> // 可以进行重新请求等操作
+            StringBuilder()?.apply {
+                append("module")
+                append("\nname: ").append(module.name)
+                append("\nalias: ").append(module.alias)
+                append("\n\n")
+                append("oldEnvironment")
+                append("\nname: ").append(oldEnvironment.name)
+                append("\nvalue: ").append(oldEnvironment.value)
+                append("\nalias: ").append(oldEnvironment.alias)
+                append("\n\n")
+                append("newEnvironment")
+                append("\nname: ").append(newEnvironment.name)
+                append("\nvalue: ").append(newEnvironment.value)
+                append("\nalias: ").append(newEnvironment.alias)
 
-                StringBuilder builder = new StringBuilder();
-                builder.append("module");
-                builder.append("\nname: ").append(module.getName());
-                builder.append("\nalias: ").append(module.getAlias());
-                builder.append("\n\n");
-                builder.append("oldEnvironment");
-                builder.append("\nname: ").append(oldEnvironment.getName());
-                builder.append("\nvalue: ").append(oldEnvironment.getValue());
-                builder.append("\nalias: ").append(oldEnvironment.getAlias());
-                builder.append("\n\n");
-                builder.append("newEnvironment");
-                builder.append("\nname: ").append(newEnvironment.getName());
-                builder.append("\nvalue: ").append(newEnvironment.getValue());
-                builder.append("\nalias: ").append(newEnvironment.getAlias());
-                ToastTintUtils.normal(builder.toString());
-
-                DevLogEngine.getEngine().dTag(TAG, builder.toString());
+                val content = toString()
+                ToastTintUtils.normal(content)
+                DevLogEngine.getEngine().dTag(TAG, content)
             }
-        });
+        }
     }
 }
