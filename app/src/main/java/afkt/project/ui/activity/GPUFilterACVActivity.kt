@@ -60,7 +60,7 @@ class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
         listACVFiles.add(ACVFileBean("Fornature", "filter/Fornature.acv"))
         listACVFiles.add(ACVFileBean("Greens", "filter/Greens.acv"))
         listACVFiles.add(ACVFileBean("Miami", "filter/Miami.acv"))
-        
+
         // 设置适配器
         binding.vidAgfGallery.adapter = GPUFilterACVAdapter(this, listACVFiles).also {
             gpuFilterACVAdapter = it

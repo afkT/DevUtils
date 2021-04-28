@@ -19,7 +19,6 @@ import dev.utils.app.image.ImageUtils
 
 /**
  * detail: GPU 滤镜效果
- *
  * @author Ttt
  */
 class GPUFilterActivity : BaseActivity<ActivityGpuFilterBinding>() {

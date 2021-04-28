@@ -106,7 +106,7 @@ class GreenDaoActivity : BaseActivity<ActivityDatabaseBinding>() {
                     val note = adapter.removeDataAt(position)
                     adapter.notifyItemRemoved(position)
                     // 删除文章
-//                    GreenManager.getNoteDatabase().noteDao.delete(note);
+//                    GreenManager.getNoteDatabase().noteDao.delete(note)
                     GreenManager.getNoteDatabase().noteDao.deleteByKey(note.id)
                     // 删除文章图片
                     val deleteQuery = GreenManager.getNoteDatabase().notePictureDao

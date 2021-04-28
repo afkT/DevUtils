@@ -4,7 +4,6 @@ import afkt.project.R
 import afkt.project.database.green.module.note.bean.Note
 import afkt.project.database.green.module.note.bean.NotePicture
 import afkt.project.database.green.module.note.bean.NoteType
-import afkt.project.database.room.module.note.bean.NoteAndPicture
 import afkt.project.databinding.AdapterDatabaseBinding
 import afkt.project.databinding.AdapterDatabaseImageBinding
 import android.view.ViewGroup
