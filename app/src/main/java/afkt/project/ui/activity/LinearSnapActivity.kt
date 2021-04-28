@@ -1,64 +1,46 @@
-package afkt.project.ui.activity;
+package afkt.project.ui.activity
 
-import android.os.Bundle;
-import android.view.ViewGroup;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSnapHelper;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import afkt.project.R;
-import afkt.project.base.app.BaseActivity;
-import afkt.project.databinding.BaseViewRecyclerviewBinding;
-import afkt.project.model.bean.ItemBean;
-import afkt.project.ui.adapter.LinearSnapAdapter;
-import dev.utils.app.helper.ViewHelper;
+import afkt.project.R
+import afkt.project.base.app.BaseActivity
+import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.model.bean.ItemBean
+import afkt.project.model.bean.ItemBean.Companion.newItemBean
+import afkt.project.ui.adapter.LinearSnapAdapter
+import android.os.Bundle
+import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
+import dev.utils.app.helper.ViewHelper
+import java.util.*
 
 /**
  * detail: LinearSnapHelper - RecyclerView
  * @author Ttt
- * <pre>
- *     LinearSnapHelper : 滑动多页居中显示, 类似 Gallery
- * </pre>
+ * LinearSnapHelper : 滑动多页居中显示, 类似 Gallery
  */
-public class LinearSnapActivity
-        extends BaseActivity<BaseViewRecyclerviewBinding> {
+class LinearSnapActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
-    LinearSnapAdapter linearSnapAdapter;
+    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
 
-    @Override
-    public int baseLayoutId() {
-        return R.layout.base_view_recyclerview;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        ViewGroup parent = (ViewGroup) binding.vidBvrRecy.getParent();
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val parent = binding.vidBvrRecy.parent as? ViewGroup
         // 根布局处理
-        ViewHelper.get().setPadding(parent, 0);
+        ViewHelper.get().setPadding(parent, 0)
     }
 
-    @Override
-    public void initValue() {
-        super.initValue();
+    override fun initValue() {
+        super.initValue()
 
-        List<ItemBean> lists = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            lists.add(ItemBean.Companion.newItemBean());
-        }
+        val lists: MutableList<ItemBean> = ArrayList()
+        for (i in 0..9) lists.add(newItemBean())
 
         // 初始化布局管理器、适配器
-        linearSnapAdapter = new LinearSnapAdapter(lists);
-        binding.vidBvrRecy.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-//        binding.vidBvrRecy.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        binding.vidBvrRecy.setAdapter(linearSnapAdapter);
-
-        LinearSnapHelper helper = new LinearSnapHelper();
-        helper.attachToRecyclerView(binding.vidBvrRecy);
+        binding.vidBvrRecy.layoutManager =
+            LinearLayoutManager(this, RecyclerView.HORIZONTAL, false) // VERTICAL
+        binding.vidBvrRecy.adapter = LinearSnapAdapter(lists)
+        val helper = LinearSnapHelper()
+        helper.attachToRecyclerView(binding.vidBvrRecy)
     }
 }

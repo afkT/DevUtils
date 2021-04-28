@@ -30,15 +30,14 @@ class PagerSnapActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun initValue() {
         super.initValue()
+
         val lists: MutableList<ItemBean> = ArrayList()
         for (i in 0..9) lists.add(ItemBean.newItemBeanPager())
 
         // 初始化布局管理器、适配器
-        var pagerSnapAdapter = PagerSnapAdapter(lists)
         binding.vidBvrRecy.layoutManager =
-            LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
-//            LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        binding.vidBvrRecy.adapter = pagerSnapAdapter
+            LinearLayoutManager(this, RecyclerView.HORIZONTAL, false) // VERTICAL
+        binding.vidBvrRecy.adapter = PagerSnapAdapter(lists)
         val helper = PagerSnapHelper()
         helper.attachToRecyclerView(binding.vidBvrRecy)
     }

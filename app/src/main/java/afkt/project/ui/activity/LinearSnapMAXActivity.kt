@@ -1,115 +1,92 @@
-package afkt.project.ui.activity;
+package afkt.project.ui.activity
 
-import android.os.Bundle;
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSnapHelper;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import afkt.project.R;
-import afkt.project.base.app.BaseActivity;
-import afkt.project.databinding.BaseViewRecyclerviewBinding;
-import afkt.project.model.bean.ItemBean;
-import afkt.project.ui.adapter.LinearSnapMAXAdapter;
-import dev.engine.log.DevLogEngine;
-import dev.utils.app.ListViewUtils;
-import dev.utils.app.helper.ViewHelper;
+import afkt.project.R
+import afkt.project.base.app.BaseActivity
+import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.model.bean.ItemBean
+import afkt.project.model.bean.ItemBean.Companion.newItemBean
+import afkt.project.ui.adapter.LinearSnapMAXAdapter
+import android.os.Bundle
+import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
+import dev.engine.log.DevLogEngine
+import dev.utils.app.ListViewUtils
+import dev.utils.app.helper.ViewHelper
+import java.util.*
 
 /**
  * detail: LinearSnapHelper - 无限滑动
  * @author Ttt
- * <pre>
- *     LinearSnapHelper : 滑动多页居中显示, 类似 Gallery
- * </pre>
+ * LinearSnapHelper : 滑动多页居中显示, 类似 Gallery
  */
-public class LinearSnapMAXActivity
-        extends BaseActivity<BaseViewRecyclerviewBinding> {
+class LinearSnapMAXActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
-    LinearSnapMAXAdapter linearSnapAdapter;
+    lateinit var adapter: LinearSnapMAXAdapter
 
-    @Override
-    public int baseLayoutId() {
-        return R.layout.base_view_recyclerview;
-    }
+    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        ViewGroup parent = (ViewGroup) binding.vidBvrRecy.getParent();
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val parent = binding.vidBvrRecy.parent as? ViewGroup
         // 根布局处理
-        ViewHelper.get().setPadding(parent, 0);
+        ViewHelper.get().setPadding(parent, 0)
     }
 
-    @Override
-    public void initValue() {
-        super.initValue();
+    override fun initValue() {
+        super.initValue()
 
-        List<ItemBean> lists = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            lists.add(ItemBean.Companion.newItemBean());
-        }
+        val lists: MutableList<ItemBean> = ArrayList()
+        for (i in 0..9) lists.add(newItemBean())
 
         // 初始化布局管理器、适配器
-        linearSnapAdapter = new LinearSnapMAXAdapter(lists);
-        binding.vidBvrRecy.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-//        binding.vidBvrRecy.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        binding.vidBvrRecy.setAdapter(linearSnapAdapter);
-
-        LinearSnapHelper helper = new LinearSnapHelper();
-        helper.attachToRecyclerView(binding.vidBvrRecy);
-
-        int size = lists.size();
+        adapter = LinearSnapMAXAdapter(lists)
+        binding.vidBvrRecy.layoutManager =
+            LinearLayoutManager(this, RecyclerView.HORIZONTAL, false) // VERTICAL
+        binding.vidBvrRecy.adapter = adapter
+        val helper = LinearSnapHelper()
+        helper.attachToRecyclerView(binding.vidBvrRecy)
+        val size = lists.size
         // 滑动到中间 ( 无滑动过程 )
-        ((LinearLayoutManager) binding.vidBvrRecy.getLayoutManager()).scrollToPositionWithOffset(size * 100 - 1, 10);
+        (binding.vidBvrRecy.layoutManager as LinearLayoutManager?)?.scrollToPositionWithOffset(
+            size * 100 - 1,
+            10
+        )
         // 复位到中间
-        ListViewUtils.smoothScrollToPosition(binding.vidBvrRecy, size * 100 + 1);
+        ListViewUtils.smoothScrollToPosition(binding.vidBvrRecy, size * 100 + 1)
     }
 
-    @Override
-    public void initListener() {
-        super.initListener();
-
-        binding.vidBvrRecy.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(
-                    @NonNull RecyclerView recyclerView,
-                    int dx,
-                    int dy
+    override fun initListener() {
+        super.initListener()
+        binding.vidBvrRecy.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(
+                recyclerView: RecyclerView,
+                newState: Int
             ) {
-                super.onScrolled(recyclerView, dx, dy);
-            }
-
-            @Override
-            public void onScrollStateChanged(
-                    @NonNull RecyclerView recyclerView,
-                    int newState
-            ) {
-                super.onScrollStateChanged(recyclerView, newState);
-
+                super.onScrollStateChanged(recyclerView, newState)
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
-                    if (layoutManager instanceof LinearLayoutManager) {
-                        LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
+                    val layoutManager = recyclerView.layoutManager
+                    if (layoutManager is LinearLayoutManager) {
                         // 获取最后一个可见 view 的位置
-                        int lastItemPosition = linearManager.findLastVisibleItemPosition();
+                        val lastItemPosition = layoutManager.findLastVisibleItemPosition()
                         // 获取第一个可见 view 的位置
-                        int firstItemPosition = linearManager.findFirstVisibleItemPosition();
-
+                        val firstItemPosition = layoutManager.findFirstVisibleItemPosition()
                         // 获取居中索引
-                        int currentPosition = (lastItemPosition + firstItemPosition) / 2;
+                        val currentPosition = (lastItemPosition + firstItemPosition) / 2
                         // 真实索引
-                        int index = linearSnapAdapter.getRealIndex(currentPosition);
-
-                        DevLogEngine.getEngine().dTag(TAG, "%s - %s 当前显示索引: %s - %s", lastItemPosition, firstItemPosition, currentPosition, index);
+                        val index = adapter.getRealIndex(currentPosition)
+                        DevLogEngine.getEngine().dTag(
+                            TAG,
+                            "%s - %s 当前显示索引: %s - %s",
+                            lastItemPosition,
+                            firstItemPosition,
+                            currentPosition,
+                            index
+                        )
                     }
                 }
             }
-        });
+        })
     }
 }

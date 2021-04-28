@@ -22,7 +22,7 @@ import java.util.*
  */
 class PagerSnapMAXActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
-    private lateinit var pagerSnapAdapter: PagerSnapMAXAdapter
+    private lateinit var adapter: PagerSnapMAXAdapter
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
 
@@ -34,15 +34,15 @@ class PagerSnapMAXActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun initValue() {
         super.initValue()
+
         val lists: MutableList<ItemBean> = ArrayList()
         for (i in 0..9) lists.add(ItemBean.newItemBeanPager())
 
         // 初始化布局管理器、适配器
-        pagerSnapAdapter = PagerSnapMAXAdapter(lists)
+        adapter = PagerSnapMAXAdapter(lists)
         binding.vidBvrRecy.layoutManager =
-            LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
-//            LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        binding.vidBvrRecy.adapter = pagerSnapAdapter
+            LinearLayoutManager(this, RecyclerView.HORIZONTAL, false) // VERTICAL
+        binding.vidBvrRecy.adapter = adapter
         val helper = PagerSnapHelper()
         helper.attachToRecyclerView(binding.vidBvrRecy)
         val size = lists.size
@@ -72,7 +72,7 @@ class PagerSnapMAXActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         // 获取居中索引
                         val currentPosition = (lastItemPosition + firstItemPosition) / 2
                         // 真实索引
-                        val index = pagerSnapAdapter.getRealIndex(currentPosition)
+                        val index = adapter.getRealIndex(currentPosition)
 
                         DevLogEngine.getEngine().dTag(
                             TAG, "%s - %s 当前显示索引: %s - %s",
