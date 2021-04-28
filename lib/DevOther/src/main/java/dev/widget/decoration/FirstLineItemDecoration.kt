@@ -1,4 +1,4 @@
-package afkt.project.ui.widget.decoration
+package dev.widget.decoration
 
 import android.graphics.Canvas
 import android.graphics.Paint
