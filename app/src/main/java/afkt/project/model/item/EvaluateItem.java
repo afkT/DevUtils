@@ -3,7 +3,7 @@ package afkt.project.model.item;
 import java.util.ArrayList;
 import java.util.List;
 
-import afkt.project.model.bean.CommodityEvaluateBean;
+import afkt.project.model.CommodityEvaluateBean;
 import dev.utils.common.ChineseUtils;
 import dev.utils.common.RandomUtils;
 
@@ -29,6 +29,6 @@ public class EvaluateItem {
 
         evaluateContent = randomText;
         evaluateLevel = RandomUtils.getRandom(6);
-        commodityEvaluateBean = CommodityEvaluateBean.newCommodityEvaluateBean();
+        commodityEvaluateBean = CommodityEvaluateBean.Companion.newCommodityEvaluateBean();
     }
 }

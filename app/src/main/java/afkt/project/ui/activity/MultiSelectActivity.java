@@ -10,7 +10,7 @@ import java.util.List;
 import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.databinding.BaseViewRecyclerviewBinding;
-import afkt.project.model.bean.CommodityEvaluateBean;
+import afkt.project.model.CommodityEvaluateBean;
 import afkt.project.ui.adapter.MultiSelectAdapter;
 import dev.base.widget.BaseTextView;
 import dev.engine.log.DevLogEngine;
@@ -54,7 +54,7 @@ public class MultiSelectActivity
 
         List<CommodityEvaluateBean> lists = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
-            lists.add(CommodityEvaluateBean.newCommodityEvaluateBean());
+            lists.add(CommodityEvaluateBean.Companion.newCommodityEvaluateBean());
         }
 
         // 初始化布局管理器、适配器
@@ -66,7 +66,7 @@ public class MultiSelectActivity
                             boolean now
                     ) {
                         CommodityEvaluateBean commodityEvaluateBean = multiSelectAdapter.getDataItem(pos);
-                        DevLogEngine.getEngine().eTag(TAG, "新状态: %s, 商品名: %s", now, commodityEvaluateBean.commodityName);
+                        DevLogEngine.getEngine().eTag(TAG, "新状态: %s, 商品名: %s", now, commodityEvaluateBean.getCommodityName());
                     }
                 });
         binding.vidBvrRecy.setAdapter(multiSelectAdapter);

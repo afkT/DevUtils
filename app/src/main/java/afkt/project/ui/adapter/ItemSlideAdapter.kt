@@ -2,7 +2,7 @@ package afkt.project.ui.adapter
 
 import afkt.project.R
 import afkt.project.databinding.AdapterMultiSelectBinding
-import afkt.project.model.bean.CommodityEvaluateBean
+import afkt.project.model.CommodityEvaluateBean
 import afkt.project.util.ProjectUtils
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter

@@ -2,7 +2,7 @@ package afkt.project.ui.adapter
 
 import afkt.project.R
 import afkt.project.databinding.AdapterArticleBinding
-import afkt.project.model.bean.ArticleBean.DataBean.DatasBean
+import afkt.project.model.bean.ArticleBean.DataBean.ListBean
 import afkt.project.util.ProjectUtils
 import android.content.Intent
 import android.net.Uri
@@ -21,7 +21,7 @@ import dev.utils.common.StringUtils
  * detail: 文章 Adapter
  * @author Ttt
  */
-class ArticleAdapter : DevDataAdapter<DatasBean, DevBaseViewBindingVH<AdapterArticleBinding>>() {
+class ArticleAdapter : DevDataAdapter<ListBean, DevBaseViewBindingVH<AdapterArticleBinding>>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

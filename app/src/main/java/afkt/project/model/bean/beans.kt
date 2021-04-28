@@ -152,3 +152,31 @@ class ItemBean(
         }
     }
 }
+
+/**
+ * detail: 商品评价实体类
+ * @author Ttt
+ */
+class CommodityEvaluateBean(
+    // 商品名
+    val commodityName: String? = null,
+    // 商品图片
+    val commodityPicture: String? = null,
+    // 商品价格
+    val commodityPrice: Double
+) {
+
+    companion object {
+        /**
+         * 创建商品评价实体类
+         * @return [CommodityEvaluateBean]
+         */
+        fun newCommodityEvaluateBean(): CommodityEvaluateBean {
+            return CommodityEvaluateBean(
+                commodityName = ChineseUtils.randomWord(RandomUtils.getRandom(5, 40)),
+                commodityPicture = "https://picsum.photos/20${RandomUtils.getRandom(0, 10)}",
+                commodityPrice = RandomUtils.nextDoubleRange(15.1, 79.3)
+            )
+        }
+    }
+}
