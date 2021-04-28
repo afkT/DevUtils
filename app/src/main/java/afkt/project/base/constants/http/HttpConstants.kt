@@ -1,67 +1,59 @@
-package afkt.project.base.constants.http;
+package afkt.project.base.constants.http
 
-import dev.environment.annotation.Environment;
-import dev.environment.annotation.Module;
+import dev.environment.annotation.Environment
+import dev.environment.annotation.Module
 
 /**
  * detail: Http 常量
  * @author Ttt
  */
-public final class HttpConstants {
-
-    private HttpConstants() {
-    }
+class HttpConstants private constructor() {
 
     @Module(alias = "服务器请求地址")
-    private class Service {
-
+    private inner class Service {
         @Environment(value = "https://www.wanandroid.com/", isRelease = true, alias = "线上环境")
-        private String release;
+        private val release: String? = null
 
         @Environment(value = "https://debug.com", alias = "测试环境")
-        private String debug;
+        private val debug: String? = null
 
         @Environment(value = "https://pre_release.com", alias = "预发布环境")
-        private String pre_release;
+        private val pre_release: String? = null
 
         @Environment(value = "https://development.com", alias = "开发环境")
-        private String development;
+        private val development: String? = null
     }
 
     @Module(alias = "开关")
-    private class Switch {
-
+    private inner class Switch {
         @Environment(value = "true", isRelease = true)
-        private String open;
+        private val open: String? = null
 
         @Environment(value = "false")
-        private String close;
+        private val close: String? = null
     }
 
     @Module(alias = "IM 模块")
-    private class IM {
-
+    private inner class IM {
         @Environment(value = "https://im.release.com/", isRelease = true, alias = "线上环境")
-        private String release;
+        private val release: String? = null
 
         @Environment(value = "https://im.debug.com", alias = "测试环境")
-        private String debug;
+        private val debug: String? = null
     }
 
     @Module(alias = "地图")
-    private class Map {
-
+    private inner class Map {
         @Environment(value = "a3f4a5b080e2a4ef4a708b9c9f5ad003", isRelease = true, alias = "百度地图")
-        private String baidu;
+        private val baidu: String? = null
 
         @Environment(value = "9cc1b3fbd4e4d2f69994df700d648c40", alias = "高德地图")
-        private String gaode;
+        private val gaode: String? = null
 
         @Environment(value = "6b3d3b354aff2b2e4e37db5409e0ce7f", alias = "谷歌地图")
-        private String google;
+        private val google: String? = null
 
         @Environment(value = "1977803150186fe4d2a3e226e2869497", alias = "腾讯地图")
-        private String qq;
-
+        private val qq: String? = null
     }
 }
