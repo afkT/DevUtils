@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="afkt.project.model.ItemBean" />
+            type="afkt.project.model.bean.ItemBean" />
 
         <variable
             name="page"

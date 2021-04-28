@@ -2,7 +2,7 @@ package afkt.project.ui.adapter
 
 import afkt.project.R
 import afkt.project.databinding.AdapterLinearSnapBinding
-import afkt.project.model.ItemBean
+import afkt.project.model.bean.ItemBean
 import afkt.project.util.ProjectUtils
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter

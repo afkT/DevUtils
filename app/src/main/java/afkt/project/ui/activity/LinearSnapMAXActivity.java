@@ -14,7 +14,7 @@ import java.util.List;
 import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.databinding.BaseViewRecyclerviewBinding;
-import afkt.project.model.ItemBean;
+import afkt.project.model.bean.ItemBean;
 import afkt.project.ui.adapter.LinearSnapMAXAdapter;
 import dev.engine.log.DevLogEngine;
 import dev.utils.app.ListViewUtils;

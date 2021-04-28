@@ -12,7 +12,7 @@ import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.base.config.PathConfig;
 import afkt.project.databinding.ActivityCapturePictureListBinding;
-import afkt.project.model.AdapterBean;
+import afkt.project.model.bean.AdapterBean;
 import dev.base.widget.BaseTextView;
 import dev.utils.app.CapturePictureUtils;
 import dev.utils.app.ResourceUtils;

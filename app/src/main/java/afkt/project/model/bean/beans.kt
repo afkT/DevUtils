@@ -1,4 +1,4 @@
-package afkt.project.model
+package afkt.project.model.bean
 
 import dev.utils.common.ChineseUtils
 import dev.utils.common.DateUtils

@@ -11,7 +11,7 @@ import java.util.List;
 import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.databinding.BaseViewRecyclerviewBinding;
-import afkt.project.model.ItemStickyBean;
+import afkt.project.model.bean.ItemStickyBean;
 import afkt.project.ui.adapter.ItemStickyAdapter;
 import dev.utils.app.ResourceUtils;
 import dev.utils.app.SizeUtils;

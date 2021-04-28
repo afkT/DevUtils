@@ -16,7 +16,7 @@ import java.util.List;
 import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.databinding.ActivityGpuFilterBinding;
-import afkt.project.model.ACVFileBean;
+import afkt.project.model.bean.ACVFileBean;
 import afkt.project.ui.adapter.GPUFilterACVAdapter;
 import afkt.project.util.GPUFilterUtils;
 import dev.engine.log.DevLogEngine;

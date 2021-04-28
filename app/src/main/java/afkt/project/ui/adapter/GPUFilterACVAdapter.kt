@@ -1,7 +1,7 @@
 package afkt.project.ui.adapter
 
 import afkt.project.R
-import afkt.project.model.ACVFileBean
+import afkt.project.model.bean.ACVFileBean
 import android.content.Context
 import android.view.Gravity
 import android.view.View

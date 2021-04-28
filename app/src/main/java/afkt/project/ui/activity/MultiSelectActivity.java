@@ -10,7 +10,7 @@ import java.util.List;
 import afkt.project.R;
 import afkt.project.base.app.BaseActivity;
 import afkt.project.databinding.BaseViewRecyclerviewBinding;
-import afkt.project.model.CommodityEvaluateBean;
+import afkt.project.model.bean.CommodityEvaluateBean;
 import afkt.project.ui.adapter.MultiSelectAdapter;
 import dev.base.widget.BaseTextView;
 import dev.engine.log.DevLogEngine;

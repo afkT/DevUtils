@@ -3,7 +3,7 @@ package afkt.project.ui.activity
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.BaseViewRecyclerviewBinding
-import afkt.project.model.CommodityEvaluateBean
+import afkt.project.model.bean.CommodityEvaluateBean
 import afkt.project.ui.adapter.ItemSlideAdapter
 import android.os.Bundle
 import android.view.ViewGroup

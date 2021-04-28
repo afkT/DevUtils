@@ -1,6 +1,6 @@
 package afkt.project.function.http;
 
-import afkt.project.model.UserBean;
+import afkt.project.model.bean.UserBean;
 import afkt.project.model.bean.ArticleBean;
 import dev.other.retrofit.response.BaseResponse;
 import io.reactivex.rxjava3.core.Flowable;
