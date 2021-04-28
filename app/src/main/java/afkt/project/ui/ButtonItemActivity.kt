@@ -37,7 +37,7 @@ class ButtonItemActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                     ButtonValue.BTN_VIEW_ASSIST_ERROR, ButtonValue.BTN_VIEW_ASSIST_EMPTY, ButtonValue.BTN_VIEW_ASSIST_CUSTOM -> startActivity(
                         ViewAssistActivity::class.java, buttonValue
                     )
-                    else -> ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件")
+                    else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                 }
             }
         }

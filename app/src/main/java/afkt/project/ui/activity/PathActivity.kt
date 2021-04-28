@@ -180,7 +180,7 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         DevLogEngine.getEngine().dTag(TAG, builder.toString())
                         showToast(true, "信息已打印, 请查看 Logcat")
                     }
-                    else -> ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件")
+                    else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                 }
             }
         }

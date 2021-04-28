@@ -254,7 +254,7 @@ class ModuleActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         ButtonItemActivity::class.java,
                         buttonValue
                     )
-                    else -> ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件")
+                    else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                 }
             }
         }

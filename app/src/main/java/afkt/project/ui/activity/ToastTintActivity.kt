@@ -45,7 +45,7 @@ class ToastTintActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         TempStyle(), "Custom Style Toast",
                         ResourceUtils.getDrawable(R.mipmap.icon_launcher_round)
                     )
-                    else -> ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件")
+                    else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                 }
             }
         }

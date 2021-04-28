@@ -1,61 +1,56 @@
-package afkt.project.base.constants;
+package afkt.project.base.constants
 
 /**
  * detail: Key 常量
  * @author Ttt
  */
-public final class KeyConstants {
-
-    private KeyConstants() {
-    }
-
+class KeyConstants private constructor() {
+    
     /**
      * detail: 传参 Key
      * @author Ttt
      */
-    public final class Extra {
-
-        private Extra() {
-        }
-
+    object Extra {
         // KEY 数据
-        public static final String KEY_DATA   = Common.KEY_DATA;
+        const val KEY_DATA = Common.KEY_DATA
+
         // 标题
-        public static final String KEY_TITLE  = Common.KEY_TITLE;
+        const val KEY_TITLE = Common.KEY_TITLE
+
         // 对象
-        public static final String KEY_OBJECT = Common.KEY_OBJECT;
+        const val KEY_OBJECT = Common.KEY_OBJECT
+
         // 参数
-        public static final String KEY_PARAMS = Common.KEY_PARAMS;
+        const val KEY_PARAMS = Common.KEY_PARAMS
     }
 
     /**
      * detail: 通用 Key
      * @author Ttt
      */
-    public final class Common {
-
-        private Common() {
-        }
-
+    object Common {
         // 数据
-        public static final String KEY_DATA   = "data";
+        const val KEY_DATA = "data"
+
         // 标题
-        public static final String KEY_TITLE  = "title";
+        const val KEY_TITLE = "title"
+
         // 对象
-        public static final String KEY_OBJECT = "object";
+        const val KEY_OBJECT = "object"
+
         // 参数
-        public static final String KEY_PARAMS = "params";
+        const val KEY_PARAMS = "params"
+
         // 类型
-        public static final String KEY_TYPE   = "type";
+        const val KEY_TYPE = "type"
     }
 
     /**
      * detail: 其他 Key
      * @author Ttt
      */
-    public final class Other {
-
+    object Other {
         // 解码类型
-        public static final String KEY_DECODEMODE = "decodeMode";
+        const val KEY_DECODEMODE = "decodeMode"
     }
 }
