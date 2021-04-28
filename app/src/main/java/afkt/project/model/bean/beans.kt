@@ -81,7 +81,7 @@ class ItemStickyBean(
     val timeFormat: String
 
     // 吸附标题
-    val timeTile: String?
+    val timeTile: String
 
     init {
         val format = "yyyy.MM.dd"
