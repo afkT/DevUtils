@@ -58,13 +58,6 @@ dependencies {
     // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
     implementation deps.lib.panelSwitchHelper
 
-    // ============
-    // = Property =
-    // ============
-
-    // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
-    implementation deps.property.xcrash
-
     // ==========
     // = Widget =
     // ==========

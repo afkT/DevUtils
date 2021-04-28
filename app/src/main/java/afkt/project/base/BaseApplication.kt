@@ -1,165 +1,126 @@
-package afkt.project.base;
+package afkt.project.base
 
-import android.content.Context;
-import android.os.Build;
-import android.util.Log;
-import android.view.View;
-import android.webkit.WebSettings;
-
-import androidx.multidex.MultiDexApplication;
-
-import afkt.project.R;
-import afkt.project.base.config.AppConfig;
-import afkt.project.base.config.PathConfig;
-import afkt.project.function.http.RetrofitUtils;
-import dev.DevUtils;
-import dev.assist.WebViewAssist;
-import dev.engine.compress.DevCompressEngine;
-import dev.engine.compress.LubanEngineImpl;
-import dev.engine.image.DevImageEngine;
-import dev.engine.image.GlideEngineImpl;
-import dev.engine.json.DevJSONEngine;
-import dev.engine.json.GsonEngineImpl;
-import dev.engine.log.DevLogEngine;
-import dev.engine.log.DevLoggerEngineImpl;
-import dev.engine.media.DevMediaEngine;
-import dev.engine.media.PictureSelectorEngineImpl;
-import dev.engine.permission.DevPermissionEngine;
-import dev.engine.permission.DevPermissionEngineImpl;
-import dev.environment.DevEnvironment;
-import dev.other.MMKVUtils;
-import dev.utils.DevFinal;
-import dev.utils.LogPrintUtils;
-import dev.utils.app.ActivityUtils;
-import dev.utils.app.AppCommonUtils;
-import dev.utils.app.AppUtils;
-import dev.utils.app.CrashUtils;
-import dev.utils.app.DeviceUtils;
-import dev.utils.app.PathUtils;
-import dev.utils.app.ResourceUtils;
-import dev.utils.app.ScreenshotUtils;
-import dev.utils.app.TextViewUtils;
-import dev.utils.app.ViewUtils;
-import dev.utils.app.logger.DevLogger;
-import dev.utils.app.logger.LogConfig;
-import dev.utils.app.logger.LogLevel;
-import dev.utils.common.DateUtils;
-import dev.utils.common.FileRecordUtils;
-import dev.utils.common.StringUtils;
-import dev.utils.common.assist.TimeCounter;
-import dev.widget.assist.ViewAssist;
-import dev.widget.function.StateLayout;
-import me.jessyan.autosize.AutoSizeConfig;
+import afkt.project.R
+import afkt.project.base.config.AppConfig
+import afkt.project.base.config.PathConfig
+import afkt.project.base.config.PathConfig.createFolder
+import afkt.project.function.http.RetrofitUtils
+import android.content.Context
+import android.net.Uri
+import android.os.Build
+import android.util.Log
+import android.view.View
+import android.webkit.WebSettings
+import androidx.multidex.MultiDexApplication
+import dev.DevUtils
+import dev.assist.WebViewAssist
+import dev.engine.compress.DevCompressEngine
+import dev.engine.compress.LubanEngineImpl
+import dev.engine.image.DevImageEngine
+import dev.engine.image.GlideEngineImpl
+import dev.engine.json.DevJSONEngine
+import dev.engine.json.GsonEngineImpl
+import dev.engine.log.DevLogEngine
+import dev.engine.log.DevLoggerEngineImpl
+import dev.engine.media.DevMediaEngine
+import dev.engine.media.PictureSelectorEngineImpl
+import dev.engine.permission.DevPermissionEngine
+import dev.engine.permission.DevPermissionEngineImpl
+import dev.environment.DevEnvironment
+import dev.environment.bean.EnvironmentBean
+import dev.environment.bean.ModuleBean
+import dev.other.MMKVUtils
+import dev.utils.DevFinal
+import dev.utils.LogPrintUtils
+import dev.utils.app.*
+import dev.utils.app.CrashUtils.CrashCatchListener
+import dev.utils.app.logger.DevLogger
+import dev.utils.app.logger.LogConfig
+import dev.utils.app.logger.LogLevel
+import dev.utils.common.DateUtils
+import dev.utils.common.FileRecordUtils
+import dev.utils.common.StringUtils
+import dev.utils.common.assist.TimeCounter
+import dev.widget.assist.ViewAssist
+import dev.widget.function.StateLayout
+import me.jessyan.autosize.AutoSizeConfig
 
 /**
  * detail: Base Application
  * @author Ttt
  */
-public class BaseApplication
-        extends MultiDexApplication {
+class BaseApplication : MultiDexApplication() {
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
+    override fun onCreate() {
+        super.onCreate()
 
         // 初始化计时器
-        TimeCounter timeCounter = new TimeCounter();
+        val timeCounter = TimeCounter()
 
         // ============
         // = DevUtils =
         // ============
 
-//        // 初始化工具类 - 可不调用, 在 DevUtils FileProviderDevApp 中已初始化, 无需主动调用
-//        DevUtils.init(this.getApplicationContext());
+        // 初始化工具类 - 可不调用, 在 DevUtils FileProviderDevApp 中已初始化, 无需主动调用
+        DevUtils.init(this.applicationContext)
         // 初始化日志配置
         DevLogger.init(
-                new LogConfig().logLevel(LogLevel.DEBUG)
-                        .tag(AppConfig.LOG_TAG)
-                        .sortLog(true) // 美化日志, 边框包围
-                        .methodCount(0)
-        );
+            LogConfig().logLevel(LogLevel.DEBUG)
+                .tag(AppConfig.LOG_TAG)
+                .sortLog(true) // 美化日志, 边框包围
+                .methodCount(0)
+        )
         // 打开 lib 内部日志 - 线上环境, 不调用方法
-        DevUtils.openLog();
-        DevUtils.openDebug();
+        DevUtils.openLog()
+        DevUtils.openDebug()
 
         // 可进行日志拦截编码
         // DevLogger.setPrint(new DevLogger.Print());
         // JCLogUtils.setPrint(new JCLogUtils.Print());
-        LogPrintUtils.setPrint(new LogPrintUtils.Print() {
-            @Override
-            public void printLog(
-                    int logType,
-                    String tag,
-                    String message
-            ) {
-                // 防止 null 处理
-                if (message == null) return;
-                // 进行编码处理
-                message = StringUtils.strEncode(message, "UTF-8");
-                // 获取日志类型
-                switch (logType) {
-                    case Log.VERBOSE:
-                        Log.v(tag, message);
-                        break;
-                    case Log.DEBUG:
-                        Log.d(tag, message);
-                        break;
-                    case Log.INFO:
-                        Log.i(tag, message);
-                        break;
-                    case Log.WARN:
-                        Log.w(tag, message);
-                        break;
-                    case Log.ERROR:
-                        Log.e(tag, message);
-                        break;
-                    case Log.ASSERT:
-                        Log.wtf(tag, message);
-                        break;
-                    default:
-                        Log.wtf(tag, message);
-                        break;
-                }
+        LogPrintUtils.setPrint(LogPrintUtils.Print { logType, tag, message ->
+            var message: String? = message ?: return@Print
+            // 进行编码处理
+            message = StringUtils.strEncode(message, "UTF-8")
+            when (logType) {
+                Log.VERBOSE -> Log.v(tag, message)
+                Log.DEBUG -> Log.d(tag, message)
+                Log.INFO -> Log.i(tag, message)
+                Log.WARN -> Log.w(tag, message)
+                Log.ERROR -> Log.e(tag, message)
+                Log.ASSERT -> Log.wtf(tag, message)
+                else -> Log.wtf(tag, message)
             }
-        });
+        })
 
         // =============
         // = 初始化操作 =
         // =============
 
         // 初始化
-        init();
+        init()
 
         // 属于 Debug 才打印信息
-        if (isDebug()) {
-            printProInfo(timeCounter);
-        }
-    }
-
-    /**
-     * 是否 Debug 模式
-     * @return {@code true} yes, {@code false} no
-     */
-    public static final boolean isDebug() {
-        return DevUtils.isDebug();
+        if (isDebug) printProInfo(timeCounter)
     }
 
     /**
      * 打印项目信息
-     * @param timeCounter {@link TimeCounter}
+     * @param timeCounter [TimeCounter]
      */
-    private void printProInfo(TimeCounter timeCounter) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("项目名: ").append(ResourceUtils.getString(R.string.str_app_name));
-        builder.append("\nSDK: ").append(Build.VERSION.SDK_INT).append("(").append(AppCommonUtils.convertSDKVersion(Build.VERSION.SDK_INT)).append(")");
-        builder.append("\nPackageName: ").append(AppUtils.getPackageName());
-        builder.append("\nVersionCode: ").append(AppUtils.getAppVersionCode());
-        builder.append("\nVersionName: ").append(AppUtils.getAppVersionName());
-        builder.append("\nDevUtils 版本: ").append(DevUtils.getDevAppVersion());
-        builder.append("\nDevJava 版本: ").append(DevUtils.getDevJavaVersion());
-        builder.append("\n时间: ").append(DateUtils.getDateNow());
-        builder.append("\n初始化耗时(毫秒): ").append(timeCounter.duration());
-        DevLogEngine.getEngine().i(builder.toString());
+    private fun printProInfo(timeCounter: TimeCounter) {
+        val builder = StringBuilder()
+            .append("项目名: ")
+            .append(ResourceUtils.getString(R.string.str_app_name))
+            .append("\nSDK: ").append(Build.VERSION.SDK_INT).append("(")
+            .append(AppCommonUtils.convertSDKVersion(Build.VERSION.SDK_INT)).append(")")
+            .append("\nPackageName: ").append(AppUtils.getPackageName())
+            .append("\nVersionCode: ").append(AppUtils.getAppVersionCode())
+            .append("\nVersionName: ").append(AppUtils.getAppVersionName())
+            .append("\nDevUtils 版本: ").append(DevUtils.getDevAppVersion())
+            .append("\nDevJava 版本: ").append(DevUtils.getDevJavaVersion())
+            .append("\n时间: ").append(DateUtils.getDateNow())
+            .append("\n初始化耗时(毫秒): ").append(timeCounter.duration())
+        DevLogEngine.getEngine().i(builder.toString())
     }
 
     // =============
@@ -169,179 +130,176 @@ public class BaseApplication
     /**
      * 统一初始化方法
      */
-    private void init() {
+    private fun init() {
         // 初始化项目文件夹
-        PathConfig.createFolder();
+        createFolder()
         // 插入设备信息
-        FileRecordUtils.setInsertInfo(DeviceUtils.getAppDeviceInfo());
+        FileRecordUtils.setInsertInfo(DeviceUtils.getAppDeviceInfo())
         // 初始化 MMKV
-        MMKVUtils.init(this);
+        MMKVUtils.init(this)
         // 初始化状态布局配置
-        initStateLayout();
+        initStateLayout()
         // 初始化异常捕获处理
-        initCrash();
+        initCrash()
         // 初始化 WebView 辅助类全局配置
-        initWebViewBuilder();
+        initWebViewBuilder()
         // 初始化引擎
-        initEngine();
+        initEngine()
         // 初始化其他 lib
-        initOther();
+        initOther()
     }
 
     /**
      * 初始化状态布局配置
      */
-    private void initStateLayout() {
-        StateLayout.Global global = new StateLayout.Global(new StateLayout.Listener() {
-            @Override
-            public void onRemove(
-                    StateLayout layout,
-                    int type,
-                    boolean removeView
+    private fun initStateLayout() {
+        val global = StateLayout.Global(object : StateLayout.Listener {
+            override fun onRemove(
+                layout: StateLayout,
+                type: Int,
+                removeView: Boolean
             ) {
-                if (removeView) layout.gone();
+                if (removeView) layout.gone()
             }
 
-            @Override
-            public void onNotFound(
-                    StateLayout layout,
-                    int type
+            override fun onNotFound(
+                layout: StateLayout,
+                type: Int
             ) {
-                layout.gone();
+                layout.gone()
             }
 
-            @Override
-            public void onChange(
-                    StateLayout layout,
-                    int type,
-                    int oldType,
-                    View view
+            override fun onChange(
+                layout: StateLayout,
+                type: Int,
+                oldType: Int,
+                view: View
             ) {
                 if (type == ViewAssist.TYPE_EMPTY_DATA) { // NO_DATA
-                    View vid_slnd_tips_tv = ViewUtils.findViewById(view, R.id.vid_slnd_tips_tv);
-                    TextViewUtils.setText(vid_slnd_tips_tv, "暂无数据");
+                    val vid_slnd_tips_tv = ViewUtils.findViewById<View>(view, R.id.vid_slnd_tips_tv)
+                    TextViewUtils.setText(vid_slnd_tips_tv, "暂无数据")
                 } else if (type == ViewAssist.TYPE_FAILED) { // FAIL
-                    View vid_slf_tips_tv = ViewUtils.findViewById(view, R.id.vid_slf_tips_tv);
-                    TextViewUtils.setText(vid_slf_tips_tv, "请求失败, 请稍后重试!");
+                    val vid_slf_tips_tv = ViewUtils.findViewById<View>(view, R.id.vid_slf_tips_tv)
+                    TextViewUtils.setText(vid_slf_tips_tv, "请求失败, 请稍后重试!")
                 }
             }
         })
-                .register(ViewAssist.TYPE_ING, R.layout.state_layout_ing)
-                .register(ViewAssist.TYPE_FAILED, R.layout.state_layout_fail)
-                .register(ViewAssist.TYPE_EMPTY_DATA, R.layout.state_layout_no_data);
+            .register(ViewAssist.TYPE_ING, R.layout.state_layout_ing)
+            .register(ViewAssist.TYPE_FAILED, R.layout.state_layout_fail)
+            .register(ViewAssist.TYPE_EMPTY_DATA, R.layout.state_layout_no_data)
         // 设置全局配置
-        StateLayout.setGlobal(global);
+        StateLayout.setGlobal(global)
     }
 
     /**
      * 初始化异常捕获处理
      */
-    private void initCrash() {
+    private fun initCrash() {
         // 捕获异常处理 => 在 BaseApplication 中调用
-        CrashUtils.getInstance().init(getApplicationContext(), new CrashUtils.CrashCatchListener() {
-            @Override
-            public void handleException(Throwable ex) {
+        CrashUtils.getInstance().init(applicationContext, object : CrashCatchListener {
+            override fun handleException(ex: Throwable) {
                 // 保存日志信息
-                FileRecordUtils.saveErrorLog(ex, PathConfig.AEP_ERROR_PATH, "crash_" + DateUtils.getDateNow() + ".txt");
+                FileRecordUtils.saveErrorLog(
+                    ex, PathConfig.AEP_ERROR_PATH,
+                    "crash_" + DateUtils.getDateNow() + ".txt"
+                )
             }
 
-            @Override
-            public void uncaughtException(
-                    Context context,
-                    Thread thread,
-                    Throwable ex
+            override fun uncaughtException(
+                context: Context,
+                thread: Thread,
+                ex: Throwable
             ) {
 //                // 退出 JVM (Java 虚拟机 ) 释放所占内存资源, 0 表示正常退出、非 0 的都为异常退出
 //                System.exit(-1);
 //                // 从操作系统中结束掉当前程序的进程
 //                android.os.Process.killProcess(android.os.Process.myPid());
                 // 关闭 APP
-                ActivityUtils.getManager().exitApplication();
+                ActivityUtils.getManager().exitApplication()
                 // 可开启定时任务, 延迟几秒启动 APP
             }
-        });
+        })
     }
 
     /**
      * 初始化 WebView 辅助类全局配置
      */
-    private void initWebViewBuilder() {
-        WebViewAssist.Builder builder = new WebViewAssist.Builder();
-        builder.setBuiltInZoomControls(true) // 显示内置缩放工具
-                .setDisplayZoomControls(true) // 显示缩放工具
-                .setAppCachePath(PathUtils.getInternal().getAppCachePath("cache")) // Application Caches 地址
-                .setDatabasePath(PathUtils.getInternal().getAppCachePath("db")) // 数据库缓存路径
-                .setRenderPriority(WebSettings.RenderPriority.HIGH) // 渲染优先级高
-                .setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING) // 基础布局算法
-                .setOnApplyListener((webViewAssist, builder1) -> {
-                    DevLogEngine.getEngine().d("WebViewAssist Builder onApply");
-//                    if (webViewAssist != null) {
-//                        // 自己控制配置
-//                        WebSettings webSettings = webViewAssist.getSettings();
-//                        if (webSettings != null) {
-//                            webSettings.setAllowFileAccess(true);
-//                        }
-//                    }
-                });
-        WebViewAssist.setGlobalBuilder(builder);
+    private fun initWebViewBuilder() {
+        val assistBuilder = WebViewAssist.Builder()
+            .setBuiltInZoomControls(true) // 显示内置缩放工具
+            .setDisplayZoomControls(true) // 显示缩放工具
+            .setAppCachePath(
+                PathUtils.getInternal().getAppCachePath("cache")
+            ) // Application Caches 地址
+            .setDatabasePath(PathUtils.getInternal().getAppCachePath("db")) // 数据库缓存路径
+            .setRenderPriority(WebSettings.RenderPriority.HIGH) // 渲染优先级高
+            .setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING) // 基础布局算法
+            .setOnApplyListener { assist: WebViewAssist?, builder: WebViewAssist.Builder? ->
+                DevLogEngine.getEngine().d("WebViewAssist Builder onApply")
+            }
+        WebViewAssist.setGlobalBuilder(assistBuilder)
     }
 
     /**
      * 初始化引擎
      */
-    private void initEngine() {
-        DevLogEngine.setEngine(new DevLoggerEngineImpl() {
-            @Override
-            public boolean isPrintLog() {
-                return DevUtils.isDebug();
+    private fun initEngine() {
+        DevLogEngine.setEngine(object : DevLoggerEngineImpl() {
+            override fun isPrintLog(): Boolean {
+                return DevUtils.isDebug()
             }
-        });
-        DevJSONEngine.setEngine(new GsonEngineImpl());
-        DevImageEngine.setEngine(new GlideEngineImpl());
-        DevPermissionEngine.setEngine(new DevPermissionEngineImpl());
-        DevCompressEngine.setEngine(new LubanEngineImpl());
-        DevMediaEngine.setEngine(new PictureSelectorEngineImpl());
+        })
+        DevJSONEngine.setEngine(GsonEngineImpl())
+        DevImageEngine.setEngine(GlideEngineImpl())
+        DevPermissionEngine.setEngine(DevPermissionEngineImpl())
+        DevCompressEngine.setEngine(LubanEngineImpl())
+        DevMediaEngine.setEngine(PictureSelectorEngineImpl())
     }
 
     /**
      * 初始化其他 lib
      */
-    private void initOther() {
-        // xCrash 提供捕获 java 崩溃、native 崩溃和 ANR 的能力, 不需要 root 权限或任何系统权限
-        xcrash.XCrash.init(this);
-
+    private fun initOther() {
         // https://github.com/JessYanCoding/AndroidAutoSize/blob/master/demo-subunits/src/main/java/me/jessyan/autosize/demo/subunits/BaseApplication.java
         // 可不调用, 默认开启 DP 转换
-        AutoSizeConfig.getInstance().getUnitsManager()
-                .setSupportDP(true);
-
-//        // 初始化 OkGo
-//        OkGoUtils.initOkGo(this);
+        AutoSizeConfig.getInstance().unitsManager.isSupportDP = true
 
         // 初始化 Retrofit
-        RetrofitUtils.getInstance().initRetrofit();
+        RetrofitUtils.getInstance().initRetrofit()
 
         // 环境 ( 服务器地址 ) 改变通知
-        DevEnvironment.addOnEnvironmentChangeListener((module, oldEnvironment, newEnvironment) -> {
+        DevEnvironment.addOnEnvironmentChangeListener { module: ModuleBean?, oldEnvironment: EnvironmentBean?, newEnvironment: EnvironmentBean? ->
             // 改变地址重新初始化
-            RetrofitUtils.getInstance().initRetrofit().resetAPIService();
-        });
+            RetrofitUtils.getInstance().initRetrofit().resetAPIService()
+        }
 
         // 截图监听
-        ScreenshotUtils.getInstance().setListener((contentUri, selfChange, rowId, dataPath, dateTaken) -> {
-            StringBuilder builder = new StringBuilder();
-            builder.append("截图监听回调");
-            builder.append(DevFinal.NEW_LINE_STR);
-            builder.append("contentUri: ").append(contentUri);
-            builder.append(DevFinal.NEW_LINE_STR);
-            builder.append("selfChange: ").append(selfChange);
-            builder.append(DevFinal.NEW_LINE_STR);
-            builder.append("rowId: ").append(rowId);
-            builder.append(DevFinal.NEW_LINE_STR);
-            builder.append("dataPath: ").append(dataPath);
-            builder.append(DevFinal.NEW_LINE_STR);
-            builder.append("dateTaken: ").append(dateTaken).append(" ( ").append(DateUtils.formatTime(dateTaken, DateUtils.yyyyMMddHHmmss)).append(" )");
-            DevLogEngine.getEngine().d(builder.toString());
-        }).startListener();
+        ScreenshotUtils.getInstance()
+            .setListener { contentUri: Uri?, selfChange: Boolean, rowId: Long, dataPath: String?, dateTaken: Long ->
+                val builder = StringBuilder()
+                    .append("截图监听回调")
+                    .append(DevFinal.NEW_LINE_STR)
+                    .append("contentUri: ").append(contentUri)
+                    .append(DevFinal.NEW_LINE_STR)
+                    .append("selfChange: ").append(selfChange)
+                    .append(DevFinal.NEW_LINE_STR)
+                    .append("rowId: ").append(rowId)
+                    .append(DevFinal.NEW_LINE_STR)
+                    .append("dataPath: ").append(dataPath)
+                    .append(DevFinal.NEW_LINE_STR)
+                    .append("dateTaken: ").append(dateTaken).append(" ( ")
+                    .append(DateUtils.formatTime(dateTaken, DateUtils.yyyyMMddHHmmss)).append(" )")
+                DevLogEngine.getEngine().d(builder.toString())
+            }.startListener()
+    }
+
+    companion object {
+
+        /**
+         * 是否 Debug 模式
+         * @return `true` yes, `false` no
+         */
+        val isDebug: Boolean
+            get() = DevUtils.isDebug()
     }
 }

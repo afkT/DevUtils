@@ -5,7 +5,7 @@ package afkt.project.base.constants
  * @author Ttt
  */
 class KeyConstants private constructor() {
-    
+
     /**
      * detail: 传参 Key
      * @author Ttt
