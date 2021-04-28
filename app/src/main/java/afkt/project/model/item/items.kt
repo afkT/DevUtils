@@ -37,32 +37,9 @@ class EvaluateItem {
  * detail: Tab 模型类
  * @author Ttt
  */
-class TabItem<T> {
-
+class TabItem(
+    // 标题
+    val title: String,
     // 类型
     val type: Int
-
-    // 标题
-    val title: String
-
-    // 对象参数
-    var obj: T? = null
-
-    constructor(
-        title: String,
-        type: Int
-    ) {
-        this.title = title
-        this.type = type
-    }
-
-    constructor(
-        title: String,
-        type: Int,
-        obj: T
-    ) {
-        this.title = title
-        this.type = type
-        this.obj = obj
-    }
-}
+)

@@ -1,129 +1,62 @@
-package afkt.project.util.assist;
+package afkt.project.util.assist
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-
-import com.google.android.material.tabs.TabLayout;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import afkt.project.R;
-import afkt.project.model.item.TabItem;
-import dev.base.widget.BaseTextView;
-import dev.engine.log.DevLogEngine;
-import dev.utils.app.HandlerUtils;
-import dev.utils.app.helper.ViewHelper;
+import afkt.project.R
+import afkt.project.model.item.TabItem
+import android.view.LayoutInflater
+import android.view.View
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import dev.base.widget.BaseTextView
+import dev.utils.app.HandlerUtils
+import dev.utils.app.helper.ViewHelper
+import java.util.*
 
 /**
  * detail: TabLayout 辅助类
  * @author Ttt
  */
-public final class TabLayoutAssist {
+class TabLayoutAssist private constructor(
+    // TabLayout
+    private var mTabLayout: TabLayout
+) {
 
     // 日志 TAG
-    private final String TAG = TabLayoutAssist.class.getSimpleName();
+    private val TAG = TabLayoutAssist::class.java.simpleName
 
-    // Context
-    private       Context       mContext;
-    // TabLayout
-    private       TabLayout     tabLayout;
     // 数据源
-    private final List<TabItem> listTabs = new ArrayList<>();
+    private val mListTabs: MutableList<TabItem> = ArrayList()
 
-    private TabLayoutAssist() {
-    }
+    // Tab 切换事件
+    private var mListener: TabChangeListener? = null
 
-    /**
-     * 初始化操作
-     */
-    private void initOperate() {
-        // 默认删除全部 Tab
-        tabLayout.removeAllTabs();
-        // 循环遍历
-        for (int i = 0, len = listTabs.size(); i < len; i++) {
-            TabLayout.Tab tab = tabLayout.newTab();
-            tab.setCustomView(getTabView(i));
-            tabLayout.addTab(tab);
+    companion object {
+
+        /**
+         * 获取 TabLayout 辅助类
+         * @param tabLayout [TabLayout]
+         * @return [TabLayoutAssist]
+         */
+        @kotlin.jvm.JvmStatic
+        operator fun get(tabLayout: TabLayout?): TabLayoutAssist? {
+            return tabLayout?.let { return TabLayoutAssist(it) }
         }
+    }
+
+    init {
         // Tab 切换选择事件
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                // 切换状态
-                updateTabTextView(tab, true);
-                // 不为 null, 则触发
-                if (tabChangeListener != null) {
-                    tabChangeListener.onTabChange(listTabs.get(tab.getPosition()), tab.getPosition());
-                }
+        mTabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                updateTabTextView(tab, true)
+                // 触发回调
+                mListener?.onTabChange(mListTabs[tab.position], tab.position)
             }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-                // 切换状态
-                updateTabTextView(tab, false);
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+                updateTabTextView(tab, false)
             }
 
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-            }
-        });
-    }
-
-    /**
-     * 获取单个 TabView
-     * @param position 索引
-     * @return Tab {@link View}
-     */
-    private View getTabView(int position) {
-        View         view     = LayoutInflater.from(mContext).inflate(R.layout.tab_item_view, null);
-        BaseTextView textView = view.findViewById(R.id.vid_tiv_tv);
-        textView.setText(listTabs.get(position).getTitle());
-        return view;
-    }
-
-    /**
-     * 改变 Tab TextView 选中状态
-     * @param tab      Tab
-     * @param isSelect 是否选中
-     */
-    private void updateTabTextView(
-            TabLayout.Tab tab,
-            boolean isSelect
-    ) {
-        View view = tab.getCustomView();
-        ViewHelper.get().setBold(view.findViewById(R.id.vid_tiv_tv), isSelect)
-                .setVisibility(isSelect, view.findViewById(R.id.vid_tiv_line));
-    }
-
-    /**
-     * 滑动 Tab 处理
-     * @param pos 需要滑动的索引
-     */
-    private void scrollTab(final int pos) {
-        // 延时移动
-        HandlerUtils.postRunnable(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    int x = 0;
-                    // 循环遍历
-                    for (int i = 1; i < pos; i++) {
-                        try {
-                            // 累加宽度
-                            x += tabLayout.getTabAt(i).getCustomView().getWidth();
-                        } catch (Exception e) {
-                            DevLogEngine.getEngine().eTag(TAG, e, "scrollTab");
-                        }
-                    }
-                    // 开始移动位置
-                    tabLayout.scrollTo(x, 0);
-                } catch (Exception e) {
-                    DevLogEngine.getEngine().eTag(TAG, e, "scrollTab");
-                }
-            }
-        }, 100);
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
     }
 
     // ===============
@@ -131,79 +64,63 @@ public final class TabLayoutAssist {
     // ===============
 
     /**
-     * 获取 TabLayout 辅助类
-     * @param tabLayout {@link TabLayout}
-     * @return {@link TabLayoutAssist}
+     * 获取选中的 Tab 索引
+     * @return 选中的 Tab 索引
      */
-    public static TabLayoutAssist get(TabLayout tabLayout) {
-        if (tabLayout == null) return null;
-        TabLayoutAssist tabLayoutAssist = new TabLayoutAssist();
-        tabLayoutAssist.mContext = tabLayout.getContext();
-        tabLayoutAssist.tabLayout = tabLayout;
-        return tabLayoutAssist;
-    }
+    val selectedTabPosition: Int
+        get() = mTabLayout.selectedTabPosition
 
     /**
-     * 设置数据操作
-     * @param listTabs Tab Item 集合
-     * @return {@link TabLayoutAssist}
+     * 获取 Tab 总数
+     * @return Tab 总数
      */
-    public TabLayoutAssist setListTabs(List<TabItem> listTabs) {
-        if (listTabs != null) {
-            // 清空旧的
-            this.listTabs.clear();
-            this.listTabs.addAll(listTabs);
-        }
-        // 初始化操作
-        initOperate();
-        return this;
-    }
+    val tabCount: Int
+        get() = mTabLayout.tabCount
 
     /**
      * 设置选中索引
      * @param position 选中索引
-     * @return {@link TabLayoutAssist}
+     * @return [TabLayoutAssist]
      */
-    public TabLayoutAssist setSelect(int position) {
-        return setSelect(position, true);
+    fun setSelect(position: Int): TabLayoutAssist {
+        return setSelect(position, true)
     }
 
     /**
      * 设置选中
      * @param position 选中索引
      * @param isScroll 是否滑动
-     * @return {@link TabLayoutAssist}
+     * @return [TabLayoutAssist]
      */
-    public TabLayoutAssist setSelect(
-            int position,
-            boolean isScroll
-    ) {
-        try {
-            TabLayout.Tab tab = tabLayout.getTabAt(position);
-            tab.select();
+    fun setSelect(
+        position: Int,
+        isScroll: Boolean
+    ): TabLayoutAssist {
+        mTabLayout.getTabAt(position)?.let { tab ->
+            tab.select()
             // 切换选中状态
-            updateTabTextView(tab, true);
-        } catch (Exception e) {
+            updateTabTextView(tab, true)
         }
         // 滑动处理
-        if (isScroll) scrollTab(getSelectedTabPosition());
-        return this;
+        if (isScroll) scrollTab(selectedTabPosition)
+        return this
     }
 
     /**
-     * 获取选中的 Tab 索引
-     * @return 选中的 Tab 索引
+     * 设置数据操作
+     * @param listTabs Tab Item 集合
+     * @return [TabLayoutAssist]
      */
-    public int getSelectedTabPosition() {
-        return tabLayout.getSelectedTabPosition();
-    }
-
-    /**
-     * 获取 Tab 总数
-     * @return Tab 总数
-     */
-    public int getTabCount() {
-        return tabLayout.getTabCount();
+    fun setListTabs(
+        listTabs: List<TabItem>?,
+        listener: TabChangeListener?
+    ): TabLayoutAssist {
+        this.mListener = listener
+        this.mListTabs.clear()
+        listTabs?.let { this.mListTabs.addAll(it) }
+        // 初始化操作
+        addTabViews()
+        return this
     }
 
     // ===============
@@ -214,24 +131,75 @@ public final class TabLayoutAssist {
      * detail: Tab 切换事件
      * @author Ttt
      */
-    public interface TabChangeListener {
-
-        void onTabChange(
-                TabItem tabItem,
-                int pos
-        );
+    interface TabChangeListener {
+        fun onTabChange(
+            tabItem: TabItem,
+            pos: Int
+        )
     }
 
-    // Tab 切换事件
-    private TabChangeListener tabChangeListener;
+    // ===========
+    // = 内部方法 =
+    // ===========
 
     /**
-     * 设置 Tab 切换事件
-     * @param tabChangeListener {@link TabChangeListener}
-     * @return {@link TabLayoutAssist}
+     * 添加 Tab View 集合
      */
-    public TabLayoutAssist setTabChangeListener(TabChangeListener tabChangeListener) {
-        this.tabChangeListener = tabChangeListener;
-        return this;
+    private fun addTabViews() {
+        mTabLayout.removeAllTabs()
+        // 循环添加 Tab
+        for (i in 0 until mListTabs.size) {
+            val tab = mTabLayout.newTab()
+            tab.customView = createTabView(i)
+            mTabLayout.addTab(tab)
+        }
+    }
+
+    /**
+     * 获取单个 TabView
+     * @param position 索引
+     * @return Tab [View]
+     */
+    private fun createTabView(position: Int): View {
+        val view = LayoutInflater.from(mTabLayout.context).inflate(R.layout.tab_item_view, null)
+        val textView: BaseTextView = view.findViewById(R.id.vid_tiv_tv)
+        textView.text = mListTabs[position].title
+        return view
+    }
+
+    /**
+     * 改变 Tab TextView 选中状态
+     * @param tab      Tab
+     * @param isSelect 是否选中
+     */
+    private fun updateTabTextView(
+        tab: TabLayout.Tab?,
+        isSelect: Boolean
+    ) {
+        tab?.customView?.let { view ->
+            ViewHelper.get()
+                .setBold(view.findViewById(R.id.vid_tiv_tv), isSelect)
+                .setVisibility(isSelect, view.findViewById(R.id.vid_tiv_line))
+        }
+    }
+
+    /**
+     * 滑动 Tab 处理
+     * @param pos 需要滑动的索引
+     */
+    private fun scrollTab(pos: Int) {
+        // 延时移动
+        HandlerUtils.postRunnable({
+            var x = 0
+            // 循环遍历
+            for (i in 1 until pos) {
+                mTabLayout.getTabAt(i)?.customView?.let {
+                    // 累加宽度
+                    x += it.width
+                }
+            }
+            // 开始移动位置
+            mTabLayout.scrollTo(x, 0)
+        }, 100)
     }
 }

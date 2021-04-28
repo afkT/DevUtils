@@ -28,6 +28,7 @@ import dev.utils.common.ArrayUtils;
 
 /**
  * detail: 常见 UI、GradientDrawable 效果等
+ *
  * @author Ttt
  */
 public class UIEffectActivity
@@ -140,30 +141,17 @@ public class UIEffectActivity
 
         // 设置数据源
         tabLayoutAssist = TabLayoutAssist.get(binding.vidAue80Tab);
-        tabLayoutAssist.setListTabs(listTabs).setSelect(tabLayoutAssist.getTabCount() - 1)
-                .setTabChangeListener(new TabLayoutAssist.TabChangeListener() {
-                    @Override
-                    public void onTabChange(
-                            TabItem tabItem,
-                            int pos
-                    ) {
-                        DevLogEngine.getEngine().dTag(TAG, "TabItem: %s, pos: %s", tabItem.getTitle(), pos);
-                        // 设置选中
-                        tabLayoutAssist.setSelect(pos);
-                    }
-                });
+        tabLayoutAssist.setListTabs(listTabs, (tabItem, pos) -> {
+            DevLogEngine.getEngine().dTag(TAG, "TabItem: %s, pos: %s", tabItem.getTitle(), pos);
+            // 设置选中
+            tabLayoutAssist.setSelect(pos);
+        }).setSelect(tabLayoutAssist.getTabCount() - 1);
 
         TabLayoutAssist.get(binding.vidAue90Tab)
-                .setListTabs(ArrayUtils.asList(ArrayUtils.subArray(listTabs.toArray(new TabItem[0]), 0, 3)))
-                .setSelect(0).setTabChangeListener(new TabLayoutAssist.TabChangeListener() {
-            @Override
-            public void onTabChange(
-                    TabItem tabItem,
-                    int pos
-            ) {
-                DevLogEngine.getEngine().dTag(TAG, "TabItem: %s, pos: %s", tabItem.getTitle(), pos);
-            }
-        });
+                .setListTabs(
+                        ArrayUtils.asList(ArrayUtils.subArray(listTabs.toArray(new TabItem[0]), 0, 3)),
+                        (tabItem, pos) -> DevLogEngine.getEngine().dTag(TAG, "TabItem: %s, pos: %s", tabItem.getTitle(), pos)
+                ).setSelect(0);
     }
 
     @Override
@@ -210,6 +198,7 @@ public class UIEffectActivity
 
     /**
      * 切换 Tab
+     *
      * @param clickTab   点击 Tab
      * @param unClickTab 未点击 Tab
      */
@@ -234,6 +223,7 @@ public class UIEffectActivity
 
     /**
      * 切换 Tab
+     *
      * @param clickTab   点击 Tab
      * @param unClickTab 未点击 Tab
      */
@@ -284,6 +274,7 @@ public class UIEffectActivity
 
     /**
      * 滑动 Tab 处理
+     *
      * @param position 需要滑动的索引
      */
     private void scrollTab(final int position) {
