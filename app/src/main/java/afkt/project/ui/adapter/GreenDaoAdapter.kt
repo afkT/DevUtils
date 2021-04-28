@@ -4,10 +4,13 @@ import afkt.project.R
 import afkt.project.database.green.module.note.bean.Note
 import afkt.project.database.green.module.note.bean.NotePicture
 import afkt.project.database.green.module.note.bean.NoteType
+import afkt.project.database.room.module.note.bean.NoteAndPicture
 import afkt.project.databinding.AdapterDatabaseBinding
 import afkt.project.databinding.AdapterDatabaseImageBinding
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
+import dev.adapter.DevDataAdapterExt
+import dev.base.DevPage
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.engine.image.DevImageEngine
@@ -19,7 +22,11 @@ import dev.utils.common.DateUtils
  * detail: GreenDao 适配器
  * @author Ttt
  */
-class GreenDaoAdapter : DevDataAdapter<Note, DevBaseViewBindingVH<AdapterDatabaseBinding>>() {
+class GreenDaoAdapter : DevDataAdapterExt<Note, DevBaseViewBindingVH<AdapterDatabaseBinding>>() {
+
+    init {
+        page = DevPage<Note>(0, 8)
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

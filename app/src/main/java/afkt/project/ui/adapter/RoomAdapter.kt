@@ -8,6 +8,8 @@ import afkt.project.databinding.AdapterDatabaseBinding
 import afkt.project.databinding.AdapterDatabaseImageBinding
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
+import dev.adapter.DevDataAdapterExt
+import dev.base.DevPage
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.engine.image.DevImageEngine
@@ -19,7 +21,11 @@ import dev.utils.common.DateUtils
  * detail: Room 适配器
  * @author Ttt
  */
-class RoomAdapter : DevDataAdapter<NoteAndPicture, DevBaseViewBindingVH<AdapterDatabaseBinding>>() {
+class RoomAdapter : DevDataAdapterExt<NoteAndPicture, DevBaseViewBindingVH<AdapterDatabaseBinding>>() {
+
+    init {
+        page = DevPage<NoteAndPicture>(0, 8)
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
