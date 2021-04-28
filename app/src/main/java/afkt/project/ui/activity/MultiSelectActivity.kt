@@ -1,75 +1,66 @@
-package afkt.project.ui.activity;
+package afkt.project.ui.activity
 
-import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import afkt.project.R;
-import afkt.project.base.app.BaseActivity;
-import afkt.project.databinding.BaseViewRecyclerviewBinding;
-import afkt.project.model.bean.CommodityEvaluateBean;
-import afkt.project.ui.adapter.MultiSelectAdapter;
-import dev.base.widget.BaseTextView;
-import dev.engine.log.DevLogEngine;
-import dev.utils.app.ResourceUtils;
-import dev.utils.app.ViewUtils;
-import dev.utils.app.helper.QuickHelper;
-import dev.utils.app.helper.ViewHelper;
-import dev.utils.app.toast.ToastTintUtils;
+import afkt.project.R
+import afkt.project.base.app.BaseActivity
+import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.model.bean.CommodityEvaluateBean
+import afkt.project.model.bean.CommodityEvaluateBean.Companion.newCommodityEvaluateBean
+import afkt.project.ui.adapter.MultiSelectAdapter
+import afkt.project.ui.adapter.MultiSelectAdapter.OnSelectListener
+import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
+import dev.base.widget.BaseTextView
+import dev.engine.log.DevLogEngine
+import dev.utils.app.ResourceUtils
+import dev.utils.app.ViewUtils
+import dev.utils.app.helper.QuickHelper
+import dev.utils.app.helper.ViewHelper
+import dev.utils.app.toast.ToastTintUtils
+import java.util.*
 
 /**
  * detail: 多选辅助类 MultiSelectAssist
  * @author Ttt
  */
-public class MultiSelectActivity
-        extends BaseActivity<BaseViewRecyclerviewBinding> {
+class MultiSelectActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     // 适配器
-    MultiSelectAdapter multiSelectAdapter;
+    lateinit var adapter: MultiSelectAdapter
 
-    @Override
-    public int baseLayoutId() {
-        return R.layout.base_view_recyclerview;
-    }
+    override fun baseLayoutId(): Int = R.layout.base_view_recyclerview
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         // 增加 Toolbar 按钮
-        addToolbarButton();
+        addToolbarButton()
 
-        ViewGroup parent = (ViewGroup) binding.vidBvrRecy.getParent();
+        val parent = binding.vidBvrRecy.parent as? ViewGroup
         // 根布局处理
         ViewHelper.get().setPadding(parent, 0)
-                .setBackgroundColor(parent, ResourceUtils.getColor(R.color.color_33));
+            .setBackgroundColor(parent, ResourceUtils.getColor(R.color.color_33))
     }
 
-    @Override
-    public void initValue() {
-        super.initValue();
+    override fun initValue() {
+        super.initValue()
 
-        List<CommodityEvaluateBean> lists = new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
-            lists.add(CommodityEvaluateBean.Companion.newCommodityEvaluateBean());
-        }
+        val lists: MutableList<CommodityEvaluateBean> = ArrayList()
+        for (i in 0..14) lists.add(newCommodityEvaluateBean())
 
         // 初始化布局管理器、适配器
-        multiSelectAdapter = new MultiSelectAdapter(lists)
-                .setSelectListener(new MultiSelectAdapter.OnSelectListener() {
-                    @Override
-                    public void onClickSelect(
-                            int pos,
-                            boolean now
-                    ) {
-                        CommodityEvaluateBean commodityEvaluateBean = multiSelectAdapter.getDataItem(pos);
-                        DevLogEngine.getEngine().eTag(TAG, "新状态: %s, 商品名: %s", now, commodityEvaluateBean.getCommodityName());
-                    }
-                });
-        binding.vidBvrRecy.setAdapter(multiSelectAdapter);
+        adapter = MultiSelectAdapter(lists)
+            .setSelectListener(object : OnSelectListener {
+                override fun onClickSelect(
+                    pos: Int,
+                    now: Boolean
+                ) {
+                    val item = adapter.getDataItem(pos)
+                    DevLogEngine.getEngine()
+                        .eTag(TAG, "新状态: %s, 商品名: %s", now, item?.commodityName)
+                }
+            })
+        binding.vidBvrRecy.adapter = adapter
     }
 
     // ===============
@@ -77,91 +68,104 @@ public class MultiSelectActivity
     // ===============
 
     // 编辑按钮
-    BaseTextView editView;
+    var editView: BaseTextView? = null
+
     // 取消编辑按钮
-    BaseTextView cancelView;
+    var cancelView: BaseTextView? = null
+
     // 确定按钮
-    BaseTextView confirmView;
+    var confirmView: BaseTextView? = null
+
     // 全选按钮
-    BaseTextView allSelectView;
+    var allSelectView: BaseTextView? = null
+
     // 非全选按钮
-    BaseTextView unAllSelectView;
+    var unAllSelectView: BaseTextView? = null
+
     // 反选按钮
-    BaseTextView inverseSelectView;
+    var inverseSelectView: BaseTextView? = null
 
     /**
      * 增加 Toolbar 按钮
      */
-    private void addToolbarButton() {
-        getToolbar().addView(editView = createTextView("编辑", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                multiSelectAdapter.setEditState(true);
-                // 显示其他按钮、隐藏编辑按钮
-                ViewUtils.toggleVisibilitys(new View[]{cancelView, confirmView, allSelectView, unAllSelectView, inverseSelectView}, editView);
-            }
-        }));
-        getToolbar().addView(cancelView = createTextView("取消", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                multiSelectAdapter.setEditState(false).clearSelectAll();
-                // 显示编辑按钮、隐藏其他按钮
-                ViewUtils.toggleVisibilitys(editView, cancelView, confirmView, allSelectView, unAllSelectView, inverseSelectView);
-            }
-        }));
-        getToolbar().addView(confirmView = createTextView("确定", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                StringBuilder builder = new StringBuilder();
-                builder.append("是否全选: ").append(multiSelectAdapter.isSelectAll());
-                builder.append("\n是否选中: ").append(multiSelectAdapter.isSelect());
-                builder.append("\n选中数量: ").append(multiSelectAdapter.getSelectSize());
-                builder.append("\n总数: ").append(multiSelectAdapter.getDataCount());
-                ToastTintUtils.normal(builder.toString());
-            }
-        }));
-        getToolbar().addView(allSelectView = createTextView("全选", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                multiSelectAdapter.selectAll();
-            }
-        }));
-        getToolbar().addView(unAllSelectView = createTextView("非全选", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                multiSelectAdapter.clearSelectAll();
-            }
-        }));
-        getToolbar().addView(inverseSelectView = createTextView("反选", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                multiSelectAdapter.inverseSelect();
-            }
-        }));
+    private fun addToolbarButton() {
+        toolbar?.addView(createTextView("编辑") {
+            adapter.isEditState = true
+            // 显示其他按钮、隐藏编辑按钮
+            ViewUtils.toggleVisibilitys(
+                arrayOf<View?>(
+                    cancelView,
+                    confirmView,
+                    allSelectView,
+                    unAllSelectView,
+                    inverseSelectView
+                ), editView
+            )
+        }.also { editView = it })
+
+        toolbar?.addView(createTextView("取消") {
+            adapter.setEditState(false).clearSelectAll()
+            // 显示编辑按钮、隐藏其他按钮
+            ViewUtils.toggleVisibilitys(
+                editView,
+                cancelView,
+                confirmView,
+                allSelectView,
+                unAllSelectView,
+                inverseSelectView
+            )
+        }.also { cancelView = it })
+
+        toolbar?.addView(createTextView("确定") {
+            val builder = StringBuilder()
+            builder.append("是否全选: ").append(adapter.isSelectAll)
+            builder.append("\n是否选中: ").append(adapter.isSelect)
+            builder.append("\n选中数量: ").append(adapter.selectSize)
+            builder.append("\n总数: ").append(adapter.dataCount)
+            ToastTintUtils.normal(builder.toString())
+        }.also { confirmView = it })
+
+        toolbar?.addView(createTextView("全选") {
+            adapter.selectAll()
+        }.also {
+            allSelectView = it
+        })
+
+        toolbar?.addView(createTextView("非全选") {
+            adapter.clearSelectAll()
+        }.also {
+            unAllSelectView = it
+        })
+
+        toolbar?.addView(createTextView("反选") {
+            adapter.inverseSelect()
+        }.also {
+            inverseSelectView = it
+        })
 
         // 显示编辑按钮
-        ViewUtils.setVisibility(true, editView);
+        ViewUtils.setVisibility(true, editView)
     }
 
     /**
      * 创建 TextView
      * @param text            文案
      * @param onClickListener 点击事件
-     * @return {@link BaseTextView}
+     * @return [BaseTextView]
      */
-    private BaseTextView createTextView(
-            String text,
-            View.OnClickListener onClickListener
-    ) {
-        return QuickHelper.get(new BaseTextView(this))
-                .setVisibility(false) // 默认隐藏
-                .setText(text)
-                .setBold()
-                .setTextColor(ResourceUtils.getColor(R.color.white))
-                .setTextSizeBySp(13.0f)
-                .setPaddingLeft(30)
-                .setPaddingRight(30)
-                .setOnClicks(onClickListener)
-                .getView();
+    private fun createTextView(
+        text: String,
+        onClickListener: View.OnClickListener
+    ): BaseTextView {
+        return QuickHelper.get(BaseTextView(this))
+            .setVisibility(false) // 默认隐藏
+            .setText(text)
+            .setBold()
+            .setTextColor(ResourceUtils.getColor(R.color.white))
+            .setTextSizeBySp(13.0f)
+            .setPaddingLeft(30)
+            .setPaddingRight(30)
+            .setOnClicks(onClickListener)
+            .getView()
     }
 }

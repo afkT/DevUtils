@@ -1,105 +1,95 @@
-package afkt.project.ui.activity;
+package afkt.project.ui.activity
 
-import android.Manifest;
-import android.hardware.Camera;
-import android.view.SurfaceHolder;
-import android.view.View;
-
-import java.util.List;
-
-import afkt.project.R;
-import afkt.project.base.app.BaseActivity;
-import afkt.project.databinding.ActivityScanShapeBinding;
-import afkt.project.util.ProjectUtils;
-import dev.engine.log.DevLogEngine;
-import dev.utils.app.FlashlightUtils;
-import dev.utils.app.ListenerUtils;
-import dev.utils.app.ViewUtils;
-import dev.utils.app.camera1.CameraAssist;
-import dev.utils.app.camera1.CameraUtils;
-import dev.utils.app.permission.PermissionUtils;
-import dev.utils.app.toast.ToastTintUtils;
-import dev.widget.ui.ScanShapeView;
+import afkt.project.R
+import afkt.project.base.app.BaseActivity
+import afkt.project.databinding.ActivityScanShapeBinding
+import afkt.project.util.ProjectUtils.refShape
+import android.Manifest
+import android.view.SurfaceHolder
+import android.view.View
+import dev.engine.log.DevLogEngine
+import dev.utils.app.FlashlightUtils
+import dev.utils.app.ListenerUtils
+import dev.utils.app.ViewUtils
+import dev.utils.app.camera1.CameraAssist
+import dev.utils.app.camera1.CameraUtils
+import dev.utils.app.permission.PermissionUtils
+import dev.utils.app.permission.PermissionUtils.PermissionCallback
+import dev.utils.app.toast.ToastTintUtils
+import dev.widget.ui.ScanShapeView
 
 /**
  * detail: 自定义扫描 View ( QRCode、AR )
  * @author Ttt
  */
-public class ScanShapeActivity
-        extends BaseActivity<ActivityScanShapeBinding> {
+class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
 
-    @Override
-    public int baseLayoutId() {
-        return R.layout.activity_scan_shape;
-    }
+    override fun baseLayoutId(): Int = R.layout.activity_scan_shape
 
-    @Override
-    protected void onDestroy() {
+    override fun onDestroy() {
         // 销毁处理
-        binding.vidAssScanview.destroy();
-        super.onDestroy();
+        binding.vidAssScanview.destroy()
+        super.onDestroy()
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        try {
-            // 开始动画
-            binding.vidAssScanview.startAnim();
-            // 添加回调
-            binding.vidAssSurface.getHolder().addCallback(mHolderCallback);
-        } catch (Exception e) {
+    override fun onResume() {
+        super.onResume()
+        // 开始动画
+        binding.vidAssScanview.startAnim()
+        // 添加回调
+        binding.vidAssSurface.holder?.addCallback(mHolderCallback)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // 停止动画
+        binding.vidAssScanview.stopAnim()
+        try {// 停止预览
+            cameraAssist.stopPreview()
+        } catch (e: Exception) {
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        try {
-            // 停止动画
-            binding.vidAssScanview.stopAnim();
-            // 停止预览
-            cameraAssist.stopPreview();
-        } catch (Exception e) {
-        }
-    }
-
-    @Override
-    public void initValue() {
-        super.initValue();
+    override fun initValue() {
+        super.initValue()
         // 设置扫描类型
-        ProjectUtils.refShape(binding.vidAssScanview, ScanShapeView.Shape.Square);
+        refShape(binding.vidAssScanview, ScanShapeView.Shape.Square)
     }
 
-    @Override
-    public void initListener() {
-        super.initListener();
-
-        ListenerUtils.setOnClicks(this, binding.vidAssFlashlightIgview,
-                binding.vidAssSquareIgview, binding.vidAssHexagonIgview, binding.vidAssAnnulusIgview);
+    override fun initListener() {
+        super.initListener()
+        ListenerUtils.setOnClicks(
+            this,
+            binding.vidAssFlashlightIgview,
+            binding.vidAssSquareIgview,
+            binding.vidAssHexagonIgview,
+            binding.vidAssAnnulusIgview
+        )
     }
 
-    @Override
-    public void onClick(View v) {
-        super.onClick(v);
-        switch (v.getId()) {
-            case R.id.vid_ass_flashlight_igview:
+    override fun onClick(v: View) {
+        super.onClick(v)
+        when (v.id) {
+            R.id.vid_ass_flashlight_igview -> {
                 if (!FlashlightUtils.isFlashlightEnable()) {
-                    showToast(false, "暂不支持开启手电筒");
-                    return;
+                    showToast(false, "暂不支持开启手电筒")
+                    return
                 }
                 // 设置开关
-                setFlashlight(!ViewUtils.isSelected(binding.vidAssFlashlightIgview));
-                break;
-            case R.id.vid_ass_square_igview:
-                ProjectUtils.refShape(binding.vidAssScanview, ScanShapeView.Shape.Square);
-                break;
-            case R.id.vid_ass_hexagon_igview:
-                ProjectUtils.refShape(binding.vidAssScanview, ScanShapeView.Shape.Hexagon);
-                break;
-            case R.id.vid_ass_annulus_igview:
-                ProjectUtils.refShape(binding.vidAssScanview, ScanShapeView.Shape.Annulus);
-                break;
+                setFlashlight(!ViewUtils.isSelected(binding.vidAssFlashlightIgview))
+            }
+            R.id.vid_ass_square_igview -> refShape(
+                binding.vidAssScanview,
+                ScanShapeView.Shape.Square
+            )
+            R.id.vid_ass_hexagon_igview -> refShape(
+                binding.vidAssScanview,
+                ScanShapeView.Shape.Hexagon
+            )
+            R.id.vid_ass_annulus_igview -> refShape(
+                binding.vidAssScanview,
+                ScanShapeView.Shape.Annulus
+            )
         }
     }
 
@@ -108,85 +98,75 @@ public class ScanShapeActivity
     // =============
 
     // 摄像头辅助类
-    CameraAssist cameraAssist = new CameraAssist();
+    val cameraAssist = CameraAssist()
 
-    private final SurfaceHolder.Callback mHolderCallback = new SurfaceHolder.Callback() {
-        @Override
-        public void surfaceCreated(SurfaceHolder holder) {
+    private val mHolderCallback: SurfaceHolder.Callback = object : SurfaceHolder.Callback {
+        override fun surfaceCreated(holder: SurfaceHolder) {
             // 检查权限
-            checkPermission();
+            checkPermission()
         }
 
-        @Override
-        public void surfaceChanged(
-                SurfaceHolder holder,
-                int format,
-                int width,
-                int height
+        override fun surfaceChanged(
+            holder: SurfaceHolder,
+            format: Int,
+            width: Int,
+            height: Int
         ) {
         }
 
-        @Override
-        public void surfaceDestroyed(SurfaceHolder holder) {
+        override fun surfaceDestroyed(holder: SurfaceHolder) {
             // 关闭手电筒
-            setFlashlight(false);
+            setFlashlight(false)
             try {
-                // 停止预览
-                if (cameraAssist != null) {
-                    cameraAssist.stopPreview();
-                }
-            } catch (Exception e) {
-                DevLogEngine.getEngine().eTag(TAG, e, "surfaceDestroyed");
+                cameraAssist.stopPreview()
+            } catch (e: Exception) {
+                DevLogEngine.getEngine().eTag(TAG, e, "surfaceDestroyed")
             }
         }
-    };
+    }
 
     /**
      * 检查摄像头权限
      */
-    private void checkPermission() {
+    private fun checkPermission() {
         // 摄像头权限
-        String cameraPermission = Manifest.permission.CAMERA;
+        val cameraPermission = Manifest.permission.CAMERA
         // 判断是否允许权限
         if (PermissionUtils.isGranted(cameraPermission)) {
             try {
                 // 打开摄像头
-                Camera camera = CameraUtils.open();
-                camera.setDisplayOrientation(90); // 设置竖屏显示
-                cameraAssist.setCamera(camera);
+                val camera = CameraUtils.open()
+                camera.setDisplayOrientation(90) // 设置竖屏显示
+                cameraAssist.camera = camera
                 // 获取预览大小
-                final Camera.Size size = cameraAssist.getCameraResolution();
+                val size = cameraAssist.cameraResolution
                 // 设置预览大小, 需要这样设置, 开闪光灯才不会闪烁
-                Camera.Parameters parameters = camera.getParameters();
-                parameters.setPreviewSize(size.width, size.height);
-                camera.setParameters(parameters);
+                val parameters = camera.parameters
+                parameters.setPreviewSize(size.width, size.height)
+                camera.parameters = parameters
                 // 开始预览
-                cameraAssist.openDriver(binding.vidAssSurface.getHolder()).startPreview();
+                cameraAssist.openDriver(binding.vidAssSurface.holder).startPreview()
 //                // 默认开启自动对焦, 设置不需要自动对焦
-//                cameraAssist.setAutoFocus(false);
-            } catch (Exception e) {
-                DevLogEngine.getEngine().eTag(TAG, e, "checkPermission startPreview");
+//                cameraAssist.setAutoFocus(false)
+            } catch (e: Exception) {
+                DevLogEngine.getEngine().eTag(TAG, e, "checkPermission startPreview")
             }
         } else {
-            ToastTintUtils.warning("需要摄像头权限预览");
             // 申请权限
-            PermissionUtils.permission(cameraPermission).callback(new PermissionUtils.PermissionCallback() {
-                @Override
-                public void onGranted() {
+            PermissionUtils.permission(cameraPermission).callback(object : PermissionCallback {
+                override fun onGranted() {
                     // 刷新处理
-                    checkPermission();
+                    checkPermission()
                 }
 
-                @Override
-                public void onDenied(
-                        List<String> grantedList,
-                        List<String> deniedList,
-                        List<String> notFoundList
+                override fun onDenied(
+                    grantedList: List<String>,
+                    deniedList: List<String>,
+                    notFoundList: List<String>
                 ) {
-                    // 再次申请权限
-                    checkPermission();
+                    ToastTintUtils.warning("需要摄像头权限预览")
                 }
-            }).request(this);
+            }).request(this)
         }
     }
 
@@ -198,12 +178,12 @@ public class ScanShapeActivity
      * 设置手电筒开关
      * @param open 是否打开
      */
-    private void setFlashlight(boolean open) {
+    private fun setFlashlight(open: Boolean) {
         if (open) {
-            cameraAssist.setFlashlightOn();
+            cameraAssist.setFlashlightOn()
         } else {
-            cameraAssist.setFlashlightOff();
+            cameraAssist.setFlashlightOff()
         }
-        ViewUtils.setSelected(open, binding.vidAssFlashlightIgview);
+        ViewUtils.setSelected(open, binding.vidAssFlashlightIgview)
     }
 }
