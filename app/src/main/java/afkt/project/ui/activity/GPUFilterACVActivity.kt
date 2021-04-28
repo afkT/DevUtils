@@ -1,138 +1,121 @@
-package afkt.project.ui.activity;
+package afkt.project.ui.activity
 
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.view.View;
-import android.widget.AdapterView;
-
-import com.luck.picture.lib.PictureSelector;
-import com.luck.picture.lib.config.PictureMimeType;
-import com.luck.picture.lib.entity.LocalMedia;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import afkt.project.R;
-import afkt.project.base.app.BaseActivity;
-import afkt.project.databinding.ActivityGpuFilterBinding;
-import afkt.project.model.bean.ACVFileBean;
-import afkt.project.ui.adapter.GPUFilterACVAdapter;
-import afkt.project.util.GPUFilterUtils;
-import dev.engine.log.DevLogEngine;
-import dev.other.PictureSelectorUtils;
-import dev.utils.app.HandlerUtils;
-import dev.utils.app.ResourceUtils;
-import dev.utils.app.image.ImageUtils;
-import jp.co.cyberagent.android.gpuimage.filter.GPUImageToneCurveFilter;
+import afkt.project.R
+import afkt.project.base.app.BaseActivity
+import afkt.project.databinding.ActivityGpuFilterBinding
+import afkt.project.model.bean.ACVFileBean
+import afkt.project.ui.adapter.GPUFilterACVAdapter
+import afkt.project.util.GPUFilterUtils.getFilterBitmap
+import afkt.project.util.GPUFilterUtils.getGPUImageToneCurveFilter
+import android.content.Intent
+import android.graphics.Bitmap
+import android.view.View
+import android.widget.AdapterView
+import com.luck.picture.lib.config.PictureMimeType
+import dev.engine.log.DevLogEngine
+import dev.engine.media.DevMediaEngine
+import dev.engine.media.MediaConfig
+import dev.utils.app.HandlerUtils
+import dev.utils.app.ResourceUtils
+import dev.utils.app.image.ImageUtils
+import java.util.*
 
 /**
  * detail: GPU ACV 文件滤镜效果
  * @author Ttt
  */
-public class GPUFilterACVActivity
-        extends BaseActivity<ActivityGpuFilterBinding> {
+class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
 
     // 适配器
-    private        GPUFilterACVAdapter gpuFilterACVAdapter;
+    private lateinit var gpuFilterACVAdapter: GPUFilterACVAdapter
+
     // ACV 文件集合
-    private final  List<ACVFileBean>   listACVFiles = new ArrayList<>();
+    private val listACVFiles: MutableList<ACVFileBean> = ArrayList()
+
     // 图片 Bitmap
-    private        Bitmap              selectBitmap;
-    // 滤镜线程
-    private static Runnable            filterThread;
+    private var selectBitmap: Bitmap? = null
 
-    @Override
-    public int baseLayoutId() {
-        return R.layout.activity_gpu_filter;
+    companion object {
+        // 滤镜线程
+        private var filterThread: Runnable? = null
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        filterThread = null;
+    override fun baseLayoutId(): Int = R.layout.activity_gpu_filter
+
+    override fun onDestroy() {
+        super.onDestroy()
+        filterThread = null
     }
 
-    @Override
-    public void initValue() {
-        super.initValue();
+    override fun initValue() {
+        super.initValue()
 
         // 设置滤镜线程
-        filterThread = new Runnable() {
-            @Override
-            public void run() {
-                setFilter();
-            }
-        };
+        filterThread = Runnable { setFilter() }
 
         // 初始化数据
-        listACVFiles.add(new ACVFileBean("August", "filter/August.acv"));
-        listACVFiles.add(new ACVFileBean("Darker", "filter/Darker.acv"));
-        listACVFiles.add(new ACVFileBean("Dream", "filter/Dream.acv"));
-        listACVFiles.add(new ACVFileBean("Fornature", "filter/Fornature.acv"));
-        listACVFiles.add(new ACVFileBean("Greens", "filter/Greens.acv"));
-        listACVFiles.add(new ACVFileBean("Miami", "filter/Miami.acv"));
+        listACVFiles.add(ACVFileBean("August", "filter/August.acv"))
+        listACVFiles.add(ACVFileBean("Darker", "filter/Darker.acv"))
+        listACVFiles.add(ACVFileBean("Dream", "filter/Dream.acv"))
+        listACVFiles.add(ACVFileBean("Fornature", "filter/Fornature.acv"))
+        listACVFiles.add(ACVFileBean("Greens", "filter/Greens.acv"))
+        listACVFiles.add(ACVFileBean("Miami", "filter/Miami.acv"))
+        
         // 设置适配器
-        binding.vidAgfGallery.setAdapter(gpuFilterACVAdapter = new GPUFilterACVAdapter(this, listACVFiles));
-        binding.vidAgfGallery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(
-                    AdapterView<?> parent,
-                    View view,
-                    int position,
-                    long id
-            ) {
-                gpuFilterACVAdapter.setSelectPosition(position);
-                // 延迟一会进行滤镜
-                HandlerUtils.removeRunnable(filterThread);
-                HandlerUtils.postRunnable(filterThread, 500);
-            }
+        binding.vidAgfGallery.adapter = GPUFilterACVAdapter(this, listACVFiles).also {
+            gpuFilterACVAdapter = it
+        }
+        binding.vidAgfGallery.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View,
+                    position: Int,
+                    id: Long
+                ) {
+                    gpuFilterACVAdapter.setSelectPosition(position)
+                    // 延迟一会进行滤镜
+                    HandlerUtils.removeRunnable(filterThread)
+                    HandlerUtils.postRunnable(filterThread, 500)
+                }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
-        });
         // 默认选中第一个
-        binding.vidAgfGallery.setSelection(0);
+        binding.vidAgfGallery.setSelection(0)
     }
 
-    @Override
-    public void initListener() {
-        super.initListener();
-        binding.vidAgfSelectBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 初始化图片配置
-                PictureSelectorUtils.PicConfig picConfig = new PictureSelectorUtils.PicConfig()
-                        .setCompress(false).setMaxSelectNum(1).setCrop(false).setMimeType(PictureMimeType.ofImage())
-                        .setCamera(true).setGif(false);
-                // 打开图片选择器
-                PictureSelectorUtils.openGallery(PictureSelector.create(mActivity), picConfig);
-            }
-        });
+    override fun initListener() {
+        super.initListener()
+        binding.vidAgfSelectBtn.setOnClickListener {
+            // 初始化图片配置
+            var config = MediaConfig()
+                .setCompress(false).setMaxSelectNum(1).setCrop(false)
+                .setMimeType(PictureMimeType.ofImage())
+                .setCamera(true).setGif(false)
+            // 打开图片选择器
+            DevMediaEngine.getEngine().openGallery(mActivity, config)
+        }
     }
 
     // ===========
     // = 图片回传 =
     // ===========
 
-    @Override
-    protected void onActivityResult(
-            int requestCode,
-            int resultCode,
-            Intent data
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
     ) {
-        super.onActivityResult(requestCode, resultCode, data);
-
+        super.onActivityResult(requestCode, resultCode, data)
         // 判断是否属于图片选择
-        if (resultCode == Activity.RESULT_OK && data != null) {
-            LocalMedia localMedia = PictureSelectorUtils.getSingleMedia(data);
+        if (resultCode == RESULT_OK && data != null) {
             // 获取图片地址
-            String imgPath = PictureSelectorUtils.getLocalMediaPath(localMedia, true);
+            val imgPath = DevMediaEngine.getEngine().getSingleSelectorPath(data, true)
             // 获取图片 Bitmap
-            selectBitmap = ImageUtils.decodeFile(imgPath);
+            selectBitmap = ImageUtils.decodeFile(imgPath)
             // 设置图片滤镜
-            setFilter();
+            setFilter()
         }
     }
 
@@ -143,19 +126,19 @@ public class GPUFilterACVActivity
     /**
      * 设置滤镜效果
      */
-    private void setFilter() {
+    private fun setFilter() {
         try {
-            if (selectBitmap == null) return;
+            if (selectBitmap == null) return
             // 获取选中的滤镜
-            int position = binding.vidAgfGallery.getSelectedItemPosition();
+            val position = binding.vidAgfGallery.selectedItemPosition
             // 获取滤镜文件实体类
-            ACVFileBean acvFileBean = gpuFilterACVAdapter.getItem(position);
+            val acvFileBean = gpuFilterACVAdapter.getItem(position)
             // 设置滤镜效果
-            GPUImageToneCurveFilter gpuFilter    = GPUFilterUtils.getGPUImageToneCurveFilter(ResourceUtils.open(acvFileBean.getAcvPath()));
-            Bitmap                  bitmapFilter = GPUFilterUtils.getFilterBitmap(selectBitmap, gpuFilter);
-            binding.vidAgfIgview.setImageBitmap(bitmapFilter);
-        } catch (Exception e) {
-            DevLogEngine.getEngine().eTag(TAG, e, "setFilter");
+            val gpuFilter = getGPUImageToneCurveFilter(ResourceUtils.open(acvFileBean.acvPath))
+            val bitmapFilter = getFilterBitmap(selectBitmap, gpuFilter)
+            binding.vidAgfIgview.setImageBitmap(bitmapFilter)
+        } catch (e: Exception) {
+            DevLogEngine.getEngine().eTag(TAG, e, "setFilter")
         }
     }
 }
