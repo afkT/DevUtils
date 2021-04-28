@@ -143,7 +143,7 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 // 无法进行申请, 只能跳转到权限页面, 让用户开启
                                 // 获取写入设置权限 , 必须有这个权限, 否则无法开启
                                 if (!PermissionUtils.isGranted(Manifest.permission.WRITE_SETTINGS)) {
-                                    ToastUtils.showShort("开启热点需要修改系统设置权限");
+                                    ToastUtils.showShort("开启热点需要修改系统设置权限")
                                     // 如果没有权限则跳转过去
                                     AppUtils.startActivity(
                                         IntentUtils.getLaunchAppDetailsSettingsIntent(
@@ -158,7 +158,7 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 WifiHotUtils.createWifiConfigToAp(wifiHotSSID, wifiHotPwd)
 //                            // 如果不需要密码, 则设置为非密码
 //                            val wifiConfiguration =
-//                                WifiHotUtils.createWifiConfigToAp("TttWifiAp1", null);
+//                                WifiHotUtils.createWifiConfigToAp("TttWifiAp1", null)
                             // 开启热点 ( Android 7.1 以上特殊处理 )
                             val success = wifiHotUtils.startWifiAp(wifiConfiguration)
                             showToast(success, "打开热点成功", "打开热点失败")

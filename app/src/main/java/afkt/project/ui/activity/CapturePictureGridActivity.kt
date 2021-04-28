@@ -1,101 +1,94 @@
-package afkt.project.ui.activity;
+package afkt.project.ui.activity
 
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-
-import java.util.List;
-
-import afkt.project.R;
-import afkt.project.base.app.BaseActivity;
-import afkt.project.base.config.PathConfig;
-import afkt.project.databinding.ActivityCapturePictureGridBinding;
-import afkt.project.model.bean.AdapterBean;
-import dev.base.widget.BaseTextView;
-import dev.utils.app.CapturePictureUtils;
-import dev.utils.app.ResourceUtils;
-import dev.utils.app.ViewUtils;
-import dev.utils.app.helper.QuickHelper;
-import dev.utils.app.helper.ViewHelper;
-import dev.utils.app.image.ImageUtils;
+import afkt.project.R
+import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.PathConfig
+import afkt.project.databinding.ActivityCapturePictureGridBinding
+import afkt.project.databinding.AdapterCapturePictureBinding
+import afkt.project.model.bean.AdapterBean
+import afkt.project.model.bean.AdapterBean.Companion.newAdapterBeanList
+import android.graphics.Bitmap
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.BaseAdapter
+import dev.base.widget.BaseTextView
+import dev.utils.app.CapturePictureUtils
+import dev.utils.app.ResourceUtils
+import dev.utils.app.helper.QuickHelper
+import dev.utils.app.helper.ViewHelper
+import dev.utils.app.image.ImageUtils
 
 /**
  * detail: CapturePictureUtils GridView 截图
  * @author Ttt
  */
-public class CapturePictureGridActivity
-        extends BaseActivity<ActivityCapturePictureGridBinding> {
+class CapturePictureGridActivity : BaseActivity<ActivityCapturePictureGridBinding>() {
 
-    @Override
-    public int baseLayoutId() {
-        return R.layout.activity_capture_picture_grid;
-    }
+    override fun baseLayoutId(): Int = R.layout.activity_capture_picture_grid
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         // 截图按钮
-        View view = QuickHelper.get(new BaseTextView(this))
-                .setText("截图")
-                .setBold()
-                .setTextColor(ResourceUtils.getColor(R.color.white))
-                .setTextSizeBySp(15.0f)
-                .setPaddingLeft(30)
-                .setPaddingRight(30)
-                .setOnClicks(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String filePath = PathConfig.AEP_DOWN_IMAGE_PATH;
-                        String fileName = "grid.jpg";
-                        Bitmap bitmap;
+        val view = QuickHelper.get(BaseTextView(this))
+            .setText("截图")
+            .setBold()
+            .setTextColor(ResourceUtils.getColor(R.color.white))
+            .setTextSizeBySp(15.0f)
+            .setPaddingLeft(30)
+            .setPaddingRight(30)
+            .setOnClicks { v: View? ->
+                val filePath = PathConfig.AEP_DOWN_IMAGE_PATH
+                val fileName = "grid.jpg"
+                val bitmap: Bitmap
 
-                        bitmap = CapturePictureUtils.snapshotByGridView(binding.vidAcpGrid);
-//                        // 保存 ListView 一样效果
-//                        bitmap = CapturePictureUtils.snapshotByGridView(binding.vidAcpGrid, Bitmap.Config.ARGB_8888, true);
-                        boolean result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName);
-                        showToast(result, "保存成功\n" + (filePath + fileName), "保存失败");
-                    }
-                }).getView();
-        getToolbar().addView(view);
+                bitmap = CapturePictureUtils.snapshotByGridView(binding.vidAcpGrid)
+//                // 保存 ListView 一样效果
+//                bitmap = CapturePictureUtils.snapshotByGridView(
+//                    binding.vidAcpGrid,
+//                    Bitmap.Config.ARGB_8888,
+//                    true
+//                )
+                val result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName)
+                showToast(result, "保存成功\n" + (filePath + fileName), "保存失败")
+            }.getView<View>()
+        toolbar?.addView(view)
     }
 
-    @Override
-    public void initValue() {
-        super.initValue();
+    override fun initValue() {
+        super.initValue()
 
-        List<AdapterBean> lists = AdapterBean.Companion.newAdapterBeanList(15);
+        val lists = newAdapterBeanList(15)
         // 设置适配器
-        binding.vidAcpGrid.setAdapter(new BaseAdapter() {
-            @Override
-            public int getCount() {
-                return lists.size();
+        binding.vidAcpGrid.adapter = object : BaseAdapter() {
+            override fun getCount(): Int {
+                return lists.size
             }
 
-            @Override
-            public AdapterBean getItem(int position) {
-                return lists.get(position);
+            override fun getItem(position: Int): AdapterBean {
+                return lists[position]
             }
 
-            @Override
-            public long getItemId(int position) {
-                return position;
+            override fun getItemId(position: Int): Long {
+                return position.toLong()
             }
 
-            @Override
-            public View getView(
-                    int position,
-                    View convertView,
-                    ViewGroup parent
-            ) {
-                AdapterBean adapterBean = getItem(position);
+            override fun getView(
+                position: Int,
+                convertView: View,
+                parent: ViewGroup
+            ): View {
+                val adapterBean = getItem(position)
                 // 初始化 View 设置 TextView
-                View view = ViewUtils.inflate(CapturePictureGridActivity.this, R.layout.adapter_capture_picture);
-                ViewHelper.get().setText(ViewUtils.findViewById(view, R.id.vid_acp_title_tv), adapterBean.getTitle())
-                        .setText(ViewUtils.findViewById(view, R.id.vid_acp_content_tv), adapterBean.getTitle());
-                return view;
+                var _binding = AdapterCapturePictureBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false
+                )
+                ViewHelper.get()
+                    .setText(_binding.vidAcpTitleTv, adapterBean.title)
+                    .setText(_binding.vidAcpContentTv, adapterBean.title)
+                return _binding.root
             }
-        });
+        }
     }
 }

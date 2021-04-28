@@ -1,33 +1,27 @@
-package afkt.project.ui.activity;
+package afkt.project.ui.activity
 
-import android.graphics.Bitmap;
-import android.view.View;
-
-import afkt.project.R;
-import afkt.project.base.app.BaseActivity;
-import afkt.project.base.config.PathConfig;
-import afkt.project.databinding.ActivityCapturePictureBinding;
-import afkt.project.model.item.ButtonValue;
-import afkt.project.util.SkipUtils;
-import dev.utils.app.CapturePictureUtils;
-import dev.utils.app.ListenerUtils;
-import dev.utils.app.image.ImageUtils;
+import afkt.project.R
+import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.PathConfig
+import afkt.project.databinding.ActivityCapturePictureBinding
+import afkt.project.model.item.ButtonValue
+import afkt.project.util.SkipUtils.startActivity
+import android.graphics.Bitmap
+import android.view.View
+import dev.utils.app.CapturePictureUtils
+import dev.utils.app.ListenerUtils
+import dev.utils.app.image.ImageUtils
 
 /**
  * detail: CapturePictureUtils 截图工具类
  * @author Ttt
  */
-public class CapturePictureActivity
-        extends BaseActivity<ActivityCapturePictureBinding> {
+class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
 
-    @Override
-    public int baseLayoutId() {
-        return R.layout.activity_capture_picture;
-    }
+    override fun baseLayoutId(): Int = R.layout.activity_capture_picture
 
-    @Override
-    public void initValue() {
-        super.initValue();
+    override fun initValue() {
+        super.initValue()
 
         // ===========
         // = 截图方法 =
@@ -50,65 +44,75 @@ public class CapturePictureActivity
 //        | snapshotByRecyclerView | 通过 RecyclerView 绘制为 Bitmap |
     }
 
-    @Override
-    public void initListener() {
-        super.initListener();
-        ListenerUtils.setOnClicks(this,
-                binding.vidAcpScreenBtn, binding.vidAcpScreen1Btn,
-                binding.vidAcpLinearBtn, binding.vidAcpScrollBtn,
-                binding.vidAcpListBtn, binding.vidAcpGridBtn,
-                binding.vidAcpRecyBtn, binding.vidAcpWebviewBtn);
+    override fun initListener() {
+        super.initListener()
+        ListenerUtils.setOnClicks(
+            this,
+            binding.vidAcpScreenBtn, binding.vidAcpScreen1Btn,
+            binding.vidAcpLinearBtn, binding.vidAcpScrollBtn,
+            binding.vidAcpListBtn, binding.vidAcpGridBtn,
+            binding.vidAcpRecyBtn, binding.vidAcpWebviewBtn
+        )
     }
 
-    @Override
-    public void onClick(View v) {
-        super.onClick(v);
-
-        Bitmap  bitmap;
-        boolean result;
-        String  filePath = PathConfig.AEP_DOWN_IMAGE_PATH;
-        String  fileName;
-
-        switch (v.getId()) {
-            case R.id.vid_acp_screen_btn:
-                fileName = "screen.jpg";
-                bitmap = CapturePictureUtils.snapshotWithStatusBar(CapturePictureActivity.this);
-                result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName);
-                showToast(result, "保存成功\n" + (filePath + fileName), "保存失败");
-                break;
-            case R.id.vid_acp_screen1_btn:
-                fileName = "screen1.jpg";
-                bitmap = CapturePictureUtils.snapshotWithoutStatusBar(CapturePictureActivity.this);
-                result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName);
-                showToast(result, "保存成功\n" + (filePath + fileName), "保存失败");
-                break;
-            case R.id.vid_acp_linear_btn:
+    override fun onClick(v: View) {
+        super.onClick(v)
+        val bitmap: Bitmap
+        val result: Boolean
+        val filePath = PathConfig.AEP_DOWN_IMAGE_PATH
+        val fileName: String
+        when (v.id) {
+            R.id.vid_acp_screen_btn -> {
+                fileName = "screen.jpg"
+                bitmap = CapturePictureUtils.snapshotWithStatusBar(mActivity)
+                result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName)
+                showToast(result, "保存成功\n" + (filePath + fileName), "保存失败")
+            }
+            R.id.vid_acp_screen1_btn -> {
+                fileName = "screen1.jpg"
+                bitmap = CapturePictureUtils.snapshotWithoutStatusBar(mActivity)
+                result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName)
+                showToast(result, "保存成功\n" + (filePath + fileName), "保存失败")
+            }
+            R.id.vid_acp_linear_btn -> {
                 // snapshotByLinearLayout、snapshotByFrameLayout、snapshotByRelativeLayout
                 // 以上方法都是使用 snapshotByView
-                fileName = "linear.jpg";
-                bitmap = CapturePictureUtils.snapshotByLinearLayout(binding.vidAcpLinear);
-                result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName);
-                showToast(result, "保存成功\n" + (filePath + fileName), "保存失败");
-                break;
-            case R.id.vid_acp_scroll_btn:
+                fileName = "linear.jpg"
+                bitmap = CapturePictureUtils.snapshotByLinearLayout(binding.vidAcpLinear)
+                result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName)
+                showToast(result, "保存成功\n" + (filePath + fileName), "保存失败")
+            }
+            R.id.vid_acp_scroll_btn -> {
                 // snapshotByScrollView、snapshotByHorizontalScrollView、snapshotByNestedScrollView
-                fileName = "scroll.jpg";
-                bitmap = CapturePictureUtils.snapshotByNestedScrollView(binding.vidAcpScroll);
-                result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName);
-                showToast(result, "保存成功\n" + (filePath + fileName), "保存失败");
-                break;
-            case R.id.vid_acp_list_btn:
-                SkipUtils.startActivity(CapturePictureListActivity.class, new ButtonValue(1, "CapturePictureUtils ListView 截图"));
-                break;
-            case R.id.vid_acp_grid_btn:
-                SkipUtils.startActivity(CapturePictureGridActivity.class, new ButtonValue(2, "CapturePictureUtils GridView 截图"));
-                break;
-            case R.id.vid_acp_recy_btn:
-                SkipUtils.startActivity(CapturePictureRecyActivity.class, new ButtonValue(3, "CapturePictureUtils RecyclerView 截图"));
-                break;
-            case R.id.vid_acp_webview_btn:
-                SkipUtils.startActivity(CapturePictureWebActivity.class, new ButtonValue(4, "CapturePictureUtils WebView 截图"));
-                break;
+                fileName = "scroll.jpg"
+                bitmap = CapturePictureUtils.snapshotByNestedScrollView(binding.vidAcpScroll)
+                result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName)
+                showToast(result, "保存成功\n" + (filePath + fileName), "保存失败")
+            }
+            R.id.vid_acp_list_btn -> {
+                startActivity(
+                    CapturePictureListActivity::class.java,
+                    ButtonValue(1, "CapturePictureUtils ListView 截图")
+                )
+            }
+            R.id.vid_acp_grid_btn -> {
+                startActivity(
+                    CapturePictureGridActivity::class.java,
+                    ButtonValue(2, "CapturePictureUtils GridView 截图")
+                )
+            }
+            R.id.vid_acp_recy_btn -> {
+                startActivity(
+                    CapturePictureRecyActivity::class.java,
+                    ButtonValue(3, "CapturePictureUtils RecyclerView 截图")
+                )
+            }
+            R.id.vid_acp_webview_btn -> {
+                startActivity(
+                    CapturePictureWebActivity::class.java,
+                    ButtonValue(4, "CapturePictureUtils WebView 截图")
+                )
+            }
         }
     }
 }

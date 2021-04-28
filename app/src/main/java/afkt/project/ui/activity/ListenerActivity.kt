@@ -416,8 +416,8 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                                     // 重置时间,防止多次触发
                                     mOrientationTime = System.currentTimeMillis()
                                     // 跳转到横屏, 并且关闭监听
-                                    //Intent intent = new Intent(mContext, Activity.class);
-                                    //mContext.startActivity(intent);
+                                    //Intent intent = new Intent(mContext, Activity.class)
+                                    //mContext.startActivity(intent)
                                 }
                             } else if (orientation == 2) { // 竖屏
                                 DevLogEngine.getEngine().dTag(TAG, "竖屏")

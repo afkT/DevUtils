@@ -84,8 +84,8 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
         colors[1] = ContextCompat.getColor(this, R.color.sky_blue)
         colors[2] = ContextCompat.getColor(this, R.color.orange)
         val drawable = ShapeUtils.newShape(GradientDrawable.Orientation.BR_TL, colors).drawable
-//        drawable.gradientType = GradientDrawable.LINEAR_GRADIENT;   // 线性渐变, 这是默认设置
-//        drawable.gradientType = GradientDrawable.RADIAL_GRADIENT;   // 放射性渐变, 以开始色为中心
+//        drawable.gradientType = GradientDrawable.LINEAR_GRADIENT   // 线性渐变, 这是默认设置
+//        drawable.gradientType = GradientDrawable.RADIAL_GRADIENT   // 放射性渐变, 以开始色为中心
         drawable.gradientType = GradientDrawable.SWEEP_GRADIENT     // 扫描线式的渐变
         binding.vidAue60View.background = drawable
 
