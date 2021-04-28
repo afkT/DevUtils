@@ -26,7 +26,7 @@ class CrashCatchActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
          */
 
         // 初始化布局管理器、适配器
-        val buttonAdapter = ButtonAdapter(ButtonList.getCrashButtonValues())
+        val buttonAdapter = ButtonAdapter(ButtonList.crashButtonValues)
         binding.vidBvrRecy.adapter = buttonAdapter
         buttonAdapter.itemCallback = object : DevItemClickCallback<ButtonValue>() {
             override fun onItemClick(

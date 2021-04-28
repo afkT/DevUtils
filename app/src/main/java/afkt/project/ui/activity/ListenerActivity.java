@@ -77,7 +77,7 @@ public class ListenerActivity
                     ButtonValue buttonValue,
                     int param
             ) {
-                switch (buttonValue.type) {
+                switch (buttonValue.getType()) {
                     case ButtonValue.BTN_WIFI_LISTENER:
                         wifiListener(true);
                         break;
@@ -109,7 +109,7 @@ public class ListenerActivity
                         appStateListener(true);
                         break;
                     default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
+                        ToastTintUtils.warning("未处理 " + buttonValue.getText() + " 事件");
                         break;
                 }
             }
@@ -119,7 +119,7 @@ public class ListenerActivity
                     ButtonValue buttonValue,
                     int param
             ) {
-                switch (buttonValue.type) {
+                switch (buttonValue.getType()) {
                     case ButtonValue.BTN_WIFI_LISTENER:
                         wifiListener(false);
                         break;
@@ -151,7 +151,7 @@ public class ListenerActivity
                         appStateListener(false);
                         break;
                     default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
+                        ToastTintUtils.warning("未处理 " + buttonValue.getText() + " 事件");
                         break;
                 }
             }

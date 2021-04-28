@@ -55,7 +55,7 @@ public class NotificationServiceActivity
                     ButtonValue buttonValue,
                     int param
             ) {
-                switch (buttonValue.type) {
+                switch (buttonValue.getType()) {
                     case ButtonValue.BTN_NOTIFICATION_SERVICE_CHECK:
                         boolean check = NotificationService.isNotificationListenerEnabled();
                         showToast(check, "已开启服务通知", "未开启服务通知");
@@ -75,7 +75,7 @@ public class NotificationServiceActivity
                         NotificationService.stopService();
                         break;
                     default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
+                        ToastTintUtils.warning("未处理 " + buttonValue.getText() + " 事件");
                         break;
                 }
             }

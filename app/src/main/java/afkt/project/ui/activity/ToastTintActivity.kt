@@ -28,7 +28,7 @@ class ToastTintActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         super.initValue()
 
         // 初始化布局管理器、适配器
-        val buttonAdapter = ButtonAdapter(ButtonList.getToastButtonValues())
+        val buttonAdapter = ButtonAdapter(ButtonList.toastButtonValues)
         binding.vidBvrRecy.adapter = buttonAdapter
         buttonAdapter.itemCallback = object : DevItemClickCallback<ButtonValue>() {
             override fun onItemClick(

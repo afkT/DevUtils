@@ -44,7 +44,7 @@ public class EventBusActivity
                     ButtonValue buttonValue,
                     int param
             ) {
-                switch (buttonValue.type) {
+                switch (buttonValue.getType()) {
                     case ButtonValue.BTN_EVENT_REGISTER:
                         showToast(true, "注册成功");
                         EventBusUtils.register(EventBusActivity.this);
@@ -71,7 +71,7 @@ public class EventBusActivity
                         // 如何测试粘性消息, 先注册并发送粘性事件, 然后解绑, 再次注册(则会再次接收到粘性事件消息)
                         break;
                     default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
+                        ToastTintUtils.warning("未处理 " + buttonValue.getText() + " 事件");
                         break;
                 }
             }

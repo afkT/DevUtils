@@ -92,7 +92,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         // 设置 Android 版本信息
         binding.vidAmAndroidTv.text = AppCommonUtils.convertSDKVersion()
         // 初始化布局管理器、适配器
-        val buttonAdapter = ButtonAdapter(ButtonList.getMainButtonValues())
+        val buttonAdapter = ButtonAdapter(ButtonList.mainButtonValues)
         binding.vidBaseRecy.vidBvrRecy.adapter = buttonAdapter
         buttonAdapter.itemCallback = object : DevItemClickCallback<ButtonValue>() {
             override fun onItemClick(

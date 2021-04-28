@@ -62,7 +62,7 @@ public class FunctionActivity
             ) {
                 // 获取操作结果
                 boolean result;
-                switch (buttonValue.type) {
+                switch (buttonValue.getType()) {
                     case ButtonValue.BTN_FUNCTION_VIBRATE:
                         result = VibrationUtils.vibrate(200);
                         showToast(result);
@@ -172,7 +172,7 @@ public class FunctionActivity
                         showToast(result);
                         break;
                     default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
+                        ToastTintUtils.warning("未处理 " + buttonValue.getText() + " 事件");
                         break;
                 }
             }

@@ -137,7 +137,7 @@ public class GPUFilterActivity
             // 获取滤镜 Item
             FilterItem filterItem = gpuFilterAdapter.getItem(position);
             // 设置滤镜效果
-            Bitmap bitmapFilter = GPUFilterUtils.getFilterBitmap(selectBitmap, FilterItem.createFilterForType(filterItem.filterType));
+            Bitmap bitmapFilter = GPUFilterUtils.getFilterBitmap(selectBitmap, FilterItem.createFilterForType(filterItem.getFilterType()));
             binding.vidAgfIgview.setImageBitmap(bitmapFilter);
         } catch (Exception e) {
             DevLogEngine.getEngine().eTag(TAG, e, "setFilter");

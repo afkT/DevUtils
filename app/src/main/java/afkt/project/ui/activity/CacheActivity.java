@@ -44,7 +44,7 @@ public class CacheActivity
             ) {
                 // 获取字符串
                 String str;
-                switch (buttonValue.type) {
+                switch (buttonValue.getType()) {
                     case ButtonValue.BTN_CACHE_STRING:
                         DevCache.newCache().put("str", "这是字符串", -1);
                         showToast(true, "存储字符串成功");
@@ -89,7 +89,7 @@ public class CacheActivity
                         showToast(true, "清除全部数据成功");
                         break;
                     default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
+                        ToastTintUtils.warning("未处理 " + buttonValue.getText() + " 事件");
                         break;
                 }
             }

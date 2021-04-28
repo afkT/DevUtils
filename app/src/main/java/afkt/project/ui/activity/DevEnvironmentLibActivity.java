@@ -43,7 +43,7 @@ public class DevEnvironmentLibActivity
                     int param
             ) {
                 boolean result;
-                switch (buttonValue.type) {
+                switch (buttonValue.getType()) {
                     case ButtonValue.BTN_DEV_ENVIRONMENT:
                         result = DevEnvironmentActivity.start(mContext, new RestartCallback() {
                             @Override
@@ -61,7 +61,7 @@ public class DevEnvironmentLibActivity
                         showToast(result, "设置成功", "设置失败");
                         break;
                     default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
+                        ToastTintUtils.warning("未处理 " + buttonValue.getText() + " 事件");
                         break;
                 }
             }

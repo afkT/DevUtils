@@ -58,7 +58,7 @@ public class LoggerActivity
                     ButtonValue buttonValue,
                     int param
             ) {
-                switch (buttonValue.type) {
+                switch (buttonValue.getType()) {
                     case ButtonValue.BTN_LOGGER_PRINT:
                         showToast(true, "打印成功, 请查看 Logcat");
                         LoggerUse.tempLog();
@@ -68,7 +68,7 @@ public class LoggerActivity
                         LoggerUse.testTime();
                         break;
                     default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
+                        ToastTintUtils.warning("未处理 " + buttonValue.getText() + " 事件");
                         break;
                 }
             }

@@ -77,7 +77,7 @@ public class WifiActivity
                     ButtonValue buttonValue,
                     int param
             ) {
-                switch (buttonValue.type) {
+                switch (buttonValue.getType()) {
                     case ButtonValue.BTN_WIFI_OPEN:
                         if (wifiUtils.isOpenWifi()) {
                             ToastTintUtils.error("Wifi 已打开");
@@ -194,7 +194,7 @@ public class WifiActivity
                         showToast(true, "注销监听成功");
                         break;
                     default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
+                        ToastTintUtils.warning("未处理 " + buttonValue.getText() + " 事件");
                         break;
                 }
             }

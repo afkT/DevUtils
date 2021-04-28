@@ -52,7 +52,7 @@ public class AccessibilityListenerServiceActivity
                     ButtonValue buttonValue,
                     int param
             ) {
-                switch (buttonValue.type) {
+                switch (buttonValue.getType()) {
                     case ButtonValue.BTN_ACCESSIBILITY_SERVICE_CHECK:
                         boolean check = AccessibilityListenerService.isAccessibilitySettingsOn(AppUtils.getPackageName());
                         showToast(check, "已开启无障碍功能", "未开启无障碍功能");
@@ -72,7 +72,7 @@ public class AccessibilityListenerServiceActivity
                         AccessibilityListenerService.stopService();
                         break;
                     default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
+                        ToastTintUtils.warning("未处理 " + buttonValue.getText() + " 事件");
                         break;
                 }
             }

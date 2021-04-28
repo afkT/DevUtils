@@ -47,7 +47,7 @@ public class TimerActivity
             ) {
                 // 获取操作结果
                 boolean result;
-                switch (buttonValue.type) {
+                switch (buttonValue.getType()) {
                     case ButtonValue.BTN_TIMER_START:
                         if (mTimer == null) {
                             // 初始化定时器
@@ -100,7 +100,7 @@ public class TimerActivity
                         showToast(result, "定时器运行次数: " + mTimer.getTriggerNumber(), "定时器未启动");
                         break;
                     default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
+                        ToastTintUtils.warning("未处理 " + buttonValue.getText() + " 事件");
                         break;
                 }
             }

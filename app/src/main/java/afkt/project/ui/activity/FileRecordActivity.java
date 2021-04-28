@@ -38,7 +38,7 @@ public class FileRecordActivity
                     ButtonValue buttonValue,
                     int param
             ) {
-                switch (buttonValue.type) {
+                switch (buttonValue.getType()) {
                     case ButtonValue.BTN_FILE_RECORD_ANALYSIS:
                         showToast(true, "保存成功");
                         FileRecordUse.analysisRecord();
@@ -48,7 +48,7 @@ public class FileRecordActivity
                         FileRecordUse.fileRecord();
                         break;
                     default:
-                        ToastTintUtils.warning("未处理 " + buttonValue.text + " 事件");
+                        ToastTintUtils.warning("未处理 " + buttonValue.getText() + " 事件");
                         break;
                 }
             }
