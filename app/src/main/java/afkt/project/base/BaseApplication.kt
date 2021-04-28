@@ -75,8 +75,8 @@ class BaseApplication : MultiDexApplication() {
         DevUtils.openDebug()
 
         // 可进行日志拦截编码
-        // DevLogger.setPrint(new DevLogger.Print());
-        // JCLogUtils.setPrint(new JCLogUtils.Print());
+        // DevLogger.setPrint(new DevLogger.Print())
+        // JCLogUtils.setPrint(new JCLogUtils.Print())
         LogPrintUtils.setPrint(LogPrintUtils.Print { logType, tag, message ->
             var message: String? = message ?: return@Print
             // 进行编码处理
@@ -211,9 +211,9 @@ class BaseApplication : MultiDexApplication() {
                 ex: Throwable
             ) {
 //                // 退出 JVM (Java 虚拟机 ) 释放所占内存资源, 0 表示正常退出、非 0 的都为异常退出
-//                System.exit(-1);
+//                System.exit(-1)
 //                // 从操作系统中结束掉当前程序的进程
-//                android.os.Process.killProcess(android.os.Process.myPid());
+//                android.os.Process.killProcess(android.os.Process.myPid())
                 // 关闭 APP
                 ActivityUtils.getManager().exitApplication()
                 // 可开启定时任务, 延迟几秒启动 APP

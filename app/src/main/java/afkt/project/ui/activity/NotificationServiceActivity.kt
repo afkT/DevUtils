@@ -105,7 +105,7 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                     val bundle = notification.extras
                     for (key in bundle.keySet()) {
-                        builder.append("\n" + key + ": " + bundle.get(key));
+                        builder.append("\n" + key + ": " + bundle.get(key))
                     }
                 }
                 // 打印日志
