@@ -28,7 +28,7 @@ import afkt.project.util.zxing.PreviewCallback;
 import afkt.project.util.zxing.DecodeConfig;
 import afkt.project.util.zxing.DecodeFormat;
 import afkt.project.util.zxing.DecodeResult;
-import afkt.project.util.zxing.decode.DecodeThread;
+import afkt.project.util.zxing.DecodeThread;
 import dev.engine.log.DevLogEngine;
 import dev.other.PictureSelectorUtils;
 import dev.other.ZXingQRCodeUtils;
@@ -44,6 +44,12 @@ import dev.utils.app.image.ImageUtils;
 import dev.utils.app.permission.PermissionUtils;
 import dev.utils.app.toast.ToastTintUtils;
 import dev.widget.ui.ScanShapeView;
+
+import static afkt.project.util.zxing.Zxing_decodeKt.WHAT_QUIT;
+import static afkt.project.util.zxing.Zxing_decodeKt.WHAT_DECODE;
+import static afkt.project.util.zxing.Zxing_decodeKt.WHAT_DECODE_FAILED;
+import static afkt.project.util.zxing.Zxing_decodeKt.WHAT_DECODE_SUCCEEDED;
+import static afkt.project.util.zxing.Zxing_decodeKt.WHAT_RESTART_PREVIEW;
 
 /**
  * detail: 二维码扫描解析
@@ -455,19 +461,19 @@ public class QRCodeScanActivity
 
         @Override
         public void handleMessage(Message message) {
-            if (message.what == R.id.restart_preview) {
+            if (message.what == WHAT_RESTART_PREVIEW) {
                 restartPreviewAndDecode();
-            } else if (message.what == R.id.decode_succeeded) { // 解析成功
+            } else if (message.what == WHAT_DECODE_SUCCEEDED) { // 解析成功
                 DevLogEngine.getEngine().dTag(TAG, "解析成功");
                 mState = State.SUCCESS;
                 Bundle bundle = message.getData();
                 mDecodeResult.handleDecode((Result) message.obj, bundle);
-            } else if (message.what == R.id.decode_failed) { // 解析失败 ( 解析不出来触发 )
+            } else if (message.what == WHAT_DECODE_FAILED) { // 解析失败 ( 解析不出来触发 )
                 DevLogEngine.getEngine().dTag(TAG, "解析失败");
                 // 表示预览中
                 mState = State.PREVIEW;
                 // 设置预览解码线程
-                requestPreviewFrame(mDecodeThread.getHandler(), R.id.decode);
+                requestPreviewFrame(mDecodeThread.getHandler(), WHAT_DECODE);
             }
         }
 
@@ -489,7 +495,7 @@ public class QRCodeScanActivity
             if (mState == State.SUCCESS) {
                 mState = State.PREVIEW;
                 // 设置请求预览页面
-                requestPreviewFrame(mDecodeThread.getHandler(), R.id.decode);
+                requestPreviewFrame(mDecodeThread.getHandler(), WHAT_DECODE);
             }
         }
 
@@ -524,7 +530,7 @@ public class QRCodeScanActivity
             mState = State.DONE;
             // 停止预览
             mCameraAssist.stopPreview();
-            Message quit = Message.obtain(mDecodeThread.getHandler(), R.id.quit);
+            Message quit = Message.obtain(mDecodeThread.getHandler(), WHAT_QUIT);
             quit.sendToTarget();
             try {
                 // 进行处理解析数据
@@ -532,8 +538,8 @@ public class QRCodeScanActivity
             } catch (InterruptedException e) {
             }
             // 移除堵塞在队列的消息
-            removeMessages(R.id.decode_succeeded);
-            removeMessages(R.id.decode_failed);
+            removeMessages(WHAT_DECODE_SUCCEEDED);
+            removeMessages(WHAT_DECODE_FAILED);
         }
     }
 
