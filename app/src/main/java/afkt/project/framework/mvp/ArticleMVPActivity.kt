@@ -1,149 +1,145 @@
-package afkt.project.framework.mvp;
+package afkt.project.framework.mvp
 
-import android.view.View;
-
-import com.tt.whorlviewlibrary.WhorlView;
-
-import afkt.project.R;
-import afkt.project.base.app.BaseMVPActivity;
-import afkt.project.databinding.BaseViewRecyclerviewBinding;
-import afkt.project.model.bean.ArticleBean;
-import afkt.project.ui.adapter.ArticleAdapter;
-import dev.other.retrofit.RxJavaManager;
-import dev.utils.app.ViewUtils;
-import dev.utils.common.CollectionUtils;
-import dev.widget.assist.ViewAssist;
-import dev.widget.function.StateLayout;
-import io.reactivex.rxjava3.disposables.Disposable;
+import afkt.project.R
+import afkt.project.base.app.BaseMVPActivity
+import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.model.bean.ArticleBean
+import afkt.project.ui.adapter.ArticleAdapter
+import android.view.View
+import com.tt.whorlviewlibrary.WhorlView
+import dev.other.retrofit.RxJavaManager
+import dev.utils.app.ViewUtils
+import dev.utils.common.CollectionUtils
+import dev.widget.assist.ViewAssist
+import dev.widget.function.StateLayout
+import io.reactivex.rxjava3.disposables.Disposable
 
 /**
  * detail: 文章 MVP Activity
  * @author Ttt
  */
-public class ArticleMVPActivity
-        extends BaseMVPActivity<ArticleMVP.Presenter, BaseViewRecyclerviewBinding>
-        implements ArticleMVP.View {
+class ArticleMVPActivity : BaseMVPActivity<ArticleMVP.Presenter, BaseViewRecyclerviewBinding>(),
+    ArticleMVP.View {
 
     // 加载动画
-    WhorlView      vid_sli_load_view;
+    var loadView: WhorlView? = null
+
     // 适配器
-    ArticleAdapter articleAdapter;
+    var adapter = ArticleAdapter()
 
-    @Override
-    public ArticleMVP.Presenter createPresenter() {
-        return new ArticleMVP.Presenter(this);
+    override fun createPresenter(): ArticleMVP.Presenter {
+        return ArticleMVP.Presenter(this)
     }
 
-    @Override
-    public int baseLayoutId() {
-        return R.layout.base_view_recyclerview;
+    override fun baseLayoutId(): Int {
+        return R.layout.base_view_recyclerview
     }
 
-    @Override
-    public void initView() {
-        super.initView();
+    override fun initView() {
+        super.initView()
         // 初始化 View
-        View view = stateLayout.getView(ViewAssist.TYPE_ING);
-        vid_sli_load_view = ViewUtils.findViewById(view, R.id.vid_sli_load_view);
+        val view = stateLayout.getView(ViewAssist.TYPE_ING)
+        loadView = ViewUtils.findViewById(view, R.id.vid_sli_load_view)
     }
 
-    @Override
-    public void initValue() {
-        super.initValue();
+    override fun initValue() {
+        super.initValue()
         // 初始化布局管理器、适配器
-        articleAdapter = new ArticleAdapter();
-        binding.vidBvrRecy.setAdapter(articleAdapter);
+        binding.vidBvrRecy.adapter = adapter
     }
 
-    @Override
-    public void initListener() {
-        super.initListener();
+    override fun initListener() {
+        super.initListener()
         // 设置监听
-        stateLayout.setListener(new StateLayout.Listener() {
-            @Override
-            public void onRemove(
-                    StateLayout layout,
-                    int type,
-                    boolean removeView
+        stateLayout.setListener(object : StateLayout.Listener {
+            override fun onRemove(
+                layout: StateLayout,
+                type: Int,
+                removeView: Boolean
             ) {
             }
 
-            @Override
-            public void onNotFound(
-                    StateLayout layout,
-                    int type
+            override fun onNotFound(
+                layout: StateLayout,
+                type: Int
             ) {
                 // 切换 View 操作
                 if (type == ViewAssist.TYPE_SUCCESS) {
-                    ViewUtils.reverseVisibilitys(true, contentAssist.contentLinear, contentAssist.stateLinear);
+                    ViewUtils.reverseVisibilitys(
+                        true,
+                        contentAssist.contentLinear,
+                        contentAssist.stateLinear
+                    )
                 }
             }
 
-            @Override
-            public void onChange(
-                    StateLayout layout,
-                    int type,
-                    int oldType,
-                    View view
+            override fun onChange(
+                layout: StateLayout,
+                type: Int,
+                oldType: Int,
+                view: View
             ) {
                 // 判断是否操作成功
-                boolean success = (type == ViewAssist.TYPE_SUCCESS);
+                val success = (type == ViewAssist.TYPE_SUCCESS)
                 // 切换 View 操作
-                if (ViewUtils.reverseVisibilitys(success, contentAssist.contentLinear, contentAssist.stateLinear)) {
+                if (ViewUtils.reverseVisibilitys(
+                        success,
+                        contentAssist.contentLinear,
+                        contentAssist.stateLinear
+                    )
+                ) {
                     // 属于请求成功
                 } else {
                     if (type == ViewAssist.TYPE_ING) {
-                        if (!vid_sli_load_view.isCircling()) {
-                            vid_sli_load_view.start();
+                        loadView?.apply {
+                            if (!isCircling) start()
                         }
                     } else {
-                        vid_sli_load_view.stop();
+                        loadView?.stop()
                     }
                 }
             }
-        });
+        })
     }
 
-    @Override
-    public void initOther() {
-        super.initOther();
+    override fun initOther() {
+        super.initOther()
         // 表示请求中
-        stateLayout.showIng();
+        stateLayout.showIng()
         // 获取文章列表
-        presenter.getArticleLists();
+        presenter.articleLists()
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    override fun onDestroy() {
+        super.onDestroy()
         // 停止动画
-        vid_sli_load_view.stop();
+        loadView?.stop()
     }
 
     // ===================
     // = ArticleMVP.View =
     // ===================
 
-    @Override
-    public void onArticleListResponse(
-            boolean succeed,
-            ArticleBean articleBean
+    override fun onArticleListResponse(
+        succeed: Boolean,
+        articleBean: ArticleBean?
     ) {
         if (succeed) {
-            if (CollectionUtils.isEmpty(articleBean.data.datas)) { // 无数据
-                stateLayout.showEmptyData();
-            } else { // 请求成功
-                stateLayout.showSuccess();
-                // 设置数据源
-                articleAdapter.setDataList(articleBean.data.datas);
+            articleBean?.data?.apply {
+                if (CollectionUtils.isEmpty(datas)) { // 无数据
+                    stateLayout.showEmptyData()
+                } else { // 请求成功
+                    stateLayout.showSuccess()
+                    // 设置数据源
+                    adapter.setDataList(datas)
+                }
             }
         } else { // 请求失败
-            stateLayout.showFailed();
+            stateLayout.showFailed()
         }
     }
 
-    @Override
-    public void addDisposable(Disposable disposable) {
-        RxJavaManager.getInstance().add(TAG, disposable);
+    override fun addDisposable(disposable: Disposable) {
+        RxJavaManager.getInstance().add(TAG, disposable)
     }
 }

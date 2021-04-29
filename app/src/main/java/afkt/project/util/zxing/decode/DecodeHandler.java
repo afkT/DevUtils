@@ -20,6 +20,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.Map;
 
 import afkt.project.R;
+import afkt.project.util.zxing.DecodeConfig;
 import dev.engine.log.DevLogEngine;
 
 /**

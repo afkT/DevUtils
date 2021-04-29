@@ -12,6 +12,9 @@ import java.util.EnumSet;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
+import afkt.project.util.zxing.DecodeConfig;
+import afkt.project.util.zxing.DecodeFormat;
+
 /**
  * detail: 解码线程
  * @author Ttt

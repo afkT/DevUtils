@@ -14,6 +14,8 @@ import dev.base.adapter.newBindingViewHolder
 import dev.engine.image.DevImageEngine
 import dev.utils.app.AppUtils
 import dev.utils.app.ListenerUtils
+import dev.utils.app.TextViewUtils
+import dev.utils.common.HtmlUtils
 import dev.utils.common.NumberUtils
 import dev.utils.common.StringUtils
 
@@ -36,7 +38,7 @@ class ArticleAdapter : DevDataAdapter<ListBean, DevBaseViewBindingVH<AdapterArti
     ) {
         val item = getDataItem(position)
         // 标题
-        holder.binding.vidAaTitleTv.text = item.title
+        TextViewUtils.setHtmlText(holder.binding.vidAaTitleTv, item.title)
         // 时间
         holder.binding.vidAaTimeTv.text = StringUtils.checkValue(item.niceShareDate, item.niceDate)
         // 随机图片
