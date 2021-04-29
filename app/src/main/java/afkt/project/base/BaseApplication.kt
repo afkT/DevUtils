@@ -265,12 +265,12 @@ class BaseApplication : MultiDexApplication() {
         AutoSizeConfig.getInstance().unitsManager.isSupportDP = true
 
         // 初始化 Retrofit
-        RetrofitUtils.getInstance().initRetrofit()
+        RetrofitUtils.instance.initRetrofit()
 
         // 环境 ( 服务器地址 ) 改变通知
         DevEnvironment.addOnEnvironmentChangeListener { module: ModuleBean?, oldEnvironment: EnvironmentBean?, newEnvironment: EnvironmentBean? ->
             // 改变地址重新初始化
-            RetrofitUtils.getInstance().initRetrofit().resetAPIService()
+            RetrofitUtils.instance.resetAPIService()
         }
 
         // 截图监听

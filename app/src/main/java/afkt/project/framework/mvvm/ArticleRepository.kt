@@ -15,7 +15,7 @@ import dev.other.retrofit.subscriber.BaseBeanSubscriber
 class ArticleRepository {
 
     fun requestArticleLists(article: MutableLiveData<ArticleBean?>): MutableLiveData<ArticleBean?> {
-        RetrofitUtils.getWanAndroidService().getArticleList(0)
+        RetrofitUtils.instance.wanAndroidService().getArticleList(0)
             .compose(RxJavaManager.io_main())
             .subscribeWith(object : BaseBeanSubscriber<ArticleBean>() {
                 override fun onSuccessResponse(data: ArticleBean) {

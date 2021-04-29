@@ -68,7 +68,7 @@ class ArticleMVP {
                 override fun requestArticleLists() {
                     // 映射各种 JSON 实体类
                     val articleList =
-                        RetrofitUtils.getWanAndroidService().getArticleList(0)
+                        RetrofitUtils.instance.wanAndroidService().getArticleList(0)
                             .compose(RxJavaManager.io_main())
                             .subscribeWith(object : BaseBeanSubscriber<ArticleBean>() {
                                 override fun onSuccessResponse(data: ArticleBean) {
