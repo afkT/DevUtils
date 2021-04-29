@@ -124,19 +124,18 @@ class ArticleMVPActivity : BaseMVPActivity<ArticleMVP.Presenter, BaseViewRecycle
         succeed: Boolean,
         articleBean: ArticleBean?
     ) {
-        if (succeed) {
-            articleBean?.data?.apply {
-                if (CollectionUtils.isEmpty(datas)) { // 无数据
-                    stateLayout.showEmptyData()
-                } else { // 请求成功
-                    stateLayout.showSuccess()
-                    // 设置数据源
-                    adapter.setDataList(datas)
-                }
+        articleBean?.data?.apply {
+            if (CollectionUtils.isEmpty(datas)) { // 无数据
+                stateLayout.showEmptyData()
+            } else { // 请求成功
+                stateLayout.showSuccess()
+                // 设置数据源
+                adapter.setDataList(datas)
             }
-        } else { // 请求失败
-            stateLayout.showFailed()
+            return
         }
+        // 请求失败
+        stateLayout.showFailed()
     }
 
     override fun addDisposable(disposable: Disposable) {

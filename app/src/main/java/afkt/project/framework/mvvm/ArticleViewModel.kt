@@ -1,24 +1,28 @@
-package afkt.project.framework.mvvm;
+package afkt.project.framework.mvvm
 
-import androidx.lifecycle.DefaultLifecycleObserver;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import afkt.project.model.bean.ArticleBean
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
-import afkt.project.model.bean.ArticleBean;
+/**
+ * detail: 文章相关 ViewModel
+ * @author Ttt
+ * 在组件化下可考虑以模块命名，全部统一在一个文件内
+ * 如 UserViewModel 便于减少类数量 ( 以及复杂性, 方便整个模块便捷使用统一维护 )
+ */
+class ArticleViewModel : ViewModel(),
+    DefaultLifecycleObserver {
 
-public class ArticleViewModel
-        extends ViewModel
-        implements DefaultLifecycleObserver {
-
-    MutableLiveData<ArticleBean> article = new MutableLiveData<>();
+    var article = MutableLiveData<ArticleBean?>()
 
     // Repository
-    ArticleRepository repository = new ArticleRepository();
+    var repository = ArticleRepository()
 
     /**
      * 请求文章列表
      */
-    public MutableLiveData<ArticleBean> requestArticleLists() {
-        return repository.requestArticleLists(article);
+    fun requestArticleLists(): MutableLiveData<ArticleBean?> {
+        return repository.requestArticleLists(article)
     }
 }

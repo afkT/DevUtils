@@ -1,159 +1,150 @@
-package afkt.project.framework.mvvm;
+package afkt.project.framework.mvvm
 
-import android.view.View;
-
-import androidx.appcompat.app.ActionBar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import com.tt.whorlviewlibrary.WhorlView;
-
-import afkt.project.BR;
-import afkt.project.R;
-import afkt.project.base.app.BaseMVVMActivity;
-import afkt.project.databinding.ActivityArticleMvvmBinding;
-import afkt.project.ui.adapter.ArticleAdapter;
-import dev.utils.DevFinal;
-import dev.utils.app.ViewUtils;
-import dev.utils.common.CollectionUtils;
-import dev.widget.assist.ViewAssist;
-import dev.widget.function.StateLayout;
+import afkt.project.BR
+import afkt.project.R
+import afkt.project.base.app.BaseMVVMActivity
+import afkt.project.databinding.ActivityArticleMvvmBinding
+import afkt.project.model.bean.ArticleBean
+import afkt.project.ui.adapter.ArticleAdapter
+import android.view.View
+import androidx.lifecycle.Observer
+import com.tt.whorlviewlibrary.WhorlView
+import dev.utils.DevFinal
+import dev.utils.app.ViewUtils
+import dev.utils.common.CollectionUtils
+import dev.widget.assist.ViewAssist
+import dev.widget.function.StateLayout
 
 /**
  * detail: 文章 MVVM Activity
  * @author Ttt
  */
-public class ArticleMVVMActivity
-        extends BaseMVVMActivity<ActivityArticleMvvmBinding, ArticleViewModel> {
+class ArticleMVVMActivity : BaseMVVMActivity<ActivityArticleMvvmBinding, ArticleViewModel>() {
 
     // 加载动画
-    WhorlView whorlView;
+    var loadView: WhorlView? = null
 
-    @Override
-    public int baseContentId() {
-        return R.layout.activity_article_mvvm;
+    // 适配器
+    var adapter = ArticleAdapter()
+
+    override fun baseContentId(): Int = R.layout.activity_article_mvvm
+
+    override fun initOrder() {
+        initViewModel()
+        super.initOrder()
     }
 
-    @Override
-    public void initOrder() {
-        initViewModel();
-        super.initOrder();
-    }
+    override fun initView() {
+        super.initView()
 
-    @Override
-    public void initView() {
-        super.initView();
-
-        setSupportActionBar(binding.vidAamToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
+        setSupportActionBar(binding.vidAamToolbar)
+        supportActionBar?.apply {
             // 给左上角图标的左边加上一个返回的图标
-            actionBar.setDisplayHomeAsUpEnabled(true);
+            setDisplayHomeAsUpEnabled(true)
             // 对应 ActionBar.DISPLAY_SHOW_TITLE
-            actionBar.setDisplayShowTitleEnabled(false);
+            setDisplayShowTitleEnabled(false)
         }
+
         // 设置点击事件
-        binding.vidAamToolbar.setNavigationOnClickListener(v -> finish());
+        binding.vidAamToolbar.setNavigationOnClickListener { v: View? -> finish() }
 
         // 获取标题
-        String title = getIntent().getStringExtra(DevFinal.TITLE);
+        val title = intent.getStringExtra(DevFinal.TITLE)
         // 设置标题
-        binding.setTitle(title); // 或用下面设置
-        binding.setVariable(BR.title, title); // 设置后, 会动态刷新
+        binding.title = title // 或用下面设置
+        binding.setVariable(BR.title, title) // 设置后, 会动态刷新
 
         // 初始化 View
-        View view = binding.vidAamState.getView(ViewAssist.TYPE_ING);
-        whorlView = ViewUtils.findViewById(view, R.id.vid_sli_load_view);
+        val view = binding.vidAamState.getView(ViewAssist.TYPE_ING)
+        loadView = ViewUtils.findViewById(view, R.id.vid_sli_load_view)
     }
 
-    @Override
-    public void initValue() {
-        super.initValue();
+    override fun initValue() {
+        super.initValue()
         // 初始化布局管理器、适配器
-        binding.vidAamRecy.setLayoutManager(new LinearLayoutManager(this));
-        binding.vidAamRecy.setAdapter(new ArticleAdapter());
+        binding.vidAamRecy.adapter = adapter
     }
 
-    @Override
-    public void initListener() {
-        super.initListener();
+    override fun initListener() {
+        super.initListener()
         // 设置监听
-        binding.vidAamState.setListener(new StateLayout.Listener() {
-            @Override
-            public void onRemove(
-                    StateLayout layout,
-                    int type,
-                    boolean removeView
+        binding.vidAamState.setListener(object : StateLayout.Listener {
+            override fun onRemove(
+                layout: StateLayout,
+                type: Int,
+                removeView: Boolean
             ) {
             }
 
-            @Override
-            public void onNotFound(
-                    StateLayout layout,
-                    int type
+            override fun onNotFound(
+                layout: StateLayout,
+                type: Int
             ) {
                 // 切换 View 操作
                 if (type == ViewAssist.TYPE_SUCCESS) {
-                    ViewUtils.reverseVisibilitys(true, binding.vidAamRecy, binding.vidAamState);
+                    ViewUtils.reverseVisibilitys(true, binding.vidAamRecy, binding.vidAamState)
                 }
             }
 
-            @Override
-            public void onChange(
-                    StateLayout layout,
-                    int type,
-                    int oldType,
-                    View view
+            override fun onChange(
+                layout: StateLayout,
+                type: Int,
+                oldType: Int,
+                view: View
             ) {
                 // 判断是否操作成功
-                boolean success = (type == ViewAssist.TYPE_SUCCESS);
+                val success = (type == ViewAssist.TYPE_SUCCESS)
                 // 切换 View 操作
-                if (ViewUtils.reverseVisibilitys(success, binding.vidAamRecy, binding.vidAamState)) {
+                if (ViewUtils.reverseVisibilitys(
+                        success,
+                        binding.vidAamRecy,
+                        binding.vidAamState
+                    )
+                ) {
                     // 属于请求成功
                 } else {
                     if (type == ViewAssist.TYPE_ING) {
-                        if (!whorlView.isCircling()) {
-                            whorlView.start();
+                        loadView?.apply {
+                            if (!isCircling) start()
                         }
                     } else {
-                        whorlView.stop();
+                        loadView?.stop()
                     }
                 }
             }
-        });
+        })
     }
 
-    @Override
-    public void initOther() {
-        super.initOther();
+    override fun initOther() {
+        super.initOther()
         // 表示请求中
-        binding.vidAamState.showIng();
+        binding.vidAamState.showIng()
         // 开始请求
-        viewModel.requestArticleLists().observe(this, articleBean -> {
-            if (articleBean != null) {
-                if (CollectionUtils.isEmpty(articleBean.data.datas)) { // 无数据
-                    binding.vidAamState.showEmptyData();
+        viewModel.requestArticleLists().observe(this, Observer { articleBean: ArticleBean? ->
+            articleBean?.data?.apply {
+                if (CollectionUtils.isEmpty(datas)) { // 无数据
+                    binding.vidAamState.showEmptyData()
                 } else { // 请求成功
-                    binding.vidAamState.showSuccess();
+                    binding.vidAamState.showSuccess()
                     // 设置数据源
-                    ((ArticleAdapter) binding.vidAamRecy.getAdapter())
-                            .setDataList(articleBean.data.datas);
+                    adapter.setDataList(datas)
                 }
-            } else {
-                binding.vidAamState.showFailed();
+                return@Observer
             }
-        });
+            binding.vidAamState.showFailed()
+        })
     }
 
-    @Override
-    public void initViewModel() {
-        viewModel = getActivityViewModel(ArticleViewModel.class);
-        getLifecycle().addObserver(viewModel);
+    override fun initViewModel() {
+        getActivityViewModel(ArticleViewModel::class.java)?.apply {
+            viewModel = this
+            lifecycle.addObserver(viewModel)
+        }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    override fun onDestroy() {
+        super.onDestroy()
         // 停止动画
-        whorlView.stop();
+        loadView?.stop()
     }
 }

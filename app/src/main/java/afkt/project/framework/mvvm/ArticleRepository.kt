@@ -1,31 +1,34 @@
-package afkt.project.framework.mvvm;
+package afkt.project.framework.mvvm
 
-import androidx.lifecycle.MutableLiveData;
+import afkt.project.function.http.RetrofitUtils
+import afkt.project.model.bean.ArticleBean
+import androidx.lifecycle.MutableLiveData
+import dev.other.retrofit.RxJavaManager
+import dev.other.retrofit.subscriber.BaseBeanSubscriber
 
-import afkt.project.function.http.RetrofitUtils;
-import afkt.project.model.bean.ArticleBean;
-import dev.other.retrofit.RxJavaManager;
-import dev.other.retrofit.subscriber.BaseBeanSubscriber;
+/**
+ * detail: 文章相关 Repository
+ * @author Ttt
+ * 在组件化下可考虑以模块命名，全部统一在一个文件内
+ * 如 UserRepository 便于减少类数量 ( 以及复杂性, 方便整个模块便捷使用统一维护 )
+ */
+class ArticleRepository {
 
-public class ArticleRepository {
-
-    public MutableLiveData<ArticleBean> requestArticleLists(MutableLiveData<ArticleBean> article) {
+    fun requestArticleLists(article: MutableLiveData<ArticleBean?>): MutableLiveData<ArticleBean?> {
         RetrofitUtils.getWanAndroidService().getArticleList(0)
-                .compose(RxJavaManager.io_main())
-                .subscribeWith(new BaseBeanSubscriber<ArticleBean>() {
-                    @Override
-                    public void onSuccessResponse(ArticleBean data) {
-                        article.postValue(data);
-                    }
+            .compose(RxJavaManager.io_main())
+            .subscribeWith(object : BaseBeanSubscriber<ArticleBean>() {
+                override fun onSuccessResponse(data: ArticleBean) {
+                    article.postValue(data)
+                }
 
-                    @Override
-                    public void onErrorResponse(
-                            Throwable throwable,
-                            String message
-                    ) {
-                        article.postValue(null);
-                    }
-                });
-        return article;
+                override fun onErrorResponse(
+                    throwable: Throwable,
+                    message: String
+                ) {
+                    article.postValue(null)
+                }
+            })
+        return article
     }
 }
