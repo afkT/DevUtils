@@ -30,19 +30,19 @@ const val WHAT_RESTART_PREVIEW = 104
 interface DecodeConfig {
 
     // 获取处理 Handler
-    val handler: Handler?
+    fun getHandler(): Handler?
 
     // 是否裁减
-    val isCropRect: Boolean
+    fun isCropRect(): Boolean
 
     // 裁减区域
     fun getCropRect(): Rect?
 
     // 获取预览大小
-    val previewSize: Camera.Size?
+    fun getPreviewSize(): Camera.Size?
 
     // 判断是否出现异常
-    val isError: Boolean
+    fun isError(): Boolean
 
     /**
      * 设置异常
@@ -276,9 +276,9 @@ class DecodeHandler(
         width: Int,
         height: Int
     ) {
-        mDecodeConfig.handler ?: return
+        mDecodeConfig.getHandler() ?: return
         // 获取 Camera 预览大小
-        val size = mDecodeConfig.previewSize ?: return
+        val size = mDecodeConfig.getPreviewSize() ?: return
         // 这里需要将获取的 data 翻转一下, 因为相机默认拿的的横屏的数据
         val rotatedData = ByteArray(data.size)
         for (y in 0 until size.height) {
@@ -304,7 +304,7 @@ class DecodeHandler(
                 mMultiFormatReader.reset()
             }
         }
-        val handler = mDecodeConfig.handler
+        val handler = mDecodeConfig.getHandler()
         if (rawResult != null) {
             DevLogEngine.getEngine()?.dTag(TAG, "解析成功, 发送数据")
             if (handler != null) {
@@ -338,9 +338,9 @@ class DecodeHandler(
     ): PlanarYUVLuminanceSource? {
         DevLogEngine.getEngine()?.dTag(TAG, "buildLuminanceSource 解析摄像头数据")
         // 判断是否裁减
-        return if (mDecodeConfig.isCropRect && mDecodeConfig.getCropRect() != null) {
+        return if (mDecodeConfig.isCropRect() && mDecodeConfig.getCropRect() != null) {
             // 判断是否出现异常
-            if (mDecodeConfig.isError) {
+            if (mDecodeConfig.isError()) {
                 PlanarYUVLuminanceSource(data, width, height, 0, 0, width, height, false)
             } else {
                 try {
