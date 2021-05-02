@@ -225,19 +225,30 @@ class BaseApplication : MultiDexApplication() {
      * 初始化 WebView 辅助类全局配置
      */
     private fun initWebViewBuilder() {
-        val assistBuilder = WebViewAssist.Builder()
-            .setBuiltInZoomControls(true) // 显示内置缩放工具
-            .setDisplayZoomControls(true) // 显示缩放工具
-            .setAppCachePath(
-                PathUtils.getInternal().getAppCachePath("cache")
-            ) // Application Caches 地址
-            .setDatabasePath(PathUtils.getInternal().getAppCachePath("db")) // 数据库缓存路径
-            .setRenderPriority(WebSettings.RenderPriority.HIGH) // 渲染优先级高
-            .setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING) // 基础布局算法
-            .setOnApplyListener { assist: WebViewAssist?, builder: WebViewAssist.Builder? ->
+        WebViewAssist.Builder().apply {
+            // 显示内置缩放工具
+            isBuiltInZoomControls = true
+            // 显示缩放工具
+            isDisplayZoomControls = true
+            // Application Caches 地址
+            appCachePath = PathUtils.getInternal().getAppCachePath("cache")
+            // 数据库缓存路径
+            databasePath = PathUtils.getInternal().getAppCachePath("db")
+            // 渲染优先级高
+            renderPriority = WebSettings.RenderPriority.HIGH
+            // 基础布局算法
+            if (AppCommonUtils.isLollipop()) {
+                layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+            } else {
+                layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+            }
+            // 应用配置监听事件
+            setOnApplyListener { assist: WebViewAssist?, builder: WebViewAssist.Builder? ->
                 DevLogEngine.getEngine().d("WebViewAssist Builder onApply")
             }
-        WebViewAssist.setGlobalBuilder(assistBuilder)
+            // WebViewAssist 构造函数会使用全局配置
+            WebViewAssist.setGlobalBuilder(this)
+        }
     }
 
     /**
