@@ -18,9 +18,6 @@ import androidx.recyclerview.widget.RecyclerView
  * DividerItemDecoration decoration = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
  * decoration.setDrawable(Drawable)
  * recyclerView.addItemDecoration(decoration)
- * <p></p>
- * 如果不想要最后一条数据添加分割线可以复制 [DividerItemDecoration] 代码修改
- * for (int i = 0; i < childCount; i++) 改为 for (int i = 0; i < childCount - 1; i++)
  */
 class LineItemDecoration(
     private val lineHeight: Float,
