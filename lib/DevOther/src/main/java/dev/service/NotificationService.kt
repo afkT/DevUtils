@@ -1,33 +1,25 @@
-package dev.service;
+package dev.service
 
-import android.annotation.TargetApi;
-import android.content.Intent;
-import android.os.Build;
-import android.service.notification.NotificationListenerService;
-import android.service.notification.StatusBarNotification;
-
-import dev.utils.LogPrintUtils;
-import dev.utils.app.NotificationUtils;
-import dev.utils.app.ServiceUtils;
+import android.annotation.TargetApi
+import android.content.Intent
+import android.os.Build
+import android.service.notification.NotificationListenerService
+import android.service.notification.StatusBarNotification
+import dev.utils.LogPrintUtils
+import dev.utils.app.NotificationUtils
+import dev.utils.app.ServiceUtils
 
 /**
  * detail: 通知栏监听服务
  * @author Ttt
- * <pre>
- *     @see <a href="https://www.jianshu.com/p/981e7de2c7be"/>
- *     所需权限
- *     <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"/>
- * </pre>
+ * https://www.jianshu.com/p/981e7de2c7be
+ * cancelAllNotifications() 删除系统中所有可被清除的通知
+ * getActiveNotifications() 返回当前系统所有通知到 StatusBarNotification[]
+ * 所需权限
+ * <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"/>
  */
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-public final class NotificationService
-        extends NotificationListenerService {
-
-    // 日志 TAG
-    private static final String TAG = NotificationService.class.getSimpleName();
-
-    // 当前服务所持对象
-    private static NotificationService sSelf;
+class NotificationService : NotificationListenerService() {
 
     // ===========
     // = 通知回调 =
@@ -35,62 +27,102 @@ public final class NotificationService
 
     /**
      * 当系统收到新的通知后触发回调
-     * @param sbn {@link StatusBarNotification}
+     * @param sbn [StatusBarNotification]
      */
-    @Override
-    public void onNotificationPosted(StatusBarNotification sbn) {
-        if (sSelf != null && sListener != null) {
-            sListener.onNotificationPosted(sbn);
-        }
+    override fun onNotificationPosted(sbn: StatusBarNotification) {
+        if (self != null) sListener?.apply { onNotificationPosted(sbn) }
     }
 
     /**
      * 当系统通知被删掉后触发回调
-     * @param sbn {@link StatusBarNotification}
+     * @param sbn [StatusBarNotification]
      */
-    @Override
-    public void onNotificationRemoved(StatusBarNotification sbn) {
-        if (sSelf != null && sListener != null) {
-            sListener.onNotificationRemoved(sbn);
-        }
+    override fun onNotificationRemoved(sbn: StatusBarNotification) {
+        if (self != null) sListener?.apply { onNotificationRemoved(sbn) }
     }
 
     // ===========
     // = 生命周期 =
     // ===========
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        LogPrintUtils.dTag(TAG, "onCreate");
-
-        if (sListener != null) {
-            sListener.onServiceCreated(this);
-        }
-        sSelf = this;
+    override fun onCreate() {
+        super.onCreate()
+        LogPrintUtils.dTag(TAG, "onCreate")
+        sListener?.onServiceCreated(this)
+        self = this
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        LogPrintUtils.dTag(TAG, "onDestroy");
-
-        if (sListener != null) {
-            sListener.onServiceDestroy();
-            sListener = null;
-        }
-        sSelf = null;
+    override fun onDestroy() {
+        super.onDestroy()
+        LogPrintUtils.dTag(TAG, "onDestroy")
+        sListener?.onServiceDestroy()
+        sListener = null
+        self = null
     }
 
-    @Override
-    public int onStartCommand(
-            Intent intent,
-            int flags,
-            int startId
-    ) {
-        LogPrintUtils.dTag(TAG, "onStartCommand");
+    override fun onStartCommand(
+        intent: Intent,
+        flags: Int,
+        startId: Int
+    ): Int {
+        LogPrintUtils.dTag(TAG, "onStartCommand")
+        sListener?.let {
+            return it.onStartCommand(this, intent, flags, startId)
+        }
+        return START_STICKY
+    }
 
-        return sListener == null ? START_STICKY : sListener.onStartCommand(this, intent, flags, startId);
+    // =======
+    // = 接口 =
+    // =======
+
+    /**
+     * detail: 通知栏监听事件
+     * @author Ttt
+     */
+    interface Listener {
+
+        /**
+         * 服务创建通知
+         * @param service [NotificationService]
+         */
+        fun onServiceCreated(service: NotificationService?)
+
+        /**
+         * 服务销毁通知
+         */
+        fun onServiceDestroy()
+
+        /**
+         * 触发服务指令
+         * @param service [NotificationService]
+         * @param intent  [Intent]
+         * @param flags   Additional data about this start request.
+         * @param startId A unique integer representing this specific request to start.  Use with [.stopSelfResult].
+         * @return The return value indicates what semantics the system should
+         * use for the service's current started state.  It may be one of the
+         * constants associated with the [.START_CONTINUATION_MASK] bits.
+         */
+        fun onStartCommand(
+            service: NotificationService?,
+            intent: Intent?,
+            flags: Int,
+            startId: Int
+        ): Int
+
+        /**
+         * 当系统收到新的通知后触发回调
+         * @param sbn [StatusBarNotification]
+         * 当 API > 18 时, 利用 Notification.extras 来获取通知内容, extras 是在 API 19 时被加入的
+         * 当 API = 18 时, 利用反射获取 Notification 中的内容
+         */
+        fun onNotificationPosted(sbn: StatusBarNotification?)
+
+        /**
+         * 当系统通知被删掉后触发回调
+         * @param sbn [StatusBarNotification]
+         */
+        fun onNotificationRemoved(sbn: StatusBarNotification?)
     }
 
     // ===============
@@ -98,143 +130,89 @@ public final class NotificationService
     // ===============
 
     /**
-     * 获取当前服务所持对象
-     * @return {@link NotificationService}
-     */
-    public static NotificationService getSelf() {
-        return sSelf;
-    }
-
-    /**
-     * 启动服务
-     */
-    public static void startService() {
-        ServiceUtils.startService(NotificationService.class);
-    }
-
-    /**
-     * 停止服务
-     */
-    public static void stopService() {
-        ServiceUtils.stopService(NotificationService.class);
-    }
-
-    // =
-
-    /**
-     * 检查是否有获取通知栏信息权限并跳转设置页面
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean checkAndIntentSetting() {
-        return NotificationUtils.checkAndIntentSetting();
-    }
-
-    /**
-     * 判断是否有获取通知栏信息权限
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean isNotificationListenerEnabled() {
-        return NotificationUtils.isNotificationListenerEnabled();
-    }
-
-    /**
-     * 判断是否有获取通知栏信息权限
-     * @param packageName 应用包名
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean isNotificationListenerEnabled(final String packageName) {
-        return NotificationUtils.isNotificationListenerEnabled(packageName);
-    }
-
-    /**
-     * 跳转到设置页面, 开启获取通知栏信息权限
-     */
-    public static void startNotificationListenSettings() {
-        NotificationUtils.startNotificationListenSettings();
-    }
-
-    // =
-
-//    cancelAllNotifications() 删除系统中所有可被清除的通知
-//    getActiveNotifications() 返回当前系统所有通知到 StatusBarNotification[]
-
-    /**
      * 取消通知方法
-     * <pre>
-     *     cancelNotification(String key) 是 API >= 21 才可以使用的, 利用 StatusBarNotification 的 getKey() 方法来获取 key 并取消通知
-     *     cancelNotification(String pkg, String tag, int id) 在 API < 21 时可以使用, 在 API >= 21 时使用此方法来取消通知将无效 ( 被废弃 )
-     * </pre>
-     * @param sbn {@link StatusBarNotification}
+     * @param sbn [StatusBarNotification]
+     * cancelNotification(String key) 是 API >= 21 才可以使用的, 利用 StatusBarNotification 的 getKey() 方法来获取 key 并取消通知
+     * cancelNotification(String pkg, String tag, int id) 在 API < 21 时可以使用, 在 API >= 21 时使用此方法来取消通知将无效 ( 被废弃 )
      */
-    public void cancelNotification(final StatusBarNotification sbn) {
+    fun cancelNotification(sbn: StatusBarNotification) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            cancelNotification(sbn.getKey());
+            cancelNotification(sbn.key)
         } else {
-            cancelNotification(sbn.getPackageName(), sbn.getTag(), sbn.getId());
+            cancelNotification(sbn.packageName, sbn.tag, sbn.id)
         }
     }
 
-    // =
-
-    // 通知栏监听事件
-    private static Listener sListener;
-
-    /**
-     * 设置通知栏监听事件
-     * @param listener {@link Listener}
-     */
-    public static void setListener(final Listener listener) {
-        NotificationService.sListener = listener;
-    }
-
-    /**
-     * detail: 通知栏监听事件
-     * @author Ttt
-     */
-    public interface Listener {
+    companion object {
+        // 日志 TAG
+        private val TAG = NotificationService::class.java.simpleName
 
         /**
-         * 服务创建通知
-         * @param service {@link NotificationService}
+         * 获取当前服务所持对象
+         * @return [NotificationService]
          */
-        void onServiceCreated(NotificationService service);
+        // 当前服务所持对象
+        var self: NotificationService? = null
+            private set
 
         /**
-         * 服务销毁通知
+         * 启动服务
          */
-        void onServiceDestroy();
+        fun startService() {
+            ServiceUtils.startService(NotificationService::class.java)
+        }
 
         /**
-         * 触发服务指令
-         * @param service {@link NotificationService}
-         * @param intent  {@link Intent}
-         * @param flags   Additional data about this start request.
-         * @param startId A unique integer representing this specific request to start.  Use with {@link #stopSelfResult(int)}.
-         * @return The return value indicates what semantics the system should
-         * use for the service's current started state.  It may be one of the
-         * constants associated with the {@link #START_CONTINUATION_MASK} bits.
+         * 停止服务
          */
-        int onStartCommand(
-                NotificationService service,
-                Intent intent,
-                int flags,
-                int startId
-        );
+        fun stopService() {
+            ServiceUtils.stopService(NotificationService::class.java)
+        }
+
+        // =
+
+        private var sListener: Listener? = null
 
         /**
-         * 当系统收到新的通知后触发回调
-         * <pre>
-         *     当 API > 18 时, 利用 Notification.extras 来获取通知内容, extras 是在 API 19 时被加入的
-         *     当 API = 18 时, 利用反射获取 Notification 中的内容
-         * </pre>
-         * @param sbn {@link StatusBarNotification}
+         * 设置通知栏监听事件
+         * @param listener [Listener]
          */
-        void onNotificationPosted(StatusBarNotification sbn);
+        fun setListener(listener: Listener?) {
+            sListener = listener
+        }
+
+        // =
 
         /**
-         * 当系统通知被删掉后触发回调
-         * @param sbn {@link StatusBarNotification}
+         * 检查是否有获取通知栏信息权限并跳转设置页面
+         * @return `true` yes, `false` no
          */
-        void onNotificationRemoved(StatusBarNotification sbn);
+        fun checkAndIntentSetting(): Boolean {
+            return NotificationUtils.checkAndIntentSetting()
+        }
+
+        /**
+         * 判断是否有获取通知栏信息权限
+         * @return `true` yes, `false` no
+         */
+        fun isNotificationListenerEnabled(): Boolean {
+            return NotificationUtils.isNotificationListenerEnabled()
+        }
+
+        /**
+         * 判断是否有获取通知栏信息权限
+         * @param packageName 应用包名
+         * @return `true` yes, `false` no
+         */
+        fun isNotificationListenerEnabled(packageName: String?): Boolean {
+            return NotificationUtils.isNotificationListenerEnabled(packageName)
+        }
+
+        /**
+         * 跳转到设置页面, 开启获取通知栏信息权限
+         */
+        fun startNotificationListenSettings() {
+            NotificationUtils.startNotificationListenSettings()
+        }
     }
 }

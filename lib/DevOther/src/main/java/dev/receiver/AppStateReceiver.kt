@@ -45,6 +45,7 @@ class AppStateReceiver private constructor() : BroadcastReceiver() {
      * @author Ttt
      */
     interface Listener {
+
         /**
          * 应用安装
          * @param packageName 应用包名

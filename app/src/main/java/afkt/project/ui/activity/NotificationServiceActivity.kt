@@ -73,7 +73,7 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
 
         // 设置监听事件
         NotificationService.setListener(object : NotificationService.Listener {
-            override fun onServiceCreated(service: NotificationService) {
+            override fun onServiceCreated(service: NotificationService?) {
                 DevLogEngine.getEngine().dTag(TAG, "服务创建通知")
             }
 
@@ -82,8 +82,8 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
             }
 
             override fun onStartCommand(
-                service: NotificationService,
-                intent: Intent,
+                service: NotificationService?,
+                intent: Intent?,
                 flags: Int,
                 startId: Int
             ): Int { // 触发服务指令
@@ -96,23 +96,24 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
                 return 0
             }
 
-            override fun onNotificationPosted(sbn: StatusBarNotification) { // 当系统收到新的通知后触发回调
-                val notification = sbn.notification
-                val builder = StringBuilder()
-                    .append("onNotificationPosted")
-                    .append("\nstatusBarNotification: ").append(sbn)
-                    .append("\ntickerText : ").append(notification.tickerText)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    val bundle = notification.extras
-                    for (key in bundle.keySet()) {
-                        builder.append("\n" + key + ": " + bundle.get(key))
+            override fun onNotificationPosted(sbn: StatusBarNotification?) { // 当系统收到新的通知后触发回调
+                sbn?.notification?.let {
+                    val builder = StringBuilder()
+                        .append("onNotificationPosted")
+                        .append("\nstatusBarNotification: ").append(sbn)
+                        .append("\ntickerText : ").append(it.tickerText)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                        val bundle = it.extras
+                        for (key in bundle.keySet()) {
+                            builder.append("\n" + key + ": " + bundle.get(key))
+                        }
                     }
+                    // 打印日志
+                    DevLogEngine.getEngine().dTag(TAG, builder.toString())
                 }
-                // 打印日志
-                DevLogEngine.getEngine().dTag(TAG, builder.toString())
             }
 
-            override fun onNotificationRemoved(sbn: StatusBarNotification) { // 当系统通知被删掉后触发回调
+            override fun onNotificationRemoved(sbn: StatusBarNotification?) { // 当系统通知被删掉后触发回调
                 val builder = StringBuilder()
                     .append("onNotificationRemoved")
                     .append("\nstatusBarNotification: ").append(sbn)
