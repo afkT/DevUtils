@@ -72,10 +72,10 @@ class AccessibilityListenerServiceActivity : BaseActivity<BaseViewRecyclerviewBi
         super.initListener()
 
         // 设置监听事件
-        AccessibilityListenerService.setListener(object : AccessibilityListenerService.Listener() {
+        AccessibilityListenerService.setListener(object : AccessibilityListenerService.Listener {
             override fun onAccessibilityEvent(
-                accessibilityEvent: AccessibilityEvent,
-                accessibilityListenerService: AccessibilityListenerService
+                accessibilityEvent: AccessibilityEvent?,
+                accessibilityListenerService: AccessibilityListenerService?
             ) {
                 val builder = StringBuilder()
                     .append("onAccessibilityEvent")
@@ -89,7 +89,7 @@ class AccessibilityListenerServiceActivity : BaseActivity<BaseViewRecyclerviewBi
                 DevLogEngine.getEngine().dTag(TAG, "onInterrupt")
             }
 
-            override fun onServiceCreated(service: AccessibilityListenerService) {
+            override fun onServiceCreated(service: AccessibilityListenerService?) {
                 super.onServiceCreated(service)
                 DevLogEngine.getEngine().dTag(TAG, "onServiceCreated")
             }

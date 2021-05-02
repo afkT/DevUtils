@@ -62,7 +62,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
         // 开始计时
         mInactivityTimerAssist.onResume()
         // 准备扫描
-        zxingDecodeAssist.onResume(binding.vidAssSurface);
+        zxingDecodeAssist.onResume(binding.vidAssSurface)
     }
 
     override fun onPause() {
@@ -72,7 +72,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
         // 暂停计时
         mInactivityTimerAssist.onPause()
         // 暂停扫描
-        zxingDecodeAssist.onPause();
+        zxingDecodeAssist.onPause()
     }
 
     override fun initValue() {
@@ -243,7 +243,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
             // 记录是否发生异常
             tryError = isError
             // 打印日志
-            DevLogEngine.getEngine().eTag(TAG, e, "setError");
+            DevLogEngine.getEngine().eTag(TAG, e, "setError")
         }
 
         override fun getHandler(): Handler? {

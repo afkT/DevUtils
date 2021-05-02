@@ -77,7 +77,7 @@ class NotificationService : NotificationListenerService() {
     // =======
 
     /**
-     * detail: 通知栏监听事件
+     * detail: 监听回调事件
      * @author Ttt
      */
     interface Listener {
@@ -174,7 +174,7 @@ class NotificationService : NotificationListenerService() {
         private var sListener: Listener? = null
 
         /**
-         * 设置通知栏监听事件
+         * 设置监听回调事件
          * @param listener [Listener]
          */
         fun setListener(listener: Listener?) {

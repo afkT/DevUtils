@@ -40,9 +40,9 @@ class ArticleMVP {
          * @param disposable [Disposable]
          * 该方法, 应该写在 MVP.IView 中并且在 MVP Activity 基类 implements MVP.IView
          * 基类实现 addDisposable 该方法代码
-         * RxJavaManager.getInstance().add(TAG, disposable);
+         * RxJavaManager.getInstance().add(TAG, disposable)
          * 用于 Retrofit 请求管理, 在 Activity onDestroy 调用
-         * RxJavaManager.getInstance().remove(TAG);
+         * RxJavaManager.getInstance().remove(TAG)
          * 这样能够实现请求跟随 Activity 生命周期销毁
          * 目前这样写, 是不想改变 MVP 结构以及在 DevBase Module 依赖 RxJava, 具体项目 copy 改造 MVP
          */
