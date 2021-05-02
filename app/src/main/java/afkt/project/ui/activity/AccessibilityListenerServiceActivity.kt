@@ -27,7 +27,7 @@ class AccessibilityListenerServiceActivity : BaseActivity<BaseViewRecyclerviewBi
     override fun onDestroy() {
         super.onDestroy()
         // 注销监听
-        AccessibilityListenerService.setAccessibilityListener(null)
+        AccessibilityListenerService.setListener(null)
         AccessibilityListenerService.stopService()
     }
 
@@ -72,7 +72,7 @@ class AccessibilityListenerServiceActivity : BaseActivity<BaseViewRecyclerviewBi
         super.initListener()
 
         // 设置监听事件
-        AccessibilityListenerService.setAccessibilityListener(object : AccessibilityListenerService.AccessibilityListener() {
+        AccessibilityListenerService.setListener(object : AccessibilityListenerService.Listener() {
             override fun onAccessibilityEvent(
                 accessibilityEvent: AccessibilityEvent,
                 accessibilityListenerService: AccessibilityListenerService

@@ -28,7 +28,7 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
     override fun onDestroy() {
         super.onDestroy()
         // 注销监听
-        NotificationService.setNotificationListener(null)
+        NotificationService.setListener(null)
         NotificationService.stopService()
     }
 
@@ -72,7 +72,7 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
         super.initListener()
 
         // 设置监听事件
-        NotificationService.setNotificationListener(object : NotificationService.NotificationListener {
+        NotificationService.setListener(object : NotificationService.Listener {
             override fun onServiceCreated(service: NotificationService) {
                 DevLogEngine.getEngine().dTag(TAG, "服务创建通知")
             }

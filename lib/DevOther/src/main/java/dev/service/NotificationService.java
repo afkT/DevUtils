@@ -177,13 +177,13 @@ public final class NotificationService
     // =
 
     // 通知栏监听事件
-    private static NotificationListener sListener;
+    private static Listener sListener;
 
     /**
      * 设置通知栏监听事件
-     * @param listener {@link NotificationListener}
+     * @param listener {@link Listener}
      */
-    public static void setNotificationListener(final NotificationListener listener) {
+    public static void setListener(final Listener listener) {
         NotificationService.sListener = listener;
     }
 
@@ -191,7 +191,7 @@ public final class NotificationService
      * detail: 通知栏监听事件
      * @author Ttt
      */
-    public interface NotificationListener {
+    public interface Listener {
 
         /**
          * 服务创建通知

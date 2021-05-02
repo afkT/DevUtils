@@ -162,13 +162,13 @@ public final class AccessibilityListenerService
     // =
 
     // 监听事件
-    private static AccessibilityListener sListener;
+    private static Listener sListener;
 
     /**
      * 设置监听事件
-     * @param listener {@link AccessibilityListener}
+     * @param listener {@link Listener}
      */
-    public static void setAccessibilityListener(final AccessibilityListener listener) {
+    public static void setListener(final Listener listener) {
         AccessibilityListenerService.sListener = listener;
     }
 
@@ -176,7 +176,7 @@ public final class AccessibilityListenerService
      * detail: 监听事件
      * @author Ttt
      */
-    public static abstract class AccessibilityListener {
+    public static abstract class Listener {
 
         /**
          * 通过这个函数可以接收系统发送来的 AccessibilityEvent
