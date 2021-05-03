@@ -9,7 +9,7 @@ import dev.other.retrofit.subscriber.BaseBeanSubscriber
 /**
  * detail: 文章相关 Repository
  * @author Ttt
- * 在组件化下可考虑以模块命名，全部统一在一个文件内
+ * 在组件化下可考虑以模块命名, 全部统一在一个文件内
  * 如 UserRepository 便于减少类数量 ( 以及复杂性, 方便整个模块便捷使用统一维护 )
  */
 class ArticleRepository {
