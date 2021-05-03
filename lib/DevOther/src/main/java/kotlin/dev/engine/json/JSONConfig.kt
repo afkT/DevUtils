@@ -1,15 +1,13 @@
-package kotlin.dev.engine.json;
+package kotlin.dev.engine.json
 
-import com.google.gson.Gson;
-
-import dev.engine.json.IJSONEngine;
+import com.google.gson.Gson
+import dev.engine.json.IJSONEngine
 
 /**
  * detail: JSON Config
  * @author Ttt
  */
-public class JSONConfig
-        extends IJSONEngine.EngineConfig {
-
-    public Gson gson;
+class JSONConfig : IJSONEngine.EngineConfig() {
+    @JvmField
+    var gson: Gson? = null
 }
