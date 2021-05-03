@@ -23,6 +23,7 @@ import dev.engine.image.IImageEngine
 import dev.engine.image.LoadListener
 import dev.engine.image.listener.ConvertStorage
 import dev.engine.image.listener.OnConvertListener
+import dev.utils.LogPrintUtils
 import dev.utils.app.PathUtils
 import dev.utils.app.image.ImageUtils
 import dev.utils.common.FileUtils
@@ -81,7 +82,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
     ) {
         if (context != null && source != null) {
             val requestManager = Glide.with(context)
-            setToRequest(requestManager, source)!!.preload()
+            setToRequest(requestManager, source)?.preload()
         }
     }
 
@@ -90,48 +91,92 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         source: DevSource?,
         config: ImageConfig?
     ) {
-        TODO("Not yet implemented")
+        if (context != null && source != null && config != null) {
+            val requestManager = Glide.with(context)
+            setToRequest(requestManager, source)?.preload(
+                config.getWidth(), config.getHeight()
+            )
+        }
     }
 
+    // =========
+    // = clear =
+    // =========
+
     override fun clear(view: View?) {
-        TODO("Not yet implemented")
+        view?.context?.let {
+            Glide.with(view.context).clear(view)
+        }
     }
 
     override fun clear(
         fragment: Fragment?,
         view: View?
     ) {
-        TODO("Not yet implemented")
+        if (fragment != null && view != null) {
+            Glide.with(fragment).clear(view)
+        }
     }
 
     override fun clearDiskCache(context: Context?) {
-        TODO("Not yet implemented")
+        if (context != null) {
+            Thread {
+                try {
+                    // This method must be called on a background thread.
+                    Glide.get(context).clearDiskCache()
+                } catch (e: Exception) {
+                    LogPrintUtils.eTag(TAG, e, "clearDiskCache")
+                }
+            }.start()
+        }
     }
 
     override fun clearMemoryCache(context: Context?) {
-        TODO("Not yet implemented")
+        if (context != null) {
+            try {
+                // This method must be called on the main thread.
+                Glide.get(context).clearMemory() // 必须在主线程上调用该方法
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "clearMemoryCache")
+            }
+        }
     }
 
     override fun clearAllCache(context: Context?) {
-        TODO("Not yet implemented")
+        clearDiskCache(context)
+        clearMemoryCache(context)
     }
+
+    // =========
+    // = other =
+    // =========
 
     override fun lowMemory(context: Context?) {
-        TODO("Not yet implemented")
+        if (context != null) {
+            try {
+                Glide.get(context).onLowMemory()
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "lowMemory")
+            }
+        }
     }
+
+    // ===========
+    // = display =
+    // ===========
 
     override fun display(
         imageView: ImageView?,
         url: String?
     ) {
-        TODO("Not yet implemented")
+        display(imageView, DevSource.create(url), null)
     }
 
     override fun display(
         imageView: ImageView?,
         source: DevSource?
     ) {
-        TODO("Not yet implemented")
+        display(imageView, source, null)
     }
 
     override fun display(
@@ -139,7 +184,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         url: String?,
         config: ImageConfig?
     ) {
-        TODO("Not yet implemented")
+        display(imageView, DevSource.create(url), config)
     }
 
     override fun display(
@@ -147,15 +192,24 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         source: DevSource?,
         config: ImageConfig?
     ) {
-        TODO("Not yet implemented")
+        if (imageView != null && imageView.context != null) {
+            val requestManager = Glide.with(imageView.context)
+            priDisplayToRequestBuilder(
+                imageView,
+                setToRequest(requestManager, source),
+                config
+            )
+        }
     }
+
+    // =
 
     override fun <T : Any?> display(
         imageView: ImageView?,
         url: String?,
         listener: LoadListener<T>?
     ) {
-        TODO("Not yet implemented")
+        display(imageView, DevSource.create(url), null, listener)
     }
 
     override fun <T : Any?> display(
@@ -163,7 +217,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         source: DevSource?,
         listener: LoadListener<T>?
     ) {
-        TODO("Not yet implemented")
+        display(imageView, source, null, listener)
     }
 
     override fun <T : Any?> display(
@@ -172,7 +226,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         config: ImageConfig?,
         listener: LoadListener<T>?
     ) {
-        TODO("Not yet implemented")
+        display(imageView, DevSource.create(url), config, listener)
     }
 
     override fun <T : Any?> display(
@@ -181,15 +235,26 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         config: ImageConfig?,
         listener: LoadListener<T>?
     ) {
-        TODO("Not yet implemented")
+        if (imageView != null && imageView.context != null) {
+            val requestManager = Glide.with(imageView.context)
+            priDisplayToRequestBuilder(
+                imageView,
+                setToRequest(requestManager, source),
+                config,
+                source,
+                listener
+            )
+        }
     }
+
+    // =
 
     override fun display(
         fragment: Fragment?,
         imageView: ImageView?,
         url: String?
     ) {
-        TODO("Not yet implemented")
+        display(fragment, imageView, DevSource.create(url), null)
     }
 
     override fun display(
@@ -197,7 +262,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         imageView: ImageView?,
         source: DevSource?
     ) {
-        TODO("Not yet implemented")
+        display(fragment, imageView, source, null)
     }
 
     override fun display(
@@ -206,7 +271,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         url: String?,
         config: ImageConfig?
     ) {
-        TODO("Not yet implemented")
+        display(fragment, imageView, DevSource.create(url), config)
     }
 
     override fun display(
@@ -215,8 +280,19 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         source: DevSource?,
         config: ImageConfig?
     ) {
-        TODO("Not yet implemented")
+        if (fragment != null && imageView != null) {
+            if (canFragmentLoadImage(fragment)) {
+                val requestManager = Glide.with(fragment)
+                priDisplayToRequestBuilder(
+                    imageView,
+                    setToRequest(requestManager, source),
+                    config
+                )
+            }
+        }
     }
+
+    // =
 
     override fun <T : Any?> display(
         fragment: Fragment?,
@@ -224,7 +300,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         url: String?,
         listener: LoadListener<T>?
     ) {
-        TODO("Not yet implemented")
+        display(fragment, imageView, DevSource.create(url), null, listener)
     }
 
     override fun <T : Any?> display(
@@ -233,7 +309,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         source: DevSource?,
         listener: LoadListener<T>?
     ) {
-        TODO("Not yet implemented")
+        display(fragment, imageView, source, null, listener)
     }
 
     override fun <T : Any?> display(
@@ -243,7 +319,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         config: ImageConfig?,
         listener: LoadListener<T>?
     ) {
-        TODO("Not yet implemented")
+        display(fragment, imageView, DevSource.create(url), config, listener)
     }
 
     override fun <T : Any?> display(
@@ -253,8 +329,23 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         config: ImageConfig?,
         listener: LoadListener<T>?
     ) {
-        TODO("Not yet implemented")
+        if (fragment != null && imageView != null) {
+            if (canFragmentLoadImage(fragment)) {
+                val requestManager = Glide.with(fragment)
+                priDisplayToRequestBuilder(
+                    imageView,
+                    setToRequest(requestManager, source),
+                    config,
+                    source,
+                    listener
+                )
+            }
+        }
     }
+
+    // ========
+    // = load =
+    // ========
 
     override fun <T : Any?> loadImage(
         context: Context?,
@@ -262,7 +353,33 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         config: ImageConfig?,
         listener: LoadListener<T>?
     ) {
-        TODO("Not yet implemented")
+        if (context != null && source != null && listener != null && listener.transcodeType != null) {
+            val requestManager = Glide.with(context)
+            val type = listener.transcodeType
+            if (type == Drawable::class.java) {
+                val request = setToRequest(
+                    requestManager.asDrawable(), source
+                )
+                buildRequest(request, config)?.let {
+                    (it as RequestBuilder<Drawable>).into(
+                        InnerDrawableTarget(
+                            source, listener as LoadListener<Drawable>
+                        )
+                    )
+                }
+            } else if (type == Bitmap::class.java) {
+                val request = setToRequest(
+                    requestManager.asBitmap(), source
+                )
+                buildRequest(request, config)?.let {
+                    (it as RequestBuilder<Bitmap>).into(
+                        InnerBitmapTarget(
+                            source, listener as LoadListener<Bitmap>
+                        )
+                    )
+                }
+            }
+        }
     }
 
     override fun <T : Any?> loadImage(
@@ -271,7 +388,33 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         config: ImageConfig?,
         listener: LoadListener<T>?
     ) {
-        TODO("Not yet implemented")
+        if (fragment != null && source != null && listener != null && listener.transcodeType != null) {
+            val requestManager = Glide.with(fragment)
+            val type = listener.transcodeType
+            if (type == Drawable::class.java) {
+                val request = setToRequest(
+                    requestManager.asDrawable(), source
+                )
+                buildRequest(request, config)?.let {
+                    (it as RequestBuilder<Drawable>).into(
+                        InnerDrawableTarget(
+                            source, listener as LoadListener<Drawable>
+                        )
+                    )
+                }
+            } else if (type == Bitmap::class.java) {
+                val request = setToRequest(
+                    requestManager.asBitmap(), source
+                )
+                buildRequest(request, config)?.let {
+                    (it as RequestBuilder<Bitmap>).into(
+                        InnerBitmapTarget(
+                            source, listener as LoadListener<Bitmap>
+                        )
+                    )
+                }
+            }
+        }
     }
 
     override fun <T : Any?> loadImage(
@@ -279,8 +422,13 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         source: DevSource?,
         config: ImageConfig?,
         type: Class<*>?
-    ): T {
-        TODO("Not yet implemented")
+    ): T? {
+        try {
+            return loadImageThrows(context, source, config, type)
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, "loadImage", e)
+        }
+        return null
     }
 
     override fun <T : Any?> loadImageThrows(
@@ -288,9 +436,55 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         source: DevSource?,
         config: ImageConfig?,
         type: Class<*>?
-    ): T {
-        TODO("Not yet implemented")
+    ): T? {
+        if (context != null && source != null && type != null) {
+            val requestManager = Glide.with(context)
+            if (type == Drawable::class.java) {
+                val request = setToRequest(
+                    requestManager.asDrawable(), source
+                )
+                buildRequest(request, config)
+                return if (config != null && config.getWidth() > 0 && config.getHeight() > 0) {
+                    try {
+                        request!!.submit(
+                            config.getWidth(), config.getHeight()
+                        ).get() as T
+                    } catch (e: Exception) {
+                        throw e
+                    }
+                } else {
+                    try {
+                        request!!.submit().get() as T
+                    } catch (e: Exception) {
+                        throw e
+                    }
+                }
+            } else if (type == Bitmap::class.java) {
+                val request = setToRequest(
+                    requestManager.asBitmap(), source
+                )
+                buildRequest(request, config)
+                return if (config != null && config.getWidth() > 0 && config.getHeight() > 0) {
+                    try {
+                        request!!.submit(
+                            config.getWidth(), config.getHeight()
+                        ).get() as T
+                    } catch (e: Exception) {
+                        throw e
+                    }
+                } else {
+                    try {
+                        request!!.submit().get() as T
+                    } catch (e: Exception) {
+                        throw e
+                    }
+                }
+            }
+        }
+        return null
     }
+
+    // =
 
     override fun loadBitmap(
         context: Context?,
@@ -298,7 +492,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         config: ImageConfig?,
         listener: LoadListener<Bitmap>?
     ) {
-        TODO("Not yet implemented")
+        loadImage(context, source, config, listener)
     }
 
     override fun loadBitmap(
@@ -307,24 +501,26 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         config: ImageConfig?,
         listener: LoadListener<Bitmap>?
     ) {
-        TODO("Not yet implemented")
+        loadImage(fragment, source, config, listener)
     }
 
     override fun loadBitmap(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?
-    ): Bitmap {
-        TODO("Not yet implemented")
+    ): Bitmap? {
+        return loadImage(context, source, config, Bitmap::class.java)
     }
 
     override fun loadBitmapThrows(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?
-    ): Bitmap {
-        TODO("Not yet implemented")
+    ): Bitmap? {
+        return loadImageThrows(context, source, config, Bitmap::class.java)
     }
+
+    // =
 
     override fun loadDrawable(
         context: Context?,
@@ -332,7 +528,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         config: ImageConfig?,
         listener: LoadListener<Drawable>?
     ) {
-        TODO("Not yet implemented")
+        loadImage(context, source, config, listener)
     }
 
     override fun loadDrawable(
@@ -341,31 +537,35 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         config: ImageConfig?,
         listener: LoadListener<Drawable>?
     ) {
-        TODO("Not yet implemented")
+        loadImage(fragment, source, config, listener)
     }
 
     override fun loadDrawable(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?
-    ): Drawable {
-        TODO("Not yet implemented")
+    ): Drawable? {
+        return loadImage(context, source, config, Drawable::class.java)
     }
 
     override fun loadDrawableThrows(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?
-    ): Drawable {
-        TODO("Not yet implemented")
+    ): Drawable? {
+        return loadImageThrows(context, source, config, Drawable::class.java)
     }
+
+    // ===========
+    // = convert =
+    // ===========
 
     override fun convertImageFormat(
         context: Context?,
         sources: MutableList<DevSource>?,
         listener: OnConvertListener?
     ): Boolean {
-        TODO("Not yet implemented")
+        return convertImageFormat(context, sources, null, listener)
     }
 
     override fun convertImageFormat(
@@ -374,7 +574,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         config: ImageConfig?,
         listener: OnConvertListener?
     ): Boolean {
-        TODO("Not yet implemented")
+        return priConvertImageFormat(context, sources, config, listener)
     }
 
     // ===========
@@ -579,7 +779,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
     private fun priDisplayToRequestBuilder(
         imageView: ImageView?,
         request: RequestBuilder<*>?,
-        config: ImageConfig
+        config: ImageConfig?
     ) {
         if (imageView != null && request != null) {
             buildRequest(request, config)?.into(imageView)
@@ -597,24 +797,28 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
     private fun <T> priDisplayToRequestBuilder(
         imageView: ImageView?,
         request: RequestBuilder<*>?,
-        config: ImageConfig,
-        source: DevSource,
+        config: ImageConfig?,
+        source: DevSource?,
         listener: LoadListener<T>?
     ) {
         if (imageView != null && request != null && listener != null && listener.transcodeType != null) {
             val type = listener.transcodeType
             if (type == Drawable::class.java) {
-                buildRequest(request, config)?.into(
-                    InnerDrawableViewTarget(
-                        imageView, source, listener as LoadListener<Drawable>
+                buildRequest(request, config)?.let {
+                    (it as RequestBuilder<Drawable>).into(
+                        InnerDrawableViewTarget(
+                            imageView, source, listener as LoadListener<Drawable>
+                        )
                     )
-                )
+                }
             } else if (type == Bitmap::class.java) {
-                buildRequest(request, config)?.into(
-                    InnerBitmapViewTarget(
-                        imageView, source, listener as LoadListener<Bitmap>
+                buildRequest(request, config)?.let {
+                    (it as RequestBuilder<Drawable>).into(
+                        InnerBitmapViewTarget(
+                            imageView, source, listener as LoadListener<Bitmap>
+                        )
                     )
-                )
+                }
             }
         }
     }
@@ -625,9 +829,9 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
 
     private class InnerDrawableViewTarget(
         view: ImageView?,
-        private val mSource: DevSource,
+        private val mSource: DevSource?,
         private val mListener: LoadListener<Drawable>
-    ) : ImageViewTarget<Drawable>(view) {
+    ) : ImageViewTarget<Drawable?>(view) {
 
         override fun setResource(resource: Drawable?) {
             getView().setImageDrawable(resource)
@@ -635,7 +839,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
 
         override fun onResourceReady(
             resource: Drawable,
-            transition: Transition<in Drawable>?
+            transition: Transition<in Drawable?>?
         ) {
             super.onResourceReady(resource, transition)
             mListener.onResponse(mSource, resource)
@@ -654,7 +858,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
 
     private class InnerBitmapViewTarget(
         view: ImageView?,
-        private val mSource: DevSource,
+        private val mSource: DevSource?,
         private val mListener: LoadListener<Bitmap>
     ) : ImageViewTarget<Drawable?>(view) {
 
@@ -746,7 +950,7 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
     private fun priConvertImageFormat(
         context: Context?,
         sources: List<DevSource>?,
-        config: ImageConfig,
+        config: ImageConfig?,
         listener: OnConvertListener?
     ): Boolean {
         if (context != null && sources != null && listener != null && sources.isNotEmpty()) {
