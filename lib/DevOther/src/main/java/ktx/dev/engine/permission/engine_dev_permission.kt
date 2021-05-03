@@ -1,4 +1,4 @@
-package kotlin.dev.engine.permission
+package ktx.dev.engine.permission
 
 import android.app.Activity
 import android.content.Context

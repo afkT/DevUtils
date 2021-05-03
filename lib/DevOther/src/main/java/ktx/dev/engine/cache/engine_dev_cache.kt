@@ -1,42 +1,15 @@
-package kotlin.dev.engine.cache
+package ktx.dev.engine.cache
 
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Parcelable
 import dev.engine.cache.ICacheEngine
-import dev.engine.cache.ICacheEngine.EngineItem
 import dev.engine.json.DevJSONEngine
-import dev.utils.app.cache.DevCache
-import dev.utils.common.cipher.Cipher
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.Serializable
 import java.lang.reflect.Type
 import java.util.*
-
-/**
- * detail: Cache Config
- * @author Ttt
- */
-class CacheConfig(
-    cacheID: String?,
-    cipher: Cipher?,
-    val mDevCache: DevCache
-) : ICacheEngine.EngineConfig(cacheID, cipher)
-
-/**
- * detail: Cache Data Item
- * @author Ttt
- */
-class DataItem(
-    key: String?,
-    type: Int,
-    size: Long,
-    saveTime: Long,
-    validTime: Long,
-    isPermanent: Boolean,
-    isDue: Boolean
-) : EngineItem(key, type, size, saveTime, validTime, isPermanent, isDue)
 
 /**
  * detail: DevCache Engine 实现

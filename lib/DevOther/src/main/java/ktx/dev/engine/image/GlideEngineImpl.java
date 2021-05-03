@@ -1,4 +1,4 @@
-package kotlin.dev.engine.image;
+package ktx.dev.engine.image;
 
 import android.content.Context;
 import android.graphics.Bitmap;

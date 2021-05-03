@@ -1,4 +1,4 @@
-package kotlin.dev.engine.json
+package ktx.dev.engine.json
 
 import dev.engine.json.IJSONEngine
 import dev.other.FastjsonUtils

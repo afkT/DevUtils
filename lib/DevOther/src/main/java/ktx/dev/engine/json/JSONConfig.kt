@@ -1,4 +1,4 @@
-package kotlin.dev.engine.json
+package ktx.dev.engine.json
 
 import com.google.gson.Gson
 import dev.engine.json.IJSONEngine

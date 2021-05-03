@@ -1,4 +1,4 @@
-package kotlin.dev.engine.log
+package ktx.dev.engine.log
 
 import dev.engine.log.ILogEngine
 import dev.utils.app.logger.DevLogger
