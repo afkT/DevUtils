@@ -1,6 +1,6 @@
 package dev.other.retrofit.response;
 
-import dev.other.GsonUtils;
+import dev.engine.json.DevJSONEngine;
 
 /**
  * detail: 请求响应统一解析类
@@ -26,7 +26,7 @@ public class BaseResponse<T> {
 
     public String getOriginal() {
         if (original != null) return original;
-        original = GsonUtils.toJson(this);
+        original = DevJSONEngine.getEngine().toJson(this);
         return original;
     }
 }

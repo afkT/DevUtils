@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import dev.other.GsonUtils;
+import dev.engine.json.DevJSONEngine;
 import dev.utils.LogPrintUtils;
 import okhttp3.Connection;
 import okhttp3.FormBody;
@@ -170,7 +170,9 @@ public class HttpLoggingInterceptor
      */
     private void _finalPrintLog(CaptureEntity captureEntity) {
         if (captureEntity != null) {
-            LogPrintUtils.json(GsonUtils.toJson(captureEntity));
+            LogPrintUtils.json(
+                    DevJSONEngine.getEngine().toJson(captureEntity)
+            );
         }
     }
 

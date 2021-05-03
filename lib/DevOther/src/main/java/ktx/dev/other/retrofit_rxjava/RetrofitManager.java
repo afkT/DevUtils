@@ -1,4 +1,4 @@
-package ktx.dev.other.retrofit;
+package ktx.dev.other.retrofit_rxjava;
 
 import java.util.HashMap;
 import java.util.Map;
