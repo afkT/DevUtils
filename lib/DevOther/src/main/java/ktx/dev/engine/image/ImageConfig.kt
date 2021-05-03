@@ -1,87 +1,100 @@
-package ktx.dev.engine.image;
+package ktx.dev.engine.image
 
-import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Drawable
+import dev.engine.image.IImageEngine
 
-import androidx.annotation.IntRange;
-
-import dev.engine.image.IImageEngine;
 
 /**
  * detail: Image Config
  * @author Ttt
  */
-public class ImageConfig
-        extends IImageEngine.EngineConfig {
+class ImageConfig private constructor(
+    config: ImageConfig?
+) : IImageEngine.EngineConfig() {
 
     // 是否缓存到 SDCard
-    private boolean mCacheDisk   = true;
+    private var mCacheDisk = true
+
     // 是否缓存到内存
-    private boolean mCacheMemory = true;
+    private var mCacheMemory = true
 
-    private int mScaleType;
-    private int mTransform;
-    private int mRoundedCornersRadius;
-
-    // scale type
-    public static final int SCALE_NONE        = 0;
-    public static final int SCALE_CENTER_CROP = 1;
-    public static final int SCALE_FIT_CENTER  = 2;
-
-    // transform
-    public static final int TRANSFORM_NONE            = 1;
-    public static final int TRANSFORM_CIRCLE          = 2;
-    public static final int TRANSFORM_ROUNDED_CORNERS = 3;
+    private var mScaleType = 0
+    private var mTransform = 0
+    private var mRoundedCornersRadius = 0
 
     // placeholder
-    public static final int      NO_PLACE_HOLDER     = -1;
-    private             int      mErrorPlaceholder   = NO_PLACE_HOLDER;
-    private             int      mLoadingPlaceholder = NO_PLACE_HOLDER;
-    private             Drawable mErrorDrawable      = null;
-    private             Drawable mLoadingDrawable    = null;
+    private var mErrorPlaceholder = NO_PLACE_HOLDER
+    private var mLoadingPlaceholder = NO_PLACE_HOLDER
+    private var mErrorDrawable: Drawable? = null
+    private var mLoadingDrawable: Drawable? = null
 
     // 加载图片宽
-    private int   mWidth;
+    private var mWidth = 0
+
     // 加载图片高
-    private int   mHeight;
+    private var mHeight = 0
+
     // 加载缩略图时应用尺寸的乘数
-    private float mThumbnail;
+    private var mThumbnail = 0f
 
-    // 默认图片保存质量值
-    public static final int     QUALITY             = 80;
     // 图片保存质量
-    private             int     mQuality            = QUALITY;
+    private var mQuality = QUALITY
+
     // 转换符合格式文件是否原图返回
-    private             boolean mQriginalPathReturn = false;
+    private var mQriginalPathReturn = false
 
-    // ===========
-    // = 构造函数 =
-    // ===========
+    companion object {
 
-    private ImageConfig(final ImageConfig config) {
-        if (config != null) {
+        // scale type
+        const val SCALE_NONE = 0
+        const val SCALE_CENTER_CROP = 1
+        const val SCALE_FIT_CENTER = 2
+
+        // transform
+        const val TRANSFORM_NONE = 1
+        const val TRANSFORM_CIRCLE = 2
+        const val TRANSFORM_ROUNDED_CORNERS = 3
+
+        // placeholder
+        const val NO_PLACE_HOLDER = -1
+
+        // 默认图片保存质量值
+        const val QUALITY = 80
+
+        fun create(): ImageConfig {
+            return ImageConfig(null)
+        }
+
+        fun create(config: ImageConfig?): ImageConfig {
+            return ImageConfig(config)
+        }
+    }
+
+    init {
+        config?.let {
             // 是否缓存到 SDCard
-            this.mCacheDisk = config.mCacheDisk;
+            this.mCacheDisk = it.mCacheDisk;
             // 是否缓存到内存
-            this.mCacheMemory = config.mCacheMemory;
+            this.mCacheMemory = it.mCacheMemory;
 
-            this.mScaleType = config.mScaleType;
-            this.mTransform = config.mTransform;
-            this.mRoundedCornersRadius = config.mRoundedCornersRadius;
+            this.mScaleType = it.mScaleType;
+            this.mTransform = it.mTransform;
+            this.mRoundedCornersRadius = it.mRoundedCornersRadius;
             // placeholder
-            this.mErrorPlaceholder = config.mErrorPlaceholder;
-            this.mLoadingPlaceholder = config.mLoadingPlaceholder;
-            this.mErrorDrawable = config.mErrorDrawable;
-            this.mLoadingDrawable = config.mLoadingDrawable;
+            this.mErrorPlaceholder = it.mErrorPlaceholder;
+            this.mLoadingPlaceholder = it.mLoadingPlaceholder;
+            this.mErrorDrawable = it.mErrorDrawable;
+            this.mLoadingDrawable = it.mLoadingDrawable;
             // 加载图片宽
-            this.mWidth = config.mWidth;
+            this.mWidth = it.mWidth;
             // 加载图片高
-            this.mHeight = config.mHeight;
+            this.mHeight = it.mHeight;
             // 加载缩略图时应用尺寸的乘数
-            this.mThumbnail = config.mThumbnail;
+            this.mThumbnail = it.mThumbnail;
             // 图片保存质量
-            this.mQuality = config.mQuality;
+            this.mQuality = it.mQuality;
             // 转换符合格式文件是否原图返回
-            this.mQriginalPathReturn = config.mQriginalPathReturn;
+            this.mQriginalPathReturn = it.mQriginalPathReturn;
         }
     }
 
@@ -89,157 +102,149 @@ public class ImageConfig
     // = 其他方法 =
     // ===========
 
-    public static ImageConfig create() {
-        return new ImageConfig(null);
-    }
-
-    public static ImageConfig create(final ImageConfig config) {
-        return new ImageConfig(config);
-    }
-
     /**
      * 克隆配置信息
-     * @param config {@link ImageConfig}
-     * @return {@link ImageConfig}
+     * @param config [ImageConfig]
+     * @return [ImageConfig]
      */
-    public ImageConfig clone(final ImageConfig config) {
-        return new ImageConfig(config);
+    fun clone(config: ImageConfig?): ImageConfig {
+        return ImageConfig(config)
     }
 
     // ===========
     // = get/set =
     // ===========
 
-    public boolean isCacheDisk() {
-        return mCacheDisk;
+    fun isCacheDisk(): Boolean {
+        return mCacheDisk
     }
 
-    public ImageConfig setCacheDisk(boolean cacheDisk) {
-        mCacheDisk = cacheDisk;
-        return this;
+    fun setCacheDisk(cacheDisk: Boolean): ImageConfig {
+        mCacheDisk = cacheDisk
+        return this
     }
 
-    public boolean isCacheMemory() {
-        return mCacheMemory;
+    fun isCacheMemory(): Boolean {
+        return mCacheMemory
     }
 
-    public ImageConfig setCacheMemory(boolean cacheMemory) {
-        mCacheMemory = cacheMemory;
-        return this;
+    fun setCacheMemory(cacheMemory: Boolean): ImageConfig {
+        mCacheMemory = cacheMemory
+        return this
     }
 
-    public int getScaleType() {
-        return mScaleType;
-    }
-
-    /**
-     * @param scaleType {@link #SCALE_CENTER_CROP} or{@link #SCALE_FIT_CENTER}
-     */
-    public ImageConfig setScaleType(int scaleType) {
-        mScaleType = scaleType;
-        return this;
-    }
-
-    public int getTransform() {
-        return mTransform;
+    fun getScaleType(): Int {
+        return mScaleType
     }
 
     /**
-     * @param transform {@link #TRANSFORM_ROUNDED_CORNERS} or{@link #TRANSFORM_CIRCLE}
+     * @param scaleType [SCALE_CENTER_CROP]、[SCALE_FIT_CENTER]
      */
-    public ImageConfig setTransform(int transform) {
-        mTransform = transform;
-        return this;
+    fun setScaleType(scaleType: Int): ImageConfig {
+        mScaleType = scaleType
+        return this
     }
 
-    public int getRoundedCornersRadius() {
-        return mRoundedCornersRadius;
+    fun getTransform(): Int {
+        return mTransform
     }
 
-    public ImageConfig setRoundedCornersRadius(int roundedCornersRadius) {
-        mRoundedCornersRadius = roundedCornersRadius;
-        return this;
+    /**
+     * @param transform [TRANSFORM_ROUNDED_CORNERS]、[TRANSFORM_CIRCLE]
+     */
+    fun setTransform(transform: Int): ImageConfig {
+        mTransform = transform
+        return this
     }
 
-    public int getErrorPlaceholder() {
-        return mErrorPlaceholder;
+    fun getRoundedCornersRadius(): Int {
+        return mRoundedCornersRadius
     }
 
-    public ImageConfig setErrorPlaceholder(int errorPlaceholder) {
-        mErrorPlaceholder = errorPlaceholder;
-        mErrorDrawable = null;
-        return this;
+    fun setRoundedCornersRadius(roundedCornersRadius: Int): ImageConfig {
+        mRoundedCornersRadius = roundedCornersRadius
+        return this
     }
 
-    public int getLoadingPlaceholder() {
-        return mLoadingPlaceholder;
+    fun getErrorPlaceholder(): Int {
+        return mErrorPlaceholder
     }
 
-    public ImageConfig setLoadingPlaceholder(int loadingPlaceholder) {
-        mLoadingPlaceholder = loadingPlaceholder;
-        mLoadingDrawable = null;
-        return this;
+    fun setErrorPlaceholder(errorPlaceholder: Int): ImageConfig {
+        mErrorPlaceholder = errorPlaceholder
+        mErrorDrawable = null
+        return this
     }
 
-    public Drawable getErrorDrawable() {
-        return mErrorDrawable;
+    fun getLoadingPlaceholder(): Int {
+        return mLoadingPlaceholder
     }
 
-    public ImageConfig setErrorDrawable(Drawable errorDrawable) {
-        mErrorPlaceholder = NO_PLACE_HOLDER;
-        mErrorDrawable = errorDrawable;
-        return this;
+    fun setLoadingPlaceholder(loadingPlaceholder: Int): ImageConfig {
+        mLoadingPlaceholder = loadingPlaceholder
+        mLoadingDrawable = null
+        return this
     }
 
-    public Drawable getLoadingDrawable() {
-        return mLoadingDrawable;
+    fun getErrorDrawable(): Drawable? {
+        return mErrorDrawable
     }
 
-    public ImageConfig setLoadingDrawable(Drawable loadingDrawable) {
-        mLoadingPlaceholder = NO_PLACE_HOLDER;
-        mLoadingDrawable = loadingDrawable;
-        return this;
+    fun setErrorDrawable(errorDrawable: Drawable?): ImageConfig {
+        mErrorPlaceholder = NO_PLACE_HOLDER
+        mErrorDrawable = errorDrawable
+        return this
     }
 
-    public int getWidth() {
-        return mWidth;
+    fun getLoadingDrawable(): Drawable? {
+        return mLoadingDrawable
     }
 
-    public int getHeight() {
-        return mHeight;
+    fun setLoadingDrawable(loadingDrawable: Drawable?): ImageConfig {
+        mLoadingPlaceholder = NO_PLACE_HOLDER
+        mLoadingDrawable = loadingDrawable
+        return this
     }
 
-    public ImageConfig setSize(
-            int width,
-            int height
-    ) {
-        mWidth = width;
-        mHeight = height;
-        return this;
+    fun getWidth(): Int {
+        return mWidth
     }
 
-    public float getThumbnail() {
-        return mThumbnail;
+    fun getHeight(): Int {
+        return mHeight
     }
 
-    public ImageConfig setThumbnail(float thumbnail) {
-        mThumbnail = thumbnail;
-        return this;
+    fun setSize(
+        width: Int,
+        height: Int
+    ): ImageConfig {
+        mWidth = width
+        mHeight = height
+        return this
     }
 
-    public int getQuality() {
-        return mQuality;
+    fun getThumbnail(): Float {
+        return mThumbnail
     }
 
-    public void setQuality(@IntRange(from = 0, to = 100) int quality) {
-        this.mQuality = quality;
+    fun setThumbnail(thumbnail: Float): ImageConfig {
+        mThumbnail = thumbnail
+        return this
     }
 
-    public boolean isOriginalPathReturn() {
-        return mQriginalPathReturn;
+    fun getQuality(): Int {
+        return mQuality
     }
 
-    public void setOriginalPathReturn(boolean originalPathReturn) {
-        this.mQriginalPathReturn = originalPathReturn;
+    fun setQuality(quality: Int) {
+        mQuality = quality
+    }
+
+    fun isOriginalPathReturn(): Boolean {
+        return mQriginalPathReturn
+    }
+
+    fun setOriginalPathReturn(originalPathReturn: Boolean) {
+        mQriginalPathReturn = originalPathReturn
     }
 }
