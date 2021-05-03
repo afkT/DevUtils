@@ -73,28 +73,28 @@ class ImageConfig private constructor(
     init {
         config?.let {
             // 是否缓存到 SDCard
-            this.mCacheDisk = it.mCacheDisk;
+            this.mCacheDisk = it.mCacheDisk
             // 是否缓存到内存
-            this.mCacheMemory = it.mCacheMemory;
+            this.mCacheMemory = it.mCacheMemory
 
-            this.mScaleType = it.mScaleType;
-            this.mTransform = it.mTransform;
-            this.mRoundedCornersRadius = it.mRoundedCornersRadius;
+            this.mScaleType = it.mScaleType
+            this.mTransform = it.mTransform
+            this.mRoundedCornersRadius = it.mRoundedCornersRadius
             // placeholder
-            this.mErrorPlaceholder = it.mErrorPlaceholder;
-            this.mLoadingPlaceholder = it.mLoadingPlaceholder;
-            this.mErrorDrawable = it.mErrorDrawable;
-            this.mLoadingDrawable = it.mLoadingDrawable;
+            this.mErrorPlaceholder = it.mErrorPlaceholder
+            this.mLoadingPlaceholder = it.mLoadingPlaceholder
+            this.mErrorDrawable = it.mErrorDrawable
+            this.mLoadingDrawable = it.mLoadingDrawable
             // 加载图片宽
-            this.mWidth = it.mWidth;
+            this.mWidth = it.mWidth
             // 加载图片高
-            this.mHeight = it.mHeight;
+            this.mHeight = it.mHeight
             // 加载缩略图时应用尺寸的乘数
-            this.mThumbnail = it.mThumbnail;
+            this.mThumbnail = it.mThumbnail
             // 图片保存质量
-            this.mQuality = it.mQuality;
+            this.mQuality = it.mQuality
             // 转换符合格式文件是否原图返回
-            this.mQriginalPathReturn = it.mQriginalPathReturn;
+            this.mQriginalPathReturn = it.mQriginalPathReturn
         }
     }
 

@@ -457,7 +457,7 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
      * @param isCamera        是否拍照
      * @return [PictureSelectionModel]
      * 结果回调 onActivityResult requestCode
-     * pictureSelectionModel.forResult(requestCode);
+     * pictureSelectionModel.forResult(requestCode)
      */
     private fun getPictureSelectionModel(
         pictureSelector: PictureSelector?,
