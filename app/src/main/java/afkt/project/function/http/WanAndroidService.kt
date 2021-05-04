@@ -2,8 +2,8 @@ package afkt.project.function.http
 
 import afkt.project.model.bean.ArticleBean
 import afkt.project.model.bean.UserBean
-import ktx.dev.other.retrofit_rxjava.response.BaseResponse
 import io.reactivex.rxjava3.core.Flowable
+import ktx.dev.other.retrofit_rxjava.response.BaseResponse
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path

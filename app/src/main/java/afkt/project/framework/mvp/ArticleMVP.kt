@@ -5,9 +5,9 @@ import afkt.project.model.bean.ArticleBean
 import dev.base.expand.mvp.MVP
 import dev.base.expand.mvp.MVP.IModel
 import dev.base.expand.mvp.MVP.IView
+import io.reactivex.rxjava3.disposables.Disposable
 import ktx.dev.other.retrofit_rxjava.RxJavaManager
 import ktx.dev.other.retrofit_rxjava.subscriber.BaseBeanSubscriber
-import io.reactivex.rxjava3.disposables.Disposable
 
 /**
  * detail: 文章 MVP Contract

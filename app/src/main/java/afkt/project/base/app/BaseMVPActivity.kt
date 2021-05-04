@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import androidx.viewbinding.ViewBinding
 import dev.base.expand.content.DevBaseContentMVPViewBindingActivity
 import dev.base.expand.mvp.MVP
-import ktx.dev.other.retrofit_rxjava.RxJavaManager
 import dev.utils.DevFinal
 import dev.utils.app.ViewUtils
 import dev.utils.app.toast.ToastTintUtils
 import dev.widget.function.StateLayout
+import ktx.dev.other.retrofit_rxjava.RxJavaManager
 
 /**
  * detail: Base MVP ViewBinding 基类

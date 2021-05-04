@@ -18,6 +18,10 @@ dependencies {
     implementation deps.lib.rxjava3
     // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
     implementation deps.lib.rxandroid3
+    // AutoDispose 自动绑定解绑 https://github.com/uber/AutoDispose
+    implementation deps.lib.auto_dispose
+    implementation deps.lib.auto_dispose_android
+    implementation deps.lib.auto_dispose_lifecycle
     // Gson https://github.com/google/gson
     implementation deps.lib.gson
     // fastjson https://github.com/alibaba/fastjson

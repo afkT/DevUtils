@@ -7,12 +7,12 @@ import afkt.project.model.bean.ArticleBean
 import afkt.project.ui.adapter.ArticleAdapter
 import android.view.View
 import com.tt.whorlviewlibrary.WhorlView
-import ktx.dev.other.retrofit_rxjava.RxJavaManager
 import dev.utils.app.ViewUtils
 import dev.utils.common.CollectionUtils
 import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
 import io.reactivex.rxjava3.disposables.Disposable
+import ktx.dev.other.retrofit_rxjava.RxJavaManager
 
 /**
  * detail: 文章 MVP Activity
