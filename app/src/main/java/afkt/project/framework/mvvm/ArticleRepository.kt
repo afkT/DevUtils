@@ -3,8 +3,8 @@ package afkt.project.framework.mvvm
 import afkt.project.function.http.RetrofitUtils
 import afkt.project.model.bean.ArticleBean
 import androidx.lifecycle.MutableLiveData
-import dev.other.retrofit.RxJavaManager
-import dev.other.retrofit.subscriber.BaseBeanSubscriber
+import ktx.dev.other.retrofit_rxjava.RxJavaManager
+import ktx.dev.other.retrofit_rxjava.subscriber.BaseBeanSubscriber
 
 /**
  * detail: 文章相关 Repository
@@ -16,15 +16,15 @@ class ArticleRepository {
 
     fun requestArticleLists(article: MutableLiveData<ArticleBean?>): MutableLiveData<ArticleBean?> {
         RetrofitUtils.instance.wanAndroidService().getArticleList(0)
-            .compose(RxJavaManager.getInstance().io_main())
+            .compose(RxJavaManager.instance.io_main())
             .subscribeWith(object : BaseBeanSubscriber<ArticleBean>() {
                 override fun onSuccessResponse(data: ArticleBean) {
                     article.postValue(data)
                 }
 
                 override fun onErrorResponse(
-                    throwable: Throwable,
-                    message: String
+                    throwable: Throwable?,
+                    message: String?
                 ) {
                     article.postValue(null)
                 }

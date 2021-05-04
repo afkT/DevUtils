@@ -7,7 +7,7 @@ import afkt.project.model.bean.ArticleBean
 import afkt.project.ui.adapter.ArticleAdapter
 import android.view.View
 import com.tt.whorlviewlibrary.WhorlView
-import dev.other.retrofit.RxJavaManager
+import ktx.dev.other.retrofit_rxjava.RxJavaManager
 import dev.utils.app.ViewUtils
 import dev.utils.common.CollectionUtils
 import dev.widget.assist.ViewAssist
@@ -139,6 +139,6 @@ class ArticleMVPActivity : BaseMVPActivity<ArticleMVP.Presenter, BaseViewRecycle
     }
 
     override fun addDisposable(disposable: Disposable) {
-        RxJavaManager.getInstance().add(TAG, disposable)
+        RxJavaManager.instance.add(TAG, disposable)
     }
 }

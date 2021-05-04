@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import androidx.viewbinding.ViewBinding
 import dev.base.expand.content.DevBaseContentMVPViewBindingActivity
 import dev.base.expand.mvp.MVP
-import dev.other.retrofit.RxJavaManager
+import ktx.dev.other.retrofit_rxjava.RxJavaManager
 import dev.utils.DevFinal
 import dev.utils.app.ViewUtils
 import dev.utils.app.toast.ToastTintUtils
@@ -61,7 +61,7 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
     override fun onDestroy() {
         super.onDestroy()
         // 取消 TAG ( Activity ) 关联的请求
-        RxJavaManager.getInstance().remove(TAG)
+        RxJavaManager.instance.remove(TAG)
     }
 
     // ===========

@@ -3,7 +3,7 @@ package afkt.project.function.http
 import dev.DevUtils
 import dev.environment.DevEnvironment
 import dev.other.http.HttpLoggingInterceptor
-import dev.other.retrofit.RetrofitManager
+import ktx.dev.other.retrofit_rxjava.RetrofitManager
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
@@ -91,7 +91,7 @@ class RetrofitUtils private constructor() {
         // = 存入 RetrofitManager =
         // =======================
 
-        RetrofitManager.getInstance().put(WAN_ANDROID_SERVICE_TAG, retrofit)
+        RetrofitManager.instance.put(WAN_ANDROID_SERVICE_TAG, retrofit)
     }
 
     @Volatile
@@ -104,7 +104,7 @@ class RetrofitUtils private constructor() {
         if (wanAndroidService == null) {
             synchronized(WanAndroidService::class.java) {
                 if (wanAndroidService == null) {
-                    wanAndroidService = RetrofitManager.getInstance().create(
+                    wanAndroidService = RetrofitManager.instance.create(
                         WAN_ANDROID_SERVICE_TAG, WanAndroidService::class.java
                     )
                 }
