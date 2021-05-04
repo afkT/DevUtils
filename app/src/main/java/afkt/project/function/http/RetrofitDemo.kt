@@ -24,7 +24,7 @@ object RetrofitDemo {
         // 映射各种 JSON 实体类
         val articleList =
             RetrofitUtils.instance.wanAndroidService().getArticleList(0)
-                .compose(RxJavaManager.io_main())
+                .compose(RxJavaManager.getInstance().io_main())
                 .subscribeWith(object : BaseBeanSubscriber<ArticleBean>() {
                     override fun onSuccessResponse(data: ArticleBean) {
                     }
@@ -41,7 +41,7 @@ object RetrofitDemo {
         val login =
             RetrofitUtils.instance.wanAndroidService()
                 .login("user", "pwd")
-                .compose<BaseResponse<UserBean?>>(RxJavaManager.io_main())
+                .compose<BaseResponse<UserBean?>>(RxJavaManager.getInstance().io_main())
                 .subscribeWith(object : BaseResponseSubscriber<UserBean?>() {
                     override fun onSuccessResponse(response: BaseResponse<UserBean?>) {
                     }

@@ -69,7 +69,7 @@ class ArticleMVP {
                     // 映射各种 JSON 实体类
                     val articleList =
                         RetrofitUtils.instance.wanAndroidService().getArticleList(0)
-                            .compose(RxJavaManager.io_main())
+                            .compose(RxJavaManager.getInstance().io_main())
                             .subscribeWith(object : BaseBeanSubscriber<ArticleBean>() {
                                 override fun onSuccessResponse(data: ArticleBean) {
                                     mvpView?.onArticleListResponse(true, data)

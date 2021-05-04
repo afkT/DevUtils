@@ -109,7 +109,7 @@ public final class RxJavaManager {
      * @param <T> 泛型
      * @return {@link FlowableTransformer}
      */
-    public static <T> FlowableTransformer<T, T> io_main() {
+    public <T> FlowableTransformer<T, T> io_main() {
         return new FlowableTransformer<T, T>() {
             @Override
             public @NonNull Publisher<T> apply(@NonNull Flowable<T> upstream) {
