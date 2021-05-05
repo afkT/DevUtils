@@ -20,3 +20,4 @@ dependencies {
 // gradlew install
 // gradlew bintrayUpload
 //apply from : rootProject.file(files.bintray_upload_android)
+//apply from : rootProject.file(files.sonatype_upload_android)

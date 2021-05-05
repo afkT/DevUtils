@@ -6,3 +6,4 @@ version versions.dev_java_version
 // gradlew install
 // gradlew bintrayUpload
 //apply from : rootProject.file(files.bintray_upload_java)
+//apply from : rootProject.file(files.sonatype_upload_java)
