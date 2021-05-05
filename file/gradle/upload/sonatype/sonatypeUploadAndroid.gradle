@@ -1,10 +1,10 @@
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
+// https://github.com/gradle/gradle/issues
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
 
 // load properties
 Properties properties = new Properties()
-//File localPropertiesFile = project.file("bintray.properties")
-File localPropertiesFile = new File("bintray.properties")
+File localPropertiesFile = new File("sonatype.properties")
 if (localPropertiesFile.exists()) {
     properties.load(localPropertiesFile.newDataInputStream())
 }
@@ -26,46 +26,19 @@ def developerId = properties.getProperty("developer.id")
 def developerName = properties.getProperty("developer.name")
 def developerEmail = properties.getProperty("developer.email")
 
-def bintrayUser = properties.getProperty("bintray.user")
-def bintrayApikey = properties.getProperty("bintray.apikey")
+def signingKeyId = properties.getProperty("signing.keyId")
+def signingPassword = properties.getProperty("signing.password")
+def signingSecretKeyRingFile = properties.getProperty("signing.secretKeyRingFile")
+def ossrhUsername = properties.getProperty("ossrhUsername")
+def ossrhPassword = properties.getProperty("ossrhPassword")
 
 def javadocName = properties.getProperty("javadoc.name")
 
-group = projectGroupId
-
-// This generates POM.xml with proper parameters
-install {
-    repositories.mavenInstaller {
-        pom {
-            project {
-                name projectName
-                groupId projectGroupId
-                artifactId projectArtifactId
-                version projectVersionName
-                packaging projectPackaging
-                url projectSiteUrl
-                licenses {
-                    license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                developers {
-                    developer {
-                        id developerId
-                        name developerName
-                        email developerEmail
-                    }
-                }
-                scm {
-                    connection projectGitUrl
-                    developerConnection projectGitUrl
-                    url projectSiteUrl
-                }
-            }
-        }
-    }
-}
+ext["signing.keyId"] = signingKeyId
+ext["signing.password"] = signingPassword
+ext["signing.secretKeyRingFile"] = signingSecretKeyRingFile
+ext["ossrhUsername"] = ossrhUsername
+ext["ossrhPassword"] = ossrhPassword
 
 // This generates sources.jar
 task sourcesJar(type: Jar) {
@@ -101,20 +74,60 @@ javadoc {
         links "http://docs.oracle.com/javase/7/docs/api"
         title javadocName
     }
-//    options.addStringOption('Xdoclint:none', '-quiet')
 }
 
-// bintray configuration
-bintray {
-    user = bintrayUser
-    key = bintrayApikey
-    configurations = ['archives']
-    pkg {
-        repo = "maven"
-        name = projectName
-        websiteUrl = projectSiteUrl
-        vcsUrl = projectGitUrl
-        licenses = ["Apache-2.0"]
-        publish = true
+// https://docs.gradle.org/current/dsl/org.gradle.api.publish.maven.MavenPublication.html
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId projectGroupId
+            artifactId projectArtifactId
+            version projectVersionName
+
+            // https://docs.gradle.org/6.7.1/dsl/org.gradle.api.publish.maven.MavenPom.html
+            pom {
+                name = projectName
+                url = projectSiteUrl
+                packaging = projectPackaging
+                groupId = projectGroupId
+                artifactId = projectArtifactId
+                version = projectVersionName
+                licenses {
+                    license {
+                        name = "The Apache Software License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                developers {
+                    developer {
+                        id = developerId
+                        name = developerName
+                        email = developerEmail
+                    }
+                }
+                scm {
+                    connection = projectGitUrl
+                    developerConnection = projectGitUrl
+                    url = projectSiteUrl
+                }
+            }
+        }
     }
+    repositories {
+        maven {
+            name = projectName
+            def releasesRepoUrl = "https://repo.maven.apache.org/maven2/io/github/afkt"
+            def snapshotsRepoUrl = "https://repo.maven.apache.org/maven2/io/github/afkt"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+            credentials {
+                username ossrhUsername
+                password ossrhPassword
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications
 }
