@@ -18,7 +18,6 @@ class MMKVConfig(
     val mmkv: MMKV
 ) : IStorageEngine.EngineConfig(storageID, cipher)
 
-
 /**
  * detail: MMKV Storage Engine 实现
  * @author Ttt

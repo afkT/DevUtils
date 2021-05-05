@@ -2,7 +2,6 @@ package ktx.dev.other.retrofit_rxjava.response
 
 import dev.engine.json.DevJSONEngine
 
-
 /**
  * detail: 请求响应统一解析类
  * @author Ttt

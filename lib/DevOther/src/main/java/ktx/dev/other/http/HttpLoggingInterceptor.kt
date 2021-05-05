@@ -8,7 +8,6 @@ import okio.EOFException
 import java.nio.charset.Charset
 import java.util.concurrent.TimeUnit
 
-
 /**
  * detail: OkHttp 打印日志拦截器
  * @author DingDeGao

@@ -32,7 +32,6 @@ import dev.utils.app.permission.PermissionUtils
 import dev.utils.app.permission.PermissionUtils.PermissionCallback
 import dev.widget.ui.ScanShapeView
 
-
 /**
  * detail: 二维码扫描解析
  * @author Ttt

@@ -22,7 +22,6 @@ import dev.utils.app.helper.QuickHelper
 import dev.utils.app.helper.ViewHelper
 import dev.utils.app.image.ImageUtils
 
-
 /**
  * detail: CapturePictureUtils RecyclerView 截图
  * @author Ttt
