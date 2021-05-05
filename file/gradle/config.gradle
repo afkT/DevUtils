@@ -14,15 +14,15 @@ ext {
             lib_app_kotlin_gradle  : 'file/gradle/build/lib_app_kotlin.gradle',
             // Android Bintray Upload
             bintray_upload_android : 'file/gradle/upload/bintray/bintrayUploadAndroid.gradle',
-            // Android SonaType Upload
-            sonatype_upload_android: 'file/gradle/upload/sonatype/sonaTypeUploadAndroid.gradle',
+            // Android Sonatype Upload
+            sonatype_upload_android: 'file/gradle/upload/sonatype/sonatypeUploadAndroid.gradle',
 
             // Java Lib 通用配置
             lib_java_gradle        : 'file/gradle/build/lib_java.gradle',
             // Java Bintray Upload
             bintray_upload_java    : 'file/gradle/upload/bintray/bintrayUploadJava.gradle',
-            // Java SonaType Upload
-            sonatype_upload_java   : 'file/gradle/upload/sonatype/sonaTypeUploadJava.gradle',
+            // Java Sonatype Upload
+            sonatype_upload_java   : 'file/gradle/upload/sonatype/sonatypeUploadJava.gradle',
 
             // Android lib 依赖配置
             deps_android_lib       : 'file/gradle/deps/deps_android_lib.gradle',
