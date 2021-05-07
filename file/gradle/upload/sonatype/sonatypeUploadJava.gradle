@@ -4,7 +4,7 @@ apply plugin: 'com.jfrog.bintray'
 // load properties
 Properties properties = new Properties()
 //File localPropertiesFile = project.file("bintray.properties")
-File localPropertiesFile = new File("bintray.properties")
+File localPropertiesFile = new File(rootDir, "bintray.properties")
 if (localPropertiesFile.exists()) {
     properties.load(localPropertiesFile.newDataInputStream())
 }

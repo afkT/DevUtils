@@ -5,44 +5,44 @@ include ':app'
 // =======
 
 include ':DevApp'
-project(':DevApp').projectDir = new File('lib/DevApp')
+project(':DevApp').projectDir = new File(rootDir, 'lib/DevApp')
 
 include ':DevAssist'
-project(':DevAssist').projectDir = new File('lib/DevAssist')
+project(':DevAssist').projectDir = new File(rootDir, 'lib/DevAssist')
 
 include ':DevBase'
-project(':DevBase').projectDir = new File('lib/DevBase')
+project(':DevBase').projectDir = new File(rootDir, 'lib/DevBase')
 
 include ':DevBaseMVVM'
-project(':DevBaseMVVM').projectDir = new File('lib/DevBaseMVVM')
+project(':DevBaseMVVM').projectDir = new File(rootDir, 'lib/DevBaseMVVM')
 
 include ':DevJava'
-project(':DevJava').projectDir = new File('lib/DevJava')
+project(':DevJava').projectDir = new File(rootDir, 'lib/DevJava')
 
 include ':DevWidget'
-project(':DevWidget').projectDir = new File('lib/DevWidget')
+project(':DevWidget').projectDir = new File(rootDir, 'lib/DevWidget')
 
 include ':DevEnvironmentBase'
-project(':DevEnvironmentBase').projectDir = new File('lib/Environment/DevEnvironmentBase')
+project(':DevEnvironmentBase').projectDir = new File(rootDir, 'lib/Environment/DevEnvironmentBase')
 
 include ':DevEnvironmentCompiler'
-project(':DevEnvironmentCompiler').projectDir = new File('lib/Environment/DevEnvironmentCompiler')
+project(':DevEnvironmentCompiler').projectDir = new File(rootDir, 'lib/Environment/DevEnvironmentCompiler')
 
 include ':DevEnvironmentCompilerRelease'
-project(':DevEnvironmentCompilerRelease').projectDir = new File('lib/Environment/DevEnvironmentCompilerRelease')
+project(':DevEnvironmentCompilerRelease').projectDir = new File(rootDir, 'lib/Environment/DevEnvironmentCompilerRelease')
 
 include ':DevEnvironment'
-project(':DevEnvironment').projectDir = new File('lib/Environment/DevEnvironment')
+project(':DevEnvironment').projectDir = new File(rootDir, 'lib/Environment/DevEnvironment')
 
 // ==========
 // = Module =
 // ==========
 
 include ':DevBase2'
-project(':DevBase2').projectDir = new File('lib/DevBase2')
+project(':DevBase2').projectDir = new File(rootDir, 'lib/DevBase2')
 
 include ':DevOther'
-project(':DevOther').projectDir = new File('lib/DevOther')
+project(':DevOther').projectDir = new File(rootDir, 'lib/DevOther')
 
 // ===========
 // = Project =
@@ -68,7 +68,7 @@ project(':PushLockScreenKtx').projectDir = new File(rootDir, 'project/PushLockSc
 // ===============
 
 include ':DevScreenMatch'
-project(':DevScreenMatch').projectDir = new File('interesting/DevScreenMatch')
+project(':DevScreenMatch').projectDir = new File(rootDir, 'interesting/DevScreenMatch')
 
 include ':DevStandard'
-project(':DevStandard').projectDir = new File('interesting/DevStandard')
+project(':DevStandard').projectDir = new File(rootDir, 'interesting/DevStandard')

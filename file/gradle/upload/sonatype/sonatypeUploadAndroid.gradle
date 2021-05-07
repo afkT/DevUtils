@@ -4,7 +4,7 @@ apply plugin: 'signing'
 
 // load properties
 Properties properties = new Properties()
-File localPropertiesFile = new File("sonatype.properties")
+File localPropertiesFile = new File(rootDir, "sonatype.properties")
 if (localPropertiesFile.exists()) {
     properties.load(localPropertiesFile.newDataInputStream())
 }
