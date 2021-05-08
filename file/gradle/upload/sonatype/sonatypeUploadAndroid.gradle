@@ -96,6 +96,7 @@ publishing {
                 groupId = projectGroupId
                 artifactId = projectArtifactId
                 version = projectVersionName
+                description = "${projectName} publish"
                 licenses {
                     license {
                         name = "The Apache Software License, Version 2.0"
@@ -147,3 +148,9 @@ publishing {
 signing {
     sign publishing.publications
 }
+
+//module gradle
+//
+//tasks-build-assemble
+//
+//publishing-publishReleasePublicationToXXXXXRepository

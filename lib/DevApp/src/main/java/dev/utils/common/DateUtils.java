@@ -1044,6 +1044,10 @@ public final class DateUtils {
                     return true;
                 }
             }
+            // 如果开始时间等于结束时间, 则直接返回 true ( 表示一整天覆盖 )
+            if (startTime.equals(endTime)) {
+                return true;
+            }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "isInTime");
         }
