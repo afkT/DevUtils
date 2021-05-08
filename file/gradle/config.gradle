@@ -43,10 +43,10 @@ ext {
                     dev_java                        : "io.github.afkt:DevJava:${versions.dev_java_version}",
                     dev_widget_x                    : "io.github.afkt:DevWidgetX:${versions.dev_widget_versionName}",
                     // 环境配置切换库
-                    dev_environment                 : "com.afkt:DevEnvironment:${versions.dev_environment_version}",
-                    dev_environment_base            : "com.afkt:DevEnvironmentBase:${versions.dev_environment_base_version}",
-                    dev_environment_compiler        : "com.afkt:DevEnvironmentCompiler:${versions.dev_environment_compiler_version}",
-                    dev_environment_compiler_release: "com.afkt:DevEnvironmentCompilerRelease:${versions.dev_environment_compiler_release_version}"
+                    dev_environment                 : "io.github.afkt:DevEnvironment:${versions.dev_environment_version}",
+                    dev_environment_base            : "io.github.afkt:DevEnvironmentBase:${versions.dev_environment_base_version}",
+                    dev_environment_compiler        : "io.github.afkt:DevEnvironmentCompiler:${versions.dev_environment_compiler_version}",
+                    dev_environment_compiler_release: "io.github.afkt:DevEnvironmentCompilerRelease:${versions.dev_environment_compiler_release_version}"
             ],
             'kotlin'    : [
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib

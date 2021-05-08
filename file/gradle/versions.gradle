@@ -54,11 +54,11 @@ ext {
             dev_widget_versionName                  : '1.1.0',
 
             // 版本号
-            dev_environment_versionCode             : 102,
+            dev_environment_versionCode             : 103,
             // 版本名
-            dev_environment_version                 : '1.0.2',
-            dev_environment_base_version            : '1.0.2',
-            dev_environment_compiler_version        : '1.0.2',
-            dev_environment_compiler_release_version: '1.0.2',
+            dev_environment_version                 : '1.0.3',
+            dev_environment_base_version            : '1.0.3',
+            dev_environment_compiler_version        : '1.0.3',
+            dev_environment_compiler_release_version: '1.0.3',
     ]
 }
