@@ -41,9 +41,6 @@ buildscript {
 
 allprojects {
     repositories { // 该 repositories 用于 app、module dependencies 第三方库 implementation 等依赖加载
-        // bintray maven 出现 Failed to resolve: DevAppX-x.x.x 可考虑加上这句
-        maven { url 'https://dl.bintray.com/afkt/maven' }
-
         google()
 
         // jitpack maven
