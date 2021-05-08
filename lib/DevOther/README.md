@@ -16,8 +16,8 @@
       - storage                                       | Storage Engine
    - other                                            | 第三方库封装工具类
       - cache                                         | 缓存工具类
+      - http                                          | Http 通用封装
       - okgo                                          | OkGo 网络请求
-         - demo                                       | OkGo 使用 Demo
       - retrofit                                      | Retrofit 网络请求
          - response                                   | 请求响应解析
          - subscriber                                 | 请求响应处理
@@ -25,6 +25,8 @@
          - demo                                       | WorkManager 使用 Demo
    - receiver                                         | BroadcastReceiver 监听相关
    - service                                          | Service 相关
+   - widget                                           | 控件相关
+      - decoration                                    | RecyclerView ItemDecoration
 ```
 
 
@@ -49,8 +51,8 @@
       - [storage](#devenginestorage)                  | Storage Engine
    - [other](#devother)                               | 第三方库封装工具类
       - [cache](#devothercache)                       | 缓存工具类
+      - [http](#devotherhttp)                         | Http 通用封装
       - [okgo](#devotherokgo)                         | OkGo 网络请求
-         - [demo](#devotherokgodemo)                  | OkGo 使用 Demo
       - [retrofit](#devotherretrofit)                 | Retrofit 网络请求
          - [response](#devotherretrofitresponse)      | 请求响应解析
          - [subscriber](#devotherretrofitsubscriber)  | 请求响应处理
@@ -58,6 +60,8 @@
          - [demo](#devotherworkdemo)                  | WorkManager 使用 Demo
    - [receiver](#devreceiver)                         | BroadcastReceiver 监听相关
    - [service](#devservice)                           | Service 相关
+   - [widget](#devwidget)                             | 控件相关
+      - [decoration](#devwidgetdecoration)            | RecyclerView ItemDecoration
 
 
 
@@ -777,14 +781,17 @@
 | clear | 清除所有数据 |
 
 
-## <span id="devotherokgo">**`dev.other.okgo`**</span>
+## <span id="devotherhttp">**`dev.other.http`**</span>
 
 
-* **OkHttp 打印日志拦截器 ->** [HttpLoggingInterceptor.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/HttpLoggingInterceptor.java)
+* **OkHttp 打印日志拦截器 ->** [HttpLoggingInterceptor.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/http/HttpLoggingInterceptor.java)
 
 | 方法 | 注释 |
 | :- | :- |
 | intercept | intercept |
+
+
+## <span id="devotherokgo">**`dev.other.okgo`**</span>
 
 
 * **请求回调统一处理类 ->** [OkGoCallback.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoCallback.java)
@@ -801,6 +808,16 @@
 | convertResponse | 拿到响应后, 将数据转换成需要的格式 ( 子线程中执行, 可以是耗时操作 ) |
 | onSuccessResponse | 请求响应并处理数据无误 |
 | onErrorResponse | 请求失败、响应错误、数据解析错误等, 都会回调该方法 ( UI 线程 ) |
+
+
+* **OkGo 使用 Demo ->** [OkGoDemo.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoDemo.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getUserInfo | 获取用户信息 |
+| getUserList | 获取用户列表 |
+| uploadImage | 上传文件 |
+| uploadImages | 上传多个文件 |
 
 
 * **请求响应统一解析类 ->** [OkGoResponse.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/OkGoResponse.java)
@@ -824,19 +841,6 @@
 | :- | :- |
 | initOkGo | 初始化 OkGo 配置 |
 | execute | 执行请求处理 |
-
-
-## <span id="devotherokgodemo">**`dev.other.okgo.demo`**</span>
-
-
-* **OkGo 使用 Demo ->** [OkGoDemo.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/okgo/demo/OkGoDemo.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getUserInfo | 获取用户信息 |
-| getUserList | 获取用户列表 |
-| uploadImage | 上传文件 |
-| uploadImages | 上传多个文件 |
 
 
 ## <span id="devotherretrofit">**`dev.other.retrofit`**</span>
@@ -972,147 +976,10 @@
 ## <span id="devreceiver">**`dev.receiver`**</span>
 
 
-* **应用状态监听广播 ( 安装、更新、卸载 ) ->** [AppStateReceiver.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/receiver/AppStateReceiver.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onReceive | onReceive |
-| registerReceiver | 注册应用状态监听广播 |
-| unregisterReceiver | 取消注册应用状态监听广播 |
-| setAppStateListener | 设置应用状态监听事件 |
-| onAdded | 应用安装 |
-| onReplaced | 应用更新 |
-| onRemoved | 应用卸载 |
-
-
-* **电量监听广播 ->** [BatteryReceiver.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/receiver/BatteryReceiver.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onReceive | onReceive |
-| registerReceiver | 注册电量监听广播 |
-| unregisterReceiver | 取消注册电量监听广播 |
-| setBatteryListener | 设置电量监听事件 |
-| onBatteryChanged | 电量改变通知 |
-| onBatteryLow | 电量低通知 |
-| onBatteryOkay | 电量从低变回高通知 |
-| onPowerConnected | 充电状态改变通知 |
-| onPowerUsageSummary | 电力使用情况总结 |
-
-
-* **网络监听广播 ->** [NetWorkReceiver.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/receiver/NetWorkReceiver.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onReceive | onReceive |
-| isConnectNetWork | 是否连接网络 |
-| getConnectType | 获取连接的网络类型 |
-| registerReceiver | 注册网络广播监听 |
-| unregisterReceiver | 取消注册网络广播监听 |
-| setNetListener | 设置监听通知事件 |
-| onNetworkState | 网络连接状态改变时通知 |
-
-
-* **手机监听广播 ->** [PhoneReceiver.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/receiver/PhoneReceiver.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onReceive | onReceive |
-| registerReceiver | 注册电话监听广播 |
-| unregisterReceiver | 取消注册电话监听广播 |
-| setPhoneListener | 设置电话状态监听事件 |
-| onPhoneStateChanged | 电话状态改变通知 |
-
-
-* **屏幕监听广播 ( 锁屏 / 解锁 / 亮屏 ) ->** [ScreenReceiver.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/receiver/ScreenReceiver.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onReceive | onReceive |
-| registerReceiver | 注册屏幕监听广播 |
-| unregisterReceiver | 取消注册屏幕监听广播 |
-| setScreenListener | 设置屏幕监听事件 |
-| screenOn | 用户打开屏幕 ( 屏幕变亮 ) |
-| screenOff | 锁屏触发 |
-| userPresent | 用户解锁触发 |
-
-
-* **短信监听广播 ->** [SmsReceiver.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/receiver/SmsReceiver.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onReceive | onReceive |
-| getMessageData | 获取消息数据 |
-| registerReceiver | 注册短信监听广播 |
-| unregisterReceiver | 取消注册短信监听广播 |
-| setSmsListener | 设置短信监听事件 |
-| onMessage | 最终触发通知 ( 超过长度的短信消息, 最终合并成一条内容体 ) |
-
-
-* **时间监听广播 ->** [TimeReceiver.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/receiver/TimeReceiver.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onReceive | onReceive |
-| registerReceiver | 注册时间监听广播 |
-| unregisterReceiver | 取消注册时间监听广播 |
-| setTimeListener | 设置时间监听事件 |
-| onTimeZoneChanged | 时区改变 |
-| onTimeChanged | 设置时间 |
-| onTimeTick | 每分钟调用 |
-
-
-* **Wifi 监听广播 ->** [WifiReceiver.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/receiver/WifiReceiver.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onReceive | onReceive |
-| registerReceiver | 注册 Wifi 监听广播 |
-| unregisterReceiver | 取消注册 Wifi 监听广播 |
-| setWifiListener | 设置 Wifi 监听事件 |
-| onIntoTrigger | 触发回调通知 ( 每次进入都通知 ) |
-| onTrigger | 触发回调通知 |
-| onWifiSwitch | Wifi 开关状态 |
-
-
 ## <span id="devservice">**`dev.service`**</span>
 
 
-* **无障碍功能监听服务 ->** [AccessibilityListenerService.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/service/AccessibilityListenerService.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onAccessibilityEvent | 通过这个函数可以接收系统发送来的 AccessibilityEvent |
-| onInterrupt | 系统想要中断 AccessibilityService 返给的响应时会调用 |
-| onServiceConnected | 系统成功绑定该服务时被触发, 也就是当你在设置中开启相应的服务, 系统成功的绑定了该服务时会触发, 通常我们可以在这里做一些初始化操作 |
-| onCreate | onCreate |
-| onDestroy | onDestroy |
-| getSelf | 获取当前服务所持对象 |
-| startService | 启动服务 |
-| stopService | 停止服务 |
-| checkAccessibility | 检查是否开启无障碍功能 |
-| isAccessibilitySettingsOn | 判断是否开启无障碍功能 |
-| setAccessibilityListener | 设置监听事件 |
-| onServiceCreated | 服务创建通知 |
-| onServiceDestroy | 服务销毁通知 |
+## <span id="devwidget">**`dev.widget`**</span>
 
 
-* **通知栏监听服务 ->** [NotificationService.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/service/NotificationService.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| onNotificationPosted | 当系统收到新的通知后触发回调 |
-| onNotificationRemoved | 当系统通知被删掉后触发回调 |
-| onCreate | onCreate |
-| onDestroy | onDestroy |
-| onStartCommand | onStartCommand |
-| getSelf | 获取当前服务所持对象 |
-| startService | 启动服务 |
-| stopService | 停止服务 |
-| checkAndIntentSetting | 检查是否有获取通知栏信息权限并跳转设置页面 |
-| isNotificationListenerEnabled | 判断是否有获取通知栏信息权限 |
-| startNotificationListenSettings | 跳转到设置页面, 开启获取通知栏信息权限 |
-| cancelNotification | 取消通知方法 |
-| setNotificationListener | 设置通知栏监听事件 |
-| onServiceCreated | 服务创建通知 |
-| onServiceDestroy | 服务销毁通知 |
+## <span id="devwidgetdecoration">**`dev.widget.decoration`**</span>

@@ -41,7 +41,7 @@ ext {
                     dev_base                        : "io.github.afkt:DevBase:${versions.dev_base_versionName}",
                     dev_base_mvvm                   : "io.github.afkt:DevBaseMVVM:${versions.dev_base_mvvm_versionName}",
                     dev_java                        : "com.afkt:DevJava:${versions.dev_java_version}",
-                    dev_widget_x                    : "com.afkt:DevWidgetX:${versions.dev_widget_versionName}",
+                    dev_widget_x                    : "io.github.afkt:DevWidgetX:${versions.dev_widget_versionName}",
                     // 环境配置切换库
                     dev_environment                 : "com.afkt:DevEnvironment:${versions.dev_environment_version}",
                     dev_environment_base            : "com.afkt:DevEnvironmentBase:${versions.dev_environment_base_version}",

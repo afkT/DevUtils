@@ -49,9 +49,9 @@ ext {
             dev_java_version                        : '1.3.0',
 
             // 版本号
-            dev_widget_versionCode                  : 109,
+            dev_widget_versionCode                  : 110,
             // 版本名
-            dev_widget_versionName                  : '1.0.9',
+            dev_widget_versionName                  : '1.1.0',
 
             // 版本号
             dev_environment_versionCode             : 102,

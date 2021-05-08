@@ -90,7 +90,7 @@ implementation 'io.github.afkt:DevBaseMVVM:1.0.3'
 implementation 'com.afkt:DevJava:1.3.0' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
 
 // DevWidget 自定义 View UI 库
-implementation 'com.afkt:DevWidgetX:1.0.9'
+implementation 'io.github.afkt:DevWidgetX:1.1.0'
 
 // DevEnvironment Android 环境配置切换库
 implementation 'com.afkt:DevEnvironment:1.0.2'
