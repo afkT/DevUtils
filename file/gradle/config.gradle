@@ -37,7 +37,7 @@ ext {
                     // https://github.com/afkT/DevUtils
                     // https://search.maven.org/search?q=io.github.afkt
                     dev_app_x                       : "io.github.afkt:DevAppX:${versions.dev_app_versionName}",
-                    dev_assist                      : "com.afkt:DevAssist:${versions.dev_assist_versionName}",
+                    dev_assist                      : "io.github.afkt:DevAssist:${versions.dev_assist_versionName}",
                     dev_base                        : "com.afkt:DevBase:${versions.dev_base_versionName}",
                     dev_base_mvvm                   : "com.afkt:DevBaseMVVM:${versions.dev_base_mvvm_versionName}",
                     dev_java                        : "com.afkt:DevJava:${versions.dev_java_version}",
