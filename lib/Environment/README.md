@@ -50,7 +50,7 @@ DevEnvironment 是一个 Android 环境配置切换库，运用 Java 注解、AP
 
 module | DevEnvironment | DevEnvironmentCompiler | DevEnvironmentCompilerRelease
 :---:|:---:|:---:|:---:
-version | [![Bintray](https://api.bintray.com/packages/afkt/maven/DevEnvironment/images/download.svg)](https://bintray.com/afkt/maven/DevEnvironment/_latestVersion) | [![Bintray](https://api.bintray.com/packages/afkt/maven/DevEnvironmentCompiler/images/download.svg)](https://bintray.com/afkt/maven/DevEnvironmentCompiler/_latestVersion) | [![Bintray](https://api.bintray.com/packages/afkt/maven/DevEnvironmentCompilerRelease/images/download.svg)](https://bintray.com/afkt/maven/DevEnvironmentCompilerRelease/_latestVersion)
+version | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.3-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.3-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt) | [![MavenCentral](https://img.shields.io/badge/Maven-1.0.3-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt)
 
 
 ### 使用方法
