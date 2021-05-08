@@ -113,11 +113,13 @@ publishing {
             }
         }
     }
+    // https://docs.gradle.org/current/userguide/publishing_maven.html
     repositories {
         maven {
-            name = projectName
-            def releasesRepoUrl = "https://repo.maven.apache.org/maven2/io/github/afkt"
-            def snapshotsRepoUrl = "https://repo.maven.apache.org/maven2/io/github/afkt"
+            // https://s01.oss.sonatype.org/#view-repositories
+            // https://central.sonatype.org/publish/publish-guide/#deployment
+            def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
             url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
 
             credentials {
