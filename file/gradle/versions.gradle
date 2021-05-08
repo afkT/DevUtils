@@ -24,9 +24,9 @@ ext {
             // ===========
 
             // 版本号
-            dev_app_versionCode                     : 223,
+            dev_app_versionCode                     : 224,
             // 版本名
-            dev_app_versionName                     : '2.2.3',
+            dev_app_versionName                     : '2.2.4',
 
             // 版本号
             dev_assist_versionCode                  : 119,

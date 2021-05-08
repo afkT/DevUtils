@@ -96,7 +96,7 @@ publishing {
                 groupId = projectGroupId
                 artifactId = projectArtifactId
                 version = projectVersionName
-                description = "${projectName} publish"
+                description = "${projectName}:${projectVersionName} publish"
                 licenses {
                     license {
                         name = "The Apache Software License, Version 2.0"
