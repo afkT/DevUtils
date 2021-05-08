@@ -84,6 +84,10 @@ publishing {
             artifactId projectArtifactId
             version projectVersionName
 
+            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+            artifact javadocJar
+            artifact sourcesJar
+
             // https://docs.gradle.org/6.7.1/dsl/org.gradle.api.publish.maven.MavenPom.html
             pom {
                 name = projectName
@@ -110,12 +114,22 @@ publishing {
                     developerConnection = projectGitUrl
                     url = projectSiteUrl
                 }
+                withXml {
+                    def dependenciesNode = asNode().appendNode('dependencies')
+                    project.configurations.implementation.allDependencies.each {
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', it.group)
+                        dependencyNode.appendNode('artifactId', it.name)
+                        dependencyNode.appendNode('version', it.version)
+                    }
+                }
             }
         }
     }
     // https://docs.gradle.org/current/userguide/publishing_maven.html
     repositories {
         maven {
+            name = projectName
             // https://s01.oss.sonatype.org/#view-repositories
             // https://central.sonatype.org/publish/publish-guide/#deployment
             def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
