@@ -81,7 +81,7 @@ implementation 'io.github.afkt:DevAppX:2.2.4'
 implementation 'io.github.afkt:DevAssist:1.2.0'
 
 // DevBase Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
-implementation 'com.afkt:DevBase:1.0.4'
+implementation 'io.github.afkt:DevBase:1.0.5'
 
 // DevBaseMVVM MVVM ( ViewDataBinding + ViewModel ) 基类库
 implementation 'com.afkt:DevBaseMVVM:1.0.2'

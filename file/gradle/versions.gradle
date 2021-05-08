@@ -34,9 +34,9 @@ ext {
             dev_assist_versionName                  : '1.2.0',
 
             // 版本号
-            dev_base_versionCode                    : 104,
+            dev_base_versionCode                    : 105,
             // 版本名
-            dev_base_versionName                    : '1.0.4',
+            dev_base_versionName                    : '1.0.5',
 
             // 版本号
             dev_base_mvvm_versionCode               : 102,
