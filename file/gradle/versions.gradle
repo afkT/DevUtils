@@ -39,9 +39,9 @@ ext {
             dev_base_versionName                    : '1.0.5',
 
             // 版本号
-            dev_base_mvvm_versionCode               : 102,
+            dev_base_mvvm_versionCode               : 103,
             // 版本名
-            dev_base_mvvm_versionName               : '1.0.2',
+            dev_base_mvvm_versionName               : '1.0.3',
 
             // 版本号
             dev_java_versionCode                    : 130,

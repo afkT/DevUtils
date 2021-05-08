@@ -84,7 +84,7 @@ implementation 'io.github.afkt:DevAssist:1.2.0'
 implementation 'io.github.afkt:DevBase:1.0.5'
 
 // DevBaseMVVM MVVM ( ViewDataBinding + ViewModel ) 基类库
-implementation 'com.afkt:DevBaseMVVM:1.0.2'
+implementation 'io.github.afkt:DevBaseMVVM:1.0.3'
 
 // DevJava Java 工具类库 ( 不依赖 android api )
 implementation 'com.afkt:DevJava:1.3.0' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
