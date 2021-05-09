@@ -9,11 +9,11 @@
 
 > DevUtils 是一个 Android 工具库，主要根据不同功能模块，封装快捷使用的工具类及 API 方法调用
 >
-> 该项目尽可能的便于开发人员，快捷、高效开发安全可靠的项目。（ 全部已同步至 Maven Central ）
+> 该项目尽可能的便于开发人员，快捷、高效开发安全可靠的项目。
 
 ![module](https://github.com/afkT/DevUtils/raw/master/art/module.png)
 
-## Documentation - [Lib](https://github.com/afkT/DevUtils/blob/master/lib)
+## Documentation - [Lib](https://github.com/afkT/DevUtils/blob/master/lib) **（ 全部已同步至 Maven Central ）**
 
 ### DevApp - Android 工具类库
 
@@ -68,6 +68,8 @@
 > [DevOther](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/README.md) 第三方库封装、以及部分特殊工具类等，方便 copy 封装类使用 
 >
 > [JavaDoc API Generate](https://github.com/afkT/JavaDoc) 该工具类 (DevUtils) API 文档，是通过 JavaDoc 项目读取 class 信息生成，并且进行代码、注释间距规范检测，生成效果示范 [DevApp - API](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
+>
+> [DevComponent](https://github.com/afkT/DevComponent) :zap:【Android 项目组件化示例代码】基于 Google JetPack AndroidX + Kotlin + Coroutines + MVVM 架构（DataBinding、ViewModel、Lifecycle）等最新技术栈进行组件化基础搭建，使用 ARouter 方案实现组件化
 
 
 ## Dev 系列全部 Lib Gradle
