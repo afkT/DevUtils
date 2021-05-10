@@ -13,6 +13,9 @@ ij_formatter_tags_enabled = false
 ij_smart_tabs = false
 ij_wrap_on_typing = false
 
+[*.dart]
+max_line_length = 80
+
 [*.java]
 ij_java_align_consecutive_assignments = false
 ij_java_align_consecutive_variable_declarations = true
@@ -635,6 +638,7 @@ ij_groovy_for_statement_right_paren_on_new_line = false
 ij_groovy_for_statement_wrap = off
 ij_groovy_if_brace_force = never
 ij_groovy_import_annotation_wrap = 2
+ij_groovy_imports_layout = *,|,javax.**,java.**,|,$*
 ij_groovy_indent_case_from_switch = true
 ij_groovy_indent_label_blocks = true
 ij_groovy_insert_inner_class_imports = false
@@ -791,6 +795,7 @@ ij_kotlin_field_annotation_wrap = split_into_lines
 ij_kotlin_finally_on_new_line = false
 ij_kotlin_if_rparen_on_new_line = true
 ij_kotlin_import_nested_classes = false
+ij_kotlin_imports_layout = *,java.**,javax.**,kotlin.**,^
 ij_kotlin_insert_whitespaces_in_simple_one_line_method = true
 ij_kotlin_keep_blank_lines_before_right_brace = 2
 ij_kotlin_keep_blank_lines_in_code = 2
@@ -808,6 +813,7 @@ ij_kotlin_method_parameters_right_paren_on_new_line = true
 ij_kotlin_method_parameters_wrap = split_into_lines
 ij_kotlin_name_count_to_use_star_import = 5
 ij_kotlin_name_count_to_use_star_import_for_members = 3
+ij_kotlin_packages_to_use_import_on_demand = java.util.*,kotlinx.android.synthetic.**,io.ktor.**
 ij_kotlin_parameter_annotation_wrap = off
 ij_kotlin_space_after_comma = true
 ij_kotlin_space_after_extend_colon = true
@@ -876,8 +882,12 @@ ij_html_space_after_tag_name = false
 ij_html_space_around_equality_in_attribute = false
 ij_html_space_inside_empty_tag = false
 ij_html_text_wrap = normal
+ij_html_uniform_ident = false
 
-[{*.yaml,*.yml}]
+[{*.yaml,*.yml,.analysis_options}]
 indent_size = 2
 ij_yaml_keep_indents_on_empty_lines = false
 ij_yaml_keep_line_breaks = true
+ij_yaml_space_before_colon = true
+ij_yaml_spaces_within_braces = true
+ij_yaml_spaces_within_brackets = true
