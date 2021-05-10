@@ -4,7 +4,8 @@ apply from: rootProject.file('file/gradle/config.gradle')
 buildscript {
 
     // Kotlin 版本
-    ext.kotlin_version = "1.5.0" // kotlin-stdlib
+    ext.kotlin_version = "1.4.31"
+    ext.kotlin_stdlib = "1.4.31"
 
     repositories { // 该 repositories 用于 buildscript dependencies 插件、脚本依赖加载
         // AliRepo 阿里仓库服务 https://maven.aliyun.com/mvn/view
