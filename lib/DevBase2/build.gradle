@@ -10,6 +10,4 @@ dependencies {
     implementation deps.widget.smartrefreshlayout
     implementation deps.widget.smartrefresh_header_classics
     implementation deps.widget.smartrefresh_footer_classics
-    // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-    implementation deps.widget.baserecyclerviewadapterhelper
 }

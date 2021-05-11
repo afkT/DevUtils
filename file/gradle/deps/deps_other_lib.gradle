@@ -85,8 +85,8 @@ dependencies {
     implementation deps.widget.smartrefresh_footer_classics
     // 下拉刷新框架 ( 横向 ) https://github.com/scwang90/SmartRefreshHorizontal
     implementation deps.widget.smartrefreshHorizontal
-    // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-    implementation deps.widget.baserecyclerviewadapterhelper
+//    // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+//    implementation deps.widget.baserecyclerviewadapterhelper
 
     // ==============
     // = Deprecated =

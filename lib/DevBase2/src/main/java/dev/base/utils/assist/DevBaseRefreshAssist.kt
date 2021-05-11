@@ -1,8 +1,6 @@
 package dev.base.utils.assist
 
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.api.RefreshFooter
 import com.scwang.smart.refresh.layout.api.RefreshHeader
@@ -26,8 +24,8 @@ class DevBaseRefreshAssist<T> {
     // RecyclerView
     private var mRecyclerView: RecyclerView? = null
 
-    // 通用适配器
-    private var mAdapter: BaseQuickAdapter<*, *>? = null
+    // Adapter
+    private var mAdapter: RecyclerView.Adapter<*>? = null
 
     // ===========
     // = get/set =
@@ -60,12 +58,12 @@ class DevBaseRefreshAssist<T> {
         return this
     }
 
-    fun <T : BaseQuickAdapter<*, *>?> getAdapter(): T? {
+    fun <T : RecyclerView.Adapter<*>?> getAdapter(): T? {
         mAdapter?.let { return mAdapter as? T? }
         return null
     }
 
-    fun setAdapter(adapter: BaseQuickAdapter<*, *>?): DevBaseRefreshAssist<T> {
+    fun setAdapter(adapter: RecyclerView.Adapter<*>?): DevBaseRefreshAssist<T> {
         adapter?.let {
             mAdapter = it
             mRecyclerView?.adapter = it
@@ -185,110 +183,6 @@ class DevBaseRefreshAssist<T> {
     }
 
     // =
-
-    /**
-     * 获取头部 View 数量
-     * @return 头部 View 数量
-     */
-    fun getHeaderLayoutCount(): Int {
-        return mAdapter?.headerLayoutCount ?: 0
-    }
-
-    /**
-     * 添加头部 View
-     * @param header header View
-     * @return [DevBaseRefreshAssist]
-     */
-    fun addHeaderView(header: View): DevBaseRefreshAssist<T> {
-        mAdapter?.addHeaderView(header)
-        return this
-    }
-
-    /**
-     * 添加头部 View 到指定位置
-     * @param header header View
-     * @param index  index
-     * @return [DevBaseRefreshAssist]
-     */
-    fun addHeaderView(
-        header: View,
-        index: Int
-    ): DevBaseRefreshAssist<T> {
-        mAdapter?.addHeaderView(header, index)
-        return this
-    }
-
-    /**
-     * 移除头部 View
-     * @param header header View
-     * @return [DevBaseRefreshAssist]
-     */
-    fun removeHeaderView(header: View): DevBaseRefreshAssist<T> {
-        mAdapter?.removeHeaderView(header)
-        return this
-    }
-
-    /**
-     * 清空头部 View
-     * @return [DevBaseRefreshAssist]
-     */
-    fun removeAllHeaderView(): DevBaseRefreshAssist<T> {
-        mAdapter?.removeAllHeaderView()
-        return this
-    }
-
-    // =
-
-    /**
-     * 获取底部 View 数量
-     * @return 底部 View 数量
-     */
-    fun getFooterLayoutCount(): Int {
-        return mAdapter?.footerLayoutCount ?: 0
-    }
-
-    /**
-     * 添加底部 View
-     * @param footer footer View
-     * @return [DevBaseRefreshAssist]
-     */
-    fun addFooterView(footer: View): DevBaseRefreshAssist<T> {
-        mAdapter?.addFooterView(footer)
-        return this
-    }
-
-    /**
-     * 添加底部 View 到指定位置
-     * @param footer footer View
-     * @param index  index
-     * @return [DevBaseRefreshAssist]
-     */
-    fun addFooterView(
-        footer: View,
-        index: Int
-    ): DevBaseRefreshAssist<T> {
-        mAdapter?.addFooterView(footer, index)
-        return this
-    }
-
-    /**
-     * 移除底部 View
-     * @param footer footer View
-     * @return [DevBaseRefreshAssist]
-     */
-    fun removeFooterView(footer: View): DevBaseRefreshAssist<T> {
-        mAdapter?.removeFooterView(footer)
-        return this
-    }
-
-    /**
-     * 清空底部 View
-     * @return [DevBaseRefreshAssist]
-     */
-    fun removeAllFooterView(): DevBaseRefreshAssist<T> {
-        mAdapter?.removeAllFooterView()
-        return this
-    }
 
     /**
      * 设置指定刷新头

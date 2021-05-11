@@ -4,13 +4,11 @@ import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -21,7 +19,7 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import dev.assist.PageAssist
 import dev.base.utils.assist.DevBaseRefreshAssist
-import dev.base2.R
+import dev.base2.databinding.BaseRefreshViewBinding
 
 /**
  * detail: Base Refresh、Load View
@@ -65,7 +63,7 @@ class BaseRefreshView : LinearLayout {
     private var mBody: FrameLayout? = null
 
     // DevBase RefreshLayout 辅助类
-    private var mAssist = DevBaseRefreshAssist<String>()
+    private var mAssist = DevBaseRefreshAssist<Object>()
 
     /**
      * 默认初始化操作
@@ -73,13 +71,14 @@ class BaseRefreshView : LinearLayout {
     private fun init() {
         orientation = VERTICAL
         val context = context
+
         // 初始化 View
-        val view = LayoutInflater.from(context).inflate(R.layout.base_refresh_view, null)
-        mBody = view.findViewById(R.id.vid_brv_frame)
+        var binding = BaseRefreshViewBinding.inflate(LayoutInflater.from(context))
+        mBody = binding.vidBrvFrame
         // 初始化 Refresh 数据
         mAssist
-            .setRecyclerView(view.findViewById(R.id.vid_brv_recy))
-            .setRefreshLayout(view.findViewById(R.id.vid_brv_refresh))
+            .setRecyclerView(binding.vidBrvRecy)
+            .setRefreshLayout(binding.vidBrvRefresh)
             .setRefreshHeader(ClassicsHeader(context)) // 刷新头
             .setRefreshFooter(ClassicsFooter(context)) // 刷新尾巴
             .setEnableRefresh(true) // 开启下拉刷新
@@ -89,7 +88,7 @@ class BaseRefreshView : LinearLayout {
 
         // 添加 View
         addView(
-            view,
+            binding.root,
             FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
@@ -98,10 +97,10 @@ class BaseRefreshView : LinearLayout {
     }
 
     // ========================
-    // = DevBaseRefreshAssist =
+    // = DevBaseRefreshAssist2 =
     // ========================
 
-    fun getAssist(): DevBaseRefreshAssist<String> {
+    fun getAssist(): DevBaseRefreshAssist<Object> {
         return mAssist
     }
 
@@ -113,11 +112,11 @@ class BaseRefreshView : LinearLayout {
         return mBody
     }
 
-    fun getPageAssist(): PageAssist<String> {
+    fun getPageAssist(): PageAssist<Object> {
         return mAssist.getPageAssist()
     }
 
-    fun setPageAssist(pageAssist: PageAssist<String>): BaseRefreshView {
+    fun setPageAssist(pageAssist: PageAssist<Object>): BaseRefreshView {
         mAssist.setPageAssist(pageAssist)
         return this
     }
@@ -140,11 +139,11 @@ class BaseRefreshView : LinearLayout {
         return this
     }
 
-    fun <T : BaseQuickAdapter<*, *>?> getAdapter(): T? {
+    fun <T : RecyclerView.Adapter<*>?> getAdapter(): T? {
         return mAssist.getAdapter<T>()
     }
 
-    fun setAdapter(adapter: BaseQuickAdapter<*, *>?): BaseRefreshView {
+    fun setAdapter(adapter: RecyclerView.Adapter<*>?): BaseRefreshView {
         mAssist.setAdapter(adapter)
         return this
     }
@@ -263,110 +262,6 @@ class BaseRefreshView : LinearLayout {
     }
 
     // =
-
-    /**
-     * 获取头部 View 数量
-     * @return 头部 View 数量
-     */
-    fun getHeaderLayoutCount(): Int {
-        return mAssist.getHeaderLayoutCount()
-    }
-
-    /**
-     * 添加头部 View
-     * @param header header View
-     * @return [DevBaseRefreshAssist]
-     */
-    fun addHeaderView(header: View): BaseRefreshView {
-        mAssist.addHeaderView(header)
-        return this
-    }
-
-    /**
-     * 添加头部 View 到指定位置
-     * @param header header View
-     * @param index  index
-     * @return [DevBaseRefreshAssist]
-     */
-    fun addHeaderView(
-        header: View,
-        index: Int
-    ): BaseRefreshView {
-        mAssist.addHeaderView(header, index)
-        return this
-    }
-
-    /**
-     * 移除头部 View
-     * @param header header View
-     * @return [DevBaseRefreshAssist]
-     */
-    fun removeHeaderView(header: View): BaseRefreshView {
-        mAssist.removeHeaderView(header)
-        return this
-    }
-
-    /**
-     * 清空头部 View
-     * @return [DevBaseRefreshAssist]
-     */
-    fun removeAllHeaderView(): BaseRefreshView {
-        mAssist.removeAllHeaderView()
-        return this
-    }
-
-    // =
-
-    /**
-     * 获取底部 View 数量
-     * @return 底部 View 数量
-     */
-    fun getFooterLayoutCount(): Int {
-        return mAssist.getFooterLayoutCount()
-    }
-
-    /**
-     * 添加底部 View
-     * @param footer footer View
-     * @return [DevBaseRefreshAssist]
-     */
-    fun addFooterView(footer: View): BaseRefreshView {
-        mAssist.addFooterView(footer)
-        return this
-    }
-
-    /**
-     * 添加底部 View 到指定位置
-     * @param footer footer View
-     * @param index  index
-     * @return [DevBaseRefreshAssist]
-     */
-    fun addFooterView(
-        footer: View,
-        index: Int
-    ): BaseRefreshView {
-        mAssist.addFooterView(footer, index)
-        return this
-    }
-
-    /**
-     * 移除底部 View
-     * @param footer footer View
-     * @return [DevBaseRefreshAssist]
-     */
-    fun removeFooterView(footer: View): BaseRefreshView {
-        mAssist.removeFooterView(footer)
-        return this
-    }
-
-    /**
-     * 清空底部 View
-     * @return [DevBaseRefreshAssist]
-     */
-    fun removeAllFooterView(): BaseRefreshView {
-        mAssist.removeAllFooterView()
-        return this
-    }
 
     /**
      * 设置指定刷新头
