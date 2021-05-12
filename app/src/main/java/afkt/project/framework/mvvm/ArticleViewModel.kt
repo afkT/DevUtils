@@ -2,6 +2,7 @@ package afkt.project.framework.mvvm
 
 import afkt.project.model.bean.ArticleBean
 import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -14,15 +15,27 @@ import androidx.lifecycle.ViewModel
 class ArticleViewModel : ViewModel(),
     DefaultLifecycleObserver {
 
-    var article = MutableLiveData<ArticleBean?>()
+    val article = MutableLiveData<ArticleBean?>()
 
     // Repository
-    var repository = ArticleRepository()
+    val repository = ArticleRepository()
+
+    // LifecycleOwner
+    private lateinit var lifecycleOwner: LifecycleOwner
 
     /**
      * 请求文章列表
      */
     fun requestArticleLists(): MutableLiveData<ArticleBean?> {
-        return repository.requestArticleLists(article)
+        return repository.requestArticleLists(lifecycleOwner, article)
+    }
+
+    // =============
+    // = lifecycle =
+    // =============
+
+    fun lifecycle(owner: LifecycleOwner) {
+        lifecycleOwner = owner
+        owner.lifecycle.addObserver(this)
     }
 }

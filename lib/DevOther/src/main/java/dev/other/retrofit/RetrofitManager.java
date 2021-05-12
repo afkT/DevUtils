@@ -19,6 +19,7 @@ import retrofit2.Retrofit;
  *     @see <a href="https://blog.csdn.net/carson_ho/article/details/73732076"/>
  *     封装 Retrofit2 + RxJava2 网络请求框架
  *     @see <a href="https://www.jianshu.com/p/2e8b400909b7"/>
+ *     @see <a href="https://github.com/xchengDroid/retrofit-helper"/>
  * </pre>
  */
 public final class RetrofitManager {

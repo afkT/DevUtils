@@ -113,80 +113,84 @@ ext {
             ],
             'lib'       : [
                     // Gson https://github.com/google/gson
-                    gson                  : "com.google.code.gson:gson:2.8.6",
+                    gson                                : "com.google.code.gson:gson:2.8.6",
                     // Glide 加载框架 https://github.com/bumptech/glide
-                    glide                 : "com.github.bumptech.glide:glide:4.12.0",
-                    glide_compiler        : "com.github.bumptech.glide:compiler:4.12.0",
+                    glide                               : "com.github.bumptech.glide:glide:4.12.0",
+                    glide_compiler                      : "com.github.bumptech.glide:compiler:4.12.0",
                     // Glide 图形库 https://github.com/wasabeef/glide-transformations
-                    glide_transformations : "jp.wasabeef:glide-transformations:4.3.0",
+                    glide_transformations               : "jp.wasabeef:glide-transformations:4.3.0",
                     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
-                    eventbus              : "org.greenrobot:eventbus:3.2.0",
+                    eventbus                            : "org.greenrobot:eventbus:3.2.0",
                     // LiveEventBus 消息总线 https://github.com/JeremyLiao/LiveEventBus
-                    live_eventbus         : "com.jeremyliao:live-event-bus-x:1.7.3",
+                    live_eventbus                       : "com.jeremyliao:live-event-bus-x:1.7.3",
                     // okip https://github.com/square/okio
-                    okio                  : "com.squareup.okio:okio:2.9.0",
+                    okio                                : "com.squareup.okio:okio:2.9.0",
                     // okhttp3 网络请求框架 https://github.com/square/okhttp
-                    okhttp3               : "com.squareup.okhttp3:okhttp:4.9.0",
+                    okhttp3                             : "com.squareup.okhttp3:okhttp:4.9.0",
                     // okhttp 日志拦截器 https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor
-                    okhttp3_logging       : "com.squareup.okhttp3:logging-interceptor:4.9.0",
+                    okhttp3_logging                     : "com.squareup.okhttp3:logging-interceptor:4.9.0",
                     // Retrofit 网络请求库  https://github.com/square/retrofit
-                    retrofit              : "com.squareup.retrofit2:retrofit:2.9.0",
+                    retrofit                            : "com.squareup.retrofit2:retrofit:2.9.0",
                     // Retrofit Gson Converter  https://github.com/square/retrofit/tree/master/retrofit-converters/gson
-                    retrofit_gson         : "com.squareup.retrofit2:converter-gson:2.9.0",
+                    retrofit_gson                       : "com.squareup.retrofit2:converter-gson:2.9.0",
                     // Retrofit RxJava3 Adapter  https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava3
-                    retrofit_rxjava3      : "com.squareup.retrofit2:adapter-rxjava3:2.9.0",
+                    retrofit_rxjava3                    : "com.squareup.retrofit2:adapter-rxjava3:2.9.0",
                     // RxJava3 https://github.com/ReactiveX/RxJava/tree/3.x
-                    rxjava3               : "io.reactivex.rxjava3:rxjava:3.0.7",
+                    rxjava3                             : "io.reactivex.rxjava3:rxjava:3.0.7",
                     // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
-                    rxandroid3            : "io.reactivex.rxjava3:rxandroid:3.0.0",
+                    rxandroid3                          : "io.reactivex.rxjava3:rxandroid:3.0.0",
+                    // RxLifecycle https://github.com/trello/RxLifecycle
+                    rxlifecycle                         : "com.trello.rxlifecycle4:rxlifecycle:4.0.2",
+                    rxlifecycle_kotlin                  : "com.trello.rxlifecycle4:rxlifecycle-kotlin:4.0.2",
+                    rxlifecycle_android_lifecycle_kotlin: "com.trello.rxlifecycle4:rxlifecycle-android-lifecycle-kotlin:4.0.2",
                     // AutoDispose 自动绑定解绑 https://github.com/uber/AutoDispose
-                    auto_dispose          : "com.uber.autodispose2:autodispose:2.0.0",
-                    auto_dispose_android  : "com.uber.autodispose2:autodispose-android:2.0.0",
-                    auto_dispose_lifecycle: "com.uber.autodispose2:autodispose-androidx-lifecycle:2.0.0",
+                    auto_dispose                        : "com.uber.autodispose2:autodispose:2.0.0",
+                    auto_dispose_android                : "com.uber.autodispose2:autodispose-android:2.0.0",
+                    auto_dispose_lifecycle              : "com.uber.autodispose2:autodispose-androidx-lifecycle:2.0.0",
                     // fastjson https://github.com/alibaba/fastjson
-                    fastjson              : "com.alibaba:fastjson:1.2.73",
-                    fastjson_android      : "com.alibaba:fastjson:1.1.72.android",
+                    fastjson                            : "com.alibaba:fastjson:1.2.73",
+                    fastjson_android                    : "com.alibaba:fastjson:1.1.72.android",
                     // Anchors 启动框架 https://github.com/YummyLau/Anchors/blob/master/README-zh.md
-                    anchors               : "com.effective.android:anchors:1.1.3",
+                    anchors                             : "com.effective.android:anchors:1.1.3",
                     // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
-                    panelSwitchHelper     : "com.effective.android:panelSwitchHelper-androidx:1.3.13",
+                    panelSwitchHelper                   : "com.effective.android:panelSwitchHelper-androidx:1.3.13",
                     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-                    pictureSelector       : "com.github.LuckSiege.PictureSelector:picture_library:v2.6.0",
+                    pictureSelector                     : "com.github.LuckSiege.PictureSelector:picture_library:v2.6.0",
                     // 动画库 https://github.com/airbnb/lottie-android
-                    lottie                : "com.airbnb.android:lottie:3.6.1", // https://www.jianshu.com/p/9a2136ecbc7b
+                    lottie                              : "com.airbnb.android:lottie:3.6.1", // https://www.jianshu.com/p/9a2136ecbc7b
                     // Aria 下载可以很简单 https://github.com/AriaLyy/Aria
-                    aria_core             : "com.arialyy.aria:core:3.8.15",
-                    aria_compiler         : "com.arialyy.aria:compiler:3.8.15",
-                    aria_ftp              : "com.arialyy.aria:ftpComponent:3.8.15", // 如果需要使用 ftp, 请增加该组件
-                    aria_sftp             : "com.arialyy.aria:sftpComponent:3.8.15", // 如果需要使用 ftp, 请增加该组件
-                    aria_m3u8             : "com.arialyy.aria:m3u8Component:3.8.15", // 如果需要使用 m3u8 下载功能, 请增加该组件
+                    aria_core                           : "com.arialyy.aria:core:3.8.15",
+                    aria_compiler                       : "com.arialyy.aria:compiler:3.8.15",
+                    aria_ftp                            : "com.arialyy.aria:ftpComponent:3.8.15", // 如果需要使用 ftp, 请增加该组件
+                    aria_sftp                           : "com.arialyy.aria:sftpComponent:3.8.15", // 如果需要使用 ftp, 请增加该组件
+                    aria_m3u8                           : "com.arialyy.aria:m3u8Component:3.8.15", // 如果需要使用 m3u8 下载功能, 请增加该组件
                     // 二维码 ZXing https://github.com/zxing/zxing
-                    zxing_code            : "com.google.zxing:core:3.4.1", // http://mvnrepository.com/artifact/com.google.zxing/core
-                    zxing_android_code    : "com.google.zxing:android-core:3.3.0", // http://mvnrepository.com/artifact/com.google.zxing/android-core
+                    zxing_code                          : "com.google.zxing:core:3.4.1", // http://mvnrepository.com/artifact/com.google.zxing/core
+                    zxing_android_code                  : "com.google.zxing:android-core:3.3.0", // http://mvnrepository.com/artifact/com.google.zxing/android-core
                     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
-                    mmkv                  : "com.tencent:mmkv-static:1.2.7",
+                    mmkv                                : "com.tencent:mmkv-static:1.2.7",
                     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
-                    autosize              : "me.jessyan:autosize:1.2.1",
+                    autosize                            : "me.jessyan:autosize:1.2.1",
                     // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
-                    greenDAO              : "org.greenrobot:greendao:3.3.0",
+                    greenDAO                            : "org.greenrobot:greendao:3.3.0",
                     // SQLCipher for Android https://github.com/sqlcipher/android-database-sqlcipher
-                    sqlcipher             : "net.zetetic:android-database-sqlcipher:4.4.2",
+                    sqlcipher                           : "net.zetetic:android-database-sqlcipher:4.4.2",
                     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
-                    luban                 : "top.zibin:Luban:1.1.8",
+                    luban                               : "top.zibin:Luban:1.1.8",
                     // Kotlin Luban 图片压缩 https://github.com/forJrking/KLuban
-                    kluban                : "com.github.forJrking:KLuban:1.0.5",
+                    kluban                              : "com.github.forJrking:KLuban:1.0.5",
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
-                    xxPermissions         : "com.hjq:xxpermissions:9.8",
+                    xxPermissions                       : "com.hjq:xxpermissions:9.8",
                     // ProgressManager 监听 App 中所有网络链接的上传以及下载进度 https://github.com/JessYanCoding/ProgressManager
-                    progressmanager       : "me.jessyan:progressmanager:1.5.0",
+                    progressmanager                     : "me.jessyan:progressmanager:1.5.0",
 
                     // ========
                     // = 其他 =
                     // ========
 
                     // ARouter 路由 https://github.com/alibaba/ARouter
-                    arouter_api           : "com.alibaba:arouter-api:1.5.1", // https://github.com/alibaba/ARouter/blob/master/README_CN.md
-                    arouter_compiler      : "com.alibaba:arouter-compiler:1.5.1",
+                    arouter_api                         : "com.alibaba:arouter-api:1.5.1", // https://github.com/alibaba/ARouter/blob/master/README_CN.md
+                    arouter_compiler                    : "com.alibaba:arouter-compiler:1.5.1",
 
                     // PaintedSkin 一款解决 Android App 换肤功能的框架 https://juejin.cn/post/6941657381281464333
                     // https://github.com/CoderAlee/PaintedSkin
@@ -286,6 +290,9 @@ ext {
 
                     // 骨架屏 https://github.com/ethanhua/Skeleton
                     // https://juejin.cn/post/6844903785215574023
+
+                    // 骨架屏 https://github.com/sharish/ShimmerRecyclerView
+                    // https://www.jianshu.com/p/9d27a1563a48
 
                     // ==============
                     // = deprecated =

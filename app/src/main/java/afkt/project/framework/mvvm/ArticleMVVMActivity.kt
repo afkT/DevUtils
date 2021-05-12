@@ -138,7 +138,8 @@ class ArticleMVVMActivity : BaseMVVMActivity<ActivityArticleMvvmBinding, Article
     override fun initViewModel() {
         getActivityViewModel(ArticleViewModel::class.java)?.apply {
             viewModel = this
-            lifecycle.addObserver(viewModel)
+//            lifecycle.addObserver(viewModel)
+            viewModel.lifecycle(this@ArticleMVVMActivity)
         }
     }
 

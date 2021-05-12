@@ -18,6 +18,10 @@ dependencies {
     implementation deps.lib.rxjava3
     // RxAndroid3 https://github.com/ReactiveX/RxAndroid/tree/3.x
     implementation deps.lib.rxandroid3
+    // RxLifecycle https://github.com/trello/RxLifecycle
+    implementation deps.lib.rxlifecycle
+    implementation deps.lib.rxlifecycle_kotlin
+    implementation deps.lib.rxlifecycle_android_lifecycle_kotlin
     // AutoDispose 自动绑定解绑 https://github.com/uber/AutoDispose
     implementation deps.lib.auto_dispose
     implementation deps.lib.auto_dispose_android
