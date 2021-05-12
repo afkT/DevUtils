@@ -1,6 +1,6 @@
 // https://github.com/gradle/gradle/issues
-apply plugin: 'maven-publish'
-apply plugin: 'signing'
+apply plugin: "maven-publish"
+apply plugin: "signing"
 
 // load properties
 Properties properties = new Properties()
@@ -43,7 +43,7 @@ ext["ossrhPassword"] = ossrhPassword
 // This generates sources.jar
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
+    classifier = "sources"
 }
 
 task javadoc(type: Javadoc) {
@@ -55,7 +55,7 @@ task javadoc(type: Javadoc) {
 
 // This generates javadoc.jar
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
+    classifier = "javadoc"
     from javadoc.destinationDir
 }
 
@@ -68,7 +68,7 @@ artifacts {
 javadoc {
     options {
         encoding "UTF-8"
-        charSet 'UTF-8'
+        charSet "UTF-8"
         author true
         version projectVersionName
         links "http://docs.oracle.com/javase/7/docs/api"
@@ -116,12 +116,12 @@ publishing {
                     url = projectSiteUrl
                 }
                 withXml {
-                    def dependenciesNode = asNode().appendNode('dependencies')
+                    def dependenciesNode = asNode().appendNode("dependencies")
                     project.configurations.implementation.allDependencies.each {
-                        def dependencyNode = dependenciesNode.appendNode('dependency')
-                        dependencyNode.appendNode('groupId', it.group)
-                        dependencyNode.appendNode('artifactId', it.name)
-                        dependencyNode.appendNode('version', it.version)
+                        def dependencyNode = dependenciesNode.appendNode("dependency")
+                        dependencyNode.appendNode("groupId", it.group)
+                        dependencyNode.appendNode("artifactId", it.name)
+                        dependencyNode.appendNode("version", it.version)
                     }
                 }
             }
@@ -135,7 +135,7 @@ publishing {
             // https://central.sonatype.org/publish/publish-guide/#deployment
             def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
             def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            url = version.endsWith("SNAPSHOT") ? snapshotsRepoUrl : releasesRepoUrl
 
             credentials {
                 username ossrhUsername

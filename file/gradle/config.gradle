@@ -1,39 +1,39 @@
-apply from: rootProject.file('file/gradle/versions.gradle')
+apply from: rootProject.file("file/gradle/versions.gradle")
 
 ext {
 
     files = [
             // Android 项目构建配置
-            build_app_gradle       : 'file/gradle/build/build_app.gradle',
+            build_app_gradle       : "file/gradle/build/build_app.gradle",
             // Android Kotlin 项目构建配置
-            build_app_kotlin_gradle: 'file/gradle/build/build_app_kotlin.gradle',
+            build_app_kotlin_gradle: "file/gradle/build/build_app_kotlin.gradle",
 
             // Android Lib 通用配置
-            lib_app_gradle         : 'file/gradle/build/lib_app.gradle',
+            lib_app_gradle         : "file/gradle/build/lib_app.gradle",
             // Android Kotlin Lib 通用配置
-            lib_app_kotlin_gradle  : 'file/gradle/build/lib_app_kotlin.gradle',
+            lib_app_kotlin_gradle  : "file/gradle/build/lib_app_kotlin.gradle",
             // Android Bintray Upload
-            bintray_upload_android : 'file/gradle/upload/bintray/bintrayUploadAndroid.gradle',
+            bintray_upload_android : "file/gradle/upload/bintray/bintrayUploadAndroid.gradle",
             // Android Sonatype Upload
-            sonatype_upload_android: 'file/gradle/upload/sonatype/sonatypeUploadAndroid.gradle',
+            sonatype_upload_android: "file/gradle/upload/sonatype/sonatypeUploadAndroid.gradle",
 
             // Java Lib 通用配置
-            lib_java_gradle        : 'file/gradle/build/lib_java.gradle',
+            lib_java_gradle        : "file/gradle/build/lib_java.gradle",
             // Java Bintray Upload
-            bintray_upload_java    : 'file/gradle/upload/bintray/bintrayUploadJava.gradle',
+            bintray_upload_java    : "file/gradle/upload/bintray/bintrayUploadJava.gradle",
             // Java Sonatype Upload
-            sonatype_upload_java   : 'file/gradle/upload/sonatype/sonatypeUploadJava.gradle',
+            sonatype_upload_java   : "file/gradle/upload/sonatype/sonatypeUploadJava.gradle",
 
             // Android lib 依赖配置
-            deps_android_lib       : 'file/gradle/deps/deps_android_lib.gradle',
+            deps_android_lib       : "file/gradle/deps/deps_android_lib.gradle",
             // 第三方 lib 依赖配置
-            deps_other_lib         : 'file/gradle/deps/deps_other_lib.gradle',
+            deps_other_lib         : "file/gradle/deps/deps_other_lib.gradle",
             // 性能检测相关 lib 依赖配置
-            deps_qa_lib            : 'file/gradle/deps/deps_qa_lib.gradle',
+            deps_qa_lib            : "file/gradle/deps/deps_qa_lib.gradle",
     ]
 
     deps = [
-            'dev'       : [
+            "dev"       : [
                     // https://github.com/afkT/DevUtils
                     // https://search.maven.org/search?q=io.github.afkt
                     // https://repo1.maven.org/maven2/io/github/afkt/
@@ -50,7 +50,7 @@ ext {
                     dev_environment_compiler        : "io.github.afkt:DevEnvironmentCompiler:${versions.dev_environment_compiler_version}",
                     dev_environment_compiler_release: "io.github.afkt:DevEnvironmentCompilerRelease:${versions.dev_environment_compiler_release_version}"
             ],
-            'kotlin'    : [
+            "kotlin"    : [
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
                     stdlib                        : "org.jetbrains.kotlin:kotlin-stdlib:${ext.kotlin_stdlib}",
                     core                          : "androidx.core:core-ktx:1.3.2",
@@ -83,7 +83,7 @@ ext {
                     // https://developer.android.google.cn/jetpack/androidx/explorer
                     // https://developer.android.google.cn/jetpack/androidx/releases/datastore
             ],
-            'androidx'  : [
+            "androidx"  : [
                     // https://developer.android.com/jetpack/androidx/migrate/artifact-mappings
                     // https://developer.android.com/jetpack/androidx/versions
                     // https://developer.android.com/jetpack/androidx/explorer
@@ -111,7 +111,7 @@ ext {
                     // https://developer.android.google.cn/topic/libraries/app-startup
                     startup              : "androidx.startup:startup-runtime:1.0.0",
             ],
-            'lib'       : [
+            "lib"       : [
                     // Gson https://github.com/google/gson
                     gson                                : "com.google.code.gson:gson:2.8.6",
                     // Glide 加载框架 https://github.com/bumptech/glide
@@ -195,7 +195,7 @@ ext {
                     // PaintedSkin 一款解决 Android App 换肤功能的框架 https://juejin.cn/post/6941657381281464333
                     // https://github.com/CoderAlee/PaintedSkin
             ],
-            'aop'       : [
+            "aop"       : [
                     // 安卓 AOP 三剑客: APT、AspectJ、Javassist https://www.jianshu.com/p/dca3e2c8608a
 
                     // JavaPoet 编译时代码生成 https://github.com/square/javapoet
@@ -203,7 +203,7 @@ ext {
                     // APT 编译时注解简化服务 https://github.com/google/auto/tree/master/service
                     auto_service: "com.google.auto.service:auto-service:1.0-rc7",
             ],
-            'property'  : [
+            "property"  : [
 
                     // ======================
                     // = 性能检测、排查相关库 =
@@ -235,7 +235,7 @@ ext {
 
                     // 滴滴 Booster 质量优化框架 https://github.com/didi/booster
             ],
-            'build_apk' : [
+            "build_apk" : [
                     // APK 构建、打包相关 ( 多渠道、压缩等 )
 
                     // 瓦力多渠道打包 https://github.com/Meituan-Dianping/walle
@@ -243,7 +243,7 @@ ext {
                     // VasDolly 多渠道打包 https://github.com/Tencent/VasDolly
                     vas_dolly: "com.leon.channel:helper:2.0.3",
             ],
-            'widget'    : [
+            "widget"    : [
                     // 第三方简约小功能、UI 小组件等
 
                     // GPU Filters https://github.com/cats-oss/android-gpuimage
@@ -301,7 +301,7 @@ ext {
                     // 评价等级控件 https://github.com/hedge-hog/RatingBar
                     ratingbar                    : "com.hedgehog.ratingbar:app:1.1.2",
             ],
-            'deprecated': [
+            "deprecated": [
                     // 已经抛弃不再更新或者被其他库、技术取代
 
                     // Imageloader 图片加载框架 https://github.com/nostra13/Android-Universal-Image-Loader

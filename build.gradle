@@ -1,5 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: rootProject.file('file/gradle/config.gradle')
+apply from: rootProject.file("file/gradle/config.gradle")
 
 buildscript {
 
@@ -9,32 +9,32 @@ buildscript {
 
     repositories { // 该 repositories 用于 buildscript dependencies 插件、脚本依赖加载
         // AliRepo 阿里仓库服务 https://maven.aliyun.com/mvn/view
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url "https://maven.aliyun.com/repository/google" }
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
 
         google()
 
         // jitpack maven
-        maven { url 'https://jitpack.io' }
+        maven { url "https://jitpack.io" }
 
-        maven { url 'https://plugins.gradle.org/m2' }
+        maven { url "https://plugins.gradle.org/m2" }
 
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.0'
+        classpath "com.android.tools.build:gradle:4.2.0"
         // android maven https://plugins.gradle.org/plugin/com.github.dcendents.android-maven
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath "com.github.dcendents:android-maven-gradle-plugin:2.1"
         // bintray https://plugins.gradle.org/plugin/com.jfrog.bintray
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5"
         // greendao
-        classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
+        classpath "org.greenrobot:greendao-gradle-plugin:3.3.0"
         // kotlin https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // Hilt 依赖注入
-        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.28-alpha'
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.28-alpha"
         // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.4.32"
     }
@@ -45,9 +45,9 @@ allprojects {
         google()
 
         // jitpack maven
-        maven { url 'https://jitpack.io' }
+        maven { url "https://jitpack.io" }
 
-        maven { url 'https://plugins.gradle.org/m2' }
+        maven { url "https://plugins.gradle.org/m2" }
 
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }

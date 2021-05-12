@@ -1,5 +1,5 @@
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
+apply plugin: "com.github.dcendents.android-maven"
+apply plugin: "com.jfrog.bintray"
 
 // load properties
 Properties properties = new Properties()
@@ -46,8 +46,8 @@ install {
                 url projectSiteUrl
                 licenses {
                     license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        name "The Apache Software License, Version 2.0"
+                        url "http://www.apache.org/licenses/LICENSE-2.0.txt"
                     }
                 }
                 developers {
@@ -70,7 +70,7 @@ install {
 // This generates sources.jar
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
+    classifier = "sources"
 }
 
 task javadoc(type: Javadoc) {
@@ -82,7 +82,7 @@ task javadoc(type: Javadoc) {
 
 // This generates javadoc.jar
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
+    classifier = "javadoc"
     from javadoc.destinationDir
 }
 
@@ -95,20 +95,20 @@ artifacts {
 javadoc {
     options {
         encoding "UTF-8"
-        charSet 'UTF-8'
+        charSet "UTF-8"
         author true
         version projectVersionName
         links "http://docs.oracle.com/javase/7/docs/api"
         title javadocName
     }
-//    options.addStringOption('Xdoclint:none', '-quiet')
+//    options.addStringOption("Xdoclint:none", "-quiet")
 }
 
 // bintray configuration
 bintray {
     user = bintrayUser
     key = bintrayApikey
-    configurations = ['archives']
+    configurations = ["archives"]
     pkg {
         repo = "maven"
         name = projectName
