@@ -4,71 +4,73 @@ include ':app'
 // = Lib =
 // =======
 
-include ':DevApp'
-project(':DevApp').projectDir = new File(rootDir, 'lib/DevApp')
+def libs = [
+        "DevApp",
+        "DevAssist",
+        "DevBase",
+        "DevBaseMVVM",
+        "DevJava",
+        "DevWidget",
+]
 
-include ':DevAssist'
-project(':DevAssist').projectDir = new File(rootDir, 'lib/DevAssist')
+libs.forEach {
+    include(":$it")
+    project(":$it").projectDir = new File(rootDir, "lib/$it")
+}
 
-include ':DevBase'
-project(':DevBase').projectDir = new File(rootDir, 'lib/DevBase')
+def environment_libs = [
+        "DevEnvironment",
+        "DevEnvironmentBase",
+        "DevEnvironmentCompiler",
+        "DevEnvironmentCompilerRelease",
+]
 
-include ':DevBaseMVVM'
-project(':DevBaseMVVM').projectDir = new File(rootDir, 'lib/DevBaseMVVM')
-
-include ':DevJava'
-project(':DevJava').projectDir = new File(rootDir, 'lib/DevJava')
-
-include ':DevWidget'
-project(':DevWidget').projectDir = new File(rootDir, 'lib/DevWidget')
-
-include ':DevEnvironmentBase'
-project(':DevEnvironmentBase').projectDir = new File(rootDir, 'lib/Environment/DevEnvironmentBase')
-
-include ':DevEnvironmentCompiler'
-project(':DevEnvironmentCompiler').projectDir = new File(rootDir, 'lib/Environment/DevEnvironmentCompiler')
-
-include ':DevEnvironmentCompilerRelease'
-project(':DevEnvironmentCompilerRelease').projectDir = new File(rootDir, 'lib/Environment/DevEnvironmentCompilerRelease')
-
-include ':DevEnvironment'
-project(':DevEnvironment').projectDir = new File(rootDir, 'lib/Environment/DevEnvironment')
+environment_libs.forEach {
+    include(":$it")
+    project(":$it").projectDir = new File(rootDir, "lib/Environment/$it")
+}
 
 // ==========
 // = Module =
 // ==========
 
-include ':DevBase2'
-project(':DevBase2').projectDir = new File(rootDir, 'lib/DevBase2')
+def modules = [
+        "DevBase2",
+        "DevOther",
+]
 
-include ':DevOther'
-project(':DevOther').projectDir = new File(rootDir, 'lib/DevOther')
+modules.forEach {
+    include(":$it")
+    project(":$it").projectDir = new File(rootDir, "lib/$it")
+}
 
 // ===========
 // = Project =
 // ===========
 
-include ':AccessibilityKtx'
-project(':AccessibilityKtx').projectDir = new File(rootDir, 'project/AccessibilityKtx')
+def projects = [
+        "AccessibilityKtx",
+        "AppInfoKtx",
+        "DemoKtx",
+        "PushKtx",
+        "PushLockScreenKtx",
+]
 
-include ':AppInfoKtx'
-project(':AppInfoKtx').projectDir = new File(rootDir, 'project/AppInfoKtx')
-
-include ':DemoKtx'
-project(':DemoKtx').projectDir = new File(rootDir, 'project/DemoKtx')
-
-include ':PushKtx'
-project(':PushKtx').projectDir = new File(rootDir, 'project/PushKtx')
-
-include ':PushLockScreenKtx'
-project(':PushLockScreenKtx').projectDir = new File(rootDir, 'project/PushLockScreenKtx')
+projects.forEach {
+    include(":$it")
+    project(":$it").projectDir = new File(rootDir, "project/$it")
+}
 
 // ===============
 // = Interesting =
 // ===============
 
-include ':DevScreenMatch'
-project(':DevScreenMatch').projectDir = new File(rootDir, 'interesting/DevScreenMatch')
+def interestings = [
+        "DevScreenMatch",
+        "DevStandard",
+]
 
-include ':DevStandard'
-project(':DevStandard').projectDir = new File(rootDir, 'interesting/DevStandard')
+interestings.forEach {
+    include(":$it")
+    project(":$it").projectDir = new File(rootDir, "interesting/$it")
+}
