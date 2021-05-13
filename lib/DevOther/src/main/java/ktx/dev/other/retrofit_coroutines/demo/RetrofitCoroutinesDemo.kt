@@ -1,7 +1,9 @@
 package ktx.dev.other.retrofit_coroutines.demo
 
+import androidx.lifecycle.LiveData
+import dev.engine.log.DevLogEngine
 import ktx.dev.other.http.HttpLoggingInterceptor
-import ktx.dev.other.retrofit_coroutines.BaseResponse
+import ktx.dev.other.retrofit_coroutines.*
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -71,12 +73,70 @@ object RetrofitManager {
 // 日志 TAG
 const val TAG_L = "RetrofitCoroutinesDemo"
 
-fun getArticleList(page: Int) {
-
+suspend fun getArticleList(page: Int) {
+    /**
+     * 请求方法统一放到 Module Repository 中
+     * 并通过 [LiveData.postValue] 进行通知
+     */
+    val errorMethod = errorMethodCommon()
+    // 映射各种 JSON 实体类
+    executeRequest(block = {
+        var bean = RetrofitManager.apiService.getArticleList(page)
+        if (isSuccess(bean?.errorCode)) {
+            DevLogEngine.getEngine()?.dTag(
+                TAG_L, "请求成功 data: ${bean?.data?.datas?.size}"
+            )
+        } else {
+            errorMethod.invoke(bean?.errorCode, Throwable(bean?.errorMsg))
+        }
+    }, start = {
+        DevLogEngine.getEngine()?.dTag(
+            TAG_L, "开始请求"
+        )
+    }, complete = {
+        DevLogEngine.getEngine()?.dTag(
+            TAG_L, "请求完成"
+        )
+    }, error = errorMethod)
 }
 
-fun getArticleList2(page: Int) {
+suspend fun getArticleList2(page: Int) {
+    /**
+     * 请求方法统一放到 Module Repository 中
+     * 并通过 [LiveData.postValue] 进行通知
+     */
+    val errorMethod = errorMethodCommon()
+    // 映射统一标准 JSON 格式实体类 => BaseResponse
+    executeRequest(block = {
+        var result = RetrofitManager.apiService.getArticleList2(page).result()
+        if (result.success) {
+            DevLogEngine.getEngine()?.dTag(
+                TAG_L, "请求成功 data: ${result.data?.datas?.size}"
+            )
+        } else {
+            errorMethod.invoke(result.errorCode, result.error)
+        }
+    }, start = {
+        DevLogEngine.getEngine()?.dTag(
+            TAG_L, "开始请求"
+        )
+    }, complete = {
+        DevLogEngine.getEngine()?.dTag(
+            TAG_L, "请求完成"
+        )
+    }, error = errorMethod)
+}
 
+/**
+ * 通用错误回调方法 ( 方便复用 )
+ * @return (Throwable) -> Unit
+ */
+fun errorMethodCommon(): suspend (String?, Throwable) -> Unit {
+    return { code, error ->
+        DevLogEngine.getEngine()?.eTag(
+            TAG_L, error, "请求异常 code: ${code}, error: ${getErrorMessage(error)}"
+        )
+    }
 }
 
 // =========
@@ -94,13 +154,17 @@ class ArticleBean2 : ArticleBean.DataBean()
  * @author Ttt
  */
 class ArticleBean {
-    @JvmField
     var data: DataBean? = null
+
+    // 返回消息
+    var errorMsg: String? = null
+
+    // 返回结果状态 ( 内部定义 )
+    var errorCode: String? = null
 
     open class DataBean {
         var size = 0
 
-        @JvmField
         var datas: List<ListBean>? = null
 
         class ListBean {
