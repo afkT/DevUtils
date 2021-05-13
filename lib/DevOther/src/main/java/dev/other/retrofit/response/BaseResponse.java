@@ -1,7 +1,5 @@
 package dev.other.retrofit.response;
 
-import dev.engine.json.DevJSONEngine;
-
 /**
  * detail: 请求响应统一解析类
  * @author Ttt
@@ -12,21 +10,13 @@ import dev.engine.json.DevJSONEngine;
 public class BaseResponse<T> {
 
     // 返回数据
-    public            T         data;
+    public           T         data;
     // 返回消息
-    public            String    message;
+    public           String    errorMsg; // message
     // 返回结果状态 ( 内部定义 )
-    public            String    code;
+    public           String    errorCode; // code
     // 请求结果
-    public transient  boolean   result;
-    // 返回原始数据
-    private transient String    original;
+    public transient boolean   result;
     // 请求异常
-    public transient  Throwable exception;
-
-    public String getOriginal() {
-        if (original != null) return original;
-        original = DevJSONEngine.getEngine().toJson(this);
-        return original;
-    }
+    public transient Throwable exception;
 }

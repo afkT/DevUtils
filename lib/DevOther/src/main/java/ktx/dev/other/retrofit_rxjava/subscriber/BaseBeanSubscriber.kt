@@ -15,7 +15,7 @@ import java.net.UnknownHostException
 abstract class BaseBeanSubscriber<T> : DisposableSubscriber<T>() {
 
     // 日志 TAG
-    protected val TAG = BaseBeanSubscriber::class.java.simpleName
+    private val TAG = BaseBeanSubscriber::class.java.simpleName
 
     override fun onNext(response: T?) {
         LogPrintUtils.dTag(TAG, "请求成功")

@@ -6,12 +6,6 @@ import dev.utils.common.RandomUtils
 import java.util.*
 
 /**
- * detail: 用户信息实体类
- * @author Ttt
- */
-class UserBean
-
-/**
  * detail: ACV 文件实体类
  * @author Ttt
  */

@@ -1,7 +1,5 @@
 package ktx.dev.other.retrofit_rxjava.response
 
-import dev.engine.json.DevJSONEngine
-
 /**
  * detail: 请求响应统一解析类
  * @author Ttt
@@ -13,10 +11,10 @@ class BaseResponse<T> {
     var data: T? = null
 
     // 返回消息
-    var message: String? = null
+    var errorMsg: String? = null // message
 
     // 返回结果状态 ( 内部定义 )
-    var code: String? = null
+    var errorCode: String? = null // code
 
     // 请求结果
     @Transient
@@ -25,14 +23,4 @@ class BaseResponse<T> {
     // 请求异常
     @Transient
     var exception: Throwable? = null
-
-    // 返回原始数据
-    @Transient
-    private var original: String? = null
-
-    fun getOriginal(): String? {
-        if (original != null) return original
-        original = DevJSONEngine.getEngine()?.toJson(this)
-        return original
-    }
 }

@@ -23,7 +23,7 @@ public abstract class BaseResponseSubscriber<T>
         extends DisposableSubscriber<BaseResponse<T>> {
 
     // 日志 TAG
-    protected final String TAG = BaseResponseSubscriber.class.getSimpleName();
+    private final String TAG = BaseResponseSubscriber.class.getSimpleName();
 
     // 响应结果
     protected BaseResponse<T> builder;
@@ -33,7 +33,7 @@ public abstract class BaseResponseSubscriber<T>
         LogPrintUtils.dTag(TAG, "请求成功");
 
         builder = response;
-        builder.result = isSuccess(response.code);
+        builder.result = isSuccess(response.errorCode);
 
         if (builder.result) {
             onSuccessResponse(builder);
@@ -48,9 +48,9 @@ public abstract class BaseResponseSubscriber<T>
 
         if (builder == null) builder = new BaseResponse<>();
 
-        if (TextUtils.isEmpty(builder.message)) {
+        if (TextUtils.isEmpty(builder.errorMsg)) {
             String errorMessage = getErrorMessage(throwable);
-            builder.message = errorMessage;
+            builder.errorMsg = errorMessage;
             ToastUtils.showShort(errorMessage);
         }
         builder.exception = throwable;

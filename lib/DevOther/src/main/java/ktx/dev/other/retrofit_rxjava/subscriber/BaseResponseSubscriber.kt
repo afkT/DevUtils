@@ -18,7 +18,7 @@ import java.net.UnknownHostException
 abstract class BaseResponseSubscriber<T> : DisposableSubscriber<BaseResponse<T>>() {
 
     // 日志 TAG
-    protected val TAG = BaseResponseSubscriber::class.java.simpleName
+    private val TAG = BaseResponseSubscriber::class.java.simpleName
 
     // 响应结果
     protected var builder: BaseResponse<T>? = null
@@ -27,11 +27,11 @@ abstract class BaseResponseSubscriber<T> : DisposableSubscriber<BaseResponse<T>>
         LogPrintUtils.dTag(TAG, "请求成功")
         builder = response
         builder?.let {
-            it.result = isSuccess(it.code)
+            it.result = isSuccess(it.errorCode)
             if (it.result) {
-                onSuccessResponse(builder)
+                onSuccessResponse(it)
             } else {
-                onErrorResponse(builder)
+                onErrorResponse(it)
             }
         }
     }
@@ -41,9 +41,9 @@ abstract class BaseResponseSubscriber<T> : DisposableSubscriber<BaseResponse<T>>
         if (builder == null) builder = BaseResponse()
 
         builder?.let {
-            if (TextUtils.isEmpty(it.message)) {
+            if (TextUtils.isEmpty(it.errorMsg)) {
                 val errorMessage = getErrorMessage(throwable)
-                it.message = errorMessage
+                it.errorMsg = errorMessage
                 ToastUtils.showShort(errorMessage)
             }
             it.exception = throwable
@@ -64,13 +64,13 @@ abstract class BaseResponseSubscriber<T> : DisposableSubscriber<BaseResponse<T>>
      * 请求响应并处理数据无误
      * @param response [BaseResponse]
      */
-    abstract fun onSuccessResponse(response: BaseResponse<T>?)
+    abstract fun onSuccessResponse(response: BaseResponse<T>)
 
     /**
      * 请求失败、响应错误、数据解析错误等, 都会回调该方法 ( UI 线程 )
      * @param response [BaseResponse]
      */
-    abstract fun onErrorResponse(response: BaseResponse<T>?)
+    abstract fun onErrorResponse(response: BaseResponse<T>)
 
     // ===============
     // = 内部判断方法 =
@@ -100,9 +100,11 @@ abstract class BaseResponseSubscriber<T> : DisposableSubscriber<BaseResponse<T>>
      */
     private fun isSuccess(code: String?): Boolean {
         if (!TextUtils.isEmpty(code)) {
-            if (code == "0000") { // 自行判断
+            if ("0000" == code) { // 自行判断
                 return true
-            } else if (code == "xxx") {
+            } else if ("0" == code) {
+                return true
+            } else if ("xxx" == code) {
                 ToastUtils.showShort("xxx")
             }
         }

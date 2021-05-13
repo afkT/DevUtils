@@ -19,7 +19,7 @@ public abstract class BaseBeanSubscriber<T>
         extends DisposableSubscriber<T> {
 
     // 日志 TAG
-    protected final String TAG = BaseBeanSubscriber.class.getSimpleName();
+    private final String TAG = BaseBeanSubscriber.class.getSimpleName();
 
     @Override
     public void onNext(T response) {
