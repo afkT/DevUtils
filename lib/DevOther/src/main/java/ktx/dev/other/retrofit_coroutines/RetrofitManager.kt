@@ -15,6 +15,15 @@ import java.util.*
  * https://blog.csdn.net/carson_ho/article/details/73732076
  * 封装 Retrofit2 + RxJava2 网络请求框架
  * https://www.jianshu.com/p/2e8b400909b7
+ * <p></p>
+ * Android 上的 Kotlin 协程
+ * https://developer.android.google.cn/kotlin/coroutines?hl=zh-cn
+ * Retrofit + kotlin Coroutines
+ * https://blog.csdn.net/yuzhiqiang_1993/article/details/101012090
+ * 协程 + Retrofit 网络请求状态封装实战
+ * https://juejin.cn/post/6958821338672955423
+ * 协程 + Retrofit 网络请求状态封装实战 (2)
+ * https://juejin.cn/post/6961055228787425288
  */
 class RetrofitManager private constructor() {
 
