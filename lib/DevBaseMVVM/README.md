@@ -69,9 +69,15 @@ implementation 'io.github.afkt:DevBaseMVVM:1.0.3'
 
 * [深入浅出 MVVM 教程 Repository ( 数据仓库 ) ](https://juejin.cn/post/6844903505635835911)
 
+* [关于 Android 架构，你是否还在生搬硬套？](https://juejin.cn/post/6942464122273398820)
+
+* [引入 Jetpack 架构后，你的 App 会发生哪些变化？](https://juejin.cn/post/6955491901265051661)
+
 ## Other
 
 * [GitHub MVVMHabit](https://github.com/goldze/MVVMHabit)
+
+* [GitHub Jetpack-Mvvm](https://github.com/zskingking/Jetpack-Mvvm)
 
 * [GitHub Jetpack-MVVM-Best-Practice](https://github.com/KunMinX/Jetpack-MVVM-Best-Practice)
 
