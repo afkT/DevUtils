@@ -37,7 +37,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
 
     init {
         /**
-         * @param listener 是否复用监听事件
+         * listener 是否复用监听事件
          * 使用全局配置, 需要手动调用 [.apply] 方法
          */
         mBuilder = sGlobalBuilder?.clone(listener)
@@ -254,8 +254,8 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * 加载应用资源文件内的网页
      * loadUrl("file:///android_asset/test.html")
      */
-    fun loadUrl(url: String?): WebViewAssist {
-        url?.let { mWebView?.loadUrl(it) }
+    fun loadUrl(url: String): WebViewAssist {
+        mWebView?.loadUrl(url)
         return this
     }
 
@@ -760,7 +760,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @return 当前 Url
      */
     fun getUrl(): String? {
-        return mWebView?.url ?: null
+        return mWebView?.url
     }
 
     /**
@@ -768,7 +768,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * @return 最初请求 Url
      */
     fun getOriginalUrl(): String? {
-        return mWebView?.originalUrl ?: null
+        return mWebView?.originalUrl
     }
 
     /**
@@ -786,17 +786,17 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
      * mWebView.setOnLongClickListener(new View.OnLongClickListener() {
      *     @Override
      *     public boolean onLongClick(View view) {
-     *         WebView.HitTestResult result = webViewAssist.getHitTestResult();
+     *         WebView.HitTestResult result = webViewAssist.getHitTestResult()
      *         if(result != null) {
      *             switch (result.getType()) {
      *                 case WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE:
-     *                     String imgUrl = result.getExtra();
-     *                     return true;
+     *                     String imgUrl = result.getExtra()
+     *                     return true
      *             }
      *         }
-     *         return false;
+     *         return false
      *     }
-     * });
+     * })
      * <p></p>
      * HitTestResult.getType() 获取所选中目标的类型, 可以是图片、超链接、邮件、电话等等
      * HitTestResult.getExtra() 获取额外的信息
@@ -805,9 +805,9 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
         return mWebView?.hitTestResult
     }
 
-    // ===========
+    // ==========
     // = 配置相关 =
-    // ===========
+    // ==========
 
     /**
      * detail: WebView 常用配置构建类
@@ -824,9 +824,9 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
 
         init {
             /**
-             * @param listener 应用配置监听事件
+             * listener 应用配置监听事件
              */
-            listener?.let { setOnApplyListener(it) }
+            setOnApplyListener(listener)
         }
 
         // =
