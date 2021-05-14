@@ -11,8 +11,8 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebView.HitTestResult
 import android.webkit.WebViewClient
-import dev.assist.WebViewAssist
 import dev.engine.log.DevLogEngine
+import ktx.dev.assist.WebViewAssist
 
 /**
  * detail: WebView 辅助类
@@ -45,10 +45,9 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
         })
 
         // 设置 WebView
-        mWebViewAssist.webView = binding.vidAwWebview
-
+        mWebViewAssist.setWebView(binding.vidAwWebview)
         // 设置辅助 WebView 处理 Javascript 对话框、标题等对象
-        mWebViewAssist.webChromeClient = object : WebChromeClient() {
+        mWebViewAssist.setWebChromeClient(object : WebChromeClient() {
             override fun onProgressChanged(
                 view: WebView,
                 position: Int
@@ -59,9 +58,9 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
                 }
                 super.onProgressChanged(view, position)
             }
-        }
+        })
         // 设置处理各种通知和请求事件对象
-        mWebViewAssist.webViewClient = object : WebViewClient() {
+        mWebViewAssist.setWebViewClient(object : WebViewClient() {
             override fun onReceivedSslError(
                 view: WebView,
                 handler: SslErrorHandler,
@@ -86,7 +85,7 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
                 mWebViewAssist.loadUrl(url)
                 return true
             }
-        }
+        })
         /**
          * 默认使用全局配置
          * [BaseApplication.initWebViewBuilder]
@@ -94,21 +93,29 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
 //        // 如果使用全局配置, 则直接调用 apply 方法
 //        mWebViewAssist.apply()
 
-        // 也可以传入自定义配置
-        val builder = WebViewAssist.getGlobalBuilder().clone(true) // new WebViewAssist.Builder()
-        builder.setBuiltInZoomControls(false).isDisplayZoomControls = false
-        // 当克隆方法 ( clone ) 传入 true 表示复用 OnApplyListener 但是想要能够添加其他配置处理则如下方法操作
-        val applyListener = builder.applyListener
-        builder.setOnApplyListener { webViewAssist, builder ->
-            applyListener?.onApply(webViewAssist, builder)
-            // BaseApplication 也会打印 WebViewAssist Builder onApply
-            DevLogEngine.getEngine().dTag(TAG, "自定义监听")
-            // 全局配置或者自定义配置以外, 再次配置操作
-            // 加载网页
-            mWebViewAssist.loadUrl("https://www.csdn.net/")
+        // 克隆全局配置, 自行修改部分配置并使用
+        WebViewAssist.getGlobalBuilder()?.let {
+            val builder = it.clone(true)
+            builder.setBuiltInZoomControls(false)
+                .setDisplayZoomControls(false)
+            // 当克隆方法 ( clone ) 传入 true 表示复用 OnApplyListener 但是想要能够添加其他配置处理则如下方法操作
+            val applyListener = builder.getApplyListener()
+            builder.setOnApplyListener(object : WebViewAssist.Builder.OnApplyListener {
+                override fun onApply(
+                    webViewAssist: WebViewAssist?,
+                    builder: WebViewAssist.Builder
+                ) {
+                    applyListener?.onApply(webViewAssist, builder)
+                    // BaseApplication 也会打印 WebViewAssist Builder onApply
+                    DevLogEngine.getEngine().dTag(TAG, "自定义监听")
+                    // 全局配置或者自定义配置以外, 再次配置操作
+                    // 加载网页
+                    mWebViewAssist.loadUrl("https://www.csdn.net/")
+                }
+            })
+            // 应用配置
+            mWebViewAssist.setBuilder(builder, true)
         }
-        // 设置配置并应用
-        mWebViewAssist.setBuilder(builder, true)
     }
 
     override fun onKeyDown(

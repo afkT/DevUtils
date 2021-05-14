@@ -13,7 +13,6 @@ import android.view.View
 import android.webkit.WebSettings
 import androidx.multidex.MultiDexApplication
 import dev.DevUtils
-import dev.assist.WebViewAssist
 import dev.engine.compress.DevCompressEngine
 import dev.engine.compress.LubanEngineImpl
 import dev.engine.image.DevImageEngine
@@ -43,6 +42,7 @@ import dev.utils.common.StringUtils
 import dev.utils.common.assist.TimeCounter
 import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
+import ktx.dev.assist.WebViewAssist
 import me.jessyan.autosize.AutoSizeConfig
 
 /**
@@ -227,25 +227,30 @@ class BaseApplication : MultiDexApplication() {
     private fun initWebViewBuilder() {
         WebViewAssist.Builder().apply {
             // 显示内置缩放工具
-            isBuiltInZoomControls = true
+            setBuiltInZoomControls(true)
             // 显示缩放工具
-            isDisplayZoomControls = true
+            setDisplayZoomControls(true)
             // Application Caches 地址
-            appCachePath = PathUtils.getInternal().getAppCachePath("cache")
+            setAppCachePath(PathUtils.getInternal().getAppCachePath("cache"))
             // 数据库缓存路径
-            databasePath = PathUtils.getInternal().getAppCachePath("db")
+            setDatabasePath(PathUtils.getInternal().getAppCachePath("db"))
             // 渲染优先级高
-            renderPriority = WebSettings.RenderPriority.HIGH
+            setRenderPriority(WebSettings.RenderPriority.HIGH)
             // 基础布局算法
             if (AppCommonUtils.isLollipop()) {
-                layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+                setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING)
             } else {
-                layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+                setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN)
             }
             // 应用配置监听事件
-            setOnApplyListener { assist: WebViewAssist?, builder: WebViewAssist.Builder? ->
-                DevLogEngine.getEngine().d("WebViewAssist Builder onApply")
-            }
+            setOnApplyListener(object : WebViewAssist.Builder.OnApplyListener {
+                override fun onApply(
+                    webViewAssist: WebViewAssist?,
+                    builder: WebViewAssist.Builder
+                ) {
+                    DevLogEngine.getEngine().d("WebViewAssist Builder onApply")
+                }
+            })
             // WebViewAssist 构造函数会使用全局配置
             WebViewAssist.setGlobalBuilder(this)
         }
