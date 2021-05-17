@@ -1,40 +1,51 @@
 package dev.other;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.load.Transformation;
+import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.gif.GifDrawable;
-import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.target.ImageViewTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
+import dev.base.DevSource;
+import dev.engine.image.ImageConfig;
+import dev.engine.image.LoadListener;
+import dev.engine.image.listener.ConvertStorage;
+import dev.engine.image.listener.OnConvertListener;
 import dev.utils.LogPrintUtils;
+import dev.utils.app.PathUtils;
+import dev.utils.app.image.ImageUtils;
+import dev.utils.common.FileUtils;
+import dev.utils.common.RandomUtils;
+import dev.utils.common.encrypt.MD5Utils;
 
 /**
  * detail: Glide 工具类
  * @author Ttt
+ * @deprecated 推荐使用 {@link dev.engine.image.DevImageEngine} 实现类
+ * {@link dev.engine.image.GlideEngineImpl}
  * <pre>
- *     必须调用 {@link GlideUtils#init(Context)}
- *     <p></p>
- *     init: GlideUtils.init(getApplicationContext());
- *     use modify: 修改 defaultOptions() 配置、以及加载默认图片资源
- *     <p></p>
  *     Glide 详细使用
  *     @see <a href="https://www.jianshu.com/p/7cfe2653a1fb"/>
  *     Glide 文档
@@ -45,6 +56,7 @@ import dev.utils.LogPrintUtils;
  *     transform(new MultiTransformation(new CenterCrop(), new RoundedCorners(xx)));
  * </pre>
  */
+@Deprecated
 public final class GlideUtils {
 
     private GlideUtils() {
@@ -53,794 +65,1021 @@ public final class GlideUtils {
     // 日志 TAG
     private static final String TAG = GlideUtils.class.getSimpleName();
 
-    // GlideLoader
-    private static       GlideLoader    sGlideLoader;
-    // 图片默认加载配置
-    private static final RequestOptions DF_OPTIONS        = defaultOptions();
-    // 全局 Context
-    private static       Context        sContext;
-    // 图片加载中
-    private static final int            sImageLoadingRes  = 0;
-    // 图片地址异常
-    private static final int            sImageUriErrorRes = 0;
-    // 图片 ( 加载 / 解码 ) 失败
-    private static final int            sImageFailRes     = 0;
+    // ====================
+    // = pause and resume =
+    // ====================
 
-    // ===============================
-    // = GlideLoader(RequestManager) =
-    // ===============================
-
-    @NonNull
-    public static GlideLoader with(@NonNull Context context) {
-        return new GlideLoader(Glide.with(context));
-    }
-
-    @NonNull
-    public static GlideLoader with(@NonNull Activity activity) {
-        return new GlideLoader(Glide.with(activity));
-    }
-
-    @NonNull
-    public static GlideLoader with(@NonNull FragmentActivity activity) {
-        return new GlideLoader(Glide.with(activity));
-    }
-
-    @NonNull
-    public static GlideLoader with(@NonNull android.app.Fragment fragment) {
-        return new GlideLoader(Glide.with(fragment));
-    }
-
-    @NonNull
-    public static GlideLoader with(@NonNull Fragment fragment) {
-        return new GlideLoader(Glide.with(fragment));
-    }
-
-    @NonNull
-    public static GlideLoader with(@NonNull View view) {
-        return new GlideLoader(Glide.with(view));
-    }
-
-    /**
-     * 获取全局 Context Glide
-     * @return {@link GlideLoader}
-     */
-    public static GlideLoader with() {
-        if (sGlideLoader == null) {
-            try {
-                sGlideLoader = new GlideLoader(Glide.with(sContext));
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "with");
-            }
-        }
-        return sGlideLoader;
-    }
-
-    // =========
-    // = 初始化 =
-    // =========
-
-    /**
-     * 初始化方法 ( 必须调用 )
-     * @param context {@link Context}
-     */
-    public static void init(final Context context) {
-        if (sContext == null && context != null) {
-            // 设置全局 Context
-            sContext = context.getApplicationContext();
-            // 默认进行初始化
-            with();
+    public static void pause(Fragment fragment) {
+        if (fragment != null) {
+            Glide.with(fragment).pauseRequests();
         }
     }
 
-    // ==================
-    // = RequestOptions =
-    // ==================
-
-    /**
-     * 克隆图片加载配置
-     * @param options 待克隆加载配置
-     * @return {@link RequestOptions}
-     */
-    public static RequestOptions cloneImageOptions(final RequestOptions options) {
-        return (options != null) ? options.clone() : null;
+    public static void resume(Fragment fragment) {
+        if (fragment != null) {
+            Glide.with(fragment).resumeRequests();
+        }
     }
 
-    /**
-     * 获取默认加载配置
-     * <pre>
-     *     优先级:
-     *     Priority.LOW 低
-     *     Priority.NORMAL 默认正常
-     *     Priority.HIGH 高 / 优先
-     *     Priority.IMMEDIATE 立即加载
-     *     缓存:
-     *     DiskCacheStrategy.NONE 不做磁盘缓存
-     *     DiskCacheStrategy.SOURCE 只缓存图像原图
-     *     DiskCacheStrategy.RESULT 只缓存加载后的图像, 即处理后最终显示时的图像
-     *     DiskCacheStrategy.ALL 缓存所有版本的图像 ( 默认行为 )
-     * </pre>
-     * @return {@link RequestOptions}
-     */
-    public static RequestOptions defaultOptions() {
-        RequestOptions requestOptions = new RequestOptions()
-                .diskCacheStrategy(DiskCacheStrategy.ALL) // 设置全缓存
-                .placeholder(sImageLoadingRes) // 设置图片在下载期间显示的图片
-                .fallback(sImageUriErrorRes) // 设置图片 Uri 为空或是错误的时候显示的图片
-                .error(sImageFailRes) // 设置图片 ( 加载 / 解码 ) 过程中错误时候显示的图片
-//                .format(DecodeFormat.PREFER_ARGB_8888) // 设置图片解码格式, 默认 8888
-                .priority(Priority.HIGH);
-        return requestOptions;
+    public static void pause(Context context) {
+        if (context != null) {
+            Glide.with(context).pauseRequests();
+        }
     }
 
-    /**
-     * 获取空白加载配置
-     * @return {@link RequestOptions}
-     */
-    public static RequestOptions emptyOptions() {
-        return new RequestOptions();
-    }
-
-    /**
-     * 获取跳过缓存 ( 每次都从服务端获取最新 ) 加载配置
-     * @return {@link RequestOptions}
-     */
-    public static RequestOptions skipCacheOptions() {
-        return skipCacheOptions(cloneImageOptions(DF_OPTIONS));
-    }
-
-    /**
-     * 获取跳过缓存 ( 每次都从服务端获取最新 ) 加载配置
-     * @param options {@link RequestOptions}
-     * @return {@link RequestOptions}
-     */
-    public static RequestOptions skipCacheOptions(final RequestOptions options) {
-        if (options != null) {
-            return options.diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true);
-        }
-        return options;
-    }
-
-    /**
-     * 获取自定义图片加载配置
-     * @param loadingRes 设置加载中显示的图片
-     * @return {@link RequestOptions}
-     */
-    public static RequestOptions getLoadResOptions(@DrawableRes final int loadingRes) {
-        return getLoadResOptions(cloneImageOptions(DF_OPTIONS), loadingRes);
-    }
-
-    /**
-     * 获取自定义图片加载配置
-     * @param options    {@link RequestOptions}
-     * @param loadingRes 设置加载中显示的图片
-     * @return {@link RequestOptions}
-     */
-    public static RequestOptions getLoadResOptions(
-            final RequestOptions options,
-            @DrawableRes final int loadingRes
-    ) {
-        if (options != null && loadingRes != 0) {
-            options.placeholder(loadingRes) // 设置图片在下载期间显示的图片
-                    .fallback(loadingRes) // 设置图片 Uri 为空或是错误的时候显示的图片
-                    .error(loadingRes); // 设置图片 ( 加载 / 解码 ) 过程中错误时候显示的图片
-        }
-        return options;
-    }
-
-    /**
-     * 获取图片处理效果加载配置
-     * @param transformation {@link Transformation} 图形效果
-     * @return {@link RequestOptions}
-     */
-    public static RequestOptions transformationOptions(final Transformation transformation) {
-        return transformationOptions(cloneImageOptions(DF_OPTIONS), transformation);
-    }
-
-    /**
-     * 获取图片处理效果加载配置
-     * @param options        {@link RequestOptions}
-     * @param transformation {@link Transformation} 图形效果
-     * @return {@link RequestOptions}
-     */
-    public static RequestOptions transformationOptions(
-            final RequestOptions options,
-            final Transformation transformation
-    ) {
-        if (options != null) {
-            try {
-                options.transform(transformation);
-            } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "transformationOptions");
-            }
-        }
-        return options;
-    }
-
-    // =============
-    // = 内部方法类 =
-    // =============
-
-    /**
-     * detail: Glide Loader 封装内部类
-     * @author Ttt
-     */
-    public static final class GlideLoader {
-
-        // RequestManager
-        private final RequestManager mRequestManager;
-
-        /**
-         * 构造函数
-         * @param requestManager {@link RequestManager}
-         */
-        public GlideLoader(RequestManager requestManager) {
-            this.mRequestManager = requestManager;
-            // 设置加载配置
-            if (requestManager != null) requestManager.setDefaultRequestOptions(DF_OPTIONS);
-        }
-
-        // =============
-        // = 预加载处理 =
-        // =============
-
-        /**
-         * 预加载图片
-         * @param uri Image Uri
-         */
-        public void preload(final String uri) {
-            preload(uri, null);
-        }
-
-        /**
-         * 预加载图片
-         * <pre>
-         *     先加载图片, 不显示, 等到需要显示的时候, 直接拿缓存用
-         * </pre>
-         * @param uri     Image Uri
-         * @param options {@link RequestOptions}
-         */
-        public void preload(
-                final String uri,
-                final RequestOptions options
-        ) {
-            if (mRequestManager != null) {
-                if (options != null) {
-                    mRequestManager.asBitmap().load(uri).apply(options).preload();
-                } else {
-                    mRequestManager.asBitmap().load(uri).preload();
-                }
-            }
-        }
-
-        // ===========
-        // = 图片显示 =
-        // ===========
-
-        /**
-         * 图片显示
-         * @param uri       Image Uri
-         * @param imageView ImageView
-         */
-        public void displayImage(
-                final String uri,
-                final ImageView imageView
-        ) {
-            displayImage(uri, imageView, null, null);
-        }
-
-        /**
-         * 图片显示
-         * <pre>
-         *     支持显示 Gif 图片第一帧
-         * </pre>
-         * @param uri       Image Uri
-         * @param imageView ImageView
-         * @param options   {@link RequestOptions}
-         */
-        public void displayImage(
-                final String uri,
-                final ImageView imageView,
-                final RequestOptions options
-        ) {
-            displayImage(uri, imageView, options, null);
-        }
-
-        /**
-         * 图片显示
-         * <pre>
-         *     支持显示 Gif 图片第一帧
-         * </pre>
-         * @param uri       Image Uri
-         * @param imageView ImageView
-         * @param listener  加载监听事件
-         */
-        public void displayImage(
-                final String uri,
-                final ImageView imageView,
-                final RequestListener<Bitmap> listener
-        ) {
-            displayImage(uri, imageView, null, listener);
-        }
-
-        /**
-         * 图片显示
-         * <pre>
-         *     支持显示 Gif 图片第一帧
-         * </pre>
-         * @param uri       Image Uri
-         * @param imageView ImageView
-         * @param options   {@link RequestOptions}
-         * @param listener  加载监听事件
-         */
-        public void displayImage(
-                final String uri,
-                final ImageView imageView,
-                final RequestOptions options,
-                final RequestListener<Bitmap> listener
-        ) {
-            if (mRequestManager != null && imageView != null) {
-                if (options != null) {
-                    mRequestManager.asBitmap().load(uri).apply(options).listener(listener).into(imageView);
-                } else {
-                    mRequestManager.asBitmap().load(uri).listener(listener).into(imageView);
-                }
-            }
-        }
-
-        // =
-
-        /**
-         * 图片显示
-         * @param uri       Image Uri
-         * @param imageView ImageView
-         */
-        public void displayImageToGif(
-                final String uri,
-                final ImageView imageView
-        ) {
-            displayImageToGif(uri, imageView, null, null);
-        }
-
-        /**
-         * 图片显示
-         * @param uri       Image Uri
-         * @param imageView ImageView
-         * @param options   {@link RequestOptions}
-         */
-        public void displayImageToGif(
-                final String uri,
-                final ImageView imageView,
-                final RequestOptions options
-        ) {
-            displayImageToGif(uri, imageView, options, null);
-        }
-
-        /**
-         * 图片显示
-         * @param uri       Image Uri
-         * @param imageView ImageView
-         * @param listener  加载监听事件
-         */
-        public void displayImageToGif(
-                final String uri,
-                final ImageView imageView,
-                final RequestListener<GifDrawable> listener
-        ) {
-            displayImageToGif(uri, imageView, null, listener);
-        }
-
-        /**
-         * 图片显示
-         * @param uri       Image Uri
-         * @param imageView ImageView
-         * @param options   {@link RequestOptions}
-         * @param listener  加载监听事件
-         */
-        public void displayImageToGif(
-                final String uri,
-                final ImageView imageView,
-                final RequestOptions options,
-                final RequestListener<GifDrawable> listener
-        ) {
-            if (mRequestManager != null && imageView != null) {
-                if (options != null) {
-                    mRequestManager.asGif().load(uri).apply(options).listener(listener).into(imageView);
-                } else {
-                    mRequestManager.asGif().load(uri).listener(listener).into(imageView);
-                }
-            }
-        }
-
-        // =
-
-        /**
-         * 图片显示
-         * @param uri       Image Uri
-         * @param imageView ImageView
-         */
-        public void displayImageToDrawable(
-                final String uri,
-                final ImageView imageView
-        ) {
-            displayImageToDrawable(uri, imageView, null, null);
-        }
-
-        /**
-         * 图片显示
-         * @param uri       Image Uri
-         * @param imageView ImageView
-         * @param options   {@link RequestOptions}
-         */
-        public void displayImageToDrawable(
-                final String uri,
-                final ImageView imageView,
-                final RequestOptions options
-        ) {
-            displayImageToDrawable(uri, imageView, options, null);
-        }
-
-        /**
-         * 图片显示
-         * @param uri       Image Uri
-         * @param imageView ImageView
-         * @param listener  加载监听事件
-         */
-        public void displayImageToDrawable(
-                final String uri,
-                final ImageView imageView,
-                final RequestListener<Drawable> listener
-        ) {
-            displayImageToDrawable(uri, imageView, null, listener);
-        }
-
-        /**
-         * 图片显示
-         * @param uri       Image Uri
-         * @param imageView ImageView
-         * @param options   {@link RequestOptions}
-         * @param listener  加载监听事件
-         */
-        public void displayImageToDrawable(
-                final String uri,
-                final ImageView imageView,
-                final RequestOptions options,
-                final RequestListener<Drawable> listener
-        ) {
-            if (mRequestManager != null && imageView != null) {
-                if (options != null) {
-                    mRequestManager.asDrawable().load(uri).apply(options).listener(listener).into(imageView);
-                } else {
-                    mRequestManager.asDrawable().load(uri).listener(listener).into(imageView);
-                }
-            }
-        }
-
-        // =
-
-        /**
-         * 图片显示
-         * @param uri       Image Uri
-         * @param imageView ImageView
-         */
-        public void displayImageToFile(
-                final String uri,
-                final ImageView imageView
-        ) {
-            displayImageToFile(uri, imageView, null, null);
-        }
-
-        /**
-         * 图片显示
-         * @param uri       Image Uri
-         * @param imageView ImageView
-         * @param options   {@link RequestOptions}
-         */
-        public void displayImageToFile(
-                final String uri,
-                final ImageView imageView,
-                final RequestOptions options
-        ) {
-            displayImageToFile(uri, imageView, options, null);
-        }
-
-        /**
-         * 图片显示
-         * @param uri       Image Uri
-         * @param imageView ImageView
-         * @param listener  加载监听事件
-         */
-        public void displayImageToFile(
-                final String uri,
-                final ImageView imageView,
-                final RequestListener<File> listener
-        ) {
-            displayImageToFile(uri, imageView, null, listener);
-        }
-
-        /**
-         * 图片显示
-         * @param uri       Image Uri
-         * @param imageView ImageView
-         * @param options   {@link RequestOptions}
-         * @param listener  加载监听事件
-         */
-        public void displayImageToFile(
-                final String uri,
-                final ImageView imageView,
-                final RequestOptions options,
-                final RequestListener<File> listener
-        ) {
-            if (mRequestManager != null && imageView != null) {
-                if (options != null) {
-                    mRequestManager.asFile().load(uri).apply(options).listener(listener).into(imageView);
-                } else {
-                    mRequestManager.asFile().load(uri).listener(listener).into(imageView);
-                }
-            }
-        }
-
-        // ===========
-        // = 图片加载 =
-        // ===========
-
-        /**
-         * 图片加载
-         * @param uri    Image Uri
-         * @param target {@link Target}
-         */
-        public void loadImageBitmap(
-                final String uri,
-                final Target<Bitmap> target
-        ) {
-            loadImageBitmap(uri, target, null);
-        }
-
-        /**
-         * 图片加载
-         * @param uri     Image Uri
-         * @param target  {@link Target}
-         * @param options {@link RequestOptions}
-         */
-        public void loadImageBitmap(
-                final String uri,
-                final Target<Bitmap> target,
-                final RequestOptions options
-        ) {
-            if (mRequestManager != null) {
-                if (options != null) {
-                    mRequestManager.asBitmap().load(uri).apply(options).into(target);
-                } else {
-                    mRequestManager.asBitmap().load(uri).into(target);
-                }
-            }
-        }
-
-        // =
-
-        /**
-         * 图片加载
-         * @param uri    Image Uri
-         * @param target {@link Target}
-         */
-        public void loadImageDrawable(
-                final String uri,
-                final Target<Drawable> target
-        ) {
-            loadImageDrawable(uri, target, null);
-        }
-
-        /**
-         * 图片加载
-         * @param uri     Image Uri
-         * @param target  {@link Target}
-         * @param options {@link RequestOptions}
-         */
-        public void loadImageDrawable(
-                final String uri,
-                final Target<Drawable> target,
-                final RequestOptions options
-        ) {
-            if (mRequestManager != null) {
-                if (options != null) {
-                    mRequestManager.asDrawable().load(uri).apply(options).into(target);
-                } else {
-                    mRequestManager.asDrawable().load(uri).into(target);
-                }
-            }
-        }
-
-        // =
-
-        /**
-         * 图片加载
-         * @param uri    Image Uri
-         * @param target {@link Target}
-         */
-        public void loadImageFile(
-                final String uri,
-                final Target<File> target
-        ) {
-            loadImageFile(uri, target, null);
-        }
-
-        /**
-         * 图片加载
-         * @param uri     Image Uri
-         * @param target  {@link Target}
-         * @param options {@link RequestOptions}
-         */
-        public void loadImageFile(
-                final String uri,
-                final Target<File> target,
-                final RequestOptions options
-        ) {
-            if (mRequestManager != null) {
-                if (options != null) {
-                    mRequestManager.asFile().load(uri).apply(options).into(target);
-                } else {
-                    mRequestManager.asFile().load(uri).into(target);
-                }
-            }
-        }
-
-        /**
-         * 图片加载
-         * @param uri    Image Uri
-         * @param target {@link Target}
-         */
-        public void loadImageGif(
-                final String uri,
-                final Target<GifDrawable> target
-        ) {
-            loadImageGif(uri, target, null);
-        }
-
-        /**
-         * 图片加载
-         * @param uri     Image Uri
-         * @param target  {@link Target}
-         * @param options {@link RequestOptions}
-         */
-        public void loadImageGif(
-                final String uri,
-                final Target<GifDrawable> target,
-                final RequestOptions options
-        ) {
-            if (mRequestManager != null) {
-                if (options != null) {
-                    mRequestManager.asGif().load(uri).apply(options).into(target);
-                } else {
-                    mRequestManager.asGif().load(uri).into(target);
-                }
-            }
-        }
-
-        // ===========
-        // = 其他操作 =
-        // ===========
-
-        /**
-         * 取消图片显示任务
-         * @param view {@link View}
-         */
-        public void cancelDisplayTask(final View view) {
-            if (mRequestManager != null && view != null) {
-                mRequestManager.clear(view);
-            }
-        }
-
-        /**
-         * 取消图片显示任务
-         * @param target {@link Target}
-         */
-        public void cancelDisplayTask(final Target target) {
-            if (mRequestManager != null && target != null) {
-                mRequestManager.clear(target);
-            }
-        }
-
-        // =
-
-        /**
-         * 销毁操作
-         */
-        public void destroy() {
-            if (mRequestManager != null) {
-                mRequestManager.onDestroy();
-            }
-        }
-
-        /**
-         * 暂停图片加载
-         */
-        public void pause() {
-            if (mRequestManager != null) {
-                mRequestManager.pauseAllRequests();
-            }
-        }
-
-        /**
-         * 恢复图片加载
-         */
-        public void resume() {
-            if (mRequestManager != null) {
-                mRequestManager.resumeRequests();
-            }
-        }
-
-        /**
-         * 停止图片加载
-         */
-        public void stop() {
-            if (mRequestManager != null) {
-                mRequestManager.onStop();
-            }
-        }
-
-        /**
-         * 开始图片加载
-         */
-        public void start() {
-            if (mRequestManager != null) {
-                mRequestManager.onStart();
-            }
+    public static void resume(Context context) {
+        if (context != null) {
+            Glide.with(context).resumeRequests();
         }
     }
 
     // ===========
-    // = 其他操作 =
+    // = preload =
     // ===========
 
-    /**
-     * 清除磁盘缓存
-     */
-    public static void clearDiskCache() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+    public static void preload(
+            Context context,
+            DevSource source
+    ) {
+        if (context != null && source != null) {
+            RequestManager requestManager = Glide.with(context);
+            setToRequest(requestManager, source).preload();
+        }
+    }
+
+    public static void preload(
+            Context context,
+            DevSource source,
+            ImageConfig config
+    ) {
+        if (context != null && source != null && config != null) {
+            RequestManager requestManager = Glide.with(context);
+            setToRequest(requestManager, source).preload(
+                    config.getWidth(), config.getHeight()
+            );
+        }
+    }
+
+    // =========
+    // = clear =
+    // =========
+
+    public static void clear(View view) {
+        if (view != null && view.getContext() != null) {
+            Glide.with(view.getContext()).clear(view);
+        }
+    }
+
+    public static void clear(
+            Fragment fragment,
+            View view
+    ) {
+        if (fragment != null && view != null) {
+            Glide.with(fragment).clear(view);
+        }
+    }
+
+    public static void clearDiskCache(Context context) {
+        if (context != null) {
+            new Thread(() -> {
                 try {
                     // This method must be called on a background thread.
-                    Glide.get(sContext).clearDiskCache();
+                    Glide.get(context).clearDiskCache();
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "clearDiskCache");
                 }
+            }).start();
+        }
+    }
+
+    public static void clearMemoryCache(Context context) {
+        if (context != null) {
+            try {
+                // This method must be called on the main thread.
+                Glide.get(context).clearMemory(); // 必须在主线程上调用该方法
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "clearMemoryCache");
             }
-        }).start();
-    }
-
-    /**
-     * 清除内存缓存
-     */
-    public static void clearMemoryCache() {
-        try {
-            // This method must be called on the main thread.
-            Glide.get(sContext).clearMemory(); // 必须在主线程上调用该方法
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "clearMemoryCache");
         }
     }
 
-    /**
-     * 低内存通知
-     */
-    public static void onLowMemory() {
-        try {
-            Glide.get(sContext).onLowMemory();
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "onLowMemory");
+    public static void clearAllCache(Context context) {
+        clearDiskCache(context);
+        clearMemoryCache(context);
+    }
+
+    // =========
+    // = other =
+    // =========
+
+    public static void lowMemory(Context context) {
+        if (context != null) {
+            try {
+                Glide.get(context).onLowMemory();
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "lowMemory");
+            }
         }
     }
 
-    /**
-     * 获取 SDCard 缓存空间
-     * @return SDCard 缓存空间 File
-     */
-    public static File getDiskCache() {
+    // ===========
+    // = display =
+    // ===========
+
+    public static void display(
+            ImageView imageView,
+            String url
+    ) {
+        display(imageView, DevSource.create(url), (ImageConfig) null);
+    }
+
+    public static void display(
+            ImageView imageView,
+            DevSource source
+    ) {
+        display(imageView, source, (ImageConfig) null);
+    }
+
+    public static void display(
+            ImageView imageView,
+            String url,
+            ImageConfig config
+    ) {
+        display(imageView, DevSource.create(url), config);
+    }
+
+    public static void display(
+            ImageView imageView,
+            DevSource source,
+            ImageConfig config
+    ) {
+        if (imageView != null && imageView.getContext() != null) {
+            RequestManager requestManager = Glide.with(imageView.getContext());
+            priDisplayToRequestBuilder(
+                    imageView,
+                    setToRequest(requestManager, source),
+                    config
+            );
+        }
+    }
+
+    // =
+
+    public static <T> void display(
+            ImageView imageView,
+            String url,
+            LoadListener<T> listener
+    ) {
+        display(imageView, DevSource.create(url), null, listener);
+    }
+
+    public static <T> void display(
+            ImageView imageView,
+            DevSource source,
+            LoadListener<T> listener
+    ) {
+        display(imageView, source, null, listener);
+    }
+
+    public static <T> void display(
+            ImageView imageView,
+            String url,
+            ImageConfig config,
+            LoadListener<T> listener
+    ) {
+        display(imageView, DevSource.create(url), config, listener);
+    }
+
+    public static <T> void display(
+            ImageView imageView,
+            DevSource source,
+            ImageConfig config,
+            LoadListener<T> listener
+    ) {
+        if (imageView != null && imageView.getContext() != null) {
+            RequestManager requestManager = Glide.with(imageView.getContext());
+            priDisplayToRequestBuilder(
+                    imageView,
+                    setToRequest(requestManager, source),
+                    config,
+                    source,
+                    listener
+            );
+        }
+    }
+
+    // =
+
+    public static void display(
+            Fragment fragment,
+            ImageView imageView,
+            String url
+    ) {
+        display(fragment, imageView, DevSource.create(url), (ImageConfig) null);
+    }
+
+    public static void display(
+            Fragment fragment,
+            ImageView imageView,
+            DevSource source
+    ) {
+        display(fragment, imageView, source, (ImageConfig) null);
+    }
+
+    public static void display(
+            Fragment fragment,
+            ImageView imageView,
+            String url,
+            ImageConfig config
+    ) {
+        display(fragment, imageView, DevSource.create(url), config);
+    }
+
+    public static void display(
+            Fragment fragment,
+            ImageView imageView,
+            DevSource source,
+            ImageConfig config
+    ) {
+        if (fragment != null && imageView != null) {
+            if (canFragmentLoadImage(fragment)) {
+                RequestManager requestManager = Glide.with(fragment);
+                priDisplayToRequestBuilder(
+                        imageView,
+                        setToRequest(requestManager, source),
+                        config
+                );
+            }
+        }
+    }
+
+    // =
+
+    public static <T> void display(
+            Fragment fragment,
+            ImageView imageView,
+            String url,
+            LoadListener<T> listener
+    ) {
+        display(fragment, imageView, DevSource.create(url), null, listener);
+    }
+
+    public static <T> void display(
+            Fragment fragment,
+            ImageView imageView,
+            DevSource source,
+            LoadListener<T> listener
+    ) {
+        display(fragment, imageView, source, null, listener);
+    }
+
+    public static <T> void display(
+            Fragment fragment,
+            ImageView imageView,
+            String url,
+            ImageConfig config,
+            LoadListener<T> listener
+    ) {
+        display(fragment, imageView, DevSource.create(url), config, listener);
+    }
+
+    public static <T> void display(
+            Fragment fragment,
+            ImageView imageView,
+            DevSource source,
+            ImageConfig config,
+            LoadListener<T> listener
+    ) {
+        if (fragment != null && imageView != null) {
+            if (canFragmentLoadImage(fragment)) {
+                RequestManager requestManager = Glide.with(fragment);
+                priDisplayToRequestBuilder(
+                        imageView,
+                        setToRequest(requestManager, source),
+                        config,
+                        source,
+                        listener
+                );
+            }
+        }
+    }
+
+    // ========
+    // = load =
+    // ========
+
+    public static <T> void loadImage(
+            Context context,
+            DevSource source,
+            ImageConfig config,
+            LoadListener<T> listener
+    ) {
+        if (context != null && source != null && listener != null
+                && listener.getTranscodeType() != null) {
+            RequestManager requestManager = Glide.with(context);
+            Class          type           = listener.getTranscodeType();
+            if (type == Drawable.class) {
+                RequestBuilder<Drawable> request = setToRequest(
+                        requestManager.asDrawable(), source
+                );
+                buildRequest(request, config).into(new InnerDrawableTarget(
+                        source, (LoadListener<Drawable>) listener
+                ));
+            } else if (type == Bitmap.class) {
+                RequestBuilder<Bitmap> request = setToRequest(
+                        requestManager.asBitmap(), source
+                );
+                buildRequest(request, config).into(new InnerBitmapTarget(
+                        source, (LoadListener<Bitmap>) listener
+                ));
+            }
+        }
+    }
+
+    public static <T> void loadImage(
+            Fragment fragment,
+            DevSource source,
+            ImageConfig config,
+            LoadListener<T> listener
+    ) {
+        if (fragment != null && source != null && listener != null
+                && listener.getTranscodeType() != null) {
+            RequestManager requestManager = Glide.with(fragment);
+            Class          type           = listener.getTranscodeType();
+            if (type == Drawable.class) {
+                RequestBuilder<Drawable> request = setToRequest(
+                        requestManager.asDrawable(), source
+                );
+                buildRequest(request, config).into(new InnerDrawableTarget(
+                        source, (LoadListener<Drawable>) listener
+                ));
+            } else if (type == Bitmap.class) {
+                RequestBuilder<Bitmap> request = setToRequest(
+                        requestManager.asBitmap(), source
+                );
+                buildRequest(request, config).into(new InnerBitmapTarget(
+                        source, (LoadListener<Bitmap>) listener
+                ));
+            }
+        }
+    }
+
+    public static <T> T loadImage(
+            Context context,
+            DevSource source,
+            ImageConfig config,
+            Class type
+    ) {
         try {
-            return Glide.getPhotoCacheDir(sContext);
+            return loadImageThrows(context, source, config, type);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getDiskCache");
+            LogPrintUtils.eTag(TAG, "loadImage", e);
         }
         return null;
+    }
+
+    public static <T> T loadImageThrows(
+            Context context,
+            DevSource source,
+            ImageConfig config,
+            Class type
+    )
+            throws Exception {
+        if (context != null && source != null && type != null) {
+            RequestManager requestManager = Glide.with(context);
+            if (type == Drawable.class) {
+                RequestBuilder<Drawable> request = setToRequest(
+                        requestManager.asDrawable(), source
+                );
+                buildRequest(request, config);
+                if (config != null && config.getWidth() > 0 && config.getHeight() > 0) {
+                    try {
+                        return (T) request.submit(
+                                config.getWidth(), config.getHeight()
+                        ).get();
+                    } catch (Exception e) {
+                        throw e;
+                    }
+                } else {
+                    try {
+                        return (T) request.submit().get();
+                    } catch (Exception e) {
+                        throw e;
+                    }
+                }
+            } else if (type == Bitmap.class) {
+                RequestBuilder<Bitmap> request = setToRequest(
+                        requestManager.asBitmap(), source
+                );
+                buildRequest(request, config);
+                if (config != null && config.getWidth() > 0 && config.getHeight() > 0) {
+                    try {
+                        return (T) request.submit(
+                                config.getWidth(), config.getHeight()
+                        ).get();
+                    } catch (Exception e) {
+                        throw e;
+                    }
+                } else {
+                    try {
+                        return (T) request.submit().get();
+                    } catch (Exception e) {
+                        throw e;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    // =
+
+    public static void loadBitmap(
+            Context context,
+            DevSource source,
+            ImageConfig config,
+            LoadListener<Bitmap> listener
+    ) {
+        loadImage(context, source, config, listener);
+    }
+
+    public static void loadBitmap(
+            Fragment fragment,
+            DevSource source,
+            ImageConfig config,
+            LoadListener<Bitmap> listener
+    ) {
+        loadImage(fragment, source, config, listener);
+    }
+
+    public static Bitmap loadBitmap(
+            Context context,
+            DevSource source,
+            ImageConfig config
+    ) {
+        return loadImage(context, source, config, Bitmap.class);
+    }
+
+    public static Bitmap loadBitmapThrows(
+            Context context,
+            DevSource source,
+            ImageConfig config
+    )
+            throws Exception {
+        return loadImageThrows(context, source, config, Bitmap.class);
+    }
+
+    // =
+
+    public static void loadDrawable(
+            Context context,
+            DevSource source,
+            ImageConfig config,
+            LoadListener<Drawable> listener
+    ) {
+        loadImage(context, source, config, listener);
+    }
+
+    public static void loadDrawable(
+            Fragment fragment,
+            DevSource source,
+            ImageConfig config,
+            LoadListener<Drawable> listener
+    ) {
+        loadImage(fragment, source, config, listener);
+    }
+
+    public static Drawable loadDrawable(
+            Context context,
+            DevSource source,
+            ImageConfig config
+    ) {
+        return loadImage(context, source, config, Drawable.class);
+    }
+
+    public static Drawable loadDrawableThrows(
+            Context context,
+            DevSource source,
+            ImageConfig config
+    )
+            throws Exception {
+        return loadImageThrows(context, source, config, Drawable.class);
+    }
+
+    // ===========
+    // = convert =
+    // ===========
+
+    public static boolean convertImageFormat(
+            Context context,
+            List<DevSource> sources,
+            OnConvertListener listener
+    ) {
+        return convertImageFormat(context, sources, null, listener);
+    }
+
+    public static boolean convertImageFormat(
+            Context context,
+            List<DevSource> sources,
+            ImageConfig config,
+            OnConvertListener listener
+    ) {
+        return priConvertImageFormat(context, sources, config, listener);
+    }
+
+    // ===========
+    // = 内部方法 =
+    // ===========
+
+    /**
+     * Fragment 是否能够用于加载图片
+     * @param fragment {@link Fragment}
+     * @return {@code true} yes, {@code false} no
+     */
+    private static boolean canFragmentLoadImage(Fragment fragment) {
+        return fragment.isResumed() || fragment.isAdded() || fragment.isVisible();
+    }
+
+    /**
+     * 通过 {@link DevSource} 设置 {@link RequestBuilder} 加载 source
+     * @param manager {@link RequestManager}
+     * @param source  {@link DevSource}
+     * @return {@link RequestBuilder}
+     */
+    private static RequestBuilder<?> setToRequest(
+            RequestManager manager,
+            DevSource source
+    ) {
+        if (manager != null && source != null) {
+            if (source.mFile != null) {
+                return manager.load(source.mFile);
+            } else if (source.mUrl != null) {
+                return manager.load(source.mUrl);
+            } else if (source.mResource != 0) {
+                return manager.load(source.mResource);
+            } else if (source.mUri != null) {
+                return manager.load(source.mUri);
+            } else if (source.mBytes != null) {
+                return manager.load(source.mBytes);
+            } else {
+                throw new IllegalArgumentException("UnSupport source");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 通过 {@link DevSource} 设置 {@link RequestBuilder} 加载 source
+     * @param request {@link RequestBuilder}
+     * @param source  {@link DevSource}
+     * @param <T>     泛型 ( 如 Drawable、Bitmap )
+     * @return {@link RequestBuilder}
+     */
+    private static <T> RequestBuilder<T> setToRequest(
+            RequestBuilder<T> request,
+            DevSource source
+    ) {
+        if (request != null && source != null) {
+            if (source.mFile != null) {
+                return request.load(source.mFile);
+            } else if (source.mUrl != null) {
+                return request.load(source.mUrl);
+            } else if (source.mResource != 0) {
+                return request.load(source.mResource);
+            } else if (source.mUri != null) {
+                return request.load(source.mUri);
+            } else if (source.mBytes != null) {
+                return request.load(source.mBytes);
+            } else {
+                throw new IllegalArgumentException("UnSupport source");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 通过 {@link ImageConfig} 构建 {@link RequestOptions}
+     * @param config {@link ImageConfig}
+     * @return {@link RequestOptions}
+     */
+    private static RequestOptions buildRequestOptions(ImageConfig config) {
+        RequestOptions options = new RequestOptions();
+        if (config != null) {
+
+            // =============
+            // = 初始化配置 =
+            // =============
+
+            // DiskCache
+            if (config.isCacheDisk()) {
+                options = options.diskCacheStrategy(DiskCacheStrategy.ALL);
+            } else {
+                options = options.diskCacheStrategy(DiskCacheStrategy.NONE);
+            }
+
+            // MemoryCache
+            if (config.isCacheMemory()) {
+                options = options.skipMemoryCache(false);
+            } else {
+                options = options.skipMemoryCache(true);
+            }
+
+            // scale type
+            if (config.getScaleType() == ImageConfig.SCALE_CENTER_CROP) {
+                options = options.centerCrop();
+            } else if (config.getScaleType() == ImageConfig.SCALE_FIT_CENTER) {
+                options = options.fitCenter();
+            }
+
+            // transform
+            if (config.getTransform() == ImageConfig.TRANSFORM_CIRCLE) {
+                options = options.circleCrop();
+            } else if (config.getTransform() == ImageConfig.TRANSFORM_ROUNDED_CORNERS) {
+                if (config.getScaleType() == ImageConfig.SCALE_NONE) {
+                    options = options.transform(new RoundedCorners(config.getRoundedCornersRadius()));
+                } else if (config.getScaleType() == ImageConfig.SCALE_CENTER_CROP) {
+                    options = options.transform(
+                            new MultiTransformation(
+                                    new CenterCrop(),
+                                    new RoundedCorners(config.getRoundedCornersRadius())
+                            )
+                    );
+                } else if (config.getScaleType() == ImageConfig.SCALE_FIT_CENTER) {
+                    options = options.transform(
+                            new MultiTransformation(
+                                    new FitCenter(),
+                                    new RoundedCorners(config.getRoundedCornersRadius())
+                            )
+                    );
+                }
+            } else if (config.getTransform() == ImageConfig.TRANSFORM_NONE) {
+                options = options.dontTransform(); // 不做渐入渐出转换
+            }
+
+            // placeholder
+            if (config.getErrorPlaceholder() != ImageConfig.NO_PLACE_HOLDER) {
+                options = options.error(config.getErrorPlaceholder());
+            }
+
+            if (config.getErrorDrawable() != null) {
+                options = options.error(config.getErrorDrawable());
+            }
+
+            if (config.getLoadingPlaceholder() != ImageConfig.NO_PLACE_HOLDER) {
+                options = options.placeholder(config.getLoadingPlaceholder());
+            }
+
+            if (config.getLoadingDrawable() != null) {
+                options = options.placeholder(config.getLoadingDrawable());
+            }
+
+            // width、height
+            if (config.getWidth() > 0 && config.getHeight() > 0) {
+                options = options.override(config.getWidth(), config.getHeight());
+            }
+        }
+        return options;
+    }
+
+    /**
+     * 通过 {@link ImageConfig} 构建 {@link RequestBuilder}
+     * @param request {@link RequestBuilder}
+     * @param config  {@link ImageConfig}
+     * @return {@link RequestBuilder}
+     */
+    private static <T> RequestBuilder buildRequest(
+            RequestBuilder<T> request,
+            ImageConfig config
+    ) {
+        RequestOptions options = buildRequestOptions(config);
+        request = request.apply(options);
+        if (config != null) {
+            if (config.getThumbnail() > 0F) {
+                request = request.thumbnail(config.getThumbnail());
+            }
+        }
+        return request;
+    }
+
+    // ====================
+    // = 内部 Display 方法 =
+    // ====================
+
+    /**
+     * 通过 {@link RequestBuilder} 与 {@link ImageConfig} 快捷显示方法
+     * @param imageView {@link ImageView}
+     * @param request   {@link RequestBuilder}
+     * @param config    {@link ImageConfig}
+     */
+    private static void priDisplayToRequestBuilder(
+            ImageView imageView,
+            RequestBuilder request,
+            ImageConfig config
+    ) {
+        if (imageView != null && request != null) {
+            buildRequest(request, config).into(imageView);
+        }
+    }
+
+    /**
+     * 通过 {@link RequestBuilder} 与 {@link ImageConfig} 快捷显示方法
+     * @param imageView {@link ImageView}
+     * @param request   {@link RequestBuilder}
+     * @param config    {@link ImageConfig}
+     * @param source    {@link DevSource}
+     * @param listener  {@link LoadListener}
+     */
+    private static <T> void priDisplayToRequestBuilder(
+            ImageView imageView,
+            RequestBuilder request,
+            ImageConfig config,
+            DevSource source,
+            LoadListener<T> listener
+    ) {
+        if (imageView != null && request != null
+                && listener != null && listener.getTranscodeType() != null) {
+            Class type = listener.getTranscodeType();
+            if (type == Drawable.class) {
+                buildRequest(request, config).into(new InnerDrawableViewTarget(
+                        imageView, source, (LoadListener<Drawable>) listener
+                ));
+            } else if (type == Bitmap.class) {
+                buildRequest(request, config).into(new InnerBitmapViewTarget(
+                        imageView, source, (LoadListener<Bitmap>) listener
+                ));
+            }
+        }
+    }
+
+    // ===============
+    // = 内部加载事件 =
+    // ===============
+
+    private static class InnerDrawableViewTarget
+            extends ImageViewTarget<Drawable> {
+
+        private final DevSource              mSource;
+        private final LoadListener<Drawable> mListener;
+
+        InnerDrawableViewTarget(
+                final ImageView view,
+                final DevSource source,
+                final LoadListener<Drawable> listener
+        ) {
+            super(view);
+            mSource = source;
+            mListener = listener;
+        }
+
+        @Override
+        protected void setResource(Drawable resource) {
+            getView().setImageDrawable(resource);
+        }
+
+        @Override
+        public void onResourceReady(
+                Drawable resource,
+                Transition<? super Drawable> transition
+        ) {
+            super.onResourceReady(resource, transition);
+            mListener.onResponse(mSource, resource);
+        }
+
+        @Override
+        public void onLoadStarted(Drawable placeholder) {
+            mListener.onStart(mSource);
+            super.onLoadStarted(placeholder);
+        }
+
+        @Override
+        public void onLoadFailed(Drawable errorDrawable) {
+            super.onLoadFailed(errorDrawable);
+            mListener.onFailure(mSource, new Exception("Load Failed"));
+        }
+    }
+
+    private static class InnerBitmapViewTarget
+            extends ImageViewTarget<Drawable> {
+
+        private final DevSource            mSource;
+        private final LoadListener<Bitmap> mListener;
+
+        InnerBitmapViewTarget(
+                final ImageView view,
+                final DevSource source,
+                final LoadListener<Bitmap> listener
+        ) {
+            super(view);
+            mSource = source;
+            mListener = listener;
+        }
+
+        @Override
+        protected void setResource(Drawable resource) {
+            getView().setImageDrawable(resource);
+        }
+
+        @Override
+        public void onResourceReady(
+                Drawable resource,
+                Transition<? super Drawable> transition
+        ) {
+            super.onResourceReady(resource, transition);
+            mListener.onResponse(mSource, ImageUtils.drawableToBitmap(resource));
+        }
+
+        @Override
+        public void onLoadStarted(Drawable placeholder) {
+            mListener.onStart(mSource);
+            super.onLoadStarted(placeholder);
+        }
+
+        @Override
+        public void onLoadFailed(Drawable errorDrawable) {
+            super.onLoadFailed(errorDrawable);
+            mListener.onFailure(mSource, new Exception("Load Failed"));
+        }
+    }
+
+    // =
+
+    private static class InnerDrawableTarget
+            extends CustomTarget<Drawable> {
+
+        private final DevSource              mSource;
+        private final LoadListener<Drawable> mListener;
+
+        public InnerDrawableTarget(
+                DevSource source,
+                LoadListener<Drawable> listener
+        ) {
+            mSource = source;
+            mListener = listener;
+        }
+
+        @Override
+        public void onResourceReady(
+                Drawable resource,
+                Transition<? super Drawable> transition
+        ) {
+            mListener.onResponse(mSource, resource);
+        }
+
+        @Override
+        public void onLoadStarted(Drawable placeholder) {
+            mListener.onStart(mSource);
+            super.onLoadStarted(placeholder);
+        }
+
+        @Override
+        public void onLoadFailed(Drawable errorDrawable) {
+            super.onLoadFailed(errorDrawable);
+            mListener.onFailure(mSource, new Exception("Load Failed"));
+        }
+
+        @Override
+        public void onLoadCleared(Drawable placeholder) {
+        }
+    }
+
+    private static class InnerBitmapTarget
+            extends CustomTarget<Bitmap> {
+
+        private final DevSource            mSource;
+        private final LoadListener<Bitmap> mListener;
+
+        public InnerBitmapTarget(
+                DevSource source,
+                LoadListener<Bitmap> listener
+        ) {
+            mSource = source;
+            mListener = listener;
+        }
+
+        @Override
+        public void onResourceReady(
+                Bitmap resource,
+                Transition<? super Bitmap> transition
+        ) {
+            mListener.onResponse(mSource, resource);
+        }
+
+        @Override
+        public void onLoadStarted(Drawable placeholder) {
+            mListener.onStart(mSource);
+            super.onLoadStarted(placeholder);
+        }
+
+        @Override
+        public void onLoadFailed(Drawable errorDrawable) {
+            super.onLoadFailed(errorDrawable);
+            mListener.onFailure(mSource, new Exception("Load Failed"));
+        }
+
+        @Override
+        public void onLoadCleared(Drawable placeholder) {
+        }
+    }
+
+    // ====================
+    // = 转换图片格式并存储 =
+    // ====================
+
+    /**
+     * 私有转换图片格式处理方法
+     * @param context  {@link Context}
+     * @param sources  待转换资源集合
+     * @param config   配置信息
+     * @param listener 回调事件
+     * @return {@code true} success, {@code false} fail
+     */
+    private static boolean priConvertImageFormat(
+            Context context,
+            List<DevSource> sources,
+            ImageConfig config,
+            OnConvertListener listener
+    ) {
+        if (context != null && sources != null && listener != null && sources.size() > 0) {
+            List<File>         fileLists = new ArrayList<>();
+            Map<Integer, File> fileMaps  = new LinkedHashMap<>();
+            // 转换器
+            InnerConvertStorage convertStorage = new InnerConvertStorage();
+            // 随机创建任务 id
+            int    randomTask = RandomUtils.getRandom(1000000, 10000000);
+            String task       = String.valueOf(randomTask);
+            // 循环转存
+            for (int i = 0, len = sources.size(); i < len; i++) {
+                File result = null;
+                try {
+                    listener.onStart(i, len);
+                    result = convertStorage.convert(context, sources.get(i), config, i, len, task);
+                    if (result == null || !result.exists()) {
+                        throw new Exception("result file is null or not exists");
+                    }
+                } catch (Exception e) {
+                    listener.onError(e, i, len);
+                }
+                if (result != null && result.exists()) {
+                    listener.onSuccess(result, i, len);
+                    fileLists.add(result);
+                }
+                fileMaps.put(i, result);
+            }
+            listener.onComplete(fileLists, fileMaps, sources.size());
+        }
+        return false;
+    }
+
+    private static class InnerConvertStorage
+            implements ConvertStorage<ImageConfig> {
+
+        @Override
+        public File convert(
+                Context context,
+                DevSource source,
+                ImageConfig config,
+                int index,
+                int count,
+                String task
+        )
+                throws Exception {
+            if (source == null) throw new Exception("source is null");
+            // 属于文件, 判断是否符合指定格式
+            if (source.isFile()) {
+                // 符合条件直接返回
+                if (FileUtils.isImageFormats(
+                        source.mFile.getAbsolutePath(),
+                        new String[]{".PNG", ".JPG", ".JPEG"}
+                )) {
+                    // 配置为 null 或要求原路径返回
+                    if (config == null || config.isOriginalPathReturn()) {
+                        return source.mFile;
+                    }
+                }
+            }
+            Bitmap readBitmap = loadBitmapThrows(context, source, config);
+            // 创建随机名 ( 一定程度上唯一, 防止出现重复情况 )
+            String randomName = String.format("%s_%s_%s_%s_%s", task, UUID.randomUUID().hashCode(),
+                    System.currentTimeMillis(), index, count);
+            // convert_task_index_md5.png
+            String md5FileName = String.format("c_%s_%s_%s.png", task, index, MD5Utils.md5(randomName));
+            // 存储到外部存储私有目录 ( /storage/emulated/0/Android/data/package/ )
+            String dirPath = PathUtils.getAppExternal().getAppCachePath("convertStorage");
+            // 图片保存质量
+            int quality = ImageConfig.QUALITY;
+            if (config != null) {
+                if (config.getQuality() > 0 && config.getQuality() <= 100) {
+                    quality = config.getQuality();
+                }
+            }
+            // 创建文件夹
+            FileUtils.createFolder(dirPath);
+            File resultFile = new File(dirPath, md5FileName);
+            // 保存图片
+            boolean result = ImageUtils.saveBitmapToSDCard(
+                    readBitmap, resultFile, Bitmap.CompressFormat.PNG, quality
+            );
+            return result ? resultFile : null;
+        }
     }
 }
