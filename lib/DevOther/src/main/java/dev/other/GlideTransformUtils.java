@@ -81,26 +81,13 @@ public final class GlideTransformUtils {
                 int outWidth,
                 int outHeight
         ) {
-            return circleCrop(pool, toTransform);
-        }
+            int size = Math.min(toTransform.getWidth(), toTransform.getHeight());
+            int x    = (toTransform.getWidth() - size) / 2;
+            int y    = (toTransform.getHeight() - size) / 2;
 
-        private Bitmap circleCrop(
-                BitmapPool pool,
-                Bitmap source
-        ) {
-            if (source == null) return null;
-
-            int size = Math.min(source.getWidth(), source.getHeight());
-            int x    = (source.getWidth() - size) / 2;
-            int y    = (source.getHeight() - size) / 2;
-
-            Bitmap squared = Bitmap.createBitmap(source, x, y, size, size);
+            Bitmap squared = Bitmap.createBitmap(toTransform, x, y, size, size);
 
             Bitmap result = pool.get(size, size, Bitmap.Config.ARGB_4444);
-            if (result == null) {
-                result = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_4444);
-            }
-
             Canvas canvas = new Canvas(result);
             Paint  paint  = new Paint();
             paint.setShader(new BitmapShader(squared, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));
@@ -136,25 +123,12 @@ public final class GlideTransformUtils {
                 int outWidth,
                 int outHeight
         ) {
-            return roundCrop(pool, toTransform);
-        }
-
-        private Bitmap roundCrop(
-                BitmapPool pool,
-                Bitmap source
-        ) {
-            if (source == null) return null;
-
-            Bitmap result = pool.get(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_4444);
-            if (result == null) {
-                result = Bitmap.createBitmap(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_4444);
-            }
-
+            Bitmap result = pool.get(toTransform.getWidth(), toTransform.getHeight(), Bitmap.Config.ARGB_4444);
             Canvas canvas = new Canvas(result);
             Paint  paint  = new Paint();
-            paint.setShader(new BitmapShader(source, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));
+            paint.setShader(new BitmapShader(toTransform, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));
             paint.setAntiAlias(true);
-            RectF rectF = new RectF(0f, 0f, source.getWidth(), source.getHeight());
+            RectF rectF = new RectF(0f, 0f, toTransform.getWidth(), toTransform.getHeight());
             canvas.drawRoundRect(rectF, radius, radius, paint);
             return result;
         }
