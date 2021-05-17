@@ -1,6 +1,17 @@
 package ktx.dev.other
 
-import ktx.dev.engine.media.LocalMediaData
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.text.TextUtils
+import com.luck.picture.lib.PictureSelectionModel
+import com.luck.picture.lib.PictureSelector
+import com.luck.picture.lib.config.PictureMimeType
+import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.tools.PictureFileUtils
+import dev.engine.media.GlideEngine
+import dev.utils.LogPrintUtils
+import java.util.*
 
 /**
  * detail: Android 平台下的图片选择器
@@ -18,7 +29,7 @@ object PictureSelectorUtils {
     private val TAG = PictureSelectorUtils::class.java.simpleName
 
     // 全局请求跳转回传 code
-    private val PIC_REQUEST_CODE = 159857
+    private const val PIC_REQUEST_CODE = 159857
 
     // 全局配置信息
     private val PIC_CONFIG = MediaConfig()
@@ -88,6 +99,289 @@ object PictureSelectorUtils {
     // = 对外公开方法 =
     // =============
 
+    /**
+     * 删除缓存文件
+     * @param context {@link Context}
+     * @param type    类型 ( 图片、视频 )
+     * 包括裁剪和压缩后的缓存, 要在上传成功后调用, 注意: 需要系统 SDCard 权限
+     * type [PictureMimeType.ofImage]、[PictureMimeType.ofVideo]
+     */
+    fun deleteCacheDirFile(
+        context: Context?,
+        type: Int
+    ) {
+        try {
+            PictureFileUtils.deleteCacheDirFile(context, type)
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "deleteCacheDirFile")
+        }
+    }
+
+    /**
+     * 删除全部缓存文件
+     * @param context {@link Context}
+     */
+    fun deleteAllCacheDirFile(context: Context?) {
+        try {
+            PictureFileUtils.deleteAllCacheDirFile(context)
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "deleteAllCacheDirFile")
+        }
+    }
+
+    /**
+     * 是否图片选择 ( onActivityResult )
+     * @param requestCode 请求 code
+     * @param resultCode  resultCode
+     * @return {@code true} success, {@code false} fail
+     */
+    fun isMediaSelectorResult(
+        requestCode: Int,
+        resultCode: Int
+    ): Boolean {
+        return requestCode == PIC_REQUEST_CODE && resultCode == Activity.RESULT_OK
+    }
+
+    /**
+     * 获取选中的资源集合
+     * @param data [Intent]
+     * @return List<LocalMedia>?
+     * 图片、视频、音频选择结果回调
+     * List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data)
+     * LocalMedia 里面返回三种 path
+     * 1.media.getPath() 为原图 path
+     * 2.media.getCutPath() 为裁剪后 path 需判断 media.isCut() 是否为 true  注意: 音视频除外
+     * 3.media.getCompressPath() 为压缩后 path 需判断 media.isCompressed() 是否为 true  注意: 音视频除外
+     * 如果裁剪并压缩了, 以取压缩路径为准, 因为是先裁剪后压缩的
+     */
+    fun getLocalMedias(data: Intent?): List<LocalMedia?> {
+        return PictureSelector.obtainMultipleResult(data)
+    }
+
+    /**
+     * 获取单独选中的资源
+     * @param data [Intent]
+     * @return [LocalMedia]
+     */
+    fun getSingleMedia(data: Intent?): LocalMedia? {
+        getLocalMedias(data).let {
+            if (it.isNotEmpty()) return it[0]
+        }
+        return null
+    }
+
+    /**
+     * 获取本地资源路径
+     * @param data [Intent]
+     * @return 本地资源路径
+     */
+    fun getLocalMediaPath(data: Intent?): String? {
+        return getLocalMediaPath(getSingleMedia(data), false)
+    }
+
+    /**
+     * 获取本地资源路径
+     * @param localMedia [LocalMedia]
+     * @return 本地资源路径
+     */
+    fun getLocalMediaPath(localMedia: LocalMedia?): String? {
+        return getLocalMediaPath(localMedia, false)
+    }
+
+    /**
+     * 获取本地资源路径
+     * @param localMedia [LocalMedia]
+     * @param original   是否使用原图地址
+     * @return 本地资源路径
+     */
+    fun getLocalMediaPath(
+        localMedia: LocalMedia?,
+        original: Boolean
+    ): String? {
+        localMedia?.let {
+            if (original) return it.path
+            // 判断资源类型
+            val mimeType = it.mimeType
+            if (PictureMimeType.isHasImage(mimeType)) { // 图片
+                if (it.isCompressed) { // 是否压缩图片
+                    return it.compressPath
+                } else if (it.isCut) { // 是否裁减图片
+                    return it.cutPath
+                } else { // 获取原图
+                    return it.path
+                }
+            } else {
+                return it.path
+            }
+        }
+        return null
+    }
+
+    /**
+     * 获取本地资源地址集合
+     * @param data [Intent]
+     * @return [List]
+     */
+    fun getLocalMediaPaths(data: Intent?): List<String?> {
+        return getLocalMediaPaths(data, false)
+    }
+
+    /**
+     * 获取本地资源地址集合
+     * @param data     [Intent]
+     * @param original 是否使用原图地址
+     * @return [List]
+     */
+    fun getLocalMediaPaths(
+        data: Intent?,
+        original: Boolean
+    ): List<String?> {
+        val lists: MutableList<String?> = ArrayList()
+        val result = getLocalMedias(data)
+        for (localMedia in result) {
+            val path = getLocalMediaPath(localMedia, original)
+            lists.add(path)
+        }
+        return lists
+    }
+
+    // =
+
+    /**
+     * 获取图片选择配置模型
+     * @param pictureSelector [PictureSelector]
+     * @param config          [MediaConfig]
+     * @param isCamera        是否拍照
+     * @return [PictureSelectionModel]
+     * 结果回调 onActivityResult requestCode
+     * pictureSelectionModel.forResult(requestCode)
+     */
+    fun getPictureSelectionModel(
+        pictureSelector: PictureSelector?,
+        config: MediaConfig?,
+        isCamera: Boolean
+    ): PictureSelectionModel? {
+        pictureSelector?.let { selector ->
+            config?.let { config ->
+                // 图片选择配置模型
+                val pictureSelectionModel: PictureSelectionModel = if (isCamera) {
+                    selector.openCamera(config.getMimeType())
+                } else {
+                    selector.openGallery(config.getMimeType())
+                }
+
+                // 是否裁减
+                val isCrop = config.isCrop()
+                // 是否圆形裁减
+                val isCircleCrop = config.isCircleCrop()
+
+                // 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
+                pictureSelectionModel.selectionMode(config.getSelectionMode())
+                    .imageEngine(GlideEngine.createGlideEngine())
+                    .isPreviewImage(true) // 是否可预览图片 true or false
+                    .isPreviewVideo(true) // 是否可以预览视频 true or false
+                    .isEnablePreviewAudio(true) // 是否可播放音频 true or false
+                    .isZoomAnim(true) // 图片列表点击 缩放效果 默认 true
+                    .isPreviewEggs(true) // 预览图片时是否增强左右滑动图片体验 ( 图片滑动一半即可看到上一张是否选中 ) true or false
+                    .imageSpanCount(config.getImageSpanCount()) // 每行显示个数 int
+                    .minSelectNum(config.getMinSelectNum()) // 最小选择数量 int
+                    .maxSelectNum(config.getMaxSelectNum()) // 最大图片选择数量 int
+                    .isCamera(config.isCamera()) // 是否显示拍照按钮 true or false
+                    .isGif(config.isGif()) // 是否显示 Gif true or false
+                    // = 压缩相关 =
+                    .isCompress(config.isCompress()) // 是否压缩 true or false
+                    .minimumCompressSize(config.getMinimumCompressSize()) // 小于 xxkb 的图片不压缩
+                    .withAspectRatio(
+                        config.getWithAspectRatio()[0],
+                        config.getWithAspectRatio()[1]
+                    ) // 裁剪比例 如 16:9 3:2 3:4 1:1 可自定义
+                    // = 裁减相关 =
+                    // 判断是否显示圆形裁减
+                    .circleDimmedLayer(isCircleCrop) // = 裁减配置 =
+                    .isEnableCrop(isCrop) // 是否裁剪 true or false
+                    .freeStyleCropEnabled(isCrop) // 裁剪框是否可拖拽 true or false
+                    .showCropFrame(!isCircleCrop && isCrop) // 是否显示裁剪矩形边框 圆形裁剪时建议设为 false
+                    .showCropGrid(!isCircleCrop && isCrop) // 是否显示裁剪矩形网格 圆形裁剪时建议设为 false
+                    .rotateEnabled(isCrop) // 裁剪是否可旋转图片 true or false
+                    .scaleEnabled(isCrop) // 裁剪是否可放大缩小图片 true or false
+
+                // 设置拍照保存地址
+                if (!TextUtils.isEmpty(config.getCameraSavePath())) {
+                    pictureSelectionModel.setOutputCameraPath(config.getCameraSavePath())
+                }
+                // 设置压缩图片保存地址
+                if (!TextUtils.isEmpty(config.getCompressSavePath())) {
+                    pictureSelectionModel.compressSavePath(config.getCompressSavePath())
+                }
+                // 判断是否存在选中资源
+                config.getLocalMedia()?.let { list ->
+                    if (list.isNotEmpty()) {
+                        pictureSelectionModel.selectionData(list)
+                    }
+                }
+                return pictureSelectionModel
+            }
+        }
+        return null
+    }
+
+    // ==========
+    // = 调用方法 =
+    // ==========
+
+    /**
+     * 打开相册拍照
+     * @param pictureSelector [PictureSelector]
+     * @return `true` success, `false` fail
+     */
+    fun openCamera(pictureSelector: PictureSelector?): Boolean {
+        return openCamera(pictureSelector, PIC_CONFIG)
+    }
+
+    /**
+     * 打开相册拍照
+     * @param pictureSelector [PictureSelector]
+     * @param config          [MediaConfig]
+     * @return `true` success, `false` fail
+     */
+    fun openCamera(
+        pictureSelector: PictureSelector?,
+        config: MediaConfig?
+    ): Boolean {
+        val pictureSelectionModel = getPictureSelectionModel(pictureSelector, config, true)
+        pictureSelectionModel?.let {
+            it.forResult(PIC_REQUEST_CODE)
+            return true
+        }
+        return false
+    }
+
+    /**
+     * 打开相册选择
+     * @param pictureSelector [PictureSelector]
+     * @return `true` success, `false` fail
+     */
+    fun openGallery(pictureSelector: PictureSelector?): Boolean {
+        return openGallery(pictureSelector, PIC_CONFIG)
+    }
+
+    /**
+     * 打开相册选择
+     * @param pictureSelector [PictureSelector]
+     * @param config          [MediaConfig]
+     * @return `true` success, `false` fail
+     */
+    fun openGallery(
+        pictureSelector: PictureSelector?,
+        config: MediaConfig?
+    ): Boolean {
+        val pictureSelectionModel = getPictureSelectionModel(pictureSelector, config, false)
+        pictureSelectionModel?.let {
+            it.forResult(PIC_REQUEST_CODE)
+            return true
+        }
+        return false
+    }
 
     // ========
     // = 配置 =
@@ -136,7 +430,7 @@ object PictureSelectorUtils {
         private var maxSelectNum = 9
 
         // 已选择的本地资源
-        private var localMedia: List<LocalMediaData>? = null
+        private var localMedia: List<LocalMedia>? = null
 
         // 拍照保存地址
         private var cameraSavePath: String? = null
@@ -417,7 +711,7 @@ object PictureSelectorUtils {
          * 获取已选择的本地资源
          * @return 已选择的本地资源 [<]
          */
-        fun getLocalMedia(): List<LocalMediaData>? {
+        fun getLocalMedia(): List<LocalMedia>? {
             return localMedia
         }
 
@@ -426,7 +720,7 @@ object PictureSelectorUtils {
          * @param localMedia [<]
          * @return [MediaConfig]
          */
-        fun setLocalMedia(localMedia: List<LocalMediaData>?): MediaConfig {
+        fun setLocalMedia(localMedia: List<LocalMedia>?): MediaConfig {
             this.localMedia = localMedia
             return this
         }
