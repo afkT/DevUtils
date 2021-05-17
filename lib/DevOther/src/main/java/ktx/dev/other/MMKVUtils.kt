@@ -6,8 +6,6 @@ import com.tencent.mmkv.MMKV
 import com.tencent.mmkv.MMKVLogLevel
 import dev.utils.LogPrintUtils
 import dev.utils.common.StringUtils
-import ktx.dev.other.MMKVUtils.defaultHolder
-import ktx.dev.other.MMKVUtils.get
 import java.util.*
 import kotlin.collections.set
 
