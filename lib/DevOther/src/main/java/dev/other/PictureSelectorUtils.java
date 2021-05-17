@@ -1,5 +1,6 @@
 package dev.other;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.text.TextUtils;
 
@@ -36,32 +37,26 @@ public final class PictureSelectorUtils {
     }
 
     // 日志 TAG
-    private static final String      TAG                   = PictureSelectorUtils.class.getSimpleName();
+    private static final String      TAG              = PictureSelectorUtils.class.getSimpleName();
     // 全局请求跳转回传 code
-    public static final  int         PIC_REQUEST_CODE      = PictureConfig.CHOOSE_REQUEST;
+    public static final  int         PIC_REQUEST_CODE = 159857;
     // 全局相册配置
-    public static final  MediaConfig MEDIA_CONFIG          = new MediaConfig();
-    // 拍照保存地址
-    private static       String      CAMERA_SAVE_PATH      = null;
-    // 压缩图片保存地址
-    private static       String      COMPRESS_SAVE_PATH    = null;
-    // 图片大于多少才进行压缩 (kb)
-    private static       int         MINIMUM_COMPRESS_SIZE = 2048;
+    public static final  MediaConfig PIC_CONFIG       = new MediaConfig();
 
     /**
      * 获取全局相册配置
      * @return {@link MediaConfig}
      */
-    public static MediaConfig getMediaConfig() {
-        return MEDIA_CONFIG;
+    public static MediaConfig getConfig() {
+        return PIC_CONFIG;
     }
 
     /**
      * 设置全局相册配置
      * @param config 新的相册配置信息
      */
-    public static void setMediaConfig(final MediaConfig config) {
-        MEDIA_CONFIG.set(config);
+    public static void setConfig(final MediaConfig config) {
+        PIC_CONFIG.set(config);
     }
 
     /**
@@ -69,7 +64,7 @@ public final class PictureSelectorUtils {
      * @return 拍照保存地址
      */
     public static String getCameraSavePath() {
-        return CAMERA_SAVE_PATH;
+        return PIC_CONFIG.getCameraSavePath();
     }
 
     /**
@@ -77,7 +72,7 @@ public final class PictureSelectorUtils {
      * @return 压缩图片保存地址
      */
     public static String getCompressSavePath() {
-        return COMPRESS_SAVE_PATH;
+        return PIC_CONFIG.getCompressSavePath();
     }
 
     /**
@@ -89,8 +84,8 @@ public final class PictureSelectorUtils {
             final String cameraSavePath,
             final String compressSavePath
     ) {
-        CAMERA_SAVE_PATH = cameraSavePath;
-        COMPRESS_SAVE_PATH = compressSavePath;
+        PIC_CONFIG.setCameraSavePath(cameraSavePath)
+                .setCompressSavePath(compressSavePath);
     }
 
     /**
@@ -98,7 +93,7 @@ public final class PictureSelectorUtils {
      * @return 最小压缩大小
      */
     public static int getMinimumCompressSize() {
-        return MINIMUM_COMPRESS_SIZE;
+        return PIC_CONFIG.getMinimumCompressSize();
     }
 
     /**
@@ -106,7 +101,7 @@ public final class PictureSelectorUtils {
      * @param minimumCompressSize 最小压缩大小
      */
     public static void setMinimumCompressSize(final int minimumCompressSize) {
-        MINIMUM_COMPRESS_SIZE = minimumCompressSize;
+        PIC_CONFIG.setMinimumCompressSize(minimumCompressSize);
     }
 
     // ===============
@@ -137,6 +132,19 @@ public final class PictureSelectorUtils {
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "deleteAllCacheDirFile");
         }
+    }
+
+    /**
+     * 是否图片选择 ( onActivityResult )
+     * @param requestCode 请求 code
+     * @param resultCode  resultCode
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean isMediaSelectorResult(
+            final int requestCode,
+            final int resultCode
+    ) {
+        return requestCode == PIC_REQUEST_CODE && resultCode == Activity.RESULT_OK;
     }
 
     /**
@@ -348,7 +356,7 @@ public final class PictureSelectorUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean openCamera(final PictureSelector pictureSelector) {
-        return openCamera(pictureSelector, MEDIA_CONFIG);
+        return openCamera(pictureSelector, PIC_CONFIG);
     }
 
     /**
@@ -375,7 +383,7 @@ public final class PictureSelectorUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean openGallery(final PictureSelector pictureSelector) {
-        return openGallery(pictureSelector, MEDIA_CONFIG);
+        return openGallery(pictureSelector, PIC_CONFIG);
     }
 
     /**
@@ -424,7 +432,7 @@ public final class PictureSelectorUtils {
         // 是否压缩
         private boolean          isCompress          = true;
         // 图片大于多少才进行压缩 (kb)
-        private int              minimumCompressSize = MINIMUM_COMPRESS_SIZE;
+        private int              minimumCompressSize = 2048;
         // 裁减比例
         private int[]            withAspectRatio     = new int[]{0, 0};
         // 是否显示 Gif
@@ -436,11 +444,11 @@ public final class PictureSelectorUtils {
         // 最大选择数量
         private int              maxSelectNum        = 9;
         // 已选择的本地资源
-        private List<LocalMedia> localMedia;
+        private List<LocalMedia> localMedia          = null;
         // 拍照保存地址
-        private String           cameraSavePath      = CAMERA_SAVE_PATH;
+        private String           cameraSavePath      = null;
         // 压缩图片保存地址
-        private String           compressSavePath    = COMPRESS_SAVE_PATH;
+        private String           compressSavePath    = null;
 
         // ===========
         // = get/set =

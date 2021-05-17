@@ -233,15 +233,6 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
     // 全局配置信息
     private val PIC_CONFIG = MediaConfig()
 
-    // 拍照保存地址
-    private var CAMERA_SAVE_PATH: String? = null
-
-    // 压缩图片保存地址
-    private var COMPRESS_SAVE_PATH: String? = null
-
-    // 图片大于多少才进行压缩 (kb)
-    private var MINIMUM_COMPRESS_SIZE = 0
-
     // ===============
     // = 对外公开方法 =
     // ===============
@@ -317,31 +308,26 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
     }
 
     override fun getCameraSavePath(): String? {
-        return CAMERA_SAVE_PATH
+        return PIC_CONFIG.getCameraSavePath()
     }
 
     override fun getCompressSavePath(): String? {
-        return COMPRESS_SAVE_PATH
+        return PIC_CONFIG.getCompressSavePath()
     }
 
     override fun setSavePath(
         cameraSavePath: String?,
         compressSavePath: String?
     ) {
-        CAMERA_SAVE_PATH = cameraSavePath
-        COMPRESS_SAVE_PATH = compressSavePath
-        // 设置配置
         PIC_CONFIG.setCameraSavePath(cameraSavePath)
             .setCompressSavePath(compressSavePath)
     }
 
     override fun getMinimumCompressSize(): Int {
-        return MINIMUM_COMPRESS_SIZE
+        return PIC_CONFIG.getMinimumCompressSize()
     }
 
     override fun setMinimumCompressSize(minimumCompressSize: Int) {
-        MINIMUM_COMPRESS_SIZE = minimumCompressSize
-        // 设置配置
         PIC_CONFIG.setMinimumCompressSize(minimumCompressSize)
     }
 
