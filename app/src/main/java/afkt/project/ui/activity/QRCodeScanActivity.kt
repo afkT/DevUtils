@@ -20,7 +20,6 @@ import com.luck.picture.lib.config.PictureMimeType
 import dev.engine.log.DevLogEngine
 import dev.engine.media.DevMediaEngine
 import dev.engine.media.MediaConfig
-import dev.other.ZXingQRCodeUtils
 import dev.utils.app.FlashlightUtils
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ListenerUtils
@@ -31,6 +30,7 @@ import dev.utils.app.image.ImageUtils
 import dev.utils.app.permission.PermissionUtils
 import dev.utils.app.permission.PermissionUtils.PermissionCallback
 import dev.widget.ui.ScanShapeView
+import ktx.dev.other.ZXingQRCodeUtils
 
 /**
  * detail: 二维码扫描解析
@@ -155,15 +155,21 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
             // 获取图片 Bitmap
             val selectBitmap = ImageUtils.decodeFile(imgPath)
             // 解析图片
-            ZXingQRCodeUtils.decodeQRCode(selectBitmap) { success, result, _ ->
-                HandlerUtils.postRunnable {
-                    if (success) {
-                        mDecodeResult.handleDecode(result, Bundle())
-                    } else {
-                        showToast(false, "图片非二维码 / 识别失败")
+            ZXingQRCodeUtils.decodeQRCode(selectBitmap, object : ZXingQRCodeUtils.QRScanCallback {
+                override fun onResult(
+                    success: Boolean,
+                    result: Result?,
+                    e: Exception?
+                ) {
+                    HandlerUtils.postRunnable {
+                        if (success) {
+                            mDecodeResult.handleDecode(result, Bundle())
+                        } else {
+                            showToast(false, "图片非二维码 / 识别失败")
+                        }
                     }
                 }
-            }
+            })
         }
     }
 

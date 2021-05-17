@@ -10,10 +10,10 @@ import android.view.View
 import com.luck.picture.lib.config.PictureMimeType
 import dev.engine.media.DevMediaEngine
 import dev.engine.media.MediaConfig
-import dev.other.ZXingQRCodeUtils
 import dev.utils.app.*
 import dev.utils.app.image.ImageUtils
 import dev.utils.common.ThrowableUtils
+import ktx.dev.other.ZXingQRCodeUtils
 
 /**
  * detail: 创建二维码
@@ -46,18 +46,26 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
                 }
                 val size = SizeUtils.dipConvertPx(200f)
                 // 创建二维码
-                ZXingQRCodeUtils.createQRCodeImage(text, size, selectBitmap) { success, bitmap, e ->
-                    if (success) {
-                        HandlerUtils.postRunnable {
-                            ImageViewUtils.setImageBitmap(
-                                binding.vidAqcIgview,
-                                bitmap
-                            )
+                ZXingQRCodeUtils.createQRCodeImage(
+                    text, size, selectBitmap,
+                    object : ZXingQRCodeUtils.QRResultCallback {
+                        override fun onResult(
+                            success: Boolean,
+                            bitmap: Bitmap?,
+                            e: Exception?
+                        ) {
+                            if (success) {
+                                HandlerUtils.postRunnable {
+                                    ImageViewUtils.setImageBitmap(
+                                        binding.vidAqcIgview,
+                                        bitmap
+                                    )
+                                }
+                            } else {
+                                showToast(false, ThrowableUtils.getThrowable(e))
+                            }
                         }
-                    } else {
-                        showToast(false, ThrowableUtils.getThrowable(e))
-                    }
-                }
+                    })
             }
             R.id.vid_aqc_select_btn -> {
                 // 初始化图片配置
