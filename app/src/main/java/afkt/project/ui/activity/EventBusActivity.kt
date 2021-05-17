@@ -9,8 +9,8 @@ import afkt.project.ui.adapter.ButtonAdapter
 import dev.base.DevObject
 import dev.callback.DevItemClickCallback
 import dev.engine.log.DevLogEngine
-import dev.other.EventBusUtils
 import dev.utils.app.toast.ToastTintUtils
+import ktx.dev.other.EventBusUtils
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
