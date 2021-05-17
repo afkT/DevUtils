@@ -160,7 +160,6 @@ object MMKVUtils {
          * @return `true` yes, `false` no
          */
         fun containsKey(key: String?): Boolean {
-            if (isMMKVEmpty()) return false
             if (StringUtils.isEmpty(key)) return false
             return mmkv?.containsKey(key) ?: false
         }

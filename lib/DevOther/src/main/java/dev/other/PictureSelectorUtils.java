@@ -36,32 +36,32 @@ public final class PictureSelectorUtils {
     }
 
     // 日志 TAG
-    private static final String    TAG                   = PictureSelectorUtils.class.getSimpleName();
+    private static final String      TAG                   = PictureSelectorUtils.class.getSimpleName();
     // 全局请求跳转回传 code
-    public static final  int       PIC_REQUEST_CODE      = PictureConfig.CHOOSE_REQUEST;
+    public static final  int         PIC_REQUEST_CODE      = PictureConfig.CHOOSE_REQUEST;
     // 全局相册配置
-    public static final  PicConfig PIC_CONFIG            = new PicConfig();
+    public static final  MediaConfig MEDIA_CONFIG          = new MediaConfig();
     // 拍照保存地址
-    private static       String    CAMERA_SAVE_PATH      = null;
+    private static       String      CAMERA_SAVE_PATH      = null;
     // 压缩图片保存地址
-    private static       String    COMPRESS_SAVE_PATH    = null;
+    private static       String      COMPRESS_SAVE_PATH    = null;
     // 图片大于多少才进行压缩 (kb)
-    private static       int       MINIMUM_COMPRESS_SIZE = 2048;
+    private static       int         MINIMUM_COMPRESS_SIZE = 2048;
 
     /**
      * 获取全局相册配置
-     * @return {@link PicConfig}
+     * @return {@link MediaConfig}
      */
-    public static PicConfig getPicConfig() {
-        return PIC_CONFIG;
+    public static MediaConfig getMediaConfig() {
+        return MEDIA_CONFIG;
     }
 
     /**
      * 设置全局相册配置
-     * @param picConfig 新的相册配置信息
+     * @param config 新的相册配置信息
      */
-    public static void setPicConfig(final PicConfig picConfig) {
-        PIC_CONFIG.set(picConfig);
+    public static void setMediaConfig(final MediaConfig config) {
+        MEDIA_CONFIG.set(config);
     }
 
     /**
@@ -254,47 +254,47 @@ public final class PictureSelectorUtils {
      *     pictureSelectionModel.forResult(requestCode);
      * </pre>
      * @param pictureSelector {@link PictureSelector}
-     * @param picConfig       {@link PicConfig}
+     * @param config          {@link MediaConfig}
      * @param isCamera        是否拍照
      * @return {@link PictureSelectionModel}
      */
     public static PictureSelectionModel getPictureSelectionModel(
             final PictureSelector pictureSelector,
-            final PicConfig picConfig,
+            final MediaConfig config,
             final boolean isCamera
     ) {
-        if (pictureSelector != null && picConfig != null) {
+        if (pictureSelector != null && config != null) {
             // 图片选择配置模型
             PictureSelectionModel pictureSelectionModel;
             // 相册选择类型
             if (isCamera) {
-                pictureSelectionModel = pictureSelector.openCamera(picConfig.mimeType);
+                pictureSelectionModel = pictureSelector.openCamera(config.mimeType);
             } else {
-                pictureSelectionModel = pictureSelector.openGallery(picConfig.mimeType);
+                pictureSelectionModel = pictureSelector.openGallery(config.mimeType);
             }
 
             // 是否裁减
-            boolean isCrop = picConfig.isCrop;
+            boolean isCrop = config.isCrop;
             // 是否圆形裁减
-            boolean isCircleCrop = picConfig.isCircleCrop;
+            boolean isCircleCrop = config.isCircleCrop;
 
             // 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
-            pictureSelectionModel.selectionMode(picConfig.selectionMode)
+            pictureSelectionModel.selectionMode(config.selectionMode)
                     .imageEngine(GlideEngine.createGlideEngine())
                     .isPreviewImage(true) // 是否可预览图片 true or false
                     .isPreviewVideo(true) // 是否可以预览视频 true or false
                     .isEnablePreviewAudio(true) // 是否可播放音频 true or false
                     .isZoomAnim(true) // 图片列表点击 缩放效果 默认 true
                     .isPreviewEggs(true) // 预览图片时是否增强左右滑动图片体验 ( 图片滑动一半即可看到上一张是否选中 ) true or false
-                    .imageSpanCount(picConfig.imageSpanCount)// 每行显示个数 int
-                    .minSelectNum(picConfig.minSelectNum) // 最小选择数量 int
-                    .maxSelectNum(picConfig.maxSelectNum) // 最大图片选择数量 int
-                    .isCamera(picConfig.isCamera) // 是否显示拍照按钮 true or false
-                    .isGif(picConfig.isGif) // 是否显示 Gif true or false
+                    .imageSpanCount(config.imageSpanCount)// 每行显示个数 int
+                    .minSelectNum(config.minSelectNum) // 最小选择数量 int
+                    .maxSelectNum(config.maxSelectNum) // 最大图片选择数量 int
+                    .isCamera(config.isCamera) // 是否显示拍照按钮 true or false
+                    .isGif(config.isGif) // 是否显示 Gif true or false
                     // = 压缩相关 =
-                    .isCompress(picConfig.isCompress) // 是否压缩 true or false
-                    .minimumCompressSize(picConfig.minimumCompressSize) // 小于 xxkb 的图片不压缩
-                    .withAspectRatio(picConfig.withAspectRatio[0], picConfig.withAspectRatio[1]) // 裁剪比例 如 16:9 3:2 3:4 1:1 可自定义
+                    .isCompress(config.isCompress) // 是否压缩 true or false
+                    .minimumCompressSize(config.minimumCompressSize) // 小于 xxkb 的图片不压缩
+                    .withAspectRatio(config.withAspectRatio[0], config.withAspectRatio[1]) // 裁剪比例 如 16:9 3:2 3:4 1:1 可自定义
                     // = 裁减相关 =
                     // 判断是否显示圆形裁减
                     .circleDimmedLayer(isCircleCrop)
@@ -307,16 +307,16 @@ public final class PictureSelectorUtils {
                     .scaleEnabled(isCrop); // 裁剪是否可放大缩小图片 true or false
 
             // 设置拍照保存地址
-            if (!TextUtils.isEmpty(picConfig.cameraSavePath)) {
-                pictureSelectionModel.setOutputCameraPath(picConfig.cameraSavePath);
+            if (!TextUtils.isEmpty(config.cameraSavePath)) {
+                pictureSelectionModel.setOutputCameraPath(config.cameraSavePath);
             }
             // 设置压缩图片保存地址
-            if (!TextUtils.isEmpty(picConfig.compressSavePath)) {
-                pictureSelectionModel.compressSavePath(picConfig.compressSavePath);
+            if (!TextUtils.isEmpty(config.compressSavePath)) {
+                pictureSelectionModel.compressSavePath(config.compressSavePath);
             }
             // 判断是否存在选中资源
-            if (picConfig.localMedia != null && picConfig.localMedia.size() != 0) {
-                pictureSelectionModel.selectionData(picConfig.localMedia);
+            if (config.localMedia != null && config.localMedia.size() != 0) {
+                pictureSelectionModel.selectionData(config.localMedia);
             }
             return pictureSelectionModel;
         }
@@ -348,20 +348,20 @@ public final class PictureSelectorUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean openCamera(final PictureSelector pictureSelector) {
-        return openCamera(pictureSelector, PIC_CONFIG);
+        return openCamera(pictureSelector, MEDIA_CONFIG);
     }
 
     /**
      * 打开相册拍照
      * @param pictureSelector {@link PictureSelector}
-     * @param picConfig       {@link PicConfig}
+     * @param config          {@link MediaConfig}
      * @return {@code true} success, {@code false} fail
      */
     public static boolean openCamera(
             final PictureSelector pictureSelector,
-            final PicConfig picConfig
+            final MediaConfig config
     ) {
-        PictureSelectionModel pictureSelectionModel = getPictureSelectionModel(pictureSelector, picConfig, true);
+        PictureSelectionModel pictureSelectionModel = getPictureSelectionModel(pictureSelector, config, true);
         if (pictureSelectionModel != null) {
             pictureSelectionModel.forResult(PIC_REQUEST_CODE);
             return true;
@@ -375,20 +375,20 @@ public final class PictureSelectorUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean openGallery(final PictureSelector pictureSelector) {
-        return openGallery(pictureSelector, PIC_CONFIG);
+        return openGallery(pictureSelector, MEDIA_CONFIG);
     }
 
     /**
      * 打开相册选择
      * @param pictureSelector {@link PictureSelector}
-     * @param picConfig       {@link PicConfig}
+     * @param config          {@link MediaConfig}
      * @return {@code true} success, {@code false} fail
      */
     public static boolean openGallery(
             final PictureSelector pictureSelector,
-            final PicConfig picConfig
+            final MediaConfig config
     ) {
-        PictureSelectionModel pictureSelectionModel = getPictureSelectionModel(pictureSelector, picConfig, false);
+        PictureSelectionModel pictureSelectionModel = getPictureSelectionModel(pictureSelector, config, false);
         if (pictureSelectionModel != null) {
             pictureSelectionModel.forResult(PIC_REQUEST_CODE);
             return true;
@@ -409,7 +409,7 @@ public final class PictureSelectorUtils {
      *     影响回调到哪个地方的 onActivityResult()
      * </pre>
      */
-    public static class PicConfig {
+    public static class MediaConfig {
 
         // 相册选择类型
         private int              mimeType            = PictureMimeType.ofImage();
@@ -463,9 +463,9 @@ public final class PictureSelectorUtils {
          *     音频 ofAudio() = 3
          * </pre>
          * @param mimeType 相册选择类型
-         * @return {@link PicConfig}
+         * @return {@link MediaConfig}
          */
-        public PicConfig setMimeType(final int mimeType) {
+        public MediaConfig setMimeType(final int mimeType) {
             // 超过最大、最小值都默认为全部类型
             if (mimeType > PictureMimeType.ofAudio() || mimeType < PictureMimeType.ofAll()) {
                 this.mimeType = PictureMimeType.ofAll();
@@ -490,9 +490,9 @@ public final class PictureSelectorUtils {
          *     单选 PictureConfig.SINGLE
          * </pre>
          * @param selectionMode 相册选择模式
-         * @return {@link PicConfig}
+         * @return {@link MediaConfig}
          */
-        public PicConfig setSelectionMode(final int selectionMode) {
+        public MediaConfig setSelectionMode(final int selectionMode) {
             if (selectionMode >= PictureConfig.MULTIPLE) {
                 this.selectionMode = PictureConfig.MULTIPLE;
             } else if (selectionMode <= PictureConfig.SINGLE) {
@@ -512,9 +512,9 @@ public final class PictureSelectorUtils {
         /**
          * 设置是否显示拍照
          * @param camera {@code true} yes, {@code false} no
-         * @return {@link PicConfig}
+         * @return {@link MediaConfig}
          */
-        public PicConfig setCamera(final boolean camera) {
+        public MediaConfig setCamera(final boolean camera) {
             isCamera = camera;
             return this;
         }
@@ -530,9 +530,9 @@ public final class PictureSelectorUtils {
         /**
          * 设置是否裁减
          * @param crop {@code true} yes, {@code false} no
-         * @return {@link PicConfig}
+         * @return {@link MediaConfig}
          */
-        public PicConfig setCrop(final boolean crop) {
+        public MediaConfig setCrop(final boolean crop) {
             isCrop = crop;
             return this;
         }
@@ -548,9 +548,9 @@ public final class PictureSelectorUtils {
         /**
          * 设置是否圆形裁减
          * @param circleCrop {@code true} yes, {@code false} no
-         * @return {@link PicConfig}
+         * @return {@link MediaConfig}
          */
-        public PicConfig setCircleCrop(final boolean circleCrop) {
+        public MediaConfig setCircleCrop(final boolean circleCrop) {
             isCircleCrop = circleCrop;
             return this;
         }
@@ -566,9 +566,9 @@ public final class PictureSelectorUtils {
         /**
          * 设置是否压缩
          * @param compress {@code true} yes, {@code false} no
-         * @return {@link PicConfig}
+         * @return {@link MediaConfig}
          */
-        public PicConfig setCompress(final boolean compress) {
+        public MediaConfig setCompress(final boolean compress) {
             isCompress = compress;
             return this;
         }
@@ -584,9 +584,9 @@ public final class PictureSelectorUtils {
         /**
          * 设置图片大于多少才进行压缩
          * @param minimumCompressSize 最小压缩大小
-         * @return {@link PicConfig}
+         * @return {@link MediaConfig}
          */
-        public PicConfig setMinimumCompressSize(final int minimumCompressSize) {
+        public MediaConfig setMinimumCompressSize(final int minimumCompressSize) {
             this.minimumCompressSize = minimumCompressSize;
             return this;
         }
@@ -603,9 +603,9 @@ public final class PictureSelectorUtils {
          * 设置裁减比例
          * @param x 宽比例
          * @param y 高比例
-         * @return {@link PicConfig}
+         * @return {@link MediaConfig}
          */
-        public PicConfig setWithAspectRatio(
+        public MediaConfig setWithAspectRatio(
                 final int x,
                 final int y
         ) {
@@ -625,9 +625,9 @@ public final class PictureSelectorUtils {
         /**
          * 设置是否显示 Gif
          * @param gif {@code true} yes, {@code false} no
-         * @return {@link PicConfig}
+         * @return {@link MediaConfig}
          */
-        public PicConfig setGif(final boolean gif) {
+        public MediaConfig setGif(final boolean gif) {
             isGif = gif;
             return this;
         }
@@ -643,9 +643,9 @@ public final class PictureSelectorUtils {
         /**
          * 设置每行显示个数
          * @param imageSpanCount 每行显示个数
-         * @return {@link PicConfig}
+         * @return {@link MediaConfig}
          */
-        public PicConfig setImageSpanCount(final int imageSpanCount) {
+        public MediaConfig setImageSpanCount(final int imageSpanCount) {
             this.imageSpanCount = Math.max(imageSpanCount, 1);
             return this;
         }
@@ -661,9 +661,9 @@ public final class PictureSelectorUtils {
         /**
          * 设置最小选择数量
          * @param minSelectNum 最小选择数量
-         * @return {@link PicConfig}
+         * @return {@link MediaConfig}
          */
-        public PicConfig setMinSelectNum(final int minSelectNum) {
+        public MediaConfig setMinSelectNum(final int minSelectNum) {
             this.minSelectNum = minSelectNum;
             return this;
         }
@@ -679,9 +679,9 @@ public final class PictureSelectorUtils {
         /**
          * 设置最大选择数量
          * @param maxSelectNum 最大选择数量
-         * @return {@link PicConfig}
+         * @return {@link MediaConfig}
          */
-        public PicConfig setMaxSelectNum(final int maxSelectNum) {
+        public MediaConfig setMaxSelectNum(final int maxSelectNum) {
             this.maxSelectNum = maxSelectNum;
             return this;
         }
@@ -697,9 +697,9 @@ public final class PictureSelectorUtils {
         /**
          * 设置已选择的本地资源
          * @param localMedia {@link List<LocalMedia>}
-         * @return {@link PicConfig}
+         * @return {@link MediaConfig}
          */
-        public PicConfig setLocalMedia(final List<LocalMedia> localMedia) {
+        public MediaConfig setLocalMedia(final List<LocalMedia> localMedia) {
             this.localMedia = localMedia;
             return this;
         }
@@ -715,9 +715,9 @@ public final class PictureSelectorUtils {
         /**
          * 设置拍照保存地址
          * @param cameraSavePath 拍照保存地址
-         * @return {@link PicConfig}
+         * @return {@link MediaConfig}
          */
-        public PicConfig setCameraSavePath(final String cameraSavePath) {
+        public MediaConfig setCameraSavePath(final String cameraSavePath) {
             this.cameraSavePath = cameraSavePath;
             return this;
         }
@@ -733,9 +733,9 @@ public final class PictureSelectorUtils {
         /**
          * 设置压缩图片保存地址
          * @param compressSavePath 压缩图片保存地址
-         * @return {@link PicConfig}
+         * @return {@link MediaConfig}
          */
-        public PicConfig setCompressSavePath(final String compressSavePath) {
+        public MediaConfig setCompressSavePath(final String compressSavePath) {
             this.compressSavePath = compressSavePath;
             return this;
         }
@@ -744,50 +744,50 @@ public final class PictureSelectorUtils {
 
         /**
          * 克隆新的相册配置
-         * @return {@link PicConfig}
+         * @return {@link MediaConfig}
          */
-        public PicConfig clone() {
-            PicConfig picConfig = new PicConfig();
-            picConfig.mimeType = mimeType;
-            picConfig.selectionMode = selectionMode;
-            picConfig.isCamera = isCamera;
-            picConfig.isCrop = isCrop;
-            picConfig.isCircleCrop = isCircleCrop;
-            picConfig.isCompress = isCompress;
-            picConfig.minimumCompressSize = minimumCompressSize;
-            picConfig.withAspectRatio = withAspectRatio;
-            picConfig.isGif = isGif;
-            picConfig.imageSpanCount = imageSpanCount;
-            picConfig.minSelectNum = minSelectNum;
-            picConfig.maxSelectNum = maxSelectNum;
-            picConfig.localMedia = localMedia;
-            picConfig.cameraSavePath = cameraSavePath;
-            picConfig.compressSavePath = compressSavePath;
-            return picConfig;
+        public MediaConfig clone() {
+            MediaConfig config = new MediaConfig();
+            config.mimeType = mimeType;
+            config.selectionMode = selectionMode;
+            config.isCamera = isCamera;
+            config.isCrop = isCrop;
+            config.isCircleCrop = isCircleCrop;
+            config.isCompress = isCompress;
+            config.minimumCompressSize = minimumCompressSize;
+            config.withAspectRatio = withAspectRatio;
+            config.isGif = isGif;
+            config.imageSpanCount = imageSpanCount;
+            config.minSelectNum = minSelectNum;
+            config.maxSelectNum = maxSelectNum;
+            config.localMedia = localMedia;
+            config.cameraSavePath = cameraSavePath;
+            config.compressSavePath = compressSavePath;
+            return config;
         }
 
         /**
          * 设置新的相册配置
-         * @param picConfig 新的相册配置信息
-         * @return {@link PicConfig}
+         * @param config 新的相册配置信息
+         * @return {@link MediaConfig}
          */
-        public PicConfig set(final PicConfig picConfig) {
-            if (picConfig != null) {
-                mimeType = picConfig.mimeType;
-                selectionMode = picConfig.selectionMode;
-                isCamera = picConfig.isCamera;
-                isCrop = picConfig.isCrop;
-                isCircleCrop = picConfig.isCircleCrop;
-                isCompress = picConfig.isCompress;
-                minimumCompressSize = picConfig.minimumCompressSize;
-                withAspectRatio = picConfig.withAspectRatio;
-                isGif = picConfig.isGif;
-                imageSpanCount = picConfig.imageSpanCount;
-                minSelectNum = picConfig.minSelectNum;
-                maxSelectNum = picConfig.maxSelectNum;
-                localMedia = picConfig.localMedia;
-                cameraSavePath = picConfig.cameraSavePath;
-                compressSavePath = picConfig.compressSavePath;
+        public MediaConfig set(final MediaConfig config) {
+            if (config != null) {
+                mimeType = config.mimeType;
+                selectionMode = config.selectionMode;
+                isCamera = config.isCamera;
+                isCrop = config.isCrop;
+                isCircleCrop = config.isCircleCrop;
+                isCompress = config.isCompress;
+                minimumCompressSize = config.minimumCompressSize;
+                withAspectRatio = config.withAspectRatio;
+                isGif = config.isGif;
+                imageSpanCount = config.imageSpanCount;
+                minSelectNum = config.minSelectNum;
+                maxSelectNum = config.maxSelectNum;
+                localMedia = config.localMedia;
+                cameraSavePath = config.cameraSavePath;
+                compressSavePath = config.compressSavePath;
             }
             return this;
         }
