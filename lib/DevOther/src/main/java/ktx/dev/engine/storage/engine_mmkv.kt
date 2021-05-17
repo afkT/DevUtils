@@ -3,9 +3,9 @@ package ktx.dev.engine.storage
 import com.tencent.mmkv.MMKV
 import dev.engine.json.DevJSONEngine
 import dev.engine.storage.IStorageEngine
-import dev.other.MMKVUtils
 import dev.utils.common.ConvertUtils
 import dev.utils.common.cipher.Cipher
+import ktx.dev.other.MMKVUtils
 import java.lang.reflect.Type
 
 /**
@@ -46,7 +46,7 @@ class MMKVStorageEngineImpl(
         mHolder.removeValueForKey(key)
     }
 
-    override fun removeForKeys(keys: Array<out String>?) {
+    override fun removeForKeys(keys: Array<String?>?) {
         mHolder.removeValuesForKeys(keys)
     }
 
