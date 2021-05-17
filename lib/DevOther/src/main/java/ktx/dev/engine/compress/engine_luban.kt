@@ -4,7 +4,7 @@ import dev.engine.compress.ICompressEngine
 import dev.engine.compress.listener.CompressFilter
 import dev.engine.compress.listener.OnCompressListener
 import dev.engine.compress.listener.OnRenameListener
-import dev.other.LubanUtils
+import ktx.dev.other.LubanUtils
 import top.zibin.luban.CompressionPredicate
 import java.io.File
 
@@ -30,7 +30,7 @@ class LubanEngineImpl : ICompressEngine<CompressConfig> {
         compressListener: OnCompressListener?
     ): Boolean {
         if (data == null || config == null || compressListener == null) return false
-        val lists = ArrayList<Any>()
+        val lists = ArrayList<Any?>()
         lists.add(data)
         return compress(lists, config, filter, renameListener, compressListener)
     }
@@ -70,15 +70,15 @@ class LubanEngineImpl : ICompressEngine<CompressConfig> {
                     index: Int,
                     count: Int
                 ) {
-                    compressListener?.onStart(index, count)
+                    compressListener.onStart(index, count)
                 }
 
                 override fun onSuccess(
-                    file: File,
+                    file: File?,
                     index: Int,
                     count: Int
                 ) {
-                    compressListener?.onSuccess(file, index, count)
+                    compressListener.onSuccess(file, index, count)
                 }
 
                 override fun onError(
@@ -86,15 +86,15 @@ class LubanEngineImpl : ICompressEngine<CompressConfig> {
                     index: Int,
                     count: Int
                 ) {
-                    compressListener?.onError(error, index, count)
+                    compressListener.onError(error, index, count)
                 }
 
                 override fun onComplete(
                     lists: List<File>,
-                    maps: Map<Int, File>,
+                    maps: Map<Int, File?>,
                     count: Int
                 ) {
-                    compressListener?.onComplete(lists, maps, count)
+                    compressListener.onComplete(lists, maps, count)
                 }
             }
         )

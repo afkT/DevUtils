@@ -1,7 +1,7 @@
 package ktx.dev.engine.json
 
 import dev.engine.json.IJSONEngine
-import dev.other.GsonUtils
+import ktx.dev.other.GsonUtils
 import java.lang.reflect.Type
 
 /**
@@ -28,7 +28,7 @@ class GsonEngineImpl : IJSONEngine<JSONConfig> {
     override fun <T : Any?> fromJson(
         json: String?,
         classOfT: Class<T>?
-    ): T {
+    ): T? {
         return GsonUtils.fromJson(json, classOfT)
     }
 
@@ -36,14 +36,14 @@ class GsonEngineImpl : IJSONEngine<JSONConfig> {
         json: String?,
         classOfT: Class<T>?,
         config: JSONConfig?
-    ): T {
+    ): T? {
         return GsonUtils.fromJson(json, classOfT, config?.gson)
     }
 
     override fun <T : Any?> fromJson(
         json: String?,
         typeOfT: Type?
-    ): T {
+    ): T? {
         return GsonUtils.fromJson(json, typeOfT)
     }
 
@@ -51,7 +51,7 @@ class GsonEngineImpl : IJSONEngine<JSONConfig> {
         json: String?,
         typeOfT: Type?,
         config: JSONConfig?
-    ): T {
+    ): T? {
         return GsonUtils.fromJson(json, typeOfT, config?.gson)
     }
 
