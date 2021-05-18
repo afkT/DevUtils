@@ -45,7 +45,6 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(),
             .setTag(TAG)
             .setContext(this)
             .printLog("onCreate")
-            .setCurrentVisible(true)
         // 记录 Activity
         if (isActivityManager()) ActivityUtils.getManager().addActivity(this)
         // Content View 初始化处理
@@ -56,44 +55,32 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(),
 
     override fun onStart() {
         super.onStart()
-        assist
-            .printLog("onStart")
-            .setCurrentVisible(true)
+        assist.printLog("onStart")
     }
 
     override fun onRestart() {
         super.onRestart()
-        assist
-            .printLog("onRestart")
-            .setCurrentVisible(true)
+        assist.printLog("onRestart")
     }
 
     override fun onResume() {
         super.onResume()
-        assist
-            .printLog("onResume")
-            .setCurrentVisible(true)
+        assist.printLog("onResume")
     }
 
     override fun onPause() {
         super.onPause()
-        assist
-            .printLog("onPause")
-            .setCurrentVisible(false)
+        assist.printLog("onPause")
     }
 
     override fun onStop() {
         super.onStop()
-        assist
-            .printLog("onStop")
-            .setCurrentVisible(false)
+        assist.printLog("onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        assist
-            .printLog("onDestroy")
-            .setCurrentVisible(false)
+        assist.printLog("onDestroy")
         // 移除当前 Activity
         if (isActivityManager()) ActivityUtils.getManager().removeActivity(this)
     }
@@ -164,10 +151,6 @@ abstract class AbstractDevBaseActivity : AppCompatActivity(),
     // =======================
     // = IDevBaseUIOperation =
     // =======================
-
-    override fun isCurrentVisible(): Boolean {
-        return assist.isCurrentVisible()
-    }
 
     override fun showToast(
         text: String?,

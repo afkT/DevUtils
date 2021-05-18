@@ -21,9 +21,6 @@ class DevBaseAssist : IDevBaseUIOperation {
     // Context
     private var mContext: Context? = null
 
-    // 当前是否可见 ( 生命周期 )
-    private var mCurrentVisible = false
-
     // 基类 PopupWindow
     private var mDevPopupWindow: PopupWindow? = null
 
@@ -37,11 +34,6 @@ class DevBaseAssist : IDevBaseUIOperation {
 
     fun setContext(context: Context): DevBaseAssist {
         this.mContext = context
-        return this
-    }
-
-    fun setCurrentVisible(currentVisible: Boolean): DevBaseAssist {
-        this.mCurrentVisible = currentVisible
         return this
     }
 
@@ -85,10 +77,6 @@ class DevBaseAssist : IDevBaseUIOperation {
     // =======================
     // = IDevBaseUIOperation =
     // =======================
-
-    override fun isCurrentVisible(): Boolean {
-        return this.mCurrentVisible
-    }
 
     override fun showToast(
         text: String?,

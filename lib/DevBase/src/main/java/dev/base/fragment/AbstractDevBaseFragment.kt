@@ -87,58 +87,42 @@ abstract class AbstractDevBaseFragment : Fragment(),
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        assist
-            .printLog("onHiddenChanged - hidden: $hidden")
-            .setCurrentVisible(!hidden)
+        assist.printLog("onHiddenChanged - hidden: $hidden")
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        assist
-            .printLog("setUserVisibleHint")
-            .setCurrentVisible(userVisibleHint)
+        assist.printLog("setUserVisibleHint")
     }
 
     override fun onStart() {
         super.onStart()
-        assist
-            .printLog("onStart")
-            .setCurrentVisible(true)
+        assist.printLog("onStart")
     }
 
     override fun onResume() {
         super.onResume()
-        assist
-            .printLog("onResume")
-            .setCurrentVisible(true)
+        assist.printLog("onResume")
     }
 
     override fun onPause() {
         super.onPause()
-        assist
-            .printLog("onPause")
-            .setCurrentVisible(false)
+        assist.printLog("onPause")
     }
 
     override fun onStop() {
         super.onStop()
-        assist
-            .printLog("onStop")
-            .setCurrentVisible(false)
+        assist.printLog("onStop")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        assist
-            .printLog("onDestroyView")
-            .setCurrentVisible(false)
+        assist.printLog("onDestroyView")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        assist
-            .printLog("onDestroy")
-            .setCurrentVisible(false)
+        assist.printLog("onDestroy")
     }
 
     // ===================
@@ -198,10 +182,6 @@ abstract class AbstractDevBaseFragment : Fragment(),
     // =======================
     // = IDevBaseUIOperation =
     // =======================
-
-    override fun isCurrentVisible(): Boolean {
-        return assist.isCurrentVisible()
-    }
 
     override fun showToast(
         text: String?,
