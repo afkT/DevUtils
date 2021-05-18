@@ -1146,9 +1146,9 @@ public final class ColorUtils {
                     ColorUtils.ColorInfo c2
             ) {
                 float diff = c1.getHue() - c2.getHue();
-                if (c1.getHue() == 0) {
-                    diff = c1.getSaturation() - c2.getSaturation();
-                }
+//                if (c1.getHue() == 0) {
+//                    diff = c1.getSaturation() - c2.getSaturation();
+//                }
                 if (diff > 0) {
                     return 1;
                 } else if (diff < 0) {
