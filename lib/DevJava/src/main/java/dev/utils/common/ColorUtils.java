@@ -1135,10 +1135,10 @@ public final class ColorUtils {
     }
 
     /**
-     * HSB ( HSV) 排序
+     * HSB ( HSV ) HUE 色相排序
      * @param lists 待排序颜色集合
      */
-    public static void sortHSB(final List<ColorInfo> lists) {
+    public static void sortHUE(final List<ColorInfo> lists) {
         Collections.sort(lists, new Comparator<ColorUtils.ColorInfo>() {
             @Override
             public int compare(
@@ -1146,9 +1146,50 @@ public final class ColorUtils {
                     ColorUtils.ColorInfo c2
             ) {
                 float diff = c1.getHue() - c2.getHue();
-//                if (c1.getHue() == 0) {
-//                    diff = c1.getSaturation() - c2.getSaturation();
-//                }
+                if (diff > 0) {
+                    return 1;
+                } else if (diff < 0) {
+                    return -1;
+                }
+                return 0;
+            }
+        });
+    }
+
+    /**
+     * HSB ( HSV ) Saturation 饱和度排序
+     * @param lists 待排序颜色集合
+     */
+    public static void sortSaturation(final List<ColorInfo> lists) {
+        Collections.sort(lists, new Comparator<ColorUtils.ColorInfo>() {
+            @Override
+            public int compare(
+                    ColorUtils.ColorInfo c1,
+                    ColorUtils.ColorInfo c2
+            ) {
+                float diff = c1.getSaturation() - c2.getSaturation();
+                if (diff > 0) {
+                    return 1;
+                } else if (diff < 0) {
+                    return -1;
+                }
+                return 0;
+            }
+        });
+    }
+
+    /**
+     * HSB ( HSV ) Brightness 亮度排序
+     * @param lists 待排序颜色集合
+     */
+    public static void sortBrightness(final List<ColorInfo> lists) {
+        Collections.sort(lists, new Comparator<ColorUtils.ColorInfo>() {
+            @Override
+            public int compare(
+                    ColorUtils.ColorInfo c1,
+                    ColorUtils.ColorInfo c2
+            ) {
+                float diff = c1.getBrightness() - c2.getBrightness();
                 if (diff > 0) {
                     return 1;
                 } else if (diff < 0) {
