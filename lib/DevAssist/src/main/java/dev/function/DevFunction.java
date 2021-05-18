@@ -12,9 +12,9 @@ import dev.utils.common.thread.DevThreadPool;
  * detail: 执行方法类
  * @author Ttt
  */
-public final class Function {
+public final class DevFunction {
 
-    private Function() {
+    private DevFunction() {
     }
 
     // 默认线程池对象
