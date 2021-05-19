@@ -574,33 +574,22 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| with | with |
-| init | 初始化方法 ( 必须调用 ) |
-| cloneImageOptions | 克隆图片加载配置 |
-| defaultOptions | 获取默认加载配置 |
-| emptyOptions | 获取空白加载配置 |
-| skipCacheOptions | 获取跳过缓存 ( 每次都从服务端获取最新 ) 加载配置 |
-| getLoadResOptions | 获取自定义图片加载配置 |
-| transformationOptions | 获取图片处理效果加载配置 |
-| clearDiskCache | 清除磁盘缓存 |
-| clearMemoryCache | 清除内存缓存 |
-| onLowMemory | 低内存通知 |
-| getDiskCache | 获取 SDCard 缓存空间 |
-| preload | 预加载图片 |
-| displayImage | 图片显示 |
-| displayImageToGif | 图片显示 |
-| displayImageToDrawable | 图片显示 |
-| displayImageToFile | 图片显示 |
-| loadImageBitmap | 图片加载 |
-| loadImageDrawable | 图片加载 |
-| loadImageFile | 图片加载 |
-| loadImageGif | 图片加载 |
-| cancelDisplayTask | 取消图片显示任务 |
-| destroy | 销毁操作 |
-| pause | 暂停图片加载 |
-| resume | 恢复图片加载 |
-| stop | 停止图片加载 |
-| start | 开始图片加载 |
+| pause | pause |
+| resume | resume |
+| preload | preload |
+| clear | clear |
+| clearDiskCache | clearDiskCache |
+| clearMemoryCache | clearMemoryCache |
+| clearAllCache | clearAllCache |
+| lowMemory | lowMemory |
+| display | display |
+| loadImage | loadImage |
+| loadImageThrows | loadImageThrows |
+| loadBitmap | loadBitmap |
+| loadBitmapThrows | loadBitmapThrows |
+| loadDrawable | loadDrawable |
+| loadDrawableThrows | loadDrawableThrows |
+| convertImageFormat | convertImageFormat |
 
 
 * **Gson 工具类 ->** [GsonUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/GsonUtils.java)
@@ -701,8 +690,8 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| getPicConfig | 获取全局相册配置 |
-| setPicConfig | 设置全局相册配置 |
+| getConfig | 获取全局相册配置 |
+| setConfig | 设置全局相册配置 |
 | getCameraSavePath | 获取拍照保存地址 |
 | getCompressSavePath | 获取压缩图片保存地址 |
 | setSavePath | 设置保存地址 |
@@ -710,6 +699,7 @@
 | setMinimumCompressSize | 设置图片大于多少才进行压缩 (kb) |
 | deleteCacheDirFile | 清空缓存 |
 | deleteAllCacheDirFile | 清空全部缓存 |
+| isMediaSelectorResult | 是否图片选择 ( onActivityResult ) |
 | getLocalMedias | 获取选中的资源集合 |
 | getSingleMedia | 获取单独选中的资源 |
 | getLocalMediaPath | 获取本地资源路径 |
@@ -872,13 +862,6 @@
 
 
 ## <span id="devotherretrofitresponse">**`dev.other.retrofit.response`**</span>
-
-
-* **请求响应统一解析类 ->** [BaseResponse.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/retrofit/response/BaseResponse.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getOriginal | getOriginal |
 
 
 ## <span id="devotherretrofitsubscriber">**`dev.other.retrofit.subscriber`**</span>

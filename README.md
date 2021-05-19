@@ -1,7 +1,7 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-afkT-blue.svg)](https://github.com/afkT)
 [![GitHub license](https://img.shields.io/github/license/afkT/DevUtils.svg)](https://github.com/afkT/DevUtils/blob/master/LICENSE)
-[![MavenCentral](https://img.shields.io/badge/DevUtils-2.2.4-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt)
+[![MavenCentral](https://img.shields.io/badge/DevUtils-2.2.5-brightgreen.svg)](https://search.maven.org/search?q=io.github.afkt)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Utils](https://img.shields.io/badge/utils-200+-ff69b4.svg)](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 
@@ -13,7 +13,7 @@
 
 ![module](https://github.com/afkT/DevUtils/raw/master/art/module.png)
 
-## Documentation - [Lib](https://github.com/afkT/DevUtils/blob/master/lib) **（ 全部已同步至 Maven Central ）**
+## Documentation - [Lib](https://github.com/afkT/DevUtils/blob/master/lib) **（ 全部已迁移至 Maven Central ）**
 
 ### DevApp - Android 工具类库
 
@@ -77,19 +77,19 @@
 ```java
 
 // DevApp Android 工具类库
-implementation 'io.github.afkt:DevAppX:2.2.4'
+implementation 'io.github.afkt:DevAppX:2.2.5'
 
 // DevAssist 快捷功能辅助类库
-implementation 'io.github.afkt:DevAssist:1.2.0'
+implementation 'io.github.afkt:DevAssist:1.2.1'
 
 // DevBase Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
-implementation 'io.github.afkt:DevBase:1.0.5'
+implementation 'io.github.afkt:DevBase:1.0.6'
 
 // DevBaseMVVM MVVM ( ViewDataBinding + ViewModel ) 基类库
-implementation 'io.github.afkt:DevBaseMVVM:1.0.3'
+implementation 'io.github.afkt:DevBaseMVVM:1.0.4'
 
 // DevJava Java 工具类库 ( 不依赖 android api )
-implementation 'io.github.afkt:DevJava:1.3.1' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
+implementation 'io.github.afkt:DevJava:1.3.2' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
 
 // DevWidget 自定义 View UI 库
 implementation 'io.github.afkt:DevWidgetX:1.1.0'

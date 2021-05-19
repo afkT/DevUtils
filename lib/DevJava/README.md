@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'io.github.afkt:DevJava:1.3.1'
+implementation 'io.github.afkt:DevJava:1.3.2'
 ```
 
 ## 目录结构
@@ -314,7 +314,9 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | grayLevel | 获取灰度值 |
 | setParser | 设置 Color 解析器 |
 | sortGray | 灰度值排序 |
-| sortHSB | HSB ( HSV) 排序 |
+| sortHUE | HSB ( HSV ) HUE 色相排序 |
+| sortSaturation | HSB ( HSV ) Saturation 饱和度排序 |
+| sortBrightness | HSB ( HSV ) Brightness 亮度排序 |
 | blendColor | 使用给定的比例在两种 ARGB 颜色之间进行混合 |
 | transitionColor | 计算从 startColor 过渡到 endColor 过程中百分比为 ratio 时的颜色值 |
 | getKey | 获取 Key |

@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 2.2.5 *(2021-05-19)*
+----------------------------
+
+* `[Add]` ColorUtils#sortHUE、sortSaturation、sortBrightness
+
 Version 2.2.4 *(2021-05-09)*
 ----------------------------
 

@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'io.github.afkt:DevAssist:1.2.0'
+implementation 'io.github.afkt:DevAssist:1.2.1'
 ```
 
 ## 目录结构
@@ -1103,7 +1103,7 @@ implementation 'io.github.afkt:DevAssist:1.2.0'
 ## <span id="devfunction">**`dev.function`**</span>
 
 
-* **执行方法类 ->** [Function.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/function/Function.java)
+* **执行方法类 ->** [DevFunction.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/function/DevFunction.java)
 
 | 方法 | 注释 |
 | :- | :- |
