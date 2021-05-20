@@ -23,7 +23,9 @@ public interface IPushEngine<Config extends IPushEngine.EngineConfig, Item exten
     class EngineItem {
     }
 
-    // =
+    // ===============
+    // = 对外公开方法 =
+    // ===============
 
     /**
      * 初始化方法
