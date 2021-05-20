@@ -12,7 +12,7 @@ public final class DevCompressEngine {
     private static ICompressEngine sEngine;
 
     /**
-     * 获取 CompressEngine
+     * 获取 Compress Engine
      * @return {@link ICompressEngine}
      */
     public static ICompressEngine getEngine() {
@@ -20,7 +20,7 @@ public final class DevCompressEngine {
     }
 
     /**
-     * 设置 CompressEngine
+     * 设置 Compress Engine
      * @param engine {@link ICompressEngine}
      */
     public static void setEngine(final ICompressEngine engine) {

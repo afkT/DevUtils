@@ -12,7 +12,7 @@ public final class DevImageEngine {
     private static IImageEngine sEngine;
 
     /**
-     * 获取 ImageEngine
+     * 获取 Image Engine
      * @return {@link IImageEngine}
      */
     public static IImageEngine getEngine() {
@@ -20,7 +20,7 @@ public final class DevImageEngine {
     }
 
     /**
-     * 设置 ImageEngine
+     * 设置 Image Engine
      * @param engine {@link IImageEngine}
      */
     public static void setEngine(final IImageEngine engine) {

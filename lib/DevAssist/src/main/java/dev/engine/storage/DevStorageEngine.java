@@ -14,7 +14,7 @@ public final class DevStorageEngine {
     private static LinkedHashMap<String, IStorageEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
-     * 获取 StorageEngine
+     * 获取 Storage Engine
      * @param storageID 存储 Engine id
      * @return {@link IStorageEngine}
      */
@@ -23,7 +23,7 @@ public final class DevStorageEngine {
     }
 
     /**
-     * 设置 StorageEngine
+     * 设置 Storage Engine
      * @param engine {@link IStorageEngine}
      */
     public static void setEngine(final IStorageEngine engine) {
@@ -31,7 +31,7 @@ public final class DevStorageEngine {
     }
 
     /**
-     * 判断是否存在 StorageEngine
+     * 判断是否存在 Storage Engine
      * @param storageID 存储 Engine id
      * @return {@code true} yes, {@code false} no
      */

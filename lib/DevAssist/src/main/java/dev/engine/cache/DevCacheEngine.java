@@ -14,7 +14,7 @@ public final class DevCacheEngine {
     private static LinkedHashMap<String, ICacheEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
-     * 获取 CacheEngine
+     * 获取 Cache Engine
      * @param cacheID 缓存 Engine id
      * @return {@link ICacheEngine}
      */
@@ -23,7 +23,7 @@ public final class DevCacheEngine {
     }
 
     /**
-     * 设置 CacheEngine
+     * 设置 Cache Engine
      * @param engine {@link ICacheEngine}
      */
     public static void setEngine(final ICacheEngine engine) {
@@ -31,7 +31,7 @@ public final class DevCacheEngine {
     }
 
     /**
-     * 判断是否存在 CacheEngine
+     * 判断是否存在 Cache Engine
      * @param cacheID 缓存 Engine id
      * @return {@code true} yes, {@code false} no
      */

@@ -12,7 +12,7 @@ public final class DevMediaEngine {
     private static IMediaEngine sEngine;
 
     /**
-     * 获取 MediaEngine
+     * 获取 Media Selector Engine
      * @return {@link IMediaEngine}
      */
     public static IMediaEngine getEngine() {
@@ -20,7 +20,7 @@ public final class DevMediaEngine {
     }
 
     /**
-     * 设置 MediaEngine
+     * 设置 Media Selector Engine
      * @param engine {@link IMediaEngine}
      */
     public static void setEngine(final IMediaEngine engine) {

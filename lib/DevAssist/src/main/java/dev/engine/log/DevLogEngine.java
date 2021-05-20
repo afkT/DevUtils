@@ -12,7 +12,7 @@ public final class DevLogEngine {
     private static ILogEngine sEngine;
 
     /**
-     * 获取 LogEngine
+     * 获取 Log Engine
      * @return {@link ILogEngine}
      */
     public static ILogEngine getEngine() {
@@ -20,7 +20,7 @@ public final class DevLogEngine {
     }
 
     /**
-     * 设置 LogEngine
+     * 设置 Log Engine
      * @param engine {@link ILogEngine}
      */
     public static void setEngine(final ILogEngine engine) {

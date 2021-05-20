@@ -12,7 +12,7 @@ public final class DevJSONEngine {
     private static IJSONEngine sEngine;
 
     /**
-     * 获取 JSONEngine
+     * 获取 JSON Engine
      * @return {@link IJSONEngine}
      */
     public static IJSONEngine getEngine() {
@@ -20,7 +20,7 @@ public final class DevJSONEngine {
     }
 
     /**
-     * 设置 JSONEngine
+     * 设置 JSON Engine
      * @param engine {@link IJSONEngine}
      */
     public static void setEngine(final IJSONEngine engine) {

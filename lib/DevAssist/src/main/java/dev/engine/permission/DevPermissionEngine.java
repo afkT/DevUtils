@@ -12,7 +12,7 @@ public final class DevPermissionEngine {
     private static IPermissionEngine sEngine;
 
     /**
-     * 获取 PermissionEngine
+     * 获取 Permission Engine
      * @return {@link IPermissionEngine}
      */
     public static IPermissionEngine getEngine() {
@@ -20,7 +20,7 @@ public final class DevPermissionEngine {
     }
 
     /**
-     * 设置 PermissionEngine
+     * 设置 Permission Engine
      * @param engine {@link IPermissionEngine}
      */
     public static void setEngine(final IPermissionEngine engine) {

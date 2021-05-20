@@ -12,7 +12,7 @@ public final class DevHttpEngine {
     private static IHttpEngine sEngine;
 
     /**
-     * 获取 HttpEngine
+     * 获取 Http Engine
      * @return {@link IHttpEngine}
      */
     public static IHttpEngine getEngine() {
@@ -20,7 +20,7 @@ public final class DevHttpEngine {
     }
 
     /**
-     * 设置 HttpEngine
+     * 设置 Http Engine
      * @param engine {@link IHttpEngine}
      */
     public static void setEngine(final IHttpEngine engine) {
