@@ -38,7 +38,7 @@ public interface IPushEngine<Config extends IPushEngine.EngineConfig, Item exten
     );
 
     /**
-     * 绑定推送
+     * 绑定
      * @param context {@link Context}
      * @param config  {@link EngineConfig}
      */
@@ -48,7 +48,7 @@ public interface IPushEngine<Config extends IPushEngine.EngineConfig, Item exten
     );
 
     /**
-     * 解绑推送
+     * 解绑
      * @param context {@link Context}
      * @param config  {@link EngineConfig}
      */
