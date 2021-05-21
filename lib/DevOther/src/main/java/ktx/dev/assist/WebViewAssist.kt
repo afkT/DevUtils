@@ -348,7 +348,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
         data: String,
         historyUrl: String?
     ): WebViewAssist {
-        return loadDataWithBaseURL(baseUrl, data, "text/html", "utf-8", historyUrl)
+        return loadDataWithBaseURL(baseUrl, data, "text/html", "UTF-8", historyUrl)
     }
 
     // =============
@@ -953,7 +953,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
             this.mMixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
             this.mLoadsImagesAutomatically = true
             this.mJavaScriptCanOpenWindowsAutomatically = true
-            this.mDefaultTextEncodingName = "utf-8"
+            this.mDefaultTextEncodingName = "UTF-8"
             this.mGeolocationEnabled = true
             this.mUserAgentString = null
             this.mAllowFileAccess = true
@@ -1019,7 +1019,7 @@ class WebViewAssist @JvmOverloads constructor(listener: Boolean = true) {
         private var mJavaScriptCanOpenWindowsAutomatically = true
 
         // 编码格式
-        private var mDefaultTextEncodingName: String? = "utf-8"
+        private var mDefaultTextEncodingName: String? = "UTF-8"
 
         // 是否允许网页执行定位操作
         private var mGeolocationEnabled = true

@@ -141,8 +141,13 @@ public final class DeviceUtils {
      * @return 设备唯一 UUID
      * <pre>
      *     https://developer.android.com/training/articles/user-data-ids
+     *     注意事项:
+     *     相同机型、配置手机获取字符串是相同的, 需搭配 {@link #getAndroidId()} 使用
+     *     或者通过接入 OAID SDK 获取唯一码
+     *     http://www.msa-alliance.cn/col.jsp?id=120
      * </pre>
      */
+    @Deprecated
     public static String getUUIDDevice() {
         String serial = "serial";
         String m_szDevIDShort = "35" +
@@ -186,13 +191,11 @@ public final class DeviceUtils {
                         Object object = field.get(null);
                         // 判断是否数组
                         if (object instanceof String[]) {
-                            if (object != null) {
-                                // 获取类型对应字段的数据, 并保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
-                                deviceInfoMap.put(field.getName(), Arrays.toString((String[]) object));
-                            }
+                            // 获取类型对应字段的数据, 并保存支持的指令集 [arm64-v8a, armeabi-v7a, armeabi]
+                            deviceInfoMap.put(field.getName(), Arrays.toString((String[]) object));
                             continue;
                         }
-                    } catch (Exception e) {
+                    } catch (Exception ignored) {
                     }
                 }
                 // 获取类型对应字段的数据, 并保存

@@ -213,7 +213,7 @@ public final class ZXingQRCodeUtils {
 
     static {
         // 编码类型
-        ENCODE_HINTS.put(EncodeHintType.CHARACTER_SET, "utf-8");
+        ENCODE_HINTS.put(EncodeHintType.CHARACTER_SET, "UTF-8");
         // 指定纠错等级, 纠错级别 ( L 7%、M 15%、Q 25%、H 30% )
         ENCODE_HINTS.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
         // 设置二维码边的空度, 非负数

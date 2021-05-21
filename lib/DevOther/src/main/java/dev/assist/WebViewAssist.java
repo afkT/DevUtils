@@ -278,7 +278,7 @@ public class WebViewAssist {
             final String data,
             final String historyUrl
     ) {
-        return loadDataWithBaseURL(baseUrl, data, "text/html", "utf-8", historyUrl);
+        return loadDataWithBaseURL(baseUrl, data, "text/html", "UTF-8", historyUrl);
     }
 
     // ===============
@@ -1041,7 +1041,7 @@ public class WebViewAssist {
             this.mMixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW;
             this.mLoadsImagesAutomatically = true;
             this.mJavaScriptCanOpenWindowsAutomatically = true;
-            this.mDefaultTextEncodingName = "utf-8";
+            this.mDefaultTextEncodingName = "UTF-8";
             this.mGeolocationEnabled = true;
             this.mUserAgentString = null;
             this.mAllowFileAccess = true;
@@ -1092,7 +1092,7 @@ public class WebViewAssist {
         // 是否支持通过 JS 打开新窗口
         private boolean                     mJavaScriptCanOpenWindowsAutomatically = true;
         // 编码格式
-        private String                      mDefaultTextEncodingName               = "utf-8";
+        private String                      mDefaultTextEncodingName               = "UTF-8";
         // 是否允许网页执行定位操作
         private boolean                     mGeolocationEnabled                    = true;
         // 浏览器标识 UA
