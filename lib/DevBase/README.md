@@ -64,7 +64,7 @@ implementation 'io.github.afkt:DevBase:1.0.6'
 >
 > 并进行动态添加 title、body 等布局 View，以达到能够对全局进行 View 增删显隐控制处理，以及后续需求迭代、维护全局操作
 
-各个拓展基类都有实现 MVP、ViewBinding 组合功能，如：`MVPViewBinding`、`ContentMVP`、`ContentViewBinding`、`ContentMVPViewBinding` 组合基类
+各个扩展基类都有实现 MVP、ViewBinding 组合功能，如：`MVPViewBinding`、`ContentMVP`、`ContentViewBinding`、`ContentMVPViewBinding` 组合基类
 
 ## 其他
 

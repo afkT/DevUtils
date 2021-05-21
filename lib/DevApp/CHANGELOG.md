@@ -213,7 +213,7 @@ Version 2.0.2 *(2020-09-15)*
 
 * `[Add]` StringUtils#clearTab、clearTabTrim、clearLine、clearLineTrim、clearSpaceTabLine、clearSpaceTabLineTrim
 
-* `[Add]` ScaleUtils#XY type 拓展字段
+* `[Add]` ScaleUtils#XY type 扩展字段
 
 * `[Add]` NumberUtils#addZero
 

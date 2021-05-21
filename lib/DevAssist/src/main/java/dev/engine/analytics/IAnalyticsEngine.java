@@ -61,8 +61,8 @@ public interface IAnalyticsEngine<Config extends IAnalyticsEngine.EngineConfig, 
 
     /**
      * 数据统计 ( 埋点 ) 方法
-     * @param item {@link EngineItem}
+     * @param params {@link EngineItem}
      * @return {@code true} success, {@code false} fail
      */
-    boolean track(Item item);
+    boolean track(Item params);
 }

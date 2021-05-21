@@ -559,8 +559,8 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | getFileSuffix | 获取文件后缀名 ( 无 "." 单独后缀 ) |
 | getFileNotSuffix | 获取文件名 ( 无后缀 ) |
 | getFileNotSuffixToPath | 获取文件名 ( 无后缀 ) |
-| getFileNameNoExtension | 获取路径中的不带拓展名的文件名 |
-| getFileExtension | 获取路径中的文件拓展名 |
+| getFileNameNoExtension | 获取路径中的不带扩展名的文件名 |
+| getFileExtension | 获取路径中的文件扩展名 |
 | isFileExists | 检查是否存在某个文件 |
 | isFile | 判断是否文件 |
 | isDirectory | 判断是否文件夹 |

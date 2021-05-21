@@ -445,9 +445,9 @@ public final class FileUtils {
     }
 
     /**
-     * 获取路径中的不带拓展名的文件名
+     * 获取路径中的不带扩展名的文件名
      * @param file 文件
-     * @return 不带拓展名的文件名
+     * @return 不带扩展名的文件名
      */
     public static String getFileNameNoExtension(final File file) {
         if (file == null) return null;
@@ -455,9 +455,9 @@ public final class FileUtils {
     }
 
     /**
-     * 获取路径中的不带拓展名的文件名
+     * 获取路径中的不带扩展名的文件名
      * @param filePath 文件路径
-     * @return 不带拓展名的文件名
+     * @return 不带扩展名的文件名
      */
     public static String getFileNameNoExtension(final String filePath) {
         if (StringUtils.isSpace(filePath)) return filePath;
@@ -473,9 +473,9 @@ public final class FileUtils {
     }
 
     /**
-     * 获取路径中的文件拓展名
+     * 获取路径中的文件扩展名
      * @param file 文件
-     * @return 文件拓展名
+     * @return 文件扩展名
      */
     public static String getFileExtension(final File file) {
         if (file == null) return null;
@@ -483,9 +483,9 @@ public final class FileUtils {
     }
 
     /**
-     * 获取路径中的文件拓展名
+     * 获取路径中的文件扩展名
      * @param filePath 文件路径
-     * @return 文件拓展名
+     * @return 文件扩展名
      */
     public static String getFileExtension(final String filePath) {
         if (StringUtils.isSpace(filePath)) return filePath;

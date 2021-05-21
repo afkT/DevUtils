@@ -14,7 +14,7 @@ implementation 'io.github.afkt:DevAssist:1.2.1'
    - base                                             | 实体类基类相关
       - data                                          | 数据操作
       - entry                                         | KeyValue 实体类
-      - expand                                        | 实体类拓展
+      - expand                                        | 实体类扩展
       - multiselect                                   | 多选编辑操作
       - number                                        | 数值操作
    - callback                                         | 接口回调相关
@@ -49,7 +49,7 @@ implementation 'io.github.afkt:DevAssist:1.2.1'
    - [base](#devbase)                                 | 实体类基类相关
       - [data](#devbasedata)                          | 数据操作
       - [entry](#devbaseentry)                        | KeyValue 实体类
-      - [expand](#devbaseexpand)                      | 实体类拓展
+      - [expand](#devbaseexpand)                      | 实体类扩展
       - [multiselect](#devbasemultiselect)            | 多选编辑操作
       - [number](#devbasenumber)                      | 数值操作
    - [callback](#devcallback)                         | 接口回调相关
