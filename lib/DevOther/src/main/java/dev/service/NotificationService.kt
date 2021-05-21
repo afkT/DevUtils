@@ -12,7 +12,7 @@ import dev.utils.app.ServiceUtils
 /**
  * detail: 通知栏监听服务
  * @author Ttt
- * https://www.jianshu.com/p/981e7de2c7be
+ * @see https://www.jianshu.com/p/981e7de2c7be
  * cancelAllNotifications() 删除系统中所有可被清除的通知
  * getActiveNotifications() 返回当前系统所有通知到 StatusBarNotification[]
  * 所需权限

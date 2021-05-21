@@ -10,20 +10,20 @@ import java.util.*
  * 使用 Retrofit2 + RxJava3 + RxAndroid3, 预留多 Retrofit 处理
  * 也可以使用单 Retrofit 通过 OkHttp Interceptor 进行拦截处理 ( 例: 通过 Header 某个字段判断重新设置 baseUrl、Header )
  * Android : 手把手带你深入剖析 Retrofit 2.0 源码
- * https://blog.csdn.net/carson_ho/article/details/73732115
+ * @see https://blog.csdn.net/carson_ho/article/details/73732115
  * 这是一份很详细的 Retrofit 2.0 使用教程
- * https://blog.csdn.net/carson_ho/article/details/73732076
+ * @see https://blog.csdn.net/carson_ho/article/details/73732076
  * 封装 Retrofit2 + RxJava2 网络请求框架
- * https://www.jianshu.com/p/2e8b400909b7
+ * @see https://www.jianshu.com/p/2e8b400909b7
  * <p></p>
  * Android 上的 Kotlin 协程
- * https://developer.android.google.cn/kotlin/coroutines?hl=zh-cn
+ * @see https://developer.android.google.cn/kotlin/coroutines?hl=zh-cn
  * Retrofit + kotlin Coroutines
- * https://blog.csdn.net/yuzhiqiang_1993/article/details/101012090
+ * @see https://blog.csdn.net/yuzhiqiang_1993/article/details/101012090
  * 协程 + Retrofit 网络请求状态封装实战
- * https://juejin.cn/post/6958821338672955423
+ * @see https://juejin.cn/post/6958821338672955423
  * 协程 + Retrofit 网络请求状态封装实战 (2)
- * https://juejin.cn/post/6961055228787425288
+ * @see https://juejin.cn/post/6961055228787425288
  */
 class RetrofitManager private constructor() {
 

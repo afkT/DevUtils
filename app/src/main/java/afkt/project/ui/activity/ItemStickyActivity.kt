@@ -25,7 +25,7 @@ import java.util.*
  * detail: RecyclerView 吸附效果
  * @author Ttt
  * RecyclerView 实现顶部吸附效果
- * https://github.com/Gavin-ZYX/StickyDecoration
+ * @see https://github.com/Gavin-ZYX/StickyDecoration
  */
 class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 

@@ -19,10 +19,10 @@ import java.io.IOException
 /**
  * detail: DataStore 工具类
  * @author Ttt
- * [Google] 再见 SharedPreferences 拥抱 Jetpack DataStore
- * @see <a href="https://juejin.im/post/6881442312560803853"/>
- * [Google] 再见 SharedPreferences 拥抱 Jetpack DataStore ( 二 )
- * @see <a href="https://juejin.im/post/6888847647802097672"/>
+ * Google 再见 SharedPreferences 拥抱 Jetpack DataStore
+ * @see https://juejin.im/post/6881442312560803853
+ * Google 再见 SharedPreferences 拥抱 Jetpack DataStore ( 二 )
+ * @see https://juejin.im/post/6888847647802097672
  * <p></p>
  * DataStore 文件存放目录: /data/data/<包名>/files/datastore
  * 仅支持 Int、String、Boolean、Float、Long、Double

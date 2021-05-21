@@ -15,7 +15,7 @@ import java.util.*
  * detail: Luban 工具类
  * @author Ttt
  * Luban 鲁班图片压缩
- * https://github.com/Curzibn/Luban
+ * @see https://github.com/Curzibn/Luban
  */
 object LubanUtils {
 

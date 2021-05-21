@@ -11,19 +11,19 @@ import java.util.*
  * detail: RxJava 相关管理类 ( 针对 Retrofit )
  * @author Ttt
  * ReactiveX / RxJava 文档中文版
- * https://github.com/mcxiaoke/RxDocs
+ * @see https://github.com/mcxiaoke/RxDocs
  * Android RxJava : 这是一篇 清晰 & 易懂的 RxJava 入门教程
- * https://www.jianshu.com/p/a406b94f3188
+ * @see https://www.jianshu.com/p/a406b94f3188
  * How To Use RxJava
- * https://github.com/ReactiveX/RxJava/wiki/How-To-Use-RxJava
+ * @see https://github.com/ReactiveX/RxJava/wiki/How-To-Use-RxJava
  * What's different in 3.0
- * https://github.com/ReactiveX/RxJava/wiki/What%27s-different-in-3.0
+ * @see https://github.com/ReactiveX/RxJava/wiki/What%27s-different-in-3.0
  * RxJava 的 Single、Completable 以及 Maybe
- * https://www.jianshu.com/p/45309538ad94
+ * @see https://www.jianshu.com/p/45309538ad94
  * 给 Android 开发者的 RxJava 详解
- * http://gank.io/post/560e15be2dca930e00da1083
+ * @see http://gank.io/post/560e15be2dca930e00da1083
  * 这可能是最好的 RxJava 2.x 教程
- * https://www.jianshu.com/p/0cd258eecf60
+ * @see https://www.jianshu.com/p/0cd258eecf60
  */
 class RxJavaManager private constructor() {
 

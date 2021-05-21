@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
  * detail: OkHttp 打印日志拦截器
  * @author DingDeGao
  * 基于 OKHttp 的实用抓包小工具
- * https://github.com/DingProg/NetworkCaptureSelf
+ * @see https://github.com/DingProg/NetworkCaptureSelf
  */
 class HttpLoggingInterceptor : Interceptor {
 

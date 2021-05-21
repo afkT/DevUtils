@@ -13,8 +13,8 @@ import java.security.MessageDigest
  * detail: Glide 图形处理工具类
  * @author Ttt
  * 结合 Glide 实现很炫的图片效果框架
- * https://github.com/open-android/Glide-transformations
- * https://github.com/wasabeef/glide-transformations
+ * @see https://github.com/open-android/Glide-transformations
+ * @see https://github.com/wasabeef/glide-transformations
  */
 class GlideTransformUtils private constructor() {
 

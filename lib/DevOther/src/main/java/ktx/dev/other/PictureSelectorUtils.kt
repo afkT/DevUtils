@@ -17,7 +17,7 @@ import java.util.*
  * detail: Android 平台下的图片选择器
  * @author Ttt
  * 功能配置文档
- * https://github.com/LuckSiege/PictureSelector
+ * @see https://github.com/LuckSiege/PictureSelector
  * 所需权限
  * <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
  * <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
