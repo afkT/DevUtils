@@ -24,7 +24,7 @@ class ModuleActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     override fun initValue() {
         super.initValue()
         // 初始化布局管理器、适配器
-        val buttonAdapter = ButtonAdapter(ButtonList.getModuleButtonValues(getModuleType()))
+        val buttonAdapter = ButtonAdapter(ButtonList.getModuleButtonValues(moduleType))
         binding.vidBvrRecy.adapter = buttonAdapter
         buttonAdapter.itemCallback = object : DevItemClickCallback<ButtonValue>() {
             override fun onItemClick(

@@ -4,32 +4,36 @@ ext {
 
     files = [
             // Android 项目构建配置
-            build_app_gradle       : "file/gradle/build/build_app.gradle",
+            build_app_gradle           : "file/gradle/build/build_app.gradle",
             // Android Kotlin 项目构建配置
-            build_app_kotlin_gradle: "file/gradle/build/build_app_kotlin.gradle",
+            build_app_kotlin_gradle    : "file/gradle/build/build_app_kotlin.gradle",
+            // Android Kotlin 项目构建配置
+            build_arouter_app_gradle   : "file/gradle/build/arouter/build_arouter_app.gradle",
+            // Android Kotlin 项目构建配置
+            build_arouter_module_gradle: "file/gradle/build/arouter/build_arouter_module.gradle",
 
             // Android Lib 通用配置
-            lib_app_gradle         : "file/gradle/build/lib_app.gradle",
+            lib_app_gradle             : "file/gradle/build/lib_app.gradle",
             // Android Kotlin Lib 通用配置
-            lib_app_kotlin_gradle  : "file/gradle/build/lib_app_kotlin.gradle",
+            lib_app_kotlin_gradle      : "file/gradle/build/lib_app_kotlin.gradle",
             // Android Bintray Upload
-            bintray_upload_android : "file/gradle/upload/bintray/bintrayUploadAndroid.gradle",
+            bintray_upload_android     : "file/gradle/upload/bintray/bintrayUploadAndroid.gradle",
             // Android Sonatype Upload
-            sonatype_upload_android: "file/gradle/upload/sonatype/sonatypeUploadAndroid.gradle",
+            sonatype_upload_android    : "file/gradle/upload/sonatype/sonatypeUploadAndroid.gradle",
 
             // Java Lib 通用配置
-            lib_java_gradle        : "file/gradle/build/lib_java.gradle",
+            lib_java_gradle            : "file/gradle/build/lib_java.gradle",
             // Java Bintray Upload
-            bintray_upload_java    : "file/gradle/upload/bintray/bintrayUploadJava.gradle",
+            bintray_upload_java        : "file/gradle/upload/bintray/bintrayUploadJava.gradle",
             // Java Sonatype Upload
-            sonatype_upload_java   : "file/gradle/upload/sonatype/sonatypeUploadJava.gradle",
+            sonatype_upload_java       : "file/gradle/upload/sonatype/sonatypeUploadJava.gradle",
 
             // Android lib 依赖配置
-            deps_android_lib       : "file/gradle/deps/deps_android_lib.gradle",
+            deps_android_lib           : "file/gradle/deps/deps_android_lib.gradle",
             // 第三方 lib 依赖配置
-            deps_other_lib         : "file/gradle/deps/deps_other_lib.gradle",
+            deps_other_lib             : "file/gradle/deps/deps_other_lib.gradle",
             // 性能检测相关 lib 依赖配置
-            deps_qa_lib            : "file/gradle/deps/deps_qa_lib.gradle",
+            deps_qa_lib                : "file/gradle/deps/deps_qa_lib.gradle",
     ]
 
     deps = [

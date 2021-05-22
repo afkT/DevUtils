@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.View
 import android.webkit.WebSettings
 import androidx.multidex.MultiDexApplication
+import com.alibaba.android.arouter.launcher.ARouter
 import dev.DevUtils
 import dev.engine.compress.DevCompressEngine
 import dev.engine.compress.LubanEngineImpl
@@ -56,6 +57,13 @@ class BaseApplication : MultiDexApplication() {
 
         // 初始化计时器
         val timeCounter = TimeCounter()
+
+        ARouter.openLog()
+        ARouter.openDebug()
+        // 打印日志的时候打印线程堆栈
+        ARouter.printStackTrace()
+        // 尽可能早, 推荐在 Application 中初始化
+        ARouter.init(this)
 
         // ============
         // = DevUtils =

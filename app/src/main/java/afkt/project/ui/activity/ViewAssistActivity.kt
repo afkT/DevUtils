@@ -28,7 +28,7 @@ class ViewAssistActivity : BaseActivity<ActivityViewAssistBinding>() {
 
         viewAssist = ViewAssist.wrap(binding.vidAvaFrame)
 
-        when (getModuleType()) {
+        when (moduleType) {
             ButtonValue.BTN_VIEW_ASSIST_ERROR -> errorType()
             ButtonValue.BTN_VIEW_ASSIST_EMPTY -> emptyType()
             ButtonValue.BTN_VIEW_ASSIST_CUSTOM -> customType()

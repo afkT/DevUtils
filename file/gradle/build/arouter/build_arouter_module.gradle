@@ -1,0 +1,16 @@
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+dependencies {
+
+    // ARouter 路由 https://github.com/alibaba/ARouter
+    api deps.lib.arouter_api // https://github.com/alibaba/ARouter/blob/master/README_CN.md
+    kapt deps.lib.arouter_compiler
+}

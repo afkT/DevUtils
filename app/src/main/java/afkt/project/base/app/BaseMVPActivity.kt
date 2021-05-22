@@ -10,6 +10,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import androidx.viewbinding.ViewBinding
+import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.launcher.ARouter
 import dev.base.expand.content.DevBaseContentMVPViewBindingActivity
 import dev.base.expand.mvp.MVP
 import dev.utils.DevFinal
@@ -37,6 +39,14 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
     // ToolBar
     var toolbar: Toolbar? = null
 
+    @JvmField
+    @Autowired(name = DevFinal.TITLE)
+    var moduleTitle: String? = null
+
+    @JvmField
+    @Autowired(name = DevFinal.TYPE)
+    var moduleType: Int = 0
+
     override fun baseLayoutView(): View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,13 +54,14 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
         // 获取 Context、Activity
         mContext = this
         mActivity = this
+        // 内部初始化
+        priInitialize()
         // 是否需要 ToolBar
         if (isToolBar()) {
-            val title = intent.getStringExtra(DevFinal.TITLE)
             // 初始化 ToolBar
             initToolBar()
-            // 设置标题
-            setTitle(title)
+            // 设置 ToolBar 标题
+            toolbar?.title = moduleTitle
         }
         // 插入 StateLayout
         insertStateLayout()
@@ -62,18 +73,6 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
         super.onDestroy()
         // 取消 TAG ( Activity ) 关联的请求
         RxJavaManager.instance.remove(TAG)
-    }
-
-    // ===========
-    // = 项目相关 =
-    // ===========
-
-    /**
-     * 获取 Module 类型
-     * @return Module 类型
-     */
-    fun getModuleType(): Int {
-        return intent.getIntExtra(DevFinal.TYPE, 0)
     }
 
     // ===============
@@ -226,11 +225,14 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
         toolbar?.setNavigationOnClickListener { finish() }
     }
 
-    /**
-     * 设置 ToolBar 标题
-     * @param title 标题
-     */
-    fun setTitle(title: String?) {
-        toolbar?.title = title
+    // =============
+    // = 内部初始化 =
+    // =============
+
+    private fun priInitialize() {
+        try {
+            ARouter.getInstance().inject(this)
+        } catch (e: Exception) {
+        }
     }
 }

@@ -16,39 +16,9 @@ import java.io.File
  */
 object PathConfig {
 
-    // ==========
-    // = SDCard =
-    // ==========
-
-    // 已抛弃统一 private 做演示效果
-    @Deprecated("") // SDCard 路径
-    private val BASE_SDCARD_PATH = PathUtils.getSDCard().sdCardPath
-
-    // SDCard Project 文件统一前缀 SDP_xxx
-    @Deprecated("") // 统一文件夹
-    private val SDP_PATH = BASE_SDCARD_PATH + File.separator + AppConfig.BASE_NAME + File.separator
-
-    @Deprecated("") // 临时存储
-    private val SDP_TEMP_PATH = SDP_PATH + "Temp" + File.separator
-
-    @Deprecated("") // 本地 SDCard 资源缓存地址
-    private val SDP_CACHE_PATH = SDP_PATH + "Cache" + File.separator
-
-    @Deprecated("") // 下载路径
-    private val SDP_DOWN_PATH = SDP_PATH + "Download" + File.separator
-
-    @Deprecated("") // 图片路径
-    private val SDP_DOWN_IMAGE_PATH = SDP_PATH + "Image" + File.separator
-
-    @Deprecated("") // 文本路径
-    private val SDP_TEXT_PATH = SDP_PATH + "Text" + File.separator
-
-    @Deprecated("") // 错误日志路径
-    private val SDP_ERROR_PATH = SDP_PATH + "Error" + File.separator
-
-    // ===============
+    // ==============
     // = 应用外部存储 =
-    // ===============
+    // ==============
 
     // 应用外部存储
     val BASE_APP_PATH = PathUtils.getAppExternal().appDataPath
