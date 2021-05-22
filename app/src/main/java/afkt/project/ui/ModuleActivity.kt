@@ -2,6 +2,7 @@ package afkt.project.ui
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.framework.mvp.ArticleMVPActivity
 import afkt.project.framework.mvvm.ArticleMVVMActivity
@@ -10,6 +11,7 @@ import afkt.project.model.item.ButtonValue
 import afkt.project.ui.activity.*
 import afkt.project.ui.adapter.ButtonAdapter
 import afkt.project.util.SkipUtils.startActivity
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
 import dev.utils.app.toast.ToastTintUtils
 
@@ -17,6 +19,7 @@ import dev.utils.app.toast.ToastTintUtils
  * detail: Module 列表 Activity
  * @author Ttt
  */
+@Route(path = RouterPath.ModuleActivity_PATH)
 class ModuleActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview

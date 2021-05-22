@@ -1,6 +1,7 @@
 package afkt.project.base.app
 
 import afkt.project.R
+import afkt.project.model.item.ButtonValue
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
@@ -234,5 +235,23 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
             ARouter.getInstance().inject(this)
         } catch (e: Exception) {
         }
+    }
+
+    // =======
+    // = 通用 =
+    // =======
+
+    /**
+     * ARouter 跳转方法
+     * @param buttonValue 按钮参数
+     * @return `true` success, `false` fail
+     */
+    fun routerActivity(
+        buttonValue: ButtonValue
+    ) {
+        ARouter.getInstance().build(buttonValue.path)
+            .withInt(DevFinal.TYPE, buttonValue.type)
+            .withString(DevFinal.TITLE, buttonValue.text)
+            .navigation(this)
     }
 }

@@ -1,21 +1,17 @@
 package afkt.project.model.item
 
-import dev.utils.app.ResourceUtils
-
 /**
  * detail: Button Value 实体类
  * @author Ttt
  */
 class ButtonValue(
     // 按钮类型
-    var type: Int,
+    val type: Int,
     // 文案
-    var text: String
+    val text: String,
+    // ARouter Path
+    val path: String? = null
 ) {
-    constructor(
-        type: Int,
-        id: Int
-    ) : this(type, ResourceUtils.getString(id))
 
     companion object {
 

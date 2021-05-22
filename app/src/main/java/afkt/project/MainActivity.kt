@@ -4,17 +4,13 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.databinding.ActivityMainBinding
 import afkt.project.model.item.ButtonList
 import afkt.project.model.item.ButtonValue
-import afkt.project.ui.ModuleActivity
-import afkt.project.ui.activity.DevEnvironmentLibActivity
 import afkt.project.ui.adapter.ButtonAdapter
-import afkt.project.util.SkipUtils
 import android.Manifest
 import dev.callback.DevItemClickCallback
 import dev.engine.log.DevLogEngine
 import dev.engine.permission.DevPermissionEngine
 import dev.engine.permission.IPermissionEngine
 import dev.utils.app.AppCommonUtils
-import dev.utils.app.toast.ToastTintUtils
 import dev.utils.app.toast.ToastUtils
 import dev.utils.common.HttpURLConnectionUtils
 import java.util.*
@@ -99,19 +95,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 buttonValue: ButtonValue,
                 param: Int
             ) {
-                when (buttonValue.type) {
-                    ButtonValue.MODULE_FRAMEWORK,
-                    ButtonValue.MODULE_LIB,
-                    ButtonValue.MODULE_UI,
-                    ButtonValue.MODULE_OTHER,
-                    ButtonValue.MODULE_DEV_WIDGET -> {
-                        SkipUtils.startActivity(ModuleActivity::class.java, buttonValue)
-                    }
-                    ButtonValue.MODULE_DEV_ENVIRONMENT -> {
-                        SkipUtils.startActivity(DevEnvironmentLibActivity::class.java, buttonValue)
-                    }
-                    else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
-                }
+                routerActivity(buttonValue)
             }
         }
     }

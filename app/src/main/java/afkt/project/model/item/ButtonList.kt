@@ -1,5 +1,6 @@
 package afkt.project.model.item
 
+import afkt.project.base.config.RouterPath
 import java.util.*
 
 /**
@@ -19,12 +20,42 @@ object ButtonList {
     val mainButtonValues: List<ButtonValue>
         get() {
             val lists: MutableList<ButtonValue> = ArrayList()
-            lists.add(ButtonValue(ButtonValue.MODULE_FRAMEWORK, "Framework 架构"))
-            lists.add(ButtonValue(ButtonValue.MODULE_LIB, "Lib 框架"))
-            lists.add(ButtonValue(ButtonValue.MODULE_UI, "UI 效果"))
-            lists.add(ButtonValue(ButtonValue.MODULE_OTHER, "其他功能"))
-            lists.add(ButtonValue(ButtonValue.MODULE_DEV_WIDGET, "DevWidget UI 库"))
-            lists.add(ButtonValue(ButtonValue.MODULE_DEV_ENVIRONMENT, "DevEnvironment 环境配置切换库"))
+            lists.add(
+                ButtonValue(
+                    ButtonValue.MODULE_FRAMEWORK, "Framework 架构",
+                    RouterPath.ModuleActivity_PATH
+                )
+            )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.MODULE_LIB, "Lib 框架",
+                    RouterPath.ModuleActivity_PATH
+                )
+            )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.MODULE_UI, "UI 效果",
+                    RouterPath.ModuleActivity_PATH
+                )
+            )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.MODULE_OTHER, "其他功能",
+                    RouterPath.ModuleActivity_PATH
+                )
+            )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.MODULE_DEV_WIDGET, "DevWidget UI 库",
+                    RouterPath.ModuleActivity_PATH
+                )
+            )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.MODULE_DEV_ENVIRONMENT, "DevEnvironment 环境配置切换库",
+                    RouterPath.DevEnvironmentLibActivity_PATH
+                )
+            )
             return lists
         }
 
@@ -158,8 +189,7 @@ object ButtonList {
             lists.add(ButtonValue(ButtonValue.BTN_RECY_PAGER_SNAP_MAX, "PagerSnapHelper - 无限滑动"))
             lists.add(
                 ButtonValue(
-                    ButtonValue.BTN_SHAPEABLE_IMAGE_VIEW,
-                    "Material ShapeableImageView"
+                    ButtonValue.BTN_SHAPEABLE_IMAGE_VIEW, "Material ShapeableImageView"
                 )
             )
             lists.add(ButtonValue(ButtonValue.BTN_BOTTOM_SHEET, "Material BottomSheet"))
