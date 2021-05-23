@@ -3,6 +3,7 @@ package afkt.project.ui.activity
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.PathConfig
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityCapturePictureGridBinding
 import afkt.project.databinding.AdapterCapturePictureBinding
 import afkt.project.model.bean.AdapterBean
@@ -13,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView
 import dev.utils.app.CapturePictureUtils
 import dev.utils.app.ResourceUtils
@@ -24,6 +26,7 @@ import dev.utils.app.image.ImageUtils
  * detail: CapturePictureUtils GridView 截图
  * @author Ttt
  */
+@Route(path = RouterPath.CapturePictureGridActivity_PATH)
 class CapturePictureGridActivity : BaseActivity<ActivityCapturePictureGridBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_capture_picture_grid
@@ -76,12 +79,12 @@ class CapturePictureGridActivity : BaseActivity<ActivityCapturePictureGridBindin
 
             override fun getView(
                 position: Int,
-                convertView: View,
+                convertView: View?,
                 parent: ViewGroup
             ): View {
                 val adapterBean = getItem(position)
                 // 初始化 View 设置 TextView
-                var _binding = AdapterCapturePictureBinding.inflate(
+                val _binding = AdapterCapturePictureBinding.inflate(
                     LayoutInflater.from(parent.context), parent, false
                 )
                 ViewHelper.get()

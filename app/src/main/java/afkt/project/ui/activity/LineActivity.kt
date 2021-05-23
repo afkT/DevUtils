@@ -2,8 +2,10 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityLineBinding
 import android.graphics.Color
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.helper.QuickHelper
 import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
@@ -12,6 +14,7 @@ import dev.utils.common.RandomUtils
  * detail: 换行监听 View
  * @author Ttt
  */
+@Route(path = RouterPath.LineActivity_PATH)
 class LineActivity : BaseActivity<ActivityLineBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_line

@@ -2,10 +2,12 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityViewAssistBinding
 import afkt.project.model.item.ButtonValue
 import android.view.LayoutInflater
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ListenerUtils
 import dev.utils.app.SizeUtils
@@ -17,6 +19,7 @@ import dev.widget.assist.ViewAssist
  * detail: ViewAssist Activity
  * @author Ttt
  */
+@Route(path = RouterPath.ViewAssistActivity_PATH)
 class ViewAssistActivity : BaseActivity<ActivityViewAssistBinding>() {
 
     lateinit var viewAssist: ViewAssist

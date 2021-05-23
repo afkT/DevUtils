@@ -2,10 +2,12 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.item.ButtonList.eventButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.ui.adapter.ButtonAdapter
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.DevObject
 import dev.callback.DevItemClickCallback
 import dev.engine.log.DevLogEngine
@@ -19,6 +21,7 @@ import org.greenrobot.eventbus.ThreadMode
  * @author Ttt
  * [ToastTintUse]
  */
+@Route(path = RouterPath.EventBusActivity_PATH)
 class EventBusActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview

@@ -2,6 +2,7 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityScanShapeBinding
 import afkt.project.util.ProjectUtils.refShape
 import afkt.project.util.zxing.DecodeConfig
@@ -15,6 +16,7 @@ import android.hardware.Camera
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.zxing.Result
 import com.luck.picture.lib.config.PictureMimeType
 import dev.engine.log.DevLogEngine
@@ -36,6 +38,7 @@ import ktx.dev.other.ZXingQRCodeUtils
  * detail: 二维码扫描解析
  * @author Ttt
  */
+@Route(path = RouterPath.QRCodeScanActivity_PATH)
 class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
 
     // 无操作计时辅助类

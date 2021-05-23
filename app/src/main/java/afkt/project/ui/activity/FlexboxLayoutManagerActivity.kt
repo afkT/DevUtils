@@ -2,11 +2,13 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.ui.adapter.TextAdapter
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
@@ -27,6 +29,7 @@ import java.util.*
  * Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 )
  * @see https://juejin.im/post/58d1035161ff4b00603ca9c4
  */
+@Route(path = RouterPath.FlexboxLayoutManagerActivity_PATH)
 class FlexboxLayoutManagerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview

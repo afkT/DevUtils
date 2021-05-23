@@ -4,6 +4,7 @@ import afkt.project.R
 import afkt.project.model.item.ButtonValue
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -13,9 +14,11 @@ import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import androidx.viewbinding.ViewBinding
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.launcher.ARouter
+import dev.DevUtils
 import dev.base.expand.content.DevBaseContentMVPViewBindingActivity
 import dev.base.expand.mvp.MVP
 import dev.utils.DevFinal
+import dev.utils.app.AppUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.toast.ToastTintUtils
 import dev.widget.function.StateLayout
@@ -253,5 +256,21 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
             .withInt(DevFinal.TYPE, buttonValue.type)
             .withString(DevFinal.TITLE, buttonValue.text)
             .navigation(this)
+    }
+
+    /**
+     * 跳转方法
+     * @param clazz       跳转
+     * @param buttonValue 按钮参数
+     * @return `true` success, `false` fail
+     */
+    private fun classStartActivity(
+        clazz: Class<*>?,
+        buttonValue: ButtonValue
+    ): Boolean {
+        val intent = Intent(DevUtils.getContext(), clazz)
+        intent.putExtra(DevFinal.TYPE, buttonValue.type)
+        intent.putExtra(DevFinal.TITLE, buttonValue.text)
+        return AppUtils.startActivity(intent)
     }
 }

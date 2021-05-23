@@ -2,11 +2,13 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityScanShapeBinding
 import afkt.project.util.ProjectUtils.refShape
 import android.Manifest
 import android.view.SurfaceHolder
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.log.DevLogEngine
 import dev.utils.app.FlashlightUtils
 import dev.utils.app.ListenerUtils
@@ -22,6 +24,7 @@ import dev.widget.ui.ScanShapeView
  * detail: 自定义扫描 View ( QRCode、AR )
  * @author Ttt
  */
+@Route(path = RouterPath.ScanShapeActivity_PATH)
 class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_scan_shape

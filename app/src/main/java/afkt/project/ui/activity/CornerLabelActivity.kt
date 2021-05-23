@@ -2,10 +2,12 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityCornerLabelBinding
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.ListenerUtils
 import dev.utils.app.SizeUtils
 import dev.utils.common.RandomUtils
@@ -14,6 +16,7 @@ import dev.utils.common.RandomUtils
  * detail: 自定义角标 View
  * @author Ttt
  */
+@Route(path = RouterPath.CornerLabelActivity_PATH)
 class CornerLabelActivity : BaseActivity<ActivityCornerLabelBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_corner_label

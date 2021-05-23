@@ -3,11 +3,12 @@ package afkt.project.ui.activity
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.PathConfig
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityCapturePictureBinding
 import afkt.project.model.item.ButtonValue
-import afkt.project.util.SkipUtils.startActivity
 import android.graphics.Bitmap
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.CapturePictureUtils
 import dev.utils.app.ListenerUtils
 import dev.utils.app.image.ImageUtils
@@ -16,6 +17,7 @@ import dev.utils.app.image.ImageUtils
  * detail: CapturePictureUtils 截图工具类
  * @author Ttt
  */
+@Route(path = RouterPath.CapturePictureActivity_PATH)
 class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_capture_picture
@@ -90,27 +92,35 @@ class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
                 showToast(result, "保存成功\n" + (filePath + fileName), "保存失败")
             }
             R.id.vid_acp_list_btn -> {
-                startActivity(
-                    CapturePictureListActivity::class.java,
-                    ButtonValue(1, "CapturePictureUtils ListView 截图")
+                routerActivity(
+                    ButtonValue(
+                        1, "CapturePictureUtils ListView 截图",
+                        RouterPath.CapturePictureListActivity_PATH
+                    )
                 )
             }
             R.id.vid_acp_grid_btn -> {
-                startActivity(
-                    CapturePictureGridActivity::class.java,
-                    ButtonValue(2, "CapturePictureUtils GridView 截图")
+                routerActivity(
+                    ButtonValue(
+                        2, "CapturePictureUtils GridView 截图",
+                        RouterPath.CapturePictureGridActivity_PATH
+                    )
                 )
             }
             R.id.vid_acp_recy_btn -> {
-                startActivity(
-                    CapturePictureRecyActivity::class.java,
-                    ButtonValue(3, "CapturePictureUtils RecyclerView 截图")
+                routerActivity(
+                    ButtonValue(
+                        3, "CapturePictureUtils RecyclerView 截图",
+                        RouterPath.CapturePictureRecyActivity_PATH
+                    )
                 )
             }
             R.id.vid_acp_webview_btn -> {
-                startActivity(
-                    CapturePictureWebActivity::class.java,
-                    ButtonValue(4, "CapturePictureUtils WebView 截图")
+                routerActivity(
+                    ButtonValue(
+                        4, "CapturePictureUtils WebView 截图",
+                        RouterPath.CapturePictureWebActivity_PATH
+                    )
                 )
             }
         }

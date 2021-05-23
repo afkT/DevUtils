@@ -2,9 +2,11 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityBottomSheetBinding
 import android.view.View
 import android.widget.LinearLayout
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dev.engine.log.DevLogEngine
 import dev.utils.app.ViewUtils
@@ -13,6 +15,7 @@ import dev.utils.app.ViewUtils
  * detail: Material BottomSheet
  * @author Ttt
  */
+@Route(path = RouterPath.BottomSheetActivity_PATH)
 class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_bottom_sheet

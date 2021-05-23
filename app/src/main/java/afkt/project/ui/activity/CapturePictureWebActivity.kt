@@ -3,9 +3,11 @@ package afkt.project.ui.activity
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.PathConfig
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityCapturePictureWebBinding
 import android.os.Bundle
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView
 import dev.utils.app.CapturePictureUtils
 import dev.utils.app.ResourceUtils
@@ -16,6 +18,7 @@ import dev.utils.app.image.ImageUtils
  * detail: CapturePictureUtils WebView 截图
  * @author Ttt
  */
+@Route(path = RouterPath.CapturePictureWebActivity_PATH)
 class CapturePictureWebActivity : BaseActivity<ActivityCapturePictureWebBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_capture_picture_web

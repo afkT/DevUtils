@@ -2,6 +2,7 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityPaletteBinding
 import afkt.project.model.vm.PaletteViewModel
 import afkt.project.ui.fragment.newPaletteFragment
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.tabs.TabLayoutMediator
 import dev.utils.app.BarUtils
 
@@ -21,6 +23,7 @@ import dev.utils.app.BarUtils
  * Android Material Design 系列之 Palette 开发详解
  * @see https://blog.csdn.net/jaynm/article/details/107076754
  */
+@Route(path = RouterPath.PaletteActivity_PATH)
 class PaletteActivity : BaseActivity<ActivityPaletteBinding>() {
 
     private val viewModel by viewModels<PaletteViewModel>()

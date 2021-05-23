@@ -3,15 +3,18 @@ package afkt.project.ui.activity
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.PathConfig
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityCapturePictureListBinding
 import afkt.project.databinding.AdapterCapturePictureBinding
 import afkt.project.model.bean.AdapterBean
 import afkt.project.model.bean.AdapterBean.Companion.newAdapterBeanList
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView
 import dev.utils.app.CapturePictureUtils
 import dev.utils.app.ResourceUtils
@@ -23,6 +26,7 @@ import dev.utils.app.image.ImageUtils
  * detail: CapturePictureUtils ListView 截图
  * @author Ttt
  */
+@Route(path = RouterPath.CapturePictureListActivity_PATH)
 class CapturePictureListActivity : BaseActivity<ActivityCapturePictureListBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_capture_picture_list
@@ -67,12 +71,12 @@ class CapturePictureListActivity : BaseActivity<ActivityCapturePictureListBindin
 
             override fun getView(
                 position: Int,
-                convertView: View,
+                convertView: View?,
                 parent: ViewGroup
             ): View {
                 val adapterBean = getItem(position)
                 // 初始化 View 设置 TextView
-                var _binding = AdapterCapturePictureBinding.inflate(
+                val _binding = AdapterCapturePictureBinding.inflate(
                     LayoutInflater.from(parent.context), parent, false
                 )
                 ViewHelper.get()

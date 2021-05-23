@@ -10,7 +10,7 @@ class ButtonValue(
     // 文案
     val text: String,
     // ARouter Path
-    val path: String? = null
+    val path: String
 ) {
 
     companion object {
@@ -71,38 +71,38 @@ class ButtonValue(
         // 发送粘性事件
         const val BTN_EVENT_SEND_STICKY = BTN_EVENT_BUS + 5
 
-        // GlideUtils
-        const val BTN_GLIDE = MODULE_LIB + 1
-
-        // ImageLoaderUtils
-        const val BTN_IMAGE_LOADER = MODULE_LIB + 2
-
-        // GsonUtils
-        const val BTN_GSON = MODULE_LIB + 3
-
-        // FastjsonUtils
-        const val BTN_FASTJSON = MODULE_LIB + 4
-
-        // ZXingQRCodeUtils
-        const val BTN_ZXING = MODULE_LIB + 5
-
-        // PictureSelectorUtils
-        const val BTN_PICTURE_SELECTOR = MODULE_LIB + 6
-
-        // OkGoUtils
-        const val BTN_OKGO = MODULE_LIB + 7
-
-        // LubanUtils
-        const val BTN_LUBAN = MODULE_LIB + 8
-
-        // MMKVUtils
-        const val BTN_MMKV = MODULE_LIB + 9
-
         // GreenDAO
-        const val BTN_GREEN_DAO = MODULE_LIB + 10
+        const val BTN_GREEN_DAO = MODULE_LIB + 1
 
         // Room
-        const val BTN_ROOM = MODULE_LIB + 11
+        const val BTN_ROOM = MODULE_LIB + 2
+
+        // GlideUtils
+        const val BTN_GLIDE = MODULE_LIB + 3
+
+        // ImageLoaderUtils
+        const val BTN_IMAGE_LOADER = MODULE_LIB + 4
+
+        // GsonUtils
+        const val BTN_GSON = MODULE_LIB + 5
+
+        // FastjsonUtils
+        const val BTN_FASTJSON = MODULE_LIB + 6
+
+        // ZXingQRCodeUtils
+        const val BTN_ZXING = MODULE_LIB + 7
+
+        // PictureSelectorUtils
+        const val BTN_PICTURE_SELECTOR = MODULE_LIB + 8
+
+        // OkGoUtils
+        const val BTN_OKGO = MODULE_LIB + 9
+
+        // LubanUtils
+        const val BTN_LUBAN = MODULE_LIB + 10
+
+        // MMKVUtils
+        const val BTN_MMKV = MODULE_LIB + 11
 
         // DataStore
         const val BTN_DATA_STORE = MODULE_LIB + 12

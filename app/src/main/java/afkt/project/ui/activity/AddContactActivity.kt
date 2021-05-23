@@ -2,6 +2,7 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityAddContactBinding
 import android.Manifest
 import android.content.ContentUris
@@ -13,6 +14,7 @@ import android.provider.ContactsContract
 import android.provider.ContactsContract.CommonDataKinds.*
 import android.provider.ContactsContract.RawContacts
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.*
 import dev.utils.app.DialogUtils.DialogListener
 import dev.utils.app.permission.PermissionUtils
@@ -30,6 +32,7 @@ import java.util.concurrent.atomic.AtomicInteger
  * detail: 添加联系人
  * @author Ttt
  */
+@Route(path = RouterPath.AddContactActivity_PATH)
 class AddContactActivity : BaseActivity<ActivityAddContactBinding>() {
 
     // 待创建总数

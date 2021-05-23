@@ -221,7 +221,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!-- 点击 显示 / 隐藏 ( 状态栏 ) -->
+        <!-- 点击 显示/隐藏 ( 状态栏 ) -->
 
         <activity
             android:name=".ui.activity.StatusBarActivity"

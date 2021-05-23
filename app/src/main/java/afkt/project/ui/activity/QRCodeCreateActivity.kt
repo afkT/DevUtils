@@ -2,11 +2,13 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityQrcodeCreateBinding
 import android.content.Intent
 import android.graphics.Bitmap
 import android.text.TextUtils
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.luck.picture.lib.config.PictureMimeType
 import dev.engine.media.DevMediaEngine
 import dev.engine.media.MediaConfig
@@ -19,6 +21,7 @@ import ktx.dev.other.ZXingQRCodeUtils
  * detail: 创建二维码
  * @author Ttt
  */
+@Route(path = RouterPath.QRCodeCreateActivity_PATH)
 class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
 
     // 图片 Bitmap

@@ -2,9 +2,11 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityActivityResultCallbackBinding
 import android.app.Activity
 import android.content.Intent
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.luck.picture.lib.config.PictureMimeType
 import dev.engine.media.DevMediaEngine
 import dev.engine.media.MediaConfig
@@ -16,6 +18,7 @@ import dev.utils.app.toast.ToastTintUtils
  * detail: 跳转 Activity 回传 Callback
  * @author Ttt
  */
+@Route(path = RouterPath.ActivityResultCallbackActivity_PATH)
 class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallbackBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_activity_result_callback

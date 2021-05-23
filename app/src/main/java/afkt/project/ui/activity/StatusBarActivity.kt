@@ -2,17 +2,20 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityStatusBarBinding
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.BarUtils
 import dev.utils.app.ResourceUtils
 
 /**
- * detail: 点击 显示 / 隐藏 ( 状态栏 )
+ * detail: 点击 显示/隐藏 ( 状态栏 )
  * @author Ttt
  */
+@Route(path = RouterPath.StatusBarActivity_PATH)
 class StatusBarActivity : BaseActivity<ActivityStatusBarBinding>() {
 
     // 判断是否显示

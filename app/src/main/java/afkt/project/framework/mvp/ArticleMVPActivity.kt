@@ -2,10 +2,12 @@ package afkt.project.framework.mvp
 
 import afkt.project.R
 import afkt.project.base.app.BaseMVPActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.bean.ArticleBean
 import afkt.project.ui.adapter.ArticleAdapter
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.tt.whorlviewlibrary.WhorlView
 import dev.utils.app.ViewUtils
 import dev.utils.common.CollectionUtils
@@ -18,6 +20,7 @@ import ktx.dev.other.retrofit_rxjava.RxJavaManager
  * detail: 文章 MVP Activity
  * @author Ttt
  */
+@Route(path = RouterPath.ArticleMVPActivity_PATH)
 class ArticleMVPActivity : BaseMVPActivity<ArticleMVP.Presenter, BaseViewRecyclerviewBinding>(),
     ArticleMVP.View {
 

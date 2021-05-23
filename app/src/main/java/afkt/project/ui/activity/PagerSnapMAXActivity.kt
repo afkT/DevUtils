@@ -2,6 +2,7 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.bean.ItemBean
 import afkt.project.ui.adapter.PagerSnapMAXAdapter
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.log.DevLogEngine
 import dev.utils.app.ListViewUtils
 import dev.utils.app.helper.ViewHelper
@@ -20,6 +22,7 @@ import java.util.*
  * @author Ttt
  * PagerSnapHelper : 每次滑动一页居中显示, 类似 ViewPager
  */
+@Route(path = RouterPath.PagerSnapMAXActivity_PATH)
 class PagerSnapMAXActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     private lateinit var adapter: PagerSnapMAXAdapter

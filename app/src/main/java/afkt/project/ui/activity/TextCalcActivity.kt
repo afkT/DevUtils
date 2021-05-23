@@ -2,8 +2,10 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityTextCalcBinding
 import android.graphics.Color
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView
 import dev.utils.app.TextViewUtils
 import dev.utils.app.helper.QuickHelper
@@ -15,6 +17,7 @@ import dev.utils.common.RandomUtils
  * detail: 计算字体宽度、高度
  * @author Ttt
  */
+@Route(path = RouterPath.TextCalcActivity_PATH)
 class TextCalcActivity : BaseActivity<ActivityTextCalcBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_text_calc

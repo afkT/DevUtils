@@ -2,14 +2,17 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.ui.dialog.BottomSheetDialog
 import android.os.Bundle
 import androidx.viewbinding.ViewBinding
+import com.alibaba.android.arouter.facade.annotation.Route
 
 /**
  * detail: Material BottomSheetDialog
  * @author Ttt
  */
+@Route(path = RouterPath.BottomSheetDialogActivity_PATH)
 class BottomSheetDialogActivity : BaseActivity<ViewBinding>() {
 
     override fun isViewBinding(): Boolean = false

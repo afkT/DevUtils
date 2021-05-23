@@ -2,11 +2,13 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.item.ButtonList.timerButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.ui.adapter.ButtonAdapter
 import android.os.Handler
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
 import dev.engine.log.DevLogEngine
 import dev.utils.app.HandlerUtils
@@ -18,6 +20,7 @@ import dev.utils.app.toast.ToastTintUtils
  * detail: TimerManager 定时器工具类
  * @author Ttt
  */
+@Route(path = RouterPath.TimerActivity_PATH)
 class TimerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     // UI Handler

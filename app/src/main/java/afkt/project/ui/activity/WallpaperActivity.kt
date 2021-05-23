@@ -3,7 +3,9 @@ package afkt.project.ui.activity
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.PathConfig
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityWallpaperBinding
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.WallpaperUtils
 import dev.utils.app.image.ImageUtils
 
@@ -11,6 +13,7 @@ import dev.utils.app.image.ImageUtils
  * detail: 手机壁纸
  * @author Ttt
  */
+@Route(path = RouterPath.WallpaperActivity_PATH)
 class WallpaperActivity : BaseActivity<ActivityWallpaperBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_wallpaper

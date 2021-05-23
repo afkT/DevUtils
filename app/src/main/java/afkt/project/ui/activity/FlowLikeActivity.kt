@@ -2,12 +2,15 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityFlowLikeBinding
+import com.alibaba.android.arouter.facade.annotation.Route
 
 /**
  * detail: 自定义点赞效果 View
  * @author Ttt
  */
+@Route(path = RouterPath.FlowLikeActivity_PATH)
 class FlowLikeActivity : BaseActivity<ActivityFlowLikeBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_flow_like

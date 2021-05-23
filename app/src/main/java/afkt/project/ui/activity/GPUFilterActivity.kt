@@ -2,6 +2,7 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityGpuFilterBinding
 import afkt.project.model.item.FilterItem.Companion.createFilterForType
 import afkt.project.ui.adapter.GPUFilterAdapter
@@ -10,6 +11,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.view.View
 import android.widget.AdapterView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.luck.picture.lib.config.PictureMimeType
 import dev.engine.log.DevLogEngine
 import dev.engine.media.DevMediaEngine
@@ -21,6 +23,7 @@ import dev.utils.app.image.ImageUtils
  * detail: GPU 滤镜效果
  * @author Ttt
  */
+@Route(path = RouterPath.GPUFilterActivity_PATH)
 class GPUFilterActivity : BaseActivity<ActivityGpuFilterBinding>() {
 
     // 适配器

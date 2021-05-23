@@ -2,10 +2,12 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.item.ButtonList.cacheButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.ui.adapter.ButtonAdapter
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
 import dev.utils.app.PathUtils
 import dev.utils.app.cache.DevCache
@@ -17,6 +19,7 @@ import java.io.Serializable
  * @author Ttt
  * [CacheUse]
  */
+@Route(path = RouterPath.CacheActivity_PATH)
 class CacheActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview

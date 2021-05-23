@@ -2,6 +2,7 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.item.ButtonList.wifiButtonValues
 import afkt.project.model.item.ButtonValue
@@ -12,6 +13,7 @@ import android.net.wifi.WifiConfiguration
 import android.os.Build
 import android.os.Handler
 import android.os.Message
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
 import dev.engine.log.DevLogEngine
 import dev.receiver.WifiReceiver
@@ -31,6 +33,7 @@ import dev.utils.app.wifi.WifiUtils
  * @author Ttt
  * Wifi 热点状态监听等可参考 [QuickWifiHotUtils]
  */
+@Route(path = RouterPath.WifiActivity_PATH)
 class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     // Wifi 工具类

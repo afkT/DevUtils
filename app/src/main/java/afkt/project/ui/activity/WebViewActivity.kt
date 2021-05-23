@@ -2,6 +2,7 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityWebviewBinding
 import android.net.http.SslError
 import android.view.KeyEvent
@@ -11,6 +12,7 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebView.HitTestResult
 import android.webkit.WebViewClient
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.log.DevLogEngine
 import ktx.dev.assist.WebViewAssist
 
@@ -18,6 +20,7 @@ import ktx.dev.assist.WebViewAssist
  * detail: WebView 辅助类
  * @author Ttt
  */
+@Route(path = RouterPath.WebViewActivity_PATH)
 class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
 
     // WebView 辅助类

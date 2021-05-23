@@ -2,7 +2,9 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import androidx.viewbinding.ViewBinding
+import com.alibaba.android.arouter.facade.annotation.Route
 
 /**
  * detail: Material ShapeableImageView
@@ -11,6 +13,7 @@ import androidx.viewbinding.ViewBinding
  *     描边需设置 padding 大小为描边宽度一半, 否则显示不全
  * </pre>
  */
+@Route(path = RouterPath.ShapeableImageViewActivity_PATH)
 class ShapeableImageViewActivity : BaseActivity<ViewBinding>() {
 
     override fun isViewBinding(): Boolean = false

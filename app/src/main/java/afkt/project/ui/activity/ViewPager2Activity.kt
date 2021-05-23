@@ -2,6 +2,7 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityViewpager2Binding
 import afkt.project.ui.fragment.newPagerFragment
 import android.view.Menu
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.tabs.TabLayoutMediator
 import dev.utils.app.ResourceUtils
 
@@ -18,6 +20,7 @@ import dev.utils.app.ResourceUtils
  * detail: ViewPager2
  * @author Ttt
  */
+@Route(path = RouterPath.ViewPager2Activity_PATH)
 class ViewPager2Activity : BaseActivity<ActivityViewpager2Binding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_viewpager2

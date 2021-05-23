@@ -2,11 +2,13 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.bean.ItemStickyBean
 import afkt.project.ui.adapter.ItemStickyAdapter
 import android.view.View
 import android.view.ViewGroup
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.gavin.com.library.PowerfulStickyDecoration
 import com.gavin.com.library.StickyDecoration
 import com.gavin.com.library.listener.GroupListener
@@ -27,6 +29,7 @@ import java.util.*
  * RecyclerView 实现顶部吸附效果
  * @see https://github.com/Gavin-ZYX/StickyDecoration
  */
+@Route(path = RouterPath.ItemStickyActivity_PATH)
 class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     // 适配器

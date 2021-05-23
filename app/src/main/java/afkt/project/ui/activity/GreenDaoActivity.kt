@@ -2,6 +2,7 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.database.green.GreenManager
 import afkt.project.database.green.module.note.bean.Note
 import afkt.project.database.green.module.note.bean.NotePicture
@@ -10,6 +11,7 @@ import afkt.project.databinding.ActivityDatabaseBinding
 import afkt.project.ui.adapter.GreenDaoAdapter
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import dev.engine.log.DevLogEngine
@@ -23,6 +25,7 @@ import java.util.*
  * detail: GreenDao 使用
  * @author Ttt
  */
+@Route(path = RouterPath.GreenDaoActivity_PATH)
 class GreenDaoActivity : BaseActivity<ActivityDatabaseBinding>() {
 
     val adapter = GreenDaoAdapter()

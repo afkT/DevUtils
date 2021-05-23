@@ -2,6 +2,7 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityGpuFilterBinding
 import afkt.project.model.bean.ACVFileBean
 import afkt.project.ui.adapter.GPUFilterACVAdapter
@@ -11,6 +12,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.view.View
 import android.widget.AdapterView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.luck.picture.lib.config.PictureMimeType
 import dev.engine.log.DevLogEngine
 import dev.engine.media.DevMediaEngine
@@ -24,6 +26,7 @@ import java.util.*
  * detail: GPU ACV 文件滤镜效果
  * @author Ttt
  */
+@Route(path = RouterPath.GPUFilterACVActivity_PATH)
 class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
 
     // 适配器

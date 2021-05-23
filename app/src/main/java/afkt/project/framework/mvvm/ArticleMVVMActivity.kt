@@ -3,11 +3,13 @@ package afkt.project.framework.mvvm
 import afkt.project.BR
 import afkt.project.R
 import afkt.project.base.app.BaseMVVMActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityArticleMvvmBinding
 import afkt.project.model.bean.ArticleBean
 import afkt.project.ui.adapter.ArticleAdapter
 import android.view.View
 import androidx.lifecycle.Observer
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.tt.whorlviewlibrary.WhorlView
 import dev.utils.DevFinal
 import dev.utils.app.ViewUtils
@@ -19,6 +21,7 @@ import dev.widget.function.StateLayout
  * detail: 文章 MVVM Activity
  * @author Ttt
  */
+@Route(path = RouterPath.ArticleMVVMActivity_PATH)
 class ArticleMVVMActivity : BaseMVVMActivity<ActivityArticleMvvmBinding, ArticleViewModel>() {
 
     // 加载动画

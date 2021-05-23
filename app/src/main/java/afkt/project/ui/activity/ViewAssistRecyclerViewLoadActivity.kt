@@ -2,10 +2,12 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.ui.adapter.RecyclerLoadingAdapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.helper.ViewHelper
 import dev.utils.common.RandomUtils
 import java.util.*
@@ -14,6 +16,7 @@ import java.util.*
  * detail: ViewAssist RecyclerView Loading
  * @author Ttt
  */
+@Route(path = RouterPath.ViewAssistRecyclerViewLoadActivity_PATH)
 class ViewAssistRecyclerViewLoadActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.base_view_recyclerview

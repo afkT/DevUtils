@@ -2,6 +2,7 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.bean.CommodityEvaluateBean
 import afkt.project.model.bean.CommodityEvaluateBean.Companion.newCommodityEvaluateBean
@@ -10,6 +11,7 @@ import afkt.project.ui.adapter.MultiSelectAdapter.OnSelectListener
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView
 import dev.engine.log.DevLogEngine
 import dev.utils.app.ResourceUtils
@@ -23,6 +25,7 @@ import java.util.*
  * detail: 多选辅助类 MultiSelectAssist
  * @author Ttt
  */
+@Route(path = RouterPath.MultiSelectActivity_PATH)
 class MultiSelectActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     // 适配器

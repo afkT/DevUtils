@@ -2,6 +2,7 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.bean.CommodityEvaluateBean
 import afkt.project.ui.adapter.ItemSlideAdapter
@@ -9,6 +10,7 @@ import android.os.Bundle
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.ViewHelper
 import java.util.*
@@ -21,6 +23,7 @@ import java.util.*
  * RecyclerView 扩展
  * @see https://www.jianshu.com/p/c769f4ed298f
  */
+@Route(path = RouterPath.RecyItemSlideActivity_PATH)
 class RecyItemSlideActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     private lateinit var itemSlideAdapter: ItemSlideAdapter

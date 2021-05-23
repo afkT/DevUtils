@@ -2,6 +2,7 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityWrapBinding
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -9,6 +10,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ShapeUtils
@@ -20,6 +22,7 @@ import dev.utils.common.RandomUtils
  * detail: 自动换行 View
  * @author Ttt
  */
+@Route(path = RouterPath.WrapActivity_PATH)
 class WrapActivity : BaseActivity<ActivityWrapBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_wrap

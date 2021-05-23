@@ -2,9 +2,11 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityChipBinding
 import android.os.Bundle
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.chip.Chip
 import dev.base.widget.BaseTextView
 import dev.utils.app.ResourceUtils
@@ -26,6 +28,7 @@ import java.util.*
  * 注意事项:
  * Activity 需要设置为 Theme.MaterialComponents 主题
  */
+@Route(path = RouterPath.ChipActivity_PATH)
 class ChipActivity : BaseActivity<ActivityChipBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_chip

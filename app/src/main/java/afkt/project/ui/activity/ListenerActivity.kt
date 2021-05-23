@@ -2,6 +2,7 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityCommonTipsBinding
 import afkt.project.model.item.ButtonList.listenerButtonValues
 import afkt.project.model.item.ButtonValue
@@ -10,6 +11,7 @@ import android.os.Handler
 import android.os.Message
 import android.telephony.SmsMessage
 import android.view.OrientationEventListener
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
 import dev.engine.log.DevLogEngine
 import dev.receiver.*
@@ -32,6 +34,7 @@ import dev.utils.app.toast.ToastTintUtils
  * detail: 事件 / 广播监听 ( 网络状态、屏幕旋转等 )
  * @author Ttt
  */
+@Route(path = RouterPath.ListenerActivity_PATH)
 class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_common_tips

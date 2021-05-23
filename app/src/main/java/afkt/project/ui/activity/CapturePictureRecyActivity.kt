@@ -3,6 +3,7 @@ package afkt.project.ui.activity
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.PathConfig
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityCapturePictureRecyBinding
 import afkt.project.databinding.AdapterCapturePictureBinding
 import afkt.project.model.bean.AdapterBean
@@ -12,6 +13,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.adapter.DevDataAdapterExt
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
@@ -26,6 +28,7 @@ import dev.utils.app.image.ImageUtils
  * detail: CapturePictureUtils RecyclerView 截图
  * @author Ttt
  */
+@Route(path = RouterPath.CapturePictureRecyActivity_PATH)
 class CapturePictureRecyActivity : BaseActivity<ActivityCapturePictureRecyBinding>() {
 
     override fun baseLayoutId(): Int = R.layout.activity_capture_picture_recy

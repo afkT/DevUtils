@@ -2,6 +2,7 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityUiEffectBinding
 import afkt.project.model.item.TabItem
 import afkt.project.util.assist.TabLayoutAssist
@@ -10,6 +11,7 @@ import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView
 import dev.engine.log.DevLogEngine
 import dev.utils.app.*
@@ -22,6 +24,7 @@ import java.util.*
  * detail: 常见 UI、GradientDrawable 效果等
  * @author Ttt
  */
+@Route(path = RouterPath.UIEffectActivity_PATH)
 class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
 
     // 当前选中的索引

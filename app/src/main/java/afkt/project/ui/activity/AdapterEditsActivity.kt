@@ -2,12 +2,14 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
+import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.item.EvaluateItem
 import afkt.project.ui.adapter.EditsAdapter
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView
 import dev.engine.log.DevLogEngine
 import dev.utils.app.ResourceUtils
@@ -20,6 +22,7 @@ import java.util.*
  * detail: Adapter Item EditText 输入监听
  * @author Ttt
  */
+@Route(path = RouterPath.AdapterEditsActivity_PATH)
 class AdapterEditsActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 
     // 适配器
