@@ -8,7 +8,6 @@ import afkt.project.databinding.ActivityCapturePictureListBinding
 import afkt.project.databinding.AdapterCapturePictureBinding
 import afkt.project.model.bean.AdapterBean
 import afkt.project.model.bean.AdapterBean.Companion.newAdapterBeanList
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
