@@ -30,18 +30,41 @@ environment_libs.forEach {
     project(":$it").projectDir = new File(rootDir, "lib/Environment/$it")
 }
 
+// ===============
+// = Libs Module =
+// ===============
+
+def libs_modules = [
+        "DevBase2",
+        "DevOther",
+]
+
+libs_modules.forEach {
+    include(":$it")
+    project(":$it").projectDir = new File(rootDir, "lib/$it")
+}
+
 // ==========
 // = Module =
 // ==========
 
 def modules = [
-        "DevBase2",
-        "DevOther",
+        "DevBaseModule",
+//        "push/DevGeTui",
+        "push/DevJPush",
 ]
 
 modules.forEach {
-    include(":$it")
-    project(":$it").projectDir = new File(rootDir, "lib/$it")
+    def itName = it
+
+    if (itName.indexOf("/") != -1) {
+        itName = itName.substring(
+                itName.lastIndexOf("/") + 1,
+                itName.length()
+        )
+    }
+    include(":$itName")
+    project(":$itName").projectDir = new File(rootDir, "module/$it")
 }
 
 // ===========
