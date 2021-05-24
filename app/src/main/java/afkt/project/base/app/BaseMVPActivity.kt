@@ -247,7 +247,6 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
     /**
      * ARouter 跳转方法
      * @param buttonValue 按钮参数
-     * @return `true` success, `false` fail
      */
     fun routerActivity(
         buttonValue: ButtonValue

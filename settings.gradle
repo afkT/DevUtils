@@ -75,7 +75,7 @@ def projects = [
         "AccessibilityKtx",
         "AppInfoKtx",
         "DemoKtx",
-        "PushKtx",
+        "JPushKtx",
         "PushLockScreenKtx",
 ]
 
