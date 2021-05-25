@@ -52,6 +52,9 @@ allprojects {
         maven { url "https://plugins.gradle.org/m2" }
 
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+
+        // 个推 maven
+        maven { url "http://mvn.gt.getui.com/nexus/content/repositories/releases/" }
     }
 
 //    gradle.projectsEvaluated {
