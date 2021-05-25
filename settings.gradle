@@ -50,7 +50,7 @@ libs_modules.forEach {
 
 def modules = [
         "DevBaseModule",
-//        "push/DevGeTui",
+        "push/DevGTPush",
         "push/DevJPush",
 ]
 
@@ -75,8 +75,8 @@ def projects = [
         "AccessibilityKtx",
         "AppInfoKtx",
         "DemoKtx",
+        "GTPushKtx",
         "JPushKtx",
-        "PushLockScreenKtx",
 ]
 
 projects.forEach {
