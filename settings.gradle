@@ -52,7 +52,6 @@ def modules = [
         "DevBaseModule",
         "push/DevGTPush",
         "push/DevJPush",
-        "push/DevYMPush",
 ]
 
 modules.forEach {
