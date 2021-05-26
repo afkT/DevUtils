@@ -21,6 +21,11 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2" }
 
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+
+        maven { url "https://repo1.maven.org/maven2/" }
+
+        // 个推 maven
+        maven { url "http://mvn.gt.getui.com/nexus/content/repositories/releases/" }
     }
 
     dependencies {
@@ -52,6 +57,8 @@ allprojects {
         maven { url "https://plugins.gradle.org/m2" }
 
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+
+        maven { url "https://repo1.maven.org/maven2/" }
 
         // 个推 maven
         maven { url "http://mvn.gt.getui.com/nexus/content/repositories/releases/" }

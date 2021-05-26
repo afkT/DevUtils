@@ -2,6 +2,8 @@ package dev.engine.share;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.content.Intent;
 
 import dev.engine.share.listener.ShareListener;
 
@@ -167,5 +169,21 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig, Item ext
             Activity activity,
             Item params,
             ShareListener<Item> listener
+    );
+
+    // =
+
+    /**
+     * 部分平台 Activity onActivityResult 额外调用处理
+     * @param context     {@link Context}
+     * @param requestCode 请求 code
+     * @param resultCode  resultCode
+     * @param data        {@link Intent}
+     */
+    void onActivityResult(
+            Context context,
+            int requestCode,
+            int resultCode,
+            Intent data
     );
 }
