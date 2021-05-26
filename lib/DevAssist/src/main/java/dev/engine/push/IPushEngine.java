@@ -138,4 +138,15 @@ public interface IPushEngine<Config extends IPushEngine.EngineConfig, Item exten
             Context context,
             Item message
     );
+
+    // ===============
+    // = 转换 Message =
+    // ===============
+
+    /**
+     * 传入 Object 转换 Engine Message
+     * @param message Message Object
+     * @return Engine Message
+     */
+    Item convertMessage(Object message);
 }

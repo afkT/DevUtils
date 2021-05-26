@@ -1,0 +1,32 @@
+apply from: rootProject.file(files.build_app_gradle)
+apply from: rootProject.file(files.build_arouter_app_gradle)
+
+android {
+    defaultConfig {
+        applicationId "afkt.jpush"
+
+        ndk {
+            // 选择要添加的对应 cpu 类型的 .so 库
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "2ad57c3b31d94518c051d2fc",
+                JPUSH_CHANNEL: "dev-install-debug",
+        ]
+    }
+}
+
+dependencies {
+    implementation project(':DevBaseMVVM')
+    implementation project(':DevOther')
+    implementation project(':DevWidget')
+
+    // 极光推送 Module
+    implementation project(':DevJPush')
+
+    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
+    implementation deps.lib.mmkv
+}

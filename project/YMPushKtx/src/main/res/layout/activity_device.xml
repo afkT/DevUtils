@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/un_dp_20">
+
+        <Button
+            android:id="@+id/vid_ad_active_btn"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_50"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/un_dp_20"
+            android:text="激活组件 ( 申请权限 )"
+            android:textSize="@dimen/un_sp_20" />
+
+        <Button
+            android:id="@+id/vid_ad_remove_active_btn"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_20"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/un_dp_20"
+            android:text="移除组件"
+            android:textSize="@dimen/un_sp_20" />
+
+        <Button
+            android:id="@+id/vid_ad_lock_btn"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_20"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/un_dp_20"
+            android:text="锁屏"
+            android:textSize="@dimen/un_sp_20" />
+
+        <Button
+            android:id="@+id/vid_ad_delay_lock_btn"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_20"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/un_dp_20"
+            android:text="延迟锁屏"
+            android:textSize="@dimen/un_sp_20" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

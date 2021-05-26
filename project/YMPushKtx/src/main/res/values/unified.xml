@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 通用 DP -->
+    <dimen name="un_dp_0">0.0dp</dimen>
+    <dimen name="un_dp_10">10.0dp</dimen>
+    <dimen name="un_dp_20">20.0dp</dimen>
+    <dimen name="un_dp_30">30.0dp</dimen>
+    <dimen name="un_dp_50">50.0dp</dimen>
+
+    <!-- 通用 SP -->
+    <dimen name="un_sp_18">18.0sp</dimen>
+    <dimen name="un_sp_20">20.0sp</dimen>
+    <dimen name="un_sp_28">28.0sp</dimen>
+
+</resources>
