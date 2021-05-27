@@ -71,4 +71,10 @@ dependencies {
 //    kaptRelease 'io.github.afkt:DevEnvironmentCompilerRelease:1.0.3'
 //    // 如果需要 Release 包, 支持通过后台数据动态设置配置信息 则使用 debug compiler lib
 //    // kapt 'io.github.afkt:DevEnvironmentCompiler:1.0.3'
+
+    // ==========
+    // = Module =
+    // ==========
+
+    implementation project(':DevUMShare')
 }
