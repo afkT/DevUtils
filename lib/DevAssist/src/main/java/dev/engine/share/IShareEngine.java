@@ -11,7 +11,8 @@ import dev.engine.share.listener.ShareListener;
  * detail: Share Engine 接口
  * @author Ttt
  */
-public interface IShareEngine<Config extends IShareEngine.EngineConfig, Item extends IShareEngine.EngineItem> {
+public interface IShareEngine<Config extends IShareEngine.EngineConfig,
+        Item extends IShareEngine.EngineItem> {
 
     /**
      * detail: Share Config

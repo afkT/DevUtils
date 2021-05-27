@@ -7,7 +7,8 @@ import android.content.Context;
  * detail: Analytics Engine 接口
  * @author Ttt
  */
-public interface IAnalyticsEngine<Config extends IAnalyticsEngine.EngineConfig, Item extends IAnalyticsEngine.EngineItem> {
+public interface IAnalyticsEngine<Config extends IAnalyticsEngine.EngineConfig,
+        Item extends IAnalyticsEngine.EngineItem> {
 
     /**
      * detail: Analytics Config

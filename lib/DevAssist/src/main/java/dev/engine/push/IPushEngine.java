@@ -7,7 +7,8 @@ import android.content.Context;
  * detail: Push Engine 接口
  * @author Ttt
  */
-public interface IPushEngine<Config extends IPushEngine.EngineConfig, Item extends IPushEngine.EngineItem> {
+public interface IPushEngine<Config extends IPushEngine.EngineConfig,
+        Item extends IPushEngine.EngineItem> {
 
     /**
      * detail: Push Config

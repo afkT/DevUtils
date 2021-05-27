@@ -17,7 +17,8 @@ import dev.utils.common.cipher.Cipher;
  * detail: Cache Engine 接口
  * @author Ttt
  */
-public interface ICacheEngine<Config extends ICacheEngine.EngineConfig, Item extends ICacheEngine.EngineItem> {
+public interface ICacheEngine<Config extends ICacheEngine.EngineConfig,
+        Item extends ICacheEngine.EngineItem> {
 
     /**
      * detail: Cache Config

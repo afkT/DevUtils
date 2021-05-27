@@ -12,7 +12,8 @@ import java.util.List;
  * detail: Media Selector Engine 接口
  * @author Ttt
  */
-public interface IMediaEngine<Config extends IMediaEngine.EngineConfig, Data extends IMediaEngine.MediaData> {
+public interface IMediaEngine<Config extends IMediaEngine.EngineConfig,
+        Data extends IMediaEngine.MediaData> {
 
     /**
      * detail: Media Selector Config
