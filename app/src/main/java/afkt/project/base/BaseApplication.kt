@@ -15,17 +15,11 @@ import androidx.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
 import dev.DevUtils
 import dev.engine.compress.DevCompressEngine
-import dev.engine.compress.LubanEngineImpl
 import dev.engine.image.DevImageEngine
-import dev.engine.image.GlideEngineImpl
 import dev.engine.json.DevJSONEngine
-import dev.engine.json.GsonEngineImpl
 import dev.engine.log.DevLogEngine
-import dev.engine.log.DevLoggerEngineImpl
 import dev.engine.media.DevMediaEngine
-import dev.engine.media.PictureSelectorEngineImpl
 import dev.engine.permission.DevPermissionEngine
-import dev.engine.permission.DevPermissionEngineImpl
 import dev.environment.DevEnvironment
 import dev.environment.bean.EnvironmentBean
 import dev.environment.bean.ModuleBean
@@ -44,6 +38,12 @@ import dev.utils.common.assist.TimeCounter
 import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
 import ktx.dev.assist.WebViewAssist
+import ktx.dev.engine.compress.LubanEngineImpl
+import ktx.dev.engine.image.GlideEngineImpl
+import ktx.dev.engine.json.GsonEngineImpl
+import ktx.dev.engine.log.DevLoggerEngineImpl
+import ktx.dev.engine.media.PictureSelectorEngineImpl
+import ktx.dev.engine.permission.DevPermissionEngineImpl
 import me.jessyan.autosize.AutoSizeConfig
 
 /**
@@ -292,7 +292,9 @@ class BaseApplication : MultiDexApplication() {
         RetrofitUtils.instance.initRetrofit()
 
         // 环境 ( 服务器地址 ) 改变通知
-        DevEnvironment.addOnEnvironmentChangeListener { module: ModuleBean?, oldEnvironment: EnvironmentBean?, newEnvironment: EnvironmentBean? ->
+        DevEnvironment.addOnEnvironmentChangeListener { module: ModuleBean?,
+                                                        oldEnvironment: EnvironmentBean?,
+                                                        newEnvironment: EnvironmentBean? ->
             // 改变地址重新初始化
             RetrofitUtils.instance.resetAPIService()
         }

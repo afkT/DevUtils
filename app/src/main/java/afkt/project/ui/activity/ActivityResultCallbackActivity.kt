@@ -9,7 +9,7 @@ import android.content.Intent
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.luck.picture.lib.config.PictureMimeType
 import dev.engine.media.DevMediaEngine
-import dev.engine.media.MediaConfig
+import ktx.dev.engine.media.MediaConfig
 import dev.utils.app.ActivityUtils
 import dev.utils.app.AppUtils
 import dev.utils.app.toast.ToastTintUtils

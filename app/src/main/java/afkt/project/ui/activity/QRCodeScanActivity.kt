@@ -21,7 +21,7 @@ import com.google.zxing.Result
 import com.luck.picture.lib.config.PictureMimeType
 import dev.engine.log.DevLogEngine
 import dev.engine.media.DevMediaEngine
-import dev.engine.media.MediaConfig
+import ktx.dev.engine.media.MediaConfig
 import dev.utils.app.FlashlightUtils
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ListenerUtils

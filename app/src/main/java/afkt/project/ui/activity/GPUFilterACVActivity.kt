@@ -16,7 +16,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.luck.picture.lib.config.PictureMimeType
 import dev.engine.log.DevLogEngine
 import dev.engine.media.DevMediaEngine
-import dev.engine.media.MediaConfig
+import ktx.dev.engine.media.MediaConfig
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.image.ImageUtils

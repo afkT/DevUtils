@@ -12,13 +12,13 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.zxing.Result
 import com.luck.picture.lib.config.PictureMimeType
 import dev.engine.media.DevMediaEngine
-import dev.engine.media.MediaConfig
 import dev.utils.DevFinal
 import dev.utils.app.*
 import dev.utils.app.image.ImageUtils
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.StringUtils
 import dev.utils.common.ThrowableUtils
+import ktx.dev.engine.media.MediaConfig
 import ktx.dev.other.ZXingQRCodeUtils
 
 /**

@@ -24,6 +24,9 @@ buildscript {
 
         maven { url "https://repo1.maven.org/maven2/" }
 
+//        // 新浪微博 maven
+//        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
+
         // 个推 maven
         maven { url "http://mvn.gt.getui.com/nexus/content/repositories/releases/" }
     }
@@ -59,6 +62,9 @@ allprojects {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 
         maven { url "https://repo1.maven.org/maven2/" }
+
+//        // 新浪微博 maven
+//        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
 
         // 个推 maven
         maven { url "http://mvn.gt.getui.com/nexus/content/repositories/releases/" }

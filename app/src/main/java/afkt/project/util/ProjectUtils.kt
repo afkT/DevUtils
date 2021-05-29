@@ -4,11 +4,11 @@ import afkt.project.R
 import android.graphics.Color
 import android.graphics.Rect
 import dev.base.DevVariable
-import dev.engine.image.ImageConfig
 import dev.utils.app.ResourceUtils
 import dev.utils.app.SizeUtils
 import dev.widget.ui.ScanShapeView
 import dev.widget.ui.ScanShapeView.CornerEffect
+import ktx.dev.engine.image.ImageConfig
 
 /**
  * detail: 项目工具类
@@ -49,8 +49,8 @@ object ProjectUtils {
         var config = sConfigVariable.getVariableValue(roundDP)
         if (config != null) return config
         config = ImageConfig.create()
-        config.roundedCornersRadius = SizeUtils.dipConvertPx(roundDP.toFloat())
-        config.transform = ImageConfig.TRANSFORM_ROUNDED_CORNERS
+        config.setRoundedCornersRadius(SizeUtils.dipConvertPx(roundDP.toFloat()))
+        config.setTransform(ImageConfig.TRANSFORM_ROUNDED_CORNERS)
         sConfigVariable.putVariable(roundDP, config)
         return config
     }
