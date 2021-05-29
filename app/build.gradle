@@ -76,5 +76,5 @@ dependencies {
     // = Module =
     // ==========
 
-//    implementation project(':DevUMShare')
+    implementation project(':DevUMShare')
 }
