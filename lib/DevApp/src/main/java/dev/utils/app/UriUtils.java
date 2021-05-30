@@ -21,6 +21,7 @@ import dev.utils.LogPrintUtils;
 import dev.utils.common.CloseUtils;
 import dev.utils.common.FileIOUtils;
 import dev.utils.common.FileUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: Uri 工具类
@@ -110,9 +111,59 @@ public final class UriUtils {
         }
     }
 
+    /**
+     * 通过 String 获取 Uri
+     * @param uriString uri 路径
+     * @return {@link Uri}
+     */
+    public static Uri getUriForString(final String uriString) {
+        if (TextUtils.isEmpty(uriString)) return null;
+        return Uri.parse(uriString);
+    }
+
     // =======
     // = Uri =
     // =======
+
+    /**
+     * 判断是否 Uri
+     * @param uriString uri 路径
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isUri(final String uriString) {
+        Uri uri = getUriForString(uriString);
+        return StringUtils.isNotEmpty(getUriScheme(uri));
+    }
+
+    /**
+     * 判断是否 Uri
+     * @param uri {@link Uri}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isUri(final Uri uri) {
+        return StringUtils.isNotEmpty(getUriScheme(uri));
+    }
+
+    // =
+
+    /**
+     * 获取 Uri Scheme
+     * @param uriString uri 路径
+     * @return Uri Scheme
+     */
+    public static String getUriScheme(final String uriString) {
+        return getUriScheme(getUriForString(uriString));
+    }
+
+    /**
+     * 获取 Uri Scheme
+     * @param uri {@link Uri}
+     * @return Uri Scheme
+     */
+    public static String getUriScheme(final Uri uri) {
+        if (uri == null) return null;
+        return uri.getScheme();
+    }
 
     /**
      * 判断 Uri 路径资源是否存在

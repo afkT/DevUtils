@@ -11,13 +11,17 @@ import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.zxing.Result
 import com.luck.picture.lib.config.PictureMimeType
+import dev.base.DevSource
+import dev.engine.image.DevImageEngine
+import dev.engine.image.listener.BitmapListener
 import dev.engine.media.DevMediaEngine
 import dev.utils.DevFinal
 import dev.utils.app.*
-import dev.utils.app.image.ImageUtils
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.StringUtils
 import dev.utils.common.ThrowableUtils
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import ktx.dev.engine.media.MediaConfig
 import ktx.dev.other.ZXingQRCodeUtils
 
@@ -76,37 +80,72 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
         super.onActivityResult(requestCode, resultCode, data)
         // 判断是否属于图片选择
         if (resultCode == RESULT_OK && data != null) {
-            // 获取图片地址
-            val imgPath = DevMediaEngine.getEngine().getSingleSelectorPath(data, true)
-            // 获取图片 Bitmap
-            selectBitmap = ImageUtils.decodeFile(imgPath)
-            // 解析图片
-            ZXingQRCodeUtils.decodeQRCode(selectBitmap, object : ZXingQRCodeUtils.QRScanCallback {
-                override fun onResult(
-                    success: Boolean,
-                    result: Result?,
-                    e: Exception?
-                ) {
-                    HandlerUtils.postRunnable {
-                        if (success) {
-                            val builder = StringBuilder()
-                                .append("二维码解析数据: \n")
-                                .append(
-                                    StringUtils.checkValue(
-                                        DevFinal.NULL_STR,
-                                        ZXingQRCodeUtils.getResultData(result)
-                                    )
-                                )
-                            TextViewUtils.setText(binding.vidAqiTv, builder.toString())
-                        } else {
+            MainScope().launch() {
+                // 获取图片地址
+                val imgPath = DevMediaEngine.getEngine().getSingleSelectorPath(data, true)
+
+                val source = if (UriUtils.isUri(imgPath)) {
+                    DevSource.create(UriUtils.getUriForString(imgPath))
+                } else {
+                    DevSource.createWithPath(imgPath)
+                }
+                DevImageEngine.getEngine().loadBitmap(
+                    mActivity, source, null, object : BitmapListener() {
+                        override fun onStart(source: DevSource?) {
+                        }
+
+                        override fun onResponse(
+                            source: DevSource?,
+                            value: Bitmap?
+                        ) {
+                            // 获取图片 Bitmap
+                            selectBitmap = value
+                            // 解析图片
+                            ZXingQRCodeUtils.decodeQRCode(
+                                selectBitmap,
+                                object : ZXingQRCodeUtils.QRScanCallback {
+                                    override fun onResult(
+                                        success: Boolean,
+                                        result: Result?,
+                                        e: Exception?
+                                    ) {
+                                        HandlerUtils.postRunnable {
+                                            if (success) {
+                                                val builder = StringBuilder()
+                                                    .append("二维码解析数据: \n")
+                                                    .append(
+                                                        StringUtils.checkValue(
+                                                            DevFinal.NULL_STR,
+                                                            ZXingQRCodeUtils.getResultData(result)
+                                                        )
+                                                    )
+                                                TextViewUtils.setText(
+                                                    binding.vidAqiTv,
+                                                    builder.toString()
+                                                )
+                                            } else {
+                                                TextViewUtils.setText(
+                                                    binding.vidAqiTv, "图片非二维码 / 识别失败\n" +
+                                                            ThrowableUtils.getThrowableStackTrace(e)
+                                                )
+                                            }
+                                        }
+                                    }
+                                })
+                        }
+
+                        override fun onFailure(
+                            source: DevSource?,
+                            throwable: Throwable?
+                        ) {
                             TextViewUtils.setText(
-                                binding.vidAqiTv,
-                                "图片非二维码 / 识别失败\n" + ThrowableUtils.getThrowableStackTrace(e)
+                                binding.vidAqiTv, "图片非二维码 / 识别失败\n"
+                                        + ThrowableUtils.getThrowableStackTrace(throwable)
                             )
                         }
                     }
-                }
-            })
+                )
+            }
         }
     }
 }
