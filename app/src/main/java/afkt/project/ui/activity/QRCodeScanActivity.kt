@@ -21,10 +21,7 @@ import com.google.zxing.Result
 import com.luck.picture.lib.config.PictureMimeType
 import dev.engine.log.DevLogEngine
 import dev.engine.media.DevMediaEngine
-import dev.utils.app.FlashlightUtils
-import dev.utils.app.HandlerUtils
-import dev.utils.app.ListenerUtils
-import dev.utils.app.ViewUtils
+import dev.utils.app.*
 import dev.utils.app.assist.BeepVibrateAssist
 import dev.utils.app.assist.InactivityTimerAssist
 import dev.utils.app.image.ImageUtils
@@ -156,7 +153,15 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
             // 获取图片地址
             val imgPath = DevMediaEngine.getEngine().getSingleSelectorPath(data, true)
             // 获取图片 Bitmap
-            val selectBitmap = ImageUtils.decodeFile(imgPath)
+            val selectBitmap = if (UriUtils.isUri(imgPath)) {
+                ImageUtils.decodeStream(
+                    ResourceUtils.openInputStream(
+                        UriUtils.getUriForString(imgPath)
+                    )
+                )
+            } else {
+                ImageUtils.decodeFile(imgPath)
+            }
             // 解析图片
             ZXingQRCodeUtils.decodeQRCode(selectBitmap, object : ZXingQRCodeUtils.QRScanCallback {
                 override fun onResult(

@@ -97,7 +97,15 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
             // 获取图片地址
             val imgPath = DevMediaEngine.getEngine().getSingleSelectorPath(data, true)
             // 获取图片 Bitmap
-            selectBitmap = ImageUtils.decodeFile(imgPath)
+            selectBitmap = if (UriUtils.isUri(imgPath)) {
+                ImageUtils.decodeStream(
+                    ResourceUtils.openInputStream(
+                        UriUtils.getUriForString(imgPath)
+                    )
+                )
+            } else {
+                ImageUtils.decodeFile(imgPath)
+            }
         }
     }
 }

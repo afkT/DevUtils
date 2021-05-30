@@ -16,6 +16,8 @@ import com.luck.picture.lib.config.PictureMimeType
 import dev.engine.log.DevLogEngine
 import dev.engine.media.DevMediaEngine
 import dev.utils.app.HandlerUtils
+import dev.utils.app.ResourceUtils
+import dev.utils.app.UriUtils
 import dev.utils.app.image.ImageUtils
 import ktx.dev.engine.media.MediaConfig
 
@@ -102,7 +104,15 @@ class GPUFilterActivity : BaseActivity<ActivityGpuFilterBinding>() {
             // 获取图片地址
             val imgPath = DevMediaEngine.getEngine().getSingleSelectorPath(data, true)
             // 获取图片 Bitmap
-            selectBitmap = ImageUtils.decodeFile(imgPath)
+            selectBitmap = if (UriUtils.isUri(imgPath)) {
+                ImageUtils.decodeStream(
+                    ResourceUtils.openInputStream(
+                        UriUtils.getUriForString(imgPath)
+                    )
+                )
+            } else {
+                ImageUtils.decodeFile(imgPath)
+            }
             // 设置图片滤镜
             setFilter()
         }
