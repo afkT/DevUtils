@@ -63,7 +63,7 @@ class BaseRefreshView : LinearLayout {
     private var mBody: FrameLayout? = null
 
     // DevBase RefreshLayout 辅助类
-    private var mAssist = DevBaseRefreshAssist<Object>()
+    private var mAssist = DevBaseRefreshAssist<Any>()
 
     /**
      * 默认初始化操作
@@ -100,7 +100,7 @@ class BaseRefreshView : LinearLayout {
     // = DevBaseRefreshAssist2 =
     // ========================
 
-    fun getAssist(): DevBaseRefreshAssist<Object> {
+    fun getAssist(): DevBaseRefreshAssist<Any> {
         return mAssist
     }
 
@@ -112,11 +112,11 @@ class BaseRefreshView : LinearLayout {
         return mBody
     }
 
-    fun getPageAssist(): PageAssist<Object> {
+    fun getPageAssist(): PageAssist<Any> {
         return mAssist.getPageAssist()
     }
 
-    fun setPageAssist(pageAssist: PageAssist<Object>): BaseRefreshView {
+    fun setPageAssist(pageAssist: PageAssist<Any>): BaseRefreshView {
         mAssist.setPageAssist(pageAssist)
         return this
     }

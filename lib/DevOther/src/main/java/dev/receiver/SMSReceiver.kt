@@ -22,7 +22,7 @@ class SMSReceiver private constructor() : BroadcastReceiver() {
         context: Context,
         intent: Intent
     ) {
-        (intent.extras?.get("pdus") as? Array<Object>)?.let { pdus ->
+        (intent.extras?.get("pdus") as? Array<*>)?.let { pdus ->
             var originatingAddress: String? = null
             var serviceCenterAddress: String? = null
             // 消息内容

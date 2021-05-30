@@ -78,6 +78,7 @@ def projects = [
         "DemoKtx",
         "GTPushKtx",
         "JPushKtx",
+        "UMShareKtx",
 ]
 
 projects.forEach {
