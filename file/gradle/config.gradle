@@ -213,31 +213,43 @@ ext {
                     // = 性能检测、排查相关库 =
                     // ======================
 
-                    // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
-                    xcrash               : "com.iqiyi.xcrash:xcrash-android-lib:3.0.0",
-                    // 应用数据库展示 https://github.com/guolindev/Glance
-                    glance               : "com.glance.guolindev:glance:1.0.0",
-                    // 内存检测工具 https://github.com/square/leakcanary
-                    leakcanary           : "com.squareup.leakcanary:leakcanary-android:2.7",
-                    // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
-                    blockcanary_android  : "com.github.markzhai:blockcanary-android:1.5.0",
-                    blockcanary_no_op    : "com.github.markzhai:blockcanary-no-op:1.5.0",
-                    // 饿了么 UETool https://github.com/eleme/UETool/blob/master/README_zh.md
-                    uetool               : "me.ele:uetool:1.2.9",
-                    uetool_no_op         : "me.ele:uetool-no-op:1.2.9",
-                    // 滴滴出行 DoraemonKit http://www.dokit.cn
-                    dokitx               : "com.didichuxing.doraemonkit:dokitx:3.3.5",
-                    dokitx_no_op         : "com.didichuxing.doraemonkit:dokitx-no-op:3.3.5",
                     // Bugly https://bugly.qq.com/docs/
-                    bugly                : "com.tencent.bugly:crashreport:3.3.92",
-                    bugly_ndk            : "com.tencent.bugly:nativecrashreport:3.9.0",
+                    bugly                         : "com.tencent.bugly:crashreport:3.3.92",
+                    bugly_ndk                     : "com.tencent.bugly:nativecrashreport:3.9.0",
+                    // 饿了么 UETool https://github.com/eleme/UETool/blob/master/README_zh.md
+                    uetool                        : "me.ele:uetool:1.2.9",
+                    uetool_no_op                  : "me.ele:uetool-no-op:1.2.9",
+
+                    // 内存检测工具 https://github.com/square/leakcanary
+                    leakcanary                    : "com.squareup.leakcanary:leakcanary-android:2.7",
+                    // BlockCanary 性能监控组件 https://github.com/markzhai/AndroidPerformanceMonitor/blob/master/README_CN.md
+                    blockcanary_android           : "com.github.markzhai:blockcanary-android:1.5.0",
+                    blockcanary_no_op             : "com.github.markzhai:blockcanary-no-op:1.5.0",
+
+                    // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
+                    xcrash                        : "com.iqiyi.xcrash:xcrash-android-lib:3.0.0",
+                    // 滴滴出行 DoraemonKit http://www.dokit.cn
+                    dokitx                        : "com.didichuxing.doraemonkit:dokitx:3.3.5",
+                    dokitx_no_op                  : "com.didichuxing.doraemonkit:dokitx-no-op:3.3.5",
+                    // 应用数据库展示 https://github.com/guolindev/Glance
+                    glance                        : "com.glance.guolindev:glance:1.0.0",
                     // OkHttp 拦截器抓包 https://github.com/DingProg/NetworkCaptureSelf
-                    networkCaptureSelf   : "com.github.DingProg.NetworkCaptureSelf:library:v1.0.1",
-                    networkCaptureSelf_op: "com.github.DingProg.NetworkCaptureSelf:library_no_op:v1.0.1",
+                    networkCaptureSelf            : "com.github.DingProg.NetworkCaptureSelf:library:v1.0.1",
+                    networkCaptureSelf_op         : "com.github.DingProg.NetworkCaptureSelf:library_no_op:v1.0.1",
+
+                    // 滴滴 Booster 质量优化框架 https://github.com/didi/booster
 
                     // 微信开源的资源混淆库 AndResGuard https://github.com/shwenzhang/AndResGuard/blob/master/README.zh-cn.md
 
-                    // 滴滴 Booster 质量优化框架 https://github.com/didi/booster
+                    // Matrix https://github.com/Tencent/matrix/#matrix_android_cn
+                    matrix_android_lib            : "com.tencent.matrix:matrix-android-lib:${ext.matrix_version}",
+                    matrix_android_commons        : "com.tencent.matrix:matrix-android-commons:${ext.matrix_version}",
+                    matrix_trace_canary           : "com.tencent.matrix:matrix-trace-canary:${ext.matrix_version}",
+                    matrix_resource_canary_android: "com.tencent.matrix:matrix-resource-canary-android:${ext.matrix_version}",
+                    matrix_resource_canary_common : "com.tencent.matrix:matrix-resource-canary-common:${ext.matrix_version}",
+                    matrix_io_canary              : "com.tencent.matrix:matrix-io-canary:${ext.matrix_version}",
+                    matrix_sqlite_lint            : "com.tencent.matrix:matrix-sqlite-lint-android-sdk:${ext.matrix_version}",
+                    matrix_battery_canary         : "com.tencent.matrix:matrix-battery-canary:${ext.matrix_version}",
             ],
             "build_apk" : [
                     // APK 构建、打包相关 ( 多渠道、压缩等 )
