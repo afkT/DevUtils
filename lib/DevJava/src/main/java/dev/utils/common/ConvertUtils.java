@@ -758,13 +758,13 @@ public final class ConvertUtils {
             final String str,
             final int radix
     ) {
-        if (str == null) return -1;
+        if (str == null) return -1L;
         try {
             return Long.parseLong(str, radix);
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "parseLong");
         }
-        return -1;
+        return -1L;
     }
 
     // =

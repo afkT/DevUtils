@@ -669,7 +669,7 @@ public final class MediaStoreUtils {
             final String filePath,
             final boolean isAndroidQ
     ) {
-        if (TextUtils.isEmpty(filePath)) return 0;
+        if (TextUtils.isEmpty(filePath)) return 0L;
         try {
             if (isAndroidQ && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 return getVideoDuration(ContentResolverUtils.getMediaUri(filePath));
@@ -680,7 +680,7 @@ public final class MediaStoreUtils {
                     (MediaMetadataRetriever.METADATA_KEY_DURATION));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVideoDuration");
-            return 0;
+            return 0L;
         }
     }
 
@@ -690,7 +690,7 @@ public final class MediaStoreUtils {
      * @return 本地视频时长
      */
     public static long getVideoDuration(final Uri uri) {
-        if (uri == null) return 0;
+        if (uri == null) return 0L;
         try {
             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
             mmr.setDataSource(DevUtils.getContext(), uri);
@@ -698,7 +698,7 @@ public final class MediaStoreUtils {
                     (MediaMetadataRetriever.METADATA_KEY_DURATION));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVideoDuration");
-            return 0;
+            return 0L;
         }
     }
 

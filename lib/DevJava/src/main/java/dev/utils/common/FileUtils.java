@@ -809,7 +809,7 @@ public final class FileUtils {
      * @return 目录全部文件大小
      */
     public static long getDirLength(final File dir) {
-        if (!isDirectory(dir)) return 0;
+        if (!isDirectory(dir)) return 0L;
         long   len   = 0;
         File[] files = dir.listFiles();
         if (files != null && files.length != 0) {

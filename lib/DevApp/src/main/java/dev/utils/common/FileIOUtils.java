@@ -796,7 +796,7 @@ public final class FileIOUtils {
             final InputStream inputStream,
             final OutputStream outputStream
     ) {
-        if (inputStream == null || outputStream == null) return -1;
+        if (inputStream == null || outputStream == null) return -1L;
         try {
             byte[] data  = new byte[sBufferSize];
             long   count = 0;
@@ -811,6 +811,6 @@ public final class FileIOUtils {
         } finally {
             CloseUtils.closeIOQuietly(inputStream, outputStream);
         }
-        return -1;
+        return -1L;
     }
 }

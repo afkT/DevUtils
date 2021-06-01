@@ -471,7 +471,7 @@ public final class AppUtils {
      * @return APP versionCode
      */
     public static long getAppVersionCode(final String packageName) {
-        if (StringUtils.isSpace(packageName)) return -1;
+        if (StringUtils.isSpace(packageName)) return -1L;
         try {
             PackageInfo packageInfo = getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -481,7 +481,7 @@ public final class AppUtils {
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersionCode");
-            return -1;
+            return -1L;
         }
     }
 

@@ -274,10 +274,7 @@ public final class DateUtils {
     ) {
         long timeLong1 = parseLong(time1);
         long timeLong2 = parseLong(time2);
-        if (timeLong1 > 1L && timeLong2 > 1L) {
-            return timeLong1 - timeLong2;
-        }
-        return -2L;
+        return timeLong1 - timeLong2;
     }
 
     /**
@@ -296,10 +293,7 @@ public final class DateUtils {
     ) {
         long timeLong1 = parseLong(time1, timeFormat1);
         long timeLong2 = parseLong(time2, timeFormat2);
-        if (timeLong1 > 1L && timeLong2 > 1L) {
-            return timeLong1 - timeLong2;
-        }
-        return -2L;
+        return timeLong1 - timeLong2;
     }
 
     // ===========
@@ -1153,7 +1147,7 @@ public final class DateUtils {
             final String endTime,
             final String format
     ) {
-        if (startTime < 1 || endTime == null || format == null) return -1;
+        if (startTime < 1 || endTime == null || format == null) return -1L;
         try {
             // 判断格式是否加了秒
             boolean isSecond = format.endsWith(":ss");
@@ -1180,7 +1174,7 @@ public final class DateUtils {
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getEndTimeDiff");
         }
-        return -1;
+        return -1L;
     }
 
     // =============

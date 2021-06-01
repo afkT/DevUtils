@@ -1900,7 +1900,7 @@ public final class CollectionUtils {
             final int end,
             final long extra
     ) {
-        long total = 0;
+        long total = 0L;
         if (lists != null) {
             for (int i = start; i < end; i++) {
                 try {
