@@ -254,7 +254,7 @@ public class DevCacheEngineImpl
             T value,
             long validTime
     ) {
-        String json = DevJSONEngine.getEngine().toJson(validTime);
+        String json = DevJSONEngine.getEngine().toJson(value);
         return mConfig.mDevCache.put(key, json, validTime);
     }
 

@@ -217,7 +217,7 @@ class DevCacheEngineImpl(
         value: T,
         validTime: Long
     ): Boolean {
-        val json = DevJSONEngine.getEngine().toJson(validTime)
+        val json = DevJSONEngine.getEngine().toJson(value)
         return mConfig.mDevCache.put(key, json, validTime)
     }
 
