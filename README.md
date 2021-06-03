@@ -80,7 +80,7 @@
 implementation 'io.github.afkt:DevAppX:2.2.6'
 
 // DevAssist 快捷功能辅助类库
-implementation 'io.github.afkt:DevAssist:1.2.2'
+implementation 'io.github.afkt:DevAssist:1.2.3'
 
 // DevBase Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
 implementation 'io.github.afkt:DevBase:1.0.6'

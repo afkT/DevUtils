@@ -29,9 +29,9 @@ ext {
             dev_app_versionName                     : "2.2.6",
 
             // 版本号
-            dev_assist_versionCode                  : 122,
+            dev_assist_versionCode                  : 123,
             // 版本名
-            dev_assist_versionName                  : "1.2.2",
+            dev_assist_versionName                  : "1.2.3",
 
             // 版本号
             dev_base_versionCode                    : 106,
