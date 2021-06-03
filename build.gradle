@@ -46,7 +46,7 @@ buildscript {
         // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.4.32"
         // https://mvnrepository.com/artifact/com.tencent.matrix/matrix-gradle-plugin
-        classpath ("com.tencent.matrix:matrix-gradle-plugin:$matrix_version") { changing = true }
+        classpath("com.tencent.matrix:matrix-gradle-plugin:$matrix_version") { changing = true }
     }
 }
 
