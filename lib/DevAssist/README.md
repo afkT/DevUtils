@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'io.github.afkt:DevAssist:1.2.1'
+implementation 'io.github.afkt:DevAssist:1.2.2'
 ```
 
 ## 目录结构
@@ -19,6 +19,7 @@ implementation 'io.github.afkt:DevAssist:1.2.1'
       - number                                        | 数值操作
    - callback                                         | 接口回调相关
    - engine                                           | 兼容 Engine
+      - analytics                                     | Analytics Engine
       - cache                                         | Cache Engine
       - compress                                      | Image Compress Engine
          - listener                                   | 图片压缩回调事件
@@ -29,6 +30,9 @@ implementation 'io.github.afkt:DevAssist:1.2.1'
       - log                                           | Log Engine
       - media                                         | Media Selector Engine
       - permission                                    | Permission Engine
+      - push                                          | Push Engine
+      - share                                         | Share Engine
+         - listener                                   | 分享回调事件
       - storage                                       | Storage Engine
    - function                                         | 快捷方法执行相关
 ```
@@ -54,6 +58,7 @@ implementation 'io.github.afkt:DevAssist:1.2.1'
       - [number](#devbasenumber)                      | 数值操作
    - [callback](#devcallback)                         | 接口回调相关
    - [engine](#devengine)                             | 兼容 Engine
+      - [analytics](#devengineanalytics)              | Analytics Engine
       - [cache](#devenginecache)                      | Cache Engine
       - [compress](#devenginecompress)                | Image Compress Engine
          - [listener](#devenginecompresslistener)     | 图片压缩回调事件
@@ -64,6 +69,9 @@ implementation 'io.github.afkt:DevAssist:1.2.1'
       - [log](#devenginelog)                          | Log Engine
       - [media](#devenginemedia)                      | Media Selector Engine
       - [permission](#devenginepermission)            | Permission Engine
+      - [push](#devenginepush)                        | Push Engine
+      - [share](#devengineshare)                      | Share Engine
+         - [listener](#devenginesharelistener)        | 分享回调事件
       - [storage](#devenginestorage)                  | Storage Engine
    - [function](#devfunction)                         | 快捷方法执行相关
 
@@ -746,6 +754,29 @@ implementation 'io.github.afkt:DevAssist:1.2.1'
 ## <span id="devengine">**`dev.engine`**</span>
 
 
+## <span id="devengineanalytics">**`dev.engine.analytics`**</span>
+
+
+* **Analytics Engine ->** [DevAnalyticsEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/analytics/DevAnalyticsEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 Analytics Engine |
+| setEngine | 设置 Analytics Engine |
+| contains | 是否存在 Analytics Engine |
+| getsEngineMaps | 获取 Engine Map |
+
+
+* **Analytics Engine 接口 ->** [IAnalyticsEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/analytics/IAnalyticsEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| initialize | 初始化方法 |
+| register | 绑定 |
+| unregister | 解绑 |
+| track | 数据统计 ( 埋点 ) 方法 |
+
+
 ## <span id="devenginecache">**`dev.engine.cache`**</span>
 
 
@@ -753,9 +784,10 @@ implementation 'io.github.afkt:DevAssist:1.2.1'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 CacheEngine |
-| setEngine | 设置 CacheEngine |
-| contains | 判断是否存在 CacheEngine |
+| getEngine | 获取 Cache Engine |
+| setEngine | 设置 Cache Engine |
+| contains | 是否存在 Cache Engine |
+| getsEngineMaps | 获取 Engine Map |
 
 
 * **Cache Engine 接口 ->** [ICacheEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/cache/ICacheEngine.java)
@@ -799,8 +831,10 @@ implementation 'io.github.afkt:DevAssist:1.2.1'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 CompressEngine |
-| setEngine | 设置 CompressEngine |
+| getEngine | 获取 Compress Engine |
+| setEngine | 设置 Compress Engine |
+| contains | 是否存在 Compress Engine |
+| getsEngineMaps | 获取 Engine Map |
 
 
 * **Image Compress Engine 接口 ->** [ICompressEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/compress/ICompressEngine.java)
@@ -844,8 +878,10 @@ implementation 'io.github.afkt:DevAssist:1.2.1'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 HttpEngine |
-| setEngine | 设置 HttpEngine |
+| getEngine | 获取 Http Engine |
+| setEngine | 设置 Http Engine |
+| contains | 是否存在 Http Engine |
+| getsEngineMaps | 获取 Engine Map |
 
 
 * **Http Engine 接口 ->** [IHttpEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/http/IHttpEngine.java)
@@ -879,8 +915,10 @@ implementation 'io.github.afkt:DevAssist:1.2.1'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 ImageEngine |
-| setEngine | 设置 ImageEngine |
+| getEngine | 获取 Image Engine |
+| setEngine | 设置 Image Engine |
+| contains | 是否存在 Image Engine |
+| getsEngineMaps | 获取 Engine Map |
 
 
 * **Image Engine 接口 ->** [IImageEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/image/IImageEngine.java)
@@ -956,8 +994,10 @@ implementation 'io.github.afkt:DevAssist:1.2.1'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 JSONEngine |
-| setEngine | 设置 JSONEngine |
+| getEngine | 获取 JSON Engine |
+| setEngine | 设置 JSON Engine |
+| contains | 是否存在 JSON Engine |
+| getsEngineMaps | 获取 Engine Map |
 
 
 * **JSON Engine 接口 ->** [IJSONEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/json/IJSONEngine.java)
@@ -979,8 +1019,10 @@ implementation 'io.github.afkt:DevAssist:1.2.1'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 LogEngine |
-| setEngine | 设置 LogEngine |
+| getEngine | 获取 Log Engine |
+| setEngine | 设置 Log Engine |
+| contains | 是否存在 Log Engine |
+| getsEngineMaps | 获取 Engine Map |
 
 
 * **Log Engine 接口 ->** [ILogEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/log/ILogEngine.java)
@@ -1013,8 +1055,10 @@ implementation 'io.github.afkt:DevAssist:1.2.1'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 MediaEngine |
-| setEngine | 设置 MediaEngine |
+| getEngine | 获取 Media Engine |
+| setEngine | 设置 Media Engine |
+| contains | 是否存在 Media Engine |
+| getsEngineMaps | 获取 Engine Map |
 
 
 * **Media Selector Engine 接口 ->** [IMediaEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/media/IMediaEngine.java)
@@ -1046,8 +1090,10 @@ implementation 'io.github.afkt:DevAssist:1.2.1'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 PermissionEngine |
-| setEngine | 设置 PermissionEngine |
+| getEngine | 获取 Permission Engine |
+| setEngine | 设置 Permission Engine |
+| contains | 是否存在 Permission Engine |
+| getsEngineMaps | 获取 Engine Map |
 
 
 * **Permission Engine 接口 ->** [IPermissionEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/permission/IPermissionEngine.java)
@@ -1063,6 +1109,81 @@ implementation 'io.github.afkt:DevAssist:1.2.1'
 | onDenied | 授权未通过权限回调 |
 
 
+## <span id="devenginepush">**`dev.engine.push`**</span>
+
+
+* **Push Engine ->** [DevPushEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/push/DevPushEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 Push Engine |
+| setEngine | 设置 Push Engine |
+| contains | 是否存在 Push Engine |
+| getsEngineMaps | 获取 Engine Map |
+
+
+* **Push Engine 接口 ->** [IPushEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/push/IPushEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| initialize | 初始化方法 |
+| register | 绑定 |
+| unregister | 解绑 |
+| onReceiveServicePid | 推送进程启动通知 |
+| onReceiveClientId | 初始化 Client Id 成功通知 |
+| onReceiveDeviceToken | 设备 ( 厂商 ) Token 通知 |
+| onReceiveOnlineState | 在线状态变化通知 |
+| onReceiveCommandResult | 命令回执通知 |
+| onNotificationMessageArrived | 推送消息送达通知 |
+| onNotificationMessageClicked | 推送消息点击通知 |
+| onReceiveMessageData | 透传消息送达通知 |
+| convertMessage | 传入 Object 转换 Engine Message |
+
+
+## <span id="devengineshare">**`dev.engine.share`**</span>
+
+
+* **Share Engine ->** [DevShareEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/share/DevShareEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 Share Engine |
+| setEngine | 设置 Share Engine |
+| contains | 是否存在 Share Engine |
+| getsEngineMaps | 获取 Engine Map |
+
+
+* **Share Engine 接口 ->** [IShareEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/share/IShareEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| initialize | 初始化方法 |
+| openMinApp | 打开小程序 |
+| shareMinApp | 分享小程序 |
+| shareUrl | 分享链接 |
+| shareImage | 分享图片 |
+| shareVideo | 分享视频 |
+| shareMusic | 分享音乐 |
+| shareEmoji | 分享表情 |
+| shareText | 分享文本 |
+| shareFile | 分享文件 |
+| share | 分享操作 ( 通用扩展 ) |
+| onActivityResult | 部分平台 Activity onActivityResult 额外调用处理 |
+
+
+## <span id="devenginesharelistener">**`dev.engine.share.listener`**</span>
+
+
+* **分享回调 ->** [ShareListener.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/share/listener/ShareListener.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onStart | 开始分享 |
+| onResult | 分享成功 |
+| onError | 分享失败 |
+| onCancel | 取消分享 |
+
+
 ## <span id="devenginestorage">**`dev.engine.storage`**</span>
 
 
@@ -1070,9 +1191,10 @@ implementation 'io.github.afkt:DevAssist:1.2.1'
 
 | 方法 | 注释 |
 | :- | :- |
-| getEngine | 获取 StorageEngine |
-| setEngine | 设置 StorageEngine |
-| contains | 判断是否存在 StorageEngine |
+| getEngine | 获取 Storage Engine |
+| setEngine | 设置 Storage Engine |
+| contains | 是否存在 Storage Engine |
+| getsEngineMaps | 获取 Engine Map |
 
 
 * **Storage Engine 接口 ->** [IStorageEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/storage/IStorageEngine.java)

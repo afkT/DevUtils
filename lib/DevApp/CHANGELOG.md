@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 2.2.6 *(2021-06-04)*
+----------------------------
+
+* `[Add]` UriUtils#getUriForString、isUri、getUriScheme
+
+* `[Add]` DevFinal 新增部分常量
+
 Version 2.2.5 *(2021-05-19)*
 ----------------------------
 

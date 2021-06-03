@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.2.2 *(2021-06-04)*
+----------------------------
+
+* `[Add]` DevAnalyticsEngine、DevPushEngine、DevShareEngine
+
 Version 1.2.1 *(2021-05-19)*
 ----------------------------
 
