@@ -20,7 +20,7 @@ public class MMKVStorageEngineImpl
     public MMKVStorageEngineImpl(MMKVConfig config) {
         this.mConfig = config;
         // MMKV Holder
-        mHolder = MMKVUtils.putHolder(config.storageID, config.getMMKV());
+        mHolder = MMKVUtils.putHolder(config.getMMKV().mmapID(), config.getMMKV());
     }
 
     // ===============

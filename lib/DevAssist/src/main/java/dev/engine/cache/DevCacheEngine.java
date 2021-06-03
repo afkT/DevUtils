@@ -1,6 +1,7 @@
 package dev.engine.cache;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * detail: Cache Engine
@@ -11,15 +12,14 @@ public final class DevCacheEngine {
     private DevCacheEngine() {
     }
 
-    private static LinkedHashMap<String, ICacheEngine> sEngineMaps = new LinkedHashMap<>();
+    private static ICacheEngine sEngine;
 
     /**
      * 获取 Cache Engine
-     * @param cacheID 缓存 Engine id
      * @return {@link ICacheEngine}
      */
-    public static ICacheEngine getEngine(final String cacheID) {
-        return sEngineMaps.get(cacheID);
+    public static ICacheEngine getEngine() {
+        return sEngine;
     }
 
     /**
@@ -27,15 +27,48 @@ public final class DevCacheEngine {
      * @param engine {@link ICacheEngine}
      */
     public static void setEngine(final ICacheEngine engine) {
-        sEngineMaps.put(engine.getConfig().cacheID, engine);
+        DevCacheEngine.sEngine = engine;
+    }
+
+    // =
+
+    private static final Map<String, ICacheEngine> sEngineMaps = new HashMap<>();
+
+    /**
+     * 获取 Cache Engine
+     * @param key key
+     * @return {@link ICacheEngine}
+     */
+    public static ICacheEngine getEngine(final String key) {
+        return sEngineMaps.get(key);
     }
 
     /**
-     * 判断是否存在 Cache Engine
-     * @param cacheID 缓存 Engine id
+     * 设置 Cache Engine
+     * @param key    key
+     * @param engine {@link ICacheEngine}
+     */
+    public static void setEngine(
+            final String key,
+            final ICacheEngine engine
+    ) {
+        sEngineMaps.put(key, engine);
+    }
+
+    /**
+     * 是否存在 Cache Engine
+     * @param key key
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean contains(final String cacheID) {
-        return sEngineMaps.containsKey(cacheID);
+    public static boolean contains(final String key) {
+        return sEngineMaps.containsKey(key);
+    }
+
+    /**
+     * 获取 Engine Map
+     * @return Engine Map
+     */
+    public static Map<String, ICacheEngine> getsEngineMaps() {
+        return sEngineMaps;
     }
 }

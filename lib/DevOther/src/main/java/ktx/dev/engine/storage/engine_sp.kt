@@ -12,11 +12,10 @@ import java.lang.reflect.Type
  * @author Ttt
  */
 class SPConfig(
-    storageID: String?,
     cipher: Cipher?,
     // SharedPreferences
     val preference: IPreference
-) : IStorageEngine.EngineConfig(storageID, cipher)
+) : IStorageEngine.EngineConfig(cipher)
 
 /**
  * detail: SharedPreferences Storage Engine 实现

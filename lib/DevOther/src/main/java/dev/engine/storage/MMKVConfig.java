@@ -15,11 +15,10 @@ public class MMKVConfig
     private final MMKV mMMKV;
 
     public MMKVConfig(
-            String storageID,
             Cipher cipher,
             MMKV mmkv
     ) {
-        super(storageID, cipher);
+        super(cipher);
         this.mMMKV = mmkv;
     }
 

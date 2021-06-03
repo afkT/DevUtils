@@ -16,16 +16,12 @@ public interface IStorageEngine<Config extends IStorageEngine.EngineConfig> {
      */
     class EngineConfig {
 
-        // 存储 id
-        public final String storageID;
         // 通用加解密中间层
         public final Cipher cipher;
 
         public EngineConfig(
-                String storageID,
                 Cipher cipher
         ) {
-            this.storageID = storageID;
             this.cipher = cipher;
         }
     }

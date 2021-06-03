@@ -1,6 +1,7 @@
 package dev.engine.storage;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * detail: Storage Engine
@@ -11,15 +12,14 @@ public final class DevStorageEngine {
     private DevStorageEngine() {
     }
 
-    private static LinkedHashMap<String, IStorageEngine> sEngineMaps = new LinkedHashMap<>();
+    private static IStorageEngine sEngine;
 
     /**
      * 获取 Storage Engine
-     * @param storageID 存储 Engine id
      * @return {@link IStorageEngine}
      */
-    public static IStorageEngine getEngine(final String storageID) {
-        return sEngineMaps.get(storageID);
+    public static IStorageEngine getEngine() {
+        return sEngine;
     }
 
     /**
@@ -27,15 +27,48 @@ public final class DevStorageEngine {
      * @param engine {@link IStorageEngine}
      */
     public static void setEngine(final IStorageEngine engine) {
-        sEngineMaps.put(engine.getConfig().storageID, engine);
+        DevStorageEngine.sEngine = engine;
+    }
+
+    // =
+
+    private static final Map<String, IStorageEngine> sEngineMaps = new HashMap<>();
+
+    /**
+     * 获取 Storage Engine
+     * @param key key
+     * @return {@link IStorageEngine}
+     */
+    public static IStorageEngine getEngine(final String key) {
+        return sEngineMaps.get(key);
     }
 
     /**
-     * 判断是否存在 Storage Engine
-     * @param storageID 存储 Engine id
+     * 设置 Storage Engine
+     * @param key    key
+     * @param engine {@link IStorageEngine}
+     */
+    public static void setEngine(
+            final String key,
+            final IStorageEngine engine
+    ) {
+        sEngineMaps.put(key, engine);
+    }
+
+    /**
+     * 是否存在 Storage Engine
+     * @param key key
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean contains(final String storageID) {
-        return sEngineMaps.containsKey(storageID);
+    public static boolean contains(final String key) {
+        return sEngineMaps.containsKey(key);
+    }
+
+    /**
+     * 获取 Engine Map
+     * @return Engine Map
+     */
+    public static Map<String, IStorageEngine> getsEngineMaps() {
+        return sEngineMaps;
     }
 }

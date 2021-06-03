@@ -26,16 +26,10 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig,
      */
     class EngineConfig {
 
-        // 缓存存储 id
-        public final String cacheID;
         // 通用加解密中间层
         public final Cipher cipher;
 
-        public EngineConfig(
-                String cacheID,
-                Cipher cipher
-        ) {
-            this.cacheID = cacheID;
+        public EngineConfig(Cipher cipher) {
             this.cipher = cipher;
         }
     }

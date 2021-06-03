@@ -14,11 +14,10 @@ public class SPConfig
     private final IPreference mPreference;
 
     public SPConfig(
-            String storageID,
             Cipher cipher,
             IPreference preference
     ) {
-        super(storageID, cipher);
+        super(cipher);
         this.mPreference = preference;
     }
 

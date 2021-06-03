@@ -13,10 +13,9 @@ import java.lang.reflect.Type
  * @author Ttt
  */
 class MMKVConfig(
-    storageID: String?,
     cipher: Cipher?,
     val mmkv: MMKV
-) : IStorageEngine.EngineConfig(storageID, cipher)
+) : IStorageEngine.EngineConfig(cipher)
 
 /**
  * detail: MMKV Storage Engine 实现
@@ -31,7 +30,7 @@ class MMKVStorageEngineImpl(
 
     init {
         // MMKV Holder
-        mHolder = MMKVUtils.putHolder(config.storageID, config.mmkv)
+        mHolder = MMKVUtils.putHolder(config.mmkv.mmapID(), config.mmkv)
     }
 
     // ===============

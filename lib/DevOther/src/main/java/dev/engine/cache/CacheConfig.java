@@ -13,11 +13,10 @@ public class CacheConfig
     public final DevCache mDevCache;
 
     public CacheConfig(
-            String cacheID,
             Cipher cipher,
             DevCache cache
     ) {
-        super(cacheID, cipher);
+        super(cipher);
         this.mDevCache = cache;
     }
 }
