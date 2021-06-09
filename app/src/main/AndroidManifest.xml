@@ -557,6 +557,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- RecyclerView - ConcatAdapter -->
+
+        <activity
+            android:name=".ui.activity.RecyConcatAdapterActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- startActivityForResult Callback -->
 
         <activity

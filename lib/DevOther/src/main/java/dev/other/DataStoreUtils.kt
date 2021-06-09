@@ -50,7 +50,7 @@ object DataStoreUtils {
      * @return [InnerDataStore]
      */
     fun get(storeName: String?): InnerDataStore {
-        var key = if (TextUtils.isEmpty(storeName)) TAG else storeName!!
+        val key = if (TextUtils.isEmpty(storeName)) TAG else storeName!!
         var value = cacheMap[key]
         if (value != null) return value
         value = InnerDataStore(key)
@@ -80,8 +80,8 @@ object DataStoreUtils {
     ): InnerDataStore {
         if (spNames.isEmpty()) throw Exception("spNames size is zero")
 
-        var context = getContext()
-        var lists = ArrayList<DataMigration<Preferences>>()
+        val context = getContext()
+        val lists = ArrayList<DataMigration<Preferences>>()
         for (name in spNames) {
             if (!TextUtils.isEmpty(name)) {
                 lists.add(SharedPreferencesMigration(context, name))
@@ -89,7 +89,7 @@ object DataStoreUtils {
         }
         // 传入 migrations 参数, 构建一个 DataStore 之后
         // 需要执行一次读或写, DataStore 才会自动合并 SharedPreference 文件内容
-        var dataStore = context.createDataStore(
+        val dataStore = context.createDataStore(
             name = storeName,
             migrations = lists
         )

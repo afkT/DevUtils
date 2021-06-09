@@ -210,6 +210,9 @@ class ButtonValue(
         // ViewPager2
         const val BTN_VIEWPAGER2 = MODULE_UI + 2500
 
+        // RecyclerView - ConcatAdapter
+        const val BTN_RECYCLERVIEW_CONCATADAPTER = MODULE_UI + 2600
+
         // ===========
         // = 其他功能 =
         // ===========
@@ -453,7 +456,7 @@ class ButtonValue(
         // ===================
 
         // DevWidget
-        const val BTN_DEV_WIDGET = MODULE_DEV_WIDGET
+        private const val BTN_DEV_WIDGET = MODULE_DEV_WIDGET
 
         // ViewPager 滑动监听、控制滑动
         const val BTN_VIEW_PAGER = BTN_DEV_WIDGET + 100

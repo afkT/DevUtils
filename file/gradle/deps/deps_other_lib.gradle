@@ -91,6 +91,8 @@ dependencies {
     implementation deps.widget.smartrefreshHorizontal
 //    // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
 //    implementation deps.widget.baserecyclerviewadapterhelper
+    // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
+    implementation deps.widget.multitype
 
     // ==============
     // = Deprecated =

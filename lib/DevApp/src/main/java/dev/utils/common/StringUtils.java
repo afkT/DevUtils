@@ -1142,6 +1142,58 @@ public final class StringUtils {
     // =
 
     /**
+     * 进行 URL 解码, 默认 UTF-8 ( 循环到非 URL 编码为止 )
+     * @param str       待处理字符串
+     * @param threshold 解码次数阈值, 超过该次数还未完成则直接返回
+     * @return UTF-8 编码格式 URL 解码后的字符串
+     */
+    public static String urlDecodeWhile(
+            final String str,
+            final int threshold
+    ) {
+        return urlDecodeWhile(str, "UTF-8", threshold);
+    }
+
+    /**
+     * 进行 URL 解码 ( 循环到非 URL 编码为止 )
+     * @param str       待处理字符串
+     * @param enc       解码格式
+     * @param threshold 解码次数阈值, 超过该次数还未完成则直接返回
+     * @return 指定编码格式 URL 解码后的字符串
+     */
+    public static String urlDecodeWhile(
+            final String str,
+            final String enc,
+            final int threshold
+    ) {
+        if (str == null || enc == null) return null;
+        int    count       = Math.max(threshold, 1);
+        int    number      = 0;
+        String result      = str;
+        String decodeValue = StringUtils.urlDecode(str, enc);
+        while (true) {
+            // 如果相同则直接返回
+            if (result.equals(decodeValue)) {
+                return decodeValue;
+            }
+            if (decodeValue == null) return result;
+            result = decodeValue;
+            decodeValue = StringUtils.urlDecode(result, enc);
+            // 判断循环次数
+            number++;
+            if (number > count) {
+                if (decodeValue != null) {
+                    return decodeValue;
+                } else {
+                    return result;
+                }
+            }
+        }
+    }
+
+    // =
+
+    /**
      * 将字符串转移为 ASCII 码
      * @param str 待处理字符串
      * @return 字符串转 ASCII 码后的字符串

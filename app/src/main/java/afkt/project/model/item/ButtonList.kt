@@ -121,7 +121,7 @@ object ButtonList {
      * 获取 Lib Module Button Value 集合
      * @return [List]
      */
-    val moduleLibButtonValues: List<ButtonValue>
+    private val moduleLibButtonValues: List<ButtonValue>
         get() {
             val lists: MutableList<ButtonValue> = ArrayList()
             lists.add(
@@ -180,7 +180,7 @@ object ButtonList {
      * 获取 UI Module Button Value 集合
      * @return [List]
      */
-    val moduleUIButtonValues: List<ButtonValue>
+    private val moduleUIButtonValues: List<ButtonValue>
         get() {
             val lists: MutableList<ButtonValue> = ArrayList()
             lists.add(
@@ -339,6 +339,12 @@ object ButtonList {
                     RouterPath.ViewPager2Activity_PATH
                 )
             )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.BTN_RECYCLERVIEW_CONCATADAPTER, "RecyclerView - ConcatAdapter",
+                    RouterPath.RecyConcatAdapterActivity_PATH
+                )
+            )
             return lists
         }
 
@@ -370,7 +376,7 @@ object ButtonList {
      * 获取 Other Module Button Value 集合
      * @return [List]
      */
-    val moduleOtherButtonValues: List<ButtonValue>
+    private val moduleOtherButtonValues: List<ButtonValue>
         get() {
             val lists: MutableList<ButtonValue> = ArrayList()
             lists.add(
