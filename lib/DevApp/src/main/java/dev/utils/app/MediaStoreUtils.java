@@ -67,6 +67,7 @@ public final class MediaStoreUtils {
      * @param filePath 文件路径
      * @return {@code true} success, {@code false} fail
      */
+    @Deprecated
     public static boolean notifyMediaStore(final String filePath) {
         return notifyMediaStore(FileUtils.getFile(filePath));
     }
@@ -83,19 +84,34 @@ public final class MediaStoreUtils {
      * </pre>
      * @param file 文件
      * @return {@code true} success, {@code false} fail
+     * @deprecated Android Q 以后的版本需要通过 MediaStore 插入数据
      */
+    @Deprecated
     public static boolean notifyMediaStore(final File file) {
-//        // Android Q 以后的版本需要通过 MediaStore 插入数据
-//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
         if (file != null) {
             try {
-                // 通知图库扫描更新
-                return AppUtils.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, DevUtils.getUriForFile(file)));
+                return notifyMediaStore(Uri.fromFile(file));
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "notifyMediaStore");
             }
         }
-//        }
+        return false;
+    }
+
+    /**
+     * 通知刷新本地资源
+     * @param uri {@link Uri}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean notifyMediaStore(final Uri uri) {
+        if (uri != null) {
+            try {
+                // 通知图库扫描更新
+                return AppUtils.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "notifyMediaStore");
+            }
+        }
         return false;
     }
 
