@@ -34,7 +34,7 @@ public interface IHttpEngine {
         public final <T extends Request> T getRequest() {
             try {
                 return (T) request;
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
             return null;
         }

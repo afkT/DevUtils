@@ -90,7 +90,7 @@ public class DevObject<T>
     public <CTO> CTO convertTag() {
         try {
             return (CTO) mTag;
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return null;
     }

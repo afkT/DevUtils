@@ -1534,7 +1534,7 @@ public final class ConvertUtils {
         for (int i = 0, len = ints.length; i < len; i++) {
             try {
                 ints[i] = (int) datas[off + i];
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         return ints;
@@ -1583,7 +1583,7 @@ public final class ConvertUtils {
         for (int i = 0, len = ints.length; i < len; i++) {
             try {
                 ints[i] = (int) datas[off + i];
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         return ints;
@@ -1632,7 +1632,7 @@ public final class ConvertUtils {
         for (int i = 0, len = ints.length; i < len; i++) {
             try {
                 ints[i] = (int) datas[off + i];
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         return ints;

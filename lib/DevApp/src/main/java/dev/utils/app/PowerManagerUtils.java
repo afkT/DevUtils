@@ -53,7 +53,7 @@ public final class PowerManagerUtils {
             mPowerManager = AppUtils.getPowerManager();
             // 电源管理锁
             mWakeLock = mPowerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.FULL_WAKE_LOCK, TAG);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 

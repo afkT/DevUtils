@@ -301,13 +301,13 @@ public final class JSONObjectUtils {
                 try {
                     new JSONArray(json);
                     return true;
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             } else if (json.startsWith("{") && json.endsWith("}")) {
                 try {
                     new JSONObject(json);
                     return true;
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
         }
@@ -325,7 +325,7 @@ public final class JSONObjectUtils {
                 try {
                     new JSONObject(json);
                     return true;
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
         }
@@ -343,7 +343,7 @@ public final class JSONObjectUtils {
                 try {
                     new JSONArray(json);
                     return true;
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
         }

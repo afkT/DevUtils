@@ -1642,7 +1642,7 @@ public final class BitmapUtils {
         } finally {
             try {
                 retriever.release();
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         return null;

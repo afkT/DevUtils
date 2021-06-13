@@ -134,7 +134,7 @@ public final class DevUtils {
         if (DevUtils.sApplication == null && context != null) {
             try {
                 DevUtils.sApplication = (Application) context.getApplicationContext();
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
     }
@@ -725,7 +725,7 @@ public final class DevUtils {
                         listener.onActivityDestroyed(activity);
                     }
                 }
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
             // 移除已消费的事件
             removeOnActivityDestroyedListener(activity);

@@ -79,7 +79,7 @@ public class LogWorker
             setProgressAsync(data);
             try {
                 Thread.sleep(10);
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
     }

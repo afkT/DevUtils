@@ -71,7 +71,7 @@ public final class RandomUtils {
         if (random == null || data == null) return data;
         try {
             random.nextBytes(data);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return data;
     }
@@ -154,7 +154,7 @@ public final class RandomUtils {
         if (data == null) return null;
         try {
             new Random().nextBytes(data);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return data;
     }

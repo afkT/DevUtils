@@ -66,7 +66,7 @@ public final class DevEnvironmentActivity
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                 // 设置状态栏为主题色
                 getWindow().setStatusBarColor(this.getResources().getColor(R.color.dev_environment_color));
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         if (Utils.isRelease()) {

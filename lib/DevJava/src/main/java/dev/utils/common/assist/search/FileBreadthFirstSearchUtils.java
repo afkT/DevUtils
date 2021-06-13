@@ -411,7 +411,7 @@ public final class FileBreadthFirstSearchUtils {
                 if (mIsStop) break;
                 try {
                     Thread.sleep(mDelayTime);
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
                 isEmpty = (mTaskQueue.isEmpty() && threadCount == 0);
             }

@@ -27,7 +27,7 @@ public class LogTools {
             } else {
                 builder.append("sMsgVo 为 null");
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return builder.toString();
     }
@@ -48,7 +48,7 @@ public class LogTools {
             } else {
                 builder.append("uInfoVo 为 null");
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return builder.toString();
     }
@@ -71,7 +71,7 @@ public class LogTools {
             builder.append("\nuName: ").append(uName);
             builder.append("\nsTitle: ").append(sTitle);
             builder.append("\nuAge: ").append(uAge);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return builder.toString();
     }

@@ -115,11 +115,11 @@ public final class CloseUtils {
         if (outputStream == null) return;
         try {
             outputStream.flush();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         try {
             outputStream.close();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -149,11 +149,11 @@ public final class CloseUtils {
         if (writer == null) return;
         try {
             writer.flush();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         try {
             writer.close();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 }

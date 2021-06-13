@@ -178,11 +178,11 @@ public final class ScreenSensorAssist {
         LogPrintUtils.dTag(TAG, "stop orientation listener.");
         try {
             mSensorManager.unregisterListener(mListener);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         try {
             mSensorManagerChange.unregisterListener(mListenerChange);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return true;
     }

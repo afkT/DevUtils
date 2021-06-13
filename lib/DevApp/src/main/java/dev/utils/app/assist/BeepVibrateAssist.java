@@ -178,7 +178,7 @@ public final class BeepVibrateAssist
                 // 播放
                 mMediaPlayer.start();
                 return true;
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         return false;

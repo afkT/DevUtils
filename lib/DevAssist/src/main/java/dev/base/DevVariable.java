@@ -217,7 +217,7 @@ public class DevVariable<K, V> {
     public <T> T getVariableValueConvert(final K key) {
         try {
             return (T) mLinkedHashMap.get(key);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return null;
     }

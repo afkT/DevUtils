@@ -235,7 +235,7 @@ public class WrapView
             if (childCount == 0) return getPaddingTop() + getPaddingBottom();
             try { // 减去最后一个
                 removeViewAt(childCount - 1);
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
             return calc(rootWidth, rowTopMargin, viewLeftMargin);
         }

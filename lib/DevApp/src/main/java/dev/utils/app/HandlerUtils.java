@@ -108,7 +108,7 @@ public final class HandlerUtils {
                         if (runnable != null) {
                             try {
                                 runnable.run();
-                            } catch (Exception e) {
+                            } catch (Exception ignored) {
                             }
                         }
                         // 判断是否超过次数

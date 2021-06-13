@@ -375,7 +375,7 @@ public class DevTimer {
                 mTimerTask.cancel();
                 mTimerTask = null;
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return this;
     }

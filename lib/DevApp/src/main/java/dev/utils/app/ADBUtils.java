@@ -238,7 +238,7 @@ public final class ADBUtils {
                                     return Integer.parseInt(datas[1]);
                                 }
                             }
-                        } catch (Exception e) {
+                        } catch (Exception ignored) {
                         }
                     }
                 }
@@ -270,7 +270,7 @@ public final class ADBUtils {
                                     return datas[1];
                                 }
                             }
-                        } catch (Exception e) {
+                        } catch (Exception ignored) {
                         }
                     }
                 }
@@ -546,7 +546,7 @@ public final class ADBUtils {
                                     return subData.substring(0, subData.length() - 1);
                                 }
                                 return subData;
-                            } catch (Exception e) {
+                            } catch (Exception ignored) {
                             }
                         }
                     }
@@ -784,7 +784,7 @@ public final class ADBUtils {
                                 }
                             }
                         }
-                    } catch (Exception e) {
+                    } catch (Exception ignored) {
                     }
                 }
                 return lists;
@@ -2150,7 +2150,7 @@ public final class ADBUtils {
         if (result.isSuccess3()) {
             try {
                 return Integer.parseInt(result.successMsg);
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         return -1;
@@ -2243,7 +2243,7 @@ public final class ADBUtils {
         if (result.isSuccess3()) {
             try {
                 return Integer.parseInt(result.successMsg);
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         return -1;

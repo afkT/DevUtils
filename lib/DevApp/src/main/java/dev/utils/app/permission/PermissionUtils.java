@@ -151,7 +151,7 @@ public final class PermissionUtils {
             try {
                 String name = (String) field.get("");
                 permissionSets.add(name);
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         return permissionSets;

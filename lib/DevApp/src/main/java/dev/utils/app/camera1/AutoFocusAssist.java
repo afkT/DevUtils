@@ -232,7 +232,7 @@ public final class AutoFocusAssist
             try {
                 // 堵塞时间
                 Thread.sleep(mInterval);
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
             // 开启定时
             start();

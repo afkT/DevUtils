@@ -166,7 +166,7 @@ public final class DevFunction {
                         if (delayMillis > 0L) {
                             try {
                                 Thread.sleep(delayMillis);
-                            } catch (Exception e) {
+                            } catch (Exception ignored) {
                             }
                         }
                         method.method(Operation.this);
@@ -232,7 +232,7 @@ public final class DevFunction {
                         if (delayMillis > 0L) {
                             try {
                                 Thread.sleep(delayMillis);
-                            } catch (Exception e) {
+                            } catch (Exception ignored) {
                             }
                         }
                         method.method(Operation.this);
@@ -272,7 +272,7 @@ public final class DevFunction {
                         if (delayMillis > 0L) {
                             try {
                                 Thread.sleep(delayMillis);
-                            } catch (Exception e) {
+                            } catch (Exception ignored) {
                             }
                         }
                         try {
@@ -345,7 +345,7 @@ public final class DevFunction {
                         if (delayMillis > 0L) {
                             try {
                                 Thread.sleep(delayMillis);
-                            } catch (Exception e) {
+                            } catch (Exception ignored) {
                             }
                         }
                         try {

@@ -151,7 +151,7 @@ final class PreferenceImpl
                 Set<String> stringSetValue = STRING_SET_DEFAULT;
                 try {
                     if (defaultValue instanceof Set) stringSetValue = (Set<String>) defaultValue;
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
                 return mPreferences.getStringSet(key, stringSetValue);
             default:

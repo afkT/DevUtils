@@ -329,7 +329,7 @@ public final class KeyBoardUtils {
                 } catch (Throwable ignore) {
                 }
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return;
     }
@@ -446,7 +446,7 @@ public final class KeyBoardUtils {
                     try {
                         editText.requestFocus();
                         editText.setSelection(editText.getText().toString().length());
-                    } catch (Exception e) {
+                    } catch (Exception ignored) {
                     }
                     openKeyboard(editText);
                 }

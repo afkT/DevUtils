@@ -119,7 +119,7 @@ public final class FastjsonUtils {
         try {
             Object object = JSON.parse(json);
             return (object instanceof JSONObject);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return false;
     }
@@ -133,7 +133,7 @@ public final class FastjsonUtils {
         try {
             Object object = JSON.parse(json);
             return (object instanceof JSONArray);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return false;
     }

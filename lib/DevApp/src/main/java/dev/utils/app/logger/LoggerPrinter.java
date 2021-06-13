@@ -898,7 +898,7 @@ final class LoggerPrinter
         if (message != null) {
             try {
                 return args.length == 0 ? message : String.format(message, args);
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         return "message is null";

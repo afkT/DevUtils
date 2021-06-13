@@ -52,7 +52,7 @@ public final class CacheUse {
                     CacheVo ctva = (CacheVo) DevCache.newCache().getSerializable("ctva");
                     // 判断是否过期
                     DevLogEngine.getEngine().dTag(TAG, "是否过期: %s", (ctva == null));
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
         }).start();

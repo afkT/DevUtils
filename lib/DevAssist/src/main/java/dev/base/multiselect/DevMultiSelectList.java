@@ -186,7 +186,7 @@ public class DevMultiSelectList<V>
         if (position >= 0) {
             try {
                 return mListSelects.remove(position);
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         return null;
@@ -251,7 +251,7 @@ public class DevMultiSelectList<V>
         if (position >= 0) {
             try {
                 return mListSelects.get(position);
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         return null;

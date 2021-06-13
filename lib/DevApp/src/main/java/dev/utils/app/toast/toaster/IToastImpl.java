@@ -198,7 +198,7 @@ final class IToastImpl
         if (mConfigToast != null) {
             try {
                 setView(View.inflate(mConfigToast.getView().getContext().getApplicationContext(), layoutId, null));
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
             // 如果是 null, 则抛出异常
             if (mConfigToast.isEmptyMessageView()) {
@@ -281,7 +281,7 @@ final class IToastImpl
         if (mToast != null) {
             try {
                 mToast.cancel();
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
     }
