@@ -240,17 +240,15 @@ final class LoggerPrinter
                 logHandle(logConfig, tag, Log.DEBUG, "json content format error");
             }
         } catch (Exception e) {
-            String errorInfo = DevFinal.NULL_STR;
-            if (e != null) {
-                Throwable throwable = e.getCause();
-                if (throwable != null) {
-                    errorInfo = throwable.toString();
-                } else {
-                    try {
-                        errorInfo = e.toString();
-                    } catch (Exception e1) {
-                        errorInfo = e1.toString();
-                    }
+            String errorInfo;
+            Throwable throwable = e.getCause();
+            if (throwable != null) {
+                errorInfo = throwable.toString();
+            } else {
+                try {
+                    errorInfo = e.toString();
+                } catch (Exception e1) {
+                    errorInfo = e1.toString();
                 }
             }
             logHandle(logConfig, tag, Log.ERROR, errorInfo + "\n" + json);
@@ -288,17 +286,15 @@ final class LoggerPrinter
             // 打印信息
             logHandle(logConfig, tag, Log.DEBUG, message);
         } catch (Exception e) {
-            String errorInfo = DevFinal.NULL_STR;
-            if (e != null) {
-                Throwable throwable = e.getCause();
-                if (throwable != null) {
-                    errorInfo = throwable.toString();
-                } else {
-                    try {
-                        errorInfo = e.toString();
-                    } catch (Exception e1) {
-                        errorInfo = e1.toString();
-                    }
+            String errorInfo;
+            Throwable throwable = e.getCause();
+            if (throwable != null) {
+                errorInfo = throwable.toString();
+            } else {
+                try {
+                    errorInfo = e.toString();
+                } catch (Exception e1) {
+                    errorInfo = e1.toString();
                 }
             }
             logHandle(logConfig, tag, Log.ERROR, errorInfo + "\n" + xml);
@@ -483,17 +479,15 @@ final class LoggerPrinter
                 logHandle(logConfig, tag, Log.DEBUG, "json content format error");
             }
         } catch (Exception e) {
-            String errorInfo = DevFinal.NULL_STR;
-            if (e != null) {
-                Throwable throwable = e.getCause();
-                if (throwable != null) {
-                    errorInfo = throwable.toString();
-                } else {
-                    try {
-                        errorInfo = e.toString();
-                    } catch (Exception e1) {
-                        errorInfo = e1.toString();
-                    }
+            String errorInfo;
+            Throwable throwable = e.getCause();
+            if (throwable != null) {
+                errorInfo = throwable.toString();
+            } else {
+                try {
+                    errorInfo = e.toString();
+                } catch (Exception e1) {
+                    errorInfo = e1.toString();
                 }
             }
             logHandle(logConfig, tag, Log.ERROR, errorInfo + "\n" + json);
@@ -533,17 +527,15 @@ final class LoggerPrinter
             // 打印信息
             logHandle(logConfig, tag, Log.DEBUG, message);
         } catch (Exception e) {
-            String errorInfo = DevFinal.NULL_STR;
-            if (e != null) {
-                Throwable throwable = e.getCause();
-                if (throwable != null) {
-                    errorInfo = throwable.toString();
-                } else {
-                    try {
-                        errorInfo = e.toString();
-                    } catch (Exception e1) {
-                        errorInfo = e1.toString();
-                    }
+            String errorInfo;
+            Throwable throwable = e.getCause();
+            if (throwable != null) {
+                errorInfo = throwable.toString();
+            } else {
+                try {
+                    errorInfo = e.toString();
+                } catch (Exception e1) {
+                    errorInfo = e1.toString();
                 }
             }
             logHandle(logConfig, tag, Log.ERROR, errorInfo + "\n" + xml);
