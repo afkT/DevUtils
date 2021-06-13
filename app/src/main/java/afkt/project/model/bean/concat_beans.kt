@@ -87,7 +87,9 @@ class ArticleBean1(
     // 配图
     val pictures: Bitmap?,
     // 文章内容
-    val content: String
+    val content: String,
+    // 背景颜色
+    val background: Int
 )
 
 // ==============================
@@ -260,7 +262,7 @@ private fun createCommodityLists(): List<CommodityBean> {
         // = 添加普通商品 =
         // =============
 
-        for (position in 1 until 10) {
+        for (position in 1 until 5) {
             add(
                 CommodityBean(
                     // 商品名
@@ -277,7 +279,7 @@ private fun createCommodityLists(): List<CommodityBean> {
         // = 添加评价商品 =
         // =============
 
-        for (position in 1 until 10) {
+        for (position in 1 until 5) {
             add(
                 CommodityBean(
                     // 商品名
@@ -356,7 +358,8 @@ private fun createArticleLists(): List<ArticleBean1> {
                         )
                     }篇: ${ChineseUtils.randomWord(5)}",
                     pictures = randomBitmap(position),
-                    content = ChineseUtils.randomWord(RandomUtils.getRandom(50, 100))
+                    content = ChineseUtils.randomWord(RandomUtils.getRandom(50, 100)),
+                    background = ColorUtils.getRandomColor()
                 )
             )
         }

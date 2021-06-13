@@ -81,6 +81,8 @@ dependencies {
     // https://blog.csdn.net/qq_22393017/article/details/58099486
     // 图片缩放 https://github.com/chrisbanes/PhotoView
     implementation deps.widget.photoview
+    // Banner 库 https://github.com/youth5201314/banner
+    implementation deps.widget.banner
     // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
     implementation deps.widget.stickyDecoration
     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout

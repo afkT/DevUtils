@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <dev.base.widget.BaseTextView
+        android:gravity="center"
+        android:id="@+id/vid_aca_title_tv"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/un_dp_15"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/un_sp_28"
+        tools:text="标题" />
+
+    <dev.base.widget.BaseImageView
+        android:id="@+id/vid_aca_igview"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/un_dp_15"
+        android:layout_width="match_parent"
+        android:scaleType="fitXY"
+        tools:background="@drawable/bg_wallpaper" />
+
+    <dev.base.widget.BaseTextView
+        android:id="@+id/vid_aca_content_tv"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/un_dp_15"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/un_sp_20"
+        tools:text="内容" />
+</LinearLayout>

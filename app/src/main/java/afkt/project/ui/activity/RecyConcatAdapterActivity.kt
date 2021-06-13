@@ -4,8 +4,15 @@ import afkt.project.R
 import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
+import afkt.project.model.bean.HeaderFooterItem
+import afkt.project.model.bean.createMainData
+import afkt.project.ui.adapter.concat.ArticleConcatAdapter
+import afkt.project.ui.adapter.concat.BannerConcatAdapter
+import afkt.project.ui.adapter.concat.CommodityConcatAdapter
+import afkt.project.ui.adapter.concat.HeaderFooterConcatAdapter
 import android.os.Bundle
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ConcatAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.app.helper.ViewHelper
 import java.util.*
@@ -26,9 +33,43 @@ class RecyConcatAdapterActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         val parent = binding.vidBvrRecy.parent as? ViewGroup
         // 根布局处理
         ViewHelper.get().setPadding(parent, 0)
+
+        convertAdapter()
     }
 
-    override fun initValue() {
-        super.initValue()
+    private fun convertAdapter() {
+        // 头部适配器
+        val headerAdapter = HeaderFooterConcatAdapter(
+            arrayListOf(
+                HeaderFooterItem("Header"),
+                HeaderFooterItem("Header2")
+            )
+        )
+
+        // 底部适配器
+        val footerAdapter = HeaderFooterConcatAdapter(
+            arrayListOf(HeaderFooterItem("Footer"))
+        )
+
+        val mainData = createMainData()
+
+        // Banner 广告图适配器
+        val bannerAdapter = BannerConcatAdapter(this, mainData.bannerLists)
+
+        // 商品、商品评价适配器
+        val commodityAdapter = CommodityConcatAdapter(mainData.commodityLists)
+
+        // 文章适配器
+        val articleAdapter = ArticleConcatAdapter(mainData.articleLists)
+
+        // 拼接适配器并设置
+        val concatAdapter = ConcatAdapter(
+            headerAdapter,
+            bannerAdapter,
+            commodityAdapter,
+            articleAdapter,
+            footerAdapter
+        )
+        binding.vidBvrRecy.adapter = concatAdapter
     }
 }

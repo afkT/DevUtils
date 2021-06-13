@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dev.base.widget.BaseTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/lightcoral"
+    android:gravity="center"
+    android:id="@+id/vid_achf_title_tv"
+    android:layout_height="@dimen/un_dp_90"
+    android:layout_width="match_parent"
+    android:textSize="@dimen/un_sp_40"
+    tools:text="Android" />
