@@ -277,17 +277,15 @@ public final class JCLogUtils {
                 // 打印信息
                 printLog(DEBUG, tag, message);
             } catch (Exception e) {
-                String errorInfo = DevFinal.NULL_STR;
-                if (e != null) {
-                    Throwable throwable = e.getCause();
-                    if (throwable != null) {
-                        errorInfo = throwable.toString();
-                    } else {
-                        try {
-                            errorInfo = e.toString();
-                        } catch (Exception e1) {
-                            errorInfo = e1.toString();
-                        }
+                String    errorInfo;
+                Throwable throwable = e.getCause();
+                if (throwable != null) {
+                    errorInfo = throwable.toString();
+                } else {
+                    try {
+                        errorInfo = e.toString();
+                    } catch (Exception e1) {
+                        errorInfo = e1.toString();
                     }
                 }
                 printLog(ERROR, tag, errorInfo + "\n" + xml);

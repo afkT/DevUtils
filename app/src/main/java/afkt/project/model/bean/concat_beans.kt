@@ -161,7 +161,7 @@ private fun createBannerLists(): List<BannerBean> {
                     id = position.toString(),
                     imageUrl = String.format(
                         "https://picsum.photos/id/%s/800/400",
-                        RandomUtils.getRandom(10, 50)
+                        RandomUtils.getRandom(10, 20)
                     )
                 )
             )

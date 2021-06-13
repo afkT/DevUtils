@@ -240,7 +240,7 @@ final class LoggerPrinter
                 logHandle(logConfig, tag, Log.DEBUG, "json content format error");
             }
         } catch (Exception e) {
-            String errorInfo;
+            String    errorInfo;
             Throwable throwable = e.getCause();
             if (throwable != null) {
                 errorInfo = throwable.toString();
@@ -286,7 +286,7 @@ final class LoggerPrinter
             // 打印信息
             logHandle(logConfig, tag, Log.DEBUG, message);
         } catch (Exception e) {
-            String errorInfo;
+            String    errorInfo;
             Throwable throwable = e.getCause();
             if (throwable != null) {
                 errorInfo = throwable.toString();
@@ -479,7 +479,7 @@ final class LoggerPrinter
                 logHandle(logConfig, tag, Log.DEBUG, "json content format error");
             }
         } catch (Exception e) {
-            String errorInfo;
+            String    errorInfo;
             Throwable throwable = e.getCause();
             if (throwable != null) {
                 errorInfo = throwable.toString();
@@ -527,7 +527,7 @@ final class LoggerPrinter
             // 打印信息
             logHandle(logConfig, tag, Log.DEBUG, message);
         } catch (Exception e) {
-            String errorInfo;
+            String    errorInfo;
             Throwable throwable = e.getCause();
             if (throwable != null) {
                 errorInfo = throwable.toString();

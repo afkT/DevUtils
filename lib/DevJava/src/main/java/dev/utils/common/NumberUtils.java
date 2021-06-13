@@ -63,7 +63,7 @@ public final class NumberUtils {
     public static String subZeroAndDot(final String value) {
         if (StringUtils.isNotEmpty(value)) {
             String str = value;
-            if (str.indexOf(".") >= 0) {
+            if (str.contains(".")) {
                 // 去掉多余的 0
                 str = str.replaceAll("0+?$", "");
                 // 最后一位是 . 则去掉
@@ -191,7 +191,7 @@ public final class NumberUtils {
         if (max <= 0) return 0.0d;
         if (value <= 0) return 0.0d;
         if (value >= max) return 1.0d;
-        return value / max;
+        return (double) value / (double) max;
     }
 
     /**
@@ -327,7 +327,7 @@ public final class NumberUtils {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
         if (value >= max) return 1.0f;
-        return value / max;
+        return (float) value / (float) max;
     }
 
     /**
@@ -460,7 +460,7 @@ public final class NumberUtils {
     ) {
         if (max <= 0) return 0.0d;
         if (value <= 0) return 0.0d;
-        return value / max;
+        return (double) value / (double) max;
     }
 
     /**
@@ -588,7 +588,7 @@ public final class NumberUtils {
     ) {
         if (max <= 0) return 0.0f;
         if (value <= 0) return 0.0f;
-        return value / max;
+        return (float) value / (float) max;
     }
 
     /**
@@ -620,7 +620,7 @@ public final class NumberUtils {
             final int max,
             final int min
     ) {
-        return value > max ? max : value < min ? min : value;
+        return value > max ? max : Math.max(value, min);
     }
 
     /**
@@ -635,7 +635,7 @@ public final class NumberUtils {
             final double max,
             final double min
     ) {
-        return value > max ? max : value < min ? min : value;
+        return value > max ? max : Math.max(value, min);
     }
 
     /**
@@ -650,7 +650,7 @@ public final class NumberUtils {
             final long max,
             final long min
     ) {
-        return value > max ? max : value < min ? min : value;
+        return value > max ? max : Math.max(value, min);
     }
 
     /**
@@ -665,7 +665,7 @@ public final class NumberUtils {
             final float max,
             final float min
     ) {
-        return value > max ? max : value < min ? min : value;
+        return value > max ? max : Math.max(value, min);
     }
 
     // ========
