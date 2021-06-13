@@ -565,6 +565,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- RecyclerView MultiType Adapter -->
+
+        <activity
+            android:name=".ui.activity.RecyMultiTypeAdapterActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- startActivityForResult Callback -->
 
         <activity

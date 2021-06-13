@@ -213,6 +213,9 @@ class ButtonValue(
         // RecyclerView - ConcatAdapter
         const val BTN_RECYCLERVIEW_CONCATADAPTER = MODULE_UI + 2600
 
+        // RecyclerView MultiType Adapter
+        const val BTN_RECYCLERVIEW_MULTITYPE_ADAPTER = MODULE_UI + 2700
+
         // ===========
         // = 其他功能 =
         // ===========

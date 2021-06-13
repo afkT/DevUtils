@@ -61,11 +61,13 @@ class CommodityBean(
     // 商品价格
     val commodityPrice: Double,
     // 商品类型 ( 是否评价商品 )
-    val type: Boolean = false,
+    val isEvaluateCommodity: Boolean = false,
     // 商品评价等级
     var evaluateLevel: Float = 0F,
     // 商品评价内容
-    var evaluateContent: String? = ""
+    var evaluateContent: String? = "",
+    // 是否首个向上边距 ( MultiType 使用 )
+    var isFirst: Boolean = false
 )
 
 /**
@@ -96,12 +98,8 @@ class ArticleBean1(
 // = 配合 ConcatAdapter 转换 Item =
 // ==============================
 
-class TitleBeanItem(
-    val title: String
-)
-
 class BannerBeanItem(
-    val obj: BannerBean
+    val obj: List<BannerBean>
 )
 
 // 一级分类
@@ -289,7 +287,7 @@ private fun createCommodityLists(): List<CommodityBean> {
                     // 商品价格
                     commodityPrice = RandomUtils.nextDoubleRange(15.1, 79.3),
                     // 商品类型 ( 是否评价商品 )
-                    type = true,
+                    isEvaluateCommodity = true,
                     // 商品评价等级
                     evaluateLevel = RandomUtils.getRandom(6).toFloat(),
                     // 商品评价内容
@@ -387,4 +385,50 @@ private fun randomClassifyList(
             )
         }
     }
+}
+
+// ============
+// = 转换 Item =
+// ============
+
+fun convertMainDataItem(mainData: MainBean): ArrayList<Any> {
+    val lists = ArrayList<Any>()
+
+    lists.add(BannerBeanItem(mainData.bannerLists))
+
+    var isFirst = false
+
+    mainData.commodityLists.forEach {
+        if (!isFirst) {
+            isFirst = true
+            it.isFirst = true
+        }
+        if (it.isEvaluateCommodity) {
+            lists.add(CommodityEvaluateBeanItem(it))
+        } else {
+            lists.add(CommodityBeanItem(it))
+        }
+    }
+
+    mainData.shapeableImageLists.forEach {
+        lists.add(ShapeableImageBeanItem(it))
+    }
+
+    mainData.articleLists.forEach {
+        lists.add(ArticleBean1Item(it))
+    }
+
+    mainData.classifyLists.forEach { it1 ->
+        // 一级分类
+        lists.add(ClassifyBeanItem1(it1))
+        // 二级分类
+        it1.subLists?.forEach { it2 ->
+            lists.add(ClassifyBeanItem2(it2))
+            // 三级分类
+            it2.subLists?.forEach { it3 ->
+                lists.add(ClassifyBeanItem3(it3))
+            }
+        }
+    }
+    return lists
 }

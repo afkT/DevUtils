@@ -345,6 +345,12 @@ object ButtonList {
                     RouterPath.RecyConcatAdapterActivity_PATH
                 )
             )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.BTN_RECYCLERVIEW_MULTITYPE_ADAPTER, "RecyclerView MultiType Adapter",
+                    RouterPath.RecyMultiTypeAdapterActivity_PATH
+                )
+            )
             return lists
         }
 

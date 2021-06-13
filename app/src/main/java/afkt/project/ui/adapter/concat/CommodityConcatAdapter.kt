@@ -114,7 +114,7 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (getDataItem(position).type) {
+        if (getDataItem(position).isEvaluateCommodity) {
             // 商品评价类型
             return R.layout.adapter_item_edits
         }

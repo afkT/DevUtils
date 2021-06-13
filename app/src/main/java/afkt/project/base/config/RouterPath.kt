@@ -135,4 +135,6 @@ object RouterPath {
     const val CornerLabelActivity_PATH = "/activity/CornerLabelActivity"
 
     const val RecyConcatAdapterActivity_PATH = "/activity/RecyConcatAdapterActivity"
+
+    const val RecyMultiTypeAdapterActivity_PATH = "/activity/RecyMultiTypeAdapterActivity"
 }
