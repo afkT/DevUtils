@@ -246,7 +246,7 @@ public final class SignaturesUtils {
                     try {
                         // 证书 DER 编码
                         certDERCode = ConvertUtils.toHexString(cert.getTBSCertificate());
-                    } catch (CertificateEncodingException e) {
+                    } catch (CertificateEncodingException ignored) {
                     }
                     // 证书公钥
                     String pubKey = cert.getPublicKey().toString();

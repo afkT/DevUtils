@@ -163,7 +163,7 @@ public final class ApkInfoItem {
             try {
                 // 证书 DER 编码
                 certDERCode = ConvertUtils.toHexString(cert.getTBSCertificate());
-            } catch (CertificateEncodingException e) {
+            } catch (CertificateEncodingException ignored) {
             }
             // 证书有效期
             listTemps.add(KeyValue.get(R.string.dev_str_effective, effectiveStr));

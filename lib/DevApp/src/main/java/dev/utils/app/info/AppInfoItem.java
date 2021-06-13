@@ -151,7 +151,7 @@ public final class AppInfoItem {
         try {
             // 证书 DER 编码
             certDERCode = ConvertUtils.toHexString(cert.getTBSCertificate());
-        } catch (CertificateEncodingException e) {
+        } catch (CertificateEncodingException ignored) {
         }
 
         // = 保存集合 =

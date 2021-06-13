@@ -375,7 +375,7 @@ public final class ROMUtils {
             Class<?> clz = Class.forName("android.os.SystemProperties");
             Method getMethod = clz.getMethod("get", String.class, String.class);
             return (String) getMethod.invoke(clz, key, "");
-        } catch (Throwable e) {
+        } catch (Throwable ignored) {
         }
         return "";
     }
