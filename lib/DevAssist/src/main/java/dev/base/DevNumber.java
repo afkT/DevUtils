@@ -180,7 +180,7 @@ public class DevNumber<T>
      */
     @Override
     public DevNumber<T> setMaxNumber(final int maxNumber) {
-        this.mMaxNumber = (maxNumber < mMinNumber) ? mMinNumber : maxNumber;
+        this.mMaxNumber = Math.max(maxNumber, mMinNumber);
         return this;
     }
 

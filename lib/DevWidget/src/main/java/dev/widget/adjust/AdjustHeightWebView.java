@@ -9,7 +9,7 @@ import android.webkit.WebView;
 /**
  * detail: 自动调节高度 WebView
  * @author Ttt
- * @Deprecated 推荐使用 NestedScrollView + WebView 实现
+ * @deprecated 推荐使用 NestedScrollView + WebView 实现
  */
 @Deprecated
 public class AdjustHeightWebView

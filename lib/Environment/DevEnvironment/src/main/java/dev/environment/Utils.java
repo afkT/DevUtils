@@ -34,7 +34,7 @@ class Utils {
     static {
         try {
             devEnvironmentClass = Class.forName(PACKAGE_NAME + "." + ENVIRONMENT_FILE_NAME);
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException ignored) {
         }
     }
 

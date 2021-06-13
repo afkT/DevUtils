@@ -317,17 +317,15 @@ public final class LogPrintUtils {
                     printLog(Log.DEBUG, tag, "json content format error");
                 }
             } catch (Exception e) {
-                String errorInfo = DevFinal.NULL_STR;
-                if (e != null) {
-                    Throwable throwable = e.getCause();
-                    if (throwable != null) {
-                        errorInfo = throwable.toString();
-                    } else {
-                        try {
-                            errorInfo = e.toString();
-                        } catch (Exception e1) {
-                            errorInfo = e1.toString();
-                        }
+                String    errorInfo;
+                Throwable throwable = e.getCause();
+                if (throwable != null) {
+                    errorInfo = throwable.toString();
+                } else {
+                    try {
+                        errorInfo = e.toString();
+                    } catch (Exception e1) {
+                        errorInfo = e1.toString();
                     }
                 }
                 printLog(Log.ERROR, tag, errorInfo + "\n" + json);
@@ -357,17 +355,15 @@ public final class LogPrintUtils {
                 // 打印信息
                 printLog(Log.DEBUG, tag, message);
             } catch (Exception e) {
-                String errorInfo = DevFinal.NULL_STR;
-                if (e != null) {
-                    Throwable throwable = e.getCause();
-                    if (throwable != null) {
-                        errorInfo = throwable.toString();
-                    } else {
-                        try {
-                            errorInfo = e.toString();
-                        } catch (Exception e1) {
-                            errorInfo = e1.toString();
-                        }
+                String    errorInfo;
+                Throwable throwable = e.getCause();
+                if (throwable != null) {
+                    errorInfo = throwable.toString();
+                } else {
+                    try {
+                        errorInfo = e.toString();
+                    } catch (Exception e1) {
+                        errorInfo = e1.toString();
                     }
                 }
                 printLog(Log.ERROR, tag, errorInfo + "\n" + xml);
@@ -380,39 +376,30 @@ public final class LogPrintUtils {
     // ===========
 
     // 默认日志输出接口
-    private static Print sPrint = new Print() {
-        @Override
-        public void printLog(
-                int logType,
-                String tag,
-                String message
-        ) {
-            // 防止 null 处理
-            if (message == null) return;
-            // 获取日志类型
-            switch (logType) {
-                case Log.VERBOSE:
-                    Log.v(tag, message);
-                    break;
-                case Log.DEBUG:
-                    Log.d(tag, message);
-                    break;
-                case Log.INFO:
-                    Log.i(tag, message);
-                    break;
-                case Log.WARN:
-                    Log.w(tag, message);
-                    break;
-                case Log.ERROR:
-                    Log.e(tag, message);
-                    break;
-                case Log.ASSERT:
-                    Log.wtf(tag, message);
-                    break;
-                default:
-                    Log.wtf(tag, message);
-                    break;
-            }
+    private static Print sPrint = (logType, tag, message) -> {
+        // 防止 null 处理
+        if (message == null) return;
+        // 获取日志类型
+        switch (logType) {
+            case Log.VERBOSE:
+                Log.v(tag, message);
+                break;
+            case Log.DEBUG:
+                Log.d(tag, message);
+                break;
+            case Log.INFO:
+                Log.i(tag, message);
+                break;
+            case Log.WARN:
+                Log.w(tag, message);
+                break;
+            case Log.ERROR:
+                Log.e(tag, message);
+                break;
+            case Log.ASSERT:
+            default:
+                Log.wtf(tag, message);
+                break;
         }
     };
 

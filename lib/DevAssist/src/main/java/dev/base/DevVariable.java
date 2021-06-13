@@ -229,9 +229,7 @@ public class DevVariable<K, V> {
      * @return {@link List}
      */
     public List<V> getVariableValues() {
-        List<V> lists = new ArrayList<>();
-        lists.addAll(mLinkedHashMap.values());
-        return lists;
+        return new ArrayList<>(mLinkedHashMap.values());
     }
 
     /**
@@ -270,9 +268,7 @@ public class DevVariable<K, V> {
      * @return {@link List}
      */
     public List<K> getVariableKeys() {
-        List<K> lists = new ArrayList<>();
-        lists.addAll(mLinkedHashMap.keySet());
-        return lists;
+        return new ArrayList<>(mLinkedHashMap.keySet());
     }
 
     /**

@@ -73,6 +73,8 @@ public final class DevUtils {
      * @param context {@link Context}
      */
     public static void init(final Context context) {
+        if (context == null) return;
+
         // 初始化全局 Context
         initContext(context);
         // 初始化全局 Application
@@ -94,24 +96,17 @@ public final class DevUtils {
         // ============
 
         // 设置 Java 模块日志信息在 logcat 输出
-        JCLogUtils.setPrint(new JCLogUtils.Print() {
-            @Override
-            public void printLog(
-                    int logType,
-                    String tag,
-                    String message
-            ) {
-                switch (logType) {
-                    case JCLogUtils.INFO:
-                        LogPrintUtils.iTag(tag, message);
-                    case JCLogUtils.ERROR:
-                        LogPrintUtils.eTag(tag, message);
-                        break;
-                    case JCLogUtils.DEBUG:
-                    default:
-                        LogPrintUtils.dTag(tag, message);
-                        break;
-                }
+        JCLogUtils.setPrint((logType, tag, message) -> {
+            switch (logType) {
+                case JCLogUtils.INFO:
+                    LogPrintUtils.iTag(tag, message);
+                case JCLogUtils.ERROR:
+                    LogPrintUtils.eTag(tag, message);
+                    break;
+                case JCLogUtils.DEBUG:
+                default:
+                    LogPrintUtils.dTag(tag, message);
+                    break;
             }
         });
     }
@@ -164,9 +159,7 @@ public final class DevUtils {
         if (DevUtils.sApplication != null) return DevUtils.sApplication;
         try {
             Application application = getApplicationByReflect();
-            if (application != null) {
-                init(application); // 初始化操作
-            }
+            init(application); // 初始化操作
             return application;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getApplication");
@@ -179,7 +172,6 @@ public final class DevUtils {
     /**
      * 反射获取 Application
      * @return {@link Application}
-     * @throws NullPointerException
      */
     private static Application getApplicationByReflect() {
         try {
@@ -525,8 +517,8 @@ public final class DevUtils {
                 Map activities = (Map) activitiesField.get(activityThread);
                 if (activities == null) return null;
                 for (Object activityRecord : activities.values()) {
-                    Class activityRecordClass = activityRecord.getClass();
-                    Field pausedField         = activityRecordClass.getDeclaredField("paused");
+                    Class<?> activityRecordClass = activityRecord.getClass();
+                    Field    pausedField         = activityRecordClass.getDeclaredField("paused");
                     pausedField.setAccessible(true);
                     if (!pausedField.getBoolean(activityRecord)) {
                         Field activityField = activityRecordClass.getDeclaredField("activity");

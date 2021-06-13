@@ -121,8 +121,10 @@ class AdapterItem {
                         if (addCustom) {
                             // 获取选中的环境
                             EnvironmentBean environmentSelect = Utils.getModuleEnvironment(context, moduleBean.getName());
-                            // 添加 Environment Type
-                            items.add(new AdapterItem(environmentSelect));
+                            if (environmentSelect != null) {
+                                // 添加 Environment Type
+                                items.add(new AdapterItem(environmentSelect));
+                            }
                         }
                     }
                 }

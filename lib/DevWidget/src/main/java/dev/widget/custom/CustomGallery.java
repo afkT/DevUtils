@@ -14,7 +14,7 @@ import dev.widget.utils.WidgetAttrs;
 /**
  * detail: 自定义 Gallery 滑动控制
  * @author Ttt
- * @Deprecated 推荐使用 {@link CustomRecyclerView} + LinearSnapHelper 实现
+ * @deprecated 推荐使用 {@link CustomRecyclerView} + LinearSnapHelper 实现
  * <pre>
  *     app:dev_slide=""
  *     app:dev_maxWidth=""

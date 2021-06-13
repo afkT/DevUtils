@@ -111,8 +111,7 @@ public class FlipCardView
             int size  = mAdapter.getItemCount();
             if (index >= 0) return index;
             index = index + size;
-            if (index < 0) return 0;
-            return index;
+            return Math.max(index, 0);
         }
         return 0;
     }
