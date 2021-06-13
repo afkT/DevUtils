@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import dev.utils.LogPrintUtils;
+import dev.utils.app.image.BitmapUtils;
 import dev.utils.common.ArrayUtils;
 import dev.utils.common.NumberUtils;
 
@@ -650,8 +651,7 @@ public final class CapturePictureUtils {
                 canvas.drawBitmap(bmp, 0, appendHeight, PAINT);
                 appendHeight += (bmp.getHeight() + dividerHeight);
                 // 释放资源
-                bmp.recycle();
-                bmp = null;
+                BitmapUtils.recycle(bmp);
             }
             return bitmap;
         } catch (Exception e) {
@@ -741,8 +741,7 @@ public final class CapturePictureUtils {
                     canvas.drawBitmap(bmp, 0, appendHeight, PAINT);
                     appendHeight += (bmp.getHeight() + verticalSpacing);
                     // 释放资源
-                    bmp.recycle();
-                    bmp = null;
+                    BitmapUtils.recycle(bmp);
                 }
                 return bitmap;
             } else {
@@ -808,8 +807,7 @@ public final class CapturePictureUtils {
                             // 绘制到 Bitmap
                             canvas.drawBitmap(bmp, matrix, PAINT);
                             // 释放资源
-                            bmp.recycle();
-                            bmp = null;
+                            BitmapUtils.recycle(bmp);
                         }
 
                         // 记录高度并累加
@@ -1034,8 +1032,7 @@ public final class CapturePictureUtils {
                             // 绘制到 Bitmap
                             canvas.drawBitmap(bmp, matrix, PAINT);
                             // 释放资源
-                            bmp.recycle();
-                            bmp = null;
+                            BitmapUtils.recycle(bmp);
                         }
 
                         // 记录高度并累加
@@ -1118,8 +1115,7 @@ public final class CapturePictureUtils {
                             // 累加 Bitmap 宽度
                             appendWidth += bmp.getWidth();
                             // 释放资源
-                            bmp.recycle();
-                            bmp = null;
+                            BitmapUtils.recycle(bmp);
                         }
 
                         // 记录高度并累加
@@ -1201,8 +1197,7 @@ public final class CapturePictureUtils {
                     canvas.drawBitmap(bmp, 0, appendHeight, PAINT);
                     appendHeight += (bmp.getHeight() + verticalSpacing);
                     // 释放资源
-                    bmp.recycle();
-                    bmp = null;
+                    BitmapUtils.recycle(bmp);
                 }
                 return bitmap;
             } else {
@@ -1239,8 +1234,7 @@ public final class CapturePictureUtils {
                     canvas.drawBitmap(bmp, appendWidth, 0, PAINT);
                     appendWidth += (bmp.getWidth() + horizontalSpacing);
                     // 释放资源
-                    bmp.recycle();
-                    bmp = null;
+                    BitmapUtils.recycle(bmp);
                 }
                 return bitmap;
             }
@@ -1359,8 +1353,7 @@ public final class CapturePictureUtils {
                     // 累加高度
                     columnsHeightArrays[minIndex] += (itemHeightArrays[i] + verticalSpacing);
                     // 释放资源
-                    bmp.recycle();
-                    bmp = null;
+                    BitmapUtils.recycle(bmp);
                 }
                 return bitmap;
             } else {
@@ -1440,8 +1433,7 @@ public final class CapturePictureUtils {
                     // 累加宽度
                     columnsWidthArrays[minIndex] += (itemWidthArrays[i] + horizontalSpacing);
                     // 释放资源
-                    bmp.recycle();
-                    bmp = null;
+                    BitmapUtils.recycle(bmp);
                 }
                 return bitmap;
             }

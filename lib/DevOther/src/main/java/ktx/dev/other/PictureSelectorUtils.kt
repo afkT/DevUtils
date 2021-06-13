@@ -22,6 +22,9 @@ import java.util.*
  * <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
  * <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
  * <uses-permission android:name="android.permission.CAMERA"/>
+ * <p></p>
+ * 尽量不使用 isCompressed 压缩, 通过获取选中的路径后自行进行压缩
+ * 防止需要适配 Android 11 进行转存文件需判断文件路径
  */
 object PictureSelectorUtils {
 
@@ -409,7 +412,7 @@ object PictureSelectorUtils {
         private var isCircleCrop = false
 
         // 是否压缩
-        private var isCompress = true
+        private var isCompress = false
 
         // 图片大于多少才进行压缩 (kb)
         private var minimumCompressSize = 2048

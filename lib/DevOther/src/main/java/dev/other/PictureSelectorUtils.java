@@ -29,6 +29,9 @@ import dev.utils.LogPrintUtils;
  *     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
  *     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
  *     <uses-permission android:name="android.permission.CAMERA"/>
+ *     <p></p>
+ *     尽量不使用 isCompressed 压缩, 通过获取选中的路径后自行进行压缩
+ *     防止需要适配 Android 11 进行转存文件需判断文件路径
  * </pre>
  */
 public final class PictureSelectorUtils {
@@ -430,7 +433,7 @@ public final class PictureSelectorUtils {
         // 是否圆形裁减 true = 圆形, false = 矩形
         private boolean          isCircleCrop        = false;
         // 是否压缩
-        private boolean          isCompress          = true;
+        private boolean          isCompress          = false;
         // 图片大于多少才进行压缩 (kb)
         private int              minimumCompressSize = 2048;
         // 裁减比例

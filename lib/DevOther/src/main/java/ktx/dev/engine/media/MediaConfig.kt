@@ -24,7 +24,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
     private var isCircleCrop = false
 
     // 是否压缩
-    private var isCompress = true
+    private var isCompress = false
 
     // 图片大于多少才进行压缩 (kb)
     private var minimumCompressSize = 2048

@@ -891,7 +891,7 @@ public final class BitmapUtils {
         // 将源图片画到画布的上半部分, 将倒影画到画布的下半部分, 倒影与画布顶部的间距是源图片的高度加上源图片与倒影之间的间距
         canvas.drawBitmap(bitmap, 0, 0, null);
         canvas.drawBitmap(reflectionImage, 0, height + reflectionSpacing, null);
-        reflectionImage.recycle();
+        BitmapUtils.recycle(reflectionImage);
 
         // 边距负数处理
         int spacing = Math.max(reflectionSpacing, 0);

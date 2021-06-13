@@ -20,7 +20,7 @@ public class MediaConfig
     // 是否圆形裁减 true = 圆形, false = 矩形
     private boolean              isCircleCrop        = false;
     // 是否压缩
-    private boolean              isCompress          = true;
+    private boolean              isCompress          = false;
     // 图片大于多少才进行压缩 (kb)
     private int                  minimumCompressSize = 2048;
     // 裁减比例
