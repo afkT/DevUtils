@@ -52,10 +52,10 @@ try {
 } catch (NullPointerException e) {
     
     // 设置插入信息
-    FileRecordUtils.setInsertInfo(AppCommonUtils.getAppDeviceInfo());
+    FileRecordUtils.setInsertInfo(VersionUtils.getAppDeviceInfo());
 
     // 设置插入信息
-    FileRecordUtils.setInsertInfo(AppCommonUtils.getAppDeviceInfo());
+    FileRecordUtils.setInsertInfo(VersionUtils.getAppDeviceInfo());
 
     FileRecordUtils.saveErrorLog(e, LOG_SD_PATH, System.currentTimeMillis() + ".log");
 

@@ -10,7 +10,7 @@ import dev.callback.DevItemClickCallback
 import dev.engine.log.DevLogEngine
 import dev.engine.permission.DevPermissionEngine
 import dev.engine.permission.IPermissionEngine
-import dev.utils.app.AppCommonUtils
+import dev.utils.app.VersionUtils
 import dev.utils.app.toast.ToastUtils
 import dev.utils.common.HttpURLConnectionUtils
 import java.util.*
@@ -86,7 +86,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun initValue() {
         super.initValue()
         // 设置 Android 版本信息
-        binding.vidAmAndroidTv.text = AppCommonUtils.convertSDKVersion()
+        binding.vidAmAndroidTv.text = VersionUtils.convertSDKVersion()
         // 初始化布局管理器、适配器
         val buttonAdapter = ButtonAdapter(ButtonList.mainButtonValues)
         binding.vidBaseRecy.vidBvrRecy.adapter = buttonAdapter

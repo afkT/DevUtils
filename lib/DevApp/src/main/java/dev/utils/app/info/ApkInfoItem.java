@@ -20,8 +20,8 @@ import java.util.List;
 import dev.DevUtils;
 import dev.utils.LogPrintUtils;
 import dev.utils.R;
-import dev.utils.app.AppCommonUtils;
 import dev.utils.app.SignaturesUtils;
+import dev.utils.app.VersionUtils;
 import dev.utils.common.ConvertUtils;
 import dev.utils.common.FileUtils;
 
@@ -107,7 +107,7 @@ public final class ApkInfoItem {
         // APP SHA256
         appSHA256 = SignaturesUtils.signatureSHA256(signatures);
         // 属于 7.0 以上才有的方法
-        if (AppCommonUtils.isN()) {
+        if (VersionUtils.isN()) {
             // APP 最低支持 Android SDK 版本
             minSdkVersion = packageInfo.applicationInfo.minSdkVersion;
         }
@@ -209,9 +209,9 @@ public final class ApkInfoItem {
             listKeyValues.add(KeyValue.get(R.string.dev_str_sha256, appSHA256));
         }
         // APP 最低支持 Android SDK 版本
-        listKeyValues.add(KeyValue.get(R.string.dev_str_minsdkversion, minSdkVersion + " ( " + AppCommonUtils.convertSDKVersion(minSdkVersion) + "+ )"));
+        listKeyValues.add(KeyValue.get(R.string.dev_str_minsdkversion, minSdkVersion + " ( " + VersionUtils.convertSDKVersion(minSdkVersion) + "+ )"));
         // APP 兼容 SDK 版本
-        listKeyValues.add(KeyValue.get(R.string.dev_str_targetsdkversion, targetSdkVersion + " ( " + AppCommonUtils.convertSDKVersion(targetSdkVersion) + "+ )"));
+        listKeyValues.add(KeyValue.get(R.string.dev_str_targetsdkversion, targetSdkVersion + " ( " + VersionUtils.convertSDKVersion(targetSdkVersion) + "+ )"));
         // 获取 APK 大小
         listKeyValues.add(KeyValue.get(R.string.dev_str_apk_length, apkLength));
         // 没报错才存储 其他签名信息

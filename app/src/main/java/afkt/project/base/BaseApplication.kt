@@ -120,7 +120,7 @@ class BaseApplication : MultiDexApplication() {
             .append("项目名: ")
             .append(ResourceUtils.getString(R.string.str_app_name))
             .append("\nSDK: ").append(Build.VERSION.SDK_INT).append("(")
-            .append(AppCommonUtils.convertSDKVersion(Build.VERSION.SDK_INT)).append(")")
+            .append(VersionUtils.convertSDKVersion(Build.VERSION.SDK_INT)).append(")")
             .append("\nPackageName: ").append(AppUtils.getPackageName())
             .append("\nVersionCode: ").append(AppUtils.getAppVersionCode())
             .append("\nVersionName: ").append(AppUtils.getAppVersionName())
@@ -245,7 +245,7 @@ class BaseApplication : MultiDexApplication() {
             // 渲染优先级高
             setRenderPriority(WebSettings.RenderPriority.HIGH)
             // 基础布局算法
-            if (AppCommonUtils.isLollipop()) {
+            if (VersionUtils.isLollipop()) {
                 setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING)
             } else {
                 setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN)
