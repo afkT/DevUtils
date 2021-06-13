@@ -79,8 +79,8 @@ public final class ImageConvertUtils {
             buffer[6] = (byte) (width >> 16);
             buffer[7] = (byte) (width >> 24);
             // =
-            buffer[8] = (byte) (height >> 0);
-            buffer[9] = (byte) (height >> 8);
+            buffer[8]  = (byte) (height >> 0);
+            buffer[9]  = (byte) (height >> 8);
             buffer[10] = (byte) (height >> 16);
             buffer[11] = (byte) (height >> 24);
             // =
@@ -143,7 +143,7 @@ public final class ImageConvertUtils {
                 // DIB 文件格式最后一行为第一行, 每行按从左到右顺序
                 int end = i, start = i - width + 1;
                 for (int j = start; j <= end; j++) {
-                    buffer[offset] = (byte) (data[j] >> 0);
+                    buffer[offset]     = (byte) (data[j] >> 0);
                     buffer[offset + 1] = (byte) (data[j] >> 8);
                     buffer[offset + 2] = (byte) (data[j] >> 16);
                     buffer[offset + 3] = (byte) (data[j] >> 24);

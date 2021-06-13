@@ -97,7 +97,7 @@ public final class ResourcePluginUtils {
         Resources      resources = ResourceAssist.staticResources(context);
         if (resources != null) {
             metrics = resources.getDisplayMetrics();
-            config = resources.getConfiguration();
+            config  = resources.getConfiguration();
         }
         return invokeByPackageName(packageName, metrics, config);
     }
@@ -147,7 +147,7 @@ public final class ResourcePluginUtils {
         Resources      resources = ResourceAssist.staticResources(context);
         if (resources != null) {
             metrics = resources.getDisplayMetrics();
-            config = resources.getConfiguration();
+            config  = resources.getConfiguration();
         }
         return invokeByAPKPath(apkPath, metrics, config);
     }

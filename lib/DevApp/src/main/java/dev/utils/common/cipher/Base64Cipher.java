@@ -38,7 +38,7 @@ public class Base64Cipher
             final int flags
     ) {
         this.mCipher = cipher;
-        this.mFlags = flags;
+        this.mFlags  = flags;
     }
 
     // =

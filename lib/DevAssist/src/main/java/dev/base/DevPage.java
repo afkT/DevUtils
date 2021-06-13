@@ -42,7 +42,7 @@ public class DevPage<T>
                 int page,
                 int pageSize
         ) {
-            this.page = page;
+            this.page     = page;
             this.pageSize = pageSize;
         }
     }

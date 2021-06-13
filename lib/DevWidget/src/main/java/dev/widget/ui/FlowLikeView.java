@@ -103,14 +103,14 @@ public class FlowLikeView
             AttributeSet attrs
     ) {
         // 初始化操作
-        mRandom = new Random();
+        mRandom    = new Random();
         mDrawables = new ArrayList<>();
 
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
             mAnimDuration = a.getInt(R.styleable.DevWidget_dev_animDuration, 2000);
-            mIconWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_iconWidth, 0);
-            mIconHeight = a.getLayoutDimension(R.styleable.DevWidget_dev_iconHeight, 0);
+            mIconWidth    = a.getLayoutDimension(R.styleable.DevWidget_dev_iconWidth, 0);
+            mIconHeight   = a.getLayoutDimension(R.styleable.DevWidget_dev_iconHeight, 0);
             a.recycle();
         }
 
@@ -145,7 +145,7 @@ public class FlowLikeView
             int oldh
     ) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mViewWidth = getWidth();
+        mViewWidth  = getWidth();
         mViewHeight = getHeight();
     }
 
@@ -295,7 +295,7 @@ public class FlowLikeView
      * 重置 LayoutParams
      */
     private void resetLayoutParams() {
-        mLayoutParams = new LayoutParams(mIconWidth, mIconHeight);
+        mLayoutParams         = new LayoutParams(mIconWidth, mIconHeight);
         mLayoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
         // 设置底部间距 ( 防止当 addView 显示与动画起始位置相差太远 )
         mLayoutParams.bottomMargin = mChildViewHeight;
@@ -341,7 +341,7 @@ public class FlowLikeView
             if (mIconWidth == 0 || mIconHeight == 0) {
                 for (Drawable drawable : drawables) {
                     if (drawable != null) {
-                        mIconWidth = drawable.getIntrinsicWidth();
+                        mIconWidth  = drawable.getIntrinsicWidth();
                         mIconHeight = drawable.getIntrinsicHeight();
                         resetLayoutParams();
                         break;

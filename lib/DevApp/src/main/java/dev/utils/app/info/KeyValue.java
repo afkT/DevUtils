@@ -28,7 +28,7 @@ public class KeyValue
             final String key,
             final String value
     ) {
-        this.key = key;
+        this.key   = key;
         this.value = value;
     }
 

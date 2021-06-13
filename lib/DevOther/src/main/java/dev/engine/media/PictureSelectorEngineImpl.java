@@ -136,7 +136,7 @@ public class PictureSelectorEngineImpl
             String cameraSavePath,
             String compressSavePath
     ) {
-        CAMERA_SAVE_PATH = cameraSavePath;
+        CAMERA_SAVE_PATH   = cameraSavePath;
         COMPRESS_SAVE_PATH = compressSavePath;
         // 设置配置
         PIC_CONFIG.setCameraSavePath(cameraSavePath)

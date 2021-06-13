@@ -820,7 +820,7 @@ public final class DateUtils {
                     return "00:" + ((dMinute >= 10) ? dMinute : ("0" + dMinute)) + ":" + ((dSecond >= 10) ? dSecond : ("0" + dSecond));
                 } else if (time >= HOUR_S && time < DAY_S) { // 小于等于一天
                     rMinute = time % HOUR_S; // 取模小时, 获取多出的分钟
-                    dHour = (time - rMinute) / HOUR_S; // 获取小时
+                    dHour   = (time - rMinute) / HOUR_S; // 获取小时
                     dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
                     dMinute = dSecond / MINUTE_S; // 获取多出的分钟
                     rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒数
@@ -829,7 +829,7 @@ public final class DateUtils {
                     // 大于一天的情况
                     if (isHandlerMDay) {
                         rMinute = time % HOUR_S; // 取模小时, 获取多出的分钟
-                        dHour = (time - rMinute) / HOUR_S; // 获取小时
+                        dHour   = (time - rMinute) / HOUR_S; // 获取小时
                         dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
                         dMinute = dSecond / MINUTE_S; // 获取多出的分钟
                         rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒数
@@ -869,7 +869,7 @@ public final class DateUtils {
                     return new int[]{0, dMinute, dSecond};
                 } else if (time >= HOUR_S && time < DAY_S) { // 小于等于一天
                     rMinute = time % HOUR_S; // 取模小时, 获取多出的分钟
-                    dHour = (time - rMinute) / HOUR_S; // 获取小时
+                    dHour   = (time - rMinute) / HOUR_S; // 获取小时
                     dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
                     dMinute = dSecond / MINUTE_S; // 获取多出的分钟
                     rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒数
@@ -877,7 +877,7 @@ public final class DateUtils {
                 } else { // 多余的时间, 直接格式化
                     // 大于一天的情况
                     rMinute = time % HOUR_S; // 取模小时, 获取多出的分钟
-                    dHour = (time - rMinute) / HOUR_S; // 获取小时
+                    dHour   = (time - rMinute) / HOUR_S; // 获取小时
                     dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
                     dMinute = dSecond / MINUTE_S; // 获取多出的分钟
                     rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒数

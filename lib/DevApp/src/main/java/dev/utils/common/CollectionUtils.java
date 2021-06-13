@@ -1407,11 +1407,11 @@ public final class CollectionUtils {
                     if (value != null) {
                         if (temp == null) {
                             index = i;
-                            temp = value;
+                            temp  = value;
                         }
                         if (value < temp) {
                             index = i;
-                            temp = value;
+                            temp  = value;
                         }
                     }
                 }
@@ -1440,11 +1440,11 @@ public final class CollectionUtils {
                     if (value != null) {
                         if (temp == null) {
                             index = i;
-                            temp = value;
+                            temp  = value;
                         }
                         if (value < temp) {
                             index = i;
-                            temp = value;
+                            temp  = value;
                         }
                     }
                 }
@@ -1473,11 +1473,11 @@ public final class CollectionUtils {
                     if (value != null) {
                         if (temp == null) {
                             index = i;
-                            temp = value;
+                            temp  = value;
                         }
                         if (value < temp) {
                             index = i;
-                            temp = value;
+                            temp  = value;
                         }
                     }
                 }
@@ -1506,11 +1506,11 @@ public final class CollectionUtils {
                     if (value != null) {
                         if (temp == null) {
                             index = i;
-                            temp = value;
+                            temp  = value;
                         }
                         if (value < temp) {
                             index = i;
-                            temp = value;
+                            temp  = value;
                         }
                     }
                 }
@@ -1543,11 +1543,11 @@ public final class CollectionUtils {
                     if (value != null) {
                         if (temp == null) {
                             index = i;
-                            temp = value;
+                            temp  = value;
                         }
                         if (value > temp) {
                             index = i;
-                            temp = value;
+                            temp  = value;
                         }
                     }
                 }
@@ -1576,11 +1576,11 @@ public final class CollectionUtils {
                     if (value != null) {
                         if (temp == null) {
                             index = i;
-                            temp = value;
+                            temp  = value;
                         }
                         if (value > temp) {
                             index = i;
-                            temp = value;
+                            temp  = value;
                         }
                     }
                 }
@@ -1609,11 +1609,11 @@ public final class CollectionUtils {
                     if (value != null) {
                         if (temp == null) {
                             index = i;
-                            temp = value;
+                            temp  = value;
                         }
                         if (value > temp) {
                             index = i;
-                            temp = value;
+                            temp  = value;
                         }
                     }
                 }
@@ -1642,11 +1642,11 @@ public final class CollectionUtils {
                     if (value != null) {
                         if (temp == null) {
                             index = i;
-                            temp = value;
+                            temp  = value;
                         }
                         if (value > temp) {
                             index = i;
-                            temp = value;
+                            temp  = value;
                         }
                     }
                 }

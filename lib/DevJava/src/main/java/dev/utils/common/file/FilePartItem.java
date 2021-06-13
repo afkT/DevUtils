@@ -27,12 +27,12 @@ public class FilePartItem {
             long start,
             long end
     ) {
-        this.partIndex = partIndex;
-        this.partCount = partCount;
+        this.partIndex      = partIndex;
+        this.partCount      = partCount;
         this.partByteLength = partByteLength;
         this.fileByteLength = fileByteLength;
-        this.start = start;
-        this.end = end;
+        this.start          = start;
+        this.end            = end;
     }
 
     // ===============

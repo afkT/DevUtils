@@ -137,12 +137,12 @@ public final class ImageFilterUtils {
             for (y = 0; y < height; y++) {
                 rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0;
                 for (i = -radius; i <= radius; i++) {
-                    p = pix[yi + Math.min(wm, Math.max(i, 0))];
-                    sir = stack[i + radius];
+                    p      = pix[yi + Math.min(wm, Math.max(i, 0))];
+                    sir    = stack[i + radius];
                     sir[0] = (p & 0xff0000) >> 16;
                     sir[1] = (p & 0x00ff00) >> 8;
                     sir[2] = (p & 0x0000ff);
-                    rbs = r1 - Math.abs(i);
+                    rbs    = r1 - Math.abs(i);
                     rsum += sir[0] * rbs;
                     gsum += sir[1] * rbs;
                     bsum += sir[2] * rbs;
@@ -169,7 +169,7 @@ public final class ImageFilterUtils {
                     bsum -= boutsum;
 
                     stackstart = stackpointer - radius + div;
-                    sir = stack[stackstart % div];
+                    sir        = stack[stackstart % div];
 
                     routsum -= sir[0];
                     goutsum -= sir[1];
@@ -193,7 +193,7 @@ public final class ImageFilterUtils {
                     bsum += binsum;
 
                     stackpointer = (stackpointer + 1) % div;
-                    sir = stack[(stackpointer) % div];
+                    sir          = stack[(stackpointer) % div];
 
                     routsum += sir[0];
                     goutsum += sir[1];
@@ -209,7 +209,7 @@ public final class ImageFilterUtils {
             }
             for (x = 0; x < width; x++) {
                 rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0;
-                yp = -radius * width;
+                yp     = -radius * width;
                 for (i = -radius; i <= radius; i++) {
                     yi = Math.max(0, yp) + x;
 
@@ -239,7 +239,7 @@ public final class ImageFilterUtils {
                         yp += width;
                     }
                 }
-                yi = x;
+                yi           = x;
                 stackpointer = radius;
                 for (y = 0; y < height; y++) {
                     // Preserve alpha channel: ( 0xff000000 & pix[yi] )
@@ -250,7 +250,7 @@ public final class ImageFilterUtils {
                     bsum -= boutsum;
 
                     stackstart = stackpointer - radius + div;
-                    sir = stack[stackstart % div];
+                    sir        = stack[stackstart % div];
 
                     routsum -= sir[0];
                     goutsum -= sir[1];
@@ -274,7 +274,7 @@ public final class ImageFilterUtils {
                     bsum += binsum;
 
                     stackpointer = (stackpointer + 1) % div;
-                    sir = stack[stackpointer];
+                    sir          = stack[stackpointer];
 
                     routsum += sir[0];
                     goutsum += sir[1];
@@ -322,12 +322,12 @@ public final class ImageFilterUtils {
             for (int i = 0; i < height; i++) {
                 for (int k = 0; k < width; k++) {
                     pixColor = pixels[width * i + k];
-                    pixR = Color.red(pixColor);
-                    pixG = Color.green(pixColor);
-                    pixB = Color.blue(pixColor);
-                    newR = (int) (0.393 * pixR + 0.769 * pixG + 0.189 * pixB);
-                    newG = (int) (0.349 * pixR + 0.686 * pixG + 0.168 * pixB);
-                    newB = (int) (0.272 * pixR + 0.534 * pixG + 0.131 * pixB);
+                    pixR     = Color.red(pixColor);
+                    pixG     = Color.green(pixColor);
+                    pixB     = Color.blue(pixColor);
+                    newR     = (int) (0.393 * pixR + 0.769 * pixG + 0.189 * pixB);
+                    newG     = (int) (0.349 * pixR + 0.686 * pixG + 0.168 * pixB);
+                    newB     = (int) (0.272 * pixR + 0.534 * pixG + 0.131 * pixB);
                     int newColor = Color.argb(255, newR > 255 ? 255 : newR,
                             newG > 255 ? 255 : newG, newB > 255 ? 255 : newB);
                     pixels[width * i + k] = newColor;
@@ -377,7 +377,7 @@ public final class ImageFilterUtils {
             int pos = 0;
             for (int i = 1, length = height - 1; i < length; i++) {
                 for (int k = 1, len = width - 1; k < len; k++) {
-                    pos = i * width + k;
+                    pos      = i * width + k;
                     pixColor = pixels[pos];
 
                     pixR = Color.red(pixColor);
@@ -443,7 +443,7 @@ public final class ImageFilterUtils {
             int pos = 0;
             for (int i = 1, length = height - 1; i < length; i++) {
                 for (int k = 1, len = width - 1; k < len; k++) {
-                    pos = i * width + k;
+                    pos      = i * width + k;
                     pixColor = pixels[pos];
 
                     pixR = Color.red(pixColor);
@@ -512,9 +512,9 @@ public final class ImageFilterUtils {
                     for (int m = -1; m <= 1; m++) {
                         for (int n = -1; n <= 1; n++) {
                             pixColor = pixels[(i + m) * width + k + n];
-                            pixR = Color.red(pixColor);
-                            pixG = Color.green(pixColor);
-                            pixB = Color.blue(pixColor);
+                            pixR     = Color.red(pixColor);
+                            pixG     = Color.green(pixColor);
+                            pixB     = Color.blue(pixColor);
 
                             newR += (pixR * gauss[idx]);
                             newG += (pixG * gauss[idx]);
@@ -581,9 +581,9 @@ public final class ImageFilterUtils {
                     for (int m = -1; m <= 1; m++) {
                         for (int n = -1; n <= 1; n++) {
                             pixColor = pixels[(i + n) * width + k + m];
-                            pixR = Color.red(pixColor);
-                            pixG = Color.green(pixColor);
-                            pixB = Color.blue(pixColor);
+                            pixR     = Color.red(pixColor);
+                            pixG     = Color.green(pixColor);
+                            pixB     = Color.blue(pixColor);
 
                             newR = newR + (int) (pixR * laplacian[idx] * alpha);
                             newG = newG + (int) (pixG * laplacian[idx] * alpha);
@@ -597,9 +597,9 @@ public final class ImageFilterUtils {
                     newB = Math.min(255, Math.max(0, newB));
 
                     pixels[i * width + k] = Color.argb(255, newR, newG, newB);
-                    newR = 0;
-                    newG = 0;
-                    newB = 0;
+                    newR                  = 0;
+                    newG                  = 0;
+                    newB                  = 0;
                 }
             }
 
@@ -638,7 +638,7 @@ public final class ImageFilterUtils {
             int pos = 0;
             for (int i = 1, length = height - 1; i < length; i++) {
                 for (int k = 1, len = width - 1; k < len; k++) {
-                    pos = i * width + k;
+                    pos      = i * width + k;
                     pixColor = pixels[pos];
 
                     pixR = Color.red(pixColor);
@@ -646,9 +646,9 @@ public final class ImageFilterUtils {
                     pixB = Color.blue(pixColor);
 
                     pixColor = pixels[pos + 1];
-                    newR = Color.red(pixColor) - pixR + 127;
-                    newG = Color.green(pixColor) - pixG + 127;
-                    newB = Color.blue(pixColor) - pixB + 127;
+                    newR     = Color.red(pixColor) - pixR + 127;
+                    newG     = Color.green(pixColor) - pixG + 127;
+                    newB     = Color.blue(pixColor) - pixB + 127;
 
                     newR = Math.min(255, Math.max(0, newR));
                     newG = Math.min(255, Math.max(0, newG));

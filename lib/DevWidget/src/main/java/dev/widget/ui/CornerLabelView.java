@@ -119,28 +119,28 @@ public class CornerLabelView
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
 
-            mPaddingTop = a.getDimension(R.styleable.DevWidget_dev_paddingTop, SizeUtils.dipConvertPx(10));
+            mPaddingTop    = a.getDimension(R.styleable.DevWidget_dev_paddingTop, SizeUtils.dipConvertPx(10));
             mPaddingCenter = a.getDimension(R.styleable.DevWidget_dev_paddingCenter, 0);
             mPaddingBottom = a.getDimension(R.styleable.DevWidget_dev_paddingBottom, SizeUtils.dipConvertPx(3));
 
-            mText1.text = a.getString(R.styleable.DevWidget_dev_text1);
-            mText1.textColor = a.getColor(R.styleable.DevWidget_dev_textColor1, 0xffffffff);
+            mText1.text       = a.getString(R.styleable.DevWidget_dev_text1);
+            mText1.textColor  = a.getColor(R.styleable.DevWidget_dev_textColor1, 0xffffffff);
             mText1.textHeight = a.getDimension(R.styleable.DevWidget_dev_textHeight1, SizeUtils.dipConvertPx(12));
-            mText1.textBold = a.getBoolean(R.styleable.DevWidget_dev_textBold1, false);
+            mText1.textBold   = a.getBoolean(R.styleable.DevWidget_dev_textBold1, false);
             mText1.init();
 
-            mText2.text = a.getString(R.styleable.DevWidget_dev_text2);
-            mText2.textColor = a.getColor(R.styleable.DevWidget_dev_textColor2, 0x66ffffff);
+            mText2.text       = a.getString(R.styleable.DevWidget_dev_text2);
+            mText2.textColor  = a.getColor(R.styleable.DevWidget_dev_textColor2, 0x66ffffff);
             mText2.textHeight = a.getDimension(R.styleable.DevWidget_dev_textHeight2, SizeUtils.dipConvertPx(8));
-            mText2.textBold = a.getBoolean(R.styleable.DevWidget_dev_textBold2, false);
+            mText2.textBold   = a.getBoolean(R.styleable.DevWidget_dev_textBold2, false);
             mText2.init();
 
             int fillColor = a.getColor(R.styleable.DevWidget_dev_fillColor, 0x66000000);
             int flags     = a.getInteger(R.styleable.DevWidget_dev_flags, 0);
             a.recycle();
 
-            mIsLeft = (flags & 1) == 0;
-            mIsTop = (flags & 2) == 0;
+            mIsLeft     = (flags & 1) == 0;
+            mIsTop      = (flags & 2) == 0;
             mIsTriangle = (flags & 4) > 0;
             mPaint.setColor(fillColor);
         }

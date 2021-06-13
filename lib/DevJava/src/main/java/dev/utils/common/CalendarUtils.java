@@ -100,7 +100,7 @@ public final class CalendarUtils {
                 break;
             }
         }
-        lunarD = (int) (offset);
+        lunarD      = (int) (offset);
         lunarInt[0] = lunarY;
         lunarInt[1] = lunarM;
         lunarInt[3] = 0;
@@ -723,21 +723,21 @@ public final class CalendarUtils {
                 int month,
                 int day
         ) {
-            this.year = year;
+            this.year  = year;
             this.month = month;
-            this.day = day;
+            this.day   = day;
             // 公历转农历
             int[] lunars = CalendarUtils.solarToLunar(year, month, day);
             result = lunars != null;
             if (result) {
-                lunarYear = lunars[0];
-                lunarMonth = lunars[1];
-                lunarDay = lunars[2];
+                lunarYear   = lunars[0];
+                lunarMonth  = lunars[1];
+                lunarDay    = lunars[2];
                 isLunarLeap = lunars[3] == 1;
             } else {
-                lunarYear = 0;
-                lunarMonth = 0;
-                lunarDay = 0;
+                lunarYear   = 0;
+                lunarMonth  = 0;
+                lunarDay    = 0;
                 isLunarLeap = false;
             }
         }
@@ -755,21 +755,21 @@ public final class CalendarUtils {
                 int lunarDay,
                 boolean isLunarLeap
         ) {
-            this.lunarYear = lunarYear;
-            this.lunarMonth = lunarMonth;
-            this.lunarDay = lunarDay;
+            this.lunarYear   = lunarYear;
+            this.lunarMonth  = lunarMonth;
+            this.lunarDay    = lunarDay;
             this.isLunarLeap = isLunarLeap;
             // 农历转公历
             int[] solars = CalendarUtils.lunarToSolar(lunarYear, lunarMonth, lunarDay, isLunarLeap);
             result = solars != null;
             if (result) {
-                year = solars[0];
+                year  = solars[0];
                 month = solars[1];
-                day = solars[2];
+                day   = solars[2];
             } else {
-                year = 0;
+                year  = 0;
                 month = 0;
-                day = 0;
+                day   = 0;
             }
         }
 
@@ -888,11 +888,11 @@ public final class CalendarUtils {
                 int day,
                 boolean isSolarFestival
         ) {
-            this.name = name;
-            this.month = month;
-            this.day = day;
+            this.name            = name;
+            this.month           = month;
+            this.day             = day;
             this.isSolarFestival = isSolarFestival;
-            this.compareValue = ConvertUtils.toInt(month + NumberUtils.addZero(day));
+            this.compareValue    = ConvertUtils.toInt(month + NumberUtils.addZero(day));
         }
 
         /**

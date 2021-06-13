@@ -56,7 +56,7 @@ final class DevCacheManager {
             Cipher cipher
     ) {
         this.mCachePath = cachePath;
-        this.mCipher = cipher;
+        this.mCipher    = cipher;
         // 计算文件信息
         calculateCacheSizeAndCacheCount();
     }

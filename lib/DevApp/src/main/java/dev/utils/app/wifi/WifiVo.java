@@ -121,9 +121,9 @@ public class WifiVo
     // ==============
 
     protected WifiVo(Parcel in) {
-        wifiSSID = in.readString();
-        wifiPwd = in.readString();
-        wifiType = in.readInt();
+        wifiSSID  = in.readString();
+        wifiPwd   = in.readString();
+        wifiType  = in.readInt();
         wifiLevel = in.readInt();
     }
 

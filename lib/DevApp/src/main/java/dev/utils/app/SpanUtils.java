@@ -193,8 +193,8 @@ public final class SpanUtils {
      */
     public SpanUtils() {
         mBuilder = new SerializableSpannableStringBuilder();
-        mText = "";
-        mType = -1;
+        mText    = "";
+        mType    = -1;
         setDefault();
     }
 
@@ -272,7 +272,7 @@ public final class SpanUtils {
             @Align final int align
     ) {
         this.lineHeight = lineHeight;
-        this.alignLine = align;
+        this.alignLine  = align;
         return this;
     }
 
@@ -297,8 +297,8 @@ public final class SpanUtils {
             @IntRange(from = 1) final int stripeWidth,
             @IntRange(from = 0) final int gapWidth
     ) {
-        this.quoteColor = color;
-        this.stripeWidth = stripeWidth;
+        this.quoteColor    = color;
+        this.stripeWidth   = stripeWidth;
         this.quoteGapWidth = gapWidth;
         return this;
     }
@@ -314,7 +314,7 @@ public final class SpanUtils {
             @IntRange(from = 0) final int rest
     ) {
         this.first = first;
-        this.rest = rest;
+        this.rest  = rest;
         return this;
     }
 
@@ -339,8 +339,8 @@ public final class SpanUtils {
             @IntRange(from = 0) final int radius,
             @IntRange(from = 0) final int gapWidth
     ) {
-        this.bulletColor = color;
-        this.bulletRadius = radius;
+        this.bulletColor    = color;
+        this.bulletRadius   = radius;
         this.bulletGapWidth = gapWidth;
         return this;
     }
@@ -364,7 +364,7 @@ public final class SpanUtils {
             @IntRange(from = 0) final int size,
             final boolean isDp
     ) {
-        this.fontSize = size;
+        this.fontSize     = size;
         this.fontSizeIsDp = isDp;
         return this;
     }
@@ -559,7 +559,7 @@ public final class SpanUtils {
             final BlurMaskFilter.Blur style
     ) {
         this.blurRadius = radius;
-        this.style = style;
+        this.style      = style;
         return this;
     }
 
@@ -588,9 +588,9 @@ public final class SpanUtils {
             final int shadowColor
     ) {
         this.shadowRadius = radius;
-        this.shadowDx = dx;
-        this.shadowDy = dy;
-        this.shadowColor = shadowColor;
+        this.shadowDx     = dx;
+        this.shadowDy     = dy;
+        this.shadowColor  = shadowColor;
         return this;
     }
 
@@ -669,7 +669,7 @@ public final class SpanUtils {
     ) {
         apply(TYPE_IMAGE);
         this.imageBitmap = bitmap;
-        this.alignImage = align;
+        this.alignImage  = align;
         return this;
     }
 
@@ -700,7 +700,7 @@ public final class SpanUtils {
     ) {
         apply(TYPE_IMAGE);
         this.imageDrawable = drawable;
-        this.alignImage = align;
+        this.alignImage    = align;
         return this;
     }
 
@@ -730,7 +730,7 @@ public final class SpanUtils {
             @Align final int align
     ) {
         apply(TYPE_IMAGE);
-        this.imageUri = uri;
+        this.imageUri   = uri;
         this.alignImage = align;
         return this;
     }
@@ -762,7 +762,7 @@ public final class SpanUtils {
     ) {
         apply(TYPE_IMAGE);
         this.imageResourceId = resourceId;
-        this.alignImage = align;
+        this.alignImage      = align;
         return this;
     }
 
@@ -788,7 +788,7 @@ public final class SpanUtils {
             @ColorInt final int color
     ) {
         apply(TYPE_SPACE);
-        this.spaceSize = size;
+        this.spaceSize  = size;
         this.spaceColor = color;
         return this;
     }
@@ -971,38 +971,38 @@ public final class SpanUtils {
      * 初始化默认值
      */
     private void setDefault() {
-        flag = Spanned.SPAN_EXCLUSIVE_EXCLUSIVE;
+        flag            = Spanned.SPAN_EXCLUSIVE_EXCLUSIVE;
         foregroundColor = COLOR_DEFAULT;
         backgroundColor = COLOR_DEFAULT;
-        lineHeight = -1;
-        quoteColor = COLOR_DEFAULT;
-        first = -1;
-        bulletColor = COLOR_DEFAULT;
-        fontSize = -1;
-        proportion = -1;
-        xProportion = -1;
+        lineHeight      = -1;
+        quoteColor      = COLOR_DEFAULT;
+        first           = -1;
+        bulletColor     = COLOR_DEFAULT;
+        fontSize        = -1;
+        proportion      = -1;
+        xProportion     = -1;
         isStrikethrough = false;
-        isUnderline = false;
-        isSuperscript = false;
-        isSubscript = false;
-        isBold = false;
-        isItalic = false;
-        isBoldItalic = false;
-        fontFamily = null;
-        typeface = null;
-        alignment = null;
-        verticalAlign = -1;
-        clickSpan = null;
-        url = null;
-        blurRadius = -1;
-        shader = null;
-        shadowRadius = -1;
-        spaceSize = -1;
-        spans = null;
+        isUnderline     = false;
+        isSuperscript   = false;
+        isSubscript     = false;
+        isBold          = false;
+        isItalic        = false;
+        isBoldItalic    = false;
+        fontFamily      = null;
+        typeface        = null;
+        alignment       = null;
+        verticalAlign   = -1;
+        clickSpan       = null;
+        url             = null;
+        blurRadius      = -1;
+        shader          = null;
+        shadowRadius    = -1;
+        spaceSize       = -1;
+        spans           = null;
 
-        imageBitmap = null;
-        imageDrawable = null;
-        imageUri = null;
+        imageBitmap     = null;
+        imageDrawable   = null;
+        imageUri        = null;
         imageResourceId = -1;
     }
 
@@ -1075,7 +1075,7 @@ public final class SpanUtils {
                 int height,
                 int verticalAlignment
         ) {
-            this.height = height;
+            this.height        = height;
             mVerticalAlignment = verticalAlignment;
         }
 
@@ -1089,17 +1089,17 @@ public final class SpanUtils {
                 final Paint.FontMetricsInt fm
         ) {
             if (sfm == null) {
-                sfm = new Paint.FontMetricsInt();
-                sfm.top = fm.top;
-                sfm.ascent = fm.ascent;
+                sfm         = new Paint.FontMetricsInt();
+                sfm.top     = fm.top;
+                sfm.ascent  = fm.ascent;
                 sfm.descent = fm.descent;
-                sfm.bottom = fm.bottom;
+                sfm.bottom  = fm.bottom;
                 sfm.leading = fm.leading;
             } else {
-                fm.top = sfm.top;
-                fm.ascent = sfm.ascent;
+                fm.top     = sfm.top;
+                fm.ascent  = sfm.ascent;
                 fm.descent = sfm.descent;
-                fm.bottom = sfm.bottom;
+                fm.bottom  = sfm.bottom;
                 fm.leading = sfm.leading;
             }
             int need = height - (v + fm.descent - fm.ascent - spanstartv);
@@ -1198,9 +1198,9 @@ public final class SpanUtils {
                 final int gapWidth
         ) {
             super();
-            this.color = color;
+            this.color       = color;
             this.stripeWidth = stripeWidth;
-            this.gapWidth = gapWidth;
+            this.gapWidth    = gapWidth;
         }
 
         public int getLeadingMargin(final boolean first) {
@@ -1252,8 +1252,8 @@ public final class SpanUtils {
                 final int radius,
                 final int gapWidth
         ) {
-            this.color = color;
-            this.radius = radius;
+            this.color    = color;
+            this.radius   = radius;
             this.gapWidth = gapWidth;
         }
 
@@ -1405,7 +1405,7 @@ public final class SpanUtils {
                 Bitmap bitmap;
                 try {
                     InputStream is = getContext().getContentResolver().openInputStream(mContentUri);
-                    bitmap = BitmapFactory.decodeStream(is);
+                    bitmap   = BitmapFactory.decodeStream(is);
                     drawable = new BitmapDrawable(getContext().getResources(), bitmap);
                     drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
                     CloseUtils.closeIOQuietly(is);
@@ -1463,12 +1463,12 @@ public final class SpanUtils {
                     if (mVerticalAlignment == ALIGN_TOP) {
                         fm.bottom = rect.height() + fm.top;
                     } else if (mVerticalAlignment == ALIGN_CENTER) {
-                        fm.top = -rect.height() / 2 - lineHeight / 4;
+                        fm.top    = -rect.height() / 2 - lineHeight / 4;
                         fm.bottom = rect.height() / 2 - lineHeight / 4;
                     } else {
                         fm.top = -rect.height() + fm.bottom;
                     }
-                    fm.ascent = fm.top;
+                    fm.ascent  = fm.top;
                     fm.descent = fm.bottom;
                 }
             }
@@ -1517,7 +1517,7 @@ public final class SpanUtils {
                 drawable = wr.get();
             }
             if (drawable == null) {
-                drawable = getDrawable();
+                drawable     = getDrawable();
                 mDrawableRef = new WeakReference<>(drawable);
             }
             return drawable;
@@ -1563,9 +1563,9 @@ public final class SpanUtils {
                 final float dy,
                 final int shadowColor
         ) {
-            this.radius = radius;
-            this.dx = dx;
-            this.dy = dy;
+            this.radius      = radius;
+            this.dx          = dx;
+            this.dy          = dy;
             this.shadowColor = shadowColor;
         }
 

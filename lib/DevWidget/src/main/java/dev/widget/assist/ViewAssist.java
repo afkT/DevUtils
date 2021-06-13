@@ -55,7 +55,7 @@ public final class ViewAssist {
         if (wrapper == null) return null;
         ViewAssist assist = new ViewAssist();
         assist.mWrapper = wrapper;
-        assist.mTag = tag;
+        assist.mTag     = tag;
         return assist;
     }
 

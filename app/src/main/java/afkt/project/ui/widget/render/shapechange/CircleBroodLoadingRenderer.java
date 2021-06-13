@@ -113,18 +113,18 @@ public class CircleBroodLoadingRenderer
     }
 
     private void init(Context context) {
-        mWidth = SizeUtils.dipConvertPx(DEFAULT_WIDTH);
+        mWidth  = SizeUtils.dipConvertPx(DEFAULT_WIDTH);
         mHeight = SizeUtils.dipConvertPx(DEFAULT_HEIGHT);
 
-        mMaxMotherOvalSize = SizeUtils.dipConvertPx(MAX_MATHER_OVAL_SIZE);
+        mMaxMotherOvalSize    = SizeUtils.dipConvertPx(MAX_MATHER_OVAL_SIZE);
         mBasicChildOvalRadius = SizeUtils.dipConvertPx(MIN_CHILD_OVAL_RADIUS);
 
-        mOvalColor = DEFAULT_OVAL_COLOR;
-        mOvalDeepColor = DEFAULT_OVAL_DEEP_COLOR;
-        mBackgroundColor = DEFAULT_BACKGROUND_COLOR;
+        mOvalColor           = DEFAULT_OVAL_COLOR;
+        mOvalDeepColor       = DEFAULT_OVAL_DEEP_COLOR;
+        mBackgroundColor     = DEFAULT_BACKGROUND_COLOR;
         mBackgroundDeepColor = DEFAULT_BACKGROUND_DEEP_COLOR;
 
-        mMotherOvalHalfWidth = mMaxMotherOvalSize;
+        mMotherOvalHalfWidth  = mMaxMotherOvalSize;
         mMotherOvalHalfHeight = mMaxMotherOvalSize;
 
         mMaxRevealCircleRadius = (int) (Math.sqrt(mWidth * mWidth + mHeight * mHeight) / 2 + 1);
@@ -275,7 +275,7 @@ public class CircleBroodLoadingRenderer
         //mother oval
         float motherMoveProgress = MOTHER_MOVE_INTERPOLATOR.getInterpolation(renderProgress);
         mMotherMovePathMeasure.getPosTan(getCurrentMotherMoveLength(motherMoveProgress), mMotherPosition, null);
-        mMotherOvalHalfWidth = mMaxMotherOvalSize;
+        mMotherOvalHalfWidth  = mMaxMotherOvalSize;
         mMotherOvalHalfHeight = mMaxMotherOvalSize * getMotherShapeFactor(motherMoveProgress);
 
         //child Oval
@@ -286,8 +286,8 @@ public class CircleBroodLoadingRenderer
         mRotateDegrees = (int) (Math.toDegrees(Math.atan((mMotherPosition[1] - mChildPosition[1]) /
                 (mMotherPosition[0] - mChildPosition[0]))));
 
-        mRevealCircleRadius = getCurrentRevealCircleRadius(renderProgress);
-        mCurrentOvalColor = getCurrentOvalColor(renderProgress);
+        mRevealCircleRadius     = getCurrentRevealCircleRadius(renderProgress);
+        mCurrentOvalColor       = getCurrentOvalColor(renderProgress);
         mCurrentBackgroundColor = getCurrentBackgroundColor(renderProgress);
     }
 
@@ -295,7 +295,7 @@ public class CircleBroodLoadingRenderer
         mChildOvalRadius = mBasicChildOvalRadius;
 
         mChildRightXOffset = 0.0f;
-        mChildLeftXOffset = 0.0f;
+        mChildLeftXOffset  = 0.0f;
 
         if (input <= STAGE_CHILD_PRE_FORWARD_TOP_LEFT) {
             if (input >= 0.25) {
@@ -337,7 +337,7 @@ public class CircleBroodLoadingRenderer
         }
 
         mChildRightYOffset = mChildRightXOffset / 2.5f;
-        mChildLeftYOffset = mChildLeftXOffset / 2.5f;
+        mChildLeftYOffset  = mChildLeftXOffset / 2.5f;
     }
 
     private float getMotherShapeFactor(float input) {
@@ -368,30 +368,30 @@ public class CircleBroodLoadingRenderer
 
         if (input > 0.0f) {
             currentStartDistance += currentStageDistance;
-            currentStageDistance = mStageMotherForwardTopLeftLength;
+            currentStageDistance      = mStageMotherForwardTopLeftLength;
             currentStateStartProgress = 0.0f;
-            currentStateEndProgress = STAGE_MOTHER_FORWARD_TOP_LEFT;
+            currentStateEndProgress   = STAGE_MOTHER_FORWARD_TOP_LEFT;
         }
 
         if (input > STAGE_MOTHER_FORWARD_TOP_LEFT) {
             currentStartDistance += currentStageDistance;
-            currentStageDistance = mStageMotherBackwardTopLeftLength;
+            currentStageDistance      = mStageMotherBackwardTopLeftLength;
             currentStateStartProgress = STAGE_MOTHER_FORWARD_TOP_LEFT;
-            currentStateEndProgress = STAGE_MOTHER_BACKWARD_TOP_LEFT;
+            currentStateEndProgress   = STAGE_MOTHER_BACKWARD_TOP_LEFT;
         }
 
         if (input > STAGE_MOTHER_BACKWARD_TOP_LEFT) {
             currentStartDistance += currentStageDistance;
-            currentStageDistance = mStageMotherForwardBottomLeftLength;
+            currentStageDistance      = mStageMotherForwardBottomLeftLength;
             currentStateStartProgress = STAGE_MOTHER_BACKWARD_TOP_LEFT;
-            currentStateEndProgress = STAGE_MOTHER_FORWARD_BOTTOM_LEFT;
+            currentStateEndProgress   = STAGE_MOTHER_FORWARD_BOTTOM_LEFT;
         }
 
         if (input > STAGE_MOTHER_FORWARD_BOTTOM_LEFT) {
             currentStartDistance += currentStageDistance;
-            currentStageDistance = mStageMotherBackwardBottomLeftLength;
+            currentStageDistance      = mStageMotherBackwardBottomLeftLength;
             currentStateStartProgress = STAGE_MOTHER_FORWARD_BOTTOM_LEFT;
-            currentStateEndProgress = STAGE_MOTHER_BACKWARD_BOTTOM_LEFT;
+            currentStateEndProgress   = STAGE_MOTHER_BACKWARD_BOTTOM_LEFT;
         }
 
         if (input > STAGE_MOTHER_BACKWARD_BOTTOM_LEFT) {
@@ -410,44 +410,44 @@ public class CircleBroodLoadingRenderer
 
         if (input > 0.0f) {
             currentStartDistance += currentStageDistance;
-            currentStageDistance = mStageChildPreForwardTopLeftLength;
+            currentStageDistance      = mStageChildPreForwardTopLeftLength;
             currentStateStartProgress = 0.0f;
-            currentStateEndProgress = STAGE_CHILD_PRE_FORWARD_TOP_LEFT;
+            currentStateEndProgress   = STAGE_CHILD_PRE_FORWARD_TOP_LEFT;
         }
 
         if (input > STAGE_CHILD_PRE_FORWARD_TOP_LEFT) {
             currentStartDistance += currentStageDistance;
-            currentStageDistance = mStageChildForwardTopLeftLength;
+            currentStageDistance      = mStageChildForwardTopLeftLength;
             currentStateStartProgress = STAGE_CHILD_PRE_FORWARD_TOP_LEFT;
-            currentStateEndProgress = STAGE_CHILD_FORWARD_TOP_LEFT;
+            currentStateEndProgress   = STAGE_CHILD_FORWARD_TOP_LEFT;
         }
 
         if (input > STAGE_CHILD_FORWARD_TOP_LEFT) {
             currentStartDistance += currentStageDistance;
-            currentStageDistance = mStageChildPreBackwardTopLeftLength;
+            currentStageDistance      = mStageChildPreBackwardTopLeftLength;
             currentStateStartProgress = STAGE_CHILD_FORWARD_TOP_LEFT;
-            currentStateEndProgress = STAGE_CHILD_PRE_BACKWARD_TOP_LEFT;
+            currentStateEndProgress   = STAGE_CHILD_PRE_BACKWARD_TOP_LEFT;
         }
 
         if (input > STAGE_CHILD_PRE_BACKWARD_TOP_LEFT) {
             currentStartDistance += currentStageDistance;
-            currentStageDistance = mStageChildBackwardTopLeftLength;
+            currentStageDistance      = mStageChildBackwardTopLeftLength;
             currentStateStartProgress = STAGE_CHILD_PRE_BACKWARD_TOP_LEFT;
-            currentStateEndProgress = STAGE_CHILD_BACKWARD_TOP_LEFT;
+            currentStateEndProgress   = STAGE_CHILD_BACKWARD_TOP_LEFT;
         }
 
         if (input > STAGE_CHILD_BACKWARD_TOP_LEFT) {
             currentStartDistance += currentStageDistance;
-            currentStageDistance = mStageChildForwardBottomLeftLength;
+            currentStageDistance      = mStageChildForwardBottomLeftLength;
             currentStateStartProgress = STAGE_CHILD_BACKWARD_TOP_LEFT;
-            currentStateEndProgress = STAGE_CHILD_FORWARD_BOTTOM_LEFT;
+            currentStateEndProgress   = STAGE_CHILD_FORWARD_BOTTOM_LEFT;
         }
 
         if (input > STAGE_CHILD_FORWARD_BOTTOM_LEFT) {
             currentStartDistance += currentStageDistance;
-            currentStageDistance = mStageChildBackwardBottomLeftLength;
+            currentStageDistance      = mStageChildBackwardBottomLeftLength;
             currentStateStartProgress = STAGE_CHILD_FORWARD_BOTTOM_LEFT;
-            currentStateEndProgress = STAGE_CHILD_BACKWARD_BOTTOM_LEFT;
+            currentStateEndProgress   = STAGE_CHILD_BACKWARD_BOTTOM_LEFT;
         }
 
         if (input > STAGE_CHILD_BACKWARD_BOTTOM_LEFT) {

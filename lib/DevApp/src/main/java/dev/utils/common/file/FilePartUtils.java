@@ -344,8 +344,8 @@ public final class FilePartUtils {
             try {
                 fis = new FileInputStream(file);
                 if (end > file.length()) return false;
-                inputChannel = fis.getChannel();
-                fos = new FileOutputStream(new File(destFolderPath, partName));
+                inputChannel  = fis.getChannel();
+                fos           = new FileOutputStream(new File(destFolderPath, partName));
                 outputChannel = fos.getChannel();
                 inputChannel.transferTo(start, (int) (end - start), outputChannel);
                 return true;

@@ -55,7 +55,7 @@ public class DevVideoPlayerControl
             final boolean autoPlay
     ) {
         this.mSurfaceView = surfaceView;
-        this.mAutoPlay = autoPlay;
+        this.mAutoPlay    = autoPlay;
 
         // 初始化 DevMediaManager 回调事件类
         DevMediaManager.getInstance().setMediaListener(this);

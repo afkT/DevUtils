@@ -24,7 +24,7 @@ public class ModuleBean
             String name,
             String alias
     ) {
-        this.name = name;
+        this.name  = name;
         this.alias = alias;
     }
 

@@ -29,14 +29,14 @@ class AdapterItem {
     public        EnvironmentBean environmentBean;
 
     public AdapterItem(ModuleBean moduleBean) {
-        this.itemType = MODULE_TYPE;
+        this.itemType       = MODULE_TYPE;
         this.hashCodeEquals = -1;
-        this.moduleBean = moduleBean;
+        this.moduleBean     = moduleBean;
     }
 
     public AdapterItem(EnvironmentBean environmentBean) {
-        this.itemType = ENVIRONMENT_TYPE;
-        this.hashCodeEquals = environmentBean.hashCode();
+        this.itemType        = ENVIRONMENT_TYPE;
+        this.hashCodeEquals  = environmentBean.hashCode();
         this.environmentBean = environmentBean;
     }
 

@@ -122,7 +122,7 @@ public class RoundDrawable
             final int width,
             final ColorStateList colors
     ) {
-        mStrokeWidth = width;
+        mStrokeWidth  = width;
         mStrokeColors = colors;
         if (hasNativeStateListAPI()) {
             super.setStroke(width, colors);

@@ -38,7 +38,7 @@ public final class ReflectUtils {
             final Class<?> type,
             final Object object
     ) {
-        this.mType = type;
+        this.mType   = type;
         this.mObject = object;
     }
 

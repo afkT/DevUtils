@@ -1503,7 +1503,7 @@ public final class BitmapUtils {
             // 进行采样压缩
             byte[] data = baos.toByteArray();
             BitmapFactory.decodeByteArray(data, 0, data.length, options);
-            options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inSampleSize       = calculateInSampleSize(options, maxWidth, maxHeight);
             options.inJustDecodeBounds = false;
             return BitmapFactory.decodeByteArray(data, 0, data.length, options);
         } catch (Exception e) {

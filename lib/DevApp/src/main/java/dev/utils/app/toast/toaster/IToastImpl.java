@@ -106,7 +106,7 @@ final class IToastImpl
             this.mContext = context.getApplicationContext();
             // 初始化默认参数
             mIsHandler = true;
-            mNullText = null;
+            mNullText  = null;
             // 初始化 Toast
             mConfigToast = new ToastFactory.BaseToast(mContext);
             mConfigToast.setView(createView());

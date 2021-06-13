@@ -59,10 +59,10 @@ public final class ToastUtils {
      * 重置默认参数
      */
     public static void reset() {
-        sIsHandler = true;
-        sUseConfig = true;
-        sNullText = null;
-        sGravity = sX = sY = 0;
+        sIsHandler        = true;
+        sUseConfig        = true;
+        sNullText         = null;
+        sGravity          = sX = sY = 0;
         sHorizontalMargin = sVerticalMargin = 0.0f;
     }
 
@@ -110,8 +110,8 @@ public final class ToastUtils {
             final int yOffset
     ) {
         ToastUtils.sGravity = gravity;
-        ToastUtils.sX = xOffset;
-        ToastUtils.sY = yOffset;
+        ToastUtils.sX       = xOffset;
+        ToastUtils.sY       = yOffset;
     }
 
     /**
@@ -124,7 +124,7 @@ public final class ToastUtils {
             final float verticalMargin
     ) {
         ToastUtils.sHorizontalMargin = horizontalMargin;
-        ToastUtils.sVerticalMargin = verticalMargin;
+        ToastUtils.sVerticalMargin   = verticalMargin;
     }
 
     // =================

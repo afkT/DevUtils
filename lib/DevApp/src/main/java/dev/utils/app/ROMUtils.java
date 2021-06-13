@@ -437,42 +437,42 @@ public final class ROMUtils {
             return bean;
         }
         if (isRightRom(brand, manufacturer, ROM_VIVO)) {
-            bean.name = ROM_VIVO[0];
+            bean.name    = ROM_VIVO[0];
             bean.version = getRomVersion(VERSION_PROPERTY_VIVO);
             return bean;
         }
         if (isRightRom(brand, manufacturer, ROM_XIAOMI)) {
-            bean.name = ROM_XIAOMI[0];
+            bean.name    = ROM_XIAOMI[0];
             bean.version = getRomVersion(VERSION_PROPERTY_XIAOMI);
             return bean;
         }
         if (isRightRom(brand, manufacturer, ROM_OPPO)) {
-            bean.name = ROM_OPPO[0];
+            bean.name    = ROM_OPPO[0];
             bean.version = getRomVersion(VERSION_PROPERTY_OPPO);
             return bean;
         }
         if (isRightRom(brand, manufacturer, ROM_LEECO)) {
-            bean.name = ROM_LEECO[0];
+            bean.name    = ROM_LEECO[0];
             bean.version = getRomVersion(VERSION_PROPERTY_LEECO);
             return bean;
         }
         if (isRightRom(brand, manufacturer, ROM_360)) {
-            bean.name = ROM_360[0];
+            bean.name    = ROM_360[0];
             bean.version = getRomVersion(VERSION_PROPERTY_360);
             return bean;
         }
         if (isRightRom(brand, manufacturer, ROM_ZTE)) {
-            bean.name = ROM_ZTE[0];
+            bean.name    = ROM_ZTE[0];
             bean.version = getRomVersion(VERSION_PROPERTY_ZTE);
             return bean;
         }
         if (isRightRom(brand, manufacturer, ROM_ONEPLUS)) {
-            bean.name = ROM_ONEPLUS[0];
+            bean.name    = ROM_ONEPLUS[0];
             bean.version = getRomVersion(VERSION_PROPERTY_ONEPLUS);
             return bean;
         }
         if (isRightRom(brand, manufacturer, ROM_NUBIA)) {
-            bean.name = ROM_NUBIA[0];
+            bean.name    = ROM_NUBIA[0];
             bean.version = getRomVersion(VERSION_PROPERTY_NUBIA);
             return bean;
         }

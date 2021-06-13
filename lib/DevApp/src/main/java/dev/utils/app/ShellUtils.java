@@ -115,7 +115,7 @@ public final class ShellUtils {
         String           errorMsg   = null;
         try {
             process = Runtime.getRuntime().exec(isRoot ? "su" : "sh");
-            dos = new DataOutputStream(process.getOutputStream());
+            dos     = new DataOutputStream(process.getOutputStream());
             // 循环写入待执行命令
             for (String command : commands) {
                 if (command == null) continue;
@@ -200,9 +200,9 @@ public final class ShellUtils {
                 final String successMsg,
                 final String errorMsg
         ) {
-            this.result = result;
+            this.result     = result;
             this.successMsg = successMsg;
-            this.errorMsg = errorMsg;
+            this.errorMsg   = errorMsg;
         }
 
         /**

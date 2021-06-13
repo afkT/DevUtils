@@ -94,10 +94,10 @@ public final class ToastTintUtils {
      * 重置默认参数
      */
     public static void reset() {
-        sIsHandler = true;
-        sUseConfig = true;
-        sNullText = null;
-        sGravity = sX = sY = 0;
+        sIsHandler        = true;
+        sUseConfig        = true;
+        sNullText         = null;
+        sGravity          = sX = sY = 0;
         sHorizontalMargin = sVerticalMargin = 0.0f;
     }
 
@@ -145,8 +145,8 @@ public final class ToastTintUtils {
             final int yOffset
     ) {
         ToastTintUtils.sGravity = gravity;
-        ToastTintUtils.sX = xOffset;
-        ToastTintUtils.sY = yOffset;
+        ToastTintUtils.sX       = xOffset;
+        ToastTintUtils.sY       = yOffset;
     }
 
     /**
@@ -159,7 +159,7 @@ public final class ToastTintUtils {
             final float verticalMargin
     ) {
         ToastTintUtils.sHorizontalMargin = horizontalMargin;
-        ToastTintUtils.sVerticalMargin = verticalMargin;
+        ToastTintUtils.sVerticalMargin   = verticalMargin;
     }
 
     // =

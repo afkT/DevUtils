@@ -721,10 +721,10 @@ public final class ScaleUtils {
                 final int y,
                 final int type
         ) {
-            this.x = x;
-            this.y = y;
+            this.x     = x;
+            this.y     = y;
             this.scale = calcScale(x, y);
-            this.type = type;
+            this.type  = type;
         }
 
         public final int    x;

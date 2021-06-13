@@ -72,7 +72,7 @@ public final class AutoFocusAssist
             final Camera camera,
             final long interval
     ) {
-        this.mCamera = camera;
+        this.mCamera   = camera;
         this.mInterval = interval;
         // 防止为 null
         if (camera != null) {

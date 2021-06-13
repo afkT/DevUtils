@@ -39,7 +39,7 @@ public class PageAssist<T>
             final int page,
             final int pageSize
     ) {
-        PageAssist.DF_PAGE = page;
+        PageAssist.DF_PAGE      = page;
         PageAssist.DF_PAGE_SIZE = pageSize;
     }
 

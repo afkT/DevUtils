@@ -239,7 +239,7 @@ public final class LubanUtils {
         ) {
             this.ignoreSize = ignoreSize;
             this.focusAlpha = focusAlpha;
-            this.targetDir = targetDir;
+            this.targetDir  = targetDir;
         }
 
         // =

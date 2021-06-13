@@ -370,7 +370,7 @@ public final class RandomUtils {
                 int    random = getRandom(0, length - i);
                 Object temp   = objects[length - i];
                 objects[length - i] = objects[random];
-                objects[random] = temp;
+                objects[random]     = temp;
             }
             return true;
         }
@@ -405,7 +405,7 @@ public final class RandomUtils {
                 out[i - 1] = ints[random];
                 int temp = ints[length - i];
                 ints[length - i] = ints[random];
-                ints[random] = temp;
+                ints[random]     = temp;
             }
             return out;
         }
@@ -426,7 +426,7 @@ public final class RandomUtils {
             for (int i = 0; i < len - 1; i++) {
                 int    idx  = (int) (Math.random() * (len - i));
                 Object temp = objects[idx];
-                objects[idx] = objects[len - i - 1];
+                objects[idx]         = objects[len - i - 1];
                 objects[len - i - 1] = temp;
             }
             return true;

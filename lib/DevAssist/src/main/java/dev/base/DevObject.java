@@ -41,7 +41,7 @@ public class DevObject<T>
             final Object tag
     ) {
         this.mObject = object;
-        this.mTag = tag;
+        this.mTag    = tag;
     }
 
     // ===============

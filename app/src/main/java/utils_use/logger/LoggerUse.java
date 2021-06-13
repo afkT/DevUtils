@@ -121,15 +121,15 @@ public final class LoggerUse {
     public static void tempLog() {
         // = 打印零散数据 =
         TestData.ShareMsgVo sMsgVo = new TestData.ShareMsgVo();
-        sMsgVo.sTitle = "分享 Blog";
-        sMsgVo.sText = null;
+        sMsgVo.sTitle     = "分享 Blog";
+        sMsgVo.sText      = null;
         sMsgVo.sImagePath = "http://t.jpg";
-        sMsgVo.sTitleUrl = "http://www.test.com";
+        sMsgVo.sTitleUrl  = "http://www.test.com";
 
         TestData.UserInfoVo uInfoVo = new TestData.UserInfoVo();
         uInfoVo.uName = "BlogRecord";
-        uInfoVo.uPwd = "log_pwd";
-        uInfoVo.uAge = 100;
+        uInfoVo.uPwd  = "log_pwd";
+        uInfoVo.uAge  = 100;
 
         // 打印分享数据
         DevLogger.d(LogTools.getShareMsgVoData(sMsgVo));

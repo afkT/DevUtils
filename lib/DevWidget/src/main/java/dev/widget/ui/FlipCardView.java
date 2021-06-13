@@ -86,7 +86,7 @@ public class FlipCardView
         setFlipDistance(16000);
         // 初始化动画
         mOutAnim = AnimatorInflater.loadAnimator(getContext(), R.animator.dev_flip_card_out);
-        mInAnim = AnimatorInflater.loadAnimator(getContext(), R.animator.dev_flip_card_in);
+        mInAnim  = AnimatorInflater.loadAnimator(getContext(), R.animator.dev_flip_card_in);
     }
 
     // ===============
@@ -137,7 +137,7 @@ public class FlipCardView
         // 判断是否存在数据
         ViewUtils.setVisibilitys(true, mFrontLayout, mBackLayout);
         // 重置处理
-        isFront = true;
+        isFront   = true;
         mPosition = 0;
         // 设置适配器
         this.mAdapter = adapter;
@@ -190,7 +190,7 @@ public class FlipCardView
             Animator inAnim,
             Animator outAnim
     ) {
-        this.mInAnim = inAnim;
+        this.mInAnim  = inAnim;
         this.mOutAnim = outAnim;
         return this;
     }

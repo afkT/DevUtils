@@ -79,8 +79,8 @@ public class WrapView
     ) {
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
-            mMaxLine = a.getInt(R.styleable.DevWidget_dev_maxLine, Integer.MAX_VALUE);
-            mRowTopMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_rowTopMargin, 20);
+            mMaxLine        = a.getInt(R.styleable.DevWidget_dev_maxLine, Integer.MAX_VALUE);
+            mRowTopMargin   = a.getLayoutDimension(R.styleable.DevWidget_dev_rowTopMargin, 20);
             mViewLeftMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_viewLeftMargin, 20);
             a.recycle();
         }
@@ -329,7 +329,7 @@ public class WrapView
             int rowTopMargin,
             int viewLeftMargin
     ) {
-        this.mRowTopMargin = rowTopMargin;
+        this.mRowTopMargin   = rowTopMargin;
         this.mViewLeftMargin = viewLeftMargin;
         return this;
     }

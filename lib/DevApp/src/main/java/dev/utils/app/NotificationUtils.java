@@ -393,7 +393,7 @@ public final class NotificationUtils {
                 int startOffMS,
                 int durationMS
         ) {
-            this.argb = argb;
+            this.argb       = argb;
             this.startOffMS = startOffMS;
             this.durationMS = durationMS;
         }
@@ -486,9 +486,9 @@ public final class NotificationUtils {
                 String title,
                 String content
         ) {
-            this.mIcon = icon;
-            this.mTicker = title;
-            this.mTitle = title;
+            this.mIcon    = icon;
+            this.mTicker  = title;
+            this.mTitle   = title;
             this.mContent = content;
         }
 

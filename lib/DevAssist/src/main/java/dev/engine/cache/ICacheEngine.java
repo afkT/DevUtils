@@ -64,13 +64,13 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig,
                 boolean isPermanent,
                 boolean isDue
         ) {
-            this.key = key;
-            this.type = type;
-            this.size = size;
-            this.saveTime = saveTime;
-            this.validTime = validTime;
+            this.key         = key;
+            this.type        = type;
+            this.size        = size;
+            this.saveTime    = saveTime;
+            this.validTime   = validTime;
             this.isPermanent = isPermanent;
-            this.isDue = isDue;
+            this.isDue       = isDue;
         }
     }
 

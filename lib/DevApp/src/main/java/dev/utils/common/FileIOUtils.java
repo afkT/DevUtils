@@ -704,7 +704,7 @@ public final class FileIOUtils {
         FileInputStream       fis  = null;
         ByteArrayOutputStream baos = null;
         try {
-            fis = new FileInputStream(file);
+            fis  = new FileInputStream(file);
             baos = new ByteArrayOutputStream();
             byte[] b = new byte[sBufferSize];
             int    len;

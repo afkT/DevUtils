@@ -131,20 +131,20 @@ public class ElectricFanLoadingRenderer
     private void init(Context context) {
         mMode = MODE_NORMAL;
 
-        mWidth = SizeUtils.dipConvertPx(DEFAULT_WIDTH);
-        mHeight = SizeUtils.dipConvertPx(DEFAULT_HEIGHT);
-        mTextSize = SizeUtils.dipConvertPx(DEFAULT_TEXT_SIZE);
-        mStrokeWidth = SizeUtils.dipConvertPx(DEFAULT_STROKE_WIDTH);
-        mCenterRadius = SizeUtils.dipConvertPx(DEFAULT_CENTER_RADIUS);
+        mWidth                = SizeUtils.dipConvertPx(DEFAULT_WIDTH);
+        mHeight               = SizeUtils.dipConvertPx(DEFAULT_HEIGHT);
+        mTextSize             = SizeUtils.dipConvertPx(DEFAULT_TEXT_SIZE);
+        mStrokeWidth          = SizeUtils.dipConvertPx(DEFAULT_STROKE_WIDTH);
+        mCenterRadius         = SizeUtils.dipConvertPx(DEFAULT_CENTER_RADIUS);
         mProgressCenterRadius = SizeUtils.dipConvertPx(DEFAULT_PROGRESS_CENTER_RADIUS);
 
-        mProgressColor = DEFAULT_PROGRESS_COLOR;
-        mProgressBgColor = DEFAULT_PROGRESS_BGCOLOR;
-        mElectricFanBgColor = DEFAULT_ELECTRIC_FAN_BGCOLOR;
+        mProgressColor           = DEFAULT_PROGRESS_COLOR;
+        mProgressBgColor         = DEFAULT_PROGRESS_BGCOLOR;
+        mElectricFanBgColor      = DEFAULT_ELECTRIC_FAN_BGCOLOR;
         mElectricFanOutlineColor = DEFAULT_ELECTRIC_FAN_OUTLINE_COLOR;
 
-        mLeafDrawable = context.getResources().getDrawable(R.drawable.icon_electric_leaf);
-        mLoadingDrawable = context.getResources().getDrawable(R.drawable.icon_electric_loading);
+        mLeafDrawable        = context.getResources().getDrawable(R.drawable.icon_electric_leaf);
+        mLoadingDrawable     = context.getResources().getDrawable(R.drawable.icon_electric_loading);
         mElectricFanDrawable = context.getResources().getDrawable(R.drawable.icon_electric_fan);
 
         mDuration = ANIMATION_DURATION;
@@ -282,7 +282,7 @@ public class ElectricFanLoadingRenderer
         //the right half circle of the progressbar
         if (progressWidth >= progressRect.width() - circleRadius) {
             rectProgressRect = new RectF(progressRect.left + circleRadius, progressRect.top, progressRect.right - circleRadius, progressRect.bottom);
-            mScale = (progressRect.width() - progressWidth) / circleRadius;
+            mScale           = (progressRect.width() - progressWidth) / circleRadius;
         }
 
         //the left of the right half circle
@@ -326,8 +326,8 @@ public class ElectricFanLoadingRenderer
 
     @Override
     protected void reset() {
-        mScale = 1.0f;
-        mCurrentLeafCount = 0;
+        mScale                   = 1.0f;
+        mCurrentLeafCount        = 0;
         mNextLeafCreateThreshold = 0.0f;
         mLeafHolders.clear();
     }

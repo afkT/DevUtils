@@ -1415,9 +1415,9 @@ public final class SnackbarUtils {
      */
     private void clearLocations() {
         // 重置处理
-        mViewHeight = 0;
-        mViewGravity = -1;
-        mViewLocations = null;
+        mViewHeight      = 0;
+        mViewGravity     = -1;
+        mViewLocations   = null;
         mAppendTopMargin = 0;
     }
 
@@ -1435,9 +1435,9 @@ public final class SnackbarUtils {
         clearLocations();
         // 防止为 null
         if (targetView != null) {
-            mViewHeight = targetView.getHeight();
-            mViewGravity = Gravity.TOP;
-            mViewLocations = new int[2];
+            mViewHeight      = targetView.getHeight();
+            mViewGravity     = Gravity.TOP;
+            mViewLocations   = new int[2];
             mAppendTopMargin = appendTopMargin;
             targetView.getLocationOnScreen(mViewLocations);
         }
@@ -1458,9 +1458,9 @@ public final class SnackbarUtils {
         clearLocations();
         // 防止为 null
         if (targetView != null) {
-            mViewHeight = targetView.getHeight();
-            mViewGravity = Gravity.BOTTOM;
-            mViewLocations = new int[2];
+            mViewHeight      = targetView.getHeight();
+            mViewGravity     = Gravity.BOTTOM;
+            mViewLocations   = new int[2];
             mAppendTopMargin = appendTopMargin;
             targetView.getLocationOnScreen(mViewLocations);
         }

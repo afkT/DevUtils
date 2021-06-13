@@ -77,7 +77,7 @@ public final class FileBreadthFirstSearchUtils {
                 File file,
                 FileItem fileItem
         ) {
-            this.file = file;
+            this.file     = file;
             this.fileItem = fileItem;
         }
 
@@ -280,7 +280,7 @@ public final class FileBreadthFirstSearchUtils {
         }
         // 表示运行中
         mIsRunning = true;
-        mIsStop = false;
+        mIsStop    = false;
         // 设置开始搜索时间
         mStartTime = System.currentTimeMillis();
         try {

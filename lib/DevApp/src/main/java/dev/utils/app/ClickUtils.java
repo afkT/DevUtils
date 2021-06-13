@@ -353,7 +353,7 @@ public final class ClickUtils {
                 return true;
             }
             LogPrintUtils.dTag(TAG, "isFastDoubleClick 有效点击 tagId: %s, intervalTime: %s", tagId, intervalTime);
-            mLastTagId = tagId;
+            mLastTagId     = tagId;
             mLastClickTime = curTime;
             return false;
         }

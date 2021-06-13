@@ -193,7 +193,7 @@ public final class FileDepthFirstSearchUtils {
         }
         // 表示运行中
         mIsRunning = true;
-        mIsStop = false;
+        mIsStop    = false;
         // 设置开始搜索时间
         mStartTime = System.currentTimeMillis();
         try {

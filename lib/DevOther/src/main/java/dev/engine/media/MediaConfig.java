@@ -377,21 +377,21 @@ public class MediaConfig
      */
     public MediaConfig clone() {
         MediaConfig config = new MediaConfig();
-        config.mimeType = mimeType;
-        config.selectionMode = selectionMode;
-        config.isCamera = isCamera;
-        config.isCrop = isCrop;
-        config.isCircleCrop = isCircleCrop;
-        config.isCompress = isCompress;
+        config.mimeType            = mimeType;
+        config.selectionMode       = selectionMode;
+        config.isCamera            = isCamera;
+        config.isCrop              = isCrop;
+        config.isCircleCrop        = isCircleCrop;
+        config.isCompress          = isCompress;
         config.minimumCompressSize = minimumCompressSize;
-        config.withAspectRatio = withAspectRatio;
-        config.isGif = isGif;
-        config.imageSpanCount = imageSpanCount;
-        config.minSelectNum = minSelectNum;
-        config.maxSelectNum = maxSelectNum;
-        config.localMedia = localMedia;
-        config.cameraSavePath = cameraSavePath;
-        config.compressSavePath = compressSavePath;
+        config.withAspectRatio     = withAspectRatio;
+        config.isGif               = isGif;
+        config.imageSpanCount      = imageSpanCount;
+        config.minSelectNum        = minSelectNum;
+        config.maxSelectNum        = maxSelectNum;
+        config.localMedia          = localMedia;
+        config.cameraSavePath      = cameraSavePath;
+        config.compressSavePath    = compressSavePath;
         return config;
     }
 
@@ -402,21 +402,21 @@ public class MediaConfig
      */
     public MediaConfig set(final MediaConfig config) {
         if (config != null) {
-            mimeType = config.mimeType;
-            selectionMode = config.selectionMode;
-            isCamera = config.isCamera;
-            isCrop = config.isCrop;
-            isCircleCrop = config.isCircleCrop;
-            isCompress = config.isCompress;
+            mimeType            = config.mimeType;
+            selectionMode       = config.selectionMode;
+            isCamera            = config.isCamera;
+            isCrop              = config.isCrop;
+            isCircleCrop        = config.isCircleCrop;
+            isCompress          = config.isCompress;
             minimumCompressSize = config.minimumCompressSize;
-            withAspectRatio = config.withAspectRatio;
-            isGif = config.isGif;
-            imageSpanCount = config.imageSpanCount;
-            minSelectNum = config.minSelectNum;
-            maxSelectNum = config.maxSelectNum;
-            localMedia = config.localMedia;
-            cameraSavePath = config.cameraSavePath;
-            compressSavePath = config.compressSavePath;
+            withAspectRatio     = config.withAspectRatio;
+            isGif               = config.isGif;
+            imageSpanCount      = config.imageSpanCount;
+            minSelectNum        = config.minSelectNum;
+            maxSelectNum        = config.maxSelectNum;
+            localMedia          = config.localMedia;
+            cameraSavePath      = config.cameraSavePath;
+            compressSavePath    = config.compressSavePath;
         }
         return this;
     }

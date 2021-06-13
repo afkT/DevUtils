@@ -151,7 +151,7 @@ public final class HttpURLConnectionUtils {
             // 判断请求码是否是 200
             if (responseCode >= 200 && responseCode < 300) {
                 // 输入流
-                is = connection.getInputStream();
+                is   = connection.getInputStream();
                 baos = new ByteArrayOutputStream();
                 // 设置缓存流大小
                 byte[] buffer = new byte[1024];

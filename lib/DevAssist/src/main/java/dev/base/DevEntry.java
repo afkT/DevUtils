@@ -24,7 +24,7 @@ public class DevEntry<K, V> {
             final K key,
             final V value
     ) {
-        this.mKey = key;
+        this.mKey   = key;
         this.mValue = value;
     }
 

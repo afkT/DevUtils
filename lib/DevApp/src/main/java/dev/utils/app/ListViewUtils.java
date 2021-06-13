@@ -620,7 +620,7 @@ public final class ListViewUtils {
 
                     // 记录高度并累加
                     if (j == numColumns - 1) {
-                        height += tempHeight;
+                                             height += tempHeight;
                         rowHeightArrays[i] = tempHeight;
                     }
                 }

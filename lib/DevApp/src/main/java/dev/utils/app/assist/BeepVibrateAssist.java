@@ -57,7 +57,7 @@ public final class BeepVibrateAssist
             final Activity activity,
             @RawRes final int rawId
     ) {
-        this.mActivity = activity;
+        this.mActivity    = activity;
         this.mMediaPlayer = buildMediaPlayer(rawId);
     }
 
@@ -70,7 +70,7 @@ public final class BeepVibrateAssist
             final Activity activity,
             final String filePath
     ) {
-        this.mActivity = activity;
+        this.mActivity    = activity;
         this.mMediaPlayer = buildMediaPlayer(filePath);
     }
 
@@ -145,7 +145,7 @@ public final class BeepVibrateAssist
             final boolean vibrate,
             final long vibrateDuration
     ) {
-        this.mIsVibrate = vibrate;
+        this.mIsVibrate       = vibrate;
         this.mVibrateDuration = vibrateDuration;
         return this;
     }

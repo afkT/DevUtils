@@ -17,8 +17,8 @@ public class ParameterizedTypeImpl
             Type rawType
     ) {
         this.actualTypeArguments = actualTypeArguments;
-        this.ownerType = ownerType;
-        this.rawType = rawType;
+        this.ownerType           = ownerType;
+        this.rawType             = rawType;
     }
 
     public Type[] getActualTypeArguments() {

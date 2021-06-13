@@ -176,12 +176,12 @@ public class CustomViewPager
 
             if (mIsScrolling) {
                 if (mLastValue > arg2) {
-                    mIsRight = true;
-                    mIsLeft = false;
+                    mIsRight    = true;
+                    mIsLeft     = false;
                     mLeftScroll = false;
                 } else if (mLastValue < arg2) {
-                    mIsRight = false;
-                    mIsLeft = true;
+                    mIsRight    = false;
+                    mIsLeft     = true;
                     mLeftScroll = true;
                 } else if (mLastValue == arg2) {
                     mIsRight = mIsLeft = false;

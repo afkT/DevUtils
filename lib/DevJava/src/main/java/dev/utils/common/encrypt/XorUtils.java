@@ -53,7 +53,7 @@ public final class XorUtils {
         int key = 0x12;
         for (int i = 0; i < len; i++) {
             data[i] = (byte) (data[i] ^ key);
-            key = data[i];
+            key     = data[i];
         }
         return data;
     }

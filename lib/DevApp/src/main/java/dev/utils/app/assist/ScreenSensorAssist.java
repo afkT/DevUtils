@@ -141,10 +141,10 @@ public final class ScreenSensorAssist {
         this.mHandler = handler;
         // 注册重力感应器, 监听屏幕旋转
         mSensorManager = AppUtils.getSensorManager();
-        mListener = new OrientationSensorListener();
+        mListener      = new OrientationSensorListener();
         // 根据 旋转之后、点击全屏之后 两者方向一致, 激活 SensorManager
         mSensorManagerChange = AppUtils.getSensorManager();
-        mListenerChange = new OrientationSensorChangeListener();
+        mListenerChange      = new OrientationSensorChangeListener();
         // 设置传感器
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
     }

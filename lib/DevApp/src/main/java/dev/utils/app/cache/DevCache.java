@@ -743,10 +743,10 @@ public final class DevCache {
                 long saveTime,
                 long validTime
         ) {
-            this.mPath = path;
-            this.mKey = key;
-            this.mType = type;
-            this.mSaveTime = saveTime;
+            this.mPath      = path;
+            this.mKey       = key;
+            this.mType      = type;
+            this.mSaveTime  = saveTime;
             this.mValidTime = validTime;
         }
 

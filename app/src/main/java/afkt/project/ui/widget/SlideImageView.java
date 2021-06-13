@@ -90,8 +90,8 @@ public class SlideImageView
             int heightMeasureSpec
     ) {
         int specSize = MeasureSpec.getSize(widthMeasureSpec);
-        viewWidth = getPaddingLeft() + getPaddingRight() + specSize;
-        specSize = MeasureSpec.getSize(heightMeasureSpec);
+        viewWidth  = getPaddingLeft() + getPaddingRight() + specSize;
+        specSize   = MeasureSpec.getSize(heightMeasureSpec);
         viewHeight = getPaddingTop() + getPaddingBottom() + specSize;
         // 防止多次调用 onMeasure, 内部缩放 resizeImage 导致卡顿
         if (estimateWidth == -1 || viewWidth <= estimateWidth) {
@@ -117,9 +117,9 @@ public class SlideImageView
                         } else {
                             // 不需要滑动
                             setNeedSlide(false);
-                            srcRect.left = 0;
-                            srcRect.top = 0;
-                            srcRect.right = drawBitmap.getWidth();
+                            srcRect.left   = 0;
+                            srcRect.top    = 0;
+                            srcRect.right  = drawBitmap.getWidth();
                             srcRect.bottom = drawBitmap.getHeight();
                             // 如果高度大于 View 的高度, 则以高度为基准 ( 铺满高度, 宽度跟随比例缩放 )
                             if (drawBitmap.getHeight() > viewHeight) {
@@ -127,9 +127,9 @@ public class SlideImageView
                                 drawBitmap = resizeImageH(drawBitmap, viewHeight);
                             } else { // 图片高度 小于 View 高度, 则计算多出来的差距
                                 float space = (viewHeight - drawBitmap.getHeight());
-                                dstRectF.left = 0;
-                                dstRectF.top = space;
-                                dstRectF.right = viewWidth;
+                                dstRectF.left   = 0;
+                                dstRectF.top    = space;
+                                dstRectF.right  = viewWidth;
                                 dstRectF.bottom = viewHeight - space;
                             }
                         }

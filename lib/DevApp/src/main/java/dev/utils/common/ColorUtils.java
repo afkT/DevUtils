@@ -838,7 +838,7 @@ public final class ColorUtils {
                 final String key,
                 final String value
         ) {
-            this.key = key;
+            this.key   = key;
             this.value = value;
             priConvert();
         }
@@ -988,14 +988,14 @@ public final class ColorUtils {
             int[] argb = ColorUtils.getARGB((int) valueColor);
             // 获取 ARGB
             alpha = argb[0];
-            red = argb[1];
+            red   = argb[1];
             green = argb[2];
-            blue = argb[3];
+            blue  = argb[3];
             // 获取灰度值
             grayLevel = (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114f);
             // 获取 HSB
             float[] hsbvals = RGBtoHSB(red, green, blue, null);
-            hue = hsbvals[0]; // 色调
+            hue        = hsbvals[0]; // 色调
             saturation = hsbvals[1]; // 饱和度
             brightness = hsbvals[2]; // 亮度
         }

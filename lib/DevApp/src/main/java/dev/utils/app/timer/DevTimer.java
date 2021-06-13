@@ -23,9 +23,9 @@ public class DevTimer {
     private final int    mTriggerLimit;
 
     private DevTimer(final Builder builder) {
-        mTag = builder.tag;
-        mDelay = builder.delay;
-        mPeriod = builder.period;
+        mTag          = builder.tag;
+        mDelay        = builder.delay;
+        mPeriod       = builder.period;
         mTriggerLimit = builder.limit;
     }
 
@@ -52,7 +52,7 @@ public class DevTimer {
                 long delay,
                 long period
         ) {
-            this.delay = delay;
+            this.delay  = delay;
             this.period = period;
         }
 
@@ -61,9 +61,9 @@ public class DevTimer {
                 long period,
                 int limit
         ) {
-            this.delay = delay;
+            this.delay  = delay;
             this.period = period;
-            this.limit = limit;
+            this.limit  = limit;
         }
 
         public Builder(
@@ -72,18 +72,18 @@ public class DevTimer {
                 int limit,
                 String tag
         ) {
-            this.delay = delay;
+            this.delay  = delay;
             this.period = period;
-            this.limit = limit;
-            this.tag = tag;
+            this.limit  = limit;
+            this.tag    = tag;
         }
 
         public Builder(Builder builder) {
             if (builder != null) {
-                tag = builder.tag;
-                delay = builder.delay;
+                tag    = builder.tag;
+                delay  = builder.delay;
                 period = builder.period;
-                limit = builder.limit;
+                limit  = builder.limit;
             }
         }
 

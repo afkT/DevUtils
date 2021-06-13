@@ -48,7 +48,7 @@ public final class InactivityTimerAssist {
             final Activity activity,
             final long inactivityTime
     ) {
-        this.mActivity = activity;
+        this.mActivity       = activity;
         this.mInactivityTime = inactivityTime;
         // 电池广播监听
         mPowerStateReceiver = new PowerStateReceiver();

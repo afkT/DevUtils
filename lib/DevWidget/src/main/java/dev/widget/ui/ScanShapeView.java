@@ -262,10 +262,10 @@ public class ScanShapeView
      * 初始化处理
      */
     private void init() {
-        mDFCommonDP = SizeUtils.dipConvertPx(5);
-        mBorderWidth = SizeUtils.dipConvertPx(2);
+        mDFCommonDP          = SizeUtils.dipConvertPx(5);
+        mBorderWidth         = SizeUtils.dipConvertPx(2);
         mBorderWidthToSquare = SizeUtils.dipConvertPx(1);
-        mTriAngleLength = SizeUtils.dipConvertPxf(20);
+        mTriAngleLength      = SizeUtils.dipConvertPxf(20);
 
         mAnnulusWidths[0] = SizeUtils.dipConvertPx(3);
         mAnnulusWidths[1] = SizeUtils.dipConvertPx(7);
@@ -414,7 +414,7 @@ public class ScanShapeView
         // 停止动画
         stopAnim();
         // 清空 Bitmap
-        mBitmapToSquare = null;
+        mBitmapToSquare  = null;
         mBitmapToHexagon = null;
         mBitmapToAnnulus = null;
     }
@@ -1179,7 +1179,7 @@ public class ScanShapeView
      */
     public ScanShapeView setAnnulusWidths(float... annulusWidths) {
         if (annulusWidths == null) {
-            annulusWidths = new float[3];
+            annulusWidths    = new float[3];
             annulusWidths[0] = SizeUtils.dipConvertPx(3);
             annulusWidths[1] = SizeUtils.dipConvertPx(7);
             annulusWidths[2] = SizeUtils.dipConvertPx(7);
@@ -1688,9 +1688,9 @@ public class ScanShapeView
                         // 获取扫描区域大小 ( 正方形在内部绘制, 不需要加上外边距 )
                         rectF = calcShapeRegion();
                         // 计算边距处理
-                        rectF.left = rectF.left + mLineMarginLeftToSquare;
-                        rectF.top = rectF.top + mLineMarginTopToSquare;
-                        rectF.right = rectF.right - mLineMarginLeftToSquare;
+                        rectF.left   = rectF.left + mLineMarginLeftToSquare;
+                        rectF.top    = rectF.top + mLineMarginTopToSquare;
+                        rectF.right  = rectF.right - mLineMarginLeftToSquare;
                         rectF.bottom = rectF.bottom - mLineMarginTopToSquare;
                         // 循环划线, 从上到下
                         if (mLineOffsetToSquare > rectF.bottom - rectF.top - mDFCommonDP) {
@@ -1699,9 +1699,9 @@ public class ScanShapeView
                             mLineOffsetToSquare = mLineOffsetToSquare + 6;
                             // 设置线条区域
                             Rect lineRect = new Rect();
-                            lineRect.left = (int) rectF.left;
-                            lineRect.top = (int) (rectF.top + mLineOffsetToSquare);
-                            lineRect.right = (int) rectF.right;
+                            lineRect.left   = (int) rectF.left;
+                            lineRect.top    = (int) (rectF.top + mLineOffsetToSquare);
+                            lineRect.right  = (int) rectF.right;
                             lineRect.bottom = (int) (rectF.top + mDFCommonDP + mLineOffsetToSquare);
                             canvas.drawBitmap(mBitmapToSquare, null, lineRect, mLinePaintToSquare);
                         }
@@ -1725,7 +1725,7 @@ public class ScanShapeView
                             // 获取扫描区域大小
                             rectF = calcShapeRegion(margin);
                             // 位置信息
-                            r = (rectF.right - rectF.left) / 2; // 半径
+                            r  = (rectF.right - rectF.left) / 2; // 半径
                             mX = (rectF.right + rectF.left) / 2; // X 轴中心点位置
 //                            mY = (rectF.top + rectF.bottom) / 2; // Y 轴中心点位置
                             // =
@@ -1746,9 +1746,9 @@ public class ScanShapeView
                             int bitmapHeight = mBitmapToAnnulus.getHeight();
 
                             RectF lineRectF = new RectF();
-                            lineRectF.left = mX - hw;
-                            lineRectF.top = rectF.top + mLineOffsetToAnnulus;
-                            lineRectF.right = mX + hw;
+                            lineRectF.left   = mX - hw;
+                            lineRectF.top    = rectF.top + mLineOffsetToAnnulus;
+                            lineRectF.right  = mX + hw;
                             lineRectF.bottom = rectF.top + mLineOffsetToAnnulus + bitmapHeight;
                             canvas.drawBitmap(mBitmapToAnnulus, null, lineRectF, null);
                         }
@@ -1938,7 +1938,7 @@ public class ScanShapeView
         // 获取蓝色色值
         mLineBlue = Color.blue(mLineColorToHexagon);
         // 透明度 0 线条
-        mLineTran00Color = Color.argb(0, mLineRed, mLineGreen, mLineBlue);
+        mLineTran00Color  = Color.argb(0, mLineRed, mLineGreen, mLineBlue);
         mLineTran255Color = Color.argb(255, mLineRed, mLineGreen, mLineBlue);
     }
 

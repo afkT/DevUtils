@@ -112,7 +112,7 @@ public final class ResourceAssist {
             final Resources resource,
             final String packageName
     ) {
-        this.mResource = resource;
+        this.mResource    = resource;
         this.mPackageName = packageName;
     }
 
@@ -344,7 +344,7 @@ public final class ResourceAssist {
             final String packageName
     ) {
         if (this == EMPTY_IMPL) return this;
-        this.mResource = resource;
+        this.mResource    = resource;
         this.mPackageName = packageName;
         return this;
     }

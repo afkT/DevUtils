@@ -91,7 +91,7 @@ public final class WifiHotUtils {
                 wifiConfig.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
             } else {
                 wifiConfig.preSharedKey = pwd;
-                wifiConfig.hiddenSSID = true;
+                wifiConfig.hiddenSSID   = true;
                 wifiConfig.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.OPEN);
                 wifiConfig.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);
 //					wifiConfig.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
@@ -143,7 +143,7 @@ public final class WifiHotUtils {
                         // 获取配置信息
                         WifiConfiguration wifiConfiguration = reservation.getWifiConfiguration();
                         mAPWifiSSID = wifiConfiguration.SSID;
-                        mAPWifiPwd = wifiConfiguration.preSharedKey;
+                        mAPWifiPwd  = wifiConfiguration.preSharedKey;
                         // 打印信息
                         LogPrintUtils.dTag(TAG, "Android 8.0 onStarted wifiAp ssid: %s, pwd: %s", mAPWifiSSID, mAPWifiPwd);
                         // 触发回调

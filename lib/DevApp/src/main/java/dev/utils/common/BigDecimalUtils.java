@@ -35,7 +35,7 @@ public final class BigDecimalUtils {
             final int scale,
             final int roundingMode
     ) {
-        NEW_SCALE = scale;
+        NEW_SCALE     = scale;
         ROUNDING_MODE = roundingMode;
     }
 
@@ -129,7 +129,7 @@ public final class BigDecimalUtils {
                 final int scale,
                 final int roundingMode
         ) {
-            this.mScale = scale;
+            this.mScale        = scale;
             this.mRoundingMode = roundingMode;
         }
 
@@ -171,7 +171,7 @@ public final class BigDecimalUtils {
                 final Object value,
                 final Config config
         ) {
-            this.mValue = BigDecimalUtils.getBigDecimal(value);
+            this.mValue  = BigDecimalUtils.getBigDecimal(value);
             this.mConfig = config;
         }
 

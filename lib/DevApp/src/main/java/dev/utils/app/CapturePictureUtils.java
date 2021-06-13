@@ -776,7 +776,7 @@ public final class CapturePictureUtils {
 
                         // 记录高度并累加
                         if (j == numColumns - 1) {
-                            height += tempHeight;
+                                                 height += tempHeight;
                             rowHeightArrays[i] = tempHeight;
                         }
                     }
@@ -1002,7 +1002,7 @@ public final class CapturePictureUtils {
 
                         // 记录高度并累加
                         if (j == spanCount - 1) {
-                            height += tempHeight;
+                                                 height += tempHeight;
                             rowHeightArrays[i] = tempHeight;
                         }
                     }
@@ -1084,7 +1084,7 @@ public final class CapturePictureUtils {
                         // 最后记录处理
                         if (j == numColumns - 1) {
                             height += tempHeight;
-                            width = Math.max(width, rowWidthArrays[i]);
+                            width              = Math.max(width, rowWidthArrays[i]);
                             rowHeightArrays[i] = tempHeight;
                         }
                     }
@@ -1305,7 +1305,7 @@ public final class CapturePictureUtils {
                     adapter.onBindViewHolder(holder, i);
                     View childView = holder.itemView;
                     WidgetUtils.measureView(childView, childWidth);
-                    bitmaps[i] = canvasBitmap(childView, config);
+                    bitmaps[i]          = canvasBitmap(childView, config);
                     itemHeightArrays[i] = childView.getMeasuredHeight();
                 }
 
@@ -1337,7 +1337,7 @@ public final class CapturePictureUtils {
                 int maxColumnsHeight = columnsHeightArrays[columnsHeightMaxIndex];
                 // 使用最大值
                 height = maxColumnsHeight;
-                width = recyclerView.getMeasuredWidth();
+                width  = recyclerView.getMeasuredWidth();
 
                 // 清空绘制时累加计算
                 columnsHeightArrays = new int[spanCount];
@@ -1380,8 +1380,8 @@ public final class CapturePictureUtils {
                     adapter.onBindViewHolder(holder, i);
                     View childView = holder.itemView;
                     WidgetUtils.measureView(childView, 0);
-                    bitmaps[i] = canvasBitmap(childView, config);
-                    itemWidthArrays[i] = childView.getMeasuredWidth();
+                    bitmaps[i]          = canvasBitmap(childView, config);
+                    itemWidthArrays[i]  = childView.getMeasuredWidth();
                     itemHeightArrays[i] = childView.getMeasuredHeight();
                 }
 

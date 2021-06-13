@@ -40,12 +40,12 @@ public class OkGoResponse<T> {
     public final Throwable exception;
 
     public OkGoResponse(Builder<T> builder) {
-        data = builder.data;
-        message = builder.message;
-        code = builder.code;
-        toast = builder.toast;
-        result = builder.result;
-        original = builder.original;
+        data      = builder.data;
+        message   = builder.message;
+        code      = builder.code;
+        toast     = builder.toast;
+        result    = builder.result;
+        original  = builder.original;
         exception = builder.exception;
     }
 
@@ -92,12 +92,12 @@ public class OkGoResponse<T> {
         }
 
         public Builder(OkGoResponse<T> response) {
-            data = response.data;
-            message = response.message;
-            code = response.code;
-            toast = response.toast;
-            result = response.result;
-            original = response.original;
+            data      = response.data;
+            message   = response.message;
+            code      = response.code;
+            toast     = response.toast;
+            result    = response.result;
+            original  = response.original;
             exception = response.exception;
         }
 

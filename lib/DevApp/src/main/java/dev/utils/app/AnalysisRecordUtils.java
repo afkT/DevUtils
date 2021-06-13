@@ -393,12 +393,12 @@ public final class AnalysisRecordUtils {
                 @TIME final int fileIntervalTime,
                 final boolean handler
         ) {
-            this.storagePath = storagePath;
-            this.folderName = folderName;
-            this.fileName = fileName;
-            this.fileFunction = fileFunction;
+            this.storagePath      = storagePath;
+            this.folderName       = folderName;
+            this.fileName         = fileName;
+            this.fileFunction     = fileFunction;
             this.fileIntervalTime = fileIntervalTime;
-            this.handler = handler;
+            this.handler          = handler;
         }
 
         // =

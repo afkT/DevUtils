@@ -251,10 +251,10 @@ public final class SDCardUtils {
             long blockSize, blockCount;
             // 版本兼容
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                blockSize = statFs.getBlockSizeLong();
+                blockSize  = statFs.getBlockSizeLong();
                 blockCount = statFs.getBlockCountLong();
             } else {
-                blockSize = statFs.getBlockSize();
+                blockSize  = statFs.getBlockSize();
                 blockCount = statFs.getBlockCount();
             }
             // 返回空间总大小
@@ -278,10 +278,10 @@ public final class SDCardUtils {
             long blockSize, availableBlocks;
             // 版本兼容
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                blockSize = statFs.getBlockSizeLong();
+                blockSize       = statFs.getBlockSizeLong();
                 availableBlocks = statFs.getAvailableBlocksLong();
             } else {
-                blockSize = statFs.getBlockSize();
+                blockSize       = statFs.getBlockSize();
                 availableBlocks = statFs.getAvailableBlocks();
             }
             // 返回空闲空间
@@ -305,12 +305,12 @@ public final class SDCardUtils {
             long blockSize, blockCount, availableBlocks;
             // 版本兼容
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                blockSize = statFs.getBlockSizeLong();
-                blockCount = statFs.getBlockCountLong();
+                blockSize       = statFs.getBlockSizeLong();
+                blockCount      = statFs.getBlockCountLong();
                 availableBlocks = statFs.getAvailableBlocksLong();
             } else {
-                blockSize = statFs.getBlockSize();
-                blockCount = statFs.getBlockCount();
+                blockSize       = statFs.getBlockSize();
+                blockCount      = statFs.getBlockCount();
                 availableBlocks = statFs.getAvailableBlocks();
             }
             // 返回已使用空间大小
@@ -334,12 +334,12 @@ public final class SDCardUtils {
             long blockSize, blockCount, availableBlocks;
             // 版本兼容
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                blockSize = statFs.getBlockSizeLong();
-                blockCount = statFs.getBlockCountLong();
+                blockSize       = statFs.getBlockSizeLong();
+                blockCount      = statFs.getBlockCountLong();
                 availableBlocks = statFs.getAvailableBlocksLong();
             } else {
-                blockSize = statFs.getBlockSize();
-                blockCount = statFs.getBlockCount();
+                blockSize       = statFs.getBlockSize();
+                blockCount      = statFs.getBlockCount();
                 availableBlocks = statFs.getAvailableBlocks();
             }
             // 计算空间信息

@@ -295,9 +295,9 @@ final class ToastFactory {
                         params.type = WindowManager.LayoutParams.FIRST_SYSTEM_WINDOW + 37;
                     }
 
-                    params.height = WindowManager.LayoutParams.WRAP_CONTENT;
-                    params.width = WindowManager.LayoutParams.WRAP_CONTENT;
-                    params.format = PixelFormat.TRANSLUCENT;
+                    params.height           = WindowManager.LayoutParams.WRAP_CONTENT;
+                    params.width            = WindowManager.LayoutParams.WRAP_CONTENT;
+                    params.format           = PixelFormat.TRANSLUCENT;
                     params.windowAnimations = android.R.style.Animation_Toast;
                     params.setTitle(Toast.class.getSimpleName());
                     params.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
@@ -324,7 +324,7 @@ final class ToastFactory {
                     params.x = mToast.getXOffset();
                     params.y = mToast.getYOffset();
                     // 设置水平边距、垂直边距
-                    params.verticalMargin = mToast.getVerticalMargin();
+                    params.verticalMargin   = mToast.getVerticalMargin();
                     params.horizontalMargin = mToast.getHorizontalMargin();
                     // 设置包名
                     params.packageName = packageName;

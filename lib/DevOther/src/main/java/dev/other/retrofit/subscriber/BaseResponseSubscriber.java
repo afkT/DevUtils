@@ -32,7 +32,7 @@ public abstract class BaseResponseSubscriber<T>
     public void onNext(BaseResponse<T> response) {
         LogPrintUtils.dTag(TAG, "请求成功");
 
-        builder = response;
+        builder        = response;
         builder.result = isSuccess(response.errorCode);
 
         if (builder.result) {

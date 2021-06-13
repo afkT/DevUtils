@@ -973,7 +973,7 @@ public final class ImageUtils {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeFile(filePath, options);
-            options.inSampleSize = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inSampleSize       = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
             options.inJustDecodeBounds = false;
             return BitmapFactory.decodeFile(filePath, options);
         } catch (Exception e) {
@@ -999,7 +999,7 @@ public final class ImageUtils {
             BitmapFactory.Options options   = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeResource(resources, resId, options);
-            options.inSampleSize = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inSampleSize       = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
             options.inJustDecodeBounds = false;
             return BitmapFactory.decodeResource(resources, resId, options);
         } catch (Exception e) {
@@ -1025,7 +1025,7 @@ public final class ImageUtils {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeStream(inputStream, null, options);
-            options.inSampleSize = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inSampleSize       = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
             options.inJustDecodeBounds = false;
             return BitmapFactory.decodeStream(inputStream, null, options);
         } catch (Exception e) {
@@ -1051,7 +1051,7 @@ public final class ImageUtils {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeFileDescriptor(fd, null, options);
-            options.inSampleSize = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inSampleSize       = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
             options.inJustDecodeBounds = false;
             return BitmapFactory.decodeFileDescriptor(fd, null, options);
         } catch (Exception e) {
@@ -1077,7 +1077,7 @@ public final class ImageUtils {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeByteArray(data, 0, data.length, options);
-            options.inSampleSize = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inSampleSize       = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
             options.inJustDecodeBounds = false;
             return BitmapFactory.decodeByteArray(data, 0, data.length, options);
         } catch (Exception e) {

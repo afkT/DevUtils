@@ -67,13 +67,13 @@ public class CoolWaitLoadingRenderer
     }
 
     private void init(Context context) {
-        mWidth = SizeUtils.dipConvertPx(DEFAULT_WIDTH);
-        mHeight = SizeUtils.dipConvertPx(DEFAULT_HEIGHT);
-        mStrokeWidth = SizeUtils.dipConvertPx(DEFAULT_STROKE_WIDTH);
+        mWidth            = SizeUtils.dipConvertPx(DEFAULT_WIDTH);
+        mHeight           = SizeUtils.dipConvertPx(DEFAULT_HEIGHT);
+        mStrokeWidth      = SizeUtils.dipConvertPx(DEFAULT_STROKE_WIDTH);
         mWaitCircleRadius = SizeUtils.dipConvertPx(WAIT_CIRCLE_RADIUS);
 
 //        mTopColor = Color.parseColor("#FF1B78DD");
-        mTopColor = Color.WHITE;
+        mTopColor    = Color.WHITE;
         mMiddleColor = Color.parseColor("#FFF3C742");
         mBottomColor = Color.parseColor("#FF89CC59");
 
@@ -159,7 +159,7 @@ public class CoolWaitLoadingRenderer
             mWaitPathMeasure.setPath(mWaitPath, false);
             mWaitPathLength = mWaitPathMeasure.getLength();
 
-            mOriginEndDistance = mWaitPathLength * 0.255f;
+            mOriginEndDistance   = mWaitPathLength * 0.255f;
             mOriginStartDistance = mWaitPathLength * 0.045f;
         }
 

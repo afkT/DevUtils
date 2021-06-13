@@ -31,8 +31,8 @@ public class WidgetAttrs {
     ) {
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
-            mIsSlide = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
-            mMaxWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_maxWidth, WidgetUtils.DEF_VALUE);
+            mIsSlide   = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
+            mMaxWidth  = a.getLayoutDimension(R.styleable.DevWidget_dev_maxWidth, WidgetUtils.DEF_VALUE);
             mMaxHeight = a.getLayoutDimension(R.styleable.DevWidget_dev_maxHeight, WidgetUtils.DEF_VALUE);
             a.recycle();
         }

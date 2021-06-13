@@ -901,7 +901,7 @@ public final class WifiUtils {
             try {
                 InetAddress intetAddress = InetAddress.getByName(ip);
                 int         intIp        = inetAddressToInt(intetAddress);
-                dns = (intIp & 0xFF) + "." + ((intIp >> 8) & 0xFF) + "." + ((intIp >> 16) & 0xFF) + ".1";
+                dns     = (intIp & 0xFF) + "." + ((intIp >> 8) & 0xFF) + "." + ((intIp >> 16) & 0xFF) + ".1";
                 gateway = dns;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "setStaticWifiConfig");

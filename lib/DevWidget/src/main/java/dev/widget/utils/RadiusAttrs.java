@@ -40,17 +40,17 @@ public class RadiusAttrs {
     ) {
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
-            mRadius = a.getLayoutDimension(R.styleable.DevWidget_dev_radius, 0);
-            mRadiusLeftTop = a.getLayoutDimension(R.styleable.DevWidget_dev_radiusLeftTop, 0);
-            mRadiusLeftBottom = a.getLayoutDimension(R.styleable.DevWidget_dev_radiusLeftBottom, 0);
-            mRadiusRightTop = a.getLayoutDimension(R.styleable.DevWidget_dev_radiusRightTop, 0);
+            mRadius            = a.getLayoutDimension(R.styleable.DevWidget_dev_radius, 0);
+            mRadiusLeftTop     = a.getLayoutDimension(R.styleable.DevWidget_dev_radiusLeftTop, 0);
+            mRadiusLeftBottom  = a.getLayoutDimension(R.styleable.DevWidget_dev_radiusLeftBottom, 0);
+            mRadiusRightTop    = a.getLayoutDimension(R.styleable.DevWidget_dev_radiusRightTop, 0);
             mRadiusRightBottom = a.getLayoutDimension(R.styleable.DevWidget_dev_radiusRightBottom, 0);
             a.recycle();
 
             if (mRadius != 0) {
-                mRadiusLeftTop = mRadius;
-                mRadiusLeftBottom = mRadius;
-                mRadiusRightTop = mRadius;
+                mRadiusLeftTop     = mRadius;
+                mRadiusLeftBottom  = mRadius;
+                mRadiusRightTop    = mRadius;
                 mRadiusRightBottom = mRadius;
             }
         }
@@ -100,10 +100,10 @@ public class RadiusAttrs {
      * @param radius 圆角值
      */
     public void setRadius(float radius) {
-        this.mRadius = radius;
-        this.mRadiusLeftTop = radius;
-        this.mRadiusLeftBottom = radius;
-        this.mRadiusRightTop = radius;
+        this.mRadius            = radius;
+        this.mRadiusLeftTop     = radius;
+        this.mRadiusLeftBottom  = radius;
+        this.mRadiusRightTop    = radius;
         this.mRadiusRightBottom = radius;
         resetRadius();
     }
@@ -151,7 +151,7 @@ public class RadiusAttrs {
      * @param radiusLeft 左边圆角值
      */
     public void setRadiusLeft(int radiusLeft) {
-        this.mRadiusLeftTop = radiusLeft;
+        this.mRadiusLeftTop    = radiusLeft;
         this.mRadiusLeftBottom = radiusLeft;
         resetRadius();
     }
@@ -161,7 +161,7 @@ public class RadiusAttrs {
      * @param radiusRight 右边圆角值
      */
     public void setRadiusRight(int radiusRight) {
-        this.mRadiusRightTop = radiusRight;
+        this.mRadiusRightTop    = radiusRight;
         this.mRadiusRightBottom = radiusRight;
         resetRadius();
     }
@@ -171,7 +171,7 @@ public class RadiusAttrs {
      * @param radiusTop 上边圆角值
      */
     public void setRadiusTop(int radiusTop) {
-        this.mRadiusLeftTop = radiusTop;
+        this.mRadiusLeftTop  = radiusTop;
         this.mRadiusRightTop = radiusTop;
         resetRadius();
     }
@@ -181,7 +181,7 @@ public class RadiusAttrs {
      * @param radiusBottom 下边圆角值
      */
     public void setRadiusBottom(int radiusBottom) {
-        this.mRadiusLeftBottom = radiusBottom;
+        this.mRadiusLeftBottom  = radiusBottom;
         this.mRadiusRightBottom = radiusBottom;
         resetRadius();
     }
@@ -246,10 +246,10 @@ public class RadiusAttrs {
         Bundle bundle = (Bundle) state;
         mRadii = bundle.getFloatArray(DATA_RADII);
         if (mRadii != null) {
-            mRadiusLeftTop = mRadii[0];
-            mRadiusRightTop = mRadii[2];
+            mRadiusLeftTop     = mRadii[0];
+            mRadiusRightTop    = mRadii[2];
             mRadiusRightBottom = mRadii[4];
-            mRadiusLeftBottom = mRadii[6];
+            mRadiusLeftBottom  = mRadii[6];
         }
         return bundle.getParcelable(SUPER_DATA);
     }

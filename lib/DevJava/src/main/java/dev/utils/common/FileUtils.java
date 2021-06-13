@@ -676,7 +676,7 @@ public final class FileUtils {
         int         pos = 0;
         InputStream is  = null;
         try {
-            is = new BufferedInputStream(new FileInputStream(file));
+            is  = new BufferedInputStream(new FileInputStream(file));
             pos = (is.read() << 8) + is.read();
         } catch (IOException e) {
             JCLogUtils.eTag(TAG, e, "getFileCharsetSimple");
@@ -2096,7 +2096,7 @@ public final class FileUtils {
                 File file,
                 List<FileList> lists
         ) {
-            this.mFile = file;
+            this.mFile     = file;
             this.mSubFiles = lists;
         }
 

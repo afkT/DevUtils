@@ -35,7 +35,7 @@ public class VerticalScrollView
             boolean clampedX,
             boolean clampedY
     ) {
-        mScrollY = scrollY;
+        mScrollY  = scrollY;
         mClampedY = clampedY;
         super.onOverScrolled(scrollX, scrollY, clampedX, clampedY);
     }

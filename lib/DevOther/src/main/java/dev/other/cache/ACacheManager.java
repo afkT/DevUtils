@@ -40,11 +40,11 @@ final class ACacheManager {
             final long sizeLimit,
             final int countLimit
     ) {
-        this.mCacheDir = cacheDir;
-        this.mSizeLimit = sizeLimit;
+        this.mCacheDir   = cacheDir;
+        this.mSizeLimit  = sizeLimit;
         this.mCountLimit = countLimit;
-        mCacheSize = new AtomicLong();
-        mCacheCount = new AtomicInteger();
+        mCacheSize       = new AtomicLong();
+        mCacheCount      = new AtomicInteger();
         // 计算文件信息等
         calculateCacheSizeAndCacheCount();
     }
@@ -177,11 +177,11 @@ final class ACacheManager {
             for (Map.Entry<File, Long> entry : entries) {
                 if (mostLongUsedFile == null) {
                     mostLongUsedFile = entry.getKey();
-                    oldestUsage = entry.getValue();
+                    oldestUsage      = entry.getValue();
                 } else {
                     Long lastValueUsage = entry.getValue();
                     if (lastValueUsage < oldestUsage) {
-                        oldestUsage = lastValueUsage;
+                        oldestUsage      = lastValueUsage;
                         mostLongUsedFile = entry.getKey();
                     }
                 }

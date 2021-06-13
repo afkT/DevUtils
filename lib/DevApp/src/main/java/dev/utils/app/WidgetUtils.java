@@ -60,7 +60,7 @@ public final class WidgetUtils {
     ) {
         int minimumWidth = 0, minimumHeight = 0;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            minimumWidth = view.getMinimumWidth();
+            minimumWidth  = view.getMinimumWidth();
             minimumHeight = view.getMinimumHeight();
         }
         return viewMeasure(widthMeasureSpec, heightMeasureSpec,
@@ -116,7 +116,7 @@ public final class WidgetUtils {
         int heightSize = View.MeasureSpec.getSize(heightMeasureSpec);
         int heightMode = View.MeasureSpec.getMode(heightMeasureSpec);
 
-        widthSize = calculateSize(widthSize, minimumWidth, maximumWidth, defaultValue);
+        widthSize  = calculateSize(widthSize, minimumWidth, maximumWidth, defaultValue);
         heightSize = calculateSize(heightSize, minimumHeight, maximumHeight, defaultValue);
 
         int calcWidthMeasureSpec  = View.MeasureSpec.makeMeasureSpec(widthSize, widthMode);
@@ -292,7 +292,7 @@ public final class WidgetUtils {
                 int width  = layoutParams.width;
                 int height = layoutParams.height;
                 if (width > 0 && height > 0) {
-                    widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
+                    widthMeasureSpec  = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
                     heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
                 } else if (width > 0) {
                     widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);

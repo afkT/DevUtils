@@ -320,7 +320,7 @@ public final class BarUtils {
             transparentStatusBar(activity);
             fakeStatusBar.setVisibility(View.VISIBLE);
             ViewGroup.LayoutParams layoutParams = fakeStatusBar.getLayoutParams();
-            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            layoutParams.width  = ViewGroup.LayoutParams.MATCH_PARENT;
             layoutParams.height = getStatusBarHeight();
             fakeStatusBar.setLayoutParams(layoutParams);
             fakeStatusBar.setBackgroundColor(color);
@@ -348,7 +348,7 @@ public final class BarUtils {
                 );
                 fakeStatusBar.setLayoutParams(layoutParams);
             } else {
-                layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                layoutParams.width  = ViewGroup.LayoutParams.MATCH_PARENT;
                 layoutParams.height = getStatusBarHeight();
                 fakeStatusBar.setLayoutParams(layoutParams);
             }

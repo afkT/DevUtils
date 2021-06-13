@@ -985,7 +985,7 @@ public final class ActivityUtils {
             try {
                 mUUIDHash = getIntent().getIntExtra(EXTRA_UUID, -1);
                 mCallback = sResultCallbackMaps.get(mUUIDHash);
-                result = mCallback.onStartActivityForResult(this);
+                result    = mCallback.onStartActivityForResult(this);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "onCreate");
             }

@@ -151,13 +151,13 @@ public class LoadProgressBar
 
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
-            mIsCanvasNumber = a.getBoolean(R.styleable.DevWidget_dev_canvasNumber, mIsCanvasNumber);
-            mProgressColor = a.getColor(R.styleable.DevWidget_dev_progressColor, mProgressColor);
-            mOuterRingColor = a.getColor(R.styleable.DevWidget_dev_outerRingColor, mOuterRingColor);
+            mIsCanvasNumber    = a.getBoolean(R.styleable.DevWidget_dev_canvasNumber, mIsCanvasNumber);
+            mProgressColor     = a.getColor(R.styleable.DevWidget_dev_progressColor, mProgressColor);
+            mOuterRingColor    = a.getColor(R.styleable.DevWidget_dev_outerRingColor, mOuterRingColor);
             mInsideCircleWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_insideCircleWidth, (int) mInsideCircleWidth);
-            mOuterRingWidth = a.getLayoutDimension(R.styleable.DevWidget_dev_outerRingWidth, (int) mOuterRingWidth);
-            mNumberTextSize = a.getDimensionPixelSize(R.styleable.DevWidget_dev_numberTextSize, (int) mNumberTextSize);
-            mNumberTextColor = a.getColor(R.styleable.DevWidget_dev_numberTextColor, mNumberTextColor);
+            mOuterRingWidth    = a.getLayoutDimension(R.styleable.DevWidget_dev_outerRingWidth, (int) mOuterRingWidth);
+            mNumberTextSize    = a.getDimensionPixelSize(R.styleable.DevWidget_dev_numberTextSize, (int) mNumberTextSize);
+            mNumberTextColor   = a.getColor(R.styleable.DevWidget_dev_numberTextColor, mNumberTextColor);
             int progressStyle = a.getInt(R.styleable.DevWidget_dev_progressStyle, 0);
             a.recycle();
 
@@ -201,9 +201,9 @@ public class LoadProgressBar
         // 设置绘制的数字颜色
         mNumberTextColor = Color.BLACK;
         // 初始化处理
-        mNumberTextSize = 0;
+        mNumberTextSize    = 0;
         mInsideCircleWidth = 0;
-        mIsCanvasNumber = false;
+        mIsCanvasNumber    = false;
         return this;
     }
 

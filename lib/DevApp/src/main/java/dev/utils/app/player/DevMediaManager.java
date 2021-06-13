@@ -161,7 +161,7 @@ public final class DevMediaManager
     ) {
         try {
             mPlayRawId = rawId;
-            mPlayUri = null;
+            mPlayUri   = null;
             // 预播放
             return playPrepare(new MediaSet() {
                 @Override
@@ -273,7 +273,7 @@ public final class DevMediaManager
     ) {
         try {
             mPlayRawId = -1;
-            mPlayUri = playUri;
+            mPlayUri   = playUri;
             // 预播放
             return playPrepare(new MediaSet() {
                 @Override
@@ -430,7 +430,7 @@ public final class DevMediaManager
             int height
     ) {
         LogPrintUtils.dTag(TAG, "onVideoSizeChanged - width: %s, height: %s", width, height);
-        mVideoWidth = width;
+        mVideoWidth  = width;
         mVideoHeight = height;
         // 触发回调
         if (mMediaListener != null) {
@@ -678,9 +678,9 @@ public final class DevMediaManager
      * 清空播放信息
      */
     private void clearMediaPlayerData() {
-        mPlayRawId = -1;
-        mPlayUri = null;
-        mVideoWidth = 0;
+        mPlayRawId   = -1;
+        mPlayUri     = null;
+        mVideoWidth  = 0;
         mVideoHeight = 0;
     }
 

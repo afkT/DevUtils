@@ -252,7 +252,7 @@ public final class IDCardUtils {
             String  card = idCard.replaceAll("[\\(|\\)]", "");
             Integer sum;
             if (card.length() == 9) {
-                sum = ((int) card.substring(0, 1).toUpperCase().toCharArray()[0] - 55) * 9 + ((int) card.substring(1, 2).toUpperCase().toCharArray()[0] - 55) * 8;
+                sum  = ((int) card.substring(0, 1).toUpperCase().toCharArray()[0] - 55) * 9 + ((int) card.substring(1, 2).toUpperCase().toCharArray()[0] - 55) * 8;
                 card = card.substring(1, 9);
             } else {
                 sum = 522 + ((int) card.substring(0, 1).toUpperCase().toCharArray()[0] - 55) * 8;

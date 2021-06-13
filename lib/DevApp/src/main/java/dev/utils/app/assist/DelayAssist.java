@@ -41,7 +41,7 @@ public class DelayAssist {
             Callback callback
     ) {
         setDelayMillis(delayMillis);
-        mCallback = callback;
+        mCallback    = callback;
         mMainHandler = new Handler(Looper.getMainLooper()) {
             @Override
             public void handleMessage(Message msg) {

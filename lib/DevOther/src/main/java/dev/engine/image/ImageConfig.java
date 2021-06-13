@@ -62,14 +62,14 @@ public class ImageConfig
             // 是否缓存到内存
             this.mCacheMemory = config.mCacheMemory;
 
-            this.mScaleType = config.mScaleType;
-            this.mTransform = config.mTransform;
+            this.mScaleType            = config.mScaleType;
+            this.mTransform            = config.mTransform;
             this.mRoundedCornersRadius = config.mRoundedCornersRadius;
             // placeholder
-            this.mErrorPlaceholder = config.mErrorPlaceholder;
+            this.mErrorPlaceholder   = config.mErrorPlaceholder;
             this.mLoadingPlaceholder = config.mLoadingPlaceholder;
-            this.mErrorDrawable = config.mErrorDrawable;
-            this.mLoadingDrawable = config.mLoadingDrawable;
+            this.mErrorDrawable      = config.mErrorDrawable;
+            this.mLoadingDrawable    = config.mLoadingDrawable;
             // 加载图片宽
             this.mWidth = config.mWidth;
             // 加载图片高
@@ -165,7 +165,7 @@ public class ImageConfig
 
     public ImageConfig setErrorPlaceholder(int errorPlaceholder) {
         mErrorPlaceholder = errorPlaceholder;
-        mErrorDrawable = null;
+        mErrorDrawable    = null;
         return this;
     }
 
@@ -175,7 +175,7 @@ public class ImageConfig
 
     public ImageConfig setLoadingPlaceholder(int loadingPlaceholder) {
         mLoadingPlaceholder = loadingPlaceholder;
-        mLoadingDrawable = null;
+        mLoadingDrawable    = null;
         return this;
     }
 
@@ -185,7 +185,7 @@ public class ImageConfig
 
     public ImageConfig setErrorDrawable(Drawable errorDrawable) {
         mErrorPlaceholder = NO_PLACE_HOLDER;
-        mErrorDrawable = errorDrawable;
+        mErrorDrawable    = errorDrawable;
         return this;
     }
 
@@ -195,7 +195,7 @@ public class ImageConfig
 
     public ImageConfig setLoadingDrawable(Drawable loadingDrawable) {
         mLoadingPlaceholder = NO_PLACE_HOLDER;
-        mLoadingDrawable = loadingDrawable;
+        mLoadingDrawable    = loadingDrawable;
         return this;
     }
 
@@ -211,7 +211,7 @@ public class ImageConfig
             int width,
             int height
     ) {
-        mWidth = width;
+        mWidth  = width;
         mHeight = height;
         return this;
     }

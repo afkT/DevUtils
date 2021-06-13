@@ -104,10 +104,10 @@ public class RightIconEditText
             throws Throwable {
         super.finalize();
         // GC Finalize Daemon 回收资源
-        this.mLeft = null;
-        this.mTop = null;
-        this.mRight = null;
-        this.mBottom = null;
+        this.mLeft        = null;
+        this.mTop         = null;
+        this.mRight       = null;
+        this.mBottom      = null;
         this.mRightBounds = null;
     }
 
@@ -190,7 +190,7 @@ public class RightIconEditText
     ) {
         if (context != null && attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
-            mRangeMultiple = a.getFloat(R.styleable.DevWidget_dev_rangeMultiple, 2.0f);
+            mRangeMultiple   = a.getFloat(R.styleable.DevWidget_dev_rangeMultiple, 2.0f);
             mIsDrawRightIcon = a.getBoolean(R.styleable.DevWidget_dev_drawRightIcon, true);
             a.recycle();
         }

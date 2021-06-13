@@ -26,9 +26,9 @@ public class EnvironmentBean
             String alias,
             ModuleBean module
     ) {
-        this.name = name;
-        this.value = value;
-        this.alias = alias;
+        this.name   = name;
+        this.value  = value;
+        this.alias  = alias;
         this.module = module;
     }
 

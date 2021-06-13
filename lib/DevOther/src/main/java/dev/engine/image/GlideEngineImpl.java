@@ -852,7 +852,7 @@ public class GlideEngineImpl
                 final LoadListener<Drawable> listener
         ) {
             super(view);
-            mSource = source;
+            mSource   = source;
             mListener = listener;
         }
 
@@ -895,7 +895,7 @@ public class GlideEngineImpl
                 final LoadListener<Bitmap> listener
         ) {
             super(view);
-            mSource = source;
+            mSource   = source;
             mListener = listener;
         }
 
@@ -938,7 +938,7 @@ public class GlideEngineImpl
                 DevSource source,
                 LoadListener<Drawable> listener
         ) {
-            mSource = source;
+            mSource   = source;
             mListener = listener;
         }
 
@@ -977,7 +977,7 @@ public class GlideEngineImpl
                 DevSource source,
                 LoadListener<Bitmap> listener
         ) {
-            mSource = source;
+            mSource   = source;
             mListener = listener;
         }
 

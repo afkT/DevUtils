@@ -60,7 +60,7 @@ public final class AppInfoUtils {
             // 设置 APK 位置信息
             ApplicationInfo appInfo = packageInfo.applicationInfo;
             // 必须加这两句, 不然下面 icon 获取是 default icon 而不是应用包的 icon
-            appInfo.sourceDir = apkUri;
+            appInfo.sourceDir       = apkUri;
             appInfo.publicSourceDir = apkUri;
             return packageInfo;
         } catch (Exception e) {

@@ -992,7 +992,7 @@ public final class NumberUtils {
         for (int i = 0; i < len; i++) {
             if (temp >= units[i]) {
                 int mode = (int) (temp / units[i]);
-                temp -= mode * units[i];
+                            temp -= mode * units[i];
                 arrays[i] = mode;
             }
         }

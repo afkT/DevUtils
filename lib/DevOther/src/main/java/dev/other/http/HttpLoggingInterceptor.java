@@ -60,7 +60,7 @@ public class HttpLoggingInterceptor
         // ===========
 
         captureEntity.requestMethod = requestStartMessage.toString();
-        captureEntity.requestUrl = request.url().toString();
+        captureEntity.requestUrl    = request.url().toString();
 
         if (hasRequestBody) {
             if (requestBody.contentType() != null) {

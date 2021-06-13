@@ -128,8 +128,8 @@ public class SignView
      * @return {@link SignView}
      */
     public SignView clearCanvas() {
-        mX = mY = 0;
-        mPath = null;
+        mX             = mY = 0;
+        mPath          = null;
         mIsClearCanvas = true;
         postInvalidate();
         return this;

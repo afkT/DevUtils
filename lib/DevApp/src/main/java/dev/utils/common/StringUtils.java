@@ -1177,7 +1177,7 @@ public final class StringUtils {
                 return decodeValue;
             }
             if (decodeValue == null) return result;
-            result = decodeValue;
+            result      = decodeValue;
             decodeValue = StringUtils.urlDecode(result, enc);
             // 判断循环次数
             number++;
@@ -1373,8 +1373,8 @@ public final class StringUtils {
         char[] chars = str.toCharArray();
         char   ch;
         for (int i = 0; i < mid; ++i) {
-            ch = chars[i];
-            chars[i] = chars[len - i - 1];
+            ch                 = chars[i];
+            chars[i]           = chars[len - i - 1];
             chars[len - i - 1] = ch;
         }
         return new String(chars);
@@ -1849,7 +1849,7 @@ public final class StringUtils {
                 builder.delete(lastIndexOf, bufLength);
                 // 重置数据
                 lastIndexOf = builder.lastIndexOf(suffix);
-                bufLength = builder.length();
+                bufLength   = builder.length();
             }
             return builder.toString();
         } catch (Exception e) {
@@ -1912,7 +1912,7 @@ public final class StringUtils {
                 builder.delete(lastIndexOf, bufLength);
                 // 重置数据
                 lastIndexOf = builder.lastIndexOf(suffix);
-                bufLength = builder.length();
+                bufLength   = builder.length();
             }
             return builder.toString();
         } catch (Exception e) {

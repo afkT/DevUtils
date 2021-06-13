@@ -50,7 +50,7 @@ public final class CrashUtils
             Context context,
             CrashCatchListener crashCatchListener
     ) {
-        this.mContext = context;
+        this.mContext            = context;
         this.mCrashCatchListener = crashCatchListener;
         // 获取系统默认的 UncaughtException 处理器
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();

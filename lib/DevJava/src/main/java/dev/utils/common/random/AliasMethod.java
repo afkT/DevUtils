@@ -74,7 +74,7 @@ public final class AliasMethod {
 
         /* Allocate space for the probability and alias tables. */
         probability = new double[probabilities.size()];
-        alias = new int[probabilities.size()];
+        alias       = new int[probabilities.size()];
 
         /* Store the underlying generator. */
         this.random = random;
@@ -118,7 +118,7 @@ public final class AliasMethod {
              * 1/n is given weight 1.0.  We do this here instead.
              */
             probability[less] = probabilities.get(less) * probabilities.size();
-            alias[less] = more;
+            alias[less]       = more;
 
             /* Decrease the probability of the larger one by the appropriate
              * amount.

@@ -23,11 +23,11 @@ public class DevSource {
             int resource,
             File file
     ) {
-        this.mUrl = url;
-        this.mUri = uri;
-        this.mBytes = bytes;
+        this.mUrl      = url;
+        this.mUri      = uri;
+        this.mBytes    = bytes;
         this.mResource = resource;
-        this.mFile = file;
+        this.mFile     = file;
     }
 
     public static DevSource create(final String url) {

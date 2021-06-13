@@ -429,7 +429,7 @@ public final class MediaStoreUtils {
         OutputStream         os             = null;
         ParcelFileDescriptor fileDescriptor = null;
         try {
-            os = ResourceUtils.openOutputStream(uri);
+            os             = ResourceUtils.openOutputStream(uri);
             fileDescriptor = ResourceUtils.openFileDescriptor(inputUri, "r");
             Bitmap bitmap = ImageUtils.decodeFileDescriptor(fileDescriptor.getFileDescriptor());
             return ImageUtils.saveBitmapToStream(bitmap, os, format, quality);

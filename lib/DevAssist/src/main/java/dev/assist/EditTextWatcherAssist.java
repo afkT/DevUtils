@@ -148,7 +148,7 @@ public class EditTextWatcherAssist<T> {
         ) {
             this.position = position;
             this.editText = editText;
-            this.object = object;
+            this.object   = object;
             this.listener = listener;
         }
 

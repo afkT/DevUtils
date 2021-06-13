@@ -38,7 +38,7 @@ public class CompressConfig
     ) {
         this.ignoreSize = ignoreSize;
         this.focusAlpha = focusAlpha;
-        this.targetDir = targetDir;
+        this.targetDir  = targetDir;
     }
 
     // =
