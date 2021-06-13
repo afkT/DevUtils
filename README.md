@@ -101,11 +101,7 @@ releaseAnnotationProcessor 'io.github.afkt:DevEnvironmentCompilerRelease:1.0.3' 
 //annotationProcessor 'io.github.afkt:DevEnvironmentCompiler:1.0.3' // kapt
 ```
 
-## APK Demo
-
-| [下载 DevUtils APK-Demo](https://github.com/afkT/DevUtils/raw/master/art/apk/app.apk) | [下载 AppInfoKtx APK-Demo](https://github.com/afkT/DevUtils/raw/master/art/apk/AppInfoKtx.apk) |
-|:--:|:--:|
-| ![apk_qrcode](https://github.com/afkT/DevUtils/raw/master/art/apk/app_apk_qrcode.png) | ![apk_qrcode](https://github.com/afkT/DevUtils/raw/master/art/apk/appinfo_apk_qrcode.png) |
+## [APK Demo](https://github.com/afkT/Resources/tree/main/APK)
 
 ## License
 
