@@ -311,37 +311,25 @@ private fun createShapeableImageLists(): List<ShapeableImageBean> {
         add(
             ShapeableImageBean(
                 type = 1, // 圆形
-                imageUrl = String.format(
-                    "https://picsum.photos/id/%s/400",
-                    RandomUtils.getRandom(10, 50)
-                )
+                imageUrl = "https://picsum.photos/id/11/400"
             )
         )
         add(
             ShapeableImageBean(
                 type = 2, // 圆角
-                imageUrl = String.format(
-                    "https://picsum.photos/id/%s/400",
-                    RandomUtils.getRandom(10, 50)
-                )
+                imageUrl = "https://picsum.photos/id/12/400"
             )
         )
         add(
             ShapeableImageBean(
                 type = 3, // 水滴形
-                imageUrl = String.format(
-                    "https://picsum.photos/id/%s/400",
-                    RandomUtils.getRandom(10, 50)
-                )
+                imageUrl = "https://picsum.photos/id/13/400"
             )
         )
         add(
             ShapeableImageBean(
                 type = 4, // 叶子形状
-                imageUrl = String.format(
-                    "https://picsum.photos/id/%s/400",
-                    RandomUtils.getRandom(10, 50)
-                )
+                imageUrl = "https://picsum.photos/id/14/400"
             )
         )
     }

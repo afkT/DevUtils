@@ -6,10 +6,7 @@ import afkt.project.base.config.RouterPath
 import afkt.project.databinding.BaseViewRecyclerviewBinding
 import afkt.project.model.bean.HeaderFooterItem
 import afkt.project.model.bean.createMainData
-import afkt.project.ui.adapter.concat.ArticleConcatAdapter
-import afkt.project.ui.adapter.concat.BannerConcatAdapter
-import afkt.project.ui.adapter.concat.CommodityConcatAdapter
-import afkt.project.ui.adapter.concat.HeaderFooterConcatAdapter
+import afkt.project.ui.adapter.concat.*
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ConcatAdapter
@@ -59,6 +56,9 @@ class RecyConcatAdapterActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         // 商品、商品评价适配器
         val commodityAdapter = CommodityConcatAdapter(mainData.commodityLists)
 
+        // ShapeableImageView 效果适配器
+        val shapeableAdapter = ShapeableImageConcatAdapter(mainData.shapeableImageLists)
+
         // 文章适配器
         val articleAdapter = ArticleConcatAdapter(mainData.articleLists)
 
@@ -67,6 +67,7 @@ class RecyConcatAdapterActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             headerAdapter,
             bannerAdapter,
             commodityAdapter,
+            shapeableAdapter,
             articleAdapter,
             footerAdapter
         )

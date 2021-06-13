@@ -103,6 +103,7 @@ ext {
                     sqlite               : "androidx.sqlite:sqlite:2.1.0", // 推荐使用 Room Jetpack 组件
                     // https://mvnrepository.com/artifact/com.google.android.material/material
                     // Android Material 组件使用详解 https://blog.csdn.net/magic0908/article/details/101029876
+                    // https://blog.csdn.net/qq_36861770/article/details/108946449
                     design               : "com.google.android.material:material:1.3.0",
                     fragment             : "androidx.fragment:fragment:1.3.3",
                     // Palette 调色板 ( 从图片中获取颜色 )
