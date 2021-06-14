@@ -1,15 +1,15 @@
-package dev.engine.storage;
+package dev.engine.keyvalue;
 
 import com.tencent.mmkv.MMKV;
 
 import dev.utils.common.cipher.Cipher;
 
 /**
- * detail: MMKV Storage Config
+ * detail: MMKV Key-Value Config
  * @author Ttt
  */
 public class MMKVConfig
-        extends IStorageEngine.EngineConfig {
+        extends IKeyValueEngine.EngineConfig {
 
     // MMKV
     private final MMKV mMMKV;

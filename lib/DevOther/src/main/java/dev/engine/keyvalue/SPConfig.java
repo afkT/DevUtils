@@ -1,14 +1,14 @@
-package dev.engine.storage;
+package dev.engine.keyvalue;
 
 import dev.utils.app.share.IPreference;
 import dev.utils.common.cipher.Cipher;
 
 /**
- * detail: SharedPreferences Storage Config
+ * detail: SharedPreferences Key-Value Config
  * @author Ttt
  */
 public class SPConfig
-        extends IStorageEngine.EngineConfig {
+        extends IKeyValueEngine.EngineConfig {
 
     // SharedPreferences
     private final IPreference mPreference;

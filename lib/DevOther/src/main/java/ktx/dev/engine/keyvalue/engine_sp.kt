@@ -1,29 +1,29 @@
-package ktx.dev.engine.storage
+package ktx.dev.engine.keyvalue
 
 import dev.engine.json.DevJSONEngine
-import dev.engine.storage.IStorageEngine
+import dev.engine.keyvalue.IKeyValueEngine
 import dev.utils.app.share.IPreference
 import dev.utils.common.ConvertUtils
 import dev.utils.common.cipher.Cipher
 import java.lang.reflect.Type
 
 /**
- * detail: SharedPreferences Storage Config
+ * detail: SharedPreferences Key-Value Config
  * @author Ttt
  */
 class SPConfig(
     cipher: Cipher?,
     // SharedPreferences
     val preference: IPreference
-) : IStorageEngine.EngineConfig(cipher)
+) : IKeyValueEngine.EngineConfig(cipher)
 
 /**
- * detail: SharedPreferences Storage Engine 实现
+ * detail: SharedPreferences Key-Value Engine 实现
  * @author Ttt
  */
-class SPStorageEngineImpl(
+class SPKeyValueEngineImpl(
     private val mConfig: SPConfig
-) : IStorageEngine<SPConfig> {
+) : IKeyValueEngine<SPConfig> {
 
     // SharedPreferences
     private val mPreference: IPreference

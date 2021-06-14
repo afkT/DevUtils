@@ -1,26 +1,26 @@
-package dev.engine.storage;
+package dev.engine.keyvalue;
 
 import java.lang.reflect.Type;
 
 import dev.engine.json.DevJSONEngine;
-import dev.other.MMKVUtils;
+import dev.utils.app.share.IPreference;
 import dev.utils.common.ConvertUtils;
 
 /**
- * detail: MMKV Storage Engine 实现
+ * detail: SharedPreferences Key-Value Engine 实现
  * @author Ttt
  */
-public class MMKVStorageEngineImpl
-        implements IStorageEngine<MMKVConfig> {
+public class SPKeyValueEngineImpl
+        implements IKeyValueEngine<SPConfig> {
 
-    private final MMKVConfig       mConfig;
-    // MMKV
-    private final MMKVUtils.Holder mHolder;
+    private final SPConfig    mConfig;
+    // SharedPreferences
+    private final IPreference mPreference;
 
-    public MMKVStorageEngineImpl(MMKVConfig config) {
+    public SPKeyValueEngineImpl(SPConfig config) {
         this.mConfig = config;
-        // MMKV Holder
-        mHolder = MMKVUtils.putHolder(config.getMMKV().mmapID(), config.getMMKV());
+        // SharedPreferences
+        mPreference = config.getPreference();
     }
 
     // ===============
@@ -28,28 +28,28 @@ public class MMKVStorageEngineImpl
     // ===============
 
     @Override
-    public MMKVConfig getConfig() {
+    public SPConfig getConfig() {
         return mConfig;
     }
 
     @Override
     public void remove(String key) {
-        mHolder.removeValueForKey(key);
+        mPreference.remove(key);
     }
 
     @Override
     public void removeForKeys(String[] keys) {
-        mHolder.removeValuesForKeys(keys);
+        mPreference.removeAll(keys);
     }
 
     @Override
     public boolean contains(String key) {
-        return mHolder.containsKey(key);
+        return mPreference.contains(key);
     }
 
     @Override
     public void clear() {
-        mHolder.clear();
+        mPreference.clear();
     }
 
     // =======
@@ -61,7 +61,8 @@ public class MMKVStorageEngineImpl
             String key,
             int value
     ) {
-        return mHolder.encode(key, value);
+        mPreference.put(key, value);
+        return true;
     }
 
     @Override
@@ -69,7 +70,8 @@ public class MMKVStorageEngineImpl
             String key,
             long value
     ) {
-        return mHolder.encode(key, value);
+        mPreference.put(key, value);
+        return true;
     }
 
     @Override
@@ -77,7 +79,8 @@ public class MMKVStorageEngineImpl
             String key,
             float value
     ) {
-        return mHolder.encode(key, value);
+        mPreference.put(key, value);
+        return true;
     }
 
     @Override
@@ -85,7 +88,8 @@ public class MMKVStorageEngineImpl
             String key,
             double value
     ) {
-        return mHolder.encode(key, value);
+        mPreference.put(key, value);
+        return true;
     }
 
     @Override
@@ -93,7 +97,8 @@ public class MMKVStorageEngineImpl
             String key,
             boolean value
     ) {
-        return mHolder.encode(key, value);
+        mPreference.put(key, value);
+        return true;
     }
 
     @Override
@@ -106,7 +111,8 @@ public class MMKVStorageEngineImpl
             byte[] bytes = mConfig.cipher.encrypt(ConvertUtils.toBytes(value));
             content = ConvertUtils.newString(bytes);
         }
-        return mHolder.encode(key, content);
+        mPreference.put(key, content);
+        return true;
     }
 
     @Override
@@ -166,7 +172,7 @@ public class MMKVStorageEngineImpl
             String key,
             int defaultValue
     ) {
-        return mHolder.decodeInt(key, defaultValue);
+        return mPreference.getInt(key, defaultValue);
     }
 
     @Override
@@ -174,7 +180,7 @@ public class MMKVStorageEngineImpl
             String key,
             long defaultValue
     ) {
-        return mHolder.decodeLong(key, defaultValue);
+        return mPreference.getLong(key, defaultValue);
     }
 
     @Override
@@ -182,7 +188,7 @@ public class MMKVStorageEngineImpl
             String key,
             float defaultValue
     ) {
-        return mHolder.decodeFloat(key, defaultValue);
+        return mPreference.getFloat(key, defaultValue);
     }
 
     @Override
@@ -190,7 +196,7 @@ public class MMKVStorageEngineImpl
             String key,
             double defaultValue
     ) {
-        return mHolder.decodeDouble(key, defaultValue);
+        return mPreference.getDouble(key, defaultValue);
     }
 
     @Override
@@ -198,7 +204,7 @@ public class MMKVStorageEngineImpl
             String key,
             boolean defaultValue
     ) {
-        return mHolder.decodeBool(key, defaultValue);
+        return mPreference.getBoolean(key, defaultValue);
     }
 
     @Override
@@ -206,7 +212,7 @@ public class MMKVStorageEngineImpl
             String key,
             String defaultValue
     ) {
-        String content = mHolder.decodeString(key, null);
+        String content = mPreference.getString(key, null);
         if (content == null) return defaultValue;
         if (content != null && mConfig.cipher != null) {
             byte[] bytes = mConfig.cipher.decrypt(ConvertUtils.toBytes(content));

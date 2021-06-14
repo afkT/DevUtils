@@ -1,29 +1,29 @@
-package ktx.dev.engine.storage
+package ktx.dev.engine.keyvalue
 
 import com.tencent.mmkv.MMKV
 import dev.engine.json.DevJSONEngine
-import dev.engine.storage.IStorageEngine
+import dev.engine.keyvalue.IKeyValueEngine
 import dev.utils.common.ConvertUtils
 import dev.utils.common.cipher.Cipher
 import ktx.dev.other.MMKVUtils
 import java.lang.reflect.Type
 
 /**
- * detail: MMKV Storage Config
+ * detail: MMKV Key-Value Config
  * @author Ttt
  */
 class MMKVConfig(
     cipher: Cipher?,
     val mmkv: MMKV
-) : IStorageEngine.EngineConfig(cipher)
+) : IKeyValueEngine.EngineConfig(cipher)
 
 /**
- * detail: MMKV Storage Engine 实现
+ * detail: MMKV Key-Value Engine 实现
  * @author Ttt
  */
-class MMKVStorageEngineImpl(
+class MMKVKeyValueEngineImpl(
     private val mConfig: MMKVConfig
-) : IStorageEngine<MMKVConfig> {
+) : IKeyValueEngine<MMKVConfig> {
 
     // MMKV
     private val mHolder: MMKVUtils.Holder

@@ -1,26 +1,26 @@
-package dev.engine.storage;
+package dev.engine.keyvalue;
 
 import java.lang.reflect.Type;
 
 import dev.engine.json.DevJSONEngine;
-import dev.utils.app.share.IPreference;
+import dev.other.MMKVUtils;
 import dev.utils.common.ConvertUtils;
 
 /**
- * detail: SharedPreferences Storage Engine 实现
+ * detail: MMKV Key-Value Engine 实现
  * @author Ttt
  */
-public class SPStorageEngineImpl
-        implements IStorageEngine<SPConfig> {
+public class MMKVKeyValueEngineImpl
+        implements IKeyValueEngine<MMKVConfig> {
 
-    private final SPConfig    mConfig;
-    // SharedPreferences
-    private final IPreference mPreference;
+    private final MMKVConfig       mConfig;
+    // MMKV
+    private final MMKVUtils.Holder mHolder;
 
-    public SPStorageEngineImpl(SPConfig config) {
+    public MMKVKeyValueEngineImpl(MMKVConfig config) {
         this.mConfig = config;
-        // SharedPreferences
-        mPreference = config.getPreference();
+        // MMKV Holder
+        mHolder = MMKVUtils.putHolder(config.getMMKV().mmapID(), config.getMMKV());
     }
 
     // ===============
@@ -28,28 +28,28 @@ public class SPStorageEngineImpl
     // ===============
 
     @Override
-    public SPConfig getConfig() {
+    public MMKVConfig getConfig() {
         return mConfig;
     }
 
     @Override
     public void remove(String key) {
-        mPreference.remove(key);
+        mHolder.removeValueForKey(key);
     }
 
     @Override
     public void removeForKeys(String[] keys) {
-        mPreference.removeAll(keys);
+        mHolder.removeValuesForKeys(keys);
     }
 
     @Override
     public boolean contains(String key) {
-        return mPreference.contains(key);
+        return mHolder.containsKey(key);
     }
 
     @Override
     public void clear() {
-        mPreference.clear();
+        mHolder.clear();
     }
 
     // =======
@@ -61,8 +61,7 @@ public class SPStorageEngineImpl
             String key,
             int value
     ) {
-        mPreference.put(key, value);
-        return true;
+        return mHolder.encode(key, value);
     }
 
     @Override
@@ -70,8 +69,7 @@ public class SPStorageEngineImpl
             String key,
             long value
     ) {
-        mPreference.put(key, value);
-        return true;
+        return mHolder.encode(key, value);
     }
 
     @Override
@@ -79,8 +77,7 @@ public class SPStorageEngineImpl
             String key,
             float value
     ) {
-        mPreference.put(key, value);
-        return true;
+        return mHolder.encode(key, value);
     }
 
     @Override
@@ -88,8 +85,7 @@ public class SPStorageEngineImpl
             String key,
             double value
     ) {
-        mPreference.put(key, value);
-        return true;
+        return mHolder.encode(key, value);
     }
 
     @Override
@@ -97,8 +93,7 @@ public class SPStorageEngineImpl
             String key,
             boolean value
     ) {
-        mPreference.put(key, value);
-        return true;
+        return mHolder.encode(key, value);
     }
 
     @Override
@@ -111,8 +106,7 @@ public class SPStorageEngineImpl
             byte[] bytes = mConfig.cipher.encrypt(ConvertUtils.toBytes(value));
             content = ConvertUtils.newString(bytes);
         }
-        mPreference.put(key, content);
-        return true;
+        return mHolder.encode(key, content);
     }
 
     @Override
@@ -172,7 +166,7 @@ public class SPStorageEngineImpl
             String key,
             int defaultValue
     ) {
-        return mPreference.getInt(key, defaultValue);
+        return mHolder.decodeInt(key, defaultValue);
     }
 
     @Override
@@ -180,7 +174,7 @@ public class SPStorageEngineImpl
             String key,
             long defaultValue
     ) {
-        return mPreference.getLong(key, defaultValue);
+        return mHolder.decodeLong(key, defaultValue);
     }
 
     @Override
@@ -188,7 +182,7 @@ public class SPStorageEngineImpl
             String key,
             float defaultValue
     ) {
-        return mPreference.getFloat(key, defaultValue);
+        return mHolder.decodeFloat(key, defaultValue);
     }
 
     @Override
@@ -196,7 +190,7 @@ public class SPStorageEngineImpl
             String key,
             double defaultValue
     ) {
-        return mPreference.getDouble(key, defaultValue);
+        return mHolder.decodeDouble(key, defaultValue);
     }
 
     @Override
@@ -204,7 +198,7 @@ public class SPStorageEngineImpl
             String key,
             boolean defaultValue
     ) {
-        return mPreference.getBoolean(key, defaultValue);
+        return mHolder.decodeBool(key, defaultValue);
     }
 
     @Override
@@ -212,7 +206,7 @@ public class SPStorageEngineImpl
             String key,
             String defaultValue
     ) {
-        String content = mPreference.getString(key, null);
+        String content = mHolder.decodeString(key, null);
         if (content == null) return defaultValue;
         if (content != null && mConfig.cipher != null) {
             byte[] bytes = mConfig.cipher.decrypt(ConvertUtils.toBytes(content));
