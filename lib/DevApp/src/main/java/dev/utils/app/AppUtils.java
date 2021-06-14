@@ -36,6 +36,7 @@ import android.os.storage.StorageManager;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.view.WindowManager;
+import android.view.WindowMetrics;
 import android.view.inputmethod.InputMethodManager;
 
 import java.io.File;
@@ -263,6 +264,42 @@ public final class AppUtils {
             return DevUtils.getContext().getPackageManager();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getPackageManager");
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Current WindowMetrics
+     * @return {@link WindowMetrics}
+     */
+    public static WindowMetrics getCurrentWindowMetrics() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            WindowManager windowManager = getWindowManager();
+            if (windowManager != null) {
+                try {
+                    return windowManager.getCurrentWindowMetrics();
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "getCurrentWindowMetrics");
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取 Maximum WindowMetrics
+     * @return {@link WindowMetrics}
+     */
+    public static WindowMetrics getMaximumWindowMetrics() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            WindowManager windowManager = getWindowManager();
+            if (windowManager != null) {
+                try {
+                    return windowManager.getMaximumWindowMetrics();
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "getMaximumWindowMetrics");
+                }
+            }
         }
         return null;
     }

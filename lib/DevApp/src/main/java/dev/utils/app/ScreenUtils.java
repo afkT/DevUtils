@@ -515,6 +515,14 @@ public final class ScreenUtils {
     }
 
     /**
+     * 获取 StatusBar 高度
+     * @return StatusBar 高度
+     */
+    public static int getStatusBarHeight2() {
+        return BarUtils.getStatusBarHeight2();
+    }
+
+    /**
      * 设置进入休眠时长
      * @param duration 时长
      * @return {@code true} success, {@code false} fail

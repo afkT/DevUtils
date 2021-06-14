@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Insets;
 import android.graphics.Point;
 import android.os.Build;
 import android.util.TypedValue;
@@ -15,7 +16,9 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowInsets;
 import android.view.WindowManager;
+import android.view.WindowMetrics;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -64,6 +67,28 @@ public final class BarUtils {
             LogPrintUtils.eTag(TAG, e, "getStatusBarHeight");
         }
         return 0;
+    }
+
+    /**
+     * 获取 StatusBar 高度
+     * @return StatusBar 高度
+     */
+    public static int getStatusBarHeight2() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            WindowMetrics windowMetrics = AppUtils.getCurrentWindowMetrics();
+            if (windowMetrics != null) {
+                try {
+                    WindowInsets windowInsets = windowMetrics.getWindowInsets();
+                    Insets insets = windowInsets.getInsetsIgnoringVisibility(
+                            WindowInsets.Type.navigationBars() | WindowInsets.Type.displayCutout()
+                    );
+                    return insets.top;
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "getStatusBarHeight2");
+                }
+            }
+        }
+        return getStatusBarHeight();
     }
 
     /**
