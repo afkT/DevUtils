@@ -881,6 +881,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | strEncode | 进行字符串编码 |
 | urlEncode | 进行 URL 编码, 默认 UTF-8 |
 | urlDecode | 进行 URL 解码, 默认 UTF-8 |
+| urlDecodeWhile | 进行 URL 解码, 默认 UTF-8 ( 循环到非 URL 编码为止 ) |
 | ascii | 将字符串转移为 ASCII 码 |
 | unicode | 将字符串转移为 Unicode 码 |
 | unicodeString | 将字符数组转移为 Unicode 码 |

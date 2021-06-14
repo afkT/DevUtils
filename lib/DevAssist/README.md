@@ -27,13 +27,13 @@ implementation 'io.github.afkt:DevAssist:1.2.3'
       - image                                         | Image Engine
          - listener                                   | 图片加载监听事件
       - json                                          | JSON Engine
+      - keyvalue                                      | Key-Value Engine
       - log                                           | Log Engine
       - media                                         | Media Selector Engine
       - permission                                    | Permission Engine
       - push                                          | Push Engine
       - share                                         | Share Engine
          - listener                                   | 分享回调事件
-      - storage                                       | Storage Engine
    - function                                         | 快捷方法执行相关
 ```
 
@@ -66,13 +66,13 @@ implementation 'io.github.afkt:DevAssist:1.2.3'
       - [image](#devengineimage)                      | Image Engine
          - [listener](#devengineimagelistener)        | 图片加载监听事件
       - [json](#devenginejson)                        | JSON Engine
+      - [keyvalue](#devenginekeyvalue)                | Key-Value Engine
       - [log](#devenginelog)                          | Log Engine
       - [media](#devenginemedia)                      | Media Selector Engine
       - [permission](#devenginepermission)            | Permission Engine
       - [push](#devenginepush)                        | Push Engine
       - [share](#devengineshare)                      | Share Engine
          - [listener](#devenginesharelistener)        | 分享回调事件
-      - [storage](#devenginestorage)                  | Storage Engine
    - [function](#devfunction)                         | 快捷方法执行相关
 
 
@@ -1012,6 +1012,44 @@ implementation 'io.github.afkt:DevAssist:1.2.3'
 | toJsonIndent | JSON String 缩进处理 |
 
 
+## <span id="devenginekeyvalue">**`dev.engine.keyvalue`**</span>
+
+
+* **Key-Value Engine ->** [DevKeyValueEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/keyvalue/DevKeyValueEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 Key-Value Engine |
+| setEngine | 设置 Key-Value Engine |
+| contains | 是否存在 Key-Value Engine |
+| getsEngineMaps | 获取 Engine Map |
+
+
+* **Key-Value Engine 接口 ->** [IKeyValueEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/keyvalue/IKeyValueEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getConfig | 获取 Key-Value Engine Config |
+| remove | 移除数据 |
+| removeForKeys | 移除数组的数据 |
+| contains | 是否存在 key |
+| clear | 清除全部数据 |
+| putInt | 保存 int 类型的数据 |
+| putLong | 保存 long 类型的数据 |
+| putFloat | 保存 float 类型的数据 |
+| putDouble | 保存 double 类型的数据 |
+| putBoolean | 保存 boolean 类型的数据 |
+| putString | 保存 String 类型的数据 |
+| putEntity | 保存指定类型对象 |
+| getInt | 获取 int 类型的数据 |
+| getLong | 获取 long 类型的数据 |
+| getFloat | 获取 float 类型的数据 |
+| getDouble | 获取 double 类型的数据 |
+| getBoolean | 获取 boolean 类型的数据 |
+| getString | 获取 String 类型的数据 |
+| getEntity | 获取指定类型对象 |
+
+
 ## <span id="devenginelog">**`dev.engine.log`**</span>
 
 
@@ -1182,44 +1220,6 @@ implementation 'io.github.afkt:DevAssist:1.2.3'
 | onResult | 分享成功 |
 | onError | 分享失败 |
 | onCancel | 取消分享 |
-
-
-## <span id="devenginestorage">**`dev.engine.storage`**</span>
-
-
-* **Storage Engine ->** [DevStorageEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/storage/DevStorageEngine.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getEngine | 获取 Storage Engine |
-| setEngine | 设置 Storage Engine |
-| contains | 是否存在 Storage Engine |
-| getsEngineMaps | 获取 Engine Map |
-
-
-* **Storage Engine 接口 ->** [IStorageEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/storage/IStorageEngine.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| getConfig | 获取 Storage Engine Config |
-| remove | 移除数据 |
-| removeForKeys | 移除数组的数据 |
-| contains | 是否存在 key |
-| clear | 清除全部数据 |
-| putInt | 保存 int 类型的数据 |
-| putLong | 保存 long 类型的数据 |
-| putFloat | 保存 float 类型的数据 |
-| putDouble | 保存 double 类型的数据 |
-| putBoolean | 保存 boolean 类型的数据 |
-| putString | 保存 String 类型的数据 |
-| putEntity | 保存指定类型对象 |
-| getInt | 获取 int 类型的数据 |
-| getLong | 获取 long 类型的数据 |
-| getFloat | 获取 float 类型的数据 |
-| getDouble | 获取 double 类型的数据 |
-| getBoolean | 获取 boolean 类型的数据 |
-| getString | 获取 String 类型的数据 |
-| getEntity | 获取指定类型对象 |
 
 
 ## <span id="devfunction">**`dev.function`**</span>
