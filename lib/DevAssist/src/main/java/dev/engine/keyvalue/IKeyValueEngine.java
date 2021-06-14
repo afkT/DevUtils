@@ -1,17 +1,17 @@
-package dev.engine.storage;
+package dev.engine.keyvalue;
 
 import java.lang.reflect.Type;
 
 import dev.utils.common.cipher.Cipher;
 
 /**
- * detail: Storage Engine 接口
+ * detail: Key-Value Engine 接口
  * @author Ttt
  */
-public interface IStorageEngine<Config extends IStorageEngine.EngineConfig> {
+public interface IKeyValueEngine<Config extends IKeyValueEngine.EngineConfig> {
 
     /**
-     * detail: Storage Config
+     * detail: Key-Value Config
      * @author Ttt
      */
     class EngineConfig {
@@ -31,7 +31,7 @@ public interface IStorageEngine<Config extends IStorageEngine.EngineConfig> {
     // ===============
 
     /**
-     * 获取 Storage Engine Config
+     * 获取 Key-Value Engine Config
      * @return {@link Config}
      */
     Config getConfig();
