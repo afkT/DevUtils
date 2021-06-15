@@ -341,6 +341,27 @@ public final class MediaStoreUtils {
         return createMediaUri(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
     }
 
+    // ============
+    // = Download =
+    // ============
+
+    /**
+     * 创建 Download Uri
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param createTime   创建时间
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @return Download Uri
+     */
+    public static Uri createDownloadUri(
+            final String displayName,
+            final long createTime,
+            final String mimeType,
+            final String relativePath
+    ) {
+        return createMediaUri(MediaStore.Downloads.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
+    }
+
     // ===========
     // = 通用创建 =
     // ===========
@@ -368,7 +389,7 @@ public final class MediaStoreUtils {
      *     也可通过 {@link IntentUtils#getCreateDocumentIntent(String, String)} 创建
      * </pre>
      * @param uri          MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
-     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 ), 如果 mimeType 用了 xxx/* 则需指定后缀
      * @param createTime   创建时间
      * @param mimeType     资源类型
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
@@ -500,6 +521,21 @@ public final class MediaStoreUtils {
     ) {
         return insertMedia(uri, inputUri);
     }
+
+    /**
+     * 插入一条文件资源
+     * @param uri      {@link #createDownloadUri} or {@link #createMediaUri}
+     * @param inputUri 输入 Uri ( 待存储文件 Uri )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean insertDownload(
+            final Uri uri,
+            final Uri inputUri
+    ) {
+        return insertMedia(uri, inputUri);
+    }
+
+    // =
 
     /**
      * 插入一条多媒体资源
