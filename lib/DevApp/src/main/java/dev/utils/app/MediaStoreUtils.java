@@ -120,21 +120,39 @@ public final class MediaStoreUtils {
     // ============
 
     // PNG
-    public static final String MIME_TYPE_IMAGE_PNG = "image/png";
+    public static final String MIME_TYPE_IMAGE_PNG       = "image/png";
     // JPEG
-    public static final String MIME_TYPE_IMAGE_JPG = "image/jpeg";
+    public static final String MIME_TYPE_IMAGE_JPG       = "image/jpeg";
     // 图片类型
-    public static final String MIME_TYPE_IMAGE     = MIME_TYPE_IMAGE_PNG;
+    public static final String MIME_TYPE_IMAGE           = "image/*";
+    // MOV
+    public static final String MIME_TYPE_VIDEO_MOV       = "video/mov";
+    // MP4
+    public static final String MIME_TYPE_VIDEO_MP4       = "video/mp4";
     // 视频类型
-    public static final String MIME_TYPE_VIDEO     = "video/mp4";
+    public static final String MIME_TYPE_VIDEO           = "video/*";
+    // ACC
+    public static final String MIME_TYPE_AUDIO_ACC       = "audio/acc";
+    // WAV
+    public static final String MIME_TYPE_AUDIO_WAV       = "audio/wav";
+    // MP3
+    public static final String MIME_TYPE_AUDIO_MP3       = "audio/mp3";
     // 音频类型
-    public static final String MIME_TYPE_AUDIO     = "audio/mpeg";
+    public static final String MIME_TYPE_AUDIO           = "audio/*";
+    // PDF
+    public static final String MIME_TYPE_APPLICATION_PDF = "application/pdf";
+    // ZIP
+    public static final String MIME_TYPE_APPLICATION_ZIP = "application/zip";
+    // 应用文件类型
+    public static final String MIME_TYPE_APPLICATION     = "application/*";
     // 图片文件夹
-    public static final String RELATIVE_IMAGE_PATH = Environment.DIRECTORY_PICTURES;
+    public static final String RELATIVE_IMAGE_PATH       = Environment.DIRECTORY_PICTURES;
     // 视频文件夹
-    public static final String RELATIVE_VIDEO_PATH = Environment.DIRECTORY_DCIM + "/Video";
+    public static final String RELATIVE_VIDEO_PATH       = Environment.DIRECTORY_DCIM + "/Video";
     // 音频文件夹
-    public static final String RELATIVE_AUDIO_PATH = Environment.DIRECTORY_MUSIC;
+    public static final String RELATIVE_AUDIO_PATH       = Environment.DIRECTORY_MUSIC;
+    // 下载文件夹
+    public static final String RELATIVE_DOWNLOAD_PATH    = Environment.DIRECTORY_DOWNLOADS;
 
     /**
      * 获取待显示名
