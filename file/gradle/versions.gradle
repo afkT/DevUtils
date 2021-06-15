@@ -2,9 +2,9 @@ ext {
     versions = [
 
             // 版本号
-            versionCode                             : 103,
+            versionCode                             : 104,
             // 版本名
-            versionName                             : "1.0.3",
+            versionName                             : "1.0.4",
             // 支持最小的 SDK
             lib_minSdkVersion                       : 14,
             // 支持最小的 SDK
@@ -14,7 +14,7 @@ ext {
             // 向前兼容 SDK 版本
             targetSdkVersion                        : 30,
             // 构建工具版本
-            buildToolsVersion                       : "30.0.3",
+            buildToolsVersion                       : "31.0.0-rc5",
             // java 版本
             javaVersion                             : JavaVersion.VERSION_1_8,
             javaVersion_str                         : "1.8",

@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.webkit.MimeTypeMap;
 
 import androidx.annotation.IntRange;
 
@@ -957,5 +958,63 @@ public final class MediaStoreUtils {
             }
         }
         return null;
+    }
+
+    // ============
+    // = MimeType =
+    // ============
+
+    /**
+     * 通过后缀获取 MimeType
+     * @param extension 文件后缀 ( 无 "." 单独后缀 )
+     * @return MimeType
+     */
+    public static String getMimeTypeFromExtension(final String extension) {
+        if (TextUtils.isEmpty(extension)) return null;
+        return MimeTypeMap.getSingleton()
+                .getMimeTypeFromExtension(extension);
+    }
+
+    /**
+     * 通过 MimeType 获取后缀
+     * @param mimeType 例: text/plain
+     * @return 对应 Type 后缀
+     */
+    public static String getExtensionFromMimeType(final String mimeType) {
+        if (TextUtils.isEmpty(mimeType)) return null;
+        return MimeTypeMap.getSingleton()
+                .getExtensionFromMimeType(mimeType);
+    }
+
+    /**
+     * 通过 Url 获取文件后缀
+     * @param url 文件链接 ( 可传入文件路径 )
+     * @return 文件后缀
+     */
+    public static String getFileExtensionFromUrl(String url) {
+        if (TextUtils.isEmpty(url)) return null;
+        String extension = MimeTypeMap.getFileExtensionFromUrl(url);
+        if (TextUtils.isEmpty(extension)) return null;
+        return extension;
+    }
+
+    /**
+     * 判断 MimeMap 是否存在指定的 MimeType
+     * @param mimeType 例: text/plain
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean hasMimeType(final String mimeType) {
+        if (TextUtils.isEmpty(mimeType)) return false;
+        return MimeTypeMap.getSingleton().hasMimeType(mimeType);
+    }
+
+    /**
+     * 判断是否支持的 MimeType 后缀
+     * @param extension 文件后缀 ( 无 "." 单独后缀 )
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean hasExtension(final String extension) {
+        if (TextUtils.isEmpty(extension)) return false;
+        return MimeTypeMap.getSingleton().hasExtension(extension);
     }
 }
