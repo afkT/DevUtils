@@ -5,8 +5,11 @@ import android.app.PendingIntent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
 
 import androidx.annotation.IntRange;
+import androidx.annotation.RequiresApi;
 
 import java.io.File;
 import java.io.InputStream;
@@ -281,7 +284,7 @@ public final class VersionHelper {
     /**
      * 创建图片 Uri
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
      * @return 图片 Uri
      */
     public static Uri createImageUri(
@@ -296,7 +299,7 @@ public final class VersionHelper {
      * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
      * @param createTime   创建时间
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
      * @return 图片 Uri
      */
     public static Uri createImageUri(
@@ -332,7 +335,7 @@ public final class VersionHelper {
     /**
      * 创建视频 Uri
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
      * @return 视频 Uri
      */
     public static Uri createVideoUri(
@@ -347,7 +350,7 @@ public final class VersionHelper {
      * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
      * @param createTime   创建时间
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
      * @return 视频 Uri
      */
     public static Uri createVideoUri(
@@ -383,7 +386,7 @@ public final class VersionHelper {
     /**
      * 创建音频 Uri
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
      * @return 音频 Uri
      */
     public static Uri createAudioUri(
@@ -398,7 +401,7 @@ public final class VersionHelper {
      * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
      * @param createTime   创建时间
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
      * @return 音频 Uri
      */
     public static Uri createAudioUri(
@@ -410,6 +413,71 @@ public final class VersionHelper {
         return MediaStoreUtils.createAudioUri(displayName, createTime, mimeType, relativePath);
     }
 
+    // ============
+    // = Download =
+    // ============
+
+    /**
+     * 创建 Download Uri
+     * @param displayName 显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @return Download Uri
+     */
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    public static Uri createDownloadUri(final String displayName) {
+        return MediaStoreUtils.createDownloadUri(displayName);
+    }
+
+    /**
+     * 创建 Download Uri
+     * @param displayName 显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param mimeType    资源类型
+     * @return Download Uri
+     */
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    public static Uri createDownloadUri(
+            final String displayName,
+            final String mimeType
+    ) {
+        return MediaStoreUtils.createDownloadUri(displayName, mimeType);
+    }
+
+    /**
+     * 创建 Download Uri
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
+     * @return Download Uri
+     */
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    public static Uri createDownloadUri(
+            final String displayName,
+            final String mimeType,
+            final String relativePath
+    ) {
+        return MediaStoreUtils.createDownloadUri(displayName, mimeType, relativePath);
+    }
+
+    /**
+     * 创建 Download Uri
+     * <pre>
+     *     Android Q ( 10.0 ) 以下直接通过 File 写入到 {@link Environment#DIRECTORY_DOWNLOADS}
+     * </pre>
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param createTime   创建时间
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
+     * @return Download Uri
+     */
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    public static Uri createDownloadUri(
+            final String displayName,
+            final long createTime,
+            final String mimeType,
+            final String relativePath
+    ) {
+        return MediaStoreUtils.createDownloadUri(displayName, createTime, mimeType, relativePath);
+    }
+
     // ===========
     // = 通用创建 =
     // ===========
@@ -419,7 +487,7 @@ public final class VersionHelper {
      * @param uri          MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
      * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
      * @return Media Uri
      */
     public static Uri createMediaUri(
@@ -440,7 +508,7 @@ public final class VersionHelper {
      * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
      * @param createTime   创建时间
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
      * @return Media Uri
      */
     public static Uri createMediaUri(
