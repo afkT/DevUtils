@@ -1,8 +1,8 @@
 package dev.utils.common;
 
 import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import dev.utils.JCLogUtils;
@@ -38,7 +38,7 @@ public final class HttpParamsUtils {
             final String params,
             final boolean urlEncode
     ) {
-        Map<String, String> mapParams = new HashMap<>();
+        Map<String, String> mapParams = new LinkedHashMap<>();
         if (params != null) {
             // 拆分数据
             String[] keyValues = params.split("&");
