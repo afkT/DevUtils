@@ -82,9 +82,9 @@ public final class DevFinal {
     // 年与毫秒的倍数
     public static final long YEAR     = DAY * 365;
 
-    // ===========
+    // ==========
     // = 常量数组 =
-    // ===========
+    // ==========
 
     // 用于建立十六进制字符的输出的小写字符数组
     public static final char[] HEX_DIGITS = {
@@ -238,9 +238,9 @@ public final class DevFinal {
     public static final String FORMAT_PARENTHESES       = "( %s )";
     public static final String FORMAT_PARENTHESES_SPACE = " ( %s ) ";
 
-    // ===============
+    // =============
     // = 其他常用字段 =
-    // ===============
+    // =============
 
     public static final String ACCOUNT     = "account";
     public static final String ACTIVITY    = "activity";

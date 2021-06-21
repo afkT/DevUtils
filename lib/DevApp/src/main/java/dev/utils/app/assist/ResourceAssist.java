@@ -160,9 +160,9 @@ public final class ResourceAssist {
         return new ResourceAssist(resource, packageName);
     }
 
-    // ===========
+    // ==========
     // = 静态方法 =
-    // ===========
+    // ==========
 
     /**
      * 获取 Resources
@@ -436,9 +436,9 @@ public final class ResourceAssist {
         return null;
     }
 
-    // ===========
+    // ==========
     // = 资源获取 =
-    // ===========
+    // ==========
 
     /**
      * 获取 String id

@@ -110,9 +110,9 @@ public final class ClickUtils {
         ClickUtils.sGlobalIntervalTime = globalIntervalTime;
     }
 
-    // ====================
+    // ==================
     // = 功能模块辅助类操作 =
-    // ====================
+    // ==================
 
     /**
      * 获取对应功能模块点击辅助类
@@ -138,9 +138,9 @@ public final class ClickUtils {
         sClickAssistMaps.remove(object);
     }
 
-    // ====================
+    // ==================
     // = 全局点击辅助类操作 =
-    // ====================
+    // ==================
 
     /**
      * 判断是否双击 ( 无效点击, 短时间内多次点击 )

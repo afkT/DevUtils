@@ -19,9 +19,9 @@ public final class ScreenSensorAssist {
     // 日志 TAG
     private static final String TAG = ScreenSensorAssist.class.getSimpleName();
 
-    // ====================
+    // ==================
     // = 重力传感器监听对象 =
-    // ====================
+    // ==================
 
     // 传感器管理对象
     private SensorManager             mSensorManager;
@@ -30,18 +30,18 @@ public final class ScreenSensorAssist {
     // 重力传感器监听事件
     private OrientationSensorListener mListener;
 
-    // ================================================
+    // ===========================================
     // = 重力传感器监听对象 ( 改变方向后, 判断参数不同 ) =
-    // ================================================
+    // ===========================================
 
     // 传感器管理对象 ( 切屏后 )
     private SensorManager                   mSensorManagerChange;
     // 重力传感器监听事件 ( 切屏后 )
     private OrientationSensorChangeListener mListenerChange;
 
-    // ========
+    // =======
     // = 常量 =
-    // ========
+    // =======
 
     // 方向未知常量
     private final        int ORIENTATION_UNKNOWN     = -1;

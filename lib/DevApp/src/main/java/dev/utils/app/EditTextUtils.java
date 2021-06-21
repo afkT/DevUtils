@@ -264,9 +264,9 @@ public final class EditTextUtils {
         return setText(setMaxLength(editText, maxLength), content);
     }
 
-    // ========
+    // =======
     // = 光标 =
-    // ========
+    // =======
 
     /**
      * 是否显示光标
@@ -530,9 +530,9 @@ public final class EditTextUtils {
         return editText;
     }
 
-    // ========================
+    // =======================
     // = Key Listener 快捷处理 =
-    // ========================
+    // =======================
 
     // 0123456789
     private static final char[] NUMBERS = {

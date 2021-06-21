@@ -114,9 +114,9 @@ public final class AccessibilityUtils {
         return false;
     }
 
-    // ===========
+    // ==========
     // = 打印方法 =
-    // ===========
+    // ==========
 
     /**
      * 打印 AccessibilityEvent 信息日志
@@ -199,9 +199,9 @@ public final class AccessibilityUtils {
         LogPrintUtils.dTag(tag, builder.toString());
     }
 
-    // ===========
+    // ==========
     // = 节点获取 =
-    // ===========
+    // ==========
 
     /**
      * 查找符合条件的节点
@@ -734,9 +734,9 @@ public final class AccessibilityUtils {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN);
     }
 
-    // ===========
+    // ==========
     // = 统一调用 =
-    // ===========
+    // ==========
 
     /**
      * 模拟对应 Action 操作

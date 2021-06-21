@@ -136,9 +136,9 @@ public final class DevMediaManager
         return this;
     }
 
-    // ===========
+    // ==========
     // = 播放操作 =
-    // ===========
+    // ==========
 
     /**
      * 播放 Raw 资源
@@ -248,9 +248,9 @@ public final class DevMediaManager
         return false;
     }
 
-    // ===========
+    // ==========
     // = 播放路径 =
-    // ===========
+    // ==========
 
     /**
      * 预加载播放 (file-path or http/rtsp URL) http 资源、本地资源
@@ -295,9 +295,9 @@ public final class DevMediaManager
         return false;
     }
 
-    // ===============
+    // =============
     // = 最终调用方法 =
-    // ===============
+    // =============
 
     /**
      * 预加载播放 ( 最终调用方法, 加载成功触发 onPrepared, 该方法内调用 mMediaPlayer.start() )
@@ -494,9 +494,9 @@ public final class DevMediaManager
         }
     }
 
-    // ===============
+    // =============
     // = 封装回调事件 =
-    // ===============
+    // =============
 
     // MediaPlayer 回调事件
     private MediaListener mMediaListener;

@@ -48,9 +48,9 @@ public final class ShortCutUtils {
     // 日志 TAG
     private static final String TAG = ShortCutUtils.class.getSimpleName();
 
-    // ======================
+    // ====================
     // = 检测是否存在快捷方式 =
-    // ======================
+    // ====================
 
     /**
      * 检测是否存在桌面快捷方式

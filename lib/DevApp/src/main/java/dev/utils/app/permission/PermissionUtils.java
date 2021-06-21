@@ -202,9 +202,9 @@ public final class PermissionUtils {
         return AppInfoUtils.getAppPermission(packageName);
     }
 
-    // ===========
+    // ==========
     // = 权限申请 =
-    // ===========
+    // ==========
 
     // APP 注册的权限
     private static final Set<String>        sAppPermissionSets             = getAppPermissionToSet();
@@ -318,9 +318,9 @@ public final class PermissionUtils {
         }
     }
 
-    // ===============
+    // =============
     // = 请求权限回调 =
-    // ===============
+    // =============
 
     /**
      * detail: 权限请求回调

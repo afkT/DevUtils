@@ -16,9 +16,9 @@ public class DevVideoPlayerControl
         implements SurfaceHolder.Callback,
         DevMediaManager.MediaListener {
 
-    // ===========
+    // ==========
     // = 外部回调 =
-    // ===========
+    // ==========
 
     // 日志 TAG
     private final String TAG = DevVideoPlayerControl.class.getSimpleName();
@@ -83,9 +83,9 @@ public class DevVideoPlayerControl
         mSurfaceHolder.addCallback(this);
     }
 
-    // ===================
+    // ==================
     // = Surface 回调事件 =
-    // ===================
+    // ==================
 
     /**
      * Surface 改变通知
@@ -130,9 +130,9 @@ public class DevVideoPlayerControl
         LogPrintUtils.dTag(TAG, "surfaceDestroyed");
     }
 
-    // =======================
+    // ======================
     // = MediaPlayer 回调事件 =
-    // =======================
+    // ======================
 
     /**
      * 准备完成回调
@@ -256,9 +256,9 @@ public class DevVideoPlayerControl
         return this;
     }
 
-    // ===============
+    // =============
     // = 播放快捷操作 =
-    // ===============
+    // =============
 
     /**
      * 暂停播放

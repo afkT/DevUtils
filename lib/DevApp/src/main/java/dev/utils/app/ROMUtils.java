@@ -23,9 +23,9 @@ public final class ROMUtils {
     private ROMUtils() {
     }
 
-    // ===============
+    // ==============
     // = ROM 标识信息 =
-    // ===============
+    // ==============
 
     private static final String[] ROM_HUAWEI    = {"huawei"};
     private static final String[] ROM_VIVO      = {"vivo"};

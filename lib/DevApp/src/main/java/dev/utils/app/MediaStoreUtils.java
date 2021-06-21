@@ -189,9 +189,9 @@ public final class MediaStoreUtils {
         return getDisplayName("AUD");
     }
 
-    // ========
+    // =======
     // = 图片 =
-    // ========
+    // =======
 
     /**
      * 创建图片 Uri
@@ -240,9 +240,9 @@ public final class MediaStoreUtils {
         return createMediaUri(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
     }
 
-    // ========
+    // =======
     // = 视频 =
-    // ========
+    // =======
 
     /**
      * 创建视频 Uri
@@ -291,9 +291,9 @@ public final class MediaStoreUtils {
         return createMediaUri(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
     }
 
-    // ========
+    // =======
     // = 音频 =
-    // ========
+    // =======
 
     /**
      * 创建音频 Uri
@@ -820,9 +820,9 @@ public final class MediaStoreUtils {
         );
     }
 
-    // ===========
+    // ==========
     // = 资源信息 =
-    // ===========
+    // ==========
 
     /**
      * 获取本地视频时长
@@ -1011,9 +1011,9 @@ public final class MediaStoreUtils {
         return ContentResolverUtils.mediaQuery(uri, TAG, ContentResolverUtils.MEDIA_QUERY_INFO_URI);
     }
 
-    // ===============
+    // =============
     // = 执行批量操作 =
-    // ===============
+    // =============
 
     /**
      * 获取用户向应用授予对指定媒体文件组的写入访问权限的请求

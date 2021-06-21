@@ -74,9 +74,9 @@ public final class BitmapUtils {
         return ImageUtils.isNotEmpty(bitmap);
     }
 
-    // ===========
+    // ==========
     // = 图片判断 =
-    // ===========
+    // ==========
 
     /**
      * 根据文件判断是否为图片
@@ -664,9 +664,9 @@ public final class BitmapUtils {
         return null;
     }
 
-    // ==============
+    // =============
     // = 合并 / 叠加 =
-    // ==============
+    // =============
 
     /**
      * 合并图片
@@ -1006,9 +1006,9 @@ public final class BitmapUtils {
         Rect  rect  = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
         RectF rectF = new RectF(rect); // 创建一个精度更高的矩形, 用于画出圆角效果
 
-        // ===============
+        // =============
         // = 圆角方向控制 =
-        // ===============
+        // =============
 
         if (!directions[0]) {
             rectF.left -= pixels;
@@ -1100,9 +1100,9 @@ public final class BitmapUtils {
         return newBitmap;
     }
 
-    // =================
+    // ===============
     // = 圆角、圆形边框 =
-    // =================
+    // ===============
 
     /**
      * 添加圆角边框
@@ -1597,9 +1597,9 @@ public final class BitmapUtils {
         return -1;
     }
 
-    // =============
+    // ============
     // = 视频缩略图 =
-    // =============
+    // ============
 
     /**
      * 获取视频缩略图

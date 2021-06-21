@@ -321,9 +321,9 @@ public final class WallpaperUtils {
         return null;
     }
 
-    // ===========
+    // ==========
     // = 设置操作 =
-    // ===========
+    // ==========
 
     /**
      * 通过 Bitmap 设置壁纸 ( 桌面壁纸 )
@@ -436,9 +436,9 @@ public final class WallpaperUtils {
         return false;
     }
 
-    // ===========
+    // ==========
     // = 适配设置 =
-    // ===========
+    // ==========
 
     /**
      * detail: 其他回调

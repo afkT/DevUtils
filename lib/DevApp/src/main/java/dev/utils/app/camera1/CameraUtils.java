@@ -16,9 +16,9 @@ public final class CameraUtils {
     // 日志 TAG
     private static final String TAG = CameraUtils.class.getSimpleName();
 
-    // =================
+    // ===============
     // = 摄像头快速处理 =
-    // =================
+    // ===============
 
     /**
      * 判断是否支持反转摄像头 ( 是否存在前置摄像头 )

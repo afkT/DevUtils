@@ -260,9 +260,9 @@ public final class VersionHelper {
     // = MediaStoreUtils =
     // ===================
 
-    // ========
+    // =======
     // = 图片 =
-    // ========
+    // =======
 
     /**
      * 创建图片 Uri
@@ -311,9 +311,9 @@ public final class VersionHelper {
         return MediaStoreUtils.createImageUri(displayName, createTime, mimeType, relativePath);
     }
 
-    // ========
+    // =======
     // = 视频 =
-    // ========
+    // =======
 
     /**
      * 创建视频 Uri
@@ -362,9 +362,9 @@ public final class VersionHelper {
         return MediaStoreUtils.createVideoUri(displayName, createTime, mimeType, relativePath);
     }
 
-    // ========
+    // =======
     // = 音频 =
-    // ========
+    // =======
 
     /**
      * 创建音频 Uri

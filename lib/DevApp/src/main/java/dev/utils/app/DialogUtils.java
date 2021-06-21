@@ -737,9 +737,9 @@ public final class DialogUtils {
         return popupWindow;
     }
 
-    // ==================
+    // =================
     // = 单选列表 Dialog =
-    // ==================
+    // =================
 
     /**
      * detail: Dialog 单选事件
@@ -1056,9 +1056,9 @@ public final class DialogUtils {
         return null;
     }
 
-    // ===============
+    // ==============
     // = 单选 Dialog =
-    // ===============
+    // ==============
 
     /**
      * 创建单选样式 Dialog
@@ -1346,9 +1346,9 @@ public final class DialogUtils {
         return null;
     }
 
-    // ===============
+    // ==============
     // = 多选 Dialog =
-    // ===============
+    // ==============
 
     /**
      * detail: Dialog 多选事件
@@ -1685,9 +1685,9 @@ public final class DialogUtils {
         return null;
     }
 
-    // ====================
+    // ===================
     // = 设置 View Dialog =
-    // ====================
+    // ===================
 
     /**
      * detail: 自定义 View Dialog 事件

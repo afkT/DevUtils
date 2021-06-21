@@ -44,9 +44,9 @@ public final class ToastUtils {
     // Null 值 ( null 提示值 )
     private static       String            sNullText    = null;
 
-    // ===========
+    // ==========
     // = 部分配置 =
-    // ===========
+    // ==========
 
     // 判断是否使用配置
     private static boolean sUseConfig = true;
@@ -127,9 +127,9 @@ public final class ToastUtils {
         ToastUtils.sVerticalMargin   = verticalMargin;
     }
 
-    // =================
+    // ================
     // = 统一显示 Toast =
-    // =================
+    // ================
 
     // ======================
     // = Toast.LENGTH_SHORT =
@@ -303,9 +303,9 @@ public final class ToastUtils {
         priShowToastText(true, context, text, duration);
     }
 
-    // ===================
+    // ==================
     // = 非统一显示 Toast =
-    // ===================
+    // ==================
 
     // ======================
     // = Toast.LENGTH_SHORT =
@@ -845,9 +845,9 @@ public final class ToastUtils {
         }
     }
 
-    // ==============================
+    // ============================
     // = 解决 Android 7.1.1 崩溃问题 =
-    // ==============================
+    // ============================
 
     /**
      * 反射 Hook Toast 设置 Handler
@@ -899,9 +899,9 @@ public final class ToastUtils {
         }
     }
 
-    // ===========
+    // ==========
     // = 其他接口 =
-    // ===========
+    // ==========
 
     /**
      * detail: Toast 过滤器
@@ -931,9 +931,9 @@ public final class ToastUtils {
         String handlerContent(String content);
     }
 
-    // =============================
+    // ============================
     // = ToastUtils.Filter 实现方法 =
-    // =============================
+    // ============================
 
     /**
      * 内部 Toast Filter 实现对象

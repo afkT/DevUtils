@@ -100,9 +100,9 @@ public final class AnalysisRecordUtils {
         RECORD_CALLBACK = callback;
     }
 
-    // ===========
+    // ==========
     // = 记录方法 =
-    // ===========
+    // ==========
 
     /**
      * 日志记录
@@ -649,9 +649,9 @@ public final class AnalysisRecordUtils {
         }
     }
 
-    // ===============
+    // =============
     // = 设备信息处理 =
-    // ===============
+    // =============
 
     /**
      * 处理设备信息

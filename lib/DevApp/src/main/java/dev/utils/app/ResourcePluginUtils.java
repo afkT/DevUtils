@@ -283,9 +283,9 @@ public final class ResourcePluginUtils {
         return mResourceAssist.getResourceName(id);
     }
 
-    // ===========
+    // ==========
     // = 资源获取 =
-    // ===========
+    // ==========
 
     /**
      * 获取 String id

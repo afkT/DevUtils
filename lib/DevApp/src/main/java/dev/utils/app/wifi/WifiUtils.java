@@ -62,9 +62,9 @@ public final class WifiUtils {
         mWifiManager = AppUtils.getWifiManager();
     }
 
-    // =========================
+    // =======================
     // = Wifi 开关、连接状态获取 =
-    // =========================
+    // =======================
 
     /**
      * 判断是否打开 Wifi
@@ -468,9 +468,9 @@ public final class WifiUtils {
         return null;
     }
 
-    // ================
+    // ===============
     // = Wifi 配置操作 =
-    // ================
+    // ===============
 
     // 默认没有密码
     public static final int SECURITY_NONE = 0;
@@ -839,9 +839,9 @@ public final class WifiUtils {
         return null;
     }
 
-    // ===========
+    // ==========
     // = 连接操作 =
-    // ===========
+    // ==========
 
     /**
      * 移除 Wifi 配置信息
@@ -881,9 +881,9 @@ public final class WifiUtils {
         return false;
     }
 
-    // =========================
+    // =======================
     // = 设置静态 IP、域名等信息 =
-    // =========================
+    // =======================
 
     /**
      * 设置静态 Wifi 配置信息

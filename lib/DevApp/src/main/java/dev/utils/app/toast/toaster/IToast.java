@@ -154,9 +154,9 @@ public final class IToast {
         void cancel();
     }
 
-    // ===========
+    // ==========
     // = 其他接口 =
-    // ===========
+    // ==========
 
     /**
      * detail: Toast 样式配置

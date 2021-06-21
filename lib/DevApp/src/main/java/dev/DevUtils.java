@@ -280,9 +280,9 @@ public final class DevUtils {
         return BuildConfig.DevJava_Version;
     }
 
-    // =================
+    // ================
     // = Activity 监听 =
-    // =================
+    // ================
 
     // ActivityLifecycleCallbacks 实现类, 监听 Activity
     private static final ActivityLifecycleImpl   ACTIVITY_LIFECYCLE             = new ActivityLifecycleImpl();
@@ -532,9 +532,9 @@ public final class DevUtils {
             return null;
         }
 
-        // =============================
+        // ============================
         // = ActivityLifecycleGet 方法 =
-        // =============================
+        // ============================
 
         /**
          * 获取最顶部 ( 当前或最后一个显示 ) Activity

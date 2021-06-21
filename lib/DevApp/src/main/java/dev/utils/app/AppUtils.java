@@ -915,9 +915,9 @@ public final class AppUtils {
         return false;
     }
 
-    // ===========
+    // ==========
     // = 发送广播 =
-    // ===========
+    // ==========
 
     /**
      * 发送广播
@@ -991,9 +991,9 @@ public final class AppUtils {
         return false;
     }
 
-    // =============
+    // ===========
     // = 安装、卸载 =
-    // =============
+    // ===========
 
     /**
      * 安装 APP( 支持 8.0) 的意图
@@ -1294,9 +1294,9 @@ public final class AppUtils {
         return false;
     }
 
-    // ===========
+    // ==========
     // = 其他功能 =
-    // ===========
+    // ==========
 
     /**
      * 打开文件
@@ -1440,9 +1440,9 @@ public final class AppUtils {
         return openFileByApp(file, wpsPackage, wpsActivity2);
     }
 
-    // ===========
+    // ==========
     // = 系统页面 =
-    // ===========
+    // ==========
 
     /**
      * 跳转到系统设置页面

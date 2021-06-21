@@ -51,9 +51,9 @@ public final class ImageViewUtils {
         return null;
     }
 
-    // ========
+    // =======
     // = 宽高 =
-    // ========
+    // =======
 
     /**
      * 获取 ImageView 是否保持宽高比
@@ -523,9 +523,9 @@ public final class ImageViewUtils {
         return null;
     }
 
-    // ===========
+    // ==========
     // = 多个操作 =
-    // ===========
+    // ==========
 
     /**
      * 设置 View 图片资源
@@ -755,9 +755,9 @@ public final class ImageViewUtils {
         return false;
     }
 
-    // ===========
+    // ==========
     // = 信息获取 =
-    // ===========
+    // ==========
 
     /**
      * 根据 ImageView 获适当的宽高

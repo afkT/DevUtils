@@ -32,9 +32,9 @@ public final class AutoFocusAssist
         FOCUS_MODES.add(Camera.Parameters.FOCUS_MODE_MACRO); // 微距
     }
 
-    // ========
+    // =======
     // = 变量 =
-    // ========
+    // =======
 
     // 自动对焦时间间隔
     private final long               mInterval;

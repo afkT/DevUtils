@@ -101,9 +101,9 @@ public final class SnackbarUtils {
         return new SnackbarUtils(view);
     }
 
-    // ===========
+    // ==========
     // = 样式相关 =
-    // ===========
+    // ==========
 
     /**
      * 获取样式
@@ -352,9 +352,9 @@ public final class SnackbarUtils {
         }
     }
 
-    // ===========
+    // ==========
     // = 显示方法 =
-    // ===========
+    // ==========
 
     /**
      * 显示 Short Snackbar
@@ -487,9 +487,9 @@ public final class SnackbarUtils {
         // RootView 透明度
         private float    rootAlpha = 1.0f;
 
-        // ===============================
+        // ==============================
         // = snackbar_text TextView 相关 =
-        // ===============================
+        // ==============================
 
         // TextView 的重心
         private int                  textGravity;
@@ -506,9 +506,9 @@ public final class SnackbarUtils {
         // TextView padding 边距 new int[] { left, top, right, bottom }
         private int[]                textPadding;
 
-        // ===============================
+        // ==============================
         // = snackbar_action Button 相关 =
-        // ===============================
+        // ==============================
 
         // Action Button 的重心
         private int      actionGravity;
@@ -557,9 +557,9 @@ public final class SnackbarUtils {
                 // RootView 透明度
                 this.rootAlpha = style.getRootAlpha();
 
-                // ===============================
+                // ==============================
                 // = snackbar_text TextView 相关 =
-                // ===============================
+                // ==============================
 
                 // TextView 的重心
                 this.textGravity = style.getTextGravity();
@@ -576,9 +576,9 @@ public final class SnackbarUtils {
                 // TextView padding 边距 new int[] { left, top, right, bottom }
                 this.textPadding = style.getTextPadding();
 
-                // ===============================
+                // ==============================
                 // = snackbar_action Button 相关 =
-                // ===============================
+                // ==============================
 
                 // Action Button 的重心
                 this.actionGravity = style.getActionGravity();
@@ -720,9 +720,9 @@ public final class SnackbarUtils {
             return this;
         }
 
-        // ===============================
+        // ==============================
         // = snackbar_text TextView 相关 =
-        // ===============================
+        // ==============================
 
         /**
          * 获取 TextView 的重心
@@ -858,9 +858,9 @@ public final class SnackbarUtils {
             return this;
         }
 
-        // ===============================
+        // ==============================
         // = snackbar_action Button 相关 =
-        // ===============================
+        // ==============================
 
         /**
          * 获取 Action Button 的重心
@@ -998,9 +998,9 @@ public final class SnackbarUtils {
         }
     }
 
-    // ===========
+    // ==========
     // = 其他接口 =
-    // ===========
+    // ==========
 
     /**
      * detail: Snackbar 样式配置
@@ -1061,9 +1061,9 @@ public final class SnackbarUtils {
             return 1.0f;
         }
 
-        // ===============================
+        // ==============================
         // = snackbar_text TextView 相关 =
-        // ===============================
+        // ==============================
 
         /**
          * 获取 TextView 的重心
@@ -1122,9 +1122,9 @@ public final class SnackbarUtils {
             return null;
         }
 
-        // ===============================
+        // ==============================
         // = snackbar_action Button 相关 =
-        // ===============================
+        // ==============================
 
         /**
          * 获取 Action Button 的重心
@@ -1185,9 +1185,9 @@ public final class SnackbarUtils {
         }
     }
 
-    // ============
+    // ==========
     // = 设置样式 =
-    // ============
+    // ==========
 
     /**
      * 设置 Snackbar 样式配置
@@ -1256,9 +1256,9 @@ public final class SnackbarUtils {
                 }
             }
 
-            // ===============================
+            // ==============================
             // = snackbar_text TextView 相关 =
-            // ===============================
+            // ==============================
 
             TextView textView = getTextView();
             // 防止 snackbar_text 为 null
@@ -1304,9 +1304,9 @@ public final class SnackbarUtils {
                 }
             }
 
-            // ===============================
+            // ==============================
             // = snackbar_action Button 相关 =
-            // ===============================
+            // ==============================
 
             Button actionButton = getActionButton();
             // 防止 snackbar_action Button 为 null

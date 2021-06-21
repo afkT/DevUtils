@@ -83,9 +83,9 @@ public final class CameraAssist {
         freeCameraResource();
     }
 
-    // ===========
+    // ==========
     // = 预览相关 =
-    // ===========
+    // ==========
 
     /**
      * 开始将 Camera 画面预览到手机上
@@ -144,9 +144,9 @@ public final class CameraAssist {
         }
     }
 
-    // =============
+    // ============
     // = 摄像头相关 =
-    // =============
+    // ============
 
     // 预览尺寸大小
     private Camera.Size mPreviewSize = null;

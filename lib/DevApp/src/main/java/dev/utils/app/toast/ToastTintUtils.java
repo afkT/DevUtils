@@ -53,9 +53,9 @@ public final class ToastTintUtils {
     // Null 值 ( null 提示值 )
     private static       String                sNullText    = null;
 
-    // ===========
+    // ==========
     // = 部分配置 =
-    // ===========
+    // ==========
 
     // 判断是否使用配置
     private static boolean sUseConfig = true;
@@ -64,9 +64,9 @@ public final class ToastTintUtils {
     // 水平边距、垂直边距
     private static float sHorizontalMargin, sVerticalMargin;
 
-    // ===========
+    // ==========
     // = 样式相关 =
-    // ===========
+    // ==========
 
     // 默认样式
     private static final ToastTintUtils.Style sDefaultStyle    = new DefaultStyle();
@@ -1317,9 +1317,9 @@ public final class ToastTintUtils {
                     toastIcon.setVisibility(View.GONE);
                 }
 
-                // =================
+                // ================
                 // = 背景 View 相关 =
-                // =================
+                // ================
 
                 // 背景图片
                 Drawable drawableFrame = style.getBackground();
@@ -1342,9 +1342,9 @@ public final class ToastTintUtils {
         return null;
     }
 
-    // ==============================
+    // ============================
     // = 解决 Android 7.1.1 崩溃问题 =
-    // ==============================
+    // ============================
 
     /**
      * 反射 Hook Toast 设置 Handler
@@ -1396,9 +1396,9 @@ public final class ToastTintUtils {
         }
     }
 
-    // ===========
+    // ==========
     // = 样式相关 =
-    // ===========
+    // ==========
 
     /**
      * detail: Toast 自定义 View 着色等相关 样式配置
@@ -1683,9 +1683,9 @@ public final class ToastTintUtils {
         }
     }
 
-    // ===========
+    // ==========
     // = 其他接口 =
-    // ===========
+    // ==========
 
     /**
      * detail: Toast 过滤器
@@ -1708,9 +1708,9 @@ public final class ToastTintUtils {
         String handlerContent(String content);
     }
 
-    // =================================
+    // ================================
     // = ToastTintUtils.Filter 实现方法 =
-    // =================================
+    // ================================
 
     /**
      * 内部 Toast Filter 实现对象

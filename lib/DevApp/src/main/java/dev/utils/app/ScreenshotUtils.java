@@ -450,9 +450,9 @@ public final class ScreenshotUtils {
             final String keyWork,
             final OnScreenshotListener listener
     ) {
-        // ===========
+        // ==========
         // = 时间判断 =
-        // ===========
+        // ==========
 
         if (dateTaken <= 0) {
             LogPrintUtils.dTag(TAG, "创建时间异常 dateTaken: %s", dateTaken);
@@ -477,9 +477,9 @@ public final class ScreenshotUtils {
             return false;
         }
 
-        // ===========
+        // ==========
         // = 文件前缀 =
-        // ===========
+        // ==========
 
         if (checkPrefix) { // 如果检验前缀才进行处理
             String fileName = FileUtils.getFileName(dataPath);
