@@ -233,9 +233,9 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
     // 全局配置信息
     private val PIC_CONFIG = MediaConfig()
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     override fun openCamera(activity: Activity?): Boolean {
         return openCamera(activity, PIC_CONFIG)
@@ -331,9 +331,9 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
         PIC_CONFIG.setMinimumCompressSize(minimumCompressSize)
     }
 
-    // ===========
+    // ==========
     // = 其他方法 =
-    // ===========
+    // ==========
 
     override fun deleteCacheDirFile(
         context: Context?,

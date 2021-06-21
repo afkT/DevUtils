@@ -11,9 +11,9 @@ import dev.other.FastjsonUtils;
 public class FastjsonEngineImpl
         implements IJSONEngine<JSONConfig> {
 
-    // ===========
+    // ==========
     // = 转换方法 =
-    // ===========
+    // ==========
 
     @Override
     public String toJson(Object object) {
@@ -62,9 +62,9 @@ public class FastjsonEngineImpl
         return FastjsonUtils.fromJson(json, typeOfT);
     }
 
-    // ===========
+    // ==========
     // = 其他方法 =
-    // ===========
+    // ==========
 
     @Override
     public boolean isJSON(String json) {

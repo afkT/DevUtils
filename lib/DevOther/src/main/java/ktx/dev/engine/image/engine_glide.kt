@@ -577,9 +577,9 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         return priConvertImageFormat(context, sources, config, listener)
     }
 
-    // ===========
+    // ==========
     // = 内部方法 =
-    // ===========
+    // ==========
 
     /**
      * Fragment 是否能够用于加载图片

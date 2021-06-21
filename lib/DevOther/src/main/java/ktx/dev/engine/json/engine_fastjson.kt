@@ -55,9 +55,9 @@ class FastjsonEngineImpl : IJSONEngine<JSONConfig> {
         return FastjsonUtils.fromJson(json, typeOfT)
     }
 
-    // ===========
+    // ==========
     // = 其他方法 =
-    // ===========
+    // ==========
 
     override fun isJSON(json: String?): Boolean {
         return FastjsonUtils.isJSON(json)

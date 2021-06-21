@@ -125,9 +125,9 @@ class NotificationService : NotificationListenerService() {
         fun onNotificationRemoved(sbn: StatusBarNotification?)
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     /**
      * 取消通知方法

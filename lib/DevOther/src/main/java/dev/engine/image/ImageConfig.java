@@ -51,9 +51,9 @@ public class ImageConfig
     // 转换符合格式文件是否原图返回
     private             boolean mQriginalPathReturn = false;
 
-    // ===========
+    // ==========
     // = 构造函数 =
-    // ===========
+    // ==========
 
     private ImageConfig(final ImageConfig config) {
         if (config != null) {
@@ -83,9 +83,9 @@ public class ImageConfig
         }
     }
 
-    // ===========
+    // ==========
     // = 其他方法 =
-    // ===========
+    // ==========
 
     public static ImageConfig create() {
         return new ImageConfig(null);

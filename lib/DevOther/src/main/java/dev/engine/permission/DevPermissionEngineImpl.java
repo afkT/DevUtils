@@ -14,9 +14,9 @@ import dev.utils.app.permission.PermissionUtils;
 public class DevPermissionEngineImpl
         implements IPermissionEngine {
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     @Override
     public boolean isGranted(
@@ -74,9 +74,9 @@ public class DevPermissionEngineImpl
         }, deniedList);
     }
 
-    // ===============
+    // =============
     // = 权限请求方法 =
-    // ===============
+    // =============
 
     @Override
     public void request(

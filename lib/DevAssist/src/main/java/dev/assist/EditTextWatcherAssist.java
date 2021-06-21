@@ -12,9 +12,9 @@ import android.widget.EditText;
  */
 public class EditTextWatcherAssist<T> {
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     /**
      * 绑定事件

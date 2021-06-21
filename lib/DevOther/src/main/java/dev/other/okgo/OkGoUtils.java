@@ -58,9 +58,9 @@ public final class OkGoUtils {
         // 自定义日志拦截 JSON 打印
         builder.addInterceptor(new dev.other.http.HttpLoggingInterceptor());
 
-        // =======================
+        // ======================
         // = OkGo 内置 log 拦截器 =
-        // =======================
+        // ======================
 
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor("OkGo");
         // log 打印级别, 决定了 log 显示的详细程度
@@ -69,9 +69,9 @@ public final class OkGoUtils {
         loggingInterceptor.setColorLevel(Level.INFO);
         builder.addInterceptor(loggingInterceptor);
 
-        // ===============
+        // =============
         // = 配置超时时间 =
-        // ===============
+        // =============
 
         // 全局的读取超时时间
         builder.readTimeout(OkGo.DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
@@ -91,9 +91,9 @@ public final class OkGoUtils {
 //        // 使用内存保持 cookie, app 退出后, cookie 消失
 //        builder.cookieJar(new CookieJarImpl(new MemoryCookieStore()));
 
-        // ==============
+        // =============
         // = Https 配置 =
-        // ==============
+        // =============
 
 //        // 方法一: 信任所有证书, 不安全有风险
 //        HttpsUtils.SSLParams sslParams1 = HttpsUtils.getSslSocketFactory();
@@ -112,9 +112,9 @@ public final class OkGoUtils {
         builder.sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager);
         builder.hostnameVerifier(HttpsUtils.UnSafeHostnameVerifier);
 
-        // ===============
+        // =============
         // = 全局公共数据 =
-        // ===============
+        // =============
 
         // header 不支持中文, 不允许有特殊字符
         HttpHeaders headers = new HttpHeaders();
@@ -126,9 +126,9 @@ public final class OkGoUtils {
         params.put("commonParamsKey1", "commonParamsValue1");
         params.put("commonParamsKey2", "这里支持中文参数");
 
-        // =======================
+        // =====================
         // = 初始化 ( 应用 ) 配置 =
-        // =======================
+        // =====================
 
         OkGo.getInstance().init(application)
                 // 建议设置 OkHttpClient, 不设置将使用默认的
@@ -145,9 +145,9 @@ public final class OkGoUtils {
                 .addCommonParams(params);
     }
 
-    // ===============================
+    // ============================
     // = 用于请求管理控制 ( 取消请求 ) =
-    // ===============================
+    // ============================
 
     /**
      * 执行请求处理

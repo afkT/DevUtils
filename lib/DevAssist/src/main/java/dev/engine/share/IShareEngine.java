@@ -28,9 +28,9 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     class EngineItem {
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     /**
      * 初始化方法

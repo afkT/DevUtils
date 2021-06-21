@@ -211,9 +211,9 @@ public final class ScreenshotUtils {
         return true;
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     // 开始监听时间
     private long                 mStartListenTime;

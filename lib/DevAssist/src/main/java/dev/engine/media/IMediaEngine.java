@@ -29,9 +29,9 @@ public interface IMediaEngine<Config extends IMediaEngine.EngineConfig,
     class MediaData {
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     /**
      * 打开相册拍照
@@ -157,9 +157,9 @@ public interface IMediaEngine<Config extends IMediaEngine.EngineConfig,
      */
     void setMinimumCompressSize(int minimumCompressSize);
 
-    // ===========
+    // ==========
     // = 其他方法 =
-    // ===========
+    // ==========
 
     /**
      * 删除缓存文件

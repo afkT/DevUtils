@@ -83,9 +83,9 @@ public class RoundDrawable
         }
     }
 
-    // ===========
+    // ==========
     // = 内部方法 =
-    // ===========
+    // ==========
 
     private boolean hasNativeStateListAPI() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;

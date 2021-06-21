@@ -71,16 +71,16 @@ final class Utils {
     // 其他
     static final TypeName TYPE_NAME_CONTEXT                           = ClassName.get("android.content", "Context");
 
-    // ===============
+    // =============
     // = 内部生成方法 =
-    // ===============
+    // =============
 
     // 用于记录 Module 名 Map<Module Name, List<Environment var Name>>
     static final LinkedHashMap<String, List<String>> sModuleNameMap = new LinkedHashMap<>();
 
-    // ========
+    // =======
     // = 通用 =
-    // ========
+    // =======
 
     /**
      * 构建 DevEnvironment 类对象
@@ -540,9 +540,9 @@ final class Utils {
         classBuilder.addMethod(deleteStorageDirMethod);
     }
 
-    // ===========
+    // ==========
     // = 其他方法 =
-    // ===========
+    // ==========
 
     /**
      * 获取 Module Release Environment 数据

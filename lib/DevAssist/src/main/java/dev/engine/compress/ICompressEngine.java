@@ -19,9 +19,9 @@ public interface ICompressEngine<Config extends ICompressEngine.EngineConfig> {
     class EngineConfig {
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     /**
      * 压缩方法

@@ -116,9 +116,9 @@ object DataStoreUtils {
         cacheMap.clear()
     }
 
-    // ===========
+    // ==========
     // = 内部方法 =
-    // ===========
+    // ==========
 
     /**
      * 获取全局 Context
@@ -150,9 +150,9 @@ object DataStoreUtils {
             this.dataStore = dataStore
         }
 
-        // ===========
+        // ==========
         // = 内部方法 =
-        // ===========
+        // ==========
 
         /**
          * 保存数据
@@ -203,9 +203,9 @@ object DataStoreUtils {
             return _getFlow(key, defaultValue)?.first()!!
         }
 
-        // ===============
+        // =============
         // = 对外公开方法 =
-        // ===============
+        // =============
 
         /**
          * 获取 DataStore

@@ -138,9 +138,9 @@ public final class AutoFocusAssist
         autoFocusAgainLater();
     }
 
-    // ===========
+    // ==========
     // = 内部方法 =
-    // ===========
+    // ==========
 
     /**
      * 再次自动对焦

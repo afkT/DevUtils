@@ -37,9 +37,9 @@ public class PictureSelectorEngineImpl
     // 图片大于多少才进行压缩 (kb)
     private       int         MINIMUM_COMPRESS_SIZE = 0;
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     @Override
     public boolean openCamera(Activity activity) {
@@ -107,9 +107,9 @@ public class PictureSelectorEngineImpl
         return forResult(pictureSelectionModel);
     }
 
-    // ===========
+    // ==========
     // = 配置方法 =
-    // ===========
+    // ==========
 
     @Override
     public MediaConfig getConfig() {
@@ -155,9 +155,9 @@ public class PictureSelectorEngineImpl
         PIC_CONFIG.setMinimumCompressSize(minimumCompressSize);
     }
 
-    // ===========
+    // ==========
     // = 其他方法 =
-    // ===========
+    // ==========
 
     @Override
     public void deleteCacheDirFile(
@@ -239,9 +239,9 @@ public class PictureSelectorEngineImpl
         return null;
     }
 
-    // ===========
+    // ==========
     // = 内部处理 =
-    // ===========
+    // ==========
 
     /**
      * 获取图片选择器对象

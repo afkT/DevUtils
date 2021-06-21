@@ -90,9 +90,9 @@ final class DevCacheManager {
         }).start();
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     public String getCachePath() {
         return mCachePath;
@@ -651,9 +651,9 @@ final class DevCacheManager {
         return defaultValue;
     }
 
-    // ===========
+    // ==========
     // = 内部方法 =
-    // ===========
+    // ==========
 
     /**
      * 获取 Key 数据文件

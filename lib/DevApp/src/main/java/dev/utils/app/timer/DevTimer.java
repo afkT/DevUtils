@@ -149,9 +149,9 @@ public class DevTimer {
         );
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     // uuid ( 一定程度上唯一 )
     private final int           mUUID          = UUID.randomUUID().hashCode();
@@ -303,9 +303,9 @@ public class DevTimer {
         return cancelTimer();
     }
 
-    // ===========
+    // ==========
     // = 内部方法 =
-    // ===========
+    // ==========
 
     /**
      * 执行定时器

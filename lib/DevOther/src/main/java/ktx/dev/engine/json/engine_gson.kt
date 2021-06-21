@@ -55,9 +55,9 @@ class GsonEngineImpl : IJSONEngine<JSONConfig> {
         return GsonUtils.fromJson(json, typeOfT, config?.gson)
     }
 
-    // ===========
+    // ==========
     // = 其他方法 =
-    // ===========
+    // ==========
 
     override fun isJSON(json: String?): Boolean {
         return GsonUtils.isJSON(json)

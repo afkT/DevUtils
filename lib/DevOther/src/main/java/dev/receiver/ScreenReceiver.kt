@@ -60,9 +60,9 @@ class ScreenReceiver private constructor() : BroadcastReceiver() {
         fun userPresent()
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     companion object {
 

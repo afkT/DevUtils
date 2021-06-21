@@ -74,9 +74,9 @@ final class PreferenceImpl
         mPreferences = context.getSharedPreferences(fileName, mode);
     }
 
-    // ===========
+    // ==========
     // = 内部方法 =
-    // ===========
+    // ==========
 
     /**
      * 保存数据

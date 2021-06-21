@@ -23,9 +23,9 @@ public class SPKeyValueEngineImpl
         mPreference = config.getPreference();
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     @Override
     public SPConfig getConfig() {

@@ -92,9 +92,9 @@ public class StateLayout
         );
     }
 
-    // =================
+    // ===============
     // = 初始化相关代码 =
-    // =================
+    // ===============
 
     /**
      * 重置处理
@@ -244,9 +244,9 @@ public class StateLayout
         }
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     public static void setGlobal(Global global) {
         StateLayout.sGlobal = global;

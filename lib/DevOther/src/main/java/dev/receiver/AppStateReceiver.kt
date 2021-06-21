@@ -65,9 +65,9 @@ class AppStateReceiver private constructor() : BroadcastReceiver() {
         fun onRemoved(packageName: String?)
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     companion object {
 

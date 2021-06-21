@@ -36,9 +36,9 @@ public abstract class DevDataAdapterExt2<T, VH extends RecyclerView.ViewHolder>
         super(activity);
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     // 是否通知适配器 ( 通用: 如多选操作后是否通知适配器 )
     protected boolean isNotifyAdapter = true;

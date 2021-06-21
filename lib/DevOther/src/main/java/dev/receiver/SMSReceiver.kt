@@ -72,9 +72,9 @@ class SMSReceiver private constructor() : BroadcastReceiver() {
         fun onMessage(message: SmsMessage?) {}
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     companion object {
 
@@ -107,9 +107,9 @@ class SMSReceiver private constructor() : BroadcastReceiver() {
             sListener = listener
         }
 
-        // ===========
+        // ==========
         // = 其他方法 =
-        // ===========
+        // ==========
 
         /**
          * 获取消息数据

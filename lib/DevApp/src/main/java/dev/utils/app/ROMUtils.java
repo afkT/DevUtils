@@ -228,9 +228,9 @@ public final class ROMUtils {
         return sBean;
     }
 
-    // ===========
+    // ==========
     // = 内部方法 =
-    // ===========
+    // ==========
 
     private static final String UNKNOWN = "unknown";
 

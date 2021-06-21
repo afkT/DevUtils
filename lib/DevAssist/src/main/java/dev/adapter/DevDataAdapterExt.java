@@ -31,9 +31,9 @@ public abstract class DevDataAdapterExt<T, VH extends RecyclerView.ViewHolder>
         super(activity);
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     // 通用 Object
     protected DevObject<T>                 mObject = new DevObject<>();

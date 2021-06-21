@@ -430,9 +430,9 @@ public final class SnackbarUtils {
         priShow(StringUtils.getFormatString(text, formatArgs), Snackbar.LENGTH_INDEFINITE);
     }
 
-    // ===========
+    // ==========
     // = 内部方法 =
-    // ===========
+    // ==========
 
     /**
      * 内部显示方法

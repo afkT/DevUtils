@@ -11,9 +11,9 @@ import dev.utils.app.permission.PermissionUtils
  */
 class DevPermissionEngineImpl : IPermissionEngine {
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     override fun isGranted(
         context: Context?,
@@ -61,9 +61,9 @@ class DevPermissionEngineImpl : IPermissionEngine {
         }, deniedList)
     }
 
-    // ===============
+    // =============
     // = 权限请求方法 =
-    // ===============
+    // =============
 
     override fun request(
         activity: Activity?,

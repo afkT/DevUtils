@@ -11,9 +11,9 @@ import dev.other.GsonUtils;
 public class GsonEngineImpl
         implements IJSONEngine<JSONConfig> {
 
-    // ===========
+    // ==========
     // = 转换方法 =
-    // ===========
+    // ==========
 
     @Override
     public String toJson(Object object) {
@@ -62,9 +62,9 @@ public class GsonEngineImpl
         return GsonUtils.fromJson(json, typeOfT, config.gson);
     }
 
-    // ===========
+    // ==========
     // = 其他方法 =
-    // ===========
+    // ==========
 
     @Override
     public boolean isJSON(String json) {

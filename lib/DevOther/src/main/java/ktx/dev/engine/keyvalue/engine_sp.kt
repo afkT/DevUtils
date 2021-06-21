@@ -33,9 +33,9 @@ class SPKeyValueEngineImpl(
         mPreference = mConfig.preference
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     override fun getConfig(): SPConfig {
         return mConfig

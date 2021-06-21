@@ -553,9 +553,9 @@ public final class ClickUtils {
             this.mCheckViewId = checkViewId;
         }
 
-        // ===========
+        // ==========
         // = 内部方法 =
-        // ===========
+        // ==========
 
         @Override
         public final void onClick(View view) {
@@ -566,9 +566,9 @@ public final class ClickUtils {
             }
         }
 
-        // ===============
+        // =============
         // = 对外公开方法 =
-        // ===============
+        // =============
 
         /**
          * 有效点击 ( 单击 )
@@ -612,9 +612,9 @@ public final class ClickUtils {
             this.mClickAssist = clickAssist;
         }
 
-        // ===========
+        // ==========
         // = 内部方法 =
-        // ===========
+        // ==========
 
         @Override
         public final void onClick(View view) {
@@ -636,9 +636,9 @@ public final class ClickUtils {
             }
         }
 
-        // ===============
+        // =============
         // = 对外公开方法 =
-        // ===============
+        // =============
 
         /**
          * 有效点击 ( 单击 )
@@ -742,9 +742,9 @@ public final class ClickUtils {
             }
         }
 
-        // ===============
+        // =============
         // = 对外公开方法 =
-        // ===============
+        // =============
 
         /**
          * 多次点击触发

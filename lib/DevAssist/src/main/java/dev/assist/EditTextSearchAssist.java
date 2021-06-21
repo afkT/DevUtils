@@ -69,9 +69,9 @@ public class EditTextSearchAssist {
         void callback(CharSequence content);
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     /**
      * 移除消息

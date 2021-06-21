@@ -87,9 +87,9 @@ class BatteryReceiver private constructor() : BroadcastReceiver() {
         fun onPowerUsageSummary(level: Int)
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     companion object {
 

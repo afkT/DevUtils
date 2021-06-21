@@ -613,9 +613,9 @@ public class GlideEngineImpl
         return priConvertImageFormat(context, sources, config, listener);
     }
 
-    // ===========
+    // ==========
     // = 内部方法 =
-    // ===========
+    // ==========
 
     /**
      * Fragment 是否能够用于加载图片
@@ -698,9 +698,9 @@ public class GlideEngineImpl
         RequestOptions options = new RequestOptions();
         if (config != null) {
 
-            // =============
+            // ============
             // = 初始化配置 =
-            // =============
+            // ============
 
             // DiskCache
             if (config.isCacheDisk()) {
@@ -793,9 +793,9 @@ public class GlideEngineImpl
         return request;
     }
 
-    // ====================
+    // ===================
     // = 内部 Display 方法 =
-    // ====================
+    // ===================
 
     /**
      * 通过 {@link RequestBuilder} 与 {@link ImageConfig} 快捷显示方法
@@ -843,9 +843,9 @@ public class GlideEngineImpl
         }
     }
 
-    // ===============
+    // =============
     // = 内部加载事件 =
-    // ===============
+    // =============
 
     private static class InnerDrawableViewTarget
             extends ImageViewTarget<Drawable> {
@@ -1013,9 +1013,9 @@ public class GlideEngineImpl
         }
     }
 
-    // ====================
+    // ==================
     // = 转换图片格式并存储 =
-    // ====================
+    // ==================
 
     /**
      * 私有转换图片格式处理方法

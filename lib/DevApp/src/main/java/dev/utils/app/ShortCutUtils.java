@@ -276,9 +276,9 @@ public final class ShortCutUtils {
         return false;
     }
 
-    // ===========
+    // ==========
     // = 内部方法 =
-    // ===========
+    // ==========
 
     /**
      * 获取 Authority

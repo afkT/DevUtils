@@ -107,9 +107,9 @@ public final class PictureSelectorUtils {
         PIC_CONFIG.setMinimumCompressSize(minimumCompressSize);
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     /**
      * 清空缓存

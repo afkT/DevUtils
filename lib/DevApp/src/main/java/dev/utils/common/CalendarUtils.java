@@ -626,9 +626,9 @@ public final class CalendarUtils {
         // LUNAR_FESTIVAL_LIST.add(new Festival("除夕", 12, 30, false)); // 除夕得判断是 29 还是 30 需要特殊判断
     }
 
-    // ===========
+    // ==========
     // = 内部方法 =
-    // ===========
+    // ==========
 
     private static int getBitInt(
             int data,

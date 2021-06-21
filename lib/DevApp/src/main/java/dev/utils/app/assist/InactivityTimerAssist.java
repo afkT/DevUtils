@@ -56,9 +56,9 @@ public final class InactivityTimerAssist {
         cancel();
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     /**
      * 暂停检测
@@ -102,9 +102,9 @@ public final class InactivityTimerAssist {
         cancel();
     }
 
-    // ===========
+    // ==========
     // = 内部方法 =
-    // ===========
+    // ==========
 
     /**
      * 开始计时任务

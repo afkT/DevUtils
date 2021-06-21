@@ -41,9 +41,9 @@ public final class FilePartUtils {
     // 分片片段允许最小值 byte ( 默认 1mb )
     public static final  long   MIN_LENGTH  = 1048576L;
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     /**
      * 获取分片文件名 ( 后缀索引拼接 )

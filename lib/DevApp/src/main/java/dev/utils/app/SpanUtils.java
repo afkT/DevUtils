@@ -1575,9 +1575,9 @@ public final class SpanUtils {
         }
     }
 
-    // ===========
+    // ==========
     // = 内部方法 =
-    // ===========
+    // ==========
 
     /**
      * detail: SpannableStringBuilder 内部类, 实现序列化方便传值

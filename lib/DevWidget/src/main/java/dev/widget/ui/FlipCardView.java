@@ -89,9 +89,9 @@ public class FlipCardView
         mInAnim  = AnimatorInflater.loadAnimator(getContext(), R.animator.dev_flip_card_in);
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     /**
      * 当前是否显示正面 Layout
@@ -221,9 +221,9 @@ public class FlipCardView
         );
     }
 
-    // ===========
+    // ==========
     // = 内部方法 =
-    // ===========
+    // ==========
 
     // 内部进入动画监听
     private Animator.AnimatorListener mInnerInAnimListener = new Animator.AnimatorListener() {
