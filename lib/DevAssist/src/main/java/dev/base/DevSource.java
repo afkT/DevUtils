@@ -3,6 +3,7 @@ package dev.base;
 import android.net.Uri;
 
 import java.io.File;
+import java.io.InputStream;
 
 /**
  * detail: 资源路径通用类
@@ -10,53 +11,62 @@ import java.io.File;
  */
 public class DevSource {
 
-    public final String mUrl;
-    public final Uri    mUri;
-    public final byte[] mBytes;
-    public final int    mResource;
-    public final File   mFile;
+    public final String      mUrl;
+    public final Uri         mUri;
+    public final byte[]      mBytes;
+    public final int         mResource;
+    public final File        mFile;
+    public final InputStream mInputStream;
 
     public DevSource(
             String url,
             Uri uri,
             byte[] bytes,
             int resource,
-            File file
+            File file,
+            InputStream inputStream
     ) {
-        this.mUrl      = url;
-        this.mUri      = uri;
-        this.mBytes    = bytes;
-        this.mResource = resource;
-        this.mFile     = file;
+        this.mUrl         = url;
+        this.mUri         = uri;
+        this.mBytes       = bytes;
+        this.mResource    = resource;
+        this.mFile        = file;
+        this.mInputStream = inputStream;
     }
 
     public static DevSource create(final String url) {
         return new DevSource(
-                url, null, null, 0, null
+                url, null, null, 0, null, null
         );
     }
 
     public static DevSource create(final Uri uri) {
         return new DevSource(
-                null, uri, null, 0, null
+                null, uri, null, 0, null, null
         );
     }
 
     public static DevSource create(final byte[] bytes) {
         return new DevSource(
-                null, null, bytes, 0, null
+                null, null, bytes, 0, null, null
         );
     }
 
     public static DevSource create(final int resource) {
         return new DevSource(
-                null, null, null, resource, null
+                null, null, null, resource, null, null
         );
     }
 
     public static DevSource create(final File file) {
         return new DevSource(
-                null, null, null, 0, file
+                null, null, null, 0, file, null
+        );
+    }
+
+    public static DevSource create(final InputStream inputStream) {
+        return new DevSource(
+                null, null, null, 0, null, inputStream
         );
     }
 
@@ -86,7 +96,11 @@ public class DevSource {
         return mFile != null;
     }
 
+    public boolean isInputStream() {
+        return mInputStream != null;
+    }
+
     public boolean isSource() {
-        return isUrl() || isUri() || isBytes() || isResource() || isFile();
+        return isUrl() || isUri() || isBytes() || isResource() || isFile() || isInputStream();
     }
 }

@@ -132,6 +132,10 @@ public final class UriUtils {
 
     /**
      * 通过 File 创建 Uri
+     * <pre>
+     *     File 的文件夹需要存在才能够对文件进行写入
+     *     可以传入前调用 {@link FileUtils#createFolderByPath(File)} 进行创建文件夹
+     * </pre>
      * @param file 文件
      * @return {@link Uri}
      */
