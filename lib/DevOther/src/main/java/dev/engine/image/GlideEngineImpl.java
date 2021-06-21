@@ -36,6 +36,7 @@ import dev.utils.app.PathUtils;
 import dev.utils.app.image.ImageUtils;
 import dev.utils.common.FileUtils;
 import dev.utils.common.RandomUtils;
+import dev.utils.common.StreamUtils;
 import dev.utils.common.encrypt.MD5Utils;
 
 /**
@@ -646,6 +647,9 @@ public class GlideEngineImpl
                 return manager.load(source.mUri);
             } else if (source.mBytes != null) {
                 return manager.load(source.mBytes);
+            } else if (source.mInputStream != null) {
+                byte[] bytes = StreamUtils.inputStreamToBytes(source.mInputStream);
+                if (bytes != null) return manager.load(bytes);
             } else {
                 throw new IllegalArgumentException("UnSupport source");
             }
@@ -675,6 +679,9 @@ public class GlideEngineImpl
                 return request.load(source.mUri);
             } else if (source.mBytes != null) {
                 return request.load(source.mBytes);
+            } else if (source.mInputStream != null) {
+                byte[] bytes = StreamUtils.inputStreamToBytes(source.mInputStream);
+                if (bytes != null) return request.load(bytes);
             } else {
                 throw new IllegalArgumentException("UnSupport source");
             }

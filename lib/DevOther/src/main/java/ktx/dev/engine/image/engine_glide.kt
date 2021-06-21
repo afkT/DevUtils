@@ -28,6 +28,7 @@ import dev.utils.app.PathUtils
 import dev.utils.app.image.ImageUtils
 import dev.utils.common.FileUtils
 import dev.utils.common.RandomUtils
+import dev.utils.common.StreamUtils
 import dev.utils.common.encrypt.MD5Utils
 import java.io.File
 import java.util.*
@@ -616,6 +617,14 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
                 source.mBytes != null -> {
                     manager.load(source.mBytes)
                 }
+                source.mInputStream != null -> {
+                    val bytes = StreamUtils.inputStreamToBytes(source.mInputStream)
+                    if (bytes != null) {
+                        manager.load(bytes)
+                    } else {
+                        null
+                    }
+                }
                 else -> {
                     throw IllegalArgumentException("UnSupport source")
                 }
@@ -650,6 +659,14 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
                 }
                 source.mBytes != null -> {
                     request.load(source.mBytes)
+                }
+                source.mInputStream != null -> {
+                    val bytes = StreamUtils.inputStreamToBytes(source.mInputStream)
+                    if (bytes != null) {
+                        request.load(bytes)
+                    } else {
+                        null
+                    }
                 }
                 else -> {
                     throw IllegalArgumentException("UnSupport source")
