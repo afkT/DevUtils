@@ -951,9 +951,9 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
         override fun onLoadCleared(placeholder: Drawable?) {}
     }
 
-    // ====================
+    // ==================
     // = 转换图片格式并存储 =
-    // ====================
+    // ==================
 
     /**
      * 私有转换图片格式处理方法

@@ -10,9 +10,9 @@ import java.lang.reflect.Type
  */
 class GsonEngineImpl : IJSONEngine<JSONConfig> {
 
-    // ===========
+    // ==========
     // = 转换方法 =
-    // ===========
+    // ==========
 
     override fun toJson(obj: Any?): String? {
         return GsonUtils.toJson(obj)

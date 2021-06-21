@@ -155,9 +155,9 @@ public interface DataManager<T> {
             T value
     );
 
-    // ======
+    // =====
     // = 增 =
-    // ======
+    // =====
 
     /**
      * 添加数据
@@ -224,9 +224,9 @@ public interface DataManager<T> {
             Collection<T> collection
     );
 
-    // ======
+    // =====
     // = 删 =
-    // ======
+    // =====
 
     /**
      * 移除数据
@@ -249,9 +249,9 @@ public interface DataManager<T> {
      */
     boolean removeDatas(Collection<T> collection);
 
-    // ======
+    // =====
     // = 改 =
-    // ======
+    // =====
 
     /**
      * 替换数据

@@ -220,9 +220,9 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
         return mAssist.equalsPositionData(position, value);
     }
 
-    // ======
+    // =====
     // = 增 =
-    // ======
+    // =====
 
     @Override
     public boolean addData(T value) {
@@ -271,9 +271,9 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
         return mAssist.addLists(append, collection);
     }
 
-    // ======
+    // =====
     // = 删 =
-    // ======
+    // =====
 
     @Override
     public boolean removeData(T value) {
@@ -290,9 +290,9 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
         return mAssist.removeDatas(collection);
     }
 
-    // ======
+    // =====
     // = 改 =
-    // ======
+    // =====
 
     @Override
     public boolean replaceData(

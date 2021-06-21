@@ -80,9 +80,9 @@ public final class ChineseUtils {
         return null;
     }
 
-    // =================
+    // ===============
     // = 数字、中文互转 =
-    // =================
+    // ===============
 
     // 零索引
     private static final int      ZERO                   = 0;

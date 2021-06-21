@@ -30,9 +30,9 @@ object GsonUtils {
     // JSON 缩进
     private val INDENT_GSON = createGson(true).setPrettyPrinting().create()
 
-    // ===========
+    // ==========
     // = 转换方法 =
-    // ===========
+    // ==========
 
     /**
      * 将对象转换为 JSON String

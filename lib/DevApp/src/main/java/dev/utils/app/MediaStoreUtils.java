@@ -117,9 +117,9 @@ public final class MediaStoreUtils {
         return false;
     }
 
-    // ============
+    // ===========
     // = 创建 Uri =
-    // ============
+    // ===========
 
     // PNG
     public static final String MIME_TYPE_IMAGE_PNG       = "image/png";
@@ -521,9 +521,9 @@ public final class MediaStoreUtils {
         return UriUtils.fromFile(file);
     }
 
-    // ===========
+    // ==========
     // = 插入数据 =
-    // ===========
+    // ==========
 
     /**
      * 插入一张图片

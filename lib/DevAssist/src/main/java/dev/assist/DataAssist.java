@@ -248,9 +248,9 @@ public class DataAssist<T>
         return mData.equalsPositionData(position, value);
     }
 
-    // ======
+    // =====
     // = 增 =
-    // ======
+    // =====
 
     /**
      * 添加数据
@@ -366,9 +366,9 @@ public class DataAssist<T>
         return false;
     }
 
-    // ======
+    // =====
     // = 删 =
-    // ======
+    // =====
 
     /**
      * 移除数据
@@ -410,9 +410,9 @@ public class DataAssist<T>
         return false;
     }
 
-    // ======
+    // =====
     // = 改 =
-    // ======
+    // =====
 
     /**
      * 替换数据

@@ -389,9 +389,9 @@ public final class BigDecimalUtils {
             return (mValue != null) ? mValue.doubleValue() : 0D;
         }
 
-        // ======
+        // =====
         // = 加 =
-        // ======
+        // =====
 
         /**
          * 提供精确的加法运算
@@ -408,9 +408,9 @@ public final class BigDecimalUtils {
             return this;
         }
 
-        // ======
+        // =====
         // = 减 =
-        // ======
+        // =====
 
         /**
          * 提供精确的减法运算
@@ -427,9 +427,9 @@ public final class BigDecimalUtils {
             return this;
         }
 
-        // ======
+        // =====
         // = 乘 =
-        // ======
+        // =====
 
         /**
          * 提供精确的乘法运算
@@ -446,9 +446,9 @@ public final class BigDecimalUtils {
             return this;
         }
 
-        // ======
+        // =====
         // = 除 =
-        // ======
+        // =====
 
         /**
          * 提供精确的除法运算
@@ -899,9 +899,9 @@ public final class BigDecimalUtils {
     // 异常值
     public static final double ERROR_VALUE = -123456.0D;
 
-    // ======
+    // =====
     // = 加 =
-    // ======
+    // =====
 
     /**
      * 提供精确的加法运算
@@ -974,9 +974,9 @@ public final class BigDecimalUtils {
         return ERROR_VALUE;
     }
 
-    // ======
+    // =====
     // = 减 =
-    // ======
+    // =====
 
     /**
      * 提供精确的减法运算
@@ -1049,9 +1049,9 @@ public final class BigDecimalUtils {
         return ERROR_VALUE;
     }
 
-    // ======
+    // =====
     // = 乘 =
-    // ======
+    // =====
 
     /**
      * 提供精确的乘法运算
@@ -1124,9 +1124,9 @@ public final class BigDecimalUtils {
         return ERROR_VALUE;
     }
 
-    // ======
+    // =====
     // = 除 =
-    // ======
+    // =====
 
     /**
      * 提供精确的除法运算

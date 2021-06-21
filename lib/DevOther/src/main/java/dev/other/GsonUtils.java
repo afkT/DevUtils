@@ -38,9 +38,9 @@ public final class GsonUtils {
     // JSON 缩进
     private static final Gson   INDENT_GSON = createGson(true).setPrettyPrinting().create();
 
-    // ===========
+    // ==========
     // = 转换方法 =
-    // ===========
+    // ==========
 
     /**
      * 将对象转换为 JSON String

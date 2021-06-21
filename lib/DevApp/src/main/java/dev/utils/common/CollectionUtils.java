@@ -171,9 +171,9 @@ public final class CollectionUtils {
         return count;
     }
 
-    // ===========
+    // ==========
     // = 数据获取 =
-    // ===========
+    // ==========
 
     /**
      * 获取数据
@@ -892,9 +892,9 @@ public final class CollectionUtils {
         return addAll(index, list, values, true);
     }
 
-    // ===========
+    // ==========
     // = 删除数据 =
-    // ===========
+    // ==========
 
     /**
      * 移除一条数据
@@ -1325,9 +1325,9 @@ public final class CollectionUtils {
         return ObjectUtils.equals(value1, value2);
     }
 
-    // ===========
+    // ==========
     // = 转换处理 =
-    // ===========
+    // ==========
 
     /**
      * 转换数组 to Object

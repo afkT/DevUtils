@@ -1790,9 +1790,9 @@ public final class ADBUtils {
         ShellUtils.execCmd(lists, true);
     }
 
-    // ===============
+    // =============
     // = 查看设备信息 =
-    // ===============
+    // =============
 
     /**
      * 获取 SDK 版本

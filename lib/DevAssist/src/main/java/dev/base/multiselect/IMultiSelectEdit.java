@@ -78,9 +78,9 @@ public interface IMultiSelectEdit<R> {
      */
     boolean isNotSelect();
 
-    // =========
+    // ========
     // = 数量值 =
-    // =========
+    // ========
 
     /**
      * 获取选中的数据条数

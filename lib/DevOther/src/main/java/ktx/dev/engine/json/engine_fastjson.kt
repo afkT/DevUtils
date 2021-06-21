@@ -10,9 +10,9 @@ import java.lang.reflect.Type
  */
 class FastjsonEngineImpl : IJSONEngine<JSONConfig> {
 
-    // ===========
+    // ==========
     // = 转换方法 =
-    // ===========
+    // ==========
 
     override fun toJson(obj: Any?): String? {
         return FastjsonUtils.toJson(obj)

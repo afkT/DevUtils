@@ -247,9 +247,9 @@ public class DevDataSource<T>
         return value != null && ObjectUtils.equals(getDataItem(position), value);
     }
 
-    // ======
+    // =====
     // = 增 =
-    // ======
+    // =====
 
     /**
      * 添加数据
@@ -396,9 +396,9 @@ public class DevDataSource<T>
         }
     }
 
-    // ======
+    // =====
     // = 删 =
-    // ======
+    // =====
 
     /**
      * 移除数据
@@ -448,9 +448,9 @@ public class DevDataSource<T>
         return false;
     }
 
-    // ======
+    // =====
     // = 改 =
-    // ======
+    // =====
 
     /**
      * 替换数据

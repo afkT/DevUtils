@@ -959,9 +959,9 @@ public final class ResourcePluginUtils {
         return mResourceAssist.openRawResourceFd(id);
     }
 
-    // ===============
+    // =============
     // = 读取资源文件 =
-    // ===============
+    // =============
 
     /**
      * 获取 Assets 资源文件数据
