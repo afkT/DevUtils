@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'io.github.afkt:DevJava:1.3.3'
+implementation 'io.github.afkt:DevJava:1.3.4'
 ```
 
 ## 目录结构
@@ -640,6 +640,13 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 
 | 方法 | 注释 |
 | :- | :- |
+| getUrlParams | 获取 Url 携带参数 |
+| getUrlParamsArray | 获取 Url、携带参数 数组 |
+| existsParams | 判断是否存在参数 |
+| existsParamsByURL | 通过 Url 判断是否存在参数 |
+| joinUrlParams | 拼接 Url 及携带参数 |
+| getUrlParamsJoinSymbol | 获取 Url 及携带参数 拼接符号 |
+| splitParamsByUrl | 通过 Url 拆分参数 |
 | splitParams | 拆分参数 |
 | joinParams | 拼接请求参数 |
 | joinParamsObj | 拼接请求参数 |

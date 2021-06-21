@@ -1130,7 +1130,7 @@ public final class MediaStoreUtils {
      * @param url 文件链接 ( 可传入文件路径 )
      * @return 文件后缀
      */
-    public static String getFileExtensionFromUrl(String url) {
+    public static String getFileExtensionFromUrl(final String url) {
         if (TextUtils.isEmpty(url)) return null;
         String extension = MimeTypeMap.getFileExtensionFromUrl(url);
         if (TextUtils.isEmpty(extension)) return null;

@@ -2,7 +2,7 @@
 ## Gradle
 
 ```java
-implementation 'io.github.afkt:DevAssist:1.2.3'
+implementation 'io.github.afkt:DevAssist:1.2.4'
 ```
 
 ## 目录结构
@@ -34,6 +34,7 @@ implementation 'io.github.afkt:DevAssist:1.2.3'
       - push                                          | Push Engine
       - share                                         | Share Engine
          - listener                                   | 分享回调事件
+      - storage                                       | Storage Engine
    - function                                         | 快捷方法执行相关
 ```
 
@@ -73,6 +74,7 @@ implementation 'io.github.afkt:DevAssist:1.2.3'
       - [push](#devenginepush)                        | Push Engine
       - [share](#devengineshare)                      | Share Engine
          - [listener](#devenginesharelistener)        | 分享回调事件
+      - [storage](#devenginestorage)                  | Storage Engine
    - [function](#devfunction)                         | 快捷方法执行相关
 
 
@@ -440,6 +442,7 @@ implementation 'io.github.afkt:DevAssist:1.2.3'
 | isBytes | isBytes |
 | isResource | isResource |
 | isFile | isFile |
+| isInputStream | isInputStream |
 | isSource | isSource |
 
 
@@ -1220,6 +1223,35 @@ implementation 'io.github.afkt:DevAssist:1.2.3'
 | onResult | 分享成功 |
 | onError | 分享失败 |
 | onCancel | 取消分享 |
+
+
+## <span id="devenginestorage">**`dev.engine.storage`**</span>
+
+
+* **Storage Engine ->** [DevStorageEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/storage/DevStorageEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getEngine | 获取 Storage Engine |
+| setEngine | 设置 Storage Engine |
+| contains | 是否存在 Storage Engine |
+| getsEngineMaps | 获取 Engine Map |
+
+
+* **Storage Engine 接口 ->** [IStorageEngine.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/storage/IStorageEngine.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| insertImageToExternal | 插入一张图片到外部存储空间 ( SDCard ) |
+| insertVideoToExternal | 插入一条视频到外部存储空间 ( SDCard ) |
+| insertAudioToExternal | 插入一条音频到外部存储空间 ( SDCard ) |
+| insertDownloadToExternal | 插入一条文件资源到外部存储空间 ( SDCard ) |
+| insertMediaToExternal | 插入一条多媒体资源到外部存储空间 ( SDCard ) |
+| insertImageToInternal | 插入一张图片到内部存储空间 |
+| insertVideoToInternal | 插入一条视频到内部存储空间 |
+| insertAudioToInternal | 插入一条音频到内部存储空间 |
+| insertDownloadToInternal | 插入一条文件资源到内部存储空间 |
+| insertMediaToInternal | 插入一条多媒体资源到内部存储空间 |
 
 
 ## <span id="devfunction">**`dev.function`**</span>
