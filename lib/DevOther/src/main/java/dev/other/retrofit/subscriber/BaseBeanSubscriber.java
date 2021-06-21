@@ -66,9 +66,9 @@ public abstract class BaseBeanSubscriber<T>
             String message
     );
 
-    // ===============
+    // =============
     // = 内部判断方法 =
-    // ===============
+    // =============
 
     /**
      * 获取异常信息

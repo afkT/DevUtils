@@ -24,9 +24,9 @@ public final class CameraAssist {
     // 预览通知
     private PreviewNotify mPreviewNotify;
 
-    // =============
+    // ============
     // = 内部工具类 =
-    // =============
+    // ============
 
     // 摄像头大小计算
     private CameraSizeAssist mCameraSizeAssist;

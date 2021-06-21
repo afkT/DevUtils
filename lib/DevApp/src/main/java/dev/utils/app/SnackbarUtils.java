@@ -123,9 +123,9 @@ public final class SnackbarUtils {
         return this;
     }
 
-    // ===========
-    // = 对外方法 =
-    // ===========
+    // =============
+    // = 对外公开方法 =
+    // =============
 
     /**
      * 获取 Snackbar

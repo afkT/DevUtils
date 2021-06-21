@@ -51,9 +51,9 @@ public final class AutoFocusAssist
     // 判断是否需要自动对焦
     private       boolean            mAutoFocus = true;
 
-    // ===========
+    // ==========
     // = 构造函数 =
-    // ===========
+    // ==========
 
     /**
      * 构造函数

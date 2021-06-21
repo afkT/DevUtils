@@ -529,9 +529,9 @@ public final class ClickUtils {
         // 点击辅助类
         private final ClickAssist mClickAssist;
 
-        // ===========
+        // ==========
         // = 构造函数 =
-        // ===========
+        // ==========
 
         public OnDebouncingClickListener() {
             this(ClickUtils.sGlobalClickAssist, ClickUtils.sCheckViewId);
@@ -600,9 +600,9 @@ public final class ClickUtils {
         // 每个周期无效点击次数 ( 周期 ( 有效 - 无效 - 有效 ) )
         private final AtomicInteger mInvalidCycleNumber = new AtomicInteger();
 
-        // ===========
+        // ==========
         // = 构造函数 =
-        // ===========
+        // ==========
 
         public OnCountClickListener() {
             this(ClickUtils.sGlobalClickAssist);

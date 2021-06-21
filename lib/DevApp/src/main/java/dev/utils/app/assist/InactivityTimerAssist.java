@@ -27,9 +27,9 @@ public final class InactivityTimerAssist {
     // 检查任务
     private       AsyncTask<Object, Object, Object> mInactivityTask;
 
-    // ===========
+    // ==========
     // = 构造函数 =
-    // ===========
+    // ==========
 
     /**
      * 构造函数

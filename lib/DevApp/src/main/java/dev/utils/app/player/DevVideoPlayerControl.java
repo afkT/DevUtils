@@ -61,9 +61,9 @@ public class DevVideoPlayerControl
         DevMediaManager.getInstance().setMediaListener(this);
     }
 
-    // ===============
+    // =============
     // = 内部快捷控制 =
-    // ===============
+    // =============
 
     /**
      * 重置操作

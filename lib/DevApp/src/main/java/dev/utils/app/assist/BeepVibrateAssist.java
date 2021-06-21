@@ -74,9 +74,9 @@ public final class BeepVibrateAssist
         this.mMediaPlayer = buildMediaPlayer(filePath);
     }
 
-    // ===============
+    // =============
     // = 内部判断方法 =
-    // ===============
+    // =============
 
     /**
      * 判断是否允许播放声音

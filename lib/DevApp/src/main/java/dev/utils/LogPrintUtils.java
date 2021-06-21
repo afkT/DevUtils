@@ -137,9 +137,9 @@ public final class LogPrintUtils {
         return result;
     }
 
-    // ===============================
+    // =============================
     // = 对外公开方法 ( 使用默认 TAG ) =
-    // ===============================
+    // =============================
 
     public static void d(
             final String message,
@@ -203,9 +203,9 @@ public final class LogPrintUtils {
         xmlTag(DEFAULT_TAG, xml);
     }
 
-    // ===============================
+    // ============================
     // = 对外公开方法 ( 日志打印方法 ) =
-    // ===============================
+    // ============================
 
     public static void dTag(
             final String tag,

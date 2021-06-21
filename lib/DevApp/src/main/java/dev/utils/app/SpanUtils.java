@@ -175,9 +175,9 @@ public final class SpanUtils {
     private int      imageResourceId; // resource id
     private int      alignImage; // 图片对齐类型
 
-    // ===========
+    // ==========
     // = 构造函数 =
-    // ===========
+    // ==========
 
     /**
      * 构造函数
@@ -815,9 +815,9 @@ public final class SpanUtils {
         return mBuilder;
     }
 
-    // ===========
+    // ==========
     // = 私有方法 =
-    // ===========
+    // ==========
 
     /**
      * 应用效果
@@ -1006,9 +1006,9 @@ public final class SpanUtils {
         imageResourceId = -1;
     }
 
-    // ==========================
+    // ========================
     // = 内部自定义 Span 效果实现 =
-    // ==========================
+    // ========================
 
     /**
      * detail: 垂直对齐 Span

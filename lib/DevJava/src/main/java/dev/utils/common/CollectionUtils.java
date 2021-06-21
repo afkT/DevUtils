@@ -2045,9 +2045,9 @@ public final class CollectionUtils {
         return total;
     }
 
-    // =============
+    // ===========
     // = 内部实现类 =
-    // =============
+    // ===========
 
     /**
      * detail: 持有数组 TypeToken 实体类
@@ -2098,9 +2098,9 @@ public final class CollectionUtils {
             return array;
         }
 
-        // ===============
+        // =============
         // = 内部处理方法 =
-        // ===============
+        // =============
 
         /**
          * 创建数组方法

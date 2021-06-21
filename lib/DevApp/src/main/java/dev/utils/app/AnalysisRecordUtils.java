@@ -372,9 +372,9 @@ public final class AnalysisRecordUtils {
         // 是否处理日志记录
         private boolean handler;
 
-        // ===========
+        // ==========
         // = 构造函数 =
-        // ===========
+        // ==========
 
         /**
          * 构造函数
@@ -590,9 +590,9 @@ public final class AnalysisRecordUtils {
             return this;
         }
 
-        // ===============
+        // =============
         // = 内部处理方法 =
-        // ===============
+        // =============
 
         /**
          * 获取日志文件地址

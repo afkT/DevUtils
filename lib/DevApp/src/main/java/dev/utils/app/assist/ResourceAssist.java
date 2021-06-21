@@ -92,9 +92,9 @@ public final class ResourceAssist {
     // 应用包名
     private String    mPackageName;
 
-    // ===========
+    // ==========
     // = 构造函数 =
-    // ===========
+    // ==========
 
     private ResourceAssist() {
         this(staticResources(), AppUtils.getPackageName());

@@ -54,9 +54,9 @@ public final class DevMediaManager
         return sInstance;
     }
 
-    // ===============
+    // =============
     // = 内部处理方法 =
-    // ===============
+    // =============
 
     /**
      * 创建 MediaPlayer
@@ -657,9 +657,9 @@ public final class DevMediaManager
         return this;
     }
 
-    // ===========
+    // ==========
     // = 内部变量 =
-    // ===========
+    // ==========
 
     // 流类型
     private int    mStreamType  = AudioManager.STREAM_MUSIC;

@@ -192,9 +192,9 @@ public abstract class OkGoCallback<T>
      */
     abstract public void onErrorResponse(OkGoResponse<T> response);
 
-    // ===========
-    // = 内部处理 =
-    // ===========
+    // =============
+    // = 内部处理方法 =
+    // =============
 
     /**
      * 内部处理请求响应数据

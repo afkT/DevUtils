@@ -32,9 +32,9 @@ public class EditTextSearchAssist {
         }
     });
 
-    // ===========
+    // ==========
     // = 构造函数 =
-    // ===========
+    // ==========
 
     public EditTextSearchAssist() {
         this(DelayAssist.DELAY_MILLIS, null);
@@ -138,9 +138,9 @@ public class EditTextSearchAssist {
         return this;
     }
 
-    // ===========
+    // ==========
     // = 内部逻辑 =
-    // ===========
+    // ==========
 
     private TextWatcher mTextWatcher;
 

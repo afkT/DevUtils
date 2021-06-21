@@ -768,9 +768,9 @@ public final class GlideUtils {
         return request;
     }
 
-    // ====================
+    // ===================
     // = 内部 Display 方法 =
-    // ====================
+    // ===================
 
     /**
      * 通过 {@link RequestBuilder} 与 {@link ImageConfig} 快捷显示方法
@@ -818,9 +818,9 @@ public final class GlideUtils {
         }
     }
 
-    // ===============
+    // =============
     // = 内部加载事件 =
-    // ===============
+    // =============
 
     private static class InnerDrawableViewTarget
             extends ImageViewTarget<Drawable> {

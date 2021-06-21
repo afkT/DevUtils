@@ -36,9 +36,9 @@ final class PreferenceImpl
     private final        String            STRING_DEFAULT     = null;
     private final        Set<String>       STRING_SET_DEFAULT = null;
 
-    // ===========
+    // ==========
     // = 构造函数 =
-    // ===========
+    // ==========
 
     /**
      * 构造函数

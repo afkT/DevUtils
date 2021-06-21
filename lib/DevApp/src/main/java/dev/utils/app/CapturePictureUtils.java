@@ -1443,9 +1443,9 @@ public final class CapturePictureUtils {
         return null;
     }
 
-    // ===============
+    // =============
     // = 内部私有方法 =
-    // ===============
+    // =============
 
     /**
      * 绘制 Bitmap

@@ -401,9 +401,9 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
         return if (lists.size > 0) lists[0] else null
     }
 
-    // ===========
-    // = 内部处理 =
-    // ===========
+    // =============
+    // = 内部处理方法 =
+    // =============
 
     /**
      * 获取图片选择器对象

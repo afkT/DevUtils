@@ -20,9 +20,9 @@ public class DelayAssist {
     // 搜索回调
     private       Callback mCallback;
 
-    // ===========
+    // ==========
     // = 构造函数 =
-    // ===========
+    // ==========
 
     public DelayAssist() {
         this(DELAY_MILLIS, null);

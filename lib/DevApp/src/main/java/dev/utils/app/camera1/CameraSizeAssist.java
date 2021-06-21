@@ -35,9 +35,9 @@ public final class CameraSizeAssist {
     // 最小尺寸, 小于该尺寸则不处理
     private static final int    MIN_PREVIEW_PIXELS    = 153600; // 480 * 320;
 
-    // ===========
+    // ==========
     // = 构造函数 =
-    // ===========
+    // ==========
 
     /**
      * 构造函数

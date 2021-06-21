@@ -72,9 +72,9 @@ abstract class BaseResponseSubscriber<T> : DisposableSubscriber<BaseResponse<T>>
      */
     abstract fun onErrorResponse(response: BaseResponse<T>)
 
-    // ===============
+    // =============
     // = 内部判断方法 =
-    // ===============
+    // =============
 
     /**
      * 获取异常信息
