@@ -8,9 +8,9 @@ import dev.base.mvvm.BuildConfig
  */
 object DevBaseMVVM {
 
-    // =============
+    // ============
     // = 工具类版本 =
-    // =============
+    // ============
 
     /**
      * 获取 DevBaseMVVM 版本号

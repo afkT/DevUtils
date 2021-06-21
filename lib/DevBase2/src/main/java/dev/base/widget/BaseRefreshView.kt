@@ -148,9 +148,9 @@ class BaseRefreshView : LinearLayout {
         return this
     }
 
-    // ===========
+    // ==========
     // = 快捷方法 =
-    // ===========
+    // ==========
 
     /**
      * 设置 LayoutManager

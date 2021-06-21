@@ -693,9 +693,9 @@ object GlideUtils {
         var options = RequestOptions()
         config?.let { config ->
 
-            // =============
+            // ============
             // = 初始化配置 =
-            // =============
+            // ============
 
             // DiskCache
             options = if (config.isCacheDisk()) {

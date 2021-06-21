@@ -116,9 +116,9 @@ public final class ResourceAssist {
         this.mPackageName = packageName;
     }
 
-    // ===============
+    // =============
     // = 快捷获取方法 =
-    // ===============
+    // =============
 
     /**
      * 获取 ResourceAssist

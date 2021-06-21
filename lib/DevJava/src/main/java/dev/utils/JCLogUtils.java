@@ -29,9 +29,9 @@ public final class JCLogUtils {
     // 默认 DEFAULT_TAG
     private static final String  DEFAULT_TAG             = JCLogUtils.class.getSimpleName();
 
-    // ===========
+    // ==========
     // = 日志类型 =
-    // ===========
+    // ==========
 
     // INFO 模式
     public static final int INFO  = 0;
@@ -293,9 +293,9 @@ public final class JCLogUtils {
         }
     }
 
-    // ===========
+    // ==========
     // = 通知输出 =
-    // ===========
+    // ==========
 
     private static Print sPrint;
 

@@ -56,9 +56,9 @@ public final class CollectionUtils {
         return (collection != null && collection.size() != 0);
     }
 
-    // ===========
+    // ==========
     // = 判断长度 =
-    // ===========
+    // ==========
 
     /**
      * 获取 Collection 长度
@@ -153,9 +153,9 @@ public final class CollectionUtils {
         return collection != null && collection.size() <= length;
     }
 
-    // ===============
+    // =============
     // = 获取长度总和 =
-    // ===============
+    // =============
 
     /**
      * 获取 Collection 数组长度总和
@@ -612,9 +612,9 @@ public final class CollectionUtils {
         return get(collection, value, number, true, -1);
     }
 
-    // ===========
+    // ==========
     // = 添加数据 =
-    // ===========
+    // ==========
 
     /**
      * 添加一条数据
@@ -743,9 +743,9 @@ public final class CollectionUtils {
         return addAll(collection, values, true);
     }
 
-    // ===========================
+    // =========================
     // = 添加数据到指定索引 (List) =
-    // ===========================
+    // =========================
 
     /**
      * 添加一条数据到指定索引后
@@ -1051,9 +1051,9 @@ public final class CollectionUtils {
         return clear(collection, null);
     }
 
-    // ===================
+    // =================
     // = 判断集合是否相同 =
-    // ===================
+    // =================
 
     /**
      * 判断两个集合是否相同
@@ -1307,9 +1307,9 @@ public final class CollectionUtils {
         return null;
     }
 
-    // ===========
+    // ==========
     // = 快捷判断 =
-    // ===========
+    // ==========
 
     /**
      * 判断两个值是否一样
@@ -1659,9 +1659,9 @@ public final class CollectionUtils {
         return -1;
     }
 
-    // =============
+    // ============
     // = 获取最小值 =
-    // =============
+    // ============
 
     /**
      * 获取集合中最小值
@@ -1719,9 +1719,9 @@ public final class CollectionUtils {
         return 0d;
     }
 
-    // =============
+    // ============
     // = 获取最大值 =
-    // =============
+    // ============
 
     /**
      * 获取集合中最大值

@@ -34,9 +34,9 @@ public final class ZXingQRCodeUtils {
     // 日志 TAG
     private static final String TAG = ZXingQRCodeUtils.class.getSimpleName();
 
-    // =============
+    // ============
     // = 生成二维码 =
-    // =============
+    // ============
 
     /**
      * detail: 生成二维码结果回调
@@ -122,9 +122,9 @@ public final class ZXingQRCodeUtils {
         });
     }
 
-    // =============
+    // ============
     // = 解析二维码 =
-    // =============
+    // ============
 
     // 解析配置
     private static final Map<DecodeHintType, Object> DECODE_HINTS = new EnumMap<>(DecodeHintType.class);
@@ -191,9 +191,9 @@ public final class ZXingQRCodeUtils {
         });
     }
 
-    // ===========
+    // ==========
     // = 获取结果 =
-    // ===========
+    // ==========
 
     /**
      * 获取扫描结果数据
@@ -204,9 +204,9 @@ public final class ZXingQRCodeUtils {
         return (result != null) ? result.getText() : null;
     }
 
-    // ========
+    // =======
     // = 编码 =
-    // ========
+    // =======
 
     // 编码类型
     private static final Map<EncodeHintType, Object> ENCODE_HINTS = new EnumMap<>(EncodeHintType.class);

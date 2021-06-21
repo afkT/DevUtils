@@ -30,9 +30,9 @@ public final class ImageViewUtils {
     // 日志 TAG
     private static final String TAG = ImageViewUtils.class.getSimpleName();
 
-    // ==================
+    // =================
     // = 获取 ImageView =
-    // ==================
+    // =================
 
     /**
      * 获取 ImageView
@@ -407,9 +407,9 @@ public final class ImageViewUtils {
         return imageView;
     }
 
-    // ========
+    // =======
     // = 获取 =
-    // ========
+    // =======
 
     /**
      * 获取 ImageView Matrix

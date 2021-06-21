@@ -119,9 +119,9 @@ public final class ScreenshotUtils {
         );
     }
 
-    // ===========
+    // ==========
     // = 事件操作 =
-    // ===========
+    // ==========
 
     // 内部存储器内容观察者
     private MediaContentObserver mInternalObserver;

@@ -51,9 +51,9 @@ public final class EditTextUtils {
     // 日志 TAG
     private static final String TAG = EditTextUtils.class.getSimpleName();
 
-    // =================
+    // ================
     // = 获取 EditText =
-    // =================
+    // ================
 
     /**
      * 获取 EditText
@@ -797,9 +797,9 @@ public final class EditTextUtils {
             return this;
         }
 
-        // ===========
+        // ==========
         // = 回调接口 =
-        // ===========
+        // ==========
 
         /**
          * 在文本变化前调用

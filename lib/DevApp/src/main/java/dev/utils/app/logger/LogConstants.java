@@ -9,9 +9,9 @@ final class LogConstants {
     private LogConstants() {
     }
 
-    // ===============
+    // =============
     // = 日志配置常量 =
-    // ===============
+    // =============
 
     /**
      * 判断是否排序日志
@@ -48,9 +48,9 @@ final class LogConstants {
      */
     public static final LogLevel DEFAULT_LOG_LEVEL = LogLevel.ERROR;
 
-    // ===============
+    // =============
     // = 日志配置信息 =
-    // ===============
+    // =============
 
     /**
      * Android 一个日志条目最大限制为 4076 字节, 设置 4000 字节作为块的大小从默认字符集是 UTF-8

@@ -371,9 +371,9 @@ public final class LogPrintUtils {
         }
     }
 
-    // ===========
+    // ==========
     // = 通知输出 =
-    // ===========
+    // ==========
 
     // 默认日志输出接口
     private static Print sPrint = (logType, tag, message) -> {

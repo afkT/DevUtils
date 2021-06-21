@@ -11,9 +11,9 @@ package dev.base.multiselect;
  */
 public interface IMultiSelectEdit<R> {
 
-    // ===========
+    // ==========
     // = 编辑状态 =
-    // ===========
+    // ==========
 
     /**
      * 是否编辑状态
@@ -34,9 +34,9 @@ public interface IMultiSelectEdit<R> {
      */
     R toggleEditState();
 
-    // ===========
+    // ==========
     // = 选择操作 =
-    // ===========
+    // ==========
 
     /**
      * 全选
@@ -56,9 +56,9 @@ public interface IMultiSelectEdit<R> {
      */
     R inverseSelect();
 
-    // ===========
+    // ==========
     // = 判断处理 =
-    // ===========
+    // ==========
 
     /**
      * 判断是否全选

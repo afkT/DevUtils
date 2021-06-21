@@ -673,9 +673,9 @@ public final class GlideUtils {
         RequestOptions options = new RequestOptions();
         if (config != null) {
 
-            // =============
+            // ============
             // = 初始化配置 =
-            // =============
+            // ============
 
             // DiskCache
             if (config.isCacheDisk()) {

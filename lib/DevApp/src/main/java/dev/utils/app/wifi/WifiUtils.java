@@ -353,9 +353,9 @@ public final class WifiUtils {
         return ConvertUtils.isHex(wepKey);
     }
 
-    // ===========
+    // ==========
     // = 快捷操作 =
-    // ===========
+    // ==========
 
     /**
      * 获取加密类型
@@ -563,9 +563,9 @@ public final class WifiUtils {
         return null;
     }
 
-    // ===========
+    // ==========
     // = 配置操作 =
-    // ===========
+    // ==========
 
     /**
      * 删除指定的 Wifi(SSID) 配置信息

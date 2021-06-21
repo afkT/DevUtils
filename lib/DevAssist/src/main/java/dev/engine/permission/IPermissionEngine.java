@@ -11,9 +11,9 @@ import java.util.List;
  */
 public interface IPermissionEngine {
 
-    // ===============
+    // =============
     // = 请求权限回调 =
-    // ===============
+    // =============
 
     /**
      * detail: 权限请求回调
@@ -105,9 +105,9 @@ public interface IPermissionEngine {
             final List<String> deniedList
     );
 
-    // ===============
+    // =============
     // = 权限请求方法 =
-    // ===============
+    // =============
 
     /**
      * 请求权限

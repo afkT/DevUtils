@@ -113,9 +113,9 @@ public final class DevFunction {
             return new Operation(tag);
         }
 
-        // ===========
+        // ==========
         // = 捕获异常 =
-        // ===========
+        // ==========
 
         /**
          * 捕获异常处理
@@ -136,9 +136,9 @@ public final class DevFunction {
             return this;
         }
 
-        // ===========
+        // ==========
         // = 线程方法 =
-        // ===========
+        // ==========
 
         /**
          * 后台线程执行
@@ -242,9 +242,9 @@ public final class DevFunction {
             return this;
         }
 
-        // ==================
+        // ================
         // = 线程捕获异常方法 =
-        // ==================
+        // ================
 
         /**
          * 后台线程执行
@@ -363,9 +363,9 @@ public final class DevFunction {
         }
     }
 
-    // ===========
+    // ==========
     // = 快捷方法 =
-    // ===========
+    // ==========
 
     /**
      * 获取 Operation
@@ -393,9 +393,9 @@ public final class DevFunction {
         return new Operation().setObject(object);
     }
 
-    // ===========
+    // ==========
     // = 捕获异常 =
-    // ===========
+    // ==========
 
     /**
      * 捕获异常处理
@@ -406,9 +406,9 @@ public final class DevFunction {
         return new Operation().tryCatch(method);
     }
 
-    // ===========
+    // ==========
     // = 线程方法 =
-    // ===========
+    // ==========
 
     /**
      * 后台线程执行
@@ -484,9 +484,9 @@ public final class DevFunction {
         return new Operation().threadPool(pool, method, delayMillis);
     }
 
-    // ==================
+    // ================
     // = 线程捕获异常方法 =
-    // ==================
+    // ================
 
     /**
      * 后台线程执行

@@ -107,9 +107,9 @@ public class LogWorker
         return getInputData().getString(DevFinal.CONTENT);
     }
 
-    // ===================
+    // ==================
     // = 快捷创建 Request =
-    // ===================
+    // ==================
 
     /**
      * 快捷创建 {@link OneTimeWorkRequest.Builder}
@@ -123,9 +123,9 @@ public class LogWorker
                 .addTag(TAG);
     }
 
-    // ===========
+    // ==========
     // = 监听相关 =
-    // ===========
+    // ==========
 
     /**
      * 监听 WorkRequest 状态

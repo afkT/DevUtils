@@ -349,9 +349,9 @@ public final class PictureSelectorUtils {
 //        return null;
 //    }
 
-    // ===========
+    // ==========
     // = 调用方法 =
-    // ===========
+    // ==========
 
     /**
      * 打开相册拍照
@@ -407,9 +407,9 @@ public final class PictureSelectorUtils {
         return false;
     }
 
-    // ========
+    // =======
     // = 配置 =
-    // ========
+    // =======
 
     /**
      * detail: 相册配置

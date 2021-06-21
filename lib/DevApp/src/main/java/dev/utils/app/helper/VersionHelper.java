@@ -478,9 +478,9 @@ public final class VersionHelper {
         return MediaStoreUtils.createDownloadUri(displayName, createTime, mimeType, relativePath);
     }
 
-    // ===========
+    // ==========
     // = 通用创建 =
-    // ===========
+    // ==========
 
     /**
      * 创建预存储 Media Uri

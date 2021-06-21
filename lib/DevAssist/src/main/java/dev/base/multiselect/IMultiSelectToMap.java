@@ -78,9 +78,9 @@ public interface IMultiSelectToMap<CollectionT extends Map, K, V>
             V value
     );
 
-    // =================
+    // ===============
     // = 获取选中的数据 =
-    // =================
+    // ===============
 
     // =========
     // = Value =

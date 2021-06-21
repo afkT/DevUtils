@@ -66,9 +66,9 @@ public final class TextViewUtils {
     // 日志 TAG
     private static final String TAG = TextViewUtils.class.getSimpleName();
 
-    // =================
+    // ================
     // = 获取 TextView =
-    // =================
+    // ================
 
     /**
      * 获取 TextView

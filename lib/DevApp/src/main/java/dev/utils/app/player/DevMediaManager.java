@@ -367,9 +367,9 @@ public final class DevMediaManager
         destroyMedia();
     }
 
-    // ===========
+    // ==========
     // = 快捷操作 =
-    // ===========
+    // ==========
 
     /**
      * 是否忽略错误类型
@@ -392,9 +392,9 @@ public final class DevMediaManager
         return ignore;
     }
 
-    // ===========
+    // ==========
     // = 回调事件 =
-    // ===========
+    // ==========
 
     /**
      * 播放出错回调

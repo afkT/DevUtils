@@ -21,9 +21,9 @@ import dev.utils.app.ServiceUtils
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 class NotificationService : NotificationListenerService() {
 
-    // ===========
+    // ==========
     // = 通知回调 =
-    // ===========
+    // ==========
 
     /**
      * 当系统收到新的通知后触发回调
@@ -41,9 +41,9 @@ class NotificationService : NotificationListenerService() {
         if (self != null) sListener?.apply { onNotificationRemoved(sbn) }
     }
 
-    // ===========
+    // ==========
     // = 生命周期 =
-    // ===========
+    // ==========
 
     override fun onCreate() {
         super.onCreate()

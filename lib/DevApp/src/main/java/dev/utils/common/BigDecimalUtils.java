@@ -321,9 +321,9 @@ public final class BigDecimalUtils {
             return this;
         }
 
-        // ===========
+        // ==========
         // = 获取方法 =
-        // ===========
+        // ==========
 
         /**
          * 克隆对象
@@ -698,9 +698,9 @@ public final class BigDecimalUtils {
         }
     }
 
-    // ====================
+    // ==================
     // = 获取指定格式字符串 =
-    // ====================
+    // ==================
 
     /**
      * 获取自己想要的数据格式
@@ -892,9 +892,9 @@ public final class BigDecimalUtils {
         return null;
     }
 
-    // ===========
+    // ==========
     // = 快捷方法 =
-    // ===========
+    // ==========
 
     // 异常值
     public static final double ERROR_VALUE = -123456.0D;

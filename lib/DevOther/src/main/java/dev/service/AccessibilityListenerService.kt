@@ -51,9 +51,9 @@ class AccessibilityListenerService : AccessibilityService() {
         LogPrintUtils.dTag(TAG, "onServiceConnected")
     }
 
-    // ===========
+    // ==========
     // = 生命周期 =
-    // ===========
+    // ==========
 
     override fun onCreate() {
         super.onCreate()

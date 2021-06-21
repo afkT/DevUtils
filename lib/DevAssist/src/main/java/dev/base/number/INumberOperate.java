@@ -183,9 +183,9 @@ public interface INumberOperate<R> {
      */
     R subtractionNumber();
 
-    // ========
+    // =======
     // = 事件 =
-    // ========
+    // =======
 
     /**
      * 获取数量监听事件接口

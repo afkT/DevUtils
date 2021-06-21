@@ -7,9 +7,9 @@ package dev.base.data;
  */
 public interface DataChanged<T> {
 
-    // ===========
+    // ==========
     // = 通知方法 =
-    // ===========
+    // ==========
 
     /**
      * 通知数据改变

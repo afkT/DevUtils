@@ -67,9 +67,9 @@ public final class DevToast {
         sToast.init(context);
     }
 
-    // ===========
+    // ==========
     // = 配置方法 =
-    // ===========
+    // ==========
 
     /**
      * 使用单次 Toast 样式配置
@@ -128,9 +128,9 @@ public final class DevToast {
         sToast.setView(layoutId);
     }
 
-    // ===========
+    // ==========
     // = 操作方法 =
-    // ===========
+    // ==========
 
     /**
      * 显示 Toast

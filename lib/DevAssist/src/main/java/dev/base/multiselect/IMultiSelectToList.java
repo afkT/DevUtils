@@ -72,9 +72,9 @@ public interface IMultiSelectToList<CollectionT extends List, V>
      */
     void toggle(V value);
 
-    // =================
+    // ===============
     // = 获取选中的数据 =
-    // =================
+    // ===============
 
     /**
      * 获取选中的数据集合

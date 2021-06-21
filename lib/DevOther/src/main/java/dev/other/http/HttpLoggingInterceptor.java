@@ -55,9 +55,9 @@ public class HttpLoggingInterceptor
                     .append(" byte body)");
         }
 
-        // ===========
+        // ==========
         // = 请求信息 =
-        // ===========
+        // ==========
 
         captureEntity.requestMethod = requestStartMessage.toString();
         captureEntity.requestUrl    = request.url().toString();
@@ -107,9 +107,9 @@ public class HttpLoggingInterceptor
             }
         }
 
-        // ===========
+        // ==========
         // = 响应信息 =
-        // ===========
+        // ==========
 
         long     startNs = System.nanoTime();
         Response response;
@@ -160,9 +160,9 @@ public class HttpLoggingInterceptor
         return response;
     }
 
-    // ===============
+    // =============
     // = 日志打印方法 =
-    // ===============
+    // =============
 
     /**
      * 最终输出日志方法

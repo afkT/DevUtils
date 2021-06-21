@@ -101,9 +101,9 @@ public final class StringUtils {
         return isNotEmpty(isTrim ? str.trim() : str);
     }
 
-    // ===========
+    // ==========
     // = 判断长度 =
-    // ===========
+    // ==========
 
     /**
      * 获取字符串长度

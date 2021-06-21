@@ -26,9 +26,9 @@ public final class ServiceUtils {
     // 日志 TAG
     private static final String TAG = ServiceUtils.class.getSimpleName();
 
-    // ===================
+    // =================
     // = 判断服务是否运行 =
-    // ===================
+    // =================
 
     /**
      * 判断服务是否运行

@@ -109,9 +109,9 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
     // = DataManager =
     // ===============
 
-    // ===========
+    // ==========
     // = 获取相关 =
-    // ===========
+    // ==========
 
     @Override
     public List<T> getDataList() {
@@ -153,9 +153,9 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
         return mAssist.getLastPosition();
     }
 
-    // ===========
+    // ==========
     // = 快速判断 =
-    // ===========
+    // ==========
 
     @Override
     public boolean isDataEmpty() {
@@ -346,9 +346,9 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
         return mAssist.setDataList(collection, notify);
     }
 
-    // ===========
+    // ==========
     // = 通知方法 =
-    // ===========
+    // ==========
 
     @Override
     public void notifyDataChanged() {

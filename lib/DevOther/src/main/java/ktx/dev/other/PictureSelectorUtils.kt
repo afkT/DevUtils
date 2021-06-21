@@ -386,9 +386,9 @@ object PictureSelectorUtils {
         return false
     }
 
-    // ========
+    // =======
     // = 配置 =
-    // ========
+    // =======
 
     /**
      * detail: Media Selector Config

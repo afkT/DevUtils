@@ -121,9 +121,9 @@ class WifiReceiver private constructor() : BroadcastReceiver() {
             sListener = listener
         }
 
-        // ========
+        // =======
         // = 常量 =
-        // ========
+        // =======
 
         private const val BASE = 302030
 

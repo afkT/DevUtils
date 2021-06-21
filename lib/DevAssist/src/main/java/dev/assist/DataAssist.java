@@ -50,9 +50,9 @@ public class DataAssist<T>
         return mData;
     }
 
-    // ===========
+    // ==========
     // = 获取相关 =
-    // ===========
+    // ==========
 
     /**
      * 获取 List Data
@@ -128,9 +128,9 @@ public class DataAssist<T>
         return mData.getLastPosition();
     }
 
-    // ===========
+    // ==========
     // = 快速判断 =
-    // ===========
+    // ==========
 
     /**
      * 判断 List Size 是否为 0
@@ -527,9 +527,9 @@ public class DataAssist<T>
         return result;
     }
 
-    // ===========
+    // ==========
     // = 通知方法 =
-    // ===========
+    // ==========
 
     /**
      * 通知数据改变

@@ -57,9 +57,9 @@ public final class CameraAssist {
         setCamera(camera);
     }
 
-    // ===========
+    // ==========
     // = 操作方法 =
-    // ===========
+    // ==========
 
     /**
      * 打开摄像头程序

@@ -35,9 +35,9 @@ class HttpLoggingInterceptor : Interceptor {
                 .append(" byte body)")
         }
 
-        // ===========
+        // ==========
         // = 请求信息 =
-        // ===========
+        // ==========
 
         captureEntity.requestMethod = requestStartMessage.toString()
         captureEntity.requestUrl = request.url.toString()
@@ -87,9 +87,9 @@ class HttpLoggingInterceptor : Interceptor {
             }
         }
 
-        // ===========
+        // ==========
         // = 响应信息 =
-        // ===========
+        // ==========
 
         val startNs = System.nanoTime()
         val response: Response
@@ -134,9 +134,9 @@ class HttpLoggingInterceptor : Interceptor {
         return response
     }
 
-    // ===============
+    // =============
     // = 日志打印方法 =
-    // ===============
+    // =============
 
     /**
      * 最终输出日志方法

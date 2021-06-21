@@ -11,9 +11,9 @@ import java.util.List;
  */
 public interface DataManager<T> {
 
-    // ===========
+    // ==========
     // = 获取相关 =
-    // ===========
+    // ==========
 
     /**
      * 获取 List Data
@@ -65,9 +65,9 @@ public interface DataManager<T> {
      */
     int getLastPosition();
 
-    // ===========
+    // ==========
     // = 快速判断 =
-    // ===========
+    // ==========
 
     /**
      * 判断 List Size 是否为 0

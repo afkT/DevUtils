@@ -295,9 +295,9 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
         return forResult(pictureSelectionModel)
     }
 
-    // ===========
+    // ==========
     // = 配置方法 =
-    // ===========
+    // ==========
 
     override fun getConfig(): MediaConfig {
         return PIC_CONFIG

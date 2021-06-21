@@ -213,9 +213,9 @@ public class DevObject<T>
         return mTokenUUID;
     }
 
-    // ===========
+    // ==========
     // = 判断方法 =
-    // ===========
+    // ==========
 
     /**
      * 判断 Object 是否一致
@@ -289,9 +289,9 @@ public class DevObject<T>
         return this.mTokenUUID == uuid;
     }
 
-    // ===========
+    // ==========
     // = 校验方法 =
-    // ===========
+    // ==========
 
     /**
      * 校验数据正确性

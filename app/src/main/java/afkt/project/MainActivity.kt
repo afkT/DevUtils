@@ -25,9 +25,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun initOther() {
         super.initOther()
 
-        // ===========
+        // ==========
         // = 时间校验 =
-        // ===========
+        // ==========
 
         HttpURLConnectionUtils.getNetTime(object : HttpURLConnectionUtils.TimeCallback {
             override fun onResponse(time: Long) {

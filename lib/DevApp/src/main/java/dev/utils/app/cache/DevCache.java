@@ -827,9 +827,9 @@ public final class DevCache {
             return this;
         }
 
-        // ===========
+        // ==========
         // = 判断方法 =
-        // ===========
+        // ==========
 
         public boolean isInt() {
             return mType == INT;

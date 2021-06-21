@@ -116,9 +116,9 @@ public class RequestState<T> {
         return mState.equalsState(state);
     }
 
-    // ===========
+    // ==========
     // = 快捷方法 =
-    // ===========
+    // ==========
 
     /**
      * 判断是否默认状态

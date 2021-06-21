@@ -59,9 +59,9 @@ public final class CapturePictureUtils {
     // 画笔
     private static Paint         PAINT            = new Paint();
 
-    // ===========
+    // ==========
     // = 配置相关 =
-    // ===========
+    // ==========
 
     /**
      * 设置 Bitmap Config

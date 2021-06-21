@@ -92,9 +92,9 @@ final class IToastImpl
         this.mTextLengthConvertDuration = textLengthConvertDuration;
     }
 
-    // =========
+    // ========
     // = 初始化 =
-    // =========
+    // ========
 
     /**
      * 初始化调用
@@ -208,9 +208,9 @@ final class IToastImpl
         }
     }
 
-    // ===========
+    // ==========
     // = 操作方法 =
-    // ===========
+    // ==========
 
     /**
      * 显示 Toast

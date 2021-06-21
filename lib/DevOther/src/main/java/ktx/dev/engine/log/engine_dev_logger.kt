@@ -9,9 +9,9 @@ import dev.utils.app.logger.DevLogger
  */
 abstract class DevLoggerEngineImpl : ILogEngine {
 
-    // ===============================
+    // =============================
     // = 使用默认 TAG ( 日志打印方法 ) =
-    // ===============================
+    // =============================
 
     override fun d(
         message: String?,
@@ -75,9 +75,9 @@ abstract class DevLoggerEngineImpl : ILogEngine {
         DevLogger.xml(xml)
     }
 
-    // =================================
+    // ==============================
     // = 使用自定义 TAG ( 日志打印方法 ) =
-    // =================================
+    // ==============================
 
     override fun dTag(
         tag: String?,
