@@ -20,6 +20,116 @@ public final class HttpParamsUtils {
     private static final String TAG = HttpParamsUtils.class.getSimpleName();
 
     /**
+     * 获取 Url 携带参数
+     * @param url URL 链接
+     * @return Url 携带参数
+     */
+    public static String getUrlParams(final String url) {
+        return getUrlParamsArray(url)[1];
+    }
+
+    /**
+     * 获取 Url、携带参数 数组
+     * @param url URL 链接
+     * @return 0 = url, 1 = params
+     */
+    public static String[] getUrlParamsArray(final String url) {
+        String[] results = new String[2];
+        if (StringUtils.isNotEmpty(url)) {
+            // 清除掉前后空格
+            String urlClean = StringUtils.clearSEWiths(url, " ");
+            // 清除掉结尾的 ?
+            urlClean = StringUtils.clearEndsWith(urlClean, "?");
+            // 进行拆分
+            int index = urlClean.indexOf("?");
+            if (index != -1) {
+                results[0] = urlClean.substring(0, index);
+                results[1] = urlClean.substring(index + 1);
+            } else {
+                results[0] = urlClean;
+            }
+        }
+        return results;
+    }
+
+    /**
+     * 判断是否存在参数
+     * @param params 请求参数字符串
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean existsParams(final String params) {
+        return splitParams(params).size() != 0;
+    }
+
+    /**
+     * 通过 Url 判断是否存在参数
+     * @param url URL 链接
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean existsParamsByURL(final String url) {
+        return splitParams(getUrlParams(url)).size() != 0;
+    }
+
+    /**
+     * 拼接 Url 及携带参数
+     * @param url    URL 链接
+     * @param params 请求参数字符串
+     * @return {@code true} yes, {@code false} no
+     */
+    public static String joinUrlParams(
+            final String url,
+            final String params
+    ) {
+        if (StringUtils.isEmpty(params)) return url;
+        // 获取拼接符号
+        String symbol = getUrlParamsJoinSymbol(url, params);
+        return url + symbol + params;
+    }
+
+    /**
+     * 获取 Url 及携带参数 拼接符号
+     * @param url    URL 链接
+     * @param params 请求参数字符串
+     * @return {@code true} yes, {@code false} no
+     */
+    public static String getUrlParamsJoinSymbol(
+            final String url,
+            final String params
+    ) {
+        if (StringUtils.isEmpty(params)) return "";
+        // 判断是否存在参数
+        if (existsParamsByURL(url)) {
+            return "&";
+        } else {
+            return "?";
+        }
+    }
+
+    // =
+
+    /**
+     * 通过 Url 拆分参数
+     * @param url URL 链接
+     * @return 拆分后的参数 Map
+     */
+    public static Map<String, String> splitParamsByUrl(final String url) {
+        return splitParamsByUrl(url, false);
+    }
+
+    /**
+     * 通过 Url 拆分参数
+     * @param url       URL 链接
+     * @param urlEncode 是否需要 URL 编码
+     * @return 拆分后的参数 Map
+     */
+    public static Map<String, String> splitParamsByUrl(
+            final String url,
+            final boolean urlEncode
+    ) {
+        return splitParams(getUrlParams(url), urlEncode);
+    }
+
+    /**
      * 拆分参数
      * @param params 请求参数字符串
      * @return 拆分后的参数 Map
@@ -39,7 +149,7 @@ public final class HttpParamsUtils {
             final boolean urlEncode
     ) {
         Map<String, String> mapParams = new LinkedHashMap<>();
-        if (params != null) {
+        if (StringUtils.isNotEmpty(params)) {
             // 拆分数据
             String[] keyValues = params.split("&");
             // 数据长度
