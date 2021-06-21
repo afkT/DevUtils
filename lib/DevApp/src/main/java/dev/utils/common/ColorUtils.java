@@ -793,9 +793,9 @@ public final class ColorUtils {
         sColorNameMaps.put("teal", 0xFF008080);
     }
 
-    // ===========
+    // ==========
     // = 颜色信息 =
-    // ===========
+    // ==========
 
     // 内部解析器
     private static ColorInfo.Parser sParser;
@@ -1000,9 +1000,9 @@ public final class ColorUtils {
             brightness = hsbvals[2]; // 亮度
         }
 
-        // =============
+        // ============
         // = 解析器相关 =
-        // =============
+        // ============
 
         /**
          * detail: Color 解析器
@@ -1108,9 +1108,9 @@ public final class ColorUtils {
         }
     }
 
-    // ===========
+    // ==========
     // = 颜色排序 =
-    // ===========
+    // ==========
 
     /**
      * 灰度值排序
@@ -1200,9 +1200,9 @@ public final class ColorUtils {
         });
     }
 
-    // ===========
+    // ==========
     // = 混合颜色 =
-    // ===========
+    // ==========
 
     /**
      * 使用给定的比例在两种 ARGB 颜色之间进行混合
@@ -1249,9 +1249,9 @@ public final class ColorUtils {
         return argb((int) a, (int) r, (int) g, (int) b);
     }
 
-    // ===========
+    // ==========
     // = 颜色过渡 =
-    // ===========
+    // ==========
 
     /**
      * 计算从 startColor 过渡到 endColor 过程中百分比为 ratio 时的颜色值

@@ -82,9 +82,9 @@ public final class ValiToPhoneUtils {
         return ValidatorUtils.match(PHONE_CALL_PATTERN, phone);
     }
 
-    // =============
+    // ============
     // = 手机号判断 =
-    // =============
+    // ============
 
     // 简单手机号码校验 校验手机号码的长度和 1 开头 ( 是否 11 位 )
     public static final String CHAIN_PHONE_FORMAT_CHECK = "^(?:\\+86)?1\\d{10}$";
@@ -104,18 +104,18 @@ public final class ValiToPhoneUtils {
     // 香港手机号码正则 香港手机号码 8 位数, 5|6|8|9 开头 + 7 位任意数
     public static final String HK_PHONE_PATTERN = "^(5|6|8|9)\\d{7}$";
 
-    // ===========
+    // ==========
     // = 座机判断 =
-    // ===========
+    // ==========
 
     // 座机电话格式验证
     public static final String PHONE_CALL_PATTERN = "^(?:\\(\\d{3,4}\\)|\\d{3,4}-)?\\d{7,8}(?:-\\d{1,4})?$";
 
     static {
 
-        // ===========
+        // ==========
         // = 中国电信 =
-        // ===========
+        // ==========
 
         // 电信: 133 149 153 173 174 177 180 181 189 191 199
         // 进行拼接字符串, 便于理解
@@ -134,9 +134,9 @@ public final class ValiToPhoneUtils {
         // 手机正则
         CHINA_TELECOM_PATTERN = builder.toString();
 
-        // ===========
+        // ==========
         // = 中国联通 =
-        // ===========
+        // ==========
 
         // 联通: 130 131 132 145 146 155 156 166 171 175 176 185 186
         // 进行拼接字符串, 便于理解
@@ -155,9 +155,9 @@ public final class ValiToPhoneUtils {
         // 手机正则
         CHINA_UNICOM_PATTERN = builder.toString();
 
-        // ===========
+        // ==========
         // = 中国移动 =
-        // ===========
+        // ==========
 
         // 移动: 134 135 136 137 138 139 147 148 150 151 152 157 158 159 165 172 178 182 183 184 187 188 198
         // 进行拼接字符串, 便于理解

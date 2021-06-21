@@ -134,9 +134,9 @@ fun getArticleList2(page: Int) {
 //    RxJavaManager.instance.remove(TAG_L)
 }
 
-// =========
+// ========
 // = 实体类 =
-// =========
+// ========
 
 /**
  * detail: 文章信息实体类

@@ -189,9 +189,9 @@ public final class FilePartUtils {
         return partByteLength >= minLength;
     }
 
-    // ===========
+    // ==========
     // = 文件拆分 =
-    // ===========
+    // ==========
 
     /**
      * 文件拆分
@@ -497,9 +497,9 @@ public final class FilePartUtils {
         return true;
     }
 
-    // ===========
+    // ==========
     // = 分片删除 =
-    // ===========
+    // ==========
 
     /**
      * 删除拆分文件
@@ -632,9 +632,9 @@ public final class FilePartUtils {
         return true;
     }
 
-    // ===========
+    // ==========
     // = 分片合并 =
-    // ===========
+    // ==========
 
     /**
      * 分片合并

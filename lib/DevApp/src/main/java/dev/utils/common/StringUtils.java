@@ -142,9 +142,9 @@ public final class StringUtils {
         return str != null && str.length() == length;
     }
 
-    // ===========
+    // ==========
     // = 对比判断 =
-    // ===========
+    // ==========
 
     /**
      * 判断两个值是否一样
@@ -495,9 +495,9 @@ public final class StringUtils {
         return -1;
     }
 
-    // ===========
+    // ==========
     // = 其他处理 =
-    // ===========
+    // ==========
 
     /**
      * 判断字符串是否为 null 或全为空白字符
@@ -1327,9 +1327,9 @@ public final class StringUtils {
                 || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS;
     }
 
-    // =================
+    // ===============
     // = 字符串处理方法 =
-    // =================
+    // ===============
 
     /**
      * 首字母大写
@@ -1449,9 +1449,9 @@ public final class StringUtils {
         return keyWord;
     }
 
-    // =============
+    // ============
     // = 字符串处理 =
-    // =============
+    // ============
 
     /**
      * 转换手机号
@@ -1622,9 +1622,9 @@ public final class StringUtils {
         return null;
     }
 
-    // =================
+    // ===============
     // = 替换、截取操作 =
-    // =================
+    // ===============
 
     /**
      * 裁剪字符串

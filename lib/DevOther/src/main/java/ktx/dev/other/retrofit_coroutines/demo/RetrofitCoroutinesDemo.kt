@@ -139,9 +139,9 @@ fun errorMethodCommon(): suspend (String?, Throwable) -> Unit {
     }
 }
 
-// =========
+// ========
 // = 实体类 =
-// =========
+// ========
 
 /**
  * detail: 文章信息实体类

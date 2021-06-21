@@ -47,9 +47,9 @@ public final class ThrowableUtils {
         return errorInfo;
     }
 
-    // =============
+    // ============
     // = 异常栈信息 =
-    // =============
+    // ============
 
     /**
      * 获取异常栈信息

@@ -24,9 +24,9 @@ public final class EncodeUtils {
     // = Base64 =
     // ==========
 
-    // ===============
+    // ==============
     // = Base64 编码 =
-    // ===============
+    // ==============
 
     /**
      * Base64 编码
@@ -120,9 +120,9 @@ public final class EncodeUtils {
         return ConvertUtils.newString(Base64.encode(input, flags));
     }
 
-    // ===============
+    // ==============
     // = Base64 解码 =
-    // ===============
+    // ==============
 
     /**
      * Base64 解码

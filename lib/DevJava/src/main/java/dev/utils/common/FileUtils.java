@@ -928,9 +928,9 @@ public final class FileUtils {
         return !newFile.exists() && file.renameTo(newFile);
     }
 
-    // ===============
+    // =============
     // = 文件大小处理 =
-    // ===============
+    // =============
 
     /**
      * 传入文件路径, 返回对应的文件大小
@@ -1010,9 +1010,9 @@ public final class FileUtils {
         }
     }
 
-    // ===========
+    // ==========
     // = 文件操作 =
-    // ===========
+    // ==========
 
     /**
      * 删除文件
@@ -2243,9 +2243,9 @@ public final class FileUtils {
         return list;
     }
 
-    // ===============
+    // =============
     // = 图片类型判断 =
-    // ===============
+    // =============
 
     // 图片格式
     private static final String[] IMAGE_FORMATS = {
@@ -2283,9 +2283,9 @@ public final class FileUtils {
         return isFileFormats(filePath, fileFormats);
     }
 
-    // ===============
+    // =============
     // = 音频类型判断 =
-    // ===============
+    // =============
 
     // 音频格式
     private static final String[] AUDIO_FORMATS = {
@@ -2323,9 +2323,9 @@ public final class FileUtils {
         return isFileFormats(filePath, fileFormats);
     }
 
-    // ===============
+    // =============
     // = 视频类型判断 =
-    // ===============
+    // =============
 
     // 视频格式
     private static final String[] VIDEO_FORMATS = {

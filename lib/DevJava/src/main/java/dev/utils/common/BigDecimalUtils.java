@@ -90,9 +90,9 @@ public final class BigDecimalUtils {
         return new Operation(value, config);
     }
 
-    // =========
+    // ========
     // = 包装类 =
-    // =========
+    // ========
 
     /**
      * detail: 计算异常
@@ -502,9 +502,9 @@ public final class BigDecimalUtils {
             return this;
         }
 
-        // ========
+        // =======
         // = 取余 =
-        // ========
+        // =======
 
         /**
          * 提供精确的取余运算
@@ -521,9 +521,9 @@ public final class BigDecimalUtils {
             return this;
         }
 
-        // ===========
+        // ==========
         // = 四舍五入 =
-        // ===========
+        // ==========
 
         /**
          * 提供精确的小数位四舍五入处理
@@ -555,9 +555,9 @@ public final class BigDecimalUtils {
             return divide(new BigDecimal(1D), scale, roundingMode);
         }
 
-        // ===========
+        // ==========
         // = 比较大小 =
-        // ===========
+        // ==========
 
         /**
          * 比较大小
@@ -579,9 +579,9 @@ public final class BigDecimalUtils {
             return -2;
         }
 
-        // ===========
+        // ==========
         // = 金额分割 =
-        // ===========
+        // ==========
 
         /**
          * 金额分割, 四舍五入金额
@@ -1199,9 +1199,9 @@ public final class BigDecimalUtils {
         return ERROR_VALUE;
     }
 
-    // ========
+    // =======
     // = 取余 =
-    // ========
+    // =======
 
     /**
      * 提供精确的取余运算
@@ -1274,9 +1274,9 @@ public final class BigDecimalUtils {
         return ERROR_VALUE;
     }
 
-    // ===========
+    // ==========
     // = 四舍五入 =
-    // ===========
+    // ==========
 
     /**
      * 提供精确的小数位四舍五入处理
@@ -1339,9 +1339,9 @@ public final class BigDecimalUtils {
         return ERROR_VALUE;
     }
 
-    // ===========
+    // ==========
     // = 比较大小 =
-    // ===========
+    // ==========
 
     /**
      * 比较大小

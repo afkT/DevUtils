@@ -380,9 +380,9 @@ public final class ROMUtils {
         return "";
     }
 
-    // =========
+    // ========
     // = 实体类 =
-    // =========
+    // ========
 
     private static RomInfo sBean = null;
 

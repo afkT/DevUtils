@@ -642,9 +642,9 @@ public final class ScaleUtils {
         return null;
     }
 
-    // =========
+    // ========
     // = XY 比 =
-    // =========
+    // ========
 
     /**
      * 计算 XY 比
@@ -683,9 +683,9 @@ public final class ScaleUtils {
         return null;
     }
 
-    // =========
+    // ========
     // = 实体类 =
-    // =========
+    // ========
 
     public static final List<XY> XY_LIST;
 

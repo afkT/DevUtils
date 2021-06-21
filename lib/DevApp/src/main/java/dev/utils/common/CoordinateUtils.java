@@ -195,9 +195,9 @@ public final class CoordinateUtils {
         return lng < 72.004 || lng > 137.8347 || lat < 0.8293 || lat > 55.8271;
     }
 
-    // ===========
+    // ==========
     // = 计算坐标 =
-    // ===========
+    // ==========
 
     // 赤道半径
     private static final double EARTH_RADIUS = 6378.137;
