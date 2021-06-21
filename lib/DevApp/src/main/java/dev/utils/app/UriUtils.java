@@ -121,6 +121,31 @@ public final class UriUtils {
         return Uri.parse(uriString);
     }
 
+    /**
+     * 通过 File Path 创建 Uri
+     * @param filePath 文件路径
+     * @return {@link Uri}
+     */
+    public static Uri fromFile(final String filePath) {
+        return fromFile(FileUtils.getFile(filePath));
+    }
+
+    /**
+     * 通过 File 创建 Uri
+     * @param file 文件
+     * @return {@link Uri}
+     */
+    public static Uri fromFile(final File file) {
+        if (file != null) {
+            try {
+                return Uri.fromFile(file);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "fromFile");
+            }
+        }
+        return null;
+    }
+
     // =======
     // = Uri =
     // =======

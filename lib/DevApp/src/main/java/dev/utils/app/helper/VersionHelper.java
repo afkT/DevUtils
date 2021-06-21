@@ -521,6 +521,56 @@ public final class VersionHelper {
         return MediaStoreUtils.createMediaUri(uri, displayName, createTime, mimeType, relativePath);
     }
 
+    // ========
+    // = File =
+    // ========
+
+    /**
+     * 通过 File Path 创建 Uri
+     * @param fileName 文件名
+     * @return File Uri
+     */
+    public static Uri createUriByPath(final String fileName) {
+        return MediaStoreUtils.createUriByPath(fileName);
+    }
+
+    /**
+     * 通过 File Path 创建 Uri
+     * @param fileName 文件名
+     * @param filePath 文件路径
+     * @return File Uri
+     */
+    public static Uri createUriByPath(
+            final String fileName,
+            final String filePath
+    ) {
+        return MediaStoreUtils.createUriByPath(fileName, filePath);
+    }
+
+    /**
+     * 通过 File Path 创建 Uri
+     * @param filePath 文件路径
+     * @return File Uri
+     */
+    public static Uri createUriByFile(final String filePath) {
+        return MediaStoreUtils.createUriByFile(filePath);
+    }
+
+    /**
+     * 通过 File 创建 Uri
+     * <pre>
+     *     主要用于如低版本写入 Download 文件夹, 创建 Uri
+     *     统一使用 {@link #insertMedia(Uri, Uri)} 写入文件夹
+     *     高版本使用 {@link #createDownloadUri(String)}
+     *     并不局限 Download 文件夹操作
+     * </pre>
+     * @param file 文件
+     * @return File Uri
+     */
+    public static Uri createUriByFile(final File file) {
+        return MediaStoreUtils.createUriByFile(file);
+    }
+
     // =
 
     /**
