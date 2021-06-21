@@ -41,9 +41,9 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
         // 判断是否显示边距
         ViewUtils.setVisibility(position == 0, holder.binding.vidAieLine)
 
-        // ===========
+        // ==========
         // = 商品信息 =
-        // ===========
+        // ==========
 
         val commodity = item.commodityEvaluateBean
 
@@ -66,9 +66,9 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
         // 设置评星等级
         ratingBar.setStar(item.evaluateLevel)
 
-        // ===========
+        // ==========
         // = 输入监听 =
-        // ===========
+        // ==========
 
         // 评价内容字数
         val vid_aie_number_tv = holder.binding.vidAieNumberTv

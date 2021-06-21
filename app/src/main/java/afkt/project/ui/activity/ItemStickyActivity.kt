@@ -44,9 +44,9 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         // 根布局处理
         ViewHelper.get().setPadding(parent, 0)
 
-        // ======================
+        // ====================
         // = 使用自定义悬浮 View =
-        // ======================
+        // ====================
 
         val listener: PowerGroupListener = object : PowerGroupListener {
             override fun getGroupName(position: Int): String {
@@ -71,9 +71,9 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
 //            .resetSpan(mRecyclerView, (GridLayoutManager) manager)
             .build()
 
-        // ================
+        // ===============
         // = 默认悬浮 View =
-        // ================
+        // ===============
 
         val groupListener = GroupListener { position ->
             itemStickyAdapter.getDataItem(position).timeTile

@@ -75,9 +75,9 @@ object ProjectUtils {
         val isExecute = false
         if (isExecute) {
 
-            // ===========
+            // ==========
             // = 处理方法 =
-            // ===========
+            // ==========
 
             // 销毁方法
             scanView.destroy()
@@ -131,9 +131,9 @@ object ProjectUtils {
             // 是否绘制边框
             scanView.isDrawBorder = true
 
-            // =================
+            // ===============
             // = 正方形特殊配置 =
-            // =================
+            // ===============
 
             // 设置 正方形描边 ( 边框 ), 类型 0 = 单独四个角落, 1 = 单独边框, 2 = 全部
             scanView.borderToSquare = 0
@@ -155,9 +155,9 @@ object ProjectUtils {
             // 设置正方形扫描线条向左 ( 右 ) 边距
             scanView.lineMarginLeftToSquare = 0f
 
-            // =================
+            // ===============
             // = 六边形特殊配置 =
-            // =================
+            // ===============
 
             // 设置六边形线条动画 - 线条宽度
             scanView.lineWidthToHexagon = 4f
@@ -168,9 +168,9 @@ object ProjectUtils {
             // 设置六边形线条动画颜色
             scanView.lineColorToHexagon = Color.WHITE
 
-            // ===============
+            // =============
             // = 环形特殊配置 =
-            // ===============
+            // =============
 
             // 设置环形扫描线条 Bitmap
             scanView.bitmapToAnnulus = ResourceUtils.getBitmap(R.drawable.dev_scan_line)

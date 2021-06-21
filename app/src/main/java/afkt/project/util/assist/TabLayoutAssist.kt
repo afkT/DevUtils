@@ -59,9 +59,9 @@ class TabLayoutAssist private constructor(
         })
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     /**
      * 获取选中的 Tab 索引
@@ -123,9 +123,9 @@ class TabLayoutAssist private constructor(
         return this
     }
 
-    // ===============
+    // ==============
     // = Tab 切换事件 =
-    // ===============
+    // ==============
 
     /**
      * detail: Tab 切换事件
@@ -138,9 +138,9 @@ class TabLayoutAssist private constructor(
         )
     }
 
-    // ===========
+    // ==========
     // = 内部方法 =
-    // ===========
+    // ==========
 
     /**
      * 添加 Tab View 集合

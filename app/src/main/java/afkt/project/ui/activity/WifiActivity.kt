@@ -275,9 +275,9 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         })
     }
 
-    // ===========
+    // ==========
     // = 检测任务 =
-    // ===========
+    // ==========
 
     // 检查热点状态
     private val CHECK_HOTSOPT_STATE = 100

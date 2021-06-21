@@ -16,9 +16,9 @@ import java.io.File
  */
 object PathConfig {
 
-    // ==============
+    // =============
     // = 应用外部存储 =
-    // ==============
+    // =============
 
     // 应用外部存储
     val BASE_APP_PATH = PathUtils.getAppExternal().appDataPath

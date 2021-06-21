@@ -29,9 +29,9 @@ public abstract class AbsRoomDatabase
         return dbName + "-" + DATABASE_NAME;
     }
 
-    // =============
+    // ============
     // = 创建数据库 =
-    // =============
+    // ============
 
     /**
      * detail: 数据库创建接口

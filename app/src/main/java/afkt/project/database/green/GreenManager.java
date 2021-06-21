@@ -90,9 +90,9 @@ public final class GreenManager {
         return null;
     }
 
-    // ========
+    // =======
     // = 创建 =
-    // ========
+    // =======
 
     // 数据库创建接口
     private static final AbsGreenDatabase.Create CREATE = new AbsGreenDatabase.Create() {
@@ -121,9 +121,9 @@ public final class GreenManager {
         }
     };
 
-    // ============
+    // ==========
     // = 快捷方法 =
-    // ============
+    // ==========
 
     /**
      * 获取 Note Database

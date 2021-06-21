@@ -68,9 +68,9 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
         }
     }
 
-    // ===========
+    // ==========
     // = 图片回传 =
-    // ===========
+    // ==========
 
     override fun onActivityResult(
         requestCode: Int,

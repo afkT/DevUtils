@@ -96,9 +96,9 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
         }
     }
 
-    // =============
+    // ============
     // = 摄像头预览 =
-    // =============
+    // ============
 
     // 摄像头辅助类
     val cameraAssist = CameraAssist()
@@ -173,9 +173,9 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
         }
     }
 
-    // =============
+    // ============
     // = 手电筒处理 =
-    // =============
+    // ============
 
     /**
      * 设置手电筒开关

@@ -140,9 +140,9 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
         }
     }
 
-    // =============
+    // ============
     // = 适配器相关 =
-    // =============
+    // ============
 
     /**
      * 注册 Adapter 观察者
@@ -229,9 +229,9 @@ abstract class BaseMVPActivity<P : MVP.Presenter<out MVP.IView, out MVP.IModel>,
         toolbar?.setNavigationOnClickListener { finish() }
     }
 
-    // =============
+    // ============
     // = 内部初始化 =
-    // =============
+    // ============
 
     private fun priInitialize() {
         try {

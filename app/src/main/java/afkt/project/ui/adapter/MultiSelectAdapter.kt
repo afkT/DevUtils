@@ -57,9 +57,9 @@ class MultiSelectAdapter(data: List<CommodityEvaluateBean?>) :
             ProjectUtils.roundConfig3
         )
 
-        // ===========
+        // ==========
         // = 多选处理 =
-        // ===========
+        // ==========
 
         val key = getMultiSelectKey(item, position)
         val selectIGView = holder.binding.vidAmsIgview
@@ -88,9 +88,9 @@ class MultiSelectAdapter(data: List<CommodityEvaluateBean?>) :
         return position.toString()
     }
 
-    // ===============
+    // =============
     // = 操作监听事件 =
-    // ===============
+    // =============
 
     // 选择事件通知事件
     private var selectListener: OnSelectListener? = null

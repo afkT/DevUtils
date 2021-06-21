@@ -57,9 +57,9 @@ public abstract class AbsGreenDatabase {
      */
     public abstract DaoSession getDaoSession();
 
-    // =============
+    // ============
     // = 创建数据库 =
-    // =============
+    // ============
 
     /**
      * detail: 数据库创建接口

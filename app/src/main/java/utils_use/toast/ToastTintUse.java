@@ -17,9 +17,9 @@ public final class ToastTintUse {
     private ToastTintUse() {
     }
 
-    // ========
+    // =======
     // = 配置 =
-    // ========
+    // =======
 
     private static ToastTintUtils.Style style;
     private static Drawable             iconDrawable;

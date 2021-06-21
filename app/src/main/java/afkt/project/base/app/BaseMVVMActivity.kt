@@ -26,9 +26,9 @@ abstract class BaseMVVMActivity<VDB : ViewDataBinding, VM : ViewModel> :
         return null
     }
 
-    // =============
+    // ============
     // = 内部初始化 =
-    // =============
+    // ============
 
     private fun priInitialize() {
         try {

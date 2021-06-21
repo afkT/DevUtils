@@ -73,9 +73,9 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
             )
         )
 
-        // ===========
+        // ==========
         // = 渐变效果 =
-        // ===========
+        // ==========
 
         ShapeUtils.newShape(
             GradientDrawable.Orientation.BR_TL,
@@ -202,9 +202,9 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
         }
     }
 
-    // ===========
+    // ==========
     // = 内部方法 =
-    // ===========
+    // ==========
 
     /**
      * 切换 Tab

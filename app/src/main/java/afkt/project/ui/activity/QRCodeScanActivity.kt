@@ -138,9 +138,9 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
         }
     }
 
-    // ===========
+    // ==========
     // = 图片回传 =
-    // ===========
+    // ==========
 
     override fun onActivityResult(
         requestCode: Int,
@@ -181,9 +181,9 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
         }
     }
 
-    // =================
+    // ===============
     // = 二维码识别相关 =
-    // =================
+    // ===============
 
     private val zxingDecodeAssist: ZXingDecodeAssist by lazy {
         ZXingDecodeAssist(mOperate, mDecodeConfig, mDecodeResult)

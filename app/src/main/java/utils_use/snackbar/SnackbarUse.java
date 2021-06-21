@@ -41,9 +41,9 @@ public final class SnackbarUse {
 
     public void snackbarUse() {
 
-        // ==============================================
+        // ==========================================
         // = 只能通过以下四种方式 获取 SnackbarUtils 对象 =
-        // ==============================================
+        // ==========================================
 
         SnackbarUtils.with(view);
 
@@ -53,9 +53,9 @@ public final class SnackbarUse {
 
         SnackbarUtils.with(activity);
 
-        // ===============
+        // =============
         // = 获取相关方法 =
-        // ===============
+        // =============
 
         // = 获取 View =
 
@@ -82,9 +82,9 @@ public final class SnackbarUse {
         // 获取 Snackbar 显示效果样式配置信息
         SnackbarUtils.StyleBuilder styleBuilder = SnackbarUtils.with(view).getStyle();
 
-        // ===============
+        // =============
         // = 设置相关方法 =
-        // ===============
+        // =============
 
         // 设置 View 阴影边距大小
         SnackbarUtils.with(view).setShadowMargin(2);
@@ -143,9 +143,9 @@ public final class SnackbarUse {
             }
         });
 
-        // ===========
+        // ==========
         // = 操作方法 =
-        // ===========
+        // ==========
 
         // = 关闭 =
 

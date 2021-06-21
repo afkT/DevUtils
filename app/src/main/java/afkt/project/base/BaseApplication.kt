@@ -100,9 +100,9 @@ class BaseApplication : MultiDexApplication() {
             }
         })
 
-        // =============
+        // ============
         // = 初始化操作 =
-        // =============
+        // ============
 
         // 初始化
         init()
@@ -131,9 +131,9 @@ class BaseApplication : MultiDexApplication() {
         DevLogEngine.getEngine().i(builder.toString())
     }
 
-    // =============
+    // ============
     // = 初始化方法 =
-    // =============
+    // ============
 
     /**
      * 统一初始化方法

@@ -56,9 +56,9 @@ class RoomActivity : BaseActivity<ActivityDatabaseBinding>() {
             }
         })
 
-        // ================
+        // ===============
         // = Item 滑动处理 =
-        // ================
+        // ===============
 
         val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.Callback() {
             /**
@@ -137,9 +137,9 @@ class RoomActivity : BaseActivity<ActivityDatabaseBinding>() {
         }
     }
 
-    // ===========
+    // ==========
     // = 数据相关 =
-    // ===========
+    // ==========
 
     /**
      * 随机添加数据

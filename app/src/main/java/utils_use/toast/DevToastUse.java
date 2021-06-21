@@ -20,9 +20,9 @@ public final class DevToastUse {
     private DevToastUse() {
     }
 
-    // ========
+    // =======
     // = 配置 =
-    // ========
+    // =======
 
     private static final View view   = null;
     private static final int  viewId = 0;

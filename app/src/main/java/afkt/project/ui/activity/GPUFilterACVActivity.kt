@@ -102,9 +102,9 @@ class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
         }
     }
 
-    // ===========
+    // ==========
     // = 图片回传 =
-    // ===========
+    // ==========
 
     override fun onActivityResult(
         requestCode: Int,
@@ -131,9 +131,9 @@ class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
         }
     }
 
-    // ===========
+    // ==========
     // = 滤镜处理 =
-    // ===========
+    // ==========
 
     /**
      * 设置滤镜效果

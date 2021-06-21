@@ -1,9 +1,9 @@
 // 第三方 lib 依赖配置
 dependencies {
 
-    // =============
+    // ============
     // = 快捷开发库 =
-    // =============
+    // ============
 
     // OkHttp3 网络请求框架 https://github.com/square/okhttp
     implementation deps.lib.okhttp3
@@ -42,9 +42,9 @@ dependencies {
     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
     implementation deps.lib.autosize
 
-    // =============================
+    // ==========================
     // = 其他第三方库 - 小功能、简约 =
-    // =============================
+    // ==========================
 
     // Glide 图形库 https://github.com/wasabeef/glide-transformations
     implementation deps.lib.glide_transformations

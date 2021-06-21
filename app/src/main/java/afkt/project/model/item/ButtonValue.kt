@@ -15,9 +15,9 @@ class ButtonValue(
 
     companion object {
 
-        // ========
+        // =======
         // = 常量 =
-        // ========
+        // =======
 
         private const val BASE = 1001
 
@@ -216,9 +216,9 @@ class ButtonValue(
         // RecyclerView MultiType Adapter
         const val BTN_RECYCLERVIEW_MULTITYPE_ADAPTER = MODULE_UI + 2700
 
-        // ===========
+        // ==========
         // = 其他功能 =
-        // ===========
+        // ==========
 
         // 事件 / 广播监听 ( 网络状态、屏幕旋转等 )
         const val BTN_LISTENER = MODULE_OTHER
@@ -500,9 +500,9 @@ class ButtonValue(
         // Custom Type
         const val BTN_VIEW_ASSIST_CUSTOM = BTN_VIEW_ASSIST + 4
 
-        // ================================
+        // ==============================
         // = DevEnvironment 环境配置切换库 =
-        // ================================
+        // ==============================
 
         // 环境配置切换
         const val BTN_DEV_ENVIRONMENT = MODULE_DEV_ENVIRONMENT

@@ -89,9 +89,9 @@ public final class RoomManager {
         return null;
     }
 
-    // ========
+    // =======
     // = 创建 =
-    // ========
+    // =======
 
     // 数据库创建接口
     private static final AbsRoomDatabase.Create CREATE = new AbsRoomDatabase.Create() {
@@ -118,9 +118,9 @@ public final class RoomManager {
         }
     };
 
-    // ============
+    // ==========
     // = 快捷方法 =
-    // ============
+    // ==========
 
     /**
      * 获取 Note Database

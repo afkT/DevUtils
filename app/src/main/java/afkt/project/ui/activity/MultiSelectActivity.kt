@@ -66,9 +66,9 @@ class MultiSelectActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         binding.vidBvrRecy.adapter = adapter
     }
 
-    // ===============
+    // =============
     // = 增加按钮处理 =
-    // ===============
+    // =============
 
     // 编辑按钮
     var editView: BaseTextView? = null

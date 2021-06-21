@@ -1,9 +1,9 @@
 // 性能检测相关 lib 依赖配置
 dependencies {
 
-    // ======================
+    // ====================
     // = 性能检测、排查相关库 =
-    // ======================
+    // ====================
 
 //    // Bugly https://bugly.qq.com/docs/
 //    implementation deps.property.bugly

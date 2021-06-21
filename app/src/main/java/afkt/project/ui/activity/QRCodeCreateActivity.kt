@@ -82,9 +82,9 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
         }
     }
 
-    // ===========
+    // ==========
     // = 图片回传 =
-    // ===========
+    // ==========
 
     override fun onActivityResult(
         requestCode: Int,
