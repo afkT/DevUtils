@@ -1,8 +1,16 @@
 Change Log
 ==========
 
-Version 1.2.3 *(2021-06-04)*
-Version 1.2.2 *(2021-06-04)*
+Version 1.2.4 *(2021-06-21)*
+----------------------------
+
+* `[Update]` 更新 DevStorageEngine 为 DevKeyValueEngine 用于键值对存储 Engine
+
+* `[Add]` 新增 DevSource mInputStream 字段
+
+* `[Add]` 新增 DevStorageEngine 用于多媒体资源存储 ( 高低版本适配 ) Engine
+
+Version 1.2.2-3 *(2021-06-04)*
 ----------------------------
 
 * `[Add]` DevAnalyticsEngine、DevPushEngine、DevShareEngine

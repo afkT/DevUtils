@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.3.4 *(2021-06-21)*
+----------------------------
+
+* `[Add]` StringUtils#urlDecodeWhile
+
+* `[Add]` HttpParamsUtils#getUrlParams、getUrlParamsArray、existsParams、existsParamsByURL、joinUrlParams、getUrlParamsJoinSymbol、splitParamsByUrl
+
 Version 1.3.3 *(2021-06-04)*
 ----------------------------
 

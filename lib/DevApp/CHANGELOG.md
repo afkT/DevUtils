@@ -1,6 +1,25 @@
 Change Log
 ==========
 
+Version 2.2.7 *(2021-06-21)*
+----------------------------
+
+* `[Delete]` AppCommonUtils 使用 VersionUtils
+
+* `[Add]` MediaStoreUtils#notifyMediaStore、createDownloadUri、createUriByPath、createUriByFile
+
+* `[Add]` VersionHelper#createDownloadUri、createUriByPath、createUriByFile
+
+* `[Add]` BarUtils#getStatusBarHeight2、ScreenUtils#getStatusBarHeight2
+
+* `[Add]` AppUtils#getCurrentWindowMetrics、getMaximumWindowMetrics
+
+* `[Add]` UriUtils#fromFile
+
+* `[Add]` StringUtils#urlDecodeWhile
+
+* `[Add]` HttpParamsUtils#getUrlParams、getUrlParamsArray、existsParams、existsParamsByURL、joinUrlParams、getUrlParamsJoinSymbol、splitParamsByUrl
+
 Version 2.2.6 *(2021-06-04)*
 ----------------------------
 
