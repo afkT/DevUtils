@@ -4,6 +4,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 
 import dev.base.DevSource;
+import dev.engine.storage.listener.OnInsertListener;
 import dev.utils.app.PathUtils;
 
 /**
@@ -44,57 +45,67 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem> {
 
     /**
      * 插入一张图片到外部存储空间 ( SDCard )
-     * @param params {@link EngineItem}
-     * @param source {@link DevSource}
+     * @param params   {@link EngineItem}
+     * @param source   {@link DevSource}
+     * @param listener {@link OnInsertListener}
      * @return {@code true} success, {@code false} fail
      */
     boolean insertImageToExternal(
             Item params,
-            DevSource source
+            DevSource source,
+            OnInsertListener<Item> listener
     );
 
     /**
      * 插入一条视频到外部存储空间 ( SDCard )
-     * @param params {@link EngineItem}
-     * @param source {@link DevSource}
+     * @param params   {@link EngineItem}
+     * @param source   {@link DevSource}
+     * @param listener {@link OnInsertListener}
      * @return {@code true} success, {@code false} fail
      */
     boolean insertVideoToExternal(
             Item params,
-            DevSource source
+            DevSource source,
+            OnInsertListener<Item> listener
     );
 
     /**
      * 插入一条音频到外部存储空间 ( SDCard )
-     * @param params {@link EngineItem}
-     * @param source {@link DevSource}
+     * @param params   {@link EngineItem}
+     * @param source   {@link DevSource}
+     * @param listener {@link OnInsertListener}
      * @return {@code true} success, {@code false} fail
      */
     boolean insertAudioToExternal(
             Item params,
-            DevSource source
+            DevSource source,
+            OnInsertListener<Item> listener
     );
 
     /**
      * 插入一条文件资源到外部存储空间 ( SDCard )
-     * @param params {@link EngineItem}
-     * @param source {@link DevSource}
+     * @param params   {@link EngineItem}
+     * @param source   {@link DevSource}
+     * @param listener {@link OnInsertListener}
      * @return {@code true} success, {@code false} fail
      */
     boolean insertDownloadToExternal(
             Item params,
-            DevSource source
+            DevSource source,
+            OnInsertListener<Item> listener
     );
 
     /**
      * 插入一条多媒体资源到外部存储空间 ( SDCard )
-     * @param params {@link EngineItem}
-     * @param source {@link DevSource}
+     * @param params   {@link EngineItem}
+     * @param source   {@link DevSource}
+     * @param listener {@link OnInsertListener}
      * @return {@code true} success, {@code false} fail
      */
     boolean insertMediaToExternal(
             Item params,
-            DevSource source
+            DevSource source,
+            OnInsertListener<Item> listener
     );
 
     // ==========
@@ -103,46 +114,54 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem> {
 
     /**
      * 插入一张图片到内部存储空间
-     * @param params {@link EngineItem}
-     * @param source {@link DevSource}
+     * @param params   {@link EngineItem}
+     * @param source   {@link DevSource}
+     * @param listener {@link OnInsertListener}
      * @return {@code true} success, {@code false} fail
      */
     boolean insertImageToInternal(
             Item params,
-            DevSource source
+            DevSource source,
+            OnInsertListener<Item> listener
     );
 
     /**
      * 插入一条视频到内部存储空间
-     * @param params {@link EngineItem}
-     * @param source {@link DevSource}
+     * @param params   {@link EngineItem}
+     * @param source   {@link DevSource}
+     * @param listener {@link OnInsertListener}
      * @return {@code true} success, {@code false} fail
      */
     boolean insertVideoToInternal(
             Item params,
-            DevSource source
+            DevSource source,
+            OnInsertListener<Item> listener
     );
 
     /**
      * 插入一条音频到内部存储空间
-     * @param params {@link EngineItem}
-     * @param source {@link DevSource}
+     * @param params   {@link EngineItem}
+     * @param source   {@link DevSource}
+     * @param listener {@link OnInsertListener}
      * @return {@code true} success, {@code false} fail
      */
     boolean insertAudioToInternal(
             Item params,
-            DevSource source
+            DevSource source,
+            OnInsertListener<Item> listener
     );
 
     /**
      * 插入一条文件资源到内部存储空间
-     * @param params {@link EngineItem}
-     * @param source {@link DevSource}
+     * @param params   {@link EngineItem}
+     * @param source   {@link DevSource}
+     * @param listener {@link OnInsertListener}
      * @return {@code true} success, {@code false} fail
      */
     boolean insertDownloadToInternal(
             Item params,
-            DevSource source
+            DevSource source,
+            OnInsertListener<Item> listener
     );
 
     /**
@@ -150,12 +169,14 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem> {
      * <pre>
      *     并不局限于多媒体, 如保存文本文件、写入文件等
      * </pre>
-     * @param params {@link EngineItem}
-     * @param source {@link DevSource}
+     * @param params   {@link EngineItem}
+     * @param source   {@link DevSource}
+     * @param listener {@link OnInsertListener}
      * @return {@code true} success, {@code false} fail
      */
     boolean insertMediaToInternal(
             Item params,
-            DevSource source
+            DevSource source,
+            OnInsertListener<Item> listener
     );
 }
