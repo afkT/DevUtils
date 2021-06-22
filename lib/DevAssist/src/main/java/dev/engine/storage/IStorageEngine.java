@@ -26,13 +26,20 @@ import dev.utils.app.PathUtils;
  *     具体需要区分存储位置可以在 {@link EngineItem} 子类新增参数判断
  * </pre>
  */
-public interface IStorageEngine<Item extends IStorageEngine.EngineItem> {
+public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result extends IStorageEngine.EngineResult> {
 
     /**
      * detail: Storage Item
      * @author Ttt
      */
     class EngineItem {
+    }
+
+    /**
+     * detail: Storage Result
+     * @author Ttt
+     */
+    class EngineResult {
     }
 
     // =============
@@ -53,7 +60,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem> {
     boolean insertImageToExternal(
             Item params,
             DevSource source,
-            OnInsertListener<Item> listener
+            OnInsertListener<Item, Result> listener
     );
 
     /**
@@ -66,7 +73,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem> {
     boolean insertVideoToExternal(
             Item params,
             DevSource source,
-            OnInsertListener<Item> listener
+            OnInsertListener<Item, Result> listener
     );
 
     /**
@@ -79,7 +86,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem> {
     boolean insertAudioToExternal(
             Item params,
             DevSource source,
-            OnInsertListener<Item> listener
+            OnInsertListener<Item, Result> listener
     );
 
     /**
@@ -92,7 +99,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem> {
     boolean insertDownloadToExternal(
             Item params,
             DevSource source,
-            OnInsertListener<Item> listener
+            OnInsertListener<Item, Result> listener
     );
 
     /**
@@ -105,7 +112,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem> {
     boolean insertMediaToExternal(
             Item params,
             DevSource source,
-            OnInsertListener<Item> listener
+            OnInsertListener<Item, Result> listener
     );
 
     // ==========
@@ -122,7 +129,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem> {
     boolean insertImageToInternal(
             Item params,
             DevSource source,
-            OnInsertListener<Item> listener
+            OnInsertListener<Item, Result> listener
     );
 
     /**
@@ -135,7 +142,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem> {
     boolean insertVideoToInternal(
             Item params,
             DevSource source,
-            OnInsertListener<Item> listener
+            OnInsertListener<Item, Result> listener
     );
 
     /**
@@ -148,7 +155,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem> {
     boolean insertAudioToInternal(
             Item params,
             DevSource source,
-            OnInsertListener<Item> listener
+            OnInsertListener<Item, Result> listener
     );
 
     /**
@@ -161,7 +168,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem> {
     boolean insertDownloadToInternal(
             Item params,
             DevSource source,
-            OnInsertListener<Item> listener
+            OnInsertListener<Item, Result> listener
     );
 
     /**
@@ -177,6 +184,6 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem> {
     boolean insertMediaToInternal(
             Item params,
             DevSource source,
-            OnInsertListener<Item> listener
+            OnInsertListener<Item, Result> listener
     );
 }
