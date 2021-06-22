@@ -66,7 +66,7 @@ public interface DataManager<T> {
     int getLastPosition();
 
     // ==========
-    // = 快速判断 =
+    // = 快捷判断 =
     // ==========
 
     /**

@@ -79,9 +79,9 @@
 
 ### 使用方法
 ```java
-// ==============================================
+// ==========================================
 // = 只能通过以下四种方式 获取 SnackbarUtils 对象 =
-// ==============================================
+// ==========================================
 
 SnackbarUtils.with(view);
 
@@ -122,9 +122,9 @@ boolean autoCalc = SnackbarUtils.with(view).isAutoCalc(); // 只有调用 above 
 SnackbarUtils.StyleBuilder styleBuilder = SnackbarUtils.with(view).getStyle();
 
 
-// ===============
+// =============
 // = 设置相关方法 =
-// ===============
+// =============
 
 // 设置 View 阴影边距大小
 SnackbarUtils.with(view).setShadowMargin(2);

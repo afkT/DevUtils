@@ -41,9 +41,9 @@ public class LogConfig {
      */
     public String tag = LogConstants.DEFAULT_LOG_TAG;
 
-    // ======================
-    // = 快速初始化 LogConfig =
-    // ======================
+    // ==================
+    // = 初始化 LogConfig =
+    // ==================
 
     /**
      * 获取 Release Log 配置 ( 打印线程信息、显示方法总数 3、从 0 开始、不进行排序、默认只打印 ERROR 级别日志 )
