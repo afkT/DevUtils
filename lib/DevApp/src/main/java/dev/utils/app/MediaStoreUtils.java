@@ -127,18 +127,18 @@ public final class MediaStoreUtils {
     public static final String MIME_TYPE_IMAGE_JPG       = "image/jpeg";
     // 图片类型
     public static final String MIME_TYPE_IMAGE           = "image/*";
-    // MOV
-    public static final String MIME_TYPE_VIDEO_MOV       = "video/mov";
     // MP4
     public static final String MIME_TYPE_VIDEO_MP4       = "video/mp4";
+    // MOV
+    public static final String MIME_TYPE_VIDEO_MOV       = "video/mov";
     // 视频类型
     public static final String MIME_TYPE_VIDEO           = "video/*";
+    // MP3
+    public static final String MIME_TYPE_AUDIO_MP3       = "audio/mp3";
     // ACC
     public static final String MIME_TYPE_AUDIO_ACC       = "audio/acc";
     // WAV
     public static final String MIME_TYPE_AUDIO_WAV       = "audio/wav";
-    // MP3
-    public static final String MIME_TYPE_AUDIO_MP3       = "audio/mp3";
     // 音频类型
     public static final String MIME_TYPE_AUDIO           = "audio/*";
     // PDF
@@ -198,7 +198,7 @@ public final class MediaStoreUtils {
      * @return 图片 Uri
      */
     public static Uri createImageUri() {
-        return createImageUri(getImageDisplayName(), System.currentTimeMillis(), MIME_TYPE_IMAGE, RELATIVE_IMAGE_PATH);
+        return createImageUri(getImageDisplayName(), System.currentTimeMillis(), MIME_TYPE_IMAGE_PNG, RELATIVE_IMAGE_PATH);
     }
 
     /**
@@ -249,7 +249,7 @@ public final class MediaStoreUtils {
      * @return 视频 Uri
      */
     public static Uri createVideoUri() {
-        return createVideoUri(getVideoDisplayName(), System.currentTimeMillis(), MIME_TYPE_VIDEO, RELATIVE_VIDEO_PATH);
+        return createVideoUri(getVideoDisplayName(), System.currentTimeMillis(), MIME_TYPE_VIDEO_MP4, RELATIVE_VIDEO_PATH);
     }
 
     /**
@@ -300,7 +300,7 @@ public final class MediaStoreUtils {
      * @return 音频 Uri
      */
     public static Uri createAudioUri() {
-        return createAudioUri(getAudioDisplayName(), System.currentTimeMillis(), MIME_TYPE_AUDIO, RELATIVE_AUDIO_PATH);
+        return createAudioUri(getAudioDisplayName(), System.currentTimeMillis(), MIME_TYPE_AUDIO_MP3, RELATIVE_AUDIO_PATH);
     }
 
     /**
