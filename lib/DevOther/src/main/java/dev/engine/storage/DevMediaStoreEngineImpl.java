@@ -220,6 +220,22 @@ public class DevMediaStoreEngineImpl
         return false;
     }
 
+    /**
+     * 获取输出 Uri ( 存储文件 Uri )
+     * @param params 原始参数
+     * @param source 原始数据
+     * @return 输出 Uri
+     */
+    private Uri getOutputUri(
+            final StorageItem params,
+            final DevSource source
+    ) {
+        if (params != null && source != null && source.isSource()) {
+
+        }
+        return null;
+    }
+
     // =
 
     /**
@@ -229,9 +245,9 @@ public class DevMediaStoreEngineImpl
      * @param listener 回调接口
      */
     private void insideInsertExternal(
-            StorageItem params,
-            DevSource source,
-            OnInsertListener<StorageItem, StorageResult> listener
+            final StorageItem params,
+            final DevSource source,
+            final OnInsertListener<StorageItem, StorageResult> listener
     ) {
     }
 }

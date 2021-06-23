@@ -457,7 +457,7 @@ public final class MediaStoreUtils {
             values.put(MediaStore.Files.FileColumns.DATE_ADDED, createTime);
         }
         values.put(MediaStore.Files.FileColumns.MIME_TYPE, mimeType); // 资源类型
-        // MediaStore 会根据文件的 RELATIVE_PATH 去自动进行分类存储
+        // MediaStore 会根据 Uri 自动存储到对应分类目录下, 并在目录下创建 relativePath 文件夹
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             values.put(MediaStore.Files.FileColumns.RELATIVE_PATH, relativePath);
         }
