@@ -8,8 +8,6 @@ import java.io.File;
 import dev.base.DevSource;
 import dev.engine.storage.listener.OnInsertListener;
 import dev.utils.app.MediaStoreUtils;
-import dev.utils.app.PathUtils;
-import dev.utils.app.UriUtils;
 
 /**
  * detail: DevUtils MediaStore Engine 实现
@@ -247,6 +245,27 @@ public class DevMediaStoreEngineImpl
             // 外部存储才需要进行适配
             if (external) {
                 switch (type) {
+                    case IMAGE: // 存储到 Pictures 文件夹
+                        // 创建 Image Uri
+                        return MediaStoreUtils.createImageUri(
+                                params.getFileName(),
+                                params.getMimeType(),
+                                params.getFolder()
+                        );
+                    case VIDEO: // 存储到 DCIM 文件夹
+                        // 创建 Video Uri
+                        return MediaStoreUtils.createVideoUri(
+                                params.getFileName(),
+                                params.getMimeType(),
+                                params.getFolder()
+                        );
+                    case AUDIO: // 存储到 Music 文件夹
+                        // 创建 Audio Uri
+                        return MediaStoreUtils.createAudioUri(
+                                params.getFileName(),
+                                params.getMimeType(),
+                                params.getFolder()
+                        );
                     case DOWNLOAD: // 存储到 Download 文件夹
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                             // 创建 Download Uri
@@ -258,20 +277,13 @@ public class DevMediaStoreEngineImpl
                         } else {
                             // 低版本直接创建 SDCard/Download File
                             File file = getOutputFile(params, source, external, type);
-                            return UriUtils.fromFile(file);
+                            return MediaStoreUtils.createUriByFile(file);
                         }
-                    case IMAGE: // 存储到 Pictures 文件夹
-                        // 创建 Image Uri
-                        return MediaStoreUtils.createImageUri(
-                                params.getFileName(),
-                                params.getMimeType(),
-                                params.getFolder()
-                        );
                 }
             } else {
                 // 获取存储路径
                 File file = getOutputFile(params, source, external, type);
-                return UriUtils.fromFile(file);
+                return MediaStoreUtils.createUriByFile(file);
             }
         }
         return null;
@@ -282,7 +294,7 @@ public class DevMediaStoreEngineImpl
             final DevSource source,
             final boolean external,
             final TYPE type
-    ){
+    ) {
         return null;
     }
 

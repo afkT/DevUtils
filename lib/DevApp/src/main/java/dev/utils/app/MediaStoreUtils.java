@@ -130,15 +130,15 @@ public final class MediaStoreUtils {
     // MP4
     public static final String MIME_TYPE_VIDEO_MP4       = "video/mp4";
     // MOV
-    public static final String MIME_TYPE_VIDEO_MOV       = "video/mov";
+    public static final String MIME_TYPE_VIDEO_MOV       = "video/quicktime";
     // 视频类型
     public static final String MIME_TYPE_VIDEO           = "video/*";
     // MP3
-    public static final String MIME_TYPE_AUDIO_MP3       = "audio/mp3";
-    // ACC
-    public static final String MIME_TYPE_AUDIO_ACC       = "audio/acc";
+    public static final String MIME_TYPE_AUDIO_MP3       = "audio/x-mpeg";
+    // AAC
+    public static final String MIME_TYPE_AUDIO_AAC       = "audio/aac";
     // WAV
-    public static final String MIME_TYPE_AUDIO_WAV       = "audio/wav";
+    public static final String MIME_TYPE_AUDIO_WAV       = "audio/x-wav";
     // 音频类型
     public static final String MIME_TYPE_AUDIO           = "audio/*";
     // PDF
