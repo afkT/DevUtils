@@ -321,7 +321,10 @@ public class PictureSelectorEngineImpl
                     // = 压缩相关 =
                     .isCompress(config.isCompress()) // 是否压缩 true or false
                     .minimumCompressSize(config.getMinimumCompressSize()) // 小于 xxkb 的图片不压缩
-                    .withAspectRatio(config.getWithAspectRatio()[0], config.getWithAspectRatio()[1]) // 裁剪比例 如 16:9 3:2 3:4 1:1 可自定义
+                    .withAspectRatio(
+                            config.getWithAspectRatio()[0],
+                            config.getWithAspectRatio()[1]
+                    ) // 裁剪比例 如 16:9 3:2 3:4 1:1 可自定义
                     // = 裁减相关 =
                     // 判断是否显示圆形裁减
                     .circleDimmedLayer(isCircleCrop)

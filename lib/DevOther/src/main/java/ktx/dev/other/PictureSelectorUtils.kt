@@ -278,7 +278,7 @@ object PictureSelectorUtils {
                 // 是否圆形裁减
                 val isCircleCrop = config.isCircleCrop()
 
-                // 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
+                // 多选 or 单选 MediaConfig.MULTIPLE or MediaConfig.SINGLE
                 pictureSelectionModel.selectionMode(config.getSelectionMode())
                     .imageEngine(GlideEngine.createGlideEngine())
                     .isPreviewImage(true) // 是否可预览图片 true or false
