@@ -50,6 +50,9 @@ import dev.utils.common.FileUtils;
  *     {@link IntentUtils#getOpenDocumentIntent()}
  *     使用存储访问框架打开文件 {@link ResourceUtils#openInputStream(Uri)}
  *     @see <a href="https://developer.android.google.cn/guide/topics/providers/document-provider#java"/>
+ *     <p></p>
+ *     图片、视频、音频、下载文件 对应存储位置
+ *     @see <a href="https://developer.android.google.cn/training/data-storage/shared/media"/>
  * </pre>
  */
 public final class MediaStoreUtils {
@@ -1162,7 +1165,7 @@ public final class MediaStoreUtils {
     }
 
     /**
-     * 通过 MimeType 获取后缀
+     * 通过 MimeType 获取后缀 ( 不含 . )
      * @param mimeType 例: text/plain
      * @return 对应 Type 后缀
      */

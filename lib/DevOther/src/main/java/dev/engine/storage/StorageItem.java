@@ -27,7 +27,7 @@ public class StorageItem
     private String mFileName;
     // 存储文件夹 ( 不包含完整路径, 就文件夹名, 不传则会存储在对应路径文件根目录 )
     private String mFolder; // 可以传入, 如: /Dev/Material
-    // 存储路径 ( 存储路径 => filePath + folder + fileName )
+    // 存储路径 ( 不包含文件名, 纯路径 ) 只会在内部存储时使用
     private String mFilePath;
     // 资源类型
     private String mMimeType;

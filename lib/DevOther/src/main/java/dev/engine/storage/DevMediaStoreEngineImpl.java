@@ -8,6 +8,10 @@ import java.io.File;
 import dev.base.DevSource;
 import dev.engine.storage.listener.OnInsertListener;
 import dev.utils.app.MediaStoreUtils;
+import dev.utils.app.SDCardUtils;
+import dev.utils.app.UriUtils;
+import dev.utils.common.FileUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: DevUtils MediaStore Engine 实现
@@ -280,8 +284,7 @@ public class DevMediaStoreEngineImpl
                             return MediaStoreUtils.createUriByFile(file);
                         }
                 }
-            } else {
-                // 获取存储路径
+            } else { // 内部存储路径
                 File file = getOutputFile(params, source, external, type);
                 return MediaStoreUtils.createUriByFile(file);
             }
@@ -289,12 +292,83 @@ public class DevMediaStoreEngineImpl
         return null;
     }
 
+    /**
+     * 获取输出文件路径
+     * @param params   原始参数
+     * @param source   原始数据
+     * @param external 是否外部存储
+     * @param type     存储操作类型
+     * @return 输出文件路径
+     */
     private File getOutputFile(
             final StorageItem params,
             final DevSource source,
             final boolean external,
             final TYPE type
     ) {
+        if (params != null && source != null && source.isSource()) {
+            if (params.getOutputUri() != null) {
+                String uriPath = UriUtils.getFilePathByUri(
+                        params.getOutputUri()
+                );
+                if (uriPath != null) {
+                    return FileUtils.getFile(uriPath);
+                }
+            }
+            if (external) { // 外部存储路径
+                switch (type) {
+                    case IMAGE: // 存储到 Pictures 文件夹
+                    case VIDEO: // 存储到 DCIM 文件夹
+                    case AUDIO: // 存储到 Music 文件夹
+                    case DOWNLOAD: // 存储到 Download 文件夹
+                        // 需考虑 fileName 是否存在后缀情况 ( 如果 mimeType 用了 xxx/* 则需指定后缀 )
+                        if (StringUtils.isNotEmpty(params.getMimeType())) {
+                            // 属于 * 自动识别, 则 fileName 要求指定后缀 ( 直接拼接即可 )
+                            if (params.getMimeType().contains("*")) {
+                                // SDCard/folder/fileName
+                                return FileUtils.getFile(
+                                        SDCardUtils.getSDCardPath(params.getFolder()),
+                                        params.getFileName()
+                                );
+                            } else {
+                                // 进行获取文件后缀 ( 不含 . )
+                                String extension = MediaStoreUtils.getExtensionFromMimeType(
+                                        params.getMimeType()
+                                );
+                                // 存在后缀才进行拼接
+                                if (StringUtils.isNotEmpty(extension)) {
+                                    // fileName.extension ( 小写后缀 )
+                                    String fileName = params.getFileName() + "." + extension.toLowerCase();
+                                    // SDCard/folder/fileName.extension
+                                    return FileUtils.getFile(
+                                            SDCardUtils.getSDCardPath(params.getFolder()),
+                                            fileName
+                                    );
+                                }
+                                // 无法获取到后缀, 可考虑也进行拼接返回
+                                // SDCard/folder/fileName
+                                return FileUtils.getFile(
+                                        SDCardUtils.getSDCardPath(params.getFolder()),
+                                        params.getFileName()
+                                );
+                            }
+                        }
+                        break;
+                }
+            } else { // 内部存储路径
+                String internalPath = params.getFilePath();
+                // 判断是否存在文件夹, 存在则追加到 存储路径 上
+                if (StringUtils.isNotEmpty(params.getFolder())) {
+                    File internalFile = FileUtils.getFile(
+                            params.getFilePath(),
+                            params.getFolder()
+                    );
+                    internalPath = FileUtils.getAbsolutePath(internalFile);
+                }
+                // filePath + folder + fileName
+                return FileUtils.getFile(internalPath, params.getFileName());
+            }
+        }
         return null;
     }
 
