@@ -10,35 +10,35 @@ public class MediaConfig
         extends IMediaEngine.EngineConfig {
 
     // 相册选择类型
-    private int                  mimeType            = MimeType.ofImage();
+    private int                  mMimeType            = MimeType.ofImage();
     // 相册选择模式
-    private int                  selectionMode       = MimeType.MULTIPLE;
+    private int                  mSelectionMode       = MimeType.MULTIPLE;
     // 是否显示拍照
-    private boolean              isCamera            = true;
+    private boolean              mIsCamera            = true;
     // 是否裁减
-    private boolean              isCrop              = false;
+    private boolean              mIsCrop              = false;
     // 是否圆形裁减 true = 圆形, false = 矩形
-    private boolean              isCircleCrop        = false;
+    private boolean              mIsCircleCrop        = false;
     // 是否压缩
-    private boolean              isCompress          = false;
+    private boolean              mIsCompress          = false;
     // 图片大于多少才进行压缩 (kb)
-    private int                  minimumCompressSize = 2048;
+    private int                  mMinimumCompressSize = 2048;
     // 裁减比例
-    private int[]                withAspectRatio     = new int[]{0, 0};
+    private int[]                mWithAspectRatio     = new int[]{0, 0};
     // 是否显示 Gif
-    private boolean              isGif               = false;
+    private boolean              mIsGif               = false;
     // 每行显示个数
-    private int                  imageSpanCount      = 4;
+    private int                  mImageSpanCount      = 4;
     // 最小选择数量
-    private int                  minSelectNum        = 1;
+    private int                  mMinSelectNum        = 1;
     // 最大选择数量
-    private int                  maxSelectNum        = 9;
+    private int                  mMaxSelectNum        = 9;
     // 已选择的本地资源
-    private List<LocalMediaData> localMedia;
+    private List<LocalMediaData> mLocalMedia;
     // 拍照存储地址
-    private String               cameraSavePath      = null;
+    private String               mCameraSavePath      = null;
     // 压缩图片存储地址
-    private String               compressSavePath    = null;
+    private String               mCompressSavePath    = null;
 
     /**
      * detail: 选择模式
@@ -80,7 +80,7 @@ public class MediaConfig
      * @return 相册选择类型
      */
     public int getMimeType() {
-        return mimeType;
+        return mMimeType;
     }
 
     /**
@@ -97,9 +97,9 @@ public class MediaConfig
     public MediaConfig setMimeType(final int mimeType) {
         // 超过最大、最小值都默认为全部类型
         if (mimeType > MimeType.ofAudio() || mimeType < MimeType.ofAll()) {
-            this.mimeType = MimeType.ofAll();
+            this.mMimeType = MimeType.ofAll();
         } else {
-            this.mimeType = mimeType;
+            this.mMimeType = mimeType;
         }
         return this;
     }
@@ -109,7 +109,7 @@ public class MediaConfig
      * @return 相册选择模式
      */
     public int getSelectionMode() {
-        return selectionMode;
+        return mSelectionMode;
     }
 
     /**
@@ -123,9 +123,9 @@ public class MediaConfig
      */
     public MediaConfig setSelectionMode(final int selectionMode) {
         if (selectionMode >= MimeType.MULTIPLE) {
-            this.selectionMode = MimeType.MULTIPLE;
+            this.mSelectionMode = MimeType.MULTIPLE;
         } else if (selectionMode <= MimeType.SINGLE) {
-            this.selectionMode = MimeType.SINGLE;
+            this.mSelectionMode = MimeType.SINGLE;
         }
         return this;
     }
@@ -135,7 +135,7 @@ public class MediaConfig
      * @return {@code true} yes, {@code false} no
      */
     public boolean isCamera() {
-        return isCamera;
+        return mIsCamera;
     }
 
     /**
@@ -144,7 +144,7 @@ public class MediaConfig
      * @return {@link MediaConfig}
      */
     public MediaConfig setCamera(final boolean camera) {
-        isCamera = camera;
+        mIsCamera = camera;
         return this;
     }
 
@@ -153,7 +153,7 @@ public class MediaConfig
      * @return {@code true} yes, {@code false} no
      */
     public boolean isCrop() {
-        return isCrop;
+        return mIsCrop;
     }
 
     /**
@@ -162,7 +162,7 @@ public class MediaConfig
      * @return {@link MediaConfig}
      */
     public MediaConfig setCrop(final boolean crop) {
-        isCrop = crop;
+        mIsCrop = crop;
         return this;
     }
 
@@ -171,7 +171,7 @@ public class MediaConfig
      * @return {@code true} yes, {@code false} no
      */
     public boolean isCircleCrop() {
-        return isCircleCrop;
+        return mIsCircleCrop;
     }
 
     /**
@@ -180,7 +180,7 @@ public class MediaConfig
      * @return {@link MediaConfig}
      */
     public MediaConfig setCircleCrop(final boolean circleCrop) {
-        isCircleCrop = circleCrop;
+        mIsCircleCrop = circleCrop;
         return this;
     }
 
@@ -189,7 +189,7 @@ public class MediaConfig
      * @return {@code true} yes, {@code false} no
      */
     public boolean isCompress() {
-        return isCompress;
+        return mIsCompress;
     }
 
     /**
@@ -198,7 +198,7 @@ public class MediaConfig
      * @return {@link MediaConfig}
      */
     public MediaConfig setCompress(final boolean compress) {
-        isCompress = compress;
+        mIsCompress = compress;
         return this;
     }
 
@@ -207,7 +207,7 @@ public class MediaConfig
      * @return 最小压缩大小
      */
     public int getMinimumCompressSize() {
-        return minimumCompressSize;
+        return mMinimumCompressSize;
     }
 
     /**
@@ -216,7 +216,7 @@ public class MediaConfig
      * @return {@link MediaConfig}
      */
     public MediaConfig setMinimumCompressSize(final int minimumCompressSize) {
-        this.minimumCompressSize = minimumCompressSize;
+        this.mMinimumCompressSize = minimumCompressSize;
         return this;
     }
 
@@ -225,7 +225,7 @@ public class MediaConfig
      * @return int[] 0 = 宽比例, 1 = 高比例
      */
     public int[] getWithAspectRatio() {
-        return withAspectRatio;
+        return mWithAspectRatio;
     }
 
     /**
@@ -238,8 +238,8 @@ public class MediaConfig
             final int x,
             final int y
     ) {
-        this.withAspectRatio[0] = x;
-        this.withAspectRatio[1] = y;
+        this.mWithAspectRatio[0] = x;
+        this.mWithAspectRatio[1] = y;
         return this;
     }
 
@@ -248,7 +248,7 @@ public class MediaConfig
      * @return {@code true} yes, {@code false} no
      */
     public boolean isGif() {
-        return isGif;
+        return mIsGif;
     }
 
     /**
@@ -257,7 +257,7 @@ public class MediaConfig
      * @return {@link MediaConfig}
      */
     public MediaConfig setGif(final boolean gif) {
-        isGif = gif;
+        mIsGif = gif;
         return this;
     }
 
@@ -266,7 +266,7 @@ public class MediaConfig
      * @return 每行显示个数
      */
     public int getImageSpanCount() {
-        return imageSpanCount;
+        return mImageSpanCount;
     }
 
     /**
@@ -275,7 +275,7 @@ public class MediaConfig
      * @return {@link MediaConfig}
      */
     public MediaConfig setImageSpanCount(final int imageSpanCount) {
-        this.imageSpanCount = Math.max(imageSpanCount, 1);
+        this.mImageSpanCount = Math.max(imageSpanCount, 1);
         return this;
     }
 
@@ -284,7 +284,7 @@ public class MediaConfig
      * @return 最小选择数量
      */
     public int getMinSelectNum() {
-        return minSelectNum;
+        return mMinSelectNum;
     }
 
     /**
@@ -293,7 +293,7 @@ public class MediaConfig
      * @return {@link MediaConfig}
      */
     public MediaConfig setMinSelectNum(final int minSelectNum) {
-        this.minSelectNum = minSelectNum;
+        this.mMinSelectNum = minSelectNum;
         return this;
     }
 
@@ -302,7 +302,7 @@ public class MediaConfig
      * @return 最大选择数量
      */
     public int getMaxSelectNum() {
-        return maxSelectNum;
+        return mMaxSelectNum;
     }
 
     /**
@@ -311,7 +311,7 @@ public class MediaConfig
      * @return {@link MediaConfig}
      */
     public MediaConfig setMaxSelectNum(final int maxSelectNum) {
-        this.maxSelectNum = maxSelectNum;
+        this.mMaxSelectNum = maxSelectNum;
         return this;
     }
 
@@ -320,7 +320,7 @@ public class MediaConfig
      * @return 已选择的本地资源 {@link List<LocalMediaData>}
      */
     public List<LocalMediaData> getLocalMedia() {
-        return localMedia;
+        return mLocalMedia;
     }
 
     /**
@@ -329,7 +329,7 @@ public class MediaConfig
      * @return {@link MediaConfig}
      */
     public MediaConfig setLocalMedia(final List<LocalMediaData> localMedia) {
-        this.localMedia = localMedia;
+        this.mLocalMedia = localMedia;
         return this;
     }
 
@@ -338,7 +338,7 @@ public class MediaConfig
      * @return 拍照存储地址
      */
     public String getCameraSavePath() {
-        return cameraSavePath;
+        return mCameraSavePath;
     }
 
     /**
@@ -347,7 +347,7 @@ public class MediaConfig
      * @return {@link MediaConfig}
      */
     public MediaConfig setCameraSavePath(final String cameraSavePath) {
-        this.cameraSavePath = cameraSavePath;
+        this.mCameraSavePath = cameraSavePath;
         return this;
     }
 
@@ -356,7 +356,7 @@ public class MediaConfig
      * @return 压缩图片存储地址
      */
     public String getCompressSavePath() {
-        return compressSavePath;
+        return mCompressSavePath;
     }
 
     /**
@@ -365,7 +365,7 @@ public class MediaConfig
      * @return {@link MediaConfig}
      */
     public MediaConfig setCompressSavePath(final String compressSavePath) {
-        this.compressSavePath = compressSavePath;
+        this.mCompressSavePath = compressSavePath;
         return this;
     }
 
@@ -377,21 +377,21 @@ public class MediaConfig
      */
     public MediaConfig clone() {
         MediaConfig config = new MediaConfig();
-        config.mimeType            = mimeType;
-        config.selectionMode       = selectionMode;
-        config.isCamera            = isCamera;
-        config.isCrop              = isCrop;
-        config.isCircleCrop        = isCircleCrop;
-        config.isCompress          = isCompress;
-        config.minimumCompressSize = minimumCompressSize;
-        config.withAspectRatio     = withAspectRatio;
-        config.isGif               = isGif;
-        config.imageSpanCount      = imageSpanCount;
-        config.minSelectNum        = minSelectNum;
-        config.maxSelectNum        = maxSelectNum;
-        config.localMedia          = localMedia;
-        config.cameraSavePath      = cameraSavePath;
-        config.compressSavePath    = compressSavePath;
+        config.mMimeType            = mMimeType;
+        config.mSelectionMode       = mSelectionMode;
+        config.mIsCamera            = mIsCamera;
+        config.mIsCrop              = mIsCrop;
+        config.mIsCircleCrop        = mIsCircleCrop;
+        config.mIsCompress          = mIsCompress;
+        config.mMinimumCompressSize = mMinimumCompressSize;
+        config.mWithAspectRatio     = mWithAspectRatio;
+        config.mIsGif               = mIsGif;
+        config.mImageSpanCount      = mImageSpanCount;
+        config.mMinSelectNum        = mMinSelectNum;
+        config.mMaxSelectNum        = mMaxSelectNum;
+        config.mLocalMedia          = mLocalMedia;
+        config.mCameraSavePath      = mCameraSavePath;
+        config.mCompressSavePath    = mCompressSavePath;
         return config;
     }
 
@@ -402,21 +402,21 @@ public class MediaConfig
      */
     public MediaConfig set(final MediaConfig config) {
         if (config != null) {
-            mimeType            = config.mimeType;
-            selectionMode       = config.selectionMode;
-            isCamera            = config.isCamera;
-            isCrop              = config.isCrop;
-            isCircleCrop        = config.isCircleCrop;
-            isCompress          = config.isCompress;
-            minimumCompressSize = config.minimumCompressSize;
-            withAspectRatio     = config.withAspectRatio;
-            isGif               = config.isGif;
-            imageSpanCount      = config.imageSpanCount;
-            minSelectNum        = config.minSelectNum;
-            maxSelectNum        = config.maxSelectNum;
-            localMedia          = config.localMedia;
-            cameraSavePath      = config.cameraSavePath;
-            compressSavePath    = config.compressSavePath;
+            mMimeType            = config.mMimeType;
+            mSelectionMode       = config.mSelectionMode;
+            mIsCamera            = config.mIsCamera;
+            mIsCrop              = config.mIsCrop;
+            mIsCircleCrop        = config.mIsCircleCrop;
+            mIsCompress          = config.mIsCompress;
+            mMinimumCompressSize = config.mMinimumCompressSize;
+            mWithAspectRatio     = config.mWithAspectRatio;
+            mIsGif               = config.mIsGif;
+            mImageSpanCount      = config.mImageSpanCount;
+            mMinSelectNum        = config.mMinSelectNum;
+            mMaxSelectNum        = config.mMaxSelectNum;
+            mLocalMedia          = config.mLocalMedia;
+            mCameraSavePath      = config.mCameraSavePath;
+            mCompressSavePath    = config.mCompressSavePath;
         }
         return this;
     }

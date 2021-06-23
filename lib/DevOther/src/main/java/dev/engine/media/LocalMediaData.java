@@ -10,23 +10,23 @@ import com.luck.picture.lib.entity.LocalMedia;
 public class LocalMediaData
         extends IMediaEngine.EngineData {
 
-    private LocalMedia localMedia;
+    private LocalMedia mLocalMedia;
 
     public LocalMediaData() {
     }
 
     public LocalMediaData(final LocalMedia localMedia) {
-        this.localMedia = localMedia;
+        this.mLocalMedia = localMedia;
     }
 
     // =
 
     public LocalMedia getLocalMedia() {
-        return localMedia;
+        return mLocalMedia;
     }
 
     public void setLocalMedia(final LocalMedia localMedia) {
-        this.localMedia = localMedia;
+        this.mLocalMedia = localMedia;
     }
 
     /**
@@ -35,20 +35,20 @@ public class LocalMediaData
      * @return 本地资源路径
      */
     public String getLocalMediaPath(final boolean original) {
-        if (localMedia != null) {
-            if (original) return localMedia.getPath();
+        if (mLocalMedia != null) {
+            if (original) return mLocalMedia.getPath();
             // 判断资源类型
-            String mimeType = localMedia.getMimeType();
+            String mimeType = mLocalMedia.getMimeType();
             if (PictureMimeType.isHasImage(mimeType)) { // 图片
-                if (localMedia.isCompressed()) { // 是否压缩图片
-                    return localMedia.getCompressPath();
-                } else if (localMedia.isCut()) { // 是否裁减图片
-                    return localMedia.getCutPath();
+                if (mLocalMedia.isCompressed()) { // 是否压缩图片
+                    return mLocalMedia.getCompressPath();
+                } else if (mLocalMedia.isCut()) { // 是否裁减图片
+                    return mLocalMedia.getCutPath();
                 } else { // 获取原图
-                    return localMedia.getPath();
+                    return mLocalMedia.getPath();
                 }
             } else {
-                return localMedia.getPath();
+                return mLocalMedia.getPath();
             }
         }
         return null;

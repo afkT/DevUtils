@@ -12,14 +12,14 @@ public class StorageResult
         extends IStorageEngine.EngineResult {
 
     // 前置条件校验结果 ( 如传入参数判 null, 以及 DevSource 是否有效 )
-    private final boolean preCheck;
+    private final boolean mPreCheck;
     // 存储文件地址
-    private       File    file;
+    private       File    mFile;
     // 存储文件 Uri
-    private       Uri     uri;
+    private       Uri     mUri;
 
     public StorageResult(boolean preCheck) {
-        this.preCheck = preCheck;
+        this.mPreCheck = preCheck;
     }
 
     // ==========
@@ -47,26 +47,26 @@ public class StorageResult
     // =============
 
     public boolean isPreCheck() {
-        return preCheck;
+        return mPreCheck;
     }
 
     // =
 
     public File getFile() {
-        return file;
+        return mFile;
     }
 
     public StorageResult setFile(File file) {
-        this.file = file;
+        this.mFile = file;
         return this;
     }
 
     public Uri getUri() {
-        return uri;
+        return mUri;
     }
 
     public StorageResult setUri(Uri uri) {
-        this.uri = uri;
+        this.mUri = uri;
         return this;
     }
 }
