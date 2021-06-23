@@ -1,9 +1,15 @@
 package dev.engine.storage;
 
 import android.net.Uri;
+import android.os.Build;
+
+import java.io.File;
 
 import dev.base.DevSource;
 import dev.engine.storage.listener.OnInsertListener;
+import dev.utils.app.MediaStoreUtils;
+import dev.utils.app.PathUtils;
+import dev.utils.app.UriUtils;
 
 /**
  * detail: DevUtils MediaStore Engine 实现
@@ -222,17 +228,61 @@ public class DevMediaStoreEngineImpl
 
     /**
      * 获取输出 Uri ( 存储文件 Uri )
-     * @param params 原始参数
-     * @param source 原始数据
+     * @param params   原始参数
+     * @param source   原始数据
+     * @param external 是否外部存储
+     * @param type     存储操作类型
      * @return 输出 Uri
      */
     private Uri getOutputUri(
             final StorageItem params,
-            final DevSource source
+            final DevSource source,
+            final boolean external,
+            final TYPE type
     ) {
         if (params != null && source != null && source.isSource()) {
-
+            if (params.getOutputUri() != null) {
+                return params.getOutputUri();
+            }
+            // 外部存储才需要进行适配
+            if (external) {
+                switch (type) {
+                    case DOWNLOAD: // 存储到 Download 文件夹
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                            // 创建 Download Uri
+                            return MediaStoreUtils.createDownloadUri(
+                                    params.getFileName(),
+                                    params.getMimeType(),
+                                    params.getFolder()
+                            );
+                        } else {
+                            // 低版本直接创建 SDCard/Download File
+                            File file = getOutputFile(params, source, external, type);
+                            return UriUtils.fromFile(file);
+                        }
+                    case IMAGE: // 存储到 Pictures 文件夹
+                        // 创建 Image Uri
+                        return MediaStoreUtils.createImageUri(
+                                params.getFileName(),
+                                params.getMimeType(),
+                                params.getFolder()
+                        );
+                }
+            } else {
+                // 获取存储路径
+                File file = getOutputFile(params, source, external, type);
+                return UriUtils.fromFile(file);
+            }
         }
+        return null;
+    }
+
+    private File getOutputFile(
+            final StorageItem params,
+            final DevSource source,
+            final boolean external,
+            final TYPE type
+    ){
         return null;
     }
 
@@ -249,5 +299,17 @@ public class DevMediaStoreEngineImpl
             final DevSource source,
             final OnInsertListener<StorageItem, StorageResult> listener
     ) {
+    }
+
+    /**
+     * detail: 存储操作类型
+     * @author Ttt
+     */
+    private enum TYPE {
+        IMAGE,
+        VIDEO,
+        AUDIO,
+        DOWNLOAD,
+        NONE
     }
 }

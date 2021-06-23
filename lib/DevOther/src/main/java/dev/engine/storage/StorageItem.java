@@ -12,6 +12,8 @@ import android.net.Uri;
  *     <p></p>
  *     {@link #mFilePath} 只会在内部存储时使用
  *     属于内部存储时, 完整路径为 filePath + folder + fileName
+ *     <p></p>
+ *     可传入输出 Uri 或通过拼接路径创建 Uri 二选一
  * </pre>
  */
 public class StorageItem
@@ -45,4 +47,67 @@ public class StorageItem
     // =============
     // = 对外公开方法 =
     // =============
+
+    public String getFileName() {
+        return mFileName;
+    }
+
+    public StorageItem setFileName(String fileName) {
+        this.mFileName = fileName;
+        return this;
+    }
+
+    public String getFolder() {
+        return mFolder;
+    }
+
+    public StorageItem setFolder(String folder) {
+        this.mFolder = folder;
+        return this;
+    }
+
+    public String getFilePath() {
+        return mFilePath;
+    }
+
+    public StorageItem setFilePath(String filePath) {
+        this.mFilePath = filePath;
+        return this;
+    }
+
+    public String getMimeType() {
+        return mMimeType;
+    }
+
+    public StorageItem setMimeType(String mimeType) {
+        this.mMimeType = mimeType;
+        return this;
+    }
+
+    public Uri getOutputUri() {
+        return mOutputUri;
+    }
+
+    public StorageItem setOutputUri(Uri outputUri) {
+        this.mOutputUri = outputUri;
+        return this;
+    }
+
+    public Bitmap.CompressFormat getFormat() {
+        return mFormat;
+    }
+
+    public StorageItem setFormat(Bitmap.CompressFormat format) {
+        this.mFormat = format;
+        return this;
+    }
+
+    public int getQuality() {
+        return mQuality;
+    }
+
+    public StorageItem setQuality(int quality) {
+        this.mQuality = quality;
+        return this;
+    }
 }

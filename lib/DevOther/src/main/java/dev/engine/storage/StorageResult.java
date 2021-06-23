@@ -18,8 +18,8 @@ public class StorageResult
     // 存储文件 Uri
     private       Uri     mUri;
 
-    public StorageResult(boolean preCheck) {
-        this.mPreCheck = preCheck;
+    public StorageResult(boolean correct) {
+        this.mPreCheck = correct;
     }
 
     // ==========
@@ -39,14 +39,14 @@ public class StorageResult
      * @return {@link StorageResult}
      */
     public static StorageResult failure() {
-        return new StorageResult(true);
+        return new StorageResult(false);
     }
 
     // =============
     // = 对外公开方法 =
     // =============
 
-    public boolean isPreCheck() {
+    public boolean isCorrect() {
         return mPreCheck;
     }
 

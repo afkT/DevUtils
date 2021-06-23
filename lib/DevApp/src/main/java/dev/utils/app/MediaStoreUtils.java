@@ -198,7 +198,7 @@ public final class MediaStoreUtils {
      * @return 图片 Uri
      */
     public static Uri createImageUri() {
-        return createImageUri(getImageDisplayName(), System.currentTimeMillis(), MIME_TYPE_IMAGE_PNG, RELATIVE_IMAGE_PATH);
+        return createImageUri(getImageDisplayName(), MIME_TYPE_IMAGE_PNG, RELATIVE_IMAGE_PATH, System.currentTimeMillis());
     }
 
     /**
@@ -207,7 +207,7 @@ public final class MediaStoreUtils {
      * @return 图片 Uri
      */
     public static Uri createImageUri(final String mimeType) {
-        return createImageUri(getImageDisplayName(), System.currentTimeMillis(), mimeType, RELATIVE_IMAGE_PATH);
+        return createImageUri(getImageDisplayName(), mimeType, RELATIVE_IMAGE_PATH, System.currentTimeMillis());
     }
 
     /**
@@ -220,24 +220,39 @@ public final class MediaStoreUtils {
             final String mimeType,
             final String relativePath
     ) {
-        return createImageUri(getImageDisplayName(), System.currentTimeMillis(), mimeType, relativePath);
+        return createImageUri(getImageDisplayName(), mimeType, relativePath, System.currentTimeMillis());
     }
 
     /**
      * 创建图片 Uri
      * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
-     * @param createTime   创建时间
      * @param mimeType     资源类型
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
      * @return 图片 Uri
      */
     public static Uri createImageUri(
             final String displayName,
-            final long createTime,
             final String mimeType,
             final String relativePath
     ) {
-        return createMediaUri(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
+        return createImageUri(displayName, mimeType, relativePath, System.currentTimeMillis());
+    }
+
+    /**
+     * 创建图片 Uri
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
+     * @param createTime   创建时间
+     * @return 图片 Uri
+     */
+    public static Uri createImageUri(
+            final String displayName,
+            final String mimeType,
+            final String relativePath,
+            final long createTime
+    ) {
+        return createMediaUri(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, displayName, mimeType, relativePath, createTime);
     }
 
     // =======
@@ -249,7 +264,7 @@ public final class MediaStoreUtils {
      * @return 视频 Uri
      */
     public static Uri createVideoUri() {
-        return createVideoUri(getVideoDisplayName(), System.currentTimeMillis(), MIME_TYPE_VIDEO_MP4, RELATIVE_VIDEO_PATH);
+        return createVideoUri(getVideoDisplayName(), MIME_TYPE_VIDEO_MP4, RELATIVE_VIDEO_PATH, System.currentTimeMillis());
     }
 
     /**
@@ -258,7 +273,7 @@ public final class MediaStoreUtils {
      * @return 视频 Uri
      */
     public static Uri createVideoUri(final String mimeType) {
-        return createVideoUri(getVideoDisplayName(), System.currentTimeMillis(), mimeType, RELATIVE_VIDEO_PATH);
+        return createVideoUri(getVideoDisplayName(), mimeType, RELATIVE_VIDEO_PATH, System.currentTimeMillis());
     }
 
     /**
@@ -271,24 +286,39 @@ public final class MediaStoreUtils {
             final String mimeType,
             final String relativePath
     ) {
-        return createVideoUri(getVideoDisplayName(), System.currentTimeMillis(), mimeType, relativePath);
+        return createVideoUri(getVideoDisplayName(), mimeType, relativePath, System.currentTimeMillis());
     }
 
     /**
      * 创建视频 Uri
      * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
-     * @param createTime   创建时间
      * @param mimeType     资源类型
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
      * @return 视频 Uri
      */
     public static Uri createVideoUri(
             final String displayName,
-            final long createTime,
             final String mimeType,
             final String relativePath
     ) {
-        return createMediaUri(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
+        return createVideoUri(displayName, mimeType, relativePath, System.currentTimeMillis());
+    }
+
+    /**
+     * 创建视频 Uri
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
+     * @param createTime   创建时间
+     * @return 视频 Uri
+     */
+    public static Uri createVideoUri(
+            final String displayName,
+            final String mimeType,
+            final String relativePath,
+            final long createTime
+    ) {
+        return createMediaUri(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, displayName, mimeType, relativePath, createTime);
     }
 
     // =======
@@ -300,7 +330,7 @@ public final class MediaStoreUtils {
      * @return 音频 Uri
      */
     public static Uri createAudioUri() {
-        return createAudioUri(getAudioDisplayName(), System.currentTimeMillis(), MIME_TYPE_AUDIO_MP3, RELATIVE_AUDIO_PATH);
+        return createAudioUri(getAudioDisplayName(), MIME_TYPE_AUDIO_MP3, RELATIVE_AUDIO_PATH, System.currentTimeMillis());
     }
 
     /**
@@ -309,7 +339,7 @@ public final class MediaStoreUtils {
      * @return 音频 Uri
      */
     public static Uri createAudioUri(final String mimeType) {
-        return createAudioUri(getAudioDisplayName(), System.currentTimeMillis(), mimeType, RELATIVE_AUDIO_PATH);
+        return createAudioUri(getAudioDisplayName(), mimeType, RELATIVE_AUDIO_PATH, System.currentTimeMillis());
     }
 
     /**
@@ -322,24 +352,39 @@ public final class MediaStoreUtils {
             final String mimeType,
             final String relativePath
     ) {
-        return createAudioUri(getAudioDisplayName(), System.currentTimeMillis(), mimeType, relativePath);
+        return createAudioUri(getAudioDisplayName(), mimeType, relativePath, System.currentTimeMillis());
     }
 
     /**
      * 创建音频 Uri
      * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
-     * @param createTime   创建时间
      * @param mimeType     资源类型
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
      * @return 音频 Uri
      */
     public static Uri createAudioUri(
             final String displayName,
-            final long createTime,
             final String mimeType,
             final String relativePath
     ) {
-        return createMediaUri(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
+        return createAudioUri(displayName, mimeType, relativePath, System.currentTimeMillis());
+    }
+
+    /**
+     * 创建音频 Uri
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
+     * @param mimeType     资源类型
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
+     * @param createTime   创建时间
+     * @return 音频 Uri
+     */
+    public static Uri createAudioUri(
+            final String displayName,
+            final String mimeType,
+            final String relativePath,
+            final long createTime
+    ) {
+        return createMediaUri(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, displayName, mimeType, relativePath, createTime);
     }
 
     // ============
@@ -353,7 +398,7 @@ public final class MediaStoreUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.Q)
     public static Uri createDownloadUri(final String displayName) {
-        return createDownloadUri(displayName, System.currentTimeMillis(), MIME_TYPE_APPLICATION, RELATIVE_DOWNLOAD_PATH);
+        return createDownloadUri(displayName, MIME_TYPE_APPLICATION, RELATIVE_DOWNLOAD_PATH, System.currentTimeMillis());
     }
 
     /**
@@ -367,7 +412,7 @@ public final class MediaStoreUtils {
             final String displayName,
             final String mimeType
     ) {
-        return createDownloadUri(displayName, System.currentTimeMillis(), mimeType, RELATIVE_DOWNLOAD_PATH);
+        return createDownloadUri(displayName, mimeType, RELATIVE_DOWNLOAD_PATH, System.currentTimeMillis());
     }
 
     /**
@@ -383,7 +428,7 @@ public final class MediaStoreUtils {
             final String mimeType,
             final String relativePath
     ) {
-        return createDownloadUri(displayName, System.currentTimeMillis(), mimeType, relativePath);
+        return createDownloadUri(displayName, mimeType, relativePath, System.currentTimeMillis());
     }
 
     /**
@@ -392,19 +437,19 @@ public final class MediaStoreUtils {
      *     Android Q ( 10.0 ) 以下直接通过 File 写入到 {@link Environment#DIRECTORY_DOWNLOADS}
      * </pre>
      * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
-     * @param createTime   创建时间
      * @param mimeType     资源类型
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
+     * @param createTime   创建时间
      * @return Download Uri
      */
     @RequiresApi(api = Build.VERSION_CODES.Q)
     public static Uri createDownloadUri(
             final String displayName,
-            final long createTime,
             final String mimeType,
-            final String relativePath
+            final String relativePath,
+            final long createTime
     ) {
-        return createMediaUri(MediaStore.Downloads.EXTERNAL_CONTENT_URI, displayName, createTime, mimeType, relativePath);
+        return createMediaUri(MediaStore.Downloads.EXTERNAL_CONTENT_URI, displayName, mimeType, relativePath, createTime);
     }
 
     // ==========
@@ -425,7 +470,7 @@ public final class MediaStoreUtils {
             final String mimeType,
             final String relativePath
     ) {
-        return createMediaUri(uri, displayName, System.currentTimeMillis(), mimeType, relativePath);
+        return createMediaUri(uri, displayName, mimeType, relativePath, System.currentTimeMillis());
     }
 
     /**
@@ -435,31 +480,33 @@ public final class MediaStoreUtils {
      * </pre>
      * @param uri          MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
      * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
-     * @param createTime   创建时间
      * @param mimeType     资源类型
      * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
+     * @param createTime   创建时间
      * @return Media Uri
      */
     public static Uri createMediaUri(
             final Uri uri,
             final String displayName,
-            final long createTime,
             final String mimeType,
-            final String relativePath
+            final String relativePath,
+            final long createTime
     ) {
         boolean       isAndroidQ = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q);
         ContentValues values     = new ContentValues(isAndroidQ ? 4 : 3);
-        values.put(MediaStore.Files.FileColumns.DISPLAY_NAME, displayName); // 文件名
+        // 文件名
+        values.put(MediaStore.Files.FileColumns.DISPLAY_NAME, displayName);
+        // 资源类型
+        values.put(MediaStore.Files.FileColumns.MIME_TYPE, mimeType);
+        // MediaStore 会根据 Uri 自动存储到对应分类目录下, 并在目录下创建 relativePath 文件夹
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            values.put(MediaStore.Files.FileColumns.RELATIVE_PATH, relativePath);
+        }
         // 创建时间
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             values.put(MediaStore.Files.FileColumns.DATE_TAKEN, createTime);
         } else {
             values.put(MediaStore.Files.FileColumns.DATE_ADDED, createTime);
-        }
-        values.put(MediaStore.Files.FileColumns.MIME_TYPE, mimeType); // 资源类型
-        // MediaStore 会根据 Uri 自动存储到对应分类目录下, 并在目录下创建 relativePath 文件夹
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            values.put(MediaStore.Files.FileColumns.RELATIVE_PATH, relativePath);
         }
         try {
             return ResourceUtils.getContentResolver().insert(uri, values);
