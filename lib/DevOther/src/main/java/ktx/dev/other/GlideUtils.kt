@@ -634,6 +634,12 @@ object GlideUtils {
                         null
                     }
                 }
+                source.mDrawable != null -> {
+                    manager.load(source.mDrawable)
+                }
+                source.mBitmap != null -> {
+                    manager.load(source.mBitmap)
+                }
                 else -> {
                     throw IllegalArgumentException("UnSupport source")
                 }
@@ -676,6 +682,12 @@ object GlideUtils {
                     } else {
                         null
                     }
+                }
+                source.mDrawable != null -> {
+                    request.load(source.mDrawable)
+                }
+                source.mBitmap != null -> {
+                    request.load(source.mBitmap)
                 }
                 else -> {
                     throw IllegalArgumentException("UnSupport source")

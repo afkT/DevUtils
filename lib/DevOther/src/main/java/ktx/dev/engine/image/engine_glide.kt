@@ -625,6 +625,12 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
                         null
                     }
                 }
+                source.mDrawable != null -> {
+                    manager.load(source.mDrawable)
+                }
+                source.mBitmap != null -> {
+                    manager.load(source.mBitmap)
+                }
                 else -> {
                     throw IllegalArgumentException("UnSupport source")
                 }
@@ -667,6 +673,12 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
                     } else {
                         null
                     }
+                }
+                source.mDrawable != null -> {
+                    request.load(source.mDrawable)
+                }
+                source.mBitmap != null -> {
+                    request.load(source.mBitmap)
                 }
                 else -> {
                     throw IllegalArgumentException("UnSupport source")

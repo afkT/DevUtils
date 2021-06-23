@@ -650,6 +650,10 @@ public class GlideEngineImpl
             } else if (source.mInputStream != null) {
                 byte[] bytes = StreamUtils.inputStreamToBytes(source.mInputStream);
                 if (bytes != null) return manager.load(bytes);
+            } else if (source.mDrawable != null) {
+                return manager.load(source.mDrawable);
+            } else if (source.mBitmap != null) {
+                return manager.load(source.mBitmap);
             } else {
                 throw new IllegalArgumentException("UnSupport source");
             }
@@ -682,6 +686,10 @@ public class GlideEngineImpl
             } else if (source.mInputStream != null) {
                 byte[] bytes = StreamUtils.inputStreamToBytes(source.mInputStream);
                 if (bytes != null) return request.load(bytes);
+            } else if (source.mDrawable != null) {
+                return request.load(source.mDrawable);
+            } else if (source.mBitmap != null) {
+                return request.load(source.mBitmap);
             } else {
                 throw new IllegalArgumentException("UnSupport source");
             }
