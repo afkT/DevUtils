@@ -480,10 +480,10 @@
 | setMaxSelectNum | 设置最大选择数量 |
 | getLocalMedia | 获取已选择的本地资源 |
 | setLocalMedia | 设置已选择的本地资源 |
-| getCameraSavePath | 获取拍照保存地址 |
-| setCameraSavePath | 设置拍照保存地址 |
-| getCompressSavePath | 获取压缩图片保存地址 |
-| setCompressSavePath | 设置压缩图片保存地址 |
+| getCameraSavePath | 获取拍照存储地址 |
+| setCameraSavePath | 设置拍照存储地址 |
+| getCompressSavePath | 获取压缩图片存储地址 |
+| setCompressSavePath | 设置压缩图片存储地址 |
 | clone | 克隆新的配置信息 |
 | set | 设置新的配置信息 |
 | ofAll | ofAll |
@@ -692,9 +692,9 @@
 | :- | :- |
 | getConfig | 获取全局相册配置 |
 | setConfig | 设置全局相册配置 |
-| getCameraSavePath | 获取拍照保存地址 |
-| getCompressSavePath | 获取压缩图片保存地址 |
-| setSavePath | 设置保存地址 |
+| getCameraSavePath | 获取拍照存储地址 |
+| getCompressSavePath | 获取压缩图片存储地址 |
+| setSavePath | 设置存储地址 |
 | getMinimumCompressSize | 获取图片大于多少才进行压缩 (kb) |
 | setMinimumCompressSize | 设置图片大于多少才进行压缩 (kb) |
 | deleteCacheDirFile | 清空缓存 |
@@ -731,8 +731,8 @@
 | setMaxSelectNum | 设置最大选择数量 |
 | getLocalMedia | 获取已选择的本地资源 |
 | setLocalMedia | 设置已选择的本地资源 |
-| setCameraSavePath | 设置拍照保存地址 |
-| setCompressSavePath | 设置压缩图片保存地址 |
+| setCameraSavePath | 设置拍照存储地址 |
+| setCompressSavePath | 设置压缩图片存储地址 |
 | clone | 克隆新的相册配置 |
 | set | 设置新的相册配置 |
 

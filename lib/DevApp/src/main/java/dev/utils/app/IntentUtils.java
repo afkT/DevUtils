@@ -839,7 +839,7 @@ public final class IntentUtils {
 
     /**
      * 获取图片拍摄的意图
-     * @param outUri 输出的 uri ( 保存地址 )
+     * @param outUri 输出的 uri ( 存储地址 )
      * @return 图片拍摄的意图
      */
     public static Intent getImageCaptureIntent(final Uri outUri) {
@@ -848,7 +848,7 @@ public final class IntentUtils {
 
     /**
      * 获取图片拍摄的意图
-     * @param outUri    输出的 uri ( 保存地址 )
+     * @param outUri    输出的 uri ( 存储地址 )
      * @param isNewTask 是否开启新的任务栈
      * @return 图片拍摄的意图
      */
@@ -869,7 +869,7 @@ public final class IntentUtils {
 
     /**
      * 获取视频拍摄的意图
-     * @param outUri 输出的 uri ( 保存地址 )
+     * @param outUri 输出的 uri ( 存储地址 )
      * @return 视频拍摄的意图
      */
     public static Intent getVideoCaptureIntent(final Uri outUri) {
@@ -878,7 +878,7 @@ public final class IntentUtils {
 
     /**
      * 获取视频拍摄的意图
-     * @param outUri    输出的 uri ( 保存地址 )
+     * @param outUri    输出的 uri ( 存储地址 )
      * @param isNewTask 是否开启新的任务栈
      * @return 视频拍摄的意图
      */

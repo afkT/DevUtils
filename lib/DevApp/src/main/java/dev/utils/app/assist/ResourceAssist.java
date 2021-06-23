@@ -1538,7 +1538,7 @@ public final class ResourceAssist {
     /**
      * 获取 Assets 资源文件数据并保存到本地
      * @param fileName 文件名
-     * @param file     文件保存地址
+     * @param file     文件存储地址
      * @return {@code true} success, {@code false} fail
      */
     public boolean saveAssetsFormFile(
@@ -1575,7 +1575,7 @@ public final class ResourceAssist {
     /**
      * 获取 Raw 资源文件数据并保存到本地
      * @param resId 资源 id
-     * @param file  文件保存地址
+     * @param file  文件存储地址
      * @return {@code true} success, {@code false} fail
      */
     public boolean saveRawFormFile(

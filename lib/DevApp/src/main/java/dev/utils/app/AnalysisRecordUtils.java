@@ -229,7 +229,7 @@ public final class AnalysisRecordUtils {
             boolean result;
             // 获取处理的日志
             String logContent = splitLog(logs);
-            // 日志保存路径
+            // 日志存储路径
             String logPath = fileInfo.getLogPath();
             // 获取日志地址
             File file = new File(logPath, fileName);
@@ -324,7 +324,7 @@ public final class AnalysisRecordUtils {
             }
             // 标记添加空格 ( 第一位不添加空格 )
             isAdd = true;
-            // 追加保存内容
+            // 追加存储内容
             builder.append(logs[i]);
         }
         return builder.toString();
@@ -690,7 +690,7 @@ public final class AnalysisRecordUtils {
          * @param result     保存结果
          * @param fileInfo   {@link FileInfo}
          * @param logContent 日志信息
-         * @param filePath   保存路径
+         * @param filePath   存储路径
          * @param fileName   文件名 ( 含后缀 )
          * @param logs       原始日志内容数组
          */

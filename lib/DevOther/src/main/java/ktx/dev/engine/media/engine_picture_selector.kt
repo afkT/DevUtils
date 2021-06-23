@@ -491,11 +491,11 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
                 .rotateEnabled(isCrop) // 裁剪是否可旋转图片 true or false
                 .scaleEnabled(isCrop) // 裁剪是否可放大缩小图片 true or false
 
-            // 设置拍照保存地址
+            // 设置拍照存储地址
             if (!TextUtils.isEmpty(config.getCameraSavePath())) {
                 pictureSelectionModel.setOutputCameraPath(config.getCameraSavePath())
             }
-            // 设置压缩图片保存地址
+            // 设置压缩图片存储地址
             if (!TextUtils.isEmpty(config.getCompressSavePath())) {
                 pictureSelectionModel.compressSavePath(config.getCompressSavePath())
             }

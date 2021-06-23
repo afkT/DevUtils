@@ -45,7 +45,7 @@ public final class FileRecordUtils {
     /**
      * 保存异常日志
      * @param ex       错误信息
-     * @param filePath 保存路径
+     * @param filePath 存储路径
      * @param fileName 文件名 ( 含后缀 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
@@ -60,7 +60,7 @@ public final class FileRecordUtils {
     /**
      * 保存异常日志
      * @param ex       错误信息
-     * @param filePath 保存路径
+     * @param filePath 存储路径
      * @param fileName 文件名 ( 含后缀 )
      * @param head     顶部标题
      * @param bottom   底部内容
@@ -79,7 +79,7 @@ public final class FileRecordUtils {
     /**
      * 保存异常日志
      * @param ex              错误信息
-     * @param filePath        保存路径
+     * @param filePath        存储路径
      * @param fileName        文件名 ( 含后缀 )
      * @param printInsertInfo 是否打印插入信息
      * @return {@code true} 保存成功, {@code false} 保存失败
@@ -96,7 +96,7 @@ public final class FileRecordUtils {
     /**
      * 保存异常日志
      * @param ex              错误信息
-     * @param filePath        保存路径
+     * @param filePath        存储路径
      * @param fileName        文件名 ( 含后缀 )
      * @param head            顶部标题
      * @param bottom          底部内容
@@ -122,7 +122,7 @@ public final class FileRecordUtils {
     /**
      * 保存日志
      * @param log      日志信息
-     * @param filePath 保存路径
+     * @param filePath 存储路径
      * @param fileName 文件名 ( 含后缀 )
      * @return {@code true} 保存成功, {@code false} 保存失败
      */
@@ -137,7 +137,7 @@ public final class FileRecordUtils {
     /**
      * 保存日志
      * @param log      日志信息
-     * @param filePath 保存路径
+     * @param filePath 存储路径
      * @param fileName 文件名 ( 含后缀 )
      * @param head     顶部标题
      * @param bottom   底部内容
@@ -158,7 +158,7 @@ public final class FileRecordUtils {
     /**
      * 保存日志
      * @param log             日志信息
-     * @param filePath        保存路径
+     * @param filePath        存储路径
      * @param fileName        文件名 ( 含后缀 )
      * @param printInsertInfo 是否打印插入信息
      * @return {@code true} 保存成功, {@code false} 保存失败
@@ -175,7 +175,7 @@ public final class FileRecordUtils {
     /**
      * 保存日志
      * @param log             日志信息
-     * @param filePath        保存路径
+     * @param filePath        存储路径
      * @param fileName        文件名 ( 含后缀 )
      * @param head            顶部标题
      * @param bottom          底部内容
@@ -249,7 +249,7 @@ public final class FileRecordUtils {
          * 记录结果回调
          * @param result          保存结果
          * @param log             日志信息
-         * @param filePath        保存路径
+         * @param filePath        存储路径
          * @param fileName        文件名 ( 含后缀 )
          * @param head            顶部标题
          * @param bottom          底部内容

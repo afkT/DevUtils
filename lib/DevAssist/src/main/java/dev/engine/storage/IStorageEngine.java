@@ -165,7 +165,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
     /**
      * 插入一条多媒体资源到内部存储空间
      * <pre>
-     *     并不局限于多媒体, 如保存文本文件、写入文件等
+     *     并不局限于多媒体, 如文本存储、其他文件写入等
      * </pre>
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}

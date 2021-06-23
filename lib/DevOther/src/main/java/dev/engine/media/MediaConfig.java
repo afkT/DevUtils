@@ -35,9 +35,9 @@ public class MediaConfig
     private int                  maxSelectNum        = 9;
     // 已选择的本地资源
     private List<LocalMediaData> localMedia;
-    // 拍照保存地址
+    // 拍照存储地址
     private String               cameraSavePath      = null;
-    // 压缩图片保存地址
+    // 压缩图片存储地址
     private String               compressSavePath    = null;
 
     /**
@@ -334,16 +334,16 @@ public class MediaConfig
     }
 
     /**
-     * 获取拍照保存地址
-     * @return 拍照保存地址
+     * 获取拍照存储地址
+     * @return 拍照存储地址
      */
     public String getCameraSavePath() {
         return cameraSavePath;
     }
 
     /**
-     * 设置拍照保存地址
-     * @param cameraSavePath 拍照保存地址
+     * 设置拍照存储地址
+     * @param cameraSavePath 拍照存储地址
      * @return {@link MediaConfig}
      */
     public MediaConfig setCameraSavePath(final String cameraSavePath) {
@@ -352,16 +352,16 @@ public class MediaConfig
     }
 
     /**
-     * 获取压缩图片保存地址
-     * @return 压缩图片保存地址
+     * 获取压缩图片存储地址
+     * @return 压缩图片存储地址
      */
     public String getCompressSavePath() {
         return compressSavePath;
     }
 
     /**
-     * 设置压缩图片保存地址
-     * @param compressSavePath 压缩图片保存地址
+     * 设置压缩图片存储地址
+     * @param compressSavePath 压缩图片存储地址
      * @return {@link MediaConfig}
      */
     public MediaConfig setCompressSavePath(final String compressSavePath) {

@@ -1110,9 +1110,9 @@ implementation 'io.github.afkt:DevAssist:1.2.4'
 | openGallery | 打开相册选择 |
 | getConfig | 获取全局配置 |
 | setConfig | 设置全局配置 |
-| getCameraSavePath | 获取拍照保存地址 |
-| getCompressSavePath | 获取压缩图片保存地址 |
-| setSavePath | 设置保存地址 |
+| getCameraSavePath | 获取拍照存储地址 |
+| getCompressSavePath | 获取压缩图片存储地址 |
+| setSavePath | 设置存储地址 |
 | getMinimumCompressSize | 获取图片大于多少才进行压缩 (kb) |
 | setMinimumCompressSize | 设置图片大于多少才进行压缩 (kb) |
 | deleteCacheDirFile | 删除缓存文件 |

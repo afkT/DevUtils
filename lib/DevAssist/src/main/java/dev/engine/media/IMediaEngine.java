@@ -124,21 +124,21 @@ public interface IMediaEngine<Config extends IMediaEngine.EngineConfig,
     void setConfig(Config config);
 
     /**
-     * 获取拍照保存地址
-     * @return 拍照保存地址
+     * 获取拍照存储地址
+     * @return 拍照存储地址
      */
     String getCameraSavePath();
 
     /**
-     * 获取压缩图片保存地址
-     * @return 压缩图片保存地址
+     * 获取压缩图片存储地址
+     * @return 压缩图片存储地址
      */
     String getCompressSavePath();
 
     /**
-     * 设置保存地址
-     * @param cameraSavePath   拍照保存地址
-     * @param compressSavePath 压缩图片保存地址
+     * 设置存储地址
+     * @param cameraSavePath   拍照存储地址
+     * @param compressSavePath 压缩图片存储地址
      */
     void setSavePath(
             String cameraSavePath,

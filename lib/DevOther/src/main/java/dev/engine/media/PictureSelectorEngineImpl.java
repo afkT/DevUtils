@@ -30,9 +30,9 @@ public class PictureSelectorEngineImpl
     private final int         PIC_REQUEST_CODE      = 159857;
     // 全局配置信息
     private final MediaConfig PIC_CONFIG            = new MediaConfig();
-    // 拍照保存地址
+    // 拍照存储地址
     private       String      CAMERA_SAVE_PATH      = null;
-    // 压缩图片保存地址
+    // 压缩图片存储地址
     private       String      COMPRESS_SAVE_PATH    = null;
     // 图片大于多少才进行压缩 (kb)
     private       int         MINIMUM_COMPRESS_SIZE = 0;
@@ -333,11 +333,11 @@ public class PictureSelectorEngineImpl
                     .rotateEnabled(isCrop) // 裁剪是否可旋转图片 true or false
                     .scaleEnabled(isCrop); // 裁剪是否可放大缩小图片 true or false
 
-            // 设置拍照保存地址
+            // 设置拍照存储地址
             if (!TextUtils.isEmpty(config.getCameraSavePath())) {
                 pictureSelectionModel.setOutputCameraPath(config.getCameraSavePath());
             }
-            // 设置压缩图片保存地址
+            // 设置压缩图片存储地址
             if (!TextUtils.isEmpty(config.getCompressSavePath())) {
                 pictureSelectionModel.compressSavePath(config.getCompressSavePath());
             }

@@ -531,7 +531,7 @@ public final class MediaStoreUtils {
      *     Android Q 已抛弃仍可用, 推荐使用传入 Uri 方式 {@link #createImageUri}
      * </pre>
      * @param filePath 文件路径
-     * @param name     保存文件名
+     * @param name     存储文件名
      * @param notify   是否通知相册
      * @return {@code true} success, {@code false} fail
      */

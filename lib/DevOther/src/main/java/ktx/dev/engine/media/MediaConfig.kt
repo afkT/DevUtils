@@ -47,10 +47,10 @@ class MediaConfig : IMediaEngine.EngineConfig() {
     // 已选择的本地资源
     private var localMedia: List<LocalMediaData>? = null
 
-    // 拍照保存地址
+    // 拍照存储地址
     private var cameraSavePath: String? = null
 
-    // 压缩图片保存地址
+    // 压缩图片存储地址
     private var compressSavePath: String? = null
 
     /**
@@ -341,16 +341,16 @@ class MediaConfig : IMediaEngine.EngineConfig() {
     }
 
     /**
-     * 获取拍照保存地址
-     * @return 拍照保存地址
+     * 获取拍照存储地址
+     * @return 拍照存储地址
      */
     fun getCameraSavePath(): String? {
         return cameraSavePath
     }
 
     /**
-     * 设置拍照保存地址
-     * @param cameraSavePath 拍照保存地址
+     * 设置拍照存储地址
+     * @param cameraSavePath 拍照存储地址
      * @return [MediaConfig]
      */
     fun setCameraSavePath(cameraSavePath: String?): MediaConfig {
@@ -359,16 +359,16 @@ class MediaConfig : IMediaEngine.EngineConfig() {
     }
 
     /**
-     * 获取压缩图片保存地址
-     * @return 压缩图片保存地址
+     * 获取压缩图片存储地址
+     * @return 压缩图片存储地址
      */
     fun getCompressSavePath(): String? {
         return compressSavePath
     }
 
     /**
-     * 设置压缩图片保存地址
-     * @param compressSavePath 压缩图片保存地址
+     * 设置压缩图片存储地址
+     * @param compressSavePath 压缩图片存储地址
      * @return [MediaConfig]
      */
     fun setCompressSavePath(compressSavePath: String?): MediaConfig {

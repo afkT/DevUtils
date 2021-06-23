@@ -227,7 +227,7 @@ public final class DevHelper {
     /**
      * 保存图片到 SDCard ( JPEG )
      * @param bitmap   待保存图片
-     * @param filePath 保存路径
+     * @param filePath 存储路径
      * @return {@link DevHelper}
      */
     public DevHelper saveBitmapToSDCardJPEG(
@@ -240,7 +240,7 @@ public final class DevHelper {
     /**
      * 保存图片到 SDCard ( JPEG )
      * @param bitmap 待保存图片
-     * @param file   保存路径
+     * @param file   存储路径
      * @return {@link DevHelper}
      */
     public DevHelper saveBitmapToSDCardJPEG(
@@ -255,7 +255,7 @@ public final class DevHelper {
     /**
      * 保存图片到 SDCard ( JPEG )
      * @param bitmap   待保存图片
-     * @param filePath 保存路径
+     * @param filePath 存储路径
      * @param quality  质量
      * @return {@link DevHelper}
      */
@@ -270,7 +270,7 @@ public final class DevHelper {
     /**
      * 保存图片到 SDCard ( JPEG )
      * @param bitmap  待保存图片
-     * @param file    保存路径
+     * @param file    存储路径
      * @param quality 质量
      * @return {@link DevHelper}
      */
@@ -287,7 +287,7 @@ public final class DevHelper {
     /**
      * 保存图片到 SDCard ( PNG )
      * @param bitmap   待保存图片
-     * @param filePath 保存路径
+     * @param filePath 存储路径
      * @return {@link DevHelper}
      */
     public DevHelper saveBitmapToSDCardPNG(
@@ -300,7 +300,7 @@ public final class DevHelper {
     /**
      * 保存图片到 SDCard ( PNG )
      * @param bitmap 待保存图片
-     * @param file   保存路径
+     * @param file   存储路径
      * @return {@link DevHelper}
      */
     public DevHelper saveBitmapToSDCardPNG(
@@ -315,7 +315,7 @@ public final class DevHelper {
     /**
      * 保存图片到 SDCard ( PNG )
      * @param bitmap   待保存图片
-     * @param filePath 保存路径
+     * @param filePath 存储路径
      * @param quality  质量
      * @return {@link DevHelper}
      */
@@ -330,7 +330,7 @@ public final class DevHelper {
     /**
      * 保存图片到 SDCard ( PNG )
      * @param bitmap  待保存图片
-     * @param file    保存路径
+     * @param file    存储路径
      * @param quality 质量
      * @return {@link DevHelper}
      */
@@ -347,7 +347,7 @@ public final class DevHelper {
     /**
      * 保存图片到 SDCard ( WEBP )
      * @param bitmap   待保存图片
-     * @param filePath 保存路径
+     * @param filePath 存储路径
      * @return {@link DevHelper}
      */
     public DevHelper saveBitmapToSDCardWEBP(
@@ -360,7 +360,7 @@ public final class DevHelper {
     /**
      * 保存图片到 SDCard ( WEBP )
      * @param bitmap 待保存图片
-     * @param file   保存路径
+     * @param file   存储路径
      * @return {@link DevHelper}
      */
     public DevHelper saveBitmapToSDCardWEBP(
@@ -375,7 +375,7 @@ public final class DevHelper {
     /**
      * 保存图片到 SDCard ( WEBP )
      * @param bitmap   待保存图片
-     * @param filePath 保存路径
+     * @param filePath 存储路径
      * @param quality  质量
      * @return {@link DevHelper}
      */
@@ -390,7 +390,7 @@ public final class DevHelper {
     /**
      * 保存图片到 SDCard ( WEBP )
      * @param bitmap  待保存图片
-     * @param file    保存路径
+     * @param file    存储路径
      * @param quality 质量
      * @return {@link DevHelper}
      */
@@ -407,7 +407,7 @@ public final class DevHelper {
     /**
      * 保存图片到 SDCard
      * @param bitmap   待保存图片
-     * @param filePath 保存路径
+     * @param filePath 存储路径
      * @param format   如 Bitmap.CompressFormat.PNG
      * @param quality  质量
      * @return {@link DevHelper}
@@ -425,7 +425,7 @@ public final class DevHelper {
     /**
      * 保存图片到 SDCard
      * @param bitmap  待保存图片
-     * @param file    保存路径
+     * @param file    存储路径
      * @param format  如 Bitmap.CompressFormat.PNG
      * @param quality 质量
      * @return {@link DevHelper}
@@ -1317,7 +1317,7 @@ public final class DevHelper {
     /**
      * 获取 Assets 资源文件数据并保存到本地
      * @param fileName 文件名
-     * @param file     文件保存地址
+     * @param file     文件存储地址
      * @return {@link DevHelper}
      */
     public DevHelper saveAssetsFormFile(
@@ -1331,7 +1331,7 @@ public final class DevHelper {
     /**
      * 获取 Raw 资源文件数据并保存到本地
      * @param resId 资源 id
-     * @param file  文件保存地址
+     * @param file  文件存储地址
      * @return {@link DevHelper}
      */
     public DevHelper saveRawFormFile(

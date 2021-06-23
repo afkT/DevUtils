@@ -63,25 +63,25 @@ public final class PictureSelectorUtils {
     }
 
     /**
-     * 获取拍照保存地址
-     * @return 拍照保存地址
+     * 获取拍照存储地址
+     * @return 拍照存储地址
      */
     public static String getCameraSavePath() {
         return PIC_CONFIG.getCameraSavePath();
     }
 
     /**
-     * 获取压缩图片保存地址
-     * @return 压缩图片保存地址
+     * 获取压缩图片存储地址
+     * @return 压缩图片存储地址
      */
     public static String getCompressSavePath() {
         return PIC_CONFIG.getCompressSavePath();
     }
 
     /**
-     * 设置保存地址
-     * @param cameraSavePath   拍照保存地址
-     * @param compressSavePath 压缩图片保存地址
+     * 设置存储地址
+     * @param cameraSavePath   拍照存储地址
+     * @param compressSavePath 压缩图片存储地址
      */
     public static void setSavePath(
             final String cameraSavePath,
@@ -317,11 +317,11 @@ public final class PictureSelectorUtils {
                     .rotateEnabled(isCrop) // 裁剪是否可旋转图片 true or false
                     .scaleEnabled(isCrop); // 裁剪是否可放大缩小图片 true or false
 
-            // 设置拍照保存地址
+            // 设置拍照存储地址
             if (!TextUtils.isEmpty(config.cameraSavePath)) {
                 pictureSelectionModel.setOutputCameraPath(config.cameraSavePath);
             }
-            // 设置压缩图片保存地址
+            // 设置压缩图片存储地址
             if (!TextUtils.isEmpty(config.compressSavePath)) {
                 pictureSelectionModel.compressSavePath(config.compressSavePath);
             }
@@ -448,9 +448,9 @@ public final class PictureSelectorUtils {
         private int              maxSelectNum        = 9;
         // 已选择的本地资源
         private List<LocalMedia> localMedia          = null;
-        // 拍照保存地址
+        // 拍照存储地址
         private String           cameraSavePath      = null;
-        // 压缩图片保存地址
+        // 压缩图片存储地址
         private String           compressSavePath    = null;
 
         // ===========
@@ -716,16 +716,16 @@ public final class PictureSelectorUtils {
         }
 
         /**
-         * 获取拍照保存地址
-         * @return 拍照保存地址
+         * 获取拍照存储地址
+         * @return 拍照存储地址
          */
         public String getCameraSavePath() {
             return cameraSavePath;
         }
 
         /**
-         * 设置拍照保存地址
-         * @param cameraSavePath 拍照保存地址
+         * 设置拍照存储地址
+         * @param cameraSavePath 拍照存储地址
          * @return {@link MediaConfig}
          */
         public MediaConfig setCameraSavePath(final String cameraSavePath) {
@@ -734,16 +734,16 @@ public final class PictureSelectorUtils {
         }
 
         /**
-         * 获取压缩图片保存地址
-         * @return 压缩图片保存地址
+         * 获取压缩图片存储地址
+         * @return 压缩图片存储地址
          */
         public String getCompressSavePath() {
             return compressSavePath;
         }
 
         /**
-         * 设置压缩图片保存地址
-         * @param compressSavePath 压缩图片保存地址
+         * 设置压缩图片存储地址
+         * @param compressSavePath 压缩图片存储地址
          * @return {@link MediaConfig}
          */
         public MediaConfig setCompressSavePath(final String compressSavePath) {

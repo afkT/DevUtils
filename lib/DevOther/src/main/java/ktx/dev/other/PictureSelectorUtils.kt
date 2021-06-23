@@ -54,25 +54,25 @@ object PictureSelectorUtils {
     }
 
     /**
-     * 获取拍照保存地址
-     * @return 拍照保存地址
+     * 获取拍照存储地址
+     * @return 拍照存储地址
      */
     fun getCameraSavePath(): String? {
         return PIC_CONFIG.getCameraSavePath()
     }
 
     /**
-     * 获取压缩图片保存地址
-     * @return 压缩图片保存地址
+     * 获取压缩图片存储地址
+     * @return 压缩图片存储地址
      */
     fun getCompressSavePath(): String? {
         return PIC_CONFIG.getCompressSavePath()
     }
 
     /**
-     * 设置保存地址
-     * @param cameraSavePath   拍照保存地址
-     * @param compressSavePath 压缩图片保存地址
+     * 设置存储地址
+     * @param cameraSavePath   拍照存储地址
+     * @param compressSavePath 压缩图片存储地址
      */
     fun setSavePath(
         cameraSavePath: String?,
@@ -308,11 +308,11 @@ object PictureSelectorUtils {
                     .rotateEnabled(isCrop) // 裁剪是否可旋转图片 true or false
                     .scaleEnabled(isCrop) // 裁剪是否可放大缩小图片 true or false
 
-                // 设置拍照保存地址
+                // 设置拍照存储地址
                 if (!TextUtils.isEmpty(config.getCameraSavePath())) {
                     pictureSelectionModel.setOutputCameraPath(config.getCameraSavePath())
                 }
-                // 设置压缩图片保存地址
+                // 设置压缩图片存储地址
                 if (!TextUtils.isEmpty(config.getCompressSavePath())) {
                     pictureSelectionModel.compressSavePath(config.getCompressSavePath())
                 }
@@ -435,10 +435,10 @@ object PictureSelectorUtils {
         // 已选择的本地资源
         private var localMedia: List<LocalMedia>? = null
 
-        // 拍照保存地址
+        // 拍照存储地址
         private var cameraSavePath: String? = null
 
-        // 压缩图片保存地址
+        // 压缩图片存储地址
         private var compressSavePath: String? = null
 
         /**
@@ -729,16 +729,16 @@ object PictureSelectorUtils {
         }
 
         /**
-         * 获取拍照保存地址
-         * @return 拍照保存地址
+         * 获取拍照存储地址
+         * @return 拍照存储地址
          */
         fun getCameraSavePath(): String? {
             return cameraSavePath
         }
 
         /**
-         * 设置拍照保存地址
-         * @param cameraSavePath 拍照保存地址
+         * 设置拍照存储地址
+         * @param cameraSavePath 拍照存储地址
          * @return [MediaConfig]
          */
         fun setCameraSavePath(cameraSavePath: String?): MediaConfig {
@@ -747,16 +747,16 @@ object PictureSelectorUtils {
         }
 
         /**
-         * 获取压缩图片保存地址
-         * @return 压缩图片保存地址
+         * 获取压缩图片存储地址
+         * @return 压缩图片存储地址
          */
         fun getCompressSavePath(): String? {
             return compressSavePath
         }
 
         /**
-         * 设置压缩图片保存地址
-         * @param compressSavePath 压缩图片保存地址
+         * 设置压缩图片存储地址
+         * @param compressSavePath 压缩图片存储地址
          * @return [MediaConfig]
          */
         fun setCompressSavePath(compressSavePath: String?): MediaConfig {
