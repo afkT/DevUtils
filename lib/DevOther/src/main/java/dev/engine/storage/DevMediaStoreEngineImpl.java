@@ -28,7 +28,7 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (params != null && source != null) {
+        if (insidePreCheck(params, source, listener)) {
 
         }
     }
@@ -45,6 +45,9 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
+        if (insidePreCheck(params, source, listener)) {
+
+        }
     }
 
     /**
@@ -59,6 +62,9 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
+        if (insidePreCheck(params, source, listener)) {
+
+        }
     }
 
     /**
@@ -73,6 +79,9 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
+        if (insidePreCheck(params, source, listener)) {
+
+        }
     }
 
     /**
@@ -87,6 +96,9 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
+        if (insidePreCheck(params, source, listener)) {
+
+        }
     }
 
     // ==========
@@ -105,6 +117,9 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
+        if (insidePreCheck(params, source, listener)) {
+
+        }
     }
 
     /**
@@ -119,6 +134,9 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
+        if (insidePreCheck(params, source, listener)) {
+
+        }
     }
 
     /**
@@ -133,6 +151,9 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
+        if (insidePreCheck(params, source, listener)) {
+
+        }
     }
 
     /**
@@ -147,6 +168,9 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
+        if (insidePreCheck(params, source, listener)) {
+
+        }
     }
 
     /**
@@ -164,6 +188,9 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
+        if (insidePreCheck(params, source, listener)) {
+
+        }
     }
 
     // ==========
@@ -171,14 +198,37 @@ public class DevMediaStoreEngineImpl
     // ==========
 
     /**
-     * 内部插入数据方法
-     * @param uri
+     * 通用内部预校验
      * @param params   原始参数
      * @param source   原始数据
-     * @param listener
+     * @param listener 回调接口
+     * @return {@code true} 校验通过, {@code false} 校验失败
      */
-    private void priInsertExternal(
-            Uri uri,
+    private boolean insidePreCheck(
+            StorageItem params,
+            DevSource source,
+            OnInsertListener<StorageItem, StorageResult> listener
+    ) {
+        // 判断参数是否有效
+        if (params != null && source != null && source.isSource()) {
+            return true;
+        }
+        // 无效数据触发回调
+        if (listener != null) {
+            listener.onResult(StorageResult.failure(), params, source);
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 内部插入数据方法
+     * @param params   原始参数
+     * @param source   原始数据
+     * @param listener 回调接口
+     */
+    private void insideInsertExternal(
             StorageItem params,
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
