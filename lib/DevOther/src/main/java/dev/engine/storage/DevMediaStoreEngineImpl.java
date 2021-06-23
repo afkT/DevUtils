@@ -21,10 +21,9 @@ public class DevMediaStoreEngineImpl
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
     @Override
-    public boolean insertImageToExternal(
+    public void insertImageToExternal(
             StorageItem params,
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
@@ -32,7 +31,6 @@ public class DevMediaStoreEngineImpl
         if (params != null && source != null) {
 
         }
-        return false;
     }
 
     /**
@@ -40,15 +38,13 @@ public class DevMediaStoreEngineImpl
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
     @Override
-    public boolean insertVideoToExternal(
+    public void insertVideoToExternal(
             StorageItem params,
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        return false;
     }
 
     /**
@@ -56,15 +52,13 @@ public class DevMediaStoreEngineImpl
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
     @Override
-    public boolean insertAudioToExternal(
+    public void insertAudioToExternal(
             StorageItem params,
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        return false;
     }
 
     /**
@@ -72,15 +66,13 @@ public class DevMediaStoreEngineImpl
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
     @Override
-    public boolean insertDownloadToExternal(
+    public void insertDownloadToExternal(
             StorageItem params,
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        return false;
     }
 
     /**
@@ -88,15 +80,13 @@ public class DevMediaStoreEngineImpl
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
     @Override
-    public boolean insertMediaToExternal(
+    public void insertMediaToExternal(
             StorageItem params,
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        return false;
     }
 
     // ==========
@@ -108,15 +98,13 @@ public class DevMediaStoreEngineImpl
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
     @Override
-    public boolean insertImageToInternal(
+    public void insertImageToInternal(
             StorageItem params,
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        return false;
     }
 
     /**
@@ -124,15 +112,13 @@ public class DevMediaStoreEngineImpl
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
     @Override
-    public boolean insertVideoToInternal(
+    public void insertVideoToInternal(
             StorageItem params,
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        return false;
     }
 
     /**
@@ -140,15 +126,13 @@ public class DevMediaStoreEngineImpl
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
     @Override
-    public boolean insertAudioToInternal(
+    public void insertAudioToInternal(
             StorageItem params,
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        return false;
     }
 
     /**
@@ -156,15 +140,13 @@ public class DevMediaStoreEngineImpl
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
     @Override
-    public boolean insertDownloadToInternal(
+    public void insertDownloadToInternal(
             StorageItem params,
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        return false;
     }
 
     /**
@@ -175,15 +157,13 @@ public class DevMediaStoreEngineImpl
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
     @Override
-    public boolean insertMediaToInternal(
+    public void insertMediaToInternal(
             StorageItem params,
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        return false;
     }
 
     // ==========
@@ -203,6 +183,5 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-
     }
 }

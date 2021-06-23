@@ -55,9 +55,8 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
-    boolean insertImageToExternal(
+    void insertImageToExternal(
             Item params,
             DevSource source,
             OnInsertListener<Item, Result> listener
@@ -68,9 +67,8 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
-    boolean insertVideoToExternal(
+    void insertVideoToExternal(
             Item params,
             DevSource source,
             OnInsertListener<Item, Result> listener
@@ -81,9 +79,8 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
-    boolean insertAudioToExternal(
+    void insertAudioToExternal(
             Item params,
             DevSource source,
             OnInsertListener<Item, Result> listener
@@ -94,9 +91,8 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
-    boolean insertDownloadToExternal(
+    void insertDownloadToExternal(
             Item params,
             DevSource source,
             OnInsertListener<Item, Result> listener
@@ -107,9 +103,8 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
-    boolean insertMediaToExternal(
+    void insertMediaToExternal(
             Item params,
             DevSource source,
             OnInsertListener<Item, Result> listener
@@ -124,9 +119,8 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
-    boolean insertImageToInternal(
+    void insertImageToInternal(
             Item params,
             DevSource source,
             OnInsertListener<Item, Result> listener
@@ -137,9 +131,8 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
-    boolean insertVideoToInternal(
+    void insertVideoToInternal(
             Item params,
             DevSource source,
             OnInsertListener<Item, Result> listener
@@ -150,9 +143,8 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
-    boolean insertAudioToInternal(
+    void insertAudioToInternal(
             Item params,
             DevSource source,
             OnInsertListener<Item, Result> listener
@@ -163,9 +155,8 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
-    boolean insertDownloadToInternal(
+    void insertDownloadToInternal(
             Item params,
             DevSource source,
             OnInsertListener<Item, Result> listener
@@ -179,9 +170,8 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
-     * @return {@code true} success, {@code false} fail
      */
-    boolean insertMediaToInternal(
+    void insertMediaToInternal(
             Item params,
             DevSource source,
             OnInsertListener<Item, Result> listener
