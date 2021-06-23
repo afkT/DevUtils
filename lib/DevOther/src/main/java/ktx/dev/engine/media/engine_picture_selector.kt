@@ -518,7 +518,7 @@ class PictureSelectorEngineImpl : IMediaEngine<MediaConfig, LocalMediaData> {
     private fun convertList(lists: List<LocalMediaData?>?): List<LocalMedia?> {
         val medias: MutableList<LocalMedia?> = ArrayList()
         lists?.forEach {
-            it?.localMedia?.let { media ->
+            it?.getLocalMedia()?.let { media ->
                 medias.add(media)
             }
         }

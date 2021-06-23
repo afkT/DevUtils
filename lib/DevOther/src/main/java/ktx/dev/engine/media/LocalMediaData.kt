@@ -10,12 +10,22 @@ import dev.engine.media.IMediaEngine
  */
 class LocalMediaData : IMediaEngine.EngineData {
 
-    var localMedia: LocalMedia? = null
+    private var mLocalMedia: LocalMedia? = null
 
     constructor()
 
     constructor(localMedia: LocalMedia?) {
-        this.localMedia = localMedia
+        this.mLocalMedia = localMedia
+    }
+
+    // =
+
+    fun getLocalMedia(): LocalMedia? {
+        return mLocalMedia
+    }
+
+    fun setLocalMedia(localMedia: LocalMedia) {
+        this.mLocalMedia = localMedia
     }
 
     /**
@@ -24,7 +34,7 @@ class LocalMediaData : IMediaEngine.EngineData {
      * @return 本地资源路径
      */
     fun getLocalMediaPath(original: Boolean): String? {
-        localMedia?.let {
+        mLocalMedia?.let {
             if (original) return it.path
             // 判断资源类型
             val mimeType = it.mimeType

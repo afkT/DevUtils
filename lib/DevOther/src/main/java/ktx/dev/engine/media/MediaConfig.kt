@@ -9,49 +9,49 @@ import dev.engine.media.IMediaEngine
 class MediaConfig : IMediaEngine.EngineConfig() {
 
     // 相册选择类型
-    private var mimeType: Int = MimeType.ofImage()
+    private var mMimeType: Int = MimeType.ofImage()
 
     // 相册选择模式
-    private var selectionMode: Int = MimeType.MULTIPLE
+    private var mSelectionMode: Int = MimeType.MULTIPLE
 
     // 是否显示拍照
-    private var isCamera = true
+    private var mIsCamera = true
 
     // 是否裁减
-    private var isCrop = false
+    private var mIsCrop = false
 
     // 是否圆形裁减 true = 圆形, false = 矩形
-    private var isCircleCrop = false
+    private var mIsCircleCrop = false
 
     // 是否压缩
-    private var isCompress = false
+    private var mIsCompress = false
 
     // 图片大于多少才进行压缩 (kb)
-    private var minimumCompressSize = 2048
+    private var mMinimumCompressSize = 2048
 
     // 裁减比例
-    private var withAspectRatio = intArrayOf(0, 0)
+    private var mWithAspectRatio = intArrayOf(0, 0)
 
     // 是否显示 Gif
-    private var isGif = false
+    private var mIsGif = false
 
     // 每行显示个数
-    private var imageSpanCount = 4
+    private var mImageSpanCount = 4
 
     // 最小选择数量
-    private var minSelectNum = 1
+    private var mMinSelectNum = 1
 
     // 最大选择数量
-    private var maxSelectNum = 9
+    private var mMaxSelectNum = 9
 
     // 已选择的本地资源
-    private var localMedia: List<LocalMediaData>? = null
+    private var mLocalMedia: List<LocalMediaData>? = null
 
     // 拍照存储地址
-    private var cameraSavePath: String? = null
+    private var mCameraSavePath: String? = null
 
     // 压缩图片存储地址
-    private var compressSavePath: String? = null
+    private var mCompressSavePath: String? = null
 
     /**
      * detail: 选择模式
@@ -91,7 +91,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return 相册选择类型
      */
     fun getMimeType(): Int {
-        return mimeType
+        return mMimeType
     }
 
     /**
@@ -106,9 +106,9 @@ class MediaConfig : IMediaEngine.EngineConfig() {
     fun setMimeType(mimeType: Int): MediaConfig {
         // 超过最大、最小值都默认为全部类型
         if (mimeType > MimeType.ofAudio() || mimeType < MimeType.ofAll()) {
-            this.mimeType = MimeType.ofAll()
+            this.mMimeType = MimeType.ofAll()
         } else {
-            this.mimeType = mimeType
+            this.mMimeType = mimeType
         }
         return this
     }
@@ -118,7 +118,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return 相册选择模式
      */
     fun getSelectionMode(): Int {
-        return selectionMode
+        return mSelectionMode
     }
 
     /**
@@ -130,9 +130,9 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      */
     fun setSelectionMode(selectionMode: Int): MediaConfig {
         if (selectionMode >= MimeType.MULTIPLE) {
-            this.selectionMode = MimeType.MULTIPLE
+            this.mSelectionMode = MimeType.MULTIPLE
         } else if (selectionMode <= MimeType.SINGLE) {
-            this.selectionMode = MimeType.SINGLE
+            this.mSelectionMode = MimeType.SINGLE
         }
         return this
     }
@@ -142,7 +142,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return `true` yes, `false` no
      */
     fun isCamera(): Boolean {
-        return isCamera
+        return mIsCamera
     }
 
     /**
@@ -151,7 +151,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setCamera(camera: Boolean): MediaConfig {
-        isCamera = camera
+        mIsCamera = camera
         return this
     }
 
@@ -160,7 +160,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return `true` yes, `false` no
      */
     fun isCrop(): Boolean {
-        return isCrop
+        return mIsCrop
     }
 
     /**
@@ -169,7 +169,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setCrop(crop: Boolean): MediaConfig {
-        isCrop = crop
+        mIsCrop = crop
         return this
     }
 
@@ -178,7 +178,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return `true` yes, `false` no
      */
     fun isCircleCrop(): Boolean {
-        return isCircleCrop
+        return mIsCircleCrop
     }
 
     /**
@@ -187,7 +187,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setCircleCrop(circleCrop: Boolean): MediaConfig {
-        isCircleCrop = circleCrop
+        mIsCircleCrop = circleCrop
         return this
     }
 
@@ -196,7 +196,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return `true` yes, `false` no
      */
     fun isCompress(): Boolean {
-        return isCompress
+        return mIsCompress
     }
 
     /**
@@ -205,7 +205,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setCompress(compress: Boolean): MediaConfig {
-        isCompress = compress
+        mIsCompress = compress
         return this
     }
 
@@ -214,7 +214,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return 最小压缩大小
      */
     fun getMinimumCompressSize(): Int {
-        return minimumCompressSize
+        return mMinimumCompressSize
     }
 
     /**
@@ -223,7 +223,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setMinimumCompressSize(minimumCompressSize: Int): MediaConfig {
-        this.minimumCompressSize = minimumCompressSize
+        this.mMinimumCompressSize = minimumCompressSize
         return this
     }
 
@@ -232,7 +232,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return int[] 0 = 宽比例, 1 = 高比例
      */
     fun getWithAspectRatio(): IntArray {
-        return withAspectRatio
+        return mWithAspectRatio
     }
 
     /**
@@ -245,8 +245,8 @@ class MediaConfig : IMediaEngine.EngineConfig() {
         x: Int,
         y: Int
     ): MediaConfig {
-        withAspectRatio[0] = x
-        withAspectRatio[1] = y
+        mWithAspectRatio[0] = x
+        mWithAspectRatio[1] = y
         return this
     }
 
@@ -255,7 +255,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return `true` yes, `false` no
      */
     fun isGif(): Boolean {
-        return isGif
+        return mIsGif
     }
 
     /**
@@ -264,7 +264,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setGif(gif: Boolean): MediaConfig {
-        isGif = gif
+        mIsGif = gif
         return this
     }
 
@@ -273,7 +273,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return 每行显示个数
      */
     fun getImageSpanCount(): Int {
-        return imageSpanCount
+        return mImageSpanCount
     }
 
     /**
@@ -282,7 +282,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setImageSpanCount(imageSpanCount: Int): MediaConfig {
-        this.imageSpanCount = Math.max(imageSpanCount, 1)
+        this.mImageSpanCount = Math.max(imageSpanCount, 1)
         return this
     }
 
@@ -291,7 +291,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return 最小选择数量
      */
     fun getMinSelectNum(): Int {
-        return minSelectNum
+        return mMinSelectNum
     }
 
     /**
@@ -300,7 +300,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setMinSelectNum(minSelectNum: Int): MediaConfig {
-        this.minSelectNum = minSelectNum
+        this.mMinSelectNum = minSelectNum
         return this
     }
 
@@ -309,7 +309,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return 最大选择数量
      */
     fun getMaxSelectNum(): Int {
-        return maxSelectNum
+        return mMaxSelectNum
     }
 
     /**
@@ -318,7 +318,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setMaxSelectNum(maxSelectNum: Int): MediaConfig {
-        this.maxSelectNum = maxSelectNum
+        this.mMaxSelectNum = maxSelectNum
         return this
     }
 
@@ -327,7 +327,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return 已选择的本地资源 [<]
      */
     fun getLocalMedia(): List<LocalMediaData>? {
-        return localMedia
+        return mLocalMedia
     }
 
     /**
@@ -336,7 +336,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setLocalMedia(localMedia: List<LocalMediaData>?): MediaConfig {
-        this.localMedia = localMedia
+        this.mLocalMedia = localMedia
         return this
     }
 
@@ -345,7 +345,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return 拍照存储地址
      */
     fun getCameraSavePath(): String? {
-        return cameraSavePath
+        return mCameraSavePath
     }
 
     /**
@@ -354,7 +354,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setCameraSavePath(cameraSavePath: String?): MediaConfig {
-        this.cameraSavePath = cameraSavePath
+        this.mCameraSavePath = cameraSavePath
         return this
     }
 
@@ -363,7 +363,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return 压缩图片存储地址
      */
     fun getCompressSavePath(): String? {
-        return compressSavePath
+        return mCompressSavePath
     }
 
     /**
@@ -372,7 +372,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * @return [MediaConfig]
      */
     fun setCompressSavePath(compressSavePath: String?): MediaConfig {
-        this.compressSavePath = compressSavePath
+        this.mCompressSavePath = compressSavePath
         return this
     }
 
@@ -384,21 +384,21 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      */
     fun clone(): MediaConfig {
         val config = MediaConfig()
-        config.mimeType = mimeType
-        config.selectionMode = selectionMode
-        config.isCamera = isCamera
-        config.isCrop = isCrop
-        config.isCircleCrop = isCircleCrop
-        config.isCompress = isCompress
-        config.minimumCompressSize = minimumCompressSize
-        config.withAspectRatio = withAspectRatio
-        config.isGif = isGif
-        config.imageSpanCount = imageSpanCount
-        config.minSelectNum = minSelectNum
-        config.maxSelectNum = maxSelectNum
-        config.localMedia = localMedia
-        config.cameraSavePath = cameraSavePath
-        config.compressSavePath = compressSavePath
+        config.mMimeType = mMimeType
+        config.mSelectionMode = mSelectionMode
+        config.mIsCamera = mIsCamera
+        config.mIsCrop = mIsCrop
+        config.mIsCircleCrop = mIsCircleCrop
+        config.mIsCompress = mIsCompress
+        config.mMinimumCompressSize = mMinimumCompressSize
+        config.mWithAspectRatio = mWithAspectRatio
+        config.mIsGif = mIsGif
+        config.mImageSpanCount = mImageSpanCount
+        config.mMinSelectNum = mMinSelectNum
+        config.mMaxSelectNum = mMaxSelectNum
+        config.mLocalMedia = mLocalMedia
+        config.mCameraSavePath = mCameraSavePath
+        config.mCompressSavePath = mCompressSavePath
         return config
     }
 
@@ -409,21 +409,21 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      */
     fun set(config: MediaConfig?): MediaConfig {
         config?.let {
-            mimeType = it.mimeType
-            selectionMode = it.selectionMode
-            isCamera = it.isCamera
-            isCrop = it.isCrop
-            isCircleCrop = it.isCircleCrop
-            isCompress = it.isCompress
-            minimumCompressSize = it.minimumCompressSize
-            withAspectRatio = it.withAspectRatio
-            isGif = it.isGif
-            imageSpanCount = it.imageSpanCount
-            minSelectNum = it.minSelectNum
-            maxSelectNum = it.maxSelectNum
-            localMedia = it.localMedia
-            cameraSavePath = it.cameraSavePath
-            compressSavePath = it.compressSavePath
+            mMimeType = it.mMimeType
+            mSelectionMode = it.mSelectionMode
+            mIsCamera = it.mIsCamera
+            mIsCrop = it.mIsCrop
+            mIsCircleCrop = it.mIsCircleCrop
+            mIsCompress = it.mIsCompress
+            mMinimumCompressSize = it.mMinimumCompressSize
+            mWithAspectRatio = it.mWithAspectRatio
+            mIsGif = it.mIsGif
+            mImageSpanCount = it.mImageSpanCount
+            mMinSelectNum = it.mMinSelectNum
+            mMaxSelectNum = it.mMaxSelectNum
+            mLocalMedia = it.mLocalMedia
+            mCameraSavePath = it.mCameraSavePath
+            mCompressSavePath = it.mCompressSavePath
         }
         return this
     }
