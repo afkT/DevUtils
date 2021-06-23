@@ -6,11 +6,13 @@ import android.content.Intent
 import android.text.TextUtils
 import com.luck.picture.lib.PictureSelectionModel
 import com.luck.picture.lib.PictureSelector
-import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.tools.PictureFileUtils
 import dev.engine.media.GlideEngine
+import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
+import dev.utils.common.StringUtils
+import ktx.dev.other.PictureSelectorUtils.MediaConfig.MimeType
 import java.util.*
 
 /**
@@ -107,7 +109,7 @@ object PictureSelectorUtils {
      * @param context {@link Context}
      * @param type    类型 ( 图片、视频 )
      * 包括裁剪和压缩后的缓存, 要在上传成功后调用, 注意: 需要系统 SDCard 权限
-     * type [PictureMimeType.ofImage]、[PictureMimeType.ofVideo]
+     * type [MimeType.ofImage]、[MimeType.ofVideo]
      */
     fun deleteCacheDirFile(
         context: Context?,
@@ -205,7 +207,7 @@ object PictureSelectorUtils {
             if (original) return it.path
             // 判断资源类型
             val mimeType = it.mimeType
-            if (PictureMimeType.isHasImage(mimeType)) { // 图片
+            if (StringUtils.isStartsWith(mimeType, DevFinal.IMAGE)) { // 图片
                 if (it.isCompressed) { // 是否压缩图片
                     return it.compressPath
                 } else if (it.isCut) { // 是否裁减图片
@@ -486,7 +488,7 @@ object PictureSelectorUtils {
          * 设置相册选择类型
          * @param mimeType 相册选择类型
          * @return [MediaConfig]
-         * 全部 ofAll() = 0
+         * 全部 ofAll()   = 0
          * 图片 ofImage() = 1
          * 视频 ofVideo() = 2
          * 音频 ofAudio() = 3

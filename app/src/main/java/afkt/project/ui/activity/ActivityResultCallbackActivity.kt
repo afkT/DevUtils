@@ -7,7 +7,6 @@ import afkt.project.databinding.ActivityActivityResultCallbackBinding
 import android.app.Activity
 import android.content.Intent
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.luck.picture.lib.config.PictureMimeType
 import dev.engine.media.DevMediaEngine
 import dev.utils.app.ActivityUtils
 import dev.utils.app.AppUtils
@@ -31,7 +30,7 @@ class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallba
                     // 初始化图片配置
                     var config = MediaConfig()
                         .setCompress(false).setMaxSelectNum(1).setCrop(false)
-                        .setMimeType(PictureMimeType.ofImage())
+                        .setMimeType(MediaConfig.MimeType.ofImage())
                         .setCamera(true).setGif(false)
                     // 打开图片选择器
                     DevMediaEngine.getEngine().openGallery(activity, config)

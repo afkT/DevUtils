@@ -12,7 +12,6 @@ import android.graphics.Bitmap
 import android.view.View
 import android.widget.AdapterView
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.luck.picture.lib.config.PictureMimeType
 import dev.engine.log.DevLogEngine
 import dev.engine.media.DevMediaEngine
 import dev.utils.app.HandlerUtils
@@ -82,7 +81,7 @@ class GPUFilterActivity : BaseActivity<ActivityGpuFilterBinding>() {
             // 初始化图片配置
             var config = MediaConfig()
                 .setCompress(false).setMaxSelectNum(1).setCrop(false)
-                .setMimeType(PictureMimeType.ofImage())
+                .setMimeType(MediaConfig.MimeType.ofImage())
                 .setCamera(true).setGif(false)
             // 打开图片选择器
             DevMediaEngine.getEngine().openGallery(mActivity, config)

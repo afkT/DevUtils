@@ -6,7 +6,6 @@ import android.text.TextUtils;
 
 import com.luck.picture.lib.PictureSelectionModel;
 import com.luck.picture.lib.PictureSelector;
-import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.tools.PictureFileUtils;
 
@@ -15,7 +14,9 @@ import java.util.List;
 
 import dev.DevUtils;
 import dev.engine.media.GlideEngine;
+import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
+import dev.utils.common.StringUtils;
 
 /**
  * detail: Android 平台下的图片选择器
@@ -115,7 +116,7 @@ public final class PictureSelectorUtils {
      * <pre>
      *     包括裁剪和压缩后的缓存, 要在上传成功后调用, 注意: 需要系统 SDCard 权限
      * </pre>
-     * @param type {@link PictureMimeType#ofImage()} or {@link PictureMimeType#ofVideo()}
+     * @param type {@link MediaConfig.MimeType#ofImage()} or {@link MediaConfig.MimeType#ofVideo()}
      */
     public static void deleteCacheDirFile(final int type) {
         try {
@@ -210,7 +211,7 @@ public final class PictureSelectorUtils {
             if (original) return localMedia.getPath();
             // 判断资源类型
             String mimeType = localMedia.getMimeType();
-            if (PictureMimeType.isHasImage(mimeType)) { // 图片
+            if (StringUtils.isStartsWith(mimeType, DevFinal.IMAGE)) { // 图片
                 if (localMedia.isCompressed()) { // 是否压缩图片
                     return localMedia.getCompressPath();
                 } else if (localMedia.isCut()) { // 是否裁减图片
@@ -501,7 +502,7 @@ public final class PictureSelectorUtils {
         /**
          * 设置相册选择类型
          * <pre>
-         *     全部 PictureMimeType.ofAll() = 0
+         *     全部 ofAll()   = 0
          *     图片 ofImage() = 1
          *     视频 ofVideo() = 2
          *     音频 ofAudio() = 3

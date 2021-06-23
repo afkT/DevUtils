@@ -9,7 +9,6 @@ import android.graphics.Bitmap
 import android.text.TextUtils
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.luck.picture.lib.config.PictureMimeType
 import dev.engine.media.DevMediaEngine
 import dev.utils.app.*
 import dev.utils.app.image.ImageUtils
@@ -74,7 +73,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
                 // 初始化图片配置
                 var config = MediaConfig()
                     .setCompress(false).setMaxSelectNum(1).setCrop(false)
-                    .setMimeType(PictureMimeType.ofImage())
+                    .setMimeType(MediaConfig.MimeType.ofImage())
                     .setCamera(true).setGif(false)
                 // 打开图片选择器
                 DevMediaEngine.getEngine().openGallery(mActivity, config)

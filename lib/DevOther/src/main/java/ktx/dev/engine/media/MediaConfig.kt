@@ -98,7 +98,7 @@ class MediaConfig : IMediaEngine.EngineConfig() {
      * 设置相册选择类型
      * @param mimeType 相册选择类型
      * @return [MediaConfig]
-     * 全部 ofAll() = 0
+     * 全部 ofAll()   = 0
      * 图片 ofImage() = 1
      * 视频 ofVideo() = 2
      * 音频 ofAudio() = 3

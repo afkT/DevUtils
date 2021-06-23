@@ -86,7 +86,7 @@ public class MediaConfig
     /**
      * 设置相册选择类型
      * <pre>
-     *     全部 PictureMimeType.ofAll() = 0
+     *     全部 ofAll()   = 0
      *     图片 ofImage() = 1
      *     视频 ofVideo() = 2
      *     音频 ofAudio() = 3
