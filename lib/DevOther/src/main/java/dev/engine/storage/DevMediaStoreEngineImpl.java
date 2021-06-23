@@ -37,7 +37,7 @@ public class DevMediaStoreEngineImpl
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
         if (insidePreCheck(params, source, listener)) {
-
+            insideInsertToExternal(params, source, listener, TYPE.IMAGE);
         }
     }
 
@@ -54,7 +54,7 @@ public class DevMediaStoreEngineImpl
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
         if (insidePreCheck(params, source, listener)) {
-
+            insideInsertToExternal(params, source, listener, TYPE.VIDEO);
         }
     }
 
@@ -71,7 +71,7 @@ public class DevMediaStoreEngineImpl
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
         if (insidePreCheck(params, source, listener)) {
-
+            insideInsertToExternal(params, source, listener, TYPE.AUDIO);
         }
     }
 
@@ -88,7 +88,7 @@ public class DevMediaStoreEngineImpl
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
         if (insidePreCheck(params, source, listener)) {
-
+            insideInsertToExternal(params, source, listener, TYPE.DOWNLOAD);
         }
     }
 
@@ -105,7 +105,7 @@ public class DevMediaStoreEngineImpl
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
         if (insidePreCheck(params, source, listener)) {
-
+            insideInsertToExternal(params, source, listener, TYPE.NONE);
         }
     }
 
@@ -126,7 +126,7 @@ public class DevMediaStoreEngineImpl
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
         if (insidePreCheck(params, source, listener)) {
-
+            insideInsertToInternal(params, source, listener, TYPE.IMAGE);
         }
     }
 
@@ -143,7 +143,7 @@ public class DevMediaStoreEngineImpl
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
         if (insidePreCheck(params, source, listener)) {
-
+            insideInsertToInternal(params, source, listener, TYPE.VIDEO);
         }
     }
 
@@ -160,7 +160,7 @@ public class DevMediaStoreEngineImpl
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
         if (insidePreCheck(params, source, listener)) {
-
+            insideInsertToInternal(params, source, listener, TYPE.AUDIO);
         }
     }
 
@@ -177,7 +177,7 @@ public class DevMediaStoreEngineImpl
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
         if (insidePreCheck(params, source, listener)) {
-
+            insideInsertToInternal(params, source, listener, TYPE.DOWNLOAD);
         }
     }
 
@@ -197,13 +197,47 @@ public class DevMediaStoreEngineImpl
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
         if (insidePreCheck(params, source, listener)) {
-
+            insideInsertToInternal(params, source, listener, TYPE.NONE);
         }
     }
 
     // ==========
     // = 内部方法 =
     // ==========
+
+    // ========
+    // = Type =
+    // ========
+
+    /**
+     * detail: 存储操作类型
+     * @author Ttt
+     */
+    private enum TYPE {
+        IMAGE,
+        VIDEO,
+        AUDIO,
+        DOWNLOAD,
+        NONE
+    }
+
+    /**
+     * 当属于 NONE 类型则进行只能校验
+     * @param params 原始参数
+     * @param source 原始数据
+     * @param type   存储操作类型
+     * @return 输出 Uri
+     */
+    private TYPE convertType(
+            StorageItem params,
+            DevSource source,
+            final TYPE type
+    ) {
+        if (type == TYPE.NONE) {
+
+        }
+        return type;
+    }
 
     /**
      * 通用内部预校验
@@ -227,6 +261,10 @@ public class DevMediaStoreEngineImpl
         }
         return false;
     }
+
+    // ============
+    // = Uri、File =
+    // ============
 
     /**
      * 获取输出 Uri ( 存储文件 Uri )
@@ -286,7 +324,8 @@ public class DevMediaStoreEngineImpl
                 }
             } else { // 内部存储路径
                 File file = getOutputFile(params, source, external, type);
-                return MediaStoreUtils.createUriByFile(file);
+                // FileProvider File Path Uri
+                return UriUtils.getUriForFile(file);
             }
         }
         return null;
@@ -372,30 +411,77 @@ public class DevMediaStoreEngineImpl
         return null;
     }
 
-    // =
+    // =================
+    // = 内部插入数据方法 =
+    // =================
 
     /**
-     * 内部插入数据方法
+     * 内部插入数据方法 ( 外部存储空间 )
      * @param params   原始参数
      * @param source   原始数据
      * @param listener 回调接口
+     * @param type     存储操作类型
      */
-    private void insideInsertExternal(
+    private void insideInsertToExternal(
             final StorageItem params,
             final DevSource source,
-            final OnInsertListener<StorageItem, StorageResult> listener
+            final OnInsertListener<StorageItem, StorageResult> listener,
+            final TYPE type
     ) {
+        insideInsert(
+                params, source, listener, true,
+                convertType(params, source, type)
+        );
     }
 
     /**
-     * detail: 存储操作类型
-     * @author Ttt
+     * 内部插入数据方法 ( 内部存储空间 )
+     * @param params   原始参数
+     * @param source   原始数据
+     * @param listener 回调接口
+     * @param type     存储操作类型
      */
-    private enum TYPE {
-        IMAGE,
-        VIDEO,
-        AUDIO,
-        DOWNLOAD,
-        NONE
+    private void insideInsertToInternal(
+            final StorageItem params,
+            final DevSource source,
+            final OnInsertListener<StorageItem, StorageResult> listener,
+            final TYPE type
+    ) {
+        insideInsert(
+                params, source, listener, false,
+                convertType(params, source, type)
+        );
+    }
+
+    /**
+     * 内部插入数据方法 ( 通用 )
+     * @param params   原始参数
+     * @param source   原始数据
+     * @param listener 回调接口
+     * @param external 是否外部存储
+     * @param type     存储操作类型
+     */
+    private void insideInsert(
+            final StorageItem params,
+            final DevSource source,
+            final OnInsertListener<StorageItem, StorageResult> listener,
+            final boolean external,
+            final TYPE type
+    ) {
+        // 获取输出 Uri
+        Uri outputUri = getOutputUri(params, source, external, type);
+        // 获取输出文件路径
+        File outputFile = getOutputFile(params, source, external, type);
+        // 通过 Uri 解析的路径
+        String pathByUri = UriUtils.getFilePathByUri(outputUri);
+        // 获取输入 URI 或 InputStream
+
+//        // 开始写入数据 ( 后台线程 )
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        }).start();
     }
 }
