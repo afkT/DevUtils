@@ -163,7 +163,7 @@ ext {
                     // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
                     panelSwitchHelper                   : "com.effective.android:panelSwitchHelper-androidx:1.3.13",
                     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-                    pictureSelector                     : "com.github.LuckSiege.PictureSelector:picture_library:v2.6.0",
+                    pictureSelector                     : "io.github.lucksiege:pictureselector:v2.7.3-rc03",
                     // 动画库 https://github.com/airbnb/lottie-android
                     lottie                              : "com.airbnb.android:lottie:3.7.0", // https://www.jianshu.com/p/9a2136ecbc7b
                     // Aria 下载可以很简单 https://github.com/AriaLyy/Aria
@@ -186,9 +186,9 @@ ext {
                     // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
                     luban                               : "top.zibin:Luban:1.1.8",
                     // Kotlin Luban 图片压缩 https://github.com/forJrking/KLuban
-                    kluban                              : "com.github.forJrking:KLuban:1.0.7",
+                    kluban                              : "com.github.forJrking:KLuban:1.1.0",
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
-                    xxPermissions                       : "com.github.getActivity:XXPermissions:11.0",
+                    xxPermissions                       : "com.github.getActivity:XXPermissions:11.5",
                     // ProgressManager 监听 App 中所有网络链接的上传以及下载进度 https://github.com/JessYanCoding/ProgressManager
                     progressmanager                     : "me.jessyan:progressmanager:1.5.0",
 

@@ -24,7 +24,7 @@ import java.io.IOException
  * Google 再见 SharedPreferences 拥抱 Jetpack DataStore ( 二 )
  * @see https://juejin.im/post/6888847647802097672
  * <p></p>
- * DataStore 文件存放目录: /data/data/<包名>/files/datastore
+ * DataStore 文件存储目录: /data/data/<包名>/files/datastore
  * 仅支持 Int、String、Boolean、Float、Long、Double
  * 具体查看 [androidx.datastore.preferences.core.PreferencesKeys]
  */

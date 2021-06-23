@@ -59,7 +59,7 @@ public final class ACache {
     public static final  int                 TIME_DAY      = TIME_HOUR * 24;
     // 缓存最大值 50 MB
     public static final  int                 MAX_SIZE      = 1000 * 1000 * 50;
-    // 不限制存放数据的数量
+    // 不限制存储数据的数量
     public static final  int                 MAX_COUNT     = Integer.MAX_VALUE;
     // 不同地址配置缓存对象
     private static final Map<String, ACache> sInstanceMaps = new HashMap<>();
