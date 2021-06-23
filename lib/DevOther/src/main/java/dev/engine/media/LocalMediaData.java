@@ -8,7 +8,7 @@ import com.luck.picture.lib.entity.LocalMedia;
  * @author Ttt
  */
 public class LocalMediaData
-        extends IMediaEngine.MediaData {
+        extends IMediaEngine.EngineData {
 
     private LocalMedia localMedia;
 

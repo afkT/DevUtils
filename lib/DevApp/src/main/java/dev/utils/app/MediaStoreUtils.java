@@ -348,7 +348,7 @@ public final class MediaStoreUtils {
 
     /**
      * 创建 Download Uri
-     * @param displayName 显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param displayName 显示名 ( 需后缀 )
      * @return Download Uri
      */
     @RequiresApi(api = Build.VERSION_CODES.Q)

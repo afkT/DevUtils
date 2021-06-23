@@ -11,7 +11,7 @@ public interface OnInsertListener<Item extends IStorageEngine.EngineItem, Result
 
     /**
      * 插入多媒体资源结果方法
-     * @param result 保存结果
+     * @param result 存储结果
      * @param params 原始参数
      * @param source 原始数据
      */

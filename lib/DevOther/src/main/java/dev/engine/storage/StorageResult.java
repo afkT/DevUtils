@@ -14,9 +14,9 @@ public class StorageResult
     // 前置条件校验结果 ( 如传入参数判 null, 以及 DevSource 是否有效 )
     private final boolean preCheck;
     // 存储文件地址
-    private File    file;
+    private       File    file;
     // 存储文件 Uri
-    private Uri     uri;
+    private       Uri     uri;
 
     public StorageResult(boolean preCheck) {
         this.preCheck = preCheck;

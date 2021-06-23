@@ -8,7 +8,7 @@ import dev.engine.media.IMediaEngine
  * detail: Local Media Selector Data
  * @author Ttt
  */
-class LocalMediaData : IMediaEngine.MediaData {
+class LocalMediaData : IMediaEngine.EngineData {
 
     var localMedia: LocalMedia? = null
 

@@ -13,7 +13,7 @@ import java.util.List;
  * @author Ttt
  */
 public interface IMediaEngine<Config extends IMediaEngine.EngineConfig,
-        Data extends IMediaEngine.MediaData> {
+        Data extends IMediaEngine.EngineData> {
 
     /**
      * detail: Media Selector Config
@@ -26,7 +26,7 @@ public interface IMediaEngine<Config extends IMediaEngine.EngineConfig,
      * detail: Media Selector Data
      * @author Ttt
      */
-    class MediaData {
+    class EngineData {
     }
 
     // =============
