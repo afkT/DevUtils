@@ -67,7 +67,7 @@ public final class FileUtils {
 
     /**
      * 获取路径, 并且进行创建目录
-     * @param filePath 保存目录
+     * @param filePath 存储目录
      * @param fileName 文件名
      * @return 文件 {@link File}
      */
@@ -83,7 +83,7 @@ public final class FileUtils {
 
     /**
      * 获取路径, 并且进行创建目录
-     * @param filePath 保存目录
+     * @param filePath 存储目录
      * @param fileName 文件名
      * @return 文件 {@link File}
      */

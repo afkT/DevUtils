@@ -284,7 +284,7 @@ public final class VersionHelper {
     /**
      * 创建图片 Uri
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
      * @return 图片 Uri
      */
     public static Uri createImageUri(
@@ -296,10 +296,10 @@ public final class VersionHelper {
 
     /**
      * 创建图片 Uri
-     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
      * @param createTime   创建时间
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
      * @return 图片 Uri
      */
     public static Uri createImageUri(
@@ -335,7 +335,7 @@ public final class VersionHelper {
     /**
      * 创建视频 Uri
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
      * @return 视频 Uri
      */
     public static Uri createVideoUri(
@@ -347,10 +347,10 @@ public final class VersionHelper {
 
     /**
      * 创建视频 Uri
-     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
      * @param createTime   创建时间
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
      * @return 视频 Uri
      */
     public static Uri createVideoUri(
@@ -386,7 +386,7 @@ public final class VersionHelper {
     /**
      * 创建音频 Uri
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
      * @return 音频 Uri
      */
     public static Uri createAudioUri(
@@ -398,10 +398,10 @@ public final class VersionHelper {
 
     /**
      * 创建音频 Uri
-     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
      * @param createTime   创建时间
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
      * @return 音频 Uri
      */
     public static Uri createAudioUri(
@@ -419,7 +419,7 @@ public final class VersionHelper {
 
     /**
      * 创建 Download Uri
-     * @param displayName 显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param displayName 显示名 ( 需后缀 )
      * @return Download Uri
      */
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -429,7 +429,7 @@ public final class VersionHelper {
 
     /**
      * 创建 Download Uri
-     * @param displayName 显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param displayName 显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
      * @param mimeType    资源类型
      * @return Download Uri
      */
@@ -443,9 +443,9 @@ public final class VersionHelper {
 
     /**
      * 创建 Download Uri
-     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
      * @return Download Uri
      */
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -462,10 +462,10 @@ public final class VersionHelper {
      * <pre>
      *     Android Q ( 10.0 ) 以下直接通过 File 写入到 {@link Environment#DIRECTORY_DOWNLOADS}
      * </pre>
-     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
      * @param createTime   创建时间
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
      * @return Download Uri
      */
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -485,9 +485,9 @@ public final class VersionHelper {
     /**
      * 创建预存储 Media Uri
      * @param uri          MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
-     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
      * @return Media Uri
      */
     public static Uri createMediaUri(
@@ -505,10 +505,10 @@ public final class VersionHelper {
      *     也可通过 {@link IntentUtils#getCreateDocumentIntent(String, String)} 创建
      * </pre>
      * @param uri          MediaStore.media-type.Media.EXTERNAL_CONTENT_URI
-     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定 )
+     * @param displayName  显示名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
      * @param createTime   创建时间
      * @param mimeType     资源类型
-     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Download )
+     * @param relativePath 存储目录 ( 如 DCIM、Video、Pictures、Music、Download )
      * @return Media Uri
      */
     public static Uri createMediaUri(
