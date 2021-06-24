@@ -19,22 +19,23 @@ implementation 'io.github.afkt:DevAssist:1.2.4'
       - number                                        | 数值操作
    - callback                                         | 接口回调相关
    - engine                                           | 兼容 Engine
-      - analytics                                     | Analytics Engine
-      - cache                                         | Cache Engine
-      - compress                                      | Image Compress Engine
+      - analytics                                     | Analytics Engine 数据统计 ( 埋点 )
+      - cache                                         | Cache Engine 有效期键值对缓存
+      - compress                                      | Image Compress Engine 图片压缩
          - listener                                   | 图片压缩回调事件
-      - http                                          | Http Engine
-      - image                                         | Image Engine
+      - http                                          | Http Engine 网络请求
+      - image                                         | Image Engine 图片加载、下载、转格式等
          - listener                                   | 图片加载监听事件
       - json                                          | JSON Engine
-      - keyvalue                                      | Key-Value Engine
-      - log                                           | Log Engine
-      - media                                         | Media Selector Engine
-      - permission                                    | Permission Engine
-      - push                                          | Push Engine
-      - share                                         | Share Engine
+      - keyvalue                                      | KeyValue Engine 键值对存储
+      - log                                           | Log Engine 日志打印
+      - media                                         | Media Selector Engine 多媒体资源选择
+      - permission                                    | Permission Engine 权限申请
+      - push                                          | Push Engine 推送平台处理
+      - share                                         | Share Engine 分享平台处理
          - listener                                   | 分享回调事件
-      - storage                                       | Storage Engine
+      - storage                                       | Storage Engine 外部、内部文件存储
+         - listener                                   | null
    - function                                         | 快捷方法执行相关
 ```
 
@@ -59,22 +60,23 @@ implementation 'io.github.afkt:DevAssist:1.2.4'
       - [number](#devbasenumber)                      | 数值操作
    - [callback](#devcallback)                         | 接口回调相关
    - [engine](#devengine)                             | 兼容 Engine
-      - [analytics](#devengineanalytics)              | Analytics Engine
-      - [cache](#devenginecache)                      | Cache Engine
-      - [compress](#devenginecompress)                | Image Compress Engine
+      - [analytics](#devengineanalytics)              | Analytics Engine 数据统计 ( 埋点 )
+      - [cache](#devenginecache)                      | Cache Engine 有效期键值对缓存
+      - [compress](#devenginecompress)                | Image Compress Engine 图片压缩
          - [listener](#devenginecompresslistener)     | 图片压缩回调事件
-      - [http](#devenginehttp)                        | Http Engine
-      - [image](#devengineimage)                      | Image Engine
+      - [http](#devenginehttp)                        | Http Engine 网络请求
+      - [image](#devengineimage)                      | Image Engine 图片加载、下载、转格式等
          - [listener](#devengineimagelistener)        | 图片加载监听事件
       - [json](#devenginejson)                        | JSON Engine
-      - [keyvalue](#devenginekeyvalue)                | Key-Value Engine
-      - [log](#devenginelog)                          | Log Engine
-      - [media](#devenginemedia)                      | Media Selector Engine
-      - [permission](#devenginepermission)            | Permission Engine
-      - [push](#devenginepush)                        | Push Engine
-      - [share](#devengineshare)                      | Share Engine
+      - [keyvalue](#devenginekeyvalue)                | KeyValue Engine 键值对存储
+      - [log](#devenginelog)                          | Log Engine 日志打印
+      - [media](#devenginemedia)                      | Media Selector Engine 多媒体资源选择
+      - [permission](#devenginepermission)            | Permission Engine 权限申请
+      - [push](#devenginepush)                        | Push Engine 推送平台处理
+      - [share](#devengineshare)                      | Share Engine 分享平台处理
          - [listener](#devenginesharelistener)        | 分享回调事件
-      - [storage](#devenginestorage)                  | Storage Engine
+      - [storage](#devenginestorage)                  | Storage Engine 外部、内部文件存储
+         - [listener](#devenginestoragelistener)      | null
    - [function](#devfunction)                         | 快捷方法执行相关
 
 
@@ -431,7 +433,7 @@ implementation 'io.github.afkt:DevAssist:1.2.4'
 | isLessThanPageSize | 判断是否小于每页请求条数 |
 
 
-* **资源路径通用类 ->** [DevSource.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/base/DevSource.java)
+* **资源来源通用类 ->** [DevSource.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/base/DevSource.java)
 
 | 方法 | 注释 |
 | :- | :- |
@@ -443,7 +445,9 @@ implementation 'io.github.afkt:DevAssist:1.2.4'
 | isResource | isResource |
 | isFile | isFile |
 | isInputStream | isInputStream |
-| isSource | isSource |
+| isDrawable | isDrawable |
+| isBitmap | isBitmap |
+| isSource | 是否有效资源 |
 
 
 * **变量基类 ( 方便判断处理 ) ->** [DevVariable.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/base/DevVariable.java)
@@ -1252,6 +1256,16 @@ implementation 'io.github.afkt:DevAssist:1.2.4'
 | insertAudioToInternal | 插入一条音频到内部存储空间 |
 | insertDownloadToInternal | 插入一条文件资源到内部存储空间 |
 | insertMediaToInternal | 插入一条多媒体资源到内部存储空间 |
+
+
+## <span id="devenginestoragelistener">**`dev.engine.storage.listener`**</span>
+
+
+* **插入多媒体资源事件 ->** [OnInsertListener.java](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/src/main/java/dev/engine/storage/listener/OnInsertListener.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| onResult | 插入多媒体资源结果方法 |
 
 
 ## <span id="devfunction">**`dev.function`**</span>

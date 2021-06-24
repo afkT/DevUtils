@@ -6,14 +6,15 @@
 - dev                                                 | 根目录
    - assist                                           | 常用辅助类封装
    - engine                                           | 兼容 Engine
-      - cache                                         | Cache Engine
-      - compress                                      | Image Compress Engine
-      - image                                         | Image Engine
+      - cache                                         | Cache Engine 有效期键值对缓存
+      - compress                                      | Image Compress Engine 图片压缩
+      - image                                         | Image Engine 图片加载、下载、转格式等
       - json                                          | JSON Engine
-      - keyvalue                                      | Key-Value Engine
-      - log                                           | Log Engine
-      - media                                         | Media Selector Engine
-      - permission                                    | Permission Engine
+      - keyvalue                                      | KeyValue Engine 键值对存储
+      - log                                           | Log Engine 日志打印
+      - media                                         | Media Selector Engine 多媒体资源选择
+      - permission                                    | Permission Engine 权限申请
+      - storage                                       | Storage Engine 外部、内部文件存储
    - other                                            | 第三方库封装工具类
       - cache                                         | 缓存工具类
       - http                                          | Http 通用封装
@@ -41,14 +42,15 @@
 - dev                                                 | 根目录
    - [assist](#devassist)                             | 常用辅助类封装
    - [engine](#devengine)                             | 兼容 Engine
-      - [cache](#devenginecache)                      | Cache Engine
-      - [compress](#devenginecompress)                | Image Compress Engine
-      - [image](#devengineimage)                      | Image Engine
+      - [cache](#devenginecache)                      | Cache Engine 有效期键值对缓存
+      - [compress](#devenginecompress)                | Image Compress Engine 图片压缩
+      - [image](#devengineimage)                      | Image Engine 图片加载、下载、转格式等
       - [json](#devenginejson)                        | JSON Engine
-      - [keyvalue](#devenginekeyvalue)                | Key-Value Engine
-      - [log](#devenginelog)                          | Log Engine
-      - [media](#devenginemedia)                      | Media Selector Engine
-      - [permission](#devenginepermission)            | Permission Engine
+      - [keyvalue](#devenginekeyvalue)                | KeyValue Engine 键值对存储
+      - [log](#devenginelog)                          | Log Engine 日志打印
+      - [media](#devenginemedia)                      | Media Selector Engine 多媒体资源选择
+      - [permission](#devenginepermission)            | Permission Engine 权限申请
+      - [storage](#devenginestorage)                  | Storage Engine 外部、内部文件存储
    - [other](#devother)                               | 第三方库封装工具类
       - [cache](#devothercache)                       | 缓存工具类
       - [http](#devotherhttp)                         | Http 通用封装
@@ -528,6 +530,84 @@
 | request | request |
 
 
+## <span id="devenginestorage">**`dev.engine.storage`**</span>
+
+
+* **DevUtils MediaStore Engine 实现 ->** [DevMediaStoreEngineImpl.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/storage/DevMediaStoreEngineImpl.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| insertImageToExternal | 插入一张图片到外部存储空间 ( SDCard ) |
+| insertVideoToExternal | 插入一条视频到外部存储空间 ( SDCard ) |
+| insertAudioToExternal | 插入一条音频到外部存储空间 ( SDCard ) |
+| insertDownloadToExternal | 插入一条文件资源到外部存储空间 ( SDCard ) |
+| insertMediaToExternal | 插入一条多媒体资源到外部存储空间 ( SDCard ) |
+| insertImageToInternal | 插入一张图片到内部存储空间 |
+| insertVideoToInternal | 插入一条视频到内部存储空间 |
+| insertAudioToInternal | 插入一条音频到内部存储空间 |
+| insertDownloadToInternal | 插入一条文件资源到内部存储空间 |
+| insertMediaToInternal | 插入一条多媒体资源到内部存储空间 |
+
+
+* **Storage Item Params ->** [StorageItem.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/storage/StorageItem.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getFilePath | getFilePath |
+| setFilePath | setFilePath |
+| getFileName | getFileName |
+| setFileName | setFileName |
+| getFolder | getFolder |
+| setFolder | setFolder |
+| getMimeType | getMimeType |
+| setMimeType | setMimeType |
+| getOutputUri | getOutputUri |
+| setOutputUri | setOutputUri |
+| getFormat | getFormat |
+| setFormat | setFormat |
+| getQuality | getQuality |
+| setQuality | setQuality |
+| getInternalFile | 获取内部存储完整路径 |
+| getInternalFolder | 获取内部存储文件夹路径 |
+| getExternalFile | 获取外部存储完整路径 |
+| getExternalFolder | 获取外部存储文件夹路径 |
+| createUriItem | 创建指定输出 Uri Item |
+| createInternalItem | 创建内部存储路径信息 Item |
+| createExternalItem | 创建外部存储路径信息 Item |
+
+
+* **Storage Result ->** [StorageResult.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/storage/StorageResult.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| success | 前置条件校验成功 |
+| failure | 前置条件校验失败 |
+| isCorrect | isCorrect |
+| getFile | getFile |
+| setFile | setFile |
+| getUri | getUri |
+| setUri | setUri |
+| getError | getError |
+| setError | setError |
+| getType | getType |
+| setType | setType |
+
+
+* **Storage Type ->** [StorageType.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/storage/StorageType.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isImage | isImage |
+| isVideo | isVideo |
+| isAudio | isAudio |
+| isDownload | isDownload |
+| isNone | isNone |
+| convertType | 通过文件后缀判断存储类型 |
+| convertTypeByMimeType | 通过 mimeType 判断存储类型 |
+| convertTypeByFileName | 通过 fileName 判断存储类型 |
+| getTypeRelativePath | 通过 mimeType 获取对应存储文件夹 |
+
+
 ## <span id="devother">**`dev.other`**</span>
 
 
@@ -733,8 +813,12 @@
 | setLocalMedia | 设置已选择的本地资源 |
 | setCameraSavePath | 设置拍照存储地址 |
 | setCompressSavePath | 设置压缩图片存储地址 |
-| clone | 克隆新的相册配置 |
-| set | 设置新的相册配置 |
+| clone | 克隆新的配置信息 |
+| set | 设置新的配置信息 |
+| ofAll | ofAll |
+| ofImage | ofImage |
+| ofVideo | ofVideo |
+| ofAudio | ofAudio |
 
 
 * **ZXing 二维码工具类 ->** [ZXingQRCodeUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/ZXingQRCodeUtils.java)
