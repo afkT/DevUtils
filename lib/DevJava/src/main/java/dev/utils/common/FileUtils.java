@@ -1618,7 +1618,7 @@ public final class FileUtils {
             final boolean isMove
     ) {
         if (srcDir == null || destDir == null || listener == null) return false;
-        // 为防止以上这种情况出现出现误判, 须分别在后面加个路径分隔符
+        // 为防止以上这种情况出现出现误判, 需分别在后面加个路径分隔符
         String srcPath  = srcDir.getPath() + File.separator;
         String destPath = destDir.getPath() + File.separator;
         if (destPath.contains(srcPath)) return false;

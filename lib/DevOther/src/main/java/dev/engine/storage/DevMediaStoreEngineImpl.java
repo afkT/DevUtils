@@ -10,7 +10,6 @@ import java.io.InputStream;
 import dev.base.DevSource;
 import dev.engine.storage.listener.OnInsertListener;
 import dev.utils.app.MediaStoreUtils;
-import dev.utils.app.SDCardUtils;
 import dev.utils.app.UriUtils;
 import dev.utils.app.image.ImageUtils;
 import dev.utils.common.FileIOUtils;
@@ -369,10 +368,7 @@ public class DevMediaStoreEngineImpl
                             // 属于 * 自动识别, 则 fileName 要求指定后缀 ( 直接拼接即可 )
                             if (params.getMimeType().contains("*")) {
                                 // SDCard/folder/fileName
-                                return FileUtils.getFile(
-                                        SDCardUtils.getSDCardPath(params.getFolder()),
-                                        params.getFileName()
-                                );
+                                return params.getExternalFile();
                             } else {
                                 // 进行获取文件后缀 ( 不含 . )
                                 String extension = MediaStoreUtils.getExtensionFromMimeType(
@@ -383,33 +379,17 @@ public class DevMediaStoreEngineImpl
                                     // fileName.extension ( 小写后缀 )
                                     String fileName = params.getFileName() + "." + extension.toLowerCase();
                                     // SDCard/folder/fileName.extension
-                                    return FileUtils.getFile(
-                                            SDCardUtils.getSDCardPath(params.getFolder()),
-                                            fileName
-                                    );
+                                    return params.getExternalFile(fileName);
                                 }
                                 // 无法获取到后缀, 可考虑进行拼接返回
                                 // SDCard/folder/fileName
-                                return FileUtils.getFile(
-                                        SDCardUtils.getSDCardPath(params.getFolder()),
-                                        params.getFileName()
-                                );
+                                return params.getExternalFile();
                             }
                         }
                         break;
                 }
             } else { // 内部存储路径
-                String internalPath = params.getFilePath();
-                // 判断是否存在文件夹, 存在则追加到 存储路径 上
-                if (StringUtils.isNotEmpty(params.getFolder())) {
-                    File internalFile = FileUtils.getFile(
-                            params.getFilePath(),
-                            params.getFolder()
-                    );
-                    internalPath = FileUtils.getAbsolutePath(internalFile);
-                }
-                // filePath + folder + fileName
-                return FileUtils.getFile(internalPath, params.getFileName());
+                return params.getInternalFile();
             }
         }
         return null;
