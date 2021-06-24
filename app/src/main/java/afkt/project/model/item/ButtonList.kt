@@ -56,6 +56,12 @@ object ButtonList {
                     RouterPath.DevEnvironmentLibActivity_PATH
                 )
             )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.MODULE_DEV_ASSIST_ENGINE, "DevAssist Engine 实现",
+                    RouterPath.DevAssistEngineActivity_PATH
+                )
+            )
             return lists
         }
 
@@ -800,6 +806,34 @@ object ButtonList {
             val lists: MutableList<ButtonValue> = ArrayList()
             lists.add(ButtonValue(ButtonValue.BTN_DEV_ENVIRONMENT, "环境配置切换", ""))
             lists.add(ButtonValue(ButtonValue.BTN_USE_CUSTOM, "使用自定义配置", ""))
+            return lists
+        }
+
+    // ========================
+    // = DevAssist Engine 实现 =
+    // ========================
+
+    /**
+     * 获取 DevAssist Engine Module Button Value 集合
+     * @return [List]
+     */
+    @JvmStatic
+    val moduleDevAssistEngineButtonValues: List<ButtonValue>
+        get() {
+            val lists: MutableList<ButtonValue> = ArrayList()
+            lists.add(ButtonValue(ButtonValue.BTN_ENGINE_ANALYTICS, "Analytics Engine 数据统计 ( 埋点 )", ""))
+            lists.add(ButtonValue(ButtonValue.BTN_ENGINE_CACHE, "Cache Engine 有效期键值对缓存", ""))
+            lists.add(ButtonValue(ButtonValue.BTN_ENGINE_IMAGE_COMPRESS, "Image Compress Engine 图片压缩", ""))
+            lists.add(ButtonValue(ButtonValue.BTN_ENGINE_HTTP, "Http Engine 网络请求", ""))
+            lists.add(ButtonValue(ButtonValue.BTN_ENGINE_IMAGE, "Image Engine 图片加载、下载、转格式等", ""))
+            lists.add(ButtonValue(ButtonValue.BTN_ENGINE_JSON, "JSON Engine", ""))
+            lists.add(ButtonValue(ButtonValue.BTN_ENGINE_KEYVALUE, "KeyValue Engine 键值对存储", ""))
+            lists.add(ButtonValue(ButtonValue.BTN_ENGINE_LOG, "Log Engine 日志打印", ""))
+            lists.add(ButtonValue(ButtonValue.BTN_ENGINE_MEDIA_SELECTOR, "Media Selector Engine 多媒体资源选择", ""))
+            lists.add(ButtonValue(ButtonValue.BTN_ENGINE_PERMISSION, "Permission Engine 权限申请", ""))
+            lists.add(ButtonValue(ButtonValue.BTN_ENGINE_PUSH, "Push Engine 推送平台处理", ""))
+            lists.add(ButtonValue(ButtonValue.BTN_ENGINE_SHARE, "Share Engine 分享平台处理", ""))
+            lists.add(ButtonValue(ButtonValue.BTN_ENGINE_STORAGE, "Storage Engine 外部、内部文件存储", ""))
             return lists
         }
 }

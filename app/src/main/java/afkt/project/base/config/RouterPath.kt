@@ -12,6 +12,8 @@ object RouterPath {
 
     const val DevEnvironmentLibActivity_PATH = "/activity/DevEnvironmentLibActivity"
 
+    const val DevAssistEngineActivity_PATH = "/activity/DevAssistEngineActivity"
+
     const val ViewAssistRecyclerViewLoadActivity_PATH =
         "/activity/ViewAssistRecyclerViewLoadActivity"
 

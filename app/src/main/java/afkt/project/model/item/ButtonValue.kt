@@ -39,6 +39,9 @@ class ButtonValue(
         // DevEnvironment 环境配置切换库
         const val MODULE_DEV_ENVIRONMENT = BASE + 60000
 
+        // DevAssist Engine 实现
+        const val MODULE_DEV_ASSIST_ENGINE = BASE + 70000
+
         // =============
         // = Framework =
         // =============
@@ -509,5 +512,51 @@ class ButtonValue(
 
         // 使用自定义配置
         const val BTN_USE_CUSTOM = BTN_DEV_ENVIRONMENT + 100
+
+        // ========================
+        // = DevAssist Engine 实现 =
+        // ========================
+
+        // DevAssist Engine
+        const val BTN_ENGINE = MODULE_DEV_ASSIST_ENGINE
+
+        // Analytics Engine 数据统计 ( 埋点 )
+        const val BTN_ENGINE_ANALYTICS = BTN_ENGINE + 100
+
+        // Cache Engine 有效期键值对缓存
+        const val BTN_ENGINE_CACHE = BTN_ENGINE + 200
+
+        // Image Compress Engine 图片压缩
+        const val BTN_ENGINE_IMAGE_COMPRESS = BTN_ENGINE + 300
+
+        // Http Engine 网络请求
+        const val BTN_ENGINE_HTTP = BTN_ENGINE + 400
+
+        // Image Engine 图片加载、下载、转格式等
+        const val BTN_ENGINE_IMAGE = BTN_ENGINE + 500
+
+        // JSON Engine
+        const val BTN_ENGINE_JSON = BTN_ENGINE + 600
+
+        // KeyValue Engine 键值对存储
+        const val BTN_ENGINE_KEYVALUE = BTN_ENGINE + 700
+
+        // Log Engine 日志打印
+        const val BTN_ENGINE_LOG = BTN_ENGINE + 800
+
+        // Media Selector Engine 多媒体资源选择
+        const val BTN_ENGINE_MEDIA_SELECTOR = BTN_ENGINE + 900
+
+        // Permission Engine 权限申请
+        const val BTN_ENGINE_PERMISSION = BTN_ENGINE + 1000
+
+        // Push Engine 推送平台处理
+        const val BTN_ENGINE_PUSH = BTN_ENGINE + 1100
+
+        // Share Engine 分享平台处理
+        const val BTN_ENGINE_SHARE = BTN_ENGINE + 1200
+
+        // Storage Engine 外部、内部文件存储
+        const val BTN_ENGINE_STORAGE = BTN_ENGINE + 1300
     }
 }
