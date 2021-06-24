@@ -1,16 +1,21 @@
 package dev.engine.storage;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 
 import java.io.File;
+import java.io.InputStream;
 
 import dev.base.DevSource;
 import dev.engine.storage.listener.OnInsertListener;
 import dev.utils.app.MediaStoreUtils;
 import dev.utils.app.SDCardUtils;
 import dev.utils.app.UriUtils;
+import dev.utils.app.image.ImageUtils;
+import dev.utils.common.FileIOUtils;
 import dev.utils.common.FileUtils;
+import dev.utils.common.StreamUtils;
 import dev.utils.common.StringUtils;
 
 /**
@@ -234,7 +239,40 @@ public class DevMediaStoreEngineImpl
             final TYPE type
     ) {
         if (type == TYPE.NONE) {
-
+            // 获取 mimeType 后缀
+            String mimeTypeExtension = MediaStoreUtils.getExtensionFromMimeType(
+                    params.getMimeType()
+            );
+            if (StringUtils.isNotEmpty(mimeTypeExtension)) {
+                String extension = "." + mimeTypeExtension;
+                if (FileUtils.isImageFormats(extension)) {
+                    return TYPE.IMAGE;
+                }
+                if (FileUtils.isVideoFormats(extension)) {
+                    return TYPE.VIDEO;
+                }
+                if (FileUtils.isAudioFormats(extension)) {
+                    return TYPE.AUDIO;
+                }
+            }
+            // 获取文件名内的文件后缀
+            String fileNameExtension = FileUtils.getFileExtension(
+                    params.getFileName()
+            );
+            if (StringUtils.isNotEmpty(fileNameExtension)) {
+                String extension = "." + fileNameExtension;
+                if (FileUtils.isImageFormats(extension)) {
+                    return TYPE.IMAGE;
+                }
+                if (FileUtils.isVideoFormats(extension)) {
+                    return TYPE.VIDEO;
+                }
+                if (FileUtils.isAudioFormats(extension)) {
+                    return TYPE.AUDIO;
+                }
+            }
+            // 其他未知都放到 Download 文件夹下
+            return TYPE.DOWNLOAD;
         }
         return type;
     }
@@ -384,7 +422,7 @@ public class DevMediaStoreEngineImpl
                                             fileName
                                     );
                                 }
-                                // 无法获取到后缀, 可考虑也进行拼接返回
+                                // 无法获取到后缀, 可考虑进行拼接返回
                                 // SDCard/folder/fileName
                                 return FileUtils.getFile(
                                         SDCardUtils.getSDCardPath(params.getFolder()),
@@ -428,7 +466,7 @@ public class DevMediaStoreEngineImpl
             final OnInsertListener<StorageItem, StorageResult> listener,
             final TYPE type
     ) {
-        insideInsert(
+        insideInsertThread(
                 params, source, listener, true,
                 convertType(params, source, type)
         );
@@ -447,21 +485,50 @@ public class DevMediaStoreEngineImpl
             final OnInsertListener<StorageItem, StorageResult> listener,
             final TYPE type
     ) {
-        insideInsert(
+        insideInsertThread(
                 params, source, listener, false,
                 convertType(params, source, type)
         );
     }
 
     /**
-     * 内部插入数据方法 ( 通用 )
+     * 内部插入数据方法 ( 后台运行 )
      * @param params   原始参数
      * @param source   原始数据
      * @param listener 回调接口
      * @param external 是否外部存储
      * @param type     存储操作类型
      */
-    private void insideInsert(
+    private void insideInsertThread(
+            final StorageItem params,
+            final DevSource source,
+            final OnInsertListener<StorageItem, StorageResult> listener,
+            final boolean external,
+            final TYPE type
+    ) {
+        new Thread(() -> {
+            try {
+                insideInsertFinal(params, source, listener, external, type);
+            } catch (Exception e) {
+                if (listener != null) {
+                    listener.onResult(
+                            StorageResult.failure().setError(e),
+                            params, source
+                    );
+                }
+            }
+        }).start();
+    }
+
+    /**
+     * 内部插入数据方法 ( 最终方法 )
+     * @param params   原始参数
+     * @param source   原始数据
+     * @param listener 回调接口
+     * @param external 是否外部存储
+     * @param type     存储操作类型
+     */
+    private void insideInsertFinal(
             final StorageItem params,
             final DevSource source,
             final OnInsertListener<StorageItem, StorageResult> listener,
@@ -474,14 +541,66 @@ public class DevMediaStoreEngineImpl
         File outputFile = getOutputFile(params, source, external, type);
         // 通过 Uri 解析的路径
         String pathByUri = UriUtils.getFilePathByUri(outputUri);
-        // 获取输入 URI 或 InputStream
 
-//        // 开始写入数据 ( 后台线程 )
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        }).start();
+        // =============
+        // = 数据类型判断 =
+        // =============
+
+        // 存储结果
+        boolean insertResult = false;
+
+        if (outputUri != null) {
+            // 属于 Bitmap、Drawable
+            if (source.isBitmap() || source.isDrawable()) {
+                Bitmap bitmap = source.mBitmap;
+                if (source.isDrawable()) {
+                    bitmap = ImageUtils.drawableToBitmap(source.mDrawable);
+                }
+                insertResult = MediaStoreUtils.insertMedia(
+                        outputUri, bitmap, params.getFormat(), params.getQuality()
+                );
+            }
+
+            // 属于 byte[]、File、InputStream
+            if (source.isBytes() || source.isFile() || source.isInputStream()) {
+                InputStream inputStream = source.mInputStream;
+                if (source.isBytes()) {
+                    inputStream = StreamUtils.bytesToInputStream(source.mBytes);
+                } else if (source.isFile()) {
+                    inputStream = FileIOUtils.getFileInputStream(source.mFile);
+                }
+                insertResult = MediaStoreUtils.insertMedia(
+                        outputUri, inputStream
+                );
+            }
+
+            // 属于 Uri
+            if (source.isUri()) {
+                insertResult = MediaStoreUtils.insertMedia(
+                        outputUri, source.mUri
+                );
+            }
+
+            // url: 暂不处理 Url 文件 ( 涉及下载 ) 自行下载后传入 File
+            // resource Id: 无法确认属于 drawable、raw、assets 等 id ( 自行传入 Bitmap、InputStream、byte[] )
+            if (source.isUrl() || source.isResource()) {
+            }
+        }
+
+        // ==========
+        // = 结果回调 =
+        // ==========
+
+        StorageResult result = insertResult ? StorageResult.success() : StorageResult.failure();
+        // 保存输出路径信息
+        result.setUri(outputUri).setFile(outputFile);
+        // 输出 Uri 为 null, 则设置 Error
+        if (outputUri == null) {
+            result.setError(new Exception("outputUri is null"));
+        }
+
+        if (listener != null) {
+            listener.onResult(result, params, source);
+        }
     }
 }

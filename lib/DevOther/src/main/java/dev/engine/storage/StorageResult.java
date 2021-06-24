@@ -12,11 +12,13 @@ public class StorageResult
         extends IStorageEngine.EngineResult {
 
     // 前置条件校验结果 ( 如传入参数判 null, 以及 DevSource 是否有效 )
-    private final boolean mPreCheck;
+    private final boolean   mPreCheck;
     // 存储文件地址
-    private       File    mFile;
+    private       File      mFile;
     // 存储文件 Uri
-    private       Uri     mUri;
+    private       Uri       mUri;
+    // 异常信息
+    private       Exception mError;
 
     public StorageResult(boolean correct) {
         this.mPreCheck = correct;
@@ -67,6 +69,15 @@ public class StorageResult
 
     public StorageResult setUri(Uri uri) {
         this.mUri = uri;
+        return this;
+    }
+
+    public Exception getError() {
+        return mError;
+    }
+
+    public StorageResult setError(Exception error) {
+        this.mError = error;
         return this;
     }
 }
