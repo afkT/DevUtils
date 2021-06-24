@@ -19,6 +19,8 @@ public class StorageResult
     private       Uri       mUri;
     // 异常信息
     private       Exception mError;
+    // 存储类型
+    private       TYPE      mType;
 
     public StorageResult(boolean correct) {
         this.mPreCheck = correct;
@@ -79,5 +81,30 @@ public class StorageResult
     public StorageResult setError(Exception error) {
         this.mError = error;
         return this;
+    }
+
+    public TYPE getType() {
+        return mType;
+    }
+
+    public StorageResult setType(TYPE type) {
+        this.mType = type;
+        return this;
+    }
+
+    // ========
+    // = Type =
+    // ========
+
+    /**
+     * detail: 存储类型
+     * @author Ttt
+     */
+    public enum TYPE {
+        IMAGE,
+        VIDEO,
+        AUDIO,
+        DOWNLOAD,
+        NONE
     }
 }
