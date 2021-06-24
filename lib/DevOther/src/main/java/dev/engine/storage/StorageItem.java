@@ -5,6 +5,7 @@ import android.net.Uri;
 
 import java.io.File;
 
+import dev.utils.app.MediaStoreUtils;
 import dev.utils.app.SDCardUtils;
 import dev.utils.common.FileUtils;
 import dev.utils.common.StringUtils;
@@ -13,20 +14,18 @@ import dev.utils.common.StringUtils;
  * detail: Storage Item Params
  * @author Ttt
  * <pre>
- *     {@link #mFolder} 只需要文件夹名字
- *     是因为 Android 适配 {@link android.provider.MediaStore} 传入 RELATIVE_PATH 使用
- *     <p></p>
- *     {@link #mFilePath} 只会在内部存储时使用
- *     属于内部存储时, 完整路径为 filePath + folder + fileName
- *     <p></p>
  *     可传入输出 Uri 或通过拼接路径创建 Uri 二选一
- *     外部存储时:
- *     必须传入 {@link #mFolder}、{@link #mMimeType}、{@link #mFileName}
- *     {@link #mFileName} 存储文件名是否需要后缀视 {@link #mMimeType} 情况而定
- *     ( 正常无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
+ *     <p></p>
  *     内部存储时:
  *     必须传入 {@link #mFilePath}、{@link #mFileName}
  *     {@link #mFileName} 需携带后缀
+ *     可以使用快捷创建方法 {@link #createInternalItem(String, String)}
+ *     <p></p>
+ *     外部存储时:
+ *     必须传入 {@link #mFileName}、{@link #mMimeType}、{@link #mFolder}
+ *     {@link #mFileName} 存储文件名是否需要后缀视 {@link #mMimeType} 情况而定
+ *     ( 正常无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
+ *     可以使用快捷创建方法 {@link #createExternalItem(String, String, String)}
  * </pre>
  */
 public class StorageItem
@@ -40,7 +39,7 @@ public class StorageItem
     private String mFilePath;
     // 存储文件名 ( 无需后缀, 根据 mimeType 决定, 如果 mimeType 用了 xxx/* 则需指定后缀 )
     private String mFileName;
-    // 存储文件夹 ( 不包含完整路径, 就文件夹名, 不传则会存储在对应路径文件根目录 )
+    // 存储文件夹 ( 不包含完整路径, 只需要文件夹名字, 不传则会存储在对应路径文件根目录 )
     private String mFolder; // 可以传入, 如: /Dev/Material
     // 资源类型
     private String mMimeType;
@@ -250,6 +249,23 @@ public class StorageItem
     // ==========
     // = 外部存储 =
     // ==========
+
+    /**
+     * 创建外部存储路径信息 Item
+     * <pre>
+     *     根据 fileName 获取后缀推导出 mimeType
+     *     如果系统不支持的格式、文件名不含后缀则可能获取失败 ( 将直接返回 null Item )
+     * </pre>
+     * @param fileName 存储文件名 ( 必须携带后缀 )
+     * @return {@link StorageItem}
+     */
+    public static StorageItem createExternalItem(final String fileName) {
+        String fileExtension = FileUtils.getFileExtension(fileName);
+        String mimeType      = MediaStoreUtils.getMimeTypeFromExtension(fileExtension);
+        if (mimeType == null) return null;
+        String name = FileUtils.getFileNameNoExtension(fileName);
+        return createExternalItem(name, mimeType);
+    }
 
     /**
      * 创建外部存储路径信息 Item
