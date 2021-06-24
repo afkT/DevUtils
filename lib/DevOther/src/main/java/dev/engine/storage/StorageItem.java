@@ -175,8 +175,10 @@ public class StorageItem
             final String fileName,
             final String mimeType
     ) {
-        return new StorageItem().setFileName(fileName)
-                .setMimeType(mimeType);
+        return createExternal(
+                fileName, mimeType,
+                StorageType.getTypeRelativePath(mimeType)
+        );
     }
 
     public static StorageItem createExternal(

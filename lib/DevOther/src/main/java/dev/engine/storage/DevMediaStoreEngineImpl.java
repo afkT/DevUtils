@@ -227,30 +227,16 @@ public class DevMediaStoreEngineImpl
             final StorageType type
     ) {
         if (type == StorageType.NONE) {
-            // 获取 mimeType 后缀
-            String mimeTypeExtension = MediaStoreUtils.getExtensionFromMimeType(
+            StorageType typeResult = StorageType.convertTypeByMimeType(
                     params.getMimeType()
             );
-            StorageType typeResult = StorageType.convertType(mimeTypeExtension);
-            if (typeResult != null) {
+            if (!typeResult.isNone()) return typeResult;
 
-            }
-            // 获取文件名内的文件后缀
-            String fileNameExtension = FileUtils.getFileExtension(
+            typeResult = StorageType.convertTypeByFileName(
                     params.getFileName()
             );
-            if (StringUtils.isNotEmpty(fileNameExtension)) {
-                String extension = "." + fileNameExtension;
-                if (FileUtils.isImageFormats(extension)) {
-                    return StorageType.IMAGE;
-                }
-                if (FileUtils.isVideoFormats(extension)) {
-                    return StorageType.VIDEO;
-                }
-                if (FileUtils.isAudioFormats(extension)) {
-                    return StorageType.AUDIO;
-                }
-            }
+            if (!typeResult.isNone()) return typeResult;
+
             // 其他未知都放到 Download 文件夹下
             return StorageType.DOWNLOAD;
         }
