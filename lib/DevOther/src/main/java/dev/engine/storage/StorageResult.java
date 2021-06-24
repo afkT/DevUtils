@@ -20,7 +20,7 @@ public class StorageResult
     // 异常信息
     private       Exception mError;
     // 存储类型
-    private       TYPE      mType;
+    private       StorageType      mType;
 
     public StorageResult(boolean correct) {
         this.mPreCheck = correct;
@@ -83,28 +83,12 @@ public class StorageResult
         return this;
     }
 
-    public TYPE getType() {
+    public StorageType getType() {
         return mType;
     }
 
-    public StorageResult setType(TYPE type) {
+    public StorageResult setType(StorageType type) {
         this.mType = type;
         return this;
-    }
-
-    // ========
-    // = Type =
-    // ========
-
-    /**
-     * detail: 存储类型
-     * @author Ttt
-     */
-    public enum TYPE {
-        IMAGE,
-        VIDEO,
-        AUDIO,
-        DOWNLOAD,
-        NONE
     }
 }
