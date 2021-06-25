@@ -485,8 +485,6 @@ public class DevMediaStoreEngineImpl
         Uri outputUri = getOutputUri(params, source, external, type);
         // 获取输出文件路径
         File outputFile = getOutputFile(params, source, external, type);
-        // 通过 Uri 解析的路径
-        String pathByUri = UriUtils.getFilePathByUri(outputUri);
 
         // =============
         // = 数据类型判断 =

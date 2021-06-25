@@ -6,7 +6,7 @@ import android.net.Uri;
 import java.io.File;
 
 import dev.utils.app.MediaStoreUtils;
-import dev.utils.app.SDCardUtils;
+import dev.utils.app.PathUtils;
 import dev.utils.common.FileUtils;
 import dev.utils.common.StringUtils;
 
@@ -146,6 +146,8 @@ public class StorageItem
             );
             internalPath = FileUtils.getAbsolutePath(internalFile);
         }
+        // 创建文件夹
+        FileUtils.createFolder(internalPath);
         // filePath + folder + fileName
         return FileUtils.getFile(internalPath, mFileName);
     }
@@ -163,6 +165,8 @@ public class StorageItem
             );
             internalPath = FileUtils.getAbsolutePath(internalFile);
         }
+        // 创建文件夹
+        FileUtils.createFolder(internalPath);
         // filePath + folder
         return FileUtils.getFile(internalPath);
     }
@@ -185,7 +189,7 @@ public class StorageItem
     public File getExternalFile(final String fileName) {
         // SDCard/folder/fileName
         return FileUtils.getFile(
-                SDCardUtils.getSDCardPath(mFolder),
+                PathUtils.getSDCard().getSDCardPath(mFolder),
                 fileName
         );
     }
@@ -196,7 +200,7 @@ public class StorageItem
      */
     public File getExternalFolder() {
         // SDCard/folder
-        return SDCardUtils.getSDCardFile(mFolder);
+        return PathUtils.getSDCard().getSDCardFile(mFolder);
     }
 
     // ==========
@@ -219,7 +223,7 @@ public class StorageItem
     /**
      * 创建内部存储路径信息 Item
      * @param filePath 存储路径 ( 不包含文件名, 纯路径 ) 只会在内部存储时使用
-     * @param fileName 存储文件名 ( 需携带后缀 )
+     * @param fileName 存储文件名 ( 可不携带后缀 )
      * @return {@link StorageItem}
      */
     public static StorageItem createInternalItem(
@@ -233,7 +237,7 @@ public class StorageItem
     /**
      * 创建内部存储路径信息 Item
      * @param filePath 存储路径 ( 不包含文件名, 纯路径 ) 只会在内部存储时使用
-     * @param fileName 存储文件名 ( 需携带后缀 )
+     * @param fileName 存储文件名 ( 可不携带后缀 )
      * @param folder   存储文件夹 ( 不包含完整路径, 就文件夹名, 不传则会存储在对应路径文件根目录 )
      * @return {@link StorageItem}
      */
