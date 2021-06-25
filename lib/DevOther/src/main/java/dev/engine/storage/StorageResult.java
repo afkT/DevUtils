@@ -15,8 +15,8 @@ import java.io.File;
 public final class StorageResult
         extends IStorageEngine.EngineResult {
 
-    // 前置条件校验结果 ( 如传入参数判 null, 以及 DevSource 是否有效 )
-    private final     boolean     mPreCheck;
+    // 存储结果
+    private final     boolean     mInsertResult;
     // 存储文件 Uri
     private transient Uri         mUri;
     // 存储文件地址
@@ -28,8 +28,8 @@ public final class StorageResult
     // 是否外部存储
     private           boolean     mExternal;
 
-    public StorageResult(boolean correct) {
-        this.mPreCheck = correct;
+    public StorageResult(boolean result) {
+        this.mInsertResult = result;
     }
 
     // ==========
@@ -37,7 +37,7 @@ public final class StorageResult
     // ==========
 
     /**
-     * 前置条件校验成功
+     * 存储成功
      * @return {@link StorageResult}
      */
     public static StorageResult success() {
@@ -45,7 +45,7 @@ public final class StorageResult
     }
 
     /**
-     * 前置条件校验失败
+     * 存储失败
      * @return {@link StorageResult}
      */
     public static StorageResult failure() {
@@ -56,8 +56,8 @@ public final class StorageResult
     // = 对外公开方法 =
     // =============
 
-    public boolean isCorrect() {
-        return mPreCheck;
+    public boolean isSuccess() {
+        return mInsertResult;
     }
 
     // =

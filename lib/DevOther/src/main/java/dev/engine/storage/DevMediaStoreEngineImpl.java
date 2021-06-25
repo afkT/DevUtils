@@ -40,7 +40,7 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener)) {
+        if (insidePreCheck(params, source, listener, true, StorageType.IMAGE)) {
             insideInsertToExternal(params, source, listener, StorageType.IMAGE);
         }
     }
@@ -57,7 +57,7 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener)) {
+        if (insidePreCheck(params, source, listener, true, StorageType.VIDEO)) {
             insideInsertToExternal(params, source, listener, StorageType.VIDEO);
         }
     }
@@ -74,7 +74,7 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener)) {
+        if (insidePreCheck(params, source, listener, true, StorageType.AUDIO)) {
             insideInsertToExternal(params, source, listener, StorageType.AUDIO);
         }
     }
@@ -91,7 +91,7 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener)) {
+        if (insidePreCheck(params, source, listener, true, StorageType.DOWNLOAD)) {
             insideInsertToExternal(params, source, listener, StorageType.DOWNLOAD);
         }
     }
@@ -108,7 +108,7 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener)) {
+        if (insidePreCheck(params, source, listener, true, StorageType.NONE)) {
             insideInsertToExternal(params, source, listener, StorageType.NONE);
         }
     }
@@ -129,7 +129,7 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener)) {
+        if (insidePreCheck(params, source, listener, false, StorageType.IMAGE)) {
             insideInsertToInternal(params, source, listener, StorageType.IMAGE);
         }
     }
@@ -146,7 +146,7 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener)) {
+        if (insidePreCheck(params, source, listener, false, StorageType.VIDEO)) {
             insideInsertToInternal(params, source, listener, StorageType.VIDEO);
         }
     }
@@ -163,7 +163,7 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener)) {
+        if (insidePreCheck(params, source, listener, false, StorageType.AUDIO)) {
             insideInsertToInternal(params, source, listener, StorageType.AUDIO);
         }
     }
@@ -180,7 +180,7 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener)) {
+        if (insidePreCheck(params, source, listener, false, StorageType.DOWNLOAD)) {
             insideInsertToInternal(params, source, listener, StorageType.DOWNLOAD);
         }
     }
@@ -200,7 +200,7 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener)) {
+        if (insidePreCheck(params, source, listener, false, StorageType.NONE)) {
             insideInsertToInternal(params, source, listener, StorageType.NONE);
         }
     }
@@ -221,8 +221,8 @@ public class DevMediaStoreEngineImpl
      * @return 输出 Uri
      */
     private StorageType convertType(
-            StorageItem params,
-            DevSource source,
+            final StorageItem params,
+            final DevSource source,
             final StorageType type
     ) {
         if (type == StorageType.NONE) {
@@ -247,12 +247,17 @@ public class DevMediaStoreEngineImpl
      * @param params   原始参数
      * @param source   原始数据
      * @param listener 回调接口
+     * @param external 是否外部存储
+     * @param type     存储类型
      * @return {@code true} 校验通过, {@code false} 校验失败
      */
     private boolean insidePreCheck(
-            StorageItem params,
-            DevSource source,
-            OnInsertListener<StorageItem, StorageResult> listener
+            final StorageItem params,
+            final DevSource source,
+            final OnInsertListener<StorageItem, StorageResult> listener,
+            final boolean external,
+            final StorageType type
+
     ) {
         // 判断参数是否有效
         if (params != null && source != null && source.isSource()) {
@@ -260,7 +265,20 @@ public class DevMediaStoreEngineImpl
         }
         // 无效数据触发回调
         if (listener != null) {
-            listener.onResult(StorageResult.failure(), params, source);
+            StorageResult result = StorageResult.failure()
+                    .setExternal(external)
+                    .setType(convertType(params, source, type));
+            if (params == null) {
+                result.setError(new Exception("params is null"));
+            }
+            if (source == null || !source.isSource()) {
+                if (params == null) {
+                    result.setError(new Exception("params、source is null"));
+                } else {
+                    result.setError(new Exception("source is null"));
+                }
+            }
+            listener.onResult(result, params, source);
         }
         return false;
     }
