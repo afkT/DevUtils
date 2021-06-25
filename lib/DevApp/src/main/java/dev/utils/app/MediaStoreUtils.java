@@ -45,6 +45,8 @@ import dev.utils.common.FileUtils;
  *     @see <a href="https://www.jianshu.com/p/f3fcf033be5c"/>
  *     存储后缀根据 MIME_TYPE 决定, 值类型 libcore.net.MimeUtils
  *     @see <a href="https://www.androidos.net.cn/android/9.0.0_r8/xref/libcore/luni/src/main/java/libcore/net/MimeUtils.java"/>
+ *     ContentProvider 获取 MimeType
+ *     @see <a href="https://developer.android.google.cn/guide/topics/providers/content-provider-creating#FileMIMETypes"/>
  *     <p></p>
  *     访问下载内容 ( 文档和电子书籍 ) 加载系统的文件选择器
  *     {@link IntentUtils#getOpenDocumentIntent()}
@@ -137,7 +139,7 @@ public final class MediaStoreUtils {
     // 视频类型
     public static final String MIME_TYPE_VIDEO           = "video/*";
     // MP3
-    public static final String MIME_TYPE_AUDIO_MP3       = "audio/x-mpeg";
+    public static final String MIME_TYPE_AUDIO_MP3       = "audio/mpeg";
     // AAC
     public static final String MIME_TYPE_AUDIO_AAC       = "audio/aac";
     // WAV
