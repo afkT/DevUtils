@@ -12,19 +12,21 @@ import java.io.File;
  *     获取真实 File 存储地址 ( 部分 ROM 传入 RELATIVE_PATH 无效 ) 只会存储在对应 MimeType 根目录下
  * </pre>
  */
-public class StorageResult
+public final class StorageResult
         extends IStorageEngine.EngineResult {
 
     // 前置条件校验结果 ( 如传入参数判 null, 以及 DevSource 是否有效 )
-    private final boolean     mPreCheck;
-    // 存储文件地址
-    private       File        mFile;
+    private final     boolean     mPreCheck;
     // 存储文件 Uri
-    private       Uri         mUri;
+    private transient Uri         mUri;
+    // 存储文件地址
+    private           File        mFile;
     // 异常信息
-    private       Exception   mError;
+    private           Exception   mError;
     // 存储类型
-    private       StorageType mType;
+    private           StorageType mType;
+    // 是否外部存储
+    private           boolean     mExternal;
 
     public StorageResult(boolean correct) {
         this.mPreCheck = correct;
@@ -60,39 +62,50 @@ public class StorageResult
 
     // =
 
-    public File getFile() {
-        return mFile;
-    }
-
-    public StorageResult setFile(File file) {
-        this.mFile = file;
-        return this;
-    }
-
     public Uri getUri() {
         return mUri;
     }
 
-    public StorageResult setUri(Uri uri) {
-        this.mUri = uri;
-        return this;
+    public File getFile() {
+        return mFile;
     }
 
     public Exception getError() {
         return mError;
     }
 
-    public StorageResult setError(Exception error) {
-        this.mError = error;
-        return this;
-    }
-
     public StorageType getType() {
         return mType;
     }
 
-    public StorageResult setType(StorageType type) {
+    public boolean isExternal() {
+        return mExternal;
+    }
+
+    // =
+
+    protected StorageResult setUri(Uri uri) {
+        this.mUri = uri;
+        return this;
+    }
+
+    protected StorageResult setFile(File file) {
+        this.mFile = file;
+        return this;
+    }
+
+    protected StorageResult setError(Exception error) {
+        this.mError = error;
+        return this;
+    }
+
+    protected StorageResult setType(StorageType type) {
         this.mType = type;
+        return this;
+    }
+
+    protected StorageResult setExternal(boolean external) {
+        this.mExternal = external;
         return this;
     }
 }

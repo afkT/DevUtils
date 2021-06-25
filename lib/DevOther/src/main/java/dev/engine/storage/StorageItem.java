@@ -28,14 +28,14 @@ import dev.utils.common.StringUtils;
  *     可以使用快捷创建方法 {@link #createExternalItem(String, String, String)}
  * </pre>
  */
-public class StorageItem
+public final class StorageItem
         extends IStorageEngine.EngineItem {
 
     private StorageItem() {
     }
 
     // 输出 Uri ( 可以自行指定输出 Uri 优先使用该值 )
-    private Uri mOutputUri;
+    private transient Uri mOutputUri;
 
     // =============
     // = 内外存储通用 =

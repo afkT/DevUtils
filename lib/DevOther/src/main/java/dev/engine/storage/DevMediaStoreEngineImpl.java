@@ -536,11 +536,19 @@ public class DevMediaStoreEngineImpl
         // ==========
 
         StorageResult result = insertResult ? StorageResult.success() : StorageResult.failure();
-        // 保存输出路径信息
-        result.setUri(outputUri).setFile(outputFile).setType(type);
+        // 保存结果信息
+        result.setUri(outputUri).setFile(outputFile)
+                .setExternal(external).setType(type);
         // 输出 Uri 为 null, 则设置 Error
         if (outputUri == null) {
             result.setError(new Exception("outputUri is null"));
+        }
+        // 属于外部存储并且存储成功
+        if (external && insertResult) {
+            String uriPath = UriUtils.getFilePathByUri(outputUri);
+            if (StringUtils.isNotEmpty(uriPath)) {
+                result.setFile(FileUtils.getFile(uriPath));
+            }
         }
 
         if (listener != null) {
