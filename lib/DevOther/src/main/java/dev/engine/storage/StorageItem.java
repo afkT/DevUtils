@@ -175,11 +175,11 @@ public final class StorageItem
      * @return 外部存储完整路径
      */
     public File getExternalFile(final String fileName) {
+        String path = PathUtils.getSDCard().getSDCardPath(mFolder);
+        // 创建文件夹
+        FileUtils.createFolder(path);
         // SDCard/folder/fileName
-        return FileUtils.getFile(
-                PathUtils.getSDCard().getSDCardPath(mFolder),
-                fileName
-        );
+        return FileUtils.getFile(path, fileName);
     }
 
     /**
@@ -187,8 +187,11 @@ public final class StorageItem
      * @return 外部存储文件夹路径
      */
     public File getExternalFolder() {
+        String path = PathUtils.getSDCard().getSDCardPath(mFolder);
+        // 创建文件夹
+        FileUtils.createFolder(path);
         // SDCard/folder
-        return PathUtils.getSDCard().getSDCardFile(mFolder);
+        return FileUtils.getFile(path);
     }
 
     // ==========

@@ -307,6 +307,20 @@ public class DevMediaStoreEngineImpl
             }
             // 外部存储才需要进行适配
             if (external) {
+                // Android 9.0 及以下版本则直接使用 File 读写
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+//                    if (type == StorageType.DOWNLOAD) {
+//                        // 低版本直接创建 SDCard/Download File
+//                        File file = getOutputFile(params, source, external, type);
+//                        return MediaStoreUtils.createUriByFile(file);
+//                    }
+                    // 目前属于 IMAGE、VIDEO、AUDIO、DOWNLOAD 低版本都通过 File 读写
+                    // 如果需要 IMAGE、VIDEO、AUDIO 使用 MediaStore 则放开上面注释
+                    // 低版本直接创建 SDCard/Pictures、DCIM、Music、Download File
+                    File file = getOutputFile(params, source, external, type);
+                    return MediaStoreUtils.createUriByFile(file);
+                }
+
                 switch (type) {
                     case IMAGE: // 存储到 Pictures 文件夹
                         // 创建 Image Uri
@@ -330,17 +344,13 @@ public class DevMediaStoreEngineImpl
                                 params.getFolder()
                         );
                     case DOWNLOAD: // 存储到 Download 文件夹
+                        // 创建 Download Uri
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                            // 创建 Download Uri
                             return MediaStoreUtils.createDownloadUri(
                                     params.getFileName(),
                                     params.getMimeType(),
                                     params.getFolder()
                             );
-                        } else {
-                            // 低版本直接创建 SDCard/Download File
-                            File file = getOutputFile(params, source, external, type);
-                            return MediaStoreUtils.createUriByFile(file);
                         }
                 }
             } else { // 内部存储路径
