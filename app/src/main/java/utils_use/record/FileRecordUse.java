@@ -2,7 +2,6 @@ package utils_use.record;
 
 import java.io.File;
 
-import afkt.project.base.config.PathConfig;
 import dev.utils.app.AnalysisRecordUtils;
 import dev.utils.app.AppUtils;
 import dev.utils.app.DeviceUtils;
@@ -43,7 +42,7 @@ public final class FileRecordUse {
     /**
      * 日志文件夹路径
      */
-    public static final String LOG_SD_PATH = PathConfig.AEP_PATH + File.separator + "Logger" + File.separator;
+    public static final String LOG_SD_PATH = "xxxx Path" + File.separator + "Logger" + File.separator;
 
     /**
      * AnalysisRecordUtils 工具类使用方法

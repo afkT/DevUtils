@@ -15,14 +15,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.adapter.DevDataAdapterExt
+import dev.base.DevSource
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.base.widget.BaseTextView
+import dev.engine.storage.DevStorageEngine
 import dev.utils.app.CapturePictureUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.QuickHelper
 import dev.utils.app.helper.ViewHelper
 import dev.utils.app.image.ImageUtils
+import dev.utils.common.FileUtils
+import ktx.dev.engine.storage.OnDevInsertListener
+import ktx.dev.engine.storage.StorageItem
+import ktx.dev.engine.storage.StorageResult
 
 /**
  * detail: CapturePictureUtils RecyclerView 截图
@@ -44,15 +50,29 @@ class CapturePictureRecyActivity : BaseActivity<ActivityCapturePictureRecyBindin
             .setPaddingLeft(30)
             .setPaddingRight(30)
             .setOnClicks {
-                val filePath = PathConfig.AEP_DOWN_IMAGE_PATH
-                val fileName = "recy.jpg"
-                val bitmap: Bitmap
-
                 // 支持三种布局 GridLayoutManager、LinearLayoutManager、StaggeredGridLayoutManager
                 // 以及对于的横、竖屏效果截图
-                bitmap = CapturePictureUtils.snapshotByRecyclerView(binding.vidAcpRecy)
-                val result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName)
-                showToast(result, "保存成功\n" + (filePath + fileName), "保存失败")
+                DevStorageEngine.getEngine()?.insertImageToExternal(
+                    StorageItem.createExternalItem(
+                        "recy.jpg"
+                    ),
+                    DevSource.create(
+                        CapturePictureUtils.snapshotByRecyclerView(binding.vidAcpRecy)
+                    ),
+                    object : OnDevInsertListener {
+                        override fun onResult(
+                            result: StorageResult,
+                            params: StorageItem?,
+                            source: DevSource?
+                        ) {
+                            showToast(
+                                result.isSuccess(),
+                                "保存成功\n${FileUtils.getAbsolutePath(result.getFile())}",
+                                "保存失败"
+                            )
+                        }
+                    }
+                )
             }.getView<View>()
         toolbar?.addView(view)
     }
@@ -94,7 +114,7 @@ class CapturePictureRecyActivity : BaseActivity<ActivityCapturePictureRecyBindin
                     val item = getDataItem(position)
                     ViewHelper.get()
                         .setText(holder.binding.vidAcpTitleTv, item.title)
-                        .setText(holder.binding.vidAcpContentTv, item.title)
+                        .setText(holder.binding.vidAcpContentTv, item.content)
                 }
             }
     }

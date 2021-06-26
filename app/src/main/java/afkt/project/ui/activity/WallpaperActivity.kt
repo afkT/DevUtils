@@ -2,12 +2,16 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.PathConfig
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityWallpaperBinding
 import com.alibaba.android.arouter.facade.annotation.Route
+import dev.base.DevSource
+import dev.engine.storage.DevStorageEngine
 import dev.utils.app.WallpaperUtils
-import dev.utils.app.image.ImageUtils
+import dev.utils.common.FileUtils
+import ktx.dev.engine.storage.OnDevInsertListener
+import ktx.dev.engine.storage.StorageItem
+import ktx.dev.engine.storage.StorageResult
 
 /**
  * detail: 手机壁纸
@@ -21,18 +25,34 @@ class WallpaperActivity : BaseActivity<ActivityWallpaperBinding>() {
     override fun initValue() {
         super.initValue()
 
-        var wallpaper = WallpaperUtils.getDrawable()
+        val wallpaper = WallpaperUtils.getDrawable()
 
         binding.vidAwSaveBtn.setOnClickListener {
             if (wallpaper == null) {
                 showToast(false, "获取壁纸失败")
                 return@setOnClickListener
             }
-            val filePath = PathConfig.AEP_DOWN_IMAGE_PATH
-            val fileName = "${System.currentTimeMillis()}.jpg"
-            val bitmap = ImageUtils.drawableToBitmap(wallpaper)
-            val result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName)
-            showToast(result, "保存成功\n${filePath + fileName}", "保存失败")
+            DevStorageEngine.getEngine()?.insertImageToExternal(
+                StorageItem.createExternalItem(
+                    "${System.currentTimeMillis()}.jpg"
+                ),
+                DevSource.create(
+                    wallpaper
+                ),
+                object : OnDevInsertListener {
+                    override fun onResult(
+                        result: StorageResult,
+                        params: ktx.dev.engine.storage.StorageItem?,
+                        source: DevSource?
+                    ) {
+                        showToast(
+                            result.isSuccess(),
+                            "保存成功\n${FileUtils.getAbsolutePath(result.getFile())}",
+                            "保存失败"
+                        )
+                    }
+                }
+            )
         }
         wallpaper?.let {
             binding.vidAwIgview.background = it

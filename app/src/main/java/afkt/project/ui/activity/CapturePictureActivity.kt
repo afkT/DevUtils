@@ -2,16 +2,20 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.PathConfig
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityCapturePictureBinding
 import afkt.project.model.item.ButtonValue
 import android.graphics.Bitmap
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
+import dev.base.DevSource
+import dev.engine.storage.DevStorageEngine
 import dev.utils.app.CapturePictureUtils
 import dev.utils.app.ListenerUtils
-import dev.utils.app.image.ImageUtils
+import dev.utils.common.FileUtils
+import ktx.dev.engine.storage.OnDevInsertListener
+import ktx.dev.engine.storage.StorageItem
+import ktx.dev.engine.storage.StorageResult
 
 /**
  * detail: CapturePictureUtils 截图工具类
@@ -59,37 +63,33 @@ class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
 
     override fun onClick(v: View) {
         super.onClick(v)
-        val bitmap: Bitmap
-        val result: Boolean
-        val filePath = PathConfig.AEP_DOWN_IMAGE_PATH
-        val fileName: String
         when (v.id) {
             R.id.vid_acp_screen_btn -> {
-                fileName = "screen.jpg"
-                bitmap = CapturePictureUtils.snapshotWithStatusBar(mActivity)
-                result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName)
-                showToast(result, "保存成功\n" + (filePath + fileName), "保存失败")
+                saveBitmap(
+                    "screen.jpg",
+                    CapturePictureUtils.snapshotWithStatusBar(mActivity)
+                )
             }
             R.id.vid_acp_screen1_btn -> {
-                fileName = "screen1.jpg"
-                bitmap = CapturePictureUtils.snapshotWithoutStatusBar(mActivity)
-                result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName)
-                showToast(result, "保存成功\n" + (filePath + fileName), "保存失败")
+                saveBitmap(
+                    "screen1.jpg",
+                    CapturePictureUtils.snapshotWithoutStatusBar(mActivity)
+                )
             }
             R.id.vid_acp_linear_btn -> {
                 // snapshotByLinearLayout、snapshotByFrameLayout、snapshotByRelativeLayout
                 // 以上方法都是使用 snapshotByView
-                fileName = "linear.jpg"
-                bitmap = CapturePictureUtils.snapshotByLinearLayout(binding.vidAcpLinear)
-                result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName)
-                showToast(result, "保存成功\n" + (filePath + fileName), "保存失败")
+                saveBitmap(
+                    "linear.jpg",
+                    CapturePictureUtils.snapshotByLinearLayout(binding.vidAcpLinear)
+                )
             }
             R.id.vid_acp_scroll_btn -> {
                 // snapshotByScrollView、snapshotByHorizontalScrollView、snapshotByNestedScrollView
-                fileName = "scroll.jpg"
-                bitmap = CapturePictureUtils.snapshotByNestedScrollView(binding.vidAcpScroll)
-                result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName)
-                showToast(result, "保存成功\n" + (filePath + fileName), "保存失败")
+                saveBitmap(
+                    "scroll.jpg",
+                    CapturePictureUtils.snapshotByNestedScrollView(binding.vidAcpScroll)
+                )
             }
             R.id.vid_acp_list_btn -> {
                 routerActivity(
@@ -124,5 +124,32 @@ class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
                 )
             }
         }
+    }
+
+    private fun saveBitmap(
+        fileName: String,
+        bitmap: Bitmap?
+    ) {
+        DevStorageEngine.getEngine()?.insertImageToExternal(
+            StorageItem.createExternalItem(
+                fileName
+            ),
+            DevSource.create(
+                bitmap
+            ),
+            object : OnDevInsertListener {
+                override fun onResult(
+                    result: StorageResult,
+                    params: StorageItem?,
+                    source: DevSource?
+                ) {
+                    showToast(
+                        result.isSuccess(),
+                        "保存成功\n${FileUtils.getAbsolutePath(result.getFile())}",
+                        "保存失败"
+                    )
+                }
+            }
+        )
     }
 }

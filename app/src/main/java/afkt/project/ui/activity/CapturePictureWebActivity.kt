@@ -2,17 +2,21 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.PathConfig
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityCapturePictureWebBinding
 import android.os.Bundle
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
+import dev.base.DevSource
 import dev.base.widget.BaseTextView
+import dev.engine.storage.DevStorageEngine
 import dev.utils.app.CapturePictureUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.QuickHelper
-import dev.utils.app.image.ImageUtils
+import dev.utils.common.FileUtils
+import ktx.dev.engine.storage.OnDevInsertListener
+import ktx.dev.engine.storage.StorageItem
+import ktx.dev.engine.storage.StorageResult
 
 /**
  * detail: CapturePictureUtils WebView 截图
@@ -36,11 +40,27 @@ class CapturePictureWebActivity : BaseActivity<ActivityCapturePictureWebBinding>
             .setPaddingLeft(30)
             .setPaddingRight(30)
             .setOnClicks {
-                val filePath = PathConfig.AEP_DOWN_IMAGE_PATH
-                val fileName = "web.jpg"
-                val bitmap = CapturePictureUtils.snapshotByWebView(binding.vidAcpWebview)
-                val result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName)
-                showToast(result, "保存成功\n${filePath + fileName}", "保存失败")
+                DevStorageEngine.getEngine()?.insertImageToExternal(
+                    StorageItem.createExternalItem(
+                        "web.jpg"
+                    ),
+                    DevSource.create(
+                        CapturePictureUtils.snapshotByWebView(binding.vidAcpWebview)
+                    ),
+                    object : OnDevInsertListener {
+                        override fun onResult(
+                            result: StorageResult,
+                            params: StorageItem?,
+                            source: DevSource?
+                        ) {
+                            showToast(
+                                result.isSuccess(),
+                                "保存成功\n${FileUtils.getAbsolutePath(result.getFile())}",
+                                "保存失败"
+                            )
+                        }
+                    }
+                )
             }.getView<View>()
         toolbar?.addView(view)
     }

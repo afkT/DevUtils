@@ -15,12 +15,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
+import dev.base.DevSource
 import dev.base.widget.BaseTextView
+import dev.engine.storage.DevStorageEngine
 import dev.utils.app.CapturePictureUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.QuickHelper
 import dev.utils.app.helper.ViewHelper
 import dev.utils.app.image.ImageUtils
+import dev.utils.common.FileUtils
+import ktx.dev.engine.storage.OnDevInsertListener
+import ktx.dev.engine.storage.StorageItem
+import ktx.dev.engine.storage.StorageResult
 
 /**
  * detail: CapturePictureUtils GridView 截图
@@ -42,19 +48,35 @@ class CapturePictureGridActivity : BaseActivity<ActivityCapturePictureGridBindin
             .setPaddingLeft(30)
             .setPaddingRight(30)
             .setOnClicks { v: View? ->
-                val filePath = PathConfig.AEP_DOWN_IMAGE_PATH
-                val fileName = "grid.jpg"
-                val bitmap: Bitmap
-
-                bitmap = CapturePictureUtils.snapshotByGridView(binding.vidAcpGrid)
+                val bitmap = CapturePictureUtils.snapshotByGridView(binding.vidAcpGrid)
 //                // 保存 ListView 一样效果
 //                bitmap = CapturePictureUtils.snapshotByGridView(
 //                    binding.vidAcpGrid,
 //                    Bitmap.Config.ARGB_8888,
 //                    true
 //                )
-                val result = ImageUtils.saveBitmapToSDCardJPEG(bitmap, filePath + fileName)
-                showToast(result, "保存成功\n" + (filePath + fileName), "保存失败")
+
+                DevStorageEngine.getEngine()?.insertImageToExternal(
+                    StorageItem.createExternalItem(
+                        "grid.jpg"
+                    ),
+                    DevSource.create(
+                        bitmap
+                    ),
+                    object : OnDevInsertListener {
+                        override fun onResult(
+                            result: StorageResult,
+                            params: StorageItem?,
+                            source: DevSource?
+                        ) {
+                            showToast(
+                                result.isSuccess(),
+                                "保存成功\n${FileUtils.getAbsolutePath(result.getFile())}",
+                                "保存失败"
+                            )
+                        }
+                    }
+                )
             }.getView<View>()
         toolbar?.addView(view)
     }
@@ -89,7 +111,7 @@ class CapturePictureGridActivity : BaseActivity<ActivityCapturePictureGridBindin
                 )
                 ViewHelper.get()
                     .setText(_binding.vidAcpTitleTv, adapterBean.title)
-                    .setText(_binding.vidAcpContentTv, adapterBean.title)
+                    .setText(_binding.vidAcpContentTv, adapterBean.content)
                 return _binding.root
             }
         }

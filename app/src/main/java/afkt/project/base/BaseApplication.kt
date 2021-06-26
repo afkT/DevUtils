@@ -2,8 +2,6 @@ package afkt.project.base
 
 import afkt.project.R
 import afkt.project.base.config.AppConfig
-import afkt.project.base.config.PathConfig
-import afkt.project.base.config.PathConfig.createFolder
 import afkt.project.function.http.RetrofitUtils
 import android.content.Context
 import android.net.Uri
@@ -14,12 +12,14 @@ import android.webkit.WebSettings
 import androidx.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
 import dev.DevUtils
+import dev.base.DevSource
 import dev.engine.compress.DevCompressEngine
 import dev.engine.image.DevImageEngine
 import dev.engine.json.DevJSONEngine
 import dev.engine.log.DevLogEngine
 import dev.engine.media.DevMediaEngine
 import dev.engine.permission.DevPermissionEngine
+import dev.engine.storage.DevStorageEngine
 import dev.environment.DevEnvironment
 import dev.environment.bean.EnvironmentBean
 import dev.environment.bean.ModuleBean
@@ -33,6 +33,7 @@ import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
 import dev.utils.common.DateUtils
 import dev.utils.common.FileRecordUtils
+import dev.utils.common.FileUtils
 import dev.utils.common.StringUtils
 import dev.utils.common.assist.TimeCounter
 import dev.widget.assist.ViewAssist
@@ -44,6 +45,10 @@ import ktx.dev.engine.json.GsonEngineImpl
 import ktx.dev.engine.log.DevLoggerEngineImpl
 import ktx.dev.engine.media.PictureSelectorEngineImpl
 import ktx.dev.engine.permission.DevPermissionEngineImpl
+import ktx.dev.engine.storage.DevMediaStoreEngineImpl
+import ktx.dev.engine.storage.OnDevInsertListener
+import ktx.dev.engine.storage.StorageItem
+import ktx.dev.engine.storage.StorageResult
 import me.jessyan.autosize.AutoSizeConfig
 
 /**
@@ -139,8 +144,6 @@ class BaseApplication : MultiDexApplication() {
      * 统一初始化方法
      */
     private fun init() {
-        // 初始化项目文件夹
-        createFolder()
         // 插入设备信息
         FileRecordUtils.setInsertInfo(DeviceUtils.getAppDeviceInfo())
         // 初始化 MMKV
@@ -206,11 +209,11 @@ class BaseApplication : MultiDexApplication() {
         // 捕获异常处理 => 在 BaseApplication 中调用
         CrashUtils.getInstance().init(applicationContext, object : CrashCatchListener {
             override fun handleException(ex: Throwable) {
-                // 保存日志信息
-                FileRecordUtils.saveErrorLog(
-                    ex, PathConfig.AEP_ERROR_PATH,
-                    "crash_" + DateUtils.getDateNow() + ".txt"
-                )
+//                // 保存日志信息
+//                FileRecordUtils.saveErrorLog(
+//                    ex, PathConfig.AEP_ERROR_PATH,
+//                    "crash_" + DateUtils.getDateNow() + ".txt"
+//                )
             }
 
             override fun uncaughtException(
@@ -278,6 +281,7 @@ class BaseApplication : MultiDexApplication() {
         DevPermissionEngine.setEngine(DevPermissionEngineImpl())
         DevCompressEngine.setEngine(LubanEngineImpl())
         DevMediaEngine.setEngine(PictureSelectorEngineImpl())
+        DevStorageEngine.setEngine(DevMediaStoreEngineImpl())
     }
 
     /**
