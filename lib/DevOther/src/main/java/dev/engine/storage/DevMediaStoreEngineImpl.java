@@ -98,6 +98,9 @@ public class DevMediaStoreEngineImpl
 
     /**
      * 插入一条多媒体资源到外部存储空间 ( SDCard )
+     * <pre>
+     *     并不局限于多媒体, 如文本存储、其他文件写入等
+     * </pre>
      * @param params   {@link EngineItem}
      * @param source   {@link DevSource}
      * @param listener {@link OnInsertListener}
@@ -226,16 +229,17 @@ public class DevMediaStoreEngineImpl
             final StorageType type
     ) {
         if (type == StorageType.NONE) {
-            StorageType typeResult = StorageType.convertTypeByMimeType(
-                    params.getMimeType()
-            );
-            if (!typeResult.isNone()) return typeResult;
+            if (params != null) {
+                StorageType typeResult = StorageType.convertTypeByMimeType(
+                        params.getMimeType()
+                );
+                if (!typeResult.isNone()) return typeResult;
 
-            typeResult = StorageType.convertTypeByFileName(
-                    params.getFileName()
-            );
-            if (!typeResult.isNone()) return typeResult;
-
+                typeResult = StorageType.convertTypeByFileName(
+                        params.getFileName()
+                );
+                if (!typeResult.isNone()) return typeResult;
+            }
             // 其他未知都放到 Download 文件夹下
             return StorageType.DOWNLOAD;
         }
