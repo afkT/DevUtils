@@ -4,9 +4,7 @@ import java.io.File;
 
 import dev.utils.app.AnalysisRecordUtils;
 import dev.utils.app.AppUtils;
-import dev.utils.app.DeviceUtils;
 import dev.utils.app.PathUtils;
-import dev.utils.common.FileRecordUtils;
 import dev.utils.common.ThrowableUtils;
 
 /**
@@ -28,15 +26,10 @@ public final class FileRecordUse {
 
         // AnalysisRecordUtils
 
-        // FileRecordUtils
-
         // = 记录文件 =
 
         // AnalysisRecordUtils 工具类使用方法
         analysisRecord();
-
-        // FileRecordUtils 工具类
-        fileRecord();
     }
 
     /**
@@ -95,31 +88,5 @@ public final class FileRecordUse {
         NullPointerException nullPointerException = new NullPointerException("报错啦, null 异常啊");
         // 记录日志
         AnalysisRecordUtils.record(fileInfo, ThrowableUtils.getThrowable(nullPointerException));
-    }
-
-    /**
-     * FileRecordUtils 工具类
-     */
-    public static void fileRecord() {
-        try {
-            String s = null;
-            s.indexOf('c');
-        } catch (NullPointerException e) {
-
-            // 设置插入信息
-            FileRecordUtils.setInsertInfo(DeviceUtils.getAppDeviceInfo());
-
-            FileRecordUtils.saveErrorLog(e, LOG_SD_PATH, System.currentTimeMillis() + ".log");
-
-            FileRecordUtils.saveErrorLog(e, LOG_SD_PATH, System.currentTimeMillis() + ".log", false);
-
-            FileRecordUtils.saveErrorLog(e, LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", "头部", "底部", true);
-
-            FileRecordUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + ".log");
-
-            FileRecordUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + ".log", false);
-
-            FileRecordUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", "头部", "底部", true);
-        }
     }
 }

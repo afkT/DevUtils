@@ -78,7 +78,7 @@ public final class DeviceUtils {
     // 日志 TAG
     private static final String TAG = DeviceUtils.class.getSimpleName();
 
-    // 应用、设备信息 ( 可用于 FileRecordUtils 插入信息使用 )
+    // 应用、设备信息
     private static String APP_DEVICE_INFO = null;
 
     /**

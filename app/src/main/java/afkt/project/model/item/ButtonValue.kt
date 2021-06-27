@@ -424,9 +424,6 @@ class ButtonValue(
         // AnalysisRecordUtils 工具类
         const val BTN_FILE_RECORD_ANALYSIS = BTN_FILE_RECORD + 1
 
-        // FileRecordUtils 工具类
-        const val BTN_FILE_RECORD_UTILS = BTN_FILE_RECORD + 2
-
         // 奔溃日志捕获
         const val BTN_CRASH = MODULE_OTHER + 900
 

@@ -2,7 +2,6 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.PathConfig
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityCapturePictureListBinding
 import afkt.project.databinding.AdapterCapturePictureBinding
@@ -21,7 +20,6 @@ import dev.utils.app.CapturePictureUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.QuickHelper
 import dev.utils.app.helper.ViewHelper
-import dev.utils.app.image.ImageUtils
 import dev.utils.common.FileUtils
 import ktx.dev.engine.storage.OnDevInsertListener
 import ktx.dev.engine.storage.StorageItem

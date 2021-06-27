@@ -38,10 +38,6 @@ class FileRecordActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         showToast(true, "保存成功")
                         FileRecordUse.analysisRecord()
                     }
-                    ButtonValue.BTN_FILE_RECORD_UTILS -> {
-                        showToast(true, "保存成功")
-                        FileRecordUse.fileRecord()
-                    }
                     else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")
                 }
             }

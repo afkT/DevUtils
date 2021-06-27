@@ -2,13 +2,11 @@ package afkt.project.ui.activity
 
 import afkt.project.R
 import afkt.project.base.app.BaseActivity
-import afkt.project.base.config.PathConfig
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityCapturePictureRecyBinding
 import afkt.project.databinding.AdapterCapturePictureBinding
 import afkt.project.model.bean.AdapterBean
 import afkt.project.model.bean.AdapterBean.Companion.newAdapterBeanList
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +22,6 @@ import dev.utils.app.CapturePictureUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.QuickHelper
 import dev.utils.app.helper.ViewHelper
-import dev.utils.app.image.ImageUtils
 import dev.utils.common.FileUtils
 import ktx.dev.engine.storage.OnDevInsertListener
 import ktx.dev.engine.storage.StorageItem

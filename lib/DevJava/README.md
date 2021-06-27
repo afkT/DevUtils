@@ -527,16 +527,6 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | copyLarge | 复制 InputStream 到 OutputStream |
 
 
-* **文件记录工具类 ->** [FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/FileRecordUtils.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| setInsertInfo | 设置插入信息 |
-| setCallback | 设置文件记录回调 |
-| saveErrorLog | 保存异常日志 |
-| saveLog | 保存日志 |
-
-
 * **文件操作工具类 ->** [FileUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/FileUtils.java)
 
 | 方法 | 注释 |

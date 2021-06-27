@@ -1,8 +1,6 @@
 package afkt.project.base.config
 
 import dev.utils.app.PathUtils
-import dev.utils.common.FileUtils
-import java.io.File
 
 /**
  * detail: 文件路径配置

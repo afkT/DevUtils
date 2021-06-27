@@ -657,12 +657,6 @@ object ButtonList {
                     ""
                 )
             )
-            lists.add(
-                ButtonValue(
-                    ButtonValue.BTN_FILE_RECORD_UTILS, "FileRecordUtils 工具类",
-                    ""
-                )
-            )
             return lists
         }
 

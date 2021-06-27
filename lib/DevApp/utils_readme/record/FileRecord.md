@@ -2,24 +2,11 @@
 
 #### 使用演示类 [FileRecordUse](https://github.com/afkT/DevUtils/blob/master/app/src/main/java/utils_use/record/FileRecordUse.java) 介绍了配置参数及使用
 
-> 实际上是两个工具类的差异 ( FileRecordUtils、AnalysisRecordUtils )
-
 #### 项目类结构
-
-* 文件记录工具类（[FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/FileRecordUtils.java)）：专门用于信息存储工具类
 
 * 分析记录工具类（[AnalysisRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/AnalysisRecordUtils.java)）：专业记录信息, 并存储方便分析, 支持存储目录、时间段保存
 
 ## API 文档
-
-* **文件记录工具类 ->** [FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/FileRecordUtils.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| setInsertInfo | 设置插入信息 |
-| setCallback | 设置文件记录回调 |
-| saveErrorLog | 保存异常日志 |
-| saveLog | 保存日志 |
 
 * **分析记录工具类 ->** [AnalysisRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/app/AnalysisRecordUtils.java)
 
@@ -43,33 +30,6 @@
 | get | 获取记录分析文件信息 |
 | getLogPath | 获取日志地址 |
 | getIntervalTimeFolder | 获取时间间隔 - 文件夹 |
-
-#### FileRecordUtils 工具类 - 使用方法
-```java
-try {
-    String s = null;
-    s.indexOf('c');
-} catch (NullPointerException e) {
-    
-    // 设置插入信息
-    FileRecordUtils.setInsertInfo(VersionUtils.getAppDeviceInfo());
-
-    // 设置插入信息
-    FileRecordUtils.setInsertInfo(VersionUtils.getAppDeviceInfo());
-
-    FileRecordUtils.saveErrorLog(e, LOG_SD_PATH, System.currentTimeMillis() + ".log");
-
-    FileRecordUtils.saveErrorLog(e, LOG_SD_PATH, System.currentTimeMillis() + ".log", false);
-
-    FileRecordUtils.saveErrorLog(e, LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", "头部", "底部", true);
-
-    FileRecordUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + ".log");
-
-    FileRecordUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + ".log", false);
-
-    FileRecordUtils.saveLog("日志内容", LOG_SD_PATH, System.currentTimeMillis() + "_存在头部_底部.log", "头部", "底部", true);
-}
-```
 
 #### AnalysisRecordUtils 工具类 - 使用方法
 ```java
