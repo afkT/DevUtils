@@ -115,7 +115,7 @@ public final class LogPrintUtils {
      * @param args      动态参数
      * @return 处理 ( 格式化 ) 后准备打印的日志信息
      */
-    private static String splitErrorMessage(
+    private static String concatErrorMessage(
             final Throwable throwable,
             final String message,
             final Object... args
@@ -232,7 +232,7 @@ public final class LogPrintUtils {
             final Throwable throwable
     ) {
         if (JUDGE_PRINT_LOG) {
-            printLog(Log.ERROR, tag, splitErrorMessage(throwable, null));
+            printLog(Log.ERROR, tag, concatErrorMessage(throwable, null));
         }
     }
 
@@ -243,7 +243,7 @@ public final class LogPrintUtils {
             final Object... args
     ) {
         if (JUDGE_PRINT_LOG) {
-            printLog(Log.ERROR, tag, splitErrorMessage(throwable, message, args));
+            printLog(Log.ERROR, tag, concatErrorMessage(throwable, message, args));
         }
     }
 

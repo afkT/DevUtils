@@ -228,7 +228,7 @@ public final class AnalysisRecordUtils {
             // 操作结果
             boolean result;
             // 获取处理的日志
-            String logContent = splitLog(logs);
+            String logContent = concatLog(logs);
             // 日志存储路径
             String logPath = fileInfo.getLogPath();
             // 获取日志地址
@@ -303,7 +303,7 @@ public final class AnalysisRecordUtils {
      * @param logs 日志内容数组
      * @return 拼接后的日志内容
      */
-    private static String splitLog(final String... logs) {
+    private static String concatLog(final String... logs) {
         // 判断是否追加空格
         boolean isSpace = sAppendSpace;
         // =
