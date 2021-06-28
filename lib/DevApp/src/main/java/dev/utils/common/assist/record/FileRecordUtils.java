@@ -113,7 +113,7 @@ public final class FileRecordUtils {
                 String errorLog = ThrowableUtils.getThrowableStackTrace((Throwable) object);
                 builder.append(errorLog);
             } else {
-                builder.append(ConvertUtils.toString(logs[i]));
+                builder.append(ConvertUtils.toString(object));
             }
         }
         return builder.toString();

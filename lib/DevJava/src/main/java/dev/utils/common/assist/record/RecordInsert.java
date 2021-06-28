@@ -7,26 +7,26 @@ package dev.utils.common.assist.record;
 public class RecordInsert {
 
     // 文件信息 ( 一个文件只会添加一次文件信息, 且在最顶部 )
-    private String mFileInfo;
+    protected String mFileInfo;
 
     // 每条日志头部信息
-    private String mLogHeader;
+    protected String mLogHeader;
 
     // 每条日志尾部信息
-    private String mLogTail;
+    protected String mLogTail;
 
     // ==========
     // = 构造函数 =
     // ==========
 
-    public RecordInsert(String fileInfo) {
+    public RecordInsert(final String fileInfo) {
         this.mFileInfo = fileInfo;
     }
 
     public RecordInsert(
-            String fileInfo,
-            String logHeader,
-            String logTail
+            final String fileInfo,
+            final String logHeader,
+            final String logTail
     ) {
         this.mFileInfo  = fileInfo;
         this.mLogHeader = logHeader;
@@ -41,7 +41,7 @@ public class RecordInsert {
         return mFileInfo;
     }
 
-    public RecordInsert setFileInfo(String fileInfo) {
+    public RecordInsert setFileInfo(final String fileInfo) {
         this.mFileInfo = fileInfo;
         return this;
     }
@@ -50,7 +50,7 @@ public class RecordInsert {
         return mLogHeader;
     }
 
-    public RecordInsert setLogHeader(String logHeader) {
+    public RecordInsert setLogHeader(final String logHeader) {
         this.mLogHeader = logHeader;
         return this;
     }
@@ -59,7 +59,7 @@ public class RecordInsert {
         return mLogTail;
     }
 
-    public RecordInsert setLogTail(String logTail) {
+    public RecordInsert setLogTail(final String logTail) {
         this.mLogTail = logTail;
         return this;
     }

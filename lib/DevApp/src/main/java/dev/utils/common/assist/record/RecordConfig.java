@@ -177,7 +177,7 @@ public final class RecordConfig {
      * @param defaultValue 默认值
      * @return 日志记录插入信息
      */
-    public RecordInsert getRecordInsert(RecordInsert defaultValue) {
+    public RecordInsert getRecordInsert(final RecordInsert defaultValue) {
         if (mRecordInsert != null) return mRecordInsert;
         return defaultValue;
     }
@@ -187,7 +187,7 @@ public final class RecordConfig {
      * @param recordInsert 日志记录插入信息
      * @return {@link RecordConfig}
      */
-    public RecordConfig setRecordInsert(RecordInsert recordInsert) {
+    public RecordConfig setRecordInsert(final RecordInsert recordInsert) {
         this.mRecordInsert = recordInsert;
         return this;
     }
