@@ -11,6 +11,7 @@ implementation 'io.github.afkt:DevJava:1.3.4'
 - dev.utils                                           | 根目录
    - common                                           | Java 工具类, 不依赖 android api
       - assist                                        | 各种快捷辅助类
+         - record                                     | 文件记录分析类
          - search                                     | 搜索相关 ( 文件搜索等 )
       - cipher                                        | 编 / 解码工具类
       - encrypt                                       | 加密工具类
@@ -45,6 +46,7 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 - dev.utils                                           | 根目录
    - [common](#devutilscommon)                        | Java 工具类, 不依赖 android api
       - [assist](#devutilscommonassist)               | 各种快捷辅助类
+         - [record](#devutilscommonassistrecord)      | 文件记录分析类
          - [search](#devutilscommonassistsearch)      | 搜索相关 ( 文件搜索等 )
       - [cipher](#devutilscommoncipher)               | 编 / 解码工具类
       - [encrypt](#devutilscommonencrypt)             | 加密工具类
@@ -983,6 +985,51 @@ JCLogUtils.setPrint(new JCLogUtils.Print() {});
 | :- | :- |
 | waitForEndAsync | 设置等待一段时间后, 通知方法 ( 异步 ) |
 | waitForEnd | 设置等待一段时间后, 通知方法 ( 同步 ) |
+
+
+## <span id="devutilscommonassistrecord">**`dev.utils.common.assist.record`**</span>
+
+
+* **文件记录分析工具类 ->** [FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/assist/record/FileRecordUtils.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| isSuccessful | 校验记录方法返回字符串是否成功 |
+| isHandler | 是否处理记录 |
+| setHandler | 设置是否处理记录 |
+| getRecordInsert | 获取日志记录插入信息 |
+| setRecordInsert | 设置日志记录插入信息 |
+| setCallback | 设置文件记录回调 |
+| getLogContent | 获取日志内容 |
+| record | 记录方法 |
+
+
+* **日志记录配置信息 ->** [RecordConfig.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/assist/record/RecordConfig.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| get | 获取配置信息 |
+| getStoragePath | 获取存储路径 |
+| getFileName | 获取文件名 ( 固定 ) |
+| getFolderName | 获取文件夹名 ( 模块名 ) |
+| getFileIntervalTime | 获取文件记录间隔时间 |
+| isHandler | 是否处理记录 |
+| setHandler | 设置是否处理记录 |
+| getRecordInsert | 获取日志记录插入信息 |
+| setRecordInsert | 设置日志记录插入信息 |
+| getFinalPath | 获取文件地址 |
+
+
+* **日志记录插入信息 ->** [RecordInsert.java](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/src/main/java/dev/utils/common/assist/record/RecordInsert.java)
+
+| 方法 | 注释 |
+| :- | :- |
+| getFileInfo | getFileInfo |
+| setFileInfo | setFileInfo |
+| getLogHeader | getLogHeader |
+| setLogHeader | setLogHeader |
+| getLogTail | getLogTail |
+| setLogTail | setLogTail |
 
 
 ## <span id="devutilscommonassistsearch">**`dev.utils.common.assist.search`**</span>

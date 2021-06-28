@@ -553,22 +553,16 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| getFilePath | getFilePath |
-| setFilePath | setFilePath |
-| getFileName | getFileName |
-| setFileName | setFileName |
-| getFolder | getFolder |
-| setFolder | setFolder |
-| getMimeType | getMimeType |
-| setMimeType | setMimeType |
 | getOutputUri | getOutputUri |
-| setOutputUri | setOutputUri |
+| getFileName | getFileName |
+| getFilePath | getFilePath |
+| getFolder | getFolder |
+| getMimeType | getMimeType |
 | getFormat | getFormat |
 | setFormat | setFormat |
 | getQuality | getQuality |
 | setQuality | setQuality |
 | getInternalFile | 获取内部存储完整路径 |
-| getInternalFolder | 获取内部存储文件夹路径 |
 | getExternalFile | 获取外部存储完整路径 |
 | getExternalFolder | 获取外部存储文件夹路径 |
 | createUriItem | 创建指定输出 Uri Item |
@@ -580,17 +574,19 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| success | 前置条件校验成功 |
-| failure | 前置条件校验失败 |
-| isCorrect | isCorrect |
-| getFile | getFile |
-| setFile | setFile |
+| success | 存储成功 |
+| failure | 存储失败 |
+| isSuccess | isSuccess |
 | getUri | getUri |
-| setUri | setUri |
+| getFile | getFile |
 | getError | getError |
-| setError | setError |
 | getType | getType |
+| isExternal | isExternal |
+| setUri | setUri |
+| setFile | setFile |
+| setError | setError |
 | setType | setType |
+| setExternal | setExternal |
 
 
 * **Storage Type ->** [StorageType.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/storage/StorageType.java)

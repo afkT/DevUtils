@@ -35,7 +35,7 @@ implementation 'io.github.afkt:DevAssist:1.2.4'
       - share                                         | Share Engine 分享平台处理
          - listener                                   | 分享回调事件
       - storage                                       | Storage Engine 外部、内部文件存储
-         - listener                                   | null
+         - listener                                   | Storage 存储结果事件
    - function                                         | 快捷方法执行相关
 ```
 
@@ -76,7 +76,7 @@ implementation 'io.github.afkt:DevAssist:1.2.4'
       - [share](#devengineshare)                      | Share Engine 分享平台处理
          - [listener](#devenginesharelistener)        | 分享回调事件
       - [storage](#devenginestorage)                  | Storage Engine 外部、内部文件存储
-         - [listener](#devenginestoragelistener)      | null
+         - [listener](#devenginestoragelistener)      | Storage 存储结果事件
    - [function](#devfunction)                         | 快捷方法执行相关
 
 
