@@ -4,7 +4,7 @@
 
 #### 项目类结构
 
-* 文件记录分析工具类（[FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/assist/record/FileRecordUtils.java)）：专业记录信息, 并存储方便分析, 支持存储目录、时间段保存
+* 文件记录分析工具类（[FileRecordUtils.java](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/src/main/java/dev/utils/common/assist/record/FileRecordUtils.java)）：用于记录信息方便分析, 支持存储目录、时间段保存
 
 ## API 文档
 

@@ -34,7 +34,7 @@ class FileRecordActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                 param: Int
             ) {
                 when (buttonValue.type) {
-                    ButtonValue.BTN_FILE_RECORD_ANALYSIS -> {
+                    ButtonValue.BTN_FILE_RECORD_UTILS -> {
                         showToast(true, "保存成功")
                         FileRecordUse.fileRecordUse()
                     }

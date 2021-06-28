@@ -653,7 +653,7 @@ object ButtonList {
             val lists: MutableList<ButtonValue> = ArrayList()
             lists.add(
                 ButtonValue(
-                    ButtonValue.BTN_FILE_RECORD_ANALYSIS, "AnalysisRecordUtils 工具类",
+                    ButtonValue.BTN_FILE_RECORD_UTILS, "FileRecordUtils 工具类",
                     ""
                 )
             )

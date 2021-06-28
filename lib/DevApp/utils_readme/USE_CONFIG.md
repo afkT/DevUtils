@@ -42,7 +42,7 @@ public class BaseApplication extends Application {
 
 ## [SnackbarUtils Snackbar工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/snackbar/SnackbarUtils.md)
 
-## [AnalysisRecordUtils 日志、异常文件记录保存工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/record/FileRecord.md)
+## [FileRecordUtils 日志、异常文件记录保存工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/record/FileRecord.md)
 
 ## [SharedUtils - SharedPreferences工具类文档](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/utils_readme/share/SharedUtils.md)
 

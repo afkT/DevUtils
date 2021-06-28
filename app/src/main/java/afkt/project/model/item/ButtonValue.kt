@@ -421,8 +421,8 @@ class ButtonValue(
         // 日志、异常文件记录保存
         const val BTN_FILE_RECORD = MODULE_OTHER + 800
 
-        // AnalysisRecordUtils 工具类
-        const val BTN_FILE_RECORD_ANALYSIS = BTN_FILE_RECORD + 1
+        // FileRecordUtils 工具类
+        const val BTN_FILE_RECORD_UTILS = BTN_FILE_RECORD + 1
 
         // 奔溃日志捕获
         const val BTN_CRASH = MODULE_OTHER + 900
