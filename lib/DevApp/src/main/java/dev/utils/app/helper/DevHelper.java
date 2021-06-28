@@ -28,7 +28,6 @@ import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Locale;
 
-import dev.utils.app.AnalysisRecordUtils;
 import dev.utils.app.CleanUtils;
 import dev.utils.app.ClickUtils;
 import dev.utils.app.ClipboardUtils;
@@ -51,6 +50,8 @@ import dev.utils.app.timer.DevTimer;
 import dev.utils.common.CloseUtils;
 import dev.utils.common.HttpURLConnectionUtils;
 import dev.utils.common.assist.TimeKeeper;
+import dev.utils.common.assist.record.FileRecordUtils;
+import dev.utils.common.assist.record.RecordConfig;
 
 /**
  * detail: Dev 工具类链式调用 Helper 类
@@ -520,15 +521,15 @@ public final class DevHelper {
 
     /**
      * 日志记录
-     * @param fileInfo {@link AnalysisRecordUtils.FileInfo}
-     * @param logs     日志内容数组
+     * @param config 日志记录配置信息
+     * @param logs   日志内容数组
      * @return {@link DevHelper}
      */
     public DevHelper record(
-            final AnalysisRecordUtils.FileInfo fileInfo,
-            final String... logs
+            final RecordConfig config,
+            final Object... logs
     ) {
-        AnalysisRecordUtils.record(fileInfo, logs);
+        FileRecordUtils.record(config, logs);
         return this;
     }
 

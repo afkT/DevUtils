@@ -3,6 +3,7 @@ package dev.utils.common.assist.record;
 import java.io.File;
 
 import dev.utils.DevFinal;
+import dev.utils.common.ConvertUtils;
 import dev.utils.common.DateUtils;
 import dev.utils.common.FileUtils;
 import dev.utils.common.StringUtils;
@@ -21,8 +22,6 @@ public final class FileRecordUtils {
     private static final String       RECORD_SUCCESS = "record successful";
     // 是否处理记录
     private static       boolean      sHandler       = true;
-    // 是否加空格
-    private static       boolean      sAppendSpace   = true;
     // 日志记录插入信息
     private static       RecordInsert sRecordInsert  = null;
     // 文件记录回调
@@ -101,20 +100,21 @@ public final class FileRecordUtils {
                 // 获取保存时间
                 .append(DateUtils.getDateNow())
                 // 追加边距、换行
-                .append(" =>").append(DevFinal.NEW_LINE_STR_X2);
-
-        // 判断是否追加空格
-        boolean isSpace = sAppendSpace;
-        // 是否添加空格 ( 第一位不添加空格 )
-        boolean isAdd = false;
+                .append(" =>");
         // 循环追加内容
-        for (Object log : logs) {
-            // 判断是否追加空格
-            if (isSpace && isAdd) builder.append(" ");
-            // 标记添加空格 ( 第一位不添加空格 )
-            isAdd = true;
+        for (int i = 0, len = logs.length; i < len; i++) {
             // 追加存储内容
-            builder.append(log);
+            builder.append(DevFinal.NEW_LINE_STR_X2)
+                    .append("logs[").append(i).append("]: ")
+                    .append(DevFinal.NEW_LINE_STR);
+
+            Object object = logs[i];
+            if (object instanceof Throwable) {
+                String errorLog = ThrowableUtils.getThrowableStackTrace((Throwable) object);
+                builder.append(errorLog);
+            } else {
+                builder.append(ConvertUtils.toString(logs[i]));
+            }
         }
         return builder.toString();
     }
@@ -207,22 +207,6 @@ public final class FileRecordUtils {
     }
 
     /**
-     * 是否加空格
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean issAppendSpace() {
-        return sAppendSpace;
-    }
-
-    /**
-     * 设置是否加空格
-     * @param appendSpace 是否加空格
-     */
-    public static void setAppendSpace(final boolean appendSpace) {
-        FileRecordUtils.sAppendSpace = appendSpace;
-    }
-
-    /**
      * 获取日志记录插入信息
      * @return 日志记录插入信息
      */
@@ -294,21 +278,5 @@ public final class FileRecordUtils {
             final Object... logs
     ) {
         return finalRecord(config, logs);
-    }
-
-    /**
-     * 记录方法
-     * @param config    日志记录配置信息
-     * @param throwable 异常信息
-     * @param logs      日志内容数组
-     * @return 记录结果提示
-     */
-    public static String recordError(
-            final RecordConfig config,
-            final Throwable throwable,
-            final Object... logs
-    ) {
-        String errorLog = ThrowableUtils.getThrowableStackTrace(throwable);
-        return record(config, errorLog, logs);
     }
 }

@@ -7,13 +7,13 @@ package dev.utils.common.assist.record;
 public class RecordInsert {
 
     // 文件信息 ( 一个文件只会添加一次文件信息, 且在最顶部 )
-    private String mFileInfo;
+    protected String mFileInfo;
 
     // 每条日志头部信息
-    private String mLogHeader;
+    protected String mLogHeader;
 
     // 每条日志尾部信息
-    private String mLogTail;
+    protected String mLogTail;
 
     // ==========
     // = 构造函数 =

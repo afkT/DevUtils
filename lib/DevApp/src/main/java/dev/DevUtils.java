@@ -24,12 +24,13 @@ import java.util.concurrent.ConcurrentHashMap;
 import dev.utils.BuildConfig;
 import dev.utils.JCLogUtils;
 import dev.utils.LogPrintUtils;
-import dev.utils.app.AnalysisRecordUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.KeyBoardUtils;
 import dev.utils.app.UriUtils;
+import dev.utils.app.assist.record.AppRecordInsert;
 import dev.utils.app.toast.toaster.DevToast;
 import dev.utils.common.FileUtils;
+import dev.utils.common.assist.record.FileRecordUtils;
 
 /**
  * detail: 开发工具类
@@ -87,7 +88,7 @@ public final class DevUtils {
         // =================
 
         // 初始化 Record
-        AnalysisRecordUtils.init();
+        FileRecordUtils.setRecordInsert(new AppRecordInsert(false));
         // 初始化 Toast
         DevToast.init(context);
 
