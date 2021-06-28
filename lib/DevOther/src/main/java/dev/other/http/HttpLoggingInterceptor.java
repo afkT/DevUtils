@@ -72,7 +72,7 @@ public class HttpLoggingInterceptor
         }
 
         Headers headers = request.headers();
-        for (int i = 0, count = headers.size(); i < count; i++) {
+        for (int i = 0, len = headers.size(); i < len; i++) {
             String name = headers.name(i);
             // Skip headers from the request body as they are explicitly logged above.
             if (!"Content-Type".equalsIgnoreCase(name) && !"Content-Length".equalsIgnoreCase(name)) {
@@ -129,7 +129,7 @@ public class HttpLoggingInterceptor
         captureEntity.responseStatus.put("time", tookMs + "ms");
 
         Headers respHeaders = response.headers();
-        for (int i = 0, count = respHeaders.size(); i < count; i++) {
+        for (int i = 0, len = respHeaders.size(); i < len; i++) {
             captureEntity.responseHeader.put(respHeaders.name(i), respHeaders.value(i));
         }
 

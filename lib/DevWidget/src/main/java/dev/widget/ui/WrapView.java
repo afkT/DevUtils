@@ -91,7 +91,7 @@ public class WrapView
             int widthMeasureSpec,
             int heightMeasureSpec
     ) {
-        for (int i = 0, size = getChildCount(); i < size; i++) {
+        for (int i = 0, len = getChildCount(); i < len; i++) {
             getChildAt(i).measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
         }
         // 获取高度模式
@@ -125,7 +125,7 @@ public class WrapView
         int     rowTopMargin   = mRowTopMargin;
         int     viewLeftMargin = mViewLeftMargin;
         // 循环所有子 View
-        for (int i = 0, size = getChildCount(); i < size; i++) {
+        for (int i = 0, len = getChildCount(); i < len; i++) {
             final View child           = this.getChildAt(i);
             int        childViewWidth  = child.getMeasuredWidth();
             int        childViewHeight = child.getMeasuredHeight();
@@ -191,7 +191,7 @@ public class WrapView
         int     calcHeight = 0; // 计算累加的高度
         int     width      = rootWidth - (getPaddingLeft() + getPaddingRight()); // 宽度减去左右边距
         // 循环所有子 View
-        for (int i = 0, size = getChildCount(); i < size; i++) {
+        for (int i = 0, len = getChildCount(); i < len; i++) {
             final View child           = this.getChildAt(i);
             int        childViewWidth  = child.getMeasuredWidth();
             int        childViewHeight = child.getMeasuredHeight();

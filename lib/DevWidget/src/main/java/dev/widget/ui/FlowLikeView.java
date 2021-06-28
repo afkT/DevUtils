@@ -125,7 +125,7 @@ public class FlowLikeView
     ) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (mChildViewHeight <= 0) {
-            for (int i = 0, size = getChildCount(); i < size; i++) {
+            for (int i = 0, len = getChildCount(); i < len; i++) {
                 View childView = getChildAt(i);
                 measureChild(childView, widthMeasureSpec, heightMeasureSpec);
                 mChildViewHeight += childView.getMeasuredHeight();

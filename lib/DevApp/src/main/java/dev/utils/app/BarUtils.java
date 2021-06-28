@@ -422,7 +422,7 @@ public final class BarUtils {
             transparentStatusBar(activity);
             drawer.setFitsSystemWindows(false);
             setStatusBarColor(fakeStatusBar, color);
-            for (int i = 0, count = drawer.getChildCount(); i < count; i++) {
+            for (int i = 0, len = drawer.getChildCount(); i < len; i++) {
                 drawer.getChildAt(i).setFitsSystemWindows(false);
             }
             if (isTop) {
@@ -655,7 +655,7 @@ public final class BarUtils {
     ) {
         if (window != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             final ViewGroup decorView = (ViewGroup) window.getDecorView();
-            for (int i = 0, count = decorView.getChildCount(); i < count; i++) {
+            for (int i = 0, len = decorView.getChildCount(); i < len; i++) {
                 final View child = decorView.getChildAt(i);
                 final int  id    = child.getId();
                 if (id != View.NO_ID) {
@@ -696,7 +696,7 @@ public final class BarUtils {
         if (window != null) {
             boolean   isVisible = false;
             ViewGroup decorView = (ViewGroup) window.getDecorView();
-            for (int i = 0, count = decorView.getChildCount(); i < count; i++) {
+            for (int i = 0, len = decorView.getChildCount(); i < len; i++) {
                 final View child = decorView.getChildAt(i);
                 final int  id    = child.getId();
                 if (id != View.NO_ID) {
