@@ -25,6 +25,8 @@ public final class RecordConfig {
     private final TIME    mFileIntervalTime;
     // 是否处理记录
     private       boolean mHandler;
+//    // 日志记录插入信息
+//    private
 
     // =======
     // = 枚举 =
