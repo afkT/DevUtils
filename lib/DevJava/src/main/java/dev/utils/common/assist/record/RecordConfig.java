@@ -8,10 +8,10 @@ import dev.utils.common.FileUtils;
 import dev.utils.common.StringUtils;
 
 /**
- * detail: 文件配置信息
+ * detail: 日志记录配置信息
  * @author Ttt
  */
-public final class FileConfig {
+public final class RecordConfig {
 
     // 存储路径
     private final String  mStoragePath;
@@ -61,7 +61,7 @@ public final class FileConfig {
      * @param fileIntervalTime 文件记录间隔时间
      * @param handler          是否处理记录
      */
-    private FileConfig(
+    private RecordConfig(
             final String storagePath,
             final String folderName,
             final String fileFunction,
@@ -78,14 +78,14 @@ public final class FileConfig {
     // =
 
     /**
-     * 获取文件配置信息
+     * 获取配置信息
      * @param storagePath      存储路径
      * @param folderName       文件夹名 ( 模块名 )
      * @param fileFunction     文件记录的功能模块名
      * @param fileIntervalTime 文件记录间隔时间
-     * @return {@link FileConfig}
+     * @return {@link RecordConfig}
      */
-    public static FileConfig get(
+    public static RecordConfig get(
             final String storagePath,
             final String folderName,
             final String fileFunction,
@@ -98,15 +98,15 @@ public final class FileConfig {
     }
 
     /**
-     * 获取文件配置信息
+     * 获取配置信息
      * @param storagePath      存储路径
      * @param folderName       文件夹名 ( 模块名 )
      * @param fileFunction     文件记录的功能模块名
      * @param fileIntervalTime 文件记录间隔时间
      * @param handler          是否处理记录
-     * @return {@link FileConfig}
+     * @return {@link RecordConfig}
      */
-    public static FileConfig get(
+    public static RecordConfig get(
             final String storagePath,
             final String folderName,
             final String fileFunction,
@@ -114,7 +114,7 @@ public final class FileConfig {
             final boolean handler
     ) {
         if (StringUtils.isEmpty(storagePath, folderName)) return null;
-        return new FileConfig(
+        return new RecordConfig(
                 storagePath, folderName, fileFunction,
                 (fileIntervalTime != null ? fileIntervalTime : TIME.DEFAULT), handler
         );
@@ -175,9 +175,9 @@ public final class FileConfig {
     /**
      * 设置是否处理记录
      * @param handler 是否处理记录
-     * @return {@link FileConfig}
+     * @return {@link RecordConfig}
      */
-    public FileConfig setHandler(final boolean handler) {
+    public RecordConfig setHandler(final boolean handler) {
         this.mHandler = handler;
         return this;
     }
