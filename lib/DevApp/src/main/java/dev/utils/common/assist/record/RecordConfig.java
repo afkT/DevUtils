@@ -235,7 +235,11 @@ public final class RecordConfig {
      */
     private String getIntervalTimeFolder() {
         // 文件夹
-        String folder = DateUtils.getDateNow("yyyy_MM_dd") + File.separator + mFolderName + File.separator;
+        String folder = String.format(
+                "FileRecord/%s/%s/",
+                DateUtils.getDateNow("yyyy_MM_dd"),
+                mFolderName
+        );
         // 进行判断
         switch (mFileIntervalTime) {
             case DEFAULT:
@@ -245,21 +249,21 @@ public final class RecordConfig {
             case SS:
                 Date date = new Date();
                 // 小时格式 ( 24 )
-                int hh_Format = DateUtils.get24Hour(date);
+                String hh_Format = DateUtils.timeAddZero(DateUtils.get24Hour(date));
                 // 判断属于小时格式
                 if (mFileIntervalTime == TIME.HH) {
                     // folder/HH_number/
                     return folder + "HH_" + hh_Format + File.separator;
                 } else {
                     // 分钟格式
-                    int mm_Format = DateUtils.getMinute(date);
+                    String mm_Format = DateUtils.timeAddZero(DateUtils.getMinute(date));
                     // 判断是否属于分钟
                     if (mFileIntervalTime == TIME.MM) {
                         // folder/HH_number/MM_number/
                         return folder + "HH_" + hh_Format + "/MM_" + mm_Format + File.separator;
                     } else { // 属于秒
                         // 秒格式
-                        int ss_Format = DateUtils.getSecond(date);
+                        String ss_Format = DateUtils.timeAddZero(DateUtils.getSecond(date));
                         // folder/HH_number/MM_number/SS_number/
                         return folder + "HH_" + hh_Format + "/MM_" + mm_Format + "/SS_" + ss_Format + File.separator;
                     }

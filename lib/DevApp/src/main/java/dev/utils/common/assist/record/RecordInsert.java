@@ -19,14 +19,14 @@ public class RecordInsert {
     // = 构造函数 =
     // ==========
 
-    public RecordInsert(String fileInfo) {
+    public RecordInsert(final String fileInfo) {
         this.mFileInfo = fileInfo;
     }
 
     public RecordInsert(
-            String fileInfo,
-            String logHeader,
-            String logTail
+            final String fileInfo,
+            final String logHeader,
+            final String logTail
     ) {
         this.mFileInfo  = fileInfo;
         this.mLogHeader = logHeader;
@@ -37,11 +37,11 @@ public class RecordInsert {
     // = get/set =
     // ===========
 
-    public String getFileInfo() {
+    public String getFileInfo(final String fileFunction) {
         return mFileInfo;
     }
 
-    public RecordInsert setFileInfo(String fileInfo) {
+    public RecordInsert setFileInfo(final String fileInfo) {
         this.mFileInfo = fileInfo;
         return this;
     }
@@ -50,7 +50,7 @@ public class RecordInsert {
         return mLogHeader;
     }
 
-    public RecordInsert setLogHeader(String logHeader) {
+    public RecordInsert setLogHeader(final String logHeader) {
         this.mLogHeader = logHeader;
         return this;
     }
@@ -59,7 +59,7 @@ public class RecordInsert {
         return mLogTail;
     }
 
-    public RecordInsert setLogTail(String logTail) {
+    public RecordInsert setLogTail(final String logTail) {
         this.mLogTail = logTail;
         return this;
     }

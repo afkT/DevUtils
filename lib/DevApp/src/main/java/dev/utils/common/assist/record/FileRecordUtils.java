@@ -138,12 +138,12 @@ public final class FileRecordUtils {
         // 判断是否存在日志内容
         if (logs == null || logs.length == 0) return "no data record";
 
-        // 获取文件路径
+        // 文件路径
         String filePath = config.getFinalPath();
-        // 获取文件名
+        // 文件名
         String fileName = config.getFileName();
-        // 获取文件提示
-        String fileHint = config.getFileFunction();
+        // 文件记录的功能模块名
+        String fileFunction = config.getFileFunction();
         // 文件路径、文件名为 null 则不处理
         if (StringUtils.isEmpty(filePath, fileName)) return "filePath is null";
 
@@ -158,9 +158,12 @@ public final class FileRecordUtils {
         File file = FileUtils.getFile(filePath, fileName);
         // 文件不存在则进行追加文件信息
         if (!FileUtils.isFileExists(file)) {
-            if (recordInsert != null && recordInsert.getFileInfo() != null) {
-                // 文件信息 ( 一个文件只会添加一次文件信息, 且在最顶部 )
-                FileUtils.saveFile(file, StringUtils.getBytes(recordInsert.getFileInfo()));
+            if (recordInsert != null) {
+                String fileInfo = recordInsert.getFileInfo(fileFunction);
+                if (fileInfo != null) {
+                    // 文件信息 ( 一个文件只会添加一次文件信息, 且在最顶部 )
+                    FileUtils.saveFile(file, StringUtils.getBytes(fileInfo));
+                }
             }
         }
         // 追加日志内容
