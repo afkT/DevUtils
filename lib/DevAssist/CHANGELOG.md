@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.2.5 *(2021-06-28)*
+----------------------------
+
+* `[Update]` 更新 DevStorageEngine 支持 OnInsertListener 插入结果监听
+
+* `[Add]` 新增 DevSource Bitmap、Drawable 字段
+
 Version 1.2.4 *(2021-06-21)*
 ----------------------------
 

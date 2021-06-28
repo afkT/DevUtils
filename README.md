@@ -71,7 +71,7 @@
 >
 > [DevComponent](https://github.com/afkT/DevComponent) 【100% Kotlin 实现 Android 项目组件化示例代码】基于 Google JetPack AndroidX + Kotlin + Coroutines + MVVM 架构（DataBinding、ViewModel、Lifecycle）等最新技术栈进行组件化基础搭建，使用 ARouter 方案实现组件化
 >
-> [DevAssist Engine](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/ktx/dev/engine) DevAssist Engine 主要为了解决项目代码中<b><span style="color:red;">对第三方框架强依赖使用、以及部分功能版本适配。</span></b>通过实现对应功能模块 Engine 接口，实现对应的方法功能，<b><span style="color:blue;">对外无需关注实现代码，直接通过 DevXXXEngine 进行调用，</span></b><b><span style="color:red;">实现对第三方框架解耦、一键替换第三方库、同类库多 Engine 混合使用、以及部分功能适配 ( 如外部文件存储 MediaStore 全局适配 ) 等</span></b>
+> [DevAssist Engine](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/ktx/dev/engine) DevAssist Engine 主要为了解决项目代码中<span style="color:red;">**对第三方框架强依赖使用、以及部分功能版本适配。**</span>通过实现对应功能模块 Engine 接口，实现对应的方法功能，<span style="color:blue;">**对外无需关注实现代码，直接通过 DevXXXEngine 进行调用，**</span><span style="color:red;">**实现对第三方框架解耦、一键替换第三方库、同类库多 Engine 混合使用、以及部分功能适配 ( 如外部文件存储 MediaStore 全局适配 ) 等**</span>
 
 
 ## Dev 系列全部 Lib Gradle

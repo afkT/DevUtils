@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 2.2.8 *(2021-06-28)*
+----------------------------
+
+* `[Delete]` AnalysisRecordUtils
+
+* `[Refactor]` 重构 FileRecordUtils 并进行内部类拆分便于 DevApp 模块使用
+
+* `[Update]` MediaStoreUtils createImageUri、createVideoUri、createAudioUri、createDownloadUri 方法参数位置
+
 Version 2.2.7 *(2021-06-21)*
 ----------------------------
 
