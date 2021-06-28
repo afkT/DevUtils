@@ -37,7 +37,7 @@ public class RecordInsert {
     // = get/set =
     // ===========
 
-    public String getFileInfo(final String fileFunction) {
+    public String getFileInfo() {
         return mFileInfo;
     }
 

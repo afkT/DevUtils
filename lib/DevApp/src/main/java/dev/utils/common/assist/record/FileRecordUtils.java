@@ -142,8 +142,6 @@ public final class FileRecordUtils {
         String filePath = config.getFinalPath();
         // 文件名
         String fileName = config.getFileName();
-        // 文件记录的功能模块名
-        String fileFunction = config.getFileFunction();
         // 文件路径、文件名为 null 则不处理
         if (StringUtils.isEmpty(filePath, fileName)) return "filePath is null";
 
@@ -159,7 +157,7 @@ public final class FileRecordUtils {
         // 文件不存在则进行追加文件信息
         if (!FileUtils.isFileExists(file)) {
             if (recordInsert != null) {
-                String fileInfo = recordInsert.getFileInfo(fileFunction);
+                String fileInfo = recordInsert.getFileInfo();
                 if (fileInfo != null) {
                     // 文件信息 ( 一个文件只会添加一次文件信息, 且在最顶部 )
                     FileUtils.saveFile(file, StringUtils.getBytes(fileInfo));

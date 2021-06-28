@@ -19,8 +19,6 @@ public final class RecordConfig {
     private final String       mFileName = "log_record.txt";
     // 文件夹名 ( 模块名 )
     private final String       mFolderName;
-    // 文件记录的功能模块名
-    private final String       mFileFunction;
     // 文件记录间隔时间 如: HH
     private final TIME         mFileIntervalTime;
     // 是否处理记录
@@ -59,20 +57,17 @@ public final class RecordConfig {
      * 构造函数
      * @param storagePath      存储路径
      * @param folderName       文件夹名 ( 模块名 )
-     * @param fileFunction     文件记录的功能模块名
      * @param fileIntervalTime 文件记录间隔时间
      * @param handler          是否处理记录
      */
     private RecordConfig(
             final String storagePath,
             final String folderName,
-            final String fileFunction,
             final TIME fileIntervalTime,
             final boolean handler
     ) {
         this.mStoragePath      = storagePath;
         this.mFolderName       = folderName;
-        this.mFileFunction     = fileFunction;
         this.mFileIntervalTime = fileIntervalTime;
         this.mHandler          = handler;
     }
@@ -83,27 +78,21 @@ public final class RecordConfig {
      * 获取配置信息
      * @param storagePath      存储路径
      * @param folderName       文件夹名 ( 模块名 )
-     * @param fileFunction     文件记录的功能模块名
      * @param fileIntervalTime 文件记录间隔时间
      * @return {@link RecordConfig}
      */
     public static RecordConfig get(
             final String storagePath,
             final String folderName,
-            final String fileFunction,
             final TIME fileIntervalTime
     ) {
-        return get(
-                storagePath, folderName, fileFunction,
-                fileIntervalTime, true
-        );
+        return get(storagePath, folderName, fileIntervalTime, true);
     }
 
     /**
      * 获取配置信息
      * @param storagePath      存储路径
      * @param folderName       文件夹名 ( 模块名 )
-     * @param fileFunction     文件记录的功能模块名
      * @param fileIntervalTime 文件记录间隔时间
      * @param handler          是否处理记录
      * @return {@link RecordConfig}
@@ -111,13 +100,12 @@ public final class RecordConfig {
     public static RecordConfig get(
             final String storagePath,
             final String folderName,
-            final String fileFunction,
             final TIME fileIntervalTime,
             final boolean handler
     ) {
         if (StringUtils.isEmpty(storagePath, folderName)) return null;
         return new RecordConfig(
-                storagePath, folderName, fileFunction,
+                storagePath, folderName,
                 (fileIntervalTime != null ? fileIntervalTime : TIME.DEFAULT), handler
         );
     }
@@ -148,14 +136,6 @@ public final class RecordConfig {
      */
     public String getFolderName() {
         return mFolderName;
-    }
-
-    /**
-     * 获取文件记录的功能模块名
-     * @return 文件记录的功能模块名
-     */
-    public String getFileFunction() {
-        return mFileFunction;
     }
 
     /**
