@@ -70,6 +70,8 @@
 > [JavaDoc API Generate](https://github.com/afkT/JavaDoc) 该工具类 (DevUtils) API 文档，是通过 JavaDoc 项目读取 class 信息生成，并且进行代码、注释间距规范检测，生成效果示范 [DevApp - API](https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md)
 >
 > [DevComponent](https://github.com/afkT/DevComponent) 【100% Kotlin 实现 Android 项目组件化示例代码】基于 Google JetPack AndroidX + Kotlin + Coroutines + MVVM 架构（DataBinding、ViewModel、Lifecycle）等最新技术栈进行组件化基础搭建，使用 ARouter 方案实现组件化
+>
+> [DevAssist Engine](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/ktx/dev/engine) DevAssist Engine 主要为了解决项目代码中<b><font color="red">对第三方框架强依赖使用、以及部分功能版本适配。</font></b>通过实现对应功能模块 Engine 接口, 实现对应的方法功能, <b><font color="blue">对外无需关注实现代码, 直接通过 DevXXXEngine 进行调用, </font></b><b><font color="red">实现对第三方框架解耦、一键替换第三方库、同类库多 Engine 混合使用、以及部分功能适配 ( 如外部文件存储 MediaStore 全局适配 ) 等</font></b>
 
 
 ## Dev 系列全部 Lib Gradle
