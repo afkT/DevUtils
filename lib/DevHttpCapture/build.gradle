@@ -1,11 +1,11 @@
 apply from: rootProject.file(files.lib_app_gradle)
 
 android.defaultConfig {
-    versionCode versions.dev_capture_versionCode
-    versionName versions.dev_capture_versionName
-    // DevCapture Module Version
-    buildConfigField "int", "DevCapture_VersionCode", "${versions.dev_capture_versionCode}"
-    buildConfigField "String", "DevCapture_Version", "\"${versions.dev_capture_versionName}\""
+    versionCode versions.dev_http_capture_versionCode
+    versionName versions.dev_http_capture_versionName
+    // DevHttpCapture Module Version
+    buildConfigField "int", "DevHttpCapture_VersionCode", "${versions.dev_http_capture_versionCode}"
+    buildConfigField "String", "DevHttpCapture_Version", "\"${versions.dev_http_capture_versionName}\""
     // DevApp Module Version
     buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
     buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""

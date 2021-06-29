@@ -49,7 +49,6 @@ public class HttpCaptureInterceptor
 
     /**
      * 构造函数
-     *
      * @param moduleName 模块名 ( 要求唯一性 )
      * @param encrypt    抓包数据加密中间层
      * @param capture    是否进行 Http 抓包拦截

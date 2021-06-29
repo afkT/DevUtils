@@ -39,9 +39,9 @@ ext {
             dev_base_mvvm_versionCode               : 104,
             dev_base_mvvm_versionName               : "1.0.4",
 
-            // DevCapture OKHttp 抓包工具库
-            dev_capture_versionCode                 : 100,
-            dev_capture_versionName                 : "1.0.0",
+            // DevHttpCapture OKHttp 抓包工具库
+            dev_http_capture_versionCode            : 100,
+            dev_http_capture_versionName            : "1.0.0",
 
             // DevJava Java 工具类库 ( 不依赖 android api )
             dev_java_versionCode                    : 135,

@@ -9,7 +9,7 @@ def libs = [
         "DevAssist",
         "DevBase",
         "DevBaseMVVM",
-        "DevCapture",
+        "DevHttpCapture",
         "DevJava",
         "DevWidget",
 ]
