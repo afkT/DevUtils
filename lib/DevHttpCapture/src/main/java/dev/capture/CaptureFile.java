@@ -1,5 +1,9 @@
 package dev.capture;
 
+import java.io.File;
+
+import dev.utils.common.FileUtils;
+
 /**
  * detail: 抓包存储文件
  * @author Ttt
@@ -8,7 +12,7 @@ package dev.capture;
  *     非加密情况下 {@link #httpCaptureData} 则会映射成 {@link CaptureInfo} 实体类
  * </pre>
  */
-class CaptureFile {
+public class CaptureFile {
 
     // 请求链接
     private String  url;
@@ -91,8 +95,8 @@ class CaptureFile {
     private transient CaptureInfo captureInfo = null;
 
     /**
-     * 获取抓包数据
-     * @return 抓包数据
+     * 获取抓包数据实体类
+     * @return 抓包数据实体类
      */
     public CaptureInfo getCaptureInfo() {
         if (!isEncrypt) {
@@ -101,5 +105,25 @@ class CaptureFile {
             );
         }
         return captureInfo;
+    }
+
+    // =============
+    // = 文件操作相关 =
+    // =============
+
+    /**
+     * 删除该对象抓包存储文件
+     * @return {@code true} success, {@code false} fail
+     */
+    public boolean deleteFile() {
+        return FileUtils.deleteFile(getFile());
+    }
+
+    /**
+     * 获取该对象抓包存储文件
+     * @return 该对象抓包存储文件
+     */
+    public File getFile() {
+        return Utils.getModuleHttpCaptureFile(this);
     }
 }

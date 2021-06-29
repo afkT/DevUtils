@@ -1,9 +1,12 @@
 package dev;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import dev.capture.BuildConfig;
+import dev.capture.CaptureFile;
 import dev.capture.HttpCaptureInterceptor;
 import dev.capture.IHttpCapture;
 import dev.utils.common.StringUtils;
@@ -18,6 +21,9 @@ public final class DevHttpCapture {
 
     private DevHttpCapture() {
     }
+
+    // 日志 TAG
+    public static final String TAG = DevHttpCapture.class.getSimpleName();
 
     // ============
     // = 工具类版本 =
@@ -153,5 +159,37 @@ public final class DevHttpCapture {
             }
         }
         return false;
+    }
+
+    // =
+
+    /**
+     * 获取指定模块抓包存储路径
+     * @param moduleName 模块名 ( 要求唯一性 )
+     * @return 指定模块抓包存储路径
+     */
+    public static String getModulePath(final String moduleName) {
+        if (StringUtils.isNotEmpty(moduleName)) {
+            IHttpCapture httpCapture = sCaptureMaps.get(moduleName);
+            if (httpCapture != null) {
+                return httpCapture.getModulePath();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取指定模块所有抓包数据
+     * @param moduleName 模块名 ( 要求唯一性 )
+     * @return 指定模块所有抓包数据集合
+     */
+    public static List<CaptureFile> getModuleHttpCaptures(final String moduleName) {
+        if (StringUtils.isNotEmpty(moduleName)) {
+            IHttpCapture httpCapture = sCaptureMaps.get(moduleName);
+            if (httpCapture != null) {
+                return httpCapture.getModuleHttpCaptures();
+            }
+        }
+        return new ArrayList<>();
     }
 }

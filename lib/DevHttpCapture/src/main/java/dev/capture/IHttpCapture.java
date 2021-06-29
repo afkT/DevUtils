@@ -1,5 +1,7 @@
 package dev.capture;
 
+import java.util.List;
+
 import dev.utils.common.cipher.Encrypt;
 
 /**
@@ -7,6 +9,10 @@ import dev.utils.common.cipher.Encrypt;
  * @author Ttt
  */
 public interface IHttpCapture {
+
+    // ==========
+    // = 基础方法 =
+    // ==========
 
     /**
      * 获取模块名 ( 要求唯一性 )
@@ -31,4 +37,20 @@ public interface IHttpCapture {
      * @param capture {@code true} yes, {@code false} no
      */
     void setCapture(boolean capture);
+
+    // ==========
+    // = 获取操作 =
+    // ==========
+
+    /**
+     * 获取模块抓包存储路径
+     * @return 模块抓包存储路径
+     */
+    String getModulePath();
+
+    /**
+     * 获取模块所有抓包数据
+     * @return 模块所有抓包数据集合
+     */
+    List<CaptureFile> getModuleHttpCaptures();
 }

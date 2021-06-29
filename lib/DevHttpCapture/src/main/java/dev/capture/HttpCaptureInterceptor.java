@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.List;
 
 import dev.utils.common.cipher.Encrypt;
 import okhttp3.Interceptor;
@@ -42,6 +43,18 @@ public class HttpCaptureInterceptor
     @Override
     public void setCapture(boolean capture) {
         this.mCapture = capture;
+    }
+
+    @Override
+    public String getModulePath() {
+        return Utils.getModulePath(mModuleName);
+    }
+
+    @Override
+    public List<CaptureFile> getModuleHttpCaptures() {
+        return Utils.getModuleHttpCaptures(
+                mModuleName, mEncrypt != null
+        );
     }
 
     // ==========
