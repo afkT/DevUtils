@@ -778,10 +778,10 @@ public final class PhoneUtils {
             // 2.2 设置 xml 文件保存的路径
             // os 保存的位置
             // encoding 编码格式
-            xmlSerializer.setOutput(new FileOutputStream(new File(filePath)), "utf-8");
+            xmlSerializer.setOutput(new FileOutputStream(new File(filePath)), "UTF-8");
             // 2.3 设置头信息
             // standalone 是否独立保存
-            xmlSerializer.startDocument("utf-8", true);
+            xmlSerializer.startDocument("UTF-8", true);
             // 2.4 设置根标签
             xmlSerializer.startTag(null, "smss");
             // 1.5 解析 cursor

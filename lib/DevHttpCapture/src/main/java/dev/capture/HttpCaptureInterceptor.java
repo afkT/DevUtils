@@ -3,6 +3,7 @@ package dev.capture;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 import dev.utils.common.cipher.Encrypt;
 import okhttp3.Interceptor;
@@ -82,6 +83,8 @@ public class HttpCaptureInterceptor
     // =============
     // = 内部处理方法 =
     // =============
+
+    private final Charset UTF_8 = Charset.forName("UTF-8");
 
     /**
      * 内部抓包方法
