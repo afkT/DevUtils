@@ -83,7 +83,7 @@ public final class FileDepthFirstSearchUtils {
     private SearchHandler mSearchHandler;
 
     // 内部实现接口
-    private final SearchHandler mInsideHandler = new SearchHandler() {
+    private final SearchHandler mInnerHandler = new SearchHandler() {
         @Override
         public boolean isHandlerFile(File file) {
             if (mSearchHandler != null) {
@@ -188,7 +188,7 @@ public final class FileDepthFirstSearchUtils {
             return;
         } else if (path == null || path.trim().length() == 0) {
             // 触发结束回调
-            mInsideHandler.onEndListener(null, -1, -1);
+            mInnerHandler.onEndListener(null, -1, -1);
             return;
         }
         // 表示运行中
@@ -205,7 +205,7 @@ public final class FileDepthFirstSearchUtils {
                 lists.add(new FileItem(file));
                 // 触发结束回调
                 mEndTime = System.currentTimeMillis();
-                mInsideHandler.onEndListener(lists, mStartTime, mEndTime);
+                mInnerHandler.onEndListener(lists, mStartTime, mEndTime);
                 return;
             }
             // 获取文件夹全部子文件
@@ -220,19 +220,19 @@ public final class FileDepthFirstSearchUtils {
                         queryFile(file, lists, isRelation);
                         // 触发结束回调
                         mEndTime = System.currentTimeMillis();
-                        mInsideHandler.onEndListener(lists, mStartTime, mEndTime);
+                        mInnerHandler.onEndListener(lists, mStartTime, mEndTime);
                     }
                 }).start();
             } else {
                 // 触发结束回调
                 mEndTime = System.currentTimeMillis();
-                mInsideHandler.onEndListener(null, mStartTime, mEndTime);
+                mInnerHandler.onEndListener(null, mStartTime, mEndTime);
             }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "query");
             // 触发结束回调
             mEndTime = System.currentTimeMillis();
-            mInsideHandler.onEndListener(null, mStartTime, mEndTime);
+            mInnerHandler.onEndListener(null, mStartTime, mEndTime);
         }
     }
 
@@ -253,7 +253,7 @@ public final class FileDepthFirstSearchUtils {
             }
             if (file != null && file.exists()) {
                 // 判断是否处理
-                if (mInsideHandler.isHandlerFile(file)) {
+                if (mInnerHandler.isHandlerFile(file)) {
                     // 如果属于文件夹
                     if (file.isDirectory()) {
                         // 获取文件夹全部子文件
@@ -274,7 +274,7 @@ public final class FileDepthFirstSearchUtils {
                                     lists.add(fileItem);
                                 } else {
                                     // 属于文件
-                                    if (mInsideHandler.isAddToList(f)) {
+                                    if (mInnerHandler.isAddToList(f)) {
                                         // 属于文件则直接保存
                                         lists.add(new FileItem(f));
                                     }
@@ -285,7 +285,7 @@ public final class FileDepthFirstSearchUtils {
                             }
                         }
                     } else { // 属于文件
-                        if (mInsideHandler.isAddToList(file)) {
+                        if (mInnerHandler.isAddToList(file)) {
                             // 属于文件则直接保存
                             lists.add(new FileItem(file));
                         }

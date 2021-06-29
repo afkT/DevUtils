@@ -44,8 +44,8 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener, true, StorageType.IMAGE)) {
-            insideInsertToExternal(params, source, listener, StorageType.IMAGE);
+        if (innerPreCheck(params, source, listener, true, StorageType.IMAGE)) {
+            innerInsertToExternal(params, source, listener, StorageType.IMAGE);
         }
     }
 
@@ -61,8 +61,8 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener, true, StorageType.VIDEO)) {
-            insideInsertToExternal(params, source, listener, StorageType.VIDEO);
+        if (innerPreCheck(params, source, listener, true, StorageType.VIDEO)) {
+            innerInsertToExternal(params, source, listener, StorageType.VIDEO);
         }
     }
 
@@ -78,8 +78,8 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener, true, StorageType.AUDIO)) {
-            insideInsertToExternal(params, source, listener, StorageType.AUDIO);
+        if (innerPreCheck(params, source, listener, true, StorageType.AUDIO)) {
+            innerInsertToExternal(params, source, listener, StorageType.AUDIO);
         }
     }
 
@@ -95,8 +95,8 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener, true, StorageType.DOWNLOAD)) {
-            insideInsertToExternal(params, source, listener, StorageType.DOWNLOAD);
+        if (innerPreCheck(params, source, listener, true, StorageType.DOWNLOAD)) {
+            innerInsertToExternal(params, source, listener, StorageType.DOWNLOAD);
         }
     }
 
@@ -115,8 +115,8 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener, true, StorageType.NONE)) {
-            insideInsertToExternal(params, source, listener, StorageType.NONE);
+        if (innerPreCheck(params, source, listener, true, StorageType.NONE)) {
+            innerInsertToExternal(params, source, listener, StorageType.NONE);
         }
     }
 
@@ -136,8 +136,8 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener, false, StorageType.IMAGE)) {
-            insideInsertToInternal(params, source, listener, StorageType.IMAGE);
+        if (innerPreCheck(params, source, listener, false, StorageType.IMAGE)) {
+            innerInsertToInternal(params, source, listener, StorageType.IMAGE);
         }
     }
 
@@ -153,8 +153,8 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener, false, StorageType.VIDEO)) {
-            insideInsertToInternal(params, source, listener, StorageType.VIDEO);
+        if (innerPreCheck(params, source, listener, false, StorageType.VIDEO)) {
+            innerInsertToInternal(params, source, listener, StorageType.VIDEO);
         }
     }
 
@@ -170,8 +170,8 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener, false, StorageType.AUDIO)) {
-            insideInsertToInternal(params, source, listener, StorageType.AUDIO);
+        if (innerPreCheck(params, source, listener, false, StorageType.AUDIO)) {
+            innerInsertToInternal(params, source, listener, StorageType.AUDIO);
         }
     }
 
@@ -187,8 +187,8 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener, false, StorageType.DOWNLOAD)) {
-            insideInsertToInternal(params, source, listener, StorageType.DOWNLOAD);
+        if (innerPreCheck(params, source, listener, false, StorageType.DOWNLOAD)) {
+            innerInsertToInternal(params, source, listener, StorageType.DOWNLOAD);
         }
     }
 
@@ -207,8 +207,8 @@ public class DevMediaStoreEngineImpl
             DevSource source,
             OnInsertListener<StorageItem, StorageResult> listener
     ) {
-        if (insidePreCheck(params, source, listener, false, StorageType.NONE)) {
-            insideInsertToInternal(params, source, listener, StorageType.NONE);
+        if (innerPreCheck(params, source, listener, false, StorageType.NONE)) {
+            innerInsertToInternal(params, source, listener, StorageType.NONE);
         }
     }
 
@@ -259,7 +259,7 @@ public class DevMediaStoreEngineImpl
      * @param type     存储类型
      * @return {@code true} 校验通过, {@code false} 校验失败
      */
-    private boolean insidePreCheck(
+    private boolean innerPreCheck(
             final StorageItem params,
             final DevSource source,
             final OnInsertListener<StorageItem, StorageResult> listener,
@@ -443,13 +443,13 @@ public class DevMediaStoreEngineImpl
      * @param listener 回调接口
      * @param type     存储类型
      */
-    private void insideInsertToExternal(
+    private void innerInsertToExternal(
             final StorageItem params,
             final DevSource source,
             final OnInsertListener<StorageItem, StorageResult> listener,
             final StorageType type
     ) {
-        insideInsertThread(
+        innerInsertThread(
                 params, source, listener, true,
                 convertType(params, source, type)
         );
@@ -462,13 +462,13 @@ public class DevMediaStoreEngineImpl
      * @param listener 回调接口
      * @param type     存储类型
      */
-    private void insideInsertToInternal(
+    private void innerInsertToInternal(
             final StorageItem params,
             final DevSource source,
             final OnInsertListener<StorageItem, StorageResult> listener,
             final StorageType type
     ) {
-        insideInsertThread(
+        innerInsertThread(
                 params, source, listener, false,
                 convertType(params, source, type)
         );
@@ -482,7 +482,7 @@ public class DevMediaStoreEngineImpl
      * @param external 是否外部存储
      * @param type     存储类型
      */
-    private void insideInsertThread(
+    private void innerInsertThread(
             final StorageItem params,
             final DevSource source,
             final OnInsertListener<StorageItem, StorageResult> listener,
@@ -491,7 +491,7 @@ public class DevMediaStoreEngineImpl
     ) {
         new Thread(() -> {
             try {
-                insideInsertFinal(params, source, listener, external, type);
+                innerInsertFinal(params, source, listener, external, type);
             } catch (Exception e) {
                 // 统一触发事件回调
                 finalCallback(
@@ -510,7 +510,7 @@ public class DevMediaStoreEngineImpl
      * @param external 是否外部存储
      * @param type     存储类型
      */
-    private void insideInsertFinal(
+    private void innerInsertFinal(
             final StorageItem params,
             final DevSource source,
             final OnInsertListener<StorageItem, StorageResult> listener,
