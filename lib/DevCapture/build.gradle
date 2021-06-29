@@ -1,0 +1,25 @@
+apply from: rootProject.file(files.lib_app_gradle)
+
+android.defaultConfig {
+    versionCode versions.dev_capture_versionCode
+    versionName versions.dev_capture_versionName
+    // DevCapture Module Version
+    buildConfigField "int", "DevCapture_VersionCode", "${versions.dev_capture_versionCode}"
+    buildConfigField "String", "DevCapture_Version", "\"${versions.dev_capture_versionName}\""
+    // DevApp Module Version
+    buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
+    buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
+}
+
+dependencies {
+    // 编译时使用
+    api project(':DevApp')
+//    // 打包时使用
+//    api deps.dev.dev_app_x
+}
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from : rootProject.file(files.bintray_upload_android)
+//apply from : rootProject.file(files.sonatype_upload_android)

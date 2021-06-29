@@ -15,7 +15,7 @@ ext {
             targetSdkVersion                        : 30,
             // 构建工具版本
             buildToolsVersion                       : "31.0.0-rc5",
-            // java 版本
+            // Java 版本
             javaVersion                             : JavaVersion.VERSION_1_8,
             javaVersion_str                         : "1.8",
 
@@ -23,39 +23,36 @@ ext {
             // = Dev Lib =
             // ===========
 
-            // 版本号
+            // DevApp Android 工具类库
             dev_app_versionCode                     : 228,
-            // 版本名
             dev_app_versionName                     : "2.2.8",
 
-            // 版本号
+            // DevAssist 快捷功能辅助类库
             dev_assist_versionCode                  : 125,
-            // 版本名
             dev_assist_versionName                  : "1.2.5",
 
-            // 版本号
+            // DevBase Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库
             dev_base_versionCode                    : 106,
-            // 版本名
             dev_base_versionName                    : "1.0.6",
 
-            // 版本号
+            // DevBaseMVVM MVVM ( ViewDataBinding + ViewModel ) 基类库
             dev_base_mvvm_versionCode               : 104,
-            // 版本名
             dev_base_mvvm_versionName               : "1.0.4",
 
-            // 版本号
+            // DevCapture OKHttp 抓包工具库
+            dev_capture_versionCode                 : 100,
+            dev_capture_versionName                 : "1.0.0",
+
+            // DevJava Java 工具类库 ( 不依赖 android api )
             dev_java_versionCode                    : 135,
-            // 版本名
             dev_java_version                        : "1.3.5",
 
-            // 版本号
+            // DevWidget 自定义 View UI 库
             dev_widget_versionCode                  : 110,
-            // 版本名
             dev_widget_versionName                  : "1.1.0",
 
-            // 版本号
+            // DevEnvironment Android 环境配置切换库
             dev_environment_versionCode             : 103,
-            // 版本名
             dev_environment_version                 : "1.0.3",
             dev_environment_base_version            : "1.0.3",
             dev_environment_compiler_version        : "1.0.3",
