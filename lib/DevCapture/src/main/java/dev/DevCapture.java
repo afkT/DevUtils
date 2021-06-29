@@ -1,6 +1,14 @@
 package dev;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import dev.capture.BuildConfig;
+import dev.capture.HttpCaptureInterceptor;
+import dev.capture.IHttpCapture;
+import dev.utils.common.StringUtils;
+import dev.utils.common.cipher.Encrypt;
+import okhttp3.OkHttpClient;
 
 /**
  * detail: OKHttp 抓包工具库
@@ -45,5 +53,105 @@ public final class DevCapture {
      */
     public static String getDevAppVersion() {
         return BuildConfig.DevApp_Version;
+    }
+
+    // ===============
+    // = Interceptor =
+    // ===============
+
+    // Http 抓包接口 Map
+    private static final Map<String, IHttpCapture> sCaptureMaps = new LinkedHashMap<>();
+
+    /**
+     * 添加 Http 抓包拦截处理
+     * @param builder    OkHttpClient Builder
+     * @param moduleName 模块名 ( 要求唯一性 )
+     * @param encrypt    抓包数据加密中间层
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean addInterceptor(
+            final OkHttpClient.Builder builder,
+            final String moduleName,
+            final Encrypt encrypt
+    ) {
+        return addInterceptor(builder, moduleName, encrypt, true);
+    }
+
+    /**
+     * 添加 Http 抓包拦截处理
+     * @param builder    OkHttpClient Builder
+     * @param moduleName 模块名 ( 要求唯一性 )
+     * @param encrypt    抓包数据加密中间层
+     * @param isCapture  是否进行 Http 抓包拦截
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean addInterceptor(
+            final OkHttpClient.Builder builder,
+            final String moduleName,
+            final Encrypt encrypt,
+            final boolean isCapture
+    ) {
+        if (builder != null && StringUtils.isNotEmpty(moduleName)) {
+            if (!sCaptureMaps.containsKey(moduleName)) {
+                HttpCaptureInterceptor interceptor = new HttpCaptureInterceptor(
+                        moduleName, encrypt, isCapture
+                );
+                // 添加抓包拦截
+                builder.addInterceptor(interceptor);
+                // 保存 IHttpCapture 接口对象
+                sCaptureMaps.put(moduleName, interceptor);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 是否存在对应 Module Http 抓包拦截
+     * @param moduleName 模块名 ( 要求唯一性 )
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isContainsModule(final String moduleName) {
+        if (StringUtils.isNotEmpty(moduleName)) {
+            return sCaptureMaps.containsKey(moduleName);
+        }
+        return false;
+    }
+
+    /**
+     * 移除对应 Module Http 抓包拦截
+     * @param moduleName 模块名 ( 要求唯一性 )
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean removeInterceptor(final String moduleName) {
+        if (StringUtils.isNotEmpty(moduleName)) {
+            IHttpCapture httpCapture = sCaptureMaps.get(moduleName);
+            if (httpCapture != null) {
+                httpCapture.setCapture(false);
+                sCaptureMaps.remove(moduleName);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 更新对应 Module Http 抓包拦截处理
+     * @param moduleName 模块名 ( 要求唯一性 )
+     * @param isCapture  是否进行 Http 抓包拦截
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean updateInterceptor(
+            final String moduleName,
+            final boolean isCapture
+    ) {
+        if (StringUtils.isNotEmpty(moduleName)) {
+            IHttpCapture httpCapture = sCaptureMaps.get(moduleName);
+            if (httpCapture != null) {
+                httpCapture.setCapture(isCapture);
+                return true;
+            }
+        }
+        return false;
     }
 }
