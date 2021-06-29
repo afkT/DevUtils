@@ -20,6 +20,10 @@ import dev.utils.common.StringUtils;
 /**
  * detail: DevUtils MediaStore Engine 实现
  * @author Ttt
+ * <pre>
+ *     如果需要设置全局结果监听, 可以新增构造函数传入 {@link OnDevInsertListener}
+ *     并在 {@link #finalCallback} 方法中设置触发事件回调
+ * </pre>
  */
 public class DevMediaStoreEngineImpl
         implements IStorageEngine<StorageItem, StorageResult> {
@@ -282,7 +286,8 @@ public class DevMediaStoreEngineImpl
                     result.setError(new Exception("source is null"));
                 }
             }
-            listener.onResult(result, params, source);
+            // 统一触发事件回调
+            finalCallback(result, params, source, listener);
         }
         return false;
     }
@@ -488,12 +493,11 @@ public class DevMediaStoreEngineImpl
             try {
                 insideInsertFinal(params, source, listener, external, type);
             } catch (Exception e) {
-                if (listener != null) {
-                    listener.onResult(
-                            StorageResult.failure().setError(e),
-                            params, source
-                    );
-                }
+                // 统一触发事件回调
+                finalCallback(
+                        StorageResult.failure().setError(e),
+                        params, source, listener
+                );
             }
         }).start();
     }
@@ -581,8 +585,31 @@ public class DevMediaStoreEngineImpl
             if (StringUtils.isNotEmpty(uriPath)) {
                 result.setFile(FileUtils.getFile(uriPath));
             }
+            // 通知相册
+            MediaStoreUtils.notifyMediaStore(outputUri);
         }
 
+        // 统一触发事件回调
+        finalCallback(result, params, source, listener);
+    }
+
+    // ==========
+    // = 回调方法 =
+    // ==========
+
+    /**
+     * 最终回调方法
+     * @param result   存储结果
+     * @param params   原始参数
+     * @param source   原始数据
+     * @param listener 回调接口
+     */
+    private void finalCallback(
+            final StorageResult result,
+            final StorageItem params,
+            final DevSource source,
+            final OnInsertListener<StorageItem, StorageResult> listener
+    ) {
         if (listener != null) {
             listener.onResult(result, params, source);
         }

@@ -25,6 +25,8 @@ interface OnDevInsertListener : OnInsertListener<StorageItem, StorageResult>
 /**
  * detail: DevUtils MediaStore Engine 实现
  * @author Ttt
+ * 如果需要设置全局结果监听, 可以新增构造函数传入 [OnDevInsertListener]
+ * 并在 [finalCallback] 方法中设置触发事件回调
  */
 class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
 
@@ -271,7 +273,8 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
                     result.setError(Exception("source is null"))
                 }
             }
-            listener.onResult(result, params, source)
+            // 统一触发事件回调
+            finalCallback(result, params, source, listener)
         }
         return false
     }
@@ -474,9 +477,10 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
             try {
                 insideInsertFinal(params, source, listener, external, type)
             } catch (e: java.lang.Exception) {
-                listener?.onResult(
+                // 统一触发事件回调
+                finalCallback(
                     StorageResult.failure().setError(e),
-                    params, source
+                    params, source, listener
                 )
             }
         }.start()
@@ -566,7 +570,30 @@ class DevMediaStoreEngineImpl : IStorageEngine<StorageItem, StorageResult> {
             if (StringUtils.isNotEmpty(uriPath)) {
                 result.setFile(FileUtils.getFile(uriPath))
             }
+            // 通知相册
+            MediaStoreUtils.notifyMediaStore(outputUri)
         }
+        // 统一触发事件回调
+        finalCallback(result, params, source, listener)
+    }
+
+    // ==========
+    // = 回调方法 =
+    // ==========
+
+    /**
+     * 最终回调方法
+     * @param result   存储结果
+     * @param params   原始参数
+     * @param source   原始数据
+     * @param listener 回调接口
+     */
+    private fun finalCallback(
+        result: StorageResult,
+        params: StorageItem?,
+        source: DevSource?,
+        listener: OnInsertListener<StorageItem, StorageResult>?
+    ) {
         listener?.onResult(result, params, source)
     }
 }
