@@ -131,7 +131,7 @@ class Utils {
             final CaptureFile captureFile
     ) {
         return getModuleHttpCaptureFile(
-                Utils.getModulePath(captureFile.getModuleName()),
+                getModulePath(captureFile.getModuleName()),
                 captureFile.getFileName()
         );
     }
@@ -181,7 +181,7 @@ class Utils {
             if (fileName != null) {
                 captureFile.setFileName(fileName);
                 // 将对象转换为 JSON String
-                String json = toJson(captureFile);
+                String json = captureFile.toJson();
                 // 存储处理
                 return FileUtils.saveFile(
                         getModuleHttpCaptureFile(filePath, fileName),

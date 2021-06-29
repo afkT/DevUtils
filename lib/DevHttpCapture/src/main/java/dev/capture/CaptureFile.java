@@ -12,7 +12,7 @@ import dev.utils.common.FileUtils;
  *     非加密情况下 {@link #httpCaptureData} 则会映射成 {@link CaptureInfo} 实体类
  * </pre>
  */
-public class CaptureFile {
+public final class CaptureFile {
 
     // 请求链接
     private String  url;
@@ -22,14 +22,16 @@ public class CaptureFile {
     private String  httpCaptureData;
     // 是否加密
     private boolean isEncrypt;
+    // 创建时间 ( 本地时间戳 )
+    private long    time;
     // 文件名
     private String  fileName;
     // 模块名
     private String  moduleName;
 
-    // ===========
-    // = get/set =
-    // ===========
+    // =======
+    // = get =
+    // =======
 
     public String getUrl() {
         return url;
@@ -47,6 +49,10 @@ public class CaptureFile {
         return isEncrypt;
     }
 
+    public long getTime() {
+        return time;
+    }
+
     public String getFileName() {
         return fileName;
     }
@@ -55,34 +61,41 @@ public class CaptureFile {
         return moduleName;
     }
 
-    // =
+    // =======
+    // = set =
+    // =======
 
-    public CaptureFile setUrl(String url) {
+    CaptureFile setUrl(String url) {
         this.url = url;
         return this;
     }
 
-    public CaptureFile setMethod(String method) {
+    CaptureFile setMethod(String method) {
         this.method = method;
         return this;
     }
 
-    public CaptureFile setHttpCaptureData(String httpCaptureData) {
+    CaptureFile setHttpCaptureData(String httpCaptureData) {
         this.httpCaptureData = httpCaptureData;
         return this;
     }
 
-    public CaptureFile setEncrypt(boolean encrypt) {
+    CaptureFile setEncrypt(boolean encrypt) {
         isEncrypt = encrypt;
         return this;
     }
 
-    public CaptureFile setFileName(String fileName) {
+    CaptureFile setTime(long time) {
+        this.time = time;
+        return this;
+    }
+
+    CaptureFile setFileName(String fileName) {
         this.fileName = fileName;
         return this;
     }
 
-    public CaptureFile setModuleName(String moduleName) {
+    CaptureFile setModuleName(String moduleName) {
         this.moduleName = moduleName;
         return this;
     }
@@ -105,6 +118,14 @@ public class CaptureFile {
             );
         }
         return captureInfo;
+    }
+
+    /**
+     * 将对象转换为 JSON String
+     * @return JSON String
+     */
+    public String toJson() {
+        return Utils.toJson(this);
     }
 
     // =============

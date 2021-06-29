@@ -10,7 +10,7 @@ import dev.utils.common.cipher.Encrypt;
 import okhttp3.Interceptor;
 import okhttp3.Response;
 
-public class HttpCaptureInterceptor
+public final class HttpCaptureInterceptor
         implements Interceptor,
         IHttpCapture {
 
