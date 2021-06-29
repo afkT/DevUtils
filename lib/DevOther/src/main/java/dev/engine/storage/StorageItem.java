@@ -280,4 +280,29 @@ public final class StorageItem
         return new StorageItem().setFileName(fileName)
                 .setMimeType(mimeType).setFolder(folder);
     }
+
+    // ==========
+    // = 额外方法 =
+    // ==========
+
+    /**
+     * 创建外部存储路径信息 Item
+     * <pre>
+     *     根据 fileName 获取后缀推导出 mimeType
+     *     如果系统不支持的格式、文件名不含后缀则可能获取失败 ( 将直接返回 null Item )
+     * </pre>
+     * @param fileName 存储文件名 ( 必须携带后缀 )
+     * @param folder   存储文件夹 ( 不包含完整路径, 只需要文件夹名 )
+     * @return {@link StorageItem}
+     */
+    public static StorageItem createExternalItemFolder(
+            final String fileName,
+            final String folder
+    ) {
+        String fileExtension = FileUtils.getFileExtension(fileName);
+        String mimeType      = MediaStoreUtils.getMimeTypeFromExtension(fileExtension);
+        if (mimeType == null) return null;
+        String name = FileUtils.getFileNameNoExtension(fileName);
+        return createExternalItem(name, mimeType, folder);
+    }
 }
