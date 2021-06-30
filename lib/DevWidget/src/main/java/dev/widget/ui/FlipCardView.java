@@ -153,6 +153,7 @@ public class FlipCardView
      * </pre>
      */
     public void flip() {
+        if (this.mAdapter == null) return;
         // 开始翻转时都显示 View
         ViewUtils.setVisibilitys(true, mFrontLayout, mBackLayout);
 
@@ -267,12 +268,16 @@ public class FlipCardView
                 mFrontLayout.removeAllViews();
                 // 初始化 View 并添加
                 View itemView = mAdapter.getItemView(getContext(), position, true);
-                mFrontLayout.addView(itemView);
+                if (itemView != null) {
+                    mFrontLayout.addView(itemView);
+                }
             } else {
                 mBackLayout.removeAllViews();
                 // 初始化 View 并添加
                 View itemView = mAdapter.getItemView(getContext(), position, false);
-                mBackLayout.addView(itemView);
+                if (itemView != null) {
+                    mBackLayout.addView(itemView);
+                }
             }
         }
         return this;

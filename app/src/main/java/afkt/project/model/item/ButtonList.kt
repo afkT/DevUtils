@@ -749,6 +749,12 @@ object ButtonList {
                     RouterPath.ButtonItemActivity_PATH
                 )
             )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.BTN_FLIP_CARD_VIEW, "翻转卡片 View",
+                    RouterPath.FlipCardActivity_PATH
+                )
+            )
             return lists
         }
 

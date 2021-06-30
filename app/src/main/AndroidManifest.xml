@@ -357,6 +357,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- 翻转卡片 View -->
+
+        <activity
+            android:name=".ui.activity.FlipCardActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- CapturePictureUtils 截图工具类 -->
 
         <activity

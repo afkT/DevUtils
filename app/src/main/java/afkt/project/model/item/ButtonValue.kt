@@ -500,6 +500,9 @@ class ButtonValue(
         // Custom Type
         const val BTN_VIEW_ASSIST_CUSTOM = BTN_VIEW_ASSIST + 4
 
+        // 翻转卡片 View
+        const val BTN_FLIP_CARD_VIEW = BTN_DEV_WIDGET + 1000
+
         // ==============================
         // = DevEnvironment 环境配置切换库 =
         // ==============================
