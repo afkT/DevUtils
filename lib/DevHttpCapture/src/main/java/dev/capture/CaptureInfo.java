@@ -1,5 +1,8 @@
 package dev.capture;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
  * detail: 抓包数据
  * @author Ttt
@@ -7,20 +10,20 @@ package dev.capture;
 public final class CaptureInfo {
 
     // 请求链接
-    private String requestUrl;
+    protected String              requestUrl;
     // 请求方法
-    private String requestMethod;
+    protected String              requestMethod;
     // 请求头信息
-    private String requestHeader;
+    protected Map<String, String> requestHeader = new LinkedHashMap<>();
     // 请求数据
-    private String requestBody;
+    protected Map<String, String> requestBody   = new LinkedHashMap<>();
 
     // 响应状态
-    private String responseStatus;
+    protected Map<String, String> responseStatus = new LinkedHashMap<>();
     // 响应头信息
-    private String responseHeader;
+    protected Map<String, String> responseHeader = new LinkedHashMap<>();
     // 响应数据
-    private String responseBody;
+    protected String              responseBody;
 
     // =======
     // = get =
@@ -34,63 +37,24 @@ public final class CaptureInfo {
         return requestMethod;
     }
 
-    public String getRequestHeader() {
+    public Map<String, String> getRequestHeader() {
         return requestHeader;
     }
 
-    public String getRequestBody() {
+    public Map<String, String> getRequestBody() {
         return requestBody;
     }
 
-    public String getResponseStatus() {
+    public Map<String, String> getResponseStatus() {
         return responseStatus;
     }
 
-    public String getResponseHeader() {
+    public Map<String, String> getResponseHeader() {
         return responseHeader;
     }
 
     public String getResponseBody() {
         return responseBody;
-    }
-
-    // =======
-    // = set =
-    // =======
-
-    CaptureInfo setRequestUrl(String requestUrl) {
-        this.requestUrl = requestUrl;
-        return this;
-    }
-
-    CaptureInfo setRequestMethod(String requestMethod) {
-        this.requestMethod = requestMethod;
-        return this;
-    }
-
-    CaptureInfo setRequestHeader(String requestHeader) {
-        this.requestHeader = requestHeader;
-        return this;
-    }
-
-    CaptureInfo setRequestBody(String requestBody) {
-        this.requestBody = requestBody;
-        return this;
-    }
-
-    CaptureInfo setResponseStatus(String responseStatus) {
-        this.responseStatus = responseStatus;
-        return this;
-    }
-
-    CaptureInfo setResponseHeader(String responseHeader) {
-        this.responseHeader = responseHeader;
-        return this;
-    }
-
-    CaptureInfo setResponseBody(String responseBody) {
-        this.responseBody = responseBody;
-        return this;
     }
 
     // ==========
