@@ -27,6 +27,12 @@ public interface IHttpCapture {
     Encrypt getEncrypt();
 
     /**
+     * 获取 Http 拦截过滤器
+     * @return {@link IHttpFilter}
+     */
+    IHttpFilter getHttpFilter();
+
+    /**
      * 是否进行 Http 抓包拦截
      * @return {@code true} yes, {@code false} no
      */

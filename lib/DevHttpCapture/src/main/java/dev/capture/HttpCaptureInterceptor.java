@@ -32,11 +32,13 @@ public final class HttpCaptureInterceptor
         IHttpCapture {
 
     // 模块名 ( 要求唯一性 )
-    private final String  mModuleName;
+    private final String      mModuleName;
     // 抓包数据加密中间层
-    private final Encrypt mEncrypt;
+    private final Encrypt     mEncrypt;
+    // Http 拦截过滤器
+    private final IHttpFilter mHttpFilter;
     // 是否进行 Http 抓包拦截
-    private       boolean mCapture;
+    private       boolean     mCapture;
 
     // ================
     // = IHttpCapture =
@@ -50,6 +52,11 @@ public final class HttpCaptureInterceptor
     @Override
     public Encrypt getEncrypt() {
         return mEncrypt;
+    }
+
+    @Override
+    public IHttpFilter getHttpFilter() {
+        return mHttpFilter;
     }
 
     @Override
@@ -82,17 +89,21 @@ public final class HttpCaptureInterceptor
      * 构造函数
      * @param moduleName 模块名 ( 要求唯一性 )
      * @param encrypt    抓包数据加密中间层
+     * @param httpFilter Http 拦截过滤器
      * @param capture    是否进行 Http 抓包拦截
      */
     public HttpCaptureInterceptor(
             final String moduleName,
             final Encrypt encrypt,
+            final IHttpFilter httpFilter,
             final boolean capture
     ) {
         this.mModuleName = moduleName;
         this.mEncrypt    = encrypt;
+        this.mHttpFilter = httpFilter;
         this.mCapture    = capture;
     }
+
 
     // ===============
     // = Interceptor =
@@ -139,6 +150,23 @@ public final class HttpCaptureInterceptor
             requestStartMessage.append(" (")
                     .append(requestBody.contentLength())
                     .append(" byte body)");
+        }
+
+        if (mHttpFilter != null) {
+            boolean isFilter = false;
+            try {
+                isFilter = mHttpFilter.filter(
+                        request.url().toString(),
+                        request.method(),
+                        protocol,
+                        request.headers()
+                );
+            } catch (Exception ignored) {
+            }
+            if (isFilter) {
+                // 不需要抓包直接返回
+                return chain.proceed(chain.request());
+            }
         }
 
         // ==========

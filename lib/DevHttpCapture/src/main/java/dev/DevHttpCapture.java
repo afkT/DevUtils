@@ -9,6 +9,7 @@ import dev.capture.BuildConfig;
 import dev.capture.CaptureFile;
 import dev.capture.HttpCaptureInterceptor;
 import dev.capture.IHttpCapture;
+import dev.capture.IHttpFilter;
 import dev.utils.common.StringUtils;
 import dev.utils.common.cipher.Encrypt;
 import okhttp3.OkHttpClient;
@@ -78,7 +79,7 @@ public final class DevHttpCapture {
             final OkHttpClient.Builder builder,
             final String moduleName
     ) {
-        return addInterceptor(builder, moduleName, null, true);
+        return addInterceptor(builder, moduleName, null, null, true);
     }
 
     /**
@@ -93,7 +94,7 @@ public final class DevHttpCapture {
             final String moduleName,
             final Encrypt encrypt
     ) {
-        return addInterceptor(builder, moduleName, encrypt, true);
+        return addInterceptor(builder, moduleName, encrypt, null, true);
     }
 
     /**
@@ -101,6 +102,7 @@ public final class DevHttpCapture {
      * @param builder    OkHttpClient Builder
      * @param moduleName 模块名 ( 要求唯一性 )
      * @param encrypt    抓包数据加密中间层
+     * @param httpFilter Http 拦截过滤器
      * @param isCapture  是否进行 Http 抓包拦截
      * @return {@code true} success, {@code false} fail
      */
@@ -108,12 +110,13 @@ public final class DevHttpCapture {
             final OkHttpClient.Builder builder,
             final String moduleName,
             final Encrypt encrypt,
+            final IHttpFilter httpFilter,
             final boolean isCapture
     ) {
         if (builder != null && StringUtils.isNotEmpty(moduleName)) {
             if (!sCaptureMaps.containsKey(moduleName)) {
                 HttpCaptureInterceptor interceptor = new HttpCaptureInterceptor(
-                        moduleName, encrypt, isCapture
+                        moduleName, encrypt, httpFilter, isCapture
                 );
                 // 添加抓包拦截
                 builder.addInterceptor(interceptor);
