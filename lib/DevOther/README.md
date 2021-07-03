@@ -17,7 +17,6 @@
       - storage                                       | Storage Engine 外部、内部文件存储
    - other                                            | 第三方库封装工具类
       - cache                                         | 缓存工具类
-      - http                                          | Http 通用封装
       - okgo                                          | OkGo 网络请求
       - retrofit                                      | Retrofit 网络请求
          - response                                   | 请求响应解析
@@ -53,7 +52,6 @@
       - [storage](#devenginestorage)                  | Storage Engine 外部、内部文件存储
    - [other](#devother)                               | 第三方库封装工具类
       - [cache](#devothercache)                       | 缓存工具类
-      - [http](#devotherhttp)                         | Http 通用封装
       - [okgo](#devotherokgo)                         | OkGo 网络请求
       - [retrofit](#devotherretrofit)                 | Retrofit 网络请求
          - [response](#devotherretrofitresponse)      | 请求响应解析
@@ -568,6 +566,7 @@
 | createUriItem | 创建指定输出 Uri Item |
 | createInternalItem | 创建内部存储路径信息 Item |
 | createExternalItem | 创建外部存储路径信息 Item |
+| createExternalItemFolder | 创建外部存储路径信息 Item |
 
 
 * **Storage Result ->** [StorageResult.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/engine/storage/StorageResult.java)
@@ -849,16 +848,6 @@
 | file | 获取缓存文件 |
 | remove | 移除某个 key 的数据 |
 | clear | 清除所有数据 |
-
-
-## <span id="devotherhttp">**`dev.other.http`**</span>
-
-
-* **OkHttp 打印日志拦截器 ->** [HttpLoggingInterceptor.java](https://github.com/afkT/DevUtils/blob/master/lib/DevOther/src/main/java/dev/other/http/HttpLoggingInterceptor.java)
-
-| 方法 | 注释 |
-| :- | :- |
-| intercept | intercept |
 
 
 ## <span id="devotherokgo">**`dev.other.okgo`**</span>
