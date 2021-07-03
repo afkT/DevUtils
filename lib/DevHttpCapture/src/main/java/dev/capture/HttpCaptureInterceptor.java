@@ -166,7 +166,7 @@ public final class HttpCaptureInterceptor
             }
         }
 
-        if ((!bodyEncoded(request.headers()))) {
+        if (!bodyEncoded(request.headers())) {
             Buffer buffer = new Buffer();
             if (requestBody != null) {
                 requestBody.writeTo(buffer);
@@ -178,14 +178,14 @@ public final class HttpCaptureInterceptor
                             captureInfo.requestBody.put(formBody.name(i), formBody.value(i));
                         }
                     }
-                    StringBuilder bodyBuilder = new StringBuilder();
-                    bodyBuilder.append(request.method())
+                    StringBuilder bodyBuilder = new StringBuilder()
+                            .append(request.method())
                             .append(" (").append(requestBody.contentLength())
                             .append("- byte body)");
                     captureInfo.requestBody.put("body length", bodyBuilder.toString());
                 } else {
-                    StringBuilder bodyBuilder = new StringBuilder();
-                    bodyBuilder.append(request.method())
+                    StringBuilder bodyBuilder = new StringBuilder()
+                            .append(request.method())
                             .append(" (binary ").append(requestBody.contentLength())
                             .append("- byte body omitted)");
                     captureInfo.requestBody.put("body length", bodyBuilder.toString());
@@ -216,8 +216,7 @@ public final class HttpCaptureInterceptor
         }
         long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
 
-        ResponseBody responseBody  = response.body();
-        long         contentLength = responseBody.contentLength();
+        ResponseBody responseBody = response.body();
 
         captureInfo.responseStatus.put("status", response.code() + " " + response.message());
         captureInfo.responseStatus.put("time", tookMs + "ms");
@@ -228,7 +227,8 @@ public final class HttpCaptureInterceptor
         }
 
         if (!bodyEncoded(response.headers())) {
-            BufferedSource source = responseBody.source();
+            long           contentLength = responseBody.contentLength();
+            BufferedSource source        = responseBody.source();
             source.request(Long.MAX_VALUE); // Buffer the entire body.
             Buffer buffer = source.buffer();
 
@@ -244,8 +244,12 @@ public final class HttpCaptureInterceptor
                 return response;
             }
 
-            if (contentLength != 0) {
-                captureInfo.responseBody = buffer.clone().readString(charset);
+            if (contentLength != 0L) {
+                try {
+                    captureInfo.responseBody = buffer.clone().readString(charset);
+                } catch (Exception e) {
+                    captureInfo.responseBody = "buffer readString error";
+                }
             }
             captureInfo.responseStatus.put("body length", buffer.size() + " byte body");
         }

@@ -72,13 +72,13 @@ class HttpLoggingInterceptor : Interceptor {
                         }
                     }
                     val bodyBuilder = java.lang.StringBuilder()
-                    bodyBuilder.append(request.method)
+                        .append(request.method)
                         .append(" (").append(requestBody.contentLength())
                         .append("- byte body)")
                     captureEntity.requestBody["body length"] = bodyBuilder.toString()
                 } else {
                     val bodyBuilder = java.lang.StringBuilder()
-                    bodyBuilder.append(request.method)
+                        .append(request.method)
                         .append(" (binary ").append(requestBody.contentLength())
                         .append("- byte body omitted)")
                     captureEntity.requestBody["body length"] = bodyBuilder.toString()
@@ -127,6 +127,7 @@ class HttpLoggingInterceptor : Interceptor {
                     try {
                         captureEntity.responseBody = buffer.clone().readString(charset)
                     } catch (e: Exception) {
+                        captureEntity.responseBody = "buffer readString error"
                     }
                 }
                 captureEntity.responseStatus["body length"] = "${buffer.size} byte body"
