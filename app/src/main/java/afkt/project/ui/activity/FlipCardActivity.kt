@@ -5,14 +5,11 @@ import afkt.project.base.app.BaseActivity
 import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityFlipCardBinding
 import afkt.project.ui.adapter.FlipCardAdapter
-import android.os.Handler
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.DevSource
-import dev.utils.app.ActivityUtils
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.timer.DevTimer
-import dev.utils.common.RandomUtils
 
 
 /**

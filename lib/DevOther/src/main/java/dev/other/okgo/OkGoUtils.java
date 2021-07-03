@@ -17,6 +17,11 @@ import com.lzy.okgo.request.base.Request;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
+import dev.capture.CallbackInterceptor;
+import dev.capture.CaptureInfo;
+import dev.capture.IHttpCaptureCallback;
+import dev.other.GsonUtils;
+import dev.utils.LogPrintUtils;
 import okhttp3.OkHttpClient;
 
 /**
@@ -32,9 +37,6 @@ import okhttp3.OkHttpClient;
  *     {@link OkGoUtils}: 初始化 OkGo、OkHttp 请求配置信息
  *     {@link OkGoResponse}: 请求响应统一解析类
  *     {@link OkGoCallback}: 请求回调统一处理类
- *     请求拦截 ( 非必须 ) :
- *     {@link dev.other.http.HttpLoggingInterceptor}: 自定义 OkHttp 打印日志拦截器
- *     {@link com.lzy.okgo.interceptor.HttpLoggingInterceptor}: OkGo 实现 OkHttp 打印日志拦截器
  * </pre>
  */
 @Deprecated
@@ -42,6 +44,9 @@ public final class OkGoUtils {
 
     private OkGoUtils() {
     }
+
+    // 日志 TAG
+    private static final String TAG = OkGoUtils.class.getSimpleName();
 
     /**
      * 初始化 OkGo 配置
@@ -55,8 +60,21 @@ public final class OkGoUtils {
     public static void initOkGo(Application application) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
-        // 自定义日志拦截 JSON 打印
-        builder.addInterceptor(new dev.other.http.HttpLoggingInterceptor());
+//        // 使用 DevHttpCapture 库进行 Http 拦截回调 ( 抓包数据存储 )
+//        DevHttpCapture.addInterceptor(builder, "ModuleName", new Encrypt() {
+//            @Override
+//            public byte[] encrypt(byte[] data) {
+//                return data; // 加密处理, encrypt 参数传入 null 表示不加密
+//            }
+//        });
+
+        // 使用 DevHttpCapture 库进行 Http 拦截回调 ( 不进行抓包数据存储 )
+        builder.addInterceptor(new CallbackInterceptor(new IHttpCaptureCallback() {
+            @Override
+            public void callback(CaptureInfo captureInfo) {
+                LogPrintUtils.jsonTag(TAG, GsonUtils.toJson(captureInfo));
+            }
+        }));
 
         // ======================
         // = OkGo 内置 log 拦截器 =

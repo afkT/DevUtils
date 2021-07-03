@@ -1,8 +1,10 @@
 package ktx.dev.other.retrofit_coroutines.demo
 
 import androidx.lifecycle.LiveData
+import dev.capture.CallbackInterceptor
 import dev.engine.log.DevLogEngine
-import ktx.dev.other.http.HttpLoggingInterceptor
+import dev.other.GsonUtils
+import dev.utils.LogPrintUtils
 import ktx.dev.other.retrofit_coroutines.*
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -40,8 +42,19 @@ object RetrofitManager {
         // ====================
 
         val builder = OkHttpClient.Builder()
-        // 自定义日志拦截 JSON 打印
-        builder.addInterceptor(HttpLoggingInterceptor())
+
+//        // 使用 DevHttpCapture 库进行 Http 拦截回调 ( 抓包数据存储 )
+//        DevHttpCapture.addInterceptor(builder, "ModuleName") { data ->
+//            data // 加密处理, encrypt 参数传入 null 表示不加密
+//        }
+
+        // 使用 DevHttpCapture 库进行 Http 拦截回调 ( 不进行抓包数据存储 )
+        builder.addInterceptor(CallbackInterceptor { captureInfo ->
+            LogPrintUtils.jsonTag(
+                TAG_L, GsonUtils.toJson(captureInfo)
+            )
+        })
+
         // 全局的读取超时时间
         builder.readTimeout(60000L, TimeUnit.MILLISECONDS)
         // 全局的写入超时时间

@@ -10,9 +10,8 @@ import java.util.concurrent.TimeUnit
 
 /**
  * detail: OkHttp 打印日志拦截器
- * @author DingDeGao
- * 基于 OKHttp 的实用抓包小工具
- * @see https://github.com/DingProg/NetworkCaptureSelf
+ * @author Ttt
+ * 推荐使用 DevHttpCapture 库
  */
 class HttpLoggingInterceptor : Interceptor {
 
@@ -125,7 +124,10 @@ class HttpLoggingInterceptor : Interceptor {
                     return response
                 }
                 if (contentLength != 0L) {
-                    captureEntity.responseBody = buffer.clone().readString(charset)
+                    try {
+                        captureEntity.responseBody = buffer.clone().readString(charset)
+                    } catch (e: Exception) {
+                    }
                 }
                 captureEntity.responseStatus["body length"] = "${buffer.size} byte body"
             }
