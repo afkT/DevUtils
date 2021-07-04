@@ -46,6 +46,7 @@ ext {
                     dev_assist                      : "io.github.afkt:DevAssist:${versions.dev_assist_versionName}",
                     dev_base                        : "io.github.afkt:DevBase:${versions.dev_base_versionName}",
                     dev_base_mvvm                   : "io.github.afkt:DevBaseMVVM:${versions.dev_base_mvvm_versionName}",
+                    dev_http_capture                : "io.github.afkt:DevHttpCapture:${versions.dev_http_capture_versionName}",
                     dev_java                        : "io.github.afkt:DevJava:${versions.dev_java_version}",
                     dev_widget_x                    : "io.github.afkt:DevWidgetX:${versions.dev_widget_versionName}",
                     // 环境配置切换库
@@ -237,9 +238,6 @@ ext {
                     dokitx_no_op                  : "com.didichuxing.doraemonkit:dokitx-no-op:3.3.5",
                     // 应用数据库展示 https://github.com/guolindev/Glance
                     glance                        : "com.glance.guolindev:glance:1.0.0",
-                    // OkHttp 拦截器抓包 https://github.com/DingProg/NetworkCaptureSelf
-                    networkCaptureSelf            : "com.github.DingProg.NetworkCaptureSelf:library:v1.0.1",
-                    networkCaptureSelf_op         : "com.github.DingProg.NetworkCaptureSelf:library_no_op:v1.0.1",
 
                     // 滴滴 Booster 质量优化框架 https://github.com/didi/booster
 
@@ -306,7 +304,7 @@ ext {
                     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
                     baserecyclerviewadapterhelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6",
                     // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
-                    multitype                    : "com.drakeet.multitype:multitype:4.2.0",
+                    multitype                    : "com.drakeet.multitype:multitype:4.3.0",
                     // QMUI Android https://qmuiteam.com/android
                     qmui                         : "com.qmuiteam:qmui:2.0.0-alpha10",
 
