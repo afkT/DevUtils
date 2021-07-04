@@ -8,8 +8,8 @@ implementation 'io.github.afkt:DevHttpCapture:1.0.0'
 ## 目录结构
 
 ```
-- dev             | 根目录
-   - capture      | Http 抓包实现代码
+- dev                                                 | 根目录
+   - capture                                          | Http 抓包实现代码
 ```
 
 
@@ -24,8 +24,8 @@ implementation 'io.github.afkt:DevHttpCapture:1.0.0'
 ## API
 
 
-- dev                                   | 根目录
-   - [capture](#devcapture)             | Http 抓包实现代码
+- dev                                                 | 根目录
+   - [capture](#devcapture)                           | Http 抓包实现代码
 
 
 
