@@ -104,7 +104,6 @@ public final class HttpCaptureInterceptor
         this.mCapture    = capture;
     }
 
-
     // ===============
     // = Interceptor =
     // ===============

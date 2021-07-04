@@ -90,6 +90,9 @@ implementation 'io.github.afkt:DevBase:1.0.6'
 // DevBaseMVVM MVVM ( ViewDataBinding + ViewModel ) 基类库
 implementation 'io.github.afkt:DevBaseMVVM:1.0.4'
 
+// DevHttpCapture OKHttp 抓包工具库
+implementation 'io.github.afkt:DevHttpCapture:1.0.0'
+
 // DevJava Java 工具类库 ( 不依赖 android api )
 implementation 'io.github.afkt:DevJava:1.3.5' // 用于纯 Java 开发，如果依赖了 DevApp 则不需要依赖 DevJava
 
