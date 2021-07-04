@@ -265,48 +265,46 @@ ext {
                     // 第三方简约小功能、UI 小组件等
 
                     // GPU Filters https://github.com/cats-oss/android-gpuimage
-                    gpuimage                     : "jp.co.cyberagent.android:gpuimage:2.1.0",
+                    gpuimage                        : "jp.co.cyberagent.android:gpuimage:2.1.0",
                     // 加载动画效果 https://github.com/Kyson/WhorlView
-                    whorlviewlibrary             : "com.tt:whorlviewlibrary:1.0.3",
-                    // 圆形 ImageView https://github.com/hdodenhof/CircleImageView
-                    circleimageview              : "de.hdodenhof:circleimageview:3.1.0",
+                    whorlviewlibrary                : "com.tt:whorlviewlibrary:1.0.3",
                     // 滚轮选择库 https://github.com/Bigkoo/Android-PickerView
-                    pickerview                   : "com.contrarywind:Android-PickerView:4.1.9", // https://blog.csdn.net/qq_22393017/article/details/58099486
+                    pickerview                      : "com.contrarywind:Android-PickerView:4.1.9", // https://blog.csdn.net/qq_22393017/article/details/58099486
                     // 图片缩放 https://github.com/chrisbanes/PhotoView
-                    photoview                    : "com.github.chrisbanes:PhotoView:2.3.0",
+                    photoview                       : "com.github.chrisbanes:PhotoView:2.3.0",
                     // 多子 view 嵌套滚动通用解决方案 https://github.com/MFC-TEC/ELinkageScroll
                     // WebView、RecyclerView 多布局连贯滑动 https://github.com/donkingliang/ConsecutiveScroller
-                    consecutiveScroller          : "com.github.donkingliang:ConsecutiveScroller:4.4.2", // AndroidX
+                    consecutiveScroller             : "com.github.donkingliang:ConsecutiveScroller:4.4.2", // AndroidX
                     // 图表 https://github.com/PhilJay/MPAndroidChart
-                    mpAndroidChart               : "com.github.PhilJay:MPAndroidChart:v3.1.0",
+                    mpAndroidChart                  : "com.github.PhilJay:MPAndroidChart:v3.1.0",
                     // 波浪效果 https://github.com/gelitenight/WaveView
-                    waveview                     : "com.gelitenight.waveview:waveview:1.0.0",
+                    waveview                        : "com.gelitenight.waveview:waveview:1.0.0",
                     // Banner 库 https://github.com/youth5201314/banner
-                    banner                       : "io.github.youth5201314:banner:2.2.2",
+                    banner                          : "io.github.youth5201314:banner:2.2.2",
                     // CalendarView 日历控件 https://github.com/huanghaibin-dev/CalendarView
-                    calendarview                 : "com.haibin:calendarview:3.7.1",
+                    calendarview                    : "com.haibin:calendarview:3.7.1",
                     // 图片裁剪库 https://github.com/Yalantis/uCrop
-                    ucrop                        : "com.github.yalantis:ucrop:2.2.6", // 轻量级通用解决方案
-                    ucrop_native                 : "com.github.yalantis:ucrop:2.2.6-native", // 支持本机功能
+                    ucrop                           : "com.github.yalantis:ucrop:2.2.6", // 轻量级通用解决方案
+                    ucrop_native                    : "com.github.yalantis:ucrop:2.2.6-native", // 支持本机功能
                     // RecyclerView 实现顶部吸附效果 https://github.com/Gavin-ZYX/StickyDecoration
-                    stickyDecoration             : "com.gavin.com.library:stickyDecoration:1.5.3",
+                    stickyDecoration                : "com.gavin.com.library:stickyDecoration:1.5.3",
                     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
-                    smartrefreshlayout           : "com.scwang.smart:refresh-layout-kernel:2.0.3",
-                    smartrefresh_header_classics : "com.scwang.smart:refresh-header-classics:2.0.3", // 经典刷新头
-                    smartrefresh_header_radar    : "com.scwang.smart:refresh-header-radar:2.0.3", // 雷达刷新头
-                    smartrefresh_header_falsify  : "com.scwang.smart:refresh-header-falsify:2.0.3", // 虚拟刷新头
-                    smartrefresh_header_material : "com.scwang.smart:refresh-header-material:2.0.3", // 谷歌刷新头
-                    smartrefresh_header_two_level: "com.scwang.smart:refresh-header-two-level:2.0.3", // 二级刷新头
-                    smartrefresh_footer_ball     : "com.scwang.smart:refresh-footer-ball:2.0.3", // 球脉冲加载
-                    smartrefresh_footer_classics : "com.scwang.smart:refresh-footer-classics:2.0.3", // 经典加载
+                    smartrefreshlayout              : "com.scwang.smart:refresh-layout-kernel:2.0.3",
+                    smartrefresh_header_classics    : "com.scwang.smart:refresh-header-classics:2.0.3", // 经典刷新头
+                    smartrefresh_header_radar       : "com.scwang.smart:refresh-header-radar:2.0.3", // 雷达刷新头
+                    smartrefresh_header_falsify     : "com.scwang.smart:refresh-header-falsify:2.0.3", // 虚拟刷新头
+                    smartrefresh_header_material    : "com.scwang.smart:refresh-header-material:2.0.3", // 谷歌刷新头
+                    smartrefresh_header_two_level   : "com.scwang.smart:refresh-header-two-level:2.0.3", // 二级刷新头
+                    smartrefresh_footer_ball        : "com.scwang.smart:refresh-footer-ball:2.0.3", // 球脉冲加载
+                    smartrefresh_footer_classics    : "com.scwang.smart:refresh-footer-classics:2.0.3", // 经典加载
                     // 下拉刷新框架 ( 横向 ) https://github.com/scwang90/SmartRefreshHorizontal
-                    smartrefreshHorizontal       : "com.scwang.smart:refresh-layout-horizontal:2.0.0",
+                    smartrefreshHorizontal          : "com.scwang.smart:refresh-layout-horizontal:2.0.0",
                     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-                    baserecyclerviewadapterhelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6",
+                    base_recyclerview_adapter_helper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6",
                     // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
-                    multitype                    : "com.drakeet.multitype:multitype:4.3.0",
+                    multitype                       : "com.drakeet.multitype:multitype:4.3.0",
                     // QMUI Android https://qmuiteam.com/android
-                    qmui                         : "com.qmuiteam:qmui:2.0.0-alpha10",
+                    qmui                            : "com.qmuiteam:qmui:2.0.0-alpha10",
 
                     // 骨架屏 https://github.com/ethanhua/Skeleton
                     // https://juejin.cn/post/6844903785215574023
@@ -319,7 +317,7 @@ ext {
                     // ==============
 
                     // 评价等级控件 https://github.com/hedge-hog/RatingBar
-                    ratingbar                    : "com.hedgehog.ratingbar:app:1.1.2",
+                    ratingbar                       : "com.hedgehog.ratingbar:app:1.1.2",
             ],
             "deprecated": [
                     // 已经抛弃不再更新或者被其他库、技术取代
@@ -335,6 +333,8 @@ ext {
                     okgo                : "com.lzy.net:okgo:3.0.4",
                     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
                     okserver            : "com.lzy.net:okserver:2.0.5",
+                    // 圆形 ImageView https://github.com/hdodenhof/CircleImageView
+                    circleimageview     : "de.hdodenhof:circleimageview:3.1.0",
             ]
     ]
 }

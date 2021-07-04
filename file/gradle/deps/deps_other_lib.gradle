@@ -92,7 +92,7 @@ dependencies {
     // 下拉刷新框架 ( 横向 ) https://github.com/scwang90/SmartRefreshHorizontal
     implementation deps.widget.smartrefreshHorizontal
 //    // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-//    implementation deps.widget.baserecyclerviewadapterhelper
+//    implementation deps.widget.base_recyclerview_adapter_helper
     // 多类型 ViewType Adapter https://github.com/drakeet/MultiType
     implementation deps.widget.multitype
 
