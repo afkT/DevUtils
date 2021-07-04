@@ -1,7 +1,5 @@
 package dev.capture;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.EOFException;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -108,9 +106,8 @@ public final class HttpCaptureInterceptor
     // = Interceptor =
     // ===============
 
-    @NotNull
     @Override
-    public Response intercept(@NotNull Chain chain)
+    public Response intercept(Chain chain)
             throws IOException {
         // 如果不需要抓包则直接返回
         if (!mCapture) {
@@ -132,7 +129,7 @@ public final class HttpCaptureInterceptor
      *     减少 {@link #intercept} 方法逻辑, 不同情况调用不同方法一目了然
      * </pre>
      */
-    public Response innerResponse(@NotNull Chain chain)
+    public Response innerResponse(Chain chain)
             throws IOException {
         CaptureInfo captureInfo = new CaptureInfo();
 

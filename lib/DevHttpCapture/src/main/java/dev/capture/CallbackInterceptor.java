@@ -1,7 +1,5 @@
 package dev.capture;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.EOFException;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -41,9 +39,8 @@ public final class CallbackInterceptor
     // = Interceptor =
     // ===============
 
-    @NotNull
     @Override
-    public Response intercept(@NotNull Chain chain)
+    public Response intercept(Chain chain)
             throws IOException {
         // 进行抓包处理
         return innerResponse(chain);
@@ -61,7 +58,7 @@ public final class CallbackInterceptor
      *     减少 {@link #intercept} 方法逻辑, 不同情况调用不同方法一目了然
      * </pre>
      */
-    public Response innerResponse(@NotNull Chain chain)
+    public Response innerResponse(Chain chain)
             throws IOException {
         CaptureInfo captureInfo = new CaptureInfo();
 
