@@ -21,6 +21,14 @@ implementation 'io.github.afkt:DevHttpCapture:1.0.0'
 >
 > 内置两个 Http 抓包拦截器，CallbackInterceptor ( 无存储逻辑，进行回调通知 )、HttpCaptureInterceptor ( 存在存储抓包数据逻辑 )
 
+## 事项
+
+- 部分 API 更新不及时或有遗漏等，`具体以对应的工具类为准`
+
+- [检测代码规范、注释内容排版，API 文档生成](https://github.com/afkT/JavaDoc)
+
+- [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/CHANGELOG.md)
+
 ## API
 
 

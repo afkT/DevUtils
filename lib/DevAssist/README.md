@@ -46,6 +46,8 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
 
 - [检测代码规范、注释内容排版，API 文档生成](https://github.com/afkT/JavaDoc)
 
+- [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/CHANGELOG.md)
+
 ## API
 
 

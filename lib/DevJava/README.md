@@ -24,6 +24,12 @@ implementation 'io.github.afkt:DevJava:1.3.5'
 
 ## 事项
 
+- 部分 API 更新不及时或有遗漏等，`具体以对应的工具类为准`
+
+- [检测代码规范、注释内容排版，API 文档生成](https://github.com/afkT/JavaDoc)
+
+- [Change Log](https://github.com/afkT/DevUtils/blob/master/lib/DevJava/CHANGELOG.md)
+
 - 该工具类不依赖 android api，属于 Java 工具类库
 
 - 开启日志
@@ -35,10 +41,6 @@ JCLogUtils.setControlPrintLog(true);
 // 设置 Java 模块日志信息监听
 JCLogUtils.setPrint(new JCLogUtils.Print() {});
 ```
-
-- 部分 API 更新不及时或有遗漏等，`具体以对应的工具类为准`
-
-- [检测代码规范、注释内容排版，API 文档生成](https://github.com/afkT/JavaDoc)
 
 ## API
 
