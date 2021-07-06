@@ -277,11 +277,13 @@ public final class DevFinal {
     public static final String DATABASE    = "database";
     public static final String DATE        = "date";
     public static final String DB          = "db";
+    public static final String DECRYPT     = "decrypt";
     public static final String DEBUG       = "debug";
     public static final String DEFAULT     = "default";
     public static final String DOWNLOAD    = "download";
     public static final String DURATION    = "duration";
     public static final String ELEMENT     = "element";
+    public static final String ENCRYPT     = "encrypt";
     public static final String END         = "end";
     public static final String ENGINE      = "engine";
     public static final String ENVIRONMENT = "environment";
@@ -365,6 +367,7 @@ public final class DevFinal {
     public static final String TEXT        = "text";
     public static final String THROWABLE   = "throwable";
     public static final String TIME        = "time";
+    public static final String TIMESTAMP   = "timestamp";
     public static final String TITLE       = "title";
     public static final String TOAST       = "toast";
     public static final String TOKEN       = "token";
