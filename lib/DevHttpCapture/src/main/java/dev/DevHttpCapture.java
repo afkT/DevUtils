@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import dev.capture.BuildConfig;
-import dev.capture.CaptureFile;
+import dev.capture.CaptureItem;
 import dev.capture.HttpCaptureInterceptor;
 import dev.capture.IHttpCapture;
 import dev.capture.IHttpFilter;
@@ -186,9 +186,9 @@ public final class DevHttpCapture {
     /**
      * 获取指定模块所有抓包数据
      * @param moduleName 模块名 ( 要求唯一性 )
-     * @return 指定模块所有抓包数据集合
+     * @return 指定模块所有抓包数据
      */
-    public static List<CaptureFile> getModuleHttpCaptures(final String moduleName) {
+    public static List<CaptureItem> getModuleHttpCaptures(final String moduleName) {
         if (StringUtils.isNotEmpty(moduleName)) {
             IHttpCapture httpCapture = sCaptureMaps.get(moduleName);
             if (httpCapture != null) {

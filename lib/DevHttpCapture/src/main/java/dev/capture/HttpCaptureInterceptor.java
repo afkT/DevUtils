@@ -73,7 +73,7 @@ public final class HttpCaptureInterceptor
     }
 
     @Override
-    public List<CaptureFile> getModuleHttpCaptures() {
+    public List<CaptureItem> getModuleHttpCaptures() {
         return Utils.getModuleHttpCaptures(
                 mModuleName, mEncrypt != null
         );

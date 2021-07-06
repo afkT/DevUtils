@@ -56,7 +56,7 @@ public interface IHttpCapture {
 
     /**
      * 获取模块所有抓包数据
-     * @return 模块所有抓包数据集合
+     * @return 模块所有抓包数据
      */
-    List<CaptureFile> getModuleHttpCaptures();
+    List<CaptureItem> getModuleHttpCaptures();
 }

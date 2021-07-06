@@ -34,6 +34,9 @@ public final class DateUtils {
     public static final String MMdd             = "MM-dd";
     public static final String MMdd2            = "MM月dd日";
     public static final String MMdd3            = "MMdd";
+    public static final String hh               = "hh";
+    public static final String HH               = "HH";
+    public static final String mm               = "mm";
     public static final String HHmm             = "HH:mm";
     public static final String HHmm2            = "HHmm";
     public static final String HHmmss           = "HH:mm:ss";
