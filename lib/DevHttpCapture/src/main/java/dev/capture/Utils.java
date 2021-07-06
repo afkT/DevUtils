@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -304,6 +305,16 @@ class Utils {
                                                     }
                                                 }
                                                 if (captureList.size() != 0) {
+                                                    // 最新的在最前面
+                                                    Collections.sort(captureList, (o1, o2) -> {
+                                                        float diff = o1.getTime() - o2.getTime();
+                                                        if (diff > 0) {
+                                                            return -1;
+                                                        } else if (diff < 0) {
+                                                            return 1;
+                                                        }
+                                                        return 0;
+                                                    });
                                                     captureItem.getData().put(hmName, captureList);
                                                 }
                                             }
