@@ -6,11 +6,17 @@ import dev.engine.log.DevLogEngine
 import dev.other.GsonUtils
 import dev.utils.LogPrintUtils
 import ktx.dev.other.retrofit_coroutines.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
+import okhttp3.RequestBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
+import java.io.File
 import java.util.concurrent.TimeUnit
 
 /**
@@ -24,6 +30,15 @@ interface APIService {
 
     @GET("/article/list/{page}/json")
     suspend fun getArticleList2(@Path("page") page: Int): BaseResponse<ArticleBean2?>
+
+//    http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/0601/8027.html
+//    https://blog.csdn.net/qq77485042/article/details/105681664
+
+    @POST("xxx")
+    suspend fun uploadImage(@Body body: RequestBody): UploadBean
+
+    @POST("xxx")
+    suspend fun uploadImage2(@Body body: RequestBody): BaseResponse<List<String?>?>
 }
 
 /**
@@ -94,7 +109,7 @@ suspend fun getArticleList(page: Int) {
     val errorMethod = errorMethodCommon()
     // 映射各种 JSON 实体类
     executeRequest(block = {
-        var bean = RetrofitManager.apiService.getArticleList(page)
+        val bean = RetrofitManager.apiService.getArticleList(page)
         if (isSuccess(bean?.errorCode)) {
             DevLogEngine.getEngine()?.dTag(
                 TAG_L, "请求成功 data: ${bean?.data?.datas?.size}"
@@ -121,10 +136,86 @@ suspend fun getArticleList2(page: Int) {
     val errorMethod = errorMethodCommon()
     // 映射统一标准 JSON 格式实体类 => BaseResponse
     executeRequest(block = {
-        var result = RetrofitManager.apiService.getArticleList2(page).result()
+        val result = RetrofitManager.apiService.getArticleList2(page).result()
         if (result.success) {
             DevLogEngine.getEngine()?.dTag(
                 TAG_L, "请求成功 data: ${result.data?.datas?.size}"
+            )
+        } else {
+            errorMethod.invoke(result.errorCode, result.error)
+        }
+    }, start = {
+        DevLogEngine.getEngine()?.dTag(
+            TAG_L, "开始请求"
+        )
+    }, complete = {
+        DevLogEngine.getEngine()?.dTag(
+            TAG_L, "请求完成"
+        )
+    }, error = errorMethod)
+}
+
+suspend fun uploadImage(lists: List<File>) {
+    val formDataPart = MultipartBody.Builder()
+        .setType(MultipartBody.FORM).apply {
+            lists.forEach {
+                addFormDataPart(
+                    "images", it.getName(),
+                    RequestBody.create("image/*".toMediaTypeOrNull(), it)
+                )
+            }
+        }
+    val requestBody = formDataPart.build()
+
+    /**
+     * 请求方法统一放到 Module Repository 中
+     * 并通过 [LiveData.postValue] 进行通知
+     */
+    val errorMethod = errorMethodCommon()
+    // 映射各种 JSON 实体类
+    executeRequest(block = {
+        val bean = RetrofitManager.apiService.uploadImage(requestBody)
+        if (isSuccess(bean.code)) {
+            DevLogEngine.getEngine()?.dTag(
+                TAG_L, "请求成功 data: ${bean.data!!.toTypedArray().contentToString()}"
+            )
+        } else {
+            errorMethod.invoke(bean.code, Throwable(bean.msg))
+        }
+    }, start = {
+        DevLogEngine.getEngine()?.dTag(
+            TAG_L, "开始请求"
+        )
+    }, complete = {
+        DevLogEngine.getEngine()?.dTag(
+            TAG_L, "请求完成"
+        )
+    }, error = errorMethod)
+}
+
+suspend fun uploadImage2(lists: List<File>) {
+    val formDataPart = MultipartBody.Builder()
+        .setType(MultipartBody.FORM).apply {
+            lists.forEach {
+                addFormDataPart(
+                    "images", it.getName(),
+                    RequestBody.create("image/*".toMediaTypeOrNull(), it)
+                )
+            }
+        }
+    val requestBody = formDataPart.build()
+
+    /**
+     * 请求方法统一放到 Module Repository 中
+     * 并通过 [LiveData.postValue] 进行通知
+     */
+    val errorMethod = errorMethodCommon()
+    // 映射统一标准 JSON 格式实体类 => BaseResponse
+    executeRequest(block = {
+        val result = RetrofitManager.apiService.uploadImage2(requestBody).result()
+        if (result.success) {
+            DevLogEngine.getEngine()?.dTag(
+                TAG_L, "请求成功 data: ${result.data!!.toTypedArray().contentToString()}"
             )
         } else {
             errorMethod.invoke(result.errorCode, result.error)
@@ -151,6 +242,14 @@ fun errorMethodCommon(): suspend (String?, Throwable) -> Unit {
         )
     }
 }
+
+data class UploadBean(
+    val code: String,
+    val `data`: List<String?>?,
+    val iosAuditedFlag: Boolean,
+    val msg: String,
+    val success: Boolean
+)
 
 // ========
 // = 实体类 =
