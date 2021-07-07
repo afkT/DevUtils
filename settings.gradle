@@ -19,6 +19,18 @@ libs.forEach {
     project(":$it").projectDir = new File(rootDir, "lib/$it")
 }
 
+def libs_compiler = [
+        "DevHttpCaptureCompiler",
+        "DevHttpCaptureCompilerRelease",
+]
+
+libs_compiler.forEach {
+    include(":$it")
+    if (it.startsWith("DevHttpCapture")) {
+        project(":$it").projectDir = new File(rootDir, "lib/HttpCapture/$it")
+    }
+}
+
 def environment_libs = [
         "DevEnvironment",
         "DevEnvironmentBase",

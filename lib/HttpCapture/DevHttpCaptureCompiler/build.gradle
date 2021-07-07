@@ -1,0 +1,19 @@
+apply from: rootProject.file(files.lib_app_gradle)
+
+android.defaultConfig {
+    versionCode versions.dev_http_capture_versionCode
+    versionName versions.dev_http_capture_compiler_version
+}
+
+dependencies {
+    // 编译时使用
+    api project(':DevHttpCapture')
+//    // 打包时使用
+//    api deps.dev.dev_http_capture
+}
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from : rootProject.file(files.bintray_upload_android)
+//apply from : rootProject.file(files.sonatype_upload_android)

@@ -42,18 +42,21 @@ ext {
                     // https://search.maven.org/search?q=io.github.afkt
                     // https://repo1.maven.org/maven2/io/github/afkt/
                     // https://mvnrepository.com/search?q=io.github.afkt
-                    dev_app_x                       : "io.github.afkt:DevAppX:${versions.dev_app_versionName}",
-                    dev_assist                      : "io.github.afkt:DevAssist:${versions.dev_assist_versionName}",
-                    dev_base                        : "io.github.afkt:DevBase:${versions.dev_base_versionName}",
-                    dev_base_mvvm                   : "io.github.afkt:DevBaseMVVM:${versions.dev_base_mvvm_versionName}",
-                    dev_http_capture                : "io.github.afkt:DevHttpCapture:${versions.dev_http_capture_versionName}",
-                    dev_java                        : "io.github.afkt:DevJava:${versions.dev_java_version}",
-                    dev_widget_x                    : "io.github.afkt:DevWidgetX:${versions.dev_widget_versionName}",
+                    dev_app_x                        : "io.github.afkt:DevAppX:${versions.dev_app_versionName}",
+                    dev_assist                       : "io.github.afkt:DevAssist:${versions.dev_assist_versionName}",
+                    dev_base                         : "io.github.afkt:DevBase:${versions.dev_base_versionName}",
+                    dev_base_mvvm                    : "io.github.afkt:DevBaseMVVM:${versions.dev_base_mvvm_versionName}",
+                    dev_java                         : "io.github.afkt:DevJava:${versions.dev_java_version}",
+                    dev_widget_x                     : "io.github.afkt:DevWidgetX:${versions.dev_widget_versionName}",
                     // 环境配置切换库
-                    dev_environment                 : "io.github.afkt:DevEnvironment:${versions.dev_environment_version}",
-                    dev_environment_base            : "io.github.afkt:DevEnvironmentBase:${versions.dev_environment_base_version}",
-                    dev_environment_compiler        : "io.github.afkt:DevEnvironmentCompiler:${versions.dev_environment_compiler_version}",
-                    dev_environment_compiler_release: "io.github.afkt:DevEnvironmentCompilerRelease:${versions.dev_environment_compiler_release_version}"
+                    dev_environment                  : "io.github.afkt:DevEnvironment:${versions.dev_environment_version}",
+                    dev_environment_base             : "io.github.afkt:DevEnvironmentBase:${versions.dev_environment_base_version}",
+                    dev_environment_compiler         : "io.github.afkt:DevEnvironmentCompiler:${versions.dev_environment_compiler_version}",
+                    dev_environment_compiler_release : "io.github.afkt:DevEnvironmentCompilerRelease:${versions.dev_environment_compiler_release_version}",
+                    // Http 抓包库
+                    dev_http_capture                 : "io.github.afkt:DevHttpCapture:${versions.dev_http_capture_versionName}",
+                    dev_http_capture_compiler        : "io.github.afkt:DevHttpCaptureCompiler:${versions.dev_http_capture_compiler_version}",
+                    dev_http_capture_compiler_release: "io.github.afkt:DevHttpCaptureCompilerRelease:${versions.dev_http_capture_compiler_release_version}",
             ],
             "kotlin"    : [
                     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
