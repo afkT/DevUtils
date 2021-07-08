@@ -1271,6 +1271,20 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置 ImageView Level
+     * @param view  {@link View}
+     * @param level level Image
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setImageLevel(
+            final View view,
+            final int level
+    ) {
+        ImageViewUtils.setImageLevel(view, level);
+        return this;
+    }
+
+    /**
      * 设置 ImageView Bitmap
      * @param view   {@link View}
      * @param bitmap {@link Bitmap}

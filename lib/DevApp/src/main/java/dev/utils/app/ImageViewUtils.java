@@ -147,6 +147,46 @@ public final class ImageViewUtils {
     // =============
 
     /**
+     * 设置 ImageView Level
+     * @param view  {@link View}
+     * @param level level Image
+     * @return {@link View}
+     */
+    public static View setImageLevel(
+            final View view,
+            final int level
+    ) {
+        setImageLevel(getImageView(view), level);
+        return view;
+    }
+
+    /**
+     * 设置 ImageView Level
+     * <pre>
+     *     配合 {@link android.graphics.drawable.LevelListDrawable} 使用
+     * </pre>
+     * @param imageView {@link ImageView}
+     * @param level     level Image
+     * @param <T>       泛型
+     * @return {@link ImageView}
+     */
+    public static <T extends ImageView> T setImageLevel(
+            final T imageView,
+            final int level
+    ) {
+        if (imageView != null) {
+            try {
+                imageView.setImageLevel(level);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setImageLevel");
+            }
+        }
+        return imageView;
+    }
+
+    // =
+
+    /**
      * 设置 ImageView Bitmap
      * @param view   {@link View}
      * @param bitmap {@link Bitmap}

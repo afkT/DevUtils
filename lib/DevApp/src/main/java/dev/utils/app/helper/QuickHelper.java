@@ -1026,6 +1026,16 @@ public final class QuickHelper {
     }
 
     /**
+     * 设置 ImageView Level
+     * @param level level Image
+     * @return {@link QuickHelper}
+     */
+    public QuickHelper setImageLevel(final int level) {
+        ImageViewUtils.setImageLevel(targetView(), level);
+        return this;
+    }
+
+    /**
      * 设置 ImageView Bitmap
      * @param bitmap {@link Bitmap}
      * @return {@link QuickHelper}
