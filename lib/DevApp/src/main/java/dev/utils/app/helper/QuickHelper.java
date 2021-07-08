@@ -1856,6 +1856,16 @@ public final class QuickHelper {
     }
 
     /**
+     * 设置 View 显示的状态
+     * @param isVisibility {@code true} View.VISIBLE, {@code false} View.INVISIBLE
+     * @return {@link QuickHelper}
+     */
+    public QuickHelper setVisibilityIN(final boolean isVisibility) {
+        ViewUtils.setVisibilityIN(isVisibility, targetView());
+        return this;
+    }
+
+    /**
      * 切换 View 显示的状态
      * @param views View[]
      * @return {@link QuickHelper}
