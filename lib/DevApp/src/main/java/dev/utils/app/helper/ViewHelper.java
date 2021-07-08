@@ -2401,6 +2401,20 @@ public final class ViewHelper {
     }
 
     /**
+     * 设置 View 显示的状态
+     * @param isVisibility {@code true} View.VISIBLE, {@code false} View.INVISIBLE
+     * @param views        View[]
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setVisibilityINs(
+            final boolean isVisibility,
+            final View... views
+    ) {
+        ViewUtils.setVisibilityINs(isVisibility, views);
+        return this;
+    }
+
+    /**
      * 切换 View 显示的状态
      * @param view  {@link View}
      * @param views View[]
