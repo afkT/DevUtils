@@ -774,7 +774,7 @@ final class DevCacheManager {
      * @param key       保存的 key
      * @param type      保存类型
      * @param bytes     保存数据
-     * @param validTime 有效期
+     * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
      * @return {@code true} success, {@code false} fail
      */
     private boolean _put(

@@ -226,7 +226,7 @@ public final class DevCache {
      * 保存 int 类型的数据
      * @param key       保存的 key
      * @param value     存储的数据
-     * @param validTime 有效时间 ( 毫秒 )
+     * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
      * @return {@code true} success, {@code false} fail
      */
     public boolean put(
@@ -241,7 +241,7 @@ public final class DevCache {
      * 保存 long 类型的数据
      * @param key       保存的 key
      * @param value     存储的数据
-     * @param validTime 有效时间 ( 毫秒 )
+     * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
      * @return {@code true} success, {@code false} fail
      */
     public boolean put(
@@ -256,7 +256,7 @@ public final class DevCache {
      * 保存 float 类型的数据
      * @param key       保存的 key
      * @param value     存储的数据
-     * @param validTime 有效时间 ( 毫秒 )
+     * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
      * @return {@code true} success, {@code false} fail
      */
     public boolean put(
@@ -271,7 +271,7 @@ public final class DevCache {
      * 保存 double 类型的数据
      * @param key       保存的 key
      * @param value     存储的数据
-     * @param validTime 有效时间 ( 毫秒 )
+     * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
      * @return {@code true} success, {@code false} fail
      */
     public boolean put(
@@ -286,7 +286,7 @@ public final class DevCache {
      * 保存 boolean 类型的数据
      * @param key       保存的 key
      * @param value     存储的数据
-     * @param validTime 有效时间 ( 毫秒 )
+     * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
      * @return {@code true} success, {@code false} fail
      */
     public boolean put(
@@ -301,7 +301,7 @@ public final class DevCache {
      * 保存 String 类型的数据
      * @param key       保存的 key
      * @param value     存储的数据
-     * @param validTime 有效时间 ( 毫秒 )
+     * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
      * @return {@code true} success, {@code false} fail
      */
     public boolean put(
@@ -316,7 +316,7 @@ public final class DevCache {
      * 保存 byte[] 类型的数据
      * @param key       保存的 key
      * @param value     存储的数据
-     * @param validTime 有效时间 ( 毫秒 )
+     * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
      * @return {@code true} success, {@code false} fail
      */
     public boolean put(
@@ -331,7 +331,7 @@ public final class DevCache {
      * 保存 Bitmap 类型的数据
      * @param key       保存的 key
      * @param value     存储的数据
-     * @param validTime 有效时间 ( 毫秒 )
+     * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
      * @return {@code true} success, {@code false} fail
      */
     public boolean put(
@@ -346,7 +346,7 @@ public final class DevCache {
      * 保存 Drawable 类型的数据
      * @param key       保存的 key
      * @param value     存储的数据
-     * @param validTime 有效时间 ( 毫秒 )
+     * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
      * @return {@code true} success, {@code false} fail
      */
     public boolean put(
@@ -361,7 +361,7 @@ public final class DevCache {
      * 保存 Serializable 类型的数据
      * @param key       保存的 key
      * @param value     存储的数据
-     * @param validTime 有效时间 ( 毫秒 )
+     * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
      * @return {@code true} success, {@code false} fail
      */
     public boolean put(
@@ -376,7 +376,7 @@ public final class DevCache {
      * 保存 Parcelable 类型的数据
      * @param key       保存的 key
      * @param value     存储的数据
-     * @param validTime 有效时间 ( 毫秒 )
+     * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
      * @return {@code true} success, {@code false} fail
      */
     public boolean put(
@@ -391,7 +391,7 @@ public final class DevCache {
      * 保存 JSONObject 类型的数据
      * @param key       保存的 key
      * @param value     存储的数据
-     * @param validTime 有效时间 ( 毫秒 )
+     * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
      * @return {@code true} success, {@code false} fail
      */
     public boolean put(
@@ -406,7 +406,7 @@ public final class DevCache {
      * 保存 JSONArray 类型的数据
      * @param key       保存的 key
      * @param value     存储的数据
-     * @param validTime 有效时间 ( 毫秒 )
+     * @param validTime 有效时间 ( 毫秒 ) 小于等于 0 为永久有效
      * @return {@code true} success, {@code false} fail
      */
     public boolean put(

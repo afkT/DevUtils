@@ -246,7 +246,6 @@ fun errorMethodCommon(): suspend (String?, Throwable) -> Unit {
 data class UploadBean(
     val code: String,
     val `data`: List<String?>?,
-    val iosAuditedFlag: Boolean,
     val msg: String,
     val success: Boolean
 )

@@ -133,7 +133,7 @@ public class FlipCardView
         // 取消动画
         mOutAnim.cancel();
         mInAnim.cancel();
-        // 判断是否存在数据
+        // 默认两面都显示
         ViewUtils.setVisibilitys(true, mFrontLayout, mBackLayout);
         // 重置处理
         isFront   = true;
@@ -143,6 +143,13 @@ public class FlipCardView
         // 开始加载 View ( 连续加载两次 正面、背面 )
         loadView(true).loadView(false);
         return this;
+    }
+
+    /**
+     * Adapter 数据源变更时调用
+     */
+    public void notifyDataSetChanged() {
+        setAdapter(mAdapter);
     }
 
     /**
