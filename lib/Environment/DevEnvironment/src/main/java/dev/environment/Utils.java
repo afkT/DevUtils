@@ -54,7 +54,7 @@ class Utils {
     /**
      * 跳转 DevEnvironment Activity
      * @param context  {@link Context}
-     * @param callback {@link RestartCallback}
+     * @param callback 重启按钮点击回调
      * @return {@code true} success, {@code false} fail
      */
     public static boolean start(
