@@ -756,4 +756,142 @@ public final class RecyclerViewUtils {
         }
         return false;
     }
+
+    // ====================
+    // = OnScrollListener =
+    // ====================
+
+    /**
+     * 设置 RecyclerView ScrollListener
+     * @param view     {@link View}
+     * @param listener ScrollListener
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setOnScrollListener(
+            final View view,
+            final RecyclerView.OnScrollListener listener
+    ) {
+        return setOnScrollListener(getRecyclerView(view), listener);
+    }
+
+    /**
+     * 设置 RecyclerView ScrollListener
+     * @param recyclerView {@link RecyclerView}
+     * @param listener     ScrollListener
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setOnScrollListener(
+            final RecyclerView recyclerView,
+            final RecyclerView.OnScrollListener listener
+    ) {
+        if (recyclerView != null && listener != null) {
+            try {
+                recyclerView.setOnScrollListener(listener);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "setOnScrollListener");
+            }
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 添加 RecyclerView ScrollListener
+     * @param view     {@link View}
+     * @param listener ScrollListener
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean addOnScrollListener(
+            final View view,
+            final RecyclerView.OnScrollListener listener
+    ) {
+        return addOnScrollListener(getRecyclerView(view), listener);
+    }
+
+    /**
+     * 添加 RecyclerView ScrollListener
+     * @param recyclerView {@link RecyclerView}
+     * @param listener     ScrollListener
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean addOnScrollListener(
+            final RecyclerView recyclerView,
+            final RecyclerView.OnScrollListener listener
+    ) {
+        if (recyclerView != null && listener != null) {
+            try {
+                recyclerView.addOnScrollListener(listener);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "addOnScrollListener");
+            }
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 移除 RecyclerView ScrollListener
+     * @param view     {@link View}
+     * @param listener ScrollListener
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean removeOnScrollListener(
+            final View view,
+            final RecyclerView.OnScrollListener listener
+    ) {
+        return removeOnScrollListener(getRecyclerView(view), listener);
+    }
+
+    /**
+     * 移除 RecyclerView ScrollListener
+     * @param recyclerView {@link RecyclerView}
+     * @param listener     ScrollListener
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean removeOnScrollListener(
+            final RecyclerView recyclerView,
+            final RecyclerView.OnScrollListener listener
+    ) {
+        if (recyclerView != null && listener != null) {
+            try {
+                recyclerView.removeOnScrollListener(listener);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "removeOnScrollListener");
+            }
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 清空 RecyclerView ScrollListener
+     * @param view {@link View}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean clearOnScrollListeners(final View view) {
+        return clearOnScrollListeners(getRecyclerView(view));
+    }
+
+    /**
+     * 清空 RecyclerView ScrollListener
+     * @param recyclerView {@link RecyclerView}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean clearOnScrollListeners(final RecyclerView recyclerView) {
+        if (recyclerView != null) {
+            try {
+                recyclerView.clearOnScrollListeners();
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "clearOnScrollListeners");
+            }
+        }
+        return false;
+    }
 }
