@@ -4,6 +4,8 @@ import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -473,5 +475,63 @@ public final class RecyclerViewUtils {
                 }
             }
         }
+    }
+
+    // ==============
+    // = SnapHelper =
+    // ==============
+
+    /**
+     * 设置 RecyclerView LinearSnapHelper
+     * @param view {@link View}
+     * @return {@link LinearSnapHelper}
+     */
+    public static LinearSnapHelper attachLinearSnapHelper(final View view) {
+        return attachLinearSnapHelper(getRecyclerView(view));
+    }
+
+    /**
+     * 设置 RecyclerView LinearSnapHelper
+     * <pre>
+     *     滑动多页居中显示, 类似 Gallery
+     * </pre>
+     * @param recyclerView {@link RecyclerView}
+     * @return {@link LinearSnapHelper}
+     */
+    public static LinearSnapHelper attachLinearSnapHelper(final RecyclerView recyclerView) {
+        if (recyclerView != null) {
+            LinearSnapHelper helper = new LinearSnapHelper();
+            helper.attachToRecyclerView(recyclerView);
+            return helper;
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 设置 RecyclerView PagerSnapHelper
+     * @param view {@link View}
+     * @return {@link PagerSnapHelper}
+     */
+    public static PagerSnapHelper attachPagerSnapHelper(final View view) {
+        return attachPagerSnapHelper(getRecyclerView(view));
+    }
+
+    /**
+     * 设置 RecyclerView PagerSnapHelper
+     * <pre>
+     *     每次滑动一页居中显示, 类似 ViewPager
+     * </pre>
+     * @param recyclerView {@link RecyclerView}
+     * @return {@link PagerSnapHelper}
+     */
+    public static PagerSnapHelper attachPagerSnapHelper(final RecyclerView recyclerView) {
+        if (recyclerView != null) {
+            PagerSnapHelper helper = new PagerSnapHelper();
+            helper.attachToRecyclerView(recyclerView);
+            return helper;
+        }
+        return null;
     }
 }
