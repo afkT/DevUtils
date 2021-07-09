@@ -175,6 +175,41 @@ public final class RecyclerViewUtils {
     // ===============
 
     /**
+     * 设置 RecyclerView Orientation
+     * @param view {@link View}
+     * @return {@link View}
+     */
+    public static View setOrientation(
+            final View view,
+            @RecyclerView.Orientation final int orientation
+    ) {
+        setOrientation(getRecyclerView(view), orientation);
+        return view;
+    }
+
+    /**
+     * 设置 RecyclerView Orientation
+     * @param recyclerView {@link RecyclerView}
+     * @param <T>          泛型
+     * @return {@link RecyclerView}
+     */
+    public static <T extends RecyclerView> T setOrientation(
+            final T recyclerView,
+            @RecyclerView.Orientation final int orientation
+    ) {
+        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        if (layoutManager instanceof LinearLayoutManager) {
+            ((LinearLayoutManager) layoutManager).setOrientation(orientation);
+        }
+        if (layoutManager instanceof StaggeredGridLayoutManager) {
+            ((StaggeredGridLayoutManager) layoutManager).setOrientation(orientation);
+        }
+        return recyclerView;
+    }
+
+    // =
+
+    /**
      * 获取 RecyclerView Orientation
      * @param view {@link View}
      * @return Orientation
@@ -237,5 +272,70 @@ public final class RecyclerViewUtils {
      */
     public static boolean canScrollVertically(final RecyclerView recyclerView) {
         return getOrientation(recyclerView) == RecyclerView.VERTICAL;
+    }
+
+    // ===========
+    // = Adapter =
+    // ===========
+
+    /**
+     * 设置 RecyclerView Adapter
+     * @param view    {@link View}
+     * @param adapter Adapter
+     * @return {@link View}
+     */
+    public static View setAdapter(
+            final View view,
+            final RecyclerView.Adapter adapter
+    ) {
+        setAdapter(getRecyclerView(view), adapter);
+        return view;
+    }
+
+    /**
+     * 设置 RecyclerView Adapter
+     * @param recyclerView {@link RecyclerView}
+     * @param adapter      Adapter
+     * @param <T>          泛型
+     * @return {@link RecyclerView}
+     */
+    public static <T extends RecyclerView> T setAdapter(
+            final T recyclerView,
+            final RecyclerView.Adapter adapter
+    ) {
+        if (recyclerView != null && adapter != null) {
+            recyclerView.setAdapter(adapter);
+        }
+        return recyclerView;
+    }
+
+    /**
+     * 获取 RecyclerView Adapter
+     * @param view {@link View}
+     * @param <T>  泛型
+     * @return LayoutManager
+     */
+    public static <T extends RecyclerView.Adapter<?>> T getAdapter(final View view) {
+        return getAdapter(getRecyclerView(view));
+    }
+
+    /**
+     * 获取 RecyclerView Adapter
+     * @param recyclerView {@link RecyclerView}
+     * @param <T>          泛型
+     * @return LayoutManager
+     */
+    public static <T extends RecyclerView.Adapter<?>> T getAdapter(final RecyclerView recyclerView) {
+        if (recyclerView != null) {
+            RecyclerView.Adapter<?> adapter = recyclerView.getAdapter();
+            if (adapter != null) {
+                try {
+                    return (T) adapter;
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "getAdapter");
+                }
+            }
+        }
+        return null;
     }
 }
