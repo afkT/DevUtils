@@ -22,6 +22,10 @@ public class PageAssist<T>
         this(DF_PAGE, DF_PAGE_SIZE);
     }
 
+    public PageAssist(final DevPage.PageConfig pageConfig) {
+        this(pageConfig.page, pageConfig.pageSize);
+    }
+
     public PageAssist(
             final int page,
             final int pageSize
@@ -29,6 +33,8 @@ public class PageAssist<T>
         super();
         mPage = new DevPage<>(page, pageSize);
     }
+
+    // =
 
     /**
      * 初始化全局分页配置

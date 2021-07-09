@@ -14,13 +14,13 @@ public class DevPage<T>
     // 是否最后一页
     private       boolean    mLastPage;
 
-    public DevPage(PageConfig pageConfig) {
+    public DevPage(final PageConfig pageConfig) {
         this(pageConfig.page, pageConfig.pageSize);
     }
 
     public DevPage(
-            int page,
-            int pageSize
+            final int page,
+            final int pageSize
     ) {
         config = new PageConfig(page, pageSize);
         // 设置页数信息
@@ -39,8 +39,8 @@ public class DevPage<T>
         public final int pageSize;
 
         public PageConfig(
-                int page,
-                int pageSize
+                final int page,
+                final int pageSize
         ) {
             this.page     = page;
             this.pageSize = pageSize;
@@ -60,7 +60,7 @@ public class DevPage<T>
      * @param reset 是否进行重置 ( 方便判断是否刷新进行调用 )
      * @return {@link DevPage}
      */
-    public DevPage<T> reset(boolean reset) {
+    public DevPage<T> reset(final boolean reset) {
         if (reset) reset();
         return this;
     }
