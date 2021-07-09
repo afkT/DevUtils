@@ -347,20 +347,22 @@ public final class RecyclerViewUtils {
      * RecyclerView notifyItemRemoved
      * @param view     {@link View}
      * @param position 索引
+     * @return {@code true} success, {@code false} fail
      */
-    public static void notifyItemRemoved(
+    public static boolean notifyItemRemoved(
             final View view,
             final int position
     ) {
-        notifyItemRemoved(getRecyclerView(view), position);
+        return notifyItemRemoved(getRecyclerView(view), position);
     }
 
     /**
      * RecyclerView notifyItemRemoved
      * @param recyclerView {@link RecyclerView}
      * @param position     索引
+     * @return {@code true} success, {@code false} fail
      */
-    public static void notifyItemRemoved(
+    public static boolean notifyItemRemoved(
             final RecyclerView recyclerView,
             final int position
     ) {
@@ -369,11 +371,13 @@ public final class RecyclerViewUtils {
             if (adapter != null) {
                 try {
                     adapter.notifyItemRemoved(position);
+                    return true;
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "notifyItemRemoved");
                 }
             }
         }
+        return false;
     }
 
     // =
@@ -382,20 +386,22 @@ public final class RecyclerViewUtils {
      * RecyclerView notifyItemInserted
      * @param view     {@link View}
      * @param position 索引
+     * @return {@code true} success, {@code false} fail
      */
-    public static void notifyItemInserted(
+    public static boolean notifyItemInserted(
             final View view,
             final int position
     ) {
-        notifyItemInserted(getRecyclerView(view), position);
+        return notifyItemInserted(getRecyclerView(view), position);
     }
 
     /**
      * RecyclerView notifyItemInserted
      * @param recyclerView {@link RecyclerView}
      * @param position     索引
+     * @return {@code true} success, {@code false} fail
      */
-    public static void notifyItemInserted(
+    public static boolean notifyItemInserted(
             final RecyclerView recyclerView,
             final int position
     ) {
@@ -404,11 +410,13 @@ public final class RecyclerViewUtils {
             if (adapter != null) {
                 try {
                     adapter.notifyItemInserted(position);
+                    return true;
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "notifyItemInserted");
                 }
             }
         }
+        return false;
     }
 
     // =
@@ -418,13 +426,14 @@ public final class RecyclerViewUtils {
      * @param view         {@link View}
      * @param fromPosition 当前索引
      * @param toPosition   更新后索引
+     * @return {@code true} success, {@code false} fail
      */
-    public static void notifyItemMoved(
+    public static boolean notifyItemMoved(
             final View view,
             final int fromPosition,
             final int toPosition
     ) {
-        notifyItemMoved(getRecyclerView(view), fromPosition, toPosition);
+        return notifyItemMoved(getRecyclerView(view), fromPosition, toPosition);
     }
 
     /**
@@ -432,8 +441,9 @@ public final class RecyclerViewUtils {
      * @param recyclerView {@link RecyclerView}
      * @param fromPosition 当前索引
      * @param toPosition   更新后索引
+     * @return {@code true} success, {@code false} fail
      */
-    public static void notifyItemMoved(
+    public static boolean notifyItemMoved(
             final RecyclerView recyclerView,
             final int fromPosition,
             final int toPosition
@@ -443,11 +453,13 @@ public final class RecyclerViewUtils {
             if (adapter != null) {
                 try {
                     adapter.notifyItemMoved(fromPosition, toPosition);
+                    return true;
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "notifyItemMoved");
                 }
             }
         }
+        return false;
     }
 
     // =
@@ -455,26 +467,30 @@ public final class RecyclerViewUtils {
     /**
      * RecyclerView notifyDataSetChanged
      * @param view {@link View}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void notifyDataSetChanged(final View view) {
-        notifyDataSetChanged(getRecyclerView(view));
+    public static boolean notifyDataSetChanged(final View view) {
+        return notifyDataSetChanged(getRecyclerView(view));
     }
 
     /**
      * RecyclerView notifyDataSetChanged
      * @param recyclerView {@link RecyclerView}
+     * @return {@code true} success, {@code false} fail
      */
-    public static void notifyDataSetChanged(final RecyclerView recyclerView) {
+    public static boolean notifyDataSetChanged(final RecyclerView recyclerView) {
         if (recyclerView != null) {
             RecyclerView.Adapter<?> adapter = recyclerView.getAdapter();
             if (adapter != null) {
                 try {
                     adapter.notifyDataSetChanged();
+                    return true;
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "notifyDataSetChanged");
                 }
             }
         }
+        return false;
     }
 
     // ==============
@@ -533,5 +549,211 @@ public final class RecyclerViewUtils {
             return helper;
         }
         return null;
+    }
+
+    // ==================
+    // = ItemDecoration =
+    // ==================
+
+    /**
+     * 获取 RecyclerView ItemDecoration 总数
+     * @param view {@link View}
+     * @return RecyclerView ItemDecoration 总数
+     */
+    public static int getItemDecorationCount(final View view) {
+        return getItemDecorationCount(getRecyclerView(view));
+    }
+
+    /**
+     * 获取 RecyclerView ItemDecoration 总数
+     * @param recyclerView {@link RecyclerView}
+     * @return RecyclerView ItemDecoration 总数
+     */
+    public static int getItemDecorationCount(final RecyclerView recyclerView) {
+        if (recyclerView != null) {
+            return recyclerView.getItemDecorationCount();
+        }
+        return 0;
+    }
+
+    // =
+
+    /**
+     * 获取 RecyclerView ItemDecoration
+     * @param view  {@link View}
+     * @param index RecyclerView ItemDecoration 索引
+     * @return RecyclerView ItemDecoration
+     */
+    public static RecyclerView.ItemDecoration getItemDecorationAt(
+            final View view,
+            final int index
+    ) {
+        return getItemDecorationAt(getRecyclerView(view), index);
+    }
+
+    /**
+     * 获取 RecyclerView ItemDecoration
+     * @param recyclerView {@link RecyclerView}
+     * @param index        RecyclerView ItemDecoration 索引
+     * @return RecyclerView ItemDecoration
+     */
+    public static RecyclerView.ItemDecoration getItemDecorationAt(
+            final RecyclerView recyclerView,
+            final int index
+    ) {
+        if (recyclerView != null) {
+            try {
+                return recyclerView.getItemDecorationAt(index);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getItemDecorationAt");
+            }
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 添加 RecyclerView ItemDecoration
+     * @param view  {@link View}
+     * @param decor RecyclerView ItemDecoration
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean addItemDecoration(
+            final View view,
+            final RecyclerView.ItemDecoration decor
+    ) {
+        return addItemDecoration(getRecyclerView(view), decor);
+    }
+
+    /**
+     * 添加 RecyclerView ItemDecoration
+     * @param recyclerView {@link RecyclerView}
+     * @param decor        RecyclerView ItemDecoration
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean addItemDecoration(
+            final RecyclerView recyclerView,
+            final RecyclerView.ItemDecoration decor
+    ) {
+        if (recyclerView != null && decor != null) {
+            try {
+                recyclerView.addItemDecoration(decor);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "addItemDecoration");
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 添加 RecyclerView ItemDecoration
+     * @param view  {@link View}
+     * @param decor RecyclerView ItemDecoration
+     * @param index 添加索引
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean addItemDecoration(
+            final View view,
+            final RecyclerView.ItemDecoration decor,
+            final int index
+    ) {
+        return addItemDecoration(getRecyclerView(view), decor, index);
+    }
+
+    /**
+     * 添加 RecyclerView ItemDecoration
+     * @param recyclerView {@link RecyclerView}
+     * @param decor        RecyclerView ItemDecoration
+     * @param index        添加索引
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean addItemDecoration(
+            final RecyclerView recyclerView,
+            final RecyclerView.ItemDecoration decor,
+            final int index
+    ) {
+        if (recyclerView != null && decor != null) {
+            try {
+                recyclerView.addItemDecoration(decor, index);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "addItemDecoration");
+            }
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 移除 RecyclerView ItemDecoration
+     * @param view  {@link View}
+     * @param decor RecyclerView ItemDecoration
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean removeItemDecoration(
+            final View view,
+            final RecyclerView.ItemDecoration decor
+    ) {
+        return removeItemDecoration(getRecyclerView(view), decor);
+    }
+
+    /**
+     * 移除 RecyclerView ItemDecoration
+     * @param recyclerView {@link RecyclerView}
+     * @param decor        RecyclerView ItemDecoration
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean removeItemDecoration(
+            final RecyclerView recyclerView,
+            final RecyclerView.ItemDecoration decor
+    ) {
+        if (recyclerView != null && decor != null) {
+            try {
+                recyclerView.removeItemDecoration(decor);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "removeItemDecoration");
+            }
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 移除 RecyclerView ItemDecoration
+     * @param view  {@link View}
+     * @param index RecyclerView ItemDecoration 索引
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean removeItemDecorationAt(
+            final View view,
+            final int index
+    ) {
+        return removeItemDecorationAt(getRecyclerView(view), index);
+    }
+
+    /**
+     * 移除 RecyclerView ItemDecoration
+     * @param recyclerView {@link RecyclerView}
+     * @param index        RecyclerView ItemDecoration 索引
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean removeItemDecorationAt(
+            final RecyclerView recyclerView,
+            final int index
+    ) {
+        if (recyclerView != null) {
+            try {
+                recyclerView.removeItemDecorationAt(index);
+                return true;
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "removeItemDecorationAt");
+            }
+        }
+        return false;
     }
 }
