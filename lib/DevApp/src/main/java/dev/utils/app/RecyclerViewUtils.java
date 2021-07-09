@@ -338,4 +338,140 @@ public final class RecyclerViewUtils {
         }
         return null;
     }
+
+    // =
+
+    /**
+     * RecyclerView notifyItemRemoved
+     * @param view     {@link View}
+     * @param position 索引
+     */
+    public static void notifyItemRemoved(
+            final View view,
+            final int position
+    ) {
+        notifyItemRemoved(getRecyclerView(view), position);
+    }
+
+    /**
+     * RecyclerView notifyItemRemoved
+     * @param recyclerView {@link RecyclerView}
+     * @param position     索引
+     */
+    public static void notifyItemRemoved(
+            final RecyclerView recyclerView,
+            final int position
+    ) {
+        if (recyclerView != null) {
+            RecyclerView.Adapter<?> adapter = recyclerView.getAdapter();
+            if (adapter != null) {
+                try {
+                    adapter.notifyItemRemoved(position);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "notifyItemRemoved");
+                }
+            }
+        }
+    }
+
+    // =
+
+    /**
+     * RecyclerView notifyItemInserted
+     * @param view     {@link View}
+     * @param position 索引
+     */
+    public static void notifyItemInserted(
+            final View view,
+            final int position
+    ) {
+        notifyItemInserted(getRecyclerView(view), position);
+    }
+
+    /**
+     * RecyclerView notifyItemInserted
+     * @param recyclerView {@link RecyclerView}
+     * @param position     索引
+     */
+    public static void notifyItemInserted(
+            final RecyclerView recyclerView,
+            final int position
+    ) {
+        if (recyclerView != null) {
+            RecyclerView.Adapter<?> adapter = recyclerView.getAdapter();
+            if (adapter != null) {
+                try {
+                    adapter.notifyItemInserted(position);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "notifyItemInserted");
+                }
+            }
+        }
+    }
+
+    // =
+
+    /**
+     * RecyclerView notifyItemMoved
+     * @param view         {@link View}
+     * @param fromPosition 当前索引
+     * @param toPosition   更新后索引
+     */
+    public static void notifyItemMoved(
+            final View view,
+            final int fromPosition,
+            final int toPosition
+    ) {
+        notifyItemMoved(getRecyclerView(view), fromPosition, toPosition);
+    }
+
+    /**
+     * RecyclerView notifyItemMoved
+     * @param recyclerView {@link RecyclerView}
+     * @param fromPosition 当前索引
+     * @param toPosition   更新后索引
+     */
+    public static void notifyItemMoved(
+            final RecyclerView recyclerView,
+            final int fromPosition,
+            final int toPosition
+    ) {
+        if (recyclerView != null) {
+            RecyclerView.Adapter<?> adapter = recyclerView.getAdapter();
+            if (adapter != null) {
+                try {
+                    adapter.notifyItemMoved(fromPosition, toPosition);
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "notifyItemMoved");
+                }
+            }
+        }
+    }
+
+    // =
+
+    /**
+     * RecyclerView notifyDataSetChanged
+     * @param view {@link View}
+     */
+    public static void notifyDataSetChanged(final View view) {
+        notifyDataSetChanged(getRecyclerView(view));
+    }
+
+    /**
+     * RecyclerView notifyDataSetChanged
+     * @param recyclerView {@link RecyclerView}
+     */
+    public static void notifyDataSetChanged(final RecyclerView recyclerView) {
+        if (recyclerView != null) {
+            RecyclerView.Adapter<?> adapter = recyclerView.getAdapter();
+            if (adapter != null) {
+                try {
+                    adapter.notifyDataSetChanged();
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "notifyDataSetChanged");
+                }
+            }
+        }
+    }
 }
