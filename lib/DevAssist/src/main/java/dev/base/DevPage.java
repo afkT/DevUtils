@@ -153,7 +153,7 @@ public class DevPage<T>
 
     /**
      * 设置是否最后一页
-     * @param lastPage {@code true} yes, {@code false} no
+     * @param lastPage 是否最后一页
      * @return {@link DevPage}
      */
     public DevPage<T> setLastPage(final boolean lastPage) {
@@ -216,5 +216,30 @@ public class DevPage<T>
      */
     public boolean isLessThanPageSize(final int size) {
         return size < config.pageSize;
+    }
+
+    /**
+     * 请求响应处理
+     * @param refresh 是否刷新操作
+     * @return {@link DevPage}
+     */
+    public DevPage<T> response(final boolean refresh) {
+        // 刷新重置操作
+        if (refresh) reset();
+        // 累加当前页数 ( 下一页 )
+        return nextPage();
+    }
+
+    /**
+     * 请求响应处理
+     * @param refresh  是否刷新操作
+     * @param lastPage 是否最后一页
+     * @return {@link DevPage}
+     */
+    public DevPage<T> response(
+            final boolean refresh,
+            final boolean lastPage
+    ) {
+        return response(refresh).setLastPage(lastPage);
     }
 }

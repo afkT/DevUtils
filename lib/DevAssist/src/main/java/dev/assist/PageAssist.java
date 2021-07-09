@@ -87,6 +87,32 @@ public class PageAssist<T>
     // =
 
     /**
+     * 获取页数配置信息
+     * @return {@link DevPage.PageConfig}
+     */
+    public DevPage.PageConfig getConfig() {
+        return mPage.getConfig();
+    }
+
+    /**
+     * 获取配置初始页页数
+     * @return 初始页页数
+     */
+    public int getConfigPage() {
+        return mPage.getConfigPage();
+    }
+
+    /**
+     * 获取配置每页请求条数
+     * @return 每页请求条数
+     */
+    public int getConfigPageSize() {
+        return mPage.getConfigPageSize();
+    }
+
+    // =
+
+    /**
      * 获取每页请求条数
      * @return 每页请求条数
      */
@@ -115,7 +141,7 @@ public class PageAssist<T>
 
     /**
      * 设置是否最后一页
-     * @param lastPage {@code true} yes, {@code false} no
+     * @param lastPage 是否最后一页
      * @return {@link PageAssist}
      */
     public PageAssist<T> setLastPage(final boolean lastPage) {
@@ -177,5 +203,29 @@ public class PageAssist<T>
      */
     public boolean isLessThanPageSize(final int size) {
         return mPage.isLessThanPageSize(size);
+    }
+
+    /**
+     * 请求响应处理
+     * @param refresh 是否刷新操作
+     * @return {@link PageAssist}
+     */
+    public PageAssist<T> response(final boolean refresh) {
+        mPage.response(refresh);
+        return this;
+    }
+
+    /**
+     * 请求响应处理
+     * @param refresh  是否刷新操作
+     * @param lastPage 是否最后一页
+     * @return {@link PageAssist}
+     */
+    public PageAssist<T> response(
+            final boolean refresh,
+            final boolean lastPage
+    ) {
+        mPage.response(refresh, lastPage);
+        return this;
     }
 }
