@@ -894,4 +894,82 @@ public final class RecyclerViewUtils {
         }
         return false;
     }
+
+    // =
+
+    /**
+     * 获取 RecyclerView 滑动状态
+     * @param view {@link View}
+     * @return RecyclerView 滑动状态
+     */
+    public static int getScrollState(final View view) {
+        return getScrollState(getRecyclerView(view));
+    }
+
+    /**
+     * 获取 RecyclerView 滑动状态
+     * @param recyclerView {@link RecyclerView}
+     * @return RecyclerView 滑动状态
+     */
+    public static int getScrollState(final RecyclerView recyclerView) {
+        if (recyclerView != null) {
+            return recyclerView.getScrollState();
+        }
+        return RecyclerView.SCROLL_STATE_IDLE;
+    }
+
+    // =
+
+    /**
+     * 获取 RecyclerView 嵌套滚动开关
+     * @param view {@link View}
+     * @return RecyclerView 嵌套滚动开关
+     */
+    public static boolean isNestedScrollingEnabled(final View view) {
+        return isNestedScrollingEnabled(getRecyclerView(view));
+    }
+
+    /**
+     * 获取 RecyclerView 嵌套滚动开关
+     * @param recyclerView {@link RecyclerView}
+     * @return RecyclerView 嵌套滚动开关
+     */
+    public static boolean isNestedScrollingEnabled(final RecyclerView recyclerView) {
+        if (recyclerView != null) {
+            return recyclerView.isNestedScrollingEnabled();
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 设置 RecyclerView 嵌套滚动开关
+     * @param view    {@link View}
+     * @param enabled 嵌套滚动开关
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setNestedScrollingEnabled(
+            final View view,
+            final boolean enabled
+    ) {
+        return setNestedScrollingEnabled(getRecyclerView(view), enabled);
+    }
+
+    /**
+     * 设置 RecyclerView 嵌套滚动开关
+     * @param recyclerView {@link RecyclerView}
+     * @param enabled      嵌套滚动开关
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setNestedScrollingEnabled(
+            final RecyclerView recyclerView,
+            final boolean enabled
+    ) {
+        if (recyclerView != null) {
+            recyclerView.setNestedScrollingEnabled(enabled);
+            return true;
+        }
+        return false;
+    }
 }
