@@ -1279,7 +1279,7 @@ public final class CapturePictureUtils {
             Bitmap[] bitmaps = new Bitmap[itemCount];
             // 获取布局管理器 ( 判断横竖布局 )
             StaggeredGridLayoutManager staggeredGridLayoutManager = (StaggeredGridLayoutManager) recyclerView.getLayoutManager();
-            boolean                    vertical                   = (staggeredGridLayoutManager.getOrientation() == 1);
+            boolean                    vertical                   = (staggeredGridLayoutManager.getOrientation() == RecyclerView.VERTICAL);
             // 获取一共多少列
             int spanCount = staggeredGridLayoutManager.getSpanCount();
             // 获取倍数 ( 行数 )
