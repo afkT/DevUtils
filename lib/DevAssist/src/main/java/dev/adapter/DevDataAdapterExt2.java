@@ -15,10 +15,8 @@ import dev.base.multiselect.IMultiSelectEdit;
  * detail: DataManager RecyclerView Adapter Extend
  * @author Ttt
  * <pre>
- *     在 {@link DevDataAdapterExt} 基础上内置部分逻辑判断
- *     <p></p>
- *     多选辅助:
- *     内部不判 null, 需先调用 {@link #setMultiSelectMap(DevMultiSelectMap)} 初始化
+ *     在 {@link DevDataAdapterExt} 基础上
+ *     实现多选辅助: 内部不判 null, 需先调用 {@link #setMultiSelectMap(DevMultiSelectMap)} 初始化
  * </pre>
  */
 public abstract class DevDataAdapterExt2<T, VH extends RecyclerView.ViewHolder>

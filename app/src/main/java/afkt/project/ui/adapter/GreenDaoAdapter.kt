@@ -9,7 +9,6 @@ import afkt.project.databinding.AdapterDatabaseImageBinding
 import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.adapter.DevDataAdapterExt
-import dev.base.DevPage
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.engine.image.DevImageEngine
@@ -24,7 +23,7 @@ import dev.utils.common.DateUtils
 class GreenDaoAdapter : DevDataAdapterExt<Note, DevBaseViewBindingVH<AdapterDatabaseBinding>>() {
 
     init {
-        page = DevPage<Note>(0, 8)
+        setPage(0, 8)
     }
 
     override fun onCreateViewHolder(

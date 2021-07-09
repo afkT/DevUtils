@@ -16,6 +16,10 @@ import dev.callback.DevItemClickCallback;
 /**
  * detail: DataManager RecyclerView Adapter Extend
  * @author Ttt
+ * <pre>
+ *     在 {@link DevDataAdapter} 基础上
+ *     新增: Object 存储、分页信息、通用回调、Item 回调、输入监听辅助类、多选辅助类 功能变量
+ * </pre>
  */
 public abstract class DevDataAdapterExt<T, VH extends RecyclerView.ViewHolder>
         extends DevDataAdapter<T, VH> {
@@ -38,7 +42,7 @@ public abstract class DevDataAdapterExt<T, VH extends RecyclerView.ViewHolder>
     // 通用 Object
     protected DevObject<T>                 mObject = new DevObject<>();
     // Page 实体类
-    protected DevPage<?>                   mPage;
+    protected DevPage<T>                   mPage;
     // 通用回调
     protected DevCallback<T>               mCallback;
     // 通用 Item Click 回调
@@ -72,16 +76,38 @@ public abstract class DevDataAdapterExt<T, VH extends RecyclerView.ViewHolder>
      * 获取 Page 实体类
      * @return {@link DevPage}
      */
-    public DevPage getPage() {
+    public DevPage<T> getPage() {
         return mPage;
     }
 
     /**
      * 设置 Page 实体类
-     * @param page {@link DevPage}
+     * @param pageConfig 页数配置信息
      * @return {@link DevDataAdapterExt}
      */
-    public DevDataAdapterExt<T, VH> setPage(final DevPage<?> page) {
+    public DevDataAdapterExt<T, VH> setPage(final DevPage.PageConfig pageConfig) {
+        return setPage(new DevPage<>(pageConfig));
+    }
+
+    /**
+     * 设置 Page 实体类
+     * @param page     页数
+     * @param pageSize 每页请求条数
+     * @return {@link DevDataAdapterExt}
+     */
+    public DevDataAdapterExt<T, VH> setPage(
+            final int page,
+            final int pageSize
+    ) {
+        return setPage(new DevPage<>(page, pageSize));
+    }
+
+    /**
+     * 设置 Page 实体类
+     * @param page Page 实体类
+     * @return {@link DevDataAdapterExt}
+     */
+    public DevDataAdapterExt<T, VH> setPage(final DevPage<T> page) {
         this.mPage = page;
         return this;
     }
