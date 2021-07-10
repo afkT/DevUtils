@@ -218,6 +218,8 @@ public class DevPage<T>
         return size < config.pageSize;
     }
 
+    // =
+
     /**
      * 请求响应处理
      * @param refresh 是否刷新操作
