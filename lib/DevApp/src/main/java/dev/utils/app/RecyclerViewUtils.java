@@ -172,6 +172,60 @@ public final class RecyclerViewUtils {
         return null;
     }
 
+    /**
+     * 获取 RecyclerView 第一条显示 Item 索引
+     * @param recyclerView {@link RecyclerView}
+     * @return 第一条显示 Item 索引
+     */
+    public static int findFirstVisibleItemPosition(final RecyclerView recyclerView) {
+        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        if (layoutManager instanceof LinearLayoutManager) {
+            return ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
+        }
+        return -1;
+    }
+
+    /**
+     * 获取 RecyclerView 最后一条显示 Item 索引
+     * @param recyclerView {@link RecyclerView}
+     * @return 最后一条显示 Item 索引
+     */
+    public static int findLastVisibleItemPosition(final RecyclerView recyclerView) {
+        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        if (layoutManager instanceof LinearLayoutManager) {
+            return ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
+        }
+        return -1;
+    }
+
+    // =
+
+    /**
+     * 获取 RecyclerView 第一条显示 Item 索引数组
+     * @param recyclerView {@link RecyclerView}
+     * @return 第一条显示 Item 索引数组
+     */
+    public static int[] findFirstVisibleItemPositions(final RecyclerView recyclerView) {
+        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        if (layoutManager instanceof StaggeredGridLayoutManager) {
+            return ((StaggeredGridLayoutManager) layoutManager).findFirstVisibleItemPositions(null);
+        }
+        return null;
+    }
+
+    /**
+     * 获取 RecyclerView 最后一条显示 Item 索引数组
+     * @param recyclerView {@link RecyclerView}
+     * @return 最后一条显示 Item 索引数组
+     */
+    public static int[] findLastVisibleItemPositions(final RecyclerView recyclerView) {
+        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        if (layoutManager instanceof StaggeredGridLayoutManager) {
+            return ((StaggeredGridLayoutManager) layoutManager).findLastVisibleItemPositions(null);
+        }
+        return null;
+    }
+
     // ===============
     // = Orientation =
     // ===============
