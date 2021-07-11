@@ -177,6 +177,53 @@ public final class RecyclerViewUtils {
         return null;
     }
 
+    // =
+
+    /**
+     * 获取 RecyclerView 对应索引 Item View
+     * @param view     {@link View}
+     * @param position 索引
+     * @return 对应索引 Item View
+     */
+    public static View findViewByPosition(
+            final View view,
+            final int position
+    ) {
+        return findViewByPosition(getRecyclerView(view), position);
+    }
+
+    /**
+     * 获取 RecyclerView 对应索引 Item View
+     * @param recyclerView {@link RecyclerView}
+     * @param position     索引
+     * @return 对应索引 Item View
+     */
+    public static View findViewByPosition(
+            final RecyclerView recyclerView,
+            final int position
+    ) {
+        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        if (layoutManager != null && position >= 0) {
+            try {
+                return layoutManager.findViewByPosition(position);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "findViewByPosition");
+            }
+        }
+        return null;
+    }
+
+    // =
+
+    /**
+     * 获取 RecyclerView 第一条显示 Item 索引
+     * @param view {@link View}
+     * @return 第一条显示 Item 索引
+     */
+    public static int findFirstVisibleItemPosition(final View view) {
+        return findFirstVisibleItemPosition(getRecyclerView(view));
+    }
+
     /**
      * 获取 RecyclerView 第一条显示 Item 索引
      * @param recyclerView {@link RecyclerView}
@@ -188,6 +235,15 @@ public final class RecyclerViewUtils {
             return ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
         }
         return -1;
+    }
+
+    /**
+     * 获取 RecyclerView 最后一条显示 Item 索引
+     * @param view {@link View}
+     * @return 最后一条显示 Item 索引
+     */
+    public static int findLastVisibleItemPosition(final View view) {
+        return findLastVisibleItemPosition(getRecyclerView(view));
     }
 
     /**
@@ -207,6 +263,15 @@ public final class RecyclerViewUtils {
 
     /**
      * 获取 RecyclerView 第一条显示 Item 索引数组
+     * @param view {@link View}
+     * @return 第一条显示 Item 索引数组
+     */
+    public static int[] findFirstVisibleItemPositions(final View view) {
+        return findFirstVisibleItemPositions(getRecyclerView(view));
+    }
+
+    /**
+     * 获取 RecyclerView 第一条显示 Item 索引数组
      * @param recyclerView {@link RecyclerView}
      * @return 第一条显示 Item 索引数组
      */
@@ -216,6 +281,15 @@ public final class RecyclerViewUtils {
             return ((StaggeredGridLayoutManager) layoutManager).findFirstVisibleItemPositions(null);
         }
         return null;
+    }
+
+    /**
+     * 获取 RecyclerView 最后一条显示 Item 索引数组
+     * @param view {@link View}
+     * @return 最后一条显示 Item 索引数组
+     */
+    public static int[] findLastVisibleItemPositions(final View view) {
+        return findLastVisibleItemPositions(getRecyclerView(view));
     }
 
     /**
