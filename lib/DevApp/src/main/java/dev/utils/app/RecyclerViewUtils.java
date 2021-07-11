@@ -1,6 +1,7 @@
 package dev.utils.app;
 
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -51,6 +52,40 @@ public final class RecyclerViewUtils {
             }
         }
         return null;
+    }
+
+    // ================
+    // = LayoutParams =
+    // ================
+
+    /**
+     * 获取 RecyclerView Item View LayoutParams
+     * @param itemView Item View
+     * @return Item View LayoutParams
+     */
+    public static RecyclerView.LayoutParams getLayoutParams(final View itemView) {
+        if (itemView != null) {
+            ViewGroup.LayoutParams layoutParams = itemView.getLayoutParams();
+            if (layoutParams instanceof RecyclerView.LayoutParams) {
+                return (RecyclerView.LayoutParams) layoutParams;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取 RecyclerView Item View LayoutParams
+     * @param recyclerView {@link RecyclerView}
+     * @param position     索引
+     * @return Item View LayoutParams
+     */
+    public static RecyclerView.LayoutParams getLayoutParams(
+            final RecyclerView recyclerView,
+            final int position
+    ) {
+        return getLayoutParams(
+                findViewByPosition(recyclerView, position)
+        );
     }
 
     // =================
@@ -175,6 +210,42 @@ public final class RecyclerViewUtils {
             return (StaggeredGridLayoutManager) layoutManager;
         }
         return null;
+    }
+
+    // =
+
+    /**
+     * 获取 RecyclerView 对应 Item View 索引
+     * @param view     {@link View}
+     * @param itemView Item View
+     * @return 对应 Item View 索引
+     */
+    public static int getPosition(
+            final View view,
+            final View itemView
+    ) {
+        return getPosition(getRecyclerView(view), itemView);
+    }
+
+    /**
+     * 获取 RecyclerView 对应 Item View 索引
+     * @param recyclerView {@link RecyclerView}
+     * @param itemView     Item View
+     * @return 对应 Item View 索引
+     */
+    public static int getPosition(
+            final RecyclerView recyclerView,
+            final View itemView
+    ) {
+        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        if (layoutManager != null && itemView != null) {
+            try {
+                return layoutManager.getPosition(itemView);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "getPosition");
+            }
+        }
+        return -1;
     }
 
     // =
