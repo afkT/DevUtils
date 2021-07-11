@@ -17,6 +17,11 @@ import dev.utils.LogPrintUtils;
  * <pre>
  *     RecyclerView 截图使用 {@link CapturePictureUtils}
  *     RecyclerView 滑动使用 {@link ListViewUtils}
+ *     <p></p>
+ *     判断当前 view 是否在屏幕可见
+ *     @see <a href="https://www.jianshu.com/p/85e8b9de5ecc"/>
+ *     判断 RecyclerView 中 View 的可见性
+ *     @see <a href="https://blog.csdn.net/xlh1191860939/article/details/113182209"/>
  * </pre>
  */
 public final class RecyclerViewUtils {
