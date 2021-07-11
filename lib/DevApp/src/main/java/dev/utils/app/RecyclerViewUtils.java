@@ -382,7 +382,8 @@ public final class RecyclerViewUtils {
 
     /**
      * 设置 RecyclerView Orientation
-     * @param view {@link View}
+     * @param view        {@link View}
+     * @param orientation 方向
      * @return {@link View}
      */
     public static View setOrientation(
@@ -396,6 +397,7 @@ public final class RecyclerViewUtils {
     /**
      * 设置 RecyclerView Orientation
      * @param recyclerView {@link RecyclerView}
+     * @param orientation  方向
      * @param <T>          泛型
      * @return {@link RecyclerView}
      */
