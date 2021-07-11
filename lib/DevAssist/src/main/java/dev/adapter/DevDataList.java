@@ -54,12 +54,19 @@ public abstract class DevDataList<T>
     public DevDataList() {
     }
 
-    public DevDataList(Context context) {
-        this.mContext = context;
+    public DevDataList(final DevPage.PageConfig pageConfig) {
+        setPage(pageConfig);
     }
 
-    public DevDataList(Activity activity) {
-        this.mActivity = activity;
+    public DevDataList(
+            final int page,
+            final int pageSize
+    ) {
+        setPage(page, pageSize);
+    }
+
+    public DevDataList(final DevPage<T> page) {
+        setPage(page);
     }
 
     // ==================
