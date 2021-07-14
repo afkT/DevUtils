@@ -74,60 +74,28 @@ public final class NumberUtils {
         return value;
     }
 
-    // =======
-    // = int =
-    // =======
+    // ===========
+    // = percent =
+    // ===========
 
     /**
-     * 计算百分比值 ( 最大 100%)
+     * 计算百分比值 ( 最大 100% )
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
      */
-    public static int percentI(
-            final int value,
-            final int max
+    public static Double percentD(
+            final double value,
+            final double max
     ) {
-        if (max <= 0) return 0;
-        if (value <= 0) return 0;
-        if (value >= max) return 1;
+        if (max <= 0) return 0D;
+        if (value <= 0) return 0D;
+        if (value >= max) return 1D;
         return value / max;
     }
 
     /**
-     * 计算百分比值 ( 最大 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static int percentI(
-            final float value,
-            final float max
-    ) {
-        if (max <= 0) return 0;
-        if (value <= 0) return 0;
-        if (value >= max) return 1;
-        return (int) (value / max);
-    }
-
-    /**
-     * 计算百分比值 ( 最大 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static int percentI(
-            final long value,
-            final long max
-    ) {
-        if (max <= 0) return 0;
-        if (value <= 0) return 0;
-        if (value >= max) return 1;
-        return (int) (value / max);
-    }
-
-    /**
-     * 计算百分比值 ( 最大 100%)
+     * 计算百分比值 ( 最大 100% )
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -136,134 +104,11 @@ public final class NumberUtils {
             final double value,
             final double max
     ) {
-        if (max <= 0) return 0;
-        if (value <= 0) return 0;
-        if (value >= max) return 1;
-        return (int) (value / max);
-    }
-
-    // ==========
-    // = double =
-    // ==========
-
-    /**
-     * 计算百分比值 ( 最大 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static double percentD(
-            final int value,
-            final int max
-    ) {
-        if (max <= 0) return 0.0d;
-        if (value <= 0) return 0.0d;
-        if (value >= max) return 1.0d;
-        return (double) value / (double) max;
+        return percentD(value, max).intValue();
     }
 
     /**
-     * 计算百分比值 ( 最大 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static double percentD(
-            final float value,
-            final float max
-    ) {
-        if (max <= 0) return 0.0d;
-        if (value <= 0) return 0.0d;
-        if (value >= max) return 1.0d;
-        return value / max;
-    }
-
-    /**
-     * 计算百分比值 ( 最大 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static double percentD(
-            final long value,
-            final long max
-    ) {
-        if (max <= 0) return 0.0d;
-        if (value <= 0) return 0.0d;
-        if (value >= max) return 1.0d;
-        return (double) value / (double) max;
-    }
-
-    /**
-     * 计算百分比值 ( 最大 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static double percentD(
-            final double value,
-            final double max
-    ) {
-        if (max <= 0) return 0.0d;
-        if (value <= 0) return 0.0d;
-        if (value >= max) return 1.0d;
-        return value / max;
-    }
-
-    // ========
-    // = long =
-    // ========
-
-    /**
-     * 计算百分比值 ( 最大 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static long percentL(
-            final int value,
-            final int max
-    ) {
-        if (max <= 0) return 0L;
-        if (value <= 0) return 0L;
-        if (value >= max) return 1L;
-        return (long) value / (long) max;
-    }
-
-    /**
-     * 计算百分比值 ( 最大 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static long percentL(
-            final float value,
-            final float max
-    ) {
-        if (max <= 0) return 0L;
-        if (value <= 0) return 0L;
-        if (value >= max) return 1L;
-        return (long) value / (long) max;
-    }
-
-    /**
-     * 计算百分比值 ( 最大 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static long percentL(
-            final long value,
-            final long max
-    ) {
-        if (max <= 0) return 0L;
-        if (value <= 0) return 0L;
-        if (value >= max) return 1L;
-        return value / max;
-    }
-
-    /**
-     * 计算百分比值 ( 最大 100%)
+     * 计算百分比值 ( 最大 100% )
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -272,66 +117,11 @@ public final class NumberUtils {
             final double value,
             final double max
     ) {
-        if (max <= 0) return 0L;
-        if (value <= 0) return 0L;
-        if (value >= max) return 1L;
-        return (long) (value / max);
-    }
-
-    // =========
-    // = float =
-    // =========
-
-    /**
-     * 计算百分比值 ( 最大 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static float percentF(
-            final int value,
-            final int max
-    ) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        if (value >= max) return 1.0f;
-        return (float) value / (float) max;
+        return percentD(value, max).longValue();
     }
 
     /**
-     * 计算百分比值 ( 最大 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static float percentF(
-            final float value,
-            final float max
-    ) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        if (value >= max) return 1.0f;
-        return value / max;
-    }
-
-    /**
-     * 计算百分比值 ( 最大 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static float percentF(
-            final long value,
-            final long max
-    ) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        if (value >= max) return 1.0f;
-        return (float) value / (float) max;
-    }
-
-    /**
-     * 计算百分比值 ( 最大 100%)
+     * 计算百分比值 ( 最大 100% )
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -340,67 +130,30 @@ public final class NumberUtils {
             final double value,
             final double max
     ) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        if (value >= max) return 1.0f;
-        return (float) (value / max);
+        return percentD(value, max).floatValue();
     }
 
-    // ===========================
-    // = 计算百分比值 ( 可超出 100%) =
-    // ===========================
-
-    // =======
-    // = int =
-    // =======
+    // ============================
+    // = 计算百分比值 ( 可超出 100% ) =
+    // ============================
 
     /**
-     * 计算百分比值 ( 可超出 100%)
+     * 计算百分比值 ( 可超出 100% )
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
      */
-    public static int percentI2(
-            final int value,
-            final int max
+    public static Double percentD2(
+            final double value,
+            final double max
     ) {
-        if (max <= 0) return 0;
-        if (value <= 0) return 0;
+        if (max <= 0) return 0D;
+        if (value <= 0) return 0D;
         return value / max;
     }
 
     /**
-     * 计算百分比值 ( 可超出 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static int percentI2(
-            final float value,
-            final float max
-    ) {
-        if (max <= 0) return 0;
-        if (value <= 0) return 0;
-        return (int) (value / max);
-    }
-
-    /**
-     * 计算百分比值 ( 可超出 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static int percentI2(
-            final long value,
-            final long max
-    ) {
-        if (max <= 0) return 0;
-        if (value <= 0) return 0;
-        return (int) (value / max);
-    }
-
-    /**
-     * 计算百分比值 ( 可超出 100%)
+     * 计算百分比值 ( 可超出 100% )
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -409,126 +162,11 @@ public final class NumberUtils {
             final double value,
             final double max
     ) {
-        if (max <= 0) return 0;
-        if (value <= 0) return 0;
-        return (int) (value / max);
-    }
-
-    // ==========
-    // = double =
-    // ==========
-
-    /**
-     * 计算百分比值 ( 可超出 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static double percentD2(
-            final int value,
-            final int max
-    ) {
-        if (max <= 0) return 0.0d;
-        if (value <= 0) return 0.0d;
-        return (double) value / (double) max;
+        return percentD2(value, max).intValue();
     }
 
     /**
-     * 计算百分比值 ( 可超出 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static double percentD2(
-            final float value,
-            final float max
-    ) {
-        if (max <= 0) return 0.0d;
-        if (value <= 0) return 0.0d;
-        return value / max;
-    }
-
-    /**
-     * 计算百分比值 ( 可超出 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static double percentD2(
-            final long value,
-            final long max
-    ) {
-        if (max <= 0) return 0.0d;
-        if (value <= 0) return 0.0d;
-        return (double) value / (double) max;
-    }
-
-    /**
-     * 计算百分比值 ( 可超出 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static double percentD2(
-            final double value,
-            final double max
-    ) {
-        if (max <= 0) return 0.0d;
-        if (value <= 0) return 0.0d;
-        return value / max;
-    }
-
-    // ========
-    // = long =
-    // ========
-
-    /**
-     * 计算百分比值 ( 可超出 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static long percentL2(
-            final int value,
-            final int max
-    ) {
-        if (max <= 0) return 0L;
-        if (value <= 0) return 0L;
-        return (long) value / (long) max;
-    }
-
-    /**
-     * 计算百分比值 ( 可超出 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static long percentL2(
-            final float value,
-            final float max
-    ) {
-        if (max <= 0) return 0L;
-        if (value <= 0) return 0L;
-        return (long) value / (long) max;
-    }
-
-    /**
-     * 计算百分比值 ( 可超出 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static long percentL2(
-            final long value,
-            final long max
-    ) {
-        if (max <= 0) return 0L;
-        if (value <= 0) return 0L;
-        return value / max;
-    }
-
-    /**
-     * 计算百分比值 ( 可超出 100%)
+     * 计算百分比值 ( 可超出 100% )
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -537,62 +175,11 @@ public final class NumberUtils {
             final double value,
             final double max
     ) {
-        if (max <= 0) return 0L;
-        if (value <= 0) return 0L;
-        return (long) (value / max);
-    }
-
-    // =========
-    // = float =
-    // =========
-
-    /**
-     * 计算百分比值 ( 可超出 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static float percentF2(
-            final int value,
-            final int max
-    ) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        return (float) value / (float) max;
+        return percentD2(value, max).longValue();
     }
 
     /**
-     * 计算百分比值 ( 可超出 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static float percentF2(
-            final float value,
-            final float max
-    ) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        return value / max;
-    }
-
-    /**
-     * 计算百分比值 ( 可超出 100%)
-     * @param value 指定值
-     * @param max   最大值
-     * @return 百分比值
-     */
-    public static float percentF2(
-            final long value,
-            final long max
-    ) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        return (float) value / (float) max;
-    }
-
-    /**
-     * 计算百分比值 ( 可超出 100%)
+     * 计算百分比值 ( 可超出 100% )
      * @param value 指定值
      * @param max   最大值
      * @return 百分比值
@@ -601,9 +188,7 @@ public final class NumberUtils {
             final double value,
             final double max
     ) {
-        if (max <= 0) return 0.0f;
-        if (value <= 0) return 0.0f;
-        return (float) (value / max);
+        return percentD2(value, max).floatValue();
     }
 
     // =
@@ -668,24 +253,9 @@ public final class NumberUtils {
         return value > max ? max : Math.max(value, min);
     }
 
-    // ========
-    // = calc =
-    // ========
-
-    /**
-     * 获取倍数 ( 自动补 1)
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static int getMultiple(
-            final int value,
-            final int divisor
-    ) {
-        if (value <= 0 || divisor <= 0) return 0;
-        if (value <= divisor) return 1;
-        return (value % divisor == 0) ? (value / divisor) : (value / divisor) + 1;
-    }
+    // ============
+    // = Multiple =
+    // ============
 
     /**
      * 获取倍数 ( 自动补 1)
@@ -703,40 +273,7 @@ public final class NumberUtils {
         return ((value - divisor * result == 0d) ? result : result + 1);
     }
 
-    /**
-     * 获取倍数 ( 自动补 1)
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static int getMultiple(
-            final long value,
-            final long divisor
-    ) {
-        if (value <= 0 || divisor <= 0) return 0;
-        if (value <= divisor) return 1;
-        return (int) ((value % divisor == 0) ? (value / divisor) : (value / divisor) + 1);
-    }
-
-    /**
-     * 获取倍数 ( 自动补 1)
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static int getMultiple(
-            final float value,
-            final float divisor
-    ) {
-        if (value <= 0 || divisor <= 0) return 0;
-        if (value <= divisor) return 1;
-        int result = (int) (value / divisor);
-        return ((value - divisor * result == 0f) ? result : result + 1);
-    }
-
-    // =======
-    // = int =
-    // =======
+    // =
 
     /**
      * 获取倍数
@@ -744,81 +281,7 @@ public final class NumberUtils {
      * @param divisor 除数
      * @return 倍数
      */
-    public static int getMultipleI(
-            final int value,
-            final int divisor
-    ) {
-        if (value <= 0 || divisor <= 0) return 0;
-        return (int) (value / divisor);
-    }
-
-    /**
-     * 获取倍数
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static int getMultipleI(
-            final double value,
-            final double divisor
-    ) {
-        if (value <= 0 || divisor <= 0) return 0;
-        return (int) (value / divisor);
-    }
-
-    /**
-     * 获取倍数
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static int getMultipleI(
-            final long value,
-            final long divisor
-    ) {
-        if (value <= 0 || divisor <= 0) return 0;
-        return (int) (value / divisor);
-    }
-
-    /**
-     * 获取倍数
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static int getMultipleI(
-            final float value,
-            final float divisor
-    ) {
-        if (value <= 0 || divisor <= 0) return 0;
-        return (int) (value / divisor);
-    }
-
-    // ==========
-    // = double =
-    // ==========
-
-    /**
-     * 获取倍数
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static double getMultipleD(
-            final int value,
-            final int divisor
-    ) {
-        if (value <= 0d || divisor <= 0d) return 0d;
-        return (double) value / (double) divisor;
-    }
-
-    /**
-     * 获取倍数
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static double getMultipleD(
+    public static Double getMultipleD(
             final double value,
             final double divisor
     ) {
@@ -832,44 +295,11 @@ public final class NumberUtils {
      * @param divisor 除数
      * @return 倍数
      */
-    public static double getMultipleD(
-            final long value,
-            final long divisor
+    public static int getMultipleI(
+            final double value,
+            final double divisor
     ) {
-        if (value <= 0d || divisor <= 0d) return 0d;
-        return (double) value / (double) divisor;
-    }
-
-    /**
-     * 获取倍数
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static double getMultipleD(
-            final float value,
-            final float divisor
-    ) {
-        if (value <= 0d || divisor <= 0d) return 0d;
-        return (double) value / (double) divisor;
-    }
-
-    // ========
-    // = long =
-    // ========
-
-    /**
-     * 获取倍数
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static long getMultipleL(
-            final int value,
-            final int divisor
-    ) {
-        if (value <= 0L || divisor <= 0L) return 0L;
-        return (long) value / (long) divisor;
+        return getMultipleD(value, divisor).intValue();
     }
 
     /**
@@ -882,54 +312,7 @@ public final class NumberUtils {
             final double value,
             final double divisor
     ) {
-        if (value <= 0L || divisor <= 0L) return 0L;
-        return (long) value / (long) divisor;
-    }
-
-    /**
-     * 获取倍数
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static long getMultipleL(
-            final long value,
-            final long divisor
-    ) {
-        if (value <= 0L || divisor <= 0L) return 0L;
-        return (long) value / (long) divisor;
-    }
-
-    /**
-     * 获取倍数
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static long getMultipleL(
-            final float value,
-            final float divisor
-    ) {
-        if (value <= 0L || divisor <= 0L) return 0L;
-        return (long) value / (long) divisor;
-    }
-
-    // =========
-    // = float =
-    // =========
-
-    /**
-     * 获取倍数
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static float getMultipleF(
-            final int value,
-            final int divisor
-    ) {
-        if (value <= 0f || divisor <= 0f) return 0f;
-        return (float) value / (float) divisor;
+        return getMultipleD(value, divisor).longValue();
     }
 
     /**
@@ -942,37 +325,10 @@ public final class NumberUtils {
             final double value,
             final double divisor
     ) {
-        if (value <= 0f || divisor <= 0f) return 0f;
-        return (float) value / (float) divisor;
+        return getMultipleD(value, divisor).floatValue();
     }
 
-    /**
-     * 获取倍数
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static float getMultipleF(
-            final long value,
-            final long divisor
-    ) {
-        if (value <= 0f || divisor <= 0f) return 0f;
-        return (float) value / (float) divisor;
-    }
-
-    /**
-     * 获取倍数
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static float getMultipleF(
-            final float value,
-            final float divisor
-    ) {
-        if (value <= 0f || divisor <= 0f) return 0f;
-        return (float) value / (float) divisor;
-    }
+    // =
 
     /**
      * 计算指定单位倍数
