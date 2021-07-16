@@ -296,9 +296,9 @@ public final class FileBreadthFirstSearchUtils {
                 return;
             }
             // 获取文件夹全部子文件
-            String[] fileArys = file.list();
+            String[] fileArrays = file.list();
             // 获取文件总数
-            if (fileArys != null && fileArys.length != 0) {
+            if (fileArrays != null && fileArrays.length != 0) {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {

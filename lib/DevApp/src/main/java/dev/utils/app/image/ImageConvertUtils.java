@@ -141,8 +141,8 @@ public final class ImageConvertUtils {
             int    offset = 0; // 计算偏移量
             for (int i = len - 1; i >= 0; i -= width) {
                 // DIB 文件格式最后一行为第一行, 每行按从左到右顺序
-                int end = i, start = i - width + 1;
-                for (int j = start; j <= end; j++) {
+                int start = i - width + 1;
+                for (int j = start; j <= i; j++) {
                     buffer[offset]     = (byte) (data[j] >> 0);
                     buffer[offset + 1] = (byte) (data[j] >> 8);
                     buffer[offset + 2] = (byte) (data[j] >> 16);

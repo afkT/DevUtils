@@ -92,8 +92,8 @@ final class ACacheUtils {
     ) {
         if (data != null) {
             try {
-                byte[] dateArys = createDateInfo(second).getBytes();
-                return ArrayUtils.arrayCopy(dateArys, data);
+                byte[] dateArrays = createDateInfo(second).getBytes();
+                return ArrayUtils.arrayCopy(dateArrays, data);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "newByteArrayWithDateInfo");
             }

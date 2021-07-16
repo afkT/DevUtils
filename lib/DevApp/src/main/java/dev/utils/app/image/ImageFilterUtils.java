@@ -310,14 +310,9 @@ public final class ImageFilterUtils {
             int width  = bitmap.getWidth();
             int height = bitmap.getHeight();
 
-            int   pixColor = 0;
-            int   pixR     = 0;
-            int   pixG     = 0;
-            int   pixB     = 0;
-            int   newR     = 0;
-            int   newG     = 0;
-            int   newB     = 0;
-            int[] pixels   = new int[width * height];
+            int pixColor, pixR, pixG, pixB, newR, newG, newB;
+
+            int[] pixels = new int[width * height];
             bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
             for (int i = 0; i < height; i++) {
                 for (int k = 0; k < width; k++) {
@@ -328,8 +323,8 @@ public final class ImageFilterUtils {
                     newR     = (int) (0.393 * pixR + 0.769 * pixG + 0.189 * pixB);
                     newG     = (int) (0.349 * pixR + 0.686 * pixG + 0.168 * pixB);
                     newB     = (int) (0.272 * pixR + 0.534 * pixG + 0.131 * pixB);
-                    int newColor = Color.argb(255, newR > 255 ? 255 : newR,
-                            newG > 255 ? 255 : newG, newB > 255 ? 255 : newB);
+                    int newColor = Color.argb(255, Math.min(newR, 255),
+                            Math.min(newG, 255), Math.min(newB, 255));
                     pixels[width * i + k] = newColor;
                 }
             }
@@ -360,21 +355,14 @@ public final class ImageFilterUtils {
             int width  = bitmap.getWidth();
             int height = bitmap.getHeight();
 
-            int pixR = 0;
-            int pixG = 0;
-            int pixB = 0;
+            int pixColor, pixR, pixG, pixB, newR, newG, newB;
 
-            int pixColor = 0;
-
-            int newR   = 0;
-            int newG   = 0;
-            int newB   = 0;
             int radius = Math.min(centerX, centerY);
 
             final float strength = 150f; // 光照强度 100 ~ 150
             int[]       pixels   = new int[width * height];
             bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
-            int pos = 0;
+            int pos;
             for (int i = 1, length = height - 1; i < length; i++) {
                 for (int k = 1, len = width - 1; k < len; k++) {
                     pos      = i * width + k;
@@ -428,19 +416,11 @@ public final class ImageFilterUtils {
             int       width     = bitmap.getWidth();
             int       height    = bitmap.getHeight();
 
-            int pixR = 0;
-            int pixG = 0;
-            int pixB = 0;
-
-            int pixColor = 0;
-
-            int newR = 0;
-            int newG = 0;
-            int newB = 0;
+            int pixColor, pixR, pixG, pixB, newR, newG, newB;
 
             int[] pixels = new int[width * height];
             bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
-            int pos = 0;
+            int pos;
             for (int i = 1, length = height - 1; i < length; i++) {
                 for (int k = 1, len = width - 1; k < len; k++) {
                     pos      = i * width + k;
@@ -493,17 +473,12 @@ public final class ImageFilterUtils {
             int width  = bitmap.getWidth();
             int height = bitmap.getHeight();
 
-            int pixR = 0;
-            int pixG = 0;
-            int pixB = 0;
+            int pixColor, pixR, pixG, pixB;
 
-            int pixColor = 0;
+            int newR = 0, newG = 0, newB = 0;
 
-            int newR = 0;
-            int newG = 0;
-            int newB = 0;
+            int idx;
 
-            int   idx    = 0;
             int[] pixels = new int[width * height];
             bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
             for (int i = 1, length = height - 1; i < length; i++) {
@@ -561,17 +536,12 @@ public final class ImageFilterUtils {
             int width  = bitmap.getWidth();
             int height = bitmap.getHeight();
 
-            int pixR = 0;
-            int pixG = 0;
-            int pixB = 0;
+            int pixColor, pixR, pixG, pixB;
 
-            int pixColor = 0;
+            int newR = 0, newG = 0, newB = 0;
 
-            int newR = 0;
-            int newG = 0;
-            int newB = 0;
+            int idx;
 
-            int   idx    = 0;
             float alpha  = 0.3f;
             int[] pixels = new int[width * height];
             bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
@@ -623,19 +593,11 @@ public final class ImageFilterUtils {
             int width  = bitmap.getWidth();
             int height = bitmap.getHeight();
 
-            int pixR = 0;
-            int pixG = 0;
-            int pixB = 0;
-
-            int pixColor = 0;
-
-            int newR = 0;
-            int newG = 0;
-            int newB = 0;
+            int pixColor, pixR, pixG, pixB, newR, newG, newB;
 
             int[] pixels = new int[width * height];
             bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
-            int pos = 0;
+            int pos;
             for (int i = 1, length = height - 1; i < length; i++) {
                 for (int k = 1, len = width - 1; k < len; k++) {
                     pos      = i * width + k;

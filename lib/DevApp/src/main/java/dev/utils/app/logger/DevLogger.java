@@ -314,39 +314,30 @@ public final class DevLogger {
     // ==========
 
     // 默认日志输出接口
-    static Print sPrint = new Print() {
-        @Override
-        public void printLog(
-                int logType,
-                String tag,
-                String message
-        ) {
-            // 防止 null 处理
-            if (message == null) return;
-            // 获取日志类型
-            switch (logType) {
-                case Log.VERBOSE:
-                    Log.v(tag, message);
-                    break;
-                case Log.DEBUG:
-                    Log.d(tag, message);
-                    break;
-                case Log.INFO:
-                    Log.i(tag, message);
-                    break;
-                case Log.WARN:
-                    Log.w(tag, message);
-                    break;
-                case Log.ERROR:
-                    Log.e(tag, message);
-                    break;
-                case Log.ASSERT:
-                    Log.wtf(tag, message);
-                    break;
-                default:
-                    Log.wtf(tag, message);
-                    break;
-            }
+    static Print sPrint = (logType, tag, message) -> {
+        // 防止 null 处理
+        if (message == null) return;
+        // 获取日志类型
+        switch (logType) {
+            case Log.VERBOSE:
+                Log.v(tag, message);
+                break;
+            case Log.DEBUG:
+                Log.d(tag, message);
+                break;
+            case Log.INFO:
+                Log.i(tag, message);
+                break;
+            case Log.WARN:
+                Log.w(tag, message);
+                break;
+            case Log.ERROR:
+                Log.e(tag, message);
+                break;
+            case Log.ASSERT:
+            default:
+                Log.wtf(tag, message);
+                break;
         }
     };
 

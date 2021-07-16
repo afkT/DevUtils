@@ -305,7 +305,7 @@ public final class PermissionUtils {
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
                 sInstance = this;
                 // 请求权限
-                String[] permissions = mPermissionsRequestLists.toArray(new String[mPermissionsRequestLists.size()]);
+                String[] permissions = mPermissionsRequestLists.toArray(new String[0]);
                 // 判断请求方式
                 if (this.mIsRequestPermissionsResult) {
                     // 请求权限
@@ -452,10 +452,10 @@ public final class PermissionUtils {
     ) {
         if (activity == null || CollectionUtils.isEmpty(deniedList)) return 0;
         // 获取拒绝的权限记录
-        String[] deniedArys = deniedList.toArray(new String[deniedList.size()]);
+        String[] deniedArrays = deniedList.toArray(new String[0]);
         // 获取拒绝权限询问勾选状态 true 表示没有勾选不再询问, 而 false 则表示勾选了不再询问
-        if (PermissionUtils.shouldShowRequestPermissionRationale(activity, deniedArys)) { // 再次请求
-            PermissionUtils.permission(deniedArys).callback(callback).request(activity);
+        if (PermissionUtils.shouldShowRequestPermissionRationale(activity, deniedArrays)) { // 再次请求
+            PermissionUtils.permission(deniedArrays).callback(callback).request(activity);
             return 1;
         } else { // 拒绝权限且不再询问, 跳转到应用设置页面
             AppUtils.startActivity(IntentUtils.getLaunchAppDetailsSettingsIntent());
@@ -530,19 +530,11 @@ public final class PermissionUtils {
             boolean isGrantedAll = (mPermissionSets.size() == mPermissionsGrantedLists.size());
             // 允许则触发回调
             if (isGrantedAll) {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mCallback.onGranted();
-                    }
-                });
+                mHandler.post(() -> mCallback.onGranted());
             } else {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mCallback.onDenied(mPermissionsGrantedLists, mPermissionsDeniedLists, mPermissionsNotFoundLists);
-                    }
-                });
+                mHandler.post(() -> mCallback.onDenied(
+                        mPermissionsGrantedLists, mPermissionsDeniedLists, mPermissionsNotFoundLists
+                ));
             }
         }
     }

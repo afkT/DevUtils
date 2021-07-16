@@ -138,7 +138,7 @@ final class LoggerPrinter
         // 判断消息
         if (throwable != null && message != null) {
             logMsg = message + " : " + throwable.toString();
-        } else if (throwable != null && message == null) {
+        } else if (throwable != null) {
             logMsg = throwable.toString();
         } else if (message == null) {
             // 没有日志信息, 也没有异常信息传入
@@ -367,7 +367,7 @@ final class LoggerPrinter
         // 判断消息
         if (throwable != null && message != null) {
             logMsg = message + " : " + throwable.toString();
-        } else if (throwable != null && message == null) {
+        } else if (throwable != null) {
             logMsg = throwable.toString();
         } else if (message == null) {
             // 没有日志信息, 也没有异常信息传入
@@ -809,8 +809,7 @@ final class LoggerPrinter
             }
             // 拼接中间内容、操作的类名、行数、方法名等信息
             StringBuilder builder = new StringBuilder();
-            builder.append("║ ");
-            builder.append(traceLevel);
+            builder.append("║ ").append(traceLevel);
             builder.append(getSimpleClassName(trace[stackIndex].getClassName()));
             builder.append(".").append(trace[stackIndex].getMethodName());
             builder.append(" (");

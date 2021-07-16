@@ -406,7 +406,9 @@ public final class BitmapUtils {
     public static int getRotateDegree(final String filePath) {
         try {
             ExifInterface exifInterface = new ExifInterface(filePath);
-            int           orientation   = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            int orientation = exifInterface.getAttributeInt(
+                    ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL
+            );
             switch (orientation) {
                 case ExifInterface.ORIENTATION_ROTATE_90:
                     return 90;
@@ -714,8 +716,8 @@ public final class BitmapUtils {
     ) {
         if (isEmpty(bgd) || isEmpty(fg)) return null;
 
-        int width  = bgd.getWidth() > fg.getWidth() ? bgd.getWidth() : fg.getWidth();
-        int height = bgd.getHeight() > fg.getHeight() ? bgd.getHeight() : fg.getHeight();
+        int width  = Math.max(bgd.getWidth(), fg.getWidth());
+        int height = Math.max(bgd.getHeight(), fg.getHeight());
 
         Paint paint = new Paint();
         if (mode != null) {
@@ -813,8 +815,8 @@ public final class BitmapUtils {
     ) {
         if (isEmpty(bgd) || isEmpty(fg)) return null;
 
-        int width  = bgd.getWidth() < fg.getWidth() ? bgd.getWidth() : fg.getWidth();
-        int height = bgd.getHeight() < fg.getHeight() ? bgd.getHeight() : fg.getHeight();
+        int width  = Math.min(bgd.getWidth(), fg.getWidth());
+        int height = Math.min(bgd.getHeight(), fg.getHeight());
 
         if (fg.getWidth() != width && fg.getHeight() != height) {
             fg = zoom(fg, width, height);

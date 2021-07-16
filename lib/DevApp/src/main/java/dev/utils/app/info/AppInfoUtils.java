@@ -56,7 +56,9 @@ public final class AppInfoUtils {
      */
     public static PackageInfo getPackageInfoToPath(final String apkUri) {
         try {
-            PackageInfo packageInfo = AppUtils.getPackageManager().getPackageArchiveInfo(apkUri, PackageManager.GET_ACTIVITIES);
+            PackageInfo packageInfo = AppUtils.getPackageManager().getPackageArchiveInfo(
+                    apkUri, PackageManager.GET_ACTIVITIES
+            );
             // 设置 APK 位置信息
             ApplicationInfo appInfo = packageInfo.applicationInfo;
             // 必须加这两句, 不然下面 icon 获取是 default icon 而不是应用包的 icon
@@ -256,9 +258,7 @@ public final class AppInfoUtils {
         // 防止数据为 null
         if (permissions != null && permissions.length != 0) {
             Set<String> permissionSets = new HashSet<>();
-            for (String permission : permissions) {
-                permissionSets.add(permission);
-            }
+            Collections.addAll(permissionSets, permissions);
             return permissionSets;
         }
         return Collections.emptySet();
@@ -298,11 +298,12 @@ public final class AppInfoUtils {
             StringBuilder builder = new StringBuilder();
             // =
             PackageManager packageManager       = AppUtils.getPackageManager();
-            PackageInfo    packageInfo          = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+            PackageInfo    packageInfo          = packageManager.getPackageInfo(
+                    packageName, PackageManager.GET_PERMISSIONS
+            );
             String[]       usesPermissionsArray = packageInfo.requestedPermissions;
-            for (int i = 0; i < usesPermissionsArray.length; i++) {
+            for (String usesPermissionName : usesPermissionsArray) {
                 // 获取每个权限的名字, 如: android.permission.INTERNET
-                String usesPermissionName = usesPermissionsArray[i];
                 // 拼接日志
                 builder.append("usesPermissionName = ").append(usesPermissionName);
                 builder.append(DevFinal.NEW_LINE_STR);

@@ -156,8 +156,8 @@ public final class IDCardUtils {
             // 判断前 17 位是否数字
             if (isNumber(code17)) {
                 try {
-                    int[] cardArys = convertCharToInt(code17.toCharArray());
-                    int   sum17    = getPowerSum(cardArys);
+                    int[] cardArrays = convertCharToInt(code17.toCharArray());
+                    int   sum17    = getPowerSum(cardArrays);
                     // 获取校验位
                     String str = getCheckCode18(sum17);
                     // 判断最后一位是否一样
@@ -197,8 +197,8 @@ public final class IDCardUtils {
                 // 保存省市区信息 + 年 + 月日 + 后续信息 ( 顺序位、性别等 )
                 idCard18 = idCard.substring(0, 6) + year + idCard.substring(8);
                 // 转换字符数组
-                int[] cardArys = convertCharToInt(idCard18.toCharArray());
-                int   sum17    = getPowerSum(cardArys);
+                int[] cardArrays = convertCharToInt(idCard18.toCharArray());
+                int   sum17    = getPowerSum(cardArrays);
                 // 获取校验位
                 String str = getCheckCode18(sum17);
                 // 判断长度, 拼接校验位
@@ -333,8 +333,8 @@ public final class IDCardUtils {
         String card = idCard.trim();
         if (validateIdCard18(card)) return true;
         if (validateIdCard15(card)) return true;
-        String[] cardArys = validateIdCard10(card);
-        return (cardArys != null && "true".equals(cardArys[2]));
+        String[] cardArrays = validateIdCard10(card);
+        return (cardArrays != null && "true".equals(cardArrays[2]));
     }
 
     /**
