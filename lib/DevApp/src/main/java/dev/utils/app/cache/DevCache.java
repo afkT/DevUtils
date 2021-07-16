@@ -29,7 +29,6 @@ public final class DevCache {
      * 获取 DevCache
      * @param cachePath 缓存文件夹路径
      * @param cipher    通用加解密中间层
-     * @return {@link DevCache}
      */
     private DevCache(
             final String cachePath,

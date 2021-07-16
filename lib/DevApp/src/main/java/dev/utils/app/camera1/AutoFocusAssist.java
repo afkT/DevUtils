@@ -2,7 +2,6 @@ package dev.utils.app.camera1;
 
 import android.hardware.Camera;
 import android.os.AsyncTask;
-import android.os.Build;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -151,12 +150,8 @@ public final class AutoFocusAssist
             // 初始化任务
             AutoFocusTask newTask = new AutoFocusTask();
             try {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                    // 默认使用异步任务
-                    newTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                } else {
-                    newTask.execute();
-                }
+                // 默认使用异步任务
+                newTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 mOutstandingTask = newTask;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "autoFocusAgainLater");

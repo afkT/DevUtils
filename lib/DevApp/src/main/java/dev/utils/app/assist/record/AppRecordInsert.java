@@ -20,7 +20,7 @@ public class AppRecordInsert
         extends RecordInsert {
 
     // 是否每次都创建新的 FileInfo
-    private boolean isEveryCreate;
+    private final boolean isEveryCreate;
 
     public AppRecordInsert(boolean everyCreate) {
         super(null);

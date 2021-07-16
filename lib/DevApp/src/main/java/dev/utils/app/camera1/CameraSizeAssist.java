@@ -4,7 +4,6 @@ import android.graphics.Point;
 import android.hardware.Camera;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -376,23 +375,10 @@ public final class CameraSizeAssist {
         }
 
         // 进行排序处理, 并以宽度 * 高度 为基准降序排序
-        Collections.sort(listPreviewSizes, new Comparator<Camera.Size>() {
-            @Override
-            public int compare(
-                    Camera.Size lhs,
-                    Camera.Size rhs
-            ) {
-                int leftPixels  = lhs.height * lhs.width;
-                int rightPixels = rhs.height * rhs.width;
-
-                if (leftPixels > rightPixels) {
-                    return -1;
-                } else if (leftPixels == rightPixels) {
-                    return 0;
-                } else {
-                    return 1;
-                }
-            }
+        Collections.sort(listPreviewSizes, (lhs, rhs) -> {
+            int leftPixels  = lhs.height * lhs.width;
+            int rightPixels = rhs.height * rhs.width;
+            return Integer.compare(rightPixels, leftPixels);
         });
 
         // = 打印信息 =
@@ -507,23 +493,10 @@ public final class CameraSizeAssist {
         }
 
         // 进行排序处理, 并以宽度 * 高度 为基准降序排序
-        Collections.sort(listPictureSizes, new Comparator<Camera.Size>() {
-            @Override
-            public int compare(
-                    Camera.Size lhs,
-                    Camera.Size rhs
-            ) {
-                int leftPixels  = lhs.height * lhs.width;
-                int rightPixels = rhs.height * rhs.width;
-
-                if (leftPixels > rightPixels) {
-                    return -1;
-                } else if (leftPixels == rightPixels) {
-                    return 0;
-                } else {
-                    return 1;
-                }
-            }
+        Collections.sort(listPictureSizes, (lhs, rhs) -> {
+            int leftPixels  = lhs.height * lhs.width;
+            int rightPixels = rhs.height * rhs.width;
+            return Integer.compare(rightPixels, leftPixels);
         });
 
         // = 打印信息 =
@@ -664,23 +637,10 @@ public final class CameraSizeAssist {
         }
 
         // 进行排序处理, 并以宽度 * 高度 为基准降序排序
-        Collections.sort(listVideoSizes, new Comparator<Camera.Size>() {
-            @Override
-            public int compare(
-                    Camera.Size lhs,
-                    Camera.Size rhs
-            ) {
-                int leftPixels  = lhs.height * lhs.width;
-                int rightPixels = rhs.height * rhs.width;
-
-                if (leftPixels > rightPixels) {
-                    return -1;
-                } else if (leftPixels == rightPixels) {
-                    return 0;
-                } else {
-                    return 1;
-                }
-            }
+        Collections.sort(listVideoSizes, (lhs, rhs) -> {
+            int leftPixels  = lhs.height * lhs.width;
+            int rightPixels = rhs.height * rhs.width;
+            return Integer.compare(rightPixels, leftPixels);
         });
 
         // = 打印信息 =

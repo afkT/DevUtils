@@ -45,7 +45,7 @@ public final class ViewAnimationUtils {
             animation.setAnimationListener(new AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
-                    if (isBanClick && view != null) {
+                    if (isBanClick) {
                         view.setClickable(false);
                     }
                     if (animationListener != null) {
@@ -62,7 +62,7 @@ public final class ViewAnimationUtils {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    if (isBanClick && view != null) {
+                    if (isBanClick) {
                         view.setClickable(true);
                     }
                     if (animationListener != null) {
@@ -192,7 +192,7 @@ public final class ViewAnimationUtils {
             animation.setAnimationListener(new AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
-                    if (isBanClick && view != null) {
+                    if (isBanClick) {
                         view.setClickable(false);
                     }
                     if (animationListener != null) {
@@ -209,7 +209,7 @@ public final class ViewAnimationUtils {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    if (isBanClick && view != null) {
+                    if (isBanClick) {
                         view.setClickable(true);
                     }
                     if (animationListener != null) {
@@ -339,7 +339,7 @@ public final class ViewAnimationUtils {
             animation.setAnimationListener(new AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
-                    if (isBanClick && view != null) {
+                    if (isBanClick) {
                         view.setClickable(false);
                     }
                     if (animationListener != null) {
@@ -356,7 +356,7 @@ public final class ViewAnimationUtils {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    if (isBanClick && view != null) {
+                    if (isBanClick) {
                         view.setClickable(true);
                     }
                     if (animationListener != null) {
@@ -494,7 +494,7 @@ public final class ViewAnimationUtils {
             animation.setAnimationListener(new AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
-                    if (isBanClick && view != null) {
+                    if (isBanClick) {
                         view.setClickable(false);
                     }
                 }
@@ -506,7 +506,7 @@ public final class ViewAnimationUtils {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    if (isBanClick && view != null) {
+                    if (isBanClick) {
                         view.setClickable(true);
                     }
                 }

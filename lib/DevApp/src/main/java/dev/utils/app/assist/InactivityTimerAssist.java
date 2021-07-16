@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.BatteryManager;
-import android.os.Build;
 
 /**
  * detail: Activity 无操作定时辅助类
@@ -115,11 +114,7 @@ public final class InactivityTimerAssist {
         // 注册任务
         mInactivityTask = new InactivityAsyncTask();
         // 开启任务
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            mInactivityTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-        } else {
-            mInactivityTask.execute();
-        }
+        mInactivityTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     /**

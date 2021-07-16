@@ -240,9 +240,7 @@ public final class ScreenSensorAssist {
                     orientation += 360;
                 }
             }
-            if (mRotateHandler != null) {
-                mRotateHandler.obtainMessage(CHANGE_ORIENTATION_WHAT, orientation, 0).sendToTarget();
-            }
+            mRotateHandler.obtainMessage(CHANGE_ORIENTATION_WHAT, orientation, 0).sendToTarget();
         }
     }
 
