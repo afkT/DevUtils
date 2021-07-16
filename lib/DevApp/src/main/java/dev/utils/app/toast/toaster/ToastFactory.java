@@ -56,12 +56,10 @@ final class ToastFactory {
             super.setView(view);
             if (view instanceof TextView) {
                 mMessageView = (TextView) view;
-                return;
             } else if (view.findViewById(android.R.id.message) instanceof TextView) {
                 mMessageView = view.findViewById(android.R.id.message);
-                return;
             } else if (view instanceof ViewGroup) {
-                if ((mMessageView = findTextView((ViewGroup) view)) != null) return;
+                mMessageView = findTextView((ViewGroup) view);
             }
         }
 

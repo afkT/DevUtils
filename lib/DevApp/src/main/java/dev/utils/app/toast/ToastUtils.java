@@ -497,17 +497,14 @@ public final class ToastUtils {
             final int duration
     ) {
         if (sIsHandler) {
-            sHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Toast toast = newToastText(isSingle, context, text, duration);
-                        if (toast != null) {
-                            toast.show();
-                        }
-                    } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "priShowToastText");
+            sHandler.post(() -> {
+                try {
+                    Toast toast = newToastText(isSingle, context, text, duration);
+                    if (toast != null) {
+                        toast.show();
                     }
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "priShowToastText");
                 }
             });
         } else {
@@ -668,17 +665,14 @@ public final class ToastUtils {
     ) {
         if (view == null) return;
         if (sIsHandler) {
-            sHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Toast toast = newToastView(isSingle, context, view, duration);
-                        if (toast != null) {
-                            toast.show();
-                        }
-                    } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "showToastView");
+            sHandler.post(() -> {
+                try {
+                    Toast toast = newToastView(isSingle, context, view, duration);
+                    if (toast != null) {
+                        toast.show();
                     }
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "showToastView");
                 }
             });
         } else {

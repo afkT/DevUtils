@@ -104,7 +104,10 @@ final class PreferenceImpl
             } else if (object instanceof String) {
                 editor.putString(key, String.valueOf(object));
             } else if (object instanceof Set) {
-                editor.putStringSet(key, (Set<String>) object);
+                try {
+                    editor.putStringSet(key, (Set<String>) object);
+                } catch (Exception ignored) {
+                }
             }
         }
     }
@@ -163,7 +166,7 @@ final class PreferenceImpl
      * detail: 默认比较器, 当存储 List 集合中的 String 类型数据时, 没有指定比较器, 就使用默认比较器
      * @author Ttt
      */
-    class ComparatorImpl
+    static class ComparatorImpl
             implements Comparator<String> {
         @Override
         public int compare(
@@ -236,9 +239,7 @@ final class PreferenceImpl
             final Comparator<String> comparator
     ) {
         Set<String> set = new TreeSet<>(comparator);
-        for (String value : list) {
-            set.add(value);
-        }
+        set.addAll(list);
         mPreferences.edit().putStringSet(key, set).apply();
     }
 
@@ -277,11 +278,7 @@ final class PreferenceImpl
     public List<String> getAll(final String key) {
         List<String> list = new ArrayList<>();
         Set<String>  set  = getSet(key);
-        if (set != null) {
-            for (String value : set) {
-                list.add(value);
-            }
-        }
+        if (set != null) list.addAll(set);
         return list;
     }
 

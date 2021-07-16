@@ -369,17 +369,14 @@ final class IToastImpl
         // 获取样式
         final IToast.Style style = getThreadToastStyle();
         if (mIsHandler) {
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Toast toast = newToastText(style, text);
-                        if (toast != null) {
-                            toast.show();
-                        }
-                    } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "priShowToastText");
+            mHandler.post(() -> {
+                try {
+                    Toast toast = newToastText(style, text);
+                    if (toast != null) {
+                        toast.show();
                     }
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "priShowToastText");
                 }
             });
         } else {
@@ -511,17 +508,14 @@ final class IToastImpl
         final IToast.Style style = getThreadToastStyle();
         // =
         if (mIsHandler) {
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Toast toast = newToastView(style, view, duration);
-                        if (toast != null) {
-                            toast.show();
-                        }
-                    } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "priShowToastView");
+            mHandler.post(() -> {
+                try {
+                    Toast toast = newToastView(style, view, duration);
+                    if (toast != null) {
+                        toast.show();
                     }
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "priShowToastView");
                 }
             });
         } else {

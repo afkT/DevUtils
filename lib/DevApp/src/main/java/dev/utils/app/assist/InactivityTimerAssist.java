@@ -8,6 +8,8 @@ import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.BatteryManager;
 
+import java.lang.ref.WeakReference;
+
 /**
  * detail: Activity 无操作定时辅助类
  * @author Ttt
@@ -20,7 +22,7 @@ public final class InactivityTimerAssist {
     // 无操作时间 ( 到时间自动关闭, 默认五分钟 )
     private final long                              mInactivityTime;
     // 对应的页面
-    private final Activity                          mActivity;
+    private final WeakReference<Activity>           mActivity;
     // 电池广播 ( 充电中, 则不处理, 主要是为了省电 )
     private final BroadcastReceiver                 mPowerStateReceiver;
     // 检查任务
@@ -47,7 +49,7 @@ public final class InactivityTimerAssist {
             final Activity activity,
             final long inactivityTime
     ) {
-        this.mActivity       = activity;
+        this.mActivity       = new WeakReference<>(activity);
         this.mInactivityTime = inactivityTime;
         // 电池广播监听
         mPowerStateReceiver = new PowerStateReceiver();
@@ -70,7 +72,7 @@ public final class InactivityTimerAssist {
         cancel();
         try {
             // 取消注册广播
-            mActivity.unregisterReceiver(mPowerStateReceiver);
+            mActivity.get().unregisterReceiver(mPowerStateReceiver);
         } catch (Exception ignored) {
         }
     }
@@ -84,7 +86,7 @@ public final class InactivityTimerAssist {
     public synchronized void onResume() {
         try {
             // 注册广播
-            mActivity.registerReceiver(mPowerStateReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+            mActivity.get().registerReceiver(mPowerStateReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         } catch (Exception ignored) {
         }
         // 开始检测
@@ -165,8 +167,8 @@ public final class InactivityTimerAssist {
             try {
                 Thread.sleep(mInactivityTime);
                 // 关闭页面
-                if (mActivity != null) {
-                    mActivity.finish();
+                if (mActivity.get() != null) {
+                    mActivity.get().finish();
                 }
             } catch (Exception ignored) {
             }

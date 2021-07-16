@@ -1130,17 +1130,14 @@ public final class ToastTintUtils {
     ) {
         if (view == null) return;
         if (sIsHandler) {
-            sHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Toast toast = newToastView(isSingle, context, view, duration);
-                        if (toast != null) {
-                            toast.show();
-                        }
-                    } catch (Exception e) {
-                        LogPrintUtils.eTag(TAG, e, "showToastView");
+            sHandler.post(() -> {
+                try {
+                    Toast toast = newToastView(isSingle, context, view, duration);
+                    if (toast != null) {
+                        toast.show();
                     }
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "showToastView");
                 }
             });
         } else {
@@ -1268,7 +1265,9 @@ public final class ToastTintUtils {
         if (context != null) {
             try {
                 // 引入 View
-                final View toastLayout = LayoutInflater.from(context).inflate(dev.utils.R.layout.dev_toast_layout, null);
+                final View toastLayout = LayoutInflater.from(context).inflate(
+                        dev.utils.R.layout.dev_toast_layout, null
+                );
                 // 初始化 View
                 final ImageView toastIcon     = toastLayout.findViewById(dev.utils.R.id.vid_dtl_toast_igview);
                 final TextView  toastTextView = toastLayout.findViewById(dev.utils.R.id.vid_dtl_toast_tv);

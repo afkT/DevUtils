@@ -20,7 +20,7 @@ public final class TimerManager {
     private static final String TAG = TimerManager.class.getSimpleName();
 
     // 内部保存定时器对象 ( 统一管理 )
-    protected static final List<DevTimer> mTimerLists = Collections.synchronizedList(new ArrayList());
+    protected static final List<DevTimer> mTimerLists = Collections.synchronizedList(new ArrayList<>());
 
     /**
      * 添加包含校验
@@ -78,9 +78,7 @@ public final class TimerManager {
         if (tag != null) {
             synchronized (mTimerLists) {
                 try {
-                    Iterator<DevTimer> iterator = mTimerLists.iterator();
-                    while (iterator.hasNext()) {
-                        DevTimer timer = iterator.next();
+                    for (DevTimer timer : mTimerLists) {
                         if (timer != null && tag.equals(timer.getTag())) {
                             return timer;
                         }
@@ -101,9 +99,7 @@ public final class TimerManager {
     public static DevTimer getTimer(final int uuid) {
         synchronized (mTimerLists) {
             try {
-                Iterator<DevTimer> iterator = mTimerLists.iterator();
-                while (iterator.hasNext()) {
-                    DevTimer timer = iterator.next();
+                for (DevTimer timer : mTimerLists) {
                     if (timer != null && uuid == timer.getUUID()) {
                         return timer;
                     }
@@ -127,9 +123,7 @@ public final class TimerManager {
         if (tag != null) {
             synchronized (mTimerLists) {
                 try {
-                    Iterator<DevTimer> iterator = mTimerLists.iterator();
-                    while (iterator.hasNext()) {
-                        DevTimer timer = iterator.next();
+                    for (DevTimer timer : mTimerLists) {
                         if (timer != null && tag.equals(timer.getTag())) {
                             lists.add(timer);
                         }
@@ -151,9 +145,7 @@ public final class TimerManager {
         List<DevTimer> lists = new ArrayList<>();
         synchronized (mTimerLists) {
             try {
-                Iterator<DevTimer> iterator = mTimerLists.iterator();
-                while (iterator.hasNext()) {
-                    DevTimer timer = iterator.next();
+                for (DevTimer timer : mTimerLists) {
                     if (timer != null && uuid == timer.getUUID()) {
                         lists.add(timer);
                     }

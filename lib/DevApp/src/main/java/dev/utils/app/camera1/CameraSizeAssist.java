@@ -397,9 +397,7 @@ public final class CameraSizeAssist {
         }
 
         // 判断是否竖屏 point.x = 宽, point.y = 高
-        boolean isPortrait = point.y > point.x;
-        // 如果是竖屏, 则修改
-        if (isPortrait) {
+        if (point.y > point.x) {
             int tempY = point.y;
             int tempX = point.x;
             // 进行转换
@@ -526,9 +524,7 @@ public final class CameraSizeAssist {
         }
 
         // 判断是否竖屏 point.x = 宽, point.y = 高
-        boolean isPortrait = point.y > point.x;
-        // 如果是竖屏, 则修改
-        if (isPortrait) {
+        if (point.y > point.x) {
             int tempY = point.y;
             int tempX = point.x;
             // 进行转换
@@ -670,9 +666,7 @@ public final class CameraSizeAssist {
         }
 
         // 判断是否竖屏 point.x = 宽, point.y = 高
-        boolean isPortrait = point.y > point.x;
-        // 如果是竖屏, 则修改
-        if (isPortrait) {
+        if (point.y > point.x) {
             int tempY = point.y;
             int tempX = point.x;
             // 进行转换

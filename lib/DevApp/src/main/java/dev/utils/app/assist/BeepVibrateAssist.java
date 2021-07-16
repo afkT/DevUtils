@@ -10,6 +10,7 @@ import androidx.annotation.RawRes;
 import androidx.annotation.RequiresPermission;
 
 import java.io.Closeable;
+import java.lang.ref.WeakReference;
 
 import dev.utils.LogPrintUtils;
 import dev.utils.app.AppUtils;
@@ -32,20 +33,20 @@ public final class BeepVibrateAssist
     private static final String TAG = BeepVibrateAssist.class.getSimpleName();
 
     // Activity
-    private final Activity    mActivity;
+    private final WeakReference<Activity> mActivity;
     // 播放资源对象
-    private       MediaPlayer mMediaPlayer     = null;
+    private       MediaPlayer             mMediaPlayer     = null;
     // 是否需要震动
-    private       boolean     mIsVibrate       = true;
+    private       boolean                 mIsVibrate       = true;
     // 震动时间
-    private       long        mVibrateDuration = 200L;
+    private       long                    mVibrateDuration = 200L;
 
     /**
      * 构造函数
      * @param activity {@link Activity}
      */
     public BeepVibrateAssist(final Activity activity) {
-        this.mActivity = activity;
+        this.mActivity = new WeakReference<>(activity);
     }
 
     /**
@@ -57,7 +58,7 @@ public final class BeepVibrateAssist
             final Activity activity,
             @RawRes final int rawId
     ) {
-        this.mActivity    = activity;
+        this.mActivity    = new WeakReference<>(activity);
         this.mMediaPlayer = buildMediaPlayer(rawId);
     }
 
@@ -70,7 +71,7 @@ public final class BeepVibrateAssist
             final Activity activity,
             final String filePath
     ) {
-        this.mActivity    = activity;
+        this.mActivity    = new WeakReference<>(activity);
         this.mMediaPlayer = buildMediaPlayer(filePath);
     }
 
@@ -99,7 +100,7 @@ public final class BeepVibrateAssist
             try {
                 // The volume on STREAM_SYSTEM is not adjustable, and users found it too loud,
                 // so we now play on the music stream.
-                mActivity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+                mActivity.get().setVolumeControlStream(AudioManager.STREAM_MUSIC);
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "streamUpdate");
             }

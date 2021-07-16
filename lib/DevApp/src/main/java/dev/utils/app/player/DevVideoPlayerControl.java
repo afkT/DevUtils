@@ -77,10 +77,10 @@ public class DevVideoPlayerControl
         mSurfaceHolder = mSurfaceView.getHolder();
         // 移除旧的回调
         if (mSurfaceHolder != null) {
+            // 重新添加回调
             mSurfaceHolder.removeCallback(this);
+            mSurfaceHolder.addCallback(this);
         }
-        // 添加回调
-        mSurfaceHolder.addCallback(this);
     }
 
     // ==================

@@ -732,9 +732,7 @@ public final class ImageUtils {
         OutputStream os = null;
         try {
             os = new BufferedOutputStream(new FileOutputStream(file));
-            if (os != null) {
-                bitmap.compress(format, quality, os);
-            }
+            bitmap.compress(format, quality, os);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "saveBitmapToSDCard");
             return false;

@@ -18,7 +18,6 @@ import androidx.core.content.PermissionChecker;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -111,7 +110,7 @@ public final class PermissionUtils {
             final boolean shouldShow,
             final String... permissions
     ) {
-        if (activity == null || permissions == null) return Collections.EMPTY_LIST;
+        if (activity == null || permissions == null) return new ArrayList<>();
         Set<String> sets = new HashSet<>();
         for (String permission : permissions) {
             if (permission != null && !sets.contains(permission) && !isGranted(activity, permission)) {

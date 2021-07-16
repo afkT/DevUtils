@@ -291,7 +291,7 @@ public final class WifiUtils {
     public static String formatSSID(final String ssid) {
         if (ssid == null) return null;
         // 自动去掉 ""
-        if (ssid != null && ssid.startsWith("\"") && ssid.endsWith("\"")) {
+        if (ssid.startsWith("\"") && ssid.endsWith("\"")) {
             try {
                 // 裁剪连接的 ssid, 并返回
                 return ssid.substring(1, ssid.length() - 1);
@@ -427,7 +427,7 @@ public final class WifiUtils {
      */
     public static boolean isConnNull(final String ssid) {
         if (ssid == null) return true;
-        return ssid.indexOf("unknown") != -1; // <unknown ssid>
+        return ssid.contains("unknown"); // <unknown ssid>
     }
 
     /**
@@ -967,8 +967,7 @@ public final class WifiUtils {
      * @return IPv4 地址
      * @throws Exception 不属于 IPv4 地址
      */
-    private int inetAddressToInt(final InetAddress inetAddress)
-            throws Exception {
+    private int inetAddressToInt(final InetAddress inetAddress) {
         byte[] data = inetAddress.getAddress();
         if (data.length != 4) {
             throw new IllegalArgumentException("Not an IPv4 address");

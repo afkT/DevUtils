@@ -96,9 +96,8 @@ public final class DevMediaManager
 
     /**
      * 绑定事件
-     * @return {@code true} 绑定成功, {@code false} 绑定失败
      */
-    private boolean bindListener() {
+    private void bindListener() {
         if (mMediaPlayer != null) {
             // 播放结束回调
             mMediaPlayer.setOnBufferingUpdateListener(this);
@@ -112,9 +111,7 @@ public final class DevMediaManager
             mMediaPlayer.setOnErrorListener(this);
             // 滑动加载完成回调
             mMediaPlayer.setOnSeekCompleteListener(this);
-            return true;
         }
-        return false;
     }
 
     /**

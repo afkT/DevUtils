@@ -402,9 +402,9 @@ public final class WifiHotUtils {
             BufferedReader br = new BufferedReader(new FileReader("/proc/net/arp"));
             String         line;
             while ((line = br.readLine()) != null) {
-                String[] splitted = line.split(" +");
-                if (splitted != null && splitted.length >= 4) {
-                    String ipAddress = splitted[0]; // IP 地址
+                String[] arrays = line.split(" +");
+                if (arrays.length >= 4) {
+                    String ipAddress = arrays[0]; // IP 地址
                     // 防止地址为 null, 并且需要以. 拆分存在 4 个长度 255.255.255.255
                     if (ipAddress != null && ipAddress.split("\\.").length >= 3) {
                         return true;
@@ -443,9 +443,9 @@ public final class WifiHotUtils {
             BufferedReader br = new BufferedReader(new FileReader("/proc/net/arp"));
             String         line;
             while ((line = br.readLine()) != null) {
-                String[] splitted = line.split(" +");
-                if (splitted != null && splitted.length >= 4) {
-                    String ipAddress = splitted[0]; // IP 地址
+                String[] arrays = line.split(" +");
+                if (arrays.length >= 4) {
+                    String ipAddress = arrays[0]; // IP 地址
                     // 防止地址为 null, 并且需要以. 拆分存在 4 个长度 255.255.255.255
                     if (ipAddress != null && ipAddress.split("\\.").length >= 3) {
                         return ipAddress;
@@ -489,10 +489,10 @@ public final class WifiHotUtils {
 //            BufferedReader br = new BufferedReader(new FileReader("/proc/net/arp"));
 //            String line;
 //            while ((line = br.readLine()) != null) {
-//                String[] splitted = line.split(" +");
-//                if (splitted != null && splitted.length >= 4) {
-//                    String ip = splitted[0]; // IP 地址
-//                    String mac = splitted[3]; // Mac 地址
+//                String[] arrays = line.split(" +");
+//                if (arrays.length >= 4) {
+//                    String ip = arrays[0]; // IP 地址
+//                    String mac = arrays[3]; // Mac 地址
 //                }
 //            }
 //        } catch (Exception e) {
@@ -532,12 +532,12 @@ public final class WifiHotUtils {
      * @return 转换后的 IP 地址
      */
     private String intToString(final int data) {
-        StringBuilder builder = new StringBuilder();
-        builder.append((data >> 0) & 0xff).append(".");
-        builder.append((data >> 8) & 0xff).append(".");
-        builder.append((data >> 16) & 0xff).append(".");
-        builder.append((data >> 24) & 0xff);
-        return builder.toString();
+        return new StringBuilder()
+                .append((data >> 0) & 0xff).append(".")
+                .append((data >> 8) & 0xff).append(".")
+                .append((data >> 16) & 0xff).append(".")
+                .append((data >> 24) & 0xff)
+                .toString();
     }
 
     // ===================
