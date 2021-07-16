@@ -3552,4 +3552,52 @@ public final class ViewHelper {
         ListViewUtils.fullScroll(view, direction);
         return this;
     }
+
+    // ===============
+    // = ProgressBar =
+    // ===============
+
+    /**
+     * 设置 ProgressBar 进度值
+     * @param view     {@link View}
+     * @param progress 当前进度
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setBarProgress(
+            final View view,
+            final int progress
+    ) {
+        ViewUtils.setBarProgress(view, progress);
+        return this;
+    }
+
+    /**
+     * 设置 ProgressBar 最大值
+     * @param view {@link View}
+     * @param max  最大值
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setBarMax(
+            final View view,
+            final int max
+    ) {
+        ViewUtils.setBarMax(view, max);
+        return this;
+    }
+
+    /**
+     * 设置 ProgressBar 最大值
+     * @param view     {@link View}
+     * @param progress 当前进度
+     * @param max      最大值
+     * @return {@link ViewHelper}
+     */
+    public ViewHelper setBarValue(
+            final View view,
+            final int progress,
+            final int max
+    ) {
+        ViewUtils.setBarValue(view, progress, max);
+        return this;
+    }
 }
