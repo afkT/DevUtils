@@ -1,6 +1,7 @@
 package dev.utils.app;
 
 import android.accessibilityservice.AccessibilityService;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
@@ -131,6 +132,7 @@ public final class AccessibilityUtils {
      * @param event {@link AccessibilityEvent}
      * @param tag   日志 TAG
      */
+    @SuppressLint("SwitchIntDef")
     public static void printAccessibilityEvent(
             final AccessibilityEvent event,
             final String tag
@@ -165,7 +167,7 @@ public final class AccessibilityUtils {
                 builder.append("event type: TYPE_VIEW_ACCESSIBILITY_FOCUSED");
                 break;
             case AccessibilityEvent.TYPE_GESTURE_DETECTION_START:
-                builder.append("event type: TYPE_VIEW_ACCESSIBILITY_FOCUSED");
+                builder.append("event type: TYPE_GESTURE_DETECTION_START");
                 break;
             case AccessibilityEvent.TYPE_GESTURE_DETECTION_END:
                 builder.append("event type: TYPE_GESTURE_DETECTION_END");
@@ -448,6 +450,7 @@ public final class AccessibilityUtils {
      * @param nodeInfo {@link AccessibilityNodeInfo}
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean performClick(final AccessibilityNodeInfo nodeInfo) {
         if (nodeInfo != null && nodeInfo.isClickable()) {
             return preformAction(nodeInfo, AccessibilityNodeInfo.ACTION_CLICK);
@@ -461,6 +464,7 @@ public final class AccessibilityUtils {
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean performClick(
             final AccessibilityNodeInfo nodeInfo,
             final boolean clickParent
@@ -475,6 +479,7 @@ public final class AccessibilityUtils {
      * @param clickAll    判断是否点击全部节点
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean performClick(
             final AccessibilityNodeInfo nodeInfo,
             final boolean clickParent,
@@ -508,6 +513,7 @@ public final class AccessibilityUtils {
      * @param nodeInfo {@link AccessibilityNodeInfo}
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean performLongClick(final AccessibilityNodeInfo nodeInfo) {
         if (nodeInfo != null && nodeInfo.isClickable()) {
             return preformAction(nodeInfo, AccessibilityNodeInfo.ACTION_LONG_CLICK);
@@ -521,6 +527,7 @@ public final class AccessibilityUtils {
      * @param clickParent 如果当前节点不可点击, 是否往上追溯点击父节点, 直到点击成功或没有父节点
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean performLongClick(
             final AccessibilityNodeInfo nodeInfo,
             final boolean clickParent
@@ -535,6 +542,7 @@ public final class AccessibilityUtils {
      * @param clickAll    判断是否点击全部节点
      * @return {@code true} success, {@code false} fail
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean performLongClick(
             final AccessibilityNodeInfo nodeInfo,
             final boolean clickParent,
@@ -605,7 +613,7 @@ public final class AccessibilityUtils {
      * 启动长按电源按钮 Dialog
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static boolean preformActionPowerDialog() {
         return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_POWER_DIALOG);
     }
@@ -615,7 +623,7 @@ public final class AccessibilityUtils {
      * @param service {@link AccessibilityService}
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static boolean preformActionPowerDialog(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_POWER_DIALOG);
     }
@@ -624,7 +632,7 @@ public final class AccessibilityUtils {
      * 锁定屏幕 ( 非锁屏 )
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.P)
     public static boolean preformActionLockScreen() {
         return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
     }
@@ -634,7 +642,7 @@ public final class AccessibilityUtils {
      * @param service {@link AccessibilityService}
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.P)
     public static boolean preformActionLockScreen(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
     }
@@ -643,7 +651,7 @@ public final class AccessibilityUtils {
      * 截屏
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.P)
     public static boolean preformActionTakeScreenshot() {
         return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_TAKE_SCREENSHOT);
     }
@@ -653,7 +661,7 @@ public final class AccessibilityUtils {
      * @param service {@link AccessibilityService}
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.P)
     public static boolean preformActionTakeScreenshot(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_TAKE_SCREENSHOT);
     }
@@ -700,7 +708,7 @@ public final class AccessibilityUtils {
      * 打开设置
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static boolean preformActionQuickSettings() {
         return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_QUICK_SETTINGS);
     }
@@ -710,7 +718,7 @@ public final class AccessibilityUtils {
      * @param service {@link AccessibilityService}
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static boolean preformActionQuickSettings(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_QUICK_SETTINGS);
     }
@@ -719,7 +727,7 @@ public final class AccessibilityUtils {
      * 分屏
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static boolean preformActionSplitScreen() {
         return performGlobalAction(sService, AccessibilityService.GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN);
     }
@@ -729,7 +737,7 @@ public final class AccessibilityUtils {
      * @param service {@link AccessibilityService}
      * @return {@code true} success, {@code false} fail
      */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static boolean preformActionSplitScreen(final AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN);
     }

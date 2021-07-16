@@ -322,7 +322,9 @@ public final class ActivityUtils {
             resolveIntent.addCategory(Intent.CATEGORY_LAUNCHER);
             resolveIntent.setPackage(packageName);
             // 通过 AppUtils.getPackageManager() 的 queryIntentActivities 方法遍历
-            List<ResolveInfo> lists = AppUtils.getPackageManager().queryIntentActivities(resolveIntent, 0);
+            List<ResolveInfo> lists = AppUtils.getPackageManager().queryIntentActivities(
+                    resolveIntent, 0
+            );
             for (ResolveInfo resolveInfo : lists) {
                 if (resolveInfo != null && resolveInfo.activityInfo != null) {
                     // resolveInfo.activityInfo.packageName; // packageName
@@ -459,7 +461,9 @@ public final class ActivityUtils {
                 }
                 return ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pairs).toBundle();
             }
-            return ActivityOptionsCompat.makeSceneTransitionAnimation(activity, null, null).toBundle();
+            return ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    activity, null, null
+            ).toBundle();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getOptionsBundle");
         }
@@ -549,8 +553,8 @@ public final class ActivityUtils {
      */
     public ActivityUtils removeActivity(final Activity... activitys) {
         if (activitys != null && activitys.length != 0) {
-            for (int i = 0, len = activitys.length; i < len; i++) {
-                removeActivity(activitys[i]);
+            for (Activity activity : activitys) {
+                removeActivity(activity);
             }
         }
         return this;
@@ -585,12 +589,10 @@ public final class ActivityUtils {
                 stack.addAll(mActivityStacks);
                 try {
                     // 进行遍历判断
-                    Iterator<Activity> iterator = stack.iterator();
-                    while (iterator.hasNext()) {
-                        Activity activity = iterator.next();
+                    for (Activity activity : stack) {
                         if (activity != null && !activity.isFinishing()) {
-                            for (int i = 0, len = clazzs.length; i < len; i++) {
-                                if (clazzs[i] != null && activity.getClass().getName().equals(clazzs[i].getName())) {
+                            for (Class<?> clazz : clazzs) {
+                                if (clazz != null && activity.getClass().getName().equals(clazz.getName())) {
                                     return true;
                                 }
                             }
@@ -627,8 +629,8 @@ public final class ActivityUtils {
      */
     public ActivityUtils finishActivity(final Activity... activitys) {
         if (activitys != null && activitys.length != 0) {
-            for (int i = 0, len = activitys.length; i < len; i++) {
-                finishActivity(activitys[i]);
+            for (Activity activity : activitys) {
+                finishActivity(activity);
             }
         }
         return this;
@@ -699,9 +701,9 @@ public final class ActivityUtils {
                         // 默认不需要销毁
                         isRemove = false;
                         // 循环判断
-                        for (int i = 0, len = clazzs.length; i < len; i++) {
+                        for (Class<?> clazz : clazzs) {
                             // 判断是否相同
-                            if (activity.getClass() == clazzs[i]) {
+                            if (activity.getClass() == clazz) {
                                 isRemove = true;
                                 break;
                             }
@@ -794,9 +796,9 @@ public final class ActivityUtils {
                         // 默认需要销毁
                         isRemove = true;
                         // 循环判断
-                        for (int i = 0, len = clazzs.length; i < len; i++) {
+                        for (Class<?> clazz : clazzs) {
                             // 判断是否相同
-                            if (activity.getClass() == clazzs[i]) {
+                            if (activity.getClass() == clazz) {
                                 isRemove = false;
                                 break;
                             }
@@ -878,7 +880,9 @@ public final class ActivityUtils {
      */
     public ActivityUtils restartApplication() {
         try {
-            Intent intent = AppUtils.getPackageManager().getLaunchIntentForPackage(AppUtils.getPackageName());
+            Intent intent = AppUtils.getPackageManager().getLaunchIntentForPackage(
+                    AppUtils.getPackageName()
+            );
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             AppUtils.startActivity(intent);
         } catch (Exception e) {

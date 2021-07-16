@@ -490,14 +490,14 @@ public final class ADBUtils {
                     for (String str : arrays) {
                         if (!TextUtils.isEmpty(str)) {
                             // 存在包名才处理
-                            if (str.indexOf(packageName) != -1) {
+                            if (str.contains(packageName)) {
                                 String[] splitArrays = str.split(DevFinal.REGEX_SPACE);
                                 for (String strData : splitArrays) {
                                     if (!TextUtils.isEmpty(strData)) {
                                         // 属于 packageName/ 前缀的
-                                        if (strData.indexOf(packageName + "/") != -1) {
+                                        if (strData.contains(packageName + "/")) {
                                             // 防止属于 packageName/.xx.Main_Activity
-                                            if (strData.indexOf("/.") != -1) {
+                                            if (strData.contains("/.")) {
                                                 // packageName/.xx.Main_Activity
                                                 // packageName/packageName.xx.Main_Activity
                                                 strData = strData.replace("/", "/" + packageName);
@@ -573,7 +573,7 @@ public final class ADBUtils {
                 for (String str : arrays) {
                     if (!TextUtils.isEmpty(str)) {
                         String[] splitArrays = str.split(DevFinal.REGEX_SPACE);
-                        if (splitArrays != null && splitArrays.length != 0) {
+                        if (splitArrays.length != 0) {
                             for (String splitStr : splitArrays) {
                                 if (!TextUtils.isEmpty(splitStr)) {
                                     int start     = splitStr.indexOf('/');
@@ -582,7 +582,7 @@ public final class ADBUtils {
                                         // 获取裁剪数据
                                         String strData = splitStr.substring(0, lastIndex);
                                         // 防止属于 packageName/.xx.Main_Activity
-                                        if (strData.indexOf("/.") != -1) {
+                                        if (strData.contains("/.")) {
                                             // packageName/.xx.Main_Activity
                                             // packageName/packageName.xx.Main_Activity
                                             strData = strData.replace("/", "/" + splitStr.substring(0, start));
@@ -618,7 +618,7 @@ public final class ADBUtils {
                 for (String str : arrays) {
                     if (!TextUtils.isEmpty(str)) {
                         String[] splitArrays = str.split(DevFinal.REGEX_SPACE);
-                        if (splitArrays != null && splitArrays.length != 0) {
+                        if (splitArrays.length != 0) {
                             for (String splitStr : splitArrays) {
                                 if (!TextUtils.isEmpty(splitStr)) {
                                     int start     = splitStr.indexOf('/');
@@ -627,7 +627,7 @@ public final class ADBUtils {
                                         // 获取裁剪数据
                                         String strData = splitStr.substring(0, lastIndex);
                                         // 防止属于 packageName/.xx.Main_Activity
-                                        if (strData.indexOf("/.") != -1) {
+                                        if (strData.contains("/.")) {
                                             // packageName/.xx.Main_Activity
                                             // packageName/packageName.xx.Main_Activity
                                             strData = strData.replace("/", "/" + packageName);
@@ -668,7 +668,7 @@ public final class ADBUtils {
                 for (String str : arrays) {
                     if (!TextUtils.isEmpty(str)) {
                         String[] splitArrays = str.split(DevFinal.REGEX_SPACE);
-                        if (splitArrays != null && splitArrays.length != 0) {
+                        if (splitArrays.length != 0) {
                             for (String splitStr : splitArrays) {
                                 if (!TextUtils.isEmpty(splitStr)) {
                                     int start = splitStr.indexOf('/');
@@ -676,7 +676,7 @@ public final class ADBUtils {
                                         // 获取裁剪数据
                                         String strData = splitStr;
                                         // 防止属于 packageName/.xx.Main_Activity
-                                        if (strData.indexOf("/.") != -1) {
+                                        if (strData.contains("/.")) {
                                             // packageName/.xx.Main_Activity
                                             // packageName/packageName.xx.Main_Activity
                                             strData = strData.replace("/", "/" + splitStr.substring(0, start));
@@ -749,11 +749,11 @@ public final class ADBUtils {
                 // 获取 Activity 栈字符串
                 String activities = null;
                 // 判断最后一行是否符合条件
-                if (dataSplit[splitLength - 1].indexOf("Activities=") != -1) {
+                if (dataSplit[splitLength - 1].contains("Activities=")) {
                     activities = dataSplit[splitLength - 1];
                 } else {
                     for (String str : dataSplit) {
-                        if (str.indexOf("Activities=") != -1) {
+                        if (str.contains("Activities=")) {
                             activities = str;
                             break;
                         }
@@ -767,14 +767,14 @@ public final class ADBUtils {
                 for (String data : activityArrays) {
                     try {
                         String[] splitArrays = data.split(DevFinal.REGEX_SPACE);
-                        if (splitArrays != null && splitArrays.length != 0) {
+                        if (splitArrays.length != 0) {
                             for (String splitStr : splitArrays) {
                                 int start = splitStr.indexOf(packageName + "/");
                                 if (start != -1) {
                                     // 获取裁剪数据
                                     String strData = splitStr;
                                     // 防止属于 packageName/.xx.XxxActivity
-                                    if (strData.indexOf("/.") != -1) {
+                                    if (strData.contains("/.")) {
                                         // packageName/.xx.XxxActivity
                                         // packageName/packageName.xx.XxxActivity
                                         strData = strData.replace("/", "/" + splitStr.substring(0, start));
@@ -1624,7 +1624,10 @@ public final class ADBUtils {
         try {
             String cmd = "date %s";
             // 执行 shell
-            ShellUtils.CommandResult result = ShellUtils.execCmd(String.format(cmd, new SimpleDateFormat("MMddHHmmyyyy.ss").format(time)), true);
+            ShellUtils.CommandResult result = ShellUtils.execCmd(
+                    String.format(cmd, new SimpleDateFormat("MMddHHmmyyyy.ss").format(time)),
+                    true
+            );
             return result.isSuccess2();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setSystemTime2");
@@ -1984,7 +1987,7 @@ public final class ADBUtils {
                     String[] splitArrays = result.successMsg.split(DevFinal.NEW_LINE_STR);
                     for (String str : splitArrays) {
                         if (!TextUtils.isEmpty(str)) {
-                            if (str.toLowerCase().indexOf("device") != -1) {
+                            if (str.toLowerCase().contains("device")) {
                                 // 进行拆分
                                 String[] arrays = str.split(DevFinal.REGEX_SPACE);
                                 return arrays[arrays.length - 1];
@@ -2338,11 +2341,11 @@ public final class ADBUtils {
 
         String cmd = "settings put secure enabled_accessibility_services %s/%s";
         // 格式化 shell 命令
-        String[] cmds = new String[2];
-        cmds[0] = String.format(cmd, packageName, accessibilityServiceName);
-        cmds[1] = "settings put secure accessibility_enabled 0";
+        String[] cmdArrays = new String[2];
+        cmdArrays[0] = String.format(cmd, packageName, accessibilityServiceName);
+        cmdArrays[1] = "settings put secure accessibility_enabled 0";
         // 执行 shell
-        ShellUtils.CommandResult result = ShellUtils.execCmd(cmds, true);
+        ShellUtils.CommandResult result = ShellUtils.execCmd(cmdArrays, true);
         return result.isSuccess2();
     }
 }

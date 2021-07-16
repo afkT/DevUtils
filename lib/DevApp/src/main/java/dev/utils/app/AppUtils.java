@@ -39,6 +39,8 @@ import android.view.WindowManager;
 import android.view.WindowMetrics;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.annotation.RequiresApi;
+
 import java.io.File;
 import java.util.List;
 
@@ -55,7 +57,7 @@ import dev.utils.common.encrypt.EncryptUtils;
  * <pre>
  *     MimeType
  *     @see <a href="https://www.jianshu.com/p/f3fcf033be5c"/>
- *     存储后缀根据 MIME_TYPE 决定, 值类型 {@link libcore.net.MimeUtils}
+ *     存储后缀根据 MIME_TYPE 决定, 值类型 libcore.net.MimeUtils
  *     @see <a href="https://www.androidos.net.cn/android/9.0.0_r8/xref/libcore/luni/src/main/java/libcore/net/MimeUtils.java"/>
  *     <p></p>
  *     所需权限
@@ -131,6 +133,7 @@ public final class AppUtils {
      * 获取 AppOpsManager
      * @return {@link AppOpsManager}
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static AppOpsManager getAppOpsManager() {
         return getSystemService(Context.APP_OPS_SERVICE);
     }
@@ -147,6 +150,7 @@ public final class AppUtils {
      * 获取 ShortcutManager
      * @return {@link ShortcutManager}
      */
+    @RequiresApi(api = Build.VERSION_CODES.N_MR1)
     public static ShortcutManager getShortcutManager() {
         return getSystemService(Context.SHORTCUT_SERVICE);
     }
@@ -195,6 +199,7 @@ public final class AppUtils {
      * 获取 UsageStatsManager
      * @return {@link UsageStatsManager}
      */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     public static UsageStatsManager getUsageStatsManager() {
         return getSystemService(Context.USAGE_STATS_SERVICE);
     }
@@ -435,9 +440,10 @@ public final class AppUtils {
      */
     public static Drawable getAppIcon(final String packageName) {
         if (StringUtils.isSpace(packageName)) return null;
+        PackageManager packageManager = getPackageManager();
+        if (packageManager == null) return null;
         try {
-            PackageManager packageManager = getPackageManager();
-            PackageInfo    packageInfo    = packageManager.getPackageInfo(packageName, 0);
+            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
             return packageInfo == null ? null : packageInfo.applicationInfo.loadIcon(packageManager);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppIcon");
@@ -460,9 +466,10 @@ public final class AppUtils {
      */
     public static String getAppName(final String packageName) {
         if (StringUtils.isSpace(packageName)) return null;
+        PackageManager packageManager = getPackageManager();
+        if (packageManager == null) return null;
         try {
-            PackageManager packageManager = getPackageManager();
-            PackageInfo    packageInfo    = packageManager.getPackageInfo(packageName, 0);
+            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
             return packageInfo == null ? null : packageInfo.applicationInfo.loadLabel(packageManager).toString();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppName");
@@ -509,16 +516,12 @@ public final class AppUtils {
      */
     public static long getAppVersionCode(final String packageName) {
         if (StringUtils.isSpace(packageName)) return -1L;
-        try {
-            PackageInfo packageInfo = getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                return packageInfo.getLongVersionCode();
-            } else {
-                return packageInfo.versionCode;
-            }
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAppVersionCode");
-            return -1L;
+        PackageInfo packageInfo = getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+        if (packageInfo == null) return -1L;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            return packageInfo.getLongVersionCode();
+        } else {
+            return packageInfo.versionCode;
         }
     }
 
@@ -764,10 +767,12 @@ public final class AppUtils {
             final String action,
             final String category
     ) {
+        PackageManager packageManager = getPackageManager();
+        if (packageManager == null) return false;
         try {
             Intent intent = new Intent(action);
             intent.addCategory(category);
-            ResolveInfo resolveInfo = getPackageManager().resolveActivity(intent, 0);
+            ResolveInfo resolveInfo = packageManager.resolveActivity(intent, 0);
             return resolveInfo != null;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isInstalledApp");
@@ -881,7 +886,7 @@ public final class AppUtils {
 
     /**
      * 注册广播监听
-     * @param receiver {@linkBroadcastReceiver}
+     * @param receiver {@link BroadcastReceiver}
      * @param filter   {@link IntentFilter}
      * @return {@code true} success, {@code false} fail
      */
@@ -901,7 +906,7 @@ public final class AppUtils {
 
     /**
      * 注销广播监听
-     * @param receiver {@linkBroadcastReceiver}
+     * @param receiver {@link BroadcastReceiver}
      * @return {@code true} success, {@code false} fail
      */
     public static boolean unregisterReceiver(final BroadcastReceiver receiver) {
