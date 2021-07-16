@@ -51,15 +51,6 @@ public final class NumberUtils {
      * @param value 待处理数值
      * @return 处理后的数值字符串
      */
-    public static String subZeroAndDot(final float value) {
-        return subZeroAndDot(String.valueOf(value));
-    }
-
-    /**
-     * 去掉结尾多余的 . 与 0
-     * @param value 待处理数值
-     * @return 处理后的数值字符串
-     */
     public static String subZeroAndDot(final String value) {
         if (StringUtils.isNotEmpty(value)) {
             String str = value;
@@ -72,6 +63,33 @@ public final class NumberUtils {
             return str;
         }
         return value;
+    }
+
+    // =
+
+    /**
+     * 计算指定单位倍数
+     * @param units 单位数组
+     * @param value 待计算数值
+     * @return 单位数组对应倍数值
+     */
+    public static int[] calculateUnit(
+            final double[] units,
+            final double value
+    ) {
+        if (units == null) return null;
+        if (value <= 0) return null;
+        int    len    = units.length;
+        int[]  arrays = new int[len];
+        double temp   = value;
+        for (int i = 0; i < len; i++) {
+            if (temp >= units[i]) {
+                int mode = (int) (temp / units[i]);
+                            temp -= mode * units[i];
+                arrays[i] = mode;
+            }
+        }
+        return arrays;
     }
 
     // ===========
@@ -191,22 +209,123 @@ public final class NumberUtils {
         return percentD2(value, max).floatValue();
     }
 
+    // ============
+    // = Multiple =
+    // ============
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static Double multipleD(
+            final double value,
+            final double divisor
+    ) {
+        if (value <= 0d || divisor <= 0d) return 0d;
+        return (double) value / (double) divisor;
+    }
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static int multipleI(
+            final double value,
+            final double divisor
+    ) {
+        return multipleD(value, divisor).intValue();
+    }
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static long multipleL(
+            final double value,
+            final double divisor
+    ) {
+        return multipleD(value, divisor).longValue();
+    }
+
+    /**
+     * 获取倍数
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static float multipleF(
+            final double value,
+            final double divisor
+    ) {
+        return multipleD(value, divisor).floatValue();
+    }
+
     // =
 
     /**
-     * 返回的 value 介于 max、min 之间, 若 value 小于 min, 返回 min, 若大于 max, 返回 max
-     * @param value 指定值
-     * @param max   最大值
-     * @param min   最小值
-     * @return 介于 max、min 之间的 value
+     * 获取倍数 ( 自动补 1)
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
      */
-    public static int clamp(
-            final int value,
-            final int max,
-            final int min
+    public static Double multipleD2(
+            final double value,
+            final double divisor
     ) {
-        return value > max ? max : Math.max(value, min);
+        if (value <= 0 || divisor <= 0) return 0D;
+        if (value <= divisor) return 1D;
+        double result = value / divisor;
+        return ((value - divisor * result == 0d) ? result : result + 1);
     }
+
+    /**
+     * 获取倍数 ( 自动补 1)
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static int multipleI2(
+            final double value,
+            final double divisor
+    ) {
+        return multipleD2(value, divisor).intValue();
+    }
+
+    /**
+     * 获取倍数 ( 自动补 1)
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static long multipleL2(
+            final double value,
+            final double divisor
+    ) {
+        return multipleD2(value, divisor).longValue();
+    }
+
+    /**
+     * 获取倍数 ( 自动补 1)
+     * @param value   被除数
+     * @param divisor 除数
+     * @return 倍数
+     */
+    public static float multipleF2(
+            final double value,
+            final double divisor
+    ) {
+        return multipleD2(value, divisor).floatValue();
+    }
+
+    // =========
+    // = clamp =
+    // =========
 
     /**
      * 返回的 value 介于 max、min 之间, 若 value 小于 min, 返回 min, 若大于 max, 返回 max
@@ -219,6 +338,21 @@ public final class NumberUtils {
             final double value,
             final double max,
             final double min
+    ) {
+        return value > max ? max : Math.max(value, min);
+    }
+
+    /**
+     * 返回的 value 介于 max、min 之间, 若 value 小于 min, 返回 min, 若大于 max, 返回 max
+     * @param value 指定值
+     * @param max   最大值
+     * @param min   最小值
+     * @return 介于 max、min 之间的 value
+     */
+    public static int clamp(
+            final int value,
+            final int max,
+            final int min
     ) {
         return value > max ? max : Math.max(value, min);
     }
@@ -251,108 +385,6 @@ public final class NumberUtils {
             final float min
     ) {
         return value > max ? max : Math.max(value, min);
-    }
-
-    // ============
-    // = Multiple =
-    // ============
-
-    /**
-     * 获取倍数 ( 自动补 1)
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static int getMultiple(
-            final double value,
-            final double divisor
-    ) {
-        if (value <= 0 || divisor <= 0) return 0;
-        if (value <= divisor) return 1;
-        int result = (int) (value / divisor);
-        return ((value - divisor * result == 0d) ? result : result + 1);
-    }
-
-    // =
-
-    /**
-     * 获取倍数
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static Double getMultipleD(
-            final double value,
-            final double divisor
-    ) {
-        if (value <= 0d || divisor <= 0d) return 0d;
-        return (double) value / (double) divisor;
-    }
-
-    /**
-     * 获取倍数
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static int getMultipleI(
-            final double value,
-            final double divisor
-    ) {
-        return getMultipleD(value, divisor).intValue();
-    }
-
-    /**
-     * 获取倍数
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static long getMultipleL(
-            final double value,
-            final double divisor
-    ) {
-        return getMultipleD(value, divisor).longValue();
-    }
-
-    /**
-     * 获取倍数
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static float getMultipleF(
-            final double value,
-            final double divisor
-    ) {
-        return getMultipleD(value, divisor).floatValue();
-    }
-
-    // =
-
-    /**
-     * 计算指定单位倍数
-     * @param units 单位数组
-     * @param value 待计算数值
-     * @return 单位数组对应倍数值
-     */
-    public static int[] calculateUnit(
-            final double[] units,
-            final double value
-    ) {
-        if (units == null) return null;
-        if (value <= 0) return null;
-        int    len    = units.length;
-        int[]  arrays = new int[len];
-        double temp   = value;
-        for (int i = 0; i < len; i++) {
-            if (temp >= units[i]) {
-                int mode = (int) (temp / units[i]);
-                            temp -= mode * units[i];
-                arrays[i] = mode;
-            }
-        }
-        return arrays;
     }
 
     // ============
