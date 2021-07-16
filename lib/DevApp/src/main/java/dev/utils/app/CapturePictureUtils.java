@@ -262,7 +262,7 @@ public final class CapturePictureUtils {
                     int width  = webView.getWidth();
                     int height = (int) (webView.getContentHeight() * newScale + 0.5);
                     // 重新设置高度
-                    height = (height > maxHeight) ? maxHeight : height;
+                    height = Math.min(height, maxHeight);
                     // 创建位图
                     Bitmap bitmap = Bitmap.createBitmap(width, height, config);
                     Canvas canvas = new Canvas(bitmap);

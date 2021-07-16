@@ -746,9 +746,7 @@ public final class ScaleUtils {
 
         @Override
         public int compareTo(XY xy) {
-            if (this.scale < xy.scale) return 1;
-            if (this.scale > xy.scale) return -1;
-            return 0;
+            return Double.compare(xy.scale, this.scale);
         }
     }
 }
