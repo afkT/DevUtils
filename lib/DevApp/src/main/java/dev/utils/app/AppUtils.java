@@ -789,7 +789,9 @@ public final class AppUtils {
     public static boolean isInstalledApp(final String packageName) {
         if (StringUtils.isSpace(packageName)) return false;
         try {
-            ApplicationInfo appInfo = getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
+            ApplicationInfo appInfo = getApplicationInfo(
+                    packageName, PackageManager.GET_UNINSTALLED_PACKAGES
+            );
             return appInfo != null;
         } catch (Exception e) { // 未安装, 则会抛出异常
             LogPrintUtils.eTag(TAG, e, "isInstalledApp");

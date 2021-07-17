@@ -284,7 +284,9 @@ public final class AlarmUtils {
             final Intent intent
     ) {
         try {
-            PendingIntent pendingIntent = PendingIntent.getForegroundService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getForegroundService(
+                    context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT
+            );
             return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopAlarmForegroundService");
@@ -332,7 +334,9 @@ public final class AlarmUtils {
             final Intent intent
     ) {
         try {
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                    context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT
+            );
             return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopAlarmBroadcast");
@@ -358,7 +362,9 @@ public final class AlarmUtils {
             final Intent intent
     ) {
         try {
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getActivity(
+                    context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT
+            );
             return startAlarmIntent(triggerAtMillis, pendingIntent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startAlarmActivity");
@@ -378,7 +384,9 @@ public final class AlarmUtils {
             final Intent intent
     ) {
         try {
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getActivity(
+                    context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT
+            );
             return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopAlarmActivity");

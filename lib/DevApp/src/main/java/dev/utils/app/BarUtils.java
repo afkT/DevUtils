@@ -371,12 +371,11 @@ public final class BarUtils {
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         getStatusBarHeight()
                 );
-                fakeStatusBar.setLayoutParams(layoutParams);
             } else {
                 layoutParams.width  = ViewGroup.LayoutParams.MATCH_PARENT;
                 layoutParams.height = getStatusBarHeight();
-                fakeStatusBar.setLayoutParams(layoutParams);
             }
+            fakeStatusBar.setLayoutParams(layoutParams);
             return true;
         }
         return false;
