@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView
 import dev.engine.log.DevLogEngine
+import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.QuickHelper
 import dev.utils.app.helper.ViewHelper
@@ -45,7 +46,8 @@ class AdapterEditsActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                 for (item in adapter.dataList) {
                     builder
                         .append("\nevaluateContent: ").append(item.evaluateContent)
-                        .append("\nevaluateLevel: ").append(item.evaluateLevel).append("\n")
+                        .append("\nevaluateLevel: ").append(item.evaluateLevel)
+                        .append(DevFinal.NEW_LINE_STR)
                 }
                 DevLogEngine.getEngine().dTag(TAG, builder.toString())
                 ToastTintUtils.success("数据已打印, 请查看 Logcat")

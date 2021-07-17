@@ -849,7 +849,8 @@ public final class SpanUtils {
         if (mText.length() == 0) return;
         int start = mBuilder.length();
         if (start == 0 && lineHeight != -1) { // bug of LineHeightSpan when first line
-            mBuilder.append(Character.toString((char) 2)).append("\n")
+            mBuilder.append(Character.toString((char) 2))
+                    .append(DevFinal.NEW_LINE_STR)
                     .setSpan(new AbsoluteSizeSpan(0), 0, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             start = 2;
         }

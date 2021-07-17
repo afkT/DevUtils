@@ -55,8 +55,10 @@ public final class AppInfoUtils {
      * @return {@link PackageInfo}
      */
     public static PackageInfo getPackageInfoToPath(final String apkUri) {
+        PackageManager packageManager = AppUtils.getPackageManager();
+        if (packageManager == null) return null;
         try {
-            PackageInfo packageInfo = AppUtils.getPackageManager().getPackageArchiveInfo(
+            PackageInfo packageInfo = packageManager.getPackageArchiveInfo(
                     apkUri, PackageManager.GET_ACTIVITIES
             );
             // 设置 APK 位置信息
@@ -210,9 +212,10 @@ public final class AppInfoUtils {
         List<AppInfoBean> listApps = new ArrayList<>();
         // 防止为 null
         if (appType != null) {
+            // 管理应用程序包
+            PackageManager packageManager = AppUtils.getPackageManager();
+            if (packageManager == null) return listApps;
             try {
-                // 管理应用程序包
-                PackageManager packageManager = AppUtils.getPackageManager();
                 // 获取手机内所有应用
                 List<PackageInfo> packList = packageManager.getInstalledPackages(0);
                 // 判断是否属于添加全部
@@ -282,11 +285,12 @@ public final class AppInfoUtils {
      * @return APP 注册的权限数组
      */
     public static String[] getAppPermission(final String packageName) {
+        PackageInfo packageInfo = AppUtils.getPackageInfo(
+                packageName, PackageManager.GET_PERMISSIONS
+        );
+        if (packageInfo == null) return null;
         try {
-            // packageInfo.requestedPermissions
-            return AppUtils.getPackageInfo(
-                    packageName, PackageManager.GET_PERMISSIONS
-            ).requestedPermissions;
+            return packageInfo.requestedPermissions;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppPermission");
         }
@@ -298,14 +302,17 @@ public final class AppInfoUtils {
      * @param packageName 应用包名
      */
     public static void printAppPermission(final String packageName) {
+        PackageManager packageManager = AppUtils.getPackageManager();
+        if (packageManager == null) {
+            LogPrintUtils.eTag(TAG, "printAppPermission => packageManager is null");
+            return;
+        }
+        StringBuilder builder = new StringBuilder();
         try {
-            StringBuilder builder = new StringBuilder();
-            // =
-            PackageManager packageManager       = AppUtils.getPackageManager();
-            PackageInfo    packageInfo          = packageManager.getPackageInfo(
+            PackageInfo packageInfo = packageManager.getPackageInfo(
                     packageName, PackageManager.GET_PERMISSIONS
             );
-            String[]       usesPermissionsArray = packageInfo.requestedPermissions;
+            String[] usesPermissionsArray = packageInfo.requestedPermissions;
             for (String usesPermissionName : usesPermissionsArray) {
                 // 获取每个权限的名字, 如: android.permission.INTERNET
                 // 拼接日志

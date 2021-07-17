@@ -14,6 +14,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
 import dev.engine.log.DevLogEngine
 import dev.service.NotificationService
+import dev.utils.DevFinal
 import dev.utils.app.toast.ToastTintUtils
 
 /**
@@ -108,7 +109,7 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                         val bundle = it.extras
                         for (key in bundle.keySet()) {
-                            builder.append("\n" + key + ": " + bundle.get(key))
+                            builder.append(DevFinal.NEW_LINE_STR + key + ": " + bundle.get(key))
                         }
                     }
                     // 打印日志

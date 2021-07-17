@@ -251,7 +251,7 @@ final class LoggerPrinter
                     errorInfo = e1.toString();
                 }
             }
-            logHandle(logConfig, tag, Log.ERROR, errorInfo + "\n" + json);
+            logHandle(logConfig, tag, Log.ERROR, errorInfo + DevFinal.NEW_LINE_STR + json);
         }
     }
 
@@ -297,7 +297,7 @@ final class LoggerPrinter
                     errorInfo = e1.toString();
                 }
             }
-            logHandle(logConfig, tag, Log.ERROR, errorInfo + "\n" + xml);
+            logHandle(logConfig, tag, Log.ERROR, errorInfo + DevFinal.NEW_LINE_STR + xml);
         }
     }
 
@@ -490,7 +490,7 @@ final class LoggerPrinter
                     errorInfo = e1.toString();
                 }
             }
-            logHandle(logConfig, tag, Log.ERROR, errorInfo + "\n" + json);
+            logHandle(logConfig, tag, Log.ERROR, errorInfo + DevFinal.NEW_LINE_STR + json);
         }
     }
 
@@ -538,7 +538,7 @@ final class LoggerPrinter
                     errorInfo = e1.toString();
                 }
             }
-            logHandle(logConfig, tag, Log.ERROR, errorInfo + "\n" + xml);
+            logHandle(logConfig, tag, Log.ERROR, errorInfo + DevFinal.NEW_LINE_STR + xml);
         }
     }
 

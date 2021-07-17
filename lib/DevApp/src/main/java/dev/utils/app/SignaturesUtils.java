@@ -23,6 +23,7 @@ import java.util.jar.JarFile;
 
 import javax.security.auth.x500.X500Principal;
 
+import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.CloseUtils;
 import dev.utils.common.ConvertUtils;
@@ -214,7 +215,7 @@ public final class SignaturesUtils {
                     builder.append(sdf.format(notBefore));
                     builder.append(" to "); // 至
                     builder.append(sdf.format(notAfter));
-                    builder.append("\n\n");
+                    builder.append(DevFinal.NEW_LINE_STR_X2);
                     builder.append(notBefore);
                     builder.append(" to ");
                     builder.append(notAfter);
