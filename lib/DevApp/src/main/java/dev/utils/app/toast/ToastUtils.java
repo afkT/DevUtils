@@ -831,7 +831,7 @@ public final class ToastUtils {
                         priShowToastText(isSingle, context, e.getMessage(), duration);
                     }
                 } else {
-                    priShowToastText(isSingle, context, text, duration);
+                    priShowToastText(isSingle, context, null, duration);
                 }
             } else {
                 priShowToastText(isSingle, context, text, duration);

@@ -328,7 +328,7 @@ public final class LogPrintUtils {
                         errorInfo = e1.toString();
                     }
                 }
-                printLog(Log.ERROR, tag, errorInfo + "\n" + json);
+                printLog(Log.ERROR, tag, errorInfo + DevFinal.NEW_LINE_STR + json);
             }
         }
     }
@@ -366,7 +366,7 @@ public final class LogPrintUtils {
                         errorInfo = e1.toString();
                     }
                 }
-                printLog(Log.ERROR, tag, errorInfo + "\n" + xml);
+                printLog(Log.ERROR, tag, errorInfo + DevFinal.NEW_LINE_STR + xml);
             }
         }
     }

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -129,8 +130,10 @@ public final class PermissionUtils {
      */
     public static boolean canRequestPackageInstalls() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            PackageManager packageManager = AppUtils.getPackageManager();
+            if (packageManager == null) return false;
             try {
-                return AppUtils.getPackageManager().canRequestPackageInstalls();
+                return packageManager.canRequestPackageInstalls();
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "canRequestPackageInstalls");
             }

@@ -324,7 +324,9 @@ public final class WifiHotUtils {
     public boolean setWifiApConfiguration(final WifiConfiguration apWifiConfig) {
         try {
             // 获取设置 Wifi 热点方法
-            Method method = mWifiManager.getClass().getMethod("setWifiApConfiguration", WifiConfiguration.class);
+            Method method = mWifiManager.getClass().getMethod(
+                    "setWifiApConfiguration", WifiConfiguration.class
+            );
             // 开启 Wifi 热点
             return (boolean) method.invoke(mWifiManager, apWifiConfig);
         } catch (Exception e) {
@@ -532,12 +534,10 @@ public final class WifiHotUtils {
      * @return 转换后的 IP 地址
      */
     private String intToString(final int data) {
-        return new StringBuilder()
-                .append((data >> 0) & 0xff).append(".")
-                .append((data >> 8) & 0xff).append(".")
-                .append((data >> 16) & 0xff).append(".")
-                .append((data >> 24) & 0xff)
-                .toString();
+        return ((data) & 0xff) + "." +
+                ((data >> 8) & 0xff) + "." +
+                ((data >> 16) & 0xff) + "." +
+                ((data >> 24) & 0xff);
     }
 
     // ===================
