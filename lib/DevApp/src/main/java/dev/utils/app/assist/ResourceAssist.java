@@ -125,7 +125,6 @@ public final class ResourceAssist {
      * @return {@link ResourceAssist}
      */
     public static ResourceAssist get() {
-//        return new ResourceAssist();
         return getInstance();
     }
 
@@ -1413,9 +1412,9 @@ public final class ResourceAssist {
      * @return 文件 byte[] 数据
      */
     public byte[] readBytesFromAssets(final String fileName) {
-        InputStream is = null;
+        InputStream is = open(fileName);
+        if (is == null) return null;
         try {
-            is = open(fileName);
             int    length = is.available();
             byte[] buffer = new byte[length];
             is.read(buffer);
@@ -1450,9 +1449,9 @@ public final class ResourceAssist {
      * @return 文件 byte[] 数据
      */
     public byte[] readBytesFromRaw(@RawRes final int resId) {
-        InputStream is = null;
+        InputStream is = openRawResource(resId);
+        if (is == null) return null;
         try {
-            is = openRawResource(resId);
             int    length = is.available();
             byte[] buffer = new byte[length];
             is.read(buffer);

@@ -706,9 +706,6 @@ final class DevCacheManager {
     // = Data =
     // ========
 
-    // Data JSON Format
-    private final String DATA_FORMAT = "{\"key\":\"%s\",\"type\":%d,\"saveTime\":%d,\"validTime\":%d}";
-
     // 缓存 Data
     private final HashMap<String, DevCache.Data> mDataMaps = new HashMap<>();
 
@@ -732,9 +729,11 @@ final class DevCacheManager {
      * @return JSON String
      */
     private String _toDataString(final DevCache.Data data) {
-        return String.format(DATA_FORMAT, data.getKey(),
-                data.getType(), data.getSaveTime(),
-                data.getValidTime()
+        // Data JSON Format
+        return String.format(
+                "{\"key\":\"%s\",\"type\":%d,\"saveTime\":%d,\"validTime\":%d}",
+                data.getKey(), data.getType(),
+                data.getSaveTime(), data.getValidTime()
         );
     }
 

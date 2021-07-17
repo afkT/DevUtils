@@ -221,12 +221,9 @@ public final class BeepVibrateAssist
     ) {
         final MediaPlayer mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                LogPrintUtils.dTag(TAG, "buildMediaPlayer - onCompletion");
-            }
-        });
+        mediaPlayer.setOnCompletionListener(
+                mp -> LogPrintUtils.dTag(TAG, "buildMediaPlayer - onCompletion")
+        );
         mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
             @Override
             public synchronized boolean onError(
@@ -279,12 +276,9 @@ public final class BeepVibrateAssist
     ) {
         final MediaPlayer mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                LogPrintUtils.dTag(TAG, "buildMediaPlayer - onCompletion");
-            }
-        });
+        mediaPlayer.setOnCompletionListener(
+                mp -> LogPrintUtils.dTag(TAG, "buildMediaPlayer - onCompletion")
+        );
         mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
             @Override
             public synchronized boolean onError(

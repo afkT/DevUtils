@@ -94,35 +94,29 @@ public class AppRecordInsert
         // = 拼接数据 =
         // ==========
 
-        StringBuilder builder = new StringBuilder()
-                .append(DevFinal.NEW_LINE_STR_X2)
-                .append("[设备信息]")
-                .append(DevFinal.NEW_LINE_STR_X2)
-                .append("===========================")
-                .append(DevFinal.NEW_LINE_STR_X2)
-                .append(DEVICE_INFO_STR)
-                .append(DevFinal.NEW_LINE_STR)
-                .append("===========================")
-                .append(DevFinal.NEW_LINE_STR_X2)
-
-                .append(DevFinal.NEW_LINE_STR_X2)
-                .append("[版本信息]")
-                .append(DevFinal.NEW_LINE_STR_X2)
-                .append("===========================")
-                .append(DevFinal.NEW_LINE_STR_X2)
-                .append("versionName: ").append(APP_VERSION_NAME)
-                .append(DevFinal.NEW_LINE_STR)
-                .append("versionCode: ").append(APP_VERSION_CODE)
-                .append(DevFinal.NEW_LINE_STR)
-                .append("package: ").append(PACKAGE_NAME)
-                .append(DevFinal.NEW_LINE_STR_X2)
-                .append("===========================")
-                .append(DevFinal.NEW_LINE_STR_X2)
-
-                .append(DevFinal.NEW_LINE_STR_X2)
-                .append("[日志内容]")
-                .append(DevFinal.NEW_LINE_STR_X2)
-                .append("===========================");
-        return builder.toString();
+        return DevFinal.NEW_LINE_STR_X2 +
+                "[设备信息]" +
+                DevFinal.NEW_LINE_STR_X2 +
+                "===========================" +
+                DevFinal.NEW_LINE_STR_X2 +
+                DEVICE_INFO_STR +
+                DevFinal.NEW_LINE_STR +
+                "===========================" +
+                DevFinal.NEW_LINE_STR_X4 +
+                "[版本信息]" +
+                DevFinal.NEW_LINE_STR_X2 +
+                "===========================" +
+                DevFinal.NEW_LINE_STR_X2 +
+                "versionName: " + APP_VERSION_NAME +
+                DevFinal.NEW_LINE_STR +
+                "versionCode: " + APP_VERSION_CODE +
+                DevFinal.NEW_LINE_STR +
+                "package: " + PACKAGE_NAME +
+                DevFinal.NEW_LINE_STR_X2 +
+                "===========================" +
+                DevFinal.NEW_LINE_STR_X4 +
+                "[日志内容]" +
+                DevFinal.NEW_LINE_STR_X2 +
+                "===========================";
     }
 }

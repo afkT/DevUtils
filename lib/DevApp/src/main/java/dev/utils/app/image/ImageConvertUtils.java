@@ -40,7 +40,7 @@ public final class ImageConvertUtils {
             buffer[0] = 0x42;
             buffer[1] = 0x4D;
             // = 位图文件大小 =
-            buffer[2] = (byte) (size >> 0);
+            buffer[2] = (byte) (size);
             buffer[3] = (byte) (size >> 8);
             buffer[4] = (byte) (size >> 16);
             buffer[5] = (byte) (size >> 24);
@@ -74,12 +74,12 @@ public final class ImageConvertUtils {
             buffer[2] = 0x00;
             buffer[3] = 0x00;
             // =
-            buffer[4] = (byte) (width >> 0);
+            buffer[4] = (byte) (width);
             buffer[5] = (byte) (width >> 8);
             buffer[6] = (byte) (width >> 16);
             buffer[7] = (byte) (width >> 24);
             // =
-            buffer[8]  = (byte) (height >> 0);
+            buffer[8]  = (byte) (height);
             buffer[9]  = (byte) (height >> 8);
             buffer[10] = (byte) (height >> 16);
             buffer[11] = (byte) (height >> 24);
@@ -143,7 +143,7 @@ public final class ImageConvertUtils {
                 // DIB 文件格式最后一行为第一行, 每行按从左到右顺序
                 int start = i - width + 1;
                 for (int j = start; j <= i; j++) {
-                    buffer[offset]     = (byte) (data[j] >> 0);
+                    buffer[offset]     = (byte) (data[j]);
                     buffer[offset + 1] = (byte) (data[j] >> 8);
                     buffer[offset + 2] = (byte) (data[j] >> 16);
                     buffer[offset + 3] = (byte) (data[j] >> 24);
