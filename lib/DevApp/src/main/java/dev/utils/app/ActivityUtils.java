@@ -159,10 +159,11 @@ public final class ActivityUtils {
             final String className
     ) {
         if (packageName == null || className == null) return false;
+        PackageManager packageManager = AppUtils.getPackageManager();
+        if (packageManager == null) return false;
         boolean result = true;
         try {
-            PackageManager packageManager = AppUtils.getPackageManager();
-            Intent         intent         = new Intent();
+            Intent intent = new Intent();
             intent.setClassName(packageName, className);
             if (packageManager.resolveActivity(intent, 0) == null) {
                 result = false;
@@ -220,11 +221,13 @@ public final class ActivityUtils {
      */
     public static String getLauncherActivity(final String packageName) {
         if (packageName == null) return null;
+        PackageManager packageManager = AppUtils.getPackageManager();
+        if (packageManager == null) return null;
         try {
             Intent intent = new Intent(Intent.ACTION_MAIN, null);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            List<ResolveInfo> lists = AppUtils.getPackageManager().queryIntentActivities(intent, 0);
+            List<ResolveInfo> lists = packageManager.queryIntentActivities(intent, 0);
             for (ResolveInfo resolveInfo : lists) {
                 if (resolveInfo != null && resolveInfo.activityInfo != null) {
                     if (resolveInfo.activityInfo.packageName.equals(packageName)) {
@@ -260,8 +263,10 @@ public final class ActivityUtils {
      */
     public static Drawable getActivityIcon(final ComponentName componentName) {
         if (componentName == null) return null;
+        PackageManager packageManager = AppUtils.getPackageManager();
+        if (packageManager == null) return null;
         try {
-            return AppUtils.getPackageManager().getActivityIcon(componentName);
+            return packageManager.getActivityIcon(componentName);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getActivityIcon");
         }
@@ -290,8 +295,10 @@ public final class ActivityUtils {
      */
     public static Drawable getActivityLogo(final ComponentName componentName) {
         if (componentName == null) return null;
+        PackageManager packageManager = AppUtils.getPackageManager();
+        if (packageManager == null) return null;
         try {
-            return AppUtils.getPackageManager().getActivityLogo(componentName);
+            return packageManager.getActivityLogo(componentName);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getActivityLogo");
         }
@@ -316,13 +323,15 @@ public final class ActivityUtils {
      */
     public static String getActivityToLauncher(final String packageName) {
         if (packageName == null) return null;
+        PackageManager packageManager = AppUtils.getPackageManager();
+        if (packageManager == null) return null;
         try {
             // 创建一个类别为 CATEGORY_LAUNCHER 的该包名的 Intent
             Intent resolveIntent = new Intent(Intent.ACTION_MAIN, null);
             resolveIntent.addCategory(Intent.CATEGORY_LAUNCHER);
             resolveIntent.setPackage(packageName);
             // 通过 AppUtils.getPackageManager() 的 queryIntentActivities 方法遍历
-            List<ResolveInfo> lists = AppUtils.getPackageManager().queryIntentActivities(
+            List<ResolveInfo> lists = packageManager.queryIntentActivities(
                     resolveIntent, 0
             );
             for (ResolveInfo resolveInfo : lists) {
@@ -343,11 +352,13 @@ public final class ActivityUtils {
      * @return {@link ResolveInfo}
      */
     public static ResolveInfo getLauncherCategoryHomeToResolveInfo() {
+        PackageManager packageManager = AppUtils.getPackageManager();
+        if (packageManager == null) return null;
         try {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            return AppUtils.getPackageManager().resolveActivity(intent, 0);
+            return packageManager.resolveActivity(intent, 0);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getLauncherCategoryHomeToResolveInfo");
         }
@@ -879,8 +890,10 @@ public final class ActivityUtils {
      * @return {@link ActivityUtils}
      */
     public ActivityUtils restartApplication() {
+        PackageManager packageManager = AppUtils.getPackageManager();
+        if (packageManager == null) return this;
         try {
-            Intent intent = AppUtils.getPackageManager().getLaunchIntentForPackage(
+            Intent intent = packageManager.getLaunchIntentForPackage(
                     AppUtils.getPackageName()
             );
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

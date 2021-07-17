@@ -812,8 +812,6 @@ public final class ADBUtils {
         } else if (TextUtils.isEmpty(activity)) {
             return false;
         }
-        // 判断是否重复
-        boolean isRepeat = false;
         // 获取
         List<String> lists = getActivitysToPackageLists(packageName);
         // 数据长度
@@ -821,7 +819,8 @@ public final class ADBUtils {
         // 防止数据为 null
         if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             try {
-                if (lists.get(length - 1).endsWith(activity)) {
+                String value = lists.get(length - 1);
+                if (value != null && value.endsWith(activity)) {
                     // 倒序遍历, 越后面是 Activity 栈顶
                     for (int i = length - 2; i >= 0; i--) {
                         String data = lists.get(i);
@@ -835,7 +834,7 @@ public final class ADBUtils {
                 LogPrintUtils.eTag(TAG, e, "isActivityTopRepeat");
             }
         }
-        return isRepeat;
+        return false;
     }
 
     /**
@@ -853,8 +852,6 @@ public final class ADBUtils {
         } else if (activitys == null || activitys.size() == 0) {
             return false;
         }
-        // 判断是否重复
-        boolean isRepeat = false;
         // 获取
         List<String> lists = getActivitysToPackageLists(packageName);
         // 数据长度
@@ -864,7 +861,8 @@ public final class ADBUtils {
             // 循环判断
             for (String activity : activitys) {
                 try {
-                    if (lists.get(length - 1).endsWith(activity)) {
+                    String value = lists.get(length - 1);
+                    if (value != null && value.endsWith(activity)) {
                         // 倒序遍历, 越后面是 Activity 栈顶
                         for (int i = length - 2; i >= 0; i--) {
                             String data = lists.get(i);
@@ -879,7 +877,7 @@ public final class ADBUtils {
                 }
             }
         }
-        return isRepeat;
+        return false;
     }
 
     // =
@@ -908,7 +906,8 @@ public final class ADBUtils {
         // 防止数据为 null
         if (length >= 2) { // 两个页面以上, 才能够判断是否重复
             try {
-                if (lists.get(length - 1).endsWith(activity)) {
+                String value = lists.get(length - 1);
+                if (value != null && value.endsWith(activity)) {
                     // 倒序遍历, 越后面是 Activity 栈顶
                     for (int i = length - 2; i >= 0; i--) {
                         String data = lists.get(i);
@@ -954,7 +953,8 @@ public final class ADBUtils {
                     // 重复数量
                     int number = 0;
                     // 判断是否对应页面结尾
-                    if (lists.get(length - 1).endsWith(activity)) {
+                    String value = lists.get(length - 1);
+                    if (value != null && value.endsWith(activity)) {
                         // 倒序遍历, 越后面是 Activity 栈顶
                         for (int i = length - 2; i >= 0; i--) {
                             String data = lists.get(i);
@@ -2007,17 +2007,16 @@ public final class ADBUtils {
      * @return IP 地址
      */
     public static String getIPAddress() {
-        boolean                  isRoot = false;
-        ShellUtils.CommandResult result = ShellUtils.execCmd("ifconfig | grep Mask", isRoot);
+        ShellUtils.CommandResult result = ShellUtils.execCmd("ifconfig | grep Mask", false);
         if (result.isSuccess3()) {
             return result.successMsg;
         } else { // 如果设备连着 Wifi, 可以使用如下命令来查看局域网 IP
-            result = ShellUtils.execCmd("ifconfig wlan0", isRoot);
+            result = ShellUtils.execCmd("ifconfig wlan0", false);
             if (result.isSuccess3()) {
                 return result.successMsg;
             } else {
                 // 可以看到网络连接名称、启用状态、IP 地址和 Mac 地址等信息
-                result = ShellUtils.execCmd("netcfg", isRoot);
+                result = ShellUtils.execCmd("netcfg", false);
                 if (result.isSuccess3()) {
                     return result.successMsg;
                 }
