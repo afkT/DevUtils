@@ -169,8 +169,8 @@ public final class ResourcePluginUtils {
         // 文件存在才进行处理
         if (FileUtils.isFileExists(apkPath)) {
             try {
-                AssetManager asset        = AssetManager.class.newInstance();
-                Method       addAssetPath = asset.getClass().getMethod(
+                AssetManager asset = AssetManager.class.newInstance();
+                Method addAssetPath = asset.getClass().getMethod(
                         "addAssetPath", String.class
                 );
                 addAssetPath.invoke(asset, apkPath);

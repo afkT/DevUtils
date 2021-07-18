@@ -500,10 +500,10 @@ public final class DeviceUtils {
         String basebandVersion = "";
         try {
             @SuppressLint("PrivateApi")
-            Class<?> clazz   = Class.forName("android.os.SystemProperties");
-            Object                               invoker = clazz.newInstance();
-            Method   method  = clazz.getMethod("get", String.class, String.class);
-            Object   result  = method.invoke(invoker, "gsm.version.baseband", "no message");
+            Class<?> clazz = Class.forName("android.os.SystemProperties");
+            Object invoker = clazz.newInstance();
+            Method method  = clazz.getMethod("get", String.class, String.class);
+            Object result  = method.invoke(invoker, "gsm.version.baseband", "no message");
             basebandVersion = (String) result;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getBaseband_Ver");

@@ -89,7 +89,7 @@ public final class JSONObjectUtils {
                     jsonArray = new JSONArray(object);
                 } else {
                     jsonArray = new JSONArray();
-                    int       length    = Array.getLength(object);
+                    int length = Array.getLength(object);
                     for (int i = 0; i < length; ++i) {
                         jsonArray.put(wrap(Array.get(object, i)));
                     }

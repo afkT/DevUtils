@@ -63,7 +63,7 @@ public final class MemoryUtils {
         try {
             ActivityManager.MemoryInfo memoryInfo = getMemoryInfo();
             if (memoryInfo == null) return null;
-            StringBuilder              builder    = new StringBuilder();
+            StringBuilder builder = new StringBuilder();
             builder.append("Memory: ");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 builder.append("\ntotalMem: ").append(memoryInfo.totalMem);
