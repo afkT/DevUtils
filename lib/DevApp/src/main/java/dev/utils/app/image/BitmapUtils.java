@@ -375,7 +375,11 @@ public final class BitmapUtils {
         if (isEmpty(bitmap)) return null;
         Matrix matrix = new Matrix();
         matrix.postRotate(degrees);
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
+        return Bitmap.createBitmap(
+                bitmap, 0, 0,
+                bitmap.getWidth(), bitmap.getHeight(),
+                matrix, false
+        );
     }
 
     /**
@@ -395,7 +399,11 @@ public final class BitmapUtils {
         if (isEmpty(bitmap)) return null;
         Matrix matrix = new Matrix();
         matrix.postRotate(degrees, px, py);
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
+        return Bitmap.createBitmap(
+                bitmap, 0, 0,
+                bitmap.getWidth(), bitmap.getHeight(),
+                matrix, false
+        );
     }
 
     /**
@@ -464,7 +472,11 @@ public final class BitmapUtils {
         } else {
             matrix.preScale(1, -1);
         }
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, false);
+        return Bitmap.createBitmap(
+                bitmap, 0, 0,
+                bitmap.getWidth(), bitmap.getHeight(),
+                matrix, false
+        );
     }
 
     // =======
@@ -530,7 +542,11 @@ public final class BitmapUtils {
         if (isEmpty(bitmap)) return null;
         Matrix matrix = new Matrix();
         matrix.postScale(scaleX, scaleY);
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        return Bitmap.createBitmap(
+                bitmap, 0, 0,
+                bitmap.getWidth(), bitmap.getHeight(),
+                matrix, true
+        );
     }
 
     // =======
@@ -574,7 +590,11 @@ public final class BitmapUtils {
         if (isEmpty(bitmap)) return null;
         Matrix matrix = new Matrix();
         matrix.setSkew(kx, ky, px, py);
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        return Bitmap.createBitmap(
+                bitmap, 0, 0,
+                bitmap.getWidth(), bitmap.getHeight(),
+                matrix, true
+        );
     }
 
     // =======
@@ -651,14 +671,20 @@ public final class BitmapUtils {
 
             // 属于宽度 * 对应比例 >= 高度
             if (diffHeight >= 0) { // 以高度做偏移
-                return Bitmap.createBitmap(bitmap, 0, diffHeight / 2, width, reHeight, null, false);
+                return Bitmap.createBitmap(
+                        bitmap, 0, diffHeight / 2,
+                        width, reHeight, null, false
+                );
             } else { // 以宽度做偏移
                 // 获取需要裁剪的宽度
                 int reWidth = (int) ((height * widthScale) / heightScale);
                 // 判断需要裁剪的宽度与偏移差距
                 int diffWidth = width - reWidth;
                 // 创建图片
-                return Bitmap.createBitmap(bitmap, diffWidth / 2, 0, reWidth, height, null, false);
+                return Bitmap.createBitmap(
+                        bitmap, diffWidth / 2, 0,
+                        reWidth, height, null, false
+                );
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "crop");
@@ -726,8 +752,14 @@ public final class BitmapUtils {
 
         Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas    = new Canvas(newBitmap);
-        canvas.drawBitmap(bgd, (bgdPoint != null) ? bgdPoint.x : 0, (bgdPoint != null) ? bgdPoint.y : 0, null);
-        canvas.drawBitmap(fg, (fgPoint != null) ? fgPoint.x : 0, (fgPoint != null) ? fgPoint.y : 0, paint);
+        canvas.drawBitmap(
+                bgd, (bgdPoint != null) ? bgdPoint.x : 0,
+                (bgdPoint != null) ? bgdPoint.y : 0, null
+        );
+        canvas.drawBitmap(
+                fg, (fgPoint != null) ? fgPoint.x : 0,
+                (fgPoint != null) ? fgPoint.y : 0, paint
+        );
         return newBitmap;
     }
 
@@ -831,8 +863,10 @@ public final class BitmapUtils {
             paint.setXfermode(new PorterDuffXfermode(mode));
         }
 
-        Bitmap newBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas    = new Canvas(newBitmap);
+        Bitmap newBitmap = Bitmap.createBitmap(
+                width, height, Bitmap.Config.ARGB_8888
+        );
+        Canvas canvas = new Canvas(newBitmap);
         canvas.drawBitmap(bgd, 0, 0, null);
         canvas.drawBitmap(fg, 0, 0, paint);
         return newBitmap;
@@ -887,8 +921,11 @@ public final class BitmapUtils {
         // 创建倒影图片
         Bitmap reflectionImage = reverseByVertical(bitmap); // 垂直翻转图片 ( 上下颠倒 )
         // 创建一张宽度与源图片相同, 但高度等于 源图片的高度 + 间距 + 倒影的高度的图片
-        Bitmap bitmapWithReflection = Bitmap.createBitmap(width, height + reflectionSpacing + reflectionHeight, Bitmap.Config.ARGB_8888);
-        Canvas canvas               = new Canvas(bitmapWithReflection);
+        Bitmap bitmapWithReflection = Bitmap.createBitmap(
+                width, height + reflectionSpacing + reflectionHeight,
+                Bitmap.Config.ARGB_8888
+        );
+        Canvas canvas = new Canvas(bitmapWithReflection);
 
         // 将源图片画到画布的上半部分, 将倒影画到画布的下半部分, 倒影与画布顶部的间距是源图片的高度加上源图片与倒影之间的间距
         canvas.drawBitmap(bitmap, 0, 0, null);
@@ -900,11 +937,18 @@ public final class BitmapUtils {
 
         // 将倒影改成半透明, 创建画笔, 并设置画笔的渐变从半透明的白色到全透明的白色, 然后再倒影上面画半透明效果
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setShader(new LinearGradient(0, bitmap.getHeight(), 0, bitmapWithReflection.getHeight() + spacing,
-                0x70ffffff, 0x00ffffff, Shader.TileMode.CLAMP
-        ));
+        paint.setShader(
+                new LinearGradient(
+                        0, bitmap.getHeight(), 0,
+                        bitmapWithReflection.getHeight() + spacing,
+                        0x70ffffff, 0x00ffffff, Shader.TileMode.CLAMP
+                )
+        );
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-        canvas.drawRect(0, height + spacing, width, bitmapWithReflection.getHeight() + spacing, paint);
+        canvas.drawRect(
+                0, height + spacing, width,
+                bitmapWithReflection.getHeight() + spacing, paint
+        );
         return bitmapWithReflection;
     }
 
@@ -944,8 +988,11 @@ public final class BitmapUtils {
         paint.setAntiAlias(true);
         paint.setColor(0xff424242); // 设置画笔的颜色为不透明的灰色
 
-        Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas    = new Canvas(newBitmap);
+        Bitmap newBitmap = Bitmap.createBitmap(
+                bitmap.getWidth(), bitmap.getHeight(),
+                Bitmap.Config.ARGB_8888
+        );
+        Canvas canvas = new Canvas(newBitmap);
         canvas.drawARGB(0, 0, 0, 0);
         canvas.drawRoundRect(rectF, pixels, pixels, paint);
         // 绘制底圆后, 进行合并 ( 交集处理 )
@@ -1033,8 +1080,11 @@ public final class BitmapUtils {
         paint.setAntiAlias(true);
         paint.setColor(0xff424242); // 设置画笔的颜色为不透明的灰色
 
-        Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas    = new Canvas(newBitmap);
+        Bitmap newBitmap = Bitmap.createBitmap(
+                bitmap.getWidth(), bitmap.getHeight(),
+                Bitmap.Config.ARGB_8888
+        );
+        Canvas canvas = new Canvas(newBitmap);
         canvas.drawARGB(0, 0, 0, 0);
         canvas.drawRoundRect(rectF, pixels, pixels, paint);
         // 绘制底圆后, 进行合并 ( 交集处理 )
@@ -1084,7 +1134,9 @@ public final class BitmapUtils {
         if (width != height) {
             matrix.preScale((float) size / width, (float) size / height);
         }
-        BitmapShader shader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+        BitmapShader shader = new BitmapShader(
+                bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP
+        );
         shader.setLocalMatrix(matrix);
         paint.setShader(shader);
 
@@ -1170,8 +1222,12 @@ public final class BitmapUtils {
             float radius = Math.min(width, height) / 2f - borderSize / 2f;
             canvas.drawCircle(width / 2f, height / 2f, radius, paint);
         } else {
-            int   halfBorderSize = borderSize >> 1;
-            RectF rectF          = new RectF(halfBorderSize, halfBorderSize, width - halfBorderSize, height - halfBorderSize);
+            int halfBorderSize = borderSize >> 1;
+            RectF rectF = new RectF(
+                    halfBorderSize, halfBorderSize,
+                    width - halfBorderSize,
+                    height - halfBorderSize
+            );
             canvas.drawRoundRect(rectF, cornerRadius, cornerRadius, paint);
         }
         return newBitmap;
@@ -1292,7 +1348,9 @@ public final class BitmapUtils {
             final Bitmap bitmap,
             @IntRange(from = 0, to = 100) final int quality
     ) {
-        return compressByQuality(bitmap, Bitmap.CompressFormat.JPEG, quality, null);
+        return compressByQuality(
+                bitmap, Bitmap.CompressFormat.JPEG, quality, null
+        );
     }
 
     /**
@@ -1348,7 +1406,9 @@ public final class BitmapUtils {
             final Bitmap bitmap,
             final long maxByteSize
     ) {
-        return compressByByteSize(bitmap, Bitmap.CompressFormat.JPEG, maxByteSize, null);
+        return compressByByteSize(
+                bitmap, Bitmap.CompressFormat.JPEG, maxByteSize, null
+        );
     }
 
     /**
@@ -1478,7 +1538,9 @@ public final class BitmapUtils {
             final int maxWidth,
             final int maxHeight
     ) {
-        return compressBySampleSize(bitmap, Bitmap.CompressFormat.JPEG, maxWidth, maxHeight);
+        return compressBySampleSize(
+                bitmap, Bitmap.CompressFormat.JPEG, maxWidth, maxHeight
+        );
     }
 
     /**

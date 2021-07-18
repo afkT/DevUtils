@@ -197,7 +197,13 @@ final class IToastImpl
     public void setView(@LayoutRes final int layoutId) {
         if (mConfigToast != null) {
             try {
-                setView(View.inflate(mConfigToast.getView().getContext().getApplicationContext(), layoutId, null));
+                setView(
+                        View.inflate(
+                                mConfigToast.getView().getContext()
+                                        .getApplicationContext(),
+                                layoutId, null
+                        )
+                );
             } catch (Exception ignored) {
             }
             // 如果是 null, 则抛出异常
@@ -357,7 +363,12 @@ final class IToastImpl
     private TextView createView() {
         TextView textView = new TextView(mContext);
         textView.setId(android.R.id.message);
-        textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        textView.setLayoutParams(
+                new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+        );
         return textView;
     }
 
@@ -487,7 +498,10 @@ final class IToastImpl
             // 设置边距
             mToast.setMargin(style.getHorizontalMargin(), style.getVerticalMargin());
             // 设置显示时间
-            mToast.setDuration((toastText.length() < mTextLengthConvertDuration) ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG);
+            mToast.setDuration(
+                    (toastText.length() < mTextLengthConvertDuration)
+                            ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "newToastText");
         }

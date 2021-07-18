@@ -71,7 +71,9 @@ public final class PermissionUtils {
         if (context == null || permission == null) return false;
         // SDK 版本小于 23 则表示直接通过 || 检查是否通过权限
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
-                PermissionChecker.PERMISSION_GRANTED == PermissionChecker.checkSelfPermission(context, permission);
+                PermissionChecker.PERMISSION_GRANTED == PermissionChecker.checkSelfPermission(
+                        context, permission
+                );
     }
 
     /**
@@ -89,14 +91,16 @@ public final class PermissionUtils {
             final String... permissions
     ) {
         if (activity == null || permissions == null) return false;
-        boolean shouldShowRequestPermissionRationale = false; // 表示勾选了不再询问
+        boolean state = false; // 表示勾选了不再询问
         for (String permission : permissions) {
             if (permission != null && !isGranted(activity, permission)) {
-                shouldShowRequestPermissionRationale = ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
-                if (!shouldShowRequestPermissionRationale) return false;
+                state = ActivityCompat.shouldShowRequestPermissionRationale(
+                        activity, permission
+                );
+                if (!state) return false;
             }
         }
-        return shouldShowRequestPermissionRationale;
+        return state;
     }
 
     /**
@@ -115,8 +119,10 @@ public final class PermissionUtils {
         Set<String> sets = new HashSet<>();
         for (String permission : permissions) {
             if (permission != null && !sets.contains(permission) && !isGranted(activity, permission)) {
-                boolean shouldShowRequestPermissionRationale = ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
-                if (shouldShow == shouldShowRequestPermissionRationale) {
+                boolean state = ActivityCompat.shouldShowRequestPermissionRationale(
+                        activity, permission
+                );
+                if (shouldShow == state) {
                     sets.add(permission);
                 }
             }
@@ -388,7 +394,11 @@ public final class PermissionUtils {
             super.onCreate(savedInstanceState);
             // 请求权限
             int size = sInstance.mPermissionsRequestLists.size();
-            requestPermissions(sInstance.mPermissionsRequestLists.toArray(new String[size]), 1);
+            requestPermissions(
+                    sInstance.mPermissionsRequestLists.toArray(
+                            new String[size]
+                    ), 1
+            );
         }
 
         /**
@@ -457,7 +467,8 @@ public final class PermissionUtils {
         String[] deniedArrays = deniedList.toArray(new String[0]);
         // 获取拒绝权限询问勾选状态 true 表示没有勾选不再询问, 而 false 则表示勾选了不再询问
         if (PermissionUtils.shouldShowRequestPermissionRationale(activity, deniedArrays)) { // 再次请求
-            PermissionUtils.permission(deniedArrays).callback(callback).request(activity);
+            PermissionUtils.permission(deniedArrays)
+                    .callback(callback).request(activity);
             return 1;
         } else { // 拒绝权限且不再询问, 跳转到应用设置页面
             AppUtils.startActivity(IntentUtils.getLaunchAppDetailsSettingsIntent());
@@ -535,7 +546,9 @@ public final class PermissionUtils {
                 mHandler.post(() -> mCallback.onGranted());
             } else {
                 mHandler.post(() -> mCallback.onDenied(
-                        mPermissionsGrantedLists, mPermissionsDeniedLists, mPermissionsNotFoundLists
+                        mPermissionsGrantedLists,
+                        mPermissionsDeniedLists,
+                        mPermissionsNotFoundLists
                 ));
             }
         }

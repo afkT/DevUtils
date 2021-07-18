@@ -51,7 +51,10 @@ public class LogConfig {
      * @return {@link LogConfig} 日志配置
      */
     public static LogConfig getReleaseLogConfig(final String tag) {
-        return getLogConfig(tag, 3, 0, false, true, false, LogLevel.ERROR);
+        return getLogConfig(
+                tag, 3, 0, false,
+                true, false, LogLevel.ERROR
+        );
     }
 
     /**
@@ -64,7 +67,10 @@ public class LogConfig {
             final String tag,
             final LogLevel logLevel
     ) {
-        return getLogConfig(tag, 3, 0, false, true, false, logLevel);
+        return getLogConfig(
+                tag, 3, 0, false,
+                true, false, logLevel
+        );
     }
 
     // =
@@ -75,7 +81,10 @@ public class LogConfig {
      * @return {@link LogConfig} 日志配置
      */
     public static LogConfig getDebugLogConfig(final String tag) {
-        return getLogConfig(tag, 3, 0, false, true, false, LogLevel.DEBUG);
+        return getLogConfig(
+                tag, 3, 0, false,
+                true, false, LogLevel.DEBUG
+        );
     }
 
     /**
@@ -88,7 +97,10 @@ public class LogConfig {
             final String tag,
             final LogLevel logLevel
     ) {
-        return getLogConfig(tag, 3, 0, false, true, false, logLevel);
+        return getLogConfig(
+                tag, 3, 0, false,
+                true, false, logLevel
+        );
     }
 
     // =
@@ -99,7 +111,10 @@ public class LogConfig {
      * @return {@link LogConfig} 日志配置
      */
     public static LogConfig getSortLogConfig(final String tag) {
-        return getLogConfig(tag, 3, 0, false, true, true, LogLevel.DEBUG);
+        return getLogConfig(
+                tag, 3, 0, false,
+                true, true, LogLevel.DEBUG
+        );
     }
 
     /**
@@ -112,7 +127,10 @@ public class LogConfig {
             final String tag,
             final LogLevel logLevel
     ) {
-        return getLogConfig(tag, 3, 0, false, true, true, logLevel);
+        return getLogConfig(
+                tag, 3, 0, false,
+                true, true, logLevel
+        );
     }
 
     // =

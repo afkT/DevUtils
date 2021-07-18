@@ -251,7 +251,10 @@ final class LoggerPrinter
                     errorInfo = e1.toString();
                 }
             }
-            logHandle(logConfig, tag, Log.ERROR, errorInfo + DevFinal.NEW_LINE_STR + json);
+            logHandle(
+                    logConfig, tag, Log.ERROR,
+                    errorInfo + DevFinal.NEW_LINE_STR + json
+            );
         }
     }
 
@@ -279,10 +282,13 @@ final class LoggerPrinter
             StreamResult xmlOutput   = new StreamResult(new StringWriter());
             Transformer  transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+            transformer.setOutputProperty(
+                    "{http://xml.apache.org/xslt}indent-amount", "2"
+            );
             transformer.transform(xmlInput, xmlOutput);
             // 获取打印消息
-            String message = xmlOutput.getWriter().toString().replaceFirst(">", ">\n");
+            String message = xmlOutput.getWriter().toString()
+                    .replaceFirst(">", ">\n");
             // 打印信息
             logHandle(logConfig, tag, Log.DEBUG, message);
         } catch (Exception e) {
@@ -297,7 +303,10 @@ final class LoggerPrinter
                     errorInfo = e1.toString();
                 }
             }
-            logHandle(logConfig, tag, Log.ERROR, errorInfo + DevFinal.NEW_LINE_STR + xml);
+            logHandle(
+                    logConfig, tag, Log.ERROR,
+                    errorInfo + DevFinal.NEW_LINE_STR + xml
+            );
         }
     }
 
@@ -490,7 +499,10 @@ final class LoggerPrinter
                     errorInfo = e1.toString();
                 }
             }
-            logHandle(logConfig, tag, Log.ERROR, errorInfo + DevFinal.NEW_LINE_STR + json);
+            logHandle(
+                    logConfig, tag, Log.ERROR,
+                    errorInfo + DevFinal.NEW_LINE_STR + json
+            );
         }
     }
 
@@ -520,10 +532,13 @@ final class LoggerPrinter
             StreamResult xmlOutput   = new StreamResult(new StringWriter());
             Transformer  transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+            transformer.setOutputProperty(
+                    "{http://xml.apache.org/xslt}indent-amount", "2"
+            );
             transformer.transform(xmlInput, xmlOutput);
             // 获取打印消息
-            String message = xmlOutput.getWriter().toString().replaceFirst(">", ">\n");
+            String message = xmlOutput.getWriter().toString()
+                    .replaceFirst(">", ">\n");
             // 打印信息
             logHandle(logConfig, tag, Log.DEBUG, message);
         } catch (Exception e) {
@@ -538,7 +553,10 @@ final class LoggerPrinter
                     errorInfo = e1.toString();
                 }
             }
-            logHandle(logConfig, tag, Log.ERROR, errorInfo + DevFinal.NEW_LINE_STR + xml);
+            logHandle(
+                    logConfig, tag, Log.ERROR,
+                    errorInfo + DevFinal.NEW_LINE_STR + xml
+            );
         }
     }
 
@@ -776,7 +794,10 @@ final class LoggerPrinter
         if (!logConfig.displayThreadInfo) return;
 
         // 打印线程信息 ( 线程名 )
-        finalLogPrinter(logType, tag, LogConstants.HORIZONTAL_DOUBLE_LINE + " Thread: " + Thread.currentThread().getName());
+        finalLogPrinter(
+                logType, tag, LogConstants.HORIZONTAL_DOUBLE_LINE
+                        + " Thread: " + Thread.currentThread().getName()
+        );
         // 进行换行
         logDivider(logType, tag);
 
@@ -872,7 +893,10 @@ final class LoggerPrinter
     ) {
         String[] lines = msg.split(DevFinal.NEW_LINE_STR);
         for (String line : lines) {
-            finalLogPrinter(logType, tag, LogConstants.HORIZONTAL_DOUBLE_LINE + " " + line);
+            finalLogPrinter(
+                    logType, tag,
+                    LogConstants.HORIZONTAL_DOUBLE_LINE + " " + line
+            );
         }
     }
 
@@ -918,7 +942,8 @@ final class LoggerPrinter
         for (int i = LogConstants.MIN_STACK_OFFSET, len = trace.length; i < len; i++) {
             StackTraceElement e    = trace[i];
             String            name = e.getClassName();
-            if (!name.equals(LoggerPrinter.class.getName()) && !name.equals(DevLogger.class.getName())) {
+            if (!name.equals(LoggerPrinter.class.getName())
+                    && !name.equals(DevLogger.class.getName())) {
                 return --i;
             }
         }

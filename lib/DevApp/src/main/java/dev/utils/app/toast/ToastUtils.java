@@ -825,7 +825,10 @@ public final class ToastUtils {
             if (formatArgs != null && formatArgs.length != 0) {
                 if (text != null) { // String.format() 中的 formatArgs 可以为 null, 但是 text 不能为 null
                     try {
-                        priShowToastText(isSingle, context, String.format(text, formatArgs), duration);
+                        priShowToastText(
+                                isSingle, context,
+                                String.format(text, formatArgs), duration
+                        );
                     } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "handlerToastStr");
                         priShowToastText(isSingle, context, e.getMessage(), duration);

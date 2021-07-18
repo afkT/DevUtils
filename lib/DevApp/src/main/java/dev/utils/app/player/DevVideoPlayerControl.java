@@ -101,7 +101,10 @@ public class DevVideoPlayerControl
             int width,
             int height
     ) {
-        LogPrintUtils.dTag(TAG, "surfaceChanged - format: %s, width: %s, height: %s", format, width, height);
+        LogPrintUtils.dTag(
+                TAG, "surfaceChanged - format: %s, width: %s, height: %s",
+                format, width, height
+        );
     }
 
     /**
@@ -216,7 +219,10 @@ public class DevVideoPlayerControl
             int what,
             int extra
     ) {
-        LogPrintUtils.dTag(TAG, "onError what: %s, extra: %s", what, extra);
+        LogPrintUtils.dTag(
+                TAG, "onError what: %s, extra: %s",
+                what, extra
+        );
         // 触发回调
         if (mMediaListener != null) {
             return mMediaListener.onError(what, extra);
@@ -234,7 +240,10 @@ public class DevVideoPlayerControl
             int width,
             int height
     ) {
-        LogPrintUtils.dTag(TAG, "onVideoSizeChanged - width: %s, height: %s", width, height);
+        LogPrintUtils.dTag(
+                TAG, "onVideoSizeChanged - width: %s, height: %s",
+                width, height
+        );
         // 触发回调
         if (mMediaListener != null) {
             mMediaListener.onVideoSizeChanged(width, height);

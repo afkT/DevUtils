@@ -332,7 +332,9 @@ final class ToastFactory {
                     // 当前已经显示
                     mShow = true;
                     // 添加一个移除 Toast 的任务
-                    sendEmptyMessageDelayed(0, mToast.getDuration() == Toast.LENGTH_LONG ? 3500 : 2000);
+                    sendEmptyMessageDelayed(
+                            0, mToast.getDuration() == Toast.LENGTH_LONG ? 3500 : 2000
+                    );
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "ToastHelper - show");
                 }

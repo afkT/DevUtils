@@ -77,7 +77,8 @@ public final class SharedUtils {
             final IPreference.DataType type,
             final Object defaultValue
     ) {
-        return SPUtils.getPreference(DevUtils.getContext()).get(key, type, defaultValue);
+        return SPUtils.getPreference(DevUtils.getContext())
+                .get(key, type, defaultValue);
     }
 
     /**
@@ -214,7 +215,8 @@ public final class SharedUtils {
             final String key,
             final int defaultValue
     ) {
-        return SPUtils.getPreference(DevUtils.getContext()).getInt(key, defaultValue);
+        return SPUtils.getPreference(DevUtils.getContext())
+                .getInt(key, defaultValue);
     }
 
     /**
@@ -227,7 +229,8 @@ public final class SharedUtils {
             final String key,
             final long defaultValue
     ) {
-        return SPUtils.getPreference(DevUtils.getContext()).getLong(key, defaultValue);
+        return SPUtils.getPreference(DevUtils.getContext())
+                .getLong(key, defaultValue);
     }
 
     /**
@@ -240,7 +243,8 @@ public final class SharedUtils {
             final String key,
             final float defaultValue
     ) {
-        return SPUtils.getPreference(DevUtils.getContext()).getFloat(key, defaultValue);
+        return SPUtils.getPreference(DevUtils.getContext())
+                .getFloat(key, defaultValue);
     }
 
     /**
@@ -253,7 +257,8 @@ public final class SharedUtils {
             final String key,
             final double defaultValue
     ) {
-        return SPUtils.getPreference(DevUtils.getContext()).getDouble(key, defaultValue);
+        return SPUtils.getPreference(DevUtils.getContext())
+                .getDouble(key, defaultValue);
     }
 
     /**
@@ -266,7 +271,8 @@ public final class SharedUtils {
             final String key,
             final boolean defaultValue
     ) {
-        return SPUtils.getPreference(DevUtils.getContext()).getBoolean(key, defaultValue);
+        return SPUtils.getPreference(DevUtils.getContext())
+                .getBoolean(key, defaultValue);
     }
 
     /**
@@ -279,7 +285,8 @@ public final class SharedUtils {
             final String key,
             final String defaultValue
     ) {
-        return SPUtils.getPreference(DevUtils.getContext()).getString(key, defaultValue);
+        return SPUtils.getPreference(DevUtils.getContext())
+                .getString(key, defaultValue);
     }
 
     /**
@@ -292,6 +299,7 @@ public final class SharedUtils {
             final String key,
             final Set<String> defaultValue
     ) {
-        return SPUtils.getPreference(DevUtils.getContext()).getSet(key, defaultValue);
+        return SPUtils.getPreference(DevUtils.getContext())
+                .getSet(key, defaultValue);
     }
 }

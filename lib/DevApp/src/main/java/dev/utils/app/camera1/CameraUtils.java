@@ -152,7 +152,7 @@ public final class CameraUtils {
         }
         try {
             // 进行判断想要使用的是前置, 还是后置
-            if (isFrontCamera && checkCameraFacing(Camera.CameraInfo.CAMERA_FACING_FRONT)) { // 使用前置, 必须也支持前置
+            if (isFrontCamera && checkCameraFacing(Camera.CameraInfo.CAMERA_FACING_FRONT)) {
                 // 初始化前置摄像头
                 camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT);
             } else {

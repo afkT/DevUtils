@@ -168,7 +168,11 @@ public final class DevMediaManager
                     AssetFileDescriptor afd = ResourceUtils.openRawResourceFd(rawId);
                     try {
                         // 设置播放路径
-                        mMediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                        mMediaPlayer.setDataSource(
+                                afd.getFileDescriptor(),
+                                afd.getStartOffset(),
+                                afd.getLength()
+                        );
                     } finally {
                         CloseUtils.closeIOQuietly(afd);
                     }
@@ -223,10 +227,16 @@ public final class DevMediaManager
                 public void setMediaConfig(MediaPlayer mediaPlayer)
                         throws Exception {
                     // 获取资源文件
-                    AssetFileDescriptor afd = ResourceUtils.openNonAssetFd("assets" + tempPlayUri);
+                    AssetFileDescriptor afd = ResourceUtils.openNonAssetFd(
+                            "assets" + tempPlayUri
+                    );
                     try {
                         // 设置播放路径
-                        mMediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                        mMediaPlayer.setDataSource(
+                                afd.getFileDescriptor(),
+                                afd.getStartOffset(),
+                                afd.getLength()
+                        );
                     } finally {
                         CloseUtils.closeIOQuietly(afd);
                     }
@@ -406,7 +416,9 @@ public final class DevMediaManager
             int what,
             int extra
     ) {
-        LogPrintUtils.dTag(TAG, "onError what: %s, extra: %s", what, extra);
+        LogPrintUtils.dTag(
+                TAG, "onError what: %s, extra: %s", what, extra
+        );
         // 触发回调
         if (mMediaListener != null) {
             return mMediaListener.onError(what, extra);
@@ -426,7 +438,10 @@ public final class DevMediaManager
             int width,
             int height
     ) {
-        LogPrintUtils.dTag(TAG, "onVideoSizeChanged - width: %s, height: %s", width, height);
+        LogPrintUtils.dTag(
+                TAG, "onVideoSizeChanged - width: %s, height: %s",
+                width, height
+        );
         mVideoWidth  = width;
         mVideoHeight = height;
         // 触发回调

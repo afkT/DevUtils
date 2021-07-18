@@ -244,7 +244,8 @@ public final class ImageUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isJPEG(final byte[] data) {
-        return data != null && data.length >= 2 && (data[0] == (byte) 0xFF) && (data[1] == (byte) 0xD8);
+        return data != null && data.length >= 2
+                && (data[0] == (byte) 0xFF) && (data[1] == (byte) 0xD8);
     }
 
     /**
@@ -253,7 +254,8 @@ public final class ImageUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isBMP(final byte[] data) {
-        return data != null && data.length >= 2 && (data[0] == (byte) 0x42) && (data[1] == (byte) 0x4d);
+        return data != null && data.length >= 2
+                && (data[0] == (byte) 0x42) && (data[1] == (byte) 0x4d);
     }
 
     /**
@@ -262,8 +264,10 @@ public final class ImageUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isGif(final byte[] data) {
-        return data != null && data.length >= 6 && data[0] == 'G' && data[1] == 'I' && data[2] == 'F'
-                && data[3] == '8' && (data[4] == '7' || data[4] == '9') && data[5] == 'a';
+        return data != null && data.length >= 6
+                && data[0] == 'G' && data[1] == 'I' && data[2] == 'F'
+                && data[3] == '8' && (data[4] == '7' || data[4] == '9')
+                && data[5] == 'a';
     }
 
     /**
@@ -272,8 +276,11 @@ public final class ImageUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isWEBP(final byte[] data) {
-        return data != null && data.length >= 12 && data[0] == 'R' && data[1] == 'I' && data[2] == 'F' && data[3] == 'F'
-                && data[8] == 'W' && (data[9] == 'E' || data[10] == 'B') && data[11] == 'P';
+        return data != null && data.length >= 12
+                && data[0] == 'R' && data[1] == 'I' && data[2] == 'F'
+                && data[3] == 'F' && data[8] == 'W'
+                && (data[9] == 'E' || data[10] == 'B')
+                && data[11] == 'P';
     }
 
     /**
@@ -282,7 +289,9 @@ public final class ImageUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isICO(final byte[] data) {
-        return data != null && data.length >= 4 && data[0] == 0 && data[1] == 0 && data[2] == 1 && data[3] == 0;
+        return data != null && data.length >= 4
+                && data[0] == 0 && data[1] == 0
+                && data[2] == 1 && data[3] == 0;
     }
 
     /**
@@ -292,11 +301,14 @@ public final class ImageUtils {
      */
     public static boolean isTIFF(final byte[] data) {
         if (data != null && data.length >= 4) {
-            if (data[0] == (byte) 73 && data[1] == (byte) 73 && data[2] == (byte) 0x2a && data[3] == 0) {
+            if (data[0] == (byte) 73 && data[1] == (byte) 73
+                    && data[2] == (byte) 0x2a && data[3] == 0) {
                 return true; // 49 49 2a 00
-            } else if (data[0] == (byte) 0x4d && data[1] == (byte) 0x4d && data[2] == 0 && data[3] == (byte) 0x2a) {
+            } else if (data[0] == (byte) 0x4d && data[1] == (byte) 0x4d
+                    && data[2] == 0 && data[3] == (byte) 0x2a) {
                 return true; // 4d 4d 00 2a
-            } else if (data[0] == (byte) 0x4d && data[1] == (byte) 0x4d && data[2] == 0 && data[3] == (byte) 0x2b) {
+            } else if (data[0] == (byte) 0x4d && data[1] == (byte) 0x4d
+                    && data[2] == 0 && data[3] == (byte) 0x2b) {
                 return true; // 4d 4d 00 2b
             } else {
                 return data[0] == (byte) 73 && data[1] == (byte) 32 && data[2] == (byte) 73; // 49 20 49
@@ -381,7 +393,9 @@ public final class ImageUtils {
             final BitmapFactory.Options options
     ) {
         try {
-            return BitmapFactory.decodeResource(ResourceUtils.getResources(), resId, options);
+            return BitmapFactory.decodeResource(
+                    ResourceUtils.getResources(), resId, options
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "decodeResource");
             return null;
@@ -971,7 +985,9 @@ public final class ImageUtils {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeFile(filePath, options);
-            options.inSampleSize       = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inSampleSize       = BitmapUtils.calculateInSampleSize(
+                    options, maxWidth, maxHeight
+            );
             options.inJustDecodeBounds = false;
             return BitmapFactory.decodeFile(filePath, options);
         } catch (Exception e) {
@@ -997,7 +1013,9 @@ public final class ImageUtils {
             BitmapFactory.Options options   = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeResource(resources, resId, options);
-            options.inSampleSize       = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inSampleSize       = BitmapUtils.calculateInSampleSize(
+                    options, maxWidth, maxHeight
+            );
             options.inJustDecodeBounds = false;
             return BitmapFactory.decodeResource(resources, resId, options);
         } catch (Exception e) {
@@ -1023,7 +1041,9 @@ public final class ImageUtils {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeStream(inputStream, null, options);
-            options.inSampleSize       = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inSampleSize       = BitmapUtils.calculateInSampleSize(
+                    options, maxWidth, maxHeight
+            );
             options.inJustDecodeBounds = false;
             return BitmapFactory.decodeStream(inputStream, null, options);
         } catch (Exception e) {
@@ -1049,7 +1069,9 @@ public final class ImageUtils {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeFileDescriptor(fd, null, options);
-            options.inSampleSize       = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inSampleSize       = BitmapUtils.calculateInSampleSize(
+                    options, maxWidth, maxHeight
+            );
             options.inJustDecodeBounds = false;
             return BitmapFactory.decodeFileDescriptor(fd, null, options);
         } catch (Exception e) {
@@ -1075,7 +1097,9 @@ public final class ImageUtils {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeByteArray(data, 0, data.length, options);
-            options.inSampleSize       = BitmapUtils.calculateInSampleSize(options, maxWidth, maxHeight);
+            options.inSampleSize       = BitmapUtils.calculateInSampleSize(
+                    options, maxWidth, maxHeight
+            );
             options.inJustDecodeBounds = false;
             return BitmapFactory.decodeByteArray(data, 0, data.length, options);
         } catch (Exception e) {
@@ -1094,7 +1118,10 @@ public final class ImageUtils {
     public static Bitmap getBitmapFromView(final View view) {
         if (view == null) return null;
         try {
-            Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+            Bitmap bitmap = Bitmap.createBitmap(
+                    view.getWidth(), view.getHeight(),
+                    Bitmap.Config.ARGB_8888
+            );
             Canvas canvas = new Canvas(bitmap);
             view.layout(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
             view.draw(canvas);
@@ -1306,7 +1333,8 @@ public final class ImageUtils {
             int width  = drawable.getIntrinsicWidth();
             int height = drawable.getIntrinsicHeight();
             // 获取 drawable 的颜色格式
-            Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
+            Bitmap.Config config = (drawable.getOpacity() != PixelFormat.OPAQUE)
+                    ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
             // 创建 bitmap
             Bitmap bitmap = Bitmap.createBitmap(width, height, config);
             // 创建 bitmap 画布
@@ -1330,7 +1358,10 @@ public final class ImageUtils {
      */
     public static Drawable setBounds(final Drawable drawable) {
         try {
-            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+            drawable.setBounds(
+                    0, 0, drawable.getIntrinsicWidth(),
+                    drawable.getIntrinsicHeight()
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setBounds");
         }

@@ -55,7 +55,10 @@ public final class ImageFilterUtils {
             RenderScript rs = RenderScript.create(DevUtils.getContext());
             // 由于 RenderScript 并没有使用 VM 来分配内存, 所以需要使用 Allocation 类来创建和分配内存空间
             // 创建 Allocation 对象的时候其实内存是空的, 需要使用 copyTo() 将数据填充进去
-            Allocation input  = Allocation.createFromBitmap(rs, bitmap, Allocation.MipmapControl.MIPMAP_NONE, Allocation.USAGE_SCRIPT);
+            Allocation input = Allocation.createFromBitmap(
+                    rs, bitmap, Allocation.MipmapControl.MIPMAP_NONE,
+                    Allocation.USAGE_SCRIPT
+            );
             Allocation output = Allocation.createTyped(rs, input.getType());
             // 创建一个模糊效果的 RenderScript 的工具对象, 第二个参数 Element 相当于一种像素处理的算法, 高斯模糊的话用这个就好
             ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
@@ -674,7 +677,9 @@ public final class ImageFilterUtils {
     public static Bitmap gray(final Bitmap bitmap) {
         if (bitmap == null) return null;
         try {
-            Bitmap      newBitmap   = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+            Bitmap newBitmap = Bitmap.createBitmap(
+                    bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig()
+            );
             Canvas      canvas      = new Canvas(newBitmap);
             Paint       paint       = new Paint();
             ColorMatrix colorMatrix = new ColorMatrix();
@@ -715,8 +720,11 @@ public final class ImageFilterUtils {
             Paint paint = new Paint();
             paint.setColorFilter(new ColorMatrixColorFilter(saturationColorMatrix));
             // 创建一个新的图片并创建画布
-            Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas    = new Canvas(newBitmap);
+            Bitmap newBitmap = Bitmap.createBitmap(
+                    bitmap.getWidth(), bitmap.getHeight(),
+                    Bitmap.Config.ARGB_8888
+            );
+            Canvas canvas = new Canvas(newBitmap);
             // 将源图片使用给定的画笔画到画布上
             canvas.drawBitmap(bitmap, 0, 0, paint);
             return newBitmap;
@@ -748,8 +756,11 @@ public final class ImageFilterUtils {
             Paint paint = new Paint();
             paint.setColorFilter(new ColorMatrixColorFilter(lumColorMatrix));
             // 创建一个新的图片并创建画布
-            Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas    = new Canvas(newBitmap);
+            Bitmap newBitmap = Bitmap.createBitmap(
+                    bitmap.getWidth(), bitmap.getHeight(),
+                    Bitmap.Config.ARGB_8888
+            );
+            Canvas canvas = new Canvas(newBitmap);
             // 将源图片使用给定的画笔画到画布上
             canvas.drawBitmap(bitmap, 0, 0, paint);
             return newBitmap;
@@ -785,8 +796,11 @@ public final class ImageFilterUtils {
             Paint paint = new Paint();
             paint.setColorFilter(new ColorMatrixColorFilter(hueColorMatrix));
             // 创建一个新的图片并创建画布
-            Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas    = new Canvas(newBitmap);
+            Bitmap newBitmap = Bitmap.createBitmap(
+                    bitmap.getWidth(), bitmap.getHeight(),
+                    Bitmap.Config.ARGB_8888
+            );
+            Canvas canvas = new Canvas(newBitmap);
             // 将源图片使用给定的画笔画到画布上
             canvas.drawBitmap(bitmap, 0, 0, paint);
             return newBitmap;
@@ -834,8 +848,11 @@ public final class ImageFilterUtils {
             Paint paint = new Paint();
             paint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
             // 创建一个新的图片并创建画布
-            Bitmap newBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas    = new Canvas(newBitmap);
+            Bitmap newBitmap = Bitmap.createBitmap(
+                    bitmap.getWidth(), bitmap.getHeight(),
+                    Bitmap.Config.ARGB_8888
+            );
+            Canvas canvas = new Canvas(newBitmap);
             // 将源图片使用给定的画笔画到画布上
             canvas.drawBitmap(bitmap, 0, 0, paint);
             return newBitmap;

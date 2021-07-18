@@ -110,7 +110,10 @@ public final class AppInfoItem {
         // APP 兼容 SDK 版本
         targetSdkVersion = packageInfo.applicationInfo.targetSdkVersion;
         // APP 安装包大小
-        apkLength = Formatter.formatFileSize(DevUtils.getContext(), FileUtils.getFileLength(appInfoBean.getSourceDir()));
+        apkLength = Formatter.formatFileSize(
+                DevUtils.getContext(),
+                FileUtils.getFileLength(appInfoBean.getSourceDir())
+        );
         // 证书对象
         cert = SignaturesUtils.getX509Certificate(packageInfo.signatures);
         // 证书生成日期
@@ -162,7 +165,12 @@ public final class AppInfoItem {
         // APP MD5 签名
         listKeyValues.add(KeyValue.get(R.string.dev_str_md5, appMD5));
         // APP 版本号 ( 主要用于 APP 内部版本判断 int 类型 )
-        listKeyValues.add(KeyValue.get(R.string.dev_str_version_code, String.valueOf(appInfoBean.getVersionCode())));
+        listKeyValues.add(
+                KeyValue.get(
+                        R.string.dev_str_version_code,
+                        String.valueOf(appInfoBean.getVersionCode())
+                )
+        );
         // APP 版本名 ( 主要用于对用户显示版本信息 )
         listKeyValues.add(KeyValue.get(R.string.dev_str_version_name, appInfoBean.getVersionName()));
         // APP SHA1
@@ -170,19 +178,47 @@ public final class AppInfoItem {
         // APP SHA256
         listKeyValues.add(KeyValue.get(R.string.dev_str_sha256, appSHA256));
         // APP 首次安装时间
-        listKeyValues.add(KeyValue.get(R.string.dev_str_first_install_time, sdf.format(packageInfo.firstInstallTime)));
+        listKeyValues.add(
+                KeyValue.get(
+                        R.string.dev_str_first_install_time,
+                        sdf.format(packageInfo.firstInstallTime)
+                )
+        );
         // 获取最后一次更新时间
-        listKeyValues.add(KeyValue.get(R.string.dev_str_last_update_time, sdf.format(packageInfo.lastUpdateTime)));
+        listKeyValues.add(
+                KeyValue.get(
+                        R.string.dev_str_last_update_time,
+                        sdf.format(packageInfo.lastUpdateTime)
+                )
+        );
         // APP 最低支持 Android SDK 版本
-        listKeyValues.add(KeyValue.get(R.string.dev_str_minsdkversion, minSdkVersion + " ( " + VersionUtils.convertSDKVersion(minSdkVersion) + "+ )"));
+        listKeyValues.add(
+                KeyValue.get(
+                        R.string.dev_str_minsdkversion,
+                        minSdkVersion
+                                + " ( " + VersionUtils.convertSDKVersion(minSdkVersion) + "+ )"
+                )
+        );
         // APP 兼容 SDK 版本
-        listKeyValues.add(KeyValue.get(R.string.dev_str_targetsdkversion, targetSdkVersion + " ( " + VersionUtils.convertSDKVersion(targetSdkVersion) + "+ )"));
+        listKeyValues.add(
+                KeyValue.get(
+                        R.string.dev_str_targetsdkversion,
+                        targetSdkVersion
+                                + " ( " + VersionUtils.convertSDKVersion(targetSdkVersion) + "+ )"
+                )
+        );
         // APK 大小
         listKeyValues.add(KeyValue.get(R.string.dev_str_apk_length, apkLength));
         // 证书有效期
         listKeyValues.add(KeyValue.get(R.string.dev_str_effective, effectiveStr));
         // 判断是否过期
-        listKeyValues.add(KeyValue.get(R.string.dev_str_iseffective, effective ? context.getString(R.string.dev_str_overdue) : context.getString(R.string.dev_str_notoverdue)));
+        listKeyValues.add(
+                KeyValue.get(
+                        R.string.dev_str_iseffective,
+                        effective ? context.getString(R.string.dev_str_overdue)
+                                : context.getString(R.string.dev_str_notoverdue)
+                )
+        );
         // 证书发布方
         listKeyValues.add(KeyValue.get(R.string.dev_str_principal, certPrincipal));
         // 证书版本号

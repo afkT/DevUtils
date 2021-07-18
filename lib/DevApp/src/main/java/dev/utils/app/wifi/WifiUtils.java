@@ -1,6 +1,7 @@
 package dev.utils.app.wifi;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -213,6 +214,7 @@ public final class WifiUtils {
      * @param wifiInfo {@link WifiInfo}
      * @return MAC 地址
      */
+    @SuppressLint("HardwareIds")
     public static String getMacAddress(final WifiInfo wifiInfo) {
         if (wifiInfo == null) return null;
         return wifiInfo.getMacAddress();
@@ -445,7 +447,9 @@ public final class WifiUtils {
             // 版本兼容处理
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 // 连接状态
-                NetworkInfo.State state = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
+                NetworkInfo.State state = manager.getNetworkInfo(
+                        ConnectivityManager.TYPE_WIFI
+                ).getState();
                 if ((state == NetworkInfo.State.CONNECTED)) {
                     // 获取连接的 ssid
                     return getSSID();
@@ -663,7 +667,9 @@ public final class WifiUtils {
             // 如果需要通过静态 IP 方式连接, 则进行设置
             if (isStatic && !TextUtils.isEmpty(ip)) {
                 // 创建 Wifi 静态 IP 连接配置
-                WifiConfiguration staticWifiConfig = setStaticWifiConfig(createWifiConfig(ssid, pwd, type, true), ip);
+                WifiConfiguration staticWifiConfig = setStaticWifiConfig(
+                        createWifiConfig(ssid, pwd, type, true), ip
+                );
                 // 如果静态 IP 方式, 配置失败, 则初始化正常连接的 Wifi 配置
                 if (staticWifiConfig == null) {
                     // 创建正常的配置信息
@@ -689,7 +695,10 @@ public final class WifiUtils {
                 // 存在则删除
                 boolean isRemove = mWifiManager.removeNetwork(preWifiConfig.networkId);
                 // 打印结果
-                LogPrintUtils.dTag(TAG, "删除旧的配置信息 %s, isRemove: %s", preWifiConfig.SSID, isRemove);
+                LogPrintUtils.dTag(
+                        TAG, "删除旧的配置信息 %s, isRemove: %s",
+                        preWifiConfig.SSID, isRemove
+                );
                 // 保存配置
                 mWifiManager.saveConfiguration();
             }
@@ -707,7 +716,10 @@ public final class WifiUtils {
                     // 断开之前的连接
                     boolean isDisConnect = mWifiManager.disconnect();
                     // 打印断开连接结果
-                    LogPrintUtils.dTag(TAG, "isDisConnect: %s, isDisable: %s", isDisConnect, isDisable);
+                    LogPrintUtils.dTag(
+                            TAG, "isDisConnect: %s, isDisable: %s",
+                            isDisConnect, isDisable
+                    );
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "quickConnWifi 关闭连接出错: %s", nId);
                 }
@@ -735,7 +747,10 @@ public final class WifiUtils {
                         // 断开之前的连接
                         boolean isDisConnect = mWifiManager.disconnect();
                         // 打印断开连接结果
-                        LogPrintUtils.dTag(TAG, "isDisConnect: %s, isDisable: %s", isDisConnect, isDisable);
+                        LogPrintUtils.dTag(
+                                TAG, "isDisConnect: %s, isDisable: %s",
+                                isDisConnect, isDisable
+                        );
                     } catch (Exception e) {
                         LogPrintUtils.eTag(TAG, e, "quickConnWifi 关闭连接出错: %s", nId);
                     }
@@ -972,7 +987,8 @@ public final class WifiUtils {
         if (data.length != 4) {
             throw new IllegalArgumentException("Not an IPv4 address");
         }
-        return ((data[3] & 0xff) << 24) | ((data[2] & 0xff) << 16) | ((data[1] & 0xff) << 8) | (data[0] & 0xff);
+        return ((data[3] & 0xff) << 24) | ((data[2] & 0xff) << 16)
+                | ((data[1] & 0xff) << 8) | (data[0] & 0xff);
     }
 
     /**
@@ -991,7 +1007,9 @@ public final class WifiUtils {
             throw new NullPointerException();
         }
 
-        List<InetAddress> mDnses = (ArrayList<InetAddress>) getDeclaredField(linkProperties, "mDnses");
+        List<InetAddress> mDnses = (ArrayList<InetAddress>) getDeclaredField(
+                linkProperties, "mDnses"
+        );
         mDnses.clear(); // or add a new dns address, here I just want to replace DNS1
         mDnses.add(dns);
     }
@@ -1080,7 +1098,9 @@ public final class WifiUtils {
         setValueField(staticIpConfigClass, InetAddress.getByName(gateway), "gateway");
         if (dns != null) { // 判断是否需要设置域名
             // 设置 DNS
-            List<InetAddress> mDnses = (ArrayList<InetAddress>) getDeclaredField(staticIpConfigClass, "dnsServers");
+            List<InetAddress> mDnses = (ArrayList<InetAddress>) getDeclaredField(
+                    staticIpConfigClass, "dnsServers"
+            );
             mDnses.clear(); // or add a new dns address, here I just want to replace DNS1
             mDnses.add(InetAddress.getByName(dns));
         }

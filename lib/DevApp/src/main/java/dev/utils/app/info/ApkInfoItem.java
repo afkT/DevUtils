@@ -99,7 +99,9 @@ public final class ApkInfoItem {
         // 获取 APP 信息
         appInfoBean = new AppInfoBean(packageInfo);
         // 获取签名信息
-        Signature[] signatures = SignaturesUtils.getSignaturesFromApk(new File(appInfoBean.getSourceDir()));
+        Signature[] signatures = SignaturesUtils.getSignaturesFromApk(
+                new File(appInfoBean.getSourceDir())
+        );
         // =
         // APP MD5 签名
         appMD5 = SignaturesUtils.signatureMD5(signatures);
@@ -115,7 +117,10 @@ public final class ApkInfoItem {
         // APP 兼容 SDK 版本
         targetSdkVersion = packageInfo.applicationInfo.targetSdkVersion;
         // APP 安装包大小
-        apkLength = Formatter.formatFileSize(DevUtils.getContext(), FileUtils.getFileLength(appInfoBean.getSourceDir()));
+        apkLength = Formatter.formatFileSize(
+                DevUtils.getContext(),
+                FileUtils.getFileLength(appInfoBean.getSourceDir())
+        );
 
         // 是否保存
         boolean isError = false;
@@ -169,7 +174,13 @@ public final class ApkInfoItem {
             // 证书有效期
             listTemps.add(KeyValue.get(R.string.dev_str_effective, effectiveStr));
             // 判断是否过期
-            listTemps.add(KeyValue.get(R.string.dev_str_iseffective, effective ? context.getString(R.string.dev_str_overdue) : context.getString(R.string.dev_str_notoverdue)));
+            listTemps.add(
+                    KeyValue.get(
+                            R.string.dev_str_iseffective,
+                            effective ? context.getString(R.string.dev_str_overdue)
+                                    : context.getString(R.string.dev_str_notoverdue)
+                    )
+            );
             // 证书发布方
             listTemps.add(KeyValue.get(R.string.dev_str_principal, certPrincipal));
             // 证书版本号
@@ -197,7 +208,12 @@ public final class ApkInfoItem {
             listKeyValues.add(KeyValue.get(R.string.dev_str_md5, appMD5));
         }
         // APP 版本号 ( 主要用于 APP 内部版本判断 int 类型 )
-        listKeyValues.add(KeyValue.get(R.string.dev_str_version_code, String.valueOf(appInfoBean.getVersionCode())));
+        listKeyValues.add(
+                KeyValue.get(
+                        R.string.dev_str_version_code,
+                        String.valueOf(appInfoBean.getVersionCode())
+                )
+        );
         // APP 版本名 ( 主要用于对用户显示版本信息 )
         listKeyValues.add(KeyValue.get(R.string.dev_str_version_name, appInfoBean.getVersionName()));
         // 安装包地址
@@ -210,9 +226,21 @@ public final class ApkInfoItem {
             listKeyValues.add(KeyValue.get(R.string.dev_str_sha256, appSHA256));
         }
         // APP 最低支持 Android SDK 版本
-        listKeyValues.add(KeyValue.get(R.string.dev_str_minsdkversion, minSdkVersion + " ( " + VersionUtils.convertSDKVersion(minSdkVersion) + "+ )"));
+        listKeyValues.add(
+                KeyValue.get(
+                        R.string.dev_str_minsdkversion,
+                        minSdkVersion
+                                + " ( " + VersionUtils.convertSDKVersion(minSdkVersion) + "+ )"
+                )
+        );
         // APP 兼容 SDK 版本
-        listKeyValues.add(KeyValue.get(R.string.dev_str_targetsdkversion, targetSdkVersion + " ( " + VersionUtils.convertSDKVersion(targetSdkVersion) + "+ )"));
+        listKeyValues.add(
+                KeyValue.get(
+                        R.string.dev_str_targetsdkversion,
+                        targetSdkVersion
+                                + " ( " + VersionUtils.convertSDKVersion(targetSdkVersion) + "+ )"
+                )
+        );
         // 获取 APK 大小
         listKeyValues.add(KeyValue.get(R.string.dev_str_apk_length, apkLength));
         // 没报错才存储 其他签名信息

@@ -145,7 +145,10 @@ public final class WifiHotUtils {
                         mAPWifiSSID = wifiConfiguration.SSID;
                         mAPWifiPwd  = wifiConfiguration.preSharedKey;
                         // 打印信息
-                        LogPrintUtils.dTag(TAG, "Android 8.0 onStarted wifiAp ssid: %s, pwd: %s", mAPWifiSSID, mAPWifiPwd);
+                        LogPrintUtils.dTag(
+                                TAG, "Android 8.0 onStarted wifiAp ssid: %s, pwd: %s",
+                                mAPWifiSSID, mAPWifiPwd
+                        );
                         // 触发回调
                         if (mWifiAPListener != null) {
                             mWifiAPListener.onStarted(wifiConfiguration);
@@ -187,7 +190,12 @@ public final class WifiHotUtils {
                 // 跳转到便携式热点设置页面
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_MAIN);
-                intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.TetherSettings"));
+                intent.setComponent(
+                        new ComponentName(
+                                "com.android.settings",
+                                "com.android.settings.TetherSettings"
+                        )
+                );
                 AppUtils.startActivity(intent);
                 return true;
             } catch (Exception e) {
@@ -197,7 +205,10 @@ public final class WifiHotUtils {
             try {
                 // 需要 android.permission.WRITE_SETTINGS 权限
                 // 获取设置 Wifi 热点方法
-                Method method = mWifiManager.getClass().getMethod("setWifiApEnabled", WifiConfiguration.class, boolean.class);
+                Method method = mWifiManager.getClass().getMethod(
+                        "setWifiApEnabled", WifiConfiguration.class,
+                        boolean.class
+                );
                 // 开启 Wifi 热点
                 method.invoke(mWifiManager, wifiConfig, true);
                 return true;
@@ -225,7 +236,10 @@ public final class WifiHotUtils {
         }
         try {
             // 获取设置 Wifi 热点方法
-            Method method = mWifiManager.getClass().getMethod("setWifiApEnabled", WifiConfiguration.class, boolean.class);
+            Method method = mWifiManager.getClass().getMethod(
+                    "setWifiApEnabled", WifiConfiguration.class,
+                    boolean.class
+            );
             // 创建一个新的网络配置
             WifiConfiguration wifiConfig = new WifiConfiguration();
             wifiConfig.allowedAuthAlgorithms.clear();

@@ -1269,8 +1269,12 @@ public final class ToastTintUtils {
                         dev.utils.R.layout.dev_toast_layout, null
                 );
                 // 初始化 View
-                final ImageView toastIcon     = toastLayout.findViewById(dev.utils.R.id.vid_dtl_toast_igview);
-                final TextView  toastTextView = toastLayout.findViewById(dev.utils.R.id.vid_dtl_toast_tv);
+                final ImageView toastIcon = toastLayout.findViewById(
+                        dev.utils.R.id.vid_dtl_toast_igview
+                );
+                final TextView toastTextView = toastLayout.findViewById(
+                        dev.utils.R.id.vid_dtl_toast_tv
+                );
 
                 // ================
                 // = TextView 相关 =
@@ -1324,10 +1328,14 @@ public final class ToastTintUtils {
                 Drawable drawableFrame = style.getBackground();
                 // 判断是否为 null
                 if (drawableFrame == null) {
-                    drawableFrame = ResourceUtils.getNinePatchDrawable(dev.utils.R.drawable.dev_toast_frame);
+                    drawableFrame = ResourceUtils.getNinePatchDrawable(
+                            dev.utils.R.drawable.dev_toast_frame
+                    );
                     // 判断是否需要着色
                     if (style.getBackgroundTintColor() != 0) { // 根据背景色进行渲染透明图片
-                        drawableFrame = ImageUtils.setColorFilter(drawableFrame, style.getBackgroundTintColor());
+                        drawableFrame = ImageUtils.setColorFilter(
+                                drawableFrame, style.getBackgroundTintColor()
+                        );
                     }
                 }
                 // 设置 View 背景
