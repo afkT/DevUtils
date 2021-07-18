@@ -378,7 +378,7 @@ public final class GlideUtils {
         if (context != null && source != null && listener != null
                 && listener.getTranscodeType() != null) {
             RequestManager requestManager = Glide.with(context);
-            Class          type           = listener.getTranscodeType();
+            Class<?>       type           = listener.getTranscodeType();
             if (type == Drawable.class) {
                 RequestBuilder<Drawable> request = setToRequest(
                         requestManager.asDrawable(), source
@@ -406,7 +406,7 @@ public final class GlideUtils {
         if (fragment != null && source != null && listener != null
                 && listener.getTranscodeType() != null) {
             RequestManager requestManager = Glide.with(fragment);
-            Class          type           = listener.getTranscodeType();
+            Class<?>       type           = listener.getTranscodeType();
             if (type == Drawable.class) {
                 RequestBuilder<Drawable> request = setToRequest(
                         requestManager.asDrawable(), source
@@ -429,7 +429,7 @@ public final class GlideUtils {
             Context context,
             DevSource source,
             ImageConfig config,
-            Class type
+            Class<?> type
     ) {
         try {
             return loadImageThrows(context, source, config, type);
@@ -443,7 +443,7 @@ public final class GlideUtils {
             Context context,
             DevSource source,
             ImageConfig config,
-            Class type
+            Class<?> type
     )
             throws Exception {
         if (context != null && source != null && type != null) {
@@ -813,7 +813,7 @@ public final class GlideUtils {
     ) {
         if (imageView != null && request != null
                 && listener != null && listener.getTranscodeType() != null) {
-            Class type = listener.getTranscodeType();
+            Class<?> type = listener.getTranscodeType();
             if (type == Drawable.class) {
                 buildRequest(request, config).into(new InnerDrawableViewTarget(
                         imageView, source, (LoadListener<Drawable>) listener

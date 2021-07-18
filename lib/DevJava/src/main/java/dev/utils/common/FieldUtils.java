@@ -47,7 +47,7 @@ public final class FieldUtils {
      * @return {@link Field}
      */
     public static Field getField(
-            final Class clazz,
+            final Class<?> clazz,
             final String name
     ) {
         if (clazz != null && name != null) {
@@ -85,7 +85,7 @@ public final class FieldUtils {
      * @return {@link Field}
      */
     public static Field getDeclaredField(
-            final Class clazz,
+            final Class<?> clazz,
             final String name
     ) {
         if (clazz != null && name != null) {
@@ -117,7 +117,7 @@ public final class FieldUtils {
      * @param clazz {@link Class}
      * @return Field[]
      */
-    public static Field[] getFields(final Class clazz) {
+    public static Field[] getFields(final Class<?> clazz) {
         if (clazz != null) {
             try {
                 return clazz.getFields();
@@ -147,7 +147,7 @@ public final class FieldUtils {
      * @param clazz {@link Class}
      * @return Field[]
      */
-    public static Field[] getDeclaredFields(final Class clazz) {
+    public static Field[] getDeclaredFields(final Class<?> clazz) {
         if (clazz != null) {
             try {
                 return clazz.getDeclaredFields();

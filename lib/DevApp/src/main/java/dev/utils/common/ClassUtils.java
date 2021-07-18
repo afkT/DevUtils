@@ -57,7 +57,7 @@ public final class ClassUtils {
      * @param clazz {@link Class}
      * @return 原始类型值
      */
-    public static Object getDefaultPrimitiveValue(final Class clazz) {
+    public static Object getDefaultPrimitiveValue(final Class<?> clazz) {
         if (clazz != null && clazz.isPrimitive()) {
             return clazz == boolean.class ? false : 0;
         }
@@ -110,7 +110,7 @@ public final class ClassUtils {
      * @param clazz {@link Class}
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isPrimitive(final Class clazz) {
+    public static boolean isPrimitive(final Class<?> clazz) {
         return (clazz != null && clazz.isPrimitive());
     }
 
@@ -119,7 +119,7 @@ public final class ClassUtils {
      * @param clazz {@link Class}
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isCollection(final Class clazz) {
+    public static boolean isCollection(final Class<?> clazz) {
         return (clazz != null && Collection.class.isAssignableFrom(clazz));
     }
 
@@ -128,7 +128,7 @@ public final class ClassUtils {
      * @param clazz {@link Class}
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isMap(final Class clazz) {
+    public static boolean isMap(final Class<?> clazz) {
         return (clazz != null && Map.class.isAssignableFrom(clazz));
     }
 
@@ -137,7 +137,7 @@ public final class ClassUtils {
      * @param clazz {@link Class}
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isArray(final Class clazz) {
+    public static boolean isArray(final Class<?> clazz) {
         return (clazz != null && clazz.isArray());
     }
 
@@ -215,7 +215,7 @@ public final class ClassUtils {
      * @param clazz {@link Class}
      * @return 泛型类型
      */
-    public static Type getGenericSuperclass(final Class clazz) {
+    public static Type getGenericSuperclass(final Class<?> clazz) {
         return getGenericSuperclass(clazz, 0);
     }
 
@@ -226,7 +226,7 @@ public final class ClassUtils {
      * @return 泛型类型
      */
     public static Type getGenericSuperclass(
-            final Class clazz,
+            final Class<?> clazz,
             final int pos
     ) {
         if (clazz != null && pos >= 0) {
@@ -249,7 +249,7 @@ public final class ClassUtils {
      */
     public static Type getGenericInterfaces(
             final Object object,
-            final Class interfaceClazz
+            final Class<?> interfaceClazz
     ) {
         return getGenericInterfaces(object, interfaceClazz, 0);
     }
@@ -263,7 +263,7 @@ public final class ClassUtils {
      */
     public static Type getGenericInterfaces(
             final Object object,
-            final Class interfaceClazz,
+            final Class<?> interfaceClazz,
             final int pos
     ) {
         return getGenericInterfaces(getClass(object), interfaceClazz, pos);
@@ -278,8 +278,8 @@ public final class ClassUtils {
      * @return 泛型类型
      */
     public static Type getGenericInterfaces(
-            final Class clazz,
-            final Class interfaceClazz
+            final Class<?> clazz,
+            final Class<?> interfaceClazz
     ) {
         return getGenericInterfaces(clazz, interfaceClazz, 0);
     }
@@ -292,8 +292,8 @@ public final class ClassUtils {
      * @return 泛型类型
      */
     public static Type getGenericInterfaces(
-            final Class clazz,
-            final Class interfaceClazz,
+            final Class<?> clazz,
+            final Class<?> interfaceClazz,
             final int pos
     ) {
         if (clazz != null && interfaceClazz != null && pos >= 0) {

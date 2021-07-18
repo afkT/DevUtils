@@ -83,7 +83,7 @@ public final class ShortCutUtils {
      * @param clazz 快捷方式点击 Intent className(class.getName())
      * @return {@link Intent}
      */
-    public static Intent getShortCutIntent(final Class clazz) {
+    public static Intent getShortCutIntent(final Class<?> clazz) {
         return (clazz != null) ? getShortCutIntent(clazz.getName()) : null;
     }
 
@@ -117,7 +117,7 @@ public final class ShortCutUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean addShortcut(
-            final Class clazz,
+            final Class<?> clazz,
             final String name,
             @AnyRes final int icon
     ) {
@@ -238,7 +238,7 @@ public final class ShortCutUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean deleteShortcut(
-            final Class clazz,
+            final Class<?> clazz,
             final String name
     ) {
         return (clazz != null) && deleteShortcut(clazz.getName(), name);

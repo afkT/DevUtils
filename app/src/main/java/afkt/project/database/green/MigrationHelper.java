@@ -100,7 +100,7 @@ public final class MigrationHelper {
             return;
         }
         try {
-            for (Class cls : daoClasses) {
+            for (Class<?> cls : daoClasses) {
                 Method method = cls.getDeclaredMethod(methodName, Database.class, boolean.class);
                 method.invoke(null, db, isExists);
             }

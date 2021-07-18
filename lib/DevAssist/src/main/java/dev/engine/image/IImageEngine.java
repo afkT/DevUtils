@@ -112,9 +112,9 @@ public interface IImageEngine<Config extends IImageEngine.EngineConfig> {
 
     <T> void loadImage(Fragment fragment, DevSource source, Config config, LoadListener<T> listener);
 
-    <T> T loadImage(Context context, DevSource source, Config config, Class type);
+    <T> T loadImage(Context context, DevSource source, Config config, Class<?> type);
 
-    <T> T loadImageThrows(Context context, DevSource source, Config config, Class type) throws Exception;
+    <T> T loadImageThrows(Context context, DevSource source, Config config, Class<?> type) throws Exception;
 
     // =
 

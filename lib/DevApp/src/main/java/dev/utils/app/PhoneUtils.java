@@ -253,8 +253,8 @@ public final class PhoneUtils {
                 return telephonyManager.getImei(slotIndex);
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 // 反射调用方法
-                Class  clazz  = telephonyManager.getClass();
-                Method method = clazz.getDeclaredMethod("getImei");
+                Class<?> clazz  = telephonyManager.getClass();
+                Method   method = clazz.getDeclaredMethod("getImei");
                 method.setAccessible(true);
                 return (String) method.invoke(telephonyManager);
             }

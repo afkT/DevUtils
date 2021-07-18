@@ -23,7 +23,7 @@ public abstract class AbsGreenDatabase {
      * @param encrypted 数据库是否加密
      * @return 数据库名
      */
-    public static final String createDatabaseName(
+    public static String createDatabaseName(
             final String dbName,
             final boolean encrypted
     ) {
@@ -77,7 +77,7 @@ public abstract class AbsGreenDatabase {
         String getDatabaseName(
                 String dbName,
                 String password,
-                Class clazz
+                Class<?> clazz
         );
 
         /**
@@ -90,7 +90,7 @@ public abstract class AbsGreenDatabase {
         AbsGreenDatabase create(
                 String dbName,
                 String password,
-                Class clazz
+                Class<?> clazz
         );
     }
 }

@@ -76,8 +76,8 @@ public final class ListenerUtils {
             // 获取 ListenerInfo 对象
             Object listenerInfo = getListenerInfo(view);
             // 获取 ListenerInfo 对象中的 mOnTouchListener 属性
-            Class clazz = Class.forName("android.view.View$ListenerInfo");
-            Field field = clazz.getDeclaredField(listener);
+            Class<?> clazz = Class.forName("android.view.View$ListenerInfo");
+            Field    field = clazz.getDeclaredField(listener);
             field.setAccessible(true);
             // 进行获取返回
             return field.get(listenerInfo);

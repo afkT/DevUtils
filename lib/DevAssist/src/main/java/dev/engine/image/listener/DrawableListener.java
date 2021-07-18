@@ -12,7 +12,7 @@ public abstract class DrawableListener
         implements LoadListener<Drawable> {
 
     @Override
-    public final Class getTranscodeType() {
+    public final Class<?> getTranscodeType() {
         return Drawable.class;
     }
 }

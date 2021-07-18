@@ -47,7 +47,7 @@ public final class RoomManager {
      */
     public static <T extends AbsRoomDatabase> T database(
             final String dbName,
-            final Class clazz
+            final Class<?> clazz
     ) {
         return database(dbName, null, clazz);
     }
@@ -62,7 +62,7 @@ public final class RoomManager {
     public static <T extends AbsRoomDatabase> T database(
             final String dbName,
             final String password,
-            final Class clazz
+            final Class<?> clazz
     ) {
         if (TextUtils.isEmpty(dbName)) return null;
 
@@ -100,7 +100,7 @@ public final class RoomManager {
         public String getDatabaseName(
                 String dbName,
                 String password,
-                Class clazz
+                Class<?> clazz
         ) {
             return AbsRoomDatabase.createDatabaseName(dbName, StringUtils.isNotEmpty(password));
         }
@@ -109,7 +109,7 @@ public final class RoomManager {
         public AbsRoomDatabase create(
                 String dbName,
                 String password,
-                Class clazz
+                Class<?> clazz
         ) {
             if (clazz == NoteDatabase.class) {
                 return NoteDatabase.database(dbName, password);

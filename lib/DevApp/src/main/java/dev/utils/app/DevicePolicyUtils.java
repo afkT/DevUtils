@@ -306,7 +306,7 @@ public final class DevicePolicyUtils {
      * @param clazz 继承 {@link DeviceAdminReceiver}
      * @return {@link DevicePolicyUtils}
      */
-    public DevicePolicyUtils setComponentName(final Class clazz) {
+    public DevicePolicyUtils setComponentName(final Class<?> clazz) {
         try {
             setComponentName(new ComponentName(DevUtils.getContext(), clazz));
         } catch (Exception e) {

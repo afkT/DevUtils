@@ -13,7 +13,7 @@ public interface LoadListener<TranscodeType> {
      * 获取转码类型
      * @return {@link TranscodeType#getClass()}
      */
-    Class getTranscodeType();
+    Class<?> getTranscodeType();
 
     /**
      * 开始加载

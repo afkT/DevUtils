@@ -1012,7 +1012,7 @@ public final class WifiUtils {
             throw new NullPointerException();
         }
 
-        Class       routeInfoClass       = Class.forName("android.net.RouteInfo");
+        Class<?>    routeInfoClass       = Class.forName("android.net.RouteInfo");
         Constructor routeInfoConstructor = routeInfoClass.getConstructor(InetAddress.class);
         Object      routeInfo            = routeInfoConstructor.newInstance(gateway);
         ArrayList   mRoutes              = (ArrayList) getDeclaredField(linkProperties, "mRoutes");
@@ -1038,7 +1038,7 @@ public final class WifiUtils {
             throw new NullPointerException();
         }
 
-        Class       laClass        = Class.forName("android.net.LinkAddress");
+        Class<?>    laClass        = Class.forName("android.net.LinkAddress");
         Constructor laConstructor  = laClass.getConstructor(InetAddress.class, int.class);
         Object      linkAddress    = laConstructor.newInstance(address, prefixLength);
         ArrayList   mLinkAddresses = (ArrayList) getDeclaredField(linkProperties, "mLinkAddresses");
@@ -1071,7 +1071,7 @@ public final class WifiUtils {
             staticIpConfigClass = Class.forName("android.net.StaticIpConfiguration").newInstance();
         }
         // 初始化 LinkAddress 并设置 IP 地址
-        Class       laClass       = Class.forName("android.net.LinkAddress");
+        Class<?>    laClass       = Class.forName("android.net.LinkAddress");
         Constructor laConstructor = laClass.getConstructor(InetAddress.class, int.class);
         Object      linkAddress   = laConstructor.newInstance(InetAddress.getByName(ip), prefixLength);
         // 设置地址 IP 地址 ipAddress

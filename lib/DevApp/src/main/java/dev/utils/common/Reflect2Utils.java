@@ -104,7 +104,7 @@ public final class Reflect2Utils {
      * @return 该变量对象
      */
     public static <T> T getStaticProperty(
-            final Class clazz,
+            final Class<?> clazz,
             final String fieldName
     ) {
         if (clazz == null) return null;
@@ -124,8 +124,8 @@ public final class Reflect2Utils {
     ) {
         if (className == null || fieldName == null) return null;
         try {
-            Class clazz = Class.forName(className);
-            Field field = clazz.getDeclaredField(fieldName);
+            Class<?> clazz = Class.forName(className);
+            Field    field = clazz.getDeclaredField(fieldName);
             field.setAccessible(true);
             return (T) field.get(clazz);
         } catch (Exception e) {
@@ -181,11 +181,11 @@ public final class Reflect2Utils {
             final Object object,
             final String methodName,
             final Object[] args,
-            final Class[] argsClass
+            final Class<?>[] argsClass
     ) {
         if (object == null || methodName == null) return null;
         try {
-            Class clazz = object.getClass();
+            Class<?> clazz = object.getClass();
             if (args != null && argsClass != null) { // 参数、参数类型不为 null, 并且数量相等
                 if (args.length == argsClass.length && args.length != 0) {
                     Method method = clazz.getDeclaredMethod(methodName, argsClass);
@@ -255,7 +255,7 @@ public final class Reflect2Utils {
             final Object object,
             final String methodName,
             final Object[] args,
-            final Class[] argsClass
+            final Class<?>[] argsClass
     ) {
         if (object == null) return null;
         return invokeStaticMethod(object.getClass().getName(), methodName, args, argsClass);
@@ -271,7 +271,7 @@ public final class Reflect2Utils {
      * @return 执行方法返回的结果
      */
     public static <T> T invokeStaticMethod(
-            final Class clazz,
+            final Class<?> clazz,
             final String methodName
     ) {
         if (clazz == null) return null;
@@ -287,7 +287,7 @@ public final class Reflect2Utils {
      * @return 执行方法返回的结果
      */
     public static <T> T invokeStaticMethod(
-            final Class clazz,
+            final Class<?> clazz,
             final String methodName,
             final Object[] args
     ) {
@@ -305,10 +305,10 @@ public final class Reflect2Utils {
      * @return 执行方法返回的结果
      */
     public static <T> T invokeStaticMethod(
-            final Class clazz,
+            final Class<?> clazz,
             final String methodName,
             final Object[] args,
-            final Class[] argsClass
+            final Class<?>[] argsClass
     ) {
         if (clazz == null) return null;
         return invokeStaticMethod(clazz.getName(), methodName, args, argsClass);
@@ -361,11 +361,11 @@ public final class Reflect2Utils {
             final String className,
             final String methodName,
             final Object[] args,
-            final Class[] argsClass
+            final Class<?>[] argsClass
     ) {
         if (className == null || methodName == null) return null;
         try {
-            Class clazz = Class.forName(className);
+            Class<?> clazz = Class.forName(className);
             if (args != null && argsClass != null) { // 参数、参数类型不为 null, 并且数量相等
                 if (args.length == argsClass.length && args.length != 0) {
                     Method method = clazz.getDeclaredMethod(methodName, argsClass);
@@ -427,7 +427,7 @@ public final class Reflect2Utils {
     public static <T> T newInstance(
             final Object object,
             final Object[] args,
-            final Class[] argsClass
+            final Class<?>[] argsClass
     ) {
         if (object == null) return null;
         return newInstance(object.getClass().getName(), args, argsClass);
@@ -441,7 +441,7 @@ public final class Reflect2Utils {
      * @param <T>   泛型
      * @return 新建的实例
      */
-    public static <T> T newInstance(final Class clazz) {
+    public static <T> T newInstance(final Class<?> clazz) {
         if (clazz == null) return null;
         return newInstance(clazz.getName(), null, null);
     }
@@ -454,7 +454,7 @@ public final class Reflect2Utils {
      * @return 新建的实例
      */
     public static <T> T newInstance(
-            final Class clazz,
+            final Class<?> clazz,
             final Object[] args
     ) {
         if (clazz == null) return null;
@@ -470,9 +470,9 @@ public final class Reflect2Utils {
      * @return 新建的实例
      */
     public static <T> T newInstance(
-            final Class clazz,
+            final Class<?> clazz,
             final Object[] args,
-            final Class[] argsClass
+            final Class<?>[] argsClass
     ) {
         if (clazz == null) return null;
         return newInstance(clazz.getName(), args, argsClass);
@@ -517,11 +517,11 @@ public final class Reflect2Utils {
     public static <T> T newInstance(
             final String className,
             final Object[] args,
-            final Class[] argsClass
+            final Class<?>[] argsClass
     ) {
         if (className == null) return null;
         try {
-            Class newClass = Class.forName(className);
+            Class<?> newClass = Class.forName(className);
             if (args == null) {
                 return (T) newClass.newInstance();
             } else {
@@ -544,7 +544,7 @@ public final class Reflect2Utils {
      */
     public static boolean isInstance(
             final Object object,
-            final Class clazz
+            final Class<?> clazz
     ) {
         if (object == null || clazz == null) return false;
         try {

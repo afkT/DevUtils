@@ -175,7 +175,7 @@ public final class OkGoUtils {
      * @param <T>      泛型
      */
     public static <T> void execute(
-            Class clazz,
+            Class<?> clazz,
             Request request,
             OkGoCallback<T> callback
     ) {

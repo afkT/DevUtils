@@ -159,7 +159,7 @@ public final class LoggerUse {
         DevLogger.vTag(tag, "测试数据 - v");
         DevLogger.vTag(tag, "测试数据 - d");
         try {
-            Class clazz = Class.forName("asdfasd");
+            Class<?> clazz = Class.forName("asdfasd");
         } catch (ClassNotFoundException e) {
             DevLogger.e(e, "发生异常");
         }

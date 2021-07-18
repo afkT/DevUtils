@@ -577,7 +577,7 @@ public final class DevUtils {
          * @return {@code true} yes, {@code false} no
          */
         @Override
-        public boolean isTopActivity(final Class clazz) {
+        public boolean isTopActivity(final Class<?> clazz) {
             if (clazz != null) {
                 Activity activity = getTopActivity();
                 // 判断是否类是否一致
@@ -749,7 +749,7 @@ public final class DevUtils {
          * @param clazz Activity.class or this.getClass()
          * @return {@code true} yes, {@code false} no
          */
-        boolean isTopActivity(Class clazz);
+        boolean isTopActivity(Class<?> clazz);
 
         /**
          * 判断应用是否在后台 ( 不可见 )

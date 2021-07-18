@@ -588,9 +588,9 @@ public final class ScreenUtils {
                 hasNavigationBar = resources.getBoolean(id);
             }
             try {
-                Class  systemPropertiesClass = Class.forName("android.os.SystemProperties");
-                Method method                = systemPropertiesClass.getMethod("get", String.class);
-                String navBarOverride        = (String) method.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
+                Class<?> systemPropertiesClass = Class.forName("android.os.SystemProperties");
+                Method   method                = systemPropertiesClass.getMethod("get", String.class);
+                String   navBarOverride        = (String) method.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
                 if ("1".equals(navBarOverride)) {
                     hasNavigationBar = false;
                 } else if ("0".equals(navBarOverride)) {

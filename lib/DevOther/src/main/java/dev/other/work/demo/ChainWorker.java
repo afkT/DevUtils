@@ -3,6 +3,7 @@ package dev.other.work.demo;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.work.ListenableWorker;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
@@ -36,7 +37,7 @@ public class ChainWorker {
     }
 
     public static OneTimeWorkRequest builder(
-            final Class clazz,
+            final Class<? extends ListenableWorker> clazz,
             final long milliseconds
     ) {
         return new OneTimeWorkRequest.Builder(clazz)
