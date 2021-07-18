@@ -22,7 +22,7 @@ import dev.widget.utils.WidgetAttrs;
 public class CustomWebView
         extends WebView {
 
-    private WidgetAttrs mWidgetAttrs;
+    private WidgetAttrs    mWidgetAttrs;
     // 滑动监听回调
     private ScrollCallback mCallback = null;
 

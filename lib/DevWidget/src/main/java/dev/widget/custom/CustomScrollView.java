@@ -25,7 +25,7 @@ import dev.widget.utils.WidgetAttrs;
 public class CustomScrollView
         extends ScrollView {
 
-    private WidgetAttrs mWidgetAttrs;
+    private WidgetAttrs    mWidgetAttrs;
     // 滑动监听回调
     private ScrollCallback mCallback = null;
 

@@ -65,7 +65,7 @@ public final class StorageItem
     // ==============================================
 
     // 图片格式
-    private Bitmap.CompressFormat mFormat = Bitmap.CompressFormat.PNG;
+    private Bitmap.CompressFormat mFormat  = Bitmap.CompressFormat.PNG;
     // 图片质量
     private int                   mQuality = 100;
 

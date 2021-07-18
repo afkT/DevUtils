@@ -14,7 +14,7 @@ import dev.utils.common.FileUtils;
 public final class FilePartAssist {
 
     // 文件路径
-    private final File file;
+    private final File               file;
     // 文件分片信息集合
     private final List<FilePartItem> filePartItems = new ArrayList<>();
 
