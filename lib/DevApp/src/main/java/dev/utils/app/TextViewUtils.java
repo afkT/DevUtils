@@ -2571,7 +2571,8 @@ public final class TextViewUtils {
     ) {
         if (textView == null || content == null) return 0f;
         return reckonTextSizeByWidth(width, TextViewUtils.getPaint(textView),
-                TextViewUtils.getTextSize(textView), content);
+                TextViewUtils.getTextSize(textView), content
+        );
     }
 
     /**

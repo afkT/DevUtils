@@ -390,16 +390,19 @@ public final class ScreenshotUtils {
             final ScreenshotChecker checker
     ) {
         Cursor cursor = ContentResolverUtils.query(contentUri, MEDIA_PROJECTIONS,
-                null, null, sortOrder);
+                null, null, sortOrder
+        );
         try {
             if (cursor == null) {
                 LogPrintUtils.dTag(TAG, "搜索失败 uri: %s, projection: %s",
-                        contentUri, Arrays.toString(MEDIA_PROJECTIONS));
+                        contentUri, Arrays.toString(MEDIA_PROJECTIONS)
+                );
                 return;
             }
             if (!cursor.moveToFirst()) {
                 LogPrintUtils.dTag(TAG, "搜索成功, 但无符合条件数据 uri: %s, projection: %s",
-                        contentUri, Arrays.toString(MEDIA_PROJECTIONS));
+                        contentUri, Arrays.toString(MEDIA_PROJECTIONS)
+                );
                 return;
             }
             // 获取数据

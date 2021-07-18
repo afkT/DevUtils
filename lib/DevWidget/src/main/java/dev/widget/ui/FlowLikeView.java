@@ -247,7 +247,8 @@ public class FlowLikeView
      */
     private ValueAnimator generateCurveAnimation(View target) {
         CurveEvaluator evaluator = new CurveEvaluator(generateCTRLPointF(1));
-        ValueAnimator valueAnimator = ValueAnimator.ofObject(evaluator,
+        ValueAnimator valueAnimator = ValueAnimator.ofObject(
+                evaluator,
                 new PointF((mViewWidth - mIconWidth) / 2, mViewHeight - mChildViewHeight - mIconHeight),
                 new PointF((mViewWidth) / 2 + (mRandom.nextBoolean() ? 1 : -1) * mRandom.nextInt(100), 0)
         );

@@ -901,7 +901,8 @@ public final class BitmapUtils {
         // 将倒影改成半透明, 创建画笔, 并设置画笔的渐变从半透明的白色到全透明的白色, 然后再倒影上面画半透明效果
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setShader(new LinearGradient(0, bitmap.getHeight(), 0, bitmapWithReflection.getHeight() + spacing,
-                0x70ffffff, 0x00ffffff, Shader.TileMode.CLAMP));
+                0x70ffffff, 0x00ffffff, Shader.TileMode.CLAMP
+        ));
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         canvas.drawRect(0, height + spacing, width, bitmapWithReflection.getHeight() + spacing, paint);
         return bitmapWithReflection;

@@ -758,7 +758,8 @@ final class DevCacheManager {
                 long   saveTime  = jsonObject.getLong("saveTime");
                 long   validTime = jsonObject.getLong("validTime");
                 return new DevCache.Data(mCachePath, _key,
-                        type, saveTime, validTime);
+                        type, saveTime, validTime
+                );
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "_getData");
@@ -803,7 +804,8 @@ final class DevCacheManager {
                 mCacheSize.addAndGet(getDataFileSize(mCachePath, key));
             } else {
                 data = new DevCache.Data(mCachePath, key, type,
-                        System.currentTimeMillis(), validTime);
+                        System.currentTimeMillis(), validTime
+                );
                 mCacheSize.addAndGet(getDataFileSize(mCachePath, key));
                 mCacheCount.incrementAndGet();
                 mDataMaps.put(key, data);

@@ -451,7 +451,7 @@ public class DevCacheEngineImpl
             Type typeOfT,
             T defaultValue
     ) {
-        String json   = getString(key, null);
+        String json = getString(key, null);
         T      object = (T) DevJSONEngine.getEngine().fromJson(json, typeOfT);
         if (object == null) return defaultValue;
         return object;

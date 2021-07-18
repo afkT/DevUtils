@@ -322,7 +322,8 @@ public final class ContentResolverUtils {
         if (uri == null || TextUtils.isEmpty(filePath) && mediaQuery != null) return null;
         Cursor cursor = null;
         try {
-            cursor = query(uri,
+            cursor = query(
+                    uri,
                     mediaQuery.getProjection(uri, filePath),
                     mediaQuery.getSelection(uri, filePath),
                     mediaQuery.getSelectionArgs(uri, filePath),

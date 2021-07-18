@@ -140,10 +140,12 @@ public class DanceLoadingRenderer
         mPaint.setStyle(Paint.Style.FILL);
         for (int i = 0; i < NUM_POINTS; i++) {
             canvas.rotate(i * DANCE_INTERVAL_ANGLE, POINT_X[i], POINT_Y[i]);
-            RectF rectF = new RectF(POINT_X[i] - mDanceBallRadius - mShapeChangeWidth / 2.0f,
+            RectF rectF = new RectF(
+                    POINT_X[i] - mDanceBallRadius - mShapeChangeWidth / 2.0f,
                     POINT_Y[i] - mDanceBallRadius - mShapeChangeHeight / 2.0f,
                     POINT_X[i] + mDanceBallRadius + mShapeChangeWidth / 2.0f,
-                    POINT_Y[i] + mDanceBallRadius + mShapeChangeHeight / 2.0f);
+                    POINT_Y[i] + mDanceBallRadius + mShapeChangeHeight / 2.0f
+            );
             canvas.drawOval(rectF, mPaint);
             canvas.rotate(-i * DANCE_INTERVAL_ANGLE, POINT_X[i], POINT_Y[i]);
         }

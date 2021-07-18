@@ -117,33 +117,42 @@ public class CoolWaitLoadingRenderer
         //create w
         path.cubicTo(bounds.centerX() + mWaitCircleRadius, bounds.centerY() - mWaitCircleRadius * 0.5f,
                 bounds.centerX() + mWaitCircleRadius * 0.3f, bounds.centerY() - mWaitCircleRadius,
-                bounds.centerX() - mWaitCircleRadius * 0.35f, bounds.centerY() + mWaitCircleRadius * 0.5f);
+                bounds.centerX() - mWaitCircleRadius * 0.35f, bounds.centerY() + mWaitCircleRadius * 0.5f
+        );
         path.quadTo(bounds.centerX() + mWaitCircleRadius, bounds.centerY() - mWaitCircleRadius,
-                bounds.centerX() + mWaitCircleRadius * 0.05f, bounds.centerY() + mWaitCircleRadius * 0.5f);
+                bounds.centerX() + mWaitCircleRadius * 0.05f, bounds.centerY() + mWaitCircleRadius * 0.5f
+        );
         path.lineTo(bounds.centerX() + mWaitCircleRadius * 0.75f, bounds.centerY() - mWaitCircleRadius * 0.2f);
 
         path.cubicTo(bounds.centerX(), bounds.centerY() + mWaitCircleRadius * 1f,
                 bounds.centerX() + mWaitCircleRadius, bounds.centerY() + mWaitCircleRadius * 0.4f,
-                bounds.centerX() + mWaitCircleRadius, bounds.centerY());
+                bounds.centerX() + mWaitCircleRadius, bounds.centerY()
+        );
 
         //create arc
         path.arcTo(new RectF(bounds.centerX() - mWaitCircleRadius, bounds.centerY() - mWaitCircleRadius,
-                bounds.centerX() + mWaitCircleRadius, bounds.centerY() + mWaitCircleRadius), 0, -359);
+                bounds.centerX() + mWaitCircleRadius, bounds.centerY() + mWaitCircleRadius
+        ), 0, -359);
         path.arcTo(new RectF(bounds.centerX() - mWaitCircleRadius, bounds.centerY() - mWaitCircleRadius,
-                bounds.centerX() + mWaitCircleRadius, bounds.centerY() + mWaitCircleRadius), 1, -359);
+                bounds.centerX() + mWaitCircleRadius, bounds.centerY() + mWaitCircleRadius
+        ), 1, -359);
         path.arcTo(new RectF(bounds.centerX() - mWaitCircleRadius, bounds.centerY() - mWaitCircleRadius,
-                bounds.centerX() + mWaitCircleRadius, bounds.centerY() + mWaitCircleRadius), 2, -2);
+                bounds.centerX() + mWaitCircleRadius, bounds.centerY() + mWaitCircleRadius
+        ), 2, -2);
         //create w
         path.cubicTo(bounds.centerX() + mWaitCircleRadius, bounds.centerY() - mWaitCircleRadius * 0.5f,
                 bounds.centerX() + mWaitCircleRadius * 0.3f, bounds.centerY() - mWaitCircleRadius,
-                bounds.centerX() - mWaitCircleRadius * 0.35f, bounds.centerY() + mWaitCircleRadius * 0.5f);
+                bounds.centerX() - mWaitCircleRadius * 0.35f, bounds.centerY() + mWaitCircleRadius * 0.5f
+        );
         path.quadTo(bounds.centerX() + mWaitCircleRadius, bounds.centerY() - mWaitCircleRadius,
-                bounds.centerX() + mWaitCircleRadius * 0.05f, bounds.centerY() + mWaitCircleRadius * 0.5f);
+                bounds.centerX() + mWaitCircleRadius * 0.05f, bounds.centerY() + mWaitCircleRadius * 0.5f
+        );
         path.lineTo(bounds.centerX() + mWaitCircleRadius * 0.75f, bounds.centerY() - mWaitCircleRadius * 0.2f);
 
         path.cubicTo(bounds.centerX(), bounds.centerY() + mWaitCircleRadius * 1f,
                 bounds.centerX() + mWaitCircleRadius, bounds.centerY() + mWaitCircleRadius * 0.4f,
-                bounds.centerX() + mWaitCircleRadius, bounds.centerY());
+                bounds.centerX() + mWaitCircleRadius, bounds.centerY()
+        );
 
         return path;
     }

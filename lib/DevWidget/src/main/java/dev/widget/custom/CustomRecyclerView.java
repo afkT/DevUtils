@@ -44,13 +44,13 @@ import dev.widget.utils.WidgetAttrs;
 public class CustomRecyclerView
         extends RecyclerView {
 
-    private WidgetAttrs    mWidgetAttrs;
+    private WidgetAttrs mWidgetAttrs;
     // 滑动监听回调
     private ScrollCallback mCallback = null;
     // 距离左边距离
-    private int            mScrollX  = 0;
+    private int mScrollX             = 0;
     // 距离顶部距离
-    private int            mScrollY  = 0;
+    private int mScrollY             = 0;
 
     public CustomRecyclerView(Context context) {
         super(context);

@@ -221,9 +221,11 @@ final class Utils {
                 .builder(EnvironmentBean.class, _getEnvironmentVarName_UpperCase(moduleName, environmentName))
                 .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
                 .initializer("new $T($S, $S, $S, $N)", EnvironmentBean.class, environmentName,
-                        environmentValue, environmentAlias, _getModuleVarName_UpperCase(moduleName))
+                        environmentValue, environmentAlias, _getModuleVarName_UpperCase(moduleName)
+                )
                 .addJavadoc(String.format("[ Environment ] name: %s, alias: %s, [ Module ] name: %s\n",
-                        environmentName, environmentAlias, moduleName))
+                        environmentName, environmentAlias, moduleName
+                ))
                 .build();
         classBuilder.addField(environmentField);
 
@@ -329,7 +331,8 @@ final class Utils {
             CodeBlock.Builder staticCodeBlockBuilder = CodeBlock.builder();
             // 创建 module List 集合 VAR_MODULELIST
             staticCodeBlockBuilder.addStatement("List<$T> $N = new $T<>()", ModuleBean.class,
-                    VAR_MODULELIST, ArrayList.class);
+                    VAR_MODULELIST, ArrayList.class
+            );
 
             Iterator<Map.Entry<String, List<String>>> iterator = sModuleNameMap.entrySet().iterator();
             while (iterator.hasNext()) {
@@ -345,7 +348,8 @@ final class Utils {
                 // 添加 Environment 到对应 ModuleBean.getEnvironments() 中
                 for (String environmentVarName : environmentVarNameList) {
                     staticCodeBlockBuilder.addStatement("$N.$N().add($N)", _getModuleVarName_UpperCase(moduleName),
-                            METHOD_GET_MODULE_ENVIRONMENTS_LIST, environmentVarName);
+                            METHOD_GET_MODULE_ENVIRONMENTS_LIST, environmentVarName
+                    );
                 }
             }
             // 初始化 Module List 集合变量 VAR_MODULE_LIST
@@ -417,7 +421,8 @@ final class Utils {
             CodeBlock.Builder codeBlockBuilder = CodeBlock.builder();
             codeBlockBuilder.add("if ($N != null) return $N;\n", sSelectModule, sSelectModule);
             codeBlockBuilder.add("EnvironmentBean environmentBean = $N($N, $S, $N);\n", METHOD_READ_STORAGE,
-                    VAR_CONTEXT, _getModuleVarName_UpperCase(moduleName), _getModuleVarName_UpperCase(moduleName));
+                    VAR_CONTEXT, _getModuleVarName_UpperCase(moduleName), _getModuleVarName_UpperCase(moduleName)
+            );
             codeBlockBuilder.add("if (environmentBean != null) return $N = environmentBean;\n", sSelectModule);
             codeBlockBuilder.add("$N = $N();\n", sSelectModule, getModuleReleaseEnvironmentMethodName);
 
@@ -461,7 +466,8 @@ final class Utils {
             codeBlockBuilder.add("if ($N == null || $N == null) return false;\n", VAR_CONTEXT, VAR_NEW_ENVIRONMENT);
             codeBlockBuilder.add("if ($N($N).equals($N)) return false;\n", getModuleEnvironmentMethodName, VAR_CONTEXT, VAR_NEW_ENVIRONMENT);
             codeBlockBuilder.add("if ($N($N, $S, $N)) {\n", METHOD_WRITE_STORAGE,
-                    VAR_CONTEXT, _getModuleVarName_UpperCase(moduleName), VAR_NEW_ENVIRONMENT);
+                    VAR_CONTEXT, _getModuleVarName_UpperCase(moduleName), VAR_NEW_ENVIRONMENT
+            );
             codeBlockBuilder.add("    EnvironmentBean temp = $N;\n", sSelectModule);
             codeBlockBuilder.add("    $N = $N;\n", sSelectModule, VAR_NEW_ENVIRONMENT);
             codeBlockBuilder.add("    $N($N, temp, $N);\n", METHOD_NOTIFY_ONENVIRONMENT_CHANGE_LISTENER
@@ -492,7 +498,8 @@ final class Utils {
             // 构建 resetModule 实现代码
             codeBlockBuilder = CodeBlock.builder();
             codeBlockBuilder.add("if ($N != null && $N($N, $N)) {\n", VAR_CONTEXT, METHOD_DELETE_STORAGE, VAR_CONTEXT,
-                    String.format(JSON_FILE_FORMAT, _getModuleVarName_UpperCase(moduleName)));
+                    String.format(JSON_FILE_FORMAT, _getModuleVarName_UpperCase(moduleName))
+            );
             codeBlockBuilder.add(String.format("    %s = null;\n", VAR_SELECT_ENVIRONMENT + moduleName));
             codeBlockBuilder.add("    return true;\n");
             codeBlockBuilder.add("}\n");
@@ -522,7 +529,8 @@ final class Utils {
             codeBlockBuilder.add("    $T environmentBean = $N($N);\n", EnvironmentBean.class, getModuleEnvironmentMethodName, VAR_CONTEXT);
             codeBlockBuilder.add("    int hashCode = environmentBean.hashCode();\n");
             codeBlockBuilder.add("    $T<EnvironmentBean> iterator = $N.getEnvironments().iterator();\n",
-                    Iterator.class, _getModuleVarName_UpperCase(moduleName));
+                    Iterator.class, _getModuleVarName_UpperCase(moduleName)
+            );
             codeBlockBuilder.add("    while (iterator.hasNext()) {\n");
             codeBlockBuilder.add("        EnvironmentBean bean = iterator.next();\n");
             codeBlockBuilder.add("        if (bean != null && bean.hashCode() == hashCode) {\n");
@@ -652,7 +660,8 @@ final class Utils {
         codeBlockBuilder.add("for ($T $N : list) {\n", OnEnvironmentChangeListener.class, VAR_LISTENER);
         codeBlockBuilder.add("    try {\n");
         codeBlockBuilder.add("        $N.$N($N, $N, $N);\n", VAR_LISTENER, METHOD_ONENVIRONMENT_CHANGED,
-                VAR_MODULE, VAR_OLD_ENVIRONMENT, VAR_NEW_ENVIRONMENT);
+                VAR_MODULE, VAR_OLD_ENVIRONMENT, VAR_NEW_ENVIRONMENT
+        );
         codeBlockBuilder.add("    } catch (Exception e) {\n");
         codeBlockBuilder.add("        $T.printStackTrace(e);\n", LogUtils.class);
         codeBlockBuilder.add("    }\n");

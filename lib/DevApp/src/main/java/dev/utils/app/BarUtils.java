@@ -220,7 +220,8 @@ public final class BarUtils {
             if (haveSetOffset != null && (Boolean) haveSetOffset) return false;
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
             layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin + getStatusBarHeight(),
-                    layoutParams.rightMargin, layoutParams.bottomMargin);
+                    layoutParams.rightMargin, layoutParams.bottomMargin
+            );
             view.setLayoutParams(layoutParams);
             view.setTag(KEY_OFFSET, true);
             return true;
@@ -239,7 +240,8 @@ public final class BarUtils {
             if (haveSetOffset == null || !(Boolean) haveSetOffset) return false;
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
             layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin - getStatusBarHeight(),
-                    layoutParams.rightMargin, layoutParams.bottomMargin);
+                    layoutParams.rightMargin, layoutParams.bottomMargin
+            );
             view.setLayoutParams(layoutParams);
             view.setTag(KEY_OFFSET, false);
             return true;

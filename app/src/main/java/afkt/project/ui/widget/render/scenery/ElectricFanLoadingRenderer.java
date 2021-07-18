@@ -170,13 +170,16 @@ public class ElectricFanLoadingRenderer
         arcBounds.inset(mStrokeXInset, mStrokeYInset);
 
         mCurrentProgressBounds.set(arcBounds.left, arcBounds.bottom - 2 * mCenterRadius,
-                arcBounds.right, arcBounds.bottom);
+                arcBounds.right, arcBounds.bottom
+        );
 
         //draw loading drawable
-        mLoadingDrawable.setBounds((int) arcBounds.centerX() - mLoadingDrawable.getIntrinsicWidth() / 2,
+        mLoadingDrawable.setBounds(
+                (int) arcBounds.centerX() - mLoadingDrawable.getIntrinsicWidth() / 2,
                 0,
                 (int) arcBounds.centerX() + mLoadingDrawable.getIntrinsicWidth() / 2,
-                mLoadingDrawable.getIntrinsicHeight());
+                mLoadingDrawable.getIntrinsicHeight()
+        );
         mLoadingDrawable.draw(canvas);
 
         //draw progress background
@@ -225,21 +228,25 @@ public class ElectricFanLoadingRenderer
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(mStrokeWidth);
         canvas.drawCircle(arcBounds.right - mCenterRadius, arcBounds.bottom - mCenterRadius,
-                mCenterRadius - mStrokeWidth / 2.0f, mPaint);
+                mCenterRadius - mStrokeWidth / 2.0f, mPaint
+        );
 
         //draw electric background
         mPaint.setColor(mElectricFanBgColor);
         mPaint.setStyle(Paint.Style.FILL);
         canvas.drawCircle(arcBounds.right - mCenterRadius, arcBounds.bottom - mCenterRadius,
-                mCenterRadius - mStrokeWidth + DEFAULT_STROKE_INTERVAL, mPaint);
+                mCenterRadius - mStrokeWidth + DEFAULT_STROKE_INTERVAL, mPaint
+        );
 
         //draw electric fan
         int rotateSaveCount = canvas.save();
         canvas.rotate(mRotation, electricFanCenterX, electricFanCenterY);
-        mElectricFanDrawable.setBounds((int) (electricFanCenterX - mElectricFanDrawable.getIntrinsicWidth() / 2 * mScale),
+        mElectricFanDrawable.setBounds(
+                (int) (electricFanCenterX - mElectricFanDrawable.getIntrinsicWidth() / 2 * mScale),
                 (int) (electricFanCenterY - mElectricFanDrawable.getIntrinsicHeight() / 2 * mScale),
                 (int) (electricFanCenterX + mElectricFanDrawable.getIntrinsicWidth() / 2 * mScale),
-                (int) (electricFanCenterY + mElectricFanDrawable.getIntrinsicHeight() / 2 * mScale));
+                (int) (electricFanCenterY + mElectricFanDrawable.getIntrinsicHeight() / 2 * mScale)
+        );
         mElectricFanDrawable.draw(canvas);
         canvas.restoreToCount(rotateSaveCount);
 
@@ -250,7 +257,8 @@ public class ElectricFanLoadingRenderer
             Rect textRect = new Rect();
             mPaint.getTextBounds(PERCENTAGE_100, 0, PERCENTAGE_100.length(), textRect);
             canvas.drawText(PERCENTAGE_100, electricFanCenterX - textRect.width() / 2.0f,
-                    electricFanCenterY + textRect.height() / 2.0f, mPaint);
+                    electricFanCenterY + textRect.height() / 2.0f, mPaint
+            );
         }
 
         canvas.restoreToCount(saveCount);
@@ -390,9 +398,11 @@ public class ElectricFanLoadingRenderer
         int startPointY = leafFlyStartY - mRandom.nextInt(leafFlyRange);
         int endPointY   = leafFlyStartY - mRandom.nextInt(leafFlyRange);
 
-        ValueAnimator animator = ValueAnimator.ofObject(evaluator,
+        ValueAnimator animator = ValueAnimator.ofObject(
+                evaluator,
                 new PointF((int) (leafFlyRect.right - mLeafDrawable.getIntrinsicWidth()), startPointY),
-                new PointF(leafFlyRect.left, endPointY));
+                new PointF(leafFlyRect.left, endPointY)
+        );
         animator.addUpdateListener(new BezierListener(target));
         animator.setTarget(target);
 
@@ -462,7 +472,8 @@ public class ElectricFanLoadingRenderer
         public void onAnimationUpdate(ValueAnimator animation) {
             PointF point = (PointF) animation.getAnimatedValue();
             target.mLeafRect.set((int) point.x, (int) point.y,
-                    (int) (point.x + mLeafDrawable.getIntrinsicWidth()), (int) (point.y + mLeafDrawable.getIntrinsicHeight()));
+                    (int) (point.x + mLeafDrawable.getIntrinsicWidth()), (int) (point.y + mLeafDrawable.getIntrinsicHeight())
+            );
             target.mLeafRotation = target.mMaxRotation * animation.getAnimatedFraction();
         }
     }

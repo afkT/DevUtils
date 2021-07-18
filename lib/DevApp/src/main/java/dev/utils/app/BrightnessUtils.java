@@ -61,7 +61,8 @@ public final class BrightnessUtils {
         }
         try {
             return Settings.System.putInt(ResourceUtils.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE,
-                    enabled ? Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC : Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
+                    enabled ? Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC : Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setAutoBrightnessEnabled");
         }

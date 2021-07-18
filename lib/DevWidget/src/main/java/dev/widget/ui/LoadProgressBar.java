@@ -272,7 +272,8 @@ public class LoadProgressBar
             float margin = (getWidth() - mInsideCircleWidth) / 2;
             // 绘制扇形
             RectF oval = new RectF(margin + centre - radius, margin + centre - radius,
-                    margin + centre + radius, margin + centre + radius);
+                    margin + centre + radius, margin + centre + radius
+            );
             canvas.drawArc(oval, 270, (360 * mProgress) / mMax, true, mPaint);  // 根据进度画圆弧
         } else if (mProgressStyle == ProgressStyle.NUMBER) {
             // 绘制的内容
@@ -282,7 +283,8 @@ public class LoadProgressBar
                 int tempWidth = getWidth();
                 // 计算字体大小
                 mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(tempWidth, mTextPaint,
-                        SizeUtils.pxConvertSp(tempWidth), "100%");
+                        SizeUtils.pxConvertSp(tempWidth), "100%"
+                );
             }
             // 绘制进度文本
             drawProgressText(canvas, mNumberTextSize, mNumberTextColor, progressText);
@@ -302,7 +304,8 @@ public class LoadProgressBar
                         int tempWidth = getWidth() / 3 * 2;
                         // 计算字体大小
                         mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(tempWidth, mTextPaint,
-                                SizeUtils.pxConvertSp(tempWidth), "100%");
+                                SizeUtils.pxConvertSp(tempWidth), "100%"
+                        );
                     }
                     // 绘制进度文本
                     drawProgressText(canvas, mNumberTextSize, mNumberTextColor, (mProgress * 100 / mMax) + "%");
@@ -315,12 +318,14 @@ public class LoadProgressBar
                             int tempWidth = getWidth() / 3 * 2;
                             // 计算字体大小
                             mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(tempWidth, mTextPaint,
-                                    SizeUtils.pxConvertSp(tempWidth), "100%");
+                                    SizeUtils.pxConvertSp(tempWidth), "100%"
+                            );
                         } else {
                             int tempWidth = (int) mInsideCircleWidth / 3 * 2;
                             // 计算字体大小
                             mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(tempWidth, mTextPaint,
-                                    SizeUtils.pxConvertSp(tempWidth), "100%");
+                                    SizeUtils.pxConvertSp(tempWidth), "100%"
+                            );
                         }
                     }
                     // 绘制进度文本

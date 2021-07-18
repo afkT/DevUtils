@@ -141,7 +141,8 @@ class Utils {
             String moduleName                     = newEnvironment.getModule().getName();
             String setModuleEnvironmentMethodName = "set" + moduleName + STR_ENVIRONMENT;
             Method setModuleEnvironmentMethod = devEnvironmentClass.getMethod(setModuleEnvironmentMethodName,
-                    Context.class, EnvironmentBean.class);
+                    Context.class, EnvironmentBean.class
+            );
             return (boolean) setModuleEnvironmentMethod.invoke(null, context, newEnvironment);
         } catch (Exception e) {
             LogUtils.printStackTrace(e);

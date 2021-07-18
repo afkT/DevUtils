@@ -293,7 +293,8 @@ public final class WorkManagerUtils {
         return enqueueUniqueWork(
                 uniqueWorkName,
                 existingWorkPolicy,
-                Collections.singletonList(work));
+                Collections.singletonList(work)
+        );
     }
 
     /**

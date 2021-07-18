@@ -135,9 +135,11 @@ public final class IDCardUtils {
             Calendar calendar = Calendar.getInstance();
             if (birthDate != null) calendar.setTime(birthDate);
             // 判断是否有效日期
-            return validateDateSmallerThenNow(calendar.get(Calendar.YEAR),
+            return validateDateSmallerThenNow(
+                    calendar.get(Calendar.YEAR),
                     Integer.valueOf(birthCode.substring(2, 4)),
-                    Integer.valueOf(birthCode.substring(4, 6)));
+                    Integer.valueOf(birthCode.substring(4, 6))
+            );
         }
         return false;
     }
@@ -157,7 +159,7 @@ public final class IDCardUtils {
             if (isNumber(code17)) {
                 try {
                     int[] cardArrays = convertCharToInt(code17.toCharArray());
-                    int   sum17    = getPowerSum(cardArrays);
+                    int   sum17      = getPowerSum(cardArrays);
                     // 获取校验位
                     String str = getCheckCode18(sum17);
                     // 判断最后一位是否一样
@@ -198,7 +200,7 @@ public final class IDCardUtils {
                 idCard18 = idCard.substring(0, 6) + year + idCard.substring(8);
                 // 转换字符数组
                 int[] cardArrays = convertCharToInt(idCard18.toCharArray());
-                int   sum17    = getPowerSum(cardArrays);
+                int   sum17      = getPowerSum(cardArrays);
                 // 获取校验位
                 String str = getCheckCode18(sum17);
                 // 判断长度, 拼接校验位

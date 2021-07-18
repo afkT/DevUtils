@@ -17,7 +17,7 @@ public class LineTextView
         extends AppCompatTextView {
 
     // 是否换行
-    private boolean           mIsNewLine = false;
+    private boolean mIsNewLine = false;
     // 换行监听回调
     private OnNewLineCallback mCallback;
 
@@ -49,7 +49,8 @@ public class LineTextView
         String text = this.getText().toString();
         // 计算文本一共多少行
         int line = TextViewUtils.calcTextLine(paint, text,
-                getWidth() - getPaddingLeft() - getPaddingRight());
+                getWidth() - getPaddingLeft() - getPaddingRight()
+        );
         // 是否换行
         mIsNewLine = line > 1;
 

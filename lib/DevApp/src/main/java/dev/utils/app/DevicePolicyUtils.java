@@ -226,8 +226,10 @@ public final class DevicePolicyUtils {
     ) {
         if (!isAdminActive(admin)) return false;
         try {
-            return getDevicePolicyManager().resetPassword(password,
-                    DevicePolicyManager.RESET_PASSWORD_REQUIRE_ENTRY);
+            return getDevicePolicyManager().resetPassword(
+                    password,
+                    DevicePolicyManager.RESET_PASSWORD_REQUIRE_ENTRY
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "resetPassword");
         }

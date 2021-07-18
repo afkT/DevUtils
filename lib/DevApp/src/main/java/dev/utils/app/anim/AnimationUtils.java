@@ -293,7 +293,8 @@ public final class AnimationUtils {
             final AnimationListener animationListener
     ) {
         return getRotateAnimation(0f, 359f, Animation.RELATIVE_TO_SELF,
-                0.5f, Animation.RELATIVE_TO_SELF, 0.5f, durationMillis, animationListener);
+                0.5f, Animation.RELATIVE_TO_SELF, 0.5f, durationMillis, animationListener
+        );
     }
 
     /**
@@ -590,7 +591,8 @@ public final class AnimationUtils {
     ) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY,
                 ScaleAnimation.RELATIVE_TO_SELF, 0.5f,
-                ScaleAnimation.RELATIVE_TO_SELF, 0.5f);
+                ScaleAnimation.RELATIVE_TO_SELF, 0.5f
+        );
         scaleAnimation.setDuration(durationMillis);
         if (animationListener != null) {
             scaleAnimation.setAnimationListener(animationListener);
@@ -698,7 +700,8 @@ public final class AnimationUtils {
             final AnimationListener animationListener
     ) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 0.0f,
-                ScaleAnimation.RELATIVE_TO_SELF, ScaleAnimation.RELATIVE_TO_SELF);
+                ScaleAnimation.RELATIVE_TO_SELF, ScaleAnimation.RELATIVE_TO_SELF
+        );
         scaleAnimation.setDuration(durationMillis);
         if (animationListener != null) {
             scaleAnimation.setAnimationListener(animationListener);
@@ -737,7 +740,8 @@ public final class AnimationUtils {
             final AnimationListener animationListener
     ) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f,
-                ScaleAnimation.RELATIVE_TO_SELF, ScaleAnimation.RELATIVE_TO_SELF);
+                ScaleAnimation.RELATIVE_TO_SELF, ScaleAnimation.RELATIVE_TO_SELF
+        );
         scaleAnimation.setDuration(durationMillis);
         if (animationListener != null) {
             scaleAnimation.setAnimationListener(animationListener);

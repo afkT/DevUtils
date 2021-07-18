@@ -1106,7 +1106,8 @@ public class GlideEngineImpl
             Bitmap readBitmap = engineImpl.loadBitmapThrows(context, source, config);
             // 创建随机名 ( 一定程度上唯一, 防止出现重复情况 )
             String randomName = String.format("%s_%s_%s_%s_%s", task, UUID.randomUUID().hashCode(),
-                    System.currentTimeMillis(), index, count);
+                    System.currentTimeMillis(), index, count
+            );
             // convert_task_index_md5.png
             String md5FileName = String.format("c_%s_%s_%s.png", task, index, MD5Utils.md5(randomName));
             // 存储到外部存储私有目录 ( /storage/emulated/0/Android/data/package/ )

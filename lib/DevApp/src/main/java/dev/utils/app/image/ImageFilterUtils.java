@@ -324,7 +324,8 @@ public final class ImageFilterUtils {
                     newG     = (int) (0.349 * pixR + 0.686 * pixG + 0.168 * pixB);
                     newB     = (int) (0.272 * pixR + 0.534 * pixG + 0.131 * pixB);
                     int newColor = Color.argb(255, Math.min(newR, 255),
-                            Math.min(newG, 255), Math.min(newB, 255));
+                            Math.min(newG, 255), Math.min(newB, 255)
+                    );
                     pixels[width * i + k] = newColor;
                 }
             }

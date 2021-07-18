@@ -94,8 +94,10 @@ public class GlideEngine
                             callback.onHideLoading();
                         }
                         if (resource != null) {
-                            boolean eqLongImage = MediaUtils.isLongImg(resource.getWidth(),
-                                    resource.getHeight());
+                            boolean eqLongImage = MediaUtils.isLongImg(
+                                    resource.getWidth(),
+                                    resource.getHeight()
+                            );
                             longImageView.setVisibility(eqLongImage ? View.VISIBLE : View.GONE);
                             imageView.setVisibility(eqLongImage ? View.GONE : View.VISIBLE);
                             if (eqLongImage) {
@@ -106,8 +108,10 @@ public class GlideEngine
                                 longImageView.setDoubleTapZoomDuration(100);
                                 longImageView.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CENTER_CROP);
                                 longImageView.setDoubleTapZoomDpi(SubsamplingScaleImageView.ZOOM_FOCUS_CENTER);
-                                longImageView.setImage(ImageSource.bitmap(resource),
-                                        new ImageViewState(0, new PointF(0, 0), 0));
+                                longImageView.setImage(
+                                        ImageSource.bitmap(resource),
+                                        new ImageViewState(0, new PointF(0, 0), 0)
+                                );
                             } else {
                                 // 普通图片
                                 imageView.setImageBitmap(resource);
@@ -140,8 +144,10 @@ public class GlideEngine
                     @Override
                     protected void setResource(@Nullable Bitmap resource) {
                         if (resource != null) {
-                            boolean eqLongImage = MediaUtils.isLongImg(resource.getWidth(),
-                                    resource.getHeight());
+                            boolean eqLongImage = MediaUtils.isLongImg(
+                                    resource.getWidth(),
+                                    resource.getHeight()
+                            );
                             longImageView.setVisibility(eqLongImage ? View.VISIBLE : View.GONE);
                             imageView.setVisibility(eqLongImage ? View.GONE : View.VISIBLE);
                             if (eqLongImage) {
@@ -152,8 +158,10 @@ public class GlideEngine
                                 longImageView.setDoubleTapZoomDuration(100);
                                 longImageView.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CENTER_CROP);
                                 longImageView.setDoubleTapZoomDpi(SubsamplingScaleImageView.ZOOM_FOCUS_CENTER);
-                                longImageView.setImage(ImageSource.bitmap(resource),
-                                        new ImageViewState(0, new PointF(0, 0), 0));
+                                longImageView.setImage(
+                                        ImageSource.bitmap(resource),
+                                        new ImageViewState(0, new PointF(0, 0), 0)
+                                );
                             } else {
                                 // 普通图片
                                 imageView.setImageBitmap(resource);

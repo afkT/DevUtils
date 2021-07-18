@@ -689,7 +689,8 @@ public final class PhoneUtils {
                         // sortOrder 排序
                         // 空指针 1. null 方法、2. 参数为 null
                         Cursor c = resolver.query(date_uri, new String[]{"data1", "mimetype"},
-                                "raw_contact_id=?", new String[]{contact_id}, null);
+                                "raw_contact_id=?", new String[]{contact_id}, null
+                        );
                         Map<String, String> map = new HashMap<>();
                         // 8. 解析 c
                         if (c != null) {
@@ -728,7 +729,8 @@ public final class PhoneUtils {
         List<Map<String, String>> list = new ArrayList<>();
         try {
             Cursor cursor = ResourceUtils.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                    null, null, null, null);
+                    null, null, null, null
+            );
             while (cursor.moveToNext()) {
                 Map<String, String> map = new HashMap<>();
                 // 电话号码

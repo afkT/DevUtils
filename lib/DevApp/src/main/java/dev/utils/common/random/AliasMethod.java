@@ -123,8 +123,10 @@ public final class AliasMethod {
             /* Decrease the probability of the larger one by the appropriate
              * amount.
              */
-            probabilities.set(more,
-                    (probabilities.get(more) + probabilities.get(less)) - average);
+            probabilities.set(
+                    more,
+                    (probabilities.get(more) + probabilities.get(less)) - average
+            );
 
             /* If the new probability is less than the average, add it into the
              * small list; otherwise add it to the large list.

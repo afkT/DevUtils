@@ -874,7 +874,8 @@ public final class AppUtils {
         if (activity == null || pendingIntent == null) return false;
         try {
             activity.startIntentSenderForResult(pendingIntent.getIntentSender(), requestCode,
-                    null, 0, 0, 0);
+                    null, 0, 0, 0
+            );
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startIntentSenderForResult");

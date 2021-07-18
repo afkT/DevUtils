@@ -387,7 +387,8 @@ public final class FilePartUtils {
     ) {
         if (file == null || item == null) return false;
         return fileSplitSave(file, item.start, item.end, destFolderPath,
-                item.getPartName(FileUtils.getFileName(file)));
+                item.getPartName(FileUtils.getFileName(file))
+        );
     }
 
     /**
@@ -488,7 +489,8 @@ public final class FilePartUtils {
             FilePartItem item = assist.getFilePartItem(i);
             if (item != null) {
                 boolean result = fileSplitSave(file, item.start, item.end, destFolderPath,
-                        item.getPartName(fileName));
+                        item.getPartName(fileName)
+                );
                 if (!result) return false;
             } else {
                 return false;

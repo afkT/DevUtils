@@ -180,7 +180,8 @@ public class CircleBroodLoadingRenderer
         mMotherOvalPath.reset();
 
         mMotherOvalPath.addOval(new RectF(mMotherPosition[0] - mMotherOvalHalfWidth, mMotherPosition[1] - mMotherOvalHalfHeight,
-                mMotherPosition[0] + mMotherOvalHalfWidth, mMotherPosition[1] + mMotherOvalHalfHeight), Path.Direction.CW);
+                mMotherPosition[0] + mMotherOvalHalfWidth, mMotherPosition[1] + mMotherOvalHalfHeight
+        ), Path.Direction.CW);
 
         return mMotherOvalPath;
     }
@@ -193,20 +194,24 @@ public class CircleBroodLoadingRenderer
         //left_top arc
         path.cubicTo(mChildPosition[0] - bezierOffset - mChildLeftXOffset, mChildPosition[1] - mChildOvalRadius,
                 mChildPosition[0] - mChildOvalRadius - mChildLeftXOffset, mChildPosition[1] - bezierOffset + mChildLeftYOffset,
-                mChildPosition[0] - mChildOvalRadius - mChildLeftXOffset, mChildPosition[1]);
+                mChildPosition[0] - mChildOvalRadius - mChildLeftXOffset, mChildPosition[1]
+        );
         //left_bottom arc
         path.cubicTo(mChildPosition[0] - mChildOvalRadius - mChildLeftXOffset, mChildPosition[1] + bezierOffset - mChildLeftYOffset,
                 mChildPosition[0] - bezierOffset - mChildLeftXOffset, mChildPosition[1] + mChildOvalRadius,
-                mChildPosition[0], mChildPosition[1] + mChildOvalRadius);
+                mChildPosition[0], mChildPosition[1] + mChildOvalRadius
+        );
 
         //right_bottom arc
         path.cubicTo(mChildPosition[0] + bezierOffset + mChildRightXOffset, mChildPosition[1] + mChildOvalRadius,
                 mChildPosition[0] + mChildOvalRadius + mChildRightXOffset, mChildPosition[1] + bezierOffset - mChildRightYOffset,
-                mChildPosition[0] + mChildOvalRadius + mChildRightXOffset, mChildPosition[1]);
+                mChildPosition[0] + mChildOvalRadius + mChildRightXOffset, mChildPosition[1]
+        );
         //right_top arc
         path.cubicTo(mChildPosition[0] + mChildOvalRadius + mChildRightXOffset, mChildPosition[1] - bezierOffset + mChildRightYOffset,
                 mChildPosition[0] + bezierOffset + mChildRightXOffset, mChildPosition[1] - mChildOvalRadius,
-                mChildPosition[0], mChildPosition[1] - mChildOvalRadius);
+                mChildPosition[0], mChildPosition[1] - mChildOvalRadius
+        );
 
         return path;
     }
@@ -224,7 +229,8 @@ public class CircleBroodLoadingRenderer
             float mMotherOvalOffsetY = mMotherOvalHalfHeight - offsetRate * (mMotherOvalHalfHeight - mChildOvalRadius) * 0.85f;
 
             mMotherOvalPath.addOval(new RectF(mMotherPosition[0] - mMotherOvalHalfWidth, mMotherPosition[1] - mMotherOvalOffsetY,
-                    mMotherPosition[0] + mMotherOvalHalfWidth, mMotherPosition[1] + mMotherOvalOffsetY), Path.Direction.CW);
+                    mMotherPosition[0] + mMotherOvalHalfWidth, mMotherPosition[1] + mMotherOvalOffsetY
+            ), Path.Direction.CW);
 
             float mMotherXOffset = distance - mMotherOvalHalfWidth + mChildOvalRadius;
             float distanceUltraLeft = (float) Math.sqrt(Math.pow(mMotherPosition[0] - mMotherOvalHalfWidth - mChildPosition[0], 2.0f)
@@ -237,20 +243,24 @@ public class CircleBroodLoadingRenderer
                 //right_bottom arc
                 path.cubicTo(mMotherPosition[0] + bezierOffset + mMotherXOffset, mMotherPosition[1] + mMotherOvalOffsetY,
                         mMotherPosition[0] + distance + mChildOvalRadius, mMotherPosition[1] + mChildOvalRadius * 1.5f,
-                        mMotherPosition[0] + distance + mChildOvalRadius, mMotherPosition[1]);
+                        mMotherPosition[0] + distance + mChildOvalRadius, mMotherPosition[1]
+                );
                 //right_top arc
                 path.cubicTo(mMotherPosition[0] + distance + mChildOvalRadius, mMotherPosition[1] - mChildOvalRadius * 1.5f,
                         mMotherPosition[0] + bezierOffset + mMotherXOffset, mMotherPosition[1] - mMotherOvalOffsetY,
-                        mMotherPosition[0], mMotherPosition[1] - mMotherOvalOffsetY);
+                        mMotherPosition[0], mMotherPosition[1] - mMotherOvalOffsetY
+                );
             } else {
                 //left_bottom arc
                 path.cubicTo(mMotherPosition[0] - bezierOffset - mMotherXOffset, mMotherPosition[1] + mMotherOvalOffsetY,
                         mMotherPosition[0] - distance - mChildOvalRadius, mMotherPosition[1] + mChildOvalRadius * 1.5f,
-                        mMotherPosition[0] - distance - mChildOvalRadius, mMotherPosition[1]);
+                        mMotherPosition[0] - distance - mChildOvalRadius, mMotherPosition[1]
+                );
                 //left_top arc
                 path.cubicTo(mMotherPosition[0] - distance - mChildOvalRadius, mMotherPosition[1] - mChildOvalRadius * 1.5f,
                         mMotherPosition[0] - bezierOffset - mMotherXOffset, mMotherPosition[1] - mMotherOvalOffsetY,
-                        mMotherPosition[0], mMotherPosition[1] - mMotherOvalOffsetY);
+                        mMotherPosition[0], mMotherPosition[1] - mMotherOvalOffsetY
+                );
             }
             path.lineTo(mMotherPosition[0], mMotherPosition[1] + mMotherOvalOffsetY);
         }
@@ -468,23 +478,27 @@ public class CircleBroodLoadingRenderer
         path.moveTo(centerX, centerY);
         //forward top left
         path.quadTo(centerX - mMotherOvalHalfWidth * 2.0f, centerY,
-                centerX - mMotherOvalHalfWidth * 2.0f, centerY - mMotherOvalHalfHeight);
+                centerX - mMotherOvalHalfWidth * 2.0f, centerY - mMotherOvalHalfHeight
+        );
         mStageMotherForwardTopLeftLength = getRestLength(path, currentPathLength);
         currentPathLength += mStageMotherForwardTopLeftLength;
 
         //backward top left
         path.quadTo(centerX - mMotherOvalHalfWidth * 1.0f, centerY - mMotherOvalHalfHeight,
-                centerX, centerY);
+                centerX, centerY
+        );
         mStageMotherBackwardTopLeftLength = getRestLength(path, currentPathLength);
         currentPathLength += mStageMotherBackwardTopLeftLength;
         //forward bottom left
         path.quadTo(centerX, centerY + mMotherOvalHalfHeight,
-                centerX - mMotherOvalHalfWidth / 2, centerY + mMotherOvalHalfHeight * 1.1f);
+                centerX - mMotherOvalHalfWidth / 2, centerY + mMotherOvalHalfHeight * 1.1f
+        );
         mStageMotherForwardBottomLeftLength = getRestLength(path, currentPathLength);
         currentPathLength += mStageMotherForwardBottomLeftLength;
         //backward bottom left
         path.quadTo(centerX - mMotherOvalHalfWidth / 2, centerY + mMotherOvalHalfHeight * 0.6f,
-                centerX, centerY);
+                centerX, centerY
+        );
         mStageMotherBackwardBottomLeftLength = getRestLength(path, currentPathLength);
 
         return path;
@@ -505,31 +519,36 @@ public class CircleBroodLoadingRenderer
         currentPathLength += mStageChildPreForwardTopLeftLength;
         //forward top left
         path.quadTo(centerX - mMotherOvalHalfWidth * 0.5f, centerY,
-                centerX - mMotherOvalHalfWidth * 2.0f, centerY - mMotherOvalHalfHeight);
+                centerX - mMotherOvalHalfWidth * 2.0f, centerY - mMotherOvalHalfHeight
+        );
         mStageChildForwardTopLeftLength = getRestLength(path, currentPathLength);
         currentPathLength += mStageChildForwardTopLeftLength;
         //pre backward top left
         path.lineTo(centerX - mMotherOvalHalfWidth * 2.0f + mMotherOvalHalfWidth * 0.2f, centerY - mMotherOvalHalfHeight);
         path.quadTo(centerX - mMotherOvalHalfWidth * 2.5f, centerY - mMotherOvalHalfHeight * 2,
-                centerX - mMotherOvalHalfWidth * 1.5f, centerY - mMotherOvalHalfHeight * 2.25f);
+                centerX - mMotherOvalHalfWidth * 1.5f, centerY - mMotherOvalHalfHeight * 2.25f
+        );
         mStageChildPreBackwardTopLeftLength = getRestLength(path, currentPathLength);
         currentPathLength += mStageChildPreBackwardTopLeftLength;
         //backward top left
         path.quadTo(centerX - mMotherOvalHalfWidth * 0.2f, centerY - mMotherOvalHalfHeight * 2.25f,
-                centerX, centerY);
+                centerX, centerY
+        );
         mStageChildBackwardTopLeftLength = getRestLength(path, currentPathLength);
         currentPathLength += mStageChildBackwardTopLeftLength;
         //forward bottom left
         path.cubicTo(centerX, centerY + mMotherOvalHalfHeight,
                 centerX - mMotherOvalHalfWidth, centerY + mMotherOvalHalfHeight * 2.5f,
-                centerX - mMotherOvalHalfWidth * 1.5f, centerY + mMotherOvalHalfHeight * 2.5f);
+                centerX - mMotherOvalHalfWidth * 1.5f, centerY + mMotherOvalHalfHeight * 2.5f
+        );
         mStageChildForwardBottomLeftLength = getRestLength(path, currentPathLength);
         currentPathLength += mStageChildForwardBottomLeftLength;
         //backward bottom left
         path.cubicTo(
                 centerX - mMotherOvalHalfWidth * 2.0f, centerY + mMotherOvalHalfHeight * 2.5f,
                 centerX - mMotherOvalHalfWidth * 3.0f, centerY + mMotherOvalHalfHeight * 0.8f,
-                centerX, centerY);
+                centerX, centerY
+        );
         mStageChildBackwardBottomLeftLength = getRestLength(path, currentPathLength);
 
         return path;

@@ -185,9 +185,11 @@ final class Utils {
                 .builder(EnvironmentBean.class, _getEnvironmentVarName_UpperCase(moduleName, environmentName))
                 .addModifiers(Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
                 .initializer("new $T($S, $S, $S, $N)", EnvironmentBean.class, environmentName,
-                        environmentValue, environmentAlias, _getModuleVarName_UpperCase(moduleName))
+                        environmentValue, environmentAlias, _getModuleVarName_UpperCase(moduleName)
+                )
                 .addJavadoc(String.format("[ Environment ] name: %s, alias: %s, [ Module ] name: %s\n",
-                        environmentName, environmentAlias, moduleName))
+                        environmentName, environmentAlias, moduleName
+                ))
                 .build();
         classBuilder.addField(environmentField);
 
@@ -258,7 +260,8 @@ final class Utils {
             CodeBlock.Builder staticCodeBlockBuilder = CodeBlock.builder();
             // 创建 module List 集合 VAR_MODULELIST
             staticCodeBlockBuilder.addStatement("List<$T> $N = new $T<>()", ModuleBean.class,
-                    VAR_MODULELIST, ArrayList.class);
+                    VAR_MODULELIST, ArrayList.class
+            );
 
             Iterator<Map.Entry<String, List<String>>> iterator = sModuleNameMap.entrySet().iterator();
             while (iterator.hasNext()) {
@@ -273,7 +276,8 @@ final class Utils {
                         .addStatement("$N.add($N)", VAR_MODULELIST, _getModuleVarName_UpperCase(moduleName));
                 // 添加 Environment 到对应 ModuleBean.getEnvironments() 中
                 staticCodeBlockBuilder.addStatement("$N.$N().add($N)", _getModuleVarName_UpperCase(moduleName),
-                        METHOD_GET_MODULE_ENVIRONMENTS_LIST, environmentVarName);
+                        METHOD_GET_MODULE_ENVIRONMENTS_LIST, environmentVarName
+                );
             }
             // 初始化 Module List 集合变量 VAR_MODULE_LIST
             staticCodeBlockBuilder.add("\n")

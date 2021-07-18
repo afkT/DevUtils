@@ -499,7 +499,8 @@ public final class CapturePictureUtils {
             Canvas canvas = new Canvas(bitmap);
             canvas.drawColor(BACKGROUND_COLOR);
             scrollView.layout(0, 0, scrollView.getMeasuredWidth(),
-                    scrollView.getMeasuredHeight());
+                    scrollView.getMeasuredHeight()
+            );
             scrollView.draw(canvas);
             return bitmap;
         } catch (Exception e) {
@@ -541,7 +542,8 @@ public final class CapturePictureUtils {
             Canvas canvas = new Canvas(bitmap);
             canvas.drawColor(BACKGROUND_COLOR);
             scrollView.layout(0, 0, scrollView.getMeasuredWidth(),
-                    scrollView.getMeasuredHeight());
+                    scrollView.getMeasuredHeight()
+            );
             scrollView.draw(canvas);
             return bitmap;
         } catch (Exception e) {
@@ -583,7 +585,8 @@ public final class CapturePictureUtils {
             Canvas canvas = new Canvas(bitmap);
             canvas.drawColor(BACKGROUND_COLOR);
             scrollView.layout(0, 0, scrollView.getMeasuredWidth(),
-                    scrollView.getMeasuredHeight());
+                    scrollView.getMeasuredHeight()
+            );
             scrollView.draw(canvas);
             return bitmap;
         } catch (Exception e) {
@@ -906,13 +909,16 @@ public final class CapturePictureUtils {
                 // 判断布局类型
                 if (layoutManager instanceof GridLayoutManager) {
                     return snapshotByRecyclerView_GridLayoutManager(recyclerView,
-                            config, verticalSpacing, horizontalSpacing);
+                            config, verticalSpacing, horizontalSpacing
+                    );
                 } else if (layoutManager instanceof LinearLayoutManager) {
                     return snapshotByRecyclerView_LinearLayoutManager(recyclerView,
-                            config, verticalSpacing, horizontalSpacing);
+                            config, verticalSpacing, horizontalSpacing
+                    );
                 } else if (layoutManager instanceof StaggeredGridLayoutManager) {
                     return snapshotByRecyclerView_StaggeredGridLayoutManager(recyclerView,
-                            config, verticalSpacing, horizontalSpacing);
+                            config, verticalSpacing, horizontalSpacing
+                    );
                 }
                 throw new Exception(String.format("Not Supported %s LayoutManager", layoutManager.getClass().getSimpleName()));
             } else {
