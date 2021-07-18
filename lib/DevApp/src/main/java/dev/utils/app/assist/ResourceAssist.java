@@ -1,5 +1,6 @@
 package dev.utils.app.assist;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
@@ -416,7 +417,10 @@ public final class ResourceAssist {
         try {
             return mResource.getIdentifier(resName, defType, mPackageName);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getIdentifier - %s %s: %s", resName, defType, mPackageName);
+            LogPrintUtils.eTag(
+                    TAG, e, "getIdentifier - %s %s: %s",
+                    resName, defType, mPackageName
+            );
         }
         return 0;
     }
@@ -628,6 +632,7 @@ public final class ResourceAssist {
      * @param drawableId R.drawable.id
      * @return {@link Drawable}
      */
+    @SuppressLint("UseCompatLoadingForDrawables")
     public Drawable getDrawable(@DrawableRes final int drawableId) {
         try {
             return mResource.getDrawable(drawableId);
@@ -1115,6 +1120,7 @@ public final class ResourceAssist {
      * @param id resource identifier of a {@link ColorStateList}
      * @return {@link ColorStateList}
      */
+    @SuppressLint("UseCompatLoadingForColorStateLists")
     public ColorStateList getColorStateList(@ColorRes final int id) {
         try {
             return mResource.getColorStateList(id);
@@ -1168,7 +1174,8 @@ public final class ResourceAssist {
     /**
      * 获取 Uri InputStream
      * <pre>
-     *     主要用于获取到分享的 FileProvider Uri 存储起来 {@link FileIOUtils#writeFileFromIS(File, InputStream)}
+     *     主要用于获取到分享的 FileProvider Uri 存储起来
+     *     {@link FileIOUtils#writeFileFromIS(File, InputStream)}
      * </pre>
      * @param uri      {@link Uri} FileProvider Uri、Content Uri、File Uri
      * @param resolver {@link ContentResolver}
@@ -1244,7 +1251,10 @@ public final class ResourceAssist {
         try {
             return resolver.openOutputStream(uri, mode);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openOutputStream mode: %s, %s", mode, uri.toString());
+            LogPrintUtils.eTag(
+                    TAG, e, "openOutputStream mode: %s, %s",
+                    mode, uri.toString()
+            );
         }
         return null;
     }
@@ -1281,7 +1291,10 @@ public final class ResourceAssist {
         try {
             return resolver.openFileDescriptor(uri, mode);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openFileDescriptor mode: %s, %s", mode, uri.toString());
+            LogPrintUtils.eTag(
+                    TAG, e, "openFileDescriptor mode: %s, %s",
+                    mode, uri.toString()
+            );
         }
         return null;
     }
@@ -1318,7 +1331,10 @@ public final class ResourceAssist {
         try {
             return resolver.openAssetFileDescriptor(uri, mode);
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "openAssetFileDescriptor mode: %s, %s", mode, uri.toString());
+            LogPrintUtils.eTag(
+                    TAG, e, "openAssetFileDescriptor mode: %s, %s",
+                    mode, uri.toString()
+            );
         }
         return null;
     }

@@ -75,7 +75,8 @@ public final class ScreenSensorAssist {
                     // =
                     LogPrintUtils.dTag(TAG, "当前角度: %s", rotation);
                     // 判断角度
-                    if (rotation > 45 && rotation < 135) { // 横屏 ( 屏幕对着别人 )
+                    if (rotation > 45 && rotation < 135) {
+                        // 横屏 ( 屏幕对着别人 )
                         LogPrintUtils.dTag(TAG, "切换成横屏 ( 屏幕对着自己 )");
                         // =
                         if (mPortrait) {
@@ -87,7 +88,8 @@ public final class ScreenSensorAssist {
                                 mHandler.sendMessage(vMsg);
                             }
                         }
-                    } else if (rotation > 135 && rotation < 225) { // 竖屏 ( 屏幕对着别人 )
+                    } else if (rotation > 135 && rotation < 225) {
+                        // 竖屏 ( 屏幕对着别人 )
                         LogPrintUtils.dTag(TAG, "切换成竖屏 ( 屏幕对着别人 )");
                         // =
                         if (!mPortrait) {
@@ -99,7 +101,8 @@ public final class ScreenSensorAssist {
                                 mHandler.sendMessage(vMsg);
                             }
                         }
-                    } else if (rotation > 225 && rotation < 315) { // 横屏 ( 屏幕对着自己 )
+                    } else if (rotation > 225 && rotation < 315) {
+                        // 横屏 ( 屏幕对着自己 )
                         LogPrintUtils.dTag(TAG, "切换成横屏 ( 屏幕对着自己 )");
                         // =
                         if (mPortrait) {
@@ -111,7 +114,8 @@ public final class ScreenSensorAssist {
                                 mHandler.sendMessage(vMsg);
                             }
                         }
-                    } else if ((rotation > 315 && rotation < 360) || (rotation > 0 && rotation < 45)) { // 竖屏 ( 屏幕对着自己 )
+                    } else if ((rotation > 315 && rotation < 360) || (rotation > 0 && rotation < 45)) {
+                        // 竖屏 ( 屏幕对着自己 )
                         LogPrintUtils.dTag(TAG, "切换成竖屏 ( 屏幕对着自己 )");
                         // =
                         if (!mPortrait) {
@@ -240,7 +244,9 @@ public final class ScreenSensorAssist {
                     orientation += 360;
                 }
             }
-            mRotateHandler.obtainMessage(CHANGE_ORIENTATION_WHAT, orientation, 0).sendToTarget();
+            mRotateHandler.obtainMessage(
+                    CHANGE_ORIENTATION_WHAT, orientation, 0
+            ).sendToTarget();
         }
     }
 
@@ -279,12 +285,14 @@ public final class ScreenSensorAssist {
                     orientation += 360;
                 }
             }
-            if (orientation > 225 && orientation < 315) { // 检测到当前实际是横屏
+            if (orientation > 225 && orientation < 315) {
+                // 检测到当前实际是横屏
                 if (!mPortrait) {
                     mSensorManager.registerListener(mListener, mSensor, SensorManager.SENSOR_DELAY_UI);
                     mSensorManagerChange.unregisterListener(mListenerChange);
                 }
-            } else if ((orientation > 315 && orientation < 360) || (orientation > 0 && orientation < 45)) { // 检测到当前实际是竖屏
+            } else if ((orientation > 315 && orientation < 360) || (orientation > 0 && orientation < 45)) {
+                // 检测到当前实际是竖屏
                 if (mPortrait) {
                     mSensorManager.registerListener(mListener, mSensor, SensorManager.SENSOR_DELAY_UI);
                     mSensorManagerChange.unregisterListener(mListenerChange);

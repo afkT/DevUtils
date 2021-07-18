@@ -86,7 +86,10 @@ public final class InactivityTimerAssist {
     public synchronized void onResume() {
         try {
             // 注册广播
-            mActivity.get().registerReceiver(mPowerStateReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+            mActivity.get().registerReceiver(
+                    mPowerStateReceiver,
+                    new IntentFilter(Intent.ACTION_BATTERY_CHANGED)
+            );
         } catch (Exception ignored) {
         }
         // 开始检测
@@ -146,7 +149,9 @@ public final class InactivityTimerAssist {
         ) {
             if (intent != null && Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction())) {
                 // 0 indicates that we're on battery
-                boolean isBatteryNow = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1) <= 0;
+                boolean isBatteryNow = intent.getIntExtra(
+                        BatteryManager.EXTRA_PLUGGED, -1
+                ) <= 0;
                 if (isBatteryNow) { // 属于非充电才进行记时
                     InactivityTimerAssist.this.start();
                 } else { // 充电中, 则不处理

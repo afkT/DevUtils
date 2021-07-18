@@ -224,7 +224,10 @@ public final class AnimationUtils {
             final long durationMillis,
             final AnimationListener animationListener
     ) {
-        RotateAnimation rotateAnimation = new RotateAnimation(fromDegrees, toDegrees, pivotXType, pivotXValue, pivotYType, pivotYValue);
+        RotateAnimation rotateAnimation = new RotateAnimation(
+                fromDegrees, toDegrees, pivotXType,
+                pivotXValue, pivotYType, pivotYValue
+        );
         rotateAnimation.setDuration(durationMillis);
         if (animationListener != null) {
             rotateAnimation.setAnimationListener(animationListener);
@@ -250,7 +253,9 @@ public final class AnimationUtils {
             final long durationMillis,
             final AnimationListener animationListener
     ) {
-        RotateAnimation rotateAnimation = new RotateAnimation(fromDegrees, toDegrees, pivotX, pivotY);
+        RotateAnimation rotateAnimation = new RotateAnimation(
+                fromDegrees, toDegrees, pivotX, pivotY
+        );
         rotateAnimation.setDuration(durationMillis);
         if (animationListener != null) {
             rotateAnimation.setAnimationListener(animationListener);
@@ -292,8 +297,10 @@ public final class AnimationUtils {
             final long durationMillis,
             final AnimationListener animationListener
     ) {
-        return getRotateAnimation(0f, 359f, Animation.RELATIVE_TO_SELF,
-                0.5f, Animation.RELATIVE_TO_SELF, 0.5f, durationMillis, animationListener
+        return getRotateAnimation(
+                0f, 359f, Animation.RELATIVE_TO_SELF,
+                0.5f, Animation.RELATIVE_TO_SELF, 0.5f,
+                durationMillis, animationListener
         );
     }
 
@@ -505,7 +512,10 @@ public final class AnimationUtils {
             final long durationMillis,
             final AnimationListener animationListener
     ) {
-        ScaleAnimation scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY, pivotXType, pivotXValue, pivotYType, pivotYValue);
+        ScaleAnimation scaleAnimation = new ScaleAnimation(
+                fromX, toX, fromY, toY, pivotXType,
+                pivotXValue, pivotYType, pivotYValue
+        );
         scaleAnimation.setDuration(durationMillis);
         if (animationListener != null) {
             scaleAnimation.setAnimationListener(animationListener);
@@ -535,7 +545,9 @@ public final class AnimationUtils {
             final long durationMillis,
             final AnimationListener animationListener
     ) {
-        ScaleAnimation scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY, pivotX, pivotY);
+        ScaleAnimation scaleAnimation = new ScaleAnimation(
+                fromX, toX, fromY, toY, pivotX, pivotY
+        );
         scaleAnimation.setDuration(durationMillis);
         if (animationListener != null) {
             scaleAnimation.setAnimationListener(animationListener);
@@ -589,7 +601,8 @@ public final class AnimationUtils {
             final long durationMillis,
             final AnimationListener animationListener
     ) {
-        ScaleAnimation scaleAnimation = new ScaleAnimation(fromX, toX, fromY, toY,
+        ScaleAnimation scaleAnimation = new ScaleAnimation(
+                fromX, toX, fromY, toY,
                 ScaleAnimation.RELATIVE_TO_SELF, 0.5f,
                 ScaleAnimation.RELATIVE_TO_SELF, 0.5f
         );
@@ -616,7 +629,9 @@ public final class AnimationUtils {
             final float toY,
             final long durationMillis
     ) {
-        return getScaleAnimationCenter(fromX, toX, fromY, toY, durationMillis, null);
+        return getScaleAnimationCenter(
+                fromX, toX, fromY, toY, durationMillis, null
+        );
     }
 
     /**
@@ -635,7 +650,10 @@ public final class AnimationUtils {
             final float toY,
             final AnimationListener animationListener
     ) {
-        return getScaleAnimationCenter(fromX, toX, fromY, toY, DEFAULT_ANIMATION_DURATION, animationListener);
+        return getScaleAnimationCenter(
+                fromX, toX, fromY, toY,
+                DEFAULT_ANIMATION_DURATION, animationListener
+        );
     }
 
     // =
@@ -654,7 +672,10 @@ public final class AnimationUtils {
             final long durationMillis,
             final AnimationListener animationListener
     ) {
-        return getScaleAnimationCenter(fromX, 1.0f, fromY, 1.0f, durationMillis, animationListener);
+        return getScaleAnimationCenter(
+                fromX, 1.0f, fromY, 1.0f,
+                durationMillis, animationListener
+        );
     }
 
     /**
@@ -699,7 +720,8 @@ public final class AnimationUtils {
             final long durationMillis,
             final AnimationListener animationListener
     ) {
-        ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 0.0f,
+        ScaleAnimation scaleAnimation = new ScaleAnimation(
+                1.0f, 0.0f, 1.0f, 0.0f,
                 ScaleAnimation.RELATIVE_TO_SELF, ScaleAnimation.RELATIVE_TO_SELF
         );
         scaleAnimation.setDuration(durationMillis);
@@ -739,7 +761,8 @@ public final class AnimationUtils {
             final long durationMillis,
             final AnimationListener animationListener
     ) {
-        ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f,
+        ScaleAnimation scaleAnimation = new ScaleAnimation(
+                0.0f, 1.0f, 0.0f, 1.0f,
                 ScaleAnimation.RELATIVE_TO_SELF, ScaleAnimation.RELATIVE_TO_SELF
         );
         scaleAnimation.setDuration(durationMillis);
@@ -799,7 +822,10 @@ public final class AnimationUtils {
             final Interpolator interpolator,
             final long durationMillis
     ) {
-        TranslateAnimation translateAnimation = new TranslateAnimation(fromXType, fromXValue, toXType, toXValue, fromYType, fromYValue, toYType, toYValue);
+        TranslateAnimation translateAnimation = new TranslateAnimation(
+                fromXType, fromXValue, toXType, toXValue,
+                fromYType, fromYValue, toYType, toYValue
+        );
         translateAnimation.setDuration(durationMillis);
         if (interpolator != null) {
             translateAnimation.setInterpolator(interpolator);
@@ -825,7 +851,9 @@ public final class AnimationUtils {
             final Interpolator interpolator,
             final long durationMillis
     ) {
-        TranslateAnimation translateAnimation = new TranslateAnimation(fromXDelta, toXDelta, fromYDelta, toYDelta);
+        TranslateAnimation translateAnimation = new TranslateAnimation(
+                fromXDelta, toXDelta, fromYDelta, toYDelta
+        );
         translateAnimation.setDuration(durationMillis);
         if (interpolator != null) {
             translateAnimation.setInterpolator(interpolator);
@@ -850,7 +878,10 @@ public final class AnimationUtils {
             final long durationMillis
     ) {
         Interpolator interpolator = (cycles > 0.0f) ? new CycleInterpolator(cycles) : null;
-        return getTranslateAnimation(fromXDelta, toXDelta, 0.0f, 0.0f, interpolator, durationMillis);
+        return getTranslateAnimation(
+                fromXDelta, toXDelta, 0.0f, 0.0f,
+                interpolator, durationMillis
+        );
     }
 
     /**
@@ -864,7 +895,10 @@ public final class AnimationUtils {
             final long durationMillis
     ) {
         Interpolator interpolator = (cycles > 0.0f) ? new CycleInterpolator(cycles) : null;
-        return getTranslateAnimation(0.0f, 10.0f, 0.0f, 0.0f, interpolator, durationMillis);
+        return getTranslateAnimation(
+                0.0f, 10.0f, 0.0f, 0.0f,
+                interpolator, durationMillis
+        );
     }
 
     /**
@@ -874,7 +908,10 @@ public final class AnimationUtils {
      */
     public static TranslateAnimation getShakeAnimation(final float cycles) {
         Interpolator interpolator = (cycles > 0.0f) ? new CycleInterpolator(cycles) : null;
-        return getTranslateAnimation(0.0f, 10.0f, 0.0f, 0.0f, interpolator, 700);
+        return getTranslateAnimation(
+                0.0f, 10.0f, 0.0f, 0.0f,
+                interpolator, 700
+        );
     }
 
     /**
@@ -883,7 +920,10 @@ public final class AnimationUtils {
      * @return 一个视图摇晃动画
      */
     public static TranslateAnimation getShakeAnimation(final long durationMillis) {
-        return getTranslateAnimation(0.0f, 10.0f, 0.0f, 0.0f, new CycleInterpolator(7), durationMillis);
+        return getTranslateAnimation(
+                0.0f, 10.0f, 0.0f, 0.0f,
+                new CycleInterpolator(7), durationMillis
+        );
     }
 
     /**
@@ -891,6 +931,9 @@ public final class AnimationUtils {
      * @return 一个视图摇晃动画
      */
     public static TranslateAnimation getShakeAnimation() {
-        return getTranslateAnimation(0.0f, 10.0f, 0.0f, 0.0f, new CycleInterpolator(7), 700);
+        return getTranslateAnimation(
+                0.0f, 10.0f, 0.0f, 0.0f,
+                new CycleInterpolator(7), 700
+        );
     }
 }

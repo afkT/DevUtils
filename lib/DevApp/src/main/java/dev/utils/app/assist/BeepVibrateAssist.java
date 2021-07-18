@@ -231,7 +231,10 @@ public final class BeepVibrateAssist
                     int what,
                     int extra
             ) {
-                LogPrintUtils.dTag(TAG, "buildMediaPlayer onError what: %s, extra: %s", what, extra);
+                LogPrintUtils.dTag(
+                        TAG, "buildMediaPlayer onError what: %s, extra: %s",
+                        what, extra
+                );
                 // 播放异常, 直接不处理
                 return true;
             }
@@ -239,7 +242,9 @@ public final class BeepVibrateAssist
         try {
             AssetFileDescriptor afd = ResourceUtils.openRawResourceFd(rawId);
             try {
-                mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                mediaPlayer.setDataSource(
+                        afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength()
+                );
             } finally {
                 CloseUtils.closeIOQuietly(afd);
             }
@@ -286,7 +291,10 @@ public final class BeepVibrateAssist
                     int what,
                     int extra
             ) {
-                LogPrintUtils.dTag(TAG, "buildMediaPlayer onError what: %s, extra: %s", what, extra);
+                LogPrintUtils.dTag(
+                        TAG, "buildMediaPlayer onError what: %s, extra: %s",
+                        what, extra
+                );
                 // 播放异常, 直接不处理
                 return true;
             }
