@@ -543,17 +543,7 @@ public final class DialogUtils {
                 if (dialogListener == null) {
                     builder.setNegativeButton(leftBtn, null);
                 } else {
-                    builder.setNegativeButton(leftBtn, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(
-                                DialogInterface dialog,
-                                int which
-                        ) {
-                            if (dialogListener != null) {
-                                dialogListener.onLeftButton(dialog);
-                            }
-                        }
-                    });
+                    builder.setNegativeButton(leftBtn, (dialog, which) -> dialogListener.onLeftButton(dialog));
                 }
             }
 
@@ -561,30 +551,13 @@ public final class DialogUtils {
                 if (dialogListener == null) {
                     builder.setPositiveButton(rightBtn, null);
                 } else {
-                    builder.setPositiveButton(rightBtn, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(
-                                DialogInterface dialog,
-                                int which
-                        ) {
-                            if (dialogListener != null) {
-                                dialogListener.onRightButton(dialog);
-                            }
-                        }
-                    });
+                    builder.setPositiveButton(rightBtn, (dialog, which) -> dialogListener.onRightButton(dialog));
                 }
             }
 
             if (dialogListener != null) {
                 // 设置 Dialog 关闭监听
-                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        if (dialogListener != null) {
-                            dialogListener.onDismiss(dialog);
-                        }
-                    }
-                });
+                builder.setOnDismissListener(dialog -> dialogListener.onDismiss(dialog));
             }
             return builder.create();
         } catch (Exception e) {
@@ -674,12 +647,7 @@ public final class DialogUtils {
     ) {
         if (dialog != null && dialog.isShowing()) {
             if (handler != null) {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        closeDialog(dialog);
-                    }
-                }, delayMillis);
+                handler.postDelayed(() -> closeDialog(dialog), delayMillis);
             }
         }
         return dialog;
@@ -700,12 +668,7 @@ public final class DialogUtils {
     ) {
         if (dialog != null) {
             if (handler != null) {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        closeDialog(dialog);
-                    }
-                }, delayMillis);
+                handler.postDelayed(() -> closeDialog(dialog), delayMillis);
             }
         }
         return dialog;
@@ -726,12 +689,7 @@ public final class DialogUtils {
     ) {
         if (popupWindow != null && popupWindow.isShowing()) {
             if (handler != null) {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        closePopupWindow(popupWindow);
-                    }
-                }, delayMillis);
+                handler.postDelayed(() -> closePopupWindow(popupWindow), delayMillis);
             }
         }
         return popupWindow;
@@ -856,59 +814,38 @@ public final class DialogUtils {
             if (icon != null) {
                 builder.setIcon(icon);
             }
-            builder.setItems(itemsId, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(
-                        DialogInterface dialog,
-                        int which
-                ) {
-                    if (singleChoiceListener != null) {
-                        singleChoiceListener.onSingleChoiceItems(dialog, which);
-                    }
+            builder.setItems(itemsId, (dialog, which) -> {
+                if (singleChoiceListener != null) {
+                    singleChoiceListener.onSingleChoiceItems(dialog, which);
                 }
             });
 
             // 判断是否存在确认按钮文案
             if (!TextUtils.isEmpty(positiveBtnText)) {
-                builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(
-                            DialogInterface dialog,
-                            int which
-                    ) {
-                        dialog.dismiss();
-                        // 触发回调
-                        if (singleChoiceListener != null) {
-                            singleChoiceListener.onPositiveButton(dialog);
-                        }
+                builder.setPositiveButton(positiveBtnText, (dialog, which) -> {
+                    dialog.dismiss();
+                    // 触发回调
+                    if (singleChoiceListener != null) {
+                        singleChoiceListener.onPositiveButton(dialog);
                     }
                 });
             }
 
             // 判断是否存在取消按钮文案
             if (!TextUtils.isEmpty(negativeBtnText)) {
-                builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(
-                            DialogInterface dialog,
-                            int which
-                    ) {
-                        dialog.dismiss();
-                        // 触发回调
-                        if (singleChoiceListener != null) {
-                            singleChoiceListener.onCancel(dialog);
-                        }
+                builder.setNegativeButton(negativeBtnText, (dialog, which) -> {
+                    dialog.dismiss();
+                    // 触发回调
+                    if (singleChoiceListener != null) {
+                        singleChoiceListener.onCancel(dialog);
                     }
                 });
             }
 
             // 设置 Dialog 关闭监听
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    if (singleChoiceListener != null) {
-                        singleChoiceListener.onDismiss(dialog);
-                    }
+            builder.setOnDismissListener(dialog -> {
+                if (singleChoiceListener != null) {
+                    singleChoiceListener.onDismiss(dialog);
                 }
             });
             return builder.create();
@@ -994,59 +931,38 @@ public final class DialogUtils {
             if (icon != null) {
                 builder.setIcon(icon);
             }
-            builder.setItems(items, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(
-                        DialogInterface dialog,
-                        int which
-                ) {
-                    if (singleChoiceListener != null) {
-                        singleChoiceListener.onSingleChoiceItems(dialog, which);
-                    }
+            builder.setItems(items, (dialog, which) -> {
+                if (singleChoiceListener != null) {
+                    singleChoiceListener.onSingleChoiceItems(dialog, which);
                 }
             });
 
             // 判断是否存在确认按钮文案
             if (!TextUtils.isEmpty(positiveBtnText)) {
-                builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(
-                            DialogInterface dialog,
-                            int which
-                    ) {
-                        dialog.dismiss();
-                        // 触发回调
-                        if (singleChoiceListener != null) {
-                            singleChoiceListener.onPositiveButton(dialog);
-                        }
+                builder.setPositiveButton(positiveBtnText, (dialog, which) -> {
+                    dialog.dismiss();
+                    // 触发回调
+                    if (singleChoiceListener != null) {
+                        singleChoiceListener.onPositiveButton(dialog);
                     }
                 });
             }
 
             // 判断是否存在取消按钮文案
             if (!TextUtils.isEmpty(negativeBtnText)) {
-                builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(
-                            DialogInterface dialog,
-                            int which
-                    ) {
-                        dialog.dismiss();
-                        // 触发回调
-                        if (singleChoiceListener != null) {
-                            singleChoiceListener.onCancel(dialog);
-                        }
+                builder.setNegativeButton(negativeBtnText, (dialog, which) -> {
+                    dialog.dismiss();
+                    // 触发回调
+                    if (singleChoiceListener != null) {
+                        singleChoiceListener.onCancel(dialog);
                     }
                 });
             }
 
             // 设置 Dialog 关闭监听
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    if (singleChoiceListener != null) {
-                        singleChoiceListener.onDismiss(dialog);
-                    }
+            builder.setOnDismissListener(dialog -> {
+                if (singleChoiceListener != null) {
+                    singleChoiceListener.onDismiss(dialog);
                 }
             });
             return builder.create();
@@ -1140,59 +1056,38 @@ public final class DialogUtils {
             if (icon != null) {
                 builder.setIcon(icon);
             }
-            builder.setSingleChoiceItems(itemsId, checkedItem, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(
-                        DialogInterface dialog,
-                        int which
-                ) {
-                    if (singleChoiceListener != null) {
-                        singleChoiceListener.onSingleChoiceItems(dialog, which);
-                    }
+            builder.setSingleChoiceItems(itemsId, checkedItem, (dialog, which) -> {
+                if (singleChoiceListener != null) {
+                    singleChoiceListener.onSingleChoiceItems(dialog, which);
                 }
             });
 
             // 判断是否存在确认按钮文案
             if (!TextUtils.isEmpty(positiveBtnText)) {
-                builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(
-                            DialogInterface dialog,
-                            int which
-                    ) {
-                        dialog.dismiss();
-                        // 触发回调
-                        if (singleChoiceListener != null) {
-                            singleChoiceListener.onPositiveButton(dialog);
-                        }
+                builder.setPositiveButton(positiveBtnText, (dialog, which) -> {
+                    dialog.dismiss();
+                    // 触发回调
+                    if (singleChoiceListener != null) {
+                        singleChoiceListener.onPositiveButton(dialog);
                     }
                 });
             }
 
             // 判断是否存在取消按钮文案
             if (!TextUtils.isEmpty(negativeBtnText)) {
-                builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(
-                            DialogInterface dialog,
-                            int which
-                    ) {
-                        dialog.dismiss();
-                        // 触发回调
-                        if (singleChoiceListener != null) {
-                            singleChoiceListener.onCancel(dialog);
-                        }
+                builder.setNegativeButton(negativeBtnText, (dialog, which) -> {
+                    dialog.dismiss();
+                    // 触发回调
+                    if (singleChoiceListener != null) {
+                        singleChoiceListener.onCancel(dialog);
                     }
                 });
             }
 
             // 设置 Dialog 关闭监听
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    if (singleChoiceListener != null) {
-                        singleChoiceListener.onDismiss(dialog);
-                    }
+            builder.setOnDismissListener(dialog -> {
+                if (singleChoiceListener != null) {
+                    singleChoiceListener.onDismiss(dialog);
                 }
             });
             return builder.create();
@@ -1284,59 +1179,38 @@ public final class DialogUtils {
             if (icon != null) {
                 builder.setIcon(icon);
             }
-            builder.setSingleChoiceItems(items, checkedItem, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(
-                        DialogInterface dialog,
-                        int which
-                ) {
-                    if (singleChoiceListener != null) {
-                        singleChoiceListener.onSingleChoiceItems(dialog, which);
-                    }
+            builder.setSingleChoiceItems(items, checkedItem, (dialog, which) -> {
+                if (singleChoiceListener != null) {
+                    singleChoiceListener.onSingleChoiceItems(dialog, which);
                 }
             });
 
             // 判断是否存在确认按钮文案
             if (!TextUtils.isEmpty(positiveBtnText)) {
-                builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(
-                            DialogInterface dialog,
-                            int which
-                    ) {
-                        dialog.dismiss();
-                        // 触发回调
-                        if (singleChoiceListener != null) {
-                            singleChoiceListener.onPositiveButton(dialog);
-                        }
+                builder.setPositiveButton(positiveBtnText, (dialog, which) -> {
+                    dialog.dismiss();
+                    // 触发回调
+                    if (singleChoiceListener != null) {
+                        singleChoiceListener.onPositiveButton(dialog);
                     }
                 });
             }
 
             // 判断是否存在取消按钮文案
             if (!TextUtils.isEmpty(negativeBtnText)) {
-                builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(
-                            DialogInterface dialog,
-                            int which
-                    ) {
-                        dialog.dismiss();
-                        // 触发回调
-                        if (singleChoiceListener != null) {
-                            singleChoiceListener.onCancel(dialog);
-                        }
+                builder.setNegativeButton(negativeBtnText, (dialog, which) -> {
+                    dialog.dismiss();
+                    // 触发回调
+                    if (singleChoiceListener != null) {
+                        singleChoiceListener.onCancel(dialog);
                     }
                 });
             }
 
             // 设置 Dialog 关闭监听
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    if (singleChoiceListener != null) {
-                        singleChoiceListener.onDismiss(dialog);
-                    }
+            builder.setOnDismissListener(dialog -> {
+                if (singleChoiceListener != null) {
+                    singleChoiceListener.onDismiss(dialog);
                 }
             });
             return builder.create();
@@ -1477,60 +1351,38 @@ public final class DialogUtils {
             if (icon != null) {
                 builder.setIcon(icon);
             }
-            builder.setMultiChoiceItems(itemsId, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
-                @Override
-                public void onClick(
-                        DialogInterface dialog,
-                        int which,
-                        boolean isChecked
-                ) {
-                    if (multiChoiceListener != null) {
-                        multiChoiceListener.onMultiChoiceItems(dialog, which, isChecked);
-                    }
+            builder.setMultiChoiceItems(itemsId, checkedItems, (dialog, which, isChecked) -> {
+                if (multiChoiceListener != null) {
+                    multiChoiceListener.onMultiChoiceItems(dialog, which, isChecked);
                 }
             });
 
             // 判断是否存在确认按钮文案
             if (!TextUtils.isEmpty(positiveBtnText)) {
-                builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(
-                            DialogInterface dialog,
-                            int which
-                    ) {
-                        dialog.dismiss();
-                        // 触发回调
-                        if (multiChoiceListener != null) {
-                            multiChoiceListener.onPositiveButton(dialog, checkedItems);
-                        }
+                builder.setPositiveButton(positiveBtnText, (dialog, which) -> {
+                    dialog.dismiss();
+                    // 触发回调
+                    if (multiChoiceListener != null) {
+                        multiChoiceListener.onPositiveButton(dialog, checkedItems);
                     }
                 });
             }
 
             // 判断是否存在取消按钮文案
             if (!TextUtils.isEmpty(negativeBtnText)) {
-                builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(
-                            DialogInterface dialog,
-                            int which
-                    ) {
-                        dialog.dismiss();
-                        // 触发回调
-                        if (multiChoiceListener != null) {
-                            multiChoiceListener.onCancel(dialog);
-                        }
+                builder.setNegativeButton(negativeBtnText, (dialog, which) -> {
+                    dialog.dismiss();
+                    // 触发回调
+                    if (multiChoiceListener != null) {
+                        multiChoiceListener.onCancel(dialog);
                     }
                 });
             }
 
             // 设置 Dialog 关闭监听
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    if (multiChoiceListener != null) {
-                        multiChoiceListener.onDismiss(dialog);
-                    }
+            builder.setOnDismissListener(dialog -> {
+                if (multiChoiceListener != null) {
+                    multiChoiceListener.onDismiss(dialog);
                 }
             });
             return builder.create();
@@ -1622,60 +1474,38 @@ public final class DialogUtils {
             if (icon != null) {
                 builder.setIcon(icon);
             }
-            builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
-                @Override
-                public void onClick(
-                        DialogInterface dialog,
-                        int which,
-                        boolean isChecked
-                ) {
-                    if (multiChoiceListener != null) {
-                        multiChoiceListener.onMultiChoiceItems(dialog, which, isChecked);
-                    }
+            builder.setMultiChoiceItems(items, checkedItems, (dialog, which, isChecked) -> {
+                if (multiChoiceListener != null) {
+                    multiChoiceListener.onMultiChoiceItems(dialog, which, isChecked);
                 }
             });
 
             // 判断是否存在确认按钮文案
             if (!TextUtils.isEmpty(positiveBtnText)) {
-                builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(
-                            DialogInterface dialog,
-                            int which
-                    ) {
-                        dialog.dismiss();
-                        // 触发回调
-                        if (multiChoiceListener != null) {
-                            multiChoiceListener.onPositiveButton(dialog, checkedItems);
-                        }
+                builder.setPositiveButton(positiveBtnText, (dialog, which) -> {
+                    dialog.dismiss();
+                    // 触发回调
+                    if (multiChoiceListener != null) {
+                        multiChoiceListener.onPositiveButton(dialog, checkedItems);
                     }
                 });
             }
 
             // 判断是否存在取消按钮文案
             if (!TextUtils.isEmpty(negativeBtnText)) {
-                builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(
-                            DialogInterface dialog,
-                            int which
-                    ) {
-                        dialog.dismiss();
-                        // 触发回调
-                        if (multiChoiceListener != null) {
-                            multiChoiceListener.onCancel(dialog);
-                        }
+                builder.setNegativeButton(negativeBtnText, (dialog, which) -> {
+                    dialog.dismiss();
+                    // 触发回调
+                    if (multiChoiceListener != null) {
+                        multiChoiceListener.onCancel(dialog);
                     }
                 });
             }
 
             // 设置 Dialog 关闭监听
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    if (multiChoiceListener != null) {
-                        multiChoiceListener.onDismiss(dialog);
-                    }
+            builder.setOnDismissListener(dialog -> {
+                if (multiChoiceListener != null) {
+                    multiChoiceListener.onDismiss(dialog);
                 }
             });
             return builder.create();
@@ -1821,45 +1651,30 @@ public final class DialogUtils {
             }
             // 判断是否存在确认按钮文案
             if (!TextUtils.isEmpty(positiveBtnText)) {
-                builder.setPositiveButton(positiveBtnText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(
-                            DialogInterface dialog,
-                            int which
-                    ) {
-                        dialog.dismiss();
-                        // 触发回调
-                        if (viewDialogListener != null) {
-                            viewDialogListener.onPositiveButton(dialog);
-                        }
+                builder.setPositiveButton(positiveBtnText, (dialog, which) -> {
+                    dialog.dismiss();
+                    // 触发回调
+                    if (viewDialogListener != null) {
+                        viewDialogListener.onPositiveButton(dialog);
                     }
                 });
             }
 
             // 判断是否存在取消按钮文案
             if (!TextUtils.isEmpty(negativeBtnText)) {
-                builder.setNegativeButton(negativeBtnText, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(
-                            DialogInterface dialog,
-                            int which
-                    ) {
-                        dialog.dismiss();
-                        // 触发回调
-                        if (viewDialogListener != null) {
-                            viewDialogListener.onCancel(dialog);
-                        }
+                builder.setNegativeButton(negativeBtnText, (dialog, which) -> {
+                    dialog.dismiss();
+                    // 触发回调
+                    if (viewDialogListener != null) {
+                        viewDialogListener.onCancel(dialog);
                     }
                 });
             }
 
             // 设置 Dialog 关闭监听
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    if (viewDialogListener != null) {
-                        viewDialogListener.onDismiss(dialog);
-                    }
+            builder.setOnDismissListener(dialog -> {
+                if (viewDialogListener != null) {
+                    viewDialogListener.onDismiss(dialog);
                 }
             });
             return builder.create();

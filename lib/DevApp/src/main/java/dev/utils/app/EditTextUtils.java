@@ -190,10 +190,7 @@ public final class EditTextUtils {
             final CharSequence content,
             final boolean isSelect
     ) {
-        if (editText != null) {
-            return insert(editText, content, editText.getSelectionStart(), isSelect);
-        }
-        return editText;
+        return insert(editText, content, editText.getSelectionStart(), isSelect);
     }
 
     /**
@@ -347,7 +344,7 @@ public final class EditTextUtils {
             // 获取数据长度
             int length = editText.getText().toString().length();
             // 设置光标
-            editText.setSelection((index > length) ? length : index);
+            editText.setSelection(Math.min(index, length));
         }
         return editText;
     }

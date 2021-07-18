@@ -23,7 +23,6 @@ import java.net.NetworkInterface;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
@@ -166,7 +165,7 @@ public final class DeviceUtils {
 
     /**
      * 获取设备信息
-     * @return {@link Map<String, String>}
+     * @return 设备信息
      */
     public static Map<String, String> getDeviceInfo() {
         return getDeviceInfo(new HashMap<>());
@@ -175,7 +174,7 @@ public final class DeviceUtils {
     /**
      * 获取设备信息
      * @param deviceInfoMap 设备信息 Map
-     * @return {@link Map<String, String>}
+     * @return 设备信息
      */
     public static Map<String, String> getDeviceInfo(final Map<String, String> deviceInfoMap) {
         // 获取设备信息类的所有申明的字段, 即包括 public、private 和 protected, 但是不包括父类的申明字段
@@ -198,8 +197,11 @@ public final class DeviceUtils {
                     } catch (Exception ignored) {
                     }
                 }
-                // 获取类型对应字段的数据, 并保存
-                deviceInfoMap.put(field.getName(), field.get(null).toString());
+                Object value = field.get(null);
+                if (value != null) {
+                    // 获取类型对应字段的数据, 并保存
+                    deviceInfoMap.put(field.getName(), value.toString());
+                }
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getDeviceInfo");
             }
@@ -220,14 +222,11 @@ public final class DeviceUtils {
         try {
             // 初始化 Builder, 拼接字符串
             StringBuilder builder = new StringBuilder();
-            // 获取设备信息
-            Iterator<Map.Entry<String, String>> mapIter = deviceInfoMap.entrySet().iterator();
             // 遍历设备信息
-            while (mapIter.hasNext()) {
+            for (Map.Entry<String, String> rnEntry : deviceInfoMap.entrySet()) {
                 // 获取对应的 key - value
-                Map.Entry<String, String> rnEntry = mapIter.next();
-                String                    rnKey   = rnEntry.getKey(); // key
-                String                    rnValue = rnEntry.getValue(); // value
+                String rnKey   = rnEntry.getKey();
+                String rnValue = rnEntry.getValue();
                 // 保存设备信息
                 builder.append(rnKey);
                 builder.append(" = ");
@@ -480,10 +479,13 @@ public final class DeviceUtils {
      * </pre>
      * @return Android id
      */
+    @SuppressLint("HardwareIds")
     public static String getAndroidId() {
         String androidId = null;
         try {
-            androidId = Settings.Secure.getString(ResourceUtils.getContentResolver(), Settings.Secure.ANDROID_ID);
+            androidId = Settings.Secure.getString(
+                    ResourceUtils.getContentResolver(), Settings.Secure.ANDROID_ID
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAndroidId");
         }
@@ -497,8 +499,9 @@ public final class DeviceUtils {
     public static String getBaseband_Ver() {
         String basebandVersion = "";
         try {
+            @SuppressLint("PrivateApi")
             Class<?> clazz   = Class.forName("android.os.SystemProperties");
-            Object   invoker = clazz.newInstance();
+            Object                               invoker = clazz.newInstance();
             Method   method  = clazz.getMethod("get", String.class, String.class);
             Object   result  = method.invoke(invoker, "gsm.version.baseband", "no message");
             basebandVersion = (String) result;
@@ -628,6 +631,7 @@ public final class DeviceUtils {
      * 获取 MAC 地址
      * @return MAC 地址
      */
+    @SuppressLint("HardwareIds")
     @RequiresPermission(Manifest.permission.ACCESS_WIFI_STATE)
     private static String getMacAddressByWifiInfo() {
         try {

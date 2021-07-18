@@ -105,11 +105,9 @@ public final class HandlerUtils {
                 public void run() {
                     if (mNumber < number) {
                         mNumber++;
-                        if (runnable != null) {
-                            try {
-                                runnable.run();
-                            } catch (Exception ignored) {
-                            }
+                        try {
+                            runnable.run();
+                        } catch (Exception ignored) {
                         }
                         // 判断是否超过次数
                         if (mNumber < number) {

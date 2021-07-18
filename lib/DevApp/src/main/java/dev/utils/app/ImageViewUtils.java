@@ -593,8 +593,7 @@ public final class ImageViewUtils {
             final View... views
     ) {
         if (views != null) {
-            for (int i = 0, len = views.length; i < len; i++) {
-                View view = views[i];
+            for (View view : views) {
                 if (view != null) {
                     try {
                         // 设置显示状态
@@ -639,8 +638,8 @@ public final class ImageViewUtils {
             final View... views
     ) {
         if (views != null) {
-            for (int i = 0, len = views.length; i < len; i++) {
-                ImageView imageView = getImageView(views[i]);
+            for (View view : views) {
+                ImageView imageView = getImageView(view);
                 if (imageView != null) {
                     try {
                         // 设置显示状态
@@ -685,8 +684,8 @@ public final class ImageViewUtils {
             final View... views
     ) {
         if (views != null) {
-            for (int i = 0, len = views.length; i < len; i++) {
-                ImageView imageView = getImageView(views[i]);
+            for (View view : views) {
+                ImageView imageView = getImageView(view);
                 if (imageView != null) {
                     try {
                         // 设置显示状态
@@ -731,8 +730,8 @@ public final class ImageViewUtils {
             final View... views
     ) {
         if (views != null) {
-            for (int i = 0, len = views.length; i < len; i++) {
-                ImageView imageView = getImageView(views[i]);
+            for (View view : views) {
+                ImageView imageView = getImageView(view);
                 if (imageView != null) {
                     try {
                         // 设置显示状态
@@ -777,8 +776,8 @@ public final class ImageViewUtils {
             final View... views
     ) {
         if (views != null) {
-            for (int i = 0, len = views.length; i < len; i++) {
-                ImageView imageView = getImageView(views[i]);
+            for (View view : views) {
+                ImageView imageView = getImageView(view);
                 if (imageView != null) {
                     try {
                         // 设置显示状态

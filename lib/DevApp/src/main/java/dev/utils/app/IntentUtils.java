@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
@@ -13,7 +14,7 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.TextUtils;
 
-import androidx.core.content.FileProvider;
+import androidx.annotation.RequiresApi;
 
 import java.io.File;
 import java.util.HashMap;
@@ -67,8 +68,12 @@ public final class IntentUtils {
      */
     public static boolean isIntentAvailable(final Intent intent) {
         if (intent != null) {
+            PackageManager packageManager = AppUtils.getPackageManager();
+            if (packageManager == null) return false;
             try {
-                return AppUtils.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).size() > 0;
+                return packageManager.queryIntentActivities(
+                        intent, PackageManager.MATCH_DEFAULT_ONLY
+                ).size() > 0;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "isIntentAvailable");
             }
@@ -168,13 +173,8 @@ public final class IntentUtils {
         if (file == null) return null;
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            Uri    data;
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-                data = Uri.fromFile(file);
-            } else {
-                data = FileProvider.getUriForFile(DevUtils.getContext(), DevUtils.getAuthority(), file);
-                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            }
+            Uri    data   = UriUtils.getUriForFile(file);
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.setDataAndType(data, "application/vnd.android.package-archive");
             return getIntent(intent, isNewTask);
         } catch (Exception e) {
@@ -231,8 +231,10 @@ public final class IntentUtils {
             final String packageName,
             final boolean isNewTask
     ) {
+        PackageManager packageManager = AppUtils.getPackageManager();
+        if (packageManager == null) return null;
         try {
-            Intent intent = AppUtils.getPackageManager().getLaunchIntentForPackage(packageName);
+            Intent intent = packageManager.getLaunchIntentForPackage(packageName);
             return getIntent(intent, isNewTask);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getLaunchAppIntent");
@@ -259,6 +261,7 @@ public final class IntentUtils {
      * 获取 APP 安装权限设置的意图
      * @return APP 安装权限设置的意图
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static Intent getLaunchAppInstallPermissionSettingsIntent() {
         return getLaunchAppInstallPermissionSettingsIntent(AppUtils.getPackageName(), false);
     }
@@ -268,6 +271,7 @@ public final class IntentUtils {
      * @param packageName 应用包名
      * @return APP 安装权限设置的意图
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static Intent getLaunchAppInstallPermissionSettingsIntent(final String packageName) {
         return getLaunchAppInstallPermissionSettingsIntent(packageName, false);
     }
@@ -278,6 +282,7 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return APP 安装权限设置的意图
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static Intent getLaunchAppInstallPermissionSettingsIntent(
             final String packageName,
             final boolean isNewTask
@@ -296,6 +301,7 @@ public final class IntentUtils {
      * 获取 APP 通知权限设置的意图
      * @return APP 通知权限设置的意图
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static Intent getLaunchAppNotificationSettingsIntent() {
         return getLaunchAppNotificationSettingsIntent(AppUtils.getPackageName(), false);
     }
@@ -305,6 +311,7 @@ public final class IntentUtils {
      * @param packageName 应用包名
      * @return APP 通知权限设置的意图
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static Intent getLaunchAppNotificationSettingsIntent(final String packageName) {
         return getLaunchAppNotificationSettingsIntent(packageName, false);
     }
@@ -315,12 +322,15 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return APP 通知权限设置的意图
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static Intent getLaunchAppNotificationSettingsIntent(
             final String packageName,
             final boolean isNewTask
     ) {
+        PackageInfo packageInfo = AppUtils.getPackageInfo(packageName, 0);
+        if (packageInfo == null) return null;
         try {
-            ApplicationInfo applicationInfo = AppUtils.getPackageInfo(packageName, 0).applicationInfo;
+            ApplicationInfo applicationInfo = packageInfo.applicationInfo;
             Intent          intent          = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
             // 这种方案适用于 API 26 即 8.0 ( 含 8.0) 以上可以用
             intent.putExtra(Settings.EXTRA_APP_PACKAGE, packageName);
@@ -362,6 +372,7 @@ public final class IntentUtils {
      * 获取悬浮窗口权限列表的意图
      * @return 悬浮窗口权限列表的意图
      */
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static Intent getManageOverlayPermissionIntent() {
         return getManageOverlayPermissionIntent(false);
     }
@@ -371,6 +382,7 @@ public final class IntentUtils {
      * @param isNewTask 是否开启新的任务栈
      * @return 悬浮窗口权限列表的意图
      */
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static Intent getManageOverlayPermissionIntent(final boolean isNewTask) {
         try {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
@@ -385,6 +397,7 @@ public final class IntentUtils {
      * 获取 APP 授予所有文件管理权限的意图
      * @return APP 授予所有文件管理权限的意图
      */
+    @RequiresApi(api = Build.VERSION_CODES.R)
     public static Intent getManageAppAllFilesAccessPermissionIntent() {
         return getManageAppAllFilesAccessPermissionIntent(AppUtils.getPackageName(), false);
     }
@@ -394,6 +407,7 @@ public final class IntentUtils {
      * @param packageName 应用包名
      * @return APP 授予所有文件管理权限的意图
      */
+    @RequiresApi(api = Build.VERSION_CODES.R)
     public static Intent getManageAppAllFilesAccessPermissionIntent(final String packageName) {
         return getManageAppAllFilesAccessPermissionIntent(packageName, false);
     }
@@ -404,6 +418,7 @@ public final class IntentUtils {
      * @param isNewTask   是否开启新的任务栈
      * @return APP 授予所有文件管理权限的意图
      */
+    @RequiresApi(api = Build.VERSION_CODES.R)
     public static Intent getManageAppAllFilesAccessPermissionIntent(
             final String packageName,
             final boolean isNewTask
@@ -422,6 +437,7 @@ public final class IntentUtils {
      * 获取授予所有文件管理权限列表的意图
      * @return 授予所有文件管理权限列表的意图
      */
+    @RequiresApi(api = Build.VERSION_CODES.R)
     public static Intent getManageAllFilesAccessPermissionIntent() {
         return getManageAllFilesAccessPermissionIntent(false);
     }
@@ -431,6 +447,7 @@ public final class IntentUtils {
      * @param isNewTask 是否开启新的任务栈
      * @return 授予所有文件管理权限列表的意图
      */
+    @RequiresApi(api = Build.VERSION_CODES.R)
     public static Intent getManageAllFilesAccessPermissionIntent(final boolean isNewTask) {
         try {
             Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
@@ -901,6 +918,7 @@ public final class IntentUtils {
      * 获取存储访问框架的意图
      * @return 存储访问框架的意图
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static Intent getOpenDocumentIntent() {
         return getOpenDocumentIntent("*/*");
     }
@@ -913,6 +931,7 @@ public final class IntentUtils {
      * @param type 跳转类型
      * @return 存储访问框架的意图
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static Intent getOpenDocumentIntent(final String type) {
         try {
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
@@ -937,6 +956,7 @@ public final class IntentUtils {
      * @param fileName 文件名
      * @return 创建文件的意图
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static Intent getCreateDocumentIntent(
             final String mimeType,
             final String fileName
@@ -980,7 +1000,10 @@ public final class IntentUtils {
             final Uri uri,
             final boolean isNewTask
     ) {
-        return getOpenBrowserIntent(uri, "com.android.browser", "com.android.browser.BrowserActivity", isNewTask);
+        return getOpenBrowserIntent(
+                uri, "com.android.browser",
+                "com.android.browser.BrowserActivity", isNewTask
+        );
     }
 
     /**
@@ -1007,8 +1030,11 @@ public final class IntentUtils {
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             intent.addCategory(Intent.CATEGORY_BROWSABLE);
             if (!TextUtils.isEmpty(packageName)) {
-//                intent.setClassName(packageName, className);
-                List<ResolveInfo>   lists    = AppUtils.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+                PackageManager packageManager = AppUtils.getPackageManager();
+                if (packageManager == null) return null;
+                List<ResolveInfo> lists = packageManager.queryIntentActivities(
+                        intent, PackageManager.MATCH_DEFAULT_ONLY
+                );
                 Map<String, String> browsers = new HashMap<>();
                 for (ResolveInfo resolveInfo : lists) {
                     ActivityInfo activityInfo = resolveInfo.activityInfo;
