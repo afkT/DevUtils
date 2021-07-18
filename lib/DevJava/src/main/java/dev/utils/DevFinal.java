@@ -27,6 +27,8 @@ public final class DevFinal {
     public static final String NEW_LINE_STR    = System.getProperty("line.separator");
     // 换行字符串 ( 两行 )
     public static final String NEW_LINE_STR_X2 = NEW_LINE_STR + NEW_LINE_STR;
+    // 换行字符串 ( 四行 )
+    public static final String NEW_LINE_STR_X4 = NEW_LINE_STR_X2 + NEW_LINE_STR_X2;
     // 空对象字符串
     public static final String NULL_STR        = "null";
 
