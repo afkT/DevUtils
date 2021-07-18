@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Build;
 import android.os.PowerManager;
@@ -62,23 +63,20 @@ public final class PowerManagerUtils {
      * @return {@code true} yes, {@code false} no
      */
     public boolean isScreenOn() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ECLAIR_MR1) {
+        if (mPowerManager == null) {
             return false;
-        } else {
-            if (mPowerManager == null) {
-                return false;
-            }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-                return mPowerManager.isInteractive();
-            }
-            return mPowerManager.isScreenOn();
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+            return mPowerManager.isInteractive();
+        }
+        return mPowerManager.isScreenOn();
     }
 
     /**
      * 唤醒 / 点亮 屏幕
      * @return {@code true} success, {@code false} fail
      */
+    @SuppressLint("WakelockTimeout")
     public boolean turnScreenOn() {
         if (mWakeLock != null && !mWakeLock.isHeld()) {
             try {
@@ -175,11 +173,12 @@ public final class PowerManagerUtils {
     /**
      * 设置 WakeLock 常亮
      * <pre>
-     *     {@link Activity#onResume()} 调用 setWakeLockToBright()
-     *     {@link Activity#onPause()} 调用 mWakeLock.release()
+     *     Activity#onResume() 调用 setWakeLockToBright()
+     *     Activity#onPause() 调用 mWakeLock.release()
      * </pre>
      * @return {@link PowerManager.WakeLock}
      */
+    @SuppressLint("WakelockTimeout")
     public static PowerManager.WakeLock setWakeLockToBright() {
         try {
             // onResume()

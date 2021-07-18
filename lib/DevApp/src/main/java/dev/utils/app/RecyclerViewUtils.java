@@ -494,7 +494,7 @@ public final class RecyclerViewUtils {
      */
     public static View setAdapter(
             final View view,
-            final RecyclerView.Adapter adapter
+            final RecyclerView.Adapter<?> adapter
     ) {
         setAdapter(getRecyclerView(view), adapter);
         return view;
@@ -509,7 +509,7 @@ public final class RecyclerViewUtils {
      */
     public static <T extends RecyclerView> T setAdapter(
             final T recyclerView,
-            final RecyclerView.Adapter adapter
+            final RecyclerView.Adapter<?> adapter
     ) {
         if (recyclerView != null && adapter != null) {
             recyclerView.setAdapter(adapter);

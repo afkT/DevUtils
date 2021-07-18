@@ -170,17 +170,22 @@ public final class ResourcePluginUtils {
         if (FileUtils.isFileExists(apkPath)) {
             try {
                 AssetManager asset        = AssetManager.class.newInstance();
-                Method       addAssetPath = asset.getClass().getMethod("addAssetPath", String.class);
+                Method       addAssetPath = asset.getClass().getMethod(
+                        "addAssetPath", String.class
+                );
                 addAssetPath.invoke(asset, apkPath);
                 Resources resources = new Resources(
                         asset, metrics, config
                 );
-                PackageInfo packageInfo = AppUtils.getPackageManager().getPackageArchiveInfo(
-                        apkPath, PackageManager.GET_ACTIVITIES
-                );
-                utils.mResourceAssist = ResourceAssist.get(
-                        resources, packageInfo.packageName
-                );
+                PackageManager packageManager = AppUtils.getPackageManager();
+                if (packageManager != null) {
+                    PackageInfo packageInfo = packageManager.getPackageArchiveInfo(
+                            apkPath, PackageManager.GET_ACTIVITIES
+                    );
+                    utils.mResourceAssist = ResourceAssist.get(
+                            resources, packageInfo.packageName
+                    );
+                }
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "invokeByAPKPath - apkPath: %s", apkPath);
             }

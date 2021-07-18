@@ -602,7 +602,7 @@ public final class SpanUtils {
      * @return {@link SpanUtils}
      */
     public SpanUtils setSpans(@NonNull final Object... spans) {
-        if (spans != null && spans.length > 0) {
+        if (spans.length > 0) {
             this.spans = spans;
         }
         return this;
@@ -1053,7 +1053,11 @@ public final class SpanUtils {
         ) {
             text = text.subSequence(start, end);
             Paint.FontMetricsInt fm = paint.getFontMetricsInt();
-            canvas.drawText(text.toString(), x, y - ((y + fm.descent + y + fm.ascent) / 2 - (bottom + top) / 2), paint);
+            canvas.drawText(
+                    text.toString(), x,
+                    y - ((y + fm.descent + y + fm.ascent) / 2 - (bottom + top) / 2),
+                    paint
+            );
         }
     }
 
@@ -1346,8 +1350,7 @@ public final class SpanUtils {
             if ((fake & Typeface.ITALIC) != 0) {
                 paint.setTextSkewX(-0.25f);
             }
-
-            paint.getShader();
+//            paint.getShader();
             paint.setTypeface(tf);
         }
     }
@@ -1416,7 +1419,12 @@ public final class SpanUtils {
             } else {
                 try {
                     drawable = ContextCompat.getDrawable(getContext(), mResourceId);
-                    drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+                    if (drawable != null) {
+                        drawable.setBounds(
+                                0, 0, drawable.getIntrinsicWidth(),
+                                drawable.getIntrinsicHeight()
+                        );
+                    }
                 } catch (Exception e) {
                     LogPrintUtils.eTag(TAG, e, "Unable to find resource: %s", mResourceId);
                 }

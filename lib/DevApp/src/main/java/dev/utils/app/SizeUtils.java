@@ -24,7 +24,7 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static int dipConvertPx(final float dpValue) {
-        return (int) dipConvertPxf(dpValue);
+        return dipConvertPx(dpValue, ResourceUtils.getDisplayMetrics());
     }
 
     /**
@@ -33,10 +33,8 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static float dipConvertPxf(final float dpValue) {
-        return applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, ResourceUtils.getDisplayMetrics());
+        return dipConvertPxf(dpValue, ResourceUtils.getDisplayMetrics());
     }
-
-    // =
 
     /**
      * px 转 dp
@@ -44,7 +42,7 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static int pxConvertDip(final float pxValue) {
-        return (int) pxConvertDipf(pxValue);
+        return pxConvertDip(pxValue, ResourceUtils.getDisplayMetrics());
     }
 
     /**
@@ -53,16 +51,8 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static float pxConvertDipf(final float pxValue) {
-        try {
-            float scale = ResourceUtils.getDisplayMetrics().density;
-            return (pxValue / scale);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "pxConvertDipf");
-        }
-        return 0f;
+        return pxConvertDipf(pxValue, ResourceUtils.getDisplayMetrics());
     }
-
-    // =
 
     /**
      * sp 转 px
@@ -70,7 +60,7 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static int spConvertPx(final float spValue) {
-        return (int) spConvertPxf(spValue);
+        return spConvertPx(spValue, ResourceUtils.getDisplayMetrics());
     }
 
     /**
@@ -79,10 +69,8 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static float spConvertPxf(final float spValue) {
-        return applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, ResourceUtils.getDisplayMetrics());
+        return spConvertPxf(spValue, ResourceUtils.getDisplayMetrics());
     }
-
-    // =
 
     /**
      * px 转 sp
@@ -90,7 +78,7 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static int pxConvertSp(final float pxValue) {
-        return (int) pxConvertSpf(pxValue);
+        return pxConvertSp(pxValue, ResourceUtils.getDisplayMetrics());
     }
 
     /**
@@ -99,16 +87,136 @@ public final class SizeUtils {
      * @return 转换后的值
      */
     public static float pxConvertSpf(final float pxValue) {
-        try {
-            float scale = ResourceUtils.getDisplayMetrics().scaledDensity;
-            return (pxValue / scale);
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "pxConvertSpf");
+        return pxConvertSpf(pxValue, ResourceUtils.getDisplayMetrics());
+    }
+
+    // ==================
+    // = DisplayMetrics =
+    // ==================
+
+    /**
+     * dp 转 px
+     * @param dpValue 待转换值
+     * @param metrics {@link DisplayMetrics}
+     * @return 转换后的值
+     */
+    public static int dipConvertPx(
+            final float dpValue,
+            final DisplayMetrics metrics
+    ) {
+        return (int) dipConvertPxf(dpValue, metrics);
+    }
+
+    /**
+     * dp 转 px (float)
+     * @param dpValue 待转换值
+     * @param metrics {@link DisplayMetrics}
+     * @return 转换后的值
+     */
+    public static float dipConvertPxf(
+            final float dpValue,
+            final DisplayMetrics metrics
+    ) {
+        return applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, metrics);
+    }
+
+    /**
+     * px 转 dp
+     * @param pxValue 待转换值
+     * @param metrics {@link DisplayMetrics}
+     * @return 转换后的值
+     */
+    public static int pxConvertDip(
+            final float pxValue,
+            final DisplayMetrics metrics
+    ) {
+        return (int) pxConvertDipf(pxValue, metrics);
+    }
+
+    /**
+     * px 转 dp (float)
+     * @param pxValue 待转换值
+     * @param metrics {@link DisplayMetrics}
+     * @return 转换后的值
+     */
+    public static float pxConvertDipf(
+            final float pxValue,
+            final DisplayMetrics metrics
+    ) {
+        if (metrics != null) {
+            try {
+                float scale = metrics.density;
+                return (pxValue / scale);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "pxConvertDipf");
+            }
         }
         return 0f;
     }
 
-    // =
+    /**
+     * sp 转 px
+     * @param spValue 待转换值
+     * @param metrics {@link DisplayMetrics}
+     * @return 转换后的值
+     */
+    public static int spConvertPx(
+            final float spValue,
+            final DisplayMetrics metrics
+    ) {
+        return (int) spConvertPxf(spValue, metrics);
+    }
+
+    /**
+     * sp 转 px (float)
+     * @param spValue 待转换值
+     * @param metrics {@link DisplayMetrics}
+     * @return 转换后的值
+     */
+    public static float spConvertPxf(
+            final float spValue,
+            final DisplayMetrics metrics
+    ) {
+        return applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, metrics);
+    }
+
+    /**
+     * px 转 sp
+     * @param pxValue 待转换值
+     * @param metrics {@link DisplayMetrics}
+     * @return 转换后的值
+     */
+    public static int pxConvertSp(
+            final float pxValue,
+            final DisplayMetrics metrics
+    ) {
+        return (int) pxConvertSpf(pxValue, metrics);
+    }
+
+    /**
+     * px 转 sp (float)
+     * @param pxValue 待转换值
+     * @param metrics {@link DisplayMetrics}
+     * @return 转换后的值
+     */
+    public static float pxConvertSpf(
+            final float pxValue,
+            final DisplayMetrics metrics
+    ) {
+        if (metrics != null) {
+            try {
+                float scale = metrics.scaledDensity;
+                return (pxValue / scale);
+            } catch (Exception e) {
+                LogPrintUtils.eTag(TAG, e, "pxConvertSpf");
+            }
+        }
+        return 0f;
+    }
+
+    // ==================
+    // = applyDimension =
+    // ==================
 
     /**
      * 各种单位转换 ( 该方法存在于 TypedValue.applyDimension )
@@ -164,12 +272,9 @@ public final class SizeUtils {
             final OnGetSizeListener listener
     ) {
         if (view != null) {
-            view.post(new Runnable() {
-                @Override
-                public void run() {
-                    if (listener != null) {
-                        listener.onGetSize(view);
-                    }
+            view.post(() -> {
+                if (listener != null) {
+                    listener.onGetSize(view);
                 }
             });
             return true;

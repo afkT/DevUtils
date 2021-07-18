@@ -68,8 +68,10 @@ public final class ProcessUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isCurProcess() {
+        String packageName = AppUtils.getPackageName();
+        if (packageName == null) return false;
         try {
-            return AppUtils.getPackageName().equals(getCurProcessName());
+            return packageName.equals(getCurProcessName());
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isCurProcess");
         }
@@ -200,21 +202,24 @@ public final class ProcessUtils {
         }
         // SDK 大于 21 时
         if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.LOLLIPOP) {
+            PackageManager packageManager = AppUtils.getPackageManager();
+            if (packageManager == null) return null;
             try {
-                PackageManager    packageManager = AppUtils.getPackageManager();
-                Intent            intent         = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
-                List<ResolveInfo> lists          = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+                Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+                List<ResolveInfo> lists = packageManager.queryIntentActivities(
+                        intent, PackageManager.MATCH_DEFAULT_ONLY
+                );
                 // 无权限
-                if (lists.size() == 0) {
-                    return null;
-                }
+                if (lists.size() == 0) return null;
 
                 UsageStatsManager usageStatsManager = AppUtils.getUsageStatsManager();
                 List<UsageStats>  listUsageStats    = null;
                 if (usageStatsManager != null) {
                     long endTime   = System.currentTimeMillis();
                     long beginTime = endTime - 86400000 * 7;
-                    listUsageStats = usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_BEST, beginTime, endTime);
+                    listUsageStats = usageStatsManager.queryUsageStats(
+                            UsageStatsManager.INTERVAL_BEST, beginTime, endTime
+                    );
                 }
                 if (listUsageStats == null || listUsageStats.isEmpty()) return null;
                 UsageStats recentStats = null;

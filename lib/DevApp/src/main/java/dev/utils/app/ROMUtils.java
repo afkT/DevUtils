@@ -236,6 +236,19 @@ public final class ROMUtils {
 
     /**
      * 是否匹配正确 ROM
+     * @param names 品牌名称集合
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isRightRom(
+            final String... names
+    ) {
+        return isRightRom(
+                getBrand(), getManufacturer(), names
+        );
+    }
+
+    /**
+     * 是否匹配正确 ROM
      * @param brand        产品 / 硬件品牌信息
      * @param manufacturer 产品 / 硬件制造商信息
      * @param names        品牌名称集合

@@ -21,7 +21,6 @@ import dev.utils.common.FileUtils;
  *     <p></p>
  *     {@link ScreenshotUtils} 使用方法
  *     ScreenshotUtils.getInstance().setListener(new ScreenshotUtils.OnScreenshotListener() {
- *             @Override
  *             public void onScreenshot(Uri contentUri, boolean selfChange, long rowId, String dataPath, long dateTaken) {
  *             }
  *         }).startListener();

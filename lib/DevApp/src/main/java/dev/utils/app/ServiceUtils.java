@@ -63,7 +63,7 @@ public final class ServiceUtils {
      * 获取所有运行的服务
      * @return 服务名集合
      */
-    public static Set getAllRunningService() {
+    public static Set<String> getAllRunningService() {
         try {
             Set<String>              names           = new HashSet<>();
             ActivityManager          activityManager = AppUtils.getActivityManager();

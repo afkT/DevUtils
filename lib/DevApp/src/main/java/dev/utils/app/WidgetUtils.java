@@ -157,20 +157,12 @@ public final class WidgetUtils {
             final int defaultValue
     ) {
         if (maximum == defaultValue) {
-            if (minimum >= size) {
-                return minimum;
-            } else {
-                return size;
-            }
+            return Math.max(minimum, size);
         } else {
             if (size >= maximum) {
                 return maximum;
             } else {
-                if (minimum >= size) {
-                    return minimum;
-                } else {
-                    return size;
-                }
+                return Math.max(minimum, size);
             }
         }
     }

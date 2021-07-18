@@ -90,14 +90,15 @@ public final class SDCardUtils {
      * 获取 SDCard 路径
      * @return SDCard 路径
      */
-    @SuppressWarnings("TryWithIdenticalCatches")
     public static List<String> getSDCardPaths() {
         try {
             StorageManager storageManager       = AppUtils.getStorageManager();
             Method         getVolumePathsMethod = StorageManager.class.getMethod("getVolumePaths");
             getVolumePathsMethod.setAccessible(true);
             Object invoke = getVolumePathsMethod.invoke(storageManager);
-            return new ArrayList<>(Arrays.asList((String[]) invoke));
+            if (invoke != null) {
+                return new ArrayList<>(Arrays.asList((String[]) invoke));
+            }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSDCardPaths");
         }
@@ -109,7 +110,6 @@ public final class SDCardUtils {
      * @param removable {@code true} 外置 SDCard, {@code false} 内置 SDCard
      * @return SDCard 路径
      */
-    @SuppressWarnings("TryWithIdenticalCatches")
     public static List<String> getSDCardPaths(final boolean removable) {
         List<String> listPaths = new ArrayList<>();
         try {
@@ -119,13 +119,15 @@ public final class SDCardUtils {
             Method         getPath            = storageVolumeClazz.getMethod("getPath");
             Method         isRemovable        = storageVolumeClazz.getMethod("isRemovable");
             Object         result             = getVolumeList.invoke(storageManager);
-            final int      length             = Array.getLength(result);
-            for (int i = 0; i < length; i++) {
-                Object  storageVolumeElement = Array.get(result, i);
-                String  path                 = (String) getPath.invoke(storageVolumeElement);
-                boolean res                  = (Boolean) isRemovable.invoke(storageVolumeElement);
-                if (removable == res) {
-                    listPaths.add(path);
+            if (result != null) {
+                final int length = Array.getLength(result);
+                for (int i = 0; i < length; i++) {
+                    Object  storageVolumeElement = Array.get(result, i);
+                    String  path                 = (String) getPath.invoke(storageVolumeElement);
+                    boolean res                  = (Boolean) isRemovable.invoke(storageVolumeElement);
+                    if (removable == res) {
+                        listPaths.add(path);
+                    }
                 }
             }
         } catch (Exception e) {

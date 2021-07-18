@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
-import android.os.SystemClock;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.telephony.SmsManager;
@@ -281,7 +280,7 @@ public final class PhoneUtils {
      * </pre>
      * @return IMSI 码
      */
-    @SuppressLint("MissingPermission")
+    @SuppressLint({"MissingPermission", "HardwareIds"})
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     public static String getIMSI() {
         try {
@@ -360,12 +359,18 @@ public final class PhoneUtils {
      */
     public static String getChinaOperatorBySimOperator(final String simOperator) {
         if (simOperator != null) {
-            if (simOperator.equals("46000") || simOperator.equals("46002") || simOperator.equals("46007")) {
-                return "中国移动";
-            } else if (simOperator.equals("46001") || simOperator.equals("46006")) {
-                return "中国联通";
-            } else if (simOperator.equals("46003") || simOperator.equals("46005") || simOperator.equals("46011")) {
-                return "中国电信";
+            switch (simOperator) {
+                case "46000":
+                case "46002":
+                case "46007":
+                    return "中国移动";
+                case "46001":
+                case "46006":
+                    return "中国联通";
+                case "46003":
+                case "46005":
+                case "46011":
+                    return "中国电信";
             }
         }
         return null;
@@ -404,7 +409,7 @@ public final class PhoneUtils {
      * @param slotIndex 卡槽索引
      * @return 设备 id
      */
-    @SuppressLint("MissingPermission")
+    @SuppressLint({"MissingPermission", "HardwareIds"})
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     public static String getDeviceId(final int slotIndex) {
         try {
@@ -428,9 +433,12 @@ public final class PhoneUtils {
      * </pre>
      * @return Android id
      */
+    @SuppressLint("HardwareIds")
     public static String getAndroidId() {
         try {
-            return Settings.Secure.getString(ResourceUtils.getContentResolver(), Settings.Secure.ANDROID_ID);
+            return Settings.Secure.getString(
+                    ResourceUtils.getContentResolver(), Settings.Secure.ANDROID_ID
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAndroidId");
         }
@@ -441,7 +449,7 @@ public final class PhoneUtils {
      * 获取设备序列号
      * @return 设备序列号
      */
-    @SuppressLint("MissingPermission")
+    @SuppressLint({"MissingPermission", "HardwareIds"})
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     public static String getSerialNumber() {
         try {
@@ -456,7 +464,7 @@ public final class PhoneUtils {
      * 获取 SIM 卡序列号
      * @return SIM 卡序列号
      */
-    @SuppressLint("MissingPermission")
+    @SuppressLint({"MissingPermission", "HardwareIds"})
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     public static String getSimSerialNumber() {
         try {
@@ -503,29 +511,28 @@ public final class PhoneUtils {
      * </pre>
      * @return 手机状态信息
      */
-    @SuppressLint("MissingPermission")
+    @SuppressLint({"MissingPermission", "HardwareIds"})
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     public static String getPhoneStatus() {
         try {
             TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
             if (telephonyManager == null) return "";
-            StringBuilder builder = new StringBuilder();
-            builder.append("DeviceId(IMEI) = ").append(telephonyManager.getDeviceId());
-            builder.append("\nDeviceSoftwareVersion = ").append(telephonyManager.getDeviceSoftwareVersion());
-            builder.append("\nLine1Number = ").append(telephonyManager.getLine1Number());
-            builder.append("\nNetworkCountryIso = ").append(telephonyManager.getNetworkCountryIso());
-            builder.append("\nNetworkOperator = ").append(telephonyManager.getNetworkOperator());
-            builder.append("\nNetworkOperatorName = ").append(telephonyManager.getNetworkOperatorName());
-            builder.append("\nNetworkType = ").append(telephonyManager.getNetworkType());
-            builder.append("\nPhoneType = ").append(telephonyManager.getPhoneType());
-            builder.append("\nSimCountryIso = ").append(telephonyManager.getSimCountryIso());
-            builder.append("\nSimOperator = ").append(telephonyManager.getSimOperator());
-            builder.append("\nSimOperatorName = ").append(telephonyManager.getSimOperatorName());
-            builder.append("\nSimSerialNumber = ").append(telephonyManager.getSimSerialNumber());
-            builder.append("\nSimState = ").append(telephonyManager.getSimState());
-            builder.append("\nSubscriberId(IMSI) = ").append(telephonyManager.getSubscriberId()).append("(").append(getChinaOperatorByIMSI()).append(")");
-            builder.append("\nVoiceMailNumber = ").append(telephonyManager.getVoiceMailNumber());
-            return builder.toString();
+            return "DeviceId(IMEI) = " + telephonyManager.getDeviceId() +
+                    "\nDeviceSoftwareVersion = " + telephonyManager.getDeviceSoftwareVersion() +
+                    "\nLine1Number = " + telephonyManager.getLine1Number() +
+                    "\nNetworkCountryIso = " + telephonyManager.getNetworkCountryIso() +
+                    "\nNetworkOperator = " + telephonyManager.getNetworkOperator() +
+                    "\nNetworkOperatorName = " + telephonyManager.getNetworkOperatorName() +
+                    "\nNetworkType = " + telephonyManager.getNetworkType() +
+                    "\nPhoneType = " + telephonyManager.getPhoneType() +
+                    "\nSimCountryIso = " + telephonyManager.getSimCountryIso() +
+                    "\nSimOperator = " + telephonyManager.getSimOperator() +
+                    "\nSimOperatorName = " + telephonyManager.getSimOperatorName() +
+                    "\nSimSerialNumber = " + telephonyManager.getSimSerialNumber() +
+                    "\nSimState = " + telephonyManager.getSimState() +
+                    "\nSubscriberId(IMSI) = " + telephonyManager.getSubscriberId()
+                    + "(" + getChinaOperatorByIMSI() + ")" +
+                    "\nVoiceMailNumber = " + telephonyManager.getVoiceMailNumber();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getPhoneStatus");
         }
@@ -600,8 +607,10 @@ public final class PhoneUtils {
     ) {
         if (TextUtils.isEmpty(content)) return false;
         try {
-            PendingIntent sentIntent = PendingIntent.getBroadcast(DevUtils.getContext(), 0, new Intent("send"), 0);
-            SmsManager    smsManager = SmsManager.getDefault();
+            PendingIntent sentIntent = PendingIntent.getBroadcast(
+                    DevUtils.getContext(), 0, new Intent("send"), 0
+            );
+            SmsManager smsManager = SmsManager.getDefault();
             if (content.length() >= 70) {
                 List<String> ms = smsManager.divideMessage(content);
                 for (String str : ms) {
@@ -620,7 +629,6 @@ public final class PhoneUtils {
     /**
      * 打开手机联系人界面点击联系人后便获取该号码
      * <pre>
-     *     @Override
      *     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
      *          super.onActivityResult(requestCode, resultCode, data);
      *          if (data != null) {
@@ -664,41 +672,26 @@ public final class PhoneUtils {
         // 游标
         Cursor cursor = null;
         try {
-            // 1. 获取内容解析者
             ContentResolver resolver = ResourceUtils.getContentResolver();
-            // 2. 获取内容提供者的地址 com.android.contacts
-            // raw_contacts 表的地址 raw_contacts
-            // view_data 表的地址 data
-            // 3. 生成查询地址
-            Uri raw_uri  = Uri.parse("content://com.android.contacts/raw_contacts");
-            Uri date_uri = Uri.parse("content://com.android.contacts/data");
-            // 4. 查询操作, 先查询 raw_contacts, 查询 contact_id
-            // projection 查询的字段
-            cursor = resolver.query(raw_uri, new String[]{"contact_id"}, null, null, null);
-            // 5. 解析 cursor
+            Uri             raw_uri  = Uri.parse("content://com.android.contacts/raw_contacts");
+            Uri             date_uri = Uri.parse("content://com.android.contacts/data");
+            cursor = resolver.query(
+                    raw_uri, new String[]{"contact_id"},
+                    null, null, null
+            );
             if (cursor != null) {
                 while (cursor.moveToNext()) {
-                    // 6. 获取查询的数据
                     String contact_id = cursor.getString(0);
-                    // cursor.getString(cursor.getColumnIndex("contact_id"));
-                    // 判断 contact_id 是否为空
                     if (!TextUtils.isEmpty(contact_id)) {
-                        // 7. 根据 contact_id 查询 view_data 表中的数据
-                        // selection 查询条件
-                        // selectionArgs 查询条件的参数
-                        // sortOrder 排序
-                        // 空指针 1. null 方法、2. 参数为 null
-                        Cursor c = resolver.query(date_uri, new String[]{"data1", "mimetype"},
+                        Cursor c = resolver.query(
+                                date_uri, new String[]{"data1", "mimetype"},
                                 "raw_contact_id=?", new String[]{contact_id}, null
                         );
                         Map<String, String> map = new HashMap<>();
-                        // 8. 解析 c
                         if (c != null) {
                             while (c.moveToNext()) {
-                                // 9. 获取数据
                                 String data1    = c.getString(0);
                                 String mimetype = c.getString(1);
-                                // 10. 根据类型去判断获取的 data1 数据并保存
                                 if (mimetype.equals("vnd.android.cursor.item/phone_v2")) {
                                     map.put("phone", data1); // 电话
                                 } else if (mimetype.equals("vnd.android.cursor.item/name")) {
@@ -706,9 +699,7 @@ public final class PhoneUtils {
                                 }
                             }
                         }
-                        // 11. 添加到集合中数据
                         list.add(map);
-                        // 12. 关闭 cursor
                         CloseUtils.closeIOQuietly(c);
                     }
                 }
@@ -726,27 +717,29 @@ public final class PhoneUtils {
      * @return 手机联系人信息
      */
     public static List<Map<String, String>> getAllContactInfo2() {
-        List<Map<String, String>> list = new ArrayList<>();
+        List<Map<String, String>> list   = new ArrayList<>();
+        Cursor                    cursor = null;
         try {
-            Cursor cursor = ResourceUtils.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+            cursor = ResourceUtils.getContentResolver().query(
+                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                     null, null, null, null
             );
             while (cursor.moveToNext()) {
                 Map<String, String> map = new HashMap<>();
-                // 电话号码
-                String phoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
-                        .trim().replaceAll(" ", "");
-                // 手机联系人名字
-                String phoneName = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)).trim();
-                // 保存手机号
+                String phoneNumber = cursor.getString(
+                        cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
+                ).trim().replaceAll(" ", "");
+                String phoneName = cursor.getString(
+                        cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
+                ).trim();
                 map.put("phone", phoneNumber);
-                // 保存名字
                 map.put("name", phoneName);
-                // 保存数据
                 list.add(map);
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAllContactInfo2");
+        } finally {
+            CloseUtils.closeIOQuietly(cursor);
         }
         return list;
     }
@@ -757,67 +750,53 @@ public final class PhoneUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean getAllSMS(final String filePath) {
-        // 游标
-        Cursor cursor;
+        Cursor cursor = null;
         try {
-            // 1. 获取短信
-            // 1.1 获取内容解析者
             ContentResolver resolver = ResourceUtils.getContentResolver();
-            // 1.2 获取内容提供者地址 sms, sms 表的地址 null 不写
-            // 1.3 获取查询路径
-            Uri uri = Uri.parse("content://sms");
-            // 1.4 查询操作
-            // projection 查询的字段
-            // selection 查询条件
-            // selectionArgs 查询条件的参数
-            // sortOrder 排序
-            cursor = resolver.query(uri, new String[]{"address", "date", "type", "body"}, null, null, null);
-            // 设置最大进度
-            int count = cursor.getCount(); // 获取短信的个数
-            // 2. 备份短信
-            // 2.1 获取 xml 序列器
+            Uri             uri      = Uri.parse("content://sms");
+            cursor = resolver.query(
+                    uri, new String[]{"address", "date", "type", "body"},
+                    null, null, null
+            );
+//            // 获取短信的个数
+//            int count = cursor.getCount();
             XmlSerializer xmlSerializer = Xml.newSerializer();
-            // 2.2 设置 xml 文件保存的路径
-            // os 保存的位置
-            // encoding 编码格式
             xmlSerializer.setOutput(new FileOutputStream(new File(filePath)), "UTF-8");
-            // 2.3 设置头信息
-            // standalone 是否独立保存
             xmlSerializer.startDocument("UTF-8", true);
-            // 2.4 设置根标签
             xmlSerializer.startTag(null, "smss");
-            // 1.5 解析 cursor
             while (cursor.moveToNext()) {
-                SystemClock.sleep(1000);
-                // 2.5 设置短信的标签
                 xmlSerializer.startTag(null, "sms");
-                // 2.6 设置文本内容的标签
+
                 xmlSerializer.startTag(null, "address");
                 String address = cursor.getString(0);
-                // 2.7 设置文本内容
                 xmlSerializer.text(address);
                 xmlSerializer.endTag(null, "address");
+
                 xmlSerializer.startTag(null, "date");
                 String date = cursor.getString(1);
                 xmlSerializer.text(date);
                 xmlSerializer.endTag(null, "date");
+
                 xmlSerializer.startTag(null, "type");
                 String type = cursor.getString(2);
                 xmlSerializer.text(type);
                 xmlSerializer.endTag(null, "type");
+
                 xmlSerializer.startTag(null, "body");
                 String body = cursor.getString(3);
                 xmlSerializer.text(body);
                 xmlSerializer.endTag(null, "body");
+
                 xmlSerializer.endTag(null, "sms");
             }
             xmlSerializer.endTag(null, "smss");
             xmlSerializer.endDocument();
-            // 2.8 将数据刷新到文件中
             xmlSerializer.flush();
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAllSMS");
+        } finally {
+            CloseUtils.closeIOQuietly(cursor);
         }
         return false;
     }

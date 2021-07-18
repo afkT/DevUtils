@@ -143,8 +143,7 @@ public final class SignaturesUtils {
         boolean debuggable = true;
         if (signatures != null) {
             try {
-                for (int i = 0, len = signatures.length; i < len; i++) {
-                    Signature s = signatures[i];
+                for (Signature s : signatures) {
                     if (s != null) {
                         X509Certificate cert = getX509Certificate(s);
                         debuggable = cert.getSubjectX500Principal().equals(DEBUG_DN);
@@ -201,8 +200,7 @@ public final class SignaturesUtils {
             // 格式化日期
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             // 遍历获取
-            for (int i = 0, len = signatures.length; i < len; i++) {
-                Signature s = signatures[i];
+            for (Signature s : signatures) {
                 if (s != null) {
                     X509Certificate cert = getX509Certificate(s);
 
@@ -280,8 +278,9 @@ public final class SignaturesUtils {
      * @return {@link Signature}[]
      */
     public static Signature[] getSignaturesFromApk(final File file) {
+        Certificate[] certificates = getCertificateFromApk(file);
+        if (certificates == null) return null;
         try {
-            Certificate[] certificates = getCertificateFromApk(file);
             return new Signature[]{new Signature(certificates[0].getEncoded())};
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSignaturesFromApk");

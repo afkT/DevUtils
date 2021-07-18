@@ -192,8 +192,10 @@ public final class SnackbarUtils {
      * @return {@link SnackbarContentLayout}
      */
     public SnackbarContentLayout getSnackbarContentLayout() {
+        Snackbar.SnackbarLayout snackbarLayout = getSnackbarLayout();
+        if (snackbarLayout == null) return null;
         try {
-            return (SnackbarContentLayout) getSnackbarLayout().getChildAt(0);
+            return (SnackbarContentLayout) snackbarLayout.getChildAt(0);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getSnackbarContentLayout");
         }
@@ -1213,146 +1215,144 @@ public final class SnackbarUtils {
         }
         // 获取显示的 View
         View rootView = snackbar.getView();
-        if (rootView != null) {
 
-            // ============
-            // = RootView =
-            // ============
+        // ============
+        // = RootView =
+        // ============
 
-            // 设置 RootView Gravity 处理
-            if (style.getRootGravity() != 0) {
-                setLayoutGravity(rootView, style.getRootGravity());
-            }
+        // 设置 RootView Gravity 处理
+        if (style.getRootGravity() != 0) {
+            setLayoutGravity(rootView, style.getRootGravity());
+        }
 
-            // 设置 RootView margin 边距
-            int[] rootMargin = style.getRootMargin();
-            if (rootMargin != null && rootMargin.length == 4) {
-                setMargin(rootView, rootMargin, rootMargin[1], rootMargin[3]);
-            }
+        // 设置 RootView margin 边距
+        int[] rootMargin = style.getRootMargin();
+        if (rootMargin != null && rootMargin.length == 4) {
+            setMargin(rootView, rootMargin, rootMargin[1], rootMargin[3]);
+        }
 
-            // 设置 RootView 透明度
-            if (style.getRootAlpha() >= 0f) {
-                float rootAlpha = style.getRootAlpha();
-                rootAlpha = rootAlpha >= 1.0f ? 1.0f : (rootAlpha <= 0.0f ? 0.0f : rootAlpha);
-                rootView.setAlpha(rootAlpha);
-            }
+        // 设置 RootView 透明度
+        if (style.getRootAlpha() >= 0f) {
+            float rootAlpha = style.getRootAlpha();
+            rootAlpha = rootAlpha >= 1.0f ? 1.0f : Math.max(rootAlpha, 0.0f);
+            rootView.setAlpha(rootAlpha);
+        }
 
-            // 设置 RootView 背景相关
-            // 获取背景图片
-            Drawable rootBackgroundDrawable = style.getRootBackground();
-            // 如果等于 null
-            if (rootBackgroundDrawable != null) {
+        // 设置 RootView 背景相关
+        // 获取背景图片
+        Drawable rootBackgroundDrawable = style.getRootBackground();
+        // 如果等于 null
+        if (rootBackgroundDrawable != null) {
+            // 设置背景
+            ViewUtils.setBackground(rootView, rootBackgroundDrawable);
+        } else {
+            if (style.getRootBackgroundTintColor() != 0) {
+                GradientDrawable drawable = new GradientDrawable();
+                // 设置背景色
+                drawable.setColor(style.getRootBackgroundTintColor());
+                // 设置圆角大小
+                drawable.setCornerRadius(style.getRootCornerRadius());
                 // 设置背景
-                ViewUtils.setBackground(rootView, rootBackgroundDrawable);
+                ViewUtils.setBackground(rootView, drawable);
+            }
+        }
+
+        // ==============================
+        // = snackbar_text TextView 相关 =
+        // ==============================
+
+        TextView textView = getTextView();
+        // 防止 snackbar_text 为 null
+        if (textView != null) {
+
+            // TextView 的重心
+            if (style.getTextGravity() != 0) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                    textView.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
+                }
+                textView.setGravity(style.getTextGravity());
+            }
+
+            // TextView 文本颜色
+            if (style.getTextColor() != 0) {
+                textView.setTextColor(style.getTextColor());
+            }
+
+            // TextView 字体大小
+            if (style.getTextSize() != 0f) {
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, style.getTextSize());
+            }
+
+            // TextView 最大行数
+            if (style.getTextMaxLines() >= 1) {
+                textView.setMaxLines(style.getTextMaxLines());
+            }
+
+            // TextView Ellipsize 效果
+            if (style.getTextEllipsize() != null) {
+                textView.setEllipsize(style.getTextEllipsize());
+            }
+
+            // TextView 字体样式
+            if (style.getTextTypeface() != null) {
+                textView.setTypeface(style.getTextTypeface());
+            }
+
+            // TextView padding 边距
+            int[] textPadding = style.getTextPadding();
+            if (textPadding != null && textPadding.length == 4) {
+                textView.setPadding(textPadding[0], textPadding[1], textPadding[2], textPadding[3]);
+            }
+        }
+
+        // ==============================
+        // = snackbar_action Button 相关 =
+        // ==============================
+
+        Button actionButton = getActionButton();
+        // 防止 snackbar_action Button 为 null
+        if (actionButton != null) {
+
+            // Action Button 的重心
+            if (style.getActionGravity() != 0) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                    actionButton.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
+                }
+                actionButton.setGravity(style.getActionGravity());
+            }
+
+            // Action Button 文本颜色
+            if (style.getActionColor() != 0) {
+                actionButton.setTextColor(style.getActionColor());
+            }
+
+            // Action Button 字体大小
+            if (style.getActionSize() != 0f) {
+                actionButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, style.getActionSize());
+            }
+
+            // Action Button padding 边距
+            int[] actionPadding = style.getActionPadding();
+            if (actionPadding != null && actionPadding.length == 4) {
+                actionButton.setPadding(actionPadding[0], actionPadding[1], actionPadding[2], actionPadding[3]);
+            }
+
+            // 设置 Action Button 背景相关
+            // 获取背景图片
+            Drawable actionBackgroundDrawable = style.getActionBackground();
+            // 如果等于 null
+            if (actionBackgroundDrawable != null) {
+                // 设置背景
+                ViewUtils.setBackground(actionButton, actionBackgroundDrawable);
             } else {
-                if (style.getRootBackgroundTintColor() != 0) {
+                if (style.getActionBackgroundTintColor() != 0) {
                     GradientDrawable drawable = new GradientDrawable();
                     // 设置背景色
-                    drawable.setColor(style.getRootBackgroundTintColor());
+                    drawable.setColor(style.getActionBackgroundTintColor());
                     // 设置圆角大小
-                    drawable.setCornerRadius(style.getRootCornerRadius());
+                    drawable.setCornerRadius(style.getActionCornerRadius());
                     // 设置背景
-                    ViewUtils.setBackground(rootView, drawable);
-                }
-            }
-
-            // ==============================
-            // = snackbar_text TextView 相关 =
-            // ==============================
-
-            TextView textView = getTextView();
-            // 防止 snackbar_text 为 null
-            if (textView != null) {
-
-                // TextView 的重心
-                if (style.getTextGravity() != 0) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                        textView.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
-                    }
-                    textView.setGravity(style.getTextGravity());
-                }
-
-                // TextView 文本颜色
-                if (style.getTextColor() != 0) {
-                    textView.setTextColor(style.getTextColor());
-                }
-
-                // TextView 字体大小
-                if (style.getTextSize() != 0f) {
-                    textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, style.getTextSize());
-                }
-
-                // TextView 最大行数
-                if (style.getTextMaxLines() >= 1) {
-                    textView.setMaxLines(style.getTextMaxLines());
-                }
-
-                // TextView Ellipsize 效果
-                if (style.getTextEllipsize() != null) {
-                    textView.setEllipsize(style.getTextEllipsize());
-                }
-
-                // TextView 字体样式
-                if (style.getTextTypeface() != null) {
-                    textView.setTypeface(style.getTextTypeface());
-                }
-
-                // TextView padding 边距
-                int[] textPadding = style.getTextPadding();
-                if (textPadding != null && textPadding.length == 4) {
-                    textView.setPadding(textPadding[0], textPadding[1], textPadding[2], textPadding[3]);
-                }
-            }
-
-            // ==============================
-            // = snackbar_action Button 相关 =
-            // ==============================
-
-            Button actionButton = getActionButton();
-            // 防止 snackbar_action Button 为 null
-            if (actionButton != null) {
-
-                // Action Button 的重心
-                if (style.getActionGravity() != 0) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                        actionButton.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
-                    }
-                    actionButton.setGravity(style.getActionGravity());
-                }
-
-                // Action Button 文本颜色
-                if (style.getActionColor() != 0) {
-                    actionButton.setTextColor(style.getActionColor());
-                }
-
-                // Action Button 字体大小
-                if (style.getActionSize() != 0f) {
-                    actionButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, style.getActionSize());
-                }
-
-                // Action Button padding 边距
-                int[] actionPadding = style.getActionPadding();
-                if (actionPadding != null && actionPadding.length == 4) {
-                    actionButton.setPadding(actionPadding[0], actionPadding[1], actionPadding[2], actionPadding[3]);
-                }
-
-                // 设置 Action Button 背景相关
-                // 获取背景图片
-                Drawable actionBackgroundDrawable = style.getActionBackground();
-                // 如果等于 null
-                if (actionBackgroundDrawable != null) {
-                    // 设置背景
-                    ViewUtils.setBackground(actionButton, actionBackgroundDrawable);
-                } else {
-                    if (style.getActionBackgroundTintColor() != 0) {
-                        GradientDrawable drawable = new GradientDrawable();
-                        // 设置背景色
-                        drawable.setColor(style.getActionBackgroundTintColor());
-                        // 设置圆角大小
-                        drawable.setCornerRadius(style.getActionCornerRadius());
-                        // 设置背景
-                        ViewUtils.setBackground(actionButton, drawable);
-                    }
+                    ViewUtils.setBackground(actionButton, drawable);
                 }
             }
         }
@@ -1475,69 +1475,67 @@ public final class SnackbarUtils {
         if (snackbar == null) return;
         // 获取显示的 View
         View rootView = snackbar.getView();
-        if (rootView != null) {
-            // = 特殊处理 =
-            // 属于显示在指定 View 坐标, 对应重心方向
-            if (mViewLocations != null && mViewGravity != -1 && mViewHeight > 0) {
-                // View ( 坐标 ) 边距
-                int[] margin = new int[4];
-                // 判断 Style 是否为 null
-                if (mStyleBuilder != null) {
-                    // 默认边距
-                    int[] rootMargin = mStyleBuilder.getRootMargin();
-                    if (rootMargin != null && rootMargin.length == 4) {
-                        margin[0] = rootMargin[0];
-                        margin[2] = rootMargin[2];
-                    }
+        // = 特殊处理 =
+        // 属于显示在指定 View 坐标, 对应重心方向
+        if (mViewLocations != null && mViewGravity != -1 && mViewHeight > 0) {
+            // View ( 坐标 ) 边距
+            int[] margin = new int[4];
+            // 判断 Style 是否为 null
+            if (mStyleBuilder != null) {
+                // 默认边距
+                int[] rootMargin = mStyleBuilder.getRootMargin();
+                if (rootMargin != null && rootMargin.length == 4) {
+                    margin[0] = rootMargin[0];
+                    margin[2] = rootMargin[2];
                 }
+            }
 
-                // 获取 View 上方距离
-                int mViewTop = mViewLocations[1];
-                // 获取屏幕高度
-                int screenHeight = ScreenUtils.getScreenHeight();
-                // 防止等于 0
-                if (screenHeight != 0) {
-                    // 获取测量高度 ( 不一定准确 )
-                    int measuredHeight = WidgetUtils.getMeasuredHeight(rootView);
-                    // 判断方向, 在指定坐标上方, 判断是否够空间
-                    if (mViewGravity == Gravity.TOP) {
-                        // 判断是否超出可显示高度
-                        if (mViewTop - mShadowMargin - mAppendTopMargin >= measuredHeight) {
-                            // 思路: 没有超出高度, 则正常显示在指定 View 上方
-                            // 改为布局居下 ( 相反方向 ), 然后设置 bottomMargin 为 屏幕高度 - view mWindowTop + 阴影大小
-                            // 这样的思路, 主要是只用知道 view 的 Y 轴位置, 然后用屏幕高度减去 Y 得到的就是需要向下的边距, 不需要计算 Snackbar View 高度
+            // 获取 View 上方距离
+            int mViewTop = mViewLocations[1];
+            // 获取屏幕高度
+            int screenHeight = ScreenUtils.getScreenHeight();
+            // 防止等于 0
+            if (screenHeight != 0) {
+                // 获取测量高度 ( 不一定准确 )
+                int measuredHeight = WidgetUtils.getMeasuredHeight(rootView);
+                // 判断方向, 在指定坐标上方, 判断是否够空间
+                if (mViewGravity == Gravity.TOP) {
+                    // 判断是否超出可显示高度
+                    if (mViewTop - mShadowMargin - mAppendTopMargin >= measuredHeight) {
+                        // 思路: 没有超出高度, 则正常显示在指定 View 上方
+                        // 改为布局居下 ( 相反方向 ), 然后设置 bottomMargin 为 屏幕高度 - view mWindowTop + 阴影大小
+                        // 这样的思路, 主要是只用知道 view 的 Y 轴位置, 然后用屏幕高度减去 Y 得到的就是需要向下的边距, 不需要计算 Snackbar View 高度
+
+                        setLayoutGravity(rootView, Gravity.BOTTOM)
+                                .setMargin(rootView, margin, 0, screenHeight - mViewTop + mShadowMargin);
+                    } else { // 超出可视范围
+                        // 判断是否自动计算处理
+                        if (mAutoCalc) {
+                            // 思路如上: 超出高度后, 则直接设置居上, 计算边距则 view mWindowTop - 追加边距 ( 状态栏高度 ) + view height, 设置到 View 的下方
+                            // 计算处理主要是, 只需要知道 view Y 轴位置 + view height - 追加边距 ( 状态栏高度 ) = 需要的边距
+                            // 为什么需要减 状态栏高度, 是因为 view Y (view mWindowTop) 就包含状态栏高度信息
+
+                            setLayoutGravity(rootView, Gravity.TOP)
+                                    .setMargin(rootView, margin, mViewTop - mAppendTopMargin + mViewHeight, 0);
+                        }
+                    }
+                } else { // 在指定坐标下方
+                    // 判断是否超出可显示高度
+                    if (screenHeight - (mViewTop + mShadowMargin + mAppendTopMargin + mViewHeight) >= measuredHeight) {
+                        // 思路: 没有超出高度, 则正常显示在指定 View 下方
+                        // 并且改为布局居上, 然后设置 topMargin 为 view mWindowTop - ( 阴影大小 + 追加边距 ( 状态栏高度 ))
+                        // 这样的思路, 主要是不居下, 不用知道 Snackbar view 高度, 导致向下边距计算错误, 转换思路从上处理
+
+                        setLayoutGravity(rootView, Gravity.TOP)
+                                .setMargin(rootView, margin, mViewTop - (mShadowMargin + mAppendTopMargin), 0);
+                    } else { // 超出可视范围
+                        // 判断是否自动计算处理
+                        if (mAutoCalc) {
+                            // 思路如上: 超出高度后, 则直接设置居下, 计算边距则 用屏幕高度 - view mWindowTop + 阴影边距
+                            // 计算处理的值则是 view mWindowTop 距离底部的边距, 刚好设置 bottomMargin, 实现思路转换处理
 
                             setLayoutGravity(rootView, Gravity.BOTTOM)
                                     .setMargin(rootView, margin, 0, screenHeight - mViewTop + mShadowMargin);
-                        } else { // 超出可视范围
-                            // 判断是否自动计算处理
-                            if (mAutoCalc) {
-                                // 思路如上: 超出高度后, 则直接设置居上, 计算边距则 view mWindowTop - 追加边距 ( 状态栏高度 ) + view height, 设置到 View 的下方
-                                // 计算处理主要是, 只需要知道 view Y 轴位置 + view height - 追加边距 ( 状态栏高度 ) = 需要的边距
-                                // 为什么需要减 状态栏高度, 是因为 view Y (view mWindowTop) 就包含状态栏高度信息
-
-                                setLayoutGravity(rootView, Gravity.TOP)
-                                        .setMargin(rootView, margin, mViewTop - mAppendTopMargin + mViewHeight, 0);
-                            }
-                        }
-                    } else { // 在指定坐标下方
-                        // 判断是否超出可显示高度
-                        if (screenHeight - (mViewTop + mShadowMargin + mAppendTopMargin + mViewHeight) >= measuredHeight) {
-                            // 思路: 没有超出高度, 则正常显示在指定 View 下方
-                            // 并且改为布局居上, 然后设置 topMargin 为 view mWindowTop - ( 阴影大小 + 追加边距 ( 状态栏高度 ))
-                            // 这样的思路, 主要是不居下, 不用知道 Snackbar view 高度, 导致向下边距计算错误, 转换思路从上处理
-
-                            setLayoutGravity(rootView, Gravity.TOP)
-                                    .setMargin(rootView, margin, mViewTop - (mShadowMargin + mAppendTopMargin), 0);
-                        } else { // 超出可视范围
-                            // 判断是否自动计算处理
-                            if (mAutoCalc) {
-                                // 思路如上: 超出高度后, 则直接设置居下, 计算边距则 用屏幕高度 - view mWindowTop + 阴影边距
-                                // 计算处理的值则是 view mWindowTop 距离底部的边距, 刚好设置 bottomMargin, 实现思路转换处理
-
-                                setLayoutGravity(rootView, Gravity.BOTTOM)
-                                        .setMargin(rootView, margin, 0, screenHeight - mViewTop + mShadowMargin);
-                            }
                         }
                     }
                 }

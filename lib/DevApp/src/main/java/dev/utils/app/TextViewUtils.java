@@ -2526,18 +2526,11 @@ public final class TextViewUtils {
                 return textSize;
             } else if (calcTextHeight > height) { // 如果计算的字体高度大于
                 textSize -= 0.5f;
-                if (state == 2) {
-                    if (calcTextHeight < height) {
-                        return textSize;
-                    }
-                }
                 state = 1;
             } else {
                 textSize += 0.5f;
                 if (state == 1) {
-                    if (calcTextHeight < height) {
-                        return textSize;
-                    }
+                    return textSize;
                 }
                 state = 2;
             }
@@ -2626,18 +2619,11 @@ public final class TextViewUtils {
                 return textSize;
             } else if (calcTextWidth > width) { // 如果计算的字体宽度大于
                 textSize -= 0.5f;
-                if (state == 2) {
-                    if (calcTextWidth < width) {
-                        return textSize;
-                    }
-                }
                 state = 1;
             } else {
                 textSize += 0.5f;
                 if (state == 1) {
-                    if (calcTextWidth < width) {
-                        return textSize;
-                    }
+                    return textSize;
                 }
                 state = 2;
             }
@@ -2716,7 +2702,7 @@ public final class TextViewUtils {
                 }
             }
             // 计算最符合的位置
-            for (int i = Math.min(Math.min(start, mid), end), len = length; i <= len; i++) {
+            for (int i = Math.min(Math.min(start, mid), end); i <= length; i++) {
                 float textWidth = TextViewUtils.getTextWidth(paint, text, 0, i);
                 if (textWidth >= width) return i;
             }

@@ -278,6 +278,7 @@ public final class WallpaperUtils {
      * </pre>
      * @return {@link Drawable}
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @RequiresPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
     public static Drawable getFastDrawable() {
         try {
@@ -311,6 +312,7 @@ public final class WallpaperUtils {
      * </pre>
      * @return {@link Drawable}
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @RequiresPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
     public static Drawable peekFastDrawable() {
         try {
