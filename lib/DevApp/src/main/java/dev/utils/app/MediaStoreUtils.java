@@ -531,7 +531,9 @@ public final class MediaStoreUtils {
      * @return File Uri
      */
     public static Uri createUriByPath(final String fileName) {
-        return createUriByPath(fileName, PathUtils.getSDCard().getSDCardPath(RELATIVE_DOWNLOAD_PATH));
+        return createUriByPath(
+                fileName, PathUtils.getSDCard().getSDCardPath(RELATIVE_DOWNLOAD_PATH)
+        );
     }
 
     /**

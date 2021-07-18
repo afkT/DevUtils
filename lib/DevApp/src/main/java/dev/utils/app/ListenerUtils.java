@@ -104,8 +104,8 @@ public final class ListenerUtils {
             @IdRes final int... viewIds
     ) {
         if (view != null && onClickListener != null && viewIds != null) {
-            for (int i = 0, len = viewIds.length; i < len; i++) {
-                View findView = ViewUtils.findViewById(view, viewIds[i]);
+            for (int viewId : viewIds) {
+                View findView = ViewUtils.findViewById(view, viewId);
                 if (findView != null) {
                     findView.setOnClickListener(onClickListener);
                 }
@@ -128,8 +128,8 @@ public final class ListenerUtils {
             @IdRes final int... viewIds
     ) {
         if (activity != null && onClickListener != null && viewIds != null) {
-            for (int i = 0, len = viewIds.length; i < len; i++) {
-                View findView = ViewUtils.findViewById(activity, viewIds[i]);
+            for (int viewId : viewIds) {
+                View findView = ViewUtils.findViewById(activity, viewId);
                 if (findView != null) {
                     findView.setOnClickListener(onClickListener);
                 }
@@ -150,9 +150,9 @@ public final class ListenerUtils {
             final View... views
     ) {
         if (onClickListener != null && views != null) {
-            for (int i = 0, len = views.length; i < len; i++) {
-                if (views[i] != null) {
-                    views[i].setOnClickListener(onClickListener);
+            for (View view : views) {
+                if (view != null) {
+                    view.setOnClickListener(onClickListener);
                 }
             }
             return true;
@@ -177,8 +177,8 @@ public final class ListenerUtils {
             @IdRes final int... viewIds
     ) {
         if (view != null && onLongClickListener != null && viewIds != null) {
-            for (int i = 0, len = viewIds.length; i < len; i++) {
-                View findView = ViewUtils.findViewById(view, viewIds[i]);
+            for (int viewId : viewIds) {
+                View findView = ViewUtils.findViewById(view, viewId);
                 if (findView != null) {
                     findView.setOnLongClickListener(onLongClickListener);
                 }
@@ -201,8 +201,8 @@ public final class ListenerUtils {
             @IdRes final int... viewIds
     ) {
         if (activity != null && onLongClickListener != null && viewIds != null) {
-            for (int i = 0, len = viewIds.length; i < len; i++) {
-                View findView = ViewUtils.findViewById(activity, viewIds[i]);
+            for (int viewId : viewIds) {
+                View findView = ViewUtils.findViewById(activity, viewId);
                 if (findView != null) {
                     findView.setOnLongClickListener(onLongClickListener);
                 }
@@ -223,9 +223,9 @@ public final class ListenerUtils {
             final View... views
     ) {
         if (onLongClickListener != null && views != null) {
-            for (int i = 0, len = views.length; i < len; i++) {
-                if (views[i] != null) {
-                    views[i].setOnLongClickListener(onLongClickListener);
+            for (View view : views) {
+                if (view != null) {
+                    view.setOnLongClickListener(onLongClickListener);
                 }
             }
             return true;
@@ -250,8 +250,8 @@ public final class ListenerUtils {
             @IdRes final int... viewIds
     ) {
         if (view != null && onTouchListener != null && viewIds != null) {
-            for (int i = 0, len = viewIds.length; i < len; i++) {
-                View findView = ViewUtils.findViewById(view, viewIds[i]);
+            for (int viewId : viewIds) {
+                View findView = ViewUtils.findViewById(view, viewId);
                 if (findView != null) {
                     findView.setOnTouchListener(onTouchListener);
                 }
@@ -274,8 +274,8 @@ public final class ListenerUtils {
             @IdRes final int... viewIds
     ) {
         if (activity != null && onTouchListener != null && viewIds != null) {
-            for (int i = 0, len = viewIds.length; i < len; i++) {
-                View findView = ViewUtils.findViewById(activity, viewIds[i]);
+            for (int viewId : viewIds) {
+                View findView = ViewUtils.findViewById(activity, viewId);
                 if (findView != null) {
                     findView.setOnTouchListener(onTouchListener);
                 }
@@ -296,9 +296,9 @@ public final class ListenerUtils {
             final View... views
     ) {
         if (onTouchListener != null && views != null) {
-            for (int i = 0, len = views.length; i < len; i++) {
-                if (views[i] != null) {
-                    views[i].setOnTouchListener(onTouchListener);
+            for (View view : views) {
+                if (view != null) {
+                    view.setOnTouchListener(onTouchListener);
                 }
             }
             return true;

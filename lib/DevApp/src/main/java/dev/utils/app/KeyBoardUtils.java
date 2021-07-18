@@ -1,15 +1,14 @@
 package dev.utils.app;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -138,30 +137,24 @@ public final class KeyBoardUtils {
      * @param view     {@link View}
      * @param activity {@link Activity}
      */
+    @SuppressLint("ClickableViewAccessibility")
     public static void judgeView(
             final View view,
             final Activity activity
     ) {
         if (view == null || activity == null) return;
         if (!(view instanceof EditText)) {
-            view.setOnTouchListener(new View.OnTouchListener() {
-                public boolean onTouch(
-                        View v,
-                        MotionEvent event
-                ) {
-                    closeKeyboard(activity);
-                    return false;
-                }
+            view.setOnTouchListener((v, event) -> {
+                closeKeyboard(activity);
+                return false;
             });
         }
         // =
         if (view instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) view;
-            if (viewGroup != null) {
-                for (int i = 0, len = viewGroup.getChildCount(); i < len; i++) {
-                    View innerView = viewGroup.getChildAt(i);
-                    judgeView(innerView, activity);
-                }
+            for (int i = 0, len = viewGroup.getChildCount(); i < len; i++) {
+                View innerView = viewGroup.getChildAt(i);
+                judgeView(innerView, activity);
             }
         }
     }
@@ -223,15 +216,12 @@ public final class KeyBoardUtils {
             // 获取根 View
             final View contentView = activity.findViewById(android.R.id.content);
             // 添加事件
-            contentView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    if (listener != null) {
-                        // 获取高度
-                        int height = getContentViewInvisibleHeight(activity);
-                        // 判断是否相同
-                        listener.onSoftInputChanged(height >= 200, height);
-                    }
+            contentView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+                if (listener != null) {
+                    // 获取高度
+                    int height = getContentViewInvisibleHeight(activity);
+                    // 判断是否相同
+                    listener.onSoftInputChanged(height >= 200, height);
                 }
             });
             return true;
@@ -253,26 +243,23 @@ public final class KeyBoardUtils {
     ) {
         try {
             final View decorView = activity.getWindow().getDecorView();
-            decorView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    if (listener != null) {
-                        try {
-                            Rect rect = new Rect();
-                            decorView.getWindowVisibleDisplayFrame(rect);
-                            // 计算出可见屏幕的高度
-                            int displayHeight = rect.bottom - rect.top;
-                            // 获取屏幕整体的高度
-                            int height = decorView.getHeight();
-                            // 获取键盘高度
-                            int keyboardHeight = height - displayHeight;
-                            // 计算一定比例
-                            boolean visible = ((double) displayHeight / (double) height) < 0.8d;
-                            // 判断是否显示
-                            listener.onSoftInputChanged(visible, keyboardHeight);
-                        } catch (Exception e) {
-                            LogPrintUtils.eTag(TAG, e, "registerSoftInputChangedListener2");
-                        }
+            decorView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+                if (listener != null) {
+                    try {
+                        Rect rect = new Rect();
+                        decorView.getWindowVisibleDisplayFrame(rect);
+                        // 计算出可见屏幕的高度
+                        int displayHeight = rect.bottom - rect.top;
+                        // 获取屏幕整体的高度
+                        int height = decorView.getHeight();
+                        // 获取键盘高度
+                        int keyboardHeight = height - displayHeight;
+                        // 计算一定比例
+                        boolean visible = ((double) displayHeight / (double) height) < 0.8d;
+                        // 判断是否显示
+                        listener.onSoftInputChanged(visible, keyboardHeight);
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "registerSoftInputChangedListener2");
                     }
                 }
             });
@@ -311,10 +298,9 @@ public final class KeyBoardUtils {
         try {
             InputMethodManager imm    = AppUtils.getInputMethodManager();
             String[]           strArr = new String[]{"mCurRootView", "mServedView", "mNextServedView", "mLastSrvView"};
-            for (int i = 0, len = strArr.length; i < len; i++) {
+            for (String s : strArr) {
                 try {
-                    Field declaredField = imm.getClass().getDeclaredField(strArr[i]);
-                    if (declaredField == null) continue;
+                    Field declaredField = imm.getClass().getDeclaredField(s);
                     if (!declaredField.isAccessible()) {
                         declaredField.setAccessible(true);
                     }
@@ -331,7 +317,6 @@ public final class KeyBoardUtils {
             }
         } catch (Exception ignored) {
         }
-        return;
     }
 
     /**
@@ -390,12 +375,7 @@ public final class KeyBoardUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean openKeyboardDelay(final long delayMillis) {
-        sMainHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                openKeyboard();
-            }
-        }, delayMillis);
+        sMainHandler.postDelayed(() -> openKeyboard(), delayMillis);
         return true;
     }
 
@@ -440,16 +420,13 @@ public final class KeyBoardUtils {
             final long delayMillis
     ) {
         if (editText != null) {
-            sMainHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        editText.requestFocus();
-                        editText.setSelection(editText.getText().toString().length());
-                    } catch (Exception ignored) {
-                    }
-                    openKeyboard(editText);
+            sMainHandler.postDelayed(() -> {
+                try {
+                    editText.requestFocus();
+                    editText.setSelection(editText.getText().toString().length());
+                } catch (Exception ignored) {
                 }
+                openKeyboard(editText);
             }, delayMillis);
             return true;
         }
@@ -579,12 +556,7 @@ public final class KeyBoardUtils {
             final Dialog dialog,
             final long delayMillis
     ) {
-        sMainHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                closeKeyBoardSpecial(editText, dialog);
-            }
-        }, delayMillis);
+        sMainHandler.postDelayed(() -> closeKeyBoardSpecial(editText, dialog), delayMillis);
         return true;
     }
 
@@ -604,12 +576,7 @@ public final class KeyBoardUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean closeKeyboardDelay(final long delayMillis) {
-        sMainHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                closeKeyboard();
-            }
-        }, delayMillis);
+        sMainHandler.postDelayed(() -> closeKeyboard(), delayMillis);
         return true;
     }
 
@@ -633,12 +600,7 @@ public final class KeyBoardUtils {
             final long delayMillis
     ) {
         if (editText != null) {
-            sMainHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    closeKeyboard(editText);
-                }
-            }, delayMillis);
+            sMainHandler.postDelayed(() -> closeKeyboard(editText), delayMillis);
             return true;
         }
         return false;
@@ -664,12 +626,7 @@ public final class KeyBoardUtils {
             final long delayMillis
     ) {
         if (activity != null) {
-            sMainHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    closeKeyboard(activity);
-                }
-            }, delayMillis);
+            sMainHandler.postDelayed(() -> closeKeyboard(activity), delayMillis);
             return true;
         }
         return false;
@@ -695,12 +652,7 @@ public final class KeyBoardUtils {
             final long delayMillis
     ) {
         if (dialog != null) {
-            sMainHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    closeKeyboard(dialog);
-                }
-            }, delayMillis);
+            sMainHandler.postDelayed(() -> closeKeyboard(dialog), delayMillis);
             return true;
         }
         return false;

@@ -62,6 +62,7 @@ public final class MemoryUtils {
     public static String printMemoryInfo2() {
         try {
             ActivityManager.MemoryInfo memoryInfo = getMemoryInfo();
+            if (memoryInfo == null) return null;
             StringBuilder              builder    = new StringBuilder();
             builder.append("Memory: ");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -178,7 +179,7 @@ public final class MemoryUtils {
             // 拆分空格、回车、换行等空白符
             String[] array = str.split("\\s+");
             // 获取系统总内存, 单位是 KB, 乘以 1024 转换为 Byte
-            return Long.valueOf(array[1]).longValue() * 1024;
+            return Long.parseLong(array[1]) * 1024;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMemInfoType %s", type);
         } finally {

@@ -376,11 +376,11 @@ public final class NotificationUtils {
     public static class LightPattern {
 
         // 控制 LED 灯的颜色, 一般有红绿蓝三种颜色可选
-        private int argb;
+        private final int argb;
         // 指定 LED 灯暗去的时长, 以毫秒为单位
-        private int startOffMS;
+        private final int startOffMS;
         // 指定 LED 灯亮起的时长, 以毫秒为单位
-        private int durationMS;
+        private final int durationMS;
 
         /**
          * 构造函数
@@ -425,7 +425,7 @@ public final class NotificationUtils {
     public static class VibratePattern {
 
         // long[] vibrates = { 0, 1000, 1000, 1000 };
-        private long[] vibrates;
+        private final long[] vibrates;
 
         /**
          * 构造函数

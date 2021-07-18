@@ -43,7 +43,10 @@ public final class ManifestUtils {
             final String metaKey
     ) {
         try {
-            ApplicationInfo appInfo = AppUtils.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
+            ApplicationInfo appInfo = AppUtils.getApplicationInfo(
+                    packageName, PackageManager.GET_META_DATA
+            );
+            if (appInfo == null) return null;
             return appInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaData");
@@ -63,7 +66,9 @@ public final class ManifestUtils {
             final Class<?> clazz,
             final String metaKey
     ) {
-        return (clazz != null) ? getMetaDataInActivity(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey) : null;
+        return (clazz != null) ? getMetaDataInActivity(
+                AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey
+        ) : null;
     }
 
     /**
@@ -92,8 +97,12 @@ public final class ManifestUtils {
             final String metaKey
     ) {
         try {
-            ComponentName componentName = new ComponentName(packageName, name);
-            ActivityInfo  activityInfo  = AppUtils.getPackageManager().getActivityInfo(componentName, PackageManager.GET_META_DATA);
+            ComponentName  componentName  = new ComponentName(packageName, name);
+            PackageManager packageManager = AppUtils.getPackageManager();
+            if (packageManager == null) return null;
+            ActivityInfo activityInfo = packageManager.getActivityInfo(
+                    componentName, PackageManager.GET_META_DATA
+            );
             return activityInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInActivity");
@@ -142,8 +151,12 @@ public final class ManifestUtils {
             final String metaKey
     ) {
         try {
-            ComponentName componentName = new ComponentName(packageName, name);
-            ServiceInfo   serviceInfo   = AppUtils.getPackageManager().getServiceInfo(componentName, PackageManager.GET_META_DATA);
+            ComponentName  componentName  = new ComponentName(packageName, name);
+            PackageManager packageManager = AppUtils.getPackageManager();
+            if (packageManager == null) return null;
+            ServiceInfo serviceInfo = packageManager.getServiceInfo(
+                    componentName, PackageManager.GET_META_DATA
+            );
             return serviceInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInService");
@@ -192,8 +205,12 @@ public final class ManifestUtils {
             final String metaKey
     ) {
         try {
-            ComponentName componentName = new ComponentName(packageName, name);
-            ActivityInfo  receiverInfo  = AppUtils.getPackageManager().getReceiverInfo(componentName, PackageManager.GET_META_DATA);
+            ComponentName  componentName  = new ComponentName(packageName, name);
+            PackageManager packageManager = AppUtils.getPackageManager();
+            if (packageManager == null) return null;
+            ActivityInfo receiverInfo = packageManager.getReceiverInfo(
+                    componentName, PackageManager.GET_META_DATA
+            );
             return receiverInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInReceiver");
@@ -242,8 +259,12 @@ public final class ManifestUtils {
             final String metaKey
     ) {
         try {
-            ComponentName componentName = new ComponentName(packageName, name);
-            ProviderInfo  providerInfo  = AppUtils.getPackageManager().getProviderInfo(componentName, PackageManager.GET_META_DATA);
+            ComponentName  componentName  = new ComponentName(packageName, name);
+            PackageManager packageManager = AppUtils.getPackageManager();
+            if (packageManager == null) return null;
+            ProviderInfo providerInfo = packageManager.getProviderInfo(
+                    componentName, PackageManager.GET_META_DATA
+            );
             return providerInfo.metaData.getString(metaKey);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMetaDataInProvider");

@@ -78,23 +78,23 @@ public final class JSONObjectUtils {
                 JSONArray jsonArray = (JSONArray) object;
                 return format ? jsonArray.toString(jsonIndent) : jsonArray.toString();
             } else if (object instanceof Map) {
-                JSONObject jsonObject = new JSONObject((Map) object);
+                JSONObject jsonObject = new JSONObject((Map<?, ?>) object);
                 return format ? jsonObject.toString(jsonIndent) : jsonObject.toString();
             } else if (object instanceof Collection) {
-                JSONArray jsonArray = new JSONArray((Collection) object);
+                JSONArray jsonArray = new JSONArray((Collection<?>) object);
                 return format ? jsonArray.toString(jsonIndent) : jsonArray.toString();
             } else if (object.getClass().isArray()) {
+                JSONArray jsonArray;
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-                    JSONArray jsonArray = new JSONArray(object);
-                    return format ? jsonArray.toString(jsonIndent) : jsonArray.toString();
+                    jsonArray = new JSONArray(object);
                 } else {
-                    JSONArray jsonArray = new JSONArray();
+                    jsonArray = new JSONArray();
                     int       length    = Array.getLength(object);
                     for (int i = 0; i < length; ++i) {
                         jsonArray.put(wrap(Array.get(object, i)));
                     }
-                    return format ? jsonArray.toString(jsonIndent) : jsonArray.toString();
                 }
+                return format ? jsonArray.toString(jsonIndent) : jsonArray.toString();
             } else if (object instanceof JSONTokener) {
                 JSONTokener jsonTokener = (JSONTokener) object;
                 // 获取 value 对象
@@ -202,7 +202,7 @@ public final class JSONObjectUtils {
         }
         try {
             if (object instanceof Collection) {
-                return new JSONArray((Collection) object);
+                return new JSONArray((Collection<?>) object);
             } else if (object.getClass().isArray()) {
                 // 版本兼容
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
@@ -217,7 +217,7 @@ public final class JSONObjectUtils {
                 }
             }
             if (object instanceof Map) {
-                return new JSONObject((Map) object);
+                return new JSONObject((Map<?, ?>) object);
             }
             if (object instanceof Boolean ||
                     object instanceof Byte ||
@@ -275,7 +275,7 @@ public final class JSONObjectUtils {
                     builder.append("\\/");
                     break;
                 default:
-                    if (ch >= '\u0000' && ch <= '\u001F') {
+                    if (ch <= '\u001F') {
                         String ss = Integer.toHexString(ch);
                         builder.append("\\u");
                         for (int k = 0; k < 4 - ss.length(); k++) {

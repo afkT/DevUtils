@@ -50,8 +50,8 @@ public final class ListViewUtils {
     public static int getItemCount(final View view) {
         if (view != null) {
             if (view instanceof RecyclerView) {
-                RecyclerView         recyclerView = (RecyclerView) view;
-                RecyclerView.Adapter adapter      = recyclerView.getAdapter();
+                RecyclerView            recyclerView = (RecyclerView) view;
+                RecyclerView.Adapter<?> adapter      = recyclerView.getAdapter();
                 return (adapter != null) ? adapter.getItemCount() : 0;
             } else if (view instanceof ListView) {
                 ListView    listView    = (ListView) view;
@@ -82,7 +82,9 @@ public final class ListViewUtils {
                 RecyclerView.Adapter adapter      = recyclerView.getAdapter();
                 if (adapter != null && adapter.getItemCount() > 0 && position < adapter.getItemCount()) {
                     try {
-                        RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(position));
+                        RecyclerView.ViewHolder holder = adapter.createViewHolder(
+                                recyclerView, adapter.getItemViewType(position)
+                        );
                         adapter.onBindViewHolder(holder, position);
                         return holder.itemView;
                     } catch (Exception e) {
@@ -220,8 +222,8 @@ public final class ListViewUtils {
     public static <T extends View> T smoothScrollToBottom(final T view) {
         if (view != null) {
             if (view instanceof RecyclerView) {
-                RecyclerView         recyclerView = (RecyclerView) view;
-                RecyclerView.Adapter adapter      = recyclerView.getAdapter();
+                RecyclerView            recyclerView = (RecyclerView) view;
+                RecyclerView.Adapter<?> adapter      = recyclerView.getAdapter();
                 if (adapter != null && adapter.getItemCount() > 0) {
                     recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
                 }
@@ -258,8 +260,8 @@ public final class ListViewUtils {
     public static <T extends View> T scrollToBottom(final T view) {
         if (view != null) {
             if (view instanceof RecyclerView) {
-                RecyclerView         recyclerView = (RecyclerView) view;
-                RecyclerView.Adapter adapter      = recyclerView.getAdapter();
+                RecyclerView            recyclerView = (RecyclerView) view;
+                RecyclerView.Adapter<?> adapter      = recyclerView.getAdapter();
                 if (adapter != null && adapter.getItemCount() > 0) {
                     recyclerView.scrollToPosition(adapter.getItemCount() - 1);
                 }
@@ -596,8 +598,8 @@ public final class ListViewUtils {
             // 计算总共的宽度 (GridView 宽度 - 列分割间距 ) / numColumns
             int childWidth = (gridView.getWidth() - (numColumns - 1) * horizontalSpacing) / numColumns;
 
-            // 记录每行最大高度
-            int[] rowHeightArrays = new int[lineNumber];
+//            // 记录每行最大高度
+//            int[] rowHeightArrays = new int[lineNumber];
             // 临时高度 ( 保存行中最高的列高度 )
             int tempHeight;
             // 循环每一行绘制每个 Item 并保存 Bitmap
@@ -620,8 +622,8 @@ public final class ListViewUtils {
 
                     // 记录高度并累加
                     if (j == numColumns - 1) {
-                                             height += tempHeight;
-                        rowHeightArrays[i] = tempHeight;
+                        height += tempHeight;
+//                        rowHeightArrays[i] = tempHeight;
                     }
                 }
             }

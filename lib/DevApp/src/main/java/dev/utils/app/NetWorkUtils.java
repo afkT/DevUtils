@@ -22,7 +22,6 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -94,7 +93,9 @@ public final class NetWorkUtils {
                 // 获取网络连接状态
                 ConnectivityManager manager = AppUtils.getConnectivityManager();
                 // 通过反射设置移动网络
-                Method method = manager.getClass().getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
+                Method method = manager.getClass().getDeclaredMethod(
+                        "setMobileDataEnabled", Boolean.TYPE
+                );
                 // 设置移动网络
                 method.invoke(manager, isOpen);
             } else { // 需要 Manifest.permission.MODIFY_PHONE_STATE 权限, 普通 APP 无法获取
@@ -545,19 +546,15 @@ public final class NetWorkUtils {
     public static String getDomainAddress(final String domain) {
         try {
             ExecutorService exec = Executors.newCachedThreadPool();
-            Future<String> fs = exec.submit(new Callable<String>() {
-                @Override
-                public String call()
-                        throws Exception {
-                    InetAddress inetAddress;
-                    try {
-                        inetAddress = InetAddress.getByName(domain);
-                        return inetAddress.getHostAddress();
-                    } catch (UnknownHostException e) {
-                        LogPrintUtils.eTag(TAG, e, "getDomainAddress");
-                    }
-                    return null;
+            Future<String> fs = exec.submit(() -> {
+                InetAddress inetAddress;
+                try {
+                    inetAddress = InetAddress.getByName(domain);
+                    return inetAddress.getHostAddress();
+                } catch (UnknownHostException e) {
+                    LogPrintUtils.eTag(TAG, e, "getDomainAddress");
                 }
+                return null;
             });
             return fs.get();
         } catch (Exception e) {

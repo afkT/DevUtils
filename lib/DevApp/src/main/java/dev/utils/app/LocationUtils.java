@@ -185,14 +185,12 @@ public final class LocationUtils {
                 }
             }
             if (isGpsEnabled()) {
-                if (location == null) {
-                    sLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, time, distance, listener);
-                    if (sLocationManager != null) {
-                        location = sLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                        if (location != null) {
-                            sLocationManager.removeUpdates(listener);
-                            return location;
-                        }
+                sLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, time, distance, listener);
+                if (sLocationManager != null) {
+                    location = sLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    if (location != null) {
+                        sLocationManager.removeUpdates(listener);
+                        return location;
                     }
                 }
             }

@@ -165,8 +165,6 @@ public final class LanguageUtils {
         sSupportLanguageMaps.put(SIMPLIFIED_CHINESE, Locale.SIMPLIFIED_CHINESE);
         // 繁体中文 ( 默认台湾 )
         sSupportLanguageMaps.put(TRADITIONAL_CHINESE, Locale.TRADITIONAL_CHINESE);
-        // 台湾
-        sSupportLanguageMaps.put(TAIWAN_CHINESE, Locale.TAIWAN);
     }
 
     /**
@@ -266,7 +264,7 @@ public final class LanguageUtils {
         Locale locale = getSystemPreferredLanguage();
         if (locale != null) {
             String lang = locale.getLanguage();
-            return (lang != null && lang.equalsIgnoreCase(language));
+            return language.equalsIgnoreCase(lang);
         }
         return false;
     }
@@ -281,7 +279,7 @@ public final class LanguageUtils {
         Locale locale = getSystemPreferredLanguage();
         if (locale != null) {
             String country = locale.getCountry();
-            return (country != null && country.equalsIgnoreCase(region));
+            return region.equalsIgnoreCase(country);
         }
         return false;
     }
@@ -302,8 +300,7 @@ public final class LanguageUtils {
         if (locale != null) {
             String country = locale.getCountry();
             String lang    = locale.getLanguage();
-            return (country != null && country.equalsIgnoreCase(region))
-                    && (lang != null && lang.equalsIgnoreCase(language));
+            return region.equalsIgnoreCase(country) && language.equalsIgnoreCase(lang);
         }
         return false;
     }
