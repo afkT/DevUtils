@@ -319,7 +319,7 @@ public final class ContentResolverUtils {
             final String filePath,
             final MediaQuery mediaQuery
     ) {
-        if (uri == null || TextUtils.isEmpty(filePath) && mediaQuery != null) return null;
+        if (uri == null || TextUtils.isEmpty(filePath) || mediaQuery == null) return null;
         Cursor cursor = null;
         try {
             cursor = query(

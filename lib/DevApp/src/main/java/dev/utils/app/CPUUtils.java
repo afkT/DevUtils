@@ -51,7 +51,7 @@ public final class CPUUtils {
                 str = input.readLine();
                 if (str != null) {
                     // 查找到序列号所在行
-                    if (str.indexOf("Serial") > -1) {
+                    if (str.contains("Serial")) {
                         // 提取序列号
                         cpuSerialNum = str.substring(str.indexOf(':') + 1).trim();
                         break;
@@ -190,7 +190,7 @@ public final class CPUUtils {
             File dir = new File("/sys/devices/system/cpu/");
             // Filter to only list the devices we care about
             File[] files = dir.listFiles(new CpuFilter());
-            // Return the number of cores (virtual CPU devices)
+            // Return the number of cores ( virtual CPU devices )
             CPU_CORES = files.length;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getCoresNumbers");

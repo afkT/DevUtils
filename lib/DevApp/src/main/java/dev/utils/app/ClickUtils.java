@@ -65,25 +65,23 @@ public final class ClickUtils {
         if (view != null) {
             try {
                 final View parent = (View) view.getParent();
-                parent.post(new Runnable() {
-                    public void run() {
-                        try {
-                            Rect bounds = new Rect();
-                            view.getHitRect(bounds);
+                parent.post(() -> {
+                    try {
+                        Rect bounds = new Rect();
+                        view.getHitRect(bounds);
 
-                            // 设置范围
-                            bounds.top -= top;
-                            bounds.bottom += bottom;
-                            bounds.left -= left;
-                            bounds.right += right;
+                        // 设置范围
+                        bounds.top -= top;
+                        bounds.bottom += bottom;
+                        bounds.left -= left;
+                        bounds.right += right;
 
-                            TouchDelegate touchDelegate = new TouchDelegate(bounds, view);
-                            if (view.getParent() instanceof View) {
-                                ((View) view.getParent()).setTouchDelegate(touchDelegate);
-                            }
-                        } catch (Exception e) {
-                            LogPrintUtils.eTag(TAG, e, "addTouchArea - runnable");
+                        TouchDelegate touchDelegate = new TouchDelegate(bounds, view);
+                        if (view.getParent() instanceof View) {
+                            ((View) view.getParent()).setTouchDelegate(touchDelegate);
                         }
+                    } catch (Exception e) {
+                        LogPrintUtils.eTag(TAG, e, "addTouchArea - runnable");
                     }
                 });
                 return true;

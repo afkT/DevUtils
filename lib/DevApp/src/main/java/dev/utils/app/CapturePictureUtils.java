@@ -279,7 +279,7 @@ public final class CapturePictureUtils {
                     int     height  = picture.getHeight();
                     if (width > 0 && height > 0) {
                         // 重新设置高度
-                        height = (height > maxHeight) ? maxHeight : height;
+                        height = Math.min(height, maxHeight);
                         // 创建位图
                         Bitmap bitmap = Bitmap.createBitmap(width, height, config);
                         Canvas canvas = new Canvas(bitmap);
@@ -649,8 +649,7 @@ public final class CapturePictureUtils {
             canvas.drawColor(BACKGROUND_COLOR);
             // 累加高度
             int appendHeight = 0;
-            for (int i = 0, len = bitmaps.length; i < len; i++) {
-                Bitmap bmp = bitmaps[i];
+            for (Bitmap bmp : bitmaps) {
                 canvas.drawBitmap(bmp, 0, appendHeight, PAINT);
                 appendHeight += (bmp.getHeight() + dividerHeight);
                 // 释放资源
@@ -739,8 +738,7 @@ public final class CapturePictureUtils {
                 canvas.drawColor(BACKGROUND_COLOR);
                 // 累加高度
                 int appendHeight = 0;
-                for (int i = 0, len = bitmaps.length; i < len; i++) {
-                    Bitmap bmp = bitmaps[i];
+                for (Bitmap bmp : bitmaps) {
                     canvas.drawBitmap(bmp, 0, appendHeight, PAINT);
                     appendHeight += (bmp.getHeight() + verticalSpacing);
                     // 释放资源
