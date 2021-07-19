@@ -59,7 +59,9 @@ public final class BarUtils {
     public static int getStatusBarHeight() {
         try {
             Resources resources = Resources.getSystem();
-            int       id        = resources.getIdentifier("status_bar_height", "dimen", "android");
+            int id = resources.getIdentifier(
+                    "status_bar_height", "dimen", "android"
+            );
             if (id != 0) {
                 return resources.getDimensionPixelSize(id);
             }
@@ -80,7 +82,8 @@ public final class BarUtils {
                 try {
                     WindowInsets windowInsets = windowMetrics.getWindowInsets();
                     Insets insets = windowInsets.getInsetsIgnoringVisibility(
-                            WindowInsets.Type.navigationBars() | WindowInsets.Type.displayCutout()
+                            WindowInsets.Type.navigationBars()
+                                    | WindowInsets.Type.displayCutout()
                     );
                     return insets.top;
                 } catch (Exception e) {
@@ -219,8 +222,11 @@ public final class BarUtils {
             Object haveSetOffset = view.getTag(KEY_OFFSET);
             if (haveSetOffset != null && (Boolean) haveSetOffset) return false;
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-            layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin + getStatusBarHeight(),
-                    layoutParams.rightMargin, layoutParams.bottomMargin
+            layoutParams.setMargins(
+                    layoutParams.leftMargin,
+                    layoutParams.topMargin + getStatusBarHeight(),
+                    layoutParams.rightMargin,
+                    layoutParams.bottomMargin
             );
             view.setLayoutParams(layoutParams);
             view.setTag(KEY_OFFSET, true);
@@ -239,8 +245,11 @@ public final class BarUtils {
             Object haveSetOffset = view.getTag(KEY_OFFSET);
             if (haveSetOffset == null || !(Boolean) haveSetOffset) return false;
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-            layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin - getStatusBarHeight(),
-                    layoutParams.rightMargin, layoutParams.bottomMargin
+            layoutParams.setMargins(
+                    layoutParams.leftMargin,
+                    layoutParams.topMargin - getStatusBarHeight(),
+                    layoutParams.rightMargin,
+                    layoutParams.bottomMargin
             );
             view.setLayoutParams(layoutParams);
             view.setTag(KEY_OFFSET, false);
@@ -571,8 +580,11 @@ public final class BarUtils {
     public static int getActionBarHeight() {
         TypedValue tv = new TypedValue();
         try {
-            if (ResourceUtils.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-                return TypedValue.complexToDimensionPixelSize(tv.data, Resources.getSystem().getDisplayMetrics());
+            if (ResourceUtils.getTheme().resolveAttribute(
+                    android.R.attr.actionBarSize, tv, true)) {
+                return TypedValue.complexToDimensionPixelSize(
+                        tv.data, Resources.getSystem().getDisplayMetrics()
+                );
             }
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getActionBarHeight");
@@ -621,7 +633,9 @@ public final class BarUtils {
     public static int getNavBarHeight() {
         try {
             Resources resources = Resources.getSystem();
-            int       id        = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+            int id = resources.getIdentifier(
+                    "navigation_bar_height", "dimen", "android"
+            );
             if (id != 0) {
                 return resources.getDimensionPixelSize(id);
             }

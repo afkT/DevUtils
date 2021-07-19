@@ -87,7 +87,8 @@ public final class FlashlightUtils {
      */
     public static boolean isFlashlightEnable() {
         PackageManager packageManager = AppUtils.getPackageManager();
-        return (packageManager != null) && packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+        return (packageManager != null) &&
+                packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
     }
 
     // =
@@ -109,7 +110,8 @@ public final class FlashlightUtils {
         if (camera != null) {
             try {
                 Camera.Parameters parameters = camera.getParameters();
-                if (parameters != null && !Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
+                if (parameters != null &&
+                        !Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
                     try {
                         parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
                         camera.setParameters(parameters);
@@ -144,7 +146,8 @@ public final class FlashlightUtils {
         if (camera != null) {
             try {
                 Camera.Parameters parameters = camera.getParameters();
-                if (parameters != null && Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
+                if (parameters != null
+                        && Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
                     try {
                         parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
                         camera.setParameters(parameters);
@@ -179,7 +182,8 @@ public final class FlashlightUtils {
         if (camera != null) {
             try {
                 Camera.Parameters parameters = camera.getParameters();
-                return parameters != null && Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode());
+                return parameters != null
+                        && Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode());
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "isFlashlightOn");
             }

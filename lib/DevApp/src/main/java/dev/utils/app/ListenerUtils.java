@@ -31,7 +31,9 @@ public final class ListenerUtils {
      * @return {@link View.OnTouchListener}
      */
     public static View.OnTouchListener getTouchListener(final View view) {
-        return (View.OnTouchListener) getListenerInfoListener(view, "mOnTouchListener");
+        return (View.OnTouchListener) getListenerInfoListener(
+                view, "mOnTouchListener"
+        );
     }
 
     /**
@@ -40,7 +42,9 @@ public final class ListenerUtils {
      * @return {@link View.OnClickListener}
      */
     public static View.OnClickListener getClickListener(final View view) {
-        return (View.OnClickListener) getListenerInfoListener(view, "mOnClickListener");
+        return (View.OnClickListener) getListenerInfoListener(
+                view, "mOnClickListener"
+        );
     }
 
     // =

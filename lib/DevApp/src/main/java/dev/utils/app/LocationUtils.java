@@ -54,7 +54,9 @@ public final class LocationUtils {
     public static boolean isGpsEnabled() {
         try {
             LocationManager locationManager = AppUtils.getLocationManager();
-            return locationManager != null && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+            return locationManager != null && locationManager.isProviderEnabled(
+                    LocationManager.GPS_PROVIDER
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isGpsEnabled");
         }
@@ -68,7 +70,10 @@ public final class LocationUtils {
     public static boolean isLocationEnabled() {
         try {
             LocationManager locationManager = AppUtils.getLocationManager();
-            return locationManager != null && (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) || locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER));
+            return locationManager != null && (locationManager.isProviderEnabled(
+                    LocationManager.NETWORK_PROVIDER)
+                    || locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isLocationEnabled");
         }
@@ -120,7 +125,9 @@ public final class LocationUtils {
             if (sCustomLocationListener == null) {
                 sCustomLocationListener = new CustomLocationListener();
             }
-            sLocationManager.requestLocationUpdates(provider, minTime, minDistance, sCustomLocationListener);
+            sLocationManager.requestLocationUpdates(
+                    provider, minTime, minDistance, sCustomLocationListener
+            );
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "register");
@@ -175,9 +182,13 @@ public final class LocationUtils {
         try {
             sLocationManager = AppUtils.getLocationManager();
             if (isLocationEnabled()) {
-                sLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, time, distance, listener);
+                sLocationManager.requestLocationUpdates(
+                        LocationManager.NETWORK_PROVIDER, time, distance, listener
+                );
                 if (sLocationManager != null) {
-                    location = sLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                    location = sLocationManager.getLastKnownLocation(
+                            LocationManager.NETWORK_PROVIDER
+                    );
                     if (location != null) {
                         sLocationManager.removeUpdates(listener);
                         return location;
@@ -185,9 +196,13 @@ public final class LocationUtils {
                 }
             }
             if (isGpsEnabled()) {
-                sLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, time, distance, listener);
+                sLocationManager.requestLocationUpdates(
+                        LocationManager.GPS_PROVIDER, time, distance, listener
+                );
                 if (sLocationManager != null) {
-                    location = sLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    location = sLocationManager.getLastKnownLocation(
+                            LocationManager.GPS_PROVIDER
+                    );
                     if (location != null) {
                         sLocationManager.removeUpdates(listener);
                         return location;
@@ -232,8 +247,12 @@ public final class LocationUtils {
             final double longitude
     ) {
         try {
-            Geocoder      geocoder  = new Geocoder(DevUtils.getContext(), Locale.getDefault());
-            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            Geocoder geocoder = new Geocoder(
+                    DevUtils.getContext(), Locale.getDefault()
+            );
+            List<Address> addresses = geocoder.getFromLocation(
+                    latitude, longitude, 1
+            );
             if (addresses.size() > 0) return addresses.get(0);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAddress");
@@ -319,7 +338,9 @@ public final class LocationUtils {
         boolean isSignificantlyLessAccurate = accuracyDelta > 200;
 
         // 检查旧位置和新位置是否来自同一提供者
-        boolean isFromSameProvider = isSameProvider(newLocation.getProvider(), currentBestLocation.getProvider());
+        boolean isFromSameProvider = isSameProvider(
+                newLocation.getProvider(), currentBestLocation.getProvider()
+        );
 
         // 判断最新的位置
         if (isMoreAccurate) {
@@ -430,6 +451,9 @@ public final class LocationUtils {
 
         /**
          * provider 的在可用、暂时不可用和无服务三个状态直接切换时触发此函数
+         * <pre>
+         *     位置状态发生改变
+         * </pre>
          * @param provider 提供者
          * @param status   状态
          * @param extras   provider 可选包
@@ -438,6 +462,6 @@ public final class LocationUtils {
                 String provider,
                 int status,
                 Bundle extras
-        ); // 位置状态发生改变
+        );
     }
 }

@@ -170,7 +170,9 @@ public final class ActivityUtils {
             } else if (intent.resolveActivity(packageManager) == null) {
                 result = false;
             } else {
-                List<ResolveInfo> lists = packageManager.queryIntentActivities(intent, 0);
+                List<ResolveInfo> lists = packageManager.queryIntentActivities(
+                        intent, 0
+                );
                 if (lists.size() == 0) {
                     result = false;
                 }
@@ -444,7 +446,9 @@ public final class ActivityUtils {
             final int exitAnim
     ) {
         try {
-            return ActivityOptionsCompat.makeCustomAnimation(context, enterAnim, exitAnim).toBundle();
+            return ActivityOptionsCompat.makeCustomAnimation(
+                    context, enterAnim, exitAnim
+            ).toBundle();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getOptionsBundle");
         }
@@ -468,9 +472,14 @@ public final class ActivityUtils {
                 @SuppressWarnings("unchecked")
                 Pair<View, String>[] pairs = new Pair[len];
                 for (int i = 0; i < len; i++) {
-                    pairs[i] = Pair.create(sharedElements[i], sharedElements[i].getTransitionName());
+                    pairs[i] = Pair.create(
+                            sharedElements[i],
+                            sharedElements[i].getTransitionName()
+                    );
                 }
-                return ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pairs).toBundle();
+                return ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        activity, pairs
+                ).toBundle();
             }
             return ActivityOptionsCompat.makeSceneTransitionAnimation(
                     activity, null, null
@@ -603,7 +612,9 @@ public final class ActivityUtils {
                     for (Activity activity : stack) {
                         if (activity != null && !activity.isFinishing()) {
                             for (Class<?> clazz : clazzs) {
-                                if (clazz != null && activity.getClass().getName().equals(clazz.getName())) {
+                                if (clazz != null && activity.getClass().getName().equals(
+                                        clazz.getName())
+                                ) {
                                     return true;
                                 }
                             }
@@ -1022,7 +1033,10 @@ public final class ActivityUtils {
         ) {
             super.onActivityResult(requestCode, resultCode, data);
             if (mCallback != null) {
-                mCallback.onActivityResult(resultCode == Activity.RESULT_OK, resultCode, data);
+                mCallback.onActivityResult(
+                        resultCode == Activity.RESULT_OK,
+                        resultCode, data
+                );
             }
             finish();
         }

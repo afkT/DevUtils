@@ -299,7 +299,8 @@ public final class DialogUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isShowing(final DialogFragment dialogFragment) {
-        return (dialogFragment != null && dialogFragment.getDialog() != null && dialogFragment.getDialog().isShowing());
+        return (dialogFragment != null && dialogFragment.getDialog() != null
+                && dialogFragment.getDialog().isShowing());
     }
 
     /**
@@ -543,7 +544,9 @@ public final class DialogUtils {
                 if (dialogListener == null) {
                     builder.setNegativeButton(leftBtn, null);
                 } else {
-                    builder.setNegativeButton(leftBtn, (dialog, which) -> dialogListener.onLeftButton(dialog));
+                    builder.setNegativeButton(
+                            leftBtn, (dialog, which) -> dialogListener.onLeftButton(dialog)
+                    );
                 }
             }
 
@@ -551,7 +554,9 @@ public final class DialogUtils {
                 if (dialogListener == null) {
                     builder.setPositiveButton(rightBtn, null);
                 } else {
-                    builder.setPositiveButton(rightBtn, (dialog, which) -> dialogListener.onRightButton(dialog));
+                    builder.setPositiveButton(
+                            rightBtn, (dialog, which) -> dialogListener.onRightButton(dialog)
+                    );
                 }
             }
 
@@ -758,7 +763,10 @@ public final class DialogUtils {
             final String positiveBtnText,
             final SingleChoiceListener singleChoiceListener
     ) {
-        return createSingleChoiceListDialog(context, itemsId, title, icon, null, positiveBtnText, singleChoiceListener, 0);
+        return createSingleChoiceListDialog(
+                context, itemsId, title, icon, null,
+                positiveBtnText, singleChoiceListener, 0
+        );
     }
 
     /**
@@ -781,7 +789,10 @@ public final class DialogUtils {
             final String positiveBtnText,
             final SingleChoiceListener singleChoiceListener
     ) {
-        return createSingleChoiceListDialog(context, itemsId, title, icon, negativeBtnText, positiveBtnText, singleChoiceListener, 0);
+        return createSingleChoiceListDialog(
+                context, itemsId, title, icon, negativeBtnText,
+                positiveBtnText, singleChoiceListener, 0
+        );
     }
 
     /**
@@ -875,7 +886,10 @@ public final class DialogUtils {
             final String positiveBtnText,
             final SingleChoiceListener singleChoiceListener
     ) {
-        return createSingleChoiceListDialog(context, items, title, icon, null, positiveBtnText, singleChoiceListener, 0);
+        return createSingleChoiceListDialog(
+                context, items, title, icon, null,
+                positiveBtnText, singleChoiceListener, 0
+        );
     }
 
     /**
@@ -898,7 +912,10 @@ public final class DialogUtils {
             final String positiveBtnText,
             final SingleChoiceListener singleChoiceListener
     ) {
-        return createSingleChoiceListDialog(context, items, title, icon, negativeBtnText, positiveBtnText, singleChoiceListener, 0);
+        return createSingleChoiceListDialog(
+                context, items, title, icon, negativeBtnText,
+                positiveBtnText, singleChoiceListener, 0
+        );
     }
 
     /**
@@ -996,7 +1013,10 @@ public final class DialogUtils {
             final String positiveBtnText,
             final SingleChoiceListener singleChoiceListener
     ) {
-        return createSingleChoiceDialog(context, itemsId, checkedItem, title, icon, null, positiveBtnText, singleChoiceListener, 0);
+        return createSingleChoiceDialog(
+                context, itemsId, checkedItem, title, icon,
+                null, positiveBtnText, singleChoiceListener, 0
+        );
     }
 
     /**
@@ -1021,7 +1041,10 @@ public final class DialogUtils {
             final String positiveBtnText,
             final SingleChoiceListener singleChoiceListener
     ) {
-        return createSingleChoiceDialog(context, itemsId, checkedItem, title, icon, negativeBtnText, positiveBtnText, singleChoiceListener, 0);
+        return createSingleChoiceDialog(
+                context, itemsId, checkedItem, title, icon,negativeBtnText,
+                positiveBtnText, singleChoiceListener, 0
+        );
     }
 
     /**
@@ -1119,7 +1142,10 @@ public final class DialogUtils {
             final String positiveBtnText,
             final SingleChoiceListener singleChoiceListener
     ) {
-        return createSingleChoiceDialog(context, items, checkedItem, title, icon, null, positiveBtnText, singleChoiceListener, 0);
+        return createSingleChoiceDialog(
+                context, items, checkedItem, title, icon,
+                null, positiveBtnText, singleChoiceListener, 0
+        );
     }
 
     /**
@@ -1144,7 +1170,10 @@ public final class DialogUtils {
             final String positiveBtnText,
             final SingleChoiceListener singleChoiceListener
     ) {
-        return createSingleChoiceDialog(context, items, checkedItem, title, icon, negativeBtnText, positiveBtnText, singleChoiceListener, 0);
+        return createSingleChoiceDialog(
+                context, items, checkedItem, title, icon,
+                negativeBtnText, positiveBtnText, singleChoiceListener, 0
+        );
     }
 
     /**
@@ -1291,7 +1320,10 @@ public final class DialogUtils {
             final String positiveBtnText,
             final MultiChoiceListener multiChoiceListener
     ) {
-        return createMultiChoiceDialog(context, itemsId, checkedItems, title, icon, null, positiveBtnText, multiChoiceListener, 0);
+        return createMultiChoiceDialog(
+                context, itemsId, checkedItems, title, icon,
+                null, positiveBtnText, multiChoiceListener, 0
+        );
     }
 
     /**
@@ -1316,7 +1348,10 @@ public final class DialogUtils {
             final String positiveBtnText,
             final MultiChoiceListener multiChoiceListener
     ) {
-        return createMultiChoiceDialog(context, itemsId, checkedItems, title, icon, negativeBtnText, positiveBtnText, multiChoiceListener, 0);
+        return createMultiChoiceDialog(
+                context, itemsId, checkedItems, title, icon,
+                negativeBtnText, positiveBtnText, multiChoiceListener, 0
+        );
     }
 
     /**
@@ -1414,7 +1449,10 @@ public final class DialogUtils {
             final String positiveBtnText,
             final MultiChoiceListener multiChoiceListener
     ) {
-        return createMultiChoiceDialog(context, items, checkedItems, title, icon, null, positiveBtnText, multiChoiceListener, 0);
+        return createMultiChoiceDialog(
+                context, items, checkedItems, title, icon,
+                null, positiveBtnText, multiChoiceListener, 0
+        );
     }
 
     /**
@@ -1439,7 +1477,10 @@ public final class DialogUtils {
             final String positiveBtnText,
             final MultiChoiceListener multiChoiceListener
     ) {
-        return createMultiChoiceDialog(context, items, checkedItems, title, icon, negativeBtnText, positiveBtnText, multiChoiceListener, 0);
+        return createMultiChoiceDialog(
+                context, items, checkedItems, title, icon,
+                negativeBtnText, positiveBtnText, multiChoiceListener, 0
+        );
     }
 
     /**
@@ -1567,7 +1608,10 @@ public final class DialogUtils {
             final String positiveBtnText,
             final ViewDialogListener viewDialogListener
     ) {
-        return createViewDialog(context, view, title, icon, null, positiveBtnText, viewDialogListener, 0);
+        return createViewDialog(
+                context, view, title, icon, null,
+                positiveBtnText, viewDialogListener, 0
+        );
     }
 
     /**
@@ -1590,7 +1634,10 @@ public final class DialogUtils {
             final String positiveBtnText,
             final ViewDialogListener viewDialogListener
     ) {
-        return createViewDialog(context, view, title, icon, negativeBtnText, positiveBtnText, viewDialogListener, 0);
+        return createViewDialog(
+                context, view, title, icon, negativeBtnText,
+                positiveBtnText, viewDialogListener, 0
+        );
     }
 
     /**
@@ -1613,7 +1660,10 @@ public final class DialogUtils {
             final ViewDialogListener viewDialogListener,
             @StyleRes final int themeResId
     ) {
-        return createViewDialog(context, view, title, icon, null, positiveBtnText, viewDialogListener, themeResId);
+        return createViewDialog(
+                context, view, title, icon, null,
+                positiveBtnText, viewDialogListener, themeResId
+        );
     }
 
     /**

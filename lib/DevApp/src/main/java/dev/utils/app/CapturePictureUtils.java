@@ -117,7 +117,10 @@ public final class CapturePictureUtils {
             Rect frame = new Rect();
             activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
             // 创建新的图片
-            Bitmap bitmap = Bitmap.createBitmap(cacheBitmap, 0, 0, widthHeight[0], widthHeight[1]);
+            Bitmap bitmap = Bitmap.createBitmap(
+                    cacheBitmap, 0, 0,
+                    widthHeight[0], widthHeight[1]
+            );
             // 释放绘图资源所使用的缓存
             view.destroyDrawingCache();
             return bitmap;
@@ -149,7 +152,10 @@ public final class CapturePictureUtils {
             Rect frame = new Rect();
             activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
             // 创建新的图片
-            Bitmap bitmap = Bitmap.createBitmap(cacheBitmap, 0, statusBarHeight, widthHeight[0], widthHeight[1] - statusBarHeight);
+            Bitmap bitmap = Bitmap.createBitmap(
+                    cacheBitmap, 0, statusBarHeight, widthHeight[0],
+                    widthHeight[1] - statusBarHeight
+            );
             // 释放绘图资源所使用的缓存
             view.destroyDrawingCache();
             return bitmap;
@@ -906,19 +912,24 @@ public final class CapturePictureUtils {
             if (layoutManager != null && adapter != null) {
                 // 判断布局类型
                 if (layoutManager instanceof GridLayoutManager) {
-                    return snapshotByRecyclerView_GridLayoutManager(recyclerView,
-                            config, verticalSpacing, horizontalSpacing
+                    return snapshotByRecyclerView_GridLayoutManager(
+                            recyclerView, config, verticalSpacing, horizontalSpacing
                     );
                 } else if (layoutManager instanceof LinearLayoutManager) {
-                    return snapshotByRecyclerView_LinearLayoutManager(recyclerView,
-                            config, verticalSpacing, horizontalSpacing
+                    return snapshotByRecyclerView_LinearLayoutManager(
+                            recyclerView, config, verticalSpacing, horizontalSpacing
                     );
                 } else if (layoutManager instanceof StaggeredGridLayoutManager) {
-                    return snapshotByRecyclerView_StaggeredGridLayoutManager(recyclerView,
-                            config, verticalSpacing, horizontalSpacing
+                    return snapshotByRecyclerView_StaggeredGridLayoutManager(
+                            recyclerView, config, verticalSpacing, horizontalSpacing
                     );
                 }
-                throw new Exception(String.format("Not Supported %s LayoutManager", layoutManager.getClass().getSimpleName()));
+                throw new Exception(
+                        String.format(
+                                "Not Supported %s LayoutManager",
+                                layoutManager.getClass().getSimpleName()
+                        )
+                );
             } else {
                 throw new Exception("Adapter or LayoutManager is Null");
             }
@@ -992,7 +1003,9 @@ public final class CapturePictureUtils {
                         int position = i * spanCount + j;
                         // 小于总数才处理
                         if (position < itemCount) {
-                            RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(position));
+                            RecyclerView.ViewHolder holder = adapter.createViewHolder(
+                                    recyclerView, adapter.getItemViewType(position)
+                            );
                             adapter.onBindViewHolder(holder, position);
                             View childView = holder.itemView;
                             WidgetUtils.measureView(childView, childWidth);
@@ -1071,7 +1084,9 @@ public final class CapturePictureUtils {
                         int position = j * lineNumber + i;
                         // 小于总数才处理
                         if (position < itemCount) {
-                            RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(position));
+                            RecyclerView.ViewHolder holder = adapter.createViewHolder(
+                                    recyclerView, adapter.getItemViewType(position)
+                            );
                             adapter.onBindViewHolder(holder, position);
                             View childView = holder.itemView;
                             WidgetUtils.measureView(childView, 0);
@@ -1179,7 +1194,9 @@ public final class CapturePictureUtils {
                 // ==========
 
                 for (int i = 0; i < itemCount; i++) {
-                    RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
+                    RecyclerView.ViewHolder holder = adapter.createViewHolder(
+                            recyclerView, adapter.getItemViewType(i)
+                    );
                     adapter.onBindViewHolder(holder, i);
                     View childView = holder.itemView;
                     WidgetUtils.measureView(childView, recyclerView.getWidth());
@@ -1213,7 +1230,9 @@ public final class CapturePictureUtils {
                 // 临时高度 ( 保存行中最高的列高度 )
                 int tempHeight = 0;
                 for (int i = 0; i < itemCount; i++) {
-                    RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
+                    RecyclerView.ViewHolder holder = adapter.createViewHolder(
+                            recyclerView, adapter.getItemViewType(i)
+                    );
                     adapter.onBindViewHolder(holder, i);
                     View childView = holder.itemView;
                     WidgetUtils.measureView(childView, 0);
@@ -1299,7 +1318,9 @@ public final class CapturePictureUtils {
                 // 记录每个 Item 高度
                 int[] itemHeightArrays = new int[itemCount];
                 for (int i = 0; i < itemCount; i++) {
-                    RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
+                    RecyclerView.ViewHolder holder = adapter.createViewHolder(
+                            recyclerView, adapter.getItemViewType(i)
+                    );
                     adapter.onBindViewHolder(holder, i);
                     View childView = holder.itemView;
                     WidgetUtils.measureView(childView, childWidth);
@@ -1373,7 +1394,9 @@ public final class CapturePictureUtils {
                 // 记录每个 Item 高度
                 int[] itemHeightArrays = new int[itemCount];
                 for (int i = 0; i < itemCount; i++) {
-                    RecyclerView.ViewHolder holder = adapter.createViewHolder(recyclerView, adapter.getItemViewType(i));
+                    RecyclerView.ViewHolder holder = adapter.createViewHolder(
+                            recyclerView, adapter.getItemViewType(i)
+                    );
                     adapter.onBindViewHolder(holder, i);
                     View childView = holder.itemView;
                     WidgetUtils.measureView(childView, 0);
@@ -1461,7 +1484,11 @@ public final class CapturePictureUtils {
             final View childView,
             final Bitmap.Config config
     ) {
-        Bitmap bitmap = Bitmap.createBitmap(childView.getMeasuredWidth(), childView.getMeasuredHeight(), config);
+        Bitmap bitmap = Bitmap.createBitmap(
+                childView.getMeasuredWidth(),
+                childView.getMeasuredHeight(),
+                config
+        );
         Canvas canvas = new Canvas(bitmap);
         canvas.drawColor(BACKGROUND_COLOR);
         childView.draw(canvas);

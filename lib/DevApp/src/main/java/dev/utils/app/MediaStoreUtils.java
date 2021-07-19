@@ -114,7 +114,9 @@ public final class MediaStoreUtils {
         if (uri != null) {
             try {
                 // 通知图库扫描更新
-                return AppUtils.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
+                return AppUtils.sendBroadcast(
+                        new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri)
+                );
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "notifyMediaStore");
             }
@@ -203,7 +205,10 @@ public final class MediaStoreUtils {
      * @return 图片 Uri
      */
     public static Uri createImageUri() {
-        return createImageUri(getImageDisplayName(), MIME_TYPE_IMAGE_PNG, RELATIVE_IMAGE_PATH, System.currentTimeMillis());
+        return createImageUri(
+                getImageDisplayName(), MIME_TYPE_IMAGE_PNG,
+                RELATIVE_IMAGE_PATH, System.currentTimeMillis()
+        );
     }
 
     /**
@@ -212,7 +217,10 @@ public final class MediaStoreUtils {
      * @return 图片 Uri
      */
     public static Uri createImageUri(final String mimeType) {
-        return createImageUri(getImageDisplayName(), mimeType, RELATIVE_IMAGE_PATH, System.currentTimeMillis());
+        return createImageUri(
+                getImageDisplayName(), mimeType,
+                RELATIVE_IMAGE_PATH, System.currentTimeMillis()
+        );
     }
 
     /**
@@ -225,7 +233,10 @@ public final class MediaStoreUtils {
             final String mimeType,
             final String relativePath
     ) {
-        return createImageUri(getImageDisplayName(), mimeType, relativePath, System.currentTimeMillis());
+        return createImageUri(
+                getImageDisplayName(), mimeType,
+                relativePath, System.currentTimeMillis()
+        );
     }
 
     /**
@@ -240,7 +251,10 @@ public final class MediaStoreUtils {
             final String mimeType,
             final String relativePath
     ) {
-        return createImageUri(displayName, mimeType, relativePath, System.currentTimeMillis());
+        return createImageUri(
+                displayName, mimeType,
+                relativePath, System.currentTimeMillis()
+        );
     }
 
     /**
@@ -257,7 +271,10 @@ public final class MediaStoreUtils {
             final String relativePath,
             final long createTime
     ) {
-        return createMediaUri(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, displayName, mimeType, relativePath, createTime);
+        return createMediaUri(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                displayName, mimeType, relativePath, createTime
+        );
     }
 
     // =======
@@ -269,7 +286,10 @@ public final class MediaStoreUtils {
      * @return 视频 Uri
      */
     public static Uri createVideoUri() {
-        return createVideoUri(getVideoDisplayName(), MIME_TYPE_VIDEO_MP4, RELATIVE_VIDEO_PATH, System.currentTimeMillis());
+        return createVideoUri(
+                getVideoDisplayName(), MIME_TYPE_VIDEO_MP4,
+                RELATIVE_VIDEO_PATH, System.currentTimeMillis()
+        );
     }
 
     /**
@@ -278,7 +298,10 @@ public final class MediaStoreUtils {
      * @return 视频 Uri
      */
     public static Uri createVideoUri(final String mimeType) {
-        return createVideoUri(getVideoDisplayName(), mimeType, RELATIVE_VIDEO_PATH, System.currentTimeMillis());
+        return createVideoUri(
+                getVideoDisplayName(), mimeType,
+                RELATIVE_VIDEO_PATH, System.currentTimeMillis()
+        );
     }
 
     /**
@@ -291,7 +314,10 @@ public final class MediaStoreUtils {
             final String mimeType,
             final String relativePath
     ) {
-        return createVideoUri(getVideoDisplayName(), mimeType, relativePath, System.currentTimeMillis());
+        return createVideoUri(
+                getVideoDisplayName(), mimeType,
+                relativePath, System.currentTimeMillis()
+        );
     }
 
     /**
@@ -306,7 +332,10 @@ public final class MediaStoreUtils {
             final String mimeType,
             final String relativePath
     ) {
-        return createVideoUri(displayName, mimeType, relativePath, System.currentTimeMillis());
+        return createVideoUri(
+                displayName, mimeType,
+                relativePath, System.currentTimeMillis()
+        );
     }
 
     /**
@@ -323,7 +352,10 @@ public final class MediaStoreUtils {
             final String relativePath,
             final long createTime
     ) {
-        return createMediaUri(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, displayName, mimeType, relativePath, createTime);
+        return createMediaUri(
+                MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+                displayName, mimeType, relativePath, createTime
+        );
     }
 
     // =======
@@ -335,7 +367,10 @@ public final class MediaStoreUtils {
      * @return 音频 Uri
      */
     public static Uri createAudioUri() {
-        return createAudioUri(getAudioDisplayName(), MIME_TYPE_AUDIO_MP3, RELATIVE_AUDIO_PATH, System.currentTimeMillis());
+        return createAudioUri(
+                getAudioDisplayName(), MIME_TYPE_AUDIO_MP3,
+                RELATIVE_AUDIO_PATH, System.currentTimeMillis()
+        );
     }
 
     /**
@@ -344,7 +379,10 @@ public final class MediaStoreUtils {
      * @return 音频 Uri
      */
     public static Uri createAudioUri(final String mimeType) {
-        return createAudioUri(getAudioDisplayName(), mimeType, RELATIVE_AUDIO_PATH, System.currentTimeMillis());
+        return createAudioUri(
+                getAudioDisplayName(), mimeType,
+                RELATIVE_AUDIO_PATH, System.currentTimeMillis()
+        );
     }
 
     /**
@@ -357,7 +395,10 @@ public final class MediaStoreUtils {
             final String mimeType,
             final String relativePath
     ) {
-        return createAudioUri(getAudioDisplayName(), mimeType, relativePath, System.currentTimeMillis());
+        return createAudioUri(
+                getAudioDisplayName(), mimeType,
+                relativePath, System.currentTimeMillis()
+        );
     }
 
     /**
@@ -372,7 +413,10 @@ public final class MediaStoreUtils {
             final String mimeType,
             final String relativePath
     ) {
-        return createAudioUri(displayName, mimeType, relativePath, System.currentTimeMillis());
+        return createAudioUri(
+                displayName, mimeType,
+                relativePath, System.currentTimeMillis()
+        );
     }
 
     /**
@@ -389,7 +433,10 @@ public final class MediaStoreUtils {
             final String relativePath,
             final long createTime
     ) {
-        return createMediaUri(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, displayName, mimeType, relativePath, createTime);
+        return createMediaUri(
+                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                displayName, mimeType, relativePath, createTime
+        );
     }
 
     // ============
@@ -403,7 +450,10 @@ public final class MediaStoreUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.Q)
     public static Uri createDownloadUri(final String displayName) {
-        return createDownloadUri(displayName, MIME_TYPE_APPLICATION, RELATIVE_DOWNLOAD_PATH, System.currentTimeMillis());
+        return createDownloadUri(
+                displayName, MIME_TYPE_APPLICATION,
+                RELATIVE_DOWNLOAD_PATH, System.currentTimeMillis()
+        );
     }
 
     /**
@@ -417,7 +467,10 @@ public final class MediaStoreUtils {
             final String displayName,
             final String mimeType
     ) {
-        return createDownloadUri(displayName, mimeType, RELATIVE_DOWNLOAD_PATH, System.currentTimeMillis());
+        return createDownloadUri(
+                displayName, mimeType,
+                RELATIVE_DOWNLOAD_PATH, System.currentTimeMillis()
+        );
     }
 
     /**
@@ -433,7 +486,10 @@ public final class MediaStoreUtils {
             final String mimeType,
             final String relativePath
     ) {
-        return createDownloadUri(displayName, mimeType, relativePath, System.currentTimeMillis());
+        return createDownloadUri(
+                displayName, mimeType,
+                relativePath, System.currentTimeMillis()
+        );
     }
 
     /**
@@ -454,7 +510,10 @@ public final class MediaStoreUtils {
             final String relativePath,
             final long createTime
     ) {
-        return createMediaUri(MediaStore.Downloads.EXTERNAL_CONTENT_URI, displayName, mimeType, relativePath, createTime);
+        return createMediaUri(
+                MediaStore.Downloads.EXTERNAL_CONTENT_URI,
+                displayName, mimeType, relativePath, createTime
+        );
     }
 
     // ==========
@@ -475,7 +534,10 @@ public final class MediaStoreUtils {
             final String mimeType,
             final String relativePath
     ) {
-        return createMediaUri(uri, displayName, mimeType, relativePath, System.currentTimeMillis());
+        return createMediaUri(
+                uri, displayName, mimeType,
+                relativePath, System.currentTimeMillis()
+        );
     }
 
     /**
@@ -597,7 +659,10 @@ public final class MediaStoreUtils {
     ) {
         if (filePath != null && name != null) {
             try {
-                String uriString = MediaStore.Images.Media.insertImage(ResourceUtils.getContentResolver(), filePath, name, null);
+                String uriString = MediaStore.Images.Media.insertImage(
+                        ResourceUtils.getContentResolver(),
+                        filePath, name, null
+                );
                 Uri    uri       = Uri.parse(uriString);
                 if (notify) notifyMediaStore(UriUtils.getFilePathByUri(uri));
                 return uri;
@@ -904,8 +969,9 @@ public final class MediaStoreUtils {
             }
             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
             mmr.setDataSource(filePath);
-            return Long.parseLong(mmr.extractMetadata
-                    (MediaMetadataRetriever.METADATA_KEY_DURATION));
+            return Long.parseLong(mmr.extractMetadata(
+                    MediaMetadataRetriever.METADATA_KEY_DURATION
+            ));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVideoDuration");
             return 0L;
@@ -922,8 +988,9 @@ public final class MediaStoreUtils {
         try {
             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
             mmr.setDataSource(DevUtils.getContext(), uri);
-            return Long.parseLong(mmr.extractMetadata
-                    (MediaMetadataRetriever.METADATA_KEY_DURATION));
+            return Long.parseLong(mmr.extractMetadata(
+                    MediaMetadataRetriever.METADATA_KEY_DURATION
+            ));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVideoDuration");
             return 0L;
@@ -958,10 +1025,12 @@ public final class MediaStoreUtils {
             }
             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
             mmr.setDataSource(filePath);
-            size[0] = ConvertUtils.toInt(mmr.extractMetadata
-                    (MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
-            size[1] = ConvertUtils.toInt(mmr.extractMetadata
-                    (MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
+            size[0] = ConvertUtils.toInt(mmr.extractMetadata(
+                    MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH
+            ));
+            size[1] = ConvertUtils.toInt(mmr.extractMetadata(
+                    MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT
+            ));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVideoSize");
         }
@@ -978,10 +1047,12 @@ public final class MediaStoreUtils {
         try {
             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
             mmr.setDataSource(DevUtils.getContext(), uri);
-            size[0] = ConvertUtils.toInt(mmr.extractMetadata
-                    (MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
-            size[1] = ConvertUtils.toInt(mmr.extractMetadata
-                    (MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
+            size[0] = ConvertUtils.toInt(mmr.extractMetadata(
+                    MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH
+            ));
+            size[1] = ConvertUtils.toInt(mmr.extractMetadata(
+                    MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT
+            ));
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVideoSize");
         }
@@ -1048,7 +1119,9 @@ public final class MediaStoreUtils {
      * @return 多媒体资源信息
      */
     public static String[] getMediaInfo(final String filePath) {
-        return ContentResolverUtils.mediaQuery(filePath, ContentResolverUtils.MEDIA_QUERY_INFO);
+        return ContentResolverUtils.mediaQuery(
+                filePath, ContentResolverUtils.MEDIA_QUERY_INFO
+        );
     }
 
     /**
@@ -1062,7 +1135,9 @@ public final class MediaStoreUtils {
      * @return 多媒体资源信息
      */
     public static String[] getMediaInfo(final Uri uri) {
-        return ContentResolverUtils.mediaQuery(uri, TAG, ContentResolverUtils.MEDIA_QUERY_INFO_URI);
+        return ContentResolverUtils.mediaQuery(
+                uri, TAG, ContentResolverUtils.MEDIA_QUERY_INFO_URI
+        );
     }
 
     // =============
@@ -1083,7 +1158,9 @@ public final class MediaStoreUtils {
     public static PendingIntent createWriteRequest(final Collection<Uri> uris) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             try {
-                return MediaStore.createWriteRequest(ResourceUtils.getContentResolver(), uris);
+                return MediaStore.createWriteRequest(
+                        ResourceUtils.getContentResolver(), uris
+                );
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "createWriteRequest");
             }
@@ -1106,7 +1183,9 @@ public final class MediaStoreUtils {
     ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             try {
-                return MediaStore.createFavoriteRequest(ResourceUtils.getContentResolver(), uris, favorite);
+                return MediaStore.createFavoriteRequest(
+                        ResourceUtils.getContentResolver(), uris, favorite
+                );
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "createFavoriteRequest");
             }
@@ -1129,7 +1208,9 @@ public final class MediaStoreUtils {
     ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             try {
-                return MediaStore.createTrashRequest(ResourceUtils.getContentResolver(), uris, trashed);
+                return MediaStore.createTrashRequest(
+                        ResourceUtils.getContentResolver(), uris, trashed
+                );
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "createTrashRequest");
             }
@@ -1145,7 +1226,9 @@ public final class MediaStoreUtils {
     public static PendingIntent createDeleteRequest(final Collection<Uri> uris) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             try {
-                return MediaStore.createDeleteRequest(ResourceUtils.getContentResolver(), uris);
+                return MediaStore.createDeleteRequest(
+                        ResourceUtils.getContentResolver(), uris
+                );
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "createDeleteRequest");
             }

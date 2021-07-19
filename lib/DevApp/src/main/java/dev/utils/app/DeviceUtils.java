@@ -103,7 +103,9 @@ public final class DeviceUtils {
             String   versionName = versions[0];
             String   versionCode = versions[1];
             String   packageName = AppUtils.getPackageName();
-            String   deviceInfo  = DeviceUtils.handlerDeviceInfo(DeviceUtils.getDeviceInfo(), null);
+            String deviceInfo = DeviceUtils.handlerDeviceInfo(
+                    DeviceUtils.getDeviceInfo(), null
+            );
             if (TextUtils.isEmpty(versionName) || TextUtils.isEmpty(versionCode) ||
                     TextUtils.isEmpty(packageName) || TextUtils.isEmpty(deviceInfo)) {
                 return null;
@@ -550,8 +552,11 @@ public final class DeviceUtils {
      */
     public static boolean isDeviceRooted() {
         String su = "su";
-        String[] locations = {"/system/bin/", "/system/xbin/", "/sbin/", "/system/sd/xbin/",
-                "/system/bin/failsafe/", "/data/local/xbin/", "/data/local/bin/", "/data/local/"};
+        String[] locations = {
+                "/system/bin/", "/system/xbin/", "/sbin/",
+                "/system/sd/xbin/", "/system/bin/failsafe/",
+                "/data/local/xbin/", "/data/local/bin/", "/data/local/"
+        };
         for (String location : locations) {
             if (new File(location + su).exists()) {
                 return true;
@@ -729,11 +734,15 @@ public final class DeviceUtils {
      * @return MAC 地址
      */
     private static String getMacAddressByFile() {
-        ShellUtils.CommandResult result = ShellUtils.execCmd("getprop wifi.interface", false);
+        ShellUtils.CommandResult result = ShellUtils.execCmd(
+                "getprop wifi.interface", false
+        );
         if (result.isSuccess()) {
             String name = result.successMsg;
             if (name != null) {
-                result = ShellUtils.execCmd("cat /sys/class/net/" + name + "/address", false);
+                result = ShellUtils.execCmd(
+                        "cat /sys/class/net/" + name + "/address", false
+                );
                 if (result.result == 0) {
                     String address = result.successMsg;
                     if (address != null && address.length() > 0) {
@@ -798,7 +807,9 @@ public final class DeviceUtils {
      */
     public static boolean isTablet() {
         try {
-            return (ResourceUtils.getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+            return (ResourceUtils.getConfiguration().screenLayout
+                    & Configuration.SCREENLAYOUT_SIZE_MASK
+            ) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "isTablet");
         }

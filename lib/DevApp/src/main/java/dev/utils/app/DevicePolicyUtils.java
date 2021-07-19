@@ -125,7 +125,9 @@ public final class DevicePolicyUtils {
      * @return {@code true} success, {@code false} fail
      */
     public boolean startLockPassword() {
-        return AppUtils.startActivity(new Intent(DevicePolicyManager.ACTION_SET_NEW_PASSWORD));
+        return AppUtils.startActivity(
+                new Intent(DevicePolicyManager.ACTION_SET_NEW_PASSWORD)
+        );
     }
 
     /**

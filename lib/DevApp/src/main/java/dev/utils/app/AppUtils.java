@@ -333,7 +333,8 @@ public final class AppUtils {
             final int flags
     ) {
         try {
-            return DevUtils.getContext().getPackageManager().getApplicationInfo(packageName, flags);
+            return DevUtils.getContext().getPackageManager()
+                    .getApplicationInfo(packageName, flags);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getApplicationInfo %s", packageName);
         }
@@ -360,7 +361,8 @@ public final class AppUtils {
             final int flags
     ) {
         try {
-            return DevUtils.getContext().getPackageManager().getPackageInfo(packageName, flags);
+            return DevUtils.getContext().getPackageManager()
+                    .getPackageInfo(packageName, flags);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getPackageInfo %s", packageName);
         }
@@ -443,8 +445,11 @@ public final class AppUtils {
         PackageManager packageManager = getPackageManager();
         if (packageManager == null) return null;
         try {
-            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
-            return packageInfo == null ? null : packageInfo.applicationInfo.loadIcon(packageManager);
+            PackageInfo packageInfo = packageManager.getPackageInfo(
+                    packageName, 0
+            );
+            if (packageInfo == null) return null;
+            return packageInfo.applicationInfo.loadIcon(packageManager);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppIcon");
             return null;
@@ -469,8 +474,11 @@ public final class AppUtils {
         PackageManager packageManager = getPackageManager();
         if (packageManager == null) return null;
         try {
-            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
-            return packageInfo == null ? null : packageInfo.applicationInfo.loadLabel(packageManager).toString();
+            PackageInfo packageInfo = packageManager.getPackageInfo(
+                    packageName, 0
+            );
+            if (packageInfo == null) return null;
+            return packageInfo.applicationInfo.loadLabel(packageManager).toString();
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppName");
             return null;
@@ -493,7 +501,9 @@ public final class AppUtils {
     public static String getAppVersionName(final String packageName) {
         if (StringUtils.isSpace(packageName)) return null;
         try {
-            PackageInfo packageInfo = getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = getPackageInfo(
+                    packageName, PackageManager.GET_SIGNATURES
+            );
             return packageInfo == null ? null : packageInfo.versionName;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppVersionName");
@@ -516,7 +526,9 @@ public final class AppUtils {
      */
     public static long getAppVersionCode(final String packageName) {
         if (StringUtils.isSpace(packageName)) return -1L;
-        PackageInfo packageInfo = getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+        PackageInfo packageInfo = getPackageInfo(
+                packageName, PackageManager.GET_SIGNATURES
+        );
         if (packageInfo == null) return -1L;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             return packageInfo.getLongVersionCode();
@@ -567,7 +579,9 @@ public final class AppUtils {
     public static Signature[] getAppSignature(final String packageName) {
         if (StringUtils.isSpace(packageName)) return null;
         try {
-            PackageInfo packageInfo = getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = getPackageInfo(
+                    packageName, PackageManager.GET_SIGNATURES
+            );
             return packageInfo == null ? null : packageInfo.signatures;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getAppSignature");
@@ -642,9 +656,17 @@ public final class AppUtils {
         try {
             Signature[] signature = getAppSignature(packageName);
             if (signature == null || signature.length == 0) return null;
-            return StringUtils.colonSplit(ConvertUtils.toHexString(EncryptUtils.hashTemplate(signature[0].toByteArray(), algorithm)));
+            return StringUtils.colonSplit(
+                    ConvertUtils.toHexString(
+                            EncryptUtils.hashTemplate(signature[0].toByteArray(), algorithm)
+                    )
+            );
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "getAppSignatureHash - packageName: %s, algorithm: %s", packageName, algorithm);
+            LogPrintUtils.eTag(
+                    TAG, e,
+                    "getAppSignatureHash - packageName: %s, algorithm: %s",
+                    packageName, algorithm
+            );
             return null;
         }
     }
@@ -805,7 +827,8 @@ public final class AppUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isInstalledApp2(final String packageName) {
-        return !StringUtils.isSpace(packageName) && IntentUtils.getLaunchAppIntent(packageName) != null;
+        return !StringUtils.isSpace(packageName)
+                && IntentUtils.getLaunchAppIntent(packageName) != null;
     }
 
     // ================
@@ -820,7 +843,9 @@ public final class AppUtils {
     public static boolean startActivity(final Intent intent) {
         if (intent == null) return false;
         try {
-            DevUtils.getContext().startActivity(IntentUtils.getIntent(intent, true));
+            DevUtils.getContext().startActivity(
+                    IntentUtils.getIntent(intent, true)
+            );
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startActivity");
@@ -873,7 +898,8 @@ public final class AppUtils {
     ) {
         if (activity == null || pendingIntent == null) return false;
         try {
-            activity.startIntentSenderForResult(pendingIntent.getIntentSender(), requestCode,
+            activity.startIntentSenderForResult(
+                    pendingIntent.getIntentSender(), requestCode,
                     null, 0, 0, 0
             );
             return true;
@@ -1020,7 +1046,9 @@ public final class AppUtils {
     public static boolean installApp(final File file) {
         if (!FileUtils.isFileExists(file)) return false;
         try {
-            return startActivity(IntentUtils.getInstallAppIntent(file, true));
+            return startActivity(
+                    IntentUtils.getInstallAppIntent(file, true)
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "installApp");
             return false;
@@ -1056,7 +1084,9 @@ public final class AppUtils {
     ) {
         if (!FileUtils.isFileExists(file)) return false;
         try {
-            activity.startActivityForResult(IntentUtils.getInstallAppIntent(file), requestCode);
+            activity.startActivityForResult(
+                    IntentUtils.getInstallAppIntent(file), requestCode
+            );
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "installApp");
@@ -1072,7 +1102,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean installAppSilent(final String filePath) {
-        return installAppSilent(filePath, null);
+        return ADBUtils.installAppSilent(filePath);
     }
 
     /**
@@ -1081,7 +1111,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean installAppSilent(final File file) {
-        return installAppSilent(file, null);
+        return ADBUtils.installAppSilent(file);
     }
 
     /**
@@ -1094,7 +1124,7 @@ public final class AppUtils {
             final String filePath,
             final String params
     ) {
-        return installAppSilent(FileUtils.getFileByPath(filePath), params, ADBUtils.isDeviceRooted());
+        return ADBUtils.installAppSilent(filePath, params);
     }
 
     /**
@@ -1107,7 +1137,7 @@ public final class AppUtils {
             final File file,
             final String params
     ) {
-        return installAppSilent(file, params, ADBUtils.isDeviceRooted());
+        return ADBUtils.installAppSilent(file, params);
     }
 
     /**
@@ -1122,11 +1152,7 @@ public final class AppUtils {
             final String params,
             final boolean isRooted
     ) {
-        if (!FileUtils.isFileExists(file)) return false;
-        String                   filePath = '"' + file.getAbsolutePath() + '"';
-        String                   command  = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm install " + (params == null ? "" : params + " ") + filePath;
-        ShellUtils.CommandResult result   = ShellUtils.execCmd(command, isRooted);
-        return result.isSuccess4("success");
+        return ADBUtils.installAppSilent(file, params, isRooted);
     }
 
     // =
@@ -1139,7 +1165,9 @@ public final class AppUtils {
     public static boolean uninstallApp(final String packageName) {
         if (StringUtils.isSpace(packageName)) return false;
         try {
-            return startActivity(IntentUtils.getUninstallAppIntent(packageName, true));
+            return startActivity(
+                    IntentUtils.getUninstallAppIntent(packageName, true)
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "uninstallApp");
             return false;
@@ -1160,7 +1188,9 @@ public final class AppUtils {
     ) {
         if (StringUtils.isSpace(packageName)) return false;
         try {
-            activity.startActivityForResult(IntentUtils.getUninstallAppIntent(packageName), requestCode);
+            activity.startActivityForResult(
+                    IntentUtils.getUninstallAppIntent(packageName), requestCode
+            );
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "uninstallApp");
@@ -1174,7 +1204,7 @@ public final class AppUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean uninstallAppSilent(final String packageName) {
-        return uninstallAppSilent(packageName, false, ADBUtils.isDeviceRooted());
+        return ADBUtils.uninstallAppSilent(packageName);
     }
 
     /**
@@ -1187,7 +1217,7 @@ public final class AppUtils {
             final String packageName,
             final boolean isKeepData
     ) {
-        return uninstallAppSilent(packageName, isKeepData, ADBUtils.isDeviceRooted());
+        return ADBUtils.uninstallAppSilent(packageName, isKeepData);
     }
 
     /**
@@ -1202,10 +1232,7 @@ public final class AppUtils {
             final boolean isKeepData,
             final boolean isRooted
     ) {
-        if (StringUtils.isSpace(packageName)) return false;
-        String                   command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm uninstall " + (isKeepData ? "-k " : "") + packageName;
-        ShellUtils.CommandResult result  = ShellUtils.execCmd(command, isRooted);
-        return result.isSuccess4("success");
+        return ADBUtils.uninstallAppSilent(packageName, isKeepData, isRooted);
     }
 
     // ==========
@@ -1220,7 +1247,9 @@ public final class AppUtils {
     public static boolean launchApp(final String packageName) {
         if (StringUtils.isSpace(packageName)) return false;
         try {
-            return startActivity(IntentUtils.getLaunchAppIntent(packageName, true));
+            return startActivity(
+                    IntentUtils.getLaunchAppIntent(packageName, true)
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "launchApp");
         }
@@ -1241,7 +1270,9 @@ public final class AppUtils {
     ) {
         if (StringUtils.isSpace(packageName)) return false;
         try {
-            activity.startActivityForResult(IntentUtils.getLaunchAppIntent(packageName), requestCode);
+            activity.startActivityForResult(
+                    IntentUtils.getLaunchAppIntent(packageName), requestCode
+            );
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "launchApp");
@@ -1267,7 +1298,11 @@ public final class AppUtils {
     public static boolean launchAppDetailsSettings(final String packageName) {
         if (StringUtils.isSpace(packageName)) return false;
         try {
-            return startActivity(IntentUtils.getLaunchAppDetailsSettingsIntent(packageName, true));
+            return startActivity(
+                    IntentUtils.getLaunchAppDetailsSettingsIntent(
+                            packageName, true
+                    )
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "launchAppDetailsSettings");
         }
@@ -1295,7 +1330,11 @@ public final class AppUtils {
     ) {
         if (StringUtils.isSpace(packageName)) return false;
         try {
-            return startActivity(IntentUtils.getLaunchAppDetailIntent(packageName, marketPkg, true));
+            return startActivity(
+                    IntentUtils.getLaunchAppDetailIntent(
+                            packageName, marketPkg, true
+                    )
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "launchAppDetails");
         }
@@ -1334,7 +1373,11 @@ public final class AppUtils {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.addCategory(Intent.CATEGORY_DEFAULT);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // 临时授权 ( 必须 )
-            intent.setDataAndType(UriUtils.getUriForFile(file, DevUtils.getAuthority()), dataType);
+            intent.setDataAndType(
+                    UriUtils.getUriForFile(
+                            file, DevUtils.getAuthority()
+                    ), dataType
+            );
             return startActivity(intent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openFile");
@@ -1458,7 +1501,12 @@ public final class AppUtils {
      */
     public static boolean startSysSetting() {
         try {
-            return startActivity(IntentUtils.getIntent(new Intent(Settings.ACTION_SETTINGS), true));
+            return startActivity(
+                    IntentUtils.getIntent(
+                            new Intent(Settings.ACTION_SETTINGS),
+                            true
+                    )
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startSysSetting");
         }
@@ -1476,7 +1524,9 @@ public final class AppUtils {
             final int requestCode
     ) {
         try {
-            activity.startActivityForResult(new Intent(Settings.ACTION_SETTINGS), requestCode);
+            activity.startActivityForResult(
+                    new Intent(Settings.ACTION_SETTINGS), requestCode
+            );
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startSysSetting");
@@ -1490,7 +1540,12 @@ public final class AppUtils {
      */
     public static boolean openWirelessSettings() {
         try {
-            return startActivity(IntentUtils.getIntent(new Intent(Settings.ACTION_WIRELESS_SETTINGS), true));
+            return startActivity(
+                    IntentUtils.getIntent(
+                            new Intent(Settings.ACTION_WIRELESS_SETTINGS),
+                            true
+                    )
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openWirelessSettings");
         }
@@ -1508,7 +1563,10 @@ public final class AppUtils {
             final int requestCode
     ) {
         try {
-            activity.startActivityForResult(new Intent(Settings.ACTION_WIRELESS_SETTINGS), requestCode);
+            activity.startActivityForResult(
+                    new Intent(Settings.ACTION_WIRELESS_SETTINGS),
+                    requestCode
+            );
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openWirelessSettings");
@@ -1522,7 +1580,12 @@ public final class AppUtils {
      */
     public static boolean openGpsSettings() {
         try {
-            return startActivity(IntentUtils.getIntent(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), true));
+            return startActivity(
+                    IntentUtils.getIntent(
+                            new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS),
+                            true
+                    )
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "openGpsSettings");
         }

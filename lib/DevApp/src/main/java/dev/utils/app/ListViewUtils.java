@@ -80,7 +80,8 @@ public final class ListViewUtils {
             if (view instanceof RecyclerView) {
                 RecyclerView         recyclerView = (RecyclerView) view;
                 RecyclerView.Adapter adapter      = recyclerView.getAdapter();
-                if (adapter != null && adapter.getItemCount() > 0 && position < adapter.getItemCount()) {
+                if (adapter != null && adapter.getItemCount() > 0
+                        && position < adapter.getItemCount()) {
                     try {
                         RecyclerView.ViewHolder holder = adapter.createViewHolder(
                                 recyclerView, adapter.getItemViewType(position)
@@ -94,7 +95,8 @@ public final class ListViewUtils {
             } else if (view instanceof ListView) {
                 ListView    listView    = (ListView) view;
                 ListAdapter listAdapter = listView.getAdapter();
-                if (listAdapter != null && listAdapter.getCount() > 0 && position < listAdapter.getCount()) {
+                if (listAdapter != null && listAdapter.getCount() > 0
+                        && position < listAdapter.getCount()) {
                     try {
                         return listAdapter.getView(position, null, listView);
                     } catch (Exception e) {
@@ -104,7 +106,8 @@ public final class ListViewUtils {
             } else if (view instanceof GridView) {
                 GridView    gridView    = (GridView) view;
                 ListAdapter listAdapter = gridView.getAdapter();
-                if (listAdapter != null && listAdapter.getCount() > 0 && position < listAdapter.getCount()) {
+                if (listAdapter != null && listAdapter.getCount() > 0
+                        && position < listAdapter.getCount()) {
                     try {
                         return listAdapter.getView(position, null, gridView);
                     } catch (Exception e) {

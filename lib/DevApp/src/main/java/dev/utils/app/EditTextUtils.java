@@ -480,8 +480,10 @@ public final class EditTextUtils {
             if (!isSelectBottom) {
                 curSelect = getSelectionStart(editText);
             }
-            editText.setTransformationMethod(isDisplayPassword ?
-                    HideReturnsTransformationMethod.getInstance() : PasswordTransformationMethod.getInstance());
+            editText.setTransformationMethod(
+                    isDisplayPassword ? HideReturnsTransformationMethod.getInstance()
+                            : PasswordTransformationMethod.getInstance()
+            );
             if (isSelectBottom) { // 设置光标到最后
                 setSelectionToBottom(editText);
             } else { // 设置光标到之前的位置
@@ -611,7 +613,9 @@ public final class EditTextUtils {
      * @return {@link DigitsKeyListener}
      */
     public static DigitsKeyListener getLettersKeyListener() {
-        return createDigitsKeyListener((InputType.TYPE_TEXT_VARIATION_PASSWORD), LETTERS);
+        return createDigitsKeyListener(
+                InputType.TYPE_TEXT_VARIATION_PASSWORD, LETTERS
+        );
     }
 
     /**
@@ -619,7 +623,9 @@ public final class EditTextUtils {
      * @return {@link DigitsKeyListener}
      */
     public static DigitsKeyListener getNumberAndLettersKeyListener() {
-        return createDigitsKeyListener((InputType.TYPE_TEXT_VARIATION_PASSWORD), NUMBERS_AND_LETTERS);
+        return createDigitsKeyListener(
+                InputType.TYPE_TEXT_VARIATION_PASSWORD, NUMBERS_AND_LETTERS
+        );
     }
 
     /**
@@ -627,7 +633,9 @@ public final class EditTextUtils {
      * @return {@link DigitsKeyListener}
      */
     public static DigitsKeyListener getNumberKeyListener() {
-        return createDigitsKeyListener((InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_NORMAL), NUMBERS);
+        return createDigitsKeyListener(
+                (InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_NORMAL), NUMBERS
+        );
     }
 
     // =
@@ -638,7 +646,9 @@ public final class EditTextUtils {
      * @return {@link DigitsKeyListener}
      */
     public static DigitsKeyListener createDigitsKeyListener(final String accepted) {
-        return createDigitsKeyListener(-1, (accepted == null) ? null : accepted.toCharArray());
+        return createDigitsKeyListener(
+                -1, (accepted == null) ? null : accepted.toCharArray()
+        );
     }
 
     /**
@@ -651,7 +661,9 @@ public final class EditTextUtils {
             final int inputType,
             final String accepted
     ) {
-        return createDigitsKeyListener(inputType, (accepted == null) ? null : accepted.toCharArray());
+        return createDigitsKeyListener(
+                inputType, (accepted == null) ? null : accepted.toCharArray()
+        );
     }
 
     // =

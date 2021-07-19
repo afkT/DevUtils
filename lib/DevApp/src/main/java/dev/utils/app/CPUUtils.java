@@ -106,7 +106,10 @@ public final class CPUUtils {
         InputStream    is = null;
         try {
             StringBuilder builder = new StringBuilder();
-            String[]      args    = {"/system/bin/cat", "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"};
+            String[]      args    = {
+                    "/system/bin/cat",
+                    "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"
+            };
             cmd = new ProcessBuilder(args);
             Process process = cmd.start();
             is = process.getInputStream();
@@ -115,7 +118,8 @@ public final class CPUUtils {
                 builder.append(new String(re));
             }
             return Formatter.formatFileSize(
-                    DevUtils.getContext(), Long.parseLong(builder.toString().trim()) * 1024
+                    DevUtils.getContext(),
+                    Long.parseLong(builder.toString().trim()) * 1024
             ) + " Hz";
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMaxCpuFreq");
@@ -134,7 +138,10 @@ public final class CPUUtils {
         InputStream    is = null;
         try {
             StringBuilder builder = new StringBuilder();
-            String[]      args    = {"/system/bin/cat", "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq"};
+            String[]      args    = {
+                    "/system/bin/cat",
+                    "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq"
+            };
             cmd = new ProcessBuilder(args);
             Process process = cmd.start();
             is = process.getInputStream();
@@ -143,7 +150,8 @@ public final class CPUUtils {
                 builder.append(new String(re));
             }
             return Formatter.formatFileSize(
-                    DevUtils.getContext(), Long.parseLong(builder.toString().trim()) * 1024
+                    DevUtils.getContext(),
+                    Long.parseLong(builder.toString().trim()) * 1024
             ) + " Hz";
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getMinCpuFreq");
@@ -159,10 +167,15 @@ public final class CPUUtils {
      */
     public static String getCurCpuFreq() {
         try {
-            FileReader     fr   = new FileReader("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq");
+            FileReader     fr   = new FileReader(
+                    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq"
+            );
             BufferedReader br   = new BufferedReader(fr);
             String         text = br.readLine();
-            return Formatter.formatFileSize(DevUtils.getContext(), Long.parseLong(text.trim()) * 1024) + " Hz";
+            return Formatter.formatFileSize(
+                    DevUtils.getContext(),
+                    Long.parseLong(text.trim()) * 1024
+            ) + " Hz";
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getCurCpuFreq");
         }

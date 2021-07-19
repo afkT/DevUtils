@@ -87,7 +87,9 @@ public final class IntentUtils {
      * @return {@link Intent}
      */
     public static Intent getCategoryLauncherIntent(final String className) {
-        return getCategoryLauncherIntent(AppUtils.getPackageName(), className, true);
+        return getCategoryLauncherIntent(
+                AppUtils.getPackageName(), className, true
+        );
     }
 
     /**
@@ -100,7 +102,9 @@ public final class IntentUtils {
             final String className,
             final boolean isNewTask
     ) {
-        return getCategoryLauncherIntent(AppUtils.getPackageName(), className, isNewTask);
+        return getCategoryLauncherIntent(
+                AppUtils.getPackageName(), className, isNewTask
+        );
     }
 
     /**
@@ -133,7 +137,9 @@ public final class IntentUtils {
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
             intent.setComponent(new ComponentName(packageName, className));
             if (isNewTask) {
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                intent.setFlags(
+                        Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED
+                );
             }
             return intent;
         } catch (Exception e) {
@@ -263,7 +269,9 @@ public final class IntentUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static Intent getLaunchAppInstallPermissionSettingsIntent() {
-        return getLaunchAppInstallPermissionSettingsIntent(AppUtils.getPackageName(), false);
+        return getLaunchAppInstallPermissionSettingsIntent(
+                AppUtils.getPackageName(), false
+        );
     }
 
     /**
@@ -273,7 +281,9 @@ public final class IntentUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static Intent getLaunchAppInstallPermissionSettingsIntent(final String packageName) {
-        return getLaunchAppInstallPermissionSettingsIntent(packageName, false);
+        return getLaunchAppInstallPermissionSettingsIntent(
+                packageName, false
+        );
     }
 
     /**
@@ -303,7 +313,9 @@ public final class IntentUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static Intent getLaunchAppNotificationSettingsIntent() {
-        return getLaunchAppNotificationSettingsIntent(AppUtils.getPackageName(), false);
+        return getLaunchAppNotificationSettingsIntent(
+                AppUtils.getPackageName(), false
+        );
     }
 
     /**
@@ -313,7 +325,9 @@ public final class IntentUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static Intent getLaunchAppNotificationSettingsIntent(final String packageName) {
-        return getLaunchAppNotificationSettingsIntent(packageName, false);
+        return getLaunchAppNotificationSettingsIntent(
+                packageName, false
+        );
     }
 
     /**
@@ -399,7 +413,9 @@ public final class IntentUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.R)
     public static Intent getManageAppAllFilesAccessPermissionIntent() {
-        return getManageAppAllFilesAccessPermissionIntent(AppUtils.getPackageName(), false);
+        return getManageAppAllFilesAccessPermissionIntent(
+                AppUtils.getPackageName(), false
+        );
     }
 
     /**
@@ -409,7 +425,9 @@ public final class IntentUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.R)
     public static Intent getManageAppAllFilesAccessPermissionIntent(final String packageName) {
-        return getManageAppAllFilesAccessPermissionIntent(packageName, false);
+        return getManageAppAllFilesAccessPermissionIntent(
+                packageName, false
+        );
     }
 
     /**
@@ -463,7 +481,9 @@ public final class IntentUtils {
      * @return APP 具体设置的意图
      */
     public static Intent getLaunchAppDetailsSettingsIntent() {
-        return getLaunchAppDetailsSettingsIntent(AppUtils.getPackageName(), false);
+        return getLaunchAppDetailsSettingsIntent(
+                AppUtils.getPackageName(), false
+        );
     }
 
     /**
@@ -472,7 +492,9 @@ public final class IntentUtils {
      * @return APP 具体设置的意图
      */
     public static Intent getLaunchAppDetailsSettingsIntent(final String packageName) {
-        return getLaunchAppDetailsSettingsIntent(packageName, false);
+        return getLaunchAppDetailsSettingsIntent(
+                packageName, false
+        );
     }
 
     /**
@@ -593,7 +615,9 @@ public final class IntentUtils {
             final boolean isNewTask
     ) {
         try {
-            return getShareImageIntent(content, FileUtils.getFileByPath(imagePath), isNewTask);
+            return getShareImageIntent(
+                    content, FileUtils.getFileByPath(imagePath), isNewTask
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getShareImageIntent");
         }
@@ -626,7 +650,9 @@ public final class IntentUtils {
             final boolean isNewTask
     ) {
         try {
-            return getShareImageIntent(content, DevUtils.getUriForFile(image), isNewTask);
+            return getShareImageIntent(
+                    content, DevUtils.getUriForFile(image), isNewTask
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getShareImageIntent");
         }
@@ -1044,7 +1070,9 @@ public final class IntentUtils {
                 }
                 if (browsers.containsKey(packageName)) {
                     if (TextUtils.isEmpty(className)) {
-                        intent.setComponent(new ComponentName(packageName, browsers.get(packageName)));
+                        intent.setComponent(
+                                new ComponentName(packageName, browsers.get(packageName))
+                        );
                     } else {
                         intent.setComponent(new ComponentName(packageName, className));
                     }

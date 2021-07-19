@@ -143,7 +143,10 @@ public final class AlarmUtils {
             final Intent intent
     ) {
         try {
-            PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getService(
+                    context, 0, intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT
+            );
             return startAlarmIntent(triggerAtMillis, pendingIntent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startAlarmService");
@@ -188,7 +191,10 @@ public final class AlarmUtils {
             final Intent intent
     ) {
         try {
-            PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getService(
+                    context, 0, intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT
+            );
             return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "stopAlarmService");
@@ -239,7 +245,10 @@ public final class AlarmUtils {
             final Intent intent
     ) {
         try {
-            PendingIntent pendingIntent = PendingIntent.getForegroundService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getForegroundService(
+                    context, 0, intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT
+            );
             return startAlarmIntent(triggerAtMillis, pendingIntent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startAlarmForegroundService");
@@ -285,7 +294,8 @@ public final class AlarmUtils {
     ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getForegroundService(
-                    context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT
+                    context, 0, intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT
             );
             return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {
@@ -312,7 +322,10 @@ public final class AlarmUtils {
             final Intent intent
     ) {
         try {
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                    context, 0, intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT
+            );
             return startAlarmIntent(triggerAtMillis, pendingIntent);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "startAlarmBroadcast");
@@ -335,7 +348,8 @@ public final class AlarmUtils {
     ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                    context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT
+                    context, 0, intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT
             );
             return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {
@@ -363,7 +377,8 @@ public final class AlarmUtils {
     ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getActivity(
-                    context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT
+                    context, 0, intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT
             );
             return startAlarmIntent(triggerAtMillis, pendingIntent);
         } catch (Exception e) {
@@ -385,7 +400,8 @@ public final class AlarmUtils {
     ) {
         try {
             PendingIntent pendingIntent = PendingIntent.getActivity(
-                    context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT
+                    context, 0, intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT
             );
             return stopAlarmIntent(pendingIntent);
         } catch (Exception e) {

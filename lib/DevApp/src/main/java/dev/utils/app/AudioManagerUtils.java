@@ -428,7 +428,9 @@ public final class AudioManagerUtils {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
                     && !notificationManager.isNotificationPolicyAccessGranted()) {
                 if (setting) {
-                    Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+                    Intent intent = new Intent(
+                            android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS
+                    );
                     AppUtils.startActivity(intent);
                 }
             } else {
@@ -738,7 +740,9 @@ public final class AudioManagerUtils {
         AudioManager audioManager = AppUtils.getAudioManager();
         if (audioManager != null) {
             try {
-                audioManager.adjustSuggestedStreamVolume(direction, AudioManager.USE_DEFAULT_STREAM_TYPE, 0);
+                audioManager.adjustSuggestedStreamVolume(
+                        direction, AudioManager.USE_DEFAULT_STREAM_TYPE, 0
+                );
                 return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "adjustSuggestedStreamVolume");

@@ -36,7 +36,8 @@ public final class BrightnessUtils {
     public static boolean isAutoBrightnessEnabled() {
         try {
             int mode = Settings.System.getInt(
-                    ResourceUtils.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE
+                    ResourceUtils.getContentResolver(),
+                    Settings.System.SCREEN_BRIGHTNESS_MODE
             );
             return mode == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
         } catch (Exception e) {
@@ -51,7 +52,8 @@ public final class BrightnessUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setAutoBrightnessEnabled(final boolean enabled) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.System.canWrite(DevUtils.getContext())) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+                !Settings.System.canWrite(DevUtils.getContext())) {
             try {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
                 intent.setData(Uri.parse("package:" + AppUtils.getPackageName()));
@@ -63,7 +65,8 @@ public final class BrightnessUtils {
         }
         try {
             return Settings.System.putInt(
-                    ResourceUtils.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE,
+                    ResourceUtils.getContentResolver(),
+                    Settings.System.SCREEN_BRIGHTNESS_MODE,
                     enabled ? Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC :
                             Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL
             );
@@ -80,7 +83,8 @@ public final class BrightnessUtils {
     public static int getBrightness() {
         try {
             return Settings.System.getInt(
-                    ResourceUtils.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS
+                    ResourceUtils.getContentResolver(),
+                    Settings.System.SCREEN_BRIGHTNESS
             );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getBrightness");
@@ -94,7 +98,8 @@ public final class BrightnessUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setBrightness(@IntRange(from = 0, to = 255) final int brightness) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.System.canWrite(DevUtils.getContext())) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+                !Settings.System.canWrite(DevUtils.getContext())) {
             try {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
                 intent.setData(Uri.parse("package:" + AppUtils.getPackageName()));
@@ -109,7 +114,10 @@ public final class BrightnessUtils {
             boolean result = Settings.System.putInt(
                     resolver, Settings.System.SCREEN_BRIGHTNESS, brightness
             );
-            resolver.notifyChange(Settings.System.getUriFor("screen_brightness"), null);
+            resolver.notifyChange(
+                    Settings.System.getUriFor("screen_brightness"),
+                    null
+            );
             return result;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "setBrightness");

@@ -98,18 +98,30 @@ public final class AccessibilityUtils {
         // 无障碍功能开启状态
         int accessibilityEnabled = 0;
         try {
-            accessibilityEnabled = Settings.Secure.getInt(ResourceUtils.getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);
+            accessibilityEnabled = Settings.Secure.getInt(
+                    ResourceUtils.getContentResolver(),
+                    Settings.Secure.ACCESSIBILITY_ENABLED
+            );
         } catch (Settings.SettingNotFoundException e) {
-            LogPrintUtils.eTag(TAG, e, "isAccessibilitySettingsOn - Settings.Secure.ACCESSIBILITY_ENABLED");
+            LogPrintUtils.eTag(
+                    TAG, e,
+                    "isAccessibilitySettingsOn - Settings.Secure.ACCESSIBILITY_ENABLED"
+            );
         }
         if (accessibilityEnabled == 1) {
             try {
-                String services = Settings.Secure.getString(ResourceUtils.getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+                String services = Settings.Secure.getString(
+                        ResourceUtils.getContentResolver(),
+                        Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES
+                );
                 if (services != null) {
                     return services.toLowerCase().contains(packageName.toLowerCase());
                 }
             } catch (Exception e) {
-                LogPrintUtils.eTag(TAG, e, "isAccessibilitySettingsOn - Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES");
+                LogPrintUtils.eTag(
+                        TAG, e,
+                        "isAccessibilitySettingsOn - Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES"
+                );
             }
         }
         return false;
@@ -143,16 +155,20 @@ public final class AccessibilityUtils {
         builder.append("=========================");
         builder.append(DevFinal.NEW_LINE_STR);
 
-        int eventType = event.getEventType(); // 事件类型
-        builder.append("packageName: ").append(event.getPackageName()); // 响应事件的应用包名
+        // 响应事件的应用包名
+        builder.append("packageName: ").append(event.getPackageName());
         builder.append(DevFinal.NEW_LINE_STR);
 
-        builder.append("source: ").append(event.getSource()); // 事件源信息
+        // 事件源信息
+        builder.append("source: ").append(event.getSource());
         builder.append(DevFinal.NEW_LINE_STR);
 
-        builder.append("source class: ").append(event.getClassName()); // 事件源的类名, 如 android.widget.TextView
+        // 事件源的类名, 如 android.widget.TextView
+        builder.append("source class: ").append(event.getClassName());
         builder.append(DevFinal.NEW_LINE_STR);
 
+        // 事件类型
+        int eventType = event.getEventType();
         builder.append("event type(int): ").append(eventType);
         builder.append(DevFinal.NEW_LINE_STR);
 

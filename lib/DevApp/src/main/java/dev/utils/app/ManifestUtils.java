@@ -122,7 +122,9 @@ public final class ManifestUtils {
             final Class<?> clazz,
             final String metaKey
     ) {
-        return (clazz != null) ? getMetaDataInService(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey) : null;
+        return (clazz != null) ? getMetaDataInService(
+                AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey
+        ) : null;
     }
 
     /**
@@ -176,7 +178,9 @@ public final class ManifestUtils {
             final Class<?> clazz,
             final String metaKey
     ) {
-        return (clazz != null) ? getMetaDataInReceiver(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey) : null;
+        return (clazz != null) ? getMetaDataInReceiver(
+                AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey
+        ) : null;
     }
 
     /**
@@ -230,7 +234,9 @@ public final class ManifestUtils {
             final Class<?> clazz,
             final String metaKey
     ) {
-        return (clazz != null) ? getMetaDataInProvider(AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey) : null;
+        return (clazz != null) ? getMetaDataInProvider(
+                AppUtils.getPackageName(), clazz.getCanonicalName(), metaKey
+        ) : null;
     }
 
     /**
@@ -289,7 +295,9 @@ public final class ManifestUtils {
      */
     public static String[] getAppVersion(final String packageName) {
         try {
-            PackageInfo packageInfo = AppUtils.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            PackageInfo packageInfo = AppUtils.getPackageInfo(
+                    packageName, PackageManager.GET_SIGNATURES
+            );
             if (packageInfo != null) {
                 String versionName = String.valueOf(packageInfo.versionName);
                 String versionCode;

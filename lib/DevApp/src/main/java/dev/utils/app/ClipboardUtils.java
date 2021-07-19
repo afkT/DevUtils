@@ -65,7 +65,9 @@ public final class ClipboardUtils {
         try {
             ClipboardManager clipManager = AppUtils.getClipboardManager();
             // 复制的数据
-            ClipData clipData = ClipData.newUri(ResourceUtils.getContentResolver(), "", uri);
+            ClipData clipData = ClipData.newUri(
+                    ResourceUtils.getContentResolver(), "", uri
+            );
             // 设置复制的数据
             clipManager.setPrimaryClip(clipData);
             return true;

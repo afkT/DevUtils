@@ -64,7 +64,10 @@ public final class KeyBoardUtils {
             final Activity activity,
             final boolean inputVisible
     ) {
-        return setSoftInputMode(activity != null ? activity.getWindow() : null, inputVisible, true);
+        return setSoftInputMode(
+                activity != null ? activity.getWindow() : null,
+                inputVisible, true
+        );
     }
 
     /**
@@ -92,7 +95,10 @@ public final class KeyBoardUtils {
             final boolean inputVisible,
             final boolean clearFlag
     ) {
-        return setSoftInputMode(activity != null ? activity.getWindow() : null, inputVisible, clearFlag);
+        return setSoftInputMode(
+                activity != null ? activity.getWindow() : null,
+                inputVisible, clearFlag
+        );
     }
 
     /**
@@ -297,7 +303,10 @@ public final class KeyBoardUtils {
         if (context == null) return;
         try {
             InputMethodManager imm    = AppUtils.getInputMethodManager();
-            String[]           strArr = new String[]{"mCurRootView", "mServedView", "mNextServedView", "mLastSrvView"};
+            String[]           strArr = new String[]{
+                    "mCurRootView", "mServedView",
+                    "mNextServedView", "mLastSrvView"
+            };
             for (String s : strArr) {
                 try {
                     Field declaredField = imm.getClass().getDeclaredField(s);
@@ -391,7 +400,10 @@ public final class KeyBoardUtils {
             try {
                 InputMethodManager imm = AppUtils.getInputMethodManager();
                 imm.showSoftInput(editText, InputMethodManager.SHOW_FORCED);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+                imm.toggleSoftInput(
+                        InputMethodManager.SHOW_FORCED,
+                        InputMethodManager.HIDE_IMPLICIT_ONLY
+                );
                 return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "openKeyboard");
@@ -479,7 +491,9 @@ public final class KeyBoardUtils {
         if (activity != null) {
             try {
                 InputMethodManager imm = AppUtils.getInputMethodManager();
-                imm.hideSoftInputFromWindow(activity.getWindow().peekDecorView().getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(
+                        activity.getWindow().peekDecorView().getWindowToken(), 0
+                );
                 return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closeKeyboard");
@@ -497,7 +511,9 @@ public final class KeyBoardUtils {
         if (dialog != null) {
             try {
                 InputMethodManager imm = AppUtils.getInputMethodManager();
-                imm.hideSoftInputFromWindow(dialog.getWindow().peekDecorView().getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(
+                        dialog.getWindow().peekDecorView().getWindowToken(), 0
+                );
                 return true;
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "closeKeyboard");

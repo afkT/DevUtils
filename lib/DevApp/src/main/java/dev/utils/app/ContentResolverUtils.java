@@ -60,7 +60,9 @@ public final class ContentResolverUtils {
         final String   column     = "_data";
         final String[] projection = {column};
         try {
-            cursor = ResourceUtils.getContentResolver().query(uri, projection, selection, selectionArgs, null);
+            cursor = ResourceUtils.getContentResolver().query(
+                    uri, projection, selection, selectionArgs, null
+            );
             if (cursor != null && cursor.moveToFirst()) {
                 final int column_index = cursor.getColumnIndexOrThrow(column);
                 return cursor.getString(column_index);
@@ -83,7 +85,9 @@ public final class ContentResolverUtils {
         final String   column     = OpenableColumns.DISPLAY_NAME;
         final String[] projection = {column};
         try {
-            cursor = ResourceUtils.getContentResolver().query(uri, projection, null, null, null);
+            cursor = ResourceUtils.getContentResolver().query(
+                    uri, projection, null, null, null
+            );
             if (cursor != null && cursor.moveToFirst()) {
                 final int column_index = cursor.getColumnIndexOrThrow(column);
                 return cursor.getString(column_index);
@@ -109,9 +113,14 @@ public final class ContentResolverUtils {
             final String[] selectionArgs
     ) {
         try {
-            return ResourceUtils.getContentResolver().delete(uri, where, selectionArgs);
+            return ResourceUtils.getContentResolver().delete(
+                    uri, where, selectionArgs
+            );
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "delete where: %s, args: %s", where, Arrays.toString(selectionArgs));
+            LogPrintUtils.eTag(
+                    TAG, e, "delete where: %s, args: %s",
+                    where, Arrays.toString(selectionArgs)
+            );
         }
         return 0;
     }
@@ -131,9 +140,14 @@ public final class ContentResolverUtils {
             final String[] selectionArgs
     ) {
         try {
-            return ResourceUtils.getContentResolver().update(uri, values, where, selectionArgs);
+            return ResourceUtils.getContentResolver().update(
+                    uri, values, where, selectionArgs
+            );
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "update where: %s, args: %s", where, Arrays.toString(selectionArgs));
+            LogPrintUtils.eTag(
+                    TAG, e, "update where: %s, args: %s",
+                    where, Arrays.toString(selectionArgs)
+            );
         }
         return 0;
     }
@@ -153,7 +167,9 @@ public final class ContentResolverUtils {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static boolean deleteDocument(final Uri uri) {
         try {
-            return DocumentsContract.deleteDocument(ResourceUtils.getContentResolver(), uri);
+            return DocumentsContract.deleteDocument(
+                    ResourceUtils.getContentResolver(), uri
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "deleteDocument");
         }
@@ -196,7 +212,9 @@ public final class ContentResolverUtils {
             final String sortOrder
     ) {
         try {
-            return ResourceUtils.getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
+            return ResourceUtils.getContentResolver().query(
+                    uri, projection, selection, selectionArgs, sortOrder
+            );
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "query");
         }
@@ -252,7 +270,9 @@ public final class ContentResolverUtils {
         if (ArrayUtils.isLength(result, 2)) {
             try {
                 // 返回外部存储 ( 公开目录 ) SDCard 文件地址获取对应的 Uri content://
-                return MediaStore.Files.getContentUri(result[1], ConvertUtils.toLong(result[0]));
+                return MediaStore.Files.getContentUri(
+                        result[1], ConvertUtils.toLong(result[0])
+                );
             } catch (Exception e) {
                 LogPrintUtils.eTag(TAG, e, "getMediaUri %s", filePath);
             }
@@ -433,11 +453,15 @@ public final class ContentResolverUtils {
                 String filePath,
                 Cursor cursor
         ) {
-            String[] result     = new String[2];
-            long     rowId      = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID));
-            String   volumeName = VOLUME_EXTERNAL;
+            String[] result = new String[2];
+            long rowId = cursor.getLong(
+                    cursor.getColumnIndex(MediaStore.Files.FileColumns._ID)
+            );
+            String volumeName = VOLUME_EXTERNAL;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                volumeName = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.VOLUME_NAME));
+                volumeName = cursor.getString(
+                        cursor.getColumnIndex(MediaStore.Files.FileColumns.VOLUME_NAME)
+                );
             }
             result[0] = String.valueOf(rowId);
             result[1] = volumeName;

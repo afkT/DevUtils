@@ -101,7 +101,9 @@ public final class NetWorkUtils {
             } else { // 需要 Manifest.permission.MODIFY_PHONE_STATE 权限, 普通 APP 无法获取
                 TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
                 // 通过反射设置移动网络
-                Method method = telephonyManager.getClass().getDeclaredMethod("setDataEnabled", boolean.class);
+                Method method = telephonyManager.getClass().getDeclaredMethod(
+                        "setDataEnabled", boolean.class
+                );
                 // 设置移动网络
                 method.invoke(telephonyManager, isOpen);
             }
@@ -257,13 +259,21 @@ public final class NetWorkUtils {
             ip = "223.5.5.5"; // 默认阿里巴巴 DNS
         }
         // cmd ping ip
-        ShellUtils.CommandResult result = ShellUtils.execCmd(String.format("ping -c 1 %s", ip), false);
+        ShellUtils.CommandResult result = ShellUtils.execCmd(
+                String.format("ping -c 1 %s", ip), false
+        );
         // 打印信息
         if (result.errorMsg != null) {
-            LogPrintUtils.dTag(TAG, "isAvailableByPing - errorMsg: %s", result.errorMsg);
+            LogPrintUtils.dTag(
+                    TAG, "isAvailableByPing - errorMsg: %s",
+                    result.errorMsg
+            );
         }
         if (result.successMsg != null) {
-            LogPrintUtils.dTag(TAG, "isAvailableByPing - successMsg: %s", result.successMsg);
+            LogPrintUtils.dTag(
+                    TAG, "isAvailableByPing - successMsg: %s",
+                    result.successMsg
+            );
         }
         // 判断结果, 返回数据不为 null
         return result.isSuccess3();
@@ -446,10 +456,11 @@ public final class NetWorkUtils {
                     netType = NetworkType.NETWORK_UNKNOWN;
                     // 获取网络连接信息
                     NetworkCapabilities networkCapabilities = manager.getNetworkCapabilities(network);
-                    // 判断连接类型
-                    if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) { // 判断是否连接 Wifi
+                    // 判断是否连接 Wifi
+                    if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                         netType = NetworkType.NETWORK_WIFI;
-                    } else if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) { // 判断连接的是否移动网络
+                    } else if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                        // 判断连接的是否移动网络
                         TelephonyManager telephonyManager = AppUtils.getTelephonyManager();
                         // 获取网络类型
                         int networkType = telephonyManager.getNetworkType();
@@ -585,7 +596,8 @@ public final class NetWorkUtils {
                         } else {
                             if (!isIPv4) {
                                 int index = hostAddress.indexOf('%');
-                                return index < 0 ? hostAddress.toUpperCase() : hostAddress.substring(0, index).toUpperCase();
+                                return index < 0 ? hostAddress.toUpperCase()
+                                        : hostAddress.substring(0, index).toUpperCase();
                             }
                         }
                     }
