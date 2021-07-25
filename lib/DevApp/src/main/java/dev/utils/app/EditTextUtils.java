@@ -1,5 +1,6 @@
 package dev.utils.app;
 
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -14,6 +15,7 @@ import android.text.method.TransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.RequiresApi;
 
 import java.util.UUID;
@@ -41,6 +43,7 @@ import dev.utils.LogPrintUtils;
  *     <p></p>
  *     自定义 EditText 光标和下划线颜色
  *     @see <a href="https://segmentfault.com/a/1190000009507919"/>
+ *     @see <a href="https://blog.csdn.net/qq_20451879/article/details/79075272"/>
  * </pre>
  */
 public final class EditTextUtils {
@@ -295,6 +298,44 @@ public final class EditTextUtils {
         }
         return editText;
     }
+
+    /**
+     * 设置光标
+     * @param editText           {@link EditText}
+     * @param textCursorDrawable 光标
+     * @param <T>                泛型
+     * @return {@link EditText}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    public static <T extends EditText> T setTextCursorDrawable(
+            final T editText,
+            @DrawableRes final int textCursorDrawable
+    ) {
+        if (editText != null) {
+            editText.setTextCursorDrawable(textCursorDrawable);
+        }
+        return editText;
+    }
+
+    /**
+     * 设置光标
+     * @param editText           {@link EditText}
+     * @param textCursorDrawable 光标
+     * @param <T>                泛型
+     * @return {@link EditText}
+     */
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    public static <T extends EditText> T setTextCursorDrawable(
+            final T editText,
+            final Drawable textCursorDrawable
+    ) {
+        if (editText != null) {
+            editText.setTextCursorDrawable(textCursorDrawable);
+        }
+        return editText;
+    }
+
+    // =
 
     /**
      * 获取光标位置

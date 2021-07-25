@@ -18,7 +18,9 @@ public final class DevFunction {
     }
 
     // 默认线程池对象
-    private static final ExecutorService sThreadPool = Executors.newFixedThreadPool(DevThreadPool.getCalcThreads());
+    private static final ExecutorService sThreadPool = Executors.newFixedThreadPool(
+            DevThreadPool.getCalcThreads()
+    );
 
     /**
      * detail: 方法体
@@ -160,17 +162,14 @@ public final class DevFunction {
                 final long delayMillis
         ) {
             if (method != null) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (delayMillis > 0L) {
-                            try {
-                                Thread.sleep(delayMillis);
-                            } catch (Exception ignored) {
-                            }
+                new Thread(() -> {
+                    if (delayMillis > 0L) {
+                        try {
+                            Thread.sleep(delayMillis);
+                        } catch (Exception ignored) {
                         }
-                        method.method(Operation.this);
                     }
+                    method.method(Operation.this);
                 }).start();
             }
             return this;
@@ -226,17 +225,14 @@ public final class DevFunction {
                 final long delayMillis
         ) {
             if (pool != null && method != null) {
-                pool.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (delayMillis > 0L) {
-                            try {
-                                Thread.sleep(delayMillis);
-                            } catch (Exception ignored) {
-                            }
+                pool.execute(() -> {
+                    if (delayMillis > 0L) {
+                        try {
+                            Thread.sleep(delayMillis);
+                        } catch (Exception ignored) {
                         }
-                        method.method(Operation.this);
                     }
+                    method.method(Operation.this);
                 });
             }
             return this;
@@ -266,22 +262,19 @@ public final class DevFunction {
                 final long delayMillis
         ) {
             if (method != null) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (delayMillis > 0L) {
-                            try {
-                                Thread.sleep(delayMillis);
-                            } catch (Exception ignored) {
-                            }
-                        }
+                new Thread(() -> {
+                    if (delayMillis > 0L) {
                         try {
-                            method.method(Operation.this);
-                        } catch (Throwable e) {
-                            LogPrintUtils.eTag(TAG, e, "threadCatch");
-                            if (method instanceof Method2) {
-                                ((Method2) method).error(Operation.this, e);
-                            }
+                            Thread.sleep(delayMillis);
+                        } catch (Exception ignored) {
+                        }
+                    }
+                    try {
+                        method.method(Operation.this);
+                    } catch (Throwable e) {
+                        LogPrintUtils.eTag(TAG, e, "threadCatch");
+                        if (method instanceof Method2) {
+                            ((Method2) method).error(Operation.this, e);
                         }
                     }
                 }).start();
@@ -339,22 +332,19 @@ public final class DevFunction {
                 final long delayMillis
         ) {
             if (pool != null && method != null) {
-                pool.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (delayMillis > 0L) {
-                            try {
-                                Thread.sleep(delayMillis);
-                            } catch (Exception ignored) {
-                            }
-                        }
+                pool.execute(() -> {
+                    if (delayMillis > 0L) {
                         try {
-                            method.method(Operation.this);
-                        } catch (Throwable e) {
-                            LogPrintUtils.eTag(TAG, e, "threadPoolCatch");
-                            if (method instanceof Method2) {
-                                ((Method2) method).error(Operation.this, e);
-                            }
+                            Thread.sleep(delayMillis);
+                        } catch (Exception ignored) {
+                        }
+                    }
+                    try {
+                        method.method(Operation.this);
+                    } catch (Throwable e) {
+                        LogPrintUtils.eTag(TAG, e, "threadPoolCatch");
+                        if (method instanceof Method2) {
+                            ((Method2) method).error(Operation.this, e);
                         }
                     }
                 });
