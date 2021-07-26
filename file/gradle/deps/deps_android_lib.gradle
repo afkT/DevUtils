@@ -25,6 +25,7 @@ dependencies {
     implementation deps.androidx.constraint_layout
     implementation deps.androidx.viewpager2
     implementation deps.androidx.fragment
+    implementation deps.androidx.activity
     implementation deps.androidx.palette
     implementation deps.androidx.flexbox
 }

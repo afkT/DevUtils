@@ -84,9 +84,9 @@ ext {
                     work_runtime                  : "androidx.work:work-runtime:2.5.0",
                     // DataStore https://developer.android.google.cn/topic/libraries/architecture/datastore
                     datastore_preferences         : "androidx.datastore:datastore-preferences:1.0.0-alpha06",
-                    fragment_ktx                  : "androidx.fragment:fragment-ktx:1.3.3",
+                    fragment_ktx                  : "androidx.fragment:fragment-ktx:1.3.6",
                     // https://developer.android.google.cn/jetpack/androidx/releases/activity
-                    activity_ktx                  : "androidx.activity:activity-ktx:1.2.3"
+                    activity_ktx                  : "androidx.activity:activity-ktx:1.2.4"
 
                     // https://developer.android.google.cn/jetpack/androidx/explorer
                     // https://developer.android.google.cn/jetpack/androidx/releases/datastore
@@ -96,8 +96,8 @@ ext {
                     // https://developer.android.com/jetpack/androidx/versions
                     // https://developer.android.com/jetpack/androidx/explorer
 
-                    appcompat            : "androidx.appcompat:appcompat:1.3.0-rc01",
-                    appcompat_resources  : "androidx.appcompat:appcompat-resources:1.3.0-rc01",
+                    appcompat            : "androidx.appcompat:appcompat:1.3.1",
+                    appcompat_resources  : "androidx.appcompat:appcompat-resources:1.3.1",
                     //support_v4            : "androidx.legacy:legacy-support-v4:1.0.0",
                     cardview             : "androidx.cardview:cardview:1.0.0",
                     recyclerview         : "androidx.recyclerview:recyclerview:1.2.0",
@@ -108,15 +108,16 @@ ext {
                     // https://mvnrepository.com/artifact/com.google.android.material/material
                     // Android Material 组件使用详解 https://blog.csdn.net/magic0908/article/details/101029876
                     // https://blog.csdn.net/qq_36861770/article/details/108946449
-                    design               : "com.google.android.material:material:1.3.0",
-                    fragment             : "androidx.fragment:fragment:1.3.3",
+                    design               : "com.google.android.material:material:1.4.0",
+                    fragment             : "androidx.fragment:fragment:1.3.6",
+                    activity             : "androidx.activity:activity:1.2.4",
                     // Palette 调色板 ( 从图片中获取颜色 )
                     palette              : "androidx.palette:palette:1.0.0", // androidx.palette:palette-ktx:1.0.0
                     // Android 可伸缩布局 FlexboxLayout ( 支持 RecyclerView 集成 ) https://github.com/google/flexbox-layout
                     flexbox              : "com.google.android:flexbox:2.0.1", // // https://juejin.im/post/58d1035161ff4b00603ca9c4
                     // Hilt 依赖注入 https://developer.android.google.cn/training/dependency-injection/hilt-android
-                    hilt_android         : "com.google.dagger:hilt-android:2.36", // https://blog.csdn.net/petterp/article/details/106771203
-                    hilt_android_compiler: "com.google.dagger:hilt-android-compiler:2.36",
+                    hilt_android         : "com.google.dagger:hilt-android:2.38", // https://blog.csdn.net/petterp/article/details/106771203
+                    hilt_android_compiler: "com.google.dagger:hilt-android-compiler:2.38",
                     // https://developer.android.google.cn/topic/libraries/app-startup
                     startup              : "androidx.startup:startup-runtime:1.0.0",
             ],
@@ -160,27 +161,27 @@ ext {
                     auto_dispose_android                : "com.uber.autodispose2:autodispose-android:2.0.0",
                     auto_dispose_lifecycle              : "com.uber.autodispose2:autodispose-androidx-lifecycle:2.0.0",
                     // fastjson https://github.com/alibaba/fastjson
-                    fastjson                            : "com.alibaba:fastjson:1.2.73",
+                    fastjson                            : "com.alibaba:fastjson:1.2.76",
                     fastjson_android                    : "com.alibaba:fastjson:1.1.72.android",
                     // Anchors 启动框架 https://github.com/YummyLau/Anchors/blob/master/README-zh.md
                     anchors                             : "com.effective.android:anchors:1.1.4",
                     // 功能面板切换辅助 https://github.com/YummyLau/PanelSwitchHelper/blob/master/README-zh.md
                     panelSwitchHelper                   : "com.effective.android:panelSwitchHelper-androidx:1.3.13",
                     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
-                    pictureSelector                     : "io.github.lucksiege:pictureselector:v2.7.3-rc03",
+                    pictureSelector                     : "io.github.lucksiege:pictureselector:v2.7.3-rc06",
                     // 动画库 https://github.com/airbnb/lottie-android
-                    lottie                              : "com.airbnb.android:lottie:3.7.0", // https://www.jianshu.com/p/9a2136ecbc7b
+                    lottie                              : "com.airbnb.android:lottie:3.7.2", // https://www.jianshu.com/p/9a2136ecbc7b
                     // Aria 下载可以很简单 https://github.com/AriaLyy/Aria
-                    aria_core                           : "com.arialyy.aria:core:3.8.12",
-                    aria_compiler                       : "com.arialyy.aria:compiler:3.8.12",
-                    aria_ftp                            : "com.arialyy.aria:ftpComponent:3.8.12", // 如果需要使用 ftp, 请增加该组件
-                    aria_sftp                           : "com.arialyy.aria:sftpComponent:3.8.12", // 如果需要使用 ftp, 请增加该组件
-                    aria_m3u8                           : "com.arialyy.aria:m3u8Component:3.8.12", // 如果需要使用 m3u8 下载功能, 请增加该组件
+                    aria_core                           : "com.arialyy.aria:core:3.8.16",
+                    aria_compiler                       : "com.arialyy.aria:compiler:3.8.16",
+                    aria_ftp                            : "com.arialyy.aria:ftpComponent:3.8.16", // 如果需要使用 ftp, 请增加该组件
+                    aria_sftp                           : "com.arialyy.aria:sftpComponent:3.8.16", // 如果需要使用 ftp, 请增加该组件
+                    aria_m3u8                           : "com.arialyy.aria:m3u8Component:3.8.16", // 如果需要使用 m3u8 下载功能, 请增加该组件
                     // 二维码 ZXing https://github.com/zxing/zxing
                     zxing_code                          : "com.google.zxing:core:3.4.1", // http://mvnrepository.com/artifact/com.google.zxing/core
                     zxing_android_code                  : "com.google.zxing:android-core:3.3.0", // http://mvnrepository.com/artifact/com.google.zxing/android-core
                     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
-                    mmkv                                : "com.tencent:mmkv-static:1.2.9",
+                    mmkv                                : "com.tencent:mmkv-static:1.2.10",
                     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
                     autosize                            : "me.jessyan:autosize:1.2.1",
                     // GreenDAO ORM 框架 https://github.com/greenrobot/greenDAO
@@ -192,7 +193,7 @@ ext {
                     // Kotlin Luban 图片压缩 https://github.com/forJrking/KLuban
                     kluban                              : "com.github.forJrking:KLuban:1.1.0",
                     // XXPermissions 权限请求框架 https://github.com/getActivity/XXPermissions
-                    xxPermissions                       : "com.github.getActivity:XXPermissions:11.5",
+                    xxPermissions                       : "com.github.getActivity:XXPermissions:11.6",
                     // ProgressManager 监听 App 中所有网络链接的上传以及下载进度 https://github.com/JessYanCoding/ProgressManager
                     progressmanager                     : "me.jessyan:progressmanager:1.5.0",
 
@@ -201,8 +202,8 @@ ext {
                     // =======
 
                     // ARouter 路由 https://github.com/alibaba/ARouter
-                    arouter_api                         : "com.alibaba:arouter-api:1.5.1", // https://github.com/alibaba/ARouter/blob/master/README_CN.md
-                    arouter_compiler                    : "com.alibaba:arouter-compiler:1.5.1",
+                    arouter_api                         : "com.alibaba:arouter-api:1.5.2", // https://github.com/alibaba/ARouter/blob/master/README_CN.md
+                    arouter_compiler                    : "com.alibaba:arouter-compiler:1.5.2",
 
                     // PaintedSkin 一款解决 Android App 换肤功能的框架 https://juejin.cn/post/6941657381281464333
                     // https://github.com/CoderAlee/PaintedSkin
@@ -277,7 +278,7 @@ ext {
                     photoview                       : "com.github.chrisbanes:PhotoView:2.3.0",
                     // 多子 view 嵌套滚动通用解决方案 https://github.com/MFC-TEC/ELinkageScroll
                     // WebView、RecyclerView 多布局连贯滑动 https://github.com/donkingliang/ConsecutiveScroller
-                    consecutiveScroller             : "com.github.donkingliang:ConsecutiveScroller:4.4.2", // AndroidX
+                    consecutiveScroller             : "com.github.donkingliang:ConsecutiveScroller:4.5.3", // AndroidX
                     // 图表 https://github.com/PhilJay/MPAndroidChart
                     mpAndroidChart                  : "com.github.PhilJay:MPAndroidChart:v3.1.0",
                     // 波浪效果 https://github.com/gelitenight/WaveView
