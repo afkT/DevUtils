@@ -11,7 +11,11 @@ import android.view.View
 import android.webkit.WebSettings
 import androidx.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
+import dev.DevAssist
+import dev.DevHttpCapture
 import dev.DevUtils
+import dev.base.DevBase
+import dev.base.DevBaseMVVM
 import dev.engine.compress.DevCompressEngine
 import dev.engine.image.DevImageEngine
 import dev.engine.json.DevJSONEngine
@@ -20,6 +24,7 @@ import dev.engine.media.DevMediaEngine
 import dev.engine.permission.DevPermissionEngine
 import dev.engine.storage.DevStorageEngine
 import dev.environment.DevEnvironment
+import dev.environment.DevEnvironmentActivity
 import dev.environment.bean.EnvironmentBean
 import dev.environment.bean.ModuleBean
 import dev.other.MMKVUtils
@@ -33,6 +38,7 @@ import dev.utils.app.logger.LogLevel
 import dev.utils.common.DateUtils
 import dev.utils.common.StringUtils
 import dev.utils.common.assist.TimeCounter
+import dev.widget.DevWidget
 import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
 import ktx.dev.assist.WebViewAssist
@@ -124,7 +130,14 @@ class BaseApplication : MultiDexApplication() {
             .append("\nVersionCode: ").append(AppUtils.getAppVersionCode())
             .append("\nVersionName: ").append(AppUtils.getAppVersionName())
             .append("\nDevUtils 版本: ").append(DevUtils.getDevAppVersion())
+            .append("\nDevAssist 版本: ").append(DevAssist.getDevAssistVersion())
+            .append("\nDevBase 版本: ").append(DevBase.getDevBaseVersion())
+            .append("\nDevBaseMVVM 版本: ").append(DevBaseMVVM.getDevBaseMVVMVersion())
+            .append("\nDevHttpCapture 版本: ").append(DevHttpCapture.getDevHttpCaptureVersion())
             .append("\nDevJava 版本: ").append(DevUtils.getDevJavaVersion())
+            .append("\nDevWidget 版本: ").append(DevWidget.getDevWidgetVersion())
+            .append("\nDevEnvironment 版本: ")
+            .append(DevEnvironmentActivity.getDevEnvironmentVersion())
             .append("\n时间: ").append(DateUtils.getDateNow())
             .append("\n初始化耗时(毫秒): ").append(timeCounter.duration())
         DevLogEngine.getEngine().i(builder.toString())
