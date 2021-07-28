@@ -6,6 +6,9 @@ android.defaultConfig {
     // DevBase Module Version
     buildConfigField "int", "DevBase_VersionCode", "${versions.dev_base_versionCode}"
     buildConfigField "String", "DevBase_Version", "\"${versions.dev_base_versionName}\""
+    // DevApp Module Version
+    buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
+    buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
 }
 
 dependencies {

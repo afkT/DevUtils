@@ -1,9 +1,7 @@
-package dev;
-
-import dev.assist.BuildConfig;
+package dev.widget;
 
 /**
- * detail: 开发辅助类
+ * detail: DevWidget
  * @author Ttt
  * <pre>
  *     GitHub
@@ -26,29 +24,32 @@ import dev.assist.BuildConfig;
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/Environment"/>
  * </pre>
  */
-public final class DevAssist {
+public final class DevWidget {
 
-    private DevAssist() {
+    private DevWidget() {
     }
+
+    // 日志 TAG
+    public static final String TAG = DevWidget.class.getSimpleName();
 
     // ============
     // = 工具类版本 =
     // ============
 
     /**
-     * 获取 DevAssist 版本号
-     * @return DevAssist versionCode
+     * 获取 DevWidget 版本号
+     * @return DevWidget versionCode
      */
-    public static int getDevAssistVersionCode() {
-        return BuildConfig.DevAssist_VersionCode;
+    public static int getDevWidgetVersionCode() {
+        return BuildConfig.DevWidget_VersionCode;
     }
 
     /**
-     * 获取 DevAssist 版本
-     * @return DevAssist versionName
+     * 获取 DevWidget 版本
+     * @return DevWidget versionName
      */
-    public static String getDevAssistVersion() {
-        return BuildConfig.DevAssist_Version;
+    public static String getDevWidgetVersion() {
+        return BuildConfig.DevWidget_Version;
     }
 
     /**

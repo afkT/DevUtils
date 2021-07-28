@@ -3,6 +3,12 @@ apply from: rootProject.file(files.lib_app_gradle)
 android.defaultConfig {
     versionCode versions.dev_widget_versionCode
     versionName versions.dev_widget_versionName
+    // DevWidget Module Version
+    buildConfigField "int", "DevWidget_VersionCode", "${versions.dev_widget_versionCode}"
+    buildConfigField "String", "DevWidget_Version", "\"${versions.dev_widget_versionName}\""
+    // DevApp Module Version
+    buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
+    buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
 }
 
 dependencies {

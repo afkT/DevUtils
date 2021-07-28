@@ -44,14 +44,16 @@ import dev.utils.common.assist.record.FileRecordUtils;
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/README.md"/>
  *     DevBase README
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevBase/README.md"/>
+ *     DevBaseMVVM README
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md"/>
+ *     DevHttpCapture Api
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/README.md"/>
  *     DevJava Api
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md"/>
  *     DevWidget Api
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README_API.md"/>
  *     DevEnvironment Api
  *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/Environment"/>
- *     DevOther Api
- *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevOther/README.md"/>
  * </pre>
  */
 public final class DevUtils {

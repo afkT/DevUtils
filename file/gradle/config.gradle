@@ -280,7 +280,7 @@ ext {
                     // WebView、RecyclerView 多布局连贯滑动 https://github.com/donkingliang/ConsecutiveScroller
                     consecutiveScroller             : "com.github.donkingliang:ConsecutiveScroller:4.5.3", // AndroidX
                     // 图表 https://github.com/PhilJay/MPAndroidChart
-                    mpAndroidChart                  : "com.github.PhilJay:MPAndroidChart:v3.1.0",
+                    mpAndroidChart                  : "com.github.PhilJay:MPAndroidChart:v3.1.0", // https://blog.csdn.net/ww897532167/article/details/74171294
                     // 波浪效果 https://github.com/gelitenight/WaveView
                     waveview                        : "com.gelitenight.waveview:waveview:1.0.0",
                     // Banner 库 https://github.com/youth5201314/banner
