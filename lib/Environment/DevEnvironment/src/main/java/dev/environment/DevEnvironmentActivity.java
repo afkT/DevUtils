@@ -22,9 +22,49 @@ import dev.environment.bean.ModuleBean;
 /**
  * detail: DevEnvironment Activity
  * @author Ttt
+ * <pre>
+ *     GitHub
+ *     @see <a href="https://github.com/afkT/DevUtils"/>
+ *     DevApp Api
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevApp/README.md"/>
+ *     DevAssist Api
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevAssist/README.md"/>
+ *     DevBase README
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevBase/README.md"/>
+ *     DevBaseMVVM README
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md"/>
+ *     DevHttpCapture Api
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/README.md"/>
+ *     DevJava Api
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevJava/README.md"/>
+ *     DevWidget Api
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/DevWidget/README_API.md"/>
+ *     DevEnvironment Api
+ *     @see <a href="https://github.com/afkT/DevUtils/blob/master/lib/Environment"/>
+ * </pre>
  */
 public final class DevEnvironmentActivity
         extends Activity {
+
+    // ============
+    // = 工具类版本 =
+    // ============
+
+    /**
+     * 获取 DevEnvironment 版本号
+     * @return DevEnvironment versionCode
+     */
+    public static int getDevEnvironmentVersionCode() {
+        return BuildConfig.DevEnvironment_VersionCode;
+    }
+
+    /**
+     * 获取 DevEnvironment 版本
+     * @return DevEnvironment versionName
+     */
+    public static String getDevEnvironmentVersion() {
+        return BuildConfig.DevEnvironment_Version;
+    }
 
     // ==========
     // = 跳转方法 =
@@ -52,7 +92,9 @@ public final class DevEnvironmentActivity
         return Utils.start(context, callback);
     }
 
-    // =
+    // ============
+    // = Activity =
+    // ============
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

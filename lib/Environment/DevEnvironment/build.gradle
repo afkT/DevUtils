@@ -3,6 +3,9 @@ apply from: rootProject.file(files.lib_app_gradle)
 android.defaultConfig {
     versionCode versions.dev_environment_versionCode
     versionName versions.dev_environment_version
+    // DevEnvironment Module Version
+    buildConfigField "int", "DevEnvironment_VersionCode", "${versions.dev_environment_versionCode}"
+    buildConfigField "String", "DevEnvironment_Version", "\"${versions.dev_environment_version}\""
 }
 
 dependencies {
