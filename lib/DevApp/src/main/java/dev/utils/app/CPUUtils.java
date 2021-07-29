@@ -106,7 +106,7 @@ public final class CPUUtils {
         InputStream    is = null;
         try {
             StringBuilder builder = new StringBuilder();
-            String[]      args    = {
+            String[] args = {
                     "/system/bin/cat",
                     "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"
             };
@@ -138,7 +138,7 @@ public final class CPUUtils {
         InputStream    is = null;
         try {
             StringBuilder builder = new StringBuilder();
-            String[]      args    = {
+            String[] args = {
                     "/system/bin/cat",
                     "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq"
             };
@@ -167,7 +167,7 @@ public final class CPUUtils {
      */
     public static String getCurCpuFreq() {
         try {
-            FileReader     fr   = new FileReader(
+            FileReader fr = new FileReader(
                     "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq"
             );
             BufferedReader br   = new BufferedReader(fr);
