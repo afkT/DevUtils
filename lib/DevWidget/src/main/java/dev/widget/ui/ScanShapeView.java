@@ -2022,72 +2022,69 @@ public class ScanShapeView
                         return input;
                     }
                 });
-                mAnimToHexagon.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        if (mCanvasToHexagon == null) {
-                            return;
-                        }
-                        // 获取递减值 => ofInt 360 递减
-                        Integer value = (Integer) animation.getAnimatedValue();
-                        // 从左往右动画
-                        if (mLineAnimDirection) {
-                            mStartLinePoint = value / 360f;
-                            if (mStartLinePoint >= 0.25f) {
-                                mStartLinePoint = mStartLinePoint - 0.25f;
-                            } else {
-                                mStartLinePoint = mStartLinePoint + 0.75f;
-                            }
-                            // 计算结束点的位置
-                            mEndLinePoint = mStartLinePoint + 0.5f;
-                            if (mStartLinePoint > 0.5f) {
-                                // 计算移动距离, 对应的透明度
-                                mOffsetLinePoint = mStartLinePoint - 0.5f;
-                                // 转换 argb
-                                int splitColor = Color.argb((int) (255 * (mOffsetLinePoint / 0.5f)), mLineRed, mLineGreen, mLineBlue);
-                                // 设置线条颜色
-                                mLineColorArray = new int[]{splitColor, mLineTran00Color, 0, 0, mLineTran255Color, splitColor};
-                                // 设置线条动画路径
-                                mLinePathArray = new float[]{0f, mOffsetLinePoint, mOffsetLinePoint, mStartLinePoint, mStartLinePoint, 1f};
-                            } else {
-                                // 设置线条颜色
-                                mLineColorArray = new int[]{0, 0, mLineTran255Color, mLineTran00Color, 0, 0};
-                                // 设置线条动画路径
-                                mLinePathArray = new float[]{0f, mStartLinePoint, mStartLinePoint, mEndLinePoint, mEndLinePoint, 1f};
-                            }
-                        } else { // 从右向左动画
-                            mStartLinePoint = (360 - value) / 360f;
-                            if (mStartLinePoint >= 0.25f) {
-                                mStartLinePoint = mStartLinePoint - 0.25f;
-                            } else {
-                                mStartLinePoint = mStartLinePoint + 0.75f;
-                            }
-                            // 计算结束点的位置
-                            mEndLinePoint = mStartLinePoint + 0.5f;
-                            if (mStartLinePoint > 0.5f) {
-                                // 计算移动距离, 对应的透明度
-                                mOffsetLinePoint = mStartLinePoint - 0.5f;
-                                // 转换 argb
-                                int splitColor = Color.argb((int) (255 * (mOffsetLinePoint / 0.5f)), mLineRed, mLineGreen, mLineBlue);
-                                // 设置线条颜色
-                                mLineColorArray = new int[]{splitColor, mLineTran00Color, 0, 0, mLineTran255Color, splitColor};
-                                // 设置线条动画路径
-                                mLinePathArray = new float[]{0f, mOffsetLinePoint, mOffsetLinePoint, mStartLinePoint, mStartLinePoint, 1f};
-                            } else {
-                                // 设置线条颜色
-                                mLineColorArray = new int[]{0, 0, mLineTran255Color, mLineTran00Color, 0, 0};
-                                // 设置线条动画路径
-                                mLinePathArray = new float[]{0f, mStartLinePoint, mStartLinePoint, mEndLinePoint, mEndLinePoint, 1f};
-                            }
-                        }
-                        // 绘制线条渐变效果
-                        SweepGradient mShader = new SweepGradient(mCenterToHexagon, mCenterToHexagon, mLineColorArray, mLinePathArray);
-                        mLinePaintToHexagon.setShader(mShader);
-                        mCanvasToHexagon.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
-                        mCanvasToHexagon.drawPath(mLinePathToHexagon, mLinePaintToHexagon);
-                        // 绘制
-                        postInvalidate();
+                mAnimToHexagon.addUpdateListener(animation -> {
+                    if (mCanvasToHexagon == null) {
+                        return;
                     }
+                    // 获取递减值 => ofInt 360 递减
+                    Integer value = (Integer) animation.getAnimatedValue();
+                    // 从左往右动画
+                    if (mLineAnimDirection) {
+                        mStartLinePoint = value / 360f;
+                        if (mStartLinePoint >= 0.25f) {
+                            mStartLinePoint = mStartLinePoint - 0.25f;
+                        } else {
+                            mStartLinePoint = mStartLinePoint + 0.75f;
+                        }
+                        // 计算结束点的位置
+                        mEndLinePoint = mStartLinePoint + 0.5f;
+                        if (mStartLinePoint > 0.5f) {
+                            // 计算移动距离, 对应的透明度
+                            mOffsetLinePoint = mStartLinePoint - 0.5f;
+                            // 转换 argb
+                            int splitColor = Color.argb((int) (255 * (mOffsetLinePoint / 0.5f)), mLineRed, mLineGreen, mLineBlue);
+                            // 设置线条颜色
+                            mLineColorArray = new int[]{splitColor, mLineTran00Color, 0, 0, mLineTran255Color, splitColor};
+                            // 设置线条动画路径
+                            mLinePathArray = new float[]{0f, mOffsetLinePoint, mOffsetLinePoint, mStartLinePoint, mStartLinePoint, 1f};
+                        } else {
+                            // 设置线条颜色
+                            mLineColorArray = new int[]{0, 0, mLineTran255Color, mLineTran00Color, 0, 0};
+                            // 设置线条动画路径
+                            mLinePathArray = new float[]{0f, mStartLinePoint, mStartLinePoint, mEndLinePoint, mEndLinePoint, 1f};
+                        }
+                    } else { // 从右向左动画
+                        mStartLinePoint = (360 - value) / 360f;
+                        if (mStartLinePoint >= 0.25f) {
+                            mStartLinePoint = mStartLinePoint - 0.25f;
+                        } else {
+                            mStartLinePoint = mStartLinePoint + 0.75f;
+                        }
+                        // 计算结束点的位置
+                        mEndLinePoint = mStartLinePoint + 0.5f;
+                        if (mStartLinePoint > 0.5f) {
+                            // 计算移动距离, 对应的透明度
+                            mOffsetLinePoint = mStartLinePoint - 0.5f;
+                            // 转换 argb
+                            int splitColor = Color.argb((int) (255 * (mOffsetLinePoint / 0.5f)), mLineRed, mLineGreen, mLineBlue);
+                            // 设置线条颜色
+                            mLineColorArray = new int[]{splitColor, mLineTran00Color, 0, 0, mLineTran255Color, splitColor};
+                            // 设置线条动画路径
+                            mLinePathArray = new float[]{0f, mOffsetLinePoint, mOffsetLinePoint, mStartLinePoint, mStartLinePoint, 1f};
+                        } else {
+                            // 设置线条颜色
+                            mLineColorArray = new int[]{0, 0, mLineTran255Color, mLineTran00Color, 0, 0};
+                            // 设置线条动画路径
+                            mLinePathArray = new float[]{0f, mStartLinePoint, mStartLinePoint, mEndLinePoint, mEndLinePoint, 1f};
+                        }
+                    }
+                    // 绘制线条渐变效果
+                    SweepGradient mShader = new SweepGradient(mCenterToHexagon, mCenterToHexagon, mLineColorArray, mLinePathArray);
+                    mLinePaintToHexagon.setShader(mShader);
+                    mCanvasToHexagon.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+                    mCanvasToHexagon.drawPath(mLinePathToHexagon, mLinePaintToHexagon);
+                    // 绘制
+                    postInvalidate();
                 });
                 break;
             case Annulus: // 环形

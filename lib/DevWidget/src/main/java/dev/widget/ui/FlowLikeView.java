@@ -177,7 +177,7 @@ public class FlowLikeView
      * detail: 动画曲线路径更新监听器, 用于动态更新动画作用对象的位置
      * @author Ttt
      */
-    private class CurveUpdateLister
+    private static class CurveUpdateLister
             implements ValueAnimator.AnimatorUpdateListener {
 
         private final View target;
@@ -202,7 +202,7 @@ public class FlowLikeView
      * detail: 自定义估值算法, 计算对象当前运动的具体位置 Point
      * @author Ttt
      */
-    private class CurveEvaluator
+    private static class CurveEvaluator
             implements TypeEvaluator<PointF> {
 
         private final PointF ctrlPointF;

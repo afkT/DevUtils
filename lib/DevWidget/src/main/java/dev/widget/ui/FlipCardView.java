@@ -234,7 +234,7 @@ public class FlipCardView
     // ==========
 
     // 内部进入动画监听
-    private Animator.AnimatorListener mInnerInAnimListener = new Animator.AnimatorListener() {
+    private final Animator.AnimatorListener mInnerInAnimListener = new Animator.AnimatorListener() {
         @Override
         public void onAnimationStart(Animator animation) {
 
