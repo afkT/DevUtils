@@ -35,7 +35,7 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 初始化方法
      * @param application {@link Application}
-     * @param config      {@link EngineConfig}
+     * @param config      Share Config
      */
     void initialize(
             Application application,
@@ -47,7 +47,7 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 打开小程序
      * @param activity {@link Activity}
-     * @param params   {@link EngineItem}
+     * @param params   Share Data Item
      * @return {@code true} success, {@code false} fail
      */
     boolean openMinApp(
@@ -58,8 +58,8 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享小程序
      * @param activity {@link Activity}
-     * @param params   {@link EngineItem}
-     * @param listener {@link ShareListener}
+     * @param params   Share Data Item
+     * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
     boolean shareMinApp(
@@ -71,8 +71,8 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享链接
      * @param activity {@link Activity}
-     * @param params   {@link EngineItem}
-     * @param listener {@link ShareListener}
+     * @param params   Share Data Item
+     * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
     boolean shareUrl(
@@ -84,8 +84,8 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享图片
      * @param activity {@link Activity}
-     * @param params   {@link EngineItem}
-     * @param listener {@link ShareListener}
+     * @param params   Share Data Item
+     * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
     boolean shareImage(
@@ -97,8 +97,8 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享视频
      * @param activity {@link Activity}
-     * @param params   {@link EngineItem}
-     * @param listener {@link ShareListener}
+     * @param params   Share Data Item
+     * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
     boolean shareVideo(
@@ -110,8 +110,8 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享音乐
      * @param activity {@link Activity}
-     * @param params   {@link EngineItem}
-     * @param listener {@link ShareListener}
+     * @param params   Share Data Item
+     * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
     boolean shareMusic(
@@ -123,8 +123,8 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享表情
      * @param activity {@link Activity}
-     * @param params   {@link EngineItem}
-     * @param listener {@link ShareListener}
+     * @param params   Share Data Item
+     * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
     boolean shareEmoji(
@@ -136,8 +136,8 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享文本
      * @param activity {@link Activity}
-     * @param params   {@link EngineItem}
-     * @param listener {@link ShareListener}
+     * @param params   Share Data Item
+     * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
     boolean shareText(
@@ -149,8 +149,8 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享文件
      * @param activity {@link Activity}
-     * @param params   {@link EngineItem}
-     * @param listener {@link ShareListener}
+     * @param params   Share Data Item
+     * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
     boolean shareFile(
@@ -162,8 +162,8 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享操作 ( 通用扩展 )
      * @param activity {@link Activity}
-     * @param params   {@link EngineItem}
-     * @param listener {@link ShareListener}
+     * @param params   Share Data Item
+     * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
     boolean share(

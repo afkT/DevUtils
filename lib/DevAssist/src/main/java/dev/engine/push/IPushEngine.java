@@ -31,7 +31,7 @@ public interface IPushEngine<Config extends IPushEngine.EngineConfig,
     /**
      * 初始化方法
      * @param application {@link Application}
-     * @param config      {@link EngineConfig}
+     * @param config      Push Config
      */
     void initialize(
             Application application,
@@ -41,7 +41,7 @@ public interface IPushEngine<Config extends IPushEngine.EngineConfig,
     /**
      * 绑定
      * @param context {@link Context}
-     * @param config  {@link EngineConfig}
+     * @param config  Push Config
      */
     void register(
             Context context,
@@ -51,7 +51,7 @@ public interface IPushEngine<Config extends IPushEngine.EngineConfig,
     /**
      * 解绑
      * @param context {@link Context}
-     * @param config  {@link EngineConfig}
+     * @param config  Push Config
      */
     void unregister(
             Context context,
@@ -103,7 +103,7 @@ public interface IPushEngine<Config extends IPushEngine.EngineConfig,
     /**
      * 命令回执通知
      * @param context {@link Context}
-     * @param message {@link EngineItem}
+     * @param message Push Data Item
      */
     void onReceiveCommandResult(
             Context context,
@@ -113,7 +113,7 @@ public interface IPushEngine<Config extends IPushEngine.EngineConfig,
     /**
      * 推送消息送达通知
      * @param context {@link Context}
-     * @param message {@link EngineItem}
+     * @param message Push Data Item
      */
     void onNotificationMessageArrived(
             Context context,
@@ -123,7 +123,7 @@ public interface IPushEngine<Config extends IPushEngine.EngineConfig,
     /**
      * 推送消息点击通知
      * @param context {@link Context}
-     * @param message {@link EngineItem}
+     * @param message Push Data Item
      */
     void onNotificationMessageClicked(
             Context context,
@@ -133,7 +133,7 @@ public interface IPushEngine<Config extends IPushEngine.EngineConfig,
     /**
      * 透传消息送达通知
      * @param context {@link Context}
-     * @param message {@link EngineItem}
+     * @param message Push Data Item
      */
     void onReceiveMessageData(
             Context context,

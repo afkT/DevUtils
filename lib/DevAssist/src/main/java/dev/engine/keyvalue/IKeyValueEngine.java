@@ -32,7 +32,7 @@ public interface IKeyValueEngine<Config extends IKeyValueEngine.EngineConfig> {
 
     /**
      * 获取 Key-Value Engine Config
-     * @return {@link Config}
+     * @return Key-Value Config
      */
     Config getConfig();
 

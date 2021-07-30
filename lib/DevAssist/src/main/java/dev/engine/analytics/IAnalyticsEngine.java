@@ -31,7 +31,7 @@ public interface IAnalyticsEngine<Config extends IAnalyticsEngine.EngineConfig,
     /**
      * 初始化方法
      * @param application {@link Application}
-     * @param config      {@link EngineConfig}
+     * @param config      Analytics Config
      */
     void initialize(
             Application application,
@@ -41,7 +41,7 @@ public interface IAnalyticsEngine<Config extends IAnalyticsEngine.EngineConfig,
     /**
      * 绑定
      * @param context {@link Context}
-     * @param config  {@link EngineConfig}
+     * @param config  Analytics Config
      */
     void register(
             Context context,
@@ -51,7 +51,7 @@ public interface IAnalyticsEngine<Config extends IAnalyticsEngine.EngineConfig,
     /**
      * 解绑
      * @param context {@link Context}
-     * @param config  {@link EngineConfig}
+     * @param config  Analytics Config
      */
     void unregister(
             Context context,
@@ -62,7 +62,7 @@ public interface IAnalyticsEngine<Config extends IAnalyticsEngine.EngineConfig,
 
     /**
      * 数据统计 ( 埋点 ) 方法
-     * @param params {@link EngineItem}
+     * @param params Analytics Data Item
      * @return {@code true} success, {@code false} fail
      */
     boolean track(Item params);

@@ -10,19 +10,19 @@ public interface ShareListener<Item extends IShareEngine.EngineItem> {
 
     /**
      * 开始分享
-     * @param params {@link IShareEngine.EngineItem}
+     * @param params Share Data Item
      */
     void onStart(Item params);
 
     /**
      * 分享成功
-     * @param params {@link IShareEngine.EngineItem}
+     * @param params Share Data Item
      */
     void onResult(Item params);
 
     /**
      * 分享失败
-     * @param params    {@link IShareEngine.EngineItem}
+     * @param params    Share Data Item
      * @param throwable {@link Throwable}
      */
     void onError(
@@ -32,7 +32,7 @@ public interface ShareListener<Item extends IShareEngine.EngineItem> {
 
     /**
      * 取消分享
-     * @param params {@link IShareEngine.EngineItem}
+     * @param params Share Data Item
      */
     void onCancel(Item params);
 }

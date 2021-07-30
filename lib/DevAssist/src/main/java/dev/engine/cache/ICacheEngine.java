@@ -80,7 +80,7 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig,
 
     /**
      * 获取 Cache Engine Config
-     * @return {@link Config}
+     * @return Cache Config
      */
     Config getConfig();
 

@@ -17,14 +17,14 @@ public interface LoadListener<TranscodeType> {
 
     /**
      * 开始加载
-     * @param source {@link DevSource}
+     * @param source 数据来源
      */
     void onStart(DevSource source);
 
     /**
      * 响应回调
-     * @param source {@link DevSource}
-     * @param value  {@link TranscodeType}
+     * @param source 数据来源
+     * @param value  结果数据
      */
     void onResponse(
             DevSource source,
@@ -33,7 +33,7 @@ public interface LoadListener<TranscodeType> {
 
     /**
      * 失败回调
-     * @param source    {@link DevSource}
+     * @param source    数据来源
      * @param throwable {@link Throwable}
      */
     void onFailure(
