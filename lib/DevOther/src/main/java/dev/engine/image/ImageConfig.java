@@ -49,7 +49,11 @@ public class ImageConfig
     // 图片保存质量
     private             int     mQuality            = QUALITY;
     // 转换符合格式文件是否原图返回
-    private             boolean mQriginalPathReturn = false;
+    private             boolean mOriginalPathReturn = false;
+    // 是否不显示动画
+    private             boolean mDontAnimate        = false;
+    // 是否移除所有 Transformation 效果
+    private             boolean mDontTransform      = false;
 
     // ==========
     // = 构造函数 =
@@ -79,7 +83,11 @@ public class ImageConfig
             // 图片保存质量
             this.mQuality = config.mQuality;
             // 转换符合格式文件是否原图返回
-            this.mQriginalPathReturn = config.mQriginalPathReturn;
+            this.mOriginalPathReturn = config.mOriginalPathReturn;
+            // 是否不显示动画
+            this.mDontAnimate = config.mDontAnimate;
+            // 是否移除所有 Transformation 效果
+            this.mDontTransform = config.mDontTransform;
         }
     }
 
@@ -229,15 +237,35 @@ public class ImageConfig
         return mQuality;
     }
 
-    public void setQuality(@IntRange(from = 0, to = 100) int quality) {
+    public ImageConfig setQuality(@IntRange(from = 0, to = 100) int quality) {
         this.mQuality = quality;
+        return this;
     }
 
     public boolean isOriginalPathReturn() {
-        return mQriginalPathReturn;
+        return mOriginalPathReturn;
     }
 
-    public void setOriginalPathReturn(boolean originalPathReturn) {
-        this.mQriginalPathReturn = originalPathReturn;
+    public ImageConfig setOriginalPathReturn(boolean originalPathReturn) {
+        this.mOriginalPathReturn = originalPathReturn;
+        return this;
+    }
+
+    public boolean isDontAnimate() {
+        return mDontAnimate;
+    }
+
+    public ImageConfig setDontAnimate(boolean dontAnimate) {
+        this.mDontAnimate = dontAnimate;
+        return this;
+    }
+
+    public boolean isDontTransform() {
+        return mDontTransform;
+    }
+
+    public ImageConfig setDontTransform(boolean dontTransform) {
+        this.mDontTransform = dontTransform;
+        return this;
     }
 }

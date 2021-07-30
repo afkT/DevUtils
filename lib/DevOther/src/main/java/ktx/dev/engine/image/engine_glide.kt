@@ -767,6 +767,14 @@ class GlideEngineImpl : IImageEngine<ImageConfig> {
             if (config.getWidth() > 0 && config.getHeight() > 0) {
                 options = options.override(config.getWidth(), config.getHeight())
             }
+
+            if (config.isDontAnimate()) {
+                options = options.dontAnimate()
+            }
+
+            if (config.isDontTransform()) {
+                options = options.dontTransform()
+            }
         }
         return options
     }

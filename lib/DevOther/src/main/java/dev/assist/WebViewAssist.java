@@ -1,5 +1,6 @@
 package dev.assist;
 
+import android.annotation.SuppressLint;
 import android.graphics.Paint;
 import android.os.Build;
 import android.view.KeyEvent;
@@ -323,6 +324,7 @@ public class WebViewAssist {
      * @param interfaceName 在 JavaScript 中公开对象的名称
      * @return {@link WebViewAssist}
      */
+    @SuppressLint("AddJavascriptInterface")
     public WebViewAssist addJavascriptInterface(
             final Object obj,
             final String interfaceName
@@ -399,6 +401,7 @@ public class WebViewAssist {
      * 获取处理各种通知和请求事件对象
      * @return {@link WebViewClient}
      */
+    @SuppressLint("WebViewApiAvailability")
     public WebViewClient getWebViewClient() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return isWebViewNotEmpty() ? mWebView.getWebViewClient() : null;
@@ -435,6 +438,7 @@ public class WebViewAssist {
      * 获取辅助 WebView 处理 Javascript 对话框、标题等对象
      * @return {@link WebChromeClient}
      */
+    @SuppressLint("WebViewApiAvailability")
     public WebChromeClient getWebChromeClient() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return isWebViewNotEmpty() ? mWebView.getWebChromeClient() : null;
@@ -1143,7 +1147,8 @@ public class WebViewAssist {
 
                     // 缩放操作
                     webSettings.setSupportZoom(mSupportZoom); // 是否支持缩放
-                    webSettings.setBuiltInZoomControls(mBuiltInZoomControls); // 是否显示内置缩放工具, 若为 false 则该 WebView 不可缩放
+                    // 是否显示内置缩放工具, 若为 false 则该 WebView 不可缩放
+                    webSettings.setBuiltInZoomControls(mBuiltInZoomControls);
                     webSettings.setDisplayZoomControls(mDisplayZoomControls); // 是否显示缩放工具
 
                     if (mTextZoom > 0) {
@@ -1165,7 +1170,8 @@ public class WebViewAssist {
                     }
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                        webSettings.setLoadsImagesAutomatically(mLoadsImagesAutomatically); // 是否支持自动加载图片
+                        // 是否支持自动加载图片
+                        webSettings.setLoadsImagesAutomatically(mLoadsImagesAutomatically);
                     }
 
                     // 是否支持通过 JS 打开新窗口

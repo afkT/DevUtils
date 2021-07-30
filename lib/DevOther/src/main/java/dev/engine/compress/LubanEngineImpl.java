@@ -35,14 +35,14 @@ public class LubanEngineImpl
             OnCompressListener compressListener
     ) {
         if (data == null || config == null || compressListener == null) return false;
-        List lists = new ArrayList<>();
+        List<Object> lists = new ArrayList<>();
         lists.add(data);
         return compress(lists, config, filter, renameListener, compressListener);
     }
 
     @Override
     public boolean compress(
-            List lists,
+            List<?> lists,
             CompressConfig config,
             OnCompressListener compressListener
     ) {
@@ -51,7 +51,7 @@ public class LubanEngineImpl
 
     @Override
     public boolean compress(
-            List lists,
+            List<?> lists,
             CompressConfig config,
             CompressFilter filter,
             OnRenameListener renameListener,
@@ -77,9 +77,7 @@ public class LubanEngineImpl
                             int index,
                             int count
                     ) {
-                        if (compressListener != null) {
-                            compressListener.onStart(index, count);
-                        }
+                        compressListener.onStart(index, count);
                     }
 
                     @Override
@@ -88,9 +86,7 @@ public class LubanEngineImpl
                             int index,
                             int count
                     ) {
-                        if (compressListener != null) {
-                            compressListener.onSuccess(file, index, count);
-                        }
+                        compressListener.onSuccess(file, index, count);
                     }
 
                     @Override
@@ -99,9 +95,7 @@ public class LubanEngineImpl
                             int index,
                             int count
                     ) {
-                        if (compressListener != null) {
-                            compressListener.onError(error, index, count);
-                        }
+                        compressListener.onError(error, index, count);
                     }
 
                     @Override
@@ -110,9 +104,7 @@ public class LubanEngineImpl
                             Map<Integer, File> maps,
                             int count
                     ) {
-                        if (compressListener != null) {
-                            compressListener.onComplete(lists, maps, count);
-                        }
+                        compressListener.onComplete(lists, maps, count);
                     }
                 }
         );

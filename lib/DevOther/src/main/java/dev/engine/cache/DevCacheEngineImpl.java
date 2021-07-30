@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.engine.json.DevJSONEngine;
+import dev.engine.json.IJSONEngine;
 import dev.utils.app.cache.DevCache;
 
 /**
@@ -23,9 +24,26 @@ public class DevCacheEngineImpl
         implements ICacheEngine<CacheConfig, DataItem> {
 
     private final CacheConfig mConfig;
+    // JSON Engine
+    private       IJSONEngine mJSONEngine;
 
-    public DevCacheEngineImpl(CacheConfig mConfig) {
-        this.mConfig = mConfig;
+    public DevCacheEngineImpl(final CacheConfig config) {
+        this(config, DevJSONEngine.getEngine());
+    }
+
+    public DevCacheEngineImpl(
+            final CacheConfig config,
+            final IJSONEngine jsonEngine
+    ) {
+        this.mConfig     = config;
+        this.mJSONEngine = jsonEngine;
+    }
+
+    // =
+
+    public DevCacheEngineImpl setJSONEngine(final IJSONEngine jsonEngine) {
+        this.mJSONEngine = jsonEngine;
+        return this;
     }
 
     // =============
@@ -254,8 +272,11 @@ public class DevCacheEngineImpl
             T value,
             long validTime
     ) {
-        String json = DevJSONEngine.getEngine().toJson(value);
-        return mConfig.mDevCache.put(key, json, validTime);
+        if (mJSONEngine != null) {
+            String json = mJSONEngine.toJson(value);
+            return mConfig.mDevCache.put(key, json, validTime);
+        }
+        return false;
     }
 
     // =======
@@ -451,9 +472,12 @@ public class DevCacheEngineImpl
             Type typeOfT,
             T defaultValue
     ) {
-        String json   = getString(key, null);
-        T      object = (T) DevJSONEngine.getEngine().fromJson(json, typeOfT);
-        if (object == null) return defaultValue;
-        return object;
+        String json = getString(key, null);
+        if (mJSONEngine != null) {
+            T object = (T) mJSONEngine.fromJson(json, typeOfT);
+            if (object == null) return defaultValue;
+            return object;
+        }
+        return null;
     }
 }

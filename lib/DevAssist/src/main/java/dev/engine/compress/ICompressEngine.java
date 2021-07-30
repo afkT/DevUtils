@@ -63,7 +63,7 @@ public interface ICompressEngine<Config extends ICompressEngine.EngineConfig> {
      * @return {@code true} success, {@code false} fail
      */
     boolean compress(
-            List lists,
+            List<?> lists,
             Config config,
             OnCompressListener compressListener
     );
@@ -78,7 +78,7 @@ public interface ICompressEngine<Config extends ICompressEngine.EngineConfig> {
      * @return {@code true} success, {@code false} fail
      */
     boolean compress(
-            List lists,
+            List<?> lists,
             Config config,
             CompressFilter filter,
             OnRenameListener renameListener,

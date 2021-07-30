@@ -40,7 +40,13 @@ class ImageConfig private constructor(
     private var mQuality = QUALITY
 
     // 转换符合格式文件是否原图返回
-    private var mQriginalPathReturn = false
+    private var mOriginalPathReturn = false
+
+    // 是否不显示动画
+    private var mDontAnimate = false
+
+    // 是否移除所有 Transformation 效果
+    private var mDontTransform = false
 
     companion object {
 
@@ -93,7 +99,11 @@ class ImageConfig private constructor(
             // 图片保存质量
             this.mQuality = it.mQuality
             // 转换符合格式文件是否原图返回
-            this.mQriginalPathReturn = it.mQriginalPathReturn
+            this.mOriginalPathReturn = it.mOriginalPathReturn
+            // 是否不显示动画
+            this.mDontAnimate = it.mDontAnimate
+            // 是否移除所有 Transformation 效果
+            this.mDontTransform = it.mDontTransform
         }
     }
 
@@ -240,10 +250,26 @@ class ImageConfig private constructor(
     }
 
     fun isOriginalPathReturn(): Boolean {
-        return mQriginalPathReturn
+        return mOriginalPathReturn
     }
 
     fun setOriginalPathReturn(originalPathReturn: Boolean) {
-        mQriginalPathReturn = originalPathReturn
+        mOriginalPathReturn = originalPathReturn
+    }
+
+    fun isDontAnimate(): Boolean {
+        return mDontAnimate
+    }
+
+    fun setDontAnimate(dontAnimate: Boolean) {
+        mDontAnimate = dontAnimate
+    }
+
+    fun isDontTransform(): Boolean {
+        return mDontTransform
+    }
+
+    fun setDontTransform(dontTransform: Boolean) {
+        mDontTransform = dontTransform
     }
 }
