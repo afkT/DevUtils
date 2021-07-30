@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
  * detail: RecyclerView ViewDataBinding ViewHolder
  * @author Ttt
  */
-class DevBaseViewDataBindingVH<VDB : ViewDataBinding>(@JvmField val binding: VDB) : RecyclerView.ViewHolder(
+class DevBaseViewDataBindingVH<VDB : ViewDataBinding>(val binding: VDB) : RecyclerView.ViewHolder(
     binding.root
 ) {
     companion object {

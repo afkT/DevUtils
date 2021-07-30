@@ -13,7 +13,7 @@ import dev.base.utils.ViewBindingUtils
  * detail: RecyclerView ViewBinding ViewHolder
  * @author Ttt
  */
-class DevBaseViewBindingVH<VB : ViewBinding>(@JvmField val binding: VB) : RecyclerView.ViewHolder(
+class DevBaseViewBindingVH<VB : ViewBinding>(val binding: VB) : RecyclerView.ViewHolder(
     binding.root
 ) {
     companion object {
