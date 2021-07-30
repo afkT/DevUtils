@@ -15,28 +15,28 @@ public class NumberControlAssist
         implements INumberOperate<NumberControlAssist> {
 
     // Number Object
-    private final DevNumber mNumber;
+    private final DevNumber<Object> mNumber;
 
     public NumberControlAssist() {
-        mNumber = new DevNumber();
+        mNumber = new DevNumber<>();
     }
 
     public NumberControlAssist(final int minNumber) {
-        mNumber = new DevNumber(minNumber);
+        mNumber = new DevNumber<>(minNumber);
     }
 
     public NumberControlAssist(
             final int minNumber,
             final int maxNumber
     ) {
-        mNumber = new DevNumber(minNumber, maxNumber);
+        mNumber = new DevNumber<>(minNumber, maxNumber);
     }
 
     /**
      * 获取 DevNumber Object
      * @return {@link DevNumber}
      */
-    public DevNumber getNumber() {
+    public DevNumber<Object> getNumber() {
         return mNumber;
     }
 

@@ -309,7 +309,7 @@ public class DevObject<T>
      * @param data {@link DevObject}
      * @return {@code true} correct, {@code false} error
      */
-    public static final boolean isCorrect(final DevObject data) {
+    public static boolean isCorrect(final DevObject<?> data) {
         return data != null && data.isCorrect();
     }
 }

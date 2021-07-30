@@ -23,7 +23,7 @@ public class RequestState<T> {
     public static final  int REQUEST_ERROR  = BASE + 6;
 
     // State Object
-    private DevState<T> mState = new DevState<>();
+    private final DevState<T> mState = new DevState<>();
 
     public RequestState() {
         setRequestNormal();

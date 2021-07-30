@@ -18,7 +18,7 @@ import dev.base.DevObject;
  * </pre>
  */
 public class DevMultiSelectList<V>
-        extends DevObject
+        extends DevObject<V>
         implements IMultiSelectToList<List<V>, V> {
 
     // 选中数据集

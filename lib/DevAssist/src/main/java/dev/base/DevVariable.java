@@ -251,10 +251,8 @@ public class DevVariable<K, V> {
      */
     public K getVariableKey(final V value) {
         // 进行循环遍历获取
-        Iterator<Map.Entry<K, V>> iterator = mLinkedHashMap.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<K, V> entry = iterator.next();
-            V               v     = entry.getValue();
+        for (Map.Entry<K, V> entry : mLinkedHashMap.entrySet()) {
+            V v = entry.getValue();
             // 判断是否符合对应的 value
             if (v == value) {
                 return entry.getKey();

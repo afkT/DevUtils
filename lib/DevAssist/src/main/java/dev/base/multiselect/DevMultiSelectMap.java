@@ -21,7 +21,7 @@ import dev.base.DevObject;
  * </pre>
  */
 public class DevMultiSelectMap<K, V>
-        extends DevObject
+        extends DevObject<V>
         implements IMultiSelectToMap<LinkedHashMap<K, V>, K, V> {
 
     // 选中数据集
@@ -250,9 +250,7 @@ public class DevMultiSelectMap<K, V>
      */
     @Override
     public List<V> getSelectValues() {
-        List<V> lists = new ArrayList<>();
-        lists.addAll(mMapSelects.values());
-        return lists;
+        return new ArrayList<>(mMapSelects.values());
     }
 
     /**
@@ -278,10 +276,8 @@ public class DevMultiSelectMap<K, V>
     @Override
     public K getSelectKey(final V value) {
         // 进行循环遍历获取
-        Iterator<Map.Entry<K, V>> iterator = mMapSelects.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<K, V> entry = iterator.next();
-            V               v     = entry.getValue();
+        for (Map.Entry<K, V> entry : mMapSelects.entrySet()) {
+            V v = entry.getValue();
             // 判断是否符合对应的 value
             if (v == value) {
                 return entry.getKey();
@@ -296,9 +292,7 @@ public class DevMultiSelectMap<K, V>
      */
     @Override
     public List<K> getSelectKeys() {
-        List<K> lists = new ArrayList<>();
-        lists.addAll(mMapSelects.keySet());
-        return lists;
+        return new ArrayList<>(mMapSelects.keySet());
     }
 
     /**
