@@ -287,6 +287,52 @@ public final class RecyclerViewUtils {
     // =
 
     /**
+     * 获取 RecyclerView 第一条完全显示 Item 索引
+     * @param view {@link View}
+     * @return 第一条完全显示 Item 索引
+     */
+    public static int findFirstCompletelyVisibleItemPosition(final View view) {
+        return findFirstCompletelyVisibleItemPosition(getRecyclerView(view));
+    }
+
+    /**
+     * 获取 RecyclerView 第一条完全显示 Item 索引
+     * @param recyclerView {@link RecyclerView}
+     * @return 第一条完全显示 Item 索引
+     */
+    public static int findFirstCompletelyVisibleItemPosition(final RecyclerView recyclerView) {
+        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        if (layoutManager instanceof LinearLayoutManager) {
+            return ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
+        }
+        return -1;
+    }
+
+    /**
+     * 获取 RecyclerView 最后一条完全显示 Item 索引
+     * @param view {@link View}
+     * @return 最后一条完全显示 Item 索引
+     */
+    public static int findLastCompletelyVisibleItemPosition(final View view) {
+        return findLastCompletelyVisibleItemPosition(getRecyclerView(view));
+    }
+
+    /**
+     * 获取 RecyclerView 最后一条完全显示 Item 索引
+     * @param recyclerView {@link RecyclerView}
+     * @return 最后一条完全显示 Item 索引
+     */
+    public static int findLastCompletelyVisibleItemPosition(final RecyclerView recyclerView) {
+        RecyclerView.LayoutManager layoutManager = getLayoutManager(recyclerView);
+        if (layoutManager instanceof LinearLayoutManager) {
+            return ((LinearLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition();
+        }
+        return -1;
+    }
+
+    // =
+
+    /**
      * 获取 RecyclerView 第一条显示 Item 索引
      * @param view {@link View}
      * @return 第一条显示 Item 索引

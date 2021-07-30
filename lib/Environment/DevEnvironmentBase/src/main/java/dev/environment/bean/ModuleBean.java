@@ -3,6 +3,7 @@ package dev.environment.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import dev.environment.annotation.Module;
 
@@ -46,8 +47,8 @@ public class ModuleBean
         if (object == null || getClass() != object.getClass()) return false;
 
         ModuleBean that = (ModuleBean) object;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return alias != null ? alias.equals(that.alias) : that.alias == null;
+        if (!Objects.equals(name, that.name)) return false;
+        return Objects.equals(alias, that.alias);
 //        // 不需要判断 List 因为内部 list 会调用 Object ( EnvironmentBean ) equals() 导致死循环
 //        if (alias != null ? !alias.equals(that.alias) : that.alias != null) return false;
 //        return environments != null ? environments.equals(that.environments) : that.environments == null;
@@ -62,10 +63,9 @@ public class ModuleBean
         return result;
     }
 
-    private final String JSON_FORMAT = "{\"name\":\"%s\",\"alias\":\"%s\",\"environments\":%s}";
-
     @Override
     public final String toString() {
+        String JSON_FORMAT = "{\"name\":\"%s\",\"alias\":\"%s\",\"environments\":%s}";
         return String.format(JSON_FORMAT, getName(), getAlias(), getEnvironments());
     }
 }

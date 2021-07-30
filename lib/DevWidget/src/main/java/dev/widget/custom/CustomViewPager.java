@@ -12,12 +12,14 @@ import dev.widget.utils.WidgetAttrs;
 /**
  * detail: 自定义 ViewPager 滑动监听、滑动控制
  * @author Ttt
+ * @deprecated 推荐使用 ViewPager2
  * <pre>
  *     app:dev_slide=""
  *     app:dev_maxWidth=""
  *     app:dev_maxHeight=""
  * </pre>
  */
+@Deprecated
 public class CustomViewPager
         extends ViewPager {
 
@@ -183,7 +185,7 @@ public class CustomViewPager
                     mIsRight    = false;
                     mIsLeft     = true;
                     mLeftScroll = true;
-                } else if (mLastValue == arg2) {
+                } else {
                     mIsRight = mIsLeft = false;
                 }
                 // 触发滑动方向回调

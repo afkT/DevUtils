@@ -1,6 +1,7 @@
 package dev.environment.bean;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import dev.environment.annotation.Environment;
 
@@ -54,10 +55,10 @@ public class EnvironmentBean
         if (object == null || getClass() != object.getClass()) return false;
 
         EnvironmentBean that = (EnvironmentBean) object;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (value != null ? !value.equals(that.value) : that.value != null) return false;
-        if (alias != null ? !alias.equals(that.alias) : that.alias != null) return false;
-        return module != null ? module.equals(that.module) : that.module == null;
+        if (!Objects.equals(name, that.name)) return false;
+        if (!Objects.equals(value, that.value)) return false;
+        if (!Objects.equals(alias, that.alias)) return false;
+        return Objects.equals(module, that.module);
     }
 
     @Override

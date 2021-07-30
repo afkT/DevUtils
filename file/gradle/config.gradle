@@ -240,8 +240,6 @@ ext {
                     // 滴滴出行 DoraemonKit http://www.dokit.cn
                     dokitx                        : "com.didichuxing.doraemonkit:dokitx:3.3.5",
                     dokitx_no_op                  : "com.didichuxing.doraemonkit:dokitx-no-op:3.3.5",
-                    // 应用数据库展示 https://github.com/guolindev/Glance
-                    glance                        : "com.glance.guolindev:glance:1.0.0",
 
                     // 滴滴 Booster 质量优化框架 https://github.com/didi/booster
 

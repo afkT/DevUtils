@@ -18,6 +18,9 @@ import dev.widget.utils.RadiusAttrs;
  *     该 View 会有锯齿情况
  *     如果需要裁剪 View 且四个角落都统一圆角可以使用 CardView 不增加阴影
  *     <p></p>
+ *     区别于 {@link dev.widget.ui.round.RoundDrawable} 属于设置 Drawable
+ *     这个是裁剪 View 为圆角效果
+ *     <p></p>
  *     app:dev_radius=""
  *     app:dev_radiusLeftTop=""
  *     app:dev_radiusLeftBottom=""

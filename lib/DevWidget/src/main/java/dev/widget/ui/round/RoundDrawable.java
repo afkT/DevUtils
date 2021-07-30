@@ -181,7 +181,9 @@ public class RoundDrawable
             final AttributeSet attrs,
             final int defStyleAttr
     ) {
-        TypedArray     a                    = context.obtainStyledAttributes(attrs, R.styleable.DevWidget, defStyleAttr, 0);
+        TypedArray a = context.obtainStyledAttributes(
+                attrs, R.styleable.DevWidget, defStyleAttr, 0
+        );
         ColorStateList colorBg              = a.getColorStateList(R.styleable.DevWidget_dev_backgroundColor);
         ColorStateList colorBorder          = a.getColorStateList(R.styleable.DevWidget_dev_borderColor);
         int            borderWidth          = a.getDimensionPixelSize(R.styleable.DevWidget_dev_borderWidth, 0);

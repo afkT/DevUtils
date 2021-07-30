@@ -1427,9 +1427,15 @@ public class ScanShapeView
                     // 判断是否绘制最外层
                     if (mAnnulusDraws[0]) {
                         // 第一个小弧度
-                        canvas.drawArc(rectF, mAnnulusAngles[0], mAnnulusLengths[0], false, mAnnulusPaints[0]);
+                        canvas.drawArc(
+                                rectF, mAnnulusAngles[0], mAnnulusLengths[0],
+                                false, mAnnulusPaints[0]
+                        );
                         // 第二个小弧度
-                        canvas.drawArc(rectF, mAnnulusAngles[0] + 180, mAnnulusLengths[0], false, mAnnulusPaints[0]);
+                        canvas.drawArc(
+                                rectF, mAnnulusAngles[0] + 180, mAnnulusLengths[0],
+                                false, mAnnulusPaints[0]
+                        );
                     }
                     // 判断是否绘制中间层
                     if (mAnnulusDraws[1]) {
@@ -1453,9 +1459,15 @@ public class ScanShapeView
                             outsiderRectF.right -= middleMargin;
                             outsiderRectF.bottom -= middleMargin;
                             // 第一个小弧度
-                            canvas.drawArc(outsiderRectF, mAnnulusAngles[1], mAnnulusLengths[1], false, mAnnulusPaints[1]);
+                            canvas.drawArc(
+                                    outsiderRectF, mAnnulusAngles[1], mAnnulusLengths[1],
+                                    false, mAnnulusPaints[1]
+                            );
                             // 第二个小弧度
-                            canvas.drawArc(outsiderRectF, mAnnulusAngles[1] + 180, mAnnulusLengths[1], false, mAnnulusPaints[1]);
+                            canvas.drawArc(
+                                    outsiderRectF, mAnnulusAngles[1] + 180, mAnnulusLengths[1],
+                                    false, mAnnulusPaints[1]
+                            );
                         }
                     }
 
@@ -1470,10 +1482,22 @@ public class ScanShapeView
                         outsiderRectF.right -= insideSpace;
                         outsiderRectF.bottom -= insideSpace;
                         // 绘制最内层, 4 个弧
-                        canvas.drawArc(outsiderRectF, mAnnulusAngles[2], mAnnulusLengths[2], false, mAnnulusPaints[2]);
-                        canvas.drawArc(outsiderRectF, mAnnulusAngles[2] + 90, mAnnulusLengths[2], false, mAnnulusPaints[2]);
-                        canvas.drawArc(outsiderRectF, mAnnulusAngles[2] + 180, mAnnulusLengths[2], false, mAnnulusPaints[2]);
-                        canvas.drawArc(outsiderRectF, mAnnulusAngles[2] + 270, mAnnulusLengths[2], false, mAnnulusPaints[2]);
+                        canvas.drawArc(
+                                outsiderRectF, mAnnulusAngles[2], mAnnulusLengths[2],
+                                false, mAnnulusPaints[2]
+                        );
+                        canvas.drawArc(
+                                outsiderRectF, mAnnulusAngles[2] + 90, mAnnulusLengths[2],
+                                false, mAnnulusPaints[2]
+                        );
+                        canvas.drawArc(
+                                outsiderRectF, mAnnulusAngles[2] + 180, mAnnulusLengths[2],
+                                false, mAnnulusPaints[2]
+                        );
+                        canvas.drawArc(
+                                outsiderRectF, mAnnulusAngles[2] + 270, mAnnulusLengths[2],
+                                false, mAnnulusPaints[2]
+                        );
                     }
                 } else { // 停止结束状态
                     // 判断绘制动画效果 ( 只有结束后, 做的一个动画效果 )
@@ -1504,10 +1528,22 @@ public class ScanShapeView
                         outsiderRectF.right -= insideSpace;
                         outsiderRectF.bottom -= insideSpace;
                         // 绘制最内层, 4 个弧
-                        canvas.drawArc(outsiderRectF, mAnnulusAngles[2], mAnnulusLengths[2], false, mAnnulusPaints[2]);
-                        canvas.drawArc(outsiderRectF, mAnnulusAngles[2] + 90, mAnnulusLengths[2], false, mAnnulusPaints[2]);
-                        canvas.drawArc(outsiderRectF, mAnnulusAngles[2] + 180, mAnnulusLengths[2], false, mAnnulusPaints[2]);
-                        canvas.drawArc(outsiderRectF, mAnnulusAngles[2] + 270, mAnnulusLengths[2], false, mAnnulusPaints[2]);
+                        canvas.drawArc(
+                                outsiderRectF, mAnnulusAngles[2], mAnnulusLengths[2],
+                                false, mAnnulusPaints[2]
+                        );
+                        canvas.drawArc(
+                                outsiderRectF, mAnnulusAngles[2] + 90, mAnnulusLengths[2],
+                                false, mAnnulusPaints[2]
+                        );
+                        canvas.drawArc(
+                                outsiderRectF, mAnnulusAngles[2] + 180, mAnnulusLengths[2],
+                                false, mAnnulusPaints[2]
+                        );
+                        canvas.drawArc(
+                                outsiderRectF, mAnnulusAngles[2] + 270, mAnnulusLengths[2],
+                                false, mAnnulusPaints[2]
+                        );
                     }
 
                     // 设置是否绘制
@@ -1652,11 +1688,17 @@ public class ScanShapeView
                 // 获取绘制的区域 ( 绘制扫描区域 + 线条居于绘制边框距离 )
                 RectF rectF = calcShapeRegion(mLineMarginToHexagon);
                 // 线条路径计算重置起始位置
-                RectF lineRectF = new RectF(0, 0, rectF.right - rectF.left, rectF.right - rectF.left);
+                RectF lineRectF = new RectF(
+                        0, 0, rectF.right - rectF.left,
+                        rectF.right - rectF.left
+                );
                 // 计算边距处理
                 mLinePathToHexagon = makeShape(lineRectF, canvas, mLinePaintToHexagon, false);
                 // 生成 Bitmap
-                mBitmapToHexagon = Bitmap.createBitmap((int) (rectF.right - rectF.left), (int) (rectF.right - rectF.left), Bitmap.Config.ARGB_8888);
+                mBitmapToHexagon = Bitmap.createBitmap(
+                        (int) (rectF.right - rectF.left), (int) (rectF.right - rectF.left),
+                        Bitmap.Config.ARGB_8888
+                );
                 // 生成新的 Canvas
                 mCanvasToHexagon = new Canvas(mBitmapToHexagon);
                 // 计算中心点

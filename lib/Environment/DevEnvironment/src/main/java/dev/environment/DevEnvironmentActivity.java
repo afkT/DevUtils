@@ -117,23 +117,15 @@ public final class DevEnvironmentActivity
         }
         setContentView(R.layout.dev_environment_activity);
         // back
-        findViewById(R.id.vid_dea_back_igview).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        findViewById(R.id.vid_dea_back_igview).setOnClickListener(v -> finish());
         // restart
         TextView vid_dea_restart_tv = findViewById(R.id.vid_dea_restart_tv);
         if (Utils.sCallback != null) {
             vid_dea_restart_tv.setVisibility(View.VISIBLE);
-            vid_dea_restart_tv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                    if (Utils.sCallback != null) {
-                        Utils.sCallback.onRestart();
-                    }
+            vid_dea_restart_tv.setOnClickListener(v -> {
+                finish();
+                if (Utils.sCallback != null) {
+                    Utils.sCallback.onRestart();
                 }
             });
         }
@@ -207,15 +199,12 @@ public final class DevEnvironmentActivity
                     vid_deie_value_tv.setText(environmentBean.getValue());
                     vid_deie_mark_igview.setVisibility(item.isSelect() ? View.VISIBLE : View.INVISIBLE);
 
-                    convertView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            // 设置选中的环境
-                            if (Utils.setModuleEnvironment(DevEnvironmentActivity.this, environmentBean)) {
-//                                AdapterItem.refreshHashCode(DevEnvironmentActivity.this);
-                                AdapterItem.changeHashCode(environmentBean);
-                                notifyDataSetChanged();
-                            }
+                    convertView.setOnClickListener(v -> {
+                        // 设置选中的环境
+                        if (Utils.setModuleEnvironment(DevEnvironmentActivity.this, environmentBean)) {
+//                            AdapterItem.refreshHashCode(DevEnvironmentActivity.this);
+                            AdapterItem.changeHashCode(environmentBean);
+                            notifyDataSetChanged();
                         }
                     });
                     break;

@@ -52,7 +52,9 @@ public class ResizableImageView
         if (bg != null) {
             int width = MeasureSpec.getSize(widthMeasureSpec);
             // 高度根据使得图片的宽度充满屏幕计算而得
-            int height = (int) Math.ceil((float) width * (float) bg.getIntrinsicHeight() / (float) bg.getIntrinsicWidth());
+            int height = (int) Math.ceil(
+                    (float) width * (float) bg.getIntrinsicHeight() / (float) bg.getIntrinsicWidth()
+            );
             // 保存缩放后的高度
             this.mZoomHeight = height;
             setMeasuredDimension(width, height);

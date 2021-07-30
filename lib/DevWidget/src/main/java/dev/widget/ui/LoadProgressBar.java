@@ -230,9 +230,15 @@ public class LoadProgressBar
             mPaint.setColor(mProgressColor); // 设置进度的颜色
             mPaint.setAntiAlias(true); // 消除锯齿
             // 用于定义的圆弧的形状和大小的界限
-            RectF oval = new RectF(centre - radius, centre - radius, centre + radius, centre + radius);
+            RectF oval = new RectF(
+                    centre - radius, centre - radius,
+                    centre + radius, centre + radius
+            );
             // 根据进度画圆弧 ( 0 从右边开始 , 270 从上边开始 )
-            canvas.drawArc(oval, 270, 360 * mProgress / mMax, false, mPaint);
+            canvas.drawArc(
+                    oval, 270, 360 * mProgress / mMax,
+                    false, mPaint
+            );
         } else if (mProgressStyle == ProgressStyle.FAN_SHAPED) { // 绘制扇形
             int centre = getWidth() / 2; // 获取圆心的 x 坐标
             int radius = centre; // 扇形的半径
@@ -241,8 +247,14 @@ public class LoadProgressBar
             mPaint.setColor(mProgressColor);  // 设置进度的颜色
             mPaint.setAntiAlias(true);  // 消除锯齿
             // 绘制扇形
-            RectF ovalBorder = new RectF(centre - radius, centre - radius, centre + radius, centre + radius);
-            canvas.drawArc(ovalBorder, 270, 360 * mProgress / mMax, true, mPaint);
+            RectF ovalBorder = new RectF(
+                    centre - radius, centre - radius,
+                    centre + radius, centre + radius
+            );
+            canvas.drawArc(
+                    ovalBorder, 270, 360 * mProgress / mMax,
+                    true, mPaint
+            );
         } else if (mProgressStyle == ProgressStyle.ARC_FAN_SHAPED) {
             // 判断是否没设置内圈宽度, 如果没有设置, 则设置为贴着外圈
             if (mInsideCircleWidth <= 0) {
@@ -258,7 +270,10 @@ public class LoadProgressBar
             mPaint.setColor(mOuterRingColor);  // 设置进度的颜色
             mPaint.setAntiAlias(true);  // 消除锯齿
             // 绘制圆外环
-            RectF ovalBorder = new RectF(centre - radius, centre - radius, centre + radius, centre + radius);
+            RectF ovalBorder = new RectF(
+                    centre - radius, centre - radius,
+                    centre + radius, centre + radius
+            );
             canvas.drawArc(ovalBorder, 270, 360, false, mPaint);
             // 绘制椭圆
             mPaint.setStrokeWidth(mInsideCircleWidth); // 设置圆的宽度
@@ -271,10 +286,15 @@ public class LoadProgressBar
             // 边距
             float margin = (getWidth() - mInsideCircleWidth) / 2;
             // 绘制扇形
-            RectF oval = new RectF(margin + centre - radius, margin + centre - radius,
+            RectF oval = new RectF(
+                    margin + centre - radius, margin + centre - radius,
                     margin + centre + radius, margin + centre + radius
             );
-            canvas.drawArc(oval, 270, (360 * mProgress) / mMax, true, mPaint);  // 根据进度画圆弧
+            // 根据进度画圆弧
+            canvas.drawArc(
+                    oval, 270, (360 * mProgress) / mMax,
+                    true, mPaint
+            );
         } else if (mProgressStyle == ProgressStyle.NUMBER) {
             // 绘制的内容
             String progressText = (mProgress * 100 / mMax) + "%";
@@ -282,7 +302,8 @@ public class LoadProgressBar
             if (mNumberTextSize <= 0) {
                 int tempWidth = getWidth();
                 // 计算字体大小
-                mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(tempWidth, mTextPaint,
+                mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(
+                        tempWidth, mTextPaint,
                         SizeUtils.pxConvertSp(tempWidth), "100%"
                 );
             }
@@ -303,12 +324,16 @@ public class LoadProgressBar
                     if (mNumberTextSize <= 0) {
                         int tempWidth = getWidth() / 3 * 2;
                         // 计算字体大小
-                        mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(tempWidth, mTextPaint,
+                        mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(
+                                tempWidth, mTextPaint,
                                 SizeUtils.pxConvertSp(tempWidth), "100%"
                         );
                     }
                     // 绘制进度文本
-                    drawProgressText(canvas, mNumberTextSize, mNumberTextColor, (mProgress * 100 / mMax) + "%");
+                    drawProgressText(
+                            canvas, mNumberTextSize, mNumberTextColor,
+                            (mProgress * 100 / mMax) + "%"
+                    );
                     break;
                 case ARC_FAN_SHAPED:
                     // 判断是否存在计算的字体大小
@@ -317,19 +342,24 @@ public class LoadProgressBar
                         if (mInsideCircleWidth < 0f) {
                             int tempWidth = getWidth() / 3 * 2;
                             // 计算字体大小
-                            mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(tempWidth, mTextPaint,
+                            mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(
+                                    tempWidth, mTextPaint,
                                     SizeUtils.pxConvertSp(tempWidth), "100%"
                             );
                         } else {
                             int tempWidth = (int) mInsideCircleWidth / 3 * 2;
                             // 计算字体大小
-                            mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(tempWidth, mTextPaint,
+                            mNumberTextSize = TextViewUtils.reckonTextSizeByWidth(
+                                    tempWidth, mTextPaint,
                                     SizeUtils.pxConvertSp(tempWidth), "100%"
                             );
                         }
                     }
                     // 绘制进度文本
-                    drawProgressText(canvas, mNumberTextSize, mNumberTextColor, (mProgress * 100 / mMax) + "%");
+                    drawProgressText(
+                            canvas, mNumberTextSize, mNumberTextColor,
+                            (mProgress * 100 / mMax) + "%"
+                    );
                     break;
             }
         }
@@ -433,10 +463,8 @@ public class LoadProgressBar
         if (progress > mMax) {
             progress = mMax;
         }
-        if (progress <= mMax) {
-            this.mProgress = progress;
-            postInvalidate();
-        }
+        this.mProgress = progress;
+        postInvalidate();
         return this;
     }
 

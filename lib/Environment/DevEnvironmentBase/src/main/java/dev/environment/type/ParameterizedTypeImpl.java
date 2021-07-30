@@ -3,6 +3,7 @@ package dev.environment.type;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class ParameterizedTypeImpl
         implements ParameterizedType {
@@ -40,10 +41,8 @@ public class ParameterizedTypeImpl
 
         ParameterizedTypeImpl that = (ParameterizedTypeImpl) object;
         if (!Arrays.equals(actualTypeArguments, that.actualTypeArguments)) return false;
-        if (ownerType != null ? !ownerType.equals(that.ownerType) : that.ownerType != null) {
-            return false;
-        }
-        return rawType != null ? rawType.equals(that.rawType) : that.rawType == null;
+        if (!Objects.equals(ownerType, that.ownerType)) return false;
+        return Objects.equals(rawType, that.rawType);
     }
 
     @Override
