@@ -1,6 +1,6 @@
 package dev.engine.media;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -32,7 +32,7 @@ public final class DevMediaEngine {
 
     // =
 
-    private static final Map<String, IMediaEngine> sEngineMaps = new HashMap<>();
+    private static final Map<String, IMediaEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
      * 获取 Media Engine

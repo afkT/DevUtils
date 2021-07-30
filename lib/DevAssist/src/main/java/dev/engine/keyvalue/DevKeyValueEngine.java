@@ -1,6 +1,6 @@
 package dev.engine.keyvalue;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -32,7 +32,7 @@ public final class DevKeyValueEngine {
 
     // =
 
-    private static final Map<String, IKeyValueEngine> sEngineMaps = new HashMap<>();
+    private static final Map<String, IKeyValueEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
      * 获取 Key-Value Engine

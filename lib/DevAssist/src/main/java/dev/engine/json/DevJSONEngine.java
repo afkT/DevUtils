@@ -1,6 +1,6 @@
 package dev.engine.json;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -32,7 +32,7 @@ public final class DevJSONEngine {
 
     // =
 
-    private static final Map<String, IJSONEngine> sEngineMaps = new HashMap<>();
+    private static final Map<String, IJSONEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
      * 获取 JSON Engine

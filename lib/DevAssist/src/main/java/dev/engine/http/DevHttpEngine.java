@@ -1,6 +1,6 @@
 package dev.engine.http;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -32,7 +32,7 @@ public final class DevHttpEngine {
 
     // =
 
-    private static final Map<String, IHttpEngine> sEngineMaps = new HashMap<>();
+    private static final Map<String, IHttpEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
      * 获取 Http Engine

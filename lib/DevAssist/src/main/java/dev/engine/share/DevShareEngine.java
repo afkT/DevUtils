@@ -1,6 +1,6 @@
 package dev.engine.share;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -32,7 +32,7 @@ public final class DevShareEngine {
 
     // =
 
-    private static final Map<String, IShareEngine> sEngineMaps = new HashMap<>();
+    private static final Map<String, IShareEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
      * 获取 Share Engine

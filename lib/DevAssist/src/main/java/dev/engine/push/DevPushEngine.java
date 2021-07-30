@@ -1,6 +1,6 @@
 package dev.engine.push;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -32,7 +32,7 @@ public final class DevPushEngine {
 
     // =
 
-    private static final Map<String, IPushEngine> sEngineMaps = new HashMap<>();
+    private static final Map<String, IPushEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
      * 获取 Push Engine

@@ -1,6 +1,6 @@
 package dev.engine.storage;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -32,7 +32,7 @@ public final class DevStorageEngine {
 
     // =
 
-    private static final Map<String, IStorageEngine> sEngineMaps = new HashMap<>();
+    private static final Map<String, IStorageEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
      * 获取 Storage Engine

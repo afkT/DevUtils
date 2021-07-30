@@ -1,6 +1,6 @@
 package dev.engine.cache;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -32,7 +32,7 @@ public final class DevCacheEngine {
 
     // =
 
-    private static final Map<String, ICacheEngine> sEngineMaps = new HashMap<>();
+    private static final Map<String, ICacheEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
      * 获取 Cache Engine

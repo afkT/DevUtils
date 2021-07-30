@@ -1,6 +1,6 @@
 package dev.engine.log;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -32,7 +32,7 @@ public final class DevLogEngine {
 
     // =
 
-    private static final Map<String, ILogEngine> sEngineMaps = new HashMap<>();
+    private static final Map<String, ILogEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
      * 获取 Log Engine

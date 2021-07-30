@@ -1,6 +1,6 @@
 package dev.engine.image;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -32,7 +32,7 @@ public final class DevImageEngine {
 
     // =
 
-    private static final Map<String, IImageEngine> sEngineMaps = new HashMap<>();
+    private static final Map<String, IImageEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
      * 获取 Image Engine

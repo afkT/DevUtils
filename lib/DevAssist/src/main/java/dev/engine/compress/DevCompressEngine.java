@@ -1,6 +1,6 @@
 package dev.engine.compress;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -32,7 +32,7 @@ public final class DevCompressEngine {
 
     // =
 
-    private static final Map<String, ICompressEngine> sEngineMaps = new HashMap<>();
+    private static final Map<String, ICompressEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
      * 获取 Compress Engine

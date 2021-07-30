@@ -58,9 +58,9 @@ public final class DevFunction {
     public static final class Operation {
 
         // 日志 TAG
-        private final String    TAG;
+        private final String       TAG;
         // 存储数据
-        private       DevObject mObject;
+        private       DevObject<?> mObject;
 
         public Operation() {
             this(Operation.class.getSimpleName());
@@ -82,7 +82,7 @@ public final class DevFunction {
          * 获取 Object
          * @return {@link DevObject}
          */
-        public DevObject getObject() {
+        public DevObject<?> getObject() {
             return mObject;
         }
 
@@ -91,7 +91,7 @@ public final class DevFunction {
          * @param object {@link DevObject}
          * @return {@link Operation}
          */
-        public Operation setObject(final DevObject object) {
+        public Operation setObject(final DevObject<?> object) {
             this.mObject = object;
             return this;
         }
@@ -379,7 +379,7 @@ public final class DevFunction {
      * @param object {@link DevObject}
      * @return {@link Operation}
      */
-    public static Operation object(final DevObject object) {
+    public static Operation object(final DevObject<?> object) {
         return new Operation().setObject(object);
     }
 

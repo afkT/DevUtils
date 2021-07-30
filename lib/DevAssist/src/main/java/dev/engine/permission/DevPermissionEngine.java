@@ -1,6 +1,6 @@
 package dev.engine.permission;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -32,7 +32,7 @@ public final class DevPermissionEngine {
 
     // =
 
-    private static final Map<String, IPermissionEngine> sEngineMaps = new HashMap<>();
+    private static final Map<String, IPermissionEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
      * 获取 Permission Engine
