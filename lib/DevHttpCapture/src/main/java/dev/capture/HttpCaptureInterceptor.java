@@ -152,10 +152,8 @@ public final class HttpCaptureInterceptor
             boolean isFilter = false;
             try {
                 isFilter = mHttpFilter.filter(
-                        request.url().toString(),
-                        request.method(),
-                        protocol,
-                        request.headers()
+                        request.url().toString(), request.method(),
+                        protocol, request.headers()
                 );
             } catch (Exception ignored) {
             }
@@ -174,10 +172,14 @@ public final class HttpCaptureInterceptor
 
         if (hasRequestBody) {
             if (requestBody.contentType() != null) {
-                captureInfo.requestHeader.put("Content-Type", String.valueOf(requestBody.contentType()));
+                captureInfo.requestHeader.put(
+                        "Content-Type", String.valueOf(requestBody.contentType())
+                );
             }
             if (requestBody.contentLength() != -1) {
-                captureInfo.requestHeader.put("Content-Length", String.valueOf(requestBody.contentLength()));
+                captureInfo.requestHeader.put(
+                        "Content-Length", String.valueOf(requestBody.contentLength())
+                );
             }
         }
 
@@ -202,17 +204,13 @@ public final class HttpCaptureInterceptor
                             captureInfo.requestBody.put(formBody.name(i), formBody.value(i));
                         }
                     }
-                    StringBuilder bodyBuilder = new StringBuilder()
-                            .append(request.method())
-                            .append(" (").append(requestBody.contentLength())
-                            .append("- byte body)");
-                    captureInfo.requestBody.put("body length", bodyBuilder.toString());
+                    String bodyBuilder = request.method() +
+                            " (" + requestBody.contentLength() + "- byte body)";
+                    captureInfo.requestBody.put("body length", bodyBuilder);
                 } else {
-                    StringBuilder bodyBuilder = new StringBuilder()
-                            .append(request.method())
-                            .append(" (binary ").append(requestBody.contentLength())
-                            .append("- byte body omitted)");
-                    captureInfo.requestBody.put("body length", bodyBuilder.toString());
+                    String bodyBuilder = request.method() +
+                            " (binary " + requestBody.contentLength() + "- byte body omitted)";
+                    captureInfo.requestBody.put("body length", bodyBuilder);
                 }
             }
         }

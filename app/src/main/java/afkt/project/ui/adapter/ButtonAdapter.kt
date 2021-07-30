@@ -30,7 +30,7 @@ class ButtonAdapter(data: List<ButtonValue>) : DevDataAdapterExt<ButtonValue, De
         position: Int
     ) {
         val item = getDataItem(position)
-        holder.binding.vidBvbBtn?.apply {
+        holder.binding.vidBvbBtn.apply {
             text = item.text
             setOnClickListener {
                 mItemCallback?.onItemClick(item, position)

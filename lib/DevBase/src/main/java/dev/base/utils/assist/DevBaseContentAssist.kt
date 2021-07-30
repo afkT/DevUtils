@@ -48,16 +48,14 @@ class DevBaseContentAssist {
     open var floatFrame: FrameLayout? = null
 
     fun bind(activity: Activity): DevBaseContentAssist {
-        if (activity != null) {
-            // R.layout.base_content_view
-            this.rootLinear = activity.findViewById(R.id.vid_bcv_root_linear)
-            this.statusBarLinear = activity.findViewById(R.id.vid_bcv_status_bar_linear)
-            this.titleLinear = activity.findViewById(R.id.vid_bcv_title_linear)
-            this.bodyFrame = activity.findViewById(R.id.vid_bcv_body_frame)
-            this.contentLinear = activity.findViewById(R.id.vid_bcv_content_linear)
-            this.stateLinear = activity.findViewById(R.id.vid_bcv_state_linear)
-            this.floatFrame = activity.findViewById(R.id.vid_bcv_float_frame)
-        }
+        // R.layout.base_content_view
+        this.rootLinear = activity.findViewById(R.id.vid_bcv_root_linear)
+        this.statusBarLinear = activity.findViewById(R.id.vid_bcv_status_bar_linear)
+        this.titleLinear = activity.findViewById(R.id.vid_bcv_title_linear)
+        this.bodyFrame = activity.findViewById(R.id.vid_bcv_body_frame)
+        this.contentLinear = activity.findViewById(R.id.vid_bcv_content_linear)
+        this.stateLinear = activity.findViewById(R.id.vid_bcv_state_linear)
+        this.floatFrame = activity.findViewById(R.id.vid_bcv_float_frame)
         return this
     }
 

@@ -36,7 +36,7 @@ class LubanEngineImpl : ICompressEngine<CompressConfig> {
     }
 
     override fun compress(
-        lists: MutableList<Any?>?,
+        lists: MutableList<*>?,
         config: CompressConfig?,
         compressListener: OnCompressListener?
     ): Boolean {
@@ -44,7 +44,7 @@ class LubanEngineImpl : ICompressEngine<CompressConfig> {
     }
 
     override fun compress(
-        lists: MutableList<Any?>?,
+        lists: MutableList<*>?,
         config: CompressConfig?,
         filter: CompressFilter?,
         renameListener: OnRenameListener?,
