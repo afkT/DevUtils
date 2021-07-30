@@ -60,10 +60,8 @@ public final class DevThreadManager {
                 } else { // 其他类型, 统一转换 Integer
                     devThreadPool = new DevThreadPool(Integer.parseInt((String) object));
                 }
-                if (devThreadPool != null) {
-                    sThreadMaps.put(key, devThreadPool);
-                    return devThreadPool;
-                }
+                sThreadMaps.put(key, devThreadPool);
+                return devThreadPool;
             } catch (Exception e) {
                 return sDevThreadPool;
             }

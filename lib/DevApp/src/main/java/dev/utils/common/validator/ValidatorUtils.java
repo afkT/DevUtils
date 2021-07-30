@@ -248,8 +248,8 @@ public final class ValidatorUtils {
     public static boolean isContainChinese(final String str) {
         if (!StringUtils.isEmpty(str)) {
             try {
-                int length;
-                if (str != null && (length = str.length()) != 0) {
+                int length = str.length();
+                if (length != 0) {
                     char[] dChar = str.toCharArray();
                     for (int i = 0; i < length; i++) {
                         boolean flag = String.valueOf(dChar[i]).matches(REGEX_CHINESE_ALL2);
