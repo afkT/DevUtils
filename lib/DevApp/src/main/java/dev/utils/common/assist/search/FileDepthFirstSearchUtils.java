@@ -33,7 +33,7 @@ public final class FileDepthFirstSearchUtils {
      * detail: 文件信息 Item
      * @author Ttt
      */
-    public final class FileItem {
+    public static final class FileItem {
 
         public FileItem(final File file) {
             this.file = file;
@@ -212,16 +212,13 @@ public final class FileDepthFirstSearchUtils {
             String[] fileArrays = file.list();
             // 获取文件总数
             if (fileArrays != null && fileArrays.length != 0) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        List<FileItem> lists = new ArrayList<>();
-                        // 查询文件
-                        queryFile(file, lists, isRelation);
-                        // 触发结束回调
-                        mEndTime = System.currentTimeMillis();
-                        mInnerHandler.onEndListener(lists, mStartTime, mEndTime);
-                    }
+                new Thread(() -> {
+                    List<FileItem> lists = new ArrayList<>();
+                    // 查询文件
+                    queryFile(file, lists, isRelation);
+                    // 触发结束回调
+                    mEndTime = System.currentTimeMillis();
+                    mInnerHandler.onEndListener(lists, mStartTime, mEndTime);
                 }).start();
             } else {
                 // 触发结束回调

@@ -17,10 +17,6 @@ import java.io.UnsupportedEncodingException;
 /**
  * detail: Base64 工具类
  * @author Android
- * <pre>
- *     Utilities for encoding and decoding the Base64 representation of
- *     binary data.  See RFCs <a href="http://www.ietf.org/rfc/rfc2045.txt">2045</a> and <a href="http://www.ietf.org/rfc/rfc3548.txt">3548</a>.
- * </pre>
  */
 public final class Base64 {
     /**
@@ -56,7 +52,7 @@ public final class Base64 {
     public static final int URL_SAFE = 8;
 
     /**
-     * Flag to pass to {@link Base64OutputStream} to indicate that it
+     * Flag to pass to Base64OutputStream to indicate that it
      * should not close the output stream it is wrapping when it
      * itself is closed.
      */
