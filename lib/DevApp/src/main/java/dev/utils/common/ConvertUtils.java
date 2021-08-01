@@ -63,58 +63,6 @@ public final class ConvertUtils {
 
     /**
      * Object 转 String
-     * @param data byte[]
-     * @return {@link String}
-     * @deprecated {@link #newString}
-     */
-    @Deprecated
-    public static String toString(final byte[] data) {
-        return newString(data, null);
-    }
-
-    /**
-     * Object 转 String
-     * @param data       byte[]
-     * @param defaultStr 默认字符串
-     * @return {@link String} 如果转换失败则返回 defaultStr
-     * @deprecated {@link #newString}
-     */
-    @Deprecated
-    public static String toString(
-            final byte[] data,
-            final String defaultStr
-    ) {
-        return newString(data, defaultStr);
-    }
-
-    /**
-     * Object 转 String
-     * @param data char[]
-     * @return {@link String}
-     * @deprecated {@link #newString}
-     */
-    @Deprecated
-    public static String toString(final char[] data) {
-        return newString(data, null);
-    }
-
-    /**
-     * Object 转 String
-     * @param data       char[]
-     * @param defaultStr 默认字符串
-     * @return {@link String} 如果转换失败则返回 defaultStr
-     * @deprecated {@link #newString}
-     */
-    @Deprecated
-    public static String toString(
-            final char[] data,
-            final String defaultStr
-    ) {
-        return newString(data, defaultStr);
-    }
-
-    /**
-     * Object 转 String
      * @param value Value
      * @return {@link String}
      */
@@ -271,7 +219,7 @@ public final class ConvertUtils {
                 return Integer.parseInt(strVal);
             }
             if (value instanceof Boolean) {
-                return ((Boolean) value).booleanValue() ? 1 : 0;
+                return (Boolean) value ? 1 : 0;
             }
             throw new Exception("can not cast to int, value : " + value);
         } catch (Exception e) {
@@ -687,7 +635,7 @@ public final class ConvertUtils {
      * @return int
      */
     public static int toCharInt(final char value) {
-        return (int) value;
+        return value;
     }
 
     /**
@@ -1666,7 +1614,8 @@ public final class ConvertUtils {
     /**
      * 二进制字符串 转换 byte[] 解码
      * <pre>
-     *     例: "011000010111001101100100" 传入 decodeBinary, 返回 byte[], 通过 new String(byte()) 获取配合 toBinaryString 使用
+     *     例: "011000010111001101100100" 传入 decodeBinary
+     *     返回 byte[], 通过 new String(byte()) 获取配合 toBinaryString 使用
      * </pre>
      * @param str 待处理字符串
      * @return 解码后的 byte[]
@@ -1886,7 +1835,10 @@ public final class ConvertUtils {
             final String str,
             final boolean toLowerCase
     ) {
-        return toHexChars(StringUtils.isEmpty(str) ? null : str.getBytes(), toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER);
+        return toHexChars(
+                StringUtils.isEmpty(str) ? null : str.getBytes(),
+                toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER
+        );
     }
 
     // =
@@ -1953,7 +1905,10 @@ public final class ConvertUtils {
             final String str,
             final boolean toLowerCase
     ) {
-        return toHexString(StringUtils.isEmpty(str) ? null : str.getBytes(), toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER);
+        return toHexString(
+                StringUtils.isEmpty(str) ? null : str.getBytes(),
+                toLowerCase ? HEX_DIGITS : HEX_DIGITS_UPPER
+        );
     }
 
     // =
@@ -1994,9 +1949,9 @@ public final class ConvertUtils {
         try {
             int           len     = data.length;
             StringBuilder builder = new StringBuilder(len);
-            for (int i = 0; i < len; i++) {
-                builder.append(hexDigits[(data[i] & 0xf0) >>> 4]);
-                builder.append(hexDigits[data[i] & 0x0f]);
+            for (byte value : data) {
+                builder.append(hexDigits[(value & 0xf0) >>> 4]);
+                builder.append(hexDigits[value & 0x0f]);
             }
             return builder.toString();
         } catch (Exception e) {
