@@ -231,7 +231,8 @@ public final class ClassUtils {
     ) {
         if (clazz != null && pos >= 0) {
             try {
-                return ((ParameterizedType) clazz.getGenericSuperclass()).getActualTypeArguments()[pos];
+                return ((ParameterizedType) clazz.getGenericSuperclass())
+                        .getActualTypeArguments()[pos];
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "getGenericSuperclass");
             }

@@ -517,7 +517,7 @@ public final class DevUtils {
                 Object activityThread  = activityThreadClass.getMethod("currentActivityThread").invoke(null);
                 Field  activitiesField = activityThreadClass.getDeclaredField("mActivityLists");
                 activitiesField.setAccessible(true);
-                Map activities = (Map) activitiesField.get(activityThread);
+                Map<?, ?> activities = (Map<?, ?>) activitiesField.get(activityThread);
                 if (activities == null) return null;
                 for (Object activityRecord : activities.values()) {
                     Class<?> activityRecordClass = activityRecord.getClass();

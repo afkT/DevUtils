@@ -1,7 +1,6 @@
 package dev.utils.common;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -90,7 +89,7 @@ public final class ColorUtils {
     // 低光
     public static final int LOWLIGHT          = 0x33000000;
 
-    /**
+    /*
      * 0-255 十进值转换成十六进制, 如 255 就是 ff
      * 255 * 0.x = 十进制 转 十六进制
      * <p></p>
@@ -573,12 +572,12 @@ public final class ColorUtils {
      */
     public static boolean judgeColorString(final String colorStr) {
         if (colorStr != null && colorStr.length() == 8) {
-            for (int i = 0; i < colorStr.length(); i++) {
-                char cc = colorStr.charAt(i);
-                return !(cc != '0' && cc != '1' && cc != '2' && cc != '3' && cc != '4' && cc != '5' && cc != '6' && cc != '7' && cc != '8' && cc != '9'
-                        && cc != 'A' && cc != 'B' && cc != 'C' && cc != 'D' && cc != 'E' && cc != 'F'
-                        && cc != 'a' && cc != 'b' && cc != 'c' && cc != 'd' && cc != 'e' && cc != 'f');
-            }
+            char cc = colorStr.charAt(0);
+            return !(cc != '0' && cc != '1' && cc != '2' && cc != '3' && cc != '4'
+                    && cc != '5' && cc != '6' && cc != '7' && cc != '8' && cc != '9'
+                    && cc != 'A' && cc != 'B' && cc != 'C' && cc != 'D' && cc != 'E'
+                    && cc != 'F' && cc != 'a' && cc != 'b' && cc != 'c' && cc != 'd'
+                    && cc != 'e' && cc != 'f');
         }
         return false;
     }
@@ -953,18 +952,16 @@ public final class ColorUtils {
 
         @Override
         public String toString() {
-            StringBuilder builder = new StringBuilder();
-            builder.append("key : ").append(key);
-            builder.append("\nvalue : ").append(value);
-            builder.append("\nvalueParser : ").append(valueParser);
-            builder.append("\nalpha : ").append(alpha);
-            builder.append("\nred : ").append(red);
-            builder.append("\ngreen : ").append(green);
-            builder.append("\nblue : ").append(blue);
-            builder.append("\ngrayLevel : ").append(grayLevel);
-            builder.append("\nintToRgbString : ").append(ColorUtils.intToRgbString((int) valueColor));
-            builder.append("\nintToArgbString : ").append(ColorUtils.intToArgbString((int) valueColor));
-            return builder.toString();
+            return "key : " + key +
+                    "\nvalue : " + value +
+                    "\nvalueParser : " + valueParser +
+                    "\nalpha : " + alpha +
+                    "\nred : " + red +
+                    "\ngreen : " + green +
+                    "\nblue : " + blue +
+                    "\ngrayLevel : " + grayLevel +
+                    "\nintToRgbString : " + ColorUtils.intToRgbString((int) valueColor) +
+                    "\nintToArgbString : " + ColorUtils.intToArgbString((int) valueColor);
         }
 
         // =============
@@ -994,10 +991,10 @@ public final class ColorUtils {
             // 获取灰度值
             grayLevel = (int) (argb[1] * 0.299f + argb[2] * 0.587f + argb[3] * 0.114f);
             // 获取 HSB
-            float[] hsbvals = RGBtoHSB(red, green, blue, null);
-            hue        = hsbvals[0]; // 色调
-            saturation = hsbvals[1]; // 饱和度
-            brightness = hsbvals[2]; // 亮度
+            float[] hsbArrays = RGBtoHSB(red, green, blue, null);
+            hue        = hsbArrays[0]; // 色调
+            saturation = hsbArrays[1]; // 饱和度
+            brightness = hsbArrays[2]; // 亮度
         }
 
         // ============
@@ -1032,13 +1029,13 @@ public final class ColorUtils {
                 int    length = chars.length;
                 if (length != 0 && chars[0] == '#') {
                     if (length == 4) {
-                        String colorsub = color.substring(1);
+                        String colorSub = color.substring(1);
                         // #000 => #000000
-                        return color + colorsub;
+                        return color + colorSub;
                     } else if (length == 5) {
-                        String colorsub = color.substring(3);
+                        String colorSub = color.substring(3);
                         // #0011 => #00111111
-                        return color + colorsub + colorsub;
+                        return color + colorSub + colorSub;
                     }
                 }
                 return color;
@@ -1053,28 +1050,28 @@ public final class ColorUtils {
          * RGB 转换 HSB
          * <pre>
          *     HSB 等于 HSV, 不同的叫法
-         *     {@link java.awt.Color#RGBtoHSB}
+         *     java.awt.Color#RGBtoHSB
          *     {@link android.graphics.Color#RGBToHSV}
          * </pre>
-         * @param r       红色值 [0-255]
-         * @param g       绿色值 [0-255]
-         * @param b       蓝色值 [0-255]
-         * @param hsbvals HSB 数组
+         * @param r         红色值 [0-255]
+         * @param g         绿色值 [0-255]
+         * @param b         蓝色值 [0-255]
+         * @param hsbArrays HSB 数组
          * @return [] { hue, saturation, brightness }
          */
         private static float[] RGBtoHSB(
                 int r,
                 int g,
                 int b,
-                float[] hsbvals
+                float[] hsbArrays
         ) {
             float hue, saturation, brightness;
-            if (hsbvals == null) {
-                hsbvals = new float[3];
+            if (hsbArrays == null) {
+                hsbArrays = new float[3];
             }
-            int cmax = (r > g) ? r : g;
+            int cmax = Math.max(r, g);
             if (b > cmax) cmax = b;
-            int cmin = (r < g) ? r : g;
+            int cmin = Math.min(r, g);
             if (b < cmin) cmin = b;
 
             brightness = ((float) cmax) / 255.0f;
@@ -1101,10 +1098,10 @@ public final class ColorUtils {
                     hue = hue + 1.0f;
                 }
             }
-            hsbvals[0] = hue;
-            hsbvals[1] = saturation;
-            hsbvals[2] = brightness;
-            return hsbvals;
+            hsbArrays[0] = hue;
+            hsbArrays[1] = saturation;
+            hsbArrays[2] = brightness;
+            return hsbArrays;
         }
     }
 
@@ -1117,20 +1114,14 @@ public final class ColorUtils {
      * @param lists 待排序颜色集合
      */
     public static void sortGray(final List<ColorInfo> lists) {
-        Collections.sort(lists, new Comparator<ColorInfo>() {
-            @Override
-            public int compare(
-                    ColorUtils.ColorInfo c1,
-                    ColorUtils.ColorInfo c2
-            ) {
-                long diff = c1.getGrayLevel() - c2.getGrayLevel();
-                if (diff < 0) {
-                    return 1;
-                } else if (diff > 0) {
-                    return -1;
-                }
-                return 0;
+        Collections.sort(lists, (c1, c2) -> {
+            long diff = c1.getGrayLevel() - c2.getGrayLevel();
+            if (diff < 0) {
+                return 1;
+            } else if (diff > 0) {
+                return -1;
             }
+            return 0;
         });
     }
 
@@ -1139,20 +1130,14 @@ public final class ColorUtils {
      * @param lists 待排序颜色集合
      */
     public static void sortHUE(final List<ColorInfo> lists) {
-        Collections.sort(lists, new Comparator<ColorUtils.ColorInfo>() {
-            @Override
-            public int compare(
-                    ColorUtils.ColorInfo c1,
-                    ColorUtils.ColorInfo c2
-            ) {
-                float diff = c1.getHue() - c2.getHue();
-                if (diff > 0) {
-                    return 1;
-                } else if (diff < 0) {
-                    return -1;
-                }
-                return 0;
+        Collections.sort(lists, (c1, c2) -> {
+            float diff = c1.getHue() - c2.getHue();
+            if (diff > 0) {
+                return 1;
+            } else if (diff < 0) {
+                return -1;
             }
+            return 0;
         });
     }
 
@@ -1161,20 +1146,14 @@ public final class ColorUtils {
      * @param lists 待排序颜色集合
      */
     public static void sortSaturation(final List<ColorInfo> lists) {
-        Collections.sort(lists, new Comparator<ColorUtils.ColorInfo>() {
-            @Override
-            public int compare(
-                    ColorUtils.ColorInfo c1,
-                    ColorUtils.ColorInfo c2
-            ) {
-                float diff = c1.getSaturation() - c2.getSaturation();
-                if (diff > 0) {
-                    return 1;
-                } else if (diff < 0) {
-                    return -1;
-                }
-                return 0;
+        Collections.sort(lists, (c1, c2) -> {
+            float diff = c1.getSaturation() - c2.getSaturation();
+            if (diff > 0) {
+                return 1;
+            } else if (diff < 0) {
+                return -1;
             }
+            return 0;
         });
     }
 
@@ -1183,20 +1162,14 @@ public final class ColorUtils {
      * @param lists 待排序颜色集合
      */
     public static void sortBrightness(final List<ColorInfo> lists) {
-        Collections.sort(lists, new Comparator<ColorUtils.ColorInfo>() {
-            @Override
-            public int compare(
-                    ColorUtils.ColorInfo c1,
-                    ColorUtils.ColorInfo c2
-            ) {
-                float diff = c1.getBrightness() - c2.getBrightness();
-                if (diff > 0) {
-                    return 1;
-                } else if (diff < 0) {
-                    return -1;
-                }
-                return 0;
+        Collections.sort(lists, (c1, c2) -> {
+            float diff = c1.getBrightness() - c2.getBrightness();
+            if (diff > 0) {
+                return 1;
+            } else if (diff < 0) {
+                return -1;
             }
+            return 0;
         });
     }
 

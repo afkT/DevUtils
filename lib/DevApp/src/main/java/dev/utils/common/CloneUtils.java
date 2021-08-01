@@ -75,7 +75,9 @@ public final class CloneUtils {
                     // 获取 key
                     K key = entry.getKey();
                     // 克隆对象
-                    V cloneObj = (V) ConvertUtils.bytesToObject(serializableToBytes((Serializable) entry.getValue()));
+                    V cloneObj = (V) ConvertUtils.bytesToObject(
+                            serializableToBytes((Serializable) entry.getValue())
+                    );
                     if (cloneObj != null) {
                         // 保存到集合
                         map.put(key, cloneObj);
@@ -105,7 +107,9 @@ public final class CloneUtils {
             while (iterator.hasNext()) {
                 try {
                     // 克隆对象
-                    T cloneObj = (T) ConvertUtils.bytesToObject(serializableToBytes((Serializable) iterator.next()));
+                    T cloneObj = (T) ConvertUtils.bytesToObject(
+                            serializableToBytes((Serializable) iterator.next())
+                    );
                     if (cloneObj != null) {
                         collection.add(cloneObj);
                     }
