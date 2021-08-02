@@ -266,9 +266,11 @@ public final class DevFinal {
     public static final String ARRAY        = "array";
     public static final String ASSETS       = "assets";
     public static final String ASSIST       = "assist";
+    public static final String ASYNC         = "async";
     public static final String AUDIO        = "audio";
     public static final String BANK         = "bank";
     public static final String BASE         = "base";
+    public static final String BACKGROUND   = "background";
     public static final String BEAN         = "bean";
     public static final String BEFORE       = "before";
     public static final String BEGIN_TIME   = "begin_time";
@@ -298,6 +300,7 @@ public final class DevFinal {
     public static final String CLOSE        = "close";
     public static final String CMD          = "cmd";
     public static final String CODE         = "code";
+    public static final String COLOR        = "color";
     public static final String COMPILE      = "compile";
     public static final String CONFIG       = "config";
     public static final String CONTENT      = "content";

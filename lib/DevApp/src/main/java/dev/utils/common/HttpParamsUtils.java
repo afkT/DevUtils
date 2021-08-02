@@ -1,7 +1,6 @@
 package dev.utils.common;
 
 import java.net.URLEncoder;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -208,12 +207,8 @@ public final class HttpParamsUtils {
     ) {
         if (mapParams != null) {
             int index = 0;
-            // =
             StringBuilder                       builder  = new StringBuilder();
-            Iterator<Map.Entry<String, String>> iterator = mapParams.entrySet().iterator();
-            while (iterator.hasNext()) {
-                Map.Entry<String, String> entry = iterator.next();
-                // =
+            for (Map.Entry<String, String> entry : mapParams.entrySet()) {
                 if (index > 0) builder.append('&');
                 builder.append(entry.getKey());
                 builder.append('=');
@@ -248,12 +243,8 @@ public final class HttpParamsUtils {
     ) {
         if (mapParams != null) {
             int index = 0;
-            // =
             StringBuilder                       builder  = new StringBuilder();
-            Iterator<Map.Entry<String, Object>> iterator = mapParams.entrySet().iterator();
-            while (iterator.hasNext()) {
-                Map.Entry<String, Object> entry = iterator.next();
-                // =
+            for (Map.Entry<String, Object> entry : mapParams.entrySet()) {
                 if (index > 0) builder.append('&');
                 builder.append(entry.getKey());
                 builder.append('=');

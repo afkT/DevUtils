@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.Map;
 
 import dev.utils.JCLogUtils;
@@ -62,15 +61,13 @@ public final class HttpURLConnectionUtils {
             final String urlStr,
             final Callback callback
     ) {
-        new Thread() {
-            public void run() {
-                try {
-                    request("GET", urlStr, null, null, callback);
-                } catch (Exception e) {
-                    JCLogUtils.eTag(TAG, e, "doGetAsync");
-                }
+        new Thread(() -> {
+            try {
+                request("GET", urlStr, null, null, callback);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "doGetAsync");
             }
-        }.start();
+        }).start();
     }
 
     /**
@@ -84,15 +81,13 @@ public final class HttpURLConnectionUtils {
             final String params,
             final Callback callback
     ) {
-        new Thread() {
-            public void run() {
-                try {
-                    request("POST", urlStr, null, params, callback);
-                } catch (Exception e) {
-                    JCLogUtils.eTag(TAG, e, "doPostAsync");
-                }
+        new Thread(() -> {
+            try {
+                request("POST", urlStr, null, params, callback);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "doPostAsync");
             }
-        }.start();
+        }).start();
     }
 
     /**
@@ -123,9 +118,7 @@ public final class HttpURLConnectionUtils {
             connection.setRequestMethod(method);
             // 设置请求头信息
             if (headers != null) {
-                Iterator<Map.Entry<String, String>> iterator = headers.entrySet().iterator();
-                while (iterator.hasNext()) {
-                    Map.Entry<String, String> entry = iterator.next();
+                for (Map.Entry<String, String> entry : headers.entrySet()) {
                     connection.setRequestProperty(entry.getKey(), entry.getValue());
                 }
             }
@@ -160,7 +153,7 @@ public final class HttpURLConnectionUtils {
                     baos.write(buffer, 0, len);
                 }
                 // 获取请求结果
-                String result = new String(baos.toByteArray());
+                String result = baos.toString();
                 // 判断是否回调
                 if (callback != null) {
                     // 请求成功, 触发回调
@@ -231,12 +224,7 @@ public final class HttpURLConnectionUtils {
             final String urlStr,
             final TimeCallback callback
     ) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                reqNetTime(urlStr, callback);
-            }
-        }).start();
+        new Thread(() -> reqNetTime(urlStr, callback)).start();
     }
 
     /**

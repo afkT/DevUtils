@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import dev.utils.JCLogUtils;
@@ -64,6 +65,29 @@ public final class DateUtils {
     public static final long MONTH    = DAY * 30;
     // 年与毫秒的倍数
     public static final long YEAR     = DAY * 365;
+
+    // =
+
+    /**
+     * 获取 Calendar
+     * @return {@link Calendar}
+     */
+    public static Calendar getCalendar() {
+        return Calendar.getInstance();
+    }
+
+    /**
+     * 获取 Calendar
+     * @param millis 时间毫秒
+     * @return {@link Calendar}
+     */
+    public static Calendar getCalendar(final long millis) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(millis);
+        return calendar;
+    }
+
+    // =
 
     /**
      * 获取当前日期的字符串 ( yyyy-MM-dd HH:mm:ss )
@@ -527,6 +551,28 @@ public final class DateUtils {
         return Calendar.getInstance().get(Calendar.SECOND);
     }
 
+    /**
+     * 是否上午
+     * @param millis 时间毫秒
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isAM(final long millis) {
+        Calendar calendar = GregorianCalendar.getInstance();
+        calendar.setTimeInMillis(millis);
+        return calendar.get(GregorianCalendar.AM_PM) == Calendar.AM;
+    }
+
+    /**
+     * 是否下午
+     * @param millis 时间毫秒
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isPM(final long millis) {
+        Calendar calendar = GregorianCalendar.getInstance();
+        calendar.setTimeInMillis(millis);
+        return calendar.get(GregorianCalendar.AM_PM) == Calendar.PM;
+    }
+
     // =
 
     /**
@@ -619,7 +665,7 @@ public final class DateUtils {
      */
     public static String[] getArrayToHH() {
         List<String> lists = getListToHH();
-        return lists.toArray(new String[lists.size()]);
+        return lists.toArray(new String[0]);
     }
 
     /**
@@ -640,7 +686,7 @@ public final class DateUtils {
      */
     public static String[] getArrayToMM() {
         List<String> lists = getListToMM();
-        return lists.toArray(new String[lists.size()]);
+        return lists.toArray(new String[0]);
     }
 
     /**
@@ -664,7 +710,7 @@ public final class DateUtils {
      */
     public static String[] getArrayToHHMM(final int type) {
         List<String> lists = getListToHHMM(type);
-        return lists.toArray(new String[lists.size()]);
+        return lists.toArray(new String[0]);
     }
 
     /**
@@ -732,7 +778,7 @@ public final class DateUtils {
         if (time != null && time.length() != 0) {
             // 进行拆分
             String[] timeSplit = time.split(":");
-            if (timeSplit != null && timeSplit.length == 2) {
+            if (timeSplit.length == 2) {
                 // 转换小时
                 int hour = ConvertUtils.toInt(timeSplit[0], -1);
                 // 判断是否小于 0
@@ -758,16 +804,16 @@ public final class DateUtils {
                         }
                         // 判断间隔
                         if (type == 1) {
-                            if (minute >= 0 && minute < 15) {
+                            if (minute < 15) {
                                 return hour * 4;
-                            } else if (minute >= 15 && minute < 30) {
+                            } else if (minute < 30) {
                                 return hour * 4 + 1;
-                            } else if (minute >= 30 && minute < 45) {
+                            } else if (minute < 45) {
                                 return hour * 4 + 2;
-                            } else if (minute >= 30 && minute < 60) {
+                            } else {
                                 return hour * 4 + 3;
                             }
-                        } else if (type == 2) { // 30 分钟一个间隔
+                        } else { // 30 分钟一个间隔
                             // 大于等于 30, 表示属于基数
                             if (minute >= 30) { // 属于奇数 (30), 需要加 1
                                 return hour * 2 + 1;
@@ -775,7 +821,6 @@ public final class DateUtils {
                                 return hour * 2;
                             }
                         }
-                        break;
                 }
             }
         }
@@ -817,17 +862,20 @@ public final class DateUtils {
                 // 转换时间格式
                 if (time < MINUTE_S) { // 小于一分钟
                     return "00:00:" + ((time >= 10) ? time : ("0" + time));
-                } else if (time >= MINUTE_S && time < HOUR_S) { // 小于一小时
+                } else if (time < HOUR_S) { // 小于一小时
                     dSecond = time % MINUTE_S; // 取模分钟, 获取多出的秒数
                     dMinute = (time - dSecond) / MINUTE_S;
-                    return "00:" + ((dMinute >= 10) ? dMinute : ("0" + dMinute)) + ":" + ((dSecond >= 10) ? dSecond : ("0" + dSecond));
-                } else if (time >= HOUR_S && time < DAY_S) { // 小于等于一天
+                    return "00:" + ((dMinute >= 10) ? dMinute : ("0" + dMinute))
+                            + ":" + ((dSecond >= 10) ? dSecond : ("0" + dSecond));
+                } else if (time < DAY_S) { // 小于等于一天
                     rMinute = time % HOUR_S; // 取模小时, 获取多出的分钟
                     dHour   = (time - rMinute) / HOUR_S; // 获取小时
                     dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
                     dMinute = dSecond / MINUTE_S; // 获取多出的分钟
                     rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒数
-                    return ((dHour >= 10) ? dHour : ("0" + dHour)) + ":" + ((dMinute >= 10) ? dMinute : ("0" + dMinute)) + ":" + ((rSecond >= 10) ? rSecond : "0" + rSecond);
+                    return ((dHour >= 10) ? dHour : ("0" + dHour))
+                            + ":" + ((dMinute >= 10) ? dMinute : ("0" + dMinute))
+                            + ":" + ((rSecond >= 10) ? rSecond : "0" + rSecond);
                 } else { // 多余的时间, 直接格式化
                     // 大于一天的情况
                     if (isHandlerMDay) {
@@ -836,7 +884,8 @@ public final class DateUtils {
                         dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
                         dMinute = dSecond / MINUTE_S; // 获取多出的分钟
                         rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒数
-                        return ((dHour >= 10) ? dHour : ("0" + dHour)) + ":" + ((dMinute >= 10) ? dMinute : ("0" + dMinute)) + ":" + ((rSecond >= 10) ? rSecond : "0" + rSecond);
+                        return dHour + ":" + (dMinute >= 10 ? dMinute : "0" + dMinute)
+                                + ":" + (rSecond >= 10 ? rSecond : "0" + rSecond);
                     }
                 }
             }
@@ -866,11 +915,11 @@ public final class DateUtils {
                 // 转换时间格式
                 if (time < MINUTE_S) { // 小于一分钟
                     return new int[]{0, 0, time};
-                } else if (time >= MINUTE_S && time < HOUR_S) { // 小于一小时
+                } else if (time < HOUR_S) { // 小于一小时
                     dSecond = time % MINUTE_S; // 取模分钟, 获取多出的秒数
                     dMinute = (time - dSecond) / MINUTE_S;
                     return new int[]{0, dMinute, dSecond};
-                } else if (time >= HOUR_S && time < DAY_S) { // 小于等于一天
+                } else if (time < DAY_S) { // 小于等于一天
                     rMinute = time % HOUR_S; // 取模小时, 获取多出的分钟
                     dHour   = (time - rMinute) / HOUR_S; // 获取小时
                     dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
