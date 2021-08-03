@@ -341,20 +341,19 @@ public final class FileBreadthFirstSearchUtils {
                         if (files == null) {
                             return;
                         }
-                        // 循环处理
-                        for (File f : files) {
+                        for (File queryFile : files) {
                             // 属于文件夹
-                            if (f.isDirectory()) {
+                            if (queryFile.isDirectory()) {
                                 if (mIsStop) {
                                     return;
                                 }
-                                FileItem subFileItem = fileItem.put(f);
+                                FileItem subFileItem = fileItem.put(queryFile);
                                 // 添加任务
-                                mTaskQueue.offer(new FileQueue(f, subFileItem));
+                                mTaskQueue.offer(new FileQueue(queryFile, subFileItem));
                             } else { // 属于文件
-                                if (!mIsStop && mInnerHandler.isAddToList(f)) {
+                                if (!mIsStop && mInnerHandler.isAddToList(queryFile)) {
                                     // 属于文件则直接保存
-                                    fileItem.put(f);
+                                    fileItem.put(queryFile);
                                 }
                             }
                         }

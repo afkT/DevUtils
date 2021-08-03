@@ -156,8 +156,8 @@ final class ACacheManager {
         mCacheSize.set(0);
         File[] files = mCacheDir.listFiles();
         if (files != null) {
-            for (File f : files) {
-                f.delete();
+            for (File file : files) {
+                file.delete();
             }
         }
     }
