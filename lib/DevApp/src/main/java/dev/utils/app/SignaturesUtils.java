@@ -76,9 +76,9 @@ public final class SignaturesUtils {
         try {
             MessageDigest digest = MessageDigest.getInstance("MD5");
             if (signatures != null) {
-                for (Signature s : signatures) {
-                    if (s != null) {
-                        digest.update(s.toByteArray());
+                for (Signature sign : signatures) {
+                    if (sign != null) {
+                        digest.update(sign.toByteArray());
                     }
                 }
             }
@@ -98,9 +98,9 @@ public final class SignaturesUtils {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-1");
             if (signatures != null) {
-                for (Signature s : signatures) {
-                    if (s != null) {
-                        digest.update(s.toByteArray());
+                for (Signature sign : signatures) {
+                    if (sign != null) {
+                        digest.update(sign.toByteArray());
                     }
                 }
             }
@@ -120,9 +120,9 @@ public final class SignaturesUtils {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             if (signatures != null) {
-                for (Signature s : signatures) {
-                    if (s != null) {
-                        digest.update(s.toByteArray());
+                for (Signature sign : signatures) {
+                    if (sign != null) {
+                        digest.update(sign.toByteArray());
                     }
                 }
             }
@@ -143,9 +143,9 @@ public final class SignaturesUtils {
         boolean debuggable = true;
         if (signatures != null) {
             try {
-                for (Signature s : signatures) {
-                    if (s != null) {
-                        X509Certificate cert = getX509Certificate(s);
+                for (Signature sign : signatures) {
+                    if (sign != null) {
+                        X509Certificate cert = getX509Certificate(sign);
                         debuggable = cert.getSubjectX500Principal().equals(DEBUG_DN);
                         if (debuggable) {
                             break;
@@ -200,9 +200,9 @@ public final class SignaturesUtils {
             // 格式化日期
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             // 遍历获取
-            for (Signature s : signatures) {
-                if (s != null) {
-                    X509Certificate cert = getX509Certificate(s);
+            for (Signature sign : signatures) {
+                if (sign != null) {
+                    X509Certificate cert = getX509Certificate(sign);
 
                     // 证书生成日期
                     Date notBefore = cert.getNotBefore();

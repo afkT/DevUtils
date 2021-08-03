@@ -307,9 +307,9 @@ public final class KeyBoardUtils {
                     "mCurRootView", "mServedView",
                     "mNextServedView", "mLastSrvView"
             };
-            for (String s : strArr) {
+            for (String value : strArr) {
                 try {
-                    Field declaredField = imm.getClass().getDeclaredField(s);
+                    Field declaredField = imm.getClass().getDeclaredField(value);
                     if (!declaredField.isAccessible()) {
                         declaredField.setAccessible(true);
                     }

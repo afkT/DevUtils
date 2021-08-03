@@ -298,8 +298,8 @@ final class PreferenceImpl
     @Override
     public void removeAll(final List<String> keys) {
         SharedPreferences.Editor edit = mPreferences.edit();
-        for (String k : keys) {
-            edit.remove(k);
+        for (String key : keys) {
+            edit.remove(key);
         }
         edit.apply();
     }

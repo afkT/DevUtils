@@ -229,8 +229,8 @@ public final class IDCardUtils {
             int     sum    = intStart / 10 + (intStart % 10) * 9;
             char[] chars = mid.toCharArray();
             int    iflag = 8;
-            for (char c : chars) {
-                sum = sum + Integer.parseInt(String.valueOf(c)) * iflag;
+            for (char value : chars) {
+                sum = sum + Integer.parseInt(String.valueOf(value)) * iflag;
                 iflag--;
             }
             return (sum % 10 == 0 ? 0 : 10 - sum % 10) == Integer.parseInt(end);
@@ -263,8 +263,8 @@ public final class IDCardUtils {
             String  end   = card.substring(7, 8);
             char[] chars = mid.toCharArray();
             int    iflag = 7;
-            for (char c : chars) {
-                sum = sum + Integer.parseInt(String.valueOf(c)) * iflag;
+            for (char value : chars) {
+                sum = sum + Integer.parseInt(String.valueOf(value)) * iflag;
                 iflag--;
             }
             if (end.equalsIgnoreCase("A")) {

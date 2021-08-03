@@ -665,8 +665,8 @@ public final class DeviceUtils {
                 byte[] macBytes = ni.getHardwareAddress();
                 if (macBytes != null && macBytes.length > 0) {
                     StringBuilder builder = new StringBuilder();
-                    for (byte b : macBytes) {
-                        builder.append(String.format("%02x:", b));
+                    for (byte value : macBytes) {
+                        builder.append(String.format("%02x:", value));
                     }
                     return builder.substring(0, builder.length() - 1);
                 }
@@ -690,8 +690,8 @@ public final class DeviceUtils {
                     byte[] macBytes = ni.getHardwareAddress();
                     if (macBytes != null && macBytes.length > 0) {
                         StringBuilder builder = new StringBuilder();
-                        for (byte b : macBytes) {
-                            builder.append(String.format("%02x:", b));
+                        for (byte value : macBytes) {
+                            builder.append(String.format("%02x:", value));
                         }
                         return builder.substring(0, builder.length() - 1);
                     }

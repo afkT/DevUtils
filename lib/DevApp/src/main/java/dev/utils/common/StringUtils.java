@@ -456,8 +456,7 @@ public final class StringUtils {
             // 获取匹配 key 长度
             int keyLength = keyword.length();
             // =
-            int count = 0;
-            int index = 0;
+            int count = 0, index = 0;
             while ((index = str.indexOf(keyword, index)) != -1) {
                 index = index + keyLength;
                 count++;

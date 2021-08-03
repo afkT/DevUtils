@@ -708,9 +708,9 @@ public final class CollectionUtils {
         if (collection != null && values != null) {
             if (notNull) {
                 try {
-                    for (T t : values) {
-                        if (t != null) {
-                            collection.add(t);
+                    for (T value : values) {
+                        if (value != null) {
+                            collection.add(value);
                         }
                     }
                     return true;
@@ -852,9 +852,9 @@ public final class CollectionUtils {
             if (notNull) {
                 try {
                     List<T> tempList = new ArrayList<>();
-                    for (T t : values) {
-                        if (t != null) {
-                            tempList.add(t);
+                    for (T value : values) {
+                        if (value != null) {
+                            tempList.add(value);
                         }
                     }
                     // 添加到集合中
@@ -1224,10 +1224,10 @@ public final class CollectionUtils {
                 // 初始化新的集合, 默认保存第一个集合的数据
                 Set<T> setsTemp = new LinkedHashSet<>(collection1);
                 // 循环第二个集合
-                for (T t : collection2) {
+                for (T value : collection2) {
                     // 判断是否存在, 存在则保存
-                    if (setsTemp.contains(t)) {
-                        sets.add(t);
+                    if (setsTemp.contains(value)) {
+                        sets.add(value);
                     }
                 }
                 // 返回集合

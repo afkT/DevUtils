@@ -400,10 +400,10 @@ public final class FieldUtils {
             // find all field.
             LinkedList<Field> fieldList = new LinkedList<>();
             while (clazzTemp != null && clazzTemp != Object.class) {
-                Field[] fs = clazzTemp.getDeclaredFields();
-                for (Field f : fs) {
-                    if (!isInvalid(f)) {
-                        fieldList.addLast(f);
+                Field[] fields = clazzTemp.getDeclaredFields();
+                for (Field field : fields) {
+                    if (!isInvalid(field)) {
+                        fieldList.addLast(field);
                     }
                 }
                 clazzTemp = clazzTemp.getSuperclass();
