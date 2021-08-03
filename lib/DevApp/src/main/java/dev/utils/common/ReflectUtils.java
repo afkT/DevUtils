@@ -232,7 +232,10 @@ public final class ReflectUtils {
     )
             throws ReflectException {
         try {
-            return new ReflectUtils(constructor.getDeclaringClass(), accessible(constructor).newInstance(args));
+            return new ReflectUtils(
+                    constructor.getDeclaringClass(),
+                    accessible(constructor).newInstance(args)
+            );
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "newInstance");
             throw new ReflectException(e);
@@ -497,7 +500,12 @@ public final class ReflectUtils {
             }
             type = type.getSuperclass();
         } while (type != null);
-        throw new ReflectException(String.format("No similar method %s with params %s could be found on type %s", name, Arrays.toString(types), type()));
+        throw new ReflectException(
+                String.format(
+                        "No similar method %s with params %s could be found on type %s",
+                        name, Arrays.toString(types), type()
+                )
+        );
     }
 
     /**
@@ -506,26 +514,20 @@ public final class ReflectUtils {
      */
     private void sortMethods(final List<Method> methods) {
         if (methods == null) return;
-        Collections.sort(methods, new Comparator<Method>() {
-            @Override
-            public int compare(
-                    Method o1,
-                    Method o2
-            ) {
-                Class<?>[] types1 = o1.getParameterTypes();
-                Class<?>[] types2 = o2.getParameterTypes();
-                int        len    = types1.length;
-                for (int i = 0; i < len; i++) {
-                    if (!types1[i].equals(types2[i])) {
-                        if (wrapper(types1[i]).isAssignableFrom(wrapper(types2[i]))) {
-                            return 1;
-                        } else {
-                            return -1;
-                        }
+        Collections.sort(methods, (o1, o2) -> {
+            Class<?>[] types1 = o1.getParameterTypes();
+            Class<?>[] types2 = o2.getParameterTypes();
+            int        len    = types1.length;
+            for (int i = 0; i < len; i++) {
+                if (!types1[i].equals(types2[i])) {
+                    if (wrapper(types1[i]).isAssignableFrom(wrapper(types2[i]))) {
+                        return 1;
+                    } else {
+                        return -1;
                     }
                 }
-                return 0;
             }
+            return 0;
         });
     }
 
@@ -541,7 +543,8 @@ public final class ReflectUtils {
             final String desiredMethodName,
             final Class<?>[] desiredParamTypes
     ) {
-        return possiblyMatchingMethod.getName().equals(desiredMethodName) && match(possiblyMatchingMethod.getParameterTypes(), desiredParamTypes);
+        return possiblyMatchingMethod.getName().equals(desiredMethodName)
+                && match(possiblyMatchingMethod.getParameterTypes(), desiredParamTypes);
     }
 
     /**
@@ -554,9 +557,11 @@ public final class ReflectUtils {
             final Class<?>[] declaredTypes,
             final Class<?>[] actualTypes
     ) {
-        if (declaredTypes != null && actualTypes != null && declaredTypes.length == actualTypes.length) {
+        if (declaredTypes != null && actualTypes != null
+                && declaredTypes.length == actualTypes.length) {
             for (int i = 0; i < actualTypes.length; i++) {
-                if (actualTypes[i] == NULL.class || wrapper(declaredTypes[i]).isAssignableFrom(wrapper(actualTypes[i]))) {
+                if (actualTypes[i] == NULL.class
+                        || wrapper(declaredTypes[i]).isAssignableFrom(wrapper(actualTypes[i]))) {
                     continue;
                 }
                 return false;
@@ -577,7 +582,8 @@ public final class ReflectUtils {
         if (accessible == null) return null;
         if (accessible instanceof Member) {
             Member member = (Member) accessible;
-            if (Modifier.isPublic(member.getModifiers()) && Modifier.isPublic(member.getDeclaringClass().getModifiers())) {
+            if (Modifier.isPublic(member.getModifiers())
+                    && Modifier.isPublic(member.getDeclaringClass().getModifiers())) {
                 return accessible;
             }
         }
@@ -626,7 +632,10 @@ public final class ReflectUtils {
                 return null;
             }
         };
-        return (P) Proxy.newProxyInstance(proxyType.getClassLoader(), new Class[]{proxyType}, handler);
+        return (P) Proxy.newProxyInstance(
+                proxyType.getClassLoader(),
+                new Class<?>[]{proxyType}, handler
+        );
     }
 
     /**

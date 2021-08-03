@@ -13,9 +13,6 @@ import dev.utils.JCLogUtils;
 /**
  * detail: Map 工具类
  * @author Ttt
- * <pre>
- *     @see <a href="https://mp.weixin.qq.com/s/DmRmazyp-EmTQPXdfw9wpQ"/>
- * </pre>
  */
 public final class MapUtils {
 
@@ -34,7 +31,7 @@ public final class MapUtils {
      * @param map {@link Map}
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isEmpty(final Map map) {
+    public static boolean isEmpty(final Map<?, ?> map) {
         return (map == null || map.size() == 0);
     }
 
@@ -43,7 +40,7 @@ public final class MapUtils {
      * @param map {@link Map}
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isNotEmpty(final Map map) {
+    public static boolean isNotEmpty(final Map<?, ?> map) {
         return (map != null && map.size() != 0);
     }
 
@@ -56,7 +53,7 @@ public final class MapUtils {
      * @param map {@link Map}
      * @return 如果 Map 为 null, 则返回默认长度, 如果不为 null, 则返回 map.size()
      */
-    public static int length(final Map map) {
+    public static int length(final Map<?, ?> map) {
         return length(map, 0);
     }
 
@@ -67,7 +64,7 @@ public final class MapUtils {
      * @return 如果 Map 为 null, 则返回 defaultLength, 如果不为 null, 则返回 map.size()
      */
     public static int length(
-            final Map map,
+            final Map<?, ?> map,
             final int defaultLength
     ) {
         return map != null ? map.size() : defaultLength;
@@ -82,7 +79,7 @@ public final class MapUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLength(
-            final Map map,
+            final Map<?, ?> map,
             final int length
     ) {
         return map != null && map.size() == length;
@@ -97,7 +94,7 @@ public final class MapUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean greaterThan(
-            final Map map,
+            final Map<?, ?> map,
             final int length
     ) {
         return map != null && map.size() > length;
@@ -110,7 +107,7 @@ public final class MapUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean greaterThanOrEqual(
-            final Map map,
+            final Map<?, ?> map,
             final int length
     ) {
         return map != null && map.size() >= length;
@@ -125,7 +122,7 @@ public final class MapUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean lessThan(
-            final Map map,
+            final Map<?, ?> map,
             final int length
     ) {
         return map != null && map.size() < length;
@@ -138,7 +135,7 @@ public final class MapUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean lessThanOrEqual(
-            final Map map,
+            final Map<?, ?> map,
             final int length
     ) {
         return map != null && map.size() <= length;
@@ -153,10 +150,10 @@ public final class MapUtils {
      * @param maps Map[]
      * @return Map 数组长度总和
      */
-    public static int getCount(final Map... maps) {
+    public static int getCount(final Map<?, ?>... maps) {
         if (maps == null) return 0;
         int count = 0;
-        for (Map map : maps) {
+        for (Map<?, ?> map : maps) {
             count += length(map);
         }
         return count;
@@ -231,11 +228,8 @@ public final class MapUtils {
     ) {
         if (map != null) {
             try {
-                // 进行遍历判断
-                Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
-                while (iterator.hasNext()) {
-                    Map.Entry<K, V> entry = iterator.next();
-                    V               v     = entry.getValue();
+                for (Map.Entry<K, V> entry : map.entrySet()) {
+                    V v = entry.getValue();
                     if (equals(v, value)) {
                         return entry.getKey();
                     }
@@ -262,17 +256,12 @@ public final class MapUtils {
         if (map != null) {
             try {
                 List<K> lists = new ArrayList<>();
-                // 进行遍历判断
-                Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
-                while (iterator.hasNext()) {
-                    Map.Entry<K, V> entry = iterator.next();
-                    V               v     = entry.getValue();
+                for (Map.Entry<K, V> entry : map.entrySet()) {
+                    V v = entry.getValue();
                     if (equals(v, value)) {
-                        // 保存 key
                         lists.add(entry.getKey());
                     }
                 }
-                // 返回 key 集合
                 return lists;
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "getKeysByValue");
@@ -441,12 +430,8 @@ public final class MapUtils {
     ) {
         if (map != null) {
             try {
-                // 进行遍历判断
-                Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
-                while (iterator.hasNext()) {
-                    Map.Entry<K, V> entry = iterator.next();
-                    K               k     = entry.getKey();
-                    // 判断 key 是否相同
+                for (Map.Entry<K, V> entry : map.entrySet()) {
+                    K k = entry.getKey();
                     if (equals(k, key)) {
                         return entry;
                     }
@@ -472,7 +457,6 @@ public final class MapUtils {
     ) {
         if (map != null) {
             try {
-                // 进行遍历判断
                 Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
                 // 临时保存处理
                 Map.Entry<K, V> temp = null;
@@ -657,7 +641,8 @@ public final class MapUtils {
             final List<V> listValues,
             final boolean notNull
     ) {
-        if (map != null && listKeys != null && listValues != null && listKeys.size() == listValues.size()) {
+        if (map != null && listKeys != null && listValues != null
+                && listKeys.size() == listValues.size()) {
             try {
                 // 循环保存
                 for (int i = 0, len = listKeys.size(); i < len; i++) {
@@ -798,13 +783,9 @@ public final class MapUtils {
         if (map != null && mapData != null) {
             if (notNull) {
                 try {
-                    // 进行遍历判断
-                    Iterator<Map.Entry<K, V>> iterator = mapData.entrySet().iterator();
-                    while (iterator.hasNext()) {
-                        Map.Entry<K, V> entry = iterator.next();
-                        K               key   = entry.getKey();
+                    for (Map.Entry<K, V> entry : mapData.entrySet()) {
+                        K key = entry.getKey();
                         if (key != null) {
-                            // 保存数据
                             map.put(key, entry.getValue());
                         }
                     }
@@ -933,7 +914,6 @@ public final class MapUtils {
     ) {
         if (map != null) {
             try {
-                // 进行遍历判断
                 Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
                 while (iterator.hasNext()) {
                     Map.Entry<K, V> entry = iterator.next();
@@ -951,7 +931,7 @@ public final class MapUtils {
     }
 
     /**
-     * 移除等于 value 的所有数据 (Collection<Value>)
+     * 移除等于 value 的所有数据 ( Collection<Value> )
      * @param map    {@link Map}
      * @param values values
      * @param <K>    key
@@ -1277,10 +1257,7 @@ public final class MapUtils {
             final boolean isNullRemoveAll
     ) {
         if (map != null && removeMap != null) {
-            Iterator<Map.Entry<K, List<T>>> iterator = removeMap.entrySet().iterator();
-            while (iterator.hasNext()) {
-                Map.Entry<K, List<T>> entry = iterator.next();
-                // 获取 key
+            for (Map.Entry<K, List<T>> entry : removeMap.entrySet()) {
                 K key = entry.getKey();
                 // 进行移除处理
                 if (map.containsKey(key)) {

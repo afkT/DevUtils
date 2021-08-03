@@ -33,7 +33,7 @@ public final class ClassUtils {
         try {
             Constructor<?>[] cons = clazz.getDeclaredConstructors();
             for (Constructor<?> c : cons) {
-                Class[] cls = c.getParameterTypes();
+                Class<?>[] cls = c.getParameterTypes();
                 if (cls.length == 0) {
                     c.setAccessible(true);
                     return (T) c.newInstance();
