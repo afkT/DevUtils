@@ -61,19 +61,18 @@ public final class StringUtils {
 
     /**
      * 判断多个字符串是否存在为 null 的字符串
-     * @param strs 待校验的字符串数组
+     * @param args 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isEmpty(final String... strs) {
-        if (strs != null && strs.length != 0) {
-            for (int i = 0, len = strs.length; i < len; i++) {
-                if (isEmpty(strs[i])) {
+    public static boolean isEmpty(final String... args) {
+        if (args != null && args.length != 0) {
+            for (String str : args) {
+                if (isEmpty(str)) {
                     return true;
                 }
             }
             return false;
         }
-        // 默认表示属于 null
         return true;
     }
 
@@ -162,35 +161,32 @@ public final class StringUtils {
 
     /**
      * 判断多个字符串是否相等, 只有全相等才返回 true ( 对比大小写 )
-     * @param strs 待校验的字符串数组
+     * @param args 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isEquals(final String... strs) {
-        return isEquals(false, strs);
+    public static boolean isEquals(final String... args) {
+        return isEquals(false, args);
     }
 
     /**
      * 判断多个字符串是否相等, 只有全相等才返回 true
      * @param isIgnore 是否忽略大小写
-     * @param strs     待校验的字符串数组
+     * @param args     待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEquals(
             final boolean isIgnore,
-            final String... strs
+            final String... args
     ) {
-        if (strs != null) {
+        if (args != null) {
             String last = null;
             // 获取数据长度
-            int len = strs.length;
+            int len = args.length;
             // 如果最多只有一个数据判断, 则直接跳过
             if (len <= 1) {
                 return false;
             }
-            // 遍历判断
-            for (int i = 0; i < len; i++) {
-                // 获取临时变量
-                String value = strs[i];
+            for (String value : args) {
                 // 如果等于 null, 则跳过
                 if (value == null) {
                     return false;
@@ -216,47 +212,37 @@ public final class StringUtils {
     /**
      * 判断多个字符串, 只要有一个符合条件则通过
      * @param str  待校验的字符串
-     * @param strs 待校验的字符串数组
+     * @param args 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isOrEquals(
             final String str,
-            final String... strs
+            final String... args
     ) {
-        return isOrEquals(false, str, strs);
+        return isOrEquals(false, str, args);
     }
 
     /**
      * 判断多个字符串, 只要有一个符合条件则通过
      * @param isIgnore 是否忽略大小写
      * @param str      待校验的字符串
-     * @param strs     待校验的字符串数组
+     * @param args     待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isOrEquals(
             final boolean isIgnore,
             final String str,
-            final String... strs
+            final String... args
     ) {
-        if (str != null && strs != null && strs.length != 0) {
-            // 获取数据长度
-            int len = strs.length;
-            // 遍历判断
-            for (int i = 0; i < len; i++) {
-                // 获取临时变量
-                String value = strs[i];
-                // 如果等于 null, 则跳过
-                if (value == null) {
-                    continue;
+        if (str != null && args != null && args.length != 0) {
+            for (String value : args) {
+                if (isIgnore) {
+                    if (value.equalsIgnoreCase(str)) {
+                        return true;
+                    }
                 } else {
-                    if (isIgnore) {
-                        if (value.equalsIgnoreCase(str)) {
-                            return true;
-                        }
-                    } else {
-                        if (value.equals(str)) {
-                            return true;
-                        }
+                    if (value.equals(str)) {
+                        return true;
                     }
                 }
             }
@@ -267,29 +253,29 @@ public final class StringUtils {
     /**
      * 判断一堆值中, 是否存在符合该条件的 ( 包含 )
      * @param str  待校验的字符串
-     * @param strs 待校验的字符串数组
+     * @param args 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isContains(
             final String str,
-            final String... strs
+            final String... args
     ) {
-        return isContains(false, str, strs);
+        return isContains(false, str, args);
     }
 
     /**
      * 判断一堆值中, 是否存在符合该条件的 ( 包含 )
      * @param isIgnore 是否忽略大小写
      * @param str      待校验的字符串
-     * @param strs     待校验的字符串数组
+     * @param args     待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isContains(
             final boolean isIgnore,
             final String str,
-            final String... strs
+            final String... args
     ) {
-        if (str != null && strs != null && strs.length != 0) {
+        if (str != null && args != null && args.length != 0) {
             String tempString = str;
             // 判断是否需要忽略大小写
             if (isIgnore) {
@@ -298,21 +284,19 @@ public final class StringUtils {
             // 获取内容长度
             int strLength = tempString.length();
             // 遍历判断
-            for (int i = 0, len = strs.length; i < len; i++) {
-                // 获取参数
-                String value = strs[i];
+            for (String value : args) {
                 // 判断是否为 null, 或者长度为 0
                 if (!isEmpty(value) && strLength != 0) {
                     if (isIgnore) {
                         // 转换小写
                         String valIgnore = value.toLowerCase();
                         // 判断是否包含
-                        if (valIgnore.indexOf(tempString) != -1) {
+                        if (valIgnore.contains(tempString)) {
                             return true;
                         }
                     } else {
                         // 判断是否包含
-                        if (value.indexOf(tempString) != -1) {
+                        if (value.contains(tempString)) {
                             return true;
                         }
                     }
@@ -329,40 +313,35 @@ public final class StringUtils {
     /**
      * 判断内容, 是否属于特定字符串开头 ( 对比大小写 )
      * @param str  待校验的字符串
-     * @param strs 待校验的字符串数组
+     * @param args 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isStartsWith(
             final String str,
-            final String... strs
+            final String... args
     ) {
-        return isStartsWith(false, str, strs);
+        return isStartsWith(false, str, args);
     }
 
     /**
      * 判断内容, 是否属于特定字符串开头
      * @param isIgnore 是否忽略大小写
      * @param str      待校验的字符串
-     * @param strs     待校验的字符串数组
+     * @param args     待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isStartsWith(
             final boolean isIgnore,
             final String str,
-            final String... strs
+            final String... args
     ) {
-        if (!isEmpty(str) && strs != null && strs.length != 0) {
+        if (!isEmpty(str) && args != null && args.length != 0) {
             String tempString = str;
             // 判断是否需要忽略大小写
             if (isIgnore) {
                 tempString = tempString.toLowerCase();
             }
-            // 获取数据长度
-            int len = strs.length;
-            // 遍历判断
-            for (int i = 0; i < len; i++) {
-                // 获取临时变量
-                String value = strs[i];
+            for (String value : args) {
                 // 判断是否为 null, 或者长度为 0
                 if (!isEmpty(value)) {
                     if (isIgnore) {
@@ -387,40 +366,35 @@ public final class StringUtils {
     /**
      * 判断内容, 是否属于特定字符串结尾 ( 对比大小写 )
      * @param str  待校验的字符串
-     * @param strs 待校验的字符串数组
+     * @param args 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEndsWith(
             final String str,
-            final String... strs
+            final String... args
     ) {
-        return isEndsWith(false, str, strs);
+        return isEndsWith(false, str, args);
     }
 
     /**
      * 判断内容, 是否属于特定字符串结尾
      * @param isIgnore 是否忽略大小写
      * @param str      待校验的字符串
-     * @param strs     待校验的字符串数组
+     * @param args     待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEndsWith(
             final boolean isIgnore,
             final String str,
-            final String... strs
+            final String... args
     ) {
-        if (!isEmpty(str) && strs != null && strs.length != 0) {
+        if (!isEmpty(str) && args != null && args.length != 0) {
             String tempString = str;
             // 判断是否需要忽略大小写
             if (isIgnore) {
                 tempString = tempString.toLowerCase();
             }
-            // 获取数据长度
-            int len = strs.length;
-            // 遍历判断
-            for (int i = 0; i < len; i++) {
-                // 获取临时变量
-                String value = strs[i];
+            for (String value : args) {
                 // 判断是否为 null, 或者长度为 0
                 if (!isEmpty(value)) {
                     if (isIgnore) {
@@ -793,16 +767,15 @@ public final class StringUtils {
     /**
      * 检查字符串 ( 多个值 )
      * @param defaultStr 默认字符串
-     * @param strs       待校验字符串数组
+     * @param args       待校验字符串数组
      * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
     public static String checkValues(
             final String defaultStr,
-            final String... strs
+            final String... args
     ) {
-        if (strs != null && strs.length != 0) {
-            for (int i = 0, len = strs.length; i < len; i++) {
-                String value = strs[i];
+        if (args != null && args.length != 0) {
+            for (String value : args) {
                 if (!isEmpty(value)) {
                     return value;
                 }
@@ -814,17 +787,17 @@ public final class StringUtils {
     /**
      * 检查字符串 ( 多个值, 删除前后空格对比判断 )
      * @param defaultStr 默认字符串
-     * @param strs       待校验字符串数组
+     * @param args       待校验字符串数组
      * @return 字符串数组中不为 null 的字符串, 如果都为 null, 则返回 defaultStr
      */
     public static String checkValuesSpace(
             final String defaultStr,
-            final String... strs
+            final String... args
     ) {
-        if (strs != null && strs.length != 0) {
-            for (int i = 0, len = strs.length; i < len; i++) {
+        if (args != null && args.length != 0) {
+            for (String str : args) {
                 // 删除前后空格处理后, 进行返回
-                String value = clearSpaceTrim(strs[i]);
+                String value = clearSpaceTrim(str);
                 if (!isEmpty(value)) {
                     return value;
                 }
@@ -934,12 +907,12 @@ public final class StringUtils {
         if (args == null) return null;
         StringBuilder builder = new StringBuilder();
         if (isEmpty(split)) {
-            for (int i = 0, len = args.length; i < len; i++) {
-                builder.append(args[i]);
+            for (Object value : args) {
+                builder.append(value);
             }
         } else {
-            for (int i = 0, len = args.length; i < len; i++) {
-                builder.append(args[i]).append(split);
+            for (Object value : args) {
+                builder.append(value).append(split);
             }
         }
         return builder.toString();
@@ -960,8 +933,8 @@ public final class StringUtils {
         int           len     = args.length;
         if (len > 0) {
             if (isEmpty(split)) {
-                for (int i = 0; i < len; i++) {
-                    builder.append(args[i]);
+                for (Object value : args) {
+                    builder.append(value);
                 }
             } else {
                 for (int i = 0; i < len - 1; i++) {
@@ -987,12 +960,12 @@ public final class StringUtils {
     ) {
         if (builder != null && args != null) {
             if (isEmpty(split)) {
-                for (int i = 0, len = args.length; i < len; i++) {
-                    builder.append(args[i]);
+                for (Object value : args) {
+                    builder.append(value);
                 }
             } else {
-                for (int i = 0, len = args.length; i < len; i++) {
-                    builder.append(args[i]).append(split);
+                for (Object value : args) {
+                    builder.append(value).append(split);
                 }
             }
         }
@@ -1015,8 +988,8 @@ public final class StringUtils {
             int len = args.length;
             if (len > 0) {
                 if (isEmpty(split)) {
-                    for (int i = 0; i < len; i++) {
-                        builder.append(args[i]);
+                    for (Object value : args) {
+                        builder.append(value);
                     }
                 } else {
                     for (int i = 0; i < len - 1; i++) {
@@ -1203,8 +1176,8 @@ public final class StringUtils {
         try {
             StringBuilder builder = new StringBuilder();
             byte[]        bytes   = str.getBytes();
-            for (int i = 0, len = bytes.length; i < len; i++) {
-                builder.append(Integer.toHexString(bytes[i] & 0xff));
+            for (byte value : bytes) {
+                builder.append(Integer.toHexString(value & 0xff));
             }
             return builder.toString();
         } catch (Exception e) {
@@ -1223,8 +1196,8 @@ public final class StringUtils {
         try {
             StringBuilder builder = new StringBuilder();
             char[]        chars   = str.toCharArray();
-            for (int i = 0, len = chars.length; i < len; i++) {
-                builder.append("\\u").append(Integer.toHexString(chars[i]));
+            for (char value : chars) {
+                builder.append("\\u").append(Integer.toHexString(value));
             }
             return builder.toString();
         } catch (Exception e) {
@@ -1242,8 +1215,8 @@ public final class StringUtils {
         if (chars == null) return null;
         try {
             StringBuilder builder = new StringBuilder();
-            for (int i = 0, len = chars.length; i < len; i++) {
-                builder.append("\\u").append(Integer.toHexString(chars[i]));
+            for (char value : chars) {
+                builder.append("\\u").append(Integer.toHexString(value));
             }
             return builder.toString();
         } catch (Exception e) {
@@ -1303,8 +1276,8 @@ public final class StringUtils {
         if (isEmpty(str)) return false;
         boolean result = true;
         char[]  chars  = str.toCharArray();
-        for (int i = 0, len = chars.length; i < len; i++) {
-            if (!isChinese(chars[i])) {
+        for (char value : chars) {
+            if (!isChinese(value)) {
                 result = false;
                 break;
             }
@@ -1417,12 +1390,11 @@ public final class StringUtils {
         if (isEmpty(str)) return str;
         StringBuilder builder = new StringBuilder();
         char[]        chars   = str.toCharArray();
-        for (int i = 0, len = chars.length; i < len; i++) {
-            char c = chars[i];
-            if (Character.isUpperCase(c)) {
-                builder.append("_").append(Character.toLowerCase(c));
+        for (char value : chars) {
+            if (Character.isUpperCase(value)) {
+                builder.append("_").append(Character.toLowerCase(value));
             } else {
-                builder.append(c);
+                builder.append(value);
             }
         }
         return builder.toString();
@@ -1676,7 +1648,7 @@ public final class StringUtils {
                 return isReturn ? str : "";
             }
             // 防止超过限制
-            return str.substring(beginIndex, (endIndex >= len) ? len : endIndex);
+            return str.substring(beginIndex, Math.min(endIndex, len));
         }
         return isReturn ? str : "";
     }

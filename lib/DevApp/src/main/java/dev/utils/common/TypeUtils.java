@@ -57,7 +57,9 @@ public final class TypeUtils {
     public static Type getListType(final Type type) {
         if (type == null) return null;
         try {
-            return new ParameterizedTypeImpl(new Type[]{type}, null, List.class);
+            return new ParameterizedTypeImpl(
+                    new Type[]{type}, null, List.class
+            );
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getListType");
         }
@@ -72,7 +74,9 @@ public final class TypeUtils {
     public static Type getSetType(final Type type) {
         if (type == null) return null;
         try {
-            return new ParameterizedTypeImpl(new Type[]{type}, null, Set.class);
+            return new ParameterizedTypeImpl(
+                    new Type[]{type}, null, Set.class
+            );
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getSetType");
         }
@@ -91,7 +95,9 @@ public final class TypeUtils {
     ) {
         if (keyType == null || valueType == null) return null;
         try {
-            return new ParameterizedTypeImpl(new Type[]{keyType, valueType}, null, Map.class);
+            return new ParameterizedTypeImpl(
+                    new Type[]{keyType, valueType}, null, Map.class
+            );
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getMapType");
         }
@@ -109,7 +115,9 @@ public final class TypeUtils {
             final Type... typeArguments
     ) {
         try {
-            return new ParameterizedTypeImpl(typeArguments, null, rawType);
+            return new ParameterizedTypeImpl(
+                    typeArguments, null, rawType
+            );
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "getType");
         }
