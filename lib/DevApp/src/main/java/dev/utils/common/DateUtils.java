@@ -87,6 +87,16 @@ public final class DateUtils {
         return calendar;
     }
 
+    /**
+     * 获取 Date Time
+     * @param date 日期
+     * @return Date Time
+     */
+    public static long getDateTime(final Date date) {
+        if (date != null) return date.getTime();
+        return -1;
+    }
+
     // =
 
     /**

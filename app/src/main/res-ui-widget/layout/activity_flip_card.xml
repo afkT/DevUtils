@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/color_f9"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:background="@color/color_f9">
 
     <dev.widget.ui.round.RoundLinearLayout
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="horizontal"
         android:padding="@dimen/un_dp_10"
         app:dev_backgroundColor="@color/color_d2"
@@ -16,19 +16,19 @@
 
         <dev.widget.ui.FlipCardView
             android:id="@+id/vid_afc_view1"
-            android:layout_height="@dimen/un_dp_100"
-            android:layout_width="@dimen/un_dp_100" />
+            android:layout_width="@dimen/un_dp_100"
+            android:layout_height="@dimen/un_dp_100" />
 
         <dev.widget.ui.FlipCardView
             android:id="@+id/vid_afc_view2"
+            android:layout_width="@dimen/un_dp_100"
             android:layout_height="@dimen/un_dp_100"
             android:layout_marginLeft="@dimen/un_dp_10"
-            android:layout_marginRight="@dimen/un_dp_10"
-            android:layout_width="@dimen/un_dp_100" />
+            android:layout_marginRight="@dimen/un_dp_10" />
 
         <dev.widget.ui.FlipCardView
             android:id="@+id/vid_afc_view3"
-            android:layout_height="@dimen/un_dp_100"
-            android:layout_width="@dimen/un_dp_100" />
+            android:layout_width="@dimen/un_dp_100"
+            android:layout_height="@dimen/un_dp_100" />
     </dev.widget.ui.round.RoundLinearLayout>
 </FrameLayout>

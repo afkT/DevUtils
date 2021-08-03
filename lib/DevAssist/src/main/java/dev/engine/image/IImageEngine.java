@@ -140,9 +140,13 @@ public interface IImageEngine<Config extends IImageEngine.EngineConfig> {
     // = convert =
     // ===========
 
-    boolean convertImageFormat(Context context, List<DevSource> sources,
-                               OnConvertListener listener);
+    boolean convertImageFormat(
+            Context context, List<DevSource> sources,
+            OnConvertListener listener
+    );
 
-    boolean convertImageFormat(Context context, List<DevSource> sources,
-                               Config config, OnConvertListener listener);
+    boolean convertImageFormat(
+            Context context, List<DevSource> sources,
+            Config config, OnConvertListener listener
+    );
 }
