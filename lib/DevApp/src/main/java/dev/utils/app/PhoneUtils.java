@@ -612,9 +612,11 @@ public final class PhoneUtils {
             );
             SmsManager smsManager = SmsManager.getDefault();
             if (content.length() >= 70) {
-                List<String> ms = smsManager.divideMessage(content);
-                for (String str : ms) {
-                    smsManager.sendTextMessage(phoneNumber, null, str, sentIntent, null);
+                List<String> lists = smsManager.divideMessage(content);
+                for (String value : lists) {
+                    smsManager.sendTextMessage(
+                            phoneNumber, null, value, sentIntent, null
+                    );
                 }
             } else {
                 smsManager.sendTextMessage(phoneNumber, null, content, sentIntent, null);

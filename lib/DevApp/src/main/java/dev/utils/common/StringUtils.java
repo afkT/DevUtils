@@ -66,8 +66,8 @@ public final class StringUtils {
      */
     public static boolean isEmpty(final String... args) {
         if (args != null && args.length != 0) {
-            for (String str : args) {
-                if (isEmpty(str)) {
+            for (String value : args) {
+                if (isEmpty(value)) {
                     return true;
                 }
             }
@@ -794,11 +794,11 @@ public final class StringUtils {
             final String... args
     ) {
         if (args != null && args.length != 0) {
-            for (String str : args) {
+            for (String value : args) {
                 // 删除前后空格处理后, 进行返回
-                String value = clearSpaceTrim(str);
-                if (!isEmpty(value)) {
-                    return value;
+                String result = clearSpaceTrim(value);
+                if (!isEmpty(result)) {
+                    return result;
                 }
             }
         }

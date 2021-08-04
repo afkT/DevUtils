@@ -784,16 +784,16 @@ public final class ADBUtils {
         if (!TextUtils.isEmpty(result)) {
             try {
                 List<String> lists     = new ArrayList<>();
-                String[]     dataSplit = result.split(DevFinal.NEW_LINE_STR);
+                String[]     arrays = result.split(DevFinal.NEW_LINE_STR);
                 // 拆分后, 数据长度
-                int splitLength = dataSplit.length;
+                int splitLength = arrays.length;
                 // 获取 Activity 栈字符串
                 String activities = null;
                 // 判断最后一行是否符合条件
-                if (dataSplit[splitLength - 1].contains("Activities=")) {
-                    activities = dataSplit[splitLength - 1];
+                if (arrays[splitLength - 1].contains("Activities=")) {
+                    activities = arrays[splitLength - 1];
                 } else {
-                    for (String str : dataSplit) {
+                    for (String str : arrays) {
                         if (str.contains("Activities=")) {
                             activities = str;
                             break;
