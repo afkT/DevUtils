@@ -1592,14 +1592,14 @@ public final class ConvertUtils {
 
     /**
      * 将 字节转换 为 二进制字符串
-     * @param datas byte[]
+     * @param bytes byte[]
      * @return 二进制字符串
      */
-    public static String toBinaryString(final byte... datas) {
-        if (datas == null || datas.length == 0) return null;
+    public static String toBinaryString(final byte... bytes) {
+        if (bytes == null || bytes.length == 0) return null;
         try {
             StringBuilder builder = new StringBuilder();
-            for (byte value : datas) {
+            for (byte value : bytes) {
                 for (int j = 7; j >= 0; --j) {
                     builder.append(((value >> j) & 0x01) == 0 ? '0' : '1');
                 }

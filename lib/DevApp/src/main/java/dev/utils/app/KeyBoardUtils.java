@@ -303,11 +303,11 @@ public final class KeyBoardUtils {
         if (context == null) return;
         try {
             InputMethodManager imm = AppUtils.getInputMethodManager();
-            String[] strArr = new String[]{
+            String[] array = new String[]{
                     "mCurRootView", "mServedView",
                     "mNextServedView", "mLastSrvView"
             };
-            for (String value : strArr) {
+            for (String value : array) {
                 try {
                     Field declaredField = imm.getClass().getDeclaredField(value);
                     if (!declaredField.isAccessible()) {

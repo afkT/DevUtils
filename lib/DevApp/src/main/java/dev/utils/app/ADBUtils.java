@@ -518,20 +518,19 @@ public final class ADBUtils {
                             // 存在包名才处理
                             if (value.contains(packageName)) {
                                 String[] splitArrays = value.split(DevFinal.REGEX_SPACE);
-                                for (String strData : splitArrays) {
-                                    if (!TextUtils.isEmpty(strData)) {
+                                for (String itemValue : splitArrays) {
+                                    if (!TextUtils.isEmpty(itemValue)) {
                                         // 属于 packageName/ 前缀的
-                                        if (strData.contains(packageName + "/")) {
+                                        if (itemValue.contains(packageName + "/")) {
                                             // 防止属于 packageName/.xx.Main_Activity
-                                            if (strData.contains("/.")) {
+                                            if (itemValue.contains("/.")) {
                                                 // packageName/.xx.Main_Activity
                                                 // packageName/packageName.xx.Main_Activity
-                                                strData = strData.replace(
-                                                        "/",
-                                                        "/" + packageName
+                                                itemValue = itemValue.replace(
+                                                        "/", "/" + packageName
                                                 );
                                             }
-                                            return strData;
+                                            return itemValue;
                                         }
                                     }
                                 }
@@ -603,20 +602,19 @@ public final class ADBUtils {
                     if (!TextUtils.isEmpty(value)) {
                         String[] splitArrays = value.split(DevFinal.REGEX_SPACE);
                         if (splitArrays.length != 0) {
-                            for (String splitStr : splitArrays) {
-                                if (!TextUtils.isEmpty(splitStr)) {
-                                    int start     = splitStr.indexOf('/');
-                                    int lastIndex = splitStr.lastIndexOf('}');
+                            for (String itemValue : splitArrays) {
+                                if (!TextUtils.isEmpty(itemValue)) {
+                                    int start     = itemValue.indexOf('/');
+                                    int lastIndex = itemValue.lastIndexOf('}');
                                     if (start != -1 && lastIndex != -1) {
                                         // 获取裁剪数据
-                                        String strData = splitStr.substring(0, lastIndex);
+                                        String strData = itemValue.substring(0, lastIndex);
                                         // 防止属于 packageName/.xx.Main_Activity
                                         if (strData.contains("/.")) {
                                             // packageName/.xx.Main_Activity
                                             // packageName/packageName.xx.Main_Activity
                                             strData = strData.replace(
-                                                    "/",
-                                                    "/" + splitStr.substring(0, start)
+                                                    "/", "/" + itemValue.substring(0, start)
                                             );
                                         }
                                         return strData;
@@ -653,21 +651,20 @@ public final class ADBUtils {
                     if (!TextUtils.isEmpty(value)) {
                         String[] splitArrays = value.split(DevFinal.REGEX_SPACE);
                         if (splitArrays.length != 0) {
-                            for (String splitStr : splitArrays) {
-                                if (!TextUtils.isEmpty(splitStr)) {
-                                    int start     = splitStr.indexOf('/');
-                                    int lastIndex = splitStr.lastIndexOf('}');
+                            for (String itemValue : splitArrays) {
+                                if (!TextUtils.isEmpty(itemValue)) {
+                                    int start     = itemValue.indexOf('/');
+                                    int lastIndex = itemValue.lastIndexOf('}');
                                     if (start != -1 && lastIndex != -1
-                                            && splitStr.indexOf(packageName) == 0) {
+                                            && itemValue.indexOf(packageName) == 0) {
                                         // 获取裁剪数据
-                                        String strData = splitStr.substring(0, lastIndex);
+                                        String strData = itemValue.substring(0, lastIndex);
                                         // 防止属于 packageName/.xx.Main_Activity
                                         if (strData.contains("/.")) {
                                             // packageName/.xx.Main_Activity
                                             // packageName/packageName.xx.Main_Activity
                                             strData = strData.replace(
-                                                    "/",
-                                                    "/" + packageName
+                                                    "/", "/" + packageName
                                             );
                                         }
                                         return strData;
@@ -707,19 +704,18 @@ public final class ADBUtils {
                     if (!TextUtils.isEmpty(value)) {
                         String[] splitArrays = value.split(DevFinal.REGEX_SPACE);
                         if (splitArrays.length != 0) {
-                            for (String splitStr : splitArrays) {
-                                if (!TextUtils.isEmpty(splitStr)) {
-                                    int start = splitStr.indexOf('/');
+                            for (String itemValue : splitArrays) {
+                                if (!TextUtils.isEmpty(itemValue)) {
+                                    int start = itemValue.indexOf('/');
                                     if (start != -1) {
                                         // 获取裁剪数据
-                                        String strData = splitStr;
+                                        String strData = itemValue;
                                         // 防止属于 packageName/.xx.Main_Activity
                                         if (strData.contains("/.")) {
                                             // packageName/.xx.Main_Activity
                                             // packageName/packageName.xx.Main_Activity
                                             strData = strData.replace(
-                                                    "/",
-                                                    "/" + splitStr.substring(0, start)
+                                                    "/", "/" + itemValue.substring(0, start)
                                             );
                                         }
                                         return strData;
@@ -808,22 +804,21 @@ public final class ADBUtils {
                 );
                 // 再次进行拆分
                 String[] activityArrays = activities.split("ActivityRecord");
-                for (String data : activityArrays) {
+                for (String value : activityArrays) {
                     try {
-                        String[] splitArrays = data.split(DevFinal.REGEX_SPACE);
+                        String[] splitArrays = value.split(DevFinal.REGEX_SPACE);
                         if (splitArrays.length != 0) {
-                            for (String splitStr : splitArrays) {
-                                int start = splitStr.indexOf(packageName + "/");
+                            for (String itemValue : splitArrays) {
+                                int start = itemValue.indexOf(packageName + "/");
                                 if (start != -1) {
                                     // 获取裁剪数据
-                                    String strData = splitStr;
+                                    String strData = itemValue;
                                     // 防止属于 packageName/.xx.XxxActivity
                                     if (strData.contains("/.")) {
                                         // packageName/.xx.XxxActivity
                                         // packageName/packageName.xx.XxxActivity
                                         strData = strData.replace(
-                                                "/",
-                                                "/" + splitStr.substring(0, start)
+                                                "/", "/" + itemValue.substring(0, start)
                                         );
                                     }
                                     // 保存数据
