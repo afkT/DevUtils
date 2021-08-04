@@ -206,9 +206,9 @@ public final class AccessibilityUtils {
         }
         builder.append(DevFinal.NEW_LINE_STR);
 
-        for (CharSequence txt : event.getText()) {
+        for (CharSequence text : event.getText()) {
             // 输出当前事件包含的文本信息
-            builder.append("text: ").append(txt);
+            builder.append("text: ").append(text);
             builder.append(DevFinal.NEW_LINE_STR);
         }
         builder.append("=========================");

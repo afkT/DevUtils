@@ -66,7 +66,7 @@ public final class LubanUtils {
             OnCompressListener compressListener
     ) {
         if (data == null || config == null || compressListener == null) return false;
-        List lists = new ArrayList<>();
+        List<Object> lists = new ArrayList<>();
         lists.add(data);
         return compress(lists, config, predicate, renameListener, compressListener);
     }
@@ -81,7 +81,7 @@ public final class LubanUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean compress(
-            List lists,
+            List<?> lists,
             Config config,
             OnCompressListener compressListener
     ) {
@@ -98,7 +98,7 @@ public final class LubanUtils {
      * @return {@code true} success, {@code false} fail
      */
     public static boolean compress(
-            List lists,
+            List<?> lists,
             Config config,
             CompressionPredicate predicate,
             OnRenameListener renameListener,
@@ -142,9 +142,7 @@ public final class LubanUtils {
                     public void onStart() {
                         int size = fileMaps.size();
                         fileMaps.put(size, null);
-                        if (compressListener != null) {
-                            compressListener.onStart(size, count);
-                        }
+                        compressListener.onStart(size, count);
                     }
 
                     @Override
@@ -160,34 +158,24 @@ public final class LubanUtils {
                         int size  = fileMaps.size();
                         int index = (size - 1);
                         fileMaps.put(index, file);
-                        if (compressListener != null) {
-                            compressListener.onSuccess(file, index, count);
-                        }
+                        compressListener.onSuccess(file, index, count);
                         if (size >= count) {
-                            if (compressListener != null) {
-                                compressListener.onComplete(getLists(), fileMaps, count);
-                            }
+                            compressListener.onComplete(getLists(), fileMaps, count);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         int size = fileMaps.size();
-                        if (compressListener != null) {
-                            compressListener.onError(e, size - 1, count);
-                        }
+                        compressListener.onError(e, size - 1, count);
                         if (size >= count) {
-                            if (compressListener != null) {
-                                compressListener.onComplete(getLists(), fileMaps, count);
-                            }
+                            compressListener.onComplete(getLists(), fileMaps, count);
                         }
                     }
 
                     private List<File> getLists() {
                         List<File>     files    = new ArrayList<>();
-                        Iterator<File> iterator = fileMaps.values().iterator();
-                        while (iterator.hasNext()) {
-                            File file = iterator.next();
+                        for (File file : fileMaps.values()) {
                             if (file != null && file.exists()) {
                                 files.add(file);
                             }

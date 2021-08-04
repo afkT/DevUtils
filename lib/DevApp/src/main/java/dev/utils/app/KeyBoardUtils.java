@@ -302,8 +302,8 @@ public final class KeyBoardUtils {
     public static void fixSoftInputLeaks(final Context context) {
         if (context == null) return;
         try {
-            InputMethodManager imm    = AppUtils.getInputMethodManager();
-            String[]           strArr = new String[]{
+            InputMethodManager imm = AppUtils.getInputMethodManager();
+            String[] strArr = new String[]{
                     "mCurRootView", "mServedView",
                     "mNextServedView", "mLastSrvView"
             };

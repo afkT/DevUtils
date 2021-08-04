@@ -1042,7 +1042,7 @@ public final class DialogUtils {
             final SingleChoiceListener singleChoiceListener
     ) {
         return createSingleChoiceDialog(
-                context, itemsId, checkedItem, title, icon,negativeBtnText,
+                context, itemsId, checkedItem, title, icon, negativeBtnText,
                 positiveBtnText, singleChoiceListener, 0
         );
     }

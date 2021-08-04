@@ -245,13 +245,13 @@ public final class ADBUtils {
             );
             if (result.isSuccess3()) {
                 String[] arrays = result.successMsg.split(DevFinal.REGEX_SPACE);
-                for (String str : arrays) {
-                    if (!TextUtils.isEmpty(str)) {
+                for (String value : arrays) {
+                    if (!TextUtils.isEmpty(value)) {
                         try {
-                            String[] datas = str.split("=");
-                            if (datas.length == 2) {
-                                if ("versionCode".equalsIgnoreCase(datas[0])) {
-                                    return Integer.parseInt(datas[1]);
+                            String[] splitArray = value.split("=");
+                            if (splitArray.length == 2) {
+                                if ("versionCode".equalsIgnoreCase(splitArray[0])) {
+                                    return Integer.parseInt(splitArray[1]);
                                 }
                             }
                         } catch (Exception ignored) {
@@ -280,13 +280,13 @@ public final class ADBUtils {
             );
             if (result.isSuccess3()) {
                 String[] arrays = result.successMsg.split(DevFinal.REGEX_SPACE);
-                for (String str : arrays) {
-                    if (!TextUtils.isEmpty(str)) {
+                for (String value : arrays) {
+                    if (!TextUtils.isEmpty(value)) {
                         try {
-                            String[] datas = str.split("=");
-                            if (datas.length == 2) {
-                                if ("versionName".equalsIgnoreCase(datas[0])) {
-                                    return datas[1];
+                            String[] splitArray = value.split("=");
+                            if (splitArray.length == 2) {
+                                if ("versionName".equalsIgnoreCase(splitArray[0])) {
+                                    return splitArray[1];
                                 }
                             }
                         } catch (Exception ignored) {
@@ -513,11 +513,11 @@ public final class ADBUtils {
                     String subData = result.successMsg.substring(start + mainStr.length());
                     // 进行拆分
                     String[] arrays = subData.split(DevFinal.NEW_LINE_STR);
-                    for (String str : arrays) {
-                        if (!TextUtils.isEmpty(str)) {
+                    for (String value : arrays) {
+                        if (!TextUtils.isEmpty(value)) {
                             // 存在包名才处理
-                            if (str.contains(packageName)) {
-                                String[] splitArrays = str.split(DevFinal.REGEX_SPACE);
+                            if (value.contains(packageName)) {
+                                String[] splitArrays = value.split(DevFinal.REGEX_SPACE);
                                 for (String strData : splitArrays) {
                                     if (!TextUtils.isEmpty(strData)) {
                                         // 属于 packageName/ 前缀的
@@ -565,12 +565,12 @@ public final class ADBUtils {
             try {
                 String   nameStr = "name=";
                 String[] arrays  = result.successMsg.split(DevFinal.NEW_LINE_STR);
-                for (String str : arrays) {
-                    if (!TextUtils.isEmpty(str)) {
-                        int start = str.indexOf(nameStr);
+                for (String value : arrays) {
+                    if (!TextUtils.isEmpty(value)) {
+                        int start = value.indexOf(nameStr);
                         if (start != -1) {
                             try {
-                                String subData = str.substring(start + nameStr.length());
+                                String subData = value.substring(start + nameStr.length());
                                 if (subData.indexOf(')') != -1) {
                                     return subData.substring(0, subData.length() - 1);
                                 }
@@ -599,9 +599,9 @@ public final class ADBUtils {
             try {
                 // 拆分换行, 并循环
                 String[] arrays = result.successMsg.split(DevFinal.NEW_LINE_STR);
-                for (String str : arrays) {
-                    if (!TextUtils.isEmpty(str)) {
-                        String[] splitArrays = str.split(DevFinal.REGEX_SPACE);
+                for (String value : arrays) {
+                    if (!TextUtils.isEmpty(value)) {
+                        String[] splitArrays = value.split(DevFinal.REGEX_SPACE);
                         if (splitArrays.length != 0) {
                             for (String splitStr : splitArrays) {
                                 if (!TextUtils.isEmpty(splitStr)) {
@@ -649,9 +649,9 @@ public final class ADBUtils {
             try {
                 // 拆分换行, 并循环
                 String[] arrays = result.successMsg.split(DevFinal.NEW_LINE_STR);
-                for (String str : arrays) {
-                    if (!TextUtils.isEmpty(str)) {
-                        String[] splitArrays = str.split(DevFinal.REGEX_SPACE);
+                for (String value : arrays) {
+                    if (!TextUtils.isEmpty(value)) {
+                        String[] splitArrays = value.split(DevFinal.REGEX_SPACE);
                         if (splitArrays.length != 0) {
                             for (String splitStr : splitArrays) {
                                 if (!TextUtils.isEmpty(splitStr)) {
@@ -703,9 +703,9 @@ public final class ADBUtils {
             try {
                 // 拆分换行, 并循环
                 String[] arrays = result.successMsg.split(DevFinal.NEW_LINE_STR);
-                for (String str : arrays) {
-                    if (!TextUtils.isEmpty(str)) {
-                        String[] splitArrays = str.split(DevFinal.REGEX_SPACE);
+                for (String value : arrays) {
+                    if (!TextUtils.isEmpty(value)) {
+                        String[] splitArrays = value.split(DevFinal.REGEX_SPACE);
                         if (splitArrays.length != 0) {
                             for (String splitStr : splitArrays) {
                                 if (!TextUtils.isEmpty(splitStr)) {
@@ -783,7 +783,7 @@ public final class ADBUtils {
         // 防止数据为 null
         if (!TextUtils.isEmpty(result)) {
             try {
-                List<String> lists     = new ArrayList<>();
+                List<String> lists  = new ArrayList<>();
                 String[]     arrays = result.split(DevFinal.NEW_LINE_STR);
                 // 拆分后, 数据长度
                 int splitLength = arrays.length;
@@ -793,9 +793,9 @@ public final class ADBUtils {
                 if (arrays[splitLength - 1].contains("Activities=")) {
                     activities = arrays[splitLength - 1];
                 } else {
-                    for (String str : arrays) {
-                        if (str.contains("Activities=")) {
-                            activities = str;
+                    for (String value : arrays) {
+                        if (value.contains("Activities=")) {
+                            activities = value;
                             break;
                         }
                     }
@@ -2098,13 +2098,13 @@ public final class ADBUtils {
             );
             if (result.isSuccess3()) { // 返回值中的 Device ID 就是 IMEI
                 try {
-                    String[] splitArrays = result.successMsg.split(DevFinal.NEW_LINE_STR);
-                    for (String str : splitArrays) {
-                        if (!TextUtils.isEmpty(str)) {
-                            if (str.toLowerCase().contains("device")) {
+                    String[] arrays = result.successMsg.split(DevFinal.NEW_LINE_STR);
+                    for (String value : arrays) {
+                        if (!TextUtils.isEmpty(value)) {
+                            if (value.toLowerCase().contains("device")) {
                                 // 进行拆分
-                                String[] arrays = str.split(DevFinal.REGEX_SPACE);
-                                return arrays[arrays.length - 1];
+                                String[] splitArray = value.split(DevFinal.REGEX_SPACE);
+                                return splitArray[splitArray.length - 1];
                             }
                         }
                     }
