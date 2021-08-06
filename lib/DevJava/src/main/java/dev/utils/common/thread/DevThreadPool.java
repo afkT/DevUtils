@@ -149,11 +149,9 @@ public final class DevThreadPool {
         if (cpuNumber <= 5) {
             return 5;
         } else { // 大于 5 的情况
-            if (cpuNumber * 2 + 1 >= 10) { // 防止线程数量过大, 当大于 10 的时候, 返回 10
-                return 10;
-            } else { // 不大于 10 的时候, 默认返回 支持的数量 * 2 + 1
-                return cpuNumber * 2 + 1;
-            }
+            // 防止线程数量过大, 当大于 10 的时候, 返回 10
+            // 不大于 10 的时候, 默认返回 支持的数量 * 2 + 1
+            return Math.min(cpuNumber * 2 + 1, 10);
         }
     }
 
@@ -193,13 +191,10 @@ public final class DevThreadPool {
             final Object object
     ) {
         if (mThreadPool != null && method != null && object != null) {
-            mThreadPool.execute(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        method.invoke(object);
-                    } catch (Exception ignore) {
-                    }
+            mThreadPool.execute(() -> {
+                try {
+                    method.invoke(object);
+                } catch (Exception ignore) {
                 }
             });
         }

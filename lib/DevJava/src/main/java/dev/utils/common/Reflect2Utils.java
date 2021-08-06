@@ -560,10 +560,10 @@ public final class Reflect2Utils {
      * @param args 参数
      * @return 参数类型数组
      */
-    public static Class[] getArgsClass(final Object... args) {
+    public static Class<?>[] getArgsClass(final Object... args) {
         if (args != null) {
             try {
-                Class[] argsClass = new Class[args.length];
+                Class<?>[] argsClass = new Class[args.length];
                 for (int i = 0, len = args.length; i < len; i++) {
                     argsClass[i] = args[i].getClass();
                 }

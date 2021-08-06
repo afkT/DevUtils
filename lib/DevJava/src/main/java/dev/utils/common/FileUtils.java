@@ -162,8 +162,8 @@ public final class FileUtils {
      */
     public static boolean createFolderByPaths(final String... filePaths) {
         if (filePaths != null && filePaths.length != 0) {
-            for (int i = 0, len = filePaths.length; i < len; i++) {
-                createFolder(filePaths[i]);
+            for (String filePath : filePaths) {
+                createFolder(filePath);
             }
             return true;
         }
@@ -177,8 +177,8 @@ public final class FileUtils {
      */
     public static boolean createFolderByPaths(final File... files) {
         if (files != null && files.length != 0) {
-            for (int i = 0, len = files.length; i < len; i++) {
-                createFolder(files[i]);
+            for (File file : files) {
+                createFolder(file);
             }
             return true;
         }
@@ -1043,8 +1043,8 @@ public final class FileUtils {
      */
     public static boolean deleteFiles(final String... filePaths) {
         if (filePaths != null && filePaths.length != 0) {
-            for (int i = 0, len = filePaths.length; i < len; i++) {
-                deleteFile(filePaths[i]);
+            for (String filePath : filePaths) {
+                deleteFile(filePath);
             }
             return true;
         }
@@ -1058,8 +1058,8 @@ public final class FileUtils {
      */
     public static boolean deleteFiles(final File... files) {
         if (files != null && files.length != 0) {
-            for (int i = 0, len = files.length; i < len; i++) {
-                deleteFile(files[i]);
+            for (File file : files) {
+                deleteFile(file);
             }
             return true;
         }
@@ -1089,11 +1089,10 @@ public final class FileUtils {
                 if (file.exists()) {
                     if (file.isDirectory()) { // 属于文件目录
                         File[] files = file.listFiles();
-                        if (null == files || files.length == 0) {
-                            file.delete();
-                        }
-                        for (File f : files) {
-                            deleteFolder(f.getPath());
+                        if (files != null) {
+                            for (File deleteFile : files) {
+                                deleteFolder(deleteFile.getPath());
+                            }
                         }
                         return file.delete();
                     } else { // 属于文件
@@ -1390,58 +1389,12 @@ public final class FileUtils {
             final String destFilePath,
             final boolean overlay
     ) {
-        if (srcFilePath == null || destFilePath == null) {
-            return false;
-        }
-        File srcFile = new File(srcFilePath);
-        // 判断源文件是否存在
-        if (!srcFile.exists()) {
-            return false;
-        } else if (!srcFile.isFile()) { // srcFile.isDirectory();
-            return false;
-        }
-        // 判断目标文件是否存在
-        File destFile = new File(destFilePath);
-        // 如果属于文件夹则跳过
-        if (destFile.isDirectory()) {
-            return false;
-        }
-        if (destFile.exists()) {
-            // 如果目标文件存在并允许覆盖
-            if (overlay) {
-                // 删除已经存在的目标文件, 无论目标文件是目录还是单个文件
-                new File(destFilePath).delete();
-            } else { // 如果文件存在, 但是不覆盖, 则返回 false 表示失败
-                return false;
-            }
-        } else {
-            // 如果目标文件所在目录不存在, 则创建目录
-            if (!destFile.getParentFile().exists()) {
-                // 目标文件所在目录不存在
-                if (!destFile.getParentFile().mkdirs()) {
-                    // 复制文件失败: 创建目标文件所在目录失败
-                    return false;
-                }
-            }
-        }
-        // 复制文件
-        int          len; // 读取的字节数
-        InputStream  is = null;
-        OutputStream os = null;
-        try {
-            is = new FileInputStream(srcFile);
-            os = new FileOutputStream(destFile);
-            byte[] buffer = new byte[1024];
-            while ((len = is.read(buffer)) != -1) {
-                os.write(buffer, 0, len);
-            }
-            return true;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "copyFile");
-            return false;
-        } finally {
-            CloseUtils.closeIOQuietly(os, is);
-        }
+        if (destFilePath == null) return false;
+        if (!FileUtils.isFile(srcFilePath)) return false;
+        return copyFile(
+                FileIOUtils.getFileInputStream(srcFilePath),
+                destFilePath, overlay
+        );
     }
 
     /**
@@ -1490,8 +1443,8 @@ public final class FileUtils {
             // 允许创建多级目录
             destFile.mkdirs();
         }
-        // 判断是否属于文件夹
-        if (!destFile.isDirectory()) { // 不属于文件夹则跳过
+        // 判断是否属于文件夹 ( 不属于文件夹则跳过 )
+        if (!destFile.isDirectory()) {
             return false;
         }
         // 判断是否存在
@@ -1636,6 +1589,7 @@ public final class FileUtils {
         // 目标目录不存在返回 false
         if (!createOrExistsDir(destDir)) return false;
         File[] files = srcDir.listFiles();
+        if (files == null) return false;
         for (File file : files) {
             File oneDestFile = new File(destPath + file.getName());
             if (file.isFile()) {
@@ -1663,7 +1617,11 @@ public final class FileUtils {
             final OnReplaceListener listener,
             final boolean isMove
     ) {
-        return copyOrMoveFile(getFileByPath(srcFilePath), getFileByPath(destFilePath), listener, isMove);
+        return copyOrMoveFile(
+                getFileByPath(srcFilePath),
+                getFileByPath(destFilePath),
+                listener, isMove
+        );
     }
 
     /**
@@ -1697,7 +1655,9 @@ public final class FileUtils {
         // 目标目录不存在返回 false
         if (!createOrExistsDir(destFile.getParentFile())) return false;
         try {
-            return FileIOUtils.writeFileFromIS(destFile, new FileInputStream(srcFile), false) && !(isMove && !deleteFile(srcFile));
+            return FileIOUtils.writeFileFromIS(
+                    destFile, new FileInputStream(srcFile), false
+            ) && !(isMove && !deleteFile(srcFile));
         } catch (FileNotFoundException e) {
             JCLogUtils.eTag(TAG, e, "copyOrMoveFile");
             return false;
@@ -1872,12 +1832,7 @@ public final class FileUtils {
      * @return {@code true} 删除成功, {@code false} 删除失败
      */
     public static boolean deleteAllInDir(final File dir) {
-        return deleteFilesInDirWithFilter(dir, new FileFilter() {
-            @Override
-            public boolean accept(File pathname) {
-                return true;
-            }
-        });
+        return deleteFilesInDirWithFilter(dir, pathname -> true);
     }
 
     /**
@@ -1895,12 +1850,7 @@ public final class FileUtils {
      * @return {@code true} 删除成功, {@code false} 删除失败
      */
     public static boolean deleteFilesInDir(final File dir) {
-        return deleteFilesInDirWithFilter(dir, new FileFilter() {
-            @Override
-            public boolean accept(File pathname) {
-                return pathname.isFile();
-            }
-        });
+        return deleteFilesInDirWithFilter(dir, pathname -> pathname.isFile());
     }
 
     /**
@@ -1927,11 +1877,8 @@ public final class FileUtils {
             final FileFilter filter
     ) {
         if (filter == null) return false;
-        // dir is null then return false
         if (dir == null) return false;
-        // dir doesn't exist then return true
         if (!dir.exists()) return true;
-        // dir isn't a directory then return false
         if (!dir.isDirectory()) return false;
         File[] files = dir.listFiles();
         if (files != null && files.length != 0) {
@@ -1989,12 +1936,7 @@ public final class FileUtils {
             final File dir,
             final boolean isRecursive
     ) {
-        return listFilesInDirWithFilter(dir, new FileFilter() {
-            @Override
-            public boolean accept(File pathname) {
-                return true;
-            }
-        }, isRecursive);
+        return listFilesInDirWithFilter(dir, pathname -> true, isRecursive);
     }
 
     /**
@@ -2059,7 +2001,10 @@ public final class FileUtils {
                     list.add(file);
                 }
                 if (isRecursive && file.isDirectory()) {
-                    list.addAll(listFilesInDirWithFilter(file, filter, true));
+                    List<File> fileLists = listFilesInDirWithFilter(file, filter, true);
+                    if (fileLists != null) {
+                        list.addAll(fileLists);
+                    }
                 }
             }
         }
@@ -2162,12 +2107,7 @@ public final class FileUtils {
             final File dir,
             final boolean isRecursive
     ) {
-        return listFilesInDirWithFilterBean(dir, new FileFilter() {
-            @Override
-            public boolean accept(File pathname) {
-                return true;
-            }
-        }, isRecursive);
+        return listFilesInDirWithFilterBean(dir, pathname -> true, isRecursive);
     }
 
     /**

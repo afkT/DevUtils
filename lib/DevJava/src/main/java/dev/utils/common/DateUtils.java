@@ -1,10 +1,15 @@
 package dev.utils.common;
 
+import android.annotation.SuppressLint;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import dev.utils.JCLogUtils;
 
@@ -21,28 +26,37 @@ public final class DateUtils {
     private static final String TAG = DateUtils.class.getSimpleName();
 
     // =============
-    // = 日期格式类型 =
+    // = 时间格式类型 =
     // =============
 
-    public static final String yyyy             = "yyyy";
-    public static final String yyyyMMdd         = "yyyy-MM-dd";
-    public static final String yyyyMMdd2        = "yyyyMMdd";
-    public static final String yyyyMMdd3        = "yyyy年MM月dd日";
-    public static final String yyyyMMddHHmmss   = "yyyy-MM-dd HH:mm:ss";
-    public static final String yyyyMMddHHmmss_2 = "yyyy年M月d日 HH:mm:ss";
-    public static final String yyyyMMdd_HHmmss  = "yyyyMMdd_HHmmss";
-    public static final String MMdd             = "MM-dd";
-    public static final String MMdd2            = "MM月dd日";
-    public static final String MMdd3            = "MMdd";
-    public static final String hh               = "hh";
-    public static final String HH               = "HH";
-    public static final String mm               = "mm";
-    public static final String HHmm             = "HH:mm";
-    public static final String HHmm2            = "HHmm";
-    public static final String HHmmss           = "HH:mm:ss";
-    public static final String HHmmss2          = "HHmmss";
-    public static final String hhmmMMDDyyyy     = "hh:mm M月d日 yyyy";
-    public static final String hhmmssMMDDyyyy   = "hh:mm:ss M月d日 yyyy";
+    public static final String yyyy            = "yyyy";
+    public static final String yyMMdd          = "yy-MM-dd";
+    public static final String yyMMdd2         = "yyMMdd";
+    public static final String yyyyMMdd        = "yyyy-MM-dd";
+    public static final String yyyyMMdd2       = "yyyyMMdd";
+    public static final String yyyyMMdd3       = "yyyy年MM月dd日";
+    public static final String yyyyMMdd4       = "yyyy_MM_dd";
+    public static final String yyyyMMdd5       = "yyyy.MM.dd";
+    public static final String yyyyMMddHHmmss  = "yyyy-MM-dd HH:mm:ss";
+    public static final String yyyyMMddHHmmss2 = "yyyy年M月d日 HH:mm:ss";
+    public static final String yyyyMMddHHmmss3 = "yyyyMMdd_HHmmss";
+    public static final String yyyyMMddHHmmss4 = "yyyyMMdd.HHmmss";
+    public static final String MMdd            = "MM-dd";
+    public static final String MMdd2           = "MM月dd日";
+    public static final String MMdd3           = "MMdd";
+    public static final String yy              = "yy";
+    public static final String MM              = "MM";
+    public static final String dd              = "dd";
+    public static final String hh              = "hh";
+    public static final String HH              = "HH";
+    public static final String mm              = "mm";
+    public static final String HHmm            = "HH:mm";
+    public static final String HHmm2           = "HHmm";
+    public static final String HHmmss          = "HH:mm:ss";
+    public static final String HHmmss2         = "HHmmss";
+    public static final String hhmmMMDDyyyy    = "hh:mm M月d日 yyyy";
+    public static final String hhmmssMMDDyyyy  = "hh:mm:ss M月d日 yyyy";
+    public static final String mmddHHmmyyyyss  = "MMddHHmmyyyy.ss";
 
     // 一分钟 60 秒
     public static final int  MINUTE_S = 60;
@@ -65,65 +79,204 @@ public final class DateUtils {
     // 年与毫秒的倍数
     public static final long YEAR     = DAY * 365;
 
+    // 线程安全 SimpleDateFormat Map
+    private static final ThreadLocal<Map<String, SimpleDateFormat>> SDF_THREAD_LOCAL
+            = new ThreadLocal<Map<String, SimpleDateFormat>>() {
+        @Override
+        protected Map<String, SimpleDateFormat> initialValue() {
+            return new HashMap<>();
+        }
+    };
+
     /**
-     * 获取当前日期的字符串 ( yyyy-MM-dd HH:mm:ss )
-     * @return 当前日期 yyyy-MM-dd HH:mm:ss 格式字符串
+     * 获取默认 SimpleDateFormat ( yyyy-MM-dd HH:mm:ss )
+     * @return {@link SimpleDateFormat}
      */
-    public static String getDateNow() {
-        return getDateNow(yyyyMMddHHmmss);
+    public static SimpleDateFormat getDefaultFormat() {
+        return getSafeDateFormat(yyyyMMddHHmmss);
     }
 
     /**
-     * 获取当前日期的字符串
-     * @param format 日期格式, 如: yyyy-MM-dd HH:mm:ss
-     * @return 当前日期指定格式字符串
+     * 获取对应时间格式线程安全 SimpleDateFormat
+     * @param pattern 时间格式
+     * @return {@link SimpleDateFormat}
      */
-    public static String getDateNow(final String format) {
-        if (format == null) return null;
-        try {
-            return new SimpleDateFormat(format).format(Calendar.getInstance().getTime());
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getDateNow");
+    @SuppressLint("SimpleDateFormat")
+    public static SimpleDateFormat getSafeDateFormat(final String pattern) {
+        if (pattern == null) return null;
+        Map<String, SimpleDateFormat> sdfMap = SDF_THREAD_LOCAL.get();
+        SimpleDateFormat              format = sdfMap.get(pattern);
+        if (format == null) {
+            format = new SimpleDateFormat(pattern);
+            sdfMap.put(pattern, format);
         }
-        return null;
+        return format;
+    }
+
+    // =
+
+    /**
+     * 获取 Calendar
+     * @return {@link Calendar}
+     */
+    public static Calendar getCalendar() {
+        return Calendar.getInstance();
+    }
+
+    /**
+     * 获取 Calendar
+     * @param millis 时间毫秒
+     * @return {@link Calendar}
+     */
+    public static Calendar getCalendar(final long millis) {
+        if (millis == -1) return null;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(millis);
+        return calendar;
+    }
+
+    /**
+     * 获取 Calendar
+     * @param date 日期
+     * @return {@link Calendar}
+     */
+    public static Calendar getCalendar(final Date date) {
+        if (date == null) return null;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar;
+    }
+
+    /**
+     * 获取当前时间 Date
+     * @return 当前时间 Date
+     */
+    public static Date getCurrentTime() {
+        return Calendar.getInstance().getTime();
+    }
+
+    /**
+     * 获取当前时间戳
+     * @return 当前时间戳
+     */
+    public static long getCurrentTimeMillis() {
+        return getDateTime(Calendar.getInstance().getTime());
+    }
+
+    /**
+     * 获取 Date Time
+     * @param date 日期
+     * @return Date Time
+     */
+    public static long getDateTime(final Date date) {
+        if (date != null) return date.getTime();
+        return -1;
+    }
+
+    // =
+
+    /**
+     * 获取当前时间的字符串
+     * @return 当前时间的字符串
+     */
+    public static String getDateNow() {
+        return formatTime(getCurrentTimeMillis(), getDefaultFormat());
+    }
+
+    /**
+     * 获取当前时间的字符串
+     * @param pattern 时间格式
+     * @return 当前时间的字符串
+     */
+    public static String getDateNow(final String pattern) {
+        return formatTime(getCurrentTimeMillis(), getSafeDateFormat(pattern));
+    }
+
+    /**
+     * 获取当前时间的字符串
+     * @param format {@link SimpleDateFormat}
+     * @return 当前时间的字符串
+     */
+    public static String getDateNow(final SimpleDateFormat format) {
+        return formatTime(getCurrentTimeMillis(), format);
+    }
+
+    // =
+
+    /**
+     * 将 Date 转换日期字符串
+     * @param date 日期
+     * @return 按照指定格式的日期字符串
+     */
+    public static String formatDate(final Date date) {
+        return formatTime(getDateTime(date), getDefaultFormat());
+    }
+
+    /**
+     * 将 Date 转换日期字符串
+     * @param date    日期
+     * @param pattern 时间格式
+     * @return 按照指定格式的日期字符串
+     */
+    public static String formatDate(
+            final Date date,
+            final String pattern
+    ) {
+        return formatTime(getDateTime(date), getSafeDateFormat(pattern));
+    }
+
+    /**
+     * 将 Date 转换日期字符串
+     * @param date   日期
+     * @param format {@link SimpleDateFormat}
+     * @return 按照指定格式的日期字符串
+     */
+    public static String formatDate(
+            final Date date,
+            final SimpleDateFormat format
+    ) {
+        return formatTime(getDateTime(date), format);
     }
 
     // =
 
     /**
      * 将时间戳转换日期字符串
-     * @param time   时间戳
-     * @param format 日期格式
+     * @param millis 时间戳
      * @return 按照指定格式的日期字符串
      */
-    public static String formatTime(
-            final long time,
-            final String format
-    ) {
-        if (format == null) return null;
-        try {
-            return new SimpleDateFormat(format).format(time);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "formatTime");
-        }
-        return null;
+    public static String formatTime(final long millis) {
+        return formatTime(millis, getDefaultFormat());
     }
 
     /**
-     * 将 Date 转换日期字符串
-     * @param date   日期
-     * @param format 日期格式
+     * 将时间戳转换日期字符串
+     * @param millis  时间戳
+     * @param pattern 时间格式
      * @return 按照指定格式的日期字符串
      */
-    public static String formatDate(
-            final Date date,
-            final String format
+    public static String formatTime(
+            final long millis,
+            final String pattern
     ) {
-        if (date == null || format == null) return null;
+        return formatTime(millis, getSafeDateFormat(pattern));
+    }
+
+    /**
+     * 将时间戳转换日期字符串
+     * @param millis 时间戳
+     * @param format {@link SimpleDateFormat}
+     * @return 按照指定格式的日期字符串
+     */
+    public static String formatTime(
+            final long millis,
+            final SimpleDateFormat format
+    ) {
+        if (millis == -1 || format == null) return null;
         try {
-            return new SimpleDateFormat(format).format(date);
+            return format.format(millis);
         } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "formatDate");
+            JCLogUtils.eTag(TAG, e, "formatTime");
         }
         return null;
     }
@@ -132,96 +285,162 @@ public final class DateUtils {
 
     /**
      * 将时间戳转换成 Date
-     * @param time 时间戳
+     * @param millis 时间戳
      * @return {@link Date}
      */
-    public static Date parseDate(final long time) {
-        try {
-            return new Date(time);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "parseDate");
-        }
-        return null;
+    public static Date parseDate(final long millis) {
+        if (millis == -1) return null;
+        return new Date(millis);
     }
 
     /**
-     * 将日期字符串转换为 Date ( 默认表示 time 属于 yyyy-MM-dd HH:mm:ss 格式 )
+     * 解析时间字符串转换为 Date
      * @param time 时间
      * @return {@link Date}
      */
     public static Date parseDate(final String time) {
-        return parseDate(time, yyyyMMddHHmmss);
+        return parseDate(parseLong(time, getDefaultFormat()));
     }
 
     /**
-     * 将日期字符串转换为 Date
-     * @param time   时间
-     * @param format 日期格式
+     * 解析时间字符串转换为 Date
+     * @param time    时间
+     * @param pattern 时间格式
      * @return {@link Date}
      */
     public static Date parseDate(
             final String time,
-            final String format
+            final String pattern
     ) {
-        if (time == null || format == null) return null;
-        try {
-            return new SimpleDateFormat(format).parse(time);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "parseDate");
-        }
-        return null;
+        return parseDate(parseLong(time, getSafeDateFormat(pattern)));
+    }
+
+    /**
+     * 解析时间字符串转换为 Date
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @return {@link Date}
+     */
+    public static Date parseDate(
+            final String time,
+            final SimpleDateFormat format
+    ) {
+        return parseDate(parseLong(time, format));
     }
 
     // =
 
     /**
-     * 解析时间字符串转换为 long 毫秒 ( 默认表示 time 属于 yyyy-MM-dd HH:mm:ss 格式 )
+     * 解析时间字符串转换为 long 毫秒
      * @param time 时间
      * @return 毫秒时间
      */
     public static long parseLong(final String time) {
-        return parseLong(time, yyyyMMddHHmmss);
+        return parseLong(time, getDefaultFormat());
+    }
+
+    /**
+     * 解析时间字符串转换为 long 毫秒
+     * @param time    时间
+     * @param pattern 时间格式
+     * @return 毫秒时间
+     */
+    public static long parseLong(
+            final String time,
+            final String pattern
+    ) {
+        return parseLong(time, getSafeDateFormat(pattern));
     }
 
     /**
      * 解析时间字符串转换为 long 毫秒
      * @param time   时间
-     * @param format 时间的格式
+     * @param format {@link SimpleDateFormat}
      * @return 毫秒时间
      */
     public static long parseLong(
             final String time,
-            final String format
+            final SimpleDateFormat format
     ) {
-        if (time == null || format == null) return 0L;
+        if (time == null || format == null) return -1L;
         try {
-            // 按规定的时间格式, 进行格式化时间, 并且获取 long 时间毫秒, 返回毫秒时间
-            return new SimpleDateFormat(format).parse(time).getTime();
+            return format.parse(time).getTime();
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "parseLong");
         }
-        return 0L;
+        return -1L;
+    }
+
+    // =
+
+    /**
+     * 解析时间字符串转换为指定格式字符串
+     * @param time    需要转换的时间
+     * @param pattern 把 time 转换成需要的格式
+     * @return 转换指定格式的时间字符串
+     */
+    public static String parseStringDefault(
+            final String time,
+            final String pattern
+    ) {
+        return parseString(
+                time, getDefaultFormat(),
+                getSafeDateFormat(pattern)
+        );
     }
 
     /**
-     * 转换时间为指定字符串
+     * 解析时间字符串转换为指定格式字符串
+     * @param time   需要转换的时间
+     * @param format 把 time 转换成需要的格式
+     * @return 转换指定格式的时间字符串
+     */
+    public static String parseStringDefault(
+            final String time,
+            final SimpleDateFormat format
+    ) {
+        return parseString(
+                time, getDefaultFormat(), format
+        );
+    }
+
+    /**
+     * 解析时间字符串转换为指定格式字符串
+     * @param time        需要转换的时间
+     * @param timePattern time 的时间格式
+     * @param pattern     把 time 转换成需要的格式
+     * @return 转换指定格式的时间字符串
+     */
+    public static String parseString(
+            final String time,
+            final String timePattern,
+            final String pattern
+    ) {
+        return parseString(
+                time, getSafeDateFormat(timePattern),
+                getSafeDateFormat(pattern)
+        );
+    }
+
+    /**
+     * 解析时间字符串转换为指定格式字符串
      * @param time       需要转换的时间
      * @param timeFormat time 的时间格式
      * @param format     把 time 转换成需要的格式
      * @return 转换指定格式的时间字符串
      */
-    public static String parseToString(
+    public static String parseString(
             final String time,
-            final String timeFormat,
-            final String format
+            final SimpleDateFormat timeFormat,
+            final SimpleDateFormat format
     ) {
         if (time != null && timeFormat != null && format != null) {
             try {
-                Date date = parseDate(time, timeFormat);
+                long timeLong = parseLong(time, timeFormat);
                 // 把时间转为所需格式字符串
-                return formatDate(date, format);
+                return formatTime(timeLong, format);
             } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "parseToString");
+                JCLogUtils.eTag(TAG, e, "parseString");
             }
         }
         return null;
@@ -231,38 +450,38 @@ public final class DateUtils {
 
     /**
      * 获取时间差 ( 分钟 )
-     * @param time 毫秒
+     * @param millis 毫秒
      * @return 分钟
      */
-    public static int getTimeDiffMinute(final long time) {
-        return (int) (time / 60000); // 60 * 1000
+    public static int getTimeDiffMinute(final long millis) {
+        return (int) (millis / 60000); // 60 * 1000
     }
 
     /**
      * 获取时间差 ( 小时 )
-     * @param time 毫秒
+     * @param millis 毫秒
      * @return 小时
      */
-    public static int getTimeDiffHour(final long time) {
-        return (int) (time / 3600000); // 60 * 1000 * 60
+    public static int getTimeDiffHour(final long millis) {
+        return (int) (millis / 3600000); // 60 * 1000 * 60
     }
 
     /**
      * 获取时间差 ( 天 )
-     * @param time 毫秒
+     * @param millis 毫秒
      * @return 天
      */
-    public static int getTimeDiffDay(final long time) {
-        return (int) (time / 86400000); // 60 * 1000 * 60 * 24
+    public static int getTimeDiffDay(final long millis) {
+        return (int) (millis / 86400000); // 60 * 1000 * 60 * 24
     }
 
     /**
      * 获取时间差 ( 传入时间 - 当前时间 )
-     * @param time 毫秒
+     * @param millis 毫秒
      * @return 与当前时间的时间差 ( 毫秒 )
      */
-    public static long getTimeDiff(final long time) {
-        return time - System.currentTimeMillis();
+    public static long getTimeDiff(final long millis) {
+        return millis - System.currentTimeMillis();
     }
 
     /**
@@ -527,6 +746,28 @@ public final class DateUtils {
         return Calendar.getInstance().get(Calendar.SECOND);
     }
 
+    /**
+     * 是否上午
+     * @param millis 时间毫秒
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isAM(final long millis) {
+        Calendar calendar = GregorianCalendar.getInstance();
+        calendar.setTimeInMillis(millis);
+        return calendar.get(GregorianCalendar.AM_PM) == Calendar.AM;
+    }
+
+    /**
+     * 是否下午
+     * @param millis 时间毫秒
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isPM(final long millis) {
+        Calendar calendar = GregorianCalendar.getInstance();
+        calendar.setTimeInMillis(millis);
+        return calendar.get(GregorianCalendar.AM_PM) == Calendar.PM;
+    }
+
     // =
 
     /**
@@ -619,7 +860,7 @@ public final class DateUtils {
      */
     public static String[] getArrayToHH() {
         List<String> lists = getListToHH();
-        return lists.toArray(new String[lists.size()]);
+        return lists.toArray(new String[0]);
     }
 
     /**
@@ -640,7 +881,7 @@ public final class DateUtils {
      */
     public static String[] getArrayToMM() {
         List<String> lists = getListToMM();
-        return lists.toArray(new String[lists.size()]);
+        return lists.toArray(new String[0]);
     }
 
     /**
@@ -664,7 +905,7 @@ public final class DateUtils {
      */
     public static String[] getArrayToHHMM(final int type) {
         List<String> lists = getListToHHMM(type);
-        return lists.toArray(new String[lists.size()]);
+        return lists.toArray(new String[0]);
     }
 
     /**
@@ -732,7 +973,7 @@ public final class DateUtils {
         if (time != null && time.length() != 0) {
             // 进行拆分
             String[] timeSplit = time.split(":");
-            if (timeSplit != null && timeSplit.length == 2) {
+            if (timeSplit.length == 2) {
                 // 转换小时
                 int hour = ConvertUtils.toInt(timeSplit[0], -1);
                 // 判断是否小于 0
@@ -758,16 +999,16 @@ public final class DateUtils {
                         }
                         // 判断间隔
                         if (type == 1) {
-                            if (minute >= 0 && minute < 15) {
+                            if (minute < 15) {
                                 return hour * 4;
-                            } else if (minute >= 15 && minute < 30) {
+                            } else if (minute < 30) {
                                 return hour * 4 + 1;
-                            } else if (minute >= 30 && minute < 45) {
+                            } else if (minute < 45) {
                                 return hour * 4 + 2;
-                            } else if (minute >= 30 && minute < 60) {
+                            } else {
                                 return hour * 4 + 3;
                             }
-                        } else if (type == 2) { // 30 分钟一个间隔
+                        } else { // 30 分钟一个间隔
                             // 大于等于 30, 表示属于基数
                             if (minute >= 30) { // 属于奇数 (30), 需要加 1
                                 return hour * 2 + 1;
@@ -775,7 +1016,6 @@ public final class DateUtils {
                                 return hour * 2;
                             }
                         }
-                        break;
                 }
             }
         }
@@ -817,17 +1057,20 @@ public final class DateUtils {
                 // 转换时间格式
                 if (time < MINUTE_S) { // 小于一分钟
                     return "00:00:" + ((time >= 10) ? time : ("0" + time));
-                } else if (time >= MINUTE_S && time < HOUR_S) { // 小于一小时
+                } else if (time < HOUR_S) { // 小于一小时
                     dSecond = time % MINUTE_S; // 取模分钟, 获取多出的秒数
                     dMinute = (time - dSecond) / MINUTE_S;
-                    return "00:" + ((dMinute >= 10) ? dMinute : ("0" + dMinute)) + ":" + ((dSecond >= 10) ? dSecond : ("0" + dSecond));
-                } else if (time >= HOUR_S && time < DAY_S) { // 小于等于一天
+                    return "00:" + ((dMinute >= 10) ? dMinute : ("0" + dMinute))
+                            + ":" + ((dSecond >= 10) ? dSecond : ("0" + dSecond));
+                } else if (time < DAY_S) { // 小于等于一天
                     rMinute = time % HOUR_S; // 取模小时, 获取多出的分钟
                     dHour   = (time - rMinute) / HOUR_S; // 获取小时
                     dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
                     dMinute = dSecond / MINUTE_S; // 获取多出的分钟
                     rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒数
-                    return ((dHour >= 10) ? dHour : ("0" + dHour)) + ":" + ((dMinute >= 10) ? dMinute : ("0" + dMinute)) + ":" + ((rSecond >= 10) ? rSecond : "0" + rSecond);
+                    return ((dHour >= 10) ? dHour : ("0" + dHour))
+                            + ":" + ((dMinute >= 10) ? dMinute : ("0" + dMinute))
+                            + ":" + ((rSecond >= 10) ? rSecond : "0" + rSecond);
                 } else { // 多余的时间, 直接格式化
                     // 大于一天的情况
                     if (isHandlerMDay) {
@@ -836,7 +1079,8 @@ public final class DateUtils {
                         dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
                         dMinute = dSecond / MINUTE_S; // 获取多出的分钟
                         rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒数
-                        return ((dHour >= 10) ? dHour : ("0" + dHour)) + ":" + ((dMinute >= 10) ? dMinute : ("0" + dMinute)) + ":" + ((rSecond >= 10) ? rSecond : "0" + rSecond);
+                        return dHour + ":" + (dMinute >= 10 ? dMinute : "0" + dMinute)
+                                + ":" + (rSecond >= 10 ? rSecond : "0" + rSecond);
                     }
                 }
             }
@@ -866,11 +1110,11 @@ public final class DateUtils {
                 // 转换时间格式
                 if (time < MINUTE_S) { // 小于一分钟
                     return new int[]{0, 0, time};
-                } else if (time >= MINUTE_S && time < HOUR_S) { // 小于一小时
+                } else if (time < HOUR_S) { // 小于一小时
                     dSecond = time % MINUTE_S; // 取模分钟, 获取多出的秒数
                     dMinute = (time - dSecond) / MINUTE_S;
                     return new int[]{0, dMinute, dSecond};
-                } else if (time >= HOUR_S && time < DAY_S) { // 小于等于一天
+                } else if (time < DAY_S) { // 小于等于一天
                     rMinute = time % HOUR_S; // 取模小时, 获取多出的分钟
                     dHour   = (time - rMinute) / HOUR_S; // 获取小时
                     dSecond = (time - dHour * HOUR_S); // 获取多出的秒数

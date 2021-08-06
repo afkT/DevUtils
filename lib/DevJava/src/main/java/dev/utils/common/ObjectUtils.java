@@ -36,10 +36,10 @@ public final class ObjectUtils {
             if (object instanceof CharSequence && object.toString().length() == 0) {
                 return true;
             }
-            if (object instanceof Collection && ((Collection) object).isEmpty()) {
+            if (object instanceof Collection && ((Collection<?>) object).isEmpty()) {
                 return true;
             }
-            if (object instanceof Map && ((Map) object).isEmpty()) {
+            if (object instanceof Map && ((Map<?, ?>) object).isEmpty()) {
                 return true;
             }
         } catch (Exception e) {

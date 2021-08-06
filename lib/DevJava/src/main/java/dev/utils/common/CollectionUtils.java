@@ -14,7 +14,6 @@ import dev.utils.JCLogUtils;
  * detail: 集合工具类 ( Collection - List、Set、Queue ) 等
  * @author Ttt
  * <pre>
- *     @see <a href="https://mp.weixin.qq.com/s/DmRmazyp-EmTQPXdfw9wpQ"/>
  *     // 升序
  *     Collections.sort(list);
  *     // 降序
@@ -43,7 +42,7 @@ public final class CollectionUtils {
      * @param collection {@link Collection}
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isEmpty(final Collection collection) {
+    public static boolean isEmpty(final Collection<?> collection) {
         return (collection == null || collection.size() == 0);
     }
 
@@ -52,7 +51,7 @@ public final class CollectionUtils {
      * @param collection {@link Collection}
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isNotEmpty(final Collection collection) {
+    public static boolean isNotEmpty(final Collection<?> collection) {
         return (collection != null && collection.size() != 0);
     }
 
@@ -65,7 +64,7 @@ public final class CollectionUtils {
      * @param collection {@link Collection}
      * @return 如果 Collection 为 null, 则返回默认长度, 如果不为 null, 则返回 collection.size()
      */
-    public static int length(final Collection collection) {
+    public static int length(final Collection<?> collection) {
         return length(collection, 0);
     }
 
@@ -76,7 +75,7 @@ public final class CollectionUtils {
      * @return 如果 Collection 为 null, 则返回 defaultLength, 如果不为 null, 则返回 collection.size()
      */
     public static int length(
-            final Collection collection,
+            final Collection<?> collection,
             final int defaultLength
     ) {
         return collection != null ? collection.size() : defaultLength;
@@ -91,7 +90,7 @@ public final class CollectionUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isLength(
-            final Collection collection,
+            final Collection<?> collection,
             final int length
     ) {
         return collection != null && collection.size() == length;
@@ -106,7 +105,7 @@ public final class CollectionUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean greaterThan(
-            final Collection collection,
+            final Collection<?> collection,
             final int length
     ) {
         return collection != null && collection.size() > length;
@@ -119,7 +118,7 @@ public final class CollectionUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean greaterThanOrEqual(
-            final Collection collection,
+            final Collection<?> collection,
             final int length
     ) {
         return collection != null && collection.size() >= length;
@@ -134,7 +133,7 @@ public final class CollectionUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean lessThan(
-            final Collection collection,
+            final Collection<?> collection,
             final int length
     ) {
         return collection != null && collection.size() < length;
@@ -147,7 +146,7 @@ public final class CollectionUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean lessThanOrEqual(
-            final Collection collection,
+            final Collection<?> collection,
             final int length
     ) {
         return collection != null && collection.size() <= length;
@@ -162,10 +161,10 @@ public final class CollectionUtils {
      * @param collections Collection[]
      * @return Collection 数组长度总和
      */
-    public static int getCount(final Collection... collections) {
+    public static int getCount(final Collection<?>... collections) {
         if (collections == null) return 0;
         int count = 0;
-        for (Collection collection : collections) {
+        for (Collection<?> collection : collections) {
             count += length(collection);
         }
         return count;
@@ -234,7 +233,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取 value 所在位置 + 偏移量的值
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1 )
      * @param notNull    是否不允许值为 null
      * @param offset     偏移量
      * @param <T>        泛型
@@ -278,7 +277,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取 value 所在位置 + 偏移量的索引
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1 )
      * @param notNull    是否不允许值为 null
      * @param offset     偏移量
      * @param <T>        泛型
@@ -338,7 +337,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取索引
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1 )
      * @param <T>        泛型
      * @return 对应的索引
      */
@@ -370,7 +369,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取索引
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1 )
      * @param notNull    是否不允许值为 null
      * @param <T>        泛型
      * @return 对应的索引
@@ -404,7 +403,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取索引, 不允许值为 null
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1 )
      * @param <T>        泛型
      * @return 对应的索引
      */
@@ -436,7 +435,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取 value 所在位置的下一个值
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1 )
      * @param <T>        泛型
      * @return 对应索引的值
      */
@@ -468,7 +467,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取 value 所在位置的下一个值
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1 )
      * @param notNull    是否不允许值为 null
      * @param <T>        泛型
      * @return 对应索引的值
@@ -502,7 +501,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取 value 所在位置的下一个值, 不允许值为 null
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1 )
      * @param <T>        泛型
      * @return 对应索引的值
      */
@@ -534,7 +533,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取 value 所在位置的上一个值
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1 )
      * @param <T>        泛型
      * @return 对应索引的值
      */
@@ -566,7 +565,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取 value 所在位置的上一个值
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1 )
      * @param notNull    是否不允许值为 null
      * @param <T>        泛型
      * @return 对应索引的值
@@ -600,7 +599,7 @@ public final class CollectionUtils {
      * 根据指定 value 获取 value 所在位置的上一个值, 不允许值为 null
      * @param collection {@link Collection}
      * @param value      值
-     * @param number     符合条件次数 ( 从 0 开始, 0 = 1)
+     * @param number     符合条件次数 ( 从 0 开始, 0 = 1 )
      * @param <T>        泛型
      * @return 对应索引的值
      */
@@ -709,9 +708,9 @@ public final class CollectionUtils {
         if (collection != null && values != null) {
             if (notNull) {
                 try {
-                    for (T t : values) {
-                        if (t != null) {
-                            collection.add(t);
+                    for (T value : values) {
+                        if (value != null) {
+                            collection.add(value);
                         }
                     }
                     return true;
@@ -853,9 +852,9 @@ public final class CollectionUtils {
             if (notNull) {
                 try {
                     List<T> tempList = new ArrayList<>();
-                    for (T t : values) {
-                        if (t != null) {
-                            tempList.add(t);
+                    for (T value : values) {
+                        if (value != null) {
+                            tempList.add(value);
                         }
                     }
                     // 添加到集合中
@@ -1090,10 +1089,6 @@ public final class CollectionUtils {
             } catch (Exception e) {
                 return false;
             }
-            if (arrays1 == null || arrays2 == null) {
-                return false;
-            }
-
             for (int i = 0; i < len; i++) {
                 // 判断两个值是否一样
                 boolean equals = equals(arrays1[i], arrays2[i]);
@@ -1229,12 +1224,10 @@ public final class CollectionUtils {
                 // 初始化新的集合, 默认保存第一个集合的数据
                 Set<T> setsTemp = new LinkedHashSet<>(collection1);
                 // 循环第二个集合
-                Iterator<T> iterator = collection2.iterator();
-                while (iterator.hasNext()) {
-                    T t = iterator.next();
+                for (T value : collection2) {
                     // 判断是否存在, 存在则保存
-                    if (setsTemp.contains(t)) {
-                        sets.add(t);
+                    if (setsTemp.contains(value)) {
+                        sets.add(value);
                     }
                 }
                 // 返回集合
@@ -1295,12 +1288,14 @@ public final class CollectionUtils {
         try {
             // 先进行交集处理
             Collection<T> intersectionC = intersection(collection1, collection2);
-            // 保存到新的集合中
-            Set<T> sets = new LinkedHashSet<>(collection1);
-            // 进行移除
-            sets.removeAll(intersectionC);
-            // 返回集合
-            return sets;
+            if (intersectionC != null) {
+                // 保存到新的集合中
+                Set<T> sets = new LinkedHashSet<>(collection1);
+                // 进行移除
+                sets.removeAll(intersectionC);
+                // 返回集合
+                return sets;
+            }
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "subtract");
         }

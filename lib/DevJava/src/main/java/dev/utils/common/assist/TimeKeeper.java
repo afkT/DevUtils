@@ -16,12 +16,7 @@ public class TimeKeeper {
             final OnEndCallback callback
     ) {
         if (keepTimeMillis > 0L) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    waitForEnd(keepTimeMillis, callback);
-                }
-            }).start();
+            new Thread(() -> waitForEnd(keepTimeMillis, callback)).start();
         }
     }
 

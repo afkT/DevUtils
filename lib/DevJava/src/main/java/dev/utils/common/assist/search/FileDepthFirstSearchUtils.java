@@ -33,7 +33,7 @@ public final class FileDepthFirstSearchUtils {
      * detail: 文件信息 Item
      * @author Ttt
      */
-    public final class FileItem {
+    public static final class FileItem {
 
         public FileItem(final File file) {
             this.file = file;
@@ -212,16 +212,13 @@ public final class FileDepthFirstSearchUtils {
             String[] fileArrays = file.list();
             // 获取文件总数
             if (fileArrays != null && fileArrays.length != 0) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        List<FileItem> lists = new ArrayList<>();
-                        // 查询文件
-                        queryFile(file, lists, isRelation);
-                        // 触发结束回调
-                        mEndTime = System.currentTimeMillis();
-                        mInnerHandler.onEndListener(lists, mStartTime, mEndTime);
-                    }
+                new Thread(() -> {
+                    List<FileItem> lists = new ArrayList<>();
+                    // 查询文件
+                    queryFile(file, lists, isRelation);
+                    // 触发结束回调
+                    mEndTime = System.currentTimeMillis();
+                    mInnerHandler.onEndListener(lists, mStartTime, mEndTime);
                 }).start();
             } else {
                 // 触发结束回调
@@ -261,27 +258,26 @@ public final class FileDepthFirstSearchUtils {
                         if (files == null) {
                             return;
                         }
-                        // 循环处理
-                        for (File f : files) {
+                        for (File queryFile : files) {
                             if (isRelation) {
-                                if (f.isDirectory()) {
+                                if (queryFile.isDirectory()) {
                                     List<FileItem> childs = new ArrayList<>();
                                     // 查找文件
-                                    queryFile(f, childs, isRelation);
+                                    queryFile(queryFile, childs, isRelation);
                                     // 保存数据
-                                    FileItem fileItem = new FileItem(f);
+                                    FileItem fileItem = new FileItem(queryFile);
                                     fileItem.listChilds = childs;
                                     lists.add(fileItem);
                                 } else {
                                     // 属于文件
-                                    if (mInnerHandler.isAddToList(f)) {
+                                    if (mInnerHandler.isAddToList(queryFile)) {
                                         // 属于文件则直接保存
-                                        lists.add(new FileItem(f));
+                                        lists.add(new FileItem(queryFile));
                                     }
                                 }
                             } else {
                                 // 查找文件
-                                queryFile(f, lists, isRelation);
+                                queryFile(queryFile, lists, isRelation);
                             }
                         }
                     } else { // 属于文件

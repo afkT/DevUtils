@@ -75,7 +75,8 @@ public final class ChineseUtils {
             final int nameLength
     ) {
         if (surnames != null && surnames.length != 0 && names != null && names.length != 0) {
-            return RandomUtils.getRandom(surnames, 1) + RandomUtils.getRandom(names, nameLength);
+            return RandomUtils.getRandom(surnames, 1)
+                    + RandomUtils.getRandom(names, nameLength);
         }
         return null;
     }
@@ -120,7 +121,10 @@ public final class ChineseUtils {
             final boolean isUpper
     ) {
         try {
-            return numberToCHNNumber(BigDecimal.valueOf(number), isUpper ? CHN_NUMBER_UPPER_UNITS : CHN_NUMBER_UNITS);
+            return numberToCHNNumber(
+                    BigDecimal.valueOf(number),
+                    isUpper ? CHN_NUMBER_UPPER_UNITS : CHN_NUMBER_UNITS
+            );
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "numberToCHN");
         }
@@ -139,7 +143,10 @@ public final class ChineseUtils {
     ) {
         if (number != null) {
             try {
-                return numberToCHNNumber(new BigDecimal(number), isUpper ? CHN_NUMBER_UPPER_UNITS : CHN_NUMBER_UNITS);
+                return numberToCHNNumber(
+                        new BigDecimal(number),
+                        isUpper ? CHN_NUMBER_UPPER_UNITS : CHN_NUMBER_UNITS
+                );
             } catch (Exception e) {
                 JCLogUtils.eTag(TAG, e, "numberToCHN");
             }
@@ -200,7 +207,7 @@ public final class ChineseUtils {
                     builder.append(numberToCHNNumber(new BigDecimal(multiple), chnUnits));
                     builder.append(chnUnits[i]); // 数字单位
                     // 判断是否需要补零
-                    if (unitIndex > i && unitIndex != 0) {
+                    if (unitIndex > i) {
                         builder.append(chnUnits[ZERO]); // 补零
                     }
                 } else {
@@ -209,7 +216,7 @@ public final class ChineseUtils {
                         if (multiple < 1000) {
                             builder.append(chnUnits[ZERO]); // 补零
                         }
-                    } else if (unitIndex > i && unitIndex != 0) { // 跨数字单位处理
+                    } else if (unitIndex > i) { // 跨数字单位处理
                         builder.append(chnUnits[ZERO]); // 补零
                     }
                     // 拼接数值

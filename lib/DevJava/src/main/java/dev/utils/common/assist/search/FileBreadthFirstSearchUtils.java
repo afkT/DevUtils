@@ -37,7 +37,7 @@ public final class FileBreadthFirstSearchUtils {
      * detail: 文件信息 Item
      * @author Ttt
      */
-    public final class FileItem {
+    public static final class FileItem {
 
         public FileItem(final File file) {
             this.file = file;
@@ -71,7 +71,7 @@ public final class FileBreadthFirstSearchUtils {
      * detail: 文件队列
      * @author Ttt
      */
-    private class FileQueue {
+    private static class FileQueue {
 
         FileQueue(
                 File file,
@@ -299,14 +299,11 @@ public final class FileBreadthFirstSearchUtils {
             String[] fileArrays = file.list();
             // 获取文件总数
             if (fileArrays != null && fileArrays.length != 0) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // 查询文件
-                        queryFile(mRootFileItem.file, mRootFileItem);
-                        // 循环队列
-                        whileQueue();
-                    }
+                new Thread(() -> {
+                    // 查询文件
+                    queryFile(mRootFileItem.file, mRootFileItem);
+                    // 循环队列
+                    whileQueue();
                 }).start();
             } else {
                 // 触发结束回调
@@ -344,20 +341,19 @@ public final class FileBreadthFirstSearchUtils {
                         if (files == null) {
                             return;
                         }
-                        // 循环处理
-                        for (File f : files) {
+                        for (File queryFile : files) {
                             // 属于文件夹
-                            if (f.isDirectory()) {
+                            if (queryFile.isDirectory()) {
                                 if (mIsStop) {
                                     return;
                                 }
-                                FileItem subFileItem = fileItem.put(f);
+                                FileItem subFileItem = fileItem.put(queryFile);
                                 // 添加任务
-                                mTaskQueue.offer(new FileQueue(f, subFileItem));
+                                mTaskQueue.offer(new FileQueue(queryFile, subFileItem));
                             } else { // 属于文件
-                                if (!mIsStop && mInnerHandler.isAddToList(f)) {
+                                if (!mIsStop && mInnerHandler.isAddToList(queryFile)) {
                                     // 属于文件则直接保存
-                                    fileItem.put(f);
+                                    fileItem.put(queryFile);
                                 }
                             }
                         }
@@ -397,12 +393,7 @@ public final class FileBreadthFirstSearchUtils {
             final FileQueue fileQueue = mTaskQueue.poll();
             // 判断是否为 null
             if (fileQueue != null) {
-                mExecutor.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        queryFile(fileQueue.file, fileQueue.fileItem);
-                    }
-                });
+                mExecutor.execute(() -> queryFile(fileQueue.file, fileQueue.fileItem));
             }
 
             // 判断是否存在队列数据
@@ -413,7 +404,7 @@ public final class FileBreadthFirstSearchUtils {
                     Thread.sleep(mDelayTime);
                 } catch (Exception ignored) {
                 }
-                isEmpty = (mTaskQueue.isEmpty() && threadCount == 0);
+                isEmpty = mTaskQueue.isEmpty();
             }
         }
         // 触发结束回调

@@ -367,10 +367,8 @@ public final class FieldUtils {
             Type type = field.getGenericType();
             if (type instanceof ParameterizedType) {
                 type = ((ParameterizedType) type).getActualTypeArguments()[0];
-                if (type instanceof Class<?>) {
-                    return (Class<?>) type;
-                }
-            } else if (type instanceof Class<?>) {
+            }
+            if (type instanceof Class<?>) {
                 return (Class<?>) type;
             }
         } catch (Exception e) {
@@ -386,7 +384,7 @@ public final class FieldUtils {
      * @return 数组类型
      */
     public static Class<?> getComponentType(final Field field) {
-        if (field == null || field.getType() == null) return null;
+        if (field == null) return null;
         return field.getType().getComponentType();
     }
 
@@ -402,11 +400,10 @@ public final class FieldUtils {
             // find all field.
             LinkedList<Field> fieldList = new LinkedList<>();
             while (clazzTemp != null && clazzTemp != Object.class) {
-                Field[] fs = clazzTemp.getDeclaredFields();
-                for (int i = 0; i < fs.length; i++) {
-                    Field f = fs[i];
-                    if (!isInvalid(f)) {
-                        fieldList.addLast(f);
+                Field[] fields = clazzTemp.getDeclaredFields();
+                for (Field field : fields) {
+                    if (!isInvalid(field)) {
+                        fieldList.addLast(field);
                     }
                 }
                 clazzTemp = clazzTemp.getSuperclass();

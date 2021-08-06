@@ -66,7 +66,9 @@ public final class ZipUtils {
         try {
             zos = new ZipOutputStream(new FileOutputStream(zipFilePath));
             for (String resFile : resFilePaths) {
-                if (!zipFile(FileUtils.getFileByPath(resFile), "", zos, comment)) return false;
+                if (!zipFile(FileUtils.getFileByPath(resFile), "", zos, comment)) {
+                    return false;
+                }
             }
             return true;
         } finally {
@@ -134,7 +136,11 @@ public final class ZipUtils {
             final String zipFilePath
     )
             throws Exception {
-        return zipFile(FileUtils.getFileByPath(resFilePath), FileUtils.getFileByPath(zipFilePath), null);
+        return zipFile(
+                FileUtils.getFileByPath(resFilePath),
+                FileUtils.getFileByPath(zipFilePath),
+                null
+        );
     }
 
     /**
@@ -151,7 +157,11 @@ public final class ZipUtils {
             final String comment
     )
             throws Exception {
-        return zipFile(FileUtils.getFileByPath(resFilePath), FileUtils.getFileByPath(zipFilePath), comment);
+        return zipFile(
+                FileUtils.getFileByPath(resFilePath),
+                FileUtils.getFileByPath(zipFilePath),
+                comment
+        );
     }
 
     /**
@@ -289,7 +299,11 @@ public final class ZipUtils {
             final String keyword
     )
             throws Exception {
-        return unzipFileByKeyword(FileUtils.getFileByPath(zipFilePath), FileUtils.getFileByPath(destDirPath), keyword);
+        return unzipFileByKeyword(
+                FileUtils.getFileByPath(zipFilePath),
+                FileUtils.getFileByPath(destDirPath),
+                keyword
+        );
     }
 
     /**

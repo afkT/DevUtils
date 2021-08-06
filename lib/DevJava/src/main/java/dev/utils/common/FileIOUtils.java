@@ -273,7 +273,9 @@ public final class FileIOUtils {
             final byte[] bytes,
             final boolean isForce
     ) {
-        return writeFileFromBytesByChannel(FileUtils.getFileByPath(filePath), bytes, false, isForce);
+        return writeFileFromBytesByChannel(
+                FileUtils.getFileByPath(filePath), bytes, false, isForce
+        );
     }
 
     /**
@@ -290,7 +292,9 @@ public final class FileIOUtils {
             final boolean append,
             final boolean isForce
     ) {
-        return writeFileFromBytesByChannel(FileUtils.getFileByPath(filePath), bytes, append, isForce);
+        return writeFileFromBytesByChannel(
+                FileUtils.getFileByPath(filePath), bytes, append, isForce
+        );
     }
 
     /**

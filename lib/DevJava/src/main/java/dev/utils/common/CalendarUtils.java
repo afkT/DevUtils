@@ -645,7 +645,7 @@ public final class CalendarUtils {
     ) {
         m = (m + 9) % 12;
         y = y - m / 10;
-        return 365 * y + y / 4 - y / 100 + y / 400 + (m * 306 + 5) / 10 + (d - 1);
+        return 365L * y + y / 4 - y / 100 + y / 400 + (m * 306 + 5) / 10 + (d - 1);
     }
 
     private static int[] solarFromInt(long g) {
@@ -935,11 +935,7 @@ public final class CalendarUtils {
 
         @Override
         public int compareTo(Festival festival) {
-            int value  = compareValue;
-            int value1 = festival.compareValue;
-            if (value < value1) return 1;
-            if (value > value1) return -1;
-            return 0;
+            return Integer.compare(festival.compareValue, compareValue);
         }
 
         @Override
@@ -1007,12 +1003,10 @@ public final class CalendarUtils {
                             break;
                     }
                 } else { // 农历节日
-                    switch (month) {
-                        case 12: // 腊月
-                            if (CalendarUtils.getLunarMonthDays(year, month) == day && day != 0) {
-                                return new Festival("除夕", month, day, false);
-                            }
-                            break;
+                    if (month == 12) { // 腊月
+                        if (CalendarUtils.getLunarMonthDays(year, month) == day && day != 0) {
+                            return new Festival("除夕", month, day, false);
+                        }
                     }
                 }
             }
