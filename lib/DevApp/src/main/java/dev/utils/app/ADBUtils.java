@@ -1406,15 +1406,15 @@ public final class ADBUtils {
      * 按压某个区域 time 大于一定时间变成长按
      * @param x    X 轴坐标
      * @param y    Y 轴坐标
-     * @param time 按压时间
+     * @param millis 按压时间
      * @return {@code true} success, {@code false} fail
      */
     public static boolean swipeClick(
             final float x,
             final float y,
-            final long time
+            final long millis
     ) {
-        return swipe(x, y, x, y, time);
+        return swipe(x, y, x, y, millis);
     }
 
     /**
@@ -1423,7 +1423,7 @@ public final class ADBUtils {
      * @param y    Y 轴坐标
      * @param toX  滑动到 X 轴坐标
      * @param toY  滑动到 Y 轴坐标
-     * @param time 滑动时间 ( 毫秒 )
+     * @param millis 滑动时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
     public static boolean swipe(
@@ -1431,7 +1431,7 @@ public final class ADBUtils {
             final float y,
             final float toX,
             final float toY,
-            final long time
+            final long millis
     ) {
         try {
             // input [touchscreen|touchpad|touchnavigation] swipe <x1> <y1> <x2> <y2> [duration(ms)]
@@ -1440,7 +1440,7 @@ public final class ADBUtils {
             ShellUtils.CommandResult result = ShellUtils.execCmd(
                     String.format(
                             cmd, (int) x, (int) y,
-                            (int) toX, (int) toY, time
+                            (int) toX, (int) toY, millis
                     ), true
             );
             return result.isSuccess2();
@@ -1690,18 +1690,18 @@ public final class ADBUtils {
 
     /**
      * 设置系统时间
-     * @param time 时间戳转换 MMddHHmmyyyy.ss
+     * @param millis 时间戳转换 MMddHHmmyyyy.ss
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setSystemTime2(final long time) {
-        if (time < 0) return false;
+    public static boolean setSystemTime2(final long millis) {
+        if (millis < 0) return false;
         try {
             String cmd = "date %s";
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(
                     String.format(
                             cmd,
-                            new SimpleDateFormat("MMddHHmmyyyy.ss").format(time)
+                            new SimpleDateFormat("MMddHHmmyyyy.ss").format(millis)
                     ), true
             );
             return result.isSuccess2();
@@ -2366,16 +2366,16 @@ public final class ADBUtils {
      * <pre>
      *     设置永不休眠 Integer.MAX_VALUE
      * </pre>
-     * @param time 休眠时间 ( 单位毫秒 )
+     * @param millis 休眠时间 ( 单位毫秒 )
      * @return {@code true} success, {@code false} fail
      */
-    public static boolean setScreenOffTimeout(final long time) {
-        if (time <= 0) {
+    public static boolean setScreenOffTimeout(final long millis) {
+        if (millis <= 0) {
             return false;
         }
         // 执行 shell
         ShellUtils.CommandResult result = ShellUtils.execCmd(
-                "settings put system screen_off_timeout " + time,
+                "settings put system screen_off_timeout " + millis,
                 true
         );
         return result.isSuccess2();

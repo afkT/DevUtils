@@ -173,16 +173,16 @@ class Utils {
     /**
      * 获取时间间隔文件夹路径
      * @param modulePath 模块名
-     * @param time       创建时间 ( 本地时间戳 )
+     * @param millis       创建时间 ( 本地时间戳 )
      * @return 时间间隔文件夹路径
      */
     public static String getTimeFile(
             final String modulePath,
-            final long time
+            final long millis
     ) {
-        String yyyyMMdd = DateUtils.formatTime(time, DevFinal.yyyyMMdd2);
-        String HH       = DateUtils.formatTime(time, DevFinal.HH);
-        int    mm       = ConvertUtils.toInt(DateUtils.formatTime(time, DevFinal.mm));
+        String yyyyMMdd = DateUtils.formatTime(millis, DevFinal.yyyyMMdd2);
+        String HH       = DateUtils.formatTime(millis, DevFinal.HH);
+        int    mm       = ConvertUtils.toInt(DateUtils.formatTime(millis, DevFinal.mm));
         String mmStr;
         // 存储间隔以 15 分钟为单位
         if (mm < 15) {

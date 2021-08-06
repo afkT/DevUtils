@@ -30,10 +30,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         // ==========
 
         HttpURLConnectionUtils.getNetTime(object : HttpURLConnectionUtils.TimeCallback {
-            override fun onResponse(time: Long) {
+            override fun onResponse(millis: Long) {
                 val curTime = System.currentTimeMillis()
-                if (time >= 1) {
-                    val diffTime = abs(curTime - time)
+                if (millis >= 1) {
+                    val diffTime = abs(curTime - millis)
                     // 判断是否误差超过 10 秒
                     if (diffTime >= 10000L) {
                         ToastUtils.showShort("当前时间与网络时间不一致, 误差: ${diffTime / 1000} 秒")

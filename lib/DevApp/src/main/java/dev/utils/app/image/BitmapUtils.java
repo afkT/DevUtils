@@ -1686,12 +1686,12 @@ public final class BitmapUtils {
      *     ThumbnailUtils.createVideoThumbnail(path, MediaStore.Video.Thumbnails.MICRO_KIND);
      * </pre>
      * @param path   视频路径
-     * @param timeUs 对应毫秒视频帧
+     * @param millis 对应毫秒视频帧
      * @return {@link Bitmap}
      */
     public static Bitmap getVideoThumbnail(
             final String path,
-            final long timeUs
+            final long millis
     ) {
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         try {
@@ -1701,7 +1701,7 @@ public final class BitmapUtils {
             } else {
                 retriever.setDataSource(path, new HashMap<>());
             }
-            return retriever.getFrameAtTime(timeUs);
+            return retriever.getFrameAtTime(millis);
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getVideoThumbnail");
         } finally {

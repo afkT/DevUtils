@@ -1431,12 +1431,12 @@ public final class DevHelper {
 
     /**
      * 震动
-     * @param milliseconds 震动时长 ( 毫秒 )
+     * @param millis 震动时长 ( 毫秒 )
      * @return {@link DevHelper}
      */
     @RequiresPermission(Manifest.permission.VIBRATE)
-    public DevHelper vibrate(final long milliseconds) {
-        VibrationUtils.vibrate(milliseconds);
+    public DevHelper vibrate(final long millis) {
+        VibrationUtils.vibrate(millis);
         return this;
     }
 

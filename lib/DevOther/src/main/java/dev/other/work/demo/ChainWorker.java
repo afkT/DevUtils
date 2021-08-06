@@ -38,10 +38,10 @@ public class ChainWorker {
 
     public static OneTimeWorkRequest builder(
             final Class<? extends ListenableWorker> clazz,
-            final long milliseconds
+            final long millis
     ) {
         return new OneTimeWorkRequest.Builder(clazz)
-                .setInitialDelay(milliseconds, TimeUnit.MILLISECONDS)
+                .setInitialDelay(millis, TimeUnit.MILLISECONDS)
                 .addTag(clazz.getSimpleName()).build();
     }
 

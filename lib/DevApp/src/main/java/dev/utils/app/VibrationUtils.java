@@ -25,14 +25,14 @@ public final class VibrationUtils {
 
     /**
      * 震动
-     * @param milliseconds 震动时长 ( 毫秒 )
+     * @param millis 震动时长 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */
     @RequiresPermission(Manifest.permission.VIBRATE)
-    public static boolean vibrate(final long milliseconds) {
+    public static boolean vibrate(final long millis) {
         try {
             Vibrator vibrator = AppUtils.getVibrator();
-            vibrator.vibrate(milliseconds);
+            vibrator.vibrate(millis);
             return true;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "vibrate");

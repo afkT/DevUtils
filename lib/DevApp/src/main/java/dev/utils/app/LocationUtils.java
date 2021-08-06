@@ -165,7 +165,7 @@ public final class LocationUtils {
     /**
      * 获取位置 ( 需要先判断是否开启了定位 )
      * @param listener {@link LocationListener}
-     * @param time     间隔时间
+     * @param millis     间隔时间
      * @param distance 间隔距离
      * @return {@link Location}
      */
@@ -175,7 +175,7 @@ public final class LocationUtils {
     })
     public static Location getLocation(
             final LocationListener listener,
-            final long time,
+            final long millis,
             final float distance
     ) {
         Location location = null;
@@ -183,7 +183,7 @@ public final class LocationUtils {
             sLocationManager = AppUtils.getLocationManager();
             if (isLocationEnabled()) {
                 sLocationManager.requestLocationUpdates(
-                        LocationManager.NETWORK_PROVIDER, time, distance, listener
+                        LocationManager.NETWORK_PROVIDER, millis, distance, listener
                 );
                 if (sLocationManager != null) {
                     location = sLocationManager.getLastKnownLocation(
@@ -197,7 +197,7 @@ public final class LocationUtils {
             }
             if (isGpsEnabled()) {
                 sLocationManager.requestLocationUpdates(
-                        LocationManager.GPS_PROVIDER, time, distance, listener
+                        LocationManager.GPS_PROVIDER, millis, distance, listener
                 );
                 if (sLocationManager != null) {
                     location = sLocationManager.getLastKnownLocation(
