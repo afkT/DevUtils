@@ -79,7 +79,7 @@ class ItemStickyBean(
     val timeTile: String
 
     init {
-        val format = "yyyy.MM.dd"
+        val format = DevFinal.yyyyMMdd5
         // 进行格式化
         timeFormat = DateUtils.formatTime(time, format)
         // 获取当前时间
@@ -129,7 +129,7 @@ class ItemBean(
                     "https://picsum.photos/id/%s/500",
                     RandomUtils.getRandom(1, 50)
                 ),
-                timeFormat = DateUtils.formatTime(time, "yyyy.MM.dd")
+                timeFormat = DateUtils.formatTime(time, DevFinal.yyyyMMdd5)
             )
         }
 

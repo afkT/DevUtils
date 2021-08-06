@@ -12,6 +12,7 @@ import dev.adapter.DevDataAdapterExt
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.engine.image.DevImageEngine
+import dev.utils.DevFinal
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.ViewHelper
 import dev.utils.common.DateUtils
@@ -43,7 +44,7 @@ class GreenDaoAdapter : DevDataAdapterExt<Note, DevBaseViewBindingVH<AdapterData
             .setText(holder.binding.vidAdbContentTv, note.comment)
             .setText(
                 holder.binding.vidAdbTimeTv,
-                DateUtils.formatDate(note.date, "yyyy.MM.dd")
+                DateUtils.formatDate(note.date, DevFinal.yyyyMMdd5)
             )
             .setVisibility(note.type != NoteType.PICTURE, holder.binding.vidAdbContentTv)
             .setVisibility(note.type != NoteType.TEXT, holder.binding.vidAdbRecy)

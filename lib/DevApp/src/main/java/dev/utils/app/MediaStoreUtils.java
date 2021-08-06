@@ -170,7 +170,7 @@ public final class MediaStoreUtils {
      * @return DISPLAY_NAME
      */
     public static String getDisplayName(final String prefix) {
-        return prefix + "_" + DateUtils.getDateNow(DevFinal.yyyyMMdd_HHmmss);
+        return prefix + "_" + DateUtils.getDateNow(DevFinal.yyyyMMddHHmmss3);
     }
 
     /**
