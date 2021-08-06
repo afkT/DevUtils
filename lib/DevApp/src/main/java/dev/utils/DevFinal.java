@@ -43,7 +43,7 @@ public final class DevFinal {
     public static final String GBK_2312   = "GBK-2312";
 
     // =============
-    // = 日期格式类型 =
+    // = 时间格式类型 =
     // =============
 
     public static final String yyyy             = "yyyy";
