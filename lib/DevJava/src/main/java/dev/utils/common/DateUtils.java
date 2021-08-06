@@ -1,7 +1,5 @@
 package dev.utils.common;
 
-import android.annotation.SuppressLint;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -101,7 +99,6 @@ public final class DateUtils {
      * @param pattern 时间格式
      * @return {@link SimpleDateFormat}
      */
-    @SuppressLint("SimpleDateFormat")
     public static SimpleDateFormat getSafeDateFormat(final String pattern) {
         if (pattern == null) return null;
         Map<String, SimpleDateFormat> sdfMap = SDF_THREAD_LOCAL.get();
