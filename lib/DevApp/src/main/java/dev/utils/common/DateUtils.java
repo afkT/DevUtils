@@ -242,7 +242,7 @@ public final class DateUtils {
 
     /**
      * 将时间戳转换日期字符串
-     * @param millis    时间戳
+     * @param millis  时间戳
      * @param pattern 时间格式
      * @return 按照指定格式的日期字符串
      */
@@ -255,7 +255,7 @@ public final class DateUtils {
 
     /**
      * 将时间戳转换日期字符串
-     * @param millis   时间戳
+     * @param millis 时间戳
      * @param format {@link SimpleDateFormat}
      * @return 按照指定格式的日期字符串
      */

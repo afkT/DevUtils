@@ -319,7 +319,7 @@ class BaseApplication : MultiDexApplication() {
                     .append("dataPath: ").append(dataPath)
                     .append(DevFinal.NEW_LINE_STR)
                     .append("dateTaken: ").append(dateTaken).append(" ( ")
-                    .append(DateUtils.formatTime(dateTaken, DateUtils.yyyyMMddHHmmss)).append(" )")
+                    .append(DateUtils.formatTime(dateTaken)).append(" )")
                 DevLogEngine.getEngine().d(builder.toString())
             }.startListener()
     }

@@ -165,7 +165,7 @@ public final class LocationUtils {
     /**
      * 获取位置 ( 需要先判断是否开启了定位 )
      * @param listener {@link LocationListener}
-     * @param millis     间隔时间
+     * @param millis   间隔时间
      * @param distance 间隔距离
      * @return {@link Location}
      */

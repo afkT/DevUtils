@@ -1404,8 +1404,8 @@ public final class ADBUtils {
 
     /**
      * 按压某个区域 time 大于一定时间变成长按
-     * @param x    X 轴坐标
-     * @param y    Y 轴坐标
+     * @param x      X 轴坐标
+     * @param y      Y 轴坐标
      * @param millis 按压时间
      * @return {@code true} success, {@code false} fail
      */
@@ -1419,10 +1419,10 @@ public final class ADBUtils {
 
     /**
      * 滑动到某个区域
-     * @param x    X 轴坐标
-     * @param y    Y 轴坐标
-     * @param toX  滑动到 X 轴坐标
-     * @param toY  滑动到 Y 轴坐标
+     * @param x      X 轴坐标
+     * @param y      Y 轴坐标
+     * @param toX    滑动到 X 轴坐标
+     * @param toY    滑动到 Y 轴坐标
      * @param millis 滑动时间 ( 毫秒 )
      * @return {@code true} success, {@code false} fail
      */

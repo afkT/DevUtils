@@ -62,9 +62,9 @@ public final class DevCommonUtils {
         }
         // 计算时间
         builder.append(DevFinal.NEW_LINE_STR).append("开始时间: ")
-                .append(DateUtils.formatTime(startTime, DateUtils.yyyyMMddHHmmss))
+                .append(DateUtils.formatTime(startTime))
                 .append(DevFinal.NEW_LINE_STR).append("结束时间: ")
-                .append(DateUtils.formatTime(endTime, DateUtils.yyyyMMddHHmmss))
+                .append(DateUtils.formatTime(endTime))
                 .append(DevFinal.NEW_LINE_STR).append("所用时间(毫秒): ")
                 .append(diffTime)
                 .append(DevFinal.NEW_LINE_STR).append("所用时间(秒): ")
