@@ -3,6 +3,7 @@ package dev.utils.common.assist.record;
 import java.io.File;
 import java.util.Date;
 
+import dev.utils.DevFinal;
 import dev.utils.common.DateUtils;
 import dev.utils.common.FileUtils;
 import dev.utils.common.StringUtils;
@@ -217,7 +218,7 @@ public final class RecordConfig {
         // 文件夹
         String folder = String.format(
                 "FileRecord/%s/%s/",
-                DateUtils.getDateNow("yyyy_MM_dd"),
+                DateUtils.getDateNow(DevFinal.yyyyMMdd4),
                 mFolderName
         );
         // 进行判断

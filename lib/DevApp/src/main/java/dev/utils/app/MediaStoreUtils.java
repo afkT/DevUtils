@@ -24,6 +24,7 @@ import java.io.OutputStream;
 import java.util.Collection;
 
 import dev.DevUtils;
+import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 import dev.utils.app.image.BitmapUtils;
 import dev.utils.app.image.ImageUtils;
@@ -169,7 +170,7 @@ public final class MediaStoreUtils {
      * @return DISPLAY_NAME
      */
     public static String getDisplayName(final String prefix) {
-        return prefix + "_" + DateUtils.getDateNow(DateUtils.yyyyMMdd_HHmmss);
+        return prefix + "_" + DateUtils.getDateNow(DevFinal.yyyyMMdd_HHmmss);
     }
 
     /**

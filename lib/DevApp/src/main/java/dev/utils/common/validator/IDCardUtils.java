@@ -1,13 +1,14 @@
 package dev.utils.common.validator;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import dev.utils.DevFinal;
 import dev.utils.JCLogUtils;
+import dev.utils.common.DateUtils;
 import dev.utils.common.StringUtils;
 
 /**
@@ -128,7 +129,7 @@ public final class IDCardUtils {
             String birthCode = idCard.substring(6, 12);
             Date   birthDate = null;
             try {
-                birthDate = new SimpleDateFormat("yy").parse(birthCode.substring(0, 2));
+                birthDate = DateUtils.getSafeDateFormat(DevFinal.yy).parse(birthCode.substring(0, 2));
             } catch (ParseException e) {
                 JCLogUtils.eTag(TAG, e, "validateIdCard15");
             }
@@ -187,7 +188,7 @@ public final class IDCardUtils {
             // 获取出生日期
             String birthday = idCard.substring(6, 12);
             try {
-                birthDate = new SimpleDateFormat("yyMMdd").parse(birthday);
+                birthDate = DateUtils.getSafeDateFormat(DevFinal.yyMMdd).parse(birthday);
             } catch (ParseException e) {
                 JCLogUtils.eTag(TAG, e, "convert15CardTo18");
             }

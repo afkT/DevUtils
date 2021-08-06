@@ -30,15 +30,21 @@ public final class DateUtils {
     // =============
 
     public static final String yyyy             = "yyyy";
+    public static final String yyMMdd           = "yy-MM-dd";
+    public static final String yyMMdd2          = "yyMMdd";
     public static final String yyyyMMdd         = "yyyy-MM-dd";
     public static final String yyyyMMdd2        = "yyyyMMdd";
     public static final String yyyyMMdd3        = "yyyy年MM月dd日";
+    public static final String yyyyMMdd4        = "yyyy_MM_dd";
     public static final String yyyyMMddHHmmss   = "yyyy-MM-dd HH:mm:ss";
     public static final String yyyyMMddHHmmss_2 = "yyyy年M月d日 HH:mm:ss";
     public static final String yyyyMMdd_HHmmss  = "yyyyMMdd_HHmmss";
     public static final String MMdd             = "MM-dd";
     public static final String MMdd2            = "MM月dd日";
     public static final String MMdd3            = "MMdd";
+    public static final String yy               = "yy";
+    public static final String MM               = "MM";
+    public static final String dd               = "dd";
     public static final String hh               = "hh";
     public static final String HH               = "HH";
     public static final String mm               = "mm";
@@ -48,6 +54,7 @@ public final class DateUtils {
     public static final String HHmmss2          = "HHmmss";
     public static final String hhmmMMDDyyyy     = "hh:mm M月d日 yyyy";
     public static final String hhmmssMMDDyyyy   = "hh:mm:ss M月d日 yyyy";
+    public static final String mmddHHmmyyyyss   = "MMddHHmmyyyy.ss";
 
     // 一分钟 60 秒
     public static final int  MINUTE_S = 60;

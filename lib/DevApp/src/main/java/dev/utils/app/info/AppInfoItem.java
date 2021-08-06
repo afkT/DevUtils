@@ -22,6 +22,7 @@ import dev.utils.R;
 import dev.utils.app.SignaturesUtils;
 import dev.utils.app.VersionUtils;
 import dev.utils.common.ConvertUtils;
+import dev.utils.common.DateUtils;
 import dev.utils.common.FileUtils;
 
 /**
@@ -92,7 +93,7 @@ public final class AppInfoItem {
         // 获取 Context
         Context context = DevUtils.getContext();
         // 格式化日期
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = DateUtils.getDefaultFormat();
         // =
         // 获取 APP 信息
         appInfoBean = new AppInfoBean(packageInfo);

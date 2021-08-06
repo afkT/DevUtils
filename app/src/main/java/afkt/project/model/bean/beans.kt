@@ -1,5 +1,6 @@
 package afkt.project.model.bean
 
+import dev.utils.DevFinal
 import dev.utils.common.ChineseUtils
 import dev.utils.common.DateUtils
 import dev.utils.common.RandomUtils
@@ -87,7 +88,7 @@ class ItemStickyBean(
         timeTile = if (currentTime == timeFormat) {
             "今日"
         } else {
-            DateUtils.formatTime(time, DateUtils.MMdd2)
+            DateUtils.formatTime(time, DevFinal.MMdd2)
         }
     }
 }

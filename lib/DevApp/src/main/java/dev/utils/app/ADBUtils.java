@@ -9,7 +9,6 @@ import androidx.annotation.IntRange;
 import androidx.annotation.RequiresPermission;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +16,7 @@ import java.util.List;
 import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.CollectionUtils;
+import dev.utils.common.DateUtils;
 import dev.utils.common.FileUtils;
 import dev.utils.common.StringUtils;
 
@@ -1700,8 +1700,7 @@ public final class ADBUtils {
             // 执行 shell
             ShellUtils.CommandResult result = ShellUtils.execCmd(
                     String.format(
-                            cmd,
-                            new SimpleDateFormat("MMddHHmmyyyy.ss").format(millis)
+                            cmd, DateUtils.formatTime(millis, DevFinal.mmddHHmmyyyyss)
                     ), true
             );
             return result.isSuccess2();

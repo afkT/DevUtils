@@ -27,6 +27,7 @@ import dev.utils.DevFinal;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.CloseUtils;
 import dev.utils.common.ConvertUtils;
+import dev.utils.common.DateUtils;
 
 /**
  * detail: 签名工具类 ( 获取 APP 签名信息 )
@@ -198,7 +199,7 @@ public final class SignaturesUtils {
         List<Map<String, String>> lists = new ArrayList<>();
         try {
             // 格式化日期
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat sdf = DateUtils.getDefaultFormat();
             // 遍历获取
             for (Signature sign : signatures) {
                 if (sign != null) {
