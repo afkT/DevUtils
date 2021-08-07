@@ -126,7 +126,7 @@ public final class DateUtils {
      * @return {@link Calendar}
      */
     public static Calendar getCalendar(final long millis) {
-        if (millis == -1) return null;
+        if (millis == -1L) return null;
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(millis);
         return calendar;
@@ -167,7 +167,7 @@ public final class DateUtils {
      */
     public static long getDateTime(final Date date) {
         if (date != null) return date.getTime();
-        return -1;
+        return -1L;
     }
 
     // =
@@ -269,7 +269,7 @@ public final class DateUtils {
             final long millis,
             final SimpleDateFormat format
     ) {
-        if (millis == -1 || format == null) return null;
+        if (millis == -1L || format == null) return null;
         try {
             return format.format(millis);
         } catch (Exception e) {
@@ -286,7 +286,7 @@ public final class DateUtils {
      * @return {@link Date}
      */
     public static Date parseDate(final long millis) {
-        if (millis == -1) return null;
+        if (millis == -1L) return null;
         return new Date(millis);
     }
 
@@ -446,31 +446,64 @@ public final class DateUtils {
     // =
 
     /**
-     * 获取时间差 ( 分钟 )
+     * 获取秒数倍数
      * @param millis 毫秒
-     * @return 分钟
+     * @return 秒数倍数
      */
-    public static int getTimeDiffMinute(final long millis) {
-        return (int) (millis / 60000); // 60 * 1000
+    public static int getSecondMultiple(final long millis) {
+        return getMillisMultiple(millis, SECOND);
     }
 
     /**
-     * 获取时间差 ( 小时 )
+     * 获取分钟倍数
      * @param millis 毫秒
-     * @return 小时
+     * @return 分钟倍数
      */
-    public static int getTimeDiffHour(final long millis) {
-        return (int) (millis / 3600000); // 60 * 1000 * 60
+    public static int getMinuteMultiple(final long millis) {
+        return getMillisMultiple(millis, MINUTE);
     }
 
     /**
-     * 获取时间差 ( 天 )
+     * 获取小时倍数
      * @param millis 毫秒
-     * @return 天
+     * @return 小时倍数
      */
-    public static int getTimeDiffDay(final long millis) {
-        return (int) (millis / 86400000); // 60 * 1000 * 60 * 24
+    public static int getHourMultiple(final long millis) {
+        return getMillisMultiple(millis, HOUR);
     }
+
+    /**
+     * 获取天数倍数
+     * @param millis 毫秒
+     * @return 天数倍数
+     */
+    public static int getDayMultiple(final long millis) {
+        return getMillisMultiple(millis, DAY);
+    }
+
+    /**
+     * 获取周数倍数
+     * @param millis 毫秒
+     * @return 周数倍数
+     */
+    public static int getWeekMultiple(final long millis) {
+        return getMillisMultiple(millis, WEEK);
+    }
+
+    /**
+     * 获取对应单位倍数
+     * @param millis 毫秒
+     * @param unit   毫秒单位 ( 除数 )
+     * @return 对应单位倍数
+     */
+    public static int getMillisMultiple(
+            final long millis,
+            final long unit
+    ) {
+        return NumberUtils.multipleI(millis, unit);
+    }
+
+    // =
 
     /**
      * 获取时间差 ( 传入时间 - 当前时间 )
@@ -483,17 +516,38 @@ public final class DateUtils {
 
     /**
      * 获取时间差
-     * @param time1 时间 yyyy-MM-dd HH:mm:ss 格式
-     * @param time2 对比时间 yyyy-MM-dd HH:mm:ss 格式
+     * @param time1 时间
+     * @param time2 对比时间
      * @return 时间差 ( 毫秒 )
      */
     public static long getTimeDiff(
             final String time1,
             final String time2
     ) {
-        long timeLong1 = parseLong(time1);
-        long timeLong2 = parseLong(time2);
-        return timeLong1 - timeLong2;
+        return getTimeDiff(
+                time1, getDefaultFormat(),
+                time2, getDefaultFormat()
+        );
+    }
+
+    /**
+     * 获取时间差
+     * @param time1    时间
+     * @param pattern1 时间格式
+     * @param time2    对比时间
+     * @param pattern2 对比时间格式
+     * @return 时间差 ( 毫秒 )
+     */
+    public static long getTimeDiff(
+            final String time1,
+            final String pattern1,
+            final String time2,
+            final String pattern2
+    ) {
+        return getTimeDiff(
+                time1, getSafeDateFormat(pattern1),
+                time2, getSafeDateFormat(pattern2)
+        );
     }
 
     /**
@@ -506,12 +560,14 @@ public final class DateUtils {
      */
     public static long getTimeDiff(
             final String time1,
-            final String timeFormat1,
+            final SimpleDateFormat timeFormat1,
             final String time2,
-            final String timeFormat2
+            final SimpleDateFormat timeFormat2
     ) {
         long timeLong1 = parseLong(time1, timeFormat1);
+        if (timeLong1 == -1L) return 0L;
         long timeLong2 = parseLong(time2, timeFormat2);
+        if (timeLong2 == -1L) return 0L;
         return timeLong1 - timeLong2;
     }
 
