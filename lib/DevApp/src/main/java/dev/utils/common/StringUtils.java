@@ -1943,28 +1943,28 @@ public final class StringUtils {
     /**
      * 替换字符串
      * @param str         待处理字符串
-     * @param suffixArys  匹配判断字符串数组
-     * @param replaceArys 准备替换的字符串数组
+     * @param suffixArrays  匹配判断字符串数组
+     * @param replaceArrays 准备替换的字符串数组
      * @return 处理后的字符串
      */
     public static String replaceAlls(
             final String str,
-            final String[] suffixArys,
-            final String[] replaceArys
+            final String[] suffixArrays,
+            final String[] replaceArrays
     ) {
         // 防止数据为 null
-        if (str != null && suffixArys != null && replaceArys != null) {
+        if (str != null && suffixArrays != null && replaceArrays != null) {
             String tempString = str;
             // 替换的特殊字符串长度
-            int spCount = suffixArys.length;
+            int spCount = suffixArrays.length;
             // 替换的内容长度
-            int reCount = replaceArys.length;
+            int reCount = replaceArrays.length;
             // 相同才进行处理
             if (spCount == reCount) {
                 // 遍历进行判断
                 for (int i = 0; i < spCount; i++) {
                     // 进行替换字符串
-                    tempString = replaceAll(tempString, suffixArys[i], replaceArys[i]);
+                    tempString = replaceAll(tempString, suffixArrays[i], replaceArrays[i]);
                 }
                 return tempString;
             }

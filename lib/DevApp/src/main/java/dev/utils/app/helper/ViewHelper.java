@@ -2444,63 +2444,63 @@ public final class ViewHelper {
 
     /**
      * 切换 View 显示的状态
-     * @param viewArys View[]
+     * @param viewArrays View[]
      * @param views    View[]
      * @return {@link ViewHelper}
      */
     public ViewHelper toggleVisibilitys(
-            final View[] viewArys,
+            final View[] viewArrays,
             final View... views
     ) {
-        ViewUtils.toggleVisibilitys(viewArys, views);
+        ViewUtils.toggleVisibilitys(viewArrays, views);
         return this;
     }
 
     /**
      * 切换 View 显示的状态
      * @param state    {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
-     * @param viewArys View[]
+     * @param viewArrays View[]
      * @param views    View[]
      * @return {@link ViewHelper}
      */
     public ViewHelper toggleVisibilitys(
             final int state,
-            final View[] viewArys,
+            final View[] viewArrays,
             final View... views
     ) {
-        ViewUtils.toggleVisibilitys(state, viewArys, views);
+        ViewUtils.toggleVisibilitys(state, viewArrays, views);
         return this;
     }
 
     /**
      * 反转 View 显示的状态
      * @param state    {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
-     * @param viewArys View[]
+     * @param viewArrays View[]
      * @param views    View[]
      * @return {@link ViewHelper}
      */
     public ViewHelper reverseVisibilitys(
             final int state,
-            final View[] viewArys,
+            final View[] viewArrays,
             final View... views
     ) {
-        ViewUtils.reverseVisibilitys(state, viewArys, views);
+        ViewUtils.reverseVisibilitys(state, viewArrays, views);
         return this;
     }
 
     /**
      * 反转 View 显示的状态
      * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
-     * @param viewArys     View[]
+     * @param viewArrays     View[]
      * @param views        View[]
      * @return {@link ViewHelper}
      */
     public ViewHelper reverseVisibilitys(
             final boolean isVisibility,
-            final View[] viewArys,
+            final View[] viewArrays,
             final View... views
     ) {
-        ViewUtils.reverseVisibilitys(isVisibility, viewArys, views);
+        ViewUtils.reverseVisibilitys(isVisibility, viewArrays, views);
         return this;
     }
 
