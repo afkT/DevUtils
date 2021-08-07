@@ -24,15 +24,15 @@ public final class NumberUtils {
 
     /**
      * 补 0 处理 ( 小于 10, 则自动补充 0x )
-     * @param value  待处理值
-     * @param append 是否需要自动补 0
+     * @param value      待处理值
+     * @param appendZero 是否自动补 0
      * @return 自动补 0 字符串
      */
     public static String addZero(
             final int value,
-            final boolean append
+            final boolean appendZero
     ) {
-        if (!append) return String.valueOf(value);
+        if (!appendZero) return String.valueOf(value);
         int temp = Math.max(0, value);
         return temp >= 10 ? String.valueOf(temp) : "0" + temp;
     }
@@ -69,27 +69,73 @@ public final class NumberUtils {
 
     /**
      * 计算指定单位倍数
-     * @param units 单位数组
      * @param value 待计算数值
+     * @param units 单位数组
      * @return 单位数组对应倍数值
      */
-    public static int[] calculateUnit(
-            final double[] units,
-            final double value
+    public static double[] calculateUnit(
+            final double value,
+            final double[] units
     ) {
-        if (units == null) return null;
         if (value <= 0) return null;
-        int    len    = units.length;
-        int[]  arrays = new int[len];
-        double temp   = value;
+        if (units == null) return null;
+        int      len    = units.length;
+        double[] result = new double[len];
+        double   temp   = value;
         for (int i = 0; i < len; i++) {
             if (temp >= units[i]) {
-                int mode = (int) (temp / units[i]);
-                            temp -= mode * units[i];
-                arrays[i] = mode;
+                double multiple = temp / units[i];
+                            temp -= multiple * units[i];
+                result[i] = multiple;
             }
         }
-        return arrays;
+        return result;
+    }
+
+    /**
+     * 计算指定单位倍数
+     * @param value 待计算数值
+     * @param units 单位数组
+     * @return 单位数组对应倍数值
+     */
+    public static int[] calculateUnitI(
+            final long value,
+            final long[] units
+    ) {
+        long[] result = calculateUnitL(value, units);
+        if (result != null) {
+            int[] ints = new int[result.length];
+            for (int i = 0, len = result.length; i < len; i++) {
+                ints[i] = (int) result[i];
+            }
+            return ints;
+        }
+        return null;
+    }
+
+    /**
+     * 计算指定单位倍数
+     * @param value 待计算数值
+     * @param units 单位数组
+     * @return 单位数组对应倍数值
+     */
+    public static long[] calculateUnitL(
+            final long value,
+            final long[] units
+    ) {
+        if (value <= 0) return null;
+        if (units == null) return null;
+        int    len    = units.length;
+        long[] result = new long[len];
+        long   temp   = value;
+        for (int i = 0; i < len; i++) {
+            if (temp >= units[i]) {
+                long multiple = temp / units[i];
+                            temp -= multiple * units[i];
+                result[i] = multiple;
+            }
+        }
+        return result;
     }
 
     // ===========

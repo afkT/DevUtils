@@ -1453,20 +1453,24 @@ public final class DateUtils {
 
     /**
      * 根据年份, 获取对应的月份
+     * <pre>
+     *     传入历史、以及未来年份都返回对应年月份
+     *     传入当前年份则返回当前月份
+     * </pre>
      * @param year 年份
      * @return 内部判断是否相同一年, 不能超过限制未来的月份
      */
     public static int getYearMonthNumber(final int year) {
-        // 如: 当前 2019-01, 传入 2019 则返回 1
-        // 传入 2018 返回 12, 不会返回未来的月份
-        if (year == getYear()) {
-            return getMonth();
-        }
+        if (year == getYear()) return getMonth();
         return 12;
     }
 
     /**
      * 根据年份、月份, 获取对应的天数
+     * <pre>
+     *     传入历史、以及未来年月份都返回对应年月份的天数
+     *     传入当前年月份则返回当前天数
+     * </pre>
      * @param year  年份
      * @param month 月份
      * @return 内部判断是否相同一年、月份, 不能超过限制未来的天数
@@ -1475,12 +1479,8 @@ public final class DateUtils {
             final int year,
             final int month
     ) {
-        // 判断年份, 相同则判断月份
-        if (year == getYear()) {
-            // 判断月份, 相同则返回天数
-            if (getYearMonthNumber(year) == month) {
-                return getDay();
-            }
+        if (year == getYear() && month == getMonth()) {
+            return getDay();
         }
         return getMonthDayNumberAll(year, month);
     }
@@ -1498,98 +1498,116 @@ public final class DateUtils {
 
     /**
      * 时间补 0 处理 ( 小于 10, 则自动补充 0x )
-     * @param time   待处理时间
-     * @param append 判断是否需要自动补 0
+     * @param time       待处理时间
+     * @param appendZero 是否自动补 0
      * @return 自动补 0 时间字符串
      */
     public static String timeAddZero(
             final int time,
-            final boolean append
+            final boolean appendZero
     ) {
-        return NumberUtils.addZero(time, append);
+        return NumberUtils.addZero(time, appendZero);
     }
+
+    // =
 
     /**
      * 生成 HH 按时间排序数组
+     * @param appendZero 是否自动补 0
      * @return 按小时排序的数组
      */
-    public static String[] getArrayToHH() {
-        List<String> lists = getListToHH();
+    public static String[] getArrayToHH(final boolean appendZero) {
+        List<String> lists = getListToHH(appendZero);
         return lists.toArray(new String[0]);
     }
 
     /**
      * 生成 HH 按时间排序集合
+     * @param appendZero 是否自动补 0
      * @return 按小时排序的集合
      */
-    public static List<String> getListToHH() {
+    public static List<String> getListToHH(final boolean appendZero) {
         List<String> lists = new ArrayList<>();
         for (int i = 0; i < 24; i++) {
-            lists.add(timeAddZero(i, true));
+            lists.add(timeAddZero(i, appendZero));
         }
         return lists;
     }
 
+    // =
+
     /**
      * 生成 MM 按时间排序数组
+     * @param appendZero 是否自动补 0
      * @return 按分钟排序的数组
      */
-    public static String[] getArrayToMM() {
-        List<String> lists = getListToMM();
+    public static String[] getArrayToMM(final boolean appendZero) {
+        List<String> lists = getListToMM(appendZero);
         return lists.toArray(new String[0]);
     }
 
     /**
      * 生成 MM 按时间排序集合
+     * @param appendZero 是否自动补 0
      * @return 按分钟排序的集合
      */
-    public static List<String> getListToMM() {
+    public static List<String> getListToMM(final boolean appendZero) {
         List<String> lists = new ArrayList<>();
         for (int i = 0; i < 60; i++) {
-            lists.add(timeAddZero(i, true));
+            lists.add(timeAddZero(i, appendZero));
         }
         return lists;
     }
 
+    // =
+
     /**
      * 生成 HH:mm 按间隔时间排序数组
-     * @param type 0 = 00:00 - 23:00 = 每 1 小时间隔
-     *             1 = 00:00 - 23:45 = 每 15 分钟间隔
-     *             2 = 00:00 - 23:30 = 每 30 分钟间隔
+     * @param type       0 = 00:00 - 23:00 = 每 1  小时间隔
+     *                   1 = 00:00 - 23:45 = 每 15 分钟间隔
+     *                   2 = 00:00 - 23:30 = 每 30 分钟间隔
+     * @param appendZero 是否自动补 0
      * @return 指定格式的数组
      */
-    public static String[] getArrayToHHMM(final int type) {
-        List<String> lists = getListToHHMM(type);
+    public static String[] getArrayToHHMM(
+            final int type,
+            final boolean appendZero
+    ) {
+        List<String> lists = getListToHHMM(type, appendZero);
         return lists.toArray(new String[0]);
     }
 
     /**
      * 生成 HH:mm 按间隔时间排序集合
-     * @param type 0 = 00:00 - 23:00 = 每 1 小时间隔
-     *             1 = 00:00 - 23:45 = 每 15 分钟间隔
-     *             2 = 00:00 - 23:30 = 每 30 分钟间隔
+     * @param type       0 = 00:00 - 23:00 = 每 1  小时间隔
+     *                   1 = 00:00 - 23:45 = 每 15 分钟间隔
+     *                   2 = 00:00 - 23:30 = 每 30 分钟间隔
+     * @param appendZero 是否自动补 0
      * @return 指定格式的集合
      */
-    public static List<String> getListToHHMM(final int type) {
+    public static List<String> getListToHHMM(
+            final int type,
+            final boolean appendZero
+    ) {
         List<String> lists = new ArrayList<>();
         switch (type) {
             case 0:
                 for (int i = 0; i < 24; i++) {
-                    lists.add(timeAddZero(i, true) + ":00");
+                    lists.add(timeAddZero(i, appendZero) + ":00");
                 }
                 break;
             case 1:
                 for (int i = 0; i < 96; i++) { // 00 15 30 45 = 4 (24 * 4)
                     if (i % 2 == 0) { // 判断是否偶数 00、30
                         // 小时数
-                        String hour = timeAddZero(i / 4, true);
+                        String hour = timeAddZero(i / 4, appendZero);
                         // 分钟数
                         String minute = i % 4 == 0 ? "00" : "30";
                         // 累加时间
                         lists.add(hour + ":" + minute);
                     } else { // 15、45
                         // 小时数
-                        String hour = timeAddZero(i / 4, true);
+                        String hour = timeAddZero(i / 4, appendZero);
                         // 分钟数
                         String minute = (i - 1) % 4 == 0 ? "15" : "45";
                         // 累加时间
@@ -1603,9 +1621,9 @@ public final class DateUtils {
                     int hour = i / 2;
                     // 属于偶数
                     if (i % 2 == 0) {
-                        lists.add(timeAddZero(hour, true) + ":00");
+                        lists.add(timeAddZero(hour, appendZero) + ":00");
                     } else {
-                        lists.add(timeAddZero(hour, true) + ":30");
+                        lists.add(timeAddZero(hour, appendZero) + ":30");
                     }
                 }
                 break;
@@ -1616,7 +1634,7 @@ public final class DateUtils {
     /**
      * 获取 HH:mm 按间隔时间排序的集合中, 指定时间所在索引
      * @param time HH:mm 格式
-     * @param type 0 = 00:00 - 23:00 = 每 1 小时间隔
+     * @param type 0 = 00:00 - 23:00 = 每 1  小时间隔
      *             1 = 00:00 - 23:45 = 每 15 分钟间隔
      *             2 = 00:00 - 23:30 = 每 30 分钟间隔
      * @return 指定数据, 在对应格式类型内的索引
@@ -1664,8 +1682,7 @@ public final class DateUtils {
                                 return hour * 4 + 3;
                             }
                         } else { // 30 分钟一个间隔
-                            // 大于等于 30, 表示属于基数
-                            if (minute >= 30) { // 属于奇数 (30), 需要加 1
+                            if (minute >= 30) { // 属于 30, 需要加 1
                                 return hour * 2 + 1;
                             } else {
                                 return hour * 2;
@@ -1677,153 +1694,33 @@ public final class DateUtils {
         return -1;
     }
 
-    // =
-
-    /**
-     * 传入时间, 获取时间 ( 00:00:00 格式, 不处理大于一天 )
-     * @param time 时间 ( 秒为单位 )
-     * @return 转换 (00:00:00 格式 ) 时间字符串
-     */
-    public static String secToTimeRetain(final int time) {
-        return secToTimeRetain(time, false);
-    }
-
-    /**
-     * 传入时间, 获取时间 ( 00:00:00 格式 )
-     * @param time          时间 ( 秒为单位 )
-     * @param isHandlerMDay 是否处理大于一天的时间
-     * @return 转换 (00:00:00 格式 ) 时间字符串
-     */
-    public static String secToTimeRetain(
-            final int time,
-            final boolean isHandlerMDay
-    ) {
-        try {
-            if (time <= 0) {
-                return "00:00:00";
-            } else {
-                // 取模
-                int rSecond;
-                int rMinute;
-                // 差数
-                int dSecond;
-                int dMinute;
-                int dHour;
-                // 转换时间格式
-                if (time < MINUTE_S) { // 小于一分钟
-                    return "00:00:" + ((time >= 10) ? time : ("0" + time));
-                } else if (time < HOUR_S) { // 小于一小时
-                    dSecond = time % MINUTE_S; // 取模分钟, 获取多出的秒数
-                    dMinute = (time - dSecond) / MINUTE_S;
-                    return "00:" + ((dMinute >= 10) ? dMinute : ("0" + dMinute))
-                            + ":" + ((dSecond >= 10) ? dSecond : ("0" + dSecond));
-                } else if (time < DAY_S) { // 小于等于一天
-                    rMinute = time % HOUR_S; // 取模小时, 获取多出的分钟
-                    dHour   = (time - rMinute) / HOUR_S; // 获取小时
-                    dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
-                    dMinute = dSecond / MINUTE_S; // 获取多出的分钟
-                    rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒数
-                    return ((dHour >= 10) ? dHour : ("0" + dHour))
-                            + ":" + ((dMinute >= 10) ? dMinute : ("0" + dMinute))
-                            + ":" + ((rSecond >= 10) ? rSecond : "0" + rSecond);
-                } else { // 多余的时间, 直接格式化
-                    // 大于一天的情况
-                    if (isHandlerMDay) {
-                        rMinute = time % HOUR_S; // 取模小时, 获取多出的分钟
-                        dHour   = (time - rMinute) / HOUR_S; // 获取小时
-                        dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
-                        dMinute = dSecond / MINUTE_S; // 获取多出的分钟
-                        rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒数
-                        return dHour + ":" + (dMinute >= 10 ? dMinute : "0" + dMinute)
-                                + ":" + (rSecond >= 10 ? rSecond : "0" + rSecond);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "secToTimeRetain");
-        }
-        return null;
-    }
-
-    /**
-     * 传入时间, 时间参数 ( 小时、分钟、秒 )
-     * @param time 时间 ( 秒为单位 )
-     * @return int[] { 小时、分钟、秒 }
-     */
-    public static int[] convertTimeArys(final int time) {
-        try {
-            if (time <= 0) {
-                return new int[]{0, 0, 0};
-            } else {
-                // 取模
-                int rSecond;
-                int rMinute;
-                // 差数
-                int dSecond;
-                int dMinute;
-                int dHour;
-                // 转换时间格式
-                if (time < MINUTE_S) { // 小于一分钟
-                    return new int[]{0, 0, time};
-                } else if (time < HOUR_S) { // 小于一小时
-                    dSecond = time % MINUTE_S; // 取模分钟, 获取多出的秒数
-                    dMinute = (time - dSecond) / MINUTE_S;
-                    return new int[]{0, dMinute, dSecond};
-                } else if (time < DAY_S) { // 小于等于一天
-                    rMinute = time % HOUR_S; // 取模小时, 获取多出的分钟
-                    dHour   = (time - rMinute) / HOUR_S; // 获取小时
-                    dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
-                    dMinute = dSecond / MINUTE_S; // 获取多出的分钟
-                    rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒数
-                    return new int[]{dHour, dMinute, rSecond};
-                } else { // 多余的时间, 直接格式化
-                    // 大于一天的情况
-                    rMinute = time % HOUR_S; // 取模小时, 获取多出的分钟
-                    dHour   = (time - rMinute) / HOUR_S; // 获取小时
-                    dSecond = (time - dHour * HOUR_S); // 获取多出的秒数
-                    dMinute = dSecond / MINUTE_S; // 获取多出的分钟
-                    rSecond = dSecond % MINUTE_S; // 取模分钟, 获取多余的秒数
-                    return new int[]{dHour, dMinute, rSecond};
-                }
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "convertTimeArys");
-        }
-        return null;
-    }
-
     /**
      * 转换时间
-     * @param millis    时间毫秒
-     * @param precision precision = 0, return null
-     *                  precision = 1, return 天
-     *                  precision = 2, return 天, 小时
-     *                  precision = 3, return 天, 小时, 分钟
-     *                  precision = 4, return 天, 小时, 分钟, 秒
-     *                  precision = 5, return 天, 小时, 分钟, 秒, 毫秒
+     * @param millis     时间毫秒
+     * @param precision  precision = 1, return 天
+     *                   precision = 2, return 天, 小时
+     *                   precision = 3, return 天, 小时, 分钟
+     *                   precision = 4, return 天, 小时, 分钟, 秒
+     *                   precision = 5, return 天, 小时, 分钟, 秒, 毫秒
+     * @param appendZero 是否自动补 0
      * @return 转换指定格式的时间字符串
      */
     public static String millisToFitTimeSpan(
             final long millis,
-            final int precision
+            final int precision,
+            final boolean appendZero
     ) {
-        if (millis <= 0 || precision <= 0) return null;
-
-        long millisTime      = millis;
-        int  precisionFormat = precision;
-
-        StringBuilder builder = new StringBuilder();
-        String[]      units   = {"天", "小时", "分钟", "秒", "毫秒"};
-        int[]         unitLen = {86400000, 3600000, 60000, 1000, 1};
-        precisionFormat = Math.min(precisionFormat, 5);
-        for (int i = 0; i < precisionFormat; i++) {
-            if (millisTime >= unitLen[i]) {
-                long mode = millisTime / unitLen[i];
-                millisTime -= mode * unitLen[i];
-                builder.append(mode).append(units[i]);
+        if (precision >= 1 && precision <= 5) {
+            int[]         result  = millisToTimeArrays(millis);
+            String[]      units   = {"天", "小时", "分钟", "秒", "毫秒"};
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < precision; i++) {
+                builder.append(timeAddZero(result[i], appendZero))
+                        .append(units[i]);
             }
+            return builder.toString();
         }
-        return builder.toString();
+        return "";
     }
 
     /**
@@ -1831,19 +1728,71 @@ public final class DateUtils {
      * @param millis 时间毫秒
      * @return int[5] { 天, 小时, 分钟, 秒, 毫秒 }
      */
-    public static int[] millisToTimeArys(final long millis) {
-        if (millis <= 0) return null;
-        int[] timeArys   = new int[5];
-        int[] unitLen    = {86400000, 3600000, 60000, 1000, 1};
-        long  millisTime = millis;
-        for (int i = 0; i < 5; i++) {
-            if (millisTime >= unitLen[i]) {
-                long mode = millisTime / unitLen[i];
-                millisTime -= mode * unitLen[i];
-                timeArys[i] = (int) mode;
-            }
+    public static int[] millisToTimeArrays(final long millis) {
+        if (millis > 0) {
+            return NumberUtils.calculateUnitI(
+                    millis, new long[]{86400000, 3600000, 60000, 1000, 1}
+            );
         }
-        return timeArys;
+        return new int[5];
+    }
+
+    // =
+
+    /**
+     * 传入时间毫秒, 获取 00:00:00 格式 ( 不处理大于一天 )
+     * @param millis 时间毫秒
+     * @return 转换 ( 00:00:00 ) 时间格式字符串
+     */
+    public static String timeConvertByMillis(final long millis) {
+        return timeConvertByMillis(millis, false);
+    }
+
+    /**
+     * 传入时间毫秒, 获取 00:00:00 格式
+     * <pre>
+     *     小时:分钟:秒
+     * </pre>
+     * @param millis        时间毫秒
+     * @param isHandlerMDay 是否处理大于一天的时间
+     * @return 转换 ( 00:00:00 ) 时间格式字符串
+     */
+    public static String timeConvertByMillis(
+            final long millis,
+            final boolean isHandlerMDay
+    ) {
+        int[] result = millisToTimeArrays(millis);
+        // 如果大于一天但不处理大于一天情况则返回 null
+        if (result[0] > 0 && !isHandlerMDay) {
+            return null;
+        }
+        return timeAddZero(result[0] * 24 + result[1])
+                + ":" + timeAddZero(result[2])
+                + ":" + timeAddZero(result[3]);
+    }
+
+    // =
+
+    /**
+     * 传入时间秒, 获取 00:00:00 格式 ( 不处理大于一天 )
+     * @param second 时间 ( 秒 )
+     * @return 转换 ( 00:00:00 ) 时间格式字符串
+     */
+    public static String timeConvertBySecond(final long second) {
+        return timeConvertBySecond(second, false);
+    }
+
+    /**
+     * 传入时间秒, 获取 00:00:00 格式
+     * @param second        时间 ( 秒 )
+     * @param isHandlerMDay 是否处理大于一天的时间
+     * @return 转换 ( 00:00:00 ) 时间格式字符串
+     */
+    public static String timeConvertBySecond(
+            final long second,
+            final boolean isHandlerMDay
+    ) {
+        return timeConvertByMillis(second * 1000L, isHandlerMDay);
     }
 
     // ==================

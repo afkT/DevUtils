@@ -33,7 +33,7 @@ public final class HttpParamsUtils {
      * @return 0 = url, 1 = params
      */
     public static String[] getUrlParamsArray(final String url) {
-        String[] results = new String[2];
+        String[] result = new String[2];
         if (StringUtils.isNotEmpty(url)) {
             // 清除掉前后空格
             String urlClean = StringUtils.clearSEWiths(url, " ");
@@ -42,13 +42,13 @@ public final class HttpParamsUtils {
             // 进行拆分
             int index = urlClean.indexOf("?");
             if (index != -1) {
-                results[0] = urlClean.substring(0, index);
-                results[1] = urlClean.substring(index + 1);
+                result[0] = urlClean.substring(0, index);
+                result[1] = urlClean.substring(index + 1);
             } else {
-                results[0] = urlClean;
+                result[0] = urlClean;
             }
         }
-        return results;
+        return result;
     }
 
     /**
@@ -206,8 +206,8 @@ public final class HttpParamsUtils {
             final boolean urlEncode
     ) {
         if (mapParams != null) {
-            int index = 0;
-            StringBuilder                       builder  = new StringBuilder();
+            int           index   = 0;
+            StringBuilder builder = new StringBuilder();
             for (Map.Entry<String, String> entry : mapParams.entrySet()) {
                 if (index > 0) builder.append('&');
                 builder.append(entry.getKey());
@@ -242,8 +242,8 @@ public final class HttpParamsUtils {
             final boolean urlEncode
     ) {
         if (mapParams != null) {
-            int index = 0;
-            StringBuilder                       builder  = new StringBuilder();
+            int           index   = 0;
+            StringBuilder builder = new StringBuilder();
             for (Map.Entry<String, Object> entry : mapParams.entrySet()) {
                 if (index > 0) builder.append('&');
                 builder.append(entry.getKey());
