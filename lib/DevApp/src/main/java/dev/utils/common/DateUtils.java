@@ -1221,6 +1221,685 @@ public final class DateUtils {
         return isPM(parseLong(time, format));
     }
 
+    // ==========
+    // = 年份判断 =
+    // ==========
+
+    /**
+     * 是否对应年份
+     * @param calendar {@link Calendar}
+     * @param year     待判断年份
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isYear(
+            final Calendar calendar,
+            final int year
+    ) {
+        return year != -1 && year == getYear(calendar);
+    }
+
+    // =
+
+    /**
+     * 是否对应年份
+     * @param year 待判断年份
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isYear(final int year) {
+        return isYear(getCalendar(), year);
+    }
+
+    /**
+     * 是否对应年份
+     * @param millis 时间毫秒
+     * @param year   待判断年份
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isYear(
+            final long millis,
+            final int year
+    ) {
+        return isYear(getCalendar(millis), year);
+    }
+
+    /**
+     * 是否对应年份
+     * @param date 日期
+     * @param year 待判断年份
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isYear(
+            final Date date,
+            final int year
+    ) {
+        return isYear(getCalendar(date), year);
+    }
+
+    /**
+     * 是否对应年份
+     * @param time 时间
+     * @param year 待判断年份
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isYear(
+            final String time,
+            final int year
+    ) {
+        return isYear(parseLong(time), year);
+    }
+
+    /**
+     * 是否对应年份
+     * @param time    时间
+     * @param pattern 时间格式
+     * @param year    待判断年份
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isYear(
+            final String time,
+            final String pattern,
+            final int year
+    ) {
+        return isYear(parseLong(time, pattern), year);
+    }
+
+    /**
+     * 是否对应年份
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @param year   待判断年份
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isYear(
+            final String time,
+            final SimpleDateFormat format,
+            final int year
+    ) {
+        return isYear(parseLong(time, format), year);
+    }
+
+    // ==========
+    // = 月份判断 =
+    // ==========
+
+    /**
+     * 是否对应月份
+     * @param calendar {@link Calendar}
+     * @param month    待判断月份
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMonth(
+            final Calendar calendar,
+            final int month
+    ) {
+        return month != -1 && month == getMonth(calendar);
+    }
+
+    // =
+
+    /**
+     * 是否对应月份
+     * @param month 待判断月份
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMonth(final int month) {
+        return isMonth(getCalendar(), month);
+    }
+
+    /**
+     * 是否对应月份
+     * @param millis 时间毫秒
+     * @param month  待判断月份
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMonth(
+            final long millis,
+            final int month
+    ) {
+        return isMonth(getCalendar(millis), month);
+    }
+
+    /**
+     * 是否对应月份
+     * @param date  日期
+     * @param month 待判断月份
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMonth(
+            final Date date,
+            final int month
+    ) {
+        return isMonth(getCalendar(date), month);
+    }
+
+    /**
+     * 是否对应月份
+     * @param time  时间
+     * @param month 待判断月份
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMonth(
+            final String time,
+            final int month
+    ) {
+        return isMonth(parseLong(time), month);
+    }
+
+    /**
+     * 是否对应月份
+     * @param time    时间
+     * @param pattern 时间格式
+     * @param month   待判断月份
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMonth(
+            final String time,
+            final String pattern,
+            final int month
+    ) {
+        return isMonth(parseLong(time, pattern), month);
+    }
+
+    /**
+     * 是否对应月份
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @param month  待判断月份
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMonth(
+            final String time,
+            final SimpleDateFormat format,
+            final int month
+    ) {
+        return isMonth(parseLong(time, format), month);
+    }
+
+    // ==========
+    // = 天数判断 =
+    // ==========
+
+    /**
+     * 是否对应天数
+     * @param calendar {@link Calendar}
+     * @param day      待判断天数
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isDay(
+            final Calendar calendar,
+            final int day
+    ) {
+        return day != -1 && day == getDay(calendar);
+    }
+
+    // =
+
+    /**
+     * 是否对应天数
+     * @param day 待判断天数
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isDay(final int day) {
+        return isDay(getCalendar(), day);
+    }
+
+    /**
+     * 是否对应天数
+     * @param millis 时间毫秒
+     * @param day    待判断天数
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isDay(
+            final long millis,
+            final int day
+    ) {
+        return isDay(getCalendar(millis), day);
+    }
+
+    /**
+     * 是否对应天数
+     * @param date 日期
+     * @param day  待判断天数
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isDay(
+            final Date date,
+            final int day
+    ) {
+        return isDay(getCalendar(date), day);
+    }
+
+    /**
+     * 是否对应天数
+     * @param time 时间
+     * @param day  待判断天数
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isDay(
+            final String time,
+            final int day
+    ) {
+        return isDay(parseLong(time), day);
+    }
+
+    /**
+     * 是否对应天数
+     * @param time    时间
+     * @param pattern 时间格式
+     * @param day     待判断天数
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isDay(
+            final String time,
+            final String pattern,
+            final int day
+    ) {
+        return isDay(parseLong(time, pattern), day);
+    }
+
+    /**
+     * 是否对应天数
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @param day    待判断天数
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isDay(
+            final String time,
+            final SimpleDateFormat format,
+            final int day
+    ) {
+        return isDay(parseLong(time, format), day);
+    }
+
+    // ==========
+    // = 星期判断 =
+    // ==========
+
+    /**
+     * 是否对应星期
+     * @param calendar {@link Calendar}
+     * @param week     待判断星期
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isWeek(
+            final Calendar calendar,
+            final int week
+    ) {
+        return week != -1 && week == getWeek(calendar);
+    }
+
+    // =
+
+    /**
+     * 是否对应星期
+     * @param week 待判断星期
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isWeek(final int week) {
+        return isWeek(getCalendar(), week);
+    }
+
+    /**
+     * 是否对应星期
+     * @param millis 时间毫秒
+     * @param week   待判断星期
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isWeek(
+            final long millis,
+            final int week
+    ) {
+        return isWeek(getCalendar(millis), week);
+    }
+
+    /**
+     * 是否对应星期
+     * @param date 日期
+     * @param week 待判断星期
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isWeek(
+            final Date date,
+            final int week
+    ) {
+        return isWeek(getCalendar(date), week);
+    }
+
+    /**
+     * 是否对应星期
+     * @param time 时间
+     * @param week 待判断星期
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isWeek(
+            final String time,
+            final int week
+    ) {
+        return isWeek(parseLong(time), week);
+    }
+
+    /**
+     * 是否对应星期
+     * @param time    时间
+     * @param pattern 时间格式
+     * @param week    待判断星期
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isWeek(
+            final String time,
+            final String pattern,
+            final int week
+    ) {
+        return isWeek(parseLong(time, pattern), week);
+    }
+
+    /**
+     * 是否对应星期
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @param week   待判断星期
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isWeek(
+            final String time,
+            final SimpleDateFormat format,
+            final int week
+    ) {
+        return isWeek(parseLong(time, format), week);
+    }
+
+    // ==========
+    // = 小时判断 =
+    // ==========
+
+    /**
+     * 是否对应小时
+     * @param calendar {@link Calendar}
+     * @param hour     待判断小时
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isHour(
+            final Calendar calendar,
+            final int hour
+    ) {
+        return hour != -1 && hour == get24Hour(calendar);
+    }
+
+    // =
+
+    /**
+     * 是否对应小时
+     * @param hour 待判断小时
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isHour(final int hour) {
+        return isHour(getCalendar(), hour);
+    }
+
+    /**
+     * 是否对应小时
+     * @param millis 时间毫秒
+     * @param hour   待判断小时
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isHour(
+            final long millis,
+            final int hour
+    ) {
+        return isHour(getCalendar(millis), hour);
+    }
+
+    /**
+     * 是否对应小时
+     * @param date 日期
+     * @param hour 待判断小时
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isHour(
+            final Date date,
+            final int hour
+    ) {
+        return isHour(getCalendar(date), hour);
+    }
+
+    /**
+     * 是否对应小时
+     * @param time 时间
+     * @param hour 待判断小时
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isHour(
+            final String time,
+            final int hour
+    ) {
+        return isHour(parseLong(time), hour);
+    }
+
+    /**
+     * 是否对应小时
+     * @param time    时间
+     * @param pattern 时间格式
+     * @param hour    待判断小时
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isHour(
+            final String time,
+            final String pattern,
+            final int hour
+    ) {
+        return isHour(parseLong(time, pattern), hour);
+    }
+
+    /**
+     * 是否对应小时
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @param hour   待判断小时
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isHour(
+            final String time,
+            final SimpleDateFormat format,
+            final int hour
+    ) {
+        return isHour(parseLong(time, format), hour);
+    }
+
+    // ==========
+    // = 分钟判断 =
+    // ==========
+
+    /**
+     * 是否对应分钟
+     * @param calendar {@link Calendar}
+     * @param minute   待判断分钟
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMinute(
+            final Calendar calendar,
+            final int minute
+    ) {
+        return minute != -1 && minute == getMinute(calendar);
+    }
+
+    // =
+
+    /**
+     * 是否对应分钟
+     * @param minute 待判断分钟
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMinute(final int minute) {
+        return isMinute(getCalendar(), minute);
+    }
+
+    /**
+     * 是否对应分钟
+     * @param millis 时间毫秒
+     * @param minute 待判断分钟
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMinute(
+            final long millis,
+            final int minute
+    ) {
+        return isMinute(getCalendar(millis), minute);
+    }
+
+    /**
+     * 是否对应分钟
+     * @param date   日期
+     * @param minute 待判断分钟
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMinute(
+            final Date date,
+            final int minute
+    ) {
+        return isMinute(getCalendar(date), minute);
+    }
+
+    /**
+     * 是否对应分钟
+     * @param time   时间
+     * @param minute 待判断分钟
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMinute(
+            final String time,
+            final int minute
+    ) {
+        return isMinute(parseLong(time), minute);
+    }
+
+    /**
+     * 是否对应分钟
+     * @param time    时间
+     * @param pattern 时间格式
+     * @param minute  待判断分钟
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMinute(
+            final String time,
+            final String pattern,
+            final int minute
+    ) {
+        return isMinute(parseLong(time, pattern), minute);
+    }
+
+    /**
+     * 是否对应分钟
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @param minute 待判断分钟
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isMinute(
+            final String time,
+            final SimpleDateFormat format,
+            final int minute
+    ) {
+        return isMinute(parseLong(time, format), minute);
+    }
+
+    // ==========
+    // = 秒数判断 =
+    // ==========
+
+    /**
+     * 是否对应秒数
+     * @param calendar {@link Calendar}
+     * @param second   待判断秒数
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isSecond(
+            final Calendar calendar,
+            final int second
+    ) {
+        return second != -1 && second == getSecond(calendar);
+    }
+
+    // =
+
+    /**
+     * 是否对应秒数
+     * @param second 待判断秒数
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isSecond(final int second) {
+        return isSecond(getCalendar(), second);
+    }
+
+    /**
+     * 是否对应秒数
+     * @param millis 时间毫秒
+     * @param second 待判断秒数
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isSecond(
+            final long millis,
+            final int second
+    ) {
+        return isSecond(getCalendar(millis), second);
+    }
+
+    /**
+     * 是否对应秒数
+     * @param date   日期
+     * @param second 待判断秒数
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isSecond(
+            final Date date,
+            final int second
+    ) {
+        return isSecond(getCalendar(date), second);
+    }
+
+    /**
+     * 是否对应秒数
+     * @param time   时间
+     * @param second 待判断秒数
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isSecond(
+            final String time,
+            final int second
+    ) {
+        return isSecond(parseLong(time), second);
+    }
+
+    /**
+     * 是否对应秒数
+     * @param time    时间
+     * @param pattern 时间格式
+     * @param second  待判断秒数
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isSecond(
+            final String time,
+            final String pattern,
+            final int second
+    ) {
+        return isSecond(parseLong(time, pattern), second);
+    }
+
+    /**
+     * 是否对应秒数
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @param second 待判断秒数
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isSecond(
+            final String time,
+            final SimpleDateFormat format,
+            final int second
+    ) {
+        return isSecond(parseLong(time, format), second);
+    }
+
     // =
 
     /**
