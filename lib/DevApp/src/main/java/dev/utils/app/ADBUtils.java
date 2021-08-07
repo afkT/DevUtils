@@ -1690,7 +1690,7 @@ public final class ADBUtils {
 
     /**
      * 设置系统时间
-     * @param millis 时间戳转换 MMddHHmmyyyy.ss
+     * @param millis 时间毫秒转换 MMddHHmmyyyy.ss
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setSystemTime2(final long millis) {

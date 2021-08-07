@@ -153,8 +153,8 @@ public final class DateUtils {
     }
 
     /**
-     * 获取当前时间戳
-     * @return 当前时间戳
+     * 获取当前时间毫秒
+     * @return 当前时间毫秒
      */
     public static long getCurrentTimeMillis() {
         return getDateTime(Calendar.getInstance().getTime());
@@ -238,8 +238,8 @@ public final class DateUtils {
     // =
 
     /**
-     * 将时间戳转换日期字符串
-     * @param millis 时间戳
+     * 将时间毫秒转换日期字符串
+     * @param millis 时间毫秒
      * @return 按照指定格式的日期字符串
      */
     public static String formatTime(final long millis) {
@@ -247,8 +247,8 @@ public final class DateUtils {
     }
 
     /**
-     * 将时间戳转换日期字符串
-     * @param millis  时间戳
+     * 将时间毫秒转换日期字符串
+     * @param millis  时间毫秒
      * @param pattern 时间格式
      * @return 按照指定格式的日期字符串
      */
@@ -260,8 +260,8 @@ public final class DateUtils {
     }
 
     /**
-     * 将时间戳转换日期字符串
-     * @param millis 时间戳
+     * 将时间毫秒转换日期字符串
+     * @param millis 时间毫秒
      * @param format {@link SimpleDateFormat}
      * @return 按照指定格式的日期字符串
      */
@@ -281,8 +281,8 @@ public final class DateUtils {
     // =
 
     /**
-     * 将时间戳转换成 Date
-     * @param millis 时间戳
+     * 将时间毫秒转换成 Date
+     * @param millis 时间毫秒
      * @return {@link Date}
      */
     public static Date parseDate(final long millis) {
@@ -447,207 +447,646 @@ public final class DateUtils {
     // = 获取时间 =
     // ==========
 
-    /**
-     * 获取年
-     * @param date 日期
-     * @return 年
-     */
-    public static int getYear(final Date date) {
-        if (date == null) return -1;
-
-        try {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            return calendar.get(Calendar.YEAR);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getYear");
-        }
-        return -1;
-    }
+    // =====
+    // = 年 =
+    // =====
 
     /**
-     * 获取月 ( 0 - 11 ) + 1
-     * @param date 日期
-     * @return 月
+     * 获取年份
+     * @param calendar {@link Calendar}
+     * @return 年份
      */
-    public static int getMonth(final Date date) {
-        if (date == null) return -1;
-        try {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            return calendar.get(Calendar.MONTH) + 1;
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getMonth");
-        }
-        return -1;
-    }
-
-    /**
-     * 获取日
-     * @param date 日期
-     * @return 日
-     */
-    public static int getDay(final Date date) {
-        if (date == null) return -1;
-        try {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            return calendar.get(Calendar.DAY_OF_MONTH);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getDay");
-        }
-        return -1;
-    }
-
-    /**
-     * 获取日期是星期几
-     * @param date 日期
-     * @return 日
-     */
-    public static int getWeek(final Date date) {
-        if (date == null) return -1;
-        try {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            return calendar.get(Calendar.DAY_OF_WEEK);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getWeek");
-        }
-        return -1;
-    }
-
-    /**
-     * 获取时 ( 24 )
-     * @param date 日期
-     * @return 时
-     */
-    public static int get24Hour(final Date date) {
-        if (date == null) return -1;
-        try {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            return calendar.get(Calendar.HOUR_OF_DAY);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "get24Hour");
-        }
-        return -1;
-    }
-
-    /**
-     * 获取时 ( 12 )
-     * @param date 日期
-     * @return 时
-     */
-    public static int get12Hour(final Date date) {
-        if (date == null) return -1;
-        try {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            return calendar.get(Calendar.HOUR);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "get12Hour");
-        }
-        return -1;
-    }
-
-    /**
-     * 获取分
-     * @param date 日期
-     * @return 分
-     */
-    public static int getMinute(final Date date) {
-        if (date == null) return -1;
-        try {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            return calendar.get(Calendar.MINUTE);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getMinute");
-        }
-        return -1;
-    }
-
-    /**
-     * 获取秒
-     * @param date 日期
-     * @return 秒
-     */
-    public static int getSecond(final Date date) {
-        if (date == null) return -1;
-        try {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            return calendar.get(Calendar.SECOND);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getSecond");
-        }
+    public static int getYear(final Calendar calendar) {
+        if (calendar != null) return calendar.get(Calendar.YEAR);
         return -1;
     }
 
     // =
 
     /**
-     * 获取年
-     * @return 年
+     * 获取年份
+     * @return 年份
      */
     public static int getYear() {
-        return Calendar.getInstance().get(Calendar.YEAR);
+        return getYear(getCalendar());
     }
 
     /**
-     * 获取月 (0 - 11) + 1
-     * @return 月
+     * 获取年份
+     * @param millis 时间毫秒
+     * @return 年份
+     */
+    public static int getYear(final long millis) {
+        return getYear(getCalendar(millis));
+    }
+
+    /**
+     * 获取年份
+     * @param date 日期
+     * @return 年份
+     */
+    public static int getYear(final Date date) {
+        return getYear(getCalendar(date));
+    }
+
+    /**
+     * 获取年份
+     * @param time 时间
+     * @return 年份
+     */
+    public static int getYear(final String time) {
+        return getYear(parseLong(time));
+    }
+
+    /**
+     * 获取年份
+     * @param time    时间
+     * @param pattern 时间格式
+     * @return 年份
+     */
+    public static int getYear(
+            final String time,
+            final String pattern
+    ) {
+        return getYear(parseLong(time, pattern));
+    }
+
+    /**
+     * 获取年份
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @return 年份
+     */
+    public static int getYear(
+            final String time,
+            final SimpleDateFormat format
+    ) {
+        return getYear(parseLong(time, format));
+    }
+
+    // =====
+    // = 月 =
+    // =====
+
+    /**
+     * 获取月份 ( 0 - 11 ) + 1
+     * @param calendar {@link Calendar}
+     * @return 月份
+     */
+    public static int getMonth(final Calendar calendar) {
+        if (calendar != null) return calendar.get(Calendar.MONTH) + 1;
+        return -1;
+    }
+
+    // =
+
+    /**
+     * 获取月份 ( 0 - 11 ) + 1
+     * @return 月份
      */
     public static int getMonth() {
-        return Calendar.getInstance().get(Calendar.MONTH) + 1;
+        return getMonth(getCalendar());
     }
 
     /**
-     * 获取日
-     * @return 日
+     * 获取月份 ( 0 - 11 ) + 1
+     * @param millis 时间毫秒
+     * @return 月份
+     */
+    public static int getMonth(final long millis) {
+        return getMonth(getCalendar(millis));
+    }
+
+    /**
+     * 获取月份 ( 0 - 11 ) + 1
+     * @param date 日期
+     * @return 月份
+     */
+    public static int getMonth(final Date date) {
+        return getMonth(getCalendar(date));
+    }
+
+    /**
+     * 获取月份 ( 0 - 11 ) + 1
+     * @param time 时间
+     * @return 月份
+     */
+    public static int getMonth(final String time) {
+        return getMonth(parseLong(time));
+    }
+
+    /**
+     * 获取月份 ( 0 - 11 ) + 1
+     * @param time    时间
+     * @param pattern 时间格式
+     * @return 月份
+     */
+    public static int getMonth(
+            final String time,
+            final String pattern
+    ) {
+        return getMonth(parseLong(time, pattern));
+    }
+
+    /**
+     * 获取月份 ( 0 - 11 ) + 1
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @return 月份
+     */
+    public static int getMonth(
+            final String time,
+            final SimpleDateFormat format
+    ) {
+        return getMonth(parseLong(time, format));
+    }
+
+    // =======
+    // = 天数 =
+    // =======
+
+    /**
+     * 获取天数
+     * @param calendar {@link Calendar}
+     * @return 天数
+     */
+    public static int getDay(final Calendar calendar) {
+        if (calendar != null) return calendar.get(Calendar.DAY_OF_MONTH);
+        return -1;
+    }
+
+    // =
+
+    /**
+     * 获取天数
+     * @return 天数
      */
     public static int getDay() {
-        return Calendar.getInstance().get(Calendar.DATE);
+        return getDay(getCalendar());
     }
 
     /**
-     * 获取星期数
-     * @return 星期
+     * 获取天数
+     * @param millis 时间毫秒
+     * @return 天数
+     */
+    public static int getDay(final long millis) {
+        return getDay(getCalendar(millis));
+    }
+
+    /**
+     * 获取天数
+     * @param date 日期
+     * @return 天数
+     */
+    public static int getDay(final Date date) {
+        return getDay(getCalendar(date));
+    }
+
+    /**
+     * 获取天数
+     * @param time 时间
+     * @return 天数
+     */
+    public static int getDay(final String time) {
+        return getDay(parseLong(time));
+    }
+
+    /**
+     * 获取天数
+     * @param time    时间
+     * @param pattern 时间格式
+     * @return 天数
+     */
+    public static int getDay(
+            final String time,
+            final String pattern
+    ) {
+        return getDay(parseLong(time, pattern));
+    }
+
+    /**
+     * 获取天数
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @return 天数
+     */
+    public static int getDay(
+            final String time,
+            final SimpleDateFormat format
+    ) {
+        return getDay(parseLong(time, format));
+    }
+
+    // =======
+    // = 星期 =
+    // =======
+
+    /**
+     * 获取星期数 ( 1 - 7、日 - 六 )
+     * @param calendar {@link Calendar}
+     * @return 星期数
+     */
+    public static int getWeek(final Calendar calendar) {
+        if (calendar != null) return calendar.get(Calendar.DAY_OF_WEEK);
+        return -1;
+    }
+
+    // =
+
+    /**
+     * 获取星期数 ( 1 - 7、日 - 六 )
+     * @return 星期数
      */
     public static int getWeek() {
-        return Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+        return getWeek(getCalendar());
     }
 
     /**
-     * 获取时 ( 24 )
-     * @return 24 小时制小时
+     * 获取星期数 ( 1 - 7、日 - 六 )
+     * @param millis 时间毫秒
+     * @return 星期数
+     */
+    public static int getWeek(final long millis) {
+        return getWeek(getCalendar(millis));
+    }
+
+    /**
+     * 获取星期数 ( 1 - 7、日 - 六 )
+     * @param date 日期
+     * @return 星期数
+     */
+    public static int getWeek(final Date date) {
+        return getWeek(getCalendar(date));
+    }
+
+    /**
+     * 获取星期数 ( 1 - 7、日 - 六 )
+     * @param time 时间
+     * @return 星期数
+     */
+    public static int getWeek(final String time) {
+        return getWeek(parseLong(time));
+    }
+
+    /**
+     * 获取星期数 ( 1 - 7、日 - 六 )
+     * @param time    时间
+     * @param pattern 时间格式
+     * @return 星期数
+     */
+    public static int getWeek(
+            final String time,
+            final String pattern
+    ) {
+        return getWeek(parseLong(time, pattern));
+    }
+
+    /**
+     * 获取星期数 ( 1 - 7、日 - 六 )
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @return 星期数
+     */
+    public static int getWeek(
+            final String time,
+            final SimpleDateFormat format
+    ) {
+        return getWeek(parseLong(time, format));
+    }
+
+    // =======
+    // = 24H =
+    // =======
+
+    /**
+     * 获取小时 ( 24 )
+     * @param calendar {@link Calendar}
+     * @return 小时
+     */
+    public static int get24Hour(final Calendar calendar) {
+        if (calendar != null) return calendar.get(Calendar.HOUR_OF_DAY);
+        return -1;
+    }
+
+    // =
+
+    /**
+     * 获取小时 ( 24 )
+     * @return 小时
      */
     public static int get24Hour() {
-        return Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        return get24Hour(getCalendar());
     }
 
     /**
-     * 获取时 ( 12 )
-     * @return 12 小时制小时
+     * 获取小时 ( 24 )
+     * @param millis 时间毫秒
+     * @return 小时
+     */
+    public static int get24Hour(final long millis) {
+        return get24Hour(getCalendar(millis));
+    }
+
+    /**
+     * 获取小时 ( 24 )
+     * @param date 日期
+     * @return 小时
+     */
+    public static int get24Hour(final Date date) {
+        return get24Hour(getCalendar(date));
+    }
+
+    /**
+     * 获取小时 ( 24 )
+     * @param time 时间
+     * @return 小时
+     */
+    public static int get24Hour(final String time) {
+        return get24Hour(parseLong(time));
+    }
+
+    /**
+     * 获取小时 ( 24 )
+     * @param time    时间
+     * @param pattern 时间格式
+     * @return 小时
+     */
+    public static int get24Hour(
+            final String time,
+            final String pattern
+    ) {
+        return get24Hour(parseLong(time, pattern));
+    }
+
+    /**
+     * 获取小时 ( 24 )
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @return 小时
+     */
+    public static int get24Hour(
+            final String time,
+            final SimpleDateFormat format
+    ) {
+        return get24Hour(parseLong(time, format));
+    }
+
+    // =======
+    // = 12H =
+    // =======
+
+    /**
+     * 获取小时 ( 12 )
+     * @param calendar {@link Calendar}
+     * @return 小时
+     */
+    public static int get12Hour(final Calendar calendar) {
+        if (calendar != null) return calendar.get(Calendar.HOUR);
+        return -1;
+    }
+
+    // =
+
+    /**
+     * 获取小时 ( 12 )
+     * @return 小时
      */
     public static int get12Hour() {
-        return Calendar.getInstance().get(Calendar.HOUR);
+        return get12Hour(getCalendar());
     }
 
     /**
-     * 获取分
+     * 获取小时 ( 12 )
+     * @param millis 时间毫秒
+     * @return 小时
+     */
+    public static int get12Hour(final long millis) {
+        return get12Hour(getCalendar(millis));
+    }
+
+    /**
+     * 获取小时 ( 12 )
+     * @param date 日期
+     * @return 小时
+     */
+    public static int get12Hour(final Date date) {
+        return get12Hour(getCalendar(date));
+    }
+
+    /**
+     * 获取小时 ( 12 )
+     * @param time 时间
+     * @return 小时
+     */
+    public static int get12Hour(final String time) {
+        return get12Hour(parseLong(time));
+    }
+
+    /**
+     * 获取小时 ( 12 )
+     * @param time    时间
+     * @param pattern 时间格式
+     * @return 小时
+     */
+    public static int get12Hour(
+            final String time,
+            final String pattern
+    ) {
+        return get12Hour(parseLong(time, pattern));
+    }
+
+    /**
+     * 获取小时 ( 12 )
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @return 小时
+     */
+    public static int get12Hour(
+            final String time,
+            final SimpleDateFormat format
+    ) {
+        return get12Hour(parseLong(time, format));
+    }
+
+    // =======
+    // = 分钟 =
+    // =======
+
+    /**
+     * 获取分钟
+     * @param calendar {@link Calendar}
+     * @return 分钟
+     */
+    public static int getMinute(final Calendar calendar) {
+        if (calendar != null) return calendar.get(Calendar.MINUTE);
+        return -1;
+    }
+
+    // =
+
+    /**
+     * 获取分钟
      * @return 分钟
      */
     public static int getMinute() {
-        return Calendar.getInstance().get(Calendar.MINUTE);
+        return getMinute(getCalendar());
     }
 
     /**
-     * 获取秒
+     * 获取分钟
+     * @param millis 时间毫秒
+     * @return 分钟
+     */
+    public static int getMinute(final long millis) {
+        return getMinute(getCalendar(millis));
+    }
+
+    /**
+     * 获取分钟
+     * @param date 日期
+     * @return 分钟
+     */
+    public static int getMinute(final Date date) {
+        return getMinute(getCalendar(date));
+    }
+
+    /**
+     * 获取分钟
+     * @param time 时间
+     * @return 分钟
+     */
+    public static int getMinute(final String time) {
+        return getMinute(parseLong(time));
+    }
+
+    /**
+     * 获取分钟
+     * @param time    时间
+     * @param pattern 时间格式
+     * @return 分钟
+     */
+    public static int getMinute(
+            final String time,
+            final String pattern
+    ) {
+        return getMinute(parseLong(time, pattern));
+    }
+
+    /**
+     * 获取分钟
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @return 分钟
+     */
+    public static int getMinute(
+            final String time,
+            final SimpleDateFormat format
+    ) {
+        return getMinute(parseLong(time, format));
+    }
+
+    // =======
+    // = 秒数 =
+    // =======
+
+    /**
+     * 获取秒数
+     * @param calendar {@link Calendar}
+     * @return 秒数
+     */
+    public static int getSecond(final Calendar calendar) {
+        if (calendar != null) return calendar.get(Calendar.SECOND);
+        return -1;
+    }
+
+    // =
+
+    /**
+     * 获取秒数
      * @return 秒数
      */
     public static int getSecond() {
-        return Calendar.getInstance().get(Calendar.SECOND);
+        return getSecond(getCalendar());
+    }
+
+    /**
+     * 获取秒数
+     * @param millis 时间毫秒
+     * @return 秒数
+     */
+    public static int getSecond(final long millis) {
+        return getSecond(getCalendar(millis));
+    }
+
+    /**
+     * 获取秒数
+     * @param date 日期
+     * @return 秒数
+     */
+    public static int getSecond(final Date date) {
+        return getSecond(getCalendar(date));
+    }
+
+    /**
+     * 获取秒数
+     * @param time 时间
+     * @return 秒数
+     */
+    public static int getSecond(final String time) {
+        return getSecond(parseLong(time));
+    }
+
+    /**
+     * 获取秒数
+     * @param time    时间
+     * @param pattern 时间格式
+     * @return 秒数
+     */
+    public static int getSecond(
+            final String time,
+            final String pattern
+    ) {
+        return getSecond(parseLong(time, pattern));
+    }
+
+    /**
+     * 获取秒数
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @return 秒数
+     */
+    public static int getSecond(
+            final String time,
+            final SimpleDateFormat format
+    ) {
+        return getSecond(parseLong(time, format));
+    }
+
+    // =======
+    // = 上午 =
+    // =======
+
+    /**
+     * 是否上午
+     * @param calendar {@link Calendar}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isAM(final Calendar calendar) {
+        if (calendar != null) {
+            return calendar.get(GregorianCalendar.AM_PM) == Calendar.AM;
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 是否上午
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isAM() {
+        return isAM(getCalendar());
     }
 
     /**
@@ -656,9 +1095,77 @@ public final class DateUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isAM(final long millis) {
-        Calendar calendar = GregorianCalendar.getInstance();
-        calendar.setTimeInMillis(millis);
-        return calendar.get(GregorianCalendar.AM_PM) == Calendar.AM;
+        return isAM(getCalendar(millis));
+    }
+
+    /**
+     * 是否上午
+     * @param date 日期
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isAM(final Date date) {
+        return isAM(getCalendar(date));
+    }
+
+    /**
+     * 是否上午
+     * @param time 时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isAM(final String time) {
+        return isAM(parseLong(time));
+    }
+
+    /**
+     * 是否上午
+     * @param time    时间
+     * @param pattern 时间格式
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isAM(
+            final String time,
+            final String pattern
+    ) {
+        return isAM(parseLong(time, pattern));
+    }
+
+    /**
+     * 是否上午
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isAM(
+            final String time,
+            final SimpleDateFormat format
+    ) {
+        return isAM(parseLong(time, format));
+    }
+
+    // =======
+    // = 下午 =
+    // =======
+
+    /**
+     * 是否下午
+     * @param calendar {@link Calendar}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isPM(final Calendar calendar) {
+        if (calendar != null) {
+            return calendar.get(GregorianCalendar.AM_PM) == Calendar.PM;
+        }
+        return false;
+    }
+
+    // =
+
+    /**
+     * 是否下午
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isPM() {
+        return isPM(getCalendar());
     }
 
     /**
@@ -667,16 +1174,58 @@ public final class DateUtils {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isPM(final long millis) {
-        Calendar calendar = GregorianCalendar.getInstance();
-        calendar.setTimeInMillis(millis);
-        return calendar.get(GregorianCalendar.AM_PM) == Calendar.PM;
+        return isPM(getCalendar(millis));
+    }
+
+    /**
+     * 是否下午
+     * @param date 日期
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isPM(final Date date) {
+        return isPM(getCalendar(date));
+    }
+
+    /**
+     * 是否下午
+     * @param time 时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isPM(final String time) {
+        return isPM(parseLong(time));
+    }
+
+    /**
+     * 是否下午
+     * @param time    时间
+     * @param pattern 时间格式
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isPM(
+            final String time,
+            final String pattern
+    ) {
+        return isPM(parseLong(time, pattern));
+    }
+
+    /**
+     * 是否下午
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isPM(
+            final String time,
+            final SimpleDateFormat format
+    ) {
+        return isPM(parseLong(time, format));
     }
 
     // =
 
     /**
      * 获取秒数倍数
-     * @param millis 毫秒
+     * @param millis 时间毫秒
      * @return 秒数倍数
      */
     public static int getSecondMultiple(final long millis) {
@@ -685,7 +1234,7 @@ public final class DateUtils {
 
     /**
      * 获取分钟倍数
-     * @param millis 毫秒
+     * @param millis 时间毫秒
      * @return 分钟倍数
      */
     public static int getMinuteMultiple(final long millis) {
@@ -694,7 +1243,7 @@ public final class DateUtils {
 
     /**
      * 获取小时倍数
-     * @param millis 毫秒
+     * @param millis 时间毫秒
      * @return 小时倍数
      */
     public static int getHourMultiple(final long millis) {
@@ -703,7 +1252,7 @@ public final class DateUtils {
 
     /**
      * 获取天数倍数
-     * @param millis 毫秒
+     * @param millis 时间毫秒
      * @return 天数倍数
      */
     public static int getDayMultiple(final long millis) {
@@ -712,7 +1261,7 @@ public final class DateUtils {
 
     /**
      * 获取周数倍数
-     * @param millis 毫秒
+     * @param millis 时间毫秒
      * @return 周数倍数
      */
     public static int getWeekMultiple(final long millis) {
@@ -721,7 +1270,7 @@ public final class DateUtils {
 
     /**
      * 获取对应单位倍数
-     * @param millis 毫秒
+     * @param millis 时间毫秒
      * @param unit   毫秒单位 ( 除数 )
      * @return 对应单位倍数
      */
@@ -739,21 +1288,21 @@ public final class DateUtils {
 
     /**
      * 获取时间差 ( 传入时间 - 当前时间 )
-     * @param date 日期
-     * @return 与当前时间的时间差 ( 毫秒 )
-     */
-    public static long getTimeDiffByCurrent(final Date date) {
-        return getTimeDiffByCurrent(getDateTime(date));
-    }
-
-    /**
-     * 获取时间差 ( 传入时间 - 当前时间 )
-     * @param millis 毫秒
+     * @param millis 时间毫秒
      * @return 与当前时间的时间差 ( 毫秒 )
      */
     public static long getTimeDiffByCurrent(final long millis) {
         if (millis == -1L) return -1L;
         return millis - System.currentTimeMillis();
+    }
+
+    /**
+     * 获取时间差 ( 传入时间 - 当前时间 )
+     * @param date 日期
+     * @return 与当前时间的时间差 ( 毫秒 )
+     */
+    public static long getTimeDiffByCurrent(final Date date) {
+        return getTimeDiffByCurrent(getDateTime(date));
     }
 
     /**
