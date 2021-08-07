@@ -443,134 +443,6 @@ public final class DateUtils {
         return null;
     }
 
-    // =
-
-    /**
-     * 获取秒数倍数
-     * @param millis 毫秒
-     * @return 秒数倍数
-     */
-    public static int getSecondMultiple(final long millis) {
-        return getMillisMultiple(millis, SECOND);
-    }
-
-    /**
-     * 获取分钟倍数
-     * @param millis 毫秒
-     * @return 分钟倍数
-     */
-    public static int getMinuteMultiple(final long millis) {
-        return getMillisMultiple(millis, MINUTE);
-    }
-
-    /**
-     * 获取小时倍数
-     * @param millis 毫秒
-     * @return 小时倍数
-     */
-    public static int getHourMultiple(final long millis) {
-        return getMillisMultiple(millis, HOUR);
-    }
-
-    /**
-     * 获取天数倍数
-     * @param millis 毫秒
-     * @return 天数倍数
-     */
-    public static int getDayMultiple(final long millis) {
-        return getMillisMultiple(millis, DAY);
-    }
-
-    /**
-     * 获取周数倍数
-     * @param millis 毫秒
-     * @return 周数倍数
-     */
-    public static int getWeekMultiple(final long millis) {
-        return getMillisMultiple(millis, WEEK);
-    }
-
-    /**
-     * 获取对应单位倍数
-     * @param millis 毫秒
-     * @param unit   毫秒单位 ( 除数 )
-     * @return 对应单位倍数
-     */
-    public static int getMillisMultiple(
-            final long millis,
-            final long unit
-    ) {
-        return NumberUtils.multipleI(millis, unit);
-    }
-
-    // =
-
-    /**
-     * 获取时间差 ( 传入时间 - 当前时间 )
-     * @param millis 毫秒
-     * @return 与当前时间的时间差 ( 毫秒 )
-     */
-    public static long getTimeDiff(final long millis) {
-        return millis - System.currentTimeMillis();
-    }
-
-    /**
-     * 获取时间差
-     * @param time1 时间
-     * @param time2 对比时间
-     * @return 时间差 ( 毫秒 )
-     */
-    public static long getTimeDiff(
-            final String time1,
-            final String time2
-    ) {
-        return getTimeDiff(
-                time1, getDefaultFormat(),
-                time2, getDefaultFormat()
-        );
-    }
-
-    /**
-     * 获取时间差
-     * @param time1    时间
-     * @param pattern1 时间格式
-     * @param time2    对比时间
-     * @param pattern2 对比时间格式
-     * @return 时间差 ( 毫秒 )
-     */
-    public static long getTimeDiff(
-            final String time1,
-            final String pattern1,
-            final String time2,
-            final String pattern2
-    ) {
-        return getTimeDiff(
-                time1, getSafeDateFormat(pattern1),
-                time2, getSafeDateFormat(pattern2)
-        );
-    }
-
-    /**
-     * 获取时间差
-     * @param time1       时间
-     * @param timeFormat1 时间格式
-     * @param time2       对比时间
-     * @param timeFormat2 对比时间格式
-     * @return 时间差 ( 毫秒 )
-     */
-    public static long getTimeDiff(
-            final String time1,
-            final SimpleDateFormat timeFormat1,
-            final String time2,
-            final SimpleDateFormat timeFormat2
-    ) {
-        long timeLong1 = parseLong(time1, timeFormat1);
-        if (timeLong1 == -1L) return 0L;
-        long timeLong2 = parseLong(time2, timeFormat2);
-        if (timeLong2 == -1L) return 0L;
-        return timeLong1 - timeLong2;
-    }
-
     // ==========
     // = 获取时间 =
     // ==========
@@ -582,6 +454,7 @@ public final class DateUtils {
      */
     public static int getYear(final Date date) {
         if (date == null) return -1;
+
         try {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(date);
@@ -711,28 +584,6 @@ public final class DateUtils {
         return -1;
     }
 
-    /**
-     * 时间补 0 处理 ( 小于 10, 则自动补充 0x )
-     * @param time 待处理时间
-     * @return 自动补 0 时间字符串
-     */
-    public static String timeAddZero(final int time) {
-        return timeAddZero(time, true);
-    }
-
-    /**
-     * 时间补 0 处理 ( 小于 10, 则自动补充 0x )
-     * @param time   待处理时间
-     * @param append 判断是否需要自动补 0
-     * @return 自动补 0 时间字符串
-     */
-    public static String timeAddZero(
-            final int time,
-            final boolean append
-    ) {
-        return NumberUtils.addZero(time, append);
-    }
-
     // =
 
     /**
@@ -824,6 +675,186 @@ public final class DateUtils {
     // =
 
     /**
+     * 获取秒数倍数
+     * @param millis 毫秒
+     * @return 秒数倍数
+     */
+    public static int getSecondMultiple(final long millis) {
+        return getMillisMultiple(millis, SECOND);
+    }
+
+    /**
+     * 获取分钟倍数
+     * @param millis 毫秒
+     * @return 分钟倍数
+     */
+    public static int getMinuteMultiple(final long millis) {
+        return getMillisMultiple(millis, MINUTE);
+    }
+
+    /**
+     * 获取小时倍数
+     * @param millis 毫秒
+     * @return 小时倍数
+     */
+    public static int getHourMultiple(final long millis) {
+        return getMillisMultiple(millis, HOUR);
+    }
+
+    /**
+     * 获取天数倍数
+     * @param millis 毫秒
+     * @return 天数倍数
+     */
+    public static int getDayMultiple(final long millis) {
+        return getMillisMultiple(millis, DAY);
+    }
+
+    /**
+     * 获取周数倍数
+     * @param millis 毫秒
+     * @return 周数倍数
+     */
+    public static int getWeekMultiple(final long millis) {
+        return getMillisMultiple(millis, WEEK);
+    }
+
+    /**
+     * 获取对应单位倍数
+     * @param millis 毫秒
+     * @param unit   毫秒单位 ( 除数 )
+     * @return 对应单位倍数
+     */
+    public static int getMillisMultiple(
+            final long millis,
+            final long unit
+    ) {
+        if (millis == -1L) return -1;
+        return NumberUtils.multipleI(millis, unit);
+    }
+
+    // ============
+    // = 时间差计算 =
+    // ============
+
+    /**
+     * 获取时间差 ( 传入时间 - 当前时间 )
+     * @param date 日期
+     * @return 与当前时间的时间差 ( 毫秒 )
+     */
+    public static long getTimeDiffByCurrent(final Date date) {
+        return getTimeDiffByCurrent(getDateTime(date));
+    }
+
+    /**
+     * 获取时间差 ( 传入时间 - 当前时间 )
+     * @param millis 毫秒
+     * @return 与当前时间的时间差 ( 毫秒 )
+     */
+    public static long getTimeDiffByCurrent(final long millis) {
+        if (millis == -1L) return -1L;
+        return millis - System.currentTimeMillis();
+    }
+
+    /**
+     * 获取时间差 ( 传入时间 - 当前时间 )
+     * @param time 需要转换的时间
+     * @return 与当前时间的时间差 ( 毫秒 )
+     */
+    public static long getTimeDiffByCurrent(final String time) {
+        return getTimeDiffByCurrent(parseLong(time));
+    }
+
+    /**
+     * 获取时间差 ( 传入时间 - 当前时间 )
+     * @param time    需要转换的时间
+     * @param pattern 把 time 转换成需要的格式
+     * @return 与当前时间的时间差 ( 毫秒 )
+     */
+    public static long getTimeDiffByCurrent(
+            final String time,
+            final String pattern
+    ) {
+        return getTimeDiffByCurrent(parseLong(time, pattern));
+    }
+
+    /**
+     * 获取时间差 ( 传入时间 - 当前时间 )
+     * @param time   需要转换的时间
+     * @param format 把 time 转换成需要的格式
+     * @return 与当前时间的时间差 ( 毫秒 )
+     */
+    public static long getTimeDiffByCurrent(
+            final String time,
+            final SimpleDateFormat format
+    ) {
+        return getTimeDiffByCurrent(parseLong(time, format));
+    }
+
+    // =
+
+    /**
+     * 获取时间差
+     * @param time1 时间
+     * @param time2 对比时间
+     * @return 时间差 ( 毫秒 )
+     */
+    public static long getTimeDiff(
+            final String time1,
+            final String time2
+    ) {
+        return getTimeDiff(
+                time1, getDefaultFormat(),
+                time2, getDefaultFormat()
+        );
+    }
+
+    /**
+     * 获取时间差
+     * @param time1    时间
+     * @param pattern1 时间格式
+     * @param time2    对比时间
+     * @param pattern2 对比时间格式
+     * @return 时间差 ( 毫秒 )
+     */
+    public static long getTimeDiff(
+            final String time1,
+            final String pattern1,
+            final String time2,
+            final String pattern2
+    ) {
+        return getTimeDiff(
+                time1, getSafeDateFormat(pattern1),
+                time2, getSafeDateFormat(pattern2)
+        );
+    }
+
+    /**
+     * 获取时间差
+     * @param time1       时间
+     * @param timeFormat1 时间格式
+     * @param time2       对比时间
+     * @param timeFormat2 对比时间格式
+     * @return 时间差 ( 毫秒 )
+     */
+    public static long getTimeDiff(
+            final String time1,
+            final SimpleDateFormat timeFormat1,
+            final String time2,
+            final SimpleDateFormat timeFormat2
+    ) {
+        long timeLong1 = parseLong(time1, timeFormat1);
+        if (timeLong1 == -1L) return -1L;
+        long timeLong2 = parseLong(time2, timeFormat2);
+        if (timeLong2 == -1L) return -1L;
+        return timeLong1 - timeLong2;
+    }
+
+    // ==========
+    // = 快捷方法 =
+    // ==========
+
+    /**
      * 判断是否闰年
      * @param year 年份
      * @return {@code true} yes, {@code false} no
@@ -906,6 +937,28 @@ public final class DateUtils {
     }
 
     // =
+
+    /**
+     * 时间补 0 处理 ( 小于 10, 则自动补充 0x )
+     * @param time 待处理时间
+     * @return 自动补 0 时间字符串
+     */
+    public static String timeAddZero(final int time) {
+        return timeAddZero(time, true);
+    }
+
+    /**
+     * 时间补 0 处理 ( 小于 10, 则自动补充 0x )
+     * @param time   待处理时间
+     * @param append 判断是否需要自动补 0
+     * @return 自动补 0 时间字符串
+     */
+    public static String timeAddZero(
+            final int time,
+            final boolean append
+    ) {
+        return NumberUtils.addZero(time, append);
+    }
 
     /**
      * 生成 HH 按时间排序数组
