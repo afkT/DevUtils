@@ -145,6 +145,43 @@ public final class DateUtils {
     }
 
     /**
+     * 获取 Calendar
+     * @param time 时间
+     * @return {@link Calendar}
+     */
+    public static Calendar getCalendar(final String time) {
+        return getCalendar(parseLong(time, getDefaultFormat()));
+    }
+
+    /**
+     * 获取 Calendar
+     * @param time    时间
+     * @param pattern 时间格式
+     * @return {@link Calendar}
+     */
+    public static Calendar getCalendar(
+            final String time,
+            final String pattern
+    ) {
+        return getCalendar(parseLong(time, getSafeDateFormat(pattern)));
+    }
+
+    /**
+     * 获取 Calendar
+     * @param time   时间
+     * @param format {@link SimpleDateFormat}
+     * @return {@link Calendar}
+     */
+    public static Calendar getCalendar(
+            final String time,
+            final SimpleDateFormat format
+    ) {
+        return getCalendar(parseLong(time, format));
+    }
+
+    // =
+
+    /**
      * 获取当前时间 Date
      * @return 当前时间 Date
      */
@@ -2432,17 +2469,17 @@ public final class DateUtils {
      * <pre>
      *     小时:分钟:秒
      * </pre>
-     * @param millis        时间毫秒
-     * @param isHandlerMDay 是否处理大于一天的时间
+     * @param millis             时间毫秒
+     * @param handlerMoreThanDay 是否处理大于一天的时间
      * @return 转换 ( 00:00:00 ) 时间格式字符串
      */
     public static String timeConvertByMillis(
             final long millis,
-            final boolean isHandlerMDay
+            final boolean handlerMoreThanDay
     ) {
         int[] result = millisToTimeArrays(millis);
         // 如果大于一天但不处理大于一天情况则返回 null
-        if (result[0] > 0 && !isHandlerMDay) {
+        if (result[0] > 0 && !handlerMoreThanDay) {
             return null;
         }
         return timeAddZero(result[0] * 24 + result[1])
@@ -2463,15 +2500,15 @@ public final class DateUtils {
 
     /**
      * 传入时间秒, 获取 00:00:00 格式
-     * @param second        时间 ( 秒 )
-     * @param isHandlerMDay 是否处理大于一天的时间
+     * @param second             时间 ( 秒 )
+     * @param handlerMoreThanDay 是否处理大于一天的时间
      * @return 转换 ( 00:00:00 ) 时间格式字符串
      */
     public static String timeConvertBySecond(
             final long second,
-            final boolean isHandlerMDay
+            final boolean handlerMoreThanDay
     ) {
-        return timeConvertByMillis(second * 1000L, isHandlerMDay);
+        return timeConvertByMillis(second * 1000L, handlerMoreThanDay);
     }
 
     // ==================
@@ -2479,148 +2516,268 @@ public final class DateUtils {
     // ==================
 
     /**
-     * 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致
-     * @param startTime 开始时间
-     * @param endTime   结束时间
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean isInTimeHHmm(
-            final String startTime,
-            final String endTime
-    ) {
-        return isInTime(formatTime(System.currentTimeMillis(), HHmm), startTime, endTime, HHmm);
-    }
-
-    /**
-     * 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致
-     * @param nowTime   当前时间
-     * @param startTime 开始时间
-     * @param endTime   结束时间
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean isInTimeHHmm(
-            final String nowTime,
-            final String startTime,
-            final String endTime
-    ) {
-        return isInTime(nowTime, startTime, endTime, HHmm);
-    }
-
-    /**
-     * 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致
-     * @param startTime 开始时间
-     * @param endTime   结束时间
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean isInTimeHHmmss(
-            final String startTime,
-            final String endTime
-    ) {
-        return isInTime(formatTime(System.currentTimeMillis(), HHmmss), startTime, endTime, HHmmss);
-    }
-
-    /**
-     * 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致
-     * @param nowTime   当前时间
-     * @param startTime 开始时间
-     * @param endTime   结束时间
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean isInTimeHHmmss(
-            final String nowTime,
-            final String startTime,
-            final String endTime
-    ) {
-        return isInTime(nowTime, startTime, endTime, HHmmss);
-    }
-
-    /**
-     * 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致
-     * @param nowTime   当前时间
-     * @param startTime 开始时间
-     * @param endTime   结束时间
-     * @param format    时间格式
+     * 判断时间是否在 [startTime, endTime] 区间
+     * @param time      待判断时间 ( 毫秒 )
+     * @param startTime 开始时间 ( 毫秒 )
+     * @param endTime   结束时间 ( 毫秒 )
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isInTime(
-            final String nowTime,
-            final String startTime,
-            final String endTime,
-            final String format
+            final long time,
+            final long startTime,
+            final long endTime
     ) {
-        if (nowTime == null || startTime == null || endTime == null || format == null) return false;
-        try {
-            // 格式化日期
-            SimpleDateFormat sdf = new SimpleDateFormat(format);
-            // 当前时间转换
-            long now = sdf.parse(nowTime).getTime();
-            // 开始时间转换
-            long start = sdf.parse(startTime).getTime();
-            // 结束时间转换
-            long end = sdf.parse(endTime).getTime();
-            // 判断结束时间是否小于开始时间
-            if (end < start) { // 结束属于第二天区域
-                if (now >= start || now <= end) {
-                    return true;
-                }
-            } else {
-                if (now >= start && now <= end) {
-                    return true;
-                }
-            }
-            // 如果开始时间等于结束时间, 则直接返回 true ( 表示一整天覆盖 )
-            if (startTime.equals(endTime)) {
-                return true;
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "isInTime");
+        if (time == -1L || startTime == -1L || endTime == -1L) return false;
+        // 待校验时间
+        Calendar check = Calendar.getInstance();
+        check.setTimeInMillis(time);
+        // 开始时间
+        Calendar begin = Calendar.getInstance();
+        begin.setTimeInMillis(startTime);
+        // 结束时间
+        Calendar end = Calendar.getInstance();
+        end.setTimeInMillis(endTime);
+        // 判断是否在 begin 之后的时间, 并且在 end 之前的时间
+        if (check.after(begin) && check.before(end)) {
+            return true;
+        }
+        // 判断时间相同情况
+        if (time == startTime || time == endTime) {
+            return true;
         }
         return false;
     }
 
     /**
-     * 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致
-     * @param nowTime   当前时间
+     * 判断时间是否在 [startTime, endTime] 区间
+     * @param time      待判断时间
      * @param startTime 开始时间
      * @param endTime   结束时间
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isInTime(
-            final long nowTime,
-            final long startTime,
-            final long endTime
+            final Date time,
+            final Date startTime,
+            final Date endTime
     ) {
-        return isInDate(new Date(nowTime), new Date(startTime), new Date(endTime));
+        return isInTime(getDateTime(time), getDateTime(startTime), getDateTime(endTime));
     }
 
     /**
      * 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致
-     * @param nowTime   当前时间
+     * @param time      待判断时间
      * @param startTime 开始时间
      * @param endTime   结束时间
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isInDate(
-            final Date nowTime,
-            final Date startTime,
-            final Date endTime
+    public static boolean isInTime(
+            final String time,
+            final String startTime,
+            final String endTime
     ) {
-        if (nowTime == null || startTime == null || endTime == null) {
-            return false;
-        } else if (nowTime.getTime() == startTime.getTime() || nowTime.getTime() == endTime.getTime()) {
-            return true;
+        return isInTime(parseLong(time), parseLong(startTime), parseLong(endTime));
+    }
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致
+     * @param time      待判断时间
+     * @param startTime 开始时间
+     * @param endTime   结束时间
+     * @param pattern   时间格式
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTime(
+            final String time,
+            final String startTime,
+            final String endTime,
+            final String pattern
+    ) {
+        return isInTime(
+                parseLong(time, pattern),
+                parseLong(startTime, pattern),
+                parseLong(endTime, pattern)
+        );
+    }
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间, 注意时间格式要一致
+     * @param time      待判断时间
+     * @param startTime 开始时间
+     * @param endTime   结束时间
+     * @param format    {@link SimpleDateFormat}
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTime(
+            final String time,
+            final String startTime,
+            final String endTime,
+            final SimpleDateFormat format
+    ) {
+        return isInTime(
+                parseLong(time, format),
+                parseLong(startTime, format),
+                parseLong(endTime, format)
+        );
+    }
+
+    // =
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间 ( HHmm 格式 )
+     * @param startTime 开始时间
+     * @param endTime   结束时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTimeHHmm(
+            final String startTime,
+            final String endTime
+    ) {
+        return isInTimeHHmm(startTime, endTime, true);
+    }
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间 ( HHmm 格式 )
+     * @param startTime          开始时间
+     * @param endTime            结束时间
+     * @param handlerMoreThanDay 是否处理大于一天的时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTimeHHmm(
+            final String startTime,
+            final String endTime,
+            final boolean handlerMoreThanDay
+    ) {
+        return isInTimeHHmmss(
+                getDateNow(HHmmss),
+                startTime + ":00",
+                endTime + ":00",
+                handlerMoreThanDay
+        );
+    }
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间 ( HHmm 格式 )
+     * @param time      待判断时间
+     * @param startTime 开始时间
+     * @param endTime   结束时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTimeHHmm(
+            final String time,
+            final String startTime,
+            final String endTime
+    ) {
+        return isInTimeHHmm(time, startTime, endTime, true);
+    }
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间 ( HHmm 格式 )
+     * @param time               待判断时间
+     * @param startTime          开始时间
+     * @param endTime            结束时间
+     * @param handlerMoreThanDay 是否处理大于一天的时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTimeHHmm(
+            final String time,
+            final String startTime,
+            final String endTime,
+            final boolean handlerMoreThanDay
+    ) {
+        return isInTimeHHmmss(
+                time + ":00",
+                startTime + ":00",
+                endTime + ":00",
+                handlerMoreThanDay
+        );
+    }
+
+    // =
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间 ( HHmmss 格式 )
+     * @param startTime 开始时间
+     * @param endTime   结束时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTimeHHmmss(
+            final String startTime,
+            final String endTime
+    ) {
+        return isInTimeHHmmss(startTime, endTime, true);
+    }
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间 ( HHmmss 格式 )
+     * @param startTime          开始时间
+     * @param endTime            结束时间
+     * @param handlerMoreThanDay 是否处理大于一天的时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTimeHHmmss(
+            final String startTime,
+            final String endTime,
+            final boolean handlerMoreThanDay
+    ) {
+        return isInTimeHHmmss(
+                getDateNow(HHmmss), startTime, endTime,
+                handlerMoreThanDay
+        );
+    }
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间 ( HHmmss 格式 )
+     * @param time      待判断时间
+     * @param startTime 开始时间
+     * @param endTime   结束时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTimeHHmmss(
+            final String time,
+            final String startTime,
+            final String endTime
+    ) {
+        return isInTimeHHmmss(
+                time, startTime, endTime, true
+        );
+    }
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间 ( HHmmss 格式 )
+     * @param time               待判断时间
+     * @param startTime          开始时间
+     * @param endTime            结束时间
+     * @param handlerMoreThanDay 是否处理大于一天的时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTimeHHmmss(
+            final String time,
+            final String startTime,
+            final String endTime,
+            final boolean handlerMoreThanDay
+    ) {
+        if (time == null || startTime == null || endTime == null) return false;
+        SimpleDateFormat sdf   = getSafeDateFormat(HHmmss);
+        long             check = parseLong(time, sdf);
+        long             start = parseLong(startTime, sdf);
+        long             end   = parseLong(endTime, sdf);
+        if (check == -1L || start == -1L || end == -1L) return false;
+        // 不处理大于一天情况
+        if (!handlerMoreThanDay) {
+            return isInTime(check, start, end);
         }
-        // 当前时间
-        Calendar now = Calendar.getInstance();
-        now.setTime(nowTime);
-        // 开始时间
-        Calendar begin = Calendar.getInstance();
-        begin.setTime(startTime);
-        // 结束时间
-        Calendar end = Calendar.getInstance();
-        end.setTime(endTime);
-        // 判断是否在 begin 之后的时间, 并且在 end 之前的时间
-        return now.after(begin) && now.before(end);
+        // 处理大于一天情况
+        if (end < start) { // 结束属于第二天区域
+            if (check >= start || check <= end) {
+                return true;
+            }
+        } else { // 间隔没有超过第二天
+            if (check >= start && check <= end) {
+                return true;
+            }
+        }
+        // 如果开始时间等于结束时间, 则直接返回 true ( 表示一整天覆盖 )
+        return start == end;
     }
 
     // =
