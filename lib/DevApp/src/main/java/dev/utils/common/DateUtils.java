@@ -2654,6 +2654,146 @@ public final class DateUtils {
         return check >= start && check <= end;
     }
 
+    // ========
+    // = HHmm =
+    // ========
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间 ( HHmm 格式 )
+     * @param startTime 开始时间
+     * @param endTime   结束时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTimeHHmm(
+            final String startTime,
+            final String endTime
+    ) {
+        return isInTimeHHmm(startTime, endTime, true);
+    }
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间 ( HHmm 格式 )
+     * @param startTime          开始时间
+     * @param endTime            结束时间
+     * @param handlerMoreThanDay 是否处理大于一天的时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTimeHHmm(
+            final String startTime,
+            final String endTime,
+            final boolean handlerMoreThanDay
+    ) {
+        return isInTimeFormat(
+                getDateNow(HHmm), startTime, endTime,
+                HHmm, handlerMoreThanDay
+        );
+    }
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间 ( HHmm 格式 )
+     * @param time      待判断时间
+     * @param startTime 开始时间
+     * @param endTime   结束时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTimeHHmm(
+            final String time,
+            final String startTime,
+            final String endTime
+    ) {
+        return isInTimeHHmm(time, startTime, endTime, true);
+    }
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间 ( HHmm 格式 )
+     * @param time               待判断时间
+     * @param startTime          开始时间
+     * @param endTime            结束时间
+     * @param handlerMoreThanDay 是否处理大于一天的时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTimeHHmm(
+            final String time,
+            final String startTime,
+            final String endTime,
+            final boolean handlerMoreThanDay
+    ) {
+        return isInTimeFormat(
+                time, startTime, endTime,
+                HHmm, handlerMoreThanDay
+        );
+    }
+
+    // ==========
+    // = HHmmss =
+    // ==========
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间 ( HHmmss 格式 )
+     * @param startTime 开始时间
+     * @param endTime   结束时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTimeHHmmss(
+            final String startTime,
+            final String endTime
+    ) {
+        return isInTimeHHmmss(startTime, endTime, true);
+    }
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间 ( HHmmss 格式 )
+     * @param startTime          开始时间
+     * @param endTime            结束时间
+     * @param handlerMoreThanDay 是否处理大于一天的时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTimeHHmmss(
+            final String startTime,
+            final String endTime,
+            final boolean handlerMoreThanDay
+    ) {
+        return isInTimeFormat(
+                getDateNow(HHmmss), startTime, endTime,
+                HHmmss, handlerMoreThanDay
+        );
+    }
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间 ( HHmmss 格式 )
+     * @param time      待判断时间
+     * @param startTime 开始时间
+     * @param endTime   结束时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTimeHHmmss(
+            final String time,
+            final String startTime,
+            final String endTime
+    ) {
+        return isInTimeHHmmss(time, startTime, endTime, true);
+    }
+
+    /**
+     * 判断时间是否在 [startTime, endTime] 区间 ( HHmmss 格式 )
+     * @param time               待判断时间
+     * @param startTime          开始时间
+     * @param endTime            结束时间
+     * @param handlerMoreThanDay 是否处理大于一天的时间
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isInTimeHHmmss(
+            final String time,
+            final String startTime,
+            final String endTime,
+            final boolean handlerMoreThanDay
+    ) {
+        return isInTimeFormat(
+                time, startTime, endTime,
+                HHmmss, handlerMoreThanDay
+        );
+    }
+
     // =
 
     /**
