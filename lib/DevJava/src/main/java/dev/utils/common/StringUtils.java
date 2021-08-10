@@ -1285,7 +1285,7 @@ public final class StringUtils {
     }
 
     /**
-     * 判定输入汉字
+     * 判断输入汉字
      * @param ch 待校验字符
      * @return {@code true} yes, {@code false} no
      */

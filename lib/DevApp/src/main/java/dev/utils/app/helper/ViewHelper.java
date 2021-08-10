@@ -3558,6 +3558,20 @@ public final class ViewHelper {
     // ===============
 
     /**
+     * 设置 ProgressBar 进度条样式
+     * @param view     {@link View}
+     * @param drawable {@link Drawable}
+     * @return {@link View}
+     */
+    public ViewHelper setProgressDrawable(
+            final View view,
+            final Drawable drawable
+    ) {
+        ViewUtils.setProgressDrawable(view, drawable);
+        return this;
+    }
+
+    /**
      * 设置 ProgressBar 进度值
      * @param view     {@link View}
      * @param progress 当前进度
