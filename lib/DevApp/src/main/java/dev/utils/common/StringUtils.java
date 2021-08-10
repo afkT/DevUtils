@@ -1942,7 +1942,7 @@ public final class StringUtils {
 
     /**
      * 替换字符串
-     * @param str         待处理字符串
+     * @param str           待处理字符串
      * @param suffixArrays  匹配判断字符串数组
      * @param replaceArrays 准备替换的字符串数组
      * @return 处理后的字符串

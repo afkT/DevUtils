@@ -223,13 +223,13 @@ public final class IDCardUtils {
         if (idCard == null || idCard.length() != 10) return false;
         try {
             // 第一位英文 不同县市
-            String  start  = idCard.substring(0, 1);
-            String  mid    = idCard.substring(1, 9);
-            String  end    = idCard.substring(9, 10);
-            int intStart = sTWFirstCodeMaps.get(start);
-            int     sum    = intStart / 10 + (intStart % 10) * 9;
-            char[] chars = mid.toCharArray();
-            int    iflag = 8;
+            String start    = idCard.substring(0, 1);
+            String mid      = idCard.substring(1, 9);
+            String end      = idCard.substring(9, 10);
+            int    intStart = sTWFirstCodeMaps.get(start);
+            int    sum      = intStart / 10 + (intStart % 10) * 9;
+            char[] chars    = mid.toCharArray();
+            int    iflag    = 8;
             for (char value : chars) {
                 sum = sum + Integer.parseInt(String.valueOf(value)) * iflag;
                 iflag--;
@@ -260,8 +260,8 @@ public final class IDCardUtils {
             } else {
                 sum = 522 + ((int) card.substring(0, 1).toUpperCase().toCharArray()[0] - 55) * 8;
             }
-            String  mid   = card.substring(1, 7);
-            String  end   = card.substring(7, 8);
+            String mid   = card.substring(1, 7);
+            String end   = card.substring(7, 8);
             char[] chars = mid.toCharArray();
             int    iflag = 7;
             for (char value : chars) {

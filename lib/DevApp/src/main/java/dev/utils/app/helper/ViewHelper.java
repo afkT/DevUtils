@@ -2445,7 +2445,7 @@ public final class ViewHelper {
     /**
      * 切换 View 显示的状态
      * @param viewArrays View[]
-     * @param views    View[]
+     * @param views      View[]
      * @return {@link ViewHelper}
      */
     public ViewHelper toggleVisibilitys(
@@ -2458,9 +2458,9 @@ public final class ViewHelper {
 
     /**
      * 切换 View 显示的状态
-     * @param state    {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param state      {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param viewArrays View[]
-     * @param views    View[]
+     * @param views      View[]
      * @return {@link ViewHelper}
      */
     public ViewHelper toggleVisibilitys(
@@ -2474,9 +2474,9 @@ public final class ViewHelper {
 
     /**
      * 反转 View 显示的状态
-     * @param state    {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param state      {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param viewArrays View[]
-     * @param views    View[]
+     * @param views      View[]
      * @return {@link ViewHelper}
      */
     public ViewHelper reverseVisibilitys(
@@ -2491,7 +2491,7 @@ public final class ViewHelper {
     /**
      * 反转 View 显示的状态
      * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
-     * @param viewArrays     View[]
+     * @param viewArrays   View[]
      * @param views        View[]
      * @return {@link ViewHelper}
      */

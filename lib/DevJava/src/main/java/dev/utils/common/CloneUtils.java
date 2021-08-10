@@ -57,10 +57,10 @@ public final class CloneUtils {
 
     /**
      * 进行克隆
-     * @param map   存储集合
+     * @param map    存储集合
      * @param values 需要克隆的数据源
-     * @param <K>   key
-     * @param <V>   value
+     * @param <K>    key
+     * @param <V>    value
      * @return {@code true} success, {@code false} fail
      */
     public static <K, V> boolean deepClone(
@@ -94,7 +94,7 @@ public final class CloneUtils {
     /**
      * 进行克隆
      * @param collection 存储集合
-     * @param values      需要克隆的数据源
+     * @param values     需要克隆的数据源
      * @param <T>        泛型
      * @return {@code true} success, {@code false} fail
      */

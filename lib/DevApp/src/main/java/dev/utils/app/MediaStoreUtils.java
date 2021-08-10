@@ -664,7 +664,7 @@ public final class MediaStoreUtils {
                         ResourceUtils.getContentResolver(),
                         filePath, name, null
                 );
-                Uri    uri       = Uri.parse(uriString);
+                Uri uri = Uri.parse(uriString);
                 if (notify) notifyMediaStore(UriUtils.getFilePathByUri(uri));
                 return uri;
             } catch (Exception e) {
