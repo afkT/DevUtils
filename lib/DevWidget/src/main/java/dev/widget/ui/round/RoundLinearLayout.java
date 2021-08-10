@@ -9,6 +9,23 @@ import android.widget.LinearLayout;
 /**
  * detail: 圆角 LinearLayout
  * @author Ttt
+ * <pre>
+ *     注意事项:
+ *     因为该控件的圆角采用 View 的 background 实现, 所以与原生的 android:background 有冲突
+ *     如果在 xml 中用 android:background 指定 background, 该 background 不会生效
+ *     <p></p>
+ *     该类使用 QMUI QMUIRoundButtonDrawable 代码, 减少非必要代码依赖
+ *     <p></p>
+ *     app:dev_backgroundColor=""
+ *     app:dev_borderColor=""
+ *     app:dev_borderWidth=""
+ *     app:dev_isRadiusAdjustBounds=""
+ *     app:dev_radius=""
+ *     app:dev_radiusLeftBottom=""
+ *     app:dev_radiusLeftTop=""
+ *     app:dev_radiusRightBottom=""
+ *     app:dev_radiusRightTop=""
+ * </pre>
  */
 public class RoundLinearLayout
         extends LinearLayout {

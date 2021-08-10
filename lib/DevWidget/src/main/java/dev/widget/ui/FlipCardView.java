@@ -9,6 +9,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import dev.utils.LogPrintUtils;
 import dev.utils.app.ViewUtils;
 import dev.widget.R;
 
@@ -18,6 +19,9 @@ import dev.widget.R;
  */
 public class FlipCardView
         extends FrameLayout {
+
+    // 日志 TAG
+    public static final String TAG = FlipCardView.class.getSimpleName();
 
     // 正面 Layout
     private FrameLayout mFrontLayout;
@@ -272,18 +276,26 @@ public class FlipCardView
             if (size == 0) return this;
             int position = calculatePosition(size);
             if (front) {
-                mFrontLayout.removeAllViews();
-                // 初始化 View 并添加
-                View itemView = mAdapter.getItemView(getContext(), position, true);
-                if (itemView != null) {
-                    mFrontLayout.addView(itemView);
+                try {
+                    mFrontLayout.removeAllViews();
+                    // 初始化 View 并添加
+                    View itemView = mAdapter.getItemView(getContext(), position, true);
+                    if (itemView != null) {
+                        mFrontLayout.addView(itemView);
+                    }
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "loadView - front");
                 }
             } else {
-                mBackLayout.removeAllViews();
-                // 初始化 View 并添加
-                View itemView = mAdapter.getItemView(getContext(), position, false);
-                if (itemView != null) {
-                    mBackLayout.addView(itemView);
+                try {
+                    mBackLayout.removeAllViews();
+                    // 初始化 View 并添加
+                    View itemView = mAdapter.getItemView(getContext(), position, false);
+                    if (itemView != null) {
+                        mBackLayout.addView(itemView);
+                    }
+                } catch (Exception e) {
+                    LogPrintUtils.eTag(TAG, e, "loadView - back");
                 }
             }
         }
