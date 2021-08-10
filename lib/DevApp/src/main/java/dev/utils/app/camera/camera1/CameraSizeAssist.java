@@ -1,4 +1,4 @@
-package dev.utils.app.camera1;
+package dev.utils.app.camera.camera1;
 
 import android.graphics.Point;
 import android.hardware.Camera;

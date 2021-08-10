@@ -10,11 +10,11 @@ import android.view.SurfaceHolder
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.log.DevLogEngine
-import dev.utils.app.FlashlightUtils
 import dev.utils.app.ListenerUtils
 import dev.utils.app.ViewUtils
-import dev.utils.app.camera1.CameraAssist
-import dev.utils.app.camera1.CameraUtils
+import dev.utils.app.camera.camera1.CameraAssist
+import dev.utils.app.camera.camera1.CameraUtils
+import dev.utils.app.camera.camera1.FlashlightUtils
 import dev.utils.app.permission.PermissionUtils
 import dev.utils.app.permission.PermissionUtils.PermissionCallback
 import dev.utils.app.toast.ToastTintUtils

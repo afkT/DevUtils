@@ -1,4 +1,4 @@
-package dev.utils.app.camera1;
+package dev.utils.app.camera.camera1;
 
 import android.hardware.Camera;
 import android.os.AsyncTask;

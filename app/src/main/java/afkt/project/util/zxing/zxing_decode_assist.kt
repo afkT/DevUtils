@@ -9,9 +9,9 @@ import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.google.zxing.Result
 import dev.engine.log.DevLogEngine
-import dev.utils.app.camera1.CameraAssist
-import dev.utils.app.camera1.CameraAssist.PreviewNotify
-import dev.utils.app.camera1.CameraUtils
+import dev.utils.app.camera.camera1.CameraAssist
+import dev.utils.app.camera.camera1.CameraAssist.PreviewNotify
+import dev.utils.app.camera.camera1.CameraUtils
 import dev.utils.app.permission.PermissionUtils
 
 /**

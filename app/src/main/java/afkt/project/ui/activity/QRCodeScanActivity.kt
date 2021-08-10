@@ -23,6 +23,7 @@ import dev.engine.media.DevMediaEngine
 import dev.utils.app.*
 import dev.utils.app.assist.BeepVibrateAssist
 import dev.utils.app.assist.InactivityTimerAssist
+import dev.utils.app.camera.camera1.FlashlightUtils
 import dev.utils.app.image.ImageUtils
 import dev.utils.app.permission.PermissionUtils
 import dev.utils.app.permission.PermissionUtils.PermissionCallback

@@ -1,10 +1,9 @@
-package dev.utils.app.camera1;
+package dev.utils.app.camera.camera1;
 
 import android.hardware.Camera;
 import android.view.SurfaceHolder;
 
 import dev.utils.LogPrintUtils;
-import dev.utils.app.FlashlightUtils;
 
 /**
  * detail: 摄像头辅助类
