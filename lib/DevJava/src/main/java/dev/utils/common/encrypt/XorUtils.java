@@ -1,7 +1,7 @@
 package dev.utils.common.encrypt;
 
 /**
- * detail: 异或 ( 加密 ) 工具类
+ * detail: 异或工具类
  * @author Ttt
  * <pre>
  *     位运算可以实现很多高级、高效的运算
@@ -73,5 +73,23 @@ public final class XorUtils {
         }
         data[0] = (byte) (data[0] ^ key);
         return data;
+    }
+
+    // =
+
+    /**
+     * 数据异或校验位计算
+     * @param data 待计算数据
+     * @return 校验位值
+     */
+    public static byte xorChecksum(final byte[] data) {
+        if (data == null) return 0;
+        int len = data.length;
+        if (len == 0) return 0;
+        byte value = data[0];
+        for (int i = 1; i < len; i++) {
+            value ^= data[i];
+        }
+        return value;
     }
 }
