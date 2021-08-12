@@ -235,16 +235,6 @@ ext {
                     blockcanary_android           : "com.github.markzhai:blockcanary-android:1.5.0",
                     blockcanary_no_op             : "com.github.markzhai:blockcanary-no-op:1.5.0",
 
-                    // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
-                    xcrash                        : "com.iqiyi.xcrash:xcrash-android-lib:3.0.0",
-                    // 滴滴出行 DoraemonKit http://www.dokit.cn
-                    dokitx                        : "com.didichuxing.doraemonkit:dokitx:3.3.5",
-                    dokitx_no_op                  : "com.didichuxing.doraemonkit:dokitx-no-op:3.3.5",
-
-                    // 滴滴 Booster 质量优化框架 https://github.com/didi/booster
-
-                    // 微信开源的资源混淆库 AndResGuard https://github.com/shwenzhang/AndResGuard/blob/master/README.zh-cn.md
-
                     // Matrix https://github.com/Tencent/matrix/#matrix_android_cn
                     matrix_android_lib            : "com.tencent.matrix:matrix-android-lib:${ext.matrix_version}",
                     matrix_android_commons        : "com.tencent.matrix:matrix-android-commons:${ext.matrix_version}",
@@ -254,6 +244,14 @@ ext {
                     matrix_io_canary              : "com.tencent.matrix:matrix-io-canary:${ext.matrix_version}",
                     matrix_sqlite_lint            : "com.tencent.matrix:matrix-sqlite-lint-android-sdk:${ext.matrix_version}",
                     matrix_battery_canary         : "com.tencent.matrix:matrix-battery-canary:${ext.matrix_version}",
+
+                    // xCrash Android 应用崩溃捕获工具 https://github.com/iqiyi/xCrash/blob/master/README.zh-CN.md
+
+                    // 滴滴出行 DoraemonKit http://www.dokit.cn
+
+                    // 滴滴 Booster 质量优化框架 https://github.com/didi/booster
+
+                    // 微信开源的资源混淆库 AndResGuard https://github.com/shwenzhang/AndResGuard/blob/master/README.zh-cn.md
             ],
             "build_apk" : [
                     // APK 构建、打包相关 ( 多渠道、压缩等 )
@@ -335,8 +333,6 @@ ext {
                     okgo                : "com.lzy.net:okgo:3.0.4",
                     // 下载管理和上传管理扩展 https://github.com/jeasonlzy/okhttp-OkGo/wiki
                     okserver            : "com.lzy.net:okserver:2.0.5",
-                    // 圆形 ImageView https://github.com/hdodenhof/CircleImageView
-                    circleimageview     : "de.hdodenhof:circleimageview:3.1.0",
             ]
     ]
 }

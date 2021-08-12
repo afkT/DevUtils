@@ -270,7 +270,7 @@ public final class NumberUtils {
             final double divisor
     ) {
         if (value <= 0d || divisor <= 0d) return 0d;
-        return (double) value / (double) divisor;
+        return value / divisor;
     }
 
     /**
@@ -315,58 +315,23 @@ public final class NumberUtils {
     // =
 
     /**
-     * 获取倍数 ( 自动补 1)
+     * 获取整数倍数 ( 自动补 1 )
+     * <pre>
+     *     能够整除返回整数倍数
+     *     不能够整除返回整数倍数 + 1
+     * </pre>
      * @param value   被除数
      * @param divisor 除数
-     * @return 倍数
+     * @return 整数倍数
      */
-    public static Double multipleD2(
+    public static int multiple(
             final double value,
             final double divisor
     ) {
-        if (value <= 0 || divisor <= 0) return 0D;
-        if (value <= divisor) return 1D;
-        double result = value / divisor;
+        if (value <= 0 || divisor <= 0) return 0;
+        if (value <= divisor) return 1;
+        int result = (int) (value / divisor);
         return ((value - divisor * result == 0d) ? result : result + 1);
-    }
-
-    /**
-     * 获取倍数 ( 自动补 1)
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static int multipleI2(
-            final double value,
-            final double divisor
-    ) {
-        return multipleD2(value, divisor).intValue();
-    }
-
-    /**
-     * 获取倍数 ( 自动补 1)
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static long multipleL2(
-            final double value,
-            final double divisor
-    ) {
-        return multipleD2(value, divisor).longValue();
-    }
-
-    /**
-     * 获取倍数 ( 自动补 1)
-     * @param value   被除数
-     * @param divisor 除数
-     * @return 倍数
-     */
-    public static float multipleF2(
-            final double value,
-            final double divisor
-    ) {
-        return multipleD2(value, divisor).floatValue();
     }
 
     // =========
