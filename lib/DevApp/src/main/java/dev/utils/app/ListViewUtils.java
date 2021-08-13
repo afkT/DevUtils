@@ -597,7 +597,7 @@ public final class ListViewUtils {
             // 每行之间的间隔 -
             int verticalSpacing = gridView.getVerticalSpacing();
             // 获取倍数 ( 行数 )
-            int lineNumber = NumberUtils.multipleI2(itemCount, numColumns);
+            int lineNumber = NumberUtils.multiple(itemCount, numColumns);
             // 计算总共的宽度 (GridView 宽度 - 列分割间距 ) / numColumns
             int childWidth = (gridView.getWidth() - (numColumns - 1) * horizontalSpacing) / numColumns;
 

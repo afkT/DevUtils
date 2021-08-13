@@ -753,7 +753,7 @@ public final class CapturePictureUtils {
                 return bitmap;
             } else {
                 // 获取倍数 ( 行数 )
-                int lineNumber = NumberUtils.multipleI2(itemCount, numColumns);
+                int lineNumber = NumberUtils.multiple(itemCount, numColumns);
                 // 计算总共的宽度 (GridView 宽度 - 列分割间距 ) / numColumns
                 int childWidth = (gridView.getWidth() - (numColumns - 1) * horizontalSpacing) / numColumns;
 
@@ -981,7 +981,7 @@ public final class CapturePictureUtils {
             // 获取一共多少列
             int spanCount = gridLayoutManager.getSpanCount();
             // 获取倍数 ( 行数 )
-            int lineNumber = NumberUtils.multipleI2(itemCount, spanCount);
+            int lineNumber = NumberUtils.multiple(itemCount, spanCount);
             if (vertical) {
 
                 // ==========
@@ -1072,7 +1072,7 @@ public final class CapturePictureUtils {
                 // 记录每一行高度
                 int[] rowHeightArrays = new int[lineNumber];
                 // 获取一共多少列
-                int numColumns = NumberUtils.multipleI2(itemCount, lineNumber);
+                int numColumns = NumberUtils.multiple(itemCount, lineNumber);
                 // 临时高度 ( 保存行中最高的列高度 )
                 int tempHeight;
                 for (int i = 0; i < lineNumber; i++) {
@@ -1306,7 +1306,7 @@ public final class CapturePictureUtils {
             // 获取一共多少列
             int spanCount = staggeredGridLayoutManager.getSpanCount();
             // 获取倍数 ( 行数 )
-            int lineNumber = NumberUtils.multipleI2(itemCount, spanCount);
+            int lineNumber = NumberUtils.multiple(itemCount, spanCount);
             if (vertical) {
 
                 // ==========
