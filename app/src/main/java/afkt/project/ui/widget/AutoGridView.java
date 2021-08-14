@@ -19,9 +19,9 @@ public class AutoGridView
     public AutoGridView(
             Context context,
             AttributeSet attrs,
-            int defStyle
+            int defStyleAttr
     ) {
-        super(context, attrs, defStyle);
+        super(context, attrs, defStyleAttr);
         init(attrs);
     }
 
