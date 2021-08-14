@@ -39,10 +39,10 @@ import dev.widget.R;
  * <pre>
  *     该类使用 CircleImageView 代码, 减少非必要代码依赖
  *     <p></p>
- *     app:dev_backgroundColor=""
- *     app:dev_borderColor=""
  *     app:dev_borderWidth=""
- *     app:dev_radius=""
+ *     app:dev_borderColor=""
+ *     app:dev_borderOverlay=""
+ *     app:dev_circleBackgroundColor=""
  * </pre>
  */
 public class RoundImageView
@@ -60,31 +60,36 @@ public class RoundImageView
     private static final int       DEFAULT_CIRCLE_BACKGROUND_COLOR = Color.TRANSPARENT;
     private static final int       DEFAULT_IMAGE_ALPHA             = 255;
 
-    private final RectF mDrawableRect = new RectF();
-    private final RectF mBorderRect   = new RectF();
+    // =======
+    // = 变量 =
+    // =======
 
+    // 圆角绘制坐标
+    private final RectF  mDrawableRect          = new RectF();
+    // 边框绘制坐标
+    private final RectF  mBorderRect            = new RectF();
+    // 画笔绘制相关
     private final Matrix mShaderMatrix          = new Matrix();
     private final Paint  mBitmapPaint           = new Paint();
     private final Paint  mBorderPaint           = new Paint();
     private final Paint  mCircleBackgroundPaint = new Paint();
-
-    private int mBorderColor           = DEFAULT_BORDER_COLOR;
-    private int mBorderWidth           = DEFAULT_BORDER_WIDTH;
-    private int mCircleBackgroundColor = DEFAULT_CIRCLE_BACKGROUND_COLOR;
-    private int mImageAlpha            = DEFAULT_IMAGE_ALPHA;
-
-    private Bitmap mBitmap;
-    private Canvas mBitmapCanvas;
-
-    private float mDrawableRadius;
-    private float mBorderRadius;
+    // 绘制相关属性
+    private       int    mBorderColor           = DEFAULT_BORDER_COLOR;
+    private       int    mBorderWidth           = DEFAULT_BORDER_WIDTH;
+    private       int    mCircleBackgroundColor = DEFAULT_CIRCLE_BACKGROUND_COLOR;
+    private       int    mImageAlpha            = DEFAULT_IMAGE_ALPHA;
+    // 待绘制资源信息
+    private       Bitmap mBitmap;
+    private       Canvas mBitmapCanvas;
+    // 绘制圆角数据
+    private       float  mDrawableRadius;
+    private       float  mBorderRadius;
 
     private ColorFilter mColorFilter;
 
     private boolean mInitialized;
     private boolean mRebuildShader;
     private boolean mDrawableDirty;
-
     private boolean mBorderOverlay;
     private boolean mDisableCircularTransformation;
 
@@ -127,22 +132,10 @@ public class RoundImageView
             TypedArray a = context.obtainStyledAttributes(
                     attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes
             );
-            mBorderWidth           = a.getDimensionPixelSize(
-                    R.styleable.DevWidget_civ_border_width,
-                    DEFAULT_BORDER_WIDTH
-            );
-            mBorderColor           = a.getColor(
-                    R.styleable.DevWidget_civ_border_color,
-                    DEFAULT_BORDER_COLOR
-            );
-            mBorderOverlay         = a.getBoolean(
-                    R.styleable.DevWidget_civ_border_overlay,
-                    DEFAULT_BORDER_OVERLAY
-            );
-            mCircleBackgroundColor = a.getColor(
-                    R.styleable.DevWidget_civ_circle_background_color,
-                    DEFAULT_CIRCLE_BACKGROUND_COLOR
-            );
+            mBorderWidth           = a.getDimensionPixelSize(R.styleable.DevWidget_dev_borderWidth, DEFAULT_BORDER_WIDTH);
+            mBorderColor           = a.getColor(R.styleable.DevWidget_dev_borderColor, DEFAULT_BORDER_COLOR);
+            mBorderOverlay         = a.getBoolean(R.styleable.DevWidget_dev_borderOverlay, DEFAULT_BORDER_OVERLAY);
+            mCircleBackgroundColor = a.getColor(R.styleable.DevWidget_dev_circleBackgroundColor, DEFAULT_CIRCLE_BACKGROUND_COLOR);
             a.recycle();
         }
         initialize();
@@ -377,8 +370,8 @@ public class RoundImageView
             return true;
         }
         return (Math.pow(x - mBorderRect.centerX(), 2)
-                + Math.pow(y - mBorderRect.centerY(), 2))
-                <= Math.pow(mBorderRadius, 2);
+                + Math.pow(y - mBorderRect.centerY(), 2)
+        ) <= Math.pow(mBorderRadius, 2);
     }
 
     // ==========
@@ -441,8 +434,10 @@ public class RoundImageView
         if (!mBorderOverlay && mBorderWidth > 0) {
             mDrawableRect.inset(mBorderWidth - 1.0f, mBorderWidth - 1.0f);
         }
-        mDrawableRadius = Math.min(mDrawableRect.height() / 2.0f, mDrawableRect.width() / 2.0f);
-
+        mDrawableRadius = Math.min(
+                mDrawableRect.height() / 2.0f,
+                mDrawableRect.width() / 2.0f
+        );
         updateShaderMatrix();
     }
 
@@ -468,9 +463,7 @@ public class RoundImageView
     private void updateShaderMatrix() {
         if (mBitmap == null) return;
 
-        float scale;
-        float dx = 0;
-        float dy = 0;
+        float scale, dx = 0, dy = 0;
 
         mShaderMatrix.set(null);
 
@@ -510,7 +503,6 @@ public class RoundImageView
         if (drawable instanceof BitmapDrawable) {
             return ((BitmapDrawable) drawable).getBitmap();
         }
-
         try {
             Bitmap bitmap;
             if (drawable instanceof ColorDrawable) {
@@ -536,73 +528,116 @@ public class RoundImageView
     // = 对外公开方法 =
     // ==============
 
-
-    public int getBorderColor() {
-        return mBorderColor;
-    }
-
-    public void setBorderColor(@ColorInt int borderColor) {
-        if (borderColor == mBorderColor) {
-            return;
-        }
-
-        mBorderColor = borderColor;
-        mBorderPaint.setColor(borderColor);
-        invalidate();
-    }
-
-    public int getCircleBackgroundColor() {
-        return mCircleBackgroundColor;
-    }
-
-    public void setCircleBackgroundColor(@ColorInt int circleBackgroundColor) {
-        if (circleBackgroundColor == mCircleBackgroundColor) {
-            return;
-        }
-
-        mCircleBackgroundColor = circleBackgroundColor;
-        mCircleBackgroundPaint.setColor(circleBackgroundColor);
-        invalidate();
-    }
-
+    /**
+     * 获取边框宽度
+     * @return 边框宽度
+     */
     public int getBorderWidth() {
         return mBorderWidth;
     }
 
-    public void setBorderWidth(int borderWidth) {
+    /**
+     * 设置边框宽度
+     * @param borderWidth 边框宽度
+     * @return {@link RoundImageView}
+     */
+    public RoundImageView setBorderWidth(int borderWidth) {
         if (borderWidth == mBorderWidth) {
-            return;
+            return this;
         }
-
         mBorderWidth = borderWidth;
         mBorderPaint.setStrokeWidth(borderWidth);
         updateDimensions();
         invalidate();
+        return this;
     }
 
+    /**
+     * 获取边框颜色
+     * @return 边框颜色
+     */
+    public int getBorderColor() {
+        return mBorderColor;
+    }
+
+    /**
+     * 设置边框颜色
+     * @param borderColor 边框颜色
+     * @return {@link RoundImageView}
+     */
+    public RoundImageView setBorderColor(@ColorInt int borderColor) {
+        if (borderColor == mBorderColor) {
+            return this;
+        }
+        mBorderColor = borderColor;
+        mBorderPaint.setColor(borderColor);
+        invalidate();
+        return this;
+    }
+
+    /**
+     * 获取圆圈背景颜色
+     * @return 圆圈背景颜色
+     */
+    public int getCircleBackgroundColor() {
+        return mCircleBackgroundColor;
+    }
+
+    /**
+     * 设置圆圈背景颜色
+     * @param circleBackgroundColor 圆圈背景颜色
+     * @return {@link RoundImageView}
+     */
+    public RoundImageView setCircleBackgroundColor(@ColorInt int circleBackgroundColor) {
+        if (circleBackgroundColor == mCircleBackgroundColor) {
+            return this;
+        }
+        mCircleBackgroundColor = circleBackgroundColor;
+        mCircleBackgroundPaint.setColor(circleBackgroundColor);
+        invalidate();
+        return this;
+    }
+
+    /**
+     * 是否叠加边框
+     * @return {@code true} yes, {@code false} no
+     */
     public boolean isBorderOverlay() {
         return mBorderOverlay;
     }
 
-    public void setBorderOverlay(boolean borderOverlay) {
+    /**
+     * 设置是否叠加边框
+     * @param borderOverlay {@code true} yes, {@code false} no
+     * @return {@link RoundImageView}
+     */
+    public RoundImageView setBorderOverlay(boolean borderOverlay) {
         if (borderOverlay == mBorderOverlay) {
-            return;
+            return this;
         }
-
         mBorderOverlay = borderOverlay;
         updateDimensions();
         invalidate();
+        return this;
     }
 
+    /**
+     * 是否开启圆圈处理
+     * @return {@code true} yes, {@code false} no
+     */
     public boolean isDisableCircularTransformation() {
         return mDisableCircularTransformation;
     }
 
-    public void setDisableCircularTransformation(boolean disableCircularTransformation) {
+    /**
+     * 设置是否开启圆圈处理
+     * @param disableCircularTransformation {@code true} yes, {@code false} no
+     * @return {@link RoundImageView}
+     */
+    public RoundImageView setDisableCircularTransformation(boolean disableCircularTransformation) {
         if (disableCircularTransformation == mDisableCircularTransformation) {
-            return;
+            return this;
         }
-
         mDisableCircularTransformation = disableCircularTransformation;
 
         if (disableCircularTransformation) {
@@ -612,7 +647,7 @@ public class RoundImageView
         } else {
             initializeBitmap();
         }
-
         invalidate();
+        return this;
     }
 }

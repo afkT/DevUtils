@@ -75,7 +75,7 @@ class BaseApplication : MultiDexApplication() {
         // ============
 
         // 初始化工具类 - 可不调用, 在 DevUtils FileProviderDevApp 中已初始化, 无需主动调用
-        DevUtils.initialize(this.applicationContext)
+        DevUtils.init(this.applicationContext)
         // 初始化日志配置
         DevLogger.initialize(
             LogConfig().logLevel(LogLevel.DEBUG)

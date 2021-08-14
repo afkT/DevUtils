@@ -75,7 +75,7 @@ public final class DevUtils {
      * 初始化方法 ( 必须调用 )
      * @param context {@link Context}
      */
-    public static void initialize(final Context context) {
+    public static void init(final Context context) {
         if (context == null) return;
 
         // 初始化全局 Context
@@ -162,7 +162,7 @@ public final class DevUtils {
         if (DevUtils.sApplication != null) return DevUtils.sApplication;
         try {
             Application application = getApplicationByReflect();
-            initialize(application); // 初始化操作
+            init(application); // 初始化操作
             return application;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getApplication");
@@ -984,7 +984,7 @@ public final class DevUtils {
             extends FileProvider {
         @Override
         public boolean onCreate() {
-            initialize(getContext().getApplicationContext());
+            init(getContext().getApplicationContext());
             return true;
         }
     }
