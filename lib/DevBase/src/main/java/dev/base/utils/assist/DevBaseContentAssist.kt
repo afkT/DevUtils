@@ -512,9 +512,9 @@ class DevBaseContentAssist {
         return addView(floatFrame, view, index, params)
     }
 
-    // =============
-    // = 内部处理方法 =
-    // =============
+    // ==========
+    // = 内部方法 =
+    // ==========
 
     /**
      * 添加 View

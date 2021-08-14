@@ -54,9 +54,9 @@ public final class DevMediaManager
         return sInstance;
     }
 
-    // =============
-    // = 内部处理方法 =
-    // =============
+    // ==========
+    // = 内部方法 =
+    // ==========
 
     /**
      * 创建 MediaPlayer

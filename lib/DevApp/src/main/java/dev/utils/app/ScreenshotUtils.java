@@ -331,9 +331,9 @@ public final class ScreenshotUtils {
         return unregisterContentObserver(ResourceUtils.getContentResolver());
     }
 
-    // =============
-    // = 内部处理方法 =
-    // =============
+    // ==========
+    // = 内部方法 =
+    // ==========
 
     // 读取媒体数据库时需要读取的列
     private static final String[] MEDIA_PROJECTIONS = {

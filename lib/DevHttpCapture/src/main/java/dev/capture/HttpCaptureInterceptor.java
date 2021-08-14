@@ -117,9 +117,9 @@ public final class HttpCaptureInterceptor
         return innerResponse(chain);
     }
 
-    // =============
-    // = 内部处理方法 =
-    // =============
+    // ==========
+    // = 内部方法 =
+    // ==========
 
     private final Charset UTF_8 = Charset.forName("UTF-8");
 

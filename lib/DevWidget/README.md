@@ -130,9 +130,6 @@ public static void refShape(ScanShapeView scanView, ScanShapeView.Shape scanShap
 
     boolean isExecute = false;
     if (isExecute) {
-        // ==========
-        // = 处理方法 =
-        // ==========
 
         // 销毁方法
         scanView.destroy();

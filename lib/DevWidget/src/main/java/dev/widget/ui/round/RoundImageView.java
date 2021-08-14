@@ -187,7 +187,6 @@ public class RoundImageView
 
                 mBitmapPaint.setShader(bitmapShader);
             }
-
             canvas.drawCircle(mDrawableRect.centerX(), mDrawableRect.centerY(), mDrawableRadius, mBitmapPaint);
         }
 
@@ -264,14 +263,6 @@ public class RoundImageView
         mCircleBackgroundColor = circleBackgroundColor;
         mCircleBackgroundPaint.setColor(circleBackgroundColor);
         invalidate();
-    }
-
-    /**
-     * @deprecated Use {@link #setCircleBackgroundColor(int)} instead
-     */
-    @Deprecated
-    public void setCircleBackgroundColorResource(@ColorRes int circleBackgroundRes) {
-        setCircleBackgroundColor(getContext().getResources().getColor(circleBackgroundRes));
     }
 
     public int getBorderWidth() {
@@ -528,4 +519,8 @@ public class RoundImageView
             }
         }
     }
+
+    // ==========
+    // = 内部方法 =
+    // ==========
 }

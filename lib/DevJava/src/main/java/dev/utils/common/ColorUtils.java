@@ -964,9 +964,9 @@ public final class ColorUtils {
                     "\nintToArgbString : " + ColorUtils.intToArgbString((int) valueColor);
         }
 
-        // =============
-        // = 内部处理方法 =
-        // =============
+        // ==========
+        // = 内部方法 =
+        // ==========
 
         /**
          * 内部转换处理

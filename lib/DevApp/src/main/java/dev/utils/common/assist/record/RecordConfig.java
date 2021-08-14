@@ -206,9 +206,9 @@ public final class RecordConfig {
         return FileUtils.getAbsolutePath(file);
     }
 
-    // =============
-    // = 内部处理方法 =
-    // =============
+    // ==========
+    // = 内部方法 =
+    // ==========
 
     /**
      * 获取时间间隔所属的文件夹
