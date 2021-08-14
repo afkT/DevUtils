@@ -60,7 +60,7 @@
 
 ```java
 // 初始化 Toast - DevUtils 内部已经调用
-DevToast.init(application); // 必须调用
+DevToast.initialize(application); // 必须调用
 
 // 初始化 Toast 样式 - 全局通用
 // DevToast.initStyle(new IToast.Style() {}); // 可以实现 IToast.Style 接口, 参照 DefaultToastStyle

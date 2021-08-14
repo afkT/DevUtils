@@ -44,7 +44,7 @@ class LoggerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             // 设置 TAG ( 特殊情况使用, 不使用全部的 TAG 时, 如单独输出在某个 TAG 下 )
             tag = "BaseLog"
             // 进行初始化配置, 这样设置后, 默认全部日志都使用改配置, 特殊使用 DevLogger.other(config).d(xxx)
-//            DevLogger.init(this)
+//            DevLogger.initialize(this)
         }
 
         // 初始化布局管理器、适配器

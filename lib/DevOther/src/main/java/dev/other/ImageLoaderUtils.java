@@ -26,7 +26,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListe
  * detail: ImageLoader 工具类
  * @author Ttt
  * <pre>
- *     init: ImageLoaderUtils.init(getApplicationContext());
+ *     init: ImageLoaderUtils.initialize(getApplicationContext());
  *     use modify: 修改 defaultOptions() 配置、以及加载默认图片资源
  * </pre>
  */

@@ -86,7 +86,7 @@ logConfig.logLevel = LogLevel.DEBUG;
 // 设置 TAG (特殊情况使用, 不使用全部的 TAG 时, 如单独输出在某个 TAG 下)
 logConfig.tag = "BaseLog";
 // 进行初始化配置, 这样设置后, 默认全部日志都使用改配置, 特殊使用 DevLogger.other(config).d(xxx);
-DevLogger.init(logConfig);
+DevLogger.initialize(logConfig);
 ```
 
 
@@ -95,12 +95,12 @@ DevLogger.init(logConfig);
 // 发布的时候, 默认不需要打印日志则修改为
 LogConfig logConfig = new LogConfig();
 logConfig.logLevel = LogLevel.NONE; // 全部不打印
-DevLogger.init(logConfig); // 该方法设置全局默认日志配置
+DevLogger.initialize(logConfig); // 该方法设置全局默认日志配置
 
 // 还有一种情况, 部分日志发布的时候不打印, 但是有部分异常信息需要打印, 则单独使用配置
 LogConfig.getReleaseLogConfig(TAG) // 使用封装好的线上配置都行
 LogConfig.getReleaseLogConfig(TAG, LogLevel) // 使用封装好的线上配置都行
-DevLogger.init(LogConfig.getReleaseLogConfig(TAG));
+DevLogger.initialize(LogConfig.getReleaseLogConfig(TAG));
 ```
 
 

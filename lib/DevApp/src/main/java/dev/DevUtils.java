@@ -79,9 +79,9 @@ public final class DevUtils {
         if (context == null) return;
 
         // 初始化全局 Context
-        initializeContext(context);
+        initContext(context);
         // 初始化全局 Application
-        initializeApplication(context);
+        initApplication(context);
         // 注册 Activity 生命周期监听
         registerActivityLifecycleCallbacks(sApplication);
 
@@ -118,7 +118,7 @@ public final class DevUtils {
      * 初始化全局 Context
      * @param context {@link Context}
      */
-    private static void initializeContext(final Context context) {
+    private static void initContext(final Context context) {
         if (DevUtils.sContext == null && context != null) {
             DevUtils.sContext = context.getApplicationContext();
         }
@@ -128,7 +128,7 @@ public final class DevUtils {
      * 初始化全局 Application
      * @param context {@link Context}
      */
-    private static void initializeApplication(final Context context) {
+    private static void initApplication(final Context context) {
         if (DevUtils.sApplication == null && context != null) {
             try {
                 DevUtils.sApplication = (Application) context.getApplicationContext();

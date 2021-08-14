@@ -24,7 +24,7 @@ class CrashCatchActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
         super.initValue()
 
         /**
-         * 捕获异常处理 CrashUtils.getInstance().init()
+         * 捕获异常处理 CrashUtils.getInstance().initialize()
          * 参考 [BaseApplication.initCrash]
          */
 
