@@ -35,7 +35,6 @@ import dev.widget.R;
 
 /**
  * detail: 圆角图片
- *
  * @author hdodenhof
  * <pre>
  *     该类使用 CircleImageView 代码, 减少非必要代码依赖
@@ -91,7 +90,7 @@ public class RoundImageView
 
     public RoundImageView(Context context) {
         super(context);
-        initAttrs(context, null, 0);
+        initAttrs(context, null, 0, 0);
     }
 
     public RoundImageView(
@@ -99,7 +98,7 @@ public class RoundImageView
             AttributeSet attrs
     ) {
         super(context, attrs);
-        initAttrs(context, attrs, 0);
+        initAttrs(context, attrs, 0, 0);
     }
 
     public RoundImageView(
@@ -108,23 +107,26 @@ public class RoundImageView
             int defStyleAttr
     ) {
         super(context, attrs, defStyleAttr);
-        initAttrs(context, attrs, defStyleAttr);
+        initAttrs(context, attrs, defStyleAttr, 0);
     }
 
     /**
      * 初始化
-     *
      * @param context      {@link Context}
      * @param attrs        {@link AttributeSet}
-     * @param defStyleAttr 默认样式 {@link AttributeSet}
+     * @param defStyleAttr 默认样式
+     * @param defStyleRes  默认样式资源
      */
     private void initAttrs(
             Context context,
             AttributeSet attrs,
-            int defStyleAttr
+            int defStyleAttr,
+            int defStyleRes
     ) {
         if (context != null && attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget, defStyleAttr, 0);
+            TypedArray a = context.obtainStyledAttributes(
+                    attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes
+            );
             mBorderWidth           = a.getDimensionPixelSize(
                     R.styleable.DevWidget_civ_border_width,
                     DEFAULT_BORDER_WIDTH
@@ -143,10 +145,10 @@ public class RoundImageView
             );
             a.recycle();
         }
-        init();
+        initialize();
     }
 
-    private void init() {
+    private void initialize() {
         mInitialized = true;
 
         super.setScaleType(SCALE_TYPE);
@@ -385,7 +387,6 @@ public class RoundImageView
 
     /**
      * detail: 描边轮廓
-     *
      * @author hdodenhof
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -447,7 +448,6 @@ public class RoundImageView
 
     /**
      * 计算边界
-     *
      * @return {@link RectF}
      */
     private RectF calculateBounds() {
@@ -501,7 +501,6 @@ public class RoundImageView
 
     /**
      * Drawable 转 Bitmap
-     *
      * @param drawable 待转换图片
      * @return {@link Bitmap}
      */

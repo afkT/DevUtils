@@ -123,12 +123,12 @@ public class ElectricFanLoadingRenderer
 
     private ElectricFanLoadingRenderer(Context context) {
         super(context);
-        init(context);
+        initialize(context);
         setupPaint();
         addRenderListener(mAnimatorListener);
     }
 
-    private void init(Context context) {
+    private void initialize(Context context) {
         mMode = MODE_NORMAL;
 
         mWidth                = SizeUtils.dipConvertPx(DEFAULT_WIDTH);

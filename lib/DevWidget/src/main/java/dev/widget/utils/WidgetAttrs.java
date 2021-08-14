@@ -22,15 +22,21 @@ public class WidgetAttrs {
 
     /**
      * 初始化
-     * @param context {@link Context}
-     * @param attrs   {@link AttributeSet}
+     * @param context      {@link Context}
+     * @param attrs        {@link AttributeSet}
+     * @param defStyleAttr 默认样式
+     * @param defStyleRes  默认样式资源
      */
     public WidgetAttrs(
             Context context,
-            AttributeSet attrs
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
     ) {
         if (context != null && attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
+            TypedArray a = context.obtainStyledAttributes(
+                    attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes
+            );
             mIsSlide   = a.getBoolean(R.styleable.DevWidget_dev_slide, true);
             mMaxWidth  = a.getLayoutDimension(R.styleable.DevWidget_dev_maxWidth, WidgetUtils.DEF_VALUE);
             mMaxHeight = a.getLayoutDimension(R.styleable.DevWidget_dev_maxHeight, WidgetUtils.DEF_VALUE);

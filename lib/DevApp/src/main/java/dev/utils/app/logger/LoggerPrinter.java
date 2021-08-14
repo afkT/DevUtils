@@ -61,7 +61,7 @@ final class LoggerPrinter
      * @return {@link LogConfig} 日志配置
      */
     @Override
-    public LogConfig init() {
+    public LogConfig initialize() {
         // 判断日志配置信息是否等于 null
         if (LOG_CONFIG == null) {
             // 生成默认配置信息
@@ -76,10 +76,10 @@ final class LoggerPrinter
      * @param logConfig 日志配置
      */
     @Override
-    public void init(final LogConfig logConfig) {
+    public void initialize(final LogConfig logConfig) {
         LOG_CONFIG = logConfig;
         // 防止日志配置参数为 null
-        init();
+        initialize();
     }
 
     // =============================
@@ -963,7 +963,7 @@ final class LoggerPrinter
         LogConfig logConfig = LOCAL_LOG_CONFIGS.get();
         // 如果等于 null, 则返回默认配置信息
         if (logConfig == null) {
-            return init();
+            return initialize();
         } else {
             LOCAL_LOG_CONFIGS.remove();
         }

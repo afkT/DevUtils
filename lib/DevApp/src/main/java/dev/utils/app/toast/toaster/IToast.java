@@ -55,7 +55,7 @@ public final class IToast {
          * 初始化调用
          * @param context {@link Context}
          */
-        void init(Context context);
+        void initialize(Context context);
 
         // ==========
         // = 配置方法 =

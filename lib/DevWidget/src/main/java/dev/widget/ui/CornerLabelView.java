@@ -71,7 +71,7 @@ public class CornerLabelView
 
     public CornerLabelView(Context context) {
         super(context);
-        initAttrs(context, null);
+        initAttrs(context, null, 0, 0);
     }
 
     public CornerLabelView(
@@ -79,7 +79,7 @@ public class CornerLabelView
             AttributeSet attrs
     ) {
         super(context, attrs);
-        initAttrs(context, attrs);
+        initAttrs(context, attrs, 0, 0);
     }
 
     public CornerLabelView(
@@ -88,7 +88,7 @@ public class CornerLabelView
             int defStyleAttr
     ) {
         super(context, attrs, defStyleAttr);
-        initAttrs(context, attrs);
+        initAttrs(context, attrs, defStyleAttr, 0);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -99,17 +99,21 @@ public class CornerLabelView
             int defStyleRes
     ) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        initAttrs(context, attrs);
+        initAttrs(context, attrs, defStyleAttr, defStyleRes);
     }
 
     /**
      * 初始化
-     * @param context {@link Context}
-     * @param attrs   {@link AttributeSet}
+     * @param context      {@link Context}
+     * @param attrs        {@link AttributeSet}
+     * @param defStyleAttr 默认样式
+     * @param defStyleRes  默认样式资源
      */
     private void initAttrs(
             Context context,
-            AttributeSet attrs
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
     ) {
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.FILL);
@@ -117,7 +121,9 @@ public class CornerLabelView
         mPaint.setAntiAlias(true);
 
         if (context != null && attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
+            TypedArray a = context.obtainStyledAttributes(
+                    attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes
+            );
 
             mPaddingTop    = a.getDimension(R.styleable.DevWidget_dev_paddingTop, SizeUtils.dipConvertPx(10));
             mPaddingCenter = a.getDimension(R.styleable.DevWidget_dev_paddingCenter, 0);
@@ -127,13 +133,13 @@ public class CornerLabelView
             mText1.textColor  = a.getColor(R.styleable.DevWidget_dev_textColor1, 0xffffffff);
             mText1.textHeight = a.getDimension(R.styleable.DevWidget_dev_textHeight1, SizeUtils.dipConvertPx(12));
             mText1.textBold   = a.getBoolean(R.styleable.DevWidget_dev_textBold1, false);
-            mText1.init();
+            mText1.initialize();
 
             mText2.text       = a.getString(R.styleable.DevWidget_dev_text2);
             mText2.textColor  = a.getColor(R.styleable.DevWidget_dev_textColor2, 0x66ffffff);
             mText2.textHeight = a.getDimension(R.styleable.DevWidget_dev_textHeight2, SizeUtils.dipConvertPx(8));
             mText2.textBold   = a.getBoolean(R.styleable.DevWidget_dev_textBold2, false);
-            mText2.init();
+            mText2.initialize();
 
             int fillColor = a.getColor(R.styleable.DevWidget_dev_fillColor, 0x66000000);
             int flags     = a.getInteger(R.styleable.DevWidget_dev_flags, 0);
@@ -338,7 +344,7 @@ public class CornerLabelView
      */
     public CornerLabelView setText1(String text) {
         mText1.text = text;
-        mText1.init();
+        mText1.initialize();
         requestLayout();
         postInvalidate();
         return this;
@@ -351,7 +357,7 @@ public class CornerLabelView
      */
     public CornerLabelView setTextColor1(@ColorInt int textColor) {
         mText1.textColor = textColor;
-        mText1.init();
+        mText1.initialize();
         postInvalidate();
         return this;
     }
@@ -363,7 +369,7 @@ public class CornerLabelView
      */
     public CornerLabelView setTextHeight1(float textHeight) {
         mText1.textHeight = textHeight;
-        mText1.init();
+        mText1.initialize();
         requestLayout();
         postInvalidate();
         return this;
@@ -376,7 +382,7 @@ public class CornerLabelView
      */
     public CornerLabelView setTextBold1(boolean textBold) {
         mText1.textBold = textBold;
-        mText1.init();
+        mText1.initialize();
         requestLayout();
         postInvalidate();
         return this;
@@ -393,7 +399,7 @@ public class CornerLabelView
      */
     public CornerLabelView setText2(String text) {
         mText2.text = text;
-        mText2.init();
+        mText2.initialize();
         requestLayout();
         postInvalidate();
         return this;
@@ -406,7 +412,7 @@ public class CornerLabelView
      */
     public CornerLabelView setTextColor2(@ColorInt int textColor) {
         mText2.textColor = textColor;
-        mText2.init();
+        mText2.initialize();
         postInvalidate();
         return this;
     }
@@ -418,7 +424,7 @@ public class CornerLabelView
      */
     public CornerLabelView setTextHeight2(float textHeight) {
         mText2.textHeight = textHeight;
-        mText2.init();
+        mText2.initialize();
         requestLayout();
         postInvalidate();
         return this;
@@ -431,7 +437,7 @@ public class CornerLabelView
      */
     public CornerLabelView setTextBold2(boolean textBold) {
         mText2.textBold = textBold;
-        mText2.init();
+        mText2.initialize();
         requestLayout();
         postInvalidate();
         return this;
@@ -444,8 +450,8 @@ public class CornerLabelView
      * @return {@link CornerLabelView}
      */
     public CornerLabelView refresh() {
-        mText1.init();
-        mText2.init();
+        mText1.initialize();
+        mText2.initialize();
         requestLayout();
         postInvalidate();
         return this;
@@ -478,7 +484,7 @@ public class CornerLabelView
         /**
          * 初始化处理
          */
-        void init() {
+        void initialize() {
             paint.setTextAlign(Paint.Align.CENTER);
             paint.setColor(textColor);
             paint.setTextSize(textHeight);

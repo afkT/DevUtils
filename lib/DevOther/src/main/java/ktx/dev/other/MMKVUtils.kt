@@ -43,7 +43,7 @@ object MMKVUtils {
      * 初始化方法 ( 必须调用 )
      * @param context [Context]
      */
-    fun init(context: Context?) {
+    fun initialize(context: Context?) {
         // 初始化 MMKV 并设置日志级别
         val rootDir = MMKV.initialize(context, MMKVLogLevel.LevelNone)
         LogPrintUtils.dTag(TAG, "MMKV rootDir: %s", rootDir)

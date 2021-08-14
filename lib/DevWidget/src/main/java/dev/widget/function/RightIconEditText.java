@@ -42,7 +42,7 @@ public class RightIconEditText
 
     public RightIconEditText(Context context) {
         super(context);
-        init(context, null);
+        initAttrs(context, null, 0, 0);
     }
 
     public RightIconEditText(
@@ -50,7 +50,7 @@ public class RightIconEditText
             AttributeSet attrs
     ) {
         super(context, attrs);
-        init(context, attrs);
+        initAttrs(context, attrs, 0, 0);
     }
 
     public RightIconEditText(
@@ -59,7 +59,32 @@ public class RightIconEditText
             int defStyleAttr
     ) {
         super(context, attrs, defStyleAttr);
-        init(context, attrs);
+        initAttrs(context, attrs, defStyleAttr, 0);
+    }
+
+    /**
+     * 初始化
+     * @param context      {@link Context}
+     * @param attrs        {@link AttributeSet}
+     * @param defStyleAttr 默认样式
+     * @param defStyleRes  默认样式资源
+     */
+    private void initAttrs(
+            Context context,
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
+    ) {
+        if (context != null && attrs != null) {
+            TypedArray a = context.obtainStyledAttributes(
+                    attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes
+            );
+            mRangeMultiple   = a.getFloat(R.styleable.DevWidget_dev_rangeMultiple, 2.0f);
+            mIsDrawRightIcon = a.getBoolean(R.styleable.DevWidget_dev_drawRightIcon, true);
+            a.recycle();
+        }
+        drawOperate();
+        addTextChangedListener(_listener);
     }
 
     @Override
@@ -178,25 +203,6 @@ public class RightIconEditText
     }
 
     // =
-
-    /**
-     * 初始化
-     * @param context {@link Context}
-     * @param attrs   {@link AttributeSet}
-     */
-    private void init(
-            Context context,
-            AttributeSet attrs
-    ) {
-        if (context != null && attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
-            mRangeMultiple   = a.getFloat(R.styleable.DevWidget_dev_rangeMultiple, 2.0f);
-            mIsDrawRightIcon = a.getBoolean(R.styleable.DevWidget_dev_drawRightIcon, true);
-            a.recycle();
-        }
-        drawOperate();
-        addTextChangedListener(_listener);
-    }
 
     /**
      * 绘制操作 ( 控制右边 Icon 显示 )

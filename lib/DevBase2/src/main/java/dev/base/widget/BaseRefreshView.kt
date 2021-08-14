@@ -29,14 +29,14 @@ import dev.base2.databinding.BaseRefreshViewBinding
 class BaseRefreshView : LinearLayout {
 
     constructor(context: Context) : super(context) {
-        init()
+        initialize()
     }
 
     constructor(
         context: Context,
         attrs: AttributeSet?
     ) : super(context, attrs) {
-        init()
+        initialize()
     }
 
     constructor(
@@ -44,7 +44,7 @@ class BaseRefreshView : LinearLayout {
         attrs: AttributeSet?,
         defStyleAttr: Int
     ) : super(context, attrs, defStyleAttr) {
-        init()
+        initialize()
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -54,7 +54,7 @@ class BaseRefreshView : LinearLayout {
         defStyleAttr: Int,
         defStyleRes: Int
     ) : super(context, attrs, defStyleAttr, defStyleRes) {
-        init()
+        initialize()
     }
 
     // =
@@ -68,7 +68,7 @@ class BaseRefreshView : LinearLayout {
     /**
      * 默认初始化操作
      */
-    private fun init() {
+    private fun initialize() {
         orientation = VERTICAL
         val context = context
 

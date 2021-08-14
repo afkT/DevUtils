@@ -108,11 +108,11 @@ public class CircleBroodLoadingRenderer
 
     private CircleBroodLoadingRenderer(Context context) {
         super(context);
-        init(context);
+        initialize(context);
         setupPaint();
     }
 
-    private void init(Context context) {
+    private void initialize(Context context) {
         mWidth  = SizeUtils.dipConvertPx(DEFAULT_WIDTH);
         mHeight = SizeUtils.dipConvertPx(DEFAULT_HEIGHT);
 

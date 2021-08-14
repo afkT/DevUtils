@@ -28,6 +28,7 @@ public class CustomWebView
 
     public CustomWebView(Context context) {
         super(context);
+        initAttrs(context, null, 0, 0);
     }
 
     public CustomWebView(
@@ -35,7 +36,7 @@ public class CustomWebView
             AttributeSet attrs
     ) {
         super(context, attrs);
-        initAttrs(context, attrs);
+        initAttrs(context, attrs, 0, 0);
     }
 
     public CustomWebView(
@@ -44,7 +45,7 @@ public class CustomWebView
             int defStyleAttr
     ) {
         super(context, attrs, defStyleAttr);
-        initAttrs(context, attrs);
+        initAttrs(context, attrs, defStyleAttr, 0);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -55,19 +56,23 @@ public class CustomWebView
             int defStyleRes
     ) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        initAttrs(context, attrs);
+        initAttrs(context, attrs, defStyleAttr, defStyleRes);
     }
 
     /**
      * 初始化
-     * @param context {@link Context}
-     * @param attrs   {@link AttributeSet}
+     * @param context      {@link Context}
+     * @param attrs        {@link AttributeSet}
+     * @param defStyleAttr 默认样式
+     * @param defStyleRes  默认样式资源
      */
     private void initAttrs(
             Context context,
-            AttributeSet attrs
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
     ) {
-        mWidgetAttrs = new WidgetAttrs(context, attrs);
+        mWidgetAttrs = new WidgetAttrs(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @Override

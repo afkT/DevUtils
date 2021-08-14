@@ -75,9 +75,9 @@ class BaseApplication : MultiDexApplication() {
         // ============
 
         // 初始化工具类 - 可不调用, 在 DevUtils FileProviderDevApp 中已初始化, 无需主动调用
-        DevUtils.init(this.applicationContext)
+        DevUtils.initialize(this.applicationContext)
         // 初始化日志配置
-        DevLogger.init(
+        DevLogger.initialize(
             LogConfig().logLevel(LogLevel.DEBUG)
                 .tag(AppConfig.LOG_TAG)
                 .sortLog(true) // 美化日志, 边框包围
@@ -110,7 +110,7 @@ class BaseApplication : MultiDexApplication() {
         // ============
 
         // 初始化
-        init()
+        initialize()
 
         // 属于 Debug 才打印信息
         if (isDebug) printProInfo(timeCounter)
@@ -150,9 +150,9 @@ class BaseApplication : MultiDexApplication() {
     /**
      * 统一初始化方法
      */
-    private fun init() {
+    private fun initialize() {
         // 初始化 MMKV
-        MMKVUtils.init(this)
+        MMKVUtils.initialize(this)
         // 初始化状态布局配置
         initStateLayout()
         // 初始化异常捕获处理
@@ -212,7 +212,7 @@ class BaseApplication : MultiDexApplication() {
      */
     private fun initCrash() {
         // 捕获异常处理 => 在 BaseApplication 中调用
-        CrashUtils.getInstance().init(applicationContext, object : CrashCatchListener {
+        CrashUtils.getInstance().initialize(applicationContext, object : CrashCatchListener {
             override fun handleException(ex: Throwable) {
                 // 保存日志信息
             }

@@ -63,8 +63,8 @@ public final class DevToast {
      * 初始化调用 ( 内部已调用 )
      * @param context {@link Context}
      */
-    public static void init(final Context context) {
-        sToast.init(context);
+    public static void initialize(final Context context) {
+        sToast.initialize(context);
     }
 
     // ==========

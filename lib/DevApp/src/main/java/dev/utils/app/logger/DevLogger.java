@@ -39,16 +39,16 @@ public final class DevLogger {
      * 初始化日志配置信息 ( 使用默认配置 )
      * @return {@link LogConfig} 日志配置
      */
-    public static LogConfig init() {
-        return sPrinter.init();
+    public static LogConfig initialize() {
+        return sPrinter.initialize();
     }
 
     /**
      * 自定义日志配置信息
      * @param logConfig 日志配置
      */
-    public static void init(final LogConfig logConfig) {
-        sPrinter.init(logConfig);
+    public static void initialize(final LogConfig logConfig) {
+        sPrinter.initialize(logConfig);
     }
 
     // =============================

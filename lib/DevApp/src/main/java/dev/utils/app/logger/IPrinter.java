@@ -27,13 +27,13 @@ public interface IPrinter {
      * 初始化日志配置信息 ( 使用默认配置 )
      * @return {@link LogConfig} 日志配置
      */
-    LogConfig init();
+    LogConfig initialize();
 
     /**
      * 自定义日志配置信息
      * @param logConfig 日志配置
      */
-    void init(LogConfig logConfig);
+    void initialize(LogConfig logConfig);
 
     // =============================
     // = 使用默认 TAG ( 日志打印方法 ) =

@@ -38,6 +38,7 @@ public class WrapView
 
     public WrapView(Context context) {
         super(context);
+        initAttrs(context, null, 0, 0);
     }
 
     public WrapView(
@@ -45,7 +46,7 @@ public class WrapView
             AttributeSet attrs
     ) {
         super(context, attrs);
-        initAttrs(context, attrs);
+        initAttrs(context, attrs, 0, 0);
     }
 
     public WrapView(
@@ -54,7 +55,7 @@ public class WrapView
             int defStyleAttr
     ) {
         super(context, attrs, defStyleAttr);
-        initAttrs(context, attrs);
+        initAttrs(context, attrs, defStyleAttr, 0);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -65,20 +66,26 @@ public class WrapView
             int defStyleRes
     ) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        initAttrs(context, attrs);
+        initAttrs(context, attrs, defStyleAttr, defStyleRes);
     }
 
     /**
      * 初始化
-     * @param context {@link Context}
-     * @param attrs   {@link AttributeSet}
+     * @param context      {@link Context}
+     * @param attrs        {@link AttributeSet}
+     * @param defStyleAttr 默认样式
+     * @param defStyleRes  默认样式资源
      */
     private void initAttrs(
             Context context,
-            AttributeSet attrs
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
     ) {
         if (context != null && attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
+            TypedArray a = context.obtainStyledAttributes(
+                    attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes
+            );
             mMaxLine        = a.getInt(R.styleable.DevWidget_dev_maxLine, Integer.MAX_VALUE);
             mRowTopMargin   = a.getLayoutDimension(R.styleable.DevWidget_dev_rowTopMargin, 20);
             mViewLeftMargin = a.getLayoutDimension(R.styleable.DevWidget_dev_viewLeftMargin, 20);

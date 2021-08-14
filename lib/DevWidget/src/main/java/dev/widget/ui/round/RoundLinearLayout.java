@@ -32,7 +32,7 @@ public class RoundLinearLayout
 
     public RoundLinearLayout(Context context) {
         super(context);
-        initAttrs(context, null, 0);
+        initAttrs(context, null, 0, 0);
     }
 
     public RoundLinearLayout(
@@ -40,7 +40,7 @@ public class RoundLinearLayout
             AttributeSet attrs
     ) {
         super(context, attrs);
-        initAttrs(context, attrs, 0);
+        initAttrs(context, attrs, 0, 0);
     }
 
     public RoundLinearLayout(
@@ -49,7 +49,7 @@ public class RoundLinearLayout
             int defStyleAttr
     ) {
         super(context, attrs, defStyleAttr);
-        initAttrs(context, attrs, 0);
+        initAttrs(context, attrs, defStyleAttr, 0);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -60,21 +60,23 @@ public class RoundLinearLayout
             int defStyleRes
     ) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        initAttrs(context, attrs, defStyleAttr);
+        initAttrs(context, attrs, defStyleAttr, defStyleRes);
     }
 
     /**
      * 初始化
      * @param context      {@link Context}
      * @param attrs        {@link AttributeSet}
-     * @param defStyleAttr 默认样式 {@link AttributeSet}
+     * @param defStyleAttr 默认样式
+     * @param defStyleRes  默认样式资源
      */
     private void initAttrs(
             Context context,
             AttributeSet attrs,
-            int defStyleAttr
+            int defStyleAttr,
+            int defStyleRes
     ) {
-        RoundDrawable bg = RoundDrawable.fromAttributeSet(context, attrs, defStyleAttr);
+        RoundDrawable bg = RoundDrawable.fromAttributeSet(context, attrs, defStyleAttr, defStyleRes);
         RoundDrawable.setBackgroundKeepingPadding(this, bg);
     }
 }

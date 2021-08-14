@@ -75,13 +75,13 @@ public final class DevUtils {
      * 初始化方法 ( 必须调用 )
      * @param context {@link Context}
      */
-    public static void init(final Context context) {
+    public static void initialize(final Context context) {
         if (context == null) return;
 
         // 初始化全局 Context
-        initContext(context);
+        initializeContext(context);
         // 初始化全局 Application
-        initApplication(context);
+        initializeApplication(context);
         // 注册 Activity 生命周期监听
         registerActivityLifecycleCallbacks(sApplication);
 
@@ -92,7 +92,7 @@ public final class DevUtils {
         // 初始化 Record
         FileRecordUtils.setRecordInsert(new AppRecordInsert(false));
         // 初始化 Toast
-        DevToast.init(context);
+        DevToast.initialize(context);
 
         // ============
         // = Java Log =
@@ -118,7 +118,7 @@ public final class DevUtils {
      * 初始化全局 Context
      * @param context {@link Context}
      */
-    private static void initContext(final Context context) {
+    private static void initializeContext(final Context context) {
         if (DevUtils.sContext == null && context != null) {
             DevUtils.sContext = context.getApplicationContext();
         }
@@ -128,7 +128,7 @@ public final class DevUtils {
      * 初始化全局 Application
      * @param context {@link Context}
      */
-    private static void initApplication(final Context context) {
+    private static void initializeApplication(final Context context) {
         if (DevUtils.sApplication == null && context != null) {
             try {
                 DevUtils.sApplication = (Application) context.getApplicationContext();
@@ -162,7 +162,7 @@ public final class DevUtils {
         if (DevUtils.sApplication != null) return DevUtils.sApplication;
         try {
             Application application = getApplicationByReflect();
-            init(application); // 初始化操作
+            initialize(application); // 初始化操作
             return application;
         } catch (Exception e) {
             LogPrintUtils.eTag(TAG, e, "getApplication");
@@ -984,7 +984,7 @@ public final class DevUtils {
             extends FileProvider {
         @Override
         public boolean onCreate() {
-            init(getContext().getApplicationContext());
+            initialize(getContext().getApplicationContext());
             return true;
         }
     }

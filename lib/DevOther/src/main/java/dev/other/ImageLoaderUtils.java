@@ -53,7 +53,7 @@ public final class ImageLoaderUtils {
      * 初始化 ImageLoader 加载配置
      * @param context {@link Context}
      */
-    public static void init(final Context context) {
+    public static void initialize(final Context context) {
         DisplayImageOptions options = DF_OPTIONS;
         // 针对图片缓存的全局加载配置 ( 主要有线程类、缓存大小、磁盘大小、图片下载与解析、日志方面的配置 )
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)

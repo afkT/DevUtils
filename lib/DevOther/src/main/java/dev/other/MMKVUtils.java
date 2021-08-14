@@ -48,7 +48,7 @@ public final class MMKVUtils {
      * 初始化方法 ( 必须调用 )
      * @param context {@link Context}
      */
-    public static void init(final Context context) {
+    public static void initialize(final Context context) {
         // 初始化 MMKV 并设置日志级别
         String rootDir = MMKV.initialize(context, MMKVLogLevel.LevelNone);
         LogPrintUtils.dTag(TAG, "MMKV rootDir: %s", rootDir);

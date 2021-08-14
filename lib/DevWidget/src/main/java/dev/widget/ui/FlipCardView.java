@@ -39,7 +39,7 @@ public class FlipCardView
 
     public FlipCardView(Context context) {
         super(context);
-        init();
+        initialize();
     }
 
     public FlipCardView(
@@ -47,7 +47,7 @@ public class FlipCardView
             AttributeSet attrs
     ) {
         super(context, attrs);
-        init();
+        initialize();
     }
 
     public FlipCardView(
@@ -56,7 +56,7 @@ public class FlipCardView
             int defStyleAttr
     ) {
         super(context, attrs, defStyleAttr);
-        init();
+        initialize();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -67,13 +67,13 @@ public class FlipCardView
             int defStyleRes
     ) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        init();
+        initialize();
     }
 
     /**
      * 初始化
      */
-    private void init() {
+    private void initialize() {
         removeAllViews();
         // 初始化 View
         mFrontLayout = new FrameLayout(getContext());

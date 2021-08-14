@@ -38,7 +38,7 @@ public class StateLayout
 
     public StateLayout(Context context) {
         super(context);
-        init();
+        initialize();
     }
 
     public StateLayout(
@@ -46,7 +46,7 @@ public class StateLayout
             AttributeSet attrs
     ) {
         super(context, attrs);
-        init();
+        initialize();
     }
 
     public StateLayout(
@@ -55,7 +55,7 @@ public class StateLayout
             int defStyleAttr
     ) {
         super(context, attrs, defStyleAttr);
-        init();
+        initialize();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -66,7 +66,7 @@ public class StateLayout
             int defStyleRes
     ) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        init();
+        initialize();
     }
 
     // =
@@ -101,7 +101,7 @@ public class StateLayout
      * @return {@link StateLayout}
      */
     public StateLayout reset() {
-        init(); // 重新初始化
+        initialize(); // 重新初始化
         post(new Runnable() {
             @Override
             public void run() {
@@ -114,7 +114,7 @@ public class StateLayout
     /**
      * 内部初始化方法
      */
-    private void init() {
+    private void initialize() {
         mAssist = ViewAssist.wrap(this);
         mAssist.setListener(new ViewAssist.Listener() {
             @Override

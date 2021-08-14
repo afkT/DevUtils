@@ -62,7 +62,7 @@ public class FlowLikeView
 
     public FlowLikeView(Context context) {
         super(context);
-        initAttrs(context, null);
+        initAttrs(context, null, 0, 0);
     }
 
     public FlowLikeView(
@@ -70,7 +70,7 @@ public class FlowLikeView
             AttributeSet attrs
     ) {
         super(context, attrs);
-        initAttrs(context, attrs);
+        initAttrs(context, attrs, 0, 0);
     }
 
     public FlowLikeView(
@@ -79,7 +79,7 @@ public class FlowLikeView
             int defStyleAttr
     ) {
         super(context, attrs, defStyleAttr);
-        initAttrs(context, attrs);
+        initAttrs(context, attrs, defStyleAttr, 0);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -90,24 +90,30 @@ public class FlowLikeView
             int defStyleRes
     ) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        initAttrs(context, attrs);
+        initAttrs(context, attrs, defStyleAttr, defStyleRes);
     }
 
     /**
      * 初始化
-     * @param context {@link Context}
-     * @param attrs   {@link AttributeSet}
+     * @param context      {@link Context}
+     * @param attrs        {@link AttributeSet}
+     * @param defStyleAttr 默认样式
+     * @param defStyleRes  默认样式资源
      */
     private void initAttrs(
             Context context,
-            AttributeSet attrs
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
     ) {
         // 初始化操作
         mRandom    = new Random();
         mDrawables = new ArrayList<>();
 
         if (context != null && attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
+            TypedArray a = context.obtainStyledAttributes(
+                    attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes
+            );
             mAnimDuration = a.getInt(R.styleable.DevWidget_dev_animDuration, 2000);
             mIconWidth    = a.getLayoutDimension(R.styleable.DevWidget_dev_iconWidth, 0);
             mIconHeight   = a.getLayoutDimension(R.styleable.DevWidget_dev_iconHeight, 0);

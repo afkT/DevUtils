@@ -173,16 +173,18 @@ public class RoundDrawable
      * 通过 AttributeSet 构建 RoundDrawable
      * @param context      {@link Context}
      * @param attrs        {@link AttributeSet}
-     * @param defStyleAttr 默认样式 {@link AttributeSet}
+     * @param defStyleAttr 默认样式
+     * @param defStyleRes  默认样式资源
      * @return {@link RoundDrawable}
      */
     public static RoundDrawable fromAttributeSet(
             final Context context,
             final AttributeSet attrs,
-            final int defStyleAttr
+            final int defStyleAttr,
+            final int defStyleRes
     ) {
         TypedArray a = context.obtainStyledAttributes(
-                attrs, R.styleable.DevWidget, defStyleAttr, 0
+                attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes
         );
         ColorStateList colorBg              = a.getColorStateList(R.styleable.DevWidget_dev_backgroundColor);
         ColorStateList colorBorder          = a.getColorStateList(R.styleable.DevWidget_dev_borderColor);

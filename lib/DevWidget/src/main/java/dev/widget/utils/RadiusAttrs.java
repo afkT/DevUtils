@@ -31,15 +31,21 @@ public class RadiusAttrs {
 
     /**
      * 初始化
-     * @param context {@link Context}
-     * @param attrs   {@link AttributeSet}
+     * @param context      {@link Context}
+     * @param attrs        {@link AttributeSet}
+     * @param defStyleAttr 默认样式
+     * @param defStyleRes  默认样式资源
      */
     public RadiusAttrs(
             Context context,
-            AttributeSet attrs
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
     ) {
         if (context != null && attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
+            TypedArray a = context.obtainStyledAttributes(
+                    attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes
+            );
             mRadius            = a.getLayoutDimension(R.styleable.DevWidget_dev_radius, 0);
             mRadiusLeftTop     = a.getLayoutDimension(R.styleable.DevWidget_dev_radiusLeftTop, 0);
             mRadiusLeftBottom  = a.getLayoutDimension(R.styleable.DevWidget_dev_radiusLeftBottom, 0);

@@ -22,7 +22,7 @@ public class AutoGridView
             int defStyleAttr
     ) {
         super(context, attrs, defStyleAttr);
-        init(attrs);
+        initialize(attrs);
     }
 
     public AutoGridView(
@@ -30,7 +30,7 @@ public class AutoGridView
             AttributeSet attrs
     ) {
         super(context, attrs);
-        init(attrs);
+        initialize(attrs);
     }
 
     public AutoGridView(Context context) {
@@ -40,7 +40,7 @@ public class AutoGridView
     /**
      * Sets the numColumns based on the attributeset
      */
-    private void init(AttributeSet attrs) {
+    private void initialize(AttributeSet attrs) {
         // Read numColumns out of the AttributeSet
         int count = attrs.getAttributeCount();
         if (count > 0) {

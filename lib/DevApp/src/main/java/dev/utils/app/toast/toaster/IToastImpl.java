@@ -62,7 +62,7 @@ final class IToastImpl
     @Override
     public void reset() {
         // 重新初始化
-        init(mContext);
+        initialize(mContext);
     }
 
     /**
@@ -101,7 +101,7 @@ final class IToastImpl
      * @param context {@link Context}
      */
     @Override
-    public void init(final Context context) {
+    public void initialize(final Context context) {
         if (context != null) {
             this.mContext = context.getApplicationContext();
             // 初始化默认参数

@@ -85,11 +85,11 @@ public class DanceLoadingRenderer
 
     private DanceLoadingRenderer(Context context) {
         super(context);
-        init(context);
+        initialize(context);
         setupPaint();
     }
 
-    private void init(Context context) {
+    private void initialize(Context context) {
         mStrokeWidth     = SizeUtils.dipConvertPx(DEFAULT_STROKE_WIDTH);
         mCenterRadius    = SizeUtils.dipConvertPx(DEFAULT_CENTER_RADIUS);
         mDanceBallRadius = SizeUtils.dipConvertPx(DEFAULT_DANCE_BALL_RADIUS);

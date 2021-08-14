@@ -46,7 +46,7 @@ public final class CrashUtils
      * @param context            {@link Context}
      * @param crashCatchListener {@link CrashCatchListener}
      */
-    public void init(
+    public void initialize(
             Context context,
             CrashCatchListener crashCatchListener
     ) {

@@ -227,7 +227,7 @@ public class ScanShapeView
 
     public ScanShapeView(Context context) {
         super(context);
-        init();
+        initialize();
     }
 
     public ScanShapeView(
@@ -235,7 +235,7 @@ public class ScanShapeView
             AttributeSet attrs
     ) {
         super(context, attrs);
-        init();
+        initialize();
     }
 
     public ScanShapeView(
@@ -244,7 +244,7 @@ public class ScanShapeView
             int defStyleAttr
     ) {
         super(context, attrs, defStyleAttr);
-        init();
+        initialize();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -255,13 +255,13 @@ public class ScanShapeView
             int defStyleRes
     ) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        init();
+        initialize();
     }
 
     /**
      * 初始化处理
      */
-    private void init() {
+    private void initialize() {
         mDFCommonDP          = SizeUtils.dipConvertPx(5);
         mBorderWidth         = SizeUtils.dipConvertPx(2);
         mBorderWidthToSquare = SizeUtils.dipConvertPx(1);

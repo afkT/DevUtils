@@ -107,7 +107,7 @@ public class LoadProgressBar
 
     public LoadProgressBar(Context context) {
         super(context);
-        initAttrs(context, null);
+        initAttrs(context, null, 0, 0);
     }
 
     public LoadProgressBar(
@@ -115,7 +115,7 @@ public class LoadProgressBar
             AttributeSet attrs
     ) {
         super(context, attrs);
-        initAttrs(context, attrs);
+        initAttrs(context, attrs, 0, 0);
     }
 
     public LoadProgressBar(
@@ -124,7 +124,7 @@ public class LoadProgressBar
             int defStyleAttr
     ) {
         super(context, attrs, defStyleAttr);
-        initAttrs(context, attrs);
+        initAttrs(context, attrs, defStyleAttr, 0);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -135,22 +135,28 @@ public class LoadProgressBar
             int defStyleRes
     ) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        initAttrs(context, attrs);
+        initAttrs(context, attrs, defStyleAttr, defStyleRes);
     }
 
     /**
      * 初始化
-     * @param context {@link Context}
-     * @param attrs   {@link AttributeSet}
+     * @param context      {@link Context}
+     * @param attrs        {@link AttributeSet}
+     * @param defStyleAttr 默认样式
+     * @param defStyleRes  默认样式资源
      */
     private void initAttrs(
             Context context,
-            AttributeSet attrs
+            AttributeSet attrs,
+            int defStyleAttr,
+            int defStyleRes
     ) {
-        init(); // 默认初始化配置
+        initialize(); // 默认初始化配置
 
         if (context != null && attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DevWidget);
+            TypedArray a = context.obtainStyledAttributes(
+                    attrs, R.styleable.DevWidget, defStyleAttr, defStyleRes
+            );
             mIsCanvasNumber    = a.getBoolean(R.styleable.DevWidget_dev_canvasNumber, mIsCanvasNumber);
             mProgressColor     = a.getColor(R.styleable.DevWidget_dev_progressColor, mProgressColor);
             mOuterRingColor    = a.getColor(R.styleable.DevWidget_dev_outerRingColor, mOuterRingColor);
@@ -189,7 +195,7 @@ public class LoadProgressBar
      * 初始化方法
      * @return {@link LoadProgressBar}
      */
-    private LoadProgressBar init() {
+    private LoadProgressBar initialize() {
         // 初始化画笔
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         // 设置进度颜色值 ( 白色 )
@@ -423,7 +429,7 @@ public class LoadProgressBar
      * @return {@link LoadProgressBar}
      */
     public LoadProgressBar reset() {
-        return init();
+        return initialize();
     }
 
     /**

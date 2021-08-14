@@ -141,7 +141,7 @@ public final class ScreenSensorAssist {
      * 初始化操作
      * @param handler 回调 {@link Handler}
      */
-    private void init(final Handler handler) {
+    private void initialize(final Handler handler) {
         this.mHandler = handler;
         // 注册重力感应器, 监听屏幕旋转
         mSensorManager = AppUtils.getSensorManager();
@@ -163,7 +163,7 @@ public final class ScreenSensorAssist {
         try {
             LogPrintUtils.dTag(TAG, "start orientation listener.");
             // 初始化操作
-            init(handler);
+            initialize(handler);
             // 监听重力传感器
             mSensorManager.registerListener(mListener, mSensor, SensorManager.SENSOR_DELAY_UI);
             return true;
