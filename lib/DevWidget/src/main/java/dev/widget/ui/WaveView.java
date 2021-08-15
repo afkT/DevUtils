@@ -17,7 +17,6 @@ import dev.widget.R;
 
 /**
  * detail: 波浪 View
- *
  * @author gelitenight
  * <pre>
  *     Android 实现波浪效果 - WaveView
@@ -63,12 +62,11 @@ public class WaveView
     public static final  int       DEFAULT_BEHIND_WAVE_COLOR = Color.parseColor("#28FFFFFF");
     // 波浪前景色
     public static final  int       DEFAULT_FRONT_WAVE_COLOR  = Color.parseColor("#3CFFFFFF");
-    // 波浪形状
+    // 波浪外形形状
     public static final  ShapeType DEFAULT_WAVE_SHAPE        = ShapeType.CIRCLE;
 
     /**
-     * detail: 波浪形状类型
-     *
+     * detail: 波浪外形形状
      * @author gelitenight
      */
     public enum ShapeType {
@@ -126,7 +124,6 @@ public class WaveView
 
     /**
      * 初始化
-     *
      * @param context      {@link Context}
      * @param attrs        {@link AttributeSet}
      * @param defStyleAttr 默认样式
@@ -291,51 +288,21 @@ public class WaveView
     // = 对外公开方法 =
     // ==============
 
-    public float getWaveShiftRatio() {
-        return mWaveShiftRatio;
-    }
-
     /**
-     * Shift the wave horizontally according to <code>waveShiftRatio</code>.
-     *
-     * @param waveShiftRatio Should be 0 ~ 1. Default to be 0.
-     *                       Result of waveShiftRatio multiples width of WaveView is the length to shift.
+     * 获取波浪垂直振幅比率
+     * @return 波浪垂直振幅比率
      */
-    public WaveView setWaveShiftRatio(float waveShiftRatio) {
-        if (mWaveShiftRatio != waveShiftRatio) {
-            mWaveShiftRatio = waveShiftRatio;
-            invalidate();
-        }
-        return this;
-    }
-
-    public float getWaterLevelRatio() {
-        return mWaterLevelRatio;
-    }
-
-    /**
-     * Set water level according to <code>waterLevelRatio</code>.
-     *
-     * @param waterLevelRatio Should be 0 ~ 1. Default to be 0.5.
-     *                        Ratio of water level to WaveView height.
-     */
-    public WaveView setWaterLevelRatio(float waterLevelRatio) {
-        if (mWaterLevelRatio != waterLevelRatio) {
-            mWaterLevelRatio = waterLevelRatio;
-            invalidate();
-        }
-        return this;
-    }
-
     public float getAmplitudeRatio() {
         return mAmplitudeRatio;
     }
 
     /**
-     * Set vertical size of wave according to <code>amplitudeRatio</code>
-     *
-     * @param amplitudeRatio Default to be 0.05. Result of amplitudeRatio + waterLevelRatio should be less than 1.
-     *                       Ratio of amplitude to height of WaveView.
+     * 设置波浪垂直振幅比率
+     * <pre>
+     *     默认为 0.05 并且 amplitudeRatio + waterLevelRatio 需小于 1
+     * </pre>
+     * @param amplitudeRatio 波浪垂直振幅比率
+     * @return {@link WaveView}
      */
     public WaveView setAmplitudeRatio(float amplitudeRatio) {
         if (mAmplitudeRatio != amplitudeRatio) {
@@ -345,30 +312,81 @@ public class WaveView
         return this;
     }
 
+    /**
+     * 获取波浪水位比率
+     * @return 波浪水位比率
+     */
+    public float getWaterLevelRatio() {
+        return mWaterLevelRatio;
+    }
+
+    /**
+     * 设置波浪水位比率
+     * <pre>
+     *     默认为 0.5 值范围在 0-1 之间
+     * </pre>
+     * @param waterLevelRatio 波浪水位比率
+     * @return {@link WaveView}
+     */
+    public WaveView setWaterLevelRatio(float waterLevelRatio) {
+        if (mWaterLevelRatio != waterLevelRatio) {
+            mWaterLevelRatio = waterLevelRatio;
+            invalidate();
+        }
+        return this;
+    }
+
+    /**
+     * 获取波浪波长比率
+     * @return 波浪波长比率
+     */
     public float getWaveLengthRatio() {
         return mWaveLengthRatio;
     }
 
     /**
-     * Set horizontal size of wave according to <code>waveLengthRatio</code>
-     *
-     * @param waveLengthRatio Default to be 1.
-     *                        Ratio of wave length to width of WaveView.
+     * 设置波浪波长比率
+     * <pre>
+     *     默认为 1
+     * </pre>
+     * @param waveLengthRatio 波浪波长比率
+     * @return {@link WaveView}
      */
     public WaveView setWaveLengthRatio(float waveLengthRatio) {
         mWaveLengthRatio = waveLengthRatio;
         return this;
     }
 
-    public boolean isShowWave() {
-        return mShowWave;
+    /**
+     * 获取波浪水平偏移比率
+     * @return 波浪水平偏移比率
+     */
+    public float getWaveShiftRatio() {
+        return mWaveShiftRatio;
     }
 
-    public WaveView setShowWave(boolean showWave) {
-        mShowWave = showWave;
+    /**
+     * 设置波浪水平偏移比率
+     * <pre>
+     *     默认为 0 值范围在 0-1 之间
+     * </pre>
+     * @param waveShiftRatio 波浪水平偏移比率
+     * @return {@link WaveView}
+     */
+    public WaveView setWaveShiftRatio(float waveShiftRatio) {
+        if (mWaveShiftRatio != waveShiftRatio) {
+            mWaveShiftRatio = waveShiftRatio;
+            invalidate();
+        }
         return this;
     }
 
+    /**
+     * 设置边框宽度、颜色
+     * @param width 边框宽度
+     * @param color 边框颜色
+     * @return {@link WaveView}
+     */
     public WaveView setBorder(
             int width,
             int color
@@ -385,6 +403,12 @@ public class WaveView
         return this;
     }
 
+    /**
+     * 设置波浪颜色
+     * @param behindWaveColor 波浪背景色
+     * @param frontWaveColor  波浪前景色
+     * @return {@link WaveView}
+     */
     public WaveView setWaveColor(
             int behindWaveColor,
             int frontWaveColor
@@ -401,9 +425,32 @@ public class WaveView
         return this;
     }
 
+    /**
+     * 设置波浪外形形状
+     * @param shapeType 波浪外形形状
+     * @return {@link WaveView}
+     */
     public WaveView setShapeType(ShapeType shapeType) {
         mShapeType = shapeType;
         invalidate();
+        return this;
+    }
+
+    /**
+     * 是否进行波浪图形处理
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isShowWave() {
+        return mShowWave;
+    }
+
+    /**
+     * 设置是否进行波浪图形处理
+     * @param showWave {@code true} yes, {@code false} no
+     * @return {@link WaveView}
+     */
+    public WaveView setShowWave(boolean showWave) {
+        mShowWave = showWave;
         return this;
     }
 }
