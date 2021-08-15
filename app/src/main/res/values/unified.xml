@@ -36,6 +36,7 @@
     <dimen name="un_dp_220">220.0dp</dimen>
     <dimen name="un_dp_240">240.0dp</dimen>
     <dimen name="un_dp_250">250.0dp</dimen>
+    <dimen name="un_dp_300">300.0dp</dimen>
     <dimen name="un_dp_391">391.0dp</dimen>
 
     <!-- 通用 SP -->

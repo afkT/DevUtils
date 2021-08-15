@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_55">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/un_dp_15">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/un_dp_60"
+                android:layout_height="@dimen/un_dp_35"
+                android:gravity="center_vertical"
+                android:text="Shape"
+                android:textColor="@color/white" />
+
+            <RadioGroup
+                android:id="@+id/vid_awv_shape_choice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/un_dp_15"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/vid_awv_shape_circle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/sky_blue"
+                    android:checked="true"
+                    android:text="Circle"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/vid_awv_shape_square"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/un_dp_15"
+                    android:buttonTint="@color/sky_blue"
+                    android:text="Square"
+                    android:textColor="@color/white" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/un_dp_60"
+                android:layout_height="@dimen/un_dp_35"
+                android:gravity="center_vertical"
+                android:text="Border"
+                android:textColor="@color/white" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:max="50"
+                android:progress="10"
+                android:progressBackgroundTint="@color/white"
+                android:progressTint="@color/white"
+                android:thumbTint="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="@dimen/un_dp_60"
+                android:layout_height="@dimen/un_dp_35"
+                android:gravity="center_vertical"
+                android:text="Color"
+                android:textColor="@color/white" />
+
+            <RadioGroup
+                android:id="@+id/vid_awv_color_choice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/vid_awv_color_default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/white"
+                    android:checked="true"
+                    android:text="Default"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/vid_awv_color_red"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/un_dp_15"
+                    android:buttonTint="@color/red"
+                    android:text="Red"
+                    android:textColor="@color/red" />
+
+                <RadioButton
+                    android:id="@+id/vid_awv_color_green"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/un_dp_15"
+                    android:buttonTint="@color/green"
+                    android:text="Green"
+                    android:textColor="@color/green" />
+
+                <RadioButton
+                    android:id="@+id/vid_awv_color_blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/un_dp_15"
+                    android:buttonTint="@color/blue"
+                    android:text="Blue"
+                    android:textColor="@color/blue" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <dev.widget.ui.WaveView
+            android:id="@+id/vid_awv_wave"
+            android:layout_width="@dimen/un_dp_300"
+            android:layout_height="@dimen/un_dp_300"
+            android:layout_marginTop="@dimen/un_dp_20" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

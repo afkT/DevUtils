@@ -51,19 +51,23 @@ public class WaveView
      */
 
     // Amplitude ( 振幅 ) - 波浪垂直振动时偏离水面的最大距离
-    private static final float     DEFAULT_AMPLITUDE_RATIO   = 0.05f;
+    public static final float     DEFAULT_AMPLITUDE_RATIO   = 0.05f;
     // Wate Level ( 水位 ) - 波浪静止时水面距离底部的高度
-    private static final float     DEFAULT_WATER_LEVEL_RATIO = 0.5f;
+    public static final float     DEFAULT_WATER_LEVEL_RATIO = 0.5f;
     // Wave Length ( 波长 ) - 一个完整的波浪的水平长度
-    private static final float     DEFAULT_WAVE_LENGTH_RATIO = 1.0f;
+    public static final float     DEFAULT_WAVE_LENGTH_RATIO = 1.0f;
     // Wave Shift ( 偏移 ) - 波浪相对于初始位置的水平偏移
-    private static final float     DEFAULT_WAVE_SHIFT_RATIO  = 0.0f;
+    public static final float     DEFAULT_WAVE_SHIFT_RATIO  = 0.0f;
     // 波浪背景色
-    public static final  int       DEFAULT_BEHIND_WAVE_COLOR = Color.parseColor("#28FFFFFF");
+    public static final int       DEFAULT_BEHIND_WAVE_COLOR = Color.parseColor("#28FFFFFF");
     // 波浪前景色
-    public static final  int       DEFAULT_FRONT_WAVE_COLOR  = Color.parseColor("#3CFFFFFF");
+    public static final int       DEFAULT_FRONT_WAVE_COLOR  = Color.parseColor("#3CFFFFFF");
     // 波浪外形形状
-    public static final  ShapeType DEFAULT_WAVE_SHAPE        = ShapeType.CIRCLE;
+    public static final ShapeType DEFAULT_WAVE_SHAPE        = ShapeType.CIRCLE;
+    // 边框宽度
+    public static final int       DEFAULT_BORDER_WIDTH      = 0;
+    // 边框颜色
+    public static final int       DEFAULT_BORDER_COLOR      = 0;
 
     /**
      * detail: 波浪外形形状
@@ -99,6 +103,9 @@ public class WaveView
     private int       mBehindWaveColor = DEFAULT_BEHIND_WAVE_COLOR;
     private int       mFrontWaveColor  = DEFAULT_FRONT_WAVE_COLOR;
     private ShapeType mShapeType       = DEFAULT_WAVE_SHAPE;
+
+    private int   mBorderColor;
+    private float mBorderWidth;
 
     public WaveView(Context context) {
         super(context);
@@ -145,6 +152,8 @@ public class WaveView
             mWaveShiftRatio  = a.getFloat(R.styleable.DevWidget_dev_waveShiftRatio, DEFAULT_WAVE_SHIFT_RATIO);
             mBehindWaveColor = a.getColor(R.styleable.DevWidget_dev_behindWaveColor, DEFAULT_BEHIND_WAVE_COLOR);
             mFrontWaveColor  = a.getColor(R.styleable.DevWidget_dev_frontWaveColor, DEFAULT_FRONT_WAVE_COLOR);
+            mBorderWidth     = a.getDimensionPixelSize(R.styleable.DevWidget_dev_borderWidth, DEFAULT_BORDER_WIDTH);
+            mBorderColor     = a.getColor(R.styleable.DevWidget_dev_borderColor, DEFAULT_BORDER_COLOR);
             mShapeType       = a.getInt(R.styleable.DevWidget_dev_waveShape, 0) == 0 ? ShapeType.CIRCLE : ShapeType.SQUARE;
             mShowWave        = a.getBoolean(R.styleable.DevWidget_dev_showWave, true);
             a.recycle();
@@ -156,6 +165,9 @@ public class WaveView
         mShaderMatrix = new Matrix();
         mViewPaint    = new Paint();
         mViewPaint.setAntiAlias(true);
+
+        // 设置边框宽度、颜色
+        setBorder(mBorderWidth, mBorderColor);
     }
 
     // =
@@ -353,7 +365,10 @@ public class WaveView
      * @return {@link WaveView}
      */
     public WaveView setWaveLengthRatio(float waveLengthRatio) {
-        mWaveLengthRatio = waveLengthRatio;
+        if (mWaveLengthRatio != waveLengthRatio) {
+            mWaveLengthRatio = waveLengthRatio;
+            invalidate();
+        }
         return this;
     }
 
@@ -382,15 +397,34 @@ public class WaveView
     }
 
     /**
+     * 获取边框宽度
+     * @return 边框宽度
+     */
+    public float getBorderWidth() {
+        return mBorderWidth;
+    }
+
+    /**
+     * 获取边框颜色
+     * @return 边框颜色
+     */
+    public int getBorderColor() {
+        return mBorderColor;
+    }
+
+    /**
      * 设置边框宽度、颜色
      * @param width 边框宽度
      * @param color 边框颜色
      * @return {@link WaveView}
      */
     public WaveView setBorder(
-            int width,
+            float width,
             int color
     ) {
+        mBorderWidth = width;
+        mBorderColor = color;
+
         if (mBorderPaint == null) {
             mBorderPaint = new Paint();
             mBorderPaint.setAntiAlias(true);
@@ -401,6 +435,22 @@ public class WaveView
 
         invalidate();
         return this;
+    }
+
+    /**
+     * 获取波浪背景色
+     * @return 波浪背景色
+     */
+    public int getBehindWaveColor() {
+        return mBehindWaveColor;
+    }
+
+    /**
+     * 获取波浪前景色
+     * @return 波浪前景色
+     */
+    public int getFrontWaveColor() {
+        return mFrontWaveColor;
     }
 
     /**
@@ -426,13 +476,23 @@ public class WaveView
     }
 
     /**
+     * 获取波浪外形形状
+     * @return 波浪外形形状
+     */
+    public ShapeType getShapeType() {
+        return mShapeType;
+    }
+
+    /**
      * 设置波浪外形形状
      * @param shapeType 波浪外形形状
      * @return {@link WaveView}
      */
     public WaveView setShapeType(ShapeType shapeType) {
-        mShapeType = shapeType;
-        invalidate();
+        if (shapeType != null) {
+            mShapeType = shapeType;
+            invalidate();
+        }
         return this;
     }
 

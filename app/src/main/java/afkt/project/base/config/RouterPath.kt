@@ -141,4 +141,6 @@ object RouterPath {
     const val RecyMultiTypeAdapterActivity_PATH = "/activity/RecyMultiTypeAdapterActivity"
 
     const val FlipCardActivity_PATH = "/activity/FlipCardActivity"
+
+    const val WaveViewActivity_PATH = "/activity/WaveViewActivity"
 }

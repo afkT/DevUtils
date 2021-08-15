@@ -503,6 +503,9 @@ class ButtonValue(
         // 翻转卡片 View
         const val BTN_FLIP_CARD_VIEW = BTN_DEV_WIDGET + 1000
 
+        // 波浪 View
+        const val BTN_WAVE_VIEW = BTN_DEV_WIDGET + 1100
+
         // ==============================
         // = DevEnvironment 环境配置切换库 =
         // ==============================

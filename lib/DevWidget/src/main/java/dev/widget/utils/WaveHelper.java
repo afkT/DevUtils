@@ -53,7 +53,9 @@ public class WaveHelper {
      * 启动动画
      */
     public void start() {
-        mWaveView.setShowWave(true);
+        // 显示波浪效果
+        setShowWave(true);
+
         if (mAnimatorSet != null) {
             mAnimatorSet.start();
         }
@@ -66,6 +68,236 @@ public class WaveHelper {
         if (mAnimatorSet != null) {
             mAnimatorSet.end();
         }
+    }
+
+    // ===========
+    // = get/set =
+    // ===========
+
+    /**
+     * 获取波浪垂直振幅比率
+     * @return 波浪垂直振幅比率
+     */
+    public float getAmplitudeRatio() {
+        if (mWaveView != null) {
+            return mWaveView.getAmplitudeRatio();
+        }
+        return WaveView.DEFAULT_AMPLITUDE_RATIO;
+    }
+
+    /**
+     * 设置波浪垂直振幅比率
+     * <pre>
+     *     默认为 0.05 并且 amplitudeRatio + waterLevelRatio 需小于 1
+     * </pre>
+     * @param amplitudeRatio 波浪垂直振幅比率
+     * @return {@link WaveHelper}
+     */
+    public WaveHelper setAmplitudeRatio(float amplitudeRatio) {
+        if (mWaveView != null) {
+            mWaveView.setAmplitudeRatio(amplitudeRatio);
+        }
+        return this;
+    }
+
+    /**
+     * 获取波浪水位比率
+     * @return 波浪水位比率
+     */
+    public float getWaterLevelRatio() {
+        if (mWaveView != null) {
+            return mWaveView.getWaterLevelRatio();
+        }
+        return WaveView.DEFAULT_WATER_LEVEL_RATIO;
+    }
+
+    /**
+     * 设置波浪水位比率
+     * <pre>
+     *     默认为 0.5 值范围在 0-1 之间
+     * </pre>
+     * @param waterLevelRatio 波浪水位比率
+     * @return {@link WaveHelper}
+     */
+    public WaveHelper setWaterLevelRatio(float waterLevelRatio) {
+        if (mWaveView != null) {
+            mWaveView.setWaterLevelRatio(waterLevelRatio);
+        }
+        return this;
+    }
+
+    /**
+     * 获取波浪波长比率
+     * @return 波浪波长比率
+     */
+    public float getWaveLengthRatio() {
+        if (mWaveView != null) {
+            return mWaveView.getWaveLengthRatio();
+        }
+        return WaveView.DEFAULT_WAVE_LENGTH_RATIO;
+    }
+
+    /**
+     * 设置波浪波长比率
+     * <pre>
+     *     默认为 1
+     * </pre>
+     * @param waveLengthRatio 波浪波长比率
+     * @return {@link WaveHelper}
+     */
+    public WaveHelper setWaveLengthRatio(float waveLengthRatio) {
+        if (mWaveView != null) {
+            mWaveView.setWaveLengthRatio(waveLengthRatio);
+        }
+        return this;
+    }
+
+    /**
+     * 获取波浪水平偏移比率
+     * @return 波浪水平偏移比率
+     */
+    public float getWaveShiftRatio() {
+        if (mWaveView != null) {
+            return mWaveView.getWaveShiftRatio();
+        }
+        return WaveView.DEFAULT_WAVE_SHIFT_RATIO;
+    }
+
+    /**
+     * 设置波浪水平偏移比率
+     * <pre>
+     *     默认为 0 值范围在 0-1 之间
+     * </pre>
+     * @param waveShiftRatio 波浪水平偏移比率
+     * @return {@link WaveHelper}
+     */
+    public WaveHelper setWaveShiftRatio(float waveShiftRatio) {
+        if (mWaveView != null) {
+            mWaveView.setWaveShiftRatio(waveShiftRatio);
+        }
+        return this;
+    }
+
+    /**
+     * 获取边框宽度
+     * @return 边框宽度
+     */
+    public float getBorderWidth() {
+        if (mWaveView != null) {
+            return mWaveView.getBorderWidth();
+        }
+        return WaveView.DEFAULT_BORDER_WIDTH;
+    }
+
+    /**
+     * 获取边框颜色
+     * @return 边框颜色
+     */
+    public int getBorderColor() {
+        if (mWaveView != null) {
+            return mWaveView.getBorderColor();
+        }
+        return WaveView.DEFAULT_BORDER_COLOR;
+    }
+
+    /**
+     * 设置边框宽度、颜色
+     * @param width 边框宽度
+     * @param color 边框颜色
+     * @return {@link WaveHelper}
+     */
+    public WaveHelper setBorder(
+            float width,
+            int color
+    ) {
+        if (mWaveView != null) {
+            mWaveView.setBorder(width, color);
+        }
+        return this;
+    }
+
+    /**
+     * 获取波浪背景色
+     * @return 波浪背景色
+     */
+    public int getBehindWaveColor() {
+        if (mWaveView != null) {
+            return mWaveView.getBehindWaveColor();
+        }
+        return WaveView.DEFAULT_BEHIND_WAVE_COLOR;
+    }
+
+    /**
+     * 获取波浪前景色
+     * @return 波浪前景色
+     */
+    public int getFrontWaveColor() {
+        if (mWaveView != null) {
+            return mWaveView.getFrontWaveColor();
+        }
+        return WaveView.DEFAULT_FRONT_WAVE_COLOR;
+    }
+
+    /**
+     * 设置波浪颜色
+     * @param behindWaveColor 波浪背景色
+     * @param frontWaveColor  波浪前景色
+     * @return {@link WaveHelper}
+     */
+    public WaveHelper setWaveColor(
+            int behindWaveColor,
+            int frontWaveColor
+    ) {
+        if (mWaveView != null) {
+            mWaveView.setWaveColor(behindWaveColor, frontWaveColor);
+        }
+        return this;
+    }
+
+    /**
+     * 获取波浪外形形状
+     * @return 波浪外形形状
+     */
+    public WaveView.ShapeType getShapeType() {
+        if (mWaveView != null) {
+            return mWaveView.getShapeType();
+        }
+        return WaveView.ShapeType.CIRCLE;
+    }
+
+    /**
+     * 设置波浪外形形状
+     * @param shapeType 波浪外形形状
+     * @return {@link WaveHelper}
+     */
+    public WaveHelper setShapeType(WaveView.ShapeType shapeType) {
+        if (mWaveView != null) {
+            mWaveView.setShapeType(shapeType);
+        }
+        return this;
+    }
+
+    /**
+     * 是否进行波浪图形处理
+     * @return {@code true} yes, {@code false} no
+     */
+    public boolean isShowWave() {
+        if (mWaveView != null) {
+            return mWaveView.isShowWave();
+        }
+        return true;
+    }
+
+    /**
+     * 设置是否进行波浪图形处理
+     * @param showWave {@code true} yes, {@code false} no
+     * @return {@link WaveHelper}
+     */
+    public WaveHelper setShowWave(boolean showWave) {
+        if (mWaveView != null) {
+            mWaveView.setShowWave(showWave);
+        }
+        return this;
     }
 
     // ==========

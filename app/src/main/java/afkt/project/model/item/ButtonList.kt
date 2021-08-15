@@ -755,6 +755,12 @@ object ButtonList {
                     RouterPath.FlipCardActivity_PATH
                 )
             )
+            lists.add(
+                ButtonValue(
+                    ButtonValue.BTN_WAVE_VIEW, "波浪 View",
+                    RouterPath.WaveViewActivity_PATH
+                )
+            )
             return lists
         }
 

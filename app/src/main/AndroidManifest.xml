@@ -365,6 +365,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- 波浪 View -->
+
+        <activity
+            android:name=".ui.activity.WaveViewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- CapturePictureUtils 截图工具类 -->
 
         <activity
