@@ -63,11 +63,11 @@
                 android:textColor="@color/white" />
 
             <SeekBar
-                android:id="@+id/seekBar"
+                android:id="@+id/vid_awv_seekbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:max="50"
-                android:progress="10"
+                android:progress="0"
                 android:progressBackgroundTint="@color/white"
                 android:progressTint="@color/white"
                 android:thumbTint="@color/white" />

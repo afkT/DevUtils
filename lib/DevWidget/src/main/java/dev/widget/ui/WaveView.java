@@ -52,7 +52,7 @@ public class WaveView
 
     // Amplitude ( 振幅 ) - 波浪垂直振动时偏离水面的最大距离
     public static final float     DEFAULT_AMPLITUDE_RATIO   = 0.05f;
-    // Wate Level ( 水位 ) - 波浪静止时水面距离底部的高度
+    // Water Level ( 水位 ) - 波浪静止时水面距离底部的高度
     public static final float     DEFAULT_WATER_LEVEL_RATIO = 0.5f;
     // Wave Length ( 波长 ) - 一个完整的波浪的水平长度
     public static final float     DEFAULT_WAVE_LENGTH_RATIO = 1.0f;
@@ -67,7 +67,7 @@ public class WaveView
     // 边框宽度
     public static final int       DEFAULT_BORDER_WIDTH      = 0;
     // 边框颜色
-    public static final int       DEFAULT_BORDER_COLOR      = 0;
+    public static final int       DEFAULT_BORDER_COLOR      = Color.parseColor("#44FFFFFF");
 
     /**
      * detail: 波浪外形形状

@@ -29,7 +29,6 @@ public class WaveHelper {
      */
     private WaveHelper(final WaveView waveView) {
         mWaveView = waveView;
-        initAnimation();
     }
 
     // =============
@@ -300,41 +299,333 @@ public class WaveHelper {
         return this;
     }
 
-    // ==========
-    // = 内部方法 =
-    // ==========
+    // =============
+    // = 动画构建方法 =
+    // =============
 
-    private void initAnimation() {
-        List<Animator> animators = new ArrayList<>();
+    /**
+     * 通过属性动画进行设置波浪 View 动画效果
+     * @param property 波浪属性动画配置信息
+     * @return {@link WaveHelper}
+     */
+    public WaveHelper buildPropertyAnimation(final WaveProperty property) {
+        if (mWaveView != null && property != null) {
+            List<Animator> animators = new ArrayList<>();
 
-        // horizontal animation.
-        // wave waves infinitely.
-        ObjectAnimator waveShiftAnim = ObjectAnimator.ofFloat(
-                mWaveView, "waveShiftRatio", 0f, 1f);
-        waveShiftAnim.setRepeatCount(ValueAnimator.INFINITE);
-        waveShiftAnim.setDuration(1000);
-        waveShiftAnim.setInterpolator(new LinearInterpolator());
-        animators.add(waveShiftAnim);
+            // 让波浪一直向右移动, 效果就是波形一直在波动
+            ObjectAnimator waveShiftAnim = ObjectAnimator.ofFloat(
+                    mWaveView, "waveShiftRatio",
+                    property.waveShiftRatioStart,
+                    property.waveShiftRatioEnd
+            );
+            waveShiftAnim.setRepeatCount(ValueAnimator.INFINITE);
+            waveShiftAnim.setDuration(property.waveShiftRatioMillis);
+            waveShiftAnim.setInterpolator(new LinearInterpolator());
+            animators.add(waveShiftAnim);
 
-        // vertical animation.
-        // water level increases from 0 to center of WaveView
-        ObjectAnimator waterLevelAnim = ObjectAnimator.ofFloat(
-                mWaveView, "waterLevelRatio", 0f, 0.7f);
-        waterLevelAnim.setDuration(10000);
-        waterLevelAnim.setInterpolator(new DecelerateInterpolator());
-        animators.add(waterLevelAnim);
+            // 水位高度从 xx 到 xx 值
+            ObjectAnimator waterLevelAnim = ObjectAnimator.ofFloat(
+                    mWaveView, "waterLevelRatio",
+                    property.waterLevelRatioStart,
+                    property.waterLevelRatioEnd
+            );
+            waterLevelAnim.setDuration(property.waterLevelRatioMillis);
+            waterLevelAnim.setInterpolator(new DecelerateInterpolator());
+            animators.add(waterLevelAnim);
 
-        // amplitude animation.
-        // wave grows big then grows small, repeatedly
-        ObjectAnimator amplitudeAnim = ObjectAnimator.ofFloat(
-                mWaveView, "amplitudeRatio", 0.0001f, 0.05f);
-        amplitudeAnim.setRepeatCount(ValueAnimator.INFINITE);
-        amplitudeAnim.setRepeatMode(ValueAnimator.REVERSE);
-        amplitudeAnim.setDuration(5000);
-        amplitudeAnim.setInterpolator(new LinearInterpolator());
-        animators.add(amplitudeAnim);
+            // 波浪大小 ( 上下波动 ) 效果, 先大后小, 再从小变大
+            ObjectAnimator amplitudeAnim = ObjectAnimator.ofFloat(
+                    mWaveView, "amplitudeRatio",
+                    property.amplitudeRatioStart,
+                    property.amplitudeRatioEnd
+            );
+            amplitudeAnim.setRepeatCount(ValueAnimator.INFINITE);
+            amplitudeAnim.setRepeatMode(ValueAnimator.REVERSE);
+            amplitudeAnim.setDuration(property.amplitudeRatioMillis);
+            amplitudeAnim.setInterpolator(new LinearInterpolator());
+            animators.add(amplitudeAnim);
 
-        mAnimatorSet = new AnimatorSet();
-        mAnimatorSet.playTogether(animators);
+            mAnimatorSet = new AnimatorSet();
+            mAnimatorSet.playTogether(animators);
+        }
+        return this;
+    }
+
+    /**
+     * detail: 波浪属性动画配置信息
+     * @author Ttt
+     */
+    public static final class WaveProperty {
+
+        // 波浪移动方向效果属性值
+        private final float waveShiftRatioStart;
+        private final float waveShiftRatioEnd;
+        private final long  waveShiftRatioMillis;
+
+        // 波浪大小 ( 上下波动 ) 效果属性值
+        private final float amplitudeRatioStart;
+        private final float amplitudeRatioEnd;
+        private final long  amplitudeRatioMillis;
+
+        // 水位高度属性值
+        private final float waterLevelRatioStart;
+        private final float waterLevelRatioEnd;
+        private final long  waterLevelRatioMillis;
+
+        private WaveProperty(final Builder builder) {
+            this.waveShiftRatioStart   = builder.waveShiftRatioStart;
+            this.waveShiftRatioEnd     = builder.waveShiftRatioEnd;
+            this.waveShiftRatioMillis  = builder.waveShiftRatioMillis;
+            this.amplitudeRatioStart   = builder.amplitudeRatioStart;
+            this.amplitudeRatioEnd     = builder.amplitudeRatioEnd;
+            this.amplitudeRatioMillis  = builder.amplitudeRatioMillis;
+            this.waterLevelRatioStart  = builder.waterLevelRatioStart;
+            this.waterLevelRatioEnd    = builder.waterLevelRatioEnd;
+            this.waterLevelRatioMillis = builder.waterLevelRatioMillis;
+        }
+
+        public static final class Builder {
+
+            // 波浪移动方向效果属性值
+            private float waveShiftRatioStart  = 0f;
+            private float waveShiftRatioEnd    = 1f;
+            private long  waveShiftRatioMillis = 1000L;
+
+            // 波浪大小 ( 上下波动 ) 效果属性值
+            private float amplitudeRatioStart  = 0.0001f;
+            private float amplitudeRatioEnd    = 0.05f;
+            private long  amplitudeRatioMillis = 5000L;
+
+            // 水位高度属性值
+            private float waterLevelRatioStart  = 0f;
+            private float waterLevelRatioEnd    = 0f;
+            private long  waterLevelRatioMillis = 5000L;
+
+            // ==========
+            // = 构建方法 =
+            // ==========
+
+            public Builder() {
+            }
+
+            public Builder(final WaveProperty property) {
+                if (property != null) {
+                    this.waveShiftRatioStart   = property.waveShiftRatioStart;
+                    this.waveShiftRatioEnd     = property.waveShiftRatioEnd;
+                    this.waveShiftRatioMillis  = property.waveShiftRatioMillis;
+                    this.amplitudeRatioStart   = property.amplitudeRatioStart;
+                    this.amplitudeRatioEnd     = property.amplitudeRatioEnd;
+                    this.amplitudeRatioMillis  = property.amplitudeRatioMillis;
+                    this.waterLevelRatioStart  = property.waterLevelRatioStart;
+                    this.waterLevelRatioEnd    = property.waterLevelRatioEnd;
+                    this.waterLevelRatioMillis = property.waterLevelRatioMillis;
+                }
+            }
+
+            public Builder(final Builder builder) {
+                if (builder != null) {
+                    this.waveShiftRatioStart   = builder.waveShiftRatioStart;
+                    this.waveShiftRatioEnd     = builder.waveShiftRatioEnd;
+                    this.waveShiftRatioMillis  = builder.waveShiftRatioMillis;
+                    this.amplitudeRatioStart   = builder.amplitudeRatioStart;
+                    this.amplitudeRatioEnd     = builder.amplitudeRatioEnd;
+                    this.amplitudeRatioMillis  = builder.amplitudeRatioMillis;
+                    this.waterLevelRatioStart  = builder.waterLevelRatioStart;
+                    this.waterLevelRatioEnd    = builder.waterLevelRatioEnd;
+                    this.waterLevelRatioMillis = builder.waterLevelRatioMillis;
+                }
+            }
+
+            public WaveProperty build() {
+                return new WaveProperty(this);
+            }
+
+            // ===========
+            // = get/set =
+            // ===========
+
+            // =====================
+            // = 波浪移动方向效果属性值 =
+            // =====================
+
+            public float getWaveShiftRatioStart() {
+                return waveShiftRatioStart;
+            }
+
+            public float getWaveShiftRatioEnd() {
+                return waveShiftRatioEnd;
+            }
+
+            public long getWaveShiftRatioMillis() {
+                return waveShiftRatioMillis;
+            }
+
+            /**
+             * 设置波浪移动方向效果属性值
+             * @param waveShiftRatioMillis 动画时间
+             * @return {@link Builder}
+             */
+            public Builder setWaveShiftRatioMillis(long waveShiftRatioMillis) {
+                this.waveShiftRatioMillis = waveShiftRatioMillis;
+                return this;
+            }
+
+            /**
+             * 设置波浪移动方向效果属性值
+             * @param waveShiftRatioStart 开始值
+             * @param waveShiftRatioEnd   结束值
+             * @return {@link Builder}
+             */
+            public Builder setWaveShiftRatio(
+                    float waveShiftRatioStart,
+                    float waveShiftRatioEnd
+            ) {
+                return setWaveShiftRatio(
+                        waveShiftRatioStart,
+                        waveShiftRatioEnd,
+                        this.waveShiftRatioMillis
+                );
+            }
+
+            /**
+             * 设置波浪移动方向效果属性值
+             * @param waveShiftRatioStart  开始值
+             * @param waveShiftRatioEnd    结束值
+             * @param waveShiftRatioMillis 动画时间
+             * @return {@link Builder}
+             */
+            public Builder setWaveShiftRatio(
+                    float waveShiftRatioStart,
+                    float waveShiftRatioEnd,
+                    long waveShiftRatioMillis
+            ) {
+                this.waveShiftRatioStart  = waveShiftRatioStart;
+                this.waveShiftRatioEnd    = waveShiftRatioEnd;
+                this.waveShiftRatioMillis = waveShiftRatioMillis;
+                return this;
+            }
+
+            // ===============================
+            // = 波浪大小 ( 上下波动 ) 效果属性值 =
+            // ===============================
+
+            public float getAmplitudeRatioStart() {
+                return amplitudeRatioStart;
+            }
+
+            public float getAmplitudeRatioEnd() {
+                return amplitudeRatioEnd;
+            }
+
+            public long getAmplitudeRatioMillis() {
+                return amplitudeRatioMillis;
+            }
+
+            /**
+             * 设置波浪大小 ( 上下波动 ) 效果属性值
+             * @param amplitudeRatioMillis 动画时间
+             * @return {@link Builder}
+             */
+            public Builder setAmplitudeRatioMillis(long amplitudeRatioMillis) {
+                this.amplitudeRatioMillis = amplitudeRatioMillis;
+                return this;
+            }
+
+            /**
+             * 设置波浪大小 ( 上下波动 ) 效果属性值
+             * @param amplitudeRatioStart 开始值
+             * @param amplitudeRatioEnd   结束值
+             * @return {@link Builder}
+             */
+            public Builder setAmplitudeRatio(
+                    float amplitudeRatioStart,
+                    float amplitudeRatioEnd
+            ) {
+                return setAmplitudeRatio(
+                        amplitudeRatioStart,
+                        amplitudeRatioEnd,
+                        this.amplitudeRatioMillis
+                );
+            }
+
+            /**
+             * 设置波浪大小 ( 上下波动 ) 效果属性值
+             * @param amplitudeRatioStart  开始值
+             * @param amplitudeRatioEnd    结束值
+             * @param amplitudeRatioMillis 动画时间
+             * @return {@link Builder}
+             */
+            public Builder setAmplitudeRatio(
+                    float amplitudeRatioStart,
+                    float amplitudeRatioEnd,
+                    long amplitudeRatioMillis
+            ) {
+                this.amplitudeRatioStart  = amplitudeRatioStart;
+                this.amplitudeRatioEnd    = amplitudeRatioEnd;
+                this.amplitudeRatioMillis = amplitudeRatioMillis;
+                return this;
+            }
+
+            // ===============
+            // = 水位高度属性值 =
+            // ===============
+
+            public float getWaterLevelRatioStart() {
+                return waterLevelRatioStart;
+            }
+
+            public float getWaterLevelRatioEnd() {
+                return waterLevelRatioEnd;
+            }
+
+            public float getWaterLevelRatioMillis() {
+                return waterLevelRatioMillis;
+            }
+
+            /**
+             * 设置水位高度属性值
+             * @param waterLevelRatioMillis 动画时间
+             * @return {@link Builder}
+             */
+            public Builder setWaterLevelRatioMillis(long waterLevelRatioMillis) {
+                this.waterLevelRatioMillis = waterLevelRatioMillis;
+                return this;
+            }
+
+            /**
+             * 设置水位高度属性值
+             * @param waterLevelRatioStart 开始值
+             * @param waterLevelRatioEnd   结束值
+             * @return {@link Builder}
+             */
+            public Builder setWaterLevelRatio(
+                    float waterLevelRatioStart,
+                    float waterLevelRatioEnd
+            ) {
+                return setWaterLevelRatio(
+                        waterLevelRatioStart,
+                        waterLevelRatioEnd,
+                        this.waterLevelRatioMillis
+                );
+            }
+
+            /**
+             * 设置水位高度属性值
+             * @param waterLevelRatioStart  开始值
+             * @param waterLevelRatioEnd    结束值
+             * @param waterLevelRatioMillis 动画时间
+             * @return {@link Builder}
+             */
+            public Builder setWaterLevelRatio(
+                    float waterLevelRatioStart,
+                    float waterLevelRatioEnd,
+                    long waterLevelRatioMillis
+            ) {
+                this.waterLevelRatioStart  = waterLevelRatioStart;
+                this.waterLevelRatioEnd    = waterLevelRatioEnd;
+                this.waterLevelRatioMillis = waterLevelRatioMillis;
+                return this;
+            }
+        }
     }
 }
