@@ -11,7 +11,6 @@ import dev.utils.app.HandlerUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.timer.DevTimer
 
-
 /**
  * detail: 翻转卡片 View
  * @author Ttt

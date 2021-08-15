@@ -166,6 +166,8 @@ public class RoundImageView
         }
     }
 
+    // =
+
     @Override
     public void setScaleType(ScaleType scaleType) {
         if (scaleType != SCALE_TYPE) {

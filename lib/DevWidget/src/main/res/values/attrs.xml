@@ -82,5 +82,19 @@
 
         <attr name="dev_borderOverlay" format="boolean" />
         <attr name="dev_circleBackgroundColor" format="color" />
+
+        <!-- WaveView -->
+
+        <attr name="dev_amplitudeRatio" format="float" />
+        <attr name="dev_waveWaterLevel" format="float" />
+        <attr name="dev_waveLengthRatio" format="float" />
+        <attr name="dev_waveShiftRatio" format="float" />
+        <attr name="dev_behindWaveColor" format="color" />
+        <attr name="dev_frontWaveColor" format="color" />
+        <attr name="dev_waveShape" format="enum">
+            <enum name="circle" value="0" />
+            <enum name="square" value="1" />
+        </attr>
+        <attr name="dev_showWave" format="boolean" />
     </declare-styleable>
 </resources>
