@@ -62,4 +62,12 @@ object DevEngine {
     fun getDevAppVersion(): String {
         return BuildConfig.DevApp_Version
     }
+
+    // ============
+    // = 初始化方法 =
+    // ============
+
+    fun initialize() {
+
+    }
 }

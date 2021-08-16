@@ -1,4 +1,5 @@
 apply from: rootProject.file(files.lib_app_kotlin_gradle)
+apply plugin: 'kotlin-kapt'
 
 android.defaultConfig {
     versionCode versions.dev_engine_versionCode
@@ -12,20 +13,51 @@ android.defaultConfig {
 }
 
 dependencies {
-    api deps.kotlin.stdlib
-    api deps.kotlin.core
-    api deps.kotlin.coroutines
-    api deps.kotlin.lifecycle_runtime
-    api deps.kotlin.lifecycle_common_java8
-    api deps.androidx.design
-    api deps.androidx.appcompat
-    api deps.kotlin.fragment_ktx
-    api deps.kotlin.activity_ktx
+
+    // ===================
+    // = Engine 具体实现库 =
+    // ===================
+
+    // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
+    api deps.lib.luban
+    // Glide 加载框架 https://github.com/bumptech/glide
+    api deps.lib.glide
+    kapt deps.lib.glide_compiler
+    // Glide 图形库 https://github.com/wasabeef/glide-transformations
+    api deps.lib.glide_transformations
+    // Gson https://github.com/google/gson
+    api deps.lib.gson
+    // fastjson https://github.com/alibaba/fastjson
+    api deps.lib.fastjson
+    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
+    api deps.lib.mmkv
+    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
+    api deps.lib.pictureSelector
+
+//    // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
+//    api 'top.zibin:Luban:1.1.8'
+//    // Glide 加载框架 https://github.com/bumptech/glide
+//    api 'com.github.bumptech.glide:glide:4.12.0'
+//    kapt 'com.github.bumptech.glide:compiler:4.12.0'
+//    // Glide 图形库 https://github.com/wasabeef/glide-transformations
+//    api 'jp.wasabeef:glide-transformations:4.3.0'
+//    // Gson https://github.com/google/gson
+//    api 'com.google.code.gson:gson:2.8.7'
+//    // fastjson https://github.com/alibaba/fastjson
+//    api 'com.alibaba:fastjson:1.2.76'
+//    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
+//    api 'com.tencent:mmkv-static:1.2.10'
+//    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
+//    api 'io.github.lucksiege:pictureselector:v2.7.3-rc06'
+
+    // =============
+    // = DevEngine =
+    // =============
 
     // 编译时使用
-    api project(':DevApp')
+    api project(':DevAssist')
 //    // 打包时使用
-//    api deps.dev.dev_app_x
+//    api deps.dev.dev_assist
 }
 
 // gradlew clean

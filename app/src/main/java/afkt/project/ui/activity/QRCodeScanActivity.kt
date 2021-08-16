@@ -28,7 +28,7 @@ import dev.utils.app.image.ImageUtils
 import dev.utils.app.permission.PermissionUtils
 import dev.utils.app.permission.PermissionUtils.PermissionCallback
 import dev.widget.ui.ScanShapeView
-import ktx.dev.engine.media.MediaConfig
+import dev.engine.media.MediaConfig
 import ktx.dev.other.ZXingQRCodeUtils
 
 /**

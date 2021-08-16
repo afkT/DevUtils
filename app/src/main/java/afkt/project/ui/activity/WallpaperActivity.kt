@@ -9,9 +9,9 @@ import dev.base.DevSource
 import dev.engine.storage.DevStorageEngine
 import dev.utils.app.WallpaperUtils
 import dev.utils.common.FileUtils
-import ktx.dev.engine.storage.OnDevInsertListener
-import ktx.dev.engine.storage.StorageItem
-import ktx.dev.engine.storage.StorageResult
+import dev.engine.storage.OnDevInsertListener
+import dev.engine.storage.StorageItem
+import dev.engine.storage.StorageResult
 
 /**
  * detail: 手机壁纸
@@ -42,7 +42,7 @@ class WallpaperActivity : BaseActivity<ActivityWallpaperBinding>() {
                 object : OnDevInsertListener {
                     override fun onResult(
                         result: StorageResult,
-                        params: ktx.dev.engine.storage.StorageItem?,
+                        params: StorageItem?,
                         source: DevSource?
                     ) {
                         showToast(

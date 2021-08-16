@@ -1,4 +1,4 @@
-package ktx.dev.other
+package dev.engine.image
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -19,7 +19,6 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.ImageViewTarget
 import com.bumptech.glide.request.transition.Transition
 import dev.base.DevSource
-import dev.engine.image.LoadListener
 import dev.engine.image.listener.ConvertStorage
 import dev.engine.image.listener.OnConvertListener
 import dev.utils.LogPrintUtils
@@ -29,53 +28,43 @@ import dev.utils.common.FileUtils
 import dev.utils.common.RandomUtils
 import dev.utils.common.StreamUtils
 import dev.utils.common.encrypt.MD5Utils
-import dev.engine.image.ImageConfig
 import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.LinkedHashMap
 
 /**
- * detail: Glide 工具类
+ * detail: Glide Image Engine 实现
  * @author Ttt
- * Glide 详细使用
- * @see https://www.jianshu.com/p/7cfe2653a1fb
- * Glide 文档
- * @see https://muyangmin.github.io/glide-docs-cn
- * 解决 Glide 加载图片闪烁的问题 ( 圆角处理 ) - transform(new RoundedCorners(xx))
- * @see https://blog.csdn.net/andcisco/article/details/96487800
- * 解决圆角 + centerCrop 效果叠加处理
- * transform(new MultiTransformation(new CenterCrop(), new RoundedCorners(xx)))
  */
-@Deprecated("推荐使用 DevImageEngine 实现类 GlideEngineImpl")
-object GlideUtils {
+class GlideEngineImpl : IImageEngine<ImageConfig> {
 
     // 日志 TAG
-    private val TAG = GlideUtils::class.java.simpleName
+    private val TAG = GlideEngineImpl::class.java.simpleName
 
     // ====================
     // = pause and resume =
     // ====================
 
-    fun pause(fragment: Fragment?) {
+    override fun pause(fragment: Fragment?) {
         fragment?.let {
             Glide.with(it).pauseRequests()
         }
     }
 
-    fun resume(fragment: Fragment?) {
+    override fun resume(fragment: Fragment?) {
         fragment?.let {
             Glide.with(it).resumeRequests()
         }
     }
 
-    fun pause(context: Context?) {
+    override fun pause(context: Context?) {
         context?.let {
             Glide.with(it).pauseRequests()
         }
     }
 
-    fun resume(context: Context?) {
+    override fun resume(context: Context?) {
         context?.let {
             Glide.with(it).resumeRequests()
         }
@@ -85,7 +74,7 @@ object GlideUtils {
     // = preload =
     // ===========
 
-    fun preload(
+    override fun preload(
         context: Context?,
         source: DevSource?
     ) {
@@ -95,7 +84,7 @@ object GlideUtils {
         }
     }
 
-    fun preload(
+    override fun preload(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?
@@ -112,13 +101,13 @@ object GlideUtils {
     // = clear =
     // =========
 
-    fun clear(view: View?) {
+    override fun clear(view: View?) {
         view?.context?.let {
             Glide.with(view.context).clear(view)
         }
     }
 
-    fun clear(
+    override fun clear(
         fragment: Fragment?,
         view: View?
     ) {
@@ -127,7 +116,7 @@ object GlideUtils {
         }
     }
 
-    fun clearDiskCache(context: Context?) {
+    override fun clearDiskCache(context: Context?) {
         if (context != null) {
             Thread {
                 try {
@@ -140,7 +129,7 @@ object GlideUtils {
         }
     }
 
-    fun clearMemoryCache(context: Context?) {
+    override fun clearMemoryCache(context: Context?) {
         if (context != null) {
             try {
                 // This method must be called on the main thread.
@@ -151,7 +140,7 @@ object GlideUtils {
         }
     }
 
-    fun clearAllCache(context: Context?) {
+    override fun clearAllCache(context: Context?) {
         clearDiskCache(context)
         clearMemoryCache(context)
     }
@@ -160,7 +149,7 @@ object GlideUtils {
     // = other =
     // =========
 
-    fun lowMemory(context: Context?) {
+    override fun lowMemory(context: Context?) {
         if (context != null) {
             try {
                 Glide.get(context).onLowMemory()
@@ -174,21 +163,21 @@ object GlideUtils {
     // = display =
     // ===========
 
-    fun display(
+    override fun display(
         imageView: ImageView?,
         url: String?
     ) {
         display(imageView, DevSource.create(url), null)
     }
 
-    fun display(
+    override fun display(
         imageView: ImageView?,
         source: DevSource?
     ) {
         display(imageView, source, null)
     }
 
-    fun display(
+    override fun display(
         imageView: ImageView?,
         url: String?,
         config: ImageConfig?
@@ -196,7 +185,7 @@ object GlideUtils {
         display(imageView, DevSource.create(url), config)
     }
 
-    fun display(
+    override fun display(
         imageView: ImageView?,
         source: DevSource?,
         config: ImageConfig?
@@ -213,7 +202,7 @@ object GlideUtils {
 
     // =
 
-    fun <T : Any?> display(
+    override fun <T : Any?> display(
         imageView: ImageView?,
         url: String?,
         listener: LoadListener<T>?
@@ -221,7 +210,7 @@ object GlideUtils {
         display(imageView, DevSource.create(url), null, listener)
     }
 
-    fun <T : Any?> display(
+    override fun <T : Any?> display(
         imageView: ImageView?,
         source: DevSource?,
         listener: LoadListener<T>?
@@ -229,7 +218,7 @@ object GlideUtils {
         display(imageView, source, null, listener)
     }
 
-    fun <T : Any?> display(
+    override fun <T : Any?> display(
         imageView: ImageView?,
         url: String?,
         config: ImageConfig?,
@@ -238,7 +227,7 @@ object GlideUtils {
         display(imageView, DevSource.create(url), config, listener)
     }
 
-    fun <T : Any?> display(
+    override fun <T : Any?> display(
         imageView: ImageView?,
         source: DevSource?,
         config: ImageConfig?,
@@ -258,7 +247,7 @@ object GlideUtils {
 
     // =
 
-    fun display(
+    override fun display(
         fragment: Fragment?,
         imageView: ImageView?,
         url: String?
@@ -266,7 +255,7 @@ object GlideUtils {
         display(fragment, imageView, DevSource.create(url), null)
     }
 
-    fun display(
+    override fun display(
         fragment: Fragment?,
         imageView: ImageView?,
         source: DevSource?
@@ -274,7 +263,7 @@ object GlideUtils {
         display(fragment, imageView, source, null)
     }
 
-    fun display(
+    override fun display(
         fragment: Fragment?,
         imageView: ImageView?,
         url: String?,
@@ -283,7 +272,7 @@ object GlideUtils {
         display(fragment, imageView, DevSource.create(url), config)
     }
 
-    fun display(
+    override fun display(
         fragment: Fragment?,
         imageView: ImageView?,
         source: DevSource?,
@@ -303,7 +292,7 @@ object GlideUtils {
 
     // =
 
-    fun <T : Any?> display(
+    override fun <T : Any?> display(
         fragment: Fragment?,
         imageView: ImageView?,
         url: String?,
@@ -312,7 +301,7 @@ object GlideUtils {
         display(fragment, imageView, DevSource.create(url), null, listener)
     }
 
-    fun <T : Any?> display(
+    override fun <T : Any?> display(
         fragment: Fragment?,
         imageView: ImageView?,
         source: DevSource?,
@@ -321,7 +310,7 @@ object GlideUtils {
         display(fragment, imageView, source, null, listener)
     }
 
-    fun <T : Any?> display(
+    override fun <T : Any?> display(
         fragment: Fragment?,
         imageView: ImageView?,
         url: String?,
@@ -331,7 +320,7 @@ object GlideUtils {
         display(fragment, imageView, DevSource.create(url), config, listener)
     }
 
-    fun <T : Any?> display(
+    override fun <T : Any?> display(
         fragment: Fragment?,
         imageView: ImageView?,
         source: DevSource?,
@@ -356,7 +345,7 @@ object GlideUtils {
     // = load =
     // ========
 
-    fun <T : Any?> loadImage(
+    override fun <T : Any?> loadImage(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?,
@@ -391,7 +380,7 @@ object GlideUtils {
         }
     }
 
-    fun <T : Any?> loadImage(
+    override fun <T : Any?> loadImage(
         fragment: Fragment?,
         source: DevSource?,
         config: ImageConfig?,
@@ -426,7 +415,7 @@ object GlideUtils {
         }
     }
 
-    fun <T : Any?> loadImage(
+    override fun <T : Any?> loadImage(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?,
@@ -440,7 +429,7 @@ object GlideUtils {
         return null
     }
 
-    fun <T : Any?> loadImageThrows(
+    override fun <T : Any?> loadImageThrows(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?,
@@ -495,7 +484,7 @@ object GlideUtils {
 
     // =
 
-    fun loadBitmap(
+    override fun loadBitmap(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?,
@@ -504,7 +493,7 @@ object GlideUtils {
         loadImage(context, source, config, listener)
     }
 
-    fun loadBitmap(
+    override fun loadBitmap(
         fragment: Fragment?,
         source: DevSource?,
         config: ImageConfig?,
@@ -513,7 +502,7 @@ object GlideUtils {
         loadImage(fragment, source, config, listener)
     }
 
-    fun loadBitmap(
+    override fun loadBitmap(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?
@@ -521,7 +510,7 @@ object GlideUtils {
         return loadImage(context, source, config, Bitmap::class.java)
     }
 
-    fun loadBitmapThrows(
+    override fun loadBitmapThrows(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?
@@ -531,7 +520,7 @@ object GlideUtils {
 
     // =
 
-    fun loadDrawable(
+    override fun loadDrawable(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?,
@@ -540,7 +529,7 @@ object GlideUtils {
         loadImage(context, source, config, listener)
     }
 
-    fun loadDrawable(
+    override fun loadDrawable(
         fragment: Fragment?,
         source: DevSource?,
         config: ImageConfig?,
@@ -549,7 +538,7 @@ object GlideUtils {
         loadImage(fragment, source, config, listener)
     }
 
-    fun loadDrawable(
+    override fun loadDrawable(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?
@@ -557,7 +546,7 @@ object GlideUtils {
         return loadImage(context, source, config, Drawable::class.java)
     }
 
-    fun loadDrawableThrows(
+    override fun loadDrawableThrows(
         context: Context?,
         source: DevSource?,
         config: ImageConfig?
@@ -569,7 +558,7 @@ object GlideUtils {
     // = convert =
     // ===========
 
-    fun convertImageFormat(
+    override fun convertImageFormat(
         context: Context?,
         sources: MutableList<DevSource>?,
         listener: OnConvertListener?
@@ -577,7 +566,7 @@ object GlideUtils {
         return convertImageFormat(context, sources, null, listener)
     }
 
-    fun convertImageFormat(
+    override fun convertImageFormat(
         context: Context?,
         sources: MutableList<DevSource>?,
         config: ImageConfig?,
@@ -775,6 +764,14 @@ object GlideUtils {
             // width、height
             if (config.getWidth() > 0 && config.getHeight() > 0) {
                 options = options.override(config.getWidth(), config.getHeight())
+            }
+
+            if (config.isDontAnimate()) {
+                options = options.dontAnimate()
+            }
+
+            if (config.isDontTransform()) {
+                options = options.dontTransform()
             }
         }
         return options
@@ -994,7 +991,7 @@ object GlideUtils {
             val fileLists: MutableList<File> = ArrayList()
             val fileMaps: MutableMap<Int, File?> = LinkedHashMap()
             // 转换器
-            val convertStorage = InnerConvertStorage()
+            val convertStorage = InnerConvertStorage(this)
             // 随机创建任务 id
             val randomTask = RandomUtils.getRandom(1000000, 10000000)
             val task = randomTask.toString()
@@ -1022,7 +1019,9 @@ object GlideUtils {
         return false
     }
 
-    private class InnerConvertStorage : ConvertStorage<ImageConfig?> {
+    private class InnerConvertStorage(
+        private val engineImpl: GlideEngineImpl
+    ) : ConvertStorage<ImageConfig?> {
         override fun convert(
             context: Context?,
             source: DevSource?,
@@ -1045,7 +1044,7 @@ object GlideUtils {
                     }
                 }
             }
-            val readBitmap = loadBitmapThrows(context, source, config)
+            val readBitmap = engineImpl.loadBitmapThrows(context, source, config)
             // 创建随机名 ( 一定程度上唯一, 防止出现重复情况 )
             val randomName = String.format(
                 "%s_%s_%s_%s_%s", task, UUID.randomUUID().hashCode(),

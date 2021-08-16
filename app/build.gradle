@@ -52,6 +52,7 @@ dependencies {
     implementation project(':DevBase')
     implementation project(':DevBase2')
     implementation project(':DevBaseMVVM')
+    implementation project(':DevEngine')
     implementation project(':DevHttpCapture')
     implementation project(':DevOther')
     implementation project(':DevWidget')

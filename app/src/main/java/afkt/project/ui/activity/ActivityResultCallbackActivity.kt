@@ -11,7 +11,7 @@ import dev.engine.media.DevMediaEngine
 import dev.utils.app.ActivityUtils
 import dev.utils.app.AppUtils
 import dev.utils.app.toast.ToastTintUtils
-import ktx.dev.engine.media.MediaConfig
+import dev.engine.media.MediaConfig
 
 /**
  * detail: 跳转 Activity 回传 Callback

@@ -18,7 +18,7 @@ import dev.utils.app.ResourceUtils
 import dev.utils.app.SnackbarUtils
 import dev.utils.app.SpanUtils
 import dev.utils.app.helper.QuickHelper
-import ktx.dev.engine.log.DevLoggerEngineImpl
+import dev.engine.log.DevLoggerEngineImpl
 
 /**
  * detail: DevAssist Engine 实现

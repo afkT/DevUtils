@@ -19,7 +19,7 @@ import dev.utils.app.HandlerUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.UriUtils
 import dev.utils.app.image.ImageUtils
-import ktx.dev.engine.media.MediaConfig
+import dev.engine.media.MediaConfig
 import java.util.*
 
 /**

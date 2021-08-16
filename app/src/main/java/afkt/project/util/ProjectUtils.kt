@@ -8,7 +8,7 @@ import dev.utils.app.ResourceUtils
 import dev.utils.app.SizeUtils
 import dev.widget.ui.ScanShapeView
 import dev.widget.ui.ScanShapeView.CornerEffect
-import ktx.dev.engine.image.ImageConfig
+import dev.engine.image.ImageConfig
 
 /**
  * detail: 项目工具类

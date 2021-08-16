@@ -13,7 +13,7 @@ import dev.engine.media.DevMediaEngine
 import dev.utils.app.*
 import dev.utils.app.image.ImageUtils
 import dev.utils.common.ThrowableUtils
-import ktx.dev.engine.media.MediaConfig
+import dev.engine.media.MediaConfig
 import ktx.dev.other.ZXingQRCodeUtils
 
 /**

@@ -21,7 +21,7 @@ import dev.utils.common.StringUtils
 import dev.utils.common.ThrowableUtils
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import ktx.dev.engine.media.MediaConfig
+import dev.engine.media.MediaConfig
 import ktx.dev.other.ZXingQRCodeUtils
 
 /**
