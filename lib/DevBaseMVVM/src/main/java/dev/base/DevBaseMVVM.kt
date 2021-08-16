@@ -16,6 +16,8 @@ import dev.base.mvvm.BuildConfig
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevBase/README.md
  * DevBaseMVVM README
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md
+ * DevEngine README
+ * @see https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md
  * DevHttpCapture Api
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/README.md
  * DevJava Api

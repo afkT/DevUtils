@@ -1,7 +1,7 @@
-package dev.base
+package dev.engine
 
 /**
- * detail: DevBase
+ * detail: DevEngine
  * @author Ttt
  * <p></p>
  * GitHub
@@ -14,6 +14,8 @@ package dev.base
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevBase/README.md
  * DevBaseMVVM README
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevBaseMVVM/README.md
+ * DevEngine README
+ * @see https://github.com/afkT/DevUtils/blob/master/lib/DevEngine/README.md
  * DevHttpCapture Api
  * @see https://github.com/afkT/DevUtils/blob/master/lib/DevHttpCapture/README.md
  * DevJava Api
@@ -23,26 +25,26 @@ package dev.base
  * DevEnvironment Api
  * @see https://github.com/afkT/DevUtils/blob/master/lib/Environment
  */
-object DevBase {
+object DevEngine {
 
     // ============
     // = 工具类版本 =
     // ============
 
     /**
-     * 获取 DevBase 版本号
-     * @return DevBase versionCode
+     * 获取 DevEngine 版本号
+     * @return DevEngine versionCode
      */
-    fun getDevBaseVersionCode(): Int {
-        return BuildConfig.DevBase_VersionCode
+    fun getDevEngineVersionCode(): Int {
+        return BuildConfig.DevEngine_VersionCode
     }
 
     /**
-     * 获取 DevBase 版本
-     * @return DevBase versionName
+     * 获取 DevEngine 版本
+     * @return DevEngine versionName
      */
-    fun getDevBaseVersion(): String {
-        return BuildConfig.DevBase_Version
+    fun getDevEngineVersion(): String {
+        return BuildConfig.DevEngine_Version
     }
 
     /**

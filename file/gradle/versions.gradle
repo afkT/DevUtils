@@ -39,6 +39,10 @@ ext {
             dev_base_mvvm_versionCode                : 104,
             dev_base_mvvm_versionName                : "1.0.4",
 
+            // DevEngine 实现对第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用
+            dev_engine_versionCode                   : 100,
+            dev_engine_versionName                   : "1.0.0",
+
             // DevHttpCapture OKHttp 抓包工具库
             dev_http_capture_versionCode             : 101,
             dev_http_capture_versionName             : "1.0.1",
