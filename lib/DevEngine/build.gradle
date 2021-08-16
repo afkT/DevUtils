@@ -1,0 +1,35 @@
+apply from: rootProject.file(files.lib_app_kotlin_gradle)
+
+android.defaultConfig {
+    versionCode versions.dev_base_versionCode
+    versionName versions.dev_base_versionName
+    // DevBase Module Version
+    buildConfigField "int", "DevBase_VersionCode", "${versions.dev_base_versionCode}"
+    buildConfigField "String", "DevBase_Version", "\"${versions.dev_base_versionName}\""
+    // DevApp Module Version
+    buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
+    buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
+}
+
+dependencies {
+    api deps.kotlin.stdlib
+    api deps.kotlin.core
+    api deps.kotlin.coroutines
+    api deps.kotlin.lifecycle_runtime
+    api deps.kotlin.lifecycle_common_java8
+    api deps.androidx.design
+    api deps.androidx.appcompat
+    api deps.kotlin.fragment_ktx
+    api deps.kotlin.activity_ktx
+
+    // 编译时使用
+    api project(':DevApp')
+//    // 打包时使用
+//    api deps.dev.dev_app_x
+}
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from : rootProject.file(files.bintray_upload_android)
+//apply from : rootProject.file(files.sonatype_upload_android)

@@ -903,7 +903,7 @@ public class WebViewAssist {
      *     有特殊配置可在 {@link OnApplyListener#onApply(WebViewAssist, Builder)} 回调中进行增加配置设置
      * </pre>
      */
-    public static class Builder {
+    public static final class Builder {
 
         // WebView 辅助类
         private WebViewAssist   mWebViewAssist;

@@ -33,7 +33,7 @@ public class DevTimer {
      * detail: 定时器构建类
      * @author Ttt
      */
-    public static class Builder {
+    public static final class Builder {
 
         // 定时器 Tag
         private String tag;
