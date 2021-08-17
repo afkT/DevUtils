@@ -1,4 +1,4 @@
-package dev.other;
+package java.dev.engine.image;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -21,7 +21,6 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 
-import java.dev.engine.image.ImageConfig;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -30,6 +29,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import dev.base.DevSource;
+import dev.engine.image.IImageEngine;
 import dev.engine.image.LoadListener;
 import dev.engine.image.listener.ConvertStorage;
 import dev.engine.image.listener.OnConvertListener;
@@ -42,53 +42,42 @@ import dev.utils.common.StreamUtils;
 import dev.utils.common.encrypt.MD5Utils;
 
 /**
- * detail: Glide 工具类
+ * detail: Glide Image Engine 实现
  * @author Ttt
- * @deprecated 推荐使用 {@link dev.engine.image.DevImageEngine} 实现类
- * {@link java.dev.engine.image.GlideEngineImpl}
- * <pre>
- *     Glide 详细使用
- *     @see <a href="https://www.jianshu.com/p/7cfe2653a1fb"/>
- *     Glide 文档
- *     @see <a href="https://muyangmin.github.io/glide-docs-cn"/>
- *     解决 Glide 加载图片闪烁的问题 ( 圆角处理 ) - transform(new RoundedCorners(xx));
- *     @see <a href="https://blog.csdn.net/andcisco/article/details/96487800"/>
- *     解决圆角 + centerCrop 效果叠加处理
- *     transform(new MultiTransformation(new CenterCrop(), new RoundedCorners(xx)));
- * </pre>
  */
-@Deprecated
-public final class GlideUtils {
-
-    private GlideUtils() {
-    }
+public class GlideEngineImpl
+        implements IImageEngine<ImageConfig> {
 
     // 日志 TAG
-    private static final String TAG = GlideUtils.class.getSimpleName();
+    private final String TAG = GlideEngineImpl.class.getSimpleName();
 
     // ====================
     // = pause and resume =
     // ====================
 
-    public static void pause(Fragment fragment) {
+    @Override
+    public void pause(Fragment fragment) {
         if (fragment != null) {
             Glide.with(fragment).pauseRequests();
         }
     }
 
-    public static void resume(Fragment fragment) {
+    @Override
+    public void resume(Fragment fragment) {
         if (fragment != null) {
             Glide.with(fragment).resumeRequests();
         }
     }
 
-    public static void pause(Context context) {
+    @Override
+    public void pause(Context context) {
         if (context != null) {
             Glide.with(context).pauseRequests();
         }
     }
 
-    public static void resume(Context context) {
+    @Override
+    public void resume(Context context) {
         if (context != null) {
             Glide.with(context).resumeRequests();
         }
@@ -98,7 +87,8 @@ public final class GlideUtils {
     // = preload =
     // ===========
 
-    public static void preload(
+    @Override
+    public void preload(
             Context context,
             DevSource source
     ) {
@@ -108,7 +98,8 @@ public final class GlideUtils {
         }
     }
 
-    public static void preload(
+    @Override
+    public void preload(
             Context context,
             DevSource source,
             ImageConfig config
@@ -125,13 +116,15 @@ public final class GlideUtils {
     // = clear =
     // =========
 
-    public static void clear(View view) {
+    @Override
+    public void clear(View view) {
         if (view != null && view.getContext() != null) {
             Glide.with(view.getContext()).clear(view);
         }
     }
 
-    public static void clear(
+    @Override
+    public void clear(
             Fragment fragment,
             View view
     ) {
@@ -140,7 +133,8 @@ public final class GlideUtils {
         }
     }
 
-    public static void clearDiskCache(Context context) {
+    @Override
+    public void clearDiskCache(Context context) {
         if (context != null) {
             new Thread(() -> {
                 try {
@@ -153,7 +147,8 @@ public final class GlideUtils {
         }
     }
 
-    public static void clearMemoryCache(Context context) {
+    @Override
+    public void clearMemoryCache(Context context) {
         if (context != null) {
             try {
                 // This method must be called on the main thread.
@@ -164,7 +159,8 @@ public final class GlideUtils {
         }
     }
 
-    public static void clearAllCache(Context context) {
+    @Override
+    public void clearAllCache(Context context) {
         clearDiskCache(context);
         clearMemoryCache(context);
     }
@@ -173,7 +169,8 @@ public final class GlideUtils {
     // = other =
     // =========
 
-    public static void lowMemory(Context context) {
+    @Override
+    public void lowMemory(Context context) {
         if (context != null) {
             try {
                 Glide.get(context).onLowMemory();
@@ -187,21 +184,24 @@ public final class GlideUtils {
     // = display =
     // ===========
 
-    public static void display(
+    @Override
+    public void display(
             ImageView imageView,
             String url
     ) {
         display(imageView, DevSource.create(url), (ImageConfig) null);
     }
 
-    public static void display(
+    @Override
+    public void display(
             ImageView imageView,
             DevSource source
     ) {
         display(imageView, source, (ImageConfig) null);
     }
 
-    public static void display(
+    @Override
+    public void display(
             ImageView imageView,
             String url,
             ImageConfig config
@@ -209,7 +209,8 @@ public final class GlideUtils {
         display(imageView, DevSource.create(url), config);
     }
 
-    public static void display(
+    @Override
+    public void display(
             ImageView imageView,
             DevSource source,
             ImageConfig config
@@ -226,7 +227,8 @@ public final class GlideUtils {
 
     // =
 
-    public static <T> void display(
+    @Override
+    public <T> void display(
             ImageView imageView,
             String url,
             LoadListener<T> listener
@@ -234,7 +236,8 @@ public final class GlideUtils {
         display(imageView, DevSource.create(url), null, listener);
     }
 
-    public static <T> void display(
+    @Override
+    public <T> void display(
             ImageView imageView,
             DevSource source,
             LoadListener<T> listener
@@ -242,7 +245,8 @@ public final class GlideUtils {
         display(imageView, source, null, listener);
     }
 
-    public static <T> void display(
+    @Override
+    public <T> void display(
             ImageView imageView,
             String url,
             ImageConfig config,
@@ -251,7 +255,8 @@ public final class GlideUtils {
         display(imageView, DevSource.create(url), config, listener);
     }
 
-    public static <T> void display(
+    @Override
+    public <T> void display(
             ImageView imageView,
             DevSource source,
             ImageConfig config,
@@ -271,7 +276,8 @@ public final class GlideUtils {
 
     // =
 
-    public static void display(
+    @Override
+    public void display(
             Fragment fragment,
             ImageView imageView,
             String url
@@ -279,7 +285,8 @@ public final class GlideUtils {
         display(fragment, imageView, DevSource.create(url), (ImageConfig) null);
     }
 
-    public static void display(
+    @Override
+    public void display(
             Fragment fragment,
             ImageView imageView,
             DevSource source
@@ -287,7 +294,8 @@ public final class GlideUtils {
         display(fragment, imageView, source, (ImageConfig) null);
     }
 
-    public static void display(
+    @Override
+    public void display(
             Fragment fragment,
             ImageView imageView,
             String url,
@@ -296,7 +304,8 @@ public final class GlideUtils {
         display(fragment, imageView, DevSource.create(url), config);
     }
 
-    public static void display(
+    @Override
+    public void display(
             Fragment fragment,
             ImageView imageView,
             DevSource source,
@@ -316,7 +325,8 @@ public final class GlideUtils {
 
     // =
 
-    public static <T> void display(
+    @Override
+    public <T> void display(
             Fragment fragment,
             ImageView imageView,
             String url,
@@ -325,7 +335,8 @@ public final class GlideUtils {
         display(fragment, imageView, DevSource.create(url), null, listener);
     }
 
-    public static <T> void display(
+    @Override
+    public <T> void display(
             Fragment fragment,
             ImageView imageView,
             DevSource source,
@@ -334,7 +345,8 @@ public final class GlideUtils {
         display(fragment, imageView, source, null, listener);
     }
 
-    public static <T> void display(
+    @Override
+    public <T> void display(
             Fragment fragment,
             ImageView imageView,
             String url,
@@ -344,7 +356,8 @@ public final class GlideUtils {
         display(fragment, imageView, DevSource.create(url), config, listener);
     }
 
-    public static <T> void display(
+    @Override
+    public <T> void display(
             Fragment fragment,
             ImageView imageView,
             DevSource source,
@@ -369,7 +382,8 @@ public final class GlideUtils {
     // = load =
     // ========
 
-    public static <T> void loadImage(
+    @Override
+    public <T> void loadImage(
             Context context,
             DevSource source,
             ImageConfig config,
@@ -397,7 +411,8 @@ public final class GlideUtils {
         }
     }
 
-    public static <T> void loadImage(
+    @Override
+    public <T> void loadImage(
             Fragment fragment,
             DevSource source,
             ImageConfig config,
@@ -425,7 +440,8 @@ public final class GlideUtils {
         }
     }
 
-    public static <T> T loadImage(
+    @Override
+    public <T> T loadImage(
             Context context,
             DevSource source,
             ImageConfig config,
@@ -439,7 +455,8 @@ public final class GlideUtils {
         return null;
     }
 
-    public static <T> T loadImageThrows(
+    @Override
+    public <T> T loadImageThrows(
             Context context,
             DevSource source,
             ImageConfig config,
@@ -495,7 +512,8 @@ public final class GlideUtils {
 
     // =
 
-    public static void loadBitmap(
+    @Override
+    public void loadBitmap(
             Context context,
             DevSource source,
             ImageConfig config,
@@ -504,7 +522,8 @@ public final class GlideUtils {
         loadImage(context, source, config, listener);
     }
 
-    public static void loadBitmap(
+    @Override
+    public void loadBitmap(
             Fragment fragment,
             DevSource source,
             ImageConfig config,
@@ -513,7 +532,8 @@ public final class GlideUtils {
         loadImage(fragment, source, config, listener);
     }
 
-    public static Bitmap loadBitmap(
+    @Override
+    public Bitmap loadBitmap(
             Context context,
             DevSource source,
             ImageConfig config
@@ -521,7 +541,8 @@ public final class GlideUtils {
         return loadImage(context, source, config, Bitmap.class);
     }
 
-    public static Bitmap loadBitmapThrows(
+    @Override
+    public Bitmap loadBitmapThrows(
             Context context,
             DevSource source,
             ImageConfig config
@@ -532,7 +553,8 @@ public final class GlideUtils {
 
     // =
 
-    public static void loadDrawable(
+    @Override
+    public void loadDrawable(
             Context context,
             DevSource source,
             ImageConfig config,
@@ -541,7 +563,8 @@ public final class GlideUtils {
         loadImage(context, source, config, listener);
     }
 
-    public static void loadDrawable(
+    @Override
+    public void loadDrawable(
             Fragment fragment,
             DevSource source,
             ImageConfig config,
@@ -550,7 +573,8 @@ public final class GlideUtils {
         loadImage(fragment, source, config, listener);
     }
 
-    public static Drawable loadDrawable(
+    @Override
+    public Drawable loadDrawable(
             Context context,
             DevSource source,
             ImageConfig config
@@ -558,7 +582,8 @@ public final class GlideUtils {
         return loadImage(context, source, config, Drawable.class);
     }
 
-    public static Drawable loadDrawableThrows(
+    @Override
+    public Drawable loadDrawableThrows(
             Context context,
             DevSource source,
             ImageConfig config
@@ -571,7 +596,8 @@ public final class GlideUtils {
     // = convert =
     // ===========
 
-    public static boolean convertImageFormat(
+    @Override
+    public boolean convertImageFormat(
             Context context,
             List<DevSource> sources,
             OnConvertListener listener
@@ -579,7 +605,8 @@ public final class GlideUtils {
         return convertImageFormat(context, sources, null, listener);
     }
 
-    public static boolean convertImageFormat(
+    @Override
+    public boolean convertImageFormat(
             Context context,
             List<DevSource> sources,
             ImageConfig config,
@@ -597,7 +624,7 @@ public final class GlideUtils {
      * @param fragment {@link Fragment}
      * @return {@code true} yes, {@code false} no
      */
-    private static boolean canFragmentLoadImage(Fragment fragment) {
+    private boolean canFragmentLoadImage(Fragment fragment) {
         return fragment.isResumed() || fragment.isAdded() || fragment.isVisible();
     }
 
@@ -607,7 +634,7 @@ public final class GlideUtils {
      * @param source  {@link DevSource}
      * @return {@link RequestBuilder}
      */
-    private static RequestBuilder<?> setToRequest(
+    private RequestBuilder<?> setToRequest(
             RequestManager manager,
             DevSource source
     ) {
@@ -643,7 +670,7 @@ public final class GlideUtils {
      * @param <T>     泛型 ( 如 Drawable、Bitmap )
      * @return {@link RequestBuilder}
      */
-    private static <T> RequestBuilder<T> setToRequest(
+    private <T> RequestBuilder<T> setToRequest(
             RequestBuilder<T> request,
             DevSource source
     ) {
@@ -677,7 +704,7 @@ public final class GlideUtils {
      * @param config {@link ImageConfig}
      * @return {@link RequestOptions}
      */
-    private static RequestOptions buildRequestOptions(ImageConfig config) {
+    private RequestOptions buildRequestOptions(ImageConfig config) {
         RequestOptions options = new RequestOptions();
         if (config != null) {
 
@@ -752,6 +779,14 @@ public final class GlideUtils {
             if (config.getWidth() > 0 && config.getHeight() > 0) {
                 options = options.override(config.getWidth(), config.getHeight());
             }
+
+            if (config.isDontAnimate()) {
+                options = options.dontAnimate();
+            }
+
+            if (config.isDontTransform()) {
+                options = options.dontTransform();
+            }
         }
         return options;
     }
@@ -762,7 +797,7 @@ public final class GlideUtils {
      * @param config  {@link ImageConfig}
      * @return {@link RequestBuilder}
      */
-    private static <T> RequestBuilder buildRequest(
+    private <T> RequestBuilder buildRequest(
             RequestBuilder<T> request,
             ImageConfig config
     ) {
@@ -786,7 +821,7 @@ public final class GlideUtils {
      * @param request   {@link RequestBuilder}
      * @param config    {@link ImageConfig}
      */
-    private static void priDisplayToRequestBuilder(
+    private void priDisplayToRequestBuilder(
             ImageView imageView,
             RequestBuilder request,
             ImageConfig config
@@ -804,7 +839,7 @@ public final class GlideUtils {
      * @param source    {@link DevSource}
      * @param listener  {@link LoadListener}
      */
-    private static <T> void priDisplayToRequestBuilder(
+    private <T> void priDisplayToRequestBuilder(
             ImageView imageView,
             RequestBuilder request,
             ImageConfig config,
@@ -1008,7 +1043,7 @@ public final class GlideUtils {
      * @param listener 回调事件
      * @return {@code true} success, {@code false} fail
      */
-    private static boolean priConvertImageFormat(
+    private boolean priConvertImageFormat(
             Context context,
             List<DevSource> sources,
             ImageConfig config,
@@ -1018,7 +1053,7 @@ public final class GlideUtils {
             List<File>         fileLists = new ArrayList<>();
             Map<Integer, File> fileMaps  = new LinkedHashMap<>();
             // 转换器
-            InnerConvertStorage convertStorage = new InnerConvertStorage();
+            InnerConvertStorage convertStorage = new InnerConvertStorage(this);
             // 随机创建任务 id
             int    randomTask = RandomUtils.getRandom(1000000, 10000000);
             String task       = String.valueOf(randomTask);
@@ -1048,6 +1083,12 @@ public final class GlideUtils {
     private static class InnerConvertStorage
             implements ConvertStorage<ImageConfig> {
 
+        private GlideEngineImpl engineImpl;
+
+        public InnerConvertStorage(GlideEngineImpl engineImpl) {
+            this.engineImpl = engineImpl;
+        }
+
         @Override
         public File convert(
                 Context context,
@@ -1072,7 +1113,7 @@ public final class GlideUtils {
                     }
                 }
             }
-            Bitmap readBitmap = loadBitmapThrows(context, source, config);
+            Bitmap readBitmap = engineImpl.loadBitmapThrows(context, source, config);
             // 创建随机名 ( 一定程度上唯一, 防止出现重复情况 )
             String randomName = String.format("%s_%s_%s_%s_%s", task, UUID.randomUUID().hashCode(),
                     System.currentTimeMillis(), index, count

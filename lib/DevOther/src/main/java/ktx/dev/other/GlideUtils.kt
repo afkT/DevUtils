@@ -29,7 +29,7 @@ import dev.utils.common.FileUtils
 import dev.utils.common.RandomUtils
 import dev.utils.common.StreamUtils
 import dev.utils.common.encrypt.MD5Utils
-import dev.engine.image.ImageConfig
+import java.dev.engine.image.ImageConfig
 import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList

@@ -7,11 +7,11 @@ import afkt.project.databinding.ActivityWallpaperBinding
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.DevSource
 import dev.engine.storage.DevStorageEngine
-import dev.utils.app.WallpaperUtils
-import dev.utils.common.FileUtils
 import dev.engine.storage.OnDevInsertListener
 import dev.engine.storage.StorageItem
 import dev.engine.storage.StorageResult
+import dev.utils.app.WallpaperUtils
+import dev.utils.common.FileUtils
 
 /**
  * detail: 手机壁纸

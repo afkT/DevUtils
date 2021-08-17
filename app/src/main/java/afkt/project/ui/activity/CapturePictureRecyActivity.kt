@@ -18,14 +18,14 @@ import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.base.widget.BaseTextView
 import dev.engine.storage.DevStorageEngine
+import dev.engine.storage.OnDevInsertListener
+import dev.engine.storage.StorageItem
+import dev.engine.storage.StorageResult
 import dev.utils.app.CapturePictureUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.QuickHelper
 import dev.utils.app.helper.ViewHelper
 import dev.utils.common.FileUtils
-import dev.engine.storage.OnDevInsertListener
-import dev.engine.storage.StorageItem
-import dev.engine.storage.StorageResult
 
 /**
  * detail: CapturePictureUtils RecyclerView 截图

@@ -30,9 +30,9 @@ dependencies {
     implementation deps.lib.gson
     // fastjson https://github.com/alibaba/fastjson
     implementation deps.lib.fastjson
-//    // Glide 加载框架 https://github.com/bumptech/glide
-//    implementation deps.lib.glide
-//    kapt deps.lib.glide_compiler
+    // Glide 加载框架 https://github.com/bumptech/glide
+    implementation deps.lib.glide
+    kapt deps.lib.glide_compiler
     // EventBus 事件订阅分发 https://github.com/greenrobot/EventBus
     implementation deps.lib.eventbus
     // LiveEventBus 消息总线 https://github.com/JeremyLiao/LiveEventBus
@@ -46,8 +46,8 @@ dependencies {
     // = 其他第三方库 - 小功能、简约 =
     // ==========================
 
-//    // Glide 图形库 https://github.com/wasabeef/glide-transformations
-//    implementation deps.lib.glide_transformations
+    // Glide 图形库 https://github.com/wasabeef/glide-transformations
+    implementation deps.lib.glide_transformations
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
     implementation deps.lib.pictureSelector
     // 动画库 https://github.com/airbnb/lottie-android

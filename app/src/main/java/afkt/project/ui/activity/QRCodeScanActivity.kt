@@ -20,6 +20,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.zxing.Result
 import dev.engine.log.DevLogEngine
 import dev.engine.media.DevMediaEngine
+import dev.engine.media.MediaConfig
 import dev.utils.app.*
 import dev.utils.app.assist.BeepVibrateAssist
 import dev.utils.app.assist.InactivityTimerAssist
@@ -28,7 +29,6 @@ import dev.utils.app.image.ImageUtils
 import dev.utils.app.permission.PermissionUtils
 import dev.utils.app.permission.PermissionUtils.PermissionCallback
 import dev.widget.ui.ScanShapeView
-import dev.engine.media.MediaConfig
 import ktx.dev.other.ZXingQRCodeUtils
 
 /**

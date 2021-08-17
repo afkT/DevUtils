@@ -4,11 +4,11 @@ import afkt.project.R
 import android.graphics.Color
 import android.graphics.Rect
 import dev.base.DevVariable
+import dev.engine.image.ImageConfig
 import dev.utils.app.ResourceUtils
 import dev.utils.app.SizeUtils
 import dev.widget.ui.ScanShapeView
 import dev.widget.ui.ScanShapeView.CornerEffect
-import dev.engine.image.ImageConfig
 
 /**
  * detail: 项目工具类

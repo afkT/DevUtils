@@ -14,6 +14,7 @@ import dev.base.DevSource
 import dev.engine.image.DevImageEngine
 import dev.engine.image.listener.BitmapListener
 import dev.engine.media.DevMediaEngine
+import dev.engine.media.MediaConfig
 import dev.utils.DevFinal
 import dev.utils.app.*
 import dev.utils.app.toast.ToastTintUtils
@@ -21,7 +22,6 @@ import dev.utils.common.StringUtils
 import dev.utils.common.ThrowableUtils
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import dev.engine.media.MediaConfig
 import ktx.dev.other.ZXingQRCodeUtils
 
 /**
