@@ -11,7 +11,7 @@ import java.lang.reflect.Type
 import java.util.*
 
 /**
- * detail: DevCache Engine 实现
+ * detail: DevCache ( DevUtils ) Cache Engine 实现
  * @author Ttt
  */
 class DevCacheEngineImpl(
@@ -22,7 +22,7 @@ class DevCacheEngineImpl(
     // = 对外公开方法 =
     // =============
 
-    override fun getConfig(): CacheConfig? {
+    override fun getConfig(): CacheConfig {
         return mConfig
     }
 

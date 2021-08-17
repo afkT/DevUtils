@@ -1,12 +1,13 @@
 package dev.engine.log
 
 import dev.utils.app.logger.DevLogger
+import dev.utils.app.logger.LogConfig
 
 /**
  * detail: DevLogger Log Engine 实现
  * @author Ttt
  */
-abstract class DevLoggerEngineImpl : ILogEngine {
+abstract class DevLoggerEngineImpl(val logConfig: LogConfig?) : ILogEngine {
 
     // =============================
     // = 使用默认 TAG ( 日志打印方法 ) =
@@ -16,18 +17,18 @@ abstract class DevLoggerEngineImpl : ILogEngine {
         message: String?,
         vararg args: Any?
     ) {
-        DevLogger.d(message, *args)
+        DevLogger.other(logConfig).d(message, *args)
     }
 
     override fun e(
         message: String?,
         vararg args: Any?
     ) {
-        DevLogger.e(message, *args)
+        DevLogger.other(logConfig).e(message, *args)
     }
 
     override fun e(throwable: Throwable?) {
-        DevLogger.e(throwable)
+        DevLogger.other(logConfig).e(throwable)
     }
 
     override fun e(
@@ -35,43 +36,43 @@ abstract class DevLoggerEngineImpl : ILogEngine {
         message: String?,
         vararg args: Any?
     ) {
-        DevLogger.e(throwable, message, *args)
+        DevLogger.other(logConfig).e(throwable, message, *args)
     }
 
     override fun w(
         message: String?,
         vararg args: Any?
     ) {
-        DevLogger.w(message, *args)
+        DevLogger.other(logConfig).w(message, *args)
     }
 
     override fun i(
         message: String?,
         vararg args: Any?
     ) {
-        DevLogger.i(message, *args)
+        DevLogger.other(logConfig).i(message, *args)
     }
 
     override fun v(
         message: String?,
         vararg args: Any?
     ) {
-        DevLogger.v(message, *args)
+        DevLogger.other(logConfig).v(message, *args)
     }
 
     override fun wtf(
         message: String?,
         vararg args: Any?
     ) {
-        DevLogger.wtf(message, *args)
+        DevLogger.other(logConfig).wtf(message, *args)
     }
 
     override fun json(json: String?) {
-        DevLogger.json(json)
+        DevLogger.other(logConfig).json(json)
     }
 
     override fun xml(xml: String?) {
-        DevLogger.xml(xml)
+        DevLogger.other(logConfig).xml(xml)
     }
 
     // ==============================
@@ -83,7 +84,7 @@ abstract class DevLoggerEngineImpl : ILogEngine {
         message: String?,
         vararg args: Any?
     ) {
-        DevLogger.dTag(tag, message, *args)
+        DevLogger.other(logConfig).dTag(tag, message, *args)
     }
 
     override fun eTag(
@@ -91,14 +92,14 @@ abstract class DevLoggerEngineImpl : ILogEngine {
         message: String?,
         vararg args: Any?
     ) {
-        DevLogger.eTag(tag, message, *args)
+        DevLogger.other(logConfig).eTag(tag, message, *args)
     }
 
     override fun eTag(
         tag: String?,
         throwable: Throwable?
     ) {
-        DevLogger.eTag(tag, throwable)
+        DevLogger.other(logConfig).eTag(tag, throwable)
     }
 
     override fun eTag(
@@ -107,7 +108,7 @@ abstract class DevLoggerEngineImpl : ILogEngine {
         message: String?,
         vararg args: Any?
     ) {
-        DevLogger.eTag(tag, throwable, message, *args)
+        DevLogger.other(logConfig).eTag(tag, throwable, message, *args)
     }
 
     override fun wTag(
@@ -115,7 +116,7 @@ abstract class DevLoggerEngineImpl : ILogEngine {
         message: String?,
         vararg args: Any?
     ) {
-        DevLogger.wTag(tag, message, *args)
+        DevLogger.other(logConfig).wTag(tag, message, *args)
     }
 
     override fun iTag(
@@ -123,7 +124,7 @@ abstract class DevLoggerEngineImpl : ILogEngine {
         message: String?,
         vararg args: Any?
     ) {
-        DevLogger.iTag(tag, message, *args)
+        DevLogger.other(logConfig).iTag(tag, message, *args)
     }
 
     override fun vTag(
@@ -131,7 +132,7 @@ abstract class DevLoggerEngineImpl : ILogEngine {
         message: String?,
         vararg args: Any?
     ) {
-        DevLogger.vTag(tag, message, *args)
+        DevLogger.other(logConfig).vTag(tag, message, *args)
     }
 
     override fun wtfTag(
@@ -139,20 +140,20 @@ abstract class DevLoggerEngineImpl : ILogEngine {
         message: String?,
         vararg args: Any?
     ) {
-        DevLogger.wtfTag(tag, message, *args)
+        DevLogger.other(logConfig).wtfTag(tag, message, *args)
     }
 
     override fun jsonTag(
         tag: String?,
         json: String?
     ) {
-        DevLogger.jsonTag(tag, json)
+        DevLogger.other(logConfig).jsonTag(tag, json)
     }
 
     override fun xmlTag(
         tag: String?,
         xml: String?
     ) {
-        DevLogger.xmlTag(tag, xml)
+        DevLogger.other(logConfig).xmlTag(tag, xml)
     }
 }

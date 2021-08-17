@@ -1,6 +1,7 @@
 package dev.engine.log;
 
 import dev.utils.app.logger.DevLogger;
+import dev.utils.app.logger.LogConfig;
 
 /**
  * detail: DevLogger Log Engine 实现
@@ -8,6 +9,16 @@ import dev.utils.app.logger.DevLogger;
  */
 public abstract class DevLoggerEngineImpl
         implements ILogEngine {
+
+    private final LogConfig logConfig;
+
+    public DevLoggerEngineImpl(LogConfig logConfig) {
+        this.logConfig = logConfig;
+    }
+
+    public LogConfig getLogConfig() {
+        return logConfig;
+    }
 
     // =============================
     // = 使用默认 TAG ( 日志打印方法 ) =
