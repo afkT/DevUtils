@@ -3,8 +3,8 @@ package ktx.dev.other.retrofit_coroutines.demo
 import androidx.lifecycle.LiveData
 import dev.capture.CallbackInterceptor
 import dev.engine.log.DevLogEngine
-import dev.other.GsonUtils
 import dev.utils.LogPrintUtils
+import ktx.dev.other.GsonUtils
 import ktx.dev.other.retrofit_coroutines.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody

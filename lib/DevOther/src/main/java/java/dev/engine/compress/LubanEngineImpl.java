@@ -1,5 +1,6 @@
 package java.dev.engine.compress;
 
+import java.dev.other.LubanUtils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,6 @@ import dev.engine.compress.ICompressEngine;
 import dev.engine.compress.listener.CompressFilter;
 import dev.engine.compress.listener.OnCompressListener;
 import dev.engine.compress.listener.OnRenameListener;
-import dev.other.LubanUtils;
 
 /**
  * detail: Luban Image Compress Engine 实现

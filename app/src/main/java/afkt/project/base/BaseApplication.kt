@@ -22,7 +22,6 @@ import dev.environment.DevEnvironment
 import dev.environment.DevEnvironmentActivity
 import dev.environment.bean.EnvironmentBean
 import dev.environment.bean.ModuleBean
-import dev.other.MMKVUtils
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 import dev.utils.app.*
@@ -38,6 +37,7 @@ import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
 import ktx.dev.assist.WebViewAssist
 import me.jessyan.autosize.AutoSizeConfig
+import java.dev.other.MMKVUtils
 
 /**
  * detail: Base Application

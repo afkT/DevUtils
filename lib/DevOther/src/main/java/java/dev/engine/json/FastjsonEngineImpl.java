@@ -1,9 +1,9 @@
 package java.dev.engine.json;
 
+import java.dev.other.FastjsonUtils;
 import java.lang.reflect.Type;
 
 import dev.engine.json.IJSONEngine;
-import dev.other.FastjsonUtils;
 
 /**
  * detail: Fastjson JSON Engine 实现

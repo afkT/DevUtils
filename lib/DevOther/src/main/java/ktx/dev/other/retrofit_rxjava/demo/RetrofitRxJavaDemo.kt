@@ -2,9 +2,9 @@ package ktx.dev.other.retrofit_rxjava.demo
 
 import dev.capture.CallbackInterceptor
 import dev.engine.log.DevLogEngine
-import dev.other.GsonUtils
 import dev.utils.LogPrintUtils
 import io.reactivex.rxjava3.core.Flowable
+import ktx.dev.other.GsonUtils
 import ktx.dev.other.retrofit_rxjava.RxJavaManager
 import ktx.dev.other.retrofit_rxjava.response.BaseResponse
 import ktx.dev.other.retrofit_rxjava.subscriber.BaseBeanSubscriber

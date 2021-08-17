@@ -3,13 +3,13 @@ package afkt.project.function.http
 import dev.DevUtils
 import dev.capture.CallbackInterceptor
 import dev.environment.DevEnvironment
-import dev.other.GsonUtils
 import dev.utils.LogPrintUtils
 import ktx.dev.other.retrofit_rxjava.RetrofitManager
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.dev.other.GsonUtils
 import java.util.concurrent.TimeUnit
 
 /**
