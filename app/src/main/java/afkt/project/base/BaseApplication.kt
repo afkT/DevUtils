@@ -16,13 +16,8 @@ import dev.DevHttpCapture
 import dev.DevUtils
 import dev.base.DevBase
 import dev.base.DevBaseMVVM
-import dev.engine.compress.DevCompressEngine
-import dev.engine.image.DevImageEngine
-import dev.engine.json.DevJSONEngine
+import dev.engine.DevEngine
 import dev.engine.log.DevLogEngine
-import dev.engine.media.DevMediaEngine
-import dev.engine.permission.DevPermissionEngine
-import dev.engine.storage.DevStorageEngine
 import dev.environment.DevEnvironment
 import dev.environment.DevEnvironmentActivity
 import dev.environment.bean.EnvironmentBean
@@ -42,13 +37,6 @@ import dev.widget.DevWidget
 import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
 import ktx.dev.assist.WebViewAssist
-import dev.engine.compress.LubanEngineImpl
-import dev.engine.image.GlideEngineImpl
-import dev.engine.json.GsonEngineImpl
-import dev.engine.log.DevLoggerEngineImpl
-import dev.engine.media.PictureSelectorEngineImpl
-import dev.engine.permission.DevPermissionEngineImpl
-import dev.engine.storage.DevMediaStoreEngineImpl
 import me.jessyan.autosize.AutoSizeConfig
 
 /**
@@ -272,17 +260,8 @@ class BaseApplication : MultiDexApplication() {
      * 初始化引擎
      */
     private fun initEngine() {
-        DevLogEngine.setEngine(object : DevLoggerEngineImpl() {
-            override fun isPrintLog(): Boolean {
-                return DevUtils.isDebug()
-            }
-        })
-        DevJSONEngine.setEngine(GsonEngineImpl())
-        DevImageEngine.setEngine(GlideEngineImpl())
-        DevPermissionEngine.setEngine(DevPermissionEngineImpl())
-        DevCompressEngine.setEngine(LubanEngineImpl())
-        DevMediaEngine.setEngine(PictureSelectorEngineImpl())
-        DevStorageEngine.setEngine(DevMediaStoreEngineImpl())
+        // 使用内部默认实现 Engine
+        DevEngine.defaultEngine()
     }
 
     /**

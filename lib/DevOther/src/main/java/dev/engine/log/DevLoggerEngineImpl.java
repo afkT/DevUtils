@@ -12,6 +12,10 @@ public abstract class DevLoggerEngineImpl
 
     private final LogConfig logConfig;
 
+    public DevLoggerEngineImpl() {
+        this(null);
+    }
+
     public DevLoggerEngineImpl(LogConfig logConfig) {
         this.logConfig = logConfig;
     }

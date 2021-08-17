@@ -1,5 +1,7 @@
 package dev.engine
 
+import android.content.Context
+import com.tencent.mmkv.MMKV
 import dev.DevUtils
 import dev.engine.cache.CacheConfig
 import dev.engine.cache.DevCacheEngine
@@ -90,22 +92,33 @@ object DevEngine {
     // ============
 
     /**
-     * 使用内部默认 Engine
+     * 使用 DevEngine 库内部默认实现 MMKV 初始化
+     * @param context Context?
+     * @return DevEngine
+     */
+    fun defaultMMKVInitialize(context: Context?): DevEngine {
+        DevUtils.getContext(context)?.let {
+            MMKVUtils.initialize(it.applicationContext)
+        }
+        return this
+    }
+
+    /**
+     * 使用 DevEngine 库内部默认实现 Engine
      * @param keyValueConfig Key-Value Engine Config
      * @param logConfig Log Config
      */
     fun defaultEngine(
-        keyValueConfig: IKeyValueEngine.EngineConfig?
+        keyValueConfig: IKeyValueEngine.EngineConfig? = null
     ) {
-        mmkvInitialize(DevUtils.getContext())
-
         defaultEngine(
-            CacheConfig(null, DevCache.newCache()), keyValueConfig
+            CacheConfig(null, DevCache.newCache()),
+            keyValueConfig
         )
     }
 
     /**
-     * 使用内部默认 Engine 实现
+     * 使用 DevEngine 库内部默认实现 Engine
      * @param cacheConfig Cache Engine Config
      * @param keyValueConfig Key-Value Engine Config
      * @param logConfig Log Config
@@ -148,7 +161,7 @@ object DevEngine {
         // 初始化 Gson JSON Engine 实现
         DevJSONEngine.setEngine(GsonEngineImpl())
 //        // 初始化 Fastjson JSON Engine 实现
-//        DevJSONEngine.setEngine("key", FastjsonEngineImpl())
+//        DevJSONEngine.setEngine(FastjsonEngineImpl())
 
         // ============================
         // = KeyValue Engine 键值对存储 =
@@ -196,5 +209,17 @@ object DevEngine {
 
         // 初始化 DevUtils MediaStore Engine 实现
         DevStorageEngine.setEngine(DevMediaStoreEngineImpl())
+    }
+
+    // ==========
+    // = 快捷获取 =
+    // ==========
+
+    /**
+     * 获取 MMKV 对象
+     * @return MMKV
+     */
+    fun getMMKVByHolder(): MMKV? {
+        return MMKVUtils.defaultHolder().mmkv
     }
 }

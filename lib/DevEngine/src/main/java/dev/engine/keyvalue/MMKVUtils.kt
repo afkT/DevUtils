@@ -12,15 +12,6 @@ import java.util.*
 import kotlin.collections.set
 
 /**
- * 初始化方法 ( 必须调用 )
- * @param context [Context]
- */
-fun mmkvInitialize(context: Context?) {
-    // 初始化 MMKV 并设置日志级别
-    MMKV.initialize(context, MMKVLogLevel.LevelNone)
-}
-
-/**
  * detail: MMKV 工具类
  * @author Ttt
  * 支持组件化 module 存储、以及默认通用 mmkv 对象
@@ -34,7 +25,7 @@ fun mmkvInitialize(context: Context?) {
  * [defaultHolder].encode/decodeXxx
  * [get].encode/decodeXxx
  */
-internal object MMKVUtils {
+object MMKVUtils {
 
     // 日志 TAG
     private val TAG = MMKVUtils::class.java.simpleName
