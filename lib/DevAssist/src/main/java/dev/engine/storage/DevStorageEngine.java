@@ -1,9 +1,8 @@
 package dev.engine.storage;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
-import dev.utils.DevFinal;
+import dev.engine.DevEngineAssist;
 
 /**
  * detail: Storage Engine
@@ -14,14 +13,14 @@ public final class DevStorageEngine {
     private DevStorageEngine() {
     }
 
-    private static final Map<String, IStorageEngine> sEngineMaps = new LinkedHashMap<>();
+    private static final DevEngineAssist<IStorageEngine> sAssist = new DevEngineAssist<>();
 
     /**
      * 获取 Engine
      * @return {@link IStorageEngine}
      */
     public static IStorageEngine getEngine() {
-        return getEngine(DevFinal.DEFAULT);
+        return sAssist.getEngine();
     }
 
     /**
@@ -30,7 +29,7 @@ public final class DevStorageEngine {
      * @return {@link IStorageEngine}
      */
     public static IStorageEngine getEngine(final String key) {
-        return sEngineMaps.get(key);
+        return sAssist.getEngine(key);
     }
 
     /**
@@ -39,7 +38,7 @@ public final class DevStorageEngine {
      * @return {@link IStorageEngine}
      */
     public static IStorageEngine setEngine(final IStorageEngine engine) {
-        return setEngine(DevFinal.DEFAULT, engine);
+        return sAssist.setEngine(engine);
     }
 
     /**
@@ -52,15 +51,14 @@ public final class DevStorageEngine {
             final String key,
             final IStorageEngine engine
     ) {
-        sEngineMaps.put(key, engine);
-        return engine;
+        return sAssist.setEngine(key, engine);
     }
 
     /**
      * 移除 Engine
      */
     public static void removeEngine() {
-        removeEngine(DevFinal.DEFAULT);
+        sAssist.removeEngine();
     }
 
     /**
@@ -68,7 +66,7 @@ public final class DevStorageEngine {
      * @param key key
      */
     public static void removeEngine(final String key) {
-        sEngineMaps.remove(key);
+        sAssist.removeEngine(key);
     }
 
     // ==========
@@ -76,11 +74,19 @@ public final class DevStorageEngine {
     // ==========
 
     /**
+     * 获取 DevEngine Generic Assist
+     * @return DevEngine Generic Assist
+     */
+    public static DevEngineAssist<IStorageEngine> getAssist() {
+        return sAssist;
+    }
+
+    /**
      * 获取 Engine Map
      * @return Engine Map
      */
-    public static Map<String, IStorageEngine> getsEngineMaps() {
-        return sEngineMaps;
+    public static Map<String, IStorageEngine> getEngineMaps() {
+        return sAssist.getEngineMaps();
     }
 
     /**
@@ -88,7 +94,7 @@ public final class DevStorageEngine {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean contains() {
-        return contains(DevFinal.DEFAULT);
+        return sAssist.contains();
     }
 
     /**
@@ -97,7 +103,7 @@ public final class DevStorageEngine {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean contains(final String key) {
-        return sEngineMaps.containsKey(key);
+        return sAssist.contains(key);
     }
 
     /**
@@ -105,7 +111,7 @@ public final class DevStorageEngine {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty() {
-        return isEmpty(DevFinal.DEFAULT);
+        return sAssist.isEmpty();
     }
 
     /**
@@ -114,6 +120,6 @@ public final class DevStorageEngine {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final String key) {
-        return getEngine(key) == null;
+        return sAssist.isEmpty(key);
     }
 }

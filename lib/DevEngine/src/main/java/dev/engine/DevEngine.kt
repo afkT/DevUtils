@@ -87,6 +87,18 @@ object DevEngine {
         return BuildConfig.DevApp_Version
     }
 
+    // ==========
+    // = 快捷获取 =
+    // ==========
+
+    /**
+     * 获取 MMKV 对象
+     * @return MMKV
+     */
+    fun getMMKVByHolder(): MMKV? {
+        return MMKVUtils.defaultHolder().mmkv
+    }
+
     // ============
     // = 初始化方法 =
     // ============
@@ -211,15 +223,9 @@ object DevEngine {
         DevStorageEngine.setEngine(DevMediaStoreEngineImpl())
     }
 
-    // ==========
-    // = 快捷获取 =
-    // ==========
+    // ===========
+    // = get/set =
+    // ===========
 
-    /**
-     * 获取 MMKV 对象
-     * @return MMKV
-     */
-    fun getMMKVByHolder(): MMKV? {
-        return MMKVUtils.defaultHolder().mmkv
-    }
+
 }

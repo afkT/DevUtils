@@ -1,9 +1,8 @@
 package dev.engine.compress;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
-import dev.utils.DevFinal;
+import dev.engine.DevEngineAssist;
 
 /**
  * detail: Image Compress Engine
@@ -14,14 +13,14 @@ public final class DevCompressEngine {
     private DevCompressEngine() {
     }
 
-    private static final Map<String, ICompressEngine> sEngineMaps = new LinkedHashMap<>();
+    private static final DevEngineAssist<ICompressEngine> sAssist = new DevEngineAssist<>();
 
     /**
      * 获取 Engine
      * @return {@link ICompressEngine}
      */
     public static ICompressEngine getEngine() {
-        return getEngine(DevFinal.DEFAULT);
+        return sAssist.getEngine();
     }
 
     /**
@@ -30,7 +29,7 @@ public final class DevCompressEngine {
      * @return {@link ICompressEngine}
      */
     public static ICompressEngine getEngine(final String key) {
-        return sEngineMaps.get(key);
+        return sAssist.getEngine(key);
     }
 
     /**
@@ -39,7 +38,7 @@ public final class DevCompressEngine {
      * @return {@link ICompressEngine}
      */
     public static ICompressEngine setEngine(final ICompressEngine engine) {
-        return setEngine(DevFinal.DEFAULT, engine);
+        return sAssist.setEngine(engine);
     }
 
     /**
@@ -52,15 +51,14 @@ public final class DevCompressEngine {
             final String key,
             final ICompressEngine engine
     ) {
-        sEngineMaps.put(key, engine);
-        return engine;
+        return sAssist.setEngine(key, engine);
     }
 
     /**
      * 移除 Engine
      */
     public static void removeEngine() {
-        removeEngine(DevFinal.DEFAULT);
+        sAssist.removeEngine();
     }
 
     /**
@@ -68,7 +66,7 @@ public final class DevCompressEngine {
      * @param key key
      */
     public static void removeEngine(final String key) {
-        sEngineMaps.remove(key);
+        sAssist.removeEngine(key);
     }
 
     // ==========
@@ -76,11 +74,19 @@ public final class DevCompressEngine {
     // ==========
 
     /**
+     * 获取 DevEngine Generic Assist
+     * @return DevEngine Generic Assist
+     */
+    public static DevEngineAssist<ICompressEngine> getAssist() {
+        return sAssist;
+    }
+
+    /**
      * 获取 Engine Map
      * @return Engine Map
      */
-    public static Map<String, ICompressEngine> getsEngineMaps() {
-        return sEngineMaps;
+    public static Map<String, ICompressEngine> getEngineMaps() {
+        return sAssist.getEngineMaps();
     }
 
     /**
@@ -88,7 +94,7 @@ public final class DevCompressEngine {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean contains() {
-        return contains(DevFinal.DEFAULT);
+        return sAssist.contains();
     }
 
     /**
@@ -97,7 +103,7 @@ public final class DevCompressEngine {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean contains(final String key) {
-        return sEngineMaps.containsKey(key);
+        return sAssist.contains(key);
     }
 
     /**
@@ -105,7 +111,7 @@ public final class DevCompressEngine {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty() {
-        return isEmpty(DevFinal.DEFAULT);
+        return sAssist.isEmpty();
     }
 
     /**
@@ -114,6 +120,6 @@ public final class DevCompressEngine {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final String key) {
-        return getEngine(key) == null;
+        return sAssist.isEmpty(key);
     }
 }

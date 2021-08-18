@@ -1,9 +1,8 @@
 package dev.engine.log;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
-import dev.utils.DevFinal;
+import dev.engine.DevEngineAssist;
 
 /**
  * detail: Log Engine
@@ -14,14 +13,14 @@ public final class DevLogEngine {
     private DevLogEngine() {
     }
 
-    private static final Map<String, ILogEngine> sEngineMaps = new LinkedHashMap<>();
+    private static final DevEngineAssist<ILogEngine> sAssist = new DevEngineAssist<>();
 
     /**
      * 获取 Engine
      * @return {@link ILogEngine}
      */
     public static ILogEngine getEngine() {
-        return getEngine(DevFinal.DEFAULT);
+        return sAssist.getEngine();
     }
 
     /**
@@ -30,7 +29,7 @@ public final class DevLogEngine {
      * @return {@link ILogEngine}
      */
     public static ILogEngine getEngine(final String key) {
-        return sEngineMaps.get(key);
+        return sAssist.getEngine(key);
     }
 
     /**
@@ -39,7 +38,7 @@ public final class DevLogEngine {
      * @return {@link ILogEngine}
      */
     public static ILogEngine setEngine(final ILogEngine engine) {
-        return setEngine(DevFinal.DEFAULT, engine);
+        return sAssist.setEngine(engine);
     }
 
     /**
@@ -52,15 +51,14 @@ public final class DevLogEngine {
             final String key,
             final ILogEngine engine
     ) {
-        sEngineMaps.put(key, engine);
-        return engine;
+        return sAssist.setEngine(key, engine);
     }
 
     /**
      * 移除 Engine
      */
     public static void removeEngine() {
-        removeEngine(DevFinal.DEFAULT);
+        sAssist.removeEngine();
     }
 
     /**
@@ -68,7 +66,7 @@ public final class DevLogEngine {
      * @param key key
      */
     public static void removeEngine(final String key) {
-        sEngineMaps.remove(key);
+        sAssist.removeEngine(key);
     }
 
     // ==========
@@ -76,11 +74,19 @@ public final class DevLogEngine {
     // ==========
 
     /**
+     * 获取 DevEngine Generic Assist
+     * @return DevEngine Generic Assist
+     */
+    public static DevEngineAssist<ILogEngine> getAssist() {
+        return sAssist;
+    }
+
+    /**
      * 获取 Engine Map
      * @return Engine Map
      */
-    public static Map<String, ILogEngine> getsEngineMaps() {
-        return sEngineMaps;
+    public static Map<String, ILogEngine> getEngineMaps() {
+        return sAssist.getEngineMaps();
     }
 
     /**
@@ -88,7 +94,7 @@ public final class DevLogEngine {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean contains() {
-        return contains(DevFinal.DEFAULT);
+        return sAssist.contains();
     }
 
     /**
@@ -97,7 +103,7 @@ public final class DevLogEngine {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean contains(final String key) {
-        return sEngineMaps.containsKey(key);
+        return sAssist.contains(key);
     }
 
     /**
@@ -105,7 +111,7 @@ public final class DevLogEngine {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty() {
-        return isEmpty(DevFinal.DEFAULT);
+        return sAssist.isEmpty();
     }
 
     /**
@@ -114,6 +120,6 @@ public final class DevLogEngine {
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmpty(final String key) {
-        return getEngine(key) == null;
+        return sAssist.isEmpty(key);
     }
 }
