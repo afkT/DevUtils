@@ -3,6 +3,8 @@ package dev.engine.image;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import dev.utils.DevFinal;
+
 /**
  * detail: Image Engine
  * @author Ttt
@@ -12,30 +14,18 @@ public final class DevImageEngine {
     private DevImageEngine() {
     }
 
-    private static IImageEngine sEngine;
-
-    /**
-     * 获取 Image Engine
-     * @return {@link IImageEngine}
-     */
-    public static IImageEngine getEngine() {
-        return sEngine;
-    }
-
-    /**
-     * 设置 Image Engine
-     * @param engine {@link IImageEngine}
-     */
-    public static void setEngine(final IImageEngine engine) {
-        DevImageEngine.sEngine = engine;
-    }
-
-    // =
-
     private static final Map<String, IImageEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
-     * 获取 Image Engine
+     * 获取 Engine
+     * @return {@link IImageEngine}
+     */
+    public static IImageEngine getEngine() {
+        return getEngine(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 获取 Engine
      * @param key key
      * @return {@link IImageEngine}
      */
@@ -44,19 +34,65 @@ public final class DevImageEngine {
     }
 
     /**
-     * 设置 Image Engine
+     * 设置 Engine
+     * @param engine {@link IImageEngine}
+     * @return {@link IImageEngine}
+     */
+    public static IImageEngine setEngine(final IImageEngine engine) {
+        return setEngine(DevFinal.DEFAULT, engine);
+    }
+
+    /**
+     * 设置 Engine
      * @param key    key
      * @param engine {@link IImageEngine}
+     * @return {@link IImageEngine}
      */
-    public static void setEngine(
+    public static IImageEngine setEngine(
             final String key,
             final IImageEngine engine
     ) {
         sEngineMaps.put(key, engine);
+        return engine;
     }
 
     /**
-     * 是否存在 Image Engine
+     * 移除 Engine
+     */
+    public static void removeEngine() {
+        removeEngine(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 移除 Engine
+     * @param key key
+     */
+    public static void removeEngine(final String key) {
+        sEngineMaps.remove(key);
+    }
+
+    // ==========
+    // = 其他方法 =
+    // ==========
+
+    /**
+     * 获取 Engine Map
+     * @return Engine Map
+     */
+    public static Map<String, IImageEngine> getsEngineMaps() {
+        return sEngineMaps;
+    }
+
+    /**
+     * 是否存在 Engine
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean contains() {
+        return contains(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 是否存在 Engine
      * @param key key
      * @return {@code true} yes, {@code false} no
      */
@@ -65,10 +101,19 @@ public final class DevImageEngine {
     }
 
     /**
-     * 获取 Engine Map
-     * @return Engine Map
+     * 判断 Engine 是否为 null
+     * @return {@code true} yes, {@code false} no
      */
-    public static Map<String, IImageEngine> getsEngineMaps() {
-        return sEngineMaps;
+    public static boolean isEmpty() {
+        return isEmpty(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 判断 Engine 是否为 null
+     * @param key key
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isEmpty(final String key) {
+        return getEngine(key) == null;
     }
 }

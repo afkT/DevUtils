@@ -3,6 +3,8 @@ package dev.engine.share;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import dev.utils.DevFinal;
+
 /**
  * detail: Share Engine
  * @author Ttt
@@ -12,30 +14,18 @@ public final class DevShareEngine {
     private DevShareEngine() {
     }
 
-    private static IShareEngine sEngine;
-
-    /**
-     * 获取 Share Engine
-     * @return {@link IShareEngine}
-     */
-    public static IShareEngine getEngine() {
-        return sEngine;
-    }
-
-    /**
-     * 设置 Share Engine
-     * @param engine {@link IShareEngine}
-     */
-    public static void setEngine(final IShareEngine engine) {
-        DevShareEngine.sEngine = engine;
-    }
-
-    // =
-
     private static final Map<String, IShareEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
-     * 获取 Share Engine
+     * 获取 Engine
+     * @return {@link IShareEngine}
+     */
+    public static IShareEngine getEngine() {
+        return getEngine(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 获取 Engine
      * @param key key
      * @return {@link IShareEngine}
      */
@@ -44,19 +34,65 @@ public final class DevShareEngine {
     }
 
     /**
-     * 设置 Share Engine
+     * 设置 Engine
+     * @param engine {@link IShareEngine}
+     * @return {@link IShareEngine}
+     */
+    public static IShareEngine setEngine(final IShareEngine engine) {
+        return setEngine(DevFinal.DEFAULT, engine);
+    }
+
+    /**
+     * 设置 Engine
      * @param key    key
      * @param engine {@link IShareEngine}
+     * @return {@link IShareEngine}
      */
-    public static void setEngine(
+    public static IShareEngine setEngine(
             final String key,
             final IShareEngine engine
     ) {
         sEngineMaps.put(key, engine);
+        return engine;
     }
 
     /**
-     * 是否存在 Share Engine
+     * 移除 Engine
+     */
+    public static void removeEngine() {
+        removeEngine(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 移除 Engine
+     * @param key key
+     */
+    public static void removeEngine(final String key) {
+        sEngineMaps.remove(key);
+    }
+
+    // ==========
+    // = 其他方法 =
+    // ==========
+
+    /**
+     * 获取 Engine Map
+     * @return Engine Map
+     */
+    public static Map<String, IShareEngine> getsEngineMaps() {
+        return sEngineMaps;
+    }
+
+    /**
+     * 是否存在 Engine
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean contains() {
+        return contains(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 是否存在 Engine
      * @param key key
      * @return {@code true} yes, {@code false} no
      */
@@ -65,10 +101,19 @@ public final class DevShareEngine {
     }
 
     /**
-     * 获取 Engine Map
-     * @return Engine Map
+     * 判断 Engine 是否为 null
+     * @return {@code true} yes, {@code false} no
      */
-    public static Map<String, IShareEngine> getsEngineMaps() {
-        return sEngineMaps;
+    public static boolean isEmpty() {
+        return isEmpty(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 判断 Engine 是否为 null
+     * @param key key
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isEmpty(final String key) {
+        return getEngine(key) == null;
     }
 }

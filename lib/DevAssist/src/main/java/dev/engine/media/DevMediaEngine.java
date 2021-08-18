@@ -3,6 +3,8 @@ package dev.engine.media;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import dev.utils.DevFinal;
+
 /**
  * detail: Media Selector Engine
  * @author Ttt
@@ -12,30 +14,18 @@ public final class DevMediaEngine {
     private DevMediaEngine() {
     }
 
-    private static IMediaEngine sEngine;
-
-    /**
-     * 获取 Media Engine
-     * @return {@link IMediaEngine}
-     */
-    public static IMediaEngine getEngine() {
-        return sEngine;
-    }
-
-    /**
-     * 设置 Media Engine
-     * @param engine {@link IMediaEngine}
-     */
-    public static void setEngine(final IMediaEngine engine) {
-        DevMediaEngine.sEngine = engine;
-    }
-
-    // =
-
     private static final Map<String, IMediaEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
-     * 获取 Media Engine
+     * 获取 Engine
+     * @return {@link IMediaEngine}
+     */
+    public static IMediaEngine getEngine() {
+        return getEngine(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 获取 Engine
      * @param key key
      * @return {@link IMediaEngine}
      */
@@ -44,19 +34,65 @@ public final class DevMediaEngine {
     }
 
     /**
-     * 设置 Media Engine
+     * 设置 Engine
+     * @param engine {@link IMediaEngine}
+     * @return {@link IMediaEngine}
+     */
+    public static IMediaEngine setEngine(final IMediaEngine engine) {
+        return setEngine(DevFinal.DEFAULT, engine);
+    }
+
+    /**
+     * 设置 Engine
      * @param key    key
      * @param engine {@link IMediaEngine}
+     * @return {@link IMediaEngine}
      */
-    public static void setEngine(
+    public static IMediaEngine setEngine(
             final String key,
             final IMediaEngine engine
     ) {
         sEngineMaps.put(key, engine);
+        return engine;
     }
 
     /**
-     * 是否存在 Media Engine
+     * 移除 Engine
+     */
+    public static void removeEngine() {
+        removeEngine(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 移除 Engine
+     * @param key key
+     */
+    public static void removeEngine(final String key) {
+        sEngineMaps.remove(key);
+    }
+
+    // ==========
+    // = 其他方法 =
+    // ==========
+
+    /**
+     * 获取 Engine Map
+     * @return Engine Map
+     */
+    public static Map<String, IMediaEngine> getsEngineMaps() {
+        return sEngineMaps;
+    }
+
+    /**
+     * 是否存在 Engine
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean contains() {
+        return contains(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 是否存在 Engine
      * @param key key
      * @return {@code true} yes, {@code false} no
      */
@@ -65,10 +101,19 @@ public final class DevMediaEngine {
     }
 
     /**
-     * 获取 Engine Map
-     * @return Engine Map
+     * 判断 Engine 是否为 null
+     * @return {@code true} yes, {@code false} no
      */
-    public static Map<String, IMediaEngine> getsEngineMaps() {
-        return sEngineMaps;
+    public static boolean isEmpty() {
+        return isEmpty(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 判断 Engine 是否为 null
+     * @param key key
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isEmpty(final String key) {
+        return getEngine(key) == null;
     }
 }

@@ -3,6 +3,8 @@ package dev.engine.push;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import dev.utils.DevFinal;
+
 /**
  * detail: Push Engine
  * @author Ttt
@@ -12,30 +14,18 @@ public final class DevPushEngine {
     private DevPushEngine() {
     }
 
-    private static IPushEngine sEngine;
-
-    /**
-     * 获取 Push Engine
-     * @return {@link IPushEngine}
-     */
-    public static IPushEngine getEngine() {
-        return sEngine;
-    }
-
-    /**
-     * 设置 Push Engine
-     * @param engine {@link IPushEngine}
-     */
-    public static void setEngine(final IPushEngine engine) {
-        DevPushEngine.sEngine = engine;
-    }
-
-    // =
-
     private static final Map<String, IPushEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
-     * 获取 Push Engine
+     * 获取 Engine
+     * @return {@link IPushEngine}
+     */
+    public static IPushEngine getEngine() {
+        return getEngine(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 获取 Engine
      * @param key key
      * @return {@link IPushEngine}
      */
@@ -44,19 +34,65 @@ public final class DevPushEngine {
     }
 
     /**
-     * 设置 Push Engine
+     * 设置 Engine
+     * @param engine {@link IPushEngine}
+     * @return {@link IPushEngine}
+     */
+    public static IPushEngine setEngine(final IPushEngine engine) {
+        return setEngine(DevFinal.DEFAULT, engine);
+    }
+
+    /**
+     * 设置 Engine
      * @param key    key
      * @param engine {@link IPushEngine}
+     * @return {@link IPushEngine}
      */
-    public static void setEngine(
+    public static IPushEngine setEngine(
             final String key,
             final IPushEngine engine
     ) {
         sEngineMaps.put(key, engine);
+        return engine;
     }
 
     /**
-     * 是否存在 Push Engine
+     * 移除 Engine
+     */
+    public static void removeEngine() {
+        removeEngine(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 移除 Engine
+     * @param key key
+     */
+    public static void removeEngine(final String key) {
+        sEngineMaps.remove(key);
+    }
+
+    // ==========
+    // = 其他方法 =
+    // ==========
+
+    /**
+     * 获取 Engine Map
+     * @return Engine Map
+     */
+    public static Map<String, IPushEngine> getsEngineMaps() {
+        return sEngineMaps;
+    }
+
+    /**
+     * 是否存在 Engine
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean contains() {
+        return contains(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 是否存在 Engine
      * @param key key
      * @return {@code true} yes, {@code false} no
      */
@@ -65,10 +101,19 @@ public final class DevPushEngine {
     }
 
     /**
-     * 获取 Engine Map
-     * @return Engine Map
+     * 判断 Engine 是否为 null
+     * @return {@code true} yes, {@code false} no
      */
-    public static Map<String, IPushEngine> getsEngineMaps() {
-        return sEngineMaps;
+    public static boolean isEmpty() {
+        return isEmpty(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 判断 Engine 是否为 null
+     * @param key key
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isEmpty(final String key) {
+        return getEngine(key) == null;
     }
 }

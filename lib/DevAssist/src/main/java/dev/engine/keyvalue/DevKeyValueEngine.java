@@ -3,6 +3,8 @@ package dev.engine.keyvalue;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import dev.utils.DevFinal;
+
 /**
  * detail: Key-Value Engine
  * @author Ttt
@@ -12,30 +14,18 @@ public final class DevKeyValueEngine {
     private DevKeyValueEngine() {
     }
 
-    private static IKeyValueEngine sEngine;
-
-    /**
-     * 获取 Key-Value Engine
-     * @return {@link IKeyValueEngine}
-     */
-    public static IKeyValueEngine getEngine() {
-        return sEngine;
-    }
-
-    /**
-     * 设置 Key-Value Engine
-     * @param engine {@link IKeyValueEngine}
-     */
-    public static void setEngine(final IKeyValueEngine engine) {
-        DevKeyValueEngine.sEngine = engine;
-    }
-
-    // =
-
     private static final Map<String, IKeyValueEngine> sEngineMaps = new LinkedHashMap<>();
 
     /**
-     * 获取 Key-Value Engine
+     * 获取 Engine
+     * @return {@link IKeyValueEngine}
+     */
+    public static IKeyValueEngine getEngine() {
+        return getEngine(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 获取 Engine
      * @param key key
      * @return {@link IKeyValueEngine}
      */
@@ -44,19 +34,65 @@ public final class DevKeyValueEngine {
     }
 
     /**
-     * 设置 Key-Value Engine
+     * 设置 Engine
+     * @param engine {@link IKeyValueEngine}
+     * @return {@link IKeyValueEngine}
+     */
+    public static IKeyValueEngine setEngine(final IKeyValueEngine engine) {
+        return setEngine(DevFinal.DEFAULT, engine);
+    }
+
+    /**
+     * 设置 Engine
      * @param key    key
      * @param engine {@link IKeyValueEngine}
+     * @return {@link IKeyValueEngine}
      */
-    public static void setEngine(
+    public static IKeyValueEngine setEngine(
             final String key,
             final IKeyValueEngine engine
     ) {
         sEngineMaps.put(key, engine);
+        return engine;
     }
 
     /**
-     * 是否存在 Key-Value Engine
+     * 移除 Engine
+     */
+    public static void removeEngine() {
+        removeEngine(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 移除 Engine
+     * @param key key
+     */
+    public static void removeEngine(final String key) {
+        sEngineMaps.remove(key);
+    }
+
+    // ==========
+    // = 其他方法 =
+    // ==========
+
+    /**
+     * 获取 Engine Map
+     * @return Engine Map
+     */
+    public static Map<String, IKeyValueEngine> getsEngineMaps() {
+        return sEngineMaps;
+    }
+
+    /**
+     * 是否存在 Engine
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean contains() {
+        return contains(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 是否存在 Engine
      * @param key key
      * @return {@code true} yes, {@code false} no
      */
@@ -65,10 +101,19 @@ public final class DevKeyValueEngine {
     }
 
     /**
-     * 获取 Engine Map
-     * @return Engine Map
+     * 判断 Engine 是否为 null
+     * @return {@code true} yes, {@code false} no
      */
-    public static Map<String, IKeyValueEngine> getsEngineMaps() {
-        return sEngineMaps;
+    public static boolean isEmpty() {
+        return isEmpty(DevFinal.DEFAULT);
+    }
+
+    /**
+     * 判断 Engine 是否为 null
+     * @param key key
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isEmpty(final String key) {
+        return getEngine(key) == null;
     }
 }
