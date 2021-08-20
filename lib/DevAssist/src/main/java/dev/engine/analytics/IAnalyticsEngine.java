@@ -18,7 +18,7 @@ public interface IAnalyticsEngine<Config extends IAnalyticsEngine.EngineConfig,
     }
 
     /**
-     * detail: Analytics Item
+     * detail: Analytics ( Data、Params ) Item
      * @author Ttt
      */
     class EngineItem {
@@ -62,8 +62,19 @@ public interface IAnalyticsEngine<Config extends IAnalyticsEngine.EngineConfig,
 
     /**
      * 数据统计 ( 埋点 ) 方法
-     * @param params Analytics Data Item
+     * @param params Analytics ( Data、Params ) Item
      * @return {@code true} success, {@code false} fail
      */
     boolean track(Item params);
+
+    /**
+     * 数据统计 ( 埋点 ) 方法
+     * @param config Analytics Config
+     * @param params Analytics ( Data、Params ) Item
+     * @return {@code true} success, {@code false} fail
+     */
+    boolean track(
+            Config config,
+            Item params
+    );
 }

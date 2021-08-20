@@ -22,7 +22,7 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     }
 
     /**
-     * detail: Share Item
+     * detail: Share ( Data、Params ) Item
      * @author Ttt
      */
     class EngineItem {
@@ -47,7 +47,7 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 打开小程序
      * @param activity {@link Activity}
-     * @param params   Share Data Item
+     * @param params   Share ( Data、Params ) Item
      * @return {@code true} success, {@code false} fail
      */
     boolean openMinApp(
@@ -58,7 +58,7 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享小程序
      * @param activity {@link Activity}
-     * @param params   Share Data Item
+     * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
@@ -71,7 +71,7 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享链接
      * @param activity {@link Activity}
-     * @param params   Share Data Item
+     * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
@@ -84,7 +84,7 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享图片
      * @param activity {@link Activity}
-     * @param params   Share Data Item
+     * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
@@ -97,7 +97,7 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享视频
      * @param activity {@link Activity}
-     * @param params   Share Data Item
+     * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
@@ -110,7 +110,7 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享音乐
      * @param activity {@link Activity}
-     * @param params   Share Data Item
+     * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
@@ -123,7 +123,7 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享表情
      * @param activity {@link Activity}
-     * @param params   Share Data Item
+     * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
@@ -136,7 +136,7 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享文本
      * @param activity {@link Activity}
-     * @param params   Share Data Item
+     * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
@@ -149,7 +149,7 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享文件
      * @param activity {@link Activity}
-     * @param params   Share Data Item
+     * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */
@@ -162,7 +162,7 @@ public interface IShareEngine<Config extends IShareEngine.EngineConfig,
     /**
      * 分享操作 ( 通用扩展 )
      * @param activity {@link Activity}
-     * @param params   Share Data Item
+     * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
      * @return {@code true} success, {@code false} fail
      */

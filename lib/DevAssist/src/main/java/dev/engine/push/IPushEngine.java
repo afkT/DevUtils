@@ -18,7 +18,7 @@ public interface IPushEngine<Config extends IPushEngine.EngineConfig,
     }
 
     /**
-     * detail: Push Item
+     * detail: Push ( Data、Params ) Item
      * @author Ttt
      */
     class EngineItem {
@@ -103,7 +103,7 @@ public interface IPushEngine<Config extends IPushEngine.EngineConfig,
     /**
      * 命令回执通知
      * @param context {@link Context}
-     * @param message Push Data Item
+     * @param message Push ( Data、Params ) Item
      */
     void onReceiveCommandResult(
             Context context,
@@ -113,7 +113,7 @@ public interface IPushEngine<Config extends IPushEngine.EngineConfig,
     /**
      * 推送消息送达通知
      * @param context {@link Context}
-     * @param message Push Data Item
+     * @param message Push ( Data、Params ) Item
      */
     void onNotificationMessageArrived(
             Context context,
@@ -123,7 +123,7 @@ public interface IPushEngine<Config extends IPushEngine.EngineConfig,
     /**
      * 推送消息点击通知
      * @param context {@link Context}
-     * @param message Push Data Item
+     * @param message Push ( Data、Params ) Item
      */
     void onNotificationMessageClicked(
             Context context,
@@ -133,7 +133,7 @@ public interface IPushEngine<Config extends IPushEngine.EngineConfig,
     /**
      * 透传消息送达通知
      * @param context {@link Context}
-     * @param message Push Data Item
+     * @param message Push ( Data、Params ) Item
      */
     void onReceiveMessageData(
             Context context,

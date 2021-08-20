@@ -3,7 +3,7 @@ package java.dev.engine.cache;
 import dev.engine.cache.ICacheEngine;
 
 /**
- * detail: Cache Data Item
+ * detail: Cache ( Data、Params ) Item
  * @author Ttt
  */
 public class DataItem

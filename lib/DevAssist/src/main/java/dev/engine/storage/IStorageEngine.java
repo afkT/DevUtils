@@ -29,7 +29,7 @@ import dev.utils.app.PathUtils;
 public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result extends IStorageEngine.EngineResult> {
 
     /**
-     * detail: Storage Item
+     * detail: Storage ( Data、Params ) Item
      * @author Ttt
      */
     class EngineItem {
@@ -52,7 +52,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
 
     /**
      * 插入一张图片到外部存储空间 ( SDCard )
-     * @param params   Storage Data Item
+     * @param params   Storage ( Data、Params ) Item
      * @param source   数据来源
      * @param listener 插入多媒体资源事件
      */
@@ -64,7 +64,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
 
     /**
      * 插入一条视频到外部存储空间 ( SDCard )
-     * @param params   Storage Data Item
+     * @param params   Storage ( Data、Params ) Item
      * @param source   数据来源
      * @param listener 插入多媒体资源事件
      */
@@ -76,7 +76,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
 
     /**
      * 插入一条音频到外部存储空间 ( SDCard )
-     * @param params   Storage Data Item
+     * @param params   Storage ( Data、Params ) Item
      * @param source   数据来源
      * @param listener 插入多媒体资源事件
      */
@@ -88,7 +88,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
 
     /**
      * 插入一条文件资源到外部存储空间 ( SDCard )
-     * @param params   Storage Data Item
+     * @param params   Storage ( Data、Params ) Item
      * @param source   数据来源
      * @param listener 插入多媒体资源事件
      */
@@ -100,7 +100,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
 
     /**
      * 插入一条多媒体资源到外部存储空间 ( SDCard )
-     * @param params   Storage Data Item
+     * @param params   Storage ( Data、Params ) Item
      * @param source   数据来源
      * @param listener 插入多媒体资源事件
      */
@@ -116,7 +116,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
 
     /**
      * 插入一张图片到内部存储空间
-     * @param params   Storage Data Item
+     * @param params   Storage ( Data、Params ) Item
      * @param source   数据来源
      * @param listener 插入多媒体资源事件
      */
@@ -128,7 +128,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
 
     /**
      * 插入一条视频到内部存储空间
-     * @param params   Storage Data Item
+     * @param params   Storage ( Data、Params ) Item
      * @param source   数据来源
      * @param listener 插入多媒体资源事件
      */
@@ -140,7 +140,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
 
     /**
      * 插入一条音频到内部存储空间
-     * @param params   Storage Data Item
+     * @param params   Storage ( Data、Params ) Item
      * @param source   数据来源
      * @param listener 插入多媒体资源事件
      */
@@ -152,7 +152,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
 
     /**
      * 插入一条文件资源到内部存储空间
-     * @param params   Storage Data Item
+     * @param params   Storage ( Data、Params ) Item
      * @param source   数据来源
      * @param listener 插入多媒体资源事件
      */
@@ -167,7 +167,7 @@ public interface IStorageEngine<Item extends IStorageEngine.EngineItem, Result e
      * <pre>
      *     并不局限于多媒体, 如文本存储、其他文件写入等
      * </pre>
-     * @param params   Storage Data Item
+     * @param params   Storage ( Data、Params ) Item
      * @param source   数据来源
      * @param listener 插入多媒体资源事件
      */

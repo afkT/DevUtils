@@ -35,7 +35,7 @@ public interface ICacheEngine<Config extends ICacheEngine.EngineConfig,
     }
 
     /**
-     * detail: Cache Item
+     * detail: Cache ( Data、Params ) Item
      * @author Ttt
      */
     class EngineItem {

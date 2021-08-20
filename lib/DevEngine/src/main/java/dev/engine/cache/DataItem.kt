@@ -1,7 +1,7 @@
 package dev.engine.cache
 
 /**
- * detail: Cache Data Item
+ * detail: Cache ( Data、Params ) Item
  * @author Ttt
  */
 class DataItem(

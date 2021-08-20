@@ -3,6 +3,8 @@ package dev.engine
 import android.content.Context
 import com.tencent.mmkv.MMKV
 import dev.DevUtils
+import dev.engine.analytics.DevAnalyticsEngine
+import dev.engine.analytics.IAnalyticsEngine
 import dev.engine.cache.CacheConfig
 import dev.engine.cache.DevCacheEngine
 import dev.engine.cache.DevCacheEngineImpl
@@ -223,9 +225,15 @@ object DevEngine {
         DevStorageEngine.setEngine(DevMediaStoreEngineImpl())
     }
 
-    // ===========
-    // = get/set =
-    // ===========
+    // =======
+    // = get =
+    // =======
 
-
+    /**
+     * 获取 Analytics Engine Generic Assist
+     * @return Analytics Engine Generic Assist
+     */
+    fun getAnalytics(): DevEngineAssist<IAnalyticsEngine<in IAnalyticsEngine.EngineConfig, in IAnalyticsEngine.EngineItem>> {
+        return DevAnalyticsEngine.getAssist()
+    }
 }
