@@ -23,7 +23,6 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
       - cache                                         | Cache Engine 有效期键值对缓存
       - compress                                      | Image Compress Engine 图片压缩
          - listener                                   | 图片压缩回调事件
-      - http                                          | Http Engine 网络请求
       - image                                         | Image Engine 图片加载、下载、转格式等
          - listener                                   | 图片加载监听事件
       - json                                          | JSON Engine
@@ -66,7 +65,6 @@ implementation 'io.github.afkt:DevAssist:1.2.5'
       - [cache](#devenginecache)                      | Cache Engine 有效期键值对缓存
       - [compress](#devenginecompress)                | Image Compress Engine 图片压缩
          - [listener](#devenginecompresslistener)     | 图片压缩回调事件
-      - [http](#devenginehttp)                        | Http Engine 网络请求
       - [image](#devengineimage)                      | Image Engine 图片加载、下载、转格式等
          - [listener](#devengineimagelistener)        | 图片加载监听事件
       - [json](#devenginejson)                        | JSON Engine

@@ -532,34 +532,31 @@ class ButtonValue(
         // Image Compress Engine 图片压缩
         const val BTN_ENGINE_IMAGE_COMPRESS = BTN_ENGINE + 300
 
-        // Http Engine 网络请求
-        const val BTN_ENGINE_HTTP = BTN_ENGINE + 400
-
         // Image Engine 图片加载、下载、转格式等
-        const val BTN_ENGINE_IMAGE = BTN_ENGINE + 500
+        const val BTN_ENGINE_IMAGE = BTN_ENGINE + 400
 
         // JSON Engine
-        const val BTN_ENGINE_JSON = BTN_ENGINE + 600
+        const val BTN_ENGINE_JSON = BTN_ENGINE + 500
 
         // KeyValue Engine 键值对存储
-        const val BTN_ENGINE_KEYVALUE = BTN_ENGINE + 700
+        const val BTN_ENGINE_KEYVALUE = BTN_ENGINE + 600
 
         // Log Engine 日志打印
-        const val BTN_ENGINE_LOG = BTN_ENGINE + 800
+        const val BTN_ENGINE_LOG = BTN_ENGINE + 700
 
         // Media Selector Engine 多媒体资源选择
-        const val BTN_ENGINE_MEDIA_SELECTOR = BTN_ENGINE + 900
+        const val BTN_ENGINE_MEDIA_SELECTOR = BTN_ENGINE + 800
 
         // Permission Engine 权限申请
-        const val BTN_ENGINE_PERMISSION = BTN_ENGINE + 1000
+        const val BTN_ENGINE_PERMISSION = BTN_ENGINE + 9000
 
         // Push Engine 推送平台处理
-        const val BTN_ENGINE_PUSH = BTN_ENGINE + 1100
+        const val BTN_ENGINE_PUSH = BTN_ENGINE + 1000
 
         // Share Engine 分享平台处理
-        const val BTN_ENGINE_SHARE = BTN_ENGINE + 1200
+        const val BTN_ENGINE_SHARE = BTN_ENGINE + 1100
 
         // Storage Engine 外部、内部文件存储
-        const val BTN_ENGINE_STORAGE = BTN_ENGINE + 1300
+        const val BTN_ENGINE_STORAGE = BTN_ENGINE + 1200
     }
 }

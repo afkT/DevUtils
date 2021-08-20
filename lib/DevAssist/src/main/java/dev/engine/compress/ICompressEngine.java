@@ -26,7 +26,7 @@ public interface ICompressEngine<Config extends ICompressEngine.EngineConfig> {
     /**
      * 压缩方法
      * @param data             待压缩图片
-     * @param config           配置信息
+     * @param config           压缩配置参数
      * @param compressListener 压缩回调接口
      * @return {@code true} success, {@code false} fail
      */
@@ -39,7 +39,7 @@ public interface ICompressEngine<Config extends ICompressEngine.EngineConfig> {
     /**
      * 压缩方法
      * @param data             待压缩图片
-     * @param config           配置信息
+     * @param config           压缩配置参数
      * @param filter           开启压缩条件
      * @param renameListener   压缩前重命名接口
      * @param compressListener 压缩回调接口
@@ -58,7 +58,7 @@ public interface ICompressEngine<Config extends ICompressEngine.EngineConfig> {
     /**
      * 压缩方法
      * @param lists            待压缩图片集合
-     * @param config           配置信息
+     * @param config           压缩配置参数
      * @param compressListener 压缩回调接口
      * @return {@code true} success, {@code false} fail
      */
@@ -71,7 +71,7 @@ public interface ICompressEngine<Config extends ICompressEngine.EngineConfig> {
     /**
      * 压缩方法
      * @param lists            待压缩图片集合
-     * @param config           配置信息
+     * @param config           压缩配置参数
      * @param filter           开启压缩条件
      * @param renameListener   压缩前重命名接口
      * @param compressListener 压缩回调接口

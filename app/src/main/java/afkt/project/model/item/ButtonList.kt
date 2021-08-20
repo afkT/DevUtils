@@ -842,7 +842,6 @@ object ButtonList {
                     ""
                 )
             )
-            lists.add(ButtonValue(ButtonValue.BTN_ENGINE_HTTP, "Http Engine 网络请求", ""))
             lists.add(ButtonValue(ButtonValue.BTN_ENGINE_IMAGE, "Image Engine 图片加载、下载、转格式等", ""))
             lists.add(ButtonValue(ButtonValue.BTN_ENGINE_JSON, "JSON Engine", ""))
             lists.add(ButtonValue(ButtonValue.BTN_ENGINE_KEYVALUE, "KeyValue Engine 键值对存储", ""))
