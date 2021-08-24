@@ -3,6 +3,8 @@ package dev.engine.media;
 import java.util.Map;
 
 import dev.engine.DevEngineAssist;
+import dev.engine.media.IMediaEngine.EngineConfig;
+import dev.engine.media.IMediaEngine.EngineData;
 
 /**
  * detail: Media Selector Engine
@@ -13,13 +15,13 @@ public final class DevMediaEngine {
     private DevMediaEngine() {
     }
 
-    private static final DevEngineAssist<IMediaEngine> sAssist = new DevEngineAssist<>();
+    private static final DevEngineAssist<IMediaEngine<? super EngineConfig, ? super EngineData>> sAssist = new DevEngineAssist<>();
 
     /**
      * 获取 Engine
      * @return {@link IMediaEngine}
      */
-    public static IMediaEngine getEngine() {
+    public static IMediaEngine<? super EngineConfig, ? super EngineData> getEngine() {
         return sAssist.getEngine();
     }
 
@@ -28,7 +30,7 @@ public final class DevMediaEngine {
      * @param key key
      * @return {@link IMediaEngine}
      */
-    public static IMediaEngine getEngine(final String key) {
+    public static IMediaEngine<? super EngineConfig, ? super EngineData> getEngine(final String key) {
         return sAssist.getEngine(key);
     }
 
@@ -77,7 +79,7 @@ public final class DevMediaEngine {
      * 获取 DevEngine Generic Assist
      * @return DevEngine Generic Assist
      */
-    public static DevEngineAssist<IMediaEngine> getAssist() {
+    public static DevEngineAssist<IMediaEngine<? super EngineConfig, ? super EngineData>> getAssist() {
         return sAssist;
     }
 
@@ -85,7 +87,7 @@ public final class DevMediaEngine {
      * 获取 Engine Map
      * @return Engine Map
      */
-    public static Map<String, IMediaEngine> getEngineMaps() {
+    public static Map<String, IMediaEngine<? super EngineConfig, ? super EngineData>> getEngineMaps() {
         return sAssist.getEngineMaps();
     }
 

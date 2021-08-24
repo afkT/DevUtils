@@ -3,6 +3,7 @@ package dev.engine.json;
 import java.util.Map;
 
 import dev.engine.DevEngineAssist;
+import dev.engine.json.IJSONEngine.EngineConfig;
 
 /**
  * detail: JSON Engine
@@ -13,13 +14,13 @@ public final class DevJSONEngine {
     private DevJSONEngine() {
     }
 
-    private static final DevEngineAssist<IJSONEngine> sAssist = new DevEngineAssist<>();
+    private static final DevEngineAssist<IJSONEngine<? super EngineConfig>> sAssist = new DevEngineAssist<>();
 
     /**
      * 获取 Engine
      * @return {@link IJSONEngine}
      */
-    public static IJSONEngine getEngine() {
+    public static IJSONEngine<? super EngineConfig> getEngine() {
         return sAssist.getEngine();
     }
 
@@ -28,7 +29,7 @@ public final class DevJSONEngine {
      * @param key key
      * @return {@link IJSONEngine}
      */
-    public static IJSONEngine getEngine(final String key) {
+    public static IJSONEngine<? super EngineConfig> getEngine(final String key) {
         return sAssist.getEngine(key);
     }
 
@@ -77,7 +78,7 @@ public final class DevJSONEngine {
      * 获取 DevEngine Generic Assist
      * @return DevEngine Generic Assist
      */
-    public static DevEngineAssist<IJSONEngine> getAssist() {
+    public static DevEngineAssist<IJSONEngine<? super EngineConfig>> getAssist() {
         return sAssist;
     }
 
@@ -85,7 +86,7 @@ public final class DevJSONEngine {
      * 获取 Engine Map
      * @return Engine Map
      */
-    public static Map<String, IJSONEngine> getEngineMaps() {
+    public static Map<String, IJSONEngine<? super EngineConfig>> getEngineMaps() {
         return sAssist.getEngineMaps();
     }
 

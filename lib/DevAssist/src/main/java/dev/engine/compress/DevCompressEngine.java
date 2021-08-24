@@ -3,6 +3,7 @@ package dev.engine.compress;
 import java.util.Map;
 
 import dev.engine.DevEngineAssist;
+import dev.engine.compress.ICompressEngine.EngineConfig;
 
 /**
  * detail: Image Compress Engine
@@ -13,13 +14,13 @@ public final class DevCompressEngine {
     private DevCompressEngine() {
     }
 
-    private static final DevEngineAssist<ICompressEngine> sAssist = new DevEngineAssist<>();
+    private static final DevEngineAssist<ICompressEngine<? super EngineConfig>> sAssist = new DevEngineAssist<>();
 
     /**
      * 获取 Engine
      * @return {@link ICompressEngine}
      */
-    public static ICompressEngine getEngine() {
+    public static ICompressEngine<? super EngineConfig> getEngine() {
         return sAssist.getEngine();
     }
 
@@ -28,7 +29,7 @@ public final class DevCompressEngine {
      * @param key key
      * @return {@link ICompressEngine}
      */
-    public static ICompressEngine getEngine(final String key) {
+    public static ICompressEngine<? super EngineConfig> getEngine(final String key) {
         return sAssist.getEngine(key);
     }
 
@@ -77,7 +78,7 @@ public final class DevCompressEngine {
      * 获取 DevEngine Generic Assist
      * @return DevEngine Generic Assist
      */
-    public static DevEngineAssist<ICompressEngine> getAssist() {
+    public static DevEngineAssist<ICompressEngine<? super EngineConfig>> getAssist() {
         return sAssist;
     }
 
@@ -85,7 +86,7 @@ public final class DevCompressEngine {
      * 获取 Engine Map
      * @return Engine Map
      */
-    public static Map<String, ICompressEngine> getEngineMaps() {
+    public static Map<String, ICompressEngine<? super EngineConfig>> getEngineMaps() {
         return sAssist.getEngineMaps();
     }
 
