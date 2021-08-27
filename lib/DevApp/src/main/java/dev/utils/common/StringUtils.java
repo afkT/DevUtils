@@ -496,6 +496,24 @@ public final class StringUtils {
         return (str != null) ? str.getBytes() : null;
     }
 
+    /**
+     * 字符串 转 byte[]
+     * @param str         待处理字符串
+     * @param charsetName 编码格式
+     * @return byte[]
+     */
+    public static byte[] getBytes(
+            final String str,
+            final String charsetName
+    ) {
+        try {
+            return (str != null) ? str.getBytes(charsetName) : null;
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getBytes");
+        }
+        return null;
+    }
+
     // =
 
     /**

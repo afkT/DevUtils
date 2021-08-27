@@ -143,17 +143,17 @@ public final class StreamUtils {
 
     /**
      * String 转换输入流
-     * @param string      数据源
+     * @param str      数据源
      * @param charsetName 编码格式
      * @return {@link InputStream}
      */
     public static InputStream stringToInputStream(
-            final String string,
+            final String str,
             final String charsetName
     ) {
-        if (string == null || StringUtils.isSpace(charsetName)) return null;
+        if (str == null || StringUtils.isSpace(charsetName)) return null;
         try {
-            return new ByteArrayInputStream(string.getBytes(charsetName));
+            return new ByteArrayInputStream(str.getBytes(charsetName));
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "stringToInputStream");
             return null;
@@ -181,17 +181,17 @@ public final class StreamUtils {
 
     /**
      * String 转 输出流
-     * @param string      数据源
+     * @param str      数据源
      * @param charsetName 编码格式
      * @return {@link OutputStream}
      */
     public static OutputStream stringToOutputStream(
-            final String string,
+            final String str,
             final String charsetName
     ) {
-        if (string == null || StringUtils.isSpace(charsetName)) return null;
+        if (str == null || StringUtils.isSpace(charsetName)) return null;
         try {
-            return bytesToOutputStream(string.getBytes(charsetName));
+            return bytesToOutputStream(str.getBytes(charsetName));
         } catch (Exception e) {
             JCLogUtils.eTag(TAG, e, "stringToOutputStream");
             return null;
