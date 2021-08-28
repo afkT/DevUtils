@@ -445,6 +445,22 @@ public final class KeyBoardUtils {
         return false;
     }
 
+    /**
+     * 打开软键盘
+     * @param editText {@link EditText}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean openKeyboardByFocus(final EditText editText) {
+        if (editText != null) {
+            editText.setFocusable(true);
+            editText.setFocusableInTouchMode(true);
+            editText.requestFocus();
+            editText.performClick();
+            return true;
+        }
+        return false;
+    }
+
     // ===========
     // = 关闭软键盘 =
     // ===========
