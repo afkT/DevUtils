@@ -3,8 +3,6 @@ package dev.engine.storage;
 import java.util.Map;
 
 import dev.engine.DevEngineAssist;
-import dev.engine.storage.IStorageEngine.EngineItem;
-import dev.engine.storage.IStorageEngine.EngineResult;
 
 /**
  * detail: Storage Engine
@@ -15,13 +13,13 @@ public final class DevStorageEngine {
     private DevStorageEngine() {
     }
 
-    private static final DevEngineAssist<IStorageEngine<? super EngineItem, ? super EngineResult>> sAssist = new DevEngineAssist<>();
+    private static final DevEngineAssist<IStorageEngine> sAssist = new DevEngineAssist<>();
 
     /**
      * 获取 Engine
      * @return {@link IStorageEngine}
      */
-    public static IStorageEngine<? super EngineItem, ? super EngineResult> getEngine() {
+    public static IStorageEngine getEngine() {
         return sAssist.getEngine();
     }
 
@@ -30,7 +28,7 @@ public final class DevStorageEngine {
      * @param key key
      * @return {@link IStorageEngine}
      */
-    public static IStorageEngine<? super EngineItem, ? super EngineResult> getEngine(final String key) {
+    public static IStorageEngine getEngine(final String key) {
         return sAssist.getEngine(key);
     }
 
@@ -79,7 +77,7 @@ public final class DevStorageEngine {
      * 获取 DevEngine Generic Assist
      * @return DevEngine Generic Assist
      */
-    public static DevEngineAssist<IStorageEngine<? super EngineItem, ? super EngineResult>> getAssist() {
+    public static DevEngineAssist<IStorageEngine> getAssist() {
         return sAssist;
     }
 
@@ -87,7 +85,7 @@ public final class DevStorageEngine {
      * 获取 Engine Map
      * @return Engine Map
      */
-    public static Map<String, IStorageEngine<? super EngineItem, ? super EngineResult>> getEngineMaps() {
+    public static Map<String, IStorageEngine> getEngineMaps() {
         return sAssist.getEngineMaps();
     }
 
