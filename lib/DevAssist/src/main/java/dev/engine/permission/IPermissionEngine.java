@@ -130,4 +130,21 @@ public interface IPermissionEngine {
             String[] permissions,
             Callback callback
     );
+
+    /**
+     * 请求权限
+     * <pre>
+     *     againRequest 参数为 true 则会调用 {@link #againRequest(Activity, Callback, List)}
+     * </pre>
+     * @param activity     {@link Activity}
+     * @param permissions  待申请权限
+     * @param callback     权限请求回调
+     * @param againRequest 如果失败是否再次请求
+     */
+    void request(
+            Activity activity,
+            String[] permissions,
+            Callback callback,
+            boolean againRequest
+    );
 }

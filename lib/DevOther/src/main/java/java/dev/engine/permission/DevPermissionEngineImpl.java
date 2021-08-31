@@ -84,7 +84,7 @@ public class DevPermissionEngineImpl
             Activity activity,
             String[] permissions
     ) {
-        request(activity, permissions, null);
+        request(activity, permissions, null, false);
     }
 
     @Override
@@ -92,6 +92,16 @@ public class DevPermissionEngineImpl
             Activity activity,
             String[] permissions,
             Callback callback
+    ) {
+        request(activity, permissions, callback, false);
+    }
+
+    @Override
+    public void request(
+            Activity activity,
+            String[] permissions,
+            Callback callback,
+            boolean againRequest
     ) {
         PermissionUtils.permission(permissions).callback(new PermissionUtils.PermissionCallback() {
             @Override
@@ -109,6 +119,9 @@ public class DevPermissionEngineImpl
             ) {
                 if (callback != null) {
                     callback.onDenied(grantedList, deniedList, notFoundList);
+                }
+                if (againRequest && deniedList != null && !deniedList.isEmpty()) {
+                    againRequest(activity, callback, deniedList);
                 }
             }
         }).request(activity);

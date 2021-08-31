@@ -43,7 +43,7 @@ class DevPermissionEngineImpl : IPermissionEngine {
     override fun againRequest(
         activity: Activity?,
         callback: IPermissionEngine.Callback?,
-        deniedList: MutableList<String>?
+        deniedList: List<String>?
     ): Int {
         return PermissionUtils.againRequest(activity, object : PermissionUtils.PermissionCallback {
             override fun onGranted() {
@@ -68,13 +68,22 @@ class DevPermissionEngineImpl : IPermissionEngine {
         activity: Activity?,
         permissions: Array<out String>?
     ) {
-        request(activity, permissions, null)
+        request(activity, permissions, null, false)
     }
 
     override fun request(
         activity: Activity?,
         permissions: Array<out String>?,
         callback: IPermissionEngine.Callback?
+    ) {
+        request(activity, permissions, callback, false)
+    }
+
+    override fun request(
+        activity: Activity?,
+        permissions: Array<out String>?,
+        callback: IPermissionEngine.Callback?,
+        againRequest: Boolean
     ) {
         permissions?.let {
             PermissionUtils.permission(*it)
@@ -89,6 +98,10 @@ class DevPermissionEngineImpl : IPermissionEngine {
                         notFoundList: List<String>
                     ) {
                         callback?.onDenied(grantedList, deniedList, notFoundList)
+                        // 再次请求处理操作
+                        if (againRequest && deniedList.isNotEmpty()) {
+                            againRequest(activity, callback, deniedList)
+                        }
                     }
                 }).request(activity)
         }
