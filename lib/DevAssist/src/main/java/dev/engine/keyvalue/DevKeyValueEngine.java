@@ -3,10 +3,9 @@ package dev.engine.keyvalue;
 import java.util.Map;
 
 import dev.engine.DevEngineAssist;
-import dev.engine.keyvalue.IKeyValueEngine.EngineConfig;
 
 /**
- * detail: Key-Value Engine
+ * detail: KeyValue Engine
  * @author Ttt
  */
 public final class DevKeyValueEngine {
@@ -14,13 +13,13 @@ public final class DevKeyValueEngine {
     private DevKeyValueEngine() {
     }
 
-    private static final DevEngineAssist<IKeyValueEngine<? super EngineConfig>> sAssist = new DevEngineAssist<>();
+    private static final DevEngineAssist<IKeyValueEngine> sAssist = new DevEngineAssist<>();
 
     /**
      * 获取 Engine
      * @return {@link IKeyValueEngine}
      */
-    public static IKeyValueEngine<? super EngineConfig> getEngine() {
+    public static IKeyValueEngine getEngine() {
         return sAssist.getEngine();
     }
 
@@ -29,7 +28,7 @@ public final class DevKeyValueEngine {
      * @param key key
      * @return {@link IKeyValueEngine}
      */
-    public static IKeyValueEngine<? super EngineConfig> getEngine(final String key) {
+    public static IKeyValueEngine getEngine(final String key) {
         return sAssist.getEngine(key);
     }
 
@@ -78,7 +77,7 @@ public final class DevKeyValueEngine {
      * 获取 DevEngine Generic Assist
      * @return DevEngine Generic Assist
      */
-    public static DevEngineAssist<IKeyValueEngine<? super EngineConfig>> getAssist() {
+    public static DevEngineAssist<IKeyValueEngine> getAssist() {
         return sAssist;
     }
 
@@ -86,7 +85,7 @@ public final class DevKeyValueEngine {
      * 获取 Engine Map
      * @return Engine Map
      */
-    public static Map<String, IKeyValueEngine<? super EngineConfig>> getEngineMaps() {
+    public static Map<String, IKeyValueEngine> getEngineMaps() {
         return sAssist.getEngineMaps();
     }
 

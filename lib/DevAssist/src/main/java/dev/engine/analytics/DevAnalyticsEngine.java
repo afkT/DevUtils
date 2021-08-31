@@ -3,8 +3,6 @@ package dev.engine.analytics;
 import java.util.Map;
 
 import dev.engine.DevEngineAssist;
-import dev.engine.analytics.IAnalyticsEngine.EngineConfig;
-import dev.engine.analytics.IAnalyticsEngine.EngineItem;
 
 /**
  * detail: Analytics Engine
@@ -15,13 +13,13 @@ public final class DevAnalyticsEngine {
     private DevAnalyticsEngine() {
     }
 
-    private static final DevEngineAssist<IAnalyticsEngine<? super EngineConfig, ? super EngineItem>> sAssist = new DevEngineAssist<>();
+    private static final DevEngineAssist<IAnalyticsEngine> sAssist = new DevEngineAssist<>();
 
     /**
      * 获取 Engine
      * @return {@link IAnalyticsEngine}
      */
-    public static IAnalyticsEngine<? super EngineConfig, ? super EngineItem> getEngine() {
+    public static IAnalyticsEngine getEngine() {
         return sAssist.getEngine();
     }
 
@@ -30,7 +28,7 @@ public final class DevAnalyticsEngine {
      * @param key key
      * @return {@link IAnalyticsEngine}
      */
-    public static IAnalyticsEngine<? super EngineConfig, ? super EngineItem> getEngine(final String key) {
+    public static IAnalyticsEngine getEngine(final String key) {
         return sAssist.getEngine(key);
     }
 
@@ -79,7 +77,7 @@ public final class DevAnalyticsEngine {
      * 获取 DevEngine Generic Assist
      * @return DevEngine Generic Assist
      */
-    public static DevEngineAssist<IAnalyticsEngine<? super EngineConfig, ? super EngineItem>> getAssist() {
+    public static DevEngineAssist<IAnalyticsEngine> getAssist() {
         return sAssist;
     }
 
@@ -87,7 +85,7 @@ public final class DevAnalyticsEngine {
      * 获取 Engine Map
      * @return Engine Map
      */
-    public static Map<String, IAnalyticsEngine<? super EngineConfig, ? super EngineItem>> getEngineMaps() {
+    public static Map<String, IAnalyticsEngine> getEngineMaps() {
         return sAssist.getEngineMaps();
     }
 

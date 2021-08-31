@@ -3,8 +3,6 @@ package dev.engine.push;
 import java.util.Map;
 
 import dev.engine.DevEngineAssist;
-import dev.engine.push.IPushEngine.EngineConfig;
-import dev.engine.push.IPushEngine.EngineItem;
 
 /**
  * detail: Push Engine
@@ -15,13 +13,13 @@ public final class DevPushEngine {
     private DevPushEngine() {
     }
 
-    private static final DevEngineAssist<IPushEngine<? super EngineConfig, ? super EngineItem>> sAssist = new DevEngineAssist<>();
+    private static final DevEngineAssist<IPushEngine> sAssist = new DevEngineAssist<>();
 
     /**
      * 获取 Engine
      * @return {@link IPushEngine}
      */
-    public static IPushEngine<? super EngineConfig, ? super EngineItem> getEngine() {
+    public static IPushEngine getEngine() {
         return sAssist.getEngine();
     }
 
@@ -30,7 +28,7 @@ public final class DevPushEngine {
      * @param key key
      * @return {@link IPushEngine}
      */
-    public static IPushEngine<? super EngineConfig, ? super EngineItem> getEngine(final String key) {
+    public static IPushEngine getEngine(final String key) {
         return sAssist.getEngine(key);
     }
 
@@ -79,7 +77,7 @@ public final class DevPushEngine {
      * 获取 DevEngine Generic Assist
      * @return DevEngine Generic Assist
      */
-    public static DevEngineAssist<IPushEngine<? super EngineConfig, ? super EngineItem>> getAssist() {
+    public static DevEngineAssist<IPushEngine> getAssist() {
         return sAssist;
     }
 
@@ -87,7 +85,7 @@ public final class DevPushEngine {
      * 获取 Engine Map
      * @return Engine Map
      */
-    public static Map<String, IPushEngine<? super EngineConfig, ? super EngineItem>> getEngineMaps() {
+    public static Map<String, IPushEngine> getEngineMaps() {
         return sAssist.getEngineMaps();
     }
 

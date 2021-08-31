@@ -3,7 +3,6 @@ package dev.engine.image;
 import java.util.Map;
 
 import dev.engine.DevEngineAssist;
-import dev.engine.image.IImageEngine.EngineConfig;
 
 /**
  * detail: Image Engine
@@ -14,13 +13,13 @@ public final class DevImageEngine {
     private DevImageEngine() {
     }
 
-    private static final DevEngineAssist<IImageEngine<? super EngineConfig>> sAssist = new DevEngineAssist<>();
+    private static final DevEngineAssist<IImageEngine> sAssist = new DevEngineAssist<>();
 
     /**
      * 获取 Engine
      * @return {@link IImageEngine}
      */
-    public static IImageEngine<? super EngineConfig> getEngine() {
+    public static IImageEngine getEngine() {
         return sAssist.getEngine();
     }
 
@@ -29,7 +28,7 @@ public final class DevImageEngine {
      * @param key key
      * @return {@link IImageEngine}
      */
-    public static IImageEngine<? super EngineConfig> getEngine(final String key) {
+    public static IImageEngine getEngine(final String key) {
         return sAssist.getEngine(key);
     }
 
@@ -78,7 +77,7 @@ public final class DevImageEngine {
      * 获取 DevEngine Generic Assist
      * @return DevEngine Generic Assist
      */
-    public static DevEngineAssist<IImageEngine<? super EngineConfig>> getAssist() {
+    public static DevEngineAssist<IImageEngine> getAssist() {
         return sAssist;
     }
 
@@ -86,7 +85,7 @@ public final class DevImageEngine {
      * 获取 Engine Map
      * @return Engine Map
      */
-    public static Map<String, IImageEngine<? super EngineConfig>> getEngineMaps() {
+    public static Map<String, IImageEngine> getEngineMaps() {
         return sAssist.getEngineMaps();
     }
 

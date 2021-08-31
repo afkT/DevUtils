@@ -3,8 +3,6 @@ package dev.engine.share;
 import java.util.Map;
 
 import dev.engine.DevEngineAssist;
-import dev.engine.share.IShareEngine.EngineConfig;
-import dev.engine.share.IShareEngine.EngineItem;
 
 /**
  * detail: Share Engine
@@ -15,13 +13,13 @@ public final class DevShareEngine {
     private DevShareEngine() {
     }
 
-    private static final DevEngineAssist<IShareEngine<? super EngineConfig, ? super EngineItem>> sAssist = new DevEngineAssist<>();
+    private static final DevEngineAssist<IShareEngine> sAssist = new DevEngineAssist<>();
 
     /**
      * 获取 Engine
      * @return {@link IShareEngine}
      */
-    public static IShareEngine<? super EngineConfig, ? super EngineItem> getEngine() {
+    public static IShareEngine getEngine() {
         return sAssist.getEngine();
     }
 
@@ -30,7 +28,7 @@ public final class DevShareEngine {
      * @param key key
      * @return {@link IShareEngine}
      */
-    public static IShareEngine<? super EngineConfig, ? super EngineItem> getEngine(final String key) {
+    public static IShareEngine getEngine(final String key) {
         return sAssist.getEngine(key);
     }
 
@@ -79,7 +77,7 @@ public final class DevShareEngine {
      * 获取 DevEngine Generic Assist
      * @return DevEngine Generic Assist
      */
-    public static DevEngineAssist<IShareEngine<? super EngineConfig, ? super EngineItem>> getAssist() {
+    public static DevEngineAssist<IShareEngine> getAssist() {
         return sAssist;
     }
 
@@ -87,7 +85,7 @@ public final class DevShareEngine {
      * 获取 Engine Map
      * @return Engine Map
      */
-    public static Map<String, IShareEngine<? super EngineConfig, ? super EngineItem>> getEngineMaps() {
+    public static Map<String, IShareEngine> getEngineMaps() {
         return sAssist.getEngineMaps();
     }
 

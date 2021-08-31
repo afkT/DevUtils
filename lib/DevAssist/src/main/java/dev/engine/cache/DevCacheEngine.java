@@ -3,8 +3,6 @@ package dev.engine.cache;
 import java.util.Map;
 
 import dev.engine.DevEngineAssist;
-import dev.engine.cache.ICacheEngine.EngineConfig;
-import dev.engine.cache.ICacheEngine.EngineItem;
 
 /**
  * detail: Cache Engine
@@ -15,13 +13,13 @@ public final class DevCacheEngine {
     private DevCacheEngine() {
     }
 
-    private static final DevEngineAssist<ICacheEngine<? super EngineConfig, ? super EngineItem>> sAssist = new DevEngineAssist<>();
+    private static final DevEngineAssist<ICacheEngine> sAssist = new DevEngineAssist<>();
 
     /**
      * 获取 Engine
      * @return {@link ICacheEngine}
      */
-    public static ICacheEngine<? super EngineConfig, ? super EngineItem> getEngine() {
+    public static ICacheEngine getEngine() {
         return sAssist.getEngine();
     }
 
@@ -30,7 +28,7 @@ public final class DevCacheEngine {
      * @param key key
      * @return {@link ICacheEngine}
      */
-    public static ICacheEngine<? super EngineConfig, ? super EngineItem> getEngine(final String key) {
+    public static ICacheEngine getEngine(final String key) {
         return sAssist.getEngine(key);
     }
 
@@ -79,7 +77,7 @@ public final class DevCacheEngine {
      * 获取 DevEngine Generic Assist
      * @return DevEngine Generic Assist
      */
-    public static DevEngineAssist<ICacheEngine<? super EngineConfig, ? super EngineItem>> getAssist() {
+    public static DevEngineAssist<ICacheEngine> getAssist() {
         return sAssist;
     }
 
@@ -87,7 +85,7 @@ public final class DevCacheEngine {
      * 获取 Engine Map
      * @return Engine Map
      */
-    public static Map<String, ICacheEngine<? super EngineConfig, ? super EngineItem>> getEngineMaps() {
+    public static Map<String, ICacheEngine> getEngineMaps() {
         return sAssist.getEngineMaps();
     }
 
