@@ -24,13 +24,13 @@ object ZXingQRCodeUtils {
     // ============
 
     /**
-     * detail: 生成二维码结果回调
+     * detail: 二维码编码 ( 生成 ) 回调
      * @author Ttt
      */
-    interface QRResultCallback {
+    interface QREncodeCallback {
 
         /**
-         * 生成二维码结果回调
+         * 二维码编码 ( 生成 ) 回调
          * @param success 是否成功
          * @param bitmap  成功图片
          * @param error   异常信息
@@ -45,7 +45,7 @@ object ZXingQRCodeUtils {
     // =
 
     /**
-     * 生成二维码图片
+     * 编码 ( 生成 ) 二维码图片
      * @param content 生成内容
      * @param size    图片宽高大小 ( 正方形 px )
      */
@@ -57,7 +57,7 @@ object ZXingQRCodeUtils {
     }
 
     /**
-     * 生成二维码图片
+     * 编码 ( 生成 ) 二维码图片
      * @param content  生成内容
      * @param size     图片宽高大小 ( 正方形 px )
      * @param callback 生成结果回调
@@ -65,13 +65,13 @@ object ZXingQRCodeUtils {
     fun createQRCodeImage(
         content: String,
         size: Int,
-        callback: QRResultCallback?
+        callback: QREncodeCallback?
     ) {
         createQRCodeImage(content, size, null, callback)
     }
 
     /**
-     * 生成二维码图片
+     * 编码 ( 生成 ) 二维码图片
      * @param content  生成内容
      * @param size     图片宽高大小 ( 正方形 px )
      * @param logo     中间 Logo
@@ -81,12 +81,12 @@ object ZXingQRCodeUtils {
         content: String,
         size: Int,
         logo: Bitmap?,
-        callback: QRResultCallback?
+        callback: QREncodeCallback?
     ) {
         DevThreadManager.getInstance(10).execute {
             try {
-                // 生成二维码图片
-                var qrCodeBitmap = syncEncodeQRCode(content, size)
+                // 编码 ( 生成 ) 二维码图片
+                var qrCodeBitmap = encodeQRCode(content, size)
                 if (logo != null) { // 中间 Logo
                     qrCodeBitmap = addLogoToQRCode(qrCodeBitmap, logo)
                 }
@@ -110,13 +110,13 @@ object ZXingQRCodeUtils {
     )
 
     /**
-     * detail: 二维码扫描结果回调
+     * detail: 二维码解码 ( 解析 ) 回调
      * @author Ttt
      */
-    interface QRScanCallback {
+    interface QRDecodeCallback {
 
         /**
-         * 二维码扫描结果回调
+         * 二维码解码 ( 解析 ) 回调
          * @param success 是否成功
          * @param result  识别数据 [Result]
          * @param error   异常信息
@@ -131,13 +131,13 @@ object ZXingQRCodeUtils {
     // =
 
     /**
-     * 解析二维码图片
+     * 解码 ( 解析 ) 二维码图片
      * @param bitmap   待解析的二维码图片
      * @param callback 解析结果回调
      */
     fun decodeQRCode(
         bitmap: Bitmap?,
-        callback: QRScanCallback?
+        callback: QRDecodeCallback?
     ) {
         if (bitmap == null) {
             callback?.onResult(false, null, java.lang.Exception("bitmap is null"))
@@ -163,19 +163,6 @@ object ZXingQRCodeUtils {
         }
     }
 
-    // ==========
-    // = 获取结果 =
-    // ==========
-
-    /**
-     * 获取扫描结果数据
-     * @param result 识别数据 [Result]
-     * @return 扫描结果数据
-     */
-    fun getResultData(result: Result?): String? {
-        return result?.text
-    }
-
     // =======
     // = 编码 =
     // =======
@@ -195,20 +182,20 @@ object ZXingQRCodeUtils {
     }
 
     /**
-     * 同步创建黑色前景色、白色背景色的二维码图片
+     * 编码 ( 生成 ) 二维码图片
      * @param content 生成内容
      * @param size    图片宽高大小 ( 正方形 px )
      * @return 二维码图片
      */
-    fun syncEncodeQRCode(
+    fun encodeQRCode(
         content: String,
         size: Int
     ): Bitmap? {
-        return syncEncodeQRCode(content, size, Color.BLACK, Color.WHITE)
+        return encodeQRCode(content, size, Color.BLACK, Color.WHITE)
     }
 
     /**
-     * 同步创建指定前景色、指定背景色二维码图片
+     * 编码 ( 生成 ) 二维码图片
      * @param content         生成内容
      * @param size            图片宽高大小 ( 正方形 px )
      * @param foregroundColor 二维码图片的前景色
@@ -216,7 +203,7 @@ object ZXingQRCodeUtils {
      * @return 二维码图片
      * 该方法是耗时操作, 请在子线程中调用
      */
-    fun syncEncodeQRCode(
+    fun encodeQRCode(
         content: String,
         size: Int,
         foregroundColor: Int,
@@ -239,7 +226,7 @@ object ZXingQRCodeUtils {
             bitmap.setPixels(pixels, 0, size, 0, 0, size, size)
             return bitmap
         } catch (e: java.lang.Exception) {
-            LogPrintUtils.eTag(TAG, e, "syncEncodeQRCode")
+            LogPrintUtils.eTag(TAG, e, "encodeQRCode")
             return null
         }
     }
@@ -286,5 +273,18 @@ object ZXingQRCodeUtils {
             bitmap = null
         }
         return bitmap
+    }
+
+    // ==========
+    // = 获取结果 =
+    // ==========
+
+    /**
+     * 获取扫描结果数据
+     * @param result 识别数据 [Result]
+     * @return 扫描结果数据
+     */
+    fun getResultData(result: Result?): String? {
+        return result?.text
     }
 }

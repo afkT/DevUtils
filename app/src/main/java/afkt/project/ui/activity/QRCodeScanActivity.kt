@@ -161,7 +161,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
                 ImageUtils.decodeFile(imgPath)
             }
             // 解析图片
-            ZXingQRCodeUtils.decodeQRCode(selectBitmap, object : ZXingQRCodeUtils.QRScanCallback {
+            ZXingQRCodeUtils.decodeQRCode(selectBitmap, object : ZXingQRCodeUtils.QRDecodeCallback {
                 override fun onResult(
                     success: Boolean,
                     result: Result?,

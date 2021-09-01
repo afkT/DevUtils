@@ -39,13 +39,13 @@ public final class ZXingQRCodeUtils {
     // ============
 
     /**
-     * detail: 生成二维码结果回调
+     * detail: 二维码编码 ( 生成 ) 回调
      * @author Ttt
      */
-    public interface QRResultCallback {
+    public interface QREncodeCallback {
 
         /**
-         * 生成二维码结果回调
+         * 二维码编码 ( 生成 ) 回调
          * @param success 是否成功
          * @param bitmap  成功图片
          * @param error   异常信息
@@ -60,7 +60,7 @@ public final class ZXingQRCodeUtils {
     // =
 
     /**
-     * 生成二维码图片
+     * 编码 ( 生成 ) 二维码图片
      * @param content 生成内容
      * @param size    图片宽高大小 ( 正方形 px )
      */
@@ -72,7 +72,7 @@ public final class ZXingQRCodeUtils {
     }
 
     /**
-     * 生成二维码图片
+     * 编码 ( 生成 ) 二维码图片
      * @param content  生成内容
      * @param size     图片宽高大小 ( 正方形 px )
      * @param callback 生成结果回调
@@ -80,13 +80,13 @@ public final class ZXingQRCodeUtils {
     public static void createQRCodeImage(
             final String content,
             final int size,
-            final QRResultCallback callback
+            final QREncodeCallback callback
     ) {
         createQRCodeImage(content, size, null, callback);
     }
 
     /**
-     * 生成二维码图片
+     * 编码 ( 生成 ) 二维码图片
      * @param content  生成内容
      * @param size     图片宽高大小 ( 正方形 px )
      * @param logo     中间 Logo
@@ -96,14 +96,14 @@ public final class ZXingQRCodeUtils {
             final String content,
             final int size,
             final Bitmap logo,
-            final QRResultCallback callback
+            final QREncodeCallback callback
     ) {
         DevThreadManager.getInstance(10).execute(new Runnable() {
             @Override
             public void run() {
                 try {
-                    // 生成二维码图片
-                    Bitmap qrCodeBitmap = syncEncodeQRCode(content, size);
+                    // 编码 ( 生成 ) 二维码图片
+                    Bitmap qrCodeBitmap = encodeQRCode(content, size);
                     if (logo != null) { // 中间 Logo
                         qrCodeBitmap = addLogoToQRCode(qrCodeBitmap, logo);
                     }
@@ -130,13 +130,13 @@ public final class ZXingQRCodeUtils {
     private static final Map<DecodeHintType, Object> DECODE_HINTS = new EnumMap<>(DecodeHintType.class);
 
     /**
-     * detail: 二维码扫描结果回调
+     * detail: 二维码解码 ( 解析 ) 回调
      * @author Ttt
      */
-    public interface QRScanCallback {
+    public interface QRDecodeCallback {
 
         /**
-         * 二维码扫描结果回调
+         * 二维码解码 ( 解析 ) 回调
          * @param success 是否成功
          * @param result  识别数据 {@link Result}
          * @param error   异常信息
@@ -151,13 +151,13 @@ public final class ZXingQRCodeUtils {
     // =
 
     /**
-     * 解析二维码图片
+     * 解码 ( 解析 ) 二维码图片
      * @param bitmap   待解析的二维码图片
      * @param callback 解析结果回调
      */
     public static void decodeQRCode(
             final Bitmap bitmap,
-            final QRScanCallback callback
+            final QRDecodeCallback callback
     ) {
         if (bitmap == null) {
             if (callback != null) {
@@ -193,19 +193,6 @@ public final class ZXingQRCodeUtils {
         });
     }
 
-    // ==========
-    // = 获取结果 =
-    // ==========
-
-    /**
-     * 获取扫描结果数据
-     * @param result 识别数据 {@link Result}
-     * @return 扫描结果数据
-     */
-    public static String getResultData(final Result result) {
-        return (result != null) ? result.getText() : null;
-    }
-
     // =======
     // = 编码 =
     // =======
@@ -223,20 +210,20 @@ public final class ZXingQRCodeUtils {
     }
 
     /**
-     * 同步创建黑色前景色、白色背景色的二维码图片
+     * 编码 ( 生成 ) 二维码图片
      * @param content 生成内容
      * @param size    图片宽高大小 ( 正方形 px )
      * @return 二维码图片
      */
-    public static Bitmap syncEncodeQRCode(
+    public static Bitmap encodeQRCode(
             final String content,
             final int size
     ) {
-        return syncEncodeQRCode(content, size, Color.BLACK, Color.WHITE);
+        return encodeQRCode(content, size, Color.BLACK, Color.WHITE);
     }
 
     /**
-     * 同步创建指定前景色、指定背景色二维码图片
+     * 编码 ( 生成 ) 二维码图片
      * <pre>
      *     该方法是耗时操作, 请在子线程中调用
      * </pre>
@@ -246,7 +233,7 @@ public final class ZXingQRCodeUtils {
      * @param backgroundColor 二维码图片的背景色
      * @return 二维码图片
      */
-    public static Bitmap syncEncodeQRCode(
+    public static Bitmap encodeQRCode(
             final String content,
             final int size,
             final int foregroundColor,
@@ -270,7 +257,7 @@ public final class ZXingQRCodeUtils {
             bitmap.setPixels(pixels, 0, size, 0, 0, size, size);
             return bitmap;
         } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "syncEncodeQRCode");
+            LogPrintUtils.eTag(TAG, e, "encodeQRCode");
             return null;
         }
     }
@@ -309,5 +296,18 @@ public final class ZXingQRCodeUtils {
             bitmap = null;
         }
         return bitmap;
+    }
+
+    // ==========
+    // = 获取结果 =
+    // ==========
+
+    /**
+     * 获取扫描结果数据
+     * @param result 识别数据 {@link Result}
+     * @return 扫描结果数据
+     */
+    public static String getResultData(final Result result) {
+        return (result != null) ? result.getText() : null;
     }
 }

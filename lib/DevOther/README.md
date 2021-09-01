@@ -820,12 +820,11 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| createQRCodeImage | 生成二维码图片 |
-| decodeQRCode | 解析二维码图片 |
-| getResultData | 获取扫描结果数据 |
-| syncEncodeQRCode | 同步创建黑色前景色、白色背景色的二维码图片 |
+| createQRCodeImage | 编码 ( 生成 ) 二维码图片 |
+| decodeQRCode | 解码 ( 解析 ) 二维码图片 |
+| encodeQRCode | 编码 ( 生成 ) 二维码图片 |
 | addLogoToQRCode | 添加 Logo 到二维码图片上 |
-| onResult | 生成二维码结果回调 |
+| getResultData | 获取扫描结果数据 |
 
 
 ## <span id="devothercache">**`dev.other.cache`**</span>

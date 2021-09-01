@@ -50,7 +50,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
                 // 创建二维码
                 ZXingQRCodeUtils.createQRCodeImage(
                     text, size, selectBitmap,
-                    object : ZXingQRCodeUtils.QRResultCallback {
+                    object : ZXingQRCodeUtils.QREncodeCallback {
                         override fun onResult(
                             success: Boolean,
                             bitmap: Bitmap?,
