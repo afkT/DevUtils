@@ -2,8 +2,6 @@ package dev.engine.image.listener;
 
 import android.graphics.drawable.Drawable;
 
-import dev.engine.image.LoadListener;
-
 /**
  * detail: Drawable 加载事件
  * @author Ttt

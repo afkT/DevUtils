@@ -2,8 +2,6 @@ package dev.engine.image.listener;
 
 import android.graphics.Bitmap;
 
-import dev.engine.image.LoadListener;
-
 /**
  * detail: Bitmap 加载事件
  * @author Ttt
