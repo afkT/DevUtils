@@ -36,7 +36,6 @@ import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
 import ktx.dev.assist.WebViewAssist
 import me.jessyan.autosize.AutoSizeConfig
-import java.dev.other.MMKVUtils
 
 /**
  * detail: Base Application
@@ -138,18 +137,25 @@ class BaseApplication : MultiDexApplication() {
      * 统一初始化方法
      */
     private fun initialize() {
-        // 初始化 MMKV
-        MMKVUtils.initialize(this)
+        // 初始化引擎
+        initEngine()
         // 初始化状态布局配置
         initStateLayout()
         // 初始化异常捕获处理
         initCrash()
         // 初始化 WebView 辅助类全局配置
         initWebViewBuilder()
-        // 初始化引擎
-        initEngine()
         // 初始化其他 lib
         initOther()
+    }
+
+    /**
+     * 初始化引擎
+     */
+    private fun initEngine() {
+        // 使用内部默认实现 Engine
+        DevEngine.defaultMMKVInitialize(this)
+            .defaultEngine(DevEngine.getMMKVConfig())
     }
 
     /**
@@ -253,15 +259,6 @@ class BaseApplication : MultiDexApplication() {
             // WebViewAssist 构造函数会使用全局配置
             WebViewAssist.setGlobalBuilder(this)
         }
-    }
-
-    /**
-     * 初始化引擎
-     */
-    private fun initEngine() {
-        // 使用内部默认实现 Engine
-        DevEngine.defaultMMKVInitialize(this)
-            .defaultEngine(DevEngine.getMMKVConfig())
     }
 
     /**

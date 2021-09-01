@@ -14,13 +14,13 @@ import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.HttpParams;
 import com.lzy.okgo.request.base.Request;
 
-import java.dev.other.GsonUtils;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 import dev.capture.CallbackInterceptor;
 import dev.capture.CaptureInfo;
 import dev.capture.IHttpCaptureCallback;
+import dev.engine.DevEngine;
 import dev.utils.LogPrintUtils;
 import okhttp3.OkHttpClient;
 
@@ -72,7 +72,7 @@ public final class OkGoUtils {
         builder.addInterceptor(new CallbackInterceptor(new IHttpCaptureCallback() {
             @Override
             public void callback(CaptureInfo captureInfo) {
-                LogPrintUtils.jsonTag(TAG, GsonUtils.toJson(captureInfo));
+                LogPrintUtils.jsonTag(TAG, DevEngine.INSTANCE.getJSON().toJson(captureInfo));
             }
         }));
 

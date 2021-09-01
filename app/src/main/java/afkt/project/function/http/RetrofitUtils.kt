@@ -2,6 +2,7 @@ package afkt.project.function.http
 
 import dev.DevUtils
 import dev.capture.CallbackInterceptor
+import dev.engine.DevEngine
 import dev.environment.DevEnvironment
 import dev.utils.LogPrintUtils
 import ktx.dev.other.retrofit_rxjava.RetrofitManager
@@ -9,7 +10,6 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.dev.other.GsonUtils
 import java.util.concurrent.TimeUnit
 
 /**
@@ -74,7 +74,7 @@ class RetrofitUtils private constructor() {
         // 使用 DevHttpCapture 库进行 Http 拦截回调 ( 不进行抓包数据存储 )
         builder.addInterceptor(CallbackInterceptor { captureInfo ->
             LogPrintUtils.jsonTag(
-                TAG, GsonUtils.toJson(captureInfo)
+                TAG, DevEngine.getJSON().toJson(captureInfo)
             )
         })
 
