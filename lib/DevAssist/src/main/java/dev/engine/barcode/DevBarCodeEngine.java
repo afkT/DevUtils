@@ -1,55 +1,55 @@
-package dev.engine.qrcode;
+package dev.engine.barcode;
 
 import java.util.Map;
 
 import dev.engine.DevEngineAssist;
 
 /**
- * detail: QRCode Engine
+ * detail: BarCode Engine
  * @author Ttt
  */
-public final class DevQRCodeEngine {
+public final class DevBarCodeEngine {
 
-    private DevQRCodeEngine() {
+    private DevBarCodeEngine() {
     }
 
-    private static final DevEngineAssist<IQRCodeEngine> sAssist = new DevEngineAssist<>();
+    private static final DevEngineAssist<IBarCodeEngine> sAssist = new DevEngineAssist<>();
 
     /**
      * 获取 Engine
-     * @return {@link IQRCodeEngine}
+     * @return {@link IBarCodeEngine}
      */
-    public static IQRCodeEngine getEngine() {
+    public static IBarCodeEngine getEngine() {
         return sAssist.getEngine();
     }
 
     /**
      * 获取 Engine
      * @param key key
-     * @return {@link IQRCodeEngine}
+     * @return {@link IBarCodeEngine}
      */
-    public static IQRCodeEngine getEngine(final String key) {
+    public static IBarCodeEngine getEngine(final String key) {
         return sAssist.getEngine(key);
     }
 
     /**
      * 设置 Engine
-     * @param engine {@link IQRCodeEngine}
-     * @return {@link IQRCodeEngine}
+     * @param engine {@link IBarCodeEngine}
+     * @return {@link IBarCodeEngine}
      */
-    public static IQRCodeEngine setEngine(final IQRCodeEngine engine) {
+    public static IBarCodeEngine setEngine(final IBarCodeEngine engine) {
         return sAssist.setEngine(engine);
     }
 
     /**
      * 设置 Engine
      * @param key    key
-     * @param engine {@link IQRCodeEngine}
-     * @return {@link IQRCodeEngine}
+     * @param engine {@link IBarCodeEngine}
+     * @return {@link IBarCodeEngine}
      */
-    public static IQRCodeEngine setEngine(
+    public static IBarCodeEngine setEngine(
             final String key,
-            final IQRCodeEngine engine
+            final IBarCodeEngine engine
     ) {
         return sAssist.setEngine(key, engine);
     }
@@ -77,7 +77,7 @@ public final class DevQRCodeEngine {
      * 获取 DevEngine Generic Assist
      * @return DevEngine Generic Assist
      */
-    public static DevEngineAssist<IQRCodeEngine> getAssist() {
+    public static DevEngineAssist<IBarCodeEngine> getAssist() {
         return sAssist;
     }
 
@@ -85,7 +85,7 @@ public final class DevQRCodeEngine {
      * 获取 Engine Map
      * @return Engine Map
      */
-    public static Map<String, IQRCodeEngine> getEngineMaps() {
+    public static Map<String, IBarCodeEngine> getEngineMaps() {
         return sAssist.getEngineMaps();
     }
 

@@ -1,15 +1,15 @@
-package dev.engine.qrcode.listener;
+package dev.engine.barcode.listener;
 
-import dev.engine.qrcode.IQRCodeEngine;
+import dev.engine.barcode.IBarCodeEngine;
 
 /**
- * detail: 二维码解码 ( 解析 ) 回调
+ * detail: 条码解码 ( 解析 ) 回调
  * @author Ttt
  */
-public interface QRDecodeCallback<Result extends IQRCodeEngine.EngineResult> {
+public interface BarCodeDecodeCallback<Result extends IBarCodeEngine.EngineResult> {
 
     /**
-     * 二维码解码 ( 解析 ) 回调
+     * 条码解码 ( 解析 ) 回调
      * @param success 是否成功
      * @param result  识别结果
      * @param error   异常信息

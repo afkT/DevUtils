@@ -21,7 +21,7 @@ import dev.engine.media.PictureSelectorEngineImpl
 import dev.engine.permission.DevPermissionEngine
 import dev.engine.permission.DevPermissionEngineImpl
 import dev.engine.push.DevPushEngine
-import dev.engine.qrcode.DevQRCodeEngine
+import dev.engine.barcode.DevBarCodeEngine
 import dev.engine.share.DevShareEngine
 import dev.engine.storage.DevMediaStoreEngineImpl
 import dev.engine.storage.DevStorageEngine
@@ -250,6 +250,12 @@ object DevEngine {
     fun getAnalytics() = DevAnalyticsEngine.getEngine()
 
     /**
+     * 获取 BarCode Engine
+     * @return BarCode Engine
+     */
+    fun getBarCode() = DevBarCodeEngine.getEngine()
+
+    /**
      * 获取 Cache Engine
      * @return Cache Engine
      */
@@ -304,12 +310,6 @@ object DevEngine {
     fun getPush() = DevPushEngine.getEngine()
 
     /**
-     * 获取 QRCode Engine
-     * @return QRCode Engine
-     */
-    fun getQRCode() = DevQRCodeEngine.getEngine()
-
-    /**
      * 获取 Share Engine
      * @return Share Engine
      */
@@ -330,6 +330,12 @@ object DevEngine {
      * @return Analytics Engine
      */
     fun getAnalytics(key: String?) = DevAnalyticsEngine.getEngine(key)
+
+    /**
+     * 获取 BarCode Engine
+     * @return BarCode Engine
+     */
+    fun getBarCode(key: String?) = DevBarCodeEngine.getEngine(key)
 
     /**
      * 获取 Cache Engine
@@ -386,12 +392,6 @@ object DevEngine {
     fun getPush(key: String?) = DevPushEngine.getEngine(key)
 
     /**
-     * 获取 QRCode Engine
-     * @return QRCode Engine
-     */
-    fun getQRCode(key: String?) = DevQRCodeEngine.getEngine(key)
-
-    /**
      * 获取 Share Engine
      * @return Share Engine
      */
@@ -412,6 +412,12 @@ object DevEngine {
      * @return Analytics Engine Generic Assist
      */
     fun getAnalyticsAssist() = DevAnalyticsEngine.getAssist()
+
+    /**
+     * 获取 BarCode Engine Generic Assist
+     * @return BarCode Engine Generic Assist
+     */
+    fun getBarCodeAssist() = DevBarCodeEngine.getAssist()
 
     /**
      * 获取 Cache Engine Generic Assist
@@ -466,12 +472,6 @@ object DevEngine {
      * @return Push Engine Generic Assist
      */
     fun getPushAssist() = DevPushEngine.getAssist()
-
-    /**
-     * 获取 QRCode Engine Generic Assist
-     * @return QRCode Engine Generic Assist
-     */
-    fun getQRCodeAssist() = DevQRCodeEngine.getAssist()
 
     /**
      * 获取 Share Engine Generic Assist

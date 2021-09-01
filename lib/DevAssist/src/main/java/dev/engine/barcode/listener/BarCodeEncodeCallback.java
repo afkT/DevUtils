@@ -1,15 +1,15 @@
-package dev.engine.qrcode.listener;
+package dev.engine.barcode.listener;
 
 import android.graphics.Bitmap;
 
 /**
- * detail: 二维码编码 ( 生成 ) 回调
+ * detail: 条码编码 ( 生成 ) 回调
  * @author Ttt
  */
-public interface QREncodeCallback {
+public interface BarCodeEncodeCallback {
 
     /**
-     * 二维码编码 ( 生成 ) 回调
+     * 条码编码 ( 生成 ) 回调
      * @param success 是否成功
      * @param bitmap  成功图片
      * @param error   异常信息
