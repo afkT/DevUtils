@@ -4,6 +4,7 @@ import android.content.Context
 import com.tencent.mmkv.MMKV
 import dev.DevUtils
 import dev.engine.analytics.DevAnalyticsEngine
+import dev.engine.barcode.DevBarCodeEngine
 import dev.engine.cache.CacheConfig
 import dev.engine.cache.DevCacheEngine
 import dev.engine.cache.DevCacheEngineImpl
@@ -21,7 +22,6 @@ import dev.engine.media.PictureSelectorEngineImpl
 import dev.engine.permission.DevPermissionEngine
 import dev.engine.permission.DevPermissionEngineImpl
 import dev.engine.push.DevPushEngine
-import dev.engine.barcode.DevBarCodeEngine
 import dev.engine.share.DevShareEngine
 import dev.engine.storage.DevMediaStoreEngineImpl
 import dev.engine.storage.DevStorageEngine
