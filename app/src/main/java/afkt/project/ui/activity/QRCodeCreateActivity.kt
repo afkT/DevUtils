@@ -48,7 +48,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
                 }
                 val size = SizeUtils.dipConvertPx(200f)
                 // 创建二维码
-                ZXingQRCodeUtils.createQRCodeImage(
+                ZXingQRCodeUtils.encodeQRCode(
                     text, size, selectBitmap,
                     object : ZXingQRCodeUtils.QREncodeCallback {
                         override fun onResult(

@@ -49,11 +49,11 @@ object ZXingQRCodeUtils {
      * @param content 生成内容
      * @param size    图片宽高大小 ( 正方形 px )
      */
-    fun createQRCodeImage(
+    fun encodeQRCode(
         content: String,
         size: Int
     ) {
-        createQRCodeImage(content, size, null, null)
+        encodeQRCode(content, size, null, null)
     }
 
     /**
@@ -62,12 +62,12 @@ object ZXingQRCodeUtils {
      * @param size     图片宽高大小 ( 正方形 px )
      * @param callback 生成结果回调
      */
-    fun createQRCodeImage(
+    fun encodeQRCode(
         content: String,
         size: Int,
         callback: QREncodeCallback?
     ) {
-        createQRCodeImage(content, size, null, callback)
+        encodeQRCode(content, size, null, callback)
     }
 
     /**
@@ -77,7 +77,7 @@ object ZXingQRCodeUtils {
      * @param logo     中间 Logo
      * @param callback 生成结果回调
      */
-    fun createQRCodeImage(
+    fun encodeQRCode(
         content: String,
         size: Int,
         logo: Bitmap?,
@@ -86,17 +86,85 @@ object ZXingQRCodeUtils {
         DevThreadManager.getInstance(10).execute {
             try {
                 // 编码 ( 生成 ) 二维码图片
-                var qrCodeBitmap = encodeQRCode(content, size)
+                var qrCodeBitmap = encodeQRCodeSync(content, size)
                 if (logo != null) { // 中间 Logo
                     qrCodeBitmap = addLogoToQRCode(qrCodeBitmap, logo)
                 }
                 // 触发回调
                 callback?.onResult(true, qrCodeBitmap, null)
-            } catch (e: java.lang.Exception) {
-                LogPrintUtils.eTag(TAG, e, "createQRCodeImage")
+            } catch (e: Exception) {
+                LogPrintUtils.eTag(TAG, e, "encodeQRCode")
                 // 触发回调
                 callback?.onResult(false, null, e)
             }
+        }
+    }
+
+    // =======
+    // = 编码 =
+    // =======
+
+    // 编码类型
+    private val ENCODE_HINTS: MutableMap<EncodeHintType, Any?> = EnumMap(
+        EncodeHintType::class.java
+    )
+
+    init {
+        // 编码类型
+        ENCODE_HINTS[EncodeHintType.CHARACTER_SET] = "UTF-8"
+        // 指定纠错等级, 纠错级别 ( L 7%、M 15%、Q 25%、H 30% )
+        ENCODE_HINTS[EncodeHintType.ERROR_CORRECTION] = ErrorCorrectionLevel.H
+        // 设置二维码边的空度, 非负数
+        ENCODE_HINTS[EncodeHintType.MARGIN] = 0
+    }
+
+    /**
+     * 编码 ( 生成 ) 二维码图片
+     * @param content 生成内容
+     * @param size    图片宽高大小 ( 正方形 px )
+     * @return 二维码图片
+     */
+    fun encodeQRCodeSync(
+        content: String,
+        size: Int
+    ): Bitmap? {
+        return encodeQRCodeSync(content, size, Color.BLACK, Color.WHITE)
+    }
+
+    /**
+     * 编码 ( 生成 ) 二维码图片
+     * @param content         生成内容
+     * @param size            图片宽高大小 ( 正方形 px )
+     * @param foregroundColor 二维码图片的前景色
+     * @param backgroundColor 二维码图片的背景色
+     * @return 二维码图片
+     * 该方法是耗时操作, 请在子线程中调用
+     */
+    fun encodeQRCodeSync(
+        content: String,
+        size: Int,
+        foregroundColor: Int,
+        backgroundColor: Int
+    ): Bitmap? {
+        try {
+            val matrix =
+                MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, size, size, ENCODE_HINTS)
+            val pixels = IntArray(size * size)
+            for (y in 0 until size) {
+                for (x in 0 until size) {
+                    if (matrix[x, y]) {
+                        pixels[y * size + x] = foregroundColor
+                    } else {
+                        pixels[y * size + x] = backgroundColor
+                    }
+                }
+            }
+            val bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
+            bitmap.setPixels(pixels, 0, size, 0, 0, size, size)
+            return bitmap
+        } catch (e: Exception) {
+            LogPrintUtils.eTag(TAG, e, "encodeQRCodeSync")
+            return null
         }
     }
 
@@ -140,22 +208,16 @@ object ZXingQRCodeUtils {
         callback: QRDecodeCallback?
     ) {
         if (bitmap == null) {
-            callback?.onResult(false, null, java.lang.Exception("bitmap is null"))
+            callback?.onResult(false, null, Exception("bitmap is null"))
             return
         }
         // 开始解析
         DevThreadManager.getInstance(5).execute {
             try {
-                val width = bitmap.width
-                val height = bitmap.height
-                val pixels = IntArray(width * height)
-                bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
-                val source = RGBLuminanceSource(width, height, pixels)
-                val result =
-                    MultiFormatReader().decode(BinaryBitmap(HybridBinarizer(source)), DECODE_HINTS)
+                val result = decodeQRCodeSync(bitmap)
                 // 触发回调
                 callback?.onResult(result != null, result, null)
-            } catch (e: java.lang.Exception) {
+            } catch (e: Exception) {
                 LogPrintUtils.eTag(TAG, e, "decodeQRCode")
                 // 触发回调
                 callback?.onResult(false, null, e)
@@ -163,73 +225,29 @@ object ZXingQRCodeUtils {
         }
     }
 
-    // =======
-    // = 编码 =
-    // =======
-
-    // 编码类型
-    private val ENCODE_HINTS: MutableMap<EncodeHintType, Any?> = EnumMap(
-        EncodeHintType::class.java
-    )
-
-    init {
-        // 编码类型
-        ENCODE_HINTS[EncodeHintType.CHARACTER_SET] = "UTF-8"
-        // 指定纠错等级, 纠错级别 ( L 7%、M 15%、Q 25%、H 30% )
-        ENCODE_HINTS[EncodeHintType.ERROR_CORRECTION] = ErrorCorrectionLevel.H
-        // 设置二维码边的空度, 非负数
-        ENCODE_HINTS[EncodeHintType.MARGIN] = 0
-    }
-
     /**
-     * 编码 ( 生成 ) 二维码图片
-     * @param content 生成内容
-     * @param size    图片宽高大小 ( 正方形 px )
-     * @return 二维码图片
+     * 解码 ( 解析 ) 二维码图片
+     * @param bitmap   待解析的二维码图片
+     * @param callback 解析结果回调
      */
-    fun encodeQRCode(
-        content: String,
-        size: Int
-    ): Bitmap? {
-        return encodeQRCode(content, size, Color.BLACK, Color.WHITE)
-    }
-
-    /**
-     * 编码 ( 生成 ) 二维码图片
-     * @param content         生成内容
-     * @param size            图片宽高大小 ( 正方形 px )
-     * @param foregroundColor 二维码图片的前景色
-     * @param backgroundColor 二维码图片的背景色
-     * @return 二维码图片
-     * 该方法是耗时操作, 请在子线程中调用
-     */
-    fun encodeQRCode(
-        content: String,
-        size: Int,
-        foregroundColor: Int,
-        backgroundColor: Int
-    ): Bitmap? {
-        try {
-            val matrix =
-                MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, size, size, ENCODE_HINTS)
-            val pixels = IntArray(size * size)
-            for (y in 0 until size) {
-                for (x in 0 until size) {
-                    if (matrix[x, y]) {
-                        pixels[y * size + x] = foregroundColor
-                    } else {
-                        pixels[y * size + x] = backgroundColor
-                    }
-                }
-            }
-            val bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
-            bitmap.setPixels(pixels, 0, size, 0, 0, size, size)
-            return bitmap
-        } catch (e: java.lang.Exception) {
-            LogPrintUtils.eTag(TAG, e, "encodeQRCode")
-            return null
+    fun decodeQRCodeSync(bitmap: Bitmap?): Result? {
+        if (bitmap != null) {
+            val width = bitmap.width
+            val height = bitmap.height
+            val pixels = IntArray(width * height)
+            bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
+            val source = RGBLuminanceSource(width, height, pixels)
+            val result = MultiFormatReader().decode(
+                BinaryBitmap(HybridBinarizer(source)), DECODE_HINTS
+            )
+            return result
         }
+        return null
     }
+
+    // ==========
+    // = 其他功能 =
+    // ==========
 
     /**
      * 添加 Logo 到二维码图片上
@@ -268,7 +286,7 @@ object ZXingQRCodeUtils {
             )
             canvas.save()
             canvas.restore()
-        } catch (e: java.lang.Exception) {
+        } catch (e: Exception) {
             LogPrintUtils.eTag(TAG, e, "addLogoToQRCode")
             bitmap = null
         }

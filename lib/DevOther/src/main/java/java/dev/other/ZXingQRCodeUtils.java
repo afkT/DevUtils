@@ -64,11 +64,11 @@ public final class ZXingQRCodeUtils {
      * @param content 生成内容
      * @param size    图片宽高大小 ( 正方形 px )
      */
-    public static void createQRCodeImage(
+    public static void encodeQRCode(
             final String content,
             final int size
     ) {
-        createQRCodeImage(content, size, null, null);
+        encodeQRCode(content, size, null, null);
     }
 
     /**
@@ -77,12 +77,12 @@ public final class ZXingQRCodeUtils {
      * @param size     图片宽高大小 ( 正方形 px )
      * @param callback 生成结果回调
      */
-    public static void createQRCodeImage(
+    public static void encodeQRCode(
             final String content,
             final int size,
             final QREncodeCallback callback
     ) {
-        createQRCodeImage(content, size, null, callback);
+        encodeQRCode(content, size, null, callback);
     }
 
     /**
@@ -92,7 +92,7 @@ public final class ZXingQRCodeUtils {
      * @param logo     中间 Logo
      * @param callback 生成结果回调
      */
-    public static void createQRCodeImage(
+    public static void encodeQRCode(
             final String content,
             final int size,
             final Bitmap logo,
@@ -103,7 +103,7 @@ public final class ZXingQRCodeUtils {
             public void run() {
                 try {
                     // 编码 ( 生成 ) 二维码图片
-                    Bitmap qrCodeBitmap = encodeQRCode(content, size);
+                    Bitmap qrCodeBitmap = encodeQRCodeSync(content, size);
                     if (logo != null) { // 中间 Logo
                         qrCodeBitmap = addLogoToQRCode(qrCodeBitmap, logo);
                     }
@@ -112,7 +112,7 @@ public final class ZXingQRCodeUtils {
                         callback.onResult(true, qrCodeBitmap, null);
                     }
                 } catch (Exception e) {
-                    LogPrintUtils.eTag(TAG, e, "createQRCodeImage");
+                    LogPrintUtils.eTag(TAG, e, "encodeQRCode");
                     // 触发回调
                     if (callback != null) {
                         callback.onResult(false, null, e);
@@ -120,6 +120,75 @@ public final class ZXingQRCodeUtils {
                 }
             }
         });
+    }
+
+    // =======
+    // = 编码 =
+    // =======
+
+    // 编码类型
+    private static final Map<EncodeHintType, Object> ENCODE_HINTS = new EnumMap<>(EncodeHintType.class);
+
+    static {
+        // 编码类型
+        ENCODE_HINTS.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+        // 指定纠错等级, 纠错级别 ( L 7%、M 15%、Q 25%、H 30% )
+        ENCODE_HINTS.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
+        // 设置二维码边的空度, 非负数
+        ENCODE_HINTS.put(EncodeHintType.MARGIN, 0);
+    }
+
+    /**
+     * 编码 ( 生成 ) 二维码图片
+     * @param content 生成内容
+     * @param size    图片宽高大小 ( 正方形 px )
+     * @return 二维码图片
+     */
+    public static Bitmap encodeQRCodeSync(
+            final String content,
+            final int size
+    ) {
+        return encodeQRCodeSync(content, size, Color.BLACK, Color.WHITE);
+    }
+
+    /**
+     * 编码 ( 生成 ) 二维码图片
+     * <pre>
+     *     该方法是耗时操作, 请在子线程中调用
+     * </pre>
+     * @param content         生成内容
+     * @param size            图片宽高大小 ( 正方形 px )
+     * @param foregroundColor 二维码图片的前景色
+     * @param backgroundColor 二维码图片的背景色
+     * @return 二维码图片
+     */
+    public static Bitmap encodeQRCodeSync(
+            final String content,
+            final int size,
+            final int foregroundColor,
+            final int backgroundColor
+    ) {
+        try {
+            BitMatrix matrix = new MultiFormatWriter().encode(
+                    content, BarcodeFormat.QR_CODE, size, size, ENCODE_HINTS
+            );
+            int[] pixels = new int[size * size];
+            for (int y = 0; y < size; y++) {
+                for (int x = 0; x < size; x++) {
+                    if (matrix.get(x, y)) {
+                        pixels[y * size + x] = foregroundColor;
+                    } else {
+                        pixels[y * size + x] = backgroundColor;
+                    }
+                }
+            }
+            Bitmap bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+            bitmap.setPixels(pixels, 0, size, 0, 0, size, size);
+            return bitmap;
+        } catch (Exception e) {
+            LogPrintUtils.eTag(TAG, e, "encodeQRCodeSync");
+            return null;
+        }
     }
 
     // ============
@@ -170,14 +239,7 @@ public final class ZXingQRCodeUtils {
             @Override
             public void run() {
                 try {
-                    int   width  = bitmap.getWidth();
-                    int   height = bitmap.getHeight();
-                    int[] pixels = new int[width * height];
-                    bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
-                    RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
-                    Result result = new MultiFormatReader().decode(
-                            new BinaryBitmap(new HybridBinarizer(source)), DECODE_HINTS
-                    );
+                    Result result = decodeQRCodeSync(bitmap);
                     // 触发回调
                     if (callback != null) {
                         callback.onResult((result != null), result, null);
@@ -193,74 +255,30 @@ public final class ZXingQRCodeUtils {
         });
     }
 
-    // =======
-    // = 编码 =
-    // =======
-
-    // 编码类型
-    private static final Map<EncodeHintType, Object> ENCODE_HINTS = new EnumMap<>(EncodeHintType.class);
-
-    static {
-        // 编码类型
-        ENCODE_HINTS.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-        // 指定纠错等级, 纠错级别 ( L 7%、M 15%、Q 25%、H 30% )
-        ENCODE_HINTS.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
-        // 设置二维码边的空度, 非负数
-        ENCODE_HINTS.put(EncodeHintType.MARGIN, 0);
-    }
-
     /**
-     * 编码 ( 生成 ) 二维码图片
-     * @param content 生成内容
-     * @param size    图片宽高大小 ( 正方形 px )
-     * @return 二维码图片
+     * 解码 ( 解析 ) 二维码图片
+     * @param bitmap 待解析的二维码图片
+     * @return {@link Result}
      */
-    public static Bitmap encodeQRCode(
-            final String content,
-            final int size
-    ) {
-        return encodeQRCode(content, size, Color.BLACK, Color.WHITE);
-    }
-
-    /**
-     * 编码 ( 生成 ) 二维码图片
-     * <pre>
-     *     该方法是耗时操作, 请在子线程中调用
-     * </pre>
-     * @param content         生成内容
-     * @param size            图片宽高大小 ( 正方形 px )
-     * @param foregroundColor 二维码图片的前景色
-     * @param backgroundColor 二维码图片的背景色
-     * @return 二维码图片
-     */
-    public static Bitmap encodeQRCode(
-            final String content,
-            final int size,
-            final int foregroundColor,
-            final int backgroundColor
-    ) {
-        try {
-            BitMatrix matrix = new MultiFormatWriter().encode(
-                    content, BarcodeFormat.QR_CODE, size, size, ENCODE_HINTS
+    public static Result decodeQRCodeSync(final Bitmap bitmap)
+            throws Exception {
+        if (bitmap != null) {
+            int   width  = bitmap.getWidth();
+            int   height = bitmap.getHeight();
+            int[] pixels = new int[width * height];
+            bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
+            RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
+            Result result = new MultiFormatReader().decode(
+                    new BinaryBitmap(new HybridBinarizer(source)), DECODE_HINTS
             );
-            int[] pixels = new int[size * size];
-            for (int y = 0; y < size; y++) {
-                for (int x = 0; x < size; x++) {
-                    if (matrix.get(x, y)) {
-                        pixels[y * size + x] = foregroundColor;
-                    } else {
-                        pixels[y * size + x] = backgroundColor;
-                    }
-                }
-            }
-            Bitmap bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
-            bitmap.setPixels(pixels, 0, size, 0, 0, size, size);
-            return bitmap;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "encodeQRCode");
-            return null;
+            return result;
         }
+        return null;
     }
+
+    // ==========
+    // = 其他功能 =
+    // ==========
 
     /**
      * 添加 Logo 到二维码图片上

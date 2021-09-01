@@ -1,7 +1,8 @@
 package dev.engine.qrcode;
 
-import android.app.Application;
-import android.content.Context;
+import android.graphics.Bitmap;
+
+import dev.engine.qrcode.listener.QREncodeCallback;
 
 /**
  * detail: QRCode Engine 接口
@@ -29,31 +30,51 @@ public interface IQRCodeEngine<Config extends IQRCodeEngine.EngineConfig> {
 
     /**
      * 初始化方法
-     * @param application {@link Application}
-     * @param config      QRCode Config
+     * @param config QRCode Config
      */
-    void initialize(
-            Application application,
-            Config config
+    void initialize(Config config);
+
+    // ============
+    // = 生成二维码 =
+    // ============
+
+    /**
+     * 编码 ( 生成 ) 二维码图片
+     * @param content 生成内容
+     * @param size    图片宽高大小 ( 正方形 px )
+     */
+    void decodeQRCode(
+            final String content,
+            final int size
     );
 
     /**
-     * 绑定
-     * @param context {@link Context}
-     * @param config  QRCode Config
+     * 编码 ( 生成 ) 二维码图片
+     * @param content  生成内容
+     * @param size     图片宽高大小 ( 正方形 px )
+     * @param callback 生成结果回调
      */
-    void register(
-            Context context,
-            Config config
+    void decodeQRCode(
+            final String content,
+            final int size,
+            final QREncodeCallback callback
     );
 
     /**
-     * 解绑
-     * @param context {@link Context}
-     * @param config  QRCode Config
+     * 编码 ( 生成 ) 二维码图片
+     * @param content  生成内容
+     * @param size     图片宽高大小 ( 正方形 px )
+     * @param logo     中间 Logo
+     * @param callback 生成结果回调
      */
-    void unregister(
-            Context context,
-            Config config
+    void decodeQRCode(
+            final String content,
+            final int size,
+            final Bitmap logo,
+            final QREncodeCallback callback
     );
+
+    // ============
+    // = 解析二维码 =
+    // ============
 }

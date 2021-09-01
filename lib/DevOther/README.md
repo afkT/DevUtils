@@ -820,9 +820,10 @@
 
 | 方法 | 注释 |
 | :- | :- |
-| createQRCodeImage | 编码 ( 生成 ) 二维码图片 |
-| decodeQRCode | 解码 ( 解析 ) 二维码图片 |
 | encodeQRCode | 编码 ( 生成 ) 二维码图片 |
+| encodeQRCodeSync | 编码 ( 生成 ) 二维码图片 |
+| decodeQRCode | 解码 ( 解析 ) 二维码图片 |
+| decodeQRCodeSync | 解码 ( 解析 ) 二维码图片 |
 | addLogoToQRCode | 添加 Logo 到二维码图片上 |
 | getResultData | 获取扫描结果数据 |
 
