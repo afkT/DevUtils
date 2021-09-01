@@ -12,6 +12,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import dev.DevUtils
 import dev.base.widget.BaseTextView
 import dev.callback.DevItemClickCallback
+import dev.engine.DevEngine
 import dev.engine.log.DevLogEngine
 import dev.engine.log.DevLoggerEngineImpl
 import dev.utils.DevFinal
@@ -94,7 +95,7 @@ class DevAssistEngineActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             }
         })
         // 进行使用
-        DevLogEngine.getEngine()?.dTag(TAG, "Log Engine 方法调用")
+        DevEngine.getLog()?.dTag(TAG, "Log Engine 方法调用")
 
         // =========================
         // = 同类库多 Engine 混合使用 =

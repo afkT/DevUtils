@@ -1,6 +1,7 @@
 package ktx.dev.other.retrofit_rxjava.demo
 
 import dev.capture.CallbackInterceptor
+import dev.engine.DevEngine
 import dev.engine.log.DevLogEngine
 import dev.utils.LogPrintUtils
 import io.reactivex.rxjava3.core.Flowable
@@ -101,7 +102,7 @@ fun getArticleList(page: Int) {
             .subscribeWith(object : BaseBeanSubscriber<ArticleBean>() {
                 override fun onSuccessResponse(data: ArticleBean) {
                     // 请求成功
-                    DevLogEngine.getEngine()?.dTag(
+                    DevEngine.getLog()?.dTag(
                         TAG_L, "onSuccessResponse data: ${data.data?.datas?.size}"
                     )
                 }
@@ -111,7 +112,7 @@ fun getArticleList(page: Int) {
                     message: String?
                 ) {
                     // 请求失败
-                    DevLogEngine.getEngine()?.eTag(
+                    DevEngine.getLog()?.eTag(
                         TAG_L, throwable, "onErrorResponse $message"
                     )
                 }
@@ -129,14 +130,14 @@ fun getArticleList2(page: Int) {
             .subscribeWith(object : BaseResponseSubscriber<ArticleBean2?>() {
                 override fun onSuccessResponse(response: BaseResponse<ArticleBean2?>) {
                     // 请求成功
-                    DevLogEngine.getEngine()?.dTag(
+                    DevEngine.getLog()?.dTag(
                         TAG_L, "onSuccessResponse data: ${response.data?.datas?.size}"
                     )
                 }
 
                 override fun onErrorResponse(response: BaseResponse<ArticleBean2?>) {
                     // 请求失败
-                    DevLogEngine.getEngine()?.eTag(
+                    DevEngine.getLog()?.eTag(
                         TAG_L, response.exception,
                         "onErrorResponse ${response.errorMsg}"
                     )

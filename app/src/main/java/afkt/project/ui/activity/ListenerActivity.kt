@@ -13,7 +13,7 @@ import android.telephony.SmsMessage
 import android.view.OrientationEventListener
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import dev.receiver.*
 import dev.receiver.AppStateReceiver.Companion.setListener
 import dev.receiver.BatteryReceiver.Companion.setListener
@@ -126,56 +126,56 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
             // 设置监听事件
             setListener(object : WifiReceiver.Listener {
                 override fun onWifiSwitch(isOpenWifi: Boolean) { // Wifi 开关状态
-                    DevLogEngine.getEngine()?.dTag(TAG, "Wifi 是否打开: %s", isOpenWifi)
+                    DevEngine.getLog()?.dTag(TAG, "Wifi 是否打开: %s", isOpenWifi)
                 }
 
                 override fun onIntoTrigger() {
-                    DevLogEngine.getEngine()?.dTag(TAG, "触发回调通知 ( 每次进入都通知 )")
+                    DevEngine.getLog()?.dTag(TAG, "触发回调通知 ( 每次进入都通知 )")
                 }
 
                 override fun onTrigger(what: Int) {
                     when (what) {
                         WifiReceiver.WIFI_SCAN_FINISH -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "startScan() 扫描附近 Wifi 结束触发")
+                            DevEngine.getLog()?.dTag(TAG, "startScan() 扫描附近 Wifi 结束触发")
                         }
                         WifiReceiver.WIFI_RSSI_CHANGED -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "已连接的 Wifi 强度发生变化")
+                            DevEngine.getLog()?.dTag(TAG, "已连接的 Wifi 强度发生变化")
                         }
                         WifiReceiver.WIFI_ERROR_AUTHENTICATING -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "Wifi 认证错误 ( 密码错误等 )")
+                            DevEngine.getLog()?.dTag(TAG, "Wifi 认证错误 ( 密码错误等 )")
                         }
                         WifiReceiver.WIFI_ERROR_UNKNOWN -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "连接错误 ( 其他错误 )")
+                            DevEngine.getLog()?.dTag(TAG, "连接错误 ( 其他错误 )")
                         }
                         WifiReceiver.WIFI_STATE_ENABLED -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "Wifi 已打开")
+                            DevEngine.getLog()?.dTag(TAG, "Wifi 已打开")
                         }
                         WifiReceiver.WIFI_STATE_ENABLING -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "Wifi 正在打开")
+                            DevEngine.getLog()?.dTag(TAG, "Wifi 正在打开")
                         }
                         WifiReceiver.WIFI_STATE_DISABLED -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "Wifi 已关闭")
+                            DevEngine.getLog()?.dTag(TAG, "Wifi 已关闭")
                         }
                         WifiReceiver.WIFI_STATE_DISABLING -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "Wifi 正在关闭")
+                            DevEngine.getLog()?.dTag(TAG, "Wifi 正在关闭")
                         }
                         WifiReceiver.WIFI_STATE_UNKNOWN -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "Wifi 状态未知")
+                            DevEngine.getLog()?.dTag(TAG, "Wifi 状态未知")
                         }
                         WifiReceiver.CONNECTED -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "Wifi 连接成功")
+                            DevEngine.getLog()?.dTag(TAG, "Wifi 连接成功")
                         }
                         WifiReceiver.CONNECTING -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "Wifi 连接中")
+                            DevEngine.getLog()?.dTag(TAG, "Wifi 连接中")
                         }
                         WifiReceiver.DISCONNECTED -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "Wifi 连接失败、断开")
+                            DevEngine.getLog()?.dTag(TAG, "Wifi 连接失败、断开")
                         }
                         WifiReceiver.SUSPENDED -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "Wifi 暂停、延迟")
+                            DevEngine.getLog()?.dTag(TAG, "Wifi 暂停、延迟")
                         }
                         WifiReceiver.UNKNOWN -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "Wifi 未知")
+                            DevEngine.getLog()?.dTag(TAG, "Wifi 未知")
                         }
                     }
                 }
@@ -187,19 +187,19 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                     val ssid = message?.obj as? String
                     when (what) {
                         WifiReceiver.CONNECTED -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "连接 Wifi 成功: %s", ssid)
+                            DevEngine.getLog()?.dTag(TAG, "连接 Wifi 成功: %s", ssid)
                         }
                         WifiReceiver.CONNECTING -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "连接 Wifi 中: %s", ssid)
+                            DevEngine.getLog()?.dTag(TAG, "连接 Wifi 中: %s", ssid)
                         }
                         WifiReceiver.DISCONNECTED -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "连接 Wifi 断开")
+                            DevEngine.getLog()?.dTag(TAG, "连接 Wifi 断开")
                         }
                         WifiReceiver.SUSPENDED -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "连接 Wifi 暂停、延迟")
+                            DevEngine.getLog()?.dTag(TAG, "连接 Wifi 暂停、延迟")
                         }
                         WifiReceiver.UNKNOWN -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "连接 Wifi 状态未知")
+                            DevEngine.getLog()?.dTag(TAG, "连接 Wifi 状态未知")
                         }
                     }
                 }
@@ -231,7 +231,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                         NetWorkReceiver.NET_MOBILE -> state = "移动网络"
                         NetWorkReceiver.NO_NETWORK -> state = "( 无网络 / 未知 ) 状态"
                     }
-                    DevLogEngine.getEngine()?.dTag(TAG, "网络连接状态 %s", state)
+                    DevEngine.getLog()?.dTag(TAG, "网络连接状态 %s", state)
                 }
             })
             // 注册监听
@@ -260,19 +260,19 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                 ) {
                     when (callState) {
                         CallState.OUTGOING -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "播出电话: %s", number)
+                            DevEngine.getLog()?.dTag(TAG, "播出电话: %s", number)
                         }
                         CallState.OUTGOING_END -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "播出电话结束: %s", number)
+                            DevEngine.getLog()?.dTag(TAG, "播出电话结束: %s", number)
                         }
                         CallState.INCOMING_RING -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "接入电话铃响: %s", number)
+                            DevEngine.getLog()?.dTag(TAG, "接入电话铃响: %s", number)
                         }
                         CallState.INCOMING -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "接入通话中: %s", number)
+                            DevEngine.getLog()?.dTag(TAG, "接入通话中: %s", number)
                         }
                         CallState.INCOMING_END -> {
-                            DevLogEngine.getEngine()?.dTag(TAG, "接入通话完毕: %s", number)
+                            DevEngine.getLog()?.dTag(TAG, "接入通话完毕: %s", number)
                         }
                     }
                 }
@@ -302,14 +302,14 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                     fromAddress: String?,
                     serviceCenterAddress: String?
                 ) {
-                    DevLogEngine.getEngine()?.dTag(
+                    DevEngine.getLog()?.dTag(
                         TAG, "onMessage\nmsg: %s\nfromAddress: %s\nserviceCenterAddress: %s",
                         msg, fromAddress, serviceCenterAddress
                     )
                 }
 
                 override fun onMessage(msg: SmsMessage?) {
-                    DevLogEngine.getEngine()?.dTag(TAG, "onMessage\nSmsMessage: %s", msg.toString())
+                    DevEngine.getLog()?.dTag(TAG, "onMessage\nSmsMessage: %s", msg.toString())
                 }
             })
             // 注册监听
@@ -333,15 +333,15 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
             // 设置监听事件
             setListener(object : TimeReceiver.Listener {
                 override fun onTimeZoneChanged() {
-                    DevLogEngine.getEngine()?.dTag(TAG, "onTimeZoneChanged: 时区改变")
+                    DevEngine.getLog()?.dTag(TAG, "onTimeZoneChanged: 时区改变")
                 }
 
                 override fun onTimeChanged() {
-                    DevLogEngine.getEngine()?.dTag(TAG, "onTimeChanged: 时间改变")
+                    DevEngine.getLog()?.dTag(TAG, "onTimeChanged: 时间改变")
                 }
 
                 override fun onTimeTick() {
-                    DevLogEngine.getEngine()?.dTag(TAG, "onTimeTick: 分钟改变")
+                    DevEngine.getLog()?.dTag(TAG, "onTimeTick: 分钟改变")
                 }
             })
             // 注册监听
@@ -365,15 +365,15 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
             // 设置监听事件
             setListener(object : ScreenReceiver.Listener {
                 override fun screenOn() {
-                    DevLogEngine.getEngine()?.dTag(TAG, "screenOn: 用户打开屏幕 - 屏幕变亮")
+                    DevEngine.getLog()?.dTag(TAG, "screenOn: 用户打开屏幕 - 屏幕变亮")
                 }
 
                 override fun screenOff() {
-                    DevLogEngine.getEngine()?.dTag(TAG, "screenOff: 锁屏触发")
+                    DevEngine.getLog()?.dTag(TAG, "screenOff: 锁屏触发")
                 }
 
                 override fun userPresent() {
-                    DevLogEngine.getEngine()?.dTag(TAG, "userPresent: 用户解锁触发")
+                    DevEngine.getLog()?.dTag(TAG, "userPresent: 用户解锁触发")
                 }
             })
             // 注册监听
@@ -415,7 +415,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                             if (orientation == 1) { // 横屏
                                 // 当前时间 - 切屏的时间大于 1.5 秒间隔才进行处理
                                 if (System.currentTimeMillis() - mOrientationTime >= 1500) {
-                                    DevLogEngine.getEngine()?.dTag(TAG, "横屏")
+                                    DevEngine.getLog()?.dTag(TAG, "横屏")
                                     // 重置时间,防止多次触发
                                     mOrientationTime = System.currentTimeMillis()
                                     // 跳转到横屏, 并且关闭监听
@@ -423,7 +423,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                                     //mContext.startActivity(intent)
                                 }
                             } else if (orientation == 2) { // 竖屏
-                                DevLogEngine.getEngine()?.dTag(TAG, "竖屏")
+                                DevEngine.getLog()?.dTag(TAG, "竖屏")
                             }
                         }
                     }
@@ -453,7 +453,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
             mOrientationEventListener = object : OrientationEventListener(mContext) {
                 override fun onOrientationChanged(rotation: Int) {
                     if (rotation >= 0 && rotation <= 30 || rotation >= 330) {
-                        DevLogEngine.getEngine()?.dTag(TAG, "竖屏拍摄")
+                        DevEngine.getLog()?.dTag(TAG, "竖屏拍摄")
                         isPortrait = true
                         // 竖屏拍摄
                         if (mRotationFlag != 0) {
@@ -463,7 +463,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                             mRotationFlag = 0
                         }
                     } else if (rotation >= 230 && rotation <= 310) {
-                        DevLogEngine.getEngine()?.dTag(TAG, "横屏拍摄")
+                        DevEngine.getLog()?.dTag(TAG, "横屏拍摄")
                         isPortrait = false
                         // 横屏拍摄
                         if (mRotationFlag != 90) {
@@ -473,7 +473,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                             mRotationFlag = 90
                         }
                     } else if (rotation > 30 && rotation < 135) {
-                        DevLogEngine.getEngine()?.dTag(TAG, "反横屏拍摄")
+                        DevEngine.getLog()?.dTag(TAG, "反横屏拍摄")
                         isPortrait = false
                         // 反横屏拍摄
                         if (mRotationFlag != 270) {
@@ -483,7 +483,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                             mRotationFlag = 270
                         }
                     } else if (rotation > 135 && rotation < 230) {
-                        DevLogEngine.getEngine()?.dTag(TAG, "反竖屏拍摄")
+                        DevEngine.getLog()?.dTag(TAG, "反竖屏拍摄")
                         isPortrait = true
                         // 竖屏拍摄
                         if (mRotationFlag != 360) {
@@ -507,7 +507,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
                 mOrientationEventListener?.enable()
             }
         } catch (e: Exception) {
-            DevLogEngine.getEngine()?.eTag(TAG, "rotaListener2")
+            DevEngine.getLog()?.eTag(TAG, "rotaListener2")
         }
     }
 
@@ -527,27 +527,27 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
             // 设置监听事件
             setListener(object : BatteryReceiver.Listener {
                 override fun onBatteryChanged(level: Int) {
-                    DevLogEngine.getEngine()?.dTag(TAG, "电量改变通知 level: %s", level)
+                    DevEngine.getLog()?.dTag(TAG, "电量改变通知 level: %s", level)
                 }
 
                 override fun onBatteryLow(level: Int) {
-                    DevLogEngine.getEngine()?.dTag(TAG, "电量低通知 level: %s", level)
+                    DevEngine.getLog()?.dTag(TAG, "电量低通知 level: %s", level)
                 }
 
                 override fun onBatteryOkay(level: Int) {
-                    DevLogEngine.getEngine()?.dTag(TAG, "电量从低变回高通知 level: %s", level)
+                    DevEngine.getLog()?.dTag(TAG, "电量从低变回高通知 level: %s", level)
                 }
 
                 override fun onPowerConnected(
                     level: Int,
                     isConnected: Boolean
                 ) {
-                    DevLogEngine.getEngine()
+                    DevEngine.getLog()
                         .dTag(TAG, "充电状态改变通知 level: %s, 是否充电中: %s", level, isConnected)
                 }
 
                 override fun onPowerUsageSummary(level: Int) {
-                    DevLogEngine.getEngine()?.dTag(TAG, "电力使用情况总结 level: %s", level)
+                    DevEngine.getLog()?.dTag(TAG, "电力使用情况总结 level: %s", level)
                 }
             })
             // 注册监听
@@ -571,15 +571,15 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
             // 设置监听事件
             setListener(object : AppStateReceiver.Listener {
                 override fun onAdded(packageName: String?) {
-                    DevLogEngine.getEngine()?.dTag(TAG, "应用安装 packageName: %s", packageName)
+                    DevEngine.getLog()?.dTag(TAG, "应用安装 packageName: %s", packageName)
                 }
 
                 override fun onReplaced(packageName: String?) {
-                    DevLogEngine.getEngine()?.dTag(TAG, "应用更新 packageName: %s", packageName)
+                    DevEngine.getLog()?.dTag(TAG, "应用更新 packageName: %s", packageName)
                 }
 
                 override fun onRemoved(packageName: String?) {
-                    DevLogEngine.getEngine()?.dTag(TAG, "应用卸载 packageName: %s", packageName)
+                    DevEngine.getLog()?.dTag(TAG, "应用卸载 packageName: %s", packageName)
                 }
             })
             // 注册监听

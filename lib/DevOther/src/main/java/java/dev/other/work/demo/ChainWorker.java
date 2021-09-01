@@ -12,6 +12,7 @@ import java.dev.other.work.WorkManagerUtils;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
+import dev.engine.DevEngine;
 import dev.engine.log.DevLogEngine;
 import dev.utils.common.DateUtils;
 
@@ -60,7 +61,7 @@ public class ChainWorker {
         @NonNull
         @Override
         public Result doWork() {
-            DevLogEngine.getEngine().dTag(TAG, "AWorker " + DateUtils.getDateNow());
+            DevEngine.INSTANCE.getLog().dTag(TAG, "AWorker " + DateUtils.getDateNow());
             return Result.success();
         }
     }
@@ -78,7 +79,7 @@ public class ChainWorker {
         @NonNull
         @Override
         public Result doWork() {
-            DevLogEngine.getEngine().dTag(TAG, "BWorker " + DateUtils.getDateNow());
+            DevEngine.INSTANCE.getLog().dTag(TAG, "BWorker " + DateUtils.getDateNow());
             return Result.success();
         }
     }
@@ -96,7 +97,7 @@ public class ChainWorker {
         @NonNull
         @Override
         public Result doWork() {
-            DevLogEngine.getEngine().dTag(TAG, "CWorker " + DateUtils.getDateNow());
+            DevEngine.INSTANCE.getLog().dTag(TAG, "CWorker " + DateUtils.getDateNow());
             return Result.success();
         }
     }
@@ -114,7 +115,7 @@ public class ChainWorker {
         @NonNull
         @Override
         public Result doWork() {
-            DevLogEngine.getEngine().dTag(TAG, "DWorker " + DateUtils.getDateNow());
+            DevEngine.INSTANCE.getLog().dTag(TAG, "DWorker " + DateUtils.getDateNow());
             return Result.success();
         }
     }

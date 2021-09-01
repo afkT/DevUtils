@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import dev.utils.app.ListViewUtils
 import dev.utils.app.helper.ViewHelper
 import java.util.*
@@ -77,7 +77,7 @@ class PagerSnapMAXActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         // 真实索引
                         val index = adapter.getRealIndex(currentPosition)
 
-                        DevLogEngine.getEngine()?.dTag(
+                        DevEngine.getLog()?.dTag(
                             TAG, "%s - %s 当前显示索引: %s - %s",
                             lastItemPosition,
                             firstItemPosition,

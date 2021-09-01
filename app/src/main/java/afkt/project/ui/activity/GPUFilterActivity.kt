@@ -12,7 +12,7 @@ import android.graphics.Bitmap
 import android.view.View
 import android.widget.AdapterView
 import com.alibaba.android.arouter.facade.annotation.Route
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import dev.engine.media.DevMediaEngine
 import dev.engine.media.MediaConfig
 import dev.utils.app.HandlerUtils
@@ -136,7 +136,7 @@ class GPUFilterActivity : BaseActivity<ActivityGpuFilterBinding>() {
                 getFilterBitmap(selectBitmap, createFilterForType(filterItem.filterType))
             binding.vidAgfIgview.setImageBitmap(bitmapFilter)
         } catch (e: Exception) {
-            DevLogEngine.getEngine()?.eTag(TAG, e, "setFilter")
+            DevEngine.getLog()?.eTag(TAG, e, "setFilter")
         }
     }
 }

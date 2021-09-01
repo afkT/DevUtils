@@ -2,6 +2,7 @@ package ktx.dev.other.retrofit_coroutines.demo
 
 import androidx.lifecycle.LiveData
 import dev.capture.CallbackInterceptor
+import dev.engine.DevEngine
 import dev.engine.log.DevLogEngine
 import dev.utils.LogPrintUtils
 import ktx.dev.other.GsonUtils
@@ -111,18 +112,18 @@ suspend fun getArticleList(page: Int) {
     executeRequest(block = {
         val bean = RetrofitManager.apiService.getArticleList(page)
         if (isSuccess(bean?.errorCode)) {
-            DevLogEngine.getEngine()?.dTag(
+            DevEngine.getLog()?.dTag(
                 TAG_L, "请求成功 data: ${bean?.data?.datas?.size}"
             )
         } else {
             errorMethod.invoke(bean?.errorCode, Throwable(bean?.errorMsg))
         }
     }, start = {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG_L, "开始请求"
         )
     }, complete = {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG_L, "请求完成"
         )
     }, error = errorMethod)
@@ -138,18 +139,18 @@ suspend fun getArticleList2(page: Int) {
     executeRequest(block = {
         val result = RetrofitManager.apiService.getArticleList2(page).result()
         if (result.success) {
-            DevLogEngine.getEngine()?.dTag(
+            DevEngine.getLog()?.dTag(
                 TAG_L, "请求成功 data: ${result.data?.datas?.size}"
             )
         } else {
             errorMethod.invoke(result.errorCode, result.error)
         }
     }, start = {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG_L, "开始请求"
         )
     }, complete = {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG_L, "请求完成"
         )
     }, error = errorMethod)
@@ -176,18 +177,18 @@ suspend fun uploadImage(lists: List<File>) {
     executeRequest(block = {
         val bean = RetrofitManager.apiService.uploadImage(requestBody)
         if (isSuccess(bean.code)) {
-            DevLogEngine.getEngine()?.dTag(
+            DevEngine.getLog()?.dTag(
                 TAG_L, "请求成功 data: ${bean.data!!.toTypedArray().contentToString()}"
             )
         } else {
             errorMethod.invoke(bean.code, Throwable(bean.msg))
         }
     }, start = {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG_L, "开始请求"
         )
     }, complete = {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG_L, "请求完成"
         )
     }, error = errorMethod)
@@ -214,18 +215,18 @@ suspend fun uploadImage2(lists: List<File>) {
     executeRequest(block = {
         val result = RetrofitManager.apiService.uploadImage2(requestBody).result()
         if (result.success) {
-            DevLogEngine.getEngine()?.dTag(
+            DevEngine.getLog()?.dTag(
                 TAG_L, "请求成功 data: ${result.data!!.toTypedArray().contentToString()}"
             )
         } else {
             errorMethod.invoke(result.errorCode, result.error)
         }
     }, start = {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG_L, "开始请求"
         )
     }, complete = {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG_L, "请求完成"
         )
     }, error = errorMethod)
@@ -237,7 +238,7 @@ suspend fun uploadImage2(lists: List<File>) {
  */
 fun errorMethodCommon(): suspend (String?, Throwable) -> Unit {
     return { code, error ->
-        DevLogEngine.getEngine()?.eTag(
+        DevEngine.getLog()?.eTag(
             TAG_L, error, "请求异常 code: ${code}, error: ${getErrorMessage(error)}"
         )
     }

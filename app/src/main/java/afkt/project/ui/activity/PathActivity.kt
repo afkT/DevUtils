@@ -9,7 +9,7 @@ import afkt.project.model.item.ButtonValue
 import afkt.project.ui.adapter.ButtonAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import dev.utils.DevFinal
 import dev.utils.app.PathUtils
 import dev.utils.app.toast.ToastTintUtils
@@ -95,7 +95,7 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             PathUtils.getInternal().appAudiobooksDir,
                             ""
                         )
-                        DevLogEngine.getEngine()?.dTag(TAG, builder.toString())
+                        DevEngine.getLog()?.dTag(TAG, builder.toString())
                         showToast(true, "信息已打印, 请查看 Logcat")
                     }
                     ButtonValue.BTN_PATH_APP_EXTERNAL -> {
@@ -142,7 +142,7 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             PathUtils.getAppExternal().appObbDir,
                             ""
                         )
-                        DevLogEngine.getEngine()?.dTag(TAG, builder.toString())
+                        DevEngine.getLog()?.dTag(TAG, builder.toString())
                         showToast(true, "信息已打印, 请查看 Logcat")
                     }
                     ButtonValue.BTN_PATH_SDCARD -> {
@@ -180,7 +180,7 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             PathUtils.getSDCard().audiobooksDir,
                             ""
                         )
-                        DevLogEngine.getEngine()?.dTag(TAG, builder.toString())
+                        DevEngine.getLog()?.dTag(TAG, builder.toString())
                         showToast(true, "信息已打印, 请查看 Logcat")
                     }
                     else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")

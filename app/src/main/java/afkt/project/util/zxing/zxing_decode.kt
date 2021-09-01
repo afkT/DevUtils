@@ -10,7 +10,7 @@ import android.os.Message
 import androidx.annotation.IntDef
 import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import java.io.ByteArrayOutputStream
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy
@@ -306,7 +306,7 @@ class DecodeHandler(
         }
         val handler = mDecodeConfig.getHandler()
         if (rawResult != null) {
-            DevLogEngine.getEngine()?.dTag(TAG, "解析成功, 发送数据")
+            DevEngine.getLog()?.dTag(TAG, "解析成功, 发送数据")
             if (handler != null) {
                 val message = Message.obtain(handler, WHAT_DECODE_SUCCEEDED, rawResult)
                 val bundle = Bundle()
@@ -315,7 +315,7 @@ class DecodeHandler(
                 message.sendToTarget()
             }
         } else {
-            DevLogEngine.getEngine()?.dTag(TAG, "解析失败")
+            DevEngine.getLog()?.dTag(TAG, "解析失败")
             if (handler != null) {
                 val message = Message.obtain(handler, WHAT_DECODE_FAILED)
                 message.sendToTarget()
@@ -336,7 +336,7 @@ class DecodeHandler(
         width: Int,
         height: Int
     ): PlanarYUVLuminanceSource? {
-        DevLogEngine.getEngine()?.dTag(TAG, "buildLuminanceSource 解析摄像头数据")
+        DevEngine.getLog()?.dTag(TAG, "buildLuminanceSource 解析摄像头数据")
         // 判断是否裁减
         return if (mDecodeConfig.isCropRect() && mDecodeConfig.getCropRect() != null) {
             // 判断是否出现异常

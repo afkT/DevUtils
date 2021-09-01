@@ -12,7 +12,7 @@ import android.os.Build
 import android.service.notification.StatusBarNotification
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import dev.service.NotificationService
 import dev.utils.DevFinal
 import dev.utils.app.toast.ToastTintUtils
@@ -78,11 +78,11 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
         // 设置监听事件
         NotificationService.setListener(object : NotificationService.Listener {
             override fun onServiceCreated(service: NotificationService?) {
-                DevLogEngine.getEngine()?.dTag(TAG, "服务创建通知")
+                DevEngine.getLog()?.dTag(TAG, "服务创建通知")
             }
 
             override fun onServiceDestroy() {
-                DevLogEngine.getEngine()?.dTag(TAG, "服务销毁通知")
+                DevEngine.getLog()?.dTag(TAG, "服务销毁通知")
             }
 
             override fun onStartCommand(
@@ -96,7 +96,7 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
                     .append("\nintent: ").append(intent)
                     .append("\nflags: ").append(flags)
                     .append("\nstartId: ").append(startId)
-                DevLogEngine.getEngine()?.dTag(TAG, builder.toString())
+                DevEngine.getLog()?.dTag(TAG, builder.toString())
                 return 0
             }
 
@@ -113,7 +113,7 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
                         }
                     }
                     // 打印日志
-                    DevLogEngine.getEngine()?.dTag(TAG, builder.toString())
+                    DevEngine.getLog()?.dTag(TAG, builder.toString())
                 }
             }
 
@@ -122,7 +122,7 @@ class NotificationServiceActivity : BaseActivity<BaseViewRecyclerviewBinding>() 
                     .append("onNotificationRemoved")
                     .append("\nstatusBarNotification: ").append(sbn)
                 // 打印日志
-                DevLogEngine.getEngine()?.dTag(TAG, builder.toString())
+                DevEngine.getLog()?.dTag(TAG, builder.toString())
             }
         })
     }

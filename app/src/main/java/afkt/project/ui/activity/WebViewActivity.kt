@@ -13,7 +13,7 @@ import android.webkit.WebView
 import android.webkit.WebView.HitTestResult
 import android.webkit.WebViewClient
 import com.alibaba.android.arouter.facade.annotation.Route
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import ktx.dev.assist.WebViewAssist
 
 /**
@@ -37,7 +37,7 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
                 when (result.type) {
                     HitTestResult.SRC_IMAGE_ANCHOR_TYPE -> {
                         val imgUrl = result.extra
-                        DevLogEngine.getEngine()?.dTag(TAG, "SRC_IMAGE_ANCHOR_TYPE %s", imgUrl)
+                        DevEngine.getLog()?.dTag(TAG, "SRC_IMAGE_ANCHOR_TYPE %s", imgUrl)
                         return@OnLongClickListener true
                     }
                     else -> {
@@ -57,7 +57,7 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
             ) {
                 // 加载进度监听
                 if (position == 100) { // 加载完成
-                    DevLogEngine.getEngine()?.dTag(TAG, "加载完成")
+                    DevEngine.getLog()?.dTag(TAG, "加载完成")
                 }
                 super.onProgressChanged(view, position)
             }
@@ -110,7 +110,7 @@ class WebViewActivity : BaseActivity<ActivityWebviewBinding>() {
                 ) {
                     applyListener?.onApply(webViewAssist, builder)
                     // BaseApplication 也会打印 WebViewAssist Builder onApply
-                    DevLogEngine.getEngine()?.dTag(TAG, "自定义监听")
+                    DevEngine.getLog()?.dTag(TAG, "自定义监听")
                     // 全局配置或者自定义配置以外, 再次配置操作
                     // 加载网页
                     mWebViewAssist.loadUrl("https://www.csdn.net/")

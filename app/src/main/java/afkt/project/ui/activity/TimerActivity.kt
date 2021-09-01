@@ -10,7 +10,7 @@ import afkt.project.ui.adapter.ButtonAdapter
 import android.os.Handler
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import dev.utils.app.HandlerUtils
 import dev.utils.app.timer.DevTimer
 import dev.utils.app.timer.TimerManager
@@ -58,9 +58,9 @@ class TimerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 setCallback { timer: DevTimer?, number: Int, end: Boolean, infinite: Boolean ->
                                     // 触发次数
                                     if (number == 1) {
-                                        DevLogEngine.getEngine()?.dTag(TAG, "第一次触发, 0.5 秒延迟")
+                                        DevEngine.getLog()?.dTag(TAG, "第一次触发, 0.5 秒延迟")
                                     } else {
-                                        DevLogEngine.getEngine()
+                                        DevEngine.getLog()
                                             .dTag(TAG, "每隔 2 秒触发一次, 触发次数: %s", number)
                                     }
                                 }
@@ -119,7 +119,7 @@ class TimerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             .setLimit(19)       // 触发次数上限 ( 负数为无限循环 )
             .build()            // 构建定时器
         timer.setCallback { _, _, _, _ ->
-            DevLogEngine.getEngine()?.dTag(TAG, "是否 UI 线程: %s", HandlerUtils.isMainThread())
+            DevEngine.getLog()?.dTag(TAG, "是否 UI 线程: %s", HandlerUtils.isMainThread())
         }
         // 设置了 Handler 则属于 UI 线程触发回调
         timer.setHandler(mUiHandler)

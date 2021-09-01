@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.LinearLayout
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import dev.utils.app.ViewUtils
 
 /**
@@ -39,31 +39,31 @@ class BottomSheetActivity : BaseActivity<ActivityBottomSheetBinding>() {
                     BottomSheetBehavior.STATE_COLLAPSED -> {
                         // 折叠状态, bottom sheets 只在底部显示一部分布局
                         // 显示高度可以通过 app:behavior_peekHeight 设置
-                        DevLogEngine.getEngine()?.dTag(TAG, "STATE_COLLAPSED")
+                        DevEngine.getLog()?.dTag(TAG, "STATE_COLLAPSED")
 
                         ViewUtils.setVisibility(false, binding.vidAbsBgView)
                     }
                     BottomSheetBehavior.STATE_DRAGGING -> {
                         // 过渡状态, 此时用户正在向上或者向下拖动 bottom sheet
-                        DevLogEngine.getEngine()?.dTag(TAG, "STATE_DRAGGING")
+                        DevEngine.getLog()?.dTag(TAG, "STATE_DRAGGING")
 
                         ViewUtils.setVisibility(true, binding.vidAbsBgView)
                     }
                     BottomSheetBehavior.STATE_EXPANDED -> {
                         // 完全展开的状态
-                        DevLogEngine.getEngine()?.dTag(TAG, "STATE_EXPANDED")
+                        DevEngine.getLog()?.dTag(TAG, "STATE_EXPANDED")
 
                         ViewUtils.setVisibility(true, binding.vidAbsBgView)
                     }
                     BottomSheetBehavior.STATE_HIDDEN -> {
                         // 隐藏状态, 默认是 false 可通过 app:behavior_hideable 属性设置是否能隐藏
-                        DevLogEngine.getEngine()?.dTag(TAG, "STATE_HIDDEN")
+                        DevEngine.getLog()?.dTag(TAG, "STATE_HIDDEN")
 
                         ViewUtils.setVisibility(false, binding.vidAbsBgView)
                     }
                     BottomSheetBehavior.STATE_SETTLING -> {
                         // 视图从脱离手指自由滑动到最终停下的这一小段时间
-                        DevLogEngine.getEngine()?.dTag(TAG, "STATE_SETTLING")
+                        DevEngine.getLog()?.dTag(TAG, "STATE_SETTLING")
                     }
                 }
             }

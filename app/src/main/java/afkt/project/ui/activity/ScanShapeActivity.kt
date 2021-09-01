@@ -9,7 +9,7 @@ import android.Manifest
 import android.view.SurfaceHolder
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import dev.utils.app.ListenerUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.camera.camera1.CameraAssist
@@ -123,7 +123,7 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
             try {
                 cameraAssist.stopPreview()
             } catch (e: Exception) {
-                DevLogEngine.getEngine()?.eTag(TAG, e, "surfaceDestroyed")
+                DevEngine.getLog()?.eTag(TAG, e, "surfaceDestroyed")
             }
         }
     }
@@ -152,7 +152,7 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
 //                // 默认开启自动对焦, 设置不需要自动对焦
 //                cameraAssist.setAutoFocus(false)
             } catch (e: Exception) {
-                DevLogEngine.getEngine()?.eTag(TAG, e, "checkPermission startPreview")
+                DevEngine.getLog()?.eTag(TAG, e, "checkPermission startPreview")
             }
         } else {
             // 申请权限

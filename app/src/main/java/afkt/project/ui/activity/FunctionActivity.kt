@@ -11,7 +11,7 @@ import afkt.project.ui.adapter.ButtonAdapter
 import android.Manifest
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import dev.utils.app.*
 import dev.utils.app.assist.BeepVibrateAssist
 import dev.utils.app.camera.camera1.FlashlightUtils
@@ -144,13 +144,13 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                     ButtonValue.BTN_FUNCTION_MEMORY_PRINT -> {
                         val memoryInfo = MemoryUtils.printMemoryInfo()
                         ToastUtils.showShort(memoryInfo)
-                        DevLogEngine.getEngine()?.dTag(TAG, memoryInfo)
+                        DevEngine.getLog()?.dTag(TAG, memoryInfo)
                     }
                     ButtonValue.BTN_FUNCTION_DEVICE_PRINT -> {
                         val deviceInfo =
                             DeviceUtils.handlerDeviceInfo(DeviceUtils.getDeviceInfo(), "")
                         ToastUtils.showShort(deviceInfo)
-                        DevLogEngine.getEngine()?.dTag(TAG, deviceInfo)
+                        DevEngine.getLog()?.dTag(TAG, deviceInfo)
                     }
                     ButtonValue.BTN_FUNCTION_APP_DETAILS_SETTINGS -> {
                         result = AppUtils.launchAppDetailsSettings()

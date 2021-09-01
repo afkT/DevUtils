@@ -13,6 +13,7 @@ import androidx.work.WorkerParameters;
 
 import java.util.concurrent.TimeUnit;
 
+import dev.engine.DevEngine;
 import dev.engine.log.DevLogEngine;
 import dev.utils.common.DateUtils;
 
@@ -41,7 +42,7 @@ public class LocationWorker
     @Override
     public Result doWork() {
         // 获取当前位置
-        DevLogEngine.getEngine().dTag(TAG, "触发定位方法 " + DateUtils.getDateNow());
+        DevEngine.INSTANCE.getLog().dTag(TAG, "触发定位方法 " + DateUtils.getDateNow());
 
         return Result.success();
     }

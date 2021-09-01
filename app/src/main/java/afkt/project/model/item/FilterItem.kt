@@ -1,7 +1,7 @@
 package afkt.project.model.item
 
 import android.graphics.PointF
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import jp.co.cyberagent.android.gpuimage.filter.*
 import java.util.*
 
@@ -274,7 +274,7 @@ class FilterItem(
             try {
                 return filterClass.newInstance()
             } catch (e: Exception) {
-                DevLogEngine.getEngine()?.eTag(TAG, e, "createBlendFilter")
+                DevEngine.getLog()?.eTag(TAG, e, "createBlendFilter")
             }
             return null
         }

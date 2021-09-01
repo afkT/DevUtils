@@ -13,6 +13,7 @@ import androidx.work.WorkerParameters;
 import java.dev.other.work.WorkManagerUtils;
 import java.util.concurrent.TimeUnit;
 
+import dev.engine.DevEngine;
 import dev.engine.log.DevLogEngine;
 import dev.utils.DevFinal;
 
@@ -47,7 +48,7 @@ public class LogWorker
     public void onStopped() {
         super.onStopped();
 
-        DevLogEngine.getEngine().dTag(TAG, "LogWorker - onStopped()");
+        DevEngine.INSTANCE.getLog().dTag(TAG, "LogWorker - onStopped()");
     }
 
     @NonNull
@@ -69,7 +70,7 @@ public class LogWorker
      * 执行的代码
      */
     private void code() {
-        DevLogEngine.getEngine().dTag(TAG, "LogWorker - code() => " + getLog());
+        DevEngine.INSTANCE.getLog().dTag(TAG, "LogWorker - code() => " + getLog());
 
         // 模拟操作进度, 并进行通知
         for (int i = 0; i <= 100; i++) {
@@ -141,33 +142,33 @@ public class LogWorker
         ).observe(owner, workInfo -> {
             if (workInfo != null) {
 
-//                DevLogEngine.getEngine().dTag(TAG, "Worker 是否完成: " + workInfo.getState().isFinished());
+//                DevEngine.INSTANCE.getLog().dTag(TAG, "Worker 是否完成: " + workInfo.getState().isFinished());
 
                 switch (workInfo.getState()) {
                     case BLOCKED:
-                        DevLogEngine.getEngine().dTag(TAG, "堵塞");
+                        DevEngine.INSTANCE.getLog().dTag(TAG, "堵塞");
                         break;
                     case RUNNING:
                         int progress = workInfo.getProgress().getInt(DevFinal.PROGRESS, 0);
-//                        DevLogEngine.getEngine().dTag(TAG, "正在运行");
-                        DevLogEngine.getEngine().dTag(TAG, String.format(
+//                        DevEngine.INSTANCE.getLog().dTag(TAG, "正在运行");
+                        DevEngine.INSTANCE.getLog().dTag(TAG, String.format(
                                 "正在运行, 进度: %d%%", progress
                         ));
                         break;
                     case ENQUEUED:
-                        DevLogEngine.getEngine().dTag(TAG, "任务入队");
+                        DevEngine.INSTANCE.getLog().dTag(TAG, "任务入队");
                         break;
                     case CANCELLED:
-                        DevLogEngine.getEngine().dTag(TAG, "取消");
+                        DevEngine.INSTANCE.getLog().dTag(TAG, "取消");
                         break;
                     case FAILED:
-                        DevLogEngine.getEngine().dTag(TAG, "失败");
+                        DevEngine.INSTANCE.getLog().dTag(TAG, "失败");
                         break;
                     case SUCCEEDED:
-                        DevLogEngine.getEngine().dTag(TAG, "成功");
+                        DevEngine.INSTANCE.getLog().dTag(TAG, "成功");
                         // doWork return Result 传入了 Data 则会存在数据
                         String content = workInfo.getOutputData().getString(DevFinal.CONTENT);
-                        DevLogEngine.getEngine().dTag(TAG, "content: " + content);
+                        DevEngine.INSTANCE.getLog().dTag(TAG, "content: " + content);
                         break;
                 }
             }

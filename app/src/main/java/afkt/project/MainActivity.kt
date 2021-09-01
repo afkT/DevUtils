@@ -7,7 +7,7 @@ import afkt.project.model.item.ButtonValue
 import afkt.project.ui.adapter.ButtonAdapter
 import android.Manifest
 import dev.callback.DevItemClickCallback
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import dev.engine.permission.DevPermissionEngine
 import dev.engine.permission.IPermissionEngine
 import dev.utils.app.VersionUtils
@@ -42,7 +42,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
 
             override fun onFail(e: Exception) {
-                DevLogEngine.getEngine()?.eTag(TAG, e, "getNetTime")
+                DevEngine.getLog()?.eTag(TAG, e, "getNetTime")
             }
         })
 
@@ -57,7 +57,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             ),
             object : IPermissionEngine.Callback {
                 override fun onGranted() {
-                    DevLogEngine.getEngine()?.d("permission granted")
+                    DevEngine.getLog()?.d("permission granted")
                 }
 
                 override fun onDenied(
@@ -73,7 +73,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                         .append(deniedList.toTypedArray().contentToString())
                         .append("\nnotFoundList: ")
                         .append(notFoundList.toTypedArray().contentToString())
-                    DevLogEngine.getEngine()?.d(builder.toString())
+                    DevEngine.getLog()?.d(builder.toString())
                     // 拒绝了则再次请求处理
                     DevPermissionEngine.getEngine()
                         .againRequest(this@MainActivity, this, deniedList)

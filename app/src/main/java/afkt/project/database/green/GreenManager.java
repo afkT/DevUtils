@@ -8,7 +8,7 @@ import java.util.Map;
 import afkt.project.database.green.able.AbsGreenDatabase;
 import afkt.project.database.green.module.image.ImageDatabase;
 import afkt.project.database.green.module.note.NoteDatabase;
-import dev.engine.log.DevLogEngine;
+import dev.engine.DevEngine;
 import dev.utils.common.StringUtils;
 
 /**
@@ -74,7 +74,7 @@ public final class GreenManager {
             try {
                 sDatabaseMaps.put(databaseName, CREATE.create(dbName, password, clazz));
             } catch (Exception e) {
-                DevLogEngine.getEngine().eTag(TAG, e, "database");
+                DevEngine.INSTANCE.getLog().eTag(TAG, e, "database");
             }
         }
         AbsGreenDatabase greenDatabase = sDatabaseMaps.get(databaseName);
@@ -83,7 +83,7 @@ public final class GreenManager {
             try {
                 db = (T) greenDatabase;
             } catch (Exception e) {
-                DevLogEngine.getEngine().eTag(TAG, e, "database convert T");
+                DevEngine.INSTANCE.getLog().eTag(TAG, e, "database convert T");
             }
             return db;
         }

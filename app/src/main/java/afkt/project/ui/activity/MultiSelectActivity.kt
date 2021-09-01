@@ -13,7 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.QuickHelper
@@ -59,7 +59,7 @@ class MultiSelectActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                     now: Boolean
                 ) {
                     val item = adapter.getDataItem(pos)
-                    DevLogEngine.getEngine()
+                    DevEngine.getLog()
                         .eTag(TAG, "新状态: %s, 商品名: %s", now, item?.commodityName)
                 }
             })

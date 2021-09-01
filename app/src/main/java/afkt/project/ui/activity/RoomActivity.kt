@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.ChineseUtils
 import dev.utils.common.CollectionUtils
@@ -117,7 +117,7 @@ class RoomActivity : BaseActivity<ActivityDatabaseBinding>() {
                             .deleteNotePictures(
                                 *CollectionUtils.toArrayT(nap.pictures)
                             )
-                        DevLogEngine.getEngine()?.dTag(TAG, "删除图片数量: %s", deleteCount)
+                        DevEngine.getLog()?.dTag(TAG, "删除图片数量: %s", deleteCount)
                     }
                 }
             }
@@ -228,7 +228,7 @@ class RoomActivity : BaseActivity<ActivityDatabaseBinding>() {
                 limit = pageSize * 2 - diff
             }
         }
-        DevLogEngine.getEngine()?.dTag(TAG, "offset: %s, limit: %s", offset, limit)
+        DevEngine.getLog()?.dTag(TAG, "offset: %s, limit: %s", offset, limit)
         // 请求数据
         return RoomManager.getNoteDatabase().noteDao
             .getNoteAndPictureLists(limit, offset)

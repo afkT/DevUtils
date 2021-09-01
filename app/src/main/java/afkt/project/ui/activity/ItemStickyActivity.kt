@@ -13,7 +13,7 @@ import com.gavin.com.library.PowerfulStickyDecoration
 import com.gavin.com.library.StickyDecoration
 import com.gavin.com.library.listener.GroupListener
 import com.gavin.com.library.listener.PowerGroupListener
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import dev.utils.app.ResourceUtils
 import dev.utils.app.SizeUtils
 import dev.utils.app.TextViewUtils
@@ -54,7 +54,7 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             }
 
             override fun getGroupView(position: Int): View? {
-                DevLogEngine.getEngine()?.dTag(TAG, position.toString())
+                DevEngine.getLog()?.dTag(TAG, position.toString())
                 val view = layoutInflater.inflate(R.layout.adapter_sticky_view, null, false)
                 TextViewUtils.setText(
                     view.findViewById(R.id.vid_asv_title_tv),

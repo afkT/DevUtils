@@ -18,7 +18,7 @@ import android.os.Handler
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.zxing.Result
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import dev.engine.media.DevMediaEngine
 import dev.engine.media.MediaConfig
 import dev.utils.app.*
@@ -199,7 +199,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
             // 提示解析成功声音
             mBeepVibrateAssist.playBeepSoundAndVibrate()
             // 打印结果
-            DevLogEngine.getEngine()?.dTag(
+            DevEngine.getLog()?.dTag(
                 TAG, "handleDecode result: %s", resultStr
             )
             showToast(true, "二维码内容: $resultStr")
@@ -256,7 +256,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
             // 记录是否发生异常
             tryError = isError
             // 打印日志
-            DevLogEngine.getEngine()?.eTag(TAG, e, "setError")
+            DevEngine.getLog()?.eTag(TAG, e, "setError")
         }
 
         override fun getHandler(): Handler? {

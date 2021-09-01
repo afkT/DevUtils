@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import dev.engine.log.DevLogEngine;
+import dev.engine.DevEngine;
 
 /**
  * Createdby PedroOkawa and modified by MBH on 16/08/16.
@@ -105,7 +105,7 @@ public final class MigrationHelper {
                 method.invoke(null, db, isExists);
             }
         } catch (Exception e) {
-            DevLogEngine.getEngine().e(e);
+            DevEngine.INSTANCE.getLog().e(e);
         }
     }
 
@@ -155,7 +155,7 @@ public final class MigrationHelper {
                 columns = Arrays.asList(cursor.getColumnNames());
             }
         } catch (Exception e) {
-            DevLogEngine.getEngine().e(e);
+            DevEngine.INSTANCE.getLog().e(e);
         } finally {
             if (cursor != null) {
                 cursor.close();

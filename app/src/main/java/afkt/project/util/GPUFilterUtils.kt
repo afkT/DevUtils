@@ -2,7 +2,7 @@ package afkt.project.util
 
 import android.graphics.Bitmap
 import dev.DevUtils
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import dev.utils.common.CloseUtils
 import jp.co.cyberagent.android.gpuimage.GPUImage
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilter
@@ -32,7 +32,7 @@ object GPUFilterUtils {
                 filter.setFromCurveFileInputStream(inputStream)
                 return filter
             } catch (e: Exception) {
-                DevLogEngine.getEngine()?.eTag(TAG, e, "getGPUImageToneCurveFilter")
+                DevEngine.getLog()?.eTag(TAG, e, "getGPUImageToneCurveFilter")
             } finally {
                 CloseUtils.closeIOQuietly(inputStream)
             }
