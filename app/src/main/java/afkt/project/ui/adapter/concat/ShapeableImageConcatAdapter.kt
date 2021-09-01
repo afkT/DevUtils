@@ -11,7 +11,7 @@ import com.google.android.material.shape.ShapeAppearanceModel
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 import dev.utils.app.ResourceUtils
 
 /**
@@ -37,7 +37,7 @@ class ShapeableImageConcatAdapter(data: List<ShapeableImageBean>) : DevDataAdapt
     ) {
         val item = getDataItem(position)
 
-        DevImageEngine.getEngine()?.display(
+        DevEngine.getImage()?.display(
             holder.binding.vidAcsiIgview,
             item.imageUrl
         )

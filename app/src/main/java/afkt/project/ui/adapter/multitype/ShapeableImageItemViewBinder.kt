@@ -12,7 +12,7 @@ import com.google.android.material.shape.RoundedCornerTreatment
 import com.google.android.material.shape.ShapeAppearanceModel
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 import dev.utils.app.ResourceUtils
 
 /**
@@ -34,7 +34,7 @@ class ShapeableImageItemViewBinder : ItemViewBinder<ShapeableImageBeanItem, DevB
     ) {
         val itemObj = item.obj
 
-        DevImageEngine.getEngine()?.display(
+        DevEngine.getImage()?.display(
             holder.binding.vidAcsiIgview,
             itemObj.imageUrl
         )

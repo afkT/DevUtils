@@ -10,7 +10,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewDataBindingVH
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 
 /**
  * detail: RecyclerView Gallery 效果 Adapter
@@ -71,7 +71,7 @@ class PagerSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, Recyc
             view: ImageView?,
             imageUrl: String?
         ) {
-            DevImageEngine.getEngine()?.display(
+            DevEngine.getImage()?.display(
                 view, imageUrl,
                 ProjectUtils.roundConfig10
             )

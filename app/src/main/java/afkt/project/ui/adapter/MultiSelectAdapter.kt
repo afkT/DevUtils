@@ -10,7 +10,7 @@ import dev.adapter.DevDataAdapterExt2
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.base.multiselect.DevMultiSelectMap
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.ViewHelper
 import dev.utils.common.BigDecimalUtils
@@ -51,7 +51,7 @@ class MultiSelectAdapter(data: List<CommodityEvaluateBean?>) :
                 )
             )
         // 商品图片
-        DevImageEngine.getEngine()?.display(
+        DevEngine.getImage()?.display(
             holder.binding.vidAmsPicIgview,
             item?.commodityPicture,
             ProjectUtils.roundConfig3

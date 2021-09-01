@@ -10,7 +10,7 @@ import androidx.databinding.BindingAdapter
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewDataBindingVH
 import dev.base.adapter.newDataBindingViewHolder
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 
 /**
  * detail: RecyclerView ViewPager 效果 Adapter
@@ -44,7 +44,7 @@ class PagerSnapAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, DevBaseV
             view: ImageView?,
             imageUrl: String?
         ) {
-            DevImageEngine.getEngine()?.display(
+            DevEngine.getImage()?.display(
                 view, imageUrl,
                 ProjectUtils.roundConfig10
             )

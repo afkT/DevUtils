@@ -9,7 +9,7 @@ import dev.adapter.DevDataAdapterExt
 import dev.assist.EditTextWatcherAssist
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 import dev.utils.app.ViewUtils
 import dev.utils.common.BigDecimalUtils
 import dev.utils.common.StringUtils
@@ -53,7 +53,7 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
         holder.binding.vidAiePriceTv.text =
             "￥${BigDecimalUtils.round(commodity.commodityPrice, 2, BigDecimal.ROUND_HALF_UP)}"
         // 商品图片
-        DevImageEngine.getEngine()?.display(
+        DevEngine.getImage()?.display(
             holder.binding.vidAiePicIgview,
             commodity.commodityPicture,
             ProjectUtils.roundConfig3

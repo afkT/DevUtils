@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 import dev.utils.app.helper.ViewHelper
 
 /**
@@ -62,7 +62,7 @@ class LinearSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, Recy
                 .setText(holder.binding.vidAlsSubtitleTv, itemBean.subtitle)
                 .setText(holder.binding.vidAlsTimeTv, itemBean.timeFormat)
                 .setText(holder.binding.vidAlsIndexTv, "$position - $index")
-            DevImageEngine.getEngine()?.display(
+            DevEngine.getImage()?.display(
                 holder.binding.vidAlsIgview,
                 itemBean.imageUrl,
                 ProjectUtils.roundConfig10

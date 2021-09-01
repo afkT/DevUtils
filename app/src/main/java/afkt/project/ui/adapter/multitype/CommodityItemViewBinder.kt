@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.ViewHelper
 import dev.utils.common.BigDecimalUtils
@@ -54,7 +54,7 @@ class CommodityItemViewBinder : ItemViewBinder<CommodityBeanItem, DevBaseViewBin
                 )
             )
         // 商品图片
-        DevImageEngine.getEngine()?.display(
+        DevEngine.getImage()?.display(
             holder.binding.vidAmsPicIgview,
             itemObj.commodityPicture,
             ProjectUtils.roundConfig3

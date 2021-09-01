@@ -11,7 +11,7 @@ import dev.adapter.DevDataAdapter
 import dev.adapter.DevDataAdapterExt
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 import dev.utils.DevFinal
 import dev.utils.app.ViewUtils
 import dev.utils.app.helper.ViewHelper
@@ -71,7 +71,7 @@ class GreenDaoAdapter : DevDataAdapterExt<Note, DevBaseViewBindingVH<AdapterData
             holder: DevBaseViewBindingVH<AdapterDatabaseImageBinding>,
             position: Int
         ) {
-            DevImageEngine.getEngine()?.display(
+            DevEngine.getImage()?.display(
                 holder.binding.vidAdbiIgview,
                 getDataItem(position).picture
             )

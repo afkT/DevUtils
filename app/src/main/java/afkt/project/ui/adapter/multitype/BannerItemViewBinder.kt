@@ -16,7 +16,7 @@ import com.youth.banner.adapter.BannerAdapter
 import com.youth.banner.indicator.CircleIndicator
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 
 /**
  * detail: Banner Adapter
@@ -60,7 +60,7 @@ class BannerItemViewBinder(
                     position: Int,
                     size: Int
                 ) {
-                    DevImageEngine.getEngine()?.display(
+                    DevEngine.getImage()?.display(
                         holder.binding.vidAcbiIgview,
                         data.imageUrl,
                         ProjectUtils.roundConfig10

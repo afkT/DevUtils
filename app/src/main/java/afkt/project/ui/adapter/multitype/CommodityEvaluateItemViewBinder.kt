@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.ViewHelper
 import dev.utils.common.BigDecimalUtils
@@ -57,7 +57,7 @@ class CommodityEvaluateItemViewBinder : ItemViewBinder<CommodityEvaluateBeanItem
             .setEnabled(false, holder.binding.vidAieContentEdit)
 
         // 商品图片
-        DevImageEngine.getEngine()?.display(
+        DevEngine.getImage()?.display(
             holder.binding.vidAiePicIgview,
             itemObj.commodityPicture,
             ProjectUtils.roundConfig3

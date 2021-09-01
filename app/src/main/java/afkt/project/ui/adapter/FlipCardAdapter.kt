@@ -5,7 +5,7 @@ import android.content.Context
 import android.view.View
 import dev.base.DevSource
 import dev.base.widget.BaseImageView
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 import dev.widget.ui.FlipCardView
 
 /**
@@ -25,7 +25,7 @@ class FlipCardAdapter(val lists: List<DevSource>) : FlipCardView.Adapter {
     ): View? {
         context?.let {
             val imageView = BaseImageView(it)
-            DevImageEngine.getEngine()?.display(
+            DevEngine.getImage()?.display(
                 imageView, lists[position], ProjectUtils.roundConfig10
             )
             return imageView

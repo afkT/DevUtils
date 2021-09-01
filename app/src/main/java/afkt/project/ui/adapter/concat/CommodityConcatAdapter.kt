@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.ViewHelper
 import dev.utils.common.BigDecimalUtils
@@ -74,7 +74,7 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
                     )
                 )
             // 商品图片
-            DevImageEngine.getEngine()?.display(
+            DevEngine.getImage()?.display(
                 holder.binding.vidAmsPicIgview,
                 item.commodityPicture,
                 ProjectUtils.roundConfig3
@@ -98,7 +98,7 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
                 .setEnabled(false, holder.binding.vidAieContentEdit)
 
             // 商品图片
-            DevImageEngine.getEngine()?.display(
+            DevEngine.getImage()?.display(
                 holder.binding.vidAiePicIgview,
                 item.commodityPicture,
                 ProjectUtils.roundConfig3

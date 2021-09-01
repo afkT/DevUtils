@@ -12,7 +12,6 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.zxing.Result
 import dev.base.DevSource
 import dev.engine.DevEngine
-import dev.engine.image.DevImageEngine
 import dev.engine.image.listener.BitmapListener
 import dev.engine.media.MediaConfig
 import dev.utils.DevFinal
@@ -88,7 +87,7 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
                 } else {
                     DevSource.createWithPath(imgPath)
                 }
-                DevImageEngine.getEngine()?.loadBitmap(
+                DevEngine.getImage()?.loadBitmap(
                     mActivity, source, null, object : BitmapListener() {
                         override fun onStart(source: DevSource?) {
                         }

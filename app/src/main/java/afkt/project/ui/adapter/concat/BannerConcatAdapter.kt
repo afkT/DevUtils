@@ -12,7 +12,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.youth.banner.adapter.BannerAdapter
 import com.youth.banner.indicator.CircleIndicator
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 
 /**
  * detail: Banner Adapter
@@ -63,7 +63,7 @@ class BannerConcatAdapter(
                     position: Int,
                     size: Int
                 ) {
-                    DevImageEngine.getEngine()?.display(
+                    DevEngine.getImage()?.display(
                         holder.binding.vidAcbiIgview,
                         data.imageUrl,
                         ProjectUtils.roundConfig10

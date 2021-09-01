@@ -10,7 +10,7 @@ import dev.base.DevSource
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.base.widget.BaseImageView
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 import dev.engine.image.listener.DrawableListener
 import dev.widget.assist.ViewAssist
 
@@ -50,7 +50,7 @@ class RecyclerLoadingAdapter(data: List<String>) : DevDataAdapter<String, DevBas
     ) {
         viewAssist.showIng()
         // 加载图片
-        DevImageEngine.getEngine()?.display<Drawable>(
+        DevEngine.getImage()?.display<Drawable>(
             imageView, url,
             object : DrawableListener() {
                 override fun onStart(source: DevSource) {}

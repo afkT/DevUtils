@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 import dev.utils.app.helper.ViewHelper
 
 /**
@@ -37,7 +37,7 @@ class LinearSnapAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, DevBase
             .setText(holder.binding.vidAlsTitleTv, item.title)
             .setText(holder.binding.vidAlsSubtitleTv, item.subtitle)
             .setText(holder.binding.vidAlsTimeTv, item.timeFormat)
-        DevImageEngine.getEngine()?.display(
+        DevEngine.getImage()?.display(
             holder.binding.vidAlsIgview,
             item.imageUrl,
             ProjectUtils.roundConfig10

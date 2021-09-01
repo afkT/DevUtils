@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 import dev.utils.app.helper.ViewHelper
 import dev.utils.common.BigDecimalUtils
 import java.math.BigDecimal
@@ -43,7 +43,7 @@ class ItemSlideAdapter(data: List<CommodityEvaluateBean>) : DevDataAdapter<Commo
                 "￥${BigDecimalUtils.round(item.commodityPrice, 2, BigDecimal.ROUND_HALF_UP)}"
             )
         // 商品图片
-        DevImageEngine.getEngine()?.display(
+        DevEngine.getImage()?.display(
             holder.binding.vidAmsIgview,
             item.commodityPicture,
             ProjectUtils.roundConfig3

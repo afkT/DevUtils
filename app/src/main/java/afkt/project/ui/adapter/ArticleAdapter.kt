@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.engine.image.DevImageEngine
+import dev.engine.DevEngine
 import dev.utils.app.AppUtils
 import dev.utils.app.ListenerUtils
 import dev.utils.app.TextViewUtils
@@ -41,7 +41,7 @@ class ArticleAdapter : DevDataAdapter<ListBean, DevBaseViewBindingVH<AdapterArti
         // 时间
         holder.binding.vidAaTimeTv.text = StringUtils.checkValue(item.niceShareDate, item.niceDate)
         // 随机图片
-        DevImageEngine.getEngine()?.display(
+        DevEngine.getImage()?.display(
             holder.binding.vidAaPicIgview,
             "https://picsum.photos/2${NumberUtils.addZero(position)}",
             ProjectUtils.roundConfig3
