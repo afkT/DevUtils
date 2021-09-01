@@ -9,14 +9,14 @@ import afkt.project.model.item.ButtonList.functionButtonValues
 import afkt.project.model.item.ButtonValue
 import afkt.project.ui.adapter.ButtonAdapter
 import android.Manifest
+import android.os.Build
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
 import dev.engine.DevEngine
+import dev.engine.permission.IPermissionEngine
 import dev.utils.app.*
 import dev.utils.app.assist.BeepVibrateAssist
 import dev.utils.app.camera.camera1.FlashlightUtils
-import dev.utils.app.permission.PermissionUtils
-import dev.utils.app.permission.PermissionUtils.PermissionCallback
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.app.toast.ToastUtils
 
@@ -67,10 +67,14 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         showToast(result, "通知权限已开启", "通知权限未开启")
                     }
                     ButtonValue.BTN_FUNCTION_NOTIFICATION_OPEN -> {
-                        result = AppUtils.startActivity(
-                            IntentUtils.getLaunchAppNotificationSettingsIntent(AppUtils.getPackageName())
-                        )
-                        showToast(result)
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            result = AppUtils.startActivity(
+                                IntentUtils.getLaunchAppNotificationSettingsIntent(AppUtils.getPackageName())
+                            )
+                            showToast(result)
+                        } else {
+                            showToast(false)
+                        }
                     }
                     ButtonValue.BTN_FUNCTION_NOTIFICATION -> {
                         result = NotificationUtils.notify(
@@ -88,24 +92,28 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         result = ActivityUtils.startHomeActivity()
                         showToast(result)
                     }
-                    ButtonValue.BTN_FUNCTION_FLASHLIGHT_OPEN -> PermissionUtils.permission(
-                        Manifest.permission.CAMERA
-                    ).callback(object : PermissionCallback {
-                        override fun onGranted() {
-                            // 非传入 Camera 方式需要注册
-                            FlashlightUtils.getInstance().register()
-                            val result = FlashlightUtils.getInstance().setFlashlightOn()
-                            showToast(result)
-                        }
+                    ButtonValue.BTN_FUNCTION_FLASHLIGHT_OPEN -> {
+                        DevEngine.getPermission()?.request(
+                            mActivity, arrayOf(
+                                Manifest.permission.CAMERA
+                            ), object : IPermissionEngine.Callback {
+                                override fun onGranted() {
+                                    // 非传入 Camera 方式需要注册
+                                    FlashlightUtils.getInstance().register()
+                                    val result = FlashlightUtils.getInstance().setFlashlightOn()
+                                    showToast(result)
+                                }
 
-                        override fun onDenied(
-                            grantedList: List<String>,
-                            deniedList: List<String>,
-                            notFoundList: List<String>
-                        ) {
-                            ToastTintUtils.warning("打开手电筒需摄像头权限")
-                        }
-                    }).request(mActivity)
+                                override fun onDenied(
+                                    grantedList: List<String>,
+                                    deniedList: List<String>,
+                                    notFoundList: List<String>
+                                ) {
+                                    ToastTintUtils.warning("打开手电筒需摄像头权限")
+                                }
+                            }
+                        )
+                    }
                     ButtonValue.BTN_FUNCTION_FLASHLIGHT_CLOSE -> {
                         result = FlashlightUtils.getInstance().setFlashlightOff()
                         showToast(result)
@@ -114,26 +122,30 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                         result = ShortCutUtils.hasShortcut("Dev 快捷方式")
                         showToast(result, "存在快捷方式", "不存在快捷方式")
                     }
-                    ButtonValue.BTN_FUNCTION_SHORTCUT_CREATE -> PermissionUtils.permission(
-                        Manifest.permission.INSTALL_SHORTCUT
-                    ).callback(object : PermissionCallback {
-                        override fun onGranted() {
-                            val result = ShortCutUtils.addShortcut(
-                                MainActivity::class.java,
-                                "Dev 快捷方式",
-                                R.mipmap.icon_launcher_round
-                            )
-                            showToast(result)
-                        }
+                    ButtonValue.BTN_FUNCTION_SHORTCUT_CREATE -> {
+                        DevEngine.getPermission()?.request(
+                            mActivity, arrayOf(
+                                Manifest.permission.INSTALL_SHORTCUT
+                            ), object : IPermissionEngine.Callback {
+                                override fun onGranted() {
+                                    val result = ShortCutUtils.addShortcut(
+                                        MainActivity::class.java,
+                                        "Dev 快捷方式",
+                                        R.mipmap.icon_launcher_round
+                                    )
+                                    showToast(result)
+                                }
 
-                        override fun onDenied(
-                            grantedList: List<String>,
-                            deniedList: List<String>,
-                            notFoundList: List<String>
-                        ) {
-                            ToastTintUtils.warning("创建快捷方式需要该权限")
-                        }
-                    }).request(mActivity)
+                                override fun onDenied(
+                                    grantedList: List<String>,
+                                    deniedList: List<String>,
+                                    notFoundList: List<String>
+                                ) {
+                                    ToastTintUtils.warning("创建快捷方式需要该权限")
+                                }
+                            }
+                        )
+                    }
                     ButtonValue.BTN_FUNCTION_SHORTCUT_DELETE -> {
                         result = ShortCutUtils.deleteShortcut(
                             MainActivity::class.java,

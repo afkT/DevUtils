@@ -20,13 +20,12 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.zxing.Result
 import dev.engine.DevEngine
 import dev.engine.media.MediaConfig
+import dev.engine.permission.IPermissionEngine
 import dev.utils.app.*
 import dev.utils.app.assist.BeepVibrateAssist
 import dev.utils.app.assist.InactivityTimerAssist
 import dev.utils.app.camera.camera1.FlashlightUtils
 import dev.utils.app.image.ImageUtils
-import dev.utils.app.permission.PermissionUtils
-import dev.utils.app.permission.PermissionUtils.PermissionCallback
 import dev.widget.ui.ScanShapeView
 import ktx.dev.other.ZXingQRCodeUtils
 
@@ -216,8 +215,10 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
     // 扫描相关操作接口
     private val mOperate = object : Operate {
         override fun cameraPermission() {
-            PermissionUtils.permission(Manifest.permission.CAMERA)
-                .callback(object : PermissionCallback {
+            DevEngine.getPermission()?.request(
+                mActivity, arrayOf(
+                    Manifest.permission.CAMERA
+                ), object : IPermissionEngine.Callback {
                     override fun onGranted() {
                         zxingDecodeAssist.startPreview(binding.vidAssSurface)
                     }
@@ -228,7 +229,8 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
                         notFoundList: List<String>
                     ) {
                     }
-                }).request(mActivity)
+                }
+            )
         }
 
         override fun switchFlashlight(state: Boolean) {

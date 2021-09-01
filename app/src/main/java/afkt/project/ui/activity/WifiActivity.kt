@@ -16,6 +16,7 @@ import android.os.Message
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.callback.DevItemClickCallback
 import dev.engine.DevEngine
+import dev.engine.permission.IPermissionEngine
 import dev.receiver.WifiReceiver
 import dev.receiver.WifiReceiver.Companion.register
 import dev.receiver.WifiReceiver.Companion.setListener
@@ -94,53 +95,56 @@ class WifiActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             }
                             // = 8.0 特殊处理 =
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                PermissionUtils.permission(
-                                    Manifest.permission.ACCESS_FINE_LOCATION,
-                                    Manifest.permission.ACCESS_COARSE_LOCATION
-                                ).callback(object : PermissionUtils.PermissionCallback {
-                                    override fun onGranted() {
-                                        isOpenAPING = true
-                                        // 设置热点 Wifi 监听
-                                        wifiHotUtils.setOnWifiAPListener(object : WifiHotUtils.OnWifiAPListener {
-                                            override fun onStarted(wifiConfiguration: WifiConfiguration) {
-                                                val wifiap =
-                                                    "ssid: ${wifiConfiguration.SSID}, pwd: ${wifiConfiguration.preSharedKey}"
-                                                DevEngine.getLog()?.dTag(TAG, wifiap)
-                                                ToastTintUtils.success(wifiap)
-                                                // 表示操作结束
-                                                isOpenAPING = false
-                                            }
+                                DevEngine.getPermission()?.request(
+                                    mActivity, arrayOf(
+                                        Manifest.permission.ACCESS_FINE_LOCATION,
+                                        Manifest.permission.ACCESS_COARSE_LOCATION
+                                    ), object : IPermissionEngine.Callback {
+                                        override fun onGranted() {
+                                            isOpenAPING = true
+                                            // 设置热点 Wifi 监听
+                                            wifiHotUtils.setOnWifiAPListener(object : WifiHotUtils.OnWifiAPListener {
+                                                override fun onStarted(wifiConfiguration: WifiConfiguration) {
+                                                    val wifiap =
+                                                        "ssid: ${wifiConfiguration.SSID}, pwd: ${wifiConfiguration.preSharedKey}"
+                                                    DevEngine.getLog()?.dTag(TAG, wifiap)
+                                                    ToastTintUtils.success(wifiap)
+                                                    // 表示操作结束
+                                                    isOpenAPING = false
+                                                }
 
-                                            override fun onStopped() {
-                                                DevEngine.getLog()?.dTag(TAG, "关闭热点")
-                                                // 表示操作结束
-                                                isOpenAPING = false
-                                            }
+                                                override fun onStopped() {
+                                                    DevEngine.getLog()?.dTag(TAG, "关闭热点")
+                                                    // 表示操作结束
+                                                    isOpenAPING = false
+                                                }
 
-                                            override fun onFailed(reason: Int) {
-                                                DevEngine.getLog()
-                                                    .dTag(TAG, "热点异常 reason: %s", reason)
-                                                // 表示操作结束
-                                                isOpenAPING = false
-                                            }
-                                        })
-                                        // 密码必须大于等于 8 位
-                                        val wifiConfiguration =
-                                            WifiHotUtils.createWifiConfigToAp(
-                                                wifiHotSSID, wifiHotPwd
-                                            )
-                                        val success = wifiHotUtils.startWifiAp(wifiConfiguration)
-                                        showToast(success, "打开热点成功", "打开热点失败")
+                                                override fun onFailed(reason: Int) {
+                                                    DevEngine.getLog()
+                                                        .dTag(TAG, "热点异常 reason: %s", reason)
+                                                    // 表示操作结束
+                                                    isOpenAPING = false
+                                                }
+                                            })
+                                            // 密码必须大于等于 8 位
+                                            val wifiConfiguration =
+                                                WifiHotUtils.createWifiConfigToAp(
+                                                    wifiHotSSID, wifiHotPwd
+                                                )
+                                            val success =
+                                                wifiHotUtils.startWifiAp(wifiConfiguration)
+                                            showToast(success, "打开热点成功", "打开热点失败")
+                                        }
+
+                                        override fun onDenied(
+                                            grantedList: List<String>,
+                                            deniedList: List<String>,
+                                            notFoundList: List<String>
+                                        ) {
+                                            ToastTintUtils.warning("开启热点需要定位权限")
+                                        }
                                     }
-
-                                    override fun onDenied(
-                                        grantedList: List<String>,
-                                        deniedList: List<String>,
-                                        notFoundList: List<String>
-                                    ) {
-                                        ToastTintUtils.warning("开启热点需要定位权限")
-                                    }
-                                }).request(mActivity)
+                                )
                                 return
                             } else if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N) { // 7.0 及以下需要 WRITE_SETTINGS 权限
                                 // 无法进行申请, 只能跳转到权限页面, 让用户开启

@@ -53,8 +53,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             this, arrayOf(
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ),
-            object : IPermissionEngine.Callback {
+            ), object : IPermissionEngine.Callback {
                 override fun onGranted() {
                     DevEngine.getLog()?.d("permission granted")
                 }

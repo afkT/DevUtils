@@ -10,13 +10,13 @@ import android.view.SurfaceHolder
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.DevEngine
+import dev.engine.permission.IPermissionEngine
 import dev.utils.app.ListenerUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.camera.camera1.CameraAssist
 import dev.utils.app.camera.camera1.CameraUtils
 import dev.utils.app.camera.camera1.FlashlightUtils
 import dev.utils.app.permission.PermissionUtils
-import dev.utils.app.permission.PermissionUtils.PermissionCallback
 import dev.utils.app.toast.ToastTintUtils
 import dev.widget.ui.ScanShapeView
 
@@ -156,20 +156,23 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
             }
         } else {
             // 申请权限
-            PermissionUtils.permission(cameraPermission).callback(object : PermissionCallback {
-                override fun onGranted() {
-                    // 刷新处理
-                    checkPermission()
-                }
+            DevEngine.getPermission()?.request(
+                this, arrayOf(cameraPermission),
+                object : IPermissionEngine.Callback {
+                    override fun onGranted() {
+                        // 刷新处理
+                        checkPermission()
+                    }
 
-                override fun onDenied(
-                    grantedList: List<String>,
-                    deniedList: List<String>,
-                    notFoundList: List<String>
-                ) {
-                    ToastTintUtils.warning("需要摄像头权限预览")
+                    override fun onDenied(
+                        grantedList: List<String>,
+                        deniedList: List<String>,
+                        notFoundList: List<String>
+                    ) {
+                        ToastTintUtils.warning("需要摄像头权限预览")
+                    }
                 }
-            }).request(this)
+            )
         }
     }
 

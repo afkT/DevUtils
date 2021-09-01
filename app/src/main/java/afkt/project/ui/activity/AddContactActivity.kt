@@ -15,10 +15,10 @@ import android.provider.ContactsContract.CommonDataKinds.*
 import android.provider.ContactsContract.RawContacts
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
+import dev.engine.DevEngine
+import dev.engine.permission.IPermissionEngine
 import dev.utils.app.*
 import dev.utils.app.DialogUtils.DialogListener
-import dev.utils.app.permission.PermissionUtils
-import dev.utils.app.permission.PermissionUtils.PermissionCallback
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.app.toast.ToastUtils
 import dev.utils.common.ConvertUtils
@@ -54,8 +54,10 @@ class AddContactActivity : BaseActivity<ActivityAddContactBinding>() {
                 ToastTintUtils.warning("运行中")
                 return@OnClickListener
             }
-            PermissionUtils.permission(Manifest.permission.WRITE_CONTACTS)
-                .callback(object : PermissionCallback {
+            DevEngine.getPermission()?.request(
+                mActivity, arrayOf(
+                    Manifest.permission.WRITE_CONTACTS
+                ), object : IPermissionEngine.Callback {
                     override fun onGranted() {
                         // 联系人创建校验
                         createCheck()
@@ -66,9 +68,10 @@ class AddContactActivity : BaseActivity<ActivityAddContactBinding>() {
                         deniedList: List<String>,
                         notFoundList: List<String>
                     ) {
-                        ToastUtils.showShort("请开启联系人写入权限.")
+                        ToastUtils.showShort("请开启联系人写入权限")
                     }
-                }).request(mActivity)
+                }
+            )
         })
     }
 
