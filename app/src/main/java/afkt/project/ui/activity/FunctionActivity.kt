@@ -144,13 +144,13 @@ class FunctionActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                     ButtonValue.BTN_FUNCTION_MEMORY_PRINT -> {
                         val memoryInfo = MemoryUtils.printMemoryInfo()
                         ToastUtils.showShort(memoryInfo)
-                        DevLogEngine.getEngine().dTag(TAG, memoryInfo)
+                        DevLogEngine.getEngine()?.dTag(TAG, memoryInfo)
                     }
                     ButtonValue.BTN_FUNCTION_DEVICE_PRINT -> {
                         val deviceInfo =
                             DeviceUtils.handlerDeviceInfo(DeviceUtils.getDeviceInfo(), "")
                         ToastUtils.showShort(deviceInfo)
-                        DevLogEngine.getEngine().dTag(TAG, deviceInfo)
+                        DevLogEngine.getEngine()?.dTag(TAG, deviceInfo)
                     }
                     ButtonValue.BTN_FUNCTION_APP_DETAILS_SETTINGS -> {
                         result = AppUtils.launchAppDetailsSettings()

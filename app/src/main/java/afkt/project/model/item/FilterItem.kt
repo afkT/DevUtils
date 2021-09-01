@@ -274,7 +274,7 @@ class FilterItem(
             try {
                 return filterClass.newInstance()
             } catch (e: Exception) {
-                DevLogEngine.getEngine().eTag(TAG, e, "createBlendFilter")
+                DevLogEngine.getEngine()?.eTag(TAG, e, "createBlendFilter")
             }
             return null
         }

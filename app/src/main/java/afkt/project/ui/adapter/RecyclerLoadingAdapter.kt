@@ -50,7 +50,7 @@ class RecyclerLoadingAdapter(data: List<String>) : DevDataAdapter<String, DevBas
     ) {
         viewAssist.showIng()
         // 加载图片
-        DevImageEngine.getEngine().display<Drawable>(
+        DevImageEngine.getEngine()?.display<Drawable>(
             imageView, url,
             object : DrawableListener() {
                 override fun onStart(source: DevSource) {}

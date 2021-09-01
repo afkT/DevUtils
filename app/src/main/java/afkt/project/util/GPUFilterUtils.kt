@@ -32,7 +32,7 @@ object GPUFilterUtils {
                 filter.setFromCurveFileInputStream(inputStream)
                 return filter
             } catch (e: Exception) {
-                DevLogEngine.getEngine().eTag(TAG, e, "getGPUImageToneCurveFilter")
+                DevLogEngine.getEngine()?.eTag(TAG, e, "getGPUImageToneCurveFilter")
             } finally {
                 CloseUtils.closeIOQuietly(inputStream)
             }

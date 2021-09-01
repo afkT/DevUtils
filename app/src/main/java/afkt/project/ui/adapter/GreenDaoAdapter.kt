@@ -71,7 +71,7 @@ class GreenDaoAdapter : DevDataAdapterExt<Note, DevBaseViewBindingVH<AdapterData
             holder: DevBaseViewBindingVH<AdapterDatabaseImageBinding>,
             position: Int
         ) {
-            DevImageEngine.getEngine().display(
+            DevImageEngine.getEngine()?.display(
                 holder.binding.vidAdbiIgview,
                 getDataItem(position).picture
             )

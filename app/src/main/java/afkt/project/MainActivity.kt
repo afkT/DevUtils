@@ -42,7 +42,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
 
             override fun onFail(e: Exception) {
-                DevLogEngine.getEngine().eTag(TAG, e, "getNetTime")
+                DevLogEngine.getEngine()?.eTag(TAG, e, "getNetTime")
             }
         })
 
@@ -50,14 +50,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         // = 申请权限 =
         // ==========
 
-        DevPermissionEngine.getEngine().request(
+        DevPermissionEngine.getEngine()?.request(
             this, arrayOf(
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
             ),
             object : IPermissionEngine.Callback {
                 override fun onGranted() {
-                    DevLogEngine.getEngine().d("permission granted")
+                    DevLogEngine.getEngine()?.d("permission granted")
                 }
 
                 override fun onDenied(
@@ -73,7 +73,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                         .append(deniedList.toTypedArray().contentToString())
                         .append("\nnotFoundList: ")
                         .append(notFoundList.toTypedArray().contentToString())
-                    DevLogEngine.getEngine().d(builder.toString())
+                    DevLogEngine.getEngine()?.d(builder.toString())
                     // 拒绝了则再次请求处理
                     DevPermissionEngine.getEngine()
                         .againRequest(this@MainActivity, this, deniedList)

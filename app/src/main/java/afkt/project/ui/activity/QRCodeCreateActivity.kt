@@ -76,7 +76,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
                     .setMimeType(MediaConfig.MimeType.ofImage())
                     .setCamera(true).setGif(false)
                 // 打开图片选择器
-                DevMediaEngine.getEngine().openGallery(mActivity, config)
+                DevMediaEngine.getEngine()?.openGallery(mActivity, config)
             }
         }
     }
@@ -94,7 +94,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
         // 判断是否属于图片选择
         if (resultCode == RESULT_OK && data != null) {
             // 获取图片地址
-            val imgPath = DevMediaEngine.getEngine().getSingleSelectorPath(data, true)
+            val imgPath = DevMediaEngine.getEngine()?.getSingleSelectorPath(data, true)
             // 获取图片 Bitmap
             selectBitmap = if (UriUtils.isUri(imgPath)) {
                 ImageUtils.decodeStream(

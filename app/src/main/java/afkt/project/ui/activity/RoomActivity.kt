@@ -117,7 +117,7 @@ class RoomActivity : BaseActivity<ActivityDatabaseBinding>() {
                             .deleteNotePictures(
                                 *CollectionUtils.toArrayT(nap.pictures)
                             )
-                        DevLogEngine.getEngine().dTag(TAG, "删除图片数量: %s", deleteCount)
+                        DevLogEngine.getEngine()?.dTag(TAG, "删除图片数量: %s", deleteCount)
                     }
                 }
             }
@@ -228,7 +228,7 @@ class RoomActivity : BaseActivity<ActivityDatabaseBinding>() {
                 limit = pageSize * 2 - diff
             }
         }
-        DevLogEngine.getEngine().dTag(TAG, "offset: %s, limit: %s", offset, limit)
+        DevLogEngine.getEngine()?.dTag(TAG, "offset: %s, limit: %s", offset, limit)
         // 请求数据
         return RoomManager.getNoteDatabase().noteDao
             .getNoteAndPictureLists(limit, offset)

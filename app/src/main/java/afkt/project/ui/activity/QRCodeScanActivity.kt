@@ -133,7 +133,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
                     .setMimeType(MediaConfig.MimeType.ofImage())
                     .setCamera(true).setGif(false)
                 // 打开图片选择器
-                DevMediaEngine.getEngine().openGallery(mActivity, config)
+                DevMediaEngine.getEngine()?.openGallery(mActivity, config)
             }
         }
     }
@@ -151,7 +151,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
         // 判断是否属于图片选择
         if (resultCode == RESULT_OK && data != null) {
             // 获取图片地址
-            val imgPath = DevMediaEngine.getEngine().getSingleSelectorPath(data, true)
+            val imgPath = DevMediaEngine.getEngine()?.getSingleSelectorPath(data, true)
             // 获取图片 Bitmap
             val selectBitmap = if (UriUtils.isUri(imgPath)) {
                 ImageUtils.decodeStream(
@@ -256,7 +256,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
             // 记录是否发生异常
             tryError = isError
             // 打印日志
-            DevLogEngine.getEngine().eTag(TAG, e, "setError")
+            DevLogEngine.getEngine()?.eTag(TAG, e, "setError")
         }
 
         override fun getHandler(): Handler? {

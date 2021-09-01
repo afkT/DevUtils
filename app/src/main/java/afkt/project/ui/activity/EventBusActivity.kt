@@ -71,7 +71,7 @@ class EventBusActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEventBus(event: DevObject<String>) {
         // 打印数据
-        DevLogEngine.getEngine().dTag(TAG, "value %s", event.getObject())
+        DevLogEngine.getEngine()?.dTag(TAG, "value %s", event.getObject())
         // 进行提示
         ToastTintUtils.normal(event.code + "." + event.getObject())
     }
@@ -79,7 +79,7 @@ class EventBusActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     fun onEventBusSticky(event: DevObject<String>) {
         // 打印数据
-        DevLogEngine.getEngine().dTag(TAG, "value %s", event.getObject())
+        DevLogEngine.getEngine()?.dTag(TAG, "value %s", event.getObject())
         // 进行提示
         ToastTintUtils.warning(event.code + "." + event.getObject())
 

@@ -51,7 +51,7 @@ class MultiSelectAdapter(data: List<CommodityEvaluateBean?>) :
                 )
             )
         // 商品图片
-        DevImageEngine.getEngine().display(
+        DevImageEngine.getEngine()?.display(
             holder.binding.vidAmsPicIgview,
             item?.commodityPicture,
             ProjectUtils.roundConfig3

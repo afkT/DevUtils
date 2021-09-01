@@ -128,7 +128,7 @@ class BaseApplication : MultiDexApplication() {
             .append(DevEnvironmentActivity.getDevEnvironmentVersion())
             .append("\n时间: ").append(DateUtils.getDateNow())
             .append("\n初始化耗时(毫秒): ").append(timeCounter.duration())
-        DevLogEngine.getEngine().i(builder.toString())
+        DevLogEngine.getEngine()?.i(builder.toString())
     }
 
     // ============
@@ -248,7 +248,7 @@ class BaseApplication : MultiDexApplication() {
                     webViewAssist: WebViewAssist?,
                     builder: WebViewAssist.Builder
                 ) {
-                    DevLogEngine.getEngine().d("WebViewAssist Builder onApply")
+                    DevLogEngine.getEngine()?.d("WebViewAssist Builder onApply")
                 }
             })
             // WebViewAssist 构造函数会使用全局配置
@@ -299,7 +299,7 @@ class BaseApplication : MultiDexApplication() {
                     .append(DevFinal.NEW_LINE_STR)
                     .append("dateTaken: ").append(dateTaken).append(" ( ")
                     .append(DateUtils.formatTime(dateTaken)).append(" )")
-                DevLogEngine.getEngine().d(builder.toString())
+                DevLogEngine.getEngine()?.d(builder.toString())
             }.startListener()
     }
 

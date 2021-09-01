@@ -44,7 +44,7 @@ class PagerSnapAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, DevBaseV
             view: ImageView?,
             imageUrl: String?
         ) {
-            DevImageEngine.getEngine().display(
+            DevImageEngine.getEngine()?.display(
                 view, imageUrl,
                 ProjectUtils.roundConfig10
             )

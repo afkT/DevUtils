@@ -97,7 +97,7 @@ class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
                 .setMimeType(MediaConfig.MimeType.ofImage())
                 .setCamera(true).setGif(false)
             // 打开图片选择器
-            DevMediaEngine.getEngine().openGallery(mActivity, config)
+            DevMediaEngine.getEngine()?.openGallery(mActivity, config)
         }
     }
 
@@ -114,7 +114,7 @@ class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
         // 判断是否属于图片选择
         if (resultCode == RESULT_OK && data != null) {
             // 获取图片地址
-            val imgPath = DevMediaEngine.getEngine().getSingleSelectorPath(data, true)
+            val imgPath = DevMediaEngine.getEngine()?.getSingleSelectorPath(data, true)
             // 获取图片 Bitmap
             selectBitmap = if (UriUtils.isUri(imgPath)) {
                 ImageUtils.decodeStream(
@@ -149,7 +149,7 @@ class GPUFilterACVActivity : BaseActivity<ActivityGpuFilterBinding>() {
             val bitmapFilter = getFilterBitmap(selectBitmap, gpuFilter)
             binding.vidAgfIgview.setImageBitmap(bitmapFilter)
         } catch (e: Exception) {
-            DevLogEngine.getEngine().eTag(TAG, e, "setFilter")
+            DevLogEngine.getEngine()?.eTag(TAG, e, "setFilter")
         }
     }
 }

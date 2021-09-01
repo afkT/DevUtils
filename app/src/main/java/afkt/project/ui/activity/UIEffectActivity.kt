@@ -150,7 +150,7 @@ class UIEffectActivity : BaseActivity<ActivityUiEffectBinding>() {
                     tabItem: TabItem,
                     pos: Int
                 ) {
-                    DevLogEngine.getEngine().dTag(TAG, "TabItem: %s, pos: %s", tabItem.title, pos)
+                    DevLogEngine.getEngine()?.dTag(TAG, "TabItem: %s, pos: %s", tabItem.title, pos)
                     // 设置选中
                     setSelect(pos)
                 }

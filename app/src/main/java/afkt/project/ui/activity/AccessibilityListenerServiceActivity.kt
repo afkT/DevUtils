@@ -84,22 +84,22 @@ class AccessibilityListenerServiceActivity : BaseActivity<BaseViewRecyclerviewBi
                     .append("onAccessibilityEvent")
                     .append("\naccessibilityEvent: ")
                     .append(accessibilityEvent)
-                DevLogEngine.getEngine().dTag(TAG, builder.toString())
+                DevLogEngine.getEngine()?.dTag(TAG, builder.toString())
             }
 
             override fun onInterrupt() {
                 super.onInterrupt()
-                DevLogEngine.getEngine().dTag(TAG, "onInterrupt")
+                DevLogEngine.getEngine()?.dTag(TAG, "onInterrupt")
             }
 
             override fun onServiceCreated(service: AccessibilityListenerService?) {
                 super.onServiceCreated(service)
-                DevLogEngine.getEngine().dTag(TAG, "onServiceCreated")
+                DevLogEngine.getEngine()?.dTag(TAG, "onServiceCreated")
             }
 
             override fun onServiceDestroy() {
                 super.onServiceDestroy()
-                DevLogEngine.getEngine().dTag(TAG, "onServiceDestroy")
+                DevLogEngine.getEngine()?.dTag(TAG, "onServiceDestroy")
             }
         })
     }

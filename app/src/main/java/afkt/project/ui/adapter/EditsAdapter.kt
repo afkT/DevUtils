@@ -53,7 +53,7 @@ class EditsAdapter(data: List<EvaluateItem>) : DevDataAdapterExt<EvaluateItem, D
         holder.binding.vidAiePriceTv.text =
             "￥${BigDecimalUtils.round(commodity.commodityPrice, 2, BigDecimal.ROUND_HALF_UP)}"
         // 商品图片
-        DevImageEngine.getEngine().display(
+        DevImageEngine.getEngine()?.display(
             holder.binding.vidAiePicIgview,
             commodity.commodityPicture,
             ProjectUtils.roundConfig3

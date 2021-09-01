@@ -62,7 +62,7 @@ class LinearSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, Recy
                 .setText(holder.binding.vidAlsSubtitleTv, itemBean.subtitle)
                 .setText(holder.binding.vidAlsTimeTv, itemBean.timeFormat)
                 .setText(holder.binding.vidAlsIndexTv, "$position - $index")
-            DevImageEngine.getEngine().display(
+            DevImageEngine.getEngine()?.display(
                 holder.binding.vidAlsIgview,
                 itemBean.imageUrl,
                 ProjectUtils.roundConfig10

@@ -34,7 +34,7 @@ class ShapeableImageItemViewBinder : ItemViewBinder<ShapeableImageBeanItem, DevB
     ) {
         val itemObj = item.obj
 
-        DevImageEngine.getEngine().display(
+        DevImageEngine.getEngine()?.display(
             holder.binding.vidAcsiIgview,
             itemObj.imageUrl
         )

@@ -54,7 +54,7 @@ class ItemStickyActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             }
 
             override fun getGroupView(position: Int): View? {
-                DevLogEngine.getEngine().dTag(TAG, position.toString())
+                DevLogEngine.getEngine()?.dTag(TAG, position.toString())
                 val view = layoutInflater.inflate(R.layout.adapter_sticky_view, null, false)
                 TextViewUtils.setText(
                     view.findViewById(R.id.vid_asv_title_tv),

@@ -58,7 +58,7 @@ class TimerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                                 setCallback { timer: DevTimer?, number: Int, end: Boolean, infinite: Boolean ->
                                     // 触发次数
                                     if (number == 1) {
-                                        DevLogEngine.getEngine().dTag(TAG, "第一次触发, 0.5 秒延迟")
+                                        DevLogEngine.getEngine()?.dTag(TAG, "第一次触发, 0.5 秒延迟")
                                     } else {
                                         DevLogEngine.getEngine()
                                             .dTag(TAG, "每隔 2 秒触发一次, 触发次数: %s", number)
@@ -119,7 +119,7 @@ class TimerActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
             .setLimit(19)       // 触发次数上限 ( 负数为无限循环 )
             .build()            // 构建定时器
         timer.setCallback { _, _, _, _ ->
-            DevLogEngine.getEngine().dTag(TAG, "是否 UI 线程: %s", HandlerUtils.isMainThread())
+            DevLogEngine.getEngine()?.dTag(TAG, "是否 UI 线程: %s", HandlerUtils.isMainThread())
         }
         // 设置了 Handler 则属于 UI 线程触发回调
         timer.setHandler(mUiHandler)

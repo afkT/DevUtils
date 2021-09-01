@@ -63,7 +63,7 @@ class BannerConcatAdapter(
                     position: Int,
                     size: Int
                 ) {
-                    DevImageEngine.getEngine().display(
+                    DevImageEngine.getEngine()?.display(
                         holder.binding.vidAcbiIgview,
                         data.imageUrl,
                         ProjectUtils.roundConfig10

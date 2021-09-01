@@ -232,7 +232,7 @@ class GreenDaoActivity : BaseActivity<ActivityDatabaseBinding>() {
                 limit = pageSize * 2 - diff
             }
         }
-        DevLogEngine.getEngine().dTag(TAG, "offset: %s, limit: %s", offset, limit)
+        DevLogEngine.getEngine()?.dTag(TAG, "offset: %s, limit: %s", offset, limit)
         // 请求数据
         return GreenManager.getNoteDatabase().noteDao
             .queryBuilder()

@@ -33,7 +33,7 @@ class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallba
                         .setMimeType(MediaConfig.MimeType.ofImage())
                         .setCamera(true).setGif(false)
                     // 打开图片选择器
-                    DevMediaEngine.getEngine().openGallery(activity, config)
+                    DevMediaEngine.getEngine()?.openGallery(activity, config)
                     return true
                 }
 
@@ -43,7 +43,7 @@ class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallba
                     data: Intent
                 ) {
                     if (result && data != null) {
-                        val imgPath = DevMediaEngine.getEngine().getSingleSelectorPath(data, true)
+                        val imgPath = DevMediaEngine.getEngine()?.getSingleSelectorPath(data, true)
                         // 提示
                         ToastTintUtils.success("选择了图片: $imgPath")
                     } else {

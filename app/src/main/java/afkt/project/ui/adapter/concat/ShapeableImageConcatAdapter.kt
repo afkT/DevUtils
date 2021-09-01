@@ -37,7 +37,7 @@ class ShapeableImageConcatAdapter(data: List<ShapeableImageBean>) : DevDataAdapt
     ) {
         val item = getDataItem(position)
 
-        DevImageEngine.getEngine().display(
+        DevImageEngine.getEngine()?.display(
             holder.binding.vidAcsiIgview,
             item.imageUrl
         )

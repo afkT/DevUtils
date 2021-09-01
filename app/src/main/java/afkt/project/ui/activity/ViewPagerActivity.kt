@@ -31,14 +31,14 @@ class ViewPagerActivity : BaseActivity<ActivityViewPagerBinding>() {
                 right: Boolean
             ) {
                 if (left && !right) {
-                    DevLogEngine.getEngine().dTag(TAG, "往左滑 - 从右往左")
+                    DevLogEngine.getEngine()?.dTag(TAG, "往左滑 - 从右往左")
                 } else {
-                    DevLogEngine.getEngine().dTag(TAG, "往右滑 - 从左往右")
+                    DevLogEngine.getEngine()?.dTag(TAG, "往右滑 - 从左往右")
                 }
             }
 
             override fun onPageSelected(index: Int) {
-                DevLogEngine.getEngine().dTag(TAG, "索引变动: %s", index)
+                DevLogEngine.getEngine()?.dTag(TAG, "索引变动: %s", index)
                 if (mLeftScroll) {
                     showToast("往左滑 - 从右往左")
                 } else {

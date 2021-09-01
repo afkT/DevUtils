@@ -74,7 +74,7 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
                     )
                 )
             // 商品图片
-            DevImageEngine.getEngine().display(
+            DevImageEngine.getEngine()?.display(
                 holder.binding.vidAmsPicIgview,
                 item.commodityPicture,
                 ProjectUtils.roundConfig3
@@ -98,7 +98,7 @@ class CommodityConcatAdapter(data: List<CommodityBean>) : DevDataAdapter<Commodi
                 .setEnabled(false, holder.binding.vidAieContentEdit)
 
             // 商品图片
-            DevImageEngine.getEngine().display(
+            DevImageEngine.getEngine()?.display(
                 holder.binding.vidAiePicIgview,
                 item.commodityPicture,
                 ProjectUtils.roundConfig3

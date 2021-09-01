@@ -71,7 +71,7 @@ class PagerSnapMAXAdapter(data: List<ItemBean>) : DevDataAdapter<ItemBean, Recyc
             view: ImageView?,
             imageUrl: String?
         ) {
-            DevImageEngine.getEngine().display(
+            DevImageEngine.getEngine()?.display(
                 view, imageUrl,
                 ProjectUtils.roundConfig10
             )

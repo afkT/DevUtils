@@ -54,7 +54,7 @@ class CommodityItemViewBinder : ItemViewBinder<CommodityBeanItem, DevBaseViewBin
                 )
             )
         // 商品图片
-        DevImageEngine.getEngine().display(
+        DevImageEngine.getEngine()?.display(
             holder.binding.vidAmsPicIgview,
             itemObj.commodityPicture,
             ProjectUtils.roundConfig3

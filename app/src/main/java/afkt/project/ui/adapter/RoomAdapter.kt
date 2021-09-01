@@ -72,7 +72,7 @@ class RoomAdapter : DevDataAdapterExt<NoteAndPicture, DevBaseViewBindingVH<Adapt
             holder: DevBaseViewBindingVH<AdapterDatabaseImageBinding>,
             position: Int
         ) {
-            DevImageEngine.getEngine().display(
+            DevImageEngine.getEngine()?.display(
                 holder.binding.vidAdbiIgview,
                 getDataItem(position).picture
             )

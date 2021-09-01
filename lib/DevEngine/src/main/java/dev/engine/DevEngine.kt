@@ -4,37 +4,26 @@ import android.content.Context
 import com.tencent.mmkv.MMKV
 import dev.DevUtils
 import dev.engine.analytics.DevAnalyticsEngine
-import dev.engine.analytics.IAnalyticsEngine
 import dev.engine.cache.CacheConfig
 import dev.engine.cache.DevCacheEngine
 import dev.engine.cache.DevCacheEngineImpl
-import dev.engine.cache.ICacheEngine
 import dev.engine.compress.DevCompressEngine
-import dev.engine.compress.ICompressEngine
 import dev.engine.compress.LubanEngineImpl
 import dev.engine.image.DevImageEngine
 import dev.engine.image.GlideEngineImpl
-import dev.engine.image.IImageEngine
 import dev.engine.json.DevJSONEngine
 import dev.engine.json.GsonEngineImpl
-import dev.engine.json.IJSONEngine
 import dev.engine.keyvalue.*
 import dev.engine.log.DevLogEngine
 import dev.engine.log.DevLoggerEngineImpl
-import dev.engine.log.ILogEngine
 import dev.engine.media.DevMediaEngine
-import dev.engine.media.IMediaEngine
 import dev.engine.media.PictureSelectorEngineImpl
 import dev.engine.permission.DevPermissionEngine
 import dev.engine.permission.DevPermissionEngineImpl
-import dev.engine.permission.IPermissionEngine
 import dev.engine.push.DevPushEngine
-import dev.engine.push.IPushEngine
 import dev.engine.share.DevShareEngine
-import dev.engine.share.IShareEngine
 import dev.engine.storage.DevMediaStoreEngineImpl
 import dev.engine.storage.DevStorageEngine
-import dev.engine.storage.IStorageEngine
 import dev.utils.app.cache.DevCache
 import dev.utils.app.logger.LogConfig
 
@@ -157,6 +146,15 @@ object DevEngine {
         logConfig: LogConfig? = null
     ) {
 
+        // ===============
+        // = JSON Engine =
+        // ===============
+
+        // 初始化 Gson JSON Engine 实现
+        DevJSONEngine.setEngine(GsonEngineImpl())
+//        // 初始化 Fastjson JSON Engine 实现
+//        DevJSONEngine.setEngine(FastjsonEngineImpl())
+
         // ==============================
         // = Cache Engine 有效期键值对缓存 =
         // ==============================
@@ -179,15 +177,6 @@ object DevEngine {
 
         // 初始化 Glide Image Engine 实现
         DevImageEngine.setEngine(GlideEngineImpl())
-
-        // ===============
-        // = JSON Engine =
-        // ===============
-
-        // 初始化 Gson JSON Engine 实现
-        DevJSONEngine.setEngine(GsonEngineImpl())
-//        // 初始化 Fastjson JSON Engine 实现
-//        DevJSONEngine.setEngine(FastjsonEngineImpl())
 
         // ============================
         // = KeyValue Engine 键值对存储 =

@@ -57,7 +57,7 @@ class CommodityEvaluateItemViewBinder : ItemViewBinder<CommodityEvaluateBeanItem
             .setEnabled(false, holder.binding.vidAieContentEdit)
 
         // 商品图片
-        DevImageEngine.getEngine().display(
+        DevImageEngine.getEngine()?.display(
             holder.binding.vidAiePicIgview,
             itemObj.commodityPicture,
             ProjectUtils.roundConfig3

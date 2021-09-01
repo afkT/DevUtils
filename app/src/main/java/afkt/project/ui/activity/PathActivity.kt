@@ -95,7 +95,7 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             PathUtils.getInternal().appAudiobooksDir,
                             ""
                         )
-                        DevLogEngine.getEngine().dTag(TAG, builder.toString())
+                        DevLogEngine.getEngine()?.dTag(TAG, builder.toString())
                         showToast(true, "信息已打印, 请查看 Logcat")
                     }
                     ButtonValue.BTN_PATH_APP_EXTERNAL -> {
@@ -142,7 +142,7 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             PathUtils.getAppExternal().appObbDir,
                             ""
                         )
-                        DevLogEngine.getEngine().dTag(TAG, builder.toString())
+                        DevLogEngine.getEngine()?.dTag(TAG, builder.toString())
                         showToast(true, "信息已打印, 请查看 Logcat")
                     }
                     ButtonValue.BTN_PATH_SDCARD -> {
@@ -180,7 +180,7 @@ class PathActivity : BaseActivity<BaseViewRecyclerviewBinding>() {
                             PathUtils.getSDCard().audiobooksDir,
                             ""
                         )
-                        DevLogEngine.getEngine().dTag(TAG, builder.toString())
+                        DevLogEngine.getEngine()?.dTag(TAG, builder.toString())
                         showToast(true, "信息已打印, 请查看 Logcat")
                     }
                     else -> ToastTintUtils.warning("未处理 ${buttonValue.text} 事件")

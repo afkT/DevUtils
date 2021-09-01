@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Parcelable
 import dev.engine.json.DevJSONEngine
+import dev.engine.json.IJSONEngine
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.Serializable
@@ -17,6 +18,13 @@ import java.util.*
 class DevCacheEngineImpl(
     private val mConfig: CacheConfig
 ) : ICacheEngine<CacheConfig?, DataItem?> {
+
+    // JSON Engine
+    private var mJSONEngine: IJSONEngine<in IJSONEngine.EngineConfig>? = DevJSONEngine.getEngine()
+
+    fun setJSONEngine(engine: IJSONEngine<in IJSONEngine.EngineConfig>) {
+        this.mJSONEngine = engine
+    }
 
     // =============
     // = 对外公开方法 =
@@ -216,7 +224,7 @@ class DevCacheEngineImpl(
         value: T,
         validTime: Long
     ): Boolean {
-        val json = DevJSONEngine.getEngine().toJson(value)
+        val json = mJSONEngine?.toJson(value)
         return mConfig.mDevCache.put(key, json, validTime)
     }
 
@@ -386,8 +394,8 @@ class DevCacheEngineImpl(
         defaultValue: T
     ): T {
         val json = getString(key, null)
-        return DevJSONEngine.getEngine().fromJson<T>(
+        return mJSONEngine?.fromJson<T>(
             json, typeOfT
-        ) as? T ?: return defaultValue
+        ) ?: return defaultValue
     }
 }

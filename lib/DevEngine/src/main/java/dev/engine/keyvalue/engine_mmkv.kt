@@ -2,6 +2,7 @@ package dev.engine.keyvalue
 
 import com.tencent.mmkv.MMKV
 import dev.engine.json.DevJSONEngine
+import dev.engine.json.IJSONEngine
 import dev.utils.common.ConvertUtils
 import dev.utils.common.cipher.Cipher
 import java.lang.reflect.Type
@@ -29,6 +30,13 @@ class MMKVKeyValueEngineImpl(
     init {
         // MMKV Holder
         mHolder = MMKVUtils.putHolder(config.mmkv.mmapID(), config.mmkv)
+    }
+
+    // JSON Engine
+    private var mJSONEngine: IJSONEngine<in IJSONEngine.EngineConfig>? = DevJSONEngine.getEngine()
+
+    fun setJSONEngine(engine: IJSONEngine<in IJSONEngine.EngineConfig>) {
+        this.mJSONEngine = engine
     }
 
     // =============
@@ -110,7 +118,7 @@ class MMKVKeyValueEngineImpl(
         key: String?,
         value: T
     ): Boolean {
-        return putString(key, DevJSONEngine.getEngine().toJson(value))
+        return putString(key, mJSONEngine?.toJson(value))
     }
 
     // =======
@@ -203,8 +211,8 @@ class MMKVKeyValueEngineImpl(
         defaultValue: T
     ): T {
         val json = getString(key, null)
-        return DevJSONEngine.getEngine().fromJson<T>(
+        return mJSONEngine?.fromJson<T>(
             json, typeOfT
-        ) as? T ?: return defaultValue
+        ) ?: return defaultValue
     }
 }

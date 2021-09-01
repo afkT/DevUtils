@@ -43,7 +43,7 @@ class ItemSlideAdapter(data: List<CommodityEvaluateBean>) : DevDataAdapter<Commo
                 "￥${BigDecimalUtils.round(item.commodityPrice, 2, BigDecimal.ROUND_HALF_UP)}"
             )
         // 商品图片
-        DevImageEngine.getEngine().display(
+        DevImageEngine.getEngine()?.display(
             holder.binding.vidAmsIgview,
             item.commodityPicture,
             ProjectUtils.roundConfig3

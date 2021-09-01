@@ -123,7 +123,7 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
             try {
                 cameraAssist.stopPreview()
             } catch (e: Exception) {
-                DevLogEngine.getEngine().eTag(TAG, e, "surfaceDestroyed")
+                DevLogEngine.getEngine()?.eTag(TAG, e, "surfaceDestroyed")
             }
         }
     }
@@ -152,7 +152,7 @@ class ScanShapeActivity : BaseActivity<ActivityScanShapeBinding>() {
 //                // 默认开启自动对焦, 设置不需要自动对焦
 //                cameraAssist.setAutoFocus(false)
             } catch (e: Exception) {
-                DevLogEngine.getEngine().eTag(TAG, e, "checkPermission startPreview")
+                DevLogEngine.getEngine()?.eTag(TAG, e, "checkPermission startPreview")
             }
         } else {
             // 申请权限

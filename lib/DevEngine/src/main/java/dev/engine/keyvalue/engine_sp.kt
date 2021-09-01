@@ -1,6 +1,7 @@
 package dev.engine.keyvalue
 
 import dev.engine.json.DevJSONEngine
+import dev.engine.json.IJSONEngine
 import dev.utils.app.share.IPreference
 import dev.utils.common.ConvertUtils
 import dev.utils.common.cipher.Cipher
@@ -29,6 +30,13 @@ class SPKeyValueEngineImpl(
 
     init {
         // SharedPreferences
+    }
+
+    // JSON Engine
+    private var mJSONEngine: IJSONEngine<in IJSONEngine.EngineConfig>? = DevJSONEngine.getEngine()
+
+    fun setJSONEngine(engine: IJSONEngine<in IJSONEngine.EngineConfig>) {
+        this.mJSONEngine = engine
     }
 
     // =============
@@ -116,7 +124,7 @@ class SPKeyValueEngineImpl(
         key: String?,
         value: T
     ): Boolean {
-        return putString(key, DevJSONEngine.getEngine().toJson(value))
+        return putString(key, mJSONEngine?.toJson(value))
     }
 
     // =======
@@ -209,8 +217,8 @@ class SPKeyValueEngineImpl(
         defaultValue: T
     ): T {
         val json = getString(key, null)
-        return DevJSONEngine.getEngine().fromJson<T>(
+        return mJSONEngine?.fromJson<T>(
             json, typeOfT
-        ) as? T ?: return defaultValue
+        ) ?: return defaultValue
     }
 }
