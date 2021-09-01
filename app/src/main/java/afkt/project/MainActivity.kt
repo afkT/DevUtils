@@ -8,7 +8,6 @@ import afkt.project.ui.adapter.ButtonAdapter
 import android.Manifest
 import dev.callback.DevItemClickCallback
 import dev.engine.DevEngine
-import dev.engine.permission.DevPermissionEngine
 import dev.engine.permission.IPermissionEngine
 import dev.utils.app.VersionUtils
 import dev.utils.app.toast.ToastUtils
@@ -50,7 +49,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         // = 申请权限 =
         // ==========
 
-        DevPermissionEngine.getEngine()?.request(
+        DevEngine.getPermission()?.request(
             this, arrayOf(
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -75,7 +74,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                         .append(notFoundList.toTypedArray().contentToString())
                     DevEngine.getLog()?.d(builder.toString())
                     // 拒绝了则再次请求处理
-                    DevPermissionEngine.getEngine()
+                    DevEngine.getPermission()
                         .againRequest(this@MainActivity, this, deniedList)
                     ToastUtils.showShort("请开启读写手机存储权限.")
                 }

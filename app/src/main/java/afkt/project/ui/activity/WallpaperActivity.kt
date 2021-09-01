@@ -6,7 +6,7 @@ import afkt.project.base.config.RouterPath
 import afkt.project.databinding.ActivityWallpaperBinding
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.DevSource
-import dev.engine.storage.DevStorageEngine
+import dev.engine.DevEngine
 import dev.engine.storage.OnDevInsertListener
 import dev.engine.storage.StorageItem
 import dev.engine.storage.StorageResult
@@ -32,7 +32,7 @@ class WallpaperActivity : BaseActivity<ActivityWallpaperBinding>() {
                 showToast(false, "获取壁纸失败")
                 return@setOnClickListener
             }
-            DevStorageEngine.getEngine()?.insertImageToExternal(
+            DevEngine.getStorage()?.insertImageToExternal(
                 StorageItem.createExternalItem(
                     "${System.currentTimeMillis()}.jpg"
                 ),

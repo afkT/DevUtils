@@ -15,7 +15,7 @@ import android.widget.BaseAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.DevSource
 import dev.base.widget.BaseTextView
-import dev.engine.storage.DevStorageEngine
+import dev.engine.DevEngine
 import dev.engine.storage.OnDevInsertListener
 import dev.engine.storage.StorageItem
 import dev.engine.storage.StorageResult
@@ -53,7 +53,7 @@ class CapturePictureGridActivity : BaseActivity<ActivityCapturePictureGridBindin
 //                    true
 //                )
 
-                DevStorageEngine.getEngine()?.insertImageToExternal(
+                DevEngine.getStorage()?.insertImageToExternal(
                     StorageItem.createExternalItem(
                         "grid.jpg"
                     ),

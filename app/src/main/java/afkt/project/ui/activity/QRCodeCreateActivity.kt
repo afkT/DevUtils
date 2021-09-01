@@ -9,7 +9,7 @@ import android.graphics.Bitmap
 import android.text.TextUtils
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
-import dev.engine.media.DevMediaEngine
+import dev.engine.DevEngine
 import dev.engine.media.MediaConfig
 import dev.utils.app.*
 import dev.utils.app.image.ImageUtils
@@ -76,7 +76,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
                     .setMimeType(MediaConfig.MimeType.ofImage())
                     .setCamera(true).setGif(false)
                 // 打开图片选择器
-                DevMediaEngine.getEngine()?.openGallery(mActivity, config)
+                DevEngine.getMedia()?.openGallery(mActivity, config)
             }
         }
     }
@@ -94,7 +94,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
         // 判断是否属于图片选择
         if (resultCode == RESULT_OK && data != null) {
             // 获取图片地址
-            val imgPath = DevMediaEngine.getEngine()?.getSingleSelectorPath(data, true)
+            val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(data, true)
             // 获取图片 Bitmap
             selectBitmap = if (UriUtils.isUri(imgPath)) {
                 ImageUtils.decodeStream(

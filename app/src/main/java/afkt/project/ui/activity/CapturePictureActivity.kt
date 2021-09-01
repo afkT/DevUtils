@@ -9,7 +9,7 @@ import android.graphics.Bitmap
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.DevSource
-import dev.engine.storage.DevStorageEngine
+import dev.engine.DevEngine
 import dev.engine.storage.OnDevInsertListener
 import dev.engine.storage.StorageItem
 import dev.engine.storage.StorageResult
@@ -130,7 +130,7 @@ class CapturePictureActivity : BaseActivity<ActivityCapturePictureBinding>() {
         fileName: String,
         bitmap: Bitmap?
     ) {
-        DevStorageEngine.getEngine()?.insertImageToExternal(
+        DevEngine.getStorage()?.insertImageToExternal(
             StorageItem.createExternalItem(
                 fileName
             ),

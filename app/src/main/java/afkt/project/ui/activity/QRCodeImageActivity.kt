@@ -11,9 +11,9 @@ import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.zxing.Result
 import dev.base.DevSource
+import dev.engine.DevEngine
 import dev.engine.image.DevImageEngine
 import dev.engine.image.listener.BitmapListener
-import dev.engine.media.DevMediaEngine
 import dev.engine.media.MediaConfig
 import dev.utils.DevFinal
 import dev.utils.app.*
@@ -54,7 +54,7 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
                     .setMimeType(MediaConfig.MimeType.ofImage())
                     .setCamera(true).setGif(false)
                 // 打开图片选择器
-                DevMediaEngine.getEngine()?.openGallery(mActivity, config)
+                DevEngine.getMedia()?.openGallery(mActivity, config)
             }
             R.id.vid_aqi_tv -> {
                 val text = TextViewUtils.getText(binding.vidAqiTv)
@@ -81,7 +81,7 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
         if (resultCode == RESULT_OK && data != null) {
             MainScope().launch() {
                 // 获取图片地址
-                val imgPath = DevMediaEngine.getEngine()?.getSingleSelectorPath(data, true)
+                val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(data, true)
 
                 val source = if (UriUtils.isUri(imgPath)) {
                     DevSource.create(UriUtils.getUriForString(imgPath))

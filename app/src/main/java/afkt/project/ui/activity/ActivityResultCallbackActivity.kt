@@ -7,7 +7,7 @@ import afkt.project.databinding.ActivityActivityResultCallbackBinding
 import android.app.Activity
 import android.content.Intent
 import com.alibaba.android.arouter.facade.annotation.Route
-import dev.engine.media.DevMediaEngine
+import dev.engine.DevEngine
 import dev.engine.media.MediaConfig
 import dev.utils.app.ActivityUtils
 import dev.utils.app.AppUtils
@@ -33,7 +33,7 @@ class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallba
                         .setMimeType(MediaConfig.MimeType.ofImage())
                         .setCamera(true).setGif(false)
                     // 打开图片选择器
-                    DevMediaEngine.getEngine()?.openGallery(activity, config)
+                    DevEngine.getMedia()?.openGallery(activity, config)
                     return true
                 }
 
@@ -43,7 +43,7 @@ class ActivityResultCallbackActivity : BaseActivity<ActivityActivityResultCallba
                     data: Intent
                 ) {
                     if (result && data != null) {
-                        val imgPath = DevMediaEngine.getEngine()?.getSingleSelectorPath(data, true)
+                        val imgPath = DevEngine.getMedia()?.getSingleSelectorPath(data, true)
                         // 提示
                         ToastTintUtils.success("选择了图片: $imgPath")
                     } else {

@@ -17,7 +17,7 @@ import dev.base.DevSource
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.base.widget.BaseTextView
-import dev.engine.storage.DevStorageEngine
+import dev.engine.DevEngine
 import dev.engine.storage.OnDevInsertListener
 import dev.engine.storage.StorageItem
 import dev.engine.storage.StorageResult
@@ -49,7 +49,7 @@ class CapturePictureRecyActivity : BaseActivity<ActivityCapturePictureRecyBindin
             .setOnClicks {
                 // 支持三种布局 GridLayoutManager、LinearLayoutManager、StaggeredGridLayoutManager
                 // 以及对于的横、竖屏效果截图
-                DevStorageEngine.getEngine()?.insertImageToExternal(
+                DevEngine.getStorage()?.insertImageToExternal(
                     StorageItem.createExternalItem(
                         "recy.jpg"
                     ),
