@@ -33,9 +33,9 @@ class SPKeyValueEngineImpl(
     }
 
     // JSON Engine
-    private var mJSONEngine: IJSONEngine<in IJSONEngine.EngineConfig>? = DevJSONEngine.getEngine()
+    private var mJSONEngine: IJSONEngine<out IJSONEngine.EngineConfig>? = DevJSONEngine.getEngine()
 
-    fun setJSONEngine(engine: IJSONEngine<in IJSONEngine.EngineConfig>) {
+    fun setJSONEngine(engine: IJSONEngine<out IJSONEngine.EngineConfig>) {
         this.mJSONEngine = engine
     }
 

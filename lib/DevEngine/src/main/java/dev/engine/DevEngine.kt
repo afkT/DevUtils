@@ -26,6 +26,7 @@ import dev.engine.storage.DevMediaStoreEngineImpl
 import dev.engine.storage.DevStorageEngine
 import dev.utils.app.cache.DevCache
 import dev.utils.app.logger.LogConfig
+import dev.utils.common.cipher.Cipher
 
 /**
  * detail: DevEngine
@@ -100,6 +101,17 @@ object DevEngine {
      */
     fun getMMKVByHolder(): MMKV? {
         return MMKVUtils.defaultHolder().mmkv
+    }
+
+    /**
+     * 获取 MMKV Config
+     * @param cipher 加解密中间层
+     * @return [MMKVConfig]
+     * <p></p>
+     * 需先调用 [defaultMMKVInitialize]
+     */
+    fun getMMKVConfig(cipher: Cipher? = null): MMKVConfig {
+        return MMKVConfig(cipher, getMMKVByHolder()!!)
     }
 
     // ============

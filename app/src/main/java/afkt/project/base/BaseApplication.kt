@@ -261,7 +261,8 @@ class BaseApplication : MultiDexApplication() {
      */
     private fun initEngine() {
         // 使用内部默认实现 Engine
-        DevEngine.defaultEngine()
+        DevEngine.defaultMMKVInitialize(this)
+            .defaultEngine(DevEngine.getMMKVConfig())
     }
 
     /**
