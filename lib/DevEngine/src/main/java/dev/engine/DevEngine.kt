@@ -237,103 +237,231 @@ object DevEngine {
         DevStorageEngine.setEngine(DevMediaStoreEngineImpl())
     }
 
-    // =======
-    // = get =
-    // =======
+    // ==============
+    // = Engine get =
+    // ==============
+
+    /**
+     * 获取 Analytics Engine
+     * @return Analytics Engine
+     */
+    fun getAnalytics() = DevAnalyticsEngine.getEngine()
+
+    /**
+     * 获取 Cache Engine
+     * @return Cache Engine
+     */
+    fun getCache() = DevCacheEngine.getEngine()
+
+    /**
+     * 获取 Compress Engine
+     * @return Compress Engine
+     */
+    fun getCompress() = DevCompressEngine.getEngine()
+
+    /**
+     * 获取 Image Engine
+     * @return Image Engine
+     */
+    fun getImage() = DevImageEngine.getEngine()
+
+    /**
+     * 获取 JSON Engine
+     * @return JSON Engine
+     */
+    fun getJSON() = DevJSONEngine.getEngine()
+
+    /**
+     * 获取 KeyValue Engine
+     * @return KeyValue Engine
+     */
+    fun getKeyValue() = DevKeyValueEngine.getEngine()
+
+    /**
+     * 获取 Log Engine
+     * @return Log Engine
+     */
+    fun getLog() = DevLogEngine.getEngine()
+
+    /**
+     * 获取 Media Engine
+     * @return Media Engine
+     */
+    fun getMedia() = DevMediaEngine.getEngine()
+
+    /**
+     * 获取 Permission Engine
+     * @return Permission Engine
+     */
+    fun getPermission() = DevPermissionEngine.getEngine()
+
+    /**
+     * 获取 Push Engine
+     * @return Push Engine
+     */
+    fun getPush() = DevPushEngine.getEngine()
+
+    /**
+     * 获取 Share Engine
+     * @return Share Engine
+     */
+    fun getShare() = DevShareEngine.getEngine()
+
+    /**
+     * 获取 Storage Engine
+     * @return Storage Engine
+     */
+    fun getStorage() = DevStorageEngine.getEngine()
+
+    // ==================
+    // = Engine Key get =
+    // ==================
+
+    /**
+     * 获取 Analytics Engine
+     * @return Analytics Engine
+     */
+    fun getAnalytics(key: String?) = DevAnalyticsEngine.getEngine(key)
+
+    /**
+     * 获取 Cache Engine
+     * @return Cache Engine
+     */
+    fun getCache(key: String?) = DevCacheEngine.getEngine(key)
+
+    /**
+     * 获取 Compress Engine
+     * @return Compress Engine
+     */
+    fun getCompress(key: String?) = DevCompressEngine.getEngine(key)
+
+    /**
+     * 获取 Image Engine
+     * @return Image Engine
+     */
+    fun getImage(key: String?) = DevImageEngine.getEngine(key)
+
+    /**
+     * 获取 JSON Engine
+     * @return JSON Engine
+     */
+    fun getJSON(key: String?) = DevJSONEngine.getEngine(key)
+
+    /**
+     * 获取 KeyValue Engine
+     * @return KeyValue Engine
+     */
+    fun getKeyValue(key: String?) = DevKeyValueEngine.getEngine(key)
+
+    /**
+     * 获取 Log Engine
+     * @return Log Engine
+     */
+    fun getLog(key: String?) = DevLogEngine.getEngine(key)
+
+    /**
+     * 获取 Media Engine
+     * @return Media Engine
+     */
+    fun getMedia(key: String?) = DevMediaEngine.getEngine(key)
+
+    /**
+     * 获取 Permission Engine
+     * @return Permission Engine
+     */
+    fun getPermission(key: String?) = DevPermissionEngine.getEngine(key)
+
+    /**
+     * 获取 Push Engine
+     * @return Push Engine
+     */
+    fun getPush(key: String?) = DevPushEngine.getEngine(key)
+
+    /**
+     * 获取 Share Engine
+     * @return Share Engine
+     */
+    fun getShare(key: String?) = DevShareEngine.getEngine(key)
+
+    /**
+     * 获取 Storage Engine
+     * @return Storage Engine
+     */
+    fun getStorage(key: String?) = DevStorageEngine.getEngine(key)
+
+    // =================
+    // = Engine Assist =
+    // =================
 
     /**
      * 获取 Analytics Engine Generic Assist
      * @return Analytics Engine Generic Assist
      */
-    fun getAnalytics(): DevEngineAssist<IAnalyticsEngine<in IAnalyticsEngine.EngineConfig, in IAnalyticsEngine.EngineItem>> {
-        return DevAnalyticsEngine.getAssist()
-    }
+    fun getAnalyticsAssist() = DevAnalyticsEngine.getAssist()
 
     /**
      * 获取 Cache Engine Generic Assist
      * @return Cache Engine Generic Assist
      */
-    fun getCache(): DevEngineAssist<ICacheEngine<in ICacheEngine.EngineConfig, in ICacheEngine.EngineItem>> {
-        return DevCacheEngine.getAssist()
-    }
+    fun getCacheAssist() = DevCacheEngine.getAssist()
 
     /**
      * 获取 Compress Engine Generic Assist
      * @return Compress Engine Generic Assist
      */
-    fun getCompress(): DevEngineAssist<ICompressEngine<in ICompressEngine.EngineConfig>> {
-        return DevCompressEngine.getAssist()
-    }
+    fun getCompressAssist() = DevCompressEngine.getAssist()
 
     /**
      * 获取 Image Engine Generic Assist
      * @return Image Engine Generic Assist
      */
-    fun getImage(): DevEngineAssist<IImageEngine<in IImageEngine.EngineConfig>> {
-        return DevImageEngine.getAssist()
-    }
+    fun getImageAssist() = DevImageEngine.getAssist()
 
     /**
      * 获取 JSON Engine Generic Assist
      * @return JSON Engine Generic Assist
      */
-    fun getJSON(): DevEngineAssist<IJSONEngine<in IJSONEngine.EngineConfig>> {
-        return DevJSONEngine.getAssist()
-    }
+    fun getJSONAssist() = DevJSONEngine.getAssist()
 
     /**
      * 获取 KeyValue Engine Generic Assist
      * @return KeyValue Engine Generic Assist
      */
-    fun getKeyValue(): DevEngineAssist<IKeyValueEngine<in IKeyValueEngine.EngineConfig>> {
-        return DevKeyValueEngine.getAssist()
-    }
+    fun getKeyValueAssist() = DevKeyValueEngine.getAssist()
 
     /**
      * 获取 Log Engine Generic Assist
      * @return Log Engine Generic Assist
      */
-    fun getLog(): DevEngineAssist<ILogEngine> {
-        return DevLogEngine.getAssist()
-    }
+    fun getLogAssist() = DevLogEngine.getAssist()
 
     /**
      * 获取 Media Engine Generic Assist
      * @return Media Engine Generic Assist
      */
-    fun getMedia(): DevEngineAssist<IMediaEngine<in IMediaEngine.EngineConfig, in IMediaEngine.EngineData>> {
-        return DevMediaEngine.getAssist()
-    }
+    fun getMediaAssist() = DevMediaEngine.getAssist()
 
     /**
      * 获取 Permission Engine Generic Assist
      * @return Permission Engine Generic Assist
      */
-    fun getPermission(): DevEngineAssist<IPermissionEngine> {
-        return DevPermissionEngine.getAssist()
-    }
+    fun getPermissionAssist() = DevPermissionEngine.getAssist()
 
     /**
      * 获取 Push Engine Generic Assist
      * @return Push Engine Generic Assist
      */
-    fun getPush(): DevEngineAssist<IPushEngine<in IPushEngine.EngineConfig, in IPushEngine.EngineItem>> {
-        return DevPushEngine.getAssist()
-    }
+    fun getPushAssist() = DevPushEngine.getAssist()
 
     /**
      * 获取 Share Engine Generic Assist
      * @return Share Engine Generic Assist
      */
-    fun getShare(): DevEngineAssist<IShareEngine<in IShareEngine.EngineConfig, in IShareEngine.EngineItem>> {
-        return DevShareEngine.getAssist()
-    }
+    fun getShareAssist() = DevShareEngine.getAssist()
 
     /**
      * 获取 Storage Engine Generic Assist
      * @return Storage Engine Generic Assist
      */
-    fun getStorage(): DevEngineAssist<IStorageEngine<in IStorageEngine.EngineItem, in IStorageEngine.EngineResult>> {
-        return DevStorageEngine.getAssist()
-    }
+    fun getStorageAssist() = DevStorageEngine.getAssist()
 }
