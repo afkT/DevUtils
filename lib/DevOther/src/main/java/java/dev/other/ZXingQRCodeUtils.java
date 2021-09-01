@@ -175,7 +175,9 @@ public final class ZXingQRCodeUtils {
                     int[] pixels = new int[width * height];
                     bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
                     RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
-                    Result             result = new MultiFormatReader().decode(new BinaryBitmap(new HybridBinarizer(source)), DECODE_HINTS);
+                    Result result = new MultiFormatReader().decode(
+                            new BinaryBitmap(new HybridBinarizer(source)), DECODE_HINTS
+                    );
                     // 触发回调
                     if (callback != null) {
                         callback.onResult((result != null), result, null);
@@ -251,8 +253,10 @@ public final class ZXingQRCodeUtils {
             final int backgroundColor
     ) {
         try {
-            BitMatrix matrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, size, size, ENCODE_HINTS);
-            int[]     pixels = new int[size * size];
+            BitMatrix matrix = new MultiFormatWriter().encode(
+                    content, BarcodeFormat.QR_CODE, size, size, ENCODE_HINTS
+            );
+            int[] pixels = new int[size * size];
             for (int y = 0; y < size; y++) {
                 for (int x = 0; x < size; x++) {
                     if (matrix.get(x, y)) {

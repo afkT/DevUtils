@@ -21,6 +21,7 @@ import dev.engine.media.PictureSelectorEngineImpl
 import dev.engine.permission.DevPermissionEngine
 import dev.engine.permission.DevPermissionEngineImpl
 import dev.engine.push.DevPushEngine
+import dev.engine.qrcode.DevQRCodeEngine
 import dev.engine.share.DevShareEngine
 import dev.engine.storage.DevMediaStoreEngineImpl
 import dev.engine.storage.DevStorageEngine
@@ -303,6 +304,12 @@ object DevEngine {
     fun getPush() = DevPushEngine.getEngine()
 
     /**
+     * 获取 QRCode Engine
+     * @return QRCode Engine
+     */
+    fun getQRCode() = DevQRCodeEngine.getEngine()
+
+    /**
      * 获取 Share Engine
      * @return Share Engine
      */
@@ -379,6 +386,12 @@ object DevEngine {
     fun getPush(key: String?) = DevPushEngine.getEngine(key)
 
     /**
+     * 获取 QRCode Engine
+     * @return QRCode Engine
+     */
+    fun getQRCode(key: String?) = DevQRCodeEngine.getEngine(key)
+
+    /**
      * 获取 Share Engine
      * @return Share Engine
      */
@@ -453,6 +466,12 @@ object DevEngine {
      * @return Push Engine Generic Assist
      */
     fun getPushAssist() = DevPushEngine.getAssist()
+
+    /**
+     * 获取 QRCode Engine Generic Assist
+     * @return QRCode Engine Generic Assist
+     */
+    fun getQRCodeAssist() = DevQRCodeEngine.getAssist()
 
     /**
      * 获取 Share Engine Generic Assist

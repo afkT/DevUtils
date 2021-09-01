@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import dev.capture.CallbackInterceptor
 import dev.engine.DevEngine
 import dev.utils.LogPrintUtils
-import ktx.dev.other.GsonUtils
 import ktx.dev.other.retrofit_coroutines.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -66,7 +65,7 @@ object RetrofitManager {
         // 使用 DevHttpCapture 库进行 Http 拦截回调 ( 不进行抓包数据存储 )
         builder.addInterceptor(CallbackInterceptor { captureInfo ->
             LogPrintUtils.jsonTag(
-                TAG_L, GsonUtils.toJson(captureInfo)
+                TAG_L, DevEngine.getJSON().toJson(captureInfo)
             )
         })
 

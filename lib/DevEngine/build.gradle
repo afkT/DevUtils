@@ -33,6 +33,9 @@ dependencies {
     api deps.lib.mmkv
     // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
     api deps.lib.pictureSelector
+    // 二维码 ZXing https://github.com/zxing/zxing
+    api deps.lib.zxing_code // http://mvnrepository.com/artifact/com.google.zxing/core
+    api deps.lib.zxing_android_code // android-core
 
 //    // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
 //    api 'top.zibin:Luban:1.1.8'
@@ -49,6 +52,9 @@ dependencies {
 //    api 'com.tencent:mmkv-static:1.2.10'
 //    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
 //    api 'io.github.lucksiege:pictureselector:v2.7.3-rc06'
+//    // 二维码 ZXing https://github.com/zxing/zxing
+//    api 'com.google.zxing:core:3.4.1' // http://mvnrepository.com/artifact/com.google.zxing/core
+//    api 'com.google.zxing:android-core:3.3.0' // android-core
 
     // =============
     // = DevEngine =

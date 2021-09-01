@@ -4,7 +4,6 @@ import dev.capture.CallbackInterceptor
 import dev.engine.DevEngine
 import dev.utils.LogPrintUtils
 import io.reactivex.rxjava3.core.Flowable
-import ktx.dev.other.GsonUtils
 import ktx.dev.other.retrofit_rxjava.RxJavaManager
 import ktx.dev.other.retrofit_rxjava.response.BaseResponse
 import ktx.dev.other.retrofit_rxjava.subscriber.BaseBeanSubscriber
@@ -56,7 +55,8 @@ object RetrofitManager {
         // 使用 DevHttpCapture 库进行 Http 拦截回调 ( 不进行抓包数据存储 )
         builder.addInterceptor(CallbackInterceptor { captureInfo ->
             LogPrintUtils.jsonTag(
-                ktx.dev.other.retrofit_coroutines.demo.TAG_L, GsonUtils.toJson(captureInfo)
+                ktx.dev.other.retrofit_coroutines.demo.TAG_L,
+                DevEngine.getJSON().toJson(captureInfo)
             )
         })
 
