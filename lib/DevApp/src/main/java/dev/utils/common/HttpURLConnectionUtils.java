@@ -47,9 +47,9 @@ public final class HttpURLConnectionUtils {
 
         /**
          * 请求失败
-         * @param e 失败异常
+         * @param error 失败异常
          */
-        void onFail(Exception e);
+        void onFail(Throwable error);
     }
 
     /**
@@ -202,9 +202,9 @@ public final class HttpURLConnectionUtils {
 
         /**
          * 请求失败
-         * @param e 失败异常
+         * @param error 失败异常
          */
-        void onFail(Exception e);
+        void onFail(Throwable error);
     }
 
     /**

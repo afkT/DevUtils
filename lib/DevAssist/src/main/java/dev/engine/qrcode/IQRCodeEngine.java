@@ -16,6 +16,13 @@ public interface IQRCodeEngine<Config extends IQRCodeEngine.EngineConfig> {
     class EngineConfig {
     }
 
+    /**
+     * detail: Storage Result
+     * @author Ttt
+     */
+    class EngineResult {
+    }
+
     // =============
     // = 对外公开方法 =
     // =============

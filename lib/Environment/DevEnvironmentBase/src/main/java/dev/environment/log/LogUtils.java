@@ -30,9 +30,9 @@ public final class LogUtils {
 
     /**
      * 打印错误信息
-     * @param e {@link Exception}
+     * @param error 异常信息
      */
-    public static void printStackTrace(final Exception e) {
-        if (PRINT_LOG && e != null) e.printStackTrace();
+    public static void printStackTrace(final Throwable error) {
+        if (PRINT_LOG && error != null) error.printStackTrace();
     }
 }

@@ -105,7 +105,7 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
                                     override fun onResult(
                                         success: Boolean,
                                         result: Result?,
-                                        e: Exception?
+                                        error: Throwable?
                                     ) {
                                         HandlerUtils.postRunnable {
                                             if (success) {
@@ -124,7 +124,7 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
                                             } else {
                                                 TextViewUtils.setText(
                                                     binding.vidAqiTv, "图片非二维码 / 识别失败\n" +
-                                                            ThrowableUtils.getThrowableStackTrace(e)
+                                                            ThrowableUtils.getThrowableStackTrace(error)
                                                 )
                                             }
                                         }

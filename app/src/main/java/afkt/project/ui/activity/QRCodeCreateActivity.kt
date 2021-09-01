@@ -54,7 +54,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
                         override fun onResult(
                             success: Boolean,
                             bitmap: Bitmap?,
-                            e: Exception?
+                            error: Throwable?
                         ) {
                             if (success) {
                                 HandlerUtils.postRunnable {
@@ -64,7 +64,7 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
                                     )
                                 }
                             } else {
-                                showToast(false, ThrowableUtils.getThrowable(e))
+                                showToast(false, ThrowableUtils.getThrowable(error))
                             }
                         }
                     })

@@ -47,11 +47,11 @@ interface DecodeConfig {
     /**
      * 设置异常
      * @param isError 是否异常
-     * @param e       异常信息
+     * @param error   异常信息
      */
     fun setError(
         isError: Boolean,
-        e: Exception?
+        error: Throwable?
     )
 
     companion object {

@@ -39,10 +39,10 @@ public abstract class DevResultCallback<T>
 
     /**
      * 异常回调通知
-     * @param e   异常信息
-     * @param <E> 泛型
+     * @param error 异常信息
+     * @param <E>   泛型
      */
-    public <E extends Throwable> void onError(E e) {
+    public <E extends Throwable> void onError(E error) {
     }
 
     /**

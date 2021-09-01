@@ -48,12 +48,12 @@ public final class ZXingQRCodeUtils {
          * 生成二维码结果回调
          * @param success 是否成功
          * @param bitmap  成功图片
-         * @param e       异常信息
+         * @param error   异常信息
          */
         void onResult(
                 boolean success,
                 Bitmap bitmap,
-                Exception e
+                Throwable error
         );
     }
 
@@ -139,12 +139,12 @@ public final class ZXingQRCodeUtils {
          * 二维码扫描结果回调
          * @param success 是否成功
          * @param result  识别数据 {@link Result}
-         * @param e       异常信息
+         * @param error   异常信息
          */
         void onResult(
                 boolean success,
                 Result result,
-                Exception e
+                Throwable error
         );
     }
 

@@ -165,7 +165,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
                 override fun onResult(
                     success: Boolean,
                     result: Result?,
-                    e: Exception?
+                    error: Throwable?
                 ) {
                     HandlerUtils.postRunnable {
                         if (success) {
@@ -252,12 +252,12 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
 
         override fun setError(
             isError: Boolean,
-            e: Exception?
+            error: Throwable?
         ) {
             // 记录是否发生异常
             tryError = isError
             // 打印日志
-            DevEngine.getLog()?.eTag(TAG, e, "setError")
+            DevEngine.getLog()?.eTag(TAG, error, "setError")
         }
 
         override fun getHandler(): Handler? {

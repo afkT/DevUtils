@@ -40,8 +40,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 }
             }
 
-            override fun onFail(e: Exception) {
-                DevEngine.getLog()?.eTag(TAG, e, "getNetTime")
+            override fun onFail(error: Throwable) {
+                DevEngine.getLog()?.eTag(TAG, error, "getNetTime")
             }
         })
 

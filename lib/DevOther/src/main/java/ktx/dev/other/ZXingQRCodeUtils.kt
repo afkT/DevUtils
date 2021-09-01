@@ -33,12 +33,12 @@ object ZXingQRCodeUtils {
          * 生成二维码结果回调
          * @param success 是否成功
          * @param bitmap  成功图片
-         * @param e       异常信息
+         * @param error   异常信息
          */
         fun onResult(
             success: Boolean,
             bitmap: Bitmap?,
-            e: Exception?
+            error: Throwable?
         )
     }
 
@@ -119,12 +119,12 @@ object ZXingQRCodeUtils {
          * 二维码扫描结果回调
          * @param success 是否成功
          * @param result  识别数据 [Result]
-         * @param e       异常信息
+         * @param error   异常信息
          */
         fun onResult(
             success: Boolean,
             result: Result?,
-            e: Exception?
+            error: Throwable?
         )
     }
 
