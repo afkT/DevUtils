@@ -3,6 +3,7 @@ package java.dev.engine.keyvalue;
 import java.lang.reflect.Type;
 
 import dev.engine.json.DevJSONEngine;
+import dev.engine.json.IJSONEngine;
 import dev.engine.keyvalue.IKeyValueEngine;
 import dev.utils.app.share.IPreference;
 import dev.utils.common.ConvertUtils;
@@ -17,11 +18,28 @@ public class SPKeyValueEngineImpl
     private final SPConfig    mConfig;
     // SharedPreferences
     private final IPreference mPreference;
+    // JSON Engine
+    private       IJSONEngine mJSONEngine;
 
-    public SPKeyValueEngineImpl(SPConfig config) {
-        this.mConfig = config;
+    public SPKeyValueEngineImpl(final SPConfig config) {
+        this(config, DevJSONEngine.getEngine());
+    }
+
+    public SPKeyValueEngineImpl(
+            final SPConfig config,
+            final IJSONEngine jsonEngine
+    ) {
+        this.mConfig     = config;
+        this.mJSONEngine = jsonEngine;
         // SharedPreferences
         mPreference = config.getPreference();
+    }
+
+    // =
+
+    public SPKeyValueEngineImpl setJSONEngine(final IJSONEngine jsonEngine) {
+        this.mJSONEngine = jsonEngine;
+        return this;
     }
 
     // =============
@@ -121,7 +139,11 @@ public class SPKeyValueEngineImpl
             String key,
             T value
     ) {
-        return putString(key, DevJSONEngine.getEngine().toJson(value));
+        if (mJSONEngine != null) {
+            String json = mJSONEngine.toJson(value);
+            return putString(key, json);
+        }
+        return false;
     }
 
     // =======
@@ -215,7 +237,7 @@ public class SPKeyValueEngineImpl
     ) {
         String content = mPreference.getString(key, null);
         if (content == null) return defaultValue;
-        if (content != null && mConfig.cipher != null) {
+        if (mConfig.cipher != null) {
             byte[] bytes = mConfig.cipher.decrypt(ConvertUtils.toBytes(content));
             content = ConvertUtils.newString(bytes);
         }
@@ -228,9 +250,12 @@ public class SPKeyValueEngineImpl
             Type typeOfT,
             T defaultValue
     ) {
-        String json   = getString(key, null);
-        T      object = (T) DevJSONEngine.getEngine().fromJson(json, typeOfT);
-        if (object == null) return defaultValue;
-        return object;
+        String json = getString(key, null);
+        if (mJSONEngine != null) {
+            T object = (T) mJSONEngine.fromJson(json, typeOfT);
+            if (object == null) return defaultValue;
+            return object;
+        }
+        return null;
     }
 }

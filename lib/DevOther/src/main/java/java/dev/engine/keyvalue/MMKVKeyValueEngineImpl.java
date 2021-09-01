@@ -4,6 +4,7 @@ import java.dev.other.MMKVUtils;
 import java.lang.reflect.Type;
 
 import dev.engine.json.DevJSONEngine;
+import dev.engine.json.IJSONEngine;
 import dev.engine.keyvalue.IKeyValueEngine;
 import dev.utils.common.ConvertUtils;
 
@@ -17,11 +18,28 @@ public class MMKVKeyValueEngineImpl
     private final MMKVConfig       mConfig;
     // MMKV
     private final MMKVUtils.Holder mHolder;
+    // JSON Engine
+    private       IJSONEngine      mJSONEngine;
 
-    public MMKVKeyValueEngineImpl(MMKVConfig config) {
-        this.mConfig = config;
+    public MMKVKeyValueEngineImpl(final MMKVConfig config) {
+        this(config, DevJSONEngine.getEngine());
+    }
+
+    public MMKVKeyValueEngineImpl(
+            final MMKVConfig config,
+            final IJSONEngine jsonEngine
+    ) {
+        this.mConfig     = config;
+        this.mJSONEngine = jsonEngine;
         // MMKV Holder
         mHolder = MMKVUtils.putHolder(config.getMMKV().mmapID(), config.getMMKV());
+    }
+
+    // =
+
+    public MMKVKeyValueEngineImpl setJSONEngine(final IJSONEngine jsonEngine) {
+        this.mJSONEngine = jsonEngine;
+        return this;
     }
 
     // =============
@@ -115,7 +133,11 @@ public class MMKVKeyValueEngineImpl
             String key,
             T value
     ) {
-        return putString(key, DevJSONEngine.getEngine().toJson(value));
+        if (mJSONEngine != null) {
+            String json = mJSONEngine.toJson(value);
+            return putString(key, json);
+        }
+        return false;
     }
 
     // =======
@@ -209,7 +231,7 @@ public class MMKVKeyValueEngineImpl
     ) {
         String content = mHolder.decodeString(key, null);
         if (content == null) return defaultValue;
-        if (content != null && mConfig.cipher != null) {
+        if (mConfig.cipher != null) {
             byte[] bytes = mConfig.cipher.decrypt(ConvertUtils.toBytes(content));
             content = ConvertUtils.newString(bytes);
         }
@@ -222,9 +244,12 @@ public class MMKVKeyValueEngineImpl
             Type typeOfT,
             T defaultValue
     ) {
-        String json   = getString(key, null);
-        T      object = (T) DevJSONEngine.getEngine().fromJson(json, typeOfT);
-        if (object == null) return defaultValue;
-        return object;
+        String json = getString(key, null);
+        if (mJSONEngine != null) {
+            T object = (T) mJSONEngine.fromJson(json, typeOfT);
+            if (object == null) return defaultValue;
+            return object;
+        }
+        return null;
     }
 }
