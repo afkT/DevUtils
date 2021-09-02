@@ -146,26 +146,21 @@ object ZXingQRCodeUtils {
         foregroundColor: Int,
         backgroundColor: Int
     ): Bitmap? {
-        try {
-            val matrix =
-                MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, size, size, ENCODE_HINTS)
-            val pixels = IntArray(size * size)
-            for (y in 0 until size) {
-                for (x in 0 until size) {
-                    if (matrix[x, y]) {
-                        pixels[y * size + x] = foregroundColor
-                    } else {
-                        pixels[y * size + x] = backgroundColor
-                    }
+        val matrix =
+            MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, size, size, ENCODE_HINTS)
+        val pixels = IntArray(size * size)
+        for (y in 0 until size) {
+            for (x in 0 until size) {
+                if (matrix[x, y]) {
+                    pixels[y * size + x] = foregroundColor
+                } else {
+                    pixels[y * size + x] = backgroundColor
                 }
             }
-            val bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
-            bitmap.setPixels(pixels, 0, size, 0, 0, size, size)
-            return bitmap
-        } catch (e: Exception) {
-            LogPrintUtils.eTag(TAG, e, "encodeQRCodeSync")
-            return null
         }
+        val bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
+        bitmap.setPixels(pixels, 0, size, 0, 0, size, size)
+        return bitmap
     }
 
     // ============

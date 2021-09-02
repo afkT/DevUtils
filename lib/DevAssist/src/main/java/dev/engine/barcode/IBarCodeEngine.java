@@ -74,7 +74,8 @@ public interface IBarCodeEngine<Config extends IBarCodeEngine.EngineConfig,
      * @param params BarCode ( Data、Params ) Item
      * @return 条码图片
      */
-    Bitmap encodeBarCodeSync(Item params);
+    Bitmap encodeBarCodeSync(Item params)
+            throws Exception;
 
     // ==========
     // = 解析条码 =
@@ -98,7 +99,8 @@ public interface IBarCodeEngine<Config extends IBarCodeEngine.EngineConfig,
      * @param bitmap 待解析的条码图片
      * @return 解析结果
      */
-    Result decodeBarCodeSync(Bitmap bitmap);
+    Result decodeBarCodeSync(Bitmap bitmap)
+            throws Exception;
 
     // ==========
     // = 其他功能 =
@@ -115,5 +117,6 @@ public interface IBarCodeEngine<Config extends IBarCodeEngine.EngineConfig,
             Item params,
             Bitmap src,
             Bitmap logo
-    );
+    )
+            throws Exception;
 }

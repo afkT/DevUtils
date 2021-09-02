@@ -147,7 +147,7 @@ public final class ZXingQRCodeUtils {
     public static Bitmap encodeQRCodeSync(
             final String content,
             final int size
-    ) {
+    ) throws Exception {
         return encodeQRCodeSync(content, size, Color.BLACK, Color.WHITE);
     }
 
@@ -167,28 +167,23 @@ public final class ZXingQRCodeUtils {
             final int size,
             final int foregroundColor,
             final int backgroundColor
-    ) {
-        try {
-            BitMatrix matrix = new MultiFormatWriter().encode(
-                    content, BarcodeFormat.QR_CODE, size, size, ENCODE_HINTS
-            );
-            int[] pixels = new int[size * size];
-            for (int y = 0; y < size; y++) {
-                for (int x = 0; x < size; x++) {
-                    if (matrix.get(x, y)) {
-                        pixels[y * size + x] = foregroundColor;
-                    } else {
-                        pixels[y * size + x] = backgroundColor;
-                    }
+    ) throws Exception {
+        BitMatrix matrix = new MultiFormatWriter().encode(
+                content, BarcodeFormat.QR_CODE, size, size, ENCODE_HINTS
+        );
+        int[] pixels = new int[size * size];
+        for (int y = 0; y < size; y++) {
+            for (int x = 0; x < size; x++) {
+                if (matrix.get(x, y)) {
+                    pixels[y * size + x] = foregroundColor;
+                } else {
+                    pixels[y * size + x] = backgroundColor;
                 }
             }
-            Bitmap bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
-            bitmap.setPixels(pixels, 0, size, 0, 0, size, size);
-            return bitmap;
-        } catch (Exception e) {
-            LogPrintUtils.eTag(TAG, e, "encodeQRCodeSync");
-            return null;
         }
+        Bitmap bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+        bitmap.setPixels(pixels, 0, size, 0, 0, size, size);
+        return bitmap;
     }
 
     // ============
