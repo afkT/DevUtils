@@ -16,7 +16,7 @@ import dev.engine.barcode.listener.BarCodeDecodeCallback;
 import dev.engine.barcode.listener.BarCodeEncodeCallback;
 import dev.utils.LogPrintUtils;
 import dev.utils.common.StringUtils;
-import dev.utils.common.thread.DevThreadManager;
+import dev.utils.common.thread.DevThreadPool;
 
 /**
  * detail: ZXing BarCode Engine 实现
@@ -28,10 +28,10 @@ public class ZXingEngineImpl
     // 日志 TAG
     private final String TAG = ZXingEngineImpl.class.getSimpleName();
 
-    // 线程数量
-    private final int           THREAD_NUMBER  = 6;
+    // 线程池 ( 构建类 )
+    private final DevThreadPool DEV_THREAD_POOL = new DevThreadPool(6);
     // 默认条码配置
-    private final BarCodeConfig DEFAULT_CONFIG = new BarCodeConfig().defaultEncode();
+    private final BarCodeConfig DEFAULT_CONFIG  = new BarCodeConfig().defaultEncode();
     // 当前条码配置
     private       BarCodeConfig mBarCodeConfig;
 
@@ -63,7 +63,7 @@ public class ZXingEngineImpl
             encodeFailureCallback(callback, error);
             return;
         }
-        DevThreadManager.getInstance(THREAD_NUMBER).execute(() -> {
+        DEV_THREAD_POOL.execute(() -> {
             try {
                 Bitmap bitmap = encodeBarCodeSync(params);
                 // 条码嵌入 icon、logo
@@ -123,7 +123,7 @@ public class ZXingEngineImpl
             decodeFailureCallback(callback, new Exception("BarCode decode Bitmap is null"));
             return;
         }
-        DevThreadManager.getInstance(THREAD_NUMBER).execute(() -> {
+        DEV_THREAD_POOL.execute(() -> {
             try {
                 BarCodeResult result = decodeBarCodeSync(bitmap);
                 // 触发回调
