@@ -305,7 +305,7 @@ public class ZXingEngineImpl
             } else {
                 callback.onResult(
                         false, null,
-                        new Exception("BarCode Result is null")
+                        new Exception("BarCode decode Result is null")
                 );
             }
         }
