@@ -1,6 +1,7 @@
 package java.dev.engine.barcode;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.MultiFormatReader;
@@ -18,7 +19,7 @@ import dev.utils.common.StringUtils;
 import dev.utils.common.thread.DevThreadManager;
 
 /**
- * detail: BarCode Engine 实现
+ * detail: ZXing BarCode Engine 实现
  * @author Ttt
  */
 public class ZXingEngineImpl
@@ -67,7 +68,7 @@ public class ZXingEngineImpl
                 Bitmap bitmap = encodeBarCodeSync(params);
                 // 条码嵌入 icon、logo
                 if (params.getIcon() != null) {
-                    bitmap = addLogoToBarCode(params, bitmap, params.getIcon());
+                    bitmap = addIconToBarCode(params, bitmap, params.getIcon());
                 }
                 encodeCallback(callback, bitmap);
             } catch (Exception e) {
@@ -160,13 +161,38 @@ public class ZXingEngineImpl
     // ==========
 
     @Override
-    public Bitmap addLogoToBarCode(
+    public Bitmap addIconToBarCode(
             BarCodeData params,
             Bitmap src,
-            Bitmap logo
-    ) throws Exception {
+            Bitmap icon
+    )
+            throws Exception {
+        if (src == null) {
+            throw new Exception("addIconToBarCode src Bitmap is null");
+        }
+        if (icon == null) {
+            throw new Exception("addIconToBarCode icon Bitmap is null");
+        }
+        // 获取图片宽度高度
+        int srcWidth   = src.getWidth();
+        int srcHeight  = src.getHeight();
+        int iconWidth  = icon.getWidth();
+        int iconHeight = icon.getHeight();
 
-        return null;
+        // 这里的 4 决定 icon 在图片的比例 四分之一 ( 可自行判断 BarCodeData Format 决定绘制大小比例 )
+        float  scaleFactor = srcWidth * 1.0f / 4 / iconWidth;
+        Bitmap bitmap      = Bitmap.createBitmap(srcWidth, srcHeight, Bitmap.Config.ARGB_8888);
+        Canvas canvas      = new Canvas(bitmap);
+        canvas.drawBitmap(src, 0, 0, null);
+        canvas.scale(scaleFactor, scaleFactor, srcWidth / 2, srcHeight / 2);
+        canvas.drawBitmap(
+                icon, (srcWidth - iconWidth) / 2,
+                (srcHeight - iconHeight) / 2, null
+        );
+        canvas.save();
+        canvas.restore();
+        if (bitmap != null) return bitmap;
+        throw new Exception("addIconToBarCode failure");
     }
 
     // ==========

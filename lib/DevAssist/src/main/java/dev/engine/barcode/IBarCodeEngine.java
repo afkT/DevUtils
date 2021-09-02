@@ -107,16 +107,16 @@ public interface IBarCodeEngine<Config extends IBarCodeEngine.EngineConfig,
     // ==========
 
     /**
-     * 添加 Logo 到条码图片上
+     * 添加 Icon 到条码图片上
      * @param params BarCode ( Data、Params ) Item
      * @param src    条码图片
-     * @param logo   Logo
-     * @return 含 Logo 条码图片
+     * @param icon   icon
+     * @return 含 icon 条码图片
      */
-    Bitmap addLogoToBarCode(
+    Bitmap addIconToBarCode(
             Item params,
             Bitmap src,
-            Bitmap logo
+            Bitmap icon
     )
             throws Exception;
 }
