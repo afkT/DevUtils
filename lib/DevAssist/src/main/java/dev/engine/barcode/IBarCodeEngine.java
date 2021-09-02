@@ -44,6 +44,12 @@ public interface IBarCodeEngine<Config extends IBarCodeEngine.EngineConfig,
      */
     void initialize(Config config);
 
+    /**
+     * 获取 BarCode Engine Config
+     * @return BarCode Engine Config
+     */
+    Config getConfig();
+
     // ==========
     // = 生成条码 =
     // ==========
@@ -86,6 +92,9 @@ public interface IBarCodeEngine<Config extends IBarCodeEngine.EngineConfig,
 
     /**
      * 解码 ( 解析 ) 条码图片
+     * <pre>
+     *     该方法是耗时操作, 请在子线程中调用
+     * </pre>
      * @param bitmap 待解析的条码图片
      * @return 解析结果
      */
