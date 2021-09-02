@@ -154,7 +154,7 @@ public abstract class DevDataAdapter<T, VH extends RecyclerView.ViewHolder>
     }
 
     // ==========
-    // = 快捷判断 =
+    // = 快捷方法 =
     // ==========
 
     @Override

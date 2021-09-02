@@ -1303,7 +1303,7 @@ public final class CollectionUtils {
     }
 
     // ==========
-    // = 快捷判断 =
+    // = 快捷方法 =
     // ==========
 
     /**

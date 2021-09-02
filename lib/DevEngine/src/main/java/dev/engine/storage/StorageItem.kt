@@ -188,7 +188,7 @@ class StorageItem private constructor() : IStorageEngine.EngineItem() {
     }
 
     // ==========
-    // = 快捷创建 =
+    // = 快捷方法 =
     // ==========
 
     companion object {

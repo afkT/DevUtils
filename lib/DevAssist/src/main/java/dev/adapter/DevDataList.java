@@ -185,7 +185,7 @@ public abstract class DevDataList<T>
     }
 
     // ==========
-    // = 快捷判断 =
+    // = 快捷方法 =
     // ==========
 
     @Override

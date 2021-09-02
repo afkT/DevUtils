@@ -375,7 +375,7 @@ public final class DevMediaManager
     }
 
     // ==========
-    // = 快捷操作 =
+    // = 快捷方法 =
     // ==========
 
     /**

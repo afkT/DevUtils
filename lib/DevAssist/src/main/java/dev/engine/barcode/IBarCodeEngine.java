@@ -2,7 +2,6 @@ package dev.engine.barcode;
 
 import android.graphics.Bitmap;
 
-import dev.engine.analytics.IAnalyticsEngine;
 import dev.engine.barcode.listener.BarCodeDecodeCallback;
 import dev.engine.barcode.listener.BarCodeEncodeCallback;
 
@@ -11,7 +10,7 @@ import dev.engine.barcode.listener.BarCodeEncodeCallback;
  * @author Ttt
  */
 public interface IBarCodeEngine<Config extends IBarCodeEngine.EngineConfig,
-        Item extends IAnalyticsEngine.EngineItem,
+        Item extends IBarCodeEngine.EngineItem,
         Result extends IBarCodeEngine.EngineResult> {
 
     /**
@@ -41,7 +40,7 @@ public interface IBarCodeEngine<Config extends IBarCodeEngine.EngineConfig,
 
     /**
      * 初始化方法
-     * @param config Analytics Config
+     * @param config BarCode Config
      */
     void initialize(Config config);
 
@@ -108,11 +107,4 @@ public interface IBarCodeEngine<Config extends IBarCodeEngine.EngineConfig,
             Bitmap src,
             Bitmap logo
     );
-
-    /**
-     * 获取扫描结果数据
-     * @param result 识别数据
-     * @return 扫描结果数据
-     */
-    String getResultData(Result result);
 }

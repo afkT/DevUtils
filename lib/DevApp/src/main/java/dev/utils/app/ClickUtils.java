@@ -519,9 +519,9 @@ public final class ClickUtils {
         }
     }
 
-    // =======
-    // = 快捷 =
-    // =======
+    // ==========
+    // = 快捷方法 =
+    // ==========
 
     // 空实现 View.OnClickListener
     public static final View.OnClickListener EMPTY_CLICK = new View.OnClickListener() {

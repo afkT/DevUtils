@@ -266,7 +266,7 @@ public class DevVideoPlayerControl
     }
 
     // =============
-    // = 播放快捷操作 =
+    // = 播放快捷方法 =
     // =============
 
     /**
