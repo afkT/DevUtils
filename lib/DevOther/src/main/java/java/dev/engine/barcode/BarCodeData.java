@@ -28,6 +28,8 @@ public class BarCodeData
     private       int           mBackgroundColor = Color.WHITE;
     // 条码嵌入 icon、logo
     private       Bitmap        mIcon;
+    // icon 占比
+    private       float         mIconScale       = 4.0F;
 
     private BarCodeData(
             String content,
@@ -183,6 +185,24 @@ public class BarCodeData
      */
     public BarCodeData setIcon(Bitmap icon) {
         this.mIcon = icon;
+        return this;
+    }
+
+    /**
+     * 获取 icon 占比
+     * @return icon 占比
+     */
+    public float getIconScale() {
+        return mIconScale;
+    }
+
+    /**
+     * 设置 icon 占比
+     * @param iconScale icon 占比
+     * @return BarCode Item
+     */
+    public BarCodeData setIconScale(float iconScale) {
+        this.mIconScale = iconScale;
         return this;
     }
 }

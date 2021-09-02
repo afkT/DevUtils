@@ -160,6 +160,16 @@ public class ZXingEngineImpl
     // = 其他功能 =
     // ==========
 
+    /**
+     * 添加 Icon 到条码图片上
+     * <pre>
+     *     目前就处理了 二维码图片 其他需要根据需求自行添加
+     * </pre>
+     * @param params BarCode ( Data、Params ) Item
+     * @param src    条码图片
+     * @param icon   icon
+     * @return 含 icon 条码图片
+     */
     @Override
     public Bitmap addIconToBarCode(
             BarCodeData params,
@@ -167,6 +177,15 @@ public class ZXingEngineImpl
             Bitmap icon
     )
             throws Exception {
+        if (params == null) {
+            throw new Exception("BarCode ( Data、Params ) Item is null");
+        }
+        if (params.getFormat() == null) {
+            throw new Exception("BarCode format is null");
+        }
+        if (params.getIconScale() <= 0) {
+            throw new Exception("BarCode iconScale Less than or equal to 0");
+        }
         if (src == null) {
             throw new Exception("addIconToBarCode src Bitmap is null");
         }
@@ -174,15 +193,18 @@ public class ZXingEngineImpl
             throw new Exception("addIconToBarCode icon Bitmap is null");
         }
         // 获取图片宽度高度
-        int srcWidth   = src.getWidth();
-        int srcHeight  = src.getHeight();
-        int iconWidth  = icon.getWidth();
-        int iconHeight = icon.getHeight();
+        float srcWidth   = src.getWidth();
+        float srcHeight  = src.getHeight();
+        float iconWidth  = icon.getWidth();
+        float iconHeight = icon.getHeight();
 
-        // 这里的 4 决定 icon 在图片的比例 四分之一 ( 可自行判断 BarCodeData Format 决定绘制大小比例 )
-        float  scaleFactor = srcWidth * 1.0f / 4 / iconWidth;
-        Bitmap bitmap      = Bitmap.createBitmap(srcWidth, srcHeight, Bitmap.Config.ARGB_8888);
-        Canvas canvas      = new Canvas(bitmap);
+        // 这里决定 icon 在图片的比例 ( 可自行判断 BarCodeData Format 决定绘制大小比例 )
+        float scaleFactor = srcWidth / params.getIconScale() / iconWidth;
+        Bitmap bitmap = Bitmap.createBitmap(
+                (int) srcWidth, (int) srcHeight,
+                Bitmap.Config.ARGB_8888
+        );
+        Canvas canvas = new Canvas(bitmap);
         canvas.drawBitmap(src, 0, 0, null);
         canvas.scale(scaleFactor, scaleFactor, srcWidth / 2, srcHeight / 2);
         canvas.drawBitmap(
