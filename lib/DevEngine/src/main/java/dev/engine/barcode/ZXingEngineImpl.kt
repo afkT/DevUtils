@@ -74,31 +74,29 @@ class ZXingEngineImpl : IBarCodeEngine<BarCodeConfig, BarCodeData, BarCodeResult
 
     override fun encodeBarCodeSync(params: BarCodeData?): Bitmap {
         val error = isValidData(params)
-        if (error == null) {
-            params?.let { params ->
-                val config = getInnerConfig()
-                // 条码宽高
-                val width = params.getWidth()
-                val height = params.getHeight()
-                // 创建条码矩阵
-                val matrix = MultiFormatWriter().encode(
-                    params.getContent(), params.getFormat(),
-                    width, height, config.getEncodeHints()
-                )
-                val pixels = IntArray(width * height)
-                for (y in 0 until height) {
-                    for (x in 0 until width) {
-                        if (matrix[x, y]) {
-                            pixels[y * width + x] = params.getForegroundColor()
-                        } else {
-                            pixels[y * width + x] = params.getBackgroundColor()
-                        }
+        if (error == null && params != null) {
+            val config = getInnerConfig()
+            // 条码宽高
+            val width = params.getWidth()
+            val height = params.getHeight()
+            // 创建条码矩阵
+            val matrix = MultiFormatWriter().encode(
+                params.getContent(), params.getFormat(),
+                width, height, config.getEncodeHints()
+            )
+            val pixels = IntArray(width * height)
+            for (y in 0 until height) {
+                for (x in 0 until width) {
+                    if (matrix[x, y]) {
+                        pixels[y * width + x] = params.getForegroundColor()
+                    } else {
+                        pixels[y * width + x] = params.getBackgroundColor()
                     }
                 }
-                val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-                bitmap.setPixels(pixels, 0, width, 0, 0, width, height)
-                return bitmap
             }
+            val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+            bitmap.setPixels(pixels, 0, width, 0, 0, width, height)
+            return bitmap
         }
         throw error!!
     }
@@ -166,9 +164,6 @@ class ZXingEngineImpl : IBarCodeEngine<BarCodeConfig, BarCodeData, BarCodeResult
         if (params == null) {
             throw Exception("BarCode ( Data、Params ) Item is null")
         }
-        if (params.getFormat() == null) {
-            throw Exception("BarCode format is null")
-        }
         if (params.getIconScale() <= 0) {
             throw Exception("BarCode iconScale Less than or equal to 0")
         }
@@ -229,9 +224,6 @@ class ZXingEngineImpl : IBarCodeEngine<BarCodeConfig, BarCodeData, BarCodeResult
         }
         if (params.getWidth() <= 0 || params.getHeight() <= 0) {
             return Exception("BarCode width、height Less than or equal to 0")
-        }
-        if (params.getFormat() == null) {
-            return Exception("BarCode format is null")
         }
         return null
     }

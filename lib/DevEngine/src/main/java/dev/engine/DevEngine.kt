@@ -5,6 +5,7 @@ import com.tencent.mmkv.MMKV
 import dev.DevUtils
 import dev.engine.analytics.DevAnalyticsEngine
 import dev.engine.barcode.DevBarCodeEngine
+import dev.engine.barcode.ZXingEngineImpl
 import dev.engine.cache.CacheConfig
 import dev.engine.cache.DevCacheEngine
 import dev.engine.cache.DevCacheEngineImpl
@@ -158,6 +159,13 @@ object DevEngine {
         keyValueConfig: IKeyValueEngine.EngineConfig?,
         logConfig: LogConfig? = null
     ) {
+
+        // ========================
+        // = BarCode Engine 条形码 =
+        // ========================
+
+        // 初始化 ZXing BarCode Engine 实现
+        DevBarCodeEngine.setEngine(ZXingEngineImpl())
 
         // ===============
         // = JSON Engine =
