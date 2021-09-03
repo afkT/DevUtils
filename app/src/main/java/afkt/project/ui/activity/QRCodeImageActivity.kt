@@ -9,9 +9,10 @@ import android.graphics.Bitmap
 import android.text.TextUtils
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.google.zxing.Result
 import dev.base.DevSource
 import dev.engine.DevEngine
+import dev.engine.barcode.BarCodeResult
+import dev.engine.barcode.listener.BarCodeDecodeCallback
 import dev.engine.image.listener.BitmapListener
 import dev.engine.media.MediaConfig
 import dev.utils.DevFinal
@@ -21,7 +22,6 @@ import dev.utils.common.StringUtils
 import dev.utils.common.ThrowableUtils
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import ktx.dev.other.ZXingQRCodeUtils
 
 /**
  * detail: 二维码图片解析
@@ -99,12 +99,11 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
                             // 获取图片 Bitmap
                             selectBitmap = value
                             // 解析图片
-                            ZXingQRCodeUtils.decodeQRCode(
-                                selectBitmap,
-                                object : ZXingQRCodeUtils.QRDecodeCallback {
+                            DevEngine.getBarCode().decodeBarCode(
+                                selectBitmap, object : BarCodeDecodeCallback<BarCodeResult> {
                                     override fun onResult(
                                         success: Boolean,
-                                        result: Result?,
+                                        result: BarCodeResult?,
                                         error: Throwable?
                                     ) {
                                         HandlerUtils.postRunnable {
@@ -114,7 +113,7 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
                                                     .append(
                                                         StringUtils.checkValue(
                                                             DevFinal.NULL_STR,
-                                                            ZXingQRCodeUtils.getResultData(result)
+                                                            result?.getResultData()
                                                         )
                                                     )
                                                 TextViewUtils.setText(
@@ -124,12 +123,15 @@ class QRCodeImageActivity : BaseActivity<ActivityQrcodeImageBinding>() {
                                             } else {
                                                 TextViewUtils.setText(
                                                     binding.vidAqiTv, "图片非二维码 / 识别失败\n" +
-                                                            ThrowableUtils.getThrowableStackTrace(error)
+                                                            ThrowableUtils.getThrowableStackTrace(
+                                                                error
+                                                            )
                                                 )
                                             }
                                         }
                                     }
-                                })
+                                }
+                            )
                         }
 
                         override fun onFailure(

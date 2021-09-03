@@ -19,6 +19,8 @@ import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.zxing.Result
 import dev.engine.DevEngine
+import dev.engine.barcode.BarCodeResult
+import dev.engine.barcode.listener.BarCodeDecodeCallback
 import dev.engine.media.MediaConfig
 import dev.engine.permission.IPermissionEngine
 import dev.utils.app.*
@@ -27,7 +29,6 @@ import dev.utils.app.assist.InactivityTimerAssist
 import dev.utils.app.camera.camera1.FlashlightUtils
 import dev.utils.app.image.ImageUtils
 import dev.widget.ui.ScanShapeView
-import ktx.dev.other.ZXingQRCodeUtils
 
 /**
  * detail: 二维码扫描解析
@@ -161,21 +162,23 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
                 ImageUtils.decodeFile(imgPath)
             }
             // 解析图片
-            ZXingQRCodeUtils.decodeQRCode(selectBitmap, object : ZXingQRCodeUtils.QRDecodeCallback {
-                override fun onResult(
-                    success: Boolean,
-                    result: Result?,
-                    error: Throwable?
-                ) {
-                    HandlerUtils.postRunnable {
-                        if (success) {
-                            mDecodeResult.handleDecode(result, Bundle())
-                        } else {
-                            showToast(false, "图片非二维码 / 识别失败")
+            DevEngine.getBarCode().decodeBarCode(
+                selectBitmap, object : BarCodeDecodeCallback<BarCodeResult> {
+                    override fun onResult(
+                        success: Boolean,
+                        result: BarCodeResult?,
+                        error: Throwable?
+                    ) {
+                        HandlerUtils.postRunnable {
+                            if (success) {
+                                mDecodeResult.handleDecode(result?.getResult(), Bundle())
+                            } else {
+                                showToast(false, "图片非二维码 / 识别失败")
+                            }
                         }
                     }
                 }
-            })
+            )
         }
     }
 
@@ -193,7 +196,7 @@ class QRCodeScanActivity : BaseActivity<ActivityScanShapeBinding>() {
             result: Result?,
             bundle: Bundle?
         ) {
-            val resultStr = ZXingQRCodeUtils.getResultData(result)
+            val resultStr = BarCodeResult(result).getResultData()
             // 提示解析成功声音
             mBeepVibrateAssist.playBeepSoundAndVibrate()
             // 打印结果

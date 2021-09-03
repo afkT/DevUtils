@@ -10,11 +10,11 @@ import android.text.TextUtils
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.DevEngine
+import dev.engine.barcode.BarCodeData
 import dev.engine.media.MediaConfig
 import dev.utils.app.*
 import dev.utils.app.image.ImageUtils
 import dev.utils.common.ThrowableUtils
-import ktx.dev.other.ZXingQRCodeUtils
 
 /**
  * detail: 创建二维码
@@ -48,26 +48,20 @@ class QRCodeCreateActivity : BaseActivity<ActivityQrcodeCreateBinding>() {
                 }
                 val size = SizeUtils.dipConvertPx(200f)
                 // 创建二维码
-                ZXingQRCodeUtils.encodeQRCode(
-                    text, size, selectBitmap,
-                    object : ZXingQRCodeUtils.QREncodeCallback {
-                        override fun onResult(
-                            success: Boolean,
-                            bitmap: Bitmap?,
-                            error: Throwable?
-                        ) {
-                            if (success) {
-                                HandlerUtils.postRunnable {
-                                    ImageViewUtils.setImageBitmap(
-                                        binding.vidAqcIgview,
-                                        bitmap
-                                    )
-                                }
-                            } else {
-                                showToast(false, ThrowableUtils.getThrowable(error))
-                            }
+                DevEngine.getBarCode().encodeBarCode(
+                    BarCodeData.get(text, size).setIcon(selectBitmap)
+                ) { success, bitmap, error ->
+                    if (success) {
+                        HandlerUtils.postRunnable {
+                            ImageViewUtils.setImageBitmap(
+                                binding.vidAqcIgview,
+                                bitmap
+                            )
                         }
-                    })
+                    } else {
+                        showToast(false, ThrowableUtils.getThrowable(error))
+                    }
+                }
             }
             R.id.vid_aqc_select_btn -> {
                 // 初始化图片配置

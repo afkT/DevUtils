@@ -14,6 +14,7 @@ import java.util.*
  * detail: ZXing 二维码工具类
  * @author Ttt
  */
+@Deprecated("推荐使用 DevBarCodeEngine 实现类 ZXingEngineImpl")
 object ZXingQRCodeUtils {
 
     // 日志 TAG

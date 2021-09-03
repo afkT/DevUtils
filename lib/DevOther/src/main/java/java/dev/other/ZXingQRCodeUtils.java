@@ -25,7 +25,9 @@ import dev.utils.common.thread.DevThreadManager;
 /**
  * detail: ZXing 二维码工具类
  * @author Ttt
+ * @deprecated  推荐使用 {@link dev.engine.barcode.DevBarCodeEngine} 实现类
  */
+@Deprecated
 public final class ZXingQRCodeUtils {
 
     private ZXingQRCodeUtils() {
