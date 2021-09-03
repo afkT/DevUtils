@@ -97,9 +97,9 @@ public class ZXingEngineImpl
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
                     if (matrix.get(x, y)) {
-                        pixels[y * height + x] = params.getForegroundColor();
+                        pixels[y * width + x] = params.getForegroundColor();
                     } else {
-                        pixels[y * height + x] = params.getBackgroundColor();
+                        pixels[y * width + x] = params.getBackgroundColor();
                     }
                 }
             }
