@@ -2,8 +2,14 @@ package dev.engine.barcode
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import com.google.zxing.BinaryBitmap
+import com.google.zxing.MultiFormatReader
+import com.google.zxing.MultiFormatWriter
+import com.google.zxing.RGBLuminanceSource
+import com.google.zxing.common.HybridBinarizer
 import dev.engine.barcode.listener.BarCodeDecodeCallback
 import dev.engine.barcode.listener.BarCodeEncodeCallback
+import dev.utils.LogPrintUtils
 import dev.utils.common.StringUtils
 import dev.utils.common.thread.DevThreadPool
 
@@ -45,11 +51,56 @@ class ZXingEngineImpl : IBarCodeEngine<BarCodeConfig, BarCodeData, BarCodeResult
         params: BarCodeData?,
         callback: BarCodeEncodeCallback?
     ) {
-        TODO("Not yet implemented")
+        val error = isValidData(params)
+        if (error != null) {
+            encodeFailureCallback(callback, error)
+            return
+        }
+        DEV_THREAD_POOL.execute {
+            try {
+                var bitmap = encodeBarCodeSync(params)
+                // 条码嵌入 icon、logo
+                if (params?.getIcon() != null) {
+                    bitmap = addIconToBarCode(params, bitmap, params.getIcon())
+                }
+                encodeCallback(callback, bitmap)
+            } catch (e: java.lang.Exception) {
+                LogPrintUtils.eTag(TAG, e, "encodeBarCode")
+                // 触发回调
+                encodeFailureCallback(callback, e)
+            }
+        }
     }
 
     override fun encodeBarCodeSync(params: BarCodeData?): Bitmap {
-        TODO("Not yet implemented")
+        val error = isValidData(params)
+        if (error == null) {
+            params?.let { params ->
+                val config = getInnerConfig()
+                // 条码宽高
+                val width = params.getWidth()
+                val height = params.getHeight()
+                // 创建条码矩阵
+                val matrix = MultiFormatWriter().encode(
+                    params.getContent(), params.getFormat(),
+                    width, height, config.getEncodeHints()
+                )
+                val pixels = IntArray(width * height)
+                for (y in 0 until height) {
+                    for (x in 0 until width) {
+                        if (matrix[x, y]) {
+                            pixels[y * width + x] = params.getForegroundColor()
+                        } else {
+                            pixels[y * width + x] = params.getBackgroundColor()
+                        }
+                    }
+                }
+                val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+                bitmap.setPixels(pixels, 0, width, 0, 0, width, height)
+                return bitmap
+            }
+        }
+        throw error!!
     }
 
     // ==========
@@ -60,11 +111,39 @@ class ZXingEngineImpl : IBarCodeEngine<BarCodeConfig, BarCodeData, BarCodeResult
         bitmap: Bitmap?,
         callback: BarCodeDecodeCallback<BarCodeResult>?
     ) {
-        TODO("Not yet implemented")
+        if (bitmap == null) {
+            decodeFailureCallback(callback, java.lang.Exception("BarCode decode Bitmap is null"))
+            return
+        }
+        DEV_THREAD_POOL.execute {
+            try {
+                val result = decodeBarCodeSync(bitmap)
+                // 触发回调
+                decodeCallback(callback, result)
+            } catch (e: java.lang.Exception) {
+                LogPrintUtils.eTag(TAG, e, "decodeBarCode")
+                // 触发回调
+                decodeFailureCallback(callback, e)
+            }
+        }
     }
 
     override fun decodeBarCodeSync(bitmap: Bitmap?): BarCodeResult {
-        TODO("Not yet implemented")
+        if (bitmap != null) {
+            val config = getInnerConfig()
+            // 解码处理
+            val width = bitmap.width
+            val height = bitmap.height
+            val pixels = IntArray(width * height)
+            bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
+            val source = RGBLuminanceSource(width, height, pixels)
+            val result = MultiFormatReader().decode(
+                BinaryBitmap(HybridBinarizer(source)),
+                config.getDecodeHints()
+            )
+            return BarCodeResult(result)
+        }
+        throw Exception("BarCode decode Bitmap is null")
     }
 
     // ==========
@@ -121,7 +200,7 @@ class ZXingEngineImpl : IBarCodeEngine<BarCodeConfig, BarCodeData, BarCodeResult
         canvas.save()
         canvas.restore()
         if (bitmap != null) return bitmap
-        throw java.lang.Exception("addIconToBarCode failure")
+        throw Exception("addIconToBarCode failure")
     }
 
     // ==========
@@ -132,8 +211,8 @@ class ZXingEngineImpl : IBarCodeEngine<BarCodeConfig, BarCodeData, BarCodeResult
      * 获取 BarCode Config
      * @return BarCode Config
      */
-    private fun getInnerConfig(): BarCodeConfig? {
-        return if (mBarCodeConfig != null) mBarCodeConfig else DEFAULT_CONFIG
+    private fun getInnerConfig(): BarCodeConfig {
+        return mBarCodeConfig ?: DEFAULT_CONFIG
     }
 
     /**
@@ -200,7 +279,7 @@ class ZXingEngineImpl : IBarCodeEngine<BarCodeConfig, BarCodeData, BarCodeResult
      * @param result   识别结果
      */
     private fun decodeCallback(
-        callback: BarCodeDecodeCallback<BarCodeResult?>?,
+        callback: BarCodeDecodeCallback<BarCodeResult>?,
         result: BarCodeResult?
     ) {
         if (callback != null) {
@@ -221,7 +300,7 @@ class ZXingEngineImpl : IBarCodeEngine<BarCodeConfig, BarCodeData, BarCodeResult
      * @param error    异常信息
      */
     private fun decodeFailureCallback(
-        callback: BarCodeDecodeCallback<BarCodeResult?>?,
+        callback: BarCodeDecodeCallback<BarCodeResult>?,
         error: Throwable
     ) {
         callback?.onResult(false, null, error)
