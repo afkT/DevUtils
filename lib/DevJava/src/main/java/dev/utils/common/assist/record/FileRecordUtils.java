@@ -89,25 +89,34 @@ public final class FileRecordUtils {
 
     /**
      * 拼接日志
-     * @param logs 日志内容数组
+     * @param config 日志记录配置信息
+     * @param logs   日志内容数组
      * @return 拼接后的日志内容
      */
-    private static String concatLog(final Object... logs) {
+    private static String concatLog(
+            final RecordConfig config,
+            final Object... logs
+    ) {
         if (logs == null || logs.length == 0) return null;
-        StringBuilder builder = new StringBuilder()
-                // 增加换行
-                .append(DevFinal.NEW_LINE_STR_X2)
-                // 获取保存时间
-                .append(DateUtils.getDateNow())
-                // 追加边距、换行
-                .append(" =>");
+        // 是否插入头数据 ( time =>、logs[] )
+        boolean headerData = (config == null || config.isInsertHeaderData());
+
+        StringBuilder builder = new StringBuilder();
+        if (headerData) {
+            builder.append(DevFinal.NEW_LINE_STR_X2)
+                    // 获取当前时间
+                    .append(DateUtils.getDateNow())
+                    // 追加边距、换行
+                    .append(" =>");
+        }
         // 循环追加内容
         for (int i = 0, len = logs.length; i < len; i++) {
             // 追加存储内容
-            builder.append(DevFinal.NEW_LINE_STR_X2)
-                    .append("logs[").append(i).append("]: ")
-                    .append(DevFinal.NEW_LINE_STR);
-
+            builder.append(DevFinal.NEW_LINE_STR_X2);
+            if (headerData) {
+                builder.append("logs[").append(i).append("]: ")
+                        .append(DevFinal.NEW_LINE_STR);
+            }
             Object object = logs[i];
             if (object instanceof Throwable) {
                 String errorLog = ThrowableUtils.getThrowableStackTrace((Throwable) object);
@@ -148,7 +157,7 @@ public final class FileRecordUtils {
         // 日志记录插入信息
         RecordInsert recordInsert = config.getRecordInsert(sRecordInsert);
         // 日志内容
-        String logContent = concatLog(logs);
+        String logContent = concatLog(config, logs);
         // 拼接最终内容
         String finalLogContent = concatInsertLog(recordInsert, logContent);
 
@@ -245,9 +254,9 @@ public final class FileRecordUtils {
             final Object... logs
     ) {
         if (config != null) {
-            return getLogContent(config.getRecordInsert(sRecordInsert), logs);
+            return getLogContent(config, config.getRecordInsert(sRecordInsert), logs);
         }
-        return getLogContent(sRecordInsert, logs);
+        return getLogContent(null, sRecordInsert, logs);
     }
 
     /**
@@ -260,7 +269,22 @@ public final class FileRecordUtils {
             final RecordInsert recordInsert,
             final Object... logs
     ) {
-        String logContent = concatLog(logs);
+        return getLogContent(null, recordInsert, logs);
+    }
+
+    /**
+     * 获取日志内容
+     * @param config       日志记录配置信息
+     * @param recordInsert 日志记录插入信息
+     * @param logs         日志内容数组
+     * @return 日志内容
+     */
+    public static String getLogContent(
+            final RecordConfig config,
+            final RecordInsert recordInsert,
+            final Object... logs
+    ) {
+        String logContent = concatLog(config, logs);
         if (StringUtils.isEmpty(logContent)) return null;
         return concatInsertLog(recordInsert, logContent);
     }
