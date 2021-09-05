@@ -23,6 +23,11 @@ public final class StringUtils {
     public static final String SPACE_STR       = " ";
     // TAB 字符串
     public static final String TAB_STR         = "\t";
+    // 回车 ( CR ) 字符串
+    public static final String CR_STR          = "\r";
+    // 换行 ( \n ) 字符串 ( single newline ('\n') character )
+    public static final String NL_STR          = "\n";
+    public static final char   NL_CHAR         = '\n';
     // 换行字符串
     public static final String NEW_LINE_STR    = System.getProperty("line.separator");
     // 换行字符串 ( 两行 )
@@ -44,22 +49,6 @@ public final class StringUtils {
     }
 
     /**
-     * 判断字符串是否为 null
-     * @param str    待校验的字符串
-     * @param isTrim 是否调用 trim()
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean isEmpty(
-            final String str,
-            final boolean isTrim
-    ) {
-        if (str != null) {
-            return isEmpty(isTrim ? str.trim() : str);
-        }
-        return false;
-    }
-
-    /**
      * 判断多个字符串是否存在为 null 的字符串
      * @param args 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
@@ -68,6 +57,32 @@ public final class StringUtils {
         if (args != null && args.length != 0) {
             for (String value : args) {
                 if (isEmpty(value)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 判断字符串是否为 null ( 调用 clearSpaceTabLineTrim )
+     * @param str     待校验的字符串
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isEmptyClear(final String str) {
+        return isEmpty(clearSpaceTabLineTrim(str));
+    }
+
+    /**
+     * 判断多个字符串是否存在为 null 的字符串 ( 调用 clearSpaceTabLineTrim )
+     * @param args    待校验的字符串数组
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isEmptyClear(final String... args) {
+        if (args != null && args.length != 0) {
+            for (String value : args) {
+                if (isEmptyClear(value)) {
                     return true;
                 }
             }
@@ -88,16 +103,82 @@ public final class StringUtils {
     }
 
     /**
-     * 判断字符串是否不为 null
-     * @param str    待校验的字符串
-     * @param isTrim 是否调用 trim()
+     * 判断字符串是否不为 null ( 调用 clearSpaceTabLineTrim )
+     * @param str     待校验的字符串
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isNotEmpty(
+    public static boolean isNotEmptyClear(final String str) {
+        return isNotEmpty(clearSpaceTabLineTrim(str));
+    }
+
+    // ========
+    // = Null =
+    // ========
+
+    /**
+     * 判断字符串是否为 null
+     * @param str 待校验的字符串
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isNull(final String str) {
+        return isEmpty(str);
+    }
+
+    /**
+     * 判断字符串是否为 null
+     * @param str     待校验的字符串
+     * @param isClear 是否调用 clearSpaceTabLineTrim
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isNull(
             final String str,
-            final boolean isTrim
+            final boolean isClear
     ) {
-        return isNotEmpty(isTrim ? str.trim() : str);
+        if (str != null) {
+            return isNull(isClear ? str.trim() : str);
+        }
+        return false;
+    }
+
+    /**
+     * 判断多个字符串是否存在为 null 的字符串
+     * @param args 待校验的字符串数组
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isNull(final String... args) {
+        if (args != null && args.length != 0) {
+            for (String value : args) {
+                if (isNull(value)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+
+    // =
+
+    /**
+     * 判断字符串是否不为 null
+     * @param str 待校验的字符串
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isNotNull(final String str) {
+        return isNotNull(str, false);
+    }
+
+    /**
+     * 判断字符串是否不为 null
+     * @param str     待校验的字符串
+     * @param isClear 是否调用 clearSpaceTabLineTrim
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isNotNull(
+            final String str,
+            final boolean isClear
+    ) {
+        return !isNull(str, isClear);
     }
 
     // ==========
@@ -526,6 +607,17 @@ public final class StringUtils {
     }
 
     /**
+     * 清空字符串全部换行符
+     * @param str 待处理字符串
+     * @return 处理后的字符串
+     */
+    public static String clearLine2(final String str) {
+        return replaceAll(str, NL_STR, "");
+    }
+
+    // =
+
+    /**
      * 清空字符串前后全部空格
      * @param str 待处理字符串
      * @return 处理后的字符串
@@ -553,6 +645,15 @@ public final class StringUtils {
     }
 
     /**
+     * 清空字符串前后全部换行符
+     * @param str 待处理字符串
+     * @return 处理后的字符串
+     */
+    public static String clearLineTrim2(final String str) {
+        return clearSEWiths(str, NL_STR);
+    }
+
+    /**
      * 清空字符串全部空格、Tab、换行符
      * @param str 待处理字符串
      * @return 处理后的字符串
@@ -562,6 +663,7 @@ public final class StringUtils {
         String value = clearSpace(str);
         value = clearTab(value);
         value = clearLine(value);
+        value = clearLine2(value);
         return value;
     }
 
@@ -583,8 +685,11 @@ public final class StringUtils {
             boolean line = (value.startsWith(NEW_LINE_STR) || value.endsWith(NEW_LINE_STR));
             if (line) value = clearLineTrim(value);
 
+            boolean line2 = (value.startsWith(NL_STR) || value.endsWith(NL_STR));
+            if (line2) value = clearLineTrim2(value);
+
             // 都不存在则返回值
-            if (!space && !tab && !line) return value;
+            if (!space && !tab && !line && !line2) return value;
         }
     }
 
@@ -615,6 +720,15 @@ public final class StringUtils {
      */
     public static String appendLine(final int number) {
         return forString(number, NEW_LINE_STR);
+    }
+
+    /**
+     * 追加换行
+     * @param number 换行数量
+     * @return 指定数量的换行字符串
+     */
+    public static String appendLine2(final int number) {
+        return forString(number, NL_STR);
     }
 
     /**

@@ -15,6 +15,9 @@ public final class DevFinal {
     public static final String TAB_STR         = "\t";
     // 回车 ( CR ) 字符串
     public static final String CR_STR          = "\r";
+    // 换行 ( \n ) 字符串 ( single newline ('\n') character )
+    public static final String NL_STR          = "\n";
+    public static final char   NL_CHAR         = '\n';
     // 点 字符串
     public static final String DOT_STR         = ".";
     // 横杠 字符串
