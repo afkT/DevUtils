@@ -67,7 +67,7 @@ public final class StringUtils {
 
     /**
      * 判断字符串是否为 null ( 调用 clearSpaceTabLineTrim )
-     * @param str     待校验的字符串
+     * @param str 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmptyClear(final String str) {
@@ -76,7 +76,7 @@ public final class StringUtils {
 
     /**
      * 判断多个字符串是否存在为 null 的字符串 ( 调用 clearSpaceTabLineTrim )
-     * @param args    待校验的字符串数组
+     * @param args 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isEmptyClear(final String... args) {
@@ -104,7 +104,7 @@ public final class StringUtils {
 
     /**
      * 判断字符串是否不为 null ( 调用 clearSpaceTabLineTrim )
-     * @param str     待校验的字符串
+     * @param str 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotEmptyClear(final String str) {
@@ -116,32 +116,16 @@ public final class StringUtils {
     // ========
 
     /**
-     * 判断字符串是否为 null
+     * 判断字符串是否为 "null"
      * @param str 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNull(final String str) {
-        return isEmpty(str);
+        return isEmpty(str) || NULL_STR.equalsIgnoreCase(str);
     }
 
     /**
-     * 判断字符串是否为 null
-     * @param str     待校验的字符串
-     * @param isClear 是否调用 clearSpaceTabLineTrim
-     * @return {@code true} yes, {@code false} no
-     */
-    public static boolean isNull(
-            final String str,
-            final boolean isClear
-    ) {
-        if (str != null) {
-            return isNull(isClear ? str.trim() : str);
-        }
-        return false;
-    }
-
-    /**
-     * 判断多个字符串是否存在为 null 的字符串
+     * 判断多个字符串是否存在为 "null" 的字符串
      * @param args 待校验的字符串数组
      * @return {@code true} yes, {@code false} no
      */
@@ -157,28 +141,50 @@ public final class StringUtils {
         return true;
     }
 
+    /**
+     * 判断字符串是否为 "null" ( 调用 clearSpaceTabLineTrim )
+     * @param str 待校验的字符串
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isNullClear(final String str) {
+        return isNull(clearSpaceTabLineTrim(str));
+    }
+
+    /**
+     * 判断多个字符串是否存在为 "null" 的字符串 ( 调用 clearSpaceTabLineTrim )
+     * @param args 待校验的字符串数组
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isNullClear(final String... args) {
+        if (args != null && args.length != 0) {
+            for (String value : args) {
+                if (isNullClear(value)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+
     // =
 
     /**
-     * 判断字符串是否不为 null
+     * 判断字符串是否不为 "null"
      * @param str 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */
     public static boolean isNotNull(final String str) {
-        return isNotNull(str, false);
+        return !isNull(str);
     }
 
     /**
-     * 判断字符串是否不为 null
-     * @param str     待校验的字符串
-     * @param isClear 是否调用 clearSpaceTabLineTrim
+     * 判断字符串是否不为 "null" ( 调用 clearSpaceTabLineTrim )
+     * @param str 待校验的字符串
      * @return {@code true} yes, {@code false} no
      */
-    public static boolean isNotNull(
-            final String str,
-            final boolean isClear
-    ) {
-        return !isNull(str, isClear);
+    public static boolean isNotNullClear(final String str) {
+        return isNotNull(clearSpaceTabLineTrim(str));
     }
 
     // ==========
