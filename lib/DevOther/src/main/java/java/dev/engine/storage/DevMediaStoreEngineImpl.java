@@ -270,7 +270,11 @@ public class DevMediaStoreEngineImpl
     ) {
         // 判断参数是否有效
         if (params != null && source != null && source.isSource()) {
-            return true;
+            // url: 暂不处理 Url 文件 ( 涉及下载 ) 自行下载后传入 File
+            // resource Id: 无法确认属于 drawable、raw、assets 等 id ( 自行传入 Bitmap、InputStream、byte[] )
+            if (!source.isUrl() && !source.isResource()) {
+                return true;
+            }
         }
         // 无效数据触发回调
         if (listener != null) {
@@ -285,6 +289,14 @@ public class DevMediaStoreEngineImpl
                     result.setError(new Exception("params、source is null"));
                 } else {
                     result.setError(new Exception("source is null"));
+                }
+            } else {
+                if (params == null) {
+                    result.setError(new Exception(
+                            "params is null and UnSupport url、resourceId source"
+                    ));
+                } else {
+                    result.setError(new Exception("UnSupport url、resourceId source"));
                 }
             }
             // 统一触发事件回调
