@@ -1,4 +1,4 @@
-package dev.utils.app.helper;
+package dev.utils.app.helper.view;
 
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
@@ -33,6 +33,8 @@ import dev.utils.app.ListViewUtils;
 import dev.utils.app.ListenerUtils;
 import dev.utils.app.TextViewUtils;
 import dev.utils.app.ViewUtils;
+import dev.utils.app.helper.dev.DevHelper;
+import dev.utils.app.helper.quick.QuickHelper;
 
 /**
  * detail: View 链式调用快捷设置 Helper 类

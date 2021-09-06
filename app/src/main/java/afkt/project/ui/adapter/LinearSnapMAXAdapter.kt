@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.engine.DevEngine
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.view.ViewHelper
 
 /**
  * detail: RecyclerView Gallery 效果 Adapter

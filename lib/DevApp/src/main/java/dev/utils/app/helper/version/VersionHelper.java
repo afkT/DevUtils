@@ -1,4 +1,4 @@
-package dev.utils.app.helper;
+package dev.utils.app.helper.version;
 
 import android.app.Activity;
 import android.app.PendingIntent;

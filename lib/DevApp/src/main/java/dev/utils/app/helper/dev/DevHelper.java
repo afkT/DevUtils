@@ -1,4 +1,4 @@
-package dev.utils.app.helper;
+package dev.utils.app.helper.dev;
 
 import android.Manifest;
 import android.app.Activity;
@@ -44,6 +44,8 @@ import dev.utils.app.ScreenUtils;
 import dev.utils.app.SizeUtils;
 import dev.utils.app.VibrationUtils;
 import dev.utils.app.anim.AnimationUtils;
+import dev.utils.app.helper.quick.QuickHelper;
+import dev.utils.app.helper.view.ViewHelper;
 import dev.utils.app.image.BitmapUtils;
 import dev.utils.app.image.ImageUtils;
 import dev.utils.app.timer.DevTimer;

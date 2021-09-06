@@ -1,4 +1,4 @@
-package dev.utils.app.helper;
+package dev.utils.app.helper.quick;
 
 import android.app.Dialog;
 import android.content.res.ColorStateList;
@@ -39,6 +39,8 @@ import dev.utils.app.ListenerUtils;
 import dev.utils.app.SizeUtils;
 import dev.utils.app.TextViewUtils;
 import dev.utils.app.ViewUtils;
+import dev.utils.app.helper.dev.DevHelper;
+import dev.utils.app.helper.view.ViewHelper;
 
 /**
  * detail: 简化链式设置 View Helper 类

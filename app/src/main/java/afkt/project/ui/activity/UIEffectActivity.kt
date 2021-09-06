@@ -15,8 +15,8 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView
 import dev.engine.DevEngine
 import dev.utils.app.*
-import dev.utils.app.helper.QuickHelper
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.quick.QuickHelper
+import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.ArrayUtils
 import java.util.*
 

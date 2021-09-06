@@ -11,7 +11,7 @@ import android.widget.Gallery
 import dev.base.widget.BaseTextView
 import dev.utils.app.ResourceUtils
 import dev.utils.app.SizeUtils
-import dev.utils.app.helper.QuickHelper
+import dev.utils.app.helper.quick.QuickHelper
 
 /**
  * detail: GPU 滤镜效果适配器

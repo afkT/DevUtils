@@ -10,7 +10,7 @@ import android.os.Bundle
 import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.drakeet.multitype.MultiTypeAdapter
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.view.ViewHelper
 
 /**
  * detail: RecyclerView MultiType Adapter

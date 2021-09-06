@@ -16,8 +16,8 @@ import dev.base.widget.BaseTextView
 import dev.engine.DevEngine
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils
-import dev.utils.app.helper.QuickHelper
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.quick.QuickHelper
+import dev.utils.app.helper.view.ViewHelper
 import dev.utils.app.toast.ToastTintUtils
 import java.util.*
 

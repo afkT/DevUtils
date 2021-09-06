@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.drakeet.multitype.ItemViewBinder
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.view.ViewHelper
 
 /**
  * detail: Article Adapter

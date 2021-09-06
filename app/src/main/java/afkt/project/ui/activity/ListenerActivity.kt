@@ -27,7 +27,7 @@ import dev.receiver.WifiReceiver.Companion.setListener
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.assist.ScreenSensorAssist
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.view.ViewHelper
 import dev.utils.app.toast.ToastTintUtils
 
 /**

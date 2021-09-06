@@ -12,7 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.palette.graphics.Palette
 import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
-import dev.utils.app.helper.QuickHelper
+import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.image.ImageUtils
 import dev.utils.common.ColorUtils
 import java.lang.ref.WeakReference

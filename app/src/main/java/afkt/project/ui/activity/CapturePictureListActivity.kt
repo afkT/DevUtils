@@ -21,8 +21,8 @@ import dev.engine.storage.StorageItem
 import dev.engine.storage.StorageResult
 import dev.utils.app.CapturePictureUtils
 import dev.utils.app.ResourceUtils
-import dev.utils.app.helper.QuickHelper
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.quick.QuickHelper
+import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.FileUtils
 
 /**

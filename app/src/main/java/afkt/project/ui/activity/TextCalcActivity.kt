@@ -8,7 +8,7 @@ import android.graphics.Color
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.base.widget.BaseTextView
 import dev.utils.app.TextViewUtils
-import dev.utils.app.helper.QuickHelper
+import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils

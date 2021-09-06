@@ -12,7 +12,7 @@ import dev.base.widget.BaseTextView
 import dev.utils.app.ResourceUtils
 import dev.utils.app.StateListUtils
 import dev.utils.app.ViewUtils
-import dev.utils.app.helper.QuickHelper
+import dev.utils.app.helper.quick.QuickHelper
 import dev.utils.common.ChineseUtils
 import dev.utils.common.ColorUtils
 import dev.utils.common.RandomUtils

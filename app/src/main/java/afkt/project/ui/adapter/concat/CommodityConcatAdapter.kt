@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.adapter.DevDataAdapter
 import dev.engine.DevEngine
 import dev.utils.app.ResourceUtils
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.BigDecimalUtils
 import java.math.BigDecimal
 

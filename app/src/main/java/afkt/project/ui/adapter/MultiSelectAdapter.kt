@@ -12,7 +12,7 @@ import dev.base.adapter.newBindingViewHolder
 import dev.base.multiselect.DevMultiSelectMap
 import dev.engine.DevEngine
 import dev.utils.app.ViewUtils
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.BigDecimalUtils
 import java.math.BigDecimal
 

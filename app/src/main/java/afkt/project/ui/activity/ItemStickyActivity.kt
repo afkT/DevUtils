@@ -17,7 +17,7 @@ import dev.engine.DevEngine
 import dev.utils.app.ResourceUtils
 import dev.utils.app.SizeUtils
 import dev.utils.app.TextViewUtils
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.ChineseUtils
 import dev.utils.common.DateUtils
 import dev.utils.common.RandomUtils

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.view.ViewHelper
 import java.util.*
 
 /**

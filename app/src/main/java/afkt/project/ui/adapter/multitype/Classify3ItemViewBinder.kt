@@ -9,7 +9,7 @@ import com.drakeet.multitype.ItemViewBinder
 import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.utils.app.ResourceUtils
-import dev.utils.app.helper.QuickHelper
+import dev.utils.app.helper.quick.QuickHelper
 
 /**
  * detail: 三级分类 Adapter

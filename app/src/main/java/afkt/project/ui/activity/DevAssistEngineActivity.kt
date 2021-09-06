@@ -19,7 +19,7 @@ import dev.utils.DevFinal
 import dev.utils.app.ResourceUtils
 import dev.utils.app.SnackbarUtils
 import dev.utils.app.SpanUtils
-import dev.utils.app.helper.QuickHelper
+import dev.utils.app.helper.quick.QuickHelper
 
 /**
  * detail: DevAssist Engine 实现

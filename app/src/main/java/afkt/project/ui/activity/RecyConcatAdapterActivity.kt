@@ -11,7 +11,7 @@ import android.os.Bundle
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ConcatAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.view.ViewHelper
 import java.util.*
 
 /**

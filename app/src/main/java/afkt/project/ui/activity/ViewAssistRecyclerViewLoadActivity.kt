@@ -8,7 +8,7 @@ import afkt.project.ui.adapter.RecyclerLoadingAdapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.RandomUtils
 import java.util.*
 
