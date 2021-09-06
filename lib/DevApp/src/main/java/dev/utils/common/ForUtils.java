@@ -208,6 +208,128 @@ public final class ForUtils {
         return false;
     }
 
+    // =========
+    // = Float =
+    // =========
+
+    /**
+     * detail: 循环消费者
+     * @author Ttt
+     */
+    public interface FloatConsumer {
+
+        /**
+         * 循环消费方法
+         * @param index 索引
+         * @param value 对应索引值
+         */
+        void accept(
+                int index,
+                float value
+        );
+    }
+
+    /**
+     * 循环可变数组
+     * @param action 循环消费对象
+     * @param args   参数
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean forFloats(
+            final FloatConsumer action,
+            final float... args
+    ) {
+        return forFloats(action, false, args);
+    }
+
+    /**
+     * 循环可变数组
+     * @param action      循环消费对象
+     * @param checkLength 是否检查长度
+     * @param args        参数
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean forFloats(
+            final FloatConsumer action,
+            final boolean checkLength,
+            final float... args
+    ) {
+        if (action != null && args != null) {
+            int len = args.length;
+            // 是否需要判断长度
+            if (checkLength && len == 0) {
+                return false;
+            }
+            for (int i = 0; i < len; i++) {
+                float value = args[i];
+                action.accept(i, value);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // ========
+    // = Long =
+    // ========
+
+    /**
+     * detail: 循环消费者
+     * @author Ttt
+     */
+    public interface LongConsumer {
+
+        /**
+         * 循环消费方法
+         * @param index 索引
+         * @param value 对应索引值
+         */
+        void accept(
+                int index,
+                long value
+        );
+    }
+
+    /**
+     * 循环可变数组
+     * @param action 循环消费对象
+     * @param args   参数
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean forLongs(
+            final LongConsumer action,
+            final long... args
+    ) {
+        return forLongs(action, false, args);
+    }
+
+    /**
+     * 循环可变数组
+     * @param action      循环消费对象
+     * @param checkLength 是否检查长度
+     * @param args        参数
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean forLongs(
+            final LongConsumer action,
+            final boolean checkLength,
+            final long... args
+    ) {
+        if (action != null && args != null) {
+            int len = args.length;
+            // 是否需要判断长度
+            if (checkLength && len == 0) {
+                return false;
+            }
+            for (int i = 0; i < len; i++) {
+                long value = args[i];
+                action.accept(i, value);
+            }
+            return true;
+        }
+        return false;
+    }
+
     // ===========
     // = Boolean =
     // ===========
@@ -262,6 +384,189 @@ public final class ForUtils {
             }
             for (int i = 0; i < len; i++) {
                 boolean value = args[i];
+                action.accept(i, value);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // ========
+    // = Byte =
+    // ========
+
+    /**
+     * detail: 循环消费者
+     * @author Ttt
+     */
+    public interface ByteConsumer {
+
+        /**
+         * 循环消费方法
+         * @param index 索引
+         * @param value 对应索引值
+         */
+        void accept(
+                int index,
+                byte value
+        );
+    }
+
+    /**
+     * 循环可变数组
+     * @param action 循环消费对象
+     * @param args   参数
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean forBytes(
+            final ByteConsumer action,
+            final byte... args
+    ) {
+        return forBytes(action, false, args);
+    }
+
+    /**
+     * 循环可变数组
+     * @param action      循环消费对象
+     * @param checkLength 是否检查长度
+     * @param args        参数
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean forBytes(
+            final ByteConsumer action,
+            final boolean checkLength,
+            final byte... args
+    ) {
+        if (action != null && args != null) {
+            int len = args.length;
+            // 是否需要判断长度
+            if (checkLength && len == 0) {
+                return false;
+            }
+            for (int i = 0; i < len; i++) {
+                byte value = args[i];
+                action.accept(i, value);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // ========
+    // = Char =
+    // ========
+
+    /**
+     * detail: 循环消费者
+     * @author Ttt
+     */
+    public interface CharConsumer {
+
+        /**
+         * 循环消费方法
+         * @param index 索引
+         * @param value 对应索引值
+         */
+        void accept(
+                int index,
+                char value
+        );
+    }
+
+    /**
+     * 循环可变数组
+     * @param action 循环消费对象
+     * @param args   参数
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean forChars(
+            final CharConsumer action,
+            final char... args
+    ) {
+        return forChars(action, false, args);
+    }
+
+    /**
+     * 循环可变数组
+     * @param action      循环消费对象
+     * @param checkLength 是否检查长度
+     * @param args        参数
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean forChars(
+            final CharConsumer action,
+            final boolean checkLength,
+            final char... args
+    ) {
+        if (action != null && args != null) {
+            int len = args.length;
+            // 是否需要判断长度
+            if (checkLength && len == 0) {
+                return false;
+            }
+            for (int i = 0; i < len; i++) {
+                char value = args[i];
+                action.accept(i, value);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // =========
+    // = Short =
+    // =========
+
+    /**
+     * detail: 循环消费者
+     * @author Ttt
+     */
+    public interface ShortConsumer {
+
+        /**
+         * 循环消费方法
+         * @param index 索引
+         * @param value 对应索引值
+         */
+        void accept(
+                int index,
+                short value
+        );
+    }
+
+    /**
+     * 循环可变数组
+     * @param action 循环消费对象
+     * @param args   参数
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean forShorts(
+            final ShortConsumer action,
+            final short... args
+    ) {
+        return forShorts(action, false, args);
+    }
+
+    /**
+     * 循环可变数组
+     * @param action      循环消费对象
+     * @param checkLength 是否检查长度
+     * @param args        参数
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean forShorts(
+            final ShortConsumer action,
+            final boolean checkLength,
+            final short... args
+    ) {
+        if (action != null && args != null) {
+            int len = args.length;
+            // 是否需要判断长度
+            if (checkLength && len == 0) {
+                return false;
+            }
+            for (int i = 0; i < len; i++) {
+                short value = args[i];
                 action.accept(i, value);
             }
             return true;
