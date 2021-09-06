@@ -57,7 +57,7 @@ class ListenerActivity : BaseActivity<ActivityCommonTipsBinding>() {
     override fun initValue() {
         super.initValue()
 
-        val view = ViewUtils.inflate(R.layout.base_view_textview)
+        val view = ViewUtils.inflate(this, R.layout.base_view_textview)
         ViewHelper.get().setText(view, "单击绑定, 长按注销")
             .setTextColor(view, ResourceUtils.getColor(R.color.gray))
         binding.vidActLinear.addView(view)
