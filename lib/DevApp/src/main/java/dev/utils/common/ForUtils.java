@@ -70,9 +70,8 @@ public final class ForUtils {
         if (action != null && args != null) {
             int len = args.length;
             // 是否需要判断长度
-            if (checkLength && len == 0) {
-                return false;
-            }
+            if (len == 0) return !checkLength;
+
             for (int i = 0; i < len; i++) {
                 T value = args[i];
                 action.accept(i, value);
@@ -135,9 +134,8 @@ public final class ForUtils {
         if (action != null && args != null) {
             int len = args.length;
             // 是否需要判断长度
-            if (checkLength && len == 0) {
-                return false;
-            }
+            if (len == 0) return !checkLength;
+
             for (int i = 0; i < len; i++) {
                 int value = args[i];
                 action.accept(i, value);
@@ -196,9 +194,8 @@ public final class ForUtils {
         if (action != null && args != null) {
             int len = args.length;
             // 是否需要判断长度
-            if (checkLength && len == 0) {
-                return false;
-            }
+            if (len == 0) return !checkLength;
+
             for (int i = 0; i < len; i++) {
                 double value = args[i];
                 action.accept(i, value);
@@ -257,9 +254,8 @@ public final class ForUtils {
         if (action != null && args != null) {
             int len = args.length;
             // 是否需要判断长度
-            if (checkLength && len == 0) {
-                return false;
-            }
+            if (len == 0) return !checkLength;
+
             for (int i = 0; i < len; i++) {
                 float value = args[i];
                 action.accept(i, value);
@@ -318,9 +314,8 @@ public final class ForUtils {
         if (action != null && args != null) {
             int len = args.length;
             // 是否需要判断长度
-            if (checkLength && len == 0) {
-                return false;
-            }
+            if (len == 0) return !checkLength;
+
             for (int i = 0; i < len; i++) {
                 long value = args[i];
                 action.accept(i, value);
@@ -379,9 +374,8 @@ public final class ForUtils {
         if (action != null && args != null) {
             int len = args.length;
             // 是否需要判断长度
-            if (checkLength && len == 0) {
-                return false;
-            }
+            if (len == 0) return !checkLength;
+
             for (int i = 0; i < len; i++) {
                 boolean value = args[i];
                 action.accept(i, value);
@@ -440,9 +434,8 @@ public final class ForUtils {
         if (action != null && args != null) {
             int len = args.length;
             // 是否需要判断长度
-            if (checkLength && len == 0) {
-                return false;
-            }
+            if (len == 0) return !checkLength;
+
             for (int i = 0; i < len; i++) {
                 byte value = args[i];
                 action.accept(i, value);
@@ -501,9 +494,8 @@ public final class ForUtils {
         if (action != null && args != null) {
             int len = args.length;
             // 是否需要判断长度
-            if (checkLength && len == 0) {
-                return false;
-            }
+            if (len == 0) return !checkLength;
+
             for (int i = 0; i < len; i++) {
                 char value = args[i];
                 action.accept(i, value);
@@ -562,9 +554,8 @@ public final class ForUtils {
         if (action != null && args != null) {
             int len = args.length;
             // 是否需要判断长度
-            if (checkLength && len == 0) {
-                return false;
-            }
+            if (len == 0) return !checkLength;
+
             for (int i = 0; i < len; i++) {
                 short value = args[i];
                 action.accept(i, value);
