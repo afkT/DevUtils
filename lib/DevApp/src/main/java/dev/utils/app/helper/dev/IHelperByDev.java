@@ -9,5 +9,5 @@ import dev.utils.app.helper.IHelper;
 public interface IHelperByDev<T>
         extends IHelper {
 
-    
+
 }
