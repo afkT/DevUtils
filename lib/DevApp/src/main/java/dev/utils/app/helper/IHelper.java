@@ -10,7 +10,7 @@ import dev.utils.app.helper.view.ViewHelper;
  * detail: Helper 通用方法接口
  * @author Ttt
  */
-public interface IHelper {
+public interface IHelper<T> {
 
     // ==========
     // = Helper =

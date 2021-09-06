@@ -7,7 +7,7 @@ import dev.utils.app.helper.IHelper;
  * @author Ttt
  */
 public interface IHelperByQuick<T>
-        extends IHelper {
+        extends IHelper<T> {
 
 
 }
