@@ -166,6 +166,21 @@ public final class QQQQQQQQQQQ
     // =============
 
     /**
+     * 设置 View Id
+     * @param view {@link View}
+     * @param id   View Id
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setId(
+            View view,
+            int id
+    ) {
+        ViewUtils.setId(view, id);
+        return this;
+    }
+
+    /**
      * 设置是否限制子 View 在其边界内绘制
      * @param clipChildren {@code true} yes, {@code false} no
      * @param viewGroups   ViewGroup[]
@@ -194,6 +209,135 @@ public final class QQQQQQQQQQQ
             ViewGroup.LayoutParams params
     ) {
         ViewUtils.setLayoutParams(view, params);
+        return this;
+    }
+
+    /**
+     * 设置 View[] 宽度、高度
+     * @param width  View 宽度
+     * @param height View 高度
+     * @param views  View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setWidthHeights(
+            int width,
+            int height,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ViewUtils.setWidthHeight(value, width, height), views
+        );
+        return this;
+    }
+
+    /**
+     * 设置 View[] 宽度、高度
+     * @param width     View 宽度
+     * @param height    View 高度
+     * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
+     * @param views     View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setWidthHeights(
+            int width,
+            int height,
+            boolean nullNewLP,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ViewUtils.setWidthHeight(value, width, height, nullNewLP), views
+        );
+        return this;
+    }
+
+    /**
+     * 设置 View weight 权重
+     * @param weight 权重比例
+     * @param views  View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setWeight(
+            float weight,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ViewUtils.setWeight(value, weight), views
+        );
+        return this;
+    }
+
+    /**
+     * 设置 View 宽度
+     * @param width View 宽度
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setWidths(
+            int width,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ViewUtils.setWidth(value, width), views
+        );
+        return this;
+    }
+
+    /**
+     * 设置 View 宽度
+     * @param width     View 宽度
+     * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
+     * @param views     View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setWidths(
+            int width,
+            boolean nullNewLP,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ViewUtils.setWidth(value, width, nullNewLP), views
+        );
+        return this;
+    }
+
+    /**
+     * 设置 View 高度
+     * @param height View 高度
+     * @param views  View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setHeights(
+            int height,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ViewUtils.setHeight(value, height), views
+        );
+        return this;
+    }
+
+    /**
+     * 设置 View 高度
+     * @param height    View 高度
+     * @param nullNewLP 如果 LayoutParams 为 null 是否创建新的
+     * @param views     View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setHeights(
+            int height,
+            boolean nullNewLP,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ViewUtils.setHeight(value, height, nullNewLP), views
+        );
         return this;
     }
 }
