@@ -91,51 +91,31 @@ public final class ListenerUtils {
         return null;
     }
 
-    // =============
-    // = 设置点击事件 =
-    // =============
+    // ==========
+    // = 常见事件 =
+    // ==========
+
+    // =======
+    // = 点击 =
+    // =======
 
     /**
      * 设置点击事件
-     * @param view            {@link View}
-     * @param onClickListener {@link View.OnClickListener}
-     * @param viewIds         View id 数组
+     * @param view     {@link View}
+     * @param listener {@link View.OnClickListener}
+     * @param viewIds  ViewId[]
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setOnClicks(
             final View view,
-            final View.OnClickListener onClickListener,
+            final View.OnClickListener listener,
             @IdRes final int... viewIds
     ) {
-        if (view != null && onClickListener != null && viewIds != null) {
+        if (view != null && listener != null && viewIds != null) {
             for (int viewId : viewIds) {
                 View findView = ViewUtils.findViewById(view, viewId);
                 if (findView != null) {
-                    findView.setOnClickListener(onClickListener);
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * 设置点击事件
-     * @param activity        {@link Activity}
-     * @param onClickListener {@link View.OnClickListener}
-     * @param viewIds         View id 数组
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean setOnClicks(
-            final Activity activity,
-            final View.OnClickListener onClickListener,
-            @IdRes final int... viewIds
-    ) {
-        if (activity != null && onClickListener != null && viewIds != null) {
-            for (int viewId : viewIds) {
-                View findView = ViewUtils.findViewById(activity, viewId);
-                if (findView != null) {
-                    findView.setOnClickListener(onClickListener);
+                    findView.setOnClickListener(listener);
                 }
             }
             return true;
@@ -145,18 +125,21 @@ public final class ListenerUtils {
 
     /**
      * 设置点击事件
-     * @param onClickListener {@link View.OnClickListener}
-     * @param views           View 数组
+     * @param activity {@link Activity}
+     * @param listener {@link View.OnClickListener}
+     * @param viewIds  ViewId[]
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setOnClicks(
-            final View.OnClickListener onClickListener,
-            final View... views
+            final Activity activity,
+            final View.OnClickListener listener,
+            @IdRes final int... viewIds
     ) {
-        if (onClickListener != null && views != null) {
-            for (View view : views) {
-                if (view != null) {
-                    view.setOnClickListener(onClickListener);
+        if (activity != null && listener != null && viewIds != null) {
+            for (int viewId : viewIds) {
+                View findView = ViewUtils.findViewById(activity, viewId);
+                if (findView != null) {
+                    findView.setOnClickListener(listener);
                 }
             }
             return true;
@@ -164,27 +147,48 @@ public final class ListenerUtils {
         return false;
     }
 
-    // =============
-    // = 设置长按事件 =
-    // =============
+    /**
+     * 设置点击事件
+     * @param listener {@link View.OnClickListener}
+     * @param views    View[]
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setOnClicks(
+            final View.OnClickListener listener,
+            final View... views
+    ) {
+        if (listener != null && views != null) {
+            for (View view : views) {
+                if (view != null) {
+                    view.setOnClickListener(listener);
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // =======
+    // = 长按 =
+    // =======
 
     /**
      * 设置长按事件
-     * @param view                {@link View}
-     * @param onLongClickListener {@link View.OnLongClickListener}
-     * @param viewIds             View id 数组
+     * @param view     {@link View}
+     * @param listener {@link View.OnLongClickListener}
+     * @param viewIds  ViewId[]
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setOnLongClicks(
             final View view,
-            final View.OnLongClickListener onLongClickListener,
+            final View.OnLongClickListener listener,
             @IdRes final int... viewIds
     ) {
-        if (view != null && onLongClickListener != null && viewIds != null) {
+        if (view != null && listener != null && viewIds != null) {
             for (int viewId : viewIds) {
                 View findView = ViewUtils.findViewById(view, viewId);
                 if (findView != null) {
-                    findView.setOnLongClickListener(onLongClickListener);
+                    findView.setOnLongClickListener(listener);
                 }
             }
             return true;
@@ -194,21 +198,21 @@ public final class ListenerUtils {
 
     /**
      * 设置长按事件
-     * @param activity            {@link Activity}
-     * @param onLongClickListener {@link View.OnLongClickListener}
-     * @param viewIds             View id 数组
+     * @param activity {@link Activity}
+     * @param listener {@link View.OnLongClickListener}
+     * @param viewIds  ViewId[]
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setOnLongClicks(
             final Activity activity,
-            final View.OnLongClickListener onLongClickListener,
+            final View.OnLongClickListener listener,
             @IdRes final int... viewIds
     ) {
-        if (activity != null && onLongClickListener != null && viewIds != null) {
+        if (activity != null && listener != null && viewIds != null) {
             for (int viewId : viewIds) {
                 View findView = ViewUtils.findViewById(activity, viewId);
                 if (findView != null) {
-                    findView.setOnLongClickListener(onLongClickListener);
+                    findView.setOnLongClickListener(listener);
                 }
             }
             return true;
@@ -218,18 +222,18 @@ public final class ListenerUtils {
 
     /**
      * 设置长按事件
-     * @param onLongClickListener {@link View.OnLongClickListener}
-     * @param views               View 数组
+     * @param listener {@link View.OnLongClickListener}
+     * @param views    View[]
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setOnLongClicks(
-            final View.OnLongClickListener onLongClickListener,
+            final View.OnLongClickListener listener,
             final View... views
     ) {
-        if (onLongClickListener != null && views != null) {
+        if (listener != null && views != null) {
             for (View view : views) {
                 if (view != null) {
-                    view.setOnLongClickListener(onLongClickListener);
+                    view.setOnLongClickListener(listener);
                 }
             }
             return true;
@@ -237,27 +241,27 @@ public final class ListenerUtils {
         return false;
     }
 
-    // =============
-    // = 设置触摸事件 =
-    // =============
+    // =======
+    // = 触摸 =
+    // =======
 
     /**
      * 设置触摸事件
-     * @param view            {@link View}
-     * @param onTouchListener {@link View.OnTouchListener}
-     * @param viewIds         View id 数组
+     * @param view     {@link View}
+     * @param listener {@link View.OnTouchListener}
+     * @param viewIds  ViewId[]
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setOnTouchs(
             final View view,
-            final View.OnTouchListener onTouchListener,
+            final View.OnTouchListener listener,
             @IdRes final int... viewIds
     ) {
-        if (view != null && onTouchListener != null && viewIds != null) {
+        if (view != null && listener != null && viewIds != null) {
             for (int viewId : viewIds) {
                 View findView = ViewUtils.findViewById(view, viewId);
                 if (findView != null) {
-                    findView.setOnTouchListener(onTouchListener);
+                    findView.setOnTouchListener(listener);
                 }
             }
             return true;
@@ -267,21 +271,21 @@ public final class ListenerUtils {
 
     /**
      * 设置触摸事件
-     * @param activity        {@link Activity}
-     * @param onTouchListener {@link View.OnTouchListener}
-     * @param viewIds         View id 数组
+     * @param activity {@link Activity}
+     * @param listener {@link View.OnTouchListener}
+     * @param viewIds  ViewId[]
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setOnTouchs(
             final Activity activity,
-            final View.OnTouchListener onTouchListener,
+            final View.OnTouchListener listener,
             @IdRes final int... viewIds
     ) {
-        if (activity != null && onTouchListener != null && viewIds != null) {
+        if (activity != null && listener != null && viewIds != null) {
             for (int viewId : viewIds) {
                 View findView = ViewUtils.findViewById(activity, viewId);
                 if (findView != null) {
-                    findView.setOnTouchListener(onTouchListener);
+                    findView.setOnTouchListener(listener);
                 }
             }
             return true;
@@ -291,18 +295,18 @@ public final class ListenerUtils {
 
     /**
      * 设置触摸事件
-     * @param onTouchListener {@link View.OnTouchListener}
-     * @param views           View 数组
+     * @param listener {@link View.OnTouchListener}
+     * @param views    View[]
      * @return {@code true} success, {@code false} fail
      */
     public static boolean setOnTouchs(
-            final View.OnTouchListener onTouchListener,
+            final View.OnTouchListener listener,
             final View... views
     ) {
-        if (onTouchListener != null && views != null) {
+        if (listener != null && views != null) {
             for (View view : views) {
                 if (view != null) {
-                    view.setOnTouchListener(onTouchListener);
+                    view.setOnTouchListener(listener);
                 }
             }
             return true;

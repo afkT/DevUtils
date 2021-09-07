@@ -770,4 +770,59 @@ public final class ClickUtils {
                 int clickNumber
         );
     }
+
+    // ==========
+    // = 常见事件 =
+    // ==========
+
+    /**
+     * 设置点击事件
+     * @param view     {@link View}
+     * @param listener {@link View.OnClickListener}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setOnClick(
+            final View view,
+            final View.OnClickListener listener
+    ) {
+        if (view != null && listener != null) {
+            view.setOnClickListener(listener);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 设置长按事件
+     * @param view     {@link View}
+     * @param listener {@link View.OnLongClickListener}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setOnLongClick(
+            final View view,
+            final View.OnLongClickListener listener
+    ) {
+        if (view != null && listener != null) {
+            view.setOnLongClickListener(listener);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 设置触摸事件
+     * @param view     {@link View}
+     * @param listener {@link View.OnTouchListener}
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean setOnTouch(
+            final View view,
+            final View.OnTouchListener listener
+    ) {
+        if (view != null && listener != null) {
+            view.setOnTouchListener(listener);
+            return true;
+        }
+        return false;
+    }
 }

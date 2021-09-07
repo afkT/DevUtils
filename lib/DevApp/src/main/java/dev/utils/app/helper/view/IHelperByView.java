@@ -1,31 +1,8 @@
 package dev.utils.app.helper.view;
 
-import android.content.res.ColorStateList;
-import android.graphics.Bitmap;
-import android.graphics.ColorFilter;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.text.method.KeyListener;
-import android.text.method.TransformationMethod;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import androidx.annotation.ColorInt;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.FloatRange;
-import androidx.annotation.IdRes;
 
 import dev.utils.app.helper.IHelper;
-import dev.utils.app.helper.quick.QuickHelper;
 
 /**
  * detail: ViewHelper 接口
@@ -34,7 +11,74 @@ import dev.utils.app.helper.quick.QuickHelper;
 public interface IHelperByView<T>
         extends IHelper<T> {
 
+    // ==============
+    // = ClickUtils =
+    // ==============
+
+    /**
+     * 增加控件的触摸范围, 最大范围只能是父布局所包含的的区域
+     * @param range 点击范围
+     * @param views View[]
+     * @return Helper
+     */
+    T addTouchAreas(
+            int range,
+            View... views
+    );
+
+    /**
+     * 增加控件的触摸范围, 最大范围只能是父布局所包含的的区域
+     * @param top    top range
+     * @param bottom bottom range
+     * @param left   left range
+     * @param right  right range
+     * @param views  View[]
+     * @return Helper
+     */
+    T addTouchAreas(
+            int top,
+            int bottom,
+            int left,
+            int right,
+            View... views
+    );
+
+    /**
+     * 设置点击事件
+     * @param listener {@link View.OnClickListener}
+     * @param views    View 数组
+     * @return Helper
+     */
+    T setOnClicks(
+            final View.OnClickListener listener,
+            final View... views
+    );
+
+    /**
+     * 设置长按事件
+     * @param listener {@link View.OnLongClickListener}
+     * @param views    View 数组
+     * @return Helper
+     */
+    T setOnLongClicks(
+            final View.OnLongClickListener listener,
+            final View... views
+    );
+
+    /**
+     * 设置触摸事件
+     * @param listener {@link View.OnTouchListener}
+     * @param views    View 数组
+     * @return Helper
+     */
+    T setOnTouchs(
+            final View.OnTouchListener listener,
+            final View... views
+    );
+
     // =============
     // = ViewUtils =
     // =============
+
+
 }
