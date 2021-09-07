@@ -2171,48 +2171,6 @@ public final class ViewHelper {
     // =
 
     /**
-     * 设置 View Id
-     * @param view {@link View}
-     * @param id   View Id
-     * @return {@link ViewHelper}
-     */
-    public ViewHelper setId(
-            final View view,
-            final int id
-    ) {
-        ViewUtils.setId(view, id);
-        return this;
-    }
-
-    /**
-     * 设置是否限制子 View 在其边界内绘制
-     * @param viewGroup    {@link ViewGroup}
-     * @param clipChildren {@code true} yes, {@code false} no
-     * @return {@link ViewHelper}
-     */
-    public ViewHelper setClipChildren(
-            final ViewGroup viewGroup,
-            final boolean clipChildren
-    ) {
-        ViewUtils.setClipChildren(viewGroup, clipChildren);
-        return this;
-    }
-
-    /**
-     * 设置 View LayoutParams
-     * @param view   {@link View}
-     * @param params LayoutParams
-     * @return {@link ViewHelper}
-     */
-    public ViewHelper setLayoutParams(
-            final View view,
-            final ViewGroup.LayoutParams params
-    ) {
-        ViewUtils.setLayoutParams(view, params);
-        return this;
-    }
-
-    /**
      * 设置 View 是否在触摸模式下获得焦点
      * @param focusableInTouchMode {@code true} 可获取, {@code false} 不可获取
      * @param views                View[]
@@ -3342,7 +3300,7 @@ public final class ViewHelper {
     /**
      * 设置点击事件
      * @param onClickListener {@link View.OnClickListener}
-     * @param views           View 数组
+     * @param views           View[]
      * @return {@link ViewHelper}
      */
     public ViewHelper setOnClicks(
@@ -3356,7 +3314,7 @@ public final class ViewHelper {
     /**
      * 设置长按事件
      * @param onLongClickListener {@link View.OnLongClickListener}
-     * @param views               View 数组
+     * @param views               View[]
      * @return {@link ViewHelper}
      */
     public ViewHelper setOnLongClicks(
@@ -3370,7 +3328,7 @@ public final class ViewHelper {
     /**
      * 设置触摸事件
      * @param onTouchListener {@link View.OnTouchListener}
-     * @param views           View 数组
+     * @param views           View[]
      * @return {@link ViewHelper}
      */
     public ViewHelper setOnTouchs(

@@ -1,8 +1,10 @@
 package dev.utils.app.helper.view;
 
 import android.view.View;
+import android.view.ViewGroup;
 
 import dev.utils.app.ClickUtils;
+import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.dev.DevHelper;
 import dev.utils.app.helper.quick.QuickHelper;
 import dev.utils.common.ForUtils;
@@ -111,7 +113,7 @@ public final class QQQQQQQQQQQ
     /**
      * 设置点击事件
      * @param listener {@link View.OnClickListener}
-     * @param views    View 数组
+     * @param views    View[]
      * @return Helper
      */
     @Override
@@ -128,7 +130,7 @@ public final class QQQQQQQQQQQ
     /**
      * 设置长按事件
      * @param listener {@link View.OnLongClickListener}
-     * @param views    View 数组
+     * @param views    View[]
      * @return Helper
      */
     @Override
@@ -145,7 +147,7 @@ public final class QQQQQQQQQQQ
     /**
      * 设置触摸事件
      * @param listener {@link View.OnTouchListener}
-     * @param views    View 数组
+     * @param views    View[]
      * @return Helper
      */
     @Override
@@ -156,6 +158,42 @@ public final class QQQQQQQQQQQ
         ForUtils.forSimpleArgs(
                 value -> ClickUtils.setOnTouch(value, listener), views
         );
+        return this;
+    }
+
+    // =============
+    // = ViewUtils =
+    // =============
+
+    /**
+     * 设置是否限制子 View 在其边界内绘制
+     * @param clipChildren {@code true} yes, {@code false} no
+     * @param viewGroups   ViewGroup[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setClipChildrens(
+            boolean clipChildren,
+            ViewGroup... viewGroups
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ViewUtils.setClipChildren(value, clipChildren), viewGroups
+        );
+        return this;
+    }
+
+    /**
+     * 设置 View LayoutParams
+     * @param view   {@link View}
+     * @param params LayoutParams
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setLayoutParams(
+            View view,
+            ViewGroup.LayoutParams params
+    ) {
+        ViewUtils.setLayoutParams(view, params);
         return this;
     }
 }

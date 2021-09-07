@@ -1173,7 +1173,7 @@ public final class DevHelper {
     /**
      * 设置点击事件
      * @param onClickListener {@link View.OnClickListener}
-     * @param views           View 数组
+     * @param views           View[]
      * @return {@link DevHelper}
      */
     public DevHelper setOnClicks(
@@ -1187,7 +1187,7 @@ public final class DevHelper {
     /**
      * 设置长按事件
      * @param onLongClickListener {@link View.OnLongClickListener}
-     * @param views               View 数组
+     * @param views               View[]
      * @return {@link DevHelper}
      */
     public DevHelper setOnLongClicks(
@@ -1201,7 +1201,7 @@ public final class DevHelper {
     /**
      * 设置触摸事件
      * @param onTouchListener {@link View.OnTouchListener}
-     * @param views           View 数组
+     * @param views           View[]
      * @return {@link DevHelper}
      */
     public DevHelper setOnTouchs(
