@@ -1,7 +1,9 @@
 package dev.utils.app.helper.view;
 
 import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
 import android.graphics.ColorFilter;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -9,6 +11,7 @@ import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.widget.ImageView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
@@ -16,6 +19,7 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.IdRes;
 
 import dev.utils.app.ClickUtils;
+import dev.utils.app.ImageViewUtils;
 import dev.utils.app.ListViewUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.dev.DevHelper;
@@ -2424,6 +2428,361 @@ public final class QQQQQQQQQQQ
         ForUtils.forSimpleArgs(
                 value -> ListViewUtils.scrollBy(value, x, y), views
         );
+        return this;
+    }
+
+    // ==================
+    // = ImageViewUtils =
+    // ==================
+
+    /**
+     * 设置 ImageView 是否保持宽高比
+     * @param adjustViewBounds 是否调整此视图的边界以保持可绘制的原始纵横比
+     * @param imageViews       ImageView[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setAdjustViewBounds(
+            boolean adjustViewBounds,
+            ImageView... imageViews
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ImageViewUtils.setAdjustViewBounds(value, adjustViewBounds), imageViews
+        );
+        return this;
+    }
+
+    /**
+     * 设置 ImageView 最大高度
+     * @param maxHeight  最大高度
+     * @param imageViews ImageView[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setMaxHeight(
+            int maxHeight,
+            ImageView... imageViews
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ImageViewUtils.setMaxHeight(value, maxHeight), imageViews
+        );
+        return this;
+    }
+
+    /**
+     * 设置 ImageView 最大宽度
+     * @param maxWidth   最大宽度
+     * @param imageViews ImageView[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setMaxWidth(
+            int maxWidth,
+            ImageView... imageViews
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ImageViewUtils.setMaxWidth(value, maxWidth), imageViews
+        );
+        return this;
+    }
+
+    /**
+     * 设置 ImageView Level
+     * @param level level Image
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setImageLevel(
+            int level,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ImageViewUtils.setImageLevel(value, level), views
+        );
+        return this;
+    }
+
+    /**
+     * 设置 ImageView Bitmap
+     * @param bitmap {@link Bitmap}
+     * @param views  View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setImageBitmap(
+            Bitmap bitmap,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ImageViewUtils.setImageBitmap(value, bitmap), views
+        );
+        return this;
+    }
+
+    /**
+     * 设置 ImageView Drawable
+     * @param drawable {@link Bitmap}
+     * @param views    View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setImageDrawable(
+            Drawable drawable,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ImageViewUtils.setImageDrawable(value, drawable), views
+        );
+        return this;
+    }
+
+    /**
+     * 设置 ImageView 资源
+     * @param resId resource identifier
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setImageResource(
+            @DrawableRes int resId,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ImageViewUtils.setImageResource(value, resId), views
+        );
+        return this;
+    }
+
+    /**
+     * 设置 ImageView Matrix
+     * @param matrix {@link Matrix}
+     * @param views  View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setImageMatrix(
+            Matrix matrix,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ImageViewUtils.setImageMatrix(value, matrix), views
+        );
+        return this;
+    }
+
+    /**
+     * 设置 ImageView 着色颜色
+     * @param tint  着色颜色
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setImageTintList(
+            ColorStateList tint,
+            View... views
+    ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ForUtils.forSimpleArgs(
+                    value -> ImageViewUtils.setImageTintList(value, tint), views
+            );
+        }
+        return this;
+    }
+
+    /**
+     * 设置 ImageView 着色模式
+     * @param tintMode 着色模式 {@link PorterDuff.Mode}
+     * @param views    View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setImageTintMode(
+            PorterDuff.Mode tintMode,
+            View... views
+    ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ForUtils.forSimpleArgs(
+                    value -> ImageViewUtils.setImageTintMode(value, tintMode), views
+            );
+        }
+        return this;
+    }
+
+    /**
+     * 设置 ImageView 缩放类型
+     * @param scaleType 缩放类型 {@link ImageView.ScaleType}
+     * @param views     View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setScaleType(
+            ImageView.ScaleType scaleType,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ImageViewUtils.setScaleType(value, scaleType), views
+        );
+        return this;
+    }
+
+    /**
+     * 设置 View 图片资源
+     * @param resId resource identifier
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setBackgroundResources(
+            @DrawableRes int resId,
+            View... views
+    ) {
+        ImageViewUtils.setBackgroundResources(resId, views);
+        return this;
+    }
+
+    /**
+     * 设置 View 图片资源
+     * @param resId        resource identifier
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setBackgroundResources(
+            @DrawableRes int resId,
+            int isVisibility,
+            View... views
+    ) {
+        ImageViewUtils.setBackgroundResources(resId, isVisibility, views);
+        return this;
+    }
+
+    /**
+     * 设置 View 图片资源
+     * @param resId resource identifier
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setImageResources(
+            @DrawableRes int resId,
+            View... views
+    ) {
+        ImageViewUtils.setImageResources(resId, views);
+        return this;
+    }
+
+    /**
+     * 设置 View 图片资源
+     * @param resId        resource identifier
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setImageResources(
+            @DrawableRes int resId,
+            int isVisibility,
+            View... views
+    ) {
+        ImageViewUtils.setImageResources(resId, isVisibility, views);
+        return this;
+    }
+
+    /**
+     * 设置 View Bitmap
+     * @param bitmap {@link Bitmap}
+     * @param views  View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setImageBitmaps(
+            Bitmap bitmap,
+            View... views
+    ) {
+        ImageViewUtils.setImageBitmaps(bitmap, views);
+        return this;
+    }
+
+    /**
+     * 设置 View Bitmap
+     * @param bitmap       {@link Bitmap}
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setImageBitmaps(
+            Bitmap bitmap,
+            int isVisibility,
+            View... views
+    ) {
+        ImageViewUtils.setImageBitmaps(bitmap, isVisibility, views);
+        return this;
+    }
+
+    /**
+     * 设置 View Drawable
+     * @param drawable {@link drawable}
+     * @param views    View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setImageDrawables(
+            Drawable drawable,
+            View... views
+    ) {
+        ImageViewUtils.setImageDrawables(drawable, views);
+        return this;
+    }
+
+    /**
+     * 设置 View Drawable
+     * @param drawable     {@link drawable}
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setImageDrawables(
+            Drawable drawable,
+            int isVisibility,
+            View... views
+    ) {
+        ImageViewUtils.setImageDrawables(drawable, isVisibility, views);
+        return this;
+    }
+
+    /**
+     * 设置 View 缩放模式
+     * @param scaleType {@link ImageView.ScaleType}
+     * @param views     View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setScaleTypes(
+            ImageView.ScaleType scaleType,
+            View... views
+    ) {
+        ImageViewUtils.setScaleTypes(scaleType, views);
+        return this;
+    }
+
+    /**
+     * 设置 View 缩放模式
+     * @param scaleType    {@link ImageView.ScaleType}
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setScaleTypes(
+            ImageView.ScaleType scaleType,
+            int isVisibility,
+            View... views
+    ) {
+        ImageViewUtils.setScaleTypes(scaleType, isVisibility, views);
         return this;
     }
 }

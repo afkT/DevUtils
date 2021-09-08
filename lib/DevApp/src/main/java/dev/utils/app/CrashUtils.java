@@ -47,8 +47,8 @@ public final class CrashUtils
      * @param crashCatchListener {@link CrashCatchListener}
      */
     public void initialize(
-            Context context,
-            CrashCatchListener crashCatchListener
+            final Context context,
+            final CrashCatchListener crashCatchListener
     ) {
         this.mContext            = context;
         this.mCrashCatchListener = crashCatchListener;
@@ -83,7 +83,7 @@ public final class CrashUtils
      * @param ex {@link Throwable}
      * @return {@code true} 处理该异常信息, {@code false} 未处理该异常信息
      */
-    private boolean handleException(Throwable ex) {
+    private boolean handleException(final Throwable ex) {
         if (ex == null) return false;
         // 触发回调
         if (mCrashCatchListener != null) {

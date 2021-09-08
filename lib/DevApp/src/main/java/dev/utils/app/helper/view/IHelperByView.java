@@ -1,13 +1,16 @@
 package dev.utils.app.helper.view;
 
 import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
 import android.graphics.ColorFilter;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.widget.ImageView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
@@ -1602,6 +1605,251 @@ public interface IHelperByView<T>
     T scrollBy(
             int x,
             int y,
+            View... views
+    );
+
+    // ==================
+    // = ImageViewUtils =
+    // ==================
+
+    /**
+     * 设置 ImageView 是否保持宽高比
+     * @param adjustViewBounds 是否调整此视图的边界以保持可绘制的原始纵横比
+     * @param imageViews       ImageView[]
+     * @return Helper
+     */
+    T setAdjustViewBounds(
+            boolean adjustViewBounds,
+            ImageView... imageViews
+    );
+
+    /**
+     * 设置 ImageView 最大高度
+     * @param maxHeight  最大高度
+     * @param imageViews ImageView[]
+     * @return Helper
+     */
+    T setMaxHeight(
+            int maxHeight,
+            ImageView... imageViews
+    );
+
+    /**
+     * 设置 ImageView 最大宽度
+     * @param maxWidth   最大宽度
+     * @param imageViews ImageView[]
+     * @return Helper
+     */
+    T setMaxWidth(
+            int maxWidth,
+            ImageView... imageViews
+    );
+
+    /**
+     * 设置 ImageView Level
+     * @param level level Image
+     * @param views View[]
+     * @return Helper
+     */
+    T setImageLevel(
+            int level,
+            View... views
+    );
+
+    /**
+     * 设置 ImageView Bitmap
+     * @param bitmap {@link Bitmap}
+     * @param views  View[]
+     * @return Helper
+     */
+    T setImageBitmap(
+            Bitmap bitmap,
+            View... views
+    );
+
+    /**
+     * 设置 ImageView Drawable
+     * @param drawable {@link Bitmap}
+     * @param views    View[]
+     * @return Helper
+     */
+    T setImageDrawable(
+            Drawable drawable,
+            View... views
+    );
+
+    /**
+     * 设置 ImageView 资源
+     * @param resId resource identifier
+     * @param views View[]
+     * @return Helper
+     */
+    T setImageResource(
+            @DrawableRes int resId,
+            View... views
+    );
+
+    /**
+     * 设置 ImageView Matrix
+     * @param matrix {@link Matrix}
+     * @param views  View[]
+     * @return Helper
+     */
+    T setImageMatrix(
+            Matrix matrix,
+            View... views
+    );
+
+    /**
+     * 设置 ImageView 着色颜色
+     * @param tint  着色颜色
+     * @param views View[]
+     * @return Helper
+     */
+    T setImageTintList(
+            ColorStateList tint,
+            View... views
+    );
+
+    /**
+     * 设置 ImageView 着色模式
+     * @param tintMode 着色模式 {@link PorterDuff.Mode}
+     * @param views    View[]
+     * @return Helper
+     */
+    T setImageTintMode(
+            PorterDuff.Mode tintMode,
+            View... views
+    );
+
+    /**
+     * 设置 ImageView 缩放类型
+     * @param scaleType 缩放类型 {@link ImageView.ScaleType}
+     * @param views     View[]
+     * @return Helper
+     */
+    T setScaleType(
+            ImageView.ScaleType scaleType,
+            View... views
+    );
+
+    /**
+     * 设置 View 图片资源
+     * @param resId resource identifier
+     * @param views View[]
+     * @return Helper
+     */
+    T setBackgroundResources(
+            @DrawableRes int resId,
+            View... views
+    );
+
+    /**
+     * 设置 View 图片资源
+     * @param resId        resource identifier
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return Helper
+     */
+    T setBackgroundResources(
+            @DrawableRes int resId,
+            int isVisibility,
+            View... views
+    );
+
+    /**
+     * 设置 View 图片资源
+     * @param resId resource identifier
+     * @param views View[]
+     * @return Helper
+     */
+    T setImageResources(
+            @DrawableRes int resId,
+            View... views
+    );
+
+    /**
+     * 设置 View 图片资源
+     * @param resId        resource identifier
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return Helper
+     */
+    T setImageResources(
+            @DrawableRes int resId,
+            int isVisibility,
+            View... views
+    );
+
+    /**
+     * 设置 View Bitmap
+     * @param bitmap {@link Bitmap}
+     * @param views  View[]
+     * @return Helper
+     */
+    T setImageBitmaps(
+            Bitmap bitmap,
+            View... views
+    );
+
+    /**
+     * 设置 View Bitmap
+     * @param bitmap       {@link Bitmap}
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return Helper
+     */
+    T setImageBitmaps(
+            Bitmap bitmap,
+            int isVisibility,
+            View... views
+    );
+
+    /**
+     * 设置 View Drawable
+     * @param drawable {@link drawable}
+     * @param views    View[]
+     * @return Helper
+     */
+    T setImageDrawables(
+            Drawable drawable,
+            View... views
+    );
+
+    /**
+     * 设置 View Drawable
+     * @param drawable     {@link drawable}
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return Helper
+     */
+    T setImageDrawables(
+            Drawable drawable,
+            int isVisibility,
+            View... views
+    );
+
+    /**
+     * 设置 View 缩放模式
+     * @param scaleType {@link ImageView.ScaleType}
+     * @param views     View[]
+     * @return Helper
+     */
+    T setScaleTypes(
+            ImageView.ScaleType scaleType,
+            View... views
+    );
+
+    /**
+     * 设置 View 缩放模式
+     * @param scaleType    {@link ImageView.ScaleType}
+     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
+     * @param views        View[]
+     * @return Helper
+     */
+    T setScaleTypes(
+            ImageView.ScaleType scaleType,
+            int isVisibility,
             View... views
     );
 }
