@@ -33,7 +33,7 @@ public interface IHelperByView<T>
      * @param views View[]
      * @return Helper
      */
-    T addTouchAreas(
+    T addTouchArea(
             int range,
             View... views
     );
@@ -47,7 +47,7 @@ public interface IHelperByView<T>
      * @param views  View[]
      * @return Helper
      */
-    T addTouchAreas(
+    T addTouchArea(
             int top,
             int bottom,
             int left,
@@ -61,7 +61,7 @@ public interface IHelperByView<T>
      * @param views    View[]
      * @return Helper
      */
-    T setOnClicks(
+    T setOnClick(
             View.OnClickListener listener,
             View... views
     );
@@ -72,7 +72,7 @@ public interface IHelperByView<T>
      * @param views    View[]
      * @return Helper
      */
-    T setOnLongClicks(
+    T setOnLongClick(
             View.OnLongClickListener listener,
             View... views
     );
@@ -83,7 +83,7 @@ public interface IHelperByView<T>
      * @param views    View[]
      * @return Helper
      */
-    T setOnTouchs(
+    T setOnTouch(
             View.OnTouchListener listener,
             View... views
     );
@@ -109,17 +109,17 @@ public interface IHelperByView<T>
      * @param viewGroups   ViewGroup[]
      * @return Helper
      */
-    T setClipChildrens(
+    T setClipChildren(
             boolean clipChildren,
             ViewGroup... viewGroups
     );
 
     /**
      * 移除全部子 View
-     * @param viewGroups {@link ViewGroup}
+     * @param viewGroups ViewGroup[]
      * @return Helper
      */
-    T removeAllViews(final ViewGroup... viewGroups);
+    T removeAllViews(ViewGroup... viewGroups);
 
     /**
      * 添加 View
@@ -206,7 +206,7 @@ public interface IHelperByView<T>
      * @param views  View[]
      * @return Helper
      */
-    T setWidthHeights(
+    T setWidthHeight(
             int width,
             int height,
             View... views
@@ -220,7 +220,7 @@ public interface IHelperByView<T>
      * @param views     View[]
      * @return Helper
      */
-    T setWidthHeights(
+    T setWidthHeight(
             int width,
             int height,
             boolean nullNewLP,
@@ -244,7 +244,7 @@ public interface IHelperByView<T>
      * @param views View[]
      * @return Helper
      */
-    T setWidths(
+    T setWidth(
             int width,
             View... views
     );
@@ -256,7 +256,7 @@ public interface IHelperByView<T>
      * @param views     View[]
      * @return Helper
      */
-    T setWidths(
+    T setWidth(
             int width,
             boolean nullNewLP,
             View... views
@@ -268,7 +268,7 @@ public interface IHelperByView<T>
      * @param views  View[]
      * @return Helper
      */
-    T setHeights(
+    T setHeight(
             int height,
             View... views
     );
@@ -280,43 +280,43 @@ public interface IHelperByView<T>
      * @param views     View[]
      * @return Helper
      */
-    T setHeights(
+    T setHeight(
             int height,
             boolean nullNewLP,
             View... views
     );
 
     /**
-     * 设置 View 最小高度
-     * @param view      {@link View}
-     * @param minHeight 最小高度
-     * @return Helper
-     */
-    T setMinimumHeight(
-            View view,
-            int minHeight
-    );
-
-    /**
      * 设置 View 最小宽度
-     * @param view     {@link View}
      * @param minWidth 最小宽度
+     * @param views    View[]
      * @return Helper
      */
     T setMinimumWidth(
-            View view,
-            int minWidth
+            int minWidth,
+            View... views
+    );
+
+    /**
+     * 设置 View 最小高度
+     * @param minHeight 最小高度
+     * @param views     View[]
+     * @return Helper
+     */
+    T setMinimumHeight(
+            int minHeight,
+            View... views
     );
 
     /**
      * 设置 View 透明度
-     * @param view  View
      * @param alpha 透明度
+     * @param views View[]
      * @return Helper
      */
     T setAlpha(
-            View view,
-            @FloatRange(from = 0.0, to = 1.0) float alpha
+            @FloatRange(from = 0.0, to = 1.0) float alpha,
+            View... views
     );
 
     /**
@@ -332,24 +332,24 @@ public interface IHelperByView<T>
 
     /**
      * 设置 View 滑动的 X 轴坐标
-     * @param view  {@link View}
      * @param value X 轴坐标
+     * @param views View[]
      * @return Helper
      */
     T setScrollX(
-            View view,
-            int value
+            int value,
+            View... views
     );
 
     /**
      * 设置 View 滑动的 Y 轴坐标
-     * @param view  {@link View}
      * @param value Y 轴坐标
+     * @param views View[]
      * @return Helper
      */
     T setScrollY(
-            View view,
-            int value
+            int value,
+            View... views
     );
 
     /**
@@ -360,13 +360,13 @@ public interface IHelperByView<T>
      *     blocksDescendants : ViewGroup 会覆盖子类控件而直接获得焦点
      *     android:descendantFocusability="blocksDescendants"
      * </pre>
-     * @param viewGroup    {@link ViewGroup}
      * @param focusability {@link ViewGroup#FOCUS_BEFORE_DESCENDANTS}、{@link ViewGroup#FOCUS_AFTER_DESCENDANTS}、{@link ViewGroup#FOCUS_BLOCK_DESCENDANTS}
+     * @param viewGroups   ViewGroup[]
      * @return Helper
      */
     T setDescendantFocusability(
-            ViewGroup viewGroup,
-            int focusability
+            int focusability,
+            ViewGroup... viewGroups
     );
 
     /**
@@ -375,46 +375,46 @@ public interface IHelperByView<T>
      *     设置滑动到边缘时无效果模式 {@link View#OVER_SCROLL_NEVER}
      *     android:overScrollMode="never"
      * </pre>
-     * @param view           {@link View}
      * @param overScrollMode {@link View#OVER_SCROLL_ALWAYS}、{@link View#OVER_SCROLL_IF_CONTENT_SCROLLS}、{@link View#OVER_SCROLL_NEVER}
+     * @param views          View[]
      * @return Helper
      */
     T setOverScrollMode(
-            View view,
-            int overScrollMode
+            int overScrollMode,
+            View... views
     );
 
     /**
      * 设置是否绘制横向滚动条
-     * @param view                       {@link View}
      * @param horizontalScrollBarEnabled {@code true} yes, {@code false} no
+     * @param views                      View[]
      * @return Helper
      */
     T setHorizontalScrollBarEnabled(
-            View view,
-            boolean horizontalScrollBarEnabled
+            boolean horizontalScrollBarEnabled,
+            View... views
     );
 
     /**
      * 设置是否绘制垂直滚动条
-     * @param view                     {@link View}
      * @param verticalScrollBarEnabled {@code true} yes, {@code false} no
+     * @param views                    View[]
      * @return Helper
      */
     T setVerticalScrollBarEnabled(
-            View view,
-            boolean verticalScrollBarEnabled
+            boolean verticalScrollBarEnabled,
+            View... views
     );
 
     /**
      * 设置 View 滚动效应
-     * @param view              {@link View}
      * @param isScrollContainer 是否需要滚动效应
+     * @param views             View[]
      * @return Helper
      */
     T setScrollContainer(
-            View view,
-            boolean isScrollContainer
+            boolean isScrollContainer,
+            View... views
     );
 
     /**
@@ -474,158 +474,158 @@ public interface IHelperByView<T>
 
     /**
      * 设置 View 旋转度数
-     * @param view     {@link View}
      * @param rotation 旋转度数
+     * @param views    View[]
      * @return Helper
      */
     T setRotation(
-            View view,
-            float rotation
+            float rotation,
+            View... views
     );
 
     /**
      * 设置 View 水平旋转度数
-     * @param view      {@link View}
      * @param rotationX 水平旋转度数
+     * @param views     View[]
      * @return Helper
      */
     T setRotationX(
-            View view,
-            float rotationX
+            float rotationX,
+            View... views
     );
 
     /**
      * 设置 View 竖直旋转度数
-     * @param view      {@link View}
      * @param rotationY 竖直旋转度数
+     * @param views     View[]
      * @return Helper
      */
     T setRotationY(
-            View view,
-            float rotationY
+            float rotationY,
+            View... views
     );
 
     /**
      * 设置 View 水平方向缩放比例
-     * @param view   View
      * @param scaleX 水平方向缩放比例
+     * @param views  View[]
      * @return Helper
      */
     T setScaleX(
-            View view,
-            float scaleX
+            float scaleX,
+            View... views
     );
 
     /**
      * 设置 View 竖直方向缩放比例
-     * @param view   View
      * @param scaleY 竖直方向缩放比例
+     * @param views  View[]
      * @return Helper
      */
     T setScaleY(
-            View view,
-            float scaleY
+            float scaleY,
+            View... views
     );
 
     /**
      * 设置文本的显示方式
-     * @param view          {@link View}
      * @param textAlignment 文本的显示方式
+     * @param views         View[]
      * @return Helper
      */
     T setTextAlignment(
-            View view,
-            int textAlignment
+            int textAlignment,
+            View... views
     );
 
     /**
      * 设置文本的显示方向
-     * @param view          {@link View}
      * @param textDirection 文本的显示方向
+     * @param views         View[]
      * @return Helper
      */
     T setTextDirection(
-            View view,
-            int textDirection
+            int textDirection,
+            View... views
     );
 
     /**
      * 设置水平方向偏转量
-     * @param view   View
      * @param pivotX 水平方向偏转量
+     * @param views  View[]
      * @return Helper
      */
     T setPivotX(
-            View view,
-            float pivotX
+            float pivotX,
+            View... views
     );
 
     /**
      * 设置竖直方向偏转量
-     * @param view   View
      * @param pivotY 竖直方向偏转量
+     * @param views  View[]
      * @return Helper
      */
     T setPivotY(
-            View view,
-            float pivotY
+            float pivotY,
+            View... views
     );
 
     /**
      * 设置水平方向的移动距离
-     * @param view         {@link View}
      * @param translationX 水平方向的移动距离
+     * @param views        View[]
      * @return Helper
      */
     T setTranslationX(
-            View view,
-            float translationX
+            float translationX,
+            View... views
     );
 
     /**
      * 设置竖直方向的移动距离
-     * @param view         {@link View}
      * @param translationY 竖直方向的移动距离
+     * @param views        View[]
      * @return Helper
      */
     T setTranslationY(
-            View view,
-            float translationY
+            float translationY,
+            View... views
     );
 
     /**
      * 设置 View 硬件加速类型
-     * @param view      {@link View}
      * @param layerType 硬件加速类型
      * @param paint     {@link Paint}
+     * @param views     View[]
      * @return Helper
      */
     T setLayerType(
-            View view,
             int layerType,
-            Paint paint
+            Paint paint,
+            View... views
     );
 
     /**
      * 请求重新对 View 布局
-     * @param view {@link View}
+     * @param views View[]
      * @return Helper
      */
-    T requestLayout(final View view);
+    T requestLayout(View... views);
 
     /**
      * View 请求获取焦点
-     * @param view {@link View}
+     * @param views View[]
      * @return Helper
      */
-    T requestFocus(final View view);
+    T requestFocus(View... views);
 
     /**
      * View 清除焦点
-     * @param view {@link View}
+     * @param views View[]
      * @return Helper
      */
-    T clearFocus(final View view);
+    T clearFocus(View... views);
 
     /**
      * 设置 View 是否在触摸模式下获得焦点
@@ -654,7 +654,7 @@ public interface IHelperByView<T>
      * @param views View[]
      * @return Helper
      */
-    T toggleFocusable(final View... views);
+    T toggleFocusable(View... views);
 
     /**
      * 设置 View 是否选中
@@ -672,7 +672,7 @@ public interface IHelperByView<T>
      * @param views View[]
      * @return Helper
      */
-    T toggleSelected(final View... views);
+    T toggleSelected(View... views);
 
     /**
      * 设置 View 是否启用
@@ -690,7 +690,7 @@ public interface IHelperByView<T>
      * @param views View[]
      * @return Helper
      */
-    T toggleEnabled(final View... views);
+    T toggleEnabled(View... views);
 
     /**
      * 设置 View 是否可以点击
@@ -708,7 +708,7 @@ public interface IHelperByView<T>
      * @param views View[]
      * @return Helper
      */
-    T toggleClickable(final View... views);
+    T toggleClickable(View... views);
 
     /**
      * 设置 View 是否可以长按
@@ -726,40 +726,7 @@ public interface IHelperByView<T>
      * @param views View[]
      * @return Helper
      */
-    T toggleLongClickable(final View... views);
-
-    /**
-     * 设置 View 显示的状态
-     * @param isVisibility {@code true} View.VISIBLE, {@code false} View.GONE
-     * @param view         {@link View}
-     * @return Helper
-     */
-    T setVisibility(
-            boolean isVisibility,
-            View view
-    );
-
-    /**
-     * 设置 View 显示的状态
-     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
-     * @param view         {@link View}
-     * @return Helper
-     */
-    T setVisibility(
-            int isVisibility,
-            View view
-    );
-
-    /**
-     * 设置 View 显示的状态
-     * @param isVisibility {@code true} View.VISIBLE, {@code false} View.INVISIBLE
-     * @param view         {@link View}
-     * @return Helper
-     */
-    T setVisibilityIN(
-            boolean isVisibility,
-            View view
-    );
+    T toggleLongClickable(View... views);
 
     /**
      * 设置 View 显示的状态
@@ -885,19 +852,6 @@ public interface IHelperByView<T>
      * 切换 View 状态
      * @param isChange     是否改变
      * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
-     * @param view         {@link View}
-     * @return Helper
-     */
-    T toggleView(
-            boolean isChange,
-            int isVisibility,
-            View view
-    );
-
-    /**
-     * 切换 View 状态
-     * @param isChange     是否改变
-     * @param isVisibility {@link View#VISIBLE}、{@link View#INVISIBLE}、{@link View#GONE}
      * @param views        View[]
      * @return Helper
      */
@@ -909,424 +863,342 @@ public interface IHelperByView<T>
 
     /**
      * 把自身从父 View 中移除
-     * @param view {@link View}
+     * @param views View[]
      * @return Helper
      */
-    T removeSelfFromParent(final View view);
+    T removeSelfFromParent(View... views);
 
     /**
      * View 请求更新
-     * @param view      {@link View}
      * @param allParent 是否全部父布局 View 都请求
+     * @param views     View[]
      * @return Helper
      */
     T requestLayoutParent(
-            View view,
-            boolean allParent
+            boolean allParent,
+            View... views
     );
 
     /**
      * 测量 View
-     * @param view           {@link View}
      * @param specifiedWidth 指定宽度
+     * @param views          View[]
      * @return Helper
      */
     T measureView(
-            View view,
-            int specifiedWidth
+            int specifiedWidth,
+            View... views
     );
 
     /**
      * 测量 View
-     * @param view            {@link View}
      * @param specifiedWidth  指定宽度
      * @param specifiedHeight 指定高度
+     * @param views           View[]
      * @return Helper
      */
     T measureView(
-            View view,
             int specifiedWidth,
-            int specifiedHeight
+            int specifiedHeight,
+            View... views
     );
 
     /**
      * 设置 View Layout Gravity
-     * @param view    {@link View}
      * @param gravity Gravity
+     * @param views   View[]
      * @return Helper
      */
     T setLayoutGravity(
-            View view,
-            int gravity
+            int gravity,
+            View... views
     );
 
     /**
      * 设置 View Layout Gravity
-     * @param view         {@link View}
      * @param gravity      Gravity
      * @param isReflection 是否使用反射
+     * @param views        View[]
      * @return Helper
      */
     T setLayoutGravity(
-            View view,
             int gravity,
-            boolean isReflection
+            boolean isReflection,
+            View... views
     );
 
     /**
      * 设置 View Left Margin
-     * @param view       {@link View}
      * @param leftMargin Left Margin
+     * @param views      View[]
      * @return Helper
      */
     T setMarginLeft(
-            View view,
-            int leftMargin
+            int leftMargin,
+            View... views
     );
 
     /**
      * 设置 View Left Margin
-     * @param view       {@link View}
      * @param leftMargin Left Margin
      * @param reset      是否重置清空其他 margin
+     * @param views      View[]
      * @return Helper
      */
     T setMarginLeft(
-            View view,
             int leftMargin,
-            boolean reset
+            boolean reset,
+            View... views
     );
 
     /**
      * 设置 View Top Margin
-     * @param view      {@link View}
      * @param topMargin Top Margin
+     * @param views     View[]
      * @return Helper
      */
     T setMarginTop(
-            View view,
-            int topMargin
+            int topMargin,
+            View... views
     );
 
     /**
      * 设置 View Top Margin
-     * @param view      {@link View}
      * @param topMargin Top Margin
      * @param reset     是否重置清空其他 margin
+     * @param views     View[]
      * @return Helper
      */
     T setMarginTop(
-            View view,
             int topMargin,
-            boolean reset
+            boolean reset,
+            View... views
     );
 
     /**
      * 设置 View Right Margin
-     * @param view        {@link View}
      * @param rightMargin Right Margin
+     * @param views       View[]
      * @return Helper
      */
     T setMarginRight(
-            View view,
-            int rightMargin
+            int rightMargin,
+            View... views
     );
 
     /**
      * 设置 View Right Margin
-     * @param view        {@link View}
      * @param rightMargin Right Margin
      * @param reset       是否重置清空其他 margin
+     * @param views       View[]
      * @return Helper
      */
     T setMarginRight(
-            View view,
             int rightMargin,
-            boolean reset
+            boolean reset,
+            View... views
     );
 
     /**
      * 设置 View Bottom Margin
-     * @param view         {@link View}
      * @param bottomMargin Bottom Margin
+     * @param views        View[]
      * @return Helper
      */
     T setMarginBottom(
-            View view,
-            int bottomMargin
+            int bottomMargin,
+            View... views
     );
 
     /**
      * 设置 View Bottom Margin
-     * @param view         {@link View}
      * @param bottomMargin Bottom Margin
      * @param reset        是否重置清空其他 margin
+     * @param views        View[]
      * @return Helper
      */
     T setMarginBottom(
-            View view,
             int bottomMargin,
-            boolean reset
+            boolean reset,
+            View... views
     );
 
     /**
      * 设置 Margin 边距
-     * @param view      {@link View}
      * @param leftRight Left and Right Margin
      * @param topBottom Top and bottom Margin
-     * @return Helper
-     */
-    T setMargin(
-            View view,
-            int leftRight,
-            int topBottom
-    );
-
-    /**
-     * 设置 Margin 边距
-     * @param view   {@link View}
-     * @param margin Margin
-     * @return Helper
-     */
-    T setMargin(
-            View view,
-            int margin
-    );
-
-    /**
-     * 设置 Margin 边距
-     * @param view   {@link View}
-     * @param left   Left Margin
-     * @param top    Top Margin
-     * @param right  Right Margin
-     * @param bottom Bottom Margin
-     * @return Helper
-     */
-    T setMargin(
-            View view,
-            int left,
-            int top,
-            int right,
-            int bottom
-    );
-
-    /**
-     * 设置 Margin 边距
      * @param views     View[]
-     * @param leftRight Left and Right Margin
-     * @param topBottom Top and bottom Margin
      * @return Helper
      */
     T setMargin(
-            View[] views,
             int leftRight,
-            int topBottom
+            int topBottom,
+            View... views
     );
 
     /**
      * 设置 Margin 边距
-     * @param views  View[]
      * @param margin Margin
+     * @param views  View[]
      * @return Helper
      */
     T setMargin(
-            View[] views,
-            int margin
+            int margin,
+            View... views
     );
 
     /**
      * 设置 Margin 边距
-     * @param views  View[]
      * @param left   Left Margin
      * @param top    Top Margin
      * @param right  Right Margin
      * @param bottom Bottom Margin
+     * @param views  View[]
      * @return Helper
      */
     T setMargin(
-            View[] views,
             int left,
             int top,
             int right,
-            int bottom
+            int bottom,
+            View... views
     );
 
     /**
      * 设置 View Left Padding
-     * @param view        {@link View}
      * @param leftPadding Left Padding
+     * @param views       View[]
      * @return Helper
      */
     T setPaddingLeft(
-            View view,
-            int leftPadding
+            int leftPadding,
+            View... views
     );
 
     /**
      * 设置 View Left Padding
-     * @param view        {@link View}
      * @param leftPadding Left Padding
      * @param reset       是否重置清空其他 Padding
+     * @param views       View[]
      * @return Helper
      */
     T setPaddingLeft(
-            View view,
             int leftPadding,
-            boolean reset
+            boolean reset,
+            View... views
     );
 
     /**
      * 设置 View Top Padding
-     * @param view       {@link View}
      * @param topPadding Top Padding
+     * @param views      View[]
      * @return Helper
      */
     T setPaddingTop(
-            View view,
-            int topPadding
+            int topPadding,
+            View... views
     );
 
     /**
      * 设置 View Top Padding
-     * @param view       {@link View}
      * @param topPadding Top Padding
      * @param reset      是否重置清空其他 Padding
+     * @param views      View[]
      * @return Helper
      */
     T setPaddingTop(
-            View view,
             int topPadding,
-            boolean reset
+            boolean reset,
+            View... views
     );
 
     /**
      * 设置 View Right Padding
-     * @param view         {@link View}
      * @param rightPadding Right Padding
+     * @param views        View[]
      * @return Helper
      */
     T setPaddingRight(
-            View view,
-            int rightPadding
+            int rightPadding,
+            View... views
     );
 
     /**
      * 设置 View Right Padding
-     * @param view         {@link View}
      * @param rightPadding Right Padding
      * @param reset        是否重置清空其他 Padding
+     * @param views        View[]
      * @return Helper
      */
     T setPaddingRight(
-            View view,
             int rightPadding,
-            boolean reset
+            boolean reset,
+            View... views
     );
 
     /**
      * 设置 View Bottom Padding
-     * @param view          {@link View}
      * @param bottomPadding Bottom Padding
+     * @param views         View[]
      * @return Helper
      */
     T setPaddingBottom(
-            View view,
-            int bottomPadding
+            int bottomPadding,
+            View... views
     );
 
     /**
      * 设置 View Bottom Padding
-     * @param view          {@link View}
      * @param bottomPadding Bottom Padding
      * @param reset         是否重置清空其他 Padding
+     * @param views         View[]
      * @return Helper
      */
     T setPaddingBottom(
-            View view,
             int bottomPadding,
-            boolean reset
+            boolean reset,
+            View... views
     );
 
     /**
      * 设置 Padding 边距
-     * @param view      {@link View}
      * @param leftRight Left and Right Padding
      * @param topBottom Top and bottom Padding
-     * @return Helper
-     */
-    T setPadding(
-            View view,
-            int leftRight,
-            int topBottom
-    );
-
-    /**
-     * 设置 Padding 边距
-     * @param view    {@link View}
-     * @param padding Padding
-     * @return Helper
-     */
-    T setPadding(
-            View view,
-            int padding
-    );
-
-    /**
-     * 设置 Padding 边距
-     * @param view   {@link View}
-     * @param left   Left Padding
-     * @param top    Top Padding
-     * @param right  Right Padding
-     * @param bottom Bottom Padding
-     * @return Helper
-     */
-    T setPadding(
-            View view,
-            int left,
-            int top,
-            int right,
-            int bottom
-    );
-
-    /**
-     * 设置 Padding 边距
      * @param views     View[]
-     * @param leftRight Left and Right Padding
-     * @param topBottom Top and bottom Padding
      * @return Helper
      */
     T setPadding(
-            View[] views,
             int leftRight,
-            int topBottom
+            int topBottom,
+            View... views
     );
 
     /**
      * 设置 Padding 边距
-     * @param views   View[]
      * @param padding Padding
+     * @param views   View[]
      * @return Helper
      */
     T setPadding(
-            View[] views,
-            int padding
+            int padding,
+            View... views
     );
 
     /**
      * 设置 Padding 边距
-     * @param views  View[]
      * @param left   Left Padding
      * @param top    Top Padding
      * @param right  Right Padding
      * @param bottom Bottom Padding
+     * @param views  View[]
      * @return Helper
      */
     T setPadding(
-            View[] views,
             int left,
             int top,
             int right,
-            int bottom
+            int bottom,
+            View... views
     );
 
     /**
@@ -1366,230 +1238,230 @@ public interface IHelperByView<T>
 
     /**
      * 设置动画
-     * @param view      {@link View}
      * @param animation {@link Animation}
+     * @param views     View[]
      * @return Helper
      */
     T setAnimation(
-            View view,
-            Animation animation
+            Animation animation,
+            View... views
     );
 
     /**
      * 清空动画
-     * @param view {@link View}
+     * @param views View[]
      * @return Helper
      */
-    T clearAnimation(final View view);
+    T clearAnimation(View... views);
 
     /**
      * 启动动画
-     * @param view      {@link View}
      * @param animation {@link Animation}
+     * @param views     View[]
      * @return Helper
      */
     T startAnimation(
-            View view,
-            Animation animation
+            Animation animation,
+            View... views
     );
 
     /**
      * 取消动画
-     * @param view {@link View}
+     * @param views View[]
      * @return Helper
      */
-    T cancelAnimation(final View view);
+    T cancelAnimation(View... views);
 
     /**
      * 设置背景图片
-     * @param view       {@link View}
      * @param background 背景图片
+     * @param views      View[]
      * @return Helper
      */
     T setBackground(
-            View view,
-            Drawable background
+            Drawable background,
+            View... views
     );
 
     /**
      * 设置背景颜色
-     * @param view  {@link View}
      * @param color 背景颜色
+     * @param views View[]
      * @return Helper
      */
     T setBackgroundColor(
-            View view,
-            @ColorInt int color
+            @ColorInt int color,
+            View... views
     );
 
     /**
      * 设置背景资源
-     * @param view  {@link View}
      * @param resId resource identifier
+     * @param views View[]
      * @return Helper
      */
     T setBackgroundResource(
-            View view,
-            @DrawableRes int resId
+            @DrawableRes int resId,
+            View... views
     );
 
     /**
      * 设置背景着色颜色
-     * @param view {@link View}
-     * @param tint 着色颜色
+     * @param tint  着色颜色
+     * @param views View[]
      * @return Helper
      */
     T setBackgroundTintList(
-            View view,
-            ColorStateList tint
+            ColorStateList tint,
+            View... views
     );
 
     /**
      * 设置背景着色模式
-     * @param view     {@link View}
      * @param tintMode 着色模式 {@link PorterDuff.Mode}
+     * @param views    View[]
      * @return Helper
      */
     T setBackgroundTintMode(
-            View view,
-            PorterDuff.Mode tintMode
+            PorterDuff.Mode tintMode,
+            View... views
     );
 
     /**
      * 设置前景图片
-     * @param view       {@link View}
      * @param foreground 前景图片
+     * @param views      View[]
      * @return Helper
      */
     T setForeground(
-            View view,
-            Drawable foreground
+            Drawable foreground,
+            View... views
     );
 
     /**
      * 设置前景重心
-     * @param view    {@link View}
      * @param gravity 重心
+     * @param views   View[]
      * @return Helper
      */
     T setForegroundGravity(
-            View view,
-            int gravity
+            int gravity,
+            View... views
     );
 
     /**
      * 设置前景着色颜色
-     * @param view {@link View}
-     * @param tint 着色颜色
+     * @param tint  着色颜色
+     * @param views View[]
      * @return Helper
      */
     T setForegroundTintList(
-            View view,
-            ColorStateList tint
+            ColorStateList tint,
+            View... views
     );
 
     /**
      * 设置前景着色模式
-     * @param view     {@link View}
      * @param tintMode 着色模式 {@link PorterDuff.Mode}
+     * @param views    View[]
      * @return Helper
      */
     T setForegroundTintMode(
-            View view,
-            PorterDuff.Mode tintMode
+            PorterDuff.Mode tintMode,
+            View... views
     );
 
     /**
      * View 着色处理
-     * @param view  {@link View}
      * @param color 颜色值
+     * @param views View[]
      * @return Helper
      */
     T setColorFilter(
-            View view,
-            @ColorInt int color
+            @ColorInt int color,
+            View... views
     );
 
     /**
      * View 着色处理, 并且设置 Background Drawable
-     * @param view     {@link View}
      * @param drawable {@link Drawable}
      * @param color    颜色值
+     * @param views    View[]
      * @return Helper
      */
     T setColorFilter(
-            View view,
             Drawable drawable,
-            @ColorInt int color
+            @ColorInt int color,
+            View... views
     );
 
     /**
      * View 着色处理
-     * @param view        {@link View}
      * @param colorFilter 颜色过滤 ( 效果 )
+     * @param views       View[]
      * @return Helper
      */
     T setColorFilter(
-            View view,
-            ColorFilter colorFilter
+            ColorFilter colorFilter,
+            View... views
     );
 
     /**
      * View 着色处理, 并且设置 Background Drawable
-     * @param view        {@link View}
      * @param drawable    {@link Drawable}
      * @param colorFilter 颜色过滤 ( 效果 )
+     * @param views       View[]
      * @return Helper
      */
     T setColorFilter(
-            View view,
             Drawable drawable,
-            ColorFilter colorFilter
+            ColorFilter colorFilter,
+            View... views
     );
 
     /**
      * 设置 ProgressBar 进度条样式
-     * @param view     {@link View}
      * @param drawable {@link Drawable}
+     * @param views    View[]
      * @return Helper
      */
     T setProgressDrawable(
-            View view,
-            Drawable drawable
+            Drawable drawable,
+            View... views
     );
 
     /**
      * 设置 ProgressBar 进度值
-     * @param view     {@link View}
      * @param progress 当前进度
+     * @param views    View[]
      * @return Helper
      */
     T setBarProgress(
-            View view,
-            int progress
+            int progress,
+            View... views
     );
 
     /**
      * 设置 ProgressBar 最大值
-     * @param view {@link View}
-     * @param max  最大值
+     * @param max   最大值
+     * @param views View[]
      * @return Helper
      */
     T setBarMax(
-            View view,
-            int max
+            int max,
+            View... views
     );
 
     /**
      * 设置 ProgressBar 最大值
-     * @param view     {@link View}
      * @param progress 当前进度
      * @param max      最大值
+     * @param views    View[]
      * @return Helper
      */
     T setBarValue(
-            View view,
             int progress,
-            int max
+            int max,
+            View... views
     );
 }

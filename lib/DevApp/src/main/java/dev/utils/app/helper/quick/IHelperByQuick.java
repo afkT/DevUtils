@@ -9,5 +9,4 @@ import dev.utils.app.helper.IHelper;
 public interface IHelperByQuick<T>
         extends IHelper<T> {
 
-
 }

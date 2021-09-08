@@ -216,7 +216,7 @@ public final class RecordConfig {
      * @param insertHeaderData 是否插入头数据
      * @return {@link RecordConfig}
      */
-    public RecordConfig setInsertHeaderData(boolean insertHeaderData) {
+    public RecordConfig setInsertHeaderData(final boolean insertHeaderData) {
         this.mInsertHeaderData = insertHeaderData;
         return this;
     }

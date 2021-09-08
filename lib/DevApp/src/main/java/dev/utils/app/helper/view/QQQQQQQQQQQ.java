@@ -77,7 +77,7 @@ public final class QQQQQQQQQQQ
      * @return Helper
      */
     @Override
-    public QQQQQQQQQQQ addTouchAreas(
+    public QQQQQQQQQQQ addTouchArea(
             int range,
             View... views
     ) {
@@ -95,7 +95,7 @@ public final class QQQQQQQQQQQ
      * @return Helper
      */
     @Override
-    public QQQQQQQQQQQ addTouchAreas(
+    public QQQQQQQQQQQ addTouchArea(
             int top,
             int bottom,
             int left,
@@ -117,7 +117,7 @@ public final class QQQQQQQQQQQ
      * @return Helper
      */
     @Override
-    public QQQQQQQQQQQ setOnClicks(
+    public QQQQQQQQQQQ setOnClick(
             View.OnClickListener listener,
             View... views
     ) {
@@ -134,7 +134,7 @@ public final class QQQQQQQQQQQ
      * @return Helper
      */
     @Override
-    public QQQQQQQQQQQ setOnLongClicks(
+    public QQQQQQQQQQQ setOnLongClick(
             View.OnLongClickListener listener,
             View... views
     ) {
@@ -151,7 +151,7 @@ public final class QQQQQQQQQQQ
      * @return Helper
      */
     @Override
-    public QQQQQQQQQQQ setOnTouchs(
+    public QQQQQQQQQQQ setOnTouch(
             View.OnTouchListener listener,
             View... views
     ) {
@@ -187,7 +187,7 @@ public final class QQQQQQQQQQQ
      * @return Helper
      */
     @Override
-    public QQQQQQQQQQQ setClipChildrens(
+    public QQQQQQQQQQQ setClipChildren(
             boolean clipChildren,
             ViewGroup... viewGroups
     ) {
@@ -220,7 +220,7 @@ public final class QQQQQQQQQQQ
      * @return Helper
      */
     @Override
-    public QQQQQQQQQQQ setWidthHeights(
+    public QQQQQQQQQQQ setWidthHeight(
             int width,
             int height,
             View... views
@@ -240,7 +240,7 @@ public final class QQQQQQQQQQQ
      * @return Helper
      */
     @Override
-    public QQQQQQQQQQQ setWidthHeights(
+    public QQQQQQQQQQQ setWidthHeight(
             int width,
             int height,
             boolean nullNewLP,
@@ -276,7 +276,7 @@ public final class QQQQQQQQQQQ
      * @return Helper
      */
     @Override
-    public QQQQQQQQQQQ setWidths(
+    public QQQQQQQQQQQ setWidth(
             int width,
             View... views
     ) {
@@ -294,7 +294,7 @@ public final class QQQQQQQQQQQ
      * @return Helper
      */
     @Override
-    public QQQQQQQQQQQ setWidths(
+    public QQQQQQQQQQQ setWidth(
             int width,
             boolean nullNewLP,
             View... views
@@ -312,7 +312,7 @@ public final class QQQQQQQQQQQ
      * @return Helper
      */
     @Override
-    public QQQQQQQQQQQ setHeights(
+    public QQQQQQQQQQQ setHeight(
             int height,
             View... views
     ) {
@@ -330,7 +330,7 @@ public final class QQQQQQQQQQQ
      * @return Helper
      */
     @Override
-    public QQQQQQQQQQQ setHeights(
+    public QQQQQQQQQQQ setHeight(
             int height,
             boolean nullNewLP,
             View... views
