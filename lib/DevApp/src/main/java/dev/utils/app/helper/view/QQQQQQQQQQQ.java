@@ -16,6 +16,7 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.IdRes;
 
 import dev.utils.app.ClickUtils;
+import dev.utils.app.ListViewUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.dev.DevHelper;
 import dev.utils.app.helper.quick.QuickHelper;
@@ -2223,6 +2224,205 @@ public final class QQQQQQQQQQQ
     ) {
         ForUtils.forSimpleArgs(
                 value -> ViewUtils.setBarValue(value, progress, max), views
+        );
+        return this;
+    }
+
+    // =================
+    // = ListViewUtils =
+    // =================
+
+    /**
+     * 滑动到指定索引 ( 有滚动过程 )
+     * @param position 索引
+     * @param views    View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ smoothScrollToPosition(
+            int position,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ListViewUtils.smoothScrollToPosition(value, position), views
+        );
+        return this;
+    }
+
+    /**
+     * 滑动到指定索引 ( 无滚动过程 )
+     * @param position 索引
+     * @param views    View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ scrollToPosition(
+            int position,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ListViewUtils.scrollToPosition(value, position), views
+        );
+        return this;
+    }
+
+    /**
+     * 滑动到顶部 ( 有滚动过程 )
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ smoothScrollToTop(View... views) {
+        ForUtils.forSimpleArgs(
+                value -> ListViewUtils.smoothScrollToTop(value), views
+        );
+        return this;
+    }
+
+    /**
+     * 滑动到顶部 ( 无滚动过程 )
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ scrollToTop(View... views) {
+        ForUtils.forSimpleArgs(
+                value -> ListViewUtils.scrollToTop(value), views
+        );
+        return this;
+    }
+
+    /**
+     * 滑动到底部 ( 有滚动过程 )
+     * <pre>
+     *     如果未到达底部 ( position 可以再加上 smoothScrollBy 搭配到底部 )
+     *     smoothScrollToBottom(view)
+     *     smoothScrollBy(view, 0, Integer.MAX_VALUE);
+     * </pre>
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ smoothScrollToBottom(View... views) {
+        ForUtils.forSimpleArgs(
+                value -> ListViewUtils.smoothScrollToBottom(value), views
+        );
+        return this;
+    }
+
+    /**
+     * 滑动到底部 ( 无滚动过程 )
+     * <pre>
+     *     如果未到达底部 ( position 可以再加上 scrollBy 搭配到底部 )
+     *     scrollToBottom(view)
+     *     scrollBy(view, 0, Integer.MAX_VALUE);
+     * </pre>
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ scrollToBottom(View... views) {
+        ForUtils.forSimpleArgs(
+                value -> ListViewUtils.scrollToBottom(value), views
+        );
+        return this;
+    }
+
+    /**
+     * 滚动到指定位置 ( 有滚动过程, 相对于初始位置移动 )
+     * @param x     X 轴开始坐标
+     * @param y     Y 轴开始坐标
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ smoothScrollTo(
+            int x,
+            int y,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ListViewUtils.smoothScrollTo(value, x, y), views
+        );
+        return this;
+    }
+
+    /**
+     * 滚动到指定位置 ( 有滚动过程, 相对于上次移动的最后位置移动 )
+     * @param x     X 轴开始坐标
+     * @param y     Y 轴开始坐标
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ smoothScrollBy(
+            int x,
+            int y,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ListViewUtils.smoothScrollBy(value, x, y), views
+        );
+        return this;
+    }
+
+    /**
+     * 滚动方向 ( 有滚动过程 )
+     * @param direction 滚动方向 如: View.FOCUS_UP、View.FOCUS_DOWN
+     * @param views     View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ fullScroll(
+            int direction,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ListViewUtils.fullScroll(value, direction), views
+        );
+        return this;
+    }
+
+    /**
+     * View 内容滚动位置 ( 相对于初始位置移动 )
+     * <pre>
+     *     无滚动过程
+     * </pre>
+     * @param x     X 轴开始坐标
+     * @param y     Y 轴开始坐标
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ scrollTo(
+            int x,
+            int y,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ListViewUtils.scrollTo(value, x, y), views
+        );
+        return this;
+    }
+
+    /**
+     * View 内部滚动位置 ( 相对于上次移动的最后位置移动 )
+     * <pre>
+     *     无滚动过程
+     * </pre>
+     * @param x     X 轴开始坐标
+     * @param y     Y 轴开始坐标
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ scrollBy(
+            int x,
+            int y,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> ListViewUtils.scrollBy(value, x, y), views
         );
         return this;
     }

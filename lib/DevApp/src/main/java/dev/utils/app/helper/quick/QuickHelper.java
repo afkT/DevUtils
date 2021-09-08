@@ -34,7 +34,6 @@ import dev.utils.app.EditTextUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.ImageViewUtils;
 import dev.utils.app.KeyBoardUtils;
-import dev.utils.app.ListViewUtils;
 import dev.utils.app.ListenerUtils;
 import dev.utils.app.SizeUtils;
 import dev.utils.app.TextViewUtils;
@@ -2494,126 +2493,6 @@ public final class QuickHelper {
             final int right
     ) {
         ClickUtils.addTouchArea(targetView(), top, bottom, left, right);
-        return this;
-    }
-
-    // =================
-    // = ListViewUtils =
-    // =================
-
-    /**
-     * 滑动到指定索引 ( 有滚动过程 )
-     * @param position 索引
-     * @return {@link QuickHelper}
-     */
-    public QuickHelper smoothScrollToPosition(final int position) {
-        ListViewUtils.smoothScrollToPosition(targetView(), position);
-        return this;
-    }
-
-    /**
-     * 滑动到指定索引 ( 无滚动过程 )
-     * @param position 索引
-     * @return {@link QuickHelper}
-     */
-    public QuickHelper scrollToPosition(final int position) {
-        ListViewUtils.scrollToPosition(targetView(), position);
-        return this;
-    }
-
-    // ============
-    // = 滑动到顶部 =
-    // ============
-
-    /**
-     * 滑动到顶部 ( 有滚动过程 )
-     * @return {@link QuickHelper}
-     */
-    public QuickHelper smoothScrollToTop() {
-        ListViewUtils.smoothScrollToTop(targetView());
-        return this;
-    }
-
-    /**
-     * 滑动到顶部 ( 无滚动过程 )
-     * @return {@link QuickHelper}
-     */
-    public QuickHelper scrollToTop() {
-        ListViewUtils.scrollToTop(targetView());
-        return this;
-    }
-
-    // ============
-    // = 滑动到底部 =
-    // ============
-
-    /**
-     * 滑动到底部 ( 有滚动过程 )
-     * <pre>
-     *     如果未到达底部 ( position 可以再加上 smoothScrollBy 搭配到底部 )
-     *     smoothScrollToBottom(view)
-     *     smoothScrollBy(view, 0, Integer.MAX_VALUE);
-     * </pre>
-     * @return {@link QuickHelper}
-     */
-    public QuickHelper smoothScrollToBottom() {
-        ListViewUtils.smoothScrollToBottom(targetView());
-        return this;
-    }
-
-    /**
-     * 滑动到底部 ( 无滚动过程 )
-     * <pre>
-     *     如果未到达底部 ( position 可以再加上 scrollBy 搭配到底部 )
-     *     scrollToBottom(view)
-     *     scrollBy(view, 0, Integer.MAX_VALUE);
-     * </pre>
-     * @return {@link QuickHelper}
-     */
-    public QuickHelper scrollToBottom() {
-        ListViewUtils.scrollToBottom(targetView());
-        return this;
-    }
-
-    // ==============
-    // = ScrollView =
-    // ==============
-
-    /**
-     * 滚动到指定位置 ( 有滚动过程, 相对于初始位置移动 )
-     * @param x X 轴开始坐标
-     * @param y Y 轴开始坐标
-     * @return {@link QuickHelper}
-     */
-    public QuickHelper smoothScrollTo(
-            final int x,
-            final int y
-    ) {
-        ListViewUtils.smoothScrollTo(targetView(), x, y);
-        return this;
-    }
-
-    /**
-     * 滚动到指定位置 ( 有滚动过程, 相对于上次移动的最后位置移动 )
-     * @param x X 轴开始坐标
-     * @param y Y 轴开始坐标
-     * @return {@link QuickHelper}
-     */
-    public QuickHelper smoothScrollBy(
-            final int x,
-            final int y
-    ) {
-        ListViewUtils.smoothScrollBy(targetView(), x, y);
-        return this;
-    }
-
-    /**
-     * 滚动方向 ( 有滚动过程 )
-     * @param direction 滚动方向 如: View.FOCUS_UP、View.FOCUS_DOWN
-     * @return {@link QuickHelper}
-     */
-    public QuickHelper fullScroll(final int direction) {
-        ListViewUtils.fullScroll(targetView(), direction);
         return this;
     }
 

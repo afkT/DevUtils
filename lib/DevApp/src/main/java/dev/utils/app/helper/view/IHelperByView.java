@@ -1471,4 +1471,137 @@ public interface IHelperByView<T>
             int max,
             View... views
     );
+
+    // =================
+    // = ListViewUtils =
+    // =================
+
+    /**
+     * 滑动到指定索引 ( 有滚动过程 )
+     * @param position 索引
+     * @param views    View[]
+     * @return Helper
+     */
+    T smoothScrollToPosition(
+            int position,
+            View... views
+    );
+
+    /**
+     * 滑动到指定索引 ( 无滚动过程 )
+     * @param position 索引
+     * @param views    View[]
+     * @return Helper
+     */
+    T scrollToPosition(
+            int position,
+            View... views
+    );
+
+    /**
+     * 滑动到顶部 ( 有滚动过程 )
+     * @param views View[]
+     * @return Helper
+     */
+    T smoothScrollToTop(View... views);
+
+    /**
+     * 滑动到顶部 ( 无滚动过程 )
+     * @param views View[]
+     * @return Helper
+     */
+    T scrollToTop(View... views);
+
+    /**
+     * 滑动到底部 ( 有滚动过程 )
+     * <pre>
+     *     如果未到达底部 ( position 可以再加上 smoothScrollBy 搭配到底部 )
+     *     smoothScrollToBottom(view)
+     *     smoothScrollBy(view, 0, Integer.MAX_VALUE);
+     * </pre>
+     * @param views View[]
+     * @return Helper
+     */
+    T smoothScrollToBottom(View... views);
+
+    /**
+     * 滑动到底部 ( 无滚动过程 )
+     * <pre>
+     *     如果未到达底部 ( position 可以再加上 scrollBy 搭配到底部 )
+     *     scrollToBottom(view)
+     *     scrollBy(view, 0, Integer.MAX_VALUE);
+     * </pre>
+     * @param views View[]
+     * @return Helper
+     */
+    T scrollToBottom(View... views);
+
+    /**
+     * 滚动到指定位置 ( 有滚动过程, 相对于初始位置移动 )
+     * @param x     X 轴开始坐标
+     * @param y     Y 轴开始坐标
+     * @param views View[]
+     * @return Helper
+     */
+    T smoothScrollTo(
+            int x,
+            int y,
+            View... views
+    );
+
+    /**
+     * 滚动到指定位置 ( 有滚动过程, 相对于上次移动的最后位置移动 )
+     * @param x     X 轴开始坐标
+     * @param y     Y 轴开始坐标
+     * @param views View[]
+     * @return Helper
+     */
+    T smoothScrollBy(
+            int x,
+            int y,
+            View... views
+    );
+
+    /**
+     * 滚动方向 ( 有滚动过程 )
+     * @param direction 滚动方向 如: View.FOCUS_UP、View.FOCUS_DOWN
+     * @param views     View[]
+     * @return Helper
+     */
+    T fullScroll(
+            int direction,
+            View... views
+    );
+
+    /**
+     * View 内容滚动位置 ( 相对于初始位置移动 )
+     * <pre>
+     *     无滚动过程
+     * </pre>
+     * @param x     X 轴开始坐标
+     * @param y     Y 轴开始坐标
+     * @param views View[]
+     * @return Helper
+     */
+    T scrollTo(
+            int x,
+            int y,
+            View... views
+    );
+
+    /**
+     * View 内部滚动位置 ( 相对于上次移动的最后位置移动 )
+     * <pre>
+     *     无滚动过程
+     * </pre>
+     * @param x     X 轴开始坐标
+     * @param y     Y 轴开始坐标
+     * @param views View[]
+     * @return Helper
+     */
+    T scrollBy(
+            int x,
+            int y,
+            View... views
+    );
 }
