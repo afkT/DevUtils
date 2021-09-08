@@ -2199,7 +2199,6 @@ public interface IHelperByView<T>
 
     /**
      * 设置字体
-     * @param view     {@link TextView}
      * @param typeface {@link Typeface} 字体样式
      * @param style    样式
      * @param views    View[]
@@ -2235,7 +2234,6 @@ public interface IHelperByView<T>
 
     /**
      * 设置字体大小 ( dp 与设备无关的像素 )
-     * @param view  {@link TextView}
      * @param size  字体大小
      * @param views View[]
      * @return Helper
@@ -2520,7 +2518,6 @@ public interface IHelperByView<T>
 
     /**
      * 设置 Gravity
-     * @param view    {@link TextView}
      * @param gravity {@link android.view.Gravity}
      * @param views   View[]
      * @return Helper
