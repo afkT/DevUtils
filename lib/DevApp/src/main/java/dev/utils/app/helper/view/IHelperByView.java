@@ -7,6 +7,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.text.method.TransformationMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -1852,4 +1853,71 @@ public interface IHelperByView<T>
             int isVisibility,
             View... views
     );
+
+    // ===============================
+    // = EditTextUtils、TextViewUtils =
+    // ===============================
+
+    /**
+     * 设置文本
+     * @param text  TextView text
+     * @param views View[]
+     * @return Helper
+     */
+    T setText(
+            CharSequence text,
+            View... views
+    );
+
+    /**
+     * 设置长度限制
+     * @param maxLength 长度限制
+     * @param views     View[]
+     * @return Helper
+     */
+    T setMaxLength(
+            int maxLength,
+            View... views
+    );
+
+    /**
+     * 设置长度限制, 并且设置内容
+     * @param content   文本内容
+     * @param maxLength 长度限制
+     * @param views     View[]
+     * @return Helper
+     */
+    T setMaxLengthAndText(
+            CharSequence content,
+            int maxLength,
+            View... views
+    );
+
+    /**
+     * 设置文本视图显示转换
+     * @param method {@link TransformationMethod}
+     * @param views  View[]
+     * @return Helper
+     */
+    T setTransformationMethod(
+            TransformationMethod method,
+            View... views
+    );
+
+    /**
+     * 设置密码文本视图显示转换
+     * @param isDisplayPassword 是否显示密码
+     * @param views             View[]
+     * @return Helper
+     */
+    T setTransformationMethod(
+            boolean isDisplayPassword,
+            View... views
+    );
+
+    // =================
+    // = EditTextUtils =
+    // =================
+
+
 }

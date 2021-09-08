@@ -7,7 +7,6 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.KeyListener;
-import android.text.method.TransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -86,24 +85,6 @@ public final class ViewHelper {
             final CharSequence text
     ) {
         TextViewUtils.setHint(view, text);
-        return this;
-    }
-
-    /**
-     * 设置文本
-     * @param view {@link TextView}
-     * @param text TextView text
-     * @return {@link ViewHelper}
-     */
-    public ViewHelper setText(
-            final View view,
-            final CharSequence text
-    ) {
-        if (view instanceof EditText) {
-            EditTextUtils.setText(EditTextUtils.getEditText(view), text);
-        } else {
-            TextViewUtils.setText(view, text);
-        }
         return this;
     }
 
@@ -782,44 +763,6 @@ public final class ViewHelper {
     }
 
     /**
-     * 设置长度限制
-     * @param view      {@link View}
-     * @param maxLength 长度限制
-     * @return {@link ViewHelper}
-     */
-    public ViewHelper setMaxLength(
-            final View view,
-            final int maxLength
-    ) {
-        if (view instanceof EditText) {
-            EditTextUtils.setMaxLength(EditTextUtils.getEditText(view), maxLength);
-        } else {
-            TextViewUtils.setMaxLength(view, maxLength);
-        }
-        return this;
-    }
-
-    /**
-     * 设置长度限制, 并且设置内容
-     * @param view      {@link View}
-     * @param content   文本内容
-     * @param maxLength 长度限制
-     * @return {@link ViewHelper}
-     */
-    public ViewHelper setMaxLengthAndText(
-            final View view,
-            final CharSequence content,
-            final int maxLength
-    ) {
-        if (view instanceof EditText) {
-            EditTextUtils.setMaxLengthAndText(EditTextUtils.getEditText(view), content, maxLength);
-        } else {
-            TextViewUtils.setMaxLengthAndText(view, content, maxLength);
-        }
-        return this;
-    }
-
-    /**
      * 设置是否显示光标
      * @param editText {@link EditText}
      * @param visible  是否显示光标
@@ -864,44 +807,6 @@ public final class ViewHelper {
             final int index
     ) {
         EditTextUtils.setSelection(editText, index);
-        return this;
-    }
-
-    // =
-
-    /**
-     * 设置文本视图显示转换
-     * @param view   {@link View}
-     * @param method {@link TransformationMethod}
-     * @return {@link ViewHelper}
-     */
-    public ViewHelper setTransformationMethod(
-            final View view,
-            final TransformationMethod method
-    ) {
-        if (view instanceof EditText) {
-            EditTextUtils.setTransformationMethod(EditTextUtils.getEditText(view), method);
-        } else {
-            TextViewUtils.setTransformationMethod(view, method);
-        }
-        return this;
-    }
-
-    /**
-     * 设置密码文本视图显示转换
-     * @param view              {@link View}
-     * @param isDisplayPassword 是否显示密码
-     * @return {@link ViewHelper}
-     */
-    public ViewHelper setTransformationMethod(
-            final View view,
-            final boolean isDisplayPassword
-    ) {
-        if (view instanceof EditText) {
-            EditTextUtils.setTransformationMethod(EditTextUtils.getEditText(view), isDisplayPassword);
-        } else {
-            TextViewUtils.setTransformationMethod(view, isDisplayPassword);
-        }
         return this;
     }
 

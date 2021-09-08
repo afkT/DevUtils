@@ -8,9 +8,11 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.text.method.TransformationMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.annotation.ColorInt;
@@ -19,9 +21,11 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.IdRes;
 
 import dev.utils.app.ClickUtils;
+import dev.utils.app.EditTextUtils;
 import dev.utils.app.HandlerUtils;
 import dev.utils.app.ImageViewUtils;
 import dev.utils.app.ListViewUtils;
+import dev.utils.app.TextViewUtils;
 import dev.utils.app.ViewUtils;
 import dev.utils.app.helper.dev.DevHelper;
 import dev.utils.app.helper.quick.QuickHelper;
@@ -2867,4 +2871,135 @@ public final class QQQQQQQQQQQ
         ImageViewUtils.setScaleTypes(scaleType, isVisibility, views);
         return this;
     }
+
+    // ===============================
+    // = EditTextUtils、TextViewUtils =
+    // ===============================
+
+    /**
+     * 设置文本
+     * @param text  TextView text
+     * @param views View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setText(
+            CharSequence text,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> {
+                    if (value instanceof EditText) {
+                        EditTextUtils.setText(EditTextUtils.getEditText(value), text);
+                    } else {
+                        TextViewUtils.setText(value, text);
+                    }
+                }, views
+        );
+        return this;
+    }
+
+    /**
+     * 设置长度限制
+     * @param maxLength 长度限制
+     * @param views     View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setMaxLength(
+            int maxLength,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> {
+                    if (value instanceof EditText) {
+                        EditTextUtils.setMaxLength(EditTextUtils.getEditText(value), maxLength);
+                    } else {
+                        TextViewUtils.setMaxLength(value, maxLength);
+                    }
+                }, views
+        );
+        return this;
+    }
+
+    /**
+     * 设置长度限制, 并且设置内容
+     * @param content   文本内容
+     * @param maxLength 长度限制
+     * @param views     View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setMaxLengthAndText(
+            CharSequence content,
+            int maxLength,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> {
+                    if (value instanceof EditText) {
+                        EditTextUtils.setMaxLengthAndText(
+                                EditTextUtils.getEditText(value), content, maxLength
+                        );
+                    } else {
+                        TextViewUtils.setMaxLengthAndText(value, content, maxLength);
+                    }
+                }, views
+        );
+        return this;
+    }
+
+    /**
+     * 设置文本视图显示转换
+     * @param method {@link TransformationMethod}
+     * @param views  View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setTransformationMethod(
+            TransformationMethod method,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> {
+                    if (value instanceof EditText) {
+                        EditTextUtils.setTransformationMethod(
+                                EditTextUtils.getEditText(value), method
+                        );
+                    } else {
+                        TextViewUtils.setTransformationMethod(value, method);
+                    }
+                }, views
+        );
+        return this;
+    }
+
+    /**
+     * 设置密码文本视图显示转换
+     * @param isDisplayPassword 是否显示密码
+     * @param views             View[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setTransformationMethod(
+            boolean isDisplayPassword,
+            View... views
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> {
+                    if (value instanceof EditText) {
+                        EditTextUtils.setTransformationMethod(
+                                EditTextUtils.getEditText(value), isDisplayPassword
+                        );
+                    } else {
+                        TextViewUtils.setTransformationMethod(value, isDisplayPassword);
+                    }
+                }, views
+        );
+        return this;
+    }
+
+    // =================
+    // = EditTextUtils =
+    // =================
 }
