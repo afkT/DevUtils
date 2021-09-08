@@ -597,17 +597,17 @@ public final class EditTextUtils {
 
     /**
      * 设置 KeyListener
-     * @param editText    {@link EditText}
-     * @param keyListener {@link KeyListener}
-     * @param <T>         泛型
+     * @param editText {@link EditText}
+     * @param listener {@link KeyListener}
+     * @param <T>      泛型
      * @return {@link EditText}
      */
     public static <T extends EditText> T setKeyListener(
             final T editText,
-            final KeyListener keyListener
+            final KeyListener listener
     ) {
         if (editText != null) {
-            editText.setKeyListener(keyListener);
+            editText.setKeyListener(listener);
         }
         return editText;
     }

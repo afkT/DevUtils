@@ -7,10 +7,13 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.text.TextWatcher;
+import android.text.method.KeyListener;
 import android.text.method.TransformationMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.annotation.ColorInt;
@@ -1919,5 +1922,192 @@ public interface IHelperByView<T>
     // = EditTextUtils =
     // =================
 
+    /**
+     * 设置内容
+     * @param content   文本内容
+     * @param isSelect  是否设置光标
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    T setText(
+            CharSequence content,
+            boolean isSelect,
+            EditText... editTexts
+    );
 
+    /**
+     * 追加内容 ( 当前光标位置追加 )
+     * @param content   文本内容
+     * @param isSelect  是否设置光标
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    T insert(
+            CharSequence content,
+            boolean isSelect,
+            EditText... editTexts
+    );
+
+    /**
+     * 追加内容
+     * @param content   文本内容
+     * @param start     开始添加的位置
+     * @param isSelect  是否设置光标
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    T insert(
+            CharSequence content,
+            int start,
+            boolean isSelect,
+            EditText... editTexts
+    );
+
+    /**
+     * 设置是否显示光标
+     * @param visible   是否显示光标
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    T setCursorVisible(
+            boolean visible,
+            EditText... editTexts
+    );
+
+    /**
+     * 设置光标
+     * @param textCursorDrawable 光标
+     * @param editTexts          EditText[]
+     * @return Helper
+     */
+    T setTextCursorDrawable(
+            @DrawableRes int textCursorDrawable,
+            EditText... editTexts
+    );
+
+    /**
+     * 设置光标
+     * @param textCursorDrawable 光标
+     * @param editTexts          EditText[]
+     * @return Helper
+     */
+    T setTextCursorDrawable(
+            Drawable textCursorDrawable,
+            EditText... editTexts
+    );
+
+    /**
+     * 设置光标在第一位
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    T setSelectionToTop(EditText... editTexts);
+
+    /**
+     * 设置光标在最后一位
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    T setSelectionToBottom(EditText... editTexts);
+
+    /**
+     * 设置光标位置
+     * @param index     光标位置
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    T setSelection(
+            int index,
+            EditText... editTexts
+    );
+
+    /**
+     * 设置输入类型
+     * @param type      类型
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    T setInputType(
+            int type,
+            EditText... editTexts
+    );
+
+    /**
+     * 设置软键盘右下角按钮类型
+     * @param imeOptions 软键盘按钮类型
+     * @param editTexts  EditText[]
+     * @return Helper
+     */
+    T setImeOptions(
+            int imeOptions,
+            EditText... editTexts
+    );
+
+    /**
+     * 设置密码文本视图显示转换
+     * @param isDisplayPassword 是否显示密码
+     * @param isSelectBottom    是否设置光标到最后
+     * @param editTexts         EditText[]
+     * @return Helper
+     */
+    T setTransformationMethod(
+            boolean isDisplayPassword,
+            boolean isSelectBottom,
+            EditText... editTexts
+    );
+
+    /**
+     * 添加输入监听事件
+     * @param watcher   输入监听
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    T addTextChangedListener(
+            TextWatcher watcher,
+            EditText... editTexts
+    );
+
+    /**
+     * 移除输入监听事件
+     * @param watcher   输入监听
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    T removeTextChangedListener(
+            TextWatcher watcher,
+            EditText... editTexts
+    );
+
+    /**
+     * 设置 KeyListener
+     * @param listener  {@link KeyListener}
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    T setKeyListener(
+            KeyListener listener,
+            EditText... editTexts
+    );
+
+    /**
+     * 设置 KeyListener
+     * @param accepted  允许输入的内容, 如: 0123456789
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    T setKeyListener(
+            String accepted,
+            EditText... editTexts
+    );
+
+    /**
+     * 设置 KeyListener
+     * @param accepted  允许输入的内容
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    T setKeyListener(
+            char[] accepted,
+            EditText... editTexts
+    );
 }

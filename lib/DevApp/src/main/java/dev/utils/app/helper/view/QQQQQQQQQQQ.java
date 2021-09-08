@@ -8,6 +8,8 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.text.TextWatcher;
+import android.text.method.KeyListener;
 import android.text.method.TransformationMethod;
 import android.view.View;
 import android.view.ViewGroup;
@@ -3002,4 +3004,301 @@ public final class QQQQQQQQQQQ
     // =================
     // = EditTextUtils =
     // =================
+
+    /**
+     * 设置内容
+     * @param content   文本内容
+     * @param isSelect  是否设置光标
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setText(
+            CharSequence content,
+            boolean isSelect,
+            EditText... editTexts
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> EditTextUtils.setText(value, content, isSelect), editTexts
+        );
+        return this;
+    }
+
+    /**
+     * 追加内容 ( 当前光标位置追加 )
+     * @param content   文本内容
+     * @param isSelect  是否设置光标
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ insert(
+            CharSequence content,
+            boolean isSelect,
+            EditText... editTexts
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> EditTextUtils.insert(value, content, isSelect), editTexts
+        );
+        return this;
+    }
+
+    /**
+     * 追加内容
+     * @param content   文本内容
+     * @param start     开始添加的位置
+     * @param isSelect  是否设置光标
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ insert(
+            CharSequence content,
+            int start,
+            boolean isSelect,
+            EditText... editTexts
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> EditTextUtils.insert(value, content, start, isSelect), editTexts
+        );
+        return this;
+    }
+
+    /**
+     * 设置是否显示光标
+     * @param visible   是否显示光标
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setCursorVisible(
+            boolean visible,
+            EditText... editTexts
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> EditTextUtils.setCursorVisible(value, visible), editTexts
+        );
+        return this;
+    }
+
+    /**
+     * 设置光标
+     * @param textCursorDrawable 光标
+     * @param editTexts          EditText[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setTextCursorDrawable(
+            @DrawableRes int textCursorDrawable,
+            EditText... editTexts
+    ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ForUtils.forSimpleArgs(
+                    value -> EditTextUtils.setTextCursorDrawable(value, textCursorDrawable), editTexts
+            );
+        }
+        return this;
+    }
+
+    /**
+     * 设置光标
+     * @param textCursorDrawable 光标
+     * @param editTexts          EditText[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setTextCursorDrawable(
+            Drawable textCursorDrawable,
+            EditText... editTexts
+    ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ForUtils.forSimpleArgs(
+                    value -> EditTextUtils.setTextCursorDrawable(value, textCursorDrawable), editTexts
+            );
+        }
+        return this;
+    }
+
+    /**
+     * 设置光标在第一位
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setSelectionToTop(EditText... editTexts) {
+        ForUtils.forSimpleArgs(
+                value -> EditTextUtils.setSelectionToTop(value), editTexts
+        );
+        return this;
+    }
+
+    /**
+     * 设置光标在最后一位
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setSelectionToBottom(EditText... editTexts) {
+        ForUtils.forSimpleArgs(
+                value -> EditTextUtils.setSelectionToBottom(value), editTexts
+        );
+        return this;
+    }
+
+    /**
+     * 设置光标位置
+     * @param index     光标位置
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setSelection(
+            int index,
+            EditText... editTexts
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> EditTextUtils.setSelection(value, index), editTexts
+        );
+        return this;
+    }
+
+    /**
+     * 设置输入类型
+     * @param type      类型
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setInputType(
+            int type,
+            EditText... editTexts
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> EditTextUtils.setInputType(value, type), editTexts
+        );
+        return this;
+    }
+
+    /**
+     * 设置软键盘右下角按钮类型
+     * @param imeOptions 软键盘按钮类型
+     * @param editTexts  EditText[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setImeOptions(
+            int imeOptions,
+            EditText... editTexts
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> EditTextUtils.setImeOptions(value, imeOptions), editTexts
+        );
+        return this;
+    }
+
+    /**
+     * 设置密码文本视图显示转换
+     * @param isDisplayPassword 是否显示密码
+     * @param isSelectBottom    是否设置光标到最后
+     * @param editTexts         EditText[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setTransformationMethod(
+            boolean isDisplayPassword,
+            boolean isSelectBottom,
+            EditText... editTexts
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> EditTextUtils.setTransformationMethod(
+                        value, isDisplayPassword, isSelectBottom
+                ), editTexts
+        );
+        return this;
+    }
+
+    /**
+     * 添加输入监听事件
+     * @param watcher   输入监听
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ addTextChangedListener(
+            TextWatcher watcher,
+            EditText... editTexts
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> EditTextUtils.addTextChangedListener(value, watcher), editTexts
+        );
+        return this;
+    }
+
+    /**
+     * 移除输入监听事件
+     * @param watcher   输入监听
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ removeTextChangedListener(
+            TextWatcher watcher,
+            EditText... editTexts
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> EditTextUtils.removeTextChangedListener(value, watcher), editTexts
+        );
+        return this;
+    }
+
+    /**
+     * 设置 KeyListener
+     * @param listener  {@link KeyListener}
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setKeyListener(
+            KeyListener listener,
+            EditText... editTexts
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> EditTextUtils.setKeyListener(value, listener), editTexts
+        );
+        return this;
+    }
+
+    /**
+     * 设置 KeyListener
+     * @param accepted  允许输入的内容, 如: 0123456789
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setKeyListener(
+            String accepted,
+            EditText... editTexts
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> EditTextUtils.setKeyListener(value, accepted), editTexts
+        );
+        return this;
+    }
+
+    /**
+     * 设置 KeyListener
+     * @param accepted  允许输入的内容
+     * @param editTexts EditText[]
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ setKeyListener(
+            char[] accepted,
+            EditText... editTexts
+    ) {
+        ForUtils.forSimpleArgs(
+                value -> EditTextUtils.setKeyListener(value, accepted), editTexts
+        );
+        return this;
+    }
 }

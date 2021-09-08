@@ -477,15 +477,15 @@ public final class DevHelper {
 
     /**
      * 设置 KeyListener
-     * @param editText    {@link EditText}
-     * @param keyListener {@link KeyListener}
+     * @param editText {@link EditText}
+     * @param listener {@link KeyListener}
      * @return {@link DevHelper}
      */
     public DevHelper setKeyListener(
             final EditText editText,
-            final KeyListener keyListener
+            final KeyListener listener
     ) {
-        EditTextUtils.setKeyListener(editText, keyListener);
+        EditTextUtils.setKeyListener(editText, listener);
         return this;
     }
 

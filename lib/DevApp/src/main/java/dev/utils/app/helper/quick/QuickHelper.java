@@ -860,11 +860,11 @@ public final class QuickHelper {
 
     /**
      * 设置 KeyListener
-     * @param keyListener {@link KeyListener}
+     * @param listener {@link KeyListener}
      * @return {@link QuickHelper}
      */
-    public QuickHelper setKeyListener(final KeyListener keyListener) {
-        EditTextUtils.setKeyListener(targetEditText(), keyListener);
+    public QuickHelper setKeyListener(final KeyListener listener) {
+        EditTextUtils.setKeyListener(targetEditText(), listener);
         return this;
     }
 
