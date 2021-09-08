@@ -19,6 +19,7 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.IdRes;
 
 import dev.utils.app.ClickUtils;
+import dev.utils.app.HandlerUtils;
 import dev.utils.app.ImageViewUtils;
 import dev.utils.app.ListViewUtils;
 import dev.utils.app.ViewUtils;
@@ -77,6 +78,87 @@ public final class QQQQQQQQQQQ
     @Override
     public ViewHelper viewHelper() {
         return ViewHelper.get();
+    }
+
+    // ================
+    // = HandlerUtils =
+    // ================
+
+    /**
+     * 在主线程 Handler 中执行任务
+     * @param runnable 可执行的任务
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ postRunnable(Runnable runnable) {
+        HandlerUtils.postRunnable(runnable);
+        return this;
+    }
+
+    /**
+     * 在主线程 Handler 中执行延迟任务
+     * @param runnable    可执行的任务
+     * @param delayMillis 延迟时间
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ postRunnable(
+            Runnable runnable,
+            long delayMillis
+    ) {
+        HandlerUtils.postRunnable(runnable, delayMillis);
+        return this;
+    }
+
+    /**
+     * 在主线程 Handler 中执行延迟任务
+     * @param runnable    可执行的任务
+     * @param delayMillis 延迟时间
+     * @param number      轮询次数
+     * @param interval    轮询时间
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ postRunnable(
+            Runnable runnable,
+            long delayMillis,
+            int number,
+            int interval
+    ) {
+        HandlerUtils.postRunnable(runnable, delayMillis, number, interval);
+        return this;
+    }
+
+    /**
+     * 在主线程 Handler 中执行延迟任务
+     * @param runnable      可执行的任务
+     * @param delayMillis   延迟时间
+     * @param number        轮询次数
+     * @param interval      轮询时间
+     * @param onEndListener 结束通知
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ postRunnable(
+            Runnable runnable,
+            long delayMillis,
+            int number,
+            int interval,
+            HandlerUtils.OnEndListener onEndListener
+    ) {
+        HandlerUtils.postRunnable(runnable, delayMillis, number, interval, onEndListener);
+        return this;
+    }
+
+    /**
+     * 在主线程 Handler 中清除任务
+     * @param runnable 需要清除的任务
+     * @return Helper
+     */
+    @Override
+    public QQQQQQQQQQQ removeRunnable(Runnable runnable) {
+        HandlerUtils.removeRunnable(runnable);
+        return this;
     }
 
     // =================
